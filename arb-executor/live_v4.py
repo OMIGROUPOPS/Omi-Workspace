@@ -2112,6 +2112,19 @@ class LiveV3:
                         "waited_min": round((now - pos.entry_posted_ts) / 60),
                     }, ticker=tk)
                     self._untombstone_entry(tk, pos)
+                    # DEFENSE-IN-DEPTH (TRASQU NO_EXIT fix): if cleanup kept a
+                    # filled position, ensure an exit exists. _v4_apply_exit is a
+                    # no-op for HOLD cells and clears stray sells before posting,
+                    # so this is safe to call whenever no exit order is recorded.
+                    kept = self.positions.get(tk)
+                    if (kept is not None and kept.is_v4 and kept.phase == "active"
+                            and kept.entry_qty > 0 and not kept.exit_order_id):
+                        self._log("exit_repost_on_cleanup", {
+                            "filled_qty": kept.entry_qty,
+                            "entry_price": kept.entry_price,
+                        }, ticker=tk)
+                        await self._v4_apply_exit(tk, kept, kept.entry_price, kept.entry_qty)
+                        self._save_v4_resting()
                     continue
 
                 path = "/trade-api/v2/portfolio/orders/%s" % pos.entry_order_id
@@ -3164,7 +3177,7 @@ class LiveV3:
             await self.cancel_order(tk, pos.entry_order_id, "v4_t20m_fallback")
             self.inflight_orders.add(tk)
             try:
-                oid, _ = await self.place_order(tk, "buy", "yes", book.best_ask,
+                oid, resp = await self.place_order(tk, "buy", "yes", book.best_ask,
                                                 self.entry_size, post_only=False)
             finally:
                 self.inflight_orders.discard(tk)
@@ -3178,6 +3191,34 @@ class LiveV3:
                 "regime": pos.regime_at_posting,
                 "time_to_start_min": round(time_to_start / 60, 1),
             }, ticker=tk)
+            # INSTANT TAKER FILL (TRASQU NO_EXIT fix): a post_only=False cross can
+            # fill ON PLACEMENT. That fill never transits the entry_resting poll
+            # (it can be shadowed by the match_start_buffer branch), so book it
+            # here and post the exit via the SAME path ENTRY_FILLED uses.
+            # Reuses _v4_apply_exit (HOLD-safe, sizes to filled qty).
+            o = (resp or {}).get("order", {}) if isinstance(resp, dict) else {}
+            filled = int(float(o.get("fill_count_fp", 0) or 0))
+            if filled > 0 and not pos.exit_order_id:
+                fpr = o.get("average_fill_price_fp", book.best_ask)
+                if isinstance(fpr, str):
+                    fpr = float(fpr)
+                fill_price = round(fpr * 100) if fpr < 1.5 else int(fpr)
+                if fill_price <= 0:
+                    fill_price = book.best_ask
+                if pos.entry_qty == 0:
+                    self.n_entries += 1
+                pos.entry_qty = filled
+                pos.entry_filled_ts = time.time()
+                pos.phase = "active"
+                self._log("entry_filled", {
+                    "fill_price": fill_price, "posted_price": pos.entry_price,
+                    "qty": filled, "new_fills": filled, "cell": pos.cell_name,
+                    "direction": pos.direction, "play_type": pos.play_type,
+                    "kalshi_status": o.get("status", "?"),
+                    "source": "t20m_instant_fill",
+                }, ticker=tk)
+                if pos.is_v4:
+                    await self._v4_apply_exit(tk, pos, fill_price, filled)
             self._save_v4_resting()
             return
 

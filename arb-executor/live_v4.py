@@ -113,6 +113,7 @@ V4_PAIRED_BASIS_CAP = 99          # T50: refuse entering BOTH sides of an event 
 LIVE_DETECT_WINDOW_SEC = 60       # rolling window for the trade-burst signal
 LIVE_TRADE_BURST = 10             # >= this many trade prints in the window across both legs => match is live (tunable; pre-match tennis books trade far below this)
 LIVE_TRADE_RETENTION_SEC = 600    # prune per-ticker trade-time deques older than this
+MAX_TAKER_SPREAD = 5              # T52: never TAKER-cross when (ask-bid) > this. The KESMAR fat-spread cross paid a wide ask; a wide spread means the taker floor isn't cleanly achievable -> stay flat rather than overpay. Tunable; resting-maker entries are unaffected.
 
 STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
@@ -1971,6 +1972,12 @@ class LiveV3:
             return True
         return False
 
+    def _taker_spread_ok(self, bid, ask):
+        """T52: True if (ask-bid) is tight enough to TAKER-cross. A fat spread
+        means crossing overpays (the KESMAR fat-spread mechanism) -> block the
+        cross and stay flat rather than lift a wide ask."""
+        return (ask - bid) <= MAX_TAKER_SPREAD
+
     def identify_sides(self, event_ticker):
         tickers = list(self.event_tickers.get(event_ticker, set()))
         if len(tickers) < 2:
@@ -2893,6 +2900,15 @@ class LiveV3:
                 if not self._paired_basis_ok(tk, et, entry_price):
                     continue
 
+                # T52: never TAKER-cross a fat spread (the KESMAR fat-spread
+                # mechanism). Resting-maker entries (post_only) are unaffected.
+                if post_only is False and not self._taker_spread_ok(book.best_bid, current_ask):
+                    self.n_skips += 1
+                    self._log("skip_fat_spread_taker", {"event": et, "mode": entry_mode,
+                        "spread": current_ask - book.best_bid, "bid": book.best_bid,
+                        "ask": current_ask, "cap": MAX_TAKER_SPREAD}, ticker=tk)
+                    continue
+
                 # Pre-post guards: existing resting order / open position.
                 existing = await api_get(self.session, self.ak, self.pk,
                     "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
@@ -3270,6 +3286,15 @@ class LiveV3:
         target becomes marketable. T-20m fallback is handled below (STEP 6)."""
         spread = book.best_ask - book.best_bid
         # Degenerate / wide-spread book: cancel and free the leg for re-entry.
+        # T51/T52: cancel a resting entry bid the moment the match goes live --
+        # do not let a pre-match bid fill into live play. Filled positions are
+        # managed separately and unaffected.
+        if self._is_match_live(pos.event_ticker):
+            await self.cancel_order(tk, pos.entry_order_id, "match_live_cancel")
+            self._log("match_live_resting_cancel", {"event": pos.event_ticker}, ticker=tk)
+            self._untombstone_entry(tk, pos)
+            self._save_v4_resting()
+            return
         if spread > 2 or book.best_bid <= 0 or book.best_ask >= 100:
             await self.cancel_order(tk, pos.entry_order_id, "v4_degenerate_cancel")
             self._log("v4_resting_cancel", {"reason": "degenerate_or_wide_spread",
@@ -3292,6 +3317,20 @@ class LiveV3:
                 old_filled = int(float((old.get("order", old).get("fill_count_fp", 0)) or 0))
                 if old_filled > 0:
                     return  # filled as maker before the deadline -- let check_fills book it
+            # T52: do not fallback-cross into a LIVE match (T51) or across a FAT
+            # SPREAD (the KESMAR fat-spread taker mechanism). Cancel + stay flat
+            # rather than fire the atlas-baseline taker into bad execution.
+            t52_live = self._is_match_live(pos.event_ticker)
+            t52_spread = book.best_ask - book.best_bid
+            if t52_live or not self._taker_spread_ok(book.best_bid, book.best_ask):
+                reason = "match_live" if t52_live else "fat_spread"
+                await self.cancel_order(tk, pos.entry_order_id, "no_fallback_" + reason)
+                self._log("v4_fallback_blocked", {"event": pos.event_ticker,
+                    "reason": reason, "spread": t52_spread, "bid": book.best_bid,
+                    "ask": book.best_ask, "cap": MAX_TAKER_SPREAD}, ticker=tk)
+                self._untombstone_entry(tk, pos)
+                self._save_v4_resting()
+                return
             # T50: do not fallback-cross into a guaranteed-loss pair. If the
             # sibling is already committed and best_ask would push combined
             # basis over cap, cancel the unfilled bid and stay flat on this leg.

@@ -290,6 +290,46 @@ Outputs per category: `deploy_entry_fill_<CAT>.csv` (per-cell headline + verdict
 `entry_placement_surface_<CAT>.csv` (c × placement-minute), `chart_entry_fill_<CAT>.html`.
 Premarket coverage is ~5% fewer matches than the exit universe (some matches lack premarket tape).
 
+## Premarket DIRECTIONAL-DRIFT hypothesis test — full universe, 4 categories (2026-06-01)
+
+`premarket_drift.py` on `premarket_tape_v1.parquet`. Thesis tested: favorites (high cells) drift UP
+and underdogs (low cells) drift DOWN over T-4h→T-20 (retail piles into the favorite). drift =
+traded price near T-20 − traded price near T-4h (price_close, real prints only), grouped by starting
+band, split by eventual outcome.
+
+**HEADLINE THESIS: REJECTED at full N.** Mean band drifts are all small (<±1¢) and inconsistent in
+sign across categories; %up≈%down (34–54%). **Heavy-favorites drift slightly DOWN in all four**
+(−0.97 / −0.35 / −0.19 / −0.27), the opposite of the thesis. The probe's apparent favorite-up/
+dog-down pattern was small-sample noise. There is no systematic premarket directional push.
+
+**THE OUTCOME SPLIT is decisive — it's efficient repricing, NOT retail overshoot:**
+
+| band | ATP_MAIN W/L drift | WTA_MAIN | ATP_CHALL | WTA_CHALL | verdict (all cats) |
+|---|---|---|---|---|---|
+| deep-ud | +6.0 / +0.2 | +1.2 / −0.5 | +1.6 / −0.4 | +0.3 / −1.2 | **repricing** |
+| slight-ud | +1.7 / −1.4 | +3.9 / −0.5 | +1.4 / −1.4 | +1.8 / −2.3 | **repricing** |
+| slight-fav | +1.8 / −1.8 | +1.4 / −3.6 | +1.4 / −1.1 | +1.9 / −2.7 | **repricing** |
+| heavy-fav | −0.2 / −5.4 | −0.3 / −0.7 | +0.6 / −4.5 | +0.4 / −4.1 | **repricing** |
+
+Eventual **winners drift up, losers drift down — in every band**. The overshoot test (does the
+outcome-contrary group drift in the retail direction?): **favorite-LOSERS drift DOWN** (−4 to −5¢,
+not up) and **underdog-WINNERS drift UP** (+1.4 to +6¢, not down) everywhere. So the market correctly
+marks premarket toward the true result. **No tradeable overshoot in any band or category** —
+you can't ride/fade it because the drift just encodes the outcome you don't yet know.
+
+**Timing:** drifts are small and gradual; nothing concentrates in the last 30 min. No timing edge.
+
+**Mirror: CONFIRMED** (corr(underdog-drift, favorite-drift) = −0.80…−0.90, mean(driftA+driftB) ≈ 0
+[+0.06…+0.41¢], 65–77% within 2¢ of perfect mirror). The two sides ARE one mirrored position — but
+it mirrors *efficient repricing*, so it confirms structure (level-sum complementarity in motion), not
+an exploitable two-sided edge.
+
+**Playbook consequence:** there is **no directional entry-timing edge** — "buy the favorite early
+before the push" has no push to front-run. Chase-vs-wait therefore stays **fill-probability-only**
+(the entry maker-fill surface above): rest the bid where the maker fill is likely, take the taker
+where it isn't. No directional overlay. A clean, money-saving negative result. Per-band CSVs:
+`premarket_drift_<CAT>.csv`.
+
 ## Caveats for the full-universe re-run
 - Edge/low-c cells are sparse on 38 games (drives sand mean down, creates off-diagonal optima).
 - Entry = every minute (yes_bid_close always populated) → entry observations are autocorrelated

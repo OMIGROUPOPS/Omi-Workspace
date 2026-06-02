@@ -3331,6 +3331,11 @@ class LiveV3:
                 data = json.load(f)
         except (FileNotFoundError, ValueError):
             return
+        # T54: a malformed/empty state file (e.g. a bare list) must not crash
+        # startup. Coerce anything that isn't a dict to a no-op restore.
+        if not isinstance(data, dict):
+            self._log("v4_resting_bad_shape", {"type": type(data).__name__})
+            return
         restored = 0
         for tk, d in data.items():
             if tk in self.positions:

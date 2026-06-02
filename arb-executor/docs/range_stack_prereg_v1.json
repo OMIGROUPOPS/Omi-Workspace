@@ -1,8 +1,8 @@
 {
   "prereg_id": "range_stack_null_validation_v1",
-  "status": "FROZEN",
+  "status": "SUPERSEDED_BY_V2",
   "frozen_at_utc": "2026-06-02T23:27:00Z",
-  "revision": "v1.1 — rebound corpus SHA 07e99a3 -> 372a659 (live foundation tip: two-period-travel + WTA_CHALL-fix corpus) and reconciled tier scope to 3 solid cats (WTA_CHALL deferred). Thresholds unchanged from v1; this is a binding+scope reconciliation, not a goalpost move.",
+  "revision": "v1.1 \u2014 rebound corpus SHA 07e99a3 -> 372a659 (live foundation tip: two-period-travel + WTA_CHALL-fix corpus) and reconciled tier scope to 3 solid cats (WTA_CHALL deferred). Thresholds unchanged from v1; this is a binding+scope reconciliation, not a goalpost move.",
   "purpose": "Pre-registered thresholds for the range-stack banding null-validation. Committed BEFORE the permutation run so neither reviewer can move goalposts post-hoc. Same pre-registration discipline as the exit gate.",
   "corpus_binding": {
     "repo": "github.com/OMIGROUPOPS/Omi-Workspace",
@@ -10,30 +10,50 @@
     "git_sha_short": "372a659",
     "branch": "main",
     "rebound_from": "07e99a349d3adb889f3b6f501cf2bae79d523d6b",
-    "rebind_reason": "Bumped to the live foundation tip the run actually executes against — the two-period-travel on T-4h-vicinity OPEN anchor (per-cell sand-pooled) plus the WTA_CHALL BetExplorer fix. Ensures the null's mid-heavy marginal density and the run corpus are the SAME SHA.",
+    "rebind_reason": "Bumped to the live foundation tip the run actually executes against \u2014 the two-period-travel on T-4h-vicinity OPEN anchor (per-cell sand-pooled) plus the WTA_CHALL BetExplorer fix. Ensures the null's mid-heavy marginal density and the run corpus are the SAME SHA.",
     "note": "Corpus and density-marginal must be derived from this exact SHA. open_anchor definition must match the SHA's locked foundation measurement: verified T-4h-vicinity Kalshi-open (closest traded print to T-240 within [180,300] min), NOT running-mid, NOT first-ever print."
   },
   "scope": {
-    "tiers": ["ATP_MAIN", "WTA_MAIN", "ATP_CHALL"],
+    "tiers": [
+      "ATP_MAIN",
+      "WTA_MAIN",
+      "ATP_CHALL"
+    ],
     "tiers_in_run": 3,
     "deferred_tiers": {
       "WTA_CHALL": {
         "status": "DEFERRED_NOT_DROPPED",
-        "reason": "FV source wired (BetExplorer challenger-women-singles registered, commit a4659b2) but coverage is 3/7 and forward-only; historical gap before the fix remains open. Insufficient corpus to band — cannot run the null honestly yet.",
+        "reason": "FV source wired (BetExplorer challenger-women-singles registered, commit a4659b2) but coverage is 3/7 and forward-only; historical gap before the fix remains open. Insufficient corpus to band \u2014 cannot run the null honestly yet.",
         "revisit_condition": "Re-include once WTA_CHALL FV coverage backfills to a corpus depth comparable to ATP_CHALL; will require its own re-freeze with WTA_CHALL added to tiers."
       }
     },
     "scope_note": "3 solid cats per the live foundation. WTA_CHALL is an explicit logged deferral, NOT a silent drop. FDR multiplicity scope adjusts to 3 tiers x 2 objects accordingly.",
     "pool_tiers": false,
-    "price_axis_cents": {"min": 1, "max": 99, "granularity": 1},
+    "price_axis_cents": {
+      "min": 1,
+      "max": 99,
+      "granularity": 1
+    },
     "reproducibility": {
       "seed": 20260602,
-      "emit_in_header": ["seed", "git_sha", "n_legs_per_tier", "chosen_ipw_covariate_tier", "f_flat_per_tier_per_object"]
+      "emit_in_header": [
+        "seed",
+        "git_sha",
+        "n_legs_per_tier",
+        "chosen_ipw_covariate_tier",
+        "f_flat_per_tier_per_object"
+      ]
     }
   },
   "range_objects": {
-    "A_open_to_T1": {"open_anchor": "first_premarket_print", "end": "T-1_last_premarket_print"},
-    "B_open_to_T20": {"open_anchor": "first_premarket_print", "end": "T-20_boundary"},
+    "A_open_to_T1": {
+      "open_anchor": "first_premarket_print",
+      "end": "T-1_last_premarket_print"
+    },
+    "B_open_to_T20": {
+      "open_anchor": "first_premarket_print",
+      "end": "T-20_boundary"
+    },
     "run_both_independently": true,
     "advancement_rule": "A_INTERSECT_B",
     "advancement_note": "A band must clear the null in BOTH range-objects after FDR to advance. A-only = untradeable post-T-20 convergence; B-only = pre-T-20 transient."
@@ -68,17 +88,34 @@
     "rationale": "Survivorship deficit is directional (~2x extreme underrepresentation) and pushes same direction as mid-density artifact; survivor-raw would double-inflate mid bands.",
     "covariate_tier_selection": "highest_tier_with_>=90pct_nonmissing_among_survivors",
     "covariate_tiers": {
-      "tier_1_preferred": ["open_anchor_price_level", "tier", "liquidity_proxy"],
-      "tier_2_fallback": ["open_anchor_price_level", "tier"],
-      "tier_3_floor": ["open_anchor_price_level"]
+      "tier_1_preferred": [
+        "open_anchor_price_level",
+        "tier",
+        "liquidity_proxy"
+      ],
+      "tier_2_fallback": [
+        "open_anchor_price_level",
+        "tier"
+      ],
+      "tier_3_floor": [
+        "open_anchor_price_level"
+      ]
     },
     "chosen_tier_locked_at_run_start": true,
     "propensity_model": "logistic_nuisance",
     "weight": "1/pi_hat_stabilized_normalized_to_survivor_N",
-    "winsorize_pct": [1, 99],
+    "winsorize_pct": [
+      1,
+      99
+    ],
     "missing_covariate_legs_dropped": false,
     "apply_identically_to_observed_and_all_permutations": true,
-    "report": ["effective_N", "n_trimmed", "chosen_covariate_tier", "uncorrectable_never_printed_fraction_caveat"]
+    "report": [
+      "effective_N",
+      "n_trimmed",
+      "chosen_covariate_tier",
+      "uncorrectable_never_printed_fraction_caveat"
+    ]
   },
   "band_threshold": {
     "stage_1_per_cell": "observed_overlap > null_99th_percentile_at_that_cell",
@@ -109,11 +146,22 @@
     "reject_if": "band_residual_overlap_fully_explained_by_FLB_price_level_term"
   },
   "advancement_ledger_required_columns": [
-    "tier", "candidate_band_cells", "observed_overlap", "null_99th_pct",
-    "fdr_q_value", "survives_A_intersect_B", "ipw_effective_N", "ipw_n_trimmed",
-    "chosen_ipw_covariate_tier", "held_out_realized_sign", "sign_stability_15_combos",
-    "flb_residual_p", "f_flat", "advance_decision"
+    "tier",
+    "candidate_band_cells",
+    "observed_overlap",
+    "null_99th_pct",
+    "fdr_q_value",
+    "survives_A_intersect_B",
+    "ipw_effective_N",
+    "ipw_n_trimmed",
+    "chosen_ipw_covariate_tier",
+    "held_out_realized_sign",
+    "sign_stability_15_combos",
+    "flb_residual_p",
+    "f_flat",
+    "advance_decision"
   ],
   "final_advancement_rule": "A band advances to band-config ONLY if: (1) significant in A_INTERSECT_B after FDR q=0.05, (2) IPW-corrected (not survivor-raw), (3) held-out realized sign stable across CPCV, (4) FLB-residual non-trivial.",
-  "goalpost_lock": "All thresholds in this file are frozen at the committed git_sha. No parameter may be re-chosen after band results are observed. Covariate tier and flat-leg gating branch are logged at run start and locked."
+  "goalpost_lock": "All thresholds in this file are frozen at the committed git_sha. No parameter may be re-chosen after band results are observed. Covariate tier and flat-leg gating branch are logged at run start and locked.",
+  "superseded_note": "Halted on the net-displacement flat gate (~40% net-flat open->T-20). That was a dimensional category error: a resting maker bid is path-triggered (fills on excursion/reach), not endpoint-triggered. Replaced by range_stack_dimensional_v2 which makes fill-reach-at-depth the primary instrument and harvest-vs-drift the headline gate. Thresholds in this file remain valid for the net-displacement null but that instrument is no longer the entry test."
 }

@@ -968,6 +968,12 @@ class LiveV3:
         self.exit_table = {}    # category -> {cell_id(int) -> (band_x|None, "exit"|"hold")}
         # T58: anchor entry on the live running-mid close-proxy (else BBO mid).
         self.running_mid_anchor = self.config.get("premarket_running_mid_anchor", False)
+        # T58 circuit-breaker (automated hard-stop on a mis-anchor runaway): refuse
+        # to OPEN new positions once the bot already holds this many concurrent
+        # positions or this much committed capital ($). 0/absent => disabled
+        # (byte-identical to pre-cap). Existing positions are never touched.
+        self.max_concurrent_positions = int(self.config.get("max_concurrent_positions", 0) or 0)
+        self.max_session_capital = float(self.config.get("max_session_capital", 0) or 0)
         self._load_entry_table()
         self._load_exit_table()
 
@@ -1310,6 +1316,29 @@ class LiveV3:
         target_bid = max(1, anchor_price - offset)
         return (anchor_price, anchor_src, cell, regime, placement_min, offset,
                 exp_fill, exp_roi, target_bid, table_src)
+
+    def _v4_cap_ok(self, entry_price):
+        """T58 circuit-breaker. Returns (ok, reason, detail). ok=False => refuse
+        to OPEN a new position because the bot already holds the configured max
+        concurrent positions or committed capital (the automated hard-stop on a
+        T58 mis-anchor runaway). Read-only: never mutates or touches existing
+        positions. Both caps 0/absent => always ok (byte-identical to pre-cap)."""
+        if not (self.max_concurrent_positions or self.max_session_capital):
+            return True, None, {}
+        open_pos = [p for p in self.positions.values() if not getattr(p, "settled", False)]
+        if self.max_concurrent_positions and len(open_pos) >= self.max_concurrent_positions:
+            return False, "max_concurrent_positions", {
+                "open": len(open_pos), "cap": self.max_concurrent_positions}
+        if self.max_session_capital:
+            # resting (unfilled) legs count at their posted size, not entry_qty (0).
+            committed = sum(p.entry_price * (p.entry_qty if p.entry_qty > 0 else self.entry_size)
+                            for p in open_pos) / 100.0
+            new_cost = entry_price * self.entry_size / 100.0
+            if committed + new_cost > self.max_session_capital:
+                return False, "max_session_capital", {
+                    "committed": round(committed, 2), "new_cost": round(new_cost, 2),
+                    "cap": self.max_session_capital, "open": len(open_pos)}
+        return True, None, {}
 
     def _load_exit_table(self):
         """Load the 4 {category}_adaptive_exit_bands.parquet into
@@ -2994,6 +3023,17 @@ class LiveV3:
                     self._log("skip_fat_spread_taker", {"event": et, "mode": entry_mode,
                         "spread": current_ask - book.best_bid, "bid": book.best_bid,
                         "ask": current_ask, "cap": MAX_TAKER_SPREAD}, ticker=tk)
+                    continue
+
+                # T58 circuit-breaker: automated hard-stop on a mis-anchor runaway.
+                # Refuse to OPEN more once at the concurrent-position / committed-
+                # capital cap. Existing positions are untouched. Checked before the
+                # pre-post API calls so a capped wave stays cheap.
+                cap_ok, cap_reason, cap_detail = self._v4_cap_ok(entry_price)
+                if not cap_ok:
+                    self.n_skips += 1
+                    self._log("v4_cap_hit", dict(cap_detail, reason=cap_reason,
+                        event=et, entry_price=entry_price), ticker=tk)
                     continue
 
                 # Pre-post guards: existing resting order / open position.

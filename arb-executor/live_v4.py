@@ -115,6 +115,12 @@ LIVE_TRADE_BURST = 10             # >= this many trade prints in the window acro
 LIVE_TRADE_RETENTION_SEC = 600    # prune per-ticker trade-time deques older than this
 MAX_TAKER_SPREAD = 5              # T52: never TAKER-cross when (ask-bid) > this. The KESMAR fat-spread cross paid a wide ask; a wide spread means the taker floor isn't cleanly achievable -> stay flat rather than overpay. Tunable; resting-maker entries are unaffected.
 
+# T58 premarket maker entry — live running-mid anchor (Stage-2-validated
+# close-proxy: trailing-30-min mean of LAST-TRADED price, pure live microstructure,
+# NOT eventual close). When trade history is too sparse, fall back to the BBO mid.
+V4_RUNNING_MID_WINDOW_SEC = 30 * 60   # trailing window for the running-mid (RUNNING_MID_K=30 in the surface build)
+V4_RUNNING_MID_MIN_TRADES = 1         # >= this many traded prints in-window to use running-mid; else BBO-mid fallback
+
 STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
 V4_RESTING_FILE = STATE_DIR / "live_v4_resting.json"  # v4 resting-bid recovery (STEP 5)
@@ -958,7 +964,10 @@ class LiveV3:
 
         # v4 deployable tables (loaded once into plain dicts; no hot-path I/O)
         self.entry_table = {}   # (category, regime) -> (placement_min, offset_cents, fill_rate, net_roi_pct)
+        self.entry_table_cell = {}  # T58: (category, cell c) -> (placement_min, offset_cents, fill_rate, net_roi_pct)
         self.exit_table = {}    # category -> {cell_id(int) -> (band_x|None, "exit"|"hold")}
+        # T58: anchor entry on the live running-mid close-proxy (else BBO mid).
+        self.running_mid_anchor = self.config.get("premarket_running_mid_anchor", False)
         self._load_entry_table()
         self._load_exit_table()
 
@@ -987,6 +996,9 @@ class LiveV3:
         # trade timestamps + latched live-event set.
         self._trade_times: Dict[str, deque] = defaultdict(deque)
         self._events_live: Set[str] = set()
+        # T58 running-mid anchor: per-ticker rolling (ts, last-traded price) over
+        # a 30-min window. Separate from _trade_times (which retains only 600s).
+        self._trade_prices: Dict[str, deque] = defaultdict(deque)
 
         # Persistent processed-tickers set (survives restarts)
         STATE_DIR.mkdir(parents=True, exist_ok=True)
@@ -1227,6 +1239,77 @@ class LiveV3:
                 )
                 n += 1
         self._log("entry_table_loaded", {"rows": n, "path": str(rel)})
+        # T58: optional per-cell table (entry_table_percell.csv, 360 rows =
+        # 4 cat x 90 cells). Preferred at decision time; regime table is the
+        # fallback. Offsets are the cell's regime net-optimal SHALLOW value
+        # (T47, NOT a per-cell f x D argmax); per-cell fill-reach attached.
+        cell_rel = self.config.get("entry_table_cell_path")
+        if cell_rel:
+            cpath = Path(__file__).resolve().parent / cell_rel
+            m = 0
+            with open(cpath, newline="") as f:
+                for row in _csv.DictReader(f):
+                    key = (row["category"].strip(), int(float(row["c"])))
+                    self.entry_table_cell[key] = (
+                        int(float(row["placement_minute"])),
+                        int(float(row["bid_offset_cents"])),
+                        float(row["expected_fill_rate"]),
+                        float(row["expected_net_roi_pct"]),
+                    )
+                    m += 1
+            self._log("entry_table_cell_loaded", {"rows": m, "path": str(cell_rel)})
+
+    def _running_mid(self, ticker):
+        """T58: trailing-30-min mean of last-traded price for this leg (the
+        Stage-2-validated live close-proxy — pure traded microstructure, NOT the
+        eventual close). Returns a float in cents, or None when fewer than
+        V4_RUNNING_MID_MIN_TRADES prints sit in the window (caller falls back to
+        the BBO mid)."""
+        pdq = self._trade_prices.get(ticker)
+        if not pdq:
+            return None
+        now = time.time()
+        cut = now - V4_RUNNING_MID_WINDOW_SEC
+        prices = [p for (ts, p) in pdq if ts >= cut and p > 0]
+        if len(prices) < V4_RUNNING_MID_MIN_TRADES:
+            return None
+        return sum(prices) / float(len(prices))
+
+    def _v4_entry_anchor(self, tk, cat, book):
+        """T58: resolve the entry anchor + offset-table row for one leg. Anchor =
+        live running-mid (close-proxy) when running_mid_anchor is on and trade
+        history is non-sparse, else the BBO mid. The anchor's 1c cell keys the
+        per-cell table (regime table is the fallback). Returns a tuple
+        (anchor_price, anchor_src, cell, regime, placement_min, offset, exp_fill,
+        exp_roi, target_bid, table_src) or None if no table row exists.
+        With running_mid_anchor off AND no per-cell table, this is byte-identical
+        to the prior BBO-mid + regime-table path."""
+        bbo_mid = (book.best_bid + book.best_ask) / 2.0
+        if self.running_mid_anchor:
+            rmid = self._running_mid(tk)
+            if rmid is not None and rmid > 0:
+                anchor_price, anchor_src = int(round(rmid)), "running_mid"
+            else:
+                anchor_price, anchor_src = int(round(bbo_mid)), "bbo_mid_fallback"
+        else:
+            anchor_price, anchor_src = int(round(bbo_mid)), "bbo_mid"
+        cell = self.cell_lookup(cat, anchor_price)
+        regime = self.regime_lookup(cat, anchor_price)
+        row, table_src = None, None
+        if self.entry_table_cell:
+            row = self.entry_table_cell.get((cat, cell))
+            if row is not None:
+                table_src = "per_cell"
+        if row is None:
+            row = self.entry_table.get((cat, regime))
+            if row is not None:
+                table_src = "regime"
+        if row is None:
+            return None
+        placement_min, offset, exp_fill, exp_roi = row
+        target_bid = max(1, anchor_price - offset)
+        return (anchor_price, anchor_src, cell, regime, placement_min, offset,
+                exp_fill, exp_roi, target_bid, table_src)
 
     def _load_exit_table(self):
         """Load the 4 {category}_adaptive_exit_bands.parquet into
@@ -1409,6 +1492,12 @@ class LiveV3:
         cutoff = book.last_trade_ts - LIVE_TRADE_RETENTION_SEC
         while dq and dq[0] < cutoff:
             dq.popleft()
+        # T58: feed the running-mid buffer (ts, price) over the 30-min window.
+        pdq = self._trade_prices[ticker]
+        pdq.append((book.last_trade_ts, price))
+        pcut = book.last_trade_ts - V4_RUNNING_MID_WINDOW_SEC
+        while pdq and pdq[0][0] < pcut:
+            pdq.popleft()
         if _PAPER_API is not None:
             _PAPER_API.on_trade(ticker, book.last_trade_ts, price, count, side)
         self._log_trade(ticker, price, count, side)
@@ -2856,27 +2945,25 @@ class LiveV3:
                 if cat not in self.categories_enabled:
                     continue
 
-                # Marshall the current Kalshi yes-price from the book at decision
-                # time (v4 cell = current price, NOT FV).
-                cur_mid = (book.best_bid + book.best_ask) / 2.0
-                current_price = int(round(cur_mid))
-                regime = self.regime_lookup(cat, current_price)
-                ekey = (cat, regime)
-                if ekey not in self.entry_table:
+                # T58: resolve the entry anchor (live running-mid close-proxy,
+                # else BBO mid) and the per-cell offset row (regime fallback).
+                # v4 cell = the anchor price's 1c cell, NOT FV.
+                ent = self._v4_entry_anchor(tk, cat, book)
+                if ent is None:
                     self.n_skips += 1
-                    self._log("skipped", {"reason": "no_entry_table_row",
-                        "cat": cat, "regime": regime, "price": current_price}, ticker=tk)
+                    self._log("skipped", {"reason": "no_entry_table_row", "cat": cat,
+                        "price": int(round((book.best_bid + book.best_ask) / 2.0))}, ticker=tk)
                     continue
-                placement_min, offset, exp_fill, exp_roi = self.entry_table[ekey]
+                (current_price, anchor_src, cell, regime, placement_min, offset,
+                 exp_fill, exp_roi, target_bid, table_src) = ent
 
-                # Per-leg placement timing: wait until this leg's regime window
-                # opens (post at T-placement_minute). Event is NOT marked
-                # processed, so the next tick re-evaluates this leg.
+                # Per-leg placement timing: wait until this leg's window opens
+                # (post at T-placement_minute). Event is NOT marked processed, so
+                # the next tick re-evaluates this leg.
                 if time_to_start > placement_min * 60:
                     continue
 
                 current_ask = book.best_ask
-                target_bid = max(1, current_price - offset)
                 force_cross = self.round5_enabled and self.round5_detector_fire(
                     tk, current_ask, target_bid)
 
@@ -2926,7 +3013,8 @@ class LiveV3:
 
                 self._log("v4_place", {
                     "event": et, "direction": direction, "cat": cat,
-                    "regime": regime, "current_price": current_price,
+                    "regime": regime, "cell": cell, "current_price": current_price,
+                    "anchor_src": anchor_src, "table_src": table_src,
                     "offset": offset, "target_bid": target_bid,
                     "current_ask": current_ask, "entry_price": entry_price,
                     "entry_mode": entry_mode, "post_only": post_only,

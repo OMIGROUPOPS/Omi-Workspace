@@ -16,5 +16,7 @@
   "min_depth_for_exit_realization": 250,
   "exit_band_resolution": "gated_optima_validated_2026-06-01",
   "entry_table_path": "docs/policy/per_regime_offsets_v2.csv",
+  "entry_table_cell_path": "docs/policy/entry_table_percell.csv",
+  "premarket_running_mid_anchor": true,
   "exit_table_dir": "data/durable/exit_surface_gated_optima/"
 }

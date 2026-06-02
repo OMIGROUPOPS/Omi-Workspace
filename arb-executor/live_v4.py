@@ -140,10 +140,12 @@ ALL_SERIES = []
 for prefixes in SERIES_MAP.values():
     ALL_SERIES.extend(prefixes)
 
-# v4: own config file (deploy_v5.json). deploy_v4.json stays as live_v3.py's
-# rollback config -- zero coupling. Env override var also renamed so the two
-# executors cannot accidentally share one config.
-CONFIG_PATH = Path(__file__).resolve().parent / "config" / "deploy_v5.json"
+# v4: own config file. Default is the FINALIZED live config (deploy_v5_live.json)
+# so a restart WITHOUT the LIVE_V4_CONFIG env var deploys the safe foundation, not
+# the stale pre-finalization deploy_v5.json (size 10 / old exit surface -- the RUN 0
+# footgun, 2026-06-02). deploy_v4.json stays as live_v3.py's rollback config -- zero
+# coupling. Env override var renamed so the two executors cannot share one config.
+CONFIG_PATH = Path(__file__).resolve().parent / "config" / "deploy_v5_live.json"
 _cfg_override = os.environ.get("LIVE_V4_CONFIG")
 if _cfg_override:
     CONFIG_PATH = Path(__file__).resolve().parent / _cfg_override

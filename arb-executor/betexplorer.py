@@ -47,6 +47,19 @@ CHALLENGER_URLS = [
     ("Oeiras", "https://www.betexplorer.com/tennis/challenger-men-singles/oeiras/"),
 ]
 
+# WTA Challenger (challenger-women-singles) — the women's slug was never registered
+# (ATP_CHALL used challenger-men-singles only): the WTA_CHALL FV gap root-caused in
+# fv_overlap_join_v1_run_summary. WTA 125s rotate weekly, so rather than hardcode (the
+# latent staleness in the men's static list above) we DISCOVER the currently-active
+# women's challengers by cross-referencing the betexplorer index against open Kalshi
+# WTA events. The name resolver (match_player) is already gender-agnostic and
+# fetch_kalshi_challenger_events() already pulls KXWTACHALLENGERMATCH — so only the
+# tournament URLs were missing. Refreshed ~hourly; the small matched set scraped each cycle.
+WOMEN_INDEX_URL = "https://www.betexplorer.com/tennis/challenger-women-singles/"
+WOMEN_REFRESH_EVERY = 6          # re-discover active women's tournaments every 6 cycles (~hourly)
+_women_active = []               # cached [(name, url)] of women's challengers w/ current Kalshi coverage
+_women_cycle = 0
+
 
 def fetch_tournament(url):
     """Fetch tournament page and extract matches with odds."""
@@ -228,22 +241,54 @@ def match_and_insert(kalshi_events):
     return matched
 
 
+def discover_active_women_urls(kalshi_events):
+    """Return [(name, url)] for challenger-women-singles tournaments that currently have
+    a match joining an open Kalshi WTA event. Cross-reference (not hardcoded) so it
+    auto-tracks weekly WTA 125 rotation. Empty on fetch failure (men-only fallback,
+    no regression)."""
+    wta = {e: i for e, i in kalshi_events.items() if "KXWTACHALLENGER" in e}
+    if not wta:
+        return []
+    try:
+        h = requests.get(WOMEN_INDEX_URL, headers={"User-Agent": UA}, timeout=20).text
+    except Exception as e:
+        print("  women index fetch error: %s" % e)
+        return []
+    slugs = sorted(set(re.findall(r"/tennis/challenger-women-singles/([a-z0-9-]+)/", h)))
+    active = []
+    for s in slugs:
+        url = WOMEN_INDEX_URL + s + "/"
+        ms = fetch_tournament(url)
+        if any(match_player(m["p1_name"], i["players"]) and match_player(m["p2_name"], i["players"])
+               for m in ms for i in wta.values()):
+            active.append((s.replace("-", " ").title(), url))
+        time.sleep(0.3)
+    return active
+
+
 def poll_cycle():
     """One full scrape + match cycle."""
+    global _women_active, _women_cycle
     now_et = datetime.now(ET)
+    kalshi_events = fetch_kalshi_challenger_events()
+    # Discover active women's challengers (~hourly), then scrape men (static) + women (dynamic).
+    if _women_cycle % WOMEN_REFRESH_EVERY == 0:
+        _women_active = discover_active_women_urls(kalshi_events)
+        print("  [women discovery] active WTA challenger tournaments: %s" % [a[0] for a in _women_active])
+    _women_cycle += 1
+
     total_scraped = 0
-    for tournament, url in CHALLENGER_URLS:
+    for tournament, url in list(CHALLENGER_URLS) + _women_active:
         matches = fetch_tournament(url)
         if matches:
             n = store_matches(matches, url, tournament)
             total_scraped += n
         time.sleep(1)
 
-    kalshi_events = fetch_kalshi_challenger_events()
     matched = match_and_insert(kalshi_events)
 
-    print("[%s] Scraped %d matches, matched %d to Kalshi (%d Kalshi events)" % (
-        now_et.strftime("%I:%M:%S %p ET"), total_scraped, matched, len(kalshi_events)))
+    print("[%s] Scraped %d matches, matched %d to Kalshi (%d Kalshi events; %d women's tourn)" % (
+        now_et.strftime("%I:%M:%S %p ET"), total_scraped, matched, len(kalshi_events), len(_women_active)))
     _write_heartbeat("betexplorer", matches_scraped=total_scraped, matched_to_kalshi=matched)
 
 

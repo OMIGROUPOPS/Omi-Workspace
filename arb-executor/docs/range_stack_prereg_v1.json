@@ -1,17 +1,29 @@
 {
   "prereg_id": "range_stack_null_validation_v1",
   "status": "FROZEN",
-  "frozen_at_utc": "2026-06-02T23:20:00Z",
+  "frozen_at_utc": "2026-06-02T23:27:00Z",
+  "revision": "v1.1 — rebound corpus SHA 07e99a3 -> 372a659 (live foundation tip: two-period-travel + WTA_CHALL-fix corpus) and reconciled tier scope to 3 solid cats (WTA_CHALL deferred). Thresholds unchanged from v1; this is a binding+scope reconciliation, not a goalpost move.",
   "purpose": "Pre-registered thresholds for the range-stack banding null-validation. Committed BEFORE the permutation run so neither reviewer can move goalposts post-hoc. Same pre-registration discipline as the exit gate.",
   "corpus_binding": {
     "repo": "github.com/OMIGROUPOPS/Omi-Workspace",
-    "git_sha": "07e99a349d3adb889f3b6f501cf2bae79d523d6b",
-    "git_sha_short": "07e99a3",
+    "git_sha": "372a659a23a0c6c9344e9001321107e8a6e8626b",
+    "git_sha_short": "372a659",
     "branch": "main",
-    "note": "Corpus and density-marginal must be derived from this exact SHA. open_anchor definition must match the SHA's locked density measurement (first premarket print per leg)."
+    "rebound_from": "07e99a349d3adb889f3b6f501cf2bae79d523d6b",
+    "rebind_reason": "Bumped to the live foundation tip the run actually executes against — the two-period-travel on T-4h-vicinity OPEN anchor (per-cell sand-pooled) plus the WTA_CHALL BetExplorer fix. Ensures the null's mid-heavy marginal density and the run corpus are the SAME SHA.",
+    "note": "Corpus and density-marginal must be derived from this exact SHA. open_anchor definition must match the SHA's locked foundation measurement: verified T-4h-vicinity Kalshi-open (closest traded print to T-240 within [180,300] min), NOT running-mid, NOT first-ever print."
   },
   "scope": {
-    "tiers": ["ATP_MAIN", "ATP_CHALL", "WTA_MAIN", "WTA_CHALL"],
+    "tiers": ["ATP_MAIN", "WTA_MAIN", "ATP_CHALL"],
+    "tiers_in_run": 3,
+    "deferred_tiers": {
+      "WTA_CHALL": {
+        "status": "DEFERRED_NOT_DROPPED",
+        "reason": "FV source wired (BetExplorer challenger-women-singles registered, commit a4659b2) but coverage is 3/7 and forward-only; historical gap before the fix remains open. Insufficient corpus to band — cannot run the null honestly yet.",
+        "revisit_condition": "Re-include once WTA_CHALL FV coverage backfills to a corpus depth comparable to ATP_CHALL; will require its own re-freeze with WTA_CHALL added to tiers."
+      }
+    },
+    "scope_note": "3 solid cats per the live foundation. WTA_CHALL is an explicit logged deferral, NOT a silent drop. FDR multiplicity scope adjusts to 3 tiers x 2 objects accordingly.",
     "pool_tiers": false,
     "price_axis_cents": {"min": 1, "max": 99, "granularity": 1},
     "reproducibility": {

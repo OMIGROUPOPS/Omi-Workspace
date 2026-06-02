@@ -11,6 +11,24 @@
 
 ---
 
+## RUN-5 / RUN-6 COHORT CUTOFF — P&L attribution lock (2026-06-02 ET)
+
+**Boundary (by ticker date, the unambiguous cohort key):**
+- **`-26JUN01-` = STALE cohort** — entered in the morning RUN 0–2 (old/pre-finalization config; RUN 0 even ran `deploy_v5.json` size 10 — the CONFIG_PATH footgun, fixed `d585d0da`) and adopted across the evening restarts. **EXCLUDED from RUN-6 (and current-strategy) P&L attribution.**
+- **`-26JUN02-` and later = CLEAN** — entered under the validated deploy (RUN 5, `83e08395`, `deploy_v5_live.json`, exit surface `gated_optima_validated_2026-06-01`, T58 entry, size 5). The current-strategy P&L.
+
+**Passive cutoff — DO NOT FLATTEN the stale legs.** As of 2026-06-02 ~13:40 ET, 7 stale JUN01 legs (5 events) remain open, **each with a resting exit sell** — managed, not naked; they will exit-fill or settle on their own. Flattening was rejected: the $6.15 forfeited-exit counterfactual (the 6 RUN-2 naked-ride legs) proved closing early forfeits the in-play bounce these exits are positioned to catch. They ride. Attribution is locked by the date key above, so no execution is needed to keep RUN-6 clean.
+
+**Stale legs still riding (JUN01, RUN 2):** NAEING-NAE/ING (Inglis/Naef), WONTAR-TAR (Wong/Tarvet), SEAKRU-KRU (Searle/Krueger), BICMON-MON (Bicknell/Monday), MARELL-ELL/MAR (Martin/Ellis) — 7 legs, qty 5 each, all with resting exits.
+
+**Old-config cap-failure artifact (flagged, no action):** two stale pairs sit at combined ≥100 — **NAEING 65+36 = 101**, **MARELL 36+64 = 100** — residual of the morning over-100 entries (the T50/T52 fat-spread cross failure the current config structurally prevents). They ride to settle; excluded from RUN-6.
+
+**Already resolved:** the 6 RUN-2 naked-ride legs (GALPOL-GAL/POL, STRMOE-STR, CECSIM-CEC, KESMAR-MAR, SHEBRA-SHE) have all settled out.
+
+**RUN-6 = the next restart.** It will FF past `d585d0da` (CONFIG_PATH footgun fix) and start on a book whose only RUN-6-attributable positions are `-26JUN02+`. Account at cutoff: cash $2,697.44 + mark $30.35 = **$2,727.79**; 13 open (7 stale + 6 current), 13 resting exits (7 stale + 6 current). Read-only — no positions touched.
+
+---
+
 ## ORIENTATION (read first)
 
 ### Current state, in one sentence

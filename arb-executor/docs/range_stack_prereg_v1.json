@@ -1,0 +1,107 @@
+{
+  "prereg_id": "range_stack_null_validation_v1",
+  "status": "FROZEN",
+  "frozen_at_utc": "2026-06-02T23:20:00Z",
+  "purpose": "Pre-registered thresholds for the range-stack banding null-validation. Committed BEFORE the permutation run so neither reviewer can move goalposts post-hoc. Same pre-registration discipline as the exit gate.",
+  "corpus_binding": {
+    "repo": "github.com/OMIGROUPOPS/Omi-Workspace",
+    "git_sha": "07e99a349d3adb889f3b6f501cf2bae79d523d6b",
+    "git_sha_short": "07e99a3",
+    "branch": "main",
+    "note": "Corpus and density-marginal must be derived from this exact SHA. open_anchor definition must match the SHA's locked density measurement (first premarket print per leg)."
+  },
+  "scope": {
+    "tiers": ["ATP_MAIN", "ATP_CHALL", "WTA_MAIN", "WTA_CHALL"],
+    "pool_tiers": false,
+    "price_axis_cents": {"min": 1, "max": 99, "granularity": 1},
+    "reproducibility": {
+      "seed": 20260602,
+      "emit_in_header": ["seed", "git_sha", "n_legs_per_tier", "chosen_ipw_covariate_tier", "f_flat_per_tier_per_object"]
+    }
+  },
+  "range_objects": {
+    "A_open_to_T1": {"open_anchor": "first_premarket_print", "end": "T-1_last_premarket_print"},
+    "B_open_to_T20": {"open_anchor": "first_premarket_print", "end": "T-20_boundary"},
+    "run_both_independently": true,
+    "advancement_rule": "A_INTERSECT_B",
+    "advancement_note": "A band must clear the null in BOTH range-objects after FDR to advance. A-only = untradeable post-T-20 convergence; B-only = pre-T-20 transient."
+  },
+  "null_model": {
+    "preserve": "per_leg_range_width_distribution",
+    "shuffle": "range_position",
+    "position_draw_distribution": "measured_mid_heavy_marginal_density_D_at_corpus_sha",
+    "marginal_density_note": "Mid-heavy (peak c55-64, mid 46-49% mass, extreme 8-11%). NOT GWU all-markets bimodal. Null is built on THIS measured marginal so mid-bands face a high bar and extreme-bands a low bar.",
+    "direction_handling": "preserve_observed_open_to_end_sign_for_nonflat_legs",
+    "flb_baked_into_null": true,
+    "flb_baked_note": "Preserving drift sign embeds the favorite-longshot gradient INTO the null; bands beating this null are residual-to-FLB by construction. Explicit FLB regression in section 5 is confirmatory.",
+    "clip_to_axis": true,
+    "n_permutations_per_tier_per_object": 10000
+  },
+  "flat_leg_handling": {
+    "tau_flat_cents": 1,
+    "definition": "abs(end - open_anchor) <= tau_flat_cents treated as directionless",
+    "orientation_rule": "laid_symmetrically_around_placement_point_never_sign_imputed",
+    "symmetric_split": "w_i/2 each side, clipped to [1,99]",
+    "report_fraction_per_tier_per_object": true,
+    "gating_thresholds": {
+      "below_0.15": "proceed_primary_symmetric",
+      "between_0.15_and_0.35": "proceed_plus_sensitivity_run_excluding_flats_bands_must_clear_both",
+      "above_0.35": "HALT_AND_REPORT_premise_suspect"
+    },
+    "object_b_higher_flat_expected": true,
+    "excluded_from_ipw_propensity_model": true
+  },
+  "ipw_selection_correction": {
+    "apply": true,
+    "rationale": "Survivorship deficit is directional (~2x extreme underrepresentation) and pushes same direction as mid-density artifact; survivor-raw would double-inflate mid bands.",
+    "covariate_tier_selection": "highest_tier_with_>=90pct_nonmissing_among_survivors",
+    "covariate_tiers": {
+      "tier_1_preferred": ["open_anchor_price_level", "tier", "liquidity_proxy"],
+      "tier_2_fallback": ["open_anchor_price_level", "tier"],
+      "tier_3_floor": ["open_anchor_price_level"]
+    },
+    "chosen_tier_locked_at_run_start": true,
+    "propensity_model": "logistic_nuisance",
+    "weight": "1/pi_hat_stabilized_normalized_to_survivor_N",
+    "winsorize_pct": [1, 99],
+    "missing_covariate_legs_dropped": false,
+    "apply_identically_to_observed_and_all_permutations": true,
+    "report": ["effective_N", "n_trimmed", "chosen_covariate_tier", "uncorrectable_never_printed_fraction_caveat"]
+  },
+  "band_threshold": {
+    "stage_1_per_cell": "observed_overlap > null_99th_percentile_at_that_cell",
+    "stage_1_percentile": 99,
+    "stage_1_note": "Per-cell empirical percentile auto-scales the bar to mid-heavy density.",
+    "stage_2_multiplicity": "Benjamini_Hochberg_FDR",
+    "fdr_q": 0.05,
+    "fdr_scope": "per_tier_per_object_across_99_cells",
+    "band_definition": "contiguous_run_>=2_cells_surviving_stage1_and_FDR",
+    "singletons": "reported_as_weak_signals_not_bands"
+  },
+  "held_out_validation": {
+    "protocol": "purged_embargoed_CPCV",
+    "rationale": "Same standard as exit gate; intra-session outcome correlation makes plain time-split leak.",
+    "purge_group_unit": "tournament_session",
+    "embargo": "one_session_day_after_each_test_fold",
+    "cpcv_N_groups": 6,
+    "cpcv_k_test_groups": 2,
+    "cpcv_combinations": 15,
+    "bands_derived_on": "training_folds_only",
+    "realized_sign_scored_on": "held_out_test_folds_only",
+    "advancement": "consistent_held_out_realized_sign_plus_stability_across_15_combos",
+    "reject_condition": "high_overlap_but_unstable_held_out_sign"
+  },
+  "flb_collinearity_check": {
+    "type": "confirmatory_secondary",
+    "method": "regress_residual_overlap_on_price_level_and_tier_FLB_gradient",
+    "reject_if": "band_residual_overlap_fully_explained_by_FLB_price_level_term"
+  },
+  "advancement_ledger_required_columns": [
+    "tier", "candidate_band_cells", "observed_overlap", "null_99th_pct",
+    "fdr_q_value", "survives_A_intersect_B", "ipw_effective_N", "ipw_n_trimmed",
+    "chosen_ipw_covariate_tier", "held_out_realized_sign", "sign_stability_15_combos",
+    "flb_residual_p", "f_flat", "advance_decision"
+  ],
+  "final_advancement_rule": "A band advances to band-config ONLY if: (1) significant in A_INTERSECT_B after FDR q=0.05, (2) IPW-corrected (not survivor-raw), (3) held-out realized sign stable across CPCV, (4) FLB-residual non-trivial.",
+  "goalpost_lock": "All thresholds in this file are frozen at the committed git_sha. No parameter may be re-chosen after band results are observed. Covariate tier and flat-leg gating branch are logged at run start and locked."
+}

@@ -7,13 +7,14 @@
   "purpose": "Pre-registered dimensional frame for the range-stack ENTRY banding test under the real-data constraint that ground-truth fills exist only on a short recent window. Frozen BEFORE CC reports the config-consistent fill count, so the infeasibility halt cannot be moved post-hoc.",
   "corpus_binding": {
     "repo": "github.com/OMIGROUPOPS/Omi-Workspace",
-    "prereg_committed_on_tip": "2ad342772f57664d316fcf4290d071e7d586d9a7",
+    "prereg_committed_on_tip": "76cbb7d802...(see git log); recorded post-push",
     "data_foundation_sha": "372a659a23a0c6c9344e9001321107e8a6e8626b",
     "data_foundation_sha_short": "372a659",
     "branch": "main",
     "feasibility_check_1": "GO \u2014 full price path present at 372a659; fill-reach computable across the historical corpus.",
     "feasibility_check_2_constraint": "Real exchange is_taker exists ONLY for 5,043 account fills [2026-03-28 .. 2026-06-02]. The 10-month historical tape has market-taker fields but NO 'did WE fill as taker'. The 5,043 also cross multiple bot regimes (tennis_v5 -> v3 -> v4 -> 5-fix); config-consistent (validated-era) scoring shrinks N further.",
-    "real_fill_source": "kalshi_fills_history.json (canonical per A30/A52; pull /portfolio/fills, NOT the entry_mode log tag which mislabels ~50% of fills)."
+    "real_fill_source": "kalshi_fills_history.json (canonical per A30/A52; pull /portfolio/fills, NOT the entry_mode log tag which mislabels ~50% of fills).",
+    "prereg_committed_on_tip_note": "This file was frozen in commit pushed to main; the data_foundation_sha 372a659 is the binding that matters for the run. The commit-tip self-reference is informational only."
   },
   "scope": {
     "tiers": [

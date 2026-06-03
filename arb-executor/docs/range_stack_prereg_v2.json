@@ -1,0 +1,179 @@
+{
+  "prereg_id": "range_stack_dimensional_v2",
+  "status": "SUPERSEDED_BY_V2_1",
+  "frozen_at_utc": "2026-06-02T23:51:00Z",
+  "supersedes": "range_stack_null_validation_v1 (v1.1)",
+  "supersede_reason": "v1 halted on the pre-registered flat gate: open->T-20 is ~40% flat by NET DISPLACEMENT across all three solid tiers. That is a dimensional category error, not a no-edge verdict: a resting maker bid is a PATH-triggered instrument (fills on excursion/reach, not endpoint). v1 measured the wrong instrument. v2 makes fill-reach-at-depth the primary instrument and the harvest-vs-drift falsification the headline gate.",
+  "purpose": "Pre-registered dimensional frame + thresholds for the range-stack ENTRY banding test, on the correct (path/excursion) instrument. Committed BEFORE CC builds or runs, same goalpost-discipline as the exit gate and v1.",
+  "corpus_binding": {
+    "repo": "github.com/OMIGROUPOPS/Omi-Workspace",
+    "prereg_committed_on_tip": "912f4c58974326e5695afb584946442b1fac2f56",
+    "prereg_committed_on_tip_short": "912f4c5",
+    "data_foundation_sha": "372a659a23a0c6c9344e9001321107e8a6e8626b",
+    "data_foundation_sha_short": "372a659",
+    "branch": "main",
+    "note": "Run executes against the data foundation SHA 372a659 (two-period travel on the verified T-4h-vicinity OPEN anchor, per-cell sand-pooled). open_anchor = closest traded Kalshi print to T-240 within [180,300] min; NOT running-mid, NOT first-ever print. The null's marginal density and the run corpus must be the SAME foundation SHA."
+  },
+  "scope": {
+    "tiers": [
+      "ATP_MAIN",
+      "WTA_MAIN",
+      "ATP_CHALL"
+    ],
+    "tiers_in_run": 3,
+    "deferred_tiers": {
+      "WTA_CHALL": {
+        "status": "DEFERRED_NOT_DROPPED",
+        "reason": "FV wired (BetExplorer challenger-women-singles, commit a4659b2) but 3/7 forward-only coverage; historical gap open. Insufficient corpus to band.",
+        "revisit_condition": "Re-include via its own re-freeze once FV backfills to ATP_CHALL-comparable depth."
+      }
+    },
+    "pool_tiers": false,
+    "price_axis_cents": {
+      "min": 1,
+      "max": 99,
+      "granularity": 1
+    },
+    "reproducibility": {
+      "seed": 20260602,
+      "emit_in_header": [
+        "seed",
+        "data_foundation_sha",
+        "n_legs_per_tier",
+        "n_filled_legs_per_tier",
+        "chosen_ipw_covariate_tier",
+        "fill_depth_grid"
+      ]
+    }
+  },
+  "instrument": {
+    "primary": "fill_reach_at_depth + touch_depth_distribution",
+    "primary_definition": "For a rested maker bid at depth X below the open_anchor: (1) fill-reach = did the traded price touch X during open->T-20 (first-passage occurrence); (2) touch-depth distribution = how far below anchor the fill actually occurred (the discount captured), measured as a distribution, NOT a binary.",
+    "rationale": "A resting maker bid fills on the PATH (did price visit), not the endpoint (where price ended). Net displacement answers a question the fill mechanism never asks.",
+    "demoted_to_control": {
+      "net_displacement": "CONTROL/CONDITIONING variable, not primary. Used only as the harvest-vs-drift discriminator (see headline_gate). A ~40% net-flat window is NOT evidence for or against edge \u2014 edge is a fill-conditional quantity.",
+      "path_excursion_and_realized_vol": "EXPLANATORY COVARIATES (generators of fill-reach), not the edge themselves."
+    },
+    "fill_depth_grid_cents": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      10
+    ],
+    "fill_depth_grid_note": "Reach/touch-depth measured at each depth X on this grid, per price-level cell, per tier."
+  },
+  "mandatory_dimensions": {
+    "1_fill_reach_at_depth": "PRIMARY gating instrument \u2014 no touch, no entry.",
+    "2_touch_depth_distribution": "PRIMARY edge magnitude \u2014 distribution of realized fill discount, not touch indicator.",
+    "3_first_passage_timing_rel_T20": "WHEN the touch occurs relative to T-20 \u2014 determines the state (recovered vs still-underwater) handed to the exit surface. First-passage TIME, not just occurrence.",
+    "4_conditional_forward_reach_to_exit_trigger": "MANDATORY composition dimension \u2014 given a fill at depth X, does the forward path reach the VALIDATED exit-surface trigger band? Entry must COMPOSE with the locked exit surface, never measured in isolation.",
+    "5_net_displacement": "CONTROL \u2014 the harvest-vs-drift discriminator.",
+    "explanatory_only": [
+      "path_excursion_max_down_up",
+      "realized_volatility_oscillation",
+      "time_at_fillable_level"
+    ]
+  },
+  "headline_gate": {
+    "name": "harvest_vs_drift_falsification",
+    "is_the_entry_analog_of": "exit gate per-cell realized-sign headline",
+    "conditioning": "ALL statistics computed on the FILLED population (is_taker=FALSE ground truth), NOT on all legs.",
+    "partition": "A52 triggered-vs-held, applied to the TOUCH/FILL event",
+    "definitions": {
+      "benign_reverter": "Filled on an oscillation low; forward path reaches the exit trigger (A52 'triggered' partition \u2014 clean; harvest is real here).",
+      "adverse_drifter": "Filled on the leading edge of a move continuing to a worse settlement (A52 'held-to-settlement' partition \u2014 contaminated; harvest illusory here)."
+    },
+    "test": "On the selection-corrected fill population: HARVEST holds iff (benign_mass * benign_capture) > (adverse_mass * adverse_loss).",
+    "reject_rule": "Harvest thesis REJECTED at a cell/band if (adverse_mass * adverse_loss) >= (benign_mass * benign_capture).",
+    "discriminator_rule": "Edge MUST concentrate at net_displacement ~= 0 (harvest). If edge appears ONLY at net_displacement < 0, it is drift/FLB and REJECTED \u2014 that is the documented loss zone, not an entry edge.",
+    "net_flat_definition_cents": 1
+  },
+  "selection_correction_two_stage": {
+    "note": "Single IPW stage (v1) is INSUFFICIENT for excursion. Excursion couples survivorship and signal more tightly than net did, AND adds outcome-conditioning on the fill event.",
+    "stage_a_endpoint_survivorship_IPW": {
+      "problem": "Legs printing at both ends over-represent movers; for excursion, 'printed-because-flow' and 'high-excursion' are the SAME cause \u2014 inflates apparent fill-reach.",
+      "method": "IPW on endpoint-survival, 3-tier covariate degradation (highest tier with >=90% non-missing among survivors): T1 {open_anchor_price_level, tier, liquidity_proxy}; T2 {open_anchor_price_level, tier}; T3 {open_anchor_price_level}.",
+      "weight": "1/pi_hat stabilized, normalized to survivor N, winsorized 1st/99th pct, effective-N reported, missing-covariate legs NOT dropped (tier steps down)."
+    },
+    "stage_b_dip_selection_on_fill": {
+      "problem": "The FILLED subset is selected by the dip that fills you, which is informative about settlement (the A52/Q2 endogeneity). Net displacement never faced this because it never characterized the fill-conditional forward path.",
+      "method": "Partition fills triggered-vs-held per A52 using exchange is_taker GROUND TRUTH on the touch/fill event \u2014 NOT the entry_mode tag (which mislabeled 80 fallback-taker fills as resting_maker). Report benign vs adverse mass on the corrected fill population. Forward-reach (dim 4) measured separately per partition; the held/adverse partition is where dip-selection correction is mandatory.",
+      "applies_to": [
+        "conditional_forward_reach_to_exit_trigger",
+        "touch_depth_distribution",
+        "headline_gate"
+      ]
+    }
+  },
+  "null_model": {
+    "inherits_from_v1": "Width-preserving position-shuffle on the measured marginal density; 10000 permutations per tier per range-object; FLB drift sign baked into the null.",
+    "instrument_change": "Permutation statistic is now FILL-REACH-AT-DEPTH overlap (path-based), NOT net-displacement range overlap. Reach computed on the same excursion/path series the foundation provides.",
+    "flat_leg_handling": "Net-flat legs are NOT excluded here (that was the v1 error). A net-flat leg with high excursion is a PRIMARY subject of v2. Flat = net <=1c is recorded as a CONTROL label only.",
+    "refused": "NO banding verdict may be computed on UNCONDITIONAL excursion. Any reach/excursion statistic feeding a band decision MUST be on the filled, two-stage-corrected, A52-partitioned population. Unconditional-excursion banding is the mirror-image of the v1 net-displacement error and is explicitly out of bounds."
+  },
+  "band_threshold": {
+    "stage_1_per_cell": "observed fill-reach overlap > null_99th_percentile at that cell",
+    "stage_1_percentile": 99,
+    "stage_2_multiplicity": "Benjamini_Hochberg_FDR",
+    "fdr_q": 0.05,
+    "fdr_scope": "per_tier_per_object_across_99_cells (auto-scales to 3 tiers x 2 objects)",
+    "band_definition": "contiguous run >=2 cells surviving stage1 + FDR AND passing the headline harvest-vs-drift gate",
+    "singletons": "reported as weak signals, not bands"
+  },
+  "range_objects": {
+    "A_open_to_T1": {
+      "open_anchor": "T-4h-vicinity open",
+      "end": "T-1_last_premarket_print"
+    },
+    "B_open_to_T20": {
+      "open_anchor": "T-4h-vicinity open",
+      "end": "T-20_boundary"
+    },
+    "advancement_rule": "A_INTERSECT_B",
+    "note": "B (open->T-20) is the actionable window; A is the convergence check. Band must clear in both AND pass the headline gate."
+  },
+  "held_out_validation": {
+    "protocol": "purged_embargoed_CPCV",
+    "purge_group_unit": "tournament_session",
+    "embargo": "one_session_day_after_each_test_fold",
+    "cpcv_N_groups": 6,
+    "cpcv_k_test_groups": 2,
+    "cpcv_combinations": 15,
+    "bands_derived_on": "training_folds_only",
+    "scored_on_held_out": [
+      "headline_harvest_vs_drift_gate",
+      "conditional_forward_reach_composition",
+      "realized_sign"
+    ],
+    "reject_condition": "high_fill_reach_but_harvest_gate_fails_or_unstable_across_combos"
+  },
+  "advancement_ledger_required_columns": [
+    "tier",
+    "candidate_band_cells",
+    "fill_depth_X",
+    "observed_fill_reach_overlap",
+    "null_99th_pct",
+    "fdr_q_value",
+    "survives_A_intersect_B",
+    "ipw_effective_N",
+    "n_filled_legs",
+    "chosen_ipw_covariate_tier",
+    "benign_mass",
+    "benign_capture",
+    "adverse_mass",
+    "adverse_loss",
+    "harvest_gate_result",
+    "net_displacement_at_edge",
+    "is_harvest_or_drift",
+    "conditional_forward_reach_to_exit",
+    "held_out_harvest_stability_15_combos",
+    "advance_decision"
+  ],
+  "final_advancement_rule": "A band advances to band-config ONLY if: (1) fill-reach overlap significant in A_INTERSECT_B after FDR q=0.05, (2) BOTH selection stages applied (endpoint IPW + A52 dip-selection on the fill, is_taker ground truth), (3) HEADLINE harvest-vs-drift gate PASSES: benign_mass*capture > adverse_mass*loss, (4) edge concentrates at net~=0 (harvest) not net<0 (drift/FLB), (5) conditional forward-reach COMPOSES with the validated exit surface, (6) harvest gate stable across CPCV held-out folds.",
+  "goalpost_lock": "All thresholds frozen at this commit. No parameter re-chosen after results observed. Chosen IPW covariate tier and fill_depth_grid logged at run start and locked. UNCONDITIONAL-excursion banding is permanently out of bounds.",
+  "superseded_note": "Replaced by range_stack_dimensional_v2_1: pins simulated-fill as primary object, B25 frequency anchor (selection-correction forbidden), A52 real-fill selection-validation anchor on the [Mar-28,Jun-2] overlap, agreement-required advancement, and a frozen minimum-validation-N halt (25 hard / 55 confirm). v2 left the simulated-vs-real fill distinction and the two-anchor structure unspecified."
+}

@@ -2088,6 +2088,17 @@ class LiveV3:
             return True, "degenerate_or_wide_spread"
         return False, None
 
+    def _reprice_target(self, new_target, current_ask):
+        """Fix-3 (reprice-maker-only): a significant-move reprice NEVER crosses. If the
+        re-evaluated target is marketable (>= ask), clamp to a resting bid one below the ask.
+        Returns (price, post_only) -- post_only is ALWAYS True; the T-20m fallback is the only
+        sanctioned taker entry. (Also removes a D18-class hole: a post_only=False cross here
+        could instant-fill while phase stays "entry_resting" -> the match_start_buffer cleanup
+        would strand it naked, since its exit-repost guard requires phase=="active".) Pure/testable."""
+        if new_target >= current_ask:
+            new_target = max(1, current_ask - 1)
+        return new_target, True
+
     def _taker_spread_ok(self, bid, ask):
         """T52: True if (ask-bid) is tight enough to TAKER-cross. A fat spread
         means crossing overpays (the KESMAR fat-spread mechanism) -> block the
@@ -3587,32 +3598,20 @@ class LiveV3:
                 return
         await self.cancel_order(tk, pos.entry_order_id, "v4_move_repost")
 
-        if new_target >= current_ask:
-            # Re-evaluated target is now marketable -> cross as taker.
-            self.inflight_orders.add(tk)
-            try:
-                oid, _ = await self.place_order(tk, "buy", "yes", current_ask,
-                                                self.entry_size, post_only=False)
-            finally:
-                self.inflight_orders.discard(tk)
-            pos.entry_price = current_ask
-            pos.entry_order_id = oid
-            pos.entry_mode = "marketable_taker"
-            pos.play_type = "v4_marketable_taker"
-            pos.paid_taker_fee = True
-            mode = "cross_on_move"
-        else:
-            self.inflight_orders.add(tk)
-            try:
-                oid, _ = await self.place_order(tk, "buy", "yes", new_target,
-                                                self.entry_size, post_only=True)
-            finally:
-                self.inflight_orders.discard(tk)
-            pos.entry_price = new_target
-            pos.entry_order_id = oid
-            pos.entry_mode = "resting_maker"
-            pos.play_type = "v4_resting_maker"
-            mode = "repost_resting"
+        # Fix-3 (reprice-maker-only): NEVER cross on a reprice. A marketable re-evaluated
+        # target is clamped to a resting bid one below the ask and re-rested as a maker.
+        new_target, po = self._reprice_target(new_target, current_ask)
+        self.inflight_orders.add(tk)
+        try:
+            oid, _ = await self.place_order(tk, "buy", "yes", new_target,
+                                            self.entry_size, post_only=po)
+        finally:
+            self.inflight_orders.discard(tk)
+        pos.entry_price = new_target
+        pos.entry_order_id = oid
+        pos.entry_mode = "resting_maker"
+        pos.play_type = "v4_resting_maker"
+        mode = "repost_resting"
         pos.target_price = new_target
         pos.regime_at_posting = new_regime
         pos.last_cancel_repost_ts = now

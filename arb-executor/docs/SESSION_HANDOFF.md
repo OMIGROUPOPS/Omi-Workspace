@@ -2,12 +2,24 @@
 
 **Convention:** This file is ALWAYS the current handoff — overwrite in place at end of each session. Numbered SESSION{N}_HANDOFF.md files in `docs/handoffs/` are frozen historical snapshots; do not edit them.
 
-**Last updated:** 2026-06-03 UTC / 2026-06-02 ET (T58 three-lever entry-fix deploy).
-**Repo state:** HEAD `c156b6a8` (T58 three-lever entry-fix LIVE). Atlas + foundation chain canonical on origin/main.
+**Last updated:** 2026-06-03 UTC (D18 placement-instant-fill NO_EXIT fix deploy, on top of T58 three-lever).
+**Repo state:** HEAD `fde1ecf7` (D18 fix + three-lever entry-fix LIVE). Atlas + foundation chain canonical on origin/main.
 
 **Read order for a fresh chat or CC instance:** README → this file → LESSONS Section 1 → TAXONOMY Section 2.5 → ANALYSIS_LIBRARY → ROADMAP → SIMONS_MODE. On-demand: spec docs in `docs/` and atlas LOCKED_DOWN files in `data/durable/spike_volatility_map/`.
 
 `CHAT_HANDOFF.md` was consolidated into this doc in this same Stage 0 reconcile; the stub there points back here.
+
+---
+
+## D18 DEPLOY — placement-instant-fill NO_EXIT fix (2026-06-03T05:24:33Z restart)
+
+**Deployed commit:** `fde1ecf7` (FF from `69b906c6`). **Verified RUNNING by blob-diff:** on-disk `live_v4.py` blob `c2bc515d` == `HEAD:live_v4.py`; `_book_placement_cross_fill` present; PID 1967778; minrule table + three lever flags still loaded. **NOT a new cohort** — D18 is a pure correctness fix (books a fill that already happened + posts the exit that should always exist), ungated. The three-lever cohort cutoff (`02:35:46Z`, below) is UNCHANGED; entries before and after this restart are all three-lever cohort.
+
+**The fix:** a `post_only=False` placement cross (miss_fallback / marketable_taker) can fill ON PLACEMENT; the placement path stored the position `phase="entry_resting"` with no instant-fill handler → the fill was never booked → the `match_start_buffer` cleanup cancelled the already-filled order and its `phase=="active"` guard skipped the exit → **naked-held, uncapped downside** (SHEBRA-SHE 2026-06-01, the one genuinely-silent leg of the D18 forensic; the other 4 flagged legs were reconcile-handled via `reconcile_v4_hold`/`reconcile_v4_exit_posted` — a forensic detection miss, corrected). New `_book_placement_cross_fill()` mirrors the T-20m fallback path's existing instant-fill handler. Fallback path left byte-identical. Tests `test_d18_placement_exit.py` (14) + T58/T52/T50 regress green.
+
+**At deploy:** cash unchanged, 8 open old-cohort positions (NOT-FLAT; proceeded — entry-only + pure-correctness change, exits/state untouched). Untracked forensic scripts backed up to VPS `/tmp/predeploy_d18_backup.tar`. New-cohort premarket wave (26JUN03) began landing at restart under the fixed binary (first: MAYPAN-MAY @72 / -PAN @24).
+
+**⚠ OPEN FINDING — lever-2 fill-window vs the T-15m match_start_buffer (NOT fixed; flagged for decision):** `ENTRY_BUFFER_SEC=900` (line ~2367) cancels ANY unfilled `entry_resting` bid at T-15m. Under the deployed lever-2 (`fallback_min_before_start=1` → manage-side fallback at T-60s), the T-60s fallback-cross is effectively **dead code** — the T-15m buffer cancels the bid first. So lever-2's realized behavior is **"maker rest → skip(cancel) at T-15m"** (which IS maker-or-skip), but the live fill window is **open→T-15m**, whereas the combined walk modelled **open→T-2m**. Per A50 (late-window dips dominate), the walk may **overstate** the fill-rate lift to the extent first-dips cluster in the final 15m. **Consequence for the lever-3 confirmation watch:** if live first-wave fill undershoots the walk's 69-81%, it could be this window-truncation, NOT cancel-churn failing — a confound to separate. This is why the placement-side fallback was DELIBERATELY left at T-20m (resting a fresh sub-20m placement to T-1 is futile — the buffer cancels it). Follow-up (not done): quantify the fraction of qualifying first-dips in T-15m→T-2m; decide whether to lower ENTRY_BUFFER_SEC for v4 or accept the shorter window.
 
 ---
 

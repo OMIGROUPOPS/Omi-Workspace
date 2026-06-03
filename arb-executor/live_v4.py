@@ -2248,6 +2248,42 @@ class LiveV3:
             result["_side"] = resolved_side
         return result
 
+    async def _book_placement_cross_fill(self, tk, pos, resp, anchor_price):
+        """D18 (TRASQU NO_EXIT, placement-side). Book a post_only=False placement cross
+        (miss_fallback / marketable_taker) that filled ON PLACEMENT, and post its exit at
+        source. Returns True iff a fill was booked.
+
+        Why this is needed: the placement path stores the Position as phase="entry_resting"
+        and has no instant-fill poll. A post_only=False cross can fill immediately; that fill
+        never transits check_fills' entry_resting poll -- the match_start_buffer branch
+        cancels the (already-filled) order and its phase=="active" guard then skips the exit,
+        leaving a NAKED-held position with uncapped downside (SHEBRA-SHE, 2026-06-01).
+
+        Mirrors the T-20m fallback path's instant-fill handler (the same TRASQU fix that path
+        already has). anchor_price is the cross/limit price; a taker buy fills at <= its limit,
+        so anchoring the exit on it is conservative (A53). _v4_apply_exit is HOLD-safe and
+        clears stray sells before posting, so it is safe to call here."""
+        o = (resp or {}).get("order", {}) if isinstance(resp, dict) else {}
+        filled = int(float(o.get("fill_count_fp", 0) or 0))
+        if filled <= 0 or pos.exit_order_id:
+            return False
+        if pos.entry_qty == 0:
+            self.n_entries += 1
+        pos.entry_qty = filled
+        pos.entry_filled_ts = time.time()
+        pos.phase = "active"
+        self._log("entry_filled", {
+            "fill_price": anchor_price, "posted_price": anchor_price,
+            "qty": filled, "new_fills": filled, "cell": pos.cell_name,
+            "direction": pos.direction, "play_type": pos.play_type,
+            "kalshi_status": o.get("status", "?"), "source": "placement_instant_fill",
+        }, ticker=tk)
+        if pos.is_v4:
+            await self._v4_apply_exit(tk, pos, anchor_price, filled)
+            await self._cancel_sibling_if_paired_over_cap(tk, pos.event_ticker, anchor_price)
+        self._save_v4_resting()
+        return True
+
     async def _v4_apply_exit(self, tk, pos, fill_price, filled):
         """STEP 7. Apply the atlas exit rule for a freshly-filled v4 position
         from its entry-priced 1c cell. Two outcomes:
@@ -2996,8 +3032,15 @@ class LiveV3:
 
                 # Execution branch (Section 4) with late-discovery / T-20m
                 # fallback folded in.
+                # Placement-side fallback DELIBERATELY stays at V4_T20M_SEC (not
+                # self.v4_fallback_sec like the manage-side). The T-15m match_start_buffer
+                # (ENTRY_BUFFER_SEC) cancels any unfilled entry_resting bid, so resting a
+                # FRESH sub-20m placement to T-1 is futile -- it would be cancelled at T-15m,
+                # adding only place-then-cancel churn. A fresh late placement takes the atlas
+                # baseline taker. (Lever-2's T-1 governs the MANAGE side -- bids placed >20m
+                # out that rest down; note both fallback-crosses are themselves bounded by
+                # the T-15m buffer -> see SESSION_HANDOFF "lever-2 fill-window" note.)
                 if time_to_start <= V4_T20M_SEC:
-                    # At/after T-20m -> atlas baseline taker (the +8.70% floor).
                     entry_price, post_only, entry_mode = current_ask, False, "miss_fallback"
                 elif target_bid >= current_ask or force_cross:
                     # MARKETABLE TAKER: lift the ask, pay the 1c taker fee.
@@ -3071,6 +3114,10 @@ class LiveV3:
                 self.positions[tk] = pos
                 if entry_mode == "resting_maker":
                     self._save_v4_resting()
+                elif post_only is False:
+                    # D18 fix: a placement-side cross can fill ON PLACEMENT; book it at
+                    # source (the placement path has no entry_resting poll for it).
+                    await self._book_placement_cross_fill(tk, pos, resp, entry_price)
         finally:
             self._event_routing.discard(et)
 

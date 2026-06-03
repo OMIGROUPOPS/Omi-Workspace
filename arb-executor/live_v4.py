@@ -970,6 +970,14 @@ class LiveV3:
         self.exit_table = {}    # category -> {cell_id(int) -> (band_x|None, "exit"|"hold")}
         # T58: anchor entry on the live running-mid close-proxy (else BBO mid).
         self.running_mid_anchor = self.config.get("premarket_running_mid_anchor", False)
+        # T58 entry-fix levers (config-gated; defaults reproduce pre-fix behavior for clean rollback).
+        # Lever 2: pull the taker fallback from T-20 to T-1 so the maker rests through the
+        # convergence window (catches the period-2 dips). Lever 3 (A): cancel a resting bid only
+        # on a degenerate book OR when it goes marketable/stale (target_bid >= best_ask - buffer),
+        # NOT on wide-spread-alone — a bid resting safely below a wide book is the intended dip-catcher.
+        self.v4_fallback_sec = int(self.config.get("fallback_min_before_start", 20)) * 60
+        self.cancel_on_marketable = self.config.get("cancel_on_marketable", False)
+        self.cancel_marketable_buffer = int(self.config.get("cancel_marketable_buffer", 1))
         self._load_entry_table()
         self._load_exit_table()
 
@@ -2062,6 +2070,23 @@ class LiveV3:
                 "window_sec": LIVE_DETECT_WINDOW_SEC, "signal": "volume_burst"})
             return True
         return False
+
+    def _resting_cancel_reason(self, target_bid, best_bid, best_ask):
+        """Lever 3: should a resting v4 entry bid be cancelled? Returns (cancel, reason). Pure/testable.
+        cancel_on_marketable (A): degenerate book OR the bid gone marketable/stale (target within
+        cancel_marketable_buffer of the ask -> about to fill against a moved book = the real pick-off
+        risk). A bid resting safely below a wide market is NOT cancelled (kills the churn). Legacy
+        path: degenerate OR wide spread (>2c) — the MAIN-calibrated proxy that over-cancels thin books."""
+        degenerate = best_bid <= 0 or best_ask >= 100
+        if self.cancel_on_marketable:
+            if degenerate:
+                return True, "degenerate"
+            if target_bid > 0 and target_bid >= (best_ask - self.cancel_marketable_buffer):
+                return True, "bid_marketable_stale"
+            return False, None
+        if degenerate or (best_ask - best_bid) > 2:
+            return True, "degenerate_or_wide_spread"
+        return False, None
 
     def _taker_spread_ok(self, bid, ask):
         """T52: True if (ask-bid) is tight enough to TAKER-cross. A fat spread
@@ -3390,10 +3415,11 @@ class LiveV3:
             self._untombstone_entry(tk, pos)
             self._save_v4_resting()
             return
-        if spread > 2 or book.best_bid <= 0 or book.best_ask >= 100:
-            await self.cancel_order(tk, pos.entry_order_id, "v4_degenerate_cancel")
-            self._log("v4_resting_cancel", {"reason": "degenerate_or_wide_spread",
-                "spread": spread, "bid": book.best_bid, "ask": book.best_ask}, ticker=tk)
+        should_cancel, creason = self._resting_cancel_reason(pos.target_price, book.best_bid, book.best_ask)
+        if should_cancel:
+            await self.cancel_order(tk, pos.entry_order_id, "v4_cancel_" + creason)
+            self._log("v4_resting_cancel", {"reason": creason, "spread": spread,
+                "bid": book.best_bid, "ask": book.best_ask, "target_bid": pos.target_price}, ticker=tk)
             self._untombstone_entry(tk, pos)
             self._save_v4_resting()
             return
@@ -3405,7 +3431,7 @@ class LiveV3:
         # -- the +8.70% floor -- so the strategy can never underperform it. Pay
         # the 1c taker fee (by design). Fires once; after crossing, entry_mode is
         # miss_fallback and we just wait for the taker fill.
-        if time_to_start <= V4_T20M_SEC and pos.entry_mode != "miss_fallback":
+        if time_to_start <= self.v4_fallback_sec and pos.entry_mode != "miss_fallback":
             old = await api_get(self.session, self.ak, self.pk,
                 "/trade-api/v2/portfolio/orders/%s" % pos.entry_order_id, self.rl)
             if old:

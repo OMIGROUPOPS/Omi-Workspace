@@ -1,0 +1,108 @@
+{
+  "prereg_id": "range_stack_dimensional_v2_1",
+  "status": "FROZEN",
+  "frozen_at_utc": "2026-06-02T20:12:00-04:00",
+  "supersedes": "range_stack_dimensional_v2",
+  "supersede_reason": "v2 specified the A52 triggered-vs-held partition on 'the fill event' without distinguishing SIMULATED-corpus fills from REAL-account fills, and without the two-anchor structure. Real exchange is_taker exists ONLY for the 5,043 account fills [2026-03-28 .. 2026-06-02], NOT the 10-month historical corpus. v2.1 pins the corrected-B-fenced-by-A frame: simulated fill is the primary object; B25 corrects fill-FREQUENCY only; the A52 real-fill benign/adverse mix is the mandatory SELECTION-validation anchor on the overlap; advancement requires simulated-vs-real partition AGREEMENT; and a pre-committed minimum-validation-N HALT prevents advancing on simulated-only evidence when the real anchor is too thin.",
+  "purpose": "Pre-registered dimensional frame for the range-stack ENTRY banding test under the real-data constraint that ground-truth fills exist only on a short recent window. Frozen BEFORE CC reports the config-consistent fill count, so the infeasibility halt cannot be moved post-hoc.",
+  "corpus_binding": {
+    "repo": "github.com/OMIGROUPOPS/Omi-Workspace",
+    "prereg_committed_on_tip": "2ad342772f57664d316fcf4290d071e7d586d9a7",
+    "data_foundation_sha": "372a659a23a0c6c9344e9001321107e8a6e8626b",
+    "data_foundation_sha_short": "372a659",
+    "branch": "main",
+    "feasibility_check_1": "GO \u2014 full price path present at 372a659; fill-reach computable across the historical corpus.",
+    "feasibility_check_2_constraint": "Real exchange is_taker exists ONLY for 5,043 account fills [2026-03-28 .. 2026-06-02]. The 10-month historical tape has market-taker fields but NO 'did WE fill as taker'. The 5,043 also cross multiple bot regimes (tennis_v5 -> v3 -> v4 -> 5-fix); config-consistent (validated-era) scoring shrinks N further.",
+    "real_fill_source": "kalshi_fills_history.json (canonical per A30/A52; pull /portfolio/fills, NOT the entry_mode log tag which mislabels ~50% of fills)."
+  },
+  "scope": {
+    "tiers": [
+      "ATP_MAIN",
+      "WTA_MAIN",
+      "ATP_CHALL"
+    ],
+    "tiers_in_run": 3,
+    "deferred_tiers": {
+      "WTA_CHALL": {
+        "status": "DEFERRED_NOT_DROPPED",
+        "reason": "FV wired (a4659b2) but 3/7 forward-only coverage; historical gap open."
+      }
+    },
+    "pool_tiers": false,
+    "price_axis_cents": {
+      "min": 1,
+      "max": 99,
+      "granularity": 1
+    }
+  },
+  "the_two_orthogonal_biases": {
+    "bias_1_fill_rate_realism_B25": "Does the simulated fill OCCUR as often as a real fill? Minute-cadence simulators UNDERCOUNT sub-minute touches (B25: fire_rate is the broken term, capture_per_fired is correct; limit policies 2.4x understated, policy-class-dependent). This is a FREQUENCY error.",
+    "bias_2_dip_selection_A52": "CONDITIONAL on a fill occurring, is the filled subset's forward path adversely selected? This lives in the PRICE PATH itself, not the fill mechanism \u2014 a simulated fill at depth X on the historical path inherits the SAME dip-selection because the dip that triggers the simulated touch is the same outcome-informative dip. Routing through a simulator does NOT launder it.",
+    "orthogonality": "B25 and A52 are ORTHOGONAL. B25 corrects frequency. A52 is conditional-distribution selection. Fixing one does NOT fix the other."
+  },
+  "primary_object": {
+    "definition": "SIMULATED fill-reach on the full historical path at 372a659: did the historical traded path reach a hypothetical resting bid at depth X during open->T-20 (first-passage), and the touch-depth distribution.",
+    "inherent_because": "No real account fills exist on the 10-month corpus. The harvest gate is NECESSARILY a statement about simulated-fill forward paths. This framing is sound, not a rationalization.",
+    "fill_depth_grid_cents": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      10
+    ]
+  },
+  "anchor_1_B25_frequency": {
+    "role": "Calibrate simulated reach-RATE vs realized fill-RATE on the [2026-03-28 .. 2026-06-02] overlap.",
+    "corrects": "FREQUENCY ONLY (how often a fill occurs).",
+    "RATIONALIZATION_FENCE": "B25 frequency calibration is EXPLICITLY FORBIDDEN from being cited, treated, or reported as a selection correction. Calibrating fill-rate does NOT make the conditional forward path honest. Any analysis or ledger line that uses B25 calibration to claim the conditional-selection bias is addressed is a SPEC VIOLATION and rejects the run."
+  },
+  "anchor_2_A52_selection_validation": {
+    "role": "THE HONESTY GATE. The simulated-fill TRIGGERED-vs-HELD benign/adverse mix MUST reproduce the REAL is_taker A52 mix on the [2026-03-28 .. 2026-06-02] overlap, config-restricted to the validated era.",
+    "real_ground_truth_A52": "Genuine maker (day-1 RUN-5, raw): TRIGGERED positive (+$6.05); HELD negative (-$8.29), held W/L maker 2/5; genuine-maker net -$2.24. Held carries the dip-selection endogeneity (A43-capped). is_taker from /portfolio/fills, NOT entry_mode.",
+    "discriminating_quantity": "p_adv = adverse(held) mass / (held + triggered) among genuine-maker fills.",
+    "earn_the_right_to_extrapolate": "The simulator must reproduce the known-real conditional benign/adverse structure on the overlap to be trusted on the full corpus. If the simulator's benign/adverse split does NOT match the real-fill split where both exist, the simulated gate is mis-measuring selection and is REJECTED \u2014 full stop, regardless of how clean its permutation statistics look."
+  },
+  "advancement_requires_agreement": {
+    "rule": "Advance ONLY if the full-corpus SIMULATED harvest gate AND the real-fill A52 gate on the validated-era overlap AGREE on the benign/adverse verdict.",
+    "disagreement_is_reject": "If full-corpus simulated harvest says 'benign dominates' but real validated-era fills say 'adverse dominates', the simulated gate is REJECTED \u2014 clean permutation stats do not override real-fill disagreement.",
+    "day1_hint": "A52 day-1 already hints disagreement is live: genuine-maker net -$2.24, held negative. Do not assume agreement."
+  },
+  "minimum_validation_N_halt": {
+    "is_a": "measurement-infeasibility halt, like v1's flat-gate halt \u2014 NOT a green light to trust the simulator unanchored.",
+    "binding_quantity": "n_genuine_maker_fills on the config-consistent (validated-era) overlap \u2014 the fills that can estimate p_adv (held vs triggered).",
+    "FROZEN_THRESHOLDS": {
+      "hard_halt_floor": 25,
+      "hard_halt_rule": "If n_genuine_maker_fills (config-consistent overlap) < 25, v2.1 HALTS. The simulated gate may NOT advance on simulated-only evidence. Report the infeasibility; do not band entry.",
+      "reject_power_floor": 55,
+      "reject_power_rule": "If 25 <= n_genuine_maker_fills < 55, the agreement test runs but is UNDERPOWERED to REJECT a disagreement of |dp|>=0.25 at 80% power. In this band: agreement does NOT advance the gate; only an OBSERVED DISAGREEMENT counts (it can still REJECT, never CONFIRM). Advancement on agreement requires n >= 55.",
+      "full_confirm_floor": 55,
+      "full_confirm_rule": "n_genuine_maker_fills >= 55: agreement test is adequately powered; agreement may advance and disagreement may reject."
+    },
+    "derivation": "Floors derived from a two-proportion power argument on p_adv ~ 0.5 (max-variance, hardest case): +/-0.20 CI half-width needs n~25 (hard floor); rejecting |dp|>=0.25 vs real~0.5 at 80% power / alpha 0.05 needs n~55 (confirm floor). Frozen BEFORE CC reports the config-consistent count so the floor cannot be moved to fit N.",
+    "day1_context": "A52 day-1 genuine-maker is ~12-15 (held-maker=7 at W/L 2/5 + small triggered) \u2014 BELOW the hard floor of 25. Day-1 alone HALTS. Advancement needs accumulation of more validated-era genuine-maker fills."
+  },
+  "universe_split_logged_field": {
+    "required": true,
+    "fields": {
+      "null_and_banding_derived_on": "FULL_HISTORICAL_CORPUS_PATH at 372a659 (simulated fill-reach)",
+      "selection_structure_validated_on": "REAL is_taker fills, [2026-03-28 .. 2026-06-02] overlap, config-restricted validated era",
+      "realized_PnL_scored_on": "VALIDATED_ERA_REAL_FILLS_ONLY (small-N, N-fragility reported explicitly)"
+    },
+    "note": "The universe split is a named, logged ledger field on every band row \u2014 never implicit. No statistic may silently mix the three universes."
+  },
+  "inherited_from_v2_unchanged": {
+    "headline_gate": "harvest_vs_drift_falsification: REJECT if adverse_mass*adverse_loss >= benign_mass*benign_capture.",
+    "net_displacement": "CONTROL/discriminator: edge must concentrate at net~=0 (harvest); edge only at net<0 = drift/FLB = rejected.",
+    "stage_a_endpoint_IPW": "3-tier covariate degradation, stabilized weights, 1st/99th winsorize, missing-covariate legs not dropped.",
+    "null_model": "width-preserving position-shuffle on measured marginal density; 10000 perms/tier/object; FLB drift sign baked in; statistic = fill-reach overlap.",
+    "band_threshold": "per-cell 99th-pct + BH-FDR q=0.05 per tier per object; band = contiguous >=2 cells surviving stats AND passing headline gate.",
+    "range_objects": "A(open->T-1) INTERSECT B(open->T-20).",
+    "held_out": "purged embargoed CPCV N=6/k=2, 15 combos; harvest-gate stability scored on held-out.",
+    "REFUSED": "Any banding verdict on UNCONDITIONAL excursion (mirror-image of the v1 net-displacement error) \u2014 permanently out of bounds."
+  },
+  "final_advancement_rule": "A band advances ONLY if: (1) simulated fill-reach overlap significant in A_INTERSECT_B after FDR q=0.05; (2) B25 frequency calibration applied (and NOT cited as a selection fix); (3) endpoint-survivorship IPW applied; (4) n_genuine_maker_fills >= 25 (else HALT) AND >= 55 to advance on agreement; (5) simulated A52 benign/adverse mix AGREES with real is_taker A52 mix on the validated-era overlap; (6) headline harvest gate passes (benign*capture > adverse*loss); (7) edge concentrates at net~=0 not net<0; (8) conditional forward-reach composes with the validated exit surface; (9) harvest stability across CPCV held-out. Disagreement at (5) REJECTS regardless of (1).",
+  "goalpost_lock": "All thresholds frozen at this commit, including the minimum-validation-N floors (25 hard halt, 55 confirm). No parameter re-chosen after CC reports the config-consistent fill count or after results are observed. B25-as-selection-correction is permanently forbidden. Unconditional-excursion banding is permanently out of bounds."
+}

@@ -2,8 +2,27 @@
 
 **Convention:** This file is ALWAYS the current handoff — overwrite in place at end of each session. Numbered SESSION{N}_HANDOFF.md files in `docs/handoffs/` are frozen historical snapshots; do not edit them.
 
-**Last updated:** 2026-06-03 UTC (D18 placement-instant-fill NO_EXIT fix deploy, on top of T58 three-lever).
-**Repo state:** HEAD `fde1ecf7` (D18 fix + three-lever entry-fix LIVE). Atlas + foundation chain canonical on origin/main.
+**Last updated:** 2026-06-03 UTC (RUN-6 LIVE: levers + D18 + fix-3 reprice-maker-only).
+**Repo state:** HEAD `ede406ab` (RUN-6 LIVE). Atlas + foundation chain canonical on origin/main.
+
+## RUN-6 LIVE — fix-3 reprice-maker-only (restart 2026-06-03T06:27:57Z)
+
+**Deployed commit:** `ede406ab` (FF from `e5ac0fbf`). **Blob-verified RUNNING:** on-disk `live_v4.py` hash `6ce95fda` == `HEAD:live_v4.py` (file hash, NOT logs); PID 1984688; `_reprice_target` present; levers active (minrule + cancel_on_marketable=true + fallback_min_before_start=1).
+
+**RUN-6 stack:** live levers (min-rule offsets + T-1 fallback + cancel-on-marketable, flags-on) **+ D18 placement-instant-fill booking + fix-3 reprice-maker-only**. The **T-20m fallback is the ONLY sanctioned taker entry** — the significant-move reprice now clamps a marketable target to `max(1, ask-1)` and re-rests maker (no `cross_on_move` cross). Fix-1 delivered by lever-3 (confirmed); **fix-2 DROPPED** (forensic: the paired-basis cap is not over-blocking — T50 verdict zero fair legs blocked; parked-contested, do not change). Tests: 8 files all pass.
+
+**Cohort cutoff UNCHANGED — still `02:35:46Z` (three-lever line below).** Fix-3 + D18 are correctness fixes, NOT a strategy change, so the entry strategy under test (levers) is continuous from the three-lever deploy; a fresh RUN-6 line would needlessly fragment the maker-fill cohort we're growing N on. JUN-date exclusion still holds for stale (`-26JUN01-`).
+
+**RUN-6 baseline snapshot (at stop, pre-restart):** cash **$2,703.19**, **9 open positions** (incl. the first new-cohort fill `26JUN03 MAYPAN-PAN` + 5 JUN01 stale + JUN02 RUN-5), 12 resting (8 exits + new 26JUN03 entries LAZSAM/TOPNAV). settlements 24h net **−$12.35**. NOT-FLAT at deploy; proceeded (entry-only correctness change, operator-authorized).
+
+**Pre-committed RUN-6 read (LOCKED — measure post-wave, do not move the goalposts):**
+- **Read A — genuine-maker fill-rate** (`is_taker=FALSE` from /fills, NOT entry_mode) vs the corrected **open→T-15m** targets: ATP_MAIN **74%** / WTA_MAIN **72%** / ATP_CHALL **54%** / WTA_CHALL **60%**. Tests whether the levers deliver maker fills (RUN-5 was ~6%). Near target ⇒ lever-3 landed; well below ⇒ cancel-churn still failing.
+- **Read B — reprice-taker-leak → ZERO** (`cross_on_move` count = 0; only T-20m fallbacks remain as takers). Direct test of fix-3.
+- **Held out:** absolute ROC (validated object is the DELTA, not absolute — live below walk by adverse-selection margin); maker-edge P&L verdict (N too small after one run — next read); the ENTRY_BUFFER→T-2m change (separate, only after RUN-6 confirms).
+- **Caveats throughout:** delta-not-absolute · is_taker-not-entry_mode · blob-not-logs · JUN-date cohort · fix-2 parked-contested.
+
+---
+
 
 **Read order for a fresh chat or CC instance:** README → this file → LESSONS Section 1 → TAXONOMY Section 2.5 → ANALYSIS_LIBRARY → ROADMAP → SIMONS_MODE. On-demand: spec docs in `docs/` and atlas LOCKED_DOWN files in `data/durable/spike_volatility_map/`.
 

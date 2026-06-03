@@ -978,6 +978,10 @@ class LiveV3:
         self.v4_fallback_sec = int(self.config.get("fallback_min_before_start", 20)) * 60
         self.cancel_on_marketable = self.config.get("cancel_on_marketable", False)
         self.cancel_marketable_buffer = int(self.config.get("cancel_marketable_buffer", 1))
+        # RUN-7: replace the T-20m taker cross with an ask-1 MAKER clamp (no premium/fee, forfeits
+        # the certainty floor). Fires at fallback_min_before_start (set 20 for the T-20->T-15 window).
+        # Default False = byte-identical pre-RUN-7 (taker cross).
+        self.fallback_maker_clamp = self.config.get("fallback_maker_clamp", False)
         self._load_entry_table()
         self._load_exit_table()
 
@@ -2098,6 +2102,17 @@ class LiveV3:
         if new_target >= current_ask:
             new_target = max(1, current_ask - 1)
         return new_target, True
+
+    def _fallback_order(self, best_ask):
+        """RUN-7: the T-20m fallback order. Returns (price, post_only).
+        fallback_maker_clamp=True -> ask-1 MAKER (post_only=True): re-post just below the ask via the
+        _reprice_target clamp, no taker premium/fee, forfeits the certainty floor; rests the T-20->T-15
+        window (fires at fallback_min_before_start=20). fallback_maker_clamp=False -> taker cross at
+        best_ask (post_only=False): the atlas-baseline certainty (pre-RUN-7, byte-identical). Pure/testable."""
+        if self.fallback_maker_clamp:
+            price, _ = self._reprice_target(best_ask, best_ask)   # -> (max(1, best_ask-1), True)
+            return price, True
+        return best_ask, False
 
     def _taker_spread_ok(self, bid, ask):
         """T52: True if (ask-bid) is tight enough to TAKER-cross. A fat spread
@@ -3474,6 +3489,12 @@ class LiveV3:
             self._save_v4_resting()
             return
         should_cancel, creason = self._resting_cancel_reason(pos.target_price, book.best_bid, book.best_ask)
+        # RUN-7: the ask-1 fallback bid is INTENTIONALLY marketable-adjacent (placed just below the
+        # ask to catch final-window flow) -- exempt ONLY that bid from the marketable-cancel so
+        # cancel-on-marketable doesn't pick it off. Scoped to entry_mode=="fallback_maker": a normal
+        # resting bid that drifts marketable is NOT exempt (still cancelled). Degenerate still cancels.
+        if should_cancel and creason == "bid_marketable_stale" and pos.entry_mode == "fallback_maker":
+            should_cancel, creason = False, None
         if should_cancel:
             await self.cancel_order(tk, pos.entry_order_id, "v4_cancel_" + creason)
             self._log("v4_resting_cancel", {"reason": creason, "spread": spread,
@@ -3489,7 +3510,7 @@ class LiveV3:
         # -- the +8.70% floor -- so the strategy can never underperform it. Pay
         # the 1c taker fee (by design). Fires once; after crossing, entry_mode is
         # miss_fallback and we just wait for the taker fill.
-        if time_to_start <= self.v4_fallback_sec and pos.entry_mode != "miss_fallback":
+        if time_to_start <= self.v4_fallback_sec and pos.entry_mode not in ("miss_fallback", "fallback_maker"):
             old = await api_get(self.session, self.ak, self.pk,
                 "/trade-api/v2/portfolio/orders/%s" % pos.entry_order_id, self.rl)
             if old:
@@ -3519,14 +3540,32 @@ class LiveV3:
                 self._save_v4_resting()
                 return
             await self.cancel_order(tk, pos.entry_order_id, "v4_t20m_fallback")
+            fb_price, fb_post_only = self._fallback_order(book.best_ask)
             self.inflight_orders.add(tk)
             try:
-                oid, resp = await self.place_order(tk, "buy", "yes", book.best_ask,
-                                                self.entry_size, post_only=False)
+                oid, resp = await self.place_order(tk, "buy", "yes", fb_price,
+                                                self.entry_size, post_only=fb_post_only)
             finally:
                 self.inflight_orders.discard(tk)
-            pos.entry_price = book.best_ask
+            pos.entry_price = fb_price
             pos.entry_order_id = oid
+            if fb_post_only:
+                # RUN-7 ask-1 MAKER clamp: re-posted just below the ask; RESTS (no taker fill, no
+                # instant-fill handler -- post_only cannot cross). entry_mode=fallback_maker fires the
+                # fallback once AND scopes the cancel-on-marketable exemption to this bid only (it is
+                # intentionally marketable-adjacent; a normal drifted bid is NOT exempt). target_price
+                # tracks the clamp. Cancelled only by match_start_buffer (T-15m), degenerate, or fill.
+                pos.entry_mode = "fallback_maker"
+                pos.play_type = "v4_fallback_maker"
+                pos.paid_taker_fee = False
+                pos.target_price = fb_price
+                self._log("v4_fallback_maker_clamp", {
+                    "ask1_price": fb_price, "best_ask": book.best_ask,
+                    "regime": pos.regime_at_posting,
+                    "time_to_start_min": round(time_to_start / 60, 1),
+                }, ticker=tk)
+                self._save_v4_resting()
+                return
             pos.entry_mode = "miss_fallback"
             pos.play_type = "v4_miss_fallback"
             pos.paid_taker_fee = True

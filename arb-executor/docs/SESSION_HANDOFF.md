@@ -2,8 +2,24 @@
 
 **Convention:** This file is ALWAYS the current handoff — overwrite in place at end of each session. Numbered SESSION{N}_HANDOFF.md files in `docs/handoffs/` are frozen historical snapshots; do not edit them.
 
-**Last updated:** 2026-06-03 UTC (RUN-6 LIVE: levers + D18 + fix-3 reprice-maker-only).
-**Repo state:** HEAD `ede406ab` (RUN-6 LIVE). Atlas + foundation chain canonical on origin/main.
+**Last updated:** 2026-06-03 UTC (RUN-7 LIVE: ATP_CHALL trade-floor offsets + ask-1 maker fallback).
+**Repo state:** HEAD `b40b863c` (RUN-7 LIVE; code 104feeaa). Atlas + foundation chain canonical on origin/main.
+
+## RUN-7 LIVE — ATP_CHALL trade-floor offsets + ask-1 maker fallback (restart 2026-06-03T18:56:26Z)
+
+**Deployed:** `b40b863c` (config) / `104feeaa` (code). **Blob-verified RUNNING:** on-disk `live_v4.py` == `3335727d` (file hash, not logs); PID 2178215; `_fallback_order` present; run7 table loaded.
+
+**The two safe levers (one regime change, config-gated, ENTRY_BUFFER_SEC untouched):**
+- **Lever A — ATP_CHALL trade-floor offsets:** `entry_table_cell_path → entry_table_percell_run7.csv` (HYBRID: ATP_CHALL recalibrated to the actual trade-print floor [PMU price_low, reach60 on the reachable T-15..T-180 window], 62 cells; WTA_CHALL + both mains KEEP `_minrule`). Print-truth walk: ATP_CHALL fill **54→68% (+14pp)** at ROC 14.6→12.1 (volume-for-edge). Mains NOT recalibrated — print-truth showed it hurts them (−1/−2pp; candle-vs-print gap is a thin-Challenger artifact).
+- **Lever B — ask-1 maker fallback:** `fallback_maker_clamp=true`, `fallback_min_before_start=20`. The T-20m fallback now re-posts an **ask-1 MAKER** (`post_only=True` via `_fallback_order`/`_reprice_target`) instead of crossing taker — no premium/fee, forfeits the (net-negative-live, −$0.16/leg per RUN-5) certainty floor. Fires at T-20m for the T-20→T-15 window. `entry_mode=fallback_maker` fires it once + scopes a cancel-on-marketable EXEMPTION to that bid only (normal drifted bids still cancel; degenerate still cancels). Tests: t60 (12) + full 9-file suite green.
+
+**Cohort: NEW RUN-7 baseline cutoff = restart `2026-06-03T18:56:26Z`.** The RUN-6/RUN-7 boundary is this restart ts; JUN-date exclusion still holds for stale (`-26JUN01-`). RUN-7 is the clean control baseline for the RUN-8 buffer experiment (ATP_CHALL is the #1 relaxation candidate).
+
+**RUN-7 baseline snapshot (at stop):** cash **$2,724.08**, **3 open positions**, 8 resting, settlements 24h net **+$6.45** (gross $95.00 / cost $87.30 / fees $1.25). NOT-FLAT; proceeded (entry-only config-gated change, operator-authorized). Flipped 3 keys: `entry_table_cell_path→entry_table_percell_run7.csv`, `fallback_min_before_start 1→20`, `fallback_maker_clamp→true`.
+
+**NEXT (held):** T51 hardening (spec `T51_HARDENING_SPEC.md`) → implement+test → RUN-8 buffer relaxation (ATP_CHALL → WTA_CHALL → WTA_MAIN → ATP_MAIN), per-category gated on final-window net P&L clearing this RUN-7 baseline.
+
+---
 
 ## RUN-6 LIVE — fix-3 reprice-maker-only (restart 2026-06-03T06:27:57Z)
 

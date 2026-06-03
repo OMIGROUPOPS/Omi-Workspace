@@ -2,12 +2,31 @@
 
 **Convention:** This file is ALWAYS the current handoff — overwrite in place at end of each session. Numbered SESSION{N}_HANDOFF.md files in `docs/handoffs/` are frozen historical snapshots; do not edit them.
 
-**Last updated:** 2026-05-21 ET (post-atlas-lock Stage 0 reconcile).
-**Repo state:** HEAD `d99c6e9` (atlas lock). Atlas + foundation chain canonical on origin/main.
+**Last updated:** 2026-06-03 UTC / 2026-06-02 ET (T58 three-lever entry-fix deploy).
+**Repo state:** HEAD `c156b6a8` (T58 three-lever entry-fix LIVE). Atlas + foundation chain canonical on origin/main.
 
 **Read order for a fresh chat or CC instance:** README → this file → LESSONS Section 1 → TAXONOMY Section 2.5 → ANALYSIS_LIBRARY → ROADMAP → SIMONS_MODE. On-demand: spec docs in `docs/` and atlas LOCKED_DOWN files in `data/durable/spike_volatility_map/`.
 
 `CHAT_HANDOFF.md` was consolidated into this doc in this same Stage 0 reconcile; the stub there points back here.
+
+---
+
+## T58 THREE-LEVER ENTRY-FIX DEPLOY — cohort cutoff (2026-06-03T02:35:46Z / 2026-06-02 22:35 ET)
+
+**Deployed commit:** `c156b6a8` (FF from RUN-5 `83e08395`, +18 commits). **Verified RUNNING, not just logged:** on-disk `live_v4.py` blob == `HEAD:live_v4.py` (`41d988b7…`), live config blob == committed, PID 1925320 `python3 -u live_v4.py` started at the restart, and the three lever flags resolved ON in the loaded config (`v4_fallback_sec=60`, `cancel_on_marketable=True`, `cancel_marketable_buffer=1`, `entry_table_cell_path → entry_table_percell_minrule.csv`).
+
+**The three levers (all config-gated; flags-off = pre-fix byte-identical, clean rollback):**
+- **Lever 1 — min-rule offsets:** `entry_table_cell_path → entry_table_percell_minrule.csv` — deep 7–18¢ cells shallowed to 3–8¢ at envelope reach60; shallow 1–2¢ untouched.
+- **Lever 2 — T-1 fallback:** `fallback_min_before_start=1` (was T-20). Maker rests through the convergence window; T51/T52 skip-on-live/fat retained = maker-or-skip on thin/wide, premarket-safe.
+- **Lever 3 — cancel-on-marketable (A):** `cancel_on_marketable=true`, `cancel_marketable_buffer=1`. Resting entry bid cancels only on degenerate OR bid-gone-marketable (`target ≥ ask − 1¢`), not wide-spread-alone — kills the 1,585-cancel churn, keeps the pick-off protection.
+
+**Validation:** fresh per-match walk green all 4 cats. Fill **+10..+24pp**, ROC **DELTA +1.40..+4.94pp** (ATP_MAIN +1.56, WTA_MAIN +1.40, ATP_CHALL +4.94, WTA_CHALL +4.11). **Caveats held in all attribution:** (1) the validated quantity is the **DELTA**, not the absolute walk ROC — live realized sits below the walk by the adverse-selection margin (the walk assumes stable rest). (2) Lever-3's confirmation is the **LIVE fill-rate vs the walk's 69–81% projection, measured post-deploy** (the walk cannot price the cancel-churn fix). Live fill climbing off ~6% toward projection = churn fixed; staying near 6% = it did not land, diagnose. **Watch the first premarket wave under `c156b6a8`.**
+
+**Cutoff key = the restart timestamp `2026-06-03T02:35:46Z`.** Every entry PLACED after it = three-lever cohort (clean). Pre-cutoff positions = old-entry-config cohort, frozen, managed by UNCHANGED exit logic (the `live_v4.py` delta is provably entry-only — exit/sell/DCA/state code byte-identical):
+- **8 open positions at cutoff** (qty 5 each, all with resting exits): JUN01 stale — MARELL-MAR, MARELL-ELL, BICMON-MON, SEAKRU-KRU, NAEING-NAE (5); JUN02 RUN-5 — KRUSAK-KRU, MARFRU-MAR (WTA_CHALL), BLAGIL-GIL (ATP_CHALL) (3).
+- **1 pre-cutoff resting BUY entry:** `KXATPMATCH-26JUN03BERARN-ARN` — placed under RUN-5 config before restart. NOTE: 26JUN03 ticker-date but PRE-three-lever — **exclude from the three-lever cohort by the timestamp key** (date alone would mis-tag it clean).
+
+**T57 reconcile at deploy:** cash **$2,704.39**, 8 open, settlements 24h net **−$12.35** (gross $206.00, cost $214.62, fees $3.73). Guard fired NOT-FLAT; proceeded because the change is entry-only and the cohort cutoff freezes open positions by design (operator-authorized). Untracked analysis outputs backed up to VPS `/tmp/predeploy_untracked_backup.tar` before the FF; `session_reconcile.py` restored from git. No `state/`, `logs/`, `kalshi.pem`, or `.bak` touched.
 
 ---
 

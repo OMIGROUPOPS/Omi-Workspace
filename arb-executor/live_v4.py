@@ -3018,8 +3018,12 @@ class LiveV3:
                     }, ticker=tk)
                     continue
 
-                # Universal anti-degenerate guard
-                if book.best_bid <= 0 or book.best_ask >= 100 or book.best_bid >= book.best_ask:
+                # Universal anti-degenerate guard. Skip only genuinely CROSSED books (bid > ask, a
+                # real book artifact) and true degenerates (no bid, or ask pinned at 100). A LOCKED
+                # book (bid == ask) is a tight, fully-priced two-sided market -- investable, not
+                # degenerate -- so it is allowed through (recovers ~22 entries/day incl. Slam main-
+                # draw). The artifact fence stays side_skip_stale_book (BOOK_STALENESS_SEC); not this.
+                if book.best_bid <= 0 or book.best_ask >= 100 or book.best_bid > book.best_ask:
                     self._log("skipped", {"reason": "degenerate_book_skip", "event": et,
                         "bid": book.best_bid, "ask": book.best_ask}, ticker=tk)
                     continue
@@ -3117,6 +3121,12 @@ class LiveV3:
                     "placement_minute": placement_min,
                     "min_before_start": round(time_to_start / 60),
                     "exp_fill_rate": round(exp_fill, 3), "exp_net_roi_pct": round(exp_roi, 2),
+                    # Locked-book verification hook (Plex): record the placement-time book so the
+                    # next is_taker-truth pass can confirm locked-book (bid==ask) placements fill
+                    # like normal tight markets, not a hidden adverse cohort. Telemetry only, not a gate.
+                    "book_bid": book.best_bid, "book_ask": book.best_ask,
+                    "book_spread": book.best_ask - book.best_bid,
+                    "locked_book": book.best_bid == book.best_ask,
                 }, ticker=tk)
 
                 self.inflight_orders.add(tk)

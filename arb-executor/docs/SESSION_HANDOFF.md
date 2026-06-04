@@ -2,8 +2,22 @@
 
 **Convention:** This file is ALWAYS the current handoff — overwrite in place at end of each session. Numbered SESSION{N}_HANDOFF.md files in `docs/handoffs/` are frozen historical snapshots; do not edit them.
 
-**Last updated:** 2026-06-03 UTC (RUN-7 LIVE: ATP_CHALL trade-floor offsets + ask-1 maker fallback).
-**Repo state:** HEAD `b40b863c` (RUN-7 LIVE; code 104feeaa). Atlas + foundation chain canonical on origin/main.
+**Last updated:** 2026-06-04 UTC (locked-book guard fix LIVE on top of RUN-7).
+**Repo state:** HEAD `e4fd9f7f` (locked-book correctness fix; RUN-7 strategy unchanged — config `b40b863c` / code lineage `104feeaa`). Atlas + foundation chain canonical on origin/main.
+
+## LOCKED-BOOK GUARD FIX — LIVE (restart 2026-06-04T18:21:49Z)
+
+**Deployed:** commit `e4fd9f7f` (FF on VPS from `64ae2ce3`). **Blob-verified RUNNING:** on-disk `live_v4.py` == `8961e5a6` (file hash, not logs); PID **2524137**; guard line now `book.best_bid > book.best_ask`; run7 table + deploy_v5_live.json loaded; 0 tracebacks.
+
+**The fix (one char, correctness — NOT a strategy change):** the universal anti-degenerate entry guard used `best_bid >= best_ask`, which collapsed **LOCKED** books (bid==ask, a tight fully-priced two-sided market) into the `degenerate_book_skip` and silently discarded ~**22 investable entries/day** across all 4 categories — including the one Roland Garros main-draw market seen (`KXWTAMATCH-26JUN04KOSAND`, 43/43). Changed to `>`: only genuinely **CROSSED** books (bid>ask, a real book artifact) skip; locked books now place. Untouched real fences: `best_bid<=0`, `best_ask>=100`, `side_skip_stale_book` (BOOK_STALENESS_SEC=900). Byte-identical on every non-locked book (proven in test). Plex + apply_delta(L1671)/apply_snapshot 100-flip source-verified — no book-collapse source.
+
+**Verification hook (telemetry only, NOT a gate):** `v4_place` now logs `book_bid`/`book_ask`/`book_spread`/`locked_book` on the entry_resting placement. Next is_taker-truth pass: confirm locked-book (`locked_book=true`) fills behave like normal tight-market fills, not a hidden adverse cohort.
+
+**Cohort:** RUN-7 strategy baseline **CONTINUES** from `2026-06-03T18:56:26Z` (this is a correctness fix on top of RUN-7, not a new strategy — the maker-fill cohort keeps growing N). The locked-book **correctness boundary = restart `2026-06-04T18:21:49Z`**: markets that would previously have been degenerate-skipped now place from here on. JUN-date stale exclusion (`-26JUN01-`/`-26JUN02-`) still holds.
+
+**Deploy snapshot:** pre-stop reconcile cutoff `2026-06-04T18:18:56Z` → 2 positions / 2 resting / 0 orphans. Stopped SIGINT-graceful (state continuously persisted via `_save_v4_resting` + exchange reconcile on boot). Post-restart reconcile: **2 positions / 2 resting / 0 orphans / 0 unmanaged** — clean carryover, no naked positions. RUN-7 cohort log archived to VPS `/tmp/live_v4_RUN7_3335727d_pre-e4fd9f7.log`. Test: `tests/test_run7_locked_book.py` (source-pins `>` + truth-table) + full 10-file suite green.
+
+**NEXT (unchanged, held):** T51 hardening → RUN-8 buffer relaxation (ATP_CHALL #1 candidate — confirmed: all 19 ATP_CHALL ask-1 clamp bids T-15 buffer-cancelled, 0 filled; the flow they need lives in T-15→T-0).
 
 ## RUN-7 LIVE — ATP_CHALL trade-floor offsets + ask-1 maker fallback (restart 2026-06-03T18:56:26Z)
 

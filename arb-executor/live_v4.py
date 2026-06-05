@@ -4509,7 +4509,28 @@ class LiveV3:
         self.log_file.close()
 
 
+def _raise_fd_limit(target=262144):
+    """Raise the RLIMIT_NOFILE soft limit to `target` (capped at the hard limit) at startup --
+    replaces the manual per-restart `ulimit -n` step (skipped on every restart this session, so
+    the process ran on the 1024 default). Raising soft up to hard needs no privileges (hard is
+    ~1,048,576). Defensive: NEVER crashes startup -- a setrlimit failure logs a warning and the
+    process continues on the inherited limit. `resource` is lazy-imported (Unix-only; keeps this
+    module importable on Windows for the test suite). Returns (soft, hard) on success, else None."""
+    try:
+        import resource
+        old_soft, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
+        new_soft = min(target, hard)
+        resource.setrlimit(resource.RLIMIT_NOFILE, (new_soft, hard))
+        cur_soft, cur_hard = resource.getrlimit(resource.RLIMIT_NOFILE)
+        print("[BOOT] RLIMIT_NOFILE soft %d -> %d (hard %d)" % (old_soft, cur_soft, cur_hard), flush=True)
+        return (cur_soft, cur_hard)
+    except Exception as e:
+        print("[BOOT] WARN: RLIMIT_NOFILE not raised (%r) -- continuing on inherited limit" % (e,), flush=True)
+        return None
+
+
 async def main():
+    _raise_fd_limit()
     reconcile_only = "--reconcile-only" in sys.argv
     bot = LiveV3()
     await bot.run(reconcile_only=reconcile_only)

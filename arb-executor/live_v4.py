@@ -988,6 +988,14 @@ class LiveV3:
         # within 0-4c (premature, not firming). round5 force_cross is preserved (still crosses).
         # Default False = byte-identical (taker cross at the ask).
         self.marketable_clamp_placement = self.config.get("marketable_clamp_placement", False)
+        # SAFETY: the BBO-threshold settlement backstop (check_settlements) treats a price touching
+        # best_bid>=98 / best_ask<=2 as settlement and cancels the resting exit (settlement_cleanup).
+        # But prices round-trip to extremes mid-match -- that is NOT settlement. This falsely pulls
+        # live resting exits early (cohort: 4/4 fired 7m-1h52m before real settlement, 1 wrong-dir:
+        # MARPAL-PAL exit cancelled, market then settled the OTHER way). Real settlement = exchange
+        # truth only (ws_lifecycle / rest_poll). True = disable the BBO heuristic as a settlement
+        # source (it never closes a position / cancels an exit). Default False = byte-identical.
+        self.disable_bbo_threshold_settlement = self.config.get("disable_bbo_threshold_settlement", False)
         self._load_entry_table()
         self._load_exit_table()
 
@@ -2788,7 +2796,15 @@ class LiveV3:
     def check_settlements(self):
         """Bug 4 §6.5: BBO threshold backstop. Iterates the appropriate position
         dict based on _PAPER_API and routes via process_settlement (which
-        dispatches paper/live). Passes literal cents (yes=100, no=0)."""
+        dispatches paper/live). Passes literal cents (yes=100, no=0).
+
+        SAFETY GATE: disable_bbo_threshold_settlement makes this a no-op so the BBO
+        price heuristic is NEVER a settlement source -- a price touching 98/2 mid-match
+        round-trips and is NOT settlement; settling on it cancels the resting exit early
+        (settlement_cleanup at process_settlement). Real settlement still flows from
+        ws_lifecycle / rest_poll (exchange truth, unchanged). Default False = byte-identical."""
+        if self.disable_bbo_threshold_settlement:
+            return
         if _PAPER_API is not None:
             # Paper mode: iterate paper_positions
             for tk, ppos in list(_PAPER_API.paper_positions.items()):

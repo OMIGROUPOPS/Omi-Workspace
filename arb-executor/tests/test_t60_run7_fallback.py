@@ -58,7 +58,8 @@ inner = src.split("async def _v4_manage_resting_inner", 1)[1].split("\n    async
 fb = inner.split("T-20m taker fallback (STEP 6)", 1)[1]
 check("post_only=fb_post_only" in fb, "fallback place uses post_only=fb_post_only (gated, not a literal)")
 check("self._fallback_order(book.best_ask)" in fb, "fallback uses _fallback_order helper")
-check('entry_mode == "fallback_maker"' in inner, "cancel-on-marketable exemption is keyed on entry_mode==fallback_maker (scoped)")
+check('entry_mode in ("fallback_maker", "marketable_clamp")' in inner,
+      "cancel-on-marketable exemption is scoped to the two intentional ask-1 clamp modes (fallback_maker + marketable_clamp), not blanket")
 
 print("RESULT:", "ALL PASS" if fails == 0 else "%d FAILS" % fails)
 sys.exit(1 if fails else 0)

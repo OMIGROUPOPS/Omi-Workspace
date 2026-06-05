@@ -982,6 +982,12 @@ class LiveV3:
         # the certainty floor). Fires at fallback_min_before_start (set 20 for the T-20->T-15 window).
         # Default False = byte-identical pre-RUN-7 (taker cross).
         self.fallback_maker_clamp = self.config.get("fallback_maker_clamp", False)
+        # 3rd cross site: when the INITIAL placement target is already marketable (target_bid >= ask),
+        # clamp to ask-1 MAKER and rest (same mechanism as _reprice_target / _fallback_order) instead
+        # of crossing taker. Live forensics: 5/6 taker crosses went through here with fillable sell-flow
+        # within 0-4c (premature, not firming). round5 force_cross is preserved (still crosses).
+        # Default False = byte-identical (taker cross at the ask).
+        self.marketable_clamp_placement = self.config.get("marketable_clamp_placement", False)
         self._load_entry_table()
         self._load_exit_table()
 
@@ -3073,8 +3079,19 @@ class LiveV3:
                 if time_to_start <= V4_T20M_SEC:
                     entry_price, post_only, entry_mode = current_ask, False, "miss_fallback"
                 elif target_bid >= current_ask or force_cross:
-                    # MARKETABLE TAKER: lift the ask, pay the 1c taker fee.
-                    entry_price, post_only, entry_mode = current_ask, False, "marketable_taker"
+                    if self.marketable_clamp_placement and not force_cross:
+                        # 3rd cross site clamp: the placement target is marketable (>= ask), but the
+                        # fillable sell-flow is typically 0-4c away (live forensics 5/6) -- rest an
+                        # ask-1 MAKER instead of lifting, the same clamp _reprice_target/_fallback_order
+                        # already apply on the other two cross sites. force_cross (round5) is exempt
+                        # (still crosses, below). target_bid tracks the clamp so target_price and the
+                        # cancel-on-marketable logic stay consistent (manage-side exemption mirrors
+                        # fallback_maker). post_only=True cannot cross -> no taker fill, no fee.
+                        target_bid = max(1, current_ask - 1)
+                        entry_price, post_only, entry_mode = target_bid, True, "marketable_clamp"
+                    else:
+                        # MARKETABLE TAKER: lift the ask, pay the 1c taker fee.
+                        entry_price, post_only, entry_mode = current_ask, False, "marketable_taker"
                 else:
                     # RESTING MAKER limit buy at target_bid; manage to T-20m.
                     entry_price, post_only, entry_mode = target_bid, True, "resting_maker"
@@ -3501,9 +3518,10 @@ class LiveV3:
         should_cancel, creason = self._resting_cancel_reason(pos.target_price, book.best_bid, book.best_ask)
         # RUN-7: the ask-1 fallback bid is INTENTIONALLY marketable-adjacent (placed just below the
         # ask to catch final-window flow) -- exempt ONLY that bid from the marketable-cancel so
-        # cancel-on-marketable doesn't pick it off. Scoped to entry_mode=="fallback_maker": a normal
+        # cancel-on-marketable doesn't pick it off. Scoped to the two intentional ask-1 maker rests
+        # (fallback_maker = T-20m clamp; marketable_clamp = 3rd-cross-site placement clamp): a normal
         # resting bid that drifts marketable is NOT exempt (still cancelled). Degenerate still cancels.
-        if should_cancel and creason == "bid_marketable_stale" and pos.entry_mode == "fallback_maker":
+        if should_cancel and creason == "bid_marketable_stale" and pos.entry_mode in ("fallback_maker", "marketable_clamp"):
             should_cancel, creason = False, None
         if should_cancel:
             await self.cancel_order(tk, pos.entry_order_id, "v4_cancel_" + creason)
@@ -3520,7 +3538,7 @@ class LiveV3:
         # -- the +8.70% floor -- so the strategy can never underperform it. Pay
         # the 1c taker fee (by design). Fires once; after crossing, entry_mode is
         # miss_fallback and we just wait for the taker fill.
-        if time_to_start <= self.v4_fallback_sec and pos.entry_mode not in ("miss_fallback", "fallback_maker"):
+        if time_to_start <= self.v4_fallback_sec and pos.entry_mode not in ("miss_fallback", "fallback_maker", "marketable_clamp"):
             old = await api_get(self.session, self.ak, self.pk,
                 "/trade-api/v2/portfolio/orders/%s" % pos.entry_order_id, self.rl)
             if old:

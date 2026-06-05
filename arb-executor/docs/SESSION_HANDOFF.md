@@ -2,8 +2,22 @@
 
 **Convention:** This file is ALWAYS the current handoff — overwrite in place at end of each session. Numbered SESSION{N}_HANDOFF.md files in `docs/handoffs/` are frozen historical snapshots; do not edit them.
 
-**Last updated:** 2026-06-05 UTC (marketable-clamp 3rd-cross-site fix LIVE on top of RUN-7).
-**Repo state:** HEAD `313c7c93` (3rd-cross-site clamp; RUN-7 strategy unchanged — config `b40b863c` / code lineage `104feeaa`). Atlas + foundation chain canonical on origin/main.
+**Last updated:** 2026-06-05 UTC (BBO-threshold settlement-cancel SAFETY fix LIVE on top of RUN-7).
+**Repo state:** HEAD `d05d0e6e` (BBO-settlement gate; RUN-7 strategy unchanged — config `b40b863c` / code lineage `104feeaa`). Atlas + foundation chain canonical on origin/main.
+
+## BBO-THRESHOLD SETTLEMENT-CANCEL SAFETY FIX — LIVE (restart 2026-06-05T04:51:11Z)
+
+**Deployed:** commit `d05d0e6e` (FF on VPS from `313c7c93`) + config flag flipped. **Blob-verified RUNNING:** on-disk `live_v4.py` == `418b4ecb`; PID **2904327**; `disable_bbo_threshold_settlement=true` loaded; 0 tracebacks; reconcile clean (0/0, flat at restart).
+
+**The bug (SAFETY):** `check_settlements()` treated a price touching `best_bid>=98` / `best_ask<=2` as settlement → `process_settlement()` → cancelled the resting exit (`settlement_cleanup`, :2782). Prices ROUND-TRIP to extremes mid-match — that is NOT settlement. Blast radius (RUN-7 cohort): bbo_threshold was the settlement source for **4 of 5** settlements (**ws_lifecycle fired 0×**, rest_poll 1×); **all 4 fired 7m-1h52m before real settlement; 1 wrong-direction** (MARPAL-PAL settled LOSS via bbo at 18:35:14Z, cancelled its 17c exit, market settled YES at 20:27:34Z — won by luck). Every resting exit was pulled early on a false price signal.
+
+**The fix (gated `disable_bbo_threshold_settlement`, default False = byte-identical):** early-return in `check_settlements` so the BBO heuristic is NEVER a settlement source — never closes a position, never cancels an exit. The inherited-verbatim Bug-4 path (line 16-18 "DO NOT modify") is GATED not rewritten. After the fix, a resting exit cancels ONLY by: (a) its own fill, (b) `process_settlement` from `ws_lifecycle`/`rest_poll` (real exchange settlement, unchanged), (c) `v4_exit_reset`/`exit_consolidate` (cancel-AND-repost, never naked). Test: `tests/test_bbo_settlement_gate.py` drives the REAL `check_settlements` (gate ON → no (bid,ask) over the full 0..100² grid triggers settlement) + full 12-file suite green.
+
+**Cohort:** RUN-7 strategy baseline CONTINUES (safety fix). Restart `2026-06-05T04:51:11Z`; pre-stop snapshot cutoff `2026-06-05T04:50:34Z` (flat). Prior log archived VPS `/tmp/live_v4_c55c4819_pre-d05d0e6e.log`.
+
+**OPEN (read-only, do NOT conflate with deploy):** (1) is the bot actually trading vs legitimately flat between waves — discovery=72 tickers at restart, WS_SUBSCRIBED 72. (2) **ws_lifecycle settlement fired 0× all cohort** — primary WS settlement path appears dead; bbo+rest_poll covered. With bbo now off, settlement leans on rest_poll. Investigate WS feed health (does it affect discovery/book/position too).
+
+## MARKETABLE-CLAMP (3RD CROSS SITE) — LIVE (restart 2026-06-05T03:47:23Z)
 
 ## MARKETABLE-CLAMP (3RD CROSS SITE) — LIVE (restart 2026-06-05T03:47:23Z)
 

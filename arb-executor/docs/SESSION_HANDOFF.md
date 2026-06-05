@@ -2,8 +2,22 @@
 
 **Convention:** This file is ALWAYS the current handoff — overwrite in place at end of each session. Numbered SESSION{N}_HANDOFF.md files in `docs/handoffs/` are frozen historical snapshots; do not edit them.
 
-**Last updated:** 2026-06-05 UTC (BBO-threshold settlement-cancel SAFETY fix LIVE on top of RUN-7).
-**Repo state:** HEAD `d05d0e6e` (BBO-settlement gate; RUN-7 strategy unchanged — config `b40b863c` / code lineage `104feeaa`). Atlas + foundation chain canonical on origin/main.
+**Last updated:** 2026-06-05 UTC (conservative entry-offset table STAGED, waiting for flat; FD/bbo/clamp fixes LIVE).
+**Repo state:** HEAD `14f045d5`. LIVE on VPS = `8296b9a7` blob `bb390d8d` (4 bug fixes + FD raise + flags). Conservative entry table is committed but NOT yet deployed (held for flat). RUN-7 strategy lineage unchanged.
+
+## CONSERVATIVE ENTRY-OFFSET TABLE — STAGED, WAITING FOR FLAT (committed 2026-06-05, not yet live)
+
+**Staged commits:** `730673be` (table `docs/policy/entry_table_percell_conservative.csv`) + `14f045d5` (config pointer `entry_table_cell_path` → conservative). Pushed; HEAD==remote. **NOT deployed** — bot is mid-wave (1 resting bid as of ~06:55Z); restart held for the next flat 0/0 window (do NOT force).
+
+**What it is:** reliability-first per-cell offsets (mostly **1c**; 2-3c only in WTA even/revert zones) replacing the run7/minrule placeholder. Built from the locked p(c,D) fill curve (`entry_depth_fill`, cell-level match-N, one-match-one-vote sand pooling) = deepest 1-3c whose fill-prob ≥50%, with guardrails: **decay-faller** (low cell, win-rate<40% → don't rest deep under a leg heading to 0) and **firming-riser** (high cell, win-rate>60% → rest shallow to catch before it climbs). Fill time-gate: the reliable dip lands **mid-window (T-2h..T-40m)** for almost all cells.
+
+**Three-way joint mirror-EV (faller-only, mutually exclusive, N=8720):** conservative **+2.962 / 51% fill** vs minrule +2.526/42% vs D* +3.033/43%. → beats placeholder on BOTH EV (+17%) and fill (+9.2pp); ties aggressive D* on EV (-2%) at +8.8pp higher fill. The deep D* offsets don't buy EV when scored mutually-exclusive — they just fill less. Validation scripts: `.claude/mirror_joint_ev.py`, `.claude/build_conservative_entry.py`.
+
+**TO DEPLOY (on next flat 0/0):** FF VPS `8296b9a7→14f045d5` → restart → verify ENTRY_TABLE_CELL_LOADED path = `...conservative.csv` + offsets mostly 1c (NOT run7's 2-5c, NOT D*'s deep). live_v4.py blob UNCHANGED `bb390d8d` (data/config-only deploy, no code change).
+
+**FLAG FOR TOMORROW (do NOT build tonight):** this conservative table is a STATIC per-cell offset validated on mirror-EV. The operator's fuller spec is a deeper build: price the offset against **actual last-traded + current chain (live state)**, explicitly **benchmarked to beat the T-20 taker cost**, with **"when to lay" and "at what price" as two co-equal live-state decisions** (not a static lookup). That's the next-level entry instrument — tomorrow.
+
+## BBO-THRESHOLD SETTLEMENT-CANCEL SAFETY FIX — LIVE (restart 2026-06-05T04:51:11Z)
 
 ## BBO-THRESHOLD SETTLEMENT-CANCEL SAFETY FIX — LIVE (restart 2026-06-05T04:51:11Z)
 

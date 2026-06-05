@@ -16,7 +16,7 @@
   "min_depth_for_exit_realization": 250,
   "exit_band_resolution": "gated_optima_validated_2026-06-01",
   "entry_table_path": "docs/policy/per_regime_offsets_v2.csv",
-  "entry_table_cell_path": "docs/policy/entry_table_percell_run7.csv",
+  "entry_table_cell_path": "docs/policy/entry_table_percell_conservative.csv",
   "fallback_min_before_start": 20,
   "fallback_maker_clamp": true,
   "cancel_on_marketable": true,

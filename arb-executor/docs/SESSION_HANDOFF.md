@@ -2,8 +2,20 @@
 
 **Convention:** This file is ALWAYS the current handoff — overwrite in place at end of each session. Numbered SESSION{N}_HANDOFF.md files in `docs/handoffs/` are frozen historical snapshots; do not edit them.
 
-**Last updated:** 2026-06-04 UTC (locked-book guard fix LIVE on top of RUN-7).
-**Repo state:** HEAD `e4fd9f7f` (locked-book correctness fix; RUN-7 strategy unchanged — config `b40b863c` / code lineage `104feeaa`). Atlas + foundation chain canonical on origin/main.
+**Last updated:** 2026-06-05 UTC (marketable-clamp 3rd-cross-site fix LIVE on top of RUN-7).
+**Repo state:** HEAD `313c7c93` (3rd-cross-site clamp; RUN-7 strategy unchanged — config `b40b863c` / code lineage `104feeaa`). Atlas + foundation chain canonical on origin/main.
+
+## MARKETABLE-CLAMP (3RD CROSS SITE) — LIVE (restart 2026-06-05T03:47:23Z)
+
+**Deployed:** commit `313c7c93` (FF on VPS from `e4fd9f7`) + config flag flipped. **Blob-verified RUNNING:** on-disk `live_v4.py` == `c55c4819`; PID **2862656**; `marketable_clamp_placement=true` loaded; run7 table + deploy_v5_live.json; 0 tracebacks; reconcile clean (0 pos / 0 resting at restart — bot was flat).
+
+**The fix (correctness on top of RUN-7, not a strategy change):** the entry placement had a THIRD taker cross site never fixed by RUN-7 — the initial-placement branch crossed taker whenever `target_bid >= current_ask` (`marketable_taker`). RUN-7 had already clamped the reprice path (`_reprice_target`) and the T-20m fallback (`_fallback_order`) to ask-1 maker, but not this one. Live forensics (RUN-7 cohort, 6 takers): **5/6 crossed here with fillable taker-sell flow within 0-4c of our bid** (two AT/BELOW it) — premature crosses, not firming legs. Now gated by **`marketable_clamp_placement=true`**: when `target_bid >= ask` and NOT `force_cross`, clamp to `max(1, ask-1)` post_only maker (`entry_mode=marketable_clamp`) and rest, instead of lifting. Same clamp already proven on the other two sites.
+
+**Preserved / untouched:** round5 `force_cross` still crosses (gate is `and not force_cross`); the late `miss_fallback` cross (`time_to_start <= V4_T20M_SEC`, buffer-futility) is unchanged (that is the RUN-8 buffer question). Manage-side: cancel-on-marketable exemption + T-20m re-fallback exclusion extended to `marketable_clamp` so the ask-1 bid rests like `fallback_maker` to T-15m/fill (both gated — dead when flag off).
+
+**Cohort:** RUN-7 strategy baseline **CONTINUES** (correctness fix — stops premature placement-path taker crosses; not a new strategy). New **correctness boundary = restart `2026-06-05T03:47:23Z`**: from here, marketable placements rest ask-1 maker instead of crossing. Pre-stop snapshot cutoff `2026-06-05T03:46:25Z` (bot flat: 0 pos / 0 resting). RUN-7 ask-1-maker-era log archived to VPS `/tmp/live_v4_8961e5a6_pre-313c7c93.log`. Test: `tests/test_marketable_clamp_placement.py` (source-pins + placement-mode truth-table) + full 11-file suite green.
+
+**Verify next is_taker pass:** taker entry rate should drop further (was ~45-55% maker-fill cohort; these premature crosses convert to `marketable_clamp` maker rests). Watch `marketable_clamp` play_type fills behave like clean maker fills (88-90% exit-reach), not a hidden adverse cohort.
 
 ## LOCKED-BOOK GUARD FIX — LIVE (restart 2026-06-04T18:21:49Z)
 

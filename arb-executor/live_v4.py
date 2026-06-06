@@ -988,6 +988,20 @@ class LiveV3:
         # within 0-4c (premature, not firming). round5 force_cross is preserved (still crosses).
         # Default False = byte-identical (taker cross at the ask).
         self.marketable_clamp_placement = self.config.get("marketable_clamp_placement", False)
+        # STAGE 1 (maker-only entry): one reversible switch making all three taker-entry sites
+        # maker-only. miss_fallback (:3096) -> CANCEL/place-nothing (pure rest-or-no-fill);
+        # marketable_taker (:3110) and t20m_fallback (_fallback_order) -> already gated by
+        # round5_detector=off and fallback_maker_clamp, belt-coupled to this flag (:3098, :2126)
+        # so the gating holds even if those are walked back. Default False = exact pre-flag state.
+        self.maker_only_entry = self.config.get("maker_only_entry", False)
+        _r5 = "off" if not self.round5_enabled else "ON(!)"
+        _fmc = "on" if self.fallback_maker_clamp else "OFF(!)"
+        if self.maker_only_entry:
+            print("[BOOT] MAKER_ONLY_ENTRY=true -> miss_fallback CANCEL-no-replace | "
+                  "marketable_taker GATED (also round5_detector=%s) | "
+                  "t20m_fallback GATED (also fallback_maker_clamp=%s)" % (_r5, _fmc), flush=True)
+        else:
+            print("[BOOT] MAKER_ONLY_ENTRY=false (taker entry sites live)", flush=True)
         # SAFETY: the BBO-threshold settlement backstop (check_settlements) treats a price touching
         # best_bid>=98 / best_ask<=2 as settlement and cancels the resting exit (settlement_cleanup).
         # But prices round-trip to extremes mid-match -- that is NOT settlement. This falsely pulls
@@ -2123,7 +2137,7 @@ class LiveV3:
         _reprice_target clamp, no taker premium/fee, forfeits the certainty floor; rests the T-20->T-15
         window (fires at fallback_min_before_start=20). fallback_maker_clamp=False -> taker cross at
         best_ask (post_only=False): the atlas-baseline certainty (pre-RUN-7, byte-identical). Pure/testable."""
-        if self.fallback_maker_clamp:
+        if self.fallback_maker_clamp or self.maker_only_entry:
             price, _ = self._reprice_target(best_ask, best_ask)   # -> (max(1, best_ask-1), True)
             return price, True
         return best_ask, False
@@ -3093,9 +3107,18 @@ class LiveV3:
                 # out that rest down; note both fallback-crosses are themselves bounded by
                 # the T-15m buffer -> see SESSION_HANDOFF "lever-2 fill-window" note.)
                 if time_to_start <= V4_T20M_SEC:
+                    if self.maker_only_entry:
+                        # STAGE 1: maker-only -- do NOT taker-cross, and do NOT stab an ask-1 maker
+                        # into the T-20m->start window (won't fill / adverse-selection / muddies the
+                        # Stage-1 cohort). Place nothing; any earlier unfilled resting bid self-cleans
+                        # via match_start_buffer (T-15m) -> _untombstone_entry (del). Rest-or-no-fill.
+                        self.n_skips += 1
+                        self._log("skipped", {"reason": "maker_only_no_late_entry",
+                            "min_before_start": round(time_to_start / 60), "cat": cat}, ticker=tk)
+                        continue
                     entry_price, post_only, entry_mode = current_ask, False, "miss_fallback"
                 elif target_bid >= current_ask or force_cross:
-                    if self.marketable_clamp_placement and not force_cross:
+                    if (self.marketable_clamp_placement or self.maker_only_entry) and not force_cross:
                         # 3rd cross site clamp: the placement target is marketable (>= ask), but the
                         # fillable sell-flow is typically 0-4c away (live forensics 5/6) -- rest an
                         # ask-1 MAKER instead of lifting, the same clamp _reprice_target/_fallback_order

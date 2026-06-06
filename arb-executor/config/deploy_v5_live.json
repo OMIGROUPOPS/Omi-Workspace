@@ -24,5 +24,6 @@
   "premarket_running_mid_anchor": true,
   "exit_table_dir": "data/durable/exit_surface_gated_optima/",
   "marketable_clamp_placement": true,
-  "disable_bbo_threshold_settlement": true
+  "disable_bbo_threshold_settlement": true,
+  "maker_only_entry": true
 }

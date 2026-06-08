@@ -120,6 +120,7 @@ MAX_TAKER_SPREAD = 5              # T52: never TAKER-cross when (ask-bid) > this
 # NOT eventual close). When trade history is too sparse, fall back to the BBO mid.
 V4_RUNNING_MID_WINDOW_SEC = 30 * 60   # trailing window for the running-mid (RUNNING_MID_K=30 in the surface build)
 V4_RUNNING_MID_MIN_TRADES = 1         # >= this many traded prints in-window to use running-mid; else BBO-mid fallback
+V4_LAST_TRADE_MAX_AGE_SEC = 1800      # #1 ref-price: max age (s) of the last-traded print to use as the entry reference; staler/absent -> skip (no BBO-mid fallback)
 
 STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
@@ -969,7 +970,14 @@ class LiveV3:
         self.entry_table_cell = {}  # T58: (category, cell c) -> (placement_min, offset_cents, fill_rate, net_roi_pct)
         self.exit_table = {}    # category -> {cell_id(int) -> (band_x|None, "exit"|"hold")}
         # T58: anchor entry on the live running-mid close-proxy (else BBO mid).
+        # #1 ref-price: when this flag is OFF (default), the entry reference is the LAST-TRADED
+        # price (A37 honest reference / B17 mid-is-a-lie); ON restores the legacy 30-min-mean +
+        # BBO-mid path as a one-line rollback. See _v4_entry_anchor.
         self.running_mid_anchor = self.config.get("premarket_running_mid_anchor", False)
+        # #1 ref-price soft-alert: rolling anchor_src over the last 100 placements; warn once when
+        # tight_mid (fresh print outside a tight book) exceeds 5%. Telemetry only, no gate.
+        self._anchor_src_hist = deque(maxlen=100)
+        self._anchor_alert_armed = True
         # T58 entry-fix levers (config-gated; defaults reproduce pre-fix behavior for clean rollback).
         # Lever 2: pull the taker fallback from T-20 to T-1 so the maker rests through the
         # convergence window (catches the period-2 dips). Lever 3 (A): cancel a resting bid only
@@ -1317,24 +1325,58 @@ class LiveV3:
             return None
         return sum(prices) / float(len(prices))
 
-    def _v4_entry_anchor(self, tk, cat, book):
-        """T58: resolve the entry anchor + offset-table row for one leg. Anchor =
-        live running-mid (close-proxy) when running_mid_anchor is on and trade
-        history is non-sparse, else the BBO mid. The anchor's 1c cell keys the
-        per-cell table (regime table is the fallback). Returns a tuple
-        (anchor_price, anchor_src, cell, regime, placement_min, offset, exp_fill,
-        exp_roi, target_bid, table_src) or None if no table row exists.
-        With running_mid_anchor off AND no per-cell table, this is byte-identical
-        to the prior BBO-mid + regime-table path."""
+    def _v4_entry_anchor(self, tk, cat, book, time_to_start):
+        """#1 ref-price: resolve the entry REFERENCE price + offset-table row for one leg.
+        The reference is the LAST-TRADED price (A37: the real trade is the honest reference;
+        B17: on a wide/one-sided book the BBO mid is a phantom midpoint, not a price). Returns
+        (ref_price, anchor_src, cell, regime, placement_min, offset, exp_fill, exp_roi,
+        target_bid, table_src), or None to skip.
+
+        anchor_src in {last_traded, tight_mid, late_miss}:
+          - last_traded : fresh print used directly -- wide book (ask-bid>2) unconditionally;
+                          tight book (ask-bid<=2) only when the print sits inside [bid, ask].
+                          T50/T52 gate any downstream cross/paired exposure.
+          - tight_mid   : tight book with a fresh print OUTSIDE the book -> fall back to the BBO mid.
+          - late_miss   : no fresh print, inside T-20m, taker enabled -> return current_ask so the
+                          downstream miss_fallback crosses at the ask. INERT under Stage 1
+                          (the maker_only_entry guard keeps this branch off, so the enum never
+                          fires today) -- a no-op until taker is restored.
+        No fresh print (age > V4_LAST_TRADE_MAX_AGE_SEC or absent) and not the late_miss case
+        -> None: caller logs skip_no_trade; the event stays unprocessed and retries next tick.
+        There is NO general BBO-mid fallback on a stale book by design.
+
+        ROLLBACK: running_mid_anchor=True restores the legacy 30-min-mean + BBO-mid path
+        (anchor_src running_mid / bbo_mid_fallback). Default OFF; one-line config rollback."""
         bbo_mid = (book.best_bid + book.best_ask) / 2.0
         if self.running_mid_anchor:
+            # --- ROLLBACK: legacy running-mid (trailing 30-min trade mean) + BBO-mid fallback ---
             rmid = self._running_mid(tk)
             if rmid is not None and rmid > 0:
                 anchor_price, anchor_src = int(round(rmid)), "running_mid"
             else:
                 anchor_price, anchor_src = int(round(bbo_mid)), "bbo_mid_fallback"
         else:
-            anchor_price, anchor_src = int(round(bbo_mid)), "bbo_mid"
+            # --- DEFAULT: last-traded reference ---
+            lt = book.last_trade_price
+            lt_age = (time.time() - book.last_trade_ts) if book.last_trade_ts else float("inf")
+            if lt > 0 and lt_age <= V4_LAST_TRADE_MAX_AGE_SEC:
+                if (book.best_ask - book.best_bid) <= 2:
+                    # tight book: trust the print only if it sits inside the book; else the mid
+                    if book.best_bid <= lt <= book.best_ask:
+                        anchor_price, anchor_src = int(round(lt)), "last_traded"
+                    else:
+                        anchor_price, anchor_src = int(round(bbo_mid)), "tight_mid"
+                else:
+                    # wide book (B17): the mid is a phantom midpoint -> use the print unconditionally
+                    anchor_price, anchor_src = int(round(lt)), "last_traded"
+            elif not self.maker_only_entry and time_to_start <= V4_T20M_SEC:
+                # late_miss carve-out (Plex-gated): no fresh print inside T-20m with taker enabled ->
+                # return the ask so the existing miss_fallback path crosses. INERT under Stage 1 --
+                # the maker_only_entry guard above keeps this off, so the enum never fires today.
+                anchor_price, anchor_src = book.best_ask, "late_miss"
+            else:
+                # no fresh print -> skip (no BBO-mid fallback by design). Caller logs skip_no_trade.
+                return None
         cell = self.cell_lookup(cat, anchor_price)
         regime = self.regime_lookup(cat, anchor_price)
         row, table_src = None, None
@@ -3074,13 +3116,20 @@ class LiveV3:
                 if cat not in self.categories_enabled:
                     continue
 
-                # T58: resolve the entry anchor (live running-mid close-proxy,
-                # else BBO mid) and the per-cell offset row (regime fallback).
-                # v4 cell = the anchor price's 1c cell, NOT FV.
-                ent = self._v4_entry_anchor(tk, cat, book)
+                # #1 ref-price: resolve the entry REFERENCE (last-traded; rollback running-mid)
+                # and the per-cell offset row (regime fallback). v4 cell = the ref price's 1c cell.
+                lt_age_sec = (time.time() - book.last_trade_ts) if book.last_trade_ts else -1.0
+                ent = self._v4_entry_anchor(tk, cat, book, time_to_start)
                 if ent is None:
                     self.n_skips += 1
-                    self._log("skipped", {"reason": "no_entry_table_row", "cat": cat,
+                    # Distinguish a no-fresh-trade skip (last-traded path) from a missing table row,
+                    # so the no-trade thread is visible and the late_miss enum stays clean.
+                    fresh = book.last_trade_price > 0 and 0 <= lt_age_sec <= V4_LAST_TRADE_MAX_AGE_SEC
+                    no_trade = (not self.running_mid_anchor) and not fresh
+                    self._log("skipped", {
+                        "reason": "skip_no_trade" if no_trade else "no_entry_table_row",
+                        "anchor_src": "skip_no_trade" if no_trade else None,
+                        "last_trade_age_sec": round(lt_age_sec, 1), "cat": cat,
                         "price": int(round((book.best_bid + book.best_ask) / 2.0))}, ticker=tk)
                     continue
                 (current_price, anchor_src, cell, regime, placement_min, offset,
@@ -3171,6 +3220,7 @@ class LiveV3:
                     "event": et, "direction": direction, "cat": cat,
                     "regime": regime, "cell": cell, "current_price": current_price,
                     "anchor_src": anchor_src, "table_src": table_src,
+                    "last_trade_age_sec": round(lt_age_sec, 1),
                     "offset": offset, "target_bid": target_bid,
                     "current_ask": current_ask, "entry_price": entry_price,
                     "entry_mode": entry_mode, "post_only": post_only,
@@ -3184,6 +3234,19 @@ class LiveV3:
                     "book_spread": book.best_ask - book.best_bid,
                     "locked_book": book.best_bid == book.best_ask,
                 }, ticker=tk)
+
+                # #1 ref-price soft-alert: rolling tight_mid rate over the last 100 placements.
+                self._anchor_src_hist.append(anchor_src)
+                if len(self._anchor_src_hist) == self._anchor_src_hist.maxlen:
+                    tm_rate = sum(1 for a in self._anchor_src_hist if a == "tight_mid") / float(
+                        self._anchor_src_hist.maxlen)
+                    if tm_rate > 0.05 and self._anchor_alert_armed:
+                        self._anchor_alert_armed = False
+                        self._log("anchor_src_alert", {"tight_mid_rate": round(tm_rate, 3),
+                            "window": self._anchor_src_hist.maxlen,
+                            "note": "tight_mid (fresh print outside a tight book) > 5%"}, ticker=tk)
+                    elif tm_rate <= 0.05:
+                        self._anchor_alert_armed = True
 
                 self.inflight_orders.add(tk)
                 try:

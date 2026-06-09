@@ -121,6 +121,7 @@ MAX_TAKER_SPREAD = 5              # T52: never TAKER-cross when (ask-bid) > this
 V4_RUNNING_MID_WINDOW_SEC = 30 * 60   # trailing window for the running-mid (RUNNING_MID_K=30 in the surface build)
 V4_RUNNING_MID_MIN_TRADES = 1         # >= this many traded prints in-window to use running-mid; else BBO-mid fallback
 V4_LAST_TRADE_MAX_AGE_SEC = 1800      # #1 ref-price: max age (s) of the last-traded print to use as the entry reference; staler/absent -> skip (no BBO-mid fallback)
+V4_SHUTDOWN_TIMEOUT_SEC = 10          # #0-infra: graceful-shutdown budget; if cancel/drain exceeds this, hard-exit rather than wedge in a zombie state
 
 STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
@@ -1002,6 +1003,11 @@ class LiveV3:
         # round5_detector=off and fallback_maker_clamp, belt-coupled to this flag (:3098, :2126)
         # so the gating holds even if those are walked back. Default False = exact pre-flag state.
         self.maker_only_entry = self.config.get("maker_only_entry", False)
+        # #0-infra: clean SIGTERM/SIGINT shutdown (gated; default OFF = legacy immediate-terminate on
+        # SIGTERM, swallowed SIGINT). ON installs asyncio signal handlers that stop the loop, cancel
+        # resting entry bids via the API, and exit within V4_SHUTDOWN_TIMEOUT_SEC. See run() / _shutdown_drain.
+        self.graceful_shutdown = self.config.get("graceful_shutdown", False)
+        self._shutdown_requested = False
         _r5 = "off" if not self.round5_enabled else "ON(!)"
         _fmc = "on" if self.fallback_maker_clamp else "OFF(!)"
         if self.maker_only_entry:
@@ -4296,6 +4302,66 @@ class LiveV3:
     # ------------------------------------------------------------------
     # Main loop
     # ------------------------------------------------------------------
+    def _install_signal_handlers(self):
+        """#0-infra: install asyncio SIGTERM/SIGINT handlers for clean shutdown (gated by
+        graceful_shutdown). add_signal_handler is the asyncio-safe path -- the bare
+        `except KeyboardInterrupt` is unreliable under asyncio 3.12 (SIGINT was swallowed).
+        Defensive: NEVER crashes startup -- a failure (non-Unix / no running loop) logs a warning
+        and the process runs on the legacy terminate path. signal is imported lazily (Unix-only;
+        keeps the module importable on Windows for the test suite)."""
+        import signal as _signal
+        try:
+            loop = asyncio.get_running_loop()
+            for _sig in (_signal.SIGTERM, _signal.SIGINT):
+                loop.add_signal_handler(_sig, self._request_shutdown, _sig.name)
+            print("[BOOT] graceful_shutdown=on -> SIGTERM/SIGINT handlers installed "
+                  "(cancel resting entry bids, %ds budget)" % V4_SHUTDOWN_TIMEOUT_SEC, flush=True)
+        except Exception as e:
+            print("[BOOT] WARN: signal handlers not installed (%r) -- legacy shutdown path" % (e,), flush=True)
+
+    def _request_shutdown(self, signame):
+        """#0-infra: signal-handler callback (runs on the loop thread; no I/O here). Idempotent:
+        the FIRST signal requests a graceful drain and arms the force-exit watchdog; a SECOND
+        signal escalates to immediate hard exit (do not wait for a wedged drain). os._exit skips
+        atexit/buffers -- safe here because the drain writes no in-place state (cancel-only)."""
+        if self._shutdown_requested:
+            print("[STOP] second %s -> hard exit" % signame, flush=True)
+            os._exit(1)
+        self._shutdown_requested = True
+        print("[STOP] %s received -> graceful shutdown (%ds budget)" % (signame, V4_SHUTDOWN_TIMEOUT_SEC), flush=True)
+        try:
+            asyncio.get_running_loop().call_later(V4_SHUTDOWN_TIMEOUT_SEC, self._force_exit)
+        except Exception:
+            os._exit(1)
+
+    def _force_exit(self):
+        """#0-infra: hard-deadline backstop. If the graceful drain wedges (API hang / deadlock),
+        exit rather than sit in a zombie 'shutting down' state. persist-or-die, not persist-forever."""
+        print("[STOP] shutdown budget (%ds) exceeded -> hard exit" % V4_SHUTDOWN_TIMEOUT_SEC, flush=True)
+        os._exit(1)
+
+    async def _shutdown_drain(self):
+        """#0-infra: clean cancel-and-exit. Cancel all resting v4 ENTRY bids via the API, then let
+        run() close the session and return. Resting EXIT orders on open positions are LEFT (they
+        protect the position). Orphan-cancel is already benign (0 naked exposure) -- this just makes
+        the next boot's reconcile a no-op. Never raises; bounded by the _force_exit watchdog. Writes
+        no in-place state (cancel-only), so a mid-drain hard exit cannot corrupt state."""
+        try:
+            resting = [(tk, pos.entry_order_id) for tk, pos in list(self.positions.items())
+                       if getattr(pos, "is_v4", False) and pos.phase == "entry_resting" and pos.entry_order_id]
+        except Exception as e:
+            self._log("shutdown_drain_fatal", {"error": str(e)})
+            return
+        self._log("shutdown_drain_begin", {"resting_entry_bids": len(resting)})
+        n_ok = 0
+        for tk, oid in resting:
+            try:
+                if await self.cancel_order(tk, oid, "shutdown_cancel"):
+                    n_ok += 1
+            except Exception as e:
+                self._log("shutdown_cancel_error", {"ticker": tk, "error": str(e)})
+        self._log("shutdown_drain_done", {"attempted": len(resting), "cancelled": n_ok})
+
     async def run(self, reconcile_only=False):
         mode = "PAPER" if _PAPER_API is not None else "LIVE - REAL ORDERS"
         print("=" * 70, flush=True)
@@ -4317,6 +4383,10 @@ class LiveV3:
         print("=" * 70, flush=True)
 
         self.session = aiohttp.ClientSession()
+
+        # #0-infra: install clean-shutdown signal handlers (gated; default off = legacy terminate).
+        if self.graceful_shutdown:
+            self._install_signal_handlers()
 
         if not await self.ws_connect():
             print("[FATAL] Cannot connect WebSocket", flush=True)
@@ -4503,6 +4573,9 @@ class LiveV3:
 
         while True:
             try:
+                # #0-infra: graceful shutdown -- a signal handler set the flag; break out and drain.
+                if self._shutdown_requested:
+                    break
                 now = time.time()
 
                 # Check settlements via BBO (tier-3 backstop)
@@ -4589,6 +4662,11 @@ class LiveV3:
             except Exception as e:
                 self._log("error", {"error": str(e), "traceback": traceback.format_exc()})
                 await asyncio.sleep(5)
+
+        # #0-infra: on a graceful shutdown request, cancel resting entry bids before exit (bounded
+        # by the _force_exit watchdog). Legacy KeyboardInterrupt break leaves this False -> no drain.
+        if self._shutdown_requested:
+            await self._shutdown_drain()
 
         if self.session:
             await self.session.close()

@@ -4353,6 +4353,7 @@ class LiveV3:
             self._log("shutdown_drain_fatal", {"error": str(e)})
             return
         self._log("shutdown_drain_begin", {"resting_entry_bids": len(resting)})
+        _t0 = time.time()
         n_ok = 0
         for tk, oid in resting:
             try:
@@ -4360,7 +4361,10 @@ class LiveV3:
                     n_ok += 1
             except Exception as e:
                 self._log("shutdown_cancel_error", {"ticker": tk, "error": str(e)})
-        self._log("shutdown_drain_done", {"attempted": len(resting), "cancelled": n_ok})
+        # #0-infra observability (#2-#5 rollout): pre-count + cancel-count + drain duration.
+        # exit code + post-boot reconcile-orphans are captured by the restart wrapper / next boot.
+        self._log("shutdown_drain_done", {"attempted": len(resting), "cancelled": n_ok,
+                                          "duration_sec": round(time.time() - _t0, 3)})
 
     async def run(self, reconcile_only=False):
         mode = "PAPER" if _PAPER_API is not None else "LIVE - REAL ORDERS"

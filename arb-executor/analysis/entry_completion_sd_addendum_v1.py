@@ -13,11 +13,16 @@ with the sibling simulated):
   attempt_arm        = leg1_realized + completion_leg_net (0 when the completion bid
                        does not fill) -- the R4-ratified incremental frame.
   noattempt_leg1only = leg1_realized (orphan rides alone).
-  noattempt_leg1_plus_sib_v3 = leg1_realized + sibling's own v3 realized -- the
-                       foregone-alternative frame (completion REPLACES the sibling's
-                       v3 bid). DISCLOSED VACUITY: the spec does not pin which
-                       no-attempt frame feeds C3(iii); both are emitted (superset is
-                       inert; the gate chooses at use time).
+  noattempt_leg1_plus_sib_v3maker = leg1_realized + sibling's own v3 outcome ONLY
+                       when the sibling filled as maker_resting; 0 otherwise -- the
+                       foregone-alternative frame under live Stage-1 reality
+                       (maker_only_entry: no T-20 fallback cross, no marketable
+                       taker -- an unfilled maker bid is NO position). [C-ARM]
+                       correction 2026-06-10: the first emission included the
+                       sibling's miss_fallback taker outcomes; superseded.
+                       DISCLOSED VACUITY: the spec does not pin which no-attempt
+                       frame feeds C3(iii); both leg1-only and leg1+sib_v3maker are
+                       emitted (superset is inert; the gate chooses at use time).
 
 Output: data/durable/entry_completion/entry_completion_replay_v1_sd.parquet
 (companion; the committed aggregate parquet is NOT modified).
@@ -164,7 +169,11 @@ for tk,r1 in res.items():
     r2=res[sib]; L2=leg[sib]; emin=r1["emin"]; leg1_basis=r1["entry"]; s0=r2["wopen"]; cell=r1["cell"]
     sib_ask=None
     for a in sorted([t for t in r2["ask_by_ttm"] if t<=emin],reverse=True): sib_ask=r2["ask_by_ttm"][a]; break
-    leg1_real=r1["realized"]; sib_v3_real=r2["realized"]
+    leg1_real=r1["realized"]
+    # [C-ARM] live-Stage-1 counterfactual: sibling's foregone v3 outcome counts ONLY
+    # for a maker_resting fill; miss_fallback (T-20 taker) and marketable_taker are
+    # gated off live (maker_only_entry) -> unfilled maker = NO position = 0.
+    sib_v3_maker=r2["realized"] if r2["mode"]=="maker_resting" else 0.0
     for X in (1,2,3):
         a=agg[(L1["cat"],cell,X)]; a["ncond"]+=1
         comp_net=0.0; filled=False
@@ -184,7 +193,7 @@ for tk,r1 in res.items():
                 a["nfill"]+=1; a["net_sum"]+=comp_net
         a["att"].append(leg1_real+comp_net)
         a["no_l1"].append(leg1_real)
-        a["no_l1sib"].append(leg1_real+sib_v3_real)
+        a["no_l1sib"].append(leg1_real+sib_v3_maker)
 
 # ---- consistency gate vs the committed aggregate parquet ----
 mism=0
@@ -208,8 +217,8 @@ for (cat,cell,X),a in sorted(agg.items()):
         sd_attempt_arm_cents=round(sd(a["att"]),4) if sd(a["att"]) is not None else None,
         mean_noattempt_leg1only_cents=round(statistics.fmean(a["no_l1"]),4),
         sd_noattempt_leg1only_cents=round(sd(a["no_l1"]),4) if sd(a["no_l1"]) is not None else None,
-        mean_noattempt_leg1_plus_sib_v3_cents=round(statistics.fmean(a["no_l1sib"]),4),
-        sd_noattempt_leg1_plus_sib_v3_cents=round(sd(a["no_l1sib"]),4) if sd(a["no_l1sib"]) is not None else None,
+        mean_noattempt_leg1_plus_sib_v3maker_cents=round(statistics.fmean(a["no_l1sib"]),4),
+        sd_noattempt_leg1_plus_sib_v3maker_cents=round(sd(a["no_l1sib"]),4) if sd(a["no_l1sib"]) is not None else None,
         sd_paired_diff_cents=round(sd([x-y for x,y in zip(a["att"],a["no_l1"])]),4)
             if sd([x-y for x,y in zip(a["att"],a["no_l1"])]) is not None else None))
 tbl=pa.Table.from_pylist(out)
@@ -223,9 +232,11 @@ shipx={("ATP_CHALL",25):1,("ATP_CHALL",27):1,("ATP_CHALL",35):1,("ATP_CHALL",53)
        ("ATP_MAIN",37):3,("ATP_MAIN",39):2,("ATP_MAIN",41):2,("ATP_MAIN",42):1}
 for r in out:
     if shipx.get((r["category"],r["cell"]))==r["X"]:
-        print("  %-9s c%2d X%d n=%3d sd_att=%7.2f sd_noatt_l1=%7.2f sd_noatt_l1sib=%7.2f sd_diff=%6.2f"%(
-            r["category"],r["cell"],r["X"],r["n_conditioning"],r["sd_attempt_arm_cents"],
-            r["sd_noattempt_leg1only_cents"],r["sd_noattempt_leg1_plus_sib_v3_cents"],
-            r["sd_paired_diff_cents"]))
+        print("  %-9s c%2d X%d n=%3d mean_att=%7.2f sd_att=%7.2f | mean_noatt_l1sibM=%7.2f sd=%7.2f | sd_noatt_l1=%6.2f sd_diff=%6.2f"%(
+            r["category"],r["cell"],r["X"],r["n_conditioning"],
+            r["mean_attempt_arm_cents"],r["sd_attempt_arm_cents"],
+            r["mean_noattempt_leg1_plus_sib_v3maker_cents"],
+            r["sd_noattempt_leg1_plus_sib_v3maker_cents"],
+            r["sd_noattempt_leg1only_cents"],r["sd_paired_diff_cents"]))
 print("parquet",OUTP)
 print("sha256",osha)

@@ -40,3 +40,17 @@ trip today — buy yes 5 @ 30c (15:09:56Z, maker, fee 0) → sell 5 @ 37c (16:47
 fee 0), closed flat pre-epoch.
 
 **All P&L from this point measures against this epoch.**
+
+## Addendum — ENOSPC incident immediately post-epoch (numbers unaffected)
+
+At 16:57Z (2 min after the epoch pull) the freshly-restarted process died on
+`OSError: [Errno 28] No space left on device` (disk hit 100%; tick-CSV flush failed,
+then the logger raised inside ws_reader's handler). Root cause: 20G of
+`analysis/premarket_ticks` raw tape CSVs on a 48G disk (steady ~91% floor per the
+watchdog comment; today it topped out). Remediation: freed ~750M (journal vacuum +
+npm/pip caches), bot relaunched 17:05Z (clean boot, reconcile 0/0/0); >3-day-old
+tick/trade CSVs gzipped in place (lossless) in a nice'd background job. The epoch
+numbers are unaffected: zero resting orders existed and the bot placed nothing while
+down, so no fill or balance change was possible in the 16:55→17:05 gap. Open item for
+the operator: tick-tape retention/archive policy (raw CSVs grow unbounded; the durable
+parquet tape is built from them).

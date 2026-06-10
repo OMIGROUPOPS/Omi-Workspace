@@ -1,0 +1,24 @@
+[C-TERMINAL-EV] taker entry by minute bucket -- locked exit surface, R1-gated engine
+R1 PASS: atlas 8.699 / maker 12.110 / deployed 10.949 (reproduction gate)
+SPEC PATCH (disclosed): T-20 gate anchors on the locked atlas 8.70 (anchor-entry);
+the ask-entry T-20 bucket below carries spread+fee and is the bucket-series row.
+
+N-weighted net ROC by bucket (all categories; net = gross - 1c taker fee):
+  T-120      N= 11641  net ROC  -2.102%  (SE 0.631pp)
+  T-60       N= 13046  net ROC  -2.241%  (SE 0.596pp)
+  T-30       N= 13743  net ROC  -0.649%  (SE 0.564pp)
+  T-20       N= 13969  net ROC  +2.280%  (SE 0.549pp)
+  T-15       N= 13005  net ROC  +1.896%  (SE 0.572pp)
+
+
+SLIPPAGE into the gun (terminal ask minus ask 60s/300s prior; +ve = adverse), by category:
+
+PAIRING: sibling-already-filled rate by bucket (v3-engine sibling fill model):
+  T-120      ATP_MAI 14%  WTA_MAI 10%  ATP_CHA 15%  WTA_CHA 2%
+  T-60       ATP_MAI 18%  WTA_MAI 15%  ATP_CHA 19%  WTA_CHA 15%
+  T-30       ATP_MAI 23%  WTA_MAI 20%  ATP_CHA 26%  WTA_CHA 23%
+  T-20       ATP_MAI 26%  WTA_MAI 22%  ATP_CHA 29%  WTA_CHA 26%
+  T-15       ATP_MAI 26%  WTA_MAI 23%  ATP_CHA 31%  WTA_CHA 28%
+
+parquet /tmp/entry_minute_ev_v1.parquet
+sha256 6b0078672d84f47b991a41ff613cbfcaddfb048128ee17640dcfcd49b6328066

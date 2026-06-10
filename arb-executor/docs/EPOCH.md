@@ -54,3 +54,14 @@ numbers are unaffected: zero resting orders existed and the bot placed nothing w
 down, so no fill or balance change was possible in the 16:55→17:05 gap. Open item for
 the operator: tick-tape retention/archive policy (raw CSVs grow unbounded; the durable
 parquet tape is built from them).
+
+**Data-gap provenance (sidecar, not executor):** `tennis_odds` odds collection DOWN
+**2026-06-05 12:36 PM ET → 2026-06-10 2:26 PM ET** (revived). The collector died Jun 5
+(original cause unrecoverable — the old respawn's `tee` truncated its log); the `*/5`
+respawn cron was a structural no-op the whole window (pgrep self-match: the cron
+shell's own cmdline contains both the pattern and the tmux command text — fixed by
+moving respawn into `deploy/respawn_tennis_odds.sh`, cc90c97d). `book_prices` daily
+rows collapsed 83–129k/day → <1.1k/day (residual collectors) through the gap. FV/odds
+history is unavailable for that window; v4 trading was unaffected (FV routing off).
+Same latent respawn defect exists in the betexplorer / kalshi_price cron lines
+(processes currently alive) — operator decision pending.

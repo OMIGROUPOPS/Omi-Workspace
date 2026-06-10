@@ -1,0 +1,35 @@
+[C-DETECTOR-EVAL] live detector vs foundation labels (tier-1/2 trade-signal starts)
+cohort: 8401 tier-1/2 events with trade files (no-file: 0); tier-3 floor below
+
+K/T sweep -- %% of events: latched-after-start / early<=60s / false 1-30m / false >=30m / never ; latency p50/p90/p99 (s)
+K= 5 T= 30s |   0.0% /  0.4% / 11.0% / 88.6% /  0.0% | p50=  nan p90=  nan p99=   nan
+K= 5 T= 60s |   0.0% /  0.2% /  9.1% / 90.7% /  0.0% | p50=  nan p90=  nan p99=   nan
+K= 5 T=120s |   0.0% /  0.0% /  7.0% / 92.9% /  0.0% | p50=  nan p90=  nan p99=   nan
+K=10 T= 30s |   2.8% /  3.7% / 31.8% / 61.7% /  0.0% | p50=   52 p90=  337 p99=  1935
+K=10 T= 60s |   0.7% /  2.0% / 28.8% / 68.5% /  0.0% | p50=    9 p90=   61 p99=   186  <== DEPLOYED
+K=10 T=120s |   0.1% /  1.0% / 24.4% / 74.5% /  0.0% | p50=    8 p90=   52 p99=    78
+K=15 T= 30s |  17.6% /  7.0% / 36.2% / 38.5% /  0.7% | p50=  130 p90= 1391 p99=  3963
+K=15 T= 60s |   5.7% /  5.5% / 40.4% / 48.4% /  0.0% | p50=   43 p90=  378 p99=  2647
+K=15 T=120s |   1.4% /  2.8% / 37.5% / 58.4% /  0.0% | p50=   21 p90=   56 p99=   101
+K=20 T= 30s |  37.1% /  7.0% / 29.2% / 23.3% /  3.5% | p50=  352 p90= 2292 p99=  5058
+K=20 T= 60s |  18.8% /  7.2% / 40.6% / 32.9% /  0.6% | p50=   84 p90= 1183 p99=  3937
+K=20 T=120s |   5.7% /  5.0% / 44.7% / 44.7% /  0.0% | p50=   34 p90=   95 p99=  1798
+
+DEPLOYED (10/60) per category: latency p50/p90/p99 ; never%% ; false>=30m%%
+  ATP_CHALL  p50=    9 p90=   61 p99=   116 | never  0.0% | false>=30m 60.1%
+  ATP_MAIN   p50=   17 p90=   54 p99=    61 | never  0.0% | false>=30m 79.6%
+  WTA_CHALL  p50=    8 p90=   29 p99=    29 | never  0.0% | false>=30m 56.6%
+  WTA_MAIN   p50=    9 p90=   90 p99=   186 | never  0.0% | false>=30m 73.7%
+
+sub-class tail (10/60, category x ISO-week; tournament names absent from corpus -- disclosed):
+  ATP_CHALL  2026-W13: never 0 + false>=30m 205 of 302
+  ATP_CHALL  2026-W15: never 0 + false>=30m 190 of 273
+  ATP_CHALL  2026-W11: never 0 + false>=30m 171 of 250
+  ATP_CHALL  2026-W16: never 0 + false>=30m 157 of 229
+  ATP_CHALL  2026-W14: never 0 + false>=30m 153 of 255
+
+structural floor (tier-3 expected_expiration_fallback tickers; detector blind by construction):
+  {'ATP_CHALL': 152, 'ATP_MAIN': 437, 'WTA_CHALL': 17, 'WTA_MAIN': 577}
+
+measured detect->cancel-ack latency (live jsonl, 41 pairs): p50=0.1s max=16.8s
+danger window = latency above + cancel latency; dominated by latency term.

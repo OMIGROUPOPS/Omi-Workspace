@@ -123,6 +123,15 @@ V4_RUNNING_MID_MIN_TRADES = 1         # >= this many traded prints in-window to 
 V4_LAST_TRADE_MAX_AGE_SEC = 1800      # #1 ref-price: max age (s) of the last-traded print to use as the entry reference; staler/absent -> skip (no BBO-mid fallback)
 V4_SHUTDOWN_TIMEOUT_SEC = 10          # #0-infra: graceful-shutdown budget; if cancel/drain exceeds this, hard-exit rather than wedge in a zombie state
 
+# PART-2 completion_reprice (Plex-gated, default OFF). Mechanism: when leg-1 of a pair
+# fills and the pair is NOT over the T50 cap, reprice the sibling's resting entry bid to
+# s1 = min(s0 + X_cell, sibling_ask - 1, 99 - leg1_basis) sized to leg-1's FILLED qty.
+# Frame: WINDOW-OPEN (the leg's first last-trade reference at-or-after T-240) -- the cell
+# keying the eligibility table is NEVER computed from current_price (frame-mismatch leak).
+# Eligibility: docs/policy/completion_cells_v1.csv (SHIP_FIRST, 1944b250 tape replay).
+V4_COMPLETION_FRESHNESS_SEC = 600     # item 4: completion bid resting 10 min unfilled -> re-evaluate. Ships at 10; evidence logged (completion_freshness) for post-hoc tuning, not tuned now.
+V4_WINDOW_OPEN_MAX_AGE_SEC = 172800   # prune window-open frames older than 48h on state save (events long past)
+
 STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
 V4_RESTING_FILE = STATE_DIR / "live_v4_resting.json"  # v4 resting-bid recovery (STEP 5)
@@ -337,6 +346,18 @@ class Position:
     strategy: str = ""                # "exit" | "hold" (set at fill from exit table)
     exit_band_x: Optional[int] = None  # +X cents for exit cells; None for hold cells
     exit_cell_id: int = 0             # 1c cell used for the exit-table lookup (entry-priced)
+
+    # ---- PART-2 completion_reprice fields (dormant unless completion_reprice=true).
+    # Set on the SIBLING position when its bid is completion-repriced after leg-1 fills.
+    completion_s0: int = 0              # sibling window-open price at attempt (replay s0)
+    completion_x: int = 0               # X from completion_cells_v1 (leg-1 window-open cell)
+    completion_leg1_basis: int = 0      # leg-1 fill basis at attempt (cap arithmetic frozen)
+    completion_qty: int = 0             # leg-1 FILLED qty at attempt (completion size)
+    completion_reprice_ts: float = 0.0  # last completion (re)price time (freshness clock)
+    completion_prev_price: int = 0      # pre-completion resting bid (revert target)
+    completion_prev_mode: str = ""      # pre-completion entry_mode (revert)
+    completion_prev_target: int = 0     # pre-completion target_price (revert)
+    completion_lookup_cell: int = 0     # leg-1 window-open cell used for the table lookup
 
 # -------------------------------------------------------------------------
 # Paper Mode (spec sha 32f29fda)
@@ -1008,6 +1029,12 @@ class LiveV3:
         # resting entry bids via the API, and exit within V4_SHUTDOWN_TIMEOUT_SEC. See run() / _shutdown_drain.
         self.graceful_shutdown = self.config.get("graceful_shutdown", False)
         self._shutdown_requested = False
+        # PART-2 completion_reprice (Plex-gated; default OFF = byte-identical pre-Part-2).
+        # OFF: no window-open tracking, no table load, no new log events, legacy state-file
+        # shape -- the completion arm of the sibling handler is unreachable.
+        self.completion_reprice = self.config.get("completion_reprice", False)
+        self.completion_cells = {}   # (category, leg1 window-open cell) -> X; absent = never attempt
+        self._window_open = {}       # ticker -> {price, cell, ts, ttm_min}; tick-loop set at/after T-240
         _r5 = "off" if not self.round5_enabled else "ON(!)"
         _fmc = "on" if self.fallback_maker_clamp else "OFF(!)"
         if self.maker_only_entry:
@@ -1026,6 +1053,8 @@ class LiveV3:
         self.disable_bbo_threshold_settlement = self.config.get("disable_bbo_threshold_settlement", False)
         self._load_entry_table()
         self._load_exit_table()
+        if self.completion_reprice:
+            self._load_completion_cells()
 
         self.books: Dict[str, Book] = {}
         self.subscribed: Set[str] = set()
@@ -1434,6 +1463,67 @@ class LiveV3:
             })
         self.exit_table = loaded
 
+    def _load_completion_cells(self):
+        """PART-2: load docs/policy/completion_cells_v1.csv into
+        self.completion_cells[(category, cell)] = X. SHIP_FIRST eligibility from the
+        1944b250 tape replay (parquet sha 7883f5c8...); one X per cell (per-cell argmax
+        blended_lift_pp_0p5x, tie -> smallest X). Absent cell = never attempt. Called
+        only when completion_reprice=true; a missing file fails the boot loudly (no
+        silent flag-on-without-table)."""
+        import csv as _csv
+        rel = self.config.get("completion_cells_path", "docs/policy/completion_cells_v1.csv")
+        path = Path(__file__).resolve().parent / rel
+        n = 0
+        sha = ""
+        with open(path, newline="") as f:
+            for row in _csv.DictReader(f):
+                key = (row["category"].strip(), int(float(row["cell"])))
+                self.completion_cells[key] = int(float(row["X"]))
+                sha = row.get("provenance_sha", "")
+                n += 1
+        self._log("completion_cells_loaded", {"rows": n, "path": str(rel),
+                                              "provenance_sha": sha[:16]})
+
+    def _maybe_set_window_open(self, tk, now):
+        """PART-2 item 2: latch the leg's WINDOW-OPEN reference -- the first
+        time-t-available last-trade reference computed at-or-after T-240 (last-trade
+        discipline; NEVER the BBO mid; NEVER at placement time). Set-once per leg by the
+        tick loop (apply_trade on each print + the 60s routing sweep for the T-240
+        boundary crossing with an already-fresh print). A leg whose first fresh print
+        only exists pre-T-240 stays unset -> leg-1 fills there make NO completion
+        attempt (designed conservative edge). Flag-gated: completion_reprice=false is a
+        single boolean check (byte-identical behavior)."""
+        if not self.completion_reprice:
+            return
+        if tk in self._window_open:
+            return
+        et = self.ticker_to_event.get(tk)
+        if not et:
+            return
+        st = self.event_start_time.get(et)
+        if not st:
+            return
+        tts = st - now
+        if tts <= 0 or tts > V4_MAX_PLACEMENT_SEC:
+            return
+        book = self.books.get(tk)
+        if not book:
+            return
+        lt = book.last_trade_price
+        lt_age = (now - book.last_trade_ts) if book.last_trade_ts else float("inf")
+        if lt <= 0 or lt_age > V4_LAST_TRADE_MAX_AGE_SEC:
+            return
+        price = int(round(lt))
+        cell = min(94, max(5, price))
+        self._window_open[tk] = {"price": price, "cell": cell, "ts": now,
+                                 "ttm_min": round(tts / 60.0, 1)}
+        self._log("window_open_set", {"event": et, "price": price, "cell": cell,
+            "last_trade_age_sec": round(lt_age, 1),
+            "ttm_min": round(tts / 60.0, 1)}, ticker=tk)
+        # lifecycle (c): persist immediately -- a crash between here and the next
+        # resting-bid save must not lose the frame (leak-proofing).
+        self._save_v4_resting()
+
     def exit_rule_for(self, category, price_cents):
         """v4 exit lookup: returns (band_x|None, rule) for the 1c cell of
         price_cents. rule in {"exit","hold"}. Falls back to ("exit", default)
@@ -1588,6 +1678,9 @@ class LiveV3:
         pcut = book.last_trade_ts - V4_RUNNING_MID_WINDOW_SEC
         while pdq and pdq[0][0] < pcut:
             pdq.popleft()
+        # PART-2: a fresh print inside the T-240 window may be the leg's first
+        # time-t-available window-open reference (flag-gated no-op when off).
+        self._maybe_set_window_open(ticker, book.last_trade_ts)
         if _PAPER_API is not None:
             _PAPER_API.on_trade(ticker, book.last_trade_ts, price, count, side)
         self._log_trade(ticker, price, count, side)
@@ -2102,11 +2195,21 @@ class LiveV3:
         return True
 
     async def _cancel_sibling_if_paired_over_cap(self, tk, et, this_basis):
-        """T50 backstop: after `tk` fills at this_basis, cancel the sibling's
-        still-RESTING entry bid if (this_basis + sibling_bid) > cap. Closes the
-        both-bids-resting race the placement guard can't prevent (both legs laid
-        before either filled). No-op if the sibling already filled (pair already
-        locked) or isn't a resting entry."""
+        """T50 backstop + PART-2 completion hook -- the ONE sibling handler invoked at
+        all three entry-fill booking sites (check_fills entry poll, placement
+        instant-fill, T-20m instant-fill). Mutually exclusive by cap arithmetic:
+
+          this_basis + sibling_bid > cap -> T50 cancel (UNCHANGED, byte-identical);
+          else, completion_reprice=true AND (category, leg-1 window-open cell) in
+          completion_cells AND the sibling still entry_resting -> reprice the sibling's
+          bid to s1 = min(s0 + X, sibling_ask - 1, 99 - this_basis), sized to leg-1's
+          FILLED qty (s0 = SIBLING window-open price; replay frame, 1944b250).
+
+        T50 part: cancels the sibling's still-RESTING entry bid when the pair would be
+        a yes+no > ~100 guaranteed loss. Closes the both-bids-resting race the placement
+        guard can't prevent. No-op if the sibling already filled (pair locked) or isn't
+        a resting entry. Default completion_reprice OFF -> the completion arm is
+        unreachable and this method IS the pre-Part-2 T50 backstop exactly."""
         sib = self._sibling_ticker(tk, et)
         if not sib:
             return
@@ -2126,6 +2229,148 @@ class LiveV3:
             sp.entry_order_id = ""
             self._untombstone_entry(sib, sp)
             self._save_v4_resting()
+            return
+        if not self.completion_reprice:
+            return
+        await self._attempt_completion_reprice(tk, et, this_basis, sib, sp)
+
+    def _completion_target(self, s0, x_cell, sib_ask, leg1_basis):
+        """PART-2: s1 = min(s0 + X, sib_ask - 1, 99 - leg1_basis). sib_ask=None (no
+        real ask on the book) drops the ask term -- replay parity (the 1944b250
+        completion branch adds the ask candidate only when an ask exists). The cap term
+        guarantees leg1_basis + s1 <= V4_PAIRED_BASIS_CAP. Pure/testable."""
+        cands = [s0 + x_cell, V4_PAIRED_BASIS_CAP - leg1_basis]
+        if sib_ask is not None:
+            cands.append(sib_ask - 1)
+        return min(cands)
+
+    def _completion_buffer_exempt(self, pos):
+        """PART-2 item 5: completion bids are exempt from the T-15 match_start_buffer
+        cancel and ride to T-0 under freshness re-evaluation (_v4_manage_completion).
+        Scoped to entry_mode == "completion_reprice" ONLY -- fresh entry bids keep the
+        buffer unchanged. Void/halt on a never-filled completion bid is exchange-
+        counterparty risk: a voided market simply cancels the resting order exchange-
+        side; NO assumption about void settlement price is made anywhere in this code.
+        Pure/testable."""
+        return pos.entry_mode == "completion_reprice"
+
+    async def _fill_is_taker(self, tk, order_id):
+        """PART-2 item 7: exchange fill truth (operator feedback: maker/taker comes
+        from /portfolio/fills is_taker, NEVER from placement intent). Returns True if
+        any fill on this order was taker, False if all maker, None on lookup failure.
+        Called only on completion-path events (flag-gated call sites) -- zero extra API
+        load when completion_reprice is off."""
+        try:
+            data = await api_get(self.session, self.ak, self.pk,
+                "/trade-api/v2/portfolio/fills?ticker=%s&limit=50" % tk, self.rl)
+            takers = [bool(f.get("is_taker")) for f in (data or {}).get("fills", [])
+                      if f.get("order_id") == order_id]
+            if not takers:
+                return None
+            return any(takers)
+        except Exception:
+            return None
+
+    async def _attempt_completion_reprice(self, tk, et, this_basis, sib, sp):
+        """PART-2 item 3: one completion attempt for a freshly-filled leg-1 (`tk` at
+        this_basis) against its sibling's resting bid. Caller has already verified:
+        flag on, sibling entry_resting + unfilled + has order, pair NOT over the T50
+        cap. The eligibility cell comes from LEG-1's window-open frame and s0 from the
+        SIBLING's window-open price -- NEVER from current_price (frame-mismatch leak;
+        the only book-time inputs are the ask clamp and the cap term)."""
+        if sp.entry_mode == "completion_reprice":
+            return  # already completion-repriced (idempotent across partial leg-1 fills)
+        pos = self.positions.get(tk)
+        if pos is None or pos.entry_qty <= 0:
+            return
+        wo1 = self._window_open.get(tk)
+        if wo1 is None:
+            # designed conservative edge: leg-1 filled with no window-open frame
+            # (pre-T-240 fill / no fresh print ever inside the window) -> NO attempt.
+            self._log("completion_no_attempt", {"event": et,
+                "reason": "leg1_window_open_unset", "leg1_basis": this_basis}, ticker=tk)
+            return
+        x_cell = self.completion_cells.get((pos.category, wo1["cell"]))
+        if x_cell is None:
+            # absent cell = never attempt (the no-attempt arm of the wave-gate pairing)
+            self._log("completion_no_attempt", {"event": et,
+                "reason": "cell_not_eligible", "category": pos.category,
+                "cell_at_completion_lookup": wo1["cell"],
+                "leg1_basis": this_basis}, ticker=tk)
+            return
+        wo2 = self._window_open.get(sib)
+        if wo2 is None:
+            self._log("completion_no_attempt", {"event": et,
+                "reason": "sibling_window_open_unset",
+                "cell_at_completion_lookup": wo1["cell"],
+                "leg1_basis": this_basis}, ticker=tk)
+            return
+        s0 = wo2["price"]
+        sib_book = self.books.get(sib)
+        sib_ask = sib_book.best_ask if (sib_book and 0 < sib_book.best_ask < 100) else None
+        s1 = self._completion_target(s0, x_cell, sib_ask, this_basis)
+        cap_headroom = V4_PAIRED_BASIS_CAP - this_basis
+        if s1 <= s0 or s1 < 1:
+            self._log("completion_no_attempt", {"event": et, "reason": "no_headroom",
+                "s0": s0, "s1": s1, "x": x_cell, "cap_headroom": cap_headroom,
+                "sib_ask": sib_ask, "cell_at_completion_lookup": wo1["cell"],
+                "leg1_basis": this_basis}, ticker=tk)
+            return
+        if s1 == sp.entry_price:
+            # already resting exactly at s1 -- a cancel/re-place would only forfeit
+            # queue priority (inert skip, disclosed).
+            self._log("completion_no_attempt", {"event": et, "reason": "already_at_s1",
+                "s0": s0, "s1": s1, "x": x_cell,
+                "cell_at_completion_lookup": wo1["cell"]}, ticker=tk)
+            return
+        # fill-race discipline (mirrors the move-repost path): the sibling's original
+        # bid may have just filled -- never cancel-and-replace a filled order's booking.
+        old = await api_get(self.session, self.ak, self.pk,
+            "/trade-api/v2/portfolio/orders/%s" % sp.entry_order_id, self.rl)
+        if old:
+            old_filled = int(float((old.get("order", old).get("fill_count_fp", 0)) or 0))
+            if old_filled > 0:
+                return  # filled at its own price -- check_fills books it; pair completed naturally
+        qty = pos.entry_qty  # completion qty = leg-1 FILLED qty
+        prev_price, prev_mode, prev_target = sp.entry_price, sp.entry_mode, sp.target_price
+        await self.cancel_order(sib, sp.entry_order_id, "completion_reprice")
+        price, po = self._reprice_target(s1, sib_book.best_ask if sib_book else 100)
+        self.inflight_orders.add(sib)
+        try:
+            oid, _resp = await self.place_order(sib, "buy", "yes", price, qty,
+                                                post_only=po)
+        finally:
+            self.inflight_orders.discard(sib)
+        if not oid:
+            # place failed after the old bid was cancelled -> free the leg cleanly
+            # (leg-1 rides as a normal v4 position; orphan snapshot for the wave-gate).
+            self._log("completion_reverted", {"event": et, "reason": "place_failed",
+                "s0": s0, "s1": price, "x": x_cell, "time_since_reprice": 0.0}, ticker=sib)
+            sp.entry_order_id = ""
+            self._untombstone_entry(sib, sp)
+            self._save_v4_resting()
+            return
+        sp.entry_price = price
+        sp.entry_order_id = oid
+        sp.entry_mode = "completion_reprice"
+        sp.play_type = "v4_completion_reprice"
+        sp.target_price = price
+        sp.completion_s0 = s0
+        sp.completion_x = x_cell
+        sp.completion_leg1_basis = this_basis
+        sp.completion_qty = qty
+        sp.completion_reprice_ts = time.time()
+        sp.completion_prev_price = prev_price
+        sp.completion_prev_mode = prev_mode
+        sp.completion_prev_target = prev_target
+        sp.completion_lookup_cell = wo1["cell"]
+        self._log("completion_attempt", {
+            "event": et, "s0": s0, "s1": price, "x": x_cell,
+            "cap_headroom": cap_headroom, "trigger_fill_id": pos.entry_order_id,
+            "cell_at_completion_lookup": wo1["cell"], "leg1_basis": this_basis,
+            "qty": qty, "sib_ask": sib_ask, "prev_bid": prev_price,
+            "order_id": oid}, ticker=sib)
+        self._save_v4_resting()
 
     def _is_match_live(self, et):
         """T51 match-live detection via VOLUME ACCELERATION. Live = >=
@@ -2466,7 +2711,10 @@ class LiveV3:
             # Check entry order fill
             if pos.phase == "entry_resting" and pos.entry_order_id:
                 now = time.time()
-                if pos.match_start_ts > 0 and now > pos.match_start_ts - ENTRY_BUFFER_SEC:
+                # PART-2 item 5: completion bids are buffer-exempt (ride to T-0 under
+                # _v4_manage_completion); fresh entry bids keep the T-15 cancel.
+                if (pos.match_start_ts > 0 and now > pos.match_start_ts - ENTRY_BUFFER_SEC
+                        and not self._completion_buffer_exempt(pos)):
                     await self.cancel_order(tk, pos.entry_order_id, "match_start_buffer")
                     self._log("entry_cancelled", {
                         "reason": "match_start_buffer",
@@ -2532,7 +2780,22 @@ class LiveV3:
                         await self._v4_apply_exit(tk, pos, fill_price, filled)
                         # T50 backstop: this side just filled -> cancel the
                         # sibling's resting bid if the pair would exceed cap.
+                        # (PART-2: same handler also runs the completion arm.)
                         await self._cancel_sibling_if_paired_over_cap(tk, pos.event_ticker, fill_price)
+                        # PART-2 item 7: a COMPLETION bid filling is logged as its own
+                        # paired event (separate from the leg fill), with exchange
+                        # is_taker truth (never placement intent).
+                        if pos.entry_mode == "completion_reprice":
+                            is_taker = await self._fill_is_taker(tk, pos.entry_order_id)
+                            self._log("completion_fill", {
+                                "event": pos.event_ticker, "fill_price": fill_price,
+                                "qty": filled, "new_fills": new_fills,
+                                "s0": pos.completion_s0, "x": pos.completion_x,
+                                "s1_posted": pos.entry_price,
+                                "leg1_basis": pos.completion_leg1_basis,
+                                "time_since_reprice": round(
+                                    time.time() - pos.completion_reprice_ts, 1),
+                                "is_taker": is_taker}, ticker=tk)
                         self._save_v4_resting()
                         continue
 
@@ -2988,6 +3251,12 @@ class LiveV3:
             # Yield after every event so a long sweep never blocks the loop /
             # WS keepalive. No delay -- sleep(0) yields control only.
             await asyncio.sleep(0)
+            # PART-2: T-240 boundary crossing with an already-fresh print -- the
+            # window-open reference becomes available by TIME passing, not only by a
+            # new print arriving (apply_trade covers that). Flag-gated no-op when off.
+            if self.completion_reprice:
+                for tk in tickers:
+                    self._maybe_set_window_open(tk, now)
             await self._route_event(et, tickers, now)
 
     async def _route_event(self, et, tickers, now):
@@ -3532,7 +3801,12 @@ class LiveV3:
         """Persist live v4 resting bids for restart recovery (STEP 5). Holds
         order_id, posted_at, posted_price, target_price, regime_at_posting and
         the fields needed to rebuild the Position. Live mode only; paper mode
-        recovers via PaperApi.load_state."""
+        recovers via PaperApi.load_state.
+
+        PART-2 (flag-gated): completion-repriced bids carry their completion fields,
+        and the file gains a v2 shape {"_shape":"v2","legs":{...},"window_open":{...}}
+        carrying the window-open frames (lifecycle (c)). completion_reprice=false
+        writes the legacy bare-legs shape byte-identically."""
         if _PAPER_API is not None:
             return
         out = {}
@@ -3551,9 +3825,28 @@ class LiveV3:
                     "entry_mode": pos.entry_mode,
                     "match_start_ts": pos.match_start_ts,
                 }
+                if pos.entry_mode == "completion_reprice":
+                    out[tk].update({
+                        "completion_s0": pos.completion_s0,
+                        "completion_x": pos.completion_x,
+                        "completion_leg1_basis": pos.completion_leg1_basis,
+                        "completion_qty": pos.completion_qty,
+                        "completion_reprice_ts": pos.completion_reprice_ts,
+                        "completion_prev_price": pos.completion_prev_price,
+                        "completion_prev_mode": pos.completion_prev_mode,
+                        "completion_prev_target": pos.completion_prev_target,
+                        "completion_lookup_cell": pos.completion_lookup_cell,
+                    })
+        if self.completion_reprice:
+            cutoff = time.time() - V4_WINDOW_OPEN_MAX_AGE_SEC
+            payload = {"_shape": "v2", "legs": out,
+                       "window_open": {tk: wo for tk, wo in self._window_open.items()
+                                       if wo.get("ts", 0) >= cutoff}}
+        else:
+            payload = out
         tmp = str(V4_RESTING_FILE) + ".tmp"
         with open(tmp, "w") as f:
-            json.dump(out, f)
+            json.dump(payload, f)
         os.replace(tmp, str(V4_RESTING_FILE))
 
     def _load_v4_resting(self):
@@ -3571,6 +3864,22 @@ class LiveV3:
         if not isinstance(data, dict):
             self._log("v4_resting_bad_shape", {"type": type(data).__name__})
             return
+        # PART-2 v2 shape (lifecycle (d)): restore window-open frames, then fall
+        # through to the legs dict. Legacy bare-legs files load unchanged.
+        if data.get("_shape") == "v2":
+            wo = data.get("window_open", {})
+            if isinstance(wo, dict):
+                n_wo = 0
+                for wtk, wd in wo.items():
+                    if isinstance(wd, dict) and "price" in wd and "cell" in wd:
+                        self._window_open.setdefault(wtk, wd)
+                        n_wo += 1
+                if n_wo:
+                    self._log("window_open_restored", {"count": n_wo})
+            data = data.get("legs", {})
+            if not isinstance(data, dict):
+                self._log("v4_resting_bad_shape", {"type": type(data).__name__})
+                return
         restored = 0
         for tk, d in data.items():
             if tk in self.positions:
@@ -3588,6 +3897,15 @@ class LiveV3:
                 target_price=int(d.get("target_price", 0)),
                 placement_minute=int(d.get("placement_minute", 0)),
                 entry_mode=d.get("entry_mode", "resting_maker"),
+                completion_s0=int(d.get("completion_s0", 0)),
+                completion_x=int(d.get("completion_x", 0)),
+                completion_leg1_basis=int(d.get("completion_leg1_basis", 0)),
+                completion_qty=int(d.get("completion_qty", 0)),
+                completion_reprice_ts=float(d.get("completion_reprice_ts", 0.0)),
+                completion_prev_price=int(d.get("completion_prev_price", 0)),
+                completion_prev_mode=d.get("completion_prev_mode", ""),
+                completion_prev_target=int(d.get("completion_prev_target", 0)),
+                completion_lookup_cell=int(d.get("completion_lookup_cell", 0)),
             )
             restored += 1
         if restored:
@@ -3612,6 +3930,13 @@ class LiveV3:
         price moves > 1 cell width from the last placement basis), cancels on a
         degenerate/wide-spread book, and crosses as taker if a re-evaluated
         target becomes marketable. T-20m fallback is handled below (STEP 6)."""
+        # PART-2: completion bids have their own lifecycle (freshness re-eval, buffer-
+        # exempt ride to T-0). They must NEVER enter the regular move-repost / T-20
+        # fallback / wide-spread machinery, which would reprice them back to the entry
+        # frame (the frame-mismatch leak).
+        if pos.entry_mode == "completion_reprice":
+            await self._v4_manage_completion(tk, pos, book, now)
+            return
         spread = book.best_ask - book.best_bid
         # Degenerate / wide-spread book: cancel and free the leg for re-entry.
         # T51/T52: cancel a resting entry bid the moment the match goes live --
@@ -3797,6 +4122,158 @@ class LiveV3:
             "move_cents": current_price - price_basis,
         }, ticker=tk)
         self._save_v4_resting()
+
+    async def _v4_manage_completion(self, tk, pos, book, now):
+        """PART-2 item 4: freshness re-evaluation + protective cancels for a resting
+        completion bid. Serialized by the caller's _mgmt_inflight guard (on_bbo_update
+        + the 120s validate_resting_buys backstop). The bid is T-15-buffer-exempt
+        (item 5) and rides to T-0; at T-0 -- or the moment T51 flags the match live --
+        it is cancelled (never let a pre-match bid fill into live play). A flag walked
+        back off reverts the bid to normal entry handling on the next pass."""
+        if not self.completion_reprice:
+            await self._completion_revert(tk, pos, book, now, "flag_off")
+            return
+        if self._is_match_live(pos.event_ticker):
+            await self._completion_revert(tk, pos, book, now, "match_live")
+            return
+        if pos.match_start_ts > 0 and now >= pos.match_start_ts:
+            await self._completion_revert(tk, pos, book, now, "t0_reached")
+            return
+        if now - pos.completion_reprice_ts < V4_COMPLETION_FRESHNESS_SEC:
+            return
+        # re-evaluate s1 against the current book (s0 / X / leg-1 basis are frozen at
+        # attempt time; only the ask clamp moves) and refresh qty to leg-1's CURRENT
+        # filled qty (later partial leg-1 fills).
+        sib_ask = book.best_ask if 0 < book.best_ask < 100 else None
+        s1 = self._completion_target(pos.completion_s0, pos.completion_x, sib_ask,
+                                     pos.completion_leg1_basis)
+        if s1 <= pos.completion_s0 or s1 < 1:
+            await self._completion_revert(tk, pos, book, now, "cap_headroom_gone")
+            return
+        leg1_tk = self._sibling_ticker(tk, pos.event_ticker)
+        leg1 = self.positions.get(leg1_tk) if leg1_tk else None
+        qty = leg1.entry_qty if (leg1 and leg1.entry_qty > 0) else pos.completion_qty
+        if s1 == pos.entry_price and qty == pos.completion_qty:
+            pos.completion_reprice_ts = now
+            self._log("completion_freshness", {"event": pos.event_ticker, "s1": s1,
+                "qty": qty, "sib_ask": sib_ask, "unchanged": True}, ticker=tk)
+            return
+        # fill-race discipline before the cancel/re-place
+        old = await api_get(self.session, self.ak, self.pk,
+            "/trade-api/v2/portfolio/orders/%s" % pos.entry_order_id, self.rl)
+        if old:
+            old_filled = int(float((old.get("order", old).get("fill_count_fp", 0)) or 0))
+            if old_filled > 0:
+                return  # filled -- check_fills books it (completion_fill path)
+        await self.cancel_order(tk, pos.entry_order_id, "completion_freshness_reprice")
+        price, po = self._reprice_target(s1, book.best_ask)
+        self.inflight_orders.add(tk)
+        try:
+            oid, _ = await self.place_order(tk, "buy", "yes", price, qty, post_only=po)
+        finally:
+            self.inflight_orders.discard(tk)
+        if not oid:
+            self._log("completion_reverted", {"event": pos.event_ticker,
+                "reason": "place_failed",
+                "time_since_reprice": round(now - pos.completion_reprice_ts, 1)}, ticker=tk)
+            self._log_orphan_outcome(tk, pos, "place_failed", now)
+            pos.entry_order_id = ""
+            self._untombstone_entry(tk, pos)
+            self._save_v4_resting()
+            return
+        old_s1 = pos.entry_price
+        pos.entry_price = price
+        pos.entry_order_id = oid
+        pos.target_price = price
+        pos.completion_qty = qty
+        pos.completion_reprice_ts = now
+        self._log("completion_freshness", {"event": pos.event_ticker, "old_s1": old_s1,
+            "new_s1": price, "qty": qty, "sib_ask": sib_ask,
+            "unchanged": False}, ticker=tk)
+        self._save_v4_resting()
+
+    async def _completion_revert(self, tk, pos, book, now, reason):
+        """PART-2: cancel a resting completion bid and hand the leg back to normal
+        rules, emitting the orphan_outcome snapshot (the no-completion arm of the
+        wave-gate pairing). match_live / t0_reached -> cancel only (never re-place into
+        live play; T51 semantics). Inside the T-15 buffer -> cancel only (a re-placed
+        normal bid would be instantly buffer-cancelled -- pure churn). Otherwise
+        re-place the pre-completion bid (maker-clamped) and restore the prior
+        entry_mode so the standard machinery (incl. the T-15 buffer) resumes."""
+        old = await api_get(self.session, self.ak, self.pk,
+            "/trade-api/v2/portfolio/orders/%s" % pos.entry_order_id, self.rl)
+        if old:
+            old_filled = int(float((old.get("order", old).get("fill_count_fp", 0)) or 0))
+            if old_filled > 0:
+                return  # filled -- check_fills books it (completion_fill path)
+        await self.cancel_order(tk, pos.entry_order_id, "completion_revert_" + reason)
+        self._log("completion_reverted", {"event": pos.event_ticker, "reason": reason,
+            "s0": pos.completion_s0, "s1": pos.entry_price, "x": pos.completion_x,
+            "time_since_reprice": round(now - pos.completion_reprice_ts, 1)}, ticker=tk)
+        self._log_orphan_outcome(tk, pos, reason, now)
+        inside_buffer = (pos.match_start_ts > 0
+                         and now > pos.match_start_ts - ENTRY_BUFFER_SEC)
+        if reason in ("match_live", "t0_reached") or inside_buffer:
+            pos.entry_order_id = ""
+            self._untombstone_entry(tk, pos)
+            self._save_v4_resting()
+            return
+        price, po = self._reprice_target(pos.completion_prev_price or 1, book.best_ask)
+        self.inflight_orders.add(tk)
+        try:
+            oid, _ = await self.place_order(tk, "buy", "yes", price, self.entry_size,
+                                            post_only=po)
+        finally:
+            self.inflight_orders.discard(tk)
+        if not oid:
+            pos.entry_order_id = ""
+            self._untombstone_entry(tk, pos)
+            self._save_v4_resting()
+            return
+        pos.entry_price = price
+        pos.entry_order_id = oid
+        pos.entry_mode = pos.completion_prev_mode or "resting_maker"
+        pos.play_type = "v4_" + pos.entry_mode
+        pos.target_price = pos.completion_prev_target or price
+        pos.completion_s0 = 0
+        pos.completion_x = 0
+        pos.completion_leg1_basis = 0
+        pos.completion_qty = 0
+        pos.completion_reprice_ts = 0.0
+        pos.completion_prev_price = 0
+        pos.completion_prev_mode = ""
+        pos.completion_prev_target = 0
+        pos.completion_lookup_cell = 0
+        self._save_v4_resting()
+
+    def _log_orphan_outcome(self, tk, pos, reason, now):
+        """PART-2 item 7: terminal no-completion outcome snapshot. Captures BOTH legs'
+        book + last-trade state at completion-bid termination so the T-20-frame orphan
+        valuation is computable offline from day one (join vs completion_attempt and
+        the existing settlement events; exit surface untouched). `tk`/`pos` are the
+        SIBLING (completion) leg; leg-1 is the filled trigger leg."""
+        et = pos.event_ticker
+        leg1_tk = self._sibling_ticker(tk, et)
+        leg1 = self.positions.get(leg1_tk) if leg1_tk else None
+
+        def _snap(t):
+            b = self.books.get(t) if t else None
+            if not b:
+                return None
+            return {"bid": b.best_bid, "ask": b.best_ask,
+                    "last_trade": b.last_trade_price,
+                    "last_trade_age_sec": round(now - b.last_trade_ts, 1)
+                                          if b.last_trade_ts else None}
+        st = self.event_start_time.get(et, pos.match_start_ts or 0)
+        self._log("orphan_outcome", {
+            "event": et, "reason": reason,
+            "leg1_ticker": (leg1_tk or "")[-20:],
+            "leg1_basis": pos.completion_leg1_basis,
+            "leg1_qty": leg1.entry_qty if leg1 else None,
+            "s0": pos.completion_s0, "s1": pos.entry_price, "x": pos.completion_x,
+            "time_to_start_min": round((st - now) / 60.0, 1) if st else None,
+            "sibling_book": _snap(tk), "leg1_book": _snap(leg1_tk),
+        }, ticker=tk)
 
     async def validate_resting_buys(self):
         """Cadence-gated cancel/repost for resting entry orders + deadline force-take."""

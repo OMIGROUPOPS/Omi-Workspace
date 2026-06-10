@@ -26,7 +26,8 @@ ET = "KXATPCHALLENGERMATCH-26JUN01KESMAR"; KES = ET + "-KES"; MAR = ET + "-MAR"
 cancels = []
 s = types.SimpleNamespace(event_tickers={ET: {KES, MAR}}, positions={}, books={},
     _log=lambda *a, **k: None, _save_v4_resting=lambda: None,
-    _untombstone_entry=lambda tk, pos: None)
+    _untombstone_entry=lambda tk, pos: None,
+    completion_reprice=False)  # PART-2: flag OFF -> handler is the pre-Part-2 T50 backstop
 async def fake_cancel(tk, oid, label): cancels.append((tk, oid, label))
 s.cancel_order = fake_cancel
 for n in ("_sibling_ticker", "_paired_basis_ok", "_cancel_sibling_if_paired_over_cap"):

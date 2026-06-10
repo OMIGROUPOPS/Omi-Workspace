@@ -40,8 +40,9 @@ export RCLONE_CONFIG_SPACES_ACCESS_KEY_ID="$SPACES_KEY"
 export RCLONE_CONFIG_SPACES_SECRET_ACCESS_KEY="$SPACES_SECRET"
 export RCLONE_CONFIG_SPACES_ENDPOINT=nyc3.digitaloceanspaces.com
 export RCLONE_CONFIG_SPACES_ACL=private
-RC() { nice -n 19 ionice -c3 rclone --transfers 4 --checkers 8 --bwlimit 30M \
-       --log-level NOTICE "$@"; }
+# no global --log-level: the copy call needs -v (INFO) so its "Copied" lines are
+# countable for the summary; other calls use rclone's default NOTICE.
+RC() { nice -n 19 ionice -c3 rclone --transfers 4 --checkers 8 --bwlimit 30M "$@"; }
 
 RC mkdir "spaces:$BUCKET" >> "$RLOG" 2>&1
 

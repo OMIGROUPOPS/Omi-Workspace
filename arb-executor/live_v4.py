@@ -135,6 +135,7 @@ V4_WINDOW_OPEN_MAX_AGE_SEC = 172800   # prune window-open frames older than 48h 
 STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
 V4_RESTING_FILE = STATE_DIR / "live_v4_resting.json"  # v4 resting-bid recovery (STEP 5)
+COMPLETION_INCIDENT_FILE = STATE_DIR / "completion_incident.json"  # [C-TRIPWIRE] survives restart; remove BY HAND to re-arm
 SCHEDULE_FILE = STATE_DIR / "schedule.json"
 TICK_DIR = Path(__file__).resolve().parent / "analysis" / "premarket_ticks"
 TRADE_DIR = Path(__file__).resolve().parent / "analysis" / "trades"
@@ -1053,8 +1054,13 @@ class LiveV3:
         self.disable_bbo_threshold_settlement = self.config.get("disable_bbo_threshold_settlement", False)
         self._load_entry_table()
         self._load_exit_table()
+        # [C-TRIPWIRE] runtime guard state: first V1-V4 violation self-disables the
+        # completion mechanism in-process AND across restarts (incident file). The
+        # bot itself keeps trading; only the completion mechanism dies.
+        self.completion_disabled = False
         if self.completion_reprice:
             self._load_completion_cells()
+            self._completion_arm_check()
 
         self.books: Dict[str, Book] = {}
         self.subscribed: Set[str] = set()
@@ -1484,6 +1490,83 @@ class LiveV3:
         self._log("completion_cells_loaded", {"rows": n, "path": str(rel),
                                               "provenance_sha": sha[:16]})
 
+    def _completion_arm_check(self):
+        """[C-TRIPWIRE] boot arm/block. An incident file from a prior tripwire fire
+        keeps the completion mechanism DISABLED across restarts until the operator
+        removes the file by hand. Indeterminate state (unreadable fs) fails CLOSED."""
+        try:
+            if COMPLETION_INCIDENT_FILE.exists():
+                self.completion_disabled = True
+                try:
+                    with open(COMPLETION_INCIDENT_FILE) as f:
+                        payload = json.load(f)
+                except Exception:
+                    payload = {"unreadable": True}
+                self._log("completion_incident_block", {
+                    "file": str(COMPLETION_INCIDENT_FILE), "incident": payload})
+                print("[BOOT] completion_reprice=ON but INCIDENT FILE present -> "
+                      "mechanism DISABLED (remove %s by hand to re-arm)"
+                      % COMPLETION_INCIDENT_FILE, flush=True)
+            else:
+                self._log("completion_tripwire_armed", {
+                    "violations": "V1 post_only breach, V2 is_taker completion fill, "
+                                  "V3 cap breach, V4 cell not in table"})
+                print("[BOOT] completion_reprice=ON -> tripwire ARMED (V1-V4), "
+                      "no incident file", flush=True)
+        except Exception as e:
+            self.completion_disabled = True
+            self._log("completion_incident_check_error", {"error": str(e)})
+
+    async def _completion_tripwire(self, violation, context, tk=""):
+        """[C-TRIPWIRE] fire-once guard: (a) self-disable in-process, (b) cancel any
+        resting completion bids (cancel-only under violation conditions -- no
+        re-place), (c) persist the incident (blocks re-arm across restarts),
+        (d) log with full context, (e) the BOT keeps trading normally."""
+        if self.completion_disabled:
+            return
+        self.completion_disabled = True
+        payload = {"violation": violation, "context": context, "ticker": tk,
+                   "ts_epoch": time.time(),
+                   "ts_et": datetime.now(ET).strftime("%Y-%m-%d %I:%M:%S %p ET")}
+        try:
+            tmp = str(COMPLETION_INCIDENT_FILE) + ".tmp"
+            with open(tmp, "w") as f:
+                json.dump(payload, f, indent=1)
+            os.replace(tmp, str(COMPLETION_INCIDENT_FILE))
+        except Exception as e:
+            self._log("completion_incident_write_error", {"error": str(e)})
+        self._log("completion_tripwire_fired", payload, ticker=tk)
+        for tk2, pos in list(self.positions.items()):
+            if (pos.is_v4 and pos.phase == "entry_resting"
+                    and pos.entry_mode == "completion_reprice" and pos.entry_order_id):
+                await self.cancel_order(tk2, pos.entry_order_id, "completion_tripwire")
+                self._log("completion_reverted", {"event": pos.event_ticker,
+                    "reason": "tripwire", "s1": pos.entry_price,
+                    "s0": pos.completion_s0}, ticker=tk2)
+                pos.entry_order_id = ""
+                self._untombstone_entry(tk2, pos)
+        self._save_v4_resting()
+
+    def _completion_fill_guards(self, pos, fill_price, is_taker):
+        """[C-TRIPWIRE] V2/V3/V4 checks at the completion-fill booking site. Returns
+        (violation, context) or None. V2 fires only on affirmative is_taker=True
+        (a failed /fills lookup returns None and does NOT fire -- transient API
+        errors must not kill the mechanism). Pure/testable."""
+        if is_taker is True:
+            return ("V2_is_taker_completion_fill",
+                    {"fill_price": fill_price, "is_taker": True,
+                     "s1_posted": pos.entry_price})
+        if pos.completion_leg1_basis + fill_price > V4_PAIRED_BASIS_CAP:
+            return ("V3_cap_breach",
+                    {"leg1_basis": pos.completion_leg1_basis, "fill_price": fill_price,
+                     "combined": pos.completion_leg1_basis + fill_price,
+                     "cap": V4_PAIRED_BASIS_CAP})
+        if (pos.category, pos.completion_lookup_cell) not in self.completion_cells:
+            return ("V4_cell_not_in_table",
+                    {"category": pos.category, "cell": pos.completion_lookup_cell,
+                     "table_cells": len(self.completion_cells)})
+        return None
+
     def _maybe_set_window_open(self, tk, now):
         """PART-2 item 2: latch the leg's WINDOW-OPEN reference -- the first
         time-t-available last-trade reference computed at-or-after T-240 (last-trade
@@ -1493,7 +1576,7 @@ class LiveV3:
         only exists pre-T-240 stays unset -> leg-1 fills there make NO completion
         attempt (designed conservative edge). Flag-gated: completion_reprice=false is a
         single boolean check (byte-identical behavior)."""
-        if not self.completion_reprice:
+        if not self.completion_reprice or self.completion_disabled:
             return
         if tk in self._window_open:
             return
@@ -2230,7 +2313,7 @@ class LiveV3:
             self._untombstone_entry(sib, sp)
             self._save_v4_resting()
             return
-        if not self.completion_reprice:
+        if not self.completion_reprice or self.completion_disabled:
             return
         await self._attempt_completion_reprice(tk, et, this_basis, sib, sp)
 
@@ -2278,6 +2361,8 @@ class LiveV3:
         cap. The eligibility cell comes from LEG-1's window-open frame and s0 from the
         SIBLING's window-open price -- NEVER from current_price (frame-mismatch leak;
         the only book-time inputs are the ask clamp and the cap term)."""
+        if self.completion_disabled:
+            return  # [C-TRIPWIRE] belt: mechanism dead -> no attempts
         if sp.entry_mode == "completion_reprice":
             return  # already completion-repriced (idempotent across partial leg-1 fills)
         pos = self.positions.get(tk)
@@ -2333,8 +2418,14 @@ class LiveV3:
                 return  # filled at its own price -- check_fills books it; pair completed naturally
         qty = pos.entry_qty  # completion qty = leg-1 FILLED qty
         prev_price, prev_mode, prev_target = sp.entry_price, sp.entry_mode, sp.target_price
-        await self.cancel_order(sib, sp.entry_order_id, "completion_reprice")
         price, po = self._reprice_target(s1, sib_book.best_ask if sib_book else 100)
+        if not po:
+            # [C-TRIPWIRE] V1: a completion order about to go out non-post-only IS the
+            # violation -- fire BEFORE touching the sibling's resting bid.
+            await self._completion_tripwire("V1_post_only_breach",
+                {"site": "attempt", "s1": s1, "price": price, "event": et}, tk=sib)
+            return
+        await self.cancel_order(sib, sp.entry_order_id, "completion_reprice")
         self.inflight_orders.add(sib)
         try:
             oid, _resp = await self.place_order(sib, "buy", "yes", price, qty,
@@ -2796,6 +2887,11 @@ class LiveV3:
                                 "time_since_reprice": round(
                                     time.time() - pos.completion_reprice_ts, 1),
                                 "is_taker": is_taker}, ticker=tk)
+                            # [C-TRIPWIRE] V2/V3/V4 at the booking site: the filled
+                            # position keeps its normal exit; the MECHANISM dies.
+                            viol = self._completion_fill_guards(pos, fill_price, is_taker)
+                            if viol is not None:
+                                await self._completion_tripwire(viol[0], viol[1], tk=tk)
                         self._save_v4_resting()
                         continue
 
@@ -4130,8 +4226,16 @@ class LiveV3:
         (item 5) and rides to T-0; at T-0 -- or the moment T51 flags the match live --
         it is cancelled (never let a pre-match bid fill into live play). A flag walked
         back off reverts the bid to normal entry handling on the next pass."""
-        if not self.completion_reprice:
-            await self._completion_revert(tk, pos, book, now, "flag_off")
+        if not self.completion_reprice or self.completion_disabled:
+            await self._completion_revert(tk, pos, book, now,
+                "flag_off" if not self.completion_reprice else "completion_disabled")
+            return
+        # [C-TRIPWIRE] V4: a resting completion order whose lookup cell is not in the
+        # table (state corruption / table swap) -- fire; the tripwire cancels it.
+        if (pos.category, pos.completion_lookup_cell) not in self.completion_cells:
+            await self._completion_tripwire("V4_cell_not_in_table",
+                {"site": "manage", "category": pos.category,
+                 "cell": pos.completion_lookup_cell, "event": pos.event_ticker}, tk=tk)
             return
         if self._is_match_live(pos.event_ticker):
             await self._completion_revert(tk, pos, book, now, "match_live")
@@ -4165,8 +4269,14 @@ class LiveV3:
             old_filled = int(float((old.get("order", old).get("fill_count_fp", 0)) or 0))
             if old_filled > 0:
                 return  # filled -- check_fills books it (completion_fill path)
-        await self.cancel_order(tk, pos.entry_order_id, "completion_freshness_reprice")
         price, po = self._reprice_target(s1, book.best_ask)
+        if not po:
+            # [C-TRIPWIRE] V1 at the freshness re-place site
+            await self._completion_tripwire("V1_post_only_breach",
+                {"site": "freshness", "s1": s1, "price": price,
+                 "event": pos.event_ticker}, tk=tk)
+            return
+        await self.cancel_order(tk, pos.entry_order_id, "completion_freshness_reprice")
         self.inflight_orders.add(tk)
         try:
             oid, _ = await self.place_order(tk, "buy", "yes", price, qty, post_only=po)

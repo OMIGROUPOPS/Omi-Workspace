@@ -67,11 +67,12 @@ BOUND = ("_sibling_ticker", "_cancel_sibling_if_paired_over_cap",
          "_maybe_set_window_open", "_v4_manage_completion",
          "_completion_revert", "_log_orphan_outcome", "_untombstone_entry",
          "_is_match_live", "_save_v4_resting", "_load_v4_resting",
-         "_fill_is_taker")
+         "_fill_is_taker", "_completion_tripwire", "_completion_fill_guards")
 
 def make_bot(flag=True):
     s = types.SimpleNamespace()
     s.completion_reprice = flag
+    s.completion_disabled = False   # [C-TRIPWIRE] armed state (handler dependency)
     s.completion_cells = {}
     s._window_open = {}
     s.positions = {}
@@ -340,8 +341,9 @@ def comp_setup(reprice_age=700, sib_ask=60, start_in_min=120, leg1_qty=7):
                    completion_leg1_basis=35, completion_qty=7,
                    completion_reprice_ts=time.time() - reprice_age,
                    completion_prev_price=38, completion_prev_mode="resting_maker",
-                   completion_prev_target=38,
+                   completion_prev_target=38, completion_lookup_cell=41,
                    match_start_ts=time.time() + start_in_min * 60)
+    s.completion_cells = {("ATP_MAIN", 41): 2}   # lookup cell in-table (V4 clean)
     s.positions = {"L1": leg1, "SB": sib}
     s.books = {"SB": book(38, sib_ask), "L1": book(30, 40)}
     s.event_start_time = {"EV": sib.match_start_ts}

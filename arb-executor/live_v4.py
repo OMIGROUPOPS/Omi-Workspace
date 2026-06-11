@@ -1078,6 +1078,11 @@ class LiveV3:
         self.inflight_orders: Set[str] = set()  # tickers with orders being placed (race guard)
         self._event_routing: Set[str] = set()   # events currently being routed (on_bbo_update vs backstop sweep)
         self._mgmt_inflight: Set[str] = set()    # tickers whose v4 resting bid is being managed (serialize callers)
+        # [C-P0-RACE] per-order booking guard: serializes the AWAITED tail of
+        # _book_v4_entry_fill (exit application / sibling handler) against a
+        # concurrent booking attempt for the same order. The check->write segment
+        # itself is await-free (see _book_v4_entry_fill); this guard covers the tail.
+        self._booking_inflight: Set[str] = set()
         self._bbo_dirty: Set[str] = set()        # tickers with unprocessed BBO change (coalesced; last-value-wins)
         self._bbo_event = None                   # asyncio.Event: recv producer -> worker; created in run()
         self._loop_lag_samples = 0               # loop-lag monitor sample counter
@@ -1539,12 +1544,17 @@ class LiveV3:
         for tk2, pos in list(self.positions.items()):
             if (pos.is_v4 and pos.phase == "entry_resting"
                     and pos.entry_mode == "completion_reprice" and pos.entry_order_id):
-                await self.cancel_order(tk2, pos.entry_order_id, "completion_tripwire")
-                self._log("completion_reverted", {"event": pos.event_ticker,
-                    "reason": "tripwire", "s1": pos.entry_price,
-                    "s0": pos.completion_s0}, ticker=tk2)
-                pos.entry_order_id = ""
-                self._untombstone_entry(tk2, pos)
+                # [C-P0-RACE site 5] a completion bid that FILLED as the tripwire
+                # fires is booked (completion_fill + guards; _completion_tripwire is
+                # fire-once so guard re-fires no-op), never deleted unbooked.
+                res = await self._cancel_entry_and_resolve(
+                    tk2, pos, "completion_tripwire", "tripwire_cancel_race")
+                if res == "cancelled":
+                    self._log("completion_reverted", {"event": pos.event_ticker,
+                        "reason": "tripwire", "s1": pos.entry_price,
+                        "s0": pos.completion_s0}, ticker=tk2)
+                    pos.entry_order_id = ""
+                    self._untombstone_entry(tk2, pos)
         self._save_v4_resting()
 
     def _completion_fill_guards(self, pos, fill_price, is_taker):
@@ -2303,15 +2313,32 @@ class LiveV3:
             return  # sibling already filled -> nothing to cancel
         sib_bid = sp.entry_price
         if sib_bid > 0 and (this_basis + sib_bid) > V4_PAIRED_BASIS_CAP:
-            await self.cancel_order(sib, sp.entry_order_id, "paired_basis_cancel")
-            self._log("paired_basis_cancel", {
-                "event": et, "filled_side": tk[-12:], "filled_basis": this_basis,
-                "cancelled_sibling": sib[-12:], "sibling_bid": sib_bid,
-                "combined": this_basis + sib_bid, "cap": V4_PAIRED_BASIS_CAP},
-                ticker=sib)
-            sp.entry_order_id = ""
-            self._untombstone_entry(sib, sp)
-            self._save_v4_resting()
+            # [C-P0-RACE site 4] resolve against exchange truth: if the sibling's
+            # bid filled in the race window (both legs filling near-simultaneously),
+            # its fill is BOOKED -- the pair is locked, reality, manage the exits --
+            # instead of the old delete-unbooked path. Clean cancel is byte-identical
+            # to the pre-fix T50 arm.
+            res = await self._cancel_entry_and_resolve(
+                sib, sp, "paired_basis_cancel", "t50_cancel_race")
+            if res == "cancelled":
+                self._log("paired_basis_cancel", {
+                    "event": et, "filled_side": tk[-12:], "filled_basis": this_basis,
+                    "cancelled_sibling": sib[-12:], "sibling_bid": sib_bid,
+                    "combined": this_basis + sib_bid, "cap": V4_PAIRED_BASIS_CAP},
+                    ticker=sib)
+                sp.entry_order_id = ""
+                self._untombstone_entry(sib, sp)
+                self._save_v4_resting()
+            elif res == "booked":
+                self._log("paired_basis_filled_race", {
+                    "event": et, "filled_side": tk[-12:], "filled_basis": this_basis,
+                    "sibling": sib[-12:], "sibling_fill": sp.entry_price,
+                    "combined": this_basis + sp.entry_price,
+                    "cap": V4_PAIRED_BASIS_CAP}, ticker=sib)
+            else:
+                self._log("paired_basis_cancel_unresolved", {
+                    "event": et, "sibling": sib[-12:], "sibling_bid": sib_bid,
+                    "combined": this_basis + sib_bid}, ticker=sib)
             return
         if not self.completion_reprice or self.completion_disabled:
             return
@@ -2425,7 +2452,17 @@ class LiveV3:
             await self._completion_tripwire("V1_post_only_breach",
                 {"site": "attempt", "s1": s1, "price": price, "event": et}, tk=sib)
             return
-        await self.cancel_order(sib, sp.entry_order_id, "completion_reprice")
+        # [C-P0-RACE site 5b] pre-place resolve: never stack a completion bid on top
+        # of an unconfirmed cancel. A raced sibling fill books normally (the pair is
+        # complete -- no completion needed); an unresolved cancel aborts the attempt.
+        res = await self._cancel_entry_and_resolve(
+            sib, sp, "completion_reprice", "completion_attempt_race")
+        if res != "cancelled":
+            self._log("completion_no_attempt", {
+                "event": et,
+                "reason": ("sibling_filled_in_race" if res == "booked"
+                           else "cancel_unresolved")}, ticker=sib)
+            return
         self.inflight_orders.add(sib)
         try:
             oid, _resp = await self.place_order(sib, "buy", "yes", price, qty,
@@ -2787,6 +2824,153 @@ class LiveV3:
             "order_id": oid,
         }, ticker=tk)
 
+    def _parse_entry_fill(self, order, pos):
+        """[C-P0-RACE] Shared fill parse for an exchange order object (get-order
+        poll shape). Byte-equivalent to the former inline check_fills derivation:
+        average_fill_price_fp (dollars) -> x100; yes_price (cents) -> as-is;
+        non-positive -> posted-price fallback. Returns (filled_qty, fill_price)."""
+        filled = int(float(order.get("fill_count_fp", order.get("count_filled", 0)) or 0))
+        fpr = order.get("average_fill_price_fp", order.get("yes_price", pos.entry_price / 100.0))
+        if isinstance(fpr, str):
+            fpr = float(fpr)
+        fill_price = round(fpr * 100) if fpr < 1.5 else int(fpr)
+        if fill_price <= 0:
+            fill_price = pos.entry_price
+        return filled, fill_price
+
+    async def _book_v4_entry_fill(self, tk, pos, filled, fill_price, status, source=None):
+        """[C-P0-RACE STEP 2] THE v4 entry-fill booking handler, extracted from the
+        check_fills inline block (Gate-1 contract -- every mutation/side-effect of
+        the inline version, in order):
+
+          1. idempotency gate: books only NEW fills (filled > pos.entry_qty);
+             qty-monotonic and order-scoped (each call's `filled` is that order's
+             exchange fill count) -- a repeat call for the same order+count no-ops.
+          2. state: entry_qty=filled, entry_filled_ts=now, phase="active";
+             n_entries += 1 on first fill only.
+          3. log entry_filled (same fields as the former inline emission;
+             `source` key added ONLY when a non-poll site books -- the check_fills
+             no-race path emits byte-identical events).
+          4. _v4_apply_exit (hold-aware exit application, stray-sell clearing).
+          5. _cancel_sibling_if_paired_over_cap (T50 + PART-2 completion arm).
+          6. completion-bid fills: completion_fill paired event with exchange
+             is_taker truth + V2/V3/V4 tripwire guards.
+          7. _save_v4_resting.
+
+        ATOMICITY (Plex Gate 3): the segment from the idempotency check through the
+        state writes in step 2 contains NO await -- under asyncio's single-threaded
+        cooperative scheduling no other coroutine can interleave between check and
+        write. The AWAITED tail (steps 4-6) is additionally serialized per order_id
+        by self._booking_inflight: exactly one concurrent caller books; others
+        observe the booked state (or the inflight guard) and no-op.
+
+        Returns True iff new fills were booked."""
+        key = pos.entry_order_id or ("adopt:" + tk)
+        if key in self._booking_inflight:
+            return False  # a concurrent booking for this order is in its awaited tail
+        # ---- await-free check->write segment (do not add awaits here) ----
+        if filled <= 0 or filled <= pos.entry_qty:
+            return False
+        self._booking_inflight.add(key)
+        try:
+            new_fills = filled - pos.entry_qty
+            first_fill = pos.entry_qty == 0
+            pos.entry_qty = filled
+            pos.entry_filled_ts = time.time()
+            pos.phase = "active"
+            if first_fill:
+                self.n_entries += 1
+            ev = {
+                "fill_price": fill_price,
+                "posted_price": pos.entry_price,
+                "qty": filled,
+                "new_fills": new_fills,
+                "cell": pos.cell_name,
+                "direction": pos.direction,
+                "play_type": pos.play_type,
+                "kalshi_status": status,
+            }
+            if source is not None:
+                ev["source"] = source
+            self._log("entry_filled", ev, ticker=tk)
+            # ---- awaited tail (serialized per order_id by _booking_inflight) ----
+            if pos.is_v4:
+                await self._v4_apply_exit(tk, pos, fill_price, filled)
+                # T50 backstop: this side just filled -> cancel the sibling's
+                # resting bid if the pair would exceed cap.
+                # (PART-2: same handler also runs the completion arm.)
+                await self._cancel_sibling_if_paired_over_cap(tk, pos.event_ticker, fill_price)
+                # PART-2 item 7: a COMPLETION bid filling is logged as its own
+                # paired event (separate from the leg fill), with exchange
+                # is_taker truth (never placement intent).
+                if pos.entry_mode == "completion_reprice":
+                    is_taker = await self._fill_is_taker(tk, pos.entry_order_id)
+                    self._log("completion_fill", {
+                        "event": pos.event_ticker, "fill_price": fill_price,
+                        "qty": filled, "new_fills": new_fills,
+                        "s0": pos.completion_s0, "x": pos.completion_x,
+                        "s1_posted": pos.entry_price,
+                        "leg1_basis": pos.completion_leg1_basis,
+                        "time_since_reprice": round(
+                            time.time() - pos.completion_reprice_ts, 1),
+                        "is_taker": is_taker}, ticker=tk)
+                    # [C-TRIPWIRE] V2/V3/V4 at the booking site: the filled
+                    # position keeps its normal exit; the MECHANISM dies.
+                    viol = self._completion_fill_guards(pos, fill_price, is_taker)
+                    if viol is not None:
+                        await self._completion_tripwire(viol[0], viol[1], tk=tk)
+            self._save_v4_resting()
+            return True
+        finally:
+            self._booking_inflight.discard(key)
+
+    async def _cancel_entry_and_resolve(self, tk, pos, label, source):
+        """[C-P0-RACE STEP 3] Cancel a resting v4 entry bid and resolve the outcome
+        against EXCHANGE truth before any state is dropped. STEP-0 finding: our
+        DELETE plumbing (live _real_api_delete AND paper handle_delete) returns only
+        an HTTP-status boolean -- the response body (which on a 200 carries the
+        canceled order object incl. fill counts) is discarded, and the
+        already-filled failure case carries no fill info at all. So ALL three
+        branches resolve from one get-order poll after the cancel attempt:
+
+          filled > booked (regardless of cancel ok) -> book via _book_v4_entry_fill
+            (full OR partial fill; partial+cancelled-remainder books the filled qty
+            and the exit is sized to it)                       -> "booked"
+          no new fill + cancel confirmed (ok or status canceled) -> caller deletes
+            per its existing discipline                         -> "cancelled"
+          poll unavailable (transient API failure)              -> "unresolved":
+            caller keeps the position tracked and retries next cycle -- NEVER
+            delete on ambiguity (deleting an unconfirmed order is the exact bug
+            this exists to fix).
+        """
+        oid = pos.entry_order_id
+        if not oid:
+            return "cancelled"  # nothing resting exchange-side; caller's discipline applies
+        ok = await self.cancel_order(tk, oid, label)
+        order = None
+        for attempt in (0, 1):
+            data = await api_get(self.session, self.ak, self.pk,
+                "/trade-api/v2/portfolio/orders/%s" % oid, self.rl)
+            if data:
+                order = data.get("order", data)
+                break
+            if attempt == 0:
+                await asyncio.sleep(0.5)
+        if order is None:
+            self._log("cancel_resolve_unresolved", {
+                "label": label, "order_id": oid, "cancel_ok": ok}, ticker=tk)
+            return "unresolved"
+        filled, fill_price = self._parse_entry_fill(order, pos)
+        if filled > pos.entry_qty:
+            self._log("cancel_fill_race", {
+                "label": label, "order_id": oid, "cancel_ok": ok,
+                "filled": filled, "fill_price": fill_price,
+                "status": order.get("status", "")}, ticker=tk)
+            await self._book_v4_entry_fill(tk, pos, filled, fill_price,
+                                           order.get("status", ""), source=source)
+            return "booked"
+        return "cancelled"
+
     async def check_fills(self):
         """Poll Kalshi for fill status on all active orders."""
         for tk, pos in list(self.positions.items()):
@@ -2806,13 +2990,20 @@ class LiveV3:
                 # _v4_manage_completion); fresh entry bids keep the T-15 cancel.
                 if (pos.match_start_ts > 0 and now > pos.match_start_ts - ENTRY_BUFFER_SEC
                         and not self._completion_buffer_exempt(pos)):
-                    await self.cancel_order(tk, pos.entry_order_id, "match_start_buffer")
-                    self._log("entry_cancelled", {
-                        "reason": "match_start_buffer",
-                        "match_start": pos.match_start_ts,
-                        "waited_min": round((now - pos.entry_posted_ts) / 60),
-                    }, ticker=tk)
-                    self._untombstone_entry(tk, pos)
+                    # [C-P0-RACE site 3] resolve the cancel against exchange truth:
+                    # a fill since the last poll books instead of being deleted.
+                    res = await self._cancel_entry_and_resolve(
+                        tk, pos, "match_start_buffer", "buffer_cancel_race")
+                    if res == "cancelled":
+                        self._log("entry_cancelled", {
+                            "reason": "match_start_buffer",
+                            "match_start": pos.match_start_ts,
+                            "waited_min": round((now - pos.entry_posted_ts) / 60),
+                        }, ticker=tk)
+                        self._untombstone_entry(tk, pos)
+                    # "booked": filled in the race window -- booked with its exit
+                    # posted; nothing to delete. "unresolved": keep the leg tracked;
+                    # this branch re-fires on the next poll pass.
                     # DEFENSE-IN-DEPTH (TRASQU NO_EXIT fix): if cleanup kept a
                     # filled position, ensure an exit exists. _v4_apply_exit is a
                     # no-op for HOLD cells and clears stray sells before posting,
@@ -2837,7 +3028,6 @@ class LiveV3:
                 filled = int(float(order.get("fill_count_fp", order.get("count_filled", 0)) or 0))
 
                 if filled > 0 and filled > pos.entry_qty:
-                    new_fills = filled - pos.entry_qty
                     fill_price_raw = order.get("average_fill_price_fp",
                                                order.get("yes_price", pos.entry_price / 100.0))
                     if isinstance(fill_price_raw, str):
@@ -2846,6 +3036,16 @@ class LiveV3:
                     if fill_price <= 0:
                         fill_price = pos.entry_price
 
+                    # [C-P0-RACE STEP 2] v4 booking extracted to _book_v4_entry_fill
+                    # (Gate-1 contract: state writes, entry_filled emission, exit
+                    # application, T50/completion arm, completion_fill + tripwire
+                    # guards, state save -- all byte-equivalent for this no-race
+                    # path; no `source` key is added here).
+                    if pos.is_v4:
+                        await self._book_v4_entry_fill(tk, pos, filled, fill_price, status)
+                        continue
+
+                    new_fills = filled - pos.entry_qty
                     first_fill = pos.entry_qty == 0
                     pos.entry_qty = filled
                     pos.entry_filled_ts = time.time()
@@ -2863,37 +3063,6 @@ class LiveV3:
                         "play_type": pos.play_type,
                         "kalshi_status": status,
                     }, ticker=tk)
-
-                    # v4 exit application (STEP 7): hold-skip or exit-at-+X from
-                    # the adaptive exit band table. Bypasses the legacy
-                    # re-classify / exit_cents / DCA block entirely.
-                    if pos.is_v4:
-                        await self._v4_apply_exit(tk, pos, fill_price, filled)
-                        # T50 backstop: this side just filled -> cancel the
-                        # sibling's resting bid if the pair would exceed cap.
-                        # (PART-2: same handler also runs the completion arm.)
-                        await self._cancel_sibling_if_paired_over_cap(tk, pos.event_ticker, fill_price)
-                        # PART-2 item 7: a COMPLETION bid filling is logged as its own
-                        # paired event (separate from the leg fill), with exchange
-                        # is_taker truth (never placement intent).
-                        if pos.entry_mode == "completion_reprice":
-                            is_taker = await self._fill_is_taker(tk, pos.entry_order_id)
-                            self._log("completion_fill", {
-                                "event": pos.event_ticker, "fill_price": fill_price,
-                                "qty": filled, "new_fills": new_fills,
-                                "s0": pos.completion_s0, "x": pos.completion_x,
-                                "s1_posted": pos.entry_price,
-                                "leg1_basis": pos.completion_leg1_basis,
-                                "time_since_reprice": round(
-                                    time.time() - pos.completion_reprice_ts, 1),
-                                "is_taker": is_taker}, ticker=tk)
-                            # [C-TRIPWIRE] V2/V3/V4 at the booking site: the filled
-                            # position keeps its normal exit; the MECHANISM dies.
-                            viol = self._completion_fill_guards(pos, fill_price, is_taker)
-                            if viol is not None:
-                                await self._completion_tripwire(viol[0], viol[1], tk=tk)
-                        self._save_v4_resting()
-                        continue
 
                     # Re-classify cell based on fill_price (may differ from anchor)
                     old_cell = pos.cell_name
@@ -4039,10 +4208,14 @@ class LiveV3:
         # do not let a pre-match bid fill into live play. Filled positions are
         # managed separately and unaffected.
         if self._is_match_live(pos.event_ticker):
-            await self.cancel_order(tk, pos.entry_order_id, "match_live_cancel")
-            self._log("match_live_resting_cancel", {"event": pos.event_ticker}, ticker=tk)
-            self._untombstone_entry(tk, pos)
-            self._save_v4_resting()
+            # [C-P0-RACE site 2] fills cluster around match start -- exactly when
+            # T51 fires. A raced fill is booked (it filled pre-live), not deleted.
+            res = await self._cancel_entry_and_resolve(
+                tk, pos, "match_live_cancel", "match_live_cancel_race")
+            if res == "cancelled":
+                self._log("match_live_resting_cancel", {"event": pos.event_ticker}, ticker=tk)
+                self._untombstone_entry(tk, pos)
+                self._save_v4_resting()
             return
         should_cancel, creason = self._resting_cancel_reason(pos.target_price, book.best_bid, book.best_ask)
         # RUN-7: the ask-1 fallback bid is INTENTIONALLY marketable-adjacent (placed just below the
@@ -4053,11 +4226,17 @@ class LiveV3:
         if should_cancel and creason == "bid_marketable_stale" and pos.entry_mode in ("fallback_maker", "marketable_clamp"):
             should_cancel, creason = False, None
         if should_cancel:
-            await self.cancel_order(tk, pos.entry_order_id, "v4_cancel_" + creason)
-            self._log("v4_resting_cancel", {"reason": creason, "spread": spread,
-                "bid": book.best_bid, "ask": book.best_ask, "target_bid": pos.target_price}, ticker=tk)
-            self._untombstone_entry(tk, pos)
-            self._save_v4_resting()
+            # [C-P0-RACE site 1 -- THE observed bug, AUGFUC-AUG 2026-06-11 05:42:10 ET]
+            # the marketable-stale cancel raced a fill; the old path ignored the
+            # cancel failure and deleted the filled position. Now: resolve against
+            # exchange truth -- a raced fill books through the normal entry path.
+            res = await self._cancel_entry_and_resolve(
+                tk, pos, "v4_cancel_" + creason, "manage_cancel_race")
+            if res == "cancelled":
+                self._log("v4_resting_cancel", {"reason": creason, "spread": spread,
+                    "bid": book.best_bid, "ask": book.best_ask, "target_bid": pos.target_price}, ticker=tk)
+                self._untombstone_entry(tk, pos)
+                self._save_v4_resting()
             return
 
         time_to_start = pos.match_start_ts - now if pos.match_start_ts > 0 else 99999
@@ -4081,22 +4260,35 @@ class LiveV3:
             t52_spread = book.best_ask - book.best_bid
             if t52_live or not self._taker_spread_ok(book.best_bid, book.best_ask):
                 reason = "match_live" if t52_live else "fat_spread"
-                await self.cancel_order(tk, pos.entry_order_id, "no_fallback_" + reason)
-                self._log("v4_fallback_blocked", {"event": pos.event_ticker,
-                    "reason": reason, "spread": t52_spread, "bid": book.best_bid,
-                    "ask": book.best_ask, "cap": MAX_TAKER_SPREAD}, ticker=tk)
-                self._untombstone_entry(tk, pos)
-                self._save_v4_resting()
+                # [C-P0-RACE site 6a] residual window after the pre-poll above.
+                res = await self._cancel_entry_and_resolve(
+                    tk, pos, "no_fallback_" + reason, "fallback_blocked_race")
+                if res == "cancelled":
+                    self._log("v4_fallback_blocked", {"event": pos.event_ticker,
+                        "reason": reason, "spread": t52_spread, "bid": book.best_bid,
+                        "ask": book.best_ask, "cap": MAX_TAKER_SPREAD}, ticker=tk)
+                    self._untombstone_entry(tk, pos)
+                    self._save_v4_resting()
                 return
             # T50: do not fallback-cross into a guaranteed-loss pair. If the
             # sibling is already committed and best_ask would push combined
             # basis over cap, cancel the unfilled bid and stay flat on this leg.
             if not self._paired_basis_ok(tk, pos.event_ticker, book.best_ask):
-                await self.cancel_order(tk, pos.entry_order_id, "paired_basis_no_fallback")
-                self._untombstone_entry(tk, pos)
-                self._save_v4_resting()
+                # [C-P0-RACE site 6b] residual window after the pre-poll above.
+                res = await self._cancel_entry_and_resolve(
+                    tk, pos, "paired_basis_no_fallback", "fallback_paired_race")
+                if res == "cancelled":
+                    self._untombstone_entry(tk, pos)
+                    self._save_v4_resting()
                 return
-            await self.cancel_order(tk, pos.entry_order_id, "v4_t20m_fallback")
+            # [C-P0-RACE site 6c] pre-cross resolve: NEVER fire the taker cross on
+            # an unconfirmed cancel -- a raced maker fill + the cross = double
+            # position. Raced fill books and the fallback is moot; unresolved
+            # retries next pass (the T-20m window condition stays true).
+            res = await self._cancel_entry_and_resolve(
+                tk, pos, "v4_t20m_fallback", "fallback_cross_race")
+            if res != "cancelled":
+                return
             fb_price, fb_post_only = self._fallback_order(book.best_ask)
             self.inflight_orders.add(tk)
             try:
@@ -4192,7 +4384,13 @@ class LiveV3:
             if old_filled > 0:
                 # Fill happened -- let check_fills book it on its next pass.
                 return
-        await self.cancel_order(tk, pos.entry_order_id, "v4_move_repost")
+        # [C-P0-RACE site 7] residual window after the pre-poll: a raced fill books
+        # and the repost is aborted; unresolved aborts too (cadence ts not bumped,
+        # so the next pass retries).
+        res = await self._cancel_entry_and_resolve(
+            tk, pos, "v4_move_repost", "move_repost_race")
+        if res != "cancelled":
+            return
 
         # Fix-3 (reprice-maker-only): NEVER cross on a reprice. A marketable re-evaluated
         # target is clamped to a resting bid one below the ask and re-rested as a maker.
@@ -4276,7 +4474,12 @@ class LiveV3:
                 {"site": "freshness", "s1": s1, "price": price,
                  "event": pos.event_ticker}, tk=tk)
             return
-        await self.cancel_order(tk, pos.entry_order_id, "completion_freshness_reprice")
+        # [C-P0-RACE site 8] residual window after the pre-poll: a raced completion
+        # fill books (completion_fill + guards); the re-place is aborted.
+        res = await self._cancel_entry_and_resolve(
+            tk, pos, "completion_freshness_reprice", "completion_freshness_race")
+        if res != "cancelled":
+            return
         self.inflight_orders.add(tk)
         try:
             oid, _ = await self.place_order(tk, "buy", "yes", price, qty, post_only=po)
@@ -4316,7 +4519,12 @@ class LiveV3:
             old_filled = int(float((old.get("order", old).get("fill_count_fp", 0)) or 0))
             if old_filled > 0:
                 return  # filled -- check_fills books it (completion_fill path)
-        await self.cancel_order(tk, pos.entry_order_id, "completion_revert_" + reason)
+        # [C-P0-RACE site 9] residual window after the pre-poll: a raced completion
+        # fill books; the revert is moot. Unresolved retries next manage pass.
+        res = await self._cancel_entry_and_resolve(
+            tk, pos, "completion_revert_" + reason, "completion_revert_race")
+        if res != "cancelled":
+            return
         self._log("completion_reverted", {"event": pos.event_ticker, "reason": reason,
             "s0": pos.completion_s0, "s1": pos.entry_price, "x": pos.completion_x,
             "time_since_reprice": round(now - pos.completion_reprice_ts, 1)}, ticker=tk)
@@ -4577,41 +4785,55 @@ class LiveV3:
     # ------------------------------------------------------------------
     # Startup reconciliation: sync in-memory state with Kalshi account
     # ------------------------------------------------------------------
-    async def _v4_reconcile_naked(self, tk, et, cat, avg, pinfo):
-        """v4 restart recovery for a naked open position (no resting sell):
-        re-post the exit-band sell, or -- for a hold cell -- leave it naked and
-        tracked so Bug 4 closes it at settlement (STEP 7 / P0 #4)."""
+    async def _v4_reconcile_naked(self, tk, et, cat, avg, pinfo,
+                                  context="steady_state_reconcile"):
+        """v4 restart recovery for a naked open position (no resting sell).
+
+        [C-P0-RACE STEP 5] Adoption routes through _book_v4_entry_fill so an
+        adopted entry fill gets the SAME booking as a polled fill: entry_filled
+        emission, hold-aware exit application (replaces the old inline
+        reconcile_v4_hold / reconcile_v4_exit_posted paths), and -- closing the
+        live 96-minute cap hole -- the sibling/T50 cap check (adopted leg @69c +
+        sibling resting @31c = 100 > 99 cancels the sibling; same action as live
+        T50). STEP 6 (V5): while the completion flag is ON, every adopted entry
+        fill logs completion_booking_adoption -- a fill reached us through
+        reconcile means the booking sites were bypassed upstream (visibility,
+        not a kill; steady_state_reconcile is the alert case).
+        An existing resting sell still LINKS as before (already-booked restart
+        path -- no booking, no exit cancel/repost churn)."""
         qty = pinfo["qty"]
         cell_id = self.cell_lookup(cat, avg)
         band_x, rule = self.exit_rule_for(cat, avg)
-        base = dict(
+        if rule != "hold":
+            fresh = await api_get(self.session, self.ak, self.pk,
+                "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
+            fresh_sells = [o for o in (fresh or {}).get("orders", []) if o.get("action") == "sell"]
+            if fresh_sells:
+                sp = round(float(fresh_sells[0].get("yes_price_dollars", "0")) * 100)
+                self.positions[tk] = Position(
+                    ticker=tk, event_ticker=et, category=cat, direction="",
+                    cell_name="", cell_cfg={}, entry_price=avg, entry_qty=qty,
+                    phase="active", entry_filled_ts=time.time(),
+                    is_v4=True, exit_cell_id=cell_id, play_type="v4_reconciled",
+                    strategy="exit", exit_band_x=band_x,
+                    exit_price=sp, exit_order_id=fresh_sells[0].get("order_id", ""))
+                self._log("reconcile_v4_exit_found", {
+                    "exit_price": sp, "cell_id": cell_id}, ticker=tk)
+                return
+        pos = Position(
             ticker=tk, event_ticker=et, category=cat, direction="",
-            cell_name="", cell_cfg={}, entry_price=avg, entry_qty=qty,
-            phase="active", entry_filled_ts=time.time(),
-            is_v4=True, exit_cell_id=cell_id, play_type="v4_reconciled",
-        )
-        if rule == "hold":
-            self.positions[tk] = Position(**base, strategy="hold", exit_band_x=None)
-            self._log("reconcile_v4_hold", {
-                "cell_id": cell_id, "avg": avg, "qty": qty}, ticker=tk)
-            return
-        exit_target = min(avg + band_x, EXIT_PRICE_CAP)
-        fresh = await api_get(self.session, self.ak, self.pk,
-            "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
-        fresh_sells = [o for o in (fresh or {}).get("orders", []) if o.get("action") == "sell"]
-        if fresh_sells:
-            sp = round(float(fresh_sells[0].get("yes_price_dollars", "0")) * 100)
-            self.positions[tk] = Position(**base, strategy="exit", exit_band_x=band_x,
-                exit_price=sp, exit_order_id=fresh_sells[0].get("order_id", ""))
-            self._log("reconcile_v4_exit_found", {
-                "exit_price": sp, "cell_id": cell_id}, ticker=tk)
-            return
-        oid, _ = await self.place_order(tk, "sell", "yes", exit_target, qty)
-        self.positions[tk] = Position(**base, strategy="exit", exit_band_x=band_x,
-            exit_price=exit_target, exit_order_id=oid)
-        self._log("reconcile_v4_exit_posted", {
-            "exit_price": exit_target, "band_x": band_x, "cell_id": cell_id,
-            "qty": qty, "order_id": oid}, ticker=tk)
+            cell_name="", cell_cfg={}, entry_price=avg, entry_qty=0,
+            phase="entry_resting", is_v4=True, exit_cell_id=cell_id,
+            play_type="v4_reconciled")
+        self.positions[tk] = pos
+        self._log("reconcile_v4_adopted", {
+            "cell_id": cell_id, "avg": avg, "qty": qty, "rule": rule,
+            "context": context}, ticker=tk)
+        if self.completion_reprice:
+            self._log("completion_booking_adoption", {
+                "event": et, "avg": avg, "qty": qty, "context": context}, ticker=tk)
+        await self._book_v4_entry_fill(tk, pos, qty, avg, "adopted",
+                                       source="reconcile_adoption")
 
     async def reconcile(self, quiet=False):
         """Load existing positions and resting orders from Kalshi.
@@ -4753,7 +4975,8 @@ class LiveV3:
                 # v4: use the adaptive exit band table (hold-skip aware). Avoids
                 # posting an unwanted exit on a hold-cell position after restart.
                 if not self.fv_scenarios_enabled and cat in self.categories_enabled:
-                    await self._v4_reconcile_naked(tk, et, cat, avg, pinfo)
+                    await self._v4_reconcile_naked(tk, et, cat, avg, pinfo,
+                        context=("steady_state_reconcile" if quiet else "boot_reconcile"))
                     continue
                 direction = "leader" if avg > 50 else "underdog"
                 if cat:

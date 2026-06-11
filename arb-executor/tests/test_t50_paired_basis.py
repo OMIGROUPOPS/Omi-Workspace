@@ -27,10 +27,18 @@ cancels = []
 s = types.SimpleNamespace(event_tickers={ET: {KES, MAR}}, positions={}, books={},
     _log=lambda *a, **k: None, _save_v4_resting=lambda: None,
     _untombstone_entry=lambda tk, pos: None,
-    completion_reprice=False)  # PART-2: flag OFF -> handler is the pre-Part-2 T50 backstop
+    completion_reprice=False,  # PART-2: flag OFF -> handler is the pre-Part-2 T50 backstop
+    # [C-P0-RACE] fixture extension: the T50 arm now resolves its cancel against
+    # exchange truth via _cancel_entry_and_resolve; api_get is stubbed below as a
+    # clean cancel (no fill) so the pre-fix semantics are what this suite asserts.
+    session=None, ak=None, pk=None, rl=None, _booking_inflight=set())
 async def fake_cancel(tk, oid, label): cancels.append((tk, oid, label))
 s.cancel_order = fake_cancel
-for n in ("_sibling_ticker", "_paired_basis_ok", "_cancel_sibling_if_paired_over_cap"):
+async def fake_api_get(sess, ak, pk, path, rl):
+    return {"order": {"status": "canceled", "fill_count_fp": 0}}
+M.api_get = fake_api_get
+for n in ("_sibling_ticker", "_paired_basis_ok", "_cancel_sibling_if_paired_over_cap",
+          "_cancel_entry_and_resolve", "_parse_entry_fill", "_book_v4_entry_fill"):
     setattr(s, n, types.MethodType(getattr(M.LiveV3, n), s))
 
 fails = 0

@@ -50,7 +50,10 @@ BOUND = ("_sibling_ticker", "_cancel_sibling_if_paired_over_cap",
          "_completion_buffer_exempt", "_reprice_target", "_maybe_set_window_open",
          "_v4_manage_completion", "_completion_revert", "_log_orphan_outcome",
          "_untombstone_entry", "_is_match_live", "_save_v4_resting",
-         "_completion_tripwire", "_completion_fill_guards", "_completion_arm_check")
+         "_completion_tripwire", "_completion_fill_guards", "_completion_arm_check",
+         # [C-P0-RACE] cancel sites resolve against exchange truth via these:
+         "_cancel_entry_and_resolve", "_parse_entry_fill",
+         "_book_v4_entry_fill", "_v4_apply_exit", "_fill_is_taker")
 
 def make_bot(flag=True, disabled=False):
     s = types.SimpleNamespace()
@@ -70,6 +73,12 @@ def make_bot(flag=True, disabled=False):
     s._save_processed = lambda: None
     s._trade_times = {}
     s._events_live = set()
+    # [C-P0-RACE] booking-handler dependencies (raced fills book via _book_v4_entry_fill)
+    s._booking_inflight = set()
+    s.n_entries = 0
+    s.cell_lookup = lambda cat, price: 0
+    s.exit_rule_for = lambda cat, price: (10, "exit")
+    s.exit_depth_floor = 0
     s.logs = []
     s._log = lambda ev, det=None, ticker="": s.logs.append((ev, det or {}, ticker))
     s.placed = []

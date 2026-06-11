@@ -1,0 +1,37 @@
+G2 DEPTH-CHAIN v1 — pre-registered answers (2,858 ticker-days, 12.35M ticks, 8,771 joins)
+parquet sha256 b86318242044976cfc9f118e079eae1b12f5e90a2829e8a55f0eb9bf26e9f925
+
+Q1 P(FILL | DEPTH AHEAD): YES, useful separation, monotone in every category.
+  Depth-ahead quartile bounds (contracts at join level): 84 / 499 / 1,381.
+  Certain-fill: thin Q1 0.41-0.47 vs wall Q4 0.25-0.37 (+15-18pp); touched
+  similar across quartiles -> the separation is QUEUE CONSUMPTION, not touch.
+  Threshold: <=84 ahead = thin regime; >1,381 = wall regime (worst everywhere).
+
+Q2 WALLS vs OUR PLACEMENTS (K-invariant 3/5/10):
+  buried_behind_wall touch 0.084-0.088 | no_wall 0.141-0.147 | at_wall 0.25-0.27
+  | in_front_of_wall 0.438-0.462. 5x front-vs-buried spread, stable across K.
+  At K=3 the offset table buries 2,901/5,971 (49%) of placements behind walls.
+  EXHIBITS: Collarini burial (26JUN11CORCOL-COR 12:31 ET, T-29): our 32c join
+    behind 2,015 at-level + 3,484 at 31; ask wall 9,952@33 + 5,918@35
+    (depth 5,769 vs 16,138, ratio 0.263); never touched before T-15.
+  Mannarino (26JUN10MANRIN-RIN T-180/T-120): walls 1,071@55 + 1,730@52;
+    table placement P=41 buried behind both; ad5/bd5 7,158/3,177.
+  Billy Harris (26JUN11SWEHAR T-180): HAR leg wall 4,662@68 (P=56 buried);
+    SWE leg wall 6,459@28 with P=28 placed AT the wall.
+
+Q3 IMBALANCE AS DRIFT: directionally consistent, WEAK. Pearson r +0.03..+0.13
+  (all 20 cells positive). Bin spread (ask-heavy bin0 vs bid-heavy bin4):
+  bid-heavy drifts UP, ask-heavy drifts DOWN in 19/20 cells — the chain reads
+  as direction, but at 0.1-3c per 15-60min it is a tilt, not a signal; only
+  WTA_CHALL T60-T15 is material (bin0 -1.6c vs bin4 +3.0c at +30m, r=0.13).
+  Honest verdict: NOT null, but too weak to act on alone at these horizons.
+
+Q4 REALISM CALIBRATION (joins, P(certain|touched) by depth ahead):
+  thin Q1 0.63-0.70 | Q2 0.58-0.72 | Q3 0.57-0.60 | wall Q4 0.40-0.57.
+  The engagement replay's 0.5x/0.7x bracket maps onto DEPTH: 0.7x is real for
+  thin-queue joins (<=~500 ahead), 0.5x for wall-buried joins (>~1,400).
+  Neither end is wrong — they are different depth regimes.
+
+Caveats: back-of-queue assumption (conservative); 1,368 files skipped for
+missing start times (mostly non-tennis/old); CORCOL exhibit absent from the
+T-180/T-120 grid (no print yet) — captured manually at the kill window above.

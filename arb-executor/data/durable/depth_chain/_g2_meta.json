@@ -1,0 +1,14 @@
+{
+ "sha256": "b86318242044976cfc9f118e079eae1b12f5e90a2829e8a55f0eb9bf26e9f925",
+ "rows": 639,
+ "files": 4485,
+ "used": 2858,
+ "nostart": 1368,
+ "tick_rows": 12350274,
+ "n_joins": 8771,
+ "depth_quartile_bounds": [
+  84.0,
+  499.0,
+  1381.0
+ ]
+}

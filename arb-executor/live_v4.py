@@ -344,6 +344,12 @@ class Position:
     # optimistic on taker entries in BOTH paper and live; the Kalshi account
     # reconciliation reflects true fees. Paper findings report raw + fee-haircut
     # PnL; live cash is fee-accurate via exchange-side deduction.
+    # [C-BID-SURVIVAL DIFF-2] set at PLACEMENT iff the resting-maker bid was
+    # placed AT the join level (target == best_bid at placement). Exempts the
+    # bid from bid_marketable_stale (joining the bid is the desired state, not
+    # staleness). Drift bids (flag unset) keep the full stale rule. Persisted
+    # sparsely in live_v4_resting.json (key present only when True).
+    intended_join: bool = False
     strategy: str = ""                # "exit" | "hold" (set at fill from exit table)
     exit_band_x: Optional[int] = None  # +X cents for exit cells; None for hold cells
     exit_cell_id: int = 0             # 1c cell used for the exit-table lookup (entry-priced)
@@ -3847,6 +3853,9 @@ class LiveV3:
                     is_v4=True, regime_at_posting=regime, target_price=target_bid,
                     placement_minute=placement_min, entry_mode=entry_mode,
                     paid_taker_fee=(post_only is False),
+                    # [C-BID-SURVIVAL DIFF-2] precise key, set at placement only
+                    intended_join=(entry_mode == "resting_maker"
+                                   and target_bid == book.best_bid),
                 )
                 self.positions[tk] = pos
                 if entry_mode == "resting_maker":
@@ -4132,6 +4141,11 @@ class LiveV3:
                     "entry_mode": pos.entry_mode,
                     "match_start_ts": pos.match_start_ts,
                 }
+                # [C-BID-SURVIVAL DIFF-2] sparse key: present ONLY when True, so
+                # non-join legs keep the exact legacy key set (shape regression
+                # in test_completion_reprice stays byte-identical).
+                if pos.intended_join:
+                    out[tk]["intended_join"] = True
                 if pos.entry_mode == "completion_reprice":
                     out[tk].update({
                         "completion_s0": pos.completion_s0,
@@ -4204,6 +4218,7 @@ class LiveV3:
                 target_price=int(d.get("target_price", 0)),
                 placement_minute=int(d.get("placement_minute", 0)),
                 entry_mode=d.get("entry_mode", "resting_maker"),
+                intended_join=bool(d.get("intended_join", False)),
                 completion_s0=int(d.get("completion_s0", 0)),
                 completion_x=int(d.get("completion_x", 0)),
                 completion_leg1_basis=int(d.get("completion_leg1_basis", 0)),
@@ -4266,6 +4281,18 @@ class LiveV3:
         # (fallback_maker = T-20m clamp; marketable_clamp = 3rd-cross-site placement clamp): a normal
         # resting bid that drifts marketable is NOT exempt (still cancelled). Degenerate still cancels.
         if should_cancel and creason == "bid_marketable_stale" and pos.entry_mode in ("fallback_maker", "marketable_clamp"):
+            should_cancel, creason = False, None
+        # [C-BID-SURVIVAL DIFF-2] join-bid exemption (same shape as the RUN-7
+        # exemption above, keyed on the PLACEMENT-time intended_join flag --
+        # never on the current book): a bid deliberately placed AT the join
+        # level is in its desired state; cancelling it is the E3..E5 churn
+        # engine (8%->97% stale-kill share, C-ERA-LINK) and -- via anchor
+        # aging past 1800s -- the leg-death spiral (Coria, 29 cycles,
+        # 2026-06-11). The bid rests; no re-anchor, so the freshness clock
+        # stops applying to it. Drift bids (flag unset) keep the full rule;
+        # degenerate cancel, T51 match-live, T52, and the T-15 buffer all
+        # still govern this bid.
+        if should_cancel and creason == "bid_marketable_stale" and pos.intended_join:
             should_cancel, creason = False, None
         if should_cancel:
             # [C-P0-RACE site 1 -- THE observed bug, AUGFUC-AUG 2026-06-11 05:42:10 ET]
@@ -4449,6 +4476,8 @@ class LiveV3:
         pos.play_type = "v4_resting_maker"
         mode = "repost_resting"
         pos.target_price = new_target
+        # [C-BID-SURVIVAL DIFF-2] re-key the join flag at every re-placement
+        pos.intended_join = (new_target == book.best_bid)
         pos.regime_at_posting = new_regime
         pos.last_cancel_repost_ts = now
         self._log("v4_move_repost", {
@@ -4592,6 +4621,10 @@ class LiveV3:
             return
         pos.entry_price = price
         pos.entry_order_id = oid
+        # [C-BID-SURVIVAL DIFF-2] revert re-places at the PRE-completion price in
+        # a possibly-moved book -- not a placement-time join; clear conservatively
+        # so the full stale rule governs the reverted bid.
+        pos.intended_join = False
         pos.entry_mode = pos.completion_prev_mode or "resting_maker"
         pos.play_type = "v4_" + pos.entry_mode
         pos.target_price = pos.completion_prev_target or price

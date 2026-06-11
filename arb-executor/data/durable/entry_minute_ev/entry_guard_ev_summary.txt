@@ -1,0 +1,32 @@
+[C-GUARD-EV] rolling-60s price guard, T-19->gun, unfilled-at-T-20 cohort
+engine R1 PASS (atlas 8.699 / maker 12.110 / deployed 10.949)
+cohort: 10041 miss_fallback legs, 4499 with candle coverage
+
+per (category, G): acceptance / accepted net ROC / N / SE / median conv minute
+  ATP_CHALL  G=1c  acc 100.0%  net ROC  +0.593%  N=2231  SE 1.383pp  conv@T-19
+  ATP_CHALL  G=2c  acc 100.0%  net ROC  +0.360%  N=2231  SE 1.385pp  conv@T-19
+  ATP_CHALL  G=3c  acc 100.0%  net ROC  +0.256%  N=2231  SE 1.386pp  conv@T-19
+  ATP_CHALL  G=4c  acc 100.0%  net ROC  +0.539%  N=2231  SE 1.383pp  conv@T-19
+  ATP_MAIN   G=1c  acc 100.0%  net ROC  +3.767%  N= 984  SE 1.891pp  conv@T-19
+  ATP_MAIN   G=2c  acc 100.0%  net ROC  +3.226%  N= 984  SE 1.900pp  conv@T-19
+  ATP_MAIN   G=3c  acc 100.0%  net ROC  +3.216%  N= 984  SE 1.900pp  conv@T-19
+  ATP_MAIN   G=4c  acc 100.0%  net ROC  +3.146%  N= 984  SE 1.900pp  conv@T-19
+  WTA_CHALL  G=1c  acc 100.0%  net ROC  -1.489%  N= 384  SE 3.588pp  conv@T-19
+  WTA_CHALL  G=2c  acc 100.0%  net ROC  -1.039%  N= 384  SE 3.568pp  conv@T-19
+  WTA_CHALL  G=3c  acc 100.0%  net ROC  -1.355%  N= 384  SE 3.539pp  conv@T-19
+  WTA_CHALL  G=4c  acc 100.0%  net ROC  -0.872%  N= 384  SE 3.558pp  conv@T-19
+  WTA_MAIN   G=1c  acc 100.0%  net ROC  +4.526%  N= 899  SE 2.297pp  conv@T-19
+  WTA_MAIN   G=2c  acc 100.0%  net ROC  +4.334%  N= 899  SE 2.305pp  conv@T-19
+  WTA_MAIN   G=3c  acc 100.0%  net ROC  +4.280%  N= 899  SE 2.305pp  conv@T-19
+  WTA_MAIN   G=4c  acc 100.0%  net ROC  +4.532%  N= 899  SE 2.299pp  conv@T-19
+
+overall per G (N-wtd):
+  G=1c: acc 100.0%  accepted net ROC  +1.917%  (SE 0.972pp, N=4498)
+  G=2c: acc 100.0%  accepted net ROC  +1.680%  (SE 0.973pp, N=4498)
+  G=3c: acc 100.0%  accepted net ROC  +1.589%  (SE 0.973pp, N=4498)
+  G=4c: acc 100.0%  accepted net ROC  +1.804%  (SE 0.972pp, N=4498)
+
+PRE-REGISTERED BAR: accepted-subset EV >= 0 after fee at G=1c (1.917%) -> part (ii) SHIPS with G=1c
+
+parquet /tmp/entry_guard_ev_v1.parquet
+sha256 5d134cd8bbec9041afb36b83d0e3b788edb298f093c4a0388df0cc4f64a6b50d

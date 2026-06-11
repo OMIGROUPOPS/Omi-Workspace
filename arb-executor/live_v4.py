@@ -2258,6 +2258,25 @@ class LiveV3:
         sibs = [t for t in self.event_tickers.get(et, ()) if t != tk]
         return sibs[0] if len(sibs) == 1 else None
 
+    def _sibling_engageable(self, sib):
+        """[C-BID-SURVIVAL DIFF-1 / PRE-GATE B] Engageable := we hold or rest the
+        sibling (real cost exists), OR its book has a print within
+        V4_LAST_TRADE_MAX_AGE_SEC (1800s) -- the EXACT constant placement uses,
+        so engageable <=> the routing could legally bid that leg right now.
+        Non-thrash: computed once per guard evaluation from a single snapshot;
+        dead->engageable flips only on a NEW print (evidence-monotone),
+        engageable->dead only by clock advance."""
+        sp = self.positions.get(sib)
+        if (sp is not None and not sp.settled
+                and (sp.entry_qty > 0
+                     or (sp.phase == "entry_resting" and sp.entry_order_id))):
+            return True
+        sb = self.books.get(sib)
+        if sb is None or sb.last_trade_price <= 0:
+            return False
+        lt_age = (time.time() - sb.last_trade_ts) if sb.last_trade_ts else float("inf")
+        return lt_age <= V4_LAST_TRADE_MAX_AGE_SEC
+
     def _paired_basis_ok(self, tk, et, this_price):
         """T50 paired-basis guard. Returns False if entering `tk` at this_price
         would push the event's COMBINED basis (this side + the sibling's
@@ -2266,7 +2285,19 @@ class LiveV3:
         Position.entry_price if we hold/rest a side (fill price if filled, bid
         price if resting), else the sibling's current ask (the level we'd pay).
         No sibling signal -> allow (cancel-on-fill is the backstop). Ports the
-        arb_executor_ws.py intra-k combined=ask_a+ask_b math (negative space)."""
+        arb_executor_ws.py intra-k combined=ask_a+ask_b math (negative space).
+
+        [C-BID-SURVIVAL DIFF-1] phantom-sibling scoping: the current-ask
+        substitution applies ONLY when the sibling is ENGAGEABLE (we could
+        actually buy it -- _sibling_engageable). A dead sibling (no position,
+        no print within 1800s) cannot complete the pair, so the leg is
+        single-sided: the per-leg sanity governs and the decision is NAMED
+        (single_sided_hold). Revival: the next evaluation sees the fresh print
+        and runs the guard on REAL prices; over-cap then DECLINES placement
+        (paired_basis_skip, named) -- never retroactive-cancels a held leg.
+        The Collarini kill (2026-06-11 12:41:19, own 69 + phantom ask 33 = 102
+        with ZERO sibling exposure and the sibling anchor-dead) is this exact
+        branch."""
         sib = self._sibling_ticker(tk, et)
         if not sib:
             return True
@@ -2274,6 +2305,17 @@ class LiveV3:
         if sp is not None and not sp.settled and sp.entry_price > 0:
             sib_cost = sp.entry_price
         else:
+            if not self._sibling_engageable(sib):
+                sb = self.books.get(sib)
+                lt_age = ((time.time() - sb.last_trade_ts)
+                          if sb is not None and sb.last_trade_ts else None)
+                self._log("single_sided_hold", {
+                    "event": et, "this_price": this_price, "sibling": sib[-12:],
+                    "reason": "sibling_dead_no_position_no_fresh_print",
+                    "sibling_ask": sb.best_ask if sb else None,
+                    "sibling_last_trade_age_sec": round(lt_age, 1) if lt_age is not None else None,
+                    "cap": V4_PAIRED_BASIS_CAP}, ticker=tk)
+                return True
             sb = self.books.get(sib)
             sib_cost = sb.best_ask if sb else None
         if not sib_cost or sib_cost <= 0:

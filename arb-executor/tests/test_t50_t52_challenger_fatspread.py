@@ -40,10 +40,19 @@ s = types.SimpleNamespace(_log=lambda *a, **k: None)
 s.event_tickers = {ET: {SHI, HOH}}
 s.positions = {}
 s.books = {}
-for nm in ("_sibling_ticker", "_paired_basis_ok", "_taker_spread_ok"):
+# [C-BID-SURVIVAL DIFF-1 fixture extension] _paired_basis_ok now consults
+# _sibling_engageable; fixture books carry a FRESH print so the historical
+# ask-substitution semantics these checks assert remain the active branch.
+import time as _time
+for nm in ("_sibling_ticker", "_paired_basis_ok", "_taker_spread_ok",
+           "_sibling_engageable"):
     setattr(s, nm, types.MethodType(getattr(M.LiveV3, nm), s))
-pos = lambda price: types.SimpleNamespace(entry_price=price, settled=False)
-bk = lambda b, a: types.SimpleNamespace(best_ask=a, best_bid=b)
+pos = lambda price: types.SimpleNamespace(entry_price=price, settled=False,
+                                          entry_qty=5, phase="active",
+                                          entry_order_id="o")
+bk = lambda b, a: types.SimpleNamespace(best_ask=a, best_bid=b,
+                                        last_trade_price=max(b, 1),
+                                        last_trade_ts=_time.time())
 
 print("V4_PAIRED_BASIS_CAP =", M.V4_PAIRED_BASIS_CAP, " MAX_TAKER_SPREAD =", M.MAX_TAKER_SPREAD)
 

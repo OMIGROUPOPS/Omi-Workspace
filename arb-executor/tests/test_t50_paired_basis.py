@@ -12,8 +12,13 @@ REPO = Path(__file__).resolve().parent.parent  # arb-executor/
 sys.path.insert(0, str(REPO))                  # repo first -> repo fv.py, not /tmp/fv.py
 import live_v4 as M
 
+import time as _time
 class Book:
-    def __init__(self, bid, ask): self.best_bid = bid; self.best_ask = ask; self.updated = 1e18
+    # [C-BID-SURVIVAL DIFF-1 fixture extension] fresh print on the stub book so
+    # the no-position checks keep asserting the engageable/ask-substitution branch.
+    def __init__(self, bid, ask):
+        self.best_bid = bid; self.best_ask = ask; self.updated = 1e18
+        self.last_trade_price = max(bid, 1); self.last_trade_ts = _time.time()
 
 def mk(ticker, et, entry_price=0, entry_qty=0, oid="", phase="entry_resting"):
     p = M.Position(ticker=ticker, event_ticker=et, category="ATP_CHALL",
@@ -38,7 +43,8 @@ async def fake_api_get(sess, ak, pk, path, rl):
     return {"order": {"status": "canceled", "fill_count_fp": 0}}
 M.api_get = fake_api_get
 for n in ("_sibling_ticker", "_paired_basis_ok", "_cancel_sibling_if_paired_over_cap",
-          "_cancel_entry_and_resolve", "_parse_entry_fill", "_book_v4_entry_fill"):
+          "_cancel_entry_and_resolve", "_parse_entry_fill", "_book_v4_entry_fill",
+          "_sibling_engageable"):
     setattr(s, n, types.MethodType(getattr(M.LiveV3, n), s))
 
 fails = 0

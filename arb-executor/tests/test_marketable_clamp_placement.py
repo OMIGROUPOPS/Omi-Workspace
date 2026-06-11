@@ -26,12 +26,15 @@ src = (REPO / "live_v4.py").read_text(encoding="utf-8", errors="ignore")
 check("self.marketable_clamp_placement = self.config.get(\"marketable_clamp_placement\", False)" in src,
       "config flag marketable_clamp_placement present (default False = byte-identical off)")
 # the gated clamp branch: ask-1 maker, guarded by flag AND not force_cross
+# [test-hygiene 2026-06-11] Stage-1 (a313b6fb) widened the gate to
+# (marketable_clamp_placement OR maker_only_entry) and not force_cross --
+# pin the CURRENT gate (the stale pre-Stage-1 pin failed at every HEAD since Jun 6).
 clamp = re.search(
-    r"if self\.marketable_clamp_placement and not force_cross:.*?"
+    r"if \(self\.marketable_clamp_placement or self\.maker_only_entry\) and not force_cross:.*?"
     r"target_bid = max\(1, current_ask - 1\).*?"
     r'entry_price, post_only, entry_mode = target_bid, True, "marketable_clamp"',
     src, re.S)
-check(clamp is not None, "clamp branch: gated on (marketable_clamp_placement and not force_cross) -> ask-1, post_only=True, marketable_clamp")
+check(clamp is not None, "clamp branch: gated on ((marketable_clamp_placement or maker_only_entry) and not force_cross) -> ask-1, post_only=True, marketable_clamp")
 # the else still crosses taker (byte-identical off / force_cross path)
 check(re.search(r'else:\s*\n\s*# MARKETABLE TAKER.*?\n\s*entry_price, post_only, entry_mode = current_ask, False, "marketable_taker"', src, re.S) is not None,
       "else branch preserved: marketable_taker cross at current_ask (gate off / force_cross)")

@@ -16,7 +16,11 @@ def check(c, m):
     print(("PASS " if c else "*** FAIL ") + m); fails += (0 if c else 1)
 
 def ns(clamp, com=True, buf=1):
-    s = types.SimpleNamespace(fallback_maker_clamp=clamp, cancel_on_marketable=com, cancel_marketable_buffer=buf)
+    # [test-hygiene 2026-06-11] Stage-1 (a313b6fb) made _fallback_order read
+    # maker_only_entry; False preserves the original RUN-7 assertions (clamp
+    # behavior driven purely by fallback_maker_clamp as this suite sweeps it).
+    s = types.SimpleNamespace(fallback_maker_clamp=clamp, cancel_on_marketable=com, cancel_marketable_buffer=buf,
+                              maker_only_entry=False)
     s._reprice_target = types.MethodType(M.LiveV3._reprice_target, s)
     s._fallback_order = types.MethodType(M.LiveV3._fallback_order, s)
     s._resting_cancel_reason = types.MethodType(M.LiveV3._resting_cancel_reason, s)

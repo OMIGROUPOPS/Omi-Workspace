@@ -1,0 +1,65 @@
+legs 14033 lut 36 exitr 360
+tape tickers 14033
+simulated legs 14024
+
+=== R1 EQUIVALENCE ===
+atlas blended=8.699% maker(pre-realism)=12.110% deployed(r=0.60)=10.949%
+(i) 10.949 within +/-0.3 of 10.9: True  (ii) 246/249 within 2pp: True  (iii) tail 0: True
+R1 PASS — engagement branch runs.
+
+=== ELIGIBILITY (variant/arm x cat x bucket x band) ===
+rows 364  beats-skip@0.5x 105  legs_with_hole 14033  never_traded 9
+SHAPE: ENGAGEMENT SHIPS (shape) — rows clear beats-skip at 0.5x
+parquet /root/Omi-Workspace/arb-executor/data/durable/entry_completion/engagement_replay_v1.parquet
+sha256 b601b5e89e04955a1f8f02090db5c9b2ea5c856761f74a8519b8f65b5cb90161
+
+-- cleared rows --
+  C1_join_touch  engage  WTA_CHALL T240_T60  r25_34  N= 123 nf= 16 wlb=0.09 net=  33.2c roc= 112.0% lift0.5=  1.46 BEATS_SKIP_0p5x
+  C1_join_touch  engage  WTA_MAIN  T240_T60  r25_34  N= 490 nf= 48 wlb=0.08 net=  16.2c roc=  53.9% lift0.5=  0.63 BEATS_SKIP_0p5x
+  C1_join_touch  engage  ATP_CHALL T60_T15   r25_34  N= 229 nf= 31 wlb=0.10 net=  12.0c roc=  40.4% lift0.5=  0.61 BEATS_SKIP_0p5x
+  C1_join_touch  engage  WTA_CHALL T60_T15   r25_34  N=  37 nf=  7 wlb=0.11 net=   9.1c roc=  30.6% lift0.5=  0.48 BEATS_SKIP_0p5x
+  C1_join_touch  engage  ATP_CHALL T240_T60  r15_24  N= 453 nf= 63 wlb=0.11 net=   8.3c roc=  41.2% lift0.5=  0.47 BEATS_SKIP_0p5x
+  C1_join_touch  engage  ATP_CHALL T240_T60  r05_14  N= 278 nf= 30 wlb=0.08 net=  11.6c roc= 122.6% lift0.5=  0.47 BEATS_SKIP_0p5x
+  C1_join_touch  engage  ATP_MAIN  T240_T60  r15_24  N= 318 nf= 29 wlb=0.07 net=  10.1c roc=  49.0% lift0.5=  0.34 BEATS_SKIP_0p5x
+  C2_bid_minus_1 engage  ATP_CHALL T60_T15   r35_44  N= 227 nf= 16 wlb=0.05 net=  14.5c roc=  38.2% lift0.5=  0.34 BEATS_SKIP_0p5x
+  C1_join_touch  engage  ATP_CHALL T60_T15   r15_24  N= 114 nf=  8 wlb=0.04 net=  17.0c roc=  89.5% lift0.5=  0.34 BEATS_SKIP_0p5x
+  C1_join_strict engage  ATP_CHALL T60_T15   r25_34  N= 229 nf= 16 wlb=0.05 net=  11.6c roc=  39.3% lift0.5=  0.27 BEATS_SKIP_0p5x
+  C1_join_touch  engage  WTA_MAIN  T60_T15   r35_44  N=  62 nf=  7 wlb=0.06 net=   8.6c roc=  20.9% lift0.5=  0.27 BEATS_SKIP_0p5x
+  C1_join_touch  engage  ATP_MAIN  T240_T60  r25_34  N= 523 nf= 39 wlb=0.06 net=   8.9c roc=  30.0% lift0.5=  0.26 BEATS_SKIP_0p5x
+  C1_join_touch  engage  ATP_MAIN  T60_T15   r25_34  N=  54 nf=  4 wlb=0.03 net=  12.2c roc=  40.8% lift0.5=  0.21 BEATS_SKIP_0p5x
+  C2_bid_minus_1 engage  ATP_MAIN  T240_T60  r45_54  N= 581 nf= 15 wlb=0.02 net=  24.2c roc=  47.6% lift0.5=  0.21 BEATS_SKIP_0p5x
+  C2_bid_minus_1 engage  ATP_CHALL T60_T15   r25_34  N= 227 nf= 14 wlb=0.04 net=  10.1c roc=  34.3% lift0.5=  0.20 BEATS_SKIP_0p5x
+  C1_join_strict engage  ATP_MAIN  T240_T60  r45_54  N= 570 nf= 15 wlb=0.02 net=  21.1c roc=  41.8% lift0.5=  0.18 BEATS_SKIP_0p5x
+  C1_join_touch  engage  ATP_CHALL T60_T15   r75_84  N=  98 nf=  7 wlb=0.04 net=   9.1c roc=  11.6% lift0.5=  0.18 BEATS_SKIP_0p5x
+  C2_bid_minus_1 engage  WTA_MAIN  T60_T15   r35_44  N=  65 nf=  2 wlb=0.01 net=  35.0c roc=  83.3% lift0.5=  0.18 BEATS_SKIP_0p5x
+  C1_join_touch  engage  WTA_MAIN  T60_T15   r25_34  N=  74 nf=  5 wlb=0.03 net=   9.8c roc=  31.2% lift0.5=  0.16 BEATS_SKIP_0p5x
+  C1_join_touch  engage  ATP_CHALL T240_T60  r25_34  N= 694 nf=107 wlb=0.13 net=   2.4c roc=   8.0% lift0.5=  0.16 BEATS_SKIP_0p5x
+
+=== PER-CANDIDATE AGGREGATE (pooled; lift = r * wilson_lb * mean_net, cents/engagement) ===
+  C0_skip        engage  N=all-hole-moments fills=0 net=0.0c roc=0.0% lift0.5=0.00 lift0.7=0.00 (baseline)
+  C1_join_strict engage  N=15957 fills= 388 rate=0.024 wlb=0.022 net=   1.7c roc=   3.8% lift0.5= 0.02 lift0.7= 0.03 exit=229 settleW=28 settle0=131 capbreach=206
+  C1_join_touch  engage  N=15957 fills=1325 rate=0.083 wlb=0.080 net=   2.4c roc=   5.3% lift0.5= 0.09 lift0.7= 0.13 exit=763 settleW=111 settle0=451 capbreach=666
+  C2_bid_minus_1 engage  N=15945 fills= 334 rate=0.021 wlb=0.019 net=   1.7c roc=   3.8% lift0.5= 0.02 lift0.7= 0.02 exit=199 settleW=24 settle0=111 capbreach=157
+  C3_aged_1200   remove  N=  118 fills= 118 rate=1.000 wlb=0.978 net=  14.6c roc=  31.9% lift0.5= 7.14 lift0.7= 9.99 exit=96 settleW=8 settle0=14 capbreach=3
+  C3_aged_14400  extend  N= 1694 fills=  31 rate=0.018 wlb=0.014 net=  -7.5c roc= -19.1% lift0.5=-0.05 lift0.7=-0.07 exit=11 settleW=3 settle0=17 capbreach=17
+  C3_aged_3600   extend  N= 1259 fills=  19 rate=0.015 wlb=0.010 net= -12.2c roc= -30.8% lift0.5=-0.06 lift0.7=-0.09 exit=8 settleW=0 settle0=11 capbreach=11
+  C3_aged_7200   extend  N= 1563 fills=  28 rate=0.018 wlb=0.013 net=  -7.9c roc= -20.1% lift0.5=-0.05 lift0.7=-0.07 exit=11 settleW=2 settle0=15 capbreach=16
+
+=== TIME-BUCKET DISTRIBUTION OF FILLS (per candidate, engage/extend arms) ===
+  C1_join_strict T240_T60= 289  T60_T15=  99  T15_T0=   0  (total 388, T15_T0 share 0%)
+  C1_join_touch  T240_T60=1113  T60_T15= 212  T15_T0=   0  (total 1325, T15_T0 share 0%)
+  C2_bid_minus_1 T240_T60= 241  T60_T15=  93  T15_T0=   0  (total 334, T15_T0 share 0%)
+  C3_aged_14400  T240_T60=   0  T60_T15=  31  T15_T0=   0  (total 31, T15_T0 share 0%)
+  C3_aged_3600   T240_T60=   0  T60_T15=  19  T15_T0=   0  (total 19, T15_T0 share 0%)
+  C3_aged_7200   T240_T60=   0  T60_T15=  28  T15_T0=   0  (total 28, T15_T0 share 0%)
+
+=== SETTLEMENT-BLEED / CAP-HYGIENE (pooled per candidate) ===
+  C1_join_strict engage  fills= 388 exit_scalps= 229 (59%) settle_wins= 28 settle0_losses=131 (bleed 33.8%) cap_breach_vs_r1_sibling=206 (53.1%)
+  C1_join_touch  engage  fills=1325 exit_scalps= 763 (58%) settle_wins=111 settle0_losses=451 (bleed 34.0%) cap_breach_vs_r1_sibling=666 (50.3%)
+  C2_bid_minus_1 engage  fills= 334 exit_scalps= 199 (60%) settle_wins= 24 settle0_losses=111 (bleed 33.2%) cap_breach_vs_r1_sibling=157 (47.0%)
+  C3_aged_1200   remove  fills= 118 exit_scalps=  96 (81%) settle_wins=  8 settle0_losses= 14 (bleed 11.9%) cap_breach_vs_r1_sibling=3 (2.5%)
+  C3_aged_14400  extend  fills=  31 exit_scalps=  11 (35%) settle_wins=  3 settle0_losses= 17 (bleed 54.8%) cap_breach_vs_r1_sibling=17 (54.8%)
+  C3_aged_3600   extend  fills=  19 exit_scalps=   8 (42%) settle_wins=  0 settle0_losses= 11 (bleed 57.9%) cap_breach_vs_r1_sibling=11 (57.9%)
+  C3_aged_7200   extend  fills=  28 exit_scalps=  11 (39%) settle_wins=  2 settle0_losses= 15 (bleed 53.6%) cap_breach_vs_r1_sibling=16 (57.1%)
+
+DONE.

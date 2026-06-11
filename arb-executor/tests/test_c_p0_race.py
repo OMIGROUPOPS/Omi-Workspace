@@ -24,7 +24,12 @@ def check(c, m):
     global fails; print(("PASS " if c else "*** FAIL ") + m); fails += (0 if c else 1)
 
 def run(coro):
-    return asyncio.new_event_loop().run_until_complete(coro)
+    # close the loop (leaked loops GC at exit -> py3.12 self-pipe ValueError)
+    loop = asyncio.new_event_loop()
+    try:
+        return loop.run_until_complete(coro)
+    finally:
+        loop.close()
 
 # ---- routable api_get stub --------------------------------------------------
 # POLL_QUEUE: list of responses for successive get-order polls (None = API failure).

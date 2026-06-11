@@ -37,7 +37,14 @@ def make_pos(is_v4=True, exit_order_id=""):
 
 
 def run(coro):
-    return asyncio.new_event_loop().run_until_complete(coro)
+    # [C-P0-RACE fixture hygiene] close the loop -- leaked loops GC at exit and
+    # py3.12 raises "Invalid file descriptor: -1" on the double-closed self-pipe
+    # (surfaced on the VPS once live_v4 grew; harness bug, not product code).
+    loop = asyncio.new_event_loop()
+    try:
+        return loop.run_until_complete(coro)
+    finally:
+        loop.close()
 
 
 # 1. instant fill on placement -> booked + exit posted at source (the SHEBRA-SHE case)

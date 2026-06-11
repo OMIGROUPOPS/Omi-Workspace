@@ -20,11 +20,14 @@ VARIANTS (entry semantics only; exit/settle = locked v1 machinery, exit rule
    keyed on the leg's atlas anchor; realize() incl. size-qual scalp; all bids
    are MAKER — no taker fee):
    C0  skip baseline: realized 0, capital 0 (what live does).
-   C1  join-bid: level = yes_bid_close at engagement. DUAL fill semantics with
-       STRICT traded-through inequality: filled iff a later minute (within the
-       bucket, before live takes over) has price_low < level (tape traded
-       strictly through the joined queue) OR yes_ask_close < level (book moved
-       strictly through). Both strict — we are at the BACK of the bid queue.
+   C1  join-bid: level = yes_bid_close at engagement, reported in BOTH fill
+       semantics as separate rows (C-REPLAY-DELIVER item-4 correction — "dual
+       semantics" = two variants, not one dual trigger):
+         C1_join_strict: filled iff a later minute (within the bucket, before
+           live takes over) has price_low < level (tape traded strictly through
+           the joined queue) OR yes_ask_close < level — back of the queue.
+         C1_join_touch:  same level, touch semantics (price_low <= level OR
+           yes_ask_close <= level) — front-of-queue upper bound.
    C2  bid-1: level = yes_bid_close - 1 (alone at the level): touch semantics
        price_low <= level OR yes_ask_close <= level.
    C3  aged last-trade sweep, A in {1200,1800,3600,7200,14400}s:
@@ -188,7 +191,7 @@ def hole_at(traded_ttms, m):
     age=(min(prior)-m)*60.0
     return age>F_LIVE, (min(prior), age)
 
-agg=collections.defaultdict(lambda:dict(n=0,nf=0,net=[],cap=0.0))
+agg=collections.defaultdict(lambda:dict(n=0,nf=0,net=[],cap=0.0,nx=0,nsw=0,nsl=0,capb=0))
 nev={"legs_with_hole":0,"never_traded":0}
 for tk,rows in series.items():
     if tk not in leg: continue
@@ -223,20 +226,25 @@ for tk,rows in series.items():
             return None
         bd0=erow[6]; ak0=erow[1]
         book_ok=(bd0 is not None and ak0 is not None and 1<=round(bd0)<round(ak0)<=99)
-        # --- C1 join-bid (dual, strict) ---
+        def book_fill(k,lvl):
+            net,exited=realize(lvl,L["win"],X,isx,L["sq"])
+            a=agg[k]; a["nf"]+=1; a["net"].append(net); a["cap"]+=lvl
+            if exited: a["nx"]+=1
+            elif L["win"]: a["nsw"]+=1
+            else: a["nsl"]+=1
+            sr=res.get(L["partner"])
+            if sr is not None and lvl+sr["entry"]>99: a["capb"]+=1
+        # --- C1 join-bid, BOTH semantics (strict traded-through vs touch) ---
         if book_ok:
             lvl=int(round(bd0))
-            k=("C1_join_bid","engage",0,cat,bname,band(lvl)); a=agg[k]; a["n"]+=1
-            if fill_scan(lvl,True,True) is not None:
-                net,_=realize(lvl,L["win"],X,isx,L["sq"])
-                a["nf"]+=1; a["net"].append(net); a["cap"]+=lvl
+            for vname,sp,sa in (("C1_join_strict",True,True),("C1_join_touch",False,False)):
+                k=(vname,"engage",0,cat,bname,band(lvl)); agg[k]["n"]+=1
+                if fill_scan(lvl,sp,sa) is not None: book_fill(k,lvl)
         # --- C2 bid-1 (touch) ---
         if book_ok and round(bd0)>=2:
             lvl=int(round(bd0))-1
-            k=("C2_bid_minus_1","engage",0,cat,bname,band(lvl)); a=agg[k]; a["n"]+=1
-            if fill_scan(lvl,False,False) is not None:
-                net,_=realize(lvl,L["win"],X,isx,L["sq"])
-                a["nf"]+=1; a["net"].append(net); a["cap"]+=lvl
+            k=("C2_bid_minus_1","engage",0,cat,bname,band(lvl)); agg[k]["n"]+=1
+            if fill_scan(lvl,False,False) is not None: book_fill(k,lvl)
         # --- C3 extension arms (aged anchor, v3 semantics) ---
         h,info=hole_at(traded_ttms,e)
         if info is not None:
@@ -249,21 +257,27 @@ for tk,rows in series.items():
                 lvl=max(aa-off,1)
                 for A in SWEEP:
                     if not (F_LIVE<age<=A): continue
-                    k=("C3_aged_%d"%A,"extend",A,cat,bname,band(lvl)); a=agg[k]; a["n"]+=1
+                    k=("C3_aged_%d"%A,"extend",A,cat,bname,band(lvl)); agg[k]["n"]+=1
                     if fill_scan(lvl,False,False,nonstrict_v3=True) is not None:
-                        net,_=realize(lvl,L["win"],X,isx,L["sq"])
-                        a["nf"]+=1; a["net"].append(net); a["cap"]+=lvl
+                        book_fill(k,lvl)
     if leg_has_hole: nev["legs_with_hole"]+=1
 
 # --- C3 REMOVAL arms: R1-world placements a tighter cutoff would delete ---
 for tk,r in res.items():
     age=anchor_age_at_pl.get(tk,INF)
     if r["mode"]=="miss_fallback": continue
+    L=leg[tk]; X,isx=exitr.get((r["cat"],r["anchor"]),(0,False))
+    _,exited=realize(r["entry"],L["win"],X,isx,L["sq"])
     for A in SWEEP:
         if A<F_LIVE or A==F_LIVE:
             if A<age<=F_LIVE:
                 k=("C3_aged_%d"%A,"remove",A,r["cat"],"at_v3_placement",band(r["entry"]))
                 a=agg[k]; a["n"]+=1; a["nf"]+=1; a["net"].append(r["realized"]); a["cap"]+=r["entry"]
+                if exited: a["nx"]+=1
+                elif L["win"]: a["nsw"]+=1
+                else: a["nsl"]+=1
+                sr=res.get(L["partner"])
+                if sr is not None and r["entry"]+sr["entry"]>99: a["capb"]+=1
 
 # ================= ELIGIBILITY + OUTPUT =================
 out=[]; ship=0
@@ -279,11 +293,16 @@ for (var,arm,A,cat,bname,bd_),a in sorted(agg.items()):
     else:
         wave=("REMOVE_WINS" if (n>=NFLOOR and mean_net is not None and mean_net<0)
               else ("insufficient_data" if n<NFLOOR else "KEEP_status_quo"))
+    lift07=(0.7*wlb*mean_net) if mean_net is not None else None
     out.append(dict(variant=var,arm=arm,age_cutoff_s=A,category=cat,bucket=bname,level_band=bd_,
         n_engagements=n,n_fills=nf,fill_rate=round(nf/n,4) if n else None,
         fill_wilson_lb=round(wlb,4),mean_net_cents=round(mean_net,3) if mean_net is not None else None,
         net_roc_pct=round(roc,3) if roc is not None else None,
         lift_cents_per_engagement_0p5x=round(lift05,4) if lift05 is not None else None,
+        lift_cents_per_engagement_0p7x=round(lift07,4) if lift07 is not None else None,
+        n_exit_scalps=a["nx"],n_settle_wins=a["nsw"],n_settle_losses=a["nsl"],
+        settle0_share_of_fills=round(a["nsl"]/nf,4) if nf else None,
+        cap_breach_fills_vs_r1_sibling=a["capb"],
         wave=wave))
 tbl=pa.Table.from_pylist(out); OUTP=OUTDIR+"/engagement_replay_v1.parquet"; pq.write_table(tbl,OUTP)
 sha=hashlib.sha256(open(OUTP,"rb").read()).hexdigest()
@@ -301,6 +320,40 @@ for r in el[:20]:
         r["variant"],r["arm"],r["category"],r["bucket"],r["level_band"],r["n_engagements"],
         r["n_fills"],r["fill_wilson_lb"],r["mean_net_cents"] or 0,r["net_roc_pct"] or 0,
         r["lift_cents_per_engagement_0p5x"] or 0,r["wave"]))
+# ---- per-candidate aggregates (all categories/buckets/bands pooled) ----
+print("\n=== PER-CANDIDATE AGGREGATE (pooled; lift = r * wilson_lb * mean_net, cents/engagement) ===")
+vagg=collections.defaultdict(lambda:dict(n=0,nf=0,net=[],cap=0.0,nx=0,nsw=0,nsl=0,capb=0))
+for (var,arm,A,cat,bname,bd_),a in agg.items():
+    v=vagg[(var,arm)]
+    v["n"]+=a["n"]; v["nf"]+=a["nf"]; v["net"]+=a["net"]; v["cap"]+=a["cap"]
+    v["nx"]+=a["nx"]; v["nsw"]+=a["nsw"]; v["nsl"]+=a["nsl"]; v["capb"]+=a["capb"]
+print("  C0_skip        engage  N=all-hole-moments fills=0 net=0.0c roc=0.0% lift0.5=0.00 lift0.7=0.00 (baseline)")
+for (var,arm),v in sorted(vagg.items()):
+    n,nf=v["n"],v["nf"]; wl=wilson_lb(nf,n)
+    mn=statistics.fmean(v["net"]) if v["net"] else 0.0
+    rc=(sum(v["net"])/v["cap"]*100) if v["cap"]>0 else 0.0
+    print("  %-14s %-7s N=%5d fills=%4d rate=%.3f wlb=%.3f net=%6.1fc roc=%6.1f%% lift0.5=%5.2f lift0.7=%5.2f exit=%d settleW=%d settle0=%d capbreach=%d"%(
+        var,arm,n,nf,(nf/n if n else 0),wl,mn,rc,0.5*wl*mn,0.7*wl*mn,v["nx"],v["nsw"],v["nsl"],v["capb"]))
+
+print("\n=== TIME-BUCKET DISTRIBUTION OF FILLS (per candidate, engage/extend arms) ===")
+bdist=collections.defaultdict(lambda:collections.Counter())
+for (var,arm,A,cat,bname,bd_),a in agg.items():
+    if arm in ("engage","extend"): bdist[var][bname]+=a["nf"]
+for var in sorted(bdist):
+    c=bdist[var]; totf=sum(c.values())
+    print("  %-14s T240_T60=%4d  T60_T15=%4d  T15_T0=%4d  (total %d, T15_T0 share %.0f%%)"%(
+        var,c.get("T240_T60",0),c.get("T60_T15",0),c.get("T15_T0",0),totf,
+        (100*c.get("T15_T0",0)/totf) if totf else 0))
+
+# ---- settlement-bleed / cap-hygiene lines ----
+print("\n=== SETTLEMENT-BLEED / CAP-HYGIENE (pooled per candidate) ===")
+for (var,arm),v in sorted(vagg.items()):
+    nf=v["nf"]
+    if nf==0:
+        print("  %-14s %-7s no fills"%(var,arm)); continue
+    print("  %-14s %-7s fills=%4d exit_scalps=%4d (%.0f%%) settle_wins=%3d settle0_losses=%3d (bleed %.1f%%) cap_breach_vs_r1_sibling=%d (%.1f%%)"%(
+        var,arm,nf,v["nx"],100*v["nx"]/nf,v["nsw"],v["nsl"],100*v["nsl"]/nf,v["capb"],100*v["capb"]/nf))
+
 json.dump(dict(sha256=sha,rows=len(out),beats_skip=ship,
     legs_with_hole=nev["legs_with_hole"],never_traded=nev["never_traded"],
     R1=dict(atlas=atlas,maker=maker,deployed=dep,within2=within2,tot=tot,tailbad=tailbad),

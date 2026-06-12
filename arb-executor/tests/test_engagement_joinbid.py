@@ -153,8 +153,11 @@ check('"engagement_wave1")' in src and "if no_trade:" in src
       and src.index("_engagement_join_eligible(cat, book, time_to_start)") >
           src.index("ent = self._v4_entry_anchor"),
       "override wired ONLY inside the ent-is-None/no_trade branch (printed legs untouched)")
-check('intended_join=(entry_mode == "resting_maker"' in src,
-      "join inherits intended_join by construction (target_bid == best_bid)")
+# [C-FEEDER FIX-2] keying moved to the decision-time pure helper (the old
+# post-await `target_bid == book.best_bid` re-read was the QUESAM E3 race);
+# engagement placements are True by construction inside the helper.
+check("intended_join=self._intended_join_at_placement(" in src,
+      "join inherits intended_join by construction (decision-time helper)")
 check('"depth_ahead": int(book.bids.get(int(round(book.best_bid)), 0) or 0)' in src
       and 'if table_src == "engagement_wave1"' in src,
       "depth_ahead logged on engagement placements only")

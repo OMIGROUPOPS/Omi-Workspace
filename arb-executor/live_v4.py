@@ -2766,6 +2766,25 @@ class LiveV3:
             "tts_min": (round(tts / 60.0, 1) if tts is not None else None)})
         return True
 
+    def _intended_join_at_placement(self, entry_mode, target_bid, placement_bid,
+                                    table_src):
+        """[C-FEEDER FIX-2] the intended_join key, derived from the placement
+        DECISION. Pure/testable. Two sources of truth, no live-book re-read:
+          - engagement placements (table_src == engagement_wave1) are joins BY
+            CONSTRUCTION (the eligibility check returned best_bid as the
+            level); True regardless of which execution branch the moving book
+            pushed them down (resting_maker OR marketable_clamp). The old
+            post-await `target_bid == book.best_bid` re-read keyed a
+            by-construction join False whenever the book ticked during the
+            pre-post-guard/place_order awaits -- the QUESAM E3 fire,
+            2026-06-12 10:32:21 ET.
+          - normal resting-maker placements: target sat AT the decision-time
+            best bid (the captured snapshot, same values the v4_place log
+            carries)."""
+        if table_src == "engagement_wave1":
+            return True
+        return entry_mode == "resting_maker" and target_bid == placement_bid
+
     def _resting_cancel_reason(self, target_bid, best_bid, best_ask):
         """Lever 3: should a resting v4 entry bid be cancelled? Returns (cancel, reason). Pure/testable.
         cancel_on_marketable (A): degenerate book OR the bid gone marketable/stale (target within
@@ -3945,7 +3964,17 @@ class LiveV3:
                 if time_to_start > placement_min * 60:
                     continue
 
-                current_ask = book.best_ask
+                # [C-FEEDER FIX-2] decision-time book capture. Every downstream
+                # branch, guard, log field and placement-time key derives from
+                # THIS synchronous snapshot -- never a re-read of the live book
+                # after an await. The QUESAM E3 fire (2026-06-12 10:32:21 ET)
+                # was exactly that race: the book moved during the pre-post
+                # guard/place_order awaits, the old keying re-read
+                # book.best_bid, and a by-construction join keyed
+                # intended_join=False. (Also kills the PLIVEK-class log
+                # incoherence: current_ask 78 vs book_ask 46 in one event.)
+                placement_bid, placement_ask = book.best_bid, book.best_ask
+                current_ask = placement_ask
                 force_cross = self.round5_enabled and self.round5_detector_fire(
                     tk, current_ask, target_bid)
 
@@ -3998,10 +4027,10 @@ class LiveV3:
 
                 # T52: never TAKER-cross a fat spread (the KESMAR fat-spread
                 # mechanism). Resting-maker entries (post_only) are unaffected.
-                if post_only is False and not self._taker_spread_ok(book.best_bid, current_ask):
+                if post_only is False and not self._taker_spread_ok(placement_bid, current_ask):
                     self.n_skips += 1
                     self._log("skip_fat_spread_taker", {"event": et, "mode": entry_mode,
-                        "spread": current_ask - book.best_bid, "bid": book.best_bid,
+                        "spread": current_ask - placement_bid, "bid": placement_bid,
                         "ask": current_ask, "cap": MAX_TAKER_SPREAD}, ticker=tk)
                     continue
 
@@ -4034,9 +4063,10 @@ class LiveV3:
                     # Locked-book verification hook (Plex): record the placement-time book so the
                     # next is_taker-truth pass can confirm locked-book (bid==ask) placements fill
                     # like normal tight markets, not a hidden adverse cohort. Telemetry only, not a gate.
-                    "book_bid": book.best_bid, "book_ask": book.best_ask,
-                    "book_spread": book.best_ask - book.best_bid,
-                    "locked_book": book.best_bid == book.best_ask,
+                    # [C-FEEDER FIX-2] decision-time snapshot, not a post-await re-read.
+                    "book_bid": placement_bid, "book_ask": placement_ask,
+                    "book_spread": placement_ask - placement_bid,
+                    "locked_book": placement_bid == placement_ask,
                     # [C-JOINBID] ratified depth logging (observational): contracts
                     # resting at the join level at placement, for the wave-gate
                     # ledger (G2 quartiles 84/499/1381 are the interpretation grid).
@@ -4075,9 +4105,11 @@ class LiveV3:
                     is_v4=True, regime_at_posting=regime, target_price=target_bid,
                     placement_minute=placement_min, entry_mode=entry_mode,
                     paid_taker_fee=(post_only is False),
-                    # [C-BID-SURVIVAL DIFF-2] precise key, set at placement only
-                    intended_join=(entry_mode == "resting_maker"
-                                   and target_bid == book.best_bid),
+                    # [C-BID-SURVIVAL DIFF-2] precise key, set at placement only.
+                    # [C-FEEDER FIX-2] keyed on the DECISION (captured snapshot +
+                    # construction), never a post-await book re-read.
+                    intended_join=self._intended_join_at_placement(
+                        entry_mode, target_bid, placement_bid, table_src),
                 )
                 self.positions[tk] = pos
                 # [C-JOINBID] ledger separability: engagement fills must be

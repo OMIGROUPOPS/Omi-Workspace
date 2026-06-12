@@ -157,9 +157,11 @@ check(s2.positions["EV-J"].intended_join is True and s2.positions["EV-N"].intend
 
 # ---- 6. placement-site key is the PRECISE one (source pin; cheap key rejected) ----
 src = inspect.getsource(M.LiveV3)
-check("intended_join=(entry_mode == \"resting_maker\"" in src
-      and "and target_bid == book.best_bid)" in src,
-      "source pin: flag computed at PLACEMENT from placement-time book")
+# [C-FEEDER FIX-2] the key derives from the placement DECISION (captured
+# snapshot + construction), never a post-await live-book re-read.
+check("intended_join=self._intended_join_at_placement(" in src
+      and 'return entry_mode == "resting_maker" and target_bid == placement_bid' in src,
+      "source pin: flag computed at PLACEMENT from the decision-time snapshot")
 # the exemption must read the flag, never recompute from the current book
 seg = src.split("and pos.intended_join")[0].rsplit("if should_cancel", 1)[1]
 check("best_bid" not in seg, "source pin: exemption keyed on pos.intended_join, not current book")

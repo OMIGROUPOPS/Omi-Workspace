@@ -167,8 +167,11 @@ seg = src.split("and pos.intended_join")[0].rsplit("if should_cancel", 1)[1]
 check("best_bid" not in seg, "source pin: exemption keyed on pos.intended_join, not current book")
 
 # ---- 7. move-repost re-keys the flag from the re-placement book ----
+# [C-FEEDER FIX-2/3] re-key reads the decision-time snapshot (repost_bid,
+# captured before the cancel/place awaits), not a post-await book re-read.
 src_mr = inspect.getsource(M.LiveV3._v4_manage_resting_inner)
-check("pos.intended_join = (new_target == book.best_bid)" in src_mr,
+check("pos.intended_join = (new_target == repost_bid)" in src_mr
+      and "repost_bid = book.best_bid" in src_mr,
       "source pin: move-repost re-keys intended_join at re-placement")
 
 print("RESULT:", "ALL PASS" if fails == 0 else "%d FAILS" % fails)

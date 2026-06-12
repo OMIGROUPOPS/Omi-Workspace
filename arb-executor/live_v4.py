@@ -361,6 +361,14 @@ class Position:
     # staleness). Drift bids (flag unset) keep the full stale rule. Persisted
     # sparsely in live_v4_resting.json (key present only when True).
     intended_join: bool = False
+    # [C-FEEDER FIX-3] Option (a): set at PLACEMENT iff the resting-maker bid
+    # was DELIBERATELY posted at ask-1 given the decision-time book (locked /
+    # 1c books put the table target exactly there -- the AUGMAJ 206-cycle and
+    # KRERUS 61-cycle churn storms). Exempts the bid from bid_marketable_stale
+    # exactly like intended_join (placement-time key, never the current book).
+    # cancel_marketable_buffer stays 1: a DRIFT bid (flag unset) that the book
+    # moves onto still cancels. Persisted sparsely (key present only when True).
+    intended_clamp: bool = False
     strategy: str = ""                # "exit" | "hold" (set at fill from exit table)
     exit_band_x: Optional[int] = None  # +X cents for exit cells; None for hold cells
     exit_cell_id: int = 0             # 1c cell used for the exit-table lookup (entry-priced)
@@ -2785,6 +2793,16 @@ class LiveV3:
             return True
         return entry_mode == "resting_maker" and target_bid == placement_bid
 
+    def _intended_clamp_at_placement(self, entry_mode, target_bid, placement_ask):
+        """[C-FEEDER FIX-3] the intended_clamp key, derived from the placement
+        DECISION. Pure/testable. True iff a resting-maker bid was knowingly
+        posted at ask-1 given the decision-time book (a locked or 1c-spread
+        book puts the table target exactly there). The fallback_maker /
+        marketable_clamp modes are NOT keyed here -- their entry_mode already
+        carries the RUN-7 exemption."""
+        return (entry_mode == "resting_maker"
+                and target_bid == max(1, placement_ask - 1))
+
     def _resting_cancel_reason(self, target_bid, best_bid, best_ask):
         """Lever 3: should a resting v4 entry bid be cancelled? Returns (cancel, reason). Pure/testable.
         cancel_on_marketable (A): degenerate book OR the bid gone marketable/stale (target within
@@ -4110,6 +4128,10 @@ class LiveV3:
                     # construction), never a post-await book re-read.
                     intended_join=self._intended_join_at_placement(
                         entry_mode, target_bid, placement_bid, table_src),
+                    # [C-FEEDER FIX-3] deliberate ask-1 rest (locked/1c book),
+                    # keyed on the same decision snapshot
+                    intended_clamp=self._intended_clamp_at_placement(
+                        entry_mode, target_bid, placement_ask),
                 )
                 self.positions[tk] = pos
                 # [C-JOINBID] ledger separability: engagement fills must be
@@ -4412,6 +4434,9 @@ class LiveV3:
                 # in test_completion_reprice stays byte-identical).
                 if pos.intended_join:
                     out[tk]["intended_join"] = True
+                # [C-FEEDER FIX-3] sparse, same discipline as intended_join
+                if pos.intended_clamp:
+                    out[tk]["intended_clamp"] = True
                 # [C-JOINBID] sparse: engagement cohort label survives restart
                 if pos.play_type == "v4_engagement_join":
                     out[tk]["play_type"] = "v4_engagement_join"
@@ -4488,6 +4513,7 @@ class LiveV3:
                 placement_minute=int(d.get("placement_minute", 0)),
                 entry_mode=d.get("entry_mode", "resting_maker"),
                 intended_join=bool(d.get("intended_join", False)),
+                intended_clamp=bool(d.get("intended_clamp", False)),
                 completion_s0=int(d.get("completion_s0", 0)),
                 completion_x=int(d.get("completion_x", 0)),
                 completion_leg1_basis=int(d.get("completion_leg1_basis", 0)),
@@ -4562,6 +4588,14 @@ class LiveV3:
         # degenerate cancel, T51 match-live, T52, and the T-15 buffer all
         # still govern this bid.
         if should_cancel and creason == "bid_marketable_stale" and pos.intended_join:
+            should_cancel, creason = False, None
+        # [C-FEEDER FIX-3] Option (a): intended-clamp exemption, same shape and
+        # same placement-time-key discipline. A resting-maker bid DELIBERATELY
+        # posted at ask-1 (locked/1c book -- the AUGMAJ 206-cycle, KRERUS
+        # 61-cycle churn engines) is in its desired state; buffer stays 1, so a
+        # genuine DRIFT bid (flag unset) the book moves onto still cancels.
+        # Degenerate, T51 match-live, T52 and the T-15 buffer all still govern.
+        if should_cancel and creason == "bid_marketable_stale" and pos.intended_clamp:
             should_cancel, creason = False, None
         if should_cancel:
             # [C-P0-RACE site 1 -- THE observed bug, AUGFUC-AUG 2026-06-11 05:42:10 ET]
@@ -4712,7 +4746,11 @@ class LiveV3:
             return
         _, new_offset, _, _ = row
         new_target = max(1, current_price - new_offset)
+        # [C-FEEDER FIX-2/3] decision-time capture for the repost keys (the
+        # cancel/place awaits below are a book-tick window, same race class as
+        # the QUESAM placement-side fire)
         current_ask = book.best_ask
+        repost_bid = book.best_bid
 
         # Cancel the old bid, but first check it didn't just fill.
         old = await api_get(self.session, self.ak, self.pk,
@@ -4746,7 +4784,11 @@ class LiveV3:
         mode = "repost_resting"
         pos.target_price = new_target
         # [C-BID-SURVIVAL DIFF-2] re-key the join flag at every re-placement
-        pos.intended_join = (new_target == book.best_bid)
+        # ([C-FEEDER FIX-2/3] from the decision-time snapshot, not a post-await
+        # re-read; clamp re-keyed the same way -- _reprice_target lands the
+        # marketable case exactly at ask-1)
+        pos.intended_join = (new_target == repost_bid)
+        pos.intended_clamp = (new_target == max(1, current_ask - 1))
         pos.regime_at_posting = new_regime
         pos.last_cancel_repost_ts = now
         self._log("v4_move_repost", {

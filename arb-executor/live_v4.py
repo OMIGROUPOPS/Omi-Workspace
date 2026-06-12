@@ -113,6 +113,16 @@ V4_PAIRED_BASIS_CAP = 99          # T50: refuse entering BOTH sides of an event 
 LIVE_DETECT_WINDOW_SEC = 60       # rolling window for the trade-burst signal
 LIVE_TRADE_BURST = 10             # >= this many trade prints in the window across both legs => match is live (tunable; pre-match tennis books trade far below this)
 LIVE_TRADE_RETENTION_SEC = 600    # prune per-ticker trade-time deques older than this
+# [C-FEEDER FIX-1] time-to-start floor + two-stage latch + counter-evidence
+# unlatch. Envelope from the C-DETECTOR-EVAL teardown (deployed K=10/T=60):
+# genuine starts latch within ~60s of onset (p50=9s p90=61s); false fires
+# cluster >=30min before the feed start (68.5% of events). A burst seen with
+# more than the floor still on the clock is noise by construction (the
+# 2026-06-12 5AM block: ZHAMAN/MPEBUB/BLAJOR scratched at T-3.5h..4h).
+LIVE_DETECT_TTS_FLOOR_SEC = 1800       # volume burst can NEVER latch when feed tts > 30min
+LIVE_DETECT_CONFIRM_MIN_GAP_SEC = 60   # stage-2 confirm needs a burst >= one full window after stage-1
+LIVE_DETECT_CONFIRM_TTL_SEC = 300      # stage-1 evidence expires; a real live match re-arms instantly
+LIVE_DETECT_UNLATCH_QUIET_SEC = 300    # latched + tts>floor + tape quiet this long => false latch, clear
 MAX_TAKER_SPREAD = 5              # T52: never TAKER-cross when (ask-bid) > this. The KESMAR fat-spread cross paid a wide ask; a wide spread means the taker floor isn't cleanly achievable -> stay flat rather than overpay. Tunable; resting-maker entries are unaffected.
 
 # T58 premarket maker entry — live running-mid anchor (Stage-2-validated
@@ -1115,6 +1125,9 @@ class LiveV3:
         # trade timestamps + latched live-event set.
         self._trade_times: Dict[str, deque] = defaultdict(deque)
         self._events_live: Set[str] = set()
+        # [C-FEEDER FIX-1] two-stage latch state + once-per-latch skip logging
+        self._live_stage1: Dict[str, float] = {}   # event -> first-burst ts
+        self._live_skip_logged: Set[str] = set()   # events whose skip_live_match was logged this latch
         # T58 running-mid anchor: per-ticker rolling (ts, last-traded price) over
         # a 30-min window. Separate from _trade_times (which retains only 600s).
         self._trade_prices: Dict[str, deque] = defaultdict(deque)
@@ -2683,26 +2696,75 @@ class LiveV3:
     def _is_match_live(self, et):
         """T51 match-live detection via VOLUME ACCELERATION. Live = >=
         LIVE_TRADE_BURST trade prints across the event's legs within the last
-        LIVE_DETECT_WINDOW_SEC. Latched (a match does not un-start). Price-move
-        is deliberately NOT the signal — a tight even match stays price-flat
-        (TIAARN sat at 50-51c through its window), so the old >=10c proxy was
-        blind; trade flow is the reliable tell. (A reliable in-play status feed
-        would strengthen this; none is currently available — see T51.)"""
+        LIVE_DETECT_WINDOW_SEC. Price-move is deliberately NOT the signal — a
+        tight even match stays price-flat (TIAARN sat at 50-51c through its
+        window), so the old >=10c proxy was blind; trade flow is the reliable
+        tell. (A reliable in-play status feed would strengthen this; none is
+        currently available — see T51.)
+
+        [C-FEEDER FIX-1] three amendments (the 2026-06-12 5AM block: premarket
+        volume bursts at T-3.5h..4h latched ZHAMAN/MPEBUB/BLAJOR live and
+        permanently scratched them):
+          1. TTS FLOOR: a burst can never latch while the feed time-to-start is
+             above LIVE_DETECT_TTS_FLOOR_SEC (teardown envelope: real starts
+             latch within ~60s of onset; >=30min-early fires are 68.5% noise).
+             Unknown start time -> floor cannot apply (those events are already
+             blocked from placement by no_reliable_commence_source).
+          2. TWO-STAGE LATCH: the first qualifying burst only arms stage-1; the
+             latch requires a second qualifying burst at least
+             LIVE_DETECT_CONFIRM_MIN_GAP_SEC later (sustained flow across two
+             non-overlapping windows), within LIVE_DETECT_CONFIRM_TTL_SEC.
+          3. COUNTER-EVIDENCE UNLATCH: a latch claiming "live" while the feed
+             still says tts > floor AND the tape has been quiet for
+             LIVE_DETECT_UNLATCH_QUIET_SEC is a false latch (a real live match
+             prints continuously) -> cleared, named. Time-based clears were
+             rejected (Plex); this is evidence-based only."""
+        now = time.time()
+        st = getattr(self, "event_start_time", {}).get(et)
+        tts = (st - now) if st else None
         if et in self._events_live:
+            if tts is not None and tts > LIVE_DETECT_TTS_FLOOR_SEC:
+                qcut = now - LIVE_DETECT_UNLATCH_QUIET_SEC
+                quiet = not any(t >= qcut
+                                for tk in self.event_tickers.get(et, ())
+                                for t in (self._trade_times.get(tk) or ()))
+                if quiet:
+                    self._events_live.discard(et)
+                    getattr(self, "_live_stage1", {}).pop(et, None)
+                    getattr(self, "_live_skip_logged", set()).discard(et)
+                    self._log("match_live_unlatched", {
+                        "event": et, "reason": "counter_evidence_quiet",
+                        "tts_min": round(tts / 60.0, 1),
+                        "quiet_sec": LIVE_DETECT_UNLATCH_QUIET_SEC})
+                    return False
             return True
-        cutoff = time.time() - LIVE_DETECT_WINDOW_SEC
+        cutoff = now - LIVE_DETECT_WINDOW_SEC
         recent = 0
         for tk in self.event_tickers.get(et, ()):
             dq = self._trade_times.get(tk)
             if dq:
                 recent += sum(1 for t in dq if t >= cutoff)
-        if recent >= LIVE_TRADE_BURST:
-            self._events_live.add(et)
-            self._log("match_live_detected", {
-                "event": et, "trades_in_window": recent,
-                "window_sec": LIVE_DETECT_WINDOW_SEC, "signal": "volume_burst"})
-            return True
-        return False
+        if recent < LIVE_TRADE_BURST:
+            return False
+        if tts is not None and tts > LIVE_DETECT_TTS_FLOOR_SEC:
+            return False  # FIX-1 floor: premarket burst, not a start
+        stage1 = getattr(self, "_live_stage1", None)
+        if stage1 is None:
+            stage1 = self._live_stage1 = {}
+        t0 = stage1.get(et)
+        if t0 is None or (now - t0) > LIVE_DETECT_CONFIRM_TTL_SEC:
+            stage1[et] = now
+            return False  # stage-1 armed; confirm on a later window
+        if (now - t0) < LIVE_DETECT_CONFIRM_MIN_GAP_SEC:
+            return False  # same window; not yet independent confirmation
+        stage1.pop(et, None)
+        self._events_live.add(et)
+        self._log("match_live_detected", {
+            "event": et, "trades_in_window": recent,
+            "window_sec": LIVE_DETECT_WINDOW_SEC, "signal": "volume_burst",
+            "stage1_age_sec": round(now - t0, 1),
+            "tts_min": (round(tts / 60.0, 1) if tts is not None else None)})
+        return True
 
     def _resting_cancel_reason(self, target_bid, best_bid, best_ask):
         """Lever 3: should a resting v4 entry bid be cancelled? Returns (cancel, reason). Pure/testable.
@@ -3791,10 +3853,18 @@ class LiveV3:
             # T51: never ENTER a live match (existing positions are managed
             # separately by check_fills / _v4_manage_resting). Volume-accel
             # detector, latched per event.
+            # [C-FEEDER FIX-1] RE-EVALUABLE scratch: the event is NOT marked
+            # processed (the old permanent scratch is what turned the 5AM-block
+            # false positives into zero-placement nights). While latched, the
+            # leg skips; an unlatch (counter-evidence) restores normal
+            # evaluation on the next tick. skip_live_match logs once per latch.
             if self._is_match_live(et):
-                self.processed_events.add(et)
-                self._save_processed()
-                self._log("skip_live_match", {"event": et})
+                skip_logged = getattr(self, "_live_skip_logged", None)
+                if skip_logged is None:
+                    skip_logged = self._live_skip_logged = set()
+                if et not in skip_logged:
+                    skip_logged.add(et)
+                    self._log("skip_live_match", {"event": et})
                 return
 
             sides = self.identify_sides(et)

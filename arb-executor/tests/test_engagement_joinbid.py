@@ -20,6 +20,15 @@ def check(c, m):
 
 TMP = Path(tempfile.mkdtemp())
 M.V4_RESTING_FILE = TMP / "resting.json"
+M.ENGAGEMENT_INCIDENT_FILE = TMP / "engagement_incident.json"
+M.COMPLETION_INCIDENT_FILE = TMP / "completion_incident.json"
+
+def run(coro):
+    loop = asyncio.new_event_loop()
+    try:
+        return loop.run_until_complete(coro)
+    finally:
+        loop.close()
 
 def book(bid, ask, bids=None):
     return types.SimpleNamespace(best_bid=bid, best_ask=ask,
@@ -28,22 +37,44 @@ def book(bid, ask, bids=None):
 
 BOUND = ("_load_engagement_cells", "_engagement_bucket", "_engagement_join_eligible",
          "regime_lookup", "_sibling_ticker", "_sibling_engageable", "_paired_basis_ok",
-         "_save_v4_resting", "_load_v4_resting")
+         "_save_v4_resting", "_load_v4_resting",
+         # [C-JOINBID AMEND] tripwire surface
+         "_mechanism_tripwire", "_completion_tripwire", "_engagement_tripwire",
+         "_engagement_place_guards", "_engagement_arm_check",
+         "_cancel_entry_and_resolve", "_parse_entry_fill", "_book_v4_entry_fill",
+         "_untombstone_entry")
 
 def make_bot(flag=True, cells=None):
     s = types.SimpleNamespace()
     s.engagement_joinbid = flag
+    s.engagement_disabled = False
+    s.completion_disabled = False
     s.engagement_cells = cells if cells is not None else {
         ("ATP_CHALL", "T240_T60", "r25_34"), ("WTA_MAIN", "T60_T15", "r35_44")}
     s.completion_reprice = False
     s.positions = {}; s.books = {}; s.event_tickers = {}
     s._window_open = {}
+    s._booking_inflight = set()
+    s.n_entries = 0
+    s.session = None; s.ak = None; s.pk = None; s.rl = None
+    s.processed_events = set(); s._save_processed = lambda: None
     s.config = {}
     s.logs = []
     s._log = lambda ev, det=None, ticker="": s.logs.append((ev, det or {}, ticker))
+    s.cancelled = []
+    async def cancel_order(tk, oid, label=""):
+        s.cancelled.append({"tk": tk, "oid": oid, "label": label})
+        return True
+    s.cancel_order = cancel_order
     for nm in BOUND:
         setattr(s, nm, types.MethodType(getattr(M.LiveV3, nm), s))
     return s
+
+async def _fake_api_get(sess, ak, pk, path, rl):
+    if "/portfolio/orders/" in path and "?" not in path:
+        return {"order": {"status": "canceled", "fill_count_fp": 0}}
+    return {"orders": []}
+M.api_get = _fake_api_get
 
 # ---- 1. skip -> join on an eligible quiet leg ----
 s = make_bot()
@@ -156,6 +187,94 @@ M.LiveV3._load_v4_resting(s2)
 check(s2.positions["EV1-AAA"].play_type == "v4_engagement_join"
       and s2.positions["EV2-BBB"].play_type == "v4_resting_maker",
       "restart: play_type restored (engagement label survives)")
+
+# ============================================================
+# [C-JOINBID AMEND] engagement tripwire E1-E3, shared primitive
+# ============================================================
+def eng_pos(tk, et, price=28, join=True):
+    p = M.Position(ticker=tk, event_ticker=et, category="ATP_CHALL", direction="",
+                   cell_name="", cell_cfg={})
+    p.entry_price = price; p.entry_order_id = "o_" + tk; p.phase = "entry_resting"
+    p.is_v4 = True; p.entry_mode = "resting_maker"; p.target_price = price
+    p.play_type = "v4_engagement_join"; p.intended_join = join
+    return p
+
+def fresh_inc():
+    for f in (M.ENGAGEMENT_INCIDENT_FILE, M.COMPLETION_INCIDENT_FILE):
+        if f.exists(): f.unlink()
+
+# ---- T1. E1 paired-cap bypass fires; sweep cancels the engagement bid ----
+fresh_inc()
+s = make_bot()
+ET2 = "EVX"; A2 = "EVX-AAA"; Z2 = "EVX-ZZZ"
+s.event_tickers = {ET2: {A2, Z2}}
+held = M.Position(ticker=Z2, event_ticker=ET2, category="ATP_CHALL", direction="",
+                  cell_name="", cell_cfg={})
+held.entry_price = 75; held.entry_qty = 5; held.phase = "active"
+p = eng_pos(A2, ET2, 28)
+s.positions = {Z2: held, A2: p}
+v = s._engagement_place_guards(A2, ET2, "ATP_CHALL", p, 7200)
+check(v is not None and v[0] == "E1_paired_cap_bypass", "E1: cap bypass detected (28+75>99)")
+run(s._engagement_tripwire(v[0], v[1], tk=A2))
+check(s.engagement_disabled is True, "E1 fire: engagement self-disabled in-process")
+check(M.ENGAGEMENT_INCIDENT_FILE.exists()
+      and json.load(open(M.ENGAGEMENT_INCIDENT_FILE))["violation"] == "E1_paired_cap_bypass",
+      "E1 fire: incident file persisted atomically w/ violation")
+check(any(c["tk"] == A2 and c["label"] == "engagement_tripwire" for c in s.cancelled),
+      "E1 fire: resting engagement bid swept (cancel-only)")
+check(any(e == "engagement_reverted" for (e, d, t) in s.logs)
+      and any(e == "engagement_tripwire_fired" for (e, d, t) in s.logs),
+      "E1 fire: engagement_tripwire_fired + engagement_reverted logged")
+check(s.completion_disabled is False and not M.COMPLETION_INCIDENT_FILE.exists(),
+      "completion mechanism UNTOUCHED by engagement fire")
+check(s._engagement_join_eligible("ATP_CHALL",
+      types.SimpleNamespace(best_bid=28, best_ask=30, bids={}), 7200) is None,
+      "disabled state: eligibility no-ops the mechanism")
+before = len(s.cancelled)
+run(s._engagement_tripwire("E1_paired_cap_bypass", {}, tk=A2))
+check(len(s.cancelled) == before, "fire-once: second fire is a no-op")
+
+# ---- T2. E2 off-table fires ----
+fresh_inc()
+s = make_bot()
+p = eng_pos("EVY-AAA", "EVY", 48)   # r45_54 not in fixture table
+s.positions = {"EVY-AAA": p}; s.event_tickers = {"EVY": {"EVY-AAA"}}
+v = s._engagement_place_guards("EVY-AAA", "EVY", "ATP_CHALL", p, 7200)
+check(v is not None and v[0] == "E2_cell_off_table", "E2: off-table cell detected")
+run(s._engagement_tripwire(v[0], v[1], tk="EVY-AAA"))
+check(s.engagement_disabled and M.ENGAGEMENT_INCIDENT_FILE.exists(), "E2 fire: disable + incident")
+
+# ---- T3. E3 missing intended_join fires; clean placement passes all three ----
+fresh_inc()
+s = make_bot()
+p3 = eng_pos("EVZ-AAA", "EVZ", 28, join=False)
+s.positions = {"EVZ-AAA": p3}; s.event_tickers = {"EVZ": {"EVZ-AAA"}}
+v = s._engagement_place_guards("EVZ-AAA", "EVZ", "ATP_CHALL", p3, 7200)
+check(v is not None and v[0] == "E3_missing_intended_join", "E3: missing intended_join detected")
+ok_pos = eng_pos("EVZ-BBB", "EVZ2", 28, join=True)
+s.positions = {"EVZ-BBB": ok_pos}; s.event_tickers = {"EVZ2": {"EVZ-BBB"}}
+check(s._engagement_place_guards("EVZ-BBB", "EVZ2", "ATP_CHALL", ok_pos, 7200) is None,
+      "clean engagement placement: all three guards pass")
+
+# ---- T4. incident survives restart (arm check blocks; fails closed) ----
+fresh_inc()
+s = make_bot()
+run(s._engagement_tripwire("E2_cell_off_table", {"x": 1}, tk="T"))
+s2 = make_bot()   # "restart"
+M.LiveV3._engagement_arm_check(s2)
+check(s2.engagement_disabled is True
+      and any(e == "engagement_incident_block" for (e, d, t) in s2.logs),
+      "restart with incident file: mechanism stays DISABLED (blocked at arm)")
+M.ENGAGEMENT_INCIDENT_FILE.write_text("not json{{{")
+s3 = make_bot()
+M.LiveV3._engagement_arm_check(s3)
+check(s3.engagement_disabled is True, "unreadable incident: fails CLOSED")
+fresh_inc()
+s4 = make_bot()
+M.LiveV3._engagement_arm_check(s4)
+check(s4.engagement_disabled is False
+      and any(e == "engagement_tripwire_armed" for (e, d, t) in s4.logs),
+      "no incident: tripwire arms (E1-E3)")
 
 print("RESULT:", "ALL PASS" if fails == 0 else "%d FAILS" % fails)
 sys.exit(1 if fails else 0)

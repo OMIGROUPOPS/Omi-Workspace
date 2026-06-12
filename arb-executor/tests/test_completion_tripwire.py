@@ -53,7 +53,9 @@ BOUND = ("_sibling_ticker", "_cancel_sibling_if_paired_over_cap",
          "_completion_tripwire", "_completion_fill_guards", "_completion_arm_check",
          # [C-P0-RACE] cancel sites resolve against exchange truth via these:
          "_cancel_entry_and_resolve", "_parse_entry_fill",
-         "_book_v4_entry_fill", "_v4_apply_exit", "_fill_is_taker")
+         "_book_v4_entry_fill", "_v4_apply_exit", "_fill_is_taker",
+         # [C-JOINBID AMEND] _completion_tripwire delegates to the shared primitive
+         "_mechanism_tripwire")
 
 def make_bot(flag=True, disabled=False):
     s = types.SimpleNamespace()

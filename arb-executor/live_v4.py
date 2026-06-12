@@ -136,6 +136,7 @@ STATE_DIR = Path(__file__).resolve().parent / "state"
 PROCESSED_FILE = STATE_DIR / "live_v3_processed.json"
 V4_RESTING_FILE = STATE_DIR / "live_v4_resting.json"  # v4 resting-bid recovery (STEP 5)
 COMPLETION_INCIDENT_FILE = STATE_DIR / "completion_incident.json"  # [C-TRIPWIRE] survives restart; remove BY HAND to re-arm
+ENGAGEMENT_INCIDENT_FILE = STATE_DIR / "engagement_incident.json"  # [C-JOINBID AMEND] same discipline, engagement mechanism
 SCHEDULE_FILE = STATE_DIR / "schedule.json"
 TICK_DIR = Path(__file__).resolve().parent / "analysis" / "premarket_ticks"
 TRADE_DIR = Path(__file__).resolve().parent / "analysis" / "trades"
@@ -1077,8 +1078,12 @@ class LiveV3:
         # inherited). Printed legs and ineligible cells are untouched.
         self.engagement_joinbid = bool(self.config.get("engagement_joinbid", False))
         self.engagement_cells = set()   # (category, bucket, band); absent = skip stands
+        # [C-JOINBID AMEND] engagement tripwire state (E1-E3; shared fire-once
+        # primitive with completion's; incident file blocks re-arm across restarts)
+        self.engagement_disabled = False
         if self.engagement_joinbid:
             self._load_engagement_cells()
+            self._engagement_arm_check()
 
         self.books: Dict[str, Book] = {}
         self.subscribed: Set[str] = set()
@@ -1546,7 +1551,7 @@ class LiveV3:
         join NEEDS a strict bid<ask level to rest at -- locked books place via
         the normal anchor path only); outside the replay buckets; (category,
         bucket, best_bid band) not in the wave-1 table."""
-        if not self.engagement_joinbid:
+        if not self.engagement_joinbid or self.engagement_disabled:
             return None
         b, a = book.best_bid, book.best_ask
         if not (1 <= b < a <= 99):
@@ -1586,40 +1591,109 @@ class LiveV3:
             self.completion_disabled = True
             self._log("completion_incident_check_error", {"error": str(e)})
 
-    async def _completion_tripwire(self, violation, context, tk=""):
-        """[C-TRIPWIRE] fire-once guard: (a) self-disable in-process, (b) cancel any
-        resting completion bids (cancel-only under violation conditions -- no
-        re-place), (c) persist the incident (blocks re-arm across restarts),
-        (d) log with full context, (e) the BOT keeps trading normally."""
-        if self.completion_disabled:
-            return
-        self.completion_disabled = True
+    async def _mechanism_tripwire(self, kind, violation, context, tk=""):
+        """[C-JOINBID AMEND] THE fire-once tripwire primitive, shared by the
+        completion and engagement mechanisms (Plex amendment: one primitive, no
+        parallel implementations): (a) self-disable in-process, (b) cancel-only
+        sweep of the MECHANISM'S resting bids (race-resolved, never deleted
+        unbooked -- [C-P0-RACE site 5]), (c) atomic incident-file persistence
+        (blocks re-arm across restarts; arm checks fail CLOSED), (d) log with
+        full context, (e) the BOT keeps trading normally."""
+        if kind == "completion":
+            if self.completion_disabled:
+                return
+            self.completion_disabled = True
+            inc_file = COMPLETION_INCIDENT_FILE
+            def is_mine(p): return p.entry_mode == "completion_reprice"
+        else:
+            if self.engagement_disabled:
+                return
+            self.engagement_disabled = True
+            inc_file = ENGAGEMENT_INCIDENT_FILE
+            def is_mine(p): return p.play_type == "v4_engagement_join"
         payload = {"violation": violation, "context": context, "ticker": tk,
                    "ts_epoch": time.time(),
                    "ts_et": datetime.now(ET).strftime("%Y-%m-%d %I:%M:%S %p ET")}
         try:
-            tmp = str(COMPLETION_INCIDENT_FILE) + ".tmp"
+            tmp = str(inc_file) + ".tmp"
             with open(tmp, "w") as f:
                 json.dump(payload, f, indent=1)
-            os.replace(tmp, str(COMPLETION_INCIDENT_FILE))
+            os.replace(tmp, str(inc_file))
         except Exception as e:
-            self._log("completion_incident_write_error", {"error": str(e)})
-        self._log("completion_tripwire_fired", payload, ticker=tk)
+            self._log("%s_incident_write_error" % kind, {"error": str(e)})
+        self._log("%s_tripwire_fired" % kind, payload, ticker=tk)
         for tk2, pos in list(self.positions.items()):
             if (pos.is_v4 and pos.phase == "entry_resting"
-                    and pos.entry_mode == "completion_reprice" and pos.entry_order_id):
-                # [C-P0-RACE site 5] a completion bid that FILLED as the tripwire
-                # fires is booked (completion_fill + guards; _completion_tripwire is
-                # fire-once so guard re-fires no-op), never deleted unbooked.
+                    and pos.entry_order_id and is_mine(pos)):
                 res = await self._cancel_entry_and_resolve(
-                    tk2, pos, "completion_tripwire", "tripwire_cancel_race")
+                    tk2, pos, "%s_tripwire" % kind, "tripwire_cancel_race")
                 if res == "cancelled":
-                    self._log("completion_reverted", {"event": pos.event_ticker,
-                        "reason": "tripwire", "s1": pos.entry_price,
-                        "s0": pos.completion_s0}, ticker=tk2)
+                    if kind == "completion":
+                        self._log("completion_reverted", {"event": pos.event_ticker,
+                            "reason": "tripwire", "s1": pos.entry_price,
+                            "s0": pos.completion_s0}, ticker=tk2)
+                    else:
+                        self._log("engagement_reverted", {"event": pos.event_ticker,
+                            "reason": "tripwire", "bid": pos.entry_price}, ticker=tk2)
                     pos.entry_order_id = ""
                     self._untombstone_entry(tk2, pos)
         self._save_v4_resting()
+
+    async def _completion_tripwire(self, violation, context, tk=""):
+        """[C-TRIPWIRE] delegates to the shared fire-once primitive (event names,
+        payload shape, incident path, sweep semantics unchanged)."""
+        await self._mechanism_tripwire("completion", violation, context, tk=tk)
+
+    async def _engagement_tripwire(self, violation, context, tk=""):
+        """[C-JOINBID AMEND] engagement arm of the shared primitive."""
+        await self._mechanism_tripwire("engagement", violation, context, tk=tk)
+
+    def _engagement_place_guards(self, tk, et, cat, pos, time_to_start):
+        """[C-JOINBID AMEND] the three Plex tripwire conditions, checked at the
+        engagement placement (same time_to_start value the eligibility check
+        used -- no boundary drift). Returns (violation, context) or None:
+          E1 paired-cap bypass: the placed bid fails _paired_basis_ok NOW;
+          E2 off-table: (category, bucket, band) not in the 30-row table;
+          E3 missing intended_join on an engagement placement."""
+        if not self._paired_basis_ok(tk, et, pos.entry_price):
+            return ("E1_paired_cap_bypass",
+                    {"event": et, "entry_price": pos.entry_price})
+        bucket = self._engagement_bucket(time_to_start)
+        if (bucket is None or (cat, bucket,
+                self.regime_lookup(cat, pos.entry_price)) not in self.engagement_cells):
+            return ("E2_cell_off_table",
+                    {"event": et, "cat": cat, "bucket": bucket,
+                     "band": self.regime_lookup(cat, pos.entry_price)})
+        if pos.intended_join is not True:
+            return ("E3_missing_intended_join", {"event": et})
+        return None
+
+    def _engagement_arm_check(self):
+        """[C-JOINBID AMEND] boot arm/block, completion discipline verbatim: an
+        incident file keeps the engagement mechanism DISABLED across restarts
+        until removed by hand; indeterminate state fails CLOSED."""
+        try:
+            if ENGAGEMENT_INCIDENT_FILE.exists():
+                self.engagement_disabled = True
+                try:
+                    with open(ENGAGEMENT_INCIDENT_FILE) as f:
+                        payload = json.load(f)
+                except Exception:
+                    payload = {"unreadable": True}
+                self._log("engagement_incident_block", {
+                    "file": str(ENGAGEMENT_INCIDENT_FILE), "incident": payload})
+                print("[BOOT] engagement_joinbid=ON but INCIDENT FILE present -> "
+                      "mechanism DISABLED (remove %s by hand to re-arm)"
+                      % ENGAGEMENT_INCIDENT_FILE, flush=True)
+            else:
+                self._log("engagement_tripwire_armed", {
+                    "conditions": "E1 paired-cap bypass, E2 cell off-table, "
+                                  "E3 missing intended_join"})
+                print("[BOOT] engagement_joinbid=ON -> tripwire ARMED (E1-E3), "
+                      "no incident file", flush=True)
+        except Exception as e:
+            self.engagement_disabled = True
+            self._log("engagement_incident_check_error", {"error": str(e)})
 
     def _completion_fill_guards(self, pos, fill_price, is_taker):
         """[C-TRIPWIRE] V2/V3/V4 checks at the completion-fill booking site. Returns
@@ -3942,6 +4016,12 @@ class LiveV3:
                 # entry_mode, which stays the normal resting_maker).
                 if table_src == "engagement_wave1":
                     pos.play_type = "v4_engagement_join"
+                    # [C-JOINBID AMEND] E1-E3 at the placement; first violation
+                    # fires the shared tripwire (self-disable + cancel-only sweep
+                    # incl. THIS bid + incident file); the bot keeps trading.
+                    _viol = self._engagement_place_guards(tk, et, cat, pos, time_to_start)
+                    if _viol is not None:
+                        await self._engagement_tripwire(_viol[0], _viol[1], tk=tk)
                 if entry_mode == "resting_maker":
                     self._save_v4_resting()
                 elif post_only is False:

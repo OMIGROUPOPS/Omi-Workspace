@@ -3117,6 +3117,17 @@ class LiveV3:
         pos.exit_price = exit_target
         book = self.books.get(tk)
         depth_at_target = book.asks.get(exit_target, 0) if book else 0
+        # [C-FEEDER RIDE-ALONG] depth_ok semantics fixed. The old key compared
+        # the single-level ask size AT our exit price -- a level we are usually
+        # FIRST to quote, so it read 0/1 and "depth_ok": false on every healthy
+        # exit (all 5 of last night's). The floor
+        # (min_depth_for_exit_realization, gated-optima surface) is a
+        # REALIZATION-LIQUIDITY proxy: ask-side size resting in the band the
+        # spike must trade through, (entry, exit_target], captured before our
+        # own order posts. Observational only -- never a gate.
+        depth_within_band = (sum(sz for p, sz in book.asks.items()
+                                 if fill_price < p <= exit_target)
+                             if book else 0)
 
         oid, resp = await self.place_order(tk, "sell", "yes", exit_target, filled)
         if not oid:
@@ -3130,8 +3141,10 @@ class LiveV3:
         self._log("v4_exit_posted", {
             "exit_price": exit_target, "band_x": band_x, "cell_id": cell_id,
             "entry_price": fill_price, "qty": filled,
-            "depth_at_exit": depth_at_target, "depth_floor": self.exit_depth_floor,
-            "depth_ok": depth_at_target >= self.exit_depth_floor,
+            "depth_at_exit": depth_at_target,
+            "depth_within_band": depth_within_band,
+            "depth_floor": self.exit_depth_floor,
+            "depth_ok": depth_within_band >= self.exit_depth_floor,
             "order_id": oid,
         }, ticker=tk)
 
@@ -4087,6 +4100,15 @@ class LiveV3:
                 if entry_price <= 0 or entry_price >= 100:
                     continue
 
+                # [C-FEEDER RIDE-ALONG] depth-ahead read fixed: contracts
+                # resting at OUR final target level, captured in the same
+                # synchronous decision slice (the old read took the level at
+                # the post-await best_bid -- wrong level on any tick, and the
+                # exact-500 cluster turned out to be real MM quote sizes (G2
+                # median 499), not a code sentinel -- the read itself was the
+                # defect).
+                placement_depth_ahead = int(book.bids.get(int(round(target_bid)), 0) or 0)
+
                 # T50 paired-basis guard: refuse this leg if (this side +
                 # sibling committed cost) > cap (yes+no > ~100 guaranteed loss).
                 if not self._paired_basis_ok(tk, et, entry_price):
@@ -4141,7 +4163,7 @@ class LiveV3:
                     # band + table membership ride every engagement placement so
                     # the band retrospective is computable with gating OFF.
                     **({"engagement": True,
-                        "depth_ahead": int(book.bids.get(int(round(book.best_bid)), 0) or 0),
+                        "depth_ahead": placement_depth_ahead,
                         "band": regime,
                         "bucket": self._engagement_bucket(time_to_start),
                         "band_on_table": (cat, self._engagement_bucket(time_to_start),
@@ -4837,7 +4859,13 @@ class LiveV3:
         pos.entry_price = new_target
         pos.entry_order_id = oid
         pos.entry_mode = "resting_maker"
-        pos.play_type = "v4_resting_maker"
+        # [C-FEEDER RIDE-ALONG] move_repost PRESERVES the engagement cohort
+        # label (manage/exit semantics key on entry_mode, never play_type).
+        # The old unconditional relabel is why 2 of last night's 3
+        # engagement-origin fills (PLIVEK-VEK, MEDCIL-CIL) booked as
+        # v4_resting_maker and undercounted the scorecard 3x.
+        if pos.play_type != "v4_engagement_join":
+            pos.play_type = "v4_resting_maker"
         mode = "repost_resting"
         pos.target_price = new_target
         # [C-BID-SURVIVAL DIFF-2] re-key the join flag at every re-placement

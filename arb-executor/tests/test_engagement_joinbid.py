@@ -161,9 +161,11 @@ check('"engagement_wave1")' in src and "if no_trade:" in src
 # engagement placements are True by construction inside the helper.
 check("intended_join=self._intended_join_at_placement(" in src,
       "join inherits intended_join by construction (decision-time helper)")
-check('"depth_ahead": int(book.bids.get(int(round(book.best_bid)), 0) or 0)' in src
+# [C-FEEDER RIDE-ALONG] depth read at OUR target level in the decision slice
+check('"depth_ahead": placement_depth_ahead' in src
+      and "placement_depth_ahead = int(book.bids.get(int(round(target_bid)), 0) or 0)" in src
       and 'if table_src == "engagement_wave1"' in src,
-      "depth_ahead logged on engagement placements only")
+      "depth_ahead logged on engagement placements only (decision-time, target level)")
 check('pos.play_type = "v4_engagement_join"' in src,
       "ledger separability: engagement play_type distinguishable")
 

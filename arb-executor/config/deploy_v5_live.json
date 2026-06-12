@@ -31,5 +31,6 @@
   "engagement_joinbid": true,
   "engagement_band_gating": false,
   "paired_cap_enforced": false,
-  "premarket_bids_ride_live": true
+  "premarket_bids_ride_live": true,
+  "operator_manual_mode": true
 }

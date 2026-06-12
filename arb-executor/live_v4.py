@@ -1121,6 +1121,10 @@ class LiveV3:
         # premarket bids filling within the first N minutes of play; the
         # bounce surface grades the policy). Code default False = legacy.
         self.premarket_bids_ride_live = bool(self.config.get("premarket_bids_ride_live", False))
+        # [C-COPILOT, operator-directed 2026-06-12] the operator trades
+        # manually alongside the bot (incl. ITF). Unrecognized resting buys on
+        # mapped tickers are HIS: never cancelled, observed and adopted.
+        self.operator_manual_mode = bool(self.config.get("operator_manual_mode", False))
         # [C-TRIPWIRE] runtime guard state: first V1-V4 violation self-disables the
         # completion mechanism in-process AND across restarts (incident file). The
         # bot itself keeps trading; only the completion mechanism dies.
@@ -5784,9 +5788,25 @@ class LiveV3:
                 for o in orders:
                     orphan_orders.append((tk, o))
 
-        # Cancel orphan resting buys so bot can re-discover cleanly
+        # Cancel orphan resting buys so bot can re-discover cleanly.
+        # [C-COPILOT HOTFIX, operator-directed 2026-06-12] operator_manual_mode
+        # (deploy true): an unrecognized resting BUY on a mapped ticker is the
+        # OPERATOR'S (the sweep killed his RADRAK-RAK re-posts on every
+        # reconcile pass today, 14:59:34 + 15:01:35 ET) -> LEAVE RESTING, log
+        # manual_bid_observed once per order id. Full copilot adoption follows.
         for tk, o in orphan_orders:
             if o["action"] == "buy":
+                if getattr(self, "operator_manual_mode", False):
+                    oid = o.get("order_id", "")
+                    seen = getattr(self, "_manual_bids_seen", None)
+                    if seen is None:
+                        seen = self._manual_bids_seen = set()
+                    if oid not in seen:
+                        seen.add(oid)
+                        self._log("manual_bid_observed", {
+                            "price": o["price"], "qty": o["qty"],
+                            "order_id": oid}, ticker=tk)
+                    continue
                 await self.cancel_order(tk, o["order_id"], "orphan_buy_reconcile_cleanup")
                 self._log("orphan_buy_cancelled", {
                     "price": o["price"], "qty": o["qty"],

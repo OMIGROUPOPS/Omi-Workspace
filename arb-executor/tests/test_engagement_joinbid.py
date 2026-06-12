@@ -96,9 +96,12 @@ check(("ATP_CHALL", "T240_T60", "r05_14") in s.engagement_cells
       and ("WTA_MAIN", "T60_T15", "r65_74") in s.engagement_cells
       and ("WTA_CHALL", "T60_T15", "r25_34") not in s.engagement_cells,
       "spot-check: strict-cleared rows in, non-cleared row out")
-csv_sha = hashlib.sha256(open(REPO / "docs/policy/engagement_cells_v1.csv", "rb").read()).hexdigest()
-check(csv_sha == "5a50748024a05a85dfb0c8899ec26f288730d9a8abf946855e6e76e98468c083",
-      "engagement_cells_v1.csv sha pinned")
+# sha pinned on LF-normalized content (= the git blob = what prod checks out;
+# Windows working trees may carry CRLF via autocrlf)
+csv_lf = open(REPO / "docs/policy/engagement_cells_v1.csv", "rb").read().replace(b"\r\n", b"\n")
+check(hashlib.sha256(csv_lf).hexdigest()
+      == "ed1a3788bad01cbc36737d69cfb661d86df8dc6e164fefb898d3f27761d2934d",
+      "engagement_cells_v1.csv sha pinned (LF-canonical)")
 
 # ---- 6. cap-blocked join -> named skip (paired guard, real composition) ----
 s = make_bot()

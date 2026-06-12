@@ -237,7 +237,8 @@ async def quote_event(st, et, markets):
     if books:
         for b in books:
             reason = add_odds_row(b["book"][:18], b["o1"], b["o2"], b["age"], b["swapped"])
-            wl_a.append((b["book"][:18], reason)); wl_b.append((b["book"][:18], reason))
+            if reason:  # fresh rows enter the blend list; only stale go to w=0
+                wl_a.append((b["book"][:18], reason)); wl_b.append((b["book"][:18], reason))
     else:
         out.append("%-18s %-8s %8s %8s %9s | %8s %8s" % (
             "per-book", "--", "--", "--", "--", "--", "--")
@@ -248,7 +249,8 @@ async def quote_event(st, et, markets):
     agg = odds_pair_for(A["name"], B["name"])
     if agg:
         reason = add_odds_row("betexplorer_avg", agg["o1"], agg["o2"], agg["age"], agg["swapped"])
-        wl_a.append(("betexplorer_avg", reason)); wl_b.append(("betexplorer_avg", reason))
+        if reason:
+            wl_a.append(("betexplorer_avg", reason)); wl_b.append(("betexplorer_avg", reason))
     else:
         out.append("%-18s %-8s %8s %8s %9s | %8s %8s  ABSENT" % (
             "betexplorer_avg", "--", "--", "--", "--", "--", "--"))

@@ -38,6 +38,19 @@ fv, label, used, dropped = blend_quote([("odds_implied", None, False),
 check(fv is None and label == "no_fresh_source" and set(dropped) == {"odds_implied", "kalshi_mid"},
       "no fresh source -> UNAVAILABLE, both dropped and named")
 
+# ---- 1b. the panel primitives ----
+ca, cb, oversum = FQ._pair_implied(1.85, 1.83)
+check(abs(ca - 49.7) < 0.1 and abs(cb - 50.3) < 0.1 and abs(oversum - 108.7) < 0.2,
+      "pairwise vig removal within one book + raw pair-sum (overround) exposed")
+wl = FQ.weights_line([("bet365", 0.5, "9min", ""), ("kalshi_mid", 0.5, "live", ""),
+                      ("betexplorer_avg", 0.0, "", "stale 45min"),
+                      ("kalshi_last", 0.0, "", "display-only")])
+check("bet365 w=0.50 (9min)" in wl and "betexplorer_avg w=0 (stale 45min)" in wl
+      and "kalshi_last w=0 (display-only)" in wl,
+      "weights line: every source named; dropped at w=0 WITH the reason")
+check(FQ.book_rows_for("Foo Bar", "Baz Qux") == [],
+      "per-book reader degrades to absent when the table/rows do not exist")
+
 # ---- 2. never-bans: reference only, no order surface ----
 src_tool = inspect.getsource(FQ)
 check("NEVER-BANS" in src_tool and "place_order" not in src_tool

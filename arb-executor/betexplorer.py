@@ -108,6 +108,23 @@ def fetch_tournament(url):
     return matches
 
 
+# [C-FV-PERBOOK COLLECTOR FINDING, 2026-06-12] checked per operator spec:
+# this collector stores the AGGREGATE only -- and the source itself does not
+# serve a per-bookmaker table to this egress: tournament rows carry one
+# average data-odd pair; match detail pages carry h2h history + bet365
+# branding only; the odds-tab AJAX endpoints 404 (probed match-odds/<id>/...
+# shapes). Per-book capture therefore CANNOT be parsed from what is served
+# here. The betexplorer_books table below is created so a future per-book
+# source (different egress or collector) feeds analysis/fv_quote.py's panel
+# with zero further wiring; fv_quote renders its absence honestly today.
+def ensure_books_table(conn):
+    conn.execute("""CREATE TABLE IF NOT EXISTS betexplorer_books (
+        bookmaker TEXT, p1_name TEXT, p2_name TEXT,
+        raw_odds_p1 REAL, raw_odds_p2 REAL,
+        tournament TEXT, source_url TEXT, scraped_at TEXT,
+        PRIMARY KEY (bookmaker, p1_name, p2_name, scraped_at))""")
+
+
 def store_matches(matches, source_url, tournament):
     """Insert matches into betexplorer_staging table."""
     conn = sqlite3.connect(DB_PATH, timeout=30)

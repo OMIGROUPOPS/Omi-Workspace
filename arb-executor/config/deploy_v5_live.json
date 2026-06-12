@@ -29,5 +29,6 @@
   "graceful_shutdown": true,
   "completion_reprice": true,
   "engagement_joinbid": true,
-  "engagement_band_gating": false
+  "engagement_band_gating": false,
+  "paired_cap_enforced": false
 }

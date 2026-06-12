@@ -1087,6 +1087,21 @@ class LiveV3:
         self.disable_bbo_threshold_settlement = self.config.get("disable_bbo_threshold_settlement", False)
         self._load_entry_table()
         self._load_exit_table()
+        # [C-CAP-REMOVAL] operator-ruled 2026-06-12: the T50 paired-basis cap
+        # (99) forbade the strategy's structural cost by construction -- the
+        # foundation's own economics (combined T-20 taker ~101.9 with positive
+        # per-cell expectancy) sit ABOVE it, which is why zero maker pairs ever
+        # completed. paired_cap_enforced=False (deploy config) disarms the
+        # three pair-arithmetic guards: (1) the entry-placement gate, (2) the
+        # T-20 paired_basis_no_fallback cancel, (3) the T50
+        # cancel-sibling-on-fill -- and re-keys E1/V3 + the completion bound
+        # to the per-leg sanity check (<=99). Per-leg sanity, exit cap, T-15
+        # buffer, freshness and degenerate-book guards are UNTOUCHED. Code
+        # default True = legacy behavior byte-identical; rollback is one
+        # config flip. NAMED RESIDUAL (operator-accepted): both legs filling
+        # rich (KESMAR shape) now rides the per-cell exits instead of being
+        # cancelled -- bounded ~$0.60/pair worst case at 5-lot.
+        self.paired_cap_enforced = bool(self.config.get("paired_cap_enforced", True))
         # [C-TRIPWIRE] runtime guard state: first V1-V4 violation self-disables the
         # completion mechanism in-process AND across restarts (incident file). The
         # bot itself keeps trading; only the completion mechanism dies.
@@ -1703,8 +1718,16 @@ class LiveV3:
           E1 paired-cap bypass: the placed bid fails _paired_basis_ok NOW;
           E2 off-table: (category, bucket, band) not in the 30-row table;
           E3 missing intended_join on an engagement placement."""
-        if not self._paired_basis_ok(tk, et, pos.entry_price):
-            return ("E1_paired_cap_bypass",
+        # [C-CAP-REMOVAL] E1 re-keys with the gate it guards: cap enforced ->
+        # pair arithmetic (unchanged); cap dormant -> the per-leg sanity bound
+        # (1..99) is the live placement constraint, so THAT is what a bypass
+        # means (tripwire follows the gate, the FIX-4/E2 principle).
+        if getattr(self, "paired_cap_enforced", True):
+            if not self._paired_basis_ok(tk, et, pos.entry_price):
+                return ("E1_paired_cap_bypass",
+                        {"event": et, "entry_price": pos.entry_price})
+        elif not (1 <= pos.entry_price <= 99):
+            return ("E1_per_leg_sanity_breach",
                     {"event": et, "entry_price": pos.entry_price})
         # [C-FEEDER FIX-4] E2 is the BAND-GATE's tripwire; with band gating off
         # (B22: cells anchor at fill) off-table placements are by-design, so E2
@@ -1765,11 +1788,20 @@ class LiveV3:
             return ("V2_is_taker_completion_fill",
                     {"fill_price": fill_price, "is_taker": True,
                      "s1_posted": pos.entry_price})
-        if pos.completion_leg1_basis + fill_price > V4_PAIRED_BASIS_CAP:
-            return ("V3_cap_breach",
-                    {"leg1_basis": pos.completion_leg1_basis, "fill_price": fill_price,
-                     "combined": pos.completion_leg1_basis + fill_price,
-                     "cap": V4_PAIRED_BASIS_CAP})
+        # [C-CAP-REMOVAL] V3 re-keys with the gate it guards (E1 discipline):
+        # cap enforced -> pair arithmetic (unchanged); cap dormant ->
+        # over-cap completion fills are BY DESIGN, so V3 guards the per-leg
+        # sanity bound instead.
+        if getattr(self, "paired_cap_enforced", True):
+            if pos.completion_leg1_basis + fill_price > V4_PAIRED_BASIS_CAP:
+                return ("V3_cap_breach",
+                        {"leg1_basis": pos.completion_leg1_basis, "fill_price": fill_price,
+                         "combined": pos.completion_leg1_basis + fill_price,
+                         "cap": V4_PAIRED_BASIS_CAP})
+        elif not (1 <= fill_price <= 99):
+            return ("V3_per_leg_sanity_breach",
+                    {"leg1_basis": pos.completion_leg1_basis,
+                     "fill_price": fill_price})
         if (pos.category, pos.completion_lookup_cell) not in self.completion_cells:
             return ("V4_cell_not_in_table",
                     {"category": pos.category, "cell": pos.completion_lookup_cell,
@@ -2553,7 +2585,14 @@ class LiveV3:
         if sp.entry_qty > 0:
             return  # sibling already filled -> nothing to cancel
         sib_bid = sp.entry_price
-        if sib_bid > 0 and (this_basis + sib_bid) > V4_PAIRED_BASIS_CAP:
+        # [C-CAP-REMOVAL site 3] flag-gated dormant: with the cap off, a leg-1
+        # fill never cancels the resting sibling on pair arithmetic -- the
+        # over-cap pair falls through to the completion arm (cell-valid
+        # reprice, per-leg-bounded). NAMED RESIDUAL (operator-accepted): both
+        # legs filling rich (KESMAR shape) rides the per-cell exits, bounded
+        # ~$0.60/pair worst case at 5-lot.
+        if (sib_bid > 0 and (this_basis + sib_bid) > V4_PAIRED_BASIS_CAP
+                and getattr(self, "paired_cap_enforced", True)):
             # [C-P0-RACE site 4] resolve against exchange truth: if the sibling's
             # bid filled in the race window (both legs filling near-simultaneously),
             # its fill is BOOKED -- the pair is locked, reality, manage the exits --
@@ -2589,8 +2628,18 @@ class LiveV3:
         """PART-2: s1 = min(s0 + X, sib_ask - 1, 99 - leg1_basis). sib_ask=None (no
         real ask on the book) drops the ask term -- replay parity (the 1944b250
         completion branch adds the ask candidate only when an ask exists). The cap term
-        guarantees leg1_basis + s1 <= V4_PAIRED_BASIS_CAP. Pure/testable."""
-        cands = [s0 + x_cell, V4_PAIRED_BASIS_CAP - leg1_basis]
+        guarantees leg1_basis + s1 <= V4_PAIRED_BASIS_CAP. Pure/testable.
+
+        [C-CAP-REMOVAL] with the cap dormant the pair-arithmetic term is
+        replaced by the PER-LEG sanity bound (99): the completion reprices to
+        the sibling's own cell-valid level (s0 + X, ask-clamped), no longer
+        squeezed by leg-1's basis. The manage-side freshness re-evaluation and
+        its cap_headroom_gone revert flow through THIS function, so both
+        attempt and manage sites follow the flag automatically."""
+        if getattr(self, "paired_cap_enforced", True):
+            cands = [s0 + x_cell, V4_PAIRED_BASIS_CAP - leg1_basis]
+        else:
+            cands = [s0 + x_cell, 99]
         if sib_ask is not None:
             cands.append(sib_ask - 1)
         return min(cands)
@@ -2625,8 +2674,10 @@ class LiveV3:
     async def _attempt_completion_reprice(self, tk, et, this_basis, sib, sp):
         """PART-2 item 3: one completion attempt for a freshly-filled leg-1 (`tk` at
         this_basis) against its sibling's resting bid. Caller has already verified:
-        flag on, sibling entry_resting + unfilled + has order, pair NOT over the T50
-        cap. The eligibility cell comes from LEG-1's window-open frame and s0 from the
+        flag on, sibling entry_resting + unfilled + has order, and -- when the paired
+        cap is ENFORCED -- pair not over the T50 cap ([C-CAP-REMOVAL]: with the cap
+        dormant, over-cap pairs reach here by design and s1 is per-leg-bounded via
+        _completion_target). The eligibility cell comes from LEG-1's window-open frame and s0 from the
         SIBLING's window-open price -- NEVER from current_price (frame-mismatch leak;
         the only book-time inputs are the ask clamp and the cap term)."""
         if self.completion_disabled:
@@ -4167,7 +4218,10 @@ class LiveV3:
 
                 # T50 paired-basis guard: refuse this leg if (this side +
                 # sibling committed cost) > cap (yes+no > ~100 guaranteed loss).
-                if not self._paired_basis_ok(tk, et, entry_price):
+                # [C-CAP-REMOVAL site 1] flag-gated dormant: with the cap off,
+                # the per-leg sanity bound above (entry_price < 100) governs.
+                if (getattr(self, "paired_cap_enforced", True)
+                        and not self._paired_basis_ok(tk, et, entry_price)):
                     continue
 
                 # T52: never TAKER-cross a fat spread (the KESMAR fat-spread
@@ -4795,7 +4849,11 @@ class LiveV3:
             # T50: do not fallback-cross into a guaranteed-loss pair. If the
             # sibling is already committed and best_ask would push combined
             # basis over cap, cancel the unfilled bid and stay flat on this leg.
-            if not self._paired_basis_ok(tk, pos.event_ticker, book.best_ask):
+            # [C-CAP-REMOVAL site 2] flag-gated dormant: the Kawa-Salkova
+            # 2026-06-12 frame (SAL killed paired_basis_no_fallback at
+            # 48+52=100 vs cap 99) now rests through the T-20 evaluation.
+            if (getattr(self, "paired_cap_enforced", True)
+                    and not self._paired_basis_ok(tk, pos.event_ticker, book.best_ask)):
                 # [C-P0-RACE site 6b] residual window after the pre-poll above.
                 res = await self._cancel_entry_and_resolve(
                     tk, pos, "paired_basis_no_fallback", "fallback_paired_race")

@@ -2918,15 +2918,16 @@ class LiveV3:
             "tts_min": (round(tts / 60.0, 1) if tts is not None else None)})
         return True
 
-    def _fv_observe_fields(self, full_name, book):
-        """[C-FV-OBSERVE] flag-gated (fv_observe, default OFF, pending Plex's
-        split countersign): the SAME blend computation as analysis/fv_quote.py
-        riding the v4_place log -- one codepath, two consumers. REFERENCE
-        ONLY: never generates a placement, never vetoes one, no in-match
-        logic; any failure degrades to an empty dict."""
+    def _fv_observe_fields(self, et, tk, full_name, price, match_live):
+        """[C-FV-OBSERVE-SHIP, Plex-countersigned] the sharp-book blend riding
+        placement/observation/adoption logs -- the SAME sharp_fv codepath as
+        analysis/fv_quote.py (one backend, two consumers; tennis_odds'
+        calc_no_vig is the single no-vig implementation, the math OMI Edge
+        consumes). Emits fv, fv_gap (price - fv) and the SOURCE LIST
+        [[book_key, age_sec, status]] so calibration recovers the blend's
+        anatomy per row. ZERO behavioral effect: logging only, no gate, no
+        veto; any failure degrades to an empty dict."""
         try:
-            # file-path load (a legacy root-level analysis.py shadows the
-            # package path); cached after the first call
             mod = getattr(self, "_fv_quote_mod", None)
             if mod is None:
                 import importlib.util
@@ -2935,20 +2936,15 @@ class LiveV3:
                 mod = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(mod)
                 self._fv_quote_mod = mod
-            blend_quote, odds_for, ODDS_FRESH_SEC = (
-                mod.blend_quote, mod.odds_for, mod.ODDS_FRESH_SEC)
-            mid = ((book.best_bid + book.best_ask) / 2.0
-                   if 0 < book.best_bid <= book.best_ask < 100 else None)
-            ofv, oage, _ = odds_for(full_name or "")
-            fv, label, used, dropped = blend_quote([
-                ("odds_implied", ofv, bool(oage is not None and oage <= ODDS_FRESH_SEC)),
-                ("kalshi_mid", mid, mid is not None),
-            ])
-            return {"fv_observe": {
-                "fv": round(fv, 1) if fv is not None else None,
-                "label": label, "dropped": dropped,
-                "odds_fv": ofv,
-                "odds_age_sec": round(oage) if oage is not None else None}}
+            fv, sources, reason = mod.sharp_fv(et, full_name or "",
+                                               bool(match_live), ticker=tk)
+            return {
+                "fv": fv,
+                "fv_gap": (round(price - fv, 2)
+                           if fv is not None and price is not None else None),
+                "fv_sources": sources,
+                **({"fv_reason": reason} if reason else {}),
+            }
         except Exception:
             return {}
 
@@ -4465,9 +4461,11 @@ class LiveV3:
                     "runway_status": runway_status,
                     **({"reference_source": reference_source,
                         "offset_table": offset} if reference_source else {}),
-                    # [C-FV-OBSERVE] default OFF pending Plex split countersign
+                    # [C-FV-OBSERVE-SHIP] Plex-countersigned; logging only
                     **(self._fv_observe_fields(
-                        (self.event_player_names.get(et) or [""])[0], book)
+                        et, tk, (self.event_player_names.get(et) or [""])[0],
+                        entry_price,
+                        time_to_start <= 0 or self._is_match_live(et))
                        if getattr(self, "fv_observe", False) else {}),
                     "exp_fill_rate": round(exp_fill, 3), "exp_net_roi_pct": round(exp_roi, 2),
                     # Locked-book verification hook (Plex): record the placement-time book so the
@@ -5689,12 +5687,18 @@ class LiveV3:
             phase="entry_resting", is_v4=True, exit_cell_id=cell_id,
             play_type=play)
         self.positions[tk] = pos
+        _mst = self.event_start_time.get(et, 0)
         self._log("reconcile_v4_adopted", {
             "cell_id": cell_id, "avg": avg, "qty": qty, "rule": rule,
             "context": context,
             # [C-COPILOT] ledger attribution (Plex test 2)
             "attribution": "manual" if manual else "reconciled",
-            "category": cat}, ticker=tk)
+            "category": cat,
+            # [C-FV-OBSERVE-SHIP] calibration anatomy per adoption row
+            **(self._fv_observe_fields(et, tk, "", avg,
+                                       bool(_mst and time.time() > _mst))
+               if getattr(self, "fv_observe", False) else {}),
+            }, ticker=tk)
         if self.completion_reprice:
             self._log("completion_booking_adoption", {
                 "event": et, "avg": avg, "qty": qty, "context": context}, ticker=tk)
@@ -5932,9 +5936,17 @@ class LiveV3:
                     if mb.get(tk, {}).get("order_id") != oid:
                         mb[tk] = {"order_id": oid, "price": o["price"],
                                   "qty": o["qty"], "first_seen": time.time()}
+                        _met = tk.rsplit("-", 1)[0]
+                        _mst = self.event_start_time.get(_met, 0)
                         self._log("manual_bid_observed", {
                             "price": o["price"], "qty": o["qty"],
-                            "order_id": oid}, ticker=tk)
+                            "order_id": oid,
+                            # [C-FV-OBSERVE-SHIP] calibration anatomy per row
+                            **(self._fv_observe_fields(
+                                _met, tk, "", o["price"],
+                                bool(_mst and time.time() > _mst))
+                               if getattr(self, "fv_observe", False) else {}),
+                            }, ticker=tk)
                     continue
                 await self.cancel_order(tk, o["order_id"], "orphan_buy_reconcile_cleanup")
                 self._log("orphan_buy_cancelled", {

@@ -226,7 +226,12 @@ def poll_odds(conn, name_cache):
         r = requests.get(ODDS_API_BASE + "/sports", params={"apiKey": ODDS_API_KEY}, timeout=15)
         all_sports = r.json() if r.status_code == 200 else []
         active = set(s["key"] for s in all_sports if s.get("active"))
-        active_tennis = [s for s in TENNIS_SPORTS if s in active]
+        # [C-FV-OBSERVE-SHIP] dynamic discovery: the hardcoded TENNIS_SPORTS
+        # membership went dark when Roland Garros ended (7 days of "No active
+        # tennis tournaments" with Stuttgart/'s-Hertogenbosch live and the
+        # last sharp-book row 2026-06-05). Take EVERY active tennis_* key the
+        # API serves; TENNIS_SPORTS stays as documentation of known keys.
+        active_tennis = sorted(s for s in active if s.startswith("tennis_"))
     except Exception as e:
         log("[ERR] Sports fetch: %s" % e)
         return

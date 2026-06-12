@@ -35,6 +35,11 @@ def run(coro):
 async def fake_api_get(sess, ak, pk, path, rl):
     if "/portfolio/orders/" in path and "?" not in path:
         return {"order": {"status": "canceled", "fill_count_fp": 0}}
+    if "/portfolio/positions" in path:
+        # [C-PARTIAL-BOOKING P0v2] the exit path now clamps to the exchange
+        # position (never-oversell); report ample open shares.
+        tk = path.split("ticker=")[1].split("&")[0] if "ticker=" in path else ""
+        return {"market_positions": [{"ticker": tk, "position_fp": "99.00"}]}
     return {"orders": []}
 M.api_get = fake_api_get
 

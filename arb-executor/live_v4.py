@@ -319,6 +319,14 @@ class Position:
     exit_price: int = 0
     exit_order_id: str = ""
     exit_filled: bool = False
+    # [C-PARTIAL-BOOKING P0v2] partial-fill primitives (NAETAN-TAN 2026-06-12,
+    # the first partial under this stack: increments 1/1/2/1 across the phase
+    # flip went unbooked -> 4 shares naked).
+    # exit_filled_qty: the exit-side COUNT; exit_filled (bool) means COMPLETE
+    # only. entry_order_done: the entry order has reached a terminal exchange
+    # status with every fill booked -> stop polling it.
+    exit_filled_qty: int = 0
+    entry_order_done: bool = False
 
     # DCA
     dca_price: int = 0
@@ -3214,6 +3222,29 @@ class LiveV3:
         pos.exit_band_x = band_x
         exit_target = min(fill_price + band_x, EXIT_PRICE_CAP)
         pos.exit_price = exit_target
+        # [C-PARTIAL-BOOKING P0v2] the exit sizes to OPEN shares, never total
+        # bought: booked entry fills minus the exit-side count, CLAMPED to the
+        # exchange position (never oversell -- the operator-manual-order frame
+        # 2026-06-12: a total-bought-sized repost over a partially-exited
+        # position would have sold 5 against 4 open).
+        open_qty = filled - pos.exit_filled_qty
+        try:
+            pdata = await api_get(self.session, self.ak, self.pk,
+                "/trade-api/v2/portfolio/positions?ticker=%s&count_filter=position"
+                "&settlement_status=unsettled" % tk, self.rl)
+            if pdata:
+                ex_open = sum(int(float(p.get("position_fp", 0)))
+                              for p in pdata.get("market_positions", []))
+                if ex_open >= 0:
+                    open_qty = min(open_qty, ex_open)
+        except Exception:
+            pass  # ledger-derived open_qty stands on a failed lookup
+        if open_qty <= 0:
+            self._log("exit_skip_no_open_shares", {
+                "filled": filled, "exit_filled_qty": pos.exit_filled_qty,
+            }, ticker=tk)
+            return
+        filled = open_qty
         book = self.books.get(tk)
         depth_at_target = book.asks.get(exit_target, 0) if book else 0
         # [C-FEEDER RIDE-ALONG] depth_ok semantics fixed. The old key compared
@@ -3629,29 +3660,82 @@ class LiveV3:
                                 "floor": self.dca_fill_floor,
                             }, ticker=tk)
 
+            # [C-PARTIAL-BOOKING P0v2] entry order with unfilled quantity is
+            # polled while NON-TERMINAL regardless of phase. The old scope
+            # (phase == "entry_resting" only) is THE defect: the first partial
+            # flipped phase to "active" and increments 2..N were never polled
+            # (NAETAN-TAN: booked 1, exchange filled 5, 4 shares naked).
+            # Booking flows through the idempotent _book_v4_entry_fill (books
+            # the delta); _v4_apply_exit re-sizes the exit to OPEN shares.
+            if (pos.is_v4 and pos.phase == "active" and pos.entry_order_id
+                    and not pos.entry_order_done):
+                path = "/trade-api/v2/portfolio/orders/%s" % pos.entry_order_id
+                data = await api_get(self.session, self.ak, self.pk, path, self.rl)
+                if data:
+                    order = data.get("order", data)
+                    status = order.get("status", "")
+                    filled, fill_price = self._parse_entry_fill(order, pos)
+                    if filled > pos.entry_qty:
+                        await self._book_v4_entry_fill(
+                            tk, pos, filled, fill_price, status,
+                            source="active_partial_poll")
+                    if status in ("executed", "canceled") and filled <= pos.entry_qty:
+                        pos.entry_order_done = True
+
             # Check exit order fill
+            # [C-PARTIAL-BOOKING P0v2] exit_filled is now a COUNT
+            # (exit_filled_qty); the bool means COMPLETE only. A partial exit
+            # books its increment; the remainder order stays managed and is
+            # never cancelled while backed by open shares (the only path that
+            # replaces it -- _v4_apply_exit on a new entry increment -- is an
+            # atomic cancel-and-repost sized to open, never both resting).
             if pos.phase == "active" and pos.exit_order_id and not pos.exit_filled:
                 path = "/trade-api/v2/portfolio/orders/%s" % pos.exit_order_id
                 data = await api_get(self.session, self.ak, self.pk, path, self.rl)
                 if data:
                     order = data.get("order", data)
+                    status = order.get("status", "")
                     filled = int(float(order.get("fill_count_fp", order.get("count_filled", 0)) or 0))
-                    if filled >= pos.entry_qty:
-                        pos.exit_filled = True
-                        pos.settled = True
-                        pos.phase = "settled"
-                        self.n_exits += 1
-                        pnl = (pos.exit_price - pos.entry_price) * pos.entry_qty
-                        if pos.dca_qty > 0:
-                            pnl += (pos.exit_price - pos.dca_price) * pos.dca_qty
-                        pos.pnl_cents = pnl
+                    if filled > pos.exit_filled_qty:
+                        new_exit_fills = filled - pos.exit_filled_qty
+                        pos.exit_filled_qty = filled
+                        complete = (status == "executed"
+                                    or pos.exit_filled_qty >= pos.entry_qty)
+                        inc_pnl = (pos.exit_price - pos.entry_price) * new_exit_fills
+                        pos.pnl_cents += inc_pnl
+                        if pos.dca_qty > 0 and complete:
+                            pos.pnl_cents += (pos.exit_price - pos.dca_price) * pos.dca_qty
+                        pnl = pos.pnl_cents
                         self._log("exit_filled", {
                             "exit_price": pos.exit_price,
                             "entry_price": pos.entry_price,
+                            "qty": pos.exit_filled_qty,
+                            "new_fills": new_exit_fills,
+                            "complete": complete,
                             "pnl_cents": pnl,
                             "pnl_dollars": pnl / 100.0,
                             "had_dca": pos.dca_qty > 0,
                         }, ticker=tk)
+                        if not complete:
+                            continue  # remainder stays managed; nothing closes
+                        if (pos.exit_filled_qty < pos.entry_qty
+                                and pos.is_v4):
+                            # exit order terminal but open shares remain
+                            # (TAN-shape history): re-cover the remainder via
+                            # the open-shares-sized exit path.
+                            self._log("exit_partial_remainder", {
+                                "exit_filled_qty": pos.exit_filled_qty,
+                                "entry_qty": pos.entry_qty,
+                                "open_shares": pos.entry_qty - pos.exit_filled_qty,
+                            }, ticker=tk)
+                            pos.exit_order_id = ""
+                            await self._v4_apply_exit(tk, pos, pos.entry_price,
+                                                      pos.entry_qty)
+                            continue
+                        pos.exit_filled = True
+                        pos.settled = True
+                        pos.phase = "settled"
+                        self.n_exits += 1
                         # Classify: scalp (pregame exit) vs settlement-adjacent
                         if pos.match_start_ts > 0 and time.time() < pos.match_start_ts:
                             hrs_before = (pos.match_start_ts - time.time()) / 3600
@@ -3796,9 +3880,15 @@ class LiveV3:
                 "phase": pos.phase, "source": source,
             }, ticker=ticker)
 
-        pnl = (settle_val - pos.entry_price) * pos.entry_qty
+        # [C-PARTIAL-BOOKING P0v2] settle only the shares still OPEN: a partial
+        # exit already realized (exit - entry) on exit_filled_qty shares; those
+        # must not be re-priced at settlement (double-count). pnl accumulates
+        # on top of any partial-exit pnl already booked into pos.pnl_cents.
+        settled_qty = max(pos.entry_qty - pos.exit_filled_qty, 0)
+        pnl = (settle_val - pos.entry_price) * settled_qty
         if pos.dca_qty > 0:
             pnl += (settle_val - pos.dca_price) * pos.dca_qty
+        pnl += pos.pnl_cents  # partial-exit increments already realized
         pos.pnl_cents = pnl
         pos.settled = True
         pos.phase = "settled"
@@ -3813,6 +3903,9 @@ class LiveV3:
             "pnl_dollars": pnl / 100.0,
             "entry_price": pos.entry_price,
             "had_dca": pos.dca_qty > 0,
+            # [C-PARTIAL-BOOKING P0v2] partial-exit history visibility
+            "settled_qty": settled_qty,
+            "exit_filled_qty": pos.exit_filled_qty,
         }, ticker=ticker)
 
         # Cleanup: cancel any resting orders for this ticker

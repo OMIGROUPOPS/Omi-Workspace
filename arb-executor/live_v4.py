@@ -2918,6 +2918,40 @@ class LiveV3:
             "tts_min": (round(tts / 60.0, 1) if tts is not None else None)})
         return True
 
+    def _fv_observe_fields(self, full_name, book):
+        """[C-FV-OBSERVE] flag-gated (fv_observe, default OFF, pending Plex's
+        split countersign): the SAME blend computation as analysis/fv_quote.py
+        riding the v4_place log -- one codepath, two consumers. REFERENCE
+        ONLY: never generates a placement, never vetoes one, no in-match
+        logic; any failure degrades to an empty dict."""
+        try:
+            # file-path load (a legacy root-level analysis.py shadows the
+            # package path); cached after the first call
+            mod = getattr(self, "_fv_quote_mod", None)
+            if mod is None:
+                import importlib.util
+                _p = Path(__file__).resolve().parent / "analysis" / "fv_quote.py"
+                spec = importlib.util.spec_from_file_location("fv_quote_mod", _p)
+                mod = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(mod)
+                self._fv_quote_mod = mod
+            blend_quote, odds_for, ODDS_FRESH_SEC = (
+                mod.blend_quote, mod.odds_for, mod.ODDS_FRESH_SEC)
+            mid = ((book.best_bid + book.best_ask) / 2.0
+                   if 0 < book.best_bid <= book.best_ask < 100 else None)
+            ofv, oage, _ = odds_for(full_name or "")
+            fv, label, used, dropped = blend_quote([
+                ("odds_implied", ofv, bool(oage is not None and oage <= ODDS_FRESH_SEC)),
+                ("kalshi_mid", mid, mid is not None),
+            ])
+            return {"fv_observe": {
+                "fv": round(fv, 1) if fv is not None else None,
+                "label": label, "dropped": dropped,
+                "odds_fv": ofv,
+                "odds_age_sec": round(oage) if oage is not None else None}}
+        except Exception:
+            return {}
+
     def _manual_owns_leg(self, tk):
         """[C-MANUAL-FIRST, OP-3 ruling] first trade on a leg owns it; the bot
         yields to operator presence. True when the leg carries a resting
@@ -4431,6 +4465,10 @@ class LiveV3:
                     "runway_status": runway_status,
                     **({"reference_source": reference_source,
                         "offset_table": offset} if reference_source else {}),
+                    # [C-FV-OBSERVE] default OFF pending Plex split countersign
+                    **(self._fv_observe_fields(
+                        (self.event_player_names.get(et) or [""])[0], book)
+                       if getattr(self, "fv_observe", False) else {}),
                     "exp_fill_rate": round(exp_fill, 3), "exp_net_roi_pct": round(exp_roi, 2),
                     # Locked-book verification hook (Plex): record the placement-time book so the
                     # next is_taker-truth pass can confirm locked-book (bid==ask) placements fill

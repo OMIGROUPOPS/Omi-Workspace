@@ -1110,6 +1110,17 @@ class LiveV3:
         # rich (KESMAR shape) now rides the per-cell exits instead of being
         # cancelled -- bounded ~$0.60/pair worst case at 5-lot.
         self.paired_cap_enforced = bool(self.config.get("paired_cap_enforced", True))
+        # [C-RIDE-LIVE override #6, operator-directed 2026-06-12] resting maker
+        # ENTRY bids persist into play: the T-15 buffer cancel and the
+        # match-live resting sweep EXEMPT them, and a rode-in bid HOLDS in-play
+        # (no T-20 fallback re-post, no move-repost -- those are placement
+        # decisions, and in-play conception stays forbidden; placement-time
+        # gates untouched). Economic cancels (bid_marketable_stale on drift
+        # bids, degenerate book, T52) still govern; exits already ride,
+        # unchanged. Bounded 5-lot; audit read queued (outcome distribution of
+        # premarket bids filling within the first N minutes of play; the
+        # bounce surface grades the policy). Code default False = legacy.
+        self.premarket_bids_ride_live = bool(self.config.get("premarket_bids_ride_live", False))
         # [C-TRIPWIRE] runtime guard state: first V1-V4 violation self-disables the
         # completion mechanism in-process AND across restarts (incident file). The
         # bot itself keeps trading; only the completion mechanism dies.
@@ -3460,7 +3471,11 @@ class LiveV3:
                 # PART-2 item 5: completion bids are buffer-exempt (ride to T-0 under
                 # _v4_manage_completion); fresh entry bids keep the T-15 cancel.
                 if (pos.match_start_ts > 0 and now > pos.match_start_ts - ENTRY_BUFFER_SEC
-                        and not self._completion_buffer_exempt(pos)):
+                        and not self._completion_buffer_exempt(pos)
+                        # [C-RIDE-LIVE override #6] flag on -> the T-15 buffer
+                        # exempts resting maker entries; the poll below keeps
+                        # booking fills (incl. partials) into play
+                        and not getattr(self, "premarket_bids_ride_live", False)):
                     # [C-P0-RACE site 3] resolve the cancel against exchange truth:
                     # a fill since the last poll books instead of being deleted.
                     res = await self._cancel_entry_and_resolve(
@@ -4856,9 +4871,13 @@ class LiveV3:
         # T51/T52: cancel a resting entry bid the moment the match goes live --
         # do not let a pre-match bid fill into live play. Filled positions are
         # managed separately and unaffected.
-        if self._is_match_live(pos.event_ticker):
+        if (self._is_match_live(pos.event_ticker)
+                and not getattr(self, "premarket_bids_ride_live", False)):
             # [C-P0-RACE site 2] fills cluster around match start -- exactly when
             # T51 fires. A raced fill is booked (it filled pre-live), not deleted.
+            # [C-RIDE-LIVE override #6] flag on -> the sweep exempts resting
+            # maker entries; the bid persists into play until filled or
+            # cancelled for a named economic reason.
             res = await self._cancel_entry_and_resolve(
                 tk, pos, "match_live_cancel", "match_live_cancel_race")
             if res == "cancelled":
@@ -4909,6 +4928,17 @@ class LiveV3:
             return
 
         time_to_start = pos.match_start_ts - now if pos.match_start_ts > 0 else 99999
+
+        # [C-RIDE-LIVE override #6] a rode-in bid HOLDS in-play: no T-20
+        # fallback re-post, no move-repost (both are placement decisions --
+        # in-play conception is forbidden; without this hold, negative tts
+        # satisfies the fallback window and the first manage pass in play
+        # would cancel/re-price the bid, defeating the ride -- the Naef
+        # 13:40:00 re-post-into-play shape). The economic cancels above
+        # (stale on drift bids, degenerate) already ran this pass.
+        if (getattr(self, "premarket_bids_ride_live", False)
+                and (time_to_start <= 0 or self._is_match_live(pos.event_ticker))):
+            return
 
         # T-20m taker fallback (STEP 6): if the bid is still unfilled at T-20m,
         # cross as a taker at the current ask. This IS the atlas baseline entry

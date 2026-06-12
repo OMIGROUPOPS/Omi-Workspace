@@ -28,5 +28,6 @@
   "maker_only_entry": true,
   "graceful_shutdown": true,
   "completion_reprice": true,
-  "engagement_joinbid": true
+  "engagement_joinbid": true,
+  "engagement_band_gating": false
 }

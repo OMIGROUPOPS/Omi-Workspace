@@ -1067,6 +1067,18 @@ class LiveV3:
         if self.completion_reprice:
             self._load_completion_cells()
             self._completion_arm_check()
+        # [C-JOINBID WAVE-1] engagement join-bid for the no-print hole. Default
+        # OFF (key absent from deploy_v5_live.json). ON: at a leg's evaluation,
+        # when the live rule yields skip_no_trade AND (category, time bucket,
+        # best_bid band) is in the 30-cell wave-1 table (C1_join_strict
+        # BEATS_SKIP_0p5x rows of engagement_replay_v1, sha b601b5e8...), place
+        # a JOIN bid at best_bid through the NORMAL placement machinery
+        # end-to-end (paired cap, T52, race-resolve, intended_join, buffer all
+        # inherited). Printed legs and ineligible cells are untouched.
+        self.engagement_joinbid = bool(self.config.get("engagement_joinbid", False))
+        self.engagement_cells = set()   # (category, bucket, band); absent = skip stands
+        if self.engagement_joinbid:
+            self._load_engagement_cells()
 
         self.books: Dict[str, Book] = {}
         self.subscribed: Set[str] = set()
@@ -1500,6 +1512,52 @@ class LiveV3:
                 n += 1
         self._log("completion_cells_loaded", {"rows": n, "path": str(rel),
                                               "provenance_sha": sha[:16]})
+
+    def _load_engagement_cells(self):
+        """[C-JOINBID WAVE-1] load docs/policy/engagement_cells_v1.csv into
+        self.engagement_cells = {(category, bucket, band)}. The 30 strict-cleared
+        rows (C1_join_strict x BEATS_SKIP_0p5x) of engagement_replay_v1.parquet
+        (sha b601b5e8...). Absent row = skip stands. Called only when
+        engagement_joinbid=true; a missing file fails the boot loudly."""
+        import csv as _csv
+        rel = self.config.get("engagement_cells_path", "docs/policy/engagement_cells_v1.csv")
+        path = Path(__file__).resolve().parent / rel
+        n = 0
+        sha = ""
+        with open(path, newline="") as f:
+            for row in _csv.DictReader(f):
+                self.engagement_cells.add((row["category"].strip(),
+                                           row["bucket"].strip(), row["band"].strip()))
+                sha = row.get("provenance_sha", "")
+                n += 1
+        self._log("engagement_cells_loaded", {"rows": n, "path": str(rel),
+                                              "provenance_sha": sha[:16]})
+
+    def _engagement_bucket(self, tts_sec):
+        """[C-JOINBID] replay time-bucket of an evaluation moment. (240,60] min ->
+        T240_T60; (60,15] -> T60_T15; outside -> None (no engagement)."""
+        if 3600.0 < tts_sec <= 14400.0: return "T240_T60"
+        if 900.0 < tts_sec <= 3600.0: return "T60_T15"
+        return None
+
+    def _engagement_join_eligible(self, cat, book, time_to_start):
+        """[C-JOINBID WAVE-1] pure eligibility: returns the join level (best_bid,
+        int cents) or None. None when: flag off; no/locked/degenerate book (a
+        join NEEDS a strict bid<ask level to rest at -- locked books place via
+        the normal anchor path only); outside the replay buckets; (category,
+        bucket, best_bid band) not in the wave-1 table."""
+        if not self.engagement_joinbid:
+            return None
+        b, a = book.best_bid, book.best_ask
+        if not (1 <= b < a <= 99):
+            return None
+        bucket = self._engagement_bucket(time_to_start)
+        if bucket is None:
+            return None
+        lvl = int(round(b))
+        if (cat, bucket, self.regime_lookup(cat, lvl)) not in self.engagement_cells:
+            return None
+        return lvl
 
     def _completion_arm_check(self):
         """[C-TRIPWIRE] boot arm/block. An incident file from a prior tripwire fire
@@ -3709,17 +3767,31 @@ class LiveV3:
                 lt_age_sec = (time.time() - book.last_trade_ts) if book.last_trade_ts else -1.0
                 ent = self._v4_entry_anchor(tk, cat, book, time_to_start)
                 if ent is None:
-                    self.n_skips += 1
                     # Distinguish a no-fresh-trade skip (last-traded path) from a missing table row,
                     # so the no-trade thread is visible and the late_miss enum stays clean.
                     fresh = book.last_trade_price > 0 and 0 <= lt_age_sec <= V4_LAST_TRADE_MAX_AGE_SEC
                     no_trade = (not self.running_mid_anchor) and not fresh
-                    self._log("skipped", {
-                        "reason": "skip_no_trade" if no_trade else "no_entry_table_row",
-                        "anchor_src": "skip_no_trade" if no_trade else None,
-                        "last_trade_age_sec": round(lt_age_sec, 1), "cat": cat,
-                        "price": int(round((book.best_bid + book.best_ask) / 2.0))}, ticker=tk)
-                    continue
+                    # [C-JOINBID WAVE-1] the no-print hole: instead of skipping an
+                    # eligible quiet leg, JOIN the bid at best_bid and fall through
+                    # to the NORMAL placement machinery below (paired cap, T52,
+                    # pre-post guards, race-resolve, intended_join -- by
+                    # construction target_bid == best_bid -- and the T-15 buffer
+                    # all inherited unchanged). Ineligible / no-bid / locked /
+                    # flag-off -> the skip stands, named exactly as before.
+                    if no_trade:
+                        _ej = self._engagement_join_eligible(cat, book, time_to_start)
+                        if _ej is not None:
+                            ent = (_ej, "engagement_join", _ej,
+                                   self.regime_lookup(cat, _ej), 240, 0,
+                                   0.0, 0.0, _ej, "engagement_wave1")
+                    if ent is None:
+                        self.n_skips += 1
+                        self._log("skipped", {
+                            "reason": "skip_no_trade" if no_trade else "no_entry_table_row",
+                            "anchor_src": "skip_no_trade" if no_trade else None,
+                            "last_trade_age_sec": round(lt_age_sec, 1), "cat": cat,
+                            "price": int(round((book.best_bid + book.best_ask) / 2.0))}, ticker=tk)
+                        continue
                 (current_price, anchor_src, cell, regime, placement_min, offset,
                  exp_fill, exp_roi, target_bid, table_src) = ent
 
@@ -3821,6 +3893,12 @@ class LiveV3:
                     "book_bid": book.best_bid, "book_ask": book.best_ask,
                     "book_spread": book.best_ask - book.best_bid,
                     "locked_book": book.best_bid == book.best_ask,
+                    # [C-JOINBID] ratified depth logging (observational): contracts
+                    # resting at the join level at placement, for the wave-gate
+                    # ledger (G2 quartiles 84/499/1381 are the interpretation grid).
+                    **({"engagement": True,
+                        "depth_ahead": int(book.bids.get(int(round(book.best_bid)), 0) or 0)}
+                       if table_src == "engagement_wave1" else {}),
                 }, ticker=tk)
 
                 # #1 ref-price soft-alert: rolling tight_mid rate over the last 100 placements.
@@ -3858,6 +3936,12 @@ class LiveV3:
                                    and target_bid == book.best_bid),
                 )
                 self.positions[tk] = pos
+                # [C-JOINBID] ledger separability: engagement fills must be
+                # distinguishable from offset-table placements (play_type drives
+                # cohort labeling only; ALL manage/exit semantics key on
+                # entry_mode, which stays the normal resting_maker).
+                if table_src == "engagement_wave1":
+                    pos.play_type = "v4_engagement_join"
                 if entry_mode == "resting_maker":
                     self._save_v4_resting()
                 elif post_only is False:
@@ -4146,6 +4230,9 @@ class LiveV3:
                 # in test_completion_reprice stays byte-identical).
                 if pos.intended_join:
                     out[tk]["intended_join"] = True
+                # [C-JOINBID] sparse: engagement cohort label survives restart
+                if pos.play_type == "v4_engagement_join":
+                    out[tk]["play_type"] = "v4_engagement_join"
                 if pos.entry_mode == "completion_reprice":
                     out[tk].update({
                         "completion_s0": pos.completion_s0,
@@ -4213,7 +4300,7 @@ class LiveV3:
                 entry_order_id=d.get("order_id", ""),
                 entry_posted_ts=float(d.get("posted_at", 0.0)),
                 phase="entry_resting", match_start_ts=float(d.get("match_start_ts", 0.0)),
-                play_type="v4_" + d.get("entry_mode", "resting_maker"),
+                play_type=d.get("play_type", "v4_" + d.get("entry_mode", "resting_maker")),
                 is_v4=True, regime_at_posting=d.get("regime_at_posting", ""),
                 target_price=int(d.get("target_price", 0)),
                 placement_minute=int(d.get("placement_minute", 0)),

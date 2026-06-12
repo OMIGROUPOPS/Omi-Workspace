@@ -158,7 +158,17 @@ SERIES_MAP = {
     'WTA_CHALL': ['KXWTACHALLENGERMATCH'],
     'ATP_SLAM': ['KXATPGRANDSLAM'],
     'WTA_SLAM': ['KXWTAGRANDSLAM'],
+    # [C-COPILOT ITF] SEE-NOT-TRADE: discovery/mapping VISIBILITY ONLY -- the
+    # bot NEVER places ITF entries (categories_enabled untouched; placement,
+    # engagement, offset table, FIX-6 all sit behind that gate). Manual fills
+    # adopt with attribution ITF_M/ITF_W; exits borrow the Challenger EXIT
+    # surface at the fill cent (ITF_EXIT_BORROW) without polluting native
+    # CHALL cells (ledger keys on the position's own category).
+    'ITF_M': ['KXITFMATCH'],
+    'ITF_W': ['KXITFWMATCH'],
 }
+ITF_VISIBILITY_CATS = ('ITF_M', 'ITF_W')
+ITF_EXIT_BORROW = {'ITF_M': 'ATP_CHALL', 'ITF_W': 'WTA_CHALL'}
 ALL_SERIES = []
 for prefixes in SERIES_MAP.values():
     ALL_SERIES.extend(prefixes)
@@ -1125,6 +1135,13 @@ class LiveV3:
         # manually alongside the bot (incl. ITF). Unrecognized resting buys on
         # mapped tickers are HIS: never cancelled, observed and adopted.
         self.operator_manual_mode = bool(self.config.get("operator_manual_mode", False))
+        # [C-COPILOT] the bot's own order-id registry: every id this process
+        # places or restores. An unknown resting order is MANUAL by definition
+        # (Plex test 2's attribution source). manual_bids tracks observed
+        # foreign resting buys per ticker until fill (adoption) or withdrawal.
+        self._bot_order_ids: Set[str] = set()
+        self._bot_order_tickers: Set[str] = set()
+        self.manual_bids: Dict[str, dict] = {}
         # [C-TRIPWIRE] runtime guard state: first V1-V4 violation self-disables the
         # completion mechanism in-process AND across restarts (incident file). The
         # bot itself keeps trading; only the completion mechanism dies.
@@ -1875,7 +1892,12 @@ class LiveV3:
         """v4 exit lookup: returns (band_x|None, rule) for the 1c cell of
         price_cents. rule in {"exit","hold"}. Falls back to ("exit", default)
         if the category/cell is somehow absent (never expected for the 4
-        enabled categories)."""
+        enabled categories).
+
+        [C-COPILOT ITF] ITF_M/ITF_W BORROW the Challenger exit surface at the
+        fill cent (lookup-only translation; the position keeps its ITF
+        category, so ledger/cell attribution never pollutes native CHALL)."""
+        category = ITF_EXIT_BORROW.get(category, category)
         cid = self.cell_lookup(category, price_cents)
         cmap = self.exit_table.get(category)
         if cmap and cid in cmap:
@@ -2087,6 +2109,10 @@ class LiveV3:
         resp = await api_post(self.session, self.ak, self.pk, path, payload, self.rl)
         if resp and not resp.get("_error"):
             oid = resp.get("order", {}).get("order_id", "")
+            # [C-COPILOT] register: this id/ticker is the BOT's
+            if oid:
+                getattr(self, "_bot_order_ids", set()).add(oid)
+                getattr(self, "_bot_order_tickers", set()).add(ticker)
             self._log("order_placed", {
                 "action": action, "side": side, "price": price, "count": count,
                 "order_id": oid, "client_order_id": coid,
@@ -4841,6 +4867,10 @@ class LiveV3:
                 completion_lookup_cell=int(d.get("completion_lookup_cell", 0)),
             )
             restored += 1
+            # [C-COPILOT] restored legs are BOT orders -- seed the registry
+            if d.get("order_id"):
+                getattr(self, "_bot_order_ids", set()).add(d["order_id"])
+                getattr(self, "_bot_order_tickers", set()).add(tk)
         if restored:
             self._log("v4_resting_restored", {"count": restored})
 
@@ -5548,7 +5578,17 @@ class LiveV3:
         An existing resting sell still LINKS as before (already-booked restart
         path -- no booking, no exit cancel/repost churn)."""
         qty = pinfo["qty"]
-        cell_id = self.cell_lookup(cat, avg)
+        # [C-COPILOT] attribution via the bot's own order-id/ticker registry:
+        # a naked position on a ticker the bot never ordered (or whose resting
+        # bid we observed as foreign) is the OPERATOR'S -- unknown = manual by
+        # definition. Booked at the FILL cell through the same proven path.
+        manual = bool(getattr(self, "operator_manual_mode", False)
+                      and (tk in getattr(self, "manual_bids", {})
+                           or tk not in getattr(self, "_bot_order_tickers", set())))
+        if manual:
+            getattr(self, "manual_bids", {}).pop(tk, None)
+        play = "v4_manual" if manual else "v4_reconciled"
+        cell_id = self.cell_lookup(ITF_EXIT_BORROW.get(cat, cat), avg)
         band_x, rule = self.exit_rule_for(cat, avg)
         if rule != "hold":
             fresh = await api_get(self.session, self.ak, self.pk,
@@ -5560,7 +5600,7 @@ class LiveV3:
                     ticker=tk, event_ticker=et, category=cat, direction="",
                     cell_name="", cell_cfg={}, entry_price=avg, entry_qty=qty,
                     phase="active", entry_filled_ts=time.time(),
-                    is_v4=True, exit_cell_id=cell_id, play_type="v4_reconciled",
+                    is_v4=True, exit_cell_id=cell_id, play_type=play,
                     strategy="exit", exit_band_x=band_x,
                     exit_price=sp, exit_order_id=fresh_sells[0].get("order_id", ""))
                 self._log("reconcile_v4_exit_found", {
@@ -5570,11 +5610,14 @@ class LiveV3:
             ticker=tk, event_ticker=et, category=cat, direction="",
             cell_name="", cell_cfg={}, entry_price=avg, entry_qty=0,
             phase="entry_resting", is_v4=True, exit_cell_id=cell_id,
-            play_type="v4_reconciled")
+            play_type=play)
         self.positions[tk] = pos
         self._log("reconcile_v4_adopted", {
             "cell_id": cell_id, "avg": avg, "qty": qty, "rule": rule,
-            "context": context}, ticker=tk)
+            "context": context,
+            # [C-COPILOT] ledger attribution (Plex test 2)
+            "attribution": "manual" if manual else "reconciled",
+            "category": cat}, ticker=tk)
         if self.completion_reprice:
             self._log("completion_booking_adoption", {
                 "event": et, "avg": avg, "qty": qty, "context": context}, ticker=tk)
@@ -5720,7 +5763,10 @@ class LiveV3:
                 avg = pinfo["avg_price"]
                 # v4: use the adaptive exit band table (hold-skip aware). Avoids
                 # posting an unwanted exit on a hold-cell position after restart.
-                if not self.fv_scenarios_enabled and cat in self.categories_enabled:
+                # [C-COPILOT ITF] visibility categories adopt manual fills too
+                # (borrowed Challenger exit surface); placement stays excluded.
+                if not self.fv_scenarios_enabled and (
+                        cat in self.categories_enabled or cat in ITF_VISIBILITY_CATS):
                     await self._v4_reconcile_naked(tk, et, cat, avg, pinfo,
                         context=("steady_state_reconcile" if quiet else "boot_reconcile"))
                     continue
@@ -5796,13 +5842,19 @@ class LiveV3:
         # manual_bid_observed once per order id. Full copilot adoption follows.
         for tk, o in orphan_orders:
             if o["action"] == "buy":
-                if getattr(self, "operator_manual_mode", False):
-                    oid = o.get("order_id", "")
-                    seen = getattr(self, "_manual_bids_seen", None)
-                    if seen is None:
-                        seen = self._manual_bids_seen = set()
-                    if oid not in seen:
-                        seen.add(oid)
+                oid = o.get("order_id", "")
+                # [C-COPILOT] adopted-as-foreign: an unrecognized resting buy
+                # (id not in the bot's own registry) is the OPERATOR'S --
+                # tracked, left resting, observed once. A bot-registry id in
+                # the orphan list is a bot bug and keeps the legacy cancel.
+                if (getattr(self, "operator_manual_mode", False)
+                        and oid not in getattr(self, "_bot_order_ids", set())):
+                    mb = getattr(self, "manual_bids", None)
+                    if mb is None:
+                        mb = self.manual_bids = {}
+                    if mb.get(tk, {}).get("order_id") != oid:
+                        mb[tk] = {"order_id": oid, "price": o["price"],
+                                  "qty": o["qty"], "first_seen": time.time()}
                         self._log("manual_bid_observed", {
                             "price": o["price"], "qty": o["qty"],
                             "order_id": oid}, ticker=tk)
@@ -5811,6 +5863,24 @@ class LiveV3:
                 self._log("orphan_buy_cancelled", {
                     "price": o["price"], "qty": o["qty"],
                 }, ticker=tk)
+
+        # [C-COPILOT] operator-cancel reconciliation (Plex test 3): a tracked
+        # manual bid that is no longer resting and produced NO position means
+        # the operator pulled his own order -> untrack cleanly, never attempt
+        # an orphan exit. A fill instead surfaces as a position and the
+        # adoption path books it (manual_bids popped there).
+        if getattr(self, "operator_manual_mode", False):
+            mb = getattr(self, "manual_bids", None) or {}
+            for mtk in list(mb):
+                info = mb[mtk]
+                still = any(x.get("order_id") == info["order_id"]
+                            for x in ord_map.get(mtk, []))
+                if still or mtk in pos_map:
+                    continue
+                mb.pop(mtk, None)
+                self._log("manual_bid_withdrawn", {
+                    "order_id": info["order_id"], "price": info["price"],
+                    "qty": info["qty"]}, ticker=mtk)
 
         self._save_processed()
 

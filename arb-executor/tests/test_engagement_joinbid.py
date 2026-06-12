@@ -47,6 +47,9 @@ BOUND = ("_load_engagement_cells", "_engagement_bucket", "_engagement_join_eligi
 def make_bot(flag=True, cells=None):
     s = types.SimpleNamespace()
     s.engagement_joinbid = flag
+    # [C-FEEDER FIX-4] this file pins the WAVE-1 (gated) semantics; the
+    # band-gating-OFF default is covered by test_engagement_band_ungate.py
+    s.engagement_band_gating = True
     s.engagement_disabled = False
     s.completion_disabled = False
     s.engagement_cells = cells if cells is not None else {

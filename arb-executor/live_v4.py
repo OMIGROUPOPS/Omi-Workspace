@@ -1095,7 +1095,17 @@ class LiveV3:
         # end-to-end (paired cap, T52, race-resolve, intended_join, buffer all
         # inherited). Printed legs and ineligible cells are untouched.
         self.engagement_joinbid = bool(self.config.get("engagement_joinbid", False))
-        self.engagement_cells = set()   # (category, bucket, band); absent = skip stands
+        # [C-FEEDER FIX-4] band-gating OFF engagement entry per LESSONS B22
+        # (cells are anchored at FILL, not predicted in advance -- gating the
+        # placement on the band at evaluation predicts the cell prospectively,
+        # which B22 names as the wrong altitude; the 2026-06-12 card: 8
+        # one-sided-by-construction pairs incl. PLIVEK). Default False =
+        # engagement fires on ANY no-print leg inside the bucket window; only
+        # the named economic gates remain (paired cap, T52, T-15 buffer,
+        # book-shape). The wave-1 table stays LOADED (ledger attribution +
+        # dormant rollback) and the flag restores the gate one-line.
+        self.engagement_band_gating = bool(self.config.get("engagement_band_gating", False))
+        self.engagement_cells = set()   # (category, bucket, band); attribution always; GATE only when engagement_band_gating
         # [C-JOINBID AMEND] engagement tripwire state (E1-E3; shared fire-once
         # primitive with completion's; incident file blocks re-arm across restarts)
         self.engagement_disabled = False
@@ -1570,8 +1580,16 @@ class LiveV3:
         """[C-JOINBID WAVE-1] pure eligibility: returns the join level (best_bid,
         int cents) or None. None when: flag off; no/locked/degenerate book (a
         join NEEDS a strict bid<ask level to rest at -- locked books place via
-        the normal anchor path only); outside the replay buckets; (category,
-        bucket, best_bid band) not in the wave-1 table."""
+        the normal anchor path only); outside the replay buckets.
+
+        [C-FEEDER FIX-4] the wave-1 band check is now GATED behind
+        engagement_band_gating (default OFF, per LESSONS B22: cells are
+        anchored at fill, not predicted in advance -- the band at evaluation
+        is not the band at fill, and gating on it built the
+        one-sided-by-construction class). The bucket window stays: it is the
+        structural premarket envelope ((15,240] min), not a band prediction.
+        The economic gates (paired cap, T52, T-15 buffer) live downstream in
+        the normal machinery, unchanged."""
         if not self.engagement_joinbid or self.engagement_disabled:
             return None
         b, a = book.best_bid, book.best_ask
@@ -1581,7 +1599,8 @@ class LiveV3:
         if bucket is None:
             return None
         lvl = int(round(b))
-        if (cat, bucket, self.regime_lookup(cat, lvl)) not in self.engagement_cells:
+        if (self.engagement_band_gating
+                and (cat, bucket, self.regime_lookup(cat, lvl)) not in self.engagement_cells):
             return None
         return lvl
 
@@ -1679,8 +1698,17 @@ class LiveV3:
         if not self._paired_basis_ok(tk, et, pos.entry_price):
             return ("E1_paired_cap_bypass",
                     {"event": et, "entry_price": pos.entry_price})
+        # [C-FEEDER FIX-4] E2 is the BAND-GATE's tripwire; with band gating off
+        # (B22: cells anchor at fill) off-table placements are by-design, so E2
+        # is checked only when the gate is live. The bucket-window condition
+        # stays armed either way (a placement outside (15,240] is a machinery
+        # regression, not a band call).
         bucket = self._engagement_bucket(time_to_start)
-        if (bucket is None or (cat, bucket,
+        if bucket is None:
+            return ("E2_cell_off_table",
+                    {"event": et, "cat": cat, "bucket": None,
+                     "band": self.regime_lookup(cat, pos.entry_price)})
+        if (self.engagement_band_gating and (cat, bucket,
                 self.regime_lookup(cat, pos.entry_price)) not in self.engagement_cells):
             return ("E2_cell_off_table",
                     {"event": et, "cat": cat, "bucket": bucket,
@@ -1707,11 +1735,15 @@ class LiveV3:
                       "mechanism DISABLED (remove %s by hand to re-arm)"
                       % ENGAGEMENT_INCIDENT_FILE, flush=True)
             else:
+                gating = bool(getattr(self, "engagement_band_gating", False))
                 self._log("engagement_tripwire_armed", {
-                    "conditions": "E1 paired-cap bypass, E2 cell off-table, "
-                                  "E3 missing intended_join"})
+                    "conditions": "E1 paired-cap bypass, E2 cell off-table%s, "
+                                  "E3 missing intended_join"
+                                  % ("" if gating else " (bucket-window only; band gating OFF)"),
+                    "band_gating": gating})
                 print("[BOOT] engagement_joinbid=ON -> tripwire ARMED (E1-E3), "
-                      "no incident file", flush=True)
+                      "no incident file; band gating %s"
+                      % ("ON" if gating else "OFF (B22: cells anchor at fill)"), flush=True)
         except Exception as e:
             self.engagement_disabled = True
             self._log("engagement_incident_check_error", {"error": str(e)})
@@ -3171,6 +3203,23 @@ class LiveV3:
             }
             if source is not None:
                 ev["source"] = source
+            # [C-FEEDER FIX-4] B22 ledger attribution at the anchor that
+            # matters -- the FILL: cell/band where the market actually filled
+            # us, plus wave-1 table membership of that band (the would-have-
+            # been gate), for the band retrospective. Exit attribution rides
+            # the normal v4_exit_posted/exit_filled events.
+            if pos.play_type == "v4_engagement_join":
+                tts_f = (pos.match_start_ts - time.time()) if pos.match_start_ts > 0 else -1.0
+                bucket_f = self._engagement_bucket(tts_f) if tts_f > 0 else None
+                band_f = self.regime_lookup(pos.category, fill_price)
+                ev.update({
+                    "cell_at_fill": self.cell_lookup(pos.category, fill_price),
+                    "band_at_fill": band_f,
+                    "bucket_at_fill": bucket_f,
+                    "band_on_table": (bucket_f is not None and
+                                      (pos.category, bucket_f, band_f) in self.engagement_cells),
+                    "posted_level": pos.target_price,
+                })
             self._log("entry_filled", ev, ticker=tk)
             # ---- awaited tail (serialized per order_id by _booking_inflight) ----
             if pos.is_v4:
@@ -4088,8 +4137,16 @@ class LiveV3:
                     # [C-JOINBID] ratified depth logging (observational): contracts
                     # resting at the join level at placement, for the wave-gate
                     # ledger (G2 quartiles 84/499/1381 are the interpretation grid).
+                    # [C-FEEDER FIX-4] ledger attribution: the would-have-been
+                    # band + table membership ride every engagement placement so
+                    # the band retrospective is computable with gating OFF.
                     **({"engagement": True,
-                        "depth_ahead": int(book.bids.get(int(round(book.best_bid)), 0) or 0)}
+                        "depth_ahead": int(book.bids.get(int(round(book.best_bid)), 0) or 0),
+                        "band": regime,
+                        "bucket": self._engagement_bucket(time_to_start),
+                        "band_on_table": (cat, self._engagement_bucket(time_to_start),
+                                          regime) in self.engagement_cells,
+                        "band_gating": bool(getattr(self, "engagement_band_gating", False))}
                        if table_src == "engagement_wave1" else {}),
                 }, ticker=tk)
 

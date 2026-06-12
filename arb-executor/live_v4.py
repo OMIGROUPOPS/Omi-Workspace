@@ -1135,6 +1135,10 @@ class LiveV3:
         # manually alongside the bot (incl. ITF). Unrecognized resting buys on
         # mapped tickers are HIS: never cancelled, observed and adopted.
         self.operator_manual_mode = bool(self.config.get("operator_manual_mode", False))
+        # [C-FV-OBSERVE] same computation as analysis/fv_quote.py riding the
+        # v4_place log. Default OFF pending Plex's split countersign -- one
+        # codepath, two consumers. Reference only: never a gate.
+        self.fv_observe = bool(self.config.get("fv_observe", False))
         # [C-COPILOT] the bot's own order-id registry: every id this process
         # places or restores. An unknown resting order is MANUAL by definition
         # (Plex test 2's attribution source). manual_bids tracks observed
@@ -2914,6 +2918,23 @@ class LiveV3:
             "tts_min": (round(tts / 60.0, 1) if tts is not None else None)})
         return True
 
+    def _manual_owns_leg(self, tk):
+        """[C-MANUAL-FIRST, OP-3 ruling] first trade on a leg owns it; the bot
+        yields to operator presence. True when the leg carries a resting
+        manual bid (manual_bids registry) OR an open manual-attributed
+        position. Scope is PER-LEG -- the sibling stays bot-eligible
+        (bilateral coverage stands). The operator withdrawing his bid
+        untracks it in reconcile, re-opening the leg next pass. Entry-side
+        only: exits are untouched (mixed-share legs size to total open per
+        the P0v2 machinery). Pure/testable."""
+        if not getattr(self, "operator_manual_mode", False):
+            return False
+        if tk in getattr(self, "manual_bids", {}):
+            return True
+        pos = self.positions.get(tk)
+        return bool(pos is not None and not pos.settled
+                    and pos.play_type == "v4_manual")
+
     def _intended_join_at_placement(self, entry_mode, target_bid, placement_bid,
                                     table_src):
         """[C-FEEDER FIX-2] the intended_join key, derived from the placement
@@ -4210,6 +4231,15 @@ class LiveV3:
                 return
 
             for (tk, direction, cat) in sides:
+                # [C-MANUAL-FIRST OP-3] operator presence on THIS leg -> named
+                # skip; every bot entry path (offset table, engagement, and the
+                # manage-side fallback/repost via their own gate) yields. The
+                # sibling leg is evaluated independently right after.
+                if self._manual_owns_leg(tk):
+                    self.n_skips += 1
+                    self._log("skipped", {"reason": "manual_first",
+                        "event": et}, ticker=tk)
+                    continue
                 if tk in self.positions:
                     continue
                 if tk in self.inflight_orders:
@@ -4962,6 +4992,15 @@ class LiveV3:
             return
 
         time_to_start = pos.match_start_ts - now if pos.match_start_ts > 0 else 99999
+
+        # [C-MANUAL-FIRST OP-3] operator presence on this leg -> the bot's own
+        # resting bid (if any) HOLDS as-is: no T-20 fallback re-post, no
+        # move-repost onto his level. Economic cancels above already ran.
+        # (mode-flag short-circuit first: pure-stub harnesses without the
+        # registry never reach the predicate)
+        if (getattr(self, "operator_manual_mode", False)
+                and self._manual_owns_leg(tk)):
+            return
 
         # [C-RIDE-LIVE override #6] a rode-in bid HOLDS in-play: no T-20
         # fallback re-post, no move-repost (both are placement decisions --

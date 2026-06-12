@@ -100,11 +100,15 @@ async def quote_event(st, et, markets):
         trades = await _kalshi(st, "/trade-api/v2/markets/trades?ticker=%s&limit=1" % tk)
         yes_levels, no_levels = [], []
         if ob:
-            o = ob.get("orderbook", ob)
-            yes_levels = [(round(float(p) * 100) if float(p) < 2 else int(p), int(float(q)))
-                          for p, q in (o.get("yes_dollars_fp") or o.get("yes") or [])][-5:]
-            no_levels = [(100 - (round(float(p) * 100) if float(p) < 2 else int(p)), int(float(q)))
-                         for p, q in (o.get("no_dollars_fp") or o.get("no") or [])][-5:]
+            o = ob.get("orderbook_fp") or ob.get("orderbook") or ob
+            raw_yes = (o.get("yes_dollars") or o.get("yes_dollars_fp")
+                       or o.get("yes") or [])
+            raw_no = (o.get("no_dollars") or o.get("no_dollars_fp")
+                      or o.get("no") or [])
+            yes_levels = [(round(float(p) * 100) if float(p) < 2 else int(float(p)),
+                           int(float(q))) for p, q in raw_yes][-5:]
+            no_levels = [(100 - (round(float(p) * 100) if float(p) < 2 else int(float(p))),
+                          int(float(q))) for p, q in raw_no][-5:]
         bids = sorted(yes_levels, reverse=True)
         asks = sorted(no_levels)
         best_bid = bids[0][0] if bids else None

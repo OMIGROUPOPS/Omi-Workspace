@@ -70,7 +70,8 @@ def make_bot():
         return True
     s.cancel_order = cancel_order
     s._save_v4_resting = lambda: None
-    for nm in ("_v4_manage_resting", "_v4_manage_resting_inner", "_is_match_live",
+    for nm in ("_runway_status", "_fix6_reference",
+               "_v4_manage_resting", "_v4_manage_resting_inner", "_is_match_live",
                "_resting_cancel_reason", "_reprice_target", "_taker_spread_ok",
                "_fallback_order", "_cancel_entry_and_resolve", "_parse_entry_fill",
                "_sibling_ticker", "_sibling_engageable", "_paired_basis_ok",

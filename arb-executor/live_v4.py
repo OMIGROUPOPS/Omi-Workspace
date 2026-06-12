@@ -369,6 +369,14 @@ class Position:
     # cancel_marketable_buffer stays 1: a DRIFT bid (flag unset) that the book
     # moves onto still cancels. Persisted sparsely (key present only when True).
     intended_clamp: bool = False
+    # [C-FEEDER FIX-6] A5 runway ledger: status of the validated
+    # (offset, placement_minute) runway at (re)placement, and the reference
+    # actually used. runway_status in {full, late_window, late_remap, sub_60};
+    # reference_source == "join_late_runway" when the deep offset was
+    # invalidated and the bid joined the anchor level instead. Persisted
+    # sparsely (keys present only when non-default).
+    runway_status: str = "full"
+    reference_source: str = ""
     strategy: str = ""                # "exit" | "hold" (set at fill from exit table)
     exit_band_x: Optional[int] = None  # +X cents for exit cells; None for hold cells
     exit_cell_id: int = 0             # 1c cell used for the exit-table lookup (entry-priced)
@@ -2825,6 +2833,46 @@ class LiveV3:
             return True
         return entry_mode == "resting_maker" and target_bid == placement_bid
 
+    def _runway_status(self, placement_min, time_to_start, late_tag="late_window"):
+        """[C-FEEDER FIX-6] (offset, placement_minute) is INDIVISIBLE -- the
+        table validated the pair as a unit: a deep offset earns its fill rate
+        by resting the row's full runway. A1 boundary, whichever fires first:
+          sub_60     : the placement sits inside T-60 (RADRAK frame, T-56 open)
+          late_*     : available runway (tts minus the T-15 buffer) is under
+                       HALF the validated runway (placement_minute - 15)
+          full       : the validated envelope holds
+        late_tag distinguishes A2 granularity: late_window for placement-path
+        (the leg's window opened late -> every affected band of the match gets
+        the tag as its legs evaluate), late_remap for the manage-side repost
+        (that bid only). Pure/testable."""
+        if time_to_start <= 3600.0:
+            return "sub_60"
+        validated = max(placement_min - 15, 1) * 60.0
+        available = time_to_start - 900.0
+        if available < 0.5 * validated:
+            return late_tag
+        return "full"
+
+    def _fix6_reference(self, runway_status, offset, table_src, current_price,
+                        target_bid):
+        """[C-FEEDER FIX-6] A3/A4: on a late runway, a deep table offset is
+        INVALID (its validated runway is gone) -> switch the reference to a
+        JOIN at the anchor level (offset 0), flagged
+        reference_source=join_late_runway. Scope: deep-offset table placements
+        and reposts ONLY -- engagement joins (table_src engagement_wave1,
+        offset 0 by construction) are untouched. The flag route is the A4
+        answer: routing through the engagement code path proper is NOT
+        feasible (it is keyed on the ABSENCE of a fresh print and carries
+        wave-1 ledger attribution); cap/T52/T-15-buffer equivalence is
+        inherited through the normal machinery exactly the way engagement
+        joins inherit it, and the FIX-2/3 placement-time keys grant the
+        stale-exemption precisely when the join level IS the bid / ask-1.
+        Returns (target_bid, reference_source). Pure/testable."""
+        if (runway_status != "full" and offset >= 1
+                and table_src in ("per_cell", "regime")):
+            return current_price, "join_late_runway"
+        return target_bid, ""
+
     def _intended_clamp_at_placement(self, entry_mode, target_bid, placement_ask):
         """[C-FEEDER FIX-3] the intended_clamp key, derived from the placement
         DECISION. Pure/testable. True iff a resting-maker bid was knowingly
@@ -4055,6 +4103,14 @@ class LiveV3:
                 # incoherence: current_ask 78 vs book_ask 46 in one event.)
                 placement_bid, placement_ask = book.best_bid, book.best_ask
                 current_ask = placement_ask
+                # [C-FEEDER FIX-6] late-runway boundary + reference switch
+                # (RADRAK frame 2026-06-12: window opened T-56, the 180-min
+                # offset row posted anchor-1 = 78 and the 79 dip traded through
+                # it unfilled; on a late runway the deep offset is invalid ->
+                # join the anchor level instead).
+                runway_status = self._runway_status(placement_min, time_to_start)
+                target_bid, reference_source = self._fix6_reference(
+                    runway_status, offset, table_src, current_price, target_bid)
                 force_cross = self.round5_enabled and self.round5_detector_fire(
                     tk, current_ask, target_bid)
 
@@ -4148,6 +4204,11 @@ class LiveV3:
                     "entry_mode": entry_mode, "post_only": post_only,
                     "placement_minute": placement_min,
                     "min_before_start": round(time_to_start / 60),
+                    # [C-FEEDER FIX-6] A5: runway tag on EVERY placement;
+                    # cell-performance analysis filters runway_status == full
+                    "runway_status": runway_status,
+                    **({"reference_source": reference_source,
+                        "offset_table": offset} if reference_source else {}),
                     "exp_fill_rate": round(exp_fill, 3), "exp_net_roi_pct": round(exp_roi, 2),
                     # Locked-book verification hook (Plex): record the placement-time book so the
                     # next is_taker-truth pass can confirm locked-book (bid==ask) placements fill
@@ -4211,6 +4272,9 @@ class LiveV3:
                     # keyed on the same decision snapshot
                     intended_clamp=self._intended_clamp_at_placement(
                         entry_mode, target_bid, placement_ask),
+                    # [C-FEEDER FIX-6] A5 ledger tags ride the Position
+                    runway_status=runway_status,
+                    reference_source=reference_source,
                 )
                 self.positions[tk] = pos
                 # [C-JOINBID] ledger separability: engagement fills must be
@@ -4516,6 +4580,11 @@ class LiveV3:
                 # [C-FEEDER FIX-3] sparse, same discipline as intended_join
                 if pos.intended_clamp:
                     out[tk]["intended_clamp"] = True
+                # [C-FEEDER FIX-6] sparse A5 ledger tags survive restart
+                if pos.runway_status != "full":
+                    out[tk]["runway_status"] = pos.runway_status
+                if pos.reference_source:
+                    out[tk]["reference_source"] = pos.reference_source
                 # [C-JOINBID] sparse: engagement cohort label survives restart
                 if pos.play_type == "v4_engagement_join":
                     out[tk]["play_type"] = "v4_engagement_join"
@@ -4593,6 +4662,8 @@ class LiveV3:
                 entry_mode=d.get("entry_mode", "resting_maker"),
                 intended_join=bool(d.get("intended_join", False)),
                 intended_clamp=bool(d.get("intended_clamp", False)),
+                runway_status=d.get("runway_status", "full"),
+                reference_source=d.get("reference_source", ""),
                 completion_s0=int(d.get("completion_s0", 0)),
                 completion_x=int(d.get("completion_x", 0)),
                 completion_leg1_basis=int(d.get("completion_leg1_basis", 0)),
@@ -4814,6 +4885,10 @@ class LiveV3:
             return
         offset_at_post = self.entry_table.get((pos.category, pos.regime_at_posting), (0, 0, 0, 0))[1]
         price_basis = pos.target_price + offset_at_post  # current price when last placed
+        # [C-FEEDER FIX-6] a join_late_runway bid sat AT the reference -- no
+        # offset to add back when reconstructing the placement basis
+        if pos.reference_source == "join_late_runway":
+            price_basis = pos.target_price
         current_price = int(round((book.best_bid + book.best_ask) / 2.0))
         if abs(current_price - price_basis) <= V4_REPRICE_MOVE_CENTS:
             return
@@ -4823,8 +4898,18 @@ class LiveV3:
         row = self.entry_table.get((pos.category, new_regime))
         if row is None:
             return
-        _, new_offset, _, _ = row
+        row_pm, new_offset, _, _ = row
         new_target = max(1, current_price - new_offset)
+        # [C-FEEDER FIX-6] A2 late_remap: THIS bid only. The repost row's
+        # validated runway is re-checked against the remaining clock; a late
+        # remap invalidates the deep offset -> join the reference level.
+        # A3: engagement joins untouched (their repost path keeps its shape).
+        repost_runway = self._runway_status(row_pm, time_to_start,
+                                            late_tag="late_remap")
+        repost_ref = ""
+        if pos.play_type != "v4_engagement_join":
+            new_target, repost_ref = self._fix6_reference(
+                repost_runway, new_offset, "regime", current_price, new_target)
         # [C-FEEDER FIX-2/3] decision-time capture for the repost keys (the
         # cancel/place awaits below are a book-tick window, same race class as
         # the QUESAM placement-side fire)
@@ -4876,11 +4961,16 @@ class LiveV3:
         pos.intended_clamp = (new_target == max(1, current_ask - 1))
         pos.regime_at_posting = new_regime
         pos.last_cancel_repost_ts = now
+        # [C-FEEDER FIX-6] A5: re-key the runway ledger at every re-placement
+        pos.runway_status = repost_runway
+        pos.reference_source = repost_ref
         self._log("v4_move_repost", {
             "mode": mode, "old_basis": price_basis, "current_price": current_price,
             "new_regime": new_regime, "new_offset": new_offset,
             "new_target": new_target, "current_ask": current_ask,
             "move_cents": current_price - price_basis,
+            "runway_status": repost_runway,
+            **({"reference_source": repost_ref} if repost_ref else {}),
         }, ticker=tk)
         self._save_v4_resting()
 

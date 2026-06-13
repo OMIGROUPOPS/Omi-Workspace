@@ -169,6 +169,12 @@ SERIES_MAP = {
 }
 ITF_VISIBILITY_CATS = ('ITF_M', 'ITF_W')
 ITF_EXIT_BORROW = {'ITF_M': 'ATP_CHALL', 'ITF_W': 'WTA_CHALL'}
+# [C-SCHEDULE-TRUST-FIX] schedule-source trust ranking. The dedicated feeds
+# (tennisexplorer, espn -- the corroborated match schedules) outrank the
+# odds-API commence proxy, which outranks a bare code/fuzzy match. A stored
+# start is only corrected by a source whose rank is >= the source that set it.
+SCHED_SOURCE_RANK = {'tennisexplorer': 3, 'espn': 3, 'odds_api': 2,
+                     'direct_6char': 1, 'fuzzy_name': 1, 'schedule': 1}
 ALL_SERIES = []
 for prefixes in SERIES_MAP.values():
     ALL_SERIES.extend(prefixes)
@@ -1188,6 +1194,8 @@ class LiveV3:
         self.ticker_category: Dict[str, str] = {}
         self.event_open_time: Dict[str, float] = {}   # Kalshi open_time (for unmatched-skip logic)
         self.event_start_time: Dict[str, float] = {}   # scheduled start from TE/ESPN
+        # [C-SCHEDULE-TRUST-FIX] provenance of the stored start (source-priority corrections)
+        self.event_start_source: Dict[str, str] = {}
         self.event_player_names: Dict[str, List[str]] = {}  # player names per event
         self.event_unmatched_cycles: Dict[str, int] = {}  # discovery cycles without schedule match
 
@@ -2445,6 +2453,7 @@ class LiveV3:
         now = time.time()
         counts = defaultdict(int)
         last_yield = time.monotonic()  # FIX 3: time-based chunk-yield cursor
+        _reconciled_starts = set()  # [C-SCHEDULE-TRUST-FIX] reconcile once per event per cycle
         for series in ALL_SERIES:
             cursor = ""
             for _ in range(10):
@@ -2508,6 +2517,7 @@ class LiveV3:
                                 try:
                                     self.event_start_time[et] = datetime.fromisoformat(
                                         st_str.replace("Z", "+00:00")).timestamp()
+                                    self.event_start_source[et] = sched_entry.get("source", method or "schedule")
                                 except Exception:
                                     pass
                         else:
@@ -2515,6 +2525,7 @@ class LiveV3:
                             ct = self._commence_time_from_book_prices(et)
                             if ct is not None:
                                 self.event_start_time[et] = ct.timestamp()
+                                self.event_start_source[et] = "odds_api"
                                 self._log("schedule_match", {
                                     "event": et, "method": "odds_api_commence_time",
                                     "start_time": ct.isoformat(),
@@ -2523,6 +2534,12 @@ class LiveV3:
                                 # No reliable commence source — skip rather than use Kalshi expiration
                                 self.event_unmatched_cycles[et] = self.event_unmatched_cycles.get(et, 0) + 1
                                 self._log("no_reliable_commence_source", {"event": et})
+                    # [C-SCHEDULE-TRUST-FIX] pre-start correction of a set-once /
+                    # _date_ok-rejected start (JOVANI root). Runs even for matched
+                    # / processed events; once per event per cycle.
+                    if et not in _reconciled_starts:
+                        _reconciled_starts.add(et)
+                        await self._reconcile_event_start(et, now)
                     cat = self.get_category(ticker)
                     if cat:
                         self.ticker_category[ticker] = cat
@@ -2844,6 +2861,87 @@ class LiveV3:
             "qty": qty, "sib_ask": sib_ask, "prev_bid": prev_price,
             "order_id": oid}, ticker=sib)
         self._save_v4_resting()
+
+    async def _reconcile_event_start(self, et, now):
+        """[C-SCHEDULE-TRUST-FIX] Pre-start correction of a set-once / _date_ok-
+        rejected start. The initial match (:2503) is set-once, and _date_ok
+        rejects a legitimately-postponed next-day start vs the Kalshi ticker
+        date (the JOVANI/Berlin frame: direct_6char locked 06-13, real 06-14,
+        ~24h early). Re-read the schedule by the event's EXACT 6-char code (no
+        fuzzy match, so _date_ok's wrong-event guard is moot) and adopt a
+        corroborated correction PRE-START only. Updating event_start_time
+        re-derives the entry window on the next routing pass (a later start
+        defers the T-240m window). Guard rails:
+          (1) never rewrite a genuinely live match (tape latch via
+              _is_match_live) -- protects ride-live / in-play logic;
+          (2) source priority -- a stronger/equal feed may correct, a weaker
+              one may not (SCHED_SOURCE_RANK);
+          (3) a correction pushing the start beyond T-240m cancels resting
+              entry bids that are now early (filled positions + exits untouched);
+          (4) a schedule_corrected event logs every firing.
+        """
+        seg = et.rsplit("-", 1)[-1]
+        code = seg[7:] if len(seg) > 7 else seg  # strip DDMmmYY (7-char) date prefix -> 6-char code
+        if not code:
+            return
+        sched = self.schedule.get(code)
+        if not sched:
+            return
+        st_str = sched.get("start_time", "")
+        if not st_str:
+            return
+        try:
+            new_start = datetime.fromisoformat(st_str.replace("Z", "+00:00")).timestamp()
+        except Exception:
+            return
+        new_src = sched.get("source", "?")
+        new_rank = SCHED_SOURCE_RANK.get(new_src, 0)
+        if new_rank < 1:
+            return  # untrusted / unknown source never drives a correction
+        if self._is_match_live(et):
+            return  # tape says live -> never rewrite the start (ride-live / in-play)
+        stored = self.event_start_time.get(et)
+        stored_rank = SCHED_SOURCE_RANK.get(self.event_start_source.get(et, "?"), 0)
+        if stored is not None:
+            if abs(new_start - stored) <= 900:
+                return  # no material change (<15min)
+            if new_rank < stored_rank:
+                return  # a weaker source may not override a stronger-sourced start
+        old, old_src = stored, self.event_start_source.get(et)
+        self.event_start_time[et] = new_start
+        self.event_start_source[et] = new_src
+        # Re-derive the window: a start now beyond T-240m means any resting entry
+        # bid for this event is early -> cancel it (exchange-truth resolved; a
+        # raced fill books, _untombstone_entry frees an unfilled leg for re-entry
+        # at the real window). Filled positions and their exits are untouched.
+        cancelled = []
+        new_tts = new_start - now
+        if new_tts > V4_MAX_PLACEMENT_SEC:
+            for tk, pos in list(self.positions.items()):
+                if (pos.event_ticker == et and pos.phase == "entry_resting"
+                        and pos.entry_order_id):
+                    res = await self._cancel_entry_and_resolve(
+                        tk, pos, "schedule_corrected_window_deferred",
+                        "schedule_corrected_race")
+                    if res == "cancelled":
+                        self._untombstone_entry(tk, pos)
+                        cancelled.append(tk)
+            if cancelled:
+                self._save_v4_resting()
+        action = ("early_bids_cancelled" if cancelled
+                  else "window_deferred" if new_tts > V4_MAX_PLACEMENT_SEC
+                  else "start_set" if old is None else "start_updated")
+        self._log("schedule_corrected", {
+            "event": et,
+            "old_start": (datetime.fromtimestamp(old, tz=timezone.utc).isoformat()
+                          if old else None),
+            "old_source": old_src,
+            "new_start": datetime.fromtimestamp(new_start, tz=timezone.utc).isoformat(),
+            "new_source": new_src,
+            "new_tts_min": round(new_tts / 60.0, 1),
+            "cancelled_bids": cancelled,
+            "action": action,
+        })
 
     def _is_match_live(self, et):
         """T51 match-live detection via VOLUME ACCELERATION. Live = >=

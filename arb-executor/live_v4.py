@@ -2894,6 +2894,13 @@ class LiveV3:
             new_start = datetime.fromisoformat(st_str.replace("Z", "+00:00")).timestamp()
         except Exception:
             return
+        # Only correct to a FUTURE start. An already-started or stale schedule
+        # row (wrong-code collision -- e.g. a 5-day-old entry, or a date a feed
+        # placed before the ticker date) is handled by the live-tape latch and
+        # match_already_started; bypassing _date_ok must NOT resurrect a
+        # wrong-day past row as a "start".
+        if new_start <= now:
+            return
         new_src = sched.get("source", "?")
         new_rank = SCHED_SOURCE_RANK.get(new_src, 0)
         if new_rank < 1:

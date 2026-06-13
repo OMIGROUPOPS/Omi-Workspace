@@ -128,5 +128,12 @@ check(sc and sc[0]["old_start"] is None and sc[0]["action"] in ("start_set", "wi
       "5. stored None -> start_set from corroborated schedule (06-14 reload)")
 check(abs(s.event_start_time[ET] - new_ts) < 1, "5. event_start_time set to the real 06-14 epoch")
 
+# 6. stale/past schedule row (wrong-code collision) is NOT adopted
+s = make_bot()
+s.schedule["MARITO"] = {"start_time": "2026-06-08T06:55:00Z", "source": "espn"}  # 5 days before NOW
+run(s._reconcile_event_start(ET, NOW))
+check(not events(s, "schedule_corrected") and ET not in s.event_start_time,
+      "6. stale PAST schedule row (already-started) is NOT adopted as a start")
+
 print("\n%s  (%d failures)" % ("ALL PASS" if fails == 0 else "FAILURES", fails))
 sys.exit(1 if fails else 0)

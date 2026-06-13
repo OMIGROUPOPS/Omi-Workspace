@@ -5762,6 +5762,36 @@ class LiveV3:
 
             existing = self.positions.get(tk)
             if existing and existing.entry_price > 0:
+                # [C-RIDE-LIVE-RACE-FIX] An exchange position on a leg the bot
+                # still tracks as a RESTING entry bid (phase entry_resting, the
+                # fill not yet booked) is a clamp/maker bid that filled while
+                # this reconcile -- not check_fills -- reached it first. The old
+                # path bumped entry_qty 0->N and `continue`d WITHOUT booking or
+                # posting the exit, which permanently blocked check_fills
+                # (filled N > entry_qty N == False) and skipped the naked
+                # adoption below the continue (the live MARITO/SINYUA/BERJAN/
+                # OKOGRE naked legs, 2026-06-13; premarket_bids_ride_live kept
+                # the clamp resting long enough for the 60s reconcile to win the
+                # race). Route the fill through the proven naked-recovery path:
+                # it BOOKS via _book_v4_entry_fill (idempotent) and posts the
+                # cell exit at filled size, or ADOPTS an existing resting sell
+                # (the operator's manual exit, copilot mode) instead of double-
+                # posting. Order-independent: check_fills-first leaves
+                # phase=active, so this guard is skipped and the link path below
+                # runs instead; reconcile-first books here. Either poller that
+                # reaches the fill first now books it.
+                if (existing.phase == "entry_resting"
+                        and pinfo["qty"] > existing.entry_qty
+                        and not existing.exit_order_id):
+                    _cat = self.get_category(tk) or existing.category or "?"
+                    if not self.fv_scenarios_enabled and (
+                            _cat in self.categories_enabled
+                            or _cat in ITF_VISIBILITY_CATS):
+                        await self._v4_reconcile_naked(
+                            tk, et, _cat, pinfo["avg_price"], pinfo,
+                            context=("steady_state_reconcile" if quiet
+                                     else "boot_reconcile"))
+                        continue
                 kalshi_avg = pinfo["avg_price"]
                 if abs(kalshi_avg - existing.entry_price) > 1:
                     self._log("reconcile_price_mismatch", {

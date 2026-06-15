@@ -25,13 +25,9 @@ JUMP_BAR = 5
 # favorite regime turnover at 55->56 is the single >5c step. A candidate
 # surface may carry steps ONLY at these named cells; any new step >1c or any
 # step >5c outside this list fails the gate.
-NAMED_STEPS = {
-    ("atp_main", 8, 9), ("atp_main", 9, 10), ("atp_main", 11, 12),
-    ("atp_main", 12, 13), ("atp_main", 18, 19), ("atp_main", 19, 20),
-    ("atp_main", 47, 48), ("atp_main", 55, 56), ("atp_main", 60, 61),
-    ("atp_main", 61, 62), ("atp_main", 68, 69), ("atp_main", 70, 71),
-    ("atp_main", 73, 74), ("atp_main", 81, 82),
-}
+NAMED_STEPS = set()  # C-ATPMAIN-RESEAL 2026-06-15: all 14 atp_main named
+# steps removed -- the full-universe ATP_MAIN surface is smooth (maxD=1,
+# steps>1c=0); no structural-step exception is needed for any category.
 
 def expand(fp):
     """parquet -> {cell: X|'HOLD'} over the table's own domain."""

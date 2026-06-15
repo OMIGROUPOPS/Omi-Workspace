@@ -13,12 +13,13 @@ import argparse
 import pandas as pd
 from pathlib import Path
 
-# category -> validated CSV filename (unsuffixed file is the ATP_MAIN surface)
+# category -> validated CSV filename. ATP_MAIN source = deploy_gated_optima_full.csv
+# (full-universe run c2fc37c); unsuffixed probe deprecated.
 CAT_FILES = {
     "WTA_CHALL": "deploy_gated_optima_WTA_CHALL.csv",
     "ATP_CHALL": "deploy_gated_optima_ATP_CHALL.csv",
     "WTA_MAIN":  "deploy_gated_optima_WTA_MAIN.csv",
-    "ATP_MAIN":  "deploy_gated_optima.csv",
+    "ATP_MAIN":  "deploy_gated_optima_full.csv",
 }
 
 def build(in_dir, out_dir):

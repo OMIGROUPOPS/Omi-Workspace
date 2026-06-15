@@ -8,7 +8,7 @@ categories AND (lookup-borrowed) the ITF_M/ITF_W visibility categories.
 
 | File | sha256 |
 |---|---|
-| atp_main_adaptive_exit_bands.parquet | `d1a59020d475d015c2d30108f9925dc248acca06e91a74cead2fc4dc9e63bd27` |
+| atp_main_adaptive_exit_bands.parquet | `c9a44fdde0235226ce6b7e63bd03aa506311b2b94e8853b945368b1c7a3b5c8f` |
 | wta_main_adaptive_exit_bands.parquet | `94e9a4f2baf0ffe2cb08af10bd6e2e347d15e0a1afd519c048c49d5f9b86a60e` |
 | atp_chall_adaptive_exit_bands.parquet | `3e6eb5a6e5706cec9a63e612a19812e57522fc1bdd620e165b85c5fb117f4a88` |
 | wta_chall_adaptive_exit_bands.parquet | `3bd995b7328e0119a152c87073f06815096932879948c92862721f1f13a61258` |
@@ -27,7 +27,7 @@ categories AND (lookup-borrowed) the ITF_M/ITF_W visibility categories.
   correction; return-on-capital (`exp_ret/c`) as the primary deploy metric
   (exit-charts pipeline, see commit `a208c594`).
 - **Input data (validated per-cell CSVs, `analysis/exit_charts/`):**
-  - `deploy_gated_optima.csv` (ATP_MAIN) `9da0c3f6165050dde22edba1dd3af87cdb2d3ef7a3ec8fc882c4bfb81e12d2b8`
+  - `deploy_gated_optima_full.csv` (ATP_MAIN, full-universe run c2fc37c) `9fc6dd7beedb4d63292268af8de7ac9e83a42ac5f6b2eafc7a2de39602e4d41f`
   - `deploy_gated_optima_WTA_MAIN.csv` `3fc8a3880fac1a2590094b6d36117f48271346361410a3772e1f68a69b086a46`
   - `deploy_gated_optima_ATP_CHALL.csv` `ee6377c5146caeae9c93701ee412b4ec7ecee06975222024218875e1dd532df9`
   - `deploy_gated_optima_WTA_CHALL.csv` `3416a87b8e64040f0a315a73e3870b5038905d8fee9a23c07bcfc92c644062c4`
@@ -100,3 +100,18 @@ Any candidate replacement surface MUST, before a config flip:
    deployed file);
 3. operator + Plex countersign; config flip WHEN FLAT per the standing
    deploy checklist.
+
+
+## Amendment 2026-06-15 (C-ATPMAIN-RESEAL, Plex-ratified)
+
+ATP_MAIN was deployed off the **38-game small-sample probe** (`deploy_gated_optima.csv`,
+match-N 14-31/cell) -- flat +12 cheap, c55->56 jumps 14->29. Corrected to the
+**full-universe ATP_MAIN run** (`deploy_gated_optima_full.csv`, 2,631 matches, commit
+c2fc37c; PURE ATP_MAIN -- max per-cell match-N 2585 < ATP_CHALL 3747 rules out any
+cross-cat pool). Pins updated above: input `9da0c3f6`->`9fc6dd7b`, atp_main parquet
+`d1a59020`->`c9a44fdd`. Builder remapped (ATP_MAIN -> _full.csv); the 14 atp_main
+NAMED_STEPS in `exit_surface_smoothness.py` removed (new surface PASSES maxD=1,
+steps>1c=0); probe renamed `deploy_gated_optima_PROBE_DEPRECATED.csv`. The 3 sibling
+parquets are byte-unchanged. roc_match: 2 of 11 analysis consumers reference it
+(`build_chart_pooled_gauge.py` [generator], `entry_lift_permatch.py` [diagnostic]);
+deploy path unaffected; cleanup follow-up.

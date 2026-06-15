@@ -1126,6 +1126,13 @@ class LiveV3:
         # rich (KESMAR shape) now rides the per-cell exits instead of being
         # cancelled -- bounded ~$0.60/pair worst case at 5-lot.
         self.paired_cap_enforced = bool(self.config.get("paired_cap_enforced", True))
+        # [C-CAP-DIFF] reach-repost cap (dormant; default False = byte-identical).
+        # When enforced, a resting entry bid is never reposted ABOVE its conception
+        # cell (the drift-supported ceiling); holds/down-moves are untouched. Reads
+        # the existing set-once _window_open[tk]["cell"] as the conception cell.
+        # NOTE coupling: _window_open is populated only when completion_reprice=True;
+        # if that is ever off, this cap no-ops (conservative). Activation = config flip.
+        self.reach_repost_cap_enforced = bool(self.config.get("reach_repost_cap_enforced", False))
         # [C-RIDE-LIVE override #6, operator-directed 2026-06-12] resting maker
         # ENTRY bids persist into play: the T-15 buffer cancel and the
         # match-live resting sweep EXEMPT them, and a rode-in bid HOLDS in-play
@@ -5326,6 +5333,23 @@ class LiveV3:
             tk, pos, "v4_move_repost", "move_repost_race")
         if res != "cancelled":
             return
+
+        # [C-CAP-DIFF] reach-repost cap (dormant; default OFF). new_target here is
+        # ALREADY either the offset-computed target (current_price - new_offset) or the
+        # join_late_runway override (current_price) -- both repost flavors converge here,
+        # so ONE clamp gates both: never repost ABOVE the conception cell (the drift-
+        # supported ceiling). Holds/down-moves never trip it (new_target <= ceiling).
+        # Phantom-low conception (cell 4-6) -> ceiling sits AT the phantom cell, blocking
+        # ALL upward correction (desired; no sanity floor -- subtractive, conservative).
+        # Subtractive only; the entry_table offset (the bidding source) is untouched.
+        if getattr(self, "reach_repost_cap_enforced", False):
+            _wo = self._window_open.get(tk)
+            if _wo is not None and _wo.get("cell") is not None and new_target > _wo["cell"]:
+                self._log("reach_repost_capped", {
+                    "proposed_target": new_target, "conception_ceiling": int(_wo["cell"]),
+                    "current_price": current_price,
+                    "reference_source": repost_ref or "regime_offset"}, ticker=tk)
+                new_target = int(_wo["cell"])
 
         # Fix-3 (reprice-maker-only): NEVER cross on a reprice. A marketable re-evaluated
         # target is clamped to a resting bid one below the ask and re-rested as a maker.

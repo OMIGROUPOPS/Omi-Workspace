@@ -2,11 +2,12 @@
 """[C-RIDE-LIVE override #6] premarket_bids_ride_live: resting maker entry
 bids persist into play.
 
-Flag on: the T-15 buffer cancel and the match-live resting sweep exempt
-resting entries; a rode-in bid HOLDS in-play (no fallback re-post, no
-move-repost -- the Naef 13:40:00 re-post-into-play shape); economic cancels
-(stale on drift bids) still govern; an in-play fill books normally and posts
-its cell exit. Flag off (code default): both cancels byte-identical.
+[C-RIDE-LIVE-OFF 2026-06-15] ride_live now SOLELY gates the T-15 buffer
+cancel; the match-live resting sweep FIRES regardless of the flag -- a resting
+bid is cancelled on tape-detected real start (volume-burst latch), never riding
+into live play. Economic cancels (stale on drift bids) still govern premarket;
+an in-play fill that raced the latch books normally and posts its cell exit.
+Flag off (code default): T-15 buffer cancel also restored.
 NEW placements in-play remain forbidden -- placement-time gates untouched.
 Run: cd arb-executor && python3 tests/test_ride_live.py
 """
@@ -115,18 +116,20 @@ pos = naef_pos(now); pos.match_start_ts = now - 120   # in play
 s.positions[NAE] = pos
 s._events_live = {ET}
 run(s._v4_manage_resting(NAE, pos, book(56, 62), now))
-check(not s.cancelled and not s.placed and pos.entry_order_id == "ONAE",
-      "flag ON: live latch + in-play -> bid HOLDS (no sweep, no fallback re-post, no repost)")
+check(any(ev == "match_live_resting_cancel" for ev, d, _ in s.logs) and s.cancelled and not s.placed,
+      "flag ON: live latch -> bid CANCELLED on real-start (C-RIDE-LIVE-OFF decouple; no taker re-post)")
 
 # ---- 3. economic cancel still governs in-play (drift bid gone stale) ----
 s = make_bot(ride=True); now = time.time()
-pos = naef_pos(now); pos.match_start_ts = now - 120
+pos = naef_pos(now); pos.match_start_ts = now + 600   # premarket, NOT live
 pos.intended_join = False; pos.intended_clamp = False   # drift bid
 s.positions[NAE] = pos
-s._events_live = {ET}
+# not live (_events_live empty): economic cancel governs premarket drift bids.
+# In-play the match-live sweep now takes precedence (test 2) -- so this path is
+# verified premarket, where it remains reachable.
 run(s._v4_manage_resting(NAE, pos, book(57, 59), now))  # target 58 >= ask-1
 check(any(c["label"] == "v4_cancel_bid_marketable_stale" for c in s.cancelled),
-      "flag ON: drift bid gone marketable-stale in-play still cancels (named economic)")
+      "flag ON: premarket drift bid gone marketable-stale still cancels (named economic)")
 
 # ---- 4. flag OFF: both cancels fire byte-identical ----
 s = make_bot(ride=False); now = time.time()

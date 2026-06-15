@@ -5083,13 +5083,13 @@ class LiveV3:
         # T51/T52: cancel a resting entry bid the moment the match goes live --
         # do not let a pre-match bid fill into live play. Filled positions are
         # managed separately and unaffected.
-        if (self._is_match_live(pos.event_ticker)
-                and not getattr(self, "premarket_bids_ride_live", False)):
-            # [C-P0-RACE site 2] fills cluster around match start -- exactly when
-            # T51 fires. A raced fill is booked (it filled pre-live), not deleted.
-            # [C-RIDE-LIVE override #6] flag on -> the sweep exempts resting
-            # maker entries; the bid persists into play until filled or
-            # cancelled for a named economic reason.
+        # [C-RIDE-LIVE-OFF 2026-06-15] Fires on _is_match_live ALONE (the volume-
+        # burst latch = tape-detected real start, delay-proof), REGARDLESS of
+        # premarket_bids_ride_live. ride_live no longer exempts the bid from this
+        # sweep -- it now SOLELY gates the T-15 wall-clock buffer exemption
+        # (check_fills, ENTRY_BUFFER_SEC). [C-P0-RACE site 2] a raced fill that
+        # filled pre-live is booked by _cancel_entry_and_resolve, not deleted.
+        if self._is_match_live(pos.event_ticker):
             res = await self._cancel_entry_and_resolve(
                 tk, pos, "match_live_cancel", "match_live_cancel_race")
             if res == "cancelled":

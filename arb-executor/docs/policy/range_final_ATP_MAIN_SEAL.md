@@ -28,3 +28,28 @@ Class-A trace found **no pipeline bug**: `categorize()` (`data/scripts/cell_key_
 
 ## 4. Deploy status
 **NOT deployed.** Wiring ATP_MAIN entries to this staircase + restarting the bot is a separate operator-timed step. Until then the bot runs `entry_table_percell` for all cats (boot SHA `0499570`). See exit-surface seal at `data/durable/exit_surface_gated_optima/LOCKED_DOWN.md` (separate artifact). Mirror cadence per `docs/policy/canonical_tree.md`.
+
+## 5. Deploy-guard abort triggers (canonical spec)
+
+**Pre-registered before deploy (anti post-hoc relaxation).** Evidence: `docs/policy/range_final_ATP_MAIN_ABORT_VALIDATION.md` + fills table `docs/policy/range_final_ATP_MAIN_abort_fills.csv` content-sha256 `4e4c15534c6cb6a2f38802760b584c101bbf1f1b245e2631d7db075cc678a92e` (Plex-ruled against evidence commit `12d8deb`). N: 4,975 attempts / 3,595 fills / 3,586 rolling-10 windows.
+
+| # | trigger | locked bar | status |
+|---|---|---|---|
+| **T1 OFFSET** | ≥3 of the first 10 fills with residual < −1c, where `residual = observed_offset − regime_expected` (regime_expected per the §-evidence per-regime table, walk-derived median fill_offset). | val FP **0/3586**, **CONDITIONAL** | CONDITIONAL on the offset≥1 clamp landing as a deploy-prerequisite (see §6) |
+| **T2 FILL-RATE** | **fills ≤ 6** over the first 10 ATP_MAIN engagement attempts (rate < 62.3% = 72.3% point − 10pp; denominator = engagement attempts, first nonzero placement = t=0). | **LOCKED unconditional** | — |
+| **T3 ROLLING-ROC** | **rolling-10-fill ROC < 0** — filled legs only, chronological by `match_start_ts`, stride-1 (overlapping), simple capital-weighted (`Σmk_ret/Σmk_cap`), evaluated after the first 10 staircase fills (val min +7.78). | **LOCKED unconditional** | val FP 0/3586 |
+| **T4 WALK-STEP** | out-of-order placement OR depth-increase vs the knot sequence `[240,210,180,150,120,90,60,30,10]` (`range_final_walk_schedule.json` content-sha256 `624697fd92916a932f83ef421a0d4f166db0b348544ad4f1504e81d51681db49`); depth must be monotone non-increasing toward start. | **LOCKED**, zero tolerance | — |
+
+**Abort action (pre-authorized, no further gate):** hot-revert `shadow_mode=true` if supported, else restart the bot to boot SHA `0499570`. Any one trigger firing → abort.
+
+## 6. Validation parity gap — anchor-1 floor (BLOCKING deploy-prerequisite)
+
+The validation walk enforced **offset ≥ 1** (bid ≤ anchor−1) only in the simulation (`analysis/exit_charts/abort_validation.py`: `D = max(1, ...)`). **Live code has no such invariant:** `_reprice_target` (`live_v4.py:3166`) and `_fallback_order` (`live_v4.py:3175`) clamp to `max(1, best_ask − 1)` — a floor on **absolute price (ask−1)**, NOT on offset-relative-to-anchor (`live_v4.py` blob `1912d8bc`). When `best_ask > anchor`, the clamp posts at `ask−1`, which is shallower than `anchor−1` (offset < 1 vs the placement anchor).
+
+**Consequences:**
+- The sealed **+0.52pp ΔROC and the §5 T1 0% FP are SIM-CONDITIONAL** on an `offset ≥ 1` (bid ≤ anchor−1) clamp existing in the live staircase placement path.
+- That clamp is a **BLOCKING deploy-prerequisite.** Until it lands (a separate commit, pending the operator's path decision), the ATP_MAIN staircase must NOT be wired live.
+- **The operator MUST read this §6 before timing any restart.** See §6 of the Z evidence doc (`range_final_ATP_MAIN_ABORT_VALIDATION.md`) for the code-pointer derivation.
+
+---
+*Seal-touching amendment (C-ABORT-SEAL-Y). No history rewrite post-merge (ledger #30). §5/§6 pre-registered before deploy.*

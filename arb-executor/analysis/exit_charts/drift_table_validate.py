@@ -29,7 +29,7 @@ POL = os.path.join(ROOT, "docs", "policy")
 EC = os.path.join(ROOT, "analysis", "exit_charts")
 PMU = os.path.join(ROOT, "data", "durable", "per_minute_universe")
 CATS = ["ATP_MAIN", "WTA_MAIN", "ATP_CHALL", "WTA_CHALL"]
-OPTF = {"ATP_MAIN": "deploy_gated_optima.csv", "WTA_MAIN": "deploy_gated_optima_WTA_MAIN.csv",
+OPTF = {"ATP_MAIN": "deploy_gated_optima_full.csv", "WTA_MAIN": "deploy_gated_optima_WTA_MAIN.csv",
         "ATP_CHALL": "deploy_gated_optima_ATP_CHALL.csv", "WTA_CHALL": "deploy_gated_optima_WTA_CHALL.csv"}
 COLS = ["ticker", "event_ticker", "category", "minute_ts", "time_to_match_start_min",
         "price_close", "price_low", "trade_count_in_minute", "minute_has_trade"]

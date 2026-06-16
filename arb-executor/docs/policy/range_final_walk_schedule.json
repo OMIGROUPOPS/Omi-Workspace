@@ -1,0 +1,11 @@
+{
+  "_doc": "C-STAIRCASE-REVALIDATE pre-committed walk schedule (alpha). The schedule IS the hypothesis; pre-registered BEFORE the gated walk and NOT tuned to move ROC. Predecessor artifact: range_final @ commit 3c2161c.",
+  "knots_min_before_start": [240, 210, 180, 150, 120, 90, 60, 30, 10],
+  "depth_fraction_at_knot": [1.000, 0.875, 0.750, 0.625, 0.500, 0.375, 0.250, 0.125, 0.000],
+  "final_10min": "depth_fraction 0.0 -> most aggressive maker, bid at anchor-1 (D=1)",
+  "depth_formula": "D(cell, t) = max(1, round(1 + (deep_target[cell] - 1) * depth_fraction(t)));  depth_fraction(t) = fraction at the smallest knot >= t (held between knots); t<10 -> 0.0",
+  "deep_target_source": "docs/policy/range_final_<CAT>.csv final_target column (the committed deepest bid at T-240)",
+  "tail_cancel_trigger": "_is_match_live volume-burst latch (live_v4.py match_live_cancel, commit 0499570) -- NOT wall-clock 2-min-before-SCHEDULED-start; delay-proof. The 2-min buffer is design intent (stop re-laying ~2min before real start); the actual cancel keys on the tape latch.",
+  "evaluation_cutoff_in_sim": "fills checked while tts > onset, where onset = volume-burst latch minute (the _is_match_live proxy). No wall-clock floor.",
+  "direction_free": true
+}

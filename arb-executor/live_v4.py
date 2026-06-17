@@ -106,6 +106,16 @@ ROUTING_SWEEP_INTERVAL = 60     # backstop full-universe routing sweep cadence (
 V4_MAX_PLACEMENT_SEC = 240 * 60   # earliest placement in per_regime_offsets_v2 (T-4h)
 V4_T20M_SEC = 20 * 60             # T-20m taker fallback = atlas baseline entry
 V4_REPRICE_MOVE_CENTS = 5         # resting bid re-post threshold (1 cell width); STEP 5 heuristic
+# [C-JOIN-TRIAL] pre-registered degraded-deploy abort bars -- LOCKED before the trial runs
+# (mirror C-ABORT-SEAL falsifiable-magnitude discipline). The bid_low<=L validation is a
+# price-touch UPPER BOUND; real Kalshi is price-time priority and the walk resets queue
+# position ~5x more than static, so live queue-conditional fill is unmeasured. The trial
+# measures it; the abort kills it if queue starvation is confirmed:
+#   ABORT iff, over the first JOIN_TRIAL_MIN_RESOLVED resolved attempts, BOTH bars trip:
+#     mean(re-posts/leg) > JOIN_TRIAL_ABORT_REPOSTS  AND  fill_rate < JOIN_TRIAL_ABORT_FILLRATE
+JOIN_TRIAL_MIN_RESOLVED   = 10      # evaluate only after >=10 attempts reached fill-or-cancel
+JOIN_TRIAL_ABORT_REPOSTS  = 20.0    # mean re-posts/leg ABOVE this ...
+JOIN_TRIAL_ABORT_FILLRATE = 0.60    # ... AND fill_rate BELOW this -> abort the join trial
 V4_PAIRED_BASIS_CAP = 99          # T50: refuse entering BOTH sides of an event when (this side + sibling) basis > this cap. yes+no > ~100 is a guaranteed loss (KESMAR 37+75=112). Ported from arb_executor_ws.py intra-k combined=ask_a+ask_b math (negative space). Cap 99 leaves ~1c for the taker fee.
 
 # T51 match-live detection (VOLUME ACCELERATION, not price-move — a tight even
@@ -401,6 +411,12 @@ class Position:
     # sparsely (keys present only when non-default).
     runway_status: str = "full"
     reference_source: str = ""
+    walk_ref: int = 0            # [C-JOIN-WALK] decision-time join target last (re-)posted -- the
+                                 # re-post key (NOT shared target_price, which other paths mutate)
+    join_reposts: int = 0        # [C-JOIN-TRIAL] re-post count this leg (queue-priority resets)
+    join_depth_post: int = 0     # [C-JOIN-TRIAL] queue-depth-ahead at the last (re-)post
+    join_post_ts: float = 0.0    # [C-JOIN-TRIAL] ts of the last (re-)post (for fill latency)
+    join_is_trial: bool = False  # leg placed under the join trial (counts toward the abort bars)
     strategy: str = ""                # "exit" | "hold" (set at fill from exit table)
     exit_band_x: Optional[int] = None  # +X cents for exit cells; None for hold cells
     exit_cell_id: int = 0             # 1c cell used for the exit-table lookup (entry-priced)
@@ -1250,6 +1266,13 @@ class LiveV3:
 
         self.n_matches_seen = 0
         self.n_entries = 0
+        # [C-JOIN-TRIAL] degraded-deploy abort state (dormant unless join_trial_mode)
+        self.join_trial_mode = bool(self.config.get("join_trial_mode", False))
+        self.join_trial_aborted = False
+        self.trial_attempts = 0
+        self.trial_resolved = 0
+        self.trial_fills = 0
+        self.trial_reposts = 0
         self.n_skips = 0
         self.n_exits = 0
         self.n_dcas = 0
@@ -3193,6 +3216,44 @@ class LiveV3:
         +2.6..+3.9c/attempt; bilateral doubles EV & cuts variance; deeper/FV-conditioned casts dead."""
         return max(1, min(int(best_bid), int(best_ask) - 1)), True
 
+    def _queue_depth_ahead(self, book, price):
+        """[C-JOIN-TRIAL] contracts resting AT our price level = the FIFO queue ahead of a join
+        that lands there (price-time priority). 0 if the level is empty or the book is missing."""
+        if book is None or price <= 0:
+            return 0
+        return int(book.bids.get(int(round(price)), 0) or 0)
+
+    def _join_trial_resolve(self, pos, outcome, book, price, tk):
+        """[C-JOIN-TRIAL] record one resolved join attempt (outcome in {fill,cancel}) with the
+        queue telemetry the bid_low<=L validation could not measure, then evaluate the
+        pre-registered abort bars. join_queue logging is unconditional for join legs; the abort
+        gate fires ONLY under join_trial_mode (degraded first-slate trial)."""
+        if pos.reference_source != "join_bid":
+            return
+        depth_now = self._queue_depth_ahead(book, price)
+        latency = (time.time() - pos.join_post_ts) if pos.join_post_ts > 0 else -1.0
+        self._log("join_queue", {
+            "outcome": outcome, "depth_at_post": pos.join_depth_post, "depth_now": depth_now,
+            "fill_latency_sec": round(latency, 1), "reposts": pos.join_reposts,
+            "play_type": pos.play_type, "trial": pos.join_is_trial}, ticker=tk)
+        if not (self.join_trial_mode and pos.join_is_trial):
+            return
+        self.trial_resolved += 1
+        self.trial_reposts += pos.join_reposts
+        if outcome == "fill":
+            self.trial_fills += 1
+        if self.join_trial_aborted or self.trial_resolved < JOIN_TRIAL_MIN_RESOLVED:
+            return
+        mean_reposts = self.trial_reposts / self.trial_resolved
+        fill_rate = self.trial_fills / self.trial_resolved
+        if mean_reposts > JOIN_TRIAL_ABORT_REPOSTS and fill_rate < JOIN_TRIAL_ABORT_FILLRATE:
+            self.join_trial_aborted = True
+            self._log("join_trial_abort", {
+                "resolved": self.trial_resolved, "mean_reposts": round(mean_reposts, 2),
+                "fill_rate": round(fill_rate, 3), "bar_reposts": JOIN_TRIAL_ABORT_REPOSTS,
+                "bar_fillrate": JOIN_TRIAL_ABORT_FILLRATE,
+                "action": "ABORT -- queue starvation confirmed; halting new join entries"})
+
     def _taker_spread_ok(self, bid, ask):
         """T52: True if (ask-bid) is tight enough to TAKER-cross. A fat spread
         means crossing overpays (the KESMAR fat-spread mechanism) -> block the
@@ -3576,6 +3637,7 @@ class LiveV3:
                     "posted_level": pos.target_price,
                 })
             self._log("entry_filled", ev, ticker=tk)
+            self._join_trial_resolve(pos, "fill", self.books.get(tk), fill_price, tk)
             # ---- awaited tail (serialized per order_id by _booking_inflight) ----
             if pos.is_v4:
                 await self._v4_apply_exit(tk, pos, fill_price, filled)
@@ -3652,6 +3714,8 @@ class LiveV3:
             await self._book_v4_entry_fill(tk, pos, filled, fill_price,
                                            order.get("status", ""), source=source)
             return "booked"
+        self._join_trial_resolve(pos, "cancel", self.books.get(tk),
+                                 pos.walk_ref or pos.target_price, tk)
         return "cancelled"
 
     async def check_fills(self):
@@ -4488,6 +4552,11 @@ class LiveV3:
                 if table_src != "engagement_wave1":
                     target_bid, _ = self._join_target(placement_bid, placement_ask)
                     reference_source = "join_bid"   # [C-JOIN-THE-BID WALK] fresh join walks from placement
+                # [C-JOIN-TRIAL] pre-registered abort halts NEW join entries once tripped.
+                if self.join_trial_aborted and reference_source == "join_bid":
+                    self.n_skips += 1
+                    self._log("skipped", {"reason": "join_trial_aborted", "cat": cat}, ticker=tk)
+                    continue
                 force_cross = self.round5_enabled and self.round5_detector_fire(
                     tk, current_ask, target_bid)
 
@@ -4668,6 +4737,14 @@ class LiveV3:
                     reference_source=reference_source,
                 )
                 self.positions[tk] = pos
+                # [C-JOIN-TRIAL] join leg: stamp the queue-telemetry baseline + trial enrolment.
+                if reference_source == "join_bid":
+                    pos.walk_ref = target_bid
+                    pos.join_depth_post = placement_depth_ahead
+                    pos.join_post_ts = now
+                    pos.join_is_trial = self.join_trial_mode
+                    if self.join_trial_mode:
+                        self.trial_attempts += 1
                 # [C-JOINBID] ledger separability: engagement fills must be
                 # distinguishable from offset-table placements (play_type drives
                 # cohort labeling only; ALL manage/exit semantics key on
@@ -5326,7 +5403,10 @@ class LiveV3:
         # Non-join paths (completion/engagement/offset) keep the >5c mid-move gate exactly. The
         # never-cross safety (_reprice_target) still applies on the re-post below.
         if pos.reference_source == "join_bid" and pos.play_type != "v4_engagement_join":
-            if max(1, min(book.best_bid, book.best_ask - 1)) == pos.target_price:
+            # [C-JOIN-WALK FIX] key the re-post on walk_ref (the decision-time join we last
+            # posted), NOT pos.target_price (mutated by completion/sibling paths): a book that
+            # ticks away-and-back to the same level no longer double-reposts. FIX-2/3 discipline.
+            if max(1, min(book.best_bid, book.best_ask - 1)) == pos.walk_ref:
                 return
         elif abs(current_price - price_basis) <= V4_REPRICE_MOVE_CENTS:
             return
@@ -5411,6 +5491,12 @@ class LiveV3:
             pos.play_type = "v4_resting_maker"
         mode = "repost_resting"
         pos.target_price = new_target
+        # [C-JOIN-TRIAL] walk re-post: bump the re-post ledger + re-stamp the queue baseline.
+        if repost_ref == "join_bid":
+            pos.walk_ref = new_target
+            pos.join_reposts += 1
+            pos.join_depth_post = self._queue_depth_ahead(book, new_target)
+            pos.join_post_ts = now
         # [C-BID-SURVIVAL DIFF-2] re-key the join flag at every re-placement
         # ([C-FEEDER FIX-2/3] from the decision-time snapshot, not a post-await
         # re-read; clamp re-keyed the same way -- _reprice_target lands the

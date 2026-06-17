@@ -4487,6 +4487,7 @@ class LiveV3:
                 # completion). Backtest: join beats ask-1 by +2.6..+3.9c/attempt, 16,806 legs.
                 if table_src != "engagement_wave1":
                     target_bid, _ = self._join_target(placement_bid, placement_ask)
+                    reference_source = "join_bid"   # [C-JOIN-THE-BID WALK] fresh join walks from placement
                 force_cross = self.round5_enabled and self.round5_detector_fire(
                     tk, current_ask, target_bid)
 
@@ -5317,7 +5318,17 @@ class LiveV3:
         if pos.reference_source in ("join_late_runway", "join_bid"):
             price_basis = pos.target_price
         current_price = int(round((book.best_bid + book.best_ask) / 2.0))
-        if abs(current_price - price_basis) <= V4_REPRICE_MOVE_CENTS:
+        # [C-JOIN-THE-BID WALK] join-bid entries re-join best_bid every cycle (60s floor kept,
+        # >5c threshold dropped): re-post iff the live join target has moved off the resting bid.
+        # The walk is half the validated edge -- the 16,806-leg backtest re-joins best_bid each
+        # minute; the static >5c gate left the bid 1-4c above a drifted best_bid. No move -> hold
+        # the rest (preserves queue priority -- only re-queues when the level actually changes).
+        # Non-join paths (completion/engagement/offset) keep the >5c mid-move gate exactly. The
+        # never-cross safety (_reprice_target) still applies on the re-post below.
+        if pos.reference_source == "join_bid" and pos.play_type != "v4_engagement_join":
+            if max(1, min(book.best_bid, book.best_ask - 1)) == pos.target_price:
+                return
+        elif abs(current_price - price_basis) <= V4_REPRICE_MOVE_CENTS:
             return
 
         # Re-classify regime and recompute the target at the new price.

@@ -3174,16 +3174,24 @@ class LiveV3:
             new_target = max(1, current_ask - 1)
         return new_target, True
 
-    def _fallback_order(self, best_ask):
-        """RUN-7: the T-20m fallback order. Returns (price, post_only).
-        fallback_maker_clamp=True -> ask-1 MAKER (post_only=True): re-post just below the ask via the
-        _reprice_target clamp, no taker premium/fee, forfeits the certainty floor; rests the T-20->T-15
-        window (fires at fallback_min_before_start=20). fallback_maker_clamp=False -> taker cross at
-        best_ask (post_only=False): the atlas-baseline certainty (pre-RUN-7, byte-identical). Pure/testable."""
+    def _fallback_order(self, best_bid, best_ask):
+        """RUN-7 + [C-JOIN-THE-BID]: the T-20m fallback now JOINS the standing bid
+        (max(1, min(best_bid, best_ask-1))) rather than resting at ask-1 -- ask-1 posts ABOVE
+        standing demand and gets run over (backtest: +2.6..+3.9c/attempt worse, 16,806 legs).
+        fallback_maker_clamp=False keeps the atlas-baseline taker (byte-identical). Engagement is
+        routed best_bid:=best_ask by the caller -> ask-1 preserved. Pure/testable."""
         if self.fallback_maker_clamp or self.maker_only_entry:
-            price, _ = self._reprice_target(best_ask, best_ask)   # -> (max(1, best_ask-1), True)
-            return price, True
+            return max(1, min(int(best_bid), int(best_ask) - 1)), True
         return best_ask, False
+
+    def _join_target(self, best_bid, best_ask):
+        """[C-JOIN-THE-BID] rest AT the standing best bid, never above it, never cross.
+        max(1, min(best_bid, best_ask-1)): wide book -> best_bid; 1c book -> ask-1 (== best_bid);
+        locked/crossed -> ask-1. Replaces the anchor-offset target and the ask-1 PLACEMENT clamps
+        (NOT _reprice_target, the shared never-cross safety for the completion paths). Returns
+        (price, post_only=True). Pure/testable. Backtest (16,806 legs, 4 cats): join beats ask-1 by
+        +2.6..+3.9c/attempt; bilateral doubles EV & cuts variance; deeper/FV-conditioned casts dead."""
+        return max(1, min(int(best_bid), int(best_ask) - 1)), True
 
     def _taker_spread_ok(self, bid, ask):
         """T52: True if (ask-bid) is tight enough to TAKER-cross. A fat spread
@@ -4472,6 +4480,13 @@ class LiveV3:
                 runway_status = self._runway_status(placement_min, time_to_start)
                 target_bid, reference_source = self._fix6_reference(
                     runway_status, offset, table_src, current_price, target_bid)
+                # [C-JOIN-THE-BID] non-engagement entries rest AT the standing bid (join),
+                # capped <= ask-1, replacing the anchor-offset target. Engagement (wave1)
+                # keeps its by-construction level under ALL book regimes (incl. locked, where
+                # ask-1 < best_bid) -- gated out here. _reprice_target untouched (shared w/
+                # completion). Backtest: join beats ask-1 by +2.6..+3.9c/attempt, 16,806 legs.
+                if table_src != "engagement_wave1":
+                    target_bid, _ = self._join_target(placement_bid, placement_ask)
                 force_cross = self.round5_enabled and self.round5_detector_fire(
                     tk, current_ask, target_bid)
 
@@ -4505,7 +4520,12 @@ class LiveV3:
                         # (still crosses, below). target_bid tracks the clamp so target_price and the
                         # cancel-on-marketable logic stay consistent (manage-side exemption mirrors
                         # fallback_maker). post_only=True cannot cross -> no taker fill, no fee.
-                        target_bid = max(1, current_ask - 1)
+                        # [C-JOIN-THE-BID] site-4 clamp (Plex amend #1): join (non-engagement)
+                        # instead of ask-1; engagement keeps ask-1 (preserved, amend #4).
+                        if table_src != "engagement_wave1":
+                            target_bid = max(1, min(placement_bid, current_ask - 1))
+                        else:
+                            target_bid = max(1, current_ask - 1)
                         entry_price, post_only, entry_mode = target_bid, True, "marketable_clamp"
                     else:
                         # MARKETABLE TAKER: lift the ask, pay the 1c taker fee.
@@ -5213,7 +5233,12 @@ class LiveV3:
                 tk, pos, "v4_t20m_fallback", "fallback_cross_race")
             if res != "cancelled":
                 return
-            fb_price, fb_post_only = self._fallback_order(book.best_ask)
+            # [C-JOIN-THE-BID] fallback joins the standing bid (non-engagement); engagement
+            # keeps ask-1 (best_bid:=best_ask -> min(ask,ask-1)=ask-1, byte-identical).
+            if pos.play_type != "v4_engagement_join":
+                fb_price, fb_post_only = self._fallback_order(book.best_bid, book.best_ask)
+            else:
+                fb_price, fb_post_only = self._fallback_order(book.best_ask, book.best_ask)
             self.inflight_orders.add(tk)
             try:
                 oid, resp = await self.place_order(tk, "buy", "yes", fb_price,
@@ -5289,7 +5314,7 @@ class LiveV3:
         price_basis = pos.target_price + offset_at_post  # current price when last placed
         # [C-FEEDER FIX-6] a join_late_runway bid sat AT the reference -- no
         # offset to add back when reconstructing the placement basis
-        if pos.reference_source == "join_late_runway":
+        if pos.reference_source in ("join_late_runway", "join_bid"):
             price_basis = pos.target_price
         current_price = int(round((book.best_bid + book.best_ask) / 2.0))
         if abs(current_price - price_basis) <= V4_REPRICE_MOVE_CENTS:
@@ -5310,8 +5335,11 @@ class LiveV3:
                                             late_tag="late_remap")
         repost_ref = ""
         if pos.play_type != "v4_engagement_join":
-            new_target, repost_ref = self._fix6_reference(
-                repost_runway, new_offset, "regime", current_price, new_target)
+            # [C-JOIN-THE-BID] reprice joins the standing bid (replaces the FIX-6 offset
+            # reference). repost_ref=join_bid -> price_basis uses target_price (no offset
+            # add-back). Engagement reposts keep the offset path above (FIX-6 A3).
+            new_target, _ = self._join_target(book.best_bid, book.best_ask)
+            repost_ref = "join_bid"
         # [C-FEEDER FIX-2/3] decision-time capture for the repost keys (the
         # cancel/place awaits below are a book-tick window, same race class as
         # the QUESAM placement-side fire)

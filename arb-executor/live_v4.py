@@ -5053,6 +5053,14 @@ class LiveV3:
                     out[tk]["runway_status"] = pos.runway_status
                 if pos.reference_source:
                     out[tk]["reference_source"] = pos.reference_source
+                # [C-JOIN-TRIAL] sparse: join-walk queue telemetry survives restart so a
+                # respawn does NOT reset the re-post count / abort ledger mid-trial.
+                if pos.reference_source == "join_bid":
+                    out[tk]["walk_ref"] = pos.walk_ref
+                    out[tk]["join_reposts"] = pos.join_reposts
+                    out[tk]["join_depth_post"] = pos.join_depth_post
+                    out[tk]["join_post_ts"] = pos.join_post_ts
+                    out[tk]["join_is_trial"] = pos.join_is_trial
                 # [C-JOINBID] sparse: engagement cohort label survives restart
                 if pos.play_type == "v4_engagement_join":
                     out[tk]["play_type"] = "v4_engagement_join"
@@ -5132,6 +5140,11 @@ class LiveV3:
                 intended_clamp=bool(d.get("intended_clamp", False)),
                 runway_status=d.get("runway_status", "full"),
                 reference_source=d.get("reference_source", ""),
+                walk_ref=int(d.get("walk_ref", 0)),
+                join_reposts=int(d.get("join_reposts", 0)),
+                join_depth_post=int(d.get("join_depth_post", 0)),
+                join_post_ts=float(d.get("join_post_ts", 0.0)),
+                join_is_trial=bool(d.get("join_is_trial", False)),
                 completion_s0=int(d.get("completion_s0", 0)),
                 completion_x=int(d.get("completion_x", 0)),
                 completion_leg1_basis=int(d.get("completion_leg1_basis", 0)),

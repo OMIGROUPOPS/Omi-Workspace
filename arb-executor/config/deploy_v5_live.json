@@ -19,6 +19,7 @@
   "entry_table_cell_path": "docs/policy/entry_table_percell_conservative.csv",
   "fallback_min_before_start": 20,
   "fallback_maker_clamp": true,
+  "join_trial_mode": true,
   "cancel_on_marketable": true,
   "cancel_marketable_buffer": 1,
   "premarket_running_mid_anchor": false,

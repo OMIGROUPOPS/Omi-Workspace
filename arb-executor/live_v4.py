@@ -3216,6 +3216,29 @@ class LiveV3:
         +2.6..+3.9c/attempt; bilateral doubles EV & cuts variance; deeper/FV-conditioned casts dead."""
         return max(1, min(int(best_bid), int(best_ask) - 1)), True
 
+    def _staircase_target(self, anchor, offset, best_ask):
+        """[C-STAIRCASE SHIP-1] anchor-relative offset>=1 floor for the staircase deep-cast path.
+        Reproduces abort_validation.py:58 (D = max(1, ...)): the posted bid is anchor - D with
+        D >= 1, so bid <= anchor - 1 -- never shallower than 1c below anchor, even when
+        ask-1 > anchor-1. never-cross (<= ask-1) and absolute floor (>= 1) preserved;
+        post_only ALWAYS True.
+
+        offset MUST be the PRE-ROUNDED integer D@T-<knot> read from range_final_<CAT>.csv. The
+        sim's rounding -- int(round(1 + (deep-1)*frac2(t))) (abort_validation.py:58) -- is done
+        OFFLINE into the CSV; this clamp performs NO live rounding/truncation. A float is REJECTED,
+        not silently truncated (the 753a9d9c off-by-one: int(3.5)->3 truncates vs sim
+        int(round(3.5))->4 banker's-rounds; half-integers at dt=2/dt=6,frac=0.5 would post 1c
+        shallow vs validated). Production callers pass int(D@T-<knot>) from the CSV; never compute D live.
+
+        DORMANT in 59565d5: invoked by NOTHING -- the staircase placement path that calls this is
+        Ship 2. Does NOT touch _join_target (live join_trial @4553), _fallback_order, or
+        _reprice_target (shared completion safety): all byte-identical. Pure/testable."""
+        assert isinstance(offset, int), "_staircase_target requires pre-rounded integer offset (sim parity, abort_validation.py:58)"
+        D = max(1, offset)                     # offset>=1 floor; NO live rounding (pre-rounded in CSV)
+        bid = int(anchor) - D                   # anchor - offset deep cast  ->  bid <= anchor-1
+        bid = min(bid, int(best_ask) - 1)       # never-cross (existing clamp style)
+        return max(1, bid), True                # absolute floor + post_only
+
     def _queue_depth_ahead(self, book, price):
         """[C-JOIN-TRIAL] contracts resting AT our price level = the FIFO queue ahead of a join
         that lands there (price-time priority). 0 if the level is empty or the book is missing."""

@@ -40,14 +40,6 @@ for c in cells:
 n_parity = len(cells)*len(KN)
 print(f"(a) SIM-PARITY 90 cells x 9 knots = {n_parity}: passed {passed}/{n_parity}")
 
-# ---- file-identity cross-check: CSV D@T vs sim D (FLAG knot mismatch) ----
-csv = pd.read_csv(f"{POL}/range_final_ATP_MAIN.csv")
-csv_knots = [int(col.split("-")[1]) for col in csv.columns if col.startswith("D@T-")]
-overlap = sorted(set(csv_knots) & set(KN), reverse=True)
-mism = sum(1 for _,r in csv.iterrows() for t in overlap if int(r[f"D@T-{t}"]) != D_validation(int(r.c), t))
-print(f"    CSV-vs-sim file-identity @ overlap {overlap}: mismatches={mism}/{90*len(overlap)}")
-print(f"    *** FLAG (Ship-2): CSV D@T knots {sorted(csv_knots,reverse=True)} != schedule {sorted(KN,reverse=True)}")
-print(f"        schedule-only {sorted(set(KN)-set(csv_knots),reverse=True)} | CSV-only {sorted(set(csv_knots)-set(KN),reverse=True)}")
 
 # ---- (b) boundary cases ----
 B=[]

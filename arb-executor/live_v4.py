@@ -417,6 +417,9 @@ class Position:
     join_depth_post: int = 0     # [C-JOIN-TRIAL] queue-depth-ahead at the last (re-)post
     join_post_ts: float = 0.0    # [C-JOIN-TRIAL] ts of the last (re-)post (for fill latency)
     join_is_trial: bool = False  # leg placed under the join trial (counts toward the abort bars)
+    staircase_anchor: int = 0    # [C-STAIRCASE SHIP-2] FIXED deep-cast anchor, set once at placement (Risk 2)
+    staircase_cell: int = 0      # [C-STAIRCASE SHIP-2] FIXED cell for final_target lookup (Risk 3)
+    staircase_ref: int = 0       # [C-STAIRCASE SHIP-2] last posted staircase target (knot-crossing key, Risk 1)
     strategy: str = ""                # "exit" | "hold" (set at fill from exit table)
     exit_band_x: Optional[int] = None  # +X cents for exit cells; None for hold cells
     exit_cell_id: int = 0             # 1c cell used for the exit-table lookup (entry-priced)
@@ -1127,6 +1130,7 @@ class LiveV3:
         self.disable_bbo_threshold_settlement = self.config.get("disable_bbo_threshold_settlement", False)
         self._load_entry_table()
         self._load_exit_table()
+        self._load_staircase()
         # [C-CAP-REMOVAL] operator-ruled 2026-06-12: the T50 paired-basis cap
         # (99) forbade the strategy's structural cost by construction -- the
         # foundation's own economics (combined T-20 taker ~101.9 with positive
@@ -3223,12 +3227,11 @@ class LiveV3:
         ask-1 > anchor-1. never-cross (<= ask-1) and absolute floor (>= 1) preserved;
         post_only ALWAYS True.
 
-        offset MUST be the PRE-ROUNDED integer D@T-<knot> read from range_final_<CAT>.csv. The
-        sim's rounding -- int(round(1 + (deep-1)*frac2(t))) (abort_validation.py:58) -- is done
-        OFFLINE into the CSV; this clamp performs NO live rounding/truncation. A float is REJECTED,
-        not silently truncated (the 753a9d9c off-by-one: int(3.5)->3 truncates vs sim
-        int(round(3.5))->4 banker's-rounds; half-integers at dt=2/dt=6,frac=0.5 would post 1c
-        shallow vs validated). Production callers pass int(D@T-<knot>) from the CSV; never compute D live.
+        offset MUST be a PRE-ROUNDED integer per-knot depth. Under Path A (Ship 2) the ATP_MAIN
+        caller computes it live: max(1,int(round(1+(final_target-1)*frac2(t)))) (== abort_validation.py:58,
+        the SOLE rounding site). This clamp performs NO rounding/truncation. A float is REJECTED, not
+        silently truncated (the 753a9d9c off-by-one: int(3.5)->3 truncates vs sim int(round(3.5))->4
+        banker's-rounds; half-integers at dt=2/dt=6,frac=0.5 would post 1c shallow vs validated).
 
         DORMANT in 59565d5: invoked by NOTHING -- the staircase placement path that calls this is
         Ship 2. Does NOT touch _join_target (live join_trial @4553), _fallback_order, or
@@ -3238,6 +3241,37 @@ class LiveV3:
         bid = int(anchor) - D                   # anchor - offset deep cast  ->  bid <= anchor-1
         bid = min(bid, int(best_ask) - 1)       # never-cross (existing clamp style)
         return max(1, bid), True                # absolute floor + post_only
+
+    def _frac2(self, t):
+        # [C-STAIRCASE SHIP-2] held-step knot lookup COPIED BYTE-FOR-BYTE from abort_validation.py:20-22
+        # (the min(c, key=lambda x: x[0]) held-step semantics are the only float-precision surface;
+        # do NOT rewrite). KN/FR are the sealed walk_schedule arrays loaded at boot.
+        KN, FR = self._walk_knots, self._walk_fracs
+        c=[(k,f) for k,f in zip(KN,FR) if k>=t]; return min(c,key=lambda x:x[0])[1] if c else 0.0
+
+    def _staircase_bid(self, cat, cell, anchor, time_to_start, best_bid, best_ask):
+        """[C-STAIRCASE SHIP-2] ATP_MAIN staircase caller (Path A). Computes depth D LIVE from the
+        SEALED inputs (range_final_ATP_MAIN.csv final_target + walk_schedule frac2 + formula) and
+        posts via _staircase_target. NEVER reads CSV D@T cols (seal addendum). int(round(...)) is the
+        ONE rounding site (== abort_validation.py:58). ATP_MAIN ONLY; other 3 cats -> _join_target."""
+        ft = self._range_final_atp_main.get(int(cell))
+        if cat != "ATP_MAIN" or ft is None:
+            return self._join_target(best_bid, best_ask)
+        D = max(1, int(round(1 + (ft - 1) * self._frac2(time_to_start / 60.0))))
+        return self._staircase_target(int(anchor), int(D), int(best_ask))
+
+    def _load_staircase(self):
+        """[C-STAIRCASE SHIP-2] load SEALED Path-A inputs once at boot. D@T cols deliberately NOT read."""
+        import csv as _csv, json as _json
+        base = Path(__file__).resolve().parent
+        sch = _json.load(open(base / "docs/policy/range_final_walk_schedule.json"))
+        self._walk_knots = sch["knots_min_before_start"]; self._walk_fracs = sch["depth_fraction_at_knot"]
+        self._range_final_atp_main = {}
+        with open(base / "docs/policy/range_final_ATP_MAIN.csv", newline="") as f:
+            for r in _csv.DictReader(f):
+                self._range_final_atp_main[int(r["c"])] = int(r["final_target"])
+        self._log("staircase_loaded", {"cells": len(self._range_final_atp_main),
+                  "knots": self._walk_knots, "note": "Path A: final_target+frac2 live; D@T cols NOT read"})
 
     def _queue_depth_ahead(self, book, price):
         """[C-JOIN-TRIAL] contracts resting AT our price level = the FIFO queue ahead of a join
@@ -4573,8 +4607,12 @@ class LiveV3:
                 # ask-1 < best_bid) -- gated out here. _reprice_target untouched (shared w/
                 # completion). Backtest: join beats ask-1 by +2.6..+3.9c/attempt, 16,806 legs.
                 if table_src != "engagement_wave1":
-                    target_bid, _ = self._join_target(placement_bid, placement_ask)
-                    reference_source = "join_bid"   # [C-JOIN-THE-BID WALK] fresh join walks from placement
+                    if cat == "ATP_MAIN":   # [C-STAIRCASE SHIP-2] ATP_MAIN staircase (Path A); other 3 cats UNCHANGED
+                        target_bid, _ = self._staircase_bid(cat, cell, current_price, time_to_start, placement_bid, placement_ask)
+                        reference_source = "staircase"
+                    else:
+                        target_bid, _ = self._join_target(placement_bid, placement_ask)
+                        reference_source = "join_bid"   # [C-JOIN-THE-BID WALK] fresh join walks from placement
                 # [C-JOIN-TRIAL] pre-registered abort halts NEW join entries once tripped.
                 if self.join_trial_aborted and reference_source == "join_bid":
                     self.n_skips += 1
@@ -4760,6 +4798,9 @@ class LiveV3:
                     reference_source=reference_source,
                 )
                 self.positions[tk] = pos
+                # [C-STAIRCASE SHIP-2] Risk 7: set the FIXED staircase state once at placement.
+                if reference_source == "staircase":
+                    pos.staircase_anchor = int(current_price); pos.staircase_cell = int(cell); pos.staircase_ref = int(target_bid)
                 # [C-JOIN-TRIAL] join leg: stamp the queue-telemetry baseline + trial enrolment.
                 if reference_source == "join_bid":
                     pos.walk_ref = target_bid
@@ -5084,6 +5125,12 @@ class LiveV3:
                     out[tk]["join_depth_post"] = pos.join_depth_post
                     out[tk]["join_post_ts"] = pos.join_post_ts
                     out[tk]["join_is_trial"] = pos.join_is_trial
+                # [C-STAIRCASE SHIP-2] Risk 6: staircase state survives restart (anchor=0->1c bid,
+                # cell=0->KeyError; must persist). Sparse-when-set, da9f6ac C-JOIN-TRIAL pattern.
+                if pos.reference_source == "staircase":
+                    out[tk]["staircase_anchor"] = pos.staircase_anchor
+                    out[tk]["staircase_cell"] = pos.staircase_cell
+                    out[tk]["staircase_ref"] = pos.staircase_ref
                 # [C-JOINBID] sparse: engagement cohort label survives restart
                 if pos.play_type == "v4_engagement_join":
                     out[tk]["play_type"] = "v4_engagement_join"
@@ -5168,6 +5215,9 @@ class LiveV3:
                 join_depth_post=int(d.get("join_depth_post", 0)),
                 join_post_ts=float(d.get("join_post_ts", 0.0)),
                 join_is_trial=bool(d.get("join_is_trial", False)),
+                staircase_anchor=int(d.get("staircase_anchor", 0)),
+                staircase_cell=int(d.get("staircase_cell", 0)),
+                staircase_ref=int(d.get("staircase_ref", 0)),
                 completion_s0=int(d.get("completion_s0", 0)),
                 completion_x=int(d.get("completion_x", 0)),
                 completion_leg1_basis=int(d.get("completion_leg1_basis", 0)),
@@ -5438,7 +5488,19 @@ class LiveV3:
         # the rest (preserves queue priority -- only re-queues when the level actually changes).
         # Non-join paths (completion/engagement/offset) keep the >5c mid-move gate exactly. The
         # never-cross safety (_reprice_target) still applies on the re-post below.
-        if pos.reference_source == "join_bid" and pos.play_type != "v4_engagement_join":
+        # [C-STAIRCASE SHIP-2 WALK] Risk 1/2/3: re-quote against the FIXED anchor & cell as D walks
+        # the knot schedule (t->0). Gate on staircase_ref change (a knot crossing), NOT the 5c mid-move
+        # gate and NOT current_price. target = staircase_anchor - D(t); final_target keyed on
+        # staircase_cell. ~8 reposts/leg max by construction.
+        if pos.reference_source == "staircase":
+            _ft = self._range_final_atp_main.get(pos.staircase_cell)
+            if _ft is None:
+                return
+            _sc_D = max(1, int(round(1 + (_ft - 1) * self._frac2(time_to_start / 60.0))))   # == abort_validation.py:58
+            _sc_target, _ = self._staircase_target(pos.staircase_anchor, _sc_D, book.best_ask)
+            if _sc_target == pos.staircase_ref:
+                return
+        elif pos.reference_source == "join_bid" and pos.play_type != "v4_engagement_join":
             # [C-JOIN-WALK FIX] key the re-post on walk_ref (the decision-time join we last
             # posted), NOT pos.target_price (mutated by completion/sibling paths): a book that
             # ticks away-and-back to the same level no longer double-reposts. FIX-2/3 discipline.
@@ -5448,25 +5510,28 @@ class LiveV3:
             return
 
         # Re-classify regime and recompute the target at the new price.
-        new_regime = self.regime_lookup(pos.category, current_price)
-        row = self.entry_table.get((pos.category, new_regime))
-        if row is None:
-            return
-        row_pm, new_offset, _, _ = row
-        new_target = max(1, current_price - new_offset)
-        # [C-FEEDER FIX-6] A2 late_remap: THIS bid only. The repost row's
-        # validated runway is re-checked against the remaining clock; a late
-        # remap invalidates the deep offset -> join the reference level.
-        # A3: engagement joins untouched (their repost path keeps its shape).
-        repost_runway = self._runway_status(row_pm, time_to_start,
-                                            late_tag="late_remap")
-        repost_ref = ""
-        if pos.play_type != "v4_engagement_join":
-            # [C-JOIN-THE-BID] reprice joins the standing bid (replaces the FIX-6 offset
-            # reference). repost_ref=join_bid -> price_basis uses target_price (no offset
-            # add-back). Engagement reposts keep the offset path above (FIX-6 A3).
-            new_target, _ = self._join_target(book.best_bid, book.best_ask)
-            repost_ref = "join_bid"
+        if pos.reference_source == "staircase":
+            new_target = _sc_target; repost_ref = "staircase"   # [C-STAIRCASE SHIP-2] fixed-anchor target; skip regime/join recompute
+        else:
+            new_regime = self.regime_lookup(pos.category, current_price)
+            row = self.entry_table.get((pos.category, new_regime))
+            if row is None:
+                return
+            row_pm, new_offset, _, _ = row
+            new_target = max(1, current_price - new_offset)
+            # [C-FEEDER FIX-6] A2 late_remap: THIS bid only. The repost row's
+            # validated runway is re-checked against the remaining clock; a late
+            # remap invalidates the deep offset -> join the reference level.
+            # A3: engagement joins untouched (their repost path keeps its shape).
+            repost_runway = self._runway_status(row_pm, time_to_start,
+                                                late_tag="late_remap")
+            repost_ref = ""
+            if pos.play_type != "v4_engagement_join":
+                # [C-JOIN-THE-BID] reprice joins the standing bid (replaces the FIX-6 offset
+                # reference). repost_ref=join_bid -> price_basis uses target_price (no offset
+                # add-back). Engagement reposts keep the offset path above (FIX-6 A3).
+                new_target, _ = self._join_target(book.best_bid, book.best_ask)
+                repost_ref = "join_bid"
         # [C-FEEDER FIX-2/3] decision-time capture for the repost keys (the
         # cancel/place awaits below are a book-tick window, same race class as
         # the QUESAM placement-side fire)
@@ -5527,6 +5592,9 @@ class LiveV3:
             pos.play_type = "v4_resting_maker"
         mode = "repost_resting"
         pos.target_price = new_target
+        # [C-STAIRCASE SHIP-2] re-stamp the knot-crossing key after a staircase repost.
+        if repost_ref == "staircase":
+            pos.staircase_ref = new_target
         # [C-JOIN-TRIAL] walk re-post: bump the re-post ledger + re-stamp the queue baseline.
         if repost_ref == "join_bid":
             pos.walk_ref = new_target

@@ -239,6 +239,42 @@ def auth_headers(ak, pk, method, path):
             "KALSHI-ACCESS-SIGNATURE": sign_request(pk, ts, method, path.split("?")[0]),
             "KALSHI-ACCESS-TIMESTAMP": ts, "Content-Type": "application/json"}
 
+# [C-ORDER-V2] Kalshi deprecated POST /trade-api/v2/portfolio/orders (410 deprecated_v1_order_endpoint)
+# -> create-order-v2 at /portfolio/events/orders. side bid/ask (YES book only), price str-dollars, count
+# str, time_in_force + self_trade_prevention_type required; flat response (no "order" wrapper / no _fp /
+# no status). Cancel (DELETE /portfolio/orders/{id}), GET, and signing are UNCHANGED. Pure/testable.
+ORDER_CREATE_V2_PATH = "/trade-api/v2/portfolio/events/orders"
+
+def build_order_payload_v2(ticker, action, price, count, post_only, client_order_id):
+    """CreateOrderV2Request body. The bot trades the YES book ONLY -> action buy=bid, sell=ask.
+    price is int CENTS -> dollars string ("%.2f"); count int -> string. post_only resting -> GTC,
+    crossing -> IOC (dead under maker_only_entry). self_trade_prevention_type taker_at_cross keeps
+    resting makers."""
+    return {
+        "ticker": ticker,
+        "side": "bid" if action == "buy" else "ask",
+        "count": str(int(count)),
+        "price": "%.2f" % (float(price) / 100.0),
+        "time_in_force": "good_till_canceled" if post_only else "immediate_or_cancel",
+        "self_trade_prevention_type": "taker_at_cross",
+        "post_only": bool(post_only),
+        "client_order_id": client_order_id,
+    }
+
+def parse_order_response_v2(resp):
+    """Flat create-order-v2 response (HTTP 201; NO 'order' wrapper / NO 'status' / NO _fp suffix).
+    Returns (order_id, status, fill_count, avg_fill_price_cents|None). status derived from
+    remaining_count (0 -> filled, else/absent -> resting). average_fill_price dollars -> cents."""
+    if not isinstance(resp, dict):
+        return "", "?", 0, None
+    oid = resp.get("order_id", "") or ""
+    fill_count = int(float(resp.get("fill_count", 0) or 0))
+    rem = resp.get("remaining_count", None)
+    status = "filled" if (rem is not None and int(float(rem)) == 0) else "resting"
+    afp = resp.get("average_fill_price", None)
+    avg_cents = round(float(afp) * 100) if afp not in (None, "") else None
+    return oid, status, fill_count, avg_cents
+
 # -------------------------------------------------------------------------
 # Rate limiter
 # -------------------------------------------------------------------------
@@ -2158,21 +2194,12 @@ class LiveV3:
                     "target_max": target_max, "price": price,
                 }, ticker=ticker)
 
-        path = "/trade-api/v2/portfolio/orders"
         coid = str(uuid.uuid4())
-        payload = {
-            "ticker": ticker,
-            "action": action,
-            "side": side,
-            "type": "limit",
-            "count": count,
-            "yes_price": price,
-            "post_only": post_only,
-            "client_order_id": coid,
-        }
+        path = ORDER_CREATE_V2_PATH                      # [C-ORDER-V2] /portfolio/events/orders
+        payload = build_order_payload_v2(ticker, action, price, count, post_only, coid)
         resp = await api_post(self.session, self.ak, self.pk, path, payload, self.rl)
         if resp and not resp.get("_error"):
-            oid = resp.get("order", {}).get("order_id", "")
+            oid, _v2_status, _v2_fill, _v2_avg = parse_order_response_v2(resp)   # [C-ORDER-V2] flat
             # [C-COPILOT] register: this id/ticker is the BOT's
             if oid:
                 getattr(self, "_bot_order_ids", set()).add(oid)
@@ -2180,7 +2207,7 @@ class LiveV3:
             self._log("order_placed", {
                 "action": action, "side": side, "price": price, "count": count,
                 "order_id": oid, "client_order_id": coid,
-                "response_status": resp.get("order", {}).get("status", "?"),
+                "response_status": _v2_status,
             }, ticker=ticker)
             return oid, resp
         else:
@@ -3542,8 +3569,7 @@ class LiveV3:
         already has). anchor_price is the cross/limit price; a taker buy fills at <= its limit,
         so anchoring the exit on it is conservative (A53). _v4_apply_exit is HOLD-safe and
         clears stray sells before posting, so it is safe to call here."""
-        o = (resp or {}).get("order", {}) if isinstance(resp, dict) else {}
-        filled = int(float(o.get("fill_count_fp", 0) or 0))
+        _bid, _v2_status, filled, _v2_avg = parse_order_response_v2(resp)   # [C-ORDER-V2] flat create resp
         if filled <= 0 or pos.exit_order_id:
             return False
         if pos.entry_qty == 0:
@@ -3555,7 +3581,7 @@ class LiveV3:
             "fill_price": anchor_price, "posted_price": anchor_price,
             "qty": filled, "new_fills": filled, "cell": pos.cell_name,
             "direction": pos.direction, "play_type": pos.play_type,
-            "kalshi_status": o.get("status", "?"), "source": "placement_instant_fill",
+            "kalshi_status": _v2_status, "source": "placement_instant_fill",
         }, ticker=tk)
         if pos.is_v4:
             await self._v4_apply_exit(tk, pos, anchor_price, filled)
@@ -5517,15 +5543,9 @@ class LiveV3:
             # (it can be shadowed by the match_start_buffer branch), so book it
             # here and post the exit via the SAME path ENTRY_FILLED uses.
             # Reuses _v4_apply_exit (HOLD-safe, sizes to filled qty).
-            o = (resp or {}).get("order", {}) if isinstance(resp, dict) else {}
-            filled = int(float(o.get("fill_count_fp", 0) or 0))
+            _oid2, _v2_status2, filled, _avg2 = parse_order_response_v2(resp)   # [C-ORDER-V2] flat create resp
             if filled > 0 and not pos.exit_order_id:
-                fpr = o.get("average_fill_price_fp", book.best_ask)
-                if isinstance(fpr, str):
-                    fpr = float(fpr)
-                fill_price = round(fpr * 100) if fpr < 1.5 else int(fpr)
-                if fill_price <= 0:
-                    fill_price = book.best_ask
+                fill_price = _avg2 if (_avg2 and _avg2 > 0) else book.best_ask
                 if pos.entry_qty == 0:
                     self.n_entries += 1
                 pos.entry_qty = filled
@@ -5535,7 +5555,7 @@ class LiveV3:
                     "fill_price": fill_price, "posted_price": pos.entry_price,
                     "qty": filled, "new_fills": filled, "cell": pos.cell_name,
                     "direction": pos.direction, "play_type": pos.play_type,
-                    "kalshi_status": o.get("status", "?"),
+                    "kalshi_status": _v2_status2,
                     "source": "t20m_instant_fill",
                 }, ticker=tk)
                 if pos.is_v4:

@@ -116,6 +116,15 @@ V4_REPRICE_MOVE_CENTS = 5         # resting bid re-post threshold (1 cell width)
 JOIN_TRIAL_MIN_RESOLVED   = 10      # evaluate only after >=10 attempts reached fill-or-cancel
 JOIN_TRIAL_ABORT_REPOSTS  = 20.0    # mean re-posts/leg ABOVE this ...
 JOIN_TRIAL_ABORT_FILLRATE = 0.60    # ... AND fill_rate BELOW this -> abort the join trial
+# [C-STAIRCASE SHIP-2 abort-spec] Plex-ratified BAR gates for the ATP_MAIN staircase walk. Source:
+# docs/policy/range_final_ATP_MAIN_abort_fills.csv (source_sha 4e4c1553, mean(offset)=1.9388, n=3595).
+# ABORT iff, over the first STAIRCASE_MIN_RESOLVED resolved staircase legs, BOTH bars trip:
+#   mean(realized depth) < STAIRCASE_ABORT_DEPTH  AND  fill_rate < STAIRCASE_ABORT_FILLRATE.
+# DEPTH = mean(offset) - 0.5c margin = 1.9388 - 0.5 = 1.44 (ratified). Halts NEW staircase entries;
+# resting legs continue (placement-side skip only). Mirrors the join_trial_aborted flag pattern.
+STAIRCASE_MIN_RESOLVED   = 10
+STAIRCASE_ABORT_FILLRATE = 0.623
+STAIRCASE_ABORT_DEPTH    = 1.44
 V4_PAIRED_BASIS_CAP = 99          # T50: refuse entering BOTH sides of an event when (this side + sibling) basis > this cap. yes+no > ~100 is a guaranteed loss (KESMAR 37+75=112). Ported from arb_executor_ws.py intra-k combined=ask_a+ask_b math (negative space). Cap 99 leaves ~1c for the taker fee.
 
 # T51 match-live detection (VOLUME ACCELERATION, not price-move — a tight even
@@ -1273,6 +1282,11 @@ class LiveV3:
         # [C-JOIN-TRIAL] degraded-deploy abort state (dormant unless join_trial_mode)
         self.join_trial_mode = bool(self.config.get("join_trial_mode", False))
         self.join_trial_aborted = False
+        # [C-STAIRCASE SHIP-2 abort-spec] staircase abort state (mirrors join_trial_aborted)
+        self.staircase_aborted = False
+        self.staircase_resolved = 0
+        self.staircase_fills = 0
+        self.staircase_depth_sum = 0.0
         self.trial_attempts = 0
         self.trial_resolved = 0
         self.trial_fills = 0
@@ -3311,6 +3325,35 @@ class LiveV3:
                 "bar_fillrate": JOIN_TRIAL_ABORT_FILLRATE,
                 "action": "ABORT -- queue starvation confirmed; halting new join entries"})
 
+    def _staircase_resolve(self, pos, outcome, fill_price):
+        """[C-STAIRCASE SHIP-2 abort-spec] record one resolved staircase leg (fill|cancel) and trip the
+        AND-gated abort: over the first STAIRCASE_MIN_RESOLVED resolved legs, halt NEW staircase entries
+        iff mean(realized depth) < STAIRCASE_ABORT_DEPTH AND fill_rate < STAIRCASE_ABORT_FILLRATE. Resting
+        legs continue (placement-side skip only). Mirrors join_trial_aborted. Staircase-only by reference_source."""
+        if pos.reference_source != "staircase":
+            return
+        self.staircase_resolved += 1
+        depth = 0
+        if outcome == "fill":
+            self.staircase_fills += 1
+            depth = max(0, int(pos.staircase_anchor) - int(fill_price))   # realized offset (anchor - fill)
+            self.staircase_depth_sum += depth
+        self._log("staircase_walk", {
+            "outcome": outcome, "resolved": self.staircase_resolved, "fills": self.staircase_fills,
+            "anchor": pos.staircase_anchor, "fill_price": fill_price, "depth": depth,
+            "staircase_ref": pos.staircase_ref, "cell": pos.staircase_cell})
+        if self.staircase_aborted or self.staircase_resolved < STAIRCASE_MIN_RESOLVED:
+            return
+        fill_rate = self.staircase_fills / self.staircase_resolved
+        mean_depth = (self.staircase_depth_sum / self.staircase_fills) if self.staircase_fills else 0.0
+        if mean_depth < STAIRCASE_ABORT_DEPTH and fill_rate < STAIRCASE_ABORT_FILLRATE:
+            self.staircase_aborted = True
+            self._log("staircase_trial_abort", {
+                "resolved": self.staircase_resolved, "fill_rate": round(fill_rate, 3),
+                "mean_depth": round(mean_depth, 3), "bar_fillrate": STAIRCASE_ABORT_FILLRATE,
+                "bar_depth": STAIRCASE_ABORT_DEPTH,
+                "action": "ABORT -- staircase depth+fill below bars; halting new staircase entries"})
+
     def _taker_spread_ok(self, bid, ask):
         """T52: True if (ask-bid) is tight enough to TAKER-cross. A fat spread
         means crossing overpays (the KESMAR fat-spread mechanism) -> block the
@@ -3695,6 +3738,7 @@ class LiveV3:
                 })
             self._log("entry_filled", ev, ticker=tk)
             self._join_trial_resolve(pos, "fill", self.books.get(tk), fill_price, tk)
+            self._staircase_resolve(pos, "fill", fill_price)
             # ---- awaited tail (serialized per order_id by _booking_inflight) ----
             if pos.is_v4:
                 await self._v4_apply_exit(tk, pos, fill_price, filled)
@@ -3773,6 +3817,7 @@ class LiveV3:
             return "booked"
         self._join_trial_resolve(pos, "cancel", self.books.get(tk),
                                  pos.walk_ref or pos.target_price, tk)
+        self._staircase_resolve(pos, "cancel", pos.staircase_ref or pos.target_price)
         return "cancelled"
 
     async def check_fills(self):
@@ -4617,6 +4662,11 @@ class LiveV3:
                 if self.join_trial_aborted and reference_source == "join_bid":
                     self.n_skips += 1
                     self._log("skipped", {"reason": "join_trial_aborted", "cat": cat}, ticker=tk)
+                    continue
+                # [C-STAIRCASE SHIP-2 abort-spec] halt NEW staircase entries once aborted; resting legs continue.
+                if self.staircase_aborted and reference_source == "staircase":
+                    self.n_skips += 1
+                    self._log("skipped", {"reason": "staircase_aborted", "cat": cat}, ticker=tk)
                     continue
                 force_cross = self.round5_enabled and self.round5_detector_fire(
                     tk, current_ask, target_bid)

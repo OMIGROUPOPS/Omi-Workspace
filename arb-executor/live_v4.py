@@ -144,6 +144,7 @@ LIVE_DETECT_TTS_FLOOR_SEC = 1800       # volume burst can NEVER latch when feed 
 LIVE_DETECT_CONFIRM_MIN_GAP_SEC = 60   # stage-2 confirm needs a burst >= one full window after stage-1
 LIVE_DETECT_CONFIRM_TTL_SEC = 300      # stage-1 evidence expires; a real live match re-arms instantly
 LIVE_DETECT_UNLATCH_QUIET_SEC = 300    # latched + tts>floor + tape quiet this long => false latch, clear
+FV_BURST_RETENTION_SEC = 6 * 3600      # [C-FV-BURST] age-prune the observe-only fv-burst snapshot dict
 MAX_TAKER_SPREAD = 5              # T52: never TAKER-cross when (ask-bid) > this. The KESMAR fat-spread cross paid a wide ask; a wide spread means the taker floor isn't cleanly achievable -> stay flat rather than overpay. Tunable; resting-maker entries are unaffected.
 
 # T58 premarket maker entry — live running-mid anchor (Stage-2-validated
@@ -511,6 +512,12 @@ class PaperOrder:
     last_trade_age_at_post: float = 0.0
     fv_anchor_at_post: Optional[float] = None
     spread_at_post: int = 0
+    # [C-FV-BURST] observe-only instrumentation: FV (book mid) at the real-start
+    # latch and the entry's distance from it (fill_price - fv_at_burst; positive =
+    # entered ABOVE FV). Read by NOTHING in any order/cancel/repost/exit/timing
+    # path; written only by _fv_burst_snapshot's consumer and _book_v4_entry_fill.
+    fv_at_burst: Optional[float] = None
+    entry_minus_fv_burst: Optional[float] = None
 
     def to_kalshi_dict(self):
         return {
@@ -1292,6 +1299,10 @@ class LiveV3:
         # trade timestamps + latched live-event set.
         self._trade_times: Dict[str, deque] = defaultdict(deque)
         self._events_live: Set[str] = set()
+        # [C-FV-BURST] ticker -> {mid,bid,ask,last,ts} snapshot taken at the real-
+        # start latch (observe-only; consumed by _book_v4_entry_fill to tag post-
+        # burst fills). Self-pruned by age inside _fv_burst_snapshot.
+        self._fv_burst: Dict[str, dict] = {}
         # [C-FEEDER FIX-1] two-stage latch state + once-per-latch skip logging
         self._live_stage1: Dict[str, float] = {}   # event -> first-burst ts
         self._live_skip_logged: Set[str] = set()   # events whose skip_live_match was logged this latch
@@ -3095,12 +3106,74 @@ class LiveV3:
             return False  # same window; not yet independent confirmation
         stage1.pop(et, None)
         self._events_live.add(et)
+        # [C-FV-BURST] observe-only snapshot of FV at the real-start latch. Wrapped
+        # so it can NEVER raise into the latch path; runs AFTER the latch and does
+        # not touch _events_live / orders / the return value. (try scope = this
+        # call only; Exception, not bare, so KeyboardInterrupt/SystemExit propagate.)
+        try:
+            self._fv_burst_snapshot(et, now)
+        except Exception:
+            pass
         self._log("match_live_detected", {
             "event": et, "trades_in_window": recent,
             "window_sec": LIVE_DETECT_WINDOW_SEC, "signal": "volume_burst",
             "stage1_age_sec": round(now - t0, 1),
             "tts_min": (round(tts / 60.0, 1) if tts is not None else None)})
         return True
+
+    def _fv_burst_snapshot(self, et, now):
+        """[C-FV-BURST instrumentation -- OBSERVE-ONLY] At the real-start latch,
+        snapshot per-leg FV (book mid/bid/ask/last) into self._fv_burst and emit a
+        fv_burst_anchor log line tagging each leg's entry distance from FV
+        (entry_minus_fv_burst = entry_price - fv_mid; positive = entered ABOVE FV;
+        entry_price = fill price if already filled, else the resting target).
+
+        ZERO behavior change: the body mutates ONLY self._fv_burst (the new
+        instrumentation dict). It does NOT write Position objects, self.books,
+        self._events_live, the rate limiter, or any order queue; it contains no
+        await and makes no order/cancel/price/timing decision. Reads are the books,
+        positions and event-ticker map. Called once per event (the latch branch
+        runs only on the latching pass; a re-latch after counter-evidence unlatch
+        keeps the FIRST anchor via the `tk in self._fv_burst` guard). Pre-burst
+        fills are tagged here in the log line; post-burst fills are tagged in
+        _book_v4_entry_fill from the stored snapshot. Self-prunes by age (memory
+        hygiene -- touches only this dict)."""
+        if self._fv_burst:
+            cut = now - FV_BURST_RETENTION_SEC
+            for stale in [k for k, v in self._fv_burst.items()
+                          if v.get("ts", 0) < cut]:
+                self._fv_burst.pop(stale, None)
+        legs = self.event_tickers.get(et, ())
+        n_filled = sum(1 for t in legs
+                       if self.positions.get(t) and self.positions[t].entry_filled_ts)
+        for tk in legs:
+            if tk in self._fv_burst:
+                continue
+            bk = self.books.get(tk)
+            if bk is None:
+                continue
+            mid = ((bk.best_bid + bk.best_ask) / 2.0
+                   if bk.best_bid > 0 and bk.best_ask < 100 else None)
+            self._fv_burst[tk] = {"mid": mid, "bid": bk.best_bid, "ask": bk.best_ask,
+                                  "last": bk.last_trade_price, "ts": now}
+            pos = self.positions.get(tk)
+            if pos is None:
+                continue
+            filled = bool(pos.entry_filled_ts)
+            entry_px = pos.entry_price if filled else pos.target_price
+            emfv = (entry_px - mid) if (mid is not None and entry_px) else None
+            self._log("fv_burst_anchor", {
+                "event": et, "cat": pos.category, "cell": pos.cell_name,
+                "regime": pos.regime_at_posting,
+                "reference_source": pos.reference_source,
+                "legs_filled": n_filled,
+                "solo_or_pair": ("pair" if n_filled >= 2 else "solo"),
+                "filled_pre_burst": filled,
+                "entry_price": entry_px,
+                "fill_price": (pos.entry_price if filled else None),
+                "fv_mid": mid, "fv_bid": bk.best_bid, "fv_ask": bk.best_ask,
+                "fv_last": bk.last_trade_price,
+                "entry_minus_fv_burst": emfv}, ticker=tk)
 
     def _fv_observe_fields(self, et, tk, full_name, price, match_live):
         """[C-FV-OBSERVE-SHIP, Plex-countersigned] the sharp-book blend riding
@@ -3758,6 +3831,17 @@ class LiveV3:
             }
             if source is not None:
                 ev["source"] = source
+            # [C-FV-BURST] observe-only: tag fills landing AFTER the burst latch
+            # (ride-live / completion / adoption) from the stored snapshot. Sets
+            # two never-read Position fields + two log keys; no control-flow,
+            # filled, fill_price, idempotency, exit or sibling-cancel effect. (Pre-
+            # burst fills are tagged by _fv_burst_snapshot's fv_burst_anchor line.)
+            _fvb = self._fv_burst.get(tk)
+            if _fvb is not None and _fvb.get("mid") is not None:
+                pos.fv_at_burst = _fvb["mid"]
+                pos.entry_minus_fv_burst = fill_price - _fvb["mid"]
+                ev["fv_at_burst"] = _fvb["mid"]
+                ev["entry_minus_fv_burst"] = pos.entry_minus_fv_burst
             # [C-FEEDER FIX-4] B22 ledger attribution at the anchor that
             # matters -- the FILL: cell/band where the market actually filled
             # us, plus wave-1 table membership of that band (the would-have-

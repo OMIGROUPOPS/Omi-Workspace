@@ -123,8 +123,10 @@ JOIN_TRIAL_ABORT_FILLRATE = 0.60    # ... AND fill_rate BELOW this -> abort the 
 # DEPTH = mean(offset) - 0.5c margin = 1.9388 - 0.5 = 1.44 (ratified). Halts NEW staircase entries;
 # resting legs continue (placement-side skip only). Mirrors the join_trial_aborted flag pattern.
 STAIRCASE_MIN_RESOLVED   = 10
-STAIRCASE_ABORT_FILLRATE = 0.623
-STAIRCASE_ABORT_DEPTH    = 1.44
+# [C-STAIRCASE 4CAT] per-cat abort bars (abort_validation harness 2026-06-19; ATP_MAIN reproduced EXACTLY).
+# The other 3 cats fill DEEPER (mean offset 2.2-2.4c vs 1.94) so each needs its OWN DEPTH bar.
+STAIRCASE_ABORT_FILLRATE = {"ATP_MAIN": 0.623, "WTA_MAIN": 0.602, "ATP_CHALL": 0.621, "WTA_CHALL": 0.685}
+STAIRCASE_ABORT_DEPTH    = {"ATP_MAIN": 1.44,  "WTA_MAIN": 1.89,  "ATP_CHALL": 1.88,  "WTA_CHALL": 1.71}
 V4_PAIRED_BASIS_CAP = 99          # T50: refuse entering BOTH sides of an event when (this side + sibling) basis > this cap. yes+no > ~100 is a guaranteed loss (KESMAR 37+75=112). Ported from arb_executor_ws.py intra-k combined=ask_a+ask_b math (negative space). Cap 99 leaves ~1c for the taker fee.
 
 # T51 match-live detection (VOLUME ACCELERATION, not price-move — a tight even
@@ -1283,10 +1285,12 @@ class LiveV3:
         self.join_trial_mode = bool(self.config.get("join_trial_mode", False))
         self.join_trial_aborted = False
         # [C-STAIRCASE SHIP-2 abort-spec] staircase abort state (mirrors join_trial_aborted)
-        self.staircase_aborted = False
-        self.staircase_resolved = 0
-        self.staircase_fills = 0
-        self.staircase_depth_sum = 0.0
+        # [C-STAIRCASE 4CAT] per-cat tally (was scalars): a failing cat can't be masked by a healthy
+        # one, and an abort halts ONLY the failing cat. In-memory, resets on restart (unchanged).
+        self.staircase_aborted = {}        # cat -> bool
+        self.staircase_resolved = {}       # cat -> int
+        self.staircase_fills = {}          # cat -> int
+        self.staircase_depth_sum = {}      # cat -> float
         self.trial_attempts = 0
         self.trial_resolved = 0
         self.trial_fills = 0
@@ -3267,9 +3271,11 @@ class LiveV3:
         """[C-STAIRCASE SHIP-2] ATP_MAIN staircase caller (Path A). Computes depth D LIVE from the
         SEALED inputs (range_final_ATP_MAIN.csv final_target + walk_schedule frac2 + formula) and
         posts via _staircase_target. NEVER reads CSV D@T cols (seal addendum). int(round(...)) is the
-        ONE rounding site (== abort_validation.py:58). ATP_MAIN ONLY; other 3 cats -> _join_target."""
-        ft = self._range_final_atp_main.get(int(cell))
-        if cat != "ATP_MAIN" or ft is None:
+        ONE rounding site (== abort_validation.py:58). [C-STAIRCASE 4CAT] ALL 4 cats; a cat with no
+        range_final surface or an absent cell -> _join_target fallback."""
+        _rf = self._range_final.get(cat)
+        ft = _rf.get(int(cell)) if _rf else None
+        if ft is None:
             return self._join_target(best_bid, best_ask)
         D = max(1, int(round(1 + (ft - 1) * self._frac2(time_to_start / 60.0))))
         return self._staircase_target(int(anchor), int(D), int(best_ask))
@@ -3280,12 +3286,16 @@ class LiveV3:
         base = Path(__file__).resolve().parent
         sch = _json.load(open(base / "docs/policy/range_final_walk_schedule.json"))
         self._walk_knots = sch["knots_min_before_start"]; self._walk_fracs = sch["depth_fraction_at_knot"]
-        self._range_final_atp_main = {}
-        with open(base / "docs/policy/range_final_ATP_MAIN.csv", newline="") as f:
-            for r in _csv.DictReader(f):
-                self._range_final_atp_main[int(r["c"])] = int(r["final_target"])
-        self._log("staircase_loaded", {"cells": len(self._range_final_atp_main),
-                  "knots": self._walk_knots, "note": "Path A: final_target+frac2 live; D@T cols NOT read"})
+        # [C-STAIRCASE 4CAT] per-cat final_target dicts (was ATP_MAIN-only). Walk schedule SHARED.
+        self._range_final = {}             # cat -> {cell: final_target}
+        for _cat in ("ATP_MAIN", "WTA_MAIN", "ATP_CHALL", "WTA_CHALL"):
+            _d = {}
+            with open(base / ("docs/policy/range_final_%s.csv" % _cat), newline="") as f:
+                for r in _csv.DictReader(f):
+                    _d[int(r["c"])] = int(r["final_target"])
+            self._range_final[_cat] = _d
+        self._log("staircase_loaded", {"cats": {c: len(v) for c, v in self._range_final.items()},
+                  "knots": self._walk_knots, "note": "Path A 4-cat: final_target+frac2 live; D@T cols NOT read"})
 
     def _queue_depth_ahead(self, book, price):
         """[C-JOIN-TRIAL] contracts resting AT our price level = the FIFO queue ahead of a join
@@ -3332,27 +3342,30 @@ class LiveV3:
         legs continue (placement-side skip only). Mirrors join_trial_aborted. Staircase-only by reference_source."""
         if pos.reference_source != "staircase":
             return
-        self.staircase_resolved += 1
+        _cat = pos.category                                  # [C-STAIRCASE 4CAT] per-cat tally
+        self.staircase_resolved[_cat] = self.staircase_resolved.get(_cat, 0) + 1
         depth = 0
         if outcome == "fill":
-            self.staircase_fills += 1
+            self.staircase_fills[_cat] = self.staircase_fills.get(_cat, 0) + 1
             depth = max(0, int(pos.staircase_anchor) - int(fill_price))   # realized offset (anchor - fill)
-            self.staircase_depth_sum += depth
+            self.staircase_depth_sum[_cat] = self.staircase_depth_sum.get(_cat, 0.0) + depth
+        _res = self.staircase_resolved[_cat]; _fil = self.staircase_fills.get(_cat, 0)
         self._log("staircase_walk", {
-            "outcome": outcome, "resolved": self.staircase_resolved, "fills": self.staircase_fills,
+            "cat": _cat, "outcome": outcome, "resolved": _res, "fills": _fil,
             "anchor": pos.staircase_anchor, "fill_price": fill_price, "depth": depth,
             "staircase_ref": pos.staircase_ref, "cell": pos.staircase_cell})
-        if self.staircase_aborted or self.staircase_resolved < STAIRCASE_MIN_RESOLVED:
+        if self.staircase_aborted.get(_cat, False) or _res < STAIRCASE_MIN_RESOLVED:
             return
-        fill_rate = self.staircase_fills / self.staircase_resolved
-        mean_depth = (self.staircase_depth_sum / self.staircase_fills) if self.staircase_fills else 0.0
-        if mean_depth < STAIRCASE_ABORT_DEPTH and fill_rate < STAIRCASE_ABORT_FILLRATE:
-            self.staircase_aborted = True
+        fill_rate = _fil / _res
+        mean_depth = (self.staircase_depth_sum.get(_cat, 0.0) / _fil) if _fil else 0.0
+        _dbar = STAIRCASE_ABORT_DEPTH.get(_cat, STAIRCASE_ABORT_DEPTH["ATP_MAIN"])
+        _frbar = STAIRCASE_ABORT_FILLRATE.get(_cat, STAIRCASE_ABORT_FILLRATE["ATP_MAIN"])
+        if mean_depth < _dbar and fill_rate < _frbar:
+            self.staircase_aborted[_cat] = True
             self._log("staircase_trial_abort", {
-                "resolved": self.staircase_resolved, "fill_rate": round(fill_rate, 3),
-                "mean_depth": round(mean_depth, 3), "bar_fillrate": STAIRCASE_ABORT_FILLRATE,
-                "bar_depth": STAIRCASE_ABORT_DEPTH,
-                "action": "ABORT -- staircase depth+fill below bars; halting new staircase entries"})
+                "cat": _cat, "resolved": _res, "fill_rate": round(fill_rate, 3),
+                "mean_depth": round(mean_depth, 3), "bar_fillrate": _frbar, "bar_depth": _dbar,
+                "action": "ABORT -- staircase depth+fill below bars; halting new entries (THIS cat only)"})
 
     def _taker_spread_ok(self, bid, ask):
         """T52: True if (ask-bid) is tight enough to TAKER-cross. A fat spread
@@ -4652,7 +4665,7 @@ class LiveV3:
                 # ask-1 < best_bid) -- gated out here. _reprice_target untouched (shared w/
                 # completion). Backtest: join beats ask-1 by +2.6..+3.9c/attempt, 16,806 legs.
                 if table_src != "engagement_wave1":
-                    if cat == "ATP_MAIN":   # [C-STAIRCASE SHIP-2] ATP_MAIN staircase (Path A); other 3 cats UNCHANGED
+                    if cat in self._range_final:   # [C-STAIRCASE 4CAT] all 4 cats staircase (was ATP_MAIN-only)
                         target_bid, _ = self._staircase_bid(cat, cell, current_price, time_to_start, placement_bid, placement_ask)
                         reference_source = "staircase"
                     else:
@@ -4664,7 +4677,7 @@ class LiveV3:
                     self._log("skipped", {"reason": "join_trial_aborted", "cat": cat}, ticker=tk)
                     continue
                 # [C-STAIRCASE SHIP-2 abort-spec] halt NEW staircase entries once aborted; resting legs continue.
-                if self.staircase_aborted and reference_source == "staircase":
+                if reference_source == "staircase" and self.staircase_aborted.get(cat, False):
                     self.n_skips += 1
                     self._log("skipped", {"reason": "staircase_aborted", "cat": cat}, ticker=tk)
                     continue
@@ -5556,7 +5569,7 @@ class LiveV3:
         # gate and NOT current_price. target = staircase_anchor - D(t); final_target keyed on
         # staircase_cell. ~8 reposts/leg max by construction.
         if pos.reference_source == "staircase":
-            _ft = self._range_final_atp_main.get(pos.staircase_cell)
+            _rf = self._range_final.get(pos.category); _ft = _rf.get(pos.staircase_cell) if _rf else None   # [C-STAIRCASE 4CAT] per-cat
             if _ft is None:
                 return
             _sc_D = max(1, int(round(1 + (_ft - 1) * self._frac2(time_to_start / 60.0))))   # == abort_validation.py:58

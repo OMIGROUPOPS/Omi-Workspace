@@ -3114,6 +3114,7 @@ class LiveV3:
         if tts is not None and tts > 0:
             have_ref = False
             moved = False
+            _moves = []   # [E113-OBS] per ref'd-leg |mid-ref|, for the suppress log
             for tk in self.event_tickers.get(et, ()):
                 wo = self._window_open.get(tk)
                 if not (wo and wo.get("price")):
@@ -3122,10 +3123,27 @@ class LiveV3:
                 bk = self.books.get(tk)
                 if bk and bk.best_bid > 0 and bk.best_ask < 100:
                     mid = (bk.best_bid + bk.best_ask) / 2.0
+                    _moves.append([tk[-3:], round(abs(mid - wo["price"]), 1)])
                     if abs(mid - wo["price"]) >= MATCH_LIVE_MOVE_CENTS:
                         moved = True
                         break
             if have_ref and not moved:
+                # [E113-OBS] observe-only: record the suppressed premature cancel
+                # (the FERCER fix firing). Logs THEN returns False -- the suppress
+                # decision + control flow are byte-identical. Fire-ONCE per event
+                # (lazy-init set, same pattern as _live_stage1) so a sustained flat
+                # burst doesn't spam the log on every ~1s pass.
+                _slog = getattr(self, "_live_suppress_logged", None)
+                if _slog is None:
+                    _slog = self._live_suppress_logged = set()
+                if et not in _slog:
+                    _slog.add(et)
+                    self._log("match_live_suppressed", {
+                        "event": et, "tts_min": round(tts / 60.0, 1),
+                        "recent_burst": recent, "bar": MATCH_LIVE_MOVE_CENTS,
+                        "n_ref_legs": (len(_moves) if have_ref else 0),
+                        "leg_moves": _moves,
+                        "max_move": max((mv for _, mv in _moves), default=0.0)})
                 return False  # measured-flat premarket burst -> not a start
         stage1 = getattr(self, "_live_stage1", None)
         if stage1 is None:

@@ -5359,6 +5359,14 @@ class LiveV3:
         # Degenerate, T51 match-live, T52 and the T-15 buffer all still govern.
         if should_cancel and creason == "bid_marketable_stale" and pos.intended_clamp:
             should_cancel, creason = False, None
+        # [C-STAIRCASE WALK-FINAL] 4th exemption (same shape as fallback_maker/intended_join/
+        # intended_clamp): the walk's final-window post (anchor-1, == ask-1 in a 1-wide book) is the
+        # validated aggressive-maker END STATE, not a drift bid. intended_clamp is keyed at PLACEMENT
+        # (deep cast -> False) and never re-derived on walk repost, so for staircase this is the SOLE
+        # marketable-stale guard (Plex cond-3). Without it clause #1 buys nothing -- the anchor-1 bid
+        # self-cancels next pass. Degenerate, tape-cancel (5326), T51/T52, T-15 buffer all still govern.
+        if should_cancel and creason == "bid_marketable_stale" and pos.reference_source == "staircase":
+            should_cancel, creason = False, None
         if should_cancel:
             # [C-P0-RACE site 1 -- THE observed bug, AUGFUC-AUG 2026-06-11 05:42:10 ET]
             # the marketable-stale cancel raced a fill; the old path ignored the
@@ -5400,7 +5408,12 @@ class LiveV3:
         # -- the +8.70% floor -- so the strategy can never underperform it. Pay
         # the 1c taker fee (by design). Fires once; after crossing, entry_mode is
         # miss_fallback and we just wait for the taker fill.
-        if time_to_start <= self.v4_fallback_sec and pos.entry_mode not in ("miss_fallback", "fallback_maker", "marketable_clamp"):
+        # [C-STAIRCASE WALK-FINAL] staircase legs OWN their final window via the walk (knots 30/10
+        # -> anchor-1); STEP-6 must NOT cancel+convert them to a join at T-20 (the sim-parity gap
+        # Plex ratified: the walk was validated to T-10). Keyed on reference_source ONLY -- join_bid
+        # legs (which share entry_mode="resting_maker") still take STEP-6 unchanged. ride-live (5395),
+        # tape-cancel (5326), manual (5384), degenerate/marketable cancels all already ran above.
+        if time_to_start <= self.v4_fallback_sec and pos.reference_source != "staircase" and pos.entry_mode not in ("miss_fallback", "fallback_maker", "marketable_clamp"):
             old = await api_get(self.session, self.ak, self.pk,
                 "/trade-api/v2/portfolio/orders/%s" % pos.entry_order_id, self.rl)
             if old:

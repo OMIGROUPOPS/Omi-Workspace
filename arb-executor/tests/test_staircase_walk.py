@@ -45,6 +45,26 @@ li1,li2=D(FT,195),D(FT,205)
 print(f"    linear-interp catch: D(195)={li1} D(205)={li2} (same interval) {'PASS (held)' if li1==li2 else 'FAIL (interp!)'}")
 if li1!=li2: fails.append(("interp",li1,li2))
 
+# ---- (1c) FINAL-WINDOW KNOTS T-30->T-10->T-0 (NOW execute live; STEP-6 truncation removed) ----
+# Pre-fix, STEP-6 cancelled+converted the staircase to a join at T-20, so this window never ran the
+# walk. Post-fix it runs: knot 30 (frac 0.125) held T-30..T-10, knot 10 (frac 0.0) -> anchor-1
+# T-10..T-0. The walk-step abort T4 now covers these knots for the FIRST time -- assert D explicitly.
+print("(1c) final-window knots T-30->T-10->T-0 (first live execution)")
+assert frac2(30)==0.125 and frac2(20)==0.125, f"frac2(30/20)={frac2(30)}/{frac2(20)} expected 0.125 (knot-30 held)"
+assert frac2(10)==0.0 and frac2(5)==0.0 and frac2(1)==0.0 and frac2(0)==0.0, "t<=10 -> frac 0.0 (knot-10/anchor-1)"
+# operator-specified reference: ft=6 D goes 2->1->1 across T-20 -> T-10 -> T-0
+ft6=[D(6,20),D(6,10),D(6,0)]
+fw6_ok = ft6==[2,1,1]
+print(f"    ft=6 D progression t=[20,10,0]: {ft6} {'PASS (2->1->1)' if fw6_ok else 'FAIL'}")
+if not fw6_ok: fails.append(("fw_ft6",ft6))
+# ALL cells: D monotone non-increasing across 30->20->10->0 AND floors to anchor-1 (D==1) by T-10
+fw_all=True
+for c,ft in deep.items():
+    d30,d20,d10,d0 = D(ft,30),D(ft,20),D(ft,10),D(ft,0)
+    if not (d30>=d20>=d10>=d0): fw_all=False; fails.append(("fw_mono",c,(d30,d20,d10,d0)))
+    if d10!=1 or d0!=1: fw_all=False; fails.append(("fw_floor",c,(d10,d0)))
+print(f"    ALL {len(deep)} cells: D(30)>=D(20)>=D(10)>=D(0) and D(<=10)==1: {'PASS' if fw_all else 'FAIL'}")
+
 # ---- (2) RECAST IMMUTABILITY: target moves ONLY on knot cross, NEVER on mid ----
 print("(2) recast immutability")
 anchor=60; ft=deep.get(60,7)

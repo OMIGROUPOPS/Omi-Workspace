@@ -1303,6 +1303,8 @@ class LiveV3:
         # start latch (observe-only; consumed by _book_v4_entry_fill to tag post-
         # burst fills). Self-pruned by age inside _fv_burst_snapshot.
         self._fv_burst: Dict[str, dict] = {}
+        # [C-FV-BURST RE-GATE] events whose observe-only FV snapshot has fired (fire-once)
+        self._fv_burst_done: Set[str] = set()
         # [C-FEEDER FIX-1] two-stage latch state + once-per-latch skip logging
         self._live_stage1: Dict[str, float] = {}   # event -> first-burst ts
         self._live_skip_logged: Set[str] = set()   # events whose skip_live_match was logged this latch
@@ -3121,6 +3123,30 @@ class LiveV3:
             "tts_min": (round(tts / 60.0, 1) if tts is not None else None)})
         return True
 
+    def _fv_burst_ready(self, et, now):
+        """[C-FV-BURST RE-GATE] OBSERVE-ONLY real-start trigger for the FV snapshot,
+        decoupled from _is_match_live's latch (which fires only via the resting-bid
+        path in _v4_manage_resting -> misses both-filled events, ~67% of the slate).
+        True once the event's tape shows a burst (>= LIVE_TRADE_BURST prints /
+        LIVE_DETECT_WINDOW_SEC across legs) and we are not premarket (tts <= floor).
+
+        PURE READ -- reads event_start_time / _trade_times / event_tickers only;
+        writes nothing; no _events_live, no _live_stage1, no two-stage, no log, no
+        await, no side effect. Mirrors only the recent-count + TTS-floor INPUTS of
+        _is_match_live and shares NONE of its state -> cannot alter any trading
+        decision or the real _is_match_live latch."""
+        st = getattr(self, "event_start_time", {}).get(et)
+        tts = (st - now) if st else None
+        if tts is not None and tts > LIVE_DETECT_TTS_FLOOR_SEC:
+            return False
+        cutoff = now - LIVE_DETECT_WINDOW_SEC
+        recent = 0
+        for tk in self.event_tickers.get(et, ()):
+            dq = self._trade_times.get(tk)
+            if dq:
+                recent += sum(1 for t in dq if t >= cutoff)
+        return recent >= LIVE_TRADE_BURST
+
     def _fv_burst_snapshot(self, et, now):
         """[C-FV-BURST instrumentation -- OBSERVE-ONLY] At the real-start latch,
         snapshot per-leg FV (book mid/bid/ask/last) into self._fv_burst and emit a
@@ -4560,6 +4586,21 @@ class LiveV3:
             if self.completion_reprice:
                 for tk in tickers:
                     self._maybe_set_window_open(tk, now)
+            # [C-FV-BURST RE-GATE] observe-only FV snapshot at the real-start burst,
+            # decoupled from the _is_match_live latch (which fires only via the
+            # resting-bid path -> misses both-filled events). Runs in the routing
+            # SWEEP (iterates ALL events in event_tickers) BEFORE _route_event's
+            # processed_events skip, so processed / both-filled events snapshot too.
+            # Fire-once per event; only for events we hold a leg in. Reads tape/books;
+            # writes ONLY self._fv_burst(_done) + the fv_burst_anchor log. Touches NO
+            # _events_live / _is_match_live / _route_event / orders / cancels / timing.
+            if et not in self._fv_burst_done and any(t in self.positions for t in tickers):
+                try:
+                    if self._fv_burst_ready(et, now):
+                        self._fv_burst_snapshot(et, now)
+                        self._fv_burst_done.add(et)
+                except Exception:
+                    pass
             await self._route_event(et, tickers, now)
 
     async def _route_event(self, et, tickers, now):

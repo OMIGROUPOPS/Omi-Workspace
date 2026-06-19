@@ -38,9 +38,64 @@ def _bot():
     self.event_tickers = {}
     self.positions = {}
     self.books = {}
+    self._trade_times = {}
+    self.event_start_time = {}
+    self._fv_burst_done = set()
     self.emits = []
     self._log = lambda ev, d, ticker=None: self.emits.append((ev, d, ticker))
     return self
+
+
+def test_fv_burst_ready():
+    self = _bot()
+    et = "E"; a, b = et + "-AAA", et + "-BBB"
+    self.event_tickers[et] = {a, b}
+    now = 10000.0
+    # 12 trade prints across legs within last 60s -> recent>=10
+    self._trade_times[a] = [now - 5*i for i in range(7)]   # 7 in window
+    self._trade_times[b] = [now - 4*i for i in range(6)]   # 6 in window  => 13 total
+    self.event_start_time[et] = now - 60          # tts = -60 (past start, floor passes)
+    assert self._fv_burst_ready(et, now) is True, "burst>=10 + past start -> True"
+    # tts > floor (premarket) -> False even with burst
+    self.event_start_time[et] = now + m.LIVE_DETECT_TTS_FLOOR_SEC + 100
+    assert self._fv_burst_ready(et, now) is False, "tts>floor -> False"
+    # no start time -> floor cannot apply -> True
+    self.event_start_time.pop(et)
+    assert self._fv_burst_ready(et, now) is True, "tts None -> floor n/a -> True"
+    # sub-threshold -> False
+    self._trade_times[a] = [now - 1, now - 2]; self._trade_times[b] = [now - 3]
+    assert self._fv_burst_ready(et, now) is False, "recent<10 -> False"
+    # stale prints (outside 60s window) -> False
+    self._trade_times[a] = [now - 100 - i for i in range(20)]; self._trade_times[b] = []
+    assert self._fv_burst_ready(et, now) is False, "all stale -> False"
+    print("test_fv_burst_ready OK")
+
+
+def test_regate_both_filled_emits():
+    """The re-gate's purpose: a both-filled event with NO resting bid emits via the
+    routing-sweep observe block (ready -> snapshot -> done)."""
+    self = _bot()
+    et = "KXATPMATCH-26JUN19TIAAUG"; a, b = et + "-AUG", et + "-TIA"
+    self.event_tickers[et] = {a, b}
+    now = 5000.0
+    self._trade_times[a] = [now - 3*i for i in range(8)]   # burst
+    self._trade_times[b] = [now - 3*i for i in range(8)]
+    self.event_start_time[et] = now - 120                  # live
+    self.books[a] = _book(60, 62); self.books[b] = _book(38, 40)
+    self.positions[a] = _pos(61, 61, 999.0)               # both FILLED, no resting bid
+    self.positions[b] = _pos(39, 39, 999.0)
+    # simulate the Hunk C routing-sweep block
+    tickers = self.event_tickers[et]
+    if et not in self._fv_burst_done and any(t in self.positions for t in tickers):
+        if self._fv_burst_ready(et, now):
+            self._fv_burst_snapshot(et, now)
+            self._fv_burst_done.add(et)
+    emits = {t: d for (ev, d, t) in self.emits if ev == "fv_burst_anchor"}
+    assert set(emits) == {a, b}, "both-filled event emits for BOTH legs"
+    assert et in self._fv_burst_done, "fire-once marked"
+    assert emits[a]["entry_minus_fv_burst"] == 61 - 61.0
+    assert emits[b]["entry_minus_fv_burst"] == 39 - 39.0
+    print("test_regate_both_filled_emits OK")
 
 
 def test_pre_burst_tag_and_math():
@@ -138,6 +193,8 @@ def test_empty_book_mid_none():
 
 
 if __name__ == "__main__":
+    test_fv_burst_ready()
+    test_regate_both_filled_emits()
     test_pre_burst_tag_and_math()
     test_above_fv_positive_and_pair()
     test_idempotent_relatch()

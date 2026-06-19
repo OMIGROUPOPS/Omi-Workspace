@@ -144,6 +144,7 @@ LIVE_DETECT_TTS_FLOOR_SEC = 1800       # volume burst can NEVER latch when feed 
 LIVE_DETECT_CONFIRM_MIN_GAP_SEC = 60   # stage-2 confirm needs a burst >= one full window after stage-1
 LIVE_DETECT_CONFIRM_TTL_SEC = 300      # stage-1 evidence expires; a real live match re-arms instantly
 LIVE_DETECT_UNLATCH_QUIET_SEC = 300    # latched + tts>floor + tape quiet this long => false latch, clear
+MATCH_LIVE_MOVE_CENTS = 7              # [E113] premarket (tts>0) burst must move mid >= this from window-open ref to latch; post-scheduled (tts<=0) EXEMPT (volume-alone backstop); no-ref legs FAIL OPEN (protection preserved)
 FV_BURST_RETENTION_SEC = 6 * 3600      # [C-FV-BURST] age-prune the observe-only fv-burst snapshot dict
 MAX_TAKER_SPREAD = 5              # T52: never TAKER-cross when (ask-bid) > this. The KESMAR fat-spread cross paid a wide ask; a wide spread means the taker floor isn't cleanly achievable -> stay flat rather than overpay. Tunable; resting-maker entries are unaffected.
 
@@ -3097,6 +3098,35 @@ class LiveV3:
             return False
         if tts is not None and tts > LIVE_DETECT_TTS_FLOOR_SEC:
             return False  # FIX-1 floor: premarket burst, not a start
+        # [E113] PREMARKET MOVEMENT GATE (FERCER fix). A burst while still
+        # premarket (tts>0) must be accompanied by real price movement from the
+        # window-open reference; else it is a flat premarket false-burst (FERCER
+        # 08:38: FER sat 38-40 vs ref 39) that must NOT cancel the resting entry.
+        #   MANDATORY BACKSTOP: governs ONLY premarket (tts>0). Once past the
+        #   scheduled start (tts<=0) this is SKIPPED -> volume-alone still latches,
+        #   so a flat-live match (TIAARN, 50-51c all match) still cancels and never
+        #   rides naked. That backstop is why re-adding price-move is safe.
+        #   FAIL OPEN on no measurement: suppress ONLY when we COULD measure
+        #   (>=1 leg has a window-open ref) AND no ref'd leg moved >= the bar. If
+        #   NO leg has a ref (first fresh print only pre-T-240), we cannot measure
+        #   -> do NOT suppress -> the cancel protection is preserved. A leg without
+        #   a ref can never be the basis for suppressing its own protection.
+        if tts is not None and tts > 0:
+            have_ref = False
+            moved = False
+            for tk in self.event_tickers.get(et, ()):
+                wo = self._window_open.get(tk)
+                if not (wo and wo.get("price")):
+                    continue
+                have_ref = True
+                bk = self.books.get(tk)
+                if bk and bk.best_bid > 0 and bk.best_ask < 100:
+                    mid = (bk.best_bid + bk.best_ask) / 2.0
+                    if abs(mid - wo["price"]) >= MATCH_LIVE_MOVE_CENTS:
+                        moved = True
+                        break
+            if have_ref and not moved:
+                return False  # measured-flat premarket burst -> not a start
         stage1 = getattr(self, "_live_stage1", None)
         if stage1 is None:
             stage1 = self._live_stage1 = {}

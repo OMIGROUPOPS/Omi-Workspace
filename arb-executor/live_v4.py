@@ -127,6 +127,12 @@ STAIRCASE_MIN_RESOLVED   = 10
 # The other 3 cats fill DEEPER (mean offset 2.2-2.4c vs 1.94) so each needs its OWN DEPTH bar.
 STAIRCASE_ABORT_FILLRATE = {"ATP_MAIN": 0.623, "WTA_MAIN": 0.602, "ATP_CHALL": 0.621, "WTA_CHALL": 0.685}
 STAIRCASE_ABORT_DEPTH    = {"ATP_MAIN": 1.44,  "WTA_MAIN": 1.89,  "ATP_CHALL": 1.88,  "WTA_CHALL": 1.71}
+# [C-STAIRCASE-ABORT-FIX 2026-06-20] cancel labels that are NON-TERMINAL for a staircase leg: the leg is
+# immediately re-posted one knot up and keeps working, so the cancel is a walk-step, not a fill-or-die
+# outcome -> excluded from the abort denominator (Defect A). v4_move_repost is the SOLE non-terminal cancel a
+# staircase leg sees (STEP-6 fallback re-posts are gated reference_source!=staircase; marketable-stale is
+# exempted for staircase). No terminal cancel carries this label (it is used only by the walk repost).
+_STAIRCASE_NONTERMINAL_LABELS = {"v4_move_repost"}
 V4_PAIRED_BASIS_CAP = 99          # T50: refuse entering BOTH sides of an event when (this side + sibling) basis > this cap. yes+no > ~100 is a guaranteed loss (KESMAR 37+75=112). Ported from arb_executor_ws.py intra-k combined=ask_a+ask_b math (negative space). Cap 99 leaves ~1c for the taker fee.
 
 # T51 match-live detection (VOLUME ACCELERATION, not price-move — a tight even
@@ -470,6 +476,7 @@ class Position:
     staircase_anchor: int = 0    # [C-STAIRCASE SHIP-2] FIXED deep-cast anchor, set once at placement (Risk 2)
     staircase_cell: int = 0      # [C-STAIRCASE SHIP-2] FIXED cell for final_target lookup (Risk 3)
     staircase_ref: int = 0       # [C-STAIRCASE SHIP-2] last posted staircase target (knot-crossing key, Risk 1)
+    staircase_counted: bool = False  # [C-STAIRCASE-ABORT-FIX] leg already counted ONCE toward the abort denominator (terminal live outcome)
     strategy: str = ""                # "exit" | "hold" (set at fill from exit table)
     exit_band_x: Optional[int] = None  # +X cents for exit cells; None for hold cells
     exit_cell_id: int = 0             # 1c cell used for the exit-table lookup (entry-priced)
@@ -3544,25 +3551,49 @@ class LiveV3:
                 "bar_fillrate": JOIN_TRIAL_ABORT_FILLRATE,
                 "action": "ABORT -- queue starvation confirmed; halting new join entries"})
 
-    def _staircase_resolve(self, pos, outcome, fill_price):
-        """[C-STAIRCASE SHIP-2 abort-spec] record one resolved staircase leg (fill|cancel) and trip the
-        AND-gated abort: over the first STAIRCASE_MIN_RESOLVED resolved legs, halt NEW staircase entries
-        iff mean(realized depth) < STAIRCASE_ABORT_DEPTH AND fill_rate < STAIRCASE_ABORT_FILLRATE. Resting
-        legs continue (placement-side skip only). Mirrors join_trial_aborted. Staircase-only by reference_source."""
+    def _staircase_resolve(self, pos, outcome, fill_price, label=None):
+        """[C-STAIRCASE SHIP-2 abort-spec; C-STAIRCASE-ABORT-FIX 2026-06-20] record one TERMINAL
+        staircase leg outcome (fill | terminal-cancel-while-live) and trip the AND-gated abort:
+        over the first STAIRCASE_MIN_RESOLVED legs that REACHED THEIR MATCH, halt NEW staircase
+        entries iff mean(realized depth) < STAIRCASE_ABORT_DEPTH AND fill_rate < STAIRCASE_ABORT_FILLRATE.
+        Resting legs continue (placement-side skip only). Staircase-only by reference_source.
+
+        Two false-trigger defects fixed (2026-06-20 entry-autopsy diagnosis):
+          A) the walk-step repost (label v4_move_repost @ _v4_move_repost) routed here and counted as a
+             no-fill resolution -> the per-LEG bar (62.3%) was applied to a per-WALK-STEP rate (~1/N).
+             A walk-step is NOT terminal (the leg is re-posted one knot up, still working) -> excluded
+             from the denominator. v4_move_repost is the SOLE non-terminal cancel a staircase leg sees:
+             STEP-6 fallback re-posts are gated reference_source!=staircase, marketable-stale is exempted.
+          B) the 10-sample completed PREMARKET (bid-climbs hours from start) -> fills=0 was
+             non-diagnostic. A resolution counts only if the leg reached its match (a fill, or
+             _is_match_live, or within ENTRY_BUFFER_SEC of a KNOWN start). staircase_counted makes it
+             once-per-leg, so the single counted resolution is the terminal live outcome.
+        The abort-eval block (bars, AND-gate, per-cat lookup, log) is byte-identical to Ship-2."""
         if pos.reference_source != "staircase":
             return
         _cat = pos.category                                  # [C-STAIRCASE 4CAT] per-cat tally
+        # Defect A: a walk-step repost is non-terminal -- the leg keeps working one knot up.
+        _walk_step = (outcome == "cancel" and label in _STAIRCASE_NONTERMINAL_LABELS)
+        # Defect B: only a leg that reached its match had a real chance to fill.
+        _tts = (pos.match_start_ts - time.time()) if pos.match_start_ts > 0 else None
+        _near_start = (_tts is not None and _tts <= ENTRY_BUFFER_SEC)
+        _live = (outcome == "fill") or self._is_match_live(pos.event_ticker) or _near_start
+        _counts = (not _walk_step) and _live and (not pos.staircase_counted)
+        depth = max(0, int(pos.staircase_anchor) - int(fill_price)) if outcome == "fill" else 0
+        self._log("staircase_walk", {            # telemetry on EVERY resolution (incl. walk-steps)
+            "cat": _cat, "outcome": outcome, "counts": _counts, "walk_step": _walk_step,
+            "tts_min": (round(_tts / 60.0, 1) if _tts is not None else None),
+            "anchor": pos.staircase_anchor, "fill_price": fill_price, "depth": depth,
+            "staircase_ref": pos.staircase_ref, "cell": pos.staircase_cell,
+            "resolved": self.staircase_resolved.get(_cat, 0), "fills": self.staircase_fills.get(_cat, 0)})
+        if not _counts:
+            return
+        pos.staircase_counted = True
         self.staircase_resolved[_cat] = self.staircase_resolved.get(_cat, 0) + 1
-        depth = 0
         if outcome == "fill":
             self.staircase_fills[_cat] = self.staircase_fills.get(_cat, 0) + 1
-            depth = max(0, int(pos.staircase_anchor) - int(fill_price))   # realized offset (anchor - fill)
             self.staircase_depth_sum[_cat] = self.staircase_depth_sum.get(_cat, 0.0) + depth
         _res = self.staircase_resolved[_cat]; _fil = self.staircase_fills.get(_cat, 0)
-        self._log("staircase_walk", {
-            "cat": _cat, "outcome": outcome, "resolved": _res, "fills": _fil,
-            "anchor": pos.staircase_anchor, "fill_price": fill_price, "depth": depth,
-            "staircase_ref": pos.staircase_ref, "cell": pos.staircase_cell})
         if self.staircase_aborted.get(_cat, False) or _res < STAIRCASE_MIN_RESOLVED:
             return
         fill_rate = _fil / _res
@@ -4049,7 +4080,7 @@ class LiveV3:
             return "booked"
         self._join_trial_resolve(pos, "cancel", self.books.get(tk),
                                  pos.walk_ref or pos.target_price, tk)
-        self._staircase_resolve(pos, "cancel", pos.staircase_ref or pos.target_price)
+        self._staircase_resolve(pos, "cancel", pos.staircase_ref or pos.target_price, label=label)
         return "cancelled"
 
     async def check_fills(self):

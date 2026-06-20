@@ -5845,6 +5845,13 @@ class LiveV3:
             return
 
         # Re-classify regime and recompute the target at the new price.
+        # [C-NEWREGIME-FIX E147] default the bookkeeping vars BEFORE the branch. The staircase path
+        # intentionally skips regime/offset reclassification (fixed anchor) and sets only new_target/
+        # repost_ref, so the trailing bookkeeping (pos.regime_at_posting + the v4_move_repost log,
+        # which read new_regime/new_offset) must hit correct DEFAULTS rather than UnboundLocalError.
+        # The else-branch overwrites BOTH (regime_lookup + row unpack) -> non-staircase byte-identical.
+        new_regime = pos.regime_at_posting   # staircase preserves its conception regime (no reclassify)
+        new_offset = 0                        # not meaningful on the fixed-anchor staircase path
         if pos.reference_source == "staircase":
             new_target = _sc_target; repost_ref = "staircase"   # [C-STAIRCASE SHIP-2] fixed-anchor target; skip regime/join recompute
         else:

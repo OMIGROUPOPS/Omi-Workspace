@@ -145,6 +145,7 @@ LIVE_DETECT_CONFIRM_MIN_GAP_SEC = 60   # stage-2 confirm needs a burst >= one fu
 LIVE_DETECT_CONFIRM_TTL_SEC = 300      # stage-1 evidence expires; a real live match re-arms instantly
 LIVE_DETECT_UNLATCH_QUIET_SEC = 300    # latched + tts>floor + tape quiet this long => false latch, clear
 MATCH_LIVE_MOVE_CENTS = 7              # [E113] premarket (tts>0) burst must move mid >= this from window-open ref to latch; post-scheduled (tts<=0) EXEMPT (volume-alone backstop); no-ref legs FAIL OPEN (protection preserved)
+WALL_OBSERVE_CONTRACTS = 1000          # [WALL-OBS] observe bar (NOT a skip bar): log would_skip_walled_post when an entry buy posts behind a queue deeper than this; measure filled-vs-starved before any skip behavior
 FV_BURST_RETENTION_SEC = 6 * 3600      # [C-FV-BURST] age-prune the observe-only fv-burst snapshot dict
 MAX_TAKER_SPREAD = 5              # T52: never TAKER-cross when (ask-bid) > this. The KESMAR fat-spread cross paid a wide ask; a wide spread means the taker floor isn't cleanly achievable -> stay flat rather than overpay. Tunable; resting-maker entries are unaffected.
 
@@ -2188,6 +2189,39 @@ class LiveV3:
     # ------------------------------------------------------------------
     # Order placement — REAL Kalshi API calls
     # ------------------------------------------------------------------
+    def _wall_observe(self, ticker, action, price, count):
+        """[WALL-OBS] observe-only: log would_skip_walled_post when an ENTRY buy
+        posts behind a queue deeper than WALL_OBSERVE_CONTRACTS (the ALTMED
+        starvation class). PURE read + log, fire-once per leg. Called AFTER the
+        order is already placed -> no order/cancel/reprice/timing effect; mutates
+        only self._walled_logged. depth_at_price is read from self.books, which
+        is updated by the WS (orderbook_delta) -- at FIRST post (this fires once,
+        before any repost) our just-REST-placed order has not yet round-tripped
+        back via the WS, so this is the EXTERNAL queue ahead, not our own size
+        (and our_size<=5 is negligible vs the >=1000 bar regardless). Reconstruct
+        outcome offline: ticker -> did entry_filled fire (filled, dip-through/
+        cleared) or not (starved)."""
+        if action != "buy":
+            return
+        bk = self.books.get(ticker)
+        q = bk.bids.get(price, 0) if bk else 0
+        if q <= WALL_OBSERVE_CONTRACTS:
+            return
+        wl = getattr(self, "_walled_logged", None)
+        if wl is None:
+            wl = self._walled_logged = set()
+        if ticker in wl:
+            return                       # fire-once per leg (no per-repost spam)
+        wl.add(ticker)
+        pos = self.positions.get(ticker)
+        spread = (bk.best_ask - bk.best_bid) if (bk and bk.best_ask < 100 and bk.best_bid > 0) else 0
+        self._log("would_skip_walled_post", {
+            "event": self.ticker_to_event.get(ticker, ""),
+            "price": price, "depth_at_price": q, "our_size": count,
+            "spread": spread, "jump_available": (spread >= 2),
+            "play_type": (pos.play_type if pos else ""),
+            "cell": (pos.cell_name if pos else "")}, ticker=ticker)
+
     async def place_order(self, ticker, action, side, price, count, post_only=True):
         """Place a real order on Kalshi. Returns (order_id, response_dict) or ("", error_dict)."""
         # Position accumulation guard: cap total buy exposure per ticker
@@ -2223,6 +2257,7 @@ class LiveV3:
                 "order_id": oid, "client_order_id": coid,
                 "response_status": _v2_status,
             }, ticker=ticker)
+            self._wall_observe(ticker, action, price, count)   # [WALL-OBS] observe-only
             return oid, resp
         else:
             self._log("order_error", {

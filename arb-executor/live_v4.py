@@ -133,6 +133,10 @@ STAIRCASE_ABORT_DEPTH    = {"ATP_MAIN": 1.44,  "WTA_MAIN": 1.89,  "ATP_CHALL": 1
 # staircase leg sees (STEP-6 fallback re-posts are gated reference_source!=staircase; marketable-stale is
 # exempted for staircase). No terminal cancel carries this label (it is used only by the walk repost).
 _STAIRCASE_NONTERMINAL_LABELS = {"v4_move_repost"}
+ENTRY_COMPLETE_BASIS_CAP = 102   # [C-COMPLETE-CROSS] taker completion cap. At the gun, if a pair is
+# single-legged, cross the unfilled leg's ask to complete iff (faded_fill + ask) <= this. A both-cash
+# pair pays 100 to one side, so completed pair P&L = 100 - basis - fee; cap 102 bounds the worst case
+# to ~-3c. Self-selecting: cheap-loser misses land basis ~96-101 (complete); winning-favorite >=106 (skip).
 V4_PAIRED_BASIS_CAP = 99          # T50: refuse entering BOTH sides of an event when (this side + sibling) basis > this cap. yes+no > ~100 is a guaranteed loss (KESMAR 37+75=112). Ported from arb_executor_ws.py intra-k combined=ask_a+ask_b math (negative space). Cap 99 leaves ~1c for the taker fee.
 
 # T51 match-live detection (VOLUME ACCELERATION, not price-move — a tight even
@@ -1164,6 +1168,9 @@ class LiveV3:
         # round5_detector=off and fallback_maker_clamp, belt-coupled to this flag (:3098, :2126)
         # so the gating holds even if those are walked back. Default False = exact pre-flag state.
         self.maker_only_entry = self.config.get("maker_only_entry", False)
+        # [C-COMPLETE-CROSS] the SOLE taker site under maker_only_entry: a basis-capped cross at the
+        # gun to complete a single-legged pair. Default OFF (Plex enables deliberately).
+        self.complete_cross_enabled = bool(self.config.get("complete_cross_enabled", False))
         # #0-infra: clean SIGTERM/SIGINT shutdown (gated; default OFF = legacy immediate-terminate on
         # SIGTERM, swallowed SIGINT). ON installs asyncio signal handlers that stop the loop, cancel
         # resting entry bids via the API, and exit within V4_SHUTDOWN_TIMEOUT_SEC. See run() / _shutdown_drain.
@@ -5580,6 +5587,48 @@ class LiveV3:
         if restored:
             self._log("v4_resting_restored", {"count": restored})
 
+    async def _try_complete_cross(self, tk, pos, book):
+        """[C-COMPLETE-CROSS] At the match_live gun, complete a single-legged pair by crossing (taker).
+        If pos's partner leg is FILLED and crossing pos's best_ask keeps pair basis (faded_fill + ask)
+        <= ENTRY_COMPLETE_BASIS_CAP with liftable size (ask_sz >= qty), lift the ask IOC and book the
+        fill through _book_v4_entry_fill -- the SAME handler the maker fill path uses -- so the completed
+        leg gets its exit posted via _v4_apply_exit (the wiring mirror). Returns True iff the pair was
+        completed (caller then SKIPS the untombstone). The ONLY taker site under maker_only_entry -- a
+        basis-capped exception; max overpay ~= (cap-100)+fee. Partial-ask (ask_sz < qty) -> skip."""
+        if book is None:
+            return False
+        sib_fill = pos.completion_leg1_basis if pos.completion_leg1_basis > 0 else 0
+        if sib_fill <= 0:
+            for stk, sp in self.positions.items():
+                if (stk != tk and sp.event_ticker == pos.event_ticker
+                        and sp.phase == "active" and sp.entry_qty > 0 and sp.entry_price > 0):
+                    sib_fill = sp.entry_price; break
+        if sib_fill <= 0:
+            return False                          # not single-legged -> normal cancel stands
+        qty = pos.entry_qty if pos.entry_qty > 0 else self.entry_size
+        ask = int(book.best_ask)
+        ask_sz = int(book.asks.get(ask, 0) or 0)
+        basis = sib_fill + ask
+        if not (1 <= ask <= 98 and ask_sz >= qty and basis <= ENTRY_COMPLETE_BASIS_CAP):
+            self._log("complete_cross_skip", {"event": pos.event_ticker, "sib_fill": sib_fill,
+                "ask": ask, "ask_sz": ask_sz, "basis": basis, "cap": ENTRY_COMPLETE_BASIS_CAP,
+                "qty": qty}, ticker=tk)
+            return False
+        oid, resp = await self.place_order(tk, "buy", "yes", ask, qty, post_only=False)   # IOC taker cross
+        if not oid:
+            return False
+        _oid, _status, fill_ct, avg = parse_order_response_v2(resp)
+        if fill_ct <= 0:                          # IOC found nothing (race) -> stay naked
+            self._log("complete_cross_nofill", {"event": pos.event_ticker, "ask": ask, "order_id": oid}, ticker=tk)
+            return False
+        pos.entry_order_id = oid                  # inflight key -> the cross order
+        fill_price = avg if avg is not None else ask
+        self._log("complete_cross", {"event": pos.event_ticker, "sib_fill": sib_fill, "cross_ask": ask,
+            "fill_price": fill_price, "basis": sib_fill + fill_price, "qty": fill_ct, "order_id": oid}, ticker=tk)
+        # SHARED booking handler -> sets phase=active + posts the exit (_v4_apply_exit): mirrors maker path.
+        await self._book_v4_entry_fill(tk, pos, fill_ct, fill_price, _status, source="complete_cross")
+        return True
+
     async def _v4_manage_resting(self, tk, pos, book, now):
         """Serialized entry point for v4 resting-bid management. Both
         on_bbo_update (per BBO tick) and validate_resting_buys (120s backstop)
@@ -5622,7 +5671,14 @@ class LiveV3:
                 tk, pos, "match_live_cancel", "match_live_cancel_race")
             if res == "cancelled":
                 self._log("match_live_resting_cancel", {"event": pos.event_ticker}, ticker=tk)
-                self._untombstone_entry(tk, pos)
+                # [C-COMPLETE-CROSS] complete-after-cancel: if the partner leg is FILLED (pair about
+                # to single-leg) and crossing this leg's ask is basis-capped + liftable, cross (taker,
+                # IOC) to complete instead of leaving the faded leg naked. Flag-gated (default OFF).
+                completed = False
+                if getattr(self, "complete_cross_enabled", False):
+                    completed = await self._try_complete_cross(tk, pos, book)
+                if not completed:
+                    self._untombstone_entry(tk, pos)
                 self._save_v4_resting()
             return
         should_cancel, creason = self._resting_cancel_reason(pos.target_price, book.best_bid, book.best_ask)

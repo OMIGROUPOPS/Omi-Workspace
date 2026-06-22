@@ -30,7 +30,7 @@ exec(frag, ns); _frag = ns["_frag"]
 
 class Pos:
     def __init__(s, ref, regime="r55_64"):
-        s.reference_source = ref; s.regime_at_posting = regime
+        s.reference_source = ref; s.regime_at_posting = regime; s.runway_status = "full"
 class SelfStair:   # staircase path never touches regime_lookup/entry_table
     def regime_lookup(s, cat, px): raise AssertionError("staircase path must NOT call regime_lookup")
     entry_table = {}
@@ -56,7 +56,7 @@ class _selfjoin2(SelfJoin): pass
 sj = _selfjoin2()
 # give pos a category attr for the (pos.category, new_regime) lookup
 class PosJoin:
-    reference_source = "join_bid"; regime_at_posting = "r05_14"; category = "ATP_MAIN"
+    reference_source = "join_bid"; regime_at_posting = "r05_14"; category = "ATP_MAIN"; runway_status = "full"
 nr2, no2, nt2 = _frag(sj, PosJoin(), 48, 0)   # _sc_target ignored on non-staircase path
 chk("(5) non-staircase: new_regime from regime_lookup (unchanged)", nr2 == "r45_54")
 chk("(6) non-staircase: new_offset from entry_table row (unchanged)", no2 == 7)

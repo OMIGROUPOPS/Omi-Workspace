@@ -5924,6 +5924,12 @@ class LiveV3:
         # The else-branch overwrites BOTH (regime_lookup + row unpack) -> non-staircase byte-identical.
         new_regime = pos.regime_at_posting   # staircase preserves its conception regime (no reclassify)
         new_offset = 0                        # not meaningful on the fixed-anchor staircase path
+        # [C-REPOST-RUNWAY-FIX] mirror c03e010: default repost_runway BEFORE the branch too. The
+        # staircase path preserves its conception runway (no _runway_status re-derive); the else-
+        # branch overwrites it at the late_remap re-check below -> non-staircase byte-identical.
+        # Kills the UnboundLocalError at pos.runway_status = repost_runway (:6027) + the log read
+        # (:6034) that c03e010 left two lines down (defaulted new_regime/new_offset, missed this).
+        repost_runway = pos.runway_status
         if pos.reference_source == "staircase":
             new_target = _sc_target; repost_ref = "staircase"   # [C-STAIRCASE SHIP-2] fixed-anchor target; skip regime/join recompute
         else:

@@ -1,0 +1,11 @@
+leg,price_cent,phase,cum_taker_NO_sell_size_at_or_below,cum_taker_YES_buy_size_at_or_above,n_trades_at_level,first_ts_ET,last_ts_ET,our_resting_bid_when_level_traded,would_maker_fill
+Jurij Rodionov,67,window1,1,6950,1,10:08:25,10:08:25,66,False
+Jurij Rodionov,68,window1,513,6950,10,10:06:40,11:13:09,66/67,False
+Jurij Rodionov,69,window1,513,6782,4,06:30:44,11:15:32,63/66/67,False
+Jurij Rodionov,70,window1,513,6743,11,10:24:01,11:15:57,67,False
+Jurij Rodionov,71,corridor,513,4839,14,10:46:32,11:15:57,67,False
+Jurij Rodionov,72,corridor,513,2901,4,11:15:07,11:15:57,67,False
+Oliver Crawford,29,corridor,17,983,1,11:15:03,11:15:03,31,False
+Oliver Crawford,30,corridor,67,983,3,11:14:32,11:15:00,31,False
+Oliver Crawford,31,window1,77,626,2,09:11:16,11:14:12,30/31,True
+Oliver Crawford,32,window1,77,626,12,07:03:07,11:15:44,30/31,False

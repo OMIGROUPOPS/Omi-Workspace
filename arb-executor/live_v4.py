@@ -4885,9 +4885,25 @@ class LiveV3:
                     if no_trade:
                         _ej = self._engagement_join_eligible(cat, book, time_to_start)
                         if _ej is not None:
-                            ent = (_ej, "engagement_join", _ej,
-                                   self.regime_lookup(cat, _ej), 240, 0,
-                                   0.0, 0.0, _ej, "engagement_wave1")
+                            # [C-ENGAGEMENT-OVERCLAIM] band_gating=OFF lets engagement_join claim ANY strict-book
+                            # leg in the (15,240]min window -- incl. staircase-eligible cells that are NOT a real
+                            # engagement cell for THIS leg's actual bucket/regime (ANDBAR-BAR cell44 r35_44 cast
+                            # T240_T60 when the eng cell is T60_T15; GUNMAK-MAK cell70 r65_74 same). Those belong
+                            # on the WALKING staircase (deep cast, fixed-anchor climb), not the static engagement
+                            # clamp -- the OVERPAY fix (GUNMAK +30 class). Real engagement cells (in
+                            # engagement_cells for their bucket/regime) STAY on engagement, untouched.
+                            _ej_reg = self.regime_lookup(cat, _ej)
+                            _ej_bkt = self._engagement_bucket(time_to_start)
+                            _real_eng = (cat, _ej_bkt, _ej_reg) in self.engagement_cells
+                            _stair_ok = (cat in self._range_final) and (int(_ej) in self._range_final[cat])
+                            if _stair_ok and not _real_eng:
+                                # table_src != engagement_wave1 -> the ~4932 block assigns this as a staircase;
+                                # offset 0 -> _fix6_reference returns target unchanged, staircase override is clean.
+                                ent = (_ej, "no_trade_staircase", _ej, _ej_reg, 240, 0,
+                                       0.0, 0.0, _ej, "no_trade_staircase")
+                            else:
+                                ent = (_ej, "engagement_join", _ej, _ej_reg, 240, 0,
+                                       0.0, 0.0, _ej, "engagement_wave1")
                     if ent is None:
                         self.n_skips += 1
                         self._log("skipped", {

@@ -1,0 +1,177 @@
+fill_ts_ET,player,category,fill_cent,source,play_type,reference_source,real_start_source,scheduled_ET,real_ET,bucket,event
+02:52:31,SHN?,WTA_MAIN,66,engagement,v4_engagement_join,engagement_join,latch,05:00:00,05:03:53,PREMARKET,KXWTAMATCH-26JUN20TAUSHN
+03:50:27,JOV?,WTA_MAIN,74,engagement,v4_engagement_join,engagement_join,scheduled_fallback,,,NO_SCHEDULE,KXWTAMATCH-26JUN20JOVWAN
+04:04:22,SPE?,ATP_CHALL,17,engagement,v4_engagement_join,,scheduled_fallback,04:00:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22PAPSPE
+04:04:27,UGO?,ATP_MAIN,31,staircase,v4_resting_maker,staircase,latch,06:00:00,06:01:46,PREMARKET,KXATPMATCH-26JUN22PINUGO
+04:09:38,RUB?,ATP_CHALL,26,engagement,v4_engagement_join,,latch,04:00:00,04:13:12,CORRIDOR,KXATPCHALLENGERMATCH-26JUN22TURRUB
+04:10:22,ROC?,ATP_CHALL,81,engagement,v4_engagement_join,,scheduled_fallback,04:00:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22ROCGIM
+04:10:37,GIM?,ATP_CHALL,16,engagement,v4_engagement_join,,scheduled_fallback,04:00:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22ROCGIM
+04:13:16,James McCabe,ATP_MAIN,33,engagement,v4_engagement_join,engagement_join,scheduled_fallback,06:00:00,,PREMARKET,KXATPMATCH-26JUN22SAFMCC
+04:25:35,Stefano Napolitano,ATP_MAIN,23,engagement,v4_engagement_join,engagement_join,latch,06:00:00,06:30:14,PREMARKET,KXATPMATCH-26JUN22NAPHAR
+04:35:57,PAP?,ATP_CHALL,79,engagement,v4_engagement_join,,scheduled_fallback,04:00:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22PAPSPE
+05:26:48,FRE?,WTA_MAIN,28,staircase,v4_resting_maker,staircase,latch,,07:14:15,NO_SCHEDULE,KXWTAMATCH-26JUN20OSAFRE
+05:28:39,Ugo Blanchet,ATP_MAIN,65,staircase,v4_resting_maker,staircase,scheduled_fallback,09:00:00,,PREMARKET,KXATPMATCH-26JUN22BLABLA2
+05:42:51,MAK?,ATP_CHALL,19,fallback,v4_fallback_maker,,scheduled_fallback,05:30:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22BALMAK
+05:44:08,BAL?,ATP_CHALL,80,fallback,v4_fallback_maker,,scheduled_fallback,05:30:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22BALMAK
+05:48:47,Valentin Royer,ATP_MAIN,33,staircase,v4_resting_maker,staircase,scheduled_fallback,06:00:00,,PREMARKET,KXATPMATCH-26JUN22QUIROY
+05:50:41,Hugo Grenier,ATP_MAIN,18,reconcile,v4_reconciled,engagement_join,latch,06:00:00,06:36:30,PREMARKET,KXATPMATCH-26JUN22FARGRE
+05:54:37,Anhelina Kalinina,WTA_MAIN,37,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,06:00:00,,PREMARKET,KXWTAMATCH-26JUN22SNIKAL
+05:55:23,YEV?,ATP_CHALL,53,resting_maker,v4_resting_maker,,latch,05:30:00,06:12:16,CORRIDOR,KXATPCHALLENGERMATCH-26JUN22BARYEV
+05:56:07,UES?,ATP_CHALL,26,reconcile,v4_reconciled,,scheduled_fallback,05:30:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22POTUES
+05:56:31,Henri Squire,ATP_MAIN,31,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,06:00:00,,PREMARKET,KXATPMATCH-26JUN22SQUZHE
+05:57:48,POT?,ATP_CHALL,73,resting_maker,v4_resting_maker,,scheduled_fallback,05:30:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22POTUES
+06:00:40,AND?,ATP_MAIN,17,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22ANDSMI
+06:03:42,Bu Yunchaokete,ATP_MAIN,92,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22YUNDEL
+06:06:13,Anhelina Kalinina,WTA_MAIN,37,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXWTAMATCH-26JUN22SNIKAL
+06:07:01,Ivan Ivanov,ATP_MAIN,31,fallback,v4_fallback_maker,engagement_join,latch,06:00:00,06:37:09,CORRIDOR,KXATPMATCH-26JUN22PIRIVA
+06:07:41,Daria Snigur,WTA_MAIN,61,staircase,v4_resting_maker,staircase,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXWTAMATCH-26JUN22SNIKAL
+06:08:04,Federico Agustin Gomez,ATP_MAIN,34,fallback,v4_fallback_maker,engagement_join,latch,06:00:00,07:02:38,CORRIDOR,KXATPMATCH-26JUN22GOMTAB
+06:08:05,Lautaro Midon,ATP_MAIN,21,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22GASMID
+06:08:08,Gabriel Diallo,ATP_MAIN,55,staircase,v4_resting_maker,staircase,latch,06:00:00,06:08:59,CORRIDOR,KXATPMATCH-26JUN22DIAATM
+06:08:28,Max Houkes,ATP_MAIN,22,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22DJEHOU
+06:08:53,PAV?,ATP_MAIN,27,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22LAJPAV
+06:09:19,Laslo Djere,ATP_MAIN,76,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22DJEHOU
+06:09:23,Tereza Valentova,WTA_MAIN,73,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXWTAMATCH-26JUN22KLUVAL
+06:09:25,Anton Matusevich,ATP_MAIN,42,staircase,v4_resting_maker,staircase,latch,06:00:00,06:15:31,CORRIDOR,KXATPMATCH-26JUN22MATSAK
+06:09:46,Hugo Gaston,ATP_MAIN,79,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22GASMID
+06:10:15,Hugo Dellien,ATP_MAIN,7,staircase,v4_resting_maker,staircase,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22YUNDEL
+06:10:40,Borna Gojo,ATP_MAIN,39,staircase,v4_resting_maker,staircase,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22WONGOJ
+06:10:43,Hannah Klugman,WTA_MAIN,26,staircase,v4_resting_maker,staircase,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXWTAMATCH-26JUN22KLUVAL
+06:10:49,Daniil Glinka,ATP_MAIN,53,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22GLICOP
+06:10:57,Gianluca Cadenasso,ATP_MAIN,27,reconcile,v4_reconciled,engagement_join,latch,06:00:00,06:48:00,CORRIDOR,KXATPMATCH-26JUN22CADCIN
+06:11:20,LAJ?,ATP_MAIN,73,staircase,v4_resting_maker,staircase,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22LAJPAV
+06:11:25,Chak Lam Coleman Wong,ATP_MAIN,58,staircase,v4_resting_maker,staircase,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22WONGOJ
+06:11:59,DOU?,ATP_MAIN,26,staircase,v4_reconciled,staircase,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22CHIDOU
+06:12:52,Ethan Quinn,ATP_MAIN,67,staircase,v4_resting_maker,staircase,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22QUIROY
+06:20:37,Corentin Moutet,ATP_MAIN,56,staircase,v4_reconciled,staircase,scheduled_fallback,06:30:00,,PREMARKET,KXATPMATCH-26JUN22MOUFUC
+06:23:14,Michael Zheng,ATP_MAIN,68,staircase,v4_resting_maker,staircase,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22SQUZHE
+06:28:12,Roman Safiullin,ATP_MAIN,66,staircase,v4_resting_maker,staircase,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22SAFMCC
+06:28:37,MAN?,ATP_MAIN,33,engagement,v4_engagement_join,engagement_join,latch,08:00:00,08:21:07,PREMARKET,KXATPMATCH-26JUN22MANMAY
+06:35:44,CHI?,ATP_MAIN,71,staircase,v4_resting_maker,staircase,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22CHIDOU
+06:44:05,Alex Barrena,ATP_MAIN,20,staircase,v4_reconciled,staircase,latch,07:30:00,08:29:01,PREMARKET,KXATPMATCH-26JUN22SKABAR
+07:01:25,David Goffin,ATP_MAIN,57,engagement,v4_engagement_join,engagement_join,scheduled_fallback,07:30:00,,PREMARKET,KXATPMATCH-26JUN22GUEGOF
+07:13:32,Sinja Kraus,WTA_MAIN,28,staircase,v4_resting_maker,staircase,scheduled_fallback,07:00:00,,POST_SCHEDULED,KXWTAMATCH-26JUN22KRAKAL
+07:15:10,Remy Bertola,ATP_MAIN,59,reconcile,v4_reconciled,engagement_join,scheduled_fallback,10:30:00,,PREMARKET,KXATPMATCH-26JUN22DRABER
+07:15:10,SMI?,ATP_MAIN,81,reconcile,v4_reconciled,engagement_join,scheduled_fallback,06:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22ANDSMI
+07:15:55,SAI?,ATP_MAIN,13,staircase,v4_reconciled,staircase,scheduled_fallback,08:00:00,,PREMARKET,KXATPMATCH-26JUN22SAIKWON
+07:21:52,KWON?,ATP_MAIN,85,engagement,v4_engagement_join,engagement_join,scheduled_fallback,08:00:00,,PREMARKET,KXATPMATCH-26JUN22SAIKWON
+07:23:31,COM?,ATP_MAIN,67,staircase,v4_resting_maker,staircase,scheduled_fallback,07:30:00,,PREMARKET,KXATPMATCH-26JUN22COMMOR
+07:26:05,CRE?,ATP_CHALL,71,staircase,v4_resting_maker,staircase,latch,07:00:00,07:47:12,CORRIDOR,KXATPCHALLENGERMATCH-26JUN22CRESAN
+07:30:34,MOR?,ATP_MAIN,32,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22COMMOR
+07:31:37,Antonia Ruzic,WTA_MAIN,58,staircase,v4_resting_maker,staircase,latch,07:30:00,07:46:13,CORRIDOR,KXWTAMATCH-26JUN22RUZMAR
+07:31:56,Juan Pablo Ficovich,ATP_MAIN,36,staircase,v4_resting_maker,staircase,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22SMIFIC
+07:32:23,Alex Bolt,ATP_MAIN,53,fallback,v4_fallback_maker,engagement_join,latch,07:30:00,08:09:54,CORRIDOR,KXATPMATCH-26JUN22TARBOL
+07:34:53,Keegan Smith,ATP_MAIN,62,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22SMIFIC
+07:36:38,Nikoloz Basilashvili,ATP_MAIN,63,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22BASYME
+07:37:58,ZHO?,ATP_MAIN,57,engagement,v4_engagement_join,engagement_join,latch,09:00:00,09:27:24,PREMARKET,KXATPMATCH-26JUN22DENZHO
+07:39:33,JAC?,ATP_MAIN,89,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22BOSJAC
+07:40:42,Gauthier Onclin,ATP_MAIN,86,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22GIUONC
+07:41:47,Andrea Guerrieri,ATP_MAIN,41,staircase,v4_resting_maker,staircase,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22GUEGOF
+07:45:56,Lorenzo Giustino,ATP_MAIN,12,staircase,v4_resting_maker,staircase,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22GIUONC
+07:46:27,Alex Molcan,ATP_MAIN,44,staircase,v4_resting_maker,staircase,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22MARMOL
+07:46:33,Hamad Medjedovic,ATP_MAIN,73,reconcile,v4_reconciled,engagement_join,scheduled_fallback,10:00:00,,PREMARKET,KXATPMATCH-26JUN22KECMED
+07:47:15,Yu Hsiou Hsu,ATP_MAIN,39,staircase,v4_resting_maker,staircase,latch,07:30:00,08:35:51,CORRIDOR,KXATPMATCH-26JUN22HSUSAK
+07:47:47,Tristan Schoolkate,ATP_MAIN,64,staircase,v4_reconciled,staircase,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22MONSCH
+07:48:28,BOS?,ATP_MAIN,10,staircase,v4_resting_maker,staircase,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22BOSJAC
+07:49:47,Arthur Gea,ATP_MAIN,76,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22BRAGEA
+07:49:48,Raul Brancaccio,ATP_MAIN,23,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22BRAGEA
+07:50:28,Fabian Marozsan,ATP_MAIN,54,staircase,v4_resting_maker,staircase,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22MARMOL
+07:53:16,Johannus Monday,ATP_MAIN,34,staircase,v4_resting_maker,staircase,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22MONSCH
+08:02:42,August Holmgren,ATP_MAIN,53,engagement,v4_engagement_join,engagement_join,latch,09:00:00,10:26:41,PREMARKET,KXATPMATCH-26JUN22BROHOL
+08:02:49,McCartney Kessler,WTA_MAIN,48,engagement,v4_engagement_join,engagement_join,scheduled_fallback,10:30:00,,PREMARKET,KXWTAMATCH-26JUN22KESKAS
+08:03:33,PRA?,ATP_MAIN,24,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22PRAEVA
+08:04:10,TOP?,ATP_CHALL,58,staircase,v4_reconciled,staircase,latch,07:00:00,08:08:04,CORRIDOR,KXATPCHALLENGERMATCH-26JUN22SIMTOP
+08:06:42,Elisabetta Cocciaretto,WTA_MAIN,38,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXWTAMATCH-26JUN22TOMCOC
+08:08:52,Emiliana Arango,WTA_MAIN,39,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXWTAMATCH-26JUN22JOIARA
+08:09:55,Oliver Tarvet,ATP_MAIN,47,staircase,v4_resting_maker,staircase,latch,07:30:00,08:09:54,POST_REAL,KXATPMATCH-26JUN22TARBOL
+08:14:11,Juan Manuel Cerundolo,ATP_MAIN,19,staircase,v4_reconciled,staircase,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22COLCER
+08:14:35,Maya Joint,WTA_MAIN,58,staircase,v4_reconciled,staircase,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXWTAMATCH-26JUN22JOIARA
+08:14:58,EVA?,ATP_MAIN,75,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22PRAEVA
+08:18:42,Moez Echargui,ATP_MAIN,30,fallback,v4_fallback_maker,engagement_join,latch,07:30:00,08:47:43,CORRIDOR,KXATPMATCH-26JUN22BUTECH
+08:26:57,Shintaro Mochizuki,ATP_MAIN,71,staircase,v4_resting_maker,staircase,latch,07:30:00,08:30:16,CORRIDOR,KXATPMATCH-26JUN22SACMOC
+08:38:04,Elias Ymer,ATP_MAIN,36,staircase,v4_resting_maker,staircase,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22BASYME
+08:52:53,TOB?,ATP_CHALL,35,staircase,v4_resting_maker,staircase,scheduled_fallback,07:00:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22TOBKRU
+08:53:05,Filip Cristian Jianu,ATP_MAIN,13,staircase,v4_resting_maker,staircase,latch,09:00:00,09:02:29,PREMARKET,KXATPMATCH-26JUN22BLAJIA
+08:55:12,Pedro Martinez,ATP_MAIN,15,staircase,v4_reconciled,staircase,scheduled_fallback,09:00:00,,PREMARKET,KXATPMATCH-26JUN22VIRMAR
+09:01:07,ADD?,ATP_MAIN,20,staircase,v4_reconciled,staircase,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22LLAADD
+09:02:33,LLA?,ATP_MAIN,79,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22LLAADD
+09:05:54,Gonzalo Bueno,ATP_MAIN,18,staircase,v4_resting_maker,staircase,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22KYMBUE
+09:08:10,Martin Landaluce,ATP_MAIN,59,reconcile,v4_reconciled,engagement_join,latch,09:00:00,09:09:13,CORRIDOR,KXATPMATCH-26JUN22STRLAN
+09:10:30,Raphael Collignon,ATP_MAIN,79,staircase,v4_resting_maker,staircase,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22COLCER
+09:10:33,Jerome Kym,ATP_MAIN,81,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22KYMBUE
+09:13:20,Nick Kyrgios,ATP_MAIN,57,engagement,v4_engagement_join,engagement_join,latch,11:30:00,11:36:52,PREMARKET,KXATPMATCH-26JUN22WALKYR
+09:17:11,Ajla Tomljanovic,WTA_MAIN,60,staircase,v4_resting_maker,staircase,scheduled_fallback,07:30:00,,POST_SCHEDULED,KXWTAMATCH-26JUN22TOMCOC
+09:28:59,AND?,ATP_CHALL,71,staircase,v4_resting_maker,staircase,latch,09:30:00,09:44:24,PREMARKET,KXATPCHALLENGERMATCH-26JUN22CIGAND
+09:31:07,BUD?,ATP_MAIN,85,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22BUDREI
+09:33:11,Otto Virtanen,ATP_MAIN,85,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22VIRMAR
+09:33:58,REI?,ATP_MAIN,13,staircase,v4_resting_maker,staircase,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22BUDREI
+09:36:06,TOS?,ATP_CHALL,35,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,09:30:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22LEITOS
+09:37:06,Jay Clarke,ATP_MAIN,71,staircase,v4_resting_maker,staircase,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22CLAPEL
+09:38:46,CAR?,ATP_MAIN,87,engagement,v4_engagement_join,engagement_join,scheduled_fallback,10:30:00,,PREMARKET,KXATPMATCH-26JUN22CEBCAR
+09:40:58,ZAN?,ATP_CHALL,59,staircase,v4_resting_maker,staircase,scheduled_fallback,09:30:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22ZANMAR
+09:42:09,MAR?,ATP_CHALL,37,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,09:30:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22ZANMAR
+09:42:17,Andrea Pellegrino,ATP_MAIN,28,staircase,v4_reconciled,staircase,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22CLAPEL
+09:42:43,Luka Mikrut,ATP_MAIN,35,staircase,v4_resting_maker,staircase,latch,09:00:00,11:13:29,CORRIDOR,KXATPMATCH-26JUN22TRAMIK
+09:44:04,Luca Nardi,ATP_MAIN,61,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22NOGNAR
+09:45:48,Jan Choinski,ATP_MAIN,32,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,09:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22CHOPOP
+09:46:11,LEI?,ATP_CHALL,62,staircase,v4_resting_maker,staircase,scheduled_fallback,09:30:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22LEITOS
+09:50:15,GAL?,ATP_MAIN,72,staircase,v4_resting_maker,staircase,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22DIAGAL
+09:52:44,Tristan Boyer,ATP_MAIN,82,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22BOYOLI
+09:52:44,Genaro Alberto Olivieri,ATP_MAIN,17,staircase,v4_resting_maker,staircase,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22BOYOLI
+09:54:53,ARN?,ATP_MAIN,51,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,10:00:00,,PREMARKET,KXATPMATCH-26JUN22ARNMAR
+10:01:14,AGA?,ATP_CHALL,80,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,08:30:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22CASAGA
+10:02:40,Venus Williams,WTA_MAIN,22,staircase,v4_resting_maker,staircase,scheduled_fallback,09:30:00,,POST_SCHEDULED,KXWTAMATCH-26JUN22WILBEG
+10:02:52,DIA?,ATP_MAIN,26,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22DIAGAL
+10:03:46,MAR?,ATP_MAIN,49,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,10:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22ARNMAR
+10:10:43,MAR?,ATP_MAIN,49,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,10:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22ARNMAR
+10:10:49,Irina-Camelia Begu,WTA_MAIN,76,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,09:30:00,,POST_SCHEDULED,KXWTAMATCH-26JUN22WILBEG
+10:11:44,Dane Sweeny,ATP_MAIN,92,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22SWERON
+10:11:49,Joel Josef Schwaerzler,ATP_MAIN,17,fallback,v4_fallback_maker,engagement_join,latch,10:30:00,11:59:43,PREMARKET,KXATPMATCH-26JUN22SCHOCO
+10:13:00,Federico Coria,ATP_MAIN,24,staircase,v4_reconciled,staircase,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22CORBON
+10:13:16,Rio Noguchi,ATP_MAIN,38,staircase,v4_resting_maker,staircase,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22NOGNAR
+10:14:43,Franco Roncadelli,ATP_MAIN,8,staircase,v4_resting_maker,staircase,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22SWERON
+10:15:44,Oliver Bonding,ATP_MAIN,73,staircase,v4_resting_maker,staircase,scheduled_fallback,09:00:00,,POST_SCHEDULED,KXATPMATCH-26JUN22CORBON
+10:17:22,Dusan Lajovic,ATP_MAIN,49,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,10:30:00,,PREMARKET,KXATPMATCH-26JUN22NEULAJ
+10:19:14,Francesco Maestrelli,ATP_MAIN,63,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,10:30:00,,PREMARKET,KXATPMATCH-26JUN22MAEBAS
+10:32:57,Max Basing,ATP_MAIN,37,staircase,v4_resting_maker,staircase,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22MAEBAS
+10:37:18,Henrique Rocha,ATP_MAIN,76,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22ROCMEJ
+10:44:17,Francesca Jones,WTA_MAIN,22,staircase,v4_resting_maker,staircase,latch,09:00:00,11:06:21,CORRIDOR,KXWTAMATCH-26JUN22OSTJON
+10:45:47,EAL?,WTA_MAIN,44,engagement,v4_engagement_join,engagement_join,scheduled_fallback,11:30:00,,PREMARKET,KXWTAMATCH-26JUN20EALMER
+10:45:49,Nicolas Mejia,ATP_MAIN,24,reconcile,v4_reconciled,engagement_join,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22ROCMEJ
+10:47:43,Paul Jubb,ATP_MAIN,43,staircase,v4_resting_maker,staircase,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22HERJUB
+10:49:30,MCD?,ATP_MAIN,95,fallback,v4_fallback_maker,engagement_join,latch,10:30:00,12:31:19,CORRIDOR,KXATPMATCH-26JUN22MCDMEL
+10:54:54,Florent Bax,ATP_MAIN,10,staircase,v4_resting_maker,staircase,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22BAXROD
+10:59:49,Chris Rodesch,ATP_MAIN,88,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22BAXROD
+11:04:44,Francesca Jones,WTA_MAIN,22,staircase,v4_resting_maker,staircase,latch,09:00:00,11:06:21,CORRIDOR,KXWTAMATCH-26JUN22OSTJON
+11:05:14,CEC?,ATP_MAIN,12,staircase,v4_resting_maker,staircase,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22CECBAR
+11:06:22,Jelena Ostapenko,WTA_MAIN,77,resting_maker,v4_resting_maker,engagement_join,latch,09:00:00,11:06:21,POST_REAL,KXWTAMATCH-26JUN22OSTJON
+11:07:43,BAR?,ATP_MAIN,85,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22CECBAR
+11:13:55,AGA?,ATP_CHALL,80,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,08:30:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22CASAGA
+11:14:18,Oliver Crawford,ATP_MAIN,31,reconcile,v4_reconciled,engagement_join,latch,10:30:00,11:16:15,CORRIDOR,KXATPMATCH-26JUN22CRAROD
+11:16:35,Chun-Hsin Tseng,ATP_MAIN,47,reconcile,v4_reconciled,engagement_join,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22TSEHEI
+11:34:40,Lukas Neumayer,ATP_MAIN,52,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22NEULAJ
+11:36:36,PAR?,ATP_CHALL,86,fallback,v4_fallback_maker,engagement_join,latch,11:00:00,11:50:26,CORRIDOR,KXATPCHALLENGERMATCH-26JUN22PARBAS
+11:36:52,Adam Walton,ATP_MAIN,44,staircase,v4_resting_maker,staircase,latch,11:30:00,11:36:52,POST_REAL,KXATPMATCH-26JUN22WALKYR
+11:38:59,KRU?,ATP_CHALL,61,staircase,v4_resting_maker,staircase,scheduled_fallback,07:00:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22TOBKRU
+11:39:27,Gustavo Heide,ATP_MAIN,53,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22TSEHEI
+11:43:46,SEA?,ATP_MAIN,39,staircase,v4_resting_maker,staircase,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22ZHASEA
+11:45:39,Liam Draxl,ATP_MAIN,40,staircase,v4_resting_maker,staircase,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22DRABER
+11:49:29,Michael Mmoh,ATP_MAIN,65,fallback,v4_fallback_maker,engagement_join,latch,10:30:00,12:14:35,CORRIDOR,KXATPMATCH-26JUN22GAUMMO
+11:50:54,Alexei Popyrin,ATP_MAIN,65,staircase,v4_resting_maker,staircase,scheduled_fallback,09:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22CHOPOP
+11:57:23,Kaichi Uchida,ATP_MAIN,21,fallback,v4_fallback_maker,engagement_join,latch,10:30:00,12:08:10,CORRIDOR,KXATPMATCH-26JUN22UCHTOM
+11:58:39,CEB?,ATP_MAIN,11,staircase,v4_resting_maker,staircase,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22CEBCAR
+12:11:19,Pierre-Hugues Herbert,ATP_MAIN,56,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22HERJUB
+12:14:36,Vilius Gaubas,ATP_MAIN,33,fallback,v4_fallback_maker,engagement_join,latch,10:30:00,12:14:35,POST_REAL,KXATPMATCH-26JUN22GAUMMO
+12:20:37,Zizou Bergs,ATP_MAIN,57,fallback,v4_fallback_maker,engagement_join,latch,11:00:00,13:56:12,CORRIDOR,KXATPMATCH-26JUN22BERMUN
+12:24:28,Daria Kasatkina,WTA_MAIN,53,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXWTAMATCH-26JUN22KESKAS
+12:28:06,MER?,WTA_MAIN,56,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,11:30:00,,POST_SCHEDULED,KXWTAMATCH-26JUN20EALMER
+12:44:27,Tom Gentzsch,ATP_MAIN,64,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22GENKOL
+12:47:37,Zdenek Kolar,ATP_MAIN,34,staircase,v4_resting_maker,staircase,scheduled_fallback,10:30:00,,POST_SCHEDULED,KXATPMATCH-26JUN22GENKOL
+12:50:52,HER?,ATP_CHALL,23,engagement,v4_engagement_join,engagement_join,scheduled_fallback,14:00:00,,PREMARKET,KXATPCHALLENGERMATCH-26JUN22TORHER
+13:32:22,GHE?,ATP_CHALL,42,staircase,v4_resting_maker,staircase,scheduled_fallback,08:30:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22GUEGHE
+13:37:35,CAS?,ATP_CHALL,20,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,08:30:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22CASAGA
+13:38:06,GUE?,ATP_CHALL,53,staircase,v4_resting_maker,staircase,scheduled_fallback,08:30:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22GUEGHE
+13:44:09,HUE?,ATP_CHALL,43,staircase,v4_resting_maker,staircase,scheduled_fallback,11:00:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22HUEOLI
+14:08:45,TOR?,ATP_CHALL,78,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,14:00:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22TORHER
+14:26:26,MON?,ATP_CHALL,15,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,14:00:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22SOTMON
+15:01:34,SOT?,ATP_CHALL,85,fallback,v4_fallback_maker,engagement_join,scheduled_fallback,14:00:00,,POST_SCHEDULED,KXATPCHALLENGERMATCH-26JUN22SOTMON

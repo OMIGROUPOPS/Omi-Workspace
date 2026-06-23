@@ -1168,6 +1168,16 @@ class LiveV3:
         # round5_detector=off and fallback_maker_clamp, belt-coupled to this flag (:3098, :2126)
         # so the gating holds even if those are walked back. Default False = exact pre-flag state.
         self.maker_only_entry = self.config.get("maker_only_entry", False)
+        # [C-GRAZE-ZONE] (Plex-gated; default OFF = byte-identical) premarket PLACEMENT-PRICE only.
+        # Cycle-1 graze fix: the control legs that FILL rest AT the premarket-sell transaction zone
+        # (~ the last-traded/mid anchor = current_price); graze legs rest a few c BELOW it and never
+        # see the seller-flow (median +5c gap; control legs sit at gap 0). ON: lift a sub-zone
+        # resting target up to the zone, and SUPPRESS a degenerate off-zone floor bid (computed
+        # target > graze_zone_suppress_gap below the zone -- the token favorite-side casts that only
+        # graze). Touches NOTHING else: exit, cancel/meter, routing (join/engagement excluded), the
+        # T-4h placement gate (placement_min) and the date-guard (_date_ok) are all unchanged.
+        self.graze_zone_placement = bool(self.config.get("graze_zone_placement", False))
+        self.graze_zone_suppress_gap = int(self.config.get("graze_zone_suppress_gap", 20))
         # [C-COMPLETE-CROSS] the SOLE taker site under maker_only_entry: a basis-capped cross at the
         # gun to complete a single-legged pair. Default OFF (Plex enables deliberately).
         self.complete_cross_enabled = bool(self.config.get("complete_cross_enabled", False))
@@ -1190,6 +1200,10 @@ class LiveV3:
                   "t20m_fallback GATED (also fallback_maker_clamp=%s)" % (_r5, _fmc), flush=True)
         else:
             print("[BOOT] MAKER_ONLY_ENTRY=false (taker entry sites live)", flush=True)
+        if self.graze_zone_placement:
+            print("[BOOT] GRAZE_ZONE_PLACEMENT=true -> premarket resting bid lifted to the seller-flow "
+                  "zone (anchor); off-zone floor bids (>%dc below zone) suppressed"
+                  % self.graze_zone_suppress_gap, flush=True)
         # SAFETY: the BBO-threshold settlement backstop (check_settlements) treats a price touching
         # best_bid>=98 / best_ask<=2 as settlement and cancels the resting exit (settlement_cleanup).
         # But prices round-trip to extremes mid-match -- that is NOT settlement. This falsely pulls
@@ -4969,6 +4983,28 @@ class LiveV3:
                     self.n_skips += 1
                     self._log("skipped", {"reason": "staircase_aborted", "cat": cat}, ticker=tk)
                     continue
+                # [C-GRAZE-ZONE] (gated; premarket PLACEMENT-PRICE ONLY) the filled control legs rest
+                # AT the seller-flow transaction zone (~ current_price = the last-traded/mid anchor);
+                # staircase/anchor graze legs rest a few c BELOW it and never see the premarket
+                # sell-flow. Lift a sub-zone target up to the zone (downstream marketable_clamp keeps
+                # it a maker at <= ask-1 if the zone is >= ask). Suppress a degenerate off-zone floor
+                # bid (> suppress_gap below the zone -- the token favorite-side casts that only graze).
+                # Join/engagement legs already rest at the touch -> left untouched (their price/route
+                # unchanged). Final target_bid only; exit, cancel/meter, T-4h gate, date-guard untouched.
+                if (self.graze_zone_placement and current_price > 0
+                        and reference_source != "join_bid" and table_src != "engagement_wave1"):
+                    if current_price - target_bid > self.graze_zone_suppress_gap:
+                        self.n_skips += 1
+                        self._log("skipped", {"reason": "graze_offzone_floor", "cat": cat,
+                            "target_bid": target_bid, "zone": current_price,
+                            "gap": current_price - target_bid,
+                            "reference_source": reference_source}, ticker=tk)
+                        continue
+                    if target_bid < current_price:
+                        self._log("graze_zone_lift", {"cat": cat, "from": target_bid,
+                            "to": current_price, "reference_source": reference_source}, ticker=tk)
+                        target_bid = current_price
+                        reference_source = "graze_zone"
                 force_cross = self.round5_enabled and self.round5_detector_fire(
                     tk, current_ask, target_bid)
 

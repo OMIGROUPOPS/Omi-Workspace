@@ -1,0 +1,5 @@
+day,fills,premarket,post_scheduled,both_filled,single_legged,both_fill_rate_pct,exit_sells_pnl_usd,settlement_pnl_usd,net_realized_logderived_usd,bot_session_counter_usd
+20260619,133,30,102,47,31,60.3,54.08,-79.18,-25.1,-21.53
+20260620,58,13,41,16,19,45.7,20.77,-13.6,7.17,5.22
+20260621,0,0,0,0,0,0,0.0,0.0,0.0,0.0
+20260622,176,27,147,62,38,62.0,70.89,-68.43,2.46,-0.02

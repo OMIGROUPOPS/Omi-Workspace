@@ -1,0 +1,11 @@
+{
+  "leak_check": "passed: resolver source references only the ticker string",
+  "map": {
+    "KXATPCHALLENGERMATCH": "ATP_CHALL",
+    "KXATPMATCH": "ATP_MAIN",
+    "KXWTACHALLENGERMATCH": "WTA_CHALL",
+    "KXWTAMATCH": "WTA_MAIN"
+  },
+  "opener_buckets": "deciles of opening_price in [5,95] -> b05_14..b85_94 (ex-ante, opening price only)",
+  "resolver": "ticker-prefix -> category (ex-ante; settlement NEVER referenced)"
+}

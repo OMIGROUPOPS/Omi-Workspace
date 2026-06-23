@@ -1,0 +1,12 @@
+{
+  "category_map_frozen.json_sha256": "670678e4a21c46659dd6bc7c2728cca1d6c2961c4b6c20c1a7a70a7d13f901e7",
+  "frozen_at_utc": "2026-06-23T01:0Xp",
+  "fv_triple_source(premarket_fv.py)_sha256": "cce28ba2fc0ff0ea5f366603f9b06d35f02bdda8797c00ead480a89bb98fed8d",
+  "harness": "OMQS tick-replay stratagem harness",
+  "predictor_corpus": "premarket_tape_v1.parquet",
+  "predictor_frozen.json_sha256": "2f976c97f6a83385fc41c82f8a06da8b99945bfe7ff606f3739215fd0a1724d5",
+  "predictor_legs_fit": 17979,
+  "prior_data_cutoff_exclusive": "2026-06-22",
+  "spec": "v2",
+  "stage": "0_freeze"
+}

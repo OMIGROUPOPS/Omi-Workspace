@@ -1,0 +1,39 @@
+{
+  "baseline_pooled": {
+    "a": -0.15375,
+    "b_per_cent": 0.01103,
+    "n": 17979,
+    "r2": 0.0004
+  },
+  "cutoff_exclusive": "2026-06-22",
+  "fit_corpus": "premarket_tape_v1.parquet",
+  "model": "drift_cents = a + b_per_cent*(opening_cents-50)",
+  "opening_price_def": "first observable post-listing mid (earliest tape minute)",
+  "per_category": {
+    "ATP_CHALL": {
+      "a": -0.37296,
+      "b_per_cent": 0.035,
+      "n": 7095,
+      "r2": 0.0052
+    },
+    "ATP_MAIN": {
+      "a": 0.06604,
+      "b_per_cent": 0.00167,
+      "n": 4975,
+      "r2": 0.0
+    },
+    "WTA_CHALL": {
+      "a": -0.26895,
+      "b_per_cent": 0.04912,
+      "n": 1178,
+      "r2": 0.0078
+    },
+    "WTA_MAIN": {
+      "a": -0.05599,
+      "b_per_cent": -0.02425,
+      "n": 4731,
+      "r2": 0.0018
+    }
+  },
+  "target": "mid(T-20m)-mid(open), cents"
+}

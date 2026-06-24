@@ -37,5 +37,6 @@
   "operator_manual_mode": true,
   "fv_observe": true,
   "staircase_abort_rearm": true,
-  "completion_all_cells": true
+  "completion_all_cells": true,
+  "fv_anchor_placement": true
 }

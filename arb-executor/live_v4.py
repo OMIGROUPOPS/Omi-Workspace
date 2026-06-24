@@ -1368,6 +1368,9 @@ class LiveV3:
         # [C-JOIN-TRIAL] degraded-deploy abort state (dormant unless join_trial_mode)
         self.join_trial_mode = bool(self.config.get("join_trial_mode", False))
         self.join_trial_aborted = False
+        # [C-ABORT-CARVE] gated, default OFF (byte-identical legacy): when a cat/mode aborts,
+        # still place a leg whose sibling we already HOLD in a hedgeable form (carve the orphan).
+        self.abort_carve_held_sibling = bool(self.config.get("abort_carve_held_sibling", False))
         # [C-STAIRCASE SHIP-2 abort-spec] staircase abort state (mirrors join_trial_aborted)
         # [C-STAIRCASE 4CAT] per-cat tally (was scalars): a failing cat can't be masked by a healthy
         # one, and an abort halts ONLY the failing cat. In-memory, resets on restart (unchanged).
@@ -2764,6 +2767,29 @@ class LiveV3:
             return False
         lt_age = (time.time() - sb.last_trade_ts) if sb.last_trade_ts else float("inf")
         return lt_age <= V4_LAST_TRADE_MAX_AGE_SEC
+
+    def _carve_abort_for_held_sibling(self, tk, et):
+        """[C-ABORT-CARVE] True iff we hold tk's sibling in a committed, HEDGEABLE form, so
+        the abort gate must NOT skip tk -- placing it completes the hedge for the held leg
+        (the Phase-A #1 one-fill bleed: leg-A committed, cat aborts, leg-B skipped -> leg-A
+        rides naked). PURE -- no placement, no completion, no exit/manage reach. Excludes:
+        no sibling; sibling absent or settled; sibling exiting/flat (this codebase has no
+        "exiting" phase, so exit_filled is the faithful mapping of Plex's phase=="exiting";
+        the literal phase string is kept forward-compat); sibling already completion_reprice
+        (idempotent). Held := phase=="entry_resting" (Scenario A: both legs route same tick,
+        abort already on, A is resting/unfilled when B hits the gate -- the 'already-filled'
+        predicate would MISS this) OR entry_qty>0 (Scenario B: A already filled)."""
+        sib = self._sibling_ticker(tk, et)
+        if not sib:
+            return False
+        sp = self.positions.get(sib)
+        if sp is None or sp.settled:
+            return False
+        if sp.phase == "exiting" or sp.exit_filled:
+            return False
+        if sp.entry_mode == "completion_reprice":
+            return False
+        return sp.phase == "entry_resting" or sp.entry_qty > 0
 
     def _paired_basis_ok(self, tk, et, this_price):
         """T50 paired-basis guard. Returns False if entering `tk` at this_price
@@ -5074,14 +5100,24 @@ class LiveV3:
                         reference_source = "join_bid"   # [C-JOIN-THE-BID WALK] fresh join walks from placement
                 # [C-JOIN-TRIAL] pre-registered abort halts NEW join entries once tripped.
                 if self.join_trial_aborted and reference_source == "join_bid":
-                    self.n_skips += 1
-                    self._log("skipped", {"reason": "join_trial_aborted", "cat": cat}, ticker=tk)
-                    continue
+                    if self.abort_carve_held_sibling and self._carve_abort_for_held_sibling(tk, et):
+                        _sib = self._sibling_ticker(tk, et); _sp = self.positions.get(_sib)
+                        self._log("carve_fire", {"tk": tk, "sib": _sib, "sib_phase": _sp.phase,
+                            "sib_qty": _sp.entry_qty, "cat": cat, "gate": "join_trial"}, ticker=tk)
+                    else:
+                        self.n_skips += 1
+                        self._log("skipped", {"reason": "join_trial_aborted", "cat": cat}, ticker=tk)
+                        continue
                 # [C-STAIRCASE SHIP-2 abort-spec] halt NEW staircase entries once aborted; resting legs continue.
                 if reference_source == "staircase" and self.staircase_aborted.get(cat, False):
-                    self.n_skips += 1
-                    self._log("skipped", {"reason": "staircase_aborted", "cat": cat}, ticker=tk)
-                    continue
+                    if self.abort_carve_held_sibling and self._carve_abort_for_held_sibling(tk, et):
+                        _sib = self._sibling_ticker(tk, et); _sp = self.positions.get(_sib)
+                        self._log("carve_fire", {"tk": tk, "sib": _sib, "sib_phase": _sp.phase,
+                            "sib_qty": _sp.entry_qty, "cat": cat, "gate": "staircase"}, ticker=tk)
+                    else:
+                        self.n_skips += 1
+                        self._log("skipped", {"reason": "staircase_aborted", "cat": cat}, ticker=tk)
+                        continue
                 force_cross = self.round5_enabled and self.round5_detector_fire(
                     tk, current_ask, target_bid)
 

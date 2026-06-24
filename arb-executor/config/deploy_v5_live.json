@@ -36,6 +36,5 @@
   "premarket_bids_ride_live": true,
   "operator_manual_mode": true,
   "fv_observe": true,
-  "staircase_abort_rearm": true,
-  "fv_anchor_placement": true
+  "staircase_abort_rearm": true
 }

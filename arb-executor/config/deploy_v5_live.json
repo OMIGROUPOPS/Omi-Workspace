@@ -35,5 +35,6 @@
   "paired_cap_enforced": false,
   "premarket_bids_ride_live": true,
   "operator_manual_mode": true,
-  "fv_observe": true
+  "fv_observe": true,
+  "staircase_abort_rearm": true
 }

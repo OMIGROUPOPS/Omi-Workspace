@@ -172,6 +172,14 @@ MAX_TAKER_SPREAD = 5              # T52: never TAKER-cross when (ask-bid) > this
 V4_RUNNING_MID_WINDOW_SEC = 30 * 60   # trailing window for the running-mid (RUNNING_MID_K=30 in the surface build)
 V4_RUNNING_MID_MIN_TRADES = 1         # >= this many traded prints in-window to use running-mid; else BBO-mid fallback
 V4_LAST_TRADE_MAX_AGE_SEC = 1800      # #1 ref-price: max age (s) of the last-traded print to use as the entry reference; staler/absent -> skip (no BBO-mid fallback)
+# [C-FV-ANCHOR Move-3] book-sanity band for the FV print (the overpay-tail guard). Reject an FV that sits
+# more than this many cents OUTSIDE [best_bid, best_ask] -> off-book/stale-high (withdrawn or collapsing line)
+# -> do NOT anchor on it, fall through to legacy. Calibrated on 7-day fills (26JUN18-24): the clean fill bulk
+# (|fill-sched-start FV|<=2) has max (fv-ask)=7c -> band=8 costs 0 clean fills while cutting the detectable
+# off-book overpay tail. FRESHNESS stays at V4_LAST_TRADE_MAX_AGE_SEC (1800s): the data shows the clean bulk
+# routinely anchors on old-but-valid prints (quiet premarket, clean p90 age 6071s) -- tightening suppresses
+# real fills, it does NOT separate the tail (tail median age 67s < clean 154s).
+FV_ANCHOR_MAX_GAP_C = 8
 V4_SHUTDOWN_TIMEOUT_SEC = 10          # #0-infra: graceful-shutdown budget; if cancel/drain exceeds this, hard-exit rather than wedge in a zombie state
 
 # PART-2 completion_reprice (Plex-gated, default OFF). Mechanism: when leg-1 of a pair
@@ -1642,6 +1650,14 @@ class LiveV3:
         if not fresh:
             return None
         return int(round(fresh[-1]))
+
+    def _fv_anchor_sane(self, fv, best_bid, best_ask):
+        """[C-FV-ANCHOR Move-3] book-sanity band for the FV print. True iff fv lies within
+        FV_ANCHOR_MAX_GAP_C of the live book on BOTH sides (i.e. not far above the ask = a
+        stale-high / withdrawn-line collapse, the Jacob-Shen/+30 overpay class; nor far below
+        the bid = a gapped-up book). False -> caller drops the FV to None and falls through to
+        the legacy route, never anchoring onto an off-book line. Pure / no state."""
+        return (best_bid - FV_ANCHOR_MAX_GAP_C) <= fv <= (best_ask + FV_ANCHOR_MAX_GAP_C)
 
     def _v4_entry_anchor(self, tk, cat, book, time_to_start):
         """#1 ref-price: resolve the entry REFERENCE price + offset-table row for one leg.
@@ -5032,8 +5048,18 @@ class LiveV3:
                     # the legacy route unchanged (never post worse than legacy on a dead tape). Engagement
                     # (wave1) is NOT touched -- it already rests at the touch by construction.
                     _fv = self._fv_anchor_price(tk) if self.fv_anchor_placement else None
+                    # [C-FV-ANCHOR Move-3] book-sanity guard: never anchor onto an off-book/
+                    # stale-high print (the overpay tail). Reject -> fall through to legacy.
+                    if _fv is not None and not self._fv_anchor_sane(_fv, placement_bid, placement_ask):
+                        self._log("fv_anchor_reject", {"cat": cat, "fv": _fv, "bid": placement_bid,
+                            "ask": placement_ask, "gap_cap": FV_ANCHOR_MAX_GAP_C,
+                            "reason": "off_book_band"}, ticker=tk)
+                        _fv = None
                     if _fv is not None:
-                        target_bid = max(1, min(_fv, placement_ask - 1))
+                        # [C-FV-ANCHOR Move-3] ask-1 clamp STRIPPED (rejected logic): post AT the FV.
+                        # Downstream marketable-clamp (target_bid>=ask) remains the shared never-cross
+                        # safety for any residual overshoot; it is NOT the FV-anchor's placement rule.
+                        target_bid = max(1, _fv)
                         reference_source = "join_bid"
                         self._log("fv_anchor_place", {"cat": cat, "fv": _fv,
                             "ask": placement_ask, "target": target_bid}, ticker=tk)

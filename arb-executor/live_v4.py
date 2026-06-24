@@ -503,6 +503,7 @@ class Position:
     completion_prev_mode: str = ""      # pre-completion entry_mode (revert)
     completion_prev_target: int = 0     # pre-completion target_price (revert)
     completion_lookup_cell: int = 0     # leg-1 window-open cell used for the table lookup
+    completion_all_cells_arm: bool = False  # [C-COMPLETE-ALL] parked by the all-cells branch (cell not in table) -> exempts the table-membership tripwires (V3 fill, V4 manage)
 
 # -------------------------------------------------------------------------
 # Paper Mode (spec sha 32f29fda)
@@ -1996,7 +1997,7 @@ class LiveV3:
             return ("V3_per_leg_sanity_breach",
                     {"leg1_basis": pos.completion_leg1_basis,
                      "fill_price": fill_price})
-        if (pos.category, pos.completion_lookup_cell) not in self.completion_cells:
+        if (pos.category, pos.completion_lookup_cell) not in self.completion_cells and not pos.completion_all_cells_arm:
             return ("V4_cell_not_in_table",
                     {"category": pos.category, "cell": pos.completion_lookup_cell,
                      "table_cells": len(self.completion_cells)})
@@ -2932,6 +2933,7 @@ class LiveV3:
                 "reason": "leg1_window_open_unset", "leg1_basis": this_basis}, ticker=tk)
             return
         x_cell = self.completion_cells.get((pos.category, wo1["cell"]))
+        _all_cells_arm = False
         if x_cell is None and self.completion_all_cells:
             # [C-COMPLETE-ALL | gated completion_all_cells, default-OFF] no per-cell X for this
             # (cat,cell) -> complete the mirror anyway: a large X makes _completion_target bind on
@@ -2941,7 +2943,7 @@ class LiveV3:
             # the legacy no-attempt (never post a naked overpay). Touches ONLY the eligibility gate.
             _sb = self.books.get(sib)
             if _sb is not None and 0 < _sb.best_ask < 100:
-                x_cell = 99
+                x_cell = 99; _all_cells_arm = True
         if x_cell is None:
             # absent cell = never attempt (the no-attempt arm of the wave-gate pairing)
             self._log("completion_no_attempt", {"event": et,
@@ -3031,6 +3033,7 @@ class LiveV3:
         sp.completion_prev_mode = prev_mode
         sp.completion_prev_target = prev_target
         sp.completion_lookup_cell = wo1["cell"]
+        sp.completion_all_cells_arm = _all_cells_arm   # [C-COMPLETE-ALL] tripwire-exempt iff parked by the all-cells branch
         self._log("completion_attempt", {
             "event": et, "s0": s0, "s1": price, "x": x_cell,
             "cap_headroom": cap_headroom, "trigger_fill_id": pos.entry_order_id,
@@ -5577,6 +5580,7 @@ class LiveV3:
                         "completion_prev_mode": pos.completion_prev_mode,
                         "completion_prev_target": pos.completion_prev_target,
                         "completion_lookup_cell": pos.completion_lookup_cell,
+                        "completion_all_cells_arm": pos.completion_all_cells_arm,
                     })
         if self.completion_reprice:
             cutoff = time.time() - V4_WINDOW_OPEN_MAX_AGE_SEC
@@ -5659,6 +5663,7 @@ class LiveV3:
                 completion_prev_mode=d.get("completion_prev_mode", ""),
                 completion_prev_target=int(d.get("completion_prev_target", 0)),
                 completion_lookup_cell=int(d.get("completion_lookup_cell", 0)),
+                completion_all_cells_arm=bool(d.get("completion_all_cells_arm", False)),
             )
             restored += 1
             # [C-COPILOT] restored legs are BOT orders -- seed the registry
@@ -6136,7 +6141,7 @@ class LiveV3:
             return
         # [C-TRIPWIRE] V4: a resting completion order whose lookup cell is not in the
         # table (state corruption / table swap) -- fire; the tripwire cancels it.
-        if (pos.category, pos.completion_lookup_cell) not in self.completion_cells:
+        if (pos.category, pos.completion_lookup_cell) not in self.completion_cells and not pos.completion_all_cells_arm:
             await self._completion_tripwire("V4_cell_not_in_table",
                 {"site": "manage", "category": pos.category,
                  "cell": pos.completion_lookup_cell, "event": pos.event_ticker}, tk=tk)
@@ -6272,6 +6277,7 @@ class LiveV3:
         pos.completion_prev_mode = ""
         pos.completion_prev_target = 0
         pos.completion_lookup_cell = 0
+        pos.completion_all_cells_arm = False
         self._save_v4_resting()
 
     def _log_orphan_outcome(self, tk, pos, reason, now):

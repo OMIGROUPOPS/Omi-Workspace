@@ -26,8 +26,8 @@ def feed(st, outcome, depth, ev, cat="WTA_MAIN"): fn(st, cat, outcome, depth, ev
 fails = []
 def chk(n, c): print("  %s: %s" % (n, "PASS" if c else "FAIL")); (None if c else fails.append(n))
 
-print("(DYNAMIC) real extracted _staircase_abort_rearm_eval  [WINDOW=%d MIN_RESOLVED=%d MIN_EVENTS=%d WTA bar fr=%.3f d=%.2f]"
-      % (ns["STAIRCASE_ABORT_WINDOW"], ns["STAIRCASE_MIN_RESOLVED"], ns["STAIRCASE_ABORT_MIN_EVENTS"],
+print("(DYNAMIC) real extracted _staircase_abort_rearm_eval  [WINDOW=%d MIN_RESOLVED=%d WTA bar fr=%.3f d=%.2f]"
+      % (ns["STAIRCASE_ABORT_WINDOW"], ns["STAIRCASE_MIN_RESOLVED"],
          ns["STAIRCASE_ABORT_FILLRATE"]["WTA_MAIN"], ns["STAIRCASE_ABORT_DEPTH"]["WTA_MAIN"]))
 
 # (A) broad breach: 10 cancels across 6 distinct events -> trips
@@ -35,10 +35,10 @@ st = Stub()
 for i in range(10): feed(st, "cancel", 0, "EV%d" % (i % 6))
 chk("(A) trips: n>=10, >=5 events, fill_rate 0 + depth 0 below bars", st.staircase_aborted["WTA_MAIN"] is True)
 
-# (B) <K events: 10 cancels from only 2 events -> does NOT trip (the Yuan thin-morning guard)
+# (B) K-gate CUT (Plex): 10 cancels from only 2 events -> NOW trips (no perverse few-event veto)
 st = Stub()
 for i in range(10): feed(st, "cancel", 0, "EV%d" % (i % 2))
-chk("(B) NO trip with <5 distinct events (>=K-events guard)", st.staircase_aborted["WTA_MAIN"] is False)
+chk("(B) trips even with few distinct events (K-veto CUT -- removes perverse afternoon-suppression)", st.staircase_aborted["WTA_MAIN"] is True)
 
 # (C) RE-ARM: trip, then recent fills recover -> flips back to False (latch is NOT permanent)
 st = Stub()
@@ -77,6 +77,10 @@ chk("(S5) dbf1809 reached-its-match guard UNTOUCHED",
 chk("(S6) bid/routing/exit/meter not referenced by the new helper (latch-only)",
     all(x not in textwrap.dedent(ast.get_source_segment(src, meth))
         for x in ["staircase_anchor", "_is_match_live", "ORDER", "reference_source", "regime_lookup"]))
+chk("(S7) >=K distinct-events gate REMOVED from decision + constant deleted",
+    "STAIRCASE_ABORT_MIN_EVENTS" not in src and "distinct >=" not in src)
+chk("(S8) distinct STILL computed + logged observationally (decoupled from decision)",
+    "distinct = len({" in src and '"distinct_events": distinct' in src)
 
 print("\nRESULT:", "ALL PASS" if not fails else "FAILED: " + ", ".join(fails))
 raise SystemExit(1 if fails else 0)

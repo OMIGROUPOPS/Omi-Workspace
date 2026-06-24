@@ -35,7 +35,7 @@ class Pos:
         s.staircase_anchor=anchor; s.staircase_ref=ref; s.staircase_cell=cell
         s.staircase_counted=False; s.match_start_ts=mst; s.event_ticker=et
 class Self:
-    def __init__(s,live=True): s.staircase_aborted={}; s.staircase_resolved={}; s.staircase_fills={}; s.staircase_depth_sum={}; s.logs=[]; s._live=live
+    def __init__(s,live=True): s.staircase_aborted={}; s.staircase_resolved={}; s.staircase_fills={}; s.staircase_depth_sum={}; s.logs=[]; s._live=live; s.staircase_abort_rearm=False  # [C-ABORT-REARM] exercise legacy OFF path (byte-identical)
     def _log(s,e,d,ticker=None): s.logs.append((e,d))
     def _is_match_live(s,et): return s._live
 def run(seq,cat="ATP_MAIN",anchor=60,S=None,live=True,mst=0.0,reuse=False):

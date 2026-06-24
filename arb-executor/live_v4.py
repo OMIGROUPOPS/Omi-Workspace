@@ -127,6 +127,12 @@ STAIRCASE_MIN_RESOLVED   = 10
 # The other 3 cats fill DEEPER (mean offset 2.2-2.4c vs 1.94) so each needs its OWN DEPTH bar.
 STAIRCASE_ABORT_FILLRATE = {"ATP_MAIN": 0.623, "WTA_MAIN": 0.602, "ATP_CHALL": 0.621, "WTA_CHALL": 0.685}
 STAIRCASE_ABORT_DEPTH    = {"ATP_MAIN": 1.44,  "WTA_MAIN": 1.89,  "ATP_CHALL": 1.88,  "WTA_CHALL": 1.71}
+# [C-ABORT-REARM Fix A | gated staircase_abort_rearm, default-OFF] re-armable abort: evaluate over a
+# SLIDING window of the last-N TERMINAL legs (not cumulative-forever), and require the tripping sample to
+# span >= K distinct events so a thin single-morning run cannot disable a category for ~28h (the Yuan/
+# Dodin orphan class). A stale sample ages out of the window -> the cat RE-ARMS when recent fills recover.
+STAIRCASE_ABORT_WINDOW     = 20   # sliding window: last-N terminal staircase legs
+STAIRCASE_ABORT_MIN_EVENTS = 5    # trip requires >= this many DISTINCT events in the window
 # [C-STAIRCASE-ABORT-FIX 2026-06-20] cancel labels that are NON-TERMINAL for a staircase leg: the leg is
 # immediately re-posted one knot up and keeps working, so the cancel is a walk-step, not a fill-or-die
 # outcome -> excluded from the abort denominator (Defect A). v4_move_repost is the SOLE non-terminal cancel a
@@ -1175,6 +1181,7 @@ class LiveV3:
         # SIGTERM, swallowed SIGINT). ON installs asyncio signal handlers that stop the loop, cancel
         # resting entry bids via the API, and exit within V4_SHUTDOWN_TIMEOUT_SEC. See run() / _shutdown_drain.
         self.graceful_shutdown = self.config.get("graceful_shutdown", False)
+        self.staircase_abort_rearm = self.config.get("staircase_abort_rearm", False)  # [C-ABORT-REARM] Fix A; default OFF = legacy cumulative permanent latch
         self._shutdown_requested = False
         # PART-2 completion_reprice (Plex-gated; default OFF = byte-identical pre-Part-2).
         # OFF: no window-open tracking, no table load, no new log events, legacy state-file
@@ -1356,6 +1363,7 @@ class LiveV3:
         self.staircase_resolved = {}       # cat -> int
         self.staircase_fills = {}          # cat -> int
         self.staircase_depth_sum = {}      # cat -> float
+        self.staircase_window = {}          # [C-ABORT-REARM] cat -> deque[(fill,depth,event)] sliding last-N
         self.trial_attempts = 0
         self.trial_resolved = 0
         self.trial_fills = 0
@@ -3601,6 +3609,9 @@ class LiveV3:
             self.staircase_fills[_cat] = self.staircase_fills.get(_cat, 0) + 1
             self.staircase_depth_sum[_cat] = self.staircase_depth_sum.get(_cat, 0.0) + depth
         _res = self.staircase_resolved[_cat]; _fil = self.staircase_fills.get(_cat, 0)
+        if self.staircase_abort_rearm:                       # [C-ABORT-REARM Fix A | gated, default-OFF]
+            self._staircase_abort_rearm_eval(_cat, outcome, depth, pos.event_ticker)
+            return
         if self.staircase_aborted.get(_cat, False) or _res < STAIRCASE_MIN_RESOLVED:
             return
         fill_rate = _fil / _res
@@ -3613,6 +3624,37 @@ class LiveV3:
                 "cat": _cat, "resolved": _res, "fill_rate": round(fill_rate, 3),
                 "mean_depth": round(mean_depth, 3), "bar_fillrate": _frbar, "bar_depth": _dbar,
                 "action": "ABORT -- staircase depth+fill below bars; halting new entries (THIS cat only)"})
+
+    def _staircase_abort_rearm_eval(self, cat, outcome, depth, event_ticker):
+        """[C-ABORT-REARM Fix A | gated staircase_abort_rearm, default-OFF] Re-armable, sliding-window
+        replacement for the cumulative PERMANENT abort latch. Called ONLY after the reached-its-match
+        guard already passed (same TERMINAL legs the cumulative path counts), so this touches the latch
+        decision ONLY -- the guard (dbf1809), bid computation, routing, exit, and meter are untouched.
+        Over the last STAIRCASE_ABORT_WINDOW terminal legs, abort iff: window has >= STAIRCASE_MIN_RESOLVED
+        legs AND spans >= STAIRCASE_ABORT_MIN_EVENTS distinct events AND mean(realized depth) < bar AND
+        fill_rate < bar. Recomputed every terminal leg, so staircase_aborted[cat] follows the RECENT
+        window: a stale (thin-morning) sample ages out and the cat RE-ARMS when fills recover, instead of
+        a 10-leg trip disarming the cat for the rest of the day."""
+        dq = self.staircase_window.setdefault(cat, deque(maxlen=STAIRCASE_ABORT_WINDOW))
+        dq.append((1 if outcome == "fill" else 0, depth, event_ticker))
+        n = len(dq)
+        fills = sum(f for f, _d, _e in dq)
+        distinct = len({_e for _f, _d, _e in dq})
+        fill_rate = (fills / n) if n else 0.0
+        mean_depth = (sum(_d for _f, _d, _e in dq if _f) / fills) if fills else 0.0
+        _dbar = STAIRCASE_ABORT_DEPTH.get(cat, STAIRCASE_ABORT_DEPTH["ATP_MAIN"])
+        _frbar = STAIRCASE_ABORT_FILLRATE.get(cat, STAIRCASE_ABORT_FILLRATE["ATP_MAIN"])
+        prev = self.staircase_aborted.get(cat, False)
+        aborted = (n >= STAIRCASE_MIN_RESOLVED and distinct >= STAIRCASE_ABORT_MIN_EVENTS
+                   and mean_depth < _dbar and fill_rate < _frbar)
+        self.staircase_aborted[cat] = aborted
+        if aborted != prev:
+            self._log("staircase_abort_rearm", {
+                "cat": cat, "state": ("ABORT" if aborted else "REARM"), "window_n": n,
+                "distinct_events": distinct, "fill_rate": round(fill_rate, 3),
+                "mean_depth": round(mean_depth, 3), "bar_fillrate": _frbar, "bar_depth": _dbar,
+                "min_events": STAIRCASE_ABORT_MIN_EVENTS, "window": STAIRCASE_ABORT_WINDOW,
+                "action": ("halt NEW entries (re-armable)" if aborted else "re-armed -- recent window recovered")})
 
     def _taker_spread_ok(self, bid, ask):
         """T52: True if (ask-bid) is tight enough to TAKER-cross. A fat spread

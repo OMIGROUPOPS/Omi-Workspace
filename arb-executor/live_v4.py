@@ -1183,6 +1183,7 @@ class LiveV3:
         # resting entry bids via the API, and exit within V4_SHUTDOWN_TIMEOUT_SEC. See run() / _shutdown_drain.
         self.graceful_shutdown = self.config.get("graceful_shutdown", False)
         self.staircase_abort_rearm = self.config.get("staircase_abort_rearm", False)  # [C-ABORT-REARM] Fix A; default OFF = legacy cumulative permanent latch
+        self.fv_anchor_placement = self.config.get("fv_anchor_placement", False)  # [C-FV-ANCHOR Move-2] default OFF = legacy deep-offset/staircase placement
         self._shutdown_requested = False
         # PART-2 completion_reprice (Plex-gated; default OFF = byte-identical pre-Part-2).
         # OFF: no window-open tracking, no table load, no new log events, legacy state-file
@@ -1625,6 +1626,20 @@ class LiveV3:
         if len(prices) < V4_RUNNING_MID_MIN_TRADES:
             return None
         return sum(prices) / float(len(prices))
+
+    def _fv_anchor_price(self, ticker):
+        """[C-FV-ANCHOR Move-2 | gated fv_anchor_placement] FV = the most-recent FRESH non-zero print from
+        the RAW TRADE TAPE (self._trade_prices), NOT book.last_trade_price (the recorder field reads 0/stale
+        -- hit live 2026-06-24). Returns int cents of the latest in-window print (<= V4_LAST_TRADE_MAX_AGE_SEC),
+        or None so the caller falls back to the legacy route. Read-only over the tape; no state mutation."""
+        pdq = self._trade_prices.get(ticker)
+        if not pdq:
+            return None
+        cut = time.time() - V4_LAST_TRADE_MAX_AGE_SEC
+        fresh = [p for (ts, p) in pdq if ts >= cut and p > 0]
+        if not fresh:
+            return None
+        return int(round(fresh[-1]))
 
     def _v4_entry_anchor(self, tk, cat, book, time_to_start):
         """#1 ref-price: resolve the entry REFERENCE price + offset-table row for one leg.
@@ -4995,7 +5010,20 @@ class LiveV3:
                 # ask-1 < best_bid) -- gated out here. _reprice_target untouched (shared w/
                 # completion). Backtest: join beats ask-1 by +2.6..+3.9c/attempt, 16,806 legs.
                 if table_src != "engagement_wave1":
-                    if cat in self._range_final:   # [C-STAIRCASE 4CAT] all 4 cats staircase (was ATP_MAIN-only)
+                    # [C-FV-ANCHOR Move-2 | gated fv_anchor_placement, default-OFF] post AT the trade-tape
+                    # last-traded FV (clamped to ask-1, the never-cross/overpay ceiling) instead of the deep-
+                    # offset graze / staircase deep-cast -- so the bid sits where flow clears and fills in
+                    # premarket. reference_source=join_bid reuses the join repost+fallback machinery (NOT
+                    # staircase-abort-gated; Move-1 abort untouched). No fresh tape print -> fall through to
+                    # the legacy route unchanged (never post worse than legacy on a dead tape). Engagement
+                    # (wave1) is NOT touched -- it already rests at the touch by construction.
+                    _fv = self._fv_anchor_price(tk) if self.fv_anchor_placement else None
+                    if _fv is not None:
+                        target_bid = max(1, min(_fv, placement_ask - 1))
+                        reference_source = "join_bid"
+                        self._log("fv_anchor_place", {"cat": cat, "fv": _fv,
+                            "ask": placement_ask, "target": target_bid}, ticker=tk)
+                    elif cat in self._range_final:   # [C-STAIRCASE 4CAT] all 4 cats staircase (was ATP_MAIN-only)
                         target_bid, _ = self._staircase_bid(cat, cell, current_price, time_to_start, placement_bid, placement_ask)
                         reference_source = "staircase"
                     else:

@@ -1189,6 +1189,7 @@ class LiveV3:
         # OFF: no window-open tracking, no table load, no new log events, legacy state-file
         # shape -- the completion arm of the sibling handler is unreachable.
         self.completion_reprice = self.config.get("completion_reprice", False)
+        self.completion_all_cells = self.config.get("completion_all_cells", False)  # [C-COMPLETE-ALL] default OFF = legacy table-gated completion
         self.completion_cells = {}   # (category, leg1 window-open cell) -> X; absent = never attempt
         self._window_open = {}       # ticker -> {price, cell, ts, ttm_min}; tick-loop set at/after T-240
         _r5 = "off" if not self.round5_enabled else "ON(!)"
@@ -2931,6 +2932,16 @@ class LiveV3:
                 "reason": "leg1_window_open_unset", "leg1_basis": this_basis}, ticker=tk)
             return
         x_cell = self.completion_cells.get((pos.category, wo1["cell"]))
+        if x_cell is None and self.completion_all_cells:
+            # [C-COMPLETE-ALL | gated completion_all_cells, default-OFF] no per-cell X for this
+            # (cat,cell) -> complete the mirror anyway: a large X makes _completion_target bind on
+            # sib_ask-1, so the resting sibling is repriced to ask-1 (maker, never cross) to complete
+            # the pair -- for ALL four categories incl WTA (the table has 0 WTA rows). Requires a real
+            # sibling ask to cap against; without one the reprice cannot be bounded -> fall through to
+            # the legacy no-attempt (never post a naked overpay). Touches ONLY the eligibility gate.
+            _sb = self.books.get(sib)
+            if _sb is not None and 0 < _sb.best_ask < 100:
+                x_cell = 99
         if x_cell is None:
             # absent cell = never attempt (the no-attempt arm of the wave-gate pairing)
             self._log("completion_no_attempt", {"event": et,

@@ -2327,7 +2327,10 @@ class LiveV3:
         """Cancel a resting order. Returns True on success."""
         if not order_id:
             return False
-        path = "/trade-api/v2/portfolio/orders/%s" % order_id
+        # [C-ORDER-V2-CANCEL] Kalshi deprecated DELETE /portfolio/orders/{id} (410
+        # deprecated_v1_order_endpoint) -- same wave as the Jun-19 create 410 (fac74b5).
+        # v2 cancel = /portfolio/events/orders/{id} (verified 404-live, not 410).
+        path = "%s/%s" % (ORDER_CREATE_V2_PATH, order_id)
         ok = await api_delete(self.session, self.ak, self.pk, path, self.rl)
         self._log("order_cancelled", {
             "order_id": order_id, "label": label, "success": ok,

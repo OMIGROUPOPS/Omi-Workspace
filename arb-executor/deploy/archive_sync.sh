@@ -20,12 +20,15 @@ BASE=/root/Omi-Workspace/arb-executor
 LOG="$BASE/logs/archive_sync.log"
 RLOG="$BASE/logs/archive_sync_rclone.log"
 BUCKET=omi-tick-archive
+RETAIN_LOCAL_DAYS=14       # keep this many days of *.csv.gz on local disk; older files
+                          # whose checksum-verified twin is in the bucket get pruned (step e)
 TS() { date -u +%FT%TZ; }
 cd "$BASE" || exit 1
 
-# (a) recurring compression: >3-day-old raw CSVs, lossless, low priority
+# (a) recurring compression: >1-day-old raw CSVs, lossless, low priority
+#     (was +3; tightened to +1 so the rolling raw buffer can't pile up to a disk-full)
 NG=$(nice -n 19 ionice -c3 bash -c \
-  'find analysis/premarket_ticks analysis/trades -name "*.csv" -mtime +3 -print -exec gzip -f {} \;' \
+  'find analysis/premarket_ticks analysis/trades -name "*.csv" -mtime +1 -print -exec gzip -f {} \;' \
   | wc -l)
 
 # creds from .env only; never printed
@@ -64,7 +67,29 @@ sync_one() {  # $1 = local dir, $2 = remote prefix
 sync_one analysis/premarket_ticks ticks
 sync_one analysis/trades trades
 
+# (e) recurring local prune -- the auto-clear that was missing. ONLY runs after a
+#     verified OK sync, and deletes a local *.csv.gz ONLY when rclone confirms a
+#     checksum-matched twin in the bucket (the '= ' lines of 'check --combined').
+#     Mismatch/missing/error files are never touched. --min-age keeps the last
+#     RETAIN_LOCAL_DAYS of files local for fast analysis. Temp list -> /dev/shm (RAM),
+#     so the prune never adds disk pressure even when the volume is tight.
+PRUNED=0
+if [ "$RESULT" = OK ]; then
+    for spec in "premarket_ticks:ticks" "trades:trades"; do
+        dir="analysis/${spec%%:*}"; pfx="${spec##*:}"
+        CMB=$(mktemp -p /dev/shm 2>/dev/null || mktemp)
+        RC check --one-way --checksum --include "*.csv.gz" --min-age "${RETAIN_LOCAL_DAYS}d" \
+            "$dir" "spaces:$BUCKET/$pfx" --combined "$CMB" >> "$RLOG" 2>&1
+        while IFS= read -r line; do
+            case "$line" in
+                "= "*) f="${line#= }"; rm -f "$dir/$f" && PRUNED=$((PRUNED+1)) ;;
+            esac
+        done < "$CMB"
+        rm -f "$CMB"
+    done
+fi
+
 BUCKET_SIZE=$(RC size "spaces:$BUCKET" 2>/dev/null | tr "\n" " ")
 NV=$(find analysis/premarket_ticks analysis/trades -name "*.csv.gz" | wc -l)
-echo "$(TS) gzipped=$NG uploaded=$UPLOADED verified_pool=$NV result=$RESULT bucket: $BUCKET_SIZE" >> "$LOG"
+echo "$(TS) gzipped=$NG uploaded=$UPLOADED pruned=$PRUNED verified_pool=$NV result=$RESULT bucket: $BUCKET_SIZE" >> "$LOG"
 [ "$RESULT" = OK ]

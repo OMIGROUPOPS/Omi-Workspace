@@ -44,5 +44,7 @@
   "event_category_override": {
     "KXITFWMATCH-26JUN26DAEVAS": "WTA_CHALL"
   },
-  "best_bid_aware_repost": true
+  "best_bid_aware_repost": true,
+  "depth_aware_join": true,
+  "depth_aware_floor": 50
 }

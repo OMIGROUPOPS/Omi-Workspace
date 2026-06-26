@@ -1140,6 +1140,9 @@ class LiveV3:
         self.exit_depth_floor = self.config.get("min_depth_for_exit_realization", 250)
         self.categories_enabled = set(self.config.get("categories_enabled",
             ["ATP_MAIN", "WTA_MAIN", "ATP_CHALL", "WTA_CHALL"]))
+        # [C-EVENT-CAT-OVERRIDE] per-event manual category map (gated; default {} = byte-identical).
+        # Enables ONE event (e.g. an ITF match -> WTA_CHALL) WITHOUT enabling its whole series.
+        self.event_category_override = dict(self.config.get("event_category_override", {}))
         # Open the log file BEFORE anything that calls _log() (the table
         # loaders below log their results). _log needs self.log_file.
         LOG_DIR.mkdir(parents=True, exist_ok=True)
@@ -2080,6 +2083,11 @@ class LiveV3:
         return (15, "exit")  # defensive default; logged by caller if hit
 
     def get_category(self, ticker):
+        # [C-EVENT-CAT-OVERRIDE] per-event override wins over the prefix SERIES_MAP, so a single
+        # event maps to an enabled category. Default {} -> this loop is inert (byte-identical).
+        for evt_prefix, cat in self.event_category_override.items():
+            if ticker.startswith(evt_prefix):
+                return cat
         for cat_name, prefixes in SERIES_MAP.items():
             for prefix in prefixes:
                 if ticker.startswith(prefix):

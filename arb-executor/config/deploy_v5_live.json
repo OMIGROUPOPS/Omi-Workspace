@@ -46,5 +46,7 @@
   },
   "best_bid_aware_repost": true,
   "depth_aware_join": true,
-  "depth_aware_floor": 50
+  "depth_aware_floor": 50,
+  "staircase_hold_volatility_trail": true,
+  "staircase_hold_trail_burst": 5
 }

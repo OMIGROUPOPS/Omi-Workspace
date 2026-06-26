@@ -5160,6 +5160,14 @@ class LiveV3:
                         target_bid, _ = (self._depth_join_target(placement_bid, placement_ask, placement_bids, self._depth_floor(cat))
                                          if self.depth_aware_join else self._join_target(placement_bid, placement_ask))
                         reference_source = "join_bid"   # [C-JOIN-THE-BID WALK] fresh join walks from placement
+                elif self.depth_aware_join:
+                    # [C-DEPTH-GOVERNOR] engagement-wave1 placement was the governor's coverage HOLE (OSA
+                    # lone-top 2026-06-26: perched at 77 on 5 shares). Route the at-touch engagement target
+                    # through the SAME depth walk -- sit on a wall (>= floor), roll off a thin lone-top to
+                    # real volume. reference_source stays engagement (only the price is depth-corrected).
+                    # OFF -> this elif is skipped = byte-identical engagement placement. never-cross +
+                    # post_only inherited from _depth_join_target (walks downward only).
+                    target_bid, _ = self._depth_join_target(placement_bid, placement_ask, placement_bids, self._depth_floor(cat))
                 # [C-JOIN-TRIAL] pre-registered abort halts NEW join entries once tripped.
                 if self.join_trial_aborted and reference_source == "join_bid":
                     if self.abort_carve_held_sibling and self._carve_abort_for_held_sibling(tk, et):

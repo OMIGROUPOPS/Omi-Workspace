@@ -40,5 +40,8 @@
   "completion_all_cells": true,
   "fv_anchor_placement": false,
   "abort_carve_held_sibling": true,
-  "staircase_hold_at_bid": true
+  "staircase_hold_at_bid": true,
+  "event_category_override": {
+    "KXITFWMATCH-26JUN26DAEVAS": "WTA_CHALL"
+  }
 }

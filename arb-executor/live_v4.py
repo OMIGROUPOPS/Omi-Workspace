@@ -1193,6 +1193,7 @@ class LiveV3:
         self.graceful_shutdown = self.config.get("graceful_shutdown", False)
         self.staircase_abort_rearm = self.config.get("staircase_abort_rearm", False)  # [C-ABORT-REARM] Fix A; default OFF = legacy cumulative permanent latch
         self.fv_anchor_placement = self.config.get("fv_anchor_placement", False)  # [C-FV-ANCHOR Move-2] default OFF = legacy deep-offset/staircase placement
+        self.staircase_hold_at_bid = self.config.get("staircase_hold_at_bid", False)  # [C1-STAIRCASE-HOLD] default OFF = legacy staircase deep-cast
         self._shutdown_requested = False
         # PART-2 completion_reprice (Plex-gated; default OFF = byte-identical pre-Part-2).
         # OFF: no window-open tracking, no table load, no new log events, legacy state-file
@@ -2965,6 +2966,8 @@ class LiveV3:
         the only book-time inputs are the ask clamp and the cap term)."""
         if self.completion_disabled:
             return  # [C-TRIPWIRE] belt: mechanism dead -> no attempts
+        if sp.reference_source == "staircase_hold":
+            return  # [C1-STAIRCASE-HOLD v1] never pay-up-cancel a held bid; it fills at the bid on its own
         if sp.entry_mode == "completion_reprice":
             return  # already completion-repriced (idempotent across partial leg-1 fills)
         pos = self.positions.get(tk)
@@ -5093,8 +5096,18 @@ class LiveV3:
                         self._log("fv_anchor_place", {"cat": cat, "fv": _fv,
                             "ask": placement_ask, "target": target_bid}, ticker=tk)
                     elif cat in self._range_final:   # [C-STAIRCASE 4CAT] all 4 cats staircase (was ATP_MAIN-only)
-                        target_bid, _ = self._staircase_bid(cat, cell, current_price, time_to_start, placement_bid, placement_ask)
-                        reference_source = "staircase"
+                        if self.staircase_hold_at_bid:
+                            # [C1-STAIRCASE-HOLD] post AT the bid + HOLD (engagement mechanism) vs the deep-cast
+                            # clock-walk. target<=ask-1 -> resting_maker (:5166) -> auto-inherits intended_join
+                            # (marketable-stale exemption). ref=staircase_hold -> walk early-returns (FIFO held,
+                            # no re-quote), STEP-6 excludes it, completion excludes it (no pay-up cancel).
+                            target_bid, _ = self._join_target(placement_bid, placement_ask)
+                            reference_source = "staircase_hold"
+                            self._log("staircase_hold_place", {"cat": cat, "bid": placement_bid,
+                                "target": target_bid}, ticker=tk)
+                        else:
+                            target_bid, _ = self._staircase_bid(cat, cell, current_price, time_to_start, placement_bid, placement_ask)
+                            reference_source = "staircase"
                     else:
                         target_bid, _ = self._join_target(placement_bid, placement_ask)
                         reference_source = "join_bid"   # [C-JOIN-THE-BID WALK] fresh join walks from placement
@@ -5914,7 +5927,7 @@ class LiveV3:
         # Plex ratified: the walk was validated to T-10). Keyed on reference_source ONLY -- join_bid
         # legs (which share entry_mode="resting_maker") still take STEP-6 unchanged. ride-live (5395),
         # tape-cancel (5326), manual (5384), degenerate/marketable cancels all already ran above.
-        if time_to_start <= self.v4_fallback_sec and pos.reference_source != "staircase" and pos.entry_mode not in ("miss_fallback", "fallback_maker", "marketable_clamp"):
+        if time_to_start <= self.v4_fallback_sec and pos.reference_source not in ("staircase", "staircase_hold") and pos.entry_mode not in ("miss_fallback", "fallback_maker", "marketable_clamp"):
             old = await api_get(self.session, self.ak, self.pk,
                 "/trade-api/v2/portfolio/orders/%s" % pos.entry_order_id, self.rl)
             if old:
@@ -6031,6 +6044,11 @@ class LiveV3:
         # width) from the price basis at the last placement. Heuristic --
         # surfaced for operator review.
         if now - pos.last_cancel_repost_ts < 60:
+            return
+        # [C1-STAIRCASE-HOLD] hold-at-bid legs NEVER re-quote -- preserve FIFO queue priority (the
+        # cancellation-dissolution + oscillation fill mechanism). match-live + degenerate cancels above
+        # still govern. Re-join-each-cycle starved the join-trial (23-25%); HOLD does not roll.
+        if pos.reference_source == "staircase_hold":
             return
         offset_at_post = self.entry_table.get((pos.category, pos.regime_at_posting), (0, 0, 0, 0))[1]
         price_basis = pos.target_price + offset_at_post  # current price when last placed

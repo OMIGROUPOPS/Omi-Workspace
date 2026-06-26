@@ -1215,6 +1215,12 @@ class LiveV3:
         # trail (fall through to best-bid-aware + depth governor); < burst -> hold FIFO (queue priority).
         self.staircase_hold_volatility_trail = bool(self.config.get("staircase_hold_volatility_trail", False))
         self.staircase_hold_trail_burst = int(self.config.get("staircase_hold_trail_burst", 5))
+        # [C-PAIR-GOVERNOR] default OFF = byte-identical (no scoot; the leg-1-fill sibling handler runs
+        # the existing completion/T50 arm only). ON: on leg-1 fill, if leg-1 was FIRMING the sibling (the
+        # fader) is scooted DOWN by pair_governor_scoot_cents to catch the predicted fade (DAEVAS 95->94).
+        # Mutually exclusive with completion (opposite direction, same trigger): a scoot returns first.
+        self.pair_governor_scoot = bool(self.config.get("pair_governor_scoot", False))
+        self.pair_governor_scoot_cents = int(self.config.get("pair_governor_scoot_cents", 1))
         self._shutdown_requested = False
         # PART-2 completion_reprice (Plex-gated; default OFF = byte-identical pre-Part-2).
         # OFF: no window-open tracking, no table load, no new log events, legacy state-file
@@ -2930,9 +2936,62 @@ class LiveV3:
                     "event": et, "sibling": sib[-12:], "sibling_bid": sib_bid,
                     "combined": this_basis + sib_bid}, ticker=sib)
             return
+        # [C-PAIR-GOVERNOR] leg-1 fill -> reconsider the sibling. FIRMING leg-1 -> scoot the fader
+        # sibling DOWN to catch the predicted fade (DAEVAS Daems 62 -> Vasilescu 33->32). A scoot
+        # RETURNS, so the reprice-UP completion below never also fires on this fill (opposite
+        # directions, mutually exclusive). Gated; default OFF -> block skipped = byte-identical.
+        if self.pair_governor_scoot and await self._pair_governor_scoot_eval(tk, et, this_basis, sib, sp):
+            return
         if not self.completion_reprice or self.completion_disabled:
             return
         await self._attempt_completion_reprice(tk, et, this_basis, sib, sp)
+
+    async def _pair_governor_scoot_eval(self, tk, et, this_basis, sib, sp):
+        """[C-PAIR-GOVERNOR] leg-1 (tk) just filled; sp is the sibling's resting UNFILLED entry bid
+        (caller already validated entry_resting + entry_qty==0). If leg-1 was FIRMING (its last-traded
+        ROSE since its bid was posted -- caught at a divot in an up-move, the Daems 62 case), the
+        sibling is the FADER -> scoot its resting bid DOWN by pair_governor_scoot_cents to anticipate
+        the fade and catch it cheaper (re-lay: cancel v2 + re-post). Returns True iff it scooted (the
+        caller suppresses completion -> no opposite-direction collision). leg-1 FADING/flat -> False
+        (caller falls through to completion/hold). Lowers the combined (95->94); never-cross + per-leg
+        (>=1) preserved; NO combined cap (the scoot only ever lowers, never blocks a leg). Drift signal
+        is the bot-native last_trade_price_at_post (tape at placement) vs the live book last_trade_price."""
+        leg1 = self.positions.get(tk)
+        if leg1 is None:
+            return False
+        book1 = self.books.get(tk)
+        ref = int(getattr(leg1, "last_trade_price_at_post", 0) or 0)
+        cur = int(book1.last_trade_price) if book1 else 0
+        if not (ref > 0 and cur > 0 and cur > ref):
+            return False   # leg-1 fading/flat -> not the pair-governor case (completion/hold handles it)
+        sib_book = self.books.get(sib)
+        sib_ask = sib_book.best_ask if (sib_book and sib_book.best_ask) else 100
+        new_target = max(1, int(sp.entry_price) - int(self.pair_governor_scoot_cents))
+        if new_target == sp.entry_price or new_target >= sib_ask:
+            return False   # nothing to scoot (floor/0c) / would not be a strict maker below the ask
+        old_bid = sp.entry_price
+        res = await self._cancel_entry_and_resolve(sib, sp, "pair_governor_scoot", "pair_gov_race")
+        if res != "cancelled":
+            return False   # raced fill / unresolved -> do not double-act
+        self.inflight_orders.add(sib)
+        try:
+            oid, _ = await self.place_order(sib, "buy", "yes", new_target, self.entry_size, post_only=True)
+        finally:
+            self.inflight_orders.discard(sib)
+        sp.entry_price = new_target
+        sp.target_price = new_target
+        sp.entry_order_id = oid
+        sp.entry_mode = "resting_maker"
+        sp.intended_join = False   # deliberately below the touch (anticipatory fade-catch)
+        sp.last_cancel_repost_ts = time.time()
+        self._log("pair_governor_scoot", {
+            "event": et, "leg1": tk[-12:], "leg1_ltp_post": ref, "leg1_ltp_now": cur,
+            "sibling": sib[-12:], "old_bid": old_bid, "new_bid": new_target,
+            "scoot_cents": int(self.pair_governor_scoot_cents),
+            "combined_before": int(this_basis) + old_bid,
+            "combined_after": int(this_basis) + new_target}, ticker=sib)
+        self._save_v4_resting()
+        return True
 
     def _completion_target(self, s0, x_cell, sib_ask, leg1_basis):
         """PART-2: s1 = min(s0 + X, sib_ask - 1, 99 - leg1_basis). sib_ask=None (no

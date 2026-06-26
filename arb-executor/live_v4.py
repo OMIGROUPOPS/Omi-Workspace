@@ -1217,6 +1217,14 @@ class LiveV3:
         # Threshold sized offline from would_skip_walled_post filled-vs-starved.
         self.wall_skip_enforce = bool(self.config.get("wall_skip_enforce", False))
         self.wall_skip_contracts = int(self.config.get("wall_skip_contracts", 10000))
+        # [C-BESTBID-FOLLOW] FIX 1, default OFF = byte-identical. ON: on a best-bid-aware repost that
+        # FOLLOWS a small-gap UPWARD strand (best-bid moved over our resting bid by 1..max_gap), join
+        # AT the touch and suppress _depth_join_target -- the depth-governor roll-down re-strands us
+        # 3-6c below a thin moved touch (CREMCD-CRE: 60-touch 25sh<floor -> rolled to 55). Gap-guard
+        # excludes directional run-aways (>max_gap, e.g. best-bid->99). Staircase never reaches this
+        # branch (that is FIX 2). NOT a cadence change. Initial placement keeps the depth-roll.
+        self.bestbid_follow_at_touch = bool(self.config.get("bestbid_follow_at_touch", False))
+        self.bestbid_follow_max_gap = int(self.config.get("bestbid_follow_max_gap", 15))
         # [C-VOL-GATE] default OFF = byte-identical (staircase_hold unconditionally holds FIFO). ON: the
         # staircase_hold trail-vs-hold decision becomes LIVE volatility -- count recent trade prints across
         # the event legs in LIVE_DETECT_WINDOW_SEC (same signal as _is_match_live, lower bar): >= burst ->
@@ -3680,6 +3688,19 @@ class LiveV3:
             if bids.get(pr, 0) >= floor:
                 return max(1, int(pr)), True
         return base, True
+
+    def _bestbid_follow_at_touch_applies(self, book, pos):
+        """[C-BESTBID-FOLLOW] True iff the gate is ON and this repost is a small-gap UPWARD
+        best-bid-aware FOLLOW: best-bid moved over our resting bid (pos.target_price) by
+        1..bestbid_follow_max_gap. When True the caller joins AT the touch (suppress the
+        depth-governor roll-down); else the existing depth-aware target stands. Gap-guard
+        excludes directional run-aways (gap>max_gap) and down-moves (gap<=0). Reads live
+        book.best_bid + the re-stamped pos.target_price (set at every repost, :~6377).
+        Default OFF => always False => byte-identical. Pure/read-only; no state mutated."""
+        if not (self.bestbid_follow_at_touch and self.best_bid_aware_repost):
+            return False
+        gap = int(book.best_bid) - int(pos.target_price)
+        return 0 < gap <= self.bestbid_follow_max_gap
 
     def _staircase_target(self, anchor, offset, best_ask):
         """[C-STAIRCASE SHIP-1] anchor-relative offset>=1 floor for the staircase deep-cast path.
@@ -6303,8 +6324,13 @@ class LiveV3:
                 # [C-JOIN-THE-BID] reprice joins the standing bid (replaces the FIX-6 offset
                 # reference). repost_ref=join_bid -> price_basis uses target_price (no offset
                 # add-back). Engagement reposts keep the offset path above (FIX-6 A3).
-                new_target, _ = (self._depth_join_target(book.best_bid, book.best_ask, book.bids, self._depth_floor(pos.category))
-                                 if self.depth_aware_join else self._join_target(book.best_bid, book.best_ask))
+                if self._bestbid_follow_at_touch_applies(book, pos):
+                    # [C-BESTBID-FOLLOW] small-gap upward follow -> join AT the touch (suppress the
+                    # depth-governor roll-down that re-strands us below a thin moved touch).
+                    new_target, _ = self._join_target(book.best_bid, book.best_ask)
+                else:
+                    new_target, _ = (self._depth_join_target(book.best_bid, book.best_ask, book.bids, self._depth_floor(pos.category))
+                                     if self.depth_aware_join else self._join_target(book.best_bid, book.best_ask))
                 repost_ref = "join_bid"
         # [C-FEEDER FIX-2/3] decision-time capture for the repost keys (the
         # cancel/place awaits below are a book-tick window, same race class as

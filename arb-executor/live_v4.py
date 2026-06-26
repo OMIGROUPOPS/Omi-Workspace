@@ -1202,6 +1202,13 @@ class LiveV3:
         # strands legs when support pulls and the mid barely moves (the 53% offset/engagement starve;
         # caught live on DAEVAS 2026-06-26). Pairs with the engagement re-join in the exec block below.
         self.best_bid_aware_repost = bool(self.config.get("best_bid_aware_repost", False))
+        # [C-DEPTH-GOVERNOR] default OFF = byte-identical (plain _join_target at best-bid). ON: placement
+        # + best-bid-aware repost sit on the best-bid only if it is a real wall (size >= floor); else roll
+        # DOWN to the highest depth-supported level (stop perching on a thin lone-top that hands sellers a
+        # cheap exit). floor = SHARES (per-cat override -> global default); NOT reliable_depth (cents-to-fill).
+        self.depth_aware_join = bool(self.config.get("depth_aware_join", False))
+        self.depth_aware_floor = int(self.config.get("depth_aware_floor", 50))
+        self.depth_aware_floor_by_cat = dict(self.config.get("depth_aware_floor_by_cat", {}))
         self._shutdown_requested = False
         # PART-2 completion_reprice (Plex-gated; default OFF = byte-identical pre-Part-2).
         # OFF: no window-open tracking, no table load, no new log events, legacy state-file
@@ -3560,6 +3567,25 @@ class LiveV3:
         +2.6..+3.9c/attempt; bilateral doubles EV & cuts variance; deeper/FV-conditioned casts dead."""
         return max(1, min(int(best_bid), int(best_ask) - 1)), True
 
+    def _depth_floor(self, cat):
+        """[C-DEPTH-GOVERNOR] per-cat resting-size floor in SHARES (a real wall vs a thin top).
+        Per-cat override dict -> global default. NOT deploy_entry_depth.reliable_depth (cents-to-fill)."""
+        return int(self.depth_aware_floor_by_cat.get(cat, self.depth_aware_floor))
+
+    def _depth_join_target(self, best_bid, best_ask, bids, floor):
+        """[C-DEPTH-GOVERNOR] depth-aware join. base = the never-cross join level
+        max(1, min(best_bid, best_ask-1)). If the best-bid level is a real wall (size >= floor) sit there
+        (byte-identical to _join_target). Else walk DOWN and rest at the highest level whose size >= floor
+        (roll to the real volume). No depth-supported level -> fall back to base (never strand into the void).
+        Walks only downward -> never crosses; post_only ALWAYS True. bids = {price_c: size}. Pure/testable."""
+        base = max(1, min(int(best_bid), int(best_ask) - 1))
+        if not self.depth_aware_join or not bids:
+            return base, True
+        for pr in sorted((pp for pp in bids if pp <= base), reverse=True):
+            if bids.get(pr, 0) >= floor:
+                return max(1, int(pr)), True
+        return base, True
+
     def _staircase_target(self, anchor, offset, best_ask):
         """[C-STAIRCASE SHIP-1] anchor-relative offset>=1 floor for the staircase deep-cast path.
         Reproduces abort_validation.py:58 (D = max(1, ...)): the posted bid is anchor - D with
@@ -5070,6 +5096,8 @@ class LiveV3:
                 # intended_join=False. (Also kills the PLIVEK-class log
                 # incoherence: current_ask 78 vs book_ask 46 in one event.)
                 placement_bid, placement_ask = book.best_bid, book.best_ask
+                # [C-DEPTH-GOVERNOR] decision-time ladder snapshot (FIX-2/3: never re-read post-await)
+                placement_bids = dict(book.bids) if self.depth_aware_join else None
                 current_ask = placement_ask
                 # [C-FEEDER FIX-6] late-runway boundary + reference switch
                 # (RADRAK frame 2026-06-12: window opened T-56, the 180-min
@@ -5114,7 +5142,8 @@ class LiveV3:
                             # clock-walk. target<=ask-1 -> resting_maker (:5166) -> auto-inherits intended_join
                             # (marketable-stale exemption). ref=staircase_hold -> walk early-returns (FIFO held,
                             # no re-quote), STEP-6 excludes it, completion excludes it (no pay-up cancel).
-                            target_bid, _ = self._join_target(placement_bid, placement_ask)
+                            target_bid, _ = (self._depth_join_target(placement_bid, placement_ask, placement_bids, self._depth_floor(cat))
+                                             if self.depth_aware_join else self._join_target(placement_bid, placement_ask))
                             reference_source = "staircase_hold"
                             self._log("staircase_hold_place", {"cat": cat, "bid": placement_bid,
                                 "target": target_bid}, ticker=tk)
@@ -5122,7 +5151,8 @@ class LiveV3:
                             target_bid, _ = self._staircase_bid(cat, cell, current_price, time_to_start, placement_bid, placement_ask)
                             reference_source = "staircase"
                     else:
-                        target_bid, _ = self._join_target(placement_bid, placement_ask)
+                        target_bid, _ = (self._depth_join_target(placement_bid, placement_ask, placement_bids, self._depth_floor(cat))
+                                         if self.depth_aware_join else self._join_target(placement_bid, placement_ask))
                         reference_source = "join_bid"   # [C-JOIN-THE-BID WALK] fresh join walks from placement
                 # [C-JOIN-TRIAL] pre-registered abort halts NEW join entries once tripped.
                 if self.join_trial_aborted and reference_source == "join_bid":
@@ -6145,7 +6175,8 @@ class LiveV3:
                 # [C-JOIN-THE-BID] reprice joins the standing bid (replaces the FIX-6 offset
                 # reference). repost_ref=join_bid -> price_basis uses target_price (no offset
                 # add-back). Engagement reposts keep the offset path above (FIX-6 A3).
-                new_target, _ = self._join_target(book.best_bid, book.best_ask)
+                new_target, _ = (self._depth_join_target(book.best_bid, book.best_ask, book.bids, self._depth_floor(pos.category))
+                                 if self.depth_aware_join else self._join_target(book.best_bid, book.best_ask))
                 repost_ref = "join_bid"
         # [C-FEEDER FIX-2/3] decision-time capture for the repost keys (the
         # cancel/place awaits below are a book-tick window, same race class as

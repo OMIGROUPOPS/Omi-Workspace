@@ -9,7 +9,7 @@ chk("T1 flag default OFF", 'self.staircase_hold_at_bid = self.config.get("stairc
 chk("T2 ON -> _join_target + ref=staircase_hold",
     re.search(r'if self\.staircase_hold_at_bid:.*?self\._join_target\(placement_bid, placement_ask\).*?reference_source = "staircase_hold"', src, re.S) is not None)
 # T3: walk early-return (HOLD, no re-quote, FIFO)
-chk("T3 walk hold early-return (no re-quote)", 'if pos.reference_source == "staircase_hold":\n            return' in src)
+chk("T3 walk hold early-return when vol-trail OFF (C1 hold preserved)", 'if pos.reference_source == "staircase_hold":\n            if not self.staircase_hold_volatility_trail:\n                return' in src)
 # T4: completion excludes staircase_hold (no pay-up cancel)
 chk("T4 completion excludes staircase_hold", 'if sp.reference_source == "staircase_hold":\n            return' in src)
 # T5: STEP-6 excludes staircase_hold (owns its window)

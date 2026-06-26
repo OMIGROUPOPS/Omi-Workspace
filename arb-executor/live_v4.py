@@ -1209,6 +1209,12 @@ class LiveV3:
         self.depth_aware_join = bool(self.config.get("depth_aware_join", False))
         self.depth_aware_floor = int(self.config.get("depth_aware_floor", 50))
         self.depth_aware_floor_by_cat = dict(self.config.get("depth_aware_floor_by_cat", {}))
+        # [C-VOL-GATE] default OFF = byte-identical (staircase_hold unconditionally holds FIFO). ON: the
+        # staircase_hold trail-vs-hold decision becomes LIVE volatility -- count recent trade prints across
+        # the event legs in LIVE_DETECT_WINDOW_SEC (same signal as _is_match_live, lower bar): >= burst ->
+        # trail (fall through to best-bid-aware + depth governor); < burst -> hold FIFO (queue priority).
+        self.staircase_hold_volatility_trail = bool(self.config.get("staircase_hold_volatility_trail", False))
+        self.staircase_hold_trail_burst = int(self.config.get("staircase_hold_trail_burst", 5))
         self._shutdown_requested = False
         # PART-2 completion_reprice (Plex-gated; default OFF = byte-identical pre-Part-2).
         # OFF: no window-open tracking, no table load, no new log events, legacy state-file
@@ -6092,7 +6098,19 @@ class LiveV3:
         # cancellation-dissolution + oscillation fill mechanism). match-live + degenerate cancels above
         # still govern. Re-join-each-cycle starved the join-trial (23-25%); HOLD does not roll.
         if pos.reference_source == "staircase_hold":
-            return
+            if not self.staircase_hold_volatility_trail:
+                return   # [C1] default: unconditional hold FIFO (byte-identical)
+            # [C-VOL-GATE] trail-vs-hold by LIVE volatility. Count recent trade prints across the event
+            # legs in the rolling window (the _is_match_live signal, lower bar -- trail on premarket
+            # activity well before the live-detect burst). VOLATILE (>= burst) -> fall through to the
+            # best-bid-aware repost + depth governor (catch the moving/oscillating discount the Nedic
+            # 43-after-45 hold sat on). QUIET (< burst) -> hold FIFO (queue priority where it matters).
+            _vcut = now - LIVE_DETECT_WINDOW_SEC
+            _vrecent = sum(1 for _vtk in self.event_tickers.get(pos.event_ticker, ())
+                           for _vt in (self._trade_times.get(_vtk) or ()) if _vt >= _vcut)
+            if _vrecent < self.staircase_hold_trail_burst:
+                return   # QUIET -> hold FIFO
+            # VOLATILE -> do NOT early-return; fall through to trail (best_bid_aware elif + _depth_join_target)
         offset_at_post = self.entry_table.get((pos.category, pos.regime_at_posting), (0, 0, 0, 0))[1]
         price_basis = pos.target_price + offset_at_post  # current price when last placed
         # [C-FEEDER FIX-6] a join_late_runway bid sat AT the reference -- no

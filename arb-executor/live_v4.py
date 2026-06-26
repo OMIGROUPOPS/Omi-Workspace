@@ -1194,6 +1194,11 @@ class LiveV3:
         self.staircase_abort_rearm = self.config.get("staircase_abort_rearm", False)  # [C-ABORT-REARM] Fix A; default OFF = legacy cumulative permanent latch
         self.fv_anchor_placement = self.config.get("fv_anchor_placement", False)  # [C-FV-ANCHOR Move-2] default OFF = legacy deep-offset/staircase placement
         self.staircase_hold_at_bid = self.config.get("staircase_hold_at_bid", False)  # [C1-STAIRCASE-HOLD] default OFF = legacy staircase deep-cast
+        # [C-BESTBID-REPOST] default OFF = legacy mid+5c deadband. ON: the offset/engagement repost
+        # keys on BEST-BID MISMATCH (re-join the supported touch) instead of the mid deadband that
+        # strands legs when support pulls and the mid barely moves (the 53% offset/engagement starve;
+        # caught live on DAEVAS 2026-06-26). Pairs with the engagement re-join in the exec block below.
+        self.best_bid_aware_repost = bool(self.config.get("best_bid_aware_repost", False))
         self._shutdown_requested = False
         # PART-2 completion_reprice (Plex-gated; default OFF = byte-identical pre-Part-2).
         # OFF: no window-open tracking, no table load, no new log events, legacy state-file
@@ -6082,6 +6087,15 @@ class LiveV3:
             # ticks away-and-back to the same level no longer double-reposts. FIX-2/3 discipline.
             if max(1, min(book.best_bid, book.best_ask - 1)) == pos.walk_ref:
                 return
+        elif self.best_bid_aware_repost:
+            # [C-BESTBID-REPOST] key the offset/engagement repost on BEST-BID MISMATCH (mirror the
+            # join_bid branch above): HOLD iff our resting bid IS the supported touch; else (stranded
+            # high OR low -- support pulled / bid recovered, mid barely moved) fall through to the
+            # cancel+re-join below. Replaces the mid+5c deadband that swallowed the bid-recovery
+            # strand. resting-ref = pos.target_price (the actual last-posted bid, re-stamped at every
+            # placement/repost -- authoritative vs walk_ref, which is stamped only on join_bid reposts).
+            if max(1, min(book.best_bid, book.best_ask - 1)) == pos.target_price:
+                return
         elif abs(current_price - price_basis) <= V4_REPRICE_MOVE_CENTS:
             return
 
@@ -6115,7 +6129,11 @@ class LiveV3:
             repost_runway = self._runway_status(row_pm, time_to_start,
                                                 late_tag="late_remap")
             repost_ref = ""
-            if pos.play_type != "v4_engagement_join":
+            # [C-BESTBID-REPOST] OFF -> `or False` = byte-identical (engagement keeps the offset path,
+            # FIX-6 A3). ON -> engagement legs ALSO re-join the touch: the trigger above fires them on
+            # best-bid mismatch, and without this they would re-post at the offset and re-strand below
+            # best-bid (FIX-6 A3's engagement-keeps-offset is exactly what left DAEVAS stranded).
+            if pos.play_type != "v4_engagement_join" or self.best_bid_aware_repost:
                 # [C-JOIN-THE-BID] reprice joins the standing bid (replaces the FIX-6 offset
                 # reference). repost_ref=join_bid -> price_basis uses target_price (no offset
                 # add-back). Engagement reposts keep the offset path above (FIX-6 A3).

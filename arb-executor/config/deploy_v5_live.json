@@ -39,5 +39,6 @@
   "staircase_abort_rearm": true,
   "completion_all_cells": true,
   "fv_anchor_placement": false,
-  "abort_carve_held_sibling": true
+  "abort_carve_held_sibling": true,
+  "staircase_hold_at_bid": true
 }

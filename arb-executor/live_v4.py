@@ -1209,6 +1209,14 @@ class LiveV3:
         self.depth_aware_join = bool(self.config.get("depth_aware_join", False))
         self.depth_aware_floor = int(self.config.get("depth_aware_floor", 50))
         self.depth_aware_floor_by_cat = dict(self.config.get("depth_aware_floor_by_cat", {}))
+        # [C-WALL-SKIP] default OFF = byte-identical (gate never evaluated; observe-only
+        # would_skip_walled_post still fires unchanged). ON: PAIR-AWARE market selection -- at the
+        # per-event router, BEFORE either leg posts, if EITHER leg's top-of-book bid queue is deeper
+        # than wall_skip_contracts, skip the WHOLE event (both legs). Evaluated once per event so it
+        # can never post one leg and skip its sibling (the naked single it exists to prevent).
+        # Threshold sized offline from would_skip_walled_post filled-vs-starved.
+        self.wall_skip_enforce = bool(self.config.get("wall_skip_enforce", False))
+        self.wall_skip_contracts = int(self.config.get("wall_skip_contracts", 10000))
         # [C-VOL-GATE] default OFF = byte-identical (staircase_hold unconditionally holds FIFO). ON: the
         # staircase_hold trail-vs-hold decision becomes LIVE volatility -- count recent trade prints across
         # the event legs in LIVE_DETECT_WINDOW_SEC (same signal as _is_match_live, lower bar): >= burst ->
@@ -2313,6 +2321,28 @@ class LiveV3:
             "spread": spread, "jump_available": (spread >= 2),
             "play_type": (pos.play_type if pos else ""),
             "cell": (pos.cell_name if pos else "")}, ticker=ticker)
+
+    def _wall_skip_pair(self, et, tickers):
+        """[C-WALL-SKIP] Pair-aware market-selection check. Returns
+        (skip: bool, max_bid_queue: int, worst_ticker: str). skip=True when EITHER leg of the
+        event has a top-of-book BID queue deeper than wall_skip_contracts -- at least one side
+        cannot realistically fill at the touch, so the pair cannot complete cleanly and entering
+        it manufactures a naked single. Evaluated once per event at the router BEFORE any leg
+        posts => the skip is JOINT by construction: both legs are dropped together, never
+        one-and-not-the-other. Pure/read-only; no state mutated. The caller guards on
+        wall_skip_enforce so this is never reached when the gate is OFF (byte-identical)."""
+        bar = self.wall_skip_contracts
+        worst = 0
+        worst_tk = ""
+        for tk in tickers:
+            bk = self.books.get(tk)
+            if not bk or bk.best_bid <= 0:
+                continue
+            q = bk.bids.get(bk.best_bid, 0)
+            if q > worst:
+                worst = q
+                worst_tk = tk
+        return (worst > bar, worst, worst_tk)
 
     async def place_order(self, ticker, action, side, price, count, post_only=True):
         """Place a real order on Kalshi. Returns (order_id, response_dict) or ("", error_dict)."""
@@ -4993,6 +5023,19 @@ class LiveV3:
                     "time_to_start_sec": round(time_to_start),
                     "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET")})
                 return
+
+            # [C-WALL-SKIP] pair-aware market-selection gate. Default OFF => not evaluated
+            # => byte-identical. ON: if EITHER leg is behind a bid wall > wall_skip_contracts,
+            # drop the WHOLE event here (before any leg posts) so we never make a naked single.
+            # No processed_events mark: re-evaluated each tick, so the event enters normally if
+            # the wall clears later.
+            if self.wall_skip_enforce:
+                _ws_skip, _ws_q, _ws_tk = self._wall_skip_pair(et, tickers)
+                if _ws_skip:
+                    self._log("wall_skip_pair", {"event": et, "max_bid_queue": _ws_q,
+                        "queue_ticker": _ws_tk, "bar": self.wall_skip_contracts,
+                        "legs": len(tickers)}, ticker=_ws_tk)
+                    return
 
             # v4: coarse event-level gate only. The fine-grained per-leg
             # placement timing (post at T-placement_minute for that leg's

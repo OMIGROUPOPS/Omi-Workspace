@@ -2156,8 +2156,8 @@ class LiveV3:
     def _itf_recent_volume_ok(self, et, now):
         """[C-ITF-BORROW] ITF liquidity floor: True iff >= itf_min_recent_vol_usd traded across
         BOTH legs within the last itf_recent_vol_window_min minutes -- RECENT in-window flow, not
-        cumulative (high-lifetime-but-dead-in-window ITF rejected). Reads volume_tracker.trades
-        in-window not cumulative. Reads self._trade_notional (live, populated in apply_trade when
+        cumulative (high-lifetime-but-dead-in-window ITF rejected). Reads self._trade_notional (live,
+        populated in apply_trade when
         itf_entry_borrow ON; entries are (ts, price*count)). Only consulted for ITF; pure/read-only."""
         since = now - self.itf_recent_vol_window_min * 60.0
         usd = 0.0

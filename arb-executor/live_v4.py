@@ -1399,6 +1399,7 @@ class LiveV3:
         # T58 running-mid anchor: per-ticker rolling (ts, last-traded price) over
         # a 30-min window. Separate from _trade_times (which retains only 600s).
         self._trade_prices: Dict[str, deque] = defaultdict(deque)
+        self._trade_notional: Dict[str, deque] = defaultdict(deque)   # [C-ITF-BORROW] (ts, price*count); ITF recent-$ floor; filled only when itf_entry_borrow ON
 
         # Persistent processed-tickers set (survives restarts)
         STATE_DIR.mkdir(parents=True, exist_ok=True)
@@ -2156,16 +2157,17 @@ class LiveV3:
         """[C-ITF-BORROW] ITF liquidity floor: True iff >= itf_min_recent_vol_usd traded across
         BOTH legs within the last itf_recent_vol_window_min minutes -- RECENT in-window flow, not
         cumulative (high-lifetime-but-dead-in-window ITF rejected). Reads volume_tracker.trades
-        (qty=contracts, price=cents). Only consulted for ITF under the gate; pure/read-only."""
+        in-window not cumulative. Reads self._trade_notional (live, populated in apply_trade when
+        itf_entry_borrow ON; entries are (ts, price*count)). Only consulted for ITF; pure/read-only."""
         since = now - self.itf_recent_vol_window_min * 60.0
         usd = 0.0
         for tk in self.event_tickers.get(et, ()):
-            dq = self.volume_tracker.trades.get(tk)
+            dq = self._trade_notional.get(tk)
             if not dq:
                 continue
-            for ts, price, qty, side in dq:
+            for ts, notional in dq:
                 if ts >= since:
-                    usd += price * qty / 100.0
+                    usd += notional / 100.0
         return usd >= self.itf_min_recent_vol_usd
 
     def cell_lookup(self, category, current_kalshi_price_cents):
@@ -2304,6 +2306,13 @@ class LiveV3:
         pcut = book.last_trade_ts - V4_RUNNING_MID_WINDOW_SEC
         while pdq and pdq[0][0] < pcut:
             pdq.popleft()
+        # [C-ITF-BORROW] recent-$ buffer for the ITF liquidity floor (gated -> OFF byte-identical).
+        if self.itf_entry_borrow:
+            ndq = self._trade_notional[ticker]
+            ndq.append((book.last_trade_ts, price * count))
+            ncut = book.last_trade_ts - self.itf_recent_vol_window_min * 60.0
+            while ndq and ndq[0][0] < ncut:
+                ndq.popleft()
         # PART-2: a fresh print inside the T-240 window may be the leg's first
         # time-t-available window-open reference (flag-gated no-op when off).
         self._maybe_set_window_open(ticker, book.last_trade_ts)

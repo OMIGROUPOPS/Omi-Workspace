@@ -53,7 +53,7 @@
   "pair_governor_scoot_cents": 1,
   "bestbid_follow_at_touch": true,
   "bestbid_follow_max_gap": 15,
-  "itf_entry_borrow": true,
+  "itf_entry_borrow": false,
   "itf_min_recent_vol_usd": 500,
   "itf_recent_vol_window_min": 90
 }

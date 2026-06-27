@@ -1140,6 +1140,15 @@ class LiveV3:
         self.exit_depth_floor = self.config.get("min_depth_for_exit_realization", 250)
         self.categories_enabled = set(self.config.get("categories_enabled",
             ["ATP_MAIN", "WTA_MAIN", "ATP_CHALL", "WTA_CHALL"]))
+        # [C-ITF-BORROW] gated, default OFF = byte-identical (categories_enabled stays the 4 cats,
+        # ITF skips as today). ON: ITF is mechanically a challenger (same 14400 window, structure,
+        # exits); enable ITF_M/ITF_W and route ENTRY/REPOST lookups to the challenger equivalent
+        # via _entry_cat (mirror of ITF_EXIT_BORROW). Liquidity floor gates to RECENT in-window flow.
+        self.itf_entry_borrow = bool(self.config.get("itf_entry_borrow", False))
+        self.itf_min_recent_vol_usd = float(self.config.get("itf_min_recent_vol_usd", 500.0))
+        self.itf_recent_vol_window_min = int(self.config.get("itf_recent_vol_window_min", 90))
+        if self.itf_entry_borrow:
+            self.categories_enabled |= set(ITF_VISIBILITY_CATS)
         # [C-EVENT-CAT-OVERRIDE] per-event manual category map (gated; default {} = byte-identical).
         # Enables ONE event (e.g. an ITF match -> WTA_CHALL) WITHOUT enabling its whole series.
         self.event_category_override = dict(self.config.get("event_category_override", {}))
@@ -1758,15 +1767,15 @@ class LiveV3:
             else:
                 # no fresh print -> skip (no BBO-mid fallback by design). Caller logs skip_no_trade.
                 return None
-        cell = self.cell_lookup(cat, anchor_price)
-        regime = self.regime_lookup(cat, anchor_price)
+        cell = self.cell_lookup(self._entry_cat(cat), anchor_price)
+        regime = self.regime_lookup(self._entry_cat(cat), anchor_price)
         row, table_src = None, None
         if self.entry_table_cell:
-            row = self.entry_table_cell.get((cat, cell))
+            row = self.entry_table_cell.get((self._entry_cat(cat), cell))
             if row is not None:
                 table_src = "per_cell"
         if row is None:
-            row = self.entry_table.get((cat, regime))
+            row = self.entry_table.get((self._entry_cat(cat), regime))
             if row is not None:
                 table_src = "regime"
         if row is None:
@@ -2133,6 +2142,31 @@ class LiveV3:
                 if ticker.startswith(prefix):
                     return cat_name
         return None
+
+    def _entry_cat(self, cat):
+        """[C-ITF-BORROW] ENTRY/REPOST name map: ITF_M->ATP_CHALL, ITF_W->WTA_CHALL (mirror of
+        ITF_EXIT_BORROW). Gated: OFF -> native (ITF has no entry table -> skips as today) =>
+        byte-identical. ON -> ITF resolves cell/regime/table/staircase exactly like its challenger
+        equivalent. Name map only; position keeps native ITF category for ledger/attribution."""
+        if self.itf_entry_borrow:
+            return ITF_EXIT_BORROW.get(cat, cat)
+        return cat
+
+    def _itf_recent_volume_ok(self, et, now):
+        """[C-ITF-BORROW] ITF liquidity floor: True iff >= itf_min_recent_vol_usd traded across
+        BOTH legs within the last itf_recent_vol_window_min minutes -- RECENT in-window flow, not
+        cumulative (high-lifetime-but-dead-in-window ITF rejected). Reads volume_tracker.trades
+        (qty=contracts, price=cents). Only consulted for ITF under the gate; pure/read-only."""
+        since = now - self.itf_recent_vol_window_min * 60.0
+        usd = 0.0
+        for tk in self.event_tickers.get(et, ()):
+            dq = self.volume_tracker.trades.get(tk)
+            if not dq:
+                continue
+            for ts, price, qty, side in dq:
+                if ts >= since:
+                    usd += price * qty / 100.0
+        return usd >= self.itf_min_recent_vol_usd
 
     def cell_lookup(self, category, current_kalshi_price_cents):
         """v4 direction-free 1c cell classification from the current Kalshi
@@ -5159,6 +5193,12 @@ class LiveV3:
                 # ===== v4 bid-laying placement (STEP 4) =====
                 if cat not in self.categories_enabled:
                     continue
+                # [C-ITF-BORROW] ITF liquidity floor: recent in-window flow (not cumulative).
+                # OFF or non-ITF -> short-circuits -> byte-identical.
+                if self.itf_entry_borrow and cat in ITF_VISIBILITY_CATS and not self._itf_recent_volume_ok(et, now):
+                    self._log("skipped", {"reason": "itf_recent_volume_floor", "event": et, "cat": cat,
+                        "window_min": self.itf_recent_vol_window_min, "floor_usd": self.itf_min_recent_vol_usd}, ticker=tk)
+                    continue
 
                 # #1 ref-price: resolve the entry REFERENCE (last-traded; rollback running-mid)
                 # and the per-cell offset row (regime fallback). v4 cell = the ref price's 1c cell.
@@ -5186,10 +5226,10 @@ class LiveV3:
                             # on the WALKING staircase (deep cast, fixed-anchor climb), not the static engagement
                             # clamp -- the OVERPAY fix (GUNMAK +30 class). Real engagement cells (in
                             # engagement_cells for their bucket/regime) STAY on engagement, untouched.
-                            _ej_reg = self.regime_lookup(cat, _ej)
+                            _ej_reg = self.regime_lookup(self._entry_cat(cat), _ej)
                             _ej_bkt = self._engagement_bucket(time_to_start)
-                            _real_eng = (cat, _ej_bkt, _ej_reg) in self.engagement_cells
-                            _stair_ok = (cat in self._range_final) and (int(_ej) in self._range_final[cat])
+                            _real_eng = (self._entry_cat(cat), _ej_bkt, _ej_reg) in self.engagement_cells
+                            _stair_ok = (self._entry_cat(cat) in self._range_final) and (int(_ej) in self._range_final[self._entry_cat(cat)])
                             if _stair_ok and not _real_eng:
                                 # table_src != engagement_wave1 -> the ~4932 block assigns this as a staircase;
                                 # offset 0 -> _fix6_reference returns target unchanged, staircase override is clean.
@@ -6242,7 +6282,7 @@ class LiveV3:
             if _vrecent < self.staircase_hold_trail_burst:
                 return   # QUIET -> hold FIFO
             # VOLATILE -> do NOT early-return; fall through to trail (best_bid_aware elif + _depth_join_target)
-        offset_at_post = self.entry_table.get((pos.category, pos.regime_at_posting), (0, 0, 0, 0))[1]
+        offset_at_post = self.entry_table.get((self._entry_cat(pos.category), pos.regime_at_posting), (0, 0, 0, 0))[1]
         price_basis = pos.target_price + offset_at_post  # current price when last placed
         # [C-FEEDER FIX-6] a join_late_runway bid sat AT the reference -- no
         # offset to add back when reconstructing the placement basis
@@ -6303,8 +6343,8 @@ class LiveV3:
         if pos.reference_source == "staircase":
             new_target = _sc_target; repost_ref = "staircase"   # [C-STAIRCASE SHIP-2] fixed-anchor target; skip regime/join recompute
         else:
-            new_regime = self.regime_lookup(pos.category, current_price)
-            row = self.entry_table.get((pos.category, new_regime))
+            new_regime = self.regime_lookup(self._entry_cat(pos.category), current_price)
+            row = self.entry_table.get((self._entry_cat(pos.category), new_regime))
             if row is None:
                 return
             row_pm, new_offset, _, _ = row

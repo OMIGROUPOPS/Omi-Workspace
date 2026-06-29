@@ -1251,6 +1251,14 @@ class LiveV3:
         # net, NOT a fill mechanism: 5min fixed -- the real fix is the upstream fill (P0/P1).
         self.match_live_grace_kill = bool(self.config.get("match_live_grace_kill", False))
         self.match_live_grace_sec = int(self.config.get("match_live_grace_sec", 300))
+        # [C-SUSTAINED-FLOW] default OFF = byte-identical. ON: the match_live CANCEL latch (the real
+        # gun) is tape-anchored -- _sustained_flow_live requires sustained_flow_K consecutive 60s
+        # windows EACH with >= LIVE_TRADE_BURST prints (a real start sustains >=12min; a premarket
+        # false burst is transient <=2min). Volume-only (no price-move, no scheduled clock) so a FLAT
+        # real match latches. CANCEL-LATCH ONLY: _is_match_live and the scheduled-start window-open
+        # (event_start_time) are untouched. OFF -> the cancel uses _is_match_live (burst+clock).
+        self.sustained_flow_latch = bool(self.config.get("sustained_flow_latch", False))
+        self.sustained_flow_K = int(self.config.get("sustained_flow_K", 3))
         # [C-VOL-GATE] default OFF = byte-identical (staircase_hold unconditionally holds FIFO). ON: the
         # staircase_hold trail-vs-hold decision becomes LIVE volatility -- count recent trade prints across
         # the event legs in LIVE_DETECT_WINDOW_SEC (same signal as _is_match_live, lower bar): >= burst ->
@@ -2943,6 +2951,35 @@ class LiveV3:
         if (now - pos.match_live_latch_ts) < self.match_live_grace_sec:
             return "hold"
         return "cancel"                              # grace elapsed -> kill
+
+    def _sustained_flow_live(self, et):
+        """[C-SUSTAINED-FLOW] Tape-anchored real-gun detector for the match_live CANCEL only.
+        True iff the last sustained_flow_K consecutive 60s windows (ending ~now) EACH have
+        >= LIVE_TRADE_BURST trade prints across the event's legs. A real start prints continuously
+        (>=12 consecutive windows on the authoritative tape -- CAZWAL/VEDMIC/HOEWAZ); a premarket
+        false burst is transient (<=2 windows) and never reaches K. Volume-only -- no price-move,
+        no scheduled clock -- so a FLAT real match (continuous prints, flat price) latches where the
+        E113 move-gate would miss it. STATELESS: a quiet gap naturally returns False (inherent
+        counter-evidence; no sticky latch to clear, no tts). Reads _trade_times (live per-ticker
+        trade-timestamp deque, retains 600s >> K*60) + event_tickers -- both on LiveV3. Pure read.
+        CANCEL-LATCH ONLY -- does NOT touch _is_match_live or event_start_time. Flat-AND-thin
+        (<LIVE_TRADE_BURST prints/min) never latches here and falls to the scheduled-time buffer
+        cancel (time_to_start<=0) -- not unprotected; sub-threshold deferred."""
+        now = time.time()
+        legs = self.event_tickers.get(et, ())
+        if not legs:
+            return False
+        for w in range(int(self.sustained_flow_K)):
+            hi = now - w * 60.0
+            lo = hi - 60.0
+            c = 0
+            for tk in legs:
+                dq = self._trade_times.get(tk)
+                if dq:
+                    c += sum(1 for t in dq if lo <= t < hi)
+            if c < LIVE_TRADE_BURST:
+                return False
+        return True
 
     def _paired_basis_ok(self, tk, et, this_price):
         """T50 paired-basis guard. Returns False if entering `tk` at this_price
@@ -6117,7 +6154,12 @@ class LiveV3:
         # sweep -- it now SOLELY gates the T-15 wall-clock buffer exemption
         # (check_fills, ENTRY_BUFFER_SEC). [C-P0-RACE site 2] a raced fill that
         # filled pre-live is booked by _cancel_entry_and_resolve, not deleted.
-        _live = self._is_match_live(pos.event_ticker)
+        # [C-SUSTAINED-FLOW] CANCEL-LATCH ONLY: ON -> tape-anchored real gun (sustained flow);
+        # OFF -> _is_match_live (burst+clock) = byte-identical. _is_match_live's other consumers
+        # (placement 5175/5499, ride 6172/6195, staircase 3897, start-rewrite 3309) and the
+        # scheduled-start window-open (event_start_time) are untouched.
+        _live = (self._sustained_flow_live(pos.event_ticker) if self.sustained_flow_latch
+                 else self._is_match_live(pos.event_ticker))
         _gk = self._grace_kill_action(pos, _live, now)
         if _gk == "reset":          # [C-GRACE-KILL] latch cleared (false/transient) -> never cancels. OFF: inert (ts always 0).
             pos.match_live_latch_ts = 0.0

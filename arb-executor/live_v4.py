@@ -444,6 +444,7 @@ class Position:
     anchor_source: str = "fv_consensus"
     routed_cell: str = ""
     last_cancel_repost_ts: float = 0.0
+    match_live_latch_ts: float = 0.0   # [C-GRACE-KILL] ts the match-live latch first fired on this resting bid; 0.0 = not latched. Transient (not persisted -> conservative re-arm on restart).
 
     # State
     phase: str = "entry_pending"
@@ -1241,6 +1242,15 @@ class LiveV3:
         # guard: gap = best_bid - target_price > max_gap => the leg genuinely moved (keep the depth
         # path, do not chase). REPOST ONLY -- initial placement keeps the depth-roll (lone-top job).
         self.liquid_repost_at_touch = bool(self.config.get("liquid_repost_at_touch", False))
+        # [C-GRACE-KILL] default OFF = byte-identical. ON: when the volume-burst latch fires on a
+        # resting entry bid whose SIBLING we already hold (a completable pair), do NOT instantly
+        # cancel -- stamp the latch and keep the bid resting for match_live_grace_sec so it can fill
+        # the post-burst dip (the fill COMPLETES the hedge = zero new directional risk). Grace
+        # elapsed -> cancel. Latch clears (false/transient) -> reset, never cancels. NAKED bids (no
+        # held sibling) keep the INSTANT cancel (never ride naked into live play). BOUNDED safety
+        # net, NOT a fill mechanism: 5min fixed -- the real fix is the upstream fill (P0/P1).
+        self.match_live_grace_kill = bool(self.config.get("match_live_grace_kill", False))
+        self.match_live_grace_sec = int(self.config.get("match_live_grace_sec", 300))
         # [C-VOL-GATE] default OFF = byte-identical (staircase_hold unconditionally holds FIFO). ON: the
         # staircase_hold trail-vs-hold decision becomes LIVE volatility -- count recent trade prints across
         # the event legs in LIVE_DETECT_WINDOW_SEC (same signal as _is_match_live, lower bar): >= burst ->
@@ -2911,6 +2921,28 @@ class LiveV3:
         if sp.entry_mode == "completion_reprice":
             return False
         return sp.phase == "entry_resting" or sp.entry_qty > 0
+
+    def _grace_kill_action(self, pos, live, now):
+        """[C-GRACE-KILL] PURE decision for the match-live resting-bid cancel. Returns:
+          None     -> not live; caller does nothing (falls through to the normal manage path).
+          "reset"  -> not live but a stamp is set (false/transient latch); caller clears ts, no cancel.
+          "arm"    -> first latch on a held-sibling completable pair; caller stamps ts + keeps resting.
+          "hold"   -> within grace on a completable pair; caller keeps the bid resting (rides the dip).
+          "cancel" -> cancel now: naked bid, flag OFF, or grace elapsed (the legacy instant-cancel).
+        Default OFF (match_live_grace_kill False) => live always yields "cancel" and match_live_latch_ts
+        is never set (so "reset" never arises) => byte-identical to the instant cancel. Reads pos +
+        flags + the (held-sibling) predicate only; mutates nothing. Scoped via _carve_abort_for_held_
+        sibling (the existing "we hold the sibling in hedgeable form" predicate)."""
+        if not live:
+            return "reset" if pos.match_live_latch_ts else None
+        if not (self.match_live_grace_kill
+                and self._carve_abort_for_held_sibling(pos.ticker, pos.event_ticker)):
+            return "cancel"                          # naked / flag OFF -> instant cancel, never ride naked
+        if pos.match_live_latch_ts == 0.0:
+            return "arm"
+        if (now - pos.match_live_latch_ts) < self.match_live_grace_sec:
+            return "hold"
+        return "cancel"                              # grace elapsed -> kill
 
     def _paired_basis_ok(self, tk, et, this_price):
         """T50 paired-basis guard. Returns False if entering `tk` at this_price
@@ -6085,11 +6117,27 @@ class LiveV3:
         # sweep -- it now SOLELY gates the T-15 wall-clock buffer exemption
         # (check_fills, ENTRY_BUFFER_SEC). [C-P0-RACE site 2] a raced fill that
         # filled pre-live is booked by _cancel_entry_and_resolve, not deleted.
-        if self._is_match_live(pos.event_ticker):
-            res = await self._cancel_entry_and_resolve(
+        _live = self._is_match_live(pos.event_ticker)
+        _gk = self._grace_kill_action(pos, _live, now)
+        if _gk == "reset":          # [C-GRACE-KILL] latch cleared (false/transient) -> never cancels. OFF: inert (ts always 0).
+            pos.match_live_latch_ts = 0.0
+            self._save_v4_resting()
+        if _live:
+            if _gk == "arm":        # [C-GRACE-KILL] held-sibling pair, first latch -> stamp + hold (ride the post-burst dip)
+                pos.match_live_latch_ts = now
+                self._log("match_live_grace_armed",
+                          {"event": pos.event_ticker, "grace_sec": self.match_live_grace_sec}, ticker=tk)
+                self._save_v4_resting()
+                return
+            if _gk == "hold":       # [C-GRACE-KILL] within grace -> keep resting
+                return
+            res = await self._cancel_entry_and_resolve(   # _gk == "cancel" (naked / flag OFF / grace elapsed)
                 tk, pos, "match_live_cancel", "match_live_cancel_race")
             if res == "cancelled":
-                self._log("match_live_resting_cancel", {"event": pos.event_ticker}, ticker=tk)
+                _det = {"event": pos.event_ticker}
+                if pos.match_live_latch_ts > 0.0:
+                    _det["graced"] = True   # present only when grace applied (OFF -> absent = byte-identical log)
+                self._log("match_live_resting_cancel", _det, ticker=tk)
                 # [C-COMPLETE-CROSS] complete-after-cancel: if the partner leg is FILLED (pair about
                 # to single-leg) and crossing this leg's ask is basis-capped + liftable, cross (taker,
                 # IOC) to complete instead of leaving the faded leg naked. Flag-gated (default OFF).

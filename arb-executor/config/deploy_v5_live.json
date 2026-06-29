@@ -54,6 +54,7 @@
   "bestbid_follow_at_touch": true,
   "bestbid_follow_max_gap": 15,
   "liquid_repost_at_touch": true,
+  "match_live_grace_kill": true,
   "itf_entry_borrow": true,
   "itf_min_recent_vol_usd": 500,
   "itf_recent_vol_window_min": 90

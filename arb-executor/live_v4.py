@@ -445,6 +445,7 @@ class Position:
     routed_cell: str = ""
     last_cancel_repost_ts: float = 0.0
     match_live_latch_ts: float = 0.0   # [C-GRACE-KILL] ts the match-live latch first fired on this resting bid; 0.0 = not latched. Transient (not persisted -> conservative re-arm on restart).
+    last_trade_price_at_post: int = 0   # [C-PAIR-GOVERNOR rev] leg last-traded (tape) stamped at placement = the firming/divot reference. On the LIVE Position now (was PaperOrder-only -> the dead-input bug).
 
     # State
     phase: str = "entry_pending"
@@ -3125,29 +3126,32 @@ class LiveV3:
         await self._attempt_completion_reprice(tk, et, this_basis, sib, sp)
 
     async def _pair_governor_scoot_eval(self, tk, et, this_basis, sib, sp):
-        """[C-PAIR-GOVERNOR] leg-1 (tk) just filled; sp is the sibling's resting UNFILLED entry bid
-        (caller already validated entry_resting + entry_qty==0). If leg-1 was FIRMING (its last-traded
-        ROSE since its bid was posted -- caught at a divot in an up-move, the Daems 62 case), the
-        sibling is the FADER -> scoot its resting bid DOWN by pair_governor_scoot_cents to anticipate
-        the fade and catch it cheaper (re-lay: cancel v2 + re-post). Returns True iff it scooted (the
-        caller suppresses completion -> no opposite-direction collision). leg-1 FADING/flat -> False
-        (caller falls through to completion/hold). Lowers the combined (95->94); never-cross + per-leg
-        (>=1) preserved; NO combined cap (the scoot only ever lowers, never blocks a leg). Drift signal
-        is the bot-native last_trade_price_at_post (tape at placement) vs the live book last_trade_price."""
+        """[C-PAIR-GOVERNOR rev] leg-1 (tk) just filled; sp = sibling resting UNFILLED entry bid
+        (caller validated entry_resting + entry_qty==0). Fires on EVERY leg-1 fill (mandatory leg-2
+        re-eval). Scoots leg-2 DOWN iff completing at its current bid is OVER PAR (this_basis+bid>=100,
+        the P6 guard) OR leg-1 is FIRMING (last-traded rose since placement -- the divot fade signal);
+        target keeps combined<=99 (+ firming fade-catch cents). NEVER refuses -- only ever LOWERS the
+        bid (re-lay: cancel v2 + re-post). Returns True iff it scooted (caller suppresses completion ->
+        mutually exclusive: scoot DOWN vs completion UP). None -> caller falls to completion/hold.
+        Drift from the LIVE TAPE: ref=last_trade_price_at_post (stamped live at placement, persisted),
+        cur=_fv_anchor_price (freshest tape print) -- NOT book.last_trade_price (the stale recorder)."""
         leg1 = self.positions.get(tk)
         if leg1 is None:
             return False
-        book1 = self.books.get(tk)
+        # [C-PAIR-GOVERNOR rev] drift signals from the LIVE TAPE (_fv_anchor_price over self._trade_prices),
+        # NOT book.last_trade_price (the stale recorder field). ref = leg-1 last-traded stamped at placement
+        # (live Position, persisted); cur = leg-1 freshest in-window tape print.
+        cur = self._fv_anchor_price(tk)
         ref = int(getattr(leg1, "last_trade_price_at_post", 0) or 0)
-        cur = int(book1.last_trade_price) if book1 else 0
-        if not (ref > 0 and cur > 0 and cur > ref):
-            return False   # leg-1 fading/flat -> not the pair-governor case (completion/hold handles it)
+        firming = (ref > 0 and cur is not None and int(cur) > ref)
         sib_book = self.books.get(sib)
-        sib_ask = sib_book.best_ask if (sib_book and sib_book.best_ask) else 100
-        new_target = max(1, int(sp.entry_price) - int(self.pair_governor_scoot_cents))
-        if new_target == sp.entry_price or new_target >= sib_ask:
-            return False   # nothing to scoot (floor/0c) / would not be a strict maker below the ask
-        old_bid = sp.entry_price
+        sib_ask = int(sib_book.best_ask) if (sib_book and sib_book.best_ask) else 100
+        old_bid = int(sp.entry_price)
+        # Fire on EVERY leg-1 fill (caller calls us each fill). Scoot DOWN iff over par OR firming; else
+        # None -> hold (completion/hold). NEVER refuses -- only lowers (re-lay), never blocks the leg.
+        new_target = self._pair_governor_scoot_target(int(this_basis), old_bid, sib_ask, firming)
+        if new_target is None:
+            return False
         res = await self._cancel_entry_and_resolve(sib, sp, "pair_governor_scoot", "pair_gov_race")
         if res != "cancelled":
             return False   # raced fill / unresolved -> do not double-act
@@ -3163,13 +3167,32 @@ class LiveV3:
         sp.intended_join = False   # deliberately below the touch (anticipatory fade-catch)
         sp.last_cancel_repost_ts = time.time()
         self._log("pair_governor_scoot", {
-            "event": et, "leg1": tk[-12:], "leg1_ltp_post": ref, "leg1_ltp_now": cur,
+            "event": et, "leg1": tk[-12:], "leg1_ltp_post": ref,
+            "leg1_ltp_now": (int(cur) if cur is not None else 0), "firming": firming,
+            "over_par": (int(this_basis) + old_bid) >= 100,
             "sibling": sib[-12:], "old_bid": old_bid, "new_bid": new_target,
             "scoot_cents": int(self.pair_governor_scoot_cents),
             "combined_before": int(this_basis) + old_bid,
             "combined_after": int(this_basis) + new_target}, ticker=sib)
         self._save_v4_resting()
         return True
+
+    def _pair_governor_scoot_target(self, this_basis, cur_bid, sib_ask, firming):
+        """[C-PAIR-GOVERNOR rev] PURE: the scooted-DOWN leg-2 bid, or None = no scoot (hold ->
+        completion/hold). Fires iff completing at cur_bid is OVER PAR (this_basis+cur_bid >= 100) OR
+        leg-1 is firming. Target = min(cur_bid - (scoot_cents if firming else 0), 99-this_basis [keep
+        combined <= 99], sib_ask-1 [never-cross]), floored >= 1. NEVER refuses -- only ever LOWERS the
+        resting bid (caller re-lays); returns None only when there is nothing lower to do (at/below the
+        floor) so the existing bid simply stands. Combined-under-par is primary (P6); firming adds the
+        anticipatory fade-catch cents (the divot). Pure; mutates nothing."""
+        over_par = (int(this_basis) + int(cur_bid)) >= 100
+        if not (over_par or firming):
+            return None
+        scoot_by = int(self.pair_governor_scoot_cents) if firming else 0
+        new_target = max(1, min(int(cur_bid) - scoot_by, 99 - int(this_basis), int(sib_ask) - 1))
+        if new_target >= int(cur_bid):
+            return None
+        return new_target
 
     def _completion_target(self, s0, x_cell, sib_ask, leg1_basis):
         """PART-2: s1 = min(s0 + X, sib_ask - 1, 99 - leg1_basis). sib_ask=None (no
@@ -5637,6 +5660,7 @@ class LiveV3:
                     direction=direction, cell_name="", cell_cfg={},
                     entry_price=entry_price, entry_order_id=oid,
                     entry_posted_ts=now, phase="entry_resting",
+                    last_trade_price_at_post=((self._fv_anchor_price(tk) or 0) if self.pair_governor_scoot else 0),
                     match_start_ts=start_ts,
                     play_type="v4_" + entry_mode,
                     is_v4=True, regime_at_posting=regime, target_price=target_bid,
@@ -5810,6 +5834,7 @@ class LiveV3:
             direction=direction, cell_name=anchor_cell, cell_cfg=anchor_cell_cfg,
             entry_price=entry_price, entry_order_id=oid,
             entry_posted_ts=now, phase="entry_resting",
+            last_trade_price_at_post=((self._fv_anchor_price(tk) or 0) if self.pair_governor_scoot else 0),
             match_start_ts=start_ts,
             play_type=scenario,
             anchor_source=anchor_source,
@@ -5922,6 +5947,7 @@ class LiveV3:
                 direction=direction, cell_name=fv_cell, cell_cfg=fv_cell_cfg,
                 entry_price=entry_price, entry_order_id=oid,
                 entry_posted_ts=now, phase="entry_resting",
+                last_trade_price_at_post=((self._fv_anchor_price(tk) or 0) if self.pair_governor_scoot else 0),
                 match_start_ts=self.event_start_time.get(et, 0),
                 play_type=play_type,
                 layered_exit_price=layered_exit_price,
@@ -5962,6 +5988,10 @@ class LiveV3:
                     "entry_mode": pos.entry_mode,
                     "match_start_ts": pos.match_start_ts,
                 }
+                # [C-PAIR-GOVERNOR rev] sparse + gated: persist the placement tape-ref ONLY when armed
+                # AND set, so OFF keeps the exact legacy save shape (byte-identical).
+                if self.pair_governor_scoot and pos.last_trade_price_at_post:
+                    out[tk]["last_trade_price_at_post"] = pos.last_trade_price_at_post
                 # [C-BID-SURVIVAL DIFF-2] sparse key: present ONLY when True, so
                 # non-join legs keep the exact legacy key set (shape regression
                 # in test_completion_reprice stays byte-identical).
@@ -6059,6 +6089,7 @@ class LiveV3:
                 entry_price=int(d.get("posted_price", 0)),
                 entry_order_id=d.get("order_id", ""),
                 entry_posted_ts=float(d.get("posted_at", 0.0)),
+                last_trade_price_at_post=int(d.get("last_trade_price_at_post", 0)),
                 phase="entry_resting", match_start_ts=float(d.get("match_start_ts", 0.0)),
                 play_type=d.get("play_type", "v4_" + d.get("entry_mode", "resting_maker")),
                 is_v4=True, regime_at_posting=d.get("regime_at_posting", ""),

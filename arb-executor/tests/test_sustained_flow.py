@@ -59,7 +59,9 @@ gk=src[src.index("def _sustained_flow_live"):src.index("def _paired_basis_ok")]
 gk_code = gk[gk.index(chr(34)*3, gk.index(chr(34)*3)+3)+3:]   # everything after the closing docstring
 chk("_sustained_flow_live code accesses NO self.event_start_time (window-open untouched)", "self.event_start_time" not in gk_code)
 chk("_sustained_flow_live code computes NO tts/scheduled clock", "tts" not in gk_code and "event_start_time" not in gk_code)
-chk("only the cancel-site _live line is gated (single sustained_flow_latch use at a call site)", src.count("if self.sustained_flow_latch")==1)
+# [C-SUSTAINED-FLOW OBS] now 2 cancel-site uses: the _live source + the observability _sfw gate -- BOTH at the cancel block
+_sf_lines=[i for i,l in enumerate(src.split(chr(10))) if "if self.sustained_flow_latch" in l]
+chk("sustained_flow_latch gated ONLY at the cancel site (2 uses: _live source + obs gate, adjacent)", len(_sf_lines)==2 and (_sf_lines[1]-_sf_lines[0])<=15)
 # _trade_times live wiring
 chk("_trade_times init on LiveV3 (live, not paper)", "self._trade_times: Dict[str, deque] = defaultdict(deque)" in src)
 

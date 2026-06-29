@@ -2981,6 +2981,27 @@ class LiveV3:
                 return False
         return True
 
+    def _sustained_flow_windows(self, et):
+        """[C-SUSTAINED-FLOW OBS] Observability-only: returns the K per-window print-counts the latch
+        used, for the latch-fire log. Mirrors _sustained_flow_live's loop but RETURNS the counts
+        (read-only; NO decision reads this). Returns ([n_w0, .., n_w(K-1)], oldest_window_lo_ts) with
+        w0 = the most-recent 60s window. Cheap recompute (K windows); called only at a latch fire under
+        the gate. Lets match_live_grace_armed / match_live_resting_cancel show the K sustained windows
+        directly -- proving real-gun (>=K sustained) vs a premarket burst -- no tape reconstruction."""
+        now = time.time()
+        K = int(self.sustained_flow_K)
+        counts = []
+        for w in range(K):
+            hi = now - w * 60.0
+            lo = hi - 60.0
+            c = 0
+            for tk in self.event_tickers.get(et, ()):
+                dq = self._trade_times.get(tk)
+                if dq:
+                    c += sum(1 for t in dq if lo <= t < hi)
+            counts.append(c)
+        return counts, (now - K * 60.0)
+
     def _paired_basis_ok(self, tk, et, this_price):
         """T50 paired-basis guard. Returns False if entering `tk` at this_price
         would push the event's COMBINED basis (this side + the sibling's
@@ -6165,10 +6186,16 @@ class LiveV3:
             pos.match_live_latch_ts = 0.0
             self._save_v4_resting()
         if _live:
+            # [C-SUSTAINED-FLOW OBS] capture the K window-counts that triggered THIS latch (observability
+            # only; gated under sustained_flow_latch -> None / no-compute when the burst+clock latch is in
+            # use). READ-ONLY -- no decision reads _sfw; the latch/grace/cancel logic below is unchanged.
+            _sfw = self._sustained_flow_windows(pos.event_ticker) if self.sustained_flow_latch else None
             if _gk == "arm":        # [C-GRACE-KILL] held-sibling pair, first latch -> stamp + hold (ride the post-burst dip)
                 pos.match_live_latch_ts = now
-                self._log("match_live_grace_armed",
-                          {"event": pos.event_ticker, "grace_sec": self.match_live_grace_sec}, ticker=tk)
+                _d = {"event": pos.event_ticker, "grace_sec": self.match_live_grace_sec}
+                if _sfw is not None:
+                    _d["window_counts"], _d["sustained_window_start_ts"] = _sfw
+                self._log("match_live_grace_armed", _d, ticker=tk)
                 self._save_v4_resting()
                 return
             if _gk == "hold":       # [C-GRACE-KILL] within grace -> keep resting
@@ -6179,6 +6206,8 @@ class LiveV3:
                 _det = {"event": pos.event_ticker}
                 if pos.match_live_latch_ts > 0.0:
                     _det["graced"] = True   # present only when grace applied (OFF -> absent = byte-identical log)
+                if _sfw is not None:
+                    _det["window_counts"], _det["sustained_window_start_ts"] = _sfw
                 self._log("match_live_resting_cancel", _det, ticker=tk)
                 # [C-COMPLETE-CROSS] complete-after-cancel: if the partner leg is FILLED (pair about
                 # to single-leg) and crossing this leg's ask is basis-capped + liftable, cross (taker,

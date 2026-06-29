@@ -1234,6 +1234,13 @@ class LiveV3:
         # branch (that is FIX 2). NOT a cadence change. Initial placement keeps the depth-roll.
         self.bestbid_follow_at_touch = bool(self.config.get("bestbid_follow_at_touch", False))
         self.bestbid_follow_max_gap = int(self.config.get("bestbid_follow_max_gap", 15))
+        # [C-LIQUID-REPOST] default OFF = byte-identical. ON: generalises FIX 1 -- on ANY best-bid-
+        # aware repost where the depth-governor would roll us DOWN behind (phantom) depth
+        # (_depth_join_target < touch), sit AT the touch instead (the 89%-cancel wall is not real
+        # depth; the touch fills via dip-through). Reuses bestbid_follow_max_gap as the run-away
+        # guard: gap = best_bid - target_price > max_gap => the leg genuinely moved (keep the depth
+        # path, do not chase). REPOST ONLY -- initial placement keeps the depth-roll (lone-top job).
+        self.liquid_repost_at_touch = bool(self.config.get("liquid_repost_at_touch", False))
         # [C-VOL-GATE] default OFF = byte-identical (staircase_hold unconditionally holds FIFO). ON: the
         # staircase_hold trail-vs-hold decision becomes LIVE volatility -- count recent trade prints across
         # the event legs in LIVE_DETECT_WINDOW_SEC (same signal as _is_match_live, lower bar): >= burst ->
@@ -3744,6 +3751,25 @@ class LiveV3:
             return False
         gap = int(book.best_bid) - int(pos.target_price)
         return 0 < gap <= self.bestbid_follow_max_gap
+
+    def _liquid_repost_at_touch_applies(self, book, pos, depth_target, touch):
+        """[C-LIQUID-REPOST] True iff this best-bid-aware repost would roll DOWN behind depth
+        (depth_target < touch) and the move is NOT a directional run-away (gap <= max_gap), so we
+        sit AT the touch instead of behind the (phantom, 89%-cancel) wall. depth_target =
+        _depth_join_target level; touch = _join_target never-cross touch. gap = best_bid -
+        pos.target_price (upward drift of the touch over our resting bid): gap > max_gap => the
+        leg genuinely ran away (keep the depth path, do not chase). Generalises FIX 1 from the
+        small-gap-UPWARD-follow case to the whole repost roll-down. Default OFF => always False =>
+        byte-identical. Pure/read-only; mutates nothing. REPOST ONLY (caller _v4_move_repost);
+        initial placement keeps the depth-roll. Same live inputs as FIX 1 (book.best_bid +
+        pos.target_price, both re-stamped every repost) plus the already-computed depth_target/
+        touch -- no new attribute."""
+        if not self.liquid_repost_at_touch:
+            return False
+        if depth_target >= touch:           # depth-governor already at the touch -> nothing to suppress
+            return False
+        gap = int(book.best_bid) - int(pos.target_price)
+        return gap <= self.bestbid_follow_max_gap
 
     def _staircase_target(self, anchor, offset, best_ask):
         """[C-STAIRCASE SHIP-1] anchor-relative offset>=1 floor for the staircase deep-cast path.
@@ -6377,9 +6403,20 @@ class LiveV3:
                     # [C-BESTBID-FOLLOW] small-gap upward follow -> join AT the touch (suppress the
                     # depth-governor roll-down that re-strands us below a thin moved touch).
                     new_target, _ = self._join_target(book.best_bid, book.best_ask)
+                elif self.depth_aware_join:
+                    # [C-LIQUID-REPOST] depth-governor proposed roll-down vs the never-cross touch.
+                    _dj, _ = self._depth_join_target(book.best_bid, book.best_ask, book.bids, self._depth_floor(pos.category))
+                    _touch, _ = self._join_target(book.best_bid, book.best_ask)
+                    if self._liquid_repost_at_touch_applies(book, pos, _dj, _touch):
+                        # roll-down sits behind a phantom wall (not a run-away) -> be liquid, sit at touch.
+                        new_target = _touch
+                        self._log("liquid_repost_at_touch", {"depth_target": _dj, "touch": _touch,
+                            "best_bid": int(book.best_bid), "target_price": int(pos.target_price),
+                            "cat": pos.category}, ticker=tk)
+                    else:
+                        new_target = _dj            # OFF or run-away -> depth path stands (byte-identical)
                 else:
-                    new_target, _ = (self._depth_join_target(book.best_bid, book.best_ask, book.bids, self._depth_floor(pos.category))
-                                     if self.depth_aware_join else self._join_target(book.best_bid, book.best_ask))
+                    new_target, _ = self._join_target(book.best_bid, book.best_ask)
                 repost_ref = "join_bid"
         # [C-FEEDER FIX-2/3] decision-time capture for the repost keys (the
         # cancel/place awaits below are a book-tick window, same race class as

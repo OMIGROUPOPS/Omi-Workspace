@@ -49,7 +49,7 @@
   "depth_aware_floor": 50,
   "staircase_hold_volatility_trail": true,
   "staircase_hold_trail_burst": 5,
-  "pair_governor_scoot": true,
+  "pair_governor_scoot": false,
   "pair_governor_scoot_cents": 1,
   "bestbid_follow_at_touch": true,
   "bestbid_follow_max_gap": 15,

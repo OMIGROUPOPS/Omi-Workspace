@@ -99,6 +99,33 @@ THE ONE OPEN TICK-TAPE QUESTION (not yet answered, needs per-leg price-path tape
 
 ---
 
+## 4B. §4 TERMINAL STATE (2026-06-30 session — all three agents converged)
+
+The §4 "selective downside cut" question (open since the Vault was built) is now RESOLVED into three parts. Do NOT re-derive these — they are validated/measured/structurally-proven.
+
+**CUT #1 — monotonic in-match cut: BUILT, SHIPPED GATED, VALIDATED. The lever in flight.**
+- Commit b1aaef9 (blend/kalshi-occ-fallback). Source-verified by Fable: purely additive (+121 lines, 0 changed/removed), byte-identical when OFF, 5 unit tests pass.
+- Validated: WEEKVALIDATION held-out Jun 24-29, N=30/X=10, +$204.84, POSITIVE EVERY DAY. Both gates passed (week-positive + N-plateau, signal in first 15-30min, decays past 30).
+- Catches: one-way knives (legs that fall from the gun WITHOUT ever printing above fill). ~35% of the bleed (−$237/wk of the loser pool). Fires on ~13% of legs (genuinely selective).
+- Architecture (load-bearing, both invariants IN-CODE): new `gun_detected_for_cut` (CUT_GUN_BURST=5, CUT_GUN_K=2) SEPARATE from the cancel gun (LIVE_TRADE_BURST=10, sustained_flow_K=3). INVARIANT 1: cancel path untouched. INVARIANT 2 (documented in the CUT_GUN constant block): NEVER consolidate the two gun predicates — a merge re-introduces the M2 −$25 cost. Shadow-first: `monotonic_cut_enabled` (shadow, logs would-fire) → `monotonic_cut_active` (flattens). Both default-OFF.
+- ARM SEQUENCE: `monotonic_cut_enabled: true` → restart → 48h shadow → compare monotonic_cut_would_fire to retrospective set → ONLY THEN `monotonic_cut_active: true` → restart. Cut #1 must shadow ALONE — no concurrent exit/cut changes, or attribution is contaminated.
+
+**CUT #2 — peak-then-reverse (ERHROD class): DEAD as a tape-discriminator. STRUCTURAL, not parametric.**
+- The −$648/wk, 65%-of-bleed cohort (legs that peak above fill post-gun, then reverse and ride to 0 — the §5 two-trade-proof ERHROD class).
+- All three discriminators (trailing-stop, reversal-magnitude, post-peak-monotonic) are dominantly +EV (+$440 to +$591) but FAIL the every-day gate (over-cut wobbly winners on quiet green days, 75-81% fire rate = a POLICY CHANGE not a discriminator).
+- Refinement 1 (confirmed-clean post-peak monotonic): FAILS (+$3.5 total). Refinement 2 (+ peak-gain gate): FAILS (+$0.7), even with fire rate in the 20-40% band.
+- **THE STRUCTURAL REASON (do not re-sweep — this is why it's un-discriminable): high save XOR selective, irreducibly. To be selective you must wait M minutes to confirm a clean reversal — but ERHROD reversals are FAST (84→0), so by the time the decline confirms the leg is dying, the price is already at the bottom. The discriminating signal is causally DOWNSTREAM of the price action it would predict; faster sampling doesn't pull it earlier in causal time. Contrast cut #1: one-way knives are visible AT THE GUN (no peak masks them), so the flatten lands before the price is gone.**
+- (Optional closure measurement, may or may not have been run: velocity-of-decline as an early signal, V ∈ {0.05-0.2}¢/sec over first {60-180}s post-peak. Predicted to fail the same wall.)
+
+**THE 65% RESIDUAL — reframed as EXIT-GEOMETRY, next cycle's problem (NOT another tape-rule):**
+- The locus moves from tape-cut to the exit surface. KEY FACT: the current exit surface is **+band ONLY** (Exit = min(fill + band_x, cap), UP-side only — there is NO −band/flatten primitive today).
+- **NEXT-CYCLE SEQUENCE (do not start until cut #1's shadow finishes — clean attribution):**
+  - **(a) FIRST: recalibrate the per-cell +band against June live data.** The May sealed surface (exit_surface_gated_optima/) is the DEPLOYED config, NOT proof of optimality (per the §0 date-caveat discipline). Six weeks of live tape never re-fit. The optimizer exists — re-run it. Likely finding: high-fill favorite cells (where +band is unreachable on reversal) get a TIGHTER +band, cashing the up-side earlier before reversals take it back. May shrink the residual with NO new primitive.
+  - **(b) SECOND, conditional on (a)'s residual: entry-time band-asymmetric −band/flatten** (per-cell flatten_at = fill − Z, Z from per-cell historical peak-then-reverse magnitude — decided AT ENTRY, sidesteps the late-signal problem). Larger build (new primitive, new config). Justified only if (a) doesn't close enough.
+- **NEXT-CYCLE TRAP: when the optimizer re-runs, do NOT ship the updated surface immediately as "better May." Cut #1's 48h shadow + activation finishes first. The recalibrated surface must pass its OWN four gates (NET +ve every day, plateau, per-cell delta sanity-checked vs the §5 two-trade proof). No shortcut because the optimizer "looks better."**
+
+---
+
 ## 5. THE OPERATOR'S THESIS (his words, hold them)
 
 - The bleed is the games where we fill ONE side, at a BAD price, and that side is the falling knife — NOT the clean under-100 pairs.

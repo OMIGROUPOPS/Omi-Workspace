@@ -1314,6 +1314,14 @@ class LiveV3:
         # rich (KESMAR shape) now rides the per-cell exits instead of being
         # cancelled -- bounded ~$0.60/pair worst case at 5-lot.
         self.paired_cap_enforced = bool(self.config.get("paired_cap_enforced", True))
+        # [C-COMPLETION-CEILING] gated restore of the combined ceiling in
+        # _completion_target's cap-dormant (paired_cap_enforced=False) branch.
+        # Default False = byte-identical to the flat-99 legacy. When True the
+        # completion reprices to min(s0+X, 99-leg1_basis, sib_ask-1): the ceiling
+        # can only LOWER the price via min(), never refuse -- no naked-single
+        # manufacture. Scope: this one branch only; the enforced branch, the
+        # move_repost favorite-walk, and pair_governor are untouched.
+        self.completion_combined_ceiling = bool(self.config.get("completion_combined_ceiling", False))
         # [C-CAP-DIFF] reach-repost cap (dormant; default False = byte-identical).
         # When enforced, a resting entry bid is never reposted ABOVE its conception
         # cell (the drift-supported ceiling); holds/down-moves are untouched. Reads
@@ -3209,7 +3217,10 @@ class LiveV3:
         if getattr(self, "paired_cap_enforced", True):
             cands = [s0 + x_cell, V4_PAIRED_BASIS_CAP - leg1_basis]
         else:
-            cands = [s0 + x_cell, 99]
+            if getattr(self, "completion_combined_ceiling", False):
+                cands = [s0 + x_cell, V4_PAIRED_BASIS_CAP - leg1_basis]  # restore combined ceiling (lower-only via min)
+            else:
+                cands = [s0 + x_cell, 99]                # legacy combined-blind (byte-identical)
         if sib_ask is not None:
             cands.append(sib_ask - 1)
         return min(cands)

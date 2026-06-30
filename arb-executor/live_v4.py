@@ -158,6 +158,17 @@ V4_PAIRED_BASIS_CAP = 99          # T50: refuse entering BOTH sides of an event 
 LIVE_DETECT_WINDOW_SEC = 60       # rolling window for the trade-burst signal
 LIVE_TRADE_BURST = 10             # >= this many trade prints in the window across both legs => match is live (tunable; pre-match tennis books trade far below this)
 LIVE_TRADE_RETENTION_SEC = 600    # prune per-ticker trade-time deques older than this
+# [C-MONOTONIC-CUT] DECOUPLED gun predicate for the in-match downside-CUT window ONLY. These four
+# constants are DELIBERATELY SEPARATE from LIVE_TRADE_BURST / sustained_flow_K (the cancel-latch gun).
+# INVARIANT 2 (load-bearing, do NOT consolidate -- this is NOT future cleanup): the CUT gun (5 prints/min
+# x 2 windows, the week-validated predicate) and the CANCEL gun (LIVE_TRADE_BURST x sustained_flow_K) are
+# TWO signals for TWO uses. A "tidy-up" pass that merges them silently re-introduces the M2 -$25 loss --
+# the stale-buffer cancel's EARLY fire is PROTECTIVE (moving it on-time re-opens the losing fill window
+# that nets the +$26 cut gain to +$1). Keep them split forever. See OMQS_MEASUREMENTS (M2) + WEEKVALIDATION.
+CUT_GUN_BURST = 5                 # >= this many prints/60s window for the CUT gun (validation predicate, NOT LIVE_TRADE_BURST)
+CUT_GUN_K = 2                     # >= this many consecutive 60s windows (the "sustained" confirm; NOT sustained_flow_K)
+CUT_N_SEC = 30 * 60              # evaluate the monotonic-faller window at gun + 30 min (validated operating point)
+CUT_X_CENTS = 10                 # flatten at fill - 10c on a confirmed monotonic faller
 # [C-FEEDER FIX-1] time-to-start floor + two-stage latch + counter-evidence
 # unlatch. Envelope from the C-DETECTOR-EVAL teardown (deployed K=10/T=60):
 # genuine starts latch within ~60s of onset (p50=9s p90=61s); false fires
@@ -453,6 +464,15 @@ class Position:
     last_cancel_repost_ts: float = 0.0
     match_live_latch_ts: float = 0.0   # [C-GRACE-KILL] ts the match-live latch first fired on this resting bid; 0.0 = not latched. Transient (not persisted -> conservative re-arm on restart).
     last_trade_price_at_post: int = 0   # [C-PAIR-GOVERNOR rev] leg last-traded (tape) stamped at placement = the firming/divot reference. On the LIVE Position now (was PaperOrder-only -> the dead-input bug).
+    # [C-MONOTONIC-CUT] in-match downside-cut state (gated; default-OFF => never written => byte-identical).
+    # gun stamped once on the DECOUPLED CUT predicate; wobble/dipped OR-accumulate over [gun, gun+30] from
+    # the leg tape (robust to the 30-min deque prune: a True persists); evaluated fire-once at gun+30.
+    # PAST-ONLY, no look-ahead. Transient (not persisted -> conservative re-arm on restart).
+    cut_gun_ts: float = 0.0
+    cut_wobble: bool = False      # leg printed ABOVE fill at any time post-gun (=> NOT a monotonic faller)
+    cut_dipped: bool = False      # leg printed <= fill - CUT_X_CENTS at any time post-gun
+    cut_evaluated: bool = False   # the gun+30 decision has been made (fire-once)
+    cut_fired: bool = False       # the cut condition fired (shadow-logged, or flattened if active)
 
     # State
     phase: str = "entry_pending"
@@ -1308,6 +1328,16 @@ class LiveV3:
         # Mutually exclusive with completion (opposite direction, same trigger): a scoot returns first.
         self.pair_governor_scoot = bool(self.config.get("pair_governor_scoot", False))
         self.pair_governor_scoot_cents = int(self.config.get("pair_governor_scoot_cents", 1))
+        # [C-MONOTONIC-CUT] gated, default-OFF => byte-identical (the check_fills hook is skipped).
+        # monotonic_cut_enabled => SHADOW: compute the gun + monotonic-faller decision and log
+        # monotonic_cut_would_fire ONLY -- no flatten. monotonic_cut_active => ALSO flatten (cancel the
+        # band exit, marketable sell at fill-CUT_X_CENTS). The 48h SHADOW run validates the live
+        # would-fire set against the retrospective measurement BEFORE active is armed (do NOT arm active
+        # until the shadow set matches). Cut covers the monotonic-faller slice (~35% of loss); the
+        # ERHROD-class peak-then-reverse (65%) is the NEXT iteration (Warning 1). This path NEVER touches
+        # match_live_detected / _sustained_flow_live / the cancel (INVARIANT 1 + 2).
+        self.monotonic_cut_enabled = bool(self.config.get("monotonic_cut_enabled", False))
+        self.monotonic_cut_active = bool(self.config.get("monotonic_cut_active", False))
         self._shutdown_requested = False
         # PART-2 completion_reprice (Plex-gated; default OFF = byte-identical pre-Part-2).
         # OFF: no window-open tracking, no table load, no new log events, legacy state-file
@@ -3078,6 +3108,91 @@ class LiveV3:
             counts.append(c)
         return counts, (now - K * 60.0)
 
+    def _gun_detected_for_cut(self, et):
+        """[C-MONOTONIC-CUT] DECOUPLED tape-onset gun for the in-match downside-CUT window ONLY.
+        True iff the last CUT_GUN_K consecutive 60s windows EACH have >= CUT_GUN_BURST trade prints
+        across the event's legs -- the EXACT predicate the week-validation used (5 prints/min x 2 windows).
+        SEPARATE method, SEPARATE constants from _sustained_flow_live / _is_match_live (the cancel-latch
+        gun, LIVE_TRADE_BURST x sustained_flow_K). INVARIANT 2 (load-bearing): never merge these two -- a
+        consolidation re-introduces the M2 -$25 cost (see the CUT_GUN_* constant block). Reads _trade_times
+        (600s retention >> CUT_GUN_K*60s). Pure read; drives ONLY the cut window, NEVER the cancel."""
+        now = time.time()
+        legs = self.event_tickers.get(et, ())
+        if not legs:
+            return False
+        for w in range(CUT_GUN_K):
+            hi = now - w * 60.0
+            lo = hi - 60.0
+            c = 0
+            for tk in legs:
+                dq = self._trade_times.get(tk)
+                if dq:
+                    c += sum(1 for t in dq if lo <= t < hi)
+            if c < CUT_GUN_BURST:
+                return False
+        return True
+
+    async def _monotonic_cut_eval(self, tk, pos):
+        """[C-MONOTONIC-CUT] in-match monotonic-faller downside cut (gated; SHADOW by default).
+        Validated lever (OMQS WEEKVALIDATION: +$204.84 held-out Jun24-29, +ve every day at N=30, robust
+        N15-60). Covers the MONOTONIC-faller loss slice ONLY (~35% of bleed); the ERHROD-class
+        peak-then-reverse (65%, -$648/wk) is NOT addressed here (Warning 1 -- next iteration).
+
+        Decision (PAST-ONLY, no look-ahead): stamp the cut-gun once (DECOUPLED predicate). After the gun,
+        OR-accumulate over the leg's live tape: wobble (printed ABOVE fill) and dipped (<= fill-X). At
+        gun+CUT_N_SEC, fire-once iff (not wobble) and dipped == a clean monotonic faller that fell to
+        fill-X without ever bouncing above fill. SHADOW: log monotonic_cut_would_fire only. ACTIVE
+        (monotonic_cut_active): also cancel the band exit + marketable sell to flatten at fill-X. Caller
+        guards with self.monotonic_cut_enabled so OFF is byte-identical. NEVER touches the cancel path."""
+        if pos.cut_evaluated or not pos.is_v4 or pos.entry_filled_ts <= 0:
+            return
+        et = pos.event_ticker
+        fill = int(pos.entry_price)
+        # 1) stamp the cut-gun once it latches (DECOUPLED predicate)
+        if pos.cut_gun_ts == 0.0:
+            if self._gun_detected_for_cut(et):
+                pos.cut_gun_ts = time.time()
+            return
+        # 2) OR-accumulate wobble/dipped over [gun, now] from the leg tape (booleans persist => robust to
+        #    the 30-min deque prune; matches the "any print" measurement semantics, not point sampling).
+        pdq = self._trade_prices.get(tk)
+        if pdq:
+            for ts, p in pdq:
+                if ts >= pos.cut_gun_ts and p > 0:
+                    if p > fill:
+                        pos.cut_wobble = True
+                    if p <= fill - CUT_X_CENTS:
+                        pos.cut_dipped = True
+        # 3) at gun + N, decide once
+        if time.time() < pos.cut_gun_ts + CUT_N_SEC:
+            return
+        pos.cut_evaluated = True
+        fire = (not pos.cut_wobble) and pos.cut_dipped
+        open_qty = max(int(pos.entry_qty) - int(pos.exit_filled_qty), 0)
+        self._log("monotonic_cut_would_fire" if fire else "monotonic_cut_no_fire", {
+            "fill": fill, "cut_level": fill - CUT_X_CENTS, "wobble": pos.cut_wobble,
+            "dipped": pos.cut_dipped, "open_qty": open_qty, "gun_ts": round(pos.cut_gun_ts, 1),
+            "n_sec": CUT_N_SEC, "x": CUT_X_CENTS, "active": self.monotonic_cut_active, "fired": fire,
+        }, ticker=tk)
+        if not fire:
+            return
+        pos.cut_fired = True
+        # SHADOW (default): log-only. The 48h shadow run validates would-fire vs the measurement BEFORE
+        # monotonic_cut_active is armed.
+        if not self.monotonic_cut_active or open_qty <= 0:
+            return
+        # ACTIVE: cancel the resting band exit, then marketable sell to flatten the open shares at fill-X.
+        if pos.exit_order_id:
+            try:
+                await self.cancel_order(tk, pos.exit_order_id, "monotonic_cut_flatten")
+            except Exception:
+                pass
+        cut_px = max(1, fill - CUT_X_CENTS)
+        oid, _resp = await self.place_order(tk, "sell", "yes", cut_px, open_qty, post_only=False)
+        self._log("monotonic_cut_flattened", {
+            "cut_px": cut_px, "qty": open_qty, "order_id": oid, "entry_price": fill,
+        }, ticker=tk)
+
     def _paired_basis_ok(self, tk, et, this_price):
         """T50 paired-basis guard. Returns False if entering `tk` at this_price
         would push the event's COMBINED basis (this side + the sibling's
@@ -4629,6 +4744,12 @@ class LiveV3:
         for tk, pos in list(self.positions.items()):
             if pos.settled:
                 continue
+
+            # [C-MONOTONIC-CUT] gated, default-OFF => this line is skipped => byte-identical. On filled
+            # legs only, evaluate the in-match monotonic-faller downside cut (shadow-logs would-fire;
+            # flattens only when monotonic_cut_active). Never touches the cancel / match_live path.
+            if self.monotonic_cut_enabled and pos.phase == "active" and pos.entry_filled_ts > 0:
+                await self._monotonic_cut_eval(tk, pos)
 
             # V4.2 migration: backfill match_start_ts from schedule
             if pos.match_start_ts == 0 and pos.event_ticker:

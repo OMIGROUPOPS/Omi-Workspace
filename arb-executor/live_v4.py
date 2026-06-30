@@ -80,6 +80,13 @@ DISCOVERY_INTERVAL = 300
 FILL_CHECK_INTERVAL = 5      # poll fills every 5s
 EXIT_PRICE_CAP = 98           # never post exit above 98c
 ENTRY_BUFFER_SEC = 900        # stop entering 15 min before scheduled start
+# [C-KALSHI-OCC] coarse Kalshi-occurrence start fallback (gated). The batch-rounded
+# occurrence_datetime only OPENS a wide entry envelope; the tape volume-burst/sustained
+# latch finds the real start. WIDE_TAIL: keep entering this long PAST the coarse time
+# (real start may lag the rounded value). MAX_FUTURE: reject anything farther out
+# (rejects the 14-day close_time placeholder; a real match time is hours, not weeks).
+KALSHI_COARSE_WIDE_TAIL_SEC = 5400      # 90 min trailing envelope past the coarse start
+KALSHI_COARSE_MAX_FUTURE_SEC = 129600   # 36 h -- upper sanity bound on the coarse start
 ENTRY_MAX_LEAD_SEC_BY_SERIES = {
     "KXATPMATCH": 43200,         # ATP Main Draw: 12h (books stable at T-12h, 1c spread)
     "KXWTAMATCH": 43200,         # WTA Main Draw: 12h (books stable at T-12h, 1c spread)
@@ -1117,6 +1124,35 @@ async def api_delete(s, ak, pk, path, rl):
     return await _real_api_delete(s, ak, pk, path, rl)
 
 
+def _kalshi_occ_start(kts, now, max_future_sec):
+    """[C-KALSHI-OCC] Validate a Kalshi occurrence_datetime/expected_expiration timestamp as a
+    COARSE start source. Returns kts only if it is a real FUTURE start within bound; else None.
+    Rejects past/stale (the SUMTAK "141min that was actually yesterday" case) and the 14-day
+    close placeholder (caught by the >max_future bound). Pure/testable."""
+    if kts is None:
+        return None
+    if now < kts <= now + max_future_sec:
+        return kts
+    return None
+
+
+def _coarse_window_closed(time_to_start, coarse, wide_tail_sec, entry_buffer_sec):
+    """[C-KALSHI-OCC] Entry-window late-edge decision. Non-coarse = legacy: skip
+    "match_already_started" at/after T-0, "inside_buffer" at/inside T-15. COARSE: the coarse
+    clock does NOT lock entry at T-15/T-0 -- the window stays open until coarse+wide_tail (the
+    tape volume-burst/sustained latch governs the real start); past the tail, give up. Returns
+    the skip-reason str or None to keep the window open. Pure/testable."""
+    if coarse:
+        if time_to_start <= -wide_tail_sec:
+            return "match_already_started"
+        return None
+    if time_to_start <= 0:
+        return "match_already_started"
+    if time_to_start <= entry_buffer_sec:
+        return "inside_buffer"
+    return None
+
+
 # -------------------------------------------------------------------------
 # Live V3 Bot
 # -------------------------------------------------------------------------
@@ -1322,6 +1358,10 @@ class LiveV3:
         # manufacture. Scope: this one branch only; the enforced branch, the
         # move_repost favorite-walk, and pair_governor are untouched.
         self.completion_combined_ceiling = bool(self.config.get("completion_combined_ceiling", False))
+        # [C-KALSHI-OCC] gated (default False = byte-identical): when ESPN + Odds-API both
+        # miss, use Kalshi occurrence_datetime as a COARSE start source (wide envelope + tape
+        # latch). Covers the schedule_gap miss on books Kalshi schedules but the feeds do not.
+        self.kalshi_occurrence_fallback = bool(self.config.get("kalshi_occurrence_fallback", False))
         # [C-CAP-DIFF] reach-repost cap (dormant; default False = byte-identical).
         # When enforced, a resting entry bid is never reposted ABOVE its conception
         # cell (the drift-supported ceiling); holds/down-moves are untouched. Reads
@@ -1397,6 +1437,8 @@ class LiveV3:
         self.ticker_category: Dict[str, str] = {}
         self.event_open_time: Dict[str, float] = {}   # Kalshi open_time (for unmatched-skip logic)
         self.event_start_time: Dict[str, float] = {}   # scheduled start from TE/ESPN
+        self.event_kalshi_occ: Dict[str, float] = {}   # [C-KALSHI-OCC] et -> coarse Kalshi occurrence ts
+        self.coarse_source = set()                     # [C-KALSHI-OCC] events started off the coarse Kalshi fallback
         # [C-SCHEDULE-TRUST-FIX] provenance of the stored start (source-priority corrections)
         self.event_start_source: Dict[str, str] = {}
         self.event_player_names: Dict[str, List[str]] = {}  # player names per event
@@ -2835,6 +2877,15 @@ class LiveV3:
                                     ot_str.replace("Z", "+00:00")).timestamp()
                             except Exception:
                                 pass
+                    # [C-KALSHI-OCC] capture Kalshi occurrence_datetime (coarse start fallback source)
+                    if et not in self.event_kalshi_occ:
+                        occ_str = m.get("occurrence_datetime", "") or m.get("expected_expiration_time", "")
+                        if occ_str:
+                            try:
+                                self.event_kalshi_occ[et] = datetime.fromisoformat(
+                                    occ_str.replace("Z", "+00:00")).timestamp()
+                            except Exception:
+                                pass
                     # Capture player names for schedule matching
                     if et not in self.event_player_names:
                         names = []
@@ -2869,9 +2920,25 @@ class LiveV3:
                                     "start_time": ct.isoformat(),
                                 })
                             else:
-                                # No reliable commence source — skip rather than use Kalshi expiration
-                                self.event_unmatched_cycles[et] = self.event_unmatched_cycles.get(et, 0) + 1
-                                self._log("no_reliable_commence_source", {"event": et})
+                                # [C-KALSHI-OCC] Fallback 2 (gated, default-OFF): Kalshi occurrence_datetime
+                                # as a COARSE start -- opens a wide entry envelope; the tape latch finds the
+                                # real start. Guarded by _kalshi_occ_start (real future only; rejects past/
+                                # stale like SUMTAK-yesterday and the 14-day close placeholder via the bound).
+                                kts = (_kalshi_occ_start(self.event_kalshi_occ.get(et), now,
+                                                         KALSHI_COARSE_MAX_FUTURE_SEC)
+                                       if getattr(self, "kalshi_occurrence_fallback", False) else None)
+                                if kts is not None:
+                                    self.event_start_time[et] = kts
+                                    self.event_start_source[et] = "kalshi_occurrence_coarse"
+                                    self.coarse_source.add(et)
+                                    self._log("schedule_match", {
+                                        "event": et, "method": "kalshi_occurrence_coarse",
+                                        "start_time": datetime.fromtimestamp(kts, tz=ET).isoformat(),
+                                        "coarse_source": True})
+                                else:
+                                    # No reliable commence source — skip rather than use Kalshi expiration
+                                    self.event_unmatched_cycles[et] = self.event_unmatched_cycles.get(et, 0) + 1
+                                    self._log("no_reliable_commence_source", {"event": et})
                     # [C-SCHEDULE-TRUST-FIX] pre-start correction of a set-once /
                     # _date_ok-rejected start (JOVANI root). Runs even for matched
                     # / processed events; once per event per cycle.
@@ -5222,7 +5289,12 @@ class LiveV3:
             if time_to_start > 86400:
                 return
 
-            if time_to_start <= 0:
+            # [C-KALSHI-OCC] coarse Kalshi start widens the late edge: the coarse clock does
+            # NOT lock entry at T-15/T-0 (tape latch governs the real start). default-OFF =>
+            # coarse_source empty => _coarse False => legacy decision, byte-identical.
+            _coarse = getattr(self, "kalshi_occurrence_fallback", False) and et in getattr(self, "coarse_source", ())
+            _wclose = _coarse_window_closed(time_to_start, _coarse, KALSHI_COARSE_WIDE_TAIL_SEC, ENTRY_BUFFER_SEC)
+            if _wclose == "match_already_started":
                 self.processed_events.add(et)
                 self._save_processed()
                 self._log("skipped", {"reason": "match_already_started", "event": et,
@@ -5230,7 +5302,7 @@ class LiveV3:
                     "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET")})
                 return
 
-            if time_to_start <= ENTRY_BUFFER_SEC:
+            if _wclose == "inside_buffer":
                 self.processed_events.add(et)
                 self._save_processed()
                 self._log("skipped", {"reason": "inside_buffer", "event": et,

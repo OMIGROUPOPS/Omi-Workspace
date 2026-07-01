@@ -1,0 +1,3647 @@
+[
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN24SANDAL-SAN",
+"bid": 26,
+"flow_px": 16,
+"sib_filled": true,
+"sib_entry": 71,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24ALEAND-AND",
+"bid": 70,
+"flow_px": 70,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN24GUEALC-GUE",
+"bid": 27,
+"flow_px": 26,
+"sib_filled": true,
+"sib_entry": 71,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24SHYMIN-MIN",
+"bid": 74,
+"flow_px": 73,
+"sib_filled": true,
+"sib_entry": 15,
+"combined": 89,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24SHYMIN-MIN",
+"bid": 84,
+"flow_px": 83,
+"sib_filled": true,
+"sib_entry": 15,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24SAWSTO-SAW",
+"bid": 41,
+"flow_px": 40,
+"sib_filled": true,
+"sib_entry": 59,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24SEBNOH-SEB",
+"bid": 35,
+"flow_px": 35,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24GARGRA-GAR",
+"bid": 46,
+"flow_px": 43,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24MEJHEI-HEI",
+"bid": 62,
+"flow_px": 62,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24TRAZHO-ZHO",
+"bid": 49,
+"flow_px": 47,
+"sib_filled": true,
+"sib_entry": 53,
+"combined": 102,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24SUNDOD-SUN",
+"bid": 68,
+"flow_px": 67,
+"sib_filled": true,
+"sib_entry": 21,
+"combined": 89,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24SUNDOD-SUN",
+"bid": 77,
+"flow_px": 77,
+"sib_filled": true,
+"sib_entry": 21,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24CASQUI-QUI",
+"bid": 75,
+"flow_px": 74,
+"sib_filled": true,
+"sib_entry": 18,
+"combined": 93,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24CASQUI-QUI",
+"bid": 80,
+"flow_px": 80,
+"sib_filled": true,
+"sib_entry": 18,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24GALTAR-TAR",
+"bid": 60,
+"flow_px": 60,
+"sib_filled": true,
+"sib_entry": 40,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24GARGRA-GRA",
+"bid": 53,
+"flow_px": 50,
+"sib_filled": true,
+"sib_entry": 43,
+"combined": 96,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24MARZAK-MAR",
+"bid": 67,
+"flow_px": 67,
+"sib_filled": true,
+"sib_entry": 32,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24TRAZHO-TRA",
+"bid": 52,
+"flow_px": 52,
+"sib_filled": true,
+"sib_entry": 46,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN23EVASCH-SCH",
+"bid": 62,
+"flow_px": 61,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN23YUNTAB-YUN",
+"bid": 71,
+"flow_px": 71,
+"sib_filled": true,
+"sib_entry": 21,
+"combined": 92,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN23YUNTAB-YUN",
+"bid": 78,
+"flow_px": 77,
+"sib_filled": true,
+"sib_entry": 21,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN23YUNTAB-YUN",
+"bid": 79,
+"flow_px": 79,
+"sib_filled": true,
+"sib_entry": 21,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN23YUNTAB-TAB",
+"bid": 22,
+"flow_px": 21,
+"sib_filled": true,
+"sib_entry": 79,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN23PIRHAR-HAR",
+"bid": 63,
+"flow_px": 60,
+"sib_filled": true,
+"sib_entry": 37,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24KALRUS-KAL",
+"bid": 52,
+"flow_px": 51,
+"sib_filled": true,
+"sib_entry": 47,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN24ERHMON-ERH",
+"bid": 25,
+"flow_px": 25,
+"sib_filled": true,
+"sib_entry": 72,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24QUELIU-QUE",
+"bid": 42,
+"flow_px": 41,
+"sib_filled": true,
+"sib_entry": 56,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24KESKAL-KAL",
+"bid": 44,
+"flow_px": 43,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24KORLAZ-KOR",
+"bid": 67,
+"flow_px": 67,
+"sib_filled": true,
+"sib_entry": 31,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24SWEBLA-BLA",
+"bid": 59,
+"flow_px": 59,
+"sib_filled": true,
+"sib_entry": 40,
+"combined": 99,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN24KYMHOL-HOL",
+"bid": 48,
+"flow_px": 48,
+"sib_filled": true,
+"sib_entry": 57,
+"combined": 105,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24KORLAZ-LAZ",
+"bid": 31,
+"flow_px": 30,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24KYMHOL-KYM",
+"bid": 51,
+"flow_px": 48,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24KAWSTE-STE",
+"bid": 35,
+"flow_px": 35,
+"sib_filled": true,
+"sib_entry": 62,
+"combined": 97,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN23GOJSMI-SMI",
+"bid": 45,
+"flow_px": 45,
+"sib_filled": true,
+"sib_entry": 54,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24SMIECH-ECH",
+"bid": 29,
+"flow_px": 29,
+"sib_filled": true,
+"sib_entry": 73,
+"combined": 102,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24RIECRA-RIE",
+"bid": 49,
+"flow_px": 46,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN23SAFCOP-SAF",
+"bid": 73,
+"flow_px": 73,
+"sib_filled": true,
+"sib_entry": 19,
+"combined": 92,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN23SAFCOP-SAF",
+"bid": 82,
+"flow_px": 82,
+"sib_filled": true,
+"sib_entry": 19,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24VALTOM-VAL",
+"bid": 41,
+"flow_px": 41,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN24MCDCAR-CAR",
+"bid": 33,
+"flow_px": 31,
+"sib_filled": true,
+"sib_entry": 66,
+"combined": 99,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN23DJEZHE-ZHE",
+"bid": 57,
+"flow_px": 55,
+"sib_filled": true,
+"sib_entry": 41,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24OSTUDV-OST",
+"bid": 72,
+"flow_px": 68,
+"sib_filled": true,
+"sib_entry": 17,
+"combined": 89,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24OSTUDV-OST",
+"bid": 82,
+"flow_px": 82,
+"sib_filled": true,
+"sib_entry": 17,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN23GASCIN-CIN",
+"bid": 54,
+"flow_px": 54,
+"sib_filled": true,
+"sib_entry": 45,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN23GASCIN-GAS",
+"bid": 45,
+"flow_px": 45,
+"sib_filled": true,
+"sib_entry": 54,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24PRILAM-PRI",
+"bid": 43,
+"flow_px": 41,
+"sib_filled": true,
+"sib_entry": 55,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24JUBBAR-BAR",
+"bid": 55,
+"flow_px": 54,
+"sib_filled": true,
+"sib_entry": 42,
+"combined": 97,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN24TOMOCO-TOM",
+"bid": 32,
+"flow_px": 32,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN24MICSEL-SEL",
+"bid": 21,
+"flow_px": 21,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN24ANGBLA-BLA",
+"bid": 82,
+"flow_px": 78,
+"sib_filled": true,
+"sib_entry": 15,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN24ANGBLA-ANG",
+"bid": 15,
+"flow_px": 15,
+"sib_filled": true,
+"sib_entry": 84,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24SEMHIB-SEM",
+"bid": 51,
+"flow_px": 51,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24MIKBRO-BRO",
+"bid": 74,
+"flow_px": 74,
+"sib_filled": true,
+"sib_entry": 14,
+"combined": 88,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24MIKBRO-BRO",
+"bid": 86,
+"flow_px": 86,
+"sib_filled": true,
+"sib_entry": 14,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24GASJON-GAS",
+"bid": 29,
+"flow_px": 29,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24GAUSEA-SEA",
+"bid": 69,
+"flow_px": 69,
+"sib_filled": true,
+"sib_entry": 25,
+"combined": 94,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24GAUSEA-SEA",
+"bid": 75,
+"flow_px": 75,
+"sib_filled": true,
+"sib_entry": 25,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24YMESKA-YME",
+"bid": 59,
+"flow_px": 59,
+"sib_filled": true,
+"sib_entry": 40,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24RODLAJ-LAJ",
+"bid": 33,
+"flow_px": 33,
+"sib_filled": true,
+"sib_entry": 65,
+"combined": 98,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN24GASJON-JON",
+"bid": 68,
+"flow_px": 68,
+"sib_filled": true,
+"sib_entry": 29,
+"combined": 97,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN23WALDAV-WAL",
+"bid": 30,
+"flow_px": 30,
+"sib_filled": true,
+"sib_entry": 69,
+"combined": 99,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN24LLAMAR-MAR",
+"bid": 33,
+"flow_px": 27,
+"sib_filled": true,
+"sib_entry": 65,
+"combined": 98,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN23FARPAV-PAV",
+"bid": 29,
+"flow_px": 29,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN23GUEJAC-GUE",
+"bid": 27,
+"flow_px": 26,
+"sib_filled": true,
+"sib_entry": 71,
+"combined": 98,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN24JORGJO-JOR",
+"bid": 67,
+"flow_px": 65,
+"sib_filled": true,
+"sib_entry": 31,
+"combined": 98,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN23DOUSAK-DOU",
+"bid": 28,
+"flow_px": 28,
+"sib_filled": true,
+"sib_entry": 69,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24BOYPEL-PEL",
+"bid": 34,
+"flow_px": 34,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24GILCHO-CHO",
+"bid": 63,
+"flow_px": 63,
+"sib_filled": true,
+"sib_entry": 35,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24GILCHO-GIL",
+"bid": 33,
+"flow_px": 31,
+"sib_filled": true,
+"sib_entry": 67,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN23KWONGEA-GEA",
+"bid": 49,
+"flow_px": 47,
+"sib_filled": true,
+"sib_entry": 52,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN23KWONGEA-KWON",
+"bid": 51,
+"flow_px": 51,
+"sib_filled": true,
+"sib_entry": 50,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24CARVAN-CAR",
+"bid": 29,
+"flow_px": 29,
+"sib_filled": true,
+"sib_entry": 71,
+"combined": 100,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN24RAKZHU-ZHU",
+"bid": 73,
+"flow_px": 71,
+"sib_filled": true,
+"sib_entry": 26,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24SRAKOS-SRA",
+"bid": 53,
+"flow_px": 44,
+"sib_filled": true,
+"sib_entry": 44,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24GORJEA-JEA",
+"bid": 74,
+"flow_px": 73,
+"sib_filled": true,
+"sib_entry": 22,
+"combined": 96,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN24MONKAL-MON",
+"bid": 80,
+"flow_px": 80,
+"sib_filled": true,
+"sib_entry": 18,
+"combined": 98,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN24VOLYAN-VOL",
+"bid": 80,
+"flow_px": 80,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24WANBAS-BAS",
+"bid": 26,
+"flow_px": 26,
+"sib_filled": true,
+"sib_entry": 73,
+"combined": 99,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN24CARVAN-VAN",
+"bid": 70,
+"flow_px": 70,
+"sib_filled": true,
+"sib_entry": 29,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24SASHUN-HUN",
+"bid": 35,
+"flow_px": 35,
+"sib_filled": true,
+"sib_entry": 63,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24SRAKOS-KOS",
+"bid": 44,
+"flow_px": 43,
+"sib_filled": true,
+"sib_entry": 55,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24ANDTEI-TEI",
+"bid": 35,
+"flow_px": 35,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN24TIMPOD-POD",
+"bid": 37,
+"flow_px": 37,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN24KUDNGO-NGO",
+"bid": 38,
+"flow_px": 38,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN24RAKZHU-RAK",
+"bid": 26,
+"flow_px": 26,
+"sib_filled": true,
+"sib_entry": 73,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN24PROWAT-WAT",
+"bid": 44,
+"flow_px": 44,
+"sib_filled": true,
+"sib_entry": 53,
+"combined": 97,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN24BOLKIN-BOL",
+"bid": 41,
+"flow_px": 36,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN24DRAPIN-PIN",
+"bid": 18,
+"flow_px": 18,
+"sib_filled": true,
+"sib_entry": 82,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24DRAPIN-DRA",
+"bid": 82,
+"flow_px": 82,
+"sib_filled": true,
+"sib_entry": 19,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN24SHEDIM-DIM",
+"bid": 81,
+"flow_px": 81,
+"sib_filled": true,
+"sib_entry": 19,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN23KOHLA-LA",
+"bid": 85,
+"flow_px": 85,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN25ABOCAS-ABO",
+"bid": 26,
+"flow_px": 26,
+"sib_filled": true,
+"sib_entry": 72,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN25TORAGU-TOR",
+"bid": 62,
+"flow_px": 62,
+"sib_filled": true,
+"sib_entry": 36,
+"combined": 98,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN25TORAGU-AGU",
+"bid": 36,
+"flow_px": 36,
+"sib_filled": true,
+"sib_entry": 64,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN25HARLEI-LEI",
+"bid": 15,
+"flow_px": 15,
+"sib_filled": true,
+"sib_entry": 85,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN26MAROST-MAR",
+"bid": 37,
+"flow_px": 37,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN26MARKEY-KEY",
+"bid": 84,
+"flow_px": 84,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN26WANOSA-OSA",
+"bid": 78,
+"flow_px": 78,
+"sib_filled": true,
+"sib_entry": 23,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN25SOTVIL-SOT",
+"bid": 62,
+"flow_px": 62,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN26KICZAN-KIC",
+"bid": 83,
+"flow_px": 83,
+"sib_filled": true,
+"sib_entry": 17,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN26DRAHUM-DRA",
+"bid": 64,
+"flow_px": 64,
+"sib_filled": true,
+"sib_entry": 36,
+"combined": 100,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN26MARDAV-MAR",
+"bid": 30,
+"flow_px": 30,
+"sib_filled": true,
+"sib_entry": 69,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN26HARLA-LA",
+"bid": 33,
+"flow_px": 33,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN26KICSEY-KIC",
+"bid": 36,
+"flow_px": 36,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXITFMATCH-26JUN27SALSAN-SAN",
+"bid": 63,
+"flow_px": 63,
+"sib_filled": true,
+"sib_entry": 36,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN27KRUMAR-MAR",
+"bid": 20,
+"flow_px": 20,
+"sib_filled": true,
+"sib_entry": 80,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN27POHDAE-POH",
+"bid": 40,
+"flow_px": 40,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXITFWMATCH-26JUN27BALFOR-FOR",
+"bid": 43,
+"flow_px": 43,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN27IVAVOR-IVA",
+"bid": 40,
+"flow_px": 40,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN27MOEDIE-MOE",
+"bid": 41,
+"flow_px": 41,
+"sib_filled": true,
+"sib_entry": 57,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN27MOEDIE-DIE",
+"bid": 57,
+"flow_px": 57,
+"sib_filled": true,
+"sib_entry": 41,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN27WALREH-REH",
+"bid": 76,
+"flow_px": 76,
+"sib_filled": true,
+"sib_entry": 23,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN27WALREH-WAL",
+"bid": 23,
+"flow_px": 23,
+"sib_filled": true,
+"sib_entry": 76,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN27SUBLAZ-SUB",
+"bid": 76,
+"flow_px": 76,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN27SUBLAZ-LAZ",
+"bid": 22,
+"flow_px": 22,
+"sib_filled": true,
+"sib_entry": 76,
+"combined": 98,
+"det": true
+},
+{
+"leg": "KXITFMATCH-26JUN27TOROVE-OVE",
+"bid": 43,
+"flow_px": 43,
+"sib_filled": true,
+"sib_entry": 55,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN27TOROVE-OVE",
+"bid": 44,
+"flow_px": 43,
+"sib_filled": true,
+"sib_entry": 55,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN27TOROVE-OVE",
+"bid": 45,
+"flow_px": 45,
+"sib_filled": true,
+"sib_entry": 55,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN27RATPET-RAT",
+"bid": 81,
+"flow_px": 81,
+"sib_filled": true,
+"sib_entry": 17,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN27RATPET-PET",
+"bid": 17,
+"flow_px": 17,
+"sib_filled": true,
+"sib_entry": 81,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN27HONYAM-HON",
+"bid": 63,
+"flow_px": 63,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN27SEIHOE-HOE",
+"bid": 60,
+"flow_px": 60,
+"sib_filled": true,
+"sib_entry": 38,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN27SEIHOE-SEI",
+"bid": 38,
+"flow_px": 38,
+"sib_filled": true,
+"sib_entry": 60,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN27VEDHES-VED",
+"bid": 61,
+"flow_px": 61,
+"sib_filled": true,
+"sib_entry": 36,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN27VEDHES-HES",
+"bid": 36,
+"flow_px": 36,
+"sib_filled": true,
+"sib_entry": 61,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN27VAGNGU-NGU",
+"bid": 51,
+"flow_px": 51,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN27AHNCAS-CAS",
+"bid": 37,
+"flow_px": 37,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXITFWMATCH-26JUN27CANMOY-MOY",
+"bid": 64,
+"flow_px": 64,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXITFWMATCH-26JUN27KURMIY-MIY",
+"bid": 39,
+"flow_px": 39,
+"sib_filled": true,
+"sib_entry": 59,
+"combined": 98,
+"det": true
+},
+{
+"leg": "KXITFWMATCH-26JUN28DAEIVA-DAE",
+"bid": 52,
+"flow_px": 52,
+"sib_filled": true,
+"sib_entry": 46,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN28DAEIVA-IVA",
+"bid": 46,
+"flow_px": 46,
+"sib_filled": true,
+"sib_entry": 52,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN28BATLAN-BAT",
+"bid": 29,
+"flow_px": 29,
+"sib_filled": true,
+"sib_entry": 56,
+"combined": 85,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28SPEVAL-SPE",
+"bid": 70,
+"flow_px": 70,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN28BATLAN-LAN",
+"bid": 56,
+"flow_px": 56,
+"sib_filled": true,
+"sib_entry": 29,
+"combined": 85,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN28BATLAN-LAN",
+"bid": 54,
+"flow_px": 52,
+"sib_filled": true,
+"sib_entry": 29,
+"combined": 83,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN28BATLAN-LAN",
+"bid": 56,
+"flow_px": 56,
+"sib_filled": true,
+"sib_entry": 29,
+"combined": 85,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN28BATLAN-LAN",
+"bid": 57,
+"flow_px": 56,
+"sib_filled": true,
+"sib_entry": 29,
+"combined": 86,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN28BATLAN-LAN",
+"bid": 56,
+"flow_px": 56,
+"sib_filled": true,
+"sib_entry": 29,
+"combined": 85,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN28BATLAN-LAN",
+"bid": 56,
+"flow_px": 56,
+"sib_filled": true,
+"sib_entry": 29,
+"combined": 85,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28GOMMAZ-GOM",
+"bid": 60,
+"flow_px": 60,
+"sib_filled": true,
+"sib_entry": 36,
+"combined": 96,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN28ARNORA-ORA",
+"bid": 32,
+"flow_px": 32,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXITFMATCH-26JUN28PICPAS-PAS",
+"bid": 77,
+"flow_px": 77,
+"sib_filled": true,
+"sib_entry": 21,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN28PICPAS-PIC",
+"bid": 21,
+"flow_px": 21,
+"sib_filled": true,
+"sib_entry": 77,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN28PICPAS-PIC",
+"bid": 19,
+"flow_px": 18,
+"sib_filled": true,
+"sib_entry": 77,
+"combined": 96,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN28PICPAS-PIC",
+"bid": 18,
+"flow_px": 18,
+"sib_filled": true,
+"sib_entry": 77,
+"combined": 95,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN28PICPAS-PIC",
+"bid": 21,
+"flow_px": 21,
+"sib_filled": true,
+"sib_entry": 77,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28SANBER-BER",
+"bid": 11,
+"flow_px": 11,
+"sib_filled": true,
+"sib_entry": 88,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28SANBER-SAN",
+"bid": 88,
+"flow_px": 88,
+"sib_filled": true,
+"sib_entry": 12,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28CHAALU-CHA",
+"bid": 84,
+"flow_px": 84,
+"sib_filled": true,
+"sib_entry": 15,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28CHAALU-ALU",
+"bid": 15,
+"flow_px": 15,
+"sib_filled": true,
+"sib_entry": 84,
+"combined": 99,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28CIAKRA-KRA",
+"bid": 90,
+"flow_px": 90,
+"sib_filled": true,
+"sib_entry": 8,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28BILERH-BIL",
+"bid": 23,
+"flow_px": 23,
+"sib_filled": true,
+"sib_entry": 76,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28BILERH-ERH",
+"bid": 76,
+"flow_px": 76,
+"sib_filled": true,
+"sib_entry": 23,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28CAZWAL-CAZ",
+"bid": 30,
+"flow_px": 30,
+"sib_filled": true,
+"sib_entry": 70,
+"combined": 100,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28ANDGIM-AND",
+"bid": 36,
+"flow_px": 36,
+"sib_filled": true,
+"sib_entry": 61,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28KUZSIN-KUZ",
+"bid": 94,
+"flow_px": 94,
+"sib_filled": true,
+"sib_entry": 4,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28KUZSIN-SIN",
+"bid": 4,
+"flow_px": 4,
+"sib_filled": true,
+"sib_entry": 94,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28HUAPAP-PAP",
+"bid": 89,
+"flow_px": 89,
+"sib_filled": true,
+"sib_entry": 10,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28HUAPAP-PAP",
+"bid": 89,
+"flow_px": 89,
+"sib_filled": true,
+"sib_entry": 10,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28HUAPAP-HUA",
+"bid": 10,
+"flow_px": 10,
+"sib_filled": true,
+"sib_entry": 89,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28ZHUALM-ALM",
+"bid": 85,
+"flow_px": 85,
+"sib_filled": true,
+"sib_entry": 13,
+"combined": 98,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28ZHUALM-ZHU",
+"bid": 13,
+"flow_px": 13,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28FORTAB-TAB",
+"bid": 33,
+"flow_px": 33,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28PALMAS-PAL",
+"bid": 34,
+"flow_px": 32,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28ALBLAT-LAT",
+"bid": 25,
+"flow_px": 25,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28BECGHA-GHA",
+"bid": 77,
+"flow_px": 77,
+"sib_filled": true,
+"sib_entry": 21,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28BECGHA-GHA",
+"bid": 77,
+"flow_px": 77,
+"sib_filled": true,
+"sib_entry": 21,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28BECGHA-BEC",
+"bid": 21,
+"flow_px": 21,
+"sib_filled": true,
+"sib_entry": 77,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28BECGHA-BEC",
+"bid": 21,
+"flow_px": 21,
+"sib_filled": true,
+"sib_entry": 77,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28KUMLAG-LAG",
+"bid": 32,
+"flow_px": 19,
+"sib_filled": true,
+"sib_entry": 65,
+"combined": 97,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28KUMLAG-LAG",
+"bid": 32,
+"flow_px": 19,
+"sib_filled": true,
+"sib_entry": 65,
+"combined": 97,
+"det": true
+},
+{
+"leg": "KXITFMATCH-26JUN28DIEREH-REH",
+"bid": 55,
+"flow_px": 55,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28LANES-LA",
+"bid": 23,
+"flow_px": 20,
+"sib_filled": true,
+"sib_entry": 78,
+"combined": 101,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28SVACUI-SVA",
+"bid": 62,
+"flow_px": 62,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28SHIMAR-SHI",
+"bid": 79,
+"flow_px": 79,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28VANIMA-VAN",
+"bid": 48,
+"flow_px": 45,
+"sib_filled": true,
+"sib_entry": 51,
+"combined": 99,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28MACHAY-MAC",
+"bid": 8,
+"flow_px": 7,
+"sib_filled": true,
+"sib_entry": 94,
+"combined": 102,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28MACHAY-MAC",
+"bid": 7,
+"flow_px": 7,
+"sib_filled": true,
+"sib_entry": 94,
+"combined": 101,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28HIDTEN-HID",
+"bid": 4,
+"flow_px": 3,
+"sib_filled": true,
+"sib_entry": 97,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN28RATPLA-RAT",
+"bid": 63,
+"flow_px": 62,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28MAYWIN-WIN",
+"bid": 78,
+"flow_px": 77,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28BOUAGU-BOU",
+"bid": 55,
+"flow_px": 55,
+"sib_filled": true,
+"sib_entry": 44,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28RYBMOR-RYB",
+"bid": 52,
+"flow_px": 52,
+"sib_filled": true,
+"sib_entry": 48,
+"combined": 100,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28PRIMAL-PRI",
+"bid": 79,
+"flow_px": 79,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28PRIMAL-PRI",
+"bid": 78,
+"flow_px": 77,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28PRIMAL-PRI",
+"bid": 79,
+"flow_px": 79,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28WONGOI-WON",
+"bid": 17,
+"flow_px": 16,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28WONGOI-WON",
+"bid": 16,
+"flow_px": 16,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28LANBAN-LAN",
+"bid": 47,
+"flow_px": 47,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28KARTRO-TRO",
+"bid": 75,
+"flow_px": 75,
+"sib_filled": true,
+"sib_entry": 24,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28KARTRO-KAR",
+"bid": 24,
+"flow_px": 24,
+"sib_filled": true,
+"sib_entry": 75,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28KARTRO-KAR",
+"bid": 24,
+"flow_px": 24,
+"sib_filled": true,
+"sib_entry": 75,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN28HOEWAZ-WAZ",
+"bid": 58,
+"flow_px": 58,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28LANBAN-BAN",
+"bid": 52,
+"flow_px": 51,
+"sib_filled": true,
+"sib_entry": 47,
+"combined": 99,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28LANBAN-BAN",
+"bid": 51,
+"flow_px": 51,
+"sib_filled": true,
+"sib_entry": 47,
+"combined": 98,
+"det": true
+},
+{
+"leg": "KXITFWMATCH-26JUN28NGUAHN-NGU",
+"bid": 56,
+"flow_px": 56,
+"sib_filled": true,
+"sib_entry": 42,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN28ANDRUI-AND",
+"bid": 95,
+"flow_px": 95,
+"sib_filled": true,
+"sib_entry": 4,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN28VEDMIC-VED",
+"bid": 74,
+"flow_px": 74,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN28VEDMIC-MIC",
+"bid": 25,
+"flow_px": 25,
+"sib_filled": true,
+"sib_entry": 74,
+"combined": 99,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29KUZMAK-MAK",
+"bid": 36,
+"flow_px": 36,
+"sib_filled": true,
+"sib_entry": 64,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29KUZMAK-KUZ",
+"bid": 64,
+"flow_px": 64,
+"sib_filled": true,
+"sib_entry": 36,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29SANYEV-SAN",
+"bid": 57,
+"flow_px": 57,
+"sib_filled": true,
+"sib_entry": 43,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29SANYEV-SAN",
+"bid": 58,
+"flow_px": 57,
+"sib_filled": true,
+"sib_entry": 43,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29SANYEV-SAN",
+"bid": 57,
+"flow_px": 57,
+"sib_filled": true,
+"sib_entry": 43,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29SANYEV-YEV",
+"bid": 43,
+"flow_px": 43,
+"sib_filled": true,
+"sib_entry": 57,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29COMDON-DON",
+"bid": 35,
+"flow_px": 35,
+"sib_filled": true,
+"sib_entry": 63,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29GULVAL-GUL",
+"bid": 82,
+"flow_px": 82,
+"sib_filled": true,
+"sib_entry": 16,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29GULVAL-GUL",
+"bid": 82,
+"flow_px": 82,
+"sib_filled": true,
+"sib_entry": 16,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29CHALEC-LEC",
+"bid": 29,
+"flow_px": 29,
+"sib_filled": true,
+"sib_entry": 69,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN29VANWEI-VAN",
+"bid": 88,
+"flow_px": 88,
+"sib_filled": true,
+"sib_entry": 24,
+"combined": 112,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29TRUDAM-TRU",
+"bid": 22,
+"flow_px": 22,
+"sib_filled": true,
+"sib_entry": 77,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29RUZSEM-SEM",
+"bid": 31,
+"flow_px": 31,
+"sib_filled": true,
+"sib_entry": 63,
+"combined": 94,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29HEIGOM-GOM",
+"bid": 16,
+"flow_px": 16,
+"sib_filled": true,
+"sib_entry": 84,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29HEIGOM-GOM",
+"bid": 17,
+"flow_px": 17,
+"sib_filled": true,
+"sib_entry": 84,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29SINKEC-SIN",
+"bid": 97,
+"flow_px": 97,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29WALPRI-PRI",
+"bid": 56,
+"flow_px": 56,
+"sib_filled": true,
+"sib_entry": 43,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29SANCIN-SAN",
+"bid": 30,
+"flow_px": 30,
+"sib_filled": true,
+"sib_entry": 68,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29ROLSHA-ROL",
+"bid": 56,
+"flow_px": 56,
+"sib_filled": true,
+"sib_entry": 45,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29MUCZAK-MUC",
+"bid": 86,
+"flow_px": 86,
+"sib_filled": true,
+"sib_entry": 14,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29AUGSHE-AUG",
+"bid": 95,
+"flow_px": 95,
+"sib_filled": true,
+"sib_entry": 4,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29AUGSHE-SHE",
+"bid": 4,
+"flow_px": 3,
+"sib_filled": true,
+"sib_entry": 95,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29JACOSA-OSA",
+"bid": 84,
+"flow_px": 84,
+"sib_filled": true,
+"sib_entry": 15,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29DAVCER-DAV",
+"bid": 79,
+"flow_px": 79,
+"sib_filled": true,
+"sib_entry": 22,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29TARTAG-TAR",
+"bid": 44,
+"flow_px": 43,
+"sib_filled": true,
+"sib_entry": 56,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29TARTAG-TAR",
+"bid": 45,
+"flow_px": 43,
+"sib_filled": true,
+"sib_entry": 56,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29LIUVAN-VAN",
+"bid": 41,
+"flow_px": 41,
+"sib_filled": true,
+"sib_entry": 58,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29MINKAS-KAS",
+"bid": 86,
+"flow_px": 86,
+"sib_filled": true,
+"sib_entry": 12,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29DEDDAM-DAM",
+"bid": 34,
+"flow_px": 34,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29STEBAR-BAR",
+"bid": 69,
+"flow_px": 69,
+"sib_filled": true,
+"sib_entry": 31,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29OLIKES-KES",
+"bid": 84,
+"flow_px": 84,
+"sib_filled": true,
+"sib_entry": 15,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29SABKOS-SAB",
+"bid": 96,
+"flow_px": 96,
+"sib_filled": true,
+"sib_entry": 4,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29DEYUN-YUN",
+"bid": 10,
+"flow_px": 8,
+"sib_filled": true,
+"sib_entry": 90,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29DEYUN-YUN",
+"bid": 11,
+"flow_px": 11,
+"sib_filled": true,
+"sib_entry": 90,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29OSOHAY-HAY",
+"bid": 24,
+"flow_px": 17,
+"sib_filled": true,
+"sib_entry": 73,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29BOUPOT-BOU",
+"bid": 43,
+"flow_px": 43,
+"sib_filled": true,
+"sib_entry": 57,
+"combined": 100,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN29KORGAU-GAU",
+"bid": 94,
+"flow_px": 94,
+"sib_filled": true,
+"sib_entry": 5,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29JONPAR-PAR",
+"bid": 76,
+"flow_px": 76,
+"sib_filled": true,
+"sib_entry": 24,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29KREKLU-KRE",
+"bid": 91,
+"flow_px": 91,
+"sib_filled": true,
+"sib_entry": 8,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29SIEBON-BON",
+"bid": 35,
+"flow_px": 22,
+"sib_filled": true,
+"sib_entry": 63,
+"combined": 98,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN29SIEBON-BON",
+"bid": 36,
+"flow_px": 22,
+"sib_filled": true,
+"sib_entry": 63,
+"combined": 99,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN29NAKPIN-PIN",
+"bid": 20,
+"flow_px": 20,
+"sib_filled": true,
+"sib_entry": 80,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29FREKAL-KAL",
+"bid": 68,
+"flow_px": 68,
+"sib_filled": true,
+"sib_entry": 31,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29FREKAL-FRE",
+"bid": 31,
+"flow_px": 31,
+"sib_filled": true,
+"sib_entry": 68,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29YIBDJO-YIB",
+"bid": 8,
+"flow_px": 8,
+"sib_filled": true,
+"sib_entry": 93,
+"combined": 101,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29MARECH-ECH",
+"bid": 29,
+"flow_px": 29,
+"sib_filled": true,
+"sib_entry": 69,
+"combined": 98,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29ANDZEB-ZEB",
+"bid": 12,
+"flow_px": 9,
+"sib_filled": true,
+"sib_entry": 86,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29ANDZEB-ZEB",
+"bid": 12,
+"flow_px": 9,
+"sib_filled": true,
+"sib_entry": 86,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29MALGOI-GOI",
+"bid": 84,
+"flow_px": 84,
+"sib_filled": true,
+"sib_entry": 15,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29ANDZEB-AND",
+"bid": 84,
+"flow_px": 74,
+"sib_filled": true,
+"sib_entry": 12,
+"combined": 96,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29ANDZEB-AND",
+"bid": 87,
+"flow_px": 74,
+"sib_filled": true,
+"sib_entry": 12,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29MALGOI-MAL",
+"bid": 15,
+"flow_px": 10,
+"sib_filled": true,
+"sib_entry": 84,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29MBISOT-SOT",
+"bid": 87,
+"flow_px": 87,
+"sib_filled": true,
+"sib_entry": 12,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN29MBISOT-MBI",
+"bid": 12,
+"flow_px": 12,
+"sib_filled": true,
+"sib_entry": 87,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN29ICHHEC-ICH",
+"bid": 31,
+"flow_px": 31,
+"sib_filled": true,
+"sib_entry": 67,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN29TANNAK-TAN",
+"bid": 83,
+"flow_px": 83,
+"sib_filled": true,
+"sib_entry": 16,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN29TANNAK-TAN",
+"bid": 87,
+"flow_px": 83,
+"sib_filled": true,
+"sib_entry": 16,
+"combined": 103,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN29TANNAK-TAN",
+"bid": 88,
+"flow_px": 88,
+"sib_filled": true,
+"sib_entry": 16,
+"combined": 104,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN29TANNAK-TAN",
+"bid": 88,
+"flow_px": 88,
+"sib_filled": true,
+"sib_entry": 16,
+"combined": 104,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN29TANNAK-TAN",
+"bid": 88,
+"flow_px": 88,
+"sib_filled": true,
+"sib_entry": 16,
+"combined": 104,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN29FRYQAR-QAR",
+"bid": 21,
+"flow_px": 21,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN29OGUSHI-SHI",
+"bid": 69,
+"flow_px": 69,
+"sib_filled": true,
+"sib_entry": 30,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30NASMEN-NAS",
+"bid": 57,
+"flow_px": 57,
+"sib_filled": true,
+"sib_entry": 46,
+"combined": 103,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30NASMEN-NAS",
+"bid": 55,
+"flow_px": 55,
+"sib_filled": true,
+"sib_entry": 46,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30NASMEN-NAS",
+"bid": 55,
+"flow_px": 55,
+"sib_filled": true,
+"sib_entry": 46,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30NASMEN-NAS",
+"bid": 57,
+"flow_px": 57,
+"sib_filled": true,
+"sib_entry": 46,
+"combined": 103,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30NASMEN-NAS",
+"bid": 56,
+"flow_px": 56,
+"sib_filled": true,
+"sib_entry": 46,
+"combined": 102,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30NASMEN-NAS",
+"bid": 57,
+"flow_px": 57,
+"sib_filled": true,
+"sib_entry": 46,
+"combined": 103,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30NASMEN-NAS",
+"bid": 56,
+"flow_px": 56,
+"sib_filled": true,
+"sib_entry": 46,
+"combined": 102,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30NASMEN-NAS",
+"bid": 57,
+"flow_px": 57,
+"sib_filled": true,
+"sib_entry": 46,
+"combined": 103,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN30ZHASNI-ZHA",
+"bid": 52,
+"flow_px": 52,
+"sib_filled": true,
+"sib_entry": 49,
+"combined": 101,
+"det": true
+},
+{
+"leg": "KXITFWMATCH-26JUN30BOYMIT-BOY",
+"bid": 96,
+"flow_px": 96,
+"sib_filled": true,
+"sib_entry": 6,
+"combined": 102,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30MOELEC-MOE",
+"bid": 77,
+"flow_px": 77,
+"sib_filled": true,
+"sib_entry": 24,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30TOPRAQ-RAQ",
+"bid": 29,
+"flow_px": 29,
+"sib_filled": true,
+"sib_entry": 68,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30ERHROD-ERH",
+"bid": 28,
+"flow_px": 28,
+"sib_filled": true,
+"sib_entry": 70,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN30POLTVE-POL",
+"bid": 18,
+"flow_px": 18,
+"sib_filled": true,
+"sib_entry": 80,
+"combined": 98,
+"det": true
+},
+{
+"leg": "KXITFWMATCH-26JUN30BOYMIT-MIT",
+"bid": 6,
+"flow_px": 6,
+"sib_filled": true,
+"sib_entry": 96,
+"combined": 102,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30MOELEC-LEC",
+"bid": 24,
+"flow_px": 24,
+"sib_filled": true,
+"sib_entry": 77,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN29BOEVAS-VAS",
+"bid": 73,
+"flow_px": 73,
+"sib_filled": true,
+"sib_entry": 24,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30ALBPIR-ALB",
+"bid": 25,
+"flow_px": 22,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30SOOKUR-SOO",
+"bid": 26,
+"flow_px": 16,
+"sib_filled": true,
+"sib_entry": 61,
+"combined": 87,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30SOOKUR-SOO",
+"bid": 32,
+"flow_px": 16,
+"sib_filled": true,
+"sib_entry": 61,
+"combined": 93,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30SOOKUR-SOO",
+"bid": 37,
+"flow_px": 33,
+"sib_filled": true,
+"sib_entry": 61,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30SOOKUR-SOO",
+"bid": 36,
+"flow_px": 33,
+"sib_filled": true,
+"sib_entry": 61,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30SOOKUR-SOO",
+"bid": 37,
+"flow_px": 33,
+"sib_filled": true,
+"sib_entry": 61,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30SOOKUR-KUR",
+"bid": 64,
+"flow_px": 61,
+"sib_filled": true,
+"sib_entry": 38,
+"combined": 102,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30SOOKUR-KUR",
+"bid": 62,
+"flow_px": 61,
+"sib_filled": true,
+"sib_entry": 38,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30FELPIE-PIE",
+"bid": 21,
+"flow_px": 20,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30FELPIE-FEL",
+"bid": 79,
+"flow_px": 76,
+"sib_filled": true,
+"sib_entry": 22,
+"combined": 101,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30COMDON-DON",
+"bid": 18,
+"flow_px": 18,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30DIATOB-DIA",
+"bid": 84,
+"flow_px": 84,
+"sib_filled": true,
+"sib_entry": 16,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30DIATOB-TOB",
+"bid": 16,
+"flow_px": 16,
+"sib_filled": true,
+"sib_entry": 84,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29MAJTAB-MAJ",
+"bid": 68,
+"flow_px": 67,
+"sib_filled": true,
+"sib_entry": 33,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29KALRAK-RAK",
+"bid": 42,
+"flow_px": 42,
+"sib_filled": true,
+"sib_entry": 57,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29ANIGJO-ANI",
+"bid": 94,
+"flow_px": 94,
+"sib_filled": true,
+"sib_entry": 6,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29BEGSWA-SWA",
+"bid": 50,
+"flow_px": 50,
+"sib_filled": true,
+"sib_entry": 50,
+"combined": 100,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN29DAYKEY-KEY",
+"bid": 91,
+"flow_px": 91,
+"sib_filled": true,
+"sib_entry": 8,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29BOUGRA-GRA",
+"bid": 28,
+"flow_px": 28,
+"sib_filled": true,
+"sib_entry": 72,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29GIBBOU-BOU",
+"bid": 71,
+"flow_px": 71,
+"sib_filled": true,
+"sib_entry": 29,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29GIBBOU-BOU",
+"bid": 72,
+"flow_px": 72,
+"sib_filled": true,
+"sib_entry": 29,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29PAOMON-PAO",
+"bid": 42,
+"flow_px": 42,
+"sib_filled": true,
+"sib_entry": 59,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29MARKEN-KEN",
+"bid": 43,
+"flow_px": 43,
+"sib_filled": true,
+"sib_entry": 56,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29SHIFAR-SHI",
+"bid": 53,
+"flow_px": 53,
+"sib_filled": true,
+"sib_entry": 47,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29ROYWEN-WEN",
+"bid": 46,
+"flow_px": 46,
+"sib_filled": true,
+"sib_entry": 55,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29BEGSWA-BEG",
+"bid": 49,
+"flow_px": 48,
+"sib_filled": true,
+"sib_entry": 50,
+"combined": 99,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN29VALPLI-PLI",
+"bid": 60,
+"flow_px": 60,
+"sib_filled": true,
+"sib_entry": 41,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30PAVSAN-SAN",
+"bid": 27,
+"flow_px": 25,
+"sib_filled": true,
+"sib_entry": 70,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30PAVSAN-SAN",
+"bid": 28,
+"flow_px": 28,
+"sib_filled": true,
+"sib_entry": 70,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30PAVSAN-SAN",
+"bid": 27,
+"flow_px": 25,
+"sib_filled": true,
+"sib_entry": 70,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30PAVSAN-SAN",
+"bid": 28,
+"flow_px": 28,
+"sib_filled": true,
+"sib_entry": 70,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30BONMON-BON",
+"bid": 31,
+"flow_px": 26,
+"sib_filled": true,
+"sib_entry": 69,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30RIBRAP-RIB",
+"bid": 75,
+"flow_px": 74,
+"sib_filled": true,
+"sib_entry": 25,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30RIBRAP-RAP",
+"bid": 25,
+"flow_px": 25,
+"sib_filled": true,
+"sib_entry": 74,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30BRABAS-BRA",
+"bid": 34,
+"flow_px": 34,
+"sib_filled": true,
+"sib_entry": 64,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30CREWAL-WAL",
+"bid": 24,
+"flow_px": 24,
+"sib_filled": true,
+"sib_entry": 75,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29MICFEA-MIC",
+"bid": 59,
+"flow_px": 58,
+"sib_filled": true,
+"sib_entry": 41,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29MICFEA-MIC",
+"bid": 60,
+"flow_px": 60,
+"sib_filled": true,
+"sib_entry": 41,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29JACGAU-GAU",
+"bid": 30,
+"flow_px": 30,
+"sib_filled": true,
+"sib_entry": 70,
+"combined": 100,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN29DZUFER-FER",
+"bid": 78,
+"flow_px": 75,
+"sib_filled": true,
+"sib_entry": 21,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29HADTIM-TIM",
+"bid": 70,
+"flow_px": 70,
+"sib_filled": true,
+"sib_entry": 30,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29HADTIM-HAD",
+"bid": 30,
+"flow_px": 30,
+"sib_filled": true,
+"sib_entry": 70,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29MUNCER-MUN",
+"bid": 23,
+"flow_px": 23,
+"sib_filled": true,
+"sib_entry": 77,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29SHYGOL-GOL",
+"bid": 76,
+"flow_px": 75,
+"sib_filled": true,
+"sib_entry": 22,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29BIRKOR-BIR",
+"bid": 49,
+"flow_px": 49,
+"sib_filled": true,
+"sib_entry": 50,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29BIRKOR-BIR",
+"bid": 50,
+"flow_px": 50,
+"sib_filled": true,
+"sib_entry": 50,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29BIRKOR-BIR",
+"bid": 49,
+"flow_px": 49,
+"sib_filled": true,
+"sib_entry": 50,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30CANALM-ALM",
+"bid": 27,
+"flow_px": 25,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30CANALM-ALM",
+"bid": 28,
+"flow_px": 25,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29TOWSWI-SWI",
+"bid": 86,
+"flow_px": 86,
+"sib_filled": true,
+"sib_entry": 13,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29STABLI-BLI",
+"bid": 43,
+"flow_px": 35,
+"sib_filled": true,
+"sib_entry": 55,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29STABLI-BLI",
+"bid": 43,
+"flow_px": 35,
+"sib_filled": true,
+"sib_entry": 55,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN30ERJJEA-ERJ",
+"bid": 38,
+"flow_px": 35,
+"sib_filled": true,
+"sib_entry": 62,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29SELKRA-KRA",
+"bid": 53,
+"flow_px": 53,
+"sib_filled": true,
+"sib_entry": 47,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29SONETC-SON",
+"bid": 53,
+"flow_px": 53,
+"sib_filled": true,
+"sib_entry": 47,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29KYPMCD-KYP",
+"bid": 28,
+"flow_px": 28,
+"sib_filled": true,
+"sib_entry": 71,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29SELKRA-SEL",
+"bid": 47,
+"flow_px": 47,
+"sib_filled": true,
+"sib_entry": 53,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29KHAHAR-HAR",
+"bid": 24,
+"flow_px": 23,
+"sib_filled": true,
+"sib_entry": 75,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29KHAHAR-HAR",
+"bid": 25,
+"flow_px": 25,
+"sib_filled": true,
+"sib_entry": 75,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29COLFIL-FIL",
+"bid": 58,
+"flow_px": 58,
+"sib_filled": true,
+"sib_entry": 42,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29COLFIL-COL",
+"bid": 42,
+"flow_px": 38,
+"sib_filled": true,
+"sib_entry": 58,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN30SVISNI-SNI",
+"bid": 27,
+"flow_px": 26,
+"sib_filled": true,
+"sib_entry": 74,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29MOUGIR-GIR",
+"bid": 55,
+"flow_px": 55,
+"sib_filled": true,
+"sib_entry": 44,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29MOUGIR-GIR",
+"bid": 56,
+"flow_px": 55,
+"sib_filled": true,
+"sib_entry": 44,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29CIRBEJ-CIR",
+"bid": 74,
+"flow_px": 74,
+"sib_filled": true,
+"sib_entry": 27,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29RUSMCC-MCC",
+"bid": 42,
+"flow_px": 42,
+"sib_filled": true,
+"sib_entry": 57,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29BLOZVE-ZVE",
+"bid": 88,
+"flow_px": 88,
+"sib_filled": true,
+"sib_entry": 11,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29BOIRYB-RYB",
+"bid": 97,
+"flow_px": 96,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30MOLGOM-GOM",
+"bid": 34,
+"flow_px": 25,
+"sib_filled": true,
+"sib_entry": 64,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30MOLGOM-GOM",
+"bid": 36,
+"flow_px": 25,
+"sib_filled": true,
+"sib_entry": 64,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30MOLGOM-GOM",
+"bid": 37,
+"flow_px": 25,
+"sib_filled": true,
+"sib_entry": 64,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30ROCBAS-BAS",
+"bid": 33,
+"flow_px": 32,
+"sib_filled": true,
+"sib_entry": 65,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29GRIDUC-DUC",
+"bid": 34,
+"flow_px": 34,
+"sib_filled": true,
+"sib_entry": 67,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29NAVCOB-NAV",
+"bid": 22,
+"flow_px": 22,
+"sib_filled": true,
+"sib_entry": 78,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29TIAATM-ATM",
+"bid": 19,
+"flow_px": 19,
+"sib_filled": true,
+"sib_entry": 80,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29KOPCHO-KOP",
+"bid": 59,
+"flow_px": 59,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30MENABO-ABO",
+"bid": 35,
+"flow_px": 35,
+"sib_filled": true,
+"sib_entry": 62,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29KUDSAM-KUD",
+"bid": 38,
+"flow_px": 36,
+"sib_filled": true,
+"sib_entry": 63,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29WAWBER-BER",
+"bid": 80,
+"flow_px": 80,
+"sib_filled": true,
+"sib_entry": 20,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29OSOWAL-WAL",
+"bid": 36,
+"flow_px": 36,
+"sib_filled": true,
+"sib_entry": 64,
+"combined": 100,
+"det": true
+},
+{
+"leg": "KXWTAMATCH-26JUN29SHNLYS-LYS",
+"bid": 34,
+"flow_px": 34,
+"sib_filled": true,
+"sib_entry": 64,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29LEHPOP-POP",
+"bid": 22,
+"flow_px": 22,
+"sib_filled": true,
+"sib_entry": 78,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN30TOMBOL-TOM",
+"bid": 86,
+"flow_px": 86,
+"sib_filled": true,
+"sib_entry": 14,
+"combined": 100,
+"det": true
+},
+{
+"leg": "KXATPMATCH-26JUN29SWEDIM-SWE",
+"bid": 23,
+"flow_px": 21,
+"sib_filled": true,
+"sib_entry": 77,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPMATCH-26JUN29SWEDIM-SWE",
+"bid": 24,
+"flow_px": 21,
+"sib_filled": true,
+"sib_entry": 77,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN30KRUVEK-KRU",
+"bid": 40,
+"flow_px": 39,
+"sib_filled": true,
+"sib_entry": 60,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30CASGAL-CAS",
+"bid": 97,
+"flow_px": 97,
+"sib_filled": true,
+"sib_entry": 5,
+"combined": 102,
+"det": false
+},
+{
+"leg": "KXWTAMATCH-26JUN29SEINOS-NOS",
+"bid": 91,
+"flow_px": 89,
+"sib_filled": true,
+"sib_entry": 10,
+"combined": 101,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30LAHER-HER",
+"bid": 29,
+"flow_px": 29,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30LAHER-HER",
+"bid": 27,
+"flow_px": 26,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30LAHER-LA",
+"bid": 71,
+"flow_px": 71,
+"sib_filled": true,
+"sib_entry": 29,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30LAHER-LA",
+"bid": 73,
+"flow_px": 73,
+"sib_filled": true,
+"sib_entry": 29,
+"combined": 102,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30HASREN-HAS",
+"bid": 75,
+"flow_px": 64,
+"sib_filled": true,
+"sib_entry": 35,
+"combined": 110,
+"det": true
+},
+{
+"leg": "KXITFMATCH-26JUN30HASREN-HAS",
+"bid": 78,
+"flow_px": 64,
+"sib_filled": true,
+"sib_entry": 35,
+"combined": 113,
+"det": true
+},
+{
+"leg": "KXITFMATCH-26JUN30HASREN-HAS",
+"bid": 75,
+"flow_px": 64,
+"sib_filled": true,
+"sib_entry": 35,
+"combined": 110,
+"det": true
+},
+{
+"leg": "KXITFMATCH-26JUN30HASREN-HAS",
+"bid": 74,
+"flow_px": 64,
+"sib_filled": true,
+"sib_entry": 35,
+"combined": 109,
+"det": true
+},
+{
+"leg": "KXITFMATCH-26JUN30HASREN-HAS",
+"bid": 75,
+"flow_px": 64,
+"sib_filled": true,
+"sib_entry": 35,
+"combined": 110,
+"det": true
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30MARRIB-RIB",
+"bid": 85,
+"flow_px": 85,
+"sib_filled": true,
+"sib_entry": 14,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30MARRIB-RIB",
+"bid": 85,
+"flow_px": 85,
+"sib_filled": true,
+"sib_entry": 14,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30MARRIB-RIB",
+"bid": 86,
+"flow_px": 86,
+"sib_filled": true,
+"sib_entry": 14,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30MARRIB-MAR",
+"bid": 14,
+"flow_px": 14,
+"sib_filled": true,
+"sib_entry": 86,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30MARRIB-MAR",
+"bid": 14,
+"flow_px": 14,
+"sib_filled": true,
+"sib_entry": 86,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30FERPAC-PAC",
+"bid": 80,
+"flow_px": 80,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30FERPAC-FER",
+"bid": 21,
+"flow_px": 20,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30FERPAC-FER",
+"bid": 22,
+"flow_px": 20,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30FERPAC-FER",
+"bid": 20,
+"flow_px": 20,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30SAKLER-SAK",
+"bid": 91,
+"flow_px": 91,
+"sib_filled": true,
+"sib_entry": 7,
+"combined": 98,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30SURDRA-SUR",
+"bid": 42,
+"flow_px": 42,
+"sib_filled": true,
+"sib_entry": 57,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUN30SUNSHI-SUN",
+"bid": 49,
+"flow_px": 49,
+"sib_filled": true,
+"sib_entry": 52,
+"combined": 101,
+"det": true
+},
+{
+"leg": "KXITFMATCH-26JUN30SHINIS-SHI",
+"bid": 83,
+"flow_px": 83,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30SHINIS-SHI",
+"bid": 84,
+"flow_px": 84,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUN30SHINIS-SHI",
+"bid": 85,
+"flow_px": 85,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN30WANCHO-CHO",
+"bid": 13,
+"flow_px": 13,
+"sib_filled": true,
+"sib_entry": 86,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN30DESGUO-DES",
+"bid": 16,
+"flow_px": 16,
+"sib_filled": true,
+"sib_entry": 83,
+"combined": 99,
+"det": true
+},
+{
+"leg": "KXITFWMATCH-26JUN30AHNYUA-YUA",
+"bid": 79,
+"flow_px": 79,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUN30AHNYUA-AHN",
+"bid": 20,
+"flow_px": 19,
+"sib_filled": true,
+"sib_entry": 79,
+"combined": 99,
+"det": true
+},
+{
+"leg": "KXITFWMATCH-26JUN30AHNYUA-AHN",
+"bid": 19,
+"flow_px": 19,
+"sib_filled": true,
+"sib_entry": 79,
+"combined": 98,
+"det": true
+},
+{
+"leg": "KXITFMATCH-26JUL01JONOCH-OCH",
+"bid": 16,
+"flow_px": 16,
+"sib_filled": true,
+"sib_entry": 83,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUL01JONOCH-JON",
+"bid": 81,
+"flow_px": 81,
+"sib_filled": true,
+"sib_entry": 16,
+"combined": 97,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUL01KALMUN-MUN",
+"bid": 92,
+"flow_px": 92,
+"sib_filled": true,
+"sib_entry": 8,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUL01VANVER-VER",
+"bid": 54,
+"flow_px": 53,
+"sib_filled": true,
+"sib_entry": 46,
+"combined": 100,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUL01VANVER-VER",
+"bid": 53,
+"flow_px": 53,
+"sib_filled": true,
+"sib_entry": 46,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXITFWMATCH-26JUL01VANVER-VAN",
+"bid": 46,
+"flow_px": 46,
+"sib_filled": true,
+"sib_entry": 53,
+"combined": 99,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUL01BARSAK-BAR",
+"bid": 52,
+"flow_px": 52,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXITFMATCH-26JUL01HOMDAG-DAG",
+"bid": 52,
+"flow_px": 52,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+},
+{
+"leg": "KXATPCHALLENGERMATCH-26JUL01HEIBAR-BAR",
+"bid": 20,
+"flow_px": 20,
+"sib_filled": false,
+"sib_entry": null,
+"combined": null,
+"det": false
+}
+]

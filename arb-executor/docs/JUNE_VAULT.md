@@ -230,3 +230,16 @@ WHAT THE FULL ARC SHOWS (do not reduce to one stat):
 - SECURITY [UNFIXED]: VPS .git/config embeds a live plaintext GitHub PAT with push rights. Flagged repeatedly, never rotated. Recommend rotate + SSH/credential-helper.
 - Accounting: report as cash + mark vs baseline, never cash-only. Current equity ~$2505 (Jun 30 dump). Reconcile baseline against the dump.
 - Three-agent loop: Fable (strategy/verify/drive) → CC (executes on VPS) → Plex (adversarial gate). Operator relays. One concern per CC prompt. Plex reads pushed artifacts via public raw URL.
+
+---
+
+## APPENDIX — THE ANTI-RE-DERIVATION ARCHIVE (verbatim June record)
+
+The complete June body of work, verbatim from disk, is consolidated in [`JUNE_VAULT_APPENDIX.md`](JUNE_VAULT_APPENDIX.md) — the single place where every finding, artifact, and deploy is present in full so it never has to be re-derived:
+
+- **Part I** — the full `LESSONS.md` reproduced **byte-for-byte** (verified as a contiguous substring; all lessons, Categories A 52 · B 25 · C 31 · D 18 · E 32 · F 35 · G 24 + Superseded; the data-source & artifact inventory; protocols; changelog).
+- **Part II** — the OMQS live-forensic artifact index (16 surfaces, verbatim purpose lines).
+- **Part III** — the `docs/` analysis-surface index (every spec, size + verbatim purpose line; deeper catalog in `docs/ANALYSIS_LIBRARY.md`).
+- **Part IV** — pointer to the §4C deploy ledger (above) and the pending §4E/§4F sections.
+
+Built 2026-07-01 @ `8299ca25`. Completeness over brevity, verbatim over summary — if it is not in the Vault body above, it is in the appendix, in full.

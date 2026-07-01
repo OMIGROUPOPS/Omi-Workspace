@@ -247,6 +247,26 @@ WHAT THE FULL ARC SHOWS (do not reduce to one stat):
 
 ---
 
+## 4G. STRANDED-WINNER RECOVERY — MEASURED (2026-07-01)
+
+The §4E recovery paths were measured on the sub-second tape. Artifacts + scripts committed under `arb-executor/analysis/stranded/` (commits `c2c297d4` set, `aede311b` β, `1787325d` α, `4454fd5c` M-α1, `c205dce5` M-α2, `b25c6c0d` live HUIAHN). Reported per Plex gate structure.
+
+**SETTLED (mechanism — hold, do not re-derive):**
+- **Adverse selection is real.** On the stranded singles the KEPT (filled) leg is the loser and the MISSED (stranded) leg is the winner — **91% of known-settled**. We keep the loser, strand the winner.
+- **α is PLUMBING, not prediction.** The missed fills are not a signal problem; leading-signal AUC is moot. The misses are NEVER-LAID / pulled / too-deep — a bid that wasn't there (or not at the right level) when the winner's dip printed. **No predictor needed.**
+- **β (gun-cross) is a BACKSTOP ONLY.** Crossing the missed ask at the gun recovers only ≈ **+$8** (winner already appreciated: combined median 104¢, 15% ≤97). Not a money-maker.
+
+**HELD-PENDING-N (dollar magnitude — do NOT enshrine a number yet):**
+- M-α1 pair-economics replay computes recovery ≈ **+$32** vs the −$43.97 naked baseline, BUT: (a) decomposed, the lever is **always-lay (+$26)**, not don't-pull (+$3); (b) it only **stanches** the bleed — the cohort is still net −$12, only **41% of completions clear ≤97**; (c) settlement-incomplete (45/91 full-settle, 79 determined, 12 unknown) → the absolute figure is soft; (d) **one-config-era, Jun24-30 only**; (e) the print evidence is **88.7% two legs (SIEBON + DALTRA — both walked, CLEAN/determined, real 99→1 swings, but a thin base)**. Treat as directional, pending shadow N.
+- **M2 reconciliation:** pair completion **neutralizes** the M2 protective-cancel cost (naked −$24.62 → pair ≈ −$5, near-neutral) — so M2 does **not** block the fix. Caveat: reconstructed set (405/328) is a superset of the doc's 81/64, so the exact delta is not clean.
+- **Live confirmation is thin:** HUIAHN (26JUL01) showed NEVER-LAID live, but was combined-doomed at 104 by an overpaid AHN — a double-failure, a weak single exhibit.
+
+**SHIPPABLE-ORTHOGONAL:**
+- **Always-lay-both** — post AND keep a bid on BOTH legs, at the right level, gating cancels on **true match-start** (not the stale scheduled clock: `v4_t20m_fallback` + `maker_only_no_late_entry` is the live culprit). This is where the +$26 is, it is orthogonal to the exit, and it is the shippable lever.
+- **Don't-pull → SHADOW regardless** (own recovery +$3). Plex ship-gate for LIVE: M-α1 NET ≥ +$25 after contamination filter AND M-α2 neutral AND SIEBON/DALTRA clean AND 2 weeks shadow.
+
+---
+
 ## 5. THE OPERATOR'S THESIS (his words, hold them)
 
 - The bleed is the games where we fill ONE side, at a BAD price, and that side is the falling knife — NOT the clean under-100 pairs.

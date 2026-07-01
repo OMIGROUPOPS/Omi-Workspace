@@ -191,6 +191,62 @@ WHAT THE FULL ARC SHOWS (do not reduce to one stat):
 
 ---
 
+## 4E. THE COMPLETION-GAP CANCER: BLIND-LAYING → WE KEEP THE LOSER, STRAND THE WINNER (2026-07-01, THE central diagnosis — do not re-derive)
+
+**This is the deepest diagnosis in the record. It explains multiple prior mysteries (why fv_anchor was a coinflip, why Window-1 "feels like luck," why completion attempts systematically fill the loser). It circled for DAYS before being written. Read it FIRST when touching the completion/pairing problem.**
+
+**THE FUNNEL (dollar-sized, current corpus, Jun24-30):**
+- Pairable (both legs exist, valid T-20m anchors): **79.34%** (PAIRING_DIAGNOSTIC — corpus-scale, current). NOT the stale B23 "29.8% width" / "21-23% double-cash" numbers — those measure trajectory-width feasibility on the Mar-Apr corpus and are the WRONG anchor. Availability floor is ~79%.
+- Pairable → COMPLETED (both legs filled): **72%** (OMQS_COMPLETION_FUNNEL). The 28% gap is the bleed.
+- Completed → locked combined ≤100: **81%**. Combined-PRICE is largely SOLVED.
+- **Two dollar pots: forfeited-COMPLETION = −$50.65 vs forfeited-LOCK (combined-price) = −$5.45. A 9× ratio. THE MONEY IS COMPLETION, NOT COMBINED-PRICE.** The midnight "hunt fav early for better combined" framing is SUPERSEDED — combined-price is a −$5.45 problem. DEMOTED. Do not re-open fav-leg-placement-modulation as a top lever.
+
+**THE COMPLETION GAP breaks into two failure modes (OMQS_COMPLETION_FUNNEL, dollar-weighted):**
+- (a) QUEUE-STARVE strand −$35.63 (biggest): one leg fills, the sibling sits behind a wall and never crosses our resting bid. NISHIWAKI class (our bid behind a growing wall 58→2454→5124, never filled).
+- (c) GRACE-OFF GUN-CANCEL −$15.02: one leg fills, then the sibling's resting bid is cancelled at the match-live latch before it fills. SHINIS class (match_live_cancel pulled the bid, grace_kill OFF in the bisect).
+- (b) MISSED-BOTH $0 (no position, no loss).
+
+**THE MECHANISM (proven, n=93 stranded singles, OMQS_ADVERSE_SELECTION_STRANDED):** when only one leg fills, we KEEP the loser and STRAND the winner.
+- KEPT (filled) leg: loses **65%** (60/92, z≈2.9 — statistically real, NOT noise). Was the worse-priced side in **70%** of paired events (n=33, within-event same-match control, z≈2.3). Fill-vs-mid median −0.5 (worse).
+- MISSED (stranded) leg: **94% below mid** — the patient, better-priced side. The winner.
+- Holds ACROSS the price distribution — cheap kept legs (PAU 4, ALV 17, GOI 16, MAL 22) lose alongside expensive ones. **This KILLS the pure-geometry alternative** (it's not a favorite-only / high-price phenomenon).
+
+**THE ROOT — READ THIS RIGHT (operator's correction, overrides Plex's fatalistic framing):** the maker bid is NOT "structurally doomed to catch losers by inherent adverse selection." The starvation is an **INFORMATION / PLACEMENT failure: we lay the bid BLIND.** We anchor on last-TRADED price (fv_anchor) with NO read of the bid/ask CHAIN or the TRANSACTION flow. So we post in the wrong place → get hit only when the loser DUMPS (a visible trade) → starve on the winner (whose gettable moment is a BOOK event we can't see because we're trade-pinned). **The market is not being unfair to makers — we are just not laying advantageously.** The fix is to READ the bid/ask chain + transaction flow and lay the maker where the flow says the winner is gettable — NOT to accept maker-doom and cross.
+
+**THE INSTRUMENT GAP (why we're blind):** every current predictor — fv_anchor (last-traded), sustained_flow (K=3), vol_gate — is TRADE-PINNED. The winner's gettable moment is a DIVOT: a momentary dip in a strengthening leg (best_bid briefly taken down) that is a BOOK event with NO trade print. Trade-pinned instruments MISS divots by construction. This is why fv_anchor was a coinflip, why Window-1 "feels like luck" (strength is in bookless divots, not trade-drift), and why the seesaw matters: paired_mid_sum ≈ 0.998 (legs near-perfectly anti-correlated — the cheap moment for leg A is the expensive moment for leg B). NOTE: the seesaw does NOT prevent bilateral capture — mid-sum≈1.00 kills MID-level arbs, but bilateral makers post BELOW mids and the bid-ask SPREAD creates the ≤100 window (81% of completions already lock). Move past the seesaw objection.
+
+**TWO RECOVERY PATHS (both to be MEASURED read-only before any build — do NOT ship on the mechanism argument alone; the elegance of the divot story is exactly the §0 loop-trap):**
+- **α — ADVANTAGEOUS MAKER LAY / divot-catch (operator's thesis, UNPROVEN):** lay the maker using a live read of the bid/ask chain + transaction flow (a BOOK-event signal: best_bid-drop-without-trade, depth-pull, ask-thinning, quote-velocity, sibling-leg trade), to catch the winner on its divot as a maker. Keeps maker economics. DISCONFIRMING PRESSURE: (1) coinflip-drift — if trade-drift is unpredictable at 1¢, book-divots may ALSO be noise (visibility ≠ predictability); (2) local-adverse-selection — even at a divot, the crossing taker locally wants out; must show local-flow-during-divot is LESS adversely-selected than during-a-dump. MEASUREMENT (NEVER RUN): on the 93 stranded winners, reconstruct book time-series, find divot moments, test if any book signal LEADS them (report divot count, duration P50/75/90 vs our fill latency, leading-signal AUC). **If AUC > 0.65 AND duration > latency → α buildable. If coinflip → α dead.** Plex's pre-measurement lean: 60% noise / 40% signal.
+- **β — GUN-CROSS the stranded winner (deterministic, buildable regardless of α):** when leg-1 fills and leg-2 sits below the wall approaching the gun, CROSS the ask on leg-2 (take, don't rest) — pay the spread, LOCK the pair. Doesn't need divot predictability. SHINIS proved it live (the 13¢ ask, 1 lot, we should've lifted to lock 98). MEASUREMENT: replay the 93 stranded events, cross the ask at gun-30s/15s/5s/gun-time, compute combined + lock-rate + NET vs the −$50.65 baseline. **If NET recovers ≥$25 → ship β first.** Same rigor as the monotonic-cut sweep.
+- **They are COMPLEMENTARY, not rival:** α fires opportunistically when a divot comes (cheap maker); β fires as fallback when the divot didn't come in time (pays spread). Together they close both stranding classes.
+
+**BUILD PRECONDITIONS (both paths):** (1) the double-dead pair_governor must be fixed — last_trade_price_at_post was PaperOrder-only (always 0) AND cur read a stale recorder; the Jun-29 rev (f998231) fixed both but was NEVER merged to deploy → the divot-catcher has literally never fired. (2) The SUMTAK-TAK duplicate-buy serialization guard must be rebuilt (pair_governor disarmed f4a766d for this collision, fix never built). (3) β must fire BEFORE the M2 stale-buffer cancel activates on the sibling, or the leg gets cancelled before we can cross — sequencing matters, and M2's protective cancel (saves −$25 per the gun-cancel analysis) must stay intact.
+
+**NEXT ACTION (Plex-ratified): TWO read-only measurements in parallel, alongside cut #1's shadow — α (divot-predictability) and β (gun-cross economics). Build track opens AFTER they land. If both fail → broader model rethink (cross-side hedging, cell-level adverse-selection cutoff). Referenced artifacts: OMQS_ADVERSE_SELECTION_STRANDED.md, OMQS_COMPLETION_FUNNEL_JUN24-30.md, PAIRING_DIAGNOSTIC.md.**
+
+## 4F. THE JUNE RECORD — CONSOLIDATION MAP + THE META-FAILURE (2026-07-01)
+
+**PURPOSE: the completion-cancer diagnosis (§4E) was RE-DERIVED over a full multi-hour session because the load-bearing June lessons were never consolidated into the Vault — they sat in LESSONS.md (188 entries, 7 series A/B/D/E/F/G/T) and were not read. This section is the MAP so it stops happening. Read the cited lessons VERBATIM from arb-executor/docs/LESSONS.md — do NOT trust a paraphrase (including this one). SCRUB STATUS: the full verbatim consolidation IS DONE — see JUNE_VAULT_APPENDIX.md (LESSONS.md reproduced byte-for-byte).**
+
+**THE LOAD-BEARING JUNE LESSONS behind §4E (read these first, verbatim):**
+- **B23** — the BILATERAL MECHANISM in operational terms: post maker YES at P_y AND NO at P_n; profit = $1 − (P_y+P_n); profitable iff sum < 100. Feasibility needs premarket trajectory width ≥10¢. This IS the strategy. (NOTE: the "29.8% width / 21-23% double-cash" numbers are OLD-corpus trajectory-width, NOT the current 79.34% PAIRING_DIAGNOSTIC availability — see §4E.)
+- **B22** — the cell is ANCHORED AT FILL, not predicted: post passive maker bids, let drift fill you into whichever cell is reachable. Do NOT "predict the right cell."
+- **B24** — YES and NO orderbooks are NOT execution-equivalent (Dzumhur OI 2,070 vs Mannarino 8,594, ~4× on the same match). Ladder on the DEEPER book side.
+- **A49** — T-20m anchor is the SUCKER'S baseline; 97% of tickers dip ≥1¢ below it (median 3¢). NEVER cross taker at T-20m when a maker bid was available earlier.
+- **A50** — drift timing: B4 (final hour, T-1h20m→T-20m) dominates dip frequency (54% ATP_MAIN dip ≥3¢ in B4; challengers 69-74%). Late-window placement is optimal.
+- **A31** — VOLUME is a PRIMARY predictor of bilateral capture (33pp swing low→high volume), not a filter. Partition on volume.
+- **A22 / A26** — the measurement universe is NOT bid/ask/mid/spread. taker_side/aggressor data is ALREADY COLLECTED (analysis/trades/, 2.75M records, Apr19+): effective spread, order-flow microstructure, VWAP, depth trajectory. The book-event signals §4E's α needs may be reconstructable from this.
+- **A42 / A43** — a binary place/skip GATE on a fill predictor CANNOT beat unconditional placement (costless fallback → a skip only subtracts); value is CONTINUOUS aggressiveness modulation. (This is why §4E's α must be a placement-modulation, NOT a hunt/skip gate.) A43 (locked-exit caps entry-side conditioning) is PRE-JUNE/PRE-LIVE context, already overturned once by the live monotonic cut — CONTEXT not veto.
+- **A52** — is_taker (exchange flag) is canonical for maker/taker; entry_mode mislabels ~50%. The 87%-taker finding was that DEPLOYMENT's box (early June) — DEAD/solved, do NOT cite as current.
+- **A7 / A20 / A28** — data-tier discipline: match resolution to question timescale (5-min snapshots miss second-scale moves — THIS is why divots need the sub-second tape, NOT kalshi_price_snapshots which polls every 300s top-of-book-only). A-tier (Apr18+) is tick-level 5-deep; older tiers supplementary.
+
+**THE META-FAILURE (2026-07-01, the D18 lesson made concrete — the thing to actually fix):**
+- **D18 already named it (verbatim on disk):** "reasoning abstractly about data/strategy instead of consulting the git universe FIRST." This session repeated every clause: characterized results before reading disk, re-quoted stale/mis-scoped numbers, mis-read code (asserted an "ask−1 clamp" that does not exist — the code JOINS THE BID, `min(best_bid, ask−1)`, ask−1 is only the never-cross ceiling), smeared multiple deployments as one window, dragged EXIT back in after it was ruled out, and grabbed the wrong table (5-min kalshi_price_snapshots) when the sub-second tape was the established source.
+- **The enforceable fix (not "try harder" — a precondition on the action):** (1) NO claim about what the code does without the FUNCTION BODY pasted in the same message — not a comment, not a line number. (2) NO fact from CC's prose until confirmed against the pushed artifact or the tape (CC garbles — trust discrete facts: hashes/timestamps/counts). (3) When the operator pushes back, the response must contain a fresh disk/tape READ, not a defense (A32/G24 — pushback is a reliable bug signal). (4) A lesson's DATE matters — pre-June is CONTEXT not VETO; box every finding to the deployment it was found on. (5) The unit of analysis is the REDEPLOYMENT (arm/disarm boundary), never the day or week.
+- **Why the Vault alone hasn't fixed it:** a document is passive — the instance must choose to read and apply it, and under pressure pattern-matches instead. The durable fix is IMPERATIVE Vault entries that direct the next chat to RUN a command / READ a git artifact before asserting (an action survives into fresh context; "remember X" does not). The operator's standing instruction: the Vault header should direct session-start to fetch the branch + read §0 + read this map, as COMMANDS, before responding to the first substantive ask.
+
+---
+
 ## 5. THE OPERATOR'S THESIS (his words, hold them)
 
 - The bleed is the games where we fill ONE side, at a BAD price, and that side is the falling knife — NOT the clean under-100 pairs.

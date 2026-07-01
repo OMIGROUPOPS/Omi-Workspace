@@ -126,6 +126,71 @@ The §4 "selective downside cut" question (open since the Vault was built) is no
 
 ---
 
+## 4C. THE COMPLETE JUNE DEPLOY LEDGER (every deploy, what it tried to fix, what it broke)
+
+77 commits June 15–30. This is the FULL record, not a stat. The pattern is not "wrong feature" — it is arm without isolating → break something adjacent → patch the break → arm again, with TWO core P0s (order create + cancel) silently failing for unknown stretches. Do NOT re-quote a single percentage from any one deploy as "the problem" — read the arc.
+
+Jun 15–18 — entry placement rebuild
+- fc3876f abort-seal ATP_MAIN staircase guard.
+- d72ac2c JOIN-THE-BID: replaced the ask-1/offset entry clamp with join-the-bid. (Major entry-placement change — how the resting bid is priced.)
+- 8cc9ff1 per-minute re-join cadence. d1aec84/da9f6ac join-trial queue telemetry + 5328 oscillation fix + serialize-on-restart. 59565d5 armed join_trial 5c degraded.
+- 77fd9fa/13bd67c staircase ship-1/2: anchor-1 clamp + abort gates, dormant.
+
+Jun 19 — P0 #1 + bug-chain begins
+- a16d438 staircase-walk-truncation (STEP-6 truncated the walk at T-20). 23a78e8 widen staircase to all 4 cats.
+- fac74b5 P0: order CREATE was 410'ing — silently failing. Migrated to create-order-v2. Entry infra was broken for an unknown stretch before this.
+- 4dab200/4a5d24b fv-burst observe-only instrumentation (motivation: entries land +1.5–4.6c ABOVE fv — the distortion, measured here).
+- 192d2eb/0d928f9 E113 premarket movement-gate (suppress flat-premarket false live-bursts, FERCER class). e6a76c4 wall observe-log.
+
+Jun 20 — fixes breaking the next thing
+- dbf1809 abort-fix (counted premarket false-triggers as live). c03e010 E147: UnboundLocalError crashing EVERY walk-step (new_regime/new_offset undefined before the staircase branch).
+
+Jun 21–22 — patching the patch
+- 5f6b932 engagement-overclaim (GUNMAK +30 overpay class — stale-path legs overpaying). c3fb773/4ca7a2c complete-cross: basis-gated taker cross to complete single-legged pairs at the gun, armed.
+- 22f4f57 fixed the UnboundLocalError that c03e010 LEFT TWO LINES DOWN (:6027/:6034). A fix that created the next crash. cfebd42 commit stranded tennis_schedule.py (git≠reality gap).
+
+Jun 24 — abort-rearm + fv-anchor THRASH
+- e90a89e/389983f/1729bd7 re-armable staircase abort, armed.
+- 0bfd547 fv-anchor: post resting bid AT last-traded fv (clamped ask-1). 00cb8c0 arm → 822c98d DISARM (placement-price premise review) → c611f09 strip clamp + book-sanity → 482bbd4 re-arm. Armed/disarmed/re-armed inside 24h.
+- 0db51c4/706cb3c/ea3e6da complete-all (completion for ALL cells/cats — the table had 12 cells / ZERO WTA → 252 no-attempts), armed.
+
+Jun 25 — P0 #2 + more arming
+- 4457a45 P0: CANCEL was ALSO 410'ing — every cancel silently failing for an unknown stretch. Migrated to events/orders-v2. (Create was P0#1 on Jun 19; cancel P0#2 here — both core order paths were silently dead at different times.)
+- 0ebf05b/60131a4 abort-carve: place the hedge for a held sibling at abort gates, armed.
+- 5a24814 fv-anchor FINAL DISARM: "posts above bid, overrides join-the-bid; backtest on broken sched-4h window + drift coin-flip; 0 fires." (Entry-side fv placement is DEAD — see §1.)
+- 03c1a60/ce75bf8 staircase-hold: route staircase legs to post-at-bid + HOLD, armed.
+
+Jun 26 — THE SIX-PACK (15 commits one night, the green config, arm-spree)
+- 9760b13/2916d23 event-cat-override (DAEVAS). 3de4fc4/1561e98 best-bid-aware repost armed. 2a5caed/fdf0ae0 depth-governor (depth-aware join, floor 50) armed. fa324d4/a25a9d3 vol-gate (staircase trail-vs-hold by live vol, burst 5) armed. 4d7980d/7a3ab33 pair-governor (scoot fader sibling down on firming leg-1 fill) armed. 2d98bfc wall-skip (BUILT, NOT armed). 6ee8bc9/4e914ee bestbid-follow (small-gap upward follow joins at touch, gap 15) armed.
+- 5 flags armed in one night with no measurement gap between them. This is the profitable "green" config — but green = this whole stack at once, un-isolated.
+
+Jun 27 — ITF, dead-input bug shipped LIVE
+- f9b8640/6750728 ITF-borrow armed → ddda89a DISARM (volume_tracker is PaperApi-only — live reference ERRORED) → 328ea0a/613b9f7 fix to live _trade_notional → 4eee091 re-arm. Shipped a live ref-error, caught it, patched, re-armed — same night. Same PaperApi-only-attribute bug class that also hit pair-governor (last_trade_price_at_post).
+
+Jun 28 — ZERO commits (green ran untouched — the one measured window).
+
+Jun 29 — THE FOUR MONDAY FLAGS (arm-spree again → duplicate-buy)
+- 7c7e058/e95bfb0 liquid-repost (suppress repost roll-down behind phantom walls) armed 04:31.
+- b308084/36d9344 grace-kill (5-min grace before match_live cancel on held-sibling pairs) armed 14:55.
+- 1660b36/3473a5d sustained-flow (tape-anchored cancel latch, K=3) armed 15:59. 617ab98 obs-log.
+- f998231 pair-governor-rev (make the divot-catcher actually fire — live-tape inputs + every-fill) armed 17:32 → f4a766d DISARM 23:24: duplicate-buy collision LIVE (SUMTAK-TAK). Root = completion_reprice + v4_move_repost, INDEPENDENT of liquid-repost; serialization fix (one-post-per-leg-per-tick) NEVER built. Re-arming re-adds the collision.
+- 4 behaviors armed in one 36h window, 3 within seconds/minutes of shipping, no measurement gap → every regression is entangled, every fix a guess.
+
+Jun 30 — completion-ceiling (near-dead problem)
+- 7c6a6a4/d2ac207 completion-combined-ceiling armed — but over-par is ~0% live (1 leg in 591). Solving a near-dead problem.
+
+---
+
+WHAT THE FULL ARC SHOWS (do not reduce to one stat):
+1. Two silent P0s — order CREATE (Jun 19) and CANCEL (Jun 25) both 410'd, silently failing for unknown stretches. Any P&L or fill analysis spanning those windows is contaminated by infra that wasn't working.
+2. Fixes broke adjacent things — the UnboundLocalError chain (c03e010 → 22f4f57 fixing what it left two lines down), fv-anchor thrash (4× arm/disarm), ITF live ref-error.
+3. Recurring bug class (3×): PaperApi-only attribute read on the live class (fv-anchor, ITF volume_tracker, pair-governor last_trade_price_at_post). When the same fix recurs, it's a SYMPTOM.
+4. Arm-spree pattern — Jun 26 (5 flags/night) and Jun 29 (4 flags/36h), no measurement gap between armings. This is why regressions are entangled and the flag-bisect exists at all.
+5. The whole month is ENTRY-MECHANIC plumbing — join-the-bid, staircase, repost, depth-governor, gun-detection, ITF-borrow, pair-governor. Nearly every deploy is about WHERE/WHEN a bid rests and fills. The problem is entry mechanics, and the record is 45 days of entry-plumbing that kept breaking itself.
+6. Green (Jun 26–28) is the whole six-pack at once, un-isolated. "Restore green" restores a bundle, not a clean single lever — and pair-governor (part of green) can't safely re-arm (duplicate-buy).
+
+---
+
 ## 5. THE OPERATOR'S THESIS (his words, hold them)
 
 - The bleed is the games where we fill ONE side, at a BAD price, and that side is the falling knife — NOT the clean under-100 pairs.

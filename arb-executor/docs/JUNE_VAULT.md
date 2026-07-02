@@ -333,6 +333,8 @@ The §4E recovery paths were measured on the sub-second tape. Artifacts + script
 
 ## 4H. PRECONDITION MEASUREMENTS + PLEX RULINGS (2026-07-01, July-arc)
 
+> **CURRENT-BOX SETTLED CONCLUSION (2026-07-02):** realized P&L −$8.54 vs $88.15 quantified entry-side mechanical damage (ledger c8a4c227) — the loss is MECHANICAL, not strategic. The exit is exonerated (14k-N foundation, conservative taker-T20m scoring). The strategy remains UNTESTED-AS-DESIGNED until the entry mechanics execute it. Fix queue, dollar-ranked: (1) C-KALSHI-OCC [48 forfeited ≤97 pairs median 72 + 92% loop relief] → (2) fillable-anchored entry targets [$67.40] → (3) true-start cancel gating [$13.20] → (4) volume-floor rework [$5.70]. Each fix validated by an error-ledger re-run: its error class must shrink. One fix at a time, observe-first, operator gates each live arm.
+
 **Plex's four rulings (condensed):**
 1. **Build-1 re-spec = a DIFFERENT build.** The sequential-per-divot doctrine (§0A) voids the simultaneous-static-target spec. Requires **7 mandatory shadow logs + an early-kill clause** before its 48 h shadow clock starts.
 2. **P1 + P2 are HARD PRECONDITIONS** — both must land before any Build-1 shadow clock starts.

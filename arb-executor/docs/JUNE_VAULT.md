@@ -57,6 +57,17 @@ A fill that satisfies element 1 but ignores element 2 (HUIAHN: target 75, tape o
 
 **THE TWO-PROBLEM FRAME (June's entire scope, operator's words):** (1) not filling in Window 1/2 on both sides of a market; (2) when we do fill, not filling at a good price — where good = combined ≤97. Everything else is a sub-issue of these two.
 
+**OPERATIONAL INVARIANTS (2026-07-01, added by Plex ruling — verbatim):**
+1. ```
+Tier aggregation is doctrine-hostile. Report tier-partitioned or don't report.
+```
+2. ```
+Boundary contamination invalidates window-scoped scoring. Old numbers do not carry forward.
+```
+3. ```
+Ceiling results outrank contamination caveats. A par-bound ceiling under perfect execution is a doctrine signal, not a data-quality concern.
+```
+
 ---
 
 ## 1. WHAT'S SETTLED — DO NOT RE-OPEN
@@ -326,6 +337,15 @@ The §4E recovery paths were measured on the sub-second tape. Artifacts + script
 **Job-2 dry-run (`OMQS_JOB2_DRYRUN.md`, KNOWN-CONTAMINATED shakeout — NOT decision data):** pipeline works; combined-≤97 CEILING ≈ **19%** (74% par-bound even at perfect both-leg divot-catch); throughput above the ≥25/day floor in both configs. (ii) window-reachability deferred to the re-anchor.
 
 **STANDING LOCKS (unchanged):** no cancel rework; no flag restoration; cut #1 shadow untouched.
+
+### 4H addendum — P3 SEQUENCING (Plex, 2026-07-01)
+**Plex's four P3 rulings:** (1) **ITF = the original simultaneous Build-1 spec, LICENSED, gated on P3a** (extended-W1); (2) **ATP_MAIN = NO build until the shape study**; (3) re-derivation ORDER = **window-map → ITF dip_timing → main deferred**; (4) **shape study ACTIVE**, forced by the 19% ceiling.
+
+**P3a — window re-derivation (`analysis/stranded/OMQS_P3A_WINDOW_REDERIVE.md`, n=134):** RE-DERIVATION confirmed at scale. **⚠ ATP_MAIN is NOT tighter than ITF** — main median ONSET-Q offset +62 min vs ITF +49 min, both 74-87% >15min tails (the P1 +24 was small-N). Dominant W1 move = **TRIM** (market activates after sched−4h); the EXTEND (−168) class is real but rare. **⚠ ITF W2/gun undetectable 50-60%** (no trade-burst) → ITF corridor/W2 unanchorable for half the tier; the ITF shadow rests on re-anchored **W1** (ONSET-Q) but its in-match window stays unanchored ~half the time. Job-2(ii) unblocked on tape-relative W1.
+
+**P3b — pre-T-4h shape (`OMQS_P3B_PRET4H_SHAPE.md`):** L1 covers pre-T-4h (93-100% reach ≥4h). **ITF early-hours thesis CONFIRMED** — ≤97 achievable 90-96% pre-T-4h (degrading to 80% at the gun); JOINT (≤97 × postable) **PEAKS at T-4h→T-2h = 80-81%** = the ITF shadow's target window (needs P3a extended-W1); explains the 19% contaminated ceiling. **main early-hours thesis FALSIFIED** — par-bound (bid-sum 99, ≤97 5-8%) at *every* bucket, no timing recovers it → reinforces "no ATP_MAIN build." Drift-shapes-per-side deferred (settlement join).
+
+**STANDING LOCKS (P3, unchanged):** no cancel rework · no flag restoration · **no ATP_MAIN build** · cut #1 shadow untouched.
 
 ---
 

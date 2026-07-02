@@ -67,6 +67,12 @@ Boundary contamination invalidates window-scoped scoring. Old numbers do not car
 3. ```
 Ceiling results outrank contamination caveats. A par-bound ceiling under perfect execution is a doctrine signal, not a data-quality concern.
 ```
+4. ```
+Peak-concentration ≠ policy scope.
+```
+5. ```
+Closure over deferral — structural negatives get closed, not queued; deferred negatives get re-derived.
+```
 
 ---
 
@@ -346,6 +352,16 @@ The §4E recovery paths were measured on the sub-second tape. Artifacts + script
 **P3b — pre-T-4h shape (`OMQS_P3B_PRET4H_SHAPE.md`):** L1 covers pre-T-4h (93-100% reach ≥4h). **ITF early-hours thesis CONFIRMED** — ≤97 achievable 90-96% pre-T-4h (degrading to 80% at the gun); JOINT (≤97 × postable) **PEAKS at T-4h→T-2h = 80-81%** = the ITF shadow's target window (needs P3a extended-W1); explains the 19% contaminated ceiling. **main early-hours thesis FALSIFIED** — par-bound (bid-sum 99, ≤97 5-8%) at *every* bucket, no timing recovers it → reinforces "no ATP_MAIN build." Drift-shapes-per-side deferred (settlement join).
 
 **STANDING LOCKS (P3, unchanged):** no cancel rework · no flag restoration · **no ATP_MAIN build** · cut #1 shadow untouched.
+
+### 4H addendum #2 — P4 (Plex, 2026-07-02)
+**ATP_MAIN PAIR-BUILD — CLOSED (Plex, near-verbatim):**
+> Bid-sum 99 at every bucket T-8h→T-0 (P3b, `f622aef6`). ≤97 achievement 5-8%. Par-bound is a market-structure property, not a strategy defect. Do not re-open without new tape or new mechanism. Single-leg/exit-side on main remains open — separate roadmap.
+
+**Plex's four P4 rulings (condensed):** (1) ITF-simultaneous shadow = **standalone pure-observer** process (no `live_v4` mod, zero order path), gated on P3a extended-W1; (2) spec = ITF-only, re-anchored W1, simultaneous cell-target posts, postability gate (spread ≤6¢), **7 bucket-partitioned mandatory logs**, **counterfactual delta vs current-box = PRIMARY**; (3) 48h clock starts on schema-confirmed-live, **early-kill if strand > M-α1 NEVER_LAID baseline**; (4) P4-PARALLEL T-8h→T-4h counterfactual decides the next-cycle window; **tier-partitioned P&L, never extrapolated to main**.
+
+**P4 status (`analysis/stranded/OMQS_P4_SHADOW.md`):** shadow built + **schema VALIDATED** (7 logs emit on the 26JUL01 ITF replay, 318 events). **⚠ The replay REFUTES the static-simultaneous spec on ITF: both-leg completion ≈ 0%, single-leg strand 20% — the seesaw defeats simultaneous static posting (doctrine-consistent).** Caveat: static (no bid-walk), faithful to the "original Build-1 spec"; the live bot walks and fills more. **48h clock NOT started** — the replay nulls the licensed policy and disk is at 92%; clock-start decision to Plex: (a) run live anyway, (b) add bid-walk first (no longer "static simultaneous"), or (c) reconsider — ITF may be a paper opportunity (quotable ≤97, unfillable both-leg) since neither sequential (P2 touch-diverges) nor static-simultaneous (P4 0%) completes.
+
+**STANDING LOCKS (P4, unchanged):** no cancel rework · no flag restoration · no ATP_MAIN build · cut #1 shadow untouched.
 
 ---
 

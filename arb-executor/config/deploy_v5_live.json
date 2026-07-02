@@ -59,5 +59,6 @@
   "sustained_flow_latch": false,
   "itf_entry_borrow": true,
   "itf_min_recent_vol_usd": 500,
-  "itf_recent_vol_window_min": 90
+  "itf_recent_vol_window_min": 90,
+  "kalshi_occ_observe": true
 }

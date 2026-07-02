@@ -24,6 +24,12 @@ Disciplines that must hold:
 
 ## 0A. THE OPERATOR'S FRAME — DEFINITIONS AND DOCTRINE (do not make him repeat these)
 
+⛔ STANDING ORDER — EXITS ARE OUT OF SCOPE UNTIL THE TWO ENTRY PROBLEMS ARE SOLVED. (2026-07-02, operator.)
+- The exit strategy is SOLVED and VALIDATED: positive at every level on the 14k-N foundation (Atlas / Druid's foundation). Those projections were CONSERVATIVE — scored on TAKER trades at the T-20m mark (the worst entries: crossed, late, the sucker's anchor per A49). Real maker entries earlier in premarket can only beat that baseline.
+- Any "exit looks negative on live trades" reading is a SYMPTOM OF BROKEN ENTRIES, not evidence about the exit. Do NOT gauge exit policies on live trades until entries execute per strategy. P6's E2-negative-frontier reading is this artifact — struck as exit evidence.
+- THE CAUSAL CHAIN: the ENTIRE premarket is the entry canvas; the historics show drift edge FOR ENTRY PURPOSES — enter at discount on the drift → the tailored exit becomes an EASIER SWING → the validated exit does the rest. Entries exist TO GAIN AN EASIER EXIT.
+- THE RECURRING FALLBACK, named: whenever entry work stalls or a study surfaces an exit-shaped number, analysis drifts to "maybe the exit is the lever." It is not. The tell: any sentence proposing to change/score/re-target exit policy while combined ≥98 fills and one-sided strands persist. When the tell appears: STOP, cite this order, return to (1) fill BOTH sides in W1/W2, (2) fill at combined ≤97.
+
 **DEFINITIONS (canonical — correct all prior usage):**
 - **DISCOUNT / DISTORTION = the pair-level measurement of entry success:** the combined cost of the two legs. **≤97 = success. 100 = par. >100 = TOTAL FAILURE regardless of fills** — no tailored exit can save a pair that cost more than it can pay. It is the scoreboard of the entry, not a per-leg event.
 - Operator verbatim:

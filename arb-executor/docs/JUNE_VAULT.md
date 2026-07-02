@@ -368,6 +368,9 @@ The §4E recovery paths were measured on the sub-second tape. Artifacts + script
 
 **OPS (2026-07-02):** disk reclaimed 92%→89% (safe/reversible class only: gzip old logs, `git worktree remove` 7 stale `*-build` worktrees [branches preserved], `journalctl --vacuum-size=100M` freed 513M, /tmp scratch). tennis.db/premarket_ticks/durable/config/bot untouched. Underlying `tennis.db` unbounded-growth (auto_vacuum=NONE) still the recurring root — see [[project_disk_full_incident]].
 
+### 4H addendum #5 — P5 BOUHAR-class survival (2026-07-02)
+Population = walked completions <100 (25 pairs: PRIOR 15/CURRENT 10). **Does NOT survive.** Combined clusters 98-99 (only 5/25 ≤97), locked-edge median 1¢, **sum $0.61** aggregate. **Realized −$17.00** on 7/50 settled — negative *despite* completing <100: 24/25 exit early, the window-blind band-exit sells the winner (caps) + rides the loser to 0 (FUCKUP-3). Closes 'complete more pairs' as a build target — the walk makes completions (addendum #4) but they're worth ~nothing at 98-99 and the exit loses on them. **Lever = the EXIT (window-aware / hold <100 to lock) + entry ≤97, NOT completion volume.** `analysis/stranded/OMQS_P5_SURVIVAL.md`. ⚠ SPEC GAP: ribbon-arithmetic (interpreted as sum-locked-edge), reproducibility-signature, pre-committed close-triggers need the P5 dispatch.
+
 ### 4H addendum #4 — CURRENT-BOX FULL GRADE + the WALK finding (2026-07-02)
 Standing report card `analysis/stranded/OMQS_DEPLOY_CURRENT_FULL.md` (re-runnable, `grade_current.py`). Box = bisect `2b23b5d` → now, config unchanged (confirmed empty `config/` log), boot flags stated in the doc. **74 events / 133 legs: completion 27% (BOTH 20 / one-sided 31 / missed-both 23); combined med 99 (14 <100, only 4 ≤97); 75% of legs overpaid vs best-fillable (med +3¢, worst +49¢); miss classes PULLED 12 / NEVER_LAID 6 / TOO_DEEP 3; realized −$11.05 so far (23/133 settled).**
 

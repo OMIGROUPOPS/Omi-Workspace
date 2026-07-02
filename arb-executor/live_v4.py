@@ -2974,31 +2974,6 @@ class LiveV3:
                                     # No reliable commence source — skip rather than use Kalshi expiration
                                     self.event_unmatched_cycles[et] = self.event_unmatched_cycles.get(et, 0) + 1
                                     self._log("no_reliable_commence_source", {"event": et})
-                        # [C-KALSHI-OCC-OBSERVE] pure-observe measurement (NO state change, NO envelope,
-                        # NO order). Once per event: if it just RESOLVED via a real source, log the
-                        # kalshi-occurrence-vs-resolver start delta; if it's a primary-MISS, log what the
-                        # coarse fallback WOULD resolve. Skipped entirely (byte-identical) when flag off.
-                        if getattr(self, "kalshi_occ_observe", False):
-                            _occ = self.event_kalshi_occ.get(et)
-                            _dseen = self.__dict__.setdefault("_occ_delta_seen", set())
-                            _mseen = self.__dict__.setdefault("_occ_miss_seen", set())
-                            if et in self.event_start_time and _occ is not None and et not in _dseen:
-                                _dseen.add(et)
-                                self._log("kalshi_occ_delta", {
-                                    "event": et, "category": self.get_category(et),
-                                    "resolver_source": self.event_start_source.get(et),
-                                    "resolver_start": datetime.fromtimestamp(self.event_start_time[et], tz=ET).isoformat(),
-                                    "kalshi_occurrence": datetime.fromtimestamp(_occ, tz=ET).isoformat(),
-                                    "delta_sec": round(self.event_start_time[et] - _occ, 1)})
-                            elif et not in self.event_start_time and et not in _mseen:
-                                _mseen.add(et)
-                                _wk = _kalshi_occ_start(_occ, now, KALSHI_COARSE_MAX_FUTURE_SEC)
-                                self._log("kalshi_occ_observe", {
-                                    "event": et, "category": self.get_category(et),
-                                    "occurrence_datetime": (datetime.fromtimestamp(_occ, tz=ET).isoformat() if _occ else None),
-                                    "would_coarse_start": (datetime.fromtimestamp(_wk, tz=ET).isoformat() if _wk else None),
-                                    "would_resolve": _wk is not None, "would_trade": _wk is not None,
-                                    "phase": "primary_miss"})
                     # [C-SCHEDULE-TRUST-FIX] pre-start correction of a set-once /
                     # _date_ok-rejected start (JOVANI root). Runs even for matched
                     # / processed events; once per event per cycle.
@@ -5424,6 +5399,33 @@ class LiveV3:
                 return
 
             start_ts = self.event_start_time.get(et)
+
+            # [C-KALSHI-OCC-OBSERVE] pure-observe (NO state change, NO envelope, NO order). This is the
+            # primary-miss path where schedule_gap fires. Once per event: if RESOLVED via a real source,
+            # log the kalshi-occurrence-vs-resolver start delta (measures Kalshi-as-primary divergence
+            # from the ESPN chain); if primary-MISS (start_ts is None), log what the coarse fallback WOULD
+            # resolve. Skipped entirely (byte-identical) when the flag is off.
+            if getattr(self, "kalshi_occ_observe", False):
+                _occ = self.event_kalshi_occ.get(et)
+                _dseen = self.__dict__.setdefault("_occ_delta_seen", set())
+                _mseen = self.__dict__.setdefault("_occ_miss_seen", set())
+                if start_ts is not None and _occ is not None and et not in _dseen:
+                    _dseen.add(et)
+                    self._log("kalshi_occ_delta", {
+                        "event": et, "category": self.get_category(et),
+                        "resolver_source": self.event_start_source.get(et),
+                        "resolver_start": datetime.fromtimestamp(start_ts, tz=ET).isoformat(),
+                        "kalshi_occurrence": datetime.fromtimestamp(_occ, tz=ET).isoformat(),
+                        "delta_sec": round(start_ts - _occ, 1)})
+                elif start_ts is None and et not in _mseen:
+                    _mseen.add(et)
+                    _wk = _kalshi_occ_start(_occ, now, KALSHI_COARSE_MAX_FUTURE_SEC)
+                    self._log("kalshi_occ_observe", {
+                        "event": et, "category": self.get_category(et),
+                        "occurrence_datetime": (datetime.fromtimestamp(_occ, tz=ET).isoformat() if _occ else None),
+                        "would_coarse_start": (datetime.fromtimestamp(_wk, tz=ET).isoformat() if _wk else None),
+                        "would_resolve": _wk is not None, "would_trade": _wk is not None,
+                        "phase": "primary_miss"})
 
             # No schedule match yet
             if start_ts is None:

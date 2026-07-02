@@ -72,9 +72,10 @@ class FakeSelf:
     def _log(self, ev, d=None, ticker=""): self.logs.append((ev, d or {}))
 
 def run_block(self_obj, et, now):
+    start_ts = self_obj.event_start_time.get(et)   # mirrors the real preceding line
     g = dict(datetime=datetime, ET=ET, _kalshi_occ_start=_kalshi_occ_start,
              KALSHI_COARSE_MAX_FUTURE_SEC=KALSHI_COARSE_MAX_FUTURE_SEC)
-    l = dict(self=self_obj, et=et, now=now)
+    l = dict(self=self_obj, et=et, now=now, start_ts=start_ts)
     exec(compile(textwrap.dedent(block_src), "<observe>", "exec"), g, l)
 
 NOW = 1_800_000_000.0

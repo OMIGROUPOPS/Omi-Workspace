@@ -1392,6 +1392,11 @@ class LiveV3:
         # miss, use Kalshi occurrence_datetime as a COARSE start source (wide envelope + tape
         # latch). Covers the schedule_gap miss on books Kalshi schedules but the feeds do not.
         self.kalshi_occurrence_fallback = bool(self.config.get("kalshi_occurrence_fallback", False))
+        # [C-KALSHI-OCC-OBSERVE] pure-observe (default False = byte-identical): logs what the
+        # coarse-start fallback WOULD resolve on a primary-miss, and the kalshi-vs-resolver start
+        # delta on EVERY resolved event -- WITHOUT setting any start, opening any envelope, or
+        # placing any order. Measure-only; independent of kalshi_occurrence_fallback (the live arm).
+        self.kalshi_occ_observe = bool(self.config.get("kalshi_occ_observe", False))
         # [C-CAP-DIFF] reach-repost cap (dormant; default False = byte-identical).
         # When enforced, a resting entry bid is never reposted ABOVE its conception
         # cell (the drift-supported ceiling); holds/down-moves are untouched. Reads
@@ -2969,6 +2974,31 @@ class LiveV3:
                                     # No reliable commence source — skip rather than use Kalshi expiration
                                     self.event_unmatched_cycles[et] = self.event_unmatched_cycles.get(et, 0) + 1
                                     self._log("no_reliable_commence_source", {"event": et})
+                        # [C-KALSHI-OCC-OBSERVE] pure-observe measurement (NO state change, NO envelope,
+                        # NO order). Once per event: if it just RESOLVED via a real source, log the
+                        # kalshi-occurrence-vs-resolver start delta; if it's a primary-MISS, log what the
+                        # coarse fallback WOULD resolve. Skipped entirely (byte-identical) when flag off.
+                        if getattr(self, "kalshi_occ_observe", False):
+                            _occ = self.event_kalshi_occ.get(et)
+                            _dseen = self.__dict__.setdefault("_occ_delta_seen", set())
+                            _mseen = self.__dict__.setdefault("_occ_miss_seen", set())
+                            if et in self.event_start_time and _occ is not None and et not in _dseen:
+                                _dseen.add(et)
+                                self._log("kalshi_occ_delta", {
+                                    "event": et, "category": self.get_category(et),
+                                    "resolver_source": self.event_start_source.get(et),
+                                    "resolver_start": datetime.fromtimestamp(self.event_start_time[et], tz=ET).isoformat(),
+                                    "kalshi_occurrence": datetime.fromtimestamp(_occ, tz=ET).isoformat(),
+                                    "delta_sec": round(self.event_start_time[et] - _occ, 1)})
+                            elif et not in self.event_start_time and et not in _mseen:
+                                _mseen.add(et)
+                                _wk = _kalshi_occ_start(_occ, now, KALSHI_COARSE_MAX_FUTURE_SEC)
+                                self._log("kalshi_occ_observe", {
+                                    "event": et, "category": self.get_category(et),
+                                    "occurrence_datetime": (datetime.fromtimestamp(_occ, tz=ET).isoformat() if _occ else None),
+                                    "would_coarse_start": (datetime.fromtimestamp(_wk, tz=ET).isoformat() if _wk else None),
+                                    "would_resolve": _wk is not None, "would_trade": _wk is not None,
+                                    "phase": "primary_miss"})
                     # [C-SCHEDULE-TRUST-FIX] pre-start correction of a set-once /
                     # _date_ok-rejected start (JOVANI root). Runs even for matched
                     # / processed events; once per event per cycle.

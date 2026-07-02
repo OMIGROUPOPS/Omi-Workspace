@@ -368,6 +368,11 @@ The §4E recovery paths were measured on the sub-second tape. Artifacts + script
 
 **OPS (2026-07-02):** disk reclaimed 92%→89% (safe/reversible class only: gzip old logs, `git worktree remove` 7 stale `*-build` worktrees [branches preserved], `journalctl --vacuum-size=100M` freed 513M, /tmp scratch). tennis.db/premarket_ticks/durable/config/bot untouched. Underlying `tennis.db` unbounded-growth (auto_vacuum=NONE) still the recurring root — see [[project_disk_full_incident]].
 
+### 4H addendum #4 — CURRENT-BOX FULL GRADE + the WALK finding (2026-07-02)
+Standing report card `analysis/stranded/OMQS_DEPLOY_CURRENT_FULL.md` (re-runnable, `grade_current.py`). Box = bisect `2b23b5d` → now, config unchanged (confirmed empty `config/` log), boot flags stated in the doc. **74 events / 133 legs: completion 27% (BOTH 20 / one-sided 31 / missed-both 23); combined med 99 (14 <100, only 4 ≤97); 75% of legs overpaid vs best-fillable (med +3¢, worst +49¢); miss classes PULLED 12 / NEVER_LAID 6 / TOO_DEEP 3; realized −$11.05 so far (23/133 settled).**
+
+**⚠ DECISION-CRITICAL — the WALK is the completion engine:** dollar-weighted mechanism rollup shows **`v4_move_repost` (the walk) produced 15/20 both-fills = 75% of completions** (combined med 99). **This is exactly the ingredient the no-walk shadows (P4 0%, P4b 2-6%) lacked** → the ITF/pairs decision is **RE-SPEC THE SHADOW WITH WALK, not close.** BOUHAR (win, combined 98) completed *because* the walk chased the riser 56→57 and held it through the t20m cancel; NASCHA (miss) forfeited a ~100 completion when `match_live_cancel` pulled the worked NAS-41 bid (PULLED). Other ranked mechanisms: `v4_t20m_fallback` 25 pairs / `itf_recent_volume_floor` 29 (blocks) / `maker_only_no_late_entry` 1 (NASCHA re-lay block) / `completion_ceiling` 0. Highest-leverage moves: preserve/extend the walk; stop stale-clock cancels (t20m + match_live) pulling worked bids.
+
 ---
 
 ## 5. THE OPERATOR'S THESIS (his words, hold them)

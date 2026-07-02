@@ -308,6 +308,27 @@ The §4E recovery paths were measured on the sub-second tape. Artifacts + script
 
 ---
 
+## 4H. PRECONDITION MEASUREMENTS + PLEX RULINGS (2026-07-01, July-arc)
+
+**Plex's four rulings (condensed):**
+1. **Build-1 re-spec = a DIFFERENT build.** The sequential-per-divot doctrine (§0A) voids the simultaneous-static-target spec. Requires **7 mandatory shadow logs + an early-kill clause** before its 48 h shadow clock starts.
+2. **P1 + P2 are HARD PRECONDITIONS** — both must land before any Build-1 shadow clock starts.
+3. **Job-2 (ii) window-reachability is BLOCKED** on the tape re-anchor (P1).
+4. **Seesaw-at-touch = open question until P2.**
+
+**P1 — TRUE-TAPE-ONSET (landed → `analysis/stranded/OMQS_P1_TAPE_ONSET.md`): RE-DERIVATION required.** Offset of tape-onset vs scheduled start is wide/multimodal — ONSET-Q median **+24 min** (IQR +8/+53, **67% >15 min tails**, a −168 min outlier); ONSET-T (trade-burst) median **+81 min**. NOT a constant shift → dip_timing / dip_surface / W1-corridor-W2 boundaries must be **rebuilt on tape-relative time.** Job-2 (ii) stays blocked. ITF worst (schedule least reliable, no trade-burst at all).
+
+**P2 — SEESAW AT THE TOUCH (landed → `OMQS_P2_SEESAW_TOUCH.md`): clean TIER SPLIT.**
+- **main (ATP/WTA): sequential LICENSED** — r(bid/ask-sum vs mid) = 0.86/0.88, offset ±1.1¢, wide-spread tail 1% (near-tight tracking).
+- **thin (ITF): sequential NOT licensed → SIMULTANEOUS resting posts** — r = 0.47/0.54, offset ±3.6¢, **66% wide-spread tail** (touch decoupled from mid).
+- **Tension (open):** divots are almost all ITF (41 vs 3 — main drifts smoothly) and the seesaw holds 83% there, but ITF is exactly where the touch diverges. Sequential-divot's edge is **narrow** (needs a liquid market that also dips). Seesaw-at-touch is sharpened, not fully closed.
+
+**Job-2 dry-run (`OMQS_JOB2_DRYRUN.md`, KNOWN-CONTAMINATED shakeout — NOT decision data):** pipeline works; combined-≤97 CEILING ≈ **19%** (74% par-bound even at perfect both-leg divot-catch); throughput above the ≥25/day floor in both configs. (ii) window-reachability deferred to the re-anchor.
+
+**STANDING LOCKS (unchanged):** no cancel rework; no flag restoration; cut #1 shadow untouched.
+
+---
+
 ## 5. THE OPERATOR'S THESIS (his words, hold them)
 
 - The bleed is the games where we fill ONE side, at a BAD price, and that side is the falling knife — NOT the clean under-100 pairs.

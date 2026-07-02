@@ -1,0 +1,59 @@
+========================================================================
+C-KALSHI-OCC OBSERVE (read-only; live flag NOT armed) — box Jun30 15:46 -> now
+========================================================================
+
+(a) RESOLVABILITY — schedule_gap events that the occ-fallback would resolve
+  schedule_gap events (never posted): 82
+  -> BOOK-BEARING (Kalshi listed + real tape => occ-resolvable): 57
+     by category: {'ATP_CHALL': 6, 'ITF_M': 18, 'ITF_W': 33}
+  -> thin/phantom (no real book; excused): 25
+  historically occ-resolved live (flag was on?): 0 (expect 0 — default-OFF all box)
+
+(b) LOOP-LAG + removable schedule_gap load
+  loop_lag samples: 21568 | mean 1.91s | p50 1.64s | p95 4.26s | max 19.16s
+  lags >5s: 577 | >2s: 8084
+  total schedule_gap skip-events logged: 122280
+  skips attributable to the 57 occ-resolvable events (removed once resolved): 112591 (92% of gap-spam)
+  -> BEFORE: 82 unmatched events re-evaluated every ~1s loop, 122280 skip-logs.
+     AFTER (est): 57 resolve off the coarse clock -> their re-eval + 112591 skip-logs drop out;
+     the loop stops re-scanning them each cycle -> lag tail shrinks. (Exact after-lag needs the armed observe run, deferred.)
+
+(c) BYTE-IDENTICAL on already-resolved events — code-gate proof
+  1027 events resolved via a real source (ESPN/TE / odds_api_commence_time) this box.
+  live_v4.py: the occ-fallback is 'Fallback 2' INSIDE the `else` reached ONLY when the primary
+  sources miss; resolved events take the odds_api_commence_time `schedule_match` branch ABOVE it
+  and never enter the else. Within the else: kts = _kalshi_occ_start(...) if <flag> else None —
+  the flag is consulted ONLY on a primary-miss. => for every resolved event the flag on/off path
+  is byte-identical (branch never taken). Overlap of RESOLVED with book_gap (should be 0): 11
+
+CENSUS — book-bearing schedule_gap-skipped events (what their tapes offered)
+  tier         n w/combined  <=97  <100  med_ach
+  ATP_CHALL    6          6     6     6       60
+  ITF_M       18         15    14    14       76
+  ITF_W       33         30    28    28       76
+  TOTAL book-bearing 57 | with combined 51 | <=97 48 | <100 48 | median achievable 72
+
+  Top-20 forfeited (lowest achievable combined we never touched):
+   26JUL02KHODEL            ITF_M     legs 19+1=20 <=97
+   26JUL02KOBMAX            ITF_W     legs 8+13=21 <=97
+   26JUN30WOLHAR            ATP_CHALL legs 8+14=22 <=97
+   26JUL02DUPPOP            ITF_W     legs 3+21=24 <=97
+   26JUL01SCOBRO            ITF_W     legs 16+13=29 <=97
+   26JUL02MAXNGO            ITF_W     legs 23+10=33 <=97
+   26JUN30KALMAX            ITF_W     legs 29+5=34 <=97
+   26JUL02WALFER            ATP_CHALL legs 8+26=34 <=97
+   26JUL02DEKFIT            ITF_M     legs 14+21=35 <=97
+   26JUL02SOBOZX            ITF_W     legs 1+35=36 <=97
+   26JUL01YUXLIX            ITF_W     legs 27+21=48 <=97
+   26JUL02YEXLEE            ITF_W     legs 1+47=48 <=97
+   26JUL01HOXCEN            ITF_W     legs 23+27=50 <=97
+   26JUL02DELLIC            ITF_M     legs 40+12=52 <=97
+   26JUL01MARHAR            ATP_CHALL legs 54+1=55 <=97
+   26JUL01WEIYEX            ITF_W     legs 51+7=58 <=97
+   26JUL02LIUJOH            ITF_W     legs 16+46=62 <=97
+   26JUN30HOXSMI            ITF_W     legs 51+12=63 <=97
+   26JUL02JILWIE            ITF_M     legs 2+61=63 <=97
+   26JUN30WATTUN            ATP_CHALL legs 11+54=65 <=97
+
+wrote /root/shadow_p4/OMQS_KALSHI_OCC_OBSERVE.json
+RC=0

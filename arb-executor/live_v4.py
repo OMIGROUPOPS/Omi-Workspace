@@ -1397,6 +1397,12 @@ class LiveV3:
         # delta on EVERY resolved event -- WITHOUT setting any start, opening any envelope, or
         # placing any order. Measure-only; independent of kalshi_occurrence_fallback (the live arm).
         self.kalshi_occ_observe = bool(self.config.get("kalshi_occ_observe", False))
+        # [C-PARTICIPATE] tonight's blunt participation flag (default False = byte-identical).
+        # When True, the ENTRY inside_buffer skip (stop-entering-within-T-15) is bypassed so we keep
+        # resting bids into the last 15 min; the tape-latch (match_live_cancel) still governs the real
+        # start, and match_already_started (T-0) still fires. Touches ONLY the entry skip -- every other
+        # ENTRY_BUFFER_SEC use (exit/cancel timing) is unchanged. Clean permanent version = overnight build.
+        self.inside_buffer_off = bool(self.config.get("inside_buffer_off", False))
         # [C-CAP-DIFF] reach-repost cap (dormant; default False = byte-identical).
         # When enforced, a resting entry bid is never reposted ABOVE its conception
         # cell (the drift-supported ceiling); holds/down-moves are untouched. Reads
@@ -5455,13 +5461,16 @@ class LiveV3:
                     "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET")})
                 return
 
-            if _wclose == "inside_buffer":
+            if _wclose == "inside_buffer" and not self.inside_buffer_off:
                 self.processed_events.add(et)
                 self._save_processed()
                 self._log("skipped", {"reason": "inside_buffer", "event": et,
                     "time_to_start_sec": round(time_to_start),
                     "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET")})
                 return
+            if _wclose == "inside_buffer" and self.inside_buffer_off:
+                # [C-PARTICIPATE] blunt participation: keep resting into T-15 (observe-then-clean-build).
+                self._log("inside_buffer_bypass", {"event": et, "time_to_start_sec": round(time_to_start)})
 
             # [C-WALL-SKIP] pair-aware market-selection gate. Default OFF => not evaluated
             # => byte-identical. ON: if EITHER leg is behind a bid wall > wall_skip_contracts,

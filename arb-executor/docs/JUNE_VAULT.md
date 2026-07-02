@@ -363,6 +363,11 @@ The §4E recovery paths were measured on the sub-second tape. Artifacts + script
 
 **STANDING LOCKS (P4, unchanged):** no cancel rework · no flag restoration · no ATP_MAIN build · cut #1 shadow untouched.
 
+### 4H addendum #3 — P4b shape-sequenced replay (2026-07-02)
+**Tested the doctrine's actual policy** (`analysis/stranded/OMQS_P4B_SHAPESEQ.md`): favorite bid EARLY (T-8h→T-4h), dog bid LATE (T-2h→T-0), each ask−offset, postability-gated, held. **Shape-sequencing does NOT rescue ITF: completion 2%** (variant fav-early/dog-static-T4h: 6%). **Across ALL tested policies — static-simultaneous 0% (P4), sequential-divot unlicensed (P2 touch diverges r0.47), shape-sequenced 2%, variant 6% — ITF completion stays ≤6%.** The ≤97 combined is *quotable* (P3b 90%) but **unfillable as a completed pair**; the off-phase leg strands. **ITF = PAPER OPPORTUNITY across the static/sequenced space.** ⚠ Caveat: all no-walk; the live bot walks (`v4_move_repost`) and completed some ITF in the deploy box → absolute "unfillable" needs a **walk-augmented replay**. **DECISION (Plex):** static/sequenced space exhausted (invariant 5 closure); one lever left = **bid-walk** — re-spec the shadow to add walk (decisive test); if that also fails, **CLOSE the ITF pair-build** (companion to ATP_MAIN closure). Not a build. **No live clock started.**
+
+**OPS (2026-07-02):** disk reclaimed 92%→89% (safe/reversible class only: gzip old logs, `git worktree remove` 7 stale `*-build` worktrees [branches preserved], `journalctl --vacuum-size=100M` freed 513M, /tmp scratch). tennis.db/premarket_ticks/durable/config/bot untouched. Underlying `tennis.db` unbounded-growth (auto_vacuum=NONE) still the recurring root — see [[project_disk_full_incident]].
+
 ---
 
 ## 5. THE OPERATOR'S THESIS (his words, hold them)

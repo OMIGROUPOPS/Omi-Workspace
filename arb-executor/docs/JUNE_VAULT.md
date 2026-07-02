@@ -1,8 +1,10 @@
-# THE JUNE VAULT — OMQS ground truth, read FIRST every session
+# THE JUNE+JULY VAULT — OMQS ground truth, read FIRST every session
 
-**Purpose:** Stop re-deriving what's already settled. Every fact here is verified from disk/REST, not memory. If you're about to conclude something, check here first — odds are it's already concluded, tested, or dead. Shared reference for Fable, Plex, and CC.
+**Purpose:** Stop re-deriving what's already settled. Every fact here is verified from disk/REST, not memory. If you're about to conclude something, check here first — odds are it's already concluded, tested, or dead. Shared reference for Fable, Plex, and CC. (Living June+July Vault as of 2026-07-01.)
 
 **Last verified:** 2026-06-30 against HEAD `d2ac207` (blend/agent-derivation) + the Jun-30 live dump.
+
+**STANDING RULE (header):** every code/config change lands its Vault entry in the SAME push. The operator passes messages; the three-agent dialogue (Fable↔CC↔Plex) carries the burden of continuity. He does not repeat himself.
 
 ---
 
@@ -17,6 +19,43 @@ Disciplines that must hold:
 - Plex can only read what's put in front of it (it can't see CC's raw output or Fable's context). Ground-truth artifacts go to Plex via the public repo raw URL.
 - Operator pushback is signal, always right (G24/A32). Investigate, don't defend.
 - Authoritative source = Kalshi REST + enriched live book. NOT the per-minute historic candle (too coarse). NOT the WS recorder (unreliable). NOT CC's prose summary (garbles — trust discrete facts: hashes, timestamps, counts).
+
+---
+
+## 0A. THE OPERATOR'S FRAME — DEFINITIONS AND DOCTRINE (do not make him repeat these)
+
+**DEFINITIONS (canonical — correct all prior usage):**
+- **DISCOUNT / DISTORTION = the pair-level measurement of entry success:** the combined cost of the two legs. **≤97 = success. 100 = par. >100 = TOTAL FAILURE regardless of fills** — no tailored exit can save a pair that cost more than it can pay. It is the scoreboard of the entry, not a per-leg event.
+- Operator verbatim:
+```
+distortion is just the combined cost of 2 legs. its a measurement of our entry success. sure we may fill, but if the combined is anything over 100c its a total failure.
+```
+- **The three observable prices: best bid, best ask, last traded.** Nothing else exists on the tape. Never anchor analysis on constructed mids.
+
+**ENTRY DOCTRINE (sequential, inverse-aware):**
+- Operator verbatim:
+```
+key word divots and inverse relationship. 2 legs firing at the same time isnt necessarily a good idea - especially if we know there is a shape that will weaken one of the sides
+```
+- The legs are **inversely related** (seesaw, paired_mid_sum ≈ 0.998): the weak moment for one side is the strong moment for the other. Therefore **fill the two legs AT DIFFERENT TIMES, each at ITS OWN divot, in Window 1.** Simultaneous both-leg posting at static targets is NOT the doctrine.
+- This **CORRECTS Build 1**: "always-lay-both" = always be **WORKING** both legs (each hunting its own divot), **not** "post both simultaneously at cell targets."
+
+**ENTRY HAS TWO ELEMENTS:**
+1. **Historical analysis → the assumptions** (cell tables, shapes, drift tendencies).
+2. **The current tape → the validation** (best bid / best ask / last traded, live).
+
+A fill that satisfies element 1 but ignores element 2 (HUIAHN: target 75, tape offering 41-54) is a **failed entry**.
+
+**THE WINDOW STRUCTURE (settled, §5):** Window 1 (premarket drift) + corridor + Window 2 (in-match). Only W2 is dictated by the game. A discounted entry has **three shots at its tailored exit, two before the game can hurt it.** Late/expensive entry = W2-only = the knife.
+
+**OPEN ANALYSIS DEBTS (named in transcripts, never done right):**
+- **FV-PER-LEG:** "Distortion is a symptom you can read off the pair; FV-per-leg is the cause you have to actually model." The per-leg fair-value breakdown was never built correctly. **Open.**
+- **THE EXIT IS WINDOW-BLIND:** one static band posted at fill, identical through W1 / corridor / W2. The exit does not know which window it is in. Found in code, **unfixed**, interacts with everything.
+- **tts@fill IS MEASURED AGAINST SCHEDULED START everywhere** — the stale clock contaminates every timing measure downstream. Any timing analysis must re-anchor on true tape onset.
+- **PRE-T-4H NEVER EXAMINED:** both corpora (14k-N per-minute foundation + live sub-second recorder) have never been analyzed before T-4h. The drift shapes (winner drifts up / loser drifts down per bucket; heavy-fav loser crater ATP_MAIN −5.36 / ATP_CHALL −4.51 / WTA_CHALL −4.08; dogs cash gracefully: ≤25¢ loser knife 26% vs ≥75¢ 100%) are measured only INSIDE T-4h→T-20m. Coverage check then shape study = **queued.**
+- **THE MISSED-OPPORTUNITY LEDGER:** all P&L review scores only fills. Three unbaked miss classes: moved-away / never-touched / PULLED-THEN-TOUCHED. The accounting is **half a ledger** until this exists.
+
+**THE TWO-PROBLEM FRAME (June's entire scope, operator's words):** (1) not filling in Window 1/2 on both sides of a market; (2) when we do fill, not filling at a good price — where good = combined ≤97. Everything else is a sub-issue of these two.
 
 ---
 

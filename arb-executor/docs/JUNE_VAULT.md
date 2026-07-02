@@ -30,6 +30,8 @@ Disciplines that must hold:
 - THE CAUSAL CHAIN: the ENTIRE premarket is the entry canvas; the historics show drift edge FOR ENTRY PURPOSES — enter at discount on the drift → the tailored exit becomes an EASIER SWING → the validated exit does the rest. Entries exist TO GAIN AN EASIER EXIT.
 - THE RECURRING FALLBACK, named: whenever entry work stalls or a study surfaces an exit-shaped number, analysis drifts to "maybe the exit is the lever." It is not. The tell: any sentence proposing to change/score/re-target exit policy while combined ≥98 fills and one-sided strands persist. When the tell appears: STOP, cite this order, return to (1) fill BOTH sides in W1/W2, (2) fill at combined ≤97.
 
+⛔ PRIORITY 1 = PAIR: rest bids on both legs of every tracked game, always — never skip a game or leg on a projected combined. PRIORITY 2 = pair at good cost: the combined cap binds the SECOND leg's target after the first fills — it is a walk constraint, never a participation filter. Operator: "cant gage a trade if we dont even trade it."
+
 **DEFINITIONS (canonical — correct all prior usage):**
 - **DISCOUNT / DISTORTION = the pair-level measurement of entry success:** the combined cost of the two legs. **≤97 = success. 100 = par. >100 = TOTAL FAILURE regardless of fills** — no tailored exit can save a pair that cost more than it can pay. It is the scoreboard of the entry, not a per-leg event.
 - Operator verbatim:

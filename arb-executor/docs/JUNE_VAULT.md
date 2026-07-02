@@ -288,6 +288,8 @@ WHAT THE FULL ARC SHOWS (do not reduce to one stat):
 
 ## 4G. STRANDED-WINNER RECOVERY — MEASURED (2026-07-01)
 
+> **⚠ SCORING SUPERSEDED (2026-07-01):** the M-α1 **pair-completion-NET** metric below is superseded by the corrected Job-2 frame (`analysis/stranded/OMQS_JOB2_FRAME_CORRECTED.md`): score by **(i) combined ≤97 rate under SEQUENTIAL per-divot fills**, **(ii) exit-band window-reachability (W1/corridor/W2)**, **(iii) ≥25 fills/day floor** — **NOT** pair-hold-to-settlement NET (settlement is an exit measure, not entry success). And per §0A, **"always-lay-both" = WORK both legs each at its own divot, NOT post both simultaneously at static cell targets.** The dollar figures below stand as the record of what was run; the go-forward scoring is the corrected frame.
+
 The §4E recovery paths were measured on the sub-second tape. Artifacts + scripts committed under `arb-executor/analysis/stranded/` (commits `c2c297d4` set, `aede311b` β, `1787325d` α, `4454fd5c` M-α1, `c205dce5` M-α2, `b25c6c0d` live HUIAHN). Reported per Plex gate structure.
 
 **SETTLED (mechanism — hold, do not re-derive):**

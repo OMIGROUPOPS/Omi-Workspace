@@ -1403,6 +1403,21 @@ class LiveV3:
         # start, and match_already_started (T-0) still fires. Touches ONLY the entry skip -- every other
         # ENTRY_BUFFER_SEC use (exit/cancel timing) is unchanged. Clean permanent version = overnight build.
         self.inside_buffer_off = bool(self.config.get("inside_buffer_off", False))
+        # [C-PARTICIPATE-CLEAN] the three permanent gated flags (all default False = byte-identical) that
+        # replace tonight's blunt flips. HELD for morning deploy/validation; the running bot uses the
+        # blunt flips until then.
+        #   (1) tape_gated_abandon: do NOT mark an event PROCESSED on a SCHEDULE-based T-0
+        #       (match_already_started) unless the TAPE confirms live (_is_match_live). Fixes the
+        #       BROTIA/SMIVER class (persisted-PROCESSED on a garbage schedule). Bounded: still abandons
+        #       once past T-0 by more than KALSHI_COARSE_WIDE_TAIL_SEC (schedule can't be that wrong).
+        #   (2) book_quality_gate: clean replacement for the blunt itf volume floor -- skip a leg only when
+        #       the book is genuinely unpostable (no two-sided book, or spread > book_quality_max_spread).
+        #   (3) rest_both_legs: PRIORITY 1 -- once one leg of an event is participating (resting/filled),
+        #       the SIBLING is exempted from the participation gates so we never leave a leg naked.
+        self.tape_gated_abandon = bool(self.config.get("tape_gated_abandon", False))
+        self.book_quality_gate = bool(self.config.get("book_quality_gate", False))
+        self.book_quality_max_spread = int(self.config.get("book_quality_max_spread", 12))
+        self.rest_both_legs = bool(self.config.get("rest_both_legs", False))
         # [C-CAP-DIFF] reach-repost cap (dormant; default False = byte-identical).
         # When enforced, a resting entry bid is never reposted ABOVE its conception
         # cell (the drift-supported ceiling); holds/down-moves are untouched. Reads
@@ -5454,12 +5469,23 @@ class LiveV3:
             _coarse = getattr(self, "kalshi_occurrence_fallback", False) and et in getattr(self, "coarse_source", ())
             _wclose = _coarse_window_closed(time_to_start, _coarse, KALSHI_COARSE_WIDE_TAIL_SEC, ENTRY_BUFFER_SEC)
             if _wclose == "match_already_started":
-                self.processed_events.add(et)
-                self._save_processed()
-                self._log("skipped", {"reason": "match_already_started", "event": et,
-                    "time_to_start_sec": round(time_to_start),
-                    "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET")})
-                return
+                # [C-PARTICIPATE-CLEAN 1] tape_gated_abandon: only abandon (mark PROCESSED) if the TAPE
+                # confirms live, OR we're already past T-0 by more than the wide-tail (schedule can't be
+                # that wrong). Default OFF => the guard is False => original abandon, byte-identical.
+                _defer = (self.tape_gated_abandon
+                          and not self._is_match_live(et)
+                          and time_to_start > -KALSHI_COARSE_WIDE_TAIL_SEC)
+                if _defer:
+                    self._log("schedule_abandon_deferred", {"event": et,
+                        "reason": "tape_not_live", "time_to_start_sec": round(time_to_start)})
+                    # do NOT mark processed, do NOT return -> keep evaluating; the tape latch governs
+                else:
+                    self.processed_events.add(et)
+                    self._save_processed()
+                    self._log("skipped", {"reason": "match_already_started", "event": et,
+                        "time_to_start_sec": round(time_to_start),
+                        "start_time": datetime.fromtimestamp(start_ts, tz=ET).strftime("%b %d %I:%M %p ET")})
+                    return
 
             if _wclose == "inside_buffer" and not self.inside_buffer_off:
                 self.processed_events.add(et)
@@ -5588,7 +5614,10 @@ class LiveV3:
                     continue
                 # [C-ITF-BORROW] ITF liquidity floor: recent in-window flow (not cumulative).
                 # OFF or non-ITF -> short-circuits -> byte-identical.
-                if self.itf_entry_borrow and cat in ITF_VISIBILITY_CATS and not self._itf_recent_volume_ok(et, now):
+                # [C-PARTICIPATE-CLEAN 3] rest_both_legs (PRIORITY 1) exempts the leg from the volume floor
+                # entirely -- participate always. Default OFF => `not False` == True => original gate, byte-identical.
+                if (self.itf_entry_borrow and cat in ITF_VISIBILITY_CATS and not self.rest_both_legs
+                        and not self._itf_recent_volume_ok(et, now)):
                     self._log("skipped", {"reason": "itf_recent_volume_floor", "event": et, "cat": cat,
                         "window_min": self.itf_recent_vol_window_min, "floor_usd": self.itf_min_recent_vol_usd}, ticker=tk)
                     continue
@@ -5658,6 +5687,18 @@ class LiveV3:
                 # intended_join=False. (Also kills the PLIVEK-class log
                 # incoherence: current_ask 78 vs book_ask 46 in one event.)
                 placement_bid, placement_ask = book.best_bid, book.best_ask
+                # [C-PARTICIPATE-CLEAN 2] book_quality_gate: clean replacement for the blunt volume floor --
+                # skip a leg ONLY when the book is genuinely unpostable (no two-sided book or spread too wide).
+                # PRIORITY 1 wins: when rest_both_legs is on this gate never blocks (informs only). Default OFF
+                # => the whole branch is skipped => byte-identical.
+                if self.book_quality_gate and not self.rest_both_legs:
+                    _bad = (placement_bid <= 0 or placement_ask <= 0
+                            or (placement_ask - placement_bid) > self.book_quality_max_spread)
+                    if _bad:
+                        self._log("skipped", {"reason": "book_quality_gate", "event": et,
+                            "spread": (placement_ask - placement_bid), "max_spread": self.book_quality_max_spread,
+                            "bid": placement_bid, "ask": placement_ask}, ticker=tk)
+                        continue
                 # [C-DEPTH-GOVERNOR] decision-time ladder snapshot (FIX-2/3: never re-read post-await)
                 placement_bids = dict(book.bids) if self.depth_aware_join else None
                 current_ask = placement_ask

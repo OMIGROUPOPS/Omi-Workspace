@@ -1,0 +1,13 @@
+game	sibling	our_bid	queue_med	queue_max	sell_flow_at_or_below	reprice_that_fills	orphan_pnl	classification
+LEGBAR	BAR	58	3785	3899	0	60(+2,dead)	unsettled	WIDE-DESERT(dead-book,84ct total)
+MOESHA	MOE	49	2945	37649	22612	jump-wall	unsettled	REAL-QUEUE-STARVATION
+DIAMAR	DIA	83	6070	29134	5	96(+13)	-0.80	WIDE-DESERT(stale-deep)
+FELMON	FEL	55	na	na	0	94(+39)	-2.25	WIDE-DESERT(stale-deep)
+NEDSMI	SMI	32	505	15954	0	34(+2)	-6.70	NEAR-MISS(reprice+2)
+VASCUE	CUE	92	405	3342	0	93(+1)	unsettled	NEAR-MISS(reprice+1)
+CERFEL	CER	93	617	2246	0	95(+2)	-0.30	NEAR-MISS(reprice+2)
+OBAKET	KET	89	33	399	0	90(+1)	-0.45	NEAR-MISS(reprice+1)
+SNIZHU	SNI	35	211	1747	0	39(+4..60)	-3.20	WIDE-DESERT(stale-deep)
+BROTUB	TUB	97	2186	46538	125	jump-wall	-1.10	REAL-QUEUE(walked-into-wall)
+SMIDUE	DUE	98	968	2710	0	99(+1)	-0.10	NEAR-MISS(reprice+1,5min)
+BARKRE	KRE	61	20839	35353	193	jump-wall	unsettled	REAL-QUEUE-STARVATION

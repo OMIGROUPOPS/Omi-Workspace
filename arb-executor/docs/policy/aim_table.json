@@ -1,0 +1,424 @@
+{
+ "meta": {
+  "source": "PMU 9.3M rows (tour) + raw trade CSVs (ITF); aim=dip below current, not FV; supersedes flat 3c",
+  "combined_goal_default": 97,
+  "buckets": [
+   "01-20",
+   "21-40",
+   "41-49",
+   "50-59",
+   "60-79",
+   "80-99"
+  ]
+ },
+ "aim": {
+  "ATP_MAIN": {
+   "01-20": {
+    "side": "RISER",
+    "faller_depth": 2,
+    "riser_post": 0,
+    "dip_med": 2.0,
+    "dip_p75": 5.0,
+    "fill_rate": 0.802,
+    "spread_med": 1.0,
+    "N": 36126,
+    "combined_goal": 97
+   },
+   "21-40": {
+    "side": "RISER",
+    "faller_depth": 2,
+    "riser_post": 0,
+    "dip_med": 4.0,
+    "dip_p75": 9.0,
+    "fill_rate": 0.885,
+    "spread_med": 1.0,
+    "N": 62384,
+    "combined_goal": 97
+   },
+   "41-49": {
+    "side": "RISER",
+    "faller_depth": 2,
+    "riser_post": 0,
+    "dip_med": 4.0,
+    "dip_p75": 9.0,
+    "fill_rate": 0.865,
+    "spread_med": 1.0,
+    "N": 37796,
+    "combined_goal": 97
+   },
+   "50-59": {
+    "side": "RISER",
+    "faller_depth": 2,
+    "riser_post": 0,
+    "dip_med": 4.0,
+    "dip_p75": 8.0,
+    "fill_rate": 0.884,
+    "spread_med": 1.0,
+    "N": 50324,
+    "combined_goal": 97
+   },
+   "60-79": {
+    "side": "RISER",
+    "faller_depth": 2,
+    "riser_post": 0,
+    "dip_med": 3.0,
+    "dip_p75": 7.0,
+    "fill_rate": 0.81,
+    "spread_med": 1.0,
+    "N": 99368,
+    "combined_goal": 97
+   },
+   "80-99": {
+    "side": "RISER",
+    "faller_depth": 2,
+    "riser_post": 0,
+    "dip_med": 3.0,
+    "dip_p75": 7.0,
+    "fill_rate": 0.837,
+    "spread_med": 1.0,
+    "N": 34012,
+    "combined_goal": 97
+   }
+  },
+  "WTA_MAIN": {
+   "01-20": {
+    "side": "RISER",
+    "faller_depth": 2,
+    "riser_post": 0,
+    "dip_med": 3.0,
+    "dip_p75": 7.0,
+    "fill_rate": 0.863,
+    "spread_med": 1.0,
+    "N": 29112,
+    "combined_goal": 97
+   },
+   "21-40": {
+    "side": "RISER",
+    "faller_depth": 2,
+    "riser_post": 0,
+    "dip_med": 5.0,
+    "dip_p75": 13.0,
+    "fill_rate": 0.879,
+    "spread_med": 1.0,
+    "N": 48546,
+    "combined_goal": 97
+   },
+   "41-49": {
+    "side": "RISER",
+    "faller_depth": 3,
+    "riser_post": 0,
+    "dip_med": 5.0,
+    "dip_p75": 14.0,
+    "fill_rate": 0.89,
+    "spread_med": 2.0,
+    "N": 27090,
+    "combined_goal": 97
+   },
+   "50-59": {
+    "side": "RISER",
+    "faller_depth": 2,
+    "riser_post": 0,
+    "dip_med": 4.0,
+    "dip_p75": 11.0,
+    "fill_rate": 0.864,
+    "spread_med": 1.0,
+    "N": 36650,
+    "combined_goal": 97
+   },
+   "60-79": {
+    "side": "RISER",
+    "faller_depth": 2,
+    "riser_post": 0,
+    "dip_med": 4.0,
+    "dip_p75": 12.0,
+    "fill_rate": 0.844,
+    "spread_med": 1.0,
+    "N": 68012,
+    "combined_goal": 97
+   },
+   "80-99": {
+    "side": "RISER",
+    "faller_depth": 2,
+    "riser_post": 0,
+    "dip_med": 4.0,
+    "dip_p75": 13.0,
+    "fill_rate": 0.838,
+    "spread_med": 1.0,
+    "N": 26700,
+    "combined_goal": 97
+   }
+  },
+  "ATP_CHALL": {
+   "01-20": {
+    "side": "RISER",
+    "faller_depth": 3,
+    "riser_post": 0,
+    "dip_med": 3.0,
+    "dip_p75": 7.0,
+    "fill_rate": 0.86,
+    "spread_med": 2.0,
+    "N": 31426,
+    "combined_goal": 97
+   },
+   "21-40": {
+    "side": "RISER",
+    "faller_depth": 3,
+    "riser_post": 0,
+    "dip_med": 5.0,
+    "dip_p75": 13.0,
+    "fill_rate": 0.895,
+    "spread_med": 2.0,
+    "N": 44385,
+    "combined_goal": 97
+   },
+   "41-49": {
+    "side": "RISER",
+    "faller_depth": 3,
+    "riser_post": 0,
+    "dip_med": 5.0,
+    "dip_p75": 13.0,
+    "fill_rate": 0.903,
+    "spread_med": 2.0,
+    "N": 24315,
+    "combined_goal": 97
+   },
+   "50-59": {
+    "side": "RISER",
+    "faller_depth": 3,
+    "riser_post": 0,
+    "dip_med": 4.0,
+    "dip_p75": 11.0,
+    "fill_rate": 0.884,
+    "spread_med": 2.0,
+    "N": 33629,
+    "combined_goal": 97
+   },
+   "60-79": {
+    "side": "RISER",
+    "faller_depth": 3,
+    "riser_post": 0,
+    "dip_med": 4.0,
+    "dip_p75": 10.0,
+    "fill_rate": 0.853,
+    "spread_med": 2.0,
+    "N": 67551,
+    "combined_goal": 97
+   },
+   "80-99": {
+    "side": "RISER",
+    "faller_depth": 3,
+    "riser_post": 0,
+    "dip_med": 5.0,
+    "dip_p75": 12.0,
+    "fill_rate": 0.886,
+    "spread_med": 2.0,
+    "N": 23420,
+    "combined_goal": 97
+   }
+  },
+  "WTA_CHALL": {
+   "01-20": {
+    "side": "RISER",
+    "faller_depth": 3,
+    "riser_post": 0,
+    "dip_med": 5.0,
+    "dip_p75": 7.0,
+    "fill_rate": 0.894,
+    "spread_med": 2.0,
+    "N": 5965,
+    "combined_goal": 97
+   },
+   "21-40": {
+    "side": "RISER",
+    "faller_depth": 3,
+    "riser_post": 0,
+    "dip_med": 7.0,
+    "dip_p75": 16.0,
+    "fill_rate": 0.92,
+    "spread_med": 2.0,
+    "N": 7871,
+    "combined_goal": 97
+   },
+   "41-49": {
+    "side": "RISER",
+    "faller_depth": 3,
+    "riser_post": 0,
+    "dip_med": 6.0,
+    "dip_p75": 16.0,
+    "fill_rate": 0.914,
+    "spread_med": 2.0,
+    "N": 3812,
+    "combined_goal": 97
+   },
+   "50-59": {
+    "side": "RISER",
+    "faller_depth": 3,
+    "riser_post": 0,
+    "dip_med": 5.0,
+    "dip_p75": 14.0,
+    "fill_rate": 0.914,
+    "spread_med": 2.0,
+    "N": 4606,
+    "combined_goal": 97
+   },
+   "60-79": {
+    "side": "RISER",
+    "faller_depth": 3,
+    "riser_post": 0,
+    "dip_med": 6.0,
+    "dip_p75": 14.0,
+    "fill_rate": 0.89,
+    "spread_med": 2.0,
+    "N": 10427,
+    "combined_goal": 97
+   },
+   "80-99": {
+    "side": "RISER",
+    "faller_depth": 3,
+    "riser_post": 0,
+    "dip_med": 5.0,
+    "dip_p75": 12.0,
+    "fill_rate": 0.868,
+    "spread_med": 2.0,
+    "N": 3824,
+    "combined_goal": 97
+   }
+  },
+  "ITF_M": {
+   "01-20": {
+    "side": "RISER",
+    "faller_depth": 4,
+    "riser_post": 0,
+    "dip_med": 7.0,
+    "dip_p75": 11.0,
+    "fill_rate": 0.977,
+    "spread_med": null,
+    "N": 646,
+    "combined_goal": 97
+   },
+   "21-40": {
+    "side": "FALLER",
+    "faller_depth": 4,
+    "riser_post": 3,
+    "dip_med": 21.0,
+    "dip_p75": 26.0,
+    "fill_rate": 0.989,
+    "spread_med": null,
+    "N": 526,
+    "combined_goal": 97
+   },
+   "41-49": {
+    "side": "RISER",
+    "faller_depth": 4,
+    "riser_post": 0,
+    "dip_med": 30.0,
+    "dip_p75": 37.0,
+    "fill_rate": 0.98,
+    "spread_med": null,
+    "N": 246,
+    "combined_goal": 97
+   },
+   "50-59": {
+    "side": "RISER",
+    "faller_depth": 4,
+    "riser_post": 0,
+    "dip_med": 32.0,
+    "dip_p75": 44.0,
+    "fill_rate": 0.975,
+    "spread_med": null,
+    "N": 280,
+    "combined_goal": 97
+   },
+   "60-79": {
+    "side": "RISER",
+    "faller_depth": 4,
+    "riser_post": 0,
+    "dip_med": 26.0,
+    "dip_p75": 44.0,
+    "fill_rate": 0.984,
+    "spread_med": null,
+    "N": 512,
+    "combined_goal": 97
+   },
+   "80-99": {
+    "side": "RISER",
+    "faller_depth": 4,
+    "riser_post": 0,
+    "dip_med": 10.0,
+    "dip_p75": 20.0,
+    "fill_rate": 0.932,
+    "spread_med": null,
+    "N": 677,
+    "combined_goal": 97
+   }
+  },
+  "ITF_W": {
+   "01-20": {
+    "side": "FALLER",
+    "faller_depth": 4,
+    "riser_post": 3,
+    "dip_med": 7.0,
+    "dip_p75": 11.0,
+    "fill_rate": 0.974,
+    "spread_med": null,
+    "N": 507,
+    "combined_goal": 97
+   },
+   "21-40": {
+    "side": "FALLER",
+    "faller_depth": 4,
+    "riser_post": 3,
+    "dip_med": 22.0,
+    "dip_p75": 26.0,
+    "fill_rate": 0.995,
+    "spread_med": null,
+    "N": 426,
+    "combined_goal": 97
+   },
+   "41-49": {
+    "side": "FALLER",
+    "faller_depth": 4,
+    "riser_post": 3,
+    "dip_med": 28.0,
+    "dip_p75": 37.0,
+    "fill_rate": 0.986,
+    "spread_med": null,
+    "N": 209,
+    "combined_goal": 97
+   },
+   "50-59": {
+    "side": "RISER",
+    "faller_depth": 4,
+    "riser_post": 0,
+    "dip_med": 30.0,
+    "dip_p75": 41.0,
+    "fill_rate": 0.984,
+    "spread_med": null,
+    "N": 245,
+    "combined_goal": 97
+   },
+   "60-79": {
+    "side": "RISER",
+    "faller_depth": 4,
+    "riser_post": 0,
+    "dip_med": 27.0,
+    "dip_p75": 43.75,
+    "fill_rate": 0.976,
+    "spread_med": null,
+    "N": 467,
+    "combined_goal": 97
+   },
+   "80-99": {
+    "side": "RISER",
+    "faller_depth": 4,
+    "riser_post": 0,
+    "dip_med": 9.0,
+    "dip_p75": 19.0,
+    "fill_rate": 0.888,
+    "spread_med": null,
+    "N": 580,
+    "combined_goal": 97
+   }
+  }
+ }
+}

@@ -1440,6 +1440,27 @@ class LiveV3:
         # floor (A49 median).
         self.per_side_placement = bool(self.config.get("per_side_placement", False))
         self.dog_dip_offset_cents = int(self.config.get("dog_dip_offset_cents", 3))
+        # ---- [AIM-TABLE dispatch] entry-side, all default-OFF => byte-identical ----
+        # (2) per_cat_depth: replace the flat dog_dip_offset_cents with the aim table's
+        #     per-(cat,price-bucket) faller_depth (the fillable DIP below current derived
+        #     from the 9.3M-row PMU + ITF trade record). Aim = the discount a resting bid
+        #     is PAID to the gun (A49), NOT FV. Loaded lazily; OFF => flat 3c unchanged.
+        self.per_cat_depth = bool(self.config.get("per_cat_depth", False))
+        self.aim_table_path = self.config.get("aim_table_path", "docs/policy/aim_table.json")
+        self._aim_table = None  # lazy {cat: {bucket: {faller_depth,riser_post,side,combined_goal,...}}}
+        # (1) leg2_reshuffle: sequenced re-aim (NOT a cap -- caps are the banned/leaking
+        #     lineage: paired_cap banned, completion_combined_ceiling leaks entry fills like
+        #     CASOSO 112). Leg-1 (riser) posts at bid, never vetoed for projected combined;
+        #     leg-2 (faller) posts at aim depth EXCEPT both best bids already sum <= goal ->
+        #     both at bid. On leg-1 fill at X, leg-2 re-aims to min(aim dip, goal - X),
+        #     re-checked on every leg-2 walk. Leg-2 always stays resting (moves the aim,
+        #     never pulls the bid). OFF => placement unchanged.
+        self.leg2_reshuffle = bool(self.config.get("leg2_reshuffle", False))
+        self.combined_goal = int(self.config.get("combined_goal", 97))
+        # (4c) freeze_at_gun: at the tape-live latch (_is_match_live), no fresh entry posts
+        #     and no walk/reprice -- resting bids stay static (dip-fillable, never chasing).
+        #     OFF => posting/walk untouched.
+        self.freeze_at_gun = bool(self.config.get("freeze_at_gun", False))
         # [C-CAP-DIFF] reach-repost cap (dormant; default False = byte-identical).
         # When enforced, a resting entry bid is never reposted ABOVE its conception
         # cell (the drift-supported ceiling); holds/down-moves are untouched. Reads
@@ -1870,6 +1891,61 @@ class LiveV3:
         the legacy route, never anchoring onto an off-book line. Pure / no state."""
         return (best_bid - FV_ANCHOR_MAX_GAP_C) <= fv <= (best_ask + FV_ANCHOR_MAX_GAP_C)
 
+    # ================= [AIM-TABLE helpers] =================
+    def _aim_load(self):
+        """Lazy-load docs/policy/aim_table.json -> {cat:{bucket:{...}}}. Never raises;
+        a missing/broken file leaves the flat dog_dip_offset_cents path intact."""
+        if self._aim_table is not None:
+            return self._aim_table
+        import json as _json
+        try:
+            p = Path(__file__).resolve().parent / self.aim_table_path
+            self._aim_table = _json.load(open(p)).get("aim", {})
+        except Exception as e:
+            self._log("aim_table_load_error", {"err": str(e), "path": str(self.aim_table_path)})
+            self._aim_table = {}
+        return self._aim_table
+
+    @staticmethod
+    def _aim_bucket(price):
+        for lo, hi, nm in ((1, 20, "01-20"), (21, 40, "21-40"), (41, 49, "41-49"),
+                           (50, 59, "50-59"), (60, 79, "60-79"), (80, 99, "80-99")):
+            if lo <= price <= hi:
+                return nm
+        return None
+
+    def _aim_cell(self, cat, anchor_price):
+        t = self._aim_load().get(cat)
+        if not t:
+            return None
+        b = self._aim_bucket(int(round(anchor_price)))
+        return t.get(b) if b else None
+
+    def _aim_faller_depth(self, cat, anchor_price):
+        """Per-(cat,bucket) fillable-dip depth (the aim, A49) -> resting offset for the
+        expected-faller leg. Falls back to the flat dog_dip_offset_cents on any miss."""
+        cell = self._aim_cell(cat, anchor_price)
+        if not cell:
+            return self.dog_dip_offset_cents
+        return int(cell.get("faller_depth", self.dog_dip_offset_cents))
+
+    def _reshuffle_leg2_target(self, faller_anchor, faller_depth, leg1_basis, combined_goal):
+        """PURE. Leg-2 (faller) target once leg-1 (riser) has filled at leg1_basis:
+        re-aim to min(aim dip level, combined_goal - leg1_basis). This is a RESTING
+        re-aim -- the caller moves the aim, never pulls the bid. Bounds combined to
+        <= combined_goal (closes the ceiling's checks-once scope hole; NOT a cap --
+        it is a per-fill re-derivation re-checked on every leg-2 walk)."""
+        aim_level = max(1, int(round(faller_anchor)) - int(faller_depth))
+        goal_level = int(combined_goal) - int(round(leg1_basis))
+        return max(1, min(aim_level, goal_level))
+
+    def _sibling_ticker(self, tk):
+        ev = tk.rsplit("-", 1)[0]
+        for x in list(self.positions.keys()) + list(self.books.keys()):
+            if x != tk and x.rsplit("-", 1)[0] == ev:
+                return x
+        return None
+
     def _v4_entry_anchor(self, tk, cat, book, time_to_start):
         """#1 ref-price: resolve the entry REFERENCE price + offset-table row for one leg.
         The reference is the LAST-TRADED price (A37: the real trade is the honest reference;
@@ -1892,6 +1968,10 @@ class LiveV3:
 
         ROLLBACK: running_mid_anchor=True restores the legacy 30-min-mean + BBO-mid path
         (anchor_src running_mid / bbo_mid_fallback). Default OFF; one-line config rollback."""
+        # (4c) freeze_at_gun: once the tape is live, no FRESH entry post -- resting bids stay
+        # static (dip-fillable), we never open a new leg into the gun. Default OFF => no gate.
+        if self.freeze_at_gun and self._is_match_live(tk.rsplit("-", 1)[0]):
+            return None
         bbo_mid = (book.best_bid + book.best_ask) / 2.0
         if self.running_mid_anchor:
             # --- ROLLBACK: legacy running-mid (trailing 30-min trade mean) + BBO-mid fallback ---
@@ -1939,8 +2019,24 @@ class LiveV3:
         # [C-PER-SIDE-PRICING] deepen ONLY the expected-faller (dog) leg to the dip-informed floor; default OFF
         # => offset unchanged => byte-identical. Favorite (anchor >= 50) keeps the shallow table offset.
         if self.per_side_placement and anchor_price < 50:
-            offset = max(offset, self.dog_dip_offset_cents)
+            # (2) per_cat_depth: aim-table per-(cat,bucket) fillable-dip depth replaces the flat
+            #     dog_dip_offset_cents (the flat 3c worked in ATP, mis-sized ITF/WTA). OFF => flat 3c.
+            _dip = self._aim_faller_depth(cat, anchor_price) if self.per_cat_depth else self.dog_dip_offset_cents
+            offset = max(offset, _dip)
         target_bid = max(1, anchor_price - offset)
+        # (1) leg2_reshuffle entry policy (gated; OFF => target_bid unchanged). Leg-1 (expected riser,
+        #     anchor >= 50) posts AT best bid, never vetoed for projected combined. Leg-2 (faller,
+        #     anchor < 50) keeps the aim-depth target above EXCEPT when both legs' best bids already
+        #     sum <= combined_goal -> post at bid immediately (pair already clean, no dip to wait for).
+        if self.leg2_reshuffle and book is not None and 0 < book.best_bid < 100:
+            if anchor_price >= 50:
+                target_bid = int(book.best_bid)
+            else:
+                _sib = self._sibling_ticker(tk)
+                _sb = self.books.get(_sib) if _sib else None
+                if _sb is not None and 0 < _sb.best_bid < 100 \
+                        and (book.best_bid + _sb.best_bid) <= self.combined_goal:
+                    target_bid = int(book.best_bid)
         return (anchor_price, anchor_src, cell, regime, placement_min, offset,
                 exp_fill, exp_roi, target_bid, table_src)
 
@@ -6545,6 +6641,13 @@ class LiveV3:
             pos.match_live_latch_ts = 0.0
             self._save_v4_resting()
         if _live:
+            # (4c) freeze_at_gun: HOLD the resting bid static through the gun (dip-fillable) instead of
+            # live-cancelling it -- no chase, no pull. The validated thesis: 77/136 overnight fills came
+            # post-gun on the in-play dip to a static premarket bid. Supersedes match_live_cancel FOR
+            # THIS resting bid only. Default OFF => the live-cancel below fires as today (byte-identical).
+            if self.freeze_at_gun:
+                self._log("freeze_at_gun_hold", {"event": pos.event_ticker}, ticker=tk)
+                return
             # [C-SUSTAINED-FLOW OBS] capture the K window-counts that triggered THIS latch (observability
             # only; gated under sustained_flow_latch -> None / no-compute when the burst+clock latch is in
             # use). READ-ONLY -- no decision reads _sfw; the latch/grace/cancel logic below is unchanged.
@@ -6896,6 +6999,22 @@ class LiveV3:
                 else:
                     new_target, _ = self._join_target(book.best_bid, book.best_ask)
                 repost_ref = "join_bid"
+        # (1) leg2_reshuffle: on EVERY leg-2 walk, once leg-1 (sibling riser) has filled at X,
+        #     re-aim this faller to min(current walk target, aim dip, combined_goal - X). Keeps the
+        #     pair <= combined_goal, re-derived per walk (closes the ceiling's checks-once scope hole);
+        #     the bid stays resting -- we only LOWER/HOLD new_target, never pull it. OFF => unchanged.
+        if self.leg2_reshuffle and current_price < 50:   # this leg is the expected faller
+            _sib = self._sibling_ticker(tk)
+            _sp = self.positions.get(_sib) if _sib else None
+            if _sp is not None and getattr(_sp, "entry_qty", 0) > 0 and getattr(_sp, "entry_price", 0):
+                _fd = (self._aim_faller_depth(pos.category, current_price)
+                       if self.per_cat_depth else self.dog_dip_offset_cents)
+                _reaim = self._reshuffle_leg2_target(current_price, _fd, _sp.entry_price, self.combined_goal)
+                if _reaim < new_target:
+                    self._log("leg2_reshuffle_reaim", {"event": pos.event_ticker,
+                        "from": int(new_target), "to": int(_reaim), "leg1_basis": int(_sp.entry_price),
+                        "goal": self.combined_goal}, ticker=tk)
+                    new_target = _reaim
         # [C-FEEDER FIX-2/3] decision-time capture for the repost keys (the
         # cancel/place awaits below are a book-tick window, same race class as
         # the QUESAM placement-side fire)

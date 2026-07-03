@@ -1418,6 +1418,19 @@ class LiveV3:
         self.book_quality_gate = bool(self.config.get("book_quality_gate", False))
         self.book_quality_max_spread = int(self.config.get("book_quality_max_spread", 12))
         self.rest_both_legs = bool(self.config.get("rest_both_legs", False))
+        # [C-OPTION-C] tonight's clean-gated participation flags (armed via config; defaults = byte-identical):
+        #   disable_volume_floors: bypass the ITF recent-volume floor entirely (gated flag replacing the
+        #       blunt itf_min_recent_vol_usd=0 hack).
+        #   min_minutes_before_start: the ENTRY buffer in minutes (default 15 == ENTRY_BUFFER_SEC/60, so
+        #       byte-identical). 0 => no schedule buffer decides participation; the tape latch governs live.
+        #       Drives ONLY the entry _coarse_window_closed call -- every exit/cancel ENTRY_BUFFER_SEC use is
+        #       untouched.
+        #   kalshi_schedule_primary: use Kalshi occurrence_datetime as THE start (source swap in schedule
+        #       selection) and ignore resolver corrections; does NOT touch abandon/PROCESSED logic.
+        self.disable_volume_floors = bool(self.config.get("disable_volume_floors", False))
+        self.min_minutes_before_start = float(self.config.get("min_minutes_before_start", ENTRY_BUFFER_SEC / 60.0))
+        self._entry_buffer_sec = int(self.min_minutes_before_start * 60)
+        self.kalshi_schedule_primary = bool(self.config.get("kalshi_schedule_primary", False))
         # [C-CAP-DIFF] reach-repost cap (dormant; default False = byte-identical).
         # When enforced, a resting entry bid is never reposted ABOVE its conception
         # cell (the drift-supported ceiling); holds/down-moves are untouched. Reads
@@ -2954,7 +2967,17 @@ class LiveV3:
                         if names:
                             self.event_player_names[et] = names
                     # Schedule match (if not already matched and not processed)
-                    if et not in self.event_start_time and et not in self.processed_events:
+                    # [C-OPTION-C] kalshi_schedule_primary: source swap -- Kalshi occurrence_datetime IS the
+                    # start; ignore the resolver (and its corrections). Fires only when the flag is on AND
+                    # Kalshi gave an occurrence; otherwise the original resolver block runs unchanged
+                    # (byte-identical when off). Does NOT touch abandon/PROCESSED logic.
+                    _kprim = getattr(self, "kalshi_schedule_primary", False) and self.event_kalshi_occ.get(et)
+                    if _kprim and et not in self.event_start_time and et not in self.processed_events:
+                        self.event_start_time[et] = self.event_kalshi_occ[et]
+                        self.event_start_source[et] = "kalshi_primary"
+                        self._log("schedule_match", {"event": et, "method": "kalshi_schedule_primary",
+                            "start_time": datetime.fromtimestamp(self.event_kalshi_occ[et], tz=ET).isoformat()})
+                    if not _kprim and et not in self.event_start_time and et not in self.processed_events:
                         sched_entry, method = await self._match_event_to_schedule_async(et)
                         if sched_entry:
                             st_str = sched_entry.get("start_time", "")
@@ -2998,7 +3021,10 @@ class LiveV3:
                     # [C-SCHEDULE-TRUST-FIX] pre-start correction of a set-once /
                     # _date_ok-rejected start (JOVANI root). Runs even for matched
                     # / processed events; once per event per cycle.
-                    if et not in _reconciled_starts:
+                    # [C-OPTION-C] kalshi_schedule_primary ignores resolver corrections entirely: skip the
+                    # resolver-based reconcile so Kalshi's occurrence stays THE start. Default OFF =>
+                    # reconcile runs as before (byte-identical). Does NOT touch abandon/PROCESSED.
+                    if et not in _reconciled_starts and not getattr(self, "kalshi_schedule_primary", False):
                         _reconciled_starts.add(et)
                         await self._reconcile_event_start(et, now)
                     cat = self.get_category(ticker)
@@ -5467,7 +5493,9 @@ class LiveV3:
             # NOT lock entry at T-15/T-0 (tape latch governs the real start). default-OFF =>
             # coarse_source empty => _coarse False => legacy decision, byte-identical.
             _coarse = getattr(self, "kalshi_occurrence_fallback", False) and et in getattr(self, "coarse_source", ())
-            _wclose = _coarse_window_closed(time_to_start, _coarse, KALSHI_COARSE_WIDE_TAIL_SEC, ENTRY_BUFFER_SEC)
+            # [C-OPTION-C] entry buffer is config-driven (min_minutes_before_start); default == ENTRY_BUFFER_SEC
+            # so byte-identical. ONLY the ENTRY decision uses it; exit/cancel keep the ENTRY_BUFFER_SEC constant.
+            _wclose = _coarse_window_closed(time_to_start, _coarse, KALSHI_COARSE_WIDE_TAIL_SEC, self._entry_buffer_sec)
             if _wclose == "match_already_started":
                 # [C-PARTICIPATE-CLEAN 1] tape_gated_abandon: only abandon (mark PROCESSED) if the TAPE
                 # confirms live, OR we're already past T-0 by more than the wide-tail (schedule can't be
@@ -5617,6 +5645,7 @@ class LiveV3:
                 # [C-PARTICIPATE-CLEAN 3] rest_both_legs (PRIORITY 1) exempts the leg from the volume floor
                 # entirely -- participate always. Default OFF => `not False` == True => original gate, byte-identical.
                 if (self.itf_entry_borrow and cat in ITF_VISIBILITY_CATS and not self.rest_both_legs
+                        and not self.disable_volume_floors
                         and not self._itf_recent_volume_ok(et, now)):
                     self._log("skipped", {"reason": "itf_recent_volume_floor", "event": et, "cat": cat,
                         "window_min": self.itf_recent_vol_window_min, "floor_usd": self.itf_min_recent_vol_usd}, ticker=tk)

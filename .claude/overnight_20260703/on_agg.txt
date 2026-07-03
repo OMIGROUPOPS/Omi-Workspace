@@ -1,0 +1,99 @@
+==== WINDOW: overnight log live_v3_20260702 (evening restarts -> now) ====
+legs filled: 136 | events touched: 193 | schedule_abandon_deferred total: 9280
+
+==== PARTICIPATION SWEEP ====
+cat        tracked  rested >=1fill pairfill
+ATP_CHALL       20      20      19       14
+ATP_MAIN        16       8       7        7
+ITF_M           78      29      28       17
+ITF_W           63      17      17       12
+WTA_MAIN        16       8       8        7
+TOTAL          193      82      79       57
+
+Baseline trajectory: 1.5/8 -> 19 -> [last night] -> tonight tracked=193 rested=82 pairfill=57
+discovery snapshots (total_tickers):
+  07-02 17:45 total=198 {'ATP_MAIN': 16, 'WTA_MAIN': 16, 'ATP_CHALL': 18, 'ITF_M': 76, 'ITF_W': 72}
+  07-02 17:50 total=198 {'ATP_MAIN': 16, 'WTA_MAIN': 16, 'ATP_CHALL': 18, 'ITF_M': 76, 'ITF_W': 72}
+  07-02 17:55 total=196 {'ATP_MAIN': 16, 'WTA_MAIN': 16, 'ATP_CHALL': 18, 'ITF_M': 74, 'ITF_W': 72}
+
+==== FV_CAPTURE (price at tape onset - fill; +=bought under FV) ====
+ALL legs N=136 min=-56 p50=1 mean=1.3 max=74 pos=83/136
+cat          N   min   p50   mean   max  %pos
+ATP_CHALL   33   -13     2    2.1    19   79%
+ATP_MAIN    14    -1     1    2.8    27   79%
+ITF_M       45   -56     2    3.3    74   56%
+ITF_W       29   -48     0   -3.7    21   48%
+WTA_MAIN    15    -2     0    1.7    23   47%
+
+==== SYNERGY: pairs both-filled, combined<=100 ====
+event                                    cat         comb legA_fv legB_fv shape
+KXATPCHALLENGERMATCH-26JUL03BASCEC       ATP_CHALL    100       4       3 STRONG(both+FV)
+KXATPCHALLENGERMATCH-26JUL03CASOSO       ATP_CHALL    112      -6       1 FRAGILE(deep-neg)
+KXATPCHALLENGERMATCH-26JUL03COMRIN       ATP_CHALL     99       8       3 STRONG(both+FV)
+KXATPCHALLENGERMATCH-26JUL03COUHEM       ATP_CHALL    100       5       3 STRONG(both+FV)
+KXATPCHALLENGERMATCH-26JUL03GIUMAR       ATP_CHALL     81       2      19 STRONG(both+FV)
+KXATPCHALLENGERMATCH-26JUL03GUEKAS       ATP_CHALL     98       2       1 STRONG(both+FV)
+KXATPCHALLENGERMATCH-26JUL03HARSHI       ATP_CHALL    100       2       1 STRONG(both+FV)
+KXATPCHALLENGERMATCH-26JUL03HEIDAL       ATP_CHALL     99       2       4 STRONG(both+FV)
+KXATPCHALLENGERMATCH-26JUL03JUSWAL       ATP_CHALL    100       3       0 mixed
+KXATPCHALLENGERMATCH-26JUL03KENWAT       ATP_CHALL     98       6       2 STRONG(both+FV)
+KXATPCHALLENGERMATCH-26JUL03KUZPIR       ATP_CHALL     98       0     -13 FRAGILE(deep-neg)
+KXATPCHALLENGERMATCH-26JUL03MAGPDA       ATP_CHALL    100       5       0 mixed
+KXATPCHALLENGERMATCH-26JUL03MELPAC       ATP_CHALL     98      -4       6 mixed
+KXATPCHALLENGERMATCH-26JUL03MONHER       ATP_CHALL     99       3       1 STRONG(both+FV)
+KXATPMATCH-26JUL03AUGZHE                 ATP_MAIN      99       1       2 STRONG(both+FV)
+KXATPMATCH-26JUL03DAVFUC                 ATP_MAIN     100       1       0 mixed
+KXATPMATCH-26JUL03HURPAU                 ATP_MAIN      99       2       1 STRONG(both+FV)
+KXATPMATCH-26JUL03JODMOC                 ATP_MAIN     100       0       1 mixed
+KXATPMATCH-26JUL03RINDJO                 ATP_MAIN     101       1      -1 mixed
+KXATPMATCH-26JUL03SAFFON                 ATP_MAIN      43       1      27 STRONG(both+FV)
+KXATPMATCH-26JUL03STRMED                 ATP_MAIN      98       1       2 STRONG(both+FV)
+KXITFMATCH-26JUL02DELMAT                 ITF_M         99      -2       6 mixed
+KXITFMATCH-26JUL02HARROH                 ITF_M         99       4       4 STRONG(both+FV)
+KXITFMATCH-26JUL02IMASAM                 ITF_M        100       5      -4 mixed
+KXITFMATCH-26JUL02JASSHI                 ITF_M        100       5       2 STRONG(both+FV)
+KXITFMATCH-26JUL02JONISO                 ITF_M         96       0       0 mixed
+KXITFMATCH-26JUL02ZENNAS                 ITF_M        103       0       2 mixed
+KXITFMATCH-26JUL03BENGIU                 ITF_M         99     -29      12 FRAGILE(deep-neg)
+KXITFMATCH-26JUL03BITALH                 ITF_M        101       7     -11 FRAGILE(deep-neg)
+KXITFMATCH-26JUL03CACOVE                 ITF_M         98      11       7 STRONG(both+FV)
+KXITFMATCH-26JUL03KIMSHI                 ITF_M         99     -13       4 FRAGILE(deep-neg)
+KXITFMATCH-26JUL03LOPDOM                 ITF_M         98      -5      17 mixed
+KXITFMATCH-26JUL03OSTTOR                 ITF_M        118      17     -38 FRAGILE(deep-neg)
+KXITFMATCH-26JUL03PURSIN                 ITF_M        101       7     -18 FRAGILE(deep-neg)
+KXITFMATCH-26JUL03RODGAR                 ITF_M         95     -10      -3 FRAGILE(deep-neg)
+KXITFMATCH-26JUL03SULPLA                 ITF_M        109      -6      -6 FRAGILE(deep-neg)
+KXITFMATCH-26JUL03TALGUT                 ITF_M        113      -8     -13 FRAGILE(deep-neg)
+KXITFMATCH-26JUL03ZIEHER                 ITF_M         70     -56      47 FRAGILE(deep-neg)
+KXITFWMATCH-26JUL02KALYUA                ITF_W        100       3      -6 FRAGILE(deep-neg)
+KXITFWMATCH-26JUL03GORRIE                ITF_W         99     -14      13 FRAGILE(deep-neg)
+KXITFWMATCH-26JUL03KABNGU                ITF_W        127     -28       0 FRAGILE(deep-neg)
+KXITFWMATCH-26JUL03KOMSAR                ITF_W        100      11       1 STRONG(both+FV)
+KXITFWMATCH-26JUL03LEWZAN                ITF_W         99       8       1 STRONG(both+FV)
+KXITFWMATCH-26JUL03LOPCLA                ITF_W        126     -14     -12 FRAGILE(deep-neg)
+KXITFWMATCH-26JUL03SAMHER                ITF_W        101      10      -6 FRAGILE(deep-neg)
+KXITFWMATCH-26JUL03SIEZAA                ITF_W         99      -4       9 mixed
+KXITFWMATCH-26JUL03SLAMUN                ITF_W        153     -48     -39 FRAGILE(deep-neg)
+KXITFWMATCH-26JUL03VANBUC                ITF_W         99     -26      10 FRAGILE(deep-neg)
+KXITFWMATCH-26JUL03VRAKUL                ITF_W        101     -21      21 FRAGILE(deep-neg)
+KXITFWMATCH-26JUL03ZOZVAN                ITF_W         99     -10     -14 FRAGILE(deep-neg)
+KXWTAMATCH-26JUL03ALEJOV                 WTA_MAIN     100       1       0 mixed
+KXWTAMATCH-26JUL03BENKAL                 WTA_MAIN      91       1      23 STRONG(both+FV)
+KXWTAMATCH-26JUL03KASOSA                 WTA_MAIN     103      -1      -2 mixed
+KXWTAMATCH-26JUL03LIUGAU                 WTA_MAIN     101       0       0 mixed
+KXWTAMATCH-26JUL03MUCSAW                 WTA_MAIN      99       0       1 mixed
+KXWTAMATCH-26JUL03PEGBOU                 WTA_MAIN     100      -1       1 mixed
+KXWTAMATCH-26JUL03SABOST                 WTA_MAIN     100       0       1 mixed
+SYNERGY totals: strong(both+FV,comb<=100)=19  fragile(one deep-neg)=20  other=18
+
+==== FIX SCORECARD (flag error-class counts) ====
+[per_side_placement] dog/sub-50 fills=78 | PAID-by-dip(FV>0)=53 | zero-discount(FV<=0)=25
+[tape_gated_abandon] events scheduled+never-rested+never-filled(pre-tape-killed?)=111 | abandon_deferred fires=9280
+[participation] scheduled-but-never-rested=111 / scheduled=193
+[completion/pairing] half-armed pairs (1 leg filled only)=22 events
+
+==== OUTCOME ROLLUP ====
+exit_FILL legs: 93  $50.70
+settled legs:   35  $-58.00
+OPEN legs:      8
+TOTAL realized: $-7.30

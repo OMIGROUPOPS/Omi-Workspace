@@ -7891,10 +7891,16 @@ class LiveV3:
         self._load_v4_resting()
 
         # Startup skip: events inside the 15-min buffer or past start
+        # [C-PARTICIPATE-CLEAN 1] tape_gated_abandon also governs the STARTUP schedule-skip: when on, do NOT
+        # mark events PROCESSED at boot on a schedule basis -- let the running loop's tape-gated match-live
+        # logic (+ wide-tail backstop) decide. This is the only OTHER schedule-based abandon path; gating it
+        # here makes the invariant complete (only the tape latch marks an event started/PROCESSED). Default
+        # OFF => original startup skip, byte-identical.
         now = time.time()
         startup_skipped = 0
         for evt, start_ts in self.event_start_time.items():
-            if evt not in self.processed_events and (start_ts - now) <= ENTRY_BUFFER_SEC:
+            if (evt not in self.processed_events and (start_ts - now) <= ENTRY_BUFFER_SEC
+                    and not self.tape_gated_abandon):
                 self.processed_events.add(evt)
                 startup_skipped += 1
 

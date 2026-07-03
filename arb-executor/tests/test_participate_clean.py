@@ -19,6 +19,7 @@ check("rest_both_legs_default_off",     'self.rest_both_legs = bool(self.config.
 
 # ---- 2) each gate guarded by its flag in-source ----
 check("tape_gate_guarded", "self.tape_gated_abandon" in SRC and "_is_match_live(et)" in SRC and "schedule_abandon_deferred" in SRC)
+check("tape_gate_startup_skip", "(start_ts - now) <= ENTRY_BUFFER_SEC\n                    and not self.tape_gated_abandon" in SRC)  # startup schedule-skip also tape-gated
 check("volume_gate_rest_both", "not self.rest_both_legs" in SRC and "_itf_recent_volume_ok(et, now)" in SRC)
 check("book_quality_gate_guarded", "if self.book_quality_gate and not self.rest_both_legs" in SRC)
 

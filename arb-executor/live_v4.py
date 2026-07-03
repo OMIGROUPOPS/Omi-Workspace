@@ -180,6 +180,12 @@ LIVE_DETECT_CONFIRM_MIN_GAP_SEC = 60   # stage-2 confirm needs a burst >= one fu
 LIVE_DETECT_CONFIRM_TTL_SEC = 300      # stage-1 evidence expires; a real live match re-arms instantly
 LIVE_DETECT_UNLATCH_QUIET_SEC = 300    # latched + tts>floor + tape quiet this long => false latch, clear
 MATCH_LIVE_MOVE_CENTS = 7              # [E113] premarket (tts>0) burst must move mid >= this from window-open ref to latch; post-scheduled (tts<=0) EXEMPT (volume-alone backstop); no-ref legs FAIL OPEN (protection preserved)
+# [C-LATCH-OVERRIDE 2026-07-03] gated tape-strength override of the TTS floor. STRICTER than the
+# normal burst/move (3x burst, ~2x move) so a lying clock degrades latch SPEED, never EXISTENCE, while
+# the 2026-06-12 premarket-noise false-fires (68.5% noise >=30min early) stay filtered by the higher
+# bar + the two-stage confirm. ALCCLA's real gun was 220 prints / 64c move -> clears these trivially.
+LATCH_TAPE_OVERRIDE_BURST = 30         # >= this many prints in the 60s window to override the floor
+LATCH_TAPE_OVERRIDE_MOVE_CENTS = 15    # AND a ref'd leg must have moved >= this from its window-open ref
 WALL_OBSERVE_CONTRACTS = 1000          # [WALL-OBS] observe bar (NOT a skip bar): log would_skip_walled_post when an entry buy posts behind a queue deeper than this; measure filled-vs-starved before any skip behavior
 FV_BURST_RETENTION_SEC = 6 * 3600      # [C-FV-BURST] age-prune the observe-only fv-burst snapshot dict
 MAX_TAKER_SPREAD = 5              # T52: never TAKER-cross when (ask-bid) > this. The KESMAR fat-spread cross paid a wide ask; a wide spread means the taker floor isn't cleanly achievable -> stay flat rather than overpay. Tunable; resting-maker entries are unaffected.
@@ -1459,8 +1465,24 @@ class LiveV3:
         self.combined_goal = int(self.config.get("combined_goal", 97))
         # (4c) freeze_at_gun: at the tape-live latch (_is_match_live), no fresh entry posts
         #     and no walk/reprice -- resting bids stay static (dip-fillable, never chasing).
-        #     OFF => posting/walk untouched.
+        #     OFF => posting/walk untouched. [2026-07-03] SHELVED per doctrine audit: superseded by
+        #     match_live_grace_kill (holds the bid for grace_sec during the live latch = walk frozen,
+        #     THEN cuts). freeze_at_gun's hold-forever CONTRADICTS the gun+300s-cut doctrine -> DO NOT
+        #     ARM; left gated (inert) for provenance. grace_kill owns the hold+cut.
         self.freeze_at_gun = bool(self.config.get("freeze_at_gun", False))
+        # (4) premarket_walk_cap: bound how far a resting bid may WALK UP from its conception cell
+        #     (the +26c ALCCLA chase; STATIC bids capture +1.89c FV vs CHASED -1.22c). Per-cat distance
+        #     guard above origin -- MAIN 2 / CHALL 3 / ITF 4. Subtractive sibling of reach_repost_cap
+        #     (both clamp down at the conception cell; min applies naturally). OFF => walk unchanged.
+        self.premarket_walk_cap = bool(self.config.get("premarket_walk_cap", False))
+        self.premarket_walk_cap_by_cat = dict(self.config.get("premarket_walk_cap_by_cat", {}))
+        # (2) latch_tape_override: the TTS floor (LIVE_DETECT_TTS_FLOOR_SEC) must not FULLY blind the
+        #     latch when the schedule clock LIES (ALCCLA: kalshi_schedule_primary said 14:30 while the
+        #     tape resolved by 12:15 -- a 220-print/64c gun blinded by tts=+183min>floor). A STRICTER
+        #     tape-alone path (>= LATCH_TAPE_OVERRIDE_BURST prints AND >= LATCH_TAPE_OVERRIDE_MOVE_CENTS
+        #     move, still two-stage-confirmed) may latch past the floor -> a lying clock degrades latch
+        #     SPEED (needs a much stronger, sustained signal), never its EXISTENCE. OFF => byte-identical.
+        self.latch_tape_override = bool(self.config.get("latch_tape_override", False))
         # [C-CAP-DIFF] reach-repost cap (dormant; default False = byte-identical).
         # When enforced, a resting entry bid is never reposted ABOVE its conception
         # cell (the drift-supported ceiling); holds/down-moves are untouched. Reads
@@ -1945,6 +1967,26 @@ class LiveV3:
             if x != tk and x.rsplit("-", 1)[0] == ev:
                 return x
         return None
+
+    def _walk_cap_cents(self, cat):
+        """(4) premarket_walk_cap per-cat allowance above the conception cell. MAIN 2 / CHALL 3 /
+        ITF 4; config override via premarket_walk_cap_by_cat. Matches the aim-table faller depth."""
+        _default = {"ATP_MAIN": 2, "WTA_MAIN": 2, "ATP_CHALL": 3, "WTA_CHALL": 3, "ITF_M": 4, "ITF_W": 4}
+        return int(self.premarket_walk_cap_by_cat.get(cat, _default.get(cat, 3)))
+
+    def _max_ref_move(self, et):
+        """(2) max |mid - window_open ref| in cents across the event's ref'd legs (0 if none has a
+        ref or a valid book). Shared measure for the latch tape-override; read-only, mutates nothing."""
+        best = 0.0
+        for tk in self.event_tickers.get(et, ()):
+            wo = self._window_open.get(tk)
+            if not (wo and wo.get("price")):
+                continue
+            bk = self.books.get(tk)
+            if bk and bk.best_bid > 0 and bk.best_ask < 100:
+                mid = (bk.best_bid + bk.best_ask) / 2.0
+                best = max(best, abs(mid - wo["price"]))
+        return best
 
     def _v4_entry_anchor(self, tk, cat, book, time_to_start):
         """#1 ref-price: resolve the entry REFERENCE price + offset-table row for one leg.
@@ -3872,7 +3914,16 @@ class LiveV3:
         if recent < LIVE_TRADE_BURST:
             return False
         if tts is not None and tts > LIVE_DETECT_TTS_FLOOR_SEC:
-            return False  # FIX-1 floor: premarket burst, not a start
+            # [C-LATCH-OVERRIDE] the TTS floor keys on a schedule clock that can be confidently WRONG
+            # (ALCCLA: kalshi_schedule_primary held 14:30 while the tape's 220-print/64c gun ran ~3h
+            # earlier, tts=+183min>floor -> the latch was blinded at every trading moment). A STRICTER,
+            # measured tape signal overrides the floor: a lying clock costs SPEED, not EXISTENCE. Still
+            # routed through the E113 move-gate + two-stage confirm below (sustained flow). Default OFF
+            # => the floor hard-blocks exactly as FIX-1 (byte-identical).
+            if not (getattr(self, "latch_tape_override", False)
+                    and recent >= LATCH_TAPE_OVERRIDE_BURST
+                    and self._max_ref_move(et) >= LATCH_TAPE_OVERRIDE_MOVE_CENTS):
+                return False  # FIX-1 floor: premarket burst, not a start (or override bar unmet)
         # [E113] PREMARKET MOVEMENT GATE (FERCER fix). A burst while still
         # premarket (tts>0) must be accompanied by real price movement from the
         # window-open reference; else it is a flat premarket false-burst (FERCER
@@ -7053,6 +7104,21 @@ class LiveV3:
                     "current_price": current_price,
                     "reference_source": repost_ref or "regime_offset"}, ticker=tk)
                 new_target = int(_wo["cell"])
+
+        # (4) premarket_walk_cap: cap the up-walk at conception_cell + per-cat allowance (the +26c
+        # ALCCLA chase). Subtractive sibling of reach_repost_cap above -- both only LOWER new_target,
+        # so running them in sequence yields the tighter ceiling. Same _window_open coupling (populated
+        # under completion_reprice). OFF => untouched.
+        if getattr(self, "premarket_walk_cap", False):
+            _wo2 = self._window_open.get(tk)
+            if _wo2 is not None and _wo2.get("cell") is not None:
+                _ceil = int(_wo2["cell"]) + self._walk_cap_cents(pos.category)
+                if new_target > _ceil:
+                    self._log("premarket_walk_capped", {
+                        "proposed_target": new_target, "walk_ceiling": _ceil,
+                        "conception_cell": int(_wo2["cell"]), "cap": self._walk_cap_cents(pos.category),
+                        "cat": pos.category, "current_price": current_price}, ticker=tk)
+                    new_target = _ceil
 
         # Fix-3 (reprice-maker-only): NEVER cross on a reprice. A marketable re-evaluated
         # target is clamped to a resting bid one below the ask and re-rested as a maker.

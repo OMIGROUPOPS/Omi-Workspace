@@ -44,5 +44,27 @@ bounds fillability. All per-category. (Entry grades are hypotheses; settled resu
 5. **Chasing is a premarket disease, not a gun disease.** STATIC bids capture +1.89¢ FV; CHASED (walked-up)
    bids capture −1.22¢ — a ~3¢ fill penalty. But post-gun chasing is already ~null (the walk's `if _live:
    return`); the damage is *premarket* walk-up (ALCCLA +26¢, 3.7h pre-gun, no volume-burst gun ever fired).
-   `freeze_at_gun` (hold-static-through-the-gun) is correct but near-inert keyed to the burst latch. The
-   real lever is a **premarket walk-cap** (bound the walk-up distance) — it needs no gun signal at all.
+   The lever is a **premarket_walk_cap** — bound the walk-up distance from the conception cell (MAIN 2 /
+   CHALL 3 / ITF 4), no gun signal needed. `freeze_at_gun` is **SHELVED**: hold-static-forever contradicts
+   the gun+300s-CUT doctrine; `match_live_grace_kill` (hold for grace_sec then cut) is the correct form.
+
+## §4y — the schedule-dependent gun contradicts tape-is-truth (ALCCLA / TTS-floor blindfold, 2026-07-03)
+
+**Doctrine line:** *The gun is the tape, not the clock. A schedule-derived time-to-start may gate the latch's
+SPEED but must never be able to blind its EXISTENCE — a strong enough tape overrides any clock.*
+
+- **ALCCLA root (measured):** `KXITFWMATCH-26JUL03LOPCLA` never latched. The blocking gate was the **TTS
+  FLOOR** (`LIVE_DETECT_TTS_FLOOR_SEC=1800`) alone: the schedule (`kalshi_schedule_primary`, a *confident*
+  source) held a 14:30 ET start while the tape ran ~3h earlier — busiest 60s window **220 prints (22× the
+  burst) + 64¢ move** at 11:26 ET, but tts = **+183min ≫ 30min floor**, so `_is_match_live` short-circuited
+  at the floor before burst/move were ever evaluated. Burst and move both cleared massively; the clock lied
+  and the latch went blind. A *confidently wrong* clock is worse than a low-confidence one — you can't gate
+  the fix on "schedule confidence," it must be a tape-strength override.
+- **Fix (`latch_tape_override`, gated):** a stricter tape-alone path (≥30 prints AND ≥15¢ move, still
+  two-stage-confirmed) latches past the floor. Stricter than the normal 10/7 bar so the 2026-06-12 5AM
+  premarket-noise false-fires (68.5% noise ≥30min early) stay filtered. Lying clock → latch is slower
+  (needs a bigger, sustained signal), never absent.
+- **grace_kill dark-since-bisect:** `match_live_grace_kill` (the built gun+300s buffer — hold the resting
+  bid for `grace_sec=300` after the latch to catch the post-gun dip, THEN cut) had been **config-OFF since
+  a Jun-30 bisect** and was never re-armed. Re-armed 2026-07-03. It IS the doctrine-correct "freeze the
+  walk during grace, cancel owns the cut" — which is why `freeze_at_gun` is shelved, not armed.

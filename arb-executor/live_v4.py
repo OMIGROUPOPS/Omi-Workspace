@@ -1431,6 +1431,15 @@ class LiveV3:
         self.min_minutes_before_start = float(self.config.get("min_minutes_before_start", ENTRY_BUFFER_SEC / 60.0))
         self._entry_buffer_sec = int(self.min_minutes_before_start * 60)
         self.kalshi_schedule_primary = bool(self.config.get("kalshi_schedule_primary", False))
+        # [C-PER-SIDE-PRICING] deployment of the June-record placement doctrine (default OFF = byte-identical).
+        # Fixes ZERO-DISCOUNT fills (bid posted at the trading level, fills instantly at the going rate). Per
+        # side of the pair: the expected-FALLER leg (dog, anchor < 50) rests DEEPER at the dip-informed level
+        # (A49: 97% dip >=1c, median 3c; A50: dips heaviest late-window) so the dip pays it; the expected-RISER
+        # leg (favorite, anchor >= 50) keeps the shallow table offset (fill early at/near current, cheap vs the
+        # coming rise). Both legs still post early and rest the whole window. dog_dip_offset_cents = the dip
+        # floor (A49 median).
+        self.per_side_placement = bool(self.config.get("per_side_placement", False))
+        self.dog_dip_offset_cents = int(self.config.get("dog_dip_offset_cents", 3))
         # [C-CAP-DIFF] reach-repost cap (dormant; default False = byte-identical).
         # When enforced, a resting entry bid is never reposted ABOVE its conception
         # cell (the drift-supported ceiling); holds/down-moves are untouched. Reads
@@ -1927,6 +1936,10 @@ class LiveV3:
         if row is None:
             return None
         placement_min, offset, exp_fill, exp_roi = row
+        # [C-PER-SIDE-PRICING] deepen ONLY the expected-faller (dog) leg to the dip-informed floor; default OFF
+        # => offset unchanged => byte-identical. Favorite (anchor >= 50) keeps the shallow table offset.
+        if self.per_side_placement and anchor_price < 50:
+            offset = max(offset, self.dog_dip_offset_cents)
         target_bid = max(1, anchor_price - offset)
         return (anchor_price, anchor_src, cell, regime, placement_min, offset,
                 exp_fill, exp_roi, target_bid, table_src)

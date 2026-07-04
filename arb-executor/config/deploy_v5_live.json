@@ -72,6 +72,7 @@
  "tape_gated_abandon": true,
  "per_cat_depth": true,
  "leg2_reshuffle": true,
+ "reaim_on_sibling_arrival": true,
  "combined_goal": 97,
  "premarket_walk_cap": true,
  "match_live_grace_sec": 300,

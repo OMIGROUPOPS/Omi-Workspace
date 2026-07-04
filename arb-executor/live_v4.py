@@ -1501,6 +1501,9 @@ class LiveV3:
         #     never pulls the bid). OFF => placement unchanged.
         self.leg2_reshuffle = bool(self.config.get("leg2_reshuffle", False))
         self.combined_goal = int(self.config.get("combined_goal", 97))
+        # [C-REAIM-ON-ARRIVAL] combined re-aim on ANY sibling basis arrival (fill or
+        # adoption), no price-bucket exemption; <=2c re-aim cancels. Default OFF.
+        self.reaim_on_sibling_arrival = bool(self.config.get("reaim_on_sibling_arrival", False))
         # (4c) freeze_at_gun: at the tape-live latch (_is_match_live), no fresh entry posts
         #     and no walk/reprice -- resting bids stay static (dip-fillable, never chasing).
         #     OFF => posting/walk untouched. [2026-07-03] SHELVED per doctrine audit: superseded by
@@ -3588,6 +3591,69 @@ class LiveV3:
             return
         await self._attempt_completion_reprice(tk, et, this_basis, sib, sp)
 
+    async def _reaim_sibling_on_arrival(self, tk, et, basis):
+        """[C-REAIM-ON-ARRIVAL] gated reaim_on_sibling_arrival (LEGWIN 2026-07-04,
+        pair 102 > goal 97). RULE: the combined re-aim triggers on ANY sibling
+        basis arrival -- bot fill OR reconcile ADOPTION -- and exempts NO price
+        bucket. The gap it closes: pair checks were placement-time only; the T50
+        fill-time cancel arm is dormant under paired_cap_enforced=false AND its
+        adoption invocation falls through when the leg isn't a completion cell;
+        leg2_reshuffle's walk re-aim excluded >=50c legs. A bid that RESTS BEFORE
+        the sibling basis exists therefore never re-tested against combined_goal.
+        Action: re-aim the sibling's resting bid to combined_goal - basis (LOWER
+        only); a noise-level re-aim (<= 2c) cancels instead of resting at noise.
+        Completion-repriced siblings are EXEMPT (their armed ceiling is
+        99 - basis, d2ac207 -- completion keeps precedence; we run AFTER
+        _cancel_sibling_if_paired_over_cap). OFF => returns immediately."""
+        if not getattr(self, "reaim_on_sibling_arrival", False) or not basis:
+            return
+        sib = self._sibling_ticker(tk, et)
+        if not sib:
+            return
+        sp = self.positions.get(sib)
+        if (sp is None or sp.settled or sp.phase != "entry_resting"
+                or not sp.entry_order_id or sp.entry_qty > 0):
+            return
+        if getattr(sp, "entry_mode", "") == "completion_reprice":
+            return   # completion ceiling (99 - basis) governs that bid, not the 97 goal
+        cur = int(sp.entry_price or 0)
+        goal_level = int(self.combined_goal) - int(round(basis))
+        if cur <= goal_level:
+            return   # resting bid already inside the goal
+        if goal_level <= 2:
+            res = await self._cancel_entry_and_resolve(
+                sib, sp, "reaim_sibling_cancel", "reaim_sibling_race")
+            self._log("reaim_sibling_cancel", {
+                "event": et, "leg1": tk[-12:], "leg1_basis": int(round(basis)),
+                "sibling_bid": cur, "goal_level": goal_level,
+                "goal": self.combined_goal, "resolve": res}, ticker=sib)
+            if res == "cancelled":
+                sp.entry_order_id = ""
+                self._save_v4_resting()
+            return
+        res = await self._cancel_entry_and_resolve(
+            sib, sp, "reaim_sibling_lower", "reaim_sibling_race")
+        if res != "cancelled":
+            return   # raced fill books via resolve; pair management takes over
+        _book = self.books.get(sib)
+        _ask = int(_book.best_ask) if (_book and _book.best_ask) else 100
+        new_target, po = self._reprice_target(goal_level, _ask)
+        self.inflight_orders.add(sib)
+        try:
+            oid, _ = await self.place_order(sib, "buy", "yes", new_target,
+                                            self.entry_size, post_only=po)
+        finally:
+            self.inflight_orders.discard(sib)
+        sp.entry_price = new_target
+        sp.target_price = new_target
+        sp.entry_order_id = oid
+        sp.entry_mode = "resting_maker"
+        self._log("reaim_sibling_arrival", {
+            "event": et, "leg1": tk[-12:], "leg1_basis": int(round(basis)),
+            "from": cur, "to": int(new_target), "goal": self.combined_goal},
+            ticker=sib)
+        self._save_v4_resting()
+
     async def _pair_governor_scoot_eval(self, tk, et, this_basis, sib, sp):
         """[C-PAIR-GOVERNOR rev] leg-1 (tk) just filled; sp = sibling resting UNFILLED entry bid
         (caller validated entry_resting + entry_qty==0). Fires on EVERY leg-1 fill (mandatory leg-2
@@ -4737,6 +4803,7 @@ class LiveV3:
         if pos.is_v4:
             await self._v4_apply_exit(tk, pos, anchor_price, filled)
             await self._cancel_sibling_if_paired_over_cap(tk, pos.event_ticker, anchor_price)
+            await self._reaim_sibling_on_arrival(tk, pos.event_ticker, anchor_price)
         self._save_v4_resting()
         return True
 
@@ -4947,6 +5014,9 @@ class LiveV3:
                 # resting bid if the pair would exceed cap.
                 # (PART-2: same handler also runs the completion arm.)
                 await self._cancel_sibling_if_paired_over_cap(tk, pos.event_ticker, fill_price)
+                # [C-REAIM-ON-ARRIVAL] Gate-1 is the shared booking for check_fills
+                # AND reconcile adoptions -- the arrival hook here covers both.
+                await self._reaim_sibling_on_arrival(tk, pos.event_ticker, fill_price)
                 # PART-2 item 7: a COMPLETION bid filling is logged as its own
                 # paired event (separate from the leg fill), with exchange
                 # is_taker truth (never placement intent).
@@ -6993,6 +7063,7 @@ class LiveV3:
                 if pos.is_v4:
                     await self._v4_apply_exit(tk, pos, fill_price, filled)
                     await self._cancel_sibling_if_paired_over_cap(tk, pos.event_ticker, fill_price)
+                    await self._reaim_sibling_on_arrival(tk, pos.event_ticker, fill_price)
             self._save_v4_resting()
             return
 
@@ -7124,13 +7195,22 @@ class LiveV3:
         #     re-aim this faller to min(current walk target, aim dip, combined_goal - X). Keeps the
         #     pair <= combined_goal, re-derived per walk (closes the ceiling's checks-once scope hole);
         #     the bid stays resting -- we only LOWER/HOLD new_target, never pull it. OFF => unchanged.
-        if self.leg2_reshuffle and current_price < 50:   # this leg is the expected faller
+        if self.leg2_reshuffle and pos.entry_mode != "completion_reprice":
+            # [C-REAIM-ON-ARRIVAL 2] the <50 faller-only test is REMOVED (LEGWIN
+            # 2026-07-04: a 54c leg-2 escaped it, pair 102 > goal 97). The riser/
+            # faller asymmetry governs initial PLACEMENT depth only -- once a
+            # sibling basis exists, NO price bucket is exempt from the combined
+            # re-aim. Sub-50 legs keep the full aim-depth target; >=50 legs cap at
+            # goal - basis. Completion-repriced bids stay exempt (ceiling 99-basis).
             _sib = self._sibling_ticker_any(tk)
             _sp = self.positions.get(_sib) if _sib else None
             if _sp is not None and getattr(_sp, "entry_qty", 0) > 0 and getattr(_sp, "entry_price", 0):
-                _fd = (self._aim_faller_depth(pos.category, current_price)
-                       if self.per_cat_depth else self.dog_dip_offset_cents)
-                _reaim = self._reshuffle_leg2_target(current_price, _fd, _sp.entry_price, self.combined_goal)
+                if current_price < 50:   # expected faller: aim dip AND goal cap
+                    _fd = (self._aim_faller_depth(pos.category, current_price)
+                           if self.per_cat_depth else self.dog_dip_offset_cents)
+                    _reaim = self._reshuffle_leg2_target(current_price, _fd, _sp.entry_price, self.combined_goal)
+                else:                    # >=50 leg-2: goal cap only (no aim-depth deepening)
+                    _reaim = max(1, int(self.combined_goal) - int(round(_sp.entry_price)))
                 if _reaim < new_target:
                     self._log("leg2_reshuffle_reaim", {"event": pos.event_ticker,
                         "from": int(new_target), "to": int(_reaim), "leg1_basis": int(_sp.entry_price),

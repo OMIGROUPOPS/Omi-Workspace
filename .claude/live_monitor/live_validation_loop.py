@@ -1,0 +1,421 @@
+#!/usr/bin/env python3
+"""LIVE VALIDATION LOOP — read-only, on-box, 10-min cycle (2026-07-04).
+
+Makes the bot's night legible in real time. NEVER touches the bot: reads the
+session jsonl log + config + aim table, writes only its own artifacts and
+pushes them to git so Fable can read LIVE_STATUS.md off GitHub anytime.
+
+Per cycle over the CURRENT session (latest system_start in the newest log):
+ 1. ZERO-TOLERANCE doctrine violations, flagged the cycle they occur:
+      grace_breach        fill past latch+300s on a latch-detected match
+      combined_over_goal  completed pair combined basis > combined_goal (97)
+      walk_cap_breach     premarket entry buy above conception_cell + per-cat cap
+                          (only while the event has NO fills — completion/reshuffle
+                          legitimately price differently after leg-1 fills)
+      handler_error       any error / on_bbo_update_error event (tripwire feed)
+ 2. EVERY NEW FILL graded on arrival: leg, fill vs aim-table level, FV-capture
+    when the gun prints (entry_minus_fv_burst), pair state (combined so far).
+ 3. One structured line per violation/fill/pattern -> live_validation.jsonl
+    (append-once, keyed) + rolling LIVE_STATUS.md, committed+pushed on change.
+ 4. >=2 fires of one zero-tolerance class inside any 60-min window -> a live
+    defect, not a stat: FORENSIC_<class>.md written immediately (events,
+    timeline, code path) so the patch conversation starts that hour.
+
+Usage: python3 live_validation_loop.py [--once] [--interval 600]
+"""
+import argparse
+import json
+import subprocess
+import sys
+import time
+from collections import defaultdict
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
+
+REPO = Path("/root/Omi-Workspace")
+ARB = REPO / "arb-executor"
+OUT = REPO / ".claude" / "live_20260705"
+JSONL = OUT / "live_validation.jsonl"
+STATUS = OUT / "LIVE_STATUS.md"
+ET = timezone(timedelta(hours=-4))
+
+GRACE_SEC = 300
+CAT_MAP = {"KXATPMATCH": "ATP_MAIN", "KXWTAMATCH": "WTA_MAIN",
+           "KXATPCHALLENGERMATCH": "ATP_CHALL", "KXWTACHALLENGERMATCH": "WTA_CHALL",
+           "KXITFMATCH": "ITF_M", "KXITFWMATCH": "ITF_W"}
+WALK_CAP = {"ATP_MAIN": 2, "WTA_MAIN": 2, "ATP_CHALL": 3, "WTA_CHALL": 3,
+            "ITF_M": 4, "ITF_W": 4}
+CODE_PATHS = {
+    "grace_breach": ("latch: _is_match_live (live_v4.py ~3889, two-stage + tape-override); "
+                     "grace: _v4_manage_resting_inner -> _grace_kill_action (~3260) -> "
+                     "_cancel_entry_and_resolve 'match_live_cancel' (~6716). If the cancel was LATE, "
+                     "check on_bbo_update ordering (_route_event before _v4_manage_resting, ~6216) "
+                     "and validate_resting_buys cadence (~7372) — the 07-04 crash starved exactly this."),
+    "combined_over_goal": ("entry leg2: _v4_entry_anchor leg2_reshuffle branch (~2073); walk re-aim: "
+                           "_reshuffle_leg2_target (~1952); completion: _completion_target combined "
+                           "ceiling; pair cap: _paired_basis_ok (T50, cap 99). combined_goal=97."),
+    "walk_cap_breach": ("_walk_cap_cents (~2040); premarket walk clamp emits premarket_walk_capped in "
+                        "the move_repost path (~7050). A breach = a buy above conception+cap WITHOUT "
+                        "the clamp event — check liquid_repost_at_touch / join paths for a bypass."),
+    "handler_error": ("traceback embedded in the event details. run() catch ~8345 (skips the rest of "
+                      "the loop turn incl. last_routing_sweep update), on_bbo_update catch ~6221 "
+                      "(skips _v4_manage_resting). Tripwire: [C-ERROR-TRIPWIRE] in _log."),
+}
+
+
+def now_et():
+    return datetime.now(ET).strftime("%Y-%m-%d %I:%M:%S %p ET")
+
+
+def cat_of(tk):
+    return next((v for k, v in CAT_MAP.items() if tk.startswith(k)), "?")
+
+
+def bucket_of(price):
+    for lo, hi, name in ((1, 20, "01-20"), (21, 40, "21-40"), (41, 49, "41-49"),
+                         (50, 59, "50-59"), (60, 79, "60-79"), (80, 99, "80-99")):
+        if lo <= price <= hi:
+            return name
+    return None
+
+
+def load_aim():
+    try:
+        return json.loads((ARB / "docs/policy/aim_table.json").read_text())["aim"]
+    except Exception:
+        return {}
+
+
+def aim_level(aim, cat, cell):
+    """Aim-table level for a leg conceived at `cell`: faller aims cell-depth,
+    riser posts cell-riser_post (usually at bid)."""
+    b = bucket_of(cell or 0)
+    row = (aim.get(cat) or {}).get(b or "", {})
+    if not row:
+        return None
+    off = row.get("faller_depth", 0) if (cell or 0) < 50 else row.get("riser_post", 0)
+    return max(1, int(cell) - int(off or 0))
+
+
+def newest_log():
+    logs = sorted((ARB / "logs").glob("live_v3_*.jsonl"), key=lambda f: f.stat().st_mtime)
+    return logs[-1] if logs else None
+
+
+def parse_session(log_path):
+    """Parse only the CURRENT session (from the last system_start)."""
+    boot_ts = 0.0
+    with open(log_path, encoding="utf-8", errors="replace") as fh:
+        for line in fh:
+            if '"system_start"' in line:
+                try:
+                    boot_ts = json.loads(line)["ts_epoch"]
+                except Exception:
+                    pass
+    S = {"boot": boot_ts, "fills": {}, "latch": {}, "wopen": {}, "vplace": defaultdict(list),
+         "buys": defaultdict(list), "emfb": {}, "errors": [], "graced": {}, "cancels": [],
+         "capped": [], "exits": {}, "settled": {}, "events": 0}
+    with open(log_path, encoding="utf-8", errors="replace") as fh:
+        for line in fh:
+            if '"event"' not in line:
+                continue
+            try:
+                o = json.loads(line)
+            except Exception:
+                continue
+            ts = o.get("ts_epoch", 0)
+            if ts < boot_ts:
+                continue
+            e, tk, d = o.get("event"), o.get("ticker") or "", o.get("details", {})
+            S["events"] += 1
+            if e == "entry_filled" and tk and tk not in S["fills"]:
+                S["fills"][tk] = {"ts": ts, "fill": d.get("fill_price"), "posted": d.get("posted_price"),
+                                  "dir": d.get("direction"), "play": d.get("play_type"),
+                                  "qty": d.get("qty"), "src": d.get("source")}
+            elif e == "match_live_detected":
+                ev = d.get("event")
+                if ev and ev not in S["latch"]:
+                    S["latch"][ev] = {"ts": ts, "tts": d.get("tts_min"), "trades": d.get("trades_in_window")}
+            elif e == "window_open_set" and tk and tk not in S["wopen"]:
+                S["wopen"][tk] = {"cell": d.get("cell"), "price": d.get("price"), "ts": ts}
+            elif e == "v4_place" and tk:
+                S["vplace"][tk].append({"ts": ts, "ref": d.get("reference_source"),
+                                        "anchor": d.get("anchor_src"), "tgt": d.get("target_bid")})
+            elif e == "order_placed" and d.get("action") == "buy" and tk:
+                S["buys"][tk].append({"ts": ts, "price": d.get("price"), "oid": d.get("order_id")})
+            elif e == "fv_burst_anchor" and tk:
+                S["emfb"][tk] = d.get("entry_minus_fv_burst")
+            elif e in ("error", "on_bbo_update_error"):
+                S["errors"].append({"ts": ts, "kind": e, "err": str(d.get("error"))[:160]})
+            elif e == "match_live_grace_armed":
+                S["graced"][tk or d.get("event")] = ts
+            elif e in ("match_live_resting_cancel", "order_cancelled"):
+                S["cancels"].append({"ts": ts, "tk": tk, "e": e,
+                                     "label": d.get("label"), "ok": d.get("success"), "graced": d.get("graced")})
+            elif e == "premarket_walk_capped" and tk:
+                S["capped"].append({"ts": ts, "tk": tk, **{k: d.get(k) for k in
+                                    ("proposed_target", "walk_ceiling", "conception_cell", "cap")}})
+            elif e == "exit_filled" and tk:
+                S["exits"][tk] = {"ts": ts, "pnl": d.get("pnl_cents")}
+            elif e == "settled" and tk:
+                S["settled"][tk] = {"ts": ts, "settle": d.get("settle"), "pnl": d.get("pnl_cents")}
+    return S
+
+
+def analyze(S, aim, goal):
+    items = []   # structured jsonl candidates, each with a unique 'key'
+    ev_fills = defaultdict(list)
+    for tk, f in S["fills"].items():
+        ev_fills[tk.rsplit("-", 1)[0]].append((tk, f))
+
+    # ---- fills graded ----
+    for tk, f in sorted(S["fills"].items(), key=lambda x: x[1]["ts"]):
+        ev = tk.rsplit("-", 1)[0]
+        cell = (S["wopen"].get(tk) or {}).get("cell")
+        al = aim_level(aim, cat_of(tk), cell) if cell else None
+        sibs = [x for x in ev_fills[ev] if x[0] != tk]
+        combined = (f["fill"] or 0) + sum((x[1]["fill"] or 0) for x in sibs) if sibs else None
+        lat = S["latch"].get(ev)
+        mins_after_latch = round((f["ts"] - lat["ts"]) / 60.0, 1) if lat and f["ts"] >= lat["ts"] else None
+        items.append({"key": f"fill:{tk}", "type": "fill", "ts": f["ts"], "ticker": tk,
+                      "cat": cat_of(tk), "dir": f["dir"], "play": f["play"], "fill": f["fill"],
+                      "posted": f["posted"], "conception_cell": cell, "aim_level": al,
+                      "fill_minus_aim": (f["fill"] - al) if (al is not None and f["fill"] is not None) else None,
+                      "mins_after_latch": mins_after_latch,
+                      "pair_state": ("pair" if sibs else "single"), "combined": combined})
+        emfb = S["emfb"].get(tk)
+        if emfb is not None:
+            items.append({"key": f"fv:{tk}", "type": "fv_capture", "ts": f["ts"], "ticker": tk,
+                          "entry_minus_fv_burst": emfb,
+                          "verdict": ("paid_by_dip" if emfb > 0 else "zero_or_above_FV")})
+            if emfb <= -8:
+                items.append({"key": f"deepneg:{tk}", "type": "pattern", "pattern": "deep_neg_fv",
+                              "ts": f["ts"], "ticker": tk, "entry_minus_fv_burst": emfb})
+
+    # ---- ZT 1: grace_breach ----
+    for tk, f in S["fills"].items():
+        ev = tk.rsplit("-", 1)[0]
+        lat = S["latch"].get(ev)
+        if lat and f["ts"] > lat["ts"] + GRACE_SEC:
+            items.append({"key": f"zt:grace_breach:{tk}", "type": "violation", "cls": "grace_breach",
+                          "ts": f["ts"], "ticker": tk, "event": ev,
+                          "mins_past_latch": round((f["ts"] - lat["ts"]) / 60.0, 1),
+                          "latch_ts": lat["ts"], "fill": f["fill"], "detail":
+                          f"fill {f['fill']}c {round((f['ts']-lat['ts'])/60.0,1)}min past latch (grace {GRACE_SEC}s)"})
+
+    # ---- ZT 2: combined_over_goal ----
+    for ev, legs in ev_fills.items():
+        if len(legs) >= 2:
+            comb = sum((f["fill"] or 0) for _, f in legs)
+            if comb > goal:
+                last_ts = max(f["ts"] for _, f in legs)
+                items.append({"key": f"zt:combined_over_goal:{ev}", "type": "violation",
+                              "cls": "combined_over_goal", "ts": last_ts, "event": ev,
+                              "combined": comb, "goal": goal,
+                              "legs": [{"tk": tk, "fill": f["fill"]} for tk, f in legs],
+                              "detail": f"pair combined {comb}c > goal {goal}c"})
+
+    # ---- ZT 3: walk_cap_breach (premarket only: event has NO fills yet at buy time) ----
+    for tk, buys in S["buys"].items():
+        ev = tk.rsplit("-", 1)[0]
+        cell = (S["wopen"].get(tk) or {}).get("cell")
+        if not cell:
+            continue
+        ceiling = int(cell) + WALK_CAP.get(cat_of(tk), 3)
+        for b in buys:
+            ev_fill_before = any(f["ts"] <= b["ts"] for x, f in S["fills"].items()
+                                 if x.rsplit("-", 1)[0] == ev)
+            if ev_fill_before or b["price"] is None or b["price"] <= ceiling:
+                continue
+            vp = [v for v in S["vplace"][tk] if abs(v["ts"] - b["ts"]) < 10]
+            ref = vp[-1]["ref"] if vp else None
+            items.append({"key": f"zt:walk_cap_breach:{tk}:{int(b['ts'])}", "type": "violation",
+                          "cls": "walk_cap_breach", "ts": b["ts"], "ticker": tk,
+                          "price": b["price"], "conception_cell": cell, "ceiling": ceiling,
+                          "ref_source": ref, "detail":
+                          f"buy {b['price']}c > ceiling {ceiling}c (conception {cell} + cap) ref={ref}"})
+
+    # ---- ZT 4: handler_error ----
+    for er in S["errors"]:
+        items.append({"key": f"zt:handler_error:{int(er['ts']*1000)}", "type": "violation",
+                      "cls": "handler_error", "ts": er["ts"], "kind": er["kind"],
+                      "detail": er["err"]})
+
+    # ---- pattern: half-arm aging (single fill >30min, sibling unfilled) ----
+    now = time.time()
+    for ev, legs in ev_fills.items():
+        if len(legs) == 1 and (now - legs[0][1]["ts"]) > 1800:
+            tk, f = legs[0]
+            sib_rested = any(x.rsplit("-", 1)[0] == ev and x != tk for x in S["buys"])
+            items.append({"key": f"halfarm:{ev}", "type": "pattern", "pattern": "half_arm_aging",
+                          "ts": f["ts"], "event": ev, "ticker": tk, "fill": f["fill"],
+                          "age_min": round((now - f["ts"]) / 60.0),
+                          "mode": "STARVATION(sib rested)" if sib_rested else "PAIRING(sib never rested)"})
+    return items
+
+
+def forensic_check(all_lines, S, log_path):
+    """>=2 fires of one ZT class inside any 60-min window -> forensic block file."""
+    written = []
+    by_cls = defaultdict(list)
+    for it in all_lines:
+        if it.get("type") == "violation":
+            by_cls[it["cls"]].append(it)
+    for cls, vs in by_cls.items():
+        vs.sort(key=lambda x: x["ts"])
+        burst = None
+        for i in range(1, len(vs)):
+            if vs[i]["ts"] - vs[i - 1]["ts"] <= 3600:
+                burst = (vs[i - 1], vs[i])
+        if not burst:
+            continue
+        fp = OUT / f"FORENSIC_{cls}.md"
+        stamp = f"{int(burst[1]['ts'])}"
+        if fp.exists() and stamp in fp.read_text(encoding="utf-8", errors="replace"):
+            continue    # this exact pair already written
+        lines = [f"# FORENSIC — {cls} — LIVE DEFECT (>=2 in 60min)  <!-- {stamp} -->",
+                 f"written {now_et()} by live_validation_loop (read-only). "
+                 f"Patch conversation starts NOW.", "",
+                 f"## Events ({len(vs)} total this session)"]
+        for v in vs:
+            lines.append(f"- {datetime.fromtimestamp(v['ts'], ET).strftime('%H:%M:%S')} "
+                         f"{v.get('ticker') or v.get('event') or ''} — {v['detail']}")
+        lines += ["", "## Timeline (raw log lines for the burst pair)"]
+        keys = {v.get("ticker") or v.get("event") or "" for v in burst if (v.get("ticker") or v.get("event"))}
+        if keys:
+            with open(log_path, encoding="utf-8", errors="replace") as fh:
+                for line in fh:
+                    if any(k and k in line for k in keys):
+                        lines.append("    " + line.strip()[:400])
+        lines += ["", "## Code path", CODE_PATHS.get(cls, "?"), ""]
+        fp.write_text("\n".join(lines), encoding="utf-8")
+        written.append(fp.name)
+    return written
+
+
+def write_status(S, all_lines, log_path, cycle_n, forensics):
+    v = [x for x in all_lines if x.get("type") == "violation"]
+    fills = [x for x in all_lines if x.get("type") == "fill"]
+    pats = [x for x in all_lines if x.get("type") == "pattern"]
+    fvs = {x["ticker"]: x for x in all_lines if x.get("type") == "fv_capture"}
+    sha = subprocess.run(["git", "-C", str(REPO), "rev-parse", "--short", "HEAD"],
+                         capture_output=True, text=True).stdout.strip()
+    L = [f"# LIVE VALIDATION — rolling status", "",
+         f"- cycle {cycle_n} @ **{now_et()}** | build `{sha}` | session boot "
+         f"{datetime.fromtimestamp(S['boot'], ET).strftime('%m-%d %H:%M ET') if S['boot'] else '?'} "
+         f"| log `{log_path.name}` | {S['events']} session events | monitor READ-ONLY",
+         f"- tripwire artifact: "
+         f"{'**PRESENT — CHECK /tmp/live_v4_TRIPWIRE.json**' if Path('/tmp/live_v4_TRIPWIRE.json').exists() else 'absent (quiet)'}",
+         "", f"## ZERO-TOLERANCE — {len(v)} violation(s)"]
+    if not v:
+        L.append("**NONE.** grace_breach / combined_over_goal(97) / walk_cap_breach / handler_error all clean.")
+    else:
+        L.append("| ET | class | who | detail |")
+        L.append("|---|---|---|---|")
+        for x in sorted(v, key=lambda y: y["ts"]):
+            L.append(f"| {datetime.fromtimestamp(x['ts'], ET).strftime('%H:%M:%S')} | **{x['cls']}** | "
+                     f"{x.get('ticker') or x.get('event') or x.get('kind','')} | {x['detail'][:140]} |")
+    if forensics:
+        L += ["", f"**LIVE DEFECT(S) — forensic blocks written: {', '.join(forensics)}**"]
+    L += ["", f"## FILLS — {len(fills)} graded (session)"]
+    if fills:
+        L += ["| ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb |",
+              "|---|---|---|---|---|---|---|---|---|---|---|"]
+        for f in sorted(fills, key=lambda y: y["ts"]):
+            fv = fvs.get(f["ticker"], {}).get("entry_minus_fv_burst")
+            L.append(f"| {datetime.fromtimestamp(f['ts'], ET).strftime('%H:%M')} | {f['ticker'].replace('KX','')[:34]} "
+                     f"| {f['cat']} | {f['dir'] or '?'} | {f['fill']} | {f['aim_level'] if f['aim_level'] is not None else '?'} "
+                     f"| {f['fill_minus_aim'] if f['fill_minus_aim'] is not None else '?'} "
+                     f"| {fv if fv is not None else '—'} | {f['mins_after_latch'] if f['mins_after_latch'] is not None else 'pre'} "
+                     f"| {f['pair_state']} | {f['combined'] or ''} |")
+    else:
+        L.append("none yet this session")
+    L += ["", f"## PATTERNS (sub-B) — {len(pats)}"]
+    for p in sorted(pats, key=lambda y: y["ts"]):
+        L.append(f"- {p['pattern']}: {p.get('ticker') or p.get('event')} "
+                 f"{json.dumps({k: p[k] for k in p if k not in ('key','type','pattern','ts','ticker','event')})}")
+    L += ["", f"## ERRORS — {len(S['errors'])} handler errors this session "
+              f"{'(ZERO — clean loop)' if not S['errors'] else '(SEE ZERO-TOLERANCE)'}", ""]
+    txt = "\n".join(L)
+    old = STATUS.read_text(encoding="utf-8", errors="replace") if STATUS.exists() else ""
+    # ignore the cycle-stamp line when deciding "changed"
+    strip = lambda t: "\n".join(l for l in t.splitlines() if not l.startswith("- cycle"))
+    changed = strip(old) != strip(txt)
+    STATUS.write_text(txt, encoding="utf-8")
+    return changed
+
+
+def git_push(msg):
+    def run(*a):
+        return subprocess.run(["git", "-C", str(REPO), *a], capture_output=True, text=True)
+    run("fetch", "origin")
+    r = run("merge", "--ff-only", "origin/blend/kalshi-occ-fallback")
+    run("add", str(OUT))
+    c = run("-c", "user.name=live-monitor", "-c", "user.email=omigroup.ops@outlook.com",
+            "commit", "-m", msg)
+    if "nothing to commit" in (c.stdout + c.stderr):
+        return "nothing-to-commit"
+    p = run("push", "origin", "blend/kalshi-occ-fallback")
+    return "pushed" if p.returncode == 0 else f"PUSH-FAIL: {p.stderr.strip()[:200]}"
+
+
+def cycle(n):
+    OUT.mkdir(parents=True, exist_ok=True)
+    aim = load_aim()
+    try:
+        goal = int(json.loads((ARB / "config/deploy_v5_live.json").read_text()).get("combined_goal", 97))
+    except Exception:
+        goal = 97
+    log_path = newest_log()
+    if not log_path:
+        print(f"[{now_et()}] no log found", flush=True)
+        return
+    S = parse_session(log_path)
+    items = analyze(S, aim, goal)
+    # dedup against the committed jsonl (the jsonl IS the state)
+    seen = set()
+    if JSONL.exists():
+        for line in JSONL.read_text(encoding="utf-8", errors="replace").splitlines():
+            try:
+                seen.add(json.loads(line)["key"])
+            except Exception:
+                pass
+    new = [it for it in items if it["key"] not in seen]
+    if new:
+        with open(JSONL, "a", encoding="utf-8") as fh:
+            for it in sorted(new, key=lambda x: x.get("ts", 0)):
+                it["emitted_et"] = now_et()
+                fh.write(json.dumps(it) + "\n")
+    forensics = forensic_check(items, S, log_path)
+    changed = write_status(S, items, log_path, n, forensics)
+    nv = sum(1 for x in new if x.get("type") == "violation")
+    res = "no-change"
+    if new or changed or forensics:
+        res = git_push(f"live-monitor cycle {n}: +{len(new)} lines"
+                       f"{' [' + str(nv) + ' VIOLATION]' if nv else ''}"
+                       f"{' [FORENSIC ' + ','.join(forensics) + ']' if forensics else ''}")
+    print(f"[{now_et()}] cycle {n}: events={S['events']} fills={len(S['fills'])} "
+          f"new_lines={len(new)} violations_new={nv} forensics={forensics or '—'} git={res}", flush=True)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--once", action="store_true")
+    ap.add_argument("--interval", type=int, default=600)
+    args = ap.parse_args()
+    n = 0
+    while True:
+        n += 1
+        try:
+            cycle(n)
+        except Exception as e:
+            import traceback
+            print(f"[{now_et()}] CYCLE {n} CRASHED (loop continues): {e}\n{traceback.format_exc()}",
+                  flush=True)
+        if args.once:
+            break
+        time.sleep(args.interval)
+
+
+if __name__ == "__main__":
+    main()

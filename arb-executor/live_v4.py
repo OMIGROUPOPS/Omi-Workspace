@@ -1961,7 +1961,10 @@ class LiveV3:
         goal_level = int(combined_goal) - int(round(leg1_basis))
         return max(1, min(aim_level, goal_level))
 
-    def _sibling_ticker(self, tk):
+    def _sibling_ticker_any(self, tk):
+        # NOT _sibling_ticker: a 2-arg _sibling_ticker(tk, et) exists later in the
+        # class body and shadows any earlier def, so this helper must keep a
+        # distinct name or every 1-arg call dies with TypeError (Jul-4 incident).
         ev = tk.rsplit("-", 1)[0]
         for x in list(self.positions.keys()) + list(self.books.keys()):
             if x != tk and x.rsplit("-", 1)[0] == ev:
@@ -2074,7 +2077,7 @@ class LiveV3:
             if anchor_price >= 50:
                 target_bid = int(book.best_bid)
             else:
-                _sib = self._sibling_ticker(tk)
+                _sib = self._sibling_ticker_any(tk)
                 _sb = self.books.get(_sib) if _sib else None
                 if _sb is not None and 0 < _sb.best_bid < 100 \
                         and (book.best_bid + _sb.best_bid) <= self.combined_goal:
@@ -7055,7 +7058,7 @@ class LiveV3:
         #     pair <= combined_goal, re-derived per walk (closes the ceiling's checks-once scope hole);
         #     the bid stays resting -- we only LOWER/HOLD new_target, never pull it. OFF => unchanged.
         if self.leg2_reshuffle and current_price < 50:   # this leg is the expected faller
-            _sib = self._sibling_ticker(tk)
+            _sib = self._sibling_ticker_any(tk)
             _sp = self.positions.get(_sib) if _sib else None
             if _sp is not None and getattr(_sp, "entry_qty", 0) > 0 and getattr(_sp, "entry_price", 0):
                 _fd = (self._aim_faller_depth(pos.category, current_price)

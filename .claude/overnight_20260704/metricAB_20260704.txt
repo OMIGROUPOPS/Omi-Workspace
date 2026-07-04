@@ -1,0 +1,24 @@
+==== METRIC A: fills past gun+300s on latch-detected matches ====
+  latched events: 36 | fills on latched events past +300s: 3 (TARGET 0)
+    VIOLATION KXWTAMATCH-26JUL04MERRYB  +14.4min past latch
+    VIOLATION KXWTAMATCH-26JUL04MERRYB  +14.5min past latch
+    VIOLATION KXATPCHALLENGERMATCH-26JUL04GIUFEL  +31.5min past latch
+
+==== METRIC B: latch behaviour ====
+  total latches: 36 | via TTS-override (tts>30min at latch): 25
+    OVERRIDE-LATCH KXITFWMATCH-26JUL03MAXBRO  tts=173.4min at latch (floor bypassed by tape strength)
+    OVERRIDE-LATCH KXITFWMATCH-26JUL03GUOSNI  tts=205.4min at latch (floor bypassed by tape strength)
+    OVERRIDE-LATCH KXITFMATCH-26JUL04BITTUR  tts=236.9min at latch (floor bypassed by tape strength)
+    OVERRIDE-LATCH KXITFMATCH-26JUL04PANDER  tts=238.2min at latch (floor bypassed by tape strength)
+    OVERRIDE-LATCH KXITFMATCH-26JUL04BOUOUA  tts=234.8min at latch (floor bypassed by tape strength)
+    OVERRIDE-LATCH KXWTAMATCH-26JUL04NAVKOS  tts=138.1min at latch (floor bypassed by tape strength)
+    OVERRIDE-LATCH KXATPCHALLENGERMATCH-26JUL04HEICEC  tts=136.6min at latch (floor bypassed by tape strength)
+    OVERRIDE-LATCH KXATPCHALLENGERMATCH-26JUL04JUSSMI  tts=70.9min at latch (floor bypassed by tape strength)
+    OVERRIDE-LATCH KXITFWMATCH-26JUL04ANDSAR  tts=208.8min at latch (floor bypassed by tape strength)
+    OVERRIDE-LATCH KXWTAMATCH-26JUL04SAMBOU  tts=113.4min at latch (floor bypassed by tape strength)
+  (latch-blind count = events with a real gun that never latched -- compare across nights;
+   an override latch here is a formerly-blind event now caught.)
+
+  grace_kill cuts: {'match_live_grace_armed': 5, 'match_live_resting_cancel': 2}
+
+DONE

@@ -1,0 +1,106 @@
+==== EVENT-TYPE CENSUS DIFF (new vs old night; sorted by |delta|) ====
+event                                           old      new    delta
+skipped                                       36275    15655   -20620
+event_skip_stale_book                         17428    30080   +12652
+error                                             0     5022    +5022 NEW
+schedule_abandon_deferred                     11432    14573    +3141
+loop_lag                                       4065     1087    -2978
+staircase_hold_place                             83      938     +855
+on_bbo_update_error                               0      817     +817 NEW
+reconcile                                      1431      663     -768
+kalshi_occ_delta                                758      103     -655
+schedule_match                                  758      103     -655
+reconcile_price_mismatch                        835      201     -634
+schedule_unmatched                              494        0     -494 GONE
+no_reliable_commence_source                     494        0     -494 GONE
+loop_lag_sample                                2558     2093     -465
+order_placed                                    436       51     -385
+reconcile_orphan_no_cell                        132      393     +261
+schedule_date_mismatch                          198        0     -198 GONE
+order_cancelled                                 205       37     -168
+join_queue                                      175       13     -162
+discovery                                       297      136     -161
+schedule_loaded                                 297      136     -161
+v4_place                                        161       26     -135
+v4_exit_posted                                  151       20     -131
+entry_filled                                    149       20     -129
+ws_settled_pre_finalized                      19159    19037     -122
+window_open_set                                 230      115     -115
+v4_move_repost                                  118        7     -111
+exit_filled                                     108       15      -93
+scalp_filled                                     76        7      -69
+would_skip_walled_post                           82       18      -64
+kalshi_occ_observe                               57        1      -56
+ws_subscribed                                    77       23      -54
+manual_bid_observed                              39        0      -39 GONE
+completion_no_attempt                            39        1      -38
+ws_connected                                     42        4      -38
+ws_error                                         36        3      -33
+ws_reconnected                                   36        3      -33
+ws_reconnecting                                  36        3      -33
+settled                                          40       11      -29
+fv_burst_anchor                                  53       25      -28
+summary                                          46       23      -23
+exit_table_loaded                                24        4      -20
+schedule_corrected                               18        0      -18 GONE
+match_live_unlatched                              0       17      +17 NEW
+skip_live_match                                  14       30      +16
+match_live_detected                              22       36      +14
+v4_resting_cancel                                13        1      -12
+manual_bid_withdrawn                             10        0      -10 GONE
+reconcile_v4_adopted                              9        1       -8
+completion_booking_adoption                       9        1       -8
+system_start                                      6        1       -5
+completion_tripwire_armed                         6        1       -5
+engagement_cells_loaded                           6        1       -5
+completion_cells_loaded                           6        1       -5
+window_open_restored                              6        1       -5
+engagement_tripwire_armed                         6        1       -5
+staircase_loaded                                  6        1       -5
+entry_table_cell_loaded                           6        1       -5
+entry_table_loaded                                6        1       -5
+startup_validation                                6        1       -5
+match_live_grace_armed                            0        5       +5 NEW
+completion_freshness                              4        0       -4 GONE
+match_live_resting_cancel                         6        2       -4
+v4_fallback_maker_clamp                           4        0       -4 GONE
+match_live_suppressed                             9        5       -4
+v4_resting_restored                               4        1       -3
+premarket_walk_capped                             0        3       +3 NEW
+cancel_resolve_unresolved                         3        5       +2
+completion_fill                                   3        1       -2
+complete_cross_nofill                             2        0       -2 GONE
+exit_partial_remainder                            2        0       -2 GONE
+order_error                                       6        7       +1
+settlement_unexpected_phase                       0        1       +1 NEW
+anchor_src_alert                                  1        0       -1 GONE
+orphan_outcome                                    0        1       +1 NEW
+validate_skip_stale_book                          1        0       -1 GONE
+complete_cross_skip                               1        0       -1 GONE
+buy_blocked_position_full                         1        0       -1 GONE
+completion_reverted                               0        1       +1 NEW
+cancel_fill_race                                  9       10       +1
+completion_attempt                                3        2       -1
+complete_cross                                    1        0       -1 GONE
+shutdown_drain_begin                              1        1       +0
+v4_exit_fatal                                     3        3       +0
+shutdown_drain_done                               1        1       +0
+
+==== ERROR CLASSES old night ====
+==== ERROR CLASSES new night ====
+    5839  LiveV3._sibling_ticker() missing 1 required positional argument: 'et'
+
+==== FLAG-INTERACTION EXTRACTS (new night) ====
+-- match_live_grace_armed (5 shown-capped)
+    {"ts": "2026-07-04 08:35:51 AM ET", "tk": "KXWTAMATCH-26JUL04MERRYB-MER", "event": "KXWTAMATCH-26JUL04MERRYB", "grace_sec": 300}
+    {"ts": "2026-07-04 08:35:52 AM ET", "tk": "KXWTAMATCH-26JUL04MERRYB-RYB", "event": "KXWTAMATCH-26JUL04MERRYB", "grace_sec": 300}
+    {"ts": "2026-07-04 09:15:12 AM ET", "tk": "KXATPCHALLENGERMATCH-26JUL04GIUFEL-GIU", "event": "KXATPCHALLENGERMATCH-26JUL04GIUFEL", "grace_sec": 300}
+    {"ts": "2026-07-04 09:15:12 AM ET", "tk": "KXATPCHALLENGERMATCH-26JUL04GIUFEL-FEL", "event": "KXATPCHALLENGERMATCH-26JUL04GIUFEL", "grace_sec": 300}
+    {"ts": "2026-07-04 12:55:42 PM ET", "tk": "KXATPCHALLENGERMATCH-26JUL04MELCAS-CAS", "event": "KXATPCHALLENGERMATCH-26JUL04MELCAS", "grace_sec": 300}
+-- premarket_walk_capped (3 shown-capped)
+    {"ts": "2026-07-04 09:12:29 AM ET", "tk": "KXATPCHALLENGERMATCH-26JUL04GIUFEL-FEL", "proposed_target": 92, "walk_ceiling": 80, "conception_cell": 77, "cap": 3}
+    {"ts": "2026-07-04 09:12:33 AM ET", "tk": "KXITFMATCH-26JUL04BENAHO-BEN", "proposed_target": 70, "walk_ceiling": 69, "conception_cell": 65, "cap": 4}
+    {"ts": "2026-07-04 09:13:47 AM ET", "tk": "KXATPCHALLENGERMATCH-26JUL04GIUFEL-FEL", "proposed_target": 92, "walk_ceiling": 80, "conception_cell": 77, "cap": 3}
+-- match_live_resting_cancel (2 shown-capped)
+    {"ts": "2026-07-04 09:20:49 AM ET", "tk": "KXATPCHALLENGERMATCH-26JUL04GIUFEL-FEL", "event": "KXATPCHALLENGERMATCH-26JUL04GIUFEL", "graced": true}
+    {"ts": "2026-07-04 09:52:29 AM ET", "tk": "KXATPMATCH-26JUL04LEHMUN-LEH", "event": "KXATPMATCH-26JUL04LEHMUN"}

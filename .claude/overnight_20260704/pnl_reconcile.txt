@@ -1,0 +1,81 @@
+==== 1. CASH ====
+{"balance": 269174, "balance_breakdown": [{"balance": "2691.7422", "exchange_index": 0}], "balance_dollars": "2691.7422", "portfolio_value": 41645, "updated_ts": 1783190870}
+
+==== 2. PORTFOLIO (open positions) ====
+  total open-position exposure (cents): 0
+
+==== 3. API FILLS in window ====
+fills: 61 rows | buy 0 shares | sell 0 shares
+  KXATPCHALLENGERMATCH-26JUL03LEGBAR-LEG           buy=    0 sell=    0 taker_fills=0
+  KXATPCHALLENGERMATCH-26JUL04GIUFEL-GIU           buy=    0 sell=    0 taker_fills=0
+  KXATPCHALLENGERMATCH-26JUL04HEICEC-HEI           buy=    0 sell=    0 taker_fills=0
+  KXATPCHALLENGERMATCH-26JUL04HEMMOE-HEM           buy=    0 sell=    0 taker_fills=0
+  KXATPCHALLENGERMATCH-26JUL04HEMMOE-MOE           buy=    0 sell=    0 taker_fills=0
+  KXATPCHALLENGERMATCH-26JUL04HERPDA-PDA           buy=    0 sell=    0 taker_fills=0
+  KXATPCHALLENGERMATCH-26JUL04KASPIR-PIR           buy=    0 sell=    0 taker_fills=0
+  KXATPCHALLENGERMATCH-26JUL04MELCAS-CAS           buy=    0 sell=    0 taker_fills=0
+  KXATPCHALLENGERMATCH-26JUL04MELCAS-MEL           buy=    0 sell=    0 taker_fills=0
+  KXATPCHALLENGERMATCH-26JUL04RINDIA-DIA           buy=    0 sell=    0 taker_fills=0
+  KXATPMATCH-26JUL04DESVA-DE                       buy=    0 sell=    0 taker_fills=0
+  KXATPMATCH-26JUL04TIABUB-TIA                     buy=    0 sell=    0 taker_fills=0
+  KXCS2MAP-26JUL040100LVGB8E-1-LVG                 buy=    0 sell=    0 taker_fills=1
+  KXITFMATCH-26JUL03HARNAS-NAS                     buy=    0 sell=    0 taker_fills=7
+  KXITFMATCH-26JUL04BENAHO-AHO                     buy=    0 sell=    0 taker_fills=0
+  KXITFMATCH-26JUL04ORLPOP-ORL                     buy=    0 sell=    0 taker_fills=0
+  KXITFMATCH-26JUL04ORLPOP-POP                     buy=    0 sell=    0 taker_fills=0
+  KXITFWMATCH-26JUL04CLALAM-CLA                    buy=    0 sell=    0 taker_fills=0
+  KXITFWMATCH-26JUL04CLALAM-LAM                    buy=    0 sell=    0 taker_fills=0
+  KXITFWMATCH-26JUL04ZANSIE-ZAN                    buy=    0 sell=    0 taker_fills=0
+  KXMLBGAME-26JUL032145MILAZ-MIL                   buy=    0 sell=    0 taker_fills=2
+  KXNATHANSHDOU-26MEN-CLEG12                       buy=    0 sell=    0 taker_fills=1
+  KXWCADVANCE-26JUL03ARGCPV-CPV                    buy=    0 sell=    0 taker_fills=1
+  KXWCSPREAD-26JUL03COLGHA-COL2                    buy=    0 sell=    0 taker_fills=1
+  KXWCSPREAD-26JUL04CANMAR-MAR2                    buy=    0 sell=    0 taker_fills=1
+  KXWTAMATCH-26JUL04ANIKEY-KEY                     buy=    0 sell=    0 taker_fills=0
+  KXWTAMATCH-26JUL04EALSWI-SWI                     buy=    0 sell=    0 taker_fills=0
+  KXWTAMATCH-26JUL04MERRYB-MER                     buy=    0 sell=    0 taker_fills=0
+  KXWTAMATCH-26JUL04MERRYB-RYB                     buy=    0 sell=    0 taker_fills=0
+  KXWTAMATCH-26JUL04PAOSAK-PAO                     buy=    0 sell=    0 taker_fills=0
+
+==== 4. API SETTLEMENTS in window ====
+  KXATPCHALLENGERMATCH-26JUL04HEMMOE-MOE           mkt_result=yes  rev=      0 cost=      0 net=     +0c
+  KXATPCHALLENGERMATCH-26JUL04HEMMOE-HEM           mkt_result=no   rev=      0 cost=      0 net=     +0c
+  KXATPCHALLENGERMATCH-26JUL04MELCAS-MEL           mkt_result=no   rev=      0 cost=      0 net=     +0c
+  KXATPCHALLENGERMATCH-26JUL04MELCAS-CAS           mkt_result=yes  rev=    500 cost=      0 net=   +500c
+  KXITFMATCH-26JUL04ORLPOP-POP                     mkt_result=no   rev=      0 cost=      0 net=     +0c
+  KXITFMATCH-26JUL04ORLPOP-ORL                     mkt_result=yes  rev=      0 cost=      0 net=     +0c
+  KXITFWMATCH-26JUL04CLALAM-LAM                    mkt_result=no   rev=      0 cost=      0 net=     +0c
+  KXITFWMATCH-26JUL04CLALAM-CLA                    mkt_result=yes  rev=    500 cost=      0 net=   +500c
+  KXWTAMATCH-26JUL04EALSWI-SWI                     mkt_result=no   rev=      0 cost=      0 net=     +0c
+  KXATPCHALLENGERMATCH-26JUL04RINDIA-DIA           mkt_result=yes  rev=      0 cost=      0 net=     +0c
+  KXWTAMATCH-26JUL04PAOSAK-PAO                     mkt_result=yes  rev=      0 cost=      0 net=     +0c
+  KXATPCHALLENGERMATCH-26JUL04GIUFEL-GIU           mkt_result=no   rev=      0 cost=      0 net=     +0c
+  KXWTAMATCH-26JUL04MERRYB-RYB                     mkt_result=no   rev=      0 cost=      0 net=     +0c
+  KXWTAMATCH-26JUL04MERRYB-MER                     mkt_result=yes  rev=    500 cost=      0 net=   +500c
+  KXATPCHALLENGERMATCH-26JUL04KASPIR-PIR           mkt_result=yes  rev=      0 cost=      0 net=     +0c
+  KXITFMATCH-26JUL04BENAHO-AHO                     mkt_result=no   rev=      0 cost=      0 net=     +0c
+  KXATPMATCH-26JUL04DESVA-DE                       mkt_result=yes  rev=    500 cost=      0 net=   +500c
+  KXATPCHALLENGERMATCH-26JUL04HEICEC-HEI           mkt_result=no   rev=      0 cost=      0 net=     +0c
+  KXCS2MAP-26JUL040100LVGB8E-1-LVG                 mkt_result=no   rev=      0 cost=      0 net=     +0c
+  KXITFMATCH-26JUL03HARNAS-NAS                     mkt_result=yes  rev=      0 cost=      0 net=     +0c
+  KXMLBGAME-26JUL032145MILAZ-MIL                   mkt_result=yes  rev= 100000 cost=      0 net=+100000c
+  KXWCSPREAD-26JUL03COLGHA-COL2                    mkt_result=no   rev=  50000 cost=      0 net= +50000c
+  KXATPCHALLENGERMATCH-26JUL03WINMAN-MAN           mkt_result=no   rev=      0 cost=      0 net=     +0c
+  KXATPCHALLENGERMATCH-26JUL03LEGBAR-LEG           mkt_result=yes  rev=    400 cost=      0 net=   +400c
+  KXATPCHALLENGERMATCH-26JUL03HARSHI-SHI           mkt_result=yes  rev=      0 cost=      0 net=     +0c
+  KXATPCHALLENGERMATCH-26JUL03HARSHI-HAR           mkt_result=no   rev=      0 cost=      0 net=     +0c
+  KXWCADVANCE-26JUL03ARGCPV-CPV                    mkt_result=no   rev=      0 cost=      0 net=     +0c
+  KXWCSPREAD-26JUL03ARGCPV-ARG3                    mkt_result=no   rev=  50000 cost=      0 net= +50000c
+  SETTLEMENT NET (window): 202400c = $2024.00
+
+==== 5. LATCH-OVERRIDE FALSE-FIRE CHECK ====
+  KXITFWMATCH-26JUL03MAXBRO-MAX                    status=finalized result=no close=2026-07-04T02:25:10Z
+  KXITFWMATCH-26JUL03MAXBRO-BRO                    status=finalized result=yes close=2026-07-04T02:25:10Z
+  KXITFWMATCH-26JUL03GUOSNI-GUO                    status=finalized result=no close=2026-07-04T06:10:16Z
+  KXITFWMATCH-26JUL03GUOSNI-SNI                    status=finalized result=yes close=2026-07-04T06:10:16Z
+  KXITFMATCH-26JUL04BITTUR-BIT                     status=finalized result=yes close=2026-07-04T09:35:03Z
+  KXITFMATCH-26JUL04BITTUR-TUR                     status=finalized result=no close=2026-07-04T09:35:03Z
+  KXITFMATCH-26JUL04PANDER-PAN                     status=finalized result=no close=2026-07-04T10:15:00Z
+  KXITFMATCH-26JUL04PANDER-DER                     status=finalized result=yes close=2026-07-04T10:15:00Z
+  KXWTAMATCH-26JUL04NAVKOS-NAV                     status=finalized result=no close=2026-07-04T12:00:14Z
+  KXWTAMATCH-26JUL04NAVKOS-KOS                     status=finalized result=yes close=2026-07-04T12:00:14Z

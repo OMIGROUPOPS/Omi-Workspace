@@ -1,0 +1,46 @@
+==== WINDOW: overnight log live_v3_20260702 (evening restarts -> now) ====
+legs filled: 20 | events touched: 103 | schedule_abandon_deferred total: 14573
+
+==== PARTICIPATION SWEEP ====
+cat        tracked  rested >=1fill pairfill
+ATP_CHALL       11       7       6        1
+ATP_MAIN        12       3       2        0
+ITF_M           39       2       3        1
+ITF_W           29       2       1        1
+WTA_MAIN        12       4       4        1
+TOTAL          103      18      16        4
+
+Baseline trajectory: 1.5/8 -> 19 -> [last night] -> tonight tracked=103 rested=18 pairfill=4
+discovery snapshots (total_tickers):
+  07-03 18:32 total=114 {'ATP_MAIN': 16, 'WTA_MAIN': 16, 'ATP_CHALL': 12, 'ITF_M': 36, 'ITF_W': 34}
+  07-03 18:37 total=114 {'ATP_MAIN': 16, 'WTA_MAIN': 16, 'ATP_CHALL': 12, 'ITF_M': 36, 'ITF_W': 34}
+  07-03 18:42 total=120 {'ATP_MAIN': 16, 'WTA_MAIN': 16, 'ATP_CHALL': 12, 'ITF_M': 42, 'ITF_W': 34}
+
+==== FV_CAPTURE (price at tape onset - fill; +=bought under FV) ====
+ALL legs N=20 min=-37 p50=0 mean=-5.0 max=10 pos=7/20
+cat          N   min   p50   mean   max  %pos
+ATP_CHALL    7   -37    -2   -8.9     4   29%
+ATP_MAIN     2     0     5    5.0    10   50%
+ITF_M        4   -30    -8  -10.2     5   25%
+ITF_W        2   -15    -7   -7.0     1   50%
+WTA_MAIN     5     0     0    1.4     5   40%
+
+==== SYNERGY: pairs both-filled, combined<=100 ====
+event                                    cat         comb legA_fv legB_fv shape
+KXATPCHALLENGERMATCH-26JUL04HEMMOE       ATP_CHALL     99       4       0 mixed
+KXITFMATCH-26JUL04ORLPOP                 ITF_M         99       5      -6 FRAGILE(deep-neg)
+KXITFWMATCH-26JUL04CLALAM                ITF_W         93       1     -15 FRAGILE(deep-neg)
+KXWTAMATCH-26JUL04MERRYB                 WTA_MAIN      98       0       2 mixed
+SYNERGY totals: strong(both+FV,comb<=100)=0  fragile(one deep-neg)=2  other=2
+
+==== FIX SCORECARD (flag error-class counts) ====
+[per_side_placement] dog/sub-50 fills=6 | PAID-by-dip(FV>0)=2 | zero-discount(FV<=0)=4
+[tape_gated_abandon] events scheduled+never-rested+never-filled(pre-tape-killed?)=84 | abandon_deferred fires=14573
+[participation] scheduled-but-never-rested=85 / scheduled=103
+[completion/pairing] half-armed pairs (1 leg filled only)=12 events
+
+==== OUTCOME ROLLUP ====
+exit_FILL legs: 9  $196.00
+settled legs:   9  $-6.85
+OPEN legs:      2
+TOTAL realized: $189.15

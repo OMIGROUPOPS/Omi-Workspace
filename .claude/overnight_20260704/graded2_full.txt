@@ -1,0 +1,69 @@
+=== A-F LEDGER (per game, 6 categories) ===
+GAME                                   cat        gr nlg comb  FVa  FVb    pnl  named_error / forfeit
+ATPCHALLENGER-26JUL04HEMMOE            ATP_CHALL  A    2   99    4    0   1.20  clean 
+ATPCHALLENGER-26JUL04KASPIR            ATP_CHALL  D    1       -21    -   0.95  half-armed naked single (exited green, luck-dire 
+ATPCHALLENGER-26JUL04RINDIA            ATP_CHALL  D    1        -2    -   0.95  half-armed naked single (exited green, luck-dire 
+ATPCHALLENGER-26JUL04GIUFEL            ATP_CHALL  F    1         4    -  -0.35  half-armed naked single -> settled LOSS 0.3c
+ATPCHALLENGER-26JUL04HEICEC            ATP_CHALL  F    1       -37    -  -3.50  half-armed naked single -> settled LOSS 3.5c
+ATPCHALLENGER-26JUL04MELCAS            ATP_CHALL  F    1       -10    -  -2.60  half-armed naked single -> settled LOSS 2.6c
+ATP-26JUL04DESVA                       ATP_MAIN   D    1        10    -   0.85  half-armed naked single (open/held) 
+ATP-26JUL04TIABUB                      ATP_MAIN   D    1         0    -   0.00  half-armed naked single (open/held) 
+ITF-26JUL04ORLPOP                      ITF_M      B    2   99    5   -6   1.25  clean 
+ITF-26JUL03HARNAS                      ITF_M      D    1       -30    - 190.00  half-armed naked single (exited green, luck-dire 
+ITF-26JUL04BENAHO                      ITF_M      F    1       -10    -  -1.40  half-armed naked single -> settled LOSS 1.4c
+ITFW-26JUL04CLALAM                     ITF_W      C    2   93    1  -15   4.65  1 leg deep-neg FV (-15c CLA) fragile shape 15.0c
+WTA-26JUL04MERRYB                      WTA_MAIN   C    2   98    0    2   0.10  directional hold settled -$3.95 4.0c
+WTA-26JUL04ANIKEY                      WTA_MAIN   D    1         0    -   0.00  half-armed naked single (open/held) 
+WTA-26JUL04PAOSAK                      WTA_MAIN   D    1         0    -   0.75  half-armed naked single (exited green, luck-dire 
+WTA-26JUL04EALSWI                      WTA_MAIN   F    1         5    -  -3.70  half-armed naked single -> settled LOSS 3.7c
+
+=== GRADE DISTRIBUTION BY CATEGORY ===
+cat          A  B  C  D  F  total
+ATP_CHALL    1  0  0  2  3  6
+ATP_MAIN     0  0  0  2  0  2
+ITF_M        0  1  0  1  1  3
+ITF_W        0  0  1  0  0  1
+WTA_MAIN     0  0  1  2  1  4
+TOTAL        1  1  2  7  5  16
+
+=== BELOW-B MECHANICAL CHAINS (every C/D/F, one line) ===
+[D] ATPCHALLENGER-26JUL04KASPIR (ATP_CHALL) sib_rested=1 forfeit~0.0c pnl$0.95 | DOMAIN: half-armed: PAIRING (sib never rested)
+      PIR:leader fill65c FV-21 place@T-97 gun-59m src=staircase_hold exit_FILL $0.95
+[D] ATPCHALLENGER-26JUL04RINDIA (ATP_CHALL) sib_rested=1 forfeit~0.0c pnl$0.95 | DOMAIN: half-armed: PAIRING (sib never rested)
+      DIA:leader fill70c FV-2 place@T-153 gun-24m src=staircase_hold exit_FILL $0.95
+[F] ATPCHALLENGER-26JUL04GIUFEL (ATP_CHALL) sib_rested=2 forfeit~0.3c pnl$-0.35 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      GIU:underdog fill7c FV4 place@T-108 gun-59m src=None settle_LOSS $-0.35
+[F] ATPCHALLENGER-26JUL04HEICEC (ATP_CHALL) sib_rested=1 forfeit~3.5c pnl$-3.50 | DOMAIN: half-armed: PAIRING (sib never rested)
+      HEI:leader fill70c FV-37 place@T-180 gun+19m src=staircase_hold settle_LOSS $-3.50
+[F] ATPCHALLENGER-26JUL04MELCAS (ATP_CHALL) sib_rested=2 forfeit~2.6c pnl$-2.60 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      MEL:leader fill52c FV-10 place@T-162 gun+3m src=staircase_hold settle_LOSS $-2.60
+[D] ATP-26JUL04DESVA (ATP_MAIN) sib_rested=1 forfeit~0.0c pnl$0.85 | DOMAIN: half-armed: PAIRING (sib never rested)
+      DE:leader fill83c FV10 place@T-179 gun-59m src=staircase_hold settle_WIN $0.85
+[D] ATP-26JUL04TIABUB (ATP_MAIN) sib_rested=1 forfeit~0.0c pnl$0.00 | DOMAIN: half-armed: PAIRING (sib never rested)
+      TIA:leader fill51c FV0 place@T-120 gun-58m src=staircase_hold OPEN $0.00
+[D] ITF-26JUL03HARNAS (ITF_M) sib_rested=0 forfeit~0.0c pnl$190.00 | DOMAIN: half-armed: PAIRING (sib never rested)
+      NAS:? fill74c FV-30 place@T? gun-32m src=None exit_FILL $190.00
+[F] ITF-26JUL04BENAHO (ITF_M) sib_rested=2 forfeit~1.4c pnl$-1.40 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      AHO:underdog fill28c FV-10 place@T-198 gun-56m src=None settle_LOSS $-1.40
+[C] ITFW-26JUL04CLALAM (ITF_W) sib_rested=2 forfeit~15.0c pnl$4.65 | DOMAIN: fragile leg (bought above tape onset)
+      LAM:leader fill68c FV1 place@T-229 gun+27m src=join_bid exit_FILL $0.90
+      CLA:underdog fill25c FV-15 place@T-229 gun-59m src=None settle_WIN $3.75
+[C] WTA-26JUL04MERRYB (WTA_MAIN) sib_rested=2 forfeit~4.0c pnl$0.10 | DOMAIN: exit-harvest FUCKUP-3 (NOT a participation flag)
+      MER:underdog fill19c FV0 place@T-138 gun-52m src=staircase_hold settle_WIN $4.05
+      RYB:leader fill79c FV2 place@T-138 gun-56m src=staircase_hold settle_LOSS $-3.95
+[D] WTA-26JUL04ANIKEY (WTA_MAIN) sib_rested=1 forfeit~0.0c pnl$0.00 | DOMAIN: half-armed: PAIRING (sib never rested)
+      KEY:leader fill61c FV0 place@T-73 gun-45m src=staircase_hold OPEN $0.00
+[D] WTA-26JUL04PAOSAK (WTA_MAIN) sib_rested=1 forfeit~0.0c pnl$0.75 | DOMAIN: half-armed: PAIRING (sib never rested)
+      PAO:leader fill54c FV0 place@T-87 gun-35m src=staircase_hold exit_FILL $0.75
+[F] WTA-26JUL04EALSWI (WTA_MAIN) sib_rested=1 forfeit~3.7c pnl$-3.70 | DOMAIN: half-armed: PAIRING (sib never rested)
+      SWI:leader fill74c FV5 place@T-111 gun-56m src=staircase_hold settle_LOSS $-3.70
+
+=== NAMED-ERROR DOMAIN ROLLUP (below-B) ===
+    9 games  $ 186.30  half-armed: PAIRING (sib never rested)
+    3 games  $  -4.35  half-armed: STARVATION (sib rested,unfilled)
+    1 games  $   4.65  fragile leg (bought above tape onset)
+    1 games  $   0.10  exit-harvest FUCKUP-3 (NOT a participation flag)
+
+=== ENTRY TIMING vs BOTH CLOCKS (filled legs) ===
+  filled legs with place-clock: 19 | placed BEFORE scheduled start: 19
+  fills BEFORE tape gun (disciplined premarket): 3 | AT/AFTER gun (chase): 17

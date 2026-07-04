@@ -1,0 +1,36 @@
+hour         buy_placed   v4_place     filled stair_hold      error    bbo_err stale_skip
+07-03 09PM            0          0          0          0          0          0          0
+07-03 10PM            0          0          0          0          0          0         63
+07-03 11PM            0          0          1          0          0          0        210
+07-04 12AM            0          0          0          0          0          0        295
+07-04 01AM            0          0          0          0          0          0        408
+07-04 02AM            0          0          0          0          0          0        418
+07-04 03AM            0          0          0          0          0          0        413
+07-04 04AM            0          0          0          0          0          0        390
+07-04 05AM            0          0          0          0        710          6          0
+07-04 06AM            4          4          1          4        698         21          0
+07-04 07AM            8          7          0          7        710         38          0
+07-04 08AM            0          0          3          0        695        195          0
+07-04 09AM           16         10          9        558        664        257          2
+07-04 10AM            1          1          5        368        348        108        870
+07-04 11AM            4          3          1          1        558         69      14825
+07-04 12PM            1          1          0          0        639        123      12186
+
+staircase_hold_place reason breakdown:
+    906  {"cat": "ATP_MAIN"}
+     24  {"cat": "WTA_MAIN"}
+      8  {"cat": "ATP_CHALL"}
+
+top stale-book events:
+    1237  KXITFMATCH-26JUL04OVEDOM
+    1237  KXITFMATCH-26JUL04IVAMIL
+    1237  KXITFWMATCH-26JUL04FALHER
+    1237  KXITFMATCH-26JUL04SINHOP
+    1237  KXITFMATCH-26JUL04SCHTOR
+    1237  KXITFMATCH-26JUL04OPIKEL
+    1237  KXITFWMATCH-26JUL04RIESOB
+    1201  KXITFMATCH-26JUL04PLAWIS
+    1201  KXITFMATCH-26JUL04GUTGAR
+    1139  KXITFWMATCH-26JUL04CLALAM
+    1042  KXITFMATCH-26JUL04GIUCUE
+     925  KXITFMATCH-26JUL04FORDEL

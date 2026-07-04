@@ -871,6 +871,25 @@ class PaperApi:
         return await _real_api_get(s, ak, pk, path, rl)
 
     async def handle_post(self, s, ak, pk, path, payload, rl):
+        # [C-PAPER-V2] fac74b5 moved order-create to /portfolio/events/orders but this
+        # matcher stayed v1-only, so paper_mode SILENTLY PASSED CREATES THROUGH TO THE
+        # REAL EXCHANGE (caught by the 2026-07-04 deploy-gate smoke replay, never by
+        # tests). Translate the v2 body to the v1 internal flow; answer in the flat v2
+        # shape parse_order_response_v2 expects (resting, zero fills at post).
+        if path == ORDER_CREATE_V2_PATH:
+            v1_payload = {
+                "ticker": payload.get("ticker", ""),
+                "action": "buy" if payload.get("side") == "bid" else "sell",
+                "side": "yes",
+                "count": int(float(payload.get("count", 0) or 0)),
+                "yes_price": round(float(payload.get("price", 0) or 0) * 100),
+                "client_order_id": payload.get("client_order_id", ""),
+            }
+            r = await self.handle_post(s, ak, pk, "/trade-api/v2/portfolio/orders",
+                                       v1_payload, rl)
+            o = (r or {}).get("order", {})
+            return {"order_id": o.get("order_id", ""), "fill_count": 0,
+                    "remaining_count": v1_payload["count"]}
         if path != "/trade-api/v2/portfolio/orders":
             return await _real_api_post(s, ak, pk, path, payload, rl)
         ticker = payload.get("ticker", "")
@@ -949,7 +968,11 @@ class PaperApi:
                           "yes_price": yes_price, "count": count}}
 
     async def handle_delete(self, s, ak, pk, path, rl):
-        if not path.startswith("/trade-api/v2/portfolio/orders/"):
+        # [C-PAPER-V2] intercept BOTH cancel shapes: v1 /portfolio/orders/{id} and the
+        # 4457a45 v2 /portfolio/events/orders/{id} (v1-only match passed real cancels
+        # through, same hole as create above).
+        if not (path.startswith("/trade-api/v2/portfolio/orders/")
+                or path.startswith("/trade-api/v2/portfolio/events/orders/")):
             return await _real_api_delete(s, ak, pk, path, rl)
         oid = path.split("/")[-1]
         order = self.paper_orders.get(oid)
@@ -1345,6 +1368,21 @@ class LiveV3:
         self.monotonic_cut_enabled = bool(self.config.get("monotonic_cut_enabled", False))
         self.monotonic_cut_active = bool(self.config.get("monotonic_cut_active", False))
         self._shutdown_requested = False
+        # [C-ERROR-TRIPWIRE] 2026-07-04: a TypeError storm (duplicate _sibling_ticker
+        # def) killed the routing loop every turn for 8 HOURS before a human read the
+        # log. Detection latency was the gap, not the crash. >= error_tripwire_threshold
+        # run-loop/handler errors inside error_tripwire_window_sec -> CRITICAL log line +
+        # /tmp/live_v4_TRIPWIRE.json alert artifact; error_tripwire_halt=true additionally
+        # requests the EXISTING graceful shutdown (SIGINT-equivalent: drain cancels resting
+        # entry bids, bounded budget). Default alert-only: resting exits stay working
+        # orders on the exchange either way, but a halted bot can post NO exits for
+        # later fills and runs NO grace-kill cancels -- with no supervisor to respawn it,
+        # auto-halt turns a partial outage into a total one. Re-arms after each fire.
+        self._err_tripwire_ts = deque()
+        self._err_tripwire_last = 0.0
+        self.error_tripwire_threshold = int(self.config.get("error_tripwire_threshold", 20))
+        self.error_tripwire_window_sec = int(self.config.get("error_tripwire_window_sec", 600))
+        self.error_tripwire_halt = bool(self.config.get("error_tripwire_halt", False))
         # PART-2 completion_reprice (Plex-gated; default OFF = byte-identical pre-Part-2).
         # OFF: no window-open tracking, no table load, no new log events, legacy state-file
         # shape -- the completion arm of the sibling handler is unreachable.
@@ -1679,6 +1717,35 @@ class LiveV3:
             ticker[:40] if ticker else "",
             json.dumps(details)[:120] if details else ""
         ), flush=True)
+        # [C-ERROR-TRIPWIRE] rate-watch the crash-class events. The CRITICAL event
+        # emitted below is NOT in the watched set -> no recursion. Never raises.
+        if event in ("error", "on_bbo_update_error"):
+            try:
+                _t = time.time()
+                self._err_tripwire_ts.append(_t)
+                _w = self.error_tripwire_window_sec
+                while self._err_tripwire_ts and self._err_tripwire_ts[0] < _t - _w:
+                    self._err_tripwire_ts.popleft()
+                if (len(self._err_tripwire_ts) >= self.error_tripwire_threshold
+                        and _t - self._err_tripwire_last > _w):
+                    self._err_tripwire_last = _t
+                    _det = {"errors_in_window": len(self._err_tripwire_ts),
+                            "threshold": self.error_tripwire_threshold,
+                            "window_sec": _w,
+                            "action": "halt" if self.error_tripwire_halt else "alert_only",
+                            "last_error": str((details or {}).get("error"))[:200]}
+                    self._log("CRITICAL_error_rate_tripwire", _det)
+                    try:
+                        with open("/tmp/live_v4_TRIPWIRE.json", "w") as _tf:
+                            json.dump({"fired_ts": _t, "fired_et": entry["ts"], **_det}, _tf)
+                    except Exception:
+                        pass
+                    print("[CRITICAL] ERROR-RATE TRIPWIRE: %d errors in %ds -> %s"
+                          % (len(self._err_tripwire_ts), _w, _det["action"]), flush=True)
+                    if self.error_tripwire_halt:
+                        self._request_shutdown("ERROR_TRIPWIRE")
+            except Exception:
+                pass
 
     def _load_processed(self):
         try:

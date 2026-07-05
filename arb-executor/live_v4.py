@@ -1506,6 +1506,10 @@ class LiveV3:
         self.reaim_on_sibling_arrival = bool(self.config.get("reaim_on_sibling_arrival", False))
         # [C-REPOST-SIBLING-ON-BOOT] heal the drain/restart half-pair hole. Default OFF.
         self.repost_sibling_on_boot = bool(self.config.get("repost_sibling_on_boot", False))
+        # [C-CHURN-FIX] (a) same-price cancel+repost suppressed (FIFO hold);
+        # (b) reshuffle-pinned bids exempt from the marketable-stale kill. Default OFF.
+        self.repost_hold_same_price = bool(self.config.get("repost_hold_same_price", False))
+        self.marketable_stale_pin_exempt = bool(self.config.get("marketable_stale_pin_exempt", False))
         # (4c) freeze_at_gun: at the tape-live latch (_is_match_live), no fresh entry posts
         #     and no walk/reprice -- resting bids stay static (dip-fillable, never chasing).
         #     OFF => posting/walk untouched. [2026-07-03] SHELVED per doctrine audit: superseded by
@@ -3650,6 +3654,7 @@ class LiveV3:
         sp.target_price = new_target
         sp.entry_order_id = oid
         sp.entry_mode = "resting_maker"
+        sp.reshuffle_pinned = True   # [C-CHURN-FIX b] bound-pinned, stale-kill exempt
         self._log("reaim_sibling_arrival", {
             "event": et, "leg1": tk[-12:], "leg1_basis": int(round(basis)),
             "from": cur, "to": int(new_target), "goal": self.combined_goal},
@@ -3737,6 +3742,7 @@ class LiveV3:
                     sp2.entry_mode = "resting_maker"
                     sp2.phase = "entry_resting"
                     sp2.play_type = "v4_sibling_repost"
+                    sp2.reshuffle_pinned = (price == goal_level)   # [C-CHURN-FIX b]
                 else:
                     self.positions[sib] = Position(
                         ticker=sib, event_ticker=et, category=cat, direction="",
@@ -3744,6 +3750,7 @@ class LiveV3:
                         phase="entry_resting", is_v4=True,
                         play_type="v4_sibling_repost", entry_order_id=oid,
                         target_price=price, entry_mode="resting_maker")
+                    self.positions[sib].reshuffle_pinned = (price == goal_level)  # [C-CHURN-FIX b]
                 self._log("sibling_repost_placed", {
                     "event": et, "leg1": tk[-12:], "leg1_basis": basis,
                     "aim": aim, "goal_level": goal_level, "level": price,
@@ -4448,6 +4455,25 @@ class LiveV3:
         if degenerate or (best_ask - best_bid) > 2:
             return True, "degenerate_or_wide_spread"
         return False, None
+
+    def _projected_repost_price(self, tk, pos, new_target, book):
+        """[C-CHURN-FIX] the FINAL price a repost would land at, computed BEFORE any
+        cancel: applies the same reach-cap, walk-cap and never-cross clamps as the
+        post-cancel path (silently -- no cap logs on this projection). Lets the
+        caller suppress a same-price cancel+repost, which is pure queue burn
+        (LEG-49: ~10 same-price round-trips in 13min, 2026-07-04 audit postscript)."""
+        t = int(new_target)
+        _wo = self._window_open.get(tk)
+        if (getattr(self, "reach_repost_cap_enforced", False)
+                and _wo is not None and _wo.get("cell") is not None and t > _wo["cell"]):
+            t = int(_wo["cell"])
+        if (getattr(self, "premarket_walk_cap", False)
+                and _wo is not None and _wo.get("cell") is not None):
+            _ceil = int(_wo["cell"]) + self._walk_cap_cents(pos.category)
+            if t > _ceil:
+                t = _ceil
+        t, _po = self._reprice_target(t, book.best_ask)
+        return int(t)
 
     def _reprice_target(self, new_target, current_ask):
         """Fix-3 (reprice-maker-only): a significant-move reprice NEVER crosses. If the
@@ -7013,6 +7039,16 @@ class LiveV3:
         # self-cancels next pass. Degenerate, tape-cancel (5326), T51/T52, T-15 buffer all still govern.
         if should_cancel and creason == "bid_marketable_stale" and pos.reference_source == "staircase":
             should_cancel, creason = False, None
+        # [C-CHURN-FIX b] 5th exemption (gated marketable_stale_pin_exempt): a bid
+        # PINNED at the reshuffle/re-aim bound (goal - sibling basis) is doing its
+        # doctrine job -- by construction it sits where the pair math puts it,
+        # however the book moves. Killing it murders the pair's passive completion
+        # path (LEG-49 killed 21:07:44 after the bound held 10 straight cycles).
+        # Degenerate, T51 match-live, T52 and the T-15 buffer all still govern.
+        if (should_cancel and creason == "bid_marketable_stale"
+                and getattr(self, "marketable_stale_pin_exempt", False)
+                and getattr(pos, "reshuffle_pinned", False)):
+            should_cancel, creason = False, None
         if should_cancel:
             # [C-P0-RACE site 1 -- THE observed bug, AUGFUC-AUG 2026-06-11 05:42:10 ET]
             # the marketable-stale cancel raced a fill; the old path ignored the
@@ -7321,6 +7357,24 @@ class LiveV3:
                         "from": int(new_target), "to": int(_reaim), "leg1_basis": int(_sp.entry_price),
                         "goal": self.combined_goal}, ticker=tk)
                     new_target = _reaim
+                    # [C-CHURN-FIX b] this bid is now DOCTRINE-PINNED at the pair
+                    # bound -- stamp it so the marketable-stale kill exempts it.
+                    pos.reshuffle_pinned = True
+        # [C-CHURN-FIX a] (gated repost_hold_same_price) if the FINAL clamped target
+        # equals the CURRENT resting price, HOLD -- keep FIFO priority, never
+        # cancel+repost at the same level. The churn shape: the walk proposes an
+        # up-move, the reshuffle/caps clamp it back to the resting level, and the
+        # old path still burned the queue on a same-price round-trip every pass.
+        if getattr(self, "repost_hold_same_price", False):
+            _proj = self._projected_repost_price(tk, pos, new_target, book)
+            if _proj == int(pos.entry_price or 0):
+                _hk = self.__dict__.setdefault("_hold_same_price_logged", set())
+                if (tk, _proj) not in _hk:
+                    _hk.add((tk, _proj))
+                    self._log("v4_repost_hold_same_price", {
+                        "held_price": _proj, "proposed": int(new_target),
+                        "reason": "same_price_fifo_hold"}, ticker=tk)
+                return
         # [C-FEEDER FIX-2/3] decision-time capture for the repost keys (the
         # cancel/place awaits below are a book-tick window, same race class as
         # the QUESAM placement-side fire)

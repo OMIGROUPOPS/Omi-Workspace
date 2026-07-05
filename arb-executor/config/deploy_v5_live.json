@@ -74,6 +74,8 @@
  "leg2_reshuffle": true,
  "reaim_on_sibling_arrival": true,
  "repost_sibling_on_boot": true,
+ "repost_hold_same_price": true,
+ "marketable_stale_pin_exempt": true,
  "combined_goal": 97,
  "premarket_walk_cap": true,
  "match_live_grace_sec": 300,

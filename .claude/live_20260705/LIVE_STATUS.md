@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 52 @ **2026-07-05 07:41:12 PM ET** | build `1865f36` | session boot 07-05 19:24 ET | log `live_v3_20260705.jsonl` | 808 session events | monitor READ-ONLY
+- cycle 53 @ **2026-07-05 07:51:17 PM ET** | build `9f6cd41` | session boot 07-05 19:24 ET | log `live_v3_20260705.jsonl` | 887 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 0 violation(s)
@@ -17,7 +17,7 @@
 - classes now: {'FLOW_ABOVE': 1} | repriceable now: true 0 / false 1 | **cumulative bid_grade lines: 823 (repriceable true 82 / false 741)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL05LEGSHI-S | 49 | 3m | 4/55-55/106 | 54-54 | 6 | **FLOW_ABOVE** | 49 | flow above but bound 49c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL05LEGSHI-S | 49 | 13m | 98/54-70/34053 | 56-54 | 5 | **FLOW_ABOVE** | 49 | flow above but bound 49c < flow -- chasing breaks goal |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |

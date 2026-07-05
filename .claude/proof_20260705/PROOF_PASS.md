@@ -1,5 +1,24 @@
 # PROOF PASS — 2026-07-05 full slate: what happened, the guilty line, the replay under each fix
 
+## TWO-LANE RE-STAMP (C46 as amended 2026-07-05) — and the deploy this doc gates
+**This document is the OUTCOME_PROOF for deploy candidate `42a54e04` (C-RISER-REVISION, flag `riser_post_revision`).**
+Outcome is judged in TWO LANES (LANE 1 MECHANISM — primary, luck-free, every game counts: the construction of
+trades replayed deterministically against the tape — grade distribution, ≤97 rate, Δaim per leg, pair
+completion, FV-capture. LANE 2 SETTLEMENT P&L — secondary sanity check, flagged LUCK-POLLUTED below n≈30
+settlements, never the sole verdict at small n):
+
+| fix | LANE 1 — MECHANISM (primary) | LANE 2 — P&L (secondary) | verdict |
+|---|---|---|---|
+| **riser_post revision** | **WIN** — 89/107 riser fills retained (83%) at 2–3¢ better Δaim across the FULL slate, matching the pre-registered N=69 curves; pair-completion structure held (18 lost fills flagged per-row) | **+$6.50** (n=107 legs) | **WINS BOTH → DEPLOYS (`42a54e04`)** |
+| **per_match_clock** (staged ce38ca8c) | Correct construction where it binds (1/14 half_timing candidates recovered; 10 refuted by tape = the ITF-no-premarket fact, itself the fix's own evidence base) | +$1.00 (n=1 — LUCK-POLLUTED, secondary) | Arms on CORRECTNESS when its Plex ruling lands; shadow-first |
+| **scale-gun _MAIN** (staged shadow) | Mechanically CORRECT — it preserved a fillable bid that the premature latch killed | −$1.90 (**n=1 settlement — LUCK-POLLUTED**; one lost match is noise) | **SHADOW-INSUFFICIENT-N** (revised from "negative/guilty" — insufficient settlements, not guilt) |
+
+**Riser prior-art note (C45, verified — no grave):** greps `riser_post|riser.post|riser depth` over LESSONS.md,
+JUNE_VAULT.md(+APPENDIX), ROADMAP.md, .claude/rulings/ and the gated-flag inventory return only THIS week's
+lineage (C44 amendment → RISER_REVISION_PROPOSAL.md → PLEX_RISER_BOUNCE_PACKAGE.md → this deploy). No prior
+incarnation, no half-fix ancestor; the table's `riser_post` field existed data-only and is wired for the
+first time by `42a54e04`.
+
 **Population:** the full current box — every position, all sessions since the aba83af boot (Jul 4 21:32 ET)
 through tonight: **147 games / 251+ filled legs, actual net $-3.92** (exchange-truth graded, refreshed
 full_tape_regrade.py run tonight). Line numbers reference the RUNNING deploy source (21eaad4).

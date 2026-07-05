@@ -3,6 +3,16 @@
 Companion to `PLEX_REANCHOR_RULING.md` (reserved slot — verbatim body still owed by relay).
 Everything below is verified against the running VPS and the repo at HEAD, not memory.
 
+## Prior art (gate — added retroactively 2026-07-05 per PRIOR_ART_GATE.md / C45)
+- Greps: `occurrence_datetime|expected_expiration|noon|schedule|start_time|coarse` over LESSONS.md, JUNE_VAULT.md(+APPENDIX), ROADMAP.md, .claude/rulings/, gated-flag inventory.
+- Established (this spec RE-STATES, does not discover):
+  - ROADMAP T51:211 / LESSONS §6 (2026-06-01): the Kalshi start fields are "frozen coarse placeholders — uniform noon-UTC"; T51_HARDENING_SPEC.md:8: the T-15 buffer fires at the wrong wall-clock off them.
+  - C32 (2026-05-12): `expected_expiration_ts > settlement_ts`, 100% of probe.
+  - Match-start-signal forensic (2026-06-19): `state/schedule.json` carries a per-match `status` the bot never reads; volume-burst cancel median +22min premature.
+  - A35: volume/min is the cleanest match-start anchor (the gun's own prior art).
+  - **Staged-but-never-armed prior build on this exact topic: C-KALSHI-OCC (`kalshi_occurrence_fallback`, June 30)** — the wide-envelope + tape-latch design whose envelope Part 1's fallback mode reuses. Gen-chain: JUNE_VAULT §0B.
+- DELTA this spec adds: (1) the schedule.json schema FROZEN as a build target (crontab-verified `*/15`, 5 pinned warts — the ESPN `category` mislabel and `espn_midnight` semantics were not previously documented); (2) the staleness rule made explicit (45-min bar, HONEST/FILE-STALE/ENTRY-MISSING); (3) the per-category widening X quantified from the clock audit's offsets (CHALL 4h / ITF 7h / MAIN 8h, mains-negative skew direction); (4) the timing-only scope contract (clock never gates participation, never touches liveness — Gen-1's disease and Gen-3's regression both named and excluded).
+
 ---
 
 ## PRECONDITION 1 — THE TE/ESPN STATE FILE, FROZEN

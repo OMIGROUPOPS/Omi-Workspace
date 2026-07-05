@@ -1,5 +1,15 @@
 # CLOCK AUDIT — what "scheduled" actually is, and whether the time map survives
 
+## Prior art (gate — added retroactively 2026-07-05 per PRIOR_ART_GATE.md / C45; this audit is the gate's EXHIBIT)
+- Greps: `occurrence_datetime|expected_expiration|noon|placeholder|match.start` over LESSONS.md, JUNE_VAULT.md(+APPENDIX), ROADMAP.md, T51_HARDENING_SPEC.md.
+- Established BEFORE this audit ran — i.e., §1/§2/§4's placeholder verdict was RE-DERIVED, not discovered:
+  - ROADMAP T51:211 (2026-06-01): "`occurrence_datetime`/`expected_expiration_time` are frozen coarse placeholders"; LESSONS §6: "uniform noon-UTC across all main-draw matches".
+  - T51_HARDENING_SPEC.md:8: entry buffer keys on a locked-on-first, stale/drifting placeholder ("the T-15m buffer fire[s] at the wrong wall-clock").
+  - C32 (2026-05-12): expiration postdates settlement on 100% of the probe sample.
+  - OSOWAL (OMQS_LIVE_DUMP_2026-06-30.md): fills 8–10h after "scheduled start". SHINIS (OMQS_LIVE_FORENSIC_SHINIS.md): live scheduled-vs-gun divergence.
+  - And `kalshi_schedule_primary` was ARMED Jul 2 against that on-disk characterization (→ JUNE_VAULT §0B, MEASURE-BEFORE-READ).
+- Genuine DELTA of this audit (what the record did NOT hold): the per-category offset quantification (+1.8h CHALL / +4.1–4.4h ITF / mains NEGATIVE); the duplication signature (card-marker proof); the tape gun CERTIFIED against an independent per-match anchor (valid ITF/CHALL/WTA_CHALL, INVALID on _MAIN); the time map restated on the honest clock — including **ITF has no premarket** (first posts T+7..+24m after true start), which is the half_timing leak's mechanism.
+
 Measurement only, no builds, no config. Population = the 144 regrade-box games.
 Artifacts: `clock_audit.txt` (source/mod-60/duplication/Kalshi fields),
 `clock_audit2.txt` (three-clock cross-check vs the independent scheduler),

@@ -1,4 +1,11 @@
 # PART 1 + PART 3 STAGED — gate evidence for Plex's source-level review
+
+> **Provenance note (for the record, per the Plex source ruling):** this evidence doc landed at `53b68438`,
+> AFTER the staged code commit `ce38ca8c` it describes — Plex correctly noted it was absent at ce38ca8c.
+> Not a blocker (ruled); recorded here. Source ruling: `PLEX_PART1_SOURCE_RULING.md` (verbatim) —
+> **ce38ca8c source RATIFIED**; widening dict ratified as staged (MAIN 8h with caveat, flagged for
+> shadow-informed retune; X shrinkage below max_observed + one_cron_cycle requires Plex re-review);
+> shadow flags arm first, both together; consumer flip is a separate Plex-re-gated config-only diff.
 **2026-07-05 · staged commit `ce38ca8c` on blend/kalshi-occ-fallback · NOT armed · bot untouched (PID 3669831 up throughout)**
 
 ## What is staged

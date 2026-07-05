@@ -1,0 +1,42 @@
+== TIME MAP vs HONEST ANCHOR (TE/ESPN per-match start), minutes before true start ==
+
+ATP_CHALL:  (median T-minus: BEST -1m, FILL -1m, POST 127m)
+   bucket  BEST  POST  FILL
+      >8h     0     1     0
+     8-4h     2    16     2
+     4-2h     4    61     6
+     2-1h     8    56     7
+   1h-30m     9     4    12
+    30m-0    36     5    41
+     post    68     4    79
+
+ITF_M:  (median T-minus: BEST -33m, FILL -31m, POST -24m)
+   bucket  BEST  POST  FILL
+     2-1h     0     3     0
+   1h-30m     0     5     0
+    30m-0     2     1     2
+     post    23    18    25
+
+ITF_W:  (median T-minus: BEST -13m, FILL -17m, POST -7m)
+   bucket  BEST  POST  FILL
+     4-2h     0     2     0
+     2-1h     0     2     0
+   1h-30m     2     3     2
+    30m-0     1     4     2
+     post    21    14    21
+
+MAIN(both):  (median T-minus: BEST 215m, FILL 120m, POST 306m)
+   bucket  BEST  POST  FILL
+      >8h     2     3     0
+     8-4h     5     6     3
+     4-2h     4     4     4
+     2-1h     0     2     1
+    30m-0     0     0     1
+     post     4     0     6
+
+WTA_CHALL:  (median T-minus: BEST -5m, FILL -5m, POST 134m)
+   bucket  BEST  POST  FILL
+     4-2h     0    16     0
+     2-1h     1     8     1
+    30m-0     3     0     3
+     post    19     0    20

@@ -1,0 +1,38 @@
+joined 135/144 box events to state/schedule.json (misses: 9: ['L04MAXSTE', 'L05MARNVS', 'L05DELNIC', 'L05DEKCAK', 'L05DESYEV', 'L05PRICOU', 'L05RYBTUN', 'L05PDACAS'])
+
+== (gun - anchor) median minutes per cat: independent scheduler vs kalshi stored ==
+cat          n  gun-TE/ESPN  gun-kalshi  kalshi-TE/ESPN
+ATP_CHALL   82       4m(82)    -98m(82)        110m(82)
+ATP_MAIN     4     -145m(4)     -64m(4)        -135m(4)
+ITF_M       17       9m(17)   -235m(17)        263m(17)
+ITF_W       16       8m(16)   -238m(16)        244m(16)
+WTA_CHALL   12       4m(12)   -103m(12)        105m(12)
+WTA_MAIN     4     -204m(4)     -79m(4)         -95m(4)
+
+== same split by schedule source ==
+  espn: n=16 gun-anchor median -1m mean -70m within±30m: 9 (56%)
+  tennisexplorer: n=119 gun-anchor median 7m mean 10m within±30m: 92 (77%)
+
+== |gun - TE/ESPN| distribution (all cats) ==
+  {'<=30m': 18, '<=15m': 83, '<=60m': 19, '<=120m': 8, '>120m': 7} n= 135
+
+== (gun - TE/ESPN) MOD 60, 5-min bins (tz residual check) ==
+  00:28 05:20 10:14 15:9 20:8 25:6 30:7 35:3 40:3 45:6 50:8 55:23
+
+== GROUND-TRUTH SPOT-CHECK, three clocks (+status) ==
+  event                              cat       kalshi_sched  TE/ESPN       tape_gun      src    status      gun-TE
+  ITFW -26JUL04BROKOI                ITF_W     07-05 01:00   07-04 21:00   07-04 20:37   tennisexplorer completed     -23m
+  ITFW -26JUL05SPIGAR                ITF_W     07-05 11:00   07-05 05:43   07-05 06:05   tennisexplorer completed      22m
+  ITF -26JUL05BOUDOU                 ITF_M     07-05 10:30   07-05 04:30   07-05 05:41   tennisexplorer completed      71m
+  ATPCHALLENGER -26JUL04LEGWIN       ATP_CHALL 07-04 22:00   07-04 20:35   07-04 20:40   tennisexplorer completed       5m
+  WTACHALLENGER -26JUL05KUDBOU       WTA_CHALL 07-05 08:00   07-05 05:05   07-05 05:10   espn   completed       5m
+  WTA -26JUL05MUCKRE                 WTA_MAIN  07-05 09:00   07-05 08:40   07-05 06:11   espn   completed    -149m
+  ATP -26JUL05AUGDAV                 ATP_MAIN  07-05 09:00   07-05 10:45   07-05 05:32   tennisexplorer completed    -313m
+
+== duplicated TE/ESPN times across a card? ==
+  ATP_CHALL: 60 distinct over 82; dups: {'07-05 04:10': 3, '07-05 05:10': 3, '07-05 05:35': 2, '07-05 11:45': 3, '07-05 06:10': 3, '07-05 09:25': 2, '07-05 07:15': 2, '07-05 08:20': 2, '07-05 07:40': 3, '07-05 08:15': 2, '07-05 07:55': 2, '07-05 09:05': 2, '07-05 09:40': 2, '07-05 11:10': 3, '07-05 10:20': 2, '07-05 11:15': 2}
+  ATP_MAIN: 4 distinct over 4; dups: NONE
+  ITF_M: 17 distinct over 17; dups: NONE
+  ITF_W: 16 distinct over 16; dups: NONE
+  WTA_CHALL: 9 distinct over 12; dups: {'07-05 05:05': 3, '07-05 07:15': 2}
+  WTA_MAIN: 4 distinct over 4; dups: NONE

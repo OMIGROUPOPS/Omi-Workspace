@@ -1,0 +1,56 @@
+== (1) SCHEDULED-FIELD SOURCE per category (schedule_match.method, box events) ==
+  ATP_CHALL: methods={'kalshi_schedule_primary': 87} events_with_schedule=87 start_time_changed_midwindow=0
+  ATP_MAIN: methods={'kalshi_schedule_primary': 4} events_with_schedule=4 start_time_changed_midwindow=0
+  ITF_M: methods={'kalshi_schedule_primary': 19} events_with_schedule=19 start_time_changed_midwindow=0
+  ITF_W: methods={'kalshi_schedule_primary': 18} events_with_schedule=18 start_time_changed_midwindow=0
+  WTA_CHALL: methods={'kalshi_schedule_primary': 12} events_with_schedule=12 start_time_changed_midwindow=0
+  WTA_MAIN: methods={'kalshi_schedule_primary': 4} events_with_schedule=4 start_time_changed_midwindow=0
+  (regrade used details.start_time of the LAST schedule_match row per event; ISO w/ -04:00 offset, parsed tz-aware)
+
+== (2a) (gun - sched) MOD 60min, 5-min bins per category (timezone bugs spike at :00) ==
+  ATP_CHALL (n=87, within 5min of exact hour: 14 = 16%):
+    00:10 05:8 10:5 15:10 20:9 25:6 30:4 35:6 40:7 45:9 50:9 55:4
+  ATP_MAIN (n=4, within 5min of exact hour: 1 = 25%):
+    00:1 05:0 10:1 15:0 20:0 25:0 30:1 35:1 40:0 45:0 50:0 55:0
+  ITF_M (n=19, within 5min of exact hour: 4 = 21%):
+    00:3 05:1 10:2 15:0 20:1 25:2 30:1 35:5 40:1 45:1 50:1 55:1
+  ITF_W (n=18, within 5min of exact hour: 9 = 50%):
+    00:6 05:1 10:1 15:0 20:1 25:0 30:2 35:3 40:0 45:1 50:0 55:3
+  WTA_CHALL (n=12, within 5min of exact hour: 0 = 0%):
+    00:0 05:2 10:2 15:1 20:1 25:2 30:0 35:1 40:2 45:1 50:0 55:0
+  WTA_MAIN (n=4, within 5min of exact hour: 0 = 0%):
+    00:0 05:0 10:3 15:0 20:0 25:0 30:0 35:0 40:1 45:0 50:0 55:0
+
+== (2b) duplicate start_time across a card (session-placeholder signature) ==
+  ATP_CHALL: 29 distinct start_times over 87 events; shared-by->1: 2026-07-05T07:00:00-04:00x13, 2026-07-05T08:00:00-04:00x5, 2026-07-05T11:30:00-04:00x4, 2026-07-05T15:10:00-04:00x4, 2026-07-05T17:30:00-04:00x4, 2026-07-05T09:00:00-04:00x3, 2026-07-05T09:30:00-04:00x3, 2026-07-05T09:10:00-04:00x3
+  ATP_MAIN: 1 distinct start_times over 4 events; shared-by->1: 2026-07-05T09:00:00-04:00x4
+  ITF_M: 10 distinct start_times over 19 events; shared-by->1: 2026-07-05T12:00:00-04:00x3, 2026-07-05T16:00:00-04:00x3, 2026-07-05T17:00:00-04:00x3, 2026-07-05T13:00:00-04:00x2, 2026-07-05T14:00:00-04:00x2, 2026-07-05T18:30:00-04:00x2
+  ITF_W: 5 distinct start_times over 18 events; shared-by->1: 2026-07-05T13:00:00-04:00x7, 2026-07-05T12:00:00-04:00x4, 2026-07-05T14:00:00-04:00x4, 2026-07-05T01:00:00-04:00x2
+  WTA_CHALL: 7 distinct start_times over 12 events; shared-by->1: 2026-07-05T08:00:00-04:00x3, 2026-07-05T09:10:00-04:00x3, 2026-07-05T10:20:00-04:00x2
+  WTA_MAIN: 1 distinct start_times over 4 events; shared-by->1: 2026-07-05T09:00:00-04:00x4
+
+== (3) event/market time fields Kalshi itself serves (what the UI can display) ==
+  field coverage over 144 box events: {'exp_ep': 144, 'open_ep': 144, 'close_ep': 144}
+
+== (3b) GROUND-TRUTH SPOT-CHECK — 6 matches, three+ columns ==
+  event                                  cat       stored_sched(ET) strike_date(ET)  exp_expiration(ET) tape_gun(ET)     gun-sched gun-strike
+  ITFWMATCH-26JUL04BROKOI                ITF_W     07-05 01:00      ?                07-05 01:00       07-04 20:37          -263m          ?
+  ITFWMATCH-26JUL04MAXSTE                ITF_W     07-05 01:00      ?                07-05 01:00       07-04 20:33          -267m          ?
+  ITFMATCH-26JUL05BONBRA                 ITF_M     07-05 14:00      ?                07-05 14:00       07-05 11:31          -149m          ?
+  ATPCHALLENGERMATCH-26JUL04LEGWIN       ATP_CHALL 07-04 22:00      ?                07-04 22:00       07-04 20:40           -80m          ?
+  WTACHALLENGERMATCH-26JUL05ARSOSU       WTA_CHALL 07-05 17:00      ?                07-05 17:00       07-05 16:47           -13m          ?
+  WTAMATCH-26JUL05BENGAU                 WTA_MAIN  07-05 09:00      ?                07-05 09:00       07-05 10:41           101m          ?
+
+== (4) (gun - anchor) per category, median minutes, each candidate anchor ==
+  cat          n vs stored_sched vs strike_date vs exp_expir
+  ATP_CHALL   87        -99m(87)              -     -99m(87)
+  ATP_MAIN     4         -64m(4)              -      -64m(4)
+  ITF_M       19       -235m(19)              -    -235m(19)
+  ITF_W       18       -242m(18)              -    -242m(18)
+  WTA_CHALL   12       -103m(12)              -    -103m(12)
+  WTA_MAIN     4         -79m(4)              -      -79m(4)
+
+  strike_date == stored_sched (<1min): 0/0
+
+  (gun - strike_date) MOD 60, ITF only, 5-min bins:
+    00:0 05:0 10:0 15:0 20:0 25:0 30:0 35:0 40:0 45:0 50:0 55:0

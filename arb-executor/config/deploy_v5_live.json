@@ -73,6 +73,7 @@
  "per_cat_depth": true,
  "leg2_reshuffle": true,
  "reaim_on_sibling_arrival": true,
+ "repost_sibling_on_boot": true,
  "combined_goal": 97,
  "premarket_walk_cap": true,
  "match_live_grace_sec": 300,

@@ -144,7 +144,8 @@ def parse_session(log_path):
                 S["wopen"][tk] = {"cell": d.get("cell"), "price": d.get("price"), "ts": ts}
             elif e == "v4_place" and tk:
                 S["vplace"][tk].append({"ts": ts, "ref": d.get("reference_source"),
-                                        "anchor": d.get("anchor_src"), "tgt": d.get("target_bid")})
+                                        "anchor": d.get("anchor_src"), "tgt": d.get("target_bid"),
+                                        "cell": d.get("cell"), "cur": d.get("current_price")})
             elif e == "order_placed" and d.get("action") == "buy" and tk:
                 S["buys"][tk].append({"ts": ts, "price": d.get("price"), "oid": d.get("order_id")})
                 oid = d.get("order_id")
@@ -310,18 +311,35 @@ def analyze(S, aim, goal, bid_grades=None):
     # ---- fills graded ----
     for tk, f in sorted(S["fills"].items(), key=lambda x: x[1]["ts"]):
         ev = tk.rsplit("-", 1)[0]
-        cell = (S["wopen"].get(tk) or {}).get("cell")
-        al = aim_level(aim, cat_of(tk), cell) if cell else None
+        # Δaim resolution chain (NO '?' allowed): placement cell -> window-open
+        # cell -> the fill price's own bucket (estimate). Adoptions of positions
+        # the bot never aimed are labeled, not question-marked.
+        vp_cells = [v["cell"] for v in S["vplace"].get(tk, []) if v.get("cell") is not None
+                    and v["ts"] <= f["ts"]]
+        cell = (vp_cells[-1] if vp_cells else None) or (S["wopen"].get(tk) or {}).get("cell")
+        aim_src = "place_cell" if vp_cells else ("window_cell" if cell else None)
+        adopted = str(f.get("play") or "").startswith(("v4_manual", "v4_reconciled",
+                     "reconcile_v4")) or (f.get("src") or "").startswith("reconcile")
+        if cell is None and f["fill"] is not None:
+            cell = f["fill"]
+            aim_src = "adopted_est" if adopted else "fill_est"
+        al = aim_level(aim, cat_of(tk), cell) if cell is not None else None
         sibs = [x for x in ev_fills[ev] if x[0] != tk]
         combined = (f["fill"] or 0) + sum((x[1]["fill"] or 0) for x in sibs) if sibs else None
         lat = S["latch"].get(ev)
         mins_after_latch = round((f["ts"] - lat["ts"]) / 60.0, 1) if lat and f["ts"] >= lat["ts"] else None
+        dam = (f["fill"] - al) if (al is not None and f["fill"] is not None) else None
         items.append({"key": f"fill:{tk}", "type": "fill", "ts": f["ts"], "ticker": tk,
                       "cat": cat_of(tk), "dir": f["dir"], "play": f["play"], "fill": f["fill"],
                       "posted": f["posted"], "conception_cell": cell, "aim_level": al,
-                      "fill_minus_aim": (f["fill"] - al) if (al is not None and f["fill"] is not None) else None,
+                      "aim_src": aim_src, "fill_minus_aim": dam,
                       "mins_after_latch": mins_after_latch,
                       "pair_state": ("pair" if sibs else "single"), "combined": combined})
+        if al is not None:
+            # one-time regrade line (the Δaim backfill for fills first seen with '?')
+            items.append({"key": f"fillaim:{tk}", "type": "fill_regrade", "ts": f["ts"],
+                          "ticker": tk, "fill": f["fill"], "aim_level": al,
+                          "aim_src": aim_src, "fill_minus_aim": dam})
         emfb = S["emfb"].get(tk)
         if emfb is not None:
             items.append({"key": f"fv:{tk}", "type": "fv_capture", "ts": f["ts"], "ticker": tk,
@@ -440,7 +458,8 @@ def forensic_check(all_lines, S, log_path):
     return written
 
 
-def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, chf=None):
+def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, chf=None,
+                 chf_cum=(0, 0)):
     v = [x for x in all_lines if x.get("type") == "violation"]
     fills = [x for x in all_lines if x.get("type") == "fill"]
     pats = [x for x in all_lines if x.get("type") == "pattern"]
@@ -472,15 +491,28 @@ def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, ch
               "|---|---|---|---|---|---|---|---|---|---|---|"]
         for f in sorted(fills, key=lambda y: y["ts"]):
             fv = fvs.get(f["ticker"], {}).get("entry_minus_fv_burst")
+            dam = (f"{f['fill_minus_aim']:+d}" if f["fill_minus_aim"] is not None else "n/a")
+            src = f.get("aim_src") or "none"
             L.append(f"| {datetime.fromtimestamp(f['ts'], ET).strftime('%H:%M')} | {f['ticker'].replace('KX','')[:34]} "
-                     f"| {f['cat']} | {f['dir'] or '?'} | {f['fill']} | {f['aim_level'] if f['aim_level'] is not None else '?'} "
-                     f"| {f['fill_minus_aim'] if f['fill_minus_aim'] is not None else '?'} "
+                     f"| {f['cat']} | {f['dir'] or '?'} | {f['fill']} | {f['aim_level'] if f['aim_level'] is not None else 'n/a'} "
+                     f"| {dam} ({src}) "
                      f"| {fv if fv is not None else '—'} | {f['mins_after_latch'] if f['mins_after_latch'] is not None else 'pre'} "
                      f"| {f['pair_state']} | {f['combined'] or ''} |")
     else:
         L.append("none yet this session")
-    L += ["", f"## RESTING BIDS — {len(bid_grades)} tape-graded "
-              f"(starvation = NO_FLOW only)"]
+    cls_ct = defaultdict(int)
+    rp_t = rp_f = 0
+    for g in bid_grades:
+        cls_ct[g["cls"]] += 1
+        if g["repriceable"]:
+            rp_t += 1
+        else:
+            rp_f += 1
+    cum = chf_cum if isinstance(chf_cum, tuple) else (0, 0)
+    L += ["", f"## RESTING BIDS — {len(bid_grades)} tape-graded (starvation = NO_FLOW only)",
+          f"- classes now: {dict(cls_ct) or '{}'} | repriceable now: true {rp_t} / false {rp_f} "
+          f"| **cumulative bid_grade lines: {cum[0] + cum[1]} (repriceable true {cum[0]} / false {cum[1]})** "
+          f"-- the liquid_repost re-arm evidence accumulates here"]
     if bid_grades:
         L += ["| ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |",
               "|---|---|---|---|---|---|---|---|---|"]
@@ -547,12 +579,17 @@ def cycle(n):
     bid_grades = grade_resting_bids(S, aim, goal)
     chf = could_have_filled(S, goal)
     items = analyze(S, aim, goal, bid_grades)
-    # dedup against the committed jsonl (the jsonl IS the state)
+    # dedup against the committed jsonl (the jsonl IS the state) + cumulative
+    # repriceable counters (the liquid_repost re-arm evidence base)
     seen = set()
+    cum_rp = [0, 0]   # [true, false]
     if JSONL.exists():
         for line in JSONL.read_text(encoding="utf-8", errors="replace").splitlines():
             try:
-                seen.add(json.loads(line)["key"])
+                o = json.loads(line)
+                seen.add(o["key"])
+                if o.get("type") == "bid_grade":
+                    cum_rp[0 if o.get("repriceable") else 1] += 1
             except Exception:
                 pass
     new = [it for it in items if it["key"] not in seen]
@@ -561,8 +598,12 @@ def cycle(n):
             for it in sorted(new, key=lambda x: x.get("ts", 0)):
                 it["emitted_et"] = now_et()
                 fh.write(json.dumps(it) + "\n")
+    for it in items:
+        if it.get("type") == "bid_grade" and it["key"] not in seen:
+            cum_rp[0 if it.get("repriceable") else 1] += 1
     forensics = forensic_check(items, S, log_path)
-    changed = write_status(S, items, log_path, n, forensics, bid_grades, chf)
+    changed = write_status(S, items, log_path, n, forensics, bid_grades, chf,
+                           chf_cum=tuple(cum_rp))
     nv = sum(1 for x in new if x.get("type") == "violation")
     res = "no-change"
     if new or changed or forensics:

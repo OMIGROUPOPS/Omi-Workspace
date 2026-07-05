@@ -1504,6 +1504,8 @@ class LiveV3:
         # [C-REAIM-ON-ARRIVAL] combined re-aim on ANY sibling basis arrival (fill or
         # adoption), no price-bucket exemption; <=2c re-aim cancels. Default OFF.
         self.reaim_on_sibling_arrival = bool(self.config.get("reaim_on_sibling_arrival", False))
+        # [C-REPOST-SIBLING-ON-BOOT] heal the drain/restart half-pair hole. Default OFF.
+        self.repost_sibling_on_boot = bool(self.config.get("repost_sibling_on_boot", False))
         # (4c) freeze_at_gun: at the tape-live latch (_is_match_live), no fresh entry posts
         #     and no walk/reprice -- resting bids stay static (dip-fillable, never chasing).
         #     OFF => posting/walk untouched. [2026-07-03] SHELVED per doctrine audit: superseded by
@@ -3653,6 +3655,71 @@ class LiveV3:
             "from": cur, "to": int(new_target), "goal": self.combined_goal},
             ticker=sib)
         self._save_v4_resting()
+
+    async def _repost_missing_siblings(self):
+        """[C-REPOST-SIBLING-ON-BOOT] (gated repost_sibling_on_boot) runs at the end
+        of every reconcile pass: any open single-leg v4 position (holds exposure:
+        entry filled, exit not complete, not settled) whose sibling has NO position
+        gets its completion bid re-placed at min(aim-table level, combined_goal -
+        basis); a noise-level target (<= 2c) is SKIPPED and logged, never rested at
+        noise. Guards: once per event per session; NEVER on a latched-live event
+        (match_live/grace cancels stay respected -- this only heals the drain/
+        restart hole, it does not re-engage live matches); never-cross via
+        _reprice_target; sized entry_size like every other entry bid."""
+        done = self.__dict__.setdefault("_sibling_repost_done", set())
+        for tk, pos in list(self.positions.items()):
+            try:
+                if (not pos.is_v4 or pos.settled or pos.phase == "settled"
+                        or pos.entry_qty <= 0 or pos.exit_filled
+                        or (pos.exit_filled_qty or 0) >= pos.entry_qty):
+                    continue
+                et = pos.event_ticker or tk.rsplit("-", 1)[0]
+                if et in done or et in self._events_live:
+                    continue
+                sib = self._sibling_ticker(tk, et)
+                if not sib or sib in self.positions:
+                    continue   # sibling unknown, or already engaged -- not our hole
+                basis = int(round(pos.entry_price or 0))
+                if basis <= 0:
+                    continue
+                cat = self.get_category(sib)
+                sb = self.books.get(sib)
+                _wo = self._window_open.get(sib) or {}
+                anchor = _wo.get("cell") or (sb.best_bid if (sb and sb.best_bid > 0) else None)
+                aim = None
+                if anchor:
+                    _depth = (self._aim_faller_depth(cat, int(anchor))
+                              if self.per_cat_depth else self.dog_dip_offset_cents)
+                    aim = max(1, int(anchor) - int(_depth))
+                goal_level = int(self.combined_goal) - basis
+                level = min(x for x in (aim, goal_level) if x is not None)
+                done.add(et)
+                if level <= 2:
+                    self._log("sibling_repost_skip", {
+                        "event": et, "leg1": tk[-12:], "leg1_basis": basis,
+                        "level": level, "reason": "noise_level"}, ticker=sib)
+                    continue
+                _ask = int(sb.best_ask) if (sb and sb.best_ask) else 100
+                price, po = self._reprice_target(level, _ask)
+                oid, _resp = await self.place_order(sib, "buy", "yes", price,
+                                                    self.entry_size, post_only=po)
+                if not oid:
+                    self._log("sibling_repost_failed", {
+                        "event": et, "leg1_basis": basis, "level": price}, ticker=sib)
+                    continue
+                self.positions[sib] = Position(
+                    ticker=sib, event_ticker=et, category=cat, direction="",
+                    cell_name="", cell_cfg={}, entry_price=price, entry_qty=0,
+                    phase="entry_resting", is_v4=True,
+                    play_type="v4_sibling_repost", entry_order_id=oid,
+                    target_price=price, entry_mode="resting_maker")
+                self._log("sibling_repost_placed", {
+                    "event": et, "leg1": tk[-12:], "leg1_basis": basis,
+                    "aim": aim, "goal_level": goal_level, "level": price,
+                    "post_only": po}, ticker=sib)
+                self._save_v4_resting()
+            except Exception as e:
+                self._log("sibling_repost_error", {"error": str(e)[:160]}, ticker=tk)
 
     async def _pair_governor_scoot_eval(self, tk, et, this_basis, sib, sp):
         """[C-PAIR-GOVERNOR rev] leg-1 (tk) just filled; sp = sibling resting UNFILLED entry bid
@@ -8115,6 +8182,13 @@ class LiveV3:
             "orphans": len(orphan_orders),
             "processed_events": len(self.processed_events),
         })
+
+        # [C-REPOST-SIBLING-ON-BOOT] gated (WATSHI 2026-07-04: the deploy drain
+        # cancelled SHI's resting bid; the restart re-adopted WAT's filled leg but
+        # never re-engaged the sibling -- the half-pair sat with NO passive
+        # completion path). The drain/restart must never leave that hole.
+        if getattr(self, "repost_sibling_on_boot", False):
+            await self._repost_missing_siblings()
 
         return len(pos_map), len(linked), len(unmanaged), len(orphan_orders)
 

@@ -1,0 +1,1676 @@
+[
+ {
+  "ev": "HARNAS",
+  "grade": "D",
+  "ledger_pnl": 190.0,
+  "truth_pnl": 190.0,
+  "diff": 0.0,
+  "manual": true,
+  "open": [],
+  "latch_tts": null,
+  "mech": [],
+  "legs": {
+   "RNAS-NAS": {
+    "wopen": 76,
+    "fill": 74,
+    "dir": null,
+    "src": "reconcile_adoption",
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 1000.0,
+     "avg_buy": 74.0,
+     "sell_qty": 1000.0,
+     "avg_sell": 93.0,
+     "taker_buys": 7,
+     "open_qty": 0,
+     "pnl_cents": 19000.0
+    }
+   },
+   "RNAS-HAR": {
+    "wopen": 24,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 0,
+     "avg_buy": null,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 0
+    }
+   }
+  }
+ },
+ {
+  "ev": "TIABUB",
+  "grade": "D",
+  "ledger_pnl": 0.0,
+  "truth_pnl": 0.65,
+  "diff": 0.65,
+  "manual": false,
+  "open": [],
+  "latch_tts": null,
+  "mech": [],
+  "legs": {
+   "ABUB-TIA": {
+    "wopen": 52,
+    "fill": 51,
+    "dir": "leader",
+    "src": "v4_resting_maker",
+    "emfb": -3.5,
+    "places": [
+     {
+      "tgt": 51,
+      "src": "staircase_hold",
+      "tbl": "per_cell",
+      "cell": 52
+     }
+    ],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 51.0,
+     "sell_qty": 5.0,
+     "avg_sell": 64.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 65.0
+    }
+   },
+   "ABUB-BUB": {
+    "wopen": 49,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 0,
+     "avg_buy": null,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 0
+    }
+   }
+  }
+ },
+ {
+  "ev": "DESVA",
+  "grade": "D",
+  "ledger_pnl": 0.85,
+  "truth_pnl": 0.85,
+  "diff": 0.0,
+  "manual": false,
+  "open": [],
+  "latch_tts": null,
+  "mech": [],
+  "legs": {
+   "DESVA-DE": {
+    "wopen": 84,
+    "fill": 83,
+    "dir": "leader",
+    "src": "manage_cancel_race",
+    "emfb": null,
+    "places": [
+     {
+      "tgt": 83,
+      "src": "staircase_hold",
+      "tbl": "per_cell",
+      "cell": 84
+     }
+    ],
+    "mech": [
+     "v4_cancel_degenerate"
+    ],
+    "settle": [
+     "WIN",
+     85.0
+    ],
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 83.0,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 85.0
+    }
+   },
+   "ESVA-SVA": {
+    "wopen": 16,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 0,
+     "avg_buy": null,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 0
+    }
+   }
+  }
+ },
+ {
+  "ev": "EALSWI",
+  "grade": "F",
+  "ledger_pnl": -3.7,
+  "truth_pnl": -3.7,
+  "diff": 0.0,
+  "manual": false,
+  "open": [],
+  "latch_tts": -5.2,
+  "mech": [],
+  "legs": {
+   "LSWI-EAL": {
+    "wopen": 26,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 0,
+     "avg_buy": null,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 0
+    }
+   },
+   "LSWI-SWI": {
+    "wopen": 76,
+    "fill": 74,
+    "dir": "leader",
+    "src": "match_live_cancel_race",
+    "emfb": -4.0,
+    "places": [
+     {
+      "tgt": 74,
+      "src": "staircase_hold",
+      "tbl": "per_cell",
+      "cell": 75
+     }
+    ],
+    "mech": [
+     "match_live_cancel",
+     "settlement_cleanup"
+    ],
+    "settle": [
+     "LOSS",
+     -370.0
+    ],
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 74.0,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": -370.0
+    }
+   },
+   "": {
+    "wopen": null,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {}
+   }
+  }
+ },
+ {
+  "ev": "PAOSAK",
+  "grade": "D",
+  "ledger_pnl": 0.75,
+  "truth_pnl": 0.75,
+  "diff": 0.0,
+  "manual": false,
+  "open": [],
+  "latch_tts": -7.4,
+  "mech": [],
+  "legs": {
+   "OSAK-PAO": {
+    "wopen": 56,
+    "fill": 54,
+    "dir": "leader",
+    "src": "match_live_cancel_race",
+    "emfb": -0.5,
+    "places": [
+     {
+      "tgt": 54,
+      "src": "staircase_hold",
+      "tbl": "per_cell",
+      "cell": 55
+     }
+    ],
+    "mech": [
+     "match_live_cancel"
+    ],
+    "settle": null,
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 54.0,
+     "sell_qty": 5.0,
+     "avg_sell": 69.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 75.0
+    }
+   },
+   "OSAK-SAK": {
+    "wopen": 45,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 0,
+     "avg_buy": null,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 0
+    }
+   },
+   "": {
+    "wopen": null,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {}
+   }
+  }
+ },
+ {
+  "ev": "ANIKEY",
+  "grade": "D",
+  "ledger_pnl": 0.0,
+  "truth_pnl": 0.8,
+  "diff": 0.8,
+  "manual": false,
+  "open": [],
+  "latch_tts": null,
+  "mech": [],
+  "legs": {
+   "IKEY-KEY": {
+    "wopen": 62,
+    "fill": 61,
+    "dir": "leader",
+    "src": "v4_resting_maker",
+    "emfb": 0.5,
+    "places": [
+     {
+      "tgt": 61,
+      "src": "staircase_hold",
+      "tbl": "per_cell",
+      "cell": 61
+     }
+    ],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 61.0,
+     "sell_qty": 5.0,
+     "avg_sell": 77.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 80.0
+    }
+   },
+   "IKEY-ANI": {
+    "wopen": 39,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 0,
+     "avg_buy": null,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 0
+    }
+   }
+  }
+ },
+ {
+  "ev": "MERRYB",
+  "grade": "C",
+  "ledger_pnl": 0.1,
+  "truth_pnl": 0.1,
+  "diff": 0.0,
+  "manual": false,
+  "open": [],
+  "latch_tts": 24.1,
+  "mech": [
+   "match_live_grace_armed"
+  ],
+  "legs": {
+   "RRYB-MER": {
+    "wopen": 20,
+    "fill": 19,
+    "dir": "underdog",
+    "src": "match_live_cancel_race",
+    "emfb": -6.5,
+    "places": [
+     {
+      "tgt": 19,
+      "src": "staircase_hold",
+      "tbl": "no_trade_staircase",
+      "cell": 19
+     }
+    ],
+    "mech": [
+     "match_live_cancel",
+     "match_live_grace_armed"
+    ],
+    "settle": [
+     "WIN",
+     405.0
+    ],
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 19.0,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 405.0
+    }
+   },
+   "RRYB-RYB": {
+    "wopen": 81,
+    "fill": 79,
+    "dir": "leader",
+    "src": "match_live_cancel_race",
+    "emfb": 5.0,
+    "places": [
+     {
+      "tgt": 79,
+      "src": "staircase_hold",
+      "tbl": "per_cell",
+      "cell": 80
+     }
+    ],
+    "mech": [
+     "match_live_cancel",
+     "match_live_grace_armed",
+     "settlement_cleanup"
+    ],
+    "settle": [
+     "LOSS",
+     -395.0
+    ],
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 79.0,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": -395.0
+    }
+   },
+   "": {
+    "wopen": null,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {}
+   }
+  }
+ },
+ {
+  "ev": "KASPIR",
+  "grade": "D",
+  "ledger_pnl": 0.95,
+  "truth_pnl": 0.95,
+  "diff": 0.0,
+  "manual": false,
+  "open": [],
+  "latch_tts": 14.3,
+  "mech": [],
+  "legs": {
+   "SPIR-PIR": {
+    "wopen": 66,
+    "fill": 65,
+    "dir": "leader",
+    "src": "match_live_cancel_race",
+    "emfb": 12.5,
+    "places": [
+     {
+      "tgt": 65,
+      "src": "staircase_hold",
+      "tbl": "per_cell",
+      "cell": 65
+     }
+    ],
+    "mech": [
+     "match_live_cancel"
+    ],
+    "settle": null,
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 65.0,
+     "sell_qty": 5.0,
+     "avg_sell": 84.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 95.0
+    }
+   },
+   "SPIR-KAS": {
+    "wopen": 36,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 0,
+     "avg_buy": null,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 0
+    }
+   },
+   "": {
+    "wopen": null,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {}
+   }
+  }
+ },
+ {
+  "ev": "HEICEC",
+  "grade": "F",
+  "ledger_pnl": -3.5,
+  "truth_pnl": -3.5,
+  "diff": 0.0,
+  "manual": false,
+  "open": [],
+  "latch_tts": 136.6,
+  "mech": [],
+  "legs": {
+   "ICEC-HEI": {
+    "wopen": 72,
+    "fill": 70,
+    "dir": "leader",
+    "src": "manage_cancel_race",
+    "emfb": 21.0,
+    "places": [
+     {
+      "tgt": 70,
+      "src": "staircase_hold",
+      "tbl": "per_cell",
+      "cell": 72
+     }
+    ],
+    "mech": [
+     "settlement_cleanup",
+     "v4_cancel_bid_marketable_stale"
+    ],
+    "settle": [
+     "LOSS",
+     -350.0
+    ],
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 70.0,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": -350.0
+    }
+   },
+   "ICEC-CEC": {
+    "wopen": 31,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 0,
+     "avg_buy": null,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 0
+    }
+   },
+   "": {
+    "wopen": null,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {}
+   }
+  }
+ },
+ {
+  "ev": "RINDIA",
+  "grade": "D",
+  "ledger_pnl": 0.95,
+  "truth_pnl": 0.95,
+  "diff": 0.0,
+  "manual": false,
+  "open": [],
+  "latch_tts": 107.3,
+  "mech": [],
+  "legs": {
+   "NDIA-DIA": {
+    "wopen": 79,
+    "fill": 70,
+    "dir": "leader",
+    "src": "match_live_cancel_race",
+    "emfb": 15.5,
+    "places": [
+     {
+      "tgt": 69,
+      "src": "staircase_hold",
+      "tbl": "per_cell",
+      "cell": 73
+     }
+    ],
+    "mech": [
+     "match_live_cancel",
+     "v4_move_repost"
+    ],
+    "settle": null,
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 70.0,
+     "sell_qty": 5.0,
+     "avg_sell": 89.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 95.0
+    }
+   },
+   "NDIA-RIN": {
+    "wopen": 22,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 0,
+     "avg_buy": null,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 0
+    }
+   },
+   "": {
+    "wopen": null,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {}
+   }
+  }
+ },
+ {
+  "ev": "GIUFEL",
+  "grade": "F",
+  "ledger_pnl": -0.35,
+  "truth_pnl": -0.35,
+  "diff": 0.0,
+  "manual": false,
+  "open": [],
+  "latch_tts": 104.8,
+  "mech": [
+   "match_live_grace_armed",
+   "match_live_resting_cancel",
+   "premarket_walk_capped"
+  ],
+  "legs": {
+   "UFEL-GIU": {
+    "wopen": 25,
+    "fill": 7,
+    "dir": "underdog",
+    "src": "match_live_cancel_race",
+    "emfb": 0.5,
+    "places": [
+     {
+      "tgt": 7,
+      "src": null,
+      "tbl": "engagement_wave1",
+      "cell": 7
+     }
+    ],
+    "mech": [
+     "match_live_cancel",
+     "match_live_grace_armed",
+     "settlement_cleanup"
+    ],
+    "settle": [
+     "LOSS",
+     -35.0
+    ],
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 7.0,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": -35.0
+    }
+   },
+   "UFEL-FEL": {
+    "wopen": 77,
+    "fill": null,
+    "dir": "leader",
+    "src": null,
+    "emfb": -14.0,
+    "places": [
+     {
+      "tgt": 90,
+      "src": "staircase_hold",
+      "tbl": "per_cell",
+      "cell": 91
+     }
+    ],
+    "mech": [
+     "match_live_cancel",
+     "match_live_grace_armed",
+     "match_live_resting_cancel",
+     "premarket_walk_capped",
+     "v4_move_repost"
+    ],
+    "settle": null,
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 0,
+     "avg_buy": null,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 0
+    }
+   },
+   "": {
+    "wopen": null,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {}
+   }
+  }
+ },
+ {
+  "ev": "HEMMOE",
+  "grade": "A",
+  "ledger_pnl": 1.2,
+  "truth_pnl": 1.2,
+  "diff": 0.0,
+  "manual": false,
+  "open": [],
+  "latch_tts": 28.9,
+  "mech": [],
+  "legs": {
+   "MMOE-HEM": {
+    "wopen": 57,
+    "fill": 55,
+    "dir": "leader",
+    "src": "v4_resting_maker",
+    "emfb": 8.5,
+    "places": [
+     {
+      "tgt": 55,
+      "src": "staircase_hold",
+      "tbl": "no_trade_staircase",
+      "cell": 55
+     }
+    ],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 55.0,
+     "sell_qty": 5.0,
+     "avg_sell": 70.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 75.0
+    }
+   },
+   "MMOE-MOE": {
+    "wopen": 44,
+    "fill": 44,
+    "dir": "underdog",
+    "src": "v4_resting_maker",
+    "emfb": -9.5,
+    "places": [
+     {
+      "tgt": 44,
+      "src": "staircase_hold",
+      "tbl": "no_trade_staircase",
+      "cell": 44
+     }
+    ],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 44.0,
+     "sell_qty": 5.0,
+     "avg_sell": 53.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 45.0
+    }
+   },
+   "": {
+    "wopen": null,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {}
+   }
+  }
+ },
+ {
+  "ev": "BENAHO",
+  "grade": "F",
+  "ledger_pnl": -1.4,
+  "truth_pnl": -1.4,
+  "diff": 0.0,
+  "manual": false,
+  "open": [],
+  "latch_tts": 195.6,
+  "mech": [
+   "premarket_walk_capped"
+  ],
+  "legs": {
+   "NAHO-AHO": {
+    "wopen": 35,
+    "fill": 28,
+    "dir": "underdog",
+    "src": "v4_engagement_join",
+    "emfb": 7.0,
+    "places": [
+     {
+      "tgt": 28,
+      "src": null,
+      "tbl": "engagement_wave1",
+      "cell": 28
+     }
+    ],
+    "mech": [
+     "settlement_cleanup"
+    ],
+    "settle": [
+     "LOSS",
+     -140.0
+    ],
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 28.0,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": -140.0
+    }
+   },
+   "NAHO-BEN": {
+    "wopen": 65,
+    "fill": null,
+    "dir": "leader",
+    "src": null,
+    "emfb": -11.0,
+    "places": [
+     {
+      "tgt": 68,
+      "src": "join_bid",
+      "tbl": "no_trade_staircase",
+      "cell": 68
+     }
+    ],
+    "mech": [
+     "completion_reprice",
+     "completion_revert_match_live",
+     "premarket_walk_capped",
+     "v4_move_repost"
+    ],
+    "settle": null,
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 0,
+     "avg_buy": null,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 0
+    }
+   },
+   "": {
+    "wopen": null,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {}
+   }
+  }
+ },
+ {
+  "ev": "ORLPOP",
+  "grade": "B",
+  "ledger_pnl": 1.25,
+  "truth_pnl": 1.25,
+  "diff": 0.0,
+  "manual": false,
+  "open": [],
+  "latch_tts": 192.9,
+  "mech": [
+   "completion_fill"
+  ],
+  "legs": {
+   "LPOP-ORL": {
+    "wopen": 65,
+    "fill": 49,
+    "dir": "underdog",
+    "src": "v4_resting_maker",
+    "emfb": 8.5,
+    "places": [
+     {
+      "tgt": 44,
+      "src": "join_bid",
+      "tbl": "no_trade_staircase",
+      "cell": 44
+     }
+    ],
+    "mech": [
+     "v4_move_repost"
+    ],
+    "settle": null,
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 49.0,
+     "sell_qty": 5.0,
+     "avg_sell": 61.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 60.0
+    }
+   },
+   "LPOP-POP": {
+    "wopen": 37,
+    "fill": 50,
+    "dir": "leader",
+    "src": "v4_completion_reprice",
+    "emfb": -3.0,
+    "places": [
+     {
+      "tgt": 53,
+      "src": "join_bid",
+      "tbl": "no_trade_staircase",
+      "cell": 53
+     }
+    ],
+    "mech": [
+     "completion_fill",
+     "completion_reprice"
+    ],
+    "settle": null,
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 50.0,
+     "sell_qty": 5.0,
+     "avg_sell": 63.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 65.0
+    }
+   },
+   "": {
+    "wopen": null,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {}
+   }
+  }
+ },
+ {
+  "ev": "CLALAM",
+  "grade": "C",
+  "ledger_pnl": 4.65,
+  "truth_pnl": 4.65,
+  "diff": 0.0,
+  "manual": false,
+  "open": [],
+  "latch_tts": 146.6,
+  "mech": [],
+  "legs": {
+   "ALAM-LAM": {
+    "wopen": 73,
+    "fill": 68,
+    "dir": "leader",
+    "src": "v4_resting_maker",
+    "emfb": 13.0,
+    "places": [
+     {
+      "tgt": 68,
+      "src": "join_bid",
+      "tbl": "no_trade_staircase",
+      "cell": 68
+     }
+    ],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 68.0,
+     "sell_qty": 5.0,
+     "avg_sell": 86.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 90.0
+    }
+   },
+   "ALAM-CLA": {
+    "wopen": 31,
+    "fill": 25,
+    "dir": "underdog",
+    "src": "v4_engagement_join",
+    "emfb": -19.0,
+    "places": [
+     {
+      "tgt": 25,
+      "src": null,
+      "tbl": "engagement_wave1",
+      "cell": 26
+     }
+    ],
+    "mech": [],
+    "settle": [
+     "WIN",
+     375.0
+    ],
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 25.0,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 375.0
+    }
+   },
+   "": {
+    "wopen": null,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {}
+   }
+  }
+ },
+ {
+  "ev": "MELCAS",
+  "grade": "F",
+  "ledger_pnl": -2.6,
+  "truth_pnl": 3.65,
+  "diff": 6.25,
+  "manual": false,
+  "open": [],
+  "latch_tts": 67.2,
+  "mech": [
+   "match_live_grace_armed"
+  ],
+  "legs": {
+   "LCAS-MEL": {
+    "wopen": 59,
+    "fill": 52,
+    "dir": "leader",
+    "src": "move_repost_race",
+    "emfb": 15.5,
+    "places": [
+     {
+      "tgt": 55,
+      "src": "staircase_hold",
+      "tbl": "per_cell",
+      "cell": 65
+     }
+    ],
+    "mech": [
+     "settlement_cleanup",
+     "v4_move_repost"
+    ],
+    "settle": [
+     "LOSS",
+     -260.0
+    ],
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 52.0,
+     "sell_qty": 5.0,
+     "avg_sell": 66.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 70.0
+    }
+   },
+   "LCAS-CAS": {
+    "wopen": 42,
+    "fill": null,
+    "dir": "underdog",
+    "src": null,
+    "emfb": -20.5,
+    "places": [
+     {
+      "tgt": 41,
+      "src": "staircase_hold",
+      "tbl": "no_trade_staircase",
+      "cell": 41
+     }
+    ],
+    "mech": [
+     "match_live_grace_armed"
+    ],
+    "settle": [
+     "WIN",
+     0.0
+    ],
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 41.0,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 295.0
+    }
+   },
+   "": {
+    "wopen": null,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {}
+   }
+  }
+ },
+ {
+  "ev": "HERPDA",
+  "grade": "n/a",
+  "ledger_pnl": null,
+  "truth_pnl": 1.05,
+  "diff": null,
+  "manual": false,
+  "open": [],
+  "latch_tts": -1.7,
+  "mech": [
+   "leg2_reshuffle_reaim"
+  ],
+  "legs": {
+   "RPDA-PDA": {
+    "wopen": 83,
+    "fill": 81,
+    "dir": "leader",
+    "src": "reconcile_adoption",
+    "emfb": -3.0,
+    "places": [
+     {
+      "tgt": 82,
+      "src": null,
+      "tbl": "engagement_wave1",
+      "cell": 82
+     }
+    ],
+    "mech": [
+     "shutdown_cancel"
+    ],
+    "settle": null,
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 82.0,
+     "sell_qty": 5.0,
+     "avg_sell": 98.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 80.0
+    }
+   },
+   "RPDA-HER": {
+    "wopen": 18,
+    "fill": 18,
+    "dir": "underdog",
+    "src": "move_repost_race",
+    "emfb": 1.5,
+    "places": [
+     {
+      "tgt": 18,
+      "src": null,
+      "tbl": "engagement_wave1",
+      "cell": 18
+     }
+    ],
+    "mech": [
+     "leg2_reshuffle_reaim",
+     "v4_move_repost"
+    ],
+    "settle": null,
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 18.0,
+     "sell_qty": 5.0,
+     "avg_sell": 23.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 25.0
+    }
+   },
+   "": {
+    "wopen": null,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {}
+   }
+  }
+ },
+ {
+  "ev": "ZANSIE",
+  "grade": "n/a",
+  "ledger_pnl": null,
+  "truth_pnl": 1.9,
+  "diff": null,
+  "manual": false,
+  "open": [],
+  "latch_tts": 130.0,
+  "mech": [],
+  "legs": {
+   "NSIE-SIE": {
+    "wopen": 35,
+    "fill": 6,
+    "dir": "underdog",
+    "src": "v4_resting_maker",
+    "emfb": -15.0,
+    "places": [
+     {
+      "tgt": 6,
+      "src": "join_bid",
+      "tbl": "no_trade_staircase",
+      "cell": 6
+     }
+    ],
+    "mech": [],
+    "settle": null,
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 6.0,
+     "sell_qty": 5.0,
+     "avg_sell": 9.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 15.0
+    }
+   },
+   "NSIE-ZAN": {
+    "wopen": 67,
+    "fill": 65,
+    "dir": "leader",
+    "src": "reconcile_adoption",
+    "emfb": -14.0,
+    "places": [
+     {
+      "tgt": 65,
+      "src": "join_bid",
+      "tbl": "per_cell",
+      "cell": 66
+     }
+    ],
+    "mech": [
+     "shutdown_cancel"
+    ],
+    "settle": [
+     "WIN",
+     175.0
+    ],
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 65.0,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 175.0
+    }
+   },
+   "": {
+    "wopen": null,
+    "fill": null,
+    "dir": null,
+    "src": null,
+    "emfb": null,
+    "places": [],
+    "mech": [],
+    "settle": null,
+    "truth": {}
+   }
+  }
+ },
+ {
+  "ev": "ZAMBRI",
+  "grade": "n/a",
+  "ledger_pnl": null,
+  "truth_pnl": 1.9,
+  "diff": null,
+  "manual": false,
+  "open": [],
+  "latch_tts": null,
+  "mech": [],
+  "legs": {
+   "MBRI-ZAM": {
+    "wopen": 21,
+    "fill": 20,
+    "dir": "underdog",
+    "src": "v4_engagement_join",
+    "emfb": null,
+    "places": [
+     {
+      "tgt": 6,
+      "src": null,
+      "tbl": "engagement_wave1",
+      "cell": 18
+     }
+    ],
+    "mech": [
+     "v4_move_repost"
+    ],
+    "settle": null,
+    "truth": {
+     "result": "no",
+     "status": "finalized",
+     "buy_qty": 5.0,
+     "avg_buy": 20.0,
+     "sell_qty": 5.0,
+     "avg_sell": 26.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 30.0
+    }
+   },
+   "MBRI-BRI": {
+    "wopen": 80,
+    "fill": 84,
+    "dir": "leader",
+    "src": "reconcile_adoption",
+    "emfb": null,
+    "places": [
+     {
+      "tgt": 51,
+      "src": "join_bid",
+      "tbl": "no_trade_staircase",
+      "cell": 51
+     }
+    ],
+    "mech": [
+     "v4_move_repost"
+    ],
+    "settle": [
+     "WIN",
+     150.0
+    ],
+    "truth": {
+     "result": "yes",
+     "status": "finalized",
+     "buy_qty": 10.0,
+     "avg_buy": 83.0,
+     "sell_qty": 5.0,
+     "avg_sell": 98.0,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 160.0
+    }
+   }
+  }
+ },
+ {
+  "ev": "LEGWIN",
+  "grade": "n/a",
+  "ledger_pnl": null,
+  "truth_pnl": -9.25,
+  "diff": null,
+  "manual": true,
+  "open": [
+   "GWIN-WIN"
+  ],
+  "latch_tts": null,
+  "mech": [
+   "leg2_reshuffle_reaim",
+   "sibling_repost_placed"
+  ],
+  "legs": {
+   "GWIN-LEG": {
+    "wopen": 55,
+    "fill": 54,
+    "dir": "leader",
+    "src": "move_repost_race",
+    "emfb": null,
+    "places": [
+     {
+      "tgt": 54,
+      "src": "staircase_hold",
+      "tbl": "no_trade_staircase",
+      "cell": 54
+     },
+     {
+      "tgt": 54,
+      "src": "staircase_hold",
+      "tbl": "no_trade_staircase",
+      "cell": 54
+     }
+    ],
+    "mech": [
+     "leg2_reshuffle_reaim",
+     "shutdown_cancel",
+     "sibling_repost_placed",
+     "v4_cancel_bid_marketable_stale",
+     "v4_move_repost"
+    ],
+    "settle": null,
+    "truth": {
+     "result": "",
+     "status": "active",
+     "buy_qty": 5.0,
+     "avg_buy": 54.0,
+     "sell_qty": 5.0,
+     "avg_sell": 69.0,
+     "taker_buys": 0,
+     "open_qty": 0.0,
+     "pnl_cents": 75.0
+    }
+   },
+   "GWIN-WIN": {
+    "wopen": 47,
+    "fill": 48,
+    "dir": "underdog",
+    "src": "reconcile_adoption",
+    "emfb": null,
+    "places": [
+     {
+      "tgt": 45,
+      "src": "staircase_hold",
+      "tbl": "no_trade_staircase",
+      "cell": 45
+     },
+     {
+      "tgt": 48,
+      "src": "staircase_hold",
+      "tbl": "no_trade_staircase",
+      "cell": 48
+     }
+    ],
+    "mech": [
+     "orphan_buy_reconcile_cleanup"
+    ],
+    "settle": null,
+    "truth": {
+     "result": "",
+     "status": "active",
+     "buy_qty": 505.0,
+     "avg_buy": 48.0,
+     "sell_qty": 500.0,
+     "avg_sell": 46.0,
+     "taker_buys": 1,
+     "open_qty": 5.0,
+     "pnl_cents": -1240.0
+    }
+   }
+  }
+ },
+ {
+  "ev": "WATSHI",
+  "grade": "n/a",
+  "ledger_pnl": null,
+  "truth_pnl": 0.0,
+  "diff": null,
+  "manual": false,
+  "open": [
+   "TSHI-WAT"
+  ],
+  "latch_tts": null,
+  "mech": [],
+  "legs": {
+   "TSHI-SHI": {
+    "wopen": 36,
+    "fill": null,
+    "dir": "underdog",
+    "src": null,
+    "emfb": null,
+    "places": [
+     {
+      "tgt": 35,
+      "src": "staircase_hold",
+      "tbl": "no_trade_staircase",
+      "cell": 35
+     }
+    ],
+    "mech": [
+     "shutdown_cancel"
+    ],
+    "settle": null,
+    "truth": {
+     "result": "",
+     "status": "inactive",
+     "buy_qty": 0,
+     "avg_buy": null,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 0,
+     "pnl_cents": 0
+    }
+   },
+   "TSHI-WAT": {
+    "wopen": 66,
+    "fill": 65,
+    "dir": "leader",
+    "src": "move_repost_race",
+    "emfb": null,
+    "places": [
+     {
+      "tgt": 64,
+      "src": "staircase_hold",
+      "tbl": "no_trade_staircase",
+      "cell": 64
+     }
+    ],
+    "mech": [
+     "v4_move_repost"
+    ],
+    "settle": null,
+    "truth": {
+     "result": "",
+     "status": "inactive",
+     "buy_qty": 5.0,
+     "avg_buy": 65.0,
+     "sell_qty": 0,
+     "avg_sell": null,
+     "taker_buys": 0,
+     "open_qty": 5.0,
+     "pnl_cents": -325.0
+    }
+   }
+  }
+ }
+]

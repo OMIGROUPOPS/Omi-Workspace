@@ -329,7 +329,24 @@ def analyze(S, aim, goal, bid_grades=None):
         lat = S["latch"].get(ev)
         mins_after_latch = round((f["ts"] - lat["ts"]) / 60.0, 1) if lat and f["ts"] >= lat["ts"] else None
         dam = (f["fill"] - al) if (al is not None and f["fill"] is not None) else None
+        # [CAUSAL-AUDIT STANDING] EARNED/GIFT stamp + chain on every ledger row.
+        # EARNED = the doctrine's mechanism demonstrably produced the price:
+        # faller filled below window-open (dip delivered to our level) or entry
+        # below burst-FV. GIFT = price at/above open/FV, outcome rides the tape
+        # (the riser-side concession class: riser_post~0 = zero-discount by design).
+        wo_price = (S["wopen"].get(tk) or {}).get("price")
+        disc = (wo_price - f["fill"]) if (wo_price is not None and f["fill"] is not None) else None
+        emfb0 = S["emfb"].get(tk)
+        side = "faller" if ((f["dir"] == "underdog") or ((f["fill"] or 50) < 50)) else "riser"
+        if (side == "faller" and disc is not None and disc >= 3) or (emfb0 is not None and emfb0 <= -3):
+            stamp = "EARNED"
+        elif (emfb0 is not None and emfb0 >= 3) or (side == "riser" and disc is not None and disc <= 2):
+            stamp = "GIFT_CLASS"   # design-conceded discount; outcome = tape
+        else:
+            stamp = "MIXED" if disc is not None or emfb0 is not None else "PENDING"
+        chain = sorted({m for v in S["vplace"].get(tk, []) if v.get("ref") for m in [v["ref"]]})
         items.append({"key": f"fill:{tk}", "type": "fill", "ts": f["ts"], "ticker": tk,
+                      "stamp": stamp, "side": side, "disc_vs_open": disc, "chain": chain,
                       "cat": cat_of(tk), "dir": f["dir"], "play": f["play"], "fill": f["fill"],
                       "posted": f["posted"], "conception_cell": cell, "aim_level": al,
                       "aim_src": aim_src, "fill_minus_aim": dam,
@@ -487,8 +504,8 @@ def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, ch
         L += ["", f"**LIVE DEFECT(S) — forensic blocks written: {', '.join(forensics)}**"]
     L += ["", f"## FILLS — {len(fills)} graded (session)"]
     if fills:
-        L += ["| ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb |",
-              "|---|---|---|---|---|---|---|---|---|---|---|"]
+        L += ["| ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb | stamp |",
+              "|---|---|---|---|---|---|---|---|---|---|---|---|"]
         for f in sorted(fills, key=lambda y: y["ts"]):
             fv = fvs.get(f["ticker"], {}).get("entry_minus_fv_burst")
             dam = (f"{f['fill_minus_aim']:+d}" if f["fill_minus_aim"] is not None else "n/a")
@@ -497,7 +514,7 @@ def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, ch
                      f"| {f['cat']} | {f['dir'] or '?'} | {f['fill']} | {f['aim_level'] if f['aim_level'] is not None else 'n/a'} "
                      f"| {dam} ({src}) "
                      f"| {fv if fv is not None else '—'} | {f['mins_after_latch'] if f['mins_after_latch'] is not None else 'pre'} "
-                     f"| {f['pair_state']} | {f['combined'] or ''} |")
+                     f"| {f['pair_state']} | {f['combined'] or ''} | {f.get('stamp','')} |")
     else:
         L.append("none yet this session")
     cls_ct = defaultdict(int)

@@ -3667,22 +3667,32 @@ class LiveV3:
         restart hole, it does not re-engage live matches); never-cross via
         _reprice_target; sized entry_size like every other entry bid."""
         done = self.__dict__.setdefault("_sibling_repost_done", set())
+        _scan = {"n_pos": 0, "reasons": {}}
+        def _skip(reason):
+            _scan["reasons"][reason] = _scan["reasons"].get(reason, 0) + 1
         for tk, pos in list(self.positions.items()):
+            _scan["n_pos"] += 1
             try:
-                if (not pos.is_v4 or pos.settled or pos.phase == "settled"
-                        or pos.entry_qty <= 0 or pos.exit_filled
-                        or (pos.exit_filled_qty or 0) >= pos.entry_qty):
-                    continue
+                if not pos.is_v4:
+                    _skip("not_v4"); continue
+                if pos.settled or pos.phase == "settled":
+                    _skip("settled"); continue
+                if pos.entry_qty <= 0:
+                    _skip("no_entry_qty"); continue
+                if pos.exit_filled or (pos.exit_filled_qty or 0) >= pos.entry_qty:
+                    _skip("exited"); continue
                 et = pos.event_ticker or tk.rsplit("-", 1)[0]
-                if et in done or et in self._events_live:
-                    continue
+                if et in done:
+                    _skip("done_this_session"); continue
+                if et in self._events_live:
+                    _skip("event_live"); continue
                 sib = self._sibling_ticker(tk, et)
                 if not sib:
-                    continue   # sibling ticker unknown (pre-discovery) -- retry next pass
+                    _skip("sibling_unknown"); continue   # pre-discovery -- retry next pass
                 sp = self.positions.get(sib)
                 if sp is not None:
                     if sp.entry_qty > 0 or sp.settled or sp.phase == "settled":
-                        continue   # sibling genuinely engaged (filled/settled)
+                        _skip("sibling_engaged"); continue
                     alive = False
                     if sp.phase == "entry_resting" and sp.entry_order_id:
                         _od = await api_get(self.session, self.ak, self.pk,
@@ -3690,7 +3700,7 @@ class LiveV3:
                         _st = ((_od or {}).get("order") or {}).get("status", "")
                         alive = (_st == "resting")
                     if alive:
-                        continue   # real resting bid on the exchange -- not our hole
+                        _skip("sibling_bid_alive"); continue
                     # GHOST: entry_resting restored from state with a dead/absent order
                     # (WATSHI 20:32 boot: SHI came back entry_resting on the 19:57-
                     # cancelled order id and blocked the repost). Heal it in place.
@@ -3747,6 +3757,13 @@ class LiveV3:
                 self._save_v4_resting()
             except Exception as e:
                 self._log("sibling_repost_error", {"error": str(e)[:160]}, ticker=tk)
+        # one observability line per pass, only when the scan saw positions at all
+        # and did nothing (the silent-skip class that hid the WATSHI ghost)
+        if _scan["n_pos"] and _scan["reasons"]:
+            _key = json.dumps(_scan["reasons"], sort_keys=True)
+            if getattr(self, "_sibling_scan_last", "") != _key:
+                self._sibling_scan_last = _key
+                self._log("sibling_repost_scan", _scan)
 
     async def _pair_governor_scoot_eval(self, tk, et, this_basis, sib, sp):
         """[C-PAIR-GOVERNOR rev] leg-1 (tk) just filled; sp = sibling resting UNFILLED entry bid

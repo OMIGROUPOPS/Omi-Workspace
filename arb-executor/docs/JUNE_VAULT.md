@@ -406,6 +406,12 @@ The walk-augmented replay (`analysis/stranded/OMQS_P6_CAPPED_WALK.md`, `p6.py`).
 
 ---
 
+## 4I. C-BOUND-RULING + THE CLOCK VERDICT (2026-07-05)
+
+**C-BOUND-RULING (operator adjudication of the three-bound coexistence; DEPLOYED 21eaad4 via the gate, PID 3669830, boot 19:24:47 ET):** every resting/reprice/completion path bounds combined at <= combined_goal (97) -- the 99 completion ceiling is DEAD on every branch of _completion_target (paired_cap_enforced / completion_combined_ceiling now inert there); the emergency complete_cross caps at <= 100 (par) AND never buys a leg outside 5-95c (cross_bounds_ok, pure; IEMBER-98/DELNIC-101 classes dead; DALARI boundary 6+94=100 remains reachable under the verbatim ruling -- one-word tighten if intended dead). V3 tripwire re-keyed to goal-breach with a boot-grace window (V4_COMPLETION_FRESHNESS_SEC+120s) so stale pre-ruling bids cannot kill the mechanism on old law. Tests: arb-executor/tests/test_bound_ruling.py (three bars, exhaustive sweeps) -- ALL BARS HOLD local + VPS. The <=2c noise band is owned by reaim_on_sibling_arrival CANCELS (armed), repost skip, fallback flat.
+
+**THE CLOCK VERDICT (measurement, .claude/nightly_20260705/CLOCK_AUDIT.md, 560298a5):** kalshi_schedule_primary == Kalshi expected_expiration_time exactly (144/144 box events) -- a CARD/SESSION MARKER (hour-quantized, duplicated across cards; mains list ONE time for the whole card), NOT a match time, NOT tz-shifted. Honest anchor = state/schedule.json (TE/ESPN per-match, 15-min refresh). The tape gun is CERTIFIED against it on ITF/CHALL (median +4..9m, 75% within +-30m) and INVALID on _MAIN (fires hours early on premarket volume). Vs the honest clock: CHALL best-fillable moments sit at median T-1..-5m with our posts 2h+ earlier; **ITF has NO premarket at all** (even first posts land T+7..+24m after true start) -- the ITF half_timing leak IS this fact; deliverable (c) pre-T-4h-card-clock = the real ITF premarket. This RESOLVES the vault 0A debt 'tts@fill measured against scheduled start' with a named honest anchor.
+
 ## 5. THE OPERATOR'S THESIS (his words, hold them)
 
 - The bleed is the games where we fill ONE side, at a BAD price, and that side is the falling knife — NOT the clean under-100 pairs.

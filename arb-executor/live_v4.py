@@ -3677,8 +3677,26 @@ class LiveV3:
                 if et in done or et in self._events_live:
                     continue
                 sib = self._sibling_ticker(tk, et)
-                if not sib or sib in self.positions:
-                    continue   # sibling unknown, or already engaged -- not our hole
+                if not sib:
+                    continue   # sibling ticker unknown (pre-discovery) -- retry next pass
+                sp = self.positions.get(sib)
+                if sp is not None:
+                    if sp.entry_qty > 0 or sp.settled or sp.phase == "settled":
+                        continue   # sibling genuinely engaged (filled/settled)
+                    alive = False
+                    if sp.phase == "entry_resting" and sp.entry_order_id:
+                        _od = await api_get(self.session, self.ak, self.pk,
+                            "/trade-api/v2/portfolio/orders/%s" % sp.entry_order_id, self.rl)
+                        _st = ((_od or {}).get("order") or {}).get("status", "")
+                        alive = (_st == "resting")
+                    if alive:
+                        continue   # real resting bid on the exchange -- not our hole
+                    # GHOST: entry_resting restored from state with a dead/absent order
+                    # (WATSHI 20:32 boot: SHI came back entry_resting on the 19:57-
+                    # cancelled order id and blocked the repost). Heal it in place.
+                    self._log("sibling_repost_ghost", {
+                        "event": et, "ghost_order_id": sp.entry_order_id,
+                        "ghost_price": sp.entry_price}, ticker=sib)
                 basis = int(round(pos.entry_price or 0))
                 if basis <= 0:
                     continue
@@ -3707,12 +3725,21 @@ class LiveV3:
                     self._log("sibling_repost_failed", {
                         "event": et, "leg1_basis": basis, "level": price}, ticker=sib)
                     continue
-                self.positions[sib] = Position(
-                    ticker=sib, event_ticker=et, category=cat, direction="",
-                    cell_name="", cell_cfg={}, entry_price=price, entry_qty=0,
-                    phase="entry_resting", is_v4=True,
-                    play_type="v4_sibling_repost", entry_order_id=oid,
-                    target_price=price, entry_mode="resting_maker")
+                sp2 = self.positions.get(sib)
+                if sp2 is not None:      # healed ghost: reuse the object in place
+                    sp2.entry_price = price
+                    sp2.target_price = price
+                    sp2.entry_order_id = oid
+                    sp2.entry_mode = "resting_maker"
+                    sp2.phase = "entry_resting"
+                    sp2.play_type = "v4_sibling_repost"
+                else:
+                    self.positions[sib] = Position(
+                        ticker=sib, event_ticker=et, category=cat, direction="",
+                        cell_name="", cell_cfg={}, entry_price=price, entry_qty=0,
+                        phase="entry_resting", is_v4=True,
+                        play_type="v4_sibling_repost", entry_order_id=oid,
+                        target_price=price, entry_mode="resting_maker")
                 self._log("sibling_repost_placed", {
                     "event": et, "leg1": tk[-12:], "leg1_basis": basis,
                     "aim": aim, "goal_level": goal_level, "level": price,

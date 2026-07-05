@@ -152,6 +152,13 @@ def parse_session(log_path):
                     S["open_bids"][oid] = {"tk": tk, "price": d.get("price"), "ts": ts}
             elif e == "fv_burst_anchor" and tk:
                 S["emfb"][tk] = d.get("entry_minus_fv_burst")
+            elif e in ("reconcile_v4_adopted", "reconcile_v4_exit_found") and tk and tk not in S["fills"]:
+                # boot re-adoptions that do NOT re-emit entry_filled (exit_found path):
+                # without these the board loses open pairs across restarts. exit_found
+                # carries no avg -> cell_id (derived from entry basis) stands in.
+                _basis = d.get("avg", d.get("cell_id"))
+                S["fills"][tk] = {"ts": ts, "fill": _basis, "posted": _basis, "dir": "",
+                                  "play": e, "qty": d.get("qty"), "src": e}
             elif e in ("error", "on_bbo_update_error"):
                 S["errors"].append({"ts": ts, "kind": e, "err": str(d.get("error"))[:160]})
             elif e == "match_live_grace_armed":

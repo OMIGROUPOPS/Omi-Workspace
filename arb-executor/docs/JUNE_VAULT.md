@@ -84,6 +84,51 @@ Closure over deferral — structural negatives get closed, not queued; deferred 
 
 ---
 
+## 0B. MEASURE-BEFORE-READ — the build-level re-derivation failure; the prior-art gate is its fix (2026-07-05, operator ruling)
+
+§0 names the session-level loop (re-derive → declare → forget). This is its BUILD-level form: **we measured,
+built, and even armed against facts the record already held.** The 2026-07-05 clock audit re-derived, as
+findings, all of the following — each on disk BEFORE the audit ran:
+- **ROADMAP.md T51 (:211, 2026-06-01):** "`occurrence_datetime`/`expected_expiration_time` are frozen coarse
+  placeholders"; LESSONS §6 same date: "frozen coarse placeholders — **uniform noon-UTC** across all main-draw
+  matches." — the audit's "card/session marker" verdict, four weeks early.
+- **T51_HARDENING_SPEC.md:8:** the T-15m entry buffer fires at the wrong wall-clock off a locked-on-first,
+  stale/drifting placeholder.
+- **C32 (2026-05-12):** `expected_expiration_ts > settlement_ts` on 100% of the probe sample.
+- **OSOWAL (OMQS_LIVE_DUMP_2026-06-30.md):** fills 8–10h after "scheduled start". **SHINIS
+  (OMQS_LIVE_FORENSIC_SHINIS.md):** scheduled-vs-gun divergence measured live (gun tts −16min).
+- Sharpest: **`kalshi_schedule_primary` was ARMED (Jul 2; drift captured to VC in ba08243) promoting a
+  KNOWN-coarse placeholder to THE primary clock — its characterization was already on disk.**
+
+**THE HALF-FIX CHAIN (the exhibit's spine — four generations of one fix, never assembled whole until Part 1):**
+- **Gen 1 — TE/ESPN as authority, but in the GATING role.** The honest per-match source was wired as a
+  participation gate: no resolver match → `schedule_gap` HARD-SKIP (never trade the event). The disease:
+  authority used to decide WHETHER, not WHEN.
+- **Gen 2 — C-KALSHI-OCC (June 30): the correct whole design, in its own comments.** "COARSE start source —
+  wide envelope + tape latch": `_kalshi_occ_start` (guarded coarse source) + `_coarse_window_closed` (no
+  T-15/T-0 lock on a coarse clock; the tape governs the real start). Built, gated
+  (`kalshi_occurrence_fallback`), **NEVER ARMED.**
+- **Gen 3 — `kalshi_schedule_primary` (armed Jul 2): Gen 2's SOURCE without its ENVELOPE.** The source swap
+  promoted the known-coarse placeholder into the legacy TIGHT window (T-4h lead, T-15/T-0 locks). **The
+  regression: a ratified design shipped in halves.**
+- **Gen 4 — untouched calibration:** the entry lead constant (`V4_MAX_PLACEMENT_SEC` = 14400s, "T-4h") stayed
+  calibrated against the placeholder clock — "T-4h" counted from a marker that runs +4.1–4.4h late on ITF
+  **= no ITF premarket** (first posts land T+7..+24m after true start; the half_timing leak wears this).
+- **Part 1 (STAGED ce38ca8c, blend/kalshi-occ-fallback) = the first full assembly:** per-match TE/ESPN clock
+  (timing role, not gating) + wide-envelope fallback (per-cat widening, placeholder clock) + timing-only scope
+  (liveness/abandon/exit/completion untouched, tape supremacy absolute). Spec: .claude/rulings/PART1_SPEC.md.
+
+**THE FIX — THE PRIOR-ART GATE (standing law, joins C40's lint+smoke):** every build/measurement/audit doc
+OPENS with a prior-art section — grep LESSONS + VAULT(+APPENDIX) + ROADMAP + .claude/rulings/, cite what's
+established (codes, verbatim lines), state the DELTA — or "no prior art after grep" with the grep shown.
+**Prior art includes STAGED-BUT-NEVER-ARMED builds — check the gated flags inventory, not just the lessons;
+a designed-whole fix must never ship in halves.** Law text: .claude/rulings/PRIOR_ART_GATE.md; lookup:
+.claude/PRIOR_ART_INDEX.md; lesson code C45 (LESSONS.md, blend/kalshi-occ-fallback).
+
+The audit's genuine DELTA stands and is vaulted in 4I: per-cat offset quantification (+1.8h CHALL /
++4.1–4.4h ITF / mains negative), gun certification vs an independent anchor, ITF-has-no-premarket. The
+failure is not that we measured — it is that we measured what we could have read, and armed against it.
+
 ## 1. WHAT'S SETTLED — DO NOT RE-OPEN
 
 ### Entry method: SOLVED and DEPLOYED.
@@ -407,6 +452,18 @@ The walk-augmented replay (`analysis/stranded/OMQS_P6_CAPPED_WALK.md`, `p6.py`).
 ---
 
 ## 4I. C-BOUND-RULING + THE CLOCK VERDICT (2026-07-05)
+
+**Prior art (retroactive, per the 2026-07-05 gate — what was established vs delta):**
+- *Bound ruling:* established — T50 `_paired_basis_ok` working (§1, June 3: 1,440 skips, zero false-blocks);
+  paired_cap BANNED lineage + completion_combined_ceiling leak (C-CAP-REMOVAL residue, CASOSO-112; LESSONS
+  C42); over-par ~0% live (§1, 1 leg in 591). DELTA = the operator's adjudication itself: ONE law (≤97
+  resting/reprice/completion on every branch, cross ≤100 + 5-95¢ legs), the 99-ceiling declared dead, the
+  tripwire re-keyed — resolution of the three-bound COEXISTENCE, which no prior doc ruled on.
+- *Clock verdict:* established — the placeholder characterization (ROADMAP T51:211 "frozen coarse
+  placeholders"; LESSONS §6 "uniform noon-UTC"; T51_HARDENING_SPEC.md:8 buffer-on-wrong-clock; C32
+  expiration>settlement 100%; OSOWAL, SHINIS). DELTA = per-cat offset quantification, gun certification
+  against the independent TE/ESPN anchor (valid ITF/CHALL, invalid _MAIN), ITF-has-no-premarket. The
+  re-derived portion is the §0B MEASURE-BEFORE-READ exhibit.
 
 **C-BOUND-RULING (operator adjudication of the three-bound coexistence; DEPLOYED 21eaad4 via the gate, PID 3669830, boot 19:24:47 ET):** every resting/reprice/completion path bounds combined at <= combined_goal (97) -- the 99 completion ceiling is DEAD on every branch of _completion_target (paired_cap_enforced / completion_combined_ceiling now inert there); the emergency complete_cross caps at <= 100 (par) AND never buys a leg outside 5-95c (cross_bounds_ok, pure; IEMBER-98/DELNIC-101 classes dead; DALARI boundary 6+94=100 remains reachable under the verbatim ruling -- one-word tighten if intended dead). V3 tripwire re-keyed to goal-breach with a boot-grace window (V4_COMPLETION_FRESHNESS_SEC+120s) so stale pre-ruling bids cannot kill the mechanism on old law. Tests: arb-executor/tests/test_bound_ruling.py (three bars, exhaustive sweeps) -- ALL BARS HOLD local + VPS. The <=2c noise band is owned by reaim_on_sibling_arrival CANCELS (armed), repost skip, fallback flat.
 

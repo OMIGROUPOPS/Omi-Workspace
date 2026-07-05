@@ -377,17 +377,27 @@ def analyze(S, aim, goal, bid_grades=None):
                           "latch_ts": lat["ts"], "fill": f["fill"], "detail":
                           f"fill {f['fill']}c {round((f['ts']-lat['ts'])/60.0,1)}min past latch (grace {GRACE_SEC}s)"})
 
-    # ---- ZT 2: combined_over_goal ----
+    # ---- ZT 2: combined_over_goal (path-tagged: defect vs armed-design bounds) ----
     for ev, legs in ev_fills.items():
         if len(legs) >= 2:
             comb = sum((f["fill"] or 0) for _, f in legs)
             if comb > goal:
                 last_ts = max(f["ts"] for _, f in legs)
+                plays = {(f.get("play") or "") + "/" + (f.get("src") or "") for _, f in legs}
+                blob = " ".join(plays)
+                if "complete_cross" in blob:
+                    path, design = "complete_cross_insurance", "cap102 by design (d?)"
+                elif "completion_reprice" in blob:
+                    path, design = "completion_ceiling", "cap99 by design (d2ac207)"
+                elif "fallback" in blob:
+                    path, design = "t20m_fallback", "DEFECT until C-FALLBACK-BOUND (733341f)"
+                else:
+                    path, design = "organic", "DEFECT-CLASS"
                 items.append({"key": f"zt:combined_over_goal:{ev}", "type": "violation",
                               "cls": "combined_over_goal", "ts": last_ts, "event": ev,
-                              "combined": comb, "goal": goal,
+                              "combined": comb, "goal": goal, "path": path,
                               "legs": [{"tk": tk, "fill": f["fill"]} for tk, f in legs],
-                              "detail": f"pair combined {comb}c > goal {goal}c"})
+                              "detail": f"pair combined {comb}c > goal {goal}c [{path}: {design}]"})
 
     # ---- ZT 3: walk_cap_breach (premarket only: event has NO fills yet at buy time) ----
     for tk, buys in S["buys"].items():
@@ -403,6 +413,14 @@ def analyze(S, aim, goal, bid_grades=None):
                 continue
             vp = [v for v in S["vplace"][tk] if abs(v["ts"] - b["ts"]) < 10]
             ref = vp[-1]["ref"] if vp else None
+            if ref is None:
+                # no v4_place correlation = completion/fallback/cross posting sites
+                # (their pricing is governed by their own bounds, not the premarket
+                # walk cap -- JANRYA 07-05 false positive). Info line, not ZT.
+                items.append({"key": f"uncorr:{tk}:{int(b['ts'])}", "type": "pattern",
+                              "pattern": "uncorrelated_buy_above_ceiling", "ts": b["ts"],
+                              "ticker": tk, "price": b["price"], "ceiling": ceiling})
+                continue
             items.append({"key": f"zt:walk_cap_breach:{tk}:{int(b['ts'])}", "type": "violation",
                           "cls": "walk_cap_breach", "ts": b["ts"], "ticker": tk,
                           "price": b["price"], "conception_cell": cell, "ceiling": ceiling,

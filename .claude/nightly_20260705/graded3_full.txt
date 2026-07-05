@@ -1,0 +1,273 @@
+=== A-F LEDGER (per game, 6 categories) ===
+GAME                                   cat        gr nlg comb  FVa  FVb    pnl  named_error / forfeit
+ATPCHALLENGER-26JUL05CAMBID            ATP_CHALL  A    2   96    3    8   1.05  clean 
+ATPCHALLENGER-26JUL05CARCER            ATP_CHALL  A    2   97    3    0   0.45  clean 
+ATPCHALLENGER-26JUL05DALARI            ATP_CHALL  A    2  100    0    1   0.00  clean 
+ATPCHALLENGER-26JUL05GOMMAJ            ATP_CHALL  A    2   97   15   15   1.15  clean 
+ATPCHALLENGER-26JUL05MACBRA            ATP_CHALL  A    2   97    4    1   0.05  clean 
+ATPCHALLENGER-26JUL05PAPPAR            ATP_CHALL  A    2   97    5   15   1.05  clean 
+ATPCHALLENGER-26JUL05PARHAM            ATP_CHALL  A    2   97    3    4   0.05  clean 
+ATPCHALLENGER-26JUL05PIELAR            ATP_CHALL  A    2   96    2   10   0.55  clean 
+ATPCHALLENGER-26JUL05RAMNEU            ATP_CHALL  A    2   97    2   10   0.40  clean 
+ATPCHALLENGER-26JUL05RAQMAS            ATP_CHALL  A    2   94    0   11   0.65  clean 
+ATPCHALLENGER-26JUL05SEGHAB            ATP_CHALL  A    2   91    5    5   0.35  clean 
+ATPCHALLENGER-26JUL05SEIMOL            ATP_CHALL  A    2   95    0    7   0.90  clean 
+ATPCHALLENGER-26JUL05SLABAS            ATP_CHALL  A    2   97    2    4   0.00  clean 
+ATPCHALLENGER-26JUL05TIXLEC            ATP_CHALL  A    2   97    1    2   0.05  clean 
+ATPCHALLENGER-26JUL05VILKOV            ATP_CHALL  A    2   97    5    9   1.15  clean 
+ATPCHALLENGER-26JUL04HERPDA            ATP_CHALL  B    2   99   -1    1   1.10  clean 
+ATPCHALLENGER-26JUL05ALBZOR            ATP_CHALL  B    2   97    4   -2   0.55  clean 
+ATPCHALLENGER-26JUL05BASRIB            ATP_CHALL  B    2   96   -1   11   0.40  clean 
+ATPCHALLENGER-26JUL05DIACEC            ATP_CHALL  B    2   96   -4    5   1.30  clean 
+ATPCHALLENGER-26JUL05FELMOE            ATP_CHALL  B    2   97   -1   11   0.30  clean 
+ATPCHALLENGER-26JUL05JANRYA            ATP_CHALL  B    2   99    1   -4   0.40  clean 
+ATPCHALLENGER-26JUL05SZYSTR            ATP_CHALL  B    2   96    5   -3   1.15  clean 
+ATPCHALLENGER-26JUL05WEHIFI            ATP_CHALL  B    2   95   -7   12   0.20  clean 
+ATPCHALLENGER-26JUL04LEGWIN            ATP_CHALL  C    2  102   -1    1  -1.50  combined 102c >100 (over-par) 2.0c
+ATPCHALLENGER-26JUL05BERBOC            ATP_CHALL  C    2   97    1   22  -0.15  directional hold settled -$1.10 1.1c
+ATPCHALLENGER-26JUL05COVDEL            ATP_CHALL  C    2   99   29  -22   1.35  1 leg deep-neg FV (-22c COV) fragile shape 22.0c
+ATPCHALLENGER-26JUL05CRIRUB            ATP_CHALL  C    2   97    2   13  -3.25  directional hold settled -$3.60 3.6c
+ATPCHALLENGER-26JUL05DESYEV            ATP_CHALL  C    2   97   -9   12   0.35  1 leg deep-neg FV (-9c DES) fragile shape 9.0c
+ATPCHALLENGER-26JUL05IEMBER            ATP_CHALL  C    2  102    4   -1   0.05  combined 102c >100 (over-par) 2.0c
+ATPCHALLENGER-26JUL05ILAPLU            ATP_CHALL  C    2  101    0    0   0.00  combined 101c >100 (over-par) 1.0c
+ATPCHALLENGER-26JUL05KUZMAT            ATP_CHALL  C    2   97   -2   -5   0.60  zero-discount pair (both FV<=0, no dip capture) 7.0c
+ATPCHALLENGER-26JUL05LUZSAN            ATP_CHALL  C    2   97    9   -4  -3.60  directional hold settled -$3.90 3.9c
+ATPCHALLENGER-26JUL05MARDUR            ATP_CHALL  C    2   97   -6   12  -2.75  directional hold settled -$3.15 3.1c
+ATPCHALLENGER-26JUL05MELWAL            ATP_CHALL  C    2   97   28  -22  -0.75  1 leg deep-neg FV (-22c MEL) fragile shape 22.0c
+ATPCHALLENGER-26JUL05NIJBER            ATP_CHALL  C    2   97   19   -9   1.25  1 leg deep-neg FV (-9c NIJ) fragile shape 9.0c
+ATPCHALLENGER-26JUL05PRIROT            ATP_CHALL  C    2   97   13  -19  -0.40  1 leg deep-neg FV (-19c ROT) fragile shape 19.0c
+ATPCHALLENGER-26JUL05RATRAH            ATP_CHALL  C    2   97  -44   22   1.20  1 leg deep-neg FV (-44c RAH) fragile shape 44.0c
+ATPCHALLENGER-26JUL05SCHDE             ATP_CHALL  C    2   99   -2    0   1.30  zero-discount pair (both FV<=0, no dip capture) 2.0c
+ATPCHALLENGER-26JUL05SCIORA            ATP_CHALL  C    2   97   13  -11   1.10  1 leg deep-neg FV (-11c SCI) fragile shape 11.0c
+ATPCHALLENGER-26JUL05SMIPIR            ATP_CHALL  C    2   97  -10    3  -0.35  1 leg deep-neg FV (-10c PIR) fragile shape 10.0c
+ATPCHALLENGER-26JUL05STALOC            ATP_CHALL  C    2   97  -27    8   0.05  1 leg deep-neg FV (-27c STA) fragile shape 27.0c
+ATPCHALLENGER-26JUL05UTADEV            ATP_CHALL  C    2   97    0   -7   1.25  zero-discount pair (both FV<=0, no dip capture) 7.0c
+ATPCHALLENGER-26JUL05VALREJ            ATP_CHALL  C    2   96  -21   -6   1.30  1 leg deep-neg FV (-21c VAL) fragile shape 21.0c
+ATPCHALLENGER-26JUL05WEIHOE            ATP_CHALL  C    2   96    0  -35   1.20  1 leg deep-neg FV (-35c WEI) fragile shape 35.0c
+ATPCHALLENGER-26JUL05BLIPET            ATP_CHALL  D    1         0    -   0.00  half-armed naked single (open/held) 
+ATPCHALLENGER-26JUL05INGFEL            ATP_CHALL  D    1        -3    -   0.00  half-armed naked single (open/held) 
+ATPCHALLENGER-26JUL05IVAGAN            ATP_CHALL  D    1         0    -   0.00  half-armed naked single (open/held) 
+ATPCHALLENGER-26JUL05MARZAN            ATP_CHALL  D    1        -4    -   0.20  half-armed naked single (exited green, luck-dire 
+ATPCHALLENGER-26JUL05POTANG            ATP_CHALL  D    1        -1    -   0.00  half-armed naked single (open/held) 
+ATPCHALLENGER-26JUL05STEDIN            ATP_CHALL  D    1       -14    -   0.00  half-armed naked single (open/held) 
+ATPCHALLENGER-26JUL05VILPUR            ATP_CHALL  D    1       -14    -   0.00  half-armed naked single (open/held) 
+ATPCHALLENGER-26JUL04WATSHI            ATP_CHALL  F    1         0    -  -0.10  half-armed naked single -> settled LOSS 0.1c
+ATPCHALLENGER-26JUL05CHESPE            ATP_CHALL  F    1       -22    -  -1.95  half-armed naked single -> settled LOSS 1.9c
+ATPCHALLENGER-26JUL05DONGRE            ATP_CHALL  F    1       -11    -  -0.95  half-armed naked single -> settled LOSS 0.9c
+ATPCHALLENGER-26JUL05FRUSIN            ATP_CHALL  F    1        -3    -  -0.25  half-armed naked single -> settled LOSS 0.2c
+ATPCHALLENGER-26JUL05MARNVS            ATP_CHALL  F    1         3    -  -0.25  half-armed naked single -> settled LOSS 0.2c
+ATPCHALLENGER-26JUL05SEYMAJ            ATP_CHALL  F    1         0    -  -0.20  half-armed naked single -> settled LOSS 0.2c
+ATP-26JUL05SAFDJO                      ATP_MAIN   A    2  100    1    1   0.25  clean 
+ATP-26JUL05AUGDAV                      ATP_MAIN   D    1        -1    -   0.00  half-armed naked single (open/held) 
+ATP-26JUL05HURSTR                      ATP_MAIN   D    1         0    -   0.00  half-armed naked single (open/held) 
+ITF-26JUL05ELIAZO                      ITF_M      A    2   97    6    4   0.05  clean 
+ITF-26JUL05RECDUB                      ITF_M      A    2   97   27    8   1.25  clean 
+ITF-26JUL05LENJON                      ITF_M      B    2   97   -5   15   1.25  clean 
+ITF-26JUL05MORHAU                      ITF_M      B    2   89   -4   16   0.95  clean 
+ITF-26JUL04ZAMBRI                      ITF_M      C    2  104   -3  -11   1.00  combined 104c >100 (over-par) 4.0c
+ITF-26JUL05BOUDOU                      ITF_M      C    2   97  -20   28   1.25  1 leg deep-neg FV (-20c DOU) fragile shape 20.0c
+ITF-26JUL05DELNIC                      ITF_M      C    2  101  -16   13  -3.40  combined 101c >100 (over-par) 1.0c
+ITF-26JUL05SALCON                      ITF_M      D    1       -14    -   0.00  half-armed naked single (open/held) 
+ITF-26JUL05SHVFAU                      ITF_M      D    1         5    -   0.00  half-armed naked single (open/held) 
+ITFW-26JUL05COHTSE                     ITF_W      A    2   97    0   12   0.80  clean 
+ITFW-26JUL05MUNGAD                     ITF_W      A    2   97    8    0   0.40  clean 
+ITFW-26JUL05PRIYUL                     ITF_W      A    2   95    9    4   0.15  clean 
+ITFW-26JUL04ZANSIE                     ITF_W      C    2   71  -19    8   1.90  1 leg deep-neg FV (-19c ZAN) fragile shape 19.0c
+ITFW-26JUL05KUHEBE                     ITF_W      C    2   93   33  -18  -1.15  1 leg deep-neg FV (-18c KUH) fragile shape 18.0c
+ITFW-26JUL05MONFER                     ITF_W      C    2   94   -3   -4   1.15  zero-discount pair (both FV<=0, no dip capture) 7.0c
+ITFW-26JUL05TRAABB                     ITF_W      C    2   98   13   -9   0.85  1 leg deep-neg FV (-9c ABB) fragile shape 9.0c
+ITFW-26JUL05TUBSOB                     ITF_W      C    2   99   13  -11   0.00  1 leg deep-neg FV (-11c SOB) fragile shape 11.0c
+ITFW-26JUL05AITDAE                     ITF_W      D    1         4    -   0.20  half-armed naked single (exited green, luck-dire 
+ITFW-26JUL05ALVJOH                     ITF_W      D    1       -16    -   0.00  half-armed naked single (open/held) 
+ITFW-26JUL05BUYCOH                     ITF_W      D    1       -12    -   0.20  half-armed naked single (exited green, luck-dire 
+ITFW-26JUL05VARGRO                     ITF_W      D    1        -5    -   0.08  half-armed naked single (exited green, luck-dire 
+ITFW-26JUL04BROKOI                     ITF_W      F    1        23    -  -2.10  half-armed naked single -> settled LOSS 2.1c
+ITFW-26JUL04MAXSTE                     ITF_W      F    1        21    -  -0.70  half-armed naked single -> settled LOSS 0.7c
+ITFW-26JUL05DEKCAK                     ITF_W      F    1        15    -  -1.25  half-armed naked single -> settled LOSS 1.2c
+ITFW-26JUL05KARMAT                     ITF_W      F    1         6    -  -0.05  half-armed naked single -> settled LOSS 0.1c
+ITFW-26JUL05LIMHAG                     ITF_W      F    1         9    -  -0.65  half-armed naked single -> settled LOSS 0.7c
+ITFW-26JUL05SPIGAR                     ITF_W      F    1         6    -  -0.05  half-armed naked single -> settled LOSS 0.1c
+WTACHALLENGER-26JUL05BARPOP            WTA_CHALL  A    2   97    0    5   1.15  clean 
+WTACHALLENGER-26JUL05BAYMAR            WTA_CHALL  A    2   99    2   19   0.90  clean 
+WTACHALLENGER-26JUL05KUDBOU            WTA_CHALL  A    2   97    0    4   0.33  clean 
+WTACHALLENGER-26JUL05MORNGU            WTA_CHALL  A    2   97    3    1   0.50  clean 
+WTACHALLENGER-26JUL05HERVAI            WTA_CHALL  B    2   97   -3    5   1.05  clean 
+WTACHALLENGER-26JUL05MONGIM            WTA_CHALL  B    2   97    1   -5   1.20  clean 
+WTACHALLENGER-26JUL05DITLEW            WTA_CHALL  C    2   97    5  -14   1.15  1 leg deep-neg FV (-14c LEW) fragile shape 14.0c
+WTACHALLENGER-26JUL05MORKOT            WTA_CHALL  C    2   97    6  -57   0.50  1 leg deep-neg FV (-57c KOT) fragile shape 57.0c
+WTA-26JUL05PEGJOV                      WTA_MAIN   A    2   97    1    4   1.30  clean 
+WTA-26JUL05SABOSA                      WTA_MAIN   A    2  100    1    0   0.00  clean 
+WTA-26JUL05MUCKRE                      WTA_MAIN   D    2  110    1   -9   1.35  combined 110c >>100 (structurally doomed pair) 10.0c
+
+=== GRADE DISTRIBUTION BY CATEGORY ===
+cat          A  B  C  D  F  total
+ATP_CHALL   15  8 21  7  6  57
+ATP_MAIN     1  0  0  2  0  3
+ITF_M        2  2  3  2  0  9
+ITF_W        3  0  5  4  6  18
+WTA_CHALL    4  2  2  0  0  8
+WTA_MAIN     2  0  0  1  0  3
+TOTAL       27 12 31 16 12  98
+
+=== BELOW-B MECHANICAL CHAINS (every C/D/F, one line) ===
+[C] ATPCHALLENGER-26JUL04LEGWIN (ATP_CHALL) sib_rested=2 forfeit~2.0c pnl$-1.50 | DOMAIN: combined>100 over-par (per_side/entry-pricing leak)
+      WIN:? fill48c FV-1 place@T-122 gun-57m src=staircase_hold settle_LOSS $-2.40
+      LEG:leader fill54c FV1 place@T-87 gun-17m src=staircase_hold exit_FILL $0.90
+[C] ATPCHALLENGER-26JUL05BERBOC (ATP_CHALL) sib_rested=2 forfeit~1.1c pnl$-0.15 | DOMAIN: exit-harvest FUCKUP-3 (NOT a participation flag)
+      BER:underdog fill22c FV1 place@T-239 gun-0m src=None settle_LOSS $-1.10
+      BOC:leader fill75c FV22 place@T-239 gun+43m src=None exit_FILL $0.95
+[C] ATPCHALLENGER-26JUL05COVDEL (ATP_CHALL) sib_rested=2 forfeit~22.0c pnl$1.35 | DOMAIN: fragile leg (bought above tape onset)
+      DEL:leader fill68c FV29 place@T-137 gun+71m src=staircase_hold exit_FILL $1.00
+      COV:underdog fill31c FV-22 place@T-239 gun+56m src=None exit_FILL $0.35
+[C] ATPCHALLENGER-26JUL05CRIRUB (ATP_CHALL) sib_rested=2 forfeit~3.6c pnl$-3.25 | DOMAIN: exit-harvest FUCKUP-3 (NOT a participation flag)
+      RUB:leader fill72c FV2 place@T-172 gun-1m src=staircase_hold settle_LOSS $-3.60
+      CRI:underdog fill25c FV13 place@T-239 gun-59m src=None exit_FILL $0.35
+[C] ATPCHALLENGER-26JUL05DESYEV (ATP_CHALL) sib_rested=2 forfeit~9.0c pnl$0.35 | DOMAIN: fragile leg (bought above tape onset)
+      DES:underdog fill29c FV-9 place@T-239 gun+9m src=None exit_FILL $0.35
+      YEV:leader fill68c FV12 place@T-224 gun-7m src=staircase_hold OPEN $0.00
+[C] ATPCHALLENGER-26JUL05IEMBER (ATP_CHALL) sib_rested=2 forfeit~2.0c pnl$0.05 | DOMAIN: combined>100 over-par (per_side/entry-pricing leak)
+      IEM:underdog fill4c FV4 place@T-239 gun-0m src=staircase_hold settle_LOSS $-0.20
+      BER:leader fill98c FV-1 place@T-239 gun-6m src=None exit_FILL $0.25
+[C] ATPCHALLENGER-26JUL05ILAPLU (ATP_CHALL) sib_rested=2 forfeit~1.0c pnl$0.00 | DOMAIN: combined>100 over-par (per_side/entry-pricing leak)
+      ILA:leader fill95c FV0 place@T-239 gun-19m src=None OPEN $0.00
+      PLU:underdog fill6c FV0 place@T-239 gun+6m src=None OPEN $0.00
+[C] ATPCHALLENGER-26JUL05KUZMAT (ATP_CHALL) sib_rested=2 forfeit~7.0c pnl$0.60 | DOMAIN: zero-discount (per_side domain)
+      MAT:underdog fill7c FV-2 place@T-238 gun+149m src=None exit_FILL $0.20
+      KUZ:leader fill90c FV-5 place@T-238 gun+1m src=None exit_FILL $0.40
+[C] ATPCHALLENGER-26JUL05LUZSAN (ATP_CHALL) sib_rested=2 forfeit~3.9c pnl$-3.60 | DOMAIN: exit-harvest FUCKUP-3 (NOT a participation flag)
+      LUZ:? fill19c FV9 place@T-239 gun+58m src=None exit_FILL $0.30
+      SAN:leader fill78c FV-4 place@T-239 gun+34m src=None settle_LOSS $-3.90
+[C] ATPCHALLENGER-26JUL05MARDUR (ATP_CHALL) sib_rested=2 forfeit~3.1c pnl$-2.75 | DOMAIN: exit-harvest FUCKUP-3 (NOT a participation flag)
+      DUR:leader fill63c FV-6 place@T-222 gun+9m src=staircase_hold settle_LOSS $-3.15
+      MAR:underdog fill34c FV12 place@T-228 gun-4m src=None exit_FILL $0.40
+[C] ATPCHALLENGER-26JUL05MELWAL (ATP_CHALL) sib_rested=2 forfeit~22.0c pnl$-0.75 | DOMAIN: fragile leg (bought above tape onset)
+      WAL:leader fill63c FV28 place@T-239 gun+75m src=staircase_hold exit_FILL $0.95
+      MEL:underdog fill34c FV-22 place@T-239 gun+71m src=None settle_LOSS $-1.70
+[C] ATPCHALLENGER-26JUL05NIJBER (ATP_CHALL) sib_rested=2 forfeit~9.0c pnl$1.25 | DOMAIN: fragile leg (bought above tape onset)
+      BER:underdog fill23c FV19 place@T-240 gun+31m src=None exit_FILL $0.30
+      NIJ:? fill74c FV-9 place@T-240 gun+10m src=staircase_hold exit_FILL $0.95
+[C] ATPCHALLENGER-26JUL05PRIROT (ATP_CHALL) sib_rested=2 forfeit~19.0c pnl$-0.40 | DOMAIN: fragile leg (bought above tape onset)
+      PRI:leader fill70c FV13 place@T-225 gun+141m src=staircase_hold exit_FILL $0.95
+      ROT:underdog fill27c FV-19 place@T-212 gun+44m src=None settle_LOSS $-1.35
+[C] ATPCHALLENGER-26JUL05RATRAH (ATP_CHALL) sib_rested=2 forfeit~44.0c pnl$1.20 | DOMAIN: fragile leg (bought above tape onset)
+      RAH:leader fill58c FV-44 place@T-219 gun+29m src=staircase_hold exit_FILL $0.80
+      RAT:underdog fill39c FV22 place@T-216 gun-29m src=staircase_hold exit_FILL $0.40
+[C] ATPCHALLENGER-26JUL05SCHDE (ATP_CHALL) sib_rested=2 forfeit~2.0c pnl$1.30 | DOMAIN: zero-discount (per_side domain)
+      DE:leader fill75c FV-2 place@T-193 gun+48m src=None exit_FILL $0.95
+      SCH:underdog fill24c FV0 place@T-240 gun+41m src=staircase_hold exit_FILL $0.35
+[C] ATPCHALLENGER-26JUL05SCIORA (ATP_CHALL) sib_rested=2 forfeit~11.0c pnl$1.10 | DOMAIN: fragile leg (bought above tape onset)
+      ORA:leader fill81c FV13 place@T-239 gun+80m src=None exit_FILL $0.85
+      SCI:? fill16c FV-11 place@T-239 gun+44m src=None exit_FILL $0.25
+[C] ATPCHALLENGER-26JUL05SMIPIR (ATP_CHALL) sib_rested=2 forfeit~10.0c pnl$-0.35 | DOMAIN: fragile leg (bought above tape onset)
+      PIR:leader fill71c FV-10 place@T-179 gun+21m src=staircase_hold exit_FILL $0.95
+      SMI:underdog fill26c FV3 place@T-179 gun-41m src=staircase_hold settle_LOSS $-1.30
+[C] ATPCHALLENGER-26JUL05STALOC (ATP_CHALL) sib_rested=2 forfeit~27.0c pnl$0.05 | DOMAIN: fragile leg (bought above tape onset)
+      STA:leader fill94c FV-27 place@T-240 gun-0m src=None exit_FILL $0.20
+      LOC:underdog fill3c FV8 place@T-240 gun-5m src=staircase_hold settle_LOSS $-0.15
+[C] ATPCHALLENGER-26JUL05UTADEV (ATP_CHALL) sib_rested=2 forfeit~7.0c pnl$1.25 | DOMAIN: zero-discount (per_side domain)
+      UTA:leader fill59c FV0 place@T-240 gun+58m src=staircase_hold exit_FILL $0.85
+      DEV:underdog fill38c FV-7 place@T-240 gun+35m src=staircase_hold exit_FILL $0.40
+[C] ATPCHALLENGER-26JUL05VALREJ (ATP_CHALL) sib_rested=2 forfeit~21.0c pnl$1.30 | DOMAIN: fragile leg (bought above tape onset)
+      VAL:leader fill67c FV-21 place@T-233 gun+125m src=staircase_hold exit_FILL $0.95
+      REJ:? fill29c FV-6 place@T-239 gun+31m src=None exit_FILL $0.35
+[C] ATPCHALLENGER-26JUL05WEIHOE (ATP_CHALL) sib_rested=2 forfeit~35.0c pnl$1.20 | DOMAIN: fragile leg (bought above tape onset)
+      HOE:leader fill57c FV0 place@T-211 gun+29m src=staircase_hold exit_FILL $0.80
+      WEI:underdog fill39c FV-35 place@T-224 gun+36m src=staircase_hold exit_FILL $0.40
+[D] ATPCHALLENGER-26JUL05BLIPET (ATP_CHALL) sib_rested=2 forfeit~0.0c pnl$0.00 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      BLI:underdog fill6c FV0 place@T-240 gun-9m src=None OPEN $0.00
+[D] ATPCHALLENGER-26JUL05INGFEL (ATP_CHALL) sib_rested=2 forfeit~0.0c pnl$0.00 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      ING:? fill25c FV-3 place@T-239 gun+139m src=None OPEN $0.00
+[D] ATPCHALLENGER-26JUL05IVAGAN (ATP_CHALL) sib_rested=2 forfeit~0.0c pnl$0.00 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      IVA:leader fill75c FV0 place@T-238 gun+43m src=None OPEN $0.00
+[D] ATPCHALLENGER-26JUL05MARZAN (ATP_CHALL) sib_rested=2 forfeit~0.0c pnl$0.20 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      ZAN:underdog fill6c FV-4 place@T-239 gun+320m src=staircase_hold exit_FILL $0.20
+[D] ATPCHALLENGER-26JUL05POTANG (ATP_CHALL) sib_rested=2 forfeit~0.0c pnl$0.00 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      ANG:underdog fill47c FV-1 place@T-197 gun+86m src=staircase_hold OPEN $0.00
+[D] ATPCHALLENGER-26JUL05STEDIN (ATP_CHALL) sib_rested=2 forfeit~0.0c pnl$0.00 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      DIN:leader fill71c FV-14 place@T-239 gun+35m src=staircase_hold OPEN $0.00
+[D] ATPCHALLENGER-26JUL05VILPUR (ATP_CHALL) sib_rested=2 forfeit~0.0c pnl$0.00 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      PUR:leader fill81c FV-14 place@T-240 gun+1m src=None OPEN $0.00
+[F] ATPCHALLENGER-26JUL04WATSHI (ATP_CHALL) sib_rested=2 forfeit~0.1c pnl$-0.10 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      WAT:leader fill65c FV0 place@T-212 gun-23m src=staircase_hold settle_WIN $-0.10
+[F] ATPCHALLENGER-26JUL05CHESPE (ATP_CHALL) sib_rested=2 forfeit~1.9c pnl$-1.95 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      SPE:underdog fill39c FV-22 place@T-240 gun+78m src=staircase_hold settle_LOSS $-1.95
+[F] ATPCHALLENGER-26JUL05DONGRE (ATP_CHALL) sib_rested=2 forfeit~0.9c pnl$-0.95 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      GRE:underdog fill19c FV-11 place@T-239 gun+43m src=None settle_LOSS $-0.95
+[F] ATPCHALLENGER-26JUL05FRUSIN (ATP_CHALL) sib_rested=2 forfeit~0.2c pnl$-0.25 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      FRU:underdog fill5c FV-3 place@T-240 gun+24m src=staircase_hold settle_LOSS $-0.25
+[F] ATPCHALLENGER-26JUL05MARNVS (ATP_CHALL) sib_rested=2 forfeit~0.2c pnl$-0.25 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      NVS:underdog fill5c FV3 place@T-240 gun+26m src=None settle_LOSS $-0.25
+[F] ATPCHALLENGER-26JUL05SEYMAJ (ATP_CHALL) sib_rested=2 forfeit~0.2c pnl$-0.20 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      MAJ:? fill4c FV0 place@T-239 gun+1m src=staircase_hold settle_LOSS $-0.20
+[D] ATP-26JUL05AUGDAV (ATP_MAIN) sib_rested=2 forfeit~0.0c pnl$0.00 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      AUG:leader fill63c FV-1 place@T-179 gun+146m src=staircase_hold OPEN $0.00
+[D] ATP-26JUL05HURSTR (ATP_MAIN) sib_rested=2 forfeit~0.0c pnl$0.00 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      STR:? fill26c FV0 place@T-239 gun+18m src=staircase_hold OPEN $0.00
+[C] ITF-26JUL04ZAMBRI (ITF_M) sib_rested=2 forfeit~4.0c pnl$1.00 | DOMAIN: combined>100 over-par (per_side/entry-pricing leak)
+      ZAM:underdog fill20c FV-3 place@T-239 gun+1m src=None exit_FILL $0.30
+      BRI:? fill84c FV-11 place@T-231 gun+11m src=join_bid exit_FILL $0.70
+[C] ITF-26JUL05BOUDOU (ITF_M) sib_rested=2 forfeit~20.0c pnl$1.25 | DOMAIN: fragile leg (bought above tape onset)
+      DOU:leader fill75c FV-20 place@T-231 gun-59m src=None exit_FILL $0.95
+      BOU:underdog fill22c FV28 place@T-231 gun-59m src=None exit_FILL $0.30
+[C] ITF-26JUL05DELNIC (ITF_M) sib_rested=2 forfeit~1.0c pnl$-3.40 | DOMAIN: combined>100 over-par (per_side/entry-pricing leak)
+      DEL:underdog fill23c FV-16 place@T-240 gun+36m src=join_bid exit_FILL $0.30
+      NIC:? fill78c FV13 place@T? gun-50m src=None settle_LOSS $-3.70
+[D] ITF-26JUL05SALCON (ITF_M) sib_rested=2 forfeit~0.0c pnl$0.00 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      SAL:leader fill89c FV-14 place@T-240 gun+48m src=None OPEN $0.00
+[D] ITF-26JUL05SHVFAU (ITF_M) sib_rested=2 forfeit~0.0c pnl$0.00 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      SHV:underdog fill8c FV5 place@T-239 gun-24m src=join_bid OPEN $0.00
+[C] ITFW-26JUL04ZANSIE (ITF_W) sib_rested=1 forfeit~19.0c pnl$1.90 | DOMAIN: fragile leg (bought above tape onset)
+      ZAN:? fill65c FV-19 place@T? gun-50m src=None settle_WIN $1.75
+      SIE:underdog fill6c FV8 place@T-180 gun-60m src=join_bid exit_FILL $0.15
+[C] ITFW-26JUL05KUHEBE (ITF_W) sib_rested=2 forfeit~18.0c pnl$-1.15 | DOMAIN: fragile leg (bought above tape onset)
+      EBE:underdog fill57c FV33 place@T-208 gun+34m src=join_bid exit_FILL $0.65
+      KUH:underdog fill36c FV-18 place@T-239 gun+19m src=None settle_LOSS $-1.80
+[C] ITFW-26JUL05MONFER (ITF_W) sib_rested=2 forfeit~7.0c pnl$1.15 | DOMAIN: zero-discount (per_side domain)
+      FER:leader fill74c FV-3 place@T-211 gun-14m src=join_bid exit_FILL $0.90
+      MON:? fill20c FV-4 place@T? gun-45m src=None exit_FILL $0.25
+[C] ITFW-26JUL05TRAABB (ITF_W) sib_rested=2 forfeit~9.0c pnl$0.85 | DOMAIN: fragile leg (bought above tape onset)
+      TRA:underdog fill31c FV13 place@T-237 gun-4m src=join_bid OPEN $0.00
+      ABB:leader fill67c FV-9 place@T-238 gun-5m src=None exit_FILL $0.85
+[C] ITFW-26JUL05TUBSOB (ITF_W) sib_rested=2 forfeit~11.0c pnl$0.00 | DOMAIN: fragile leg (bought above tape onset)
+      TUB:leader fill72c FV13 place@T-239 gun-59m src=join_bid OPEN $0.00
+      SOB:underdog fill27c FV-11 place@T-239 gun-59m src=join_bid OPEN $0.00
+[D] ITFW-26JUL05AITDAE (ITF_W) sib_rested=2 forfeit~0.0c pnl$0.20 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      AIT:underdog fill16c FV4 place@T-240 gun+41m src=None exit_FILL $0.20
+[D] ITFW-26JUL05ALVJOH (ITF_W) sib_rested=2 forfeit~0.0c pnl$0.00 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      JOH:leader fill73c FV-16 place@T-240 gun+14m src=join_bid OPEN $0.00
+[D] ITFW-26JUL05BUYCOH (ITF_W) sib_rested=2 forfeit~0.0c pnl$0.20 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      COH:underdog fill15c FV-12 place@T-240 gun+34m src=join_bid exit_FILL $0.20
+[D] ITFW-26JUL05VARGRO (ITF_W) sib_rested=2 forfeit~0.0c pnl$0.08 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      GRO:underdog fill13c FV-5 place@T-239 gun+31m src=join_bid exit_FILL $0.08
+[F] ITFW-26JUL04BROKOI (ITF_W) sib_rested=2 forfeit~2.1c pnl$-2.10 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      KOI:underdog fill21c FV23 place@T-207 gun-60m src=None settle_LOSS $-2.10
+[F] ITFW-26JUL04MAXSTE (ITF_W) sib_rested=2 forfeit~0.7c pnl$-0.70 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      MAX:underdog fill14c FV21 place@T-207 gun-60m src=join_bid settle_LOSS $-0.70
+[F] ITFW-26JUL05DEKCAK (ITF_W) sib_rested=2 forfeit~1.2c pnl$-1.25 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      CAK:underdog fill25c FV15 place@T-229 gun-21m src=join_bid settle_LOSS $-1.25
+[F] ITFW-26JUL05KARMAT (ITF_W) sib_rested=2 forfeit~0.1c pnl$-0.05 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      MAT:underdog fill1c FV6 place@T-239 gun-57m src=join_bid settle_LOSS $-0.05
+[F] ITFW-26JUL05LIMHAG (ITF_W) sib_rested=2 forfeit~0.7c pnl$-0.65 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      HAG:underdog fill13c FV9 place@T-240 gun-59m src=join_bid settle_LOSS $-0.65
+[F] ITFW-26JUL05SPIGAR (ITF_W) sib_rested=2 forfeit~0.1c pnl$-0.05 | DOMAIN: half-armed: STARVATION (sib rested,unfilled)
+      GAR:underdog fill1c FV6 place@T-239 gun-55m src=join_bid settle_LOSS $-0.05
+[C] WTACHALLENGER-26JUL05DITLEW (WTA_CHALL) sib_rested=2 forfeit~14.0c pnl$1.15 | DOMAIN: fragile leg (bought above tape onset)
+      DIT:underdog fill31c FV5 place@T-239 gun+25m src=None exit_FILL $0.30
+      LEW:leader fill66c FV-14 place@T-239 gun+20m src=staircase_hold exit_FILL $0.85
+[C] WTACHALLENGER-26JUL05MORKOT (WTA_CHALL) sib_rested=2 forfeit~57.0c pnl$0.50 | DOMAIN: fragile leg (bought above tape onset)
+      MOR:underdog fill6c FV6 place@T-240 gun+9m src=staircase_hold exit_FILL $0.15
+      KOT:leader fill91c FV-57 place@T-240 gun+42m src=staircase_hold exit_FILL $0.35
+[D] WTA-26JUL05MUCKRE (WTA_MAIN) sib_rested=2 forfeit~10.0c pnl$1.35 | DOMAIN: combined>100 over-par (per_side/entry-pricing leak)
+      KRE:underdog fill38c FV1 place@T-179 gun-6m src=staircase_hold exit_FILL $0.40
+      MUC:? fill72c FV-9 place@T? gun-41m src=None exit_FILL $0.95
+
+=== NAMED-ERROR DOMAIN ROLLUP (below-B) ===
+   27 games  $  -7.82  half-armed: STARVATION (sib rested,unfilled)
+   18 games  $  10.80  fragile leg (bought above tape onset)
+    6 games  $  -2.50  combined>100 over-par (per_side/entry-pricing leak)
+    4 games  $  -9.75  exit-harvest FUCKUP-3 (NOT a participation flag)
+    4 games  $   4.30  zero-discount (per_side domain)
+
+=== ENTRY TIMING vs BOTH CLOCKS (filled legs) ===
+  filled legs with place-clock: 161 | placed BEFORE scheduled start: 161
+  fills BEFORE tape gun (disciplined premarket): 99 | AT/AFTER gun (chase): 70

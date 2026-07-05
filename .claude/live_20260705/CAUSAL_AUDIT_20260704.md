@@ -99,3 +99,20 @@ Every future ledger row now carries `stamp` (EARNED / GIFT_CLASS / MIXED / PENDI
 `side`, `disc_vs_open`, and `chain` — implemented in the live monitor's fill grading and
 rendered as the LIVE_STATUS stamp column. Future overnight ledgers use `causal_audit.py`
 (chains + exchange truth) as the standing result-side pass; the RUNBOOK inherits it.
+
+## POSTSCRIPT (21:15 ET) — live wart found while closing the audit: RESHUFFLE-WALK CHURN
+
+The LEG 49c re-arm survived 13 minutes. The chain (21:55-21:07 log): every ~70-130s the
+walk proposed moving LEG up toward the touch (50-55c), `leg2_reshuffle_reaim` capped it
+back to 49 (**the bound HELD on every single cycle — the mechanism works**), but the
+repost path executed a cancel+repost AT THE SAME 49c — ~10 round-trips, queue priority
+burned each time — until `v4_cancel_bid_marketable_stale` killed the bid entirely at
+21:07:44. No repost since (the boot sweep's once-per-event guard, by design). Net: WIN
+5-sh sits single again, and the pair's passive completion path is gone until the next
+restart or manual re-arm.
+
+NEW class, named: **reshuffle-walk churn** — when the re-aim resolves to the CURRENT
+resting price, the repost must be suppressed (hold FIFO), and a reshuffle-pinned bid
+should be exempt from the marketable-stale kill (its price is doctrine-pinned, not
+stale). Next dispatch's patch candidate; zero doctrine risk meanwhile (bound never
+breached; the cost is queue priority + a lost completion bid).

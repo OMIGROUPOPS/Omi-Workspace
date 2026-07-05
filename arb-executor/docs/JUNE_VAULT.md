@@ -129,15 +129,47 @@ The audit's genuine DELTA stands and is vaulted in 4I: per-cat offset quantifica
 +4.1–4.4h ITF / mains negative), gun certification vs an independent anchor, ITF-has-no-premarket. The
 failure is not that we measured — it is that we measured what we could have read, and armed against it.
 
-## 0C. THE OUTCOME-PROOF LAW (2026-07-05, operator ruling — lesson C46; joins C40 lint+smoke and C45 prior-art)
+## 0C. THE OUTCOME-PROOF LAW (2026-07-05, operator ruling — lesson C46; joins C40 lint+smoke and C45 prior-art; TWO-LANE AMENDMENT same day)
 
 **"NOTHING DEPLOYS WITHOUT OUTCOME PROOF — every code change must be replayed against the prior slate's
-full position set and shown to improve actual outcomes (grades/dollars) before it arms. Lint proves it
-parses, smoke proves it runs, the outcome replay proves it MATTERS. All three or no deploy."**
+full position set and shown to improve actual outcomes before it arms. Lint proves it parses, smoke
+proves it runs, the outcome replay proves it MATTERS. All three or no deploy."**
 
-Enforced in `deploy/deploy_gate.sh` step [3/3]: `OUTCOME_PROOF=<path>` must name the per-game outcome-replay
-doc citing the candidate short SHA, else the gate refuses (blend/kalshi-occ-fallback; deploy_live_v4.sh
-inherits it as the only restart path).
+**AMENDMENT (operator, 2026-07-05): OUTCOME = TWO LANES, both required in every proof doc, judged separately.**
+- **LANE 1 — MECHANISM (primary, luck-free, every game counts):** does the fix improve the CONSTRUCTION of
+  trades, replayed deterministically against the tape — grade distribution (A–F), ≤97 completion rate, Δaim
+  per leg, pair completion rate, FV-capture. No settlement involved; this is what we control and what
+  convicts or acquits a fix.
+- **LANE 2 — SETTLEMENT P&L (secondary, sanity check):** reported alongside, explicitly flagged LUCK-POLLUTED
+  below n≈30 settlements — never the sole verdict at small n. Lane-1 win + Lane-2 loss at tiny n =
+  "insufficient settlements," not guilty; Lane-2 win without Lane 1 = "lucky sample," not proven.
+
+Enforced in `deploy/deploy_gate.sh` step [3/3]: `OUTCOME_PROOF=<path>` must name the two-lane per-game
+outcome-replay doc citing the proven SHA (`OUTCOME_PROOF_SHA`), which must be an ancestor of the deploy HEAD
+with ZERO code/config/table delta between them (blend/kalshi-occ-fallback; deploy_live_v4.sh inherits it as
+the only restart path).
+
+**Two-lane re-stamp of the first artifact:** riser revision WINS BOTH lanes (Lane 1: 89/107 retained at
+2–3¢ better Δaim; Lane 2: +$6.50, n=107 legs) → DEPLOYED (below). per_match_clock: +$1.00 secondary — arms
+on CORRECTNESS when its Plex ruling lands. scale-gun _MAIN: verdict revised from "negative" to
+**SHADOW-INSUFFICIENT-N** — mechanically it correctly preserved a fillable bid; the −$1.90 was n=1
+settlement, noise not guilt.
+
+## 0D. C-RISER-REVISION DEPLOYED (2026-07-05 22:46 ET — the first deploy through the FULL four-bar gate)
+
+**Deployed `9925dd6` (armed state `bde7c958`, code `4d7b065c`), PID 3766708, tmux live_v4, one graceful
+restart, 0 boot errors.** Flag `riser_post_revision` ON: the riser leg posts aim-table `riser_post` BELOW
+best bid instead of at it, at the leg2_reshuffle conception site ONLY (walks/reposts untouched — the
+pre-registered erosion bar watches that). Table revised per RISER_REVISION_PROPOSAL.md: ATP_CHALL 3 /
+WTA_CHALL 3 / ITF_M 3 / ITF_W 2 / mains HOLD 0; `_aim_riser_post` wires the field for the first time
+(fallback 0 — a table miss can never deepen a bid). Gate record: lint PASS · smoke PASS with the armed flag
+exercised (149 placements, 542 reshuffle re-aims, 0 errors) · outcome proof two-lane WINS-BOTH
+(PROOF_PASS.md) · prior-art no-grave note (the riser_post lineage is entirely this week — C44 amendment →
+RISER_REVISION_PROPOSAL → PLEX package → deploy). Honest framing stands: this buys CENTS (+2–3¢/leg at
+62–90% retention), NOT selection — the seesaw's adverse selection is structural (C44).
+**Tomorrow's pre-registered scoreboard: `.claude/proof_20260705/SCOREBOARD_20260706.md` — Lane-1 bars
+(Δaim shift ≥2¢ median / retention ≥60% / ≤97 holds / grades hold / erosion <25%) with the explicit
+disarm rule: if Δaim doesn't move ≥1¢, the fix missed and comes out.**
 
 **First artifact — `.claude/proof_20260705/PROOF_PASS.md` (147 games, the full box, exchange-truth actuals
 net −$3.92):** every game carries WHAT HAPPENED (grade+$), THE GUILTY LINE (function/flag, line-referenced

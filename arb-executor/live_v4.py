@@ -1586,6 +1586,9 @@ class LiveV3:
         #     never pulls the bid). OFF => placement unchanged.
         self.leg2_reshuffle = bool(self.config.get("leg2_reshuffle", False))
         self.combined_goal = int(self.config.get("combined_goal", 97))
+        # [C-RISER-REVISION] riser posts aim-table riser_post below best bid (CHALL 3/
+        # ITF_M 3/ITF_W 2/mains 0). Default False = byte-identical (riser at the bid).
+        self.riser_post_revision = bool(self.config.get("riser_post_revision", False))
         # [C-REAIM-ON-ARRIVAL] combined re-aim on ANY sibling basis arrival (fill or
         # adoption), no price-bucket exemption; <=2c re-aim cancels. Default OFF.
         self.reaim_on_sibling_arrival = bool(self.config.get("reaim_on_sibling_arrival", False))
@@ -2151,6 +2154,21 @@ class LiveV3:
             return self.dog_dip_offset_cents
         return int(cell.get("faller_depth", self.dog_dip_offset_cents))
 
+    def _aim_riser_post(self, cat, anchor_price):
+        """[C-RISER-REVISION] Per-(cat,bucket) riser demand-depth below best bid
+        (RISER_REVISION_PROPOSAL.md: CHALL 3 / ITF_M 3 / ITF_W 2 / mains hold 0 --
+        depth buys cents at 62-90% retention, NOT a selection fix). Reads the
+        aim table's riser_post field (wired HERE for the first time; the field was
+        previously data-only). Falls back to 0 (= today's at-the-bid post) on any
+        miss, so a missing table row can never deepen a bid."""
+        cell = self._aim_cell(cat, anchor_price)
+        if not cell:
+            return 0
+        try:
+            return max(0, int(cell.get("riser_post", 0)))
+        except (TypeError, ValueError):
+            return 0
+
     def _reshuffle_leg2_target(self, faller_anchor, faller_depth, leg1_basis, combined_goal):
         """PURE. Leg-2 (faller) target once leg-1 (riser) has filled at leg1_basis:
         re-aim to min(aim dip level, combined_goal - leg1_basis). This is a RESTING
@@ -2276,6 +2294,16 @@ class LiveV3:
         if self.leg2_reshuffle and book is not None and 0 < book.best_bid < 100:
             if anchor_price >= 50:
                 target_bid = int(book.best_bid)
+                # [C-RISER-REVISION] gated (default OFF = byte-identical): the riser
+                # posts riser_post BELOW best bid instead of at it (the C44 finding:
+                # a riser bid at the going rate fills precisely when the leg fades in;
+                # depth buys +2-3c/leg at 62-90% retention -- proof: PROOF_PASS.md
+                # Lane 1 89/107 retained on the full 07-05 slate). Placement
+                # CONCEPTION only -- walk/repost mechanisms untouched tonight; the
+                # Lane-1 scoreboard (delta-aim shift) is the pre-registered erosion
+                # detector.
+                if self.riser_post_revision:
+                    target_bid = max(1, target_bid - self._aim_riser_post(cat, anchor_price))
             else:
                 _sib = self._sibling_ticker_any(tk)
                 _sb = self.books.get(_sib) if _sib else None

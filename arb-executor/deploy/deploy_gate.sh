@@ -1,9 +1,18 @@
 #!/bin/bash
 # Deploy gate — LAW (2026-07-04): NO DEPLOY WITHOUT LINT + SMOKE REPLAY.
-# LAW (2026-07-05, C46): NOTHING DEPLOYS WITHOUT OUTCOME PROOF — every code change
-# must be replayed against the prior slate's full position set and shown to improve
-# actual outcomes (grades/dollars) before it arms. Lint proves it parses, smoke
+# LAW (2026-07-05, C46; AMENDED same day): NOTHING DEPLOYS WITHOUT OUTCOME PROOF —
+# every code change must be replayed against the prior slate's full position set and
+# shown to improve actual outcomes before it arms. Lint proves it parses, smoke
 # proves it runs, the outcome replay proves it MATTERS. All three or no deploy.
+# OUTCOME = TWO LANES, both required in the proof doc, judged separately:
+#   LANE 1 — MECHANISM (primary, luck-free, every game counts): does the fix improve
+#     the CONSTRUCTION of trades, replayed deterministically against the tape —
+#     grade distribution, <=97 completion rate, delta-aim per leg, pair completion,
+#     FV-capture. No settlement involved; this convicts or acquits.
+#   LANE 2 — SETTLEMENT P&L (secondary, sanity check): reported alongside, flagged
+#     LUCK-POLLUTED below n~30 settlements — never the sole verdict at small n.
+#     Lane-1 win + Lane-2 loss at tiny n = "insufficient settlements", not guilty;
+#     Lane-2 win without Lane 1 = "lucky sample", not proven.
 # Tests-in-isolation are not a deploy gate; this is.
 #
 # 1. lint_gate.py on the candidate live_v4.py (duplicate-def/redefinition/syntax)

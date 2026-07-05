@@ -9,7 +9,8 @@
    "50-59",
    "60-79",
    "80-99"
-  ]
+  ],
+  "riser_post_revision": "CHALL 3 / ITF_M 3 / ITF_W 2 / mains hold 0 (2026-07-05, RISER_REVISION_PROPOSAL.md; consumed ONLY under the riser_post_revision flag)"
  },
  "aim": {
   "ATP_MAIN": {
@@ -152,7 +153,7 @@
    "01-20": {
     "side": "RISER",
     "faller_depth": 3,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 3.0,
     "dip_p75": 7.0,
     "fill_rate": 0.86,
@@ -163,7 +164,7 @@
    "21-40": {
     "side": "RISER",
     "faller_depth": 3,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 5.0,
     "dip_p75": 13.0,
     "fill_rate": 0.895,
@@ -174,7 +175,7 @@
    "41-49": {
     "side": "RISER",
     "faller_depth": 3,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 5.0,
     "dip_p75": 13.0,
     "fill_rate": 0.903,
@@ -185,7 +186,7 @@
    "50-59": {
     "side": "RISER",
     "faller_depth": 3,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 4.0,
     "dip_p75": 11.0,
     "fill_rate": 0.884,
@@ -196,7 +197,7 @@
    "60-79": {
     "side": "RISER",
     "faller_depth": 3,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 4.0,
     "dip_p75": 10.0,
     "fill_rate": 0.853,
@@ -207,7 +208,7 @@
    "80-99": {
     "side": "RISER",
     "faller_depth": 3,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 5.0,
     "dip_p75": 12.0,
     "fill_rate": 0.886,
@@ -220,7 +221,7 @@
    "01-20": {
     "side": "RISER",
     "faller_depth": 3,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 5.0,
     "dip_p75": 7.0,
     "fill_rate": 0.894,
@@ -231,7 +232,7 @@
    "21-40": {
     "side": "RISER",
     "faller_depth": 3,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 7.0,
     "dip_p75": 16.0,
     "fill_rate": 0.92,
@@ -242,7 +243,7 @@
    "41-49": {
     "side": "RISER",
     "faller_depth": 3,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 6.0,
     "dip_p75": 16.0,
     "fill_rate": 0.914,
@@ -253,7 +254,7 @@
    "50-59": {
     "side": "RISER",
     "faller_depth": 3,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 5.0,
     "dip_p75": 14.0,
     "fill_rate": 0.914,
@@ -264,7 +265,7 @@
    "60-79": {
     "side": "RISER",
     "faller_depth": 3,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 6.0,
     "dip_p75": 14.0,
     "fill_rate": 0.89,
@@ -275,7 +276,7 @@
    "80-99": {
     "side": "RISER",
     "faller_depth": 3,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 5.0,
     "dip_p75": 12.0,
     "fill_rate": 0.868,
@@ -288,7 +289,7 @@
    "01-20": {
     "side": "RISER",
     "faller_depth": 4,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 7.0,
     "dip_p75": 11.0,
     "fill_rate": 0.977,
@@ -310,7 +311,7 @@
    "41-49": {
     "side": "RISER",
     "faller_depth": 4,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 30.0,
     "dip_p75": 37.0,
     "fill_rate": 0.98,
@@ -321,7 +322,7 @@
    "50-59": {
     "side": "RISER",
     "faller_depth": 4,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 32.0,
     "dip_p75": 44.0,
     "fill_rate": 0.975,
@@ -332,7 +333,7 @@
    "60-79": {
     "side": "RISER",
     "faller_depth": 4,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 26.0,
     "dip_p75": 44.0,
     "fill_rate": 0.984,
@@ -343,7 +344,7 @@
    "80-99": {
     "side": "RISER",
     "faller_depth": 4,
-    "riser_post": 0,
+    "riser_post": 3,
     "dip_med": 10.0,
     "dip_p75": 20.0,
     "fill_rate": 0.932,
@@ -356,7 +357,7 @@
    "01-20": {
     "side": "FALLER",
     "faller_depth": 4,
-    "riser_post": 3,
+    "riser_post": 2,
     "dip_med": 7.0,
     "dip_p75": 11.0,
     "fill_rate": 0.974,
@@ -367,7 +368,7 @@
    "21-40": {
     "side": "FALLER",
     "faller_depth": 4,
-    "riser_post": 3,
+    "riser_post": 2,
     "dip_med": 22.0,
     "dip_p75": 26.0,
     "fill_rate": 0.995,
@@ -378,7 +379,7 @@
    "41-49": {
     "side": "FALLER",
     "faller_depth": 4,
-    "riser_post": 3,
+    "riser_post": 2,
     "dip_med": 28.0,
     "dip_p75": 37.0,
     "fill_rate": 0.986,
@@ -389,7 +390,7 @@
    "50-59": {
     "side": "RISER",
     "faller_depth": 4,
-    "riser_post": 0,
+    "riser_post": 2,
     "dip_med": 30.0,
     "dip_p75": 41.0,
     "fill_rate": 0.984,
@@ -400,7 +401,7 @@
    "60-79": {
     "side": "RISER",
     "faller_depth": 4,
-    "riser_post": 0,
+    "riser_post": 2,
     "dip_med": 27.0,
     "dip_p75": 43.75,
     "fill_rate": 0.976,
@@ -411,7 +412,7 @@
    "80-99": {
     "side": "RISER",
     "faller_depth": 4,
-    "riser_post": 0,
+    "riser_post": 2,
     "dip_med": 9.0,
     "dip_p75": 19.0,
     "fill_rate": 0.888,

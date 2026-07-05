@@ -1510,6 +1510,8 @@ class LiveV3:
         # (b) reshuffle-pinned bids exempt from the marketable-stale kill. Default OFF.
         self.repost_hold_same_price = bool(self.config.get("repost_hold_same_price", False))
         self.marketable_stale_pin_exempt = bool(self.config.get("marketable_stale_pin_exempt", False))
+        # [C-FALLBACK-BOUND] T-20m fallback respects goal - sibling_basis. Default OFF.
+        self.fallback_pair_bound = bool(self.config.get("fallback_pair_bound", False))
         # (4c) freeze_at_gun: at the tape-live latch (_is_match_live), no fresh entry posts
         #     and no walk/reprice -- resting bids stay static (dip-fillable, never chasing).
         #     OFF => posting/walk untouched. [2026-07-03] SHELVED per doctrine audit: superseded by
@@ -7148,6 +7150,39 @@ class LiveV3:
                 fb_price, fb_post_only = self._fallback_order(book.best_bid, book.best_ask)
             else:
                 fb_price, fb_post_only = self._fallback_order(book.best_ask, book.best_ask)
+            # [C-FALLBACK-BOUND] (gated fallback_pair_bound) the T-20m fallback repost
+            # must respect the pair bound when a sibling basis EXISTS. [C-CAP-REMOVAL
+            # site 2] left the T50 fallback check dormant under paired_cap_enforced=
+            # false, so the fallback rebid MUC at 72 over a 38 basis (pair 110,
+            # 2026-07-05) and SAF/SAB at 100. Same basis resolution as
+            # _try_complete_cross; clamp LOWER-only to combined_goal - basis; a
+            # noise-level bound (<=2c) stays FLAT (old bid already cancelled above)
+            # instead of resting at noise. Solo legs (no sibling basis): untouched.
+            if getattr(self, "fallback_pair_bound", False):
+                _fb_sib_basis = pos.completion_leg1_basis if pos.completion_leg1_basis > 0 else 0
+                if _fb_sib_basis <= 0:
+                    for _stk, _ssp in self.positions.items():
+                        if (_stk != tk and _ssp.event_ticker == pos.event_ticker
+                                and _ssp.phase == "active" and _ssp.entry_qty > 0
+                                and _ssp.entry_price > 0):
+                            _fb_sib_basis = _ssp.entry_price
+                            break
+                if _fb_sib_basis > 0:
+                    _fb_bound = int(self.combined_goal) - int(round(_fb_sib_basis))
+                    if _fb_bound <= 2:
+                        self._log("fallback_bound_flat", {
+                            "event": pos.event_ticker, "leg1_basis": int(_fb_sib_basis),
+                            "bound": _fb_bound, "proposed": int(fb_price)}, ticker=tk)
+                        self._untombstone_entry(tk, pos)
+                        self._save_v4_resting()
+                        return
+                    if fb_price > _fb_bound:
+                        self._log("fallback_bound_clamped", {
+                            "event": pos.event_ticker, "leg1_basis": int(_fb_sib_basis),
+                            "from": int(fb_price), "to": _fb_bound}, ticker=tk)
+                        fb_price = _fb_bound
+                        fb_post_only = True          # a bound-clamped bid RESTS, never crosses
+                        pos.reshuffle_pinned = True  # [C-CHURN-FIX b] stale-kill exempt
             self.inflight_orders.add(tk)
             try:
                 oid, resp = await self.place_order(tk, "buy", "yes", fb_price,

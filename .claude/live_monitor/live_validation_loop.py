@@ -114,7 +114,7 @@ def parse_session(log_path):
                     pass
     S = {"boot": boot_ts, "fills": {}, "latch": {}, "wopen": {}, "vplace": defaultdict(list),
          "buys": defaultdict(list), "emfb": {}, "errors": [], "graced": {}, "cancels": [],
-         "capped": [], "exits": {}, "settled": {}, "events": 0}
+         "capped": [], "exits": {}, "settled": {}, "events": 0, "open_bids": {}}
     with open(log_path, encoding="utf-8", errors="replace") as fh:
         for line in fh:
             if '"event"' not in line:
@@ -128,10 +128,14 @@ def parse_session(log_path):
                 continue
             e, tk, d = o.get("event"), o.get("ticker") or "", o.get("details", {})
             S["events"] += 1
-            if e == "entry_filled" and tk and tk not in S["fills"]:
-                S["fills"][tk] = {"ts": ts, "fill": d.get("fill_price"), "posted": d.get("posted_price"),
-                                  "dir": d.get("direction"), "play": d.get("play_type"),
-                                  "qty": d.get("qty"), "src": d.get("source")}
+            if e == "entry_filled" and tk:
+                if tk not in S["fills"]:
+                    S["fills"][tk] = {"ts": ts, "fill": d.get("fill_price"), "posted": d.get("posted_price"),
+                                      "dir": d.get("direction"), "play": d.get("play_type"),
+                                      "qty": d.get("qty"), "src": d.get("source")}
+                for oid, b in list(S["open_bids"].items()):
+                    if b["tk"] == tk:
+                        S["open_bids"].pop(oid, None)
             elif e == "match_live_detected":
                 ev = d.get("event")
                 if ev and ev not in S["latch"]:
@@ -143,6 +147,9 @@ def parse_session(log_path):
                                         "anchor": d.get("anchor_src"), "tgt": d.get("target_bid")})
             elif e == "order_placed" and d.get("action") == "buy" and tk:
                 S["buys"][tk].append({"ts": ts, "price": d.get("price"), "oid": d.get("order_id")})
+                oid = d.get("order_id")
+                if oid and d.get("response_status") == "resting":
+                    S["open_bids"][oid] = {"tk": tk, "price": d.get("price"), "ts": ts}
             elif e == "fv_burst_anchor" and tk:
                 S["emfb"][tk] = d.get("entry_minus_fv_burst")
             elif e in ("error", "on_bbo_update_error"):
@@ -152,6 +159,8 @@ def parse_session(log_path):
             elif e in ("match_live_resting_cancel", "order_cancelled"):
                 S["cancels"].append({"ts": ts, "tk": tk, "e": e,
                                      "label": d.get("label"), "ok": d.get("success"), "graced": d.get("graced")})
+                if e == "order_cancelled" and d.get("success") is not False:
+                    S["open_bids"].pop(d.get("order_id"), None)
             elif e == "premarket_walk_capped" and tk:
                 S["capped"].append({"ts": ts, "tk": tk, **{k: d.get(k) for k in
                                     ("proposed_target", "walk_ceiling", "conception_cell", "cap")}})
@@ -162,11 +171,134 @@ def parse_session(log_path):
     return S
 
 
-def analyze(S, aim, goal):
-    items = []   # structured jsonl candidates, each with a unique 'key'
+def _read_tape_since(tk, since_ts):
+    """Prints on `tk` since epoch since_ts, from the bot's own trade CSV recorder."""
+    f = ARB / "analysis" / "trades" / (tk + ".csv")
+    out = []
+    if not f.exists():
+        return out
+    try:
+        for ln in f.read_text(encoding="utf-8", errors="replace").splitlines()[1:]:
+            p = ln.split(",")
+            if len(p) < 5:
+                continue
+            try:
+                ts = datetime.strptime(p[0], "%Y-%m-%d %I:%M:%S %p").replace(tzinfo=ET).timestamp()
+            except Exception:
+                continue
+            if ts >= since_ts:
+                out.append({"ts": ts, "price": int(p[2]), "count": int(float(p[3])), "side": p[4]})
+    except Exception:
+        pass
+    return out
+
+
+def _read_bbo(tk):
+    """Latest recorded top-of-book for `tk` from the premarket_ticks recorder."""
+    f = ARB / "analysis" / "premarket_ticks" / (tk + ".csv")
+    if not f.exists():
+        return None
+    try:
+        with open(f, "rb") as fh:
+            fh.seek(0, 2)
+            fh.seek(max(0, fh.tell() - 4096))
+            last = fh.read().decode("utf-8", "replace").strip().splitlines()[-1].split(",")
+        return {"bid": int(last[2]), "ask": int(last[12]), "ts_et": last[0]}
+    except Exception:
+        return None
+
+
+def grade_resting_bids(S, aim, goal):
+    """Tape-grade every open resting entry bid. Classes (honest, per doctrine):
+    FLOW_AT_LEVEL  prints AT/below our bid but we're unfilled -> queue problem
+    FLOW_ABOVE     prints above our bid (gap 1-4c = the near-miss REPRICEABLE class,
+                   bounded by min(aim, goal - sibling_basis) -- chasing flow past
+                   that bound breaks the 97 doctrine and is NOT recommended)
+    NO_FLOW        genuinely no prints since post -- the ONLY class that earns
+                   the word starvation."""
+    graded = []
+    for oid, b in S["open_bids"].items():
+        tk, lvl, ts0 = b["tk"], int(b["price"] or 0), b["ts"]
+        ev = tk.rsplit("-", 1)[0]
+        tape = _read_tape_since(tk, ts0)
+        bbo = _read_bbo(tk)
+        sib_fill = next((f["fill"] for x, f in S["fills"].items()
+                         if x.rsplit("-", 1)[0] == ev and x != tk), None)
+        cell = (S["wopen"].get(tk) or {}).get("cell")
+        al = aim_level(aim, cat_of(tk), cell) if cell else None
+        bound = min(x for x in (al, (goal - sib_fill) if sib_fill else None, 99) if x is not None)
+        if tape:
+            min_p = min(t["price"] for t in tape)
+            max_p = max(t["price"] for t in tape)
+            sz = sum(t["count"] for t in tape)
+            gap = min_p - lvl
+            if gap <= 0:
+                cls = "FLOW_AT_LEVEL"
+            else:
+                cls = "FLOW_ABOVE"
+        else:
+            min_p = max_p = sz = None
+            gap = None
+            cls = "NO_FLOW"
+        reprice = min(min_p, bound) if min_p is not None else None
+        graded.append({
+            "oid": oid, "ticker": tk, "event": ev, "level": lvl,
+            "age_min": round((time.time() - ts0) / 60.0),
+            "prints": len(tape), "print_min": min_p, "print_max": max_p, "print_sz": sz,
+            "bbo": bbo, "gap": gap, "cls": cls,
+            "sib_basis": sib_fill, "aim_level": al, "reprice_bound": bound,
+            "repriceable": (cls == "FLOW_ABOVE" and gap is not None and gap <= 4
+                            and reprice is not None and reprice > lvl),
+            "reprice_to": reprice,
+            "doctrine_note": ("flow above but bound %sc < flow -- chasing breaks goal" % bound
+                              if (cls == "FLOW_ABOVE" and min_p is not None and bound < min_p) else "")})
+    return graded
+
+
+def could_have_filled(S, goal):
+    """Per open pair (one leg filled, sibling not): achievable-combined-RIGHT-NOW =
+    filled basis + sibling's current fillable level (its ask). What the board is
+    leaving on the table while bids rest."""
+    rows = []
     ev_fills = defaultdict(list)
     for tk, f in S["fills"].items():
         ev_fills[tk.rsplit("-", 1)[0]].append((tk, f))
+    for ev, legs in ev_fills.items():
+        if len(legs) != 1:
+            continue
+        tk, f = legs[0]
+        sib = None
+        for otk in list(S["wopen"]) + [b["tk"] for b in S["open_bids"].values()]:
+            if otk.rsplit("-", 1)[0] == ev and otk != tk:
+                sib = otk
+                break
+        if not sib:
+            continue
+        bbo = _read_bbo(sib)
+        if not bbo or not bbo.get("ask"):
+            continue
+        ach = (f["fill"] or 0) + bbo["ask"]
+        rows.append({"event": ev, "filled_tk": tk, "basis": f["fill"], "sib": sib,
+                     "sib_ask": bbo["ask"], "achievable": ach, "goal": goal,
+                     "vs_goal": ach - goal})
+    return rows
+
+
+def analyze(S, aim, goal, bid_grades=None):
+    items = []   # structured jsonl candidates, each with a unique 'key'
+    bid_grades = bid_grades or []
+    ev_fills = defaultdict(list)
+    for tk, f in S["fills"].items():
+        ev_fills[tk.rsplit("-", 1)[0]].append((tk, f))
+    grade_by_tk = {g["ticker"]: g for g in bid_grades}
+
+    # ---- resting bids: emit one line per (bid, class) -- re-emits only on class change ----
+    for g in bid_grades:
+        items.append({"key": f"bidgrade:{g['oid']}:{g['cls']}", "type": "bid_grade",
+                      "ts": time.time(), **{k: g[k] for k in
+                      ("ticker", "event", "level", "age_min", "prints", "print_min",
+                       "print_max", "print_sz", "gap", "cls", "sib_basis",
+                       "reprice_bound", "repriceable", "reprice_to", "doctrine_note")}})
 
     # ---- fills graded ----
     for tk, f in sorted(S["fills"].items(), key=lambda x: x[1]["ts"]):
@@ -242,15 +374,23 @@ def analyze(S, aim, goal):
                       "detail": er["err"]})
 
     # ---- pattern: half-arm aging (single fill >30min, sibling unfilled) ----
+    # mode comes from the SIBLING BID'S TAPE, not from whether it merely rested:
+    # NO_FLOW is the only case that earns the word starvation.
     now = time.time()
     for ev, legs in ev_fills.items():
         if len(legs) == 1 and (now - legs[0][1]["ts"]) > 1800:
             tk, f = legs[0]
-            sib_rested = any(x.rsplit("-", 1)[0] == ev and x != tk for x in S["buys"])
+            sib_g = next((g for g in bid_grades if g["event"] == ev and g["ticker"] != tk), None)
+            if sib_g is None:
+                sib_rested = any(x.rsplit("-", 1)[0] == ev and x != tk for x in S["buys"])
+                mode = "NO_BID(sib rested earlier, none now)" if sib_rested else "PAIRING(sib never rested)"
+            else:
+                mode = {"NO_FLOW": "STARVATION(no prints since post)",
+                        "FLOW_AT_LEVEL": "QUEUE(flow at/below our level, unfilled)",
+                        "FLOW_ABOVE": "SET_BELOW_FLOW(prints %sc above)" % sib_g["gap"]}[sib_g["cls"]]
             items.append({"key": f"halfarm:{ev}", "type": "pattern", "pattern": "half_arm_aging",
                           "ts": f["ts"], "event": ev, "ticker": tk, "fill": f["fill"],
-                          "age_min": round((now - f["ts"]) / 60.0),
-                          "mode": "STARVATION(sib rested)" if sib_rested else "PAIRING(sib never rested)"})
+                          "age_min": round((now - f["ts"]) / 60.0), "mode": mode})
     return items
 
 
@@ -293,11 +433,13 @@ def forensic_check(all_lines, S, log_path):
     return written
 
 
-def write_status(S, all_lines, log_path, cycle_n, forensics):
+def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, chf=None):
     v = [x for x in all_lines if x.get("type") == "violation"]
     fills = [x for x in all_lines if x.get("type") == "fill"]
     pats = [x for x in all_lines if x.get("type") == "pattern"]
     fvs = {x["ticker"]: x for x in all_lines if x.get("type") == "fv_capture"}
+    bid_grades = bid_grades or []
+    chf = chf or []
     sha = subprocess.run(["git", "-C", str(REPO), "rev-parse", "--short", "HEAD"],
                          capture_output=True, text=True).stdout.strip()
     L = [f"# LIVE VALIDATION — rolling status", "",
@@ -330,6 +472,30 @@ def write_status(S, all_lines, log_path, cycle_n, forensics):
                      f"| {f['pair_state']} | {f['combined'] or ''} |")
     else:
         L.append("none yet this session")
+    L += ["", f"## RESTING BIDS — {len(bid_grades)} tape-graded "
+              f"(starvation = NO_FLOW only)"]
+    if bid_grades:
+        L += ["| ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |",
+              "|---|---|---|---|---|---|---|---|---|"]
+        for g in sorted(bid_grades, key=lambda x: x["ticker"]):
+            pr = (f"{g['prints']}/{g['print_min']}-{g['print_max']}/{g['print_sz']}"
+                  if g["prints"] else "0")
+            bb = f"{g['bbo']['bid']}-{g['bbo']['ask']}" if g.get("bbo") else "?"
+            note = ("REPRICEABLE→%s" % g["reprice_to"]) if g["repriceable"] else (g["doctrine_note"] or "")
+            L.append(f"| {g['ticker'].replace('KX','')[:34]} | {g['level']} | {g['age_min']}m "
+                     f"| {pr} | {bb} | {g['gap'] if g['gap'] is not None else '—'} "
+                     f"| **{g['cls']}** | {g['reprice_bound']} | {note[:60]} |")
+    else:
+        L.append("no resting entry bids")
+    L += ["", f"## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW"]
+    if chf:
+        L += ["| event | basis | sib ask | achievable | goal | vs goal |",
+              "|---|---|---|---|---|---|"]
+        for r in sorted(chf, key=lambda x: x["vs_goal"]):
+            L.append(f"| {r['event'].replace('KX','')[:34]} | {r['basis']} | {r['sib_ask']} "
+                     f"| **{r['achievable']}** | {r['goal']} | {r['vs_goal']:+d} |")
+    else:
+        L.append("no open half-pairs")
     L += ["", f"## PATTERNS (sub-B) — {len(pats)}"]
     for p in sorted(pats, key=lambda y: y["ts"]):
         L.append(f"- {p['pattern']}: {p.get('ticker') or p.get('event')} "
@@ -371,7 +537,9 @@ def cycle(n):
         print(f"[{now_et()}] no log found", flush=True)
         return
     S = parse_session(log_path)
-    items = analyze(S, aim, goal)
+    bid_grades = grade_resting_bids(S, aim, goal)
+    chf = could_have_filled(S, goal)
+    items = analyze(S, aim, goal, bid_grades)
     # dedup against the committed jsonl (the jsonl IS the state)
     seen = set()
     if JSONL.exists():
@@ -387,7 +555,7 @@ def cycle(n):
                 it["emitted_et"] = now_et()
                 fh.write(json.dumps(it) + "\n")
     forensics = forensic_check(items, S, log_path)
-    changed = write_status(S, items, log_path, n, forensics)
+    changed = write_status(S, items, log_path, n, forensics, bid_grades, chf)
     nv = sum(1 for x in new if x.get("type") == "violation")
     res = "no-change"
     if new or changed or forensics:

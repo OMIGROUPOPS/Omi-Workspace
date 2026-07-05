@@ -50,19 +50,30 @@ rsync -a --delete \
 cd "$SMOKE_ENV"
 python3 deploy/smoke_replay.py --ticks-dir "$TICKS_DIR"
 
-echo "--- [3/3] outcome proof (C46: replay vs the prior slate's positions, grades/dollars)"
+echo "--- [3/3] outcome proof (C46 two-lane: replay vs the prior slate's positions)"
 CAND_SHA=$(git -C "$REPO/.." rev-parse --short HEAD)
 if [ -z "${OUTCOME_PROOF:-}" ]; then
-  echo "OUTCOME PROOF MISSING: set OUTCOME_PROOF=<path to the per-game outcome-replay doc>"
+  echo "OUTCOME PROOF MISSING: set OUTCOME_PROOF=<path to the two-lane per-game outcome-replay doc>"
   echo "(C46: lint proves it parses, smoke proves it runs, the outcome replay proves it MATTERS.)"
   exit 1
 fi
 if [ ! -f "$OUTCOME_PROOF" ]; then
   echo "OUTCOME PROOF NOT FOUND: $OUTCOME_PROOF"; exit 1
 fi
-if ! grep -q "$CAND_SHA" "$OUTCOME_PROOF"; then
-  echo "OUTCOME PROOF STALE: $OUTCOME_PROOF does not cite candidate SHA $CAND_SHA"; exit 1
+# The proof cites a proven SHA (OUTCOME_PROOF_SHA, default HEAD). The proven SHA must be
+# HEAD or an ancestor of HEAD with NO code/config/table delta between them (doc-only /
+# monitor-log commits may land after the proof; code may not).
+PROOF_SHA="${OUTCOME_PROOF_SHA:-$CAND_SHA}"
+if ! grep -q "$PROOF_SHA" "$OUTCOME_PROOF"; then
+  echo "OUTCOME PROOF STALE: $OUTCOME_PROOF does not cite proven SHA $PROOF_SHA"; exit 1
 fi
-echo "outcome proof OK: $OUTCOME_PROOF cites $CAND_SHA"
+if ! git -C "$REPO/.." merge-base --is-ancestor "$PROOF_SHA" HEAD; then
+  echo "OUTCOME PROOF INVALID: $PROOF_SHA is not an ancestor of HEAD $CAND_SHA"; exit 1
+fi
+CODE_DELTA=$(git -C "$REPO/.." diff --name-only "$PROOF_SHA"..HEAD -- '*.py' 'arb-executor/config/' 'arb-executor/docs/policy/' | head -5)
+if [ -n "$CODE_DELTA" ]; then
+  echo "OUTCOME PROOF STALE: code/config changed after proven SHA $PROOF_SHA:"; echo "$CODE_DELTA"; exit 1
+fi
+echo "outcome proof OK: $OUTCOME_PROOF cites $PROOF_SHA; no code delta to HEAD $CAND_SHA"
 
 echo "=== DEPLOY GATE: PASS ==="

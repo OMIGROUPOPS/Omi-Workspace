@@ -129,6 +129,31 @@ The audit's genuine DELTA stands and is vaulted in 4I: per-cat offset quantifica
 +4.1–4.4h ITF / mains negative), gun certification vs an independent anchor, ITF-has-no-premarket. The
 failure is not that we measured — it is that we measured what we could have read, and armed against it.
 
+## 0C. THE OUTCOME-PROOF LAW (2026-07-05, operator ruling — lesson C46; joins C40 lint+smoke and C45 prior-art)
+
+**"NOTHING DEPLOYS WITHOUT OUTCOME PROOF — every code change must be replayed against the prior slate's
+full position set and shown to improve actual outcomes (grades/dollars) before it arms. Lint proves it
+parses, smoke proves it runs, the outcome replay proves it MATTERS. All three or no deploy."**
+
+Enforced in `deploy/deploy_gate.sh` step [3/3]: `OUTCOME_PROOF=<path>` must name the per-game outcome-replay
+doc citing the candidate short SHA, else the gate refuses (blend/kalshi-occ-fallback; deploy_live_v4.sh
+inherits it as the only restart path).
+
+**First artifact — `.claude/proof_20260705/PROOF_PASS.md` (147 games, the full box, exchange-truth actuals
+net −$3.92):** every game carries WHAT HAPPENED (grade+$), THE GUILTY LINE (function/flag, line-referenced
+into the running 21eaad4 source), and the REPLAY under each staged/proposed fix against the day's real
+prints — conservative convention, no credit the tape doesn't support, "no change" rows say so. Verdict:
+- **riser_post revision (proposed): +$6.50** — 89/107 riser fills retained at depth (83%, independently
+  matching the pre-registered N=69 retention curves), 18 lost fills' pnl netted against it. The ONLY
+  dollar-positive fix on the day's tape.
+- **per_match_clock (staged ce38ca8c): +$1.00** — 1 of 14 half_timing candidates recovered; 10 refuted by
+  the tape (no leg1 catchable dip before the fader divot inside the honest window — the ITF-no-premarket
+  fact biting), 3 no honest join. Arms on CORRECTNESS (shadow-first), not on claimed dollars.
+- **scale-aware gun on _MAIN (staged shadow): −$1.90** — the one surviving mains fill LOSES. Stays
+  shadow/data-collection; no consumer arms on this sample.
+The law's own first run demonstrates its point: two of three plausible fixes do not pay on the actual tape,
+and the replay said so BEFORE anything armed.
+
 ## 1. WHAT'S SETTLED — DO NOT RE-OPEN
 
 ### Entry method: SOLVED and DEPLOYED.

@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 5 @ **2026-07-04 09:54:59 PM ET** | build `c48244c` | session boot 07-04 21:32 ET | log `live_v3_20260704.jsonl` | 608 session events | monitor READ-ONLY
+- cycle 6 @ **2026-07-04 10:05:05 PM ET** | build `ccc9664` | session boot 07-04 21:32 ET | log `live_v3_20260704.jsonl` | 1179 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 0 violation(s)
@@ -17,8 +17,8 @@
 - classes now: {'FLOW_ABOVE': 2} | repriceable now: true 0 / false 2 | **cumulative bid_grade lines: 8 (repriceable true 0 / false 8)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ITFWMATCH-26JUL04BROKOI-BRO | 76 | 20m | 663/80-95/109911 | 94-78 | 4 | **FLOW_ABOVE** | 76 | flow above but bound 76c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL04MAXSTE-STE | 83 | 22m | 516/86-99/122713 | 99-86 | 3 | **FLOW_ABOVE** | 83 | flow above but bound 83c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL04BROKOI-BRO | 76 | 30m | 1080/80-99/184705 | 98-78 | 4 | **FLOW_ABOVE** | 76 | flow above but bound 76c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL04MAXSTE-STE | 83 | 32m | 543/86-99/126463 | 99-86 | 3 | **FLOW_ABOVE** | 83 | flow above but bound 83c < flow -- chasing breaks goal |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
@@ -27,7 +27,9 @@
 | ITFWMATCH-26JUL04BROKOI | 21 | 78 | **99** | 97 | +2 |
 | ITFWMATCH-26JUL04MAXSTE | 14 | 86 | **100** | 97 | +3 |
 
-## PATTERNS (sub-B) — 1
+## PATTERNS (sub-B) — 3
+- half_arm_aging: KXITFWMATCH-26JUL04MAXSTE-MAX {"fill": 14, "age_min": 32, "mode": "SET_BELOW_FLOW(prints 3c above)", "emitted_et": "2026-07-04 10:05:05 PM ET"}
+- half_arm_aging: KXITFWMATCH-26JUL04BROKOI-KOI {"fill": 21, "age_min": 30, "mode": "SET_BELOW_FLOW(prints 4c above)", "emitted_et": "2026-07-04 10:05:05 PM ET"}
 - deep_neg_fv: KXATPCHALLENGERMATCH-26JUL04LEGWIN-LEG {"entry_minus_fv_burst": -34.0}
 
 ## ERRORS — 0 handler errors this session (ZERO — clean loop)

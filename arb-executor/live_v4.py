@@ -3656,60 +3656,54 @@ class LiveV3:
             ticker=sib)
         self._save_v4_resting()
 
-    async def _repost_missing_siblings(self):
+    async def _repost_missing_siblings(self, pos_map, ord_map):
         """[C-REPOST-SIBLING-ON-BOOT] (gated repost_sibling_on_boot) runs at the end
-        of every reconcile pass: any open single-leg v4 position (holds exposure:
-        entry filled, exit not complete, not settled) whose sibling has NO position
-        gets its completion bid re-placed at min(aim-table level, combined_goal -
-        basis); a noise-level target (<= 2c) is SKIPPED and logged, never rested at
-        noise. Guards: once per event per session; NEVER on a latched-live event
-        (match_live/grace cancels stay respected -- this only heals the drain/
-        restart hole, it does not re-engage live matches); never-cross via
-        _reprice_target; sized entry_size like every other entry bid."""
+        of every reconcile pass, on EXCHANGE TRUTH (pos_map/ord_map), not
+        self.positions -- after a restart, filled legs with live exits take the
+        link path and never re-materialize as Position objects, so an in-memory
+        sweep is blind to exactly the WATSHI hole it exists to heal. Any open
+        single-leg (API position qty>0) whose sibling has neither an API position
+        nor a live resting BUY gets its completion bid re-placed at min(aim-table
+        level, combined_goal - basis); a noise-level target (<= 2c) is SKIPPED and
+        logged, never rested at noise. TRUE basis comes from the fills API (A54:
+        pos_map avg_price is market value, NOT cost basis). Guards: once per event
+        per session; NEVER on a latched-live event (match_live/grace cancels stay
+        respected -- this heals the drain/restart hole, it does not re-engage live
+        matches); never-cross via _reprice_target; sized entry_size."""
         done = self.__dict__.setdefault("_sibling_repost_done", set())
         _scan = {"n_pos": 0, "reasons": {}}
         def _skip(reason):
             _scan["reasons"][reason] = _scan["reasons"].get(reason, 0) + 1
-        for tk, pos in list(self.positions.items()):
+        for tk, pinfo in list(pos_map.items()):
             _scan["n_pos"] += 1
             try:
-                if not pos.is_v4:
-                    _skip("not_v4"); continue
-                if pos.settled or pos.phase == "settled":
-                    _skip("settled"); continue
-                if pos.entry_qty <= 0:
-                    _skip("no_entry_qty"); continue
-                if pos.exit_filled or (pos.exit_filled_qty or 0) >= pos.entry_qty:
-                    _skip("exited"); continue
-                et = pos.event_ticker or tk.rsplit("-", 1)[0]
+                if pinfo.get("qty", 0) <= 0:
+                    _skip("no_qty"); continue
+                et = pinfo.get("event_ticker") or tk.rsplit("-", 1)[0]
                 if et in done:
                     _skip("done_this_session"); continue
                 if et in self._events_live:
                     _skip("event_live"); continue
                 sib = self._sibling_ticker(tk, et)
                 if not sib:
-                    _skip("sibling_unknown"); continue   # pre-discovery -- retry next pass
-                sp = self.positions.get(sib)
-                if sp is not None:
-                    if sp.entry_qty > 0 or sp.settled or sp.phase == "settled":
-                        _skip("sibling_engaged"); continue
-                    alive = False
-                    if sp.phase == "entry_resting" and sp.entry_order_id:
-                        _od = await api_get(self.session, self.ak, self.pk,
-                            "/trade-api/v2/portfolio/orders/%s" % sp.entry_order_id, self.rl)
-                        _st = ((_od or {}).get("order") or {}).get("status", "")
-                        alive = (_st == "resting")
-                    if alive:
-                        _skip("sibling_bid_alive"); continue
-                    # GHOST: entry_resting restored from state with a dead/absent order
-                    # (WATSHI 20:32 boot: SHI came back entry_resting on the 19:57-
-                    # cancelled order id and blocked the repost). Heal it in place.
-                    self._log("sibling_repost_ghost", {
-                        "event": et, "ghost_order_id": sp.entry_order_id,
-                        "ghost_price": sp.entry_price}, ticker=sib)
-                basis = int(round(pos.entry_price or 0))
+                    _skip("sibling_unknown"); continue   # non-tennis / pre-discovery
+                if pos_map.get(sib, {}).get("qty", 0) != 0:
+                    _skip("sibling_position"); continue  # pair (or partial) exists
+                if any(o.get("action") == "buy" for o in ord_map.get(sib, [])):
+                    _skip("sibling_bid_alive"); continue # live resting bid on exchange
+                # TRUE cost basis from fills (buys on this leg), never pos_map avg (A54)
+                _fl = await api_get(self.session, self.ak, self.pk,
+                    "/trade-api/v2/portfolio/fills?ticker=%s&limit=200" % tk, self.rl)
+                _b_ct = _b_px = 0.0
+                for f in (_fl or {}).get("fills", []):
+                    if f.get("action") == "buy":
+                        _c = float(f.get("count_fp", f.get("count", 0)) or 0)
+                        _p = float(f.get("yes_price_dollars", 0) or 0) * 100
+                        _b_ct += _c
+                        _b_px += _c * _p
+                basis = int(round(_b_px / _b_ct)) if _b_ct > 0 else 0
                 if basis <= 0:
-                    continue
+                    _skip("no_basis"); continue
                 cat = self.get_category(sib)
                 sb = self.books.get(sib)
                 _wo = self._window_open.get(sib) or {}
@@ -8232,7 +8226,7 @@ class LiveV3:
         # never re-engaged the sibling -- the half-pair sat with NO passive
         # completion path). The drain/restart must never leave that hole.
         if getattr(self, "repost_sibling_on_boot", False):
-            await self._repost_missing_siblings()
+            await self._repost_missing_siblings(pos_map, ord_map)
 
         return len(pos_map), len(linked), len(unmanaged), len(orphan_orders)
 

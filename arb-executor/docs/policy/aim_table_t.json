@@ -1,0 +1,966 @@
+{
+ "meta": {
+  "derived": "aim_time_axis.py (re-runnable) from premarket_dip_surface_/dip_timing_ per cat",
+  "semantics": "P_remain(D,T)=P_total(D)*(1-phi(T)); depth = max D with P_remain>=0.50",
+  "tts_buckets_min": {
+   "T8": ">360",
+   "T6": "240-360",
+   "T4": "120-240",
+   "T2": "60-120",
+   "T1": "30-60",
+   "T30": "<=30"
+  },
+  "clock": "card clock (surfaces' build clock); re-derive on honest surfaces when per_match_clock arms",
+  "itf": "ATP_CHALL shape borrowed, anchored to deployed flat values at T4 (stated assumption)"
+ },
+ "aim_t": {
+  "ATP_MAIN": {
+   "01-20": {
+    "T8": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T6": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "21-40": {
+    "T8": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T6": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "41-49": {
+    "T8": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T6": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "50-59": {
+    "T8": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T6": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "60-79": {
+    "T8": {
+     "faller_depth": 3,
+     "riser_post": 1
+    },
+    "T6": {
+     "faller_depth": 3,
+     "riser_post": 1
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "80-99": {
+    "T8": {
+     "faller_depth": 4,
+     "riser_post": 1
+    },
+    "T6": {
+     "faller_depth": 4,
+     "riser_post": 1
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   }
+  },
+  "WTA_MAIN": {
+   "01-20": {
+    "T8": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T6": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "21-40": {
+    "T8": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T6": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "41-49": {
+    "T8": {
+     "faller_depth": 3,
+     "riser_post": 1
+    },
+    "T6": {
+     "faller_depth": 3,
+     "riser_post": 1
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "50-59": {
+    "T8": {
+     "faller_depth": 3,
+     "riser_post": 1
+    },
+    "T6": {
+     "faller_depth": 3,
+     "riser_post": 1
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "60-79": {
+    "T8": {
+     "faller_depth": 3,
+     "riser_post": 1
+    },
+    "T6": {
+     "faller_depth": 3,
+     "riser_post": 1
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "80-99": {
+    "T8": {
+     "faller_depth": 5,
+     "riser_post": 1
+    },
+    "T6": {
+     "faller_depth": 5,
+     "riser_post": 1
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   }
+  },
+  "ATP_CHALL": {
+   "01-20": {
+    "T8": {
+     "faller_depth": 2,
+     "riser_post": 2
+    },
+    "T6": {
+     "faller_depth": 2,
+     "riser_post": 2
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "21-40": {
+    "T8": {
+     "faller_depth": 2,
+     "riser_post": 2
+    },
+    "T6": {
+     "faller_depth": 2,
+     "riser_post": 2
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "41-49": {
+    "T8": {
+     "faller_depth": 3,
+     "riser_post": 3
+    },
+    "T6": {
+     "faller_depth": 3,
+     "riser_post": 3
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "50-59": {
+    "T8": {
+     "faller_depth": 3,
+     "riser_post": 3
+    },
+    "T6": {
+     "faller_depth": 3,
+     "riser_post": 3
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "60-79": {
+    "T8": {
+     "faller_depth": 3,
+     "riser_post": 3
+    },
+    "T6": {
+     "faller_depth": 3,
+     "riser_post": 3
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "80-99": {
+    "T8": {
+     "faller_depth": 5,
+     "riser_post": 4
+    },
+    "T6": {
+     "faller_depth": 5,
+     "riser_post": 4
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   }
+  },
+  "WTA_CHALL": {
+   "01-20": {
+    "T8": {
+     "faller_depth": 2,
+     "riser_post": 2
+    },
+    "T6": {
+     "faller_depth": 2,
+     "riser_post": 2
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "21-40": {
+    "T8": {
+     "faller_depth": 3,
+     "riser_post": 3
+    },
+    "T6": {
+     "faller_depth": 3,
+     "riser_post": 3
+    },
+    "T4": {
+     "faller_depth": 2,
+     "riser_post": 2
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "41-49": {
+    "T8": {
+     "faller_depth": 4,
+     "riser_post": 4
+    },
+    "T6": {
+     "faller_depth": 4,
+     "riser_post": 4
+    },
+    "T4": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "50-59": {
+    "T8": {
+     "faller_depth": 3,
+     "riser_post": 3
+    },
+    "T6": {
+     "faller_depth": 3,
+     "riser_post": 3
+    },
+    "T4": {
+     "faller_depth": 1,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "60-79": {
+    "T8": {
+     "faller_depth": 4,
+     "riser_post": 4
+    },
+    "T6": {
+     "faller_depth": 4,
+     "riser_post": 4
+    },
+    "T4": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   },
+   "80-99": {
+    "T8": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T6": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T4": {
+     "faller_depth": 2,
+     "riser_post": 1
+    },
+    "T2": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T1": {
+     "faller_depth": 1,
+     "riser_post": 0
+    },
+    "T30": {
+     "faller_depth": 1,
+     "riser_post": 0
+    }
+   }
+  },
+  "ITF_M": {
+   "01-20": {
+    "T8": {
+     "faller_depth": 5,
+     "riser_post": 4
+    },
+    "T6": {
+     "faller_depth": 5,
+     "riser_post": 4
+    },
+    "T4": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T2": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T1": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T30": {
+     "faller_depth": 4,
+     "riser_post": 3
+    }
+   },
+   "21-40": {
+    "T8": {
+     "faller_depth": 5,
+     "riser_post": 4
+    },
+    "T6": {
+     "faller_depth": 5,
+     "riser_post": 4
+    },
+    "T4": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T2": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T1": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T30": {
+     "faller_depth": 4,
+     "riser_post": 3
+    }
+   },
+   "41-49": {
+    "T8": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T6": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T4": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T2": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T1": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T30": {
+     "faller_depth": 4,
+     "riser_post": 3
+    }
+   },
+   "50-59": {
+    "T8": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T6": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T4": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T2": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T1": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T30": {
+     "faller_depth": 4,
+     "riser_post": 3
+    }
+   },
+   "60-79": {
+    "T8": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T6": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T4": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T2": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T1": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T30": {
+     "faller_depth": 4,
+     "riser_post": 3
+    }
+   },
+   "80-99": {
+    "T8": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T6": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T4": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T2": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T1": {
+     "faller_depth": 4,
+     "riser_post": 3
+    },
+    "T30": {
+     "faller_depth": 4,
+     "riser_post": 3
+    }
+   }
+  },
+  "ITF_W": {
+   "01-20": {
+    "T8": {
+     "faller_depth": 5,
+     "riser_post": 3
+    },
+    "T6": {
+     "faller_depth": 5,
+     "riser_post": 3
+    },
+    "T4": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T2": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T1": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T30": {
+     "faller_depth": 4,
+     "riser_post": 2
+    }
+   },
+   "21-40": {
+    "T8": {
+     "faller_depth": 5,
+     "riser_post": 3
+    },
+    "T6": {
+     "faller_depth": 5,
+     "riser_post": 3
+    },
+    "T4": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T2": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T1": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T30": {
+     "faller_depth": 4,
+     "riser_post": 2
+    }
+   },
+   "41-49": {
+    "T8": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T6": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T4": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T2": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T1": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T30": {
+     "faller_depth": 4,
+     "riser_post": 2
+    }
+   },
+   "50-59": {
+    "T8": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T6": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T4": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T2": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T1": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T30": {
+     "faller_depth": 4,
+     "riser_post": 2
+    }
+   },
+   "60-79": {
+    "T8": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T6": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T4": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T2": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T1": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T30": {
+     "faller_depth": 4,
+     "riser_post": 2
+    }
+   },
+   "80-99": {
+    "T8": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T6": {
+     "faller_depth": 6,
+     "riser_post": 4
+    },
+    "T4": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T2": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T1": {
+     "faller_depth": 4,
+     "riser_post": 2
+    },
+    "T30": {
+     "faller_depth": 4,
+     "riser_post": 2
+    }
+   }
+  }
+ }
+}

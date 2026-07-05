@@ -87,6 +87,27 @@ ENTRY_BUFFER_SEC = 900        # stop entering 15 min before scheduled start
 # (rejects the 14-day close_time placeholder; a real match time is hours, not weeks).
 KALSHI_COARSE_WIDE_TAIL_SEC = 5400      # 90 min trailing envelope past the coarse start
 KALSHI_COARSE_MAX_FUTURE_SEC = 129600   # 36 h -- upper sanity bound on the coarse start
+
+# [C-PM-CLOCK] Part-1 per-match clock (PART1_SPEC.md). The stored "scheduled" clock is a
+# Kalshi card/session marker (hour-quantized, duplicated across the card; skew +1.8h CHALL /
+# +4.1-4.4h ITF late, ~-2h MAIN early vs true start -- CLOCK_AUDIT.md). Honest anchor =
+# state/schedule.json (TE/ESPN per-match, cron */15). Consumers gated; defaults OFF.
+PM_CLOCK_STALE_SEC = 2700               # fetched_epoch older than 45 min (3 missed cron cycles) => FILE-STALE
+PM_CLOCK_WIDEN_SEC = {                  # fallback-clock window widening X per category (spec table:
+    "ATP_CHALL": 14400,                 #  X = max observed |kalshi-TE/ESPN skew| + 60 min, hour-rounded;
+    "WTA_CHALL": 14400,                 #  mains = card-span heuristic, n=8 small)
+    "ITF_M": 25200, "ITF_W": 25200,
+    "ATP_MAIN": 28800, "WTA_MAIN": 28800,
+}
+PM_CLOCK_WIDEN_DEFAULT_SEC = 14400      # unknown category -> CHALL widening
+
+# [C-SCALE-GUN] Part-3 SHADOW (observe-only, no consumer): scale-aware burst bar. The fixed
+# LIVE_TRADE_BURST=10 gun is certified on ITF/CHALL and INVALID on _MAIN (Wimbledon-scale
+# premarket volume trips it hours early -- AUGDAV -313m). Shadow bar scales to the event's
+# own trailing baseline; this collects gun-agreement data ONLY.
+SCALE_GUN_MULT = 3.0                    # shadow bar = max(LIVE_TRADE_BURST, baseline/min * MULT)
+SCALE_GUN_BASELINE_EXCL_SEC = 120       # exclude the most-recent 2 min from the baseline (don't self-count the burst)
+SCALE_GUN_BASELINE_MIN_SPAN_SEC = 300   # need >= 5 min of baseline span to scale; else bar = legacy floor
 ENTRY_MAX_LEAD_SEC_BY_SERIES = {
     "KXATPMATCH": 43200,         # ATP Main Draw: 12h (books stable at T-12h, 1c spread)
     "KXWTAMATCH": 43200,         # WTA Main Draw: 12h (books stable at T-12h, 1c spread)
@@ -1218,6 +1239,35 @@ def _coarse_window_closed(time_to_start, coarse, wide_tail_sec, entry_buffer_sec
     return None
 
 
+def _pm_clock_resolve(honest_ts, honest_fresh, legacy_ts):
+    """[C-PM-CLOCK] Pick the entry-window clock. HONEST (per-match TE/ESPN start, schedule
+    file fresh) -> that clock with legacy edge semantics. Anything else (FILE-STALE /
+    ENTRY-MISSING per PART1_SPEC.md) -> the legacy clock (the Kalshi placeholder -- exactly
+    today's behavior) in "fallback" mode, which the caller widens by X per category.
+    Pure/testable; never touches event_start_time."""
+    if honest_ts is not None and honest_fresh:
+        return honest_ts, "honest"
+    return legacy_ts, "fallback"
+
+
+def _pm_window_closed(time_to_start, mode, widen_sec, wide_tail_sec, entry_buffer_sec):
+    """[C-PM-CLOCK] Entry-window late-edge decision under the per-match clock. HONEST mode =
+    legacy edges (T-0 lock, T-15 buffer) on the honest clock. FALLBACK mode = coarse-envelope
+    semantics on the placeholder clock: NO T-15/T-0 lock (the placeholder is a card marker,
+    not a match time; the tape latch -- UNTOUCHED -- governs the real start); give up only
+    past placeholder + max(tail, X). Pure/testable. Mirrors _coarse_window_closed's contract
+    (skip-reason str or None); that function is left byte-identical for the OFF path."""
+    if mode == "fallback":
+        if time_to_start <= -max(wide_tail_sec, widen_sec):
+            return "match_already_started"
+        return None
+    if time_to_start <= 0:
+        return "match_already_started"
+    if time_to_start <= entry_buffer_sec:
+        return "inside_buffer"
+    return None
+
+
 # -------------------------------------------------------------------------
 # Live V3 Bot
 # -------------------------------------------------------------------------
@@ -1457,6 +1507,25 @@ class LiveV3:
         # delta on EVERY resolved event -- WITHOUT setting any start, opening any envelope, or
         # placing any order. Measure-only; independent of kalshi_occurrence_fallback (the live arm).
         self.kalshi_occ_observe = bool(self.config.get("kalshi_occ_observe", False))
+        # [C-PM-CLOCK] Part-1 per-match clock (PART1_SPEC.md; both default False = byte-identical):
+        #   per_match_clock_shadow: OBSERVE-ONLY -- resolve the honest TE/ESPN per-match start
+        #       alongside the legacy clock and log both (pm_clock_shadow, once per event).
+        #       Zero behavior; no envelope, no order, no start set.
+        #   per_match_clock: the ENTRY-WINDOW clock (the time_to_start local in _route_event)
+        #       resolves HONEST (per-match start, legacy edges) or FALLBACK (legacy placeholder
+        #       clock + per-cat widened envelope, PM_CLOCK_WIDEN_SEC). SCOPE: entry windowing
+        #       ONLY -- event_start_time writes, exit, cancels (pos.match_start_ts), completion
+        #       (both mechanisms), meter, liveness/abandon (_is_match_live, sustained_flow,
+        #       grace-kill, latch_tape_override) are UNTOUCHED and keep the legacy clock.
+        self.per_match_clock = bool(self.config.get("per_match_clock", False))
+        self.per_match_clock_shadow = bool(self.config.get("per_match_clock_shadow", False))
+        self._pm_honest: Dict[str, dict] = {}     # event -> {gen, start_ts, status, source, method}
+        self._pm_shadow_logged: Set[str] = set()  # events whose pm_clock_shadow fired (once)
+        self._sched_fetched_epoch: float = 0.0    # producer stamp of the loaded schedule.json
+        # [C-SCALE-GUN] Part-3 shadow flag (default False = byte-identical): observe-only
+        # scale-aware gun latch; log-once gun_scale_shadow per event; NO consumer.
+        self.scale_gun_shadow = bool(self.config.get("scale_gun_shadow", False))
+        self._scale_gun_fired: Set[str] = set()   # events whose shadow gun has latched (log-once)
         # [C-PARTICIPATE] tonight's blunt participation flag (default False = byte-identical).
         # When True, the ENTRY inside_buffer skip (stop-entering-within-T-15) is bypassed so we keep
         # resting bids into the last 15 min; the tape-latch (match_live_cancel) still governs the real
@@ -1802,12 +1871,17 @@ class LiveV3:
         if err == "__missing__":
             self._log("schedule_missing", {"path": str(SCHEDULE_FILE)})
             self.schedule = {}
+            self._sched_fetched_epoch = 0.0   # [C-PM-CLOCK] missing => FILE-STALE (fallback clock)
             return
         if err is not None:
             self._log("schedule_error", {"error": err})
             self.schedule = {}
+            self._sched_fetched_epoch = 0.0   # [C-PM-CLOCK] torn/unparseable => FILE-STALE
             return
         self.schedule = data.get("schedule", {})
+        # [C-PM-CLOCK] producer stamp for the staleness rule (attribute set only; nothing
+        # else reads it unless a pm flag is on -- behavior-neutral when off).
+        self._sched_fetched_epoch = float(data.get("fetched_epoch", 0.0) or 0.0)
         age = time.time() - data.get("fetched_epoch", time.time())
         self._log("schedule_loaded", {
             "count": len(self.schedule),
@@ -1912,6 +1986,38 @@ class LiveV3:
         for ev, det in logs:
             self._log(ev, det)
         return result, method
+
+    async def _pm_resolve_honest(self, et):
+        """[C-PM-CLOCK] Resolve the HONEST per-match start for an event from the loaded
+        schedule (the EXISTING matcher, run quietly) and cache it per schedule generation.
+        Runs at DISCOVERY cadence only (never per tick); the match itself is offloaded via
+        the same executor path as _match_event_to_schedule_async. Writes ONLY the _pm_honest
+        cache -- never event_start_time, never an envelope, never an order. ENTRY-MISSING
+        per PART1_SPEC.md (no join / espn_midnight / unparseable start) caches start_ts=None
+        so the window clock falls back. Matcher logs are DROPPED (shadow stays quiet; the
+        real resolver's logging is unchanged on its own path)."""
+        gen = self._sched_fetched_epoch
+        cached = self._pm_honest.get(et)
+        if cached is not None and cached.get("gen") == gen:
+            return
+        player_names = self.event_player_names.get(et, [])
+        loop = asyncio.get_running_loop()
+        result, method, _logs = await loop.run_in_executor(
+            None, self._match_event_pure, et, self.schedule, player_names)
+        start_ts = None
+        status = source = None
+        if result and not result.get("espn_midnight"):
+            status = result.get("status")
+            source = result.get("source")
+            st_str = result.get("start_time", "")
+            if st_str:
+                try:
+                    start_ts = datetime.fromisoformat(
+                        st_str.replace("Z", "+00:00")).timestamp()
+                except Exception:
+                    start_ts = None
+        self._pm_honest[et] = {"gen": gen, "start_ts": start_ts, "status": status,
+                               "source": source, "method": method}
 
     async def _match_event_to_schedule_async(self, event_ticker):
         """Offload the pure-CPU schedule match (the ~2198-entry fuzzy scan, the
@@ -3282,6 +3388,12 @@ class LiveV3:
                     if et not in _reconciled_starts and not getattr(self, "kalshi_schedule_primary", False):
                         _reconciled_starts.add(et)
                         await self._reconcile_event_start(et, now)
+                    # [C-PM-CLOCK] honest-clock resolution at discovery cadence (flag-gated;
+                    # OFF => not evaluated => byte-identical). Runs the matcher even when
+                    # kalshi_schedule_primary bypasses the resolver; cache-only, no start set.
+                    if ((self.per_match_clock or self.per_match_clock_shadow)
+                            and et not in self.processed_events):
+                        await self._pm_resolve_honest(et)
                     cat = self.get_category(ticker)
                     if cat:
                         self.ticker_category[ticker] = cat
@@ -4292,6 +4404,61 @@ class LiveV3:
             if dq:
                 recent += sum(1 for t in dq if t >= cutoff)
         return recent >= LIVE_TRADE_BURST
+
+    def _scale_gun_shadow_tick(self, et, now):
+        """[C-SCALE-GUN SHADOW] Part-3 observe-only data collection: would a SCALE-AWARE
+        burst bar have fired, and when, vs the fixed LIVE_TRADE_BURST gun? The fixed gun is
+        certified on ITF/CHALL and invalid on _MAIN (premarket volume alone exceeds the bar).
+        Shadow bar = max(LIVE_TRADE_BURST, trailing baseline prints/min * SCALE_GUN_MULT),
+        baseline from the 30-min _trade_prices window EXCLUDING the last 2 min (a burst must
+        not inflate its own bar).
+
+        PURE READ (the _fv_burst_ready pattern): reads _trade_times / _trade_prices /
+        event_tickers / event_start_time only; writes ONLY self._scale_gun_fired (its own
+        log-once latch) and the log line. No _events_live, no _live_stage1, no cancel, no
+        consumer -- the real gun and every liveness/abandon path are untouched."""
+        if et in self._scale_gun_fired:
+            return
+        legs = self.event_tickers.get(et, ())
+        cutoff = now - LIVE_DETECT_WINDOW_SEC
+        recent = 0
+        for tk in legs:
+            dq = self._trade_times.get(tk)
+            if dq:
+                recent += sum(1 for t in dq if t >= cutoff)
+        if recent < LIVE_TRADE_BURST:
+            return   # below even the legacy floor: neither gun fires, nothing to grade
+        b_hi = now - SCALE_GUN_BASELINE_EXCL_SEC
+        b_lo = now - V4_RUNNING_MID_WINDOW_SEC
+        n_base = 0
+        oldest = b_hi
+        for tk in legs:
+            pdq = self._trade_prices.get(tk)
+            if pdq:
+                for ts, _p in pdq:
+                    if b_lo <= ts <= b_hi:
+                        n_base += 1
+                        if ts < oldest:
+                            oldest = ts
+        span = max(0.0, b_hi - oldest)
+        if span >= SCALE_GUN_BASELINE_MIN_SPAN_SEC and n_base > 0:
+            baseline_pm = n_base / (span / 60.0)
+            _bar_f = baseline_pm * SCALE_GUN_MULT
+            bar = max(LIVE_TRADE_BURST, int(_bar_f) + (1 if _bar_f > int(_bar_f) else 0))
+        else:
+            baseline_pm = 0.0
+            bar = LIVE_TRADE_BURST
+        if recent < bar:
+            return   # legacy gun would fire here; the scaled gun holds -- log at scaled fire
+        self._scale_gun_fired.add(et)
+        st = self.event_start_time.get(et)
+        self._log("gun_scale_shadow", {
+            "event": et, "category": self.get_category(et),
+            "recent_burst": recent, "scaled_bar": bar,
+            "baseline_per_min": round(baseline_pm, 2),
+            "baseline_prints": n_base, "baseline_span_min": round(span / 60.0, 1),
+            "legacy_gun_latched": et in self._events_live,
+            "tts_min": (round((st - now) / 60.0, 1) if st else None)})
 
     def _fv_burst_snapshot(self, et, now):
         """[C-FV-BURST instrumentation -- OBSERVE-ONLY] At the real-start latch,
@@ -5929,6 +6096,32 @@ class LiveV3:
                         "would_resolve": _wk is not None, "would_trade": _wk is not None,
                         "phase": "primary_miss"})
 
+            # [C-PM-CLOCK SHADOW] observe-only (default OFF = byte-identical): both clocks
+            # visible in logs, once per event. NO state change, NO envelope, NO order.
+            if (getattr(self, "per_match_clock_shadow", False)
+                    and start_ts is not None and et not in self._pm_shadow_logged):
+                self._pm_shadow_logged.add(et)
+                _h = self._pm_honest.get(et) or {}
+                _hts = _h.get("start_ts")
+                _fresh = (now - self._sched_fetched_epoch) <= PM_CLOCK_STALE_SEC
+                _cat_sh = self.get_category(et)
+                _, _mode_sh = _pm_clock_resolve(_hts, _fresh, start_ts)
+                self._log("pm_clock_shadow", {
+                    "event": et, "category": _cat_sh,
+                    "legacy_start": datetime.fromtimestamp(start_ts, tz=ET).isoformat(),
+                    "legacy_source": self.event_start_source.get(et),
+                    "honest_start": (datetime.fromtimestamp(_hts, tz=ET).isoformat() if _hts else None),
+                    "honest_status": _h.get("status"), "honest_method": _h.get("method"),
+                    "delta_min": (round((start_ts - _hts) / 60.0, 1) if _hts else None),
+                    "sched_fresh": _fresh, "sched_age_min": round((now - self._sched_fetched_epoch) / 60.0, 1),
+                    "mode_if_armed": _mode_sh,
+                    "widen_min": PM_CLOCK_WIDEN_SEC.get(_cat_sh, PM_CLOCK_WIDEN_DEFAULT_SEC) // 60})
+
+            # [C-SCALE-GUN SHADOW] observe-only (default OFF = byte-identical): scale-aware
+            # gun data collection; pure read of the trade buffers, log-once, NO consumer.
+            if getattr(self, "scale_gun_shadow", False):
+                self._scale_gun_shadow_tick(et, now)
+
             # No schedule match yet
             if start_ts is None:
                 cycles = self.event_unmatched_cycles.get(et, 0)
@@ -5941,7 +6134,25 @@ class LiveV3:
 
             time_to_start = start_ts - now
 
-            if time_to_start > 86400:
+            # [C-PM-CLOCK] Part-1 windowing rewire (default OFF: _pm_mode None, _pm_widen 0,
+            # every expression below reduces to the legacy form = byte-identical). HONEST ->
+            # time_to_start re-derived from the per-match TE/ESPN start, legacy edges.
+            # FALLBACK (file stale / entry missing) -> legacy placeholder clock, envelope
+            # widened by X per cat on BOTH edges; the tape latch (UNTOUCHED) governs the
+            # real start. ONLY this entry pipeline sees the swap: event_start_time,
+            # pos.match_start_ts, exit/cancel/completion/meter/liveness read legacy.
+            _pm_mode = None
+            _pm_widen = 0
+            if getattr(self, "per_match_clock", False):
+                _pm_h = self._pm_honest.get(et) or {}
+                _pm_fresh = (now - self._sched_fetched_epoch) <= PM_CLOCK_STALE_SEC
+                _pm_start, _pm_mode = _pm_clock_resolve(_pm_h.get("start_ts"), _pm_fresh, start_ts)
+                if _pm_mode == "honest":
+                    time_to_start = _pm_start - now
+                else:
+                    _pm_widen = PM_CLOCK_WIDEN_SEC.get(self.get_category(et), PM_CLOCK_WIDEN_DEFAULT_SEC)
+
+            if time_to_start - _pm_widen > 86400:
                 return
 
             # [C-KALSHI-OCC] coarse Kalshi start widens the late edge: the coarse clock does
@@ -5950,14 +6161,21 @@ class LiveV3:
             _coarse = getattr(self, "kalshi_occurrence_fallback", False) and et in getattr(self, "coarse_source", ())
             # [C-OPTION-C] entry buffer is config-driven (min_minutes_before_start); default == ENTRY_BUFFER_SEC
             # so byte-identical. ONLY the ENTRY decision uses it; exit/cancel keep the ENTRY_BUFFER_SEC constant.
-            _wclose = _coarse_window_closed(time_to_start, _coarse, KALSHI_COARSE_WIDE_TAIL_SEC, self._entry_buffer_sec)
+            # [C-PM-CLOCK] under the per-match clock the pm decision replaces the legacy/coarse
+            # one (honest = legacy edges on the honest clock; fallback = coarse-envelope + X).
+            # OFF => _pm_mode is None => the original call runs verbatim (byte-identical).
+            if _pm_mode is not None:
+                _wclose = _pm_window_closed(time_to_start, _pm_mode, _pm_widen,
+                                            KALSHI_COARSE_WIDE_TAIL_SEC, self._entry_buffer_sec)
+            else:
+                _wclose = _coarse_window_closed(time_to_start, _coarse, KALSHI_COARSE_WIDE_TAIL_SEC, self._entry_buffer_sec)
             if _wclose == "match_already_started":
                 # [C-PARTICIPATE-CLEAN 1] tape_gated_abandon: only abandon (mark PROCESSED) if the TAPE
                 # confirms live, OR we're already past T-0 by more than the wide-tail (schedule can't be
                 # that wrong). Default OFF => the guard is False => original abandon, byte-identical.
                 _defer = (self.tape_gated_abandon
                           and not self._is_match_live(et)
-                          and time_to_start > -KALSHI_COARSE_WIDE_TAIL_SEC)
+                          and time_to_start > -max(KALSHI_COARSE_WIDE_TAIL_SEC, _pm_widen))
                 if _defer:
                     self._log("schedule_abandon_deferred", {"event": et,
                         "reason": "tape_not_live", "time_to_start_sec": round(time_to_start)})
@@ -6011,10 +6229,10 @@ class LiveV3:
                                 return
                     except Exception:
                         pass
-                if time_to_start > intel_window:
+                if time_to_start - _pm_widen > intel_window:
                     return
             else:
-                if time_to_start > V4_MAX_PLACEMENT_SEC:
+                if time_to_start - _pm_widen > V4_MAX_PLACEMENT_SEC:
                     return
 
             tk_list = list(tickers)
@@ -6157,8 +6375,9 @@ class LiveV3:
 
                 # Per-leg placement timing: wait until this leg's window opens
                 # (post at T-placement_minute). Event is NOT marked processed, so
-                # the next tick re-evaluates this leg.
-                if time_to_start > placement_min * 60:
+                # the next tick re-evaluates this leg. [C-PM-CLOCK] fallback mode
+                # widens the leading edge by X (OFF => _pm_widen 0, identical).
+                if time_to_start - _pm_widen > placement_min * 60:
                     continue
 
                 # [C-FEEDER FIX-2] decision-time book capture. Every downstream

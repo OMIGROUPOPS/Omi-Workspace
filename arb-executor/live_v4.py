@@ -147,11 +147,27 @@ STAIRCASE_ABORT_WINDOW     = 20   # sliding window: last-N terminal staircase le
 # staircase leg sees (STEP-6 fallback re-posts are gated reference_source!=staircase; marketable-stale is
 # exempted for staircase). No terminal cancel carries this label (it is used only by the walk repost).
 _STAIRCASE_NONTERMINAL_LABELS = {"v4_move_repost"}
-ENTRY_COMPLETE_BASIS_CAP = 102   # [C-COMPLETE-CROSS] taker completion cap. At the gun, if a pair is
+ENTRY_COMPLETE_BASIS_CAP = 100   # [C-BOUND-RULING 2026-07-05] operator adjudication of the three-bound
+                                 # coexistence (goal 97 / ceiling 99 / cross 102): the emergency cross
+                                 # caps at par -- combined <= 100, never worse than a scratch before
+                                 # fees. Was 102. [C-COMPLETE-CROSS] taker completion cap. At the gun, if a pair is
 # single-legged, cross the unfilled leg's ask to complete iff (faded_fill + ask) <= this. A both-cash
-# pair pays 100 to one side, so completed pair P&L = 100 - basis - fee; cap 102 bounds the worst case
-# to ~-3c. Self-selecting: cheap-loser misses land basis ~96-101 (complete); winning-favorite >=106 (skip).
+# pair pays 100 to one side, so completed pair P&L = 100 - basis - fee; cap 100 bounds the worst case
+# to ~-fee. Self-selecting: cheap-loser misses land basis ~96-100 (complete); winning-favorite >=106 (skip).
+CROSS_LEG_MIN, CROSS_LEG_MAX = 5, 95   # [C-BOUND-RULING] leg-level cell-range on the CROSS path only:
+                                       # the emergency taker never buys a leg outside 5-95c (IEMBER's 98c
+                                       # cross leg -- dead). Maker/resting paths are NOT range-clamped
+                                       # (deep-dog 1-4c resting fills are core behavior, untouched).
 V4_PAIRED_BASIS_CAP = 99          # T50: refuse entering BOTH sides of an event when (this side + sibling) basis > this cap. yes+no > ~100 is a guaranteed loss (KESMAR 37+75=112). Ported from arb_executor_ws.py intra-k combined=ask_a+ask_b math (negative space). Cap 99 leaves ~1c for the taker fee.
+
+
+def cross_bounds_ok(sib_fill, ask):
+    """[C-BOUND-RULING 2026-07-05] the emergency complete-cross bound, pure/testable:
+    combined (sib_fill + ask) <= ENTRY_COMPLETE_BASIS_CAP (100) AND the crossed leg
+    inside the CROSS_LEG_MIN..CROSS_LEG_MAX (5-95c) cell range. Kills the IEMBER-98
+    (4+98=102) class outright; DELNIC (23+78=101) dies on the par cap."""
+    return (CROSS_LEG_MIN <= int(ask) <= CROSS_LEG_MAX
+            and int(sib_fill) + int(ask) <= ENTRY_COMPLETE_BASIS_CAP)
 
 # T51 match-live detection (VOLUME ACCELERATION, not price-move — a tight even
 # match stays price-flat so price-move is blind, proven on TIAARN's 50-51c book).
@@ -2433,17 +2449,24 @@ class LiveV3:
             return ("V2_is_taker_completion_fill",
                     {"fill_price": fill_price, "is_taker": True,
                      "s1_posted": pos.entry_price})
-        # [C-CAP-REMOVAL] V3 re-keys with the gate it guards (E1 discipline):
-        # cap enforced -> pair arithmetic (unchanged); cap dormant ->
-        # over-cap completion fills are BY DESIGN, so V3 guards the per-leg
-        # sanity bound instead.
-        if getattr(self, "paired_cap_enforced", True):
-            if pos.completion_leg1_basis + fill_price > V4_PAIRED_BASIS_CAP:
-                return ("V3_cap_breach",
+        # [C-BOUND-RULING 2026-07-05] V3 guards the unified bound: a completion
+        # (resting) fill above combined_goal is a defect on ANY branch -- the 99
+        # ceiling and the cap-dormant per-leg-only variant are dead. Per-leg sanity
+        # kept as belt. BOOT GRACE: a pre-ruling bid recovered from state at the old
+        # 99-basis level can legally fill before its first freshness re-derivation
+        # (<= V4_COMPLETION_FRESHNESS_SEC after boot) -- that is stale law, not a
+        # defect; log-only there, tripwire after.
+        if pos.completion_leg1_basis + fill_price > getattr(self, "combined_goal", 97):
+            if time.time() - self.start_ts > V4_COMPLETION_FRESHNESS_SEC + 120:
+                return ("V3_goal_breach",
                         {"leg1_basis": pos.completion_leg1_basis, "fill_price": fill_price,
                          "combined": pos.completion_leg1_basis + fill_price,
-                         "cap": V4_PAIRED_BASIS_CAP})
-        elif not (1 <= fill_price <= 99):
+                         "goal": getattr(self, "combined_goal", 97)})
+            self._log("completion_goal_breach_boot_grace", {
+                "leg1_basis": pos.completion_leg1_basis, "fill_price": fill_price,
+                "combined": pos.completion_leg1_basis + fill_price,
+                "goal": getattr(self, "combined_goal", 97)})
+        if not (1 <= fill_price <= 99):
             return ("V3_per_leg_sanity_breach",
                     {"leg1_basis": pos.completion_leg1_basis,
                      "fill_price": fill_price})
@@ -3610,9 +3633,11 @@ class LiveV3:
         the sibling basis exists therefore never re-tested against combined_goal.
         Action: re-aim the sibling's resting bid to combined_goal - basis (LOWER
         only); a noise-level re-aim (<= 2c) cancels instead of resting at noise.
-        Completion-repriced siblings are EXEMPT (their armed ceiling is
-        99 - basis, d2ac207 -- completion keeps precedence; we run AFTER
-        _cancel_sibling_if_paired_over_cap). OFF => returns immediately."""
+        Completion-repriced siblings are EXEMPT (completion keeps precedence and is
+        itself goal-bounded via _completion_target -- [C-BOUND-RULING] unified both
+        paths at combined_goal, so the exemption avoids double-management, not a
+        different bound; we run AFTER _cancel_sibling_if_paired_over_cap).
+        OFF => returns immediately."""
         if not getattr(self, "reaim_on_sibling_arrival", False) or not basis:
             return
         sib = self._sibling_ticker(tk, et)
@@ -3623,7 +3648,7 @@ class LiveV3:
                 or not sp.entry_order_id or sp.entry_qty > 0):
             return
         if getattr(sp, "entry_mode", "") == "completion_reprice":
-            return   # completion ceiling (99 - basis) governs that bid, not the 97 goal
+            return   # completion path is goal-bounded itself (_completion_target); no double-management
         cur = int(sp.entry_price or 0)
         goal_level = int(self.combined_goal) - int(round(basis))
         if cur <= goal_level:
@@ -3838,24 +3863,21 @@ class LiveV3:
         return new_target
 
     def _completion_target(self, s0, x_cell, sib_ask, leg1_basis):
-        """PART-2: s1 = min(s0 + X, sib_ask - 1, 99 - leg1_basis). sib_ask=None (no
-        real ask on the book) drops the ask term -- replay parity (the 1944b250
-        completion branch adds the ask candidate only when an ask exists). The cap term
-        guarantees leg1_basis + s1 <= V4_PAIRED_BASIS_CAP. Pure/testable.
+        """PART-2: s1 = min(s0 + X, sib_ask - 1, combined_goal - leg1_basis). sib_ask=None
+        (no real ask on the book) drops the ask term -- replay parity (the 1944b250
+        completion branch adds the ask candidate only when an ask exists). Pure/testable.
 
-        [C-CAP-REMOVAL] with the cap dormant the pair-arithmetic term is
-        replaced by the PER-LEG sanity bound (99): the completion reprices to
-        the sibling's own cell-valid level (s0 + X, ask-clamped), no longer
-        squeezed by leg-1's basis. The manage-side freshness re-evaluation and
-        its cap_headroom_gone revert flow through THIS function, so both
-        attempt and manage sites follow the flag automatically."""
-        if getattr(self, "paired_cap_enforced", True):
-            cands = [s0 + x_cell, V4_PAIRED_BASIS_CAP - leg1_basis]
-        else:
-            if getattr(self, "completion_combined_ceiling", False):
-                cands = [s0 + x_cell, V4_PAIRED_BASIS_CAP - leg1_basis]  # restore combined ceiling (lower-only via min)
-            else:
-                cands = [s0 + x_cell, 99]                # legacy combined-blind (byte-identical)
+        [C-BOUND-RULING 2026-07-05, operator adjudication] UNIFIED: every resting/
+        reprice/completion target is bounded by combined_goal (97) - leg1_basis, on
+        EVERY branch. The 99 ceiling is DEAD -- both the V4_PAIRED_BASIS_CAP term
+        (paired_cap_enforced) and the legacy per-leg 99 (combined-blind) branch are
+        gone; paired_cap_enforced / completion_combined_ceiling no longer alter this
+        function (flags left in config, inert here). The manage-side freshness
+        re-evaluation and its cap_headroom_gone revert flow through THIS function, so
+        both attempt and manage sites inherit the unified bound automatically.
+        Callers drop s1 < 1 (no_headroom / cap_headroom_gone) -- a basis >= 96 leaves
+        no legal completion level and the attempt is skipped."""
+        cands = [s0 + x_cell, int(self.combined_goal) - int(round(leg1_basis))]
         if sib_ask is not None:
             cands.append(sib_ask - 1)
         return min(cands)
@@ -3942,7 +3964,7 @@ class LiveV3:
         sib_book = self.books.get(sib)
         sib_ask = sib_book.best_ask if (sib_book and 0 < sib_book.best_ask < 100) else None
         s1 = self._completion_target(s0, x_cell, sib_ask, this_basis)
-        cap_headroom = V4_PAIRED_BASIS_CAP - this_basis
+        cap_headroom = int(self.combined_goal) - this_basis  # [C-BOUND-RULING] goal headroom
         if s1 <= s0 or s1 < 1:
             self._log("completion_no_attempt", {"event": et, "reason": "no_headroom",
                 "s0": s0, "s1": s1, "x": x_cell, "cap_headroom": cap_headroom,
@@ -6877,12 +6899,13 @@ class LiveV3:
 
     async def _try_complete_cross(self, tk, pos, book):
         """[C-COMPLETE-CROSS] At the match_live gun, complete a single-legged pair by crossing (taker).
-        If pos's partner leg is FILLED and crossing pos's best_ask keeps pair basis (faded_fill + ask)
-        <= ENTRY_COMPLETE_BASIS_CAP with liftable size (ask_sz >= qty), lift the ask IOC and book the
+        If pos's partner leg is FILLED and crossing pos's best_ask passes cross_bounds_ok --
+        [C-BOUND-RULING 2026-07-05]: (faded_fill + ask) <= ENTRY_COMPLETE_BASIS_CAP (100, par) AND the
+        crossed leg inside 5-95c -- with liftable size (ask_sz >= qty), lift the ask IOC and book the
         fill through _book_v4_entry_fill -- the SAME handler the maker fill path uses -- so the completed
         leg gets its exit posted via _v4_apply_exit (the wiring mirror). Returns True iff the pair was
         completed (caller then SKIPS the untombstone). The ONLY taker site under maker_only_entry -- a
-        basis-capped exception; max overpay ~= (cap-100)+fee. Partial-ask (ask_sz < qty) -> skip."""
+        par-capped exception; worst case ~= scratch minus fee. Partial-ask (ask_sz < qty) -> skip."""
         if book is None:
             return False
         sib_fill = pos.completion_leg1_basis if pos.completion_leg1_basis > 0 else 0
@@ -6897,10 +6920,10 @@ class LiveV3:
         ask = int(book.best_ask)
         ask_sz = int(book.asks.get(ask, 0) or 0)
         basis = sib_fill + ask
-        if not (1 <= ask <= 98 and ask_sz >= qty and basis <= ENTRY_COMPLETE_BASIS_CAP):
+        if not (cross_bounds_ok(sib_fill, ask) and ask_sz >= qty):
             self._log("complete_cross_skip", {"event": pos.event_ticker, "sib_fill": sib_fill,
                 "ask": ask, "ask_sz": ask_sz, "basis": basis, "cap": ENTRY_COMPLETE_BASIS_CAP,
-                "qty": qty}, ticker=tk)
+                "leg_range": [CROSS_LEG_MIN, CROSS_LEG_MAX], "qty": qty}, ticker=tk)
             return False
         oid, resp = await self.place_order(tk, "buy", "yes", ask, qty, post_only=False)   # IOC taker cross
         if not oid:
@@ -7377,7 +7400,11 @@ class LiveV3:
             # faller asymmetry governs initial PLACEMENT depth only -- once a
             # sibling basis exists, NO price bucket is exempt from the combined
             # re-aim. Sub-50 legs keep the full aim-depth target; >=50 legs cap at
-            # goal - basis. Completion-repriced bids stay exempt (ceiling 99-basis).
+            # goal - basis. Completion-repriced bids stay exempt (goal-bounded via
+            # _completion_target -- [C-BOUND-RULING], no double-management). The
+            # max(1,·) clamp below is unreachable for over-goal combos while
+            # reaim_on_sibling_arrival is armed: a basis leaving bound <= 2 cancels
+            # the sibling AT BOOKING, before any walk tick.
             _sib = self._sibling_ticker_any(tk)
             _sp = self.positions.get(_sib) if _sib else None
             if _sp is not None and getattr(_sp, "entry_qty", 0) > 0 and getattr(_sp, "entry_price", 0):

@@ -81,5 +81,7 @@
   "premarket_walk_cap": true,
   "match_live_grace_sec": 300,
   "latch_tape_override": true,
-  "riser_post_revision": true
+  "riser_post_revision": true,
+  "per_match_clock_shadow": true,
+  "scale_gun_shadow": true
 }

@@ -1,0 +1,450 @@
+FULL-TAPE REGRADE — window 07-04 21:32:50 -> 2026-07-05 17:03 ET | games=144 legs=251
+exchange fills rows: 531 | market meta fetched: 251
+
+== GRADE DISTRIBUTION (final, regraded) ==
+cat          A  B  C  D  F  tot
+ATP_CHALL   20 11 37  8 11  87
+ATP_MAIN     2  0  1  1  0  4
+ITF_M        5  1  5  2  6  19
+ITF_W        3  2  4  2  7  18
+WTA_CHALL    6  2  4  0  0  12
+WTA_MAIN     2  0  1  1  0  4
+TOTAL       38 16 52 14 24  144
+
+== GRADE vs MONEY MONOTONICITY (settled/exited-only games, no OPEN legs) ==
+  A: n= 38 total=$   26.73 mean=$  0.70
+  B: n= 16 total=$   15.24 mean=$  0.95
+  C: n= 51 total=$  -15.22 mean=$ -0.30
+  D: n= 11 total=$    4.78 mean=$  0.43
+  F: n= 24 total=$  -29.65 mean=$ -1.24
+  monotone A->F: NO (['0.70', '0.95', '-0.30', '0.43', '-1.24'])
+
+== FINALIZED SINCE MORNING PASS (outcome landed after 10:39 ET) ==
+  [B] ATPCHALLENGERMATCH-26JUL05POTANG ATP_CHALL pnl$1.15 ANG:exit_FILL($0.50) | POT:exit_FILL($0.65)
+  [D] ATPMATCH-26JUL05AUGDAV ATP_MAIN pnl$0.85 AUG:exit_FILL($0.85)
+  [A] ATPMATCH-26JUL05SAFDJO ATP_MAIN pnl$0.90 DJO:exit_FILL($0.65)
+  [A] ATPCHALLENGERMATCH-26JUL05KUZMAT ATP_CHALL pnl$0.60 MAT:exit_FILL($0.20)
+  [C] WTAMATCH-26JUL05SABOSA WTA_MAIN pnl$-3.05 OSA:exit_FILL($0.40) | SAB:settle_LOSS($-3.45)
+  [C] ATPCHALLENGERMATCH-26JUL05INGFEL ATP_CHALL pnl$-0.30 ING:settle_LOSS($-1.25) | FEL:exit_FILL($0.95)
+  [C] ATPCHALLENGERMATCH-26JUL05VALREJ ATP_CHALL pnl$1.25 VAL:exit_FILL($0.90)
+  [C] ATPMATCH-26JUL05HURSTR ATP_MAIN pnl$-3.20 STR:exit_FILL($0.35) | HUR:settle_LOSS($-3.55)
+  [F] ITFWMATCH-26JUL05ALVJOH ITF_W pnl$-3.65 JOH:settle_LOSS($-3.65)
+  [C] ATPCHALLENGERMATCH-26JUL05DESYEV ATP_CHALL pnl$3.55 YEV:settle_WIN($3.20)
+  [C] ITFMATCH-26JUL05SALCON ITF_M pnl$0.90 SAL:exit_FILL($0.45) | CON:exit_FILL($0.45)
+  [A] ITFWMATCH-26JUL05AITDAE ITF_W pnl$1.00 AIT:exit_FILL($0.15) | DAE:exit_FILL($0.85)
+  [C] ATPCHALLENGERMATCH-26JUL05SLABAS ATP_CHALL pnl$-1.20 SLA:settle_LOSS($-2.00)
+  [C] ATPCHALLENGERMATCH-26JUL05STEDIN ATP_CHALL pnl$1.30 DIN:exit_FILL($0.95)
+  [D] ITFWMATCH-26JUL05VARGRO ITF_W pnl$0.06 GRO:exit_FILL($0.06)
+  [A] ATPCHALLENGERMATCH-26JUL05IVAGAN ATP_CHALL pnl$1.25 IVA:exit_FILL($0.95) | GAN:exit_FILL($0.30)
+  [A] ATPCHALLENGERMATCH-26JUL05WEHIFI ATP_CHALL pnl$0.70 WEH:exit_FILL($0.50) | IFI:exit_FILL($0.20)
+  [D] ATPCHALLENGERMATCH-26JUL05VILPUR ATP_CHALL pnl$0.85 PUR:exit_FILL($0.85)
+  [C] ATPCHALLENGERMATCH-26JUL05ILAPLU ATP_CHALL pnl$-0.52 ILA:exit_FILL($-0.72) | PLU:exit_FILL($0.20)
+  [F] ATPCHALLENGERMATCH-26JUL05BLIPET ATP_CHALL pnl$-0.30 BLI:settle_LOSS($-0.30)
+  [B] ITFWMATCH-26JUL05TUBSOB ITF_W pnl$1.20 TUB:exit_FILL($0.90) | SOB:exit_FILL($0.30)
+  [C] ITFWMATCH-26JUL05TRAABB ITF_W pnl$1.10 TRA:exit_FILL($0.35) | ABB:exit_FILL($0.75)
+  [C] ATPCHALLENGERMATCH-26JUL05DALARI ATP_CHALL pnl$-0.10 ARI:settle_LOSS($-0.30) | DAL:exit_FILL($0.20)
+  [C] ITFWMATCH-26JUL05MUNGAD ITF_W pnl$-2.35 GAD:settle_LOSS($-2.75)
+  [C] ATPCHALLENGERMATCH-26JUL05CIZCAZ ATP_CHALL pnl$1.25 CAZ:exit_FILL($0.95) | CIZ:exit_FILL($0.30)
+  [F] ATPCHALLENGERMATCH-26JUL05WALVAR ATP_CHALL pnl$-0.15 VAR:settle_LOSS($-0.15)
+  [A] ITFMATCH-26JUL05GELBRE ITF_M pnl$1.00 GEL:exit_FILL($0.45) | BRE:exit_FILL($0.55)
+  [A] WTAMATCH-26JUL05BENGAU WTA_MAIN pnl$1.20 GAU:exit_FILL($0.65) | BEN:exit_FILL($0.55)
+  [C] ATPCHALLENGERMATCH-26JUL05PEROPI ATP_CHALL pnl$-3.30 OPI:exit_FILL($0.35) | PER:settle_LOSS($-3.65)
+  [D] ATPCHALLENGERMATCH-26JUL05HUEMAR ATP_CHALL pnl$0.07 MAR:exit_FILL($0.07)
+  [C] ATPCHALLENGERMATCH-26JUL05TENBER ATP_CHALL pnl$1.25 TEN:exit_FILL($0.45) | BER:exit_FILL($0.80)
+  [A] WTACHALLENGERMATCH-26JUL05KOBLEW WTA_CHALL pnl$0.60 LEW:exit_FILL($0.15) | KOB:exit_FILL($0.45)
+  [C] ATPCHALLENGERMATCH-26JUL05SUNBAR ATP_CHALL pnl$-1.20 BAR:exit_FILL($0.80) | SUN:settle_LOSS($-2.00)
+  [C] ATPCHALLENGERMATCH-26JUL05PRICOU ATP_CHALL pnl$1.15 COU:exit_FILL($0.65) | PRI:exit_FILL($0.50)
+  [F] ATPCHALLENGERMATCH-26JUL05RYBTUN ATP_CHALL pnl$-3.65 TUN:settle_LOSS($-3.65)
+  [C] ATPCHALLENGERMATCH-26JUL05HUANOC ATP_CHALL pnl$-3.10 HUA:exit_FILL($0.35) | NOC:settle_LOSS($-3.45)
+  [B] ATPCHALLENGERMATCH-26JUL05PDACAS ATP_CHALL pnl$1.20 CAS:exit_FILL($0.40) | PDA:exit_FILL($0.80)
+  [F] ITFMATCH-26JUL05BONBRA ITF_M pnl$-0.65 BRA:settle_LOSS($-0.65)
+  [C] ATPCHALLENGERMATCH-26JUL05HIGZHU ATP_CHALL pnl$1.20 HIG:exit_FILL($0.40) | ZHU:exit_FILL($0.80)
+  [B] ATPCHALLENGERMATCH-26JUL05KAMVAN ATP_CHALL pnl$0.64 KAM:exit_FILL($0.20) | VAN:exit_FILL($0.44)
+  [F] ITFMATCH-26JUL05SABMIS ITF_M pnl$-4.05 SAB:settle_LOSS($-4.05)
+  [C] ATPCHALLENGERMATCH-26JUL05BINPOL ATP_CHALL pnl$1.25 BIN:exit_FILL($0.85) | POL:exit_FILL($0.40)
+  [F] ATPCHALLENGERMATCH-26JUL05GOIAND ATP_CHALL pnl$-1.55 GOI:settle_LOSS($-1.55)
+  [C] ATPCHALLENGERMATCH-26JUL05GANZIN ATP_CHALL pnl$-0.45 GAN:settle_LOSS($-1.45) | ZIN:exit_FILL($1.00)
+  [F] ITFMATCH-26JUL05XUXCHE ITF_M pnl$-0.10 CHE:settle_LOSS($-0.10)
+  [C] ITFMATCH-26JUL05FARBRO ITF_M pnl$-2.80 FAR:settle_LOSS($-3.20) | BRO:exit_FILL($0.40)
+  [D] ITFMATCH-26JUL05THUGRE ITF_M pnl$0.00 THU:exit_FILL($0.00)
+  [A] ATPMATCH-26JUL05SINMOC ATP_MAIN pnl$0.30 SIN:exit_FILL($0.10) | MOC:exit_FILL($0.20)
+  [A] ITFWMATCH-26JUL05KULVAN ITF_W pnl$0.95 KUL:exit_FILL($0.60) | VAN:exit_FILL($0.35)
+  [B] ATPCHALLENGERMATCH-26JUL05MARJUN ATP_CHALL pnl$1.20 JUN:exit_FILL($0.40) | MAR:exit_FILL($0.80)
+  [A] ATPCHALLENGERMATCH-26JUL05MARHAI ATP_CHALL pnl$0.30 HAI:exit_FILL($0.10) | MAR:exit_FILL($0.20)
+  [B] ATPCHALLENGERMATCH-26JUL05MORMAR ATP_CHALL pnl$1.25 MOR:exit_FILL($0.85) | MAR:exit_FILL($0.40)
+  [F] ATPCHALLENGERMATCH-26JUL05SANROD ATP_CHALL pnl$-4.10 ROD:settle_LOSS($-4.10)
+  [B] ATPCHALLENGERMATCH-26JUL05POPCAS ATP_CHALL pnl$0.05 POP:exit_FILL($0.25) | CAS:settle_LOSS($-0.20)
+  [C] ATPCHALLENGERMATCH-26JUL05ELLJOH ATP_CHALL pnl$-2.80 JOH:exit_FILL($0.40) | ELL:settle_LOSS($-3.20)
+  [F] ITFMATCH-26JUL05SLOKHR ITF_M pnl$-1.95 KHR:settle_LOSS($-1.95)
+  [D] ITFMATCH-26JUL05MCKBER ITF_M pnl$0.10 BER:exit_FILL($0.10)
+  [A] ITFMATCH-26JUL05CRIMAR ITF_M pnl$0.45 CRI:exit_FILL($0.25) | MAR:exit_FILL($0.20)
+  [A] WTACHALLENGERMATCH-26JUL05YAMOVC WTA_CHALL pnl$1.20 OVC:exit_FILL($0.30) | YAM:exit_FILL($0.90)
+  [A] ATPCHALLENGERMATCH-26JUL05NUNCLA ATP_CHALL pnl$1.20 CLA:exit_FILL($0.80) | NUN:exit_FILL($0.40)
+  [F] ATPCHALLENGERMATCH-26JUL05MONHUR ATP_CHALL pnl$-0.20 HUR:settle_LOSS($-0.20)
+  [A] WTACHALLENGERMATCH-26JUL05SMIJAR WTA_CHALL pnl$0.05 SMI:exit_FILL($0.85) | JAR:settle_LOSS($-0.80)
+  [A] ATPCHALLENGERMATCH-26JUL05KOZMAY ATP_CHALL pnl$1.10 KOZ:exit_FILL($0.45) | MAY:exit_FILL($0.65)
+  [C] ATPCHALLENGERMATCH-26JUL05IMAMIL ATP_CHALL pnl$1.20 MIL:exit_FILL($0.80) | IMA:exit_FILL($0.40)
+  [A] ITFMATCH-26JUL05MILRAM ITF_M pnl$0.30 RAM:exit_FILL($0.40) | MIL:settle_LOSS($-0.10)
+  [F] ITFMATCH-26JUL05IONDAO ITF_M pnl$-0.50 DAO:settle_LOSS($-0.50)
+  [D] ATPCHALLENGERMATCH-26JUL05URRMEL ATP_CHALL pnl$0.20 URR:exit_FILL($0.20)
+  [C] ATPCHALLENGERMATCH-26JUL05PAPMBI ATP_CHALL pnl$-2.80 PAP:exit_FILL($0.40) | MBI:settle_LOSS($-3.20)
+  [A] ATPCHALLENGERMATCH-26JUL05HUEZEB ATP_CHALL pnl$1.10 ZEB:exit_FILL($0.35) | HUE:exit_FILL($0.75)
+  [C] ATPCHALLENGERMATCH-26JUL05FARMAT ATP_CHALL pnl$1.20 FAR:exit_FILL($0.40) | MAT:exit_FILL($0.80)
+  [C] WTACHALLENGERMATCH-26JUL05ARSOSU WTA_CHALL pnl$0.35 OSU:exit_FILL($0.35)
+  games with post-morning finalizations: 71
+
+== MONEY LEFT ON THE TABLE (ranked) ==
+  $   12.68   14 games  forfeited_completion
+  $    8.45   35 games  fill_above_best
+
+== TIME MAP — when the money lives vs when we act (per category) ==
+
+-- clock: Tsched (minutes before scheduled start) --
+ATP_CHALL:
+   bucket  BEST  POST  FILL
+     4-3h     9   147    10
+     3-2h    56     7    70
+     2-1h    41     1    40
+   1h-30m    11     0    12
+   30-20m     2     0     3
+    20m-0     4     0     5
+     post    11     0    15
+ATP_MAIN:
+   bucket  BEST  POST  FILL
+     4-3h     2     2     0
+     3-2h     2     5     2
+    20m-0     1     0     2
+     post     2     0     3
+ITF_M:
+   bucket  BEST  POST  FILL
+     4-3h    22    30    24
+     3-2h     6     0     6
+ITF_W:
+   bucket  BEST  POST  FILL
+     4-3h    23    27    24
+     2-1h     3     0     3
+WTA_CHALL:
+   bucket  BEST  POST  FILL
+     4-3h     0    24     1
+     3-2h     7     0     7
+     2-1h    10     0    10
+   1h-30m     4     0     4
+   30-20m     1     0     0
+    20m-0     1     0     2
+WTA_MAIN:
+   bucket  BEST  POST  FILL
+     4-3h     5     0     0
+     3-2h     0     8     1
+     2-1h     1     0     2
+   1h-30m     1     0     1
+    20m-0     0     0     2
+     post     1     0     2
+
+-- clock: Tgun (minutes before true tape onset) --
+ATP_CHALL:
+   bucket  BEST  POST  FILL
+      >8h     0     1     0
+     8-6h     1     5     1
+     6-4h     1    11     1
+     4-3h     1    19     0
+     3-2h     2    60     5
+     2-1h    11    48    13
+   1h-30m    23     3    27
+   30-20m     9     0    10
+    20m-0    29     2    34
+     post    57     6    64
+ATP_MAIN:
+   bucket  BEST  POST  FILL
+     8-6h     0     1     0
+     6-4h     1     2     0
+     4-3h     1     0     0
+     3-2h     1     1     0
+   30-20m     0     0     1
+    20m-0     2     0     0
+     post     2     3     6
+ITF_M:
+   bucket  BEST  POST  FILL
+     2-1h     0     7     0
+   1h-30m     5     5     6
+    20m-0     4     2     3
+     post    19    16    21
+ITF_W:
+   bucket  BEST  POST  FILL
+     3-2h     0     2     0
+     2-1h     0     2     0
+   1h-30m     2     4     2
+   30-20m     3     3     4
+    20m-0     5     2     3
+     post    16    14    18
+WTA_CHALL:
+   bucket  BEST  POST  FILL
+     4-3h     0     6     0
+     3-2h     0    10     0
+     2-1h     1     8     1
+   30-20m     1     0     2
+    20m-0    10     0     9
+     post    11     0    12
+WTA_MAIN:
+   bucket  BEST  POST  FILL
+     6-4h     0     2     0
+     4-3h     1     0     0
+     3-2h     3     0     0
+     2-1h     1     2     0
+   1h-30m     1     2     1
+    20m-0     0     1     0
+     post     2     1     7
+
+== ONE ROW PER GAME (every tracked metric) ==
+grade|ev|cat|comb|pnl$|legs|leg1(fill@T-sched/T-gun,best@T,dpx,dt_min,dur_s,arr)|leg2(same)|fader(cheapest_pre@T,leak_min,bound,in_time,starv_min)|stamps|d_aims|fv_caps|molt
+A|ATPCHALLENGERMATCH-26JUL05CAMBID|ATP_CHALL|96|1.05|2|82c@05:35:54(Ts144.1/Tg18.1) best82@05:35:43(T-g18.3m,0s,sz39) d0c/0.2m before_dip|14c@05:44:42(Ts135.3/Tg9.3) best14@05:44:42(T-g9.3m,0s,sz5) d0c/0.0m before_dip|pre19@21:21:39 leak494.3m bnd15 INTIME starv0m|GIFT_CLASS,EARNED|0,0|11,2|
+A|ATPCHALLENGERMATCH-26JUL05CARCER|ATP_CHALL|97|0.45|2|93c@07:28:05(Ts-28.1/Tg50.9) best93@07:28:04(T-g50.9m,0s,sz500) d0c/0.0m before_dip|4c@08:19:48(Ts-79.8/Tg-0.8) best4@08:19:46(T-g-0.8m,1s,sz2184) d0c/0.0m before_dip|pre6@05:19:40 leak128.4m bnd4 LATE/NO starv0m|GIFT_CLASS,EARNED|1,2|2,1|
+A|ATPCHALLENGERMATCH-26JUL05DIACEC|ATP_CHALL|96|1.3|2|65c@05:21:14(Ts158.8/Tg-11.2) best65@05:21:05(T-g-11.1m,0s,sz8) d0c/0.2m before_dip|31c@05:25:10(Ts154.8/Tg-15.2) best31@05:25:01(T-g-15.0m,0s,sz5) d0c/0.2m before_dip|pre33@21:16:58 leak484.3m bnd32 INTIME starv0m|GIFT_CLASS,EARNED|-1,-2|0,5|
+A|ATPCHALLENGERMATCH-26JUL05GOMMAJ|ATP_CHALL|97|1.15|2|80c@07:15:49(Ts124.2/Tg27.2) best80@07:15:49(T-g27.2m,0s,sz40) d0c/0.0m before_dip|17c@07:48:20(Ts91.7/Tg-5.3) best11@07:48:20(T-g-5.3m,0s,sz35) d6c/0.0m before_dip|preNone@? leakNonem bnd17 LATE/NO starv0m|GIFT_CLASS,EARNED|0,3|11,15|fill_above_best=0.30$
+A|ATPCHALLENGERMATCH-26JUL05HUEZEB|ATP_CHALL|84|1.1|2|28c@15:15:21(Ts134.6/Tg79.6) best28@15:13:05(T-g81.9m,117s,sz7) d0c/2.3m before_dip|56c@16:46:40(Ts43.3/Tg-11.7) best56@16:46:37(T-g-11.6m,0s,sz3) d0c/0.1m before_dip|preNone@? leakNonem bnd69 INTIME starv0m|MIXED,MIXED|3,-16|1,2|
+A|ATPCHALLENGERMATCH-26JUL05IVAGAN|ATP_CHALL|97|1.25|2|75c@09:32:43(Ts177.3/Tg158.3) best? d?c/?m |22c@12:16:18(Ts13.7/Tg-5.3) best22@12:14:44(T-g-3.7m,148s,sz11) d0c/1.6m before_dip|pre32@23:20:03 leak612.7m bnd22 INTIME starv0m|GIFT_CLASS,EARNED|0,-1|18,4|
+A|ATPCHALLENGERMATCH-26JUL05KOZMAY|ATP_CHALL|97|1.1|2|46c@14:00:35(Ts109.4/Tg96.4) best46@14:00:14(T-g96.8m,0s,sz5) d0c/0.4m before_dip|51c@15:39:38(Ts10.4/Tg-2.6) best51@15:39:33(T-g-2.5m,0s,sz5) d0c/0.1m before_dip|pre53@12:21:02 leak99.6m bnd51 INTIME starv0m|MIXED,MIXED|3,-2|2,2|
+A|ATPCHALLENGERMATCH-26JUL05KUZMAT|ATP_CHALL|97|0.6|2|7c@06:58:17(Ts211.7/Tg147.7) best? d?c/?m |90c@09:37:14(Ts52.8/Tg-11.2) best90@09:37:05(T-g-11.1m,0s,sz37) d0c/0.2m before_dip|preNone@? leakNonem bnd90 INTIME starv0m|MIXED,MIXED|3,-2|0,3|
+A|ATPCHALLENGERMATCH-26JUL05MACBRA|ATP_CHALL|97|0.05|2|94c@07:30:19(Ts159.7/Tg32.7) best? d?c/?m |3c@08:13:05(Ts116.9/Tg-10.1) best3@08:12:59(T-g-10.0m,192s,sz2002) d0c/0.1m before_dip|pre5@02:22:20 leak308.0m bnd3 LATE/NO starv0m|GIFT_CLASS,EARNED|0,1|4,4|
+A|ATPCHALLENGERMATCH-26JUL05MARHAI|ATP_CHALL|99|0.3|2|96c@12:21:13(Ts38.8/Tg56.8) best97@11:18:43(T-g119.3m,175s,sz27) d-1c/62.5m before_dip|3c@13:19:41(Ts-19.7/Tg-1.7) best3@13:18:38(T-g-0.6m,0s,sz158) d0c/1.1m before_dip|pre2@04:18:43 leak482.5m bnd1 INTIME starv0m|GIFT_CLASS,EARNED|2,-2|1,21|
+A|ATPCHALLENGERMATCH-26JUL05NUNCLA|ATP_CHALL|97|1.2|2|57c@13:28:51(Ts171.1/Tg69.1) best57@13:28:45(T-g69.2m,0s,sz5) d0c/0.1m before_dip|40c@14:16:02(Ts124.0/Tg22.0) best40@14:15:58(T-g22.0m,0s,sz5) d0c/0.1m before_dip|preNone@? leakNonem bnd40 INTIME starv0m|MIXED,EARNED|0,3|4,0|
+A|ATPCHALLENGERMATCH-26JUL05PAPPAR|ATP_CHALL|97|1.05|2|15c@06:07:41(Ts172.3/Tg32.3) best? d?c/?m |82c@06:26:26(Ts153.6/Tg13.6) best82@06:26:19(T-g13.7m,0s,sz44) d0c/0.1m before_dip|preNone@? leakNonem bnd82 INTIME starv0m|MIXED,GIFT_CLASS|3,0|4,14|
+A|ATPCHALLENGERMATCH-26JUL05PARHAM|ATP_CHALL|97|0.05|2|90c@06:49:39(Ts160.3/Tg-3.7) best89@06:49:26(T-g-3.4m,0s,sz1) d1c/0.2m before_dip|7c@07:15:21(Ts134.6/Tg-29.4) best7@07:15:12(T-g-29.2m,0s,sz5) d0c/0.2m before_dip|preNone@? leakNonem bnd7 LATE/NO starv0m|GIFT_CLASS,EARNED|3,1|0,3|
+A|ATPCHALLENGERMATCH-26JUL05PIELAR|ATP_CHALL|96|0.55|2|91c@04:03:52(Ts176.1/Tg-0.9) best91@04:03:48(T-g-0.8m,0s,sz2) d0c/0.1m before_dip|5c@04:44:53(Ts135.1/Tg-41.9) best5@04:44:49(T-g-41.8m,0s,sz531) d0c/0.1m before_dip|pre7@21:39:59 leak383.9m bnd6 LATE/NO starv0m|GIFT_CLASS,EARNED|0,0|0,4|
+A|ATPCHALLENGERMATCH-26JUL05RAQMAS|ATP_CHALL|94|0.65|2|89c@08:23:39(Ts116.3/Tg-2.7) best88@08:23:35(T-g-2.6m,137s,sz1147) d1c/0.1m before_dip|5c@08:26:17(Ts113.7/Tg-5.3) best5@08:26:08(T-g-5.1m,0s,sz718) d0c/0.2m before_dip|preNone@? leakNonem bnd8 LATE/NO starv0m|GIFT_CLASS,EARNED|1,-1|3,6|fill_above_best=0.05$
+A|ATPCHALLENGERMATCH-26JUL05SEGHAB|ATP_CHALL|91|0.35|2|90c@07:50:13(Ts139.8/Tg12.8) best? d?c/?m |1c@08:33:59(Ts96.0/Tg-31.0) best1@08:33:50(T-g-30.8m,0s,sz1055) d0c/0.2m before_dip|preNone@? leakNonem bnd7 LATE/NO starv0m|GIFT_CLASS,EARNED|1,-4|6,10|
+A|ATPCHALLENGERMATCH-26JUL05STALOC|ATP_CHALL|97|0.05|2|94c@07:14:07(Ts115.9/Tg-1.1) best46@07:13:54(T-g-0.9m,0s,sz1) d48c/0.2m before_dip|3c@07:18:40(Ts111.3/Tg-5.7) best3@07:18:28(T-g-5.5m,11s,sz8) d0c/0.2m before_dip|pre5@23:18:11 leak475.9m bnd3 LATE/NO starv0m|GIFT_CLASS,EARNED|0,0|1,3|
+A|ATPCHALLENGERMATCH-26JUL05TIXLEC|ATP_CHALL|97|0.05|2|80c@07:39:17(Ts90.7/Tg-0.3) best80@07:39:17(T-g-0.3m,0s,sz7) d0c/0.0m before_dip|17c@08:03:12(Ts66.8/Tg-24.2) best17@08:02:33(T-g-23.6m,204s,sz312) d0c/0.7m before_dip|preNone@? leakNonem bnd17 INTIME starv0m|GIFT_CLASS,EARNED|3,1|4,?|
+A|ATPCHALLENGERMATCH-26JUL05VILKOV|ATP_CHALL|97|1.15|2|47c@04:04:54(Ts175.1/Tg-1.9) best47@04:04:48(T-g-1.8m,0s,sz4) d0c/0.1m before_dip|50c@04:11:23(Ts168.6/Tg-8.4) best50@04:11:23(T-g-8.4m,3s,sz5) d0c/0.0m before_dip|pre52@01:46:30 leak138.4m bnd50 INTIME starv0m|EARNED,MIXED|3,-3|1,7|
+A|ATPCHALLENGERMATCH-26JUL05WEHIFI|ATP_CHALL|95|0.7|2|88c@09:39:18(Ts40.7/Tg-0.3) best81@09:39:16(T-g-0.3m,0s,sz995) d7c/0.0m before_dip|7c@09:58:07(Ts21.9/Tg-19.1) best7@09:57:26(T-g-18.4m,0s,sz6) d0c/0.7m before_dip|preNone@? leakNonem bnd9 INTIME starv0m|GIFT_CLASS,EARNED|2,-1|2,2|
+B|ATPCHALLENGERMATCH-26JUL05ALBZOR|ATP_CHALL|97|0.55|2|91c@08:15:34(Ts144.4/Tg13.4) best? d?c/?m |6c@08:16:14(Ts143.8/Tg12.8) best? d?c/?m |preNone@? leakNonem bnd6 INTIME starv0m|GIFT_CLASS,MIXED|5,3|5,-2|
+B|ATPCHALLENGERMATCH-26JUL05JANRYA|ATP_CHALL|99|0.4|2|5c@06:44:18(Ts135.7/Tg-22.3) best5@06:44:14(T-g-22.2m,0s,sz36) d0c/0.1m before_dip|94c@06:54:48(Ts125.2/Tg-32.8) best90@06:19:02(T-g3.0m,175s,sz325) d4c/35.8m never_reached_level|pre64@23:19:15 leak445.1m bnd92 LATE/NO starv0m|EARNED,GIFT_CLASS|3,0|3,-4|fill_above_best=0.20$
+B|ATPCHALLENGERMATCH-26JUL05KAMVAN|ATP_CHALL|100|0.64|2|13c@11:45:28(Ts-15.5/Tg11.5) best11@11:44:33(T-g12.4m,0s,sz1) d2c/0.9m before_dip|87c@12:07:26(Ts-37.4/Tg-10.4) best? d?c/?m |preNone@? leakNonem bnd84 LATE/NO starv0m|PENDING,PENDING|3,0|-5,5|
+B|ATPCHALLENGERMATCH-26JUL05MARJUN|ATP_CHALL|97|1.2|2|39c@12:17:34(Ts212.4/Tg107.4) best? d?c/?m |58c@14:22:12(Ts87.8/Tg-17.2) best58@14:21:54(T-g-16.9m,0s,sz4) d0c/0.3m before_dip|pre52@01:50:50 leak626.7m bnd58 INTIME starv0m|MIXED,MIXED|3,-1|-2,5|
+B|ATPCHALLENGERMATCH-26JUL05MORMAR|ATP_CHALL|97|1.25|2|59c@12:21:46(Ts168.2/Tg69.2) best59@12:21:28(T-g69.5m,0s,sz5) d0c/0.3m before_dip|38c@14:00:47(Ts69.2/Tg-29.8) best37@14:00:34(T-g-29.6m,0s,sz100) d1c/0.2m before_dip|preNone@? leakNonem bnd38 INTIME starv0m|GIFT_CLASS,EARNED|0,37|-7,9|fill_above_best=0.05$
+B|ATPCHALLENGERMATCH-26JUL05PDACAS|ATP_CHALL|97|1.2|2|39c@11:32:55(Ts207.1/Tg36.1) best39@11:31:25(T-g37.6m,0s,sz29) d0c/1.5m before_dip|58c@12:13:50(Ts166.2/Tg-4.8) best60@12:12:01(T-g-3.0m,199s,sz150) d-2c/1.8m before_dip|pre63@05:22:36 leak370.3m bnd58 INTIME starv0m|MIXED,MIXED|3,-3|-2,3|
+B|ATPCHALLENGERMATCH-26JUL05POPCAS|ATP_CHALL|97|0.05|2|93c@12:50:52(Ts139.1/Tg68.1) best? d?c/?m |4c@13:45:36(Ts84.4/Tg13.4) best4@13:45:32(T-g13.5m,219s,sz506) d0c/0.1m before_dip|pre7@02:58:19 leak592.6m bnd4 INTIME starv0m|GIFT_CLASS,EARNED|0,0|5,-1|
+B|ATPCHALLENGERMATCH-26JUL05POTANG|ATP_CHALL|97|1.15|2|47c@05:56:32(Ts63.5/Tg384.5) best46@05:56:32(T-g384.5m,7s,sz26) d1c/0.0m before_dip|50c@11:45:20(Ts-285.3/Tg35.7) best52@11:44:46(T-g36.2m,0s,sz48) d-2c/0.6m before_dip|preNone@? leakNonem bnd50 INTIME starv0m|EARNED,PENDING|3,0|-1,17|
+B|ATPCHALLENGERMATCH-26JUL05SCIORA|ATP_CHALL|97|1.1|2|81c@07:49:31(Ts-49.5/Tg59.5) best81@07:49:28(T-g59.5m,0s,sz12) d0c/0.1m before_dip|16c@08:05:49(Ts-65.8/Tg43.2) best16@08:05:44(T-g43.3m,0s,sz5) d0c/0.1m before_dip|preNone@? leakNonem bnd16 INTIME starv0m|GIFT_CLASS,EARNED|1,2|14,-6|
+B|ATPCHALLENGERMATCH-26JUL05SZYSTR|ATP_CHALL|96|1.15|2|53c@08:58:20(Ts91.7/Tg-2.3) best53@08:58:16(T-g-2.3m,0s,sz29) d0c/0.1m before_dip|43c@09:03:35(Ts86.4/Tg-7.6) best43@09:02:17(T-g-6.3m,0s,sz5) d0c/1.3m before_dip|preNone@? leakNonem bnd44 INTIME starv0m|MIXED,EARNED|0,3|3,-3|
+B|ATPCHALLENGERMATCH-26JUL05UTADEV|ATP_CHALL|97|1.25|2|59c@08:18:11(Ts141.8/Tg56.8) best59@08:18:03(T-g57.0m,0s,sz5) d0c/0.1m before_dip|38c@08:26:37(Ts133.4/Tg48.4) best38@08:26:32(T-g48.5m,0s,sz53) d0c/0.1m before_dip|preNone@? leakNonem bnd38 INTIME starv0m|GIFT_CLASS,EARNED|0,2|1,-3|
+C|ATPCHALLENGERMATCH-26JUL05BASRIB|ATP_CHALL|96|1.3|2|61c@09:20:48(Ts59.2/Tg-0.8) best51@09:20:32(T-g-0.5m,0s,sz1) d10c/0.3m before_dip|35c@09:24:11(Ts55.8/Tg-4.2) best35@09:23:42(T-g-3.7m,0s,sz5) d0c/0.5m before_dip|preNone@? leakNonem bnd36 INTIME starv0m|GIFT_CLASS,EARNED|3,1|-10,4|
+C|ATPCHALLENGERMATCH-26JUL05BERBOC|ATP_CHALL|97|-0.15|2|22c@05:10:10(Ts109.8/Tg-1.2) best22@05:10:05(T-g-1.1m,0s,sz5) d0c/0.1m before_dip|75c@05:17:08(Ts102.9/Tg-8.1) best75@05:17:06(T-g-8.1m,211s,sz405) d0c/0.0m before_dip|preNone@? leakNonem bnd75 INTIME starv0m|EARNED,MIXED|5,0|4,21|
+C|ATPCHALLENGERMATCH-26JUL05BINPOL|ATP_CHALL|97|1.25|2|59c@11:48:20(Ts71.7/Tg-1.3) best58@11:48:17(T-g-1.3m,33s,sz338) d1c/0.1m before_dip|38c@12:17:37(Ts42.4/Tg-30.6) best37@12:17:21(T-g-30.4m,28s,sz1005) d1c/0.3m before_dip|preNone@? leakNonem bnd38 INTIME starv0m|GIFT_CLASS,EARNED|-2,0|0,?|fill_above_best=0.10$
+C|ATPCHALLENGERMATCH-26JUL05CIZCAZ|ATP_CHALL|97|1.25|2|69c@10:21:22(Ts88.6/Tg19.6) best69@10:21:14(T-g19.8m,0s,sz5) d0c/0.1m before_dip|28c@10:24:11(Ts85.8/Tg16.8) best28@10:23:03(T-g17.9m,0s,sz5) d0c/1.1m before_dip|preNone@? leakNonem bnd28 INTIME starv0m|MIXED,EARNED|0,3|2,-12|
+C|ATPCHALLENGERMATCH-26JUL05COVDEL|ATP_CHALL|99|1.35|2|68c@07:53:16(Ts136.7/Tg56.7) best68@07:52:53(T-g57.1m,0s,sz5) d0c/0.4m before_dip|31c@07:54:36(Ts135.4/Tg55.4) best31@07:54:35(T-g55.4m,0s,sz5) d0c/0.0m before_dip|pre28@05:23:32 leak149.7m bnd29 INTIME starv0m|MIXED,MIXED|-1,6|25,-21|
+C|ATPCHALLENGERMATCH-26JUL05CRIRUB|ATP_CHALL|97|-3.25|2|72c@04:09:49(Ts170.2/Tg-1.8) best72@04:09:42(T-g-1.7m,0s,sz44) d0c/0.1m before_dip|25c@05:21:32(Ts98.5/Tg-73.5) best25@05:21:31(T-g-73.5m,0s,sz25) d0c/0.0m before_dip|preNone@? leakNonem bnd25 INTIME starv0m|MIXED,MIXED|-1,3|5,?|
+C|ATPCHALLENGERMATCH-26JUL05DALARI|ATP_CHALL|100|-0.1|2|6c@10:08:58(Ts-189.0/Tg0.0) best4@10:08:49(T-g0.2m,0s,sz1) d2c/0.2m before_dip|94c@10:17:17(Ts-197.3/Tg-8.3) best? d?c/?m |preNone@? leakNonem bnd91 LATE/NO starv0m|EARNED,GIFT_CLASS|3,1|-2,0|fill_above_best=0.10$
+C|ATPCHALLENGERMATCH-26JUL05DESYEV|ATP_CHALL|97|3.55|2|29c@09:18:45(Ts111.2/Tg8.2) best? d?c/?m |68c@09:34:53(Ts95.1/Tg-7.9) best68@09:34:00(T-g-7.0m,0s,sz10) d0c/0.9m before_dip|preNone@? leakNonem bnd68 INTIME starv0m|MIXED,MIXED|3,-1|-10,13|
+C|ATPCHALLENGERMATCH-26JUL05ELLJOH|ATP_CHALL|97|-2.8|2|33c@12:50:57(Ts109.0/Tg21.0) best? d?c/?m |64c@13:03:21(Ts96.6/Tg8.6) best61@13:03:21(T-g8.7m,0s,sz50) d3c/0.0m before_dip|preNone@? leakNonem bnd64 INTIME starv0m|MIXED,MIXED|3,-1|16,-23|
+C|ATPCHALLENGERMATCH-26JUL05FARMAT|ATP_CHALL|96|1.2|2|39c@16:32:36(Ts27.4/Tg6.4) best38@15:51:53(T-g47.1m,0s,sz1) d1c/40.7m before_dip|57c@16:36:48(Ts23.2/Tg2.2) best57@16:36:44(T-g2.3m,0s,sz5) d0c/0.1m before_dip|preNone@? leakNonem bnd58 INTIME starv0m|MIXED,MIXED|4,-2|-8,6|
+C|ATPCHALLENGERMATCH-26JUL05FELMOE|ATP_CHALL|97|-3.5|2|76c@08:39:11(Ts170.8/Tg-0.2) best75@08:39:08(T-g-0.1m,3s,sz837) d1c/0.1m before_dip|21c@09:14:55(Ts135.1/Tg-35.9) best21@09:14:48(T-g-35.8m,0s,sz19) d0c/0.1m before_dip|pre21@01:25:23 leak433.8m bnd21 INTIME starv0m|GIFT_CLASS,EARNED|1,0|0,4|fill_above_best=0.05$
+C|ATPCHALLENGERMATCH-26JUL05GANZIN|ATP_CHALL|97|-0.45|2|29c@11:56:43(Ts163.3/Tg57.3) best? d?c/?m |68c@13:12:09(Ts87.8/Tg-18.2) best68@13:11:58(T-g-18.0m,0s,sz5) d0c/0.2m before_dip|pre75@02:44:11 leak552.5m bnd68 LATE/NO starv0m|MIXED,MIXED|4,-2|-14,6|
+C|ATPCHALLENGERMATCH-26JUL05HIGZHU|ATP_CHALL|96|1.2|2|38c@11:37:50(Ts52.2/Tg-4.8) best38@11:37:32(T-g-4.5m,0s,sz155) d0c/0.3m before_dip|58c@11:43:24(Ts46.6/Tg-10.4) best53@11:43:15(T-g-10.2m,0s,sz14) d5c/0.2m before_dip|preNone@? leakNonem bnd59 INTIME starv0m|EARNED,MIXED|0,-3|-22,3|
+C|ATPCHALLENGERMATCH-26JUL05HUANOC|ATP_CHALL|98|-3.1|2|29c@11:16:48(Ts13.2/Tg30.2) best29@11:16:39(T-g30.4m,0s,sz5) d0c/0.2m before_dip|69c@12:05:34(Ts-35.6/Tg-18.6) best69@12:04:54(T-g-17.9m,18s,sz4) d0c/0.7m before_dip|pre70@07:47:09 leak209.7m bnd68 INTIME starv0m|EARNED,GIFT_CLASS|0,-2|-21,-34|
+C|ATPCHALLENGERMATCH-26JUL05IEMBER|ATP_CHALL|102|0.05|2|4c@07:01:11(Ts-1.2/Tg-1.2) best4@05:19:47(T-g100.2m,0s,sz505) d0c/101.4m before_dip|98c@07:07:09(Ts-7.2/Tg-7.2) best? d?c/?m |preNone@? leakNonem bnd93 LATE/NO starv0m|MIXED,EARNED|2,3|1,?|
+C|ATPCHALLENGERMATCH-26JUL05ILAPLU|ATP_CHALL|101|-0.52|2|95c@09:46:50(Ts223.2/Tg82.2) best95@09:46:48(T-g82.2m,0s,sz3) d0c/0.0m never_reached_level|6c@09:46:50(Ts223.2/Tg82.2) best6@09:46:48(T-g82.2m,0s,sz3) d0c/0.0m before_dip|pre6@09:46:47 leak0.1m bnd2 LATE/NO starv0m|GIFT_CLASS,MIXED|1,3|0,3|
+C|ATPCHALLENGERMATCH-26JUL05IMAMIL|ATP_CHALL|97|1.2|2|58c@14:28:12(Ts81.8/Tg15.8) best57@14:28:11(T-g15.8m,1s,sz50) d1c/0.0m before_dip|39c@14:38:40(Ts71.3/Tg5.3) best39@14:38:39(T-g5.3m,0s,sz5) d0c/0.0m before_dip|pre45@07:53:11 leak395.0m bnd39 INTIME starv0m|GIFT_CLASS,EARNED|0,1|21,-15|fill_above_best=0.05$
+C|ATPCHALLENGERMATCH-26JUL05INGFEL|ATP_CHALL|97|-0.3|2|25c@07:24:24(Ts-24.4/Tg176.6) best25@07:24:15(T-g176.8m,0s,sz4) d0c/0.2m before_dip|72c@10:55:42(Ts-235.7/Tg-34.7) best72@10:55:29(T-g-34.5m,0s,sz6) d0c/0.2m before_dip|preNone@? leakNonem bnd72 LATE/NO starv0m|MIXED,PENDING|5,0|-13,7|
+C|ATPCHALLENGERMATCH-26JUL05LUZSAN|ATP_CHALL|97|-3.6|2|19c@07:13:33(Ts166.4/Tg57.4) best19@07:13:31(T-g57.5m,0s,sz5) d0c/0.0m before_dip|78c@07:40:18(Ts139.7/Tg30.7) best78@07:40:06(T-g30.9m,0s,sz5) d0c/0.2m before_dip|preNone@? leakNonem bnd78 INTIME starv0m|MIXED,MIXED|3,0|3,-10|
+C|ATPCHALLENGERMATCH-26JUL05MARDUR|ATP_CHALL|97|-2.75|2|63c@05:35:41(Ts154.3/Tg8.3) best63@05:35:23(T-g8.6m,0s,sz5) d0c/0.3m before_dip|34c@05:50:15(Ts139.7/Tg-6.3) best34@05:49:58(T-g-6.0m,0s,sz505) d0c/0.3m before_dip|preNone@? leakNonem bnd34 LATE/NO starv0m|GIFT_CLASS,MIXED|0,3|-3,11|
+C|ATPCHALLENGERMATCH-26JUL05MELWAL|ATP_CHALL|97|-0.75|2|63c@06:10:21(Ts169.6/Tg73.6) best63@06:09:56(T-g74.1m,0s,sz5) d0c/0.4m before_dip|34c@06:14:45(Ts165.2/Tg69.2) best? d?c/?m |preNone@? leakNonem bnd34 INTIME starv0m|MIXED,MIXED|0,4|26,-24|
+C|ATPCHALLENGERMATCH-26JUL05NIJBER|ATP_CHALL|97|1.25|2|23c@06:28:09(Ts161.8/Tg21.8) best? d?c/?m |74c@06:40:47(Ts149.2/Tg9.2) best74@06:40:30(T-g9.5m,0s,sz5) d0c/0.3m before_dip|preNone@? leakNonem bnd74 INTIME starv0m|MIXED,MIXED|3,0|21,-12|
+C|ATPCHALLENGERMATCH-26JUL05PAPMBI|ATP_CHALL|97|-2.8|2|33c@15:03:58(Ts76.0/Tg16.0) best33@15:03:53(T-g16.1m,0s,sz5) d0c/0.1m before_dip|64c@15:09:34(Ts70.4/Tg10.4) best64@15:09:32(T-g10.5m,0s,sz5) d0c/0.0m before_dip|preNone@? leakNonem bnd64 INTIME starv0m|MIXED,MIXED|3,-1|-4,6|
+C|ATPCHALLENGERMATCH-26JUL05PEROPI|ATP_CHALL|98|-3.3|2|25c@10:53:29(Ts46.5/Tg33.5) best25@10:52:31(T-g34.5m,0s,sz5) d0c/1.0m before_dip|73c@11:28:58(Ts11.0/Tg-2.0) best73@11:28:16(T-g-1.3m,69s,sz105) d0c/0.7m before_dip|preNone@? leakNonem bnd72 INTIME starv0m|MIXED,GIFT_CLASS|3,-2|2,1|
+C|ATPCHALLENGERMATCH-26JUL05PRICOU|ATP_CHALL|97|1.15|2|50c@11:12:27(Ts167.5/Tg43.5) best50@11:11:37(T-g44.4m,10s,sz50) d0c/0.8m before_dip|47c@11:16:49(Ts163.2/Tg39.2) best47@11:15:48(T-g40.2m,0s,sz5) d0c/1.0m before_dip|preNone@? leakNonem bnd47 INTIME starv0m|MIXED,EARNED|-3,-7|45,-42|
+C|ATPCHALLENGERMATCH-26JUL05PRIROT|ATP_CHALL|97|-0.4|2|70c@04:10:09(Ts169.8/Tg139.8) best70@03:23:22(T-g186.6m,0s,sz301) d0c/46.8m before_dip|27c@06:18:45(Ts41.2/Tg11.2) best27@06:18:43(T-g11.3m,0s,sz5) d0c/0.0m before_dip|pre29@23:23:02 leak287.1m bnd27 INTIME starv0m|GIFT_CLASS,EARNED|0,-1|16,-21|
+C|ATPCHALLENGERMATCH-26JUL05RAMNEU|ATP_CHALL|97|1.3|2|36c@09:38:51(Ts131.1/Tg33.1) best36@09:38:48(T-g33.2m,0s,sz42) d0c/0.1m before_dip|61c@09:46:16(Ts123.7/Tg25.7) best61@09:45:56(T-g26.1m,0s,sz305) d0c/0.3m before_dip|pre62@09:28:34 leak10.3m bnd61 INTIME starv0m|MIXED,GIFT_CLASS|3,0|-22,2|
+C|ATPCHALLENGERMATCH-26JUL05RATRAH|ATP_CHALL|97|1.2|2|58c@05:22:21(Ts157.6/Tg23.6) best58@05:22:13(T-g23.8m,0s,sz5) d0c/0.1m before_dip|39c@06:16:20(Ts103.7/Tg-30.3) best39@06:16:11(T-g-30.2m,0s,sz5) d0c/0.2m before_dip|pre32@23:08:29 leak373.9m bnd39 INTIME starv0m|MIXED,MIXED|0,4|-14,18|
+C|ATPCHALLENGERMATCH-26JUL05SCHDE|ATP_CHALL|99|1.3|2|75c@05:07:47(Ts172.2/Tg40.2) best73@05:07:40(T-g40.3m,0s,sz2) d2c/0.1m before_dip|24c@05:08:08(Ts171.9/Tg39.9) best23@05:08:07(T-g39.9m,0s,sz100) d1c/0.0m before_dip|pre33@05:07:40 leak0.1m bnd22 INTIME starv0m|GIFT_CLASS,MIXED|0,4|-3,-11|fill_above_best=0.05$
+C|ATPCHALLENGERMATCH-26JUL05SEIMOL|ATP_CHALL|95|0.9|2|84c@04:10:20(Ts169.7/Tg8.7) best84@04:08:38(T-g10.4m,98s,sz38) d0c/1.7m before_dip|11c@04:11:51(Ts168.1/Tg7.1) best11@04:11:46(T-g7.2m,0s,sz6) d0c/0.1m before_dip|pre13@20:09:22 leak481.0m bnd13 INTIME starv0m|GIFT_CLASS,EARNED|0,0|0,-1|
+C|ATPCHALLENGERMATCH-26JUL05SLABAS|ATP_CHALL|97|-1.2|2|57c@09:23:42(Ts186.3/Tg63.3) best57@09:23:40(T-g63.3m,0s,sz5) d0c/0.0m before_dip|40c@10:12:36(Ts137.4/Tg14.4) best40@10:12:36(T-g14.4m,0s,sz5) d0c/0.0m before_dip|preNone@? leakNonem bnd40 INTIME starv0m|MIXED,MIXED|0,4|24,-17|
+C|ATPCHALLENGERMATCH-26JUL05SMIPIR|ATP_CHALL|97|-0.35|2|71c@05:09:13(Ts170.8/Tg-16.2) best71@05:09:05(T-g-16.1m,0s,sz41) d0c/0.1m before_dip|26c@05:34:32(Ts145.5/Tg-41.5) best26@05:20:47(T-g-27.8m,0s,sz106) d0c/13.8m before_dip|pre26@19:38:38 leak570.6m bnd26 LATE/NO starv0m|GIFT_CLASS,EARNED|-1,0|-10,5|
+C|ATPCHALLENGERMATCH-26JUL05STEDIN|ATP_CHALL|97|1.3|2|71c@09:24:15(Ts115.7/Tg33.7) best71@09:23:37(T-g34.4m,0s,sz505) d0c/0.6m before_dip|26c@10:26:44(Ts53.3/Tg-28.7) best23@10:26:38(T-g-28.6m,0s,sz0) d3c/0.1m before_dip|preNone@? leakNonem bnd26 INTIME starv0m|GIFT_CLASS,EARNED|0,3|-22,8|
+C|ATPCHALLENGERMATCH-26JUL05SUNBAR|ATP_CHALL|97|-1.2|2|57c@11:12:26(Ts137.6/Tg5.6) best57@11:11:36(T-g6.4m,0s,sz5) d0c/0.8m before_dip|40c@11:15:34(Ts134.4/Tg2.4) best41@11:14:58(T-g3.0m,0s,sz105) d-1c/0.6m before_dip|pre45@02:44:46 leak507.7m bnd40 INTIME starv0m|GIFT_CLASS,EARNED|-2,-1|5,0|
+C|ATPCHALLENGERMATCH-26JUL05TENBER|ATP_CHALL|99|1.25|2|42c@11:07:30(Ts172.5/Tg19.5) best? d?c/?m |57c@11:10:44(Ts169.3/Tg16.3) best57@11:10:37(T-g16.4m,0s,sz5) d0c/0.1m before_dip|preNone@? leakNonem bnd55 INTIME starv0m|MIXED,MIXED|3,-3|-25,19|
+C|ATPCHALLENGERMATCH-26JUL05VALREJ|ATP_CHALL|96|1.25|2|67c@07:54:27(Ts205.5/Tg146.5) best67@07:54:22(T-g146.6m,0s,sz4) d0c/0.1m before_dip|29c@09:09:32(Ts130.5/Tg71.5) best29@09:09:06(T-g71.9m,0s,sz53) d0c/0.4m before_dip|preNone@? leakNonem bnd30 INTIME starv0m|MIXED,EARNED|0,2|-11,-10|
+C|ATPCHALLENGERMATCH-26JUL05WEIHOE|ATP_CHALL|96|1.2|2|57c@08:46:16(Ts153.7/Tg27.7) best57@08:46:14(T-g27.8m,0s,sz5) d0c/0.0m before_dip|39c@09:05:33(Ts134.4/Tg8.4) best39@09:05:18(T-g8.7m,51s,sz29) d0c/0.3m before_dip|pre41@23:17:41 leak568.6m bnd40 INTIME starv0m|GIFT_CLASS,MIXED|0,3|-4,-34|
+D|ATPCHALLENGERMATCH-26JUL04LEGWIN|ATP_CHALL|None|0.9|1|80c@21:40:10(Ts19.8/Tg-60.2) best46@20:44:36(T-g-4.6m,18s,sz3) d34c/55.6m before_dip|-|pre16@21:32:19 leak7.9m bnd17 LATE/NO starv89m|?|-3|?|fill_above_best=1.70$;forfeited_completion=0.20$
+D|ATPCHALLENGERMATCH-26JUL05HUEMAR|ATP_CHALL|None|0.07|1|31c@11:07:30(Ts172.5/Tg66.5) best? d?c/?m |-|preNone@? leakNonem bnd66 LATE/NO starv0m|MIXED|3|-27|
+D|ATPCHALLENGERMATCH-26JUL05MARZAN|ATP_CHALL|None|0.2|1|6c@03:09:20(Ts230.7/Tg318.7) best6@03:09:18(T-g318.7m,0s,sz5) d0c/0.0m before_dip|-|preNone@? leakNonem bnd91 LATE/NO starv0m|EARNED|-5|0|
+D|ATPCHALLENGERMATCH-26JUL05SEKMAL|ATP_CHALL|None|0.0|1|33c@15:51:16(Ts68.7/Tg-9.3) best33@15:51:11(T-g-9.2m,0s,sz1) d0c/0.1m before_dip|-|preNone@? leakNonem bnd64 LATE/NO starv0m|EARNED|3|?|
+D|ATPCHALLENGERMATCH-26JUL05URRMEL|ATP_CHALL|None|0.2|1|4c@14:37:38(Ts172.4/Tg19.4) best4@14:33:06(T-g23.9m,265s,sz993) d0c/4.5m before_dip|-|preNone@? leakNonem bnd93 LATE/NO starv0m|MIXED|2|0|
+D|ATPCHALLENGERMATCH-26JUL05VANTRO|ATP_CHALL|None|0.0|1|46c@15:51:34(Ts98.4/Tg34.4) best46@15:51:32(T-g34.5m,0s,sz1) d0c/0.0m before_dip|-|pre51@12:39:08 leak192.4m bnd51 LATE/NO starv0m|MIXED|3|0|forfeited_completion=0.03$
+D|ATPCHALLENGERMATCH-26JUL05VILPER|ATP_CHALL|None|0.0|1|87c@15:26:09(Ts123.8/Tg56.8) best87@15:26:07(T-g56.9m,0s,sz14) d0c/0.0m before_dip|-|preNone@? leakNonem bnd10 LATE/NO starv0m|GIFT_CLASS|2|-36|
+D|ATPCHALLENGERMATCH-26JUL05VILPUR|ATP_CHALL|None|0.85|1|81c@09:44:18(Ts105.7/Tg0.7) best70@09:44:06(T-g0.9m,0s,sz48) d11c/0.2m before_dip|-|pre33@09:44:06 leak0.2m bnd16 LATE/NO starv0m|MIXED|1|-25|
+F|ATPCHALLENGERMATCH-26JUL05BLIPET|ATP_CHALL|None|-0.3|1|6c@09:56:18(Ts103.7/Tg49.7) best6@09:56:17(T-g49.7m,0s,sz5) d0c/0.0m before_dip|-|preNone@? leakNonem bnd91 LATE/NO starv0m|MIXED|4|0|
+F|ATPCHALLENGERMATCH-26JUL05CHESPE|ATP_CHALL|None|-1.95|1|39c@07:41:29(Ts98.5/Tg2.5) best39@07:41:29(T-g2.5m,0s,sz5) d0c/0.0m before_dip|-|preNone@? leakNonem bnd58 LATE/NO starv0m|EARNED|3|-18|
+F|ATPCHALLENGERMATCH-26JUL05DONGRE|ATP_CHALL|None|-0.95|1|19c@07:40:10(Ts179.8/Tg35.8) best? d?c/?m |-|pre78@04:14:27 leak205.7m bnd78 LATE/NO starv0m|MIXED|3|-10|forfeited_completion=0.15$
+F|ATPCHALLENGERMATCH-26JUL05FRUSIN|ATP_CHALL|None|-0.25|1|5c@06:37:36(Ts172.4/Tg23.4) best5@06:37:26(T-g23.6m,0s,sz202) d0c/0.2m before_dip|-|preNone@? leakNonem bnd92 LATE/NO starv0m|MIXED|3|-2|
+F|ATPCHALLENGERMATCH-26JUL05GOIAND|ATP_CHALL|None|-1.55|1|31c@11:54:17(Ts195.7/Tg-3.3) best31@11:53:37(T-g-2.6m,0s,sz500) d0c/0.7m before_dip|-|pre73@11:00:23 leak53.9m bnd66 LATE/NO starv0m|MIXED|5|-15|
+F|ATPCHALLENGERMATCH-26JUL05MARNVS|ATP_CHALL|None|-0.25|1|5c@06:19:08(Ts190.9/Tg24.9) best4@06:19:05(T-g24.9m,1s,sz525) d1c/0.1m before_dip|-|pre96@05:47:05 leak32.1m bnd92 LATE/NO starv0m|MIXED|3|-2|fill_above_best=0.05$
+F|ATPCHALLENGERMATCH-26JUL05MONHUR|ATP_CHALL|None|-0.2|1|4c@13:29:38(Ts170.4/Tg-6.6) best3@13:29:16(T-g-6.3m,0s,sz1778) d1c/0.4m before_dip|-|preNone@? leakNonem bnd93 LATE/NO starv0m|MIXED|2|1|fill_above_best=0.05$
+F|ATPCHALLENGERMATCH-26JUL05RYBTUN|ATP_CHALL|None|-3.65|1|73c@11:15:34(Ts134.4/Tg20.4) best72@11:14:12(T-g21.8m,46s,sz162) d1c/1.4m before_dip|-|preNone@? leakNonem bnd24 LATE/NO starv0m|GIFT_CLASS|-2|-38|fill_above_best=0.05$
+F|ATPCHALLENGERMATCH-26JUL05SANROD|ATP_CHALL|None|-4.1|1|82c@12:38:05(Ts151.9/Tg8.9) best82@12:31:47(T-g15.2m,0s,sz39) d0c/6.3m before_dip|-|preNone@? leakNonem bnd15 LATE/NO starv0m|MIXED|0|-12|
+F|ATPCHALLENGERMATCH-26JUL05SEYMAJ|ATP_CHALL|None|-0.2|1|4c@06:31:59(Ts98.0/Tg0.0) best4@06:31:19(T-g0.7m,0s,sz5) d0c/0.7m before_dip|-|pre94@05:34:37 leak57.4m bnd93 LATE/NO starv0m|MIXED|2|1|
+F|ATPCHALLENGERMATCH-26JUL05WALVAR|ATP_CHALL|None|-0.15|1|3c@10:36:33(Ts73.4/Tg7.4) best? d?c/?m |-|preNone@? leakNonem bnd94 LATE/NO starv0m|MIXED|2|0|
+A|ATPMATCH-26JUL05SAFDJO|ATP_MAIN|100|0.9|2|85c@06:40:10(Ts139.8/Tg-1.2) best85@06:19:55(T-g19.1m,0s,sz6032) d0c/20.3m never_reached_level|15c@08:46:11(Ts13.8/Tg-127.2) best12@08:45:52(T-g-126.9m,1s,sz200) d3c/0.3m before_dip|pre14@00:44:49 leak355.4m bnd12 INTIME starv0m|GIFT_CLASS,EARNED|0,3|1,1|fill_above_best=0.15$
+A|ATPMATCH-26JUL05SINMOC|ATP_MAIN|99|0.3|2|96c@12:08:56(Ts-188.9/Tg-7.9) best96@06:11:50(T-g349.2m,100s,sz50557) d0c/357.1m never_reached_level|3c@14:35:43(Ts-335.7/Tg-154.7) best3@09:40:10(T-g140.8m,0s,sz4995) d0c/295.6m before_dip|pre3@13:45:08 leak1343.8m bnd1 LATE/NO starv0m|PENDING,PENDING|0,2|1,1|
+C|ATPMATCH-26JUL05HURSTR|ATP_MAIN|97|-3.2|2|26c@08:49:52(Ts10.1/Tg24.1) best26@05:19:32(T-g234.5m,0s,sz20882) d0c/210.3m before_dip|71c@14:35:42(Ts-335.7/Tg-321.7) best65@14:35:36(T-g-321.6m,6s,sz2437) d6c/0.1m before_dip|pre68@04:49:23 leak1680.5m bnd71 LATE/NO starv0m|MIXED,PENDING|1,0|0,21|fill_above_best=0.30$
+D|ATPMATCH-26JUL05AUGDAV|ATP_MAIN|None|0.85|1|63c@06:15:15(Ts164.7/Tg-43.3) best63@05:30:13(T-g1.8m,0s,sz633) d0c/45.0m never_reached_level|-|pre35@09:30:40 leak1244.6m bnd34 LATE/NO starv0m|GIFT_CLASS|-1|-1|
+A|ITFMATCH-26JUL05CRIMAR|ITF_M|97|0.45|2|93c@13:06:54(Ts233.1/Tg-29.9) best93@13:06:51(T-g-29.9m,0s,sz5) d0c/0.1m before_dip|4c@13:12:08(Ts227.9/Tg-35.1) best1@13:12:07(T-g-35.1m,0s,sz289) d3c/0.0m before_dip|pre5@12:58:50 leak8.1m bnd4 LATE/NO starv0m|GIFT_CLASS,EARNED|0,3|1,12|fill_above_best=0.15$
+A|ITFMATCH-26JUL05ELIAZO|ITF_M|97|0.05|2|18c@06:40:27(Ts199.5/Tg-35.5) best3@06:21:34(T-g-16.6m,62s,sz33) d15c/18.9m never_reached_level|79c@06:41:04(Ts198.9/Tg-36.1) best64@06:32:14(T-g-27.2m,0s,sz159) d15c/8.8m never_reached_level|pre37@05:12:21 leak88.1m bnd79 LATE/NO starv0m|MIXED,MIXED|4,1|13,8|fill_above_best=1.50$
+A|ITFMATCH-26JUL05GELBRE|ITF_M|92|1.0|2|44c@10:41:28(Ts138.5/Tg15.5) best44@10:41:22(T-g15.6m,0s,sz15) d0c/0.1m before_dip|48c@10:53:28(Ts126.5/Tg3.5) best48@10:53:21(T-g3.6m,0s,sz5) d0c/0.1m before_dip|preNone@? leakNonem bnd53 INTIME starv0m|MIXED,EARNED|4,-8|8,26|
+A|ITFMATCH-26JUL05MILRAM|ITF_M|92|0.3|2|90c@14:32:04(Ts237.9/Tg11.9) best? d?c/?m |2c@14:58:07(Ts211.9/Tg-14.1) best1@14:58:04(T-g-14.1m,0s,sz33) d1c/0.1m before_dip|pre10@14:20:40 leak11.4m bnd7 INTIME starv0m|GIFT_CLASS,EARNED|0,-2|8,6|fill_above_best=0.05$
+A|ITFMATCH-26JUL05RECDUB|ITF_M|97|1.25|2|38c@08:30:39(Ts209.3/Tg-3.7) best29@08:26:30(T-g0.5m,44s,sz91) d9c/4.2m never_reached_level|59c@08:34:44(Ts205.3/Tg-7.7) best48@08:08:15(T-g18.8m,105s,sz3) d11c/26.5m never_reached_level|pre44@07:38:02 leak52.6m bnd59 INTIME starv0m|MIXED,GIFT_CLASS|4,-5|17,14|fill_above_best=1.00$
+B|ITFMATCH-26JUL05MORHAU|ITF_M|89|0.95|2|6c@07:13:46(Ts226.2/Tg47.2) best6@07:13:37(T-g47.4m,0s,sz6) d0c/0.2m before_dip|83c@07:15:27(Ts224.5/Tg45.5) best83@07:15:21(T-g45.6m,0s,sz12) d0c/0.1m before_dip|preNone@? leakNonem bnd91 INTIME starv0m|EARNED,MIXED|4,27|-4,16|
+C|ITFMATCH-26JUL05BOUDOU|ITF_M|97|1.25|2|75c@06:40:26(Ts229.6/Tg-59.4) best74@06:39:32(T-g-58.5m,58s,sz103) d1c/0.9m during_dip|22c@06:58:20(Ts211.7/Tg-77.3) best17@06:37:03(T-g-56.0m,178s,sz89) d5c/21.3m never_reached_level|pre17@06:37:03 leak3.4m bnd22 LATE/NO starv0m|MIXED,EARNED|0,7|-20,28|fill_above_best=0.30$
+C|ITFMATCH-26JUL05DELNIC|ITF_M|101|-3.4|2|23c@08:01:24(Ts238.6/Tg34.6) best21@08:01:09(T-g34.9m,0s,sz367) d2c/0.3m before_dip|78c@09:34:56(Ts145.1/Tg-58.9) best80@09:33:50(T-g-57.8m,176s,sz50) d-2c/1.1m never_reached_level|preNone@? leakNonem bnd74 LATE/NO starv0m|MIXED,EARNED|3,-3|-16,14|fill_above_best=0.10$
+C|ITFMATCH-26JUL05FARBRO|ITF_M|96|-2.8|2|64c@12:01:32(Ts238.5/Tg-39.5) best64@12:00:50(T-g-38.8m,0s,sz5) d0c/0.7m before_dip|32c@12:12:27(Ts227.5/Tg-50.5) best34@12:00:45(T-g-38.8m,0s,sz278) d-2c/11.7m never_reached_level|pre8@11:41:32 leak20.0m bnd33 INTIME starv0m|GIFT_CLASS,MIXED|0,2|-1,-3|
+C|ITFMATCH-26JUL05LENJON|ITF_M|97|1.25|2|22c@08:45:41(Ts194.3/Tg41.3) best? d?c/?m |75c@08:53:04(Ts186.9/Tg33.9) best75@08:52:52(T-g34.1m,0s,sz5) d0c/0.2m before_dip|preNone@? leakNonem bnd75 INTIME starv0m|MIXED,MIXED|8,3|-9,13|
+C|ITFMATCH-26JUL05SALCON|ITF_M|102|0.9|2|89c@09:20:09(Ts219.8/Tg32.8) best89@09:18:45(T-g34.2m,66s,sz14) d0c/1.4m before_dip|13c@10:48:45(Ts131.2/Tg-55.8) best11@10:44:43(T-g-51.7m,17s,sz1064) d2c/4.0m never_reached_level|pre5@08:10:36 leak69.6m bnd8 LATE/NO starv0m|GIFT_CLASS,EARNED|0,-16|-21,17|fill_above_best=0.10$
+D|ITFMATCH-26JUL05MCKBER|ITF_M|None|0.1|1|96c@13:01:19(Ts238.7/Tg-13.3) best94@13:00:55(T-g-12.9m,13s,sz75) d2c/0.4m before_dip|-|pre3@12:58:00 leak3.3m bnd1 LATE/NO starv0m|GIFT_CLASS|0|-1|
+D|ITFMATCH-26JUL05THUGRE|ITF_M|None|0.0|1|98c@12:03:46(Ts236.2/Tg-59.8) best98@12:00:47(T-g-56.8m,111s,sz379) d0c/3.0m during_dip|-|pre1@11:46:39 leak17.1m bnd-1 LATE/NO starv0m|GIFT_CLASS|0|-45|
+F|ITFMATCH-26JUL05BONBRA|ITF_M|None|-0.65|1|13c@11:33:20(Ts146.7/Tg-2.3) best10@11:33:07(T-g-2.1m,0s,sz1) d3c/0.2m before_dip|-|preNone@? leakNonem bnd84 LATE/NO starv0m|MIXED|3|9|
+F|ITFMATCH-26JUL05IONDAO|ITF_M|None|-0.5|1|10c@14:33:09(Ts236.8/Tg-28.2) best9@14:30:32(T-g-25.5m,154s,sz196) d1c/2.6m during_dip|-|pre62@13:47:50 leak45.3m bnd87 LATE/NO starv0m|MIXED|4|5|fill_above_best=0.05$;forfeited_completion=1.40$
+F|ITFMATCH-26JUL05SABMIS|ITF_M|None|-4.05|1|81c@11:47:25(Ts132.6/Tg-5.4) best75@11:44:20(T-g-2.3m,0s,sz1) d6c/3.1m never_reached_level|-|pre14@11:44:20 leak3.1m bnd16 LATE/NO starv0m|MIXED|67|3|forfeited_completion=0.25$
+F|ITFMATCH-26JUL05SHVFAU|ITF_M|None|-0.4|1|8c@09:33:09(Ts236.8/Tg-25.2) best1@09:33:03(T-g-25.1m,0s,sz3721) d7c/0.1m before_dip|-|pre90@07:52:53 leak100.3m bnd89 LATE/NO starv0m|MIXED|3|?|fill_above_best=0.35$
+F|ITFMATCH-26JUL05SLOKHR|ITF_M|None|-1.95|1|39c@13:01:17(Ts238.7/Tg-24.3) best39@13:00:56(T-g-23.9m,0s,sz5) d0c/0.4m before_dip|-|pre50@12:44:14 leak17.1m bnd58 LATE/NO starv0m|MIXED|4|8|forfeited_completion=0.55$
+F|ITFMATCH-26JUL05XUXCHE|ITF_M|None|-0.1|1|2c@12:01:30(Ts238.5/Tg-60.5) best1@12:01:27(T-g-60.5m,55s,sz1061) d1c/0.1m before_dip|-|pre64@11:09:17 leak52.2m bnd95 LATE/NO starv0m|MIXED|1|?|fill_above_best=0.05$;forfeited_completion=1.70$
+A|ITFWMATCH-26JUL05AITDAE|ITF_W|97|1.0|2|16c@09:21:57(Ts218.0/Tg40.0) best16@09:21:46(T-g40.2m,0s,sz11) d0c/0.2m before_dip|81c@11:12:25(Ts107.6/Tg-70.4) best79@11:12:18(T-g-70.3m,0s,sz45) d2c/0.1m before_dip|preNone@? leakNonem bnd81 INTIME starv0m|MIXED,MIXED|4,-13|1,12|
+A|ITFWMATCH-26JUL05KULVAN|ITF_W|94|0.95|2|55c@12:13:46(Ts106.2/Tg17.2) best55@12:12:39(T-g18.4m,0s,sz5) d0c/1.1m before_dip|39c@12:24:18(Ts95.7/Tg6.7) best36@12:23:29(T-g7.5m,0s,sz17) d3c/0.8m before_dip|preNone@? leakNonem bnd42 INTIME starv0m|MIXED,EARNED|-5,-4|1,0|
+A|ITFWMATCH-26JUL05PRIYUL|ITF_W|95|0.15|2|89c@08:32:30(Ts207.5/Tg-9.5) best89@08:25:42(T-g-2.7m,0s,sz27) d0c/6.8m never_reached_level|6c@08:50:59(Ts189.0/Tg-28.0) best1@08:50:15(T-g-27.2m,0s,sz733) d5c/0.7m before_dip|pre8@08:22:10 leak10.3m bnd8 LATE/NO starv0m|GIFT_CLASS,EARNED|14,2|7,2|fill_above_best=0.25$
+B|ITFWMATCH-26JUL05COHTSE|ITF_W|97|0.8|2|12c@09:13:42(Ts226.3/Tg-9.7) best8@09:02:37(T-g1.4m,0s,sz5) d4c/11.1m before_dip|85c@09:33:33(Ts206.4/Tg-29.6) best85@09:33:32(T-g-29.5m,0s,sz30) d0c/0.0m before_dip|pre89@08:52:41 leak21.0m bnd85 LATE/NO starv0m|MIXED,MIXED|8,-1|-4,11|
+B|ITFWMATCH-26JUL05TUBSOB|ITF_W|99|1.2|2|72c@10:03:14(Ts236.8/Tg-60.2) best71@10:00:55(T-g-57.9m,102s,sz50) d1c/2.3m during_dip|27c@10:03:14(Ts236.8/Tg-60.2) best27@10:01:25(T-g-58.4m,62s,sz730) d0c/1.8m during_dip|pre10@09:02:15 leak61.0m bnd25 INTIME starv0m|GIFT_CLASS,MIXED|-1,4|?,?|fill_above_best=0.05$
+C|ITFWMATCH-26JUL05KUHEBE|ITF_W|93|-1.15|2|57c@08:37:14(Ts202.8/Tg22.8) best57@08:37:05(T-g22.9m,0s,sz5) d0c/0.2m before_dip|36c@08:41:47(Ts198.2/Tg18.2) best36@08:41:32(T-g18.5m,0s,sz5) d0c/0.3m before_dip|preNone@? leakNonem bnd40 INTIME starv0m|EARNED,EARNED|25,11|32,-25|
+C|ITFWMATCH-26JUL05MONFER|ITF_W|94|1.15|2|74c@08:30:39(Ts209.3/Tg-41.7) best66@08:17:16(T-g-28.3m,5s,sz1) d8c/13.4m never_reached_level|20c@08:34:44(Ts205.3/Tg-45.7) best6@08:17:26(T-g-28.4m,0s,sz44) d14c/17.3m never_reached_level|pre6@08:17:26 leak13.2m bnd23 LATE/NO starv0m|MIXED,MIXED|2,4|-1,0|fill_above_best=0.70$
+C|ITFWMATCH-26JUL05MUNGAD|ITF_W|97|-2.35|2|42c@10:10:20(Ts229.7/Tg24.7) best42@10:10:06(T-g24.9m,0s,sz5) d0c/0.2m before_dip|55c@10:11:08(Ts228.9/Tg23.9) best55@10:11:02(T-g24.0m,0s,sz5) d0c/0.1m before_dip|preNone@? leakNonem bnd55 INTIME starv0m|EARNED,MIXED|14,2|34,-32|
+C|ITFWMATCH-26JUL05TRAABB|ITF_W|98|1.1|2|31c@10:05:00(Ts235.0/Tg-4.0) best31@10:04:19(T-g-3.3m,0s,sz5) d0c/0.7m before_dip|67c@10:06:25(Ts233.6/Tg-5.4) best57@10:00:52(T-g0.1m,0s,sz25) d10c/5.6m never_reached_level|pre51@09:54:45 leak10.3m bnd66 INTIME starv0m|EARNED,GIFT_CLASS|2,10|-15,-10|
+D|ITFWMATCH-26JUL05BUYCOH|ITF_W|None|0.2|1|15c@09:23:51(Ts216.1/Tg33.1) best12@09:04:18(T-g52.7m,0s,sz4) d3c/19.6m never_reached_level|-|pre81@09:17:22 leak6.5m bnd82 LATE/NO starv0m|EARNED|-14|-12|forfeited_completion=0.20$
+D|ITFWMATCH-26JUL05VARGRO|ITF_W|None|0.06|1|13c@09:26:16(Ts213.7/Tg29.7) best? d?c/?m |-|preNone@? leakNonem bnd84 LATE/NO starv0m|MIXED|5|-5|
+F|ITFWMATCH-26JUL04BROKOI|ITF_W|None|-2.1|1|21c@21:34:57(Ts205.0/Tg-58.0) best20@21:34:54(T-g-57.9m,415s,sz389) d1c/0.1m during_dip|-|pre40@21:04:58 leak30.0m bnd76 LATE/NO starv0m|MIXED|3|21|fill_above_best=0.05$;forfeited_completion=1.95$
+F|ITFWMATCH-26JUL04MAXSTE|ITF_W|None|-0.7|1|14c@21:32:56(Ts207.1/Tg-59.9) best12@21:25:15(T-g-52.2m,158s,sz146) d2c/7.7m never_reached_level|-|pre54@21:03:18 leak29.6m bnd83 LATE/NO starv0m|MIXED|4|?|fill_above_best=0.10$;forfeited_completion=1.60$
+F|ITFWMATCH-26JUL05ALVJOH|ITF_W|None|-3.65|1|73c@09:01:19(Ts238.7/Tg-5.3) best73@09:01:00(T-g-5.0m,0s,sz5) d0c/0.3m before_dip|-|pre25@08:54:34 leak6.8m bnd24 LATE/NO starv0m|GIFT_CLASS|-1|-10|
+F|ITFWMATCH-26JUL05DEKCAK|ITF_W|None|-1.25|1|25c@09:13:43(Ts226.3/Tg-38.7) best21@09:05:32(T-g-30.5m,0s,sz1) d4c/8.2m never_reached_level|-|pre11@09:05:34 leak8.2m bnd72 LATE/NO starv0m|EARNED|3|18|forfeited_completion=3.20$
+F|ITFWMATCH-26JUL05KARMAT|ITF_W|None|-0.05|1|1c@08:12:00(Ts228.0/Tg-58.0) best1@08:03:57(T-g-50.0m,0s,sz297) d0c/8.1m before_dip|-|pre85@07:08:08 leak63.9m bnd96 LATE/NO starv0m|MIXED|0|5|forfeited_completion=0.70$
+F|ITFWMATCH-26JUL05LIMHAG|ITF_W|None|-0.65|1|13c@09:01:21(Ts238.6/Tg-60.4) best11@09:00:42(T-g-59.7m,0s,sz4) d2c/0.7m before_dip|-|pre79@08:10:06 leak51.3m bnd84 LATE/NO starv0m|MIXED|4|?|forfeited_completion=0.40$
+F|ITFWMATCH-26JUL05SPIGAR|ITF_W|None|-0.05|1|1c@07:01:24(Ts238.6/Tg-56.4) best1@07:01:18(T-g-56.3m,0s,sz29) d0c/0.1m before_dip|-|pre92@06:10:30 leak50.9m bnd96 LATE/NO starv0m|MIXED|0|6|forfeited_completion=0.35$
+A|WTACHALLENGERMATCH-26JUL05HERVAI|WTA_CHALL|97|1.05|2|81c@05:06:13(Ts173.8/Tg10.8) best81@05:06:10(T-g10.8m,0s,sz47) d0c/0.1m before_dip|16c@05:45:12(Ts134.8/Tg-28.2) best16@05:45:02(T-g-28.0m,0s,sz5) d0c/0.2m before_dip|preNone@? leakNonem bnd16 LATE/NO starv0m|MIXED,EARNED|-2,3|0,3|
+A|WTACHALLENGERMATCH-26JUL05KOBLEW|WTA_CHALL|99|0.6|2|10c@11:08:38(Ts141.4/Tg-0.6) best9@11:08:09(T-g-0.1m,24s,sz328) d1c/0.5m before_dip|89c@11:15:35(Ts134.4/Tg-7.6) best87@11:15:17(T-g-7.3m,96s,sz50) d2c/0.3m before_dip|pre91@11:08:15 leak0.4m bnd87 LATE/NO starv0m|MIXED,GIFT_CLASS|2,-2|1,9|fill_above_best=0.15$
+A|WTACHALLENGERMATCH-26JUL05KUDBOU|WTA_CHALL|97|0.33|2|5c@04:48:46(Ts191.2/Tg21.2) best? d?c/?m |92c@05:41:09(Ts138.8/Tg-31.2) best92@05:40:59(T-g-31.0m,0s,sz75) d0c/0.2m before_dip|preNone@? leakNonem bnd92 INTIME starv0m|MIXED,MIXED|3,-1|8,3|
+A|WTACHALLENGERMATCH-26JUL05MORNGU|WTA_CHALL|97|0.5|2|6c@07:14:09(Ts115.8/Tg2.8) best6@07:13:51(T-g3.1m,0s,sz5) d0c/0.3m before_dip|91c@07:19:50(Ts110.2/Tg-2.8) best91@07:19:46(T-g-2.8m,136s,sz197) d0c/0.1m before_dip|preNone@? leakNonem bnd91 LATE/NO starv0m|MIXED,MIXED|3,0|2,4|
+A|WTACHALLENGERMATCH-26JUL05SMIJAR|WTA_CHALL|97|0.05|2|81c@13:53:47(Ts116.2/Tg70.2) best81@13:53:41(T-g70.3m,0s,sz17) d0c/0.1m before_dip|16c@15:03:41(Ts46.3/Tg0.3) best16@15:03:38(T-g0.4m,0s,sz55) d0c/0.1m before_dip|preNone@? leakNonem bnd16 INTIME starv0m|GIFT_CLASS,EARNED|0,-1|4,0|
+A|WTACHALLENGERMATCH-26JUL05YAMOVC|WTA_CHALL|97|1.2|2|28c@13:28:41(Ts71.3/Tg-5.7) best28@13:28:40(T-g-5.7m,0s,sz5) d0c/0.0m before_dip|69c@13:31:36(Ts68.4/Tg-8.6) best68@13:31:27(T-g-8.4m,0s,sz196) d1c/0.2m before_dip|pre71@13:26:31 leak2.2m bnd69 INTIME starv0m|MIXED,MIXED|3,-1|?,2|fill_above_best=0.05$
+B|WTACHALLENGERMATCH-26JUL05BARPOP|WTA_CHALL|97|1.15|2|65c@07:18:23(Ts111.6/Tg0.6) best63@07:18:16(T-g0.7m,0s,sz28) d2c/0.1m before_dip|32c@07:31:46(Ts98.2/Tg-12.8) best32@07:31:16(T-g-12.3m,0s,sz5) d0c/0.5m before_dip|pre33@04:02:06 leak196.3m bnd32 INTIME starv0m|GIFT_CLASS,EARNED|2,2|-2,6|
+B|WTACHALLENGERMATCH-26JUL05MONGIM|WTA_CHALL|97|1.2|2|26c@05:10:31(Ts169.5/Tg12.5) best26@05:10:20(T-g12.7m,0s,sz5) d0c/0.2m before_dip|71c@05:21:10(Ts158.8/Tg1.8) best71@05:21:08(T-g1.9m,0s,sz7) d0c/0.0m before_dip|preNone@? leakNonem bnd71 INTIME starv0m|EARNED,MIXED|0,0|4,-1|
+C|WTACHALLENGERMATCH-26JUL05ARSOSU|WTA_CHALL|97|0.35|2|35c@16:47:15(Ts12.7/Tg-0.3) best35@16:32:10(T-g14.8m,0s,sz149) d0c/15.1m before_dip|62c@16:56:37(Ts3.4/Tg-9.6) best61@16:56:32(T-g-9.5m,0s,sz44) d1c/0.1m before_dip|preNone@? leakNonem bnd62 INTIME starv0m|MIXED,EARNED|3,0|-13,3|fill_above_best=0.05$
+C|WTACHALLENGERMATCH-26JUL05BAYMAR|WTA_CHALL|99|-0.5|2|71c@08:45:40(Ts94.3/Tg-0.7) best71@08:45:40(T-g-0.7m,0s,sz7) d0c/0.0m before_dip|28c@09:29:37(Ts50.4/Tg-44.6) best27@09:29:33(T-g-44.5m,0s,sz162) d1c/0.1m before_dip|preNone@? leakNonem bnd26 INTIME starv0m|MIXED,MIXED|0,6|4,19|fill_above_best=0.05$
+C|WTACHALLENGERMATCH-26JUL05DITLEW|WTA_CHALL|97|1.15|2|31c@09:24:14(Ts55.8/Tg21.8) best30@09:24:13(T-g21.8m,0s,sz10) d1c/0.0m before_dip|66c@09:27:01(Ts53.0/Tg19.0) best66@09:26:54(T-g19.1m,0s,sz5) d0c/0.1m before_dip|pre68@23:27:10 leak597.1m bnd66 INTIME starv0m|MIXED,MIXED|3,-2|16,-14|
+C|WTACHALLENGERMATCH-26JUL05MORKOT|WTA_CHALL|97|0.5|2|6c@07:45:12(Ts84.8/Tg7.8) best6@07:45:01(T-g8.0m,0s,sz5) d0c/0.2m before_dip|91c@07:52:26(Ts77.6/Tg0.6) best91@07:52:25(T-g0.6m,0s,sz107) d0c/0.0m before_dip|preNone@? leakNonem bnd91 INTIME starv0m|MIXED,MIXED|1,-1|3,-55|
+A|WTAMATCH-26JUL05BENGAU|WTA_MAIN|98|1.2|2|50c@10:42:31(Ts-102.5/Tg-1.5) best51@07:06:38(T-g214.4m,0s,sz1883) d-1c/215.9m before_dip|48c@15:45:28(Ts-405.5/Tg-304.5) best46@15:45:12(T-g-304.2m,13s,sz200) d2c/0.3m before_dip|pre45@10:05:14 leak1477.3m bnd47 LATE/NO starv0m|PENDING,PENDING|0,3|2,4|fill_above_best=0.10$
+A|WTAMATCH-26JUL05PEGJOV|WTA_MAIN|97|1.3|2|70c@07:45:19(Ts74.7/Tg-35.3) best70@05:05:57(T-g124.0m,0s,sz818) d0c/159.4m never_reached_level|27c@08:08:28(Ts51.5/Tg-58.5) best27@08:08:24(T-g-58.4m,92s,sz15) d0c/0.1m before_dip|pre30@05:07:45 leak157.6m bnd27 INTIME starv0m|GIFT_CLASS,EARNED|0,-1|1,?|
+C|WTAMATCH-26JUL05SABOSA|WTA_MAIN|100|-3.05|2|31c@07:21:11(Ts98.8/Tg50.8) best31@05:55:05(T-g136.9m,0s,sz69) d0c/86.1m never_reached_level|69c@08:48:48(Ts11.2/Tg-36.8) best68@05:59:17(T-g132.7m,0s,sz442) d1c/169.5m never_reached_level|pre66@09:40:26 leak1300.8m bnd66 LATE/NO starv0m|MIXED,GIFT_CLASS|3,1|1,0|
+D|WTAMATCH-26JUL05MUCKRE|WTA_MAIN|110|1.35|2|38c@06:18:05(Ts161.9/Tg-7.1) best38@05:19:21(T-g51.6m,0s,sz3213) d0c/58.7m never_reached_level|72c@08:49:52(Ts10.1/Tg-158.9) best62@05:05:01(T-g66.0m,0s,sz279) d10c/224.9m never_reached_level|pre59@15:05:52 leak912.2m bnd59 LATE/NO starv0m|MIXED,GIFT_CLASS|1,9|1,-9|
+
+== THE FLAW IN ENGLISH — one line per sub-A game ==
+[B] ATPCHALLENGER -26JUL05POTANG (ATP_CHALL, comb 97, $1.15): ANG's best print was 46c for 7s (sz 26) at T-6h24m vs gun / T-1h03m sched; we filled 47c 0m later (before_dip)
+[B] ATPCHALLENGER -26JUL05JANRYA (ATP_CHALL, comb 99, $0.40): JAN's best print was 90c for 175s (sz 325) at T-3m vs gun / T-2h41m sched; we filled 94c 36m later (never_reached_level)
+[B] ATPCHALLENGER -26JUL05SCIORA (ATP_CHALL, comb 97, $1.10): no tape-visible flaw
+[B] ATPCHALLENGER -26JUL05ALBZOR (ATP_CHALL, comb 97, $0.55): no tape-visible flaw
+[B] ATPCHALLENGER -26JUL05UTADEV (ATP_CHALL, comb 97, $1.25): no tape-visible flaw
+[B] ATPCHALLENGER -26JUL05SZYSTR (ATP_CHALL, comb 96, $1.15): no tape-visible flaw
+[B] ATPCHALLENGER -26JUL05PDACAS (ATP_CHALL, comb 97, $1.20): no tape-visible flaw
+[B] ATPCHALLENGER -26JUL05KAMVAN (ATP_CHALL, comb 100, $0.64): KAM's best print was 11c for 0s (sz 1) at T-12m vs gun / T+15m sched; we filled 13c 1m later (before_dip)
+[B] ATPCHALLENGER -26JUL05MARJUN (ATP_CHALL, comb 97, $1.20): no tape-visible flaw
+[B] ATPCHALLENGER -26JUL05MORMAR (ATP_CHALL, comb 97, $1.25): MAR's best print was 37c for 0s (sz 100) at T+30m vs gun / T-1h09m sched; we filled 38c 0m later (before_dip)
+[B] ATPCHALLENGER -26JUL05POPCAS (ATP_CHALL, comb 97, $0.05): no tape-visible flaw
+[B] ITF -26JUL05MORHAU (ITF_M, comb 89, $0.95): no tape-visible flaw
+[B] ITFW -26JUL05COHTSE (ITF_W, comb 97, $0.80): COH's best print was 8c for 0s (sz 5) at T-1m vs gun / T-3h57m sched; we filled 12c 11m later (before_dip)
+[B] ITFW -26JUL05TUBSOB (ITF_W, comb 99, $1.20): TUB's best print was 71c for 102s (sz 50) at T+58m vs gun / T-3h59m sched; we filled 72c 2m later (during_dip)
+[B] WTACHALLENGER -26JUL05MONGIM (WTA_CHALL, comb 97, $1.20): no tape-visible flaw
+[B] WTACHALLENGER -26JUL05BARPOP (WTA_CHALL, comb 97, $1.15): POP's best print was 63c for 0s (sz 28) at T-0m vs gun / T-1h51m sched; we filled 65c 0m later (before_dip)
+[C] ATPCHALLENGER -26JUL05CRIRUB (ATP_CHALL, comb 97, $-3.25): directional hold settled -$3.60
+[C] ATPCHALLENGER -26JUL05PRIROT (ATP_CHALL, comb 97, $-0.40): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05SEIMOL (ATP_CHALL, comb 95, $0.90): zero-discount pair
+[C] ATPCHALLENGER -26JUL05SCHDE (ATP_CHALL, comb 99, $1.30): DE's best print was 73c for 0s (sz 2) at T-40m vs gun / T-2h52m sched; we filled 75c 0m later (before_dip); SCH's best print was 23c for 0s (sz 100) at T-39m vs gun / T-2h51m sched; we filled 24c 0m later (before_dip)
+[C] ATPCHALLENGER -26JUL05SMIPIR (ATP_CHALL, comb 97, $-0.35): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05BERBOC (ATP_CHALL, comb 97, $-0.15): directional hold settled -$1.10
+[C] ATPCHALLENGER -26JUL05RATRAH (ATP_CHALL, comb 97, $1.20): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05MARDUR (ATP_CHALL, comb 97, $-2.75): directional hold settled -$3.15
+[C] ATPCHALLENGER -26JUL05MELWAL (ATP_CHALL, comb 97, $-0.75): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05NIJBER (ATP_CHALL, comb 97, $1.25): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05IEMBER (ATP_CHALL, comb 102, $0.05): combined 102c >100 over-par
+[C] ATPCHALLENGER -26JUL05LUZSAN (ATP_CHALL, comb 97, $-3.60): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05INGFEL (ATP_CHALL, comb 97, $-0.30): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05COVDEL (ATP_CHALL, comb 99, $1.35): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05VALREJ (ATP_CHALL, comb 96, $1.25): 2 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05FELMOE (ATP_CHALL, comb 97, $-3.50): FEL's best print was 75c for 3s (sz 837) at T+0m vs gun / T-2h50m sched; we filled 76c 0m later (before_dip)
+[C] ATPCHALLENGER -26JUL05WEIHOE (ATP_CHALL, comb 96, $1.20): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05DESYEV (ATP_CHALL, comb 97, $3.55): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05BASRIB (ATP_CHALL, comb 96, $1.30): RIB's best print was 51c for 0s (sz 1) at T+0m vs gun / T-59m sched; we filled 61c 0m later (before_dip)
+[C] ATPCHALLENGER -26JUL05SLABAS (ATP_CHALL, comb 97, $-1.20): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05STEDIN (ATP_CHALL, comb 97, $1.30): STE's best print was 23c for 0s (sz 0) at T+29m vs gun / T-53m sched; we filled 26c 0m later (before_dip)
+[C] ATPCHALLENGER -26JUL05RAMNEU (ATP_CHALL, comb 97, $1.30): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05ILAPLU (ATP_CHALL, comb 101, $-0.52): combined 101c >100 over-par
+[C] ATPCHALLENGER -26JUL05DALARI (ATP_CHALL, comb 100, $-0.10): ARI's best print was 4c for 0s (sz 1) at T-0m vs gun / T+189m sched; we filled 6c 0m later (before_dip)
+[C] ATPCHALLENGER -26JUL05CIZCAZ (ATP_CHALL, comb 97, $1.25): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05PEROPI (ATP_CHALL, comb 98, $-3.30): directional hold settled -$3.65
+[C] ATPCHALLENGER -26JUL05TENBER (ATP_CHALL, comb 99, $1.25): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05SUNBAR (ATP_CHALL, comb 97, $-1.20): directional hold settled -$2.00
+[C] ATPCHALLENGER -26JUL05PRICOU (ATP_CHALL, comb 97, $1.15): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05HUANOC (ATP_CHALL, comb 98, $-3.10): 2 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05HIGZHU (ATP_CHALL, comb 96, $1.20): ZHU's best print was 53c for 0s (sz 14) at T+10m vs gun / T-46m sched; we filled 58c 0m later (before_dip)
+[C] ATPCHALLENGER -26JUL05BINPOL (ATP_CHALL, comb 97, $1.25): BIN's best print was 58c for 33s (sz 338) at T+1m vs gun / T-1h11m sched; we filled 59c 0m later (before_dip); POL's best print was 37c for 28s (sz 1005) at T+30m vs gun / T-42m sched; we filled 38c 0m later (before_dip)
+[C] ATPCHALLENGER -26JUL05GANZIN (ATP_CHALL, comb 97, $-0.45): 1 leg deep-neg FV fragile
+[C] ATPCHALLENGER -26JUL05ELLJOH (ATP_CHALL, comb 97, $-2.80): ELL's best print was 61c for 0s (sz 50) at T-8m vs gun / T-1h36m sched; we filled 64c 0m later (before_dip)
+[C] ATPCHALLENGER -26JUL05IMAMIL (ATP_CHALL, comb 97, $1.20): MIL's best print was 57c for 1s (sz 50) at T-15m vs gun / T-1h21m sched; we filled 58c 0m later (before_dip)
+[C] ATPCHALLENGER -26JUL05PAPMBI (ATP_CHALL, comb 97, $-2.80): directional hold settled -$3.20
+[C] ATPCHALLENGER -26JUL05FARMAT (ATP_CHALL, comb 96, $1.20): FAR's best print was 38c for 0s (sz 1) at T-47m vs gun / T-1h08m sched; we filled 39c 41m later (before_dip)
+[C] ATP -26JUL05HURSTR (ATP_MAIN, comb 97, $-3.20): HUR's best print was 65c for 6s (sz 2437) at T+322m vs gun / T+336m sched; we filled 71c 0m later (before_dip)
+[C] ITF -26JUL05BOUDOU (ITF_M, comb 97, $1.25): DOU's best print was 74c for 58s (sz 103) at T+58m vs gun / T-3h50m sched; we filled 75c 1m later (during_dip); BOU's best print was 17c for 178s (sz 89) at T+56m vs gun / T-3h52m sched; we filled 22c 21m later (never_reached_level)
+[C] ITF -26JUL05DELNIC (ITF_M, comb 101, $-3.40): DEL's best print was 21c for 0s (sz 367) at T-34m vs gun / T-3h58m sched; we filled 23c 0m later (before_dip)
+[C] ITF -26JUL05LENJON (ITF_M, comb 97, $1.25): 1 leg deep-neg FV fragile
+[C] ITF -26JUL05SALCON (ITF_M, comb 102, $0.90): CON's best print was 11c for 17s (sz 1064) at T+52m vs gun / T-2h15m sched; we filled 13c 4m later (never_reached_level)
+[C] ITF -26JUL05FARBRO (ITF_M, comb 96, $-2.80): zero-discount pair
+[C] ITFW -26JUL05MONFER (ITF_W, comb 94, $1.15): FER's best print was 66c for 5s (sz 1) at T+28m vs gun / T-3h42m sched; we filled 74c 13m later (never_reached_level); MON's best print was 6c for 0s (sz 44) at T+28m vs gun / T-3h42m sched; we filled 20c 17m later (never_reached_level)
+[C] ITFW -26JUL05KUHEBE (ITF_W, comb 93, $-1.15): 1 leg deep-neg FV fragile
+[C] ITFW -26JUL05TRAABB (ITF_W, comb 98, $1.10): ABB's best print was 57c for 0s (sz 25) at T-0m vs gun / T-3h59m sched; we filled 67c 6m later (never_reached_level)
+[C] ITFW -26JUL05MUNGAD (ITF_W, comb 97, $-2.35): 1 leg deep-neg FV fragile
+[C] WTACHALLENGER -26JUL05MORKOT (WTA_CHALL, comb 97, $0.50): 1 leg deep-neg FV fragile
+[C] WTACHALLENGER -26JUL05BAYMAR (WTA_CHALL, comb 99, $-0.50): BAY's best print was 27c for 0s (sz 162) at T+44m vs gun / T-50m sched; we filled 28c 0m later (before_dip)
+[C] WTACHALLENGER -26JUL05DITLEW (WTA_CHALL, comb 97, $1.15): DIT's best print was 30c for 0s (sz 10) at T-21m vs gun / T-55m sched; we filled 31c 0m later (before_dip)
+[C] WTACHALLENGER -26JUL05ARSOSU (WTA_CHALL, comb 97, $0.35): ARS's best print was 61c for 0s (sz 44) at T+10m vs gun / T-3m sched; we filled 62c 0m later (before_dip)
+[C] WTA -26JUL05SABOSA (WTA_MAIN, comb 100, $-3.05): SAB's best print was 68c for 0s (sz 442) at T-2h12m vs gun / T-3h00m sched; we filled 69c 170m later (never_reached_level)
+[D] ATPCHALLENGER -26JUL04LEGWIN (ATP_CHALL, comb None, $0.90): LEG's best print was 46c for 18s (sz 3) at T+5m vs gun / T-1h15m sched; we filled 80c 56m later (before_dip); fader WIN printed 16c at 07-04 21:32:19, 8m BEFORE leg-1 set the bound 17c — nothing was aimed at it
+[D] ATPCHALLENGER -26JUL05MARZAN (ATP_CHALL, comb None, $0.20): half-armed naked single (exited green, luck-directional)
+[D] ATPCHALLENGER -26JUL05VILPUR (ATP_CHALL, comb None, $0.85): PUR's best print was 70c for 0s (sz 48) at T-0m vs gun / T-1h45m sched; we filled 81c 0m later (before_dip)
+[D] ATPCHALLENGER -26JUL05HUEMAR (ATP_CHALL, comb None, $0.07): half-armed naked single (exited green, luck-directional)
+[D] ATPCHALLENGER -26JUL05URRMEL (ATP_CHALL, comb None, $0.20): half-armed naked single (exited green, luck-directional)
+[D] ATPCHALLENGER -26JUL05VILPER (ATP_CHALL, comb None, $0.00): half-armed naked single (open/held)
+[D] ATPCHALLENGER -26JUL05SEKMAL (ATP_CHALL, comb None, $0.00): half-armed naked single (open/held)
+[D] ATPCHALLENGER -26JUL05VANTRO (ATP_CHALL, comb None, $0.00): fader TRO printed 51c at 07-05 12:39:08, 192m BEFORE leg-1 set the bound 51c — nothing was aimed at it
+[D] ATP -26JUL05AUGDAV (ATP_MAIN, comb None, $0.85): half-armed naked single (exited green, luck-directional)
+[D] ITF -26JUL05THUGRE (ITF_M, comb None, $0.00): half-armed naked single (exited green, luck-directional)
+[D] ITF -26JUL05MCKBER (ITF_M, comb None, $0.10): BER's best print was 94c for 13s (sz 75) at T+13m vs gun / T-3h59m sched; we filled 96c 0m later (before_dip)
+[D] ITFW -26JUL05BUYCOH (ITF_W, comb None, $0.20): COH's best print was 12c for 0s (sz 4) at T-52m vs gun / T-3h55m sched; we filled 15c 20m later (never_reached_level); fader BUY printed 81c at 07-05 09:17:22, 6m BEFORE leg-1 set the bound 82c — nothing was aimed at it
+[D] ITFW -26JUL05VARGRO (ITF_W, comb None, $0.06): half-armed naked single (exited green, luck-directional)
+[D] WTA -26JUL05MUCKRE (WTA_MAIN, comb 110, $1.35): MUC's best print was 62c for 0s (sz 279) at T-1h06m vs gun / T-3h55m sched; we filled 72c 225m later (never_reached_level)
+[F] ATPCHALLENGER -26JUL05MARNVS (ATP_CHALL, comb None, $-0.25): NVS's best print was 4c for 1s (sz 525) at T-24m vs gun / T-3h10m sched; we filled 5c 0m later (before_dip)
+[F] ATPCHALLENGER -26JUL05SEYMAJ (ATP_CHALL, comb None, $-0.20): half-armed naked single -> settled LOSS
+[F] ATPCHALLENGER -26JUL05FRUSIN (ATP_CHALL, comb None, $-0.25): half-armed naked single -> settled LOSS
+[F] ATPCHALLENGER -26JUL05DONGRE (ATP_CHALL, comb None, $-0.95): fader DON printed 78c at 07-05 04:14:27, 206m BEFORE leg-1 set the bound 78c — nothing was aimed at it
+[F] ATPCHALLENGER -26JUL05CHESPE (ATP_CHALL, comb None, $-1.95): half-armed naked single -> settled LOSS
+[F] ATPCHALLENGER -26JUL05BLIPET (ATP_CHALL, comb None, $-0.30): half-armed naked single -> settled LOSS
+[F] ATPCHALLENGER -26JUL05WALVAR (ATP_CHALL, comb None, $-0.15): half-armed naked single -> settled LOSS
+[F] ATPCHALLENGER -26JUL05RYBTUN (ATP_CHALL, comb None, $-3.65): TUN's best print was 72c for 46s (sz 162) at T-21m vs gun / T-2h15m sched; we filled 73c 1m later (before_dip)
+[F] ATPCHALLENGER -26JUL05GOIAND (ATP_CHALL, comb None, $-1.55): half-armed naked single -> settled LOSS
+[F] ATPCHALLENGER -26JUL05SANROD (ATP_CHALL, comb None, $-4.10): half-armed naked single -> settled LOSS
+[F] ATPCHALLENGER -26JUL05MONHUR (ATP_CHALL, comb None, $-0.20): HUR's best print was 3c for 0s (sz 1778) at T+6m vs gun / T-2h50m sched; we filled 4c 0m later (before_dip)
+[F] ITF -26JUL05SHVFAU (ITF_M, comb None, $-0.40): SHV's best print was 1c for 0s (sz 3721) at T+25m vs gun / T-3h56m sched; we filled 8c 0m later (before_dip)
+[F] ITF -26JUL05BONBRA (ITF_M, comb None, $-0.65): BRA's best print was 10c for 0s (sz 1) at T+2m vs gun / T-2h26m sched; we filled 13c 0m later (before_dip)
+[F] ITF -26JUL05SABMIS (ITF_M, comb None, $-4.05): SAB's best print was 75c for 0s (sz 1) at T+2m vs gun / T-2h15m sched; we filled 81c 3m later (never_reached_level); fader MIS printed 14c at 07-05 11:44:20, 3m BEFORE leg-1 set the bound 16c — nothing was aimed at it
+[F] ITF -26JUL05XUXCHE (ITF_M, comb None, $-0.10): CHE's best print was 1c for 55s (sz 1061) at T+60m vs gun / T-3h58m sched; we filled 2c 0m later (before_dip); fader XUX printed 64c at 07-05 11:09:17, 52m BEFORE leg-1 set the bound 95c — nothing was aimed at it
+[F] ITF -26JUL05SLOKHR (ITF_M, comb None, $-1.95): fader SLO printed 50c at 07-05 12:44:14, 17m BEFORE leg-1 set the bound 58c — nothing was aimed at it
+[F] ITF -26JUL05IONDAO (ITF_M, comb None, $-0.50): DAO's best print was 9c for 154s (sz 196) at T+26m vs gun / T-3h59m sched; we filled 10c 3m later (during_dip); fader ION printed 62c at 07-05 13:47:50, 45m BEFORE leg-1 set the bound 87c — nothing was aimed at it
+[F] ITFW -26JUL04MAXSTE (ITF_W, comb None, $-0.70): MAX's best print was 12c for 158s (sz 146) at T+52m vs gun / T-3h34m sched; we filled 14c 8m later (never_reached_level); fader STE printed 54c at 07-04 21:03:18, 30m BEFORE leg-1 set the bound 83c — nothing was aimed at it
+[F] ITFW -26JUL04BROKOI (ITF_W, comb None, $-2.10): KOI's best print was 20c for 415s (sz 389) at T+58m vs gun / T-3h25m sched; we filled 21c 0m later (during_dip); fader BRO printed 40c at 07-04 21:04:58, 30m BEFORE leg-1 set the bound 76c — nothing was aimed at it
+[F] ITFW -26JUL05SPIGAR (ITF_W, comb None, $-0.05): fader SPI printed 92c at 07-05 06:10:30, 51m BEFORE leg-1 set the bound 96c — nothing was aimed at it
+[F] ITFW -26JUL05KARMAT (ITF_W, comb None, $-0.05): fader KAR printed 85c at 07-05 07:08:08, 64m BEFORE leg-1 set the bound 96c — nothing was aimed at it
+[F] ITFW -26JUL05ALVJOH (ITF_W, comb None, $-3.65): half-armed naked single -> settled LOSS
+[F] ITFW -26JUL05LIMHAG (ITF_W, comb None, $-0.65): HAG's best print was 11c for 0s (sz 4) at T+60m vs gun / T-3h59m sched; we filled 13c 1m later (before_dip); fader LIM printed 79c at 07-05 08:10:06, 51m BEFORE leg-1 set the bound 84c — nothing was aimed at it
+[F] ITFW -26JUL05DEKCAK (ITF_W, comb None, $-1.25): CAK's best print was 21c for 0s (sz 1) at T+30m vs gun / T-3h54m sched; we filled 25c 8m later (never_reached_level); fader DEK printed 11c at 07-05 09:05:34, 8m BEFORE leg-1 set the bound 72c — nothing was aimed at it

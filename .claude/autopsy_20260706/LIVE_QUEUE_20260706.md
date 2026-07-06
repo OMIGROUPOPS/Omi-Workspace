@@ -87,3 +87,7 @@ seven. Ledger state (ONE_AIM_FIX §LEDGER): aim fix BLOCKED-ON-DATA (coverage tr
 
 ---
 ## LIVE VERIFICATION LINES (post-action, appended as they land)
+
+- **15:25:58 ET — RISER DISARM LIVE:** `=== DEPLOYED 3db9af8 (PID 57639) ===`, GATE PASS (lint · smoke PASS · proof cites b0d1bcff, no code delta to HEAD). Running config echo: `riser_post_revision = False`. Bot trading; first post-disarm riser placements accrue at the bid (pre-revision baseline).
+- **15:26:34 ET — MONITOR LIVE ON PATCHED GRADING:** cycle 1 fresh session scope, 485 events, 0 violations, git=pushed. Overnight-list re-grade under the fix (from the committed ordering proofs): **36 → 10 true ZT rows** — all 19 walk_cap rows predate their conception stamps (→ `pre_conception_buy` patterns), 7 combined rows are unverified mark-to-market adoptions (→ `UNVERIFIED_BASIS` patterns); surviving: 9 combined_over_goal (6 same-tick races, TSIAND, SILDIG, GARCIO) + 1 grace (KEYNOS). False-positive count before/after: **17 → 0 of the identified classes.**
+- **15:26 ET — accumulator/cron state:** nightly 04:45 ET installed; day-0 coverage 0/500 target cells (honest-era corpus building, 1,464 honest samples registered from night 1).

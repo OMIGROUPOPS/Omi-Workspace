@@ -32,3 +32,5 @@ lineage (AIM_V2_SPEC); the flag comes out.
 ## Post-action live verification (to be appended after restart)
 Config echo from the running process + first riser placements post-boot at the bid
 (riser_post no longer subtracted), timestamped.
+
+**LIVE VERIFICATION (15:25:58 ET):** DEPLOYED 3db9af8, PID 57639, gate PASS; running config `riser_post_revision = False`. Disarm is live on the rolling slate.

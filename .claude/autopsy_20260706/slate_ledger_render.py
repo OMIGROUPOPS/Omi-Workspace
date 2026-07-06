@@ -25,6 +25,71 @@ A(f"# SLATE LEDGER — THE BOOK (window: flip boot 2026-07-05 23:50:39 ET → {D
 A("")
 A("**This document supersedes the 15:52 roll and is the reconcile. Every future grading is a CUT of this ledger.** Exchange truth only (REST fills/settlements/positions/orders + live book); bot positions only; **" + str(len(D['manual_excluded'])) + " manual tickers excluded**; canonical $ rule = SETTLEMENT-REALIZED per ticker (revenue + sells − buys − fees; an exited-but-unsettled leg is OPEN with partial cash noted, never counted settled).")
 A("")
+# ---- AMENDMENT: money-machine view first ----
+def leg_rows(pop):
+    for r in pop:
+        for l in r["legs"]:
+            if l.get("vw") is not None: yield r,l
+A("## 0 · GRADE × DISPOSITION — the money-machine cross-tab (settled events; leg-level, $ = leg settlement-realized)")
+A("")
+DISPS=["EXIT_FILLED_W1","EXIT_FILLED_CORRIDOR","EXIT_FILLED_W2","RODE_TO_SETTLEMENT"]
+A("| grade | " + " | ".join(d.replace("EXIT_FILLED_","CASHED_").replace("RODE_TO_SETTLEMENT","RODE") for d in DISPS) + " | legs | leg-$ total |")
+A("|---|---|---|---|---|---|---|")
+for grd in "ABCDF":
+    gr=[( r,l) for r,l in leg_rows(st) if r.get("grade")==grd]
+    if not gr: continue
+    cells=[]
+    for d in DISPS:
+        n=sum(1 for r,l in gr if l.get("disp")==d)
+        dd=sum(l.get("pnl") or 0 for r,l in gr if l.get("disp")==d)
+        cells.append(f"{n} ({dd:+.2f})")
+    A(f"| **{grd}** | " + " | ".join(cells) + f" | {len(gr)} | {sum(l.get('pnl') or 0 for r,l in gr):+.2f} |")
+A("")
+a_rode=sum(1 for r,l in leg_rows(st) if r.get("grade")=="A" and l.get("disp")=="RODE_TO_SETTLEMENT")
+A(f"(A-legs that rode: {a_rode} — A requires exits REACHED in W1, not necessarily filled; the table shows whether construction cashed.)")
+A("")
+A("## 0b · A–F MATRIX × cat × epoch — headline row: W1-cash rate + BOUHAR above the dollars")
+A("")
+w1c_all=sum(1 for r,l in leg_rows(st) if l.get("w1")=="W1_CASHED"); legs_all=sum(1 for _ in leg_rows(st))
+bou_all=sum(1 for r in st if r.get("bouhar"))
+A(f"**HEADLINE: W1-cash {w1c_all}/{legs_all} legs ({100*w1c_all//max(1,legs_all)}%) · BOUHAR pairs {bou_all} · settled ${settled_tot:+.2f}**")
+A("")
+A("| epoch | cat | A | B | C | D | F | W1-cash | BOUHAR | $ |")
+A("|---|---|---|---|---|---|---|---|---|---|")
+for ep in EPS:
+    for c in CATS:
+        se=[r for r in st if r["epoch"]==ep and r["cat"]==c]
+        if not se: continue
+        gr=Counter(r["grade"] for r in se)
+        w1c=sum(1 for r in se for l in r["legs"] if l.get("w1")=="W1_CASHED")
+        ln=sum(r["n_filled"] for r in se)
+        bou=sum(1 for r in se if r.get("bouhar"))
+        A(f"| {ep} | {c} | {gr['A']} | {gr['B']} | {gr['C']} | {gr['D']} | {gr['F']} | {w1c}/{ln} | {bou} | {sum(r['pnl'] for r in se):+.2f} |")
+A("")
+A("## 0c · THE DECOMPOSITION — settled $ split: exit-cashed vs RODE-TO-SETTLEMENT (the structural-bleed number)")
+A("")
+cash_d=sum(l.get("pnl") or 0 for r,l in leg_rows(st) if (l.get("disp") or "").startswith("EXIT_FILLED"))
+rode_d=sum(l.get("pnl") or 0 for r,l in leg_rows(st) if l.get("disp")=="RODE_TO_SETTLEMENT")
+rode_n=sum(1 for r,l in leg_rows(st) if l.get("disp")=="RODE_TO_SETTLEMENT")
+cash_n=sum(1 for r,l in leg_rows(st) if (l.get("disp") or "").startswith("EXIT_FILLED"))
+A(f"**RODE bucket: {rode_n} legs, ${rode_d:+.2f} ← the structural-bleed number. Exit-cashed: {cash_n} legs, ${cash_d:+.2f}.**")
+A("")
+A("| epoch | cat | cashed legs ($) | rode legs ($) | touched-not-filled W1/COR/W2 |")
+A("|---|---|---|---|---|")
+for ep in EPS:
+    for c in CATS:
+        se=[r for r in st if r["epoch"]==ep and r["cat"]==c]
+        if not se: continue
+        cl=[(r,l) for r,l in leg_rows(se) if (l.get("disp") or "").startswith("EXIT_FILLED")]
+        rl=[(r,l) for r,l in leg_rows(se) if l.get("disp")=="RODE_TO_SETTLEMENT"]
+        tt=[sum(1 for r,l in leg_rows(se) if not (l.get("disp") or "").startswith("EXIT_FILLED") and (l.get("touch") or {}).get(w)) for w in ("W1","COR","W2")]
+        A(f"| {ep} | {c} | {len(cl)} ({sum(l.get('pnl') or 0 for _,l in cl):+.2f}) | {len(rl)} ({sum(l.get('pnl') or 0 for _,l in rl):+.2f}) | {tt[0]}/{tt[1]}/{tt[2]} |")
+A("")
+A("### exit-fill window mix (cashed legs, honest clock; corridor end = onset > latch > honest+cat-median)")
+A("")
+dw=Counter(l.get("disp") for r,l in leg_rows(st) if (l.get("disp") or "").startswith("EXIT_FILLED"))
+A(f"W1 {dw.get('EXIT_FILLED_W1',0)} · CORRIDOR {dw.get('EXIT_FILLED_CORRIDOR',0)} · W2 {dw.get('EXIT_FILLED_W2',0)}")
+A("")
 A("## 1 · THE ONE LEDGER LINE (cumulative since flip boot)")
 A("")
 A(f"| settled $ | open exposure at basis | open mark-to-book | book right now (settled + mark − basis... stated) |")
@@ -94,13 +159,14 @@ A("")
 # ---- 2/1 the full roster ----
 A("## THE ROSTER — every engaged event, one row (settled AND open)")
 A("")
-A("| ticker | cat | ep | legs | fills ¢ | comb | vs97 | Δaim | W1 | grade | status |")
-A("|---|---|---|---|---|---|---|---|---|---|---|")
+A("| ticker | cat | ep | legs | fills ¢ | comb | vs97 | Δaim | W1 | disp | grade | status |")
+A("|---|---|---|---|---|---|---|---|---|---|---|---|")
 for r in sorted(rows, key=lambda r:(r["status"]!="OPEN", r["cat"], r["ev"])):
     fl=[l for l in r["legs"] if l["vw"] is not None]
     fs="+".join(f"{l['suf']} {l['vw']}" for l in fl) or "—"
     da=",".join(str(l.get("daim")) for l in fl) or "—"
     w1=",".join((l.get("w1") or "—")[:9] for l in fl) or "—"
+    dp=",".join((l.get("disp") or "—").replace("EXIT_FILLED_","X_").replace("RODE_TO_SETTLEMENT","RODE") for l in fl) or "—"
     comb=r.get("combined")
     vs=("≤97" if comb and comb<=97 else "98-100" if comb and comb<=100 else ">100" if comb else "—")
     if r["status"]=="SETTLED":
@@ -111,7 +177,7 @@ for r in sorted(rows, key=lambda r:(r["status"]!="OPEN", r["cat"], r["ev"])):
         sib="; ".join(f"{l['suf']} rest@{l['resting'][0]['px']}" for l in r["legs"] if l["resting"] and not l["open_qty"]) or ""
         ach=f" ach {r['achievable']}" if r.get("achievable") else ""
         stx=f"OPEN {hb} {sib}{ach} cash {r.get('cash_partial',0):+.2f}"
-    A(f"| {r['ev'][-26:]} | {r['cat']} | {r['epoch']} | {r['n_filled']} | {fs} | {comb or '—'} | {vs} | {da} | {w1} | {r.get('grade','?')} | {stx} |")
+    A(f"| {r['ev'][-26:]} | {r['cat']} | {r['epoch']} | {r['n_filled']} | {fs} | {comb or '—'} | {vs} | {da} | {w1} | {dp} | {r.get('grade','?')} | {stx} |")
 A("")
 A("## 5 · CONFIG ECHO + HEAD (self-dating)")
 A("")

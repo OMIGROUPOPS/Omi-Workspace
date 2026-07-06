@@ -59,7 +59,7 @@ def honest_start(ev):
             except: pass
     return None
 
-posts=defaultdict(list); exitfill={}; manual=set(); vstamp={}
+posts=defaultdict(list); exitfill={}; manual=set(); vstamp={}; latch={}
 for LOG in LOGS:
     if not Path(LOG).exists(): continue
     for line in open(LOG, encoding="utf-8", errors="replace"):
@@ -73,6 +73,9 @@ for LOG in LOGS:
             exitfill[tk]=ts
         elif e=="reconcile_v4_adopted" and tk and d.get("attribution")=="manual":
             manual.add(tk)
+        elif e=="match_live_detected":
+            _ev=d.get("event")
+            if _ev and _ev not in latch: latch[_ev]=ts
 if Path(VALID).exists():
     for line in open(VALID,encoding="utf-8",errors="replace"):
         try: o=json.loads(line)
@@ -173,6 +176,39 @@ def band_touch_pre(tk, level, hstart):
                 if int(p[2])>=level: return True
             except: continue
     return False
+def read_tape_rows(tk):
+    for suf in (".csv",".csv.gz"):
+        f=Path("analysis/trades")/(tk+suf)
+        if f.exists(): break
+    else: return []
+    op=gzip.open if f.suffix==".gz" else open
+    rows=[]
+    with op(f,"rt",encoding="utf-8",errors="replace") as fh:
+        next(fh,None)
+        for ln in fh:
+            p=ln.rstrip("\n").split(",")
+            if len(p)<5: continue
+            t=pts(p[0])
+            if t is None: continue
+            try: rows.append((t,int(p[2]),int(float(p[3]))))
+            except: continue
+    rows.sort(); return rows
+def tape_gun_rows(rows, w0, w1):
+    rr=[r for r in rows if w0<=r[0]<=w1]
+    if not rr: return None
+    mv=defaultdict(float)
+    for t,pr,ct in rr: mv[int(t//60)*60]+=ct
+    mins=sorted(mv)
+    fwd={m:sum(mv[x] for x in mins if m<=x<m+600) for m in mins}
+    return next((m for m in mins if mv[m]>=150 and fwd[m]>=3000), None)
+CORR_EST={"ITF_M":72,"ITF_W":77,"ATP_CHALL":19,"WTA_CHALL":5,"ATP_MAIN":30,"WTA_MAIN":30}
+def sell_fills(tk):
+    out=[]
+    for f in fills.get(tk,[]):
+        if f.get("action")!="sell": continue
+        t=datetime.fromisoformat(f["created_time"].replace("Z","+00:00")).timestamp()
+        out.append((t,float(f.get("count_fp") or 0)))
+    return sorted(out)
 exitpx={}
 for LOG in LOGS:
     if not Path(LOG).exists(): continue
@@ -202,6 +238,14 @@ rows=[]
 for ev,tks in sorted(evs.items()):
     cat=cat_of(ev+"-") or "?"
     hs=honest_start(ev)
+    # corridor end: unambiguous onset (hs-30m..hs+8h) > latch > hs + cat-median est
+    _tapes={tk: read_tape_rows(tk) for tk in sorted(set(tks))}
+    onset=None
+    if hs:
+        for _tk,_rows in _tapes.items():
+            gnn=tape_gun_rows(_rows, hs-1800, hs+8*3600)
+            if gnn and (onset is None or gnn<onset): onset=gnn
+    cor_end = onset or latch.get("KX"+ev if not ev.startswith("KX") else ev) or latch.get(ev) or ((hs+60*CORR_EST.get(cat,30)) if hs else None)
     legs=[]
     for tk in sorted(set(tks)):
         vw,q,ft=buy_vwap(tk)
@@ -217,11 +261,32 @@ for ev,tks in sorted(evs.items()):
         elif vw is not None: w1="W2_ONLY" if hs else "no-clock"
         oq=float((open_pos.get(tk) or {}).get("position_fp") or 0)
         b,sl,fee=cash(tk)
+        sf=sell_fills(tk)
+        settled_flag = pnl is not None
+        if sf:
+            t0=sf[0][0]
+            if hs and t0<hs: disp="EXIT_FILLED_W1"
+            elif cor_end and t0<cor_end: disp="EXIT_FILLED_CORRIDOR"
+            else: disp="EXIT_FILLED_W2"
+        elif settled_flag and vw is not None: disp="RODE_TO_SETTLEMENT"
+        elif vw is not None: disp="OPEN"
+        else: disp="—"
+        # band touched-not-filled per window (only meaningful when no sell fill)
+        touch={"W1":False,"COR":False,"W2":False}
+        if vw is not None and not sf and exitpx.get(tk) is not None:
+            lvl=exitpx[tk]
+            for t,pr,ct in _tapes.get(tk,[]):
+                if hs and t<hs: w="W1"
+                elif cor_end and t<cor_end: w="COR"
+                else: w="W2"
+                if pr>=lvl: touch[w]=True
         legs.append({"tk":tk,"suf":tk.rsplit("-",1)[-1],"vw":vw,"qty":q,"fill_ts":ft,
                      "conc_ts":conc,"conc_e":epoch_of(conc),
                      "daim":vstamp.get(tk,{}).get("fill_minus_aim"),
                      "w1":w1,"pnl":pnl,"sett_ts":st_t,"open_qty":oq,
                      "cash_out":round(sl-b-fee,2),
+                     "disp":disp,"sells_qty":round(sum(q for _,q in sf),1),
+                     "touch":touch,"exit_lvl":exitpx.get(tk),
                      "resting":[{"px":round(float(o.get("yes_price_dollars") or 0)*100)} for o in resting.get(tk,[])]})
     filled=[l for l in legs if l["vw"] is not None]
     engaged=bool(filled or any(l["resting"] for l in legs) or any(posts.get(l["tk"]) for l in legs))

@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 132 @ **2026-07-06 09:18:47 AM ET** | build `a471bbe` | session boot 07-05 23:50 ET | log `live_v3_20260705.jsonl` | 158372 session events | monitor READ-ONLY
+- cycle 133 @ **2026-07-06 09:29:21 AM ET** | build `1683448` | session boot 07-05 23:50 ET | log `live_v3_20260705.jsonl` | 160208 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 28 violation(s)
@@ -35,7 +35,7 @@
 | 08:02:23 | **combined_over_goal** | KXITFMATCH-26JUL06TEUHAS | pair combined 105c > goal 97c [organic: DEFECT-CLASS] |
 | 08:23:44 | **combined_over_goal** | KXITFWMATCH-26JUL06PACLOV | pair combined 106c > goal 97c [organic: DEFECT-CLASS] |
 
-## FILLS — 238 graded (session)
+## FILLS — 242 graded (session)
 | ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb | stamp |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 23:51 | ITFWMATCH-26JUL06PASCOP-PAS | ITF_W | underdog | 12 | 8 | +4 (place_cell) | — | pre | pair | 97 | PENDING |
@@ -180,7 +180,7 @@
 | 06:40 | ATPCHALLENGERMATCH-26JUL06ERHSIN-E | ATP_CHALL | ? | 96 | 92 | +4 (place_cell) | — | pre | pair | 100 | GIFT_CLASS |
 | 06:40 | ATPCHALLENGERMATCH-26JUL06ERHSIN-S | ATP_CHALL | underdog | 4 | 2 | +2 (place_cell) | — | pre | pair | 100 | MIXED |
 | 06:40 | ATPCHALLENGERMATCH-26JUL06ZORDEV-D | ATP_CHALL | ? | 42 | 39 | +3 (place_cell) | — | pre | pair | 97 | EARNED |
-| 06:41 | ITFMATCH-26JUL06HOSGAT-GAT | ITF_M | underdog | 38 | 34 | +4 (place_cell) | — | pre | single |  | MIXED |
+| 06:41 | ITFMATCH-26JUL06HOSGAT-GAT | ITF_M | underdog | 38 | 34 | +4 (place_cell) | — | pre | pair | 95 | MIXED |
 | 06:43 | ATPCHALLENGERMATCH-26JUL06ZORDEV-Z | ATP_CHALL | leader | 55 | 53 | +2 (place_cell) | — | pre | pair | 97 | MIXED |
 | 06:43 | ATPCHALLENGERMATCH-26JUL06PIEMOL-M | ATP_CHALL | leader | 52 | 49 | +3 (place_cell) | — | pre | pair | 97 | MIXED |
 | 06:44 | ATPCHALLENGERMATCH-26JUL06DELWAL-W | ATP_CHALL | ? | 69 | 68 | +1 (place_cell) | 16.0 | pre | pair | 97 | GIFT_CLASS |
@@ -238,7 +238,7 @@
 | 08:04 | ATPCHALLENGERMATCH-26JUL06POLHAI-H | ATP_CHALL | leader | 66 | 65 | +1 (place_cell) | — | pre | pair | 97 | MIXED |
 | 08:07 | ITFMATCH-26JUL06ROJBEC-ROJ | ITF_M | ? | 10 | 7 | +3 (place_cell) | — | pre | single |  | PENDING |
 | 08:07 | ITFWMATCH-26JUL06KARVIS-KAR | ITF_W | ? | 76 | 73 | +3 (place_cell) | — | pre | pair | 97 | MIXED |
-| 08:09 | ATPCHALLENGERMATCH-26JUL06CHIJAN-J | ATP_CHALL | ? | 22 | 20 | +2 (place_cell) | — | pre | single |  | MIXED |
+| 08:09 | ATPCHALLENGERMATCH-26JUL06CHIJAN-J | ATP_CHALL | ? | 22 | 20 | +2 (place_cell) | — | pre | pair | 97 | MIXED |
 | 08:09 | ITFMATCH-26JUL06STEAUN-AUN | ITF_M | ? | 14 | 10 | +4 (place_cell) | — | pre | pair | 97 | PENDING |
 | 08:11 | ATPCHALLENGERMATCH-26JUL06REHKOU-K | ATP_CHALL | underdog | 44 | 41 | +3 (place_cell) | — | pre | single |  | MIXED |
 | 08:12 | WTAMATCH-26JUL06KEYNOS-NOS | WTA_MAIN | ? | 43 | 40 | +3 (place_cell) | — | pre | single |  | MIXED |
@@ -247,8 +247,8 @@
 | 08:16 | ATPMATCH-26JUL06DECOB-DE | ATP_MAIN | leader | 74 | 77 | -3 (place_cell) | 2.5 | pre | pair | 97 | MIXED |
 | 08:19 | ITFWMATCH-26JUL06BUYALV-ALV | ITF_W | ? | 28 | 16 | +12 (place_cell) | — | pre | single |  | MIXED |
 | 08:19 | ATPCHALLENGERMATCH-26JUL06WEHVAN-V | ATP_CHALL | ? | 42 | 39 | +3 (place_cell) | 38.5 | pre | single |  | GIFT_CLASS |
-| 08:19 | ATPCHALLENGERMATCH-26JUL06WALNEU-N | ATP_CHALL | ? | 28 | 25 | +3 (place_cell) | — | pre | pair | 97 | MIXED |
-| 08:22 | ATPCHALLENGERMATCH-26JUL06WALNEU-W | ATP_CHALL | leader | 69 | 67 | +2 (place_cell) | — | pre | pair | 97 | MIXED |
+| 08:19 | ATPCHALLENGERMATCH-26JUL06WALNEU-N | ATP_CHALL | ? | 28 | 25 | +3 (place_cell) | 22.0 | pre | pair | 97 | GIFT_CLASS |
+| 08:22 | ATPCHALLENGERMATCH-26JUL06WALNEU-W | ATP_CHALL | leader | 69 | 67 | +2 (place_cell) | -23.0 | pre | pair | 97 | EARNED |
 | 08:23 | ATPCHALLENGERMATCH-26JUL06VALZHU-Z | ATP_CHALL | ? | 26 | 23 | +3 (place_cell) | — | pre | pair | 97 | EARNED |
 | 08:23 | ITFWMATCH-26JUL06PACLOV-PAC | ITF_W | ? | 61 | 54 | +7 (place_cell) | — | pre | pair | 106 | GIFT_CLASS |
 | 08:24 | ITFMATCH-26JUL06TRUTRA-TRA | ITF_M | underdog | 27 | 20 | +7 (place_cell) | — | pre | single |  | MIXED |
@@ -275,222 +275,219 @@
 | 09:13 | ITFWMATCH-26JUL06HIEGUT-GUT | ITF_W | leader | 56 | 53 | +3 (place_cell) | — | pre | pair | 96 | PENDING |
 | 09:15 | ITFWMATCH-26JUL06MELRAB-RAB | ITF_W | underdog | 12 | 9 | +3 (place_cell) | — | pre | single |  | PENDING |
 | 09:15 | ITFWMATCH-26JUL06HIEGUT-HIE | ITF_W | ? | 40 | 37 | +3 (place_cell) | — | pre | pair | 96 | PENDING |
-| 09:16 | ITFMATCH-26JUL06TISVER-VER | ITF_M | underdog | 53 | 15 | +38 (place_cell) | — | pre | single |  | PENDING |
+| 09:16 | ITFMATCH-26JUL06TISVER-VER | ITF_M | underdog | 53 | 15 | +38 (place_cell) | — | pre | pair | 97 | PENDING |
+| 09:18 | ITFMATCH-26JUL06TISVER-TIS | ITF_M | ? | 44 | 3 | +41 (place_cell) | — | pre | pair | 97 | PENDING |
+| 09:19 | ITFMATCH-26JUL06HOSGAT-HOS | ITF_M | ? | 57 | 52 | +5 (place_cell) | — | pre | pair | 95 | MIXED |
+| 09:21 | ITFMATCH-26JUL06NAPPIN-PIN | ITF_M | leader | 58 | 55 | +3 (place_cell) | — | pre | single |  | PENDING |
+| 09:24 | ATPCHALLENGERMATCH-26JUL06CHIJAN-C | ATP_CHALL | ? | 75 | 73 | +2 (place_cell) | — | pre | pair | 97 | MIXED |
 
-## RESTING BIDS — 169 tape-graded (starvation = NO_FLOW only)
-- classes now: {'FLOW_AT_LEVEL': 24, 'FLOW_ABOVE': 60, 'NO_FLOW': 85} | repriceable now: true 13 / false 156 | **cumulative bid_grade lines: 2158 (repriceable true 209 / false 1949)** -- the liquid_repost re-arm evidence accumulates here
+## RESTING BIDS — 164 tape-graded (starvation = NO_FLOW only)
+- classes now: {'FLOW_AT_LEVEL': 23, 'FLOW_ABOVE': 62, 'NO_FLOW': 79} | repriceable now: true 14 / false 150 | **cumulative bid_grade lines: 2178 (repriceable true 211 / false 1967)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL06BARDAL-B | 56 | 258m | 1/58-58/208 | 56-58 | 2 | **FLOW_ABOVE** | 55 | flow above but bound 55c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL06BARDAL-D | 41 | 258m | 1/42-42/20 | 42-44 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→42 |
-| ATPCHALLENGERMATCH-26JUL06BARZIN-B | 52 | 137m | 0 | 52-54 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06BARZIN-Z | 45 | 137m | 1/48-48/12 | 47-48 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→48 |
-| ATPCHALLENGERMATCH-26JUL06CHADEM-C | 48 | 258m | 0 | 48-50 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06CHADEM-D | 49 | 135m | 1/52-52/1 | 51-52 | 3 | **FLOW_ABOVE** | 49 | flow above but bound 49c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL06CHIJAN-C | 75 | 69m | 3/79-80/32 | 78-79 | 4 | **FLOW_ABOVE** | 75 | flow above but bound 75c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL06CLAPAP-C | 72 | 137m | 2/74-75/2 | 74-75 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→74 |
-| ATPCHALLENGERMATCH-26JUL06CLAPAP-P | 26 | 137m | 0 | 26-28 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06DAMHUE-D | 80 | 9m | 0 | 80-81 | — | **NO_FLOW** | 77 |  |
-| ATPCHALLENGERMATCH-26JUL06DAMHUE-H | 20 | 11m | 0 | 20-21 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06DEHUD-DE | 38 | 257m | 2/39-39/122 | 38-39 | 1 | **FLOW_ABOVE** | 36 | flow above but bound 36c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL06DEHUD-HU | 61 | 257m | 1/62-62/5 | 61-62 | 1 | **FLOW_ABOVE** | 59 | flow above but bound 59c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL06FOMDHA-D | 52 | 258m | 3/54-54/1350 | 52-55 | 2 | **FLOW_ABOVE** | 51 | flow above but bound 51c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL06FOMDHA-F | 45 | 258m | 2/46-46/39 | 45-48 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→46 |
-| ATPCHALLENGERMATCH-26JUL06GOMLUZ-L | 23 | 206m | 149/1-25/45244 | 2-1 | -22 | **FLOW_AT_LEVEL** | 23 |  |
-| ATPCHALLENGERMATCH-26JUL06HUETEN-H | 60 | 137m | 1/71-71/2 | 70-74 | 11 | **FLOW_ABOVE** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06HUETEN-T | 28 | 137m | 0 | 28-30 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06ILARYB-I | 52 | 136m | 0 | 53-57 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06ILARYB-R | 45 | 136m | 0 | 45-47 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06IVADIN-I | 77 | 98m | 1/83-83/6 | 82-83 | 6 | **FLOW_ABOVE** | 77 | flow above but bound 77c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL06JUNMOR-J | 51 | 47m | 0 | 51-54 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06JUNMOR-M | 46 | 47m | 0 | 46-48 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06KASCIN-C | 54 | 228m | 2/56-56/7 | 55-56 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→56 |
-| ATPCHALLENGERMATCH-26JUL06KASCIN-K | 43 | 228m | 2/44-44/140 | 44-46 | 1 | **FLOW_ABOVE** | 41 | flow above but bound 41c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL06KOZJOH-J | 31 | 105m | 0 | 31-34 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06KOZJOH-K | 66 | 135m | 0 | 66-68 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06KRACRI-C | 5 | 304m | 338/1-21/41967 | 19-1 | -4 | **FLOW_AT_LEVEL** | 5 |  |
-| ATPCHALLENGERMATCH-26JUL06KYMFAU-F | 32 | 227m | 0 | 32-33 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06KYMFAU-K | 67 | 217m | 2/68-68/171 | 67-68 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→68 |
-| ATPCHALLENGERMATCH-26JUL06MAGROD-M | 44 | 48m | 0 | 44-46 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06MAGROD-R | 54 | 48m | 0 | 54-56 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06MALMAT-M | 43 | 47m | 0 | 46-48 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06MALMAT-M | 49 | 47m | 0 | 52-55 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06MAXGHI-G | 55 | 168m | 1/56-56/129 | 56-57 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→56 |
-| ATPCHALLENGERMATCH-26JUL06MAXGHI-M | 43 | 168m | 2/44-45/5 | 43-45 | 1 | **FLOW_ABOVE** | 42 | flow above but bound 42c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL06OLIDAN-D | 64 | 137m | 3/66-66/20 | 65-66 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→66 |
-| ATPCHALLENGERMATCH-26JUL06OLIDAN-O | 34 | 137m | 0 | 34-36 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06PALKOL-K | 75 | 48m | 0 | 75-76 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06PALKOL-P | 24 | 48m | 0 | 24-25 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06PAPMID-M | 50 | 14m | 4/52-53/258 | 53-55 | 2 | **FLOW_ABOVE** | 50 | flow above but bound 50c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL06PERMEL-M | 95 | 48m | 0 | 95-96 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06PERMEL-P | 4 | 48m | 1/5-5/52 | 4-5 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→5 |
-| ATPCHALLENGERMATCH-26JUL06POPSAN-P | 93 | 55m | 0 | 93-94 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL06POPSAN-S | 5 | 135m | 5/7-8/38 | 6-9 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→7 |
-| ATPCHALLENGERMATCH-26JUL06REHKOU-R | 53 | 68m | 1/57-57/11 | 57-58 | 4 | **FLOW_ABOVE** | 53 | flow above but bound 53c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL06SEGBRA-B | 36 | 145m | 172/36-99/38561 | 99-71 | 0 | **FLOW_AT_LEVEL** | 34 |  |
-| ATPCHALLENGERMATCH-26JUL06STALEC-L | 33 | 209m | 111/1-60/13885 | 4-1 | -32 | **FLOW_AT_LEVEL** | 33 |  |
-| ATPCHALLENGERMATCH-26JUL06WEIGRA-G | 81 | 167m | 2/82-82/30 | 81-82 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→82 |
-| ATPCHALLENGERMATCH-26JUL06WEIGRA-W | 19 | 90m | 0 | 19-20 | — | **NO_FLOW** | 99 |  |
-| ATPMATCH-26JUL06DIMFER-DIM | 64 | 189m | 109/67-68/21149 | 67-68 | 3 | **FLOW_ABOVE** | 64 | flow above but bound 64c < flow -- chasing breaks goal |
-| ATPMATCH-26JUL06DIMFER-DIM | 64 | 131m | 87/67-68/19639 | 67-68 | 3 | **FLOW_ABOVE** | 64 | flow above but bound 64c < flow -- chasing breaks goal |
-| ATPMATCH-26JUL06FRIBUB-BUB | 33 | 39m | 9/34-34/2972 | 33-34 | 1 | **FLOW_ABOVE** | 31 | flow above but bound 31c < flow -- chasing breaks goal |
-| ATPMATCH-26JUL06FRIBUB-FRI | 66 | 109m | 79/66-67/4539 | 66-67 | 0 | **FLOW_AT_LEVEL** | 67 |  |
-| ATPMATCH-26JUL06LEHZVE-LEH | 26 | 39m | 4/27-27/45 | 26-27 | 1 | **FLOW_ABOVE** | 25 | flow above but bound 25c < flow -- chasing breaks goal |
-| ATPMATCH-26JUL06LEHZVE-ZVE | 73 | 77m | 20/73-74/811 | 73-74 | 0 | **FLOW_AT_LEVEL** | 74 |  |
-| ITFMATCH-26JUL06ALEREG-REG | 40 | 315m | 99/49-99/9602 | 99-99 | 9 | **FLOW_ABOVE** | 46 | flow above but bound 46c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL06ALIMIS-MIS | 6 | 406m | 4/8-15/8 | 13-43 | 2 | **FLOW_ABOVE** | 6 | flow above but bound 6c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL06ALIMIS-MIS | 6 | 75m | 0 | 13-43 | — | **NO_FLOW** | 6 |  |
-| ITFMATCH-26JUL06BROTHU-BRO | 36 | 137m | 1/45-45/21 | 36-45 | 9 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL06BROTHU-THU | 54 | 134m | 0 | 54-63 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06DONDEV-DEV | 20 | 135m | 0 | 20-31 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06DONDEV-DON | 69 | 138m | 0 | 69-79 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06GANVER-GAN | 46 | 38m | 1/52-52/9 | 47-50 | 6 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL06GANVER-VER | 48 | 202m | 4/53-53/113 | 49-52 | 5 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL06GARCIO-GAR | 56 | 41m | 24/65-93/539 | 93-94 | 9 | **FLOW_ABOVE** | 56 | flow above but bound 56c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL06GENAZO-AZO | 16 | 467m | 213/1-19/18095 | 18-1 | -15 | **FLOW_AT_LEVEL** | 16 |  |
-| ITFMATCH-26JUL06HOSGAT-HOS | 56 | 292m | 223/56-93/16731 | 57-57 | 0 | **FLOW_AT_LEVEL** | 59 |  |
-| ITFMATCH-26JUL06HOSGAT-HOS | 59 | 129m | 199/56-92/15079 | 57-57 | -3 | **FLOW_AT_LEVEL** | 59 |  |
-| ITFMATCH-26JUL06IAMBEN-BEN | 19 | 124m | 0 | 19-50 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06IAMBEN-IAM | 51 | 123m | 0 | 51-82 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06JAIHEN-JAI | 45 | 317m | 0 | 45-51 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06KASLIL-LIL | 28 | 300m | 205/1-55/9114 | 1-1 | -27 | **FLOW_AT_LEVEL** | 31 |  |
-| ITFMATCH-26JUL06LAPCIO-CIO | 41 | 197m | 0 | 41-45 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06LAPCIO-LAP | 54 | 195m | 0 | 54-60 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06LENTHE-LEN | 32 | 193m | 203/32-99/19319 | 98-99 | 0 | **FLOW_AT_LEVEL** | 32 |  |
-| ITFMATCH-26JUL06LUEVAN-LUE | 65 | 208m | 0 | 65-77 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06LUEVAN-VAN | 22 | 40m | 0 | 22-34 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06MOUCAR-CAR | 26 | 3m | 0 | 26-36 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06MOUCAR-MOU | 64 | 3m | 0 | 64-73 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06NAPPIN-PIN | 57 | 0m | 0 | 56-60 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06PESTER-PES | 43 | 20m | 0 | 43-45 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06PESTER-TER | 54 | 1m | 0 | 55-59 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06ROJBEC-BEC | 87 | 318m | 42/91-98/2865 | 97-98 | 4 | **FLOW_ABOVE** | 87 | flow above but bound 87c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL06ROJBEC-BEC | 87 | 69m | 42/91-98/2865 | 97-98 | 4 | **FLOW_ABOVE** | 87 | flow above but bound 87c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL06ROURAM-RAM | 53 | 196m | 0 | 53-64 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06ROURAM-ROU | 37 | 197m | 0 | 37-48 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06STEAUN-AUN | 14 | 13m | 95/5-35/5487 | 7-10 | -9 | **FLOW_AT_LEVEL** | 14 |  |
-| ITFMATCH-26JUL06SURMED-SUR | 21 | 124m | 0 | 21-50 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL06TISVER-TIS | 44 | 2m | 1/44-44/5 | 37-40 | 0 | **FLOW_AT_LEVEL** | 44 |  |
-| ITFMATCH-26JUL06TRUTRA-TRU | 70 | 54m | 14/80-90/126 | 88-90 | 10 | **FLOW_ABOVE** | 70 | flow above but bound 70c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL06VANHOR-HOR | 30 | 196m | 1/36-36/1 | 30-36 | 6 | **FLOW_ABOVE** | 34 | flow above but bound 34c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL06VANHOR-HOR | 26 | 132m | 0 | 30-36 | — | **NO_FLOW** | 34 |  |
-| ITFMATCH-26JUL06VULCOU-VUL | 81 | 301m | 11/98-99/1550 | 99-85 | 17 | **FLOW_ABOVE** | 81 | flow above but bound 81c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL06BOIBOY-BOY | 20 | 362m | 155/28-99/15825 | 98-99 | 8 | **FLOW_ABOVE** | 20 | flow above but bound 20c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL06BOWMAT-BOW | 7 | 149m | 0 | 7-47 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06BOWMAT-MAT | 53 | 88m | 0 | 53-93 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06BRESAF-SAF | 34 | 489m | 4430/1-99/518199 | 5-1 | -33 | **FLOW_AT_LEVEL** | 34 |  |
-| ITFWMATCH-26JUL06BUYALV-BUY | 69 | 47m | 17/78-91/862 | 91-92 | 9 | **FLOW_ABOVE** | 69 | flow above but bound 69c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL06CENBUL-BUL | 20 | 104m | 0 | 20-30 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06CENBUL-CEN | 69 | 33m | 0 | 69-82 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06COHXAV-COH | 7 | 89m | 0 | 7-92 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06DRISLA-DRI | 30 | 2m | 0 | 36-41 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06DRISLA-SLA | 60 | 149m | 0 | 60-63 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06EVARHO-EVA | 77 | 7m | 0 | 77-92 | — | **NO_FLOW** | 79 |  |
-| ITFWMATCH-26JUL06HOSFEH-HOS | 25 | 283m | 1/99-99/12 | 99-58 | 74 | **FLOW_ABOVE** | 36 | flow above but bound 36c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL06KULGON-KUL | 75 | 348m | 73/79-99/2231 | 98-99 | 4 | **FLOW_ABOVE** | 75 | flow above but bound 75c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL06KULGON-KUL | 75 | 348m | 73/79-99/2231 | 98-99 | 4 | **FLOW_ABOVE** | 75 | flow above but bound 75c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL06KULVOG-KUL | 55 | 155m | 0 | 55-60 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06KULVOG-VOG | 39 | 153m | 0 | 39-45 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06LABTSY-LAB | 27 | 227m | 0 | 27-40 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06LABTSY-TSY | 59 | 227m | 0 | 59-72 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06LACSTO-LAC | 55 | 1m | 0 | 55-85 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06LUCGAD-GAD | 37 | 535m | 3895/23-99/459986 | 99-24 | -14 | **FLOW_AT_LEVEL** | 37 |  |
-| ITFWMATCH-26JUL06MARBED-BED | 15 | 68m | 0 | 15-45 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06MARBED-MAR | 55 | 68m | 0 | 55-85 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06MARGLU-GLU | 66 | 291m | 0 | 66-72 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06MARGLU-MAR | 29 | 104m | 0 | 29-33 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06MCAENC-MCA | 42 | 354m | 3/48-48/58 | 42-50 | 6 | **FLOW_ABOVE** | 46 | flow above but bound 46c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL06MCAENC-MCA | 38 | 103m | 1/48-48/20 | 42-50 | 10 | **FLOW_ABOVE** | 46 | flow above but bound 46c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL06MELRAB-MEL | 85 | 3m | 2/94-94/28 | 94-95 | 9 | **FLOW_ABOVE** | 85 | flow above but bound 85c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL06MULCIS-CIS | 38 | 51m | 0 | 38-46 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06MULCIS-MUL | 53 | 135m | 0 | 53-61 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06OKUPRI-PRI | 41 | 201m | 828/36-99/114162 | 99-99 | -5 | **FLOW_AT_LEVEL** | 41 |  |
-| ITFWMATCH-26JUL06OLUZAM-OLU | 36 | 29m | 0 | 36-56 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06PASCOP-PAS | 8 | 439m | 1942/1-13/312225 | 14-1 | -7 | **FLOW_AT_LEVEL** | 12 |  |
-| ITFWMATCH-26JUL06PEEPAH-PEE | 39 | 153m | 195/1-51/28627 | 2-3 | -38 | **FLOW_AT_LEVEL** | 36 |  |
-| ITFWMATCH-26JUL06PIERAD-PIE | 64 | 247m | 117/84-99/4782 | 99-90 | 20 | **FLOW_ABOVE** | 64 | flow above but bound 64c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL06POHSTU-POH | 28 | 109m | 0 | 28-40 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06POHSTU-STU | 59 | 108m | 0 | 59-71 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06PRINIJ-PRI | 67 | 27m | 11/73-90/164 | 85-87 | 6 | **FLOW_ABOVE** | 67 | flow above but bound 67c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL06RABELI-ELI | 18 | 1m | 0 | 18-40 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06RABELI-RAB | 41 | 2m | 0 | 59-83 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06REEION-ION | 52 | 89m | 2/63-64/50 | 52-62 | 11 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL06REEION-REE | 37 | 15m | 0 | 37-47 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06SACLAZ-LAZ | 15 | 294m | 648/1-33/45125 | 40-1 | -14 | **FLOW_AT_LEVEL** | 1 |  |
-| ITFWMATCH-26JUL06SCHELI-ELI | 39 | 2m | 0 | 40-50 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06SILDIG-DIG | 88 | 9m | 9/95-96/120 | 95-96 | 7 | **FLOW_ABOVE** | 88 | flow above but bound 88c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL06SIMCIR-CIR | 14 | 485m | 16366/1-95/1383948 | 83-1 | -13 | **FLOW_AT_LEVEL** | 16 |  |
-| ITFWMATCH-26JUL06SINUSU-SIN | 27 | 28m | 0 | 27-64 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06SINUSU-USU | 35 | 28m | 0 | 35-72 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06STETRA-STE | 79 | 100m | 0 | 79-84 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06STETRA-TRA | 16 | 255m | 1/22-22/11 | 16-21 | 6 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL06URREVA-URR | 60 | 32m | 0 | 60-83 | — | **NO_FLOW** | 60 |  |
-| ITFWMATCH-26JUL06URREVA-URR | 60 | 32m | 0 | 60-83 | — | **NO_FLOW** | 60 |  |
-| ITFWMATCH-26JUL06VAJRAM-RAM | 15 | 485m | 6096/1-29/750264 | 21-1 | -14 | **FLOW_AT_LEVEL** | 5 |  |
-| ITFWMATCH-26JUL06VARMUN-MUN | 15 | 77m | 0 | 15-17 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06VARMUN-VAR | 83 | 165m | 0 | 83-86 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL06VLADIL-VLA | 30 | 182m | 573/1-54/39141 | 1-2 | -29 | **FLOW_AT_LEVEL** | 23 |  |
-| WTACHALLENGERMATCH-26JUL06BASBAD-B | 74 | 318m | 4/75-76/130 | 74-75 | 1 | **FLOW_ABOVE** | 72 | flow above but bound 72c < flow -- chasing breaks goal |
-| WTACHALLENGERMATCH-26JUL06BASBAD-B | 25 | 108m | 1/26-26/10 | 25-26 | 1 | **FLOW_ABOVE** | 22 | flow above but bound 22c < flow -- chasing breaks goal |
-| WTACHALLENGERMATCH-26JUL06COLSMI-C | 38 | 48m | 0 | 39-40 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL06COLSMI-S | 60 | 48m | 0 | 60-62 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL06CURDOD-C | 68 | 109m | 0 | 69-70 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL06CURDOD-D | 31 | 47m | 0 | 31-33 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL06DENQUE-D | 5 | 92m | 14/6-6/1281 | 5-6 | 1 | **FLOW_ABOVE** | 3 | flow above but bound 3c < flow -- chasing breaks goal |
-| WTACHALLENGERMATCH-26JUL06DENQUE-Q | 93 | 228m | 0 | 93-95 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL06HERNGU-H | 39 | 208m | 108/84-99/18486 | 99-99 | 45 | **FLOW_ABOVE** | 39 | flow above but bound 39c < flow -- chasing breaks goal |
-| WTACHALLENGERMATCH-26JUL06ISHCRO-C | 61 | 137m | 0 | 61-62 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL06ISHCRO-I | 38 | 137m | 2/39-39/123 | 38-39 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→39 |
-| WTACHALLENGERMATCH-26JUL06LINMAR-L | 6 | 135m | 9/7-7/350 | 6-7 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→7 |
-| WTACHALLENGERMATCH-26JUL06LINMAR-M | 93 | 135m | 0 | 94-95 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL06OLIUCH-U | 39 | 195m | 2066/11-99/409246 | 99-95 | -28 | **FLOW_AT_LEVEL** | 37 |  |
-| WTACHALLENGERMATCH-26JUL06WALKAW-K | 43 | 318m | 5/44-44/212 | 43-44 | 1 | **FLOW_ABOVE** | 41 | flow above but bound 41c < flow -- chasing breaks goal |
-| WTACHALLENGERMATCH-26JUL06WALKAW-W | 56 | 149m | 0 | 56-57 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL06WERSAL-S | 65 | 8m | 0 | 68-69 | — | **NO_FLOW** | 65 |  |
-| WTAMATCH-26JUL06BOUMER-BOU | 46 | 54m | 638/10-67/125765 | 15-14 | -36 | **FLOW_AT_LEVEL** | 44 |  |
-| WTAMATCH-26JUL06KEYNOS-KEY | 54 | 66m | 29/58-59/2029 | 58-59 | 4 | **FLOW_ABOVE** | 54 | flow above but bound 54c < flow -- chasing breaks goal |
-| WTAMATCH-26JUL06KEYNOS-KEY | 54 | 66m | 29/58-59/2029 | 58-59 | 4 | **FLOW_ABOVE** | 54 | flow above but bound 54c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06BARDAL-B | 56 | 268m | 2/58-58/213 | 55-58 | 2 | **FLOW_ABOVE** | 55 | flow above but bound 55c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06BARDAL-D | 41 | 268m | 1/42-42/20 | 42-45 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→42 |
+| ATPCHALLENGERMATCH-26JUL06BARZIN-B | 52 | 147m | 0 | 52-54 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06BARZIN-Z | 45 | 147m | 1/48-48/12 | 47-48 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→48 |
+| ATPCHALLENGERMATCH-26JUL06CHADEM-C | 48 | 268m | 1/49-49/986 | 48-49 | 1 | **FLOW_ABOVE** | 46 | flow above but bound 46c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06CHADEM-D | 49 | 145m | 1/52-52/1 | 51-52 | 3 | **FLOW_ABOVE** | 49 | flow above but bound 49c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06CLAPAP-C | 72 | 148m | 3/74-75/7 | 74-75 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→74 |
+| ATPCHALLENGERMATCH-26JUL06CLAPAP-P | 26 | 148m | 0 | 26-28 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06DAMHUE-D | 80 | 20m | 1/81-81/1 | 80-82 | 1 | **FLOW_ABOVE** | 77 | flow above but bound 77c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06DAMHUE-H | 20 | 22m | 0 | 20-21 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06DEHUD-DE | 38 | 268m | 2/39-39/122 | 38-39 | 1 | **FLOW_ABOVE** | 36 | flow above but bound 36c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06DEHUD-HU | 61 | 268m | 1/62-62/5 | 61-62 | 1 | **FLOW_ABOVE** | 59 | flow above but bound 59c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06FOMDHA-D | 52 | 268m | 3/54-54/1350 | 52-55 | 2 | **FLOW_ABOVE** | 51 | flow above but bound 51c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06FOMDHA-F | 45 | 268m | 2/46-46/39 | 45-48 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→46 |
+| ATPCHALLENGERMATCH-26JUL06GOMLUZ-L | 23 | 217m | 149/1-25/45244 | 2-1 | -22 | **FLOW_AT_LEVEL** | 23 |  |
+| ATPCHALLENGERMATCH-26JUL06HUETEN-H | 60 | 148m | 3/71-73/7 | 70-73 | 11 | **FLOW_ABOVE** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06HUETEN-T | 28 | 148m | 0 | 28-30 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06ILARYB-I | 52 | 146m | 0 | 53-57 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06ILARYB-R | 45 | 146m | 0 | 45-47 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06IVADIN-I | 77 | 109m | 6/83-85/125 | 82-84 | 6 | **FLOW_ABOVE** | 77 | flow above but bound 77c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06JUNMOR-J | 51 | 58m | 0 | 51-55 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06JUNMOR-M | 46 | 58m | 0 | 46-48 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06KASCIN-C | 54 | 239m | 2/56-56/7 | 55-56 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→56 |
+| ATPCHALLENGERMATCH-26JUL06KASCIN-K | 43 | 239m | 2/44-44/140 | 45-46 | 1 | **FLOW_ABOVE** | 41 | flow above but bound 41c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06KOZJOH-J | 31 | 116m | 0 | 31-34 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06KOZJOH-K | 66 | 145m | 1/68-68/5 | 66-68 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→68 |
+| ATPCHALLENGERMATCH-26JUL06KRACRI-C | 5 | 314m | 338/1-21/41967 | 19-1 | -4 | **FLOW_AT_LEVEL** | 5 |  |
+| ATPCHALLENGERMATCH-26JUL06KYMFAU-F | 32 | 237m | 0 | 32-33 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06KYMFAU-K | 67 | 228m | 2/68-68/171 | 67-68 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→68 |
+| ATPCHALLENGERMATCH-26JUL06MAGROD-M | 44 | 59m | 0 | 44-46 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06MAGROD-R | 54 | 59m | 0 | 54-56 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06MALMAT-M | 43 | 58m | 0 | 45-48 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06MALMAT-M | 49 | 58m | 0 | 52-56 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06MAXGHI-G | 55 | 179m | 1/56-56/129 | 56-57 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→56 |
+| ATPCHALLENGERMATCH-26JUL06MAXGHI-M | 43 | 179m | 2/44-45/5 | 43-45 | 1 | **FLOW_ABOVE** | 42 | flow above but bound 42c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06OLIDAN-D | 64 | 147m | 4/66-66/25 | 65-66 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→66 |
+| ATPCHALLENGERMATCH-26JUL06OLIDAN-O | 34 | 147m | 0 | 34-36 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06PALKOL-K | 75 | 59m | 0 | 75-76 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06PALKOL-P | 24 | 59m | 0 | 24-25 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06PAPMID-M | 50 | 24m | 4/52-53/258 | 54-55 | 2 | **FLOW_ABOVE** | 50 | flow above but bound 50c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06PERMEL-M | 95 | 59m | 0 | 95-96 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06PERMEL-P | 4 | 59m | 1/5-5/52 | 4-5 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→5 |
+| ATPCHALLENGERMATCH-26JUL06POPSAN-P | 93 | 66m | 0 | 93-94 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06POPSAN-S | 5 | 145m | 5/7-8/38 | 6-9 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→7 |
+| ATPCHALLENGERMATCH-26JUL06REHKOU-R | 53 | 78m | 1/57-57/11 | 56-57 | 4 | **FLOW_ABOVE** | 53 | flow above but bound 53c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06SEGBRA-B | 36 | 156m | 172/36-99/38561 | 99-71 | 0 | **FLOW_AT_LEVEL** | 34 |  |
+| ATPCHALLENGERMATCH-26JUL06STALEC-L | 33 | 220m | 111/1-60/13885 | 4-1 | -32 | **FLOW_AT_LEVEL** | 33 |  |
+| ATPCHALLENGERMATCH-26JUL06WEIGRA-G | 81 | 177m | 3/82-82/35 | 81-82 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→82 |
+| ATPCHALLENGERMATCH-26JUL06WEIGRA-W | 19 | 101m | 0 | 19-20 | — | **NO_FLOW** | 99 |  |
+| ATPMATCH-26JUL06DIMFER-DIM | 64 | 200m | 120/67-68/21702 | 67-68 | 3 | **FLOW_ABOVE** | 64 | flow above but bound 64c < flow -- chasing breaks goal |
+| ATPMATCH-26JUL06DIMFER-DIM | 64 | 142m | 98/67-68/20192 | 67-68 | 3 | **FLOW_ABOVE** | 64 | flow above but bound 64c < flow -- chasing breaks goal |
+| ATPMATCH-26JUL06FRIBUB-BUB | 33 | 49m | 15/34-34/3321 | 33-34 | 1 | **FLOW_ABOVE** | 31 | flow above but bound 31c < flow -- chasing breaks goal |
+| ATPMATCH-26JUL06FRIBUB-FRI | 66 | 119m | 95/66-67/4980 | 66-67 | 0 | **FLOW_AT_LEVEL** | 67 |  |
+| ATPMATCH-26JUL06LEHZVE-LEH | 26 | 49m | 4/27-27/45 | 26-27 | 1 | **FLOW_ABOVE** | 25 | flow above but bound 25c < flow -- chasing breaks goal |
+| ATPMATCH-26JUL06LEHZVE-ZVE | 73 | 88m | 24/73-74/929 | 73-74 | 0 | **FLOW_AT_LEVEL** | 74 |  |
+| ITFMATCH-26JUL06ALEREG-REG | 40 | 326m | 99/49-99/9602 | 99-99 | 9 | **FLOW_ABOVE** | 46 | flow above but bound 46c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL06ALIMIS-MIS | 6 | 417m | 4/8-15/8 | 7-8 | 2 | **FLOW_ABOVE** | 6 | flow above but bound 6c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL06ALIMIS-MIS | 4 | 2m | 0 | 7-8 | — | **NO_FLOW** | 6 |  |
+| ITFMATCH-26JUL06BROTHU-BRO | 36 | 148m | 1/45-45/21 | 36-45 | 9 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL06BROTHU-THU | 54 | 145m | 0 | 54-63 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06DONDEV-DEV | 20 | 145m | 0 | 20-31 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06DONDEV-DON | 69 | 149m | 0 | 69-79 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06FIXSAL-SAL | 7 | 1m | 1/24-24/102 | 10-24 | 17 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL06GANVER-GAN | 47 | 11m | 0 | 47-50 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06GANVER-VER | 50 | 2m | 0 | 50-53 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06GENAZO-AZO | 16 | 477m | 213/1-19/18095 | 18-1 | -15 | **FLOW_AT_LEVEL** | 16 |  |
+| ITFMATCH-26JUL06IAMBEN-BEN | 19 | 134m | 0 | 19-50 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06IAMBEN-IAM | 51 | 133m | 0 | 51-82 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06JAIHEN-JAI | 45 | 327m | 0 | 45-51 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06KASLIL-LIL | 28 | 310m | 205/1-55/9114 | 1-1 | -27 | **FLOW_AT_LEVEL** | 31 |  |
+| ITFMATCH-26JUL06LAPCIO-CIO | 41 | 207m | 0 | 41-45 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06LAPCIO-LAP | 54 | 206m | 0 | 54-60 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06LENTHE-LEN | 32 | 203m | 203/32-99/19319 | 98-99 | 0 | **FLOW_AT_LEVEL** | 32 |  |
+| ITFMATCH-26JUL06LUEVAN-LUE | 65 | 219m | 0 | 65-77 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06LUEVAN-VAN | 22 | 51m | 0 | 22-34 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06MOUCAR-CAR | 26 | 14m | 0 | 26-36 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06MOUCAR-MOU | 64 | 14m | 0 | 64-73 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06NAPPIN-NAP | 38 | 0m | 0 | 41-45 | — | **NO_FLOW** | 39 |  |
+| ITFMATCH-26JUL06PESTER-PES | 43 | 30m | 0 | 43-59 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06ROJBEC-BEC | 87 | 328m | 65/91-98/4252 | 97-98 | 4 | **FLOW_ABOVE** | 87 | flow above but bound 87c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL06ROJBEC-BEC | 87 | 80m | 65/91-98/4252 | 97-98 | 4 | **FLOW_ABOVE** | 87 | flow above but bound 87c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL06ROURAM-RAM | 53 | 206m | 0 | 53-64 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06ROURAM-ROU | 37 | 207m | 0 | 37-48 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06STEAUN-AUN | 14 | 24m | 189/5-35/12355 | 9-10 | -9 | **FLOW_AT_LEVEL** | 14 |  |
+| ITFMATCH-26JUL06SURMED-SUR | 21 | 134m | 0 | 21-50 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL06TRUTRA-TRU | 70 | 65m | 42/80-97/1576 | 97-98 | 10 | **FLOW_ABOVE** | 70 | flow above but bound 70c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL06VANHOR-HOR | 30 | 207m | 1/36-36/1 | 30-36 | 6 | **FLOW_ABOVE** | 34 | flow above but bound 34c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL06VANHOR-HOR | 26 | 142m | 0 | 30-36 | — | **NO_FLOW** | 34 |  |
+| ITFMATCH-26JUL06VULCOU-VUL | 81 | 312m | 11/98-99/1550 | 99-85 | 17 | **FLOW_ABOVE** | 81 | flow above but bound 81c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL06BOIBOY-BOY | 20 | 373m | 155/28-99/15825 | 98-99 | 8 | **FLOW_ABOVE** | 20 | flow above but bound 20c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL06BOWMAT-BOW | 7 | 160m | 0 | 7-47 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06BOWMAT-MAT | 53 | 99m | 0 | 53-93 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06BRESAF-SAF | 34 | 500m | 4430/1-99/518199 | 5-1 | -33 | **FLOW_AT_LEVEL** | 34 |  |
+| ITFWMATCH-26JUL06BUYALV-BUY | 69 | 57m | 39/78-95/1279 | 93-95 | 9 | **FLOW_ABOVE** | 69 | flow above but bound 69c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL06CENBUL-BUL | 20 | 114m | 0 | 20-30 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06CENBUL-CEN | 69 | 43m | 0 | 69-82 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06COHXAV-COH | 7 | 100m | 0 | 7-92 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06DRISLA-DRI | 36 | 11m | 0 | 36-41 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06DRISLA-SLA | 60 | 160m | 0 | 60-63 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06EVARHO-EVA | 77 | 17m | 0 | 77-92 | — | **NO_FLOW** | 79 |  |
+| ITFWMATCH-26JUL06HOSFEH-HOS | 25 | 294m | 1/99-99/12 | 99-58 | 74 | **FLOW_ABOVE** | 36 | flow above but bound 36c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL06KULGON-KUL | 75 | 358m | 73/79-99/2231 | 98-99 | 4 | **FLOW_ABOVE** | 75 | flow above but bound 75c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL06KULGON-KUL | 75 | 358m | 73/79-99/2231 | 98-99 | 4 | **FLOW_ABOVE** | 75 | flow above but bound 75c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL06KULVOG-KUL | 55 | 166m | 0 | 55-60 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06KULVOG-VOG | 39 | 163m | 0 | 39-45 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06LABTSY-LAB | 27 | 237m | 0 | 27-40 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06LABTSY-TSY | 59 | 237m | 0 | 59-72 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06LACSTO-LAC | 56 | 8m | 0 | 56-81 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06LUCGAD-GAD | 37 | 546m | 3895/23-99/459986 | 99-24 | -14 | **FLOW_AT_LEVEL** | 37 |  |
+| ITFWMATCH-26JUL06MARBED-BED | 15 | 78m | 0 | 15-45 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06MARBED-MAR | 55 | 78m | 0 | 55-85 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06MARGLU-GLU | 66 | 302m | 0 | 66-72 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06MARGLU-MAR | 29 | 115m | 0 | 29-33 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06MCAENC-MCA | 42 | 364m | 3/48-48/58 | 44-48 | 6 | **FLOW_ABOVE** | 46 | flow above but bound 46c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL06MCAENC-MCA | 41 | 2m | 0 | 44-48 | — | **NO_FLOW** | 46 |  |
+| ITFWMATCH-26JUL06MELRAB-MEL | 85 | 14m | 7/94-95/101 | 97-98 | 9 | **FLOW_ABOVE** | 85 | flow above but bound 85c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL06MULCIS-CIS | 38 | 61m | 0 | 38-46 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06MULCIS-MUL | 53 | 145m | 0 | 53-61 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06OKUPRI-PRI | 41 | 212m | 828/36-99/114162 | 99-99 | -5 | **FLOW_AT_LEVEL** | 41 |  |
+| ITFWMATCH-26JUL06OLUZAM-OLU | 36 | 40m | 0 | 36-56 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06PASCOP-PAS | 8 | 449m | 1942/1-13/312225 | 14-1 | -7 | **FLOW_AT_LEVEL** | 12 |  |
+| ITFWMATCH-26JUL06PEEPAH-PEE | 39 | 163m | 195/1-51/28627 | 2-3 | -38 | **FLOW_AT_LEVEL** | 36 |  |
+| ITFWMATCH-26JUL06PIERAD-PIE | 64 | 258m | 117/84-99/4782 | 99-90 | 20 | **FLOW_ABOVE** | 64 | flow above but bound 64c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL06POHSTU-POH | 28 | 119m | 0 | 28-40 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06POHSTU-STU | 59 | 119m | 0 | 59-71 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06PRINIJ-PRI | 67 | 38m | 21/73-93/369 | 92-93 | 6 | **FLOW_ABOVE** | 67 | flow above but bound 67c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL06RABELI-ELI | 18 | 12m | 0 | 18-40 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06RABELI-RAB | 10 | 11m | 0 | 59-83 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06REEION-ION | 52 | 100m | 2/63-64/50 | 52-62 | 11 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL06REEION-REE | 37 | 25m | 0 | 37-47 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06SACLAZ-LAZ | 15 | 305m | 648/1-33/45125 | 40-1 | -14 | **FLOW_AT_LEVEL** | 1 |  |
+| ITFWMATCH-26JUL06SCHELI-ELI | 40 | 11m | 0 | 40-50 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06SILDIG-DIG | 88 | 20m | 51/95-99/4227 | 98-99 | 7 | **FLOW_ABOVE** | 88 | flow above but bound 88c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL06SIMCIR-CIR | 14 | 496m | 16366/1-95/1383948 | 83-1 | -13 | **FLOW_AT_LEVEL** | 16 |  |
+| ITFWMATCH-26JUL06SINUSU-SIN | 27 | 38m | 0 | 27-64 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06SINUSU-USU | 35 | 38m | 0 | 35-72 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06STETRA-STE | 79 | 110m | 0 | 79-84 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06STETRA-TRA | 16 | 266m | 1/22-22/11 | 16-21 | 6 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL06URREVA-URR | 60 | 43m | 2/68-72/37 | 61-63 | 8 | **FLOW_ABOVE** | 60 | flow above but bound 60c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL06URREVA-URR | 60 | 42m | 2/68-72/37 | 61-63 | 8 | **FLOW_ABOVE** | 60 | flow above but bound 60c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL06VAJRAM-RAM | 15 | 496m | 6096/1-29/750264 | 21-1 | -14 | **FLOW_AT_LEVEL** | 5 |  |
+| ITFWMATCH-26JUL06VARMUN-MUN | 15 | 88m | 0 | 15-17 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06VARMUN-VAR | 83 | 176m | 0 | 83-86 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL06VLADIL-VLA | 30 | 192m | 573/1-54/39141 | 1-2 | -29 | **FLOW_AT_LEVEL** | 23 |  |
+| WTACHALLENGERMATCH-26JUL06BASBAD-B | 74 | 328m | 5/75-76/153 | 74-75 | 1 | **FLOW_ABOVE** | 72 | flow above but bound 72c < flow -- chasing breaks goal |
+| WTACHALLENGERMATCH-26JUL06BASBAD-B | 25 | 119m | 1/26-26/10 | 25-26 | 1 | **FLOW_ABOVE** | 22 | flow above but bound 22c < flow -- chasing breaks goal |
+| WTACHALLENGERMATCH-26JUL06COLSMI-C | 38 | 59m | 0 | 39-40 | — | **NO_FLOW** | 99 |  |
+| WTACHALLENGERMATCH-26JUL06COLSMI-S | 60 | 59m | 1/62-62/35 | 60-62 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→62 |
+| WTACHALLENGERMATCH-26JUL06CURDOD-C | 68 | 119m | 0 | 69-70 | — | **NO_FLOW** | 99 |  |
+| WTACHALLENGERMATCH-26JUL06CURDOD-D | 31 | 57m | 0 | 31-33 | — | **NO_FLOW** | 99 |  |
+| WTACHALLENGERMATCH-26JUL06DENQUE-D | 5 | 103m | 15/5-6/1281 | 5-6 | 0 | **FLOW_AT_LEVEL** | 3 |  |
+| WTACHALLENGERMATCH-26JUL06DENQUE-Q | 93 | 239m | 1/95-95/18 | 93-95 | 2 | **FLOW_ABOVE** | 91 | flow above but bound 91c < flow -- chasing breaks goal |
+| WTACHALLENGERMATCH-26JUL06HERNGU-H | 39 | 218m | 108/84-99/18486 | 99-99 | 45 | **FLOW_ABOVE** | 39 | flow above but bound 39c < flow -- chasing breaks goal |
+| WTACHALLENGERMATCH-26JUL06ISHCRO-C | 61 | 147m | 0 | 61-62 | — | **NO_FLOW** | 99 |  |
+| WTACHALLENGERMATCH-26JUL06ISHCRO-I | 38 | 147m | 2/39-39/123 | 38-39 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→39 |
+| WTACHALLENGERMATCH-26JUL06LINMAR-L | 6 | 146m | 10/6-7/350 | 6-7 | 0 | **FLOW_AT_LEVEL** | 99 |  |
+| WTACHALLENGERMATCH-26JUL06LINMAR-M | 93 | 146m | 0 | 94-95 | — | **NO_FLOW** | 99 |  |
+| WTACHALLENGERMATCH-26JUL06OLIUCH-U | 39 | 205m | 2066/11-99/409246 | 99-95 | -28 | **FLOW_AT_LEVEL** | 37 |  |
+| WTACHALLENGERMATCH-26JUL06WALKAW-K | 43 | 328m | 5/44-44/212 | 43-44 | 1 | **FLOW_ABOVE** | 41 | flow above but bound 41c < flow -- chasing breaks goal |
+| WTACHALLENGERMATCH-26JUL06WALKAW-W | 56 | 159m | 1/57-57/33 | 56-57 | 1 | **FLOW_ABOVE** | 54 | flow above but bound 54c < flow -- chasing breaks goal |
+| WTACHALLENGERMATCH-26JUL06WERSAL-S | 65 | 18m | 0 | 69-70 | — | **NO_FLOW** | 65 |  |
+| WTAMATCH-26JUL06BOUMER-BOU | 46 | 64m | 845/10-67/233174 | 16-13 | -36 | **FLOW_AT_LEVEL** | 44 |  |
+| WTAMATCH-26JUL06KEYNOS-KEY | 54 | 77m | 38/58-59/3351 | 58-59 | 4 | **FLOW_ABOVE** | 54 | flow above but bound 54c < flow -- chasing breaks goal |
+| WTAMATCH-26JUL06KEYNOS-KEY | 54 | 77m | 38/58-59/3351 | 58-59 | 4 | **FLOW_ABOVE** | 54 | flow above but bound 54c < flow -- chasing breaks goal |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
 |---|---|---|---|---|---|
-| ITFMATCH-26JUL06TISVER | 53 | 40 | **93** | 97 | -4 |
-| ITFMATCH-26JUL06HOSGAT | 38 | 57 | **95** | 97 | -2 |
 | ITFMATCH-26JUL06VANHOR | 63 | 36 | **99** | 97 | +2 |
+| ITFWMATCH-26JUL06MCAENC | 51 | 48 | **99** | 97 | +2 |
+| ITFMATCH-26JUL06ALIMIS | 91 | 8 | **99** | 97 | +2 |
+| ITFWMATCH-26JUL06URREVA | 37 | 63 | **100** | 97 | +3 |
 | ATPMATCH-26JUL06DIMFER | 33 | 68 | **101** | 97 | +4 |
-| ITFWMATCH-26JUL06MCAENC | 51 | 50 | **101** | 97 | +4 |
-| ATPCHALLENGERMATCH-26JUL06CHIJAN | 22 | 79 | **101** | 97 | +4 |
-| WTACHALLENGERMATCH-26JUL06WERSAL | 32 | 69 | **101** | 97 | +4 |
-| ATPCHALLENGERMATCH-26JUL06REHKOU | 44 | 58 | **102** | 97 | +5 |
+| ATPCHALLENGERMATCH-26JUL06REHKOU | 44 | 57 | **101** | 97 | +4 |
 | WTAMATCH-26JUL06KEYNOS | 43 | 59 | **102** | 97 | +5 |
 | ATPCHALLENGERMATCH-26JUL06PAPMID | 47 | 55 | **102** | 97 | +5 |
-| ATPCHALLENGERMATCH-26JUL06IVADIN | 20 | 83 | **103** | 97 | +6 |
-| ITFWMATCH-26JUL06SILDIG | 9 | 96 | **105** | 97 | +8 |
-| ITFWMATCH-26JUL06MELRAB | 12 | 95 | **107** | 97 | +10 |
+| WTACHALLENGERMATCH-26JUL06WERSAL | 32 | 70 | **102** | 97 | +5 |
+| ITFMATCH-26JUL06NAPPIN | 58 | 45 | **103** | 97 | +6 |
+| ATPCHALLENGERMATCH-26JUL06IVADIN | 20 | 84 | **104** | 97 | +7 |
 | ITFWMATCH-26JUL06RICMIT | 9 | 99 | **108** | 97 | +11 |
 | ITFMATCH-26JUL06ROJBEC | 10 | 98 | **108** | 97 | +11 |
+| ITFWMATCH-26JUL06SILDIG | 9 | 99 | **108** | 97 | +11 |
 | ATPCHALLENGERMATCH-26JUL06SEYMAR | 10 | 99 | **109** | 97 | +12 |
 | ITFWMATCH-26JUL06EVARHO | 18 | 92 | **110** | 97 | +13 |
+| ITFWMATCH-26JUL06MELRAB | 12 | 98 | **110** | 97 | +13 |
 | ITFMATCH-26JUL06CASBAY | 45 | 71 | **116** | 97 | +19 |
-| ITFMATCH-26JUL06TRUTRA | 27 | 90 | **117** | 97 | +20 |
-| ITFWMATCH-26JUL06PRINIJ | 30 | 87 | **117** | 97 | +20 |
 | ITFWMATCH-26JUL06HOSFEH | 61 | 58 | **119** | 97 | +22 |
-| ITFWMATCH-26JUL06BUYALV | 28 | 92 | **120** | 97 | +23 |
-| ITFWMATCH-26JUL06URREVA | 37 | 83 | **120** | 97 | +23 |
 | ITFWMATCH-26JUL06KULGON | 22 | 99 | **121** | 97 | +24 |
 | ATPCHALLENGERMATCH-26JUL06PAPJAN | 53 | 69 | **122** | 97 | +25 |
 | ITFWMATCH-26JUL06PIERAD | 33 | 90 | **123** | 97 | +26 |
-| ITFMATCH-26JUL06ALIMIS | 91 | 43 | **134** | 97 | +37 |
+| ITFWMATCH-26JUL06BUYALV | 28 | 95 | **123** | 97 | +26 |
+| ITFWMATCH-26JUL06PRINIJ | 30 | 93 | **123** | 97 | +26 |
+| ITFMATCH-26JUL06TRUTRA | 27 | 98 | **125** | 97 | +28 |
 | ITFMATCH-26JUL06STAGUI | 37 | 99 | **136** | 97 | +39 |
-| ATPCHALLENGERMATCH-26JUL06WEHVAN | 42 | 96 | **138** | 97 | +41 |
 | ITFWMATCH-26JUL06OKASAK | 40 | 99 | **139** | 97 | +42 |
+| ATPCHALLENGERMATCH-26JUL06WEHVAN | 42 | 99 | **141** | 97 | +44 |
 | WTACHALLENGERMATCH-26JUL06ROMSEM | 57 | 92 | **149** | 97 | +52 |
 | ITFMATCH-26JUL06ALEREG | 51 | 99 | **150** | 97 | +53 |
 | ITFWMATCH-26JUL06WONIBR | 65 | 99 | **164** | 97 | +67 |
 | ITFWMATCH-26JUL06BOIBOY | 77 | 99 | **176** | 97 | +79 |
 | ITFWMATCH-26JUL06GALTSE | 77 | 99 | **176** | 97 | +79 |
 
-## PATTERNS (sub-B) — 204
+## PATTERNS (sub-B) — 203
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06TODSAG-SAG {"price": 25, "ceiling": 21}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06BEASCO-SCO {"price": 23, "ceiling": 20}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06BEASCO-SCO {"price": 25, "ceiling": 20}
@@ -513,14 +510,14 @@
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06SACLAZ-LAZ {"price": 18, "ceiling": 9}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06SACLAZ-LAZ {"price": 19, "ceiling": 9}
 - deep_neg_fv: KXITFWMATCH-26JUL06SIMCIR-CIR {"entry_minus_fv_burst": -30.0}
-- half_arm_aging: KXITFWMATCH-26JUL06HOSFEH-FEH {"fill": 61, "age_min": 553, "mode": "SET_BELOW_FLOW(prints 74c above)"}
+- half_arm_aging: KXITFWMATCH-26JUL06HOSFEH-FEH {"fill": 61, "age_min": 564, "mode": "SET_BELOW_FLOW(prints 74c above)"}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06BEASCO-SCO {"price": 29, "ceiling": 20}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06BEASCO-SCO {"price": 30, "ceiling": 20}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06BEASCO-SCO {"price": 31, "ceiling": 20}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06BEASCO-SCO {"price": 32, "ceiling": 20}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06LUKNOE-LUK {"price": 59, "ceiling": 18}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06LUKNOE-LUK {"price": 66, "ceiling": 18}
-- half_arm_aging: KXITFWMATCH-26JUL06WONIBR-IBR {"fill": 65, "age_min": 526, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL06WONIBR-IBR {"fill": 65, "age_min": 536, "mode": "NO_BID(sib rested earlier, none now)"}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06LUKNOE-LUK {"price": 67, "ceiling": 18}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06ELDHAU-ELD {"price": 59, "ceiling": 20}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06LUKNOE-LUK {"price": 68, "ceiling": 18}
@@ -585,13 +582,13 @@
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06VIRKOV-VIR {"price": 55, "ceiling": 32}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06OKUPRI-OKU {"price": 54, "ceiling": 31}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06VIRKOV-VIR {"price": 56, "ceiling": 32}
-- half_arm_aging: KXITFWMATCH-26JUL06BOIBOY-BOI {"fill": 77, "age_min": 362, "mode": "SET_BELOW_FLOW(prints 8c above)"}
+- half_arm_aging: KXITFWMATCH-26JUL06BOIBOY-BOI {"fill": 77, "age_min": 373, "mode": "SET_BELOW_FLOW(prints 8c above)"}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06DIANIK-NIK {"price": 41, "ceiling": 38}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06DIANIK-NIK {"price": 52, "ceiling": 38}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06STAGUI-GUI {"price": 16, "ceiling": 9}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06PRINIJ-NIJ {"price": 21, "ceiling": 20}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06PRINIJ-NIJ {"price": 30, "ceiling": 20}
-- half_arm_aging: KXITFWMATCH-26JUL06KULGON-GON {"fill": 22, "age_min": 348, "mode": "SET_BELOW_FLOW(prints 4c above)"}
+- half_arm_aging: KXITFWMATCH-26JUL06KULGON-GON {"fill": 22, "age_min": 358, "mode": "SET_BELOW_FLOW(prints 4c above)"}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06JOSKUM-JOS {"price": 61, "ceiling": 59}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06JOSKUM-JOS {"price": 67, "ceiling": 59}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06STAGUI-GUI {"price": 18, "ceiling": 9}
@@ -607,7 +604,7 @@
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06ALIMIS-ALI {"price": 90, "ceiling": 84}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06STAGUI-GUI {"price": 24, "ceiling": 9}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06TSIAND-TSI {"price": 59, "ceiling": 38}
-- half_arm_aging: KXITFMATCH-26JUL06CASBAY-CAS {"fill": 45, "age_min": 297, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL06CASBAY-CAS {"fill": 45, "age_min": 307, "mode": "NO_BID(sib rested earlier, none now)"}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06STAGUI-GUI {"price": 26, "ceiling": 9}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06ALIMIS-ALI {"price": 91, "ceiling": 84}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06STAGUI-GUI {"price": 27, "ceiling": 9}
@@ -626,31 +623,31 @@
 - deep_neg_fv: KXWTACHALLENGERMATCH-26JUL06NOHBUR-BUR {"entry_minus_fv_burst": -48.5}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06STAGUI-GUI {"price": 29, "ceiling": 9}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06STAGUI-GUI {"price": 30, "ceiling": 9}
-- half_arm_aging: KXITFWMATCH-26JUL06PIERAD-RAD {"fill": 33, "age_min": 247, "mode": "SET_BELOW_FLOW(prints 20c above)"}
+- half_arm_aging: KXITFWMATCH-26JUL06PIERAD-RAD {"fill": 33, "age_min": 258, "mode": "SET_BELOW_FLOW(prints 20c above)"}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06STAGUI-GUI {"price": 31, "ceiling": 9}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06PAPJAN-PAP {"fill": 53, "age_min": 246, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06PAPJAN-PAP {"fill": 53, "age_min": 257, "mode": "NO_BID(sib rested earlier, none now)"}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06STAGUI-GUI {"price": 32, "ceiling": 9}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06STAGUI-GUI {"price": 33, "ceiling": 9}
 - deep_neg_fv: KXWTACHALLENGERMATCH-26JUL06MONPOP-MON {"entry_minus_fv_burst": -35.5}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06STAGUI-GUI {"price": 34, "ceiling": 9}
-- half_arm_aging: KXITFWMATCH-26JUL06RICMIT-MIT {"fill": 9, "age_min": 234, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL06RICMIT-MIT {"fill": 9, "age_min": 244, "mode": "NO_BID(sib rested earlier, none now)"}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06PODLUK-POD {"price": 27, "ceiling": 11}
 - deep_neg_fv: KXITFWMATCH-26JUL06PEEPAH-PAH {"entry_minus_fv_burst": -26.5}
-- half_arm_aging: KXITFWMATCH-26JUL06GALTSE-GAL {"fill": 77, "age_min": 223, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL06GALTSE-GAL {"fill": 77, "age_min": 234, "mode": "NO_BID(sib rested earlier, none now)"}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06STAGUI-GUI {"price": 35, "ceiling": 9}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06SEYMAR-MAR {"fill": 10, "age_min": 218, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06SEYMAR-MAR {"fill": 10, "age_min": 228, "mode": "NO_BID(sib rested earlier, none now)"}
 - deep_neg_fv: KXWTACHALLENGERMATCH-26JUL06LEWMAR-MAR {"entry_minus_fv_burst": -24.5}
 - deep_neg_fv: KXATPCHALLENGERMATCH-26JUL06GOMLUZ-GOM {"entry_minus_fv_burst": -26.5}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06STAGUI-GUI {"price": 36, "ceiling": 9}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06STAGUI-GUI {"price": 37, "ceiling": 9}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06EWAMAN-EWA {"price": 69, "ceiling": 68}
-- half_arm_aging: KXITFMATCH-26JUL06ALEREG-ALE {"fill": 51, "age_min": 204, "mode": "SET_BELOW_FLOW(prints 9c above)"}
+- half_arm_aging: KXITFMATCH-26JUL06ALEREG-ALE {"fill": 51, "age_min": 214, "mode": "SET_BELOW_FLOW(prints 9c above)"}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06KARVIS-VIS {"price": 18, "ceiling": 16}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06KARVIS-VIS {"price": 21, "ceiling": 16}
-- half_arm_aging: KXITFMATCH-26JUL06VANHOR-VAN {"fill": 63, "age_min": 192, "mode": "SET_BELOW_FLOW(prints 6c above)"}
+- half_arm_aging: KXITFMATCH-26JUL06VANHOR-VAN {"fill": 63, "age_min": 202, "mode": "SET_BELOW_FLOW(prints 6c above)"}
 - deep_neg_fv: KXITFWMATCH-26JUL06VLADIL-DIL {"entry_minus_fv_burst": -32.0}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06ILIEBE-EBE {"price": 53, "ceiling": 42}
-- half_arm_aging: KXATPMATCH-26JUL06DIMFER-FER {"fill": 33, "age_min": 189, "mode": "SET_BELOW_FLOW(prints 3c above)"}
+- half_arm_aging: KXATPMATCH-26JUL06DIMFER-FER {"fill": 33, "age_min": 200, "mode": "SET_BELOW_FLOW(prints 3c above)"}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06ILIEBE-EBE {"price": 58, "ceiling": 42}
 - deep_neg_fv: KXATPCHALLENGERMATCH-26JUL06DELWAL-DEL {"entry_minus_fv_burst": -16.5}
 - deep_neg_fv: KXATPCHALLENGERMATCH-26JUL06BASHOE-HOE {"entry_minus_fv_burst": -47.5}
@@ -662,8 +659,7 @@
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06OKASAK-OKA {"price": 28, "ceiling": 20}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06EWAMAN-EWA {"price": 70, "ceiling": 68}
 - deep_neg_fv: KXWTACHALLENGERMATCH-26JUL06GRAMAS-MAS {"entry_minus_fv_burst": -10.5}
-- half_arm_aging: KXITFMATCH-26JUL06HOSGAT-GAT {"fill": 38, "age_min": 157, "mode": "QUEUE(flow at/below our level, unfilled)"}
-- half_arm_aging: KXWTACHALLENGERMATCH-26JUL06ROMSEM-SEM {"fill": 57, "age_min": 150, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXWTACHALLENGERMATCH-26JUL06ROMSEM-SEM {"fill": 57, "age_min": 161, "mode": "NO_BID(sib rested earlier, none now)"}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06OKASAK-OKA {"price": 29, "ceiling": 20}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06OKASAK-OKA {"price": 30, "ceiling": 20}
 - deep_neg_fv: KXWTACHALLENGERMATCH-26JUL06HESPAL-HES {"entry_minus_fv_burst": -59.5}
@@ -671,29 +667,29 @@
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06OKASAK-OKA {"price": 34, "ceiling": 20}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06OKASAK-OKA {"price": 35, "ceiling": 20}
 - deep_neg_fv: KXATPCHALLENGERMATCH-26JUL06MARBER-BER {"entry_minus_fv_burst": -33.5}
-- half_arm_aging: KXITFWMATCH-26JUL06MCAENC-ENC {"fill": 51, "age_min": 104, "mode": "SET_BELOW_FLOW(prints 6c above)"}
+- half_arm_aging: KXITFWMATCH-26JUL06MCAENC-ENC {"fill": 51, "age_min": 115, "mode": "SET_BELOW_FLOW(prints 6c above)"}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06TRUTRA-TRA {"price": 25, "ceiling": 22}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06IVADIN-DIN {"fill": 20, "age_min": 99, "mode": "SET_BELOW_FLOW(prints 6c above)"}
-- half_arm_aging: KXITFMATCH-26JUL06STAGUI-GUI {"fill": 37, "age_min": 94, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06IVADIN-DIN {"fill": 20, "age_min": 109, "mode": "SET_BELOW_FLOW(prints 6c above)"}
+- half_arm_aging: KXITFMATCH-26JUL06STAGUI-GUI {"fill": 37, "age_min": 105, "mode": "NO_BID(sib rested earlier, none now)"}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06OKASAK-OKA {"price": 36, "ceiling": 20}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06OKASAK-OKA {"price": 37, "ceiling": 20}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06OKASAK-OKA {"price": 41, "ceiling": 20}
-- half_arm_aging: KXITFWMATCH-26JUL06OKASAK-OKA {"fill": 40, "age_min": 85, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL06OKASAK-OKA {"fill": 40, "age_min": 96, "mode": "NO_BID(sib rested earlier, none now)"}
 - deep_neg_fv: KXWTACHALLENGERMATCH-26JUL06ARANIL-ARA {"entry_minus_fv_burst": -24.5}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06TEUHAS-TEU {"price": 35, "ceiling": 34}
-- half_arm_aging: KXITFMATCH-26JUL06ALIMIS-ALI {"fill": 91, "age_min": 79, "mode": "SET_BELOW_FLOW(prints 2c above)"}
+- half_arm_aging: KXITFMATCH-26JUL06ALIMIS-ALI {"fill": 91, "age_min": 90, "mode": "SET_BELOW_FLOW(prints 2c above)"}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06BUYALV-ALV {"price": 23, "ceiling": 21}
-- half_arm_aging: KXITFMATCH-26JUL06ROJBEC-ROJ {"fill": 10, "age_min": 72, "mode": "SET_BELOW_FLOW(prints 4c above)"}
+- half_arm_aging: KXITFMATCH-26JUL06ROJBEC-ROJ {"fill": 10, "age_min": 82, "mode": "SET_BELOW_FLOW(prints 4c above)"}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06TRUTRA-TRA {"price": 26, "ceiling": 22}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06CHIJAN-JAN {"fill": 22, "age_min": 69, "mode": "SET_BELOW_FLOW(prints 4c above)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06REHKOU-KOU {"fill": 44, "age_min": 68, "mode": "SET_BELOW_FLOW(prints 4c above)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06REHKOU-KOU {"fill": 44, "age_min": 78, "mode": "SET_BELOW_FLOW(prints 4c above)"}
 - uncorrelated_buy_above_ceiling: KXITFMATCH-26JUL06TRUTRA-TRA {"price": 27, "ceiling": 22}
-- half_arm_aging: KXWTAMATCH-26JUL06KEYNOS-NOS {"fill": 43, "age_min": 67, "mode": "SET_BELOW_FLOW(prints 4c above)"}
-- half_arm_aging: KXITFWMATCH-26JUL06BUYALV-ALV {"fill": 28, "age_min": 60, "mode": "SET_BELOW_FLOW(prints 9c above)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06WEHVAN-VAN {"fill": 42, "age_min": 60, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFMATCH-26JUL06TRUTRA-TRA {"fill": 27, "age_min": 54, "mode": "SET_BELOW_FLOW(prints 10c above)"}
-- half_arm_aging: KXITFWMATCH-26JUL06PRINIJ-NIJ {"fill": 30, "age_min": 42, "mode": "SET_BELOW_FLOW(prints 6c above)"}
+- half_arm_aging: KXWTAMATCH-26JUL06KEYNOS-NOS {"fill": 43, "age_min": 77, "mode": "SET_BELOW_FLOW(prints 4c above)"}
+- half_arm_aging: KXITFWMATCH-26JUL06BUYALV-ALV {"fill": 28, "age_min": 70, "mode": "SET_BELOW_FLOW(prints 9c above)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06WEHVAN-VAN {"fill": 42, "age_min": 70, "mode": "NO_BID(sib rested earlier, none now)"}
+- deep_neg_fv: KXATPCHALLENGERMATCH-26JUL06WALNEU-WAL {"entry_minus_fv_burst": -23.0, "emitted_et": "2026-07-06 09:29:21 AM ET"}
+- half_arm_aging: KXITFMATCH-26JUL06TRUTRA-TRA {"fill": 27, "age_min": 65, "mode": "SET_BELOW_FLOW(prints 10c above)"}
+- half_arm_aging: KXITFWMATCH-26JUL06PRINIJ-NIJ {"fill": 30, "age_min": 53, "mode": "SET_BELOW_FLOW(prints 6c above)"}
 - deep_neg_fv: KXWTACHALLENGERMATCH-26JUL06BLIAND-AND {"entry_minus_fv_burst": -15.5}
-- half_arm_aging: KXITFWMATCH-26JUL06URREVA-EVA {"fill": 37, "age_min": 33, "mode": "STARVATION(no prints since post)", "emitted_et": "2026-07-06 09:18:47 AM ET"}
+- half_arm_aging: KXITFWMATCH-26JUL06URREVA-EVA {"fill": 37, "age_min": 43, "mode": "SET_BELOW_FLOW(prints 8c above)"}
 
 ## ERRORS — 0 handler errors this session (ZERO — clean loop)

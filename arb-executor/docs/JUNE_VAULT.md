@@ -186,6 +186,18 @@ prints — conservative convention, no credit the tape doesn't support, "no chan
 The law's own first run demonstrates its point: two of three plausible fixes do not pay on the actual tape,
 and the replay said so BEFORE anything armed.
 
+## 0E. WINDOW-1 GRADING — the criteria upgrade (operator, 2026-07-06; lands in monitor + nightly pass)
+
+**THE GOAL = filled AND cashed in WINDOW 1 (the pregame opportunity window, honest clock).** Per leg, tracked
+outcome: **W1_CASHED** (exit band touched and filled pregame) / **W1_REACHABLE** (band touched, not filled) /
+**W2_ONLY**. Pair-level: the **BOUHAR-class stamp (both legs W1_CASHED) is its own headline rate.** Grade
+integration: **A now requires the W1 shape** — both legs filled in W1 at <=97 with exits REACHED in W1
+(cashed or touched); an entry that structurally cannot reach its band before the gun caps at B regardless of
+price. The nightly pass reports the W1-cash rate per category as the PRIMARY scoreboard line — it IS the
+money-machine metric. Machinery: arb-executor/audit/w1_grading.py. **Baseline (pre-flip box, 257 legs):
+W1_CASHED = 0, W1_REACHABLE = 0, BOUHAR = 0/110 — under the card clock nothing ever cashed pregame; 39 of 42
+old A grades regrade to B under the W1 gate. The honest-clock era is measured against zero.**
+
 ## 1. WHAT'S SETTLED — DO NOT RE-OPEN
 
 ### Entry method: SOLVED and DEPLOYED.

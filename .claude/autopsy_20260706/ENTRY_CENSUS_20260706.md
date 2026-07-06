@@ -8,7 +8,7 @@
 
 ## HEADLINE — category × four axes (concluded games)
 
-| cat | physics (spread¢ med / W1-dip prints med) | AX1 participation both/one/none | AX2 fill timing before/during/after dip (med miss min) | AX3 med paid-over-best W1¢ per filled leg (achievable-vs-paid med) | combined ≤97 / 98-100 / >100 | AX4 gun on/early/late/SILENT (grace viol) |
+| cat | physics (spread¢ med / W1-dip prints med) | AX1 participation both/one/none | AX2 ~~fill timing before/during/after dip (med miss min)~~ **STRUCK — see Axis-2 Amendment** | AX3 med paid-over-best W1¢ per filled leg (achievable-vs-paid med) | combined ≤97 / 98-100 / >100 | AX4 gun on/early/late/SILENT (grace viol) |
 |---|---|---|---|---|---|---|
 | ATP_MAIN | 1¢ / 2 | 1/0/0 | 2/0/0 (42.5) | 21.0¢ (22.0) | 1/0/0 | 1/0/0/0 (0) |
 | WTA_MAIN | 1¢ / 2 | 3/0/0 | 2/0/4 (68.1) | 0.5¢ (-2.0) | 3/0/0 | 0/0/3/0 (0) |
@@ -16,6 +16,24 @@
 | WTA_CHALL | 1¢ / 1 | 15/1/0 | 9/4/3 (4.8) | 0.0¢ (4.0) | 12/2/1 | 0/0/11/5 (0) |
 | ITF_M | 9¢ / 2 | 32/7/0 | 40/24/5 (19.6) | 0.0¢ (13.0) | 29/2/1 | 0/0/0/37 (0) |
 | ITF_W | 12¢ / 2 | 50/13/0 | 72/19/8 (34.4) | 3.0¢ (13.0) | 48/1/1 | 0/0/8/50 (0) |
+
+
+## ⚠ AXIS-2 AMENDMENT (2026-07-06, operator order) — the per-leg vs-own-cheapest gauge is STRUCK
+**Reason, verbatim: the gauge is incoherent under the inverse relationship — the pair's leg minimums are mutually exclusive; filling the riser early is doctrine, not a miss.** Every "before/during/after dip" count and every "med miss min" number in the headline AX2 column and the per-category rollup timing lines below (the 19.6m/34.4m class) is RETRACTED. They remain printed for the record, struck by this banner. The joint gauge — best-achievable combined vs paid — was always pair-coherent and STANDS unchanged.
+
+**Replacement (pair-coherent): per-leg fill vs its ROLE's typical bell-anchored path for the game's bucket.** Method: bell = true onset where unambiguous else honest start; bucket = first-post price quintile; role = monitor riser/faller stamp (fallback ≥50 = riser); path = median traded price per (cat, role, bucket) on a 10-min T-minus grid over W1+corridor, built from this census's own 161-game tape (33 role-paths, n≥2 legs per bin); **edge = fill − path(at fill's T-minus): negative = beat the role path** (the riser beats it by being early, the faller by being late). Evidence: `census_ax2.json` (294 graded legs + the paths themselves).
+
+### AXIS-2 REISSUED — role-relative timing (concluded games)
+| cat | riser n | riser path-edge med | riser filled ≥60m pre-bell | faller n | faller path-edge med | faller into-decline share |
+|---|---|---|---|---|---|---|
+| ATP_MAIN | 1 | — (no path, n=1 cat) | 0/1 | 1 | — | — |
+| WTA_MAIN | 3 | −5.0¢ | 0/3 | 3 | −1.0¢ | 2/2 |
+| ATP_CHALL | 33 | −4.0¢ | 5/33 | 38 | −1.0¢ | 30/38 |
+| WTA_CHALL | 16 | −1.0¢ | 0/16 | 15 | −8.0¢ | 6/10 |
+| ITF_M | 31 | −8.0¢ | 15/31 | 40 | −3.0¢ | 25/38 |
+| ITF_W | 48 | −6.0¢ | 25/48 | 65 | −1.0¢ | 39/62 |
+
+**Reissued reading:** role-relative, the legs are timed CORRECTLY — risers fill below their path in every category (early-cheap = doctrine compliance), and fallers majority-fill into the realized decline (63-79% in CHALL/ITF where scoreable). The residual entry inefficiency is therefore NOT per-leg timing: it lives entirely in the pair-level joint gauge — **achievable-vs-paid +8.5¢ (ATP_CHALL) / +4¢ (WTA_CHALL) / +13¢ (ITF)** — i.e., the two correctly-timed legs still jointly pay over what the two tapes offered, which is a coordination/aim-depth question (I-1 corridor aim, I-4 starvation), not a clock question. CHALL risers fill late-window (5/33 and 0/16 early) vs ITF risers half-early (15/31, 25/48) — consistent with CHALL's 19m vs ITF's 72-77m corridors, flagged for the fix conversation, not graded.
 
 ---
 # PER-GAME ROWS — one row per concluded game, all raw columns
@@ -731,7 +749,7 @@ Leg format: `SUF post@px(T-s/T-h) → fill px(T-s/T-h) | W1best px(sz,dur) gapW1
 No fix ships from this session. Each issue carries its adversarial history — "which previous failure is this fix secretly?" — with the standing graves as tripwires. A candidate that rhymes with a grave carries the grave's name; anything unresolvable is DEAD-IN-DRAFT.
 
 ## I-1 · The corridor is where the money was, and we buy before it (AX2×AX3 — the census's biggest number)
-Fills land median 11–34 min BEFORE the leg's cheapest moment (144 of 205 timed fills = "before"); completed pairs paid **+8.5¢ (ATP_CHALL) / +4¢ (WTA_CHALL) / +13¢ (ITF both)** over the best jointly-achievable combined. The corridor (honest start → true onset) ran median **72–77 min in ITF, 19 in ATP_CHALL**, and the corridor best beat the W1 best on 8/11 ATP_CHALL and ~half of ITF legs with both defined. Our unfilled bids WERE alive in the corridor (26/28 legs) — the corridor isn't abandoned, it's under-aimed: the resting level was set by W1 physics and the corridor dip ran under it.
+~~Fills land median 11–34 min BEFORE the leg's cheapest moment (144 of 205 timed fills = "before")~~ **[struck per Axis-2 Amendment — role-relative, those early riser fills BEAT their path; the finding rests entirely on the joint gauge]**; completed pairs paid **+8.5¢ (ATP_CHALL) / +4¢ (WTA_CHALL) / +13¢ (ITF both)** over the best jointly-achievable combined. The corridor (honest start → true onset) ran median **72–77 min in ITF, 19 in ATP_CHALL**, and the corridor best beat the W1 best on 8/11 ATP_CHALL and ~half of ITF legs with both defined. Our unfilled bids WERE alive in the corridor (26/28 legs) — the corridor isn't abandoned, it's under-aimed: the resting level was set by W1 physics and the corridor dip ran under it.
 **Adversarial history:** a "wait/re-aim into the corridor" fix is secretly — FERCER (06-19: premature burst-cancel killed the bid 68 min before the fillable dip — the ancestor of this exact finding); fv_anchor_placement grave (disarmed 06-25: aiming at predicted-cheap = filled 4h early or never); premarket graze (06-23: 1¢ below the zone = never fills). A "hold bids deeper into the corridor uncapped" variant is secretly liquid_repost (sitting at the touch uncapped) and walks straight at grace/gun territory (§ I-3). The aim-table doctrine (07-03, newest) already says aim = the dip — what it lacks is the corridor as a separately-aimed span (P3a: windows must be rebuilt tape-relative; Job-2(ii) unblocked on W1 only). **Finding stands; any fix must be a corridor-aware AIM, not a cancel-policy change, or it is one of the graves above.**
 
 ## I-2 · One-sided games: 28/161 (17%), and 3 of the 11 "pulled" legs were pulled by the bound's own ≤2¢ cancel branch

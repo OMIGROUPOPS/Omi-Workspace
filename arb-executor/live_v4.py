@@ -1596,6 +1596,14 @@ class LiveV3:
         # [C-RISER-REVISION] riser posts aim-table riser_post below best bid (CHALL 3/
         # ITF_M 3/ITF_W 2/mains 0). Default False = byte-identical (riser at the bid).
         self.riser_post_revision = bool(self.config.get("riser_post_revision", False))
+        # [C-AIM-ZSCORE SHADOW] PLEX_REGRESSION_RULING (4), 2026-07-06: observe-only z of
+        # the current price vs the similar-games shape table (whichever version is live:
+        # docs/policy/aim_table_v2.json > data/shape_corpus/derived_latest.json). Default
+        # False = byte-identical. Own gate later (riser_post_revision/C-KALSHI-OCC
+        # shadow-first precedent). Parked/null cells emit nothing — no silent borrow
+        # (AIM_V2_SPEC discipline).
+        self.aim_zscore_shadow = bool(self.config.get("aim_zscore_shadow", False))
+        self._aim_z_table = None
         # [C-REAIM-ON-ARRIVAL] combined re-aim on ANY sibling basis arrival (fill or
         # adoption), no price-bucket exemption; <=2c re-aim cancels. Default OFF.
         self.reaim_on_sibling_arrival = bool(self.config.get("reaim_on_sibling_arrival", False))
@@ -2160,6 +2168,31 @@ class LiveV3:
         if not cell:
             return self.dog_dip_offset_cents
         return int(cell.get("faller_depth", self.dog_dip_offset_cents))
+
+    def _aim_zscore(self, cat, px, tts_min):
+        """[C-AIM-ZSCORE SHADOW] z = (current px − own-path value) / residual spread,
+        read from the live shape table (current-price-anchored: drift = E[bell−px], so
+        z = −drift/resid_sd — how far the leg trades from its similar-games value in
+        residual units). PURE READ; None on any miss: no table, parked cell
+        (null_reason), missing/zero resid — never a neighbor borrow (AIM_V2_SPEC)."""
+        try:
+            if self._aim_z_table is None:
+                for _cand in ("docs/policy/aim_table_v2.json",
+                              "data/shape_corpus/derived_latest.json"):
+                    _p = Path(_cand)
+                    if _p.exists():
+                        self._aim_z_table = json.loads(_p.read_text())
+                        break
+                else:
+                    self._aim_z_table = {}
+            _key = "%s|%d" % (cat, min(4, max(0, int(px) // 20)))
+            _cell = (self._aim_z_table.get(_key) or {}).get(str(int(max(0.0, tts_min) // 10)))
+            if (not _cell or _cell.get("null_reason")
+                    or not _cell.get("resid_sd") or _cell.get("drift") is None):
+                return None
+            return round(-float(_cell["drift"]) / float(_cell["resid_sd"]), 2)
+        except Exception:
+            return None
 
     def _aim_riser_post(self, cat, anchor_price):
         """[C-RISER-REVISION] Per-(cat,bucket) riser demand-depth below best bid
@@ -6697,6 +6730,9 @@ class LiveV3:
                     "entry_mode": entry_mode, "post_only": post_only,
                     "placement_minute": placement_min,
                     "min_before_start": round(time_to_start / 60),
+                    # [C-AIM-ZSCORE SHADOW] observe-only, gated default-OFF
+                    **({"aim_z": self._aim_zscore(cat, current_price, time_to_start / 60)}
+                       if getattr(self, "aim_zscore_shadow", False) else {}),
                     # [C-FEEDER FIX-6] A5: runway tag on EVERY placement;
                     # cell-performance analysis filters runway_status == full
                     "runway_status": runway_status,

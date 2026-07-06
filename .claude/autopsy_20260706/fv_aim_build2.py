@@ -93,7 +93,7 @@ shapes = {}
 for key, bins in samples.items():
     shapes[key] = {tb: {"n": len(d), "drift": {q: quant(d, q) for q in QS},
                         "dip": {q: quant(dp, q) for q in QS}}
-                   for tb, (d, dp) in bins.items() if len(d) >= 8}
+                   for tb, (d, dp) in bins.items() if len(d) >= 30}   # AIM_V2_SPEC hard floor; below = PARKED
 json.dump({f"{k[0]}|{k[1]}": {tb: {"n": v["n"],
                                     "drift": {str(q): x for q, x in v["drift"].items()},
                                     "dip": {str(q): x for q, x in v["dip"].items()}}
@@ -102,11 +102,13 @@ json.dump({f"{k[0]}|{k[1]}": {tb: {"n": v["n"],
 print(f"PHASE A: {n_legs} corpus legs, {len(shapes)} (cat,bucket) shapes", file=sys.stderr)
 
 def shape_at(c, b, tb):
+    """Explicit neighbor borrow (AIM_V2_SPEC §5): returns (cell, bin_used).
+    bin_used != tb => BORROWED, and every consumer counts it first-class."""
     for db in range(0, 5):
         for cand in (tb-db, tb+db):
             v = shapes.get((c, b), {}).get(cand)
-            if v: return v
-    return None
+            if v: return v, cand
+    return None, None
 
 # ---------------- PHASE B ----------------
 D = json.load(open("/tmp/census_dump.json"))
@@ -150,7 +152,9 @@ def run_sim(fvq, q):
                 pre = [(tt, pr) for tt, pr, ct, s in rows if tt <= t]
                 if not pre: continue
                 p = pre[-1][1]
-                sh = shape_at(g["cat"], buck(p), int((bell - t)//BIN))
+                _tb = int((bell - t)//BIN)
+                sh, _bin = shape_at(g["cat"], buck(p), _tb)
+                if sh and _bin != _tb: sim[i]["borrowed"] = sim[i].get("borrowed", 0) + 1
                 if sh:  # re-derive; on a shape gap the RESTING bid carries (real semantics)
                     fv = p + sh["drift"][fvq]
                     aim = max(1, min(p + sh["dip"][q], fv - 1))
@@ -183,6 +187,7 @@ def run_sim(fvq, q):
                     "best_ach": g.get("best_achievable"),
                     "walk_fill": sum(1 for i in range(len(legs)) if sim[i]["fill_step"] not in (None, 0)),
                     "lazy_new": sum(1 for i in range(len(legs)) if sim[i]["lazy"] is True),
+                    "borrowed_steps": sum(sim[i].get("borrowed", 0) for i in range(len(legs))),
                     "pnl_old": round(pnl_old,2) if have_res else None,
                     "pnl_new": round(pnl_new,2) if have_res else None})
     return out

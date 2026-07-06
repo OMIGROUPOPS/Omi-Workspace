@@ -61,3 +61,9 @@ In **3 of 3** cases the ≤2¢-branch cancel left a naked single that **LOST** w
 
 ## JOB 3 — standing ledger (unchanged, acknowledged)
 Thin-gun (shadow staged, blind class 75% of concluded games per census AX4) · thin-book depth · serialization cost (P2b/P4 placement guards live since 12:15, full serialization design parked behind §4H) · monitor fixes (ZT2 exchange-basis, ZT3 conception-ordering) · MULVILLE cell-58 check parked · master-plan pointer. No action taken from this session.
+
+---
+## LEDGER STATE (updated per PLEX_REGRESSION_RULING §5, 2026-07-06)
+- **THE AIM FIX: BLOCKED-ON-DATA.** Re-run trigger is COVERAGE, not vibes (AIM_V2_SPEC §3): ≥50% of target cells (Tbin 12–36 × all buckets × ITF_M/ITF_W/ATP_CHALL/WTA_CHALL) at n_honest ≥ 30 → the accumulator re-derives automatically and reports (`SHAPE_RERUN_REPORT_*`). Coverage visible nightly in `data/shape_corpus/coverage.json`.
+- **The ≤2¢ branch ruling: PENDING on the operator's desk.** Evidence table delivered (Job 1 above): rest-at-own-dip-capped vs keep-cancel. **ZEBAND / XUXBER / LINMAR are live same-mechanism cases** running open as of this update.
+- Machinery landed this cycle: `analysis/shape_accumulator.py` (nightly cron 04:45 ET) · `analysis/aim_v2_harness.py` (walk-forward, built now, runs when coverage permits) · `AIM_V2_SPEC.md` (regression estimator, hard min-n, no-silent-interpolation — discipline also imposed on the median script today: floor 30, explicit borrow counting) · z-score shadow staged in live_v4.py (`aim_zscore_shadow`, default OFF, byte-identical; own gate later).

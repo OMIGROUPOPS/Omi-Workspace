@@ -31,3 +31,11 @@ Target cells = the fix's habitat: **Tbin ∈ [12, 36] (2h–6h pre-bell) × all 
 
 ## 6. Standing arm bars (restated verbatim from the held conditions)
 Beats the −$20.31 verdict on the new basis · walk/repost interaction explicitly modeled — **the riser's bar-(e) erosion pattern is the test** (share of fills above first-post < 25%) · the walk-cap honest-window anchor ships with or before any arm. Validation = `aim_v2_harness.py` (walk-forward by week, honest-filtered/reweighted, card-era flagged; census-161 secondary confirmatory OOS; Lane-1 = joint gap shrinks / lazy-leg-1 shrinks / participation holds). Then Plex. Then the rolling slate.
+
+---
+**ADDENDUM (2026-07-06, OPERATOR_RULING_2C_BRANCH):** no build under this spec — estimator,
+accumulator, harness, z-score shadow or any later consumer — may introduce sibling-level
+conditionals (cancel thresholds, rest floors, bound-derived sibling levels). The joint model
+prices the pair as ONE STATE with both bids from ONE READ; per-leg conditional patchwork is
+banned as a class. goal−basis remains a CAP at execution, never an input to the other leg's
+value or aim.

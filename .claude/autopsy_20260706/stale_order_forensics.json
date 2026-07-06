@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "boot_epoch": 1783309839,
+    "midnight_et_0706_epoch": 1783310400,
+    "all_times": "ET 2026-07-06",
+    "bound_def": "97 - leg1_fill_price",
+    "adoption_price_source": "live_v4.py:8290-8291 reconcile pos_map avg_price = market_exposure_dollars*100/qty = MARK-TO-MARKET, not cost basis; passed raw into _v4_reconcile_naked at 8356-8357 and 8447",
+    "verdict_key": {
+      "NEVER_CANCELLED_ORPHAN": "order left live on exchange with no cancel ever attempted, because in-memory tracking (pos.entry_order_id) was overwritten by a concurrent placer",
+      "NEVER_CANCELLED_TRACKED": "tracked order resting legitimately, no cancel warranted/attempted; reconcile beat check_fills to the booking",
+      "CANCEL_RACED_FILL": "cancel attempted after the exchange fill; fill won; booked via cancel_fill_race"
+    }
+  },
+  "events": [
+    {
+      "event": "KXITFWMATCH-26JUL06TODSAG", "leg2_ticker": "KXITFWMATCH-26JUL06TODSAG-SAG",
+      "leg1": {"px": 68, "fill_et": "00:47:19"}, "bound": 29,
+      "leg2_order": {"order_id": "3c46f2a2-8826-4263-9cb8-1c268b6dd42b", "placed_et": "00:47:20.192", "px": 29,
+        "placer": "reaim_sibling_arrival (_reaim_sibling_on_arrival, live_v4.py:3814-3835), goal 97-68=29"},
+      "orphaned_by": "v4_move_repost concurrent pass: its cancel of old oid aca18d13 failed 00:47:20.143 (reaim already cancelled it), _cancel_entry_and_resolve resolved 'cancelled' anyway, placed e6ecf84d@25 at 00:47:20.316 and overwrote pos.entry_order_id (live_v4.py:7791)",
+      "cancel_attempts": "NONE ever for 3c46f2a2",
+      "exchange_fills": [{"et": "00:52:28", "qty": 0.13}, {"et": "01:01:49", "qty": 2.0}, {"et": "01:02:36", "qty": 1.0}, {"et": "01:26:45", "qty": 0.37}, {"et": "01:45:20", "qty": 1.5}],
+      "fill_px_actual": 29, "resting_to_first_fill_s": 308, "resting_to_adoption_composing_fill_s": 869,
+      "adoption": {"et": "01:01:56", "avg_booked": 30, "qty": 2, "context": "steady_state_reconcile"},
+      "px_vs_bound": {"order": "AT bound (29)", "booked": "+1 over (mark-to-market artifact)"},
+      "verdict": "NEVER_CANCELLED_ORPHAN",
+      "extra": "kept filling after adoption (through 01:45:20); dual chains -> exit_partial_remainder entry_qty=10 at 03:17:55 (2x intended size)"
+    },
+    {
+      "event": "KXITFWMATCH-26JUL06VAJRAM", "leg2_ticker": "KXITFWMATCH-26JUL06VAJRAM-RAM",
+      "leg1": {"px": 82, "fill_et": "00:06:37 first partial (1.0); 00:35:17 rest"}, "bound": 15,
+      "leg2_order": {"order_id": "a167b720-1edb-40d8-a453-b50ef852a9c1", "placed_et": "00:06:39.917", "px": 15,
+        "placer": "reaim_sibling_arrival (goal 97-82=15), triggered by leg-1's first partial"},
+      "orphaned_by": "v4_move_repost: cancel of efb8f813 failed 00:06:40.592, placed f5bec840@12 at 00:06:40.765, overwrote entry_order_id; chain kept cycling 12-15c for 45 min alongside the orphan",
+      "cancel_attempts": "only POST-adoption: 01:13:18.197 label=exit_cleanup_dca success=true (killed 1.03 remainder)",
+      "exchange_fills": [{"et": "01:12:06", "qty": 3.97, "px": 15}],
+      "fill_px_actual": 15, "resting_to_fill_s": 3926,
+      "adoption": {"et": "01:12:30", "avg_booked": 19, "qty": 3, "context": "steady_state_reconcile"},
+      "px_vs_bound": {"order": "AT bound (15)", "booked": "+4 over (mark-to-market artifact)"},
+      "verdict": "NEVER_CANCELLED_ORPHAN"
+    },
+    {
+      "event": "KXITFMATCH-26JUL06HERNAG", "leg2_ticker": "KXITFMATCH-26JUL06HERNAG-NAG",
+      "leg1": {"px": 70, "fill_et": "03:34:41"}, "bound": 27,
+      "leg2_order": {"order_id": "65fc48b2-a288-4f8d-9351-c8f1046e64f3", "placed_et": "04:00:16.163", "px": 27,
+        "placer": "v4_move_repost reference_source=join_bid (chain walked 7->27; 27 = goal-clamped by leg2_reshuffle logic, exactly AT bound)"},
+      "orphaned_by": "_repost_missing_siblings (live_v4.py:3838-3932) placed 82eaec07@23 at 05:01:55.573 (sibling_repost_placed, goal_level=27) while 65fc48b2 was live on exchange -- stale/blind sibling_bid_alive check -- and overwrote sp2.entry_order_id (3911-3919); move_repost then managed 82eaec07",
+      "cancel_attempts": "NONE ever for 65fc48b2. 82eaec07 cancelled 05:03:20.792 success=true AFTER its 0.37 partial fill at 05:02:28 (fractional fill invisible to _cancel_entry_and_resolve int truncation -> resolved 'cancelled', 0.37 swept silently into position)",
+      "exchange_fills": [{"et": "05:02:28", "qty": 5.0, "px": 27, "oid": "65fc48b2"}, {"et": "05:02:28", "qty": 0.37, "px": 23, "oid": "82eaec07"}],
+      "fill_px_actual": "27 (main) / 23 (fraction); true cost ~26.7", "resting_to_fill_s": 3732,
+      "adoption": {"et": "05:04:30", "avg_booked": 28, "qty": 5, "context": "steady_state_reconcile"},
+      "px_vs_bound": {"order": "AT bound (27)", "booked": "+1 over (mark-to-market artifact)"},
+      "verdict": "NEVER_CANCELLED_ORPHAN (+ fractional cancel-fill race on 82eaec07, unlogged)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL06POTFEL", "leg2_ticker": "KXATPCHALLENGERMATCH-26JUL06POTFEL-FEL",
+      "leg1": {"px": 40, "fill_et": "06:14:04"}, "bound": 57,
+      "leg2_order": [
+        {"order_id": "5e69310c-4240-4bea-845f-0f4b63902ad8", "placed_et": "06:15:48.584", "px": 57, "placer": "reaim_sibling_arrival (goal 97-40=57)"},
+        {"order_id": "fb15b30a-bc12-4823-95fe-8bf2cf51bd86", "placed_et": "06:16:19.542", "px": 57, "placer": "_repost_missing_siblings (sibling_repost_placed) 31s later -- same reconcile pass, ord_map snapshot fetched before the reaim placement -> 'no sibling bid' -> DUPLICATE 5-lot"}
+      ],
+      "cancel_attempts": "NONE ever, for either order",
+      "exchange_fills": [{"et": "06:24:01", "qty": 0.52, "oid": "5e69310c"}, {"et": "06:24:11", "qty": 4.48, "oid": "5e69310c"}, {"et": "06:24:11", "qty": 2.52, "oid": "fb15b30a"}, {"et": "06:24:18", "qty": 2.48, "oid": "fb15b30a"}],
+      "fill_px_actual": 57, "resting_to_fill_s": 493,
+      "adoption": {"et": "06:24:17", "avg_booked": 61, "qty": 7, "context": "steady_state_reconcile"},
+      "px_vs_bound": {"order": "AT bound (57)", "booked": "+4 over (mark-to-market artifact)"},
+      "verdict": "NEVER_CANCELLED_ORPHAN x2 (duplicate stack, 10 shares filled vs 5 intended)"
+    },
+    {
+      "event": "KXITFMATCH-26JUL06TEUHAS", "leg2_ticker": "KXITFMATCH-26JUL06TEUHAS-TEU",
+      "leg1": {"px": 67, "fill_et": "07:57:31"}, "bound": 30,
+      "leg2_order": {"order_id": "5faf7bc9-5435-4e86-97b6-39e2bbf00d28", "placed_et": "07:58:09.975", "px": 30,
+        "placer": "reaim_sibling_arrival (goal 97-67=30)"},
+      "orphaned_by": "v4_move_repost: cancel of 3fd93a8e failed 07:58:10.410, placed b1a3fbea@29 at 07:58:10.788, overwrote entry_order_id; chain then rested 1c10bab4@30 (07:59:15) -- two live 5-lots at 30",
+      "cancel_attempts": "NONE ever for 5faf7bc9",
+      "exchange_fills": [{"et": "07:59:44", "qty": 2.5}, {"et": "08:01:54", "qty": 1.36}, {"et": "08:06:49", "qty": 1.14, "note": "post-adoption"}, {"et": "08:06:49", "qty": 5.0, "oid": "1c10bab4", "note": "tracked twin also filled -> 10 shares total"}],
+      "fill_px_actual": 30, "resting_to_first_fill_s": 94,
+      "adoption": {"et": "08:02:23", "avg_booked": 38, "qty": 3, "context": "steady_state_reconcile"},
+      "px_vs_bound": {"order": "AT bound (30)", "booked": "+8 over (mark-to-market artifact; 38 = current market price)"},
+      "verdict": "NEVER_CANCELLED_ORPHAN"
+    },
+    {
+      "event": "KXITFWMATCH-26JUL06PACLOV", "leg2_ticker": "KXITFWMATCH-26JUL06PACLOV-PAC",
+      "leg1": {"px": 45, "fill_et": "06:14:11"}, "bound": 52,
+      "leg2_order": {"order_id": "90be06ff-7db1-44bf-9961-227bdc13c76b", "placed_et": "06:15:32.434", "px": 52,
+        "placer": "reaim_sibling_arrival (goal 97-45=52)"},
+      "orphaned_by": "_repost_missing_siblings placed b9b70f91@49 at 06:16:19.288 (same stale-snapshot reconcile pass as POTFEL) and overwrote entry_order_id; move_repost then cycled that chain (b9942102@52)",
+      "cancel_attempts": "NONE ever for 90be06ff",
+      "exchange_fills": [{"et": "08:21:35", "qty": 4.74, "px": 52}, {"et": "09:32:15", "qty": 5.0, "oid": "b9942102", "note": "tracked twin filled later -> ~10 shares"}],
+      "fill_px_actual": 52, "resting_to_fill_s": 7563,
+      "adoption": {"et": "08:23:44", "avg_booked": 61, "qty": 4, "context": "steady_state_reconcile"},
+      "px_vs_bound": {"order": "AT bound (52)", "booked": "+9 over (mark-to-market artifact)"},
+      "verdict": "NEVER_CANCELLED_ORPHAN (2h06m untracked rest)"
+    },
+    {
+      "event": "KXITFWMATCH-26JUL06KULVOG", "leg2_ticker": "KXITFWMATCH-26JUL06KULVOG-KUL",
+      "leg1": {"px": 39, "fill_et": "09:38:56"}, "bound": 58,
+      "leg2_order": {"order_id": "9dbdf862-359f-44f1-9b5b-20184d02b1d9", "placed_et": "09:50:51.745", "px": 58,
+        "placer": "v4_move_repost reference_source=join_bid (TRACKED order; 58 = exactly at bound)"},
+      "cancel_attempts": "NONE (none warranted; bid sat at bound until fill)",
+      "exchange_fills": [{"et": "10:33:37", "qty": 4.37, "px": 58}, {"et": "10:49:02", "qty": 0.63, "note": "post-adoption remainder"}],
+      "fill_px_actual": 58, "resting_to_fill_s": 2566,
+      "adoption": {"et": "10:33:50", "avg_booked": 63, "qty": 4, "context": "steady_state_reconcile", "note": "reconcile beat check_fills by <60s via live_v4.py:8349-8360 entry_resting adoption branch"},
+      "px_vs_bound": {"order": "AT bound (58)", "booked": "+5 over (mark-to-market artifact)"},
+      "verdict": "OTHER: tracked-order fill, bound-compliant; violation is 100% adoption-price artifact",
+      "extra": "separate orphan on same ticker: ca9be297@55 (placed 06:43:18) orphaned 09:39:46 by sibling_repost_placed overwrite; filled 10:49:34 (5.0) = extra 5-lot"
+    },
+    {
+      "event": "KXITFMATCH-26JUL06TSIAND", "leg2_ticker": "KXITFMATCH-26JUL06TSIAND-TSI",
+      "leg1": {"px": 24, "fill_et": "exchange 06:27:30; booked 06:27:52.355"}, "bound": 73,
+      "leg2_order": {"order_id": "63e5e12d-7c5a-4650-b076-5ab4e111625b", "placed_et": "06:27:55.126", "px": 77,
+        "placer": "v4_move_repost reference_source=join_bid -- placed 2.8s AFTER leg-1 booking at 4c ABOVE bound; leg2_reshuffle clamp (live_v4.py:7684-7708, would give 97-24=73) did not fire: decision snapshot read sibling entry_qty before the leg-1 booking landed, and nothing re-checks after the pre-poll/cancel awaits (7734-7786)"},
+      "cancel_attempts": "NONE in the 87s window (reaim_on_arrival had already run at booking against the OLD bid @69 which was inside goal -> no-op; it is one-shot)",
+      "exchange_fills": [{"et": "06:29:22", "qty": 5.0, "px": 77}],
+      "fill_px_actual": 77, "resting_to_fill_s": 87,
+      "adoption": {"et": "06:29:40", "avg_booked": 77, "qty": 5, "context": "steady_state_reconcile"},
+      "px_vs_bound": {"order": "+4 OVER bound (77 vs 73)", "booked": "+4 over -- GENUINE overpay, booked price = actual"},
+      "verdict": "NEVER_CANCELLED -- gap: move_repost walks a leg-2 bid above the pair bound on a stale sibling snapshot; no resting-bid bound re-test between placement and fill"
+    },
+    {
+      "event": "KXITFMATCH-26JUL06GARCIO", "leg2_ticker": "KXITFMATCH-26JUL06GARCIO-CIO",
+      "leg1": {"px": 57, "fill_et": "exchange 07:54:58; booked ~07:55:14"}, "bound": 40,
+      "leg2_order": {"order_id": "6c42b17a-7203-4ce1-8af7-29bad89defc6", "placed_et": "07:54:50.998", "px": 41,
+        "placer": "v4_move_repost reference_source=join_bid -- placed 8s BEFORE leg-1's exchange fill (bound did not exist yet)"},
+      "cancel_attempts": "07:55:15.102 label=reaim_sibling_lower success=true -- 1.7s AFTER the exchange fill; killed the 0.41 remainder",
+      "exchange_fills": [{"et": "07:55:13.424", "qty": 4.59, "px": 41}],
+      "fill_px_actual": 41, "resting_to_fill_s": 22,
+      "adoption": {"note": "NOT reconcile-adopted: booked via cancel_fill_race at 07:55:16.037 (source=reaim_sibling_race), fill_price 41 qty 4 -- honest booking"},
+      "px_vs_bound": {"order": "+1 over (41 vs 40)", "booked": "+1 -- genuine, structural race"},
+      "verdict": "CANCEL_RACED_FILL (fill 07:55:13.4 < cancel 07:55:15.1; check_fills leg-1 booking latency ~16s made the reaim too late)"
+    }
+  ],
+  "code_findings": {
+    "adoption_path": [
+      "live_v4.py:8286-8296 reconcile builds pos_map; 8290-8291 avg_price = int(market_exposure_dollars*100/qty) = MARK-TO-MARKET per share, NOT cost basis. qty = int(position_fp) truncates fractional shares.",
+      "live_v4.py:8349-8360 (entry_resting position with exchange qty > booked) and 8437-8449 (naked, no exit sell) both call _v4_reconcile_naked(tk, et, cat, pinfo['avg_price'], ...) with the mark-to-market avg.",
+      "live_v4.py:8205-8272 _v4_reconcile_naked: books via _book_v4_entry_fill(tk, pos, qty, avg, 'adopted', source='reconcile_adoption') at 8271. cell_id = cell_lookup(cat, avg) at 8232. NO pair-bound (combined_goal) check anywhere on the adopted avg.",
+      "live_v4.py:5315-5430 _book_v4_entry_fill: accepts fill_price/qty as given (state writes 5350-5354); its sibling arms 5406 (_cancel_sibling_if_paired_over_cap) and 5409 (_reaim_sibling_on_arrival) only act on the SIBLING'S still-RESTING bid (3722-3725 / 3794-3796 return if sibling already filled). When the ADOPTED leg is leg-2 -- sibling already filled -- both no-op: nothing tests booked_avg + sibling_basis vs combined_goal at booking time.",
+      "live_v4.py:3733-3734 the T50 pair-cap cancel is additionally dormant: gated on paired_cap_enforced which is false in deployed config.",
+      "IRONY: live_v4.py:3847+3873-3883 (_repost_missing_siblings) already documents 'A54: pos_map avg_price is market value, NOT cost basis' and fetches true basis from the fills API -- the adoption call sites do not."
+    ],
+    "orphan_mechanism_A_reaim_x_move_repost": [
+      "live_v4.py:3814-3829 _reaim_sibling_on_arrival cancels the tracked bid, places a new goal-priced order, sets pos.entry_order_id.",
+      "live_v4.py:7734-7747 _v4_move_repost pre-polls + _cancel_entry_and_resolve on the oid it captured earlier; when the reaim already cancelled that oid, cancel_order fails but the resolve poll (5456-5482) sees status=canceled + 0 fills and returns 'cancelled' -> move_repost proceeds.",
+      "live_v4.py:7786-7791 move_repost places its own order and OVERWRITES pos.entry_order_id -- the reaim's just-placed goal bid becomes untracked: invisible to check_fills (5503 polls entry_order_id only), to T-15 buffer cancels, and to every cancel path. TODSAG / VAJRAM / TEUHAS."
+    ],
+    "orphan_mechanism_B_sibling_repost": [
+      "live_v4.py:3838-3932 _repost_missing_siblings runs at END of each reconcile pass on the ord_map snapshot fetched at pass START (8299-8301): orders placed mid-pass (reaim) or missed by the snapshot are 'no sibling bid' -> places a duplicate completion bid (POTFEL fb15b30a, PACLOV b9b70f91, HERNAG 82eaec07, KULVOG 85dc96f0).",
+      "live_v4.py:3911-3919 it then overwrites sp2.entry_order_id with the new oid -- orphaning the previously tracked exchange-live order (HERNAG 65fc48b2, KULVOG ca9be297)."
+    ],
+    "cancel_resolve": [
+      "live_v4.py:5434-5482 _cancel_entry_and_resolve: books raced fills via cancel_fill_race (5472-5477) -- worked honestly for GARCIO. Blind spot: _parse_entry_fill int-comparison misses FRACTIONAL fills (HERNAG 82eaec07's 0.37 resolved 'cancelled', fill swept silently into the reconcile position)."
+    ]
+  },
+  "synthesis": "Dominant pattern: NEVER_CANCELLED orphans, not cancel races. 7 of 9 leg-2 exchange fills were EXACTLY AT the pair bound (97-leg1); the >97 'violations' on those 7 are booking artifacts from reconcile adopting at mark-to-market avg (8290-8291). The orphaning: two placers (reaim_on_arrival, _repost_missing_siblings) and _v4_move_repost all mutate pos.entry_order_id without serialization, so the loser's live exchange order becomes untracked and uncancellable, doubling size on 4 events. Only TSIAND (+4, stale-snapshot move_repost above bound) and GARCIO (+1, true cancel-fill race) overpaid on the exchange."
+}

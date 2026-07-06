@@ -1,0 +1,216 @@
+{
+ "goal": 97,
+ "near_miss_orders": 5,
+ "unique_tickers": 5,
+ "unique_events": 5,
+ "over_bound_distribution": {
+  "1": 1,
+  "3": 1,
+  "4": 1,
+  "7": 1,
+  "10": 1
+ },
+ "orders_that_later_filled_over_bound_tickers": [
+  "KXITFMATCH-26JUL06TSIAND-TSI",
+  "KXITFWMATCH-26JUL06SILDIG-DIG"
+ ],
+ "n_tickers_filled_over_bound": 2,
+ "per_event_order_counts": {
+  "KXITFMATCH-26JUL06VULCOU": 1,
+  "KXITFMATCH-26JUL06TEXCAR": 1,
+  "KXITFMATCH-26JUL06TSIAND": 1,
+  "KXITFWMATCH-26JUL06SILDIG": 1,
+  "KXITFMATCH-26JUL06LAPCIO": 1
+ },
+ "near_misses": [
+  {
+   "ts": "2026-07-06 12:22:04 AM ET",
+   "ts_epoch": 1783311724.6655061,
+   "ticker": "KXITFMATCH-26JUL06VULCOU-VUL",
+   "event": "KXITFMATCH-26JUL06VULCOU",
+   "price": 84,
+   "sib": "KXITFMATCH-26JUL06VULCOU-COU",
+   "sib_basis": 16,
+   "sib_fill_ts": 1783311724.5945926,
+   "bound": 81,
+   "over": 3,
+   "placement_path": [
+    "v4_move_repost",
+    "reaim_sibling_arrival"
+   ]
+  },
+  {
+   "ts": "2026-07-06 06:05:07 AM ET",
+   "ts_epoch": 1783332307.842758,
+   "ticker": "KXITFMATCH-26JUL06TEXCAR-CAR",
+   "event": "KXITFMATCH-26JUL06TEXCAR",
+   "price": 37,
+   "sib": "KXITFMATCH-26JUL06TEXCAR-TEX",
+   "sib_basis": 67,
+   "sib_fill_ts": 1783332306.57543,
+   "bound": 30,
+   "over": 7,
+   "placement_path": [
+    "v4_place"
+   ]
+  },
+  {
+   "ts": "2026-07-06 06:27:55 AM ET",
+   "ts_epoch": 1783333675.12632,
+   "ticker": "KXITFMATCH-26JUL06TSIAND-TSI",
+   "event": "KXITFMATCH-26JUL06TSIAND",
+   "price": 77,
+   "sib": "KXITFMATCH-26JUL06TSIAND-AND",
+   "sib_basis": 24,
+   "sib_fill_ts": 1783333672.3554106,
+   "bound": 73,
+   "over": 4,
+   "placement_path": [
+    "v4_move_repost"
+   ]
+  },
+  {
+   "ts": "2026-07-06 09:58:10 AM ET",
+   "ts_epoch": 1783346290.669192,
+   "ticker": "KXITFWMATCH-26JUL06SILDIG-DIG",
+   "event": "KXITFWMATCH-26JUL06SILDIG",
+   "price": 98,
+   "sib": "KXITFWMATCH-26JUL06SILDIG-SIL",
+   "sib_basis": 9,
+   "sib_fill_ts": 1783343357.5324564,
+   "bound": 88,
+   "over": 10,
+   "placement_path": [
+    "v4_place"
+   ]
+  },
+  {
+   "ts": "2026-07-06 10:56:49 AM ET",
+   "ts_epoch": 1783349809.1651466,
+   "ticker": "KXITFMATCH-26JUL06LAPCIO-LAP",
+   "event": "KXITFMATCH-26JUL06LAPCIO",
+   "price": 56,
+   "sib": "KXITFMATCH-26JUL06LAPCIO-CIO",
+   "sib_basis": 42,
+   "sib_fill_ts": 1783347011.6553042,
+   "bound": 55,
+   "over": 1,
+   "placement_path": [
+    "sibling_repost_placed"
+   ]
+  }
+ ],
+ "verdicts": {
+  "TSIAND": {
+   "mechanism": "v4_move_repost decision-time race: bound evaluated pre-booking, order placed 2.8s post-booking with no re-check",
+   "timeline": [
+    "06:26:48.365 TSI resting 69c (v4_move_repost, join_bid)",
+    "06:27:48 (earliest) TSI walk-repost decision slice opens (60s cadence gate from 06:26:48); new_target=77 computed; leg2_reshuffle clamp at live_v4.py:7697 checked positions[AND].entry_qty==0 -> clamp skipped (fill not yet booked)",
+    "06:27:52.355 entry_filled AND @24 booked (entry_qty=5)",
+    "06:27:53.898 order_cancelled TSI 69c (label v4_move_repost) -- proof the repost coroutine was already mid-flight",
+    "06:27:54.746 AND exit posted; 06:27:54.747 completion_no_attempt leg1_basis=24 -- bot KNEW the basis",
+    "~06:27:54.75 _reaim_sibling_on_arrival ran (booking tail): read TSI entry_price=69 (stale, old order already cancelled, new not yet placed); 69<=73 -> silent return (live_v4.py:3801)",
+    "06:27:55.126 order_placed TSI buy 77 (bound 73) -- bound-blind target carried across awaits",
+    "06:29:40 reconcile_v4_adopted @77 (check_fills missed the fill) -> combined 101"
+   ],
+   "answer": "The fill WAS booked (52.355) before the repost order hit the exchange (55.126), but the repost path evaluates the reshuffle bound ONLY in its pre-await decision slice (7684-7711), which ran before booking. No re-check exists after the order poll/cancel awaits (7734-7789). The arrival hook that should catch it at booking read the sibling's stale resting price mid-repost and no-op'd. Zero reaim/reshuffle events for TSIAND all session.",
+   "evidence_no_clamp_log": "grep TSIAND | reaim|reshuffle -> 0 rows"
+  },
+  "SILDIG": {
+   "mechanism": "fresh v4_place path has NO goal-basis clamp; leg re-entered via fresh entry scan after degenerate cancels consumed all bounded coverage",
+   "timeline": [
+    "09:09:17 entry_filled SIL @9 (bound for DIG = 88)",
+    "09:09:18 reaim_sibling_arrival DIG 89->88 (clamp worked)",
+    "09:09-09:43 dozens of leg2_reshuffle_reaim ->88 holds (walk clamp worked)",
+    "09:47:31 v4_cancel_degenerate pulls DIG 88c bid (book 98/100)",
+    "09:48:19 sibling_repost_placed @88 (aim 94, goal_level 88 -- BOUNDED, site 5 confirmed) but one-shot _sibling_repost_done consumed; 09:48:20 cancelled degenerate again",
+    "09:48-09:58 degenerate_book_skip loop; leg now has NO live order and NO remaining bounded re-entry path",
+    "09:58:10 book un-degenerates (98/99): FRESH v4_place fires -- anchor 99 last_traded, riser branch (>=50) target_bid=best_bid=98 (live_v4.py:2303); reference_source=join_bid; NO sibling-basis consult on this path; only pair guard is dormant T50 (paired_cap_enforced=false, :6622)",
+    "09:59:10 walk reshuffle re-derived 96->88 but rescue aborted without a cancel (pre-cancel fill poll :7737-7740 or cancel race) -- 98 bid stood",
+    "10:00:08 entry_filled DIG @98 -> combined 107"
+   ],
+   "answer": "The 98c order was a FRESH v4_place (v4_place event 0.03s before order_placed), reference_source=join_bid, anchor_src=last_traded. The bound never clamped it because the fresh-entry path contains no combined_goal-basis term: the leg2_reshuffle entry policy (2297-2319) reads sibling BOOK best_bid only, and the sole basis-aware placement guard (T50 _paired_basis_ok :6622) is dormant under paired_cap_enforced=false."
+  }
+ },
+ "site_coverage": [
+  {
+   "site": 1,
+   "name": "leg2_reshuffle walk re-aim",
+   "function": "_v4_move_repost block + _reshuffle_leg2_target",
+   "lines": "7684-7711, 2179-2187",
+   "clamps": "YES (lower-only; <50c: min(dip, goal-basis); >=50c: goal-basis)",
+   "notes": "Decision-slice only: requires sibling entry_qty>0 AT compute time; blind to a fill booked during the coroutine's awaits (TSIAND). completion_reprice-mode bids exempt (bounded via _completion_target)."
+  },
+  {
+   "site": 2,
+   "name": "reaim_on_sibling_arrival",
+   "function": "_reaim_sibling_on_arrival",
+   "lines": "3772-3836; invoked 5409, 5196, 7552, adoption 8271->5409",
+   "clamps": "YES (goal-basis lower-only; bound<=2 -> cancel)",
+   "notes": "Reads sp.entry_price/entry_order_id at hook time: a sibling mid-repost (old order cancelled, new not yet placed) shows the stale lower price -> silent no-op (TSIAND); requires phase==entry_resting AND live order -> a degenerate-cancelled leg gets no coverage (SILDIG)."
+  },
+  {
+   "site": 3,
+   "name": "v4_move_repost walk path",
+   "function": "_v4_move_repost",
+   "lines": "trigger 7556-7621, clamp 7684-7711, awaits 7734-7789",
+   "clamps": "YES per walk as doctrine claims -- but ONLY in the pre-await slice",
+   "notes": "No bound re-check after the order-poll/cancel/place awaits (~1-3s window). Pre-cancel fill poll (7737-7740) aborts a clamp rescue when the over-bound bid is already part-filling (SILDIG 09:59:10)."
+  },
+  {
+   "site": 4,
+   "name": "fresh v4_place with sibling basis",
+   "function": "entry scan + _v4_entry_anchor",
+   "lines": "2296-2319 (policy), 6572-6693 (placement), 6622 (dormant T50)",
+   "clamps": "NO -- structural hole",
+   "notes": "Riser branch (anchor>=50) posts AT best_bid unconditionally (2302-2313); faller branch consults sibling BOOK bids, never a FILLED basis (2314-2319). Only basis-aware guard is T50 _paired_basis_ok, dormant under paired_cap_enforced=false. Produced SILDIG 98c (filled, +10 over) and TEXCAR 37c (rescued by walk clamp 2.5min later)."
+  },
+  {
+   "site": 5,
+   "name": "sibling_repost_placed (boot/steady heal)",
+   "function": "_repost_missing_siblings",
+   "lines": "3838-3941, bound 3895-3896",
+   "clamps": "YES (min(aim, goal-basis), fills-API true basis, noise<=2 skip)",
+   "notes": "CONFIRMED bounded (VAJRAM aim=15=bound; SILDIG 09:48:19 level=88=bound). One-shot per event per session (3862/3897): once its order dies (degenerate cancel) coverage is gone for the session. LAPCIO 1c-over is avg-basis (41) vs first-fill (42) rounding, not a skip."
+  },
+  {
+   "site": 6,
+   "name": "completion target",
+   "function": "_completion_target (+_attempt_completion_reprice, manage freshness)",
+   "lines": "4012-4030 (bound 4027), attempt 4059+, headroom 4114",
+   "clamps": "YES (s1 = min(s0+X, sib_ask-1, goal-basis))",
+   "notes": "07-05 C-BOUND-RULING build confirmed: 99-ceiling dead, both attempt and manage sites flow through this fn. V3 fill-time tripwire at 2600-2609 backstops."
+  },
+  {
+   "site": 7,
+   "name": "reconcile adoption booking",
+   "function": "_v4_reconcile_naked -> _book_v4_entry_fill",
+   "lines": "8205-8272 (routes 8271), booking tail 5401-5409",
+   "clamps": "INDIRECT -- adoption triggers site-2 reaim on the OTHER leg; the adopted fill itself is booked as-is",
+   "notes": "An over-bound fill arriving via adoption (TSIAND TSI@77) is exchange truth; nothing to clamp at booking. completion_booking_adoption flags the bypass."
+  },
+  {
+   "site": "8 (extra)",
+   "name": "T-20m fallback repost",
+   "function": "manage fallback + fallback_pair_bound",
+   "lines": "7463-7495",
+   "clamps": "YES (gated fallback_pair_bound=True; lower-only, <=2 -> flat)",
+   "notes": "Covers the MUC-72-over-38 hole from 07-05."
+  },
+  {
+   "site": "9 (extra)",
+   "name": "T50 pair cancel on fill",
+   "function": "_cancel_sibling_if_paired_over_cap",
+   "lines": "3702-3770",
+   "clamps": "DORMANT (paired_cap_enforced=false)",
+   "notes": "Falls through to bounded completion arm; named residual accepted."
+  }
+ ],
+ "near_miss_taxonomy": {
+  "VULCOU-VUL 00:22:04 +3": "v4_move_repost decision race (same as TSIAND) -- RESCUED by reaim_sibling_arrival 1s later (84->81); hook timing landed after the new order rested",
+  "TEXCAR-CAR 06:05:07 +7": "fresh v4_place hole (same as SILDIG) -- RESCUED by walk reshuffle clamp at 06:07:42 (37->30)",
+  "TSIAND-TSI 06:27:55 +4": "v4_move_repost decision race -- FILLED @77, combined 101",
+  "SILDIG-DIG 09:58:10 +10": "fresh v4_place hole -- FILLED @98, combined 107",
+  "LAPCIO-LAP 10:56:49 +1": "NOT a bound skip: sibling_repost used fills-API avg basis 41 (bound 56, placed 56); scan used first-fill 42 -> apparent 1c over is basis-rounding"
+ }
+}

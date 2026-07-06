@@ -46,3 +46,6 @@ G4 gates the SCALE-GUN consumer, which is not part of this flip and keeps collec
 
 *On ratification: `per_match_clock: true` (one key), full four-bar gate, one restart, monitor validating;
 MAIN widen X retune continues shadow-informed per the ruling's caveat.*
+
+---
+**RATIFIED — Plex Ratification #20 (PLEX_FLIP_RULING.md). This document is the OUTCOME_PROOF for the flip armed state `297a7086` (the one-key config commit; semantic diff machine-verified = {per_match_clock}).**

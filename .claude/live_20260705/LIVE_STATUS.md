@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 6 @ **2026-07-06 04:17:08 PM ET** | build `3779ac8` | session boot 07-06 15:26 ET | log `live_v3_20260706.jsonl` | 6816 session events | monitor READ-ONLY
+- cycle 7 @ **2026-07-06 04:27:17 PM ET** | build `508e2c7` | session boot 07-06 15:26 ET | log `live_v3_20260706.jsonl` | 7228 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 0 violation(s)
@@ -23,21 +23,24 @@
 - classes now: {'FLOW_ABOVE': 1, 'NO_FLOW': 1} | repriceable now: true 1 / false 1 | **cumulative bid_grade lines: 2487 (repriceable true 233 / false 2254)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL06ABOALVA- | 55 | 51m | 11/58-59/1163 | 56-58 | 3 | **FLOW_ABOVE** | 56 | REPRICEABLE→56 |
-| ATPCHALLENGERMATCH-26JUL06VUKBRO-B | 49 | 51m | 0 | 49-51 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06ABOALVA- | 55 | 61m | 11/58-59/1163 | 56-58 | 3 | **FLOW_ABOVE** | 56 | REPRICEABLE→56 |
+| ATPCHALLENGERMATCH-26JUL06VUKBRO-B | 49 | 61m | 0 | 49-51 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
 |---|---|---|---|---|---|
 | ITFWMATCH-26JUL06JULOLI | 16 | 33 | **49** | 97 | -48 |
 | ATPCHALLENGERMATCH-26JUL06GOMRIB | 80 | 1 | **81** | 97 | -16 |
+| ATPCHALLENGERMATCH-26JUL06GLIYUN | 16 | 83 | **99** | 97 | +2 |
 
-## PATTERNS (sub-B) — 6
+## PATTERNS (sub-B) — 8
 - deep_neg_fv: KXATPCHALLENGERMATCH-26JUL06SANARN-ARN {"entry_minus_fv_burst": -33.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06SANARN-ARN {"fill": 53, "age_min": 51, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06KOZJOH-KOZ {"fill": 66, "age_min": 45, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFMATCH-26JUL06GARPER-PER {"fill": 27, "age_min": 39, "mode": "PAIRING(sib never rested)", "emitted_et": "2026-07-06 04:17:08 PM ET"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06GLIYUN-GLI {"fill": 16, "age_min": 30, "mode": "PAIRING(sib never rested)", "emitted_et": "2026-07-06 04:17:08 PM ET"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06SANARN-ARN {"fill": 53, "age_min": 61, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06KOZJOH-KOZ {"fill": 66, "age_min": 56, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL06GARPER-PER {"fill": 27, "age_min": 50, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06GLIYUN-GLI {"fill": 16, "age_min": 40, "mode": "PAIRING(sib never rested)"}
 - deep_neg_fv: KXITFWMATCH-26JUL06JULOLI-JUL {"entry_minus_fv_burst": -31.5}
+- half_arm_aging: KXITFWMATCH-26JUL06JULOLI-JUL {"fill": 16, "age_min": 36, "mode": "NO_BID(sib rested earlier, none now)", "emitted_et": "2026-07-06 04:27:17 PM ET"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06GOMRIB-RIB {"fill": 80, "age_min": 32, "mode": "PAIRING(sib never rested)", "emitted_et": "2026-07-06 04:27:17 PM ET"}
 
 ## ERRORS — 0 handler errors this session (ZERO — clean loop)

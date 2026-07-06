@@ -1604,6 +1604,14 @@ class LiveV3:
         # (AIM_V2_SPEC discipline).
         self.aim_zscore_shadow = bool(self.config.get("aim_zscore_shadow", False))
         self._aim_z_table = None
+        # [C-WALKCAP-HONEST-ANCHOR staged 07-06, gated OFF] when the legacy conception
+        # (_window_open) does not exist yet — the honest-window regime, where the 07-06
+        # autopsy proved the premarket walk cap silently no-ops — cap the up-walk at the
+        # position's FIRST target + per-cat honest cents. Cap sizes are census-derived
+        # (07-06 live conception->fill drift p75: ITF_W 20 / ITF_M 14 / CHALL 2 / MAIN 1)
+        # and require Plex ratification before arming.
+        self.walk_cap_honest_anchor = bool(self.config.get("walk_cap_honest_anchor", False))
+        self.walk_cap_honest_by_cat = dict(self.config.get("walk_cap_honest_by_cat", {}))
         # [C-REAIM-ON-ARRIVAL] combined re-aim on ANY sibling basis arrival (fill or
         # adoption), no price-bucket exemption; <=2c re-aim cancels. Default OFF.
         self.reaim_on_sibling_arrival = bool(self.config.get("reaim_on_sibling_arrival", False))
@@ -6813,6 +6821,12 @@ class LiveV3:
                     reference_source=reference_source,
                 )
                 self.positions[tk] = pos
+                # [C-WALKCAP-HONEST-ANCHOR staged 07-06, gated OFF] conception in the
+                # honest window = the FIRST placed target (set-once; the legacy
+                # _window_open stamp lands hours later at T-240 and left the cap inert
+                # all night — 19 uncapped walk breaches). Consumed only under
+                # walk_cap_honest_anchor below.
+                pos.honest_anchor = int(entry_price)
                 # [C-STAIRCASE SHIP-2] Risk 7: set the FIXED staircase state once at placement.
                 if reference_source == "staircase":
                     pos.staircase_anchor = int(current_price); pos.staircase_cell = int(cell); pos.staircase_ref = int(target_bid)
@@ -7867,6 +7881,21 @@ class LiveV3:
                         "conception_cell": int(_wo2["cell"]), "cap": self._walk_cap_cents(pos.category),
                         "cat": pos.category, "current_price": current_price}, ticker=tk)
                     new_target = _ceil
+            elif (getattr(self, "walk_cap_honest_anchor", False)
+                    and getattr(pos, "honest_anchor", 0)):
+                # [C-WALKCAP-HONEST-ANCHOR staged, gated OFF] the legacy conception does
+                # not exist yet (honest window) — anchor the ceiling on the position's
+                # own first target. Subtractive only, same semantics as the block above.
+                _hcap = {"ATP_MAIN": 1, "WTA_MAIN": 1, "ATP_CHALL": 2, "WTA_CHALL": 2,
+                         "ITF_M": 14, "ITF_W": 20}
+                _ceil_h = int(pos.honest_anchor) + int(self.walk_cap_honest_by_cat.get(
+                    pos.category, _hcap.get(pos.category, 4)))
+                if new_target > _ceil_h:
+                    self._log("premarket_walk_capped_honest", {
+                        "proposed_target": new_target, "walk_ceiling": _ceil_h,
+                        "honest_anchor": int(pos.honest_anchor),
+                        "cat": pos.category, "current_price": current_price}, ticker=tk)
+                    new_target = _ceil_h
 
         # [C-BOUND-RECHECK 07-06] the leg2_reshuffle clamp above ran in the pre-await
         # decision slice; the poll/cancel awaits are a 1-3s window in which the sibling's

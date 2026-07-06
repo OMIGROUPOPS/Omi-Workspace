@@ -113,7 +113,7 @@ def parse_session(log_path):
                 except Exception:
                     pass
     S = {"boot": boot_ts, "fills": {}, "latch": {}, "wopen": {}, "vplace": defaultdict(list),
-         "buys": defaultdict(list), "emfb": {}, "errors": [], "graced": {}, "cancels": [],
+         "buys": defaultdict(list), "emfb": {}, "true_basis": {}, "errors": [], "graced": {}, "cancels": [],
          "capped": [], "exits": {}, "settled": {}, "events": 0, "open_bids": {}}
     with open(log_path, encoding="utf-8", errors="replace") as fh:
         for line in fh:
@@ -153,6 +153,11 @@ def parse_session(log_path):
                     S["open_bids"][oid] = {"tk": tk, "price": d.get("price"), "ts": ts}
             elif e == "fv_burst_anchor" and tk:
                 S["emfb"][tk] = d.get("entry_minus_fv_burst")
+            elif e == "adoption_true_basis" and tk:
+                # [ZT2-FIX 07-06] the bot's C-TRUE-BASIS event: cost basis for an adopted
+                # fill (pos_map avg is mark-to-market, A54 — the 7 fabricated overnight
+                # combined_over_goal rows). Recorded per ticker; ZT2 grades with THIS.
+                S["true_basis"][tk] = d.get("true_basis")
             elif e in ("reconcile_v4_adopted", "reconcile_v4_exit_found") and tk and tk not in S["fills"]:
                 # boot re-adoptions that do NOT re-emit entry_filled (exit_found path):
                 # without these the board loses open pairs across restarts. exit_found
@@ -378,9 +383,26 @@ def analyze(S, aim, goal, bid_grades=None):
                           f"fill {f['fill']}c {round((f['ts']-lat['ts'])/60.0,1)}min past latch (grace {GRACE_SEC}s)"})
 
     # ---- ZT 2: combined_over_goal (path-tagged: defect vs armed-design bounds) ----
+    # [ZT2-FIX 07-06] adopted fills grade at TRUE basis (adoption_true_basis event,
+    # C-TRUE-BASIS b8a73a55). An adopted leg with NO true-basis event (pre-fix booking,
+    # mark-to-market) is UNVERIFIED -> the pair emits a pattern, never a ZT violation
+    # (the 07-06 autopsy: 7/16 overnight rows were booking artifacts, orders AT bound).
     for ev, legs in ev_fills.items():
         if len(legs) >= 2:
-            comb = sum((f["fill"] or 0) for _, f in legs)
+            comb = 0; unverified = False
+            for tk, f in legs:
+                px = f["fill"] or 0
+                if S["true_basis"].get(tk) is not None:
+                    px = S["true_basis"][tk]
+                elif (f.get("src") or "").startswith("reconcile") or f.get("play") in ("v4_reconciled", "reconcile_v4_adopted"):
+                    unverified = True
+                comb += px
+            if comb > goal and unverified:
+                items.append({"key": f"ubc:{ev}", "type": "pattern",
+                              "pattern": "combined_over_goal_UNVERIFIED_BASIS", "ts": max(f["ts"] for _, f in legs),
+                              "event": ev, "combined": comb,
+                              "detail": f"pair combined {comb}c > {goal}c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) — exchange-truth check required, NOT a ZT row"})
+                continue
             if comb > goal:
                 last_ts = max(f["ts"] for _, f in legs)
                 plays = {(f.get("play") or "") + "/" + (f.get("src") or "") for _, f in legs}
@@ -406,10 +428,21 @@ def analyze(S, aim, goal, bid_grades=None):
         if not cell:
             continue
         ceiling = int(cell) + WALK_CAP.get(cat_of(tk), 3)
+        _wo_ts = (S["wopen"].get(tk) or {}).get("ts")
         for b in buys:
             ev_fill_before = any(f["ts"] <= b["ts"] for x, f in S["fills"].items()
                                  if x.rsplit("-", 1)[0] == ev)
             if ev_fill_before or b["price"] is None or b["price"] <= ceiling:
+                continue
+            # [ZT3-FIX 07-06] a buy that PRECEDES the conception stamp is ungradeable
+            # against it — the honest clock opens windows hours before the legacy T-240
+            # stamp exists (10/19 overnight rows were retroactive false positives).
+            # Info pattern, never a ZT row.
+            if _wo_ts is not None and b["ts"] < _wo_ts:
+                items.append({"key": f"precon:{tk}:{int(b['ts'])}", "type": "pattern",
+                              "pattern": "pre_conception_buy", "ts": b["ts"], "ticker": tk,
+                              "price": b["price"], "conception_ts": _wo_ts,
+                              "detail": f"buy {b['price']}c predates the conception stamp by {round((_wo_ts-b['ts'])/60)}min — honest-window buy, cap not yet defined (ungradeable)"})
                 continue
             vp = [v for v in S["vplace"][tk] if abs(v["ts"] - b["ts"]) < 10]
             ref = vp[-1]["ref"] if vp else None

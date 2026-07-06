@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 68 @ **2026-07-05 10:23:00 PM ET** | build `10aaa5c` | session boot 07-05 19:24 ET | log `live_v3_20260705.jsonl` | 4651 session events | monitor READ-ONLY
+- cycle 69 @ **2026-07-05 10:33:08 PM ET** | build `e87a535` | session boot 07-05 19:24 ET | log `live_v3_20260705.jsonl` | 4812 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 0 violation(s)
@@ -18,15 +18,15 @@
 - classes now: {'FLOW_AT_LEVEL': 2} | repriceable now: true 0 / false 2 | **cumulative bid_grade lines: 825 (repriceable true 82 / false 743)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL05LEGSHI-L | 43 | 129m | 5532/33-98/556756 | 95-35 | -10 | **FLOW_AT_LEVEL** | 48 |  |
-| ATPCHALLENGERMATCH-26JUL05LEGSHI-L | 42 | 123m | 5416/33-98/551194 | 95-35 | -9 | **FLOW_AT_LEVEL** | 48 |  |
+| ATPCHALLENGERMATCH-26JUL05LEGSHI-L | 43 | 139m | 6701/7-98/715233 | 95-9 | -36 | **FLOW_AT_LEVEL** | 48 |  |
+| ATPCHALLENGERMATCH-26JUL05LEGSHI-L | 42 | 133m | 6586/7-98/709690 | 95-9 | -35 | **FLOW_AT_LEVEL** | 48 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 no open half-pairs
 
 ## PATTERNS (sub-B) — 3
-- half_arm_aging: KXITFMATCH-26JUL05MASCIO-MAS {"fill": 33, "age_min": 178, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFMATCH-26JUL05VANGAU-GAU {"fill": 7, "age_min": 177, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL05MASCIO-MAS {"fill": 33, "age_min": 188, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL05VANGAU-GAU {"fill": 7, "age_min": 187, "mode": "NO_BID(sib rested earlier, none now)"}
 - deep_neg_fv: KXATPCHALLENGERMATCH-26JUL05LEGSHI-LEG {"entry_minus_fv_burst": -21.5}
 
 ## ERRORS — 0 handler errors this session (ZERO — clean loop)

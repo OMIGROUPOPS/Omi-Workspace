@@ -30,3 +30,34 @@ Bell = unambiguous tape onset (DAMHUE 09:55, POPSAN 11:13); BUEPOR has no detect
 
 ### The pattern, for the ruling
 In **3 of 3** cases the ≤2¢-branch cancel left a naked single that **LOST** while the pulled sibling **WON** (settled: −$1.65 combined + the forfeited completions). Root cause split: 1 pure lazy-leg-1 (+8¢ vs own FV), 1 divot-miss (FV beaten, dip missed by +4¢), 1 mixed (+4¢ vs FV, sibling rich either way). Open-set note: 3 more reaim-pulls are running (ZEBAND, XUXBER, LINMAR) — same mechanism, unconcluded, excluded by scope. **The evidence supports the frame's claim: the bound was the messenger, not the cause — leg-1 buying above its own value/divot is what put the bound below leg-2's fillable level. The ≤2¢-branch doctrine call is the operator's, with this table.**
+
+---
+## JOB 2 — THE ONE FIX: built, replayed, verdict — **DOES NOT SHIP TODAY (Lane-1 fail on this replay; deployment was HELD regardless)**
+
+**What was built (re-runnable, `fv_aim_build2.py` → `/tmp/fv_shapes.json`, `/tmp/fv_replay_*.json`, `/tmp/fv_sweep.json`):** the time-axis/bell-bucket aim layer in the operator's frame — per (cat × 20¢-bucket × 10-min T-minus bin), from 4,462 corpus legs (analysis/trades, pre-JUL06 only — no self-leak; bell = unambiguous tape onset): `FV_hat(p,T) = p + drift-to-bell quantile` (own-FV, current-price-anchored — the 07-05 anchor debt paid), `aim(p,T) = p + remaining-dip quantile`, hard-bounded `aim ≤ FV_hat − 1` (a discount to own FV, always), **goal−basis applied as CAP only** (never the target source). Walk model: the 10-min re-derivation trajectory IS the walk, structurally unable to chase above value (the riser's killer excluded by construction, not by a cap). Replayed on the census's 161 concluded games, pair-coherent, fill = sell-flow print ≤ aim while resting (step-③ convention), bell = onset / latch / honest+category-median corridor.
+
+**The frontier (FV strictness × dip depth — six cells, all ~identical):**
+| params | pairs (old 133) | gap med (old 12) | lazy legs (old 88/177) | Lane-2 (old −$23.88 same-basis) |
+|---|---|---|---|---|
+| fv .5 dip .75 | 56 | 18 | 0 | −$51.50 |
+| fv .5 dip .9 | 55 | 16 | 0 | −$61.25 |
+| fv .75 dip .75 | 57 | 17 | 0 | −$50.55 |
+| fv .75 dip .9 | 50 | 17 | 0 | −$78.95 |
+| fv .9 dip .75 | 57 | 17 | 0 | −$50.55 |
+| fv .9 dip .9 | 50 | 17 | 0 | −$79.00 |
+
+**Verdict against the three held conditions:** (a) beats the −$20.31 verdict on the new basis — **NOT MET** (Lane-1: participation 50–57 pairs vs 133, joint gap 16–18 vs 12; Lane-2 worse at every cell, n=161 flagged); (b) walk/repost interaction — modeled (structural FV−1 bound; 156–165 sim fills came from later walk steps); (c) walk-cap honest anchor — staged spec stands, moot until (a). **Per the pre-registered discipline this does not arm. No flag, no restart.**
+
+**The two findings that survive the failed replay (both real, both matter):**
+1. **The lazy-leg class is enormous and the frame kills it: 88 of 177 scoreable real fills (~50%) filled AT/ABOVE their own FV_hat** — the census's paid-over-joint-best +8.5..+13¢ lives here. The frame eliminates it by construction (0/…) — at the cost below.
+2. **The structural tension, quantified: demanding every leg strictly beat its own path-median FV caps per-leg fill probability near 50% and pair participation near ~35% on the same slate.** The real bot's 92% per-leg fill rate and its 88 lazy fills are the same coin, two faces. Any aim-below-own-FV layer TRADES participation for entry quality; the exchange rate on today's data is bad (77 pairs lost for ~4–6¢ better entries on survivors) — **on today's data and today's model.**
+
+**Named model limits (why this replay under-states the fix — measurement debt, not excuses):**
+- **Tape-only anchoring:** the sim's "current price" is the last PRINT; on ITF no-trade books (the census's own skip_no_trade class) that anchor is stale-low and the aim sits unreachable — the live bot anchors on the BOOK (book_bid/book_ask in v4_place). A book-anchored replay (premarket_ticks/ws_depthrec data exists) is the correct next instrument.
+- **Card-era corpus for honest-era windows:** the 4,462-leg shape corpus predates the flip — its early-T cells (the honest premarket the fix targets) are the thinnest exactly where the aim layer would live. Every honest-clock night now accumulates the missing cells. Same coupling lesson as TIME_AXIS_PROOF (07-05), one level deeper: first the clock had to arm before the table was reachable; now the table's TRAINING DATA has to accumulate under the armed clock.
+- **In-match entries out of scope:** 69 of 294 real fills landed after the bell (55 after a true onset) — the sim's W1+corridor scope excludes them by design; they belong to the gun/grace machinery, not the aim layer.
+
+**Disposition:** deployment HELD (operator's order — condition (a) unmet regardless). The frame's Job-1 evidence (lazy-leg-1 root-caused 2 of 3 pulled-sibling naked singles) and the 88-lazy-leg census stand as the motivating record. The build, shapes, replay and frontier are committed and re-runnable; the re-run trigger is honest-era shape accumulation (nightly) + the book-anchored replay. Then Plex, then the rolling slate.
+
+## JOB 3 — standing ledger (unchanged, acknowledged)
+Thin-gun (shadow staged, blind class 75% of concluded games per census AX4) · thin-book depth · serialization cost (P2b/P4 placement guards live since 12:15, full serialization design parked behind §4H) · monitor fixes (ZT2 exchange-basis, ZT3 conception-ordering) · MULVILLE cell-58 check parked · master-plan pointer. No action taken from this session.

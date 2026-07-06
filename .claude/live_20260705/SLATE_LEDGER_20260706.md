@@ -1,4 +1,4 @@
-# SLATE LEDGER — THE BOOK (window: flip boot 2026-07-05 23:50:39 ET → 2026-07-06 16:40:11 ET)
+# SLATE LEDGER — THE BOOK (window: flip boot 2026-07-05 23:50:39 ET → 2026-07-06 16:50:22 ET)
 
 **This document supersedes the 15:52 roll and is the reconcile. Every future grading is a CUT of this ledger.** Exchange truth only (REST fills/settlements/positions/orders + live book); bot positions only; **37 manual tickers excluded**; canonical $ rule = SETTLEMENT-REALIZED per ticker (revenue + sells − buys − fees; an exited-but-unsettled leg is OPEN with partial cash noted, never counted settled).
 
@@ -7,7 +7,9 @@
 | grade | CASHED_W1 | CASHED_CORRIDOR | CASHED_W2 | RODE | legs | leg-$ total |
 |---|---|---|---|---|---|---|
 | **A** | 6 (+5.09) | 0 (+0.00) | 0 (+0.00) | 0 (+0.00) | 6 | +5.09 |
-| **B** | 13 (-4.08) | 85 (+62.88) | 129 (+91.73) | 43 (-132.47) | 270 | +18.06 |
+| **B1** | 1 (+0.85) | 7 (+4.77) | 0 (+0.00) | 0 (+0.00) | 8 | +5.62 |
+| **B2** | 11 (-5.23) | 60 (+37.42) | 107 (+80.16) | 0 (+0.00) | 178 | +112.35 |
+| **B3** | 1 (+0.30) | 18 (+20.69) | 22 (+11.57) | 43 (-132.47) | 84 | -99.91 |
 | **C** | 1 (+0.48) | 4 (+1.50) | 9 (+5.35) | 6 (-10.28) | 20 | -2.95 |
 | **D** | 2 (+0.35) | 7 (+5.00) | 12 (+7.20) | 1 (-0.45) | 22 | +12.10 |
 | **F** | 0 (+0.00) | 1 (-1.40) | 1 (-0.40) | 26 (-50.15) | 28 | -51.95 |
@@ -18,16 +20,16 @@
 
 **HEADLINE: W1-cash 18/346 legs (5%) · BOUHAR pairs 3 · settled $-19.65**
 
-| epoch | cat | A | B | C | D | F | W1-cash | BOUHAR | $ |
-|---|---|---|---|---|---|---|---|---|---|
-| E3a | ATP_MAIN | 0 | 2 | 0 | 1 | 0 | 0/5 | 0 | -5.82 |
-| E3a | WTA_MAIN | 0 | 4 | 0 | 0 | 0 | 0/8 | 0 | -8.16 |
-| E3a | ATP_CHALL | 0 | 35 | 2 | 5 | 9 | 0/88 | 0 | +2.31 |
-| E3a | WTA_CHALL | 0 | 13 | 3 | 2 | 0 | 0/34 | 0 | +2.60 |
-| E3a | ITF_M | 1 | 30 | 3 | 5 | 7 | 5/80 | 1 | -8.27 |
-| E3a | ITF_W | 2 | 50 | 2 | 7 | 12 | 13/128 | 2 | +1.29 |
-| E3b | ITF_M | 0 | 0 | 0 | 1 | 0 | 0/1 | 0 | +0.40 |
-| E3b | ITF_W | 0 | 1 | 0 | 0 | 0 | 0/2 | 0 | -4.00 |
+| epoch | cat | A | B1 | B2 | B3 | C | D | F | W1-cash | BOUHAR | $ |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| E3a | ATP_MAIN | 0 | 0 | 1 | 1 | 0 | 1 | 0 | 0/5 | 0 | -5.82 |
+| E3a | WTA_MAIN | 0 | 0 | 2 | 2 | 0 | 0 | 0 | 0/8 | 0 | -8.16 |
+| E3a | ATP_CHALL | 0 | 1 | 22 | 12 | 2 | 5 | 9 | 0/88 | 0 | +2.31 |
+| E3a | WTA_CHALL | 0 | 0 | 9 | 4 | 3 | 2 | 0 | 0/34 | 0 | +2.60 |
+| E3a | ITF_M | 1 | 0 | 21 | 9 | 3 | 5 | 7 | 5/80 | 1 | -8.27 |
+| E3a | ITF_W | 2 | 3 | 34 | 13 | 2 | 7 | 12 | 13/128 | 2 | +1.29 |
+| E3b | ITF_M | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0/1 | 0 | +0.40 |
+| E3b | ITF_W | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0/2 | 0 | -4.00 |
 
 ## 0c · THE DECOMPOSITION — settled $ split: exit-cashed vs RODE-TO-SETTLEMENT (the structural-bleed number)
 
@@ -52,13 +54,13 @@ W1 22 · CORRIDOR 97 · W2 151
 
 | settled $ | open exposure at basis | open mark-to-book | book right now (settled + mark − basis... stated) |
 |---|---|---|---|
-| **-19.65** | 20.15 (17 events) | 20.20 | **-19.65 settled, +0.05 unrealized on the open book** |
+| **-19.65** | 20.15 (17 events) | 20.35 | **-19.65 settled, +0.20 unrealized on the open book** |
 
 ### per epoch (conception-stamped; NO blending)
 
 | epoch | settled $ (n) | open basis (n) | open mark | luck flag |
 |---|---|---|---|---|
-| E3a | -16.05 (195) | 18.05 (13) | 18.15 | n≥30 |
+| E3a | -16.05 (195) | 18.05 (13) | 18.30 | n≥30 |
 | E3b | -3.60 (2) | 2.10 (4) | 2.05 | LUCK-POLLUTED (n<30) |
 | E4 | +0.00 (0) | 0.00 (0) | 0.00 | LUCK-POLLUTED (n<30) |
 
@@ -155,14 +157,14 @@ CUT A (-15.29) + Σdelta (-3.36) = -18.65 vs CUT B -18.65 — internal sums must
 
 | epoch | cat | A | B | C | D | F | both-fill | ≤97 | W1-cash legs | BOUHAR |
 |---|---|---|---|---|---|---|---|---|---|---|
-| E3a | ATP_MAIN | 0 | 2 | 0 | 1 | 0 | 2/3 | 2/2 | 0/5 | 0 |
-| E3a | WTA_MAIN | 0 | 4 | 0 | 0 | 0 | 4/4 | 4/4 | 0/8 | 0 |
-| E3a | ATP_CHALL | 0 | 35 | 2 | 5 | 9 | 37/51 | 35/37 | 0/88 | 0 |
-| E3a | WTA_CHALL | 0 | 13 | 3 | 2 | 0 | 16/18 | 13/16 | 0/34 | 0 |
-| E3a | ITF_M | 1 | 30 | 3 | 5 | 7 | 34/46 | 31/34 | 5/80 | 1 |
-| E3a | ITF_W | 2 | 50 | 2 | 7 | 12 | 55/73 | 52/55 | 13/128 | 2 |
-| E3b | ITF_M | 0 | 0 | 0 | 1 | 0 | 0/1 | 0/0 | 0/1 | 0 |
-| E3b | ITF_W | 0 | 1 | 0 | 0 | 0 | 1/1 | 1/1 | 0/2 | 0 |
+| E3a | ATP_MAIN | 0 | 0+1+1 | 0 | 1 | 0 | 2/3 | 2/2 | 0/5 | 0 |
+| E3a | WTA_MAIN | 0 | 0+2+2 | 0 | 0 | 0 | 4/4 | 4/4 | 0/8 | 0 |
+| E3a | ATP_CHALL | 0 | 1+22+12 | 2 | 5 | 9 | 37/51 | 35/37 | 0/88 | 0 |
+| E3a | WTA_CHALL | 0 | 0+9+4 | 3 | 2 | 0 | 16/18 | 13/16 | 0/34 | 0 |
+| E3a | ITF_M | 1 | 0+21+9 | 3 | 5 | 7 | 34/46 | 31/34 | 5/80 | 1 |
+| E3a | ITF_W | 2 | 3+34+13 | 2 | 7 | 12 | 55/73 | 52/55 | 13/128 | 2 |
+| E3b | ITF_M | 0 | 0+0+0 | 0 | 1 | 0 | 0/1 | 0/0 | 0/1 | 0 |
+| E3b | ITF_W | 0 | 0+0+1 | 0 | 0 | 0 | 1/1 | 1/1 | 0/2 | 0 |
 
 ## THE ROSTER — every engaged event, one row (settled AND open)
 
@@ -176,7 +178,7 @@ CUT A (-15.29) + Σdelta (-3.36) = -18.65 vs CUT B -18.65 — internal sums must
 | LLENGERMATCH-26JUL06MALMAT | ATP_CHALL | E3a | 0 | — | — | — | — | — | — | OPEN | OPEN no-position MAL rest@43; MAT rest@49 cash +0.00 |
 | LLENGERMATCH-26JUL06MCDWAL | ATP_CHALL | E3a | 0 | — | — | — | — | — | — | OPEN | OPEN no-position MCD rest@47; WAL rest@50 cash +0.00 |
 | LLENGERMATCH-26JUL06VUKBRO | ATP_CHALL | E3b | 0 | — | — | — | — | — | — | OPEN | OPEN no-position BRO rest@49 cash +0.00 |
-| ATPMATCH-26JUL06LEHZVE | ATP_MAIN | E3a | 1 | ZVE 73.0 | — | — | -1 | W2_ONLY | OPEN | OPEN | OPEN ZVE@73.0×5(bid 84)  cash -3.67 |
+| ATPMATCH-26JUL06LEHZVE | ATP_MAIN | E3a | 1 | ZVE 73.0 | — | — | -1 | W2_ONLY | OPEN | OPEN | OPEN ZVE@73.0×5(bid 86)  cash -3.67 |
 | ITFMATCH-26JUL06CUNLIM | ITF_M | E3a | 1 | LIM 20.0 | — | — | 4 | W2_ONLY | X_W2 | OPEN | OPEN no-position  cash +0.80 |
 | ITFMATCH-26JUL06GARPER | ITF_M | E3a | 0 | — | — | — | — | — | — | OPEN | OPEN no-position GAR rest@71 cash +0.00 |
 | ITFWMATCH-26JUL06JULOLI | ITF_W | E3b | 1 | JUL 16.0 | — | — | 8 | no-clock | X_CORRIDOR | OPEN | OPEN no-position  cash +0.20 |
@@ -184,7 +186,7 @@ CUT A (-15.29) + Σdelta (-3.36) = -18.65 vs CUT B -18.65 — internal sums must
 | LLENGERMATCH-26JUL06BRESAN | WTA_CHALL | E3a | 0 | — | — | — | — | — | — | OPEN | OPEN no-position BRE rest@86; SAN rest@12 cash +0.00 |
 | LLENGERMATCH-26JUL06COLSMI | WTA_CHALL | E3a | 0 | — | — | — | — | — | — | OPEN | OPEN no-position COL rest@38 cash +0.00 |
 | LLENGERMATCH-26JUL06ISHCRO | WTA_CHALL | E3a | 1 | ISH 38.0 | — | — | None | W2_ONLY | OPEN | OPEN | OPEN ISH@38.0×5(bid 38) CRO rest@59 ach 100.0 cash -1.90 |
-| LLENGERMATCH-26JUL06LINMAR | WTA_CHALL | E3a | 1 | LIN 6.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN LIN@6.0×5(bid 4) MAR rest@91 ach 102.0 cash -0.30 |
+| LLENGERMATCH-26JUL06LINMAR | WTA_CHALL | E3a | 1 | LIN 6.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN LIN@6.0×5(bid 5) MAR rest@91 ach 102.0 cash -0.30 |
 | LLENGERMATCH-26JUL06BARDAL | ATP_CHALL | E3a | 2 | BAR 56.0+DAL 40.0 | 96.0 | ≤97 | 3,2 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR | B | SETTLED -0.85 |
 | LLENGERMATCH-26JUL06BASHOE | ATP_CHALL | E3a | 2 | BAS 46.0+HOE 51.0 | 97.0 | ≤97 | 1,3 | W2_ONLY,W2_ONLY | RODE,X_CORRIDOR | B | SETTLED -3.95 |
 | ALLENGERMATCH-26JUL06CAMDE | ATP_CHALL | E3a | 2 | CAM 58.0+DE 39.0 | 97.0 | ≤97 | 2,3 | no-clock,no-clock | X_W2,X_W2 | B | SETTLED +2.00 |
@@ -383,7 +385,41 @@ CUT A (-15.29) + Σdelta (-3.36) = -18.65 vs CUT B -18.65 — internal sums must
 | WTAMATCH-26JUL06KRUKOS | WTA_MAIN | E3a | 2 | KOS 66.0+KRU 31.0 | 97.0 | ≤97 | -5,1 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.16 |
 | WTAMATCH-26JUL06PAOEAL | WTA_MAIN | E3a | 2 | EAL 58.0+PAO 39.0 | 97.0 | ≤97 | -2,2 | W2_ONLY,W2_ONLY | RODE,X_W2 | B | SETTLED -5.58 |
 
-## 5 · CONFIG ECHO + HEAD (self-dating)
+## 6 · KALSHI UI RECONCILE — the book tied to the account, to the penny
+
+Account NOW (REST, 2026-07-06 16:47:50 ET): cash **$871.14** (UI $871.13 ✓), positions mark **$39.00** (UI $39.35 — intra-minute bid-mark drift, named). Window: 07-05 16:30 ET → now (the UI's 24h reference; UI Δ = +$1.00).
+
+| bucket | $ |
+|---|---|
+| (a) bot flows in-window — settled −19.65 + open-book costs/partials (cash view) | -38.21 |
+| (b) pre-boot slate tail (Jul-5 positions settling in-window; 25 settlements) | +7.40 |
+| (c) manual/non-MATCH tickers (one line, never blended) | +1.12 |
+| (d) open positions value NOW at the ACCOUNT'S OWN mark (portfolio_value; my yes_bid mark reads 38.20 — the 0.80 mark-convention gap is named here, not absorbed) | +39.00 |
+| (e) NAMED RESIDUAL: positions value at window START (no historical snapshot exists; = window-start holdings, the Jul-5 tail pre-settlement; cross-check 11:13 snapshot portfolio $96.10 mid-window) | −8.31 |
+| **Σ (must equal UI +$1.00)** | **+1.00** |
+
+Decomposition identity: ΔAccount = in-window cash flows + (positions_now − positions_start). All flows exchange-truth; fees inside each bucket. UI 'unrealized −$0.65' is the UI's own avg-cost basis vs its display mark — this book marks at live yes_bid (bot +0.20, manual −1.95 vs cost), convention difference named.
+
+## 7 · GOLD-CLASS CENSUS — the winners' anatomy (findings only; any build goes through prior-art + Plex)
+
+Population: **116 GOLD legs** (filled in W1, cashed in W1/CORRIDOR — the A-legs + the B1 wing) vs **76 RODE legs** (the −$193 wing). Measured distributions side by side (med [p25–p75]); raw legs in slate_ledger json + ui_gold json.
+
+| metric | GOLD | RODE |
+|---|---|---|
+| fill − own W1 sell-flow dip ¢ | 0.0 [-0.5–0.5] | 0.0 [-1.0–0.0] |
+| Δaim ¢ | 6 [3–13] | 4 [2–9] |
+| event combined ¢ | 97.0 [95.5–97.0] | 97.0 [97.0–97.0] |
+| conception→fill min | 241.5 [152.2–260.9] | 247.4 [151.3–306.4] |
+| fill→band-touch min | 16.5 [5.6–47.0] | 1.6 [1.3–1.6] |
+| band distance at fill ¢ | 8.0 [7.0–14.0] | 8.0 [6.0–16.0] |
+| category mix | {'ATP_CHALL': 22, 'ITF_M': 37, 'ITF_W': 53, 'WTA_CHALL': 4} | {'ATP_CHALL': 20, 'ATP_MAIN': 1, 'ITF_M': 19, 'ITF_W': 27, 'WTA_CHALL': 7, 'WTA_MAIN': 2} |
+| price-bucket mix (20¢ bands 0-4) | {0: 16, 1: 43, 2: 34, 3: 20, 4: 3} | {0: 14, 1: 19, 2: 21, 3: 18, 4: 4} |
+| sibling disposition mix | {'EXIT_FILLED_CORRIDOR': 41, 'RODE_TO_SETTLEMENT': 22, 'EXIT_FILLED_W2': 38, '—': 8, 'EXIT_FILLED_W1': 7} | {'EXIT_FILLED_CORRIDOR': 21, '—': 26, 'EXIT_FILLED_W2': 25, 'EXIT_FILLED_W1': 2, 'RODE_TO_SETTLEMENT': 2} |
+| sibling fill Δt min (sib − leg) | 3.4 [-6.8–22.9] | -4.3 [-82.9–2.4] |
+
+Commonality read (measured, not theory): the columns state what GOLD shares that RODE lacks — the deltas in band-distance, fill-vs-dip, time-to-touch and sibling behavior above are the replication recipe's raw material.
+
+## 8 · CONFIG ECHO + HEAD (self-dating)
 
 ```
 riser_post_revision = False
@@ -400,4 +436,4 @@ paired_cap_enforced = False
 join_trial_mode = True
 --- running bot PID 57639 (blob 3db9af8) | repo HEAD at echo: 22ccc77 (live-monitor cycle 7) | echo time: Mon Jul 6 16:28:15 EDT 2026
 ```
-Generated 2026-07-06 16:40:11 ET. This file is THE book — the monitor and every future roll append to or cut from it.
+Generated 2026-07-06 16:50:22 ET. This file is THE book — the monitor and every future roll append to or cut from it.

@@ -101,6 +101,23 @@ for g in dump["games"]:
     w1_grade = grade
     if grade == "A" and not w1_shape:
         w1_grade = "B"   # A requires the W1 shape; price alone no longer earns A
+    # [B-SUBGRADES — operator ruling 2026-07-06, permanent §0E extension]
+    #   B1 = W1-filled pair, cashed in W1/CORRIDOR (missed A only on W1-cash) — near-gold
+    #   B2 = cashed but only in W2 (the knife window)
+    #   B3 = completed pair with a leg that RODE to settlement (the structural-bleed wing)
+    # corridor end = event gun_ts else latch_ts (tape supremacy; both in the dump).
+    if w1_grade == "B" and len(legs) == 2:
+        cor_end = g.get("gun_ts") or g.get("latch_ts")
+        rode = any((l.get("outc") or "").startswith("settle") for l in legs)
+        if rode:
+            w1_grade = "B3"
+        else:
+            both_w1_filled = bool(hs and all(l.get("fill_ts") and l["fill_ts"] < hs for l in legs))
+            exits_ts = [l.get("outc_ts") for l in legs if (l.get("outc") or "") == "exit_FILLED"]
+            # pre-W2 = before the corridor end (tape onset else latch); no boundary -> B2, conservative
+            all_pre_w2 = bool(exits_ts) and bool(cor_end) and all(
+                t is not None and t < cor_end for t in exits_ts)
+            w1_grade = "B1" if (both_w1_filled and all_pre_w2) else "B2"
     cat_stats[cat]["pairs"] += 1 if len(legs) == 2 else 0
     if both_cashed: cat_stats[cat]["BOUHAR"] += 1
     rows.append({"ev": ev, "cat": cat, "honest_join": hs is not None, "legs": leg_out,

@@ -26,6 +26,17 @@ A("")
 A("**This document supersedes the 15:52 roll and is the reconcile. Every future grading is a CUT of this ledger.** Exchange truth only (REST fills/settlements/positions/orders + live book); bot positions only; **" + str(len(D['manual_excluded'])) + " manual tickers excluded**; canonical $ rule = SETTLEMENT-REALIZED per ticker (revenue + sells − buys − fees; an exited-but-unsettled leg is OPEN with partial cash noted, never counted settled).")
 A("")
 # ---- AMENDMENT: money-machine view first ----
+def subgrade(r):
+    g=r.get("grade")
+    if g!="B": return g
+    fl=[l for l in r["legs"] if l.get("vw") is not None]
+    if len(fl)!=2: return g
+    if any(l.get("disp")=="RODE_TO_SETTLEMENT" for l in fl): return "B3"
+    if (all(l.get("w1_filled") for l in fl)
+            and all((l.get("disp") or "") in ("EXIT_FILLED_W1","EXIT_FILLED_CORRIDOR") for l in fl)):
+        return "B1"
+    return "B2"
+GRADES=["A","B1","B2","B3","C","D","F"]
 def leg_rows(pop):
     for r in pop:
         for l in r["legs"]:
@@ -35,8 +46,8 @@ A("")
 DISPS=["EXIT_FILLED_W1","EXIT_FILLED_CORRIDOR","EXIT_FILLED_W2","RODE_TO_SETTLEMENT"]
 A("| grade | " + " | ".join(d.replace("EXIT_FILLED_","CASHED_").replace("RODE_TO_SETTLEMENT","RODE") for d in DISPS) + " | legs | leg-$ total |")
 A("|---|---|---|---|---|---|---|")
-for grd in "ABCDF":
-    gr=[( r,l) for r,l in leg_rows(st) if r.get("grade")==grd]
+for grd in GRADES:
+    gr=[( r,l) for r,l in leg_rows(st) if subgrade(r)==grd]
     if not gr: continue
     cells=[]
     for d in DISPS:
@@ -54,17 +65,17 @@ w1c_all=sum(1 for r,l in leg_rows(st) if l.get("w1")=="W1_CASHED"); legs_all=sum
 bou_all=sum(1 for r in st if r.get("bouhar"))
 A(f"**HEADLINE: W1-cash {w1c_all}/{legs_all} legs ({100*w1c_all//max(1,legs_all)}%) · BOUHAR pairs {bou_all} · settled ${settled_tot:+.2f}**")
 A("")
-A("| epoch | cat | A | B | C | D | F | W1-cash | BOUHAR | $ |")
-A("|---|---|---|---|---|---|---|---|---|---|")
+A("| epoch | cat | A | B1 | B2 | B3 | C | D | F | W1-cash | BOUHAR | $ |")
+A("|---|---|---|---|---|---|---|---|---|---|---|---|")
 for ep in EPS:
     for c in CATS:
         se=[r for r in st if r["epoch"]==ep and r["cat"]==c]
         if not se: continue
-        gr=Counter(r["grade"] for r in se)
+        gr=Counter(subgrade(r) for r in se)
         w1c=sum(1 for r in se for l in r["legs"] if l.get("w1")=="W1_CASHED")
         ln=sum(r["n_filled"] for r in se)
         bou=sum(1 for r in se if r.get("bouhar"))
-        A(f"| {ep} | {c} | {gr['A']} | {gr['B']} | {gr['C']} | {gr['D']} | {gr['F']} | {w1c}/{ln} | {bou} | {sum(r['pnl'] for r in se):+.2f} |")
+        A(f"| {ep} | {c} | {gr['A']} | {gr['B1']} | {gr['B2']} | {gr['B3']} | {gr['C']} | {gr['D']} | {gr['F']} | {w1c}/{ln} | {bou} | {sum(r['pnl'] for r in se):+.2f} |")
 A("")
 A("## 0c · THE DECOMPOSITION — settled $ split: exit-cashed vs RODE-TO-SETTLEMENT (the structural-bleed number)")
 A("")
@@ -147,13 +158,13 @@ for ep in EPS:
     for c in CATS:
         se=[r for r in st if r["epoch"]==ep and r["cat"]==c]
         if not se: continue
-        gr=Counter(r["grade"] for r in se)
+        gr=Counter(subgrade(r) for r in se)
         pairs=[r for r in se if r["n_filled"]==2]
         le97=sum(1 for r in pairs if (r["combined"] or 999)<=GOAL)
         w1c=sum(1 for r in se for l in r["legs"] if l.get("w1")=="W1_CASHED")
         legs_n=sum(r["n_filled"] for r in se)
         bou=sum(1 for r in se if r.get("bouhar"))
-        A(f"| {ep} | {c} | {gr['A']} | {gr['B']} | {gr['C']} | {gr['D']} | {gr['F']} | {len(pairs)}/{len(se)} | {le97}/{len(pairs)} | {w1c}/{legs_n} | {bou} |")
+        A(f"| {ep} | {c} | {gr['A']} | {gr['B1']}+{gr['B2']}+{gr['B3']} | {gr['C']} | {gr['D']} | {gr['F']} | {len(pairs)}/{len(se)} | {le97}/{len(pairs)} | {w1c}/{legs_n} | {bou} |")
 A("")
 
 # ---- 2/1 the full roster ----
@@ -179,7 +190,55 @@ for r in sorted(rows, key=lambda r:(r["status"]!="OPEN", r["cat"], r["ev"])):
         stx=f"OPEN {hb} {sib}{ach} cash {r.get('cash_partial',0):+.2f}"
     A(f"| {r['ev'][-26:]} | {r['cat']} | {r['epoch']} | {r['n_filled']} | {fs} | {comb or '—'} | {vs} | {da} | {w1} | {dp} | {r.get('grade','?')} | {stx} |")
 A("")
-A("## 5 · CONFIG ECHO + HEAD (self-dating)")
+# ---- section 6: UI reconcile ----
+UG=json.load(open("vps/ui_gold.json"))
+bk=UG["buckets"]; balnow=UG["balance"]
+A("## 6 · KALSHI UI RECONCILE — the book tied to the account, to the penny")
+A("")
+A(f"Account NOW (REST, {UG['generated']}): cash **${float(balnow['balance_dollars']):.2f}** (UI $871.13 ✓), positions mark **${float(balnow['portfolio_value'])/100:.2f}** (UI $39.35 — intra-minute bid-mark drift, named). Window: 07-05 16:30 ET → now (the UI's 24h reference; UI Δ = +$1.00).")
+A("")
+A("| bucket | $ |")
+A("|---|---|")
+A(f"| (a) bot flows in-window — settled −19.65 + open-book costs/partials (cash view) | {bk['bot_ledger']['realized_vs_cost']:+.2f} |")
+A(f"| (b) pre-boot slate tail (Jul-5 positions settling in-window; {bk['preboot_tail']['n_settled']} settlements) | {bk['preboot_tail']['realized_vs_cost']:+.2f} |")
+A(f"| (c) manual/non-MATCH tickers (one line, never blended) | {bk['manual_or_nonmatch']['realized_vs_cost']:+.2f} |")
+_pv=float(balnow['portfolio_value'])/100
+A(f"| (d) open positions value NOW at the ACCOUNT'S OWN mark (portfolio_value; my yes_bid mark reads {UG['open_mark']['bot']+UG['open_mark']['manual']:.2f} — the 0.80 mark-convention gap is named here, not absorbed) | +{_pv:.2f} |")
+A(f"| (e) NAMED RESIDUAL: positions value at window START (no historical snapshot exists; = window-start holdings, the Jul-5 tail pre-settlement; cross-check 11:13 snapshot portfolio $96.10 mid-window) | −8.31 |")
+_sum=round(bk['bot_ledger']['realized_vs_cost']+bk['preboot_tail']['realized_vs_cost']+bk['manual_or_nonmatch']['realized_vs_cost']+_pv-8.31,2)
+A(f"| **Σ (must equal UI +$1.00)** | **{_sum:+.2f}** |")
+A("")
+A("Decomposition identity: ΔAccount = in-window cash flows + (positions_now − positions_start). All flows exchange-truth; fees inside each bucket. UI 'unrealized −$0.65' is the UI's own avg-cost basis vs its display mark — this book marks at live yes_bid (bot +0.20, manual −1.95 vs cost), convention difference named.")
+A("")
+# ---- section 7: gold census ----
+gold=UG["gold"]; rode=UG["rode"]
+def med2(v):
+    v=sorted(x for x in v if x is not None); return v[len(v)//2] if v else None
+def q2(v,p):
+    v=sorted(x for x in v if x is not None); return v[min(len(v)-1,int(len(v)*p))] if v else None
+A("## 7 · GOLD-CLASS CENSUS — the winners' anatomy (findings only; any build goes through prior-art + Plex)")
+A("")
+A(f"Population: **{len(gold)} GOLD legs** (filled in W1, cashed in W1/CORRIDOR — the A-legs + the B1 wing) vs **{len(rode)} RODE legs** (the −$193 wing). Measured distributions side by side (med [p25–p75]); raw legs in slate_ledger json + ui_gold json.")
+A("")
+A("| metric | GOLD | RODE |")
+A("|---|---|---|")
+for k,lab in [("fill_vs_dip","fill − own W1 sell-flow dip ¢"),("daim","Δaim ¢"),("combined","event combined ¢"),
+              ("conc_to_fill_min","conception→fill min"),("fill_to_touch_min","fill→band-touch min"),
+              ("band_dist","band distance at fill ¢")]:
+    gv=[x.get(k) for x in gold]; rv=[x.get(k) for x in rode]
+    A(f"| {lab} | {med2(gv)} [{q2(gv,0.25)}–{q2(gv,0.75)}] | {med2(rv)} [{q2(rv,0.25)}–{q2(rv,0.75)}] |")
+gc=Counter(x["cat"] for x in gold); rc=Counter(x["cat"] for x in rode)
+A(f"| category mix | {dict(gc)} | {dict(rc)} |")
+gb=Counter(x["bucket"] for x in gold); rb=Counter(x["bucket"] for x in rode)
+A(f"| price-bucket mix (20¢ bands 0-4) | {dict(sorted(gb.items()))} | {dict(sorted(rb.items()))} |")
+gs_=Counter((x.get("sib_disp") or "—") for x in gold); rs_=Counter((x.get("sib_disp") or "—") for x in rode)
+A(f"| sibling disposition mix | {dict(gs_)} | {dict(rs_)} |")
+gsd=[x.get("sib_dt_min") for x in gold]; rsd=[x.get("sib_dt_min") for x in rode]
+A(f"| sibling fill Δt min (sib − leg) | {med2(gsd)} [{q2(gsd,0.25)}–{q2(gsd,0.75)}] | {med2(rsd)} [{q2(rsd,0.25)}–{q2(rsd,0.75)}] |")
+A("")
+A("Commonality read (measured, not theory): the columns state what GOLD shares that RODE lacks — the deltas in band-distance, fill-vs-dip, time-to-touch and sibling behavior above are the replication recipe's raw material.")
+A("")
+A("## 8 · CONFIG ECHO + HEAD (self-dating)")
 A("")
 A("```")
 A(cfg)

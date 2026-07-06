@@ -286,6 +286,7 @@ for ev,tks in sorted(evs.items()):
                      "w1":w1,"pnl":pnl,"sett_ts":st_t,"open_qty":oq,
                      "cash_out":round(sl-b-fee,2),
                      "disp":disp,"sells_qty":round(sum(q for _,q in sf),1),
+                     "w1_filled":bool(hs and ft and ft<hs),
                      "touch":touch,"exit_lvl":exitpx.get(tk),
                      "resting":[{"px":round(float(o.get("yes_price_dollars") or 0)*100)} for o in resting.get(tk,[])]})
     filled=[l for l in legs if l["vw"] is not None]
@@ -297,6 +298,7 @@ for ev,tks in sorted(evs.items()):
     spans=sorted(set(l["conc_e"] for l in legs if l["conc_ts"]))
     all_settled=bool(filled) and all(l["pnl"] is not None for l in filled) and not any(l["open_qty"] for l in legs)
     row={"ev":ev.replace("KX",""),"cat":cat,"epoch":ep,"spans":spans,"legs":legs,
+         "hs_ts":hs,"cor_end_ts":cor_end,
          "combined":comb,"n_filled":len(filled),
          "bouhar":len(filled)==2 and all(l["w1"]=="W1_CASHED" for l in filled)}
     if all_settled:

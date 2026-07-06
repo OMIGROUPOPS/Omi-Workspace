@@ -3835,6 +3835,26 @@ class LiveV3:
             ticker=sib)
         self._save_v4_resting()
 
+    async def _true_entry_basis(self, tk, fallback):
+        """[C-TRUE-BASIS 07-06] Cost basis from the fills API (buy VWAP). pos_map
+        avg_price is market value, NOT cost (A54) -- the 07-06 autopsy proved 43/144
+        adoptions booked >=1c off, 7 bound-priced completions fabricated combined>goal
+        (TODSAG/VAJRAM/HERNAG/POTFEL/TEUHAS/PACLOV/KULVOG) and every adopted fill's
+        exit cell keyed off the inflated avg. Falls back on any API miss."""
+        try:
+            fl = await api_get(self.session, self.ak, self.pk,
+                "/trade-api/v2/portfolio/fills?ticker=%s&limit=200" % tk, self.rl)
+            ct = px = 0.0
+            for f in (fl or {}).get("fills", []):
+                if f.get("action") == "buy":
+                    c = float(f.get("count_fp", f.get("count", 0)) or 0)
+                    p = float(f.get("yes_price_dollars", 0) or 0) * 100
+                    ct += c
+                    px += c * p
+            return int(round(px / ct)) if ct > 0 else fallback
+        except Exception:
+            return fallback
+
     async def _repost_missing_siblings(self, pos_map, ord_map):
         """[C-REPOST-SIBLING-ON-BOOT] (gated repost_sibling_on_boot) runs at the end
         of every reconcile pass, on EXCHANGE TRUTH (pos_map/ord_map), not
@@ -3870,17 +3890,19 @@ class LiveV3:
                     _skip("sibling_position"); continue  # pair (or partial) exists
                 if any(o.get("action") == "buy" for o in ord_map.get(sib, [])):
                     _skip("sibling_bid_alive"); continue # live resting bid on exchange
+                # [C-DUP-GUARD 07-06] ord_map is a PASS-START snapshot (:reconcile step 2);
+                # an entry placed mid-pass (reaim_on_sibling_arrival, a concurrent walk) is
+                # invisible to it. The in-memory Position is fresher: a live in-flight entry
+                # means this "missing" sibling isn't missing -- posting here stacked the
+                # POTFEL duplicate 5-lot and orphaned KEYNOS's bid into a 23-min-past-latch
+                # in-play fill (12 same-pass dups on the 07-06 tape). Placement-side skip
+                # only; no cancel added (4H standing lock respected).
+                _spm = self.positions.get(sib)
+                if (_spm is not None and _spm.phase == "entry_resting"
+                        and getattr(_spm, "entry_order_id", "")):
+                    _skip("sibling_inflight_memory"); continue
                 # TRUE cost basis from fills (buys on this leg), never pos_map avg (A54)
-                _fl = await api_get(self.session, self.ak, self.pk,
-                    "/trade-api/v2/portfolio/fills?ticker=%s&limit=200" % tk, self.rl)
-                _b_ct = _b_px = 0.0
-                for f in (_fl or {}).get("fills", []):
-                    if f.get("action") == "buy":
-                        _c = float(f.get("count_fp", f.get("count", 0)) or 0)
-                        _p = float(f.get("yes_price_dollars", 0) or 0) * 100
-                        _b_ct += _c
-                        _b_px += _c * _p
-                basis = int(round(_b_px / _b_ct)) if _b_ct > 0 else 0
+                basis = await self._true_entry_basis(tk, 0)
                 if basis <= 0:
                     _skip("no_basis"); continue
                 cat = self.get_category(sib)
@@ -6536,6 +6558,24 @@ class LiveV3:
                     # OFF -> this elif is skipped = byte-identical engagement placement. never-cross +
                     # post_only inherited from _depth_join_target (walks downward only).
                     target_bid, _ = self._depth_join_target(placement_bid, placement_ask, placement_bids, self._depth_floor(cat))
+                # [C-BOUND-SITE4 07-06] fresh-place pair bound. The C-BOUND-RULING
+                # (21eaad4, 07-05: every resting/reprice path bounds combined <= goal)
+                # never covered FRESH placements -- SILDIG 07-06: sibling filled 9c,
+                # fresh v4_place posted the other leg AT the 98c touch (bound 88),
+                # filled -> combined 107. Once the sibling has a BOOKED basis, clamp
+                # the new target to goal - basis. Lower-only; max(1,.) keeps this a
+                # walk constraint, never a participation filter (0A, 07-02).
+                _sib4 = self._sibling_ticker(tk, et)
+                _sp4 = self.positions.get(_sib4) if _sib4 else None
+                if (_sp4 is not None and getattr(_sp4, "entry_qty", 0) > 0
+                        and getattr(_sp4, "entry_price", 0)):
+                    _bound4 = int(self.combined_goal) - int(round(_sp4.entry_price))
+                    if target_bid > _bound4:
+                        self._log("fresh_place_pair_bound", {
+                            "from": int(target_bid), "to": max(1, _bound4),
+                            "leg1_basis": int(_sp4.entry_price),
+                            "goal": self.combined_goal, "cat": cat}, ticker=tk)
+                        target_bid = max(1, _bound4)
                 # [C-JOIN-TRIAL] pre-registered abort halts NEW join entries once tripped.
                 if self.join_trial_aborted and reference_source == "join_bid":
                     if self.abort_carve_held_sibling and self._carve_abort_for_held_sibling(tk, et):
@@ -7731,6 +7771,11 @@ class LiveV3:
         repost_bid = book.best_bid
 
         # Cancel the old bid, but first check it didn't just fill.
+        # [C-OWNERSHIP 07-06] capture the oid this walk owns; if another writer
+        # (reaim_on_sibling_arrival, sibling repost) re-keys the leg across the
+        # awaits below, this walk must NOT place -- doing so orphaned KEYNOS's
+        # re-aim bid (untracked, filled 23min past the live latch, 07-06).
+        _own_oid = pos.entry_order_id
         old = await api_get(self.session, self.ak, self.pk,
             "/trade-api/v2/portfolio/orders/%s" % pos.entry_order_id, self.rl)
         if old:
@@ -7744,6 +7789,15 @@ class LiveV3:
         res = await self._cancel_entry_and_resolve(
             tk, pos, "v4_move_repost", "move_repost_race")
         if res != "cancelled":
+            return
+        # [C-OWNERSHIP 07-06] another writer re-keyed the leg while we awaited
+        # (their fresh order is live; ours was already gone). Abort the placement
+        # -- no order, no oid overwrite, their bid stays tracked. Placement-side
+        # only; the residual place-await micro-window is log-visible below.
+        if pos.entry_order_id != _own_oid:
+            self._log("move_repost_ownership_abort", {
+                "captured_oid": str(_own_oid)[:12],
+                "current_oid": str(pos.entry_order_id)[:12]}, ticker=tk)
             return
 
         # [C-CAP-DIFF] reach-repost cap (dormant; default OFF). new_target here is
@@ -7777,6 +7831,26 @@ class LiveV3:
                         "conception_cell": int(_wo2["cell"]), "cap": self._walk_cap_cents(pos.category),
                         "cat": pos.category, "current_price": current_price}, ticker=tk)
                     new_target = _ceil
+
+        # [C-BOUND-RECHECK 07-06] the leg2_reshuffle clamp above ran in the pre-await
+        # decision slice; the poll/cancel awaits are a 1-3s window in which the sibling's
+        # fill can book (TSIAND 07-06: bound computed with no basis, sibling booked 3s
+        # later, 77c placed vs bound 73 -> combined 101). Re-derive the goal-basis bound
+        # NOW, after the awaits, with the same lower-only semantics. Completes the
+        # C-BOUND-RULING (21eaad4) on this path's last gap.
+        if self.leg2_reshuffle and pos.entry_mode != "completion_reprice":
+            _sib_rc = self._sibling_ticker_any(tk)
+            _sp_rc = self.positions.get(_sib_rc) if _sib_rc else None
+            if (_sp_rc is not None and getattr(_sp_rc, "entry_qty", 0) > 0
+                    and getattr(_sp_rc, "entry_price", 0)):
+                _bound_rc = max(1, int(self.combined_goal) - int(round(_sp_rc.entry_price)))
+                if new_target > _bound_rc:
+                    self._log("leg2_bound_recheck_clamp", {
+                        "from": int(new_target), "to": _bound_rc,
+                        "leg1_basis": int(_sp_rc.entry_price),
+                        "goal": self.combined_goal}, ticker=tk)
+                    new_target = _bound_rc
+                    pos.reshuffle_pinned = True
 
         # Fix-3 (reprice-maker-only): NEVER cross on a reprice. A marketable re-evaluated
         # target is clamped to a resting bid one below the ask and re-rested as a maker.
@@ -8219,6 +8293,14 @@ class LiveV3:
         An existing resting sell still LINKS as before (already-booked restart
         path -- no booking, no exit cancel/repost churn)."""
         qty = pinfo["qty"]
+        # [C-TRUE-BASIS 07-06] adopt at COST (fills-API buy VWAP), never the pos_map
+        # mark-to-market avg -- everything below (exit cell, band rule, booking,
+        # sibling re-aim bound) keys off this number. Fallback = the caller's avg.
+        _avg_mark = avg
+        avg = await self._true_entry_basis(tk, avg)
+        if avg != _avg_mark:
+            self._log("adoption_true_basis", {
+                "mark_avg": _avg_mark, "true_basis": avg, "qty": qty}, ticker=tk)
         # [C-COPILOT] attribution via the bot's own order-id/ticker registry:
         # a naked position on a ticker the bot never ordered (or whose resting
         # bid we observed as foreign) is the OPERATOR'S -- unknown = manual by

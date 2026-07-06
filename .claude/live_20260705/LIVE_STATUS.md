@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 61 @ **2026-07-05 09:12:04 PM ET** | build `8944362` | session boot 07-05 19:24 ET | log `live_v3_20260705.jsonl` | 3154 session events | monitor READ-ONLY
+- cycle 62 @ **2026-07-05 09:22:11 PM ET** | build `9067ece` | session boot 07-05 19:24 ET | log `live_v3_20260705.jsonl` | 3299 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 0 violation(s)
@@ -11,21 +11,22 @@
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 19:25 | ITFMATCH-26JUL05MASCIO-MAS | ITF_M | underdog | 33 | 28 | +5 (place_cell) | 9.0 | pre | single |  | GIFT_CLASS |
 | 19:26 | ITFMATCH-26JUL05VANGAU-GAU | ITF_M | underdog | 7 | 5 | +2 (place_cell) | -1.5 | pre | single |  | MIXED |
-| 19:38 | ATPCHALLENGERMATCH-26JUL05LEGSHI-L | ATP_CHALL | underdog | 48 | 45 | +3 (place_cell) | — | pre | pair | 97 | PENDING |
-| 20:13 | ATPCHALLENGERMATCH-26JUL05LEGSHI-S | ATP_CHALL | leader | 49 | 53 | -4 (place_cell) | — | pre | pair | 97 | PENDING |
+| 19:38 | ATPCHALLENGERMATCH-26JUL05LEGSHI-L | ATP_CHALL | underdog | 48 | 45 | +3 (place_cell) | -21.5 | pre | pair | 97 | EARNED |
+| 20:13 | ATPCHALLENGERMATCH-26JUL05LEGSHI-S | ATP_CHALL | leader | 49 | 53 | -4 (place_cell) | 13.0 | pre | pair | 97 | GIFT_CLASS |
 
 ## RESTING BIDS — 2 tape-graded (starvation = NO_FLOW only)
 - classes now: {'FLOW_AT_LEVEL': 2} | repriceable now: true 0 / false 2 | **cumulative bid_grade lines: 825 (repriceable true 82 / false 743)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL05LEGSHI-L | 43 | 58m | 1373/42-79/119712 | 79-42 | -1 | **FLOW_AT_LEVEL** | 48 |  |
-| ATPCHALLENGERMATCH-26JUL05LEGSHI-L | 42 | 52m | 1257/42-79/114150 | 79-42 | 0 | **FLOW_AT_LEVEL** | 48 |  |
+| ATPCHALLENGERMATCH-26JUL05LEGSHI-L | 43 | 68m | 1771/42-95/180955 | 92-42 | -1 | **FLOW_AT_LEVEL** | 48 |  |
+| ATPCHALLENGERMATCH-26JUL05LEGSHI-L | 42 | 62m | 1655/42-95/175393 | 92-42 | 0 | **FLOW_AT_LEVEL** | 48 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 no open half-pairs
 
-## PATTERNS (sub-B) — 2
-- half_arm_aging: KXITFMATCH-26JUL05MASCIO-MAS {"fill": 33, "age_min": 107, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFMATCH-26JUL05VANGAU-GAU {"fill": 7, "age_min": 106, "mode": "NO_BID(sib rested earlier, none now)"}
+## PATTERNS (sub-B) — 3
+- half_arm_aging: KXITFMATCH-26JUL05MASCIO-MAS {"fill": 33, "age_min": 117, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL05VANGAU-GAU {"fill": 7, "age_min": 116, "mode": "NO_BID(sib rested earlier, none now)"}
+- deep_neg_fv: KXATPCHALLENGERMATCH-26JUL05LEGSHI-LEG {"entry_minus_fv_burst": -21.5, "emitted_et": "2026-07-05 09:22:11 PM ET"}
 
 ## ERRORS — 0 handler errors this session (ZERO — clean loop)

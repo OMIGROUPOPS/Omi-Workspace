@@ -1,6 +1,6 @@
 # RISER DISARM — pre-registered rule executed (C46 outcome doc, 2026-07-06)
 
-**Candidate SHA: `e5de4f45`** (config-only: `riser_post_revision: true → false`; the code
+**Candidate SHA: `b0d1bcff`** (config-only: `riser_post_revision: true → false`; the code
 delta vs the proven morning state b8a73a55 is the gated-OFF z-score shadow + staged
 analysis scripts — byte-identical-off, lint PASS, zero new test failures at commit time).
 

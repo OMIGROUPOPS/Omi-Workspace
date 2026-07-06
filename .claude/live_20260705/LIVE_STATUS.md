@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 158 @ **2026-07-06 01:50:34 PM ET** | build `1a3bf21` | session boot 07-06 12:15 ET | log `live_v3_20260706.jsonl` | 10239 session events | monitor READ-ONLY
+- cycle 159 @ **2026-07-06 02:00:41 PM ET** | build `815b372` | session boot 07-06 12:15 ET | log `live_v3_20260706.jsonl` | 10849 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 4 violation(s)
@@ -11,7 +11,7 @@
 | 13:18:15 | **grace_breach** | KXATPMATCH-26JUL06FRIBUB-FRI | fill 64c 49.7min past latch (grace 300s) |
 | 13:49:18 | **combined_over_goal** | KXATPCHALLENGERMATCH-26JUL06MONCOU | pair combined 98c > goal 97c [organic: DEFECT-CLASS] |
 
-## FILLS — 37 graded (session)
+## FILLS — 38 graded (session)
 | ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb | stamp |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 12:15 | ITFMATCH-26JUL06IAMBEN-IAM | ITF_M | ? | 66 | 64 | +2 (window_cell) | — | pre | pair | 97 | GIFT_CLASS |
@@ -50,72 +50,74 @@
 | 13:42 | ATPCHALLENGERMATCH-26JUL06MONCOU-C | ATP_CHALL | ? | 32 | 30 | +2 (window_cell) | — | pre | pair | 98 | MIXED |
 | 13:49 | ATPCHALLENGERMATCH-26JUL06KOZJOH-J | ATP_CHALL | ? | 33 | 32 | +1 (window_cell) | — | pre | single |  | MIXED |
 | 13:49 | ATPCHALLENGERMATCH-26JUL06MONCOU-M | ATP_CHALL | ? | 66 | 66 | +0 (window_cell) | — | pre | pair | 98 | MIXED |
-| 13:49 | ITFWMATCH-26JUL06VARMUN-MUN | ITF_W | ? | 12 | 8 | +4 (adopted_est) | — | pre | single |  | PENDING |
+| 13:49 | ITFWMATCH-26JUL06VARMUN-MUN | ITF_W | ? | 12 | 8 | +4 (adopted_est) | 0.5 | pre | single |  | MIXED |
+| 13:55 | ATPCHALLENGERMATCH-26JUL06PERMEL-P | ATP_CHALL | underdog | 1 | 5 | -4 (place_cell) | — | pre | single |  | EARNED |
 
 ## RESTING BIDS — 12 tape-graded (starvation = NO_FLOW only)
-- classes now: {'FLOW_ABOVE': 5, 'NO_FLOW': 1, 'FLOW_AT_LEVEL': 6} | repriceable now: true 3 / false 9 | **cumulative bid_grade lines: 2467 (repriceable true 232 / false 2235)** -- the liquid_repost re-arm evidence accumulates here
+- classes now: {'FLOW_ABOVE': 5, 'NO_FLOW': 1, 'FLOW_AT_LEVEL': 6} | repriceable now: true 2 / false 10 | **cumulative bid_grade lines: 2468 (repriceable true 232 / false 2236)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL06ABOALVA- | 56 | 50m | 7/56-59/44 | 57-58 | 0 | **FLOW_AT_LEVEL** | 53 |  |
-| ATPCHALLENGERMATCH-26JUL06ABOALVA- | 42 | 50m | 1/43-43/13 | 42-43 | 1 | **FLOW_ABOVE** | 40 | flow above but bound 40c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL06CLAPAP-P | 15 | 69m | 391/1-36/68794 | 1-1 | -14 | **FLOW_AT_LEVEL** | 15 |  |
-| ATPCHALLENGERMATCH-26JUL06MAGROD-R | 53 | 56m | 686/30-82/39747 | 38-35 | -23 | **FLOW_AT_LEVEL** | 52 |  |
-| ATPCHALLENGERMATCH-26JUL06OLIDAN-O | 36 | 38m | 227/4-46/30476 | 5-5 | -32 | **FLOW_AT_LEVEL** | 36 |  |
-| ATPCHALLENGERMATCH-26JUL06PERMEL-P | 1 | 10m | 62/2-6/13494 | 2-2 | 1 | **FLOW_ABOVE** | 3 | REPRICEABLE→2 |
-| ATPCHALLENGERMATCH-26JUL06SANARN-A | 53 | 74m | 1713/6-72/215582 | 8-8 | -47 | **FLOW_AT_LEVEL** | 51 |  |
-| ATPCHALLENGERMATCH-26JUL06WEIGRA-G | 81 | 61m | 59/98-99/30174 | 98-99 | 17 | **FLOW_ABOVE** | 89 | flow above but bound 89c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL06ZEBAND-A | 77 | 89m | 3/81-81/10 | 80-81 | 4 | **FLOW_ABOVE** | 78 | REPRICEABLE→78 |
-| ITFMATCH-26JUL06CUNLIM-LIM | 18 | 88m | 0 | 22-24 | — | **NO_FLOW** | 18 |  |
-| ITFMATCH-26JUL06DONDEV-DEV | 24 | 54m | 496/1-74/43949 | 32-1 | -23 | **FLOW_AT_LEVEL** | 58 |  |
-| ITFWMATCH-26JUL06LABTSY-TSY | 95 | 14m | 4/99-99/31 | 99-98 | 4 | **FLOW_ABOVE** | 96 | REPRICEABLE→96 |
+| ATPCHALLENGERMATCH-26JUL06ABOALVA- | 56 | 60m | 7/56-59/44 | 57-58 | 0 | **FLOW_AT_LEVEL** | 53 |  |
+| ATPCHALLENGERMATCH-26JUL06ABOALVA- | 42 | 60m | 1/43-43/13 | 42-44 | 1 | **FLOW_ABOVE** | 40 | flow above but bound 40c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06CLAPAP-P | 15 | 79m | 391/1-36/68794 | 1-1 | -14 | **FLOW_AT_LEVEL** | 15 |  |
+| ATPCHALLENGERMATCH-26JUL06MAGROD-R | 53 | 66m | 807/30-82/54583 | 34-35 | -23 | **FLOW_AT_LEVEL** | 52 |  |
+| ATPCHALLENGERMATCH-26JUL06OLIDAN-O | 36 | 48m | 252/3-46/34076 | 6-7 | -33 | **FLOW_AT_LEVEL** | 36 |  |
+| ATPCHALLENGERMATCH-26JUL06SANARN-A | 53 | 84m | 1815/2-72/236614 | 5-6 | -51 | **FLOW_AT_LEVEL** | 51 |  |
+| ATPCHALLENGERMATCH-26JUL06WEIGRA-G | 81 | 71m | 59/98-99/30174 | 98-99 | 17 | **FLOW_ABOVE** | 89 | flow above but bound 89c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL06ZEBAND-A | 77 | 100m | 3/81-81/10 | 80-81 | 4 | **FLOW_ABOVE** | 78 | REPRICEABLE→78 |
+| ITFMATCH-26JUL06CUNLIM-LIM | 18 | 99m | 0 | 22-25 | — | **NO_FLOW** | 18 |  |
+| ITFMATCH-26JUL06DONDEV-DEV | 24 | 64m | 496/1-74/43949 | 32-1 | -23 | **FLOW_AT_LEVEL** | 58 |  |
+| ITFWMATCH-26JUL06LABTSY-TSY | 95 | 24m | 4/99-99/31 | 99-98 | 4 | **FLOW_ABOVE** | 96 | REPRICEABLE→96 |
+| ITFWMATCH-26JUL06MARBED-MAR | 79 | 10m | 28/98-99/4380 | 97-98 | 19 | **FLOW_ABOVE** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
 |---|---|---|---|---|---|
 | ATPCHALLENGERMATCH-26JUL06HUETEN | 29 | 1 | **30** | 97 | -67 |
-| ITFMATCH-26JUL06XUXBER | 32 | 4 | **36** | 97 | -61 |
-| ATPCHALLENGERMATCH-26JUL06OLIDAN | 61 | 5 | **66** | 97 | -31 |
+| ITFMATCH-26JUL06XUXBER | 32 | 15 | **47** | 97 | -50 |
+| ATPCHALLENGERMATCH-26JUL06OLIDAN | 61 | 7 | **68** | 97 | -29 |
 | ATPCHALLENGERMATCH-26JUL06CLAPAP | 71 | 1 | **72** | 97 | -25 |
 | ITFWMATCH-26JUL06LABTSY | 1 | 98 | **99** | 97 | +2 |
+| ATPCHALLENGERMATCH-26JUL06PERMEL | 1 | 99 | **100** | 97 | +3 |
 | ATPCHALLENGERMATCH-26JUL06KOZJOH | 33 | 68 | **101** | 97 | +4 |
-| ITFMATCH-26JUL06CUNLIM | 79 | 24 | **103** | 97 | +6 |
+| ITFMATCH-26JUL06CUNLIM | 79 | 25 | **104** | 97 | +7 |
 | ITFMATCH-26JUL06DONDEV | 24 | 80 | **104** | 97 | +7 |
-| ATPCHALLENGERMATCH-26JUL06MAGROD | 52 | 62 | **114** | 97 | +17 |
 | ITFWMATCH-26JUL06LIMDEK | 23 | 93 | **116** | 97 | +19 |
+| ATPCHALLENGERMATCH-26JUL06MAGROD | 52 | 66 | **118** | 97 | +21 |
 | ATPCHALLENGERMATCH-26JUL06PALKOL | 22 | 98 | **120** | 97 | +23 |
 | WTACHALLENGERMATCH-26JUL06CURDOD | 29 | 99 | **128** | 97 | +31 |
-| ATPCHALLENGERMATCH-26JUL06SANARN | 53 | 92 | **145** | 97 | +48 |
+| ATPCHALLENGERMATCH-26JUL06SANARN | 53 | 95 | **148** | 97 | +51 |
 
 ## PATTERNS (sub-B) — 30
 - deep_neg_fv: KXATPCHALLENGERMATCH-26JUL06DEHUD-DE {"entry_minus_fv_burst": -48.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06DEHUD-DE {"fill": 36, "age_min": 95, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFMATCH-26JUL06BROTHU-BRO {"fill": 38, "age_min": 95, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL06TRATEO-TRA {"fill": 18, "age_min": 95, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06DEHUD-DE {"fill": 36, "age_min": 105, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL06BROTHU-BRO {"fill": 38, "age_min": 105, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL06TRATEO-TRA {"fill": 18, "age_min": 105, "mode": "NO_BID(sib rested earlier, none now)"}
 - deep_neg_fv: KXATPCHALLENGERMATCH-26JUL06KASCIN-KAS {"entry_minus_fv_burst": -8.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06KASCIN-KAS {"fill": 43, "age_min": 93, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXWTACHALLENGERMATCH-26JUL06CURDOD-DOD {"fill": 29, "age_min": 92, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06SANARN-ARN {"fill": 53, "age_min": 92, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFMATCH-26JUL06SURMED-MED {"fill": 56, "age_min": 88, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFMATCH-26JUL06CUNLIM-CUN {"fill": 79, "age_min": 88, "mode": "STARVATION(no prints since post)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06HUETEN-TEN {"fill": 29, "age_min": 87, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06KASCIN-KAS {"fill": 43, "age_min": 103, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXWTACHALLENGERMATCH-26JUL06CURDOD-DOD {"fill": 29, "age_min": 103, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06SANARN-ARN {"fill": 53, "age_min": 102, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL06SURMED-MED {"fill": 56, "age_min": 99, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL06CUNLIM-CUN {"fill": 79, "age_min": 99, "mode": "STARVATION(no prints since post)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06HUETEN-TEN {"fill": 29, "age_min": 97, "mode": "PAIRING(sib never rested)"}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06LIMDEK-DEK {"price": 21, "ceiling": 19}
 - deep_neg_fv: KXITFWMATCH-26JUL06MARBED-MAR {"entry_minus_fv_burst": -9.5}
-- half_arm_aging: KXITFWMATCH-26JUL06MARBED-MAR {"fill": 79, "age_min": 83, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFWMATCH-26JUL06MARBED-MAR {"fill": 79, "age_min": 93, "mode": "PAIRING(sib never rested)"}
 - uncorrelated_buy_above_ceiling: KXITFWMATCH-26JUL06LIMDEK-DEK {"price": 24, "ceiling": 19}
-- half_arm_aging: KXITFWMATCH-26JUL06SINUSU-SIN {"fill": 35, "age_min": 75, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXWTACHALLENGERMATCH-26JUL06DENQUE-QUE {"fill": 92, "age_min": 74, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06CLAPAP-CLA {"fill": 71, "age_min": 71, "mode": "QUEUE(flow at/below our level, unfilled)"}
-- half_arm_aging: KXITFMATCH-26JUL06LUEVAN-LUE {"fill": 75, "age_min": 68, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFWMATCH-26JUL06SINUSU-SIN {"fill": 35, "age_min": 85, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXWTACHALLENGERMATCH-26JUL06DENQUE-QUE {"fill": 92, "age_min": 84, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06CLAPAP-CLA {"fill": 71, "age_min": 82, "mode": "QUEUE(flow at/below our level, unfilled)"}
+- half_arm_aging: KXITFMATCH-26JUL06LUEVAN-LUE {"fill": 75, "age_min": 78, "mode": "PAIRING(sib never rested)"}
 - deep_neg_fv: KXATPCHALLENGERMATCH-26JUL06PALKOL-PAL {"entry_minus_fv_burst": -18.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06PALKOL-PAL {"fill": 22, "age_min": 68, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06PALKOL-PAL {"fill": 22, "age_min": 78, "mode": "PAIRING(sib never rested)"}
 - deep_neg_fv: KXITFMATCH-26JUL06SLODIF-DIF {"entry_minus_fv_burst": -36.0}
-- half_arm_aging: KXITFMATCH-26JUL06DONDEV-DEV {"fill": 24, "age_min": 64, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06MAGROD-ROD {"fill": 52, "age_min": 64, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFWMATCH-26JUL06LIMDEK-DEK {"fill": 23, "age_min": 63, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXWTACHALLENGERMATCH-26JUL06COLSMI-SMI {"fill": 60, "age_min": 58, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL06DONDEV-DEV {"fill": 24, "age_min": 75, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06MAGROD-ROD {"fill": 52, "age_min": 74, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFWMATCH-26JUL06LIMDEK-DEK {"fill": 23, "age_min": 74, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXWTACHALLENGERMATCH-26JUL06COLSMI-SMI {"fill": 60, "age_min": 68, "mode": "PAIRING(sib never rested)"}
 - deep_neg_fv: KXITFMATCH-26JUL06XUXBER-BER {"entry_minus_fv_burst": -45.0}
-- half_arm_aging: KXITFMATCH-26JUL06XUXBER-BER {"fill": 32, "age_min": 53, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06OLIDAN-DAN {"fill": 61, "age_min": 40, "mode": "QUEUE(flow at/below our level, unfilled)"}
-- half_arm_aging: KXATPMATCH-26JUL06FRIBUB-FRI {"fill": 64, "age_min": 32, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL06XUXBER-BER {"fill": 32, "age_min": 63, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06OLIDAN-DAN {"fill": 61, "age_min": 50, "mode": "QUEUE(flow at/below our level, unfilled)"}
+- half_arm_aging: KXATPMATCH-26JUL06FRIBUB-FRI {"fill": 64, "age_min": 42, "mode": "PAIRING(sib never rested)"}
 
 ## ERRORS — 2 handler errors this session (SEE ZERO-TOLERANCE)

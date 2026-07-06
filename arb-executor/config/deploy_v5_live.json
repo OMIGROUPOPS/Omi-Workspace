@@ -83,5 +83,6 @@
   "latch_tape_override": true,
   "riser_post_revision": true,
   "per_match_clock_shadow": true,
-  "scale_gun_shadow": true
+  "scale_gun_shadow": true,
+  "per_match_clock": true
 }

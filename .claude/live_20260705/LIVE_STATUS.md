@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 13 @ **2026-07-06 05:28:11 PM ET** | build `9cabd02` | session boot 07-06 15:26 ET | log `live_v3_20260706.jsonl` | 11196 session events | monitor READ-ONLY
+- cycle 14 @ **2026-07-06 05:38:16 PM ET** | build `4179259` | session boot 07-06 15:26 ET | log `live_v3_20260706.jsonl` | 12285 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 0 violation(s)
@@ -26,9 +26,9 @@
 - classes now: {'FLOW_ABOVE': 2, 'NO_FLOW': 1} | repriceable now: true 0 / false 3 | **cumulative bid_grade lines: 2496 (repriceable true 234 / false 2262)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL06VUKBRO-B | 49 | 122m | 1/51-51/3 | 49-51 | 2 | **FLOW_ABOVE** | 48 | flow above but bound 48c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL06PHATOM-PHA | 15 | 9m | 3/24-25/58 | 15-24 | 9 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL06TAGSUZ-SUZ | 17 | 1m | 0 | 17-21 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL06VUKBRO-B | 49 | 132m | 1/51-51/3 | 49-51 | 2 | **FLOW_ABOVE** | 48 | flow above but bound 48c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL06PHATOM-PHA | 15 | 19m | 3/24-25/58 | 15-24 | 9 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL06TAGSUZ-SUZ | 17 | 11m | 0 | 17-21 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
@@ -40,14 +40,14 @@
 
 ## PATTERNS (sub-B) — 11
 - deep_neg_fv: KXATPCHALLENGERMATCH-26JUL06SANARN-ARN {"entry_minus_fv_burst": -33.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06SANARN-ARN {"fill": 53, "age_min": 122, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06KOZJOH-KOZ {"fill": 66, "age_min": 117, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFMATCH-26JUL06GARPER-PER {"fill": 27, "age_min": 110, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06GLIYUN-GLI {"fill": 16, "age_min": 101, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06SANARN-ARN {"fill": 53, "age_min": 132, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06KOZJOH-KOZ {"fill": 66, "age_min": 127, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL06GARPER-PER {"fill": 27, "age_min": 121, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06GLIYUN-GLI {"fill": 16, "age_min": 111, "mode": "PAIRING(sib never rested)"}
 - deep_neg_fv: KXITFWMATCH-26JUL06JULOLI-JUL {"entry_minus_fv_burst": -31.5}
-- half_arm_aging: KXITFWMATCH-26JUL06JULOLI-JUL {"fill": 16, "age_min": 97, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06GOMRIB-RIB {"fill": 80, "age_min": 93, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXATPMATCH-26JUL06LEHZVE-LEH {"fill": 24, "age_min": 85, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFWMATCH-26JUL06JULOLI-JUL {"fill": 16, "age_min": 107, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06GOMRIB-RIB {"fill": 80, "age_min": 103, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPMATCH-26JUL06LEHZVE-LEH {"fill": 24, "age_min": 95, "mode": "PAIRING(sib never rested)"}
 - deep_neg_fv: KXATPCHALLENGERMATCH-26JUL06RODLIN-LIN {"entry_minus_fv_burst": -15.5}
 - combined_over_goal_UNVERIFIED_BASIS: KXATPCHALLENGERMATCH-26JUL06RODLIN {"combined": 99, "detail": "pair combined 99c > 97c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) \u2014 exchange-truth check required, NOT a ZT row"}
 

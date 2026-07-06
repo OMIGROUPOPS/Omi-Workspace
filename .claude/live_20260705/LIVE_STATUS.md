@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 53 @ **2026-07-05 07:51:17 PM ET** | build `9f6cd41` | session boot 07-05 19:24 ET | log `live_v3_20260705.jsonl` | 887 session events | monitor READ-ONLY
+- cycle 54 @ **2026-07-05 08:01:21 PM ET** | build `0decf37` | session boot 07-05 19:24 ET | log `live_v3_20260705.jsonl` | 960 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 0 violation(s)
@@ -17,13 +17,15 @@
 - classes now: {'FLOW_ABOVE': 1} | repriceable now: true 0 / false 1 | **cumulative bid_grade lines: 823 (repriceable true 82 / false 741)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL05LEGSHI-S | 49 | 13m | 98/54-70/34053 | 56-54 | 5 | **FLOW_ABOVE** | 49 | flow above but bound 49c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL05LEGSHI-S | 49 | 23m | 126/54-70/38880 | 56-54 | 5 | **FLOW_ABOVE** | 49 | flow above but bound 49c < flow -- chasing breaks goal |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
 |---|---|---|---|---|---|
 | ATPCHALLENGERMATCH-26JUL05LEGSHI | 48 | 54 | **102** | 97 | +5 |
 
-## PATTERNS (sub-B) — 0
+## PATTERNS (sub-B) — 2
+- half_arm_aging: KXITFMATCH-26JUL05MASCIO-MAS {"fill": 33, "age_min": 36, "mode": "NO_BID(sib rested earlier, none now)", "emitted_et": "2026-07-05 08:01:21 PM ET"}
+- half_arm_aging: KXITFMATCH-26JUL05VANGAU-GAU {"fill": 7, "age_min": 35, "mode": "NO_BID(sib rested earlier, none now)"}
 
 ## ERRORS — 0 handler errors this session (ZERO — clean loop)

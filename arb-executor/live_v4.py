@@ -108,6 +108,12 @@ PM_CLOCK_WIDEN_DEFAULT_SEC = 14400      # unknown category -> CHALL widening
 SCALE_GUN_MULT = 3.0                    # shadow bar = max(LIVE_TRADE_BURST, baseline/min * MULT)
 SCALE_GUN_BASELINE_EXCL_SEC = 120       # exclude the most-recent 2 min from the baseline (don't self-count the burst)
 SCALE_GUN_BASELINE_MIN_SPAN_SEC = 300   # need >= 5 min of baseline span to scale; else bar = legacy floor
+# [C-THIN-GUN SHADOW] the same scale-aware principle pointed DOWN: a thin match (baseline
+# ~0/min) never gives a >=10-print burst, but 3 prints/min on a market that did 0/hour IS
+# a burst (relative acceleration). Observe-only; rides scale_gun_shadow; logs ONLY where
+# the current gun is blind (recent < LIVE_TRADE_BURST). No consumer, no clock in any order path.
+THIN_GUN_MIN_PRINTS = 3                 # floor: >= this many prints/60s to consider a thin latch
+THIN_GUN_BASELINE_MAX = 1.0             # only markets whose trailing baseline < this many prints/min
 ENTRY_MAX_LEAD_SEC_BY_SERIES = {
     "KXATPMATCH": 43200,         # ATP Main Draw: 12h (books stable at T-12h, 1c spread)
     "KXWTAMATCH": 43200,         # WTA Main Draw: 12h (books stable at T-12h, 1c spread)
@@ -1526,6 +1532,7 @@ class LiveV3:
         # scale-aware gun latch; log-once gun_scale_shadow per event; NO consumer.
         self.scale_gun_shadow = bool(self.config.get("scale_gun_shadow", False))
         self._scale_gun_fired: Set[str] = set()   # events whose shadow gun has latched (log-once)
+        self._thin_gun_fired: Set[str] = set()    # [C-THIN-GUN] thin-latch shadow log-once
         # [C-PARTICIPATE] tonight's blunt participation flag (default False = byte-identical).
         # When True, the ENTRY inside_buffer skip (stop-entering-within-T-15) is bypassed so we keep
         # resting bids into the last 15 min; the tape-latch (match_live_cancel) still governs the real
@@ -4455,7 +4462,40 @@ class LiveV3:
             if dq:
                 recent += sum(1 for t in dq if t >= cutoff)
         if recent < LIVE_TRADE_BURST:
-            return   # below even the legacy floor: neither gun fires, nothing to grade
+            # [C-THIN-GUN SHADOW] the gun-blind class: the legacy gun can NEVER fire here.
+            # Relative acceleration on a near-silent market (trailing baseline <
+            # THIN_GUN_BASELINE_MAX prints/min): >= max(3, 3x baseline) prints in 60s is a
+            # thin-market start signal. Log-once, observe-only, NO consumer -- graduation
+            # per category vs the honest clock (study anchor only; no clock in any order path).
+            if recent >= THIN_GUN_MIN_PRINTS and et not in self._thin_gun_fired:
+                tb_hi = now - SCALE_GUN_BASELINE_EXCL_SEC
+                tb_lo = now - V4_RUNNING_MID_WINDOW_SEC
+                n_b = 0
+                old_b = tb_hi
+                for tk in legs:
+                    pdq = self._trade_prices.get(tk)
+                    if pdq:
+                        for ts, _p in pdq:
+                            if tb_lo <= ts <= tb_hi:
+                                n_b += 1
+                                if ts < old_b:
+                                    old_b = ts
+                span_b = max(0.0, tb_hi - old_b)
+                base_pm = (n_b / (span_b / 60.0)) if (span_b >= SCALE_GUN_BASELINE_MIN_SPAN_SEC and n_b) else 0.0
+                _tf = base_pm * SCALE_GUN_MULT
+                thin_bar = max(THIN_GUN_MIN_PRINTS, int(_tf) + (1 if _tf > int(_tf) else 0))
+                if base_pm < THIN_GUN_BASELINE_MAX and recent >= thin_bar:
+                    self._thin_gun_fired.add(et)
+                    _st = self.event_start_time.get(et)
+                    _hs = (getattr(self, "_pm_honest", {}).get(et) or {}).get("start_ts")
+                    self._log("gun_thin_shadow", {
+                        "event": et, "category": self.get_category(et),
+                        "recent_burst": recent, "thin_bar": thin_bar,
+                        "baseline_per_min": round(base_pm, 2),
+                        "legacy_gun_would_fire": False,
+                        "tts_legacy_min": (round((_st - now) / 60.0, 1) if _st else None),
+                        "tts_honest_min": (round((_hs - now) / 60.0, 1) if _hs else None)})
+            return   # below the legacy floor: neither real gun fires, nothing more to grade
         b_hi = now - SCALE_GUN_BASELINE_EXCL_SEC
         b_lo = now - V4_RUNNING_MID_WINDOW_SEC
         n_base = 0

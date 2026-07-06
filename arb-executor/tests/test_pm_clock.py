@@ -111,7 +111,9 @@ method_src = _extract("_scale_gun_shadow_tick", cls="LiveV3")
 GNS = {"LIVE_DETECT_WINDOW_SEC": LIVE_DETECT_WINDOW_SEC, "LIVE_TRADE_BURST": LIVE_TRADE_BURST,
        "V4_RUNNING_MID_WINDOW_SEC": V4_RUNNING_MID_WINDOW_SEC, "SCALE_GUN_MULT": SCALE_GUN_MULT,
        "SCALE_GUN_BASELINE_EXCL_SEC": SCALE_GUN_BASELINE_EXCL_SEC,
-       "SCALE_GUN_BASELINE_MIN_SPAN_SEC": SCALE_GUN_BASELINE_MIN_SPAN_SEC}
+       "SCALE_GUN_BASELINE_MIN_SPAN_SEC": SCALE_GUN_BASELINE_MIN_SPAN_SEC,
+       "THIN_GUN_MIN_PRINTS": _const("THIN_GUN_MIN_PRINTS"),
+       "THIN_GUN_BASELINE_MAX": _const("THIN_GUN_BASELINE_MAX")}
 exec(compile(method_src, SRC_PATH.name, "exec"), GNS)
 
 class FakeBot:
@@ -123,17 +125,29 @@ class FakeBot:
         self.event_start_time = {}
         self._events_live = set()
         self._scale_gun_fired = set()
+        self._thin_gun_fired = set()
+        self._pm_honest = {}
         self.logged = []
     def get_category(self, et): return "ATP_MAIN"
     def _log(self, ev, det, **kw): self.logged.append((ev, det))
 
 NOW = 1_000_000.0
 
-# (a) quiet tape: below legacy floor -> no fire, no log
+# (a) below legacy floor, quiet baseline -> THIN shadow fires (C-THIN-GUN; scale-gun set untouched)
 b = FakeBot()
 b._trade_times = {"EV-A": deque([NOW - 5] * (LIVE_TRADE_BURST - 1))}
 b._scale_gun_shadow_tick("EV", NOW)
-check("scale-gun: below legacy floor -> silent", not b.logged and not b._scale_gun_fired)
+check("thin-gun: gun-blind burst (9 prints, 0 baseline) -> gun_thin_shadow fires",
+      len(b.logged) == 1 and b.logged[0][0] == "gun_thin_shadow" and not b._scale_gun_fired
+      and b.logged[0][1]["legacy_gun_would_fire"] is False)
+# (a2) truly silent tape (< THIN floor) -> nothing
+b0 = FakeBot()
+b0._trade_times = {"EV-A": deque([NOW - 5] * 2)}
+b0._scale_gun_shadow_tick("EV", NOW)
+check("thin-gun: 2 prints -> silent", not b0.logged and not b0._thin_gun_fired)
+# (a3) thin log-once
+b._scale_gun_shadow_tick("EV", NOW + 1)
+check("thin-gun: log-once", len(b.logged) == 1)
 
 # (b) ITF-like: burst over a quiet baseline -> fires at the legacy bar
 b = FakeBot()

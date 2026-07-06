@@ -36,3 +36,8 @@ cd /root/Omi-Workspace && git add .claude/live_20260705/ && git commit -m "night
 
 Pass bars each night: zero-tolerance board clean (or same-day patch through the gate —
 defects are exempt from the config hold); leak table updated; counters reported.
+
+## W1 GRADING (2026-07-06 upgrade, Vault 0E) -- PRIMARY LINE
+Run audit/w1_grading.py after full_tape_regrade.py: W1-cash rate per category is the headline; BOUHAR-class (both legs W1_CASHED) reported as its own rate; A requires the W1 shape. Baseline 07-05 box: 0/257 legs -- honest-clock era measured against zero.
+## LATCH-BLIND (C-THIN-GUN calibration)
+Run audit/latch_blind_forensic.py on settled slates; grade gun_thin_shadow fires vs honest start; graduation = catches the blind class at honest start +/-minutes with ~zero false pregame fires.

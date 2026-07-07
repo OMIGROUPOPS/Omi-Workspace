@@ -39,7 +39,7 @@ def main():
         s = resting_sell.get(tk, sum(sells.get(tk, [])))
         if len(buys.get(tk, [])) > 1:
             stacks.append((tk, len(buys[tk]), b))
-        if h + b > LOT + 0.01:
+        if b > 0 and h + b > LOT + 0.01:
             conc_owned.append((tk, h, b))
         if h >= 1.0:
             if s <= 0.001:

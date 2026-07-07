@@ -8688,7 +8688,10 @@ class LiveV3:
                 failures.append({"tk": tk, "check": "buy_stack",
                                  "n": len(buys[tk]), "qty": bq})
                 row["FAIL"] = "buy_stack"
-            if h + bq > lot + 0.01:
+            # conception = a RESTING BUY beyond the lot law; a historical over-lot
+            # HOLDING with no buys is the exit-qty assertion's domain, not this
+            # one (first live audit false-positived on BARZIN 10-held/0-buys).
+            if bq > 0 and h + bq > lot + 0.01:
                 failures.append({"tk": tk, "check": "conception_on_owned",
                                  "held": h, "buy_qty": bq})
                 row["FAIL"] = (row.get("FAIL", "") + "+conception_on_owned").lstrip("+")

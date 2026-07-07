@@ -41,3 +41,5 @@ defects are exempt from the config hold); leak table updated; counters reported.
 Run audit/w1_grading.py after full_tape_regrade.py: W1-cash rate per category is the headline; BOUHAR-class (both legs W1_CASHED) reported as its own rate; A requires the W1 shape. Baseline 07-05 box: 0/257 legs -- honest-clock era measured against zero.
 ## LATCH-BLIND (C-THIN-GUN calibration)
 Run audit/latch_blind_forensic.py on settled slates; grade gun_thin_shadow fires vs honest start; graduation = catches the blind class at honest start +/-minutes with ~zero false pregame fires.
+
+- **JOINT SHADOW rollup (Plex walk-cap ruling, from 2026-07-07 nights):** `python3 analysis/joint_shadow_rollup.py` -> JOINT_SHADOW_<date>.md/json — conversion/starvation of combined-vs-each-alone + <=97 held on constrained pairs. Feeds the walk_cap_honest_anchor + expression_invariant arm gates.

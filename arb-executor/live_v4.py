@@ -2266,6 +2266,41 @@ class LiveV3:
                     "bid_ex_self": _bx,
                     "actual_posture": _posture(actual_bid),
                     "actual_posture_ex_self": _posture_x(actual_bid)}
+            # [C-JOINT-SHADOW, Plex walk-cap ruling 2026-07-07] counterfactual
+            # levels per decision, LOG-ONLY (both flags stay OFF): (a) the RULED
+            # honest-anchor walk cap alone, (b) the expression invariant alone
+            # (join/improve-1 vs the non-self chain), (c) both combined. Anchor =
+            # pos.honest_anchor (set-once first target, stamped unconditionally
+            # at :7022) else the legacy conception cell; src named per line. The
+            # nightly rollup (analysis/joint_shadow_rollup.py) does the would-
+            # fill replay vs the tape; tape_last is the online-computable read.
+            _hc = {"ATP_MAIN": 1, "WTA_MAIN": 1, "ATP_CHALL": 2, "WTA_CHALL": 2,
+                   "ITF_M": 14, "ITF_W": 20}
+            _posn = self.positions.get(tk)
+            _anchor = int(getattr(_posn, "honest_anchor", 0) or 0) if _posn else 0
+            _wo_c = (self._window_open.get(tk) or {}).get("cell")
+            _anchor_src = ("honest" if _anchor
+                           else ("conception" if _wo_c is not None else "none"))
+            if not _anchor and _wo_c is not None:
+                _anchor = int(_wo_c)
+            _cap = int(self.walk_cap_honest_by_cat.get(cat, _hc.get(cat, 4)))
+            _wc_level = (min(int(actual_bid), _anchor + _cap)
+                         if (_anchor and actual_bid) else
+                         (int(actual_bid) if actual_bid else None))
+            _ex_level = None
+            if actual_bid:
+                _ex_level = (int(actual_bid)
+                             if (_bx is None or actual_bid <= _bx + 1)
+                             else int(_bx) + 1)
+            _lvls = [v for v in (_wc_level, _ex_level) if v is not None]
+            _joint = min(_lvls) if _lvls else None
+            _rec.update({"walkcap_level": _wc_level, "walkcap_anchor_src": _anchor_src,
+                         "walkcap_cap": _cap, "exself_level": _ex_level,
+                         "joint_level": _joint,
+                         "tape_last": (getattr(_ob, "last_trade_price", None)
+                                       if _ob else None),
+                         "constrained": bool(actual_bid and _joint is not None
+                                             and _joint < actual_bid)})
             if not _cell or _cell.get("null_reason"):
                 _rec["shadow"] = "NULL_CELL"
             else:

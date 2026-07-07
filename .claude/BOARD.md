@@ -14,6 +14,7 @@
 - **C47-ENFORCE audit** — live (v1.2); watch: halt/clear behavior across tonight's boots, `exit_unpostable_itm` flag population, artifact cadence.
 - **fv_observe riser accumulation** — toward ~100 FV-graded riser legs for the Plex bounce (18/100 at week open).
 - **aim_shadow + ex-self posture lines** — accumulating for the expression rule's Plex package (below-chain 54%@9.1% is the standing finding).
+- **JOINT SHADOW (walk-cap × expression, log-only)** — LIVE from tonight per the walk-cap ruling: walkcap_level/exself_level/joint_level + constrained on every shadow line; nightly rollup JOINT_SHADOW_<date>.md. Arm evidence for walk_cap_honest_anchor + expression_invariant.
 - **AIM_V2 ramp** — gated OFF; dated schedule to honest n≥30 per tier; arm judged against the LIVING_VAULT front page (gold-leg production + B3-conversion bars).
 
 ## QUEUED (next builds, in rough order)
@@ -32,7 +33,7 @@
 
 ## EXTERNAL (owed by others; slots reserved)
 
-- **Plex walk-cap ruling** (walk-cap sizing; invariant=step law, cap=journey bound).
+- ~~Plex walk-cap ruling~~ — **RECEIVED + EXECUTED 2026-07-07** (`.claude/rulings/PLEX_WALK_CAP_SIZES.md`; sizes staged ITF_W 20/ITF_M 14/CHALL 2/MAIN 1, flag stays OFF; JOINT SHADOW live from tonight — arm gate = shadow nights + four bars; nightly rollup in NIGHTLY_PASS).
 - **PLEX_REANCHOR ruling body** — relay dropped it; slot open at `.claude/rulings/PLEX_REANCHOR_RULING.md` (slot 0a17ce03).
 - **Riser Plex bounce** — fires at fv_observe n≈100 (see IN-FLIGHT).
 

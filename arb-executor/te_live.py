@@ -215,6 +215,47 @@ def save_live_scores(matches):
     return saved
 
 
+def bank_observed_starts():
+    """[C-RETENTION-2 2026-07-06] The /results/ page NEVER carries in-play rows
+    (0 'Liv' time-cells all-time -- finished matches show their start clock, so
+    the 'live' status branch was dead code since April). Live matches live at
+    /live/: every match visible there is in-play RIGHT NOW. Bank first sighting
+    into observed_starts, set-once. Additive; nothing else touched."""
+    try:
+        r = requests.get(TE_BASE + '/live/', headers=HEADERS, timeout=15)
+        if r.status_code != 200:
+            return 0
+    except Exception as e:
+        log('TE live page error: %s' % str(e)[:60])
+        return 0
+    pairs = re.findall(r'match-detail/\?id=(\d+)[^>]*>(.*?)</a>', r.text, re.S)
+    conn = get_db()
+    c = conn.cursor()
+    c.execute('SELECT kalshi_code, name FROM players WHERE name IS NOT NULL')
+    kalshi_codes = {row[0]: row[1] for row in c.fetchall()}
+    now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    banked = 0
+    seen = set()
+    for mid, txt in pairs:
+        if mid in seen:
+            continue
+        seen.add(mid)
+        name = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', txt)).strip()
+        if ' - ' not in name:
+            continue
+        p1, p2 = [x.strip() for x in name.split(' - ', 1)]
+        if not p1 or not p2:
+            continue
+        k = match_to_kalshi(p1, kalshi_codes) or match_to_kalshi(p2, kalshi_codes) or ''
+        c.execute("""INSERT OR IGNORE INTO observed_starts
+            (te_match_id, player1, player2, kalshi_ticker, first_inplay_at, inserted_at)
+            VALUES (?, ?, ?, ?, ?, ?)""", (mid, p1, p2, k, now, now))
+        banked += c.rowcount
+    conn.commit()
+    conn.close()
+    return banked
+
+
 # ── STEP 2: BOOKMAKER ODDS SCRAPER ──
 
 def scrape_match_odds(match_id):
@@ -378,6 +419,9 @@ def run_once():
     live = [m for m in matches if m['status'] == 'live']
     finished = [m for m in matches if m['status'] == 'finished']
     saved = save_live_scores(matches)
+    banked = bank_observed_starts()
+    if banked:
+        log('Observed starts banked: %d' % banked)
     log('Scores: %d total (%d live, %d finished), %d saved' % (
         len(matches), len(live), len(finished), saved))
 

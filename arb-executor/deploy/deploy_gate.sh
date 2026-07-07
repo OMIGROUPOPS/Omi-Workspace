@@ -29,6 +29,9 @@ TICKS_DIR="$REPO/analysis/premarket_ticks"
 
 echo "=== DEPLOY GATE on $REPO (HEAD $(git -C "$REPO/.." rev-parse --short HEAD)) ==="
 
+echo "--- [0/3] bank pre-restart book snapshot (C47-ENFORCE: the post-boot audit's diff base)"
+(cd "$REPO" && python3 deploy/book_snapshot.py)
+
 echo "--- [1/3] lint gate"
 python3 "$REPO/deploy/lint_gate.py" "$REPO/live_v4.py"
 

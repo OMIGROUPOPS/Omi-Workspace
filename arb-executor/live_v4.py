@@ -23,6 +23,7 @@ import aiohttp
 import base64
 import json
 import os
+import subprocess
 import sys
 import time
 import traceback
@@ -3071,6 +3072,13 @@ class LiveV3:
                 self._log("never_marketable_clamped", {
                     "from": int(price), "to": max(1, _ask - 1), "best_ask": _ask}, ticker=ticker)
                 price = max(1, _ask - 1)
+        # [C47-ENFORCE] conception halt: a failed post-boot book audit stops ALL
+        # buys at the chokepoint until a re-audit passes. Sells/exits unaffected
+        # (they keep working the book down).
+        if action == "buy" and getattr(self, "_conception_halt", False):
+            self._log("buy_blocked_conception_halt", {
+                "price": price, "count": count}, ticker=ticker)
+            return "", {"_error": "conception_halt"}
         # Position accumulation guard: cap total buy exposure per ticker
         if action == "buy":
             target_max = self.config["sizing"]["entry_contracts"]
@@ -8608,6 +8616,157 @@ class LiveV3:
         await self._book_v4_entry_fill(tk, pos, qty, avg, "adopted",
                                        source="reconcile_adoption")
 
+    async def _post_boot_book_audit(self, context="boot"):
+        """[C47-ENFORCE] Post-boot book audit, assert-and-halt. Within 5 min of
+        every process start (deploy or crash-recover): fresh PAGINATED pull of
+        positions + resting orders (exchange truth), diff vs the pre-restart
+        snapshot the gate banked (state/book_snapshot.json, captured into
+        self._prev_book_snapshot BEFORE the boot reconcile overwrites it).
+        Assertions per leg:
+          - no same-side buy stacks (>1 resting buy order)
+          - resting exit qty == held qty (|held-exits| < 1.0 sub-share tolerance:
+            int-floor fractional residues are bot-invisible, named in C47 f/ups)
+          - no held leg (>=1 sh) without an exit -- EXEMPT strategy=="hold" legs
+            (exitless BY CONFIG) and in-the-money-unpostable legs (band <= bid+1,
+            the post-only-cross 400 class: FLAGGED exit_unpostable_itm, not halted)
+          - no conception on a leg the exchange shows owned/ordered
+            (held + resting buys > lot -- the chokepoint law, asserted externally)
+          - resting bid outside [5,95]: FLAG-ONLY (pre-wiring the band clamp's
+            detection; never halts)
+        ANY failure -> self._conception_halt = True (place_order refuses buys;
+        sells/exits keep working the book), alert artifact written under
+        .claude/audit_halt/ and committed+pushed via deploy/push_audit_artifact.sh.
+        The halt clears ONLY on a passing re-audit (steady-state reconcile re-runs
+        this while halted). Full per-leg table goes to the JSONL (C47: key-presence
+        verification runs on the jsonl, never the truncated console log)."""
+        lot = float(self.entry_size)
+        held, buys, sells = {}, {}, {}
+        cur = None
+        while True:
+            j = await api_get(self.session, self.ak, self.pk,
+                "/trade-api/v2/portfolio/positions?count_filter=position"
+                "&settlement_status=unsettled&limit=200"
+                + ("&cursor=%s" % cur if cur else ""), self.rl)
+            rows_ = (j or {}).get("market_positions", [])
+            for p in rows_:
+                q = float(p.get("position_fp") or 0)
+                if q != 0:
+                    held[p["ticker"]] = q
+            cur = (j or {}).get("cursor")
+            if not cur or not rows_:
+                break
+        cur = None
+        while True:
+            j = await api_get(self.session, self.ak, self.pk,
+                "/trade-api/v2/portfolio/orders?status=resting&limit=200"
+                + ("&cursor=%s" % cur if cur else ""), self.rl)
+            rows_ = (j or {}).get("orders", [])
+            for o in rows_:
+                rec = {"px": round(float(o.get("yes_price_dollars") or 0) * 100),
+                       "qty": float(o.get("remaining_count_fp") or 0),
+                       "oid": o.get("order_id", "")}
+                (buys if o.get("action") == "buy" else sells).setdefault(
+                    o["ticker"], []).append(rec)
+            cur = (j or {}).get("cursor")
+            if not cur or not rows_:
+                break
+        prev = getattr(self, "_prev_book_snapshot", None) or {}
+        diff = {"banked_ts": prev.get("ts"),
+                "legs_new": sorted(set(held) - set(prev.get("held", {})))[:20],
+                "legs_gone": sorted(set(prev.get("held", {})) - set(held))[:20],
+                "n_held_now": len(held), "n_held_banked": len(prev.get("held", {}))}
+        failures, flags, table = [], [], []
+        for tk in sorted(set(list(held) + list(buys) + list(sells))):
+            h = held.get(tk, 0.0)
+            bq = sum(r["qty"] for r in buys.get(tk, []))
+            sq = sum(r["qty"] for r in sells.get(tk, []))
+            pos_obj = self.positions.get(tk)
+            hold_rule = bool(pos_obj and getattr(pos_obj, "strategy", "") == "hold")
+            row = {"tk": tk, "held": h, "buy_orders": len(buys.get(tk, [])),
+                   "buy_qty": bq, "sell_qty": sq, "hold_rule": hold_rule}
+            if len(buys.get(tk, [])) > 1:
+                failures.append({"tk": tk, "check": "buy_stack",
+                                 "n": len(buys[tk]), "qty": bq})
+                row["FAIL"] = "buy_stack"
+            if h + bq > lot + 0.01:
+                failures.append({"tk": tk, "check": "conception_on_owned",
+                                 "held": h, "buy_qty": bq})
+                row["FAIL"] = (row.get("FAIL", "") + "+conception_on_owned").lstrip("+")
+            if h >= 1.0 and not hold_rule:
+                if sq <= 0.001:
+                    band = getattr(pos_obj, "exit_price", 0) if pos_obj else 0
+                    bid = None
+                    try:
+                        m = await api_get(self.session, self.ak, self.pk,
+                            "/trade-api/v2/markets/%s" % tk, self.rl)
+                        v = (m or {}).get("market", {}).get("yes_bid_dollars")
+                        bid = round(float(v) * 100) if v is not None else None
+                    except Exception:
+                        pass
+                    if band and bid is not None and band <= bid + 1:
+                        flags.append({"tk": tk, "flag": "exit_unpostable_itm",
+                                      "band": band, "bid": bid, "held": h})
+                        row["flag"] = "exit_unpostable_itm"
+                    else:
+                        failures.append({"tk": tk, "check": "no_exit",
+                                         "held": h, "band": band, "bid": bid})
+                        row["FAIL"] = (row.get("FAIL", "") + "+no_exit").lstrip("+")
+                elif abs(h - sq) >= 1.0:
+                    failures.append({"tk": tk, "check": "exit_qty_mismatch",
+                                     "held": h, "resting_exits": sq})
+                    row["FAIL"] = (row.get("FAIL", "") + "+exit_qty_mismatch").lstrip("+")
+            for r in buys.get(tk, []):
+                if r["px"] < 5 or r["px"] > 95:
+                    flags.append({"tk": tk, "flag": "bid_outside_5_95", "px": r["px"]})
+                    row["flag"] = (row.get("flag", "") + "+bid_outside_5_95").lstrip("+")
+            table.append(row)
+        verdict = "PASS" if not failures else "FAIL"
+        self._log("post_boot_audit", {
+            "context": context, "verdict": verdict,
+            "n_positions": len(held), "n_resting_orders":
+                sum(len(v) for v in list(buys.values()) + list(sells.values())),
+            "n_failures": len(failures), "n_flags": len(flags),
+            "failures": failures[:60], "flags": flags[:60],
+            "diff_vs_banked": diff, "table": table})
+        if failures:
+            self._conception_halt = True
+            self._log("conception_halt_armed", {
+                "context": context, "n_failures": len(failures)})
+            try:
+                art_dir = Path(__file__).resolve().parent.parent / ".claude" / "audit_halt"
+                art_dir.mkdir(parents=True, exist_ok=True)
+                art = art_dir / ("AUDIT_HALT_%s.md" %
+                                 datetime.now(ET).strftime("%Y%m%d_%H%M%S"))
+                art.write_text(
+                    "# AUDIT HALT %s (%s)\n\nverdict FAIL, %d failures, %d flags. "
+                    "Conceptions halted; exits keep working; halt clears on a "
+                    "passing re-audit.\n\n```json\n%s\n```\n" % (
+                        datetime.now(ET).strftime("%Y-%m-%d %H:%M:%S ET"), context,
+                        len(failures), len(flags),
+                        json.dumps({"failures": failures, "flags": flags,
+                                    "diff_vs_banked": diff}, indent=1)),
+                    encoding="utf-8")
+                subprocess.Popen(
+                    ["bash", str(Path(__file__).resolve().parent / "deploy" /
+                                 "push_audit_artifact.sh"), str(art)],
+                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            except Exception as e:
+                self._log("audit_artifact_error", {"err": str(e)[:200]})
+        else:
+            if getattr(self, "_conception_halt", False):
+                self._log("conception_halt_cleared", {"context": context})
+            self._conception_halt = False
+        try:
+            snap_path = Path(__file__).resolve().parent / "state" / "book_snapshot.json"
+            snap_path.parent.mkdir(parents=True, exist_ok=True)
+            json.dump({"ts": time.time(), "context": context, "held": held,
+                       "buys": {k: sum(r["qty"] for r in v) for k, v in buys.items()},
+                       "sells": {k: sum(r["qty"] for r in v) for k, v in sells.items()}},
+                      open(snap_path, "w"))
+        except Exception:
+            pass
+        return verdict
+
     async def reconcile(self, quiet=False):
         """Load existing positions and resting orders from Kalshi.
         Populate in-memory state so the bot doesn't re-enter or orphan orders.
@@ -9111,11 +9270,30 @@ class LiveV3:
         if tickers:
             await self.ws_subscribe(tickers)
 
+        # [C47-ENFORCE] capture the gate-banked pre-restart snapshot BEFORE the
+        # boot reconcile (whose audit re-banks the file) so the diff is honest.
+        try:
+            _snap = Path(__file__).resolve().parent / "state" / "book_snapshot.json"
+            self._prev_book_snapshot = (json.load(open(_snap))
+                                        if _snap.exists() else None)
+        except Exception:
+            self._prev_book_snapshot = None
+
         # Reconcile: load existing positions and resting orders
         await self.reconcile()
 
         # v4: rebuild any persisted resting bids reconcile didn't link (STEP 5)
         self._load_v4_resting()
+
+        # [C47-ENFORCE] post-boot book audit, assert-and-halt. Fail-closed: an
+        # audit that cannot run is a failed audit -- conceptions halt until a
+        # passing re-audit (steady-state reconcile retries every 60s).
+        try:
+            await self._post_boot_book_audit(context="boot")
+        except Exception as _ae:
+            self._conception_halt = True
+            self._log("post_boot_audit_error", {"err": str(_ae)[:200],
+                                                "action": "conception_halt_armed"})
 
         # Startup skip: events inside the 15-min buffer or past start
         # [C-PARTICIPATE-CLEAN 1] tape_gated_abandon also governs the STARTUP schedule-skip: when on, do NOT
@@ -9358,6 +9536,15 @@ class LiveV3:
                 if now - last_reconcile > 60:
                     await self.reconcile(quiet=True)
                     last_reconcile = now
+                    # [C47-ENFORCE] while halted, re-audit after every reconcile
+                    # pass (reconcile is what heals the book); a PASS clears the
+                    # halt inside the audit itself.
+                    if getattr(self, "_conception_halt", False):
+                        try:
+                            await self._post_boot_book_audit(context="halted_reaudit")
+                        except Exception as _rae:
+                            self._log("post_boot_audit_error", {
+                                "err": str(_rae)[:200], "context": "halted_reaudit"})
 
                 # Write own heartbeat
                 try:

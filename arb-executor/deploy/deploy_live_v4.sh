@@ -56,4 +56,24 @@ echo "post-boot: PID=$PID error-events-today=$ERRS console-tracebacks(recent)=$B
 if [ "$BOOT_ERRS" -gt 0 ]; then
   echo "DEPLOY WARN: tracebacks in console tail -- inspect /tmp/live_v4.log"
 fi
+
+# [C47-ENFORCE] the post-boot book audit MUST run within 5 min; verify on the
+# JSONL (C47: key-presence on the jsonl, never the truncated console log).
+echo "--- waiting for post_boot_audit on the jsonl (max 300s)"
+AUDIT_LINE=""
+for i in $(seq 1 60); do
+  AUDIT_LINE=$(grep '"event": "post_boot_audit"' "$TODAY_LOG" 2>/dev/null | tail -1 || true)
+  [ -n "$AUDIT_LINE" ] && break
+  sleep 5
+done
+if [ -z "$AUDIT_LINE" ]; then
+  echo "DEPLOY FAIL: post_boot_audit never appeared on the jsonl within 300s (C47-ENFORCE)."
+  exit 1
+fi
+VERDICT=$(printf '%s' "$AUDIT_LINE" | grep -o '"verdict": "[A-Z]*"' | head -1)
+echo "post_boot_audit: $VERDICT"
+if printf '%s' "$VERDICT" | grep -q FAIL; then
+  echo "AUDIT FAIL: conceptions HALTED (exits keep working). Halt clears on a passing re-audit."
+  echo "Alert artifact under .claude/audit_halt/ (committed+pushed by the bot)."
+fi
 echo "=== DEPLOYED $SHA (PID $PID, tmux $TMUX_SESSION) ==="

@@ -17,6 +17,7 @@ ET = timezone(timedelta(hours=-4))
 B_FLIP, B_GUARDS, B_DISARM = 1783309839.0, 1783354522.0, 1783365958.0
 CUT_A = datetime(2026,7,6,11,13,tzinfo=ET).timestamp()   # autopsy exchange pull
 CUT_B = datetime(2026,7,6,15,47,tzinfo=ET).timestamp()   # 15:52 roll pull
+CUT_C = datetime(2026,7,6,16,28,tzinfo=ET).timestamp()   # the 16:28 book (target -19.65/197)
 GOAL = 97
 LOGS = ["/tmp/session_since_boot.jsonl", "logs/live_v3_20260706.jsonl"]
 VALID = "/root/Omi-Workspace/.claude/live_20260705/live_validation.jsonl"
@@ -350,13 +351,18 @@ def cut_sum(cut):
     return round(tot,2),n,evl
 cutA,cutA_n,cutA_ev=cut_sum(CUT_A)
 cutB,cutB_n,cutB_ev=cut_sum(CUT_B)
+cutC,cutC_n,cutC_ev=cut_sum(CUT_C)
+bal=g("/portfolio/balance")
 json.dump({"generated":datetime.now(ET).strftime("%Y-%m-%d %H:%M:%S ET"),
            "rows":rows,
            "cuts":{"A_1113":{"sum":cutA,"n":cutA_n},"B_1547":{"sum":cutB,"n":cutB_n},
-                   "A_events":cutA_ev,"B_events":cutB_ev},
+                   "C_1628":{"sum":cutC,"n":cutC_n},
+                   "A_events":cutA_ev,"B_events":cutB_ev,"C_events":cutC_ev},
+           "account_snapshot":{"pulled_at":datetime.now(ET).strftime("%Y-%m-%d %H:%M:%S ET"),
+                               "cash":bal.get("balance_dollars"),"portfolio_value_c":bal.get("portfolio_value")},
            "manual_excluded":sorted(manual)},
           open("/tmp/slate_ledger.json","w"),default=str)
 st=[r for r in rows if r["status"]=="SETTLED"]; op=[r for r in rows if r["status"]=="OPEN"]
 print(f"rows={len(rows)} settled={len(st)} open={len(op)}",file=sys.stderr)
 print(f"LEDGER: settled ${sum(r['pnl'] for r in st):+.2f} | open basis ${sum(r.get('open_basis',0) for r in op):.2f} | open mark ${sum(r.get('open_mark',0) for r in op):.2f}",file=sys.stderr)
-print(f"CUT A (11:13): {cutA} over {cutA_n} events (target -9.33) | CUT B (15:47): {cutB} over {cutB_n} (target E3a -16.05 + E3b)",file=sys.stderr)
+print(f"CUT A: {cutA}/{cutA_n} | CUT B: {cutB}/{cutB_n} | CUT C 16:28: {cutC}/{cutC_n} (target -19.65/197) | bal {bal.get(chr(39)+chr(98)+chr(97)+chr(108)+chr(97)+chr(110)+chr(99)+chr(101)+chr(95)+chr(100)+chr(111)+chr(108)+chr(108)+chr(97)+chr(114)+chr(115)+chr(39))}",file=sys.stderr)

@@ -13,3 +13,11 @@ cancel, no await on the order API. A helper exception cannot propagate (swallowe
 LANE 1: mechanism unchanged by construction — the order path is byte-equivalent
 with the flag on or off. LANE 2: n/a (no trading delta to measure).
 Lint PASS · zero new test failures vs baseline (43 pre-existing).
+
+---
+## AMENDMENT (C-SPREAD-EXPRESSION, candidate SHA fcc5dbe3)
+Adds book-state fields (bid/ask/spread) + posture classification for the actual bid
+AND the shadow targets to the same `aim_shadow` line — all inside the same
+try/except-swallowed helper. Same proof shape: no `place_order`, no target/pos
+mutation, no cancels, no order-API awaits in the added code. Order path
+byte-equivalent flag-on/flag-off. Lint PASS, zero new test failures.

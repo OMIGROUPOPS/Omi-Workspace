@@ -1612,6 +1612,11 @@ class LiveV3:
         # would-have-filled rate, discount captured, misses, GOMOFN exhibits.
         self.aim_shadow = bool(self.config.get("aim_shadow", False))
         self._aim_shadow_tbl = None
+        # [C-EXPRESSION-INVARIANT, PLEX ruling: join/improve ratified vs the NON-SELF
+        # chain; default OFF = byte-identical. Arm waits on the recount + shadow nights
+        # + the four-bar gate. The never-marketable clamp is ARMED (unconditional per
+        # the same ruling) at the maker chokepoint in place_order.]
+        self.expression_invariant = bool(self.config.get("expression_invariant", False))
         # [C-WALKCAP-HONEST-ANCHOR staged 07-06, gated OFF] when the legacy conception
         # (_window_open) does not exist yet — the honest-window regime, where the 07-06
         # autopsy proved the premarket walk cap silently no-ops — cap the up-walk at the
@@ -2240,19 +2245,26 @@ class LiveV3:
             _ob = self.books.get(tk)
             _obb = getattr(_ob, "best_bid", None) if _ob else None
             _oba = getattr(_ob, "best_ask", None) if _ob else None
-            def _posture(lvl):
-                if lvl is None or not _obb: return None
-                if lvl < _obb: return "below_chain"
-                if lvl == _obb: return "join"
-                if lvl == _obb + 1: return "improve1"
-                if _oba and lvl >= _oba: return "marketable"
-                return "mid_spread"
+            _bx, _ = self._book_ex_self(tk)   # [C-EX-SELF] the market's chain, not our mirror
+            def _mk_posture(ref_bid):
+                def _p(lvl):
+                    if lvl is None or not ref_bid: return None
+                    if lvl < ref_bid: return "below_chain"
+                    if lvl == ref_bid: return "join"
+                    if lvl == ref_bid + 1: return "improve1"
+                    if _oba and lvl >= _oba: return "marketable"
+                    return "mid_spread"
+                return _p
+            _posture = _mk_posture(_obb)          # raw (transition dual-logging)
+            _posture_x = _mk_posture(_bx)         # ex-self
             _rec = {"event": et, "site": site, "cell": _key, "side": _side,
                     "actual_bid": actual_bid, "px": px, "sib_px": _sib_px,
                     "tts_min": round(tts_min, 1),
                     "book_bid": _obb, "book_ask": _oba,
                     "book_spread": (_oba - _obb) if (_obb and _oba) else None,
-                    "actual_posture": _posture(actual_bid)}
+                    "bid_ex_self": _bx,
+                    "actual_posture": _posture(actual_bid),
+                    "actual_posture_ex_self": _posture_x(actual_bid)}
             if not _cell or _cell.get("null_reason"):
                 _rec["shadow"] = "NULL_CELL"
             else:
@@ -2264,6 +2276,7 @@ class LiveV3:
                              "shadow_aim50": max(1, px + _d50) if _d50 is not None else None,
                              "shadow_posture25": _posture(max(1, px + _d25) if _d25 is not None else None),
                              "shadow_posture50": _posture(max(1, px + _d50) if _d50 is not None else None),
+                             "shadow_posture50_ex_self": _posture_x(max(1, px + _d50) if _d50 is not None else None),
                              "dip_admissible": _cell.get("dip_admissible")})
             self._log("aim_shadow", _rec, ticker=tk)
         except Exception:
@@ -3046,6 +3059,18 @@ class LiveV3:
 
     async def place_order(self, ticker, action, side, price, count, post_only=True):
         """Place a real order on Kalshi. Returns (order_id, response_dict) or ("", error_dict)."""
+        # [C-NEVER-MARKETABLE, ARMED unconditional per the Plex expression ruling]
+        # no MAKER buy may post at >= best_ask -- enforced at the single chokepoint
+        # every placement site flows through. post_only=False (the deliberate taker
+        # paths: complete_cross <=100, gated marketable_taker) bypasses BY DESIGN --
+        # "post" means maker intent.
+        if action == "buy" and post_only:
+            _bk = self.books.get(ticker)
+            _ask = int(_bk.best_ask) if (_bk and getattr(_bk, "best_ask", 0)) else None
+            if _ask and price >= _ask:
+                self._log("never_marketable_clamped", {
+                    "from": int(price), "to": max(1, _ask - 1), "best_ask": _ask}, ticker=ticker)
+                price = max(1, _ask - 1)
         # Position accumulation guard: cap total buy exposure per ticker
         if action == "buy":
             target_max = self.config["sizing"]["entry_contracts"]
@@ -4030,6 +4055,7 @@ class LiveV3:
                         "event": et, "leg1": tk[-12:], "leg1_basis": basis,
                         "level": level, "reason": "noise_level"}, ticker=sib)
                     continue
+                level = self._express_target(sib, level, "sibling_repost")
                 _ask = int(sb.best_ask) if (sb and sb.best_ask) else 100
                 price, po = self._reprice_target(level, _ask)
                 oid, _resp = await self.place_order(sib, "buy", "yes", price,
@@ -5010,6 +5036,50 @@ class LiveV3:
         if book is None or price <= 0:
             return 0
         return int(book.bids.get(int(round(price)), 0) or 0)
+
+    def _book_ex_self(self, tk):
+        """[C-EX-SELF root] (best_bid_ex_self, best_ask): the live book NET of our own
+        resting entry order on tk (positions registry: phase entry_resting carries the
+        px; our size empties a level -> fall through to the next real level). Bids only;
+        asks untouched (we rest bids only). PURE read; None-safe."""
+        b = self.books.get(tk)
+        if b is None:
+            return None, None
+        ask = int(b.best_ask) if getattr(b, "best_ask", 0) else None
+        own_px = None
+        pos = self.positions.get(tk)
+        if (pos is not None and getattr(pos, "phase", "") == "entry_resting"
+                and getattr(pos, "entry_order_id", "") and (pos.entry_price or 0) > 0):
+            own_px = int(round(pos.entry_price))
+        try:
+            levels = sorted(((int(p), float(sz)) for p, sz in (b.bids or {}).items()
+                             if sz and int(p) > 0), reverse=True)
+        except Exception:
+            return (int(b.best_bid) if getattr(b, "best_bid", 0) else None), ask
+        for px, sz in levels:
+            adj = sz - (float(self.entry_size) if own_px == px else 0.0)
+            if adj > 0.01:
+                return px, ask
+        return None, ask
+
+    def _express_target(self, tk, target, site=""):
+        """[C-EXPRESSION-INVARIANT, gated default-OFF] express a buy target vs the
+        NON-SELF chain: rest AT target when target <= bid_ex_self; a target above the
+        chain joins it or improves by EXACTLY 1c -- expressed = min(target, bid_ex+1).
+        A walk step above bid_ex_self+1 is structurally impossible with the flag on
+        (every step joins/improves the MARKET's chain, never our own reflection).
+        Composes with the walk cap: invariant = step law, cap = journey bound."""
+        if not getattr(self, "expression_invariant", False) or target is None:
+            return target
+        try:
+            bx, _ = self._book_ex_self(tk)
+            if bx is None or target <= bx + 1:
+                return target
+            self._log("expression_clamped", {"from": int(target), "to": bx + 1,
+                                             "bid_ex_self": bx, "site": site}, ticker=tk)
+            return bx + 1
+        except Exception:
+            return target
 
     def _join_trial_resolve(self, pos, outcome, book, price, tk):
         """[C-JOIN-TRIAL] record one resolved join attempt (outcome in {fill,cancel}) with the
@@ -6684,6 +6754,8 @@ class LiveV3:
                             "leg1_basis": int(_sp4.entry_price),
                             "goal": self.combined_goal, "cat": cat}, ticker=tk)
                         target_bid = max(1, _bound4)
+                # [C-EXPRESSION-INVARIANT] gated; default OFF = byte-identical
+                target_bid = self._express_target(tk, target_bid, "fresh")
                 # [C-JOIN-TRIAL] pre-registered abort halts NEW join entries once tripped.
                 if self.join_trial_aborted and reference_source == "join_bid":
                     if self.abort_carve_held_sibling and self._carve_abort_for_held_sibling(tk, et):
@@ -7989,6 +8061,8 @@ class LiveV3:
                     new_target = _bound_rc
                     pos.reshuffle_pinned = True
 
+        # [C-EXPRESSION-INVARIANT] gated; the walk step joins/improves the MARKET's chain
+        new_target = self._express_target(tk, new_target, "walk")
         # Fix-3 (reprice-maker-only): NEVER cross on a reprice. A marketable re-evaluated
         # target is clamped to a resting bid one below the ask and re-rested as a maker.
         new_target, po = self._reprice_target(new_target, current_ask)

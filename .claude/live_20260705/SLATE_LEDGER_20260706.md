@@ -177,13 +177,13 @@ CUT A (-15.29) + Σdelta (-3.36) = -18.65 vs CUT B -18.65 — internal sums must
 
 Convention (amended 2026-07-07): an event belongs to the ET calendar day of its first conception; positions open at 00:00 carry on the PRIOR day's line and their settlements resolve it. The 00:00-nearest banked account snapshot is the day-close anchor (07-06 close anchored by the 00:18:15 snapshot, 18min late, stated).
 
-| day | events | EXIT-CASHED $ (legs) | RODE $ (legs) | open: basis / mark / realized-so-far | day total | status |
-|---|---|---|---|---|---|---|
-| 2026-07-05 | 13 | +10.82 (23) | -3.85 (2) | 0.00 / 0.00 / +0.00 | +6.97 | FINAL |
-| 2026-07-06 | 263 | +174.26 (271) | -189.50 (74) | 57.01 / 52.15 / +3.27 | -16.83 | OPEN (71 events) |
-| 2026-07-07 | 27 | +0.00 (0) | +0.00 (0) | 3.10 / 3.05 / +0.00 | -0.05 | OPEN (27 events) |
+| day | events | EXIT-CASHED $ (legs) | RODE $ (legs) | HELD: n / basis / mark / realized | WORKING: n (resting orders, $0 at risk) | day total | status |
+|---|---|---|---|---|---|---|---|
+| 2026-07-05 | 13 | +10.82 (23) | -3.85 (2) | 0 / 0.00 / 0.00 / +0.00 | 0 (0) | +6.97 | FINAL |
+| 2026-07-06 | 263 | +174.26 (271) | -189.50 (74) | 22 / 57.01 / 52.15 / +3.27 | 49 (82) | -16.83 | 22 held / 49 working |
+| 2026-07-07 | 27 | +0.00 (0) | +0.00 (0) | 1 / 3.10 / 3.05 / +0.00 | 26 (44) | -0.05 | 1 held / 26 working |
 
-Cross-check to §1 (the identity, stated): Σcashed +185.08 + Σrode -193.35 = -8.27; §1 settled = settlement-realized only — the bridge is exit-cash counted IMMEDIATELY here on exited-but-unsettled legs (the convention's point: the band did its job; settlement timing is irrelevant to it). Open basis/mark columns tie to §1's 60.11/55.20 exactly; RODE only ever holds legs that expired unfilled-at-exit.
+Cross-check to §1 (the identity, stated): Σcashed +185.08 + Σrode -193.35 = -8.27; §1 settled = settlement-realized only — the bridge is exit-cash counted IMMEDIATELY here on exited-but-unsettled legs (the convention's point: the band did its job; settlement timing is irrelevant to it). Open basis/mark columns tie to §1's 60.11/55.20 exactly; RODE only ever holds legs that expired unfilled-at-exit. A resting bid is not a trade: WORKING events carry $0 at risk and are retired from every blended open count.
 
 ## THE ROSTER — every engaged event, one row (settled AND open)
 

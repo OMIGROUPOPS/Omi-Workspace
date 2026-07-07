@@ -184,16 +184,20 @@ daymap=defaultdict(list)
 for r in rows:
     d=day_of(r)
     if d: daymap[d].append(r)
-A("| day | events | EXIT-CASHED $ (legs) | RODE $ (legs) | open: basis / mark / realized-so-far | day total | status |")
-A("|---|---|---|---|---|---|---|")
+A("| day | events | EXIT-CASHED $ (legs) | RODE $ (legs) | HELD: n / basis / mark / realized | WORKING: n (resting orders, $0 at risk) | day total | status |")
+A("|---|---|---|---|---|---|---|---|")
 _tot_c=_tot_r=_tot_or=0.0
 for d in sorted(daymap):
     rs=daymap[d]
-    cashed=[];rode=[];op_b=op_m=op_rz=0.0;open_rows=0
+    cashed=[];rode=[];op_b=op_m=op_rz=0.0;held=0;working=0;work_orders=0
     for r in rs:
         if r["status"]=="OPEN":
-            open_rows+=1
-            op_b+=r.get("open_basis",0); op_m+=r.get("open_mark",0)
+            if any(l.get("open_qty") for l in r["legs"]):
+                held+=1
+                op_b+=r.get("open_basis",0); op_m+=r.get("open_mark",0)
+            else:
+                working+=1
+                work_orders+=sum(len(l.get("resting") or []) for l in r["legs"])
         for l in r["legs"]:
             if l.get("vw") is None: continue
             dsp=l.get("disp") or ""
@@ -207,10 +211,10 @@ for d in sorted(daymap):
     _tot_c+=c_; _tot_r+=r_; _tot_or+=op_rz
     unreal=round(op_m-op_b,2)
     total=round(c_+r_+op_rz+unreal,2)
-    status="FINAL" if open_rows==0 else f"OPEN ({open_rows} events)"
-    A(f"| {d} | {len(rs)} | {c_:+.2f} ({len(cashed)}) | {r_:+.2f} ({len(rode)}) | {op_b:.2f} / {op_m:.2f} / {round(op_rz,2):+.2f} | {total:+.2f} | {status} |")
+    status="FINAL" if (held+working)==0 else f"{held} held / {working} working"
+    A(f"| {d} | {len(rs)} | {c_:+.2f} ({len(cashed)}) | {r_:+.2f} ({len(rode)}) | {held} / {op_b:.2f} / {op_m:.2f} / {round(op_rz,2):+.2f} | {working} ({work_orders}) | {total:+.2f} | {status} |")
 A("")
-A(f"Cross-check to §1 (the identity, stated): Σcashed {_tot_c:+.2f} + Σrode {_tot_r:+.2f} = {round(_tot_c+_tot_r,2):+.2f}; §1 settled = settlement-realized only — the bridge is exit-cash counted IMMEDIATELY here on exited-but-unsettled legs (the convention's point: the band did its job; settlement timing is irrelevant to it). Open basis/mark columns tie to §1's {open_basis:.2f}/{open_mark:.2f} exactly; RODE only ever holds legs that expired unfilled-at-exit.")
+A(f"Cross-check to §1 (the identity, stated): Σcashed {_tot_c:+.2f} + Σrode {_tot_r:+.2f} = {round(_tot_c+_tot_r,2):+.2f}; §1 settled = settlement-realized only — the bridge is exit-cash counted IMMEDIATELY here on exited-but-unsettled legs (the convention's point: the band did its job; settlement timing is irrelevant to it). Open basis/mark columns tie to §1's {open_basis:.2f}/{open_mark:.2f} exactly; RODE only ever holds legs that expired unfilled-at-exit. A resting bid is not a trade: WORKING events carry $0 at risk and are retired from every blended open count.")
 A("")
 
 

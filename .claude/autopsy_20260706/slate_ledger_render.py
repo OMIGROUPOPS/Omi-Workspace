@@ -184,25 +184,35 @@ daymap=defaultdict(list)
 for r in rows:
     d=day_of(r)
     if d: daymap[d].append(r)
-A("| day (conception) | events | settled-so-far $ (n) | carried past midnight: basis (n events) | still open now $ | line status |")
-A("|---|---|---|---|---|---|")
+A("| day | events | EXIT-CASHED $ (legs) | RODE $ (legs) | open: basis / mark / realized-so-far | day total | status |")
+A("|---|---|---|---|---|---|---|")
+_tot_c=_tot_r=_tot_or=0.0
 for d in sorted(daymap):
     rs=daymap[d]
-    stt=[r for r in rs if r["status"]=="SETTLED"]
-    stt_d=round(sum(r["pnl"] for r in stt),2)
-    mid=_dt.strptime(d,"%Y-%m-%d").replace(tzinfo=ET).timestamp()+86400
-    carried=[r for r in rs if any(
-        l.get("fill_ts") and float(l["fill_ts"])<mid and (l.get("sett_ts") is None or float(l["sett_ts"])>=mid) and l.get("vw") is not None
-        for l in r["legs"])]
-    car_basis=round(sum((l["vw"] or 0)*(l["qty"] or 0)/100.0 for r in carried for l in r["legs"]
-        if l.get("fill_ts") and float(l["fill_ts"])<mid and (l.get("sett_ts") is None or float(l["sett_ts"])>=mid) and l.get("vw") is not None),2)
-    open_now=[r for r in rs if r["status"]=="OPEN"]
-    _ob_day=round(sum(r.get("open_basis",0) for r in open_now),2)
-    status="FINAL" if not open_now else f"OPEN ({len(open_now)} events unresolved)"
-    A(f"| {d} | {len(rs)} | {stt_d:+.2f} ({len(stt)}) | {car_basis:.2f} ({len(carried)}) | {_ob_day:.2f} | {status} |")
+    cashed=[];rode=[];op_b=op_m=op_rz=0.0;open_rows=0
+    for r in rs:
+        if r["status"]=="OPEN":
+            open_rows+=1
+            op_b+=r.get("open_basis",0); op_m+=r.get("open_mark",0)
+        for l in r["legs"]:
+            if l.get("vw") is None: continue
+            dsp=l.get("disp") or ""
+            if dsp.startswith("EXIT_FILLED") and not l.get("open_qty"):
+                cashed.append(l["pnl"] if l.get("pnl") is not None else l.get("cash_out",0))
+            elif dsp=="RODE_TO_SETTLEMENT":
+                rode.append(l.get("pnl") or 0)
+            elif l.get("open_qty"):
+                op_rz+=l.get("cash_out",0)+ (l["vw"] or 0)*(l["open_qty"] or 0)/100.0  # cash_out includes the open buy cost; add it back so realized-so-far = partial-exit proceeds net of exited-share cost
+    c_=round(sum(cashed),2); r_=round(sum(rode),2)
+    _tot_c+=c_; _tot_r+=r_; _tot_or+=op_rz
+    unreal=round(op_m-op_b,2)
+    total=round(c_+r_+op_rz+unreal,2)
+    status="FINAL" if open_rows==0 else f"OPEN ({open_rows} events)"
+    A(f"| {d} | {len(rs)} | {c_:+.2f} ({len(cashed)}) | {r_:+.2f} ({len(rode)}) | {op_b:.2f} / {op_m:.2f} / {round(op_rz,2):+.2f} | {total:+.2f} | {status} |")
 A("")
-A("(settled-so-far $ = ALL settlements of that day's conceptions to date — the line converges to FINAL as carried positions resolve; re-cut nightly against the 00:00 snapshot anchor.)")
+A(f"Cross-check to §1 (the identity, stated): Σcashed {_tot_c:+.2f} + Σrode {_tot_r:+.2f} = {round(_tot_c+_tot_r,2):+.2f}; §1 settled = settlement-realized only — the bridge is exit-cash counted IMMEDIATELY here on exited-but-unsettled legs (the convention's point: the band did its job; settlement timing is irrelevant to it). Open basis/mark columns tie to §1's {open_basis:.2f}/{open_mark:.2f} exactly; RODE only ever holds legs that expired unfilled-at-exit.")
 A("")
+
 
 # ---- 2/1 the full roster ----
 A("## THE ROSTER — every engaged event, one row (settled AND open)")

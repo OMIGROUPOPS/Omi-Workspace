@@ -17,3 +17,5 @@
 ## LANE 2 — n/a for the OFF flag; the armed clamp's only effect is replacing
 would-be-marketable maker posts with ask-1 rests (the never-cross rule the walk
 path already had, now universal). Lint PASS; differential suite: zero new failures.
+
+Proven-state carrier: d3aa99b0 (delta from 479d9bdd = the ONE-CHAIN rider: analysis/ex_self_chain.py + equivalence tests + offline engines; the live_v4 diff is unchanged from the proven candidate).

@@ -43,7 +43,7 @@
   "itf_entry_borrow": true,
   "itf_min_recent_vol_usd": 500,
   "itf_recent_vol_window_min": 90,
-  "join_trial_mode": true,
+  "join_trial_mode": false,
   "kalshi_occ_observe": true,
   "kalshi_schedule_primary": true,
   "latch_tape_override": true,

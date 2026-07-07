@@ -22,7 +22,7 @@
 6. **Fractional sizing** — int-floor class end-to-end (payload `str(int())`, exit sizing, guard now floats): WALVAL 0.87 residue exhibit; Kalshi accepts fractional counts (proven 201s).
 7. **MALKOM timing** — the blocked-buy's `exchange_qty=0` while memory said 9 (settled-filter timing on the per-ticker positions read).
 8. **PAT rotation** — origin URL still leaks a GitHub PAT (standing since 06-18). Security, not trading.
-9. **join_trial_mode → False** — archaic-armed flag (trial aborted 06-18; still stamps join_is_trial + keeps a dead abort armed). Config-only flip through the gate. [CONFORMANCE §4]
+9. ~~join_trial_mode → False~~ — **SHIPPED 2026-07-07** (config-only flip through the gate; 528 same-day trial-stamps ended; LIVING_VAULT entry closes the 06-18 lineage). Adjacent dead-flag LIST (flip nothing, review): `per_match_clock_shadow`=True (shadow logging redundant since the flag armed 07-06 — retire candidate), `fv_anchor_scenarios_enabled`=False + `round5_detector_enabled`=False (dead legacy, already off — config-REMOVAL candidates), `pair_governor_scoot`=False (grave, keep as tombstone), `riser_post_revision`=False (deliberate disarm, re-arm pending Plex bounce — NOT dead).
 10. **Sub-1 residue tripwire** — add residue count/Σ column to post_boot_audit (the audit's one blind spot: h<1.0 tolerance). [CONFORMANCE §3]
 11. **kalshi_schedule_primary coexistence check** — one-line verify vs per_match_clock layering in the next clock pass. [CONFORMANCE §4]
 

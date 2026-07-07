@@ -123,6 +123,16 @@ A 6th-share-onward buy on the 9-held MALKOM leg, refused at the chokepoint. Upst
 
 **NO — it never landed as behavior.** `d3aa99b0` is an ancestor of the running blob (booted 02:33:30, after the commit; `bid_ex_self` present at 5 code sites) but `grep -c bid_ex_self /tmp/live_v4.log` = **0** across all processes ever. The deploy re-fire produced a process, not the feature. Its restarts (01:07/02:07/02:34 ET) are what layered the dup bids.
 
+> **⚠ CORRECTION (same day, STEP-1 bleed pass — verdict REVERSED):** the "0 occurrences"
+> read (mine above, and the 02:30 overnight verify) was a MEASUREMENT ARTIFACT.
+> `/tmp/live_v4.log` is the CONSOLE log and truncates event JSON at ~190 chars;
+> `bid_ex_self` sits past the cut inside `aim_shadow` records. The full jsonl
+> (`logs/live_v3_20260707.jsonl`) holds **1,668 `bid_ex_self` occurrences starting
+> 02:34:33 AM ET** — the re-fire DID land, with the same 02:34 boot that conceived
+> VANBOO's dup. `expression_clamped` (the other emission site) is silent BY CONFIG
+> (`expression_invariant` absent → OFF). Key-presence checks run on the jsonl —
+> vaulted C47. Full diagnosis: `.claude/BLEED_ATTRIBUTION_20260707.md`.
+
 ### Follow-ups (flagged, NOT in this diff)
 
 1. **post-only-cross exit hole**: an exit whose band is at/below the bid 400-rejects (`"details":"post only cross"` — GUEDON-DON 10:23:53, ECHADD first attempt) and the leg stays naked until the next reconcile. In-the-money exits should be allowed to take. Needs its own gated change.

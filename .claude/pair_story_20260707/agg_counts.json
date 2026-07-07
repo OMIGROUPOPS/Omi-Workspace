@@ -1,0 +1,8 @@
+{
+ "n_records": 2457,
+ "n_ok": 2396,
+ "skips": {
+  "no_joint_fillable": 37,
+  "thin_ticks": 24
+ }
+}

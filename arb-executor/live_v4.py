@@ -3104,10 +3104,13 @@ class LiveV3:
                     "positions_ok": _pd is not None, "orders_ok": _od is not None,
                     "attempted_count": count, "price": price}, ticker=ticker)
                 return "", {"_error": "buy_guard_api_fail"}
-            _ex_held = sum(int(float(p.get("position_fp", 0)))
+            # [v1.2] FLOAT, never int-floor: int(0.72)=0 let a 5-lot bid rest on
+            # a fractional-residue leg (EVAGOW 0.72+5=5.72 committed, the first
+            # audit's true catch) and would oscillate the audit halt forever.
+            _ex_held = sum(float(p.get("position_fp") or 0)
                            for p in _pd.get("market_positions", []))
-            _open_buys = sum(int(float(o.get("remaining_count_fp",
-                                             o.get("remaining_count", 0)) or 0))
+            _open_buys = sum(float(o.get("remaining_count_fp",
+                                         o.get("remaining_count", 0)) or 0)
                              for o in _od.get("orders", [])
                              if o.get("action") == "buy")
             committed = max(current_qty, _ex_held) + _open_buys
@@ -8732,9 +8735,15 @@ class LiveV3:
             "failures": failures[:60], "flags": flags[:60],
             "diff_vs_banked": diff, "table": table})
         if failures:
+            _was_halted = getattr(self, "_conception_halt", False)
             self._conception_halt = True
             self._log("conception_halt_armed", {
-                "context": context, "n_failures": len(failures)})
+                "context": context, "n_failures": len(failures),
+                "transition": not _was_halted})
+        # [v1.2] artifact only on the ARM transition -- the first live halt
+        # pushed 12 per-reaudit artifact commits in 20 minutes. Re-audits log
+        # to the jsonl only; the rolling snapshot below still banks every run.
+        if failures and not _was_halted:
             try:
                 art_dir = Path(__file__).resolve().parent.parent / ".claude" / "audit_halt"
                 art_dir.mkdir(parents=True, exist_ok=True)
@@ -8755,7 +8764,7 @@ class LiveV3:
                     stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             except Exception as e:
                 self._log("audit_artifact_error", {"err": str(e)[:200]})
-        else:
+        if not failures:
             if getattr(self, "_conception_halt", False):
                 self._log("conception_halt_cleared", {"context": context})
             self._conception_halt = False

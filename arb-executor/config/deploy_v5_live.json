@@ -1,5 +1,6 @@
 {
   "abort_carve_held_sibling": true,
+  "aim_shadow": true,
   "best_bid_aware_repost": true,
   "bestbid_follow_at_touch": true,
   "bestbid_follow_max_gap": 15,

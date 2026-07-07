@@ -1604,6 +1604,14 @@ class LiveV3:
         # (AIM_V2_SPEC discipline).
         self.aim_zscore_shadow = bool(self.config.get("aim_zscore_shadow", False))
         self._aim_z_table = None
+        # [C-AIM-SHADOW 2026-07-07] the operational candidate table as a LOGGER:
+        # at every placement decision, log what aim_v2_operational_LATCHCAL would
+        # bid (both legs, one fav-keyed read, tier noted) beside the actual bid.
+        # ZERO order-path changes; the helper is try/except-swallowed. The nightly
+        # rollup (analysis/aim_shadow_rollup.py) joins these lines to the tape:
+        # would-have-filled rate, discount captured, misses, GOMOFN exhibits.
+        self.aim_shadow = bool(self.config.get("aim_shadow", False))
+        self._aim_shadow_tbl = None
         # [C-WALKCAP-HONEST-ANCHOR staged 07-06, gated OFF] when the legacy conception
         # (_window_open) does not exist yet — the honest-window regime, where the 07-06
         # autopsy proved the premarket walk cap silently no-ops — cap the up-walk at the
@@ -2201,6 +2209,47 @@ class LiveV3:
             return round(-float(_cell["drift"]) / float(_cell["resid_sd"]), 2)
         except Exception:
             return None
+
+    def _aim_shadow_log(self, tk, et, cat, px, actual_bid, tts_min, site):
+        """[C-AIM-SHADOW] logging only; never raises into the trading path."""
+        if not getattr(self, "aim_shadow", False):
+            return
+        try:
+            if self._aim_shadow_tbl is None:
+                _p = Path("data/shape_corpus/aim_v2_operational_LATCHCAL.json")
+                self._aim_shadow_tbl = (json.loads(_p.read_text()).get("table", {})
+                                        if _p.exists() else {})
+            if not self._aim_shadow_tbl:
+                return
+            _sib = self._sibling_ticker(tk, et)
+            _sb = self.books.get(_sib) if _sib else None
+            _sib_px = None
+            if _sb and getattr(_sb, "best_bid", 0) and getattr(_sb, "best_ask", 0):
+                _sib_px = (_sb.best_bid + _sb.best_ask) // 2
+            elif _sb and getattr(_sb, "best_bid", 0):
+                _sib_px = _sb.best_bid
+            _fav_px = max([p for p in (px, _sib_px) if p is not None])
+            _side = "fav" if (_sib_px is None or px >= _sib_px) else "dog"
+            _tbin = min(48, int(max(0.0, tts_min) // 10))
+            _key = "%s|%d|%d" % (cat, min(4, max(0, int(_fav_px) // 20)), _tbin)
+            _cell = self._aim_shadow_tbl.get(_key)
+            _pfx = "f" if _side == "fav" else "d"
+            _rec = {"event": et, "site": site, "cell": _key, "side": _side,
+                    "actual_bid": actual_bid, "px": px, "sib_px": _sib_px,
+                    "tts_min": round(tts_min, 1)}
+            if not _cell or _cell.get("null_reason"):
+                _rec["shadow"] = "NULL_CELL"
+            else:
+                _d25 = _cell.get(_pfx + "dip25"); _d50 = _cell.get(_pfx + "dip50")
+                _rec.update({"source": _cell.get("source"),
+                             "borrowed_from": _cell.get("borrowed_from"),
+                             "drift": _cell.get(_pfx + "d"),
+                             "shadow_aim25": max(1, px + _d25) if _d25 is not None else None,
+                             "shadow_aim50": max(1, px + _d50) if _d50 is not None else None,
+                             "dip_admissible": _cell.get("dip_admissible")})
+            self._log("aim_shadow", _rec, ticker=tk)
+        except Exception:
+            pass
 
     def _aim_riser_post(self, cat, anchor_price):
         """[C-RISER-REVISION] Per-(cat,bucket) riser demand-depth below best bid
@@ -6753,6 +6802,8 @@ class LiveV3:
                         time_to_start <= 0 or self._is_match_live(et))
                        if getattr(self, "fv_observe", False) else {}),
                     "exp_fill_rate": round(exp_fill, 3), "exp_net_roi_pct": round(exp_roi, 2),
+                    # [C-AIM-SHADOW] marker only; the shadow line itself is emitted below
+                    **({"aim_shadow_on": True} if getattr(self, "aim_shadow", False) else {}),
                     # Locked-book verification hook (Plex): record the placement-time book so the
                     # next is_taker-truth pass can confirm locked-book (bid==ask) placements fill
                     # like normal tight markets, not a hidden adverse cohort. Telemetry only, not a gate.
@@ -6775,6 +6826,9 @@ class LiveV3:
                         "band_gating": bool(getattr(self, "engagement_band_gating", False))}
                        if table_src == "engagement_wave1" else {}),
                 }, ticker=tk)
+                # [C-AIM-SHADOW] logging only, swallowed on any error
+                self._aim_shadow_log(tk, et, cat, current_price, target_bid,
+                                     time_to_start / 60.0, "v4_place")
 
                 # #1 ref-price soft-alert: rolling tight_mid rate over the last 100 placements.
                 self._anchor_src_hist.append(anchor_src)
@@ -7958,6 +8012,12 @@ class LiveV3:
         # [C-FEEDER FIX-6] A5: re-key the runway ledger at every re-placement
         pos.runway_status = repost_runway
         pos.reference_source = repost_ref
+        # [C-AIM-SHADOW] logging only, swallowed on any error
+        _tts_sh = ((pos.match_start_ts - now) / 60.0
+                   if getattr(pos, "match_start_ts", 0) else
+                   (self.event_start_time.get(pos.event_ticker, 0) - now) / 60.0)
+        self._aim_shadow_log(tk, pos.event_ticker, pos.category, current_price,
+                             new_target, _tts_sh, "move_repost")
         self._log("v4_move_repost", {
             "mode": mode, "old_basis": price_basis, "current_price": current_price,
             "new_regime": new_regime, "new_offset": new_offset,

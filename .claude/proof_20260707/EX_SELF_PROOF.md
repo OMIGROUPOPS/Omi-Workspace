@@ -1,4 +1,4 @@
-# C-EX-SELF — C46 proof (candidate SHA ca87d86b)
+# C-EX-SELF — C46 proof (candidate SHA 479d9bdd)
 
 ## LANE 1 — mechanism, by construction + tests
 - **Flag-OFF paths byte-identical:** `_express_target` returns its input unless

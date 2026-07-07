@@ -68,6 +68,43 @@ def read_tape(f):
     rows.sort()
     return rows
 
+# [C-RETENTION + PLEX_AIM_V2_RULING] observed true starts (tennis.db observed_starts,
+# read-only) are PREFERRED as the bell where present; LATCH-CAL bar (K=600/M=20000,
+# the ruled canonical axis) for everything unobserved. Every sample now carries
+# bell_src ('observed'|'latchcal_bar'); pre-2026-07-07 samples were bar150 (untagged) --
+# derivation re-detects independently, so the mix touches coverage/harness only (stated).
+import sqlite3 as _sql, re as _re
+def _load_observed():
+    out={}
+    try:
+        conn=_sql.connect("file:"+str(ROOT/"tennis.db")+"?mode=ro",uri=True,timeout=5)
+        for mid,p1,p2,ts in conn.execute("select te_match_id,player1,player2,first_inplay_at from observed_starts"):
+            def pre(n):
+                n=(n or "").strip().split(" ")[0].upper()
+                return _re.sub(r"[^A-Z]","",n)[:3]
+            try:
+                t=datetime.strptime(ts,"%Y-%m-%d %H:%M:%S").replace(tzinfo=ET).timestamp()
+            except Exception:
+                continue
+            d=ts[:10]
+            for k in (pre(p1)+pre(p2), pre(p2)+pre(p1)):
+                out.setdefault((k,d),t)
+        conn.close()
+    except Exception:
+        pass
+    return out
+_OBS=_load_observed()
+def observed_bell(name):
+    m=_re.search(r"-(\d{2}[A-Z]{3}\d{2})([A-Z]{4,8})-", name+"-")
+    if not m: return None
+    MON={"JAN":"01","FEB":"02","MAR":"03","APR":"04","MAY":"05","JUN":"06","JUL":"07","AUG":"08"}
+    dc=m.group(1); pc=m.group(2)
+    try: d=f"20{dc[:2]}-{MON[dc[2:5]]}-{dc[5:7]}"
+    except Exception: return None
+    for k in ((pc,d),(pc[3:]+pc[:3],d)) if len(pc)==6 else ((pc,d),):
+        if k in _OBS: return _OBS[k]
+    return None
+
 def tape_gun(rows):
     if not rows: return None
     mv = defaultdict(float)
@@ -94,7 +131,10 @@ for f in sorted((ROOT / "analysis" / "trades").iterdir()):
         continue
     # only fold CONCLUDED tapes: last print older than 6h (the match is over)
     if time.time() - rows[-1][0] < 6*3600: continue
-    bell = tape_gun(rows)
+    bell = observed_bell(name)
+    bell_src = "observed" if bell is not None else None
+    if bell is None:
+        bell = tape_gun(rows); bell_src = "latchcal_bar"
     manifest.add(name)
     if bell is None: continue
     pre = [(t,pr) for t,pr,ct in rows if t <= bell]

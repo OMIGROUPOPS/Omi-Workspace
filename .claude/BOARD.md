@@ -4,6 +4,8 @@
 
 ## IN-FLIGHT (armed or accumulating now)
 
+- **PAIR-STORY re-dispatch (2026-07-07 ~15:00 ET)** — RUNNING DETACHED on the VPS (tmux `pair_story` + watcher `pair_story_watch`; resume-capable, heartbeat /root/pair_story_progress.json). The 07-06 run died in the storm with no artifact; THIS BOARD LINE is the thread's anchor — if the process dies again the watcher commits PAIR_STORY_DEATH.md and this line stays until PAIR_STORY_20260707.md lands. Scope: joint buyability floor per cat (S-line), divot synchrony, seesaw mechanics, canonical pair shapes on the honest axis.
+
 - **C50 two-file close-out law** — ENFORCED at deploy_gate.sh [4/4] as of 2026-07-07 (bootstrap warn-pass on the first post-law deploy, strict after).
 
 - **Week standing order 07-05→07-12** — config HOLDS (defects exempt via gate); nightly leak decomposition; end-of-week: leak answer + riser Plex bounce at full n + pre-T-4h posting-window spec. `WEEK_STANDING_ORDER.md`.

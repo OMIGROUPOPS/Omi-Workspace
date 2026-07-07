@@ -76,4 +76,6 @@ if printf '%s' "$VERDICT" | grep -q FAIL; then
   echo "AUDIT FAIL: conceptions HALTED (exits keep working). Halt clears on a passing re-audit."
   echo "Alert artifact under .claude/audit_halt/ (committed+pushed by the bot)."
 fi
+# [C50] record the deployed SHA -- the next gate's two-file close-out window starts here
+git -C "$REPO_ROOT" rev-parse HEAD > "$ARB/state/last_deploy_sha"
 echo "=== DEPLOYED $SHA (PID $PID, tmux $TMUX_SESSION) ==="

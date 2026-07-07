@@ -4,6 +4,8 @@
 
 ## IN-FLIGHT (armed or accumulating now)
 
+- **C50 two-file close-out law** — ENFORCED at deploy_gate.sh [4/4] as of 2026-07-07 (bootstrap warn-pass on the first post-law deploy, strict after).
+
 - **Week standing order 07-05→07-12** — config HOLDS (defects exempt via gate); nightly leak decomposition; end-of-week: leak answer + riser Plex bounce at full n + pre-T-4h posting-window spec. `WEEK_STANDING_ORDER.md`.
 - **C47-ENFORCE audit** — live (v1.2); watch: halt/clear behavior across tonight's boots, `exit_unpostable_itm` flag population, artifact cadence.
 - **fv_observe riser accumulation** — toward ~100 FV-graded riser legs for the Plex bounce (18/100 at week open).

@@ -1,5 +1,8 @@
 # PRIOR-ART INDEX — topic → lesson codes / docs (the gate's one-lookup entry point)
 
+> **C50 (2026-07-07):** the grep surface is LIVING_VAULT.md (incl. RETIRED graves) + LESSONS.md A-G ledgers + rulings/ + this index + the gated-flags inventory. Read order every session: BOARD.md -> LIVING_VAULT.md -> LESSONS A-G -> rulings. JUNE_VAULT is FROZEN (June archive).
+
+
 Serves `.claude/rulings/PRIOR_ART_GATE.md` (C45). Grep here FIRST; then open the cited source and quote the
 verbatim line. Sources: `arb-executor/docs/LESSONS.md` (this branch; codes ≥C39/F39 live here),
 `JUNE_VAULT.md` + `JUNE_VAULT_APPENDIX.md` (canonical on **blend/agent-derivation** — full verbatim lesson

@@ -79,4 +79,31 @@ if [ -n "$CODE_DELTA" ]; then
 fi
 echo "outcome proof OK: $OUTCOME_PROOF cites $PROOF_SHA; no code delta to HEAD $CAND_SHA"
 
+# [C50 — THE TWO-FILE CLOSE-OUT LAW, 2026-07-07] a deploy push is a close-out:
+# it must carry the knowledge spine with it. Refuse any push (last deployed SHA
+# -> HEAD) that does not touch BOTH .claude/BOARD.md (the standing queue) and
+# arb-executor/docs/LIVING_VAULT.md (the chronological ledger). Bootstrap: if no
+# last-deploy SHA is recorded yet, warn-pass once (deploy_live_v4.sh records it).
+echo "--- [4/4] two-file close-out law (C50: BOARD.md + LIVING_VAULT.md in the push)"
+LAST_SHA_FILE="$REPO/state/last_deploy_sha"
+if [ -f "$LAST_SHA_FILE" ]; then
+  LAST_SHA=$(cat "$LAST_SHA_FILE")
+  if git -C "$REPO/.." cat-file -e "$LAST_SHA" 2>/dev/null; then
+    PUSH_FILES=$(git -C "$REPO/.." diff --name-only "$LAST_SHA"..HEAD)
+    MISS=""
+    echo "$PUSH_FILES" | grep -q "^\.claude/BOARD\.md$" || MISS="$MISS .claude/BOARD.md"
+    echo "$PUSH_FILES" | grep -q "^arb-executor/docs/LIVING_VAULT\.md$" || MISS="$MISS arb-executor/docs/LIVING_VAULT.md"
+    if [ -n "$MISS" ]; then
+      echo "CLOSE-OUT REFUSED (C50): this push ($LAST_SHA..HEAD) does not touch:$MISS"
+      echo "Update the BOARD (queue state) and the LIVING_VAULT (ledger entry) and re-push."
+      exit 1
+    fi
+    echo "two-file law OK: BOARD.md + LIVING_VAULT.md both touched since $LAST_SHA"
+  else
+    echo "C50 WARN: recorded last-deploy SHA $LAST_SHA not in history (branch surgery?) -- warn-pass, re-records at this deploy"
+  fi
+else
+  echo "C50 BOOTSTRAP: no last-deploy SHA recorded yet -- warn-pass; deploy_live_v4.sh records it now"
+fi
+
 echo "=== DEPLOY GATE: PASS ==="

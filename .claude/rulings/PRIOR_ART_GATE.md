@@ -47,3 +47,8 @@ form of the §0 recurring failure; **the prior-art gate is its fix.**
 - Staged-but-never-armed prior builds on this topic: <flag names / commit> or "none"
 - DELTA this doc adds: <the new thing, stated plainly>
 ```
+
+
+## C50 AMENDMENT (2026-07-07, knowledge consolidation)
+- The mandatory grep surface is now: **`docs/LIVING_VAULT.md` (ledger + RETIRED graves) + `docs/LESSONS.md` INCLUDING every A-G category ledger (not the C-laws alone) + `.claude/rulings/` + `.claude/PRIOR_ART_INDEX.md` + the gated-flags inventory**. JUNE_VAULT (frozen 2026-07-07, both copies) remains greppable as the June archive; a hit there must be checked against LIVING_VAULT's RETIRED section before citing as current.
+- The two-file close-out law (C50) is enforced at deploy_gate.sh [4/4]: no deploy push lands without touching `.claude/BOARD.md` + `docs/LIVING_VAULT.md`.

@@ -85,6 +85,47 @@ All four in `live_v4.py`, one commit, one restart:
 
 Executed by the deployed code's own boot reconcile (positions API = referee, now paginated): untracked legs with resting sells → existing `qty_gap_consolidated` path at the same band px; tracked legs → new same-band top-up; legs with no exit at all → existing auto-post path at the standing band per deployed config (hold-rule legs stay exitless BY CONFIG and are listed as such). Before/after table appended below after the restart (§4).
 
-## 4. VERIFICATION (key-presence; appended post-deploy)
+## 4. VERIFICATION (key-presence; appended post-deploy 10:35 ET)
 
-_Appended after the gated deploy — raw lines for (a) surplus exits resting on the named legs, (b) a would-be dup buy blocked, (c) before/after coverage table._
+**Deploy: GATE PASS → booted `910dd13` (code `ccf8fa8f`), PID 617743, 10:21:10 ET, ONE restart, 0 error-events post-boot.** Smoke: 551 order_placed / 76 exits / 265,033 dog-leg book states. Outcome proof accepted (`no code delta to HEAD`).
+
+### (a) Surplus exits — raw
+
+Boot reconcile (paginated) consolidated the book itself, 10:21:38–10:23:59 ET:
+```
+[10:21:48 AM] RECONCILE_EXIT_POSTED KXITFMATCH-26JUL07ECHADD-ADD {"reason": "qty_gap_consolidated", "exit_price": 64, "position_qty": 15, ...}
+[10:21:48 AM] RECONCILE_EXIT_POSTED KXATPCHALLENGERMATCH-26JUL06BARZIN-BAR {"reason": "qty_gap_consolidated", "exit_price": 66, "position_qty": 10, "order_id": "332c9be4-..."}
+[10:23:59 AM] RECONCILE_EXIT_TOPUP KXITFWMATCH-26JUL07BUEXAV-XAV {"exit_price": 86, "qty": 4, "position_qty": 5, "resting_sell_qty": 1, "order_id": "3d9ef409-..."}  <- NEW link-path top-up, first live fire
+```
+Stragglers posted directly (`/root/backfill_post_20260707.py`, scp'd, band prices preserved):
+```
+KXITFWMATCH-26JUL07SIMROU-SIM held=5 resting=0 gap=5 band=40
+  POST 5@40 -> HTTP 201 {"average_fill_price":"0.6300","fill_count":"5.00","order_id":"2fb7e18b-6970-41c4-9fa8-dcb2e80a2d45",...}   <- band-40 exit FILLED at 63 (+23c over band)
+KXITFMATCH-26JUL07URSPOU-POU  POST 0.68@63 -> HTTP 201 resting (826993fe)
+KXATPCHALLENGERMATCH-26JUL07HERAMB-AMB POST 0.48@98 -> HTTP 201 resting (fe32426d)
+KXITFWMATCH-26JUL07GIADIA-DIA POST 0.46@65 -> HTTP 201 resting (018ed242)
+KXITFWMATCH-26JUL07MELROD-ROD POST 0.20@26 -> HTTP 201 resting (5e5e8364)
+```
+Named exhibits, final exchange state: SIMROU-**SIM 0 naked** (surplus realized 63 vs band 40); SIMROU-**ROU 5 held / 5-lot @79 resting** (`de6c0036`); ECHADD/KHRYOU/LEKVLA settled or fully exited (held 0).
+
+**Before/after: 104.49 naked shares / 28 legs → 0.87 / 1** (`/root/after_audit_final_20260707.md` has the full ticker|held|before|after|band table). The residual = WALVAL-WAL 0.87 fractional shares (bid 1c): ghost adoption qty=0, no standing band on record, and the bot's int-floor arithmetic cannot see sub-1 fractions — flagged, ~$0.01 exposure. (RODAND/BROGAR appeared naked in one snapshot: they were fills 1s old; exits posted at 10:29:59/10:29:58 — pipeline racing the audit, not gaps.)
+
+### (b) Would-be dup buy blocked — raw (jsonl, full event)
+
+```
+{"ts": "2026-07-07 10:25:31 AM ET", "event": "buy_blocked_position_full", "ticker": "KXITFWMATCH-26JUL07MALKOM-KOM",
+ "details": {"current_qty": 9, "exchange_qty": 0, "open_buy_qty": 0, "committed": 9, "target_max": 5,
+             "attempted_count": 5, "price": 6, "source": "exchange_truth"}}
+```
+A 6th-share-onward buy on the 9-held MALKOM leg, refused at the chokepoint. Upstream, the paginated sibling sweep now also SEES the book: first boot pass logged `sibling_bid_alive: 11` skips (11 would-be re-conceptions prevented before reaching the chokepoint at all).
+
+### (c) Ex-self re-fire
+
+**NO — it never landed as behavior.** `d3aa99b0` is an ancestor of the running blob (booted 02:33:30, after the commit; `bid_ex_self` present at 5 code sites) but `grep -c bid_ex_self /tmp/live_v4.log` = **0** across all processes ever. The deploy re-fire produced a process, not the feature. Its restarts (01:07/02:07/02:34 ET) are what layered the dup bids.
+
+### Follow-ups (flagged, NOT in this diff)
+
+1. **post-only-cross exit hole**: an exit whose band is at/below the bid 400-rejects (`"details":"post only cross"` — GUEDON-DON 10:23:53, ECHADD first attempt) and the leg stays naked until the next reconcile. In-the-money exits should be allowed to take. Needs its own gated change.
+2. **int-floor fractional blindness**: `ex_open = sum(int(float(position_fp)))` and `str(int(count))` in the order payload floor fractional shares; sub-1 residues are invisible to sizing (WALVAL 0.87). Kalshi accepts fractional counts (proven by the four 201s above).
+3. **exchange_qty=0 on the MALKOM block** while memory said 9 — memory caught it (max() of both is the design), but the per-ticker positions read deserves a look (settled-filter timing).
+4. VPS `origin` URL still leaks a GitHub PAT (standing item, unrelated).

@@ -1,6 +1,6 @@
 # OUTCOME PROOF (C46, two-lane) — C47-ENFORCE post-boot book audit
 
-**Candidate SHA: `89b697b8`** (rebase re-hash of 1c04f1d1) (v1.1: conception_on_owned requires a resting buy; supersedes `e156a071`) (post-boot book audit, assert-and-halt: gate-banked snapshot diff, five per-leg assertions, conception halt, jsonl-verified).
+**Candidate SHA: `ee8b108d`** (v1.2: guard floats exchange qty, artifact on arm-transition only; lineage e156a071 -> 89b697b8 -> ee8b108d) (v1.1: conception_on_owned requires a resting buy; supersedes `e156a071`) (post-boot book audit, assert-and-halt: gate-banked snapshot diff, five per-leg assertions, conception halt, jsonl-verified).
 Replay: deterministic, against the prior slate's banked exchange snapshots (the 09:38 ET pre-containment book — the exact book every overnight boot woke into — and the bleed-attribution fills tape). Producer: `arb-executor/analysis/forensic_20260707/proof_audit_replay.py` (committed at the candidate SHA).
 
 ## Verdict

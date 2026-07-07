@@ -4,6 +4,8 @@
 
 ## IN-FLIGHT (armed or accumulating now)
 
+- **FLOOR-BY-HOUR decomposition (PAIR_STORY follow-up, launched 2026-07-07 evening)** — RUNNING DETACHED (tmux `floor_hourly` + watcher `floor_hourly_watch`, resume-capable). Per (cat, hour-bin): coverage, floor under prints-only vs quote-touch, spread/print-rate curves, mains-early hypothesis. Artifact due `.claude/pair_story_20260707/HOURLY_APPENDIX.md` — this line stands until it lands or a DEATH artifact posts.
+
 - ~~PAIR-STORY re-dispatch~~ — **LANDED 2026-07-07 (.claude/pair_story_20260707/PAIR_STORY_20260707.md, 2,396 pairs)**. Headline: ITF med achievable floor 84 (97 = emergency ceiling), S-lines set per cat (ITF 84/84, CHALL 93/90, mains 93); divots ~50-65min apart (sequential doctrine at scale); seesaw lag-0 corr −0.7 ITF/CHALL vs −0.29 ATP_MAIN; floor lands post-ramp, last ~20min. Follow-on (queued naturally, not built): bucket-refined S-lines at AIM_V2 arm; re-run as observed_starts coverage grows.
 
 - **C50 two-file close-out law** — ENFORCED at deploy_gate.sh [4/4] as of 2026-07-07 (bootstrap warn-pass on the first post-law deploy, strict after).

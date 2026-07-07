@@ -15,7 +15,7 @@ with the flag on or off. LANE 2: n/a (no trading delta to measure).
 Lint PASS · zero new test failures vs baseline (43 pre-existing).
 
 ---
-## AMENDMENT (C-SPREAD-EXPRESSION, candidate SHA fcc5dbe3)
+## AMENDMENT (C-SPREAD-EXPRESSION, candidate SHA be0880d9)
 Adds book-state fields (bid/ask/spread) + posture classification for the actual bid
 AND the shadow targets to the same `aim_shadow` line — all inside the same
 try/except-swallowed helper. Same proof shape: no `place_order`, no target/pos

@@ -1,12 +1,12 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 138 @ **2026-07-07 03:04:26 PM ET** | build `c5c3687` | session boot 07-07 14:33 ET | log `live_v3_20260707.jsonl` | 12192 session events | monitor READ-ONLY
+- cycle 139 @ **2026-07-07 03:15:12 PM ET** | build `910d5f2` | session boot 07-07 14:33 ET | log `live_v3_20260707.jsonl` | 15067 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 0 violation(s)
 **NONE.** grace_breach / combined_over_goal(97) / walk_cap_breach / handler_error all clean.
 
-## FILLS — 30 graded (session)
+## FILLS — 34 graded (session)
 | ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb | stamp |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 14:33 | ITFMATCH-26JUL07AGUPES-PES | ITF_M | ? | 26 | 22 | +4 (adopted_est) | — | pre | single |  | PENDING |
@@ -37,50 +37,60 @@
 | 14:55 | ITFMATCH-26JUL07ZHALEE-LEE | ITF_M | ? | 79 | 75 | +4 (window_cell) | — | pre | pair | 94 | GIFT_CLASS |
 | 14:56 | ITFWMATCH-26JUL07AKLRAP-AKL | ITF_W | ? | 51 | 55 | -4 (window_cell) | — | pre | single |  | MIXED |
 | 14:56 | ITFMATCH-26JUL07GRILES-LES | ITF_M | ? | 54 | 51 | +3 (adopted_est) | — | pre | single |  | PENDING |
-| 14:58 | ITFMATCH-26JUL07SEIREN-SEI | ITF_M | ? | 63 | 60 | +3 (adopted_est) | — | pre | single |  | PENDING |
+| 14:58 | ITFMATCH-26JUL07SEIREN-SEI | ITF_M | ? | 63 | 50 | +13 (window_cell) | — | pre | single |  | GIFT_CLASS |
 | 15:02 | ITFMATCH-26JUL07KLEHOH-HOH | ITF_M | ? | 86 | 83 | +3 (adopted_est) | — | pre | single |  | PENDING |
+| 15:08 | ITFMATCH-26JUL07OKOKRA-KRA | ITF_M | ? | 36 | 32 | +4 (adopted_est) | — | pre | single |  | PENDING |
+| 15:13 | ITFMATCH-26JUL07FERCAL-FER | ITF_M | ? | 5 | 1 | +4 (adopted_est) | -3.0 | pre | single |  | EARNED |
+| 15:14 | ITFWMATCH-26JUL07CHAPER-PER | ITF_W | ? | 44 | 55 | -11 (window_cell) | — | pre | single |  | EARNED |
+| 15:14 | ITFWMATCH-26JUL07WANMIR-MIR | ITF_W | ? | 61 | 59 | +2 (adopted_est) | — | pre | single |  | PENDING |
 
 ## RESTING BIDS — 13 tape-graded (starvation = NO_FLOW only)
-- classes now: {'FLOW_ABOVE': 7, 'NO_FLOW': 4, 'FLOW_AT_LEVEL': 2} | repriceable now: true 1 / false 12 | **cumulative bid_grade lines: 4947 (repriceable true 426 / false 4521)** -- the liquid_repost re-arm evidence accumulates here
+- classes now: {'FLOW_ABOVE': 8, 'NO_FLOW': 3, 'FLOW_AT_LEVEL': 2} | repriceable now: true 0 / false 13 | **cumulative bid_grade lines: 4949 (repriceable true 426 / false 4523)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL07MENAVE-A | 36 | 30m | 0 | 37-39 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL07MENAVE-M | 61 | 30m | 0 | 61-62 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL07PACMEL-P | 49 | 13m | 2/52-52/99 | 52-53 | 3 | **FLOW_ABOVE** | 49 | flow above but bound 49c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL07ARSWIL-WIL | 51 | 3m | 2/67-67/36 | 68-69 | 16 | **FLOW_ABOVE** | 51 | flow above but bound 51c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL07DEDBAL-BAL | 51 | 24m | 12/41-65/185 | 37-45 | -10 | **FLOW_AT_LEVEL** | 51 |  |
-| ITFMATCH-26JUL07HURBOU-BOU | 68 | 30m | 0 | 68-71 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL07HURBOU-HUR | 28 | 30m | 0 | 28-31 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL07MESBYN-BYN | 34 | 12m | 9/35-56/302 | 52-53 | 1 | **FLOW_ABOVE** | 34 | flow above but bound 34c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL07STRGUR-GUR | 2 | 8m | 28/6-7/1508 | 5-6 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→6 |
-| ITFMATCH-26JUL07THOGEO-THO | 40 | 31m | 58/61-76/3377 | 68-69 | 21 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL07GOOKHA-GOO | 23 | 12m | 45/22-39/2968 | 22-23 | -1 | **FLOW_AT_LEVEL** | 28 |  |
-| ITFWMATCH-26JUL07KAYDUN-KAY | 57 | 31m | 88/65-87/3592 | 76-79 | 8 | **FLOW_ABOVE** | 57 | flow above but bound 57c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL07MIKPAQ-PAQ | 71 | 31m | 1/98-98/6 | 98-99 | 27 | **FLOW_ABOVE** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL07MENAVE-A | 36 | 41m | 2/37-38/2 | 37-39 | 1 | **FLOW_ABOVE** | 35 | flow above but bound 35c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL07MENAVE-M | 61 | 41m | 0 | 61-62 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL07PACMEL-P | 49 | 24m | 2/52-52/99 | 52-54 | 3 | **FLOW_ABOVE** | 49 | flow above but bound 49c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL07ARSWIL-WIL | 51 | 14m | 7/66-70/65 | 70-72 | 15 | **FLOW_ABOVE** | 51 | flow above but bound 51c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL07DEDBAL-BAL | 51 | 34m | 28/25-65/607 | 31-32 | -26 | **FLOW_AT_LEVEL** | 51 |  |
+| ITFMATCH-26JUL07GRILES-LES | 53 | 2m | 2/74-74/54 | 68-71 | 21 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL07HURBOU-BOU | 68 | 41m | 0 | 68-71 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL07HURBOU-HUR | 28 | 41m | 0 | 28-31 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL07MESBYN-BYN | 34 | 22m | 27/35-71/715 | 71-72 | 1 | **FLOW_ABOVE** | 34 | flow above but bound 34c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL07THOGEO-THO | 40 | 41m | 126/61-80/7723 | 78-81 | 21 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL07GOOKHA-GOO | 23 | 22m | 78/12-39/5143 | 11-12 | -11 | **FLOW_AT_LEVEL** | 28 |  |
+| ITFWMATCH-26JUL07KAYDUN-KAY | 57 | 41m | 134/65-95/5220 | 93-94 | 8 | **FLOW_ABOVE** | 57 | flow above but bound 57c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL07MIKPAQ-PAQ | 71 | 41m | 1/98-98/6 | 98-99 | 27 | **FLOW_ABOVE** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
 |---|---|---|---|---|---|
-| ITFWMATCH-26JUL07GOOKHA | 17 | 78 | **95** | 97 | -2 |
-| ITFWMATCH-26JUL07NGUGJI | 82 | 18 | **100** | 97 | +3 |
-| ATPCHALLENGERMATCH-26JUL07PACMEL | 48 | 53 | **101** | 97 | +4 |
+| ITFWMATCH-26JUL07NGUGJI | 82 | 13 | **95** | 97 | -2 |
+| ITFWMATCH-26JUL07CHAPER | 44 | 57 | **101** | 97 | +4 |
+| ATPCHALLENGERMATCH-26JUL07PACMEL | 48 | 54 | **102** | 97 | +5 |
 | ATPCHALLENGERMATCH-26JUL07MEJTEN | 6 | 99 | **105** | 97 | +8 |
-| ITFMATCH-26JUL07SEIREN | 63 | 44 | **107** | 97 | +10 |
-| ITFWMATCH-26JUL07AKLRAP | 51 | 65 | **116** | 97 | +19 |
-| ITFWMATCH-26JUL07KAYDUN | 40 | 79 | **119** | 97 | +22 |
+| ITFWMATCH-26JUL07GOOKHA | 17 | 89 | **106** | 97 | +9 |
+| ITFMATCH-26JUL07SEIREN | 63 | 59 | **122** | 97 | +25 |
+| ITFWMATCH-26JUL07AKLRAP | 51 | 75 | **126** | 97 | +29 |
+| ITFWMATCH-26JUL07KAYDUN | 40 | 94 | **134** | 97 | +37 |
 
-## PATTERNS (sub-B) — 12
-- half_arm_aging: KXITFMATCH-26JUL07AGUPES-PES {"fill": 26, "age_min": 31, "mode": "PAIRING(sib never rested)", "emitted_et": "2026-07-07 03:04:26 PM ET"}
-- half_arm_aging: KXITFWMATCH-26JUL07KAYDUN-DUN {"fill": 40, "age_min": 31, "mode": "SET_BELOW_FLOW(prints 8c above)", "emitted_et": "2026-07-07 03:04:26 PM ET"}
+## PATTERNS (sub-B) — 17
+- half_arm_aging: KXITFMATCH-26JUL07AGUPES-PES {"fill": 26, "age_min": 42, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFWMATCH-26JUL07KAYDUN-DUN {"fill": 40, "age_min": 42, "mode": "SET_BELOW_FLOW(prints 8c above)"}
 - deep_neg_fv: KXITFMATCH-26JUL07SEGMIT-MIT {"entry_minus_fv_burst": -21.0}
-- half_arm_aging: KXITFMATCH-26JUL07SEGMIT-MIT {"fill": 32, "age_min": 31, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL07SEGMIT-MIT {"fill": 32, "age_min": 41, "mode": "PAIRING(sib never rested)"}
 - deep_neg_fv: KXITFMATCH-26JUL07BOBARO-BOB {"entry_minus_fv_burst": -36.0}
-- half_arm_aging: KXITFMATCH-26JUL07BOBARO-BOB {"fill": 56, "age_min": 31, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL07HERHAR-HER {"fill": 17, "age_min": 31, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL07ONCCAM-CAM {"fill": 20, "age_min": 31, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL07BOBARO-BOB {"fill": 56, "age_min": 41, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL07HERHAR-HER {"fill": 17, "age_min": 41, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL07ONCCAM-CAM {"fill": 20, "age_min": 41, "mode": "NO_BID(sib rested earlier, none now)"}
 - deep_neg_fv: KXITFWMATCH-26JUL07EVAGOW-GOW {"entry_minus_fv_burst": -27.0}
-- half_arm_aging: KXITFWMATCH-26JUL07EVAGOW-GOW {"fill": 14, "age_min": 31, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFWMATCH-26JUL07MAROLU-OLU {"fill": 30, "age_min": 31, "mode": "PAIRING(sib never rested)"}
-- combined_over_goal_UNVERIFIED_BASIS: KXITFMATCH-26JUL07ARSWIL {"combined": 98, "detail": "pair combined 98c > 97c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) \u2014 exchange-truth check required, NOT a ZT row", "emitted_et": "2026-07-07 03:04:26 PM ET"}
+- half_arm_aging: KXITFWMATCH-26JUL07EVAGOW-GOW {"fill": 14, "age_min": 41, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFWMATCH-26JUL07MAROLU-OLU {"fill": 30, "age_min": 41, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL07FERPAV-PAV {"fill": 57, "age_min": 38, "mode": "PAIRING(sib never rested)", "emitted_et": "2026-07-07 03:15:12 PM ET"}
+- half_arm_aging: KXITFMATCH-26JUL07ZHUKEN-ZHU {"fill": 23, "age_min": 37, "mode": "PAIRING(sib never rested)", "emitted_et": "2026-07-07 03:15:12 PM ET"}
+- half_arm_aging: KXITFWMATCH-26JUL07SCHCAN-SCH {"fill": 13, "age_min": 35, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFWMATCH-26JUL07GOOKHA-GOO {"fill": 17, "age_min": 34, "mode": "PAIRING(sib never rested)", "emitted_et": "2026-07-07 03:15:12 PM ET"}
+- half_arm_aging: KXITFWMATCH-26JUL07NGUGJI-NGU {"fill": 82, "age_min": 32, "mode": "PAIRING(sib never rested)", "emitted_et": "2026-07-07 03:15:12 PM ET"}
+- combined_over_goal_UNVERIFIED_BASIS: KXITFMATCH-26JUL07ARSWIL {"combined": 98, "detail": "pair combined 98c > 97c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) \u2014 exchange-truth check required, NOT a ZT row"}
 
 ## ERRORS — 0 handler errors this session (ZERO — clean loop)

@@ -1,3 +1,5 @@
+> **FROZEN 2026-07-07. Historical context only. Current truth: `arb-executor/docs/LIVING_VAULT.md` + `.claude/BOARD.md` on `blend/kalshi-occ-fallback`.**
+
 # OMI Roadmap — Categorized Tracking System
 
 **Purpose:** Source of truth for current operational state of the OMI tennis trading operation. Append-only categorized indexed tracking, same model as LESSONS.md. Future chats consult this to know what is open, what needs attention, what is unknown, what is missing, and what is awaiting authorization.

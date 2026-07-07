@@ -1,3 +1,5 @@
+> **FROZEN 2026-07-07. Historical context only. Current truth: `arb-executor/docs/LIVING_VAULT.md` + `.claude/BOARD.md` on `blend/kalshi-occ-fallback`.**
+
 # THE JUNE VAULT — APPENDIX: THE ANTI-RE-DERIVATION ARCHIVE
 
 > **Purpose.** This is the single consolidated record of the June body of work. Everything here is **verbatim from disk** — no paraphrase, no summary. If a finding, artifact, or deploy is in this file, it is present in full so it never has to be re-derived. Read [`JUNE_VAULT.md`](JUNE_VAULT.md) first for the ground-truth narrative (§1–§5); this appendix carries the complete underlying record the Vault points to.

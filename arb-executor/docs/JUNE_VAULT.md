@@ -1,3 +1,7 @@
+> **FROZEN 2026-07-07 — THE JUNE ARCHIVE. Historical context only; the chronology law applies (newer trumps older).**
+> **Current truth lives on `blend/kalshi-occ-fallback`: `arb-executor/docs/LIVING_VAULT.md` (the ledger + entry doctrine, merged from this Vault's §0A–0E/§1/§4E–4I/§5) + `.claude/BOARD.md` (the standing queue).**
+> June archives as June. Do not append here.
+
 # THE JUNE+JULY VAULT — OMQS ground truth, read FIRST every session
 
 **Purpose:** Stop re-deriving what's already settled. Every fact here is verified from disk/REST, not memory. If you're about to conclude something, check here first — odds are it's already concluded, tested, or dead. Shared reference for Fable, Plex, and CC. (Living June+July Vault as of 2026-07-01.)

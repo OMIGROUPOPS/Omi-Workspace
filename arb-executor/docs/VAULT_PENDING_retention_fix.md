@@ -1,3 +1,5 @@
+> **MERGED into `arb-executor/docs/LIVING_VAULT.md` 2026-07-07 (ledger entry of its own date). FROZEN — do not update here.**
+
 # VAULT PENDING — C-RETENTION (observed true starts), 2026-07-06
 
 **Prior art (C45):** START_TIME_JOIN.md 2e86cf3 (zero observed starts on disk; the collector

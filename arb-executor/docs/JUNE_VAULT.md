@@ -1,3 +1,6 @@
+> **FROZEN 2026-07-07. Historical context only. Current truth: `arb-executor/docs/LIVING_VAULT.md` + `.claude/BOARD.md`.**
+> (Knowledge consolidation, Phase 2 — the chronology law applies: entries closer to today trump anything prior.)
+
 # THE JUNE VAULT — moved. Do NOT maintain this copy.
 
 > ⚠ **This branch (`blend/kalshi-occ-fallback`) is a DEPLOY branch. The canonical Vault lives on `blend/agent-derivation`.**

@@ -1,3 +1,5 @@
+> **MERGED into `arb-executor/docs/LIVING_VAULT.md` 2026-07-07 (ledger entry of its own date). FROZEN — do not update here.**
+
 # VAULT PENDING — AIM-TABLE doctrine (merge into canonical §4 on `blend/agent-derivation`)
 
 > Staged on the deploy branch `blend/kalshi-occ-fallback` (code lives here). The canonical Vault

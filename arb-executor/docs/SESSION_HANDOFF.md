@@ -1,3 +1,6 @@
+> **FROZEN 2026-07-07. Historical context only. Current truth: `arb-executor/docs/LIVING_VAULT.md` + `.claude/BOARD.md`.**
+> (Knowledge consolidation, Phase 2 — the chronology law applies: entries closer to today trump anything prior.)
+
 # SESSION HANDOFF — current
 
 **Convention:** This file is ALWAYS the current handoff — overwrite in place at end of each session. Numbered SESSION{N}_HANDOFF.md files in `docs/handoffs/` are frozen historical snapshots; do not edit them.

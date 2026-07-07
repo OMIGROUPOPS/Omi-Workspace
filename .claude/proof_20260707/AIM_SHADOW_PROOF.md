@@ -21,3 +21,5 @@ AND the shadow targets to the same `aim_shadow` line — all inside the same
 try/except-swallowed helper. Same proof shape: no `place_order`, no target/pos
 mutation, no cancels, no order-API awaits in the added code. Order path
 byte-equivalent flag-on/flag-off. Lint PASS, zero new test failures.
+
+Proven-state carrier: 1e98fc46 (delta from be0880d9 = analysis census scripts + docs only; zero bot-code change beyond the proven amendment).

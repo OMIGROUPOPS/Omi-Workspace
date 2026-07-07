@@ -173,6 +173,18 @@ CUT A (-15.29) + Σdelta (-3.36) = -18.65 vs CUT B -18.65 — internal sums must
 | E4 | ITF_M | 0 | 0+0+0 | 0 | 1 | 0 | 0/1 | 0/0 | 1/1 | 0 |
 | E4 | ITF_W | 0 | 0+2+0 | 0 | 1 | 0 | 2/3 | 2/2 | 0/5 | 0 |
 
+## DAY ROLLUP — conception-day attribution (boundary = midnight ET)
+
+Convention (amended 2026-07-07): an event belongs to the ET calendar day of its first conception; positions open at 00:00 carry on the PRIOR day's line and their settlements resolve it. The 00:00-nearest banked account snapshot is the day-close anchor (07-06 close anchored by the 00:18:15 snapshot, 18min late, stated).
+
+| day (conception) | events | settled-so-far $ (n) | carried past midnight: basis (n events) | still open now $ | line status |
+|---|---|---|---|---|---|
+| 2026-07-05 | 13 | +6.97 (13) | 12.10 (3) | 0.00 | FINAL |
+| 2026-07-06 | 263 | -22.02 (192) | 100.73 (25) | 57.01 | OPEN (71 events unresolved) |
+| 2026-07-07 | 27 | +0.00 (0) | 3.10 (1) | 3.10 | OPEN (27 events unresolved) |
+
+(settled-so-far $ = ALL settlements of that day's conceptions to date — the line converges to FINAL as carried positions resolve; re-cut nightly against the 00:00 snapshot anchor.)
+
 ## THE ROSTER — every engaged event, one row (settled AND open)
 
 | ticker | cat | ep | legs | fills ¢ | comb | vs97 | Δaim | W1 | disp | grade | status |

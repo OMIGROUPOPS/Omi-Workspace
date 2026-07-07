@@ -167,6 +167,43 @@ for ep in EPS:
         A(f"| {ep} | {c} | {gr['A']} | {gr['B1']}+{gr['B2']}+{gr['B3']} | {gr['C']} | {gr['D']} | {gr['F']} | {len(pairs)}/{len(se)} | {le97}/{len(pairs)} | {w1c}/{legs_n} | {bou} |")
 A("")
 
+# ---- DAY ROLLUP (convention amendment 2026-07-07): day boundary = midnight ET,
+# attribution by CONCEPTION -- positions open at 00:00 belong to the prior day;
+# their settlements resolve that day's line. ----
+A("## DAY ROLLUP — conception-day attribution (boundary = midnight ET)")
+A("")
+A("Convention (amended 2026-07-07): an event belongs to the ET calendar day of its first conception; positions open at 00:00 carry on the PRIOR day's line and their settlements resolve it. The 00:00-nearest banked account snapshot is the day-close anchor (07-06 close anchored by the 00:18:15 snapshot, 18min late, stated).")
+A("")
+from datetime import datetime as _dt, timezone as _tz, timedelta as _td
+ET=_tz(_td(hours=-4))
+def day_of(r):
+    cs=[float(l["conc_ts"]) for l in r["legs"] if l.get("conc_ts")]
+    if not cs: return None
+    return _dt.fromtimestamp(min(cs), ET).strftime("%Y-%m-%d")
+daymap=defaultdict(list)
+for r in rows:
+    d=day_of(r)
+    if d: daymap[d].append(r)
+A("| day (conception) | events | settled-so-far $ (n) | carried past midnight: basis (n events) | still open now $ | line status |")
+A("|---|---|---|---|---|---|")
+for d in sorted(daymap):
+    rs=daymap[d]
+    stt=[r for r in rs if r["status"]=="SETTLED"]
+    stt_d=round(sum(r["pnl"] for r in stt),2)
+    mid=_dt.strptime(d,"%Y-%m-%d").replace(tzinfo=ET).timestamp()+86400
+    carried=[r for r in rs if any(
+        l.get("fill_ts") and float(l["fill_ts"])<mid and (l.get("sett_ts") is None or float(l["sett_ts"])>=mid) and l.get("vw") is not None
+        for l in r["legs"])]
+    car_basis=round(sum((l["vw"] or 0)*(l["qty"] or 0)/100.0 for r in carried for l in r["legs"]
+        if l.get("fill_ts") and float(l["fill_ts"])<mid and (l.get("sett_ts") is None or float(l["sett_ts"])>=mid) and l.get("vw") is not None),2)
+    open_now=[r for r in rs if r["status"]=="OPEN"]
+    _ob_day=round(sum(r.get("open_basis",0) for r in open_now),2)
+    status="FINAL" if not open_now else f"OPEN ({len(open_now)} events unresolved)"
+    A(f"| {d} | {len(rs)} | {stt_d:+.2f} ({len(stt)}) | {car_basis:.2f} ({len(carried)}) | {_ob_day:.2f} | {status} |")
+A("")
+A("(settled-so-far $ = ALL settlements of that day's conceptions to date — the line converges to FINAL as carried positions resolve; re-cut nightly against the 00:00 snapshot anchor.)")
+A("")
+
 # ---- 2/1 the full roster ----
 A("## THE ROSTER — every engaged event, one row (settled AND open)")
 A("")

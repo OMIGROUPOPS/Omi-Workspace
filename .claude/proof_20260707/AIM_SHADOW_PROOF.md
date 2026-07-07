@@ -1,6 +1,6 @@
-# C-AIM-SHADOW — C46 no-order-path-delta proof (candidate SHA fd997096)
+# C-AIM-SHADOW — C46 no-order-path-delta proof (candidate SHA 8aac278a)
 
-**The change is a LOGGER.** Diff anatomy at fd997096: (1) flag init `aim_shadow` +
+**The change is a LOGGER.** Diff anatomy at 8aac278a: (1) flag init `aim_shadow` +
 lazy table handle; (2) helper `_aim_shadow_log` — reads the operational table +
 sibling book, emits ONE `aim_shadow` log line, entire body inside try/except-pass;
 (3) two call sites (after the v4_place log; before the v4_move_repost log) that

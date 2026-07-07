@@ -3076,16 +3076,47 @@ class LiveV3:
             target_max = self.config["sizing"]["entry_contracts"]
             existing_pos = self.positions.get(ticker)
             current_qty = existing_pos.entry_qty if existing_pos and existing_pos.phase == "active" else 0
-            if current_qty >= target_max:
+            # [C-BUY-POSITION-GUARD 07-07] exchange truth at the chokepoint.
+            # The memory-only guard read 0 after every restart (reconcile's
+            # LINK path never re-materializes filled legs in self.positions)
+            # and never counted RESTING buys, so each boot stacked another lot
+            # on legs it could not see (VANBOO 3x5, ZHAISH-ZHA 3x5 in one
+            # sweep; 119 multi-bought tickers on the 07-07 tape). Committed
+            # exposure = exchange position + open resting buys, both from the
+            # per-ticker APIs. Lookup failure -> REFUSE the buy (fail-closed):
+            # a skipped placement retries next tick; an unguarded buy is how
+            # the book multi-bought overnight.
+            _pd = await api_get(self.session, self.ak, self.pk,
+                "/trade-api/v2/portfolio/positions?ticker=%s&count_filter=position"
+                "&settlement_status=unsettled" % ticker, self.rl)
+            _od = await api_get(self.session, self.ak, self.pk,
+                "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % ticker, self.rl)
+            if _pd is None or _od is None:
+                self._log("buy_guard_api_fail", {
+                    "positions_ok": _pd is not None, "orders_ok": _od is not None,
+                    "attempted_count": count, "price": price}, ticker=ticker)
+                return "", {"_error": "buy_guard_api_fail"}
+            _ex_held = sum(int(float(p.get("position_fp", 0)))
+                           for p in _pd.get("market_positions", []))
+            _open_buys = sum(int(float(o.get("remaining_count_fp",
+                                             o.get("remaining_count", 0)) or 0))
+                             for o in _od.get("orders", [])
+                             if o.get("action") == "buy")
+            committed = max(current_qty, _ex_held) + _open_buys
+            if committed >= target_max:
                 self._log("buy_blocked_position_full", {
-                    "current_qty": current_qty, "target_max": target_max,
+                    "current_qty": current_qty, "exchange_qty": _ex_held,
+                    "open_buy_qty": _open_buys, "committed": committed,
+                    "target_max": target_max,
                     "attempted_count": count, "price": price,
+                    "source": "exchange_truth",
                 }, ticker=ticker)
                 return "", {"_error": "position_full"}
-            if current_qty + count > target_max:
-                count = target_max - current_qty
+            if committed + count > target_max:
+                count = target_max - committed
                 self._log("buy_qty_reduced", {
-                    "current_qty": current_qty, "reduced_to": count,
+                    "current_qty": current_qty, "exchange_qty": _ex_held,
+                    "open_buy_qty": _open_buys, "reduced_to": count,
                     "target_max": target_max, "price": price,
                 }, ticker=ticker)
 
@@ -5456,7 +5487,14 @@ class LiveV3:
                 ex_open = sum(int(float(p.get("position_fp", 0)))
                               for p in pdata.get("market_positions", []))
                 if ex_open >= 0:
-                    open_qty = min(open_qty, ex_open)
+                    # [C-EXIT-QTY-IS-POSITION-QTY 07-07] EXIT QTY = POSITION QTY.
+                    # The old min() clamp only prevented overselling; it never
+                    # sized UP when the exchange held more than this order's
+                    # booked fills (cross-boot duplicate buys: ECHADD 15 held /
+                    # 5 posted, SIMROU 10/5). Strays were just cancelled above,
+                    # so the full exchange open quantity is exactly what this
+                    # exit must cover.
+                    open_qty = ex_open
         except Exception:
             pass  # ledger-derived open_qty stands on a failed lookup
         if open_qty <= 0:
@@ -8578,9 +8616,23 @@ class LiveV3:
             print("\n[RECONCILE] Loading account state from Kalshi...", flush=True)
 
         # 1. Fetch positions
+        # [C-RECONCILE-PAGINATION 07-07] both portfolio endpoints page at 100
+        # and the overnight book blew past the page (277 resting orders at the
+        # 07-07 morning audit). Reconcile evaluated every guard on the FIRST
+        # PAGE ONLY: prior-boot bids and positions were invisible, so
+        # _repost_missing_siblings re-conceived entries it could not see (the
+        # dup-buy storm) and the qty-gap consolidation never saw the legs.
+        # Walk the cursor to exhaustion on both fetches.
         pos_path = "/trade-api/v2/portfolio/positions?count_filter=position&settlement_status=unsettled"
-        pos_data = await api_get(self.session, self.ak, self.pk, pos_path, self.rl)
-        positions = (pos_data or {}).get("market_positions", [])
+        positions, _pcur = [], None
+        while True:
+            pos_data = await api_get(self.session, self.ak, self.pk,
+                pos_path + ("&cursor=%s" % _pcur if _pcur else ""), self.rl)
+            _rows = (pos_data or {}).get("market_positions", [])
+            positions.extend(_rows)
+            _pcur = (pos_data or {}).get("cursor")
+            if not _pcur or not _rows:
+                break
 
         pos_map = {}  # ticker -> {qty, avg_price, event_ticker}
         for p in positions:
@@ -8594,10 +8646,17 @@ class LiveV3:
                 et = parts[0] if len(parts) == 2 else ""
             pos_map[tk] = {"qty": qty, "avg_price": avg_price, "event_ticker": et}
 
-        # 2. Fetch resting orders
+        # 2. Fetch resting orders ([C-RECONCILE-PAGINATION 07-07]: same cursor walk)
         ord_path = "/trade-api/v2/portfolio/orders?status=resting"
-        ord_data = await api_get(self.session, self.ak, self.pk, ord_path, self.rl)
-        resting = (ord_data or {}).get("orders", [])
+        resting, _ocur = [], None
+        while True:
+            ord_data = await api_get(self.session, self.ak, self.pk,
+                ord_path + ("&cursor=%s" % _ocur if _ocur else ""), self.rl)
+            _rows = (ord_data or {}).get("orders", [])
+            resting.extend(_rows)
+            _ocur = (ord_data or {}).get("cursor")
+            if not _ocur or not _rows:
+                break
 
         ord_map = {}  # ticker -> list of orders
         for o in resting:
@@ -8671,6 +8730,25 @@ class LiveV3:
                 if sells and not existing.exit_order_id:
                     existing.exit_order_id = sells[0]["order_id"]
                     existing.exit_price = sells[0]["price"]
+                # [C-EXIT-QTY-IS-POSITION-QTY 07-07] tracked legs were never
+                # consolidated: the qty-gap path below only runs for UNTRACKED
+                # legs, so a tracked leg whose exchange position grew past its
+                # resting exit (cross-boot duplicate buys) kept a lot-sized
+                # exit forever (SIMROU 10 held / 5-lot sell). Same-band qty
+                # correction only: top up the missing quantity at the resting
+                # exit's own price -- never a new level, never a cancel (the
+                # existing exit keeps its queue position).
+                if sells and existing.strategy != "hold":
+                    _sell_total = sum(s["qty"] for s in sells)
+                    _gap = pinfo["qty"] - _sell_total
+                    if _gap > 0:
+                        _oid_gap, _ = await self.place_order(
+                            tk, "sell", "yes", sells[0]["price"], _gap)
+                        self._log("reconcile_exit_topup", {
+                            "exit_price": sells[0]["price"], "qty": _gap,
+                            "position_qty": pinfo["qty"],
+                            "resting_sell_qty": _sell_total,
+                            "order_id": _oid_gap}, ticker=tk)
                 continue
 
             if sells:

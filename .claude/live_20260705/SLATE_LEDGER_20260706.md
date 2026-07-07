@@ -563,3 +563,27 @@ Generated 2026-07-07 00:18:15 ET. This file is THE book — the monitor and ever
 **2026-07-07 00:18:15 ET: cash $847.74 · positions (account mark) $75.93.** Every future 24h reconcile decomposes against THIS line instead of a named unknown — the window-start residual class is dead from here forward.
 
 One ledger line at this cut: **settled −$15.05 (205) · open basis $60.11 (98 events) · open mark $55.20.**
+
+---
+# §9 · POSITION RECONCILE vs KALSHI — 2026-07-07 00:46:48 ET (exchange the referee)
+
+**VERDICT: NO STALE DETECTION, NO UNTRACKED EXPOSURE — every diff is time-drift or the manual set; both headline numbers reconcile to the penny.** The ledger's HELD set was correct FOR ITS 00:18 TIMESTAMP; the book is simply trading.
+
+## 1 · Line-by-line (49 tickers in either source)
+| class | n | reading |
+|---|---|---|
+| MATCH | 23 | qty-identical both sources |
+| EXCHANGE-ONLY: new since cut | 14 | overnight fills after the 00:18 read — time drift, expected |
+| EXCHANGE-ONLY: MANUAL | 6 | the excluded set, checked FIRST as ordered — explains part of the UI positions number |
+| LEDGER-ONLY: exited since cut | 3 | TAGSUZ-TAG, TANKAW-KAW, VANBOO-BOO — bands filled after 00:18 |
+| LEDGER-ONLY: settled since cut | 2 | BORHAR-HAR, OHWLIU-OHW |
+| QTY-DRIFT | 1 | TANVIS-VIS 2→5 lots (fills since cut) |
+| **UNTRACKED** | **0** | — |
+| **STALE** | **0** | — |
+
+## 2 · The two headline numbers, to the penny
+- **Positions:** bot-held bid-mark **$68.99** + manual **$14.80** = **$83.79**; the account's own mark reads **$93.79** (portfolio_value) — the bid-vs-account-mark convention gap (§6's known class) now ~$10 on a bigger book; the operator's ~$87.xx sat between the two conventions mid-trajectory. Named, not absorbed.
+- **Cash:** banked 00:18 snapshot **$847.74 − 35.45 buys + 15.70 sells + 0.00 settlements − 0.00 fees = $827.99 predicted = $827.99 actual, EXACT.** The operator's ~$834 was the same trajectory read minutes earlier — cash flowing into the overnight book, every dollar accounted.
+
+## 3 · Defect check
+None found: zero UNTRACKED, zero STALE — no detection fix required; the day-rollup HELD/WORKING split plus the banked-snapshot convention did their job. (Standing note: any future §9 pass classifying a row UNTRACKED or STALE escalates loud.)

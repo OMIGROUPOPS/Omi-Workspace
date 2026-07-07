@@ -22,6 +22,9 @@
 6. **Fractional sizing** — int-floor class end-to-end (payload `str(int())`, exit sizing, guard now floats): WALVAL 0.87 residue exhibit; Kalshi accepts fractional counts (proven 201s).
 7. **MALKOM timing** — the blocked-buy's `exchange_qty=0` while memory said 9 (settled-filter timing on the per-ticker positions read).
 8. **PAT rotation** — origin URL still leaks a GitHub PAT (standing since 06-18). Security, not trading.
+9. **join_trial_mode → False** — archaic-armed flag (trial aborted 06-18; still stamps join_is_trial + keeps a dead abort armed). Config-only flip through the gate. [CONFORMANCE §4]
+10. **Sub-1 residue tripwire** — add residue count/Σ column to post_boot_audit (the audit's one blind spot: h<1.0 tolerance). [CONFORMANCE §3]
+11. **kalshi_schedule_primary coexistence check** — one-line verify vs per_match_clock layering in the next clock pass. [CONFORMANCE §4]
 
 ## EXTERNAL (owed by others; slots reserved)
 
@@ -30,6 +33,8 @@
 - **Riser Plex bounce** — fires at fv_observe n≈100 (see IN-FLIGHT).
 
 ## CRON / SCHEDULED
+
+- **Conformance cadence** — `.claude/CONFORMANCE.md` §1 tape columns POST-ANY-DEPLOY; full audit incl. archaic sweep WEEKLY (next 2026-07-14). Watches: never_marketable + hold_to_settle natural occurrences, C50 bootstrap at next deploy, /tmp/live_v4_TRIPWIRE.json check.
 
 - **Jul-8 checkpoint** — week-order mid-point: leak decomposition cumulative table + config-hold confirmation.
 - **Accumulator** — aim_v2 honest-sample accumulator (bell_src-stamped) rides nightly; feeds the ramp schedule.

@@ -79,6 +79,9 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-07 · CONFORMANCE: the Vault marched against the live process — 23 laws LIVE-PROVEN on today's tape
+Every actionable claim in this vault + LESSONS + rulings got claim|cite|live-proof, no fourth option (`.claude/CONFORMANCE.md`): 23 laws with same-day jsonl fires (57 buy-blocks, 13 top-ups, complete_cross admitted at basis exactly 100 with 30 bound-refusals, 22,389 reshuffle re-aims, 1,787 ex-self posture lines, the full halt arm→clear cycle). 6 UNPROVEN-LIVE stamped with detectors (never-marketable, hold-to-settle, C50 bootstrap, float-guard fractional, error-tripwire file, kalshi-occ observe). Every grave has a tripwire or a named gap (one real gap: sub-1 residues invisible to the audit tolerance). Archaic sweep: INTERIM-ARCHAIC has no surviving implementation; one archaic-ARMED flag found (`join_trial_mode`=True, trial dead since 06-18) → BOARD. Cadence: tape columns post-any-deploy, full audit weekly.
+
 ### 2026-07-07 · THE CONSOLIDATION (this system) — C50 lineage
 The knowledge surface itself was the defect: ROADMAP (frozen 06-01) and SESSION_HANDOFF (frozen 06-05) fossilized on BOTH branches while the working truth migrated to a Vault on a branch the deploy tree can't see, two VAULT_PENDING docs never merged, and today's ex-self reversal proved a verdict can die without a grave. This file + `.claude/BOARD.md` are now the spine; the fork is tombstoned (deriv freeze 9aea01fe); **C50 enforcement LIVE: deploy_gate.sh [4/4] refuses any deploy push that doesn't touch BOARD.md + this file (last_deploy_sha window), and the C45 grep surface now names the LESSONS A-G ledgers + this file's RETIRED section explicitly.** Inventory: `.claude/INVENTORY.md`. **Supersedes: ROADMAP.md, SESSION_HANDOFF.md, JUNE_VAULT (as living surfaces).**
 

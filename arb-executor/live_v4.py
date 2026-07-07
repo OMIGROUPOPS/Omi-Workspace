@@ -2234,9 +2234,25 @@ class LiveV3:
             _key = "%s|%d|%d" % (cat, min(4, max(0, int(_fav_px) // 20)), _tbin)
             _cell = self._aim_shadow_tbl.get(_key)
             _pfx = "f" if _side == "fav" else "d"
+            # [C-SPREAD-EXPRESSION amendment 07-07] book state at decision time +
+            # posture of both the actual bid and the shadow target vs the chain --
+            # every line answers TARGET (model) and POSTURE (chain) at once.
+            _ob = self.books.get(tk)
+            _obb = getattr(_ob, "best_bid", None) if _ob else None
+            _oba = getattr(_ob, "best_ask", None) if _ob else None
+            def _posture(lvl):
+                if lvl is None or not _obb: return None
+                if lvl < _obb: return "below_chain"
+                if lvl == _obb: return "join"
+                if lvl == _obb + 1: return "improve1"
+                if _oba and lvl >= _oba: return "marketable"
+                return "mid_spread"
             _rec = {"event": et, "site": site, "cell": _key, "side": _side,
                     "actual_bid": actual_bid, "px": px, "sib_px": _sib_px,
-                    "tts_min": round(tts_min, 1)}
+                    "tts_min": round(tts_min, 1),
+                    "book_bid": _obb, "book_ask": _oba,
+                    "book_spread": (_oba - _obb) if (_obb and _oba) else None,
+                    "actual_posture": _posture(actual_bid)}
             if not _cell or _cell.get("null_reason"):
                 _rec["shadow"] = "NULL_CELL"
             else:
@@ -2246,6 +2262,8 @@ class LiveV3:
                              "drift": _cell.get(_pfx + "d"),
                              "shadow_aim25": max(1, px + _d25) if _d25 is not None else None,
                              "shadow_aim50": max(1, px + _d50) if _d50 is not None else None,
+                             "shadow_posture25": _posture(max(1, px + _d25) if _d25 is not None else None),
+                             "shadow_posture50": _posture(max(1, px + _d50) if _d50 is not None else None),
                              "dip_admissible": _cell.get("dip_admissible")})
             self._log("aim_shadow", _rec, ticker=tk)
         except Exception:

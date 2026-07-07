@@ -29,4 +29,14 @@ re-detects independently).
 **VC note:** te_live.py entered version control for the first time with this fix — it had
 run uncommitted since April (discipline gap, closed).
 
-**Live verification:** appended below after the first hour of banked starts tonight.
+**Live verification (2026-07-06):**
+- 21:52 ET, one hour post-deploy: **0 banked — and the zero was the finding.** The /results/
+  page's time-cells NEVER carry a live marker (0 'Liv' all-time; finished matches show their
+  start clock) — the collector's 'live' branch was DEAD CODE since April. The gap had two
+  layers: transitions weren't just overwritten, they were never detected.
+- **C-RETENTION-2 (99c25467):** additive `bank_observed_starts()` scrapes /live/ — the only
+  page carrying in-play matches (verified live: 6 matches, 'P1 - P2' anchors) — set-once into
+  observed_starts. Collector restarted 21:56 ET.
+- **21:57:40 ET, first cycle: `Observed starts banked: 6`** — six in-play matches worldwide
+  at 03:57 CET banked with timestamps. The archive is live; daytime slates will feed it at
+  full volume; the accumulator prefers these bells from the next nightly fold.

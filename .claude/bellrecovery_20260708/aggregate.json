@@ -1,0 +1,90 @@
+{
+ "n_events": 3301,
+ "overlap_validated": {
+  "n": 2353,
+  "delta_min_p10": -44.6,
+  "p25": -17.0,
+  "p50": 1.3,
+  "p75": 6.7,
+  "p90": 32.9,
+  "within_5min_pct": 33.9,
+  "corpus_bell_missed_by_detector": 95
+ },
+ "no_bell_class": {
+  "n": 853,
+  "recovered": 349,
+  "recovery_pct": 40.9,
+  "per_cat": {
+   "ATP_CHALL": [
+    75,
+    39
+   ],
+   "ATP_MAIN": [
+    15,
+    5
+   ],
+   "ITF_M": [
+    415,
+    152
+   ],
+   "ITF_W": [
+    293,
+    136
+   ],
+   "WTA_CHALL": [
+    30,
+    16
+   ],
+   "WTA_MAIN": [
+    25,
+    1
+   ]
+  }
+ },
+ "aimv2_cell_coverage_delta": {
+  "n_new_legs": 694,
+  "n_cells_touched": 271,
+  "top_cells": {
+   "ITF_W|1": 14,
+   "ITF_W|3": 12,
+   "ITF_M|3": 12,
+   "ITF_M|2": 12,
+   "ITF_M|1": 11,
+   "ITF_M|6": 10,
+   "ITF_M|93": 9,
+   "ITF_M|11": 8,
+   "ITF_W|2": 8,
+   "ITF_W|90": 8,
+   "ITF_M|96": 8,
+   "ITF_M|79": 8,
+   "ITF_M|7": 7,
+   "ITF_W|97": 7,
+   "ITF_M|68": 6,
+   "ITF_W|5": 6,
+   "ITF_W|50": 6,
+   "ITF_M|78": 6,
+   "ITF_W|84": 6,
+   "ITF_W|36": 6,
+   "ITF_W|6": 6,
+   "ITF_W|80": 5,
+   "ITF_M|95": 5,
+   "ITF_M|4": 5,
+   "ITF_W|12": 5,
+   "ITF_W|22": 5,
+   "ITF_M|86": 5,
+   "ITF_W|8": 5,
+   "ITF_W|40": 5,
+   "ITF_M|9": 5,
+   "ITF_M|13": 5,
+   "ITF_M|17": 5,
+   "ITF_W|53": 5,
+   "ITF_M|81": 4,
+   "ITF_W|87": 4,
+   "ITF_M|5": 4,
+   "ITF_W|30": 4,
+   "ITF_W|95": 4,
+   "ITF_M|20": 4,
+   "ITF_W|56": 4
+  }
+ }
+}

@@ -5,11 +5,11 @@
 ## SEND-ORDER (operator, 07-08 — the dispatch sequence; nothing jumps the line)
 
 1. ~~Fused gun + orphan fix~~ ✓ **DEPLOYED 07-08 night** (`6d84f27e`; live proof table still owed tonight — see IN-FLIGHT)
-2. ~~Sequential floor recompute~~ ✓ **DONE 07-08 night + RE-CUT ON THE GRID** (`SEQUENTIAL_FLOOR.md` + `SEQFLOOR_RECUT.md`: 90 cells/cat × 6 cats, fav/dog binary RETIRED — depth is a cell property, crossover ~50-55 ITF; heavy zone 75-94 = 6-19¢ med W1-clip; ITF rows labeled Challenger-borrowed-exit; dynamic cell-conditional S reference + AIM_V2 (cat,cell) aim key filed — S-line refits await operator ratification)
-3. **Bell recovery** (historical missed-bell class; the fused gun covers forward — this item is the backfill/recovery pass)
-4. **BOT_DOWN channel** — *awaiting operator word on channel choice*
-5. **Out-of-process exit checker** (audit-twin lane)
-6. **Evening cut** (incl. the 7–9 pm lying-clock reposts watch, below)
+2. ~~Sequential floor recompute~~ ✓ **DONE + RE-CUT + RATIFIED 07-08 night** (`SEQFLOOR_RECUT.md`; **DYNAMIC S + CELL-KEYED AIM ratified — `.claude/rulings/RULING_DYNAMIC_S_CELL_AIM.md`**; constants retired to footnotes; honest-era regrade S=0 unchanged, provenance binds first; arm gates unchanged)
+3. ~~Bell recovery~~ ✓ **MEASURED 07-08 late night** (`.claude/bellrecovery_20260708/`: 349/853 no-bell events recovered, +694 legs/271 cells for AIM_V2 — but overlap validation only 33.9% within ±5 min (no premarket suppression standalone): **TRAINING-GRADE only; residual-refinement pass queued #18 before any time-sensitive ingestion**)
+4. ~~BOT_DOWN channel~~ ✓ **LIVE 07-08 7:13 pm** (channel-agnostic `/root/notify.sh`, config-keyed; default ntfy push — **operator subscribe: https://ntfy.sh/omi-livev4-omqs-x7k3q9v2**; SMS/email stubbed for later word; watchdog + exit checker + te_live keepalive all wired, transition-deduped)
+5. ~~Out-of-process exit checker~~ ✓ **LIVE 07-08** (`/root/exit_checker.py`, cron */15, exchange-truth v4 band contract, survives bot death; first run 14 held/0 naked + caught the gun-feed staleness watch)
+6. **Evening cut** (incl. the 7–9 pm lying-clock reposts watch + the gun proof table — waiter armed)
 
 (~~Post-gun forensic~~ ✓ DONE 07-08 night — `.claude/postgun_20260708/POST_GUN_FORENSIC.md`.)
 
@@ -61,6 +61,8 @@
 15. ~~SEQUENTIAL FLOOR recompute~~ — **DONE 07-08 night** (`.claude/seqfloor_20260708/SEQUENTIAL_FLOOR.md`, 2,435 pairs): ITF implied 79 med (premium over simultaneous 4¢ med / 10¢+ on a quarter); edge is FAV-side (dog med 0 — timing not depth; dog floor T−9..−17m, fav divot T−31..−70m, fav-first 2:1); mains still par-locked. **Proposed S-lines ITF 79/79, ATP_CHALL 92 — AWAITING OPERATOR RATIFICATION**; AIM_V2 side-conditional re-anchor noted in the doc.
 16. **CORRIDOR FLAG** — any lifecycle crossing W1 → corridor throws a loud board flag, weighted LOUDER for non-ITF (corridor crossings are rarer and more diagnostic there).
 17. ~~EXIT PROVENANCE verification~~ — **VERIFIED + PINNED 07-08 night (with the grid re-cut)**: `ITF_EXIT_BORROW = {'ITF_M': 'ATP_CHALL', 'ITF_W': 'WTA_CHALL'}` (live_v4.py:288); durable exit dir = exactly four native parquets (atp/wta × chall/main), no ITF. Pinned in FOUNDATIONS "THE GRID"; borrowed bands labeled in every grid readout from now on.
+18. **Bell-recovery residual refinement** — add the live latch's premarket suppression (tts-floor/E113 equivalents) to the standalone taker-signature detector; bar for time-sensitive ingestion of the 349 recovered bells (currently TRAINING-GRADE only: 33.9% within ±5 min on overlap). Also the 95 corpus bells the standalone detector misses (thin tapes) = the detector's own blind class, named.
+19. **tennis.db WAL / lock hygiene** — te_live hit transient `database is locked` (7:08–7:11 pm 07-08) under analysis-reader contention on the 16GB rollback-journal db; consider WAL or read-snapshot copies for analysis passes. Low, ops-grade.
 
 ## EXTERNAL (owed by others; slots reserved)
 
@@ -71,6 +73,8 @@
 ## CRON / SCHEDULED
 
 - **GUN SCORECARD (nightly, permanent)** — `analysis/gun_scorecard.py --nightly` (cron ~6:10 am ET): per-cat detection %, med |truth delta|, misses NAMED into NIGHTLY_PASS.md + dated table under `.claude/gun_scorecard/`. Self-grading forever — degradation flags itself. Companion: te_live keepalive cron (the feed is the gun's primary source; silence = scorecard shows it).
+- **OUT-OF-PROCESS EXIT CHECKER** — `/root/exit_checker_cron.sh` every 15 min (outside the bot): v4 band contract from exchange truth; naked legs → artifact + channel; gun-feed staleness watch aboard; hold-legs exempt via `/root/exit_checker_exempt.txt`.
+- **BOT_DOWN CHANNEL** — `/root/notify.sh` (config `/root/notify_channel.conf`, default ntfy topic `omi-livev4-omqs-x7k3q9v2`); senders: watchdog (1-min cron, transition-deduped + 30-min reminder), exit checker, te_live keepalive. SMS/email slots await operator word.
 - **Conformance cadence** — `.claude/CONFORMANCE.md` §1 tape columns POST-ANY-DEPLOY; full audit incl. archaic sweep WEEKLY (next 2026-07-14). Watches: never_marketable + hold_to_settle natural occurrences, C50 bootstrap at next deploy, /tmp/live_v4_TRIPWIRE.json check.
 
 - ~~Jul-8 checkpoint~~ — **RAN AT THE MORNING DOSSIER (07-08): config-hold CONFIRMED (all config commits since baseline = sanctioned gated flips; today's deploys code-only); ITF_W NOT CROSSED (honest coverage 0/500 cells at n≥30, trigger=False — AIM_V2 stays BLOCKED-ON-DATA; 14k-holdout harness read not yet triggered); leak cumulative table RIDES TONIGHT** (last night invalid as a leak night — bot dead 02:52→11:30; flagged, not smoothed).

@@ -28,7 +28,7 @@
 ## QUEUED (next builds, in rough order)
 
 1. **Post-gun forensic** — the gun-adjacent fill/cancel behavior pass (FERCER/ALCCLA lineage) on honest-clock data.
-2. **Price-band clamp — walk/repost bypass (07-08 dossier)** — the preflight C-BAND-CLAMP enforces [5,95) at the placement chokepoint only; live-verify found **29/639 post-boot buys placed outside the band via the walk/repost path, 1 filled @4¢ (HARMAI-HAR)**. Extend the clamp to the walk chokepoint — one-line class, defect-exempt, next gated deploy.
+2. ~~Price-band clamp — walk/repost bypass~~ — **CLOSED (C-BAND-CLAMP-WALK `a5a64962`, deployed via the full gate 07-08 midday).** Conviction AMENDED the dossier read: the 29 outside-band placements (incl. HARMAI-HAR @4 filled) all predate the 23:57 clamp boot — the placement clamp is airtight; the post-clamp walk class was **cancel-then-refuse STARVATION** (walk cancels the good bid, band_refused kills the re-place, leg left oid=""+phantom basis, invisible to validate_resting_buys — ICHOCH-OCH 00:43, PIAPIE-PIE 02:34). Fix: pre-cancel band guard on the projected landing price + recover-at-old-price on any failed re-place. See LIVING_VAULT 07-08 midday entry + `.claude/proof_20260708/PROOF_WALK_BAND.md`. Regression watch: `walk_band_refused` / `repost_place_failed{recovered:false}` counters.
 3. ~~Post-only-cross exit hole~~ — **CLOSED 07-07 late (C-ITM-EXIT-TAKE in the sweep deploy)**; CLAHER/`exit_unpostable_itm` counter stays as the regression watch.
 4. **Conformance audit** — deployed-config vs code vs tables full conformance pass (drift class the 07-03 VC capture started).
 5. **Walk/repost model** — same-price churn suppression follow-through (C-CHURN-FIX lineage) + walk-cap honest-anchor (Plex walk-cap ruling pending, see EXTERNAL).

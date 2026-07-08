@@ -4,7 +4,9 @@
 
 ## IN-FLIGHT (armed or accumulating now)
 
-- **OVERNIGHT FREEZE (07-08 00:xx ET → morning checkpoint)** — after the preflight deploy verifies: NO further deploys or restarts. Audits (15-min cadence), shadows, accumulator run; hands off. Entry roll: `.claude/sweep_20260707/ENTRY_ROLL_20260708_PREFLIGHT.txt` (12 fills all exit=held; 129 resting, 8 LOUD tape-latch-only, 11 out-of-band bids CANCELLED; [5,95) maker clamp deployed).
+- ~~OVERNIGHT FREEZE (07-08 00:xx ET → morning checkpoint)~~ — **BROKEN BY DISK-FULL CRASH 02:52 ET, not by hands** (bot down 12.6h; 8 legs filled naked on orphaned resting bids; the freeze's audits died with the process). Freeze lifted at the morning checkpoint for containment: swept 0-naked 15:44 UTC, **C-LOG-ENOSPC `9a74b061` deployed through the full gate**. See LIVING_VAULT 07-08 top entry + `.claude/proof_20260708/PROOF_LOG_ENOSPC.md`.
+
+- **BOT_DOWN ESCALATION CHANNEL (new, from the 07-08 conviction)** — nightwatch/watchdog detected the death within 60s and told no one (58k lifetime BOT_DOWN lines into local files; no MTA, no push). Needs an operator decision on channel (push/SMS/dashboard-red). Companion: an OUT-OF-PROCESS 15-min naked-leg audit twin — `position_audit.py --cron` now actually runs (the `. ./.env` dash fix, first cron run since Feb) but asserts against trades.json lineage, not the v4 band contract; decide whether to extend it or write a thin exchange-truth checker. Until then C47-CONTINUOUS remains in-process-only (blast radius = the process).
 
 - ~~SWEEP 07-07 containment~~ — **DEPLOYED 3ec8cc0 23:11 ET** (ITM-exit-take + no-rebuy-after-cash + continuous 15-min audit; first steady_cadence PASS 23:13:45). Book swept clean (4 naked → 0). TANCHE stamped race-class. **S per-leg LIVE: honest era S=3** (BARSIM/WALVAL/SCHZID — per-leg-perfect, combined-lens-invisible). Walk/repost model seeded (median-pass/tail-fail vs 25% bar); refit at checkpoint.
 

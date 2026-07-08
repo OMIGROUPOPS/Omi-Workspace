@@ -1,12 +1,12 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 14 @ **2026-07-08 04:37:49 PM ET** | build `cd3181e` | session boot 07-08 15:20 ET | log `live_v3_20260708.jsonl` | 21148 session events | monitor READ-ONLY
+- cycle 15 @ **2026-07-08 04:48:06 PM ET** | build `f4fbea5` | session boot 07-08 15:20 ET | log `live_v3_20260708.jsonl` | 21889 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 0 violation(s)
 **NONE.** grace_breach / combined_over_goal(97) / walk_cap_breach / handler_error all clean.
 
-## FILLS — 33 graded (session)
+## FILLS — 34 graded (session)
 | ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb | stamp |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 15:20 | ITFWMATCH-26JUL08GARBOH-GAR | ITF_W | ? | 6 | 2 | +4 (window_cell) | — | pre | single |  | MIXED |
@@ -17,7 +17,7 @@
 | 15:29 | ITFWMATCH-26JUL08MCNGAI-MCN | ITF_W | ? | 35 | 48 | -13 (window_cell) | 0.0 | pre | single |  | EARNED |
 | 15:34 | ITFWMATCH-26JUL08LEEMAL-MAL | ITF_W | ? | 63 | 61 | +2 (adopted_est) | — | pre | single |  | PENDING |
 | 15:34 | ITFMATCH-26JUL08OCOZAM-ZAM | ITF_M | ? | 76 | 73 | +3 (adopted_est) | — | pre | pair | 97 | PENDING |
-| 15:40 | ITFMATCH-26JUL08THUPEC-THU | ITF_M | ? | 23 | 19 | +4 (adopted_est) | — | pre | single |  | PENDING |
+| 15:40 | ITFMATCH-26JUL08THUPEC-THU | ITF_M | ? | 23 | 19 | +4 (adopted_est) | — | pre | pair | 99 | PENDING |
 | 15:40 | WTACHALLENGERMATCH-26JUL08YAMROG-R | WTA_CHALL | ? | 42 | 40 | +2 (window_cell) | — | pre | pair | 99 | MIXED |
 | 15:43 | ITFWMATCH-26JUL08MILMIS-MIL | ITF_W | ? | 6 | 2 | +4 (fill_est) | -13.5 | 0.7 | single |  | EARNED |
 | 15:47 | ITFMATCH-26JUL08LEECOO-LEE | ITF_M | ? | 79 | 76 | +3 (adopted_est) | — | pre | single |  | PENDING |
@@ -42,12 +42,13 @@
 | 16:28 | ITFWMATCH-26JUL08GERXAV-XAV | ITF_W | ? | 22 | 18 | +4 (adopted_est) | — | pre | single |  | PENDING |
 | 16:30 | ITFMATCH-26JUL08SAKSAN-SAN | ITF_M | ? | 34 | 30 | +4 (adopted_est) | — | pre | pair | 96 | PENDING |
 | 16:36 | ITFMATCH-26JUL08SAKSAN-SAK | ITF_M | ? | 62 | 59 | +3 (adopted_est) | — | pre | pair | 96 | PENDING |
+| 16:44 | ITFMATCH-26JUL08THUPEC-PEC | ITF_M | ? | 76 | 73 | +3 (adopted_est) | — | pre | pair | 99 | PENDING |
 
 ## RESTING BIDS — 1 tape-graded (starvation = NO_FLOW only)
 - classes now: {'FLOW_ABOVE': 1} | repriceable now: true 0 / false 1 | **cumulative bid_grade lines: 5704 (repriceable true 561 / false 5143)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL08FEALAJ-F | 58 | 39m | 3/61-61/266 | 60-61 | 3 | **FLOW_ABOVE** | 58 | flow above but bound 58c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL08FEALAJ-F | 58 | 49m | 16/61-63/3917 | 61-63 | 3 | **FLOW_ABOVE** | 58 | flow above but bound 58c < flow -- chasing breaks goal |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
@@ -57,65 +58,67 @@
 | ITFMATCH-26JUL08SHEGOR | 62 | 14 | **76** | 97 | -21 |
 | ITFMATCH-26JUL08LEGROB | 6 | 88 | **94** | 97 | -3 |
 | ITFWMATCH-26JUL08GARBOH | 6 | 94 | **100** | 97 | +3 |
-| ATPCHALLENGERMATCH-26JUL08FEALAJ | 39 | 61 | **100** | 97 | +3 |
 | WTACHALLENGERMATCH-26JUL08STEZHA | 20 | 80 | **100** | 97 | +3 |
+| ATPCHALLENGERMATCH-26JUL08FEALAJ | 39 | 63 | **102** | 97 | +5 |
 | ITFMATCH-26JUL08BROKUZ | 21 | 86 | **107** | 97 | +10 |
 | ITFMATCH-26JUL08POLROZ | 49 | 99 | **148** | 97 | +51 |
 
-## FLOW-STATE — 27 tracked game(s) ({'QUIET': 1, 'WAKING': 25, 'OPEN': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 27 tracked game(s) ({'QUIET': 2, 'OPEN': 1, 'WAKING': 24}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ITFWMATCH-26JUL08MILMIS | ITF_W | 1.067 | 1 | **OPEN** |
+| ATPCHALLENGERMATCH-26JUL08FEALAJ | ATP_CHALL | 0.433 | 1 | **OPEN** |
 | ATPCHALLENGERMATCH-26JUL06HOLSCH | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL08FEALAJ | ATP_CHALL | 0.067 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL08GALFIC | ATP_CHALL | 9.8 | — | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL08MATMIC | ATP_CHALL | 17.5 | — | **WAKING** |
-| ITFMATCH-26JUL08ANTCHA | ITF_M | 2.0 | — | **WAKING** |
-| ITFMATCH-26JUL08BRAMAN | ITF_M | 65.433 | — | **WAKING** |
-| ITFMATCH-26JUL08BROKUZ | ITF_M | 9.633 | — | **WAKING** |
-| ITFMATCH-26JUL08LEECOO | ITF_M | 3.667 | — | **WAKING** |
-| ITFMATCH-26JUL08LEGROB | ITF_M | 40.833 | — | **WAKING** |
-| ITFMATCH-26JUL08OCOZAM | ITF_M | 22.867 | — | **WAKING** |
-| ITFMATCH-26JUL08POLROZ | ITF_M | 18.333 | — | **WAKING** |
-| ITFMATCH-26JUL08SAKSAN | ITF_M | 5.667 | — | **WAKING** |
-| ITFMATCH-26JUL08SHEGOR | ITF_M | 9.567 | — | **WAKING** |
-| ITFMATCH-26JUL08THUPEC | ITF_M | 0.033 | 3 | **WAKING** |
-| ITFWMATCH-26JUL08BADMEL | ITF_W | 6.267 | — | **WAKING** |
-| ITFWMATCH-26JUL08EKSLUX | ITF_W | 17.633 | — | **WAKING** |
-| ITFWMATCH-26JUL08FOSKAY | ITF_W | 0.4 | 6 | **WAKING** |
-| ITFWMATCH-26JUL08GARBOH | ITF_W | 21.733 | — | **WAKING** |
-| ITFWMATCH-26JUL08GERXAV | ITF_W | 3.567 | — | **WAKING** |
-| ITFWMATCH-26JUL08LAUTOR | ITF_W | 0.1 | — | **WAKING** |
-| ITFWMATCH-26JUL08LEEMAL | ITF_W | 24.667 | — | **WAKING** |
-| ITFWMATCH-26JUL08MCNGAI | ITF_W | 48.7 | — | **WAKING** |
-| ITFWMATCH-26JUL08NGUNGU2 | ITF_W | 0.1 | 21 | **WAKING** |
-| ITFWMATCH-26JUL08PERCCU | ITF_W | 63.7 | — | **WAKING** |
-| WTACHALLENGERMATCH-26JUL08STEZHA | WTA_CHALL | 0.033 | 1 | **WAKING** |
+| ITFWMATCH-26JUL08LAUTOR | ITF_W | 0.0 | — | **QUIET** |
+| ATPCHALLENGERMATCH-26JUL08GALFIC | ATP_CHALL | 25.5 | — | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL08MATMIC | ATP_CHALL | 18.8 | — | **WAKING** |
+| ITFMATCH-26JUL08ANTCHA | ITF_M | 2.633 | — | **WAKING** |
+| ITFMATCH-26JUL08BRAMAN | ITF_M | 101.333 | — | **WAKING** |
+| ITFMATCH-26JUL08BROKUZ | ITF_M | 8.467 | — | **WAKING** |
+| ITFMATCH-26JUL08LEECOO | ITF_M | 5.2 | — | **WAKING** |
+| ITFMATCH-26JUL08LEGROB | ITF_M | 38.833 | — | **WAKING** |
+| ITFMATCH-26JUL08OCOZAM | ITF_M | 34.267 | — | **WAKING** |
+| ITFMATCH-26JUL08POLROZ | ITF_M | 5.7 | — | **WAKING** |
+| ITFMATCH-26JUL08SAKSAN | ITF_M | 9.733 | — | **WAKING** |
+| ITFMATCH-26JUL08SHEGOR | ITF_M | 11.267 | — | **WAKING** |
+| ITFMATCH-26JUL08THUPEC | ITF_M | 3.2 | — | **WAKING** |
+| ITFWMATCH-26JUL08BADMEL | ITF_W | 18.533 | — | **WAKING** |
+| ITFWMATCH-26JUL08EKSLUX | ITF_W | 23.0 | — | **WAKING** |
+| ITFWMATCH-26JUL08FOSKAY | ITF_W | 0.333 | 6 | **WAKING** |
+| ITFWMATCH-26JUL08GARBOH | ITF_W | 12.633 | — | **WAKING** |
+| ITFWMATCH-26JUL08GERXAV | ITF_W | 9.2 | — | **WAKING** |
+| ITFWMATCH-26JUL08LEEMAL | ITF_W | 41.733 | — | **WAKING** |
+| ITFWMATCH-26JUL08MCNGAI | ITF_W | 38.167 | — | **WAKING** |
+| ITFWMATCH-26JUL08MILMIS | ITF_W | 1.3 | — | **WAKING** |
+| ITFWMATCH-26JUL08NGUNGU2 | ITF_W | 0.233 | 17 | **WAKING** |
+| ITFWMATCH-26JUL08PERCCU | ITF_W | 0.567 | — | **WAKING** |
+| WTACHALLENGERMATCH-26JUL08STEZHA | WTA_CHALL | 0.0 | 1 | **WAKING** |
 | WTACHALLENGERMATCH-26JUL08YAMROG | WTA_CHALL | 0.133 | 1 | **WAKING** |
 
-## PATTERNS (sub-B) — 23
-- half_arm_aging: KXITFWMATCH-26JUL08GARBOH-GAR {"fill": 6, "age_min": 77, "mode": "PAIRING(sib never rested)"}
+## PATTERNS (sub-B) — 25
+- half_arm_aging: KXITFWMATCH-26JUL08GARBOH-GAR {"fill": 6, "age_min": 87, "mode": "PAIRING(sib never rested)"}
 - pre_conception_buy: KXITFMATCH-26JUL08POLROZ-ROZ {"price": 49, "conception_ts": 1783540800.9758818, "detail": "buy 49c predates the conception stamp by 39min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- half_arm_aging: KXITFWMATCH-26JUL08LAUTOR-LAU {"fill": 6, "age_min": 75, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06HOLSCH-SCH {"fill": 50, "age_min": 75, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFWMATCH-26JUL08LAUTOR-LAU {"fill": 6, "age_min": 86, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL06HOLSCH-SCH {"fill": 50, "age_min": 86, "mode": "PAIRING(sib never rested)"}
 - deep_neg_fv: KXITFWMATCH-26JUL08PERCCU-PER {"entry_minus_fv_burst": -18.0}
-- half_arm_aging: KXITFWMATCH-26JUL08PERCCU-PER {"fill": 19, "age_min": 73, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFWMATCH-26JUL08MCNGAI-MCN {"fill": 35, "age_min": 69, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFWMATCH-26JUL08LEEMAL-MAL {"fill": 63, "age_min": 64, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFMATCH-26JUL08THUPEC-THU {"fill": 23, "age_min": 57, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFWMATCH-26JUL08PERCCU-PER {"fill": 19, "age_min": 83, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFWMATCH-26JUL08MCNGAI-MCN {"fill": 35, "age_min": 79, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFWMATCH-26JUL08LEEMAL-MAL {"fill": 63, "age_min": 74, "mode": "PAIRING(sib never rested)"}
 - combined_over_goal_UNVERIFIED_BASIS: KXWTACHALLENGERMATCH-26JUL08YAMROG {"combined": 99, "detail": "pair combined 99c > 97c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) \u2014 exchange-truth check required, NOT a ZT row"}
 - deep_neg_fv: KXITFWMATCH-26JUL08MILMIS-MIL {"entry_minus_fv_burst": -13.5}
-- half_arm_aging: KXITFWMATCH-26JUL08MILMIS-MIL {"fill": 6, "age_min": 54, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFMATCH-26JUL08LEECOO-LEE {"fill": 79, "age_min": 51, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFMATCH-26JUL08POLROZ-ROZ {"fill": 49, "age_min": 50, "mode": "PAIRING(sib never rested)"}
-- deep_neg_fv: KXITFMATCH-26JUL08SHEGOR-GOR {"entry_minus_fv_burst": -9.5, "emitted_et": "2026-07-08 04:37:49 PM ET"}
-- half_arm_aging: KXITFMATCH-26JUL08SHEGOR-GOR {"fill": 62, "age_min": 50, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL08FEALAJ-LAJ {"fill": 39, "age_min": 39, "mode": "SET_BELOW_FLOW(prints 3c above)", "emitted_et": "2026-07-08 04:37:49 PM ET"}
+- half_arm_aging: KXITFWMATCH-26JUL08MILMIS-MIL {"fill": 6, "age_min": 64, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL08LEECOO-LEE {"fill": 79, "age_min": 61, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL08POLROZ-ROZ {"fill": 49, "age_min": 60, "mode": "PAIRING(sib never rested)"}
+- deep_neg_fv: KXITFMATCH-26JUL08SHEGOR-GOR {"entry_minus_fv_burst": -9.5}
+- half_arm_aging: KXITFMATCH-26JUL08SHEGOR-GOR {"fill": 62, "age_min": 60, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL08FEALAJ-LAJ {"fill": 39, "age_min": 49, "mode": "SET_BELOW_FLOW(prints 3c above)"}
 - deep_neg_fv: KXITFWMATCH-26JUL08EKSLUX-LUX {"entry_minus_fv_burst": -15.5}
-- half_arm_aging: KXITFWMATCH-26JUL08BADMEL-MEL {"fill": 8, "age_min": 33, "mode": "PAIRING(sib never rested)", "emitted_et": "2026-07-08 04:37:49 PM ET"}
-- half_arm_aging: KXWTACHALLENGERMATCH-26JUL08STEZHA-ZHA {"fill": 20, "age_min": 32, "mode": "PAIRING(sib never rested)", "emitted_et": "2026-07-08 04:37:49 PM ET"}
-- half_arm_aging: KXITFMATCH-26JUL08BRAMAN-MAN {"fill": 57, "age_min": 30, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFWMATCH-26JUL08BADMEL-MEL {"fill": 8, "age_min": 43, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXWTACHALLENGERMATCH-26JUL08STEZHA-ZHA {"fill": 20, "age_min": 42, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL08BRAMAN-MAN {"fill": 57, "age_min": 41, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL08BROKUZ-BRO {"fill": 21, "age_min": 38, "mode": "PAIRING(sib never rested)", "emitted_et": "2026-07-08 04:48:06 PM ET"}
 - combined_over_goal_UNVERIFIED_BASIS: KXATPCHALLENGERMATCH-26JUL08MATMIC {"combined": 98, "detail": "pair combined 98c > 97c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) \u2014 exchange-truth check required, NOT a ZT row"}
-- combined_over_goal_UNVERIFIED_BASIS: KXATPCHALLENGERMATCH-26JUL08GALFIC {"combined": 99, "detail": "pair combined 99c > 97c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) \u2014 exchange-truth check required, NOT a ZT row", "emitted_et": "2026-07-08 04:37:49 PM ET"}
+- half_arm_aging: KXITFMATCH-26JUL08ANTCHA-CHA {"fill": 32, "age_min": 33, "mode": "PAIRING(sib never rested)", "emitted_et": "2026-07-08 04:48:06 PM ET"}
+- combined_over_goal_UNVERIFIED_BASIS: KXATPCHALLENGERMATCH-26JUL08GALFIC {"combined": 99, "detail": "pair combined 99c > 97c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) \u2014 exchange-truth check required, NOT a ZT row"}
+- combined_over_goal_UNVERIFIED_BASIS: KXITFMATCH-26JUL08THUPEC {"combined": 99, "detail": "pair combined 99c > 97c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) \u2014 exchange-truth check required, NOT a ZT row", "emitted_et": "2026-07-08 04:48:06 PM ET"}
 
 ## ERRORS — 0 handler errors this session (ZERO — clean loop)

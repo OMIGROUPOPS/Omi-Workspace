@@ -41,7 +41,10 @@ def subgrade(r):
     g=r.get("grade")
     fl=[l for l in r["legs"] if l.get("vw") is not None]
     comb=r.get("combined")
-    if len(fl)==2 and g in ("A","B","S"):
+    if len(fl)==2 and g in ("A","B","S","C","D"):
+        # combined is DEMOTED: a per-leg-perfect pair must reach S even when its
+        # combined-derived producer grade is C/D (BARSIM 97.5, misses 0.5/0.0c,
+        # was C-gated on the first render -- the third resurrection's last claw).
         lifecycle = all(l.get("w1_filled") and (l.get("disp") or "") in
                         ("EXIT_FILLED_W1","EXIT_FILLED_CORRIDOR") for l in fl)
         # [S PER-LEG, ruled 2026-07-07 late: each leg within N=4c (gold census

@@ -4,7 +4,7 @@
 
 ## IN-FLIGHT (armed or accumulating now)
 
-- **SWEEP 07-07 ~22:51 containment (deploying)** — 4 naked legs swept clean (classes: ITM-exit-death ISOTOM/NASLEE, post-exit-rebuy TIKCHO/KUSTAG); fixes: C-ITM-EXIT-TAKE (taker retry on post-only-cross), C-NO-REBUY-AFTER-CASH (_session_exited + repost guard + audit assertion post_exit_rebuy), C47-CONTINUOUS (audit every 15min, boot-gate → continuous invariant). TANCHE 98 stamped race-class (untracked-sibling fill post-basis). Post-only-cross queued build: SUPERSEDED by C-ITM-EXIT-TAKE (CLAHER counter becomes its regression watch).
+- ~~SWEEP 07-07 containment~~ — **DEPLOYED 3ec8cc0 23:11 ET** (ITM-exit-take + no-rebuy-after-cash + continuous 15-min audit; first steady_cadence PASS 23:13:45). Book swept clean (4 naked → 0). TANCHE stamped race-class. **S per-leg LIVE: honest era S=3** (BARSIM/WALVAL/SCHZID — per-leg-perfect, combined-lens-invisible). Walk/repost model seeded (median-pass/tail-fail vs 25% bar); refit at checkpoint.
 
 - ~~FLOOR-BY-HOUR decomposition~~ — **LANDED 2026-07-07 (.claude/pair_story_20260707/HOURLY_APPENDIX.md)**. Verdicts: ITF floor is entirely T-2h→bell (prints/min 0.00 until T-3h; early book = wide silent lattice quoting ~99); MAINS-EARLY HYPOTHESIS REFUTED (ATP_MAIN quote-touch floor 100.0 flat every bin — NO-GO); pre-T-4h spec feed: early posting buys POSITION, not early fills.
 

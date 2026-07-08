@@ -1,6 +1,6 @@
 # OUTCOME PROOF (C46, two-lane) — C-FUSED-GUN + C-ORPHAN-FINGERPRINT
 
-**Candidate SHA: `ac0c0ffe`** (fingerprint re-adoption at the boot reconcile + C47 assertions; fused gun: te_scoreboard > schedule_live > tape_latch > price_divergence, buy chokepoint refusal post-gun; gun_scorecard.py tripwire renderer).
+**Candidate SHA: `6d84f27e`** (fingerprint re-adoption at the boot reconcile + C47 assertions; fused gun: te_scoreboard > schedule_live > tape_latch > price_divergence, buy chokepoint refusal post-gun; gun_scorecard.py tripwire renderer).
 
 ## Prior art (C45)
 - **C-RETENTION-2 (07-06)** — the collector banks OBSERVED in-play transitions per match (`observed_starts`, set-once, `/live/` page). Live since Tue, **never consumed by the gun** — this build is its first consumer. FOUND DEAD during build recon: last row 07-07 7:20 pm, zero rows today (te_live.py process not running). **The deploy includes its resurrection + a keepalive cron — feed liveness is a build component, stated in the close-out.**

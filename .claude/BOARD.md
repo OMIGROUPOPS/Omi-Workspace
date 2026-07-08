@@ -4,6 +4,8 @@
 
 ## IN-FLIGHT (armed or accumulating now)
 
+- **OVERNIGHT FREEZE (07-08 00:xx ET → morning checkpoint)** — after the preflight deploy verifies: NO further deploys or restarts. Audits (15-min cadence), shadows, accumulator run; hands off. Entry roll: `.claude/sweep_20260707/ENTRY_ROLL_20260708_PREFLIGHT.txt` (12 fills all exit=held; 129 resting, 8 LOUD tape-latch-only, 11 out-of-band bids CANCELLED; [5,95) maker clamp deployed).
+
 - ~~SWEEP 07-07 containment~~ — **DEPLOYED 3ec8cc0 23:11 ET** (ITM-exit-take + no-rebuy-after-cash + continuous 15-min audit; first steady_cadence PASS 23:13:45). Book swept clean (4 naked → 0). TANCHE stamped race-class. **S per-leg LIVE: honest era S=3** (BARSIM/WALVAL/SCHZID — per-leg-perfect, combined-lens-invisible). Walk/repost model seeded (median-pass/tail-fail vs 25% bar); refit at checkpoint.
 
 - ~~FLOOR-BY-HOUR decomposition~~ — **LANDED 2026-07-07 (.claude/pair_story_20260707/HOURLY_APPENDIX.md)**. Verdicts: ITF floor is entirely T-2h→bell (prints/min 0.00 until T-3h; early book = wide silent lattice quoting ~99); MAINS-EARLY HYPOTHESIS REFUTED (ATP_MAIN quote-touch floor 100.0 flat every bin — NO-GO); pre-T-4h spec feed: early posting buys POSITION, not early fills.

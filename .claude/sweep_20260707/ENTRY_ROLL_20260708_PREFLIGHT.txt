@@ -1,0 +1,140 @@
+## (a) FILLED under the 23:12 boot
+| leg | fill | aim50 | daim | posture@post | own low since conception | cheaper after? | walk steps | exit qty=held |
+|---|---|---|---|---|---|---|---|---|
+| UL07NASLEE-LEE | 25 | 16 | +9 | below_chain | 1 | True | 2 | Y |
+| UL08TUPPAN-PAN | 14 | 15 | -1 | mid_spread | 4 | True | 4 | Y |
+
+## (b) OUTSTANDING resting buys (the overnight entries)
+| leg | level | qty | bid_ex_self (latest) | posture | window anchor | [5,95] |
+|---|---|---|---|---|---|---|
+| UL06HOLSCH-SCH | 51 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL06VUKBRO-VUK | 48 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07TOMSHI-TOM | 63 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07ADAIMA-ADA | 1 | 5 | 6 | below_chain | sched(T-15buf)+tape_latch | OUT<<< |
+| UL07BORZEN-BOR | 53 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07BOUMOC-MOC | 24 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07ICHOCH-OCH | 28 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07MOXSAR-SAR | 27 | 5 | None | ? | TAPE-LATCH-ONLY <<< LOUD | in |
+| UL07NAKSHI-NAK | 40 | 0.14 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07TROKIM-KIM | 62 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07TROKIM-TRO | 35 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07YAMTAN-TAN | 82 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07YAMTAN-YAM | 15 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08ARSOPA-ARS | 76 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08ARSOPA-OPA | 19 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08BORBRE-BOR | 71 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08BORBRE-BRE | 25 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08BREBRU-BRE | 70 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08BREBRU-BRU | 25 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08EICAND-AND | 70 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08EICAND-EIC | 26 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08GHAGEN-GEN | 34 | 5 | 34 | join | sched(T-15buf)+tape_latch | in |
+| UL08GHAGEN-GHA | 65 | 5 | 65 | join | sched(T-15buf)+tape_latch | in |
+| UL08HARBEA-BEA | 89 | 5 | 86 | mid_spread | sched(T-15buf)+tape_latch | in |
+| UL08HARBEA-HAR | 8 | 5 | 8 | join | sched(T-15buf)+tape_latch | in |
+| UL08KIMROH-KIM | 64 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08KIMROH-ROH | 31 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08KUNMEN-KUN | 31 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08KUNMEN-MEN | 64 | 5 | 64 | join | sched(T-15buf)+tape_latch | in |
+| UL08LAPGAR-GAR | 59 | 5 | 59 | join | sched(T-15buf)+tape_latch | in |
+| UL08LAPGAR-LAP | 36 | 5 | 36 | join | sched(T-15buf)+tape_latch | in |
+| UL08LIUSHI-LIU | 75 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08PAPPET-PAP | 64 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08PAPPET-PET | 30 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08PELDUH-DUH | 22 | 5 | 21 | improve1 | sched(T-15buf)+tape_latch | in |
+| UL08PELDUH-PEL | 74 | 5 | 74 | join | sched(T-15buf)+tape_latch | in |
+| UL08PIEPRA-PIE | 82 | 5 | 82 | join | sched(T-15buf)+tape_latch | in |
+| UL08PIEPRA-PRA | 14 | 5 | 14 | join | sched(T-15buf)+tape_latch | in |
+| UL08SAKVAN-SAK | 27 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08SAKVAN-VAN | 71 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08SHIVUJ-SHI | 61 | 5 | 61 | join | sched(T-15buf)+tape_latch | in |
+| UL08SHIVUJ-VUJ | 34 | 5 | 34 | join | sched(T-15buf)+tape_latch | in |
+| UL08ZHAISH-ISH | 10 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07CHOCAO-CHO | 50 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07GURKAL-GUR | 32 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07GURKAL-KAL | 65 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07LIURUO-LIU | 75 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07LIURUO-RUO | 23 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08AHLKHO-AHL | 80 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08AHLKHO-KHO | 16 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08BALGOL-BAL | 38 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08BALGOL-GOL | 60 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08BOJVIR-BOJ | 65 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08BOJVIR-VIR | 32 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08BOSBOY-BOS | 94 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08BOSBOY-BOY | 2 | 5 | None | ? | sched(T-15buf)+tape_latch | OUT<<< |
+| UL08CAVPLO-PLO | 3 | 5 | 3 | join | sched(T-15buf)+tape_latch | OUT<<< |
+| UL08CEUMCK-CEU | 74 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08CEUMCK-MCK | 22 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08CHOKOS-CHO | 65 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08CHOKOS-KOS | 32 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08CIRBRE-CIR | 85 | 5 | 85 | join | sched(T-15buf)+tape_latch | in |
+| UL08DENSIM-DEN | 82 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08DENSIM-SIM | 13 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08DESNIT-DES | 87 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08DESNIT-NIT | 12 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08HARMAI-HAR | 3 | 5 | 3 | join | sched(T-15buf)+tape_latch | OUT<<< |
+| UL08HAYGIO-GIO | 31 | 5 | 31 | join | sched(T-15buf)+tape_latch | in |
+| UL08HAYGIO-HAY | 65 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08IUSSAG-IUS | 66 | 5 | None | ? | TAPE-LATCH-ONLY <<< LOUD | in |
+| UL08IUSSAG-SAG | 31 | 5 | None | ? | TAPE-LATCH-ONLY <<< LOUD | in |
+| UL08KAZSAC-KAZ | 62 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08KAZSAC-SAC | 27 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08KOVPOL-KOV | 78 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08KOVPOL-POL | 18 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08KUBSHK-KUB | 95 | 5 | 95 | join | sched(T-15buf)+tape_latch | in |
+| UL08KUBSHK-SHK | 2 | 5 | 2 | join | sched(T-15buf)+tape_latch | OUT<<< |
+| UL08LASKOR-KOR | 30 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08LASKOR-LAS | 66 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08LIUMAL-LIU | 26 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08LIUMAL-MAL | 72 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08LIXYAM-LIX | 8 | 5 | None | ? | TAPE-LATCH-ONLY <<< LOUD | in |
+| UL08LOVBRE-BRE | 33 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08LOVBRE-LOV | 63 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08MAMBEL-BEL | 12 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08MAMBEL-MAM | 84 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08MANKAV-KAV | 3 | 5 | 3 | join | sched(T-15buf)+tape_latch | OUT<<< |
+| UL08MANKAV-MAN | 95 | 5 | 95 | join | sched(T-15buf)+tape_latch | in |
+| UL08MATBEL-BEL | 21 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08MATBEL-MAT | 74 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08MIXKRU-MIX | 35 | 5 | 35 | join | TAPE-LATCH-ONLY <<< LOUD | in |
+| UL08NAKZHA-NAK | 79 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08NAKZHA-ZHA | 15 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08NONYUA-NON | 14 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08NONYUA-YUA | 83 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08NUPBAR-BAR | 75 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08NUPBAR-NUP | 22 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08POZVEL-POZ | 46 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08PUSBUR-BUR | 88 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08PUSBUR-PUS | 7 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08RICSTR-RIC | 26 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08RICSTR-STR | 69 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08ROSPAR-ROS | 47 | 5 | 47 | join | sched(T-15buf)+tape_latch | in |
+| UL08SEDSTA-SED | 46 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08SHEWAN-SHE | 38 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08SHEWAN-WAN | 59 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08SHOSUV-SHO | 52 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08SUPFAV-FAV | 18 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08SUPFAV-SUP | 78 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08TUPPAN-TUP | 83 | 5 | 81 | mid_spread | sched(T-15buf)+tape_latch | in |
+| UL08VAJKAR-KAR | 95 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL08VAJKAR-VAJ | 3 | 5 | None | ? | sched(T-15buf)+tape_latch | OUT<<< |
+| UL08VANWON-VAN | 44 | 5 | 44 | join | sched(T-15buf)+tape_latch | in |
+| UL08WANOHX-OHX | 18 | 5 | None | ? | TAPE-LATCH-ONLY <<< LOUD | in |
+| UL08WUXSNI-SNI | 49 | 5 | None | ? | TAPE-LATCH-ONLY <<< LOUD | in |
+| UL08WUXSNI-WUX | 48 | 5 | None | ? | TAPE-LATCH-ONLY <<< LOUD | in |
+| UL06BRESAN-BRE | 86 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL06COLSMI-COL | 38 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL06ISHCRO-CRO | 59 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL06LEANGO-LEA | 33 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL06LINMAR-MAR | 91 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07KOBMAN-KOB | 26 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07KOBMAN-MAN | 73 | 1 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07SAWDOL-DOL | 37 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07SAWDOL-SAW | 61 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07SCOSTO-SCO | 15 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07SEBBRA-BRA | 49 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07SHYKIN-KIN | 40 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+| UL07VICBRA-BRA | 70 | 5 | None | ? | sched(T-15buf)+tape_latch | in |
+
+outstanding buys: 129 | LOUD (no schedule anchor): 8 | out-of-band: 7

@@ -3114,6 +3114,16 @@ class LiveV3:
             self._log("buy_blocked_conception_halt", {
                 "price": price, "count": count}, ticker=ticker)
             return "", {"_error": "conception_halt"}
+        # [C-BAND-CLAMP 07-08 preflight] no MAKER buy rests outside [5,95)
+        # (sub-5c = noise-level goal bids the tape cannot pay -- ADAIMA@1/
+        # CAVPLO@3 class; >=95 = one tick from par -- KUBSHK@95 class, named
+        # by the operator's sweep list). The audit's bid_outside_5_95 flag
+        # pre-wired the detection; this is the enforcement. Deliberate taker
+        # paths keep their own [5,95] leg-range bounds (cross_bounds_ok).
+        if action == "buy" and post_only and (price < 5 or price >= 95):
+            self._log("band_refused", {
+                "price": price, "count": count}, ticker=ticker)
+            return "", {"_error": "band_refused"}
         # Position accumulation guard: cap total buy exposure per ticker
         if action == "buy":
             target_max = self.config["sizing"]["entry_contracts"]

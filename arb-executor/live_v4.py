@@ -8096,6 +8096,23 @@ class LiveV3:
                         "held_price": _proj, "proposed": int(new_target),
                         "reason": "same_price_fifo_hold"}, ticker=tk)
                 return
+        # [C-BAND-CLAMP WALK 07-08] the walk chokepoint's half of the band law:
+        # project the landing price (same caps/never-cross as the placement path)
+        # BEFORE the cancel; outside [5,95) -> refuse the WALK and keep the
+        # resting in-band bid. The placement clamp alone fires AFTER the cancel
+        # and starves the leg -- oid="" is invisible to validate_resting_buys
+        # (ICHOCH-OCH 00:43 07-08: 28c bid cancelled, 4c re-place band_refused,
+        # settled with phantom entry_price=4 and no order; pre-clamp the same
+        # walk PLACED out-of-band, HARMAI-HAR @4 filled).
+        _projb = self._projected_repost_price(tk, pos, new_target, book)
+        if _projb < 5 or _projb >= 95:
+            _bk = self.__dict__.setdefault("_walk_band_refused_logged", set())
+            if (tk, _projb) not in _bk:
+                _bk.add((tk, _projb))
+                self._log("walk_band_refused", {
+                    "projected": int(_projb), "new_target": int(new_target),
+                    "held_price": int(pos.entry_price or 0)}, ticker=tk)
+            return
         # [C-FEEDER FIX-2/3] decision-time capture for the repost keys (the
         # cancel/place awaits below are a book-tick window, same race class as
         # the QUESAM placement-side fire)
@@ -8210,6 +8227,30 @@ class LiveV3:
                                             self.entry_size, post_only=po)
         finally:
             self.inflight_orders.discard(tk)
+        # [C-BAND-CLAMP WALK 07-08] the re-place failed AFTER the cancel (band
+        # residue past the projection -- express/leg2 only LOWER -- or guard api
+        # fail / order_error): recover at the just-cancelled price instead of
+        # stamping a phantom basis with no order. pos.entry_price still holds
+        # the old resting price here (it is only overwritten below on success).
+        if not oid:
+            _rec_price = int(pos.entry_price or 0)
+            _rec_oid = ""
+            if 5 <= _rec_price < 95:
+                self.inflight_orders.add(tk)
+                try:
+                    _rec_oid, _ = await self.place_order(
+                        tk, "buy", "yes", _rec_price, self.entry_size,
+                        post_only=True)
+                finally:
+                    self.inflight_orders.discard(tk)
+            pos.entry_order_id = _rec_oid
+            pos.last_cancel_repost_ts = now
+            self._log("repost_place_failed", {
+                "attempted": int(new_target),
+                "recovered": bool(_rec_oid),
+                "recovered_at": _rec_price if _rec_oid else 0}, ticker=tk)
+            self._save_v4_resting()
+            return
         pos.entry_price = new_target
         pos.entry_order_id = oid
         pos.entry_mode = "resting_maker"

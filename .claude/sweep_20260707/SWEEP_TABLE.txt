@@ -1,0 +1,19 @@
+=== BEFORE (exchange truth 02:51:33 UTC) ===
+| leg | held | exit qty (px) | buy orders (qty@px) | class |
+|---|---|---|---|---|
+| KXITFMATCH-26JUL07ISOTOM-TOM | 5 | 0 (-) | 0 (-) | NAKED 5 |
+| KXITFMATCH-26JUL07KUSTAG-TAG | 5 | 0 (-) | 0 (-) | NAKED 5 |
+| KXITFMATCH-26JUL07NASLEE-LEE | 5 | 0 (-) | 0 (-) | NAKED 5 |
+| KXITFWMATCH-26JUL07TIKCHO-CHO | 5 | 0 (-) | 0 (-) | NAKED 5 |
+naked legs: 4 | stacked/over-lot legs: 0
+
+=== ACTIONS ===
+EXIT-POST KXITFMATCH-26JUL07ISOTOM-TOM 5@21 -> HTTP 201 {"client_order_id":"8d7186fa-0fda-4b05-a65f-af96fe53ef2e","fill_count":"0.00","order_id":"
+EXIT-POST KXITFMATCH-26JUL07KUSTAG-TAG 5@80 -> HTTP 201 {"client_order_id":"e34ed4fa-b9cb-4652-926c-53944720d796","fill_count":"0.00","order_id":"
+EXIT-POST KXITFMATCH-26JUL07NASLEE-LEE 5@34 -> HTTP 201 {"average_fee_paid":"0.0173","average_fill_price":"0.4500","client_order_id":"bdfec780-09d
+EXIT-POST KXITFWMATCH-26JUL07TIKCHO-CHO 5@19 -> HTTP 201 {"client_order_id":"fee9da28-934e-482e-8836-559c89496873","fill_count":"0.00","order_id":"
+
+=== AFTER ===
+| leg | held | exit qty | buys | naked | stack |
+|---|---|---|---|---|---|
+AFTER: naked=0 stacked=0

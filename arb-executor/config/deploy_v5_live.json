@@ -97,5 +97,6 @@
   },
   "fused_gun_enabled": true,
   "gun_poll_sec": 20,
-  "gun_divergence_move_cents": 10
+  "gun_divergence_move_cents": 10,
+  "anchor_hierarchy_enabled": true
 }

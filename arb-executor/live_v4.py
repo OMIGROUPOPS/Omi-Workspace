@@ -1455,6 +1455,12 @@ class LiveV3:
         self.fused_gun = bool(self.config.get("fused_gun_enabled", True))
         self.gun_poll_sec = int(self.config.get("gun_poll_sec", 20))
         self.gun_divergence_move_cents = int(self.config.get("gun_divergence_move_cents", 10))
+        # [C-ANCHOR 2026-07-08] the anchor hierarchy (gun_truth > te_honest >
+        # kalshi_schedule LAST), the datemiss_36h matcher recovery, the
+        # clock_liar detector (>=60min disagreement -> conservative gates) and
+        # anchored window stamps. OFF -> _horizon_state/scalp classification
+        # byte-identical to per_match_clock behavior.
+        self.anchor_hierarchy = bool(self.config.get("anchor_hierarchy_enabled", True))
         self._gun_state: Dict[str, dict] = {}   # et -> {"ts","source","confirms",...}
         self._gun_feed_watermark = ""           # observed_starts inserted_at cursor
         self._gun_feed_err_ts = 0.0
@@ -1994,20 +2000,32 @@ class LiveV3:
         _month_map = {"JAN":1,"FEB":2,"MAR":3,"APR":4,"MAY":5,"JUN":6,
                       "JUL":7,"AUG":8,"SEP":9,"OCT":10,"NOV":11,"DEC":12}
 
+        _date_rejected = []   # [C-ANCHOR 07-08] date-rejected candidates kept as fallback
+
         def _date_ok(sched_result):
-            """Reject match if start_time date differs from ticker date by >12h."""
+            """Reject match if start_time date differs from ticker date by >12h.
+            [C-ANCHOR 07-08] the rejection is the pm-honest-matcher MISS class:
+            on a ticker-date != true-date event (EKSLUX 7:00pm-claimed vs true
+            3:50pm; the five 26JUL08 reposts with true starts Jul-9) the ONLY
+            true row gets discarded and the kalshi date-coarse clock lies
+            alone. Rejected candidates are banked; if nothing clean matches,
+            a rejected row within 36h (the C-KALSHI-OCC guard bound) is
+            returned marked date_mismatch=True -- the anchor hierarchy treats
+            it as the TE anchor and flags the match clock_liar."""
             if not _dm:
                 return True
             try:
                 tk_date = datetime(2000+int(_dm.group(1)), _month_map[_dm.group(2)],
                                    int(_dm.group(3)), 16, 0, tzinfo=timezone.utc)
                 sched_dt = datetime.fromisoformat(sched_result.get("start_time","").replace("Z","+00:00"))
-                if abs((sched_dt - tk_date).total_seconds()) > 43200:
+                _delta = abs((sched_dt - tk_date).total_seconds())
+                if _delta > 43200:
                     logs.append(("schedule_date_mismatch", {
                         "event": event_ticker,
                         "ticker_date": tk_date.strftime("%Y-%m-%d"),
                         "schedule_date": sched_dt.strftime("%Y-%m-%dT%H:%M"),
                     }))
+                    _date_rejected.append((_delta, sched_result))
                     return False
             except Exception:
                 pass
@@ -2037,6 +2055,25 @@ class LiveV3:
                     "kalshi_players": player_names,
                 }))
                 return result, "fuzzy_name", logs
+
+        # [C-ANCHOR 07-08] nothing clean matched: a date-rejected candidate
+        # within 36h IS the true row on a lying ticker date -- return it
+        # MARKED so the anchor hierarchy uses it as the TE anchor and flags
+        # the match clock_liar (never silently; conservative gates apply).
+        if _date_rejected:
+            _delta, _cand = sorted(_date_rejected, key=lambda x: x[0])[0]
+            if _delta <= 36 * 3600:
+                _cand = dict(_cand)
+                _cand["date_mismatch"] = True
+                logs.append(("schedule_match", {
+                    "event": event_ticker, "method": "datemiss_36h",
+                    "start_time": _cand.get("start_time", "?"),
+                    "p1": _cand.get("p1", "?"), "p2": _cand.get("p2", "?"),
+                    "category": _cand.get("category", "?"),
+                    "delta_hours": round(_delta / 3600.0, 1),
+                    "kalshi_players": player_names,
+                }))
+                return _cand, "datemiss_36h", logs
 
         # No match — record closest candidate for debugging
         parts = event_ticker.split("-")
@@ -2094,7 +2131,12 @@ class LiveV3:
                 except Exception:
                     start_ts = None
         self._pm_honest[et] = {"gen": gen, "start_ts": start_ts, "status": status,
-                               "source": source, "method": method}
+                               "source": source, "method": method,
+                               # [C-ANCHOR] datemiss_36h recovery marker: this row
+                               # was date-rejected vs the ticker (the lying-ticker
+                               # class); the anchor hierarchy flags the match.
+                               "date_mismatch": bool(result.get("date_mismatch"))
+                               if result else False}
 
     async def _match_event_to_schedule_async(self, event_ticker):
         """Offload the pure-CPU schedule match (the ~2198-entry fuzzy scan, the
@@ -4611,6 +4653,45 @@ class LiveV3:
             "action": action,
         })
 
+    def _anchor_state(self, et, now=None):
+        """[C-ANCHOR 2026-07-08] THE ANCHOR HIERARCHY, explicit + stamped:
+        gun_truth (a fused-gun fire IS the start, where fired) > te_honest
+        (the pm-honest matcher's row, incl. datemiss_36h recoveries) >
+        kalshi_schedule (LAST, never alone when TE coverage exists).
+        Returns (anchor_ts, anchor_source, clock_liar). clock_liar = the
+        kalshi and TE anchors disagree >=60 min, or a gun fired while a
+        schedule clock still claimed premarket >60 min (GILOBR lied SHORT,
+        EKSLUX lied LONG -- every tts gate/window stamp is only as good as
+        this anchor). First detection per event logs clock_liar once."""
+        if now is None:
+            now = time.time()
+        hz = (getattr(self, "_pm_honest", {}) or {}).get(et) or {}
+        hst = hz.get("start_ts")
+        kst = getattr(self, "event_start_time", {}).get(et)
+        liar = bool(hst and kst and abs(hst - kst) >= 3600)
+        g = getattr(self, "_gun_state", {}).get(et)
+        if g is not None:
+            t = g.get("ts", now)
+            if (hst and hst - t > 3600) or (kst and kst - t > 3600):
+                liar = True
+            anchor, src = t, "gun_truth"
+        elif hst is not None:
+            anchor = hst
+            src = "te_honest_datemiss" if hz.get("date_mismatch") else "te_honest"
+        else:
+            anchor, src = kst, "kalshi_schedule"
+        if liar:
+            _ls = self.__dict__.setdefault("_clock_liar_logged", set())
+            if et not in _ls:
+                _ls.add(et)
+                self._log("clock_liar", {
+                    "event": et, "anchor_source": src,
+                    "kalshi_start": kst, "te_honest_start": hst,
+                    "gun_fired_ts": (g or {}).get("ts"),
+                    "disagreement_min": (round(abs(hst - kst) / 60.0, 1)
+                                         if (hst and kst) else None)})
+        return anchor, src, liar
+
     def _horizon_state(self, et, now=None):
         """[C-CONCEPTION-HORIZON 07-08] (beyond, tts_eff_sec) for the T-8h early
         bound: honest-anchored time-to-start (per-match clock when armed and the
@@ -4618,11 +4699,27 @@ class LiveV3:
         pm-fallback widen -- the router's own edge expression, shared so the
         gate, the manage-pass sweep and the C47 audit flag agree by
         construction. No anchor -> (False, None): the bound never blocks on an
-        unknown start (the schedule_gap class keeps its existing handling)."""
+        unknown start (the schedule_gap class keeps its existing handling).
+        [C-ANCHOR 07-08] on a clock_liar match the gate uses the CONSERVATIVE
+        side = the NEARER start (min tts): sweeping/refusing a held leg's
+        completion on a lying-far clock re-starves the pair (tonight's 5
+        reposts), while allowing it near is the lesser harm; a fused-gun fire
+        means live NOW (tts<=0; the gun buy-refusal owns the block)."""
         if now is None:
             now = time.time()
         start_ts = self.event_start_time.get(et)
         widen = 0
+        if getattr(self, "anchor_hierarchy", False):
+            _a, _src, _liar = self._anchor_state(et, now)
+            if _src == "gun_truth":
+                return False, min(0.0, (_a - now))
+            if _liar and start_ts and _a:
+                start_ts = min(start_ts, _a)      # conservative: nearer start
+            elif _a is not None:
+                start_ts = _a
+            if start_ts is None:
+                return False, None
+            return (start_ts - now) > self.conception_horizon_sec, start_ts - now
         if getattr(self, "per_match_clock", False):
             _h = self._pm_honest.get(et) or {}
             _fresh = (now - self._sched_fetched_epoch) <= PM_CLOCK_STALE_SEC
@@ -6375,14 +6472,31 @@ class LiveV3:
                         pos.phase = "settled"
                         self.n_exits += 1
                         # Classify: scalp (pregame exit) vs settlement-adjacent
-                        if pos.match_start_ts > 0 and time.time() < pos.match_start_ts:
-                            hrs_before = (pos.match_start_ts - time.time()) / 3600
+                        # [C-ANCHOR 07-08] the W1 stamp is only as good as its
+                        # anchor (EKSLUX: two in-play knife scalps ledgered
+                        # "2.9h before commence" off a lying kalshi clock).
+                        # Anchored mode: classify on the hierarchy (a fired gun
+                        # = live NOW, never a scalp) and stamp anchor_source +
+                        # clock_liar so no fake-W1 lifecycle grades blind.
+                        _sc_now = time.time()
+                        _sc_start, _sc_src, _sc_liar = (
+                            self._anchor_state(pos.event_ticker, _sc_now)
+                            if getattr(self, "anchor_hierarchy", False)
+                            else (pos.match_start_ts or None, "legacy", False))
+                        if _sc_src == "gun_truth":
+                            _sc_pregame = False
+                        else:
+                            _sc_pregame = bool(_sc_start and _sc_now < _sc_start)
+                        if _sc_pregame:
+                            hrs_before = (_sc_start - _sc_now) / 3600
                             self._log("scalp_filled", {
                                 "entry_price": pos.entry_price,
                                 "exit_price": pos.exit_price,
                                 "profit_cents": pos.exit_price - pos.entry_price,
                                 "hours_before_commence": round(hrs_before, 2),
                                 "play_type": pos.play_type,
+                                "anchor_source": _sc_src,
+                                "clock_liar": _sc_liar,
                             }, ticker=tk)
                         # FIX 3: Cancel ALL resting buys on this ticker (DCA + any extras)
                         cleanup = await api_get(self.session, self.ak, self.pk,

@@ -8344,6 +8344,16 @@ class LiveV3:
                 "attempted": int(new_target),
                 "recovered": bool(_rec_oid),
                 "recovered_at": _rec_price if _rec_oid else 0}, ticker=tk)
+            # [C-BAND-CLAMP WALK aftermath completion 07-08] recovery ALSO
+            # failed (first live occurrence: the conception halt blocks the
+            # recovery re-place too -- REARAB/MILMIS/LAUTOR 14:23, three legs
+            # left tracked-with-oid="" which every healer skips, MILMIS-MIL
+            # the held leg's missing completion bid). FREE the leg like every
+            # terminal cancel does: unfilled -> pos deleted + processed_events
+            # cleared (the router re-conceives next pass, after halt/horizon
+            # gates); partial fills keep their position managed.
+            if not _rec_oid:
+                self._untombstone_entry(tk, pos)
             self._save_v4_resting()
             return
         pos.entry_price = new_target

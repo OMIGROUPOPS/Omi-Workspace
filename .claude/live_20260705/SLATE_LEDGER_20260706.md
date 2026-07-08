@@ -1,92 +1,93 @@
-# SLATE LEDGER — THE BOOK (window: flip boot 2026-07-05 23:50:39 ET → 2026-07-07 11:58:08 ET)
+# SLATE LEDGER — THE BOOK (window: flip boot 2026-07-05 23:50:39 ET → 2026-07-07 22:36:40 ET)
+
+**S/A RUBRIC ADOPTED (evening cut 2026-07-07): S = full W1 lifecycle at combined <= per-cat S-line (ITF 84 / ATP_CHALL 93 / WTA_CHALL 90 / mains 93, PAIR_STORY §1); A = the shape at <=97. Honest era regraded; reachable-not-cashed no longer earns A.**
 
 **REFRESHED IN PLACE (STEP-3 cut, 2026-07-07): Jul-7 folded in; MECHANICAL flags per leg from BLEED_ATTRIBUTION_20260707 (⚑a dup-surplus / ⚑b naked-band-touch / ⚑c fractional); day lines read GROSS and NET-OF-MECHANICAL; exhibits graded; CUT D continuity added.**
 
-**This document supersedes the 15:52 roll and is the reconcile. Every future grading is a CUT of this ledger.** Exchange truth only (REST fills/settlements/positions/orders + live book); bot positions only; **40 manual tickers excluded**; canonical $ rule = SETTLEMENT-REALIZED per ticker (revenue + sells − buys − fees; an exited-but-unsettled leg is OPEN with partial cash noted, never counted settled).
+**This document supersedes the 15:52 roll and is the reconcile. Every future grading is a CUT of this ledger.** Exchange truth only (REST fills/settlements/positions/orders + live book); bot positions only; **41 manual tickers excluded**; canonical $ rule = SETTLEMENT-REALIZED per ticker (revenue + sells − buys − fees; an exited-but-unsettled leg is OPEN with partial cash noted, never counted settled).
 
 ## 0 · GRADE × DISPOSITION — the money-machine cross-tab (settled events; leg-level, $ = leg settlement-realized)
 
 | grade | CASHED_W1 | CASHED_CORRIDOR | CASHED_W2 | RODE | legs | leg-$ total |
 |---|---|---|---|---|---|---|
-| **A** | 5 (+2.97) | 0 (+0.00) | 1 (+0.95) | 0 (+0.00) | 6 | +3.92 |
-| **B1** | 3 (-2.83) | 3 (+1.94) | 0 (+0.00) | 0 (+0.00) | 6 | -0.89 |
-| **B2** | 8 (+1.75) | 92 (+41.46) | 284 (+185.73) | 0 (+0.00) | 384 | +228.94 |
-| **B3** | 2 (+1.40) | 30 (+25.23) | 57 (+39.09) | 93 (-270.37) | 182 | -204.65 |
-| **C** | 4 (+1.65) | 22 (+6.71) | 54 (+33.81) | 20 (-65.88) | 100 | -23.71 |
-| **D** | 1 (+0.30) | 7 (+2.75) | 23 (+12.70) | 1 (-0.45) | 32 | +15.30 |
-| **F** | 0 (+0.00) | 1 (-1.40) | 1 (-0.40) | 74 (-117.30) | 76 | -119.10 |
+| **A** | 8 (+7.11) | 6 (+4.68) | 0 (+0.00) | 0 (+0.00) | 14 | +11.79 |
+| **B2** | 13 (+2.70) | 124 (+52.39) | 349 (+216.84) | 0 (+0.00) | 486 | +271.93 |
+| **B3** | 4 (+9.16) | 36 (+25.06) | 67 (+49.50) | 111 (-309.91) | 218 | -226.19 |
+| **C** | 8 (+2.60) | 36 (+8.88) | 80 (+48.47) | 26 (-80.43) | 150 | -20.48 |
+| **D** | 2 (+1.20) | 8 (+2.90) | 24 (+13.10) | 1 (-0.45) | 35 | +16.75 |
+| **F** | 0 (+0.00) | 2 (-1.45) | 1 (-0.40) | 86 (-138.30) | 89 | -140.15 |
 
 (A-legs that rode: 0 — A requires exits REACHED in W1, not necessarily filled; the table shows whether construction cashed.)
 
 ## 0b · A–F MATRIX × cat × epoch — headline row: W1-cash rate + BOUHAR above the dollars
 
-**HEADLINE: W1-cash 22/786 legs (2%) · BOUHAR pairs 2 · settled $-100.19**
+**HEADLINE: W1-cash 34/992 legs (3%) · BOUHAR pairs 2 · settled $-86.35**
 
-| epoch | cat | A | B1 | B2 | B3 | C | D | F | W1-cash | BOUHAR | $ |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| E3a | ATP_MAIN | 0 | 0 | 1 | 1 | 0 | 1 | 0 | 0/5 | 0 | -5.82 |
-| E3a | WTA_MAIN | 0 | 0 | 2 | 2 | 0 | 0 | 0 | 0/8 | 0 | -8.16 |
-| E3a | ATP_CHALL | 0 | 0 | 23 | 12 | 2 | 5 | 9 | 1/88 | 0 | +2.31 |
-| E3a | WTA_CHALL | 0 | 0 | 9 | 4 | 3 | 2 | 0 | 0/34 | 0 | +2.60 |
-| E3a | ITF_M | 0 | 0 | 22 | 9 | 3 | 6 | 7 | 0/81 | 0 | -7.47 |
-| E3a | ITF_W | 0 | 0 | 39 | 13 | 2 | 7 | 12 | 0/128 | 0 | +1.29 |
-| E3b | ATP_CHALL | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0/2 | 0 | +1.20 |
-| E3b | ITF_M | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0/1 | 0 | +0.40 |
-| E3b | ITF_W | 0 | 0 | 0 | 1 | 0 | 2 | 0 | 0/4 | 0 | -3.20 |
-| E4 | ATP_MAIN | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0/2 | 0 | +0.37 |
-| E4 | WTA_MAIN | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0/2 | 0 | +1.05 |
-| E4 | ATP_CHALL | 0 | 1 | 10 | 6 | 13 | 1 | 7 | 1/68 | 0 | -35.42 |
-| E4 | WTA_CHALL | 0 | 0 | 3 | 2 | 7 | 0 | 2 | 1/26 | 0 | +3.65 |
-| E4 | ITF_M | 1 | 0 | 36 | 20 | 10 | 4 | 26 | 5/164 | 0 | -41.93 |
-| E4 | ITF_W | 2 | 2 | 44 | 21 | 10 | 2 | 13 | 14/173 | 2 | -11.06 |
+| epoch | cat | S | A | B1 | B2 | B3 | C | D | F | W1-cash | BOUHAR | $ |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| E3a | ATP_MAIN | 0 | 0 | 0 | 1 | 1 | 0 | 2 | 0 | 1/6 | 0 | -4.92 |
+| E3a | WTA_MAIN | 0 | 0 | 0 | 2 | 2 | 0 | 0 | 0 | 0/8 | 0 | -8.16 |
+| E3a | ATP_CHALL | 0 | 0 | 0 | 26 | 12 | 2 | 5 | 10 | 1/95 | 0 | +6.46 |
+| E3a | WTA_CHALL | 0 | 0 | 0 | 9 | 4 | 3 | 2 | 0 | 0/34 | 0 | +2.60 |
+| E3a | ITF_M | 0 | 0 | 0 | 22 | 9 | 3 | 6 | 7 | 0/81 | 0 | -7.47 |
+| E3a | ITF_W | 0 | 0 | 0 | 39 | 13 | 2 | 7 | 12 | 0/128 | 0 | +1.29 |
+| E3b | ATP_CHALL | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 | 0/2 | 0 | +1.20 |
+| E3b | ITF_M | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0/1 | 0 | +0.40 |
+| E3b | ITF_W | 0 | 0 | 0 | 0 | 1 | 0 | 2 | 0 | 0/4 | 0 | -3.20 |
+| E4 | ATP_MAIN | 0 | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 0/4 | 0 | +1.28 |
+| E4 | WTA_MAIN | 0 | 0 | 0 | 1 | 1 | 0 | 0 | 0 | 0/4 | 0 | -1.28 |
+| E4 | ATP_CHALL | 0 | 1 | 0 | 22 | 10 | 25 | 2 | 8 | 4/126 | 0 | -22.94 |
+| E4 | WTA_CHALL | 0 | 0 | 0 | 4 | 2 | 10 | 0 | 2 | 1/34 | 0 | +5.90 |
+| E4 | ITF_M | 0 | 1 | 0 | 54 | 26 | 18 | 4 | 35 | 11/237 | 0 | -53.24 |
+| E4 | ITF_W | 0 | 5 | 0 | 61 | 28 | 11 | 3 | 15 | 16/228 | 2 | -4.27 |
 
 ## 0c · THE DECOMPOSITION — settled $ split: exit-cashed vs RODE-TO-SETTLEMENT (the structural-bleed number)
 
-**RODE bucket: 188 legs, $-454.00 ← the structural-bleed number. Exit-cashed: 598 legs, $+353.81.**
+**RODE bucket: 224 legs, $-529.09 ← the structural-bleed number. Exit-cashed: 768 legs, $+442.74.**
 
 | epoch | cat | cashed legs ($) | rode legs ($) | touched-not-filled W1/COR/W2 |
 |---|---|---|---|---|
-| E3a | ATP_MAIN | 4 (+1.65) | 1 (-7.47) | 0/0/0 |
+| E3a | ATP_MAIN | 5 (+2.55) | 1 (-7.47) | 0/0/0 |
 | E3a | WTA_MAIN | 6 (+0.47) | 2 (-8.63) | 0/0/0 |
-| E3a | ATP_CHALL | 68 (+49.91) | 20 (-47.60) | 1/0/4 |
+| E3a | ATP_CHALL | 74 (+56.51) | 21 (-50.05) | 1/0/4 |
 | E3a | WTA_CHALL | 27 (+19.40) | 7 (-16.80) | 1/2/2 |
 | E3a | ITF_M | 62 (+35.88) | 19 (-43.35) | 0/0/4 |
 | E3a | ITF_W | 102 (+66.59) | 26 (-65.30) | 0/0/9 |
 | E3b | ATP_CHALL | 2 (+1.20) | 0 (+0.00) | 0/0/0 |
 | E3b | ITF_M | 1 (+0.40) | 0 (+0.00) | 0/0/0 |
 | E3b | ITF_W | 3 (+1.00) | 1 (-4.20) | 0/0/0 |
-| E4 | ATP_MAIN | 2 (+0.37) | 0 (+0.00) | 0/0/0 |
-| E4 | WTA_MAIN | 2 (+1.05) | 0 (+0.00) | 0/0/0 |
-| E4 | ATP_CHALL | 51 (+18.53) | 17 (-53.95) | 2/4/2 |
-| E4 | WTA_CHALL | 20 (+16.45) | 6 (-12.80) | 2/1/3 |
-| E4 | ITF_M | 115 (+54.82) | 49 (-96.75) | 6/14/8 |
-| E4 | ITF_W | 133 (+86.09) | 40 (-97.15) | 7/10/7 |
+| E4 | ATP_MAIN | 4 (+1.28) | 0 (+0.00) | 0/0/0 |
+| E4 | WTA_MAIN | 3 (+1.41) | 1 (-2.69) | 0/0/1 |
+| E4 | ATP_CHALL | 100 (+51.01) | 26 (-73.95) | 4/5/5 |
+| E4 | WTA_CHALL | 28 (+18.70) | 6 (-12.80) | 2/1/3 |
+| E4 | ITF_M | 171 (+79.96) | 66 (-133.20) | 8/21/11 |
+| E4 | ITF_W | 180 (+106.38) | 48 (-110.65) | 9/15/10 |
 
 ### exit-fill window mix (cashed legs, honest clock; corridor end = onset > latch > honest+cat-median)
 
-W1 23 · CORRIDOR 155 · W2 420
+W1 35 · CORRIDOR 212 · W2 521
 
 ## 1 · THE ONE LEDGER LINE (cumulative since flip boot)
 
 | settled $ | open exposure at basis | open mark-to-book | book right now (settled + mark − basis... stated) |
 |---|---|---|---|
-| **-100.19** | 178.19 (122 events) | 155.54 | **-100.19 settled, -22.65 unrealized on the open book** |
+| **-86.35** | 99.53 (72 events) | 88.34 | **-86.35 settled, -11.19 unrealized on the open book** |
 
 ### per epoch (conception-stamped; NO blending)
 
 | epoch | settled $ (n) | open basis (n) | open mark | luck flag |
 |---|---|---|---|---|
-| E3a | -15.25 (196) | 16.85 (12) | 16.05 | n≥30 |
-| E3b | -1.60 (5) | 2.45 (1) | 2.40 | LUCK-POLLUTED (n<30) |
-| E4 | -83.34 (245) | 158.89 (109) | 137.09 | n≥30 |
+| E3a | -10.20 (201) | 7.65 (7) | 7.55 | n≥30 |
+| E3b | -1.60 (5) | 2.45 (1) | 2.45 | LUCK-POLLUTED (n<30) |
+| E4 | -74.55 (351) | 89.43 (64) | 78.34 | n≥30 |
 
 ### per cat within epoch (settled $; n<30 flagged)
 
 | epoch | ATP_MAIN | WTA_MAIN | ATP_CHALL | WTA_CHALL | ITF_M | ITF_W |
 |---|---|---|---|---|---|---|
-| E3a | -5.82 (n=3‼) | -8.16 (n=4‼) | +2.31 (n=51) | +2.60 (n=18‼) | -7.47 (n=47) | +1.29 (n=73) |
+| E3a | -4.92 (n=4‼) | -8.16 (n=4‼) | +6.46 (n=55) | +2.60 (n=18‼) | -7.47 (n=47) | +1.29 (n=73) |
 | E3b | — | — | +1.20 (n=1‼) | — | +0.40 (n=1‼) | -3.20 (n=3‼) |
-| E4 | +0.37 (n=1‼) | +1.05 (n=1‼) | -35.42 (n=38) | +3.65 (n=14‼) | -41.93 (n=97) | -11.06 (n=94) |
+| E4 | +1.28 (n=2‼) | -1.28 (n=2‼) | -22.94 (n=68) | +5.90 (n=18‼) | -53.24 (n=138) | -4.27 (n=123) |
 (‼ = LUCK-POLLUTED, n<30 per C46.)
 
 ## 3 · CONTINUITY PROOF (the reconcile, built in)
@@ -172,23 +173,23 @@ CUT A (-15.29) + Σdelta (-3.36) = -18.65 vs CUT B -18.65 — internal sums must
 
 ## 4 · GRADE ROLLUP (per §0E; per cat per epoch, settled only)
 
-| epoch | cat | A | B | C | D | F | both-fill | ≤97 | W1-cash legs | BOUHAR |
-|---|---|---|---|---|---|---|---|---|---|---|
-| E3a | ATP_MAIN | 0 | 0+1+1 | 0 | 1 | 0 | 2/3 | 2/2 | 0/5 | 0 |
-| E3a | WTA_MAIN | 0 | 0+2+2 | 0 | 0 | 0 | 4/4 | 4/4 | 0/8 | 0 |
-| E3a | ATP_CHALL | 0 | 0+23+12 | 2 | 5 | 9 | 37/51 | 35/37 | 1/88 | 0 |
-| E3a | WTA_CHALL | 0 | 0+9+4 | 3 | 2 | 0 | 16/18 | 13/16 | 0/34 | 0 |
-| E3a | ITF_M | 0 | 0+22+9 | 3 | 6 | 7 | 34/47 | 31/34 | 0/81 | 0 |
-| E3a | ITF_W | 0 | 0+39+13 | 2 | 7 | 12 | 55/73 | 52/55 | 0/128 | 0 |
-| E3b | ATP_CHALL | 0 | 0+1+0 | 0 | 0 | 0 | 1/1 | 1/1 | 0/2 | 0 |
-| E3b | ITF_M | 0 | 0+0+0 | 0 | 1 | 0 | 0/1 | 0/0 | 0/1 | 0 |
-| E3b | ITF_W | 0 | 0+0+1 | 0 | 2 | 0 | 1/3 | 1/1 | 0/4 | 0 |
-| E4 | ATP_MAIN | 0 | 0+1+0 | 0 | 0 | 0 | 1/1 | 1/1 | 0/2 | 0 |
-| E4 | WTA_MAIN | 0 | 0+1+0 | 0 | 0 | 0 | 1/1 | 1/1 | 0/2 | 0 |
-| E4 | ATP_CHALL | 0 | 1+10+6 | 13 | 1 | 7 | 30/38 | 17/30 | 1/68 | 0 |
-| E4 | WTA_CHALL | 0 | 0+3+2 | 7 | 0 | 2 | 12/14 | 5/12 | 1/26 | 0 |
-| E4 | ITF_M | 1 | 0+36+20 | 10 | 4 | 26 | 67/97 | 57/67 | 5/164 | 0 |
-| E4 | ITF_W | 2 | 2+44+21 | 10 | 2 | 13 | 79/94 | 69/79 | 14/173 | 2 |
+| epoch | cat | S | A | B | C | D | F | both-fill | ≤97 | W1-cash legs | BOUHAR |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| E3a | ATP_MAIN | 0 | 0 | 0+1+1 | 0 | 2 | 0 | 2/4 | 2/2 | 1/6 | 0 |
+| E3a | WTA_MAIN | 0 | 0 | 0+2+2 | 0 | 0 | 0 | 4/4 | 4/4 | 0/8 | 0 |
+| E3a | ATP_CHALL | 0 | 0 | 0+26+12 | 2 | 5 | 10 | 40/55 | 38/40 | 1/95 | 0 |
+| E3a | WTA_CHALL | 0 | 0 | 0+9+4 | 3 | 2 | 0 | 16/18 | 13/16 | 0/34 | 0 |
+| E3a | ITF_M | 0 | 0 | 0+22+9 | 3 | 6 | 7 | 34/47 | 31/34 | 0/81 | 0 |
+| E3a | ITF_W | 0 | 0 | 0+39+13 | 2 | 7 | 12 | 55/73 | 52/55 | 0/128 | 0 |
+| E3b | ATP_CHALL | 0 | 0 | 0+1+0 | 0 | 0 | 0 | 1/1 | 1/1 | 0/2 | 0 |
+| E3b | ITF_M | 0 | 0 | 0+0+0 | 0 | 1 | 0 | 0/1 | 0/0 | 0/1 | 0 |
+| E3b | ITF_W | 0 | 0 | 0+0+1 | 0 | 2 | 0 | 1/3 | 1/1 | 0/4 | 0 |
+| E4 | ATP_MAIN | 0 | 0 | 0+1+0 | 1 | 0 | 0 | 2/2 | 1/2 | 0/4 | 0 |
+| E4 | WTA_MAIN | 0 | 0 | 0+1+1 | 0 | 0 | 0 | 2/2 | 2/2 | 0/4 | 0 |
+| E4 | ATP_CHALL | 0 | 1 | 0+22+10 | 25 | 2 | 8 | 58/68 | 33/58 | 4/126 | 0 |
+| E4 | WTA_CHALL | 0 | 0 | 0+4+2 | 10 | 0 | 2 | 16/18 | 6/16 | 1/34 | 0 |
+| E4 | ITF_M | 0 | 1 | 0+54+26 | 18 | 4 | 35 | 99/138 | 81/99 | 11/237 | 0 |
+| E4 | ITF_W | 0 | 5 | 0+61+28 | 11 | 3 | 15 | 105/123 | 94/105 | 16/228 | 2 |
 
 ## DAY ROLLUP — conception-day attribution (boundary = midnight ET)
 
@@ -197,35 +198,34 @@ Convention (amended 2026-07-07): an event belongs to the ET calendar day of its 
 | day | events | EXIT-CASHED $ (legs) | RODE $ (legs) | HELD: n / basis / mark / realized | WORKING: n (resting orders, $0 at risk) | day total GROSS | MECH $ (a/b/c legs) | day NET-of-mech | status |
 |---|---|---|---|---|---|---|---|---|---|
 | 2026-07-05 | 13 | +10.82 (23) | -3.85 (2) | 0 / 0.00 / 0.00 / +0.00 | 0 (0) | +6.97 | -6.13 (5/5/2) | +13.10 | FINAL |
-| 2026-07-06 | 263 | +216.44 (349) | -239.45 (91) | 9 / 28.07 / 26.52 / +0.00 | 6 (13) | -24.56 | -55.46 (78/26/10) | +30.90 | 9 held / 6 working |
-| 2026-07-07 | 292 | +139.74 (253) | -210.70 (95) | 57 / 150.12 / 129.02 / +5.07 | 50 (83) | -86.99 | -80.99 (72/33/12) | -6.00 | 57 held / 50 working |
+| 2026-07-06 | 263 | +223.71 (356) | -241.90 (92) | 7 / 18.87 / 17.17 / +0.00 | 3 (2) | -19.89 | -55.46 (78/26/10) | +35.57 | 7 held / 3 working |
+| 2026-07-07 | 353 | +213.91 (402) | -283.34 (130) | 25 / 80.66 / 71.17 / +2.42 | 37 (57) | -76.50 | -80.99 (72/33/12) | +4.49 | 25 held / 37 working |
 
-Cross-check to §1 (the identity, stated): Σcashed +367.00 + Σrode -454.00 = -87.00; §1 settled = settlement-realized only — the bridge is exit-cash counted IMMEDIATELY here on exited-but-unsettled legs (the convention's point: the band did its job; settlement timing is irrelevant to it). Open basis/mark columns tie to §1's 178.19/155.54 exactly; RODE only ever holds legs that expired unfilled-at-exit. A resting bid is not a trade: WORKING events carry $0 at risk and are retired from every blended open count.
+Cross-check to §1 (the identity, stated): Σcashed +448.44 + Σrode -529.09 = -80.65; §1 settled = settlement-realized only — the bridge is exit-cash counted IMMEDIATELY here on exited-but-unsettled legs (the convention's point: the band did its job; settlement timing is irrelevant to it). Open basis/mark columns tie to §1's 99.53/88.34 exactly; RODE only ever holds legs that expired unfilled-at-exit. A resting bid is not a trade: WORKING events carry $0 at risk and are retired from every blended open count.
 
 ### DAY GRADE × DISPOSITION (settled legs of each conception day; ⚑ = mech-flagged legs inside the cell)
 
-**2026-07-06** (248 settled events; FINAL-so-far $-23.94):
+**2026-07-06** (253 settled events; FINAL-so-far $-18.89):
 
 | grade | CASHED_W1 | CASHED_CORRIDOR | CASHED_W2 | RODE | legs | $ | ⚑mech legs ($) |
 |---|---|---|---|---|---|---|---|
-| **A** | 5 (+2.97) | 0 (+0.00) | 1 (+0.95) | 0 (+0.00) | 6 | +3.92 | 3 (-4.62) |
-| **B1** | 2 (-1.22) | 0 (+0.00) | 0 (+0.00) | 0 (+0.00) | 2 | -1.22 | 0 (+0.00) |
-| **B2** | 6 (+1.00) | 38 (+18.76) | 192 (+126.73) | 0 (+0.00) | 236 | +146.49 | 64 (-2.46) |
+| **A** | 6 (+2.55) | 0 (+0.00) | 0 (+0.00) | 0 (+0.00) | 6 | +2.55 | 2 (-3.27) |
+| **B2** | 7 (+0.20) | 40 (+19.66) | 197 (+133.38) | 0 (+0.00) | 244 | +153.24 | 66 (-4.19) |
 | **B3** | 2 (+1.40) | 10 (+11.08) | 37 (+24.28) | 51 (-167.57) | 100 | -130.81 | 21 (-47.30) |
 | **C** | 0 (+0.00) | 7 (+4.70) | 18 (+11.41) | 11 (-21.13) | 36 | -5.02 | 8 (-2.27) |
-| **D** | 1 (+0.30) | 6 (+2.55) | 21 (+12.40) | 1 (-0.45) | 29 | +14.80 | 3 (+1.57) |
-| **F** | 0 (+0.00) | 1 (-1.40) | 1 (-0.40) | 28 (-50.30) | 30 | -52.10 | 0 (+0.00) |
+| **D** | 2 (+1.20) | 6 (+2.55) | 21 (+12.40) | 1 (-0.45) | 30 | +15.70 | 3 (+1.57) |
+| **F** | 0 (+0.00) | 1 (-1.40) | 1 (-0.40) | 29 (-52.75) | 31 | -54.55 | 0 (+0.00) |
 
-**2026-07-07** (185 settled events; FINAL-so-far $-83.22):
+**2026-07-07** (291 settled events; FINAL-so-far $-74.43):
 
 | grade | CASHED_W1 | CASHED_CORRIDOR | CASHED_W2 | RODE | legs | $ | ⚑mech legs ($) |
 |---|---|---|---|---|---|---|---|
-| **B1** | 1 (-1.61) | 3 (+1.94) | 0 (+0.00) | 0 (+0.00) | 4 | +0.33 | 3 (-2.44) |
-| **B2** | 2 (+0.75) | 49 (+23.35) | 75 (+48.38) | 0 (+0.00) | 126 | +72.48 | 33 (-17.03) |
-| **B3** | 0 (+0.00) | 20 (+14.15) | 19 (+13.96) | 41 (-102.00) | 80 | -73.89 | 25 (-25.72) |
-| **C** | 4 (+1.65) | 15 (+2.01) | 36 (+22.40) | 9 (-44.75) | 64 | -18.69 | 25 (-35.22) |
-| **D** | 0 (+0.00) | 1 (+0.20) | 2 (+0.30) | 0 (+0.00) | 3 | +0.50 | 0 (+0.00) |
-| **F** | 0 (+0.00) | 0 (+0.00) | 0 (+0.00) | 45 (-63.95) | 45 | -63.95 | 0 (+0.00) |
+| **A** | 2 (+4.56) | 6 (+4.68) | 0 (+0.00) | 0 (+0.00) | 8 | +9.24 | 2 (-0.46) |
+| **B2** | 6 (+2.50) | 79 (+33.38) | 135 (+72.84) | 0 (+0.00) | 220 | +108.72 | 37 (-19.34) |
+| **B3** | 2 (+7.76) | 26 (+13.98) | 29 (+24.37) | 59 (-141.54) | 116 | -95.43 | 28 (-25.97) |
+| **C** | 8 (+2.60) | 29 (+4.18) | 62 (+37.06) | 15 (-59.30) | 114 | -15.46 | 26 (-35.22) |
+| **D** | 0 (+0.00) | 2 (+0.35) | 3 (+0.70) | 0 (+0.00) | 5 | +1.05 | 0 (+0.00) |
+| **F** | 0 (+0.00) | 1 (-0.05) | 0 (+0.00) | 56 (-82.50) | 57 | -82.55 | 0 (+0.00) |
 
 ## EXHIBITS — the named legs, graded
 
@@ -242,137 +242,88 @@ Cross-check to §1 (the identity, stated): Σcashed +367.00 + Σrode -454.00 = -
 
 ## DAY ANCHOR — banked account snapshot
 
-Morning anchor (banked, STEP-1 pull ~10:59 ET): **cash $672.52**; this refresh re-pulled at 2026-07-07 11:58:08 ET: cash $661.5746, Kalshi portfolio_value $178.91.
+Morning anchor (banked, STEP-1 pull ~10:59 ET): **cash $672.52**; this refresh re-pulled at 2026-07-07 22:36:40 ET: cash $747.4349, Kalshi portfolio_value $103.78.
 Portfolio-convention gap, one line: Kalshi's portfolio_value marks at its own display mark (last/mid-leaning) while this book marks at live yes_bid — the $167.20-vs-$152.51 morning gap ($14.69) is that convention, not a position difference; the book carries yes_bid as canonical and names the gap at every anchor.
 
 ## THE ROSTER — every engaged event, one row (settled AND open)
 
 | ticker | cat | ep | legs | fills ¢ | comb | vs97 | Δaim | W1 | disp | grade | status |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| LLENGERMATCH-26JUL06BARZIN | ATP_CHALL | E3a | 2 | BAR 51.5+ZIN 45.0 | 96.5 | ≤97 | 3,1 | W2_ONLY,W2_ONLY | OPEN⚑,OPEN | OPEN | OPEN BAR@51.5×10(bid 52)+ZIN@45.0×5(bid 46)  cash -7.40 |
-| LLENGERMATCH-26JUL06HOLSCH | ATP_CHALL | E3a | 0 | — | — | — | — | — | — | OPEN | OPEN no-position SCH rest@50 cash +0.00 |
-| LLENGERMATCH-26JUL06ILARYB | ATP_CHALL | E3a | 1 | RYB 45.0 | — | — | 2 | W2_ONLY | OPEN | OPEN | OPEN RYB@45.0×5(bid 40) ILA rest@52 ach 104.0 cash -2.25 |
-| LLENGERMATCH-26JUL06JUNMOR | ATP_CHALL | E3a | 1 | JUN 51.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN JUN@51.0×5(bid 43) MOR rest@46 ach 107.0 cash -2.55 |
-| LLENGERMATCH-26JUL06MALMAT | ATP_CHALL | E3a | 1 | MAT 49.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN MAT@49.0×5(bid 46) MAL rest@43 ach 103.0 cash -2.45 |
-| LLENGERMATCH-26JUL06MCDWAL | ATP_CHALL | E3a | 0 | — | — | — | — | — | — | OPEN | OPEN no-position MCD rest@47; WAL rest@50 cash +0.00 |
-| LLENGERMATCH-26JUL06VUKBRO | ATP_CHALL | E3b | 1 | BRO 49.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN BRO@49.0×5(bid 48) VUK rest@48 ach 100.0 cash -2.45 |
-| LLENGERMATCH-26JUL07AZKBON | ATP_CHALL | E4 | 2 | AZK 32.5+BON 65.0 | 97.5 | 98-100 | 1,1 | W2_ONLY,W2_ONLY | X_CORRIDOR,OPEN | OPEN | OPEN AZK@32.5×5(bid 36)+BON@65.0×5(bid 61)  cash -4.45 |
-| LLENGERMATCH-26JUL07BASGAU | ATP_CHALL | E4 | 2 | BAS 41.0+GAU 56.0 | 97.0 | ≤97 | 0,3 | W2_ONLY,W2_ONLY | OPEN,X_W2 | OPEN | OPEN BAS@41.0×5(bid 17) GAU rest@54 ach 123.0 cash -1.90 |
-| LLENGERMATCH-26JUL07BROWEH | ATP_CHALL | E4 | 2 | BRO 64.0+WEH 34.0 | 98.0 | 98-100 | 0,3 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | OPEN | OPEN WEH@34.0×5(bid 5)  ach 128.0 cash -0.30 |
-| LLENGERMATCH-26JUL07CASMON | ATP_CHALL | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position CAS rest@86; MON rest@12 cash +0.00 |
-| LLENGERMATCH-26JUL07CLAHER | ATP_CHALL | E4 | 2 | CLA 44.5+HER 53.0 | 97.5 | 98-100 | 2,1 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | OPEN | OPEN CLA@44.5×5(bid 42)+HER@53.0×4(bid 53)  cash -3.73 |
-| LLENGERMATCH-26JUL07DROERH | ATP_CHALL | E4 | 1 | ERH 24.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN ERH@24.0×5(bid 24) DRO rest@74 ach 101.0 cash -1.20 |
-| LLENGERMATCH-26JUL07FERPAV | ATP_CHALL | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position FER rest@40; PAV rest@57 cash +0.00 |
-| LLENGERMATCH-26JUL07HAMWAL | ATP_CHALL | E4 | 1 | HAM 13.0 | — | — | 3 | W2_ONLY | OPEN⚑ | OPEN | OPEN HAM@13.0×0(bid 13) WAL rest@86 ach 101.0 cash +0.00 |
-| LLENGERMATCH-26JUL07HERAMB | ATP_CHALL | E4 | 2 | AMB 90.0+HER 7.0 | 97.0 | ≤97 | 4,0 | W2_ONLY,W2_ONLY | OPEN,X_W2 | OPEN | OPEN AMB@90.0×5(bid 80) HER rest@1 ach 110.0 cash -4.30 |
-| LLENGERMATCH-26JUL07HERHAR | ATP_CHALL | E4 | 1 | HAR 80.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN HAR@80.0×5(bid 78) HER rest@19 ach 101.0 cash -4.00 |
-| LLENGERMATCH-26JUL07JANGIL | ATP_CHALL | E4 | 1 | GIL 79.0 | — | — | 5 | W2_ONLY | OPEN | OPEN | OPEN GIL@79.0×5(bid 76) JAN rest@18 ach 104.0 cash -3.95 |
-| LLENGERMATCH-26JUL07KRUPIE | ATP_CHALL | E4 | 2 | KRU 60.0+PIE 37.0 | 97.0 | ≤97 | 3,None | no-clock,no-clock | X_CORRIDOR,OPEN | OPEN | OPEN PIE@37.0×5(bid 36) KRU rest@60 ach 101.0 cash -1.00 |
-| LLENGERMATCH-26JUL07MARBER | ATP_CHALL | E4 | 2 | BER 58.0+MAR 39.0 | 97.0 | ≤97 | 1,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | OPEN | OPEN BER@58.0×5(bid 87)  ach 71.0 cash -1.70 |
-| LLENGERMATCH-26JUL07MARCRE | ATP_CHALL | E4 | 2 | CRE 66.0+MAR 29.0 | 95.0 | ≤97 | 3,0 | W2_ONLY,W2_ONLY | X_W2,OPEN | OPEN | OPEN MAR@29.0×5(bid 10)  ach 119.0 cash -0.50 |
-| LLENGERMATCH-26JUL07MCCSAK | ATP_CHALL | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position MCC rest@27; SAK rest@71 cash +0.00 |
-| LLENGERMATCH-26JUL07MEJTEN | ATP_CHALL | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position MEJ rest@91; TEN rest@8 cash +0.00 |
-| LLENGERMATCH-26JUL07MOESAN | ATP_CHALL | E4 | 1 | MOE 71.0 | — | — | 0 | W2_ONLY | OPEN | OPEN | OPEN MOE@71.0×5(bid 19) SAN rest@27 ach 152.0 cash -3.55 |
-| LLENGERMATCH-26JUL07MONSUM | ATP_CHALL | E4 | 2 | MON 89.0+SUM 9.0 | 98.0 | 98-100 | 2,2 | W2_ONLY,W2_ONLY | OPEN,X_W2 | OPEN | OPEN MON@89.0×5(bid 96)+SUM@9.0×5(bid 3)  cash -4.65 |
-| LLENGERMATCH-26JUL07MRVVIL | ATP_CHALL | E4 | 2 | MRV 65.0+VIL 32.0 | 97.0 | ≤97 | 2,3 | W2_ONLY,W2_ONLY | OPEN,X_W2 | OPEN | OPEN MRV@65.0×5(bid 24)  ach 143.0 cash -2.85 |
-| LLENGERMATCH-26JUL07ONCCAM | ATP_CHALL | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position CAM rest@20; ONC rest@78 cash +0.00 |
-| LLENGERMATCH-26JUL07OSOSOT | ATP_CHALL | E4 | 2 | OSO 20.0+SOT 77.0 | 97.0 | ≤97 | -1,4 | W2_ONLY,W2_ONLY | OPEN,OPEN | OPEN | OPEN OSO@20.0×5(bid 6)+SOT@77.0×5(bid 93)  cash -4.85 |
-| LLENGERMATCH-26JUL07PLAMAR | ATP_CHALL | E4 | 2 | MAR 63.0+PLA 34.0 | 97.0 | ≤97 | 3,-2 | W2_ONLY,W1_CASHED | OPEN,X_W1 | OPEN | OPEN MAR@63.0×5(bid 56)+PLA@34.0×5(bid 43)  cash -4.45 |
-| LLENGERMATCH-26JUL07POLHEI | ATP_CHALL | E4 | 2 | HEI 92.0+POL 4.5 | 96.5 | ≤97 | 1,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | OPEN | OPEN POL@4.5×5(bid 2)  ach 102.5 cash +0.30 |
-| LLENGERMATCH-26JUL07POPPDA | ATP_CHALL | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position PDA rest@57; POP rest@39 cash +0.00 |
-| LLENGERMATCH-26JUL07RODAND | ATP_CHALL | E4 | 1 | ROD 39.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN ROD@39.0×5(bid 38) AND rest@60 ach 101.0 cash -1.95 |
-| LLENGERMATCH-26JUL07ROYNEU | ATP_CHALL | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position NEU rest@8; ROY rest@91 cash +0.00 |
-| LLENGERMATCH-26JUL07SKAPET | ATP_CHALL | E4 | 1 | PET 36.0 | — | — | 5 | W2_ONLY | OPEN | OPEN | OPEN PET@36.0×5(bid 33) SKA rest@61 ach 103.0 cash -1.80 |
-| LLENGERMATCH-26JUL07TOMSHI | ATP_CHALL | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position TOM rest@63 cash +0.00 |
-| ATPMATCH-26JUL06LEHZVE | ATP_MAIN | E3a | 1 | ZVE 73.0 | — | — | -1 | W1_CASHED | X_W1 | OPEN | OPEN no-position  cash +0.93 |
-| ATPMATCH-26JUL07AUGDJO | ATP_MAIN | E4 | 2 | AUG 39.0+DJO 61.0 | 100.0 | 98-100 | 2,1 | W2_ONLY,W2_ONLY | OPEN,OPEN | OPEN | OPEN AUG@39.0×5(bid 40)+DJO@61.0×5(bid 59)  cash -5.10 |
+| LLENGERMATCH-26JUL06HOLSCH | ATP_CHALL | E3a | 0 | — | — | — | — | — | — | OPEN | OPEN no-position SCH rest@51 cash +0.00 |
+| LLENGERMATCH-26JUL06MCDWAL | ATP_CHALL | E3a | 2 | MCD 47.0+WAL 50.0 | 97.0 | ≤97 | 3,3 | W2_ONLY,W2_ONLY | OPEN,OPEN | OPEN | OPEN MCD@47.0×5(bid 47)+WAL@50.0×5(bid 51)  cash -4.85 |
+| LLENGERMATCH-26JUL06VUKBRO | ATP_CHALL | E3b | 1 | BRO 49.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN BRO@49.0×5(bid 49) VUK rest@48 ach 100.0 cash -2.45 |
+| LLENGERMATCH-26JUL07TOMSHI | ATP_CHALL | E4 | 1 | SHI 36.0 | — | — | 3 | W1_REACHA | OPEN | OPEN | OPEN SHI@36.0×5(bid 35) TOM rest@63 ach 102.0 cash -1.80 |
 | ITFMATCH-26JUL06GARPER | ITF_M | E3a | 0 | — | — | — | — | — | — | OPEN | OPEN no-position  cash +0.00 |
-| ITFMATCH-26JUL07AGUPES | ITF_M | E4 | 1 | PES 25.0 | — | — | 4 | W2_ONLY | OPEN | OPEN | OPEN PES@25.0×4(bid 26) AGU rest@71 ach 99.0 cash -1.00 |
-| ITFMATCH-26JUL07ARSWIL | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position ARS rest@46; WIL rest@52 cash +0.00 |
-| ITFMATCH-26JUL07BARCOT | ITF_M | E4 | 1 | COT 41.0 | — | — | 4 | W2_ONLY | OPEN | OPEN | OPEN COT@41.0×5(bid 30) BAR rest@56 ach 111.0 cash -2.05 |
-| ITFMATCH-26JUL07BOBARO | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position ARO rest@34; BOB rest@50 cash +0.00 |
-| ITFMATCH-26JUL07BOUMOC | ITF_M | E4 | 2 | BOU 67.0+MOC 30.0 | 97.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | OPEN,OPEN | OPEN | OPEN BOU@67.0×1(bid 67)+MOC@30.0×15(bid 26)  cash -5.17 |
-| ITFMATCH-26JUL07CARPON | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position CAR rest@48 cash +0.00 |
-| ITFMATCH-26JUL07COXBRA | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position COX rest@4 cash +0.00 |
-| ITFMATCH-26JUL07CUIFOR | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position CUI rest@60; FOR rest@35 cash +0.00 |
-| ITFMATCH-26JUL07DELFER | ITF_M | E4 | 2 | DEL 92.0+FER 5.0 | 97.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | OPEN | OPEN no-position  cash +0.50 |
-| ITFMATCH-26JUL07DJAGUA | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position DJA rest@69; GUA rest@21 cash +0.00 |
-| ITFMATCH-26JUL07DUSSHE | ITF_M | E4 | 1 | SHE 28.0 | — | — | 4 | W2_ONLY | OPEN | OPEN | OPEN SHE@28.0×5(bid 13) DUS rest@67 ach 115.0 cash -1.40 |
-| ITFMATCH-26JUL07ESTBAS | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position BAS rest@7; EST rest@91 cash +0.00 |
-| ITFMATCH-26JUL07FERCAL | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position CAL rest@7; FER rest@5 cash +0.00 |
-| ITFMATCH-26JUL07FRUFIN | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position FIN rest@22; FRU rest@61 cash +0.00 |
-| ITFMATCH-26JUL07GREKAS | ITF_M | E4 | 2 | GRE 91.0+KAS 8.0 | 99.0 | 98-100 | 3,4 | W2_ONLY,W1_CASHED | OPEN,X_W1 | OPEN | OPEN GRE@91.0×5(bid 86) KAS rest@6 ach 101.0 cash -4.35 |
-| ITFMATCH-26JUL07GRILES | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position GRI rest@44; LES rest@54 cash +0.00 |
-| ITFMATCH-26JUL07KAMMIY | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position KAM rest@5; MIY rest@93 cash +0.00 |
-| ITFMATCH-26JUL07KLEHOH | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position HOH rest@86; KLE rest@10 cash +0.00 |
-| ITFMATCH-26JUL07LERBRO | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position BRO rest@16 cash +0.00 |
-| ITFMATCH-26JUL07MARBAS | ITF_M | E4 | 1 | BAS 46.0 | — | — | 4 | W2_ONLY | OPEN | OPEN | OPEN BAS@46.0×5(bid 23) MAR rest@36 ach 122.0 cash -2.30 |
-| ITFMATCH-26JUL07MARLYN | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position LYN rest@59; MAR rest@38 cash +0.00 |
-| ITFMATCH-26JUL07MESBYN | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position BYN rest@32; MES rest@63 cash +0.00 |
-| ITFMATCH-26JUL07MOUMON | ITF_M | E4 | 2 | MON 64.0+MOU 32.5 | 96.5 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR⚑ | OPEN | OPEN MOU@32.5×5(bid 5)  ach 126.5 cash -0.20 |
-| ITFMATCH-26JUL07OGUJAS | ITF_M | E4 | 1 | JAS 72.0 | — | — | 0 | W2_ONLY | OPEN | OPEN | OPEN JAS@72.0×5(bid 70) OGU rest@22 ach 100.0 cash -3.60 |
-| ITFMATCH-26JUL07OKOKRA | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position KRA rest@36; OKO rest@59 cash +0.00 |
-| ITFMATCH-26JUL07PUTVAS | ITF_M | E4 | 1 | PUT 5.0 | — | — | 4 | W2_ONLY | OPEN | OPEN | OPEN PUT@5.0×5(bid 4) VAS rest@93 ach 100.0 cash -0.25 |
-| ITFMATCH-26JUL07RICMAR | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position MAR rest@45; RIC rest@53 cash +0.00 |
-| ITFMATCH-26JUL07ROLLAR | ITF_M | E4 | 2 | LAR 5.0+ROL 92.0 | 97.0 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | OPEN,OPEN | OPEN | OPEN LAR@5.0×5(bid 3)+ROL@92.0×5(bid 97)  cash -4.85 |
-| ITFMATCH-26JUL07SCHJON | ITF_M | E4 | 1 | JON 93.0 | — | — | 5 | W2_ONLY | OPEN | OPEN | OPEN JON@93.0×5(bid 95)+SCH@None×5(bid 4)  cash -4.65 |
-| ITFMATCH-26JUL07SEGMIT | ITF_M | E4 | 1 | MIT 25.0 | — | — | 4 | W2_ONLY | OPEN | OPEN | OPEN MIT@25.0×5(bid 8) SEG rest@58 ach 116.0 cash -1.25 |
-| ITFMATCH-26JUL07SEIREN | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position REN rest@20; SEI rest@63 cash +0.00 |
-| ITFMATCH-26JUL07SELWAS | ITF_M | E4 | 1 | WAS 38.0 | — | — | 6 | W2_ONLY | OPEN | OPEN | OPEN WAS@38.0×5(bid 33) SEL rest@59 ach 105.0 cash -1.90 |
-| ITFMATCH-26JUL07SICTAB | ITF_M | E4 | 2 | SIC 13.0+TAB 84.0 | 97.0 | ≤97 | 4,1 | W2_ONLY,W2_ONLY | X_CORRIDOR,OPEN | OPEN | OPEN TAB@84.0×5(bid 60)  ach 124.0 cash -4.00 |
-| ITFMATCH-26JUL07STRGUR | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position GUR rest@9; STR rest@91 cash +0.00 |
-| ITFMATCH-26JUL07THOGEO | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position GEO rest@57; THO rest@40 cash +0.00 |
-| ITFMATCH-26JUL07TISNAP | ITF_M | E4 | 1 | TIS 74.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN TIS@74.0×5(bid 74) NAP rest@24 ach 100.0 cash -3.70 |
-| ITFMATCH-26JUL07TSIHER | ITF_M | E4 | 2 | HER 47.0+TSI 50.0 | 97.0 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | X_CORRIDOR,OPEN | OPEN | OPEN TSI@50.0×5(bid 28)  ach 122.0 cash -2.00 |
-| ITFMATCH-26JUL07URSPOU | ITF_M | E4 | 2 | POU 49.7+URS 46.0 | 95.7 | ≤97 | 31,28 | W1_CASHED,W2_ONLY | X_W1⚑,X_CORRIDOR | OPEN | OPEN no-position  cash +1.76 |
-| ITFMATCH-26JUL07ZHALEE | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position ZHA rest@15 cash +0.00 |
-| ITFMATCH-26JUL07ZHUKEN | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position KEN rest@76; ZHU rest@23 cash +0.00 |
-| ITFWMATCH-26JUL07ABASLA | ITF_W | E4 | 1 | ABA 46.0 | — | — | 5 | W2_ONLY | OPEN | OPEN | OPEN ABA@46.0×5(bid 20) SLA rest@51 ach 126.0 cash -2.30 |
-| ITFWMATCH-26JUL07AKLRAP | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position AKL rest@51; RAP rest@44 cash +0.00 |
-| ITFWMATCH-26JUL07ARCOLI | ITF_W | E4 | 2 | ARC 21.0+OLI 72.0 | 93.0 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | OPEN,X_CORRIDOR | OPEN | OPEN ARC@21.0×5(bid 4) OLI rest@76 ach 117.0 cash -0.87 |
-| ITFWMATCH-26JUL07BROGAR | ITF_W | E4 | 2 | BRO 92.0+GAR 5.0 | 97.0 | ≤97 | 2,4 | W2_ONLY,W2_ONLY | X_W2,X_W2 | OPEN | OPEN no-position  cash +0.45 |
-| ITFWMATCH-26JUL07CHAPER | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position CHA rest@51; PER rest@44 cash +0.00 |
-| ITFWMATCH-26JUL07ELJRAB | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position  cash +0.00 |
-| ITFWMATCH-26JUL07EVAGOW | ITF_W | E4 | 2 | EVA 79.0+GOW 14.0 | 93.0 | ≤97 | 2,4 | W2_ONLY,W2_ONLY | OPEN⚑,X_CORRIDOR⚑ | OPEN | OPEN EVA@79.0×4(bid 79)+GOW@14.0×0(bid 7)  cash -3.32 |
-| ITFWMATCH-26JUL07FERMED | ITF_W | E4 | 1 | FER 11.0 | — | — | 9 | W2_ONLY | OPEN | OPEN | OPEN FER@11.0×3(bid 11) MED rest@86 ach 100.0 cash -0.33 |
-| ITFWMATCH-26JUL07GIADIA | ITF_W | E4 | 2 | DIA 53.0+GIA 34.0 | 87.0 | ≤97 | 4,None | W1_CASHED,W2_ONLY | X_W1⚑,OPEN | OPEN | OPEN GIA@34.0×5(bid 38) DIA rest@41 ach 95.0 cash -1.40 |
-| ITFWMATCH-26JUL07GOOKHA | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position GOO rest@17; KHA rest@74 cash +0.00 |
-| ITFWMATCH-26JUL07JAUMAT | ITF_W | E4 | 2 | JAU 46.5+MAT 50.0 | 96.5 | ≤97 | 7,19 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_W2 | OPEN | OPEN JAU@46.5×5(bid 44)  ach 102.5 cash -1.20 |
-| ITFWMATCH-26JUL07JOHKAJ | ITF_W | E4 | 1 | KAJ 48.0 | — | — | 4 | W2_ONLY | OPEN | OPEN | OPEN KAJ@48.0×4(bid 48) JOH rest@49 ach 102.0 cash -1.92 |
-| ITFWMATCH-26JUL07KAYDUN | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position DUN rest@42 cash +0.00 |
-| ITFWMATCH-26JUL07MAHCHA | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position CHA rest@54; MAH rest@42 cash +0.00 |
-| ITFWMATCH-26JUL07MANNAH | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position NAH rest@45 cash +0.00 |
-| ITFWMATCH-26JUL07MAROLU | ITF_W | E4 | 1 | OLU 30.0 | — | — | 4 | W2_ONLY | X_CORRIDOR | OPEN | OPEN OLU@30.0×0(bid 31)  ach 95.0 cash -0.05 |
-| ITFWMATCH-26JUL07MCNREE | ITF_W | E4 | 2 | MCN 43.0+REE 53.5 | 96.5 | ≤97 | None,3 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | OPEN | OPEN no-position  cash +1.60 |
-| ITFWMATCH-26JUL07MELROD | ITF_W | E4 | 2 | MEL 74.0+ROD 21.0 | 95.0 | ≤97 | 2,None | W2_ONLY,W1_CASHED | OPEN,X_W1⚑ | OPEN | OPEN MEL@74.0×5(bid 85) ROD rest@7 ach 89.0 cash -3.59 |
-| ITFWMATCH-26JUL07MIKPAQ | ITF_W | E4 | 1 | MIK 27.0 | — | — | 4 | W2_ONLY | OPEN | OPEN | OPEN MIK@27.0×1(bid 27) PAQ rest@70 ach 101.0 cash -0.27 |
-| ITFWMATCH-26JUL07MOROLM | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position MOR rest@31; OLM rest@54 cash +0.00 |
-| ITFWMATCH-26JUL07MULSIN | ITF_W | E4 | 1 | SIN 25.0 | — | — | 4 | W2_ONLY | OPEN | OPEN | OPEN SIN@25.0×5(bid 8) MUL rest@69 ach 117.0 cash -1.25 |
-| ITFWMATCH-26JUL07NGUGJI | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position GJI rest@15; NGU rest@75 cash +0.00 |
-| ITFWMATCH-26JUL07PASLEE | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position LEE rest@36; PAS rest@54 cash +0.00 |
-| ITFWMATCH-26JUL07SCHCAN | ITF_W | E4 | 1 | SCH 12.0 | — | — | 4 | W1_REACHA | OPEN | OPEN | OPEN SCH@12.0×5(bid 11) CAN rest@84 ach 100.0 cash -0.60 |
-| ITFWMATCH-26JUL07SCHZID | ITF_W | E4 | 2 | SCH 27.0+ZID 70.0 | 97.0 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | OPEN,OPEN | OPEN | OPEN SCH@27.0×1(bid 27)+ZID@70.0×5(bid 69)  cash -3.85 |
-| ITFWMATCH-26JUL07SOTTEO | ITF_W | E4 | 2 | SOT 93.0+TEO 2.0 | 95.0 | ≤97 | 1,None | no-clock,no-clock | OPEN,OPEN | OPEN | OPEN SOT@93.0×5(bid 95)+TEO@2.0×5(bid 3)  cash -4.75 |
-| ITFWMATCH-26JUL07WANMIR | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position MIR rest@61; WAN rest@35 cash +0.00 |
-| ITFWMATCH-26JUL07ZIOQUA | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position QUA rest@83; ZIO rest@8 cash +0.00 |
-| LLENGERMATCH-26JUL06BRESAN | WTA_CHALL | E3a | 0 | — | — | — | — | — | — | OPEN | OPEN no-position BRE rest@86; SAN rest@12 cash +0.00 |
-| LLENGERMATCH-26JUL06COLSMI | WTA_CHALL | E3a | 0 | — | — | — | — | — | — | OPEN | OPEN no-position COL rest@35 cash +0.00 |
+| ITFMATCH-26JUL07ADAIMA | ITF_M | E4 | 2 | ADA 5.0+IMA 92.0 | 97.0 | ≤97 | 4,3 | W1_CASHED,W2_ONLY | X_W1,OPEN | OPEN | OPEN IMA@92.0×5(bid 93)  ach 100.0 cash -4.40 |
+| ITFMATCH-26JUL07BORZEN | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position BOR rest@53; ZEN rest@42 cash +0.00 |
+| ITFMATCH-26JUL07BOUMOC | ITF_M | E4 | 2 | BOU 67.0+MOC 30.0 | 97.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | OPEN,OPEN | OPEN | OPEN BOU@67.0×1(bid 72)+MOC@30.0×15(bid 19)  cash -5.17 |
+| ITFMATCH-26JUL07CARPON | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position  cash +0.00 |
+| ITFMATCH-26JUL07CHENOR | ITF_M | E4 | 2 | CHE 23.0+NOR 74.0 | 97.0 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | OPEN,OPEN | OPEN | OPEN CHE@23.0×5(bid 18)+NOR@74.0×5(bid 81)  cash -4.85 |
+| ITFMATCH-26JUL07DELKOY | ITF_M | E4 | 2 | DEL 87.1+KOY 9.0 | 96.1 | ≤97 | 3,7 | W2_ONLY,W1_CASHED | OPEN,X_W1 | OPEN | OPEN DEL@87.1×4(bid 88)  ach 99.1 cash -3.27 |
+| ITFMATCH-26JUL07ICHOCH | ITF_M | E4 | 1 | OCH 29.0 | — | — | 4 | W2_ONLY | OPEN | OPEN | OPEN OCH@29.0×5(bid 25) ICH rest@69 ach 102.0 cash -1.45 |
+| ITFMATCH-26JUL07IDOHON | ITF_M | E4 | 2 | HON 90.0+IDO 7.0 | 97.0 | ≤97 | None,4 | W2_ONLY,W2_ONLY | X_W2,X_W2 | OPEN | OPEN no-position  cash +0.60 |
+| ITFMATCH-26JUL07ISOTOM | ITF_M | E4 | 2 | ISO 80.0+TOM 16.0 | 96.0 | ≤97 | 3,0 | W2_ONLY,W2_ONLY | X_W2,OPEN | OPEN | OPEN TOM@16.0×5(bid 1)  ach 115.0 cash +0.10 |
+| ITFMATCH-26JUL07KANFIT | ITF_M | E4 | 2 | FIT 90.0+KAN 7.0 | 97.0 | ≤97 | 3,6 | no-clock,no-clock | OPEN,X_W2 | OPEN | OPEN FIT@90.0×5(bid 91)  ach 98.0 cash -4.30 |
+| ITFMATCH-26JUL07KUSTAG | ITF_M | E4 | 2 | KUS 34.0+TAG 62.5 | 96.5 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | OPEN | OPEN TAG@62.5×5(bid 32)  ach 130.5 cash -1.85 |
+| ITFMATCH-26JUL07LEEHUX | ITF_M | E4 | 2 | HUX 28.0+LEE 69.0 | 97.0 | ≤97 | 15,3 | no-clock,no-clock | X_W2,X_W2 | OPEN | OPEN LEE@69.0×5(bid 0)  ach 169.0 cash -2.15 |
+| ITFMATCH-26JUL07LOMTOM | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position LOM rest@35; TOM rest@62 cash +0.00 |
+| ITFMATCH-26JUL07MOXSAR | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position MOX rest@70; SAR rest@29 cash +0.00 |
+| ITFMATCH-26JUL07NAKSHI | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position NAK rest@40; SHI rest@57 cash +0.00 |
+| ITFMATCH-26JUL07NASLEE | ITF_M | E4 | 2 | LEE 26.0+NAS 72.0 | 98.0 | 98-100 | 4,3 | W1_REACHA,W2_ONLY | X_W2,OPEN | OPEN | OPEN LEE@26.0×5(bid 38)+NAS@72.0×5(bid 60)  cash -4.50 |
+| ITFMATCH-26JUL07OGUJAS | ITF_M | E4 | 2 | JAS 72.0+OGU 25.0 | 97.0 | ≤97 | 0,4 | W2_ONLY,W1_CASHED | OPEN,X_W1 | OPEN | OPEN JAS@72.0×5(bid 72) OGU rest@22 ach 99.0 cash -2.90 |
+| ITFMATCH-26JUL07OKIMAT | ITF_M | E4 | 1 | MAT 46.0 | — | — | 4 | W2_ONLY | OPEN | OPEN | OPEN MAT@46.0×5(bid 37) OKI rest@53 ach 105.0 cash -2.30 |
+| ITFMATCH-26JUL07TAKSAM | ITF_M | E4 | 2 | SAM 88.0+TAK 9.0 | 97.0 | ≤97 | 3,1 | W2_ONLY,W2_ONLY | OPEN,X_W2 | OPEN | OPEN SAM@88.0×5(bid 97)  ach 91.0 cash -4.20 |
+| ITFMATCH-26JUL07TANCHE | ITF_M | E4 | 2 | CHE 51.0+TAN 47.0 | 98.0 | 98-100 | 3,5 | W2_ONLY,W1_REACHA | X_W2,OPEN | OPEN | OPEN TAN@47.0×5(bid 30)  ach 117.0 cash -1.70 |
+| ITFMATCH-26JUL07TROKIM | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position KIM rest@62; TRO rest@35 cash +0.00 |
+| ITFMATCH-26JUL07YAMNAK | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position NAK rest@7; YAM rest@90 cash +0.00 |
+| ITFMATCH-26JUL07YAMTAN | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position TAN rest@81; YAM rest@15 cash +0.00 |
+| ITFMATCH-26JUL08KIMROH | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position KIM rest@64; ROH rest@31 cash +0.00 |
+| ITFMATCH-26JUL08KUNMEN | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position  cash +0.00 |
+| ITFMATCH-26JUL08LIUSHI | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position SHI rest@15 cash +0.00 |
+| ITFMATCH-26JUL08SAKVAN | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position SAK rest@25; VAN rest@71 cash +0.00 |
+| ITFMATCH-26JUL08ZHAISH | ITF_M | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position ISH rest@10 cash +0.00 |
+| ITFWMATCH-26JUL07CHOCAO | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position CAO rest@49; CHO rest@49 cash +0.00 |
+| ITFWMATCH-26JUL07DESZHA | ITF_W | E4 | 2 | DES 28.0+ZHA 70.0 | 98.0 | 98-100 | 4,2 | W2_ONLY,W2_ONLY | OPEN,OPEN | OPEN | OPEN DES@28.0×5(bid 20)+ZHA@70.0×5(bid 79)  cash -4.90 |
+| ITFWMATCH-26JUL07GURKAL | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position GUR rest@32; KAL rest@65 cash +0.00 |
+| ITFWMATCH-26JUL07LIURUO | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position LIU rest@75; RUO rest@23 cash +0.00 |
+| ITFWMATCH-26JUL07TIKCHO | ITF_W | E4 | 2 | CHO 15.0+TIK 82.0 | 97.0 | ≤97 | 4,-1 | no-clock,no-clock | X_W2,OPEN | OPEN | OPEN CHO@15.0×5(bid 10)+TIK@82.0×5(bid 88)  cash -4.65 |
+| ITFWMATCH-26JUL07WANLEE | ITF_W | E4 | 2 | LEE 32.0+WAN 69.0 | 101.0 | >100 | 4,2 | W2_ONLY,W2_ONLY | OPEN,X_W2 | OPEN | OPEN LEE@32.0×5(bid 10)  ach 119.0 cash -0.70 |
+| ITFWMATCH-26JUL07WEISUN | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position SUN rest@18; WEI rest@79 cash +0.00 |
+| ITFWMATCH-26JUL07ZHOLEO | ITF_W | E4 | 2 | LEO 81.0+ZHO 17.0 | 98.0 | 98-100 | 2,4 | W2_ONLY,W2_ONLY | OPEN,X_W2 | OPEN | OPEN LEO@81.0×5(bid 80)  ach 101.0 cash -3.85 |
+| ITFWMATCH-26JUL08BALGOL | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position BAL rest@38; GOL rest@59 cash +0.00 |
+| ITFWMATCH-26JUL08CEUMCK | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position CEU rest@74; MCK rest@22 cash +0.00 |
+| ITFWMATCH-26JUL08CHOKOS | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position CHO rest@65; KOS rest@32 cash +0.00 |
+| ITFWMATCH-26JUL08HARMAI | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position  cash +0.00 |
+| ITFWMATCH-26JUL08HAYGIO | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position HAY rest@65 cash +0.00 |
+| ITFWMATCH-26JUL08IUSSAG | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position IUS rest@66; SAG rest@31 cash +0.00 |
+| ITFWMATCH-26JUL08LIUMAL | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position LIU rest@26; MAL rest@72 cash +0.00 |
+| ITFWMATCH-26JUL08LIXYAM | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position LIX rest@8 cash +0.00 |
+| ITFWMATCH-26JUL08LOVBRE | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position BRE rest@33; LOV rest@63 cash +0.00 |
+| ITFWMATCH-26JUL08MAMBEL | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position BEL rest@12; MAM rest@84 cash +0.00 |
+| ITFWMATCH-26JUL08NAKZHA | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position NAK rest@2 cash +0.00 |
+| ITFWMATCH-26JUL08NONYUA | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position NON rest@14; YUA rest@83 cash +0.00 |
+| ITFWMATCH-26JUL08PUSBUR | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position BUR rest@88; PUS rest@7 cash +0.00 |
+| ITFWMATCH-26JUL08RICSTR | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position RIC rest@26; STR rest@69 cash +0.00 |
+| ITFWMATCH-26JUL08SEDSTA | ITF_W | E4 | 1 | STA 51.0 | — | — | 2 | W2_ONLY | OPEN | OPEN | OPEN STA@51.0×5(bid 35) SED rest@44 ach 110.0 cash -2.55 |
+| ITFWMATCH-26JUL08SHEWAN | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position SHE rest@38; WAN rest@59 cash +0.00 |
+| ITFWMATCH-26JUL08SHOSUV | ITF_W | E4 | 1 | SUV 45.0 | — | — | 43 | W2_ONLY | OPEN | OPEN | OPEN SUV@45.0×5(bid 27) SHO rest@52 ach 106.0 cash -2.25 |
+| ITFWMATCH-26JUL08TUPPAN | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position  cash +0.00 |
+| ITFWMATCH-26JUL08WANOHX | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position OHX rest@18 cash +0.00 |
+| ITFWMATCH-26JUL08WUXSNI | ITF_W | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position SNI rest@49 cash +0.00 |
+| LLENGERMATCH-26JUL06BRESAN | WTA_CHALL | E3a | 1 | SAN 12.0 | — | — | 3 | W1_REACHA | OPEN | OPEN | OPEN SAN@12.0×5(bid 11) BRE rest@86 ach 101.0 cash -0.60 |
+| LLENGERMATCH-26JUL06COLSMI | WTA_CHALL | E3a | 0 | — | — | — | — | — | — | OPEN | OPEN no-position COL rest@38 cash +0.00 |
 | LLENGERMATCH-26JUL06ISHCRO | WTA_CHALL | E3a | 1 | ISH 38.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN ISH@38.0×5(bid 37) CRO rest@59 ach 101.0 cash -1.90 |
-| LLENGERMATCH-26JUL06LINMAR | WTA_CHALL | E3a | 1 | LIN 6.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN LIN@6.0×5(bid 5) MAR rest@90 ach 102.0 cash -0.30 |
-| LLENGERMATCH-26JUL06VOLARS | WTA_CHALL | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position VOL rest@91 cash +0.00 |
-| LLENGERMATCH-26JUL07FITPIG | WTA_CHALL | E4 | 1 | FIT 31.0 | — | — | 2 | W2_ONLY | OPEN | OPEN | OPEN FIT@31.0×5(bid 15) PIG rest@67 ach 117.0 cash -1.55 |
-| LLENGERMATCH-26JUL07GALRIN | WTA_CHALL | E4 | 2 | GAL 63.0+RIN 34.0 | 97.0 | ≤97 | 1,4 | W2_ONLY,W2_ONLY | X_W2,X_W2 | OPEN | OPEN GAL@63.0×5(bid 14)  ach 149.0 cash -2.05 |
-| LLENGERMATCH-26JUL07KOBMAN | WTA_CHALL | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position KOB rest@26; MAN rest@73 cash +0.00 |
-| LLENGERMATCH-26JUL07MARBUR | WTA_CHALL | E4 | 2 | BUR 31.0+MAR 68.0 | 99.0 | 98-100 | 2,2 | W2_ONLY,W2_ONLY | OPEN,OPEN | OPEN | OPEN BUR@31.0×5(bid 23)+MAR@68.0×5(bid 76)  cash -4.95 |
+| LLENGERMATCH-26JUL06LINMAR | WTA_CHALL | E3a | 1 | LIN 6.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN LIN@6.0×5(bid 5) MAR rest@91 ach 101.0 cash -0.30 |
+| LLENGERMATCH-26JUL06VOLARS | WTA_CHALL | E4 | 1 | VOL 93.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN VOL@93.0×5(bid 92)  cash -4.65 |
+| LLENGERMATCH-26JUL07KOBMAN | WTA_CHALL | E4 | 1 | MAN 73.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN MAN@73.0×4(bid 73) KOB rest@26 ach 101.0 cash -2.92 |
 | LLENGERMATCH-26JUL07SAWDOL | WTA_CHALL | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position DOL rest@37; SAW rest@61 cash +0.00 |
 | LLENGERMATCH-26JUL07SCOSTO | WTA_CHALL | E4 | 1 | STO 82.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN STO@82.0×5(bid 82) SCO rest@15 ach 100.0 cash -4.10 |
-| LLENGERMATCH-26JUL07SEBBRA | WTA_CHALL | E4 | 1 | SEB 48.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN SEB@48.0×5(bid 48) BRA rest@49 ach 100.0 cash -2.40 |
-| LLENGERMATCH-26JUL07SHYKIN | WTA_CHALL | E4 | 0 | — | — | — | — | — | — | OPEN | OPEN no-position KIN rest@42; SHY rest@57 cash +0.00 |
-| LLENGERMATCH-26JUL07VICBRA | WTA_CHALL | E4 | 1 | VIC 27.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN VIC@27.0×5(bid 26) BRA rest@70 ach 102.0 cash -1.35 |
-| LLENGERMATCH-26JUL07ZAALEP | WTA_CHALL | E4 | 1 | ZAA 58.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN ZAA@58.0×5(bid 58) LEP rest@42 ach 101.0 cash -2.90 |
-| WTAMATCH-26JUL07OSAMUC | WTA_MAIN | E4 | 2 | MUC 44.0+OSA 53.0 | 97.0 | ≤97 | 3,0 | W2_ONLY,W2_ONLY | X_W2,OPEN | OPEN | OPEN OSA@53.0×5(bid 43)  ach 109.0 cash -2.26 |
+| LLENGERMATCH-26JUL07SEBBRA | WTA_CHALL | E4 | 1 | SEB 48.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN SEB@48.0×5(bid 47) BRA rest@49 ach 101.0 cash -2.40 |
+| LLENGERMATCH-26JUL07SHYKIN | WTA_CHALL | E4 | 1 | SHY 57.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN SHY@57.0×5(bid 57) KIN rest@40 ach 100.0 cash -2.85 |
+| LLENGERMATCH-26JUL07VICBRA | WTA_CHALL | E4 | 1 | VIC 27.0 | — | — | 3 | W2_ONLY | OPEN | OPEN | OPEN VIC@27.0×5(bid 26) BRA rest@70 ach 101.0 cash -1.35 |
 | LENGERMATCH-26JUL06ABOALVA | ATP_CHALL | E3b | 2 | ABO 55.0+ALVA 42.0 | 97.0 | ≤97 | -1,3 | no-clock,no-clock | X_W2,X_W2 | B | SETTLED +1.20 |
 | LLENGERMATCH-26JUL06BARDAL | ATP_CHALL | E3a | 2 | BAR 56.0+DAL 40.0 | 96.0 | ≤97 | 3,2 | no-clock,no-clock | X_W2,X_W2⚑ | B | SETTLED -0.85 |
+| LLENGERMATCH-26JUL06BARZIN | ATP_CHALL | E3a | 2 | BAR 51.5+ZIN 45.0 | 96.5 | ≤97 | 3,1 | W2_ONLY,W2_ONLY | X_W2⚑,X_W2 | B | SETTLED +1.90 |
 | LLENGERMATCH-26JUL06BASHOE | ATP_CHALL | E3a | 2 | BAS 46.0+HOE 51.0 | 97.0 | ≤97 | 1,3 | no-clock,no-clock | RODE⚑,X_CORRIDOR | B | SETTLED -3.95 |
 | ALLENGERMATCH-26JUL06CAMDE | ATP_CHALL | E3a | 2 | CAM 58.0+DE 39.0 | 97.0 | ≤97 | 2,3 | no-clock,no-clock | X_W2⚑,X_W2 | B | SETTLED +2.00 |
 | LLENGERMATCH-26JUL06CHADEM | ATP_CHALL | E3a | 1 | CHA 48.0 | — | — | 3 | no-clock | RODE | F | SETTLED -2.40 |
@@ -389,12 +340,15 @@ Portfolio-convention gap, one line: Kalshi's portfolio_value marks at its own di
 | LLENGERMATCH-26JUL06GOMLUZ | ATP_CHALL | E3a | 2 | GOM 71.0+LUZ 24.5 | 95.5 | ≤97 | 3,3 | no-clock,no-clock | X_CORRIDOR,X_CORRIDOR | B | SETTLED +0.15 |
 | LLENGERMATCH-26JUL06HUAPUR | ATP_CHALL | E3a | 2 | HUA 35.0+PUR 61.5 | 96.5 | ≤97 | 3,1 | no-clock,no-clock | X_W2,X_W2⚑ | B | SETTLED +2.15 |
 | LLENGERMATCH-26JUL06HUETEN | ATP_CHALL | E3a | 2 | HUE 64.5+TEN 29.3 | 93.8 | ≤97 | 5,3 | no-clock,no-clock | X_W2⚑,X_W2⚑ | B | SETTLED +3.21 |
+| LLENGERMATCH-26JUL06ILARYB | ATP_CHALL | E3a | 2 | ILA 52.0+RYB 45.0 | 97.0 | ≤97 | 3,2 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED +1.15 |
 | LLENGERMATCH-26JUL06IVADIN | ATP_CHALL | E3a | 2 | DIN 20.0+IVA 77.0 | 97.0 | ≤97 | 3,2 | no-clock,no-clock | X_CORRIDOR,X_W2⚑ | B | SETTLED +2.20 |
+| LLENGERMATCH-26JUL06JUNMOR | ATP_CHALL | E3a | 2 | JUN 51.0+MOR 46.0 | 97.0 | ≤97 | 3,3 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED +3.55 |
 | LLENGERMATCH-26JUL06KASCIN | ATP_CHALL | E3a | 2 | CIN 54.0+KAS 43.0 | 97.0 | ≤97 | 3,3 | no-clock,no-clock | X_W2,X_W2 | B | SETTLED +1.65 |
 | LLENGERMATCH-26JUL06KRACRI | ATP_CHALL | E3a | 2 | CRI 5.5+KRA 91.0 | 96.5 | ≤97 | 0,2 | no-clock,no-clock | X_W2,X_W2 | B | SETTLED +0.30 |
 | LLENGERMATCH-26JUL06KUZSTR | ATP_CHALL | E3a | 2 | KUZ 71.0+STR 26.0 | 97.0 | ≤97 | 1,3 | no-clock,no-clock | X_W2⚑,X_W2 | B | SETTLED +2.25 |
 | LLENGERMATCH-26JUL06KYMFAU | ATP_CHALL | E3a | 2 | FAU 28.0+KYM 68.0 | 96.0 | ≤97 | -1,3 | no-clock,no-clock | X_W2,X_W2 | B | SETTLED +2.85 |
 | LLENGERMATCH-26JUL06MAGROD | ATP_CHALL | E3a | 1 | MAG 44.0 | — | — | 3 | no-clock | X_CORRIDOR | D | SETTLED +0.45 |
+| LLENGERMATCH-26JUL06MALMAT | ATP_CHALL | E3a | 1 | MAT 49.0 | — | — | 3 | W2_ONLY | RODE | F | SETTLED -2.45 |
 | LLENGERMATCH-26JUL06MARBER | ATP_CHALL | E3a | 2 | BER 58.0+MAR 39.0 | 97.0 | ≤97 | 3,2 | W1_CASHED,W1_REACHA | X_W1,RODE | B | SETTLED -1.15 |
 | LLENGERMATCH-26JUL06MARHAM | ATP_CHALL | E3a | 2 | HAM 5.0+MAR 92.0 | 97.0 | ≤97 | 2,0 | no-clock,no-clock | X_W2,RODE | B | SETTLED -4.40 |
 | LLENGERMATCH-26JUL06MAXGHI | ATP_CHALL | E3a | 2 | GHI 54.0+MAX 43.0 | 97.0 | ≤97 | 2,3 | no-clock,no-clock | RODE⚑,X_W2 | B | SETTLED -4.95 |
@@ -423,18 +377,25 @@ Portfolio-convention gap, one line: Kalshi's portfolio_value marks at its own di
 | LLENGERMATCH-26JUL06WEIGRA | ATP_CHALL | E3a | 2 | GRA 81.0+WEI 16.0 | 97.0 | ≤97 | 3,1 | no-clock,no-clock | X_W2,RODE | B | SETTLED +0.05 |
 | LLENGERMATCH-26JUL06ZEBAND | ATP_CHALL | E3a | 1 | ZEB 20.0 | — | — | 3 | no-clock | RODE | F | SETTLED -1.00 |
 | LLENGERMATCH-26JUL06ZORDEV | ATP_CHALL | E3a | 2 | DEV 42.0+ZOR 55.0 | 97.0 | ≤97 | 3,2 | no-clock,no-clock | X_W2,RODE⚑ | B | SETTLED -5.05 |
+| LLENGERMATCH-26JUL07AZKBON | ATP_CHALL | E4 | 2 | AZK 32.5+BON 65.0 | 97.5 | 98-100 | 1,1 | W2_ONLY,W2_ONLY | X_CORRIDOR,RODE | C | SETTLED +0.55 |
 | LLENGERMATCH-26JUL07BALSAN | ATP_CHALL | E4 | 2 | BAL 72.0+SAN 25.0 | 97.0 | ≤97 | 3,2 | W2_ONLY,W2_ONLY | X_W2,RODE | B | SETTLED -0.30 |
 | LLENGERMATCH-26JUL07BARKOP | ATP_CHALL | E4 | 2 | BAR 64.0+KOP 32.5 | 96.5 | ≤97 | 3,-3 | W2_ONLY,W1_REACHA | RODE,X_W2⚑ | B | SETTLED +0.45 |
 | LLENGERMATCH-26JUL07BARSIM | ATP_CHALL | E4 | 2 | BAR 75.5+SIM 22.0 | 97.5 | 98-100 | 0,2 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,X_CORRIDOR | C | SETTLED -2.55 |
+| LLENGERMATCH-26JUL07BASGAU | ATP_CHALL | E4 | 2 | BAS 41.0+GAU 54.3 | 95.3 | ≤97 | 0,3 | W2_ONLY,W2_ONLY | RODE,X_W2 | B | SETTLED -1.15 |
 | LLENGERMATCH-26JUL07BOSMIC | ATP_CHALL | E4 | 2 | BOS 43.0+MIC 54.0 | 97.0 | ≤97 | 3,3 | W2_ONLY,W2_ONLY | RODE,X_CORRIDOR | B | SETTLED -1.40 |
 | LLENGERMATCH-26JUL07BRAHOE | ATP_CHALL | E4 | 2 | BRA 72.0+HOE 25.0 | 97.0 | ≤97 | 3,2 | W2_ONLY,W2_ONLY | X_W2,RODE | B | SETTLED -0.30 |
+| LLENGERMATCH-26JUL07BROWEH | ATP_CHALL | E4 | 2 | BRO 64.0+WEH 34.0 | 98.0 | 98-100 | 0,3 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR | C | SETTLED -0.30 |
 | LLENGERMATCH-26JUL07BURSCH | ATP_CHALL | E4 | 2 | BUR 65.3+SCH 32.0 | 97.3 | 98-100 | -2,None | W2_ONLY,W2_ONLY | RODE⚑,X_W2 | C | SETTLED -9.40 |
+| LLENGERMATCH-26JUL07CASMON | ATP_CHALL | E4 | 2 | CAS 86.0+MON 12.0 | 98.0 | 98-100 | 3,0 | W2_ONLY,W2_ONLY | X_W2,X_W2 | C | SETTLED +0.80 |
 | LLENGERMATCH-26JUL07CHOKUZ | ATP_CHALL | E4 | 2 | CHO 68.0+KUZ 30.0 | 98.0 | 98-100 | 3,2 | W2_ONLY,W2_ONLY | X_W2,X_W2⚑ | C | SETTLED +0.00 |
+| LLENGERMATCH-26JUL07CLAHER | ATP_CHALL | E4 | 2 | CLA 44.5+HER 53.0 | 97.5 | 98-100 | 2,1 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | C | SETTLED +1.27 |
 | LLENGERMATCH-26JUL07COPNIJ | ATP_CHALL | E4 | 1 | NIJ 22.0 | — | — | 3 | W2_ONLY | RODE | F | SETTLED -1.10 |
 | LLENGERMATCH-26JUL07CORBLA | ATP_CHALL | E4 | 2 | BLA 39.5+COR 58.0 | 97.5 | 98-100 | 0,2 | W2_ONLY,W1_CASHED | X_W2⚑,X_W1 | C | SETTLED +1.55 |
 | LLENGERMATCH-26JUL07DEDTAB | ATP_CHALL | E4 | 2 | DED 49.5+TAB 49.0 | 98.5 | 98-100 | 3,3 | W2_ONLY,W2_ONLY | X_W2⚑,X_W2 | C | SETTLED +2.05 |
 | LLENGERMATCH-26JUL07DJEBUE | ATP_CHALL | E4 | 2 | BUE 26.0+DJE 74.0 | 100.0 | 98-100 | 2,2 | W2_ONLY,W2_ONLY | RODE,X_W2 | C | SETTLED -0.35 |
+| LLENGERMATCH-26JUL07DROERH | ATP_CHALL | E4 | 2 | DRO 74.0+ERH 22.7 | 96.7 | ≤97 | 1,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +0.45 |
 | LLENGERMATCH-26JUL07FELPAS | ATP_CHALL | E4 | 2 | FEL 19.0+PAS 79.0 | 98.0 | 98-100 | 3,0 | W2_ONLY,W2_ONLY | X_W2,X_W2⚑ | C | SETTLED +2.20 |
+| LLENGERMATCH-26JUL07FERPAV | ATP_CHALL | E4 | 2 | FER 40.0+PAV 57.0 | 97.0 | ≤97 | None,3 | no-clock,no-clock | X_W2,X_W2 | B | SETTLED +1.20 |
 | LLENGERMATCH-26JUL07FORLOG | ATP_CHALL | E4 | 2 | FOR 70.5+LOG 27.0 | 97.5 | 98-100 | 1,1 | W2_ONLY,W2_ONLY | X_W2⚑,X_CORRIDOR | C | SETTLED -2.20 |
 | LLENGERMATCH-26JUL07GADSTA | ATP_CHALL | E4 | 2 | GAD 75.5+STA 22.0 | 97.5 | 98-100 | 0,0 | W2_ONLY,W2_ONLY | RODE⚑,X_W2 | C | SETTLED -7.25 |
 | LLENGERMATCH-26JUL07GASCHE | ATP_CHALL | E4 | 2 | CHE 24.0+GAS 73.0 | 97.0 | ≤97 | 3,1 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +0.10 |
@@ -442,28 +403,53 @@ Portfolio-convention gap, one line: Kalshi's portfolio_value marks at its own di
 | LLENGERMATCH-26JUL07GOMOFN | ATP_CHALL | E4 | 1 | GOM 21.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -1.05 |
 | LLENGERMATCH-26JUL07GUEDON | ATP_CHALL | E4 | 2 | DON 29.0+GUE 68.0 | 97.0 | ≤97 | 3,2 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,X_W2 | B | SETTLED +1.70 |
 | LLENGERMATCH-26JUL07HAIDZU | ATP_CHALL | E4 | 2 | DZU 81.0+HAI 16.0 | 97.0 | ≤97 | 3,2 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED +0.30 |
+| LLENGERMATCH-26JUL07HAMWAL | ATP_CHALL | E4 | 2 | HAM 12.0+WAL 86.0 | 98.0 | 98-100 | 3,2 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,X_W2 | C | SETTLED +0.25 |
+| LLENGERMATCH-26JUL07HERAMB | ATP_CHALL | E4 | 2 | AMB 91.5+HER 4.0 | 95.5 | ≤97 | 4,0 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.21 |
+| LLENGERMATCH-26JUL07HERHAR | ATP_CHALL | E4 | 2 | HAR 80.0+HER 17.0 | 97.0 | ≤97 | 3,2 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.55 |
 | LLENGERMATCH-26JUL07HUADEN | ATP_CHALL | E4 | 1 | DEN 96.0 | — | — | 3 | W2_ONLY | X_W2 | D | SETTLED +0.10 |
 | LLENGERMATCH-26JUL07IVAVIS | ATP_CHALL | E4 | 2 | IVA 62.0+VIS 35.0 | 97.0 | ≤97 | 3,2 | W2_ONLY,W2_ONLY | X_W2,RODE | B | SETTLED -0.85 |
+| LLENGERMATCH-26JUL07JANGIL | ATP_CHALL | E4 | 2 | GIL 79.0+JAN 18.0 | 97.0 | ≤97 | 5,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.20 |
 | LLENGERMATCH-26JUL07JUSKRA | ATP_CHALL | E4 | 2 | JUS 62.0+KRA 34.2 | 96.2 | ≤97 | 3,0 | W2_ONLY,W2_ONLY | X_W2,X_W2⚑ | B | SETTLED -3.80 |
 | LLENGERMATCH-26JUL07KRUCOM | ATP_CHALL | E4 | 1 | COM 75.0 | — | — | 3 | no-clock | RODE | F | SETTLED -0.25 |
+| LLENGERMATCH-26JUL07KRUPIE | ATP_CHALL | E4 | 2 | KRU 60.0+PIE 37.0 | 97.0 | ≤97 | 3,None | W2_ONLY,W2_ONLY | X_W2,RODE | B | SETTLED +1.00 |
 | LLENGERMATCH-26JUL07LEOCAS | ATP_CHALL | E4 | 2 | CAS 60.0+LEO 37.0 | 97.0 | ≤97 | 3,-3 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR⚑ | B | SETTLED -0.65 |
+| LLENGERMATCH-26JUL07MARBER | ATP_CHALL | E4 | 2 | BER 58.0+MAR 39.0 | 97.0 | ≤97 | 1,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +3.30 |
+| LLENGERMATCH-26JUL07MARCRE | ATP_CHALL | E4 | 2 | CRE 66.0+MAR 29.0 | 95.0 | ≤97 | 3,0 | W2_ONLY,W2_ONLY | X_W2,RODE | B | SETTLED -0.50 |
 | LLENGERMATCH-26JUL07MARDEV | ATP_CHALL | E4 | 2 | DEV 3.0+MAR 94.0 | 97.0 | ≤97 | 1,4 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +0.70 |
 | LLENGERMATCH-26JUL07MARHEN | ATP_CHALL | E4 | 1 | MAR 45.0 | — | — | 3 | W2_ONLY | RODE | F | SETTLED -2.25 |
+| LLENGERMATCH-26JUL07MCCSAK | ATP_CHALL | E4 | 2 | MCC 27.0+SAK 71.0 | 98.0 | 98-100 | 2,1 | W1_CASHED,W2_ONLY | X_W1,RODE | C | SETTLED -3.20 |
 | LLENGERMATCH-26JUL07MCDSMI | ATP_CHALL | E4 | 1 | SMI 44.0 | — | — | 3 | W2_ONLY | RODE | F | SETTLED -2.20 |
+| LLENGERMATCH-26JUL07MEJTEN | ATP_CHALL | E4 | 2 | MEJ 91.0+TEN 6.5 | 97.5 | 98-100 | 0,-1 | W2_ONLY,W1_REACHA | X_W2,X_W2 | C | SETTLED +0.30 |
+| LLENGERMATCH-26JUL07MENAVE | ATP_CHALL | E4 | 1 | AVE 35.0 | — | — | 2 | no-clock | X_W2 | D | SETTLED +0.40 |
+| LLENGERMATCH-26JUL07MOESAN | ATP_CHALL | E4 | 2 | MOE 71.0+SAN 26.5 | 97.5 | 98-100 | 0,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | C | SETTLED +1.65 |
 | LLENGERMATCH-26JUL07MOLDIA | ATP_CHALL | E4 | 2 | DIA 76.0+MOL 21.0 | 97.0 | ≤97 | 2,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.25 |
+| LLENGERMATCH-26JUL07MONSUM | ATP_CHALL | E4 | 2 | MON 89.0+SUM 9.0 | 98.0 | 98-100 | 2,2 | W2_ONLY,W2_ONLY | X_W2,X_W2 | C | SETTLED +0.25 |
+| LLENGERMATCH-26JUL07MRVVIL | ATP_CHALL | E4 | 2 | MRV 65.0+VIL 32.0 | 97.0 | ≤97 | 2,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.35 |
+| LLENGERMATCH-26JUL07ONCCAM | ATP_CHALL | E4 | 2 | CAM 19.5+ONC 78.0 | 97.5 | 98-100 | 1,1 | W2_ONLY,W2_ONLY | X_W2,X_W2 | C | SETTLED +0.30 |
+| LLENGERMATCH-26JUL07OSOSOT | ATP_CHALL | E4 | 2 | OSO 20.0+SOT 77.0 | 97.0 | ≤97 | -1,4 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +0.55 |
+| LLENGERMATCH-26JUL07PACMEL | ATP_CHALL | E4 | 2 | MEL 48.0+PAC 49.0 | 97.0 | ≤97 | 3,1 | no-clock,no-clock | X_W2,X_CORRIDOR | B | SETTLED -1.30 |
 | LLENGERMATCH-26JUL07PIRGHE | ATP_CHALL | E4 | 1 | GHE 19.0 | — | — | 2 | W2_ONLY | RODE | F | SETTLED -0.95 |
+| LLENGERMATCH-26JUL07PLAMAR | ATP_CHALL | E4 | 2 | MAR 63.0+PLA 34.0 | 97.0 | ≤97 | 3,-2 | W2_ONLY,W1_CASHED | RODE,X_W1 | B | SETTLED +0.55 |
+| LLENGERMATCH-26JUL07POLHEI | ATP_CHALL | E4 | 2 | HEI 92.0+POL 4.5 | 96.5 | ≤97 | 1,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +0.30 |
+| LLENGERMATCH-26JUL07POPPDA | ATP_CHALL | E4 | 2 | PDA 63.0+POP 31.5 | 94.5 | ≤97 | 0,3 | no-clock,no-clock | X_CORRIDOR,X_CORRIDOR | B | SETTLED +2.50 |
 | LLENGERMATCH-26JUL07PRAVAL | ATP_CHALL | E4 | 1 | PRA 26.0 | — | — | 3 | W2_ONLY | RODE | F | SETTLED -1.30 |
 | LLENGERMATCH-26JUL07PRIBAR | ATP_CHALL | E4 | 2 | BAR 59.0+PRI 38.0 | 97.0 | ≤97 | 3,2 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.25 |
 | LLENGERMATCH-26JUL07RAQGIU | ATP_CHALL | E4 | 2 | GIU 75.0+RAQ 25.0 | 100.0 | 98-100 | 5,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | C | SETTLED +1.30 |
 | LLENGERMATCH-26JUL07RINGEN | ATP_CHALL | E4 | 2 | GEN 54.0+RIN 43.0 | 97.0 | ≤97 | 3,1 | W2_ONLY,W2_ONLY | RODE,X_W2 | B | SETTLED -2.25 |
+| LLENGERMATCH-26JUL07RODAND | ATP_CHALL | E4 | 1 | ROD 39.0 | — | — | 3 | W2_ONLY | RODE | F | SETTLED -1.95 |
 | LLENGERMATCH-26JUL07ROMBAS | ATP_CHALL | E4 | 2 | BAS 40.0+ROM 57.0 | 97.0 | ≤97 | -4,None | W2_ONLY,W2_ONLY | X_W2⚑,X_CORRIDOR | B | SETTLED +1.60 |
+| LLENGERMATCH-26JUL07ROYNEU | ATP_CHALL | E4 | 2 | NEU 8.0+ROY 91.0 | 99.0 | 98-100 | None,None | W2_ONLY,W2_ONLY | RODE,X_W2 | C | SETTLED -0.05 |
 | LLENGERMATCH-26JUL07SEYSVR | ATP_CHALL | E4 | 2 | SEY 43.0+SVR 54.5 | 97.5 | 98-100 | 1,1 | W2_ONLY,W2_ONLY | X_W2,X_W2⚑ | C | SETTLED +1.90 |
+| LLENGERMATCH-26JUL07SKAPET | ATP_CHALL | E4 | 2 | PET 36.0+SKA 61.0 | 97.0 | ≤97 | 5,3 | W1_CASHED,W2_ONLY | X_W1,X_W2 | B | SETTLED +1.70 |
+| LLENGERMATCH-26JUL07VANMIL | ATP_CHALL | E4 | 2 | MIL 51.0+VAN 47.0 | 98.0 | 98-100 | 50,3 | W2_ONLY,W2_ONLY | X_W2,RODE | C | SETTLED -1.70 |
 | LLENGERMATCH-26JUL07WALVAL | ATP_CHALL | E4 | 2 | VAL 65.0+WAL 32.0 | 97.0 | ≤97 | 2,3 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR⚑ | B | SETTLED +0.83 |
 | LLENGERMATCH-26JUL07ZAHSEA | ATP_CHALL | E4 | 2 | SEA 82.0+ZAH 15.0 | 97.0 | ≤97 | 3,3 | W2_ONLY,W1_REACHA | X_W2,X_W2 | B | SETTLED +1.05 |
 | LLENGERMATCH-26JUL07ZHOCAT | ATP_CHALL | E4 | 2 | CAT 12.5+ZHO 85.0 | 97.5 | 98-100 | 1,1 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,X_W2 | C | SETTLED +0.20 |
 | ATPMATCH-26JUL06DECOB | ATP_MAIN | E3a | 2 | COB 23.0+DE 74.0 | 97.0 | ≤97 | 1,-3 | no-clock,no-clock | X_CORRIDOR,RODE⚑ | B | SETTLED -7.19 |
 | ATPMATCH-26JUL06DIMFER | ATP_MAIN | E3a | 2 | DIM 64.0+FER 33.0 | 97.0 | ≤97 | -4,2 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.10 |
 | ATPMATCH-26JUL06FRIBUB | ATP_MAIN | E3a | 1 | BUB 33.0 | — | — | 2 | W2_ONLY | X_W2 | D | SETTLED +0.27 |
+| ATPMATCH-26JUL06LEHZVE | ATP_MAIN | E3a | 1 | ZVE 73.0 | — | — | -1 | W1_CASHED | X_W1 | D | SETTLED +0.90 |
+| ATPMATCH-26JUL07AUGDJO | ATP_MAIN | E4 | 2 | AUG 39.0+DJO 61.0 | 100.0 | 98-100 | 2,1 | W2_ONLY,W2_ONLY | X_W2,X_W2 | C | SETTLED +0.91 |
 | ATPMATCH-26JUL07SINSTR | ATP_MAIN | E4 | 2 | SIN 94.0+STR 3.0 | 97.0 | ≤97 | 0,-1 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +0.37 |
 | ITFMATCH-26JUL06ALEREG | ITF_M | E3a | 1 | ALE 51.0 | — | — | 3 | no-clock | RODE | F | SETTLED -2.55 |
 | ITFMATCH-26JUL06ALIMIS | ITF_M | E3a | 2 | ALI 91.0+MIS 4.5 | 95.5 | ≤97 | 8,4 | no-clock,no-clock | X_W2,RODE⚑ | B | SETTLED -0.10 |
@@ -531,16 +517,20 @@ Portfolio-convention gap, one line: Kalshi's portfolio_value marks at its own di
 | ITFMATCH-26JUL06XUXBER | ITF_M | E3a | 1 | XUX 65.0 | — | — | -8 | no-clock | RODE | F | SETTLED -3.25 |
 | ITFMATCH-26JUL06ZHAISH | ITF_M | E4 | 2 | ISH 32.0+ZHA 65.0 | 97.0 | ≤97 | -1,-5 | W2_ONLY,W2_ONLY | X_CORRIDOR,RODE⚑ | B | SETTLED -8.95 |
 | ITFMATCH-26JUL07AGUMES | ITF_M | E4 | 1 | MES 5.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -0.25 |
+| ITFMATCH-26JUL07AGUPES | ITF_M | E4 | 2 | AGU 71.0+PES 25.6 | 96.6 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED +1.58 |
 | ITFMATCH-26JUL07AGWZIC | ITF_M | E4 | 2 | AGW 62.0+ZIC 35.0 | 97.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR⚑ | B | SETTLED -0.45 |
 | ITFMATCH-26JUL07ALAGUS | ITF_M | E4 | 1 | GUS 5.0 | — | — | -6 | W2_ONLY | RODE | F | SETTLED -0.25 |
 | ITFMATCH-26JUL07ARSKOL | ITF_M | E4 | 1 | KOL 18.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -0.90 |
+| ITFMATCH-26JUL07ARSWIL | ITF_M | E4 | 2 | ARS 46.0+WIL 52.0 | 98.0 | 98-100 | 4,3 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | C | SETTLED +1.15 |
 | ITFMATCH-26JUL07BACTOK | ITF_M | E4 | 2 | BAC 39.0+TOK 40.0 | 79.0 | ≤97 | 4,4 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +0.80 |
 | ITFMATCH-26JUL07BADZEU | ITF_M | E4 | 2 | BAD 73.0+ZEU 21.0 | 94.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_W2⚑,X_W2 | B | SETTLED +2.50 |
 | ITFMATCH-26JUL07BALSOL | ITF_M | E4 | 2 | BAL 92.0+SOL 5.0 | 97.0 | ≤97 | 1,4 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +0.50 |
+| ITFMATCH-26JUL07BARCOT | ITF_M | E4 | 2 | BAR 56.0+COT 41.0 | 97.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | RODE,X_W2 | B | SETTLED -2.40 |
 | ITFMATCH-26JUL07BAYVAN | ITF_M | E4 | 1 | VAN 92.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -4.60 |
 | ITFMATCH-26JUL07BELALU | ITF_M | E4 | 2 | ALU 61.5+BEL 36.0 | 97.5 | 98-100 | 3,4 | W2_ONLY,W2_ONLY | X_W2⚑,X_CORRIDOR⚑ | C | SETTLED +1.93 |
 | ITFMATCH-26JUL07BELKOS | ITF_M | E4 | 2 | BEL 94.0+KOS 5.0 | 99.0 | 98-100 | 46,4 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR⚑ | C | SETTLED +0.40 |
 | ITFMATCH-26JUL07BERBRA | ITF_M | E4 | 2 | BER 96.0+BRA 2.0 | 98.0 | 98-100 | 3,1 | W1_CASHED,W1_REACHA | X_W1,X_W2 | C | SETTLED +0.30 |
+| ITFMATCH-26JUL07BOBARO | ITF_M | E4 | 2 | ARO 34.0+BOB 56.5 | 90.5 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED +2.90 |
 | ITFMATCH-26JUL07BOJBOR | ITF_M | E4 | 1 | BOR 5.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -0.25 |
 | ITFMATCH-26JUL07BRAJAD | ITF_M | E4 | 2 | BRA 57.0+JAD 40.0 | 97.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_W2⚑,X_CORRIDOR | B | SETTLED -1.65 |
 | ITFMATCH-26JUL07BREBEN | ITF_M | E4 | 2 | BEN 17.5+BRE 67.0 | 84.5 | ≤97 | 4,17 | W2_ONLY,W2_ONLY | RODE⚑,X_CORRIDOR | B | SETTLED -0.80 |
@@ -550,66 +540,103 @@ Portfolio-convention gap, one line: Kalshi's portfolio_value marks at its own di
 | ITFMATCH-26JUL07CHRMON | ITF_M | E4 | 2 | CHR 11.0+MON 90.0 | 101.0 | >100 | 4,3 | W2_ONLY,W2_ONLY | RODE,X_W2 | C | SETTLED -0.15 |
 | ITFMATCH-26JUL07CIASNI | ITF_M | E4 | 1 | CIA 23.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -1.15 |
 | ITFMATCH-26JUL07COCAZA | ITF_M | E4 | 2 | AZA 9.5+COC 87.0 | 96.5 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | RODE⚑,X_W2 | B | SETTLED -0.40 |
+| ITFMATCH-26JUL07COLSHI | ITF_M | E4 | 1 | SHI 79.0 | — | — | 3 | W2_ONLY | RODE | F | SETTLED -3.95 |
 | ITFMATCH-26JUL07COSBLO | ITF_M | E4 | 2 | BLO 90.0+COS 4.0 | 94.0 | ≤97 | 42,1 | W2_ONLY,W2_ONLY | X_W2,RODE⚑ | B | SETTLED +0.00 |
+| ITFMATCH-26JUL07COXBRA | ITF_M | E4 | 1 | COX 4.0 | — | — | None | W2_ONLY | RODE | F | SETTLED -0.20 |
+| ITFMATCH-26JUL07CUIFOR | ITF_M | E4 | 2 | CUI 60.0+FOR 35.0 | 95.0 | ≤97 | -3,1 | W2_ONLY,W2_ONLY | RODE,X_W2 | B | SETTLED -2.60 |
+| ITFMATCH-26JUL07DAYDEA | ITF_M | E4 | 1 | DEA 42.0 | — | — | 1 | no-clock | RODE | F | SETTLED -2.10 |
+| ITFMATCH-26JUL07DEDBAL | ITF_M | E4 | 2 | BAL 49.5+DED 46.0 | 95.5 | ≤97 | 4,-4 | no-clock,no-clock | X_W2,X_W2 | B | SETTLED -1.55 |
+| ITFMATCH-26JUL07DELFER | ITF_M | E4 | 2 | DEL 92.0+FER 5.0 | 97.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED +0.50 |
+| ITFMATCH-26JUL07DJAGUA | ITF_M | E4 | 2 | DJA 43.2+GUA 21.0 | 64.2 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR | B | SETTLED +0.95 |
 | ITFMATCH-26JUL07DJODEL | ITF_M | E4 | 2 | DEL 61.0+DJO 36.0 | 97.0 | ≤97 | 2,4 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.30 |
 | ITFMATCH-26JUL07DJULAZ | ITF_M | E4 | 1 | DJU 30.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -1.50 |
+| ITFMATCH-26JUL07DUSSHE | ITF_M | E4 | 1 | SHE 28.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -1.40 |
 | ITFMATCH-26JUL07ECHADD | ITF_M | E4 | 2 | ADD 51.0+ECH 46.0 | 97.0 | ≤97 | 3,4 | no-clock,no-clock | RODE⚑,RODE | B | SETTLED +0.05 |
 | ITFMATCH-26JUL07EHRDUT | ITF_M | E4 | 1 | DUT 71.0 | — | — | 3 | W2_ONLY | RODE | F | SETTLED -3.55 |
+| ITFMATCH-26JUL07ESTBAS | ITF_M | E4 | 2 | BAS 7.0+EST 90.0 | 97.0 | ≤97 | 4,3 | W1_CASHED,W2_ONLY | X_W1,X_W2 | B | SETTLED +0.60 |
 | ITFMATCH-26JUL07FAUVEL | ITF_M | E4 | 2 | FAU 54.0+VEL 42.0 | 96.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,X_CORRIDOR | B | SETTLED +2.05 |
+| ITFMATCH-26JUL07FERCAL | ITF_M | E4 | 1 | FER 5.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -0.25 |
 | ITFMATCH-26JUL07FILRAV | ITF_M | E4 | 1 | RAV 17.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -0.85 |
 | ITFMATCH-26JUL07FONDUT | ITF_M | E4 | 2 | DUT 33.0+FON 64.0 | 97.0 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR | B | SETTLED +1.35 |
+| ITFMATCH-26JUL07FRUFIN | ITF_M | E4 | 1 | FIN 22.0 | — | — | None | W2_ONLY | RODE | F | SETTLED -1.10 |
 | ITFMATCH-26JUL07GAGMED | ITF_M | E4 | 2 | GAG 86.0+MED 10.0 | 96.0 | ≤97 | 3,7 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED +1.00 |
 | ITFMATCH-26JUL07GIACIG | ITF_M | E4 | 1 | GIA 46.0 | — | — | 7 | W2_ONLY | RODE | F | SETTLED -2.30 |
+| ITFMATCH-26JUL07GREKAS | ITF_M | E4 | 2 | GRE 91.0+KAS 8.0 | 99.0 | 98-100 | 3,4 | W2_ONLY,W1_CASHED | X_W2,X_W1 | C | SETTLED +0.55 |
+| ITFMATCH-26JUL07GRILES | ITF_M | E4 | 2 | GRI 44.0+LES 53.5 | 97.5 | 98-100 | 4,3 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR | C | SETTLED -1.45 |
 | ITFMATCH-26JUL07HAUMIE | ITF_M | E4 | 2 | HAU 53.5+MIE 41.0 | 94.5 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,X_CORRIDOR | B | SETTLED +2.15 |
 | ITFMATCH-26JUL07HOMPAB | ITF_M | E4 | 2 | HOM 91.0+PAB 6.0 | 97.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +0.55 |
+| ITFMATCH-26JUL07HURBOU | ITF_M | E4 | 2 | BOU 68.0+HUR 29.0 | 97.0 | ≤97 | 3,5 | W2_ONLY,W1_CASHED | X_W2,X_W1 | B | SETTLED +1.35 |
 | ITFMATCH-26JUL07IAMGAL | ITF_M | E4 | 2 | GAL 57.0+IAM 40.0 | 97.0 | ≤97 | 5,4 | W2_ONLY,W2_ONLY | X_CORRIDOR,RODE | B | SETTLED -1.20 |
 | ITFMATCH-26JUL07JIMKUM | ITF_M | E4 | 2 | JIM 29.5+KUM 62.0 | 91.5 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | RODE⚑,X_CORRIDOR | B | SETTLED -2.05 |
 | ITFMATCH-26JUL07JONSTE | ITF_M | E4 | 1 | STE 18.0 | — | — | 17 | W2_ONLY | RODE | F | SETTLED -0.90 |
 | ITFMATCH-26JUL07JOVOPA | ITF_M | E4 | 1 | JOV 14.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -0.70 |
+| ITFMATCH-26JUL07KAMMIY | ITF_M | E4 | 1 | KAM 5.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -0.25 |
 | ITFMATCH-26JUL07KIMZGI | ITF_M | E4 | 1 | KIM 5.0 | — | — | -50 | W2_ONLY | RODE | F | SETTLED -0.25 |
+| ITFMATCH-26JUL07KLEHOH | ITF_M | E4 | 2 | HOH 86.0+KLE 10.5 | 96.5 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +0.25 |
 | ITFMATCH-26JUL07KOHNAK | ITF_M | E4 | 1 | NAK 27.0 | — | — | 5 | W2_ONLY | RODE | F | SETTLED -1.35 |
 | ITFMATCH-26JUL07KOIKAW | ITF_M | E4 | 2 | KAW 58.0+KOI 39.0 | 97.0 | ≤97 | 4,4 | W2_ONLY,W2_ONLY | RODE,X_CORRIDOR | B | SETTLED -2.10 |
 | ITFMATCH-26JUL07LAVTOR | ITF_M | E4 | 2 | LAV 18.0+TOR 76.0 | 94.0 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | X_W2⚑,X_W2 | B | SETTLED +1.20 |
+| ITFMATCH-26JUL07LERBRO | ITF_M | E4 | 2 | BRO 16.0+LER 81.0 | 97.0 | ≤97 | 4,None | W2_ONLY,W2_ONLY | X_W2,RODE | B | SETTLED -3.80 |
 | ITFMATCH-26JUL07LOPTAZ | ITF_M | E4 | 2 | LOP 87.0+TAZ 6.0 | 93.0 | ≤97 | 3,1 | W2_ONLY,W2_ONLY | X_W2,RODE | B | SETTLED +0.03 |
 | ITFMATCH-26JUL07LORZAR | ITF_M | E4 | 2 | LOR 8.0+ZAR 89.0 | 97.0 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR | B | SETTLED +0.25 |
 | ITFMATCH-26JUL07MABROS | ITF_M | E4 | 2 | MAB 78.0+ROS 19.0 | 97.0 | ≤97 | 77,18 | W2_ONLY,W2_ONLY | X_W2⚑,RODE | B | SETTLED +0.03 |
 | ITFMATCH-26JUL07MAKPHO | ITF_M | E4 | 2 | MAK 51.0+PHO 46.0 | 97.0 | ≤97 | 17,23 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR | B | SETTLED +1.10 |
+| ITFMATCH-26JUL07MARBAS | ITF_M | E4 | 2 | BAS 53.5+MAR 36.0 | 89.5 | ≤97 | 4,18 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.75 |
+| ITFMATCH-26JUL07MARLYN | ITF_M | E4 | 1 | LYN 59.0 | — | — | 3 | W2_ONLY | RODE | F | SETTLED -2.95 |
 | ITFMATCH-26JUL07MCDMUB | ITF_M | E4 | 2 | MCD 32.5+MUB 55.0 | 87.5 | ≤97 | 1,3 | W2_ONLY,W2_ONLY | X_W2⚑,X_CORRIDOR | B | SETTLED +2.40 |
 | ITFMATCH-26JUL07MECOVC | ITF_M | E4 | 2 | MEC 30.0+OVC 67.5 | 97.5 | 98-100 | 4,3 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR⚑ | C | SETTLED +2.20 |
 | ITFMATCH-26JUL07MELVAR | ITF_M | E4 | 2 | MEL 81.0+VAR 12.5 | 93.5 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_W2,RODE⚑ | B | SETTLED -0.40 |
+| ITFMATCH-26JUL07MESBYN | ITF_M | E4 | 2 | BYN 32.0+MES 63.0 | 95.0 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | X_CORRIDOR,RODE | B | SETTLED -2.75 |
 | ITFMATCH-26JUL07MICTAN | ITF_M | E4 | 1 | TAN 13.0 | — | — | 12 | W2_ONLY | RODE | F | SETTLED -0.65 |
 | ITFMATCH-26JUL07MIHHAS | ITF_M | E4 | 1 | MIH 5.0 | — | — | 1 | W2_ONLY | RODE | F | SETTLED -0.25 |
 | ITFMATCH-26JUL07MIKCLA | ITF_M | E4 | 1 | CLA 5.0 | — | — | 4 | W2_ONLY | X_W2 | D | SETTLED +0.20 |
 | ITFMATCH-26JUL07MINMIL | ITF_M | E4 | 2 | MIL 32.0+MIN 65.0 | 97.0 | ≤97 | -2,2 | no-clock,no-clock | X_CORRIDOR⚑,X_CORRIDOR | B | SETTLED -0.25 |
+| ITFMATCH-26JUL07MOUMON | ITF_M | E4 | 2 | MON 64.0+MOU 32.5 | 96.5 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR⚑ | B | SETTLED -0.20 |
+| ITFMATCH-26JUL07OKOKRA | ITF_M | E4 | 2 | KRA 36.0+OKO 59.0 | 95.0 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_W2 | B | SETTLED +1.25 |
 | ITFMATCH-26JUL07PAODAR | ITF_M | E4 | 1 | PAO 22.0 | — | — | 6 | W2_ONLY | RODE | F | SETTLED -1.10 |
 | ITFMATCH-26JUL07PEDRAD | ITF_M | E4 | 2 | PED 48.0+RAD 51.0 | 99.0 | 98-100 | 4,3 | W2_ONLY,W2_ONLY | X_W2⚑,X_W2 | C | SETTLED -1.20 |
 | ITFMATCH-26JUL07PETVTE | ITF_M | E4 | 1 | VTE 15.0 | — | — | 4 | W2_ONLY | X_CORRIDOR | D | SETTLED +0.25 |
 | ITFMATCH-26JUL07PODBAR | ITF_M | E4 | 2 | BAR 90.0+POD 7.0 | 97.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR | B | SETTLED +0.60 |
 | ITFMATCH-26JUL07POUOVE | ITF_M | E4 | 1 | OVE 87.0 | — | — | 3 | no-clock | RODE | F | SETTLED -1.85 |
+| ITFMATCH-26JUL07PUTVAS | ITF_M | E4 | 2 | PUT 5.0+VAS 93.0 | 98.0 | 98-100 | 4,3 | W1_CASHED,W2_ONLY | X_W1,X_W2 | C | SETTLED +0.45 |
 | ITFMATCH-26JUL07REGERE | ITF_M | E4 | 2 | ERE 94.0+REG 4.0 | 98.0 | 98-100 | 3,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | C | SETTLED +0.40 |
 | ITFMATCH-26JUL07REYMAL | ITF_M | E4 | 2 | MAL 77.0+REY 20.0 | 97.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_W2,RODE⚑ | B | SETTLED -1.05 |
+| ITFMATCH-26JUL07RICMAR | ITF_M | E4 | 2 | MAR 45.0+RIC 53.0 | 98.0 | 98-100 | 4,3 | W1_REACHA,W2_ONLY | X_CORRIDOR,X_CORRIDOR | C | SETTLED +1.15 |
 | ITFMATCH-26JUL07ROCMIC | ITF_M | E4 | 2 | MIC 42.0+ROC 52.0 | 94.0 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_W2 | B | SETTLED +1.15 |
 | ITFMATCH-26JUL07RODARC | ITF_M | E4 | 2 | ARC 80.0+ROD 19.0 | 99.0 | 98-100 | 3,4 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | C | SETTLED +1.20 |
+| ITFMATCH-26JUL07ROLLAR | ITF_M | E4 | 2 | LAR 5.0+ROL 92.0 | 97.0 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +0.80 |
 | ITFMATCH-26JUL07SAVGUT | ITF_M | E4 | 2 | GUT 68.0+SAV 25.0 | 93.0 | ≤97 | 4,1 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED +1.35 |
 | ITFMATCH-26JUL07SCHEIN | ITF_M | E4 | 1 | EIN 27.0 | — | — | 23 | W2_ONLY | RODE | F | SETTLED -1.35 |
+| ITFMATCH-26JUL07SCHJON | ITF_M | E4 | 2 | JON 93.0+SCH 4.0 | 97.0 | ≤97 | 5,3 | W2_ONLY,W2_ONLY | X_CORRIDOR,RODE | B | SETTLED +0.05 |
 | ITFMATCH-26JUL07SCHMUR | ITF_M | E4 | 2 | MUR 49.0+SCH 46.0 | 95.0 | ≤97 | 3,None | W2_ONLY,W2_ONLY | X_W2⚑,X_CORRIDOR | B | SETTLED -0.35 |
+| ITFMATCH-26JUL07SEGMIT | ITF_M | E4 | 2 | MIT 32.0+SEG 58.0 | 90.0 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | X_W2,RODE | B | SETTLED +0.50 |
+| ITFMATCH-26JUL07SEIREN | ITF_M | E4 | 1 | SEI 63.0 | — | — | 3 | W2_ONLY | RODE | F | SETTLED -3.15 |
+| ITFMATCH-26JUL07SELWAS | ITF_M | E4 | 2 | SEL 59.0+WAS 35.5 | 94.5 | ≤97 | -5,6 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED -0.40 |
 | ITFMATCH-26JUL07SERZAP | ITF_M | E4 | 1 | SER 4.0 | — | — | 3 | W2_ONLY | RODE | F | SETTLED -0.20 |
+| ITFMATCH-26JUL07SICTAB | ITF_M | E4 | 2 | SIC 13.0+TAB 84.0 | 97.0 | ≤97 | 4,1 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_W2 | B | SETTLED +0.90 |
 | ITFMATCH-26JUL07SINPLE | ITF_M | E4 | 2 | PLE 89.0+SIN 8.0 | 97.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +0.65 |
 | ITFMATCH-26JUL07SOUJED | ITF_M | E4 | 2 | JED 76.0+SOU 3.0 | 79.0 | ≤97 | 7,-19 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED +1.15 |
 | ITFMATCH-26JUL07STECHA | ITF_M | E4 | 2 | CHA 5.0+STE 86.6 | 91.6 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,X_W2⚑ | B | SETTLED +0.69 |
 | ITFMATCH-26JUL07STOVAN | ITF_M | E4 | 1 | STO 33.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -1.65 |
+| ITFMATCH-26JUL07STRGUR | ITF_M | E4 | 2 | GUR 9.0+STR 91.0 | 100.0 | 98-100 | 4,3 | W1_CASHED,W2_ONLY | X_W1,X_W2 | C | SETTLED +0.55 |
 | ITFMATCH-26JUL07STRHAR | ITF_M | E4 | 2 | HAR 44.0+STR 51.0 | 95.0 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | RODE⚑,X_CORRIDOR | B | SETTLED -3.75 |
 | ITFMATCH-26JUL07SULFRI | ITF_M | E4 | 2 | FRI 16.0+SUL 81.0 | 97.0 | ≤97 | 5,2 | W2_ONLY,W2_ONLY | X_CORRIDOR,RODE | B | SETTLED -3.80 |
 | ITFMATCH-26JUL07TAINIK | ITF_M | E4 | 2 | NIK 90.0+TAI 7.0 | 97.0 | ≤97 | 3,2 | W2_ONLY,W2_ONLY | RODE,X_W2⚑ | B | SETTLED -4.10 |
 | ITFMATCH-26JUL07TALPIE | ITF_M | E4 | 2 | PIE 58.0+TAL 39.0 | 97.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | RODE,X_CORRIDOR | B | SETTLED -2.50 |
 | ITFMATCH-26JUL07TEXCRA | ITF_M | E4 | 2 | CRA 86.0+TEX 11.0 | 97.0 | ≤97 | -1,2 | no-clock,no-clock | X_CORRIDOR,X_CORRIDOR⚑ | B | SETTLED +0.25 |
+| ITFMATCH-26JUL07THOGEO | ITF_M | E4 | 2 | GEO 57.0+THO 40.0 | 97.0 | ≤97 | 3,4 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED +1.60 |
 | ITFMATCH-26JUL07TIMNGW | ITF_M | E4 | 1 | NGW 18.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -0.90 |
+| ITFMATCH-26JUL07TISNAP | ITF_M | E4 | 2 | NAP 24.0+TIS 74.0 | 98.0 | 98-100 | 4,3 | W2_ONLY,W2_ONLY | RODE,X_CORRIDOR | C | SETTLED -0.25 |
 | ITFMATCH-26JUL07TRIERI | ITF_M | E4 | 1 | TRI 8.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -0.40 |
+| ITFMATCH-26JUL07TSIHER | ITF_M | E4 | 2 | HER 47.0+TSI 50.0 | 97.0 | ≤97 | 4,3 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_W2 | B | SETTLED +1.15 |
 | ITFMATCH-26JUL07TURMAZ | ITF_M | E4 | 1 | TUR 83.0 | — | — | 3 | W2_ONLY | RODE | F | SETTLED -4.15 |
+| ITFMATCH-26JUL07URSPOU | ITF_M | E4 | 2 | POU 49.7+URS 46.0 | 95.7 | ≤97 | 31,28 | W1_CASHED,W2_ONLY | X_W1⚑,X_CORRIDOR | B | SETTLED +1.76 |
 | ITFMATCH-26JUL07VANKOE | ITF_M | E4 | 1 | VAN 7.0 | — | — | 4 | W2_ONLY | X_W2 | D | SETTLED +0.20 |
 | ITFMATCH-26JUL07VIRIAN | ITF_M | E4 | 1 | IAN 58.0 | — | — | 57 | W2_ONLY | RODE | F | SETTLED -2.90 |
 | ITFMATCH-26JUL07WISVRT | ITF_M | E4 | 2 | VRT 43.0+WIS 21.5 | 64.5 | ≤97 | 42,4 | W2_ONLY,W2_ONLY | X_W2,RODE⚑ | B | SETTLED -1.70 |
 | ITFMATCH-26JUL07WYGMAS | ITF_M | E4 | 2 | MAS 46.0+WYG 48.0 | 94.0 | ≤97 | None,3 | W2_ONLY,W2_ONLY | X_W2,X_W2⚑ | B | SETTLED +6.55 |
+| ITFMATCH-26JUL07ZHALEE | ITF_M | E4 | 2 | LEE 79.0+ZHA 15.0 | 94.0 | ≤97 | 4,-2 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED +1.20 |
+| ITFMATCH-26JUL07ZHUKEN | ITF_M | E4 | 2 | KEN 76.0+ZHU 23.0 | 99.0 | 98-100 | 3,4 | W2_ONLY,W2_ONLY | RODE,X_W2 | C | SETTLED -3.50 |
 | ITFWMATCH-26JUL06ADKFER | ITF_W | E3a | 2 | ADK 77.0+FER 20.0 | 97.0 | ≤97 | 28,8 | no-clock,no-clock | X_W2,X_W2 | B | SETTLED +1.20 |
 | ITFWMATCH-26JUL06BERMEL | ITF_W | E3b | 2 | BER 84.0+MEL 13.0 | 97.0 | ≤97 | 9,1 | no-clock,no-clock | RODE,X_W2 | B | SETTLED -4.00 |
 | ITFWMATCH-26JUL06BOIBOY | ITF_W | E3a | 1 | BOI 77.0 | — | — | 2 | no-clock | RODE | F | SETTLED -3.85 |
@@ -694,24 +721,34 @@ Portfolio-convention gap, one line: Kalshi's portfolio_value marks at its own di
 | ITFWMATCH-26JUL06WAGYOU | ITF_W | E3a | 2 | WAG 34.0+YOU 63.0 | 97.0 | ≤97 | 24,14 | no-clock,no-clock | X_W2⚑,X_W2 | B | SETTLED +1.45 |
 | ITFWMATCH-26JUL06WONIBR | ITF_W | E3a | 1 | IBR 65.0 | — | — | 13 | no-clock | RODE | F | SETTLED -3.25 |
 | ITFWMATCH-26JUL06ZRNLUE | ITF_W | E3a | 2 | LUE 69.0+ZRN 24.0 | 93.0 | ≤97 | 63,26 | no-clock,no-clock | X_W2,X_W2⚑ | B | SETTLED -1.40 |
+| ITFWMATCH-26JUL07ABASLA | ITF_W | E4 | 2 | ABA 46.0+SLA 51.0 | 97.0 | ≤97 | 5,-28 | W2_ONLY,W2_ONLY | X_W2,RODE | B | SETTLED -2.10 |
 | ITFWMATCH-26JUL07ABEJOR | ITF_W | E4 | 2 | ABE 34.0+JOR 63.0 | 97.0 | ≤97 | 4,2 | W1_REACHA,W2_ONLY | RODE⚑,X_CORRIDOR | B | SETTLED -1.99 |
+| ITFWMATCH-26JUL07AKLRAP | ITF_W | E4 | 2 | AKL 51.0+RAP 44.0 | 95.0 | ≤97 | -4,4 | W2_ONLY,W2_ONLY | RODE,X_CORRIDOR | B | SETTLED -2.15 |
+| ITFWMATCH-26JUL07ARCOLI | ITF_W | E4 | 2 | ARC 21.0+OLI 72.0 | 93.0 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | RODE,X_CORRIDOR | B | SETTLED -0.87 |
 | ITFWMATCH-26JUL07ARYKRO | ITF_W | E4 | 2 | ARY 14.0+KRO 83.0 | 97.0 | ≤97 | 0,2 | W2_ONLY,W2_ONLY | RODE⚑,X_W2 | B | SETTLED -2.05 |
 | ITFWMATCH-26JUL07BADMIK | ITF_W | E4 | 2 | BAD 58.0+MIK 36.0 | 94.0 | ≤97 | 48,26 | W2_ONLY,W2_ONLY | X_CORRIDOR,RODE | B | SETTLED -1.67 |
 | ITFWMATCH-26JUL07BATBEL | ITF_W | E4 | 2 | BAT 15.0+BEL 78.0 | 93.0 | ≤97 | 4,75 | W2_ONLY,W2_ONLY | X_W2⚑,X_W2 | B | SETTLED +0.71 |
 | ITFWMATCH-26JUL07BEHBAR | ITF_W | E4 | 2 | BAR 69.0+BEH 28.0 | 97.0 | ≤97 | 2,25 | W2_ONLY,W1_REACHA | X_W2⚑,X_W2 | B | SETTLED +2.10 |
 | ITFWMATCH-26JUL07BERBER2 | ITF_W | E4 | 1 | BER2 68.0 | — | — | 3 | no-clock | RODE | F | SETTLED -3.40 |
 | ITFWMATCH-26JUL07BRESME | ITF_W | E4 | 2 | BRE 1.0+SME 94.0 | 95.0 | ≤97 | 0,93 | W2_ONLY,W2_ONLY | RODE,X_W2 | B | SETTLED +0.15 |
+| ITFWMATCH-26JUL07BROGAR | ITF_W | E4 | 2 | BRO 92.0+GAR 5.0 | 97.0 | ≤97 | 2,4 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +0.45 |
 | ITFWMATCH-26JUL07BROSCH | ITF_W | E4 | 1 | SCH 31.0 | — | — | 7 | W2_ONLY | RODE | F | SETTLED -1.55 |
 | ITFWMATCH-26JUL07BUEXAV | ITF_W | E4 | 2 | BUE 16.0+XAV 73.5 | 89.5 | ≤97 | 15,17 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR⚑ | B | SETTLED +1.30 |
 | ITFWMATCH-26JUL07CENGLU | ITF_W | E4 | 2 | CEN 62.5+GLU 32.0 | 94.5 | ≤97 | 2,4 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,X_CORRIDOR | B | SETTLED +3.15 |
+| ITFWMATCH-26JUL07CHAPER | ITF_W | E4 | 2 | CHA 51.0+PER 44.0 | 95.0 | ≤97 | 2,-11 | W2_ONLY,W1_CASHED | X_W2,X_W1 | B | SETTLED +0.95 |
 | ITFWMATCH-26JUL07COPBRE | ITF_W | E4 | 2 | BRE 67.0+COP 29.0 | 96.0 | ≤97 | -2,4 | W2_ONLY,W1_CASHED | X_W2⚑,X_W1 | B | SETTLED +2.20 |
 | ITFWMATCH-26JUL07DANIBR | ITF_W | E4 | 1 | IBR 12.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -0.60 |
 | ITFWMATCH-26JUL07DAPTEI | ITF_W | E4 | 2 | DAP 50.5+TEI 43.0 | 93.5 | ≤97 | 4,4 | W2_ONLY,W2_ONLY | X_W2⚑,X_W2 | B | SETTLED -1.70 |
+| ITFWMATCH-26JUL07ELJRAB | ITF_W | E4 | 2 | ELJ 57.0+RAB 40.0 | 97.0 | ≤97 | -21,2 | no-clock,no-clock | RODE,X_CORRIDOR | B | SETTLED -2.50 |
 | ITFWMATCH-26JUL07EVAENC | ITF_W | E4 | 2 | ENC 66.0+EVA 28.5 | 94.5 | ≤97 | 2,4 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR⚑ | B | SETTLED +1.60 |
+| ITFWMATCH-26JUL07EVAGOW | ITF_W | E4 | 2 | EVA 79.0+GOW 15.8 | 94.8 | ≤97 | 2,4 | W2_ONLY,W1_CASHED | RODE⚑,X_W1⚑ | B | SETTLED +0.11 |
+| ITFWMATCH-26JUL07FERMED | ITF_W | E4 | 2 | FER 11.0+MED 86.0 | 97.0 | ≤97 | 9,2 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_W2 | B | SETTLED +0.75 |
 | ITFWMATCH-26JUL07FIOULR | ITF_W | E4 | 1 | FIO 16.0 | — | — | 15 | W2_ONLY | RODE | F | SETTLED -0.80 |
 | ITFWMATCH-26JUL07GANSAM | ITF_W | E4 | 2 | GAN 49.0+SAM 47.5 | 96.5 | ≤97 | 7,4 | W2_ONLY,W2_ONLY | X_CORRIDOR,RODE⚑ | B | SETTLED -4.25 |
 | ITFWMATCH-26JUL07GAOKHO | ITF_W | E4 | 1 | KHO 3.0 | — | — | 2 | W2_ONLY | RODE | F | SETTLED -0.15 |
+| ITFWMATCH-26JUL07GIADIA | ITF_W | E4 | 2 | DIA 45.0+GIA 34.0 | 79.0 | ≤97 | 4,-5 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,RODE | B | SETTLED +1.55 |
 | ITFWMATCH-26JUL07GOLALH | ITF_W | E4 | 2 | ALH 52.0+GOL 45.0 | 97.0 | ≤97 | 2,4 | W2_ONLY,W2_ONLY | RODE,X_CORRIDOR | B | SETTLED -2.15 |
+| ITFWMATCH-26JUL07GOOKHA | ITF_W | E4 | 2 | GOO 20.0+KHA 74.0 | 94.0 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_W2 | B | SETTLED -0.05 |
 | ITFWMATCH-26JUL07GORPOH | ITF_W | E4 | 2 | GOR 38.0+POH 59.0 | 97.0 | ≤97 | 10,-2 | W2_ONLY,W2_ONLY | X_CORRIDOR,RODE | B | SETTLED -2.60 |
 | ITFWMATCH-26JUL07GUESAN | ITF_W | E4 | 2 | GUE 84.0+SAN 8.0 | 92.0 | ≤97 | 35,12 | W2_ONLY,W2_ONLY | X_W2,X_W2⚑ | B | SETTLED +0.39 |
 | ITFWMATCH-26JUL07HAVHIB | ITF_W | E4 | 2 | HAV 44.5+HIB 53.0 | 97.5 | 98-100 | 4,2 | W2_ONLY,W1_CASHED | RODE⚑,X_W1 | C | SETTLED -3.85 |
@@ -721,9 +758,13 @@ Portfolio-convention gap, one line: Kalshi's portfolio_value marks at its own di
 | ITFWMATCH-26JUL07INOBUY | ITF_W | E4 | 2 | BUY 35.0+INO 62.0 | 97.0 | ≤97 | 4,2 | W1_CASHED,W2_ONLY | X_W1,X_W2⚑ | B | SETTLED +1.75 |
 | ITFWMATCH-26JUL07ISMPER | ITF_W | E4 | 2 | ISM 70.0+PER 27.0 | 97.0 | ≤97 | 69,26 | W2_ONLY,W2_ONLY | RODE,X_CORRIDOR | B | SETTLED -3.20 |
 | ITFWMATCH-26JUL07JAKWOL | ITF_W | E4 | 2 | JAK 32.0+WOL 65.0 | 97.0 | ≤97 | 7,-1 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_W2 | B | SETTLED +1.15 |
+| ITFWMATCH-26JUL07JAUMAT | ITF_W | E4 | 2 | JAU 46.5+MAT 50.0 | 96.5 | ≤97 | 7,19 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_W2 | B | SETTLED +1.55 |
+| ITFWMATCH-26JUL07JOHKAJ | ITF_W | E4 | 2 | JOH 49.0+KAJ 41.5 | 90.5 | ≤97 | 4,4 | W2_ONLY,W1_CASHED | X_CORRIDOR,X_W1 | B | SETTLED +4.25 |
 | ITFWMATCH-26JUL07JOSGRA | ITF_W | E4 | 2 | GRA 93.0+JOS 5.0 | 98.0 | 98-100 | 2,3 | W2_ONLY,W1_REACHA | X_W2,X_W2 | C | SETTLED +0.40 |
 | ITFWMATCH-26JUL07KAKJAN | ITF_W | E4 | 2 | JAN 89.0+KAK 8.0 | 97.0 | ≤97 | 2,4 | W2_ONLY,W1_REACHA | X_W2,X_CORRIDOR⚑ | B | SETTLED +0.75 |
+| ITFWMATCH-26JUL07KAYDUN | ITF_W | E4 | 2 | DUN 39.5+KAY 60.0 | 99.5 | 98-100 | 4,38 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR | C | SETTLED -0.75 |
 | ITFWMATCH-26JUL07KAZAMA | ITF_W | E4 | 1 | AMA 45.0 | — | — | 11 | W2_ONLY | RODE | F | SETTLED -2.25 |
+| ITFWMATCH-26JUL07KELXUX | ITF_W | E4 | 2 | KEL 38.5+XUX 58.0 | 96.5 | ≤97 | 1,-3 | no-clock,no-clock | X_W2,X_W2 | B | SETTLED -0.90 |
 | ITFWMATCH-26JUL07KHOSAM | ITF_W | E4 | 2 | KHO 55.0+SAM 42.0 | 97.0 | ≤97 | 6,40 | W1_CASHED,W1_REACHA | X_W1,RODE | B | SETTLED -1.50 |
 | ITFWMATCH-26JUL07KHRBEL | ITF_W | E4 | 2 | BEL 56.5+KHR 41.0 | 97.5 | 98-100 | 7,4 | W2_ONLY,W2_ONLY | X_W2,X_W2⚑ | C | SETTLED +2.10 |
 | ITFWMATCH-26JUL07KHRYOU | ITF_W | E4 | 2 | KHR 44.0+YOU 53.0 | 97.0 | ≤97 | 4,-6 | W2_ONLY,W2_ONLY | X_W2⚑,X_W2⚑ | B | SETTLED +2.31 |
@@ -732,14 +773,24 @@ Portfolio-convention gap, one line: Kalshi's portfolio_value marks at its own di
 | ITFWMATCH-26JUL07LANDEN | ITF_W | E4 | 2 | DEN 63.0+LAN 35.0 | 98.0 | 98-100 | 2,4 | W2_ONLY,W2_ONLY | X_CORRIDOR,RODE⚑ | C | SETTLED -2.75 |
 | ITFWMATCH-26JUL07LEKVLA | ITF_W | E4 | 2 | LEK 67.0+VLA 28.5 | 95.5 | ≤97 | 0,1 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR⚑ | B | SETTLED +1.40 |
 | ITFWMATCH-26JUL07LERJAM | ITF_W | E4 | 2 | JAM 51.0+LER 46.0 | 97.0 | ≤97 | 2,3 | no-clock,no-clock | X_W2,X_W2 | B | SETTLED +1.00 |
+| ITFWMATCH-26JUL07MAHCHA | ITF_W | E4 | 2 | CHA 54.5+MAH 42.0 | 96.5 | ≤97 | 2,4 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_W2 | B | SETTLED +3.25 |
 | ITFWMATCH-26JUL07MALKOM | ITF_W | E4 | 2 | KOM 10.0+MAL 87.0 | 97.0 | ≤97 | 7,83 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,RODE | B | SETTLED -4.05 |
 | ITFWMATCH-26JUL07MANLUK | ITF_W | E4 | 2 | LUK 77.0+MAN 15.5 | 92.5 | ≤97 | 2,4 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR⚑ | B | SETTLED +0.40 |
+| ITFWMATCH-26JUL07MANNAH | ITF_W | E4 | 2 | MAN 52.0+NAH 45.0 | 97.0 | ≤97 | -19,4 | W2_ONLY,W2_ONLY | RODE,X_W2 | B | SETTLED -2.15 |
 | ITFWMATCH-26JUL07MARAVA | ITF_W | E4 | 2 | AVA 12.5+MAR 75.0 | 87.5 | ≤97 | 4,74 | W2_ONLY,W2_ONLY | RODE⚑,X_CORRIDOR | B | SETTLED -0.30 |
+| ITFWMATCH-26JUL07MAROLU | ITF_W | E4 | 1 | OLU 30.0 | — | — | 4 | W2_ONLY | X_CORRIDOR | F | SETTLED -0.05 |
 | ITFWMATCH-26JUL07MCKGUD | ITF_W | E4 | 2 | GUD 23.0+MCK 80.0 | 103.0 | >100 | 21,18 | W2_ONLY,W2_ONLY | RODE,X_W2 | C | SETTLED -0.25 |
+| ITFWMATCH-26JUL07MCNREE | ITF_W | E4 | 2 | MCN 43.0+REE 53.5 | 96.5 | ≤97 | None,3 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED +1.60 |
 | ITFWMATCH-26JUL07MELDIG | ITF_W | E4 | 2 | DIG 91.0+MEL 5.0 | 96.0 | ≤97 | 2,5 | no-clock,no-clock | X_W2,X_W2 | B | SETTLED +0.65 |
+| ITFWMATCH-26JUL07MELROD | ITF_W | E4 | 2 | MEL 74.0+ROD 11.3 | 85.3 | ≤97 | 2,None | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR⚑ | B | SETTLED +0.66 |
+| ITFWMATCH-26JUL07MIKPAQ | ITF_W | E4 | 2 | MIK 26.5+PAQ 70.0 | 96.5 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR | B | SETTLED -0.10 |
 | ITFWMATCH-26JUL07MILSAK | ITF_W | E4 | 2 | MIL 53.0+SAK 43.0 | 96.0 | ≤97 | 2,4 | W2_ONLY,W2_ONLY | RODE⚑,X_W2 | B | SETTLED -4.90 |
+| ITFWMATCH-26JUL07MOROLM | ITF_W | E4 | 2 | MOR 37.0+OLM 54.0 | 91.0 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR | B | SETTLED -1.40 |
+| ITFWMATCH-26JUL07MULSIN | ITF_W | E4 | 1 | SIN 25.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -1.25 |
+| ITFWMATCH-26JUL07NGUGJI | ITF_W | E4 | 2 | GJI 15.0+NGU 78.5 | 93.5 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR | B | SETTLED +1.95 |
 | ITFWMATCH-26JUL07OLIALL | ITF_W | E4 | 2 | ALL 68.0+OLI 30.0 | 98.0 | 98-100 | 2,4 | W2_ONLY,W2_ONLY | X_CORRIDOR,RODE⚑ | C | SETTLED -2.10 |
 | ITFWMATCH-26JUL07PANZHO | ITF_W | E4 | 2 | PAN 71.0+ZHO 26.0 | 97.0 | ≤97 | 2,13 | W2_ONLY,W1_REACHA | X_W2⚑,X_W2 | B | SETTLED +3.00 |
+| ITFWMATCH-26JUL07PASLEE | ITF_W | E4 | 2 | LEE 36.0+PAS 54.0 | 90.0 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR | B | SETTLED +0.95 |
 | ITFWMATCH-26JUL07PATMAK | ITF_W | E4 | 2 | MAK 91.5+PAT 4.0 | 95.5 | ≤97 | 2,4 | W2_ONLY,W1_CASHED | X_W2⚑,X_W1⚑ | B | SETTLED +0.75 |
 | ITFWMATCH-26JUL07PETFRI | ITF_W | E4 | 2 | FRI 23.0+PET 73.0 | 96.0 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,X_CORRIDOR | B | SETTLED +3.00 |
 | ITFWMATCH-26JUL07PIEPRI | ITF_W | E4 | 1 | PIE 54.0 | — | — | 2 | W2_ONLY | RODE | F | SETTLED -2.70 |
@@ -748,7 +799,7 @@ Portfolio-convention gap, one line: Kalshi's portfolio_value marks at its own di
 | ITFWMATCH-26JUL07POCINI | ITF_W | E4 | 2 | INI 76.0+POC 17.0 | 93.0 | ≤97 | 2,4 | W2_ONLY,W2_ONLY | X_W2⚑,RODE⚑ | B | SETTLED -1.35 |
 | ITFWMATCH-26JUL07PODLEO | ITF_W | E4 | 2 | LEO 24.0+POD 73.0 | 97.0 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | X_W2,X_W2⚑ | B | SETTLED +2.10 |
 | ITFWMATCH-26JUL07PODSMI | ITF_W | E4 | 2 | POD 31.5+SMI 66.0 | 97.5 | 98-100 | 4,2 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,X_CORRIDOR | C | SETTLED -0.45 |
-| ITFWMATCH-26JUL07PROMAE | ITF_W | E4 | 2 | MAE 29.3+PRO 67.4 | 96.7 | ≤97 | 26,65 | W1_CASHED,W2_ONLY | X_W1⚑,X_CORRIDOR⚑ | B | SETTLED -0.50 |
+| ITFWMATCH-26JUL07PROMAE | ITF_W | E4 | 2 | MAE 29.3+PRO 67.4 | 96.7 | ≤97 | 26,65 | W2_ONLY,W2_ONLY | X_W2⚑,X_W2⚑ | B | SETTLED -0.50 |
 | ITFWMATCH-26JUL07PUSMAY | ITF_W | E4 | 2 | MAY 7.0+PUS 8.0 | 15.0 | ≤97 | -56,4 | W2_ONLY,W2_ONLY | X_W2⚑,X_W2 | B | SETTLED +0.30 |
 | ITFWMATCH-26JUL07REVHER | ITF_W | E4 | 2 | HER 59.0+REV 29.0 | 88.0 | ≤97 | 2,4 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR⚑ | B | SETTLED +4.55 |
 | ITFWMATCH-26JUL07RICMAD | ITF_W | E4 | 2 | MAD 35.5+RIC 60.0 | 95.5 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | X_W2⚑,X_W2 | B | SETTLED +1.45 |
@@ -757,7 +808,9 @@ Portfolio-convention gap, one line: Kalshi's portfolio_value marks at its own di
 | ITFWMATCH-26JUL07SAHDEP | ITF_W | E4 | 2 | DEP 78.0+SAH 19.0 | 97.0 | ≤97 | 70,14 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.20 |
 | ITFWMATCH-26JUL07SAITSE | ITF_W | E4 | 1 | TSE 19.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -0.95 |
 | ITFWMATCH-26JUL07SAWKAV | ITF_W | E4 | 2 | KAV 34.0+SAW 63.0 | 97.0 | ≤97 | 3,1 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED +1.85 |
+| ITFWMATCH-26JUL07SCHCAN | ITF_W | E4 | 2 | CAN 84.0+SCH 12.5 | 96.5 | ≤97 | 2,4 | W2_ONLY,W1_REACHA | X_W2,X_CORRIDOR | B | SETTLED +1.05 |
 | ITFWMATCH-26JUL07SCHTRI | ITF_W | E4 | 2 | SCH 28.5+TRI 66.0 | 94.5 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,X_W2 | B | SETTLED +0.22 |
+| ITFWMATCH-26JUL07SCHZID | ITF_W | E4 | 2 | SCH 27.0+ZID 70.0 | 97.0 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR | B | SETTLED +2.40 |
 | ITFWMATCH-26JUL07SEIKUL | ITF_W | E4 | 2 | KUL 24.0+SEI 73.0 | 97.0 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | X_CORRIDOR,RODE⚑ | B | SETTLED -7.00 |
 | ITFWMATCH-26JUL07SEIRIE | ITF_W | E4 | 2 | RIE 80.0+SEI 17.0 | 97.0 | ≤97 | 1,4 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED +1.10 |
 | ITFWMATCH-26JUL07SENKEN | ITF_W | E4 | 2 | KEN 78.0+SEN 17.0 | 95.0 | ≤97 | 21,3 | W1_CASHED,W1_CASHED | X_W1,X_W1⚑ | A | SETTLED +0.72 |
@@ -766,6 +819,7 @@ Portfolio-convention gap, one line: Kalshi's portfolio_value marks at its own di
 | ITFWMATCH-26JUL07SIEGAD | ITF_W | E4 | 2 | GAD 4.0+SIE 95.0 | 99.0 | 98-100 | -5,2 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_W2 | C | SETTLED +0.30 |
 | ITFWMATCH-26JUL07SIMROU | ITF_W | E4 | 2 | ROU 64.0+SIM 33.0 | 97.0 | ≤97 | -2,0 | W2_ONLY,W2_ONLY | RODE,X_CORRIDOR⚑ | B | SETTLED -1.51 |
 | ITFWMATCH-26JUL07SOLCER | ITF_W | E4 | 1 | SOL 24.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -1.20 |
+| ITFWMATCH-26JUL07SOTTEO | ITF_W | E4 | 2 | SOT 93.0+TEO 2.0 | 95.0 | ≤97 | 1,-3 | no-clock,no-clock | X_W2,X_W2 | B | SETTLED +0.40 |
 | ITFWMATCH-26JUL07SOZNIS | ITF_W | E4 | 2 | NIS 54.0+SOZ 42.0 | 96.0 | ≤97 | -8,4 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,RODE | B | SETTLED -0.80 |
 | ITFWMATCH-26JUL07SRAFAU | ITF_W | E4 | 1 | FAU 17.0 | — | — | 13 | W2_ONLY | X_CORRIDOR | D | SETTLED +0.20 |
 | ITFWMATCH-26JUL07SUSKOR | ITF_W | E4 | 2 | KOR 52.0+SUS 41.4 | 93.4 | ≤97 | 24,13 | W1_CASHED,W1_CASHED | X_W1,X_W1 | B | SETTLED -1.22 |
@@ -775,11 +829,13 @@ Portfolio-convention gap, one line: Kalshi's portfolio_value marks at its own di
 | ITFWMATCH-26JUL07URGCIR | ITF_W | E4 | 1 | CIR 35.0 | — | — | 4 | W2_ONLY | RODE | F | SETTLED -1.75 |
 | ITFWMATCH-26JUL07VANVAN2 | ITF_W | E4 | 1 | VAN2 4.0 | — | — | 3 | no-clock | RODE | F | SETTLED -0.20 |
 | ITFWMATCH-26JUL07VRARUG | ITF_W | E4 | 2 | RUG 61.0+VRA 36.0 | 97.0 | ≤97 | 1,6 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,X_CORRIDOR | B | SETTLED +1.75 |
+| ITFWMATCH-26JUL07WANMIR | ITF_W | E4 | 2 | MIR 61.0+WAN 35.7 | 96.7 | ≤97 | 2,4 | W2_ONLY,W2_ONLY | X_W2,X_CORRIDOR | B | SETTLED -0.96 |
 | ITFWMATCH-26JUL07WIENEP | ITF_W | E4 | 2 | NEP 26.0+WIE 71.0 | 97.0 | ≤97 | 25,70 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.20 |
 | ITFWMATCH-26JUL07YAOAST | ITF_W | E4 | 2 | AST 77.0+YAO 20.0 | 97.0 | ≤97 | 1,7 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.20 |
 | ITFWMATCH-26JUL07YARHAY | ITF_W | E4 | 2 | HAY 77.0+YAR 20.0 | 97.0 | ≤97 | 2,1 | W2_ONLY,W1_REACHA | X_W2⚑,X_CORRIDOR⚑ | B | SETTLED +3.35 |
 | ITFWMATCH-26JUL07YESFET | ITF_W | E4 | 2 | FET 44.0+YES 52.0 | 96.0 | ≤97 | 1,-6 | W1_CASHED,W2_ONLY | X_W1,X_CORRIDOR⚑ | B | SETTLED +1.60 |
 | ITFWMATCH-26JUL07ZARNEW | ITF_W | E4 | 2 | NEW 9.0+ZAR 49.0 | 58.0 | ≤97 | 4,2 | W2_ONLY,W2_ONLY | X_W2,RODE⚑ | B | SETTLED -4.75 |
+| ITFWMATCH-26JUL07ZIOQUA | ITF_W | E4 | 1 | ZIO 8.0 | — | — | 4 | W2_ONLY | X_CORRIDOR | D | SETTLED +0.15 |
 | LLENGERMATCH-26JUL06ARANIL | WTA_CHALL | E3a | 2 | ARA 73.0+NIL 24.0 | 97.0 | ≤97 | 3,2 | W2_ONLY,W2_ONLY | X_W2,RODE | B | SETTLED -0.30 |
 | LLENGERMATCH-26JUL06BASBAD | WTA_CHALL | E3a | 2 | BAD 74.0+BAS 25.0 | 99.0 | 98-100 | 3,4 | no-clock,no-clock | X_CORRIDOR,RODE | C | SETTLED -0.35 |
 | LLENGERMATCH-26JUL06BLIAND | WTA_CHALL | E3a | 2 | AND 33.0+BLI 64.0 | 97.0 | ≤97 | 1,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.10 |
@@ -803,19 +859,24 @@ Portfolio-convention gap, one line: Kalshi's portfolio_value marks at its own di
 | LLENGERMATCH-26JUL07BARRAD | WTA_CHALL | E4 | 2 | BAR 30.0+RAD 67.5 | 97.5 | 98-100 | 2,1 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_CORRIDOR⚑ | C | SETTLED +1.95 |
 | LLENGERMATCH-26JUL07BJOHEN | WTA_CHALL | E4 | 2 | BJO 5.0+HEN 94.0 | 99.0 | 98-100 | 3,None | W1_CASHED,W2_ONLY | X_W1,X_W2 | C | SETTLED +0.35 |
 | LLENGERMATCH-26JUL07CARPIG | WTA_CHALL | E4 | 2 | CAR 71.0+PIG 27.0 | 98.0 | 98-100 | 2,0 | W2_ONLY,W2_ONLY | X_W2,RODE⚑ | C | SETTLED -1.80 |
+| LLENGERMATCH-26JUL07FITPIG | WTA_CHALL | E4 | 2 | FIT 31.0+PIG 67.0 | 98.0 | 98-100 | 2,0 | W2_ONLY,W2_ONLY | X_W2,X_W2 | C | SETTLED +1.15 |
+| LLENGERMATCH-26JUL07GALRIN | WTA_CHALL | E4 | 2 | GAL 63.0+RIN 34.0 | 97.0 | ≤97 | 1,4 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED -2.05 |
 | LLENGERMATCH-26JUL07JONRAM | WTA_CHALL | E4 | 2 | JON 77.0+RAM 20.0 | 97.0 | ≤97 | 1,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.20 |
 | LLENGERMATCH-26JUL07KABSHE | WTA_CHALL | E4 | 2 | KAB 15.0+SHE 82.5 | 97.5 | 98-100 | 3,0 | W2_ONLY,W2_ONLY | X_CORRIDOR⚑,X_W2⚑ | C | SETTLED +1.18 |
 | LLENGERMATCH-26JUL07KOTSEL | WTA_CHALL | E4 | 2 | KOT 13.0+SEL 84.0 | 97.0 | ≤97 | 2,3 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +0.90 |
 | LLENGERMATCH-26JUL07KRALIU | WTA_CHALL | E4 | 2 | KRA 56.0+LIU 41.0 | 97.0 | ≤97 | 4,-1 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.05 |
 | LLENGERMATCH-26JUL07LABBER | WTA_CHALL | E4 | 2 | BER 4.0+LAB 92.0 | 96.0 | ≤97 | 1,2 | W2_ONLY,W2_ONLY | RODE⚑,X_W2 | B | SETTLED -0.10 |
+| LLENGERMATCH-26JUL07MARBUR | WTA_CHALL | E4 | 2 | BUR 31.0+MAR 67.0 | 98.0 | 98-100 | 2,2 | W2_ONLY,W2_ONLY | X_W2,X_W2 | C | SETTLED +2.10 |
 | LLENGERMATCH-26JUL07MONJEA | WTA_CHALL | E4 | 2 | JEA 79.5+MON 18.0 | 97.5 | 98-100 | 1,3 | W2_ONLY,W2_ONLY | X_W2⚑,X_CORRIDOR | C | SETTLED +4.25 |
 | LLENGERMATCH-26JUL07TUBREN | WTA_CHALL | E4 | 2 | REN 20.0+TUB 77.5 | 97.5 | 98-100 | 2,-1 | W2_ONLY,W2_ONLY | X_W2,X_W2⚑ | C | SETTLED +2.10 |
 | LLENGERMATCH-26JUL07VANMAR | WTA_CHALL | E4 | 2 | MAR 12.5+VAN 85.0 | 97.5 | 98-100 | 1,1 | W2_ONLY,W2_ONLY | RODE⚑,X_W2 | C | SETTLED -0.60 |
+| LLENGERMATCH-26JUL07ZAALEP | WTA_CHALL | E4 | 2 | LEP 42.0+ZAA 58.0 | 100.0 | 98-100 | 2,3 | W2_ONLY,W2_ONLY | X_CORRIDOR,X_W2 | C | SETTLED +1.05 |
 | LLENGERMATCH-26JUL07ZANJAC | WTA_CHALL | E4 | 2 | JAC 69.0+ZAN 28.0 | 97.0 | ≤97 | 0,4 | W2_ONLY,W2_ONLY | RODE,X_CORRIDOR | B | SETTLED -1.83 |
 | WTAMATCH-26JUL06BOUMER | WTA_MAIN | E3a | 2 | BOU 46.5+MER 50.0 | 96.5 | ≤97 | 4,-5 | W2_ONLY,W2_ONLY | X_W2⚑,X_W2 | B | SETTLED -1.36 |
 | WTAMATCH-26JUL06KEYNOS | WTA_MAIN | E3a | 2 | KEY 54.0+NOS 43.0 | 97.0 | ≤97 | -4,3 | W2_ONLY,W2_ONLY | RODE,X_W2 | B | SETTLED -2.38 |
 | WTAMATCH-26JUL06KRUKOS | WTA_MAIN | E3a | 2 | KOS 66.0+KRU 31.0 | 97.0 | ≤97 | -5,1 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.16 |
 | WTAMATCH-26JUL06PAOEAL | WTA_MAIN | E3a | 2 | EAL 58.0+PAO 39.0 | 97.0 | ≤97 | -2,2 | W2_ONLY,W2_ONLY | RODE⚑,X_W2 | B | SETTLED -5.58 |
+| WTAMATCH-26JUL07OSAMUC | WTA_MAIN | E4 | 2 | MUC 44.0+OSA 53.0 | 97.0 | ≤97 | 3,0 | W2_ONLY,W2_ONLY | X_W2,RODE | B | SETTLED -2.33 |
 | WTAMATCH-26JUL07PEGGAU | WTA_MAIN | E4 | 2 | GAU 36.0+PEG 61.0 | 97.0 | ≤97 | -1,1 | W2_ONLY,W2_ONLY | X_W2,X_W2 | B | SETTLED +1.05 |
 
 ## 6 · KALSHI UI RECONCILE — the book tied to the account, to the penny (CARRIED from the 07-06 cut verbatim; window-stamped facts, not rolling — the STEP-3 DAY ANCHOR above is the current tie)
@@ -871,4 +932,4 @@ join_trial_mode = True
 ecc287a live-monitor cycle 53: +42 lines
 Tue Jul  7 00:19:36 EDT 2026
 ```
-Generated 2026-07-07 11:58:08 ET. This file is THE book — the monitor and every future roll append to or cut from it.
+Generated 2026-07-07 22:36:40 ET. This file is THE book — the monitor and every future roll append to or cut from it.

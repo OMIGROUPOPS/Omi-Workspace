@@ -23,22 +23,38 @@ open_cash = round(sum(r.get("cash_partial",0) for r in op),2)
 out=[]; A=out.append
 A(f"# SLATE LEDGER — THE BOOK (window: flip boot 2026-07-05 23:50:39 ET → {D['generated']})")
 A("")
+A("**S/A RUBRIC ADOPTED (evening cut 2026-07-07): S = full W1 lifecycle at combined <= per-cat S-line (ITF 84 / ATP_CHALL 93 / WTA_CHALL 90 / mains 93, PAIR_STORY §1); A = the shape at <=97. Honest era regraded; reachable-not-cashed no longer earns A.**")
+A("")
 A("**REFRESHED IN PLACE (STEP-3 cut, 2026-07-07): Jul-7 folded in; MECHANICAL flags per leg from BLEED_ATTRIBUTION_20260707 (\u2691a dup-surplus / \u2691b naked-band-touch / \u2691c fractional); day lines read GROSS and NET-OF-MECHANICAL; exhibits graded; CUT D continuity added.**")
 A("")
 A("**This document supersedes the 15:52 roll and is the reconcile. Every future grading is a CUT of this ledger.** Exchange truth only (REST fills/settlements/positions/orders + live book); bot positions only; **" + str(len(D['manual_excluded'])) + " manual tickers excluded**; canonical $ rule = SETTLEMENT-REALIZED per ticker (revenue + sells − buys − fees; an exited-but-unsettled leg is OPEN with partial cash noted, never counted settled).")
 A("")
 # ---- AMENDMENT: money-machine view first ----
+# [S/A RUBRIC, ruled 2026-07-07 — thresholds = PAIR_STORY §1 per-cat S-lines]
+# S = FULL W1 LIFECYCLE (both legs filled in W1 AND cashed W1/CORRIDOR) at
+# combined <= the cat's S-line (what the canvas typically offers); A = the same
+# shape at combined <= 97 (the 94-97 band for mains, (S-line,97] generally).
+# Reachable-but-not-cashed legs no longer earn A — they fall to the B family.
+S_LINE = {"ITF_M": 84, "ITF_W": 84, "ATP_CHALL": 93, "WTA_CHALL": 90,
+          "ATP_MAIN": 93, "WTA_MAIN": 93}
 def subgrade(r):
     g=r.get("grade")
-    if g!="B": return g
     fl=[l for l in r["legs"] if l.get("vw") is not None]
-    if len(fl)!=2: return g
+    comb=r.get("combined")
+    if len(fl)==2 and comb is not None and g in ("A","B","S"):
+        lifecycle = all(l.get("w1_filled") and (l.get("disp") or "") in
+                        ("EXIT_FILLED_W1","EXIT_FILLED_CORRIDOR") for l in fl)
+        if lifecycle and comb <= S_LINE.get(r.get("cat"), 93): return "S"
+        if lifecycle and comb <= 97: return "A"
+    if g not in ("A","B"): return g
+    if len(fl)!=2: return "B2" if g=="B" else g
     if any(l.get("disp")=="RODE_TO_SETTLEMENT" for l in fl): return "B3"
     if (all(l.get("w1_filled") for l in fl)
-            and all((l.get("disp") or "") in ("EXIT_FILLED_W1","EXIT_FILLED_CORRIDOR") for l in fl)):
+            and all((l.get("disp") or "") in ("EXIT_FILLED_W1","EXIT_FILLED_CORRIDOR")
+                    for l in fl)):
         return "B1"
     return "B2"
-GRADES=["A","B1","B2","B3","C","D","F"]
+GRADES=["S","A","B1","B2","B3","C","D","F"]
 def leg_rows(pop):
     for r in pop:
         for l in r["legs"]:
@@ -67,8 +83,8 @@ w1c_all=sum(1 for r,l in leg_rows(st) if l.get("w1")=="W1_CASHED"); legs_all=sum
 bou_all=sum(1 for r in st if r.get("bouhar"))
 A(f"**HEADLINE: W1-cash {w1c_all}/{legs_all} legs ({100*w1c_all//max(1,legs_all)}%) · BOUHAR pairs {bou_all} · settled ${settled_tot:+.2f}**")
 A("")
-A("| epoch | cat | A | B1 | B2 | B3 | C | D | F | W1-cash | BOUHAR | $ |")
-A("|---|---|---|---|---|---|---|---|---|---|---|---|")
+A("| epoch | cat | S | A | B1 | B2 | B3 | C | D | F | W1-cash | BOUHAR | $ |")
+A("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
 for ep in EPS:
     for c in CATS:
         se=[r for r in st if r["epoch"]==ep and r["cat"]==c]
@@ -77,7 +93,7 @@ for ep in EPS:
         w1c=sum(1 for r in se for l in r["legs"] if l.get("w1")=="W1_CASHED")
         ln=sum(r["n_filled"] for r in se)
         bou=sum(1 for r in se if r.get("bouhar"))
-        A(f"| {ep} | {c} | {gr['A']} | {gr['B1']} | {gr['B2']} | {gr['B3']} | {gr['C']} | {gr['D']} | {gr['F']} | {w1c}/{ln} | {bou} | {sum(r['pnl'] for r in se):+.2f} |")
+        A(f"| {ep} | {c} | {gr['S']} | {gr['A']} | {gr['B1']} | {gr['B2']} | {gr['B3']} | {gr['C']} | {gr['D']} | {gr['F']} | {w1c}/{ln} | {bou} | {sum(r['pnl'] for r in se):+.2f} |")
 A("")
 A("## 0c · THE DECOMPOSITION — settled $ split: exit-cashed vs RODE-TO-SETTLEMENT (the structural-bleed number)")
 A("")
@@ -155,8 +171,8 @@ A("")
 # ---- 4 grade rollup ----
 A("## 4 · GRADE ROLLUP (per §0E; per cat per epoch, settled only)")
 A("")
-A("| epoch | cat | A | B | C | D | F | both-fill | ≤97 | W1-cash legs | BOUHAR |")
-A("|---|---|---|---|---|---|---|---|---|---|---|")
+A("| epoch | cat | S | A | B | C | D | F | both-fill | ≤97 | W1-cash legs | BOUHAR |")
+A("|---|---|---|---|---|---|---|---|---|---|---|---|")
 for ep in EPS:
     for c in CATS:
         se=[r for r in st if r["epoch"]==ep and r["cat"]==c]
@@ -167,7 +183,7 @@ for ep in EPS:
         w1c=sum(1 for r in se for l in r["legs"] if l.get("w1")=="W1_CASHED")
         legs_n=sum(r["n_filled"] for r in se)
         bou=sum(1 for r in se if r.get("bouhar"))
-        A(f"| {ep} | {c} | {gr['A']} | {gr['B1']}+{gr['B2']}+{gr['B3']} | {gr['C']} | {gr['D']} | {gr['F']} | {len(pairs)}/{len(se)} | {le97}/{len(pairs)} | {w1c}/{legs_n} | {bou} |")
+        A(f"| {ep} | {c} | {gr['S']} | {gr['A']} | {gr['B1']}+{gr['B2']}+{gr['B3']} | {gr['C']} | {gr['D']} | {gr['F']} | {len(pairs)}/{len(se)} | {le97}/{len(pairs)} | {w1c}/{legs_n} | {bou} |")
 A("")
 
 # ---- DAY ROLLUP (convention amendment 2026-07-07): day boundary = midnight ET,

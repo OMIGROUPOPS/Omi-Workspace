@@ -14,7 +14,8 @@
 - **C47-ENFORCE audit** — live (v1.2); watch: halt/clear behavior across tonight's boots, `exit_unpostable_itm` flag population, artifact cadence.
 - **fv_observe riser accumulation** — toward ~100 FV-graded riser legs for the Plex bounce (18/100 at week open).
 - **aim_shadow + ex-self posture lines** — accumulating for the expression rule's Plex package (below-chain 54%@9.1% is the standing finding).
-- **JOINT SHADOW (walk-cap × expression, log-only)** — LIVE from tonight per the walk-cap ruling: walkcap_level/exself_level/joint_level + constrained on every shadow line; nightly rollup JOINT_SHADOW_<date>.md. Arm evidence for walk_cap_honest_anchor + expression_invariant.
+- **JOINT SHADOW (walk-cap × expression, log-only)** — LIVE; first partial-evening smoke: 123 decisions/19 constrained, ALL honest-anchored (false-flag counter 0), caps bite (walkcap-alone would-fill 0/19 vs actual 2/19 — starvation watch), ≤97 held 16/16. Nights decide; rollup JOINT_SHADOW_<date>.md nightly.
+- **S/A rubric LIVE in the ledger (evening cut)** — S-lines ITF 84/84, CHALL 93/90, mains 93; honest-era regrade: **S=0, A=7** — the S tier is the empty set the aim program exists to fill.
 - **AIM_V2 ramp** — gated OFF; dated schedule to honest n≥30 per tier; arm judged against the LIVING_VAULT front page (gold-leg production + B3-conversion bars).
 
 ## QUEUED (next builds, in rough order)

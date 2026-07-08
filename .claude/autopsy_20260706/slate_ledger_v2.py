@@ -309,7 +309,8 @@ for ev,tks in sorted(evs.items()):
                 elif cor_end and t<cor_end: w="COR"
                 else: w="W2"
                 if pr>=lvl: touch[w]=True
-        legs.append({"tk":tk,"suf":tk.rsplit("-",1)[-1],"vw":vw,"qty":q,"fill_ts":ft,
+        _w1low = min((pr for t,pr,ct in _tapes.get(tk,[]) if hs and t < hs), default=None) if hs else None
+        legs.append({"tk":tk,"suf":tk.rsplit("-",1)[-1],"vw":vw,"qty":q,"fill_ts":ft,"w1_low":_w1low,
                      "conc_ts":conc,"conc_e":epoch_of(conc),
                      "daim":vstamp.get(tk,{}).get("fill_minus_aim"),
                      "w1":w1,"pnl":pnl,"sett_ts":st_t,"open_qty":oq,

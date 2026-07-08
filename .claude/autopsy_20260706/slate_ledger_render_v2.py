@@ -23,7 +23,7 @@ open_cash = round(sum(r.get("cash_partial",0) for r in op),2)
 out=[]; A=out.append
 A(f"# SLATE LEDGER — THE BOOK (window: flip boot 2026-07-05 23:50:39 ET → {D['generated']})")
 A("")
-A("**S/A RUBRIC ADOPTED (evening cut 2026-07-07): S = full W1 lifecycle at combined <= per-cat S-line (ITF 84 / ATP_CHALL 93 / WTA_CHALL 90 / mains 93, PAIR_STORY §1); A = the shape at <=97. Honest era regraded; reachable-not-cashed no longer earns A.**")
+A("**S REDEFINED PER-LEG (late cut 2026-07-07): S = each leg within 4c of its OWN fillable W1 low (gold census N) + own W1/corridor cash; COMBINED DEMOTED to descriptive scoreboard everywhere (per-cat S-lines remain as descriptive floor context). A = the lifecycle shape at <=97. Reachable-not-cashed earns B.**")
 A("")
 A("**REFRESHED IN PLACE (STEP-3 cut, 2026-07-07): Jul-7 folded in; MECHANICAL flags per leg from BLEED_ATTRIBUTION_20260707 (\u2691a dup-surplus / \u2691b naked-band-touch / \u2691c fractional); day lines read GROSS and NET-OF-MECHANICAL; exhibits graded; CUT D continuity added.**")
 A("")
@@ -41,11 +41,17 @@ def subgrade(r):
     g=r.get("grade")
     fl=[l for l in r["legs"] if l.get("vw") is not None]
     comb=r.get("combined")
-    if len(fl)==2 and comb is not None and g in ("A","B","S"):
+    if len(fl)==2 and g in ("A","B","S"):
         lifecycle = all(l.get("w1_filled") and (l.get("disp") or "") in
                         ("EXIT_FILLED_W1","EXIT_FILLED_CORRIDOR") for l in fl)
-        if lifecycle and comb <= S_LINE.get(r.get("cat"), 93): return "S"
-        if lifecycle and comb <= 97: return "A"
+        # [S PER-LEG, ruled 2026-07-07 late: each leg within N=4c (gold census
+        # discount-to-low) of its OWN fillable W1 low + own W1/corridor cash.
+        # COMBINED IS DEMOTED to descriptive scoreboard -- no grade thresholds
+        # on it except A's 97 shape band. S_LINE retained as descriptive only.]
+        tight = all(l.get("w1_low") is not None and l.get("vw") is not None
+                    and (l["vw"] - l["w1_low"]) <= 4 for l in fl)
+        if lifecycle and tight: return "S"
+        if lifecycle and comb is not None and comb <= 97: return "A"
     if g not in ("A","B"): return g
     if len(fl)!=2: return "B2" if g=="B" else g
     if any(l.get("disp")=="RODE_TO_SETTLEMENT" for l in fl): return "B3"

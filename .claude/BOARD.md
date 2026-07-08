@@ -4,6 +4,8 @@
 
 ## IN-FLIGHT (armed or accumulating now)
 
+- **SWEEP 07-07 ~22:51 containment (deploying)** — 4 naked legs swept clean (classes: ITM-exit-death ISOTOM/NASLEE, post-exit-rebuy TIKCHO/KUSTAG); fixes: C-ITM-EXIT-TAKE (taker retry on post-only-cross), C-NO-REBUY-AFTER-CASH (_session_exited + repost guard + audit assertion post_exit_rebuy), C47-CONTINUOUS (audit every 15min, boot-gate → continuous invariant). TANCHE 98 stamped race-class (untracked-sibling fill post-basis). Post-only-cross queued build: SUPERSEDED by C-ITM-EXIT-TAKE (CLAHER counter becomes its regression watch).
+
 - ~~FLOOR-BY-HOUR decomposition~~ — **LANDED 2026-07-07 (.claude/pair_story_20260707/HOURLY_APPENDIX.md)**. Verdicts: ITF floor is entirely T-2h→bell (prints/min 0.00 until T-3h; early book = wide silent lattice quoting ~99); MAINS-EARLY HYPOTHESIS REFUTED (ATP_MAIN quote-touch floor 100.0 flat every bin — NO-GO); pre-T-4h spec feed: early posting buys POSITION, not early fills.
 
 - ~~PAIR-STORY re-dispatch~~ — **LANDED 2026-07-07 (.claude/pair_story_20260707/PAIR_STORY_20260707.md, 2,396 pairs)**. Headline: ITF med achievable floor 84 (97 = emergency ceiling), S-lines set per cat (ITF 84/84, CHALL 93/90, mains 93); divots ~50-65min apart (sequential doctrine at scale); seesaw lag-0 corr −0.7 ITF/CHALL vs −0.29 ATP_MAIN; floor lands post-ramp, last ~20min. Follow-on (queued naturally, not built): bucket-refined S-lines at AIM_V2 arm; re-run as observed_starts coverage grows.
@@ -22,7 +24,7 @@
 
 1. **Post-gun forensic** — the gun-adjacent fill/cancel behavior pass (FERCER/ALCCLA lineage) on honest-clock data.
 2. **Price-band clamp** — [5,95] resting-bid clamp; detection already pre-wired flag-only in the boot audit (`bid_outside_5_95`, COXBRA px=4 the live counter).
-3. **Post-only-cross exit hole** — in-the-money exits 400-reject ("post only cross") and rest nothing; **live counter: CLAHER-CLA flagged `exit_unpostable_itm` band 53 ≤ bid 72 on today's audits.** Needs its own gated build (taker-exit or clamp).
+3. ~~Post-only-cross exit hole~~ — **CLOSED 07-07 late (C-ITM-EXIT-TAKE in the sweep deploy)**; CLAHER/`exit_unpostable_itm` counter stays as the regression watch.
 4. **Conformance audit** — deployed-config vs code vs tables full conformance pass (drift class the 07-03 VC capture started).
 5. **Walk/repost model** — same-price churn suppression follow-through (C-CHURN-FIX lineage) + walk-cap honest-anchor (Plex walk-cap ruling pending, see EXTERNAL).
 6. **Fractional sizing** — int-floor class end-to-end (payload `str(int())`, exit sizing, guard now floats): WALVAL 0.87 residue exhibit; Kalshi accepts fractional counts (proven 201s).

@@ -1657,6 +1657,14 @@ class LiveV3:
         #     move, still two-stage-confirmed) may latch past the floor -> a lying clock degrades latch
         #     SPEED (needs a much stronger, sustained signal), never its EXISTENCE. OFF => byte-identical.
         self.latch_tape_override = bool(self.config.get("latch_tape_override", False))
+        # [C-CONCEPTION-HORIZON 07-08] INTERIM SCAFFOLDING: the early map edge.
+        # No conception / resting entry bid earlier than this many hours before
+        # the honest-anchored start (per-match clock supplies the anchor). A
+        # bound on UNSTUDIED territory while the early-canvas study runs --
+        # NEVER a target (the cap-as-goal grave, three resurrections); it moves
+        # on the study's evidence + operator ruling. Default 8h.
+        self.conception_horizon_sec = int(float(self.config.get(
+            "conception_horizon_hours", 8)) * 3600)
         # [C-CAP-DIFF] reach-repost cap (dormant; default False = byte-identical).
         # When enforced, a resting entry bid is never reposted ABOVE its conception
         # cell (the drift-supported ceiling); holds/down-moves are untouched. Reads
@@ -3145,6 +3153,25 @@ class LiveV3:
             self._log("band_refused", {
                 "price": price, "count": count}, ticker=ticker)
             return "", {"_error": "band_refused"}
+        # [C-CONCEPTION-HORIZON 07-08] chokepoint half of the T-8h early bound:
+        # no maker BUY conceives beyond the honest-anchored horizon, whatever
+        # path proposed it (initial route, sibling repost, completion revert,
+        # engagement). The router gate + manage sweep do the bulk; this refusal
+        # is what makes the sweep STICK -- the C-BAND-CLAMP lesson: sibling/
+        # reconcile scans re-derive the same placement and re-post it (JANFUN-
+        # FUN class: held leg-1, unfilled sibling >8h out -> cancel/re-post
+        # churn without the chokepoint). Dedup-logged per ticker per boot.
+        # Deliberate taker paths (post_only=False) unaffected; sells untouched.
+        if action == "buy" and post_only:
+            _hzb, _hzt = self._horizon_state(ticker.rsplit("-", 1)[0])
+            if _hzb:
+                _hs = self.__dict__.setdefault("_horizon_refused_logged", set())
+                if ticker not in _hs:
+                    _hs.add(ticker)
+                    self._log("conception_horizon_refused", {
+                        "price": price, "count": count,
+                        "tts_hours": round(_hzt / 3600.0, 2)}, ticker=ticker)
+                return "", {"_error": "conception_horizon"}
         # Position accumulation guard: cap total buy exposure per ticker
         if action == "buy":
             target_max = self.config["sizing"]["entry_contracts"]
@@ -4548,6 +4575,32 @@ class LiveV3:
             "cancelled_bids": cancelled,
             "action": action,
         })
+
+    def _horizon_state(self, et, now=None):
+        """[C-CONCEPTION-HORIZON 07-08] (beyond, tts_eff_sec) for the T-8h early
+        bound: honest-anchored time-to-start (per-match clock when armed and the
+        schedule file is fresh, legacy event_start_time else) minus the
+        pm-fallback widen -- the router's own edge expression, shared so the
+        gate, the manage-pass sweep and the C47 audit flag agree by
+        construction. No anchor -> (False, None): the bound never blocks on an
+        unknown start (the schedule_gap class keeps its existing handling)."""
+        if now is None:
+            now = time.time()
+        start_ts = self.event_start_time.get(et)
+        widen = 0
+        if getattr(self, "per_match_clock", False):
+            _h = self._pm_honest.get(et) or {}
+            _fresh = (now - self._sched_fetched_epoch) <= PM_CLOCK_STALE_SEC
+            _st, _mode = _pm_clock_resolve(_h.get("start_ts"), _fresh, start_ts)
+            if _mode == "honest":
+                start_ts = _st
+            else:
+                widen = PM_CLOCK_WIDEN_SEC.get(
+                    self.get_category(et), PM_CLOCK_WIDEN_DEFAULT_SEC)
+        if start_ts is None:
+            return False, None
+        tts_eff = (start_ts - now) - widen
+        return tts_eff > self.conception_horizon_sec, tts_eff
 
     def _is_match_live(self, et):
         """T51 match-live detection via VOLUME ACCELERATION. Live = >=
@@ -6561,6 +6614,26 @@ class LiveV3:
             if time_to_start - _pm_widen > 86400:
                 return
 
+            # [C-CONCEPTION-HORIZON 07-08] INTERIM SCAFFOLDING -- no conception
+            # earlier than T-8h before the honest-anchored start (same clock and
+            # widen semantics as the 24h edge above; time_to_start here is
+            # already the honest tts when the per-match clock resolves). The
+            # deferral is observable once per event; the event re-routes
+            # naturally every routing_tick and conceives the moment the match
+            # enters the window. The bound is a map edge while the pre-T-8h
+            # canvas is unstudied -- NEVER a target; it moves on the
+            # early-canvas study + operator ruling.
+            if time_to_start - _pm_widen > self.conception_horizon_sec:
+                _hseen = self.__dict__.setdefault("_horizon_defer_logged", set())
+                if et not in _hseen:
+                    _hseen.add(et)
+                    self._log("conception_horizon_defer", {
+                        "event": et, "category": self.get_category(et),
+                        "tts_hours": round(time_to_start / 3600.0, 2),
+                        "horizon_hours": round(
+                            self.conception_horizon_sec / 3600.0, 2)})
+                return
+
             # [C-KALSHI-OCC] coarse Kalshi start widens the late edge: the coarse clock does
             # NOT lock entry at T-15/T-0 (tape latch governs the real start). default-OFF =>
             # coarse_source empty => _coarse False => legacy decision, byte-identical.
@@ -7624,6 +7697,28 @@ class LiveV3:
         # frame (the frame-mismatch leak).
         if pos.entry_mode == "completion_reprice":
             await self._v4_manage_completion(tk, pos, book, now)
+            return
+        # [C-CONCEPTION-HORIZON 07-08] the sweep half of the T-8h early bound:
+        # no resting entry bid on a match beyond the honest-anchored horizon.
+        # Cancel and free the leg (_untombstone_entry: unfilled -> pos deleted +
+        # processed_events cleared, so the router re-conceives the pair the
+        # moment the match enters the window; partial fills keep their position
+        # managed). A legally-placed bid can only age INTO the window (tts only
+        # falls), so this fires on pre-horizon-era bids (the GILOBR class) and
+        # schedule corrections that push a start out. Exits and completion bids
+        # (dispatched above) are untouched.
+        _hz_beyond, _hz_tts = self._horizon_state(pos.event_ticker, now)
+        if _hz_beyond:
+            res = await self._cancel_entry_and_resolve(
+                tk, pos, "horizon_cancel", "horizon_cancel_race")
+            if res == "cancelled":
+                self._log("conception_horizon_cancel", {
+                    "event": pos.event_ticker,
+                    "tts_hours": round(_hz_tts / 3600.0, 2),
+                    "horizon_hours": round(self.conception_horizon_sec / 3600.0, 2),
+                    "price": int(pos.entry_price or 0)}, ticker=tk)
+                self._untombstone_entry(tk, pos)
+                self._save_v4_resting()
             return
         spread = book.best_ask - book.best_bid
         # Degenerate / wide-spread book: cancel and free the leg for re-entry.
@@ -8861,6 +8956,17 @@ class LiveV3:
                 if r["px"] < 5 or r["px"] > 95:
                     flags.append({"tk": tk, "flag": "bid_outside_5_95", "px": r["px"]})
                     row["flag"] = (row.get("flag", "") + "+bid_outside_5_95").lstrip("+")
+            # [C-CONCEPTION-HORIZON 07-08] regression counter -- MUST STAY 0: a
+            # resting buy beyond the honest-anchored T-8h horizon evaded both
+            # the router gate and the manage-pass sweep. Flag-only (detection);
+            # enforcement lives at those two sites.
+            if buys.get(tk):
+                _hzb, _hzt = self._horizon_state(tk.rsplit("-", 1)[0])
+                if _hzb:
+                    flags.append({"tk": tk, "flag": "conception_beyond_horizon",
+                                  "tts_hours": round(_hzt / 3600.0, 1)})
+                    row["flag"] = (row.get("flag", "")
+                                   + "+conception_beyond_horizon").lstrip("+")
             table.append(row)
         verdict = "PASS" if not failures else "FAIL"
         self._log("post_boot_audit", {

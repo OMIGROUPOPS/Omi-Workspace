@@ -221,6 +221,62 @@ def _read_bbo(tk):
         return None
 
 
+# [C-FLOW-STATE 07-08] provisional per-cat thresholds -- the early-canvas study
+# fits the real ones from the corpus; until then these encode the HOURLY_APPENDIX
+# shape (ITF: wide silent lattice -> prints appear late; mains: 1c-spread liquid
+# all day so rate alone separates; CHALL intermediate). PROVISIONAL by name.
+FLOW_OPEN_RATE = {"ITF_M": 0.2, "ITF_W": 0.2, "ATP_CHALL": 0.3, "WTA_CHALL": 0.3,
+                  "ATP_MAIN": 0.5, "WTA_MAIN": 0.5}
+FLOW_OPEN_SPREAD = {"ITF_M": 3, "ITF_W": 3, "ATP_CHALL": 2, "WTA_CHALL": 2,
+                    "ATP_MAIN": 1, "WTA_MAIN": 1}
+FLOW_WINDOW_MIN = 30
+
+
+def flow_state_gauge(S, now=None):
+    """[C-FLOW-STATE 07-08] per-game, per-cat print-rate / flow-state gauge
+    (operator doctrine 2026-07-08: early quiet is VOLUME-conditional, not
+    time-conditional -- the per-game flow-state is the primitive). Read-only
+    over the same local tape the bid-grader uses. States:
+      QUIET   no prints in the window and the lattice is wide
+      WAKING  prints exist OR the spread has tightened to near-open
+      OPEN    sustained prints (rate >= per-cat) AND spread <= per-cat
+    One gauge row per tracked game; one append-once jsonl line per state first
+    reached per session (key carries the boot ts). Thresholds provisional until
+    the early-canvas study fits them."""
+    now = now or time.time()
+    events = {}
+    for tk in set(list(S["fills"].keys())
+                  + [b["tk"] for b in S["open_bids"].values()]):
+        ev = tk.rsplit("-", 1)[0]
+        events.setdefault(ev, set()).add(tk)
+    rows, lines = [], []
+    for ev, tks in sorted(events.items()):
+        cat = cat_of(ev)
+        prints, spreads = [], []
+        for tk in tks:
+            prints += _read_tape_since(tk, now - FLOW_WINDOW_MIN * 60)
+            b = _read_bbo(tk)
+            if b and 0 < b["bid"] < b["ask"]:
+                spreads.append(b["ask"] - b["bid"])
+        rate = round(len(prints) / float(FLOW_WINDOW_MIN), 3)
+        spread = min(spreads) if spreads else None
+        o_rate = FLOW_OPEN_RATE.get(cat, 0.3)
+        o_spr = FLOW_OPEN_SPREAD.get(cat, 2)
+        if rate >= o_rate and spread is not None and spread <= o_spr:
+            state = "OPEN"
+        elif prints or (spread is not None and spread <= o_spr + 2):
+            state = "WAKING"
+        else:
+            state = "QUIET"
+        rows.append({"event": ev, "cat": cat, "rate": rate, "spread": spread,
+                     "prints": len(prints), "state": state})
+        lines.append({"key": "flow:%d:%s:%s" % (int(S["boot"]), ev, state),
+                      "type": "flow_state", "ts": now, "event": ev, "cat": cat,
+                      "state": state, "prints_per_min": rate, "spread": spread,
+                      "window_min": FLOW_WINDOW_MIN, "provisional": True})
+    return rows, lines
+
+
 def grade_resting_bids(S, aim, goal):
     """Tape-grade every open resting entry bid. Classes (honest, per doctrine):
     FLOW_AT_LEVEL  prints AT/below our bid but we're unfilled -> queue problem
@@ -527,7 +583,7 @@ def forensic_check(all_lines, S, log_path):
 
 
 def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, chf=None,
-                 chf_cum=(0, 0)):
+                 chf_cum=(0, 0), flow_rows=None):
     v = [x for x in all_lines if x.get("type") == "violation"]
     fills = [x for x in all_lines if x.get("type") == "fill"]
     pats = [x for x in all_lines if x.get("type") == "pattern"]
@@ -603,6 +659,20 @@ def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, ch
                      f"| **{r['achievable']}** | {r['goal']} | {r['vs_goal']:+d} |")
     else:
         L.append("no open half-pairs")
+    flow_rows = flow_rows or []
+    _fs_ct = defaultdict(int)
+    for fr in flow_rows:
+        _fs_ct[fr["state"]] += 1
+    L += ["", f"## FLOW-STATE — {len(flow_rows)} tracked game(s) "
+              f"({dict(_fs_ct) or '{}'}; thresholds PROVISIONAL, refit by the early-canvas study; "
+              f"window {FLOW_WINDOW_MIN}m)"]
+    if flow_rows:
+        L += ["| game | cat | prints/min | spread | state |", "|---|---|---|---|---|"]
+        for fr in sorted(flow_rows, key=lambda x: (x["state"], x["event"])):
+            L.append(f"| {fr['event'].replace('KX','')[:34]} | {fr['cat']} | {fr['rate']} "
+                     f"| {fr['spread'] if fr['spread'] is not None else '—'} | **{fr['state']}** |")
+    else:
+        L.append("no tracked games")
     L += ["", f"## PATTERNS (sub-B) — {len(pats)}"]
     for p in sorted(pats, key=lambda y: y["ts"]):
         L.append(f"- {p['pattern']}: {p.get('ticker') or p.get('event')} "
@@ -647,6 +717,10 @@ def cycle(n):
     bid_grades = grade_resting_bids(S, aim, goal)
     chf = could_have_filled(S, goal)
     items = analyze(S, aim, goal, bid_grades)
+    # [C-FLOW-STATE 07-08] per-game gauge rows into the status page; state
+    # transitions into the jsonl through the same append-once dedup below.
+    flow_rows, flow_lines = flow_state_gauge(S)
+    items += flow_lines
     # dedup against the committed jsonl (the jsonl IS the state) + cumulative
     # repriceable counters (the liquid_repost re-arm evidence base)
     seen = set()
@@ -671,7 +745,7 @@ def cycle(n):
             cum_rp[0 if it.get("repriceable") else 1] += 1
     forensics = forensic_check(items, S, log_path)
     changed = write_status(S, items, log_path, n, forensics, bid_grades, chf,
-                           chf_cum=tuple(cum_rp))
+                           chf_cum=tuple(cum_rp), flow_rows=flow_rows)
     nv = sum(1 for x in new if x.get("type") == "violation")
     res = "no-change"
     if new or changed or forensics:

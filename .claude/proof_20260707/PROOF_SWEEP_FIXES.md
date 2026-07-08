@@ -1,6 +1,6 @@
 # OUTCOME PROOF (C46, two-lane) — sweep containment (ITM-exit-take + no-rebuy-after-cash + continuous audit)
 
-**Candidate SHA: `a02a0d78`** (three containment diffs from tonight's emergency sweep; S-per-leg render change rides doc-side).
+**Candidate SHA: `518764e2`** (re-stamp: proven code SHA `a02a0d78`; the a02a0d78..518764e2 delta is READ-ONLY ANALYSIS PRODUCERS only — slate_ledger v2 pair (S-per-leg render), walk_repost_model.py — zero live_v4/config delta, verified by pathspec diff) (three containment diffs from tonight's emergency sweep; S-per-leg render change rides doc-side).
 
 ## Prior art (C45)
 Tonight's sweep evidence (`.claude/sweep_20260707/SWEEP_TABLE.txt` — 4 naked legs, per-leg chains); the CLAHER `exit_unpostable_itm` counter (the flag class that turned out to be live nakedness); C-DUP-GUARD/C-NO-REBUY lineage (POTFEL same-pass, TIKCHO cross-lifecycle); C47/C49 (the audit this extends); board-queued "post-only-cross hole" (this closes it — same-shape build check done).

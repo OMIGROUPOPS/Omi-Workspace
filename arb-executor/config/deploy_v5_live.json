@@ -87,5 +87,15 @@
   "tape_gated_abandon": true,
   "version": "v4_2026-05-25",
   "walk_cap_honest_anchor": false,
-  "walk_cap_honest_by_cat": {"ITF_W": 20, "ITF_M": 14, "ATP_CHALL": 2, "WTA_CHALL": 2, "ATP_MAIN": 1, "WTA_MAIN": 1}
+  "walk_cap_honest_by_cat": {
+    "ITF_W": 20,
+    "ITF_M": 14,
+    "ATP_CHALL": 2,
+    "WTA_CHALL": 2,
+    "ATP_MAIN": 1,
+    "WTA_MAIN": 1
+  },
+  "fused_gun_enabled": true,
+  "gun_poll_sec": 20,
+  "gun_divergence_move_cents": 10
 }

@@ -1440,6 +1440,24 @@ class LiveV3:
         # match_live_detected / _sustained_flow_live / the cancel (INVARIANT 1 + 2).
         self.monotonic_cut_enabled = bool(self.config.get("monotonic_cut_enabled", False))
         self.monotonic_cut_active = bool(self.config.get("monotonic_cut_active", False))
+        # [C-FUSED-GUN 2026-07-08] gun = FIRST credible signal, priority: (1) TE
+        # scoreboard in-play transition (observed_starts, the C-RETENTION-2 feed);
+        # (2) schedule feed status=="live" (the honest matcher's row -- carried in
+        # _pm_honest since C-PM-CLOCK, UNUSED until now); (3) tape latch
+        # (_is_match_live, unchanged -- it stamps itself); (4) price-divergence
+        # tell, flag-grade, ONLY past the scheduled start on every known clock
+        # (premarket divergence is the FERCER false-cancel class -- E113 lesson).
+        # A fire adds the event to _events_live (every downstream consumer --
+        # resting-cancel, grace, ride-live, route gating -- already keys on it)
+        # and stamps gun_source. NO new buy placement after ANY source fires
+        # (place_order chokepoint; grace governs exits only -- standing doctrine;
+        # closes POST_GUN_FORENSIC's 80-buys-after-latch class).
+        self.fused_gun = bool(self.config.get("fused_gun_enabled", True))
+        self.gun_poll_sec = int(self.config.get("gun_poll_sec", 20))
+        self.gun_divergence_move_cents = int(self.config.get("gun_divergence_move_cents", 10))
+        self._gun_state: Dict[str, dict] = {}   # et -> {"ts","source","confirms",...}
+        self._gun_feed_watermark = ""           # observed_starts inserted_at cursor
+        self._gun_feed_err_ts = 0.0
         self._shutdown_requested = False
         # [C-ERROR-TRIPWIRE] 2026-07-04: a TypeError storm (duplicate _sibling_ticker
         # def) killed the routing loop every turn for 8 HOURS before a human read the
@@ -3172,6 +3190,23 @@ class LiveV3:
                         "price": price, "count": count,
                         "tts_hours": round(_hzt / 3600.0, 2)}, ticker=ticker)
                 return "", {"_error": "conception_horizon"}
+        # [C-FUSED-GUN 2026-07-08] NO new buy placement after ANY gun source
+        # fires -- grace governs exits only (standing doctrine). ALL buys, maker
+        # AND deliberate taker: a fired gun means the match is live; there is no
+        # legitimate NEW buy (closes POST_GUN_FORENSIC's 80-buys-after-latch
+        # class). Sells untouched. Dedup-logged per ticker per boot.
+        if action == "buy" and getattr(self, "fused_gun", False):
+            _g = getattr(self, "_gun_state", {}).get(ticker.rsplit("-", 1)[0])
+            if _g is not None:
+                _gs = self.__dict__.setdefault("_gun_refused_logged", set())
+                if ticker not in _gs:
+                    _gs.add(ticker)
+                    self._log("gun_buy_refused", {
+                        "price": price, "count": count,
+                        "gun_source": _g.get("source"),
+                        "since_min": round((time.time() - _g.get("ts", 0)) / 60.0, 1),
+                    }, ticker=ticker)
+                return "", {"_error": "gun_fired"}
         # Position accumulation guard: cap total buy exposure per ticker
         if action == "buy":
             target_max = self.config["sizing"]["entry_contracts"]
@@ -4633,6 +4668,14 @@ class LiveV3:
         tts = (st - now) if st else None
         if et in self._events_live:
             if tts is not None and tts > LIVE_DETECT_TTS_FLOOR_SEC:
+                # [C-FUSED-GUN] an EXTERNAL-truth gun (scoreboard/schedule says
+                # in-play) can never be unlatched by tape quiet against a clock
+                # that says premarket -- the clock is the lying party (EKSLUX:
+                # legacy 7:00pm vs true 3:50pm). Tape-latch guns keep the
+                # counter-evidence unlatch unchanged.
+                _g = getattr(self, "_gun_state", {}).get(et)
+                if _g and _g.get("source") in ("te_scoreboard", "schedule_live"):
+                    return True
                 qcut = now - LIVE_DETECT_UNLATCH_QUIET_SEC
                 quiet = not any(t >= qcut
                                 for tk in self.event_tickers.get(et, ())
@@ -4737,7 +4780,162 @@ class LiveV3:
             "window_sec": LIVE_DETECT_WINDOW_SEC, "signal": "volume_burst",
             "stage1_age_sec": round(now - t0, 1),
             "tts_min": (round(tts / 60.0, 1) if tts is not None else None)})
+        # [C-FUSED-GUN] the tape latch is fused source (3); stamp it (idempotent
+        # -- if an external source already fired, this logs a confirm instead).
+        try:
+            self._gun_stamp(et, "tape_latch", {"trades_in_window": recent})
+        except Exception:
+            pass
         return True
+
+    # ------------------------------------------------------------------
+    # [C-FUSED-GUN 2026-07-08] the fused gun: first credible signal wins
+    # ------------------------------------------------------------------
+    def _gun_stamp(self, et, source, detail=None):
+        """First credible signal fires the gun for an event: stamps gun_source,
+        adds the event to _events_live (all live-handling consumers key on it),
+        logs gun_fired. Later DIFFERENT sources log gun_source_confirm with the
+        inter-source delta (the disagreement record). Returns True on the fire."""
+        now = time.time()
+        g = self._gun_state.get(et)
+        if g is not None:
+            if source != g.get("source") and source not in g.get("confirms", ()):
+                g.setdefault("confirms", []).append(source)
+                self._log("gun_source_confirm", {
+                    "event": et, "source": source, "first_source": g.get("source"),
+                    "delta_sec": round(now - g.get("ts", now), 1), **(detail or {})})
+            return False
+        st = getattr(self, "event_start_time", {}).get(et)
+        hz = (getattr(self, "_pm_honest", {}) or {}).get(et) or {}
+        hst = hz.get("start_ts")
+        self._gun_state[et] = {"ts": now, "source": source}
+        self._events_live.add(et)
+        self._log("gun_fired", {
+            "event": et, "source": source,
+            "tts_legacy_min": (round((st - now) / 60.0, 1) if st else None),
+            "tts_honest_min": (round((hst - now) / 60.0, 1) if hst else None),
+            **(detail or {})})
+        return True
+
+    def _read_observed_starts(self):
+        """Sync sqlite read of the C-RETENTION-2 feed (runs in the executor).
+        Read-only URI + short timeout: the collector owns the write lock; a
+        locked/failed read returns [] and the poll retries next cadence."""
+        import sqlite3
+        db = str(Path(__file__).resolve().parent / "tennis.db")
+        wm = self._gun_feed_watermark
+        if not wm:
+            wm = (datetime.now(ET) - timedelta(hours=3)).strftime("%Y-%m-%d %H:%M:%S")
+            self._gun_feed_watermark = wm
+        con = sqlite3.connect("file:%s?mode=ro" % db, uri=True, timeout=1.5)
+        try:
+            rows = con.execute(
+                "SELECT te_match_id, player1, player2, kalshi_ticker,"
+                " first_inplay_at, inserted_at FROM observed_starts"
+                " WHERE inserted_at > ? ORDER BY inserted_at LIMIT 200",
+                (wm,)).fetchall()
+        finally:
+            con.close()
+        if rows:
+            self._gun_feed_watermark = max(r[5] for r in rows)
+        return rows
+
+    def _gun_match_te_row(self, p1, p2, kcode):
+        """Match a TE scoreboard row to exactly one tracked event by leg codes.
+        Candidate codes = the feed's fuzzy kalshi code + 3-letter prefixes of
+        every name token >=3 chars. Both-legs-matched beats single; anything
+        non-unique is AMBIGUOUS (logged, never fired -- a wrong gun cancels a
+        good book)."""
+        codes = set()
+        if kcode:
+            codes.add(kcode.upper())
+        for nm in (p1 or "", p2 or ""):
+            for part in nm.replace(".", " ").replace(",", " ").split():
+                if len(part) >= 3:
+                    codes.add(part[:3].upper())
+        if not codes:
+            return None, "no_codes"
+        hits = []
+        for et, tks in self.event_tickers.items():
+            legs = {t.rsplit("-", 1)[1].upper() for t in tks if "-" in t}
+            n = len(codes & legs)
+            if n:
+                hits.append((et, n))
+        two = [et for et, n in hits if n >= 2]
+        if len(two) == 1:
+            return two[0], "both_legs"
+        if len(hits) == 1:
+            return hits[0][0], "one_leg"
+        return None, ("ambiguous:%d" % len(hits)) if hits else "no_hit"
+
+    async def _gun_poll(self):
+        """[C-FUSED-GUN] poll the non-tape gun sources (the tape latch stamps
+        itself inside _is_match_live). Wholly additive: errors log and skip."""
+        now = time.time()
+        # ---- source (1): TE scoreboard in-play transitions
+        rows = []
+        try:
+            loop = asyncio.get_running_loop()
+            rows = await loop.run_in_executor(None, self._read_observed_starts)
+        except Exception as e:
+            if now - self._gun_feed_err_ts > 3600:
+                self._gun_feed_err_ts = now
+                self._log("gun_feed_error", {"src": "observed_starts",
+                                             "err": str(e)[:160]})
+        for (mid, p1, p2, kcode, first_at, _ins) in rows:
+            try:
+                te_ts = datetime.strptime(
+                    first_at, "%Y-%m-%d %H:%M:%S").replace(tzinfo=ET).timestamp()
+            except Exception:
+                te_ts = None
+            et, how = self._gun_match_te_row(p1, p2, kcode)
+            if et is None:
+                if how.startswith("ambiguous"):
+                    self._log("gun_feed_ambiguous", {
+                        "te_match_id": mid, "p1": p1, "p2": p2,
+                        "kcode": kcode, "how": how})
+                continue
+            det = {"te_match_id": mid, "match_how": how,
+                   "te_first_inplay": first_at,
+                   "feed_lag_sec": (round(now - te_ts, 1) if te_ts else None)}
+            g = self._gun_state.get(et)
+            if g is None:
+                self._gun_stamp(et, "te_scoreboard", det)
+            elif not g.get("truth_logged"):
+                # gun already fired by another source: the scoreboard row IS the
+                # independent truth -- bank the delta (the standing tripwire).
+                g["truth_logged"] = True
+                self._log("gun_truth_delta", {
+                    "event": et, "gun_source": g.get("source"),
+                    "truth_src": "te_scoreboard",
+                    "delta_min": (round((g.get("ts", now) - te_ts) / 60.0, 1)
+                                  if te_ts else None), **det})
+        # ---- source (2): schedule feed status == live (per-match honest row)
+        for et in list(self.event_tickers):
+            if et in self._gun_state:
+                continue
+            hz = (getattr(self, "_pm_honest", {}) or {}).get(et) or {}
+            if hz.get("status") == "live":
+                self._gun_stamp(et, "schedule_live", {
+                    "sched_source": hz.get("source"),
+                    "sched_method": hz.get("method")})
+        # ---- source (4): price-divergence tell (flag-grade, LAST resort).
+        # ONLY past the scheduled start on the best-known clock (premarket
+        # divergence = the FERCER false-cancel class) and only inside a 6h
+        # window (boot on stale events must not mass-fire).
+        for et in list(self.event_tickers):
+            if et in self._gun_state:
+                continue
+            hz = (getattr(self, "_pm_honest", {}) or {}).get(et) or {}
+            eff = hz.get("start_ts") or getattr(self, "event_start_time", {}).get(et)
+            if not eff or (eff - now) > 0 or (now - eff) > 6 * 3600:
+                continue
+            try:
+                mv = self._max_ref_move(et)
+            except Exception:
+                mv = 0
+            if mv >= self.gun_divergence_move_cents:
+                self._gun_stamp(et, "price_divergence", {"max_ref_move": mv})
 
     def _fv_burst_ready(self, et, now):
         """[C-FV-BURST RE-GATE] OBSERVE-ONLY real-start trigger for the FV snapshot,
@@ -8854,6 +9052,46 @@ class LiveV3:
         await self._book_v4_entry_fill(tk, pos, qty, avg, "adopted",
                                        source="reconcile_adoption")
 
+    def _load_order_fingerprints(self):
+        """[C-ORPHAN-FINGERPRINT 2026-07-08] The ORPHAN CLASS fix (LIVING_VAULT
+        07-08 headstone): a restart emptied _bot_order_ids, so the bot misread
+        its OWN pre-restart orders as operator-manual and every control loop
+        exempted them (11/11 direct-API sweep; EKSLUX manual-attribution fills).
+        The jsonl IS the persistent registry -- every successful placement logs
+        order_placed at the single chokepoint. Scan the two most-recent jsonl
+        files at boot; resting orders matching this lineage re-adopt as
+        BOT-OWNED in the reconcile orphan pass (before the first conception
+        pass -- reconcile precedes the boot audit precedes routing)."""
+        fps = {}
+        try:
+            files = sorted(LOG_DIR.glob("live_v3_*.jsonl"),
+                           key=lambda p: p.stat().st_mtime)[-2:]
+        except OSError:
+            files = []
+        for p in files:
+            try:
+                with open(p, encoding="utf-8", errors="replace") as fh:
+                    for line in fh:
+                        if '"order_placed"' not in line:
+                            continue
+                        try:
+                            d = json.loads(line)
+                        except ValueError:
+                            continue
+                        det = d.get("details") or {}
+                        oid = det.get("order_id")
+                        if oid:
+                            fps[oid] = {"ts": d.get("ts_epoch", 0.0),
+                                        "ticker": d.get("ticker", ""),
+                                        "price": det.get("price", 0),
+                                        "action": det.get("action", "")}
+            except OSError:
+                continue
+        self._order_fingerprints = fps
+        self._readopt_count = 0
+        self._log("order_fingerprints_loaded", {
+            "n": len(fps), "files": [p.name for p in files]})
+
     async def _post_boot_book_audit(self, context="boot"):
         """[C47-ENFORCE] Post-boot book audit, assert-and-halt. Within 5 min of
         every process start (deploy or crash-recover): fresh PAGINATED pull of
@@ -8977,6 +9215,28 @@ class LiveV3:
                                   "tts_hours": round(_hzt / 3600.0, 1)})
                     row["flag"] = (row.get("flag", "")
                                    + "+conception_beyond_horizon").lstrip("+")
+            # [C-ORPHAN-FINGERPRINT 2026-07-08] assert: ZERO bot-fingerprinted
+            # resting buys outside bot tracking. manual-classified = the orphan
+            # class alive; untracked = a leak state every healer skips. Either
+            # FAILS the audit (conception halt until re-adoption heals it on
+            # the next reconcile pass).
+            _fps = getattr(self, "_order_fingerprints", None) or {}
+            if _fps and buys.get(tk):
+                _mb = getattr(self, "manual_bids", None) or {}
+                for r in buys[tk]:
+                    if r["oid"] in _fps:
+                        if _mb.get(tk, {}).get("order_id") == r["oid"]:
+                            failures.append({"tk": tk,
+                                             "check": "fingerprint_in_manual",
+                                             "oid": r["oid"][:12]})
+                            row["FAIL"] = (row.get("FAIL", "")
+                                           + "+fingerprint_in_manual").lstrip("+")
+                        elif tk not in self.positions:
+                            failures.append({"tk": tk,
+                                             "check": "fingerprint_untracked",
+                                             "oid": r["oid"][:12]})
+                            row["FAIL"] = (row.get("FAIL", "")
+                                           + "+fingerprint_untracked").lstrip("+")
             table.append(row)
         verdict = "PASS" if not failures else "FAIL"
         self._log("post_boot_audit", {
@@ -9320,6 +9580,36 @@ class LiveV3:
         for tk, o in orphan_orders:
             if o["action"] == "buy":
                 oid = o.get("order_id", "")
+                # [C-ORPHAN-FINGERPRINT 2026-07-08] re-claim by FINGERPRINT, not
+                # memory: a resting buy whose order_id matches our jsonl
+                # order_placed lineage is OURS -- re-adopt as a bot-owned
+                # entry_resting Position (full lifecycle: walks, reshuffles,
+                # cancels, grace, audits) instead of manual-classifying it.
+                # Only true unknowns fall through to the C-COPILOT manual path.
+                _fp = getattr(self, "_order_fingerprints", {}).get(oid)
+                if _fp is not None and _fp.get("action", "buy") == "buy" \
+                        and tk not in self.positions:
+                    _ret = tk.rsplit("-", 1)[0]
+                    self.positions[tk] = Position(
+                        ticker=tk, event_ticker=_ret,
+                        category=self.ticker_category.get(tk, "?"),
+                        direction="", cell_name="", cell_cfg={},
+                        entry_price=int(o["price"]), entry_order_id=oid,
+                        entry_posted_ts=float(_fp.get("ts") or time.time()),
+                        phase="entry_resting",
+                        match_start_ts=float(self.event_start_time.get(_ret, 0.0)),
+                        play_type="v4_fingerprint_readopt", is_v4=True,
+                        entry_mode="resting_maker")
+                    getattr(self, "_bot_order_ids", set()).add(oid)
+                    getattr(self, "_bot_order_tickers", set()).add(tk)
+                    _mb = getattr(self, "manual_bids", None)
+                    if _mb:
+                        _mb.pop(tk, None)
+                    self._readopt_count = getattr(self, "_readopt_count", 0) + 1
+                    self._log("orphan_readopted_fingerprint", {
+                        "price": o["price"], "qty": o["qty"], "order_id": oid,
+                        "posted_ts": _fp.get("ts")}, ticker=tk)
+                    continue
                 # [C-COPILOT] adopted-as-foreign: an unrecognized resting buy
                 # (id not in the bot's own registry) is the OPERATOR'S --
                 # tracked, left resting, observed once. A bot-registry id in
@@ -9543,11 +9833,34 @@ class LiveV3:
         except Exception:
             self._prev_book_snapshot = None
 
+        # [C-ORPHAN-FINGERPRINT 2026-07-08] load the persistent order lineage
+        # BEFORE the boot reconcile so its orphan pass re-adopts our own
+        # pre-restart orders instead of manual-classifying them. Fail-soft:
+        # no fingerprints -> reconcile behaves exactly as before.
+        try:
+            self._load_order_fingerprints()
+        except Exception as _fpe:
+            self._order_fingerprints = {}
+            self._log("order_fingerprints_error", {"err": str(_fpe)[:200]})
+
         # Reconcile: load existing positions and resting orders
         await self.reconcile()
 
         # v4: rebuild any persisted resting bids reconcile didn't link (STEP 5)
         self._load_v4_resting()
+
+        # [C-ORPHAN-FINGERPRINT] boot close-out line: adopted-by-fingerprint
+        # count vs the gate-banked snapshot, reconciled (the dispatch's proof).
+        try:
+            _snap_orders = len(((self._prev_book_snapshot or {}).get("buys") or {})) \
+                if isinstance(getattr(self, "_prev_book_snapshot", None), dict) else None
+            self._log("fingerprint_readopt_summary", {
+                "n_fingerprints": len(getattr(self, "_order_fingerprints", {}) or {}),
+                "n_readopted": getattr(self, "_readopt_count", 0),
+                "n_manual_now": len(getattr(self, "manual_bids", None) or {}),
+                "banked_snapshot_buy_tickers": _snap_orders})
+        except Exception:
+            pass
 
         # [C47-ENFORCE] post-boot book audit, assert-and-halt. Fail-closed: an
         # audit that cannot run is a failed audit -- conceptions halt until a
@@ -9795,6 +10108,17 @@ class LiveV3:
                 if now - last_stale_check > STALE_CHECK_INTERVAL:
                     await self.validate_resting_buys()
                     last_stale_check = now
+
+                # [C-FUSED-GUN 2026-07-08] poll the non-tape gun sources
+                # (TE scoreboard / schedule status / divergence tell); the
+                # tape latch stamps itself inside _is_match_live.
+                if (getattr(self, "fused_gun", False)
+                        and now - getattr(self, "_last_gun_poll", 0) > self.gun_poll_sec):
+                    self._last_gun_poll = now
+                    try:
+                        await self._gun_poll()
+                    except Exception as _ge:
+                        self._log("gun_poll_error", {"err": str(_ge)[:200]})
 
                 # Reconcile every 60s — auto-post exits for naked positions
                 if now - last_reconcile > 60:

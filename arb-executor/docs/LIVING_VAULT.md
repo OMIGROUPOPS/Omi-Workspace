@@ -79,6 +79,9 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-08 · POST-FILL MOVE QUOTE: our fills mostly stand in front of REPRICES, not divots — the aim's conditioning variable named
+Era W1-filled population (n=276, tick tape, strict classifier): decisive fills split **divot 17-26% / reprice 48-67%** per cat (ITF_W worst: two-thirds of decisive fills are the market moving through us). **REPRICE → band-unreachable 65-81%** (the no-bueno class costed); **DIVOT → band touched at 2-3× the reprice rate** (gold pattern confirmed; tonight's WEISUN-SUN dipped 1¢, snapped, cashed); ITF_W's strongest class is **NO_UNDERCUT (86% band touch)** — strength at the fill predicts the band. Undercuts arrive in 0.1-0.3 min — the fill IS the move's leading edge. **The aim build inherits: deepening the dip alone buys more reprices cheaper; the selector is ask-hold + sibling-chain state (the ex-self fields already log it every decision), not depth.** Tonight's 12 named in the doc (6R/2D/2N/2A). `.claude/sweep_20260707/POST_FILL_MOVE_20260708.md`.
+
 ### 2026-07-08 (preflight) · ENTRY ROLL + BAND CLAMP + OVERNIGHT FREEZE
 Final-deploy cohort rolled per ticker (`.claude/sweep_20260707/ENTRY_ROLL_20260708_PREFLIGHT.txt`): 12 fills under the 23:12 boot, **every one exit qty=held** (the sweep-era machinery holding); 129 resting overnight entries — 8 LOUD (tape-latch-only liveness, no schedule anchor), 11 out-of-band bids (≤4¢ noise-goals + ≥95¢ par-adjacent, ADAIMA/CAVPLO/HARMAI/KUBSHK/MANKAV/VAJKAR/BOSBOY class) CANCELLED and **C-BAND-CLAMP deployed**: no maker buy rests outside [5,95) — the audit's flag class becomes enforcement. NASLEE-LEE the roll's lesson: +9 off aim, below_chain post, own low 1¢ printed after (in-play knife). **FREEZE: no deploys/restarts until the morning checkpoint; audits/shadows/accumulator run.**
 

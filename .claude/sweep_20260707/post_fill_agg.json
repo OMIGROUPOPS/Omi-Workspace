@@ -1,0 +1,68 @@
+{
+ "ATP_CHALL": {
+  "n": 76,
+  "DIVOT": 10,
+  "REPRICE": 27,
+  "NO_UNDERCUT": 8,
+  "AMBIG": 31,
+  "undercut_med_min": 0.2,
+  "band_touch|DIVOT": "3/8",
+  "band_touch|REPRICE": "5/27",
+  "band_touch|NO_UNDERCUT": "1/8"
+ },
+ "ATP_MAIN": {
+  "n": 6,
+  "DIVOT": 2,
+  "REPRICE": 0,
+  "NO_UNDERCUT": 0,
+  "AMBIG": 4,
+  "undercut_med_min": 4.5,
+  "band_touch|DIVOT": "0/1",
+  "band_touch|REPRICE": "-",
+  "band_touch|NO_UNDERCUT": "-"
+ },
+ "ITF_M": {
+  "n": 90,
+  "DIVOT": 13,
+  "REPRICE": 24,
+  "NO_UNDERCUT": 13,
+  "AMBIG": 40,
+  "undercut_med_min": 0.2,
+  "band_touch|DIVOT": "9/13",
+  "band_touch|REPRICE": "6/24",
+  "band_touch|NO_UNDERCUT": "3/13"
+ },
+ "ITF_W": {
+  "n": 74,
+  "DIVOT": 8,
+  "REPRICE": 31,
+  "NO_UNDERCUT": 7,
+  "AMBIG": 28,
+  "undercut_med_min": 0.1,
+  "band_touch|DIVOT": "4/8",
+  "band_touch|REPRICE": "11/31",
+  "band_touch|NO_UNDERCUT": "6/7"
+ },
+ "WTA_CHALL": {
+  "n": 24,
+  "DIVOT": 1,
+  "REPRICE": 3,
+  "NO_UNDERCUT": 8,
+  "AMBIG": 12,
+  "undercut_med_min": 0.3,
+  "band_touch|DIVOT": "0/1",
+  "band_touch|REPRICE": "1/3",
+  "band_touch|NO_UNDERCUT": "3/7"
+ },
+ "WTA_MAIN": {
+  "n": 6,
+  "DIVOT": 1,
+  "REPRICE": 0,
+  "NO_UNDERCUT": 0,
+  "AMBIG": 5,
+  "undercut_med_min": 5.9,
+  "band_touch|DIVOT": "0/1",
+  "band_touch|REPRICE": "-",
+  "band_touch|NO_UNDERCUT": "-"
+ }
+}

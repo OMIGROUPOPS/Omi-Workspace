@@ -608,3 +608,9 @@ written 2026-07-06 02:41:30 PM ET by live_validation_loop (read-only). Patch con
 
 ## Code path
 entry leg2: _v4_entry_anchor leg2_reshuffle branch (~2073); walk re-aim: _reshuffle_leg2_target (~1952); completion: _completion_target combined ceiling; pair cap: _paired_basis_ok (T50, cap 99). combined_goal=97.
+
+
+---
+## RACE-CLASS STAMP — TANCHE 98 (2026-07-07 20:21 ET; stamped by the emergency sweep thread)
+TAN filled 47 (bot maker, 20:18:01) -> CHE **adopted at 51** 3m08s later (`kalshi_status: adopted, play_type: v4_manual, source: reconcile_adoption`) -> combined 98 > 97.
+**Sub-class: `reaim_sibling_race` / UNTRACKED-SIBLING FILL POST-BASIS** — the C42 re-aim can only move bot-tracked orders; CHE's resting order was manual/orphan (adoption path), so the bound never reached it before the fill. Counter: races +1 (this class), guards' mechanisms unchanged (the reaim DID fire on tracked legs tonight — 78 reaim events). Detector standing: monitor `combined_over_goal` ZT (caught it live, cycle ~168-class) + adoption `attribution` field.

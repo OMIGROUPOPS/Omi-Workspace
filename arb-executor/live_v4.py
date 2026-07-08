@@ -4096,6 +4096,12 @@ class LiveV3:
                 sib = self._sibling_ticker(tk, et)
                 if not sib:
                     _skip("sibling_unknown"); continue   # non-tennis / pre-discovery
+                # [C-NO-REBUY-AFTER-CASH 07-07] a cashed leg is a CLOSED story --
+                # its qty=0 read as "missing sibling" and the sweep re-conceived
+                # fresh 5-lots on TIKCHO/KUSTAG within a minute of their exits.
+                if (sib in self.__dict__.get("_session_exited", set())
+                        or tk in self.__dict__.get("_session_exited", set())):
+                    _skip("pair_cashed_this_session"); continue
                 if pos_map.get(sib, {}).get("qty", 0) != 0:
                     _skip("sibling_position"); continue  # pair (or partial) exists
                 if any(o.get("action") == "buy" for o in ord_map.get(sib, [])):
@@ -5565,8 +5571,19 @@ class LiveV3:
 
         oid, resp = await self.place_order(tk, "sell", "yes", exit_target, filled)
         if not oid:
+            # [C-ITM-EXIT-TAKE 07-07, sweep class 1] "post only cross" = the band
+            # is IN THE MONEY (bid >= band). The old same-params retry 400'd again
+            # -> v4_exit_fatal -> the leg stayed naked past every healer (ISOTOM
+            # 16c entry, band 21, bid above: naked 8h; NASLEE same -- tonight's
+            # sweep). An ITM exit crossing realizes >= band: qty-mechanical
+            # correctness, not exit-strategy work (band level unchanged).
+            _cross = "post only cross" in str((resp or {}).get("_body", ""))
             await asyncio.sleep(1)
-            oid, resp = await self.place_order(tk, "sell", "yes", exit_target, filled)
+            oid, resp = await self.place_order(tk, "sell", "yes", exit_target,
+                                               filled, post_only=not _cross)
+            if oid and _cross:
+                self._log("itm_exit_taken", {
+                    "exit_price": exit_target, "qty": filled}, ticker=tk)
         if not oid:
             self._log("v4_exit_fatal", {
                 "exit_price": exit_target, "qty": filled,
@@ -6039,6 +6056,12 @@ class LiveV3:
                         if pos.dca_qty > 0 and complete:
                             pos.pnl_cents += (pos.exit_price - pos.dca_price) * pos.dca_qty
                         pnl = pos.pnl_cents
+                        # [C-NO-REBUY-AFTER-CASH 07-07, sweep class 2] a leg that
+                        # CASHED this session is a closed story: mark it so the
+                        # sibling-repost sweep and the book audit refuse/flag any
+                        # re-conception (TIKCHO: exit filled 19, fresh 5-lot bid
+                        # 34s later; KUSTAG same at 80/63 -- tonight's sweep).
+                        self.__dict__.setdefault("_session_exited", set()).add(tk)
                         self._log("exit_filled", {
                             "exit_price": pos.exit_price,
                             "entry_price": pos.entry_price,
@@ -8726,6 +8749,12 @@ class LiveV3:
                 failures.append({"tk": tk, "check": "buy_stack",
                                  "n": len(buys[tk]), "qty": bq})
                 row["FAIL"] = "buy_stack"
+            # [C-NO-REBUY-AFTER-CASH 07-07, sweep class 2] any resting buy on a
+            # leg that CASHED this session = a re-conception on a closed story.
+            if bq > 0 and tk in self.__dict__.get("_session_exited", set()):
+                failures.append({"tk": tk, "check": "post_exit_rebuy",
+                                 "buy_qty": bq})
+                row["FAIL"] = (row.get("FAIL", "") + "+post_exit_rebuy").lstrip("+")
             # conception = a RESTING BUY beyond the lot law; a historical over-lot
             # HOLDING with no buys is the exit-qty assertion's domain, not this
             # one (first live audit false-positived on BARZIN 10-held/0-buys).
@@ -9592,6 +9621,18 @@ class LiveV3:
                         except Exception as _rae:
                             self._log("post_boot_audit_error", {
                                 "err": str(_rae)[:200], "context": "halted_reaudit"})
+                    # [C47-CONTINUOUS 07-07, sweep 1b] the audit was a BOOT gate:
+                    # 19:39 PASS, then 4 legs went naked over the evening with
+                    # nothing re-asserting. Steady cadence every 15 min converts
+                    # it to a continuous invariant (same halt/clear semantics).
+                    elif now - getattr(self, "_last_steady_audit", 0) > 900:
+                        self._last_steady_audit = now
+                        try:
+                            await self._post_boot_book_audit(context="steady_cadence")
+                        except Exception as _sae:
+                            self._conception_halt = True
+                            self._log("post_boot_audit_error", {
+                                "err": str(_sae)[:200], "context": "steady_cadence"})
 
                 # Write own heartbeat
                 try:

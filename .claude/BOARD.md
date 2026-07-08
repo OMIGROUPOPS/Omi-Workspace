@@ -4,8 +4,8 @@
 
 ## SEND-ORDER (operator, 07-08 — the dispatch sequence; nothing jumps the line)
 
-1. ~~Fused gun + orphan fix~~ ✓ **BUILT + DEPLOYING 07-08 night** (`6d84f27e`, one gated deploy; close-out INVALID until tonight's live proof table lands — see IN-FLIGHT)
-2. **Sequential floor recompute** (queued #15)
+1. ~~Fused gun + orphan fix~~ ✓ **DEPLOYED 07-08 night** (`6d84f27e`; live proof table still owed tonight — see IN-FLIGHT)
+2. ~~Sequential floor recompute~~ ✓ **DONE 07-08 night** (`.claude/seqfloor_20260708/SEQUENTIAL_FLOOR.md`: ITF implied combined med 79; edge is FAV-side, dog = timing not depth; S-line refit proposals await operator ratification; AIM_V2 side-conditional re-anchor note filed)
 3. **Bell recovery** (historical missed-bell class; the fused gun covers forward — this item is the backfill/recovery pass)
 4. **BOT_DOWN channel** — *awaiting operator word on channel choice*
 5. **Out-of-process exit checker** (audit-twin lane)
@@ -58,7 +58,7 @@
 12. **DECISION-INPUT CONFORMANCE pre-arm gate** — before ANY arm (AIM_V2 ramp, walk-cap honest-anchor, expression clamp), one real decision's FULL input vector pasted verbatim from the jsonl — prices / cat / time-bin / non-self chain / divot-conditioning / flow-state — any missing input BLOCKS the arm. (Operator, 07-08 close-out.)
 13. ~~ORPHAN-CLASS FIX~~ — **SHIPPED 07-08 night (`6d84f27e` C-ORPHAN-FINGERPRINT, with the fused gun)**: boot re-adopts by jsonl order_placed lineage; C47 asserts zero fingerprinted orders in manual class. Regression watch: `fingerprint_in_manual` / `fingerprint_untracked` / `orphan_readopted_fingerprint` at every restart.
 14. **LYING-CLOCK class** — GILOBR exhibit (lied SHORT); EKSLUX 07-08 the LONG-side exhibit (7:00 pm vs true 3:50 pm — in-play fills ledgered as W1 scalps). The horizon bound (and every tts gate, and the W1/W2 window stamps) is only as good as its anchor. First live re-materialization proof 07-08 evening: 5 sibling-repost completions re-placed beyond T-8h through a blind chokepoint refusal. Folds with #11 + the staged C-KALSHI-OCC lane.
-15. **SEQUENTIAL FLOOR recompute** — min(fav) + min(dog) at INDEPENDENT times in W1, per cat per hour-bin — the doctrine-true achievable number (0A: each leg its own divot); the simultaneous-joint floor understated liquid cats. S-lines and model targets refit on it. (Operator, 07-08; SEND-ORDER #2.)
+15. ~~SEQUENTIAL FLOOR recompute~~ — **DONE 07-08 night** (`.claude/seqfloor_20260708/SEQUENTIAL_FLOOR.md`, 2,435 pairs): ITF implied 79 med (premium over simultaneous 4¢ med / 10¢+ on a quarter); edge is FAV-side (dog med 0 — timing not depth; dog floor T−9..−17m, fav divot T−31..−70m, fav-first 2:1); mains still par-locked. **Proposed S-lines ITF 79/79, ATP_CHALL 92 — AWAITING OPERATOR RATIFICATION**; AIM_V2 side-conditional re-anchor noted in the doc.
 16. **CORRIDOR FLAG** — any lifecycle crossing W1 → corridor throws a loud board flag, weighted LOUDER for non-ITF (corridor crossings are rarer and more diagnostic there).
 17. **EXIT PROVENANCE verification** — which cats run native-derived vs Challenger-borrowed exit tables: verify deployed config, pin the answer in FOUNDATIONS, label borrowed bands wherever they grade (a borrowed band grading a native cat is a silent contamination).
 

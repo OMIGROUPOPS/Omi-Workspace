@@ -1,0 +1,518 @@
+{
+ "event": "KXITFMATCH-26JUL09SNIAND",
+ "fire_epoch": 1783545972.25,
+ "jsonl_events": [
+  {
+   "ts": "2026-07-08 03:13:43 PM ET",
+   "ep": 1783538023.2785268,
+   "event": "schedule_match",
+   "ticker": "",
+   "details": {
+    "event": "KXITFMATCH-26JUL09SNIAND",
+    "method": "kalshi_schedule_primary",
+    "start_time": "2026-07-09T09:00:00-04:00"
+   }
+  },
+  {
+   "ts": "2026-07-08 03:14:43 PM ET",
+   "ep": 1783538083.4943607,
+   "event": "kalshi_occ_delta",
+   "ticker": "",
+   "details": {
+    "event": "KXITFMATCH-26JUL09SNIAND",
+    "category": "ITF_M",
+    "resolver_source": "kalshi_primary",
+    "resolver_start": "2026-07-09T09:00:00-04:00",
+    "kalshi_occurrence": "2026-07-09T09:00:00-04:00",
+    "delta_sec": 0.0
+   }
+  },
+  {
+   "ts": "2026-07-08 03:14:43 PM ET",
+   "ep": 1783538083.4944234,
+   "event": "pm_clock_shadow",
+   "ticker": "",
+   "details": {
+    "event": "KXITFMATCH-26JUL09SNIAND",
+    "category": "ITF_M",
+    "legacy_start": "2026-07-09T09:00:00-04:00",
+    "legacy_source": "kalshi_primary",
+    "honest_start": "2026-07-09T03:00:00-04:00",
+    "honest_status": "scheduled",
+    "honest_method": "direct_6char",
+    "delta_min": 360.0,
+    "sched_fresh": true,
+    "sched_age_min": 14.5,
+    "mode_if_armed": "honest",
+    "widen_min": 420
+   }
+  },
+  {
+   "ts": "2026-07-08 03:14:43 PM ET",
+   "ep": 1783538083.494488,
+   "event": "conception_horizon_defer",
+   "ticker": "",
+   "details": {
+    "event": "KXITFMATCH-26JUL09SNIAND",
+    "category": "ITF_M",
+    "tts_hours": 11.75,
+    "horizon_hours": 8.0
+   }
+  },
+  {
+   "ts": "2026-07-08 03:20:44 PM ET",
+   "ep": 1783538444.9701471,
+   "event": "schedule_match",
+   "ticker": "",
+   "details": {
+    "event": "KXITFMATCH-26JUL09SNIAND",
+    "method": "kalshi_schedule_primary",
+    "start_time": "2026-07-09T09:00:00-04:00"
+   }
+  },
+  {
+   "ts": "2026-07-08 03:21:31 PM ET",
+   "ep": 1783538491.7102363,
+   "event": "kalshi_occ_delta",
+   "ticker": "",
+   "details": {
+    "event": "KXITFMATCH-26JUL09SNIAND",
+    "category": "ITF_M",
+    "resolver_source": "kalshi_primary",
+    "resolver_start": "2026-07-09T09:00:00-04:00",
+    "kalshi_occurrence": "2026-07-09T09:00:00-04:00",
+    "delta_sec": 0.0
+   }
+  },
+  {
+   "ts": "2026-07-08 03:21:31 PM ET",
+   "ep": 1783538491.71037,
+   "event": "pm_clock_shadow",
+   "ticker": "",
+   "details": {
+    "event": "KXITFMATCH-26JUL09SNIAND",
+    "category": "ITF_M",
+    "legacy_start": "2026-07-09T09:00:00-04:00",
+    "legacy_source": "kalshi_primary",
+    "honest_start": "2026-07-09T03:00:00-04:00",
+    "honest_status": "scheduled",
+    "honest_method": "direct_6char",
+    "delta_min": 360.0,
+    "sched_fresh": true,
+    "sched_age_min": 6.1,
+    "mode_if_armed": "honest",
+    "widen_min": 420
+   }
+  },
+  {
+   "ts": "2026-07-08 03:21:31 PM ET",
+   "ep": 1783538491.7104366,
+   "event": "conception_horizon_defer",
+   "ticker": "",
+   "details": {
+    "event": "KXITFMATCH-26JUL09SNIAND",
+    "category": "ITF_M",
+    "tts_hours": 11.65,
+    "horizon_hours": 8.0
+   }
+  },
+  {
+   "ts": "2026-07-08 05:25:28 PM ET",
+   "ep": 1783545928.0602622,
+   "event": "schedule_match",
+   "ticker": "",
+   "details": {
+    "event": "KXITFMATCH-26JUL09SNIAND",
+    "method": "kalshi_schedule_primary",
+    "start_time": "2026-07-09T09:00:00-04:00"
+   }
+  },
+  {
+   "ts": "2026-07-08 05:25:46 PM ET",
+   "ep": 1783545946.7418795,
+   "event": "kalshi_occ_delta",
+   "ticker": "",
+   "details": {
+    "event": "KXITFMATCH-26JUL09SNIAND",
+    "category": "ITF_M",
+    "resolver_source": "kalshi_primary",
+    "resolver_start": "2026-07-09T09:00:00-04:00",
+    "kalshi_occurrence": "2026-07-09T09:00:00-04:00",
+    "delta_sec": 0.0
+   }
+  },
+  {
+   "ts": "2026-07-08 05:25:46 PM ET",
+   "ep": 1783545946.741976,
+   "event": "pm_clock_shadow",
+   "ticker": "",
+   "details": {
+    "event": "KXITFMATCH-26JUL09SNIAND",
+    "category": "ITF_M",
+    "legacy_start": "2026-07-09T09:00:00-04:00",
+    "legacy_source": "kalshi_primary",
+    "honest_start": "2026-07-09T03:00:00-04:00",
+    "honest_status": "scheduled",
+    "honest_method": "direct_6char",
+    "delta_min": 360.0,
+    "sched_fresh": true,
+    "sched_age_min": 10.6,
+    "mode_if_armed": "honest",
+    "widen_min": 420
+   }
+  },
+  {
+   "ts": "2026-07-08 05:25:46 PM ET",
+   "ep": 1783545946.742055,
+   "event": "conception_horizon_defer",
+   "ticker": "",
+   "details": {
+    "event": "KXITFMATCH-26JUL09SNIAND",
+    "category": "ITF_M",
+    "tts_hours": 9.57,
+    "horizon_hours": 8.0
+   }
+  },
+  {
+   "ts": "2026-07-08 05:26:12 PM ET",
+   "ep": 1783545972.2529452,
+   "event": "gun_fired",
+   "ticker": "",
+   "details": {
+    "event": "KXITFMATCH-26JUL09SNIAND",
+    "source": "te_scoreboard",
+    "tts_legacy_min": 933.8,
+    "tts_honest_min": 573.8,
+    "te_match_id": "3260539",
+    "match_how": "both_legs",
+    "te_first_inplay": "2026-07-08 17:03:37",
+    "feed_lag_sec": 1355.2
+   }
+  }
+ ],
+ "observed_starts_row": [
+  [
+   "3260539",
+   "Snitari I.",
+   "Andreescu S.",
+   "SNI",
+   "2026-07-08 17:03:37",
+   "2026-07-08 17:03:37"
+  ]
+ ],
+ "live_scores_row": [],
+ "ls_name_scan": [
+  [
+   "3169180",
+   "Andaloro F.",
+   "Berkieta T.",
+   2,
+   1,
+   "finished",
+   "2026-04-06 17:59:23"
+  ],
+  [
+   "3170220",
+   "Arnaboldi F.",
+   "Andaloro F.",
+   2,
+   0,
+   "finished",
+   "2026-04-07 17:59:04"
+  ],
+  [
+   "3171422",
+   "Andrade A.",
+   "Kuzuhara B.",
+   2,
+   1,
+   "finished",
+   "2026-04-08 17:59:36"
+  ],
+  [
+   "3170890",
+   "Andre S.",
+   "Singh D.",
+   2,
+   1,
+   "finished",
+   "2026-04-09 17:59:31"
+  ],
+  [
+   "3171972",
+   "Andrade A.",
+   "Zink T.",
+   2,
+   1,
+   "finished",
+   "2026-04-09 17:59:31"
+  ],
+  [
+   "3172324",
+   "Andre S.",
+   "Paldanius O.",
+   2,
+   1,
+   "finished",
+   "2026-04-10 17:59:53"
+  ],
+  [
+   "3172710",
+   "Rossi L.",
+   "Andre S.",
+   2,
+   0,
+   "finished",
+   "2026-04-11 17:59:40"
+  ],
+  [
+   "3172464",
+   "Andrade A.",
+   "Glinka D.",
+   2,
+   0,
+   "finished",
+   "2026-04-11 17:59:40"
+  ],
+  [
+   "3173434",
+   "Dostanic S.",
+   "Andrade A.",
+   2,
+   0,
+   "finished",
+   "2026-04-12 17:59:00"
+  ],
+  [
+   "3176652",
+   "Bennani K.",
+   "Andre S.",
+   2,
+   0,
+   "finished",
+   "2026-04-16 17:59:55"
+  ],
+  [
+   "3179970",
+   "Bieldiugin T.",
+   "Andres R.",
+   2,
+   0,
+   "finished",
+   "2026-04-20 17:59:09"
+  ],
+  [
+   "3179954",
+   "De Krom M.",
+   "Andriveau T.",
+   2,
+   0,
+   "finished",
+   "2026-04-20 17:59:09"
+  ],
+  [
+   "3179904",
+   "Vasami J.",
+   "Andaloro F.",
+   2,
+   0,
+   "finished",
+   "2026-04-20 17:59:09"
+  ],
+  [
+   "3180706",
+   "Andrade A.",
+   "Crawford O.",
+   2,
+   0,
+   "finished",
+   "2026-04-22 17:59:01"
+  ],
+  [
+   "3183824",
+   "Andrade A.",
+   "Mayo A.",
+   2,
+   0,
+   "finished",
+   "2026-04-24 17:59:50"
+  ],
+  [
+   "3185066",
+   "Basavareddy N.",
+   "Andrade A.",
+   2,
+   0,
+   "finished",
+   "2026-04-25 17:59:21"
+  ],
+  [
+   "3187170",
+   "Barrientos N.",
+   "Andaloro F.",
+   2,
+   0,
+   "finished",
+   "2026-04-28 17:58:45"
+  ],
+  [
+   "3192014",
+   "Ciurnelli R.",
+   "Andaloro F.",
+   2,
+   1,
+   "finished",
+   "2026-05-04 17:59:36"
+  ],
+  [
+   "3193336",
+   "Connelly E.",
+   "Andrews O.",
+   2,
+   1,
+   "finished",
+   "2026-05-05 17:59:09"
+  ],
+  [
+   "3201078",
+   "Andaloro F.",
+   "Ortenzi G.",
+   2,
+   0,
+   "finished",
+   "2026-05-13 17:59:16"
+  ]
+ ],
+ "tape_minutes": {
+  "KXITFMATCH-26JUL09SNIAND-SNI": {
+   "1783543260": [
+    6,
+    94,
+    null
+   ],
+   "1783543320": [
+    6,
+    94,
+    null
+   ],
+   "1783543560": [
+    6,
+    94,
+    null
+   ],
+   "1783543980": [
+    6,
+    93,
+    null
+   ],
+   "1783544340": [
+    6,
+    92,
+    null
+   ],
+   "1783545420": [
+    6,
+    92,
+    null
+   ],
+   "1783545900": [
+    6,
+    92,
+    null
+   ],
+   "1783547160": [
+    6,
+    92,
+    null
+   ],
+   "1783547400": [
+    6,
+    94,
+    null
+   ],
+   "1783547520": [
+    7,
+    94,
+    null
+   ],
+   "1783547940": [
+    8,
+    94,
+    null
+   ]
+  },
+  "KXITFMATCH-26JUL09SNIAND-AND": {
+   "1783543260": [
+    6,
+    94,
+    null
+   ],
+   "1783543320": [
+    6,
+    94,
+    null
+   ],
+   "1783543560": [
+    6,
+    94,
+    null
+   ],
+   "1783543980": [
+    6,
+    93,
+    null
+   ],
+   "1783544340": [
+    6,
+    92,
+    null
+   ],
+   "1783545420": [
+    6,
+    92,
+    null
+   ],
+   "1783545900": [
+    6,
+    92,
+    null
+   ],
+   "1783547160": [
+    6,
+    92,
+    null
+   ],
+   "1783547400": [
+    6,
+    94,
+    null
+   ],
+   "1783547520": [
+    7,
+    94,
+    null
+   ],
+   "1783547940": [
+    8,
+    94,
+    null
+   ],
+   "1783548060": [
+    8,
+    94,
+    null
+   ]
+  }
+ },
+ "fire_class": "CATCH-UP",
+ "fire_class_rule": "te_first_inplay predates the listener boot (17:03:37 < 17:25 boot) / feed_lag_sec 1355 > 180",
+ "independent_witness": {
+  "fetched_et": "2026-07-08 18:02:38",
+  "source": "tennisexplorer /live/ page (not consumed by the gun decision)",
+  "content": "Snitari I. - Andreescu S. 5-1 (mid-match, 36 min after the fire)"
+ },
+ "clocks_at_fire": {
+  "legacy": "2026-07-09T09:00:00-04:00 (tts +933.8 min)",
+  "honest": "2026-07-09T03:00:00-04:00 status=scheduled (tts +573.8 min)"
+ }
+}

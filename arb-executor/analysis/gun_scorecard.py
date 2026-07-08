@@ -81,11 +81,12 @@ def main():
                    key=lambda p: p.stat().st_mtime)[-2:]
     day0 = datetime(now.year, now.month, now.day, tzinfo=ET).timestamp() - 6 * 3600
 
-    fires, deltas, sched = {}, {}, {}
+    fires, deltas, sched, boots = {}, {}, {}, []
     for p in files:
         for line in open(p, encoding="utf-8", errors="replace"):
             if '"gun_fired"' not in line and '"gun_truth_delta"' not in line \
-                    and '"schedule_match"' not in line:
+                    and '"schedule_match"' not in line \
+                    and '"system_start"' not in line:
                 continue
             try:
                 d = json.loads(line)
@@ -94,11 +95,25 @@ def main():
             ts = d.get("ts_epoch", 0)
             det = d.get("details") or {}
             ev = det.get("event", "")
+            if d["event"] == "system_start":
+                boots.append(ts)
+                continue
             if not ev or ts < day0:
                 continue
             if d["event"] == "gun_fired":
+                # [FIRE CLASS, operator 07-08] CATCH-UP = match already in-play
+                # when the listener started (state-sync fire: te row predates
+                # the boot / feed lag > 180s / fire inside the first poll
+                # cycle after a boot). FRESH = transition observed live while
+                # listening. The +/-3-min pass bar applies to FRESH only.
+                lag = det.get("feed_lag_sec")
+                last_boot = max((b for b in boots if b <= ts), default=0)
+                catchup = ((lag is not None and lag > 180)
+                           or (ts - last_boot) < 120)
                 fires.setdefault(ev, {"ts": ts, "source": det.get("source"),
-                                      "te_first": det.get("te_first_inplay")})
+                                      "te_first": det.get("te_first_inplay"),
+                                      "fire_class": ("CATCH-UP" if catchup
+                                                     else "FRESH")})
             elif d["event"] == "gun_truth_delta":
                 deltas[ev] = det
             elif d["event"] == "schedule_match":
@@ -144,9 +159,9 @@ def main():
                 pass
 
     lines, per_cat = [], defaultdict(lambda: {"n": 0, "hit3": 0, "deltas": [],
-                                              "miss": []})
-    lines.append("| event | cat | scheduled | gun fired | gun_source | truth | truth_src | delta_min |")
-    lines.append("|---|---|---|---|---|---|---|---|")
+                                              "miss": [], "catchup": 0})
+    lines.append("| event | cat | scheduled | gun fired | gun_source | fire_class | truth | truth_src | delta_min |")
+    lines.append("|---|---|---|---|---|---|---|---|---|")
     for ev in sorted(set(fires) | set(te_truth)):
         c = cat_of(ev)
         if not c:
@@ -161,16 +176,20 @@ def main():
             truth_ts, truth_src = te_truth[ev], "te_scoreboard"
         delta = (round((f["ts"] - truth_ts) / 60.0, 1)
                  if (f and truth_ts) else None)
-        lines.append("| %s | %s | %s | %s | %s | %s | %s | %s |" % (
+        fclass = f.get("fire_class", "?") if f else "--"
+        lines.append("| %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
             ev.split("-", 1)[-1], c, et_str(sched.get(ev)),
             et_str(f["ts"]) if f else "NO FIRE",
-            f["source"] if f else "--",
+            f["source"] if f else "--", fclass,
             et_str(truth_ts), truth_src,
             delta if delta is not None else "--"))
         r = per_cat[c]
         if truth_ts or f:
             r["n"] += 1
-        if delta is not None:
+        if f and fclass == "CATCH-UP":
+            r["catchup"] += 1
+        # the pre-registered +/-3-min pass bar grades FRESH fires only
+        if delta is not None and fclass == "FRESH":
             r["deltas"].append(abs(delta))
             if abs(delta) <= PASS_TOL_MIN:
                 r["hit3"] += 1
@@ -181,9 +200,9 @@ def main():
     for c, r in sorted(per_cat.items()):
         dl = sorted(r["deltas"])
         med = dl[len(dl) // 2] if dl else None
-        summary.append("%s n=%d within±3min=%d/%d med|Δ|=%s misses=[%s]" % (
+        summary.append("%s n=%d FRESH-within±3min=%d/%d med|Δ|=%s catchup=%d misses=[%s]" % (
             c, r["n"], r["hit3"], len(dl),
-            ("%.1fm" % med) if med is not None else "--",
+            ("%.1fm" % med) if med is not None else "--", r["catchup"],
             ",".join(r["miss"][:6]) + ("…" if len(r["miss"]) > 6 else "")))
     out = "# GUN SCORECARD %s\n\n%s\n\n%s\n" % (
         now.strftime("%Y-%m-%d %I:%M %p ET"), "\n".join(lines),

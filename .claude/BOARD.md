@@ -28,7 +28,7 @@
 ## QUEUED (next builds, in rough order)
 
 1. **Post-gun forensic** — the gun-adjacent fill/cancel behavior pass (FERCER/ALCCLA lineage) on honest-clock data.
-2. **Price-band clamp** — [5,95] resting-bid clamp; detection already pre-wired flag-only in the boot audit (`bid_outside_5_95`, COXBRA px=4 the live counter).
+2. **Price-band clamp — walk/repost bypass (07-08 dossier)** — the preflight C-BAND-CLAMP enforces [5,95) at the placement chokepoint only; live-verify found **29/639 post-boot buys placed outside the band via the walk/repost path, 1 filled @4¢ (HARMAI-HAR)**. Extend the clamp to the walk chokepoint — one-line class, defect-exempt, next gated deploy.
 3. ~~Post-only-cross exit hole~~ — **CLOSED 07-07 late (C-ITM-EXIT-TAKE in the sweep deploy)**; CLAHER/`exit_unpostable_itm` counter stays as the regression watch.
 4. **Conformance audit** — deployed-config vs code vs tables full conformance pass (drift class the 07-03 VC capture started).
 5. **Walk/repost model** — same-price churn suppression follow-through (C-CHURN-FIX lineage) + walk-cap honest-anchor (Plex walk-cap ruling pending, see EXTERNAL).
@@ -49,7 +49,7 @@
 
 - **Conformance cadence** — `.claude/CONFORMANCE.md` §1 tape columns POST-ANY-DEPLOY; full audit incl. archaic sweep WEEKLY (next 2026-07-14). Watches: never_marketable + hold_to_settle natural occurrences, C50 bootstrap at next deploy, /tmp/live_v4_TRIPWIRE.json check.
 
-- **Jul-8 checkpoint** — week-order mid-point: leak decomposition cumulative table + config-hold confirmation.
+- ~~Jul-8 checkpoint~~ — **RAN AT THE MORNING DOSSIER (07-08): config-hold CONFIRMED (all config commits since baseline = sanctioned gated flips; today's deploys code-only); ITF_W NOT CROSSED (honest coverage 0/500 cells at n≥30, trigger=False — AIM_V2 stays BLOCKED-ON-DATA; 14k-holdout harness read not yet triggered); leak cumulative table RIDES TONIGHT** (last night invalid as a leak night — bot dead 02:52→11:30; flagged, not smoothed).
 - **Accumulator** — aim_v2 honest-sample accumulator (bell_src-stamped) rides nightly; feeds the ramp schedule.
 - **Pair-story** — nightly pair-story/causal-chain pass (C44 EARNED/GIFT stamps via live_monitor + NIGHTLY_PASS.md).
 

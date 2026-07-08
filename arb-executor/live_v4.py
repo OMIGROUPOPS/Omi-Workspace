@@ -1845,14 +1845,25 @@ class LiveV3:
             "ticker": ticker,
             "details": details or {},
         }
-        self.log_file.write(json.dumps(entry) + "\n")
-        self.log_file.flush()
-        print("[%s] %s %s %s" % (
-            datetime.now(ET).strftime("%I:%M:%S %p"),
-            event.upper().ljust(20),
-            ticker[:40] if ticker else "",
-            json.dumps(details)[:120] if details else ""
-        ), flush=True)
+        # [C-LOG-ENOSPC 07-08] a full disk must never kill the trading loop:
+        # 02:52 ET the ENOSPC OSError raised out of this flush, propagated
+        # through routing_tick -> run() -> process exit, and the disk-gated
+        # respawn could not bring the bot back -- 8 legs filled naked. Losing
+        # the log line is strictly better than losing the bot.
+        try:
+            self.log_file.write(json.dumps(entry) + "\n")
+            self.log_file.flush()
+        except OSError:
+            self._log_write_errors = getattr(self, "_log_write_errors", 0) + 1
+        try:
+            print("[%s] %s %s %s" % (
+                datetime.now(ET).strftime("%I:%M:%S %p"),
+                event.upper().ljust(20),
+                ticker[:40] if ticker else "",
+                json.dumps(details)[:120] if details else ""
+            ), flush=True)
+        except OSError:
+            self._log_write_errors = getattr(self, "_log_write_errors", 0) + 1
         # [C-ERROR-TRIPWIRE] rate-watch the crash-class events. The CRITICAL event
         # emitted below is NOT in the watched set -> no recursion. Never raises.
         if event in ("error", "on_bbo_update_error"):
@@ -2940,41 +2951,46 @@ class LiveV3:
         bid_levels = self._extract_depth(book, "bid")
         ask_levels = self._extract_depth(book, "ask")
 
-        if ticker not in self._tick_writers:
-            import csv as _csv
-            path = TICK_DIR / ("%s.csv" % ticker)
-            is_new = not path.exists() or path.stat().st_size == 0
-            fh = open(path, "a", newline="")
-            w = _csv.writer(fh)
-            if is_new:
-                header = ["ts_et", "ticker"]
-                for i in range(1, 6):
-                    header += ["bid_%d" % i, "bid_%d_sz" % i]
-                for i in range(1, 6):
-                    header += ["ask_%d" % i, "ask_%d_sz" % i]
-                header += ["mid", "bid_depth_5", "ask_depth_5", "depth_ratio", "last_trade"]
-                w.writerow(header)
-                fh.flush()
-            self._tick_files[ticker] = fh
-            self._tick_writers[ticker] = w
+        # [C-LOG-ENOSPC 07-08] same class as _log: disk-full must not raise out
+        # of a WS/BBO handler. Drop the tick, never the connection.
+        try:
+            if ticker not in self._tick_writers:
+                import csv as _csv
+                path = TICK_DIR / ("%s.csv" % ticker)
+                is_new = not path.exists() or path.stat().st_size == 0
+                fh = open(path, "a", newline="")
+                w = _csv.writer(fh)
+                if is_new:
+                    header = ["ts_et", "ticker"]
+                    for i in range(1, 6):
+                        header += ["bid_%d" % i, "bid_%d_sz" % i]
+                    for i in range(1, 6):
+                        header += ["ask_%d" % i, "ask_%d_sz" % i]
+                    header += ["mid", "bid_depth_5", "ask_depth_5", "depth_ratio", "last_trade"]
+                    w.writerow(header)
+                    fh.flush()
+                self._tick_files[ticker] = fh
+                self._tick_writers[ticker] = w
 
-        ts_str = datetime.now(ET).strftime("%Y-%m-%d %I:%M:%S %p")
-        row = [ts_str, ticker]
-        total_bid_sz = 0
-        total_ask_sz = 0
-        for price, size in bid_levels:
-            row += [price, size]
-            if isinstance(size, (int, float)) and size > 0:
-                total_bid_sz += size
-        for price, size in ask_levels:
-            row += [price, size]
-            if isinstance(size, (int, float)) and size > 0:
-                total_ask_sz += size
-        total = total_bid_sz + total_ask_sz
-        depth_ratio = total_bid_sz / total if total > 0 else 0.5
-        row += ["%.1f" % mid, total_bid_sz, total_ask_sz, "%.3f" % depth_ratio, book.last_trade_price]
-        self._tick_writers[ticker].writerow(row)
-        self._tick_files[ticker].flush()
+            ts_str = datetime.now(ET).strftime("%Y-%m-%d %I:%M:%S %p")
+            row = [ts_str, ticker]
+            total_bid_sz = 0
+            total_ask_sz = 0
+            for price, size in bid_levels:
+                row += [price, size]
+                if isinstance(size, (int, float)) and size > 0:
+                    total_bid_sz += size
+            for price, size in ask_levels:
+                row += [price, size]
+                if isinstance(size, (int, float)) and size > 0:
+                    total_ask_sz += size
+            total = total_bid_sz + total_ask_sz
+            depth_ratio = total_bid_sz / total if total > 0 else 0.5
+            row += ["%.1f" % mid, total_bid_sz, total_ask_sz, "%.3f" % depth_ratio, book.last_trade_price]
+            self._tick_writers[ticker].writerow(row)
+            self._tick_files[ticker].flush()
+        except OSError:
+            self._log_write_errors = getattr(self, "_log_write_errors", 0) + 1
 
     def apply_trade(self, ticker, msg):
         """Process a trade event from WebSocket."""
@@ -3020,20 +3036,25 @@ class LiveV3:
 
     def _log_trade(self, ticker, price, count, taker_side):
         """Write trade to per-ticker CSV."""
-        if ticker not in self._trade_writers:
-            import csv as _csv
-            path = TRADE_DIR / ("%s.csv" % ticker)
-            is_new = not path.exists() or path.stat().st_size == 0
-            fh = open(path, "a", newline="")
-            w = _csv.writer(fh)
-            if is_new:
-                w.writerow(["ts_et", "ticker", "price", "count", "taker_side"])
-                fh.flush()
-            self._trade_files[ticker] = fh
-            self._trade_writers[ticker] = w
-        ts_str = datetime.now(ET).strftime("%Y-%m-%d %I:%M:%S %p")
-        self._trade_writers[ticker].writerow([ts_str, ticker, price, count, taker_side])
-        self._trade_files[ticker].flush()
+        # [C-LOG-ENOSPC 07-08] same class as _log: disk-full must not raise out
+        # of a WS/BBO handler. Drop the row, never the connection.
+        try:
+            if ticker not in self._trade_writers:
+                import csv as _csv
+                path = TRADE_DIR / ("%s.csv" % ticker)
+                is_new = not path.exists() or path.stat().st_size == 0
+                fh = open(path, "a", newline="")
+                w = _csv.writer(fh)
+                if is_new:
+                    w.writerow(["ts_et", "ticker", "price", "count", "taker_side"])
+                    fh.flush()
+                self._trade_files[ticker] = fh
+                self._trade_writers[ticker] = w
+            ts_str = datetime.now(ET).strftime("%Y-%m-%d %I:%M:%S %p")
+            self._trade_writers[ticker].writerow([ts_str, ticker, price, count, taker_side])
+            self._trade_files[ticker].flush()
+        except OSError:
+            self._log_write_errors = getattr(self, "_log_write_errors", 0) + 1
 
     # ------------------------------------------------------------------
     # Order placement — REAL Kalshi API calls

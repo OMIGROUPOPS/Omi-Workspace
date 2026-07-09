@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 10 @ **2026-07-09 05:07:47 PM ET** | build `bfb7b10` | session boot 07-09 15:50 ET | log `live_v3_20260709.jsonl` | 9514 session events | monitor READ-ONLY
+- cycle 11 @ **2026-07-09 05:17:54 PM ET** | build `6098f9e` | session boot 07-09 15:50 ET | log `live_v3_20260709.jsonl` | 9727 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 0 violation(s)
@@ -15,16 +15,16 @@
 | 16:39 | ATPCHALLENGERMATCH-26JUL09CASAMB-A | ATP_CHALL | ? | 50 | 50 | +0 (window_cell) | -1.5 | pre | single |  | MIXED |
 
 ## RESTING BIDS — 2 tape-graded (starvation = NO_FLOW only)
-- classes now: {'FLOW_ABOVE': 1, 'NO_FLOW': 1} | repriceable now: true 0 / false 2 | **cumulative bid_grade lines: 7158 (repriceable true 881 / false 6277)** -- the liquid_repost re-arm evidence accumulates here
+- classes now: {'FLOW_ABOVE': 2} | repriceable now: true 0 / false 2 | **cumulative bid_grade lines: 7159 (repriceable true 881 / false 6278)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL09JOHBLA-B | 69 | 77m | 3/81-81/75 | 80-81 | 12 | **FLOW_ABOVE** | 78 | flow above but bound 78c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL09DRAARS-DRA | 78 | 77m | 0 | 80-83 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL09JOHBLA-B | 69 | 87m | 9/81-81/821 | 80-81 | 12 | **FLOW_ABOVE** | 78 | flow above but bound 78c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL09DRAARS-DRA | 78 | 87m | 1/83-83/0 | 80-83 | 5 | **FLOW_ABOVE** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
 |---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL09CASAMB | 50 | 39 | **89** | 97 | -8 |
+| ATPCHALLENGERMATCH-26JUL09CASAMB | 50 | 38 | **88** | 97 | -9 |
 | WTACHALLENGERMATCH-26JUL09STEROG | 17 | 97 | **114** | 97 | +17 |
 | ITFMATCH-26JUL09GORARD | 72 | 62 | **134** | 97 | +37 |
 
@@ -32,15 +32,16 @@
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
 | ATPCHALLENGERMATCH-26JUL09MEJROD | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL09CASAMB | ATP_CHALL | 14.067 | — | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL09JOHBLA | ATP_CHALL | 0.033 | 1 | **WAKING** |
-| ITFMATCH-26JUL09DRAARS | ITF_M | 0.0 | 3 | **WAKING** |
-| ITFMATCH-26JUL09GORARD | ITF_M | 43.033 | — | **WAKING** |
-| WTACHALLENGERMATCH-26JUL09STEROG | WTA_CHALL | 12.467 | — | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL09CASAMB | ATP_CHALL | 24.767 | — | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL09JOHBLA | ATP_CHALL | 0.233 | 1 | **WAKING** |
+| ITFMATCH-26JUL09DRAARS | ITF_M | 0.033 | 3 | **WAKING** |
+| ITFMATCH-26JUL09GORARD | ITF_M | 55.467 | — | **WAKING** |
+| WTACHALLENGERMATCH-26JUL09STEROG | WTA_CHALL | 10.5 | — | **WAKING** |
 
-## PATTERNS (sub-B) — 3
-- half_arm_aging: KXWTACHALLENGERMATCH-26JUL09STEROG-ROG {"fill": 17, "age_min": 77, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL09MEJROD-ROD {"fill": 19, "age_min": 77, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFMATCH-26JUL09GORARD-GOR {"fill": 72, "age_min": 77, "mode": "PAIRING(sib never rested)"}
+## PATTERNS (sub-B) — 4
+- half_arm_aging: KXWTACHALLENGERMATCH-26JUL09STEROG-ROG {"fill": 17, "age_min": 87, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL09MEJROD-ROD {"fill": 19, "age_min": 87, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL09GORARD-GOR {"fill": 72, "age_min": 87, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL09CASAMB-AMB {"fill": 50, "age_min": 38, "mode": "PAIRING(sib never rested)"}
 
 ## ERRORS — 0 handler errors this session (ZERO — clean loop)

@@ -44,6 +44,7 @@
 
 ## QUEUED (next builds, in rough order)
 
+-00a. **OPEN-BOOK RE-ENTRY SCAN (07-09 ~3:50 pm)** — live book CLEAN (0 open cycle-2 legs); boot-window sweep = the two DAALUX legs only, both cashed; monitor cycle line now carries `open_cycle2=N` until the ruling's fix ships. Nothing cancelled (as ordered).
 -00. **RE-ENTRY RULING (operator's open decision, 07-09)** — evidence package DAALU_REENTRY.md: the class is PROFITABLE (+$15.84/wk, 22/23 legs, 46 cycles) and unintentional (router never wired to the cash guard + restart amnesia — fingerprint lesson #3). Fix shapes filed for BOTH rulings (forbid → persistent guard at router+repost; allow → cycle counter + ledger cycle-stamps). NOTHING ships until the word.
 
 -0a. **PLEX RESUBMISSION PACKAGE READY (STEP 1, 07-09)** — GAME_LIFECYCLE.md + CLIMBSIDE_SPEC.md + STEP1.md (roster/projectability/scoreboard/hold-gate clause). The riser disarm stands until Plex re-rules on CLIMBSIDE_SPEC. **JOINT SHADOW: no cap read before n≥30 constrained decisions (operator, 07-09; currently 12+19).**

@@ -747,13 +747,45 @@ def cycle(n):
     changed = write_status(S, items, log_path, n, forensics, bid_grades, chf,
                            chf_cum=tuple(cum_rp), flow_rows=flow_rows)
     nv = sum(1 for x in new if x.get("type") == "violation")
+    # [07-09 RE-ENTRY WATCH] open-cycle-2 counter until the re-entry ruling
+    # ships its fix: legs whose CURRENT open entry has a prior completed
+    # buy->cash cycle in the same log lineage (DAALU class). Count-only.
+    oc2 = 0
+    try:
+        _seq = {}
+        for _ln in open(log_path, errors="replace"):
+            if '"entry_filled"' not in _ln and '"exit_filled"' not in _ln:
+                continue
+            try:
+                _d = json.loads(_ln)
+            except ValueError:
+                continue
+            _det = _d.get("details") or {}
+            if _d["event"] == "entry_filled" and "adopt" in _det.get("source", ""):
+                continue
+            _seq.setdefault(_d.get("ticker", ""), []).append(
+                (_d.get("ts_epoch", 0), "B" if _d["event"] == "entry_filled" else "S"))
+        for _tk, _evs in _seq.items():
+            _evs.sort()
+            _cyc, _st, _openB = 0, None, False
+            for _ts, _k in _evs:
+                if _k == "B":
+                    _st = _ts; _openB = True
+                elif _k == "S" and _st is not None:
+                    _cyc += 1; _st = None; _openB = False
+            if _openB and _cyc >= 1:
+                oc2 += 1
+    except Exception:
+        oc2 = -1
     res = "no-change"
     if new or changed or forensics:
         res = git_push(f"live-monitor cycle {n}: +{len(new)} lines"
                        f"{' [' + str(nv) + ' VIOLATION]' if nv else ''}"
-                       f"{' [FORENSIC ' + ','.join(forensics) + ']' if forensics else ''}")
+                       f"{' [FORENSIC ' + ','.join(forensics) + ']' if forensics else ''}"
+                       f"{' [OPEN-CYCLE2 ' + str(oc2) + ']' if oc2 > 0 else ''}")
     print(f"[{now_et()}] cycle {n}: events={S['events']} fills={len(S['fills'])} "
-          f"new_lines={len(new)} violations_new={nv} forensics={forensics or '—'} git={res}", flush=True)
+          f"new_lines={len(new)} violations_new={nv} open_cycle2={oc2} "
+          f"forensics={forensics or '—'} git={res}", flush=True)
 
 
 def main():

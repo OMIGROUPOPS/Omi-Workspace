@@ -1,6 +1,6 @@
 # OUTCOME PROOF (C46, two-lane) — C-BOT-ONLY-BASIS (operator ruling + BOARD −2a foreign-position fix, one gated deploy)
 
-**Candidate SHA: cited in the deploy record** (live_v4.py audit-scope fix + analysis/daily_ledger.py + RULING_BOT_ONLY_BASIS.md; no order-path change beyond flag semantics; the one manual-book cancel is direct-API, outside bot code).
+**Candidate SHA: `50ff06ad`** (live_v4.py audit-scope fix + analysis/daily_ledger.py + RULING_BOT_ONLY_BASIS.md; no order-path change beyond flag semantics; the one manual-book cancel is direct-API, outside bot code).
 
 ## Prior art (C45)
 - **FOREIGN-POSITION INCIDENT (vault 07-09 4:07→4:47 pm)** — the proof case: external taker buy `a500c5e9` (250sh KXWCGAME-26JUL09FRAMAR-MAR) → C47 `no_exit` FAIL → 40-min conception halt that could never self-clear; contained by resting sell `7cf55a8c`. This build makes the class structurally halt-proof and executes the operator's ruling on it.

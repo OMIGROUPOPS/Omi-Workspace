@@ -25,7 +25,10 @@ HEADERS = {
 POLL_INTERVAL = 60  # seconds
 
 def get_db():
-    return sqlite3.connect(DB_PATH)
+    # [07-08] busy_timeout: the 16GB multi-writer db starved the set-once
+    # observed_starts bank on instant-fail locks for 3h (the gun's primary
+    # feed silently dry -- queued #19). Wait for the lock instead.
+    return sqlite3.connect(DB_PATH, timeout=30)
 
 def init_tables():
     conn = get_db()

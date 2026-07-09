@@ -33,18 +33,23 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-09 evening — C50 keeps this current):
-Bot LIVE (C-BOT-ONLY-BASIS gated deploy, this evening). NEW STANDING
-RULING (RULING_BOT_ONLY_BASIS.md, operator verbatim): bot-traded money
-= THE basis, reset 12:00am ET nightly; manual/foreign positions named,
-NEVER blended — FRAMAR was the operator's manual (deliberate shake-up;
-key-security concern closed). Audit: no-cell tickers = foreign_position
-FLAG never FAIL/halt; containment sell 7cf55a8c cancelled (his book);
-canonical bot-only renderer analysis/daily_ledger.py; −1a000 identity
-amended (account Δ = bot P&L + manual Δ + fees; +$17.90 line = the
-cross-check, not the answer). TRUTH-JOIN shipped (`572d678a`, bar
-untouched): certification night 3 rides tonight's 6:10am cron on the
-fixed join. OS in shadow (os_active dormant behind five conditions).
+## STATE (2026-07-09 night — C50 keeps this current):
+Bot LIVE (C-INFLIGHT-LOCK `330266c7` gated deploy, alone, tonight):
+GORSTE same-tick race class CLOSED at the chokepoint (one
+per-ticker+direction lock, all paths, crash-safe 20s bound; 4/4 Lane-1
+incl. the 11:41am replay — 2nd buy refused in-process). **os_active
+precondition #2 of 5 SATISFIED.** Watches: inflight_lock_refused
+(rare+named) · inflight_lock_forced_release (must stay 0). Earlier
+today: C-BOT-ONLY-BASIS (RULING_BOT_ONLY_BASIS.md, operator verbatim:
+bot-traded money = THE basis, reset 12:00am ET nightly; manual/foreign
+named NEVER blended — FRAMAR was the operator's manual, deliberate
+shake-up; no-cell tickers = foreign_position FLAG never FAIL/halt;
+containment sell cancelled; canonical renderer
+analysis/daily_ledger.py; −1a000 identity amended — account Δ = bot
+P&L + manual Δ + fees, +$17.90 line = cross-check). TRUTH-JOIN shipped
+(`572d678a`, bar untouched): certification night 3 rides tonight's
+6:10am cron. OS in shadow (os_active dormant, now behind FOUR open
+conditions).
 Cycle-cap live (allowed, cap 2, persistent; all three boot rebuilds
 assert). Coverage counter fixed 739ec32d; first honest-stamped fold
 tonight 4:45am; three-weight ruling after 2-3 nights. Dollar claims

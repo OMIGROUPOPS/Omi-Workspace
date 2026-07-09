@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 3 @ **2026-07-09 03:55:33 PM ET** | build `3c811cf` | session boot 07-09 15:50 ET | log `live_v3_20260709.jsonl` | 931 session events | monitor READ-ONLY
+- cycle 4 @ **2026-07-09 04:05:48 PM ET** | build `668c6f6` | session boot 07-09 15:50 ET | log `live_v3_20260709.jsonl` | 4588 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 0 violation(s)
@@ -11,34 +11,35 @@
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 15:50 | WTACHALLENGERMATCH-26JUL09STEROG-R | WTA_CHALL | ? | 17 | 14 | +3 (window_cell) | — | pre | single |  | MIXED |
 | 15:50 | ATPCHALLENGERMATCH-26JUL09MEJROD-R | ATP_CHALL | ? | 19 | 16 | +3 (adopted_est) | — | pre | single |  | PENDING |
-| 15:50 | ITFMATCH-26JUL09GORARD-GOR | ITF_M | ? | 72 | 69 | +3 (adopted_est) | — | pre | single |  | PENDING |
+| 15:50 | ITFMATCH-26JUL09GORARD-GOR | ITF_M | ? | 72 | 50 | +22 (window_cell) | — | pre | single |  | GIFT_CLASS |
 
 ## RESTING BIDS — 5 tape-graded (starvation = NO_FLOW only)
-- classes now: {'NO_FLOW': 5} | repriceable now: true 0 / false 5 | **cumulative bid_grade lines: 7154 (repriceable true 880 / false 6274)** -- the liquid_repost re-arm evidence accumulates here
+- classes now: {'NO_FLOW': 3, 'FLOW_ABOVE': 2} | repriceable now: true 0 / false 5 | **cumulative bid_grade lines: 7156 (repriceable true 880 / false 6276)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL09CASAMB-A | 50 | 5m | 0 | 52-53 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL09FEAKOZ-K | 20 | 5m | 0 | 20-23 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL09JOHBLA-B | 69 | 5m | 0 | 80-81 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL09DRAARS-DRA | 78 | 5m | 0 | 80-83 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL09THORIC-THO | 17 | 4m | 0 | 17-21 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL09CASAMB-A | 50 | 15m | 3/53-53/1027 | 52-53 | 3 | **FLOW_ABOVE** | 50 | flow above but bound 50c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL09FEAKOZ-K | 20 | 15m | 3/23-23/199 | 20-23 | 3 | **FLOW_ABOVE** | 20 | flow above but bound 20c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL09JOHBLA-B | 69 | 15m | 0 | 80-81 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL09DRAARS-DRA | 78 | 15m | 0 | 80-83 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL09THORIC-THO | 17 | 15m | 0 | 17-21 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
 |---|---|---|---|---|---|
 | WTACHALLENGERMATCH-26JUL09STEROG | 17 | 87 | **104** | 97 | +7 |
+| ITFMATCH-26JUL09GORARD | 72 | 40 | **112** | 97 | +15 |
 
-## FLOW-STATE — 8 tracked game(s) ({'WAKING': 6, 'OPEN': 2}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 8 tracked game(s) ({'WAKING': 8}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ITFMATCH-26JUL09GORARD | ITF_M | 3.033 | 2 | **OPEN** |
-| WTACHALLENGERMATCH-26JUL09STEROG | WTA_CHALL | 2.967 | 1 | **OPEN** |
-| ATPCHALLENGERMATCH-26JUL09CASAMB | ATP_CHALL | 0.233 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL09FEAKOZ | ATP_CHALL | 0.1 | 3 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL09CASAMB | ATP_CHALL | 0.267 | 1 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL09FEAKOZ | ATP_CHALL | 0.2 | 3 | **WAKING** |
 | ATPCHALLENGERMATCH-26JUL09JOHBLA | ATP_CHALL | 0.033 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL09MEJROD | ATP_CHALL | 41.6 | — | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL09MEJROD | ATP_CHALL | 43.4 | — | **WAKING** |
 | ITFMATCH-26JUL09DRAARS | ITF_M | 0.0 | 3 | **WAKING** |
-| ITFMATCH-26JUL09THORIC | ITF_M | 0.2 | 4 | **WAKING** |
+| ITFMATCH-26JUL09GORARD | ITF_M | 5.567 | — | **WAKING** |
+| ITFMATCH-26JUL09THORIC | ITF_M | 0.067 | 4 | **WAKING** |
+| WTACHALLENGERMATCH-26JUL09STEROG | WTA_CHALL | 3.633 | — | **WAKING** |
 
 ## PATTERNS (sub-B) — 0
 

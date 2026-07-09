@@ -156,6 +156,10 @@ for f in sorted((ROOT / "analysis" / "trades").iterdir()):
     for tb, (pr, mn) in lastmin.items():
         out_f.write(json.dumps({"tk": name, "cat": c, "b": buck(pr), "t": tb,
                                 "drift": bell_px - pr, "dip": mn - pr, "era": era,
+                                # [07-09 FIX] bell_src was computed (:135-137) but
+                                # never serialized -- n_honest read 0 on all 64,644
+                                # samples; the 0/500 coverage was STRUCTURAL.
+                                "bell_src": bell_src,
                                 "bell": int(bell)}) + "\n")
         new_samples += 1
 out_f.close()

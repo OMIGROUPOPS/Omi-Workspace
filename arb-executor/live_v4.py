@@ -341,6 +341,12 @@ def auth_headers(ak, pk, method, path):
 # no status). Cancel (DELETE /portfolio/orders/{id}), GET, and signing are UNCHANGED. Pure/testable.
 ORDER_CREATE_V2_PATH = "/trade-api/v2/portfolio/events/orders"
 
+# [C-INFLIGHT-LOCK 07-09] per-ticker+direction placement lock bound: the
+# exchange-ack HTTP timeout is 15s (aiohttp ClientTimeout total=15) + margin.
+# A lock older than this is stale by construction (the awaited POST has
+# either returned or timed out) -> forced release, logged loudly.
+INFLIGHT_LOCK_TIMEOUT_SEC = 20
+
 def build_order_payload_v2(ticker, action, price, count, post_only, client_order_id):
     """CreateOrderV2Request body. The bot trades the YES book ONLY -> action buy=bid, sell=ask.
     price is int CENTS -> dollars string ("%.2f"); count int -> string. post_only resting -> GTC,
@@ -3281,7 +3287,43 @@ class LiveV3:
         return (worst > bar, worst, worst_tk)
 
     async def place_order(self, ticker, action, side, price, count, post_only=True):
-        """Place a real order on Kalshi. Returns (order_id, response_dict) or ("", error_dict)."""
+        """[C-INFLIGHT-LOCK 2026-07-09, BOARD -1] THE in-flight dedup lock at the
+        single placement chokepoint (GORSTE class: two identical buys 103 ms
+        apart -- the exchange-truth guard awaits two API reads before the POST,
+        so a same-tick sibling coroutine passes the same guard on the same
+        stale truth; TANCHE lineage). From the synchronous moment a placement
+        commits until the exchange acks (fill/rest/reject/timeout), no second
+        placement for the same (ticker, action) enters flight -- ONE lock over
+        EVERY path through the chokepoint (conception, DCA, repost/walk,
+        completion, re-entry cycle-2; the per-leg-patchwork lesson applies to
+        locks too). Crash-safe: time-bound to the exchange-ack timeout
+        (INFLIGHT_LOCK_TIMEOUT_SEC); a stale lock force-releases LOUDLY and
+        can never orphan a ticker. Acquire/release wrap _place_order_unlocked
+        so every return path releases by construction (finally)."""
+        key = (ticker, action)
+        locks = self.__dict__.setdefault("_inflight_locks", {})
+        now = time.time()
+        held = locks.get(key)
+        if held is not None:
+            if now - held < INFLIGHT_LOCK_TIMEOUT_SEC:
+                self._log("inflight_lock_refused", {
+                    "action": action, "price": price, "count": count,
+                    "held_ms": round((now - held) * 1000.0, 1),
+                }, ticker=ticker)
+                return "", {"_error": "inflight_lock"}
+            self._log("inflight_lock_forced_release", {
+                "action": action, "held_sec": round(now - held, 3),
+            }, ticker=ticker)
+        locks[key] = now
+        try:
+            return await self._place_order_unlocked(
+                ticker, action, side, price, count, post_only)
+        finally:
+            locks.pop(key, None)
+
+    async def _place_order_unlocked(self, ticker, action, side, price, count, post_only=True):
+        """Place a real order on Kalshi. Returns (order_id, response_dict) or ("", error_dict).
+        ONLY entered via place_order's in-flight lock -- never call directly."""
         # [C-NEVER-MARKETABLE, ARMED unconditional per the Plex expression ruling]
         # no MAKER buy may post at >= best_ask -- enforced at the single chokepoint
         # every placement site flows through. post_only=False (the deliberate taker

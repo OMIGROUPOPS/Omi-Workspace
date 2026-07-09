@@ -1,6 +1,8 @@
 # THE BOARD — standing queue (est. 2026-07-07; the first read of every session)
 
-> One queue, five states. Close-outs touch THIS file + `docs/LIVING_VAULT.md` in the same push (C50 — the gate enforces it). An item leaves the board only by shipping (→ LIVING_VAULT entry), dying (→ LIVING_VAULT RETIRED), or being explicitly parked.
+> **SESSION ZERO: read `.claude/HANDOFF_FABLE.md` first** (the seat handoff: disk map, contract, live state, first action).
+
+> One queue, five states. Close-outs touch THIS file + `docs/LIVING_VAULT.md` in the same push (C50 — the gate enforces it). **C50 checklist extension (07-09): any close-out that changes live state, the ruling stack, or the queue ALSO updates `HANDOFF_FABLE.md`'s State paragraph in the same push.** An item leaves the board only by shipping (→ LIVING_VAULT entry), dying (→ LIVING_VAULT RETIRED), or being explicitly parked.
 
 ## SEND-ORDER (operator, 07-08 — the dispatch sequence; nothing jumps the line)
 

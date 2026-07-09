@@ -43,7 +43,7 @@ Prior 23 rows, today's fires (post-respawn file): leg2_reshuffle_reaim **×2,931
 2. **DRIFT-2** `conception_horizon_hours` explicit in config (a LAW living as a code default).
 3. **DRIFT-3** the 97-basis census (94% today) re-prints nightly until the cell-aim ramp arms — the standing INTERIM-ARCHAIC surface.
 4. **DRIFT-4** anchor_source on entry_filled/exit_filled stamps (scalps only today).
-5. **DRIFT-5** SLATE cross-tab renderer refresh (dynamic-S + GRID aware) before the weekly full re-run.
+5. **DRIFT-5** SLATE cross-tab renderer refresh (dynamic-S + GRID aware **+ COMBINED-PRICE CLAUSE: every combined prints its dynamic floor alongside — fixed-line rates barred as headlines**) before the weekly full re-run.
 6. **DRIFT-6** retire `per_match_clock_shadow` (archaic-ARMED) + remove `fv_anchor_scenarios_enabled`/`round5_detector_enabled` keys — one config-hygiene deploy takes DRIFT-1/2/6 together.
 
 **Cadence:** tape columns POST-ANY-DEPLOY (this run covers the 8 owed); next full weekly 2026-07-15.

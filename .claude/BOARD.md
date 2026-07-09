@@ -44,6 +44,9 @@
 
 ## QUEUED (next builds, in rough order)
 
+-0a. **PLEX RESUBMISSION PACKAGE READY (STEP 1, 07-09)** — GAME_LIFECYCLE.md + CLIMBSIDE_SPEC.md + STEP1.md (roster/projectability/scoreboard/hold-gate clause). The riser disarm stands until Plex re-rules on CLIMBSIDE_SPEC. **JOINT SHADOW: no cap read before n≥30 constrained decisions (operator, 07-09; currently 12+19).**
+-0b. **OS BUILD DISPATCH — queued behind this close-out** (operator): carries the import-boundary CI assertion as a same-PR component (Plex T1, accepted) + the P4 hold-gate shadow logging as a named component.
+
 -1. **IN-FLIGHT DEDUP LOCK (from the GORSTE race, 07-09)** — two identical buys 103 ms apart beat the exchange-truth guard (in-flight orders invisible to it); a per-ticker in-flight lock at the placement chokepoint closes the same-tick race class (TANCHE lineage). Small, next defect deploy.
 -1a00. **ITF VOLUME-FLOOR RULING — restated post-reconciliation (07-09)**: basis = the parse-robust structure (37% never-wake, 16-vs-5 unsweepable exits, 30%-vs-19% ride-rate, margin gradient 1.7–1.9× robust to accounting convention); ~~the $77/week figure~~ RETRACTED pending the convention pass (dollars re-price after it; the ruling need not wait). AWAITING OPERATOR WORD; ships as a gated config deploy.
 -1a000. **CASH-CONVENTION DERIVATION (from the reconciliation, 07-09)** — the sell/no booking + dead `revenue` field leave the cash identity underdetermined (residuals +$406/−$1,388/−$138 across parsings); derive the convention empirically against the hourly balance_snapshots (live since Jul-8 16:01Z), then every window reconciles to cents. Prereq for ALL future dollar-precise claims; the reconciliation law's missing tool.

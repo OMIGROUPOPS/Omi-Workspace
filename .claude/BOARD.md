@@ -45,7 +45,7 @@
 ## QUEUED (next builds, in rough order)
 
 -0a. **PLEX RESUBMISSION PACKAGE READY (STEP 1, 07-09)** — GAME_LIFECYCLE.md + CLIMBSIDE_SPEC.md + STEP1.md (roster/projectability/scoreboard/hold-gate clause). The riser disarm stands until Plex re-rules on CLIMBSIDE_SPEC. **JOINT SHADOW: no cap read before n≥30 constrained decisions (operator, 07-09; currently 12+19).**
--0b. **OS BUILD DISPATCH — queued behind this close-out** (operator): carries the import-boundary CI assertion as a same-PR component (Plex T1, accepted) + the P4 hold-gate shadow logging as a named component.
+-0b. ~~OS BUILD~~ — **SHIPPED SHADOW-FIRST (`1a187f77`, gated deploy 07-09 evening)**: oslayer/ order-path-pure (gate-asserted every deploy), decision core = lifecycle 2–5, T4 dual-flag hold-gate wired before logging, os_shadow stream live, nightly rollup; `os_active` DORMANT behind five named conditions. IN-FLIGHT watches: os_shadow rate/sites, boundary line in every gate, hold-flag divergence (Plex's threshold dataset).
 
 -1. **IN-FLIGHT DEDUP LOCK (from the GORSTE race, 07-09)** — two identical buys 103 ms apart beat the exchange-truth guard (in-flight orders invisible to it); a per-ticker in-flight lock at the placement chokepoint closes the same-tick race class (TANCHE lineage). Small, next defect deploy.
 -1a00. **ITF VOLUME-FLOOR RULING — restated post-reconciliation (07-09)**: basis = the parse-robust structure (37% never-wake, 16-vs-5 unsweepable exits, 30%-vs-19% ride-rate, margin gradient 1.7–1.9× robust to accounting convention); ~~the $77/week figure~~ RETRACTED pending the convention pass (dollars re-price after it; the ruling need not wait). AWAITING OPERATOR WORD; ships as a gated config deploy.

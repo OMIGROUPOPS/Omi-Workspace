@@ -44,6 +44,8 @@
 
 ## QUEUED (next builds, in rough order)
 
+0. **VOLUME LEDGER + FLOW CALIBRATION (operator 07-08 night) — IN FLIGHT**: forward field deployed (`c6979d1a`, vol_prints_30m on every gun fire + config hygiene DRIFT-1/2/6 same restart); corpus job detached (fill-rate|volume + spread stubbornness + recut volume augmentation); deliverable = QUIET/WAKING/OPEN as fill-probability states per cat, FINDINGS ONLY — gauge change ships as its own gated deploy after operator read.
+
 1. ~~Post-gun forensic~~ — **DONE 07-08 night** (`.claude/postgun_20260708/POST_GUN_FORENSIC.md`): ITF latch-silent 73–83%, median lag 31–46 min all cats, post-grace leak −$19 live-path (dead-bot class −$167 flagged out), EKSLUX all-four-controls exhibit; races 14/14 = walk path, zero latch races. Feeds SEND-ORDER #3 bell recovery.
 2. ~~Price-band clamp — walk/repost bypass~~ — **CLOSED (C-BAND-CLAMP-WALK `a5a64962`, deployed via the full gate 07-08 midday).** Conviction AMENDED the dossier read: the 29 outside-band placements (incl. HARMAI-HAR @4 filled) all predate the 23:57 clamp boot — the placement clamp is airtight; the post-clamp walk class was **cancel-then-refuse STARVATION** (walk cancels the good bid, band_refused kills the re-place, leg left oid=""+phantom basis, invisible to validate_resting_buys — ICHOCH-OCH 00:43, PIAPIE-PIE 02:34). Fix: pre-cancel band guard on the projected landing price + recover-at-old-price on any failed re-place. See LIVING_VAULT 07-08 midday entry + `.claude/proof_20260708/PROOF_WALK_BAND.md`. Regression watch: `walk_band_refused` / `repost_place_failed{recovered:false}` counters.
 3. ~~Post-only-cross exit hole~~ — **CLOSED 07-07 late (C-ITM-EXIT-TAKE in the sweep deploy)**; CLAHER/`exit_unpostable_itm` counter stays as the regression watch.

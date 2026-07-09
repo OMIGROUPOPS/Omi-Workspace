@@ -9513,6 +9513,18 @@ class LiveV3:
             hold_rule = bool(pos_obj and getattr(pos_obj, "strategy", "") == "hold")
             row = {"tk": tk, "held": h, "buy_orders": len(buys.get(tk, [])),
                    "buy_qty": bq, "sell_qty": sq, "hold_rule": hold_rule}
+            # [C-BOT-ONLY-BASIS 07-09, operator ruling] a no-cell-config ticker
+            # on the shared account is the operator's MANUAL book (the
+            # reconciler's reconcile_orphan_no_cell class): foreign_position =
+            # FLAG for visibility, NEVER a failure -- the 4:07 pm FRAMAR
+            # no_exit halt could never self-clear (bot has no cell to post an
+            # exit). Every assertion below stays fully in force for BOT legs.
+            if self.get_category(tk) is None:
+                flags.append({"tk": tk, "flag": "foreign_position",
+                              "held": h, "buy_qty": bq, "sell_qty": sq})
+                row["flag"] = "foreign_position"
+                table.append(row)
+                continue
             if len(buys.get(tk, [])) > 1:
                 failures.append({"tk": tk, "check": "buy_stack",
                                  "n": len(buys[tk]), "qty": bq})

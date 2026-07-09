@@ -9206,6 +9206,48 @@ class LiveV3:
         self._log("order_fingerprints_loaded", {
             "n": len(fps), "files": [p.name for p in files]})
 
+    def _load_gun_state_lineage(self):
+        """[C-GUN-PERSIST 2026-07-08, board #20] Rebuild _gun_state from the
+        jsonl gun_fired lineage at boot -- the fingerprint pattern, applied to
+        the gun (FIX_SCORECARD #9: the 7:55pm boot's amnesia minted 7
+        post-fire buys on 3 LIVE events -- ISOIMA/YAMSHI/MILMIS -- until the
+        poll re-fired). Any match with a prior fire (<=12h, two most-recent
+        jsonl files) boots FIRED: the post-fire buy block + grace posture are
+        in force BEFORE the first conception/repost pass, no re-fire wait."""
+        now = time.time()
+        n = 0
+        try:
+            files = sorted(LOG_DIR.glob("live_v3_*.jsonl"),
+                           key=lambda p: p.stat().st_mtime)[-2:]
+        except OSError:
+            files = []
+        for p in files:
+            try:
+                with open(p, encoding="utf-8", errors="replace") as fh:
+                    for line in fh:
+                        if '"gun_fired"' not in line:
+                            continue
+                        try:
+                            d = json.loads(line)
+                        except ValueError:
+                            continue
+                        det = d.get("details") or {}
+                        et = det.get("event", "")
+                        ts = d.get("ts_epoch", 0.0)
+                        if (not et or now - ts > 12 * 3600
+                                or et in self._gun_state):
+                            continue
+                        self._gun_state[et] = {"ts": ts,
+                                               "source": det.get("source"),
+                                               "rebuilt": True}
+                        self._events_live.add(et)
+                        n += 1
+            except OSError:
+                continue
+        self._log("gun_state_rebuilt", {
+            "n": n, "files": [p.name for p in files],
+            "events": sorted(e.rsplit("-", 1)[-1] for e in self._gun_state)[:30]})
+
     async def _post_boot_book_audit(self, context="boot"):
         """[C47-ENFORCE] Post-boot book audit, assert-and-halt. Within 5 min of
         every process start (deploy or crash-recover): fresh PAGINATED pull of
@@ -9329,6 +9371,25 @@ class LiveV3:
                                   "tts_hours": round(_hzt / 3600.0, 1)})
                     row["flag"] = (row.get("flag", "")
                                    + "+conception_beyond_horizon").lstrip("+")
+            # [C-GUN-PERSIST 2026-07-08] assert: ZERO buy placements on
+            # previously-FIRED matches -- a resting buy whose fingerprint
+            # placement ts postdates its event's gun fire evaded both the
+            # chokepoint refusal and the rebuilt boot state (the 7:55pm class,
+            # dead). Pre-fire bids surviving grace are grace's domain, not
+            # this assertion's.
+            _g = getattr(self, "_gun_state", {}).get(tk.rsplit("-", 1)[0])
+            if _g and buys.get(tk):
+                _fpm = getattr(self, "_order_fingerprints", None) or {}
+                for r in buys[tk]:
+                    _fp = _fpm.get(r["oid"])
+                    if _fp and float(_fp.get("ts") or 0) > _g.get("ts", 0) + 5:
+                        failures.append({"tk": tk, "check": "buy_placed_post_fire",
+                                         "oid": r["oid"][:12],
+                                         "fire_src": _g.get("source"),
+                                         "min_after_fire": round(
+                                             (_fp["ts"] - _g["ts"]) / 60.0, 1)})
+                        row["FAIL"] = (row.get("FAIL", "")
+                                       + "+buy_placed_post_fire").lstrip("+")
             # [C-ORPHAN-FINGERPRINT 2026-07-08] assert: ZERO bot-fingerprinted
             # resting buys outside bot tracking. manual-classified = the orphan
             # class alive; untracked = a leak state every healer skips. Either
@@ -9956,6 +10017,15 @@ class LiveV3:
         except Exception as _fpe:
             self._order_fingerprints = {}
             self._log("order_fingerprints_error", {"err": str(_fpe)[:200]})
+
+        # [C-GUN-PERSIST 07-08] rebuild fired-gun state from the jsonl BEFORE
+        # the first conception/repost pass (board #20: boot amnesia minted
+        # post-fire buys on live matches). Fail-soft: no lineage -> empty
+        # state, the poll re-fires as before.
+        try:
+            self._load_gun_state_lineage()
+        except Exception as _gpe:
+            self._log("gun_state_rebuild_error", {"err": str(_gpe)[:200]})
 
         # Reconcile: load existing positions and resting orders
         await self.reconcile()

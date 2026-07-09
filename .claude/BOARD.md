@@ -44,6 +44,9 @@
 
 ## QUEUED (next builds, in rough order)
 
+-1. **IN-FLIGHT DEDUP LOCK (from the GORSTE race, 07-09)** — two identical buys 103 ms apart beat the exchange-truth guard (in-flight orders invisible to it); a per-ticker in-flight lock at the placement chokepoint closes the same-tick race class (TANCHE lineage). Small, next defect deploy.
+-2. **GUN SCORECARD truth-join debug** — night-2 certification blocked again: only 1 FRESH fire truth-graded, at a suspect |Δ|=102 min (tape-onset join for te-fired guns); fix the join, the ±3-min bar rolls forward.
+
 0a. ~~FILL RATE REDO + TRAVERSE + CATEGORY LAW~~ — **LANDED 07-09 ~3:25 am** (`.claude/fillredo_20260709/FILL_REDO.md`): mains = JOIN market (40–50% at touch at V3; cliff below), ITF = DEPTH market (ladder alive to 2×spread); mains drift-path thesis REFUTED (1¢ range/8h); patient-join ratchet captures 0 everywhere; TWO REGIMES → per-cell postures (macro picks regime, tape picks moment). **Gauge re-fit restated: mains ON join-only; AWAITING OPERATOR READ before any config deploy.** DEPTH-RELATIVE AMENDMENT + CATEGORY LAW on FOUNDATIONS.
 0b. ~~VOLUME LEDGER + FLOW CALIBRATION~~ — **LANDED 07-09 ~1:05 am** (`.claude/volume_20260709/VOLUME_LEDGER.md`): dead book NEVER pays (structural); ITF fill prob doubles per volume band (16→31→50%); MAINS flat ~1% at any volume (par-lock participation-independent); ITF dead lattice = 6¢ opinion @20% tighten. Re-fit proposed (ITF OPEN=≥6 prints/30m; CHALL ≥16; mains gauge OFF) — **AWAITING OPERATOR READ; the gauge config deploy ships only on your word.** Forward field live (`d8d0c62f`); 538 recut cells volume-stamped.
 

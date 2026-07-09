@@ -1,6 +1,6 @@
 # OUTCOME PROOF (C46, two-lane) — C-VOL-LEDGER forward field + CONFIG HYGIENE (DRIFT-1/2/6)
 
-**Candidate SHA: `c6979d1a`**.
+**Candidate SHA: `d8d0c62f`**.
 
 ## Prior art (C45)
 - **VOLUME LEDGER dispatch (operator, 07-08 night)** — "one logging field forward"; the backfill + hypotheses run read-only alongside (`/root/volume_ledger.py`, detached).

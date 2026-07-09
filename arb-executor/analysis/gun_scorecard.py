@@ -112,6 +112,7 @@ def main():
                            or (ts - last_boot) < 120)
                 fires.setdefault(ev, {"ts": ts, "source": det.get("source"),
                                       "te_first": det.get("te_first_inplay"),
+                                      "vol30": det.get("vol_prints_30m"),
                                       "fire_class": ("CATCH-UP" if catchup
                                                      else "FRESH")})
             elif d["event"] == "gun_truth_delta":
@@ -160,8 +161,8 @@ def main():
 
     lines, per_cat = [], defaultdict(lambda: {"n": 0, "hit3": 0, "deltas": [],
                                               "miss": [], "catchup": 0})
-    lines.append("| event | cat | scheduled | gun fired | gun_source | fire_class | truth | truth_src | delta_min |")
-    lines.append("|---|---|---|---|---|---|---|---|---|")
+    lines.append("| event | cat | scheduled | gun fired | gun_source | fire_class | vol30@fire | truth | truth_src | delta_min |")
+    lines.append("|---|---|---|---|---|---|---|---|---|---|")
     for ev in sorted(set(fires) | set(te_truth)):
         c = cat_of(ev)
         if not c:
@@ -177,10 +178,11 @@ def main():
         delta = (round((f["ts"] - truth_ts) / 60.0, 1)
                  if (f and truth_ts) else None)
         fclass = f.get("fire_class", "?") if f else "--"
-        lines.append("| %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
+        lines.append("| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
             ev.split("-", 1)[-1], c, et_str(sched.get(ev)),
             et_str(f["ts"]) if f else "NO FIRE",
             f["source"] if f else "--", fclass,
+            (f.get("vol30") if f else None) if f and f.get("vol30") is not None else "--",
             et_str(truth_ts), truth_src,
             delta if delta is not None else "--"))
         r = per_cat[c]

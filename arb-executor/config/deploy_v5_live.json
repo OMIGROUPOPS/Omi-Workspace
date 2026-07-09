@@ -30,13 +30,11 @@
   "event_category_override": {
     "KXITFWMATCH-26JUN26DAEVAS": "WTA_CHALL"
   },
-  "exit_band_resolution": "gated_optima_validated_2026-06-01",
   "exit_table_dir": "data/durable/exit_surface_gated_optima/",
   "fallback_maker_clamp": true,
   "fallback_min_before_start": 20,
   "fallback_pair_bound": true,
   "fv_anchor_placement": false,
-  "fv_anchor_scenarios_enabled": false,
   "fv_observe": true,
   "graceful_shutdown": true,
   "inside_buffer_off": false,
@@ -63,7 +61,7 @@
   "paper_mode": false,
   "per_cat_depth": true,
   "per_match_clock": true,
-  "per_match_clock_shadow": true,
+  "per_match_clock_shadow": false,
   "per_side_placement": true,
   "premarket_bids_ride_live": true,
   "premarket_running_mid_anchor": false,
@@ -73,7 +71,6 @@
   "repost_sibling_on_boot": true,
   "rest_both_legs": true,
   "riser_post_revision": false,
-  "round5_detector_enabled": false,
   "scale_gun_shadow": true,
   "sizing": {
     "entry_contracts": 5,
@@ -98,5 +95,6 @@
   "fused_gun_enabled": true,
   "gun_poll_sec": 20,
   "gun_divergence_move_cents": 10,
-  "anchor_hierarchy_enabled": true
+  "anchor_hierarchy_enabled": true,
+  "conception_horizon_hours": 8
 }

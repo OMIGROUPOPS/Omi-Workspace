@@ -4907,10 +4907,21 @@ class LiveV3:
         hst = hz.get("start_ts")
         self._gun_state[et] = {"ts": now, "source": source}
         self._events_live.add(et)
+        # [C-VOL-LEDGER 2026-07-09] vol-at-fire forward field: prints seen in
+        # the trailing 30 min across both legs from the in-process deques
+        # (pruned ~30min -- this is the honest in-process number; the full
+        # cumulative W1 ledger lives collector-side from the trades CSVs).
+        _v30 = 0
+        _cut = now - 1800
+        for _tk in self.event_tickers.get(et, ()):
+            _dq = self._trade_times.get(_tk)
+            if _dq:
+                _v30 += sum(1 for _t in _dq if _t >= _cut)
         self._log("gun_fired", {
             "event": et, "source": source,
             "tts_legacy_min": (round((st - now) / 60.0, 1) if st else None),
             "tts_honest_min": (round((hst - now) / 60.0, 1) if hst else None),
+            "vol_prints_30m": _v30,
             **(detail or {})})
         return True
 

@@ -33,26 +33,26 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-09 ~5:15pm ET — C50 keeps this current):
-Bot LIVE (PID 2205164, build bbd8cada). TRUTH-JOIN SHIPPED (`572d678a`,
-analysis-side, bar untouched): certification night 3 UNBLOCKED — the
-6:10am cron grades on the fixed join (fire-source-independent tape
-truth, honest-clock anchored, suspects named, misses proven). INCIDENT
-4:07–4:47pm: an EXTERNAL taker buy (250sh KXWCGAME FRA–MAR World Cup,
-order a500c5e9, not the bot) tripped C47 no_exit and halted conceptions
-40 min; contained by a resting sell 250@99¢ (order 7cf55a8c) — halt
-cleared, ntfy sent. OPERATOR OWES: whose trade is FRAMAR? (if not
-yours → key security). BOARD −2a queues the foreign_position
-flag-not-fail audit fix. OS in shadow (os_active dormant behind five
-conditions). Cycle-cap live (allowed, cap 2, persistent; all three
-boot rebuilds assert). Coverage counter fixed 739ec32d; first
-honest-stamped fold tonight 4:45am; three-weight ruling after 2-3
-nights. Money: one solid line $912.61→$930.51 (+$17.90/25h anchored);
-finer claims await the cash-convention derivation (queued). Ruling
-stack (evidence filed, on BOARD): volume floor staged ≥2.5k · gauge
-grid · S-constants retirement · honest-weight table · hold threshold
-(Plex's, on shadow data). PARKED by operator: baseline reconciliation ·
-exits (solved, out of scope) · BOT_DOWN phone (plumbing live, dormant).
+## STATE (2026-07-09 evening — C50 keeps this current):
+Bot LIVE (C-BOT-ONLY-BASIS gated deploy, this evening). NEW STANDING
+RULING (RULING_BOT_ONLY_BASIS.md, operator verbatim): bot-traded money
+= THE basis, reset 12:00am ET nightly; manual/foreign positions named,
+NEVER blended — FRAMAR was the operator's manual (deliberate shake-up;
+key-security concern closed). Audit: no-cell tickers = foreign_position
+FLAG never FAIL/halt; containment sell 7cf55a8c cancelled (his book);
+canonical bot-only renderer analysis/daily_ledger.py; −1a000 identity
+amended (account Δ = bot P&L + manual Δ + fees; +$17.90 line = the
+cross-check, not the answer). TRUTH-JOIN shipped (`572d678a`, bar
+untouched): certification night 3 rides tonight's 6:10am cron on the
+fixed join. OS in shadow (os_active dormant behind five conditions).
+Cycle-cap live (allowed, cap 2, persistent; all three boot rebuilds
+assert). Coverage counter fixed 739ec32d; first honest-stamped fold
+tonight 4:45am; three-weight ruling after 2-3 nights. Dollar claims
+await −1a000 (queued). Ruling stack (evidence filed, on BOARD): volume
+floor staged ≥2.5k · gauge grid · S-constants retirement ·
+honest-weight table · hold threshold (Plex's, on shadow data). PARKED
+by operator: baseline reconciliation · exits (solved, out of scope) ·
+BOT_DOWN phone (plumbing live, dormant).
 
 ## FIRST ACTION every fresh session:
 git fetch → read BOARD top-to-bottom → report (a) live state, (b) the

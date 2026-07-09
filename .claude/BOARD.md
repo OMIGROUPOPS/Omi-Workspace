@@ -45,6 +45,8 @@
 ## QUEUED (next builds, in rough order)
 
 -1. **IN-FLIGHT DEDUP LOCK (from the GORSTE race, 07-09)** — two identical buys 103 ms apart beat the exchange-truth guard (in-flight orders invisible to it); a per-ticker in-flight lock at the placement chokepoint closes the same-tick race class (TANCHE lineage). Small, next defect deploy.
+-1b. **ITF SCHEDULE TZ AUDIT (from the chain proof, 07-09)** — the ITF lane's gun−sched lag is a ~+2h CONSTANT at every hour (feed tz/source-offset signature, not queuing); fix the lane + the certified-join gap (0/33 observed_starts join schedule rows). The +121min claim stays KILLED until this audit speaks.
+-1c. **AIM_V2 HONEST-WEIGHT RULING PREP** — bell_src stamps live from 07-10's 4:45 am run (`739ec32d`); after 2-3 stamped nights, run the derive and put the three-weight (1.0/0.5/0.25) coverage table in front of the operator: which bell_src qualifies as honest at which prior weight is now the ramp's actual bottleneck.
 -2. **GUN SCORECARD truth-join debug** — night-2 certification blocked again: only 1 FRESH fire truth-graded, at a suspect |Δ|=102 min (tape-onset join for te-fired guns); fix the join, the ±3-min bar rolls forward.
 
 0a. ~~FILL RATE REDO + TRAVERSE + CATEGORY LAW~~ — **LANDED 07-09 ~3:25 am** (`.claude/fillredo_20260709/FILL_REDO.md`): mains = JOIN market (40–50% at touch at V3; cliff below), ITF = DEPTH market (ladder alive to 2×spread); mains drift-path thesis REFUTED (1¢ range/8h); patient-join ratchet captures 0 everywhere; TWO REGIMES → per-cell postures (macro picks regime, tape picks moment). **Gauge re-fit restated: mains ON join-only; AWAITING OPERATOR READ before any config deploy.** DEPTH-RELATIVE AMENDMENT + CATEGORY LAW on FOUNDATIONS.

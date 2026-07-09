@@ -43,3 +43,5 @@ Run audit/w1_grading.py after full_tape_regrade.py: W1-cash rate per category is
 Run audit/latch_blind_forensic.py on settled slates; grade gun_thin_shadow fires vs honest start; graduation = catches the blind class at honest start +/-minutes with ~zero false pregame fires.
 
 - **JOINT SHADOW rollup (Plex walk-cap ruling, from 2026-07-07 nights):** `python3 analysis/joint_shadow_rollup.py` -> JOINT_SHADOW_<date>.md/json — conversion/starvation of combined-vs-each-alone + <=97 held on constrained pairs. Feeds the walk_cap_honest_anchor + expression_invariant arm gates.
+
+GUN SCORECARD 20260709: ATP_CHALL n=3 FRESH-within±3min=0/0 med|Δ|=-- catchup=0 misses=[] | ITF_M n=22 FRESH-within±3min=0/1 med|Δ|=102.2m catchup=3 misses=[] | ITF_W n=19 FRESH-within±3min=0/0 med|Δ|=-- catchup=0 misses=[] | WTA_CHALL n=6 FRESH-within±3min=0/0 med|Δ|=-- catchup=0 misses=[]

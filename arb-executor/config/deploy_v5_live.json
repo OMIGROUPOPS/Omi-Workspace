@@ -96,5 +96,6 @@
   "gun_poll_sec": 20,
   "gun_divergence_move_cents": 10,
   "anchor_hierarchy_enabled": true,
-  "conception_horizon_hours": 8
+  "conception_horizon_hours": 8,
+  "os_shadow_enabled": true
 }

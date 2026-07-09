@@ -70,9 +70,57 @@ def duplicate_defs(tree, filename):
     return violations
 
 
+ORDER_PATH_NAMES = {"place_order", "cancel_order", "api_post", "api_delete",
+                    "build_order_payload_v2"}
+
+
+def os_import_boundary(repo_root):
+    """[PLEX T1, 2026-07-09 — SAME-PR, NON-NEGOTIABLE] The consumption layer
+    (oslayer/) must be PURE: no module under it may import live_v4/the API
+    client/network libs or reference any order-path name. AST walk, hard-fail.
+    The OS ships unable to trade twice over (this boundary + the dormant flag)."""
+    viol = []
+    osdir = Path(repo_root) / "oslayer"
+    if not osdir.exists():
+        return viol
+    for f in sorted(osdir.rglob("*.py")):
+        try:
+            tree = ast.parse(f.read_text(encoding="utf-8", errors="replace"),
+                             filename=str(f))
+        except SyntaxError as e:
+            viol.append((str(f), e.lineno or 0, "syntax: %s" % e.msg))
+            continue
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.Import, ast.ImportFrom)):
+                mods = [a.name for a in node.names]
+                base = getattr(node, "module", None)
+                for m in ([base] if base else []) + mods:
+                    if m and any(m.startswith(x) for x in
+                                 ("live_v4", "arb_executor", "aiohttp",
+                                  "requests", "websocket")):
+                        viol.append((str(f), node.lineno,
+                                     "forbidden import '%s'" % m))
+            name = None
+            if isinstance(node, ast.Name):
+                name = node.id
+            elif isinstance(node, ast.Attribute):
+                name = node.attr
+            if name in ORDER_PATH_NAMES:
+                viol.append((str(f), node.lineno,
+                             "order-path reference '%s'" % name))
+    return viol
+
+
 def main():
     files = sys.argv[1:] or ["live_v4.py"]
     failed = False
+    # [PLEX T1] import-boundary assertion on the consumption layer
+    repo_root = Path(files[0]).resolve().parent
+    for f_, ln, msg in os_import_boundary(repo_root):
+        print(f"LINT FAIL [os-import-boundary] {f_}:{ln}: {msg}")
+        failed = True
+    if not failed and (repo_root / "oslayer").exists():
+        print("LINT: os-import-boundary OK (oslayer/ is order-path-pure)")
     for f in files:
         src = Path(f).read_text(encoding="utf-8", errors="replace")
         # 1. syntax

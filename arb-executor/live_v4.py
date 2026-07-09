@@ -1461,6 +1461,18 @@ class LiveV3:
         # anchored window stamps. OFF -> _horizon_state/scalp classification
         # byte-identical to per_match_clock behavior.
         self.anchor_hierarchy = bool(self.config.get("anchor_hierarchy_enabled", True))
+        # [OS BUILD 2026-07-09, Plex T1-T4] the consumption layer, SHADOW-ONLY.
+        # oslayer/ is order-path-PURE (gate-asserted import boundary); the bot
+        # imports IT (one-way). os_active is the DORMANT arm flag: gated on the
+        # coverage ruling + in-flight dedup lock + certification + four bars +
+        # operator word. The OS ships unable to trade twice over.
+        self.os_shadow = bool(self.config.get("os_shadow_enabled", True))
+        self.os_active = bool(self.config.get("os_active", False))   # DORMANT
+        self._os_core = None
+        self._os_recut = None
+        self._os_dedup: Dict[str, float] = {}
+        self._os_p30hist: Dict[str, list] = {}
+        self._os_cumprints: Dict[str, float] = {}
         self._gun_state: Dict[str, dict] = {}   # et -> {"ts","source","confirms",...}
         self._gun_feed_watermark = ""           # observed_starts inserted_at cursor
         self._gun_feed_err_ts = 0.0
@@ -2295,10 +2307,82 @@ class LiveV3:
         except Exception:
             return None
 
+    def _os_shadow(self, tk, site, actual):
+        """[OS BUILD 07-09] Log the OS's would-be action beside the bot's
+        actual, one jsonl stream (os_shadow). #12 input-vector gate satisfied
+        by construction: the FULL assembled vector is on every line. Dedup
+        (tk|site)/300s; hold sites carry the T4 dual flags. Never raises."""
+        if not getattr(self, "os_shadow", False):
+            return
+        try:
+            now = time.time()
+            k = "%s|%s" % (tk, site)
+            if now - self._os_dedup.get(k, 0) < 300:
+                return
+            self._os_dedup[k] = now
+            if self._os_core is None:
+                from oslayer import decision_core as _dc
+                from oslayer import holdgate as _hg
+                self._os_core = (_dc, _hg)
+                _rp = Path(__file__).resolve().parent.parent / \
+                    ".claude/volume_20260709/recut_cells_volume.json"
+                self._os_recut = json.loads(_rp.read_text()) if _rp.exists() else {}
+            _dc, _hg = self._os_core
+            et = tk.rsplit("-", 1)[0]
+            cat = self.get_category(et) if hasattr(self, "get_category") else None
+            bk = self.books.get(tk)
+            bid = int(bk.best_bid) if bk and bk.best_bid else None
+            ask = int(bk.best_ask) if bk and bk.best_ask else None
+            lt = self._fv_anchor_price(tk) if hasattr(self, "_fv_anchor_price") else None
+            cell = lt or bid
+            cellrec = (self._os_recut.get(cat, {}) or {}).get(str(cell), {}) if cell else {}
+            a, asrc, liar = self._anchor_state(et, now)
+            tts_min = round((a - now) / 60.0, 1) if a else None
+            p30 = 0
+            cut = now - 1800
+            for _t2 in self.event_tickers.get(et, ()):
+                dq = self._trade_times.get(_t2)
+                if dq:
+                    p30 += sum(1 for t in dq if t >= cut)
+            hist = self._os_p30hist.setdefault(tk, [])
+            hist.append(p30)
+            del hist[:-96]
+            self._os_cumprints[et] = self._os_cumprints.get(et, 0) + max(0, p30 - (hist[-2] if len(hist) > 1 else 0)) / 6.0
+            onset_age = None
+            if p30 >= 6:
+                onset_age = 0.0    # in-window proxy; rollup refines from CSVs
+            vec = {"cat": cat, "cell": cell,
+                   "edge_p50": cellrec.get("edge_p50"),
+                   "thin_tape": cellrec.get("thin_tape"),
+                   "close_ref": lt, "bid": bid, "ask": ask,
+                   "spread": (ask - bid) if (ask and bid) else None,
+                   "bid_ex_self": (self._book_ex_self(tk)[0]
+                                   if hasattr(self, "_book_ex_self") else None),
+                   "prints_30m": p30, "tts_min": tts_min,
+                   "onset_age_min": onset_age,
+                   "ask_falling": None,
+                   "qual_stage": "placement_light",
+                   "anchor_source": asrc, "clock_liar": liar}
+            would = _dc.decide(vec)
+            hold = None
+            if site == "hold_review":
+                base = sorted(hist)[len(hist) // 2] if hist else None
+                hold = _hg.review(base, hist, self._os_cumprints.get(et),
+                                  tts_min, None)   # floor share: rollup computes
+            self._log("os_shadow", {"site": site, "actual": actual,
+                                    "would": would, "vec": vec,
+                                    "hold": hold}, ticker=tk)
+        except Exception:
+            pass
+
     def _aim_shadow_log(self, tk, et, cat, px, actual_bid, tts_min, site):
         """[C-AIM-SHADOW] logging only; never raises into the trading path."""
         if not getattr(self, "aim_shadow", False):
             return
+        # [OS BUILD 07-09] shadow the decision sites (placement/repost/walk;
+        # reshuffle spam excluded by dedup + site filter). Logging-only.
+        if site in ("v4_place", "sibling_repost", "walk", "move_repost"):
+            self._os_shadow(tk, site, {"px": px, "actual_bid": actual_bid})
         try:
             if self._aim_shadow_tbl is None:
                 _p = Path("data/shape_corpus/aim_v2_operational_LATCHCAL.json")
@@ -8925,6 +9009,13 @@ class LiveV3:
             # v4 resting bids are managed by the v4 manager (target-bid based,
             # not best-bid reprice / FV-anchor freshness).
             if pos.is_v4:
+                # [OS BUILD 07-09, Plex T4] hold-gate shadow: TWO separate
+                # readings per resting leg per review (quiet-flag +
+                # floor-pace), never merged; threshold reserved for Plex.
+                self._os_shadow(tk, "hold_review",
+                                {"resting_at": pos.entry_price,
+                                 "posted_min_ago": round((now - pos.entry_posted_ts) / 60)
+                                 if pos.entry_posted_ts else None})
                 await self._v4_manage_resting(tk, pos, book, now)
                 continue
 

@@ -97,5 +97,6 @@
   "gun_divergence_move_cents": 10,
   "anchor_hierarchy_enabled": true,
   "conception_horizon_hours": 8,
-  "os_shadow_enabled": true
+  "os_shadow_enabled": true,
+  "reentry_cycle_cap": 2
 }

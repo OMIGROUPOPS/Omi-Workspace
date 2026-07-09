@@ -1468,6 +1468,12 @@ class LiveV3:
         # operator word. The OS ships unable to trade twice over.
         self.os_shadow = bool(self.config.get("os_shadow_enabled", True))
         self.os_active = bool(self.config.get("os_active", False))   # DORMANT
+        # [C-CYCLE-CAP 2026-07-09, operator ruling] premarket re-entry after a
+        # cashed cycle is ALLOWED, capped at 2 cycles per leg per premarket.
+        # Enforced at the repost sweep + the place_order chokepoint (covers the
+        # router); counts persist via the jsonl lineage rebuild at boot.
+        self.reentry_cycle_cap = int(self.config.get("reentry_cycle_cap", 2))
+        self._cycle_count: Dict[str, int] = {}
         self._os_core = None
         self._os_recut = None
         self._os_dedup: Dict[str, float] = {}
@@ -1882,6 +1888,14 @@ class LiveV3:
             })
 
     def _log(self, event, details=None, ticker=""):
+        # [C-CYCLE-CAP 2026-07-09, operator ruling] cycle-stamp every fill/
+        # exit/scalp row at the single emitter so LEDGER GRADES NEVER BLEND
+        # CYCLES: cycle N = completed cycles on this leg + 1 (the cycle the
+        # row belongs to; the counter increments AFTER exit booking).
+        if (event in ("entry_filled", "exit_filled", "scalp_filled")
+                and ticker and isinstance(details, dict)):
+            details.setdefault("cycle",
+                               getattr(self, "_cycle_count", {}).get(ticker, 0) + 1)
         entry = {
             "ts": datetime.now(ET).strftime("%Y-%m-%d %I:%M:%S %p ET"),
             "ts_epoch": time.time(),
@@ -3333,6 +3347,23 @@ class LiveV3:
                         "since_min": round((time.time() - _g.get("ts", 0)) / 60.0, 1),
                     }, ticker=ticker)
                 return "", {"_error": "gun_fired"}
+        # [C-CYCLE-CAP 2026-07-09, operator ruling] premarket re-entry ALLOWED,
+        # CAPPED at 2 completed cycles per leg per premarket. Chokepoint half:
+        # covers the router and every other conception path (the C-BAND-CLAMP
+        # make-it-stick lesson). Counts persist across restarts via the boot
+        # lineage rebuild. Dedup-logged per ticker per boot.
+        if action == "buy" and post_only:
+            _cc = getattr(self, "_cycle_count", {}).get(ticker, 0)
+            if _cc >= getattr(self, "reentry_cycle_cap", 2):
+                _cs = self.__dict__.setdefault("_cycle_cap_logged", set())
+                if ticker not in _cs:
+                    _cs.add(ticker)
+                    self._log("cycle_cap_refused", {
+                        "price": price, "count": count,
+                        "completed_cycles": _cc,
+                        "cap": getattr(self, "reentry_cycle_cap", 2),
+                    }, ticker=ticker)
+                return "", {"_error": "cycle_cap"}
         # Position accumulation guard: cap total buy exposure per ticker
         if action == "buy":
             target_max = self.config["sizing"]["entry_contracts"]
@@ -4315,12 +4346,14 @@ class LiveV3:
                 sib = self._sibling_ticker(tk, et)
                 if not sib:
                     _skip("sibling_unknown"); continue   # non-tennis / pre-discovery
-                # [C-NO-REBUY-AFTER-CASH 07-07] a cashed leg is a CLOSED story --
-                # its qty=0 read as "missing sibling" and the sweep re-conceived
-                # fresh 5-lots on TIKCHO/KUSTAG within a minute of their exits.
-                if (sib in self.__dict__.get("_session_exited", set())
-                        or tk in self.__dict__.get("_session_exited", set())):
-                    _skip("pair_cashed_this_session"); continue
+                # [C-NO-REBUY-AFTER-CASH 07-07, AMENDED by C-CYCLE-CAP 07-09]
+                # the operator's re-entry ruling: a cashed leg MAY re-conceive
+                # (cycle 2) but never beyond the cap. The blanket session-set
+                # skip becomes a count gate; counts persist across restarts.
+                _cap = getattr(self, "reentry_cycle_cap", 2)
+                _ccd = getattr(self, "_cycle_count", {})
+                if (_ccd.get(tk, 0) >= _cap or _ccd.get(sib, 0) >= _cap):
+                    _skip("cycle_cap_reached"); continue
                 if pos_map.get(sib, {}).get("qty", 0) != 0:
                     _skip("sibling_position"); continue  # pair (or partial) exists
                 if any(o.get("action") == "buy" for o in ord_map.get(sib, [])):
@@ -6535,6 +6568,10 @@ class LiveV3:
                         # sibling-repost sweep and the book audit refuse/flag any
                         # re-conception (TIKCHO: exit filled 19, fresh 5-lot bid
                         # 34s later; KUSTAG same at 80/63 -- tonight's sweep).
+                        # [C-CYCLE-CAP 07-09] superseded as a HARD gate by the
+                        # cycle counter (re-entry ALLOWED to cap 2); the set
+                        # stays as telemetry. Increment AFTER the log below so
+                        # this exit row stamps the cycle it closes.
                         self.__dict__.setdefault("_session_exited", set()).add(tk)
                         self._log("exit_filled", {
                             "exit_price": pos.exit_price,
@@ -6548,6 +6585,10 @@ class LiveV3:
                         }, ticker=tk)
                         if not complete:
                             continue  # remainder stays managed; nothing closes
+                        # [C-CYCLE-CAP] a COMPLETED cash closes the cycle
+                        # (partials never count; the exit row above already
+                        # stamped the cycle number pre-increment)
+                        self._cycle_count[tk] = self._cycle_count.get(tk, 0) + 1
                         if (pos.exit_filled_qty < pos.entry_qty
                                 and pos.is_v4):
                             # exit order terminal but open shares remain
@@ -9308,6 +9349,60 @@ class LiveV3:
         self._log("order_fingerprints_loaded", {
             "n": len(fps), "files": [p.name for p in files]})
 
+    def _load_cycle_history(self):
+        """[C-CYCLE-CAP 2026-07-09, operator ruling: re-entry ALLOWED, capped
+        at 2 cycles per leg per premarket] Rebuild per-leg completed
+        buy->cash cycle counts from the jsonl fill lineage at boot -- the
+        fingerprint pattern's THIRD application (orders -> gun state ->
+        cashed history; DAALU: cycle-2 conceived 11s after a restart wiped
+        the in-memory set). A ticker IS one match, so per-ticker count =
+        per-premarket count by construction. Adopted-class fills excluded
+        (fill-time-unreliable, A54 basis)."""
+        seq = defaultdict(list)
+        try:
+            files = sorted(LOG_DIR.glob("live_v3_*.jsonl"),
+                           key=lambda p: p.stat().st_mtime)[-2:]
+        except OSError:
+            files = []
+        for p in files:
+            try:
+                with open(p, encoding="utf-8", errors="replace") as fh:
+                    for line in fh:
+                        ise = '"entry_filled"' in line
+                        if not ise and '"exit_filled"' not in line:
+                            continue
+                        try:
+                            d = json.loads(line)
+                        except ValueError:
+                            continue
+                        det = d.get("details") or {}
+                        if ise and "adopt" in det.get("source", ""):
+                            continue
+                        tk = d.get("ticker") or ""
+                        if tk:
+                            seq[tk].append((d.get("ts_epoch", 0),
+                                            "B" if ise else "S"))
+            except OSError:
+                continue
+        self._cycle_count = {}
+        for tk, evs in seq.items():
+            evs.sort()
+            cyc, st = 0, None
+            for _ts, k in evs:
+                if k == "B":
+                    st = _ts
+                elif k == "S" and st is not None:
+                    cyc += 1
+                    st = None
+            if cyc:
+                self._cycle_count[tk] = cyc
+        multi = sum(1 for v in self._cycle_count.values() if v >= 2)
+        self._log("cycle_history_rebuilt", {
+            "n_legs_with_cycles": len(self._cycle_count),
+            "n_at_cap": multi,
+            "cap": getattr(self, "reentry_cycle_cap", 2),
+            "files": [p.name for p in files]})
+
     def _load_gun_state_lineage(self):
         """[C-GUN-PERSIST 2026-07-08, board #20] Rebuild _gun_state from the
         jsonl gun_fired lineage at boot -- the fingerprint pattern, applied to
@@ -9422,12 +9517,16 @@ class LiveV3:
                 failures.append({"tk": tk, "check": "buy_stack",
                                  "n": len(buys[tk]), "qty": bq})
                 row["FAIL"] = "buy_stack"
-            # [C-NO-REBUY-AFTER-CASH 07-07, sweep class 2] any resting buy on a
-            # leg that CASHED this session = a re-conception on a closed story.
-            if bq > 0 and tk in self.__dict__.get("_session_exited", set()):
-                failures.append({"tk": tk, "check": "post_exit_rebuy",
-                                 "buy_qty": bq})
-                row["FAIL"] = (row.get("FAIL", "") + "+post_exit_rebuy").lstrip("+")
+            # [C-NO-REBUY-AFTER-CASH 07-07, AMENDED by C-CYCLE-CAP 07-09] the
+            # operator's re-entry ruling: cycle-2 is LEGAL; a resting buy on a
+            # leg AT OR BEYOND the cap is the breach. Counts persist (boot
+            # lineage rebuild) so the assertion survives restarts.
+            if bq > 0 and getattr(self, "_cycle_count", {}).get(tk, 0) >= \
+                    getattr(self, "reentry_cycle_cap", 2):
+                failures.append({"tk": tk, "check": "cycle_cap_breach",
+                                 "buy_qty": bq,
+                                 "completed_cycles": self._cycle_count.get(tk, 0)})
+                row["FAIL"] = (row.get("FAIL", "") + "+cycle_cap_breach").lstrip("+")
             # conception = a RESTING BUY beyond the lot law; a historical over-lot
             # HOLDING with no buys is the exit-qty assertion's domain, not this
             # one (first live audit false-positived on BARZIN 10-held/0-buys).
@@ -10128,6 +10227,15 @@ class LiveV3:
             self._load_gun_state_lineage()
         except Exception as _gpe:
             self._log("gun_state_rebuild_error", {"err": str(_gpe)[:200]})
+
+        # [C-CYCLE-CAP 07-09] third rebuild at the same boot slot: per-leg
+        # cash-cycle history (operator ruling: re-entry ALLOWED, cap 2).
+        # Fail-soft: no lineage -> empty counts -> cap never binds falsely.
+        try:
+            self._load_cycle_history()
+        except Exception as _che:
+            self._cycle_count = {}
+            self._log("cycle_history_rebuild_error", {"err": str(_che)[:200]})
 
         # Reconcile: load existing positions and resting orders
         await self.reconcile()

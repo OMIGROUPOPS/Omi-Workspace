@@ -44,6 +44,8 @@
 
 ## QUEUED (next builds, in rough order)
 
+-00. **RE-ENTRY RULING (operator's open decision, 07-09)** — evidence package DAALU_REENTRY.md: the class is PROFITABLE (+$15.84/wk, 22/23 legs, 46 cycles) and unintentional (router never wired to the cash guard + restart amnesia — fingerprint lesson #3). Fix shapes filed for BOTH rulings (forbid → persistent guard at router+repost; allow → cycle counter + ledger cycle-stamps). NOTHING ships until the word.
+
 -0a. **PLEX RESUBMISSION PACKAGE READY (STEP 1, 07-09)** — GAME_LIFECYCLE.md + CLIMBSIDE_SPEC.md + STEP1.md (roster/projectability/scoreboard/hold-gate clause). The riser disarm stands until Plex re-rules on CLIMBSIDE_SPEC. **JOINT SHADOW: no cap read before n≥30 constrained decisions (operator, 07-09; currently 12+19).**
 -0b. ~~OS BUILD~~ — **SHIPPED SHADOW-FIRST (`1a187f77`, gated deploy 07-09 evening)**: oslayer/ order-path-pure (gate-asserted every deploy), decision core = lifecycle 2–5, T4 dual-flag hold-gate wired before logging, os_shadow stream live, nightly rollup; `os_active` DORMANT behind five named conditions. IN-FLIGHT watches: os_shadow rate/sites, boundary line in every gate, hold-flag divergence (Plex's threshold dataset).
 

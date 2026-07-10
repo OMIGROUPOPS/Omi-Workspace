@@ -56,10 +56,13 @@ def main():
     # [C-EARLY-UNLOCK 07-09] the early cohort renders separately so the
     # entry-table refit grades early entries against the standard window
     eu = defaultdict(lambda: {"placed": 0, "filled": 0, "vols": []})
+    # [C-TAPE-SEED 07-09] bids anchored on rest_seeded vs ws_live graded as
+    # separate cohorts
+    tb = defaultdict(lambda: defaultdict(lambda: {"placed": 0, "filled": 0}))
     foreign = {}
     KEEP = ('"entry_filled"', '"exit_filled"', '"scalp_filled"', '"settled"',
             '"reconcile_orphan_no_cell"', '"foreign_position"',
-            '"post_boot_audit"', '"early_unlock"')
+            '"post_boot_audit"', '"early_unlock"', '"tape_basis"')
     for p in files:
         for line in open(p, encoding="utf-8", errors="replace"):
             if not any(k in line for k in KEEP):
@@ -96,6 +99,11 @@ def main():
                         eu[c]["vols"].append(float(det["unlock_vol"]))
                 elif ev == "entry_filled":
                     eu[c]["filled"] += 1
+            if det.get("tape_basis"):
+                if ev == "order_placed" and det.get("action") == "buy":
+                    tb[c][det["tape_basis"]]["placed"] += 1
+                elif ev == "entry_filled":
+                    tb[c][det["tape_basis"]]["filled"] += 1
             if ev == "entry_filled":
                 r["entries"] += 1
                 r["entry_sh"] += float(det.get("new_fills") or det.get("qty") or 0)
@@ -131,6 +139,13 @@ def main():
             out.append("| %s | %d | %d | %s |" % (
                 c, eu[c]["placed"], eu[c]["filled"],
                 ("%.0f" % vs[len(vs) // 2]) if vs else "--"))
+    if tb:
+        out += ["", "## TAPE-BASIS COHORTS (C-TAPE-SEED — anchor memory source, graded separately)",
+                "", "| cat | basis | buys placed | fills |", "|---|---|---|---|"]
+        for c in sorted(tb):
+            for b in sorted(tb[c]):
+                out.append("| %s | %s | %d | %d |" % (
+                    c, b, tb[c][b]["placed"], tb[c][b]["filled"]))
     if foreign:
         out += ["", "## MANUAL / FOREIGN (named, NEVER blended — the operator's book)",
                 ""] + ["- `%s` — %s" % (k, v) for k, v in sorted(foreign.items())]

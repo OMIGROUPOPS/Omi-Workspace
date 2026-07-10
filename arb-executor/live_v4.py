@@ -1826,6 +1826,14 @@ class LiveV3:
         self._early_unlock_live: Dict[str, dict] = {}
         self._early_unlock_orders: Dict[str, dict] = {}
         self._early_unlock_logged: Set[str] = set()
+        # [C-TAPE-SEED 07-09] restart-amnesia class, 5th instance (orders ->
+        # guns -> cycles -> unlock-vol -> the TAPE): tk -> rest_seeded|ws_live
+        # basis of the last-trade memory; _tape_seed_tried throttles no-trade
+        # retries; _tape_basis_at_place remembers the basis a buy anchored on
+        # so its fill inherits the cohort stamp.
+        self._tape_basis: Dict[str, str] = {}
+        self._tape_seed_tried: Dict[str, float] = {}
+        self._tape_basis_at_place: Dict[str, str] = {}
         self.coarse_source = set()                     # [C-KALSHI-OCC] events started off the coarse Kalshi fallback
         # [C-SCHEDULE-TRUST-FIX] provenance of the stored start (source-priority corrections)
         self.event_start_source: Dict[str, str] = {}
@@ -1954,12 +1962,21 @@ class LiveV3:
                         details.setdefault("unlock_vol", _eu["vol"])
                         details.setdefault("unlock_basis", _eu["basis"])
                         getattr(self, "_early_unlock_orders", {})[ticker] = _eu
+                    # [C-TAPE-SEED] cohort stamp: which tape memory this buy
+                    # anchored on (rest_seeded vs ws_live); fill inherits
+                    _tb = getattr(self, "_tape_basis", {}).get(ticker)
+                    if _tb:
+                        details.setdefault("tape_basis", _tb)
+                        getattr(self, "_tape_basis_at_place", {})[ticker] = _tb
                 elif event == "entry_filled":
                     _eu = getattr(self, "_early_unlock_orders", {}).get(ticker)
                     if _eu:
                         details.setdefault("early_unlock", True)
                         details.setdefault("unlock_vol", _eu["vol"])
                         details.setdefault("unlock_basis", _eu["basis"])
+                    _tb = getattr(self, "_tape_basis_at_place", {}).get(ticker)
+                    if _tb:
+                        details.setdefault("tape_basis", _tb)
         except Exception:
             pass
         entry = {
@@ -3257,6 +3274,18 @@ class LiveV3:
         if isinstance(count, str):
             count = int(float(count))
         side = msg.get("taker_side", "?")
+        # [C-TAPE-SEED] a live print overwrites its REST seed immediately;
+        # one-time agreement log grades seed-vs-first-live-print (the watch).
+        try:
+            if self._tape_basis.get(ticker) == "rest_seeded":
+                self._log("tape_seed_live_confirm", {
+                    "seed_price": book.last_trade_price, "live_price": price,
+                    "delta": price - book.last_trade_price,
+                    "seed_age_sec": round(time.time() - book.last_trade_ts, 1)
+                    if book.last_trade_ts else None}, ticker=ticker)
+            self._tape_basis[ticker] = "ws_live"
+        except Exception:
+            pass
         book.last_trade_price = price
         book.last_trade_ts = time.time()
         book.last_trade_side = side
@@ -4031,8 +4060,60 @@ class LiveV3:
                     break
         if _ev_lifetime_vol:
             self.event_lifetime_vol = dict(_ev_lifetime_vol)  # [C-EARLY-UNLOCK] atomic swap
+        await self._seed_tape_memory()   # [C-TAPE-SEED] amnesia dies at every discovery pass
         self._log("discovery", {"total_tickers": len(all_tickers), "by_category": dict(counts)})
         return all_tickers
+
+    async def _seed_tape_memory(self):
+        """[C-TAPE-SEED 07-09] restart-amnesia class, FIFTH instance (orders ->
+        gun state -> cycle history -> unlock volume -> the TAPE): seed
+        per-ticker last-trade memory from Kalshi REST trade history with each
+        print's ACTUAL timestamp, so last_trade_age_sec reads honest age
+        (a 2,400s-old print reads 2,400s, never -1.0/unknown) and the existing
+        V4_LAST_TRADE_MAX_AGE_SEC freshness threshold gates UNCHANGED. NO
+        BBO-mid fallback introduced -- the last-trade discipline stands; only
+        the amnesia dies. Anchor resolution only; a live ws print overwrites
+        its seed immediately (basis flips rest_seeded -> ws_live). No-trade
+        tickers retry at most half-hourly."""
+        now = time.time()
+        seeded, checked = 0, 0
+        for tk in list(self.ticker_to_event.keys()):
+            bk = self.books.get(tk)
+            if bk and bk.last_trade_ts:
+                continue
+            if now - self._tape_seed_tried.get(tk, 0) < 1800:
+                continue
+            self._tape_seed_tried[tk] = now
+            checked += 1
+            data = await api_get(self.session, self.ak, self.pk,
+                "/trade-api/v2/markets/trades?ticker=%s&limit=1" % tk, self.rl)
+            trades = (data or {}).get("trades") or []
+            if not trades:
+                continue
+            t = trades[0]
+            try:
+                ts = datetime.fromisoformat(
+                    str(t.get("created_time", "")).replace("Z", "+00:00")).timestamp()
+                praw = t.get("yes_price", t.get("yes_price_dollars", 0))
+                if isinstance(praw, str):
+                    praw = float(praw)
+                # same cents/dollars heuristic as apply_trade (consistency)
+                price = round(praw * 100) if praw and float(praw) < 2 else int(float(praw or 0))
+            except Exception:
+                continue
+            if price <= 0 or ts <= 0:
+                continue
+            bk = self.books.setdefault(tk, Book())
+            if bk.last_trade_ts:
+                continue   # a live print raced in -- it wins
+            bk.last_trade_price = price
+            bk.last_trade_ts = ts
+            bk.last_trade_side = t.get("taker_side", "") or ""
+            self._tape_basis[tk] = "rest_seeded"
+            seeded += 1
+        if checked:
+            self._log("tape_seeded", {"checked": checked, "seeded": seeded,
+                                      "no_trades": checked - seeded})
 
     # ------------------------------------------------------------------
     # Side identification

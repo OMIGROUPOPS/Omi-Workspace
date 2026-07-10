@@ -1,6 +1,6 @@
 # OUTCOME PROOF (C46, two-lane) — C-EARLY-UNLOCK (operator ruling: realized volume floor unlocks the full 8h window, ITF only)
 
-**Candidate SHA: `SHA_EU`** (live_v4.py gate branch + lifetime-volume accumulator + cohort stamp, config keys `early_unlock_enabled`/`early_unlock_floor`, daily_ledger cohort section, RULING_EARLY_UNLOCK.md).
+**Candidate SHA: `c9861303`** (live_v4.py gate branch + lifetime-volume accumulator + cohort stamp, config keys `early_unlock_enabled`/`early_unlock_floor`, daily_ledger cohort section, RULING_EARLY_UNLOCK.md).
 
 ## Prior art (C45)
 - **RULING_EARLY_UNLOCK.md (this push)** — the operator's verbatim ruling, recorded first (RULING_BOT_ONLY_BASIS precedent).

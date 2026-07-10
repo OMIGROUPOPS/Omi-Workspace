@@ -1223,6 +1223,28 @@ async def api_delete(s, ak, pk, path, rl):
     return await _real_api_delete(s, ak, pk, path, rl)
 
 
+def _os_expected_share(cat, tts_min):
+    """[T4 DUAL-FLAG 07-09] SHADOW-DEFAULT per-cat curve: fraction of final W1
+    contract volume typically traded by this time-to-start. Consumed ONLY by
+    the hold-gate shadow's floor reading (os_active dormant) so the two flags
+    can diverge visibly; NEVER a threshold or ruling. Shape sourced from the
+    07-07 HOURLY_APPENDIX finding (ITF/CHALL volume is entirely T-2h->bell;
+    prints/min ~0.00 until T-3h; mains books wake earlier); numbers are coarse
+    placeholders the rollup/Plex threshold pass refits from the corpus."""
+    if tts_min is None:
+        return None
+    if tts_min <= 0:
+        return 1.0
+    mains = cat in ("ATP_MAIN", "WTA_MAIN")
+    curve = ((480, 0.05), (240, 0.15), (120, 0.35), (60, 0.55), (15, 0.75),
+             (0, 0.90)) if mains else \
+            ((240, 0.03), (120, 0.10), (60, 0.30), (15, 0.60), (0, 0.85))
+    for bound, share in curve:
+        if tts_min > bound:
+            return share
+    return 0.90 if mains else 0.85
+
+
 def _kalshi_occ_start(kts, now, max_future_sec):
     """[C-KALSHI-OCC] Validate a Kalshi occurrence_datetime/expected_expiration timestamp as a
     COARSE start source. Returns kts only if it is a real FUTURE start within bound; else None.
@@ -1485,6 +1507,12 @@ class LiveV3:
         self._os_dedup: Dict[str, float] = {}
         self._os_p30hist: Dict[str, list] = {}
         self._os_cumprints: Dict[str, float] = {}
+        # [T4 DUAL-FLAG 07-09, Plex ratification] hold-gate shadow inputs:
+        # per-event realized W1 CONTRACT volume (ws trades since boot; the
+        # floor reading's basis, unit-matched to the staged 2.5k floor) and
+        # the leg's OWN T-8h->T-4h activity baseline bank (quiet reading).
+        self._os_evt_vol: Dict[str, float] = {}
+        self._os_p30base: Dict[str, list] = {}
         self._gun_state: Dict[str, dict] = {}   # et -> {"ts","source","confirms",...}
         self._gun_feed_watermark = ""           # observed_starts inserted_at cursor
         self._gun_feed_err_ts = 0.0
@@ -2368,6 +2396,14 @@ class LiveV3:
             hist.append(p30)
             del hist[:-96]
             self._os_cumprints[et] = self._os_cumprints.get(et, 0) + max(0, p30 - (hist[-2] if len(hist) > 1 else 0)) / 6.0
+            # [T4 DUAL-FLAG 07-09] the quiet reading's baseline is the leg's
+            # OWN T-8h->T-4h span (Plex's exact shape), banked separately --
+            # a running median over ALL samples would let recent quiet drag
+            # the baseline down toward itself.
+            if tts_min is not None and 240 <= tts_min <= 480:
+                _bb = self._os_p30base.setdefault(tk, [])
+                _bb.append(p30)
+                del _bb[:-96]
             onset_age = None
             if p30 >= 6:
                 onset_age = 0.0    # in-window proxy; rollup refines from CSVs
@@ -2386,9 +2422,21 @@ class LiveV3:
             would = _dc.decide(vec)
             hold = None
             if site == "hold_review":
-                base = sorted(hist)[len(hist) // 2] if hist else None
-                hold = _hg.review(base, hist, self._os_cumprints.get(et),
-                                  tts_min, None)   # floor share: rollup computes
+                # [T4 DUAL-FLAG 07-09, Plex ratification — binding condition,
+                # his stated reason verbatim in intent: if the two readings
+                # ever diverge, that divergence must be VISIBLE IN THE DATA,
+                # not hidden inside one number. quiet_flag = anti-selection
+                # vs the leg's OWN T-8h->T-4h baseline (value logged);
+                # floor_miss_flag = realized contract volume + staged-floor
+                # qualification state. The hold-gate carries TWO jobs by
+                # ruling: anti-selection defense AND the volume floor's only
+                # enforcement point.]
+                _bb = self._os_p30base.get(tk) or []
+                base = sorted(_bb)[len(_bb) // 2] if _bb else None
+                hold = _hg.review(base, hist, self._os_evt_vol.get(et, 0.0),
+                                  tts_min, _os_expected_share(cat, tts_min))
+                hold["t4"] = "dual_flag_v1"
+                hold["vol_basis"] = "ws_contracts_since_boot"
             self._log("os_shadow", {"site": site, "actual": actual,
                                     "would": would, "vec": vec,
                                     "hold": hold}, ticker=tk)
@@ -3183,6 +3231,13 @@ class LiveV3:
         # T51: feed the volume-acceleration live detector (per-ticker trade times).
         dq = self._trade_times[ticker]
         dq.append(book.last_trade_ts)
+        # [T4 DUAL-FLAG 07-09] per-event cumulative CONTRACT volume (shadow
+        # hold-gate floor reading consumes it; nothing else reads it).
+        try:
+            _ev4 = ticker.rsplit("-", 1)[0]
+            self._os_evt_vol[_ev4] = self._os_evt_vol.get(_ev4, 0.0) + float(count or 0)
+        except Exception:
+            pass
         cutoff = book.last_trade_ts - LIVE_TRADE_RETENTION_SEC
         while dq and dq[0] < cutoff:
             dq.popleft()

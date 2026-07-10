@@ -28,7 +28,8 @@ def main():
     sites = Counter(r["details"]["site"] for r in rows)
     agree = diverge = 0
     dv = Counter()
-    holds = {"reviews": 0, "quiet": 0, "floor_proxy": 0, "both": 0, "diverge": 0}
+    holds = {"reviews": 0, "quiet": 0, "floor_miss": 0, "both": 0, "diverge": 0,
+             "floor_unevaluable": 0, "pre_instrument": 0}
     for r in rows:
         det = r["details"]
         w, a = det.get("would") or {}, det.get("actual") or {}
@@ -41,12 +42,22 @@ def main():
                 dv["%s|%s" % (w.get("regime"), w.get("timing"))] += 1
         h = det.get("hold")
         if h:
+            # [T4 DUAL-FLAG FENCE 07-09, Plex ratification] lines written
+            # before the dual-flag instrument (no t4 stamp: floor reading was
+            # structurally dead — expected_share passed as None) are
+            # PRE_INSTRUMENT: counted visibly, EXCLUDED from the threshold
+            # dataset. Plex's T4 accumulation clock starts at the first
+            # dual_flag_v1 line.
+            if h.get("t4") != "dual_flag_v1":
+                holds["pre_instrument"] += 1
+                continue
             holds["reviews"] += 1
             q, fm = h.get("quiet_flag"), h.get("floor_miss_flag")
             holds["quiet"] += int(bool(q))
-            holds["floor_proxy"] += int(bool(fm))
+            holds["floor_miss"] += int(bool(fm))
             holds["both"] += int(bool(q) and bool(fm))
             holds["diverge"] += int(bool(q) != bool(fm))
+            holds["floor_unevaluable"] += int(h.get("floor_qual") == "unevaluable")
     out = ["OS SHADOW %s: n=%d sites=%s | placement agree(±1c)=%d diverge=%d"
            " | divergence classes: %s | hold: %s"
            " | cap-sensitivity: DEFERRED (joint-shadow n>=30 gate, operator 07-09)"

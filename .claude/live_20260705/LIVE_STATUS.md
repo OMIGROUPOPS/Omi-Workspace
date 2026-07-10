@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 17 @ **2026-07-10 07:48:45 PM ET** | build `70f3b883` | session boot 07-10 17:25 ET | log `live_v3_20260710.jsonl` | 3458 session events | monitor READ-ONLY
+- cycle 18 @ **2026-07-10 07:58:56 PM ET** | build `f4863850` | session boot 07-10 17:25 ET | log `live_v3_20260710.jsonl` | 3545 session events | monitor READ-ONLY
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
@@ -19,7 +19,7 @@ clean overnight — no watch fires
 - classes now: {'FLOW_ABOVE': 1} | repriceable now: true 1 / false 0 | **cumulative bid_grade lines: 7903 (repriceable true 1070 / false 6833)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ITFMATCH-26JUL10DELJAS-JAS | 24 | 41m | 36/27-30/2256 | 28-28 | 3 | **FLOW_ABOVE** | 26 | REPRICEABLE→26 |
+| ITFMATCH-26JUL10DELJAS-JAS | 24 | 51m | 48/27-30/5847 | 28-28 | 3 | **FLOW_ABOVE** | 26 | REPRICEABLE→26 |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
@@ -29,12 +29,12 @@ clean overnight — no watch fires
 ## FLOW-STATE — 2 tracked game(s) ({'WAKING': 2}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ITFMATCH-26JUL10DELJAS | ITF_M | 2.1 | — | **WAKING** |
-| ITFMATCH-26JUL10POLMIY | ITF_M | 112.067 | — | **WAKING** |
+| ITFMATCH-26JUL10DELJAS | ITF_M | 2.967 | — | **WAKING** |
+| ITFMATCH-26JUL10POLMIY | ITF_M | 65.667 | — | **WAKING** |
 
 ## PATTERNS (sub-B) — 2
-- half_arm_aging: KXITFMATCH-26JUL10POLMIY-POL {"fill": 32, "age_min": 108, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFMATCH-26JUL10DELJAS-DEL {"fill": 71, "age_min": 41, "mode": "SET_BELOW_FLOW(prints 3c above)"}
+- half_arm_aging: KXITFMATCH-26JUL10POLMIY-POL {"fill": 32, "age_min": 118, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL10DELJAS-DEL {"fill": 71, "age_min": 51, "mode": "SET_BELOW_FLOW(prints 3c above)"}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

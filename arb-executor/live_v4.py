@@ -1834,6 +1834,9 @@ class LiveV3:
         self._tape_basis: Dict[str, str] = {}
         self._tape_seed_tried: Dict[str, float] = {}
         self._tape_basis_at_place: Dict[str, str] = {}
+        # [C-STALE-ANCHOR-ALLOWANCE 07-10] tk -> last anchor age observed at
+        # resolution (buys stamp it; the stale-vs-fresh cohort split)
+        self._last_anchor_age: Dict[str, float] = {}
         self.coarse_source = set()                     # [C-KALSHI-OCC] events started off the coarse Kalshi fallback
         # [C-SCHEDULE-TRUST-FIX] provenance of the stored start (source-priority corrections)
         self.event_start_source: Dict[str, str] = {}
@@ -1968,6 +1971,10 @@ class LiveV3:
                     if _tb:
                         details.setdefault("tape_basis", _tb)
                         getattr(self, "_tape_basis_at_place", {})[ticker] = _tb
+                    # [C-STALE-ANCHOR-ALLOWANCE] anchor age at resolution
+                    _aa = getattr(self, "_last_anchor_age", {}).get(ticker)
+                    if _aa is not None:
+                        details.setdefault("anchor_age_sec", _aa)
                 elif event == "entry_filled":
                     _eu = getattr(self, "_early_unlock_orders", {}).get(ticker)
                     if _eu:
@@ -2691,7 +2698,20 @@ class LiveV3:
             # --- DEFAULT: last-traded reference ---
             lt = book.last_trade_price
             lt_age = (time.time() - book.last_trade_ts) if book.last_trade_ts else float("inf")
-            if lt > 0 and lt_age <= V4_LAST_TRADE_MAX_AGE_SEC:
+            # [C-STALE-ANCHOR-ALLOWANCE 07-10, operator THRESHOLD ruling --
+            # RULING_STALE_ANCHOR_ALLOWANCE.md]: an event with an OPEN
+            # early-unlock (realized >= the staged floor, ITF only) widens
+            # the anchor freshness allowance to early_unlock_anchor_age_sec
+            # (ruled 7200s); every non-unlock ticker keeps 1800s UNCHANGED.
+            # Never-traded books still skip (lt_age = inf). NO BBO-mid
+            # fallback -- the discipline stands; only the allowance widens
+            # where volume already qualified the book.
+            _max_age = V4_LAST_TRADE_MAX_AGE_SEC
+            if tk.rsplit("-", 1)[0] in getattr(self, "_early_unlock_live", {}):
+                _max_age = float(self.config.get(
+                    "early_unlock_anchor_age_sec", 7200))
+            self._last_anchor_age[tk] = round(lt_age, 1) if lt_age != float("inf") else None
+            if lt > 0 and lt_age <= _max_age:
                 if (book.best_ask - book.best_bid) <= 2:
                     # tight book: trust the print only if it sits inside the book; else the mid
                     if book.best_bid <= lt <= book.best_ask:

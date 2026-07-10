@@ -38,7 +38,7 @@ Bot LIVE (C-TAPE-SEED gated deploy, latest): restart-amnesia 5th
 instance dead — last-trade memory REST-seeded at actual print
 timestamps (honest ages, never −1.0); 1800s threshold + last-trade
 discipline UNCHANGED; rest_seeded vs ws_live cohorts in daily_ledger;
-a too-stale book is an operator THRESHOLD ruling, not a code fix.
+stale-anchor RULED (7,200s allowance for unlock-open ITF, else 1,800s; stale-vs-fresh cohorts in daily_ledger).
 Prior same night (C-EARLY-UNLOCK): OPERATOR RULING
 (RULING_EARLY_UNLOCK.md verbatim) — realized lifetime volume ≥2,500
 unlocks the FULL T−8h window, ITF only, realized-never-projected (P1b

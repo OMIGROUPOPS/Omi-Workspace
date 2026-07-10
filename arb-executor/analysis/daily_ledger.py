@@ -100,10 +100,16 @@ def main():
                 elif ev == "entry_filled":
                     eu[c]["filled"] += 1
             if det.get("tape_basis"):
+                # [C-STALE-ANCHOR-ALLOWANCE] band split: fresh (<=1800s) vs
+                # stale-allowance (>1800s, unlock-widened) anchor at placement
+                _aa = det.get("anchor_age_sec")
+                _band = ("" if _aa is None
+                         else "/fresh" if float(_aa) <= 1800 else "/stale")
+                _key = det["tape_basis"] + _band
                 if ev == "order_placed" and det.get("action") == "buy":
-                    tb[c][det["tape_basis"]]["placed"] += 1
+                    tb[c][_key]["placed"] += 1
                 elif ev == "entry_filled":
-                    tb[c][det["tape_basis"]]["filled"] += 1
+                    tb[c][_key]["filled"] += 1
             if ev == "entry_filled":
                 r["entries"] += 1
                 r["entry_sh"] += float(det.get("new_fills") or det.get("qty") or 0)

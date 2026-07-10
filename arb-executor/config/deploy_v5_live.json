@@ -99,6 +99,7 @@
   "conception_horizon_hours": 8,
   "early_unlock_enabled": true,
   "early_unlock_floor": 2500,
+  "early_unlock_anchor_age_sec": 7200,
   "os_shadow_enabled": true,
   "reentry_cycle_cap": 2
 }

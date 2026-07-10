@@ -1,0 +1,446 @@
+{
+ "generated": "2026-07-10 12:36 PM ET",
+ "note": "divergence = basis/price - latest fv_burst_anchor fv_mid (burst-latched; None = no burst yet on that leg). Exit machinery FV citation: exit_rule_for -- band from (category, entry-price-cell) table; no FV parameter exists.",
+ "n_positions": 21,
+ "n_resting_buys": 36,
+ "n_with_burst_fv": 3,
+ "flags_gt10c": [
+  {
+   "kind": "position",
+   "tk": "KXITFMATCH-26JUL10ALFLOO-LOO",
+   "held": 5.0,
+   "basis_approx": 78,
+   "burst_fv_mid": 12.5,
+   "divergence": 65.5
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10ALFLOO-ALF",
+   "price": 18,
+   "burst_fv_mid": 86.5,
+   "divergence": -68.5
+  }
+ ],
+ "all": [
+  {
+   "kind": "position",
+   "tk": "KXITFMATCH-26JUL10KRUYOU-YOU",
+   "held": 5.0,
+   "basis_approx": 48,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXITFMATCH-26JUL10ROLWEI-ROL",
+   "held": 5.0,
+   "basis_approx": 64,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXITFWMATCH-26JUL10KOSZID-ZID",
+   "held": 5.0,
+   "basis_approx": 42,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXITFMATCH-26JUL10GHASPI-SPI",
+   "held": 5.0,
+   "basis_approx": 24,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10BROBAL-BAL",
+   "held": 5.0,
+   "basis_approx": 73,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXITFWMATCH-26JUL10FULBAR-FUL",
+   "held": 5.0,
+   "basis_approx": 86,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10SAIDEL-DEL",
+   "held": 5.0,
+   "basis_approx": 62,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXITFMATCH-26JUL10ARZCOC-COC",
+   "held": 5.0,
+   "basis_approx": 24,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXITFWMATCH-26JUL10AHNSHC-AHN",
+   "held": 1.0,
+   "basis_approx": 21,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXITFWMATCH-26JUL10AHNSHC-SHC",
+   "held": 5.0,
+   "basis_approx": 76,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXITFMATCH-26JUL10LOKALU-LOK",
+   "held": 5.0,
+   "basis_approx": 93,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXWTACHALLENGERMATCH-26JUL10JEATUB-JEA",
+   "held": 5.0,
+   "basis_approx": 62,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10MEJCAS-CAS",
+   "held": 5.0,
+   "basis_approx": 39,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10VARPDA-VAR",
+   "held": 5.0,
+   "basis_approx": 37,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXWTACHALLENGERMATCH-26JUL10STEMAR-STE",
+   "held": 5.0,
+   "basis_approx": 24,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10ROYDAN-ROY",
+   "held": 5.0,
+   "basis_approx": 57,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10GALMIL-GAL",
+   "held": 5.0,
+   "basis_approx": 62,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXITFMATCH-26JUL10ALFLOO-LOO",
+   "held": 5.0,
+   "basis_approx": 78,
+   "burst_fv_mid": 12.5,
+   "divergence": 65.5
+  },
+  {
+   "kind": "position",
+   "tk": "KXATPMATCH-26JUL10SINDJO-SIN",
+   "held": 5.0,
+   "basis_approx": 80,
+   "burst_fv_mid": 82.5,
+   "divergence": -2.5
+  },
+  {
+   "kind": "position",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10BROMIC-MIC",
+   "held": 5.0,
+   "basis_approx": 83,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "position",
+   "tk": "KXITFMATCH-26JUL10FORSVA-FOR",
+   "held": 5.0,
+   "basis_approx": 34,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10KRUYOU-KRU",
+   "price": 49,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFWMATCH-26JUL10NGUMIR-NGU",
+   "price": 41,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10FORSVA-SVA",
+   "price": 62,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXWTACHALLENGERMATCH-26JUL10VOLMAN-MAN",
+   "price": 22,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10BAXJAD-BAX",
+   "price": 82,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFWMATCH-26JUL10KOSZID-KOS",
+   "price": 55,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10SAIDEL-SAI",
+   "price": 35,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10JOHHOH-JOH",
+   "price": 82,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXWTACHALLENGERMATCH-26JUL10MINBRE-BRE",
+   "price": 26,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXWTACHALLENGERMATCH-26JUL10MINBRE-MIN",
+   "price": 73,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10ROYDAN-DAN",
+   "price": 39,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10MEJCAS-MEJ",
+   "price": 58,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10ANTKLA-ANT",
+   "price": 59,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10VARPDA-PDA",
+   "price": 60,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXWTACHALLENGERMATCH-26JUL10STEMAR-MAR",
+   "price": 73,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10GALMIL-MIL",
+   "price": 35,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10BERBON-BER",
+   "price": 45,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFWMATCH-26JUL10NGUMIR-MIR",
+   "price": 57,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFWMATCH-26JUL10CHAFAK-CHA",
+   "price": 41,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFWMATCH-26JUL10CHAFAK-FAK",
+   "price": 56,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10JOHHOH-HOH",
+   "price": 17,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10ALFLOO-ALF",
+   "price": 18,
+   "burst_fv_mid": 86.5,
+   "divergence": -68.5
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXWTACHALLENGERMATCH-26JUL10VOLMAN-VOL",
+   "price": 77,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10BERBON-BON",
+   "price": 53,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXATPCHALLENGERMATCH-26JUL10BROMIC-BRO",
+   "price": 14,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10JOHZAM-JOH",
+   "price": 38,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10FORWES-WES",
+   "price": 41,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFWMATCH-26JUL10NAHMAL-MAL",
+   "price": 37,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10DRARIC-RIC",
+   "price": 19,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFWMATCH-26JUL10AHNSHC-AHN",
+   "price": 21,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFWMATCH-26JUL10NAHMAL-NAH",
+   "price": 62,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10DRARIC-DRA",
+   "price": 79,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10ANTKLA-KLA",
+   "price": 39,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10JOHZAM-ZAM",
+   "price": 61,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10FORWES-FOR",
+   "price": 57,
+   "burst_fv_mid": null,
+   "divergence": null
+  },
+  {
+   "kind": "resting_buy",
+   "tk": "KXITFMATCH-26JUL10BAXJAD-JAD",
+   "price": 18,
+   "burst_fv_mid": null,
+   "divergence": null
+  }
+ ]
+}

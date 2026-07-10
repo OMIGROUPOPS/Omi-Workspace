@@ -652,7 +652,29 @@ def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, ch
     L = [f"# LIVE VALIDATION — rolling status", "",
          f"- cycle {cycle_n} @ **{now_et()}** | build `{sha}` | session boot "
          f"{datetime.fromtimestamp(S['boot'], ET).strftime('%m-%d %H:%M ET') if S['boot'] else '?'} "
-         f"| log `{log_path.name}` | {S['events']} session events | monitor READ-ONLY",
+         f"| log `{log_path.name}` | {S['events']} session events | monitor READ-ONLY",]
+    # [MORNING REVIEW 07-10, operator standing order] watches that fire
+    # overnight are the FIRST thing read at the AM checkpoint, never buried
+    # at line 396 (deep_neg_fv was). Overnight = midnight..9am ET today.
+    try:
+        _now = datetime.now(ET)
+        _mid = datetime(_now.year, _now.month, _now.day, tzinfo=ET).timestamp()
+        _nine = _mid + 9 * 3600
+        _overnight = [p for p in pats if _mid <= p.get("ts", 0) <= _nine]
+        _dv0 = drain_replay_violations(log_path)
+        L += ["", f"## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET)"
+                  f" — {len(_overnight) + len(_dv0)} item(s)"]
+        if _overnight or _dv0:
+            for p in sorted(_overnight, key=lambda y: y["ts"]):
+                L.append(f"- **{p['pattern']}**: {p.get('ticker') or p.get('event')} "
+                         f"{json.dumps({k: p[k] for k in p if k not in ('key','type','pattern','ts','ticker','event')})}")
+            for x in _dv0:
+                L.append(f"- **DRAIN-REPLAY VIOLATION**: `{x['ticker']}` drained {x['drained_at']}")
+        else:
+            L.append("clean overnight — no watch fires")
+    except Exception:
+        pass
+    L += [
          f"- tripwire artifact: "
          f"{'**PRESENT — CHECK /tmp/live_v4_TRIPWIRE.json**' if Path('/tmp/live_v4_TRIPWIRE.json').exists() else 'absent (quiet)'}",
          "", f"## ZERO-TOLERANCE — {len(v)} violation(s)"]

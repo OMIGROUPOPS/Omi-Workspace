@@ -33,7 +33,15 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-10 midday — C50 keeps this current):
+## STATE (2026-07-10 ~1:15pm — C50 keeps this current):
+EXHIBIT 1 (BLIZAN) delivered for Plex (casefile_20260710/: prose + 2
+leg JSONs + FV_SWEEP). Headlines: exits are FV-BLIND BY DESIGN (ruling
+item -0g, evidence filed: ZAN 28 vs FV 50.5; ALFLOO ±65c live);
+the 8:15 "FV disagreement" was the +140min lying clock; cycle-2 rebuy
+was completion machinery, intended. NEW CLASS BOARDED -0f: unbooked
+cycle-2 fills -> no_exit halts, 13 tickers today (NAKYAM x89 audits),
+3 contained by direct-API band exits, halts cleared 12:29pm. LIVE_STATUS
+now opens with MORNING REVIEW (overnight watch fires first read).
 CLOCK CENSUS DONE (−1b1, read-only): no global re-stamp — scoped
 exclusion. ITF's only admissible clock = live era (archive absent +
 mid-jump unfit on thin books, med −119m); CHALL jump-method trusted

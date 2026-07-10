@@ -1,6 +1,6 @@
 # OUTCOME PROOF (C46, two-lane) — C-T4-DUAL-FLAG (Plex ratification's binding condition; shadow/logging only)
 
-**Candidate SHA: `SHA_PLACEHOLDER`** (live_v4.py shadow hook + ws volume accumulator, oslayer/holdgate.py comment+echo upgrade, analysis/os_shadow_rollup.py fence, PLEX_T3_T4_RATIFICATION.md — zero order-path or decision-core behavior change; os_active untouched, dormant).
+**Candidate SHA: `12a523f3`** (live_v4.py shadow hook + ws volume accumulator, oslayer/holdgate.py comment+echo upgrade, analysis/os_shadow_rollup.py fence, PLEX_T3_T4_RATIFICATION.md — zero order-path or decision-core behavior change; os_active untouched, dormant).
 
 ## Prior art (C45)
 - **PLEX_T3_T4_RATIFICATION.md (recorded first, this push)** — the ruling being executed; T4's binding condition in its exact shape; verbatim body still owed by the relay (paste dropped it — flagged, slot reserved).

@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 34 @ **2026-07-10 06:34:50 AM ET** | build `cc2262ec` | session boot 07-10 00:49 ET | log `live_v3_20260710.jsonl` | 79015 session events | monitor READ-ONLY
+- cycle 35 @ **2026-07-10 06:45:12 AM ET** | build `97325645` | session boot 07-10 00:49 ET | log `live_v3_20260710.jsonl` | 81046 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 0 violation(s)
@@ -59,21 +59,21 @@
 | 05:29 | ITFWMATCH-26JUL10HOSVAN-HOS | ITF_W | ? | 53 | 41 | +12 (window_cell) | — | pre | single |  | GIFT_CLASS |
 
 ## RESTING BIDS — 12 tape-graded (starvation = NO_FLOW only)
-- classes now: {'FLOW_AT_LEVEL': 5, 'FLOW_ABOVE': 5, 'NO_FLOW': 2} | repriceable now: true 3 / false 9 | **cumulative bid_grade lines: 7653 (repriceable true 1019 / false 6634)** -- the liquid_repost re-arm evidence accumulates here
+- classes now: {'FLOW_AT_LEVEL': 5, 'FLOW_ABOVE': 5, 'NO_FLOW': 2} | repriceable now: true 2 / false 10 | **cumulative bid_grade lines: 7653 (repriceable true 1019 / false 6634)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL10DIAMCD-D | 80 | 134m | 3/81-81/108 | 80-81 | 1 | **FLOW_ABOVE** | 78 | flow above but bound 78c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL10MIDPIR-M | 32 | 154m | 1/33-33/17 | 32-33 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→33 |
-| ATPCHALLENGERMATCH-26JUL10NEUSQU-N | 67 | 147m | 4/68-68/168 | 67-68 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→68 |
-| ATPCHALLENGERMATCH-26JUL10NEUSQU-S | 31 | 143m | 1/32-32/44 | 31-32 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→32 |
-| ATPMATCH-26JUL10FERZVE-FER | 14 | 125m | 244/14-15/83036 | 14-15 | 0 | **FLOW_AT_LEVEL** | 99 |  |
-| ITFMATCH-26JUL10ADDCRA-ADD | 32 | 103m | 590/1-46/57828 | 2-1 | -31 | **FLOW_AT_LEVEL** | 11 |  |
-| ITFMATCH-26JUL10WISMAT-WIS | 54 | 154m | 0 | 54-55 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL10DYUSAG-DYU | 16 | 324m | 5142/1-60/775520 | 1-1 | -15 | **FLOW_AT_LEVEL** | 4 |  |
-| ITFWMATCH-26JUL10NAKYAM-NAK | 56 | 135m | 1166/39-81/104126 | 64-65 | -17 | **FLOW_AT_LEVEL** | 45 |  |
-| ITFWMATCH-26JUL10TUPMAK-MAK | 47 | 319m | 2921/18-99/312722 | 99-98 | -29 | **FLOW_AT_LEVEL** | 55 |  |
-| WTACHALLENGERMATCH-26JUL10BLIZAN-B | 74 | 154m | 6/76-76/230 | 74-76 | 2 | **FLOW_ABOVE** | 73 | flow above but bound 73c < flow -- chasing breaks goal |
-| WTACHALLENGERMATCH-26JUL10BLIZAN-Z | 24 | 154m | 0 | 24-25 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL10DIAMCD-D | 80 | 145m | 3/81-81/108 | 80-81 | 1 | **FLOW_ABOVE** | 78 | flow above but bound 78c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL10MIDPIR-M | 32 | 164m | 2/33-33/45 | 32-33 | 1 | **FLOW_ABOVE** | 30 | flow above but bound 30c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL10NEUSQU-N | 67 | 157m | 7/68-69/880 | 68-69 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→68 |
+| ATPCHALLENGERMATCH-26JUL10NEUSQU-S | 31 | 153m | 4/32-32/1044 | 31-32 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→32 |
+| ATPMATCH-26JUL10FERZVE-FER | 14 | 135m | 278/14-15/92150 | 14-15 | 0 | **FLOW_AT_LEVEL** | 99 |  |
+| ITFMATCH-26JUL10ADDCRA-ADD | 32 | 114m | 590/1-46/57828 | 2-1 | -31 | **FLOW_AT_LEVEL** | 11 |  |
+| ITFMATCH-26JUL10WISMAT-WIS | 54 | 164m | 0 | 54-55 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL10DYUSAG-DYU | 16 | 334m | 5142/1-60/775520 | 1-1 | -15 | **FLOW_AT_LEVEL** | 4 |  |
+| ITFWMATCH-26JUL10NAKYAM-NAK | 56 | 145m | 1533/39-81/137503 | 62-44 | -17 | **FLOW_AT_LEVEL** | 45 |  |
+| ITFWMATCH-26JUL10TUPMAK-MAK | 47 | 329m | 2921/18-99/312722 | 99-98 | -29 | **FLOW_AT_LEVEL** | 55 |  |
+| WTACHALLENGERMATCH-26JUL10BLIZAN-B | 74 | 164m | 6/76-76/230 | 74-76 | 2 | **FLOW_ABOVE** | 73 | flow above but bound 73c < flow -- chasing breaks goal |
+| WTACHALLENGERMATCH-26JUL10BLIZAN-Z | 24 | 164m | 0 | 24-25 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
@@ -82,44 +82,33 @@
 | ITFWMATCH-26JUL10FRISOL | 37 | 1 | **38** | 97 | -59 |
 | ITFWMATCH-26JUL10SHOKRO | 43 | 1 | **44** | 97 | -53 |
 | WTACHALLENGERMATCH-26JUL10CURVAN | 64 | 1 | **65** | 97 | -32 |
+| ITFWMATCH-26JUL10PEREZZ | 62 | 9 | **71** | 97 | -26 |
+| ITFMATCH-26JUL10JONBAR | 68 | 3 | **71** | 97 | -26 |
 | ITFMATCH-26JUL10CATSNI | 14 | 59 | **73** | 97 | -24 |
 | ITFMATCH-26JUL10VIVJAN | 72 | 1 | **73** | 97 | -24 |
-| ITFMATCH-26JUL10JONBAR | 68 | 5 | **73** | 97 | -24 |
+| ITFWMATCH-26JUL10GANSTR | 76 | 2 | **78** | 97 | -19 |
 | ITFWMATCH-26JUL10DYUSAG | 78 | 1 | **79** | 97 | -18 |
 | ITFWMATCH-26JUL10DENGOL | 78 | 1 | **79** | 97 | -18 |
-| ITFWMATCH-26JUL10GANSTR | 76 | 9 | **85** | 97 | -12 |
-| ITFWMATCH-26JUL10PEREZZ | 62 | 24 | **86** | 97 | -11 |
 | ITFWMATCH-26JUL10NATTOM | 87 | 1 | **88** | 97 | -9 |
 | ITFWMATCH-26JUL10PLOERC | 89 | 1 | **90** | 97 | -7 |
-| ITFWMATCH-26JUL10HOSVAN | 53 | 39 | **92** | 97 | -5 |
-| ATPCHALLENGERMATCH-26JUL10CHODED | 57 | 41 | **98** | 97 | +1 |
+| ITFWMATCH-26JUL10HOSVAN | 53 | 37 | **90** | 97 | -7 |
+| ATPCHALLENGERMATCH-26JUL10CHODED | 57 | 40 | **97** | 97 | +0 |
 | ITFWMATCH-26JUL10KUBBER | 10 | 98 | **108** | 97 | +11 |
-| ITFMATCH-26JUL10VELMON | 76 | 46 | **122** | 97 | +25 |
-| ITFMATCH-26JUL10MAZBRE | 45 | 79 | **124** | 97 | +27 |
+| ITFMATCH-26JUL10VELMON | 76 | 40 | **116** | 97 | +19 |
+| ITFMATCH-26JUL10MAZBRE | 45 | 78 | **123** | 97 | +26 |
 | WTACHALLENGERMATCH-26JUL10QUEWAL | 33 | 92 | **125** | 97 | +28 |
 | ITFMATCH-26JUL10ARZBEL | 76 | 52 | **128** | 97 | +31 |
 | ITFMATCH-26JUL10TYABEA | 40 | 92 | **132** | 97 | +35 |
 | ITFWMATCH-26JUL10YODJAN | 66 | 75 | **141** | 97 | +44 |
+| ITFWMATCH-26JUL10BOJINI | 55 | 91 | **146** | 97 | +49 |
 | ITFWMATCH-26JUL10KRUSMI | 81 | 66 | **147** | 97 | +50 |
-| ITFWMATCH-26JUL10BOJINI | 55 | 97 | **152** | 97 | +55 |
 
-## FLOW-STATE — 45 tracked game(s) ({'OPEN': 14, 'WAKING': 13, 'QUIET': 18}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 45 tracked game(s) ({'WAKING': 23, 'OPEN': 2, 'QUIET': 20}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL10CHODED | ATP_CHALL | 11.8 | 1 | **OPEN** |
-| ATPMATCH-26JUL10FERZVE | ATP_MAIN | 2.4 | 1 | **OPEN** |
-| ITFMATCH-26JUL10JONBAR | ITF_M | 5.267 | 1 | **OPEN** |
-| ITFMATCH-26JUL10MAZBRE | ITF_M | 10.1 | 1 | **OPEN** |
-| ITFMATCH-26JUL10TYABEA | ITF_M | 0.7 | 1 | **OPEN** |
-| ITFMATCH-26JUL10VANKOI | ITF_M | 7.033 | 2 | **OPEN** |
-| ITFMATCH-26JUL10VELMON | ITF_M | 3.167 | 2 | **OPEN** |
-| ITFMATCH-26JUL10ZAPDUR | ITF_M | 27.0 | 2 | **OPEN** |
-| ITFWMATCH-26JUL10BOJINI | ITF_W | 2.5 | 1 | **OPEN** |
-| ITFWMATCH-26JUL10GANSTR | ITF_W | 2.067 | 1 | **OPEN** |
-| ITFWMATCH-26JUL10HOSVAN | ITF_W | 0.433 | 1 | **OPEN** |
-| ITFWMATCH-26JUL10KOVJIA | ITF_W | 2.5 | 2 | **OPEN** |
-| ITFWMATCH-26JUL10NAKYAM | ITF_W | 49.767 | 1 | **OPEN** |
-| ITFWMATCH-26JUL10PEREZZ | ITF_W | 6.4 | 2 | **OPEN** |
+| ATPMATCH-26JUL10FERZVE | ATP_MAIN | 2.733 | 1 | **OPEN** |
+| ITFWMATCH-26JUL10KOVJIA | ITF_W | 3.9 | 1 | **OPEN** |
+| ITFMATCH-26JUL10CATSNI | ITF_M | 0.0 | — | **QUIET** |
 | ITFMATCH-26JUL10DOUVIR | ITF_M | 0.0 | — | **QUIET** |
 | ITFMATCH-26JUL10FABOBR | ITF_M | 0.0 | — | **QUIET** |
 | ITFMATCH-26JUL10JEDRIV | ITF_M | 0.0 | — | **QUIET** |
@@ -138,35 +127,46 @@
 | ITFWMATCH-26JUL10TUPMAK | ITF_W | 0.0 | — | **QUIET** |
 | ITFWMATCH-26JUL10WIEFOU | ITF_W | 0.0 | — | **QUIET** |
 | ITFWMATCH-26JUL10YODJAN | ITF_W | 0.0 | — | **QUIET** |
+| WTACHALLENGERMATCH-26JUL10CURVAN | WTA_CHALL | 0.0 | — | **QUIET** |
+| ATPCHALLENGERMATCH-26JUL10CHODED | ATP_CHALL | 13.833 | — | **WAKING** |
 | ATPCHALLENGERMATCH-26JUL10DIAMCD | ATP_CHALL | 0.067 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL10MIDPIR | ATP_CHALL | 0.0 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL10NEUSQU | ATP_CHALL | 0.033 | 1 | **WAKING** |
-| ITFMATCH-26JUL10ADDCRA | ITF_M | 12.8 | — | **WAKING** |
-| ITFMATCH-26JUL10ARZBEL | ITF_M | 1.0 | 4 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL10MIDPIR | ATP_CHALL | 0.033 | 1 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL10NEUSQU | ATP_CHALL | 0.2 | 1 | **WAKING** |
+| ITFMATCH-26JUL10ADDCRA | ITF_M | 8.1 | — | **WAKING** |
+| ITFMATCH-26JUL10ARZBEL | ITF_M | 0.933 | — | **WAKING** |
 | ITFMATCH-26JUL10BAYERE | ITF_M | 0.0 | 1 | **WAKING** |
-| ITFMATCH-26JUL10CATSNI | ITF_M | 3.333 | — | **WAKING** |
-| ITFMATCH-26JUL10LAGROS | ITF_M | 59.6 | — | **WAKING** |
+| ITFMATCH-26JUL10JONBAR | ITF_M | 7.367 | — | **WAKING** |
+| ITFMATCH-26JUL10LAGROS | ITF_M | 44.633 | — | **WAKING** |
+| ITFMATCH-26JUL10MAZBRE | ITF_M | 10.267 | — | **WAKING** |
+| ITFMATCH-26JUL10TYABEA | ITF_M | 1.033 | — | **WAKING** |
+| ITFMATCH-26JUL10VANKOI | ITF_M | 5.667 | — | **WAKING** |
+| ITFMATCH-26JUL10VELMON | ITF_M | 3.967 | — | **WAKING** |
 | ITFMATCH-26JUL10WISMAT | ITF_M | 0.0 | 1 | **WAKING** |
-| ITFWMATCH-26JUL10KUBBER | ITF_W | 5.733 | — | **WAKING** |
+| ITFMATCH-26JUL10ZAPDUR | ITF_M | 29.267 | — | **WAKING** |
+| ITFWMATCH-26JUL10BOJINI | ITF_W | 2.733 | — | **WAKING** |
+| ITFWMATCH-26JUL10GANSTR | ITF_W | 2.467 | — | **WAKING** |
+| ITFWMATCH-26JUL10HOSVAN | ITF_W | 1.033 | — | **WAKING** |
+| ITFWMATCH-26JUL10KUBBER | ITF_W | 1.433 | — | **WAKING** |
+| ITFWMATCH-26JUL10NAKYAM | ITF_W | 60.167 | — | **WAKING** |
+| ITFWMATCH-26JUL10PEREZZ | ITF_W | 10.733 | — | **WAKING** |
 | WTACHALLENGERMATCH-26JUL10BLIZAN | WTA_CHALL | 0.067 | 1 | **WAKING** |
-| WTACHALLENGERMATCH-26JUL10CURVAN | WTA_CHALL | 2.7 | — | **WAKING** |
-| WTACHALLENGERMATCH-26JUL10QUEWAL | WTA_CHALL | 13.567 | 4 | **WAKING** |
+| WTACHALLENGERMATCH-26JUL10QUEWAL | WTA_CHALL | 10.3 | — | **WAKING** |
 
 ## PATTERNS (sub-B) — 101
-- half_arm_aging: KXITFWMATCH-26JUL10DYUSAG-SAG {"fill": 78, "age_min": 345, "mode": "QUEUE(flow at/below our level, unfilled)"}
+- half_arm_aging: KXITFWMATCH-26JUL10DYUSAG-SAG {"fill": 78, "age_min": 355, "mode": "QUEUE(flow at/below our level, unfilled)"}
 - pre_conception_buy: KXITFMATCH-26JUL10CATDEL-CAT {"price": 16, "conception_ts": 1783674053.8134248, "detail": "buy 16c predates the conception stamp by 251min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- pre_conception_buy: KXITFWMATCH-26JUL10HOSVAN-HOS {"price": 53, "conception_ts": 1783679458.7523782, "detail": "buy 53c predates the conception stamp by 341min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 31, "conception_ts": 1783679458.7644548, "detail": "buy 31c predates the conception stamp by 341min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFMATCH-26JUL10JONBAR-JON {"price": 33, "conception_ts": 1783679401.5002544, "detail": "buy 33c predates the conception stamp by 340min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
+- pre_conception_buy: KXITFWMATCH-26JUL10HOSVAN-HOS {"price": 53, "conception_ts": 1783679458.7523782, "detail": "buy 53c predates the conception stamp by 341min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 31, "conception_ts": 1783679458.7644548, "detail": "buy 31c predates the conception stamp by 341min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFMATCH-26JUL10JONBAR-JON {"price": 33, "conception_ts": 1783679401.5002544, "detail": "buy 33c predates the conception stamp by 340min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFWMATCH-26JUL10CIRGRA-GRA {"price": 75, "conception_ts": 1783675811.1929896, "detail": "buy 75c predates the conception stamp by 280min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- pre_conception_buy: KXITFWMATCH-26JUL10BOJINI-BOJ {"price": 55, "conception_ts": 1783679401.011276, "detail": "buy 55c predates the conception stamp by 340min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL10GANSTR-GAN {"price": 18, "conception_ts": 1783679402.385371, "detail": "buy 18c predates the conception stamp by 340min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
+- pre_conception_buy: KXITFWMATCH-26JUL10BOJINI-BOJ {"price": 55, "conception_ts": 1783679401.011276, "detail": "buy 55c predates the conception stamp by 340min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10GANSTR-GAN {"price": 18, "conception_ts": 1783679402.385371, "detail": "buy 18c predates the conception stamp by 340min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFMATCH-26JUL10MAZBRE-MAZ {"price": 54, "conception_ts": 1783677605.832041, "detail": "buy 54c predates the conception stamp by 310min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- pre_conception_buy: KXITFMATCH-26JUL10VELMON-MON {"price": 75, "conception_ts": 1783679411.3143702, "detail": "buy 75c predates the conception stamp by 340min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFMATCH-26JUL10ARZBEL-ARZ {"price": 75, "conception_ts": 1783679434.2934842, "detail": "buy 75c predates the conception stamp by 341min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFMATCH-26JUL10COCPAN-PAN {"price": 76, "conception_ts": 1783679400.3693411, "detail": "buy 76c predates the conception stamp by 340min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFMATCH-26JUL10ARSJUH-JUH {"price": 73, "conception_ts": 1783679432.6741896, "detail": "buy 73c predates the conception stamp by 341min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFMATCH-26JUL10ZGISHI-ZGI {"price": 42, "conception_ts": 1783679458.7260473, "detail": "buy 42c predates the conception stamp by 341min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
+- pre_conception_buy: KXITFMATCH-26JUL10VELMON-MON {"price": 75, "conception_ts": 1783679411.3143702, "detail": "buy 75c predates the conception stamp by 340min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFMATCH-26JUL10ARZBEL-ARZ {"price": 75, "conception_ts": 1783679434.2934842, "detail": "buy 75c predates the conception stamp by 341min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFMATCH-26JUL10COCPAN-PAN {"price": 76, "conception_ts": 1783679400.3693411, "detail": "buy 76c predates the conception stamp by 340min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFMATCH-26JUL10ARSJUH-JUH {"price": 73, "conception_ts": 1783679432.6741896, "detail": "buy 73c predates the conception stamp by 341min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFMATCH-26JUL10ZGISHI-ZGI {"price": 42, "conception_ts": 1783679458.7260473, "detail": "buy 42c predates the conception stamp by 341min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFMATCH-26JUL10CATSNI-SNI {"price": 87, "conception_ts": 1783674001.0265718, "detail": "buy 87c predates the conception stamp by 250min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFMATCH-26JUL10FABOBR-OBR {"price": 81, "conception_ts": 1783674053.7283878, "detail": "buy 81c predates the conception stamp by 251min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFMATCH-26JUL10MILMIK-MIK {"price": 12, "conception_ts": 1783674053.7781765, "detail": "buy 12c predates the conception stamp by 251min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
@@ -189,71 +189,71 @@
 - pre_conception_buy: KXITFMATCH-26JUL10CATDEL-CAT {"price": 15, "conception_ts": 1783674053.8134248, "detail": "buy 15c predates the conception stamp by 251min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFWMATCH-26JUL10KRUSMI-KRU {"price": 80, "conception_ts": 1783675833.6684055, "detail": "buy 80c predates the conception stamp by 281min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFWMATCH-26JUL10SHENON-NON {"price": 26, "conception_ts": 1783677642.9036074, "detail": "buy 26c predates the conception stamp by 311min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- pre_conception_buy: KXITFMATCH-26JUL10ZGISHI-ZGI {"price": 37, "conception_ts": 1783679458.7260473, "detail": "buy 37c predates the conception stamp by 341min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- half_arm_aging: KXITFWMATCH-26JUL10PLOERC-ERC {"fill": 89, "age_min": 343, "mode": "NO_BID(sib rested earlier, none now)"}
+- pre_conception_buy: KXITFMATCH-26JUL10ZGISHI-ZGI {"price": 37, "conception_ts": 1783679458.7260473, "detail": "buy 37c predates the conception stamp by 341min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- half_arm_aging: KXITFWMATCH-26JUL10PLOERC-ERC {"fill": 89, "age_min": 353, "mode": "NO_BID(sib rested earlier, none now)"}
 - pre_conception_buy: KXITFWMATCH-26JUL10DENGOL-GOL {"price": 20, "conception_ts": 1783674009.2357688, "detail": "buy 20c predates the conception stamp by 248min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFMATCH-26JUL10CATDEL-CAT {"price": 16, "conception_ts": 1783674053.8134248, "detail": "buy 16c predates the conception stamp by 249min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFWMATCH-26JUL10KRUSMI-KRU {"price": 81, "conception_ts": 1783675833.6684055, "detail": "buy 81c predates the conception stamp by 278min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFMATCH-26JUL10ADDCRA-ADD {"price": 32, "conception_ts": 1783677604.7138557, "detail": "buy 32c predates the conception stamp by 308min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- pre_conception_buy: KXITFMATCH-26JUL10TYABEA-BEA {"price": 39, "conception_ts": 1783679458.7184222, "detail": "buy 39c predates the conception stamp by 327min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
+- pre_conception_buy: KXITFMATCH-26JUL10TYABEA-BEA {"price": 39, "conception_ts": 1783679458.7184222, "detail": "buy 39c predates the conception stamp by 327min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFMATCH-26JUL10JEDRIV-JED {"price": 47, "conception_ts": 1783677641.2006857, "detail": "buy 47c predates the conception stamp by 296min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFWMATCH-26JUL10SUNKAL-SUN {"price": 32, "conception_ts": 1783677623.7828739, "detail": "buy 32c predates the conception stamp by 295min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- pre_conception_buy: KXITFMATCH-26JUL10TYABEA-BEA {"price": 40, "conception_ts": 1783679458.7184222, "detail": "buy 40c predates the conception stamp by 326min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- half_arm_aging: KXWTACHALLENGERMATCH-26JUL10CURVAN-VAN {"fill": 64, "age_min": 329, "mode": "NO_BID(sib rested earlier, none now)"}
-- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 12, "conception_ts": 1783679458.7644548, "detail": "buy 12c predates the conception stamp by 322min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- half_arm_aging: KXITFWMATCH-26JUL10YODJAN-JAN {"fill": 66, "age_min": 323, "mode": "NO_BID(sib rested earlier, none now)"}
-- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 13, "conception_ts": 1783679458.7644548, "detail": "buy 13c predates the conception stamp by 307min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 12, "conception_ts": 1783679458.7644548, "detail": "buy 12c predates the conception stamp by 304min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 35, "conception_ts": 1783679458.7644548, "detail": "buy 35c predates the conception stamp by 303min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- half_arm_aging: KXITFMATCH-26JUL10VANKOI-KOI {"fill": 55, "age_min": 307, "mode": "NO_BID(sib rested earlier, none now)"}
-- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 20, "conception_ts": 1783679458.7644548, "detail": "buy 20c predates the conception stamp by 302min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 12, "conception_ts": 1783679458.7644548, "detail": "buy 12c predates the conception stamp by 300min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 16, "conception_ts": 1783679458.7644548, "detail": "buy 16c predates the conception stamp by 298min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 12, "conception_ts": 1783679458.7644548, "detail": "buy 12c predates the conception stamp by 297min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 14, "conception_ts": 1783679458.7644548, "detail": "buy 14c predates the conception stamp by 296min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- half_arm_aging: KXITFWMATCH-26JUL10SHOKRO-SHO {"fill": 43, "age_min": 299, "mode": "PAIRING(sib never rested)"}
-- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 30, "conception_ts": 1783679458.7644548, "detail": "buy 30c predates the conception stamp by 293min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- half_arm_aging: KXITFWMATCH-26JUL10NATTOM-TOM {"fill": 87, "age_min": 286, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFMATCH-26JUL10BAYERE-ERE {"fill": 90, "age_min": 237, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL10FRISOL-SOL {"fill": 37, "age_min": 232, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFMATCH-26JUL10CATSNI-CAT {"fill": 14, "age_min": 213, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL10PAWHRU-PAW {"fill": 21, "age_min": 206, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL10DENGOL-DEN {"fill": 78, "age_min": 205, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFMATCH-26JUL10VIVJAN-VIV {"fill": 72, "age_min": 202, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL10KRUSMI-KRU {"fill": 81, "age_min": 191, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL10DUELEY-LEY {"fill": 27, "age_min": 183, "mode": "NO_BID(sib rested earlier, none now)"}
+- pre_conception_buy: KXITFMATCH-26JUL10TYABEA-BEA {"price": 40, "conception_ts": 1783679458.7184222, "detail": "buy 40c predates the conception stamp by 326min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- half_arm_aging: KXWTACHALLENGERMATCH-26JUL10CURVAN-VAN {"fill": 64, "age_min": 339, "mode": "NO_BID(sib rested earlier, none now)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 12, "conception_ts": 1783679458.7644548, "detail": "buy 12c predates the conception stamp by 322min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- half_arm_aging: KXITFWMATCH-26JUL10YODJAN-JAN {"fill": 66, "age_min": 334, "mode": "NO_BID(sib rested earlier, none now)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 13, "conception_ts": 1783679458.7644548, "detail": "buy 13c predates the conception stamp by 307min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 12, "conception_ts": 1783679458.7644548, "detail": "buy 12c predates the conception stamp by 304min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 35, "conception_ts": 1783679458.7644548, "detail": "buy 35c predates the conception stamp by 303min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- half_arm_aging: KXITFMATCH-26JUL10VANKOI-KOI {"fill": 55, "age_min": 317, "mode": "NO_BID(sib rested earlier, none now)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 20, "conception_ts": 1783679458.7644548, "detail": "buy 20c predates the conception stamp by 302min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 12, "conception_ts": 1783679458.7644548, "detail": "buy 12c predates the conception stamp by 300min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 16, "conception_ts": 1783679458.7644548, "detail": "buy 16c predates the conception stamp by 298min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 12, "conception_ts": 1783679458.7644548, "detail": "buy 12c predates the conception stamp by 297min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 14, "conception_ts": 1783679458.7644548, "detail": "buy 14c predates the conception stamp by 296min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- half_arm_aging: KXITFWMATCH-26JUL10SHOKRO-SHO {"fill": 43, "age_min": 309, "mode": "PAIRING(sib never rested)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10STAPOZ-POZ {"price": 30, "conception_ts": 1783679458.7644548, "detail": "buy 30c predates the conception stamp by 293min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- half_arm_aging: KXITFWMATCH-26JUL10NATTOM-TOM {"fill": 87, "age_min": 297, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL10BAYERE-ERE {"fill": 90, "age_min": 248, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL10FRISOL-SOL {"fill": 37, "age_min": 243, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL10CATSNI-CAT {"fill": 14, "age_min": 223, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL10PAWHRU-PAW {"fill": 21, "age_min": 216, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL10DENGOL-DEN {"fill": 78, "age_min": 216, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL10VIVJAN-VIV {"fill": 72, "age_min": 212, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL10KRUSMI-KRU {"fill": 81, "age_min": 201, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL10DUELEY-LEY {"fill": 27, "age_min": 194, "mode": "NO_BID(sib rested earlier, none now)"}
 - pre_conception_buy: KXITFWMATCH-26JUL10NAKYAM-NAK {"price": 55, "conception_ts": 1783677616.7345405, "detail": "buy 55c predates the conception stamp by 120min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFWMATCH-26JUL10NAKYAM-NAK {"price": 56, "conception_ts": 1783677616.7345405, "detail": "buy 56c predates the conception stamp by 118min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFWMATCH-26JUL10SUNKAL-SUN {"price": 33, "conception_ts": 1783677623.7828739, "detail": "buy 33c predates the conception stamp by 117min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- half_arm_aging: KXITFMATCH-26JUL10MAZBRE-BRE {"fill": 45, "age_min": 147, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL10MAZBRE-BRE {"fill": 45, "age_min": 157, "mode": "NO_BID(sib rested earlier, none now)"}
 - pre_conception_buy: KXITFWMATCH-26JUL10SUNKAL-SUN {"price": 38, "conception_ts": 1783677623.7828739, "detail": "buy 38c predates the conception stamp by 111min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFMATCH-26JUL10ADDCRA-ADD {"price": 35, "conception_ts": 1783677604.7138557, "detail": "buy 35c predates the conception stamp by 110min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFMATCH-26JUL10JEDRIV-JED {"price": 49, "conception_ts": 1783677641.2006857, "detail": "buy 49c predates the conception stamp by 108min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFWMATCH-26JUL10KUBBER-BER {"price": 10, "conception_ts": 1783678500.7583296, "detail": "buy 10c predates the conception stamp by 119min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- pre_conception_buy: KXITFWMATCH-26JUL10GANSTR-GAN {"price": 19, "conception_ts": 1783679402.385371, "detail": "buy 19c predates the conception stamp by 132min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL10GANSTR-GAN {"price": 20, "conception_ts": 1783679402.385371, "detail": "buy 20c predates the conception stamp by 131min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFMATCH-26JUL10VELMON-MON {"price": 76, "conception_ts": 1783679411.3143702, "detail": "buy 76c predates the conception stamp by 126min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- half_arm_aging: KXITFWMATCH-26JUL10KUBBER-BER {"fill": 10, "age_min": 128, "mode": "NO_BID(sib rested earlier, none now)"}
-- pre_conception_buy: KXITFMATCH-26JUL10ARZBEL-ARZ {"price": 76, "conception_ts": 1783679434.2934842, "detail": "buy 76c predates the conception stamp by 121min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFMATCH-26JUL10COCPAN-PAN {"price": 77, "conception_ts": 1783679400.3693411, "detail": "buy 77c predates the conception stamp by 120min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL10HOSVAN-HOS {"price": 51, "conception_ts": 1783679458.7523782, "detail": "buy 51c predates the conception stamp by 120min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL10BOJINI-BOJ {"price": 53, "conception_ts": 1783679401.011276, "detail": "buy 53c predates the conception stamp by 119min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL10BOJINI-BOJ {"price": 54, "conception_ts": 1783679401.011276, "detail": "buy 54c predates the conception stamp by 114min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL10HOSVAN-HOS {"price": 53, "conception_ts": 1783679458.7523782, "detail": "buy 53c predates the conception stamp by 115min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFMATCH-26JUL10ZAPDUR-ZAP {"price": 22, "conception_ts": 1783679404.9431827, "detail": "buy 22c predates the conception stamp by 113min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL10BOJINI-BOJ {"price": 55, "conception_ts": 1783679401.011276, "detail": "buy 55c predates the conception stamp by 111min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- half_arm_aging: KXITFWMATCH-26JUL10PEREZZ-PER {"fill": 62, "age_min": 115, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL10FONELS-ELS {"fill": 22, "age_min": 114, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFMATCH-26JUL10JONBAR-BAR {"fill": 68, "age_min": 110, "mode": "NO_BID(sib rested earlier, none now)"}
-- pre_conception_buy: KXITFMATCH-26JUL10DOUVIR-VIR {"price": 10, "conception_ts": 1783679458.6695251, "detail": "buy 10c predates the conception stamp by 103min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-10 06:34:50 AM ET"}
-- half_arm_aging: KXITFWMATCH-26JUL10BOJINI-BOJ {"fill": 55, "age_min": 101, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFMATCH-26JUL10ARZBEL-ARZ {"fill": 76, "age_min": 94, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL10CHODED-CHO {"fill": 57, "age_min": 88, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXWTACHALLENGERMATCH-26JUL10QUEWAL-QUE {"fill": 33, "age_min": 86, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFMATCH-26JUL10VELMON-MON {"fill": 76, "age_min": 73, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL10GANSTR-STR {"fill": 76, "age_min": 70, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFMATCH-26JUL10TYABEA-BEA {"fill": 40, "age_min": 68, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL10HOSVAN-HOS {"fill": 53, "age_min": 66, "mode": "NO_BID(sib rested earlier, none now)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10GANSTR-GAN {"price": 19, "conception_ts": 1783679402.385371, "detail": "buy 19c predates the conception stamp by 132min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10GANSTR-GAN {"price": 20, "conception_ts": 1783679402.385371, "detail": "buy 20c predates the conception stamp by 131min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFMATCH-26JUL10VELMON-MON {"price": 76, "conception_ts": 1783679411.3143702, "detail": "buy 76c predates the conception stamp by 126min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- half_arm_aging: KXITFWMATCH-26JUL10KUBBER-BER {"fill": 10, "age_min": 138, "mode": "NO_BID(sib rested earlier, none now)"}
+- pre_conception_buy: KXITFMATCH-26JUL10ARZBEL-ARZ {"price": 76, "conception_ts": 1783679434.2934842, "detail": "buy 76c predates the conception stamp by 121min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFMATCH-26JUL10COCPAN-PAN {"price": 77, "conception_ts": 1783679400.3693411, "detail": "buy 77c predates the conception stamp by 120min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10HOSVAN-HOS {"price": 51, "conception_ts": 1783679458.7523782, "detail": "buy 51c predates the conception stamp by 120min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10BOJINI-BOJ {"price": 53, "conception_ts": 1783679401.011276, "detail": "buy 53c predates the conception stamp by 119min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10BOJINI-BOJ {"price": 54, "conception_ts": 1783679401.011276, "detail": "buy 54c predates the conception stamp by 114min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10HOSVAN-HOS {"price": 53, "conception_ts": 1783679458.7523782, "detail": "buy 53c predates the conception stamp by 115min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFMATCH-26JUL10ZAPDUR-ZAP {"price": 22, "conception_ts": 1783679404.9431827, "detail": "buy 22c predates the conception stamp by 113min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL10BOJINI-BOJ {"price": 55, "conception_ts": 1783679401.011276, "detail": "buy 55c predates the conception stamp by 111min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- half_arm_aging: KXITFWMATCH-26JUL10PEREZZ-PER {"fill": 62, "age_min": 125, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL10FONELS-ELS {"fill": 22, "age_min": 124, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL10JONBAR-BAR {"fill": 68, "age_min": 120, "mode": "NO_BID(sib rested earlier, none now)"}
+- pre_conception_buy: KXITFMATCH-26JUL10DOUVIR-VIR {"price": 10, "conception_ts": 1783679458.6695251, "detail": "buy 10c predates the conception stamp by 103min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- half_arm_aging: KXITFWMATCH-26JUL10BOJINI-BOJ {"fill": 55, "age_min": 111, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL10ARZBEL-ARZ {"fill": 76, "age_min": 104, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL10CHODED-CHO {"fill": 57, "age_min": 99, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXWTACHALLENGERMATCH-26JUL10QUEWAL-QUE {"fill": 33, "age_min": 97, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL10VELMON-MON {"fill": 76, "age_min": 83, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL10GANSTR-STR {"fill": 76, "age_min": 80, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL10TYABEA-BEA {"fill": 40, "age_min": 78, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL10HOSVAN-HOS {"fill": 53, "age_min": 76, "mode": "NO_BID(sib rested earlier, none now)"}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

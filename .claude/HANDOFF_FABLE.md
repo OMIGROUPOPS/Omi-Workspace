@@ -33,7 +33,16 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-10 afternoon — C50 keeps this current):
+## STATE (2026-07-10 late afternoon — C50 keeps this current):
+C-CONVICTION-REPLAY done: canon shipped (OPERATOR_CONSTRAINTS on the
+gate [5/5] · MODEL_REGISTRY M1-M14 + gaps G1-G5 · LIFECYCLE.md, pair-97
+= LEGACY PENDING ADJUDICATION, replay-harness law recorded); composer
+built, 3a gate 3/3 PASS (Dellien 0.63->0.24), replay 123 trades:
+AGREE 92.7% / REFUSE 7 (all cashed +$5.30 — 2c margin named
+miscalibrated-tight) / NO-OPINION 2 (G1); pair-97 touched 34.1%.
+-0e ATTRIBUTED: slate halved (398->201), ratio ROSE — slate size, not
+starvation; -0f recurred (GHASPI 1:31pm), 276.8 min downtime today,
+priority raised. Plex Exhibit-1 verbatim slot reserved (relay debt).
 C-REALITY-BELL deployed (operator's FAILED TEST recorded verbatim:
 SAIDEL 62-vs-24 in-play buy invisible — the sweep compared the model
 to itself). Fallback bell = gun source 5 (rate 0.4/min + start-or-

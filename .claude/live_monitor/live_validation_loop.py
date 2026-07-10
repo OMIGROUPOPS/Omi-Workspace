@@ -151,6 +151,15 @@ def parse_session(log_path):
                 oid = d.get("order_id")
                 if oid and d.get("response_status") == "resting":
                     S["open_bids"][oid] = {"tk": tk, "price": d.get("price"), "ts": ts}
+            elif e == "orphan_readopted_fingerprint" and tk:
+                # [RENDER FIX 07-10, the PAPJER-PAP question] boot-readopted
+                # resting bids emit no v4_place/order_placed this session --
+                # without this branch they are bot-OWNED but monitor-INVISIBLE
+                # (the render-only gap the adoption dispatch named).
+                oid = d.get("order_id")
+                if oid and oid not in S["open_bids"]:
+                    S["open_bids"][oid] = {"tk": tk, "price": d.get("price"), "ts": ts}
+                    S["buys"][tk].append({"ts": ts, "price": d.get("price"), "oid": oid})
             elif e == "fv_burst_anchor" and tk:
                 S["emfb"][tk] = d.get("entry_minus_fv_burst")
             elif e == "adoption_true_basis" and tk:

@@ -53,10 +53,13 @@ def main():
     per = defaultdict(lambda: {"entries": 0, "entry_sh": 0.0,
                                "exit_n": 0, "exit_pnl": 0.0,
                                "rode_n": 0, "rode_pnl": 0.0})
+    # [C-EARLY-UNLOCK 07-09] the early cohort renders separately so the
+    # entry-table refit grades early entries against the standard window
+    eu = defaultdict(lambda: {"placed": 0, "filled": 0, "vols": []})
     foreign = {}
     KEEP = ('"entry_filled"', '"exit_filled"', '"scalp_filled"', '"settled"',
             '"reconcile_orphan_no_cell"', '"foreign_position"',
-            '"post_boot_audit"')
+            '"post_boot_audit"', '"early_unlock"')
     for p in files:
         for line in open(p, encoding="utf-8", errors="replace"):
             if not any(k in line for k in KEEP):
@@ -86,6 +89,13 @@ def main():
                 continue  # BOT-ONLY BASIS: never blended
             r = per[c]
             pnl = det.get("pnl_cents")
+            if det.get("early_unlock"):
+                if ev == "order_placed" and det.get("action") == "buy":
+                    eu[c]["placed"] += 1
+                    if det.get("unlock_vol") is not None:
+                        eu[c]["vols"].append(float(det["unlock_vol"]))
+                elif ev == "entry_filled":
+                    eu[c]["filled"] += 1
             if ev == "entry_filled":
                 r["entries"] += 1
                 r["entry_sh"] += float(det.get("new_fills") or det.get("qty") or 0)
@@ -112,6 +122,15 @@ def main():
             r["rode_n"], r["rode_pnl"], r["exit_pnl"] + r["rode_pnl"]))
     out.append("| **TOTAL (decomposed above)** |  | %+.0f | %+.0f | **%+.0f** |"
                % (tot[0], tot[1], tot[0] + tot[1]))
+    if eu:
+        out += ["", "## EARLY-UNLOCK COHORT (C-EARLY-UNLOCK — graded separately, never blended)",
+                "", "| cat | buys placed under unlock | fills | med vol@placement |",
+                "|---|---|---|---|"]
+        for c in sorted(eu):
+            vs = sorted(eu[c]["vols"])
+            out.append("| %s | %d | %d | %s |" % (
+                c, eu[c]["placed"], eu[c]["filled"],
+                ("%.0f" % vs[len(vs) // 2]) if vs else "--"))
     if foreign:
         out += ["", "## MANUAL / FOREIGN (named, NEVER blended — the operator's book)",
                 ""] + ["- `%s` — %s" % (k, v) for k, v in sorted(foreign.items())]

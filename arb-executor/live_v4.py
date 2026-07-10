@@ -1817,6 +1817,15 @@ class LiveV3:
         self.event_open_time: Dict[str, float] = {}   # Kalshi open_time (for unmatched-skip logic)
         self.event_start_time: Dict[str, float] = {}   # scheduled start from TE/ESPN
         self.event_kalshi_occ: Dict[str, float] = {}   # [C-KALSHI-OCC] et -> coarse Kalshi occurrence ts
+        # [C-EARLY-UNLOCK 07-09, operator ruling] et -> realized LIFETIME
+        # contract volume (Kalshi REST volume_fp summed over legs, refreshed
+        # every discovery cycle); the unlock's primary basis. _early_unlock_live
+        # marks events whose unlock is currently open; _early_unlock_orders
+        # remembers which resting buys were placed under it (fills inherit).
+        self.event_lifetime_vol: Dict[str, float] = {}
+        self._early_unlock_live: Dict[str, dict] = {}
+        self._early_unlock_orders: Dict[str, dict] = {}
+        self._early_unlock_logged: Set[str] = set()
         self.coarse_source = set()                     # [C-KALSHI-OCC] events started off the coarse Kalshi fallback
         # [C-SCHEDULE-TRUST-FIX] provenance of the stored start (source-priority corrections)
         self.event_start_source: Dict[str, str] = {}
@@ -1930,6 +1939,29 @@ class LiveV3:
                 and ticker and isinstance(details, dict)):
             details.setdefault("cycle",
                                getattr(self, "_cycle_count", {}).get(ticker, 0) + 1)
+        # [C-EARLY-UNLOCK 07-09, operator ruling] cohort stamp at the single
+        # emitter: a buy placed while the event's realized-volume unlock is
+        # open carries early_unlock + vol-at-placement + basis; its fill
+        # inherits the stamp -- the nightly ledger grades the early cohort
+        # against the standard window, never blended.
+        try:
+            if ticker and isinstance(details, dict):
+                if event == "order_placed" and details.get("action") == "buy":
+                    _eu = getattr(self, "_early_unlock_live", {}).get(
+                        ticker.rsplit("-", 1)[0])
+                    if _eu:
+                        details.setdefault("early_unlock", True)
+                        details.setdefault("unlock_vol", _eu["vol"])
+                        details.setdefault("unlock_basis", _eu["basis"])
+                        getattr(self, "_early_unlock_orders", {})[ticker] = _eu
+                elif event == "entry_filled":
+                    _eu = getattr(self, "_early_unlock_orders", {}).get(ticker)
+                    if _eu:
+                        details.setdefault("early_unlock", True)
+                        details.setdefault("unlock_vol", _eu["vol"])
+                        details.setdefault("unlock_basis", _eu["basis"])
+        except Exception:
+            pass
         entry = {
             "ts": datetime.now(ET).strftime("%Y-%m-%d %I:%M:%S %p ET"),
             "ts_epoch": time.time(),
@@ -3856,6 +3888,7 @@ class LiveV3:
         counts = defaultdict(int)
         last_yield = time.monotonic()  # FIX 3: time-based chunk-yield cursor
         _reconciled_starts = set()  # [C-SCHEDULE-TRUST-FIX] reconcile once per event per cycle
+        _ev_lifetime_vol = defaultdict(float)  # [C-EARLY-UNLOCK] rebuilt per cycle (never accumulated across cycles)
         for series in ALL_SERIES:
             cursor = ""
             for _ in range(10):
@@ -3890,6 +3923,8 @@ class LiveV3:
                     et = m["event_ticker"]
                     self.ticker_to_event[ticker] = et
                     self.event_tickers[et].add(ticker)
+                    # [C-EARLY-UNLOCK] realized LIFETIME volume, exchange truth
+                    _ev_lifetime_vol[et] += vol
                     # Capture open_time (for unmatched-skip age check)
                     if et not in self.event_open_time:
                         ot_str = m.get("open_time", "")
@@ -3994,6 +4029,8 @@ class LiveV3:
                 cursor = data.get("cursor", "")
                 if not cursor:
                     break
+        if _ev_lifetime_vol:
+            self.event_lifetime_vol = dict(_ev_lifetime_vol)  # [C-EARLY-UNLOCK] atomic swap
         self._log("discovery", {"total_tickers": len(all_tickers), "by_category": dict(counts)})
         return all_tickers
 
@@ -7256,7 +7293,50 @@ class LiveV3:
                 if time_to_start - _pm_widen > intel_window:
                     return
             else:
-                if time_to_start - _pm_widen > V4_MAX_PLACEMENT_SEC:
+                # [C-EARLY-UNLOCK 07-09, operator ruling verbatim in
+                # RULING_EARLY_UNLOCK.md]: realized lifetime contract volume
+                # >= the staged floor unlocks the FULL conception-horizon
+                # window (T-8h honest) for ITF -- "we are taking advantage of
+                # the full 8 hour window to scheduled start if the volume
+                # meets standards." REALIZED only, never projected (P1b
+                # stands). Basis named: kalshi_rest_lifetime primary,
+                # ws_contracts_since_boot the named fallback (undercounts
+                # across restarts). Mains/CHALL untouched; everything
+                # downstream (FV, cells, plays, sizing, protections)
+                # unchanged -- this moves ONE number: the window edge.
+                _eu_cap = V4_MAX_PLACEMENT_SEC
+                _eu_cat = self.get_category(et)
+                if (self.config.get("early_unlock_enabled", False)
+                        and _eu_cat in ("ITF_M", "ITF_W")):
+                    _eu_vol = self.event_lifetime_vol.get(et)
+                    _eu_basis = "kalshi_rest_lifetime"
+                    if _eu_vol is None:
+                        _eu_vol = self._os_evt_vol.get(et, 0.0)
+                        _eu_basis = "ws_contracts_since_boot"
+                    if _eu_vol >= float(self.config.get("early_unlock_floor", 2500)):
+                        _eu_cap = int(float(self.config.get(
+                            "conception_horizon_hours", 8)) * 3600)
+                        if time_to_start - _pm_widen > V4_MAX_PLACEMENT_SEC:
+                            self._early_unlock_live[et] = {
+                                "vol": round(_eu_vol, 1), "basis": _eu_basis}
+                            if et not in self._early_unlock_logged:
+                                self._early_unlock_logged.add(et)
+                                self._log("early_unlock_open", {
+                                    "event": et, "category": _eu_cat,
+                                    "vol": round(_eu_vol, 1),
+                                    "basis": _eu_basis,
+                                    "floor": float(self.config.get(
+                                        "early_unlock_floor", 2500)),
+                                    "tts_min": round((time_to_start) / 60.0, 1)})
+                    else:
+                        # basis flip after a restart can undercount; a not-
+                        # qualified event must not keep a stale unlock mark
+                        self._early_unlock_live.pop(et, None)
+                if time_to_start - _pm_widen <= V4_MAX_PLACEMENT_SEC:
+                    # standard window reached -- entries from here are the
+                    # standard cohort, never stamped
+                    self._early_unlock_live.pop(et, None)
+                if time_to_start - _pm_widen > _eu_cap:
                     return
 
             tk_list = list(tickers)

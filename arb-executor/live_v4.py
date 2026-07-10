@@ -3665,6 +3665,16 @@ class LiveV3:
                     book.asks[100 - no_price] = size
         recalc_bbo(book)
         book.updated = time.time()
+        # [C-TAPE-SEED 07-10] a snapshot replaces the BOOK, not the TAPE:
+        # carry last-trade memory (live or REST-seeded) across the rebuild.
+        # Every ws (re)connect snapshot was wiping it -- the amnesia's second
+        # mechanism (tonight's seed took at 10:43 pm and read -1.0 by
+        # 10:44: 151 seeds died at the post-discovery resubscribe).
+        prev = self.books.get(ticker)
+        if prev is not None and prev.last_trade_ts:
+            book.last_trade_price = prev.last_trade_price
+            book.last_trade_ts = prev.last_trade_ts
+            book.last_trade_side = prev.last_trade_side
         self.books[ticker] = book
         self._log_tick(ticker, book)
         if _PAPER_API is not None:

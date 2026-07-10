@@ -10,3 +10,4 @@
 8. **PLEX RENDERS ALL VISUALS** (2026-07-10): CC extracts (self-describing JSONs with render-specs); Plex renders and adversarially reads; the relay carries raw URLs only.
 9. **BOT-ONLY BASIS** (2026-07-09, RULING_BOT_ONLY_BASIS): the bot's traded money is the basis, reset 12:00 AM ET nightly; manual/foreign named, never blended.
 10. **REPLAY-HARNESS LAW** (2026-07-10): every future defect fix replays its original tape failing-then-passing, or the gate refuses it.
+11. **PAIR-97 / SETTLEMENT-HOLD ARITHMETIC RETIRED** (2026-07-10, RULING_PAIR_ECONOMICS): "Pair-97 and all settlement-hold arithmetic are retired from logic per RULING_PAIR_ECONOMICS; no spec may use hold-to-settlement payoff as a goal in an exit-first system. Migration is organ-by-organ per the MIGRATION DOCTRINE: shadow, grade, cutover on the operator's word, delete."

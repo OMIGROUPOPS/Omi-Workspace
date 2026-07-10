@@ -17,3 +17,13 @@
 **THE REPLAY-HARNESS LAW (recorded 2026-07-10, standing):** every future defect fix replays its original tape failing-then-passing, or the gate refuses it. (Lineage: GORSTE replay, SAIDEL bell replay, drain-replay — the pattern is now law.)
 
 **PLEX EXHIBIT-1 ADVERSARIAL FINDINGS + RENDER GRAMMAR:** ⚠ reserved slot — the relay owes the verbatim body (same discipline as PLEX_T3_T4: recorded word-for-word when it lands, never paraphrased in its place).
+
+## THE ORGAN LEDGER (MIGRATION DOCTRINE, RULING_PAIR_ECONOMICS 07-10 — maintained HERE, updated at every cutover; the nightly footer is the migration meter: fitted share rising, legacy share falling, complete at zero)
+| organ (legacy) | replacement | state |
+|---|---|---|
+| pair-97 arithmetic | per-leg exit economics + priced completion | RULED 07-10, build queued (pair-97 = dumb safety bound until shadow proves the replacement, then DELETED) |
+| universal gun trigger | per-category fitted trigger + fallback bell | bell LIVE (07-10), fitted trigger queued |
+| blind aim table | composer conviction per cell per tick | built offline, gate-proven 3/3, shadow wiring queued |
+| silent skips and halts | named refusals + violation counts | LIVE |
+| exit band table | untouched per §0A until entries are solved | graded only; operator ruling later, with data |
+| human memory as process | constraints file · class ledger · model registry · gates | constraints LIVE on the gate; class ledger FOUNDED 07-10 |

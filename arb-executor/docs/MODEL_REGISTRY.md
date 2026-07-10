@@ -23,3 +23,8 @@
 - **G3: in-play price model** — beyond the tape itself, nothing fitted for in-play dynamics (by §0A design: exits solved on foundation; entries premarket). Posterior in-play = tape-weighted only.
 - **G4: ITF archive T-relative ranges** — do not exist (M9 has no ITF); anything T-relative for ITF must come from live-era artifacts (M1–M4, M13).
 - **G5: cash-convention** — dollar-precise conviction grading blocked pending −1a000.
+
+**INDEXED STUDIES (June; cited by RULING_PAIR_ECONOMICS — evidence, not live anchors):**
+- **COMPLETION_FUNNEL (Jun 24–30):** 406 pairable · 72% completed · 93 strands · −$50.65 realized.
+- **ADVERSE_SELECTION_STRANDED:** kept leg loses 65%; maker bid on the winning sibling structurally starved; verdict: cross to complete, or never hold the kept leg naked.
+- **HELD_IF_NOT_CANCELLED:** 43% win · −$653 counterfactual under band-asymmetric exits; the pre-start cancel is protective and stays.

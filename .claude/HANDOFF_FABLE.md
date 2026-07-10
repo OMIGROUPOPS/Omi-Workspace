@@ -33,7 +33,13 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-10 late afternoon — C50 keeps this current):
+## STATE (2026-07-10 evening — C50 keeps this current):
+RULING_PAIR_ECONOMICS recorded (verbatim): pair-97 RETIRED from all
+logic (interim dumb bound only; deleted after shadow proves the
+per-leg replacement, -0h queued); MIGRATION DOCTRINE = organ-by-organ
+(ORGAN LEDGER opened in LIFECYCLE.md, six organs); constraints #11
+gate-enforced; CLASS_LEDGER founded (DOCTRINE CONFLICT +
+ADVERSE-SELECTION STRAND); June studies indexed in the registry.
 C-CONVICTION-REPLAY done: canon shipped (OPERATOR_CONSTRAINTS on the
 gate [5/5] · MODEL_REGISTRY M1-M14 + gaps G1-G5 · LIFECYCLE.md, pair-97
 = LEGACY PENDING ADJUDICATION, replay-harness law recorded); composer

@@ -33,7 +33,13 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-10 ~6:15pm — C50 keeps this current):
+## STATE (2026-07-10 evening — C50 keeps this current):
+C-FULL-SLATE-REVIEW done (read-only): 1,125 step-decisions graded
+(FITTED 37%/DECREED 59%/NAKED 3.8%); no-fill cohort first grade (70
+legs, 44 strands); exchange truth 3-way: 17 VIOLATIONS -> new CLASS
+EXCHANGE-TRUTH DAYLIGHT (-0i roots queued); fix queue ranked on BOARD
+(strand $6.25 top). Nightly cron inherits full depth (123/123 base
+match proven). The loop now grades the LOGIC nightly.
 C-NIGHTLY-ADJUDICATION deployed: trade ids T-YYYYMMDD-NNNN live
 (minted at placement, 4th boot rebuild trade_ids_rebuilt; July-10
 replay ids continue); adjudication cron 12:20am (3a gate nightly ->

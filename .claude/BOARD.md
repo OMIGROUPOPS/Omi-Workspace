@@ -53,6 +53,10 @@
 
 ## QUEUED (next builds, in rough order)
 
+> **FIX QUEUE (ranked by measured cost — FULL_SLATE_REVIEW 07-10; the reconciliation side feeding this section nightly):** 1. ADVERSE-SELECTION STRAND (55 inst/$6.25 — the completion policy, −0h carries it) · 2. DOCTRINE CONFLICT exit-vs-conviction (10/$3.51 — the −0g FV-aware exit ruling's evidence) · 3. AIM/TIMING no-fill misses (11/$2.60 — feeds the aim-surface refit) · 4. conviction-gap placements (7/$1.05 — composer calibration) · 5. EXCHANGE-TRUTH DAYLIGHT (17 violations — root each before KILLED).
+
+-0i. **EXCHANGE-TRUTH DAYLIGHT ROOTS (new class, 07-10)** — 17 three-way reconciliation violations on July 10 (log vs exchange vs report; first: VANKOI-KOI 7.0-vs-5.0 shares). Root each: log double-count (partial-fill re-emission?) vs exchange truth vs report error. The nightly instrument re-counts every night.
+
 -0h. **PER-LEG EXIT ECONOMICS + PRICED COMPLETION (RULING_PAIR_ECONOMICS, 07-10; shadow-first)** — each leg an independent scalp priced per tick from the fitted surfaces (P(exit-fills-before-collapse)×band vs P(ride-to-zero)×basis); leg-1 enters on conviction entry < achievable exit; sibling completes on its own math or as priced insurance; the adverse-selection verdict binds (TAKE-the-winner = operator ruling required, or never hold the kept leg naked). Pair-97 stays as a dumb safety bound until this proves itself in shadow — then DELETED. Migration meter = the nightly footer.
 
 -0f. ~~UNBOOKED-CYCLE-2-FILL / no_exit CLASS~~ — **CLOSED into CLASS — UNBOOKED FILL (C-BOOK-THE-FILL `86c0a23d`, gated deploy 07-10 ~5:30 pm): audit no_exit legs with our lineage are BOOKED (never halted); replay 4/4. Watch: HALT-MIN + UNBOOKED-FILLS-BOOKED at zero nightly or the class reopens.**

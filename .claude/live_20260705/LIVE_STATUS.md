@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 8 @ **2026-07-10 06:16:25 PM ET** | build `9192892b` | session boot 07-10 17:25 ET | log `live_v3_20260710.jsonl` | 1585 session events | monitor READ-ONLY
+- cycle 9 @ **2026-07-10 06:26:36 PM ET** | build `7ca9224e` | session boot 07-10 17:25 ET | log `live_v3_20260710.jsonl` | 1793 session events | monitor READ-ONLY
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
@@ -24,7 +24,7 @@ no open half-pairs
 ## FLOW-STATE — 1 tracked game(s) ({'WAKING': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ITFMATCH-26JUL10POLMIY | ITF_M | 7.633 | — | **WAKING** |
+| ITFMATCH-26JUL10POLMIY | ITF_M | 11.833 | — | **WAKING** |
 
 ## PATTERNS (sub-B) — 0
 

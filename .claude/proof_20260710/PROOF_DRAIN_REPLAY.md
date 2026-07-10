@@ -1,6 +1,6 @@
 # OUTCOME PROOF (C46, two-lane) — C-DRAIN-REPLAY (restart-amnesia #6: the drain itself; the PAPJER-PAP class)
 
-**Candidate SHA: `SHA_DR`** (live_v4.py drain manifest + `_drain_replay` at boot and at halt-clear; monitor `drain_replay_violations` + LIVE_STATUS zero-tolerance section).
+**Candidate SHA: `a20c7f2a`** (live_v4.py drain manifest + `_drain_replay` at boot and at halt-clear; monitor `drain_replay_violations` + LIVE_STATUS zero-tolerance section).
 
 ## Prior art (C45)
 - **THE INCIDENT (this dispatch)** — order `45f12259` (PAP 53¢×5, placed 11:00:49 pm under two operator rulings): drain-cancelled 11:14:54 pm (`order_cancelled, label: shutdown_cancel`), never re-placed, nothing noticed. The deploy's own close-out had verified the bid its restart then destroyed — the verification was incomplete. The monitor said zero violations — a second defect.

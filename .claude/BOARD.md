@@ -51,6 +51,7 @@
 
 ## QUEUED (next builds, in rough order)
 
+-0d. **RESTORE-TOOL OWNERSHIP (from the 07-10 adoption pass)** — hand-restored orders floated as manual-class (no lifecycle, no match-live cancel) until jsonl-lineage adoption + restart; the root fix: any direct-API restore writes the `order_placed` lineage at restore time so the next reconcile/boot owns it natively — never float. Pairs with -0c; same defect-slot deploy or a small ops-script change.
 -0c. **CANCEL-RACE-REPLACE (from the 07-10 TUPMAK halt)** — move_repost cancelled order `6020c3a1` mid-fill (`success: false`) and placed the replacement ANYWAY → held 5 + resting 5 → `conception_on_owned` → 10-min all-conceptions halt; contained by direct-API cancel of orphan `45dfd41b`. Fix shape: every cancel-then-place path aborts the place when the cancel fails (the in-flight lock's sibling; TANCHE lineage). Small gated deploy, next defect slot.
 
 -00a. **OPEN-BOOK RE-ENTRY SCAN (07-09 ~3:50 pm)** — live book CLEAN (0 open cycle-2 legs); boot-window sweep = the two DAALUX legs only, both cashed; monitor cycle line now carries `open_cycle2=N` until the ruling's fix ships. Nothing cancelled (as ordered).

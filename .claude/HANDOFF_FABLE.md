@@ -33,7 +33,11 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-10 ~midnight — C50 keeps this current):
+## STATE (2026-07-10 ~12:40am — C50 keeps this current):
+ADOPTION PASS: the 8 hand-restored bids were manual-class floats
+(no lifecycle/match-live cancel) — lineage appended + gated restart
+re-adopted them BOT-OWNED via the boot fingerprint path; root
+BOARDED -0d (restore tools write lineage at restore time).
 INCIDENT owned + closed: the C-STALE-ANCHOR deploy's drain DESTROYED
 PAP's ruling-mandated bid (45f12259) and nothing noticed — restored by
 hand 11:48pm (91c5024d, 5sh@53, pair whole 97 = goal); C-DRAIN-REPLAY

@@ -33,7 +33,14 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-10 ~12:40am — C50 keeps this current):
+## STATE (2026-07-10 midday — C50 keeps this current):
+CLOCK CENSUS DONE (−1b1, read-only): no global re-stamp — scoped
+exclusion. ITF's only admissible clock = live era (archive absent +
+mid-jump unfit on thin books, med −119m); CHALL jump-method trusted
+±30m coarse; fallback 76 + no_bbo 444 EXCLUDED; mains stay convicted;
+self-contamination REFUTED (suspect wall is structural churn → the
+−0e CERT-NIGHT-3 forensic looks at slate/source starvation). Fire
+drop 50→25 boarded −0e; scorecard now prints FIRES-vs-SLATE nightly.
 ADOPTION PASS: the 8 hand-restored bids were manual-class floats
 (no lifecycle/match-live cancel) — lineage appended + gated restart
 re-adopted them BOT-OWNED via the boot fingerprint path; root

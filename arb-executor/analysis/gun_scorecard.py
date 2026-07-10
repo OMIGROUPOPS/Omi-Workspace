@@ -296,9 +296,18 @@ def main():
                 ",".join(r["suspect"][:4]) + ("…" if len(r["suspect"]) > 4 else ""),
                 r["unjoin"],
                 ",".join(r["miss"][:6]) + ("…" if len(r["miss"]) > 6 else "")))
-    out = "# GUN SCORECARD %s\n\n%s\n\n%s\n" % (
+    # [FIRE-COUNT FOOTER 07-10, operator order] a starving gun must be
+    # visible the morning it starves: nightly fires vs slate size. The
+    # 07-09->07-10 drop (50 -> 25 fires) was noticed by a human a day
+    # late; this line notices it at 6:10 am.
+    n_fires = len(fires)
+    n_slate = len(set(sched) | set(fires))
+    footer = ("FIRES-vs-SLATE: fires=%d tracked_events=%d ratio=%.0f%% "
+              "(watch: night-over-night drops are named here, not a week later)"
+              % (n_fires, n_slate, 100.0 * n_fires / n_slate if n_slate else 0))
+    out = "# GUN SCORECARD %s\n\n%s\n\n%s\n\n%s\n" % (
         now.strftime("%Y-%m-%d %I:%M %p ET"), "\n".join(lines),
-        "\n".join("- " + s for s in summary))
+        "\n".join("- " + s for s in summary), footer)
     print(out)
 
     if "--nightly" in sys.argv:
@@ -308,7 +317,8 @@ def main():
         np = ROOT.parent / ".claude" / "live_20260705" / "NIGHTLY_PASS.md"
         try:
             with open(np, "a", encoding="utf-8") as fh:
-                fh.write("\nGUN SCORECARD %s: %s\n" % (day, " | ".join(summary)))
+                fh.write("\nGUN SCORECARD %s: %s | %s\n" % (
+                    day, " | ".join(summary), footer))
         except OSError:
             pass
         try:

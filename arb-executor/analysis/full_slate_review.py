@@ -222,6 +222,18 @@ def no_fill_cohort(per_tk, per_ev, composer, m1, leg_obs_fn, filled_tks, settles
     return rows
 
 
+def healed_bookings(per_tk):
+    """[C-DAYLIGHT-ROOTS] fill_booked_reconcile = a booking the healer made
+    (the UNBOOKED FILL class's forward closure); the reconciliation counts it
+    as log truth so healed fills never re-flag as missing."""
+    out = defaultdict(float)
+    for tk, evs in per_tk.items():
+        for x in evs:
+            if x["e"] == "fill_booked_reconcile":
+                out[tk] += float(x["d"].get("held", 0) or 0)
+    return out
+
+
 def exchange_truth(ymd, trades, log_fills_by_tk):
     """Three-way reconciliation via the audited REST path (kalshi_reconciler auth)."""
     sys.path.insert(0, str(ROOT))
@@ -298,6 +310,8 @@ def run(ymd, trades, per_tk, per_ev, composer, obs_cache, settles, leg_obs_fn):
     for t in trades:
         log_fills_by_tk[t["tk"]] += t.get("qty", 5)
     cohort = no_fill_cohort(per_tk, per_ev, composer, m1, leg_obs_fn, filled_tks, settles)
+    for tk, q in healed_bookings(per_tk).items():
+        log_fills_by_tk[tk] += q          # healer bookings are log truth
     xt = exchange_truth(ymd, trades, log_fills_by_tk)
     # Part 4: class filings + ranked fix queue
     filings = defaultdict(lambda: {"instances": 0, "dollars": 0.0})

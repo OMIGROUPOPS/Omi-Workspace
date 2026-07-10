@@ -140,8 +140,13 @@ def main():
             continue
         e = d["event"]
         if e == "entry_filled" and tk:
+            # [C-DAYLIGHT-ROOTS] qty here is the INCREMENT (new_fills), never
+            # the cumulative `qty` field -- summing cumulative made the
+            # reconciliation column report 7-vs-5 on partial-fill legs
+            # (VANKOI: 2-then-5 cumulative = 7; increments 2+3 = 5 = exchange)
             trades.append({"tk": tk, "ts": ts, "px": det.get("fill_price"),
-                           "qty": det.get("qty", 5), "cycle": det.get("cycle", 1),
+                           "qty": det.get("new_fills", det.get("qty", 5)),
+                           "cycle": det.get("cycle", 1),
                            "in_play": det.get("in_play", False)})
         elif e == "settled" and tk:
             settles[tk] = det

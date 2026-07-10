@@ -1,0 +1,12 @@
+# OPERATOR CONSTRAINTS — standing orders, numbered, verbatim, dated (on the deploy gate's grep surface; violating a numbered constraint is a gate matter, not a style matter)
+
+1. **BUILD BEFORE RERUN** (2026-07-10): *"we build before we re run"* — the full brain is built and acceptance-tested before any replay; the build→replay gate is HARD (C-CONVICTION-REPLAY Part 3a: honesty test, posterior test, era test — any failure and the replay does not run).
+2. **EXITS OUT OF SCOPE — §0A** (2026-07-02): *"EXITS ARE OUT OF SCOPE UNTIL THE TWO ENTRY PROBLEMS ARE SOLVED."* The exit strategy is solved and validated on the 14k-N foundation; any "exit looks negative on live trades" reading is a symptom of broken entries. Analyses may GRADE exits; nothing changes exit policy without the operator's word.
+3. **ONE DISPATCH IN FLIGHT** (2026-07-09, HANDOFF contract): one dispatch in flight; nothing else rides its deploy; never declare a day closed while the BOARD holds unstruck items.
+4. **NO DECREED CONSTANTS AS GOALS** (2026-07-10): *"combined 97 is just a hardcoded rule not built on logic... takes leg 1 importance out of the picture"* — pair-97 (and every decreed constant: universal freshness window, universal gun trigger, fixed S-lines) is LEGACY MECHANICS PENDING ADJUDICATION: graded as contamination, never used as a goal or a grading anchor. (COMBINED-PRICE CLAUSE already binds: 97 = interim goal-law bound only.)
+5. **DIRECTIONAL CONVICTION AT DISCOVERY, LEG-ONE PRIMACY** (2026-07-10): *"every tick should alter the confidence"* — a direction call with confidence exists from discovery, revised on every print and book update; leg-one importance is never averaged out by a pair-level constant.
+6. **CATEGORY LAW** (2026-07-09): each category is a different market; no cross-category claim without per-category decomposition; six dated flattening kills stand.
+7. **PLAIN LANGUAGE TO THE OPERATOR** (2026-07-09): Eastern 12-hour times; "shares" never "contracts"; abbreviations spelled out; raw github URLs after every push.
+8. **PLEX RENDERS ALL VISUALS** (2026-07-10): CC extracts (self-describing JSONs with render-specs); Plex renders and adversarially reads; the relay carries raw URLs only.
+9. **BOT-ONLY BASIS** (2026-07-09, RULING_BOT_ONLY_BASIS): the bot's traded money is the basis, reset 12:00 AM ET nightly; manual/foreign named, never blended.
+10. **REPLAY-HARNESS LAW** (2026-07-10): every future defect fix replays its original tape failing-then-passing, or the gate refuses it.

@@ -106,4 +106,17 @@ else
   echo "C50 BOOTSTRAP: no last-deploy SHA recorded yet -- warn-pass; deploy_live_v4.sh records it now"
 fi
 
+# [C-CONVICTION-REPLAY 07-10] operator constraints on the gate's grep surface
+# alongside §0: the numbered standing orders must exist and keep their heads.
+echo "--- [5/5] operator constraints surface (docs/OPERATOR_CONSTRAINTS.md)"
+OC="$REPO/docs/OPERATOR_CONSTRAINTS.md"
+if [ ! -s "$OC" ]; then
+  echo "GATE REFUSED: docs/OPERATOR_CONSTRAINTS.md missing or empty (the operator's numbered standing orders)"
+  exit 1
+fi
+for MUST in "BUILD BEFORE RERUN" "EXITS OUT OF SCOPE" "ONE DISPATCH IN FLIGHT" "NO DECREED CONSTANTS AS GOALS" "CATEGORY LAW" "REPLAY-HARNESS LAW"; do
+  grep -q "$MUST" "$OC" || { echo "GATE REFUSED: constraint heading '$MUST' missing from OPERATOR_CONSTRAINTS.md"; exit 1; }
+done
+echo "operator constraints OK: numbered orders present"
+
 echo "=== DEPLOY GATE: PASS ==="

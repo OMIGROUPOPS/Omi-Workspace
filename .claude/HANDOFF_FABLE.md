@@ -33,7 +33,14 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-10 evening — C50 keeps this current):
+## STATE (2026-07-10 ~5:30pm — C50 keeps this current):
+C-BOOK-THE-FILL deployed: CLASS UNBOOKED FILL closed (-0f + -0c
+struck into it) — audit no_exit legs with our lineage are BOOKED via
+the proven naked-recovery path (halt only for unexplained holdings);
+failed-cancel-with-live-order = unresolved/hold, replacement never
+placed (TUPMAK race dead at source); scorecard footer prints HALT-MIN
++ UNBOOKED-FILLS-BOOKED nightly (KILLED = zeros or it reopens).
+Replays 4/4 per the harness law.
 RULING_PAIR_ECONOMICS recorded (verbatim): pair-97 RETIRED from all
 logic (interim dumb bound only; deleted after shadow proves the
 per-leg replacement, -0h queued); MIGRATION DOCTRINE = organ-by-organ

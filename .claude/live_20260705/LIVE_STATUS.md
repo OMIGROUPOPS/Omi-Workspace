@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 10 @ **2026-07-10 06:36:58 PM ET** | build `0b8bc4b4` | session boot 07-10 17:25 ET | log `live_v3_20260710.jsonl` | 2019 session events | monitor READ-ONLY
+- cycle 11 @ **2026-07-10 06:47:27 PM ET** | build `d0aaec40` | session boot 07-10 17:25 ET | log `live_v3_20260710.jsonl` | 2118 session events | monitor READ-ONLY
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
@@ -24,10 +24,10 @@ no open half-pairs
 ## FLOW-STATE — 1 tracked game(s) ({'WAKING': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ITFMATCH-26JUL10POLMIY | ITF_M | 19.133 | — | **WAKING** |
+| ITFMATCH-26JUL10POLMIY | ITF_M | 31.367 | — | **WAKING** |
 
 ## PATTERNS (sub-B) — 1
-- half_arm_aging: KXITFMATCH-26JUL10POLMIY-POL {"fill": 32, "age_min": 36, "mode": "PAIRING(sib never rested)", "emitted_et": "2026-07-10 06:36:58 PM ET"}
+- half_arm_aging: KXITFMATCH-26JUL10POLMIY-POL {"fill": 32, "age_min": 46, "mode": "PAIRING(sib never rested)"}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

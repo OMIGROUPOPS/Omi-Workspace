@@ -33,8 +33,13 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-09 late night — C50 keeps this current):
-Bot LIVE (C-EARLY-UNLOCK gated deploy, latest): NEW OPERATOR RULING
+## STATE (2026-07-10 early — C50 keeps this current):
+Bot LIVE (C-TAPE-SEED gated deploy, latest): restart-amnesia 5th
+instance dead — last-trade memory REST-seeded at actual print
+timestamps (honest ages, never −1.0); 1800s threshold + last-trade
+discipline UNCHANGED; rest_seeded vs ws_live cohorts in daily_ledger;
+a too-stale book is an operator THRESHOLD ruling, not a code fix.
+Prior same night (C-EARLY-UNLOCK): OPERATOR RULING
 (RULING_EARLY_UNLOCK.md verbatim) — realized lifetime volume ≥2,500
 unlocks the FULL T−8h window, ITF only, realized-never-projected (P1b
 stands), self-measuring cohort (early_unlock stamps + daily_ledger

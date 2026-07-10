@@ -166,6 +166,7 @@ def main():
         if prior.get("opinion") != "PRIOR":
             grade, why, conf = "NO-OPINION", prior.get("missing", ""), None
         else:
+            t["prior"] = prior
             series = c.tick_posterior(prior, obs)
             conf = series[-1][1] if series else prior["confidence"]
             edge = conf * 100 - t["px"]
@@ -183,6 +184,7 @@ def main():
         elif exits.get(tk):
             pnl = sum(x.get("pnl_cents", 0) for x in exits[tk])
         legacy = "pair97" if tk in pair97 else ""
+        t.update({"id": tid, "cat": cat, "prior": t.get("prior")})
         rows.append({"id": tid, "tk": tk, "cat": cat, "ts_et": datetime.fromtimestamp(
             t["ts"], ET).strftime("%I:%M:%S %p"), "px": t["px"], "cycle": t["cycle"],
             "in_play": t.get("in_play", False), "grade": grade, "why": why[:160],

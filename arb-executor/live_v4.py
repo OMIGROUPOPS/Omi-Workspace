@@ -1961,6 +1961,34 @@ class LiveV3:
             if _g5 is not None:
                 details.setdefault("in_play", True)
                 details.setdefault("bell_source", _g5.get("source"))
+        # [C-NIGHTLY-ADJUDICATION Part 1, 07-10] trade identifier
+        # T-YYYYMMDD-NNNN: born at placement, carried through fill, exit,
+        # settlement and every artifact. Sequence rebuilt at boot from the
+        # jsonl (restart-amnesia lesson applied from birth); July-10
+        # retroactive replay identifiers remain valid -- the loader seeds
+        # today's sequence from the day's fill count when no stamps exist.
+        try:
+            if ticker and isinstance(details, dict):
+                if event == "order_placed" and details.get("action") == "buy":
+                    _cyc = getattr(self, "_cycle_count", {}).get(ticker, 0) + 1
+                    _ids = self.__dict__.setdefault("_trade_ids", {})
+                    _cur = _ids.get(ticker)
+                    if _cur is None or _cur[0] != _cyc:
+                        _day = datetime.now(ET).strftime("%Y%m%d")
+                        if getattr(self, "_trade_seq_day", "") != _day:
+                            self._trade_seq_day = _day
+                            self._trade_seq = 0
+                        self._trade_seq = getattr(self, "_trade_seq", 0) + 1
+                        _cur = (_cyc, "T-%s-%04d" % (_day, self._trade_seq))
+                        _ids[ticker] = _cur
+                    details.setdefault("trade_id", _cur[1])
+                elif event in ("entry_filled", "exit_filled", "scalp_filled",
+                               "settled"):
+                    _cur = (getattr(self, "_trade_ids", None) or {}).get(ticker)
+                    if _cur:
+                        details.setdefault("trade_id", _cur[1])
+        except Exception:
+            pass
         # [C-EARLY-UNLOCK 07-09, operator ruling] cohort stamp at the single
         # emitter: a buy placed while the event's realized-volume unlock is
         # open carries early_unlock + vol-at-placement + basis; its fill
@@ -9759,6 +9787,57 @@ class LiveV3:
         self._log("order_fingerprints_loaded", {
             "n": len(fps), "files": [p.name for p in files]})
 
+    def _load_trade_ids(self):
+        """[C-NIGHTLY-ADJUDICATION 07-10] rebuild today's trade-id sequence +
+        per-ticker current ids from the jsonl (the fingerprint pattern, 4th
+        application). Seed rule for a day with retroactive replay ids but no
+        live stamps yet: sequence starts at the day's fill count (exactly how
+        the replay numbered), so live ids CONTINUE the replay's series."""
+        day = datetime.now(ET).strftime("%Y%m%d")
+        tag = '"trade_id": "T-%s-' % day
+        seq, ids, fills_today = 0, {}, 0
+        day0 = datetime(datetime.now(ET).year, datetime.now(ET).month,
+                        datetime.now(ET).day, tzinfo=ET).timestamp()
+        try:
+            files = sorted(LOG_DIR.glob("live_v3_*.jsonl"),
+                           key=lambda p: p.stat().st_mtime)[-2:]
+        except OSError:
+            files = []
+        for p in files:
+            try:
+                with open(p, encoding="utf-8", errors="replace") as fh:
+                    for line in fh:
+                        if tag in line:
+                            try:
+                                d = json.loads(line)
+                            except ValueError:
+                                continue
+                            det = d.get("details") or {}
+                            tid = det.get("trade_id", "")
+                            try:
+                                n = int(tid.rsplit("-", 1)[-1])
+                            except ValueError:
+                                continue
+                            seq = max(seq, n)
+                            if d.get("ticker"):
+                                ids[d["ticker"]] = (det.get("cycle", 1), tid)
+                        elif '"entry_filled"' in line:
+                            try:
+                                d = json.loads(line)
+                            except ValueError:
+                                continue
+                            if d.get("ts_epoch", 0) >= day0:
+                                fills_today += 1
+            except OSError:
+                continue
+        if seq == 0:
+            seq = fills_today   # retroactive-continuity seed (replay ids stand)
+        self._trade_seq, self._trade_seq_day, self._trade_ids = seq, day, ids
+        self._log("trade_ids_rebuilt", {"day": day, "seq": seq,
+                                        "open_ids": len(ids),
+                                        "seed": ("jsonl_stamps" if ids or seq != fills_today
+                                                 else "fill_count_retroactive")})
+
     def _load_cycle_history(self):
         """[C-CYCLE-CAP 2026-07-09, operator ruling: re-entry ALLOWED, capped
         at 2 cycles per leg per premarket] Rebuild per-leg completed
@@ -10801,6 +10880,13 @@ class LiveV3:
         except Exception as _che:
             self._cycle_count = {}
             self._log("cycle_history_rebuild_error", {"err": str(_che)[:200]})
+
+        # [C-NIGHTLY-ADJUDICATION] 4th lineage rebuild at the same boot slot
+        try:
+            self._load_trade_ids()
+        except Exception as _tie:
+            self._trade_seq, self._trade_seq_day, self._trade_ids = 0, "", {}
+            self._log("trade_ids_rebuild_error", {"err": str(_tie)[:150]})
 
         # Reconcile: load existing positions and resting orders
         await self.reconcile()

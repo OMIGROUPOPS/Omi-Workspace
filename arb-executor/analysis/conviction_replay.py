@@ -87,6 +87,18 @@ def gate_3a(c):
 
 
 def main():
+    # [C-NIGHTLY-ADJUDICATION] --date YYYYMMDD (default: the day that just
+    # closed when run 00:00-06:00 ET, else today); --nightly commits
+    # ADJUDICATION_<date>.md + NIGHTLY_PASS footer + git push.
+    now = datetime.now(ET)
+    ymd = None
+    for i, a in enumerate(sys.argv):
+        if a == "--date" and i + 1 < len(sys.argv):
+            ymd = sys.argv[i + 1]
+    if ymd is None:
+        ref = now.timestamp() - (6 * 3600 if now.hour < 6 else 0)
+        ymd = datetime.fromtimestamp(ref, ET).strftime("%Y%m%d")
+    dd = datetime.strptime(ymd, "%Y%m%d")
     c = Composer()
     res = gate_3a(c)
     print("== PART 3a GATE ==")
@@ -96,13 +108,24 @@ def main():
         ok = ok and passed
     if not ok:
         print("GATE FAILED -- the replay DOES NOT RUN (constraint #1: build before rerun)")
+        if "--nightly" in sys.argv:
+            op = ROOT.parent / (".claude/adjudication/ADJUDICATION_%s.md" % ymd)
+            op.parent.mkdir(parents=True, exist_ok=True)
+            op.write_text(
+                "# ADJUDICATION %s\n\nGATE FAILED (3a): %s\n"
+                "The replay did not run (constraint #1)." % (
+                    ymd, {k: v[1] for k, v in res.items()}), encoding="utf-8")
         sys.exit(1)
     print("gate PASS -> Part 4 replay authorized")
 
-    # ---- PART 4: July 10 slate replay (every filled entry since midnight ET) ----
-    day0 = datetime(2026, 7, 10, tzinfo=ET).timestamp()
+    # ---- PART 4: the slate replay (every filled entry in the day, ET) ----
+    day0 = datetime(dd.year, dd.month, dd.day, tzinfo=ET).timestamp()
     trades, settles, exits, unlocked, pair97 = [], {}, {}, {}, set()
-    log = ROOT / "logs" / "live_v3_20260710.jsonl"
+    day1 = day0 + 24 * 3600
+    log = ROOT / "logs" / ("live_v3_%s.jsonl" % ymd)
+    if not log.exists():
+        print("no log for %s" % ymd)
+        sys.exit(0)
     for line in open(log, encoding="utf-8", errors="replace"):
         if not any(k in line for k in ('"entry_filled"', '"settled"', '"exit_filled"',
                                        '"early_unlock_open"', '"reaim_sibling_arrival"',
@@ -113,7 +136,7 @@ def main():
         except ValueError:
             continue
         ts, det, tk = d.get("ts_epoch", 0), d.get("details") or {}, d.get("ticker", "")
-        if ts < day0:
+        if not (day0 <= ts < day1):
             continue
         e = d["event"]
         if e == "entry_filled" and tk:
@@ -132,7 +155,7 @@ def main():
     rows, stats = [], defaultdict(lambda: defaultdict(int))
     obs_cache = {}
     for i, t in enumerate(trades, 1):
-        tid = "T-20260710-%04d" % i
+        tid = "T-%s-%04d" % (ymd, i)
         tk, cat = t["tk"], cat_of(t["tk"])
         et = tk.rsplit("-", 1)[0]
         if tk not in obs_cache:
@@ -171,12 +194,55 @@ def main():
            "gate_3a": {k: {"pass": v[0], "detail": v[1]} for k, v in res.items()},
            "n_trades": len(trades), "rows": rows,
            "per_cat": {k: dict(v) for k, v in stats.items()}}
-    op = ROOT.parent / ".claude/conviction_20260710/REPLAY_RESULTS.json"
+    op = ROOT.parent / (".claude/adjudication/RESULTS_%s.json" % ymd)
     op.parent.mkdir(parents=True, exist_ok=True)
     op.write_text(json.dumps(out, indent=1), encoding="utf-8")
     print("== PART 4 REPLAY == %d trades -> %s" % (len(trades), op))
-    for cat, s in sorted(stats.items()):
-        print(" ", cat, dict(s))
+    for cat, s2 in sorted(stats.items()):
+        print(" ", cat, dict(s2))
+    # ---- the ADJUDICATION report (the migration meter, self-printing) ----
+    n = len(rows)
+    ag = sum(1 for r in rows if r["grade"] == "AGREE")
+    wr = sum(1 for r in rows if r["grade"] == "WOULD-REFUSE")
+    no = sum(1 for r in rows if r["grade"] == "NO-OPINION")
+    p97n = sum(1 for r in rows if r["legacy_constant"] == "pair97")
+    L = ["# ADJUDICATION %s (nightly conviction replay; gate 3a passed)" % ymd, "",
+         "| id | ticker | cat | fill ET | paid | cyc | grade | posterior | legacy | pnl¢ |",
+         "|---|---|---|---|---|---|---|---|---|---|"]
+    for r in rows:
+        L.append("| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
+            r["id"], r["tk"].replace("KX", "")[:28], r["cat"], r["ts_et"], r["px"],
+            r["cycle"], r["grade"],
+            ("%.2f" % r["posterior"]) if r["posterior"] is not None else "—",
+            r["legacy_constant"] or "", r["pnl_cents"] if r["pnl_cents"] is not None else "open"))
+    if n:
+        L += ["", "**MIGRATION METER: fitted-conviction AGREE %d/%d (%.1f%%) | "
+                  "WOULD-REFUSE %d | NO-OPINION %d | pair-97 touched %d (%.1f%%)**"
+              % (ag, n, 100.0 * ag / n, wr, no, p97n, 100.0 * p97n / n),
+             "", "Per category: " + " | ".join(
+                 "%s A%d/R%d/N%d p97:%d" % (cat, s3.get("AGREE", 0),
+                                            s3.get("WOULD-REFUSE", 0),
+                                            s3.get("NO-OPINION", 0),
+                                            s3.get("pair97_touched", 0))
+                 for cat, s3 in sorted(stats.items()))]
+    md = ROOT.parent / (".claude/adjudication/ADJUDICATION_%s.md" % ymd)
+    md.write_text("\n".join(L), encoding="utf-8")
+    print("adjudication ->", md)
+    if "--nightly" in sys.argv:
+        import subprocess
+        np = ROOT.parent / ".claude" / "live_20260705" / "NIGHTLY_PASS.md"
+        try:
+            with open(np, "a", encoding="utf-8") as fh:
+                fh.write("\nADJUDICATION %s: AGREE %d/%d | REFUSE %d |"
+                         " NO-OPINION %d | pair97 %d\n"
+                         % (ymd, ag, n, wr, no, p97n))
+        except OSError:
+            pass
+        for cmd in (["git", "-C", str(ROOT.parent), "add", str(md.parent), str(np)],
+                    ["git", "-C", str(ROOT.parent), "commit", "-m",
+                     "ADJUDICATION %s (nightly conviction replay)" % ymd],
+                    ["git", "-C", str(ROOT.parent), "push", "origin", "HEAD"]):
+            subprocess.run(cmd, check=False)
 
 
 if __name__ == "__main__":

@@ -33,13 +33,23 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-09 night — C50 keeps this current):
-Bot LIVE (C-INFLIGHT-LOCK `330266c7` gated deploy, alone, tonight):
-GORSTE same-tick race class CLOSED at the chokepoint (one
-per-ticker+direction lock, all paths, crash-safe 20s bound; 4/4 Lane-1
-incl. the 11:41am replay — 2nd buy refused in-process). **os_active
-precondition #2 of 5 SATISFIED.** Watches: inflight_lock_refused
-(rare+named) · inflight_lock_forced_release (must stay 0). Earlier
+## STATE (2026-07-09 late night — C50 keeps this current):
+Bot LIVE (C-T4-DUAL-FLAG gated deploy, shadow-only, latest). PLEX
+RULED (PLEX_T3_T4_RATIFICATION.md): T3 riser RETIRED (lineage in
+CLIMBSIDE_SPEC) · T4 hold-gate clause RATIFIED, threshold reserved ·
+hold-gate = TWO jobs BY LAW (anti-selection + volume-floor's only
+enforcement point). ⚠ relay owes Plex's verbatim body (paste dropped
+it; slot in the ratification file). Dual-flag shadow live: floor
+reading was structurally DEAD pre-tonight (share=None → constant
+False) — now real contracts vs staged floor + own T−8h→T−4h baseline;
+pre_instrument lines fenced (t4:dual_flag_v1 = the threshold dataset;
+clock starts first stamped line). BOARD −0a struck; riser bounce
+resolved (retired). Arm prereqs unchanged: four bars · joint-shadow
+n≥30 · shadow-first · os_active untouched. Earlier tonight:
+C-INFLIGHT-LOCK `330266c7` (GORSTE same-tick race closed at the
+chokepoint, crash-safe; os_active precondition #2/5 satisfied;
+watches: inflight_lock_refused rare+named · forced_release must
+stay 0). Earlier
 today: C-BOT-ONLY-BASIS (RULING_BOT_ONLY_BASIS.md, operator verbatim:
 bot-traded money = THE basis, reset 12:00am ET nightly; manual/foreign
 named NEVER blended — FRAMAR was the operator's manual, deliberate

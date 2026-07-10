@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 32 @ **2026-07-09 08:52:51 PM ET** | build `b83d886` | session boot 07-09 18:36 ET | log `live_v3_20260709.jsonl` | 4275 session events | monitor READ-ONLY
+- cycle 33 @ **2026-07-09 09:03:01 PM ET** | build `fd03cb1` | session boot 07-09 18:36 ET | log `live_v3_20260709.jsonl` | 4807 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 0 violation(s)
@@ -18,9 +18,9 @@
 - classes now: {'FLOW_ABOVE': 3} | repriceable now: true 2 / false 1 | **cumulative bid_grade lines: 7185 (repriceable true 892 / false 6293)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ITFMATCH-26JUL09DELYAM-YAM | 10 | 5m | 5/16-16/106 | 15-14 | 6 | **FLOW_ABOVE** | 11 | flow above but bound 11c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL09IMANAK-IMA | 53 | 55m | 41/54-57/3523 | 54-54 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→54 |
-| ITFMATCH-26JUL09MOCJAS-MOC | 22 | 18m | 23/25-27/2901 | 25-26 | 3 | **FLOW_ABOVE** | 23 | REPRICEABLE→23 |
+| ITFMATCH-26JUL09DELYAM-YAM | 10 | 15m | 19/15-16/4666 | 15-14 | 5 | **FLOW_ABOVE** | 11 | flow above but bound 11c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL09IMANAK-IMA | 53 | 66m | 43/54-57/3527 | 54-54 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→54 |
+| ITFMATCH-26JUL09MOCJAS-MOC | 22 | 28m | 42/25-27/5050 | 25-26 | 3 | **FLOW_ABOVE** | 23 | REPRICEABLE→23 |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
@@ -31,13 +31,13 @@
 ## FLOW-STATE — 4 tracked game(s) ({'OPEN': 2, 'WAKING': 2}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ITFMATCH-26JUL09DELYAM | ITF_M | 2.567 | 1 | **OPEN** |
-| ITFMATCH-26JUL09MOCJAS | ITF_M | 3.233 | 1 | **OPEN** |
-| ITFMATCH-26JUL09DRAARS | ITF_M | 76.667 | — | **WAKING** |
-| ITFMATCH-26JUL09IMANAK | ITF_M | 0.7 | — | **WAKING** |
+| ITFMATCH-26JUL09DELYAM | ITF_M | 2.467 | 1 | **OPEN** |
+| ITFMATCH-26JUL09MOCJAS | ITF_M | 2.9 | 1 | **OPEN** |
+| ITFMATCH-26JUL09DRAARS | ITF_M | 87.8 | — | **WAKING** |
+| ITFMATCH-26JUL09IMANAK | ITF_M | 0.5 | — | **WAKING** |
 
 ## PATTERNS (sub-B) — 2
-- half_arm_aging: KXITFMATCH-26JUL09DRAARS-DRA {"fill": 78, "age_min": 85, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFMATCH-26JUL09MOCJAS-JAS {"fill": 74, "age_min": 67, "mode": "SET_BELOW_FLOW(prints 3c above)"}
+- half_arm_aging: KXITFMATCH-26JUL09DRAARS-DRA {"fill": 78, "age_min": 95, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL09MOCJAS-JAS {"fill": 74, "age_min": 78, "mode": "SET_BELOW_FLOW(prints 3c above)"}
 
 ## ERRORS — 0 handler errors this session (ZERO — clean loop)

@@ -26,4 +26,4 @@
 | blind aim table | composer conviction per cell per tick | built offline, gate-proven 3/3, shadow wiring queued |
 | silent skips and halts | named refusals + violation counts | LIVE |
 | exit band table | untouched per §0A until entries are solved | graded only; operator ruling later, with data |
-| human memory as process | constraints file · class ledger · model registry · gates | constraints LIVE on the gate; class ledger FOUNDED 07-10 |
+| human memory as process | constraints file · class ledger · model registry · gates · NIGHTLY ADJUDICATION | constraints LIVE on the gate; class ledger FOUNDED 07-10; adjudication cron LIVE 07-10 (12:20 am, migration meter self-printing) |

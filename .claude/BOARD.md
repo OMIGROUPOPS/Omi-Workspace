@@ -110,6 +110,8 @@
 
 ## CRON / SCHEDULED
 
+- **NIGHTLY ADJUDICATION (permanent, from 07-10)** — `/root/adjudication_nightly.sh` @ 12:20 am ET: 3a gate self-check → conviction replay over the closed day → `ADJUDICATION_YYYYMMDD.md` + MIGRATION METER into NIGHTLY_PASS + git push. Absence by morning = cron failure, visible. Proven same-instrument (123/123 row match vs the one-shot).
+
 - **GUN SCORECARD (nightly, permanent)** — `analysis/gun_scorecard.py --nightly` (cron ~6:10 am ET): per-cat detection %, med |truth delta|, misses NAMED into NIGHTLY_PASS.md + dated table under `.claude/gun_scorecard/`. Self-grading forever — degradation flags itself. Companion: te_live keepalive cron (the feed is the gun's primary source; silence = scorecard shows it).
 - **OUT-OF-PROCESS EXIT CHECKER** — `/root/exit_checker_cron.sh` every 15 min (outside the bot): v4 band contract from exchange truth; naked legs → artifact + channel; gun-feed staleness watch aboard; hold-legs exempt via `/root/exit_checker_exempt.txt`.
 - **BOT_DOWN CHANNEL** — `/root/notify.sh` (config `/root/notify_channel.conf`, default ntfy topic `omi-livev4-omqs-x7k3q9v2`); senders: watchdog (1-min cron, transition-deduped + 30-min reminder), exit checker, te_live keepalive. SMS/email slots await operator word.

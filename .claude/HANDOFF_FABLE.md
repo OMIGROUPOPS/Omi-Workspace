@@ -33,7 +33,12 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-10 ~5:30pm — C50 keeps this current):
+## STATE (2026-07-10 ~6:15pm — C50 keeps this current):
+C-NIGHTLY-ADJUDICATION deployed: trade ids T-YYYYMMDD-NNNN live
+(minted at placement, 4th boot rebuild trade_ids_rebuilt; July-10
+replay ids continue); adjudication cron 12:20am (3a gate nightly ->
+ADJUDICATION_<date>.md + MIGRATION METER in NIGHTLY_PASS); proven
+same-instrument 123/123 row match. The loop now grades itself.
 C-BOOK-THE-FILL deployed: CLASS UNBOOKED FILL closed (-0f + -0c
 struck into it) — audit no_exit legs with our lineage are BOOKED via
 the proven naked-recovery path (halt only for unexplained holdings);

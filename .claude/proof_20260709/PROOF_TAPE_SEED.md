@@ -1,6 +1,6 @@
 # OUTCOME PROOF (C46, two-lane) — C-TAPE-SEED (boot-seed last-trade memory from REST; restart-amnesia class, FIFTH instance)
 
-**Candidate SHA: `SHA_TS`** (live_v4.py `_seed_tape_memory` + apply_trade basis flip + cohort stamps, daily_ledger tape-basis section).
+**Candidate SHA: `2f26cc00`** (live_v4.py `_seed_tape_memory` + apply_trade basis flip + cohort stamps, daily_ledger tape-basis section).
 
 ## Prior art (C45)
 - **The restart-amnesia family** — C-ORPHAN-FINGERPRINT (orders) → C-GUN-PERSIST (gun state) → C-CYCLE-CAP (cash cycles) → C-EARLY-UNLOCK's named ws-since-boot undercount (volume) → this: the TAPE memory. Every instance is the same lesson: state the exchange already knows must not die with the process.

@@ -99,6 +99,7 @@ def main():
 
     fires, deltas, sched, boots, honest = {}, {}, {}, [], {}
     bells_missing = set()   # [C-REALITY-BELL] nightly coverage count
+    halt_armed_ts, halt_min, unbooked_booked = None, 0.0, 0   # [C-BOOK-THE-FILL]
     for p in files:
         for line in open(p, encoding="utf-8", errors="replace"):
             if '"gun_fired"' not in line and '"gun_truth_delta"' not in line \
@@ -157,6 +158,18 @@ def main():
                         pass
             elif d["event"] == "bell_missing":
                 bells_missing.add(ev)
+                continue
+            elif d["event"] == "conception_halt_armed":
+                if det.get("transition") and halt_armed_ts is None:
+                    halt_armed_ts = ts
+                continue
+            elif d["event"] == "conception_halt_cleared":
+                if halt_armed_ts is not None:
+                    halt_min += (ts - halt_armed_ts) / 60.0
+                    halt_armed_ts = None
+                continue
+            elif d["event"] == "fill_booked_reconcile":
+                unbooked_booked += 1
                 continue
             elif d["event"] == "clock_liar":
                 hs = det.get("te_honest_start")
@@ -308,13 +321,13 @@ def main():
     n_fires = len(fires)
     n_slate = len(set(sched) | set(fires))
     footer = ("FIRES-vs-SLATE: fires=%d tracked_events=%d ratio=%.0f%% | "
-              "BELLS-MISSING=%d%s "
+              "BELLS-MISSING=%d%s | HALT-MIN=%.1f UNBOOKED-FILLS-BOOKED=%d "
               "(watch: night-over-night drops + uncovered live matches are "
               "named here, not a week later)"
               % (n_fires, n_slate, 100.0 * n_fires / n_slate if n_slate else 0,
                  len(bells_missing),
                  (" [" + ",".join(sorted(e.rsplit("-", 1)[-1][-6:] for e in bells_missing)[:6]) + "]")
-                 if bells_missing else ""))
+                 if bells_missing else "", halt_min, unbooked_booked))
     out = "# GUN SCORECARD %s\n\n%s\n\n%s\n\n%s\n" % (
         now.strftime("%Y-%m-%d %I:%M %p ET"), "\n".join(lines),
         "\n".join("- " + s for s in summary), footer)

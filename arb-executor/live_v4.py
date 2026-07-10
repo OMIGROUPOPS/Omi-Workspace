@@ -6614,6 +6614,19 @@ class LiveV3:
             await self._book_v4_entry_fill(tk, pos, filled, fill_price,
                                            order.get("status", ""), source=source)
             return "booked"
+        # [C-BOOK-THE-FILL Part 2, 07-10 — the −0c race dead at the source] a
+        # FAILED cancel whose order still shows live is HELD INVENTORY UNTIL
+        # RECONCILED, never "cancelled". Returning "cancelled" here let the
+        # caller place the replacement while the original filled seconds later
+        # (TUPMAK 07-09 11:24:12: cancel success=false, poll saw fill 0, fill
+        # landed 11:24:18, replacement 45dfd41b became conception_on_owned ->
+        # 10-min halt; GHASPI recurred 07-10). Unresolved = the caller keeps
+        # the position tracked and retries; check_fills/reconcile own the truth.
+        _st = str(order.get("status", "")).lower()
+        if not ok and _st not in ("canceled", "cancelled", "executed"):
+            self._log("cancel_failed_hold", {
+                "label": label, "order_id": oid, "status": _st}, ticker=tk)
+            return "unresolved"
         self._join_trial_resolve(pos, "cancel", self.books.get(tk),
                                  pos.walk_ref or pos.target_price, tk)
         self._staircase_resolve(pos, "cancel", pos.staircase_ref or pos.target_price, label=label)
@@ -9867,6 +9880,7 @@ class LiveV3:
         verification runs on the jsonl, never the truncated console log)."""
         lot = float(self.entry_size)
         held, buys, sells = {}, {}, {}
+        held_avg = {}   # [C-BOOK-THE-FILL] basis for audit-time booking
         cur = None
         while True:
             j = await api_get(self.session, self.ak, self.pk,
@@ -9878,6 +9892,11 @@ class LiveV3:
                 q = float(p.get("position_fp") or 0)
                 if q != 0:
                     held[p["ticker"]] = q
+                    try:
+                        held_avg[p["ticker"]] = round(abs(float(
+                            p.get("market_exposure_dollars") or 0)) / q * 100)
+                    except (TypeError, ZeroDivisionError):
+                        pass
             cur = (j or {}).get("cursor")
             if not cur or not rows_:
                 break
@@ -9987,9 +10006,49 @@ class LiveV3:
                                       "band": band, "bid": bid, "held": h})
                         row["flag"] = "exit_unpostable_itm"
                     else:
-                        failures.append({"tk": tk, "check": "no_exit",
-                                         "held": h, "band": band, "bid": bid})
-                        row["FAIL"] = (row.get("FAIL", "") + "+no_exit").lstrip("+")
+                        # [C-BOOK-THE-FILL Part 1, 07-10 — the −0f healer] a
+                        # held-no-exit leg OUR OWN ORDER LINEAGE explains is
+                        # BOOKED, never halted on: route it through the proven
+                        # naked-recovery path (_v4_reconcile_naked books via
+                        # _book_v4_entry_fill + posts the native band exit —
+                        # existing policy, §0A unchanged). The halt remains
+                        # for genuinely unexplained holdings (no lineage).
+                        # July-10 cost of NOT having this: 13 tickers, 5
+                        # halts, 276.8 min conception downtime.
+                        _booked = False
+                        _lin = any(
+                            fp.get("ticker") == tk and fp.get("action") == "buy"
+                            for fp in (getattr(self, "_order_fingerprints", None)
+                                       or {}).values())
+                        _cat4 = self.get_category(tk)
+                        if _lin and _cat4 and not getattr(self, "fv_scenarios_enabled", False):
+                            try:
+                                _avg4 = held_avg.get(tk) or (pos_obj.entry_price
+                                        if pos_obj is not None and getattr(
+                                            pos_obj, "entry_price", 0) else None)
+                                if _avg4 and 0 < _avg4 < 100:
+                                    await self._v4_reconcile_naked(
+                                        tk, tk.rsplit("-", 1)[0], _cat4, _avg4,
+                                        {"event_ticker": tk.rsplit("-", 1)[0],
+                                         "qty": h, "avg_price": _avg4},
+                                        context="audit_book_the_fill")
+                                    self._log("fill_booked_reconcile", {
+                                        "held": h, "basis": _avg4,
+                                        "lineage": "order_fingerprints",
+                                        "trigger": "audit_no_exit"}, ticker=tk)
+                                    flags.append({"tk": tk,
+                                                  "flag": "unbooked_fill_booked",
+                                                  "held": h, "basis": _avg4})
+                                    row["flag"] = (row.get("flag", "")
+                                                   + "+unbooked_fill_booked").lstrip("+")
+                                    _booked = True
+                            except Exception as _bfe:
+                                self._log("fill_book_error", {
+                                    "err": str(_bfe)[:150]}, ticker=tk)
+                        if not _booked:
+                            failures.append({"tk": tk, "check": "no_exit",
+                                             "held": h, "band": band, "bid": bid})
+                            row["FAIL"] = (row.get("FAIL", "") + "+no_exit").lstrip("+")
                 elif abs(h - sq) >= 1.0:
                     failures.append({"tk": tk, "check": "exit_qty_mismatch",
                                      "held": h, "resting_exits": sq})

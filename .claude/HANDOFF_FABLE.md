@@ -33,7 +33,7 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-10 ~1:15pm — C50 keeps this current):
+## STATE (2026-07-10 ~12:45pm — C50 keeps this current):
 EXHIBIT 1 (BLIZAN) delivered for Plex (casefile_20260710/: prose + 2
 leg JSONs + FV_SWEEP). Headlines: exits are FV-BLIND BY DESIGN (ruling
 item -0g, evidence filed: ZAN 28 vs FV 50.5; ALFLOO ±65c live);

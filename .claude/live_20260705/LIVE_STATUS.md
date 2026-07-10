@@ -1,43 +1,33 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 34 @ **2026-07-09 09:13:12 PM ET** | build `e14dc15` | session boot 07-09 18:36 ET | log `live_v3_20260709.jsonl` | 4913 session events | monitor READ-ONLY
+- cycle 35 @ **2026-07-09 09:23:19 PM ET** | build `318ee30` | session boot 07-09 21:21 ET | log `live_v3_20260709.jsonl` | 356 session events | monitor READ-ONLY
 - tripwire artifact: absent (quiet)
 
 ## ZERO-TOLERANCE — 0 violation(s)
 **NONE.** grace_breach / combined_over_goal(97) / walk_cap_breach / handler_error all clean.
 
-## FILLS — 4 graded (session)
-| ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb | stamp |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| 18:37 | ITFMATCH-26JUL09DELYAM-YAM | ITF_M | ? | 11 | 7 | +4 (fill_est) | — | pre | pair | 97 | PENDING |
-| 19:27 | ITFMATCH-26JUL09DRAARS-DRA | ITF_M | ? | 78 | 85 | -7 (window_cell) | — | pre | single |  | MIXED |
-| 19:45 | ITFMATCH-26JUL09MOCJAS-JAS | ITF_M | leader | 74 | 69 | +5 (place_cell) | — | pre | single |  | PENDING |
-| 20:45 | ITFMATCH-26JUL09DELYAM-DEL | ITF_M | leader | 86 | 82 | +4 (place_cell) | — | pre | pair | 97 | PENDING |
+## FILLS — 0 graded (session)
+none yet this session
 
-## RESTING BIDS — 3 tape-graded (starvation = NO_FLOW only)
-- classes now: {'FLOW_ABOVE': 3} | repriceable now: true 2 / false 1 | **cumulative bid_grade lines: 7185 (repriceable true 892 / false 6293)** -- the liquid_repost re-arm evidence accumulates here
+## RESTING BIDS — 4 tape-graded (starvation = NO_FLOW only)
+- classes now: {'FLOW_ABOVE': 2, 'NO_FLOW': 2} | repriceable now: true 0 / false 4 | **cumulative bid_grade lines: 7189 (repriceable true 892 / false 6297)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ITFMATCH-26JUL09DELYAM-YAM | 10 | 26m | 36/15-16/5651 | 15-14 | 5 | **FLOW_ABOVE** | 11 | flow above but bound 11c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL09IMANAK-IMA | 53 | 76m | 48/54-57/3654 | 54-54 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→54 |
-| ITFMATCH-26JUL09MOCJAS-MOC | 22 | 38m | 63/25-27/7058 | 25-26 | 3 | **FLOW_ABOVE** | 23 | REPRICEABLE→23 |
+| ITFMATCH-26JUL09DELYAM-YAM | 11 | 2m | 14/16-17/673 | 15-16 | 5 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL09IMANAK-IMA | 54 | 2m | 0 | 54-56 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL09IMANAK-NAK | 45 | 1m | 0 | 45-48 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL09MOCJAS-MOC | 22 | 1m | 3/27-27/182 | 26-27 | 5 | **FLOW_ABOVE** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
-| event | basis | sib ask | achievable | goal | vs goal |
-|---|---|---|---|---|---|
-| ITFMATCH-26JUL09DRAARS | 78 | 2 | **80** | 97 | -17 |
-| ITFMATCH-26JUL09MOCJAS | 74 | 26 | **100** | 97 | +3 |
+no open half-pairs
 
-## FLOW-STATE — 4 tracked game(s) ({'OPEN': 2, 'WAKING': 2}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 3 tracked game(s) ({'OPEN': 3}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ITFMATCH-26JUL09DELYAM | ITF_M | 2.2 | 1 | **OPEN** |
-| ITFMATCH-26JUL09MOCJAS | ITF_M | 2.733 | 1 | **OPEN** |
-| ITFMATCH-26JUL09DRAARS | ITF_M | 87.733 | — | **WAKING** |
-| ITFMATCH-26JUL09IMANAK | ITF_M | 0.333 | — | **WAKING** |
+| ITFMATCH-26JUL09DELYAM | ITF_M | 2.7 | 1 | **OPEN** |
+| ITFMATCH-26JUL09IMANAK | ITF_M | 0.967 | 2 | **OPEN** |
+| ITFMATCH-26JUL09MOCJAS | ITF_M | 2.367 | 1 | **OPEN** |
 
-## PATTERNS (sub-B) — 2
-- half_arm_aging: KXITFMATCH-26JUL09DRAARS-DRA {"fill": 78, "age_min": 106, "mode": "PAIRING(sib never rested)"}
-- half_arm_aging: KXITFMATCH-26JUL09MOCJAS-JAS {"fill": 74, "age_min": 88, "mode": "SET_BELOW_FLOW(prints 3c above)"}
+## PATTERNS (sub-B) — 0
 
 ## ERRORS — 0 handler errors this session (ZERO — clean loop)

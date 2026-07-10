@@ -230,6 +230,19 @@ def main():
     md = ROOT.parent / (".claude/adjudication/ADJUDICATION_%s.md" % ymd)
     md.write_text("\n".join(L), encoding="utf-8")
     print("adjudication ->", md)
+    # [C-FULL-SLATE-REVIEW] the nightly instrument inherits the full depth:
+    # per-step L1-L9 grades, the no-fill cohort, exchange truth, class filings
+    try:
+        import full_slate_review as fsr
+        per_tk, per_ev = fsr.collect_day(ymd, log)
+        fout, fsummary, fixq = fsr.run(ymd, trades, per_tk, per_ev, c,
+                                       obs_cache, settles, leg_observations)
+        print("full-slate ->", fout)
+        with open(md, "a", encoding="utf-8") as fh:
+            fh.write("\n\n## FULL-SLATE SUMMARY\n%s\n" % fsummary)
+    except Exception:
+        import traceback
+        print("full-slate ERROR:", traceback.format_exc()[-400:])
     if "--nightly" in sys.argv:
         import subprocess
         np = ROOT.parent / ".claude" / "live_20260705" / "NIGHTLY_PASS.md"

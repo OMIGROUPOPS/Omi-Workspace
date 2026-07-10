@@ -1,6 +1,6 @@
 # OUTCOME PROOF (C46, two-lane) — C-REALITY-BELL (fallback bell + reality invariant + aim sentinel + unlock conception; nothing else rides)
 
-**Candidate SHA: `SHA_RB`** (live_v4.py: gun source 5 + bell-coverage + reality check + sentinel fix + conception/in-play stamps; config keys; monitor parses + MORNING REVIEW feeds; scorecard BELLS-MISSING footer).
+**Candidate SHA: `51e99962`** (live_v4.py: gun source 5 + bell-coverage + reality check + sentinel fix + conception/in-play stamps; config keys; monitor parses + MORNING REVIEW feeds; scorecard BELLS-MISSING footer).
 
 ## Prior art (C45)
 - **The operator's failed test (vault, verbatim, recorded first)** — SAIDEL: entry 62, market 24, bought in-play, graded premarket, hand-cancelled in set 2; the FV sweep compared the model's two FVs to each other, no market comparison existed anywhere.

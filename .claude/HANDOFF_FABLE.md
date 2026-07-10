@@ -33,7 +33,15 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-10 early — C50 keeps this current):
+## STATE (2026-07-10 ~midnight — C50 keeps this current):
+INCIDENT owned + closed: the C-STALE-ANCHOR deploy's drain DESTROYED
+PAP's ruling-mandated bid (45f12259) and nothing noticed — restored by
+hand 11:48pm (91c5024d, 5sh@53, pair whole 97 = goal); C-DRAIN-REPLAY
+deployed (manifest + boot replay through the chokepoint, refusals
+NAMED; restart-amnesia #6); monitor gains zero-tolerance DRAIN-REPLAY
+section. Side catch: TUPMAK cancel-race (cancel failed mid-fill,
+replacement placed anyway) halted conceptions 11:33-11:43pm — orphan
+cancelled, halt cleared, fix BOARDED (-0c) not shipped.
 FABLE FINDINGS recorded (vault 07-10): G9 archive named (~14.7k
 markets/10mo full-information, self-clocking via mid-jump detector,
 80%-fallback weak-clock tail uncounted); THREE start-derivations never

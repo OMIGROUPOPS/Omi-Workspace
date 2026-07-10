@@ -9956,6 +9956,12 @@ class LiveV3:
             if getattr(self, "_conception_halt", False):
                 self._log("conception_halt_cleared", {"context": context})
             self._conception_halt = False
+            # [C-DRAIN-REPLAY 07-10] halt-refused replays retry the moment
+            # the halt clears (tonight's TUPMAK halt would have eaten them)
+            try:
+                await self._drain_replay()
+            except Exception:
+                pass
         try:
             snap_path = Path(__file__).resolve().parent / "state" / "book_snapshot.json"
             snap_path.parent.mkdir(parents=True, exist_ok=True)
@@ -10452,6 +10458,21 @@ class LiveV3:
         except Exception as e:
             self._log("shutdown_drain_fatal", {"error": str(e)})
             return
+        # [C-DRAIN-REPLAY 07-10, restart-amnesia #6 -- the PAPJER-PAP class:
+        # shutdown_cancel destroyed a ruling-mandated entry bid (45f12259)
+        # and the boot re-evaluation silently never re-placed it] persist a
+        # drain manifest BEFORE cancelling; boot replays every entry through
+        # the full chokepoint -- each is re-placed or its refusal is NAMED.
+        # Silent loss is structurally impossible.
+        try:
+            _man = [{"tk": tk, "price": int(getattr(self.positions[tk], "entry_price", 0) or 0),
+                     "count": int(self.config.get("sizing", {}).get("entry_contracts", 5))}
+                    for tk, _ in resting if self.positions.get(tk)]
+            _mp = Path("state"); _mp.mkdir(exist_ok=True)
+            (_mp / "drain_manifest.json").write_text(json.dumps(
+                {"ts": time.time(), "orders": _man}), encoding="utf-8")
+        except Exception as e:
+            self._log("drain_manifest_error", {"error": str(e)[:150]})
         self._log("shutdown_drain_begin", {"resting_entry_bids": len(resting)})
         _t0 = time.time()
         n_ok = 0
@@ -10465,6 +10486,54 @@ class LiveV3:
         # exit code + post-boot reconcile-orphans are captured by the restart wrapper / next boot.
         self._log("shutdown_drain_done", {"attempted": len(resting), "cancelled": n_ok,
                                           "duration_sec": round(time.time() - _t0, 3)})
+
+    async def _drain_replay(self):
+        """[C-DRAIN-REPLAY 07-10] boot-replay of drain-cancelled entry bids
+        through the FULL place_order chokepoint (every gate re-evaluated).
+        Each manifest entry ends in exactly one of: re-placed (oid logged) /
+        refusal NAMED (the chokepoint's _error reason) / consumed as already-
+        covered (position or resting order exists). conception_halt refusals
+        stay in the manifest and retry when the halt clears; a manifest older
+        than 2h is discarded LOUDLY (stale, never silently). Never raises."""
+        try:
+            mp = Path("state") / "drain_manifest.json"
+            if not mp.exists():
+                return
+            man = json.loads(mp.read_text(encoding="utf-8"))
+            if time.time() - float(man.get("ts", 0)) > 7200:
+                self._log("drain_replay_stale_discard", {
+                    "age_min": round((time.time() - float(man.get("ts", 0))) / 60.0, 1),
+                    "n_orders": len(man.get("orders", []))})
+                mp.unlink()
+                return
+            remaining = []
+            for o in man.get("orders", []):
+                tk, price, count = o.get("tk", ""), int(o.get("price", 0) or 0), int(o.get("count", 5) or 5)
+                if not tk or price <= 0:
+                    continue
+                pos = self.positions.get(tk)
+                if pos is not None and (pos.phase != "entry_resting" or pos.entry_order_id):
+                    self._log("drain_replay", {"outcome": "already_covered",
+                                               "phase": getattr(pos, "phase", "?")}, ticker=tk)
+                    continue
+                oid, resp = await self.place_order(tk, "buy", "yes", price, count, post_only=True)
+                err = (resp or {}).get("_error", "")
+                if oid:
+                    self._log("drain_replay", {"outcome": "replaced", "order_id": oid,
+                                               "price": price, "count": count}, ticker=tk)
+                elif err == "conception_halt":
+                    remaining.append(o)   # retry when the halt clears
+                else:
+                    self._log("drain_replay", {"outcome": "refused",
+                                               "reason": err or "api_error",
+                                               "price": price, "count": count}, ticker=tk)
+            if remaining:
+                man["orders"] = remaining
+                mp.write_text(json.dumps(man), encoding="utf-8")
+            else:
+                mp.unlink()
+        except Exception as e:
+            self._log("drain_replay_error", {"error": str(e)[:200]})
 
     async def run(self, reconcile_only=False):
         mode = "PAPER" if _PAPER_API is not None else "LIVE - REAL ORDERS"
@@ -10565,6 +10634,10 @@ class LiveV3:
             self._conception_halt = True
             self._log("post_boot_audit_error", {"err": str(_ae)[:200],
                                                 "action": "conception_halt_armed"})
+
+        # [C-DRAIN-REPLAY 07-10] replay drain-cancelled entry bids through the
+        # chokepoint: re-placed or refusal NAMED, never silently lost.
+        await self._drain_replay()
 
         # Startup skip: events inside the 15-min buffer or past start
         # [C-PARTICIPATE-CLEAN 1] tape_gated_abandon also governs the STARTUP schedule-skip: when on, do NOT

@@ -582,6 +582,54 @@ def forensic_check(all_lines, S, log_path):
     return written
 
 
+def drain_replay_violations(log_path):
+    """[C-DRAIN-REPLAY watch 07-10] ZERO-TOLERANCE: every entry order alive
+    pre-drain (order_cancelled label=shutdown_cancel in the 30 min before the
+    last boot) must be filled, re-placed, or refusal-NAMED (drain_replay /
+    order_placed buy / entry_filled on the same ticker) within 10 min
+    post-boot -- else VIOLATION. The PAPJER-PAP class (45f12259, 07-09
+    11:14 pm): the old monitor watched it happen and said zero violations."""
+    ev = []
+    try:
+        for line in open(log_path, encoding="utf-8", errors="replace"):
+            if not any(k in line for k in ('"shutdown_cancel"', '"system_start"',
+                                           '"drain_replay"', '"order_placed"',
+                                           '"entry_filled"')):
+                continue
+            try:
+                ev.append(json.loads(line))
+            except ValueError:
+                continue
+    except OSError:
+        return []
+    boots = [d.get("ts_epoch", 0) for d in ev if d.get("event") == "system_start"]
+    if not boots:
+        return []
+    boot = boots[-1]
+    drained = {}
+    for d in ev:
+        if (d.get("event") == "order_cancelled"
+                and (d.get("details") or {}).get("label") == "shutdown_cancel"
+                and boot - 1800 <= d.get("ts_epoch", 0) <= boot):
+            drained[d.get("ticker", "")] = d.get("ts", "?")
+    if not drained:
+        return []
+    resolved = set()
+    for d in ev:
+        ts = d.get("ts_epoch", 0)
+        if not (boot < ts <= boot + 600):
+            continue
+        det = d.get("details") or {}
+        if (d.get("event") == "drain_replay"
+                or (d.get("event") == "order_placed" and det.get("action") == "buy")
+                or d.get("event") == "entry_filled"):
+            resolved.add(d.get("ticker", ""))
+    if time.time() < boot + 600:
+        return []   # window still open -- judge only after it closes
+    return [{"ticker": tk, "drained_at": ts} for tk, ts in sorted(drained.items())
+            if tk not in resolved]
+
+
 def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, chf=None,
                  chf_cum=(0, 0), flow_rows=None):
     v = [x for x in all_lines if x.get("type") == "violation"]
@@ -677,6 +725,15 @@ def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, ch
     for p in sorted(pats, key=lambda y: y["ts"]):
         L.append(f"- {p['pattern']}: {p.get('ticker') or p.get('event')} "
                  f"{json.dumps({k: p[k] for k in p if k not in ('key','type','pattern','ts','ticker','event')})}")
+    dv = drain_replay_violations(log_path)
+    L += ["", f"## DRAIN-REPLAY (zero-tolerance) — "
+              f"{('**' + str(len(dv)) + ' VIOLATION' + ('S' if len(dv) != 1 else '') + '**') if dv else '0 violations'}"]
+    if dv:
+        for x in dv:
+            L.append(f"- **VIOLATION**: `{x['ticker']}` drained {x['drained_at']} — "
+                     f"neither filled, re-placed, nor refusal-named within 10 min post-boot")
+    else:
+        L.append("every drained entry bid accounted for (replayed / refused-named / none drained)")
     L += ["", f"## ERRORS — {len(S['errors'])} handler errors this session "
               f"{'(ZERO — clean loop)' if not S['errors'] else '(SEE ZERO-TOLERANCE)'}", ""]
     txt = "\n".join(L)

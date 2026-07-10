@@ -33,7 +33,15 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-10 ~12:45pm — C50 keeps this current):
+## STATE (2026-07-10 afternoon — C50 keeps this current):
+C-REALITY-BELL deployed (operator's FAILED TEST recorded verbatim:
+SAIDEL 62-vs-24 in-play buy invisible — the sweep compared the model
+to itself). Fallback bell = gun source 5 (rate 0.4/min + start-or-
+4c-rise; SAIDEL replay refuses the 11:47 buy, 28s margin); reality
+invariant basis-vs-MARKET-mid 25c -> MORNING REVIEW; bell_missing =
+zero-tolerance + nightly BELLS-MISSING count; aim sentinel (max(1,..)
+root fixed -> aim_unresolved_refused); conception stamped at unlock
+(ungradeable lines end).
 EXHIBIT 1 (BLIZAN) delivered for Plex (casefile_20260710/: prose + 2
 leg JSONs + FV_SWEEP). Headlines: exits are FV-BLIND BY DESIGN (ruling
 item -0g, evidence filed: ZAN 28 vs FV 50.5; ALFLOO ±65c live);

@@ -100,6 +100,11 @@
   "early_unlock_enabled": true,
   "early_unlock_floor": 2500,
   "early_unlock_anchor_age_sec": 7200,
+  "fallback_bell_enabled": true,
+  "fallback_bell_rate_per_min": 0.4,
+  "fallback_bell_disp_cents": 4,
+  "fallback_bell_sustain_polls": 1,
+  "reality_divergence_cents": 25,
   "os_shadow_enabled": true,
   "reentry_cycle_cap": 2
 }

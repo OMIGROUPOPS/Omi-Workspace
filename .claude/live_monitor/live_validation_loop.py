@@ -151,6 +151,24 @@ def parse_session(log_path):
                 oid = d.get("order_id")
                 if oid and d.get("response_status") == "resting":
                     S["open_bids"][oid] = {"tk": tk, "price": d.get("price"), "ts": ts}
+            elif e == "conception_stamp" and tk and tk not in S["wopen"]:
+                # [C-REALITY-BELL Part 4] unlock-time conception: early-window
+                # buys grade against THIS stamp; window_open_set (later) never
+                # overwrites it -- the "ungradeable" lines end
+                S["wopen"][tk] = {"cell": None, "price": None, "ts": ts}
+            elif e == "reality_divergence" and tk:
+                all_extra = S.setdefault("_extra_pats", [])
+                all_extra.append({"type": "pattern", "pattern": "reality_divergence",
+                                  "ticker": tk, "ts": ts, "key": f"rd|{tk}|{int(ts)}",
+                                  "kind": d.get("kind"), "ref": d.get("ref"),
+                                  "market_mid": d.get("market_mid"),
+                                  "divergence": d.get("divergence")})
+            elif e == "bell_missing":
+                all_extra = S.setdefault("_extra_pats", [])
+                all_extra.append({"type": "violation", "pattern": "bell_missing",
+                                  "event": d.get("event"), "ticker": d.get("event"),
+                                  "ts": ts, "key": f"bm|{d.get('event')}",
+                                  "min_past_start": d.get("min_past_start")})
             elif e == "orphan_readopted_fingerprint" and tk:
                 # [RENDER FIX 07-10, the PAPJER-PAP question] boot-readopted
                 # resting bids emit no v4_place/order_placed this session --
@@ -805,6 +823,7 @@ def cycle(n):
     bid_grades = grade_resting_bids(S, aim, goal)
     chf = could_have_filled(S, goal)
     items = analyze(S, aim, goal, bid_grades)
+    items += S.get("_extra_pats", [])   # [C-REALITY-BELL] reality_divergence + bell_missing
     # [C-FLOW-STATE 07-08] per-game gauge rows into the status page; state
     # transitions into the jsonl through the same append-once dedup below.
     flow_rows, flow_lines = flow_state_gauge(S)

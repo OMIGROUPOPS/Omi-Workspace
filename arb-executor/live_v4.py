@@ -1834,6 +1834,11 @@ class LiveV3:
         self._tape_basis: Dict[str, str] = {}
         self._tape_seed_tried: Dict[str, float] = {}
         self._tape_basis_at_place: Dict[str, str] = {}
+        # [C-REALITY-BELL 07-10] fallback-bell sustain counter + bell-coverage
+        # dedup + reality-divergence dedup
+        self._bell_hits: Dict[str, int] = {}
+        self._bell_missing_logged: Set[str] = set()
+        self._reality_div_logged: Dict[str, float] = {}
         # [C-STALE-ANCHOR-ALLOWANCE 07-10] tk -> last anchor age observed at
         # resolution (buys stamp it; the stale-vs-fresh cohort split)
         self._last_anchor_age: Dict[str, float] = {}
@@ -1950,6 +1955,12 @@ class LiveV3:
                 and ticker and isinstance(details, dict)):
             details.setdefault("cycle",
                                getattr(self, "_cycle_count", {}).get(ticker, 0) + 1)
+            # [C-REALITY-BELL Part 1] positions marked in-play for accounting:
+            # a fill on a belled event (gun OR fallback) carries the mark
+            _g5 = getattr(self, "_gun_state", {}).get(ticker.rsplit("-", 1)[0])
+            if _g5 is not None:
+                details.setdefault("in_play", True)
+                details.setdefault("bell_source", _g5.get("source"))
         # [C-EARLY-UNLOCK 07-09, operator ruling] cohort stamp at the single
         # emitter: a buy placed while the event's realized-volume unlock is
         # open carries early_unlock + vol-at-placement + basis; its fill
@@ -2626,9 +2637,18 @@ class LiveV3:
         re-aim -- the caller moves the aim, never pulls the bid. Bounds combined to
         <= combined_goal (closes the ceiling's checks-once scope hole; NOT a cap --
         it is a per-fill re-derivation re-checked on every leg-2 walk)."""
-        aim_level = max(1, int(round(faller_anchor)) - int(faller_depth))
+        aim_level = int(round(faller_anchor)) - int(faller_depth)
         goal_level = int(combined_goal) - int(round(leg1_basis))
-        return max(1, min(aim_level, goal_level))
+        t = min(aim_level, goal_level)
+        # [C-REALITY-BELL Part 3, 07-10] THE ROOT, one line: the old
+        # `max(1, ...)` floor MANUFACTURED a 1c "aim" whenever the fitted
+        # inputs degenerated -- goal_level <= 0 when leg1_basis >= goal
+        # (SENTINEL LEAK) or aim_level <= 0 on a collapsed faller anchor
+        # (DIP-HUNT DEGENERACY). No fitted level is a REFUSAL, never a
+        # placement: return None; the caller names it.
+        if t < 5:
+            return None
+        return t
 
     def _sibling_ticker_any(self, tk):
         # NOT _sibling_ticker: a 2-arg _sibling_ticker(tk, et) exists later in the
@@ -5406,6 +5426,71 @@ class LiveV3:
                 mv = 0
             if mv >= self.gun_divergence_move_cents:
                 self._gun_stamp(et, "price_divergence", {"max_ref_move": mv})
+        # ---- source (5): FALLBACK BELL [C-REALITY-BELL 07-10, operator's
+        # failed test: SAIDEL bought 62 in-play at 11:47 am -- Kalshi clock
+        # lied 2.5h EARLY, TE never saw the match, the tape never burst, and
+        # divergence was suppressed by the not-started clock gate. FOUR
+        # sources, four blind spots. The bell: the bot's own prints/min
+        # gauge -- sustained OPEN tape + (honest start passed OR the clock-
+        # liar escape: a leg RISEN >= disp bound from its window-open ref on
+        # sustained tape IS a match, whatever the clock says; a premarket
+        # dip falls, it does not rise -- the FERCER false-cancel class stays
+        # excluded). Gun stays primary; a silent gun can never again mean a
+        # blind bot.]
+        if self.config.get("fallback_bell_enabled", False):
+            _rb = float(self.config.get("fallback_bell_rate_per_min", 0.4))
+            _db = int(self.config.get("fallback_bell_disp_cents", 5))
+            for et in list(self.event_tickers):
+                if et in self._gun_state:
+                    continue
+                cut = now - 600
+                pr = 0
+                for tk in self.event_tickers.get(et, ()):
+                    dq = self._trade_times.get(tk)
+                    if dq:
+                        pr += sum(1 for t in dq if t >= cut)
+                if pr / 10.0 < _rb:
+                    self._bell_hits.pop(et, None)
+                    continue
+                a, _asrc, _liar = self._anchor_state(et, now)
+                started = bool(a and now >= a)
+                rise = 0
+                if not started:
+                    for tk in self.event_tickers.get(et, ()):
+                        wo = getattr(self, "_window_open", {}).get(tk)
+                        bk = self.books.get(tk)
+                        if wo and bk and bk.last_trade_price:
+                            rise = max(rise, bk.last_trade_price
+                                       - int(wo.get("price") or bk.last_trade_price))
+                if not (started or rise >= _db):
+                    self._bell_hits.pop(et, None)
+                    continue
+                n = self._bell_hits.get(et, 0) + 1
+                self._bell_hits[et] = n
+                # sustain: the rate condition is itself 10-min-windowed, so
+                # one poll suffices by default (SAIDEL replay: the pre-buy
+                # window was 29s wide); config can demand more polls
+                if n >= int(self.config.get("fallback_bell_sustain_polls", 1)):
+                    self._gun_stamp(et, "fallback_bell", {
+                        "prints_10m": pr, "rate_per_min": round(pr / 10.0, 2),
+                        "start_passed": started, "ref_rise_cents": rise,
+                        "anchor_src": _asrc})
+        # ---- [C-REALITY-BELL Part 2] bell-coverage invariant: a tracked
+        # event with exposure whose anchored start passed >10 min ago MUST
+        # carry a bell (gun or fallback) -- else bell_missing, once per
+        # event per boot; the monitor renders it zero-tolerance and the
+        # scorecard footer counts it nightly.
+        for et in list(self.event_tickers):
+            if et in self._gun_state or et in self._bell_missing_logged:
+                continue
+            if not any(t in self.positions for t in self.event_tickers.get(et, ())):
+                continue
+            a, _asrc, _liar = self._anchor_state(et, now)
+            if a and now - a > 600:
+                self._bell_missing_logged.add(et)
+                self._log("bell_missing", {
+                    "event": et, "anchor_src": _asrc,
+                    "min_past_start": round((now - a) / 60.0, 1)})
 
     def _fv_burst_ready(self, et, now):
         """[C-FV-BURST RE-GATE] OBSERVE-ONLY real-start trigger for the FV snapshot,
@@ -7439,6 +7524,14 @@ class LiveV3:
                                     "floor": float(self.config.get(
                                         "early_unlock_floor", 2500)),
                                     "tts_min": round((time_to_start) / 60.0, 1)})
+                                # [C-REALITY-BELL Part 4, 07-10] conception is
+                                # DEFINED at unlock-qualification: early-window
+                                # buys carry a stamp, the cycle cap grades on
+                                # the early cohort, the "ungradeable" lines end
+                                for _eutk in tickers:
+                                    self._log("conception_stamp", {
+                                        "event": et, "source": "early_unlock",
+                                        "vol": round(_eu_vol, 1)}, ticker=_eutk)
                     else:
                         # basis flip after a restart can undercount; a not-
                         # qualified event must not keep a stale unlock mark
@@ -8903,8 +8996,24 @@ class LiveV3:
                            if self.per_cat_depth else self.dog_dip_offset_cents)
                     _reaim = self._reshuffle_leg2_target(current_price, _fd, _sp.entry_price, self.combined_goal)
                 else:                    # >=50 leg-2: goal cap only (no aim-depth deepening)
-                    _reaim = max(1, int(self.combined_goal) - int(round(_sp.entry_price)))
-                if _reaim < new_target:
+                    _reaim = int(self.combined_goal) - int(round(_sp.entry_price))
+                    if _reaim < 5:
+                        _reaim = None
+                # [C-REALITY-BELL Part 3] degenerate fitted level -> NAMED
+                # refusal, hold the current bid, never a 1c placement
+                if _reaim is None:
+                    _rs = self.__dict__.setdefault("_aim_unresolved_logged", set())
+                    if tk not in _rs:
+                        _rs.add(tk)
+                        self._log("aim_unresolved_refused", {
+                            "event": pos.event_ticker,
+                            "faller_anchor": int(current_price),
+                            "leg1_basis": int(_sp.entry_price),
+                            "goal": self.combined_goal,
+                            "reason": ("goal_exhausted" if
+                                       self.combined_goal - _sp.entry_price < 5
+                                       else "dip_hunt_degenerate")}, ticker=tk)
+                elif _reaim < new_target:
                     self._log("leg2_reshuffle_reaim", {"event": pos.event_ticker,
                         "from": int(new_target), "to": int(_reaim), "leg1_basis": int(_sp.entry_price),
                         "goal": self.combined_goal}, ticker=tk)
@@ -9813,6 +9922,34 @@ class LiveV3:
                 row["flag"] = "foreign_position"
                 table.append(row)
                 continue
+            # [C-REALITY-BELL Part 2, 07-10] REALITY INVARIANT: the book is
+            # compared to the MARKET, never to the model's own numbers (the
+            # failed test: SAIDEL basis 62 vs market 24, invisible because
+            # the sweep compared two model FVs to each other). Basis (held)
+            # or bid price (resting) vs current market mid; divergence past
+            # the named bound logs reality_divergence -> MORNING REVIEW.
+            try:
+                _bk = self.books.get(tk)
+                if _bk and _bk.best_bid > 0 and _bk.best_ask < 100:
+                    _mid = (_bk.best_bid + _bk.best_ask) / 2.0
+                    _ref = None
+                    _kind = None
+                    if h >= 1.0 and pos_obj is not None and getattr(pos_obj, "entry_price", 0):
+                        _ref, _kind = float(pos_obj.entry_price), "position_basis"
+                    elif bq > 0 and buys.get(tk):
+                        _ref, _kind = float(buys[tk][0]["px"]), "resting_bid"
+                    _bound = float(self.config.get("reality_divergence_cents", 25))
+                    _nowrd = time.time()
+                    if _ref is not None and abs(_ref - _mid) > _bound and \
+                            _nowrd - self._reality_div_logged.get(tk, 0) > 1800:
+                        self._reality_div_logged[tk] = _nowrd
+                        self._log("reality_divergence", {
+                            "kind": _kind, "ref": round(_ref, 1),
+                            "market_mid": round(_mid, 1),
+                            "divergence": round(_ref - _mid, 1),
+                            "bound": _bound}, ticker=tk)
+            except Exception:
+                pass
             if len(buys.get(tk, [])) > 1:
                 failures.append({"tk": tk, "check": "buy_stack",
                                  "n": len(buys[tk]), "qty": bq})

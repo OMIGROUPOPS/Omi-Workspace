@@ -98,12 +98,14 @@ def main():
     day0 = datetime(now.year, now.month, now.day, tzinfo=ET).timestamp() - 6 * 3600
 
     fires, deltas, sched, boots, honest = {}, {}, {}, [], {}
+    bells_missing = set()   # [C-REALITY-BELL] nightly coverage count
     for p in files:
         for line in open(p, encoding="utf-8", errors="replace"):
             if '"gun_fired"' not in line and '"gun_truth_delta"' not in line \
                     and '"schedule_match"' not in line \
                     and '"pm_clock_shadow"' not in line \
                     and '"clock_liar"' not in line \
+                    and '"bell_missing"' not in line \
                     and '"system_start"' not in line:
                 continue
             try:
@@ -153,6 +155,9 @@ def main():
                         honest[ev] = datetime.fromisoformat(hs).timestamp()
                     except Exception:
                         pass
+            elif d["event"] == "bell_missing":
+                bells_missing.add(ev)
+                continue
             elif d["event"] == "clock_liar":
                 hs = det.get("te_honest_start")
                 if hs:
@@ -302,9 +307,14 @@ def main():
     # late; this line notices it at 6:10 am.
     n_fires = len(fires)
     n_slate = len(set(sched) | set(fires))
-    footer = ("FIRES-vs-SLATE: fires=%d tracked_events=%d ratio=%.0f%% "
-              "(watch: night-over-night drops are named here, not a week later)"
-              % (n_fires, n_slate, 100.0 * n_fires / n_slate if n_slate else 0))
+    footer = ("FIRES-vs-SLATE: fires=%d tracked_events=%d ratio=%.0f%% | "
+              "BELLS-MISSING=%d%s "
+              "(watch: night-over-night drops + uncovered live matches are "
+              "named here, not a week later)"
+              % (n_fires, n_slate, 100.0 * n_fires / n_slate if n_slate else 0,
+                 len(bells_missing),
+                 (" [" + ",".join(sorted(e.rsplit("-", 1)[-1][-6:] for e in bells_missing)[:6]) + "]")
+                 if bells_missing else ""))
     out = "# GUN SCORECARD %s\n\n%s\n\n%s\n\n%s\n" % (
         now.strftime("%Y-%m-%d %I:%M %p ET"), "\n".join(lines),
         "\n".join("- " + s for s in summary), footer)

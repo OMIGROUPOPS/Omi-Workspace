@@ -45,3 +45,5 @@ Run audit/latch_blind_forensic.py on settled slates; grade gun_thin_shadow fires
 - **JOINT SHADOW rollup (Plex walk-cap ruling, from 2026-07-07 nights):** `python3 analysis/joint_shadow_rollup.py` -> JOINT_SHADOW_<date>.md/json — conversion/starvation of combined-vs-each-alone + <=97 held on constrained pairs. Feeds the walk_cap_honest_anchor + expression_invariant arm gates.
 
 GUN SCORECARD 20260709: ATP_CHALL n=3 FRESH-within±3min=0/0 med|Δ|=-- catchup=0 misses=[] | ITF_M n=22 FRESH-within±3min=0/1 med|Δ|=102.2m catchup=3 misses=[] | ITF_W n=19 FRESH-within±3min=0/0 med|Δ|=-- catchup=0 misses=[] | WTA_CHALL n=6 FRESH-within±3min=0/0 med|Δ|=-- catchup=0 misses=[]
+
+GUN SCORECARD 20260710: ATP_CHALL n=1 FRESH-within±3min=0/0 med|Δ|=-- catchup=0 suspect=[FEAKOZ] unjoinable=0 misses=[] | ITF_M n=8 FRESH-within±3min=0/0 med|Δ|=-- catchup=0 suspect=[HARTHU,IMANAK,MOCJAS,THORIC…] unjoinable=0 misses=[] | ITF_W n=11 FRESH-within±3min=0/0 med|Δ|=-- catchup=2 suspect=[DUELEY,DYUSAG,FRISOL,PLOERC…] unjoinable=2 misses=[] | WTA_CHALL n=5 FRESH-within±3min=0/0 med|Δ|=-- catchup=1 suspect=[CURVAN,QUEWAL] unjoinable=1 misses=[STEMAR,VOLMAN]

@@ -38,8 +38,8 @@ Bot LIVE (C-T4-DUAL-FLAG gated deploy, shadow-only, latest). PLEX
 RULED (PLEX_T3_T4_RATIFICATION.md): T3 riser RETIRED (lineage in
 CLIMBSIDE_SPEC) · T4 hold-gate clause RATIFIED, threshold reserved ·
 hold-gate = TWO jobs BY LAW (anti-selection + volume-floor's only
-enforcement point). ⚠ relay owes Plex's verbatim body (paste dropped
-it; slot in the ratification file). Dual-flag shadow live: floor
+enforcement point). Verbatim ruling body LANDED (slot filled
+word-for-word; debt cleared). Dual-flag shadow live: floor
 reading was structurally DEAD pre-tonight (share=None → constant
 False) — now real contracts vs staged floor + own T−8h→T−4h baseline;
 pre_instrument lines fenced (t4:dual_flag_v1 = the threshold dataset;

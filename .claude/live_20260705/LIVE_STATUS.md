@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 5 @ **2026-07-10 05:45:24 PM ET** | build `f4e65f8c` | session boot 07-10 17:25 ET | log `live_v3_20260710.jsonl` | 600 session events | monitor READ-ONLY
+- cycle 6 @ **2026-07-10 05:55:51 PM ET** | build `3029c292` | session boot 07-10 17:25 ET | log `live_v3_20260710.jsonl` | 850 session events | monitor READ-ONLY
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
@@ -16,7 +16,7 @@ none yet this session
 - classes now: {'FLOW_AT_LEVEL': 1} | repriceable now: true 0 / false 1 | **cumulative bid_grade lines: 7900 (repriceable true 1069 / false 6831)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ITFMATCH-26JUL10POLMIY-POL | 34 | 8m | 12/34-36/1218 | 35-35 | 0 | **FLOW_AT_LEVEL** | 99 |  |
+| ITFMATCH-26JUL10POLMIY-POL | 34 | 18m | 48/34-37/7067 | 35-35 | 0 | **FLOW_AT_LEVEL** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 no open half-pairs
@@ -24,7 +24,7 @@ no open half-pairs
 ## FLOW-STATE — 1 tracked game(s) ({'WAKING': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ITFMATCH-26JUL10POLMIY | ITF_M | 1.433 | — | **WAKING** |
+| ITFMATCH-26JUL10POLMIY | ITF_M | 1.933 | — | **WAKING** |
 
 ## PATTERNS (sub-B) — 0
 

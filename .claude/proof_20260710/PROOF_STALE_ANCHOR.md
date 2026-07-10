@@ -1,6 +1,6 @@
 # OUTCOME PROOF (C46, two-lane) — C-STALE-ANCHOR-ALLOWANCE (operator threshold ruling; config-scope)
 
-**Candidate SHA: `SHA_SA`** (live_v4.py per-ticker threshold resolution + anchor_age_sec stamp, config `early_unlock_anchor_age_sec: 7200`, daily_ledger band split, RULING_STALE_ANCHOR_ALLOWANCE.md).
+**Candidate SHA: `dba7770c`** (live_v4.py per-ticker threshold resolution + anchor_age_sec stamp, config `early_unlock_anchor_age_sec: 7200`, daily_ledger band split, RULING_STALE_ANCHOR_ALLOWANCE.md).
 
 ## Prior art (C45)
 - **C-TAPE-SEED close-out + PROOF_TAPE_SEED.md (tonight)** — ended with the exact sentence this executes: honest ages showed every unlock-qualified leg's true print 35–120 min old; ">30-min skip = an operator ruling on the threshold, never a code fix." This is that ruling, recorded first.

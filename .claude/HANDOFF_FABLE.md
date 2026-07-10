@@ -34,7 +34,13 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
    read git instead.
 
 ## STATE (2026-07-09 late night — C50 keeps this current):
-Bot LIVE (C-T4-DUAL-FLAG gated deploy, shadow-only, latest). PLEX
+Bot LIVE (C-EARLY-UNLOCK gated deploy, latest): NEW OPERATOR RULING
+(RULING_EARLY_UNLOCK.md verbatim) — realized lifetime volume ≥2,500
+unlocks the FULL T−8h window, ITF only, realized-never-projected (P1b
+stands), self-measuring cohort (early_unlock stamps + daily_ledger
+section; watches: entries/night, fill vs standard, basis dist,
+mains/CHALL occurrence = defect). PAPJER = the exhibit + first live
+qualifier. Prior deploy same night: C-T4-DUAL-FLAG (shadow-only). PLEX
 RULED (PLEX_T3_T4_RATIFICATION.md): T3 riser RETIRED (lineage in
 CLIMBSIDE_SPEC) · T4 hold-gate clause RATIFIED, threshold reserved ·
 hold-gate = TWO jobs BY LAW (anti-selection + volume-floor's only

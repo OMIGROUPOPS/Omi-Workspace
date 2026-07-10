@@ -34,6 +34,11 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
    read git instead.
 
 ## STATE (2026-07-10 early — C50 keeps this current):
+FABLE FINDINGS recorded (vault 07-10): G9 archive named (~14.7k
+markets/10mo full-information, self-clocking via mid-jump detector,
+80%-fallback weak-clock tail uncounted); THREE start-derivations never
+cross-calibrated -> BOARD -1b1 CLOCK CROSS-CALIBRATION CENSUS +
+-1b2 PHANTOM-SKIP CENSUS queued (read-only analysis).
 Bot LIVE (C-TAPE-SEED gated deploy, latest): restart-amnesia 5th
 instance dead — last-trade memory REST-seeded at actual print
 timestamps (honest ages, never −1.0); 1800s threshold + last-trade

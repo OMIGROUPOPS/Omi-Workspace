@@ -33,7 +33,15 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-10 night — C50 keeps this current):
+## STATE (2026-07-10 late night — C50 keeps this current):
+C-LIVE-VIEWER v1 LIVE (tmux live_viewer, loopback 8787): /command
+(meter matches adjudication footer 116/125 number-for-number) +
+/trade/:id (BLIZAN T-20260710-0059 proof: triptych + 9-cell L-strip
+from row data); open trades poll 5s (log verified incremental — no
+demotion); spec verbatim slot RESERVED (paste dropped it; spec wins
+on landing). Tunnel: ssh -N -L 8787:127.0.0.1:8787 root@VPS.
+PARKED IN-FLIGHT: C-PERCAT-GUN v1 shadow STAGED (committed, NOT
+deployed; July-8 replay running; resumes next per operator queue).
 C-DAYLIGHT-ROOTS done: 17 violations rooted (0 double-count — suspect
 INNOCENT; 6 report-error — my arithmetic, fixed, VANKOI 5.0-vs-5.0
 clean on rerun; 11 unbooked-fill HISTORY — healed forward, healer

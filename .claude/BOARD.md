@@ -53,6 +53,8 @@
 
 ## QUEUED (next builds, in rough order)
 
+> **OPERATOR QUEUE (07-10 night, standing):** C-PERCAT-GUN v1 (shadow STAGED `ae623bcf`, July-8 replay in flight — resumes NEXT) → composer shadow wiring (G1/G2) → exchange-eye (gated #8 token rotation). Open words riding as gates: taker (operator_taker_word) · −0g FV-aware exits (evidence accruing nightly).
+
 > **FIX QUEUE (ranked by measured cost — FULL_SLATE_REVIEW 07-10; the reconciliation side feeding this section nightly):** 1. ADVERSE-SELECTION STRAND (55 inst/$6.25 — the completion policy, −0h carries it) · 2. DOCTRINE CONFLICT exit-vs-conviction (10/$3.51 — the −0g FV-aware exit ruling's evidence) · 3. AIM/TIMING no-fill misses (11/$2.60 — feeds the aim-surface refit) · 4. conviction-gap placements (7/$1.05 — composer calibration) · 5. EXCHANGE-TRUTH DAYLIGHT (17 violations — root each before KILLED).
 
 -0i. ~~EXCHANGE-TRUTH DAYLIGHT ROOTS~~ — **ROOTED 07-10 night (C-DAYLIGHT-ROOTS v1): 0 double-count (suspect innocent) / 6 report-error (fixed, VANKOI clean on rerun, 17→11) / 11 unbooked-fill history (healed forward, healer bookings = log truth). Open-book sweep: 0 daylight. Watch: nightly re-count at zero or the class reopens.**

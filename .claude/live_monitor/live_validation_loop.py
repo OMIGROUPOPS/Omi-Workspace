@@ -710,8 +710,11 @@ def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, ch
         L.append("| ET | class | who | detail |")
         L.append("|---|---|---|---|")
         for x in sorted(v, key=lambda y: y["ts"]):
+            # [07-11 FIX, 3rd site of the family] bell_missing carries no "detail"
+            xdet = x.get("detail") or ("min_past_start %s" % x.get("min_past_start")
+                                       if x.get("pattern") == "bell_missing" else "")
             L.append(f"| {datetime.fromtimestamp(x['ts'], ET).strftime('%H:%M:%S')} | **{x['cls']}** | "
-                     f"{x.get('ticker') or x.get('event') or x.get('kind','')} | {x['detail'][:140]} |")
+                     f"{x.get('ticker') or x.get('event') or x.get('kind','')} | {xdet[:140]} |")
     if forensics:
         L += ["", f"**LIVE DEFECT(S) — forensic blocks written: {', '.join(forensics)}**"]
     L += ["", f"## FILLS — {len(fills)} graded (session)"]

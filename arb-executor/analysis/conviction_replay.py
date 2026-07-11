@@ -252,6 +252,20 @@ def main():
             r["cycle"], r["grade"],
             ("%.2f" % r["posterior"]) if r["posterior"] is not None else "—",
             r["legacy_constant"] or "", r["pnl_cents"] if r["pnl_cents"] is not None else "open"))
+    # [C-BOOK-REPLAY v2 shadow] the one held-out-surviving refit: ITF_M
+    # refuse margin 8c (vs decreed 2c). SHADOW: both margins' refuse-set pnl
+    # printed nightly; cutover on the operator's word.
+    try:
+        itfm = [r for r in rows if r["cat"] == "ITF_M" and r.get("posterior") is not None
+                and r.get("pnl_cents") is not None]
+        def _saved(m):
+            return -sum(r["pnl_cents"] for r in itfm
+                        if (r["posterior"] * 100 - r["px"]) < -m)
+        if itfm:
+            L += ["", "**REFUSE-MARGIN SHADOW (ITF_M, M16): fitted 8c would-have-saved %+.0f¢ | decreed 2c %+.0f¢** (held-out winner 07-11: +1170 vs -85; cutover on the operator's word)"
+                  % (_saved(8), _saved(2))]
+    except Exception:
+        pass
     if n:
         L += ["", "**MIGRATION METER: fitted-conviction AGREE %d/%d (%.1f%%) | "
                   "WOULD-REFUSE %d | NO-OPINION %d | pair-97 touched %d (%.1f%%)**"

@@ -33,7 +33,13 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-11 (3) — C50 keeps this current):
+## STATE (2026-07-11 night — C50 keeps this current):
+C-BOOK-REPLAY v2 done: 2,953-leg corpus graded; held-out gate REFUSED
+3 of 4 refits by their own numbers (aim refit failed −6.5 vs −5.5;
+ITF_W's 2c constant WON); M16 = ITF_M refuse margin 8c (held-out
++1170 vs −85) SHADOW in the nightly. QUEUE: composer G1 wiring →
+/system page → −0j walk-cap ruling (yours) → percat cutover (yours)
+→ taker word (yours, completion-shadow accruing).
 C-COMPLETION-POLICY v1 SHADOW deployed: leg_econ engine (EV two-term
 frame, M15-priced, pair-97 nowhere); one-sided pairs log verdicts
 (hold/flatten_kept/taker_complete — taker GATED operator_taker_word);

@@ -34,6 +34,19 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
    read git instead.
 
 ## STATE (2026-07-11 late night — C50 keeps this current):
+C-SYSTEM-PAGE v1 shipped (3062d639): /system is the viewer's third
+page — census artifact regenerated per deploy (--emit in the deploy
+script, DRIFT hash honest: pin predates composer deploy), config
+polled 30s, classification COMPUTED from knob_citations.json (a
+person's citation is the ONLY exit from NAKED; split today 3 FITTED /
+18 DECREED / 101 NAKED of 122 — reconciles when Plex's verbatim
+census lands; SYSTEM_PAGE_SPEC.md still reserved, SPEC WINS ON
+LANDING), L1-L9 spine (L5 crowding rendered, never merged), organ
+strip ("procedural, no knobs"), dual staleness stamps, DOCTRINE
+CONFLICT pin toggle default OFF -> 4/4 pair-97 knobs in the VPS DOM.
+Plex diff target committed: .claude/render/proof/proof_system.html.
+QUEUE IS ALL WORDS: -0j walk-cap arming (yours) -> gun cutover
+(yours, 6:10am scorecard) -> taker word (yours).
 C-COMPOSER-G1 v1 deployed: composer LIVE-SIDE (conviction_shadow at
 every decision site, O(1) posterior, purity lint-asserted, kill
 switch); nightly gains LIVE-vs-REPLAY AGREEMENT (divergence = named

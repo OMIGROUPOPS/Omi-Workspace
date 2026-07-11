@@ -1838,6 +1838,7 @@ class LiveV3:
         # dedup + reality-divergence dedup
         self._bell_hits: Dict[str, int] = {}
         self._bell_missing_logged: Set[str] = set()
+        self._percat_gun_logged: Set[str] = set()   # [C-PERCAT-GUN shadow]
         self._reality_div_logged: Dict[str, float] = {}
         # [C-STALE-ANCHOR-ALLOWANCE 07-10] tk -> last anchor age observed at
         # resolution (buys stamp it; the stale-vs-fresh cohort split)
@@ -5503,6 +5504,38 @@ class LiveV3:
                         "prints_10m": pr, "rate_per_min": round(pr / 10.0, 2),
                         "start_passed": started, "ref_rise_cents": rise,
                         "anchor_src": _asrc})
+        # ---- [C-PERCAT-GUN v1 SHADOW, 07-10] the seventh-time class's
+        # class-kill candidate: ONE trigger shape per market, FITTED -- the
+        # volume ledger's own OPEN thresholds (ITF >=6 prints/30m, CHALL
+        # >=16/30m; MAINS OFF -- "volume does not open mains", fill flat ~1%
+        # at every volume state). SHADOW ONLY: logs would-fire beside the
+        # live gun; grades one night; cutover on the operator's word
+        # (migration doctrine, no exceptions for urgent nights).
+        if self.config.get("percat_gun_shadow_enabled", False):
+            _thr = self.config.get("percat_gun_prints30", {
+                "ITF_M": 6, "ITF_W": 6, "ATP_CHALL": 16, "WTA_CHALL": 16})
+            for et in list(self.event_tickers):
+                if et in self._percat_gun_logged:
+                    continue
+                _c7 = self.get_category(et)
+                t7 = _thr.get(_c7)
+                if t7 is None:      # mains: fitted line = OFF
+                    continue
+                cut30 = now - 1800
+                p30 = 0
+                for tk in self.event_tickers.get(et, ()):
+                    pdq = self._trade_prices.get(tk)
+                    if pdq:
+                        p30 += sum(1 for ts7, _px in pdq if ts7 >= cut30)
+                if p30 >= t7:
+                    g7 = self._gun_state.get(et)
+                    self._percat_gun_logged.add(et)
+                    self._log("percat_gun_shadow", {
+                        "event": et, "cat": _c7, "prints_30m": p30,
+                        "threshold": t7, "would_fire": True,
+                        "live_gun_source": (g7 or {}).get("source"),
+                        "live_gun_delta_min": (round((now - g7["ts"]) / 60.0, 1)
+                                               if g7 else None)})
         # ---- [C-REALITY-BELL Part 2] bell-coverage invariant: a tracked
         # event with exposure whose anchored start passed >10 min ago MUST
         # carry a bell (gun or fallback) -- else bell_missing, once per

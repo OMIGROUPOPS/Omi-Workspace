@@ -105,6 +105,8 @@
   "fallback_bell_disp_cents": 4,
   "fallback_bell_sustain_polls": 1,
   "reality_divergence_cents": 25,
+  "percat_gun_shadow_enabled": true,
+  "percat_gun_prints30": {"ITF_M": 6, "ITF_W": 6, "ATP_CHALL": 16, "WTA_CHALL": 16},
   "os_shadow_enabled": true,
   "reentry_cycle_cap": 2
 }

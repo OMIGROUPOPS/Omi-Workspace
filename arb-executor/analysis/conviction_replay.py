@@ -252,6 +252,47 @@ def main():
             r["cycle"], r["grade"],
             ("%.2f" % r["posterior"]) if r["posterior"] is not None else "—",
             r["legacy_constant"] or "", r["pnl_cents"] if r["pnl_cents"] is not None else "open"))
+    # [C-COMPOSER-G1 Part 2] same-instrument law, LIVE edition: the live
+    # shadow's verdicts vs this replay's on the same ticks -- divergence is
+    # a NAMED violation (a shadow that grades differently live than in
+    # replay is measuring nothing).
+    try:
+        live_sh = {}
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"conviction_shadow"' not in line:
+                continue
+            try:
+                d6 = json.loads(line)
+            except ValueError:
+                continue
+            live_sh.setdefault(d6.get("ticker", ""), []).append(
+                (d6.get("ts_epoch", 0), d6.get("details") or {}))
+        div, checked6 = [], 0
+        by_tk = {t["tk"]: t for t in trades}
+        for r in rows:
+            t6 = by_tk.get(r["tk"])
+            cands = [x for x in live_sh.get(r["tk"], [])
+                     if t6 is None or x[0] <= t6["ts"]]
+            if not cands:
+                continue
+            _, det6 = cands[-1]
+            checked6 += 1
+            live_op = det6.get("opinion")
+            if r["grade"] == "NO-OPINION" and live_op == "CONVICTION":
+                div.append((r["id"], "replay NO-OPINION vs live CONVICTION"))
+            elif r["grade"] != "NO-OPINION" and live_op == "NO-OPINION":
+                div.append((r["id"], "live NO-OPINION vs replay graded"))
+            elif live_op == "CONVICTION" and r.get("posterior") is not None \
+                    and det6.get("confidence") is not None \
+                    and abs(det6["confidence"] - r["posterior"]) > 0.10:
+                div.append((r["id"], "conf gap %.2f live vs %.2f replay"
+                            % (det6["confidence"], r["posterior"])))
+        L += ["", "## LIVE-vs-REPLAY AGREEMENT (same-instrument law, live edition) — "
+                  "checked %d, **divergences: %d**" % (checked6, len(div))]
+        for i6, why6 in div[:10]:
+            L.append("- **VIOLATION** %s: %s" % (i6, why6))
+    except Exception:
+        pass
     # [C-BOOK-REPLAY v2 shadow] the one held-out-surviving refit: ITF_M
     # refuse margin 8c (vs decreed 2c). SHADOW: both margins' refuse-set pnl
     # printed nightly; cutover on the operator's word.

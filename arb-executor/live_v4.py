@@ -1843,6 +1843,9 @@ class LiveV3:
         self._completion_shadow_ts: Dict[str, float] = {}
         self._leg_econ = None
         self._range_cells = {}
+        # [C-COMPOSER-G1 v1] live composer shadow
+        self._composer = None
+        self._composer_state: Dict[str, dict] = {}
         self._reality_div_logged: Dict[str, float] = {}
         # [C-STALE-ANCHOR-ALLOWANCE 07-10] tk -> last anchor age observed at
         # resolution (buys stamp it; the stale-vs-fresh cohort split)
@@ -2540,6 +2543,68 @@ class LiveV3:
             self._log("os_shadow", {"site": site, "actual": actual,
                                     "would": would, "vec": vec,
                                     "hold": hold}, ticker=tk)
+            # [C-COMPOSER-G1 v1] the composer LIVE-SIDE: its opinion at the
+            # moment of this decision, not hours later. O(1) by the math's
+            # own construction (the posterior's final value = f(prior, n_eff,
+            # latest print) -- no tape re-scan). NO-OPINION verbatim (mains
+            # named G1; thin range cells named). Rides _os_shadow's dedup as
+            # the compute budget; kill switch composer_live_shadow_enabled;
+            # consults ONLY registry-cited surfaces (#11); trades NOTHING.
+            if self.config.get("composer_live_shadow_enabled", False):
+                try:
+                    if self._composer is None:
+                        import importlib.util as _ilu
+                        _cp = Path(__file__).resolve().parent / "analysis" / "conviction_composer.py"
+                        _spec = _ilu.spec_from_file_location("conviction_composer", _cp)
+                        _m = _ilu.module_from_spec(_spec)
+                        _spec.loader.exec_module(_m)
+                        self._composer = _m.Composer()
+                    et9 = tk.rsplit("-", 1)[0]
+                    st9 = self._composer_state.setdefault(tk, {})
+                    dq9 = self._trade_times.get(tk)
+                    n_now = len(dq9) if dq9 else 0
+                    st9["n_eff"] = st9.get("n_eff", 0.0) + max(0, n_now - st9.get("n_seen", 0))
+                    st9["n_seen"] = n_now
+                    disc_px = vec.get("close_ref") or vec.get("bid") or 50
+                    prior = self._composer.discovery_prior(
+                        cat, disc_px,
+                        lifetime_vol=self.event_lifetime_vol.get(et9))
+                    line = {"site": site, "cat": cat}
+                    if prior.get("opinion") != "PRIOR":
+                        line.update({"opinion": "NO-OPINION",
+                                     "missing": prior.get("missing", "")[:120]})
+                    else:
+                        last_px = None
+                        pdq9 = self._trade_prices.get(tk)
+                        if pdq9:
+                            last_px = pdq9[-1][1]
+                        K9 = 8.0
+                        ne = st9["n_eff"]
+                        w9 = ne / (ne + K9)
+                        conf = (w9 * (last_px / 100.0) + (1 - w9) * prior["confidence"]) \
+                            if last_px is not None else prior["confidence"]
+                        rm9 = None
+                        if pdq9:
+                            cut9 = now - 1800
+                            v9 = [px for ts9, px in pdq9 if ts9 >= cut9]
+                            rm9 = (sum(v9) / len(v9)) if v9 else None
+                        rp = self._composer.range_prior(
+                            cat, "leader" if disc_px >= 50 else "underdog",
+                            int(disc_px), rm9)
+                        line.update({"opinion": "CONVICTION",
+                                     "confidence": round(conf, 3), "n_eff": round(ne, 1),
+                                     "range_prior": ({"cell": rp.get("cell"),
+                                                      "w2_reach": rp.get("w2_reach"),
+                                                      "knife": rp.get("knife_rate")}
+                                                     if rp.get("opinion") == "PRIOR"
+                                                     else {"missing": rp.get("missing", "")[:80]}),
+                                     "edge_vs_actual": (round(conf * 100 - actual.get("px", 0), 1)
+                                                        if actual.get("px") else None)})
+                        if cat == "ITF_M":
+                            line["m16_fitted_margin"] = 8   # SHADOW; cutover = the operator's word
+                    self._log("conviction_shadow", line, ticker=tk)
+                except Exception:
+                    pass
         except Exception:
             pass
 

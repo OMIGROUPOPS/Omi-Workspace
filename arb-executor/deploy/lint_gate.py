@@ -74,6 +74,25 @@ ORDER_PATH_NAMES = {"place_order", "cancel_order", "api_post", "api_delete",
                     "build_order_payload_v2"}
 
 
+def composer_boundary():
+    """[C-COMPOSER-G1] the live-side composer must stay order-path pure:
+    json/pathlib only (asserted like every shadow module)."""
+    import ast, pathlib
+    p = pathlib.Path(__file__).resolve().parent.parent / "analysis" / "conviction_composer.py"
+    tree = ast.parse(p.read_text(encoding="utf-8", errors="replace"))
+    allowed = {"json", "pathlib"}
+    for node in ast.walk(tree):
+        mods = []
+        if isinstance(node, ast.Import):
+            mods = [a.name.split(".")[0] for a in node.names]
+        elif isinstance(node, ast.ImportFrom) and node.module:
+            mods = [node.module.split(".")[0]]
+        for m in mods:
+            if m not in allowed:
+                raise SystemExit("composer boundary VIOLATION: import %s" % m)
+    print("composer boundary OK (json/pathlib only)")
+
+
 def os_import_boundary(repo_root):
     """[PLEX T1, 2026-07-09 — SAME-PR, NON-NEGOTIABLE] The consumption layer
     (oslayer/) must be PURE: no module under it may import live_v4/the API

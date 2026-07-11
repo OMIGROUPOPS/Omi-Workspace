@@ -109,6 +109,7 @@
   "percat_gun_prints30": {"ITF_M": 6, "ITF_W": 6, "ATP_CHALL": 16, "WTA_CHALL": 16},
   "completion_shadow_enabled": true,
   "operator_taker_word": false,
+  "composer_live_shadow_enabled": true,
   "os_shadow_enabled": true,
   "reentry_cycle_cap": 2
 }

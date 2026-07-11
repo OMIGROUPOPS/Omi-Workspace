@@ -33,7 +33,14 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-11 night — C50 keeps this current):
+## STATE (2026-07-11 late night — C50 keeps this current):
+C-COMPOSER-G1 v1 deployed: composer LIVE-SIDE (conviction_shadow at
+every decision site, O(1) posterior, purity lint-asserted, kill
+switch); nightly gains LIVE-vs-REPLAY AGREEMENT (divergence = named
+violation); equivalence proven 200/200; G1 distance = 371 mains legs
++ 20,332 tape samples (NO-OPINION until honest n). QUEUE: /system
+page -> -0j walk-cap ruling (yours) -> gun cutover (yours, 6:10am
+scorecard) -> taker word (yours).
 C-BOOK-REPLAY v2 done: 2,953-leg corpus graded; held-out gate REFUSED
 3 of 4 refits by their own numbers (aim refit failed −6.5 vs −5.5;
 ITF_W's 2c constant WON); M16 = ITF_M refuse margin 8c (held-out

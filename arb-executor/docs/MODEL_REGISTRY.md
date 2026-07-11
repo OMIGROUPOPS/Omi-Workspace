@@ -31,3 +31,5 @@
 - **COMPLETION_FUNNEL (Jun 24–30):** 406 pairable · 72% completed · 93 strands · −$50.65 realized.
 - **ADVERSE_SELECTION_STRANDED:** kept leg loses 65%; maker bid on the winning sibling structurally starved; verdict: cross to complete, or never hold the kept leg naked.
 - **HELD_IF_NOT_CANCELLED:** 43% win · −$653 counterfactual under band-asymmetric exits; the pre-start cancel is protective and stays.
+
+> **COMPOSER LIVE-SIDE (07-11, C-COMPOSER-G1 v1):** M12's composer twin now runs in-process (`conviction_shadow` at every decision site; O(1) incremental posterior; purity lint-asserted). G1 distance: 371 settled mains legs + 20,332 mains tape samples banked — fit at honest n, never before.

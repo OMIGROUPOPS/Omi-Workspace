@@ -33,7 +33,13 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-11 (2) — C50 keeps this current):
+## STATE (2026-07-11 (3) — C50 keeps this current):
+C-COMPLETION-POLICY v1 SHADOW deployed: leg_econ engine (EV two-term
+frame, M15-priced, pair-97 nowhere); one-sided pairs log verdicts
+(hold/flatten_kept/taker_complete — taker GATED operator_taker_word);
+44/44 strands verdict+priced on replay; COMPLETION-SHADOW nightly.
+QUEUE: C-BOOK-REPLAY v1 (rev 2b) -> composer G1 wiring -> /system page
+-> -0j walk-cap ruling (yours) -> percat cutover (yours, post-shadow).
 C-KNOB-CANON done (doc+forensics): census canon 124 knobs (52 NAKED);
 UNTRACED LIVE KNOB founded (instance: marketable_stale_pin_exempt —
 fires SILENTLY, unobservable on tape); WALK-CAP INVERSION filed -0j

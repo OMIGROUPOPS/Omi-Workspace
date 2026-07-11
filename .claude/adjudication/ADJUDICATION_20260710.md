@@ -124,13 +124,32 @@
 | T-20260710-0120 | ITFMATCH-26JUL10HARKIR-HAR | ITF_M | 02:51:50 PM | 87 | 1 | AGREE | 0.88 |  | 60.0 |
 | T-20260710-0121 | ITFMATCH-26JUL10HARKIR-HAR | ITF_M | 02:55:10 PM | 87 | 1 | AGREE | 0.88 |  | 60.0 |
 | T-20260710-0122 | WTACHALLENGERMATCH-26JUL10ST | WTA_CHALL | 03:04:14 PM | 73 | 1 | AGREE | 0.76 | pair97 | 90.0 |
-| T-20260710-0123 | ITFMATCH-26JUL10POLMIY-MIY | ITF_M | 03:09:23 PM | 63 | 1 | AGREE | 0.63 |  | open |
+| T-20260710-0123 | ITFMATCH-26JUL10POLMIY-MIY | ITF_M | 03:09:23 PM | 63 | 1 | AGREE | 0.63 |  | 95.0 |
 | T-20260710-0124 | ITFMATCH-26JUL10HARKIR-KIR | ITF_M | 03:35:35 PM | 10 | 1 | AGREE | 0.13 | pair97 | 20.0 |
-| T-20260710-0125 | ATPCHALLENGERMATCH-26JUL10BL | ATP_CHALL | 03:56:28 PM | 63 | 1 | AGREE | 0.63 |  | open |
+| T-20260710-0125 | ATPCHALLENGERMATCH-26JUL10BL | ATP_CHALL | 03:56:28 PM | 63 | 1 | AGREE | 0.63 |  | 95.0 |
+| T-20260710-0126 | ITFMATCH-26JUL10POLMIY-POL | ITF_M | 06:00:58 PM | 32 | 1 | AGREE | 0.36 | pair97 | 40.0 |
+| T-20260710-0127 | ITFMATCH-26JUL10DELJAS-DEL | ITF_M | 07:07:55 PM | 71 | 1 | AGREE | 0.71 |  | open |
+| T-20260710-0128 | ITFMATCH-26JUL10DELJAS-JAS | ITF_M | 10:00:21 PM | 24 | 1 | AGREE | 0.27 | pair97 | 35.0 |
+| T-20260710-0129 | ITFMATCH-26JUL10NAKMAT-NAK | ITF_M | 10:31:16 PM | 54 | 1 | AGREE | 0.54 |  | open |
+| T-20260710-0130 | ITFWMATCH-26JUL11MAKSHO-MAK | ITF_W | 11:38:05 PM | 47 | 1 | AGREE | 0.47 |  | open |
+| T-20260710-0131 | ITFWMATCH-26JUL11ERCHRU-ERC | ITF_W | 11:38:16 PM | 15 | 1 | AGREE | 0.15 |  | open |
 
-**MIGRATION METER: fitted-conviction AGREE 116/125 (92.8%) | WOULD-REFUSE 7 | NO-OPINION 2 | pair-97 touched 43 (34.4%)**
+**REFUSE-MARGIN SHADOW (ITF_M, M16): fitted 8c would-have-saved +0¢ | decreed 2c -265¢** (held-out winner 07-11: +1170 vs -85; cutover on the operator's word)
 
-Per category: ATP_CHALL A17/R0/N0 p97:6 | ATP_MAIN A0/R0/N2 p97:0 | ITF_M A55/R3/N0 p97:20 | ITF_W A35/R4/N0 p97:14 | WTA_CHALL A9/R0/N0 p97:3
+**MIGRATION METER: fitted-conviction AGREE 122/131 (93.1%) | WOULD-REFUSE 7 | NO-OPINION 2 | pair-97 touched 45 (34.4%)**
+
+Per category: ATP_CHALL A17/R0/N0 p97:6 | ATP_MAIN A0/R0/N2 p97:0 | ITF_M A59/R3/N0 p97:22 | ITF_W A37/R4/N0 p97:14 | WTA_CHALL A9/R0/N0 p97:3
+
+## COMPLETION-SHADOW (per-leg economics beside the live machinery; taker branch GATED behind operator_taker_word)
+
+| cat | verdict | n |
+|---|---|---|
+| ITF_M | NO-OPINION | 7 |
+| ITF_M | hold | 7 |
+| ITF_W | flatten_kept | 5 |
+| ITF_W | taker_complete | 5 |
+
+kept-leg EV sums (¢, two-term frame, win-ride residual excluded): ITF_M +41 | ITF_W -21
 
 ## FULL-SLATE SUMMARY
-FULL-SLATE: steps FITTED 37%/DECREED 59%/NAKED 43 | no-fill 70 (starved 55) | xt-violations 17
+FULL-SLATE: steps FITTED 37%/DECREED 59%/NAKED 43 | no-fill 79 (starved 57) | xt-violations 11

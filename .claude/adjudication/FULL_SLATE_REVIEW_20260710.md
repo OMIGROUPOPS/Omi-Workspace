@@ -1,6 +1,6 @@
 # FULL SLATE REVIEW 20260710 (grade the logic; read-only; §0A held)
 
-## Part 1 — per-step grades (125 trades x L1-L9 = 1125 rows)
+## Part 1 — per-step grades (131 trades x L1-L9 = 1179 rows)
 
 | id | step | rule (cite) | class | anchor | composer verdict | $ |
 |---|---|---|---|---|---|---|
@@ -422,7 +422,7 @@
 | T-20260710-0047 | L2 | universal T-240 window (V4_MAX_PLACEMENT_SEC) | DECREED | constraint #4 named constant (universal window) |  |  |
 | T-20260710-0047 | L3 | premarket throughout / no bell needed (-) | FITTED | reality invariant live |  |  |
 | T-20260710-0047 | L4 | staircase no-trade placement (anchor no_trade_staircase, cell 55) (staircase_hold_place) | DECREED | walking-staircase spec | posterior 0.52 at aim tick |  |
-| T-20260710-0047 | L5 | maker placement @55 (place_order chokepoint battery) | FITTED | chokepoint guards (law) | edge -3.3 vs posterior | -0.16 |
+| T-20260710-0047 | L5 | maker placement @55 (place_order chokepoint battery) | FITTED | chokepoint guards (law) | edge -3.3 vs posterior | -0.1 |
 | T-20260710-0047 | L6 | reposts=0 holds=0 walk-caps=0 (_v4_manage_resting) | FITTED | churn-fix hold (law) |  |  |
 | T-20260710-0047 | L7 | band exit filled @70 (band from cell table) (exit_rule_for (FV-blind by design)) | DECREED | M6 + pending -0g ruling | posterior 0.69 at exit tick -> gap -0.7 |  |
 | T-20260710-0047 | L8 | fill booked via check_fills (cycle 1) (_book_v4_entry_fill / C-BOOK-THE-FILL) | FITTED | booking law + cycle stamps |  |  |
@@ -467,7 +467,7 @@
 | T-20260710-0052 | L2 | universal T-240 window (V4_MAX_PLACEMENT_SEC) | DECREED | constraint #4 named constant (universal window) |  |  |
 | T-20260710-0052 | L3 | gun: 10c ref divergence (_gun_poll src4) | DECREED | M10 constants |  |  |
 | T-20260710-0052 | L4 | no v4_place recorded (adopted/booked path) (-) | NAKED | lineage-only aim |  |  |
-| T-20260710-0052 | L5 | maker placement @53 (place_order chokepoint battery) | FITTED | chokepoint guards (law) | edge -2.5 vs posterior | -0.12 |
+| T-20260710-0052 | L5 | maker placement @53 (place_order chokepoint battery) | FITTED | chokepoint guards (law) | edge -2.5 vs posterior | -0.05 |
 | T-20260710-0052 | L6 | reposts=2 holds=1 walk-caps=0 (_v4_manage_resting) | DECREED | M5 offset remap (era-mixed) |  |  |
 | T-20260710-0052 | L7 | band exit filled @65 (band from cell table) (exit_rule_for (FV-blind by design)) | DECREED | M6 + pending -0g ruling | posterior 0.67 at exit tick -> gap +2.1 | 0.1 |
 | T-20260710-0052 | L8 | fill booked via check_fills (cycle 1) (_book_v4_entry_fill / C-BOOK-THE-FILL) | FITTED | booking law + cycle stamps |  |  |
@@ -1104,11 +1104,11 @@
 | T-20260710-0122 | L9 | settled open (settlement vocabulary + bot-only basis) | FITTED | rulings 07-09/07-10 |  |  |
 | T-20260710-0123 | L1 | kalshi schedule clock (kalshi_schedule_primary) (discover_markets/schedule resolver) | DECREED | census 07-10: Kalshi = card markers; ITF live-era only |  |  |
 | T-20260710-0123 | L2 | universal T-240 window (V4_MAX_PLACEMENT_SEC) | DECREED | constraint #4 named constant (universal window) |  |  |
-| T-20260710-0123 | L3 | premarket throughout / no bell needed (-) | FITTED | reality invariant live |  |  |
+| T-20260710-0123 | L3 | fallback bell rate+rise (_gun_poll src5) | DECREED | M10/M13 constants, scorecard-graded |  |  |
 | T-20260710-0123 | L4 | staircase no-trade placement (anchor no_trade_staircase, cell 63) (staircase_hold_place) | DECREED | walking-staircase spec | posterior 0.63 at aim tick |  |
 | T-20260710-0123 | L5 | maker placement @63 (place_order chokepoint battery) | FITTED | chokepoint guards (law) | edge -0.2 vs posterior |  |
 | T-20260710-0123 | L6 | reposts=0 holds=0 walk-caps=0 (_v4_manage_resting) | FITTED | churn-fix hold (law) |  |  |
-| T-20260710-0123 | L7 | band exit resting @82 (exit_rule_for (FV-blind by design)) | DECREED | M6 + pending -0g ruling |  |  |
+| T-20260710-0123 | L7 | band exit filled @82 (band from cell table) (exit_rule_for (FV-blind by design)) | DECREED | M6 + pending -0g ruling | posterior 0.82 at exit tick -> gap -0.1 |  |
 | T-20260710-0123 | L8 | fill booked via check_fills (cycle 1) (_book_v4_entry_fill / C-BOOK-THE-FILL) | FITTED | booking law + cycle stamps |  |  |
 | T-20260710-0123 | L9 | settled open (settlement vocabulary + bot-only basis) | FITTED | rulings 07-09/07-10 |  |  |
 | T-20260710-0124 | L1 | kalshi schedule clock (kalshi_schedule_primary) (discover_markets/schedule resolver) | DECREED | census 07-10: Kalshi = card markers; ITF live-era only |  |  |
@@ -1126,31 +1126,92 @@
 | T-20260710-0125 | L4 | staircase no-trade placement (anchor no_trade_staircase, cell 56) (staircase_hold_place) | DECREED | walking-staircase spec | posterior 0.63 at aim tick |  |
 | T-20260710-0125 | L5 | maker placement @63 (place_order chokepoint battery) | FITTED | chokepoint guards (law) | edge +0.0 vs posterior |  |
 | T-20260710-0125 | L6 | reposts=1 holds=0 walk-caps=0 (_v4_manage_resting) | DECREED | M5 offset remap (era-mixed) |  |  |
-| T-20260710-0125 | L7 | band exit resting @82 (exit_rule_for (FV-blind by design)) | DECREED | M6 + pending -0g ruling |  |  |
+| T-20260710-0125 | L7 | band exit filled @82 (band from cell table) (exit_rule_for (FV-blind by design)) | DECREED | M6 + pending -0g ruling | posterior 0.82 at exit tick -> gap -0.1 |  |
 | T-20260710-0125 | L8 | fill booked via check_fills (cycle 1) (_book_v4_entry_fill / C-BOOK-THE-FILL) | FITTED | booking law + cycle stamps |  |  |
 | T-20260710-0125 | L9 | settled open (settlement vocabulary + bot-only basis) | FITTED | rulings 07-09/07-10 |  |  |
+| T-20260710-0126 | L1 | kalshi schedule clock (kalshi_schedule_primary) (discover_markets/schedule resolver) | DECREED | census 07-10: Kalshi = card markers; ITF live-era only |  |  |
+| T-20260710-0126 | L2 | universal T-240 window (V4_MAX_PLACEMENT_SEC) | DECREED | constraint #4 named constant (universal window) |  |  |
+| T-20260710-0126 | L3 | fallback bell rate+rise (_gun_poll src5) | DECREED | M10/M13 constants, scorecard-graded |  |  |
+| T-20260710-0126 | L4 | entry table per-cell offset (anchor last_traded, cell 35) (v4 entry tables) | DECREED | M5 era-mixed, refit queued | posterior 0.36 at aim tick |  |
+| T-20260710-0126 | L5 | maker placement @32 [pair-97 arithmetic touched] (place_order chokepoint battery) | DECREED | RULING_PAIR_ECONOMICS legacy exposure | edge +4.0 vs posterior |  |
+| T-20260710-0126 | L6 | reposts=5 holds=4 walk-caps=0 (_v4_manage_resting) | DECREED | M5 offset remap (era-mixed) |  |  |
+| T-20260710-0126 | L7 | band exit filled @40 (band from cell table) (exit_rule_for (FV-blind by design)) | DECREED | M6 + pending -0g ruling | posterior 0.40 at exit tick -> gap -0.1 |  |
+| T-20260710-0126 | L8 | fill booked via check_fills (cycle 1) (_book_v4_entry_fill / C-BOOK-THE-FILL) | FITTED | booking law + cycle stamps |  |  |
+| T-20260710-0126 | L9 | settled open (settlement vocabulary + bot-only basis) | FITTED | rulings 07-09/07-10 |  |  |
+| T-20260710-0127 | L1 | kalshi schedule clock (kalshi_schedule_primary) (discover_markets/schedule resolver) | DECREED | census 07-10: Kalshi = card markers; ITF live-era only |  |  |
+| T-20260710-0127 | L2 | early unlock (realized vol 2730 >= 2500) (router gate unlock branch) | FITTED | M3 + RULING_EARLY_UNLOCK |  |  |
+| T-20260710-0127 | L3 | fallback bell rate+rise (_gun_poll src5) | DECREED | M10/M13 constants, scorecard-graded |  |  |
+| T-20260710-0127 | L4 | entry table per-cell offset (anchor tight_mid, cell 72) (v4 entry tables) | DECREED | M5 era-mixed, refit queued | posterior 0.71 at aim tick |  |
+| T-20260710-0127 | L5 | maker placement @71 (place_order chokepoint battery) | FITTED | chokepoint guards (law) | edge +0.0 vs posterior |  |
+| T-20260710-0127 | L6 | reposts=0 holds=0 walk-caps=0 (_v4_manage_resting) | FITTED | churn-fix hold (law) |  |  |
+| T-20260710-0127 | L7 | band exit resting @90 (exit_rule_for (FV-blind by design)) | DECREED | M6 + pending -0g ruling |  |  |
+| T-20260710-0127 | L8 | fill booked via check_fills (cycle 1) (_book_v4_entry_fill / C-BOOK-THE-FILL) | FITTED | booking law + cycle stamps |  |  |
+| T-20260710-0127 | L9 | settled open (settlement vocabulary + bot-only basis) | FITTED | rulings 07-09/07-10 |  |  |
+| T-20260710-0128 | L1 | kalshi schedule clock (kalshi_schedule_primary) (discover_markets/schedule resolver) | DECREED | census 07-10: Kalshi = card markers; ITF live-era only |  |  |
+| T-20260710-0128 | L2 | early unlock (realized vol 2730 >= 2500) (router gate unlock branch) | FITTED | M3 + RULING_EARLY_UNLOCK |  |  |
+| T-20260710-0128 | L3 | fallback bell rate+rise (_gun_poll src5) | DECREED | M10/M13 constants, scorecard-graded |  |  |
+| T-20260710-0128 | L4 | entry table per-cell offset (anchor tight_mid, cell 28) (v4 entry tables) | DECREED | M5 era-mixed, refit queued | posterior 0.27 at aim tick |  |
+| T-20260710-0128 | L5 | maker placement @24 [pair-97 arithmetic touched] (place_order chokepoint battery) | DECREED | RULING_PAIR_ECONOMICS legacy exposure | edge +3.0 vs posterior |  |
+| T-20260710-0128 | L6 | reposts=0 holds=0 walk-caps=0 (_v4_manage_resting) | FITTED | churn-fix hold (law) |  |  |
+| T-20260710-0128 | L7 | band exit filled @31 (band from cell table) (exit_rule_for (FV-blind by design)) | DECREED | M6 + pending -0g ruling | posterior 0.31 at exit tick -> gap -0.0 |  |
+| T-20260710-0128 | L8 | fill booked via check_fills (cycle 1) (_book_v4_entry_fill / C-BOOK-THE-FILL) | FITTED | booking law + cycle stamps |  |  |
+| T-20260710-0128 | L9 | settled open (settlement vocabulary + bot-only basis) | FITTED | rulings 07-09/07-10 |  |  |
+| T-20260710-0129 | L1 | kalshi schedule clock (kalshi_schedule_primary) (discover_markets/schedule resolver) | DECREED | census 07-10: Kalshi = card markers; ITF live-era only |  |  |
+| T-20260710-0129 | L2 | early unlock (realized vol 12462 >= 2500) (router gate unlock branch) | FITTED | M3 + RULING_EARLY_UNLOCK |  |  |
+| T-20260710-0129 | L3 | fallback bell rate+rise (_gun_poll src5) | DECREED | M10/M13 constants, scorecard-graded |  |  |
+| T-20260710-0129 | L4 | entry table per-cell offset (anchor tight_mid, cell 55) (v4 entry tables) | DECREED | M5 era-mixed, refit queued | posterior 0.54 at aim tick |  |
+| T-20260710-0129 | L5 | maker placement @54 (place_order chokepoint battery) | FITTED | chokepoint guards (law) | edge +0.0 vs posterior |  |
+| T-20260710-0129 | L6 | reposts=0 holds=0 walk-caps=0 (_v4_manage_resting) | FITTED | churn-fix hold (law) |  |  |
+| T-20260710-0129 | L7 | band exit resting @69 (exit_rule_for (FV-blind by design)) | DECREED | M6 + pending -0g ruling |  |  |
+| T-20260710-0129 | L8 | fill booked via check_fills (cycle 1) (_book_v4_entry_fill / C-BOOK-THE-FILL) | FITTED | booking law + cycle stamps |  |  |
+| T-20260710-0129 | L9 | settled open (settlement vocabulary + bot-only basis) | FITTED | rulings 07-09/07-10 |  |  |
+| T-20260710-0130 | L1 | kalshi schedule clock (kalshi_schedule_primary) (discover_markets/schedule resolver) | DECREED | census 07-10: Kalshi = card markers; ITF live-era only |  |  |
+| T-20260710-0130 | L2 | early unlock (realized vol 2543 >= 2500) (router gate unlock branch) | FITTED | M3 + RULING_EARLY_UNLOCK |  |  |
+| T-20260710-0130 | L3 | premarket throughout / no bell needed (-) | FITTED | reality invariant live |  |  |
+| T-20260710-0130 | L4 | entry table per-cell offset (anchor last_traded, cell 49) (v4 entry tables) | DECREED | M5 era-mixed, refit queued | posterior 0.47 at aim tick |  |
+| T-20260710-0130 | L5 | maker placement @47 (place_order chokepoint battery) | FITTED | chokepoint guards (law) | edge -0.0 vs posterior |  |
+| T-20260710-0130 | L6 | reposts=0 holds=0 walk-caps=0 (_v4_manage_resting) | FITTED | churn-fix hold (law) |  |  |
+| T-20260710-0130 | L7 | band exit resting @56 (exit_rule_for (FV-blind by design)) | DECREED | M6 + pending -0g ruling |  |  |
+| T-20260710-0130 | L8 | fill booked via check_fills (cycle 1) (_book_v4_entry_fill / C-BOOK-THE-FILL) | FITTED | booking law + cycle stamps |  |  |
+| T-20260710-0130 | L9 | settled open (settlement vocabulary + bot-only basis) | FITTED | rulings 07-09/07-10 |  |  |
+| T-20260710-0131 | L1 | kalshi schedule clock (kalshi_schedule_primary) (discover_markets/schedule resolver) | DECREED | census 07-10: Kalshi = card markers; ITF live-era only |  |  |
+| T-20260710-0131 | L2 | early unlock (realized vol 14216 >= 2500) (router gate unlock branch) | FITTED | M3 + RULING_EARLY_UNLOCK |  |  |
+| T-20260710-0131 | L3 | premarket throughout / no bell needed (-) | FITTED | reality invariant live |  |  |
+| T-20260710-0131 | L4 | entry table per-cell offset (anchor last_traded, cell 17) (v4 entry tables) | DECREED | M5 era-mixed, refit queued | posterior 0.15 at aim tick |  |
+| T-20260710-0131 | L5 | maker placement @15 (place_order chokepoint battery) | FITTED | chokepoint guards (law) | edge +0.1 vs posterior |  |
+| T-20260710-0131 | L6 | reposts=1 holds=0 walk-caps=0 (_v4_manage_resting) | DECREED | M5 offset remap (era-mixed) |  |  |
+| T-20260710-0131 | L7 | band exit resting @19 (exit_rule_for (FV-blind by design)) | DECREED | M6 + pending -0g ruling |  |  |
+| T-20260710-0131 | L8 | fill booked via check_fills (cycle 1) (_book_v4_entry_fill / C-BOOK-THE-FILL) | FITTED | booking law + cycle stamps |  |  |
+| T-20260710-0131 | L9 | settled open (settlement vocabulary + bot-only basis) | FITTED | rulings 07-09/07-10 |  |  |
 
-**STEP-LEVEL MIGRATION METER: FITTED 415 (37%) | DECREED 667 (59%) | NAKED 43 (3.8%)**
+**STEP-LEVEL MIGRATION METER: FITTED 441 (37%) | DECREED 695 (59%) | NAKED 43 (3.6%)**
 
-## Part 2 — the no-fill cohort (70 legs placed, never filled)
+## Part 2 — the no-fill cohort (79 legs placed, never filled)
 
 | ticker | cat | bid | buys | taxonomy | forgone edge_p50 ¢ | strand? | unfilled side won? |
 |---|---|---|---|---|---|---|---|
 | ITFMATCH-26JUL10ALFLOO-ALF | ITF_M | 8 | 4 | aim_below_achievable (tape low 22 > bid 8) | 0 | True | True |
+| ITFMATCH-26JUL11SHIROB-SHI | ITF_M | 30 | 3 | aim_below_achievable (tape low 32 > bid 30) | 3 | False | None |
 | ITFWMATCH-26JUL10STAPOZ-ST | ITF_W | 34 | 10 | aim_below_achievable (tape low 39 > bid 34) | 0 | False | True |
 | ITFWMATCH-26JUL10BOJINI-IN | ITF_W | 36 | 6 | aim_below_achievable (tape low 43 > bid 36) | 0 | True | None |
 | ITFMATCH-26JUL10TYABEA-TYA | ITF_M | 29 | 4 | aim_below_achievable (tape low 57 > bid 29) | 0 | True | None |
 | ITFMATCH-26JUL10ZGISHI-SHI | ITF_M | 56 | 3 | aim_below_achievable (tape low 58 > bid 56) | 4 | False | None |
+| ITFWMATCH-26JUL11HOSCIR-HO | ITF_W | 64 | 1 | aim_below_achievable (tape low 66 > bid 64) | 4 | False | None |
+| ITFWMATCH-26JUL11KUBRYS-KU | ITF_W | 65 | 1 | aim_below_achievable (tape low 67 > bid 65) | 0 | False | None |
 | ITFWMATCH-26JUL10FONELS-FO | ITF_W | 75 | 6 | aim_below_achievable (tape low 79 > bid 75) | 10 | True | None |
 | ITFMATCH-26JUL10SARBOR-BOR | ITF_M | 74 | 1 | aim_below_achievable (tape low 80 > bid 74) | 2 | False | None |
+| ITFWMATCH-26JUL11ERCHRU-HR | ITF_W | 79 | 3 | aim_below_achievable (tape low 82 > bid 79) | 6 | True | None |
 | ITFMATCH-26JUL10MARMCI-MAR | ITF_M | 75 | 4 | aim_below_achievable (tape low 84 > bid 75) | 20 | True | None |
 | ITFMATCH-26JUL10HODHUG-HOD | ITF_M | 80 | 3 | aim_below_achievable (tape low 95 > bid 80) | 5 | False | None |
 | ITFMATCH-26JUL10SYDMON-SYD | ITF_M | 92 | 3 | aim_below_achievable (tape low 98 > bid 92) | 8 | False | None |
+| ITFWMATCH-26JUL11KUBRYS-RY | ITF_W | 33 | 1 | aim_below_achievable (tape low 999 > bid 33) | 0 | False | None |
 | ATPCHALLENGERMATCH-26JUL10 | ATP_CHALL | 80 | 3 | gate_blocked (match-live cancel before reachable) | 3 | False | None |
 | ATPCHALLENGERMATCH-26JUL10 | ATP_CHALL | 65 | 1 | gate_blocked (match-live cancel before reachable) | 3 | True | None |
 | ATPMATCH-26JUL10FERZVE-ZVE | ATP_MAIN | 83 | 1 | gate_blocked (match-live cancel before reachable) | 2 | True | None |
 | ITFMATCH-26JUL10FORWES-WES | ITF_M | 40 | 8 | gate_blocked (match-live cancel before reachable) | 2 | True | None |
 | ITFMATCH-26JUL10MILFAB-FAB | ITF_M | 69 | 3 | late_vs_dip (the dip printed before our placement) | 3 | True | None |
+| ITFWMATCH-26JUL11SMILEY-SM | ITF_W | 38 | 1 | late_vs_dip (the dip printed before our placement) | 0 | False | None |
+| ITFWMATCH-26JUL11HOSCIR-CI | ITF_W | 33 | 1 | late_vs_dip (the dip printed before our placement) | 0 | False | None |
 | ITFMATCH-26JUL09IMANAK-NAK | ITF_M | 43 | 2 | queue_starved (tape printed at/below our level, no fill -- adverse-sel | 5 | False | None |
 | ITFWMATCH-26JUL10YODJAN-YO | ITF_W | 30 | 4 | queue_starved (tape printed at/below our level, no fill -- adverse-sel | 0 | True | None |
 | ITFMATCH-26JUL10MAZBRE-MAZ | ITF_M | 52 | 1 | queue_starved (tape printed at/below our level, no fill -- adverse-sel | 4 | True | None |
@@ -1205,25 +1266,21 @@
 | WTACHALLENGERMATCH-26JUL10 | WTA_CHALL | 26 | 4 | queue_starved (tape printed at/below our level, no fill -- adverse-sel | 1 | False | None |
 | ITFMATCH-26JUL10LEGARS-ARS | ITF_M | 5 | 6 | queue_starved (tape printed at/below our level, no fill -- adverse-sel | 0 | True | None |
 | ATPCHALLENGERMATCH-26JUL10 | ATP_CHALL | 36 | 9 | queue_starved (tape printed at/below our level, no fill -- adverse-sel | 1 | True | None |
-| ITFMATCH-26JUL10POLMIY-POL | ITF_M | 34 | 12 | queue_starved (tape printed at/below our level, no fill -- adverse-sel | 1 | True | None |
+| ITFMATCH-26JUL10NAKMAT-MAT | ITF_M | 42 | 8 | queue_starved (tape printed at/below our level, no fill -- adverse-sel | 2 | True | None |
+| ITFMATCH-26JUL11TYAMON-TYA | ITF_M | 17 | 1 | queue_starved (tape printed at/below our level, no fill -- adverse-sel | 3 | False | None |
+| ITFWMATCH-26JUL11MAKSHO-SH | ITF_W | 53 | 2 | queue_starved (tape printed at/below our level, no fill -- adverse-sel | 1 | True | None |
 
-**Strand test (June mechanism):** 44 strands; unfilled-side-won verified on 1 (settlement rows where determinable).
+**Strand test (June mechanism):** 46 strands; unfilled-side-won verified on 1 (settlement rows where determinable).
 
 ## Part 3 — exchange truth (three-way, audited REST path)
 
-exchange day buy-fills: 633 across 123 tickers | **violations: 17**
-- **VIOLATION** qty_mismatch: {"tk": "KXITFMATCH-26JUL10VANKOI-KOI", "kind": "qty_mismatch", "bot_report_and_log": 7.0, "exchange": 5.0}
+exchange day buy-fills: 663 across 129 tickers | **violations: 11**
 - **VIOLATION** qty_mismatch: {"tk": "KXITFWMATCH-26JUL10NAKYAM-NAK", "kind": "qty_mismatch", "bot_report_and_log": 5.0, "exchange": 10.0}
-- **VIOLATION** qty_mismatch: {"tk": "KXITFMATCH-26JUL10LAGROS-LAG", "kind": "qty_mismatch", "bot_report_and_log": 9.0, "exchange": 5.0}
-- **VIOLATION** qty_mismatch: {"tk": "KXITFMATCH-26JUL10JONBAR-BAR", "kind": "qty_mismatch", "bot_report_and_log": 9.0, "exchange": 5.0}
 - **VIOLATION** qty_mismatch: {"tk": "KXITFMATCH-26JUL10ADDCRA-ADD", "kind": "qty_mismatch", "bot_report_and_log": 5.0, "exchange": 10.0}
-- **VIOLATION** qty_mismatch: {"tk": "KXITFWMATCH-26JUL10HOSVAN-HOS", "kind": "qty_mismatch", "bot_report_and_log": 8.0, "exchange": 5.0}
 - **VIOLATION** qty_mismatch: {"tk": "KXWTACHALLENGERMATCH-26JUL10BLIZAN-ZAN", "kind": "qty_mismatch", "bot_report_and_log": 5.0, "exchange": 10.0}
-- **VIOLATION** qty_mismatch: {"tk": "KXITFMATCH-26JUL10ALFLOO-LOO", "kind": "qty_mismatch", "bot_report_and_log": 8.0, "exchange": 5.0}
 - **VIOLATION** qty_mismatch: {"tk": "KXITFMATCH-26JUL10ROLWEI-ROL", "kind": "qty_mismatch", "bot_report_and_log": 1.0, "exchange": 6.0}
 - **VIOLATION** qty_mismatch: {"tk": "KXITFWMATCH-26JUL10SOUBOH-SOU", "kind": "qty_mismatch", "bot_report_and_log": 5.0, "exchange": 10.0}
 - **VIOLATION** qty_mismatch: {"tk": "KXITFMATCH-26JUL10GHASPI-SPI", "kind": "qty_mismatch", "bot_report_and_log": 5.0, "exchange": 10.0}
-- **VIOLATION** qty_mismatch: {"tk": "KXITFMATCH-26JUL10HARKIR-HAR", "kind": "qty_mismatch", "bot_report_and_log": 6.0, "exchange": 5.0}
 - **VIOLATION** exchange_fill_missing_from_log: {"tk": "KXITFWMATCH-26JUL10DYUSAG-DYU", "kind": "exchange_fill_missing_from_log", "exchange_qty": 5.0}
 - **VIOLATION** exchange_fill_missing_from_log: {"tk": "KXITFWMATCH-26JUL10TUPMAK-MAK", "kind": "exchange_fill_missing_from_log", "exchange_qty": 5.0}
 - **VIOLATION** exchange_fill_missing_from_log: {"tk": "KXITFWMATCH-26JUL10SHOKRO-KRO", "kind": "exchange_fill_missing_from_log", "exchange_qty": 5.0}
@@ -1234,9 +1291,9 @@ exchange day buy-fills: 633 across 123 tickers | **violations: 17**
 
 | filing | instances | $ weight |
 |---|---|---|
-| ADVERSE-SELECTION STRAND (live population) | 55 | 6.25 |
+| ADVERSE-SELECTION STRAND (live population) | 57 | 6.50 |
 | DOCTRINE CONFLICT (exit-band vs conviction) | 10 | 3.51 |
-| AIM/TIMING MISS (no-fill) | 11 | 2.60 |
-| conviction-gap placements | 7 | 1.05 |
+| AIM/TIMING MISS (no-fill) | 18 | 3.25 |
+| conviction-gap placements | 7 | 0.92 |
 | NAKED-STEP L4 | 43 | 0.00 |
-| EXCHANGE-TRUTH DAYLIGHT | 17 | 0.00 |
+| EXCHANGE-TRUTH DAYLIGHT | 11 | 0.00 |

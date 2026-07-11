@@ -33,7 +33,13 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-10 evening — C50 keeps this current):
+## STATE (2026-07-10 night — C50 keeps this current):
+C-DAYLIGHT-ROOTS done: 17 violations rooted (0 double-count — suspect
+INNOCENT; 6 report-error — my arithmetic, fixed, VANKOI 5.0-vs-5.0
+clean on rerun; 11 unbooked-fill HISTORY — healed forward, healer
+bookings count as log truth); open-book sweep 0 daylight — books tie
+tonight; nightly re-count = the KILLED bar. NEXT: C-COMPLETION-POLICY
+v1 (operator paste lands on this close-out).
 C-FULL-SLATE-REVIEW done (read-only): 1,125 step-decisions graded
 (FITTED 37%/DECREED 59%/NAKED 3.8%); no-fill cohort first grade (70
 legs, 44 strands); exchange truth 3-way: 17 VIOLATIONS -> new CLASS

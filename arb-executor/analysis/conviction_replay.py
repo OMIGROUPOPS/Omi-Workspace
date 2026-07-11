@@ -83,6 +83,23 @@ def gate_3a(c):
     r = c.discovery_prior("ITF_W", 30, offered_anchor_era="archive")
     results["era"] = (r["opinion"] == "NO-OPINION" and "REFUSED" in r.get("missing", ""),
                       r.get("missing", "")[:120])
+    # (iv) RANGE-LAYER honesty [Part 2b REVISED]: an empty/thin cell returns
+    # NO-OPINION with the cell NAMED; a populated cell returns the fitted
+    # prior with n + citation
+    r4a = c.range_prior("ITF_M", "underdog", 3, 97.0)   # absurd corner: empty
+    ok4a = r4a["opinion"] == "NO-OPINION" and "cell" in str(r4a)
+    r4b = None
+    for k, v in list(c.range_cells.items())[:200]:
+        if v.get("n", 0) >= 5:
+            cat, side, b, pc = k.split("|")
+            px = {"le25": 20, "26_50": 40, "51_75": 60, "ge75": 80}[pc]
+            frm = {"deep_disc": -6, "disc": -3, "at_mid": 0, "over": 3, "deep_over": 6}[b]
+            r4b = c.range_prior(cat, side, px, px - frm)
+            break
+    ok4b = bool(r4b) and r4b.get("opinion") == "PRIOR" and "citation" in r4b
+    results["range_layer"] = (ok4a and ok4b,
+                              "empty->NO-OPINION ok=%s; populated->PRIOR ok=%s (%s)"
+                              % (ok4a, ok4b, (r4b or {}).get("cell", "no populated cell found")))
     return results
 
 

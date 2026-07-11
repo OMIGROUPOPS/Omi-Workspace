@@ -32,6 +32,52 @@ class Composer:
         _a = self._load(ROOT / "docs/policy/aim_table.json")
         self.m2 = (_a or {}).get("aim")
         self.m3 = self._load(ROOT.parent / ".claude/volume_20260709/recut_cells_volume.json")
+        # [Part 2b REVISED] the three-price range layer: WINDOW_MAP_3WAY axes
+        # extended over the era-admissible book (the June framework as the
+        # composer's live historical anchor; lineage in range_layer_build.py)
+        _rl = self._load(ROOT.parent / ".claude/range_layer/RANGE_LAYER_3WAY.json")
+        self.range_cells = (_rl or {}).get("cells") or {}
+
+    @staticmethod
+    def _rl_bucket(frm):
+        if frm <= -5: return "deep_disc"
+        if frm < -1: return "disc"
+        if frm <= 1: return "at_mid"
+        if frm < 5: return "over"
+        return "deep_over"
+
+    @staticmethod
+    def _rl_cell(px):
+        if px <= 25: return "le25"
+        if px <= 50: return "26_50"
+        if px <= 75: return "51_75"
+        return "ge75"
+
+    def range_prior(self, cat, side, fill_px, runmid):
+        """The fitted three-price prior for a leg's unfolding range position:
+        (cat, side, fill-vs-runmid bucket, price cell) -> the cell's resolved
+        outcomes (band-reach per window, win rate, knife rate) with n. Empty
+        or thin cell -> NO-OPINION with the cell named (never a guess)."""
+        if runmid is None or fill_px is None:
+            return {"opinion": "NO-OPINION",
+                    "missing": "no observable runmid at this tick (30-min traded mean empty)"}
+        b = self._rl_bucket(fill_px - runmid)
+        pc = self._rl_cell(fill_px)
+        key = "|".join((cat or "?", side or "?", b, pc))
+        v = self.range_cells.get(key)
+        if not v or v.get("n", 0) < 5:
+            return {"opinion": "NO-OPINION", "cell": key,
+                    "missing": "range-layer cell empty or n<5 (%s) -- G2 gap at this cell"
+                               % (v.get("n", 0) if v else 0)}
+        n = float(v["n"])
+        return {"opinion": "PRIOR", "cell": key, "n": v["n"],
+                "bucket": b, "price_cell": pc,
+                "w1_reach": round(v["w1"] / n, 3), "cor_reach": round(v["cor"] / n, 3),
+                "w2_reach": round(v["w2"] / n, 3),
+                "win_rate": round(v["win"] / n, 3),
+                "cash_rate": round(v.get("cashed", 0) / n, 3),
+                "knife_rate": round(v["knife"] / max(1, v["loss"]), 3),
+                "citation": "RANGE_LAYER_3WAY (WINDOW_MAP_3WAY axes, era-admissible book)"}
 
     @staticmethod
     def _load(p):

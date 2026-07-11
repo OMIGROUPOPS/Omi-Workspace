@@ -1,0 +1,1013 @@
+{
+ "generated_hash": "b0017255dc86aef88f833ec453b47b6f8995f81671cdd6ce0137d7e7e479cd74",
+ "counts": {
+  "config_keys": 96,
+  "code_config_gets": 121,
+  "union": 122
+ },
+ "by_class": {
+  "FITTED": 3,
+  "DECREED": 18,
+  "NAKED": 101
+ },
+ "rows": [
+  {
+   "knob": "abort_carve_held_sibling",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "active_cells",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "aim_shadow",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "aim_table_path",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "aim_zscore_shadow",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "anchor_hierarchy_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-ANCHOR ruling",
+   "step": "L1"
+  },
+  {
+   "knob": "b_convergence_enabled",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "best_bid_aware_repost",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "bestbid_follow_at_touch",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "bestbid_follow_max_gap",
+   "in_config": true,
+   "config_value": 15,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "book_quality_gate",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "book_quality_max_spread",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "cancel_marketable_buffer",
+   "in_config": true,
+   "config_value": 1,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "cancel_on_marketable",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "categories_enabled",
+   "in_config": true,
+   "config_value": [
+    "ATP_MAIN",
+    "WTA_MAIN",
+    "ATP_CHALL",
+    "WTA_CHALL"
+   ],
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "combined_goal",
+   "in_config": true,
+   "config_value": 97,
+   "class": "DECREED",
+   "citation": "pair-97 INTERIM (RULING_PAIR_ECONOMICS: bounded by C-COMPLETION-POLICY)",
+   "step": "L5"
+  },
+  {
+   "knob": "complete_cross_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "completion_all_cells",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "pair-97 interim clause (gated OFF 06-24)",
+   "step": "L5"
+  },
+  {
+   "knob": "completion_cells_path",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "completion_combined_ceiling",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "pair-97 interim clause",
+   "step": "L5"
+  },
+  {
+   "knob": "completion_reprice",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "pair-97 interim clause",
+   "step": "L5"
+  },
+  {
+   "knob": "completion_shadow_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-COMPLETION-POLICY shadow",
+   "step": "L6"
+  },
+  {
+   "knob": "composer_live_shadow_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-COMPOSER-G1 migration shadow",
+   "step": "L4"
+  },
+  {
+   "knob": "conception_horizon_hours",
+   "in_config": true,
+   "config_value": 8,
+   "class": "DECREED",
+   "citation": "C-CONCEPTION-HORIZON (interim scaffolding; early-canvas study backs the edge)",
+   "step": "L2"
+  },
+  {
+   "knob": "dca_fill_floor_cents",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "depth_aware_floor",
+   "in_config": true,
+   "config_value": 50,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "depth_aware_floor_by_cat",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "depth_aware_join",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "disable_bbo_threshold_settlement",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "disable_volume_floors",
+   "in_config": true,
+   "config_value": false,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "disabled_cells",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "dog_dip_offset_cents",
+   "in_config": true,
+   "config_value": 3,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "early_unlock_anchor_age_sec",
+   "in_config": true,
+   "config_value": 7200,
+   "class": "DECREED",
+   "citation": "RULING_STALE_ANCHOR_ALLOWANCE (operator threshold)",
+   "step": "L5"
+  },
+  {
+   "knob": "early_unlock_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "RULING_EARLY_UNLOCK (ruled mechanism)",
+   "step": "L2"
+  },
+  {
+   "knob": "early_unlock_floor",
+   "in_config": true,
+   "config_value": 2500,
+   "class": "FITTED",
+   "citation": "M3 volume ledger + RULING_EARLY_UNLOCK",
+   "step": "L2"
+  },
+  {
+   "knob": "engagement_band_gating",
+   "in_config": true,
+   "config_value": false,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "engagement_cells_path",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "engagement_joinbid",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "entry_table_cell_path",
+   "in_config": true,
+   "config_value": "docs/policy/entry_table_percell_conservative.csv",
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "entry_table_path",
+   "in_config": true,
+   "config_value": "docs/policy/per_regime_offsets_v2.csv",
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "error_tripwire_halt",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "error_tripwire_threshold",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "error_tripwire_window_sec",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "event_category_override",
+   "in_config": true,
+   "config_value": {
+    "KXITFWMATCH-26JUN26DAEVAS": "WTA_CHALL"
+   },
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "exit_table_dir",
+   "in_config": true,
+   "config_value": "data/durable/exit_surface_gated_optima/",
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "expression_invariant",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "fallback_bell_disp_cents",
+   "in_config": true,
+   "config_value": 4,
+   "class": "DECREED",
+   "citation": "SAIDEL replay tuning (C-REALITY-BELL)",
+   "step": "L3"
+  },
+  {
+   "knob": "fallback_bell_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-REALITY-BELL ruling",
+   "step": "L3"
+  },
+  {
+   "knob": "fallback_bell_rate_per_min",
+   "in_config": true,
+   "config_value": 0.4,
+   "class": "FITTED",
+   "citation": "M13 gauge (scorecard-graded nightly)",
+   "step": "L3"
+  },
+  {
+   "knob": "fallback_bell_sustain_polls",
+   "in_config": true,
+   "config_value": 1,
+   "class": "DECREED",
+   "citation": "C-REALITY-BELL",
+   "step": "L3"
+  },
+  {
+   "knob": "fallback_maker_clamp",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "fallback_min_before_start",
+   "in_config": true,
+   "config_value": 20,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "fallback_pair_bound",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "freeze_at_gun",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "fused_gun_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "fv_anchor_placement",
+   "in_config": true,
+   "config_value": false,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "fv_anchor_scenarios_enabled",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "fv_observe",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "graceful_shutdown",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "gun_divergence_move_cents",
+   "in_config": true,
+   "config_value": 10,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "gun_poll_sec",
+   "in_config": true,
+   "config_value": 20,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "inside_buffer_off",
+   "in_config": true,
+   "config_value": false,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "itf_entry_borrow",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "itf_min_recent_vol_usd",
+   "in_config": true,
+   "config_value": 500,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "itf_recent_vol_window_min",
+   "in_config": true,
+   "config_value": 90,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "join_trial_mode",
+   "in_config": true,
+   "config_value": false,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "kalshi_occ_observe",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "kalshi_occurrence_fallback",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "kalshi_schedule_primary",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "latch_tape_override",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "leg2_reshuffle",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "liquid_repost_at_touch",
+   "in_config": true,
+   "config_value": false,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "maker_only_entry",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "marketable_clamp_placement",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "marketable_stale_pin_exempt",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNTRACED LIVE KNOB instance 1 (traced 07-11, uncited in canon)",
+   "step": "L6"
+  },
+  {
+   "knob": "match_live_grace_kill",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "match_live_grace_sec",
+   "in_config": true,
+   "config_value": 300,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "min_depth_for_exit_realization",
+   "in_config": true,
+   "config_value": 250,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "min_minutes_before_start",
+   "in_config": true,
+   "config_value": 0,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "monotonic_cut_active",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "monotonic_cut_enabled",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "operator_manual_mode",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "operator_taker_word",
+   "in_config": true,
+   "config_value": false,
+   "class": "DECREED",
+   "citation": "operator word gate (RULING_PAIR_ECONOMICS)",
+   "step": "L6"
+  },
+  {
+   "knob": "os_active",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "os_shadow_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "pair_governor_scoot",
+   "in_config": true,
+   "config_value": false,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "pair_governor_scoot_cents",
+   "in_config": true,
+   "config_value": 1,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "paired_cap_enforced",
+   "in_config": true,
+   "config_value": false,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "paper_mode",
+   "in_config": true,
+   "config_value": false,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "paper_state_max_age_sec",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "per_cat_depth",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "per_match_clock",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-PM-CLOCK armed (census clock law)",
+   "step": "L1"
+  },
+  {
+   "knob": "per_match_clock_shadow",
+   "in_config": true,
+   "config_value": false,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "per_side_placement",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "percat_gun_prints30",
+   "in_config": true,
+   "config_value": {
+    "ITF_M": 6,
+    "ITF_W": 6,
+    "ATP_CHALL": 16,
+    "WTA_CHALL": 16
+   },
+   "class": "FITTED",
+   "citation": "M3/M13 volume-ledger OPEN thresholds",
+   "step": "L3"
+  },
+  {
+   "knob": "percat_gun_shadow_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-PERCAT-GUN migration shadow",
+   "step": "L3"
+  },
+  {
+   "knob": "premarket_bids_ride_live",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "premarket_running_mid_anchor",
+   "in_config": true,
+   "config_value": false,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "premarket_walk_cap",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "premarket_walk_cap_by_cat",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "reach_repost_cap_enforced",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "reaim_on_sibling_arrival",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "reality_divergence_cents",
+   "in_config": true,
+   "config_value": 25,
+   "class": "DECREED",
+   "citation": "C-REALITY-BELL Part 2 (named bound)",
+   "step": "L9"
+  },
+  {
+   "knob": "reentry_cycle_cap",
+   "in_config": true,
+   "config_value": 2,
+   "class": "DECREED",
+   "citation": "C-CYCLE-CAP operator ruling",
+   "step": "L8"
+  },
+  {
+   "knob": "repost_hold_same_price",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "repost_sibling_on_boot",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "rest_both_legs",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "riser_post_revision",
+   "in_config": true,
+   "config_value": false,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "round5_detector_enabled",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "scale_gun_shadow",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "sizing",
+   "in_config": true,
+   "config_value": {
+    "entry_contracts": 5,
+    "exit_contracts": 5
+   },
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "staircase_abort_rearm",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "staircase_hold_at_bid",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "staircase_hold_trail_burst",
+   "in_config": true,
+   "config_value": 5,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "staircase_hold_volatility_trail",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "sustained_flow_latch",
+   "in_config": true,
+   "config_value": false,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "tape_gated_abandon",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "version",
+   "in_config": true,
+   "config_value": "v4_2026-05-25",
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "walk_cap_honest_anchor",
+   "in_config": true,
+   "config_value": false,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "walk_cap_honest_by_cat",
+   "in_config": true,
+   "config_value": {
+    "ITF_W": 20,
+    "ITF_M": 14,
+    "ATP_CHALL": 2,
+    "WTA_CHALL": 2,
+    "ATP_MAIN": 1,
+    "WTA_MAIN": 1
+   },
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "wall_skip_contracts",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "wall_skip_enforce",
+   "in_config": false,
+   "config_value": null,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  }
+ ]
+}

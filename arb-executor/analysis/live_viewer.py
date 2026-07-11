@@ -235,6 +235,99 @@ def page_trade(tid):
     return "".join(h)
 
 
+# the DOCTRINE CONFLICT class's four live pair-97 knobs (interim clause)
+PAIR97 = ("combined_goal", "completion_combined_ceiling",
+          "completion_all_cells", "completion_reprice")
+
+
+def page_system():
+    """[C-SYSTEM-PAGE v1] the viewer's third page. Spec slot reserved (spec
+    wins on landing). Red lines honored: classification is a COMPUTED field
+    from the census artifact (no knob special-cased here; a DECREED->FITTED
+    migration recolors with zero frontend change); no auto-classifier; L5's
+    crowding is rendered, never merged (the crowding IS the finding)."""
+    art_p = WS / ".claude/render/knob_census_artifact.json"
+    cfg_p = ROOT / "config/deploy_v5_live.json"
+    try:
+        art = json.loads(art_p.read_text(encoding="utf-8"))
+    except OSError:
+        art = {"rows": [], "by_class": {}}
+    try:
+        cfg_now = json.loads(cfg_p.read_text(encoding="utf-8"))
+    except OSError:
+        cfg_now = {}
+    # dual staleness: census build-time (threshold 24h) vs config runtime (90min)
+    def stamp2(p, thr_min):
+        if not Path(p).exists():
+            return '<span class="badge stale">MISSING</span>'
+        age = (datetime.now(ET).timestamp() - Path(p).stat().st_mtime) / 60.0
+        cls = "stale" if age > thr_min else "fresh"
+        return '<span class="badge %s">%s · %.0f min</span>' % (cls, Path(p).name, age)
+    md, mp = fsr_md()
+    m = re.search(r"STEP-LEVEL MIGRATION METER: (.*?)\*\*", md)
+    # organ ledger from LIFECYCLE.md
+    organs = []
+    try:
+        lc = (ROOT / "docs/LIFECYCLE.md").read_text(encoding="utf-8", errors="replace")
+        for row in re.findall(r"\| ([^|]+) \| ([^|]+) \| ([^|]+) \|", lc.split("THE ORGAN LEDGER")[-1]):
+            if "organ (legacy)" in row[0] or "---" in row[0]:
+                continue
+            organs.append(row)
+    except OSError:
+        pass
+    rows = art.get("rows", [])
+    steps = {}
+    for r in rows:
+        steps.setdefault(r.get("step", "?"), []).append(r)
+    h = ["<html><head><title>/system</title>%s<meta http-equiv=refresh content=30>" % CSS,
+         "<script>function pins(){document.querySelectorAll('.pin97').forEach("
+         "e=>{e.style.display=e.style.display=='none'?'':'none'});"
+         "document.querySelectorAll('.p97').forEach("
+         "e=>{e.style.outline=e.style.outline?'':'2px solid #f0f'})}</script></head><body>",
+         "<h1>/system — the knob canon (classification COMPUTED; uncited = NAKED, full stop)</h1>",
+         '<div class="panel">census (build-time) %s &nbsp; config (runtime, 30s poll) %s</div>'
+         % (stamp2(art_p, 1440), stamp2(cfg_p, 90)),
+         '<div class="panel"><h2>Classification strip</h2>']
+    bc = art.get("by_class", {})
+    tot = sum(bc.values()) or 1
+    for cl in ("FITTED", "DECREED", "NAKED"):
+        h.append('<span class="bar" style="width:%.0fpx;background:%s"></span> %s %d (%.0f%%) &nbsp;'
+                 % (bc.get(cl, 0) * 3, C.get(cl, "#888"), cl, bc.get(cl, 0), 100.0 * bc.get(cl, 0) / tot))
+    h.append("<br><b>Knob-vs-decision line:</b> knobs above are the LEVERS; ")
+    h.append(("the decisions they steered graded " + m.group(1)) if m else "step-level meter pending tonight's slate review")
+    h.append(' &nbsp; <button onclick="pins()">DOCTRINE CONFLICT pins (default OFF)</button></div>')
+    # anatomy spine L1-L9, knobs attached per step; L5 crowding rendered as-is
+    h.append('<div class="panel"><h2>Anatomy spine (L1–L9; the L5 crowding is the finding)</h2><table>')
+    for Ln in ("L1", "L2", "L3", "L4", "L5", "L6", "L7", "L8", "L9", "?"):
+        ks = steps.get(Ln, [])
+        cells = "".join('<span class="badge%s" style="background:%s;color:#111;margin:1px">%s</span>'
+                        % (" p97" if r["knob"] in PAIR97 else "",
+                           C.get(r["class"], "#888"), r["knob"][:28]) for r in ks)
+        h.append("<tr><td><b>%s</b></td><td>%s</td></tr>" % (Ln, cells or "<i>procedural, no knobs</i>"))
+    h.append("</table></div>")
+    # DOCTRINE CONFLICT pin overlay: the four pair-97 knobs, toggle default off
+    h.append('<div class="panel pin97" style="display:none;border-color:#f0f"><h2>DOCTRINE CONFLICT pins — the four live pair-97 knobs (interim clause, bounded by C-COMPLETION-POLICY)</h2>')
+    for r in rows:
+        if r["knob"] in PAIR97:
+            h.append('<div>📌 <b>%s</b> = %s — %s</div>' % (
+                r["knob"], json.dumps(cfg_now.get(r["knob"])), r["citation"]))
+    h.append("</div>")
+    # organ ledger strip
+    h.append('<div class="panel"><h2>Organ ledger</h2><table>')
+    for o in organs:
+        h.append("<tr><td>%s</td><td>%s</td><td>%s</td></tr>" % o)
+    h.append("</table></div>")
+    # full census table
+    h.append('<div class="panel"><h2>Census (%d knobs)</h2><table><tr><th>knob</th><th>class</th><th>step</th><th>config now</th><th>citation</th></tr>' % len(rows))
+    for r in sorted(rows, key=lambda x: (x["class"], x["knob"])):
+        h.append('<tr><td>%s</td><td style="color:%s"><b>%s</b></td><td>%s</td><td>%s</td><td>%s</td></tr>'
+                 % (r["knob"], C.get(r["class"], "#888"), r["class"], r["step"],
+                    json.dumps(cfg_now.get(r["knob"]))[:30] if r["in_config"] else "—",
+                    r["citation"][:70]))
+    h.append('</table></div><p><a href="/command">&larr; command</a></p></body></html>')
+    return "".join(h)
+
+
 class H(BaseHTTPRequestHandler):
     def log_message(self, *a):
         pass
@@ -242,14 +335,25 @@ class H(BaseHTTPRequestHandler):
         try:
             if self.path.startswith("/trade/"):
                 body = page_trade(self.path.split("/trade/")[1].split("?")[0])
-            elif self.path.startswith("/api/results"):
-                r, _ = results()
-                body = json.dumps(r or {})
+            elif self.path.startswith("/api/"):
+                # four endpoints (spec slot reserved; named choice pending verbatim):
+                # results | census (build-time artifact) | config (30s-poll live input)
+                if self.path.startswith("/api/census"):
+                    p = WS / ".claude/render/knob_census_artifact.json"
+                    body = p.read_text(encoding="utf-8") if p.exists() else "{}"
+                elif self.path.startswith("/api/config"):
+                    p = ROOT / "config/deploy_v5_live.json"
+                    body = p.read_text(encoding="utf-8") if p.exists() else "{}"
+                else:
+                    r, _ = results()
+                    body = json.dumps(r or {})
                 self.send_response(200)
                 self.send_header("Content-Type", "application/json")
                 self.end_headers()
                 self.wfile.write(body.encode())
                 return
+            elif self.path.startswith("/system"):
+                body = page_system()
             else:
                 body = page_command()
             self.send_response(200)

@@ -21,6 +21,10 @@ echo "checked out $SHA"
 # ---- THE GATE (law 2026-07-04): refuse to restart unless it passes ----
 bash "$ARB/deploy/deploy_gate.sh" "$ARB"
 
+# [C-SYSTEM-PAGE] regenerate the build-time knob census artifact per deploy
+# (classification computed from knob_citations.json; uncited knobs land NAKED)
+python3 "$ARB/analysis/knob_census_check.py" --emit || echo "WARN: census emit failed (viewer will show stale census stamp)"
+
 # ---- graceful restart ----
 echo "--- stopping current bot (SIGINT -> graceful drain)"
 if tmux has-session -t "$TMUX_SESSION" 2>/dev/null; then

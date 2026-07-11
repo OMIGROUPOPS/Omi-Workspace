@@ -1,0 +1,112 @@
+{
+ "early_unlock_floor": [
+  "FITTED",
+  "M3 volume ledger + RULING_EARLY_UNLOCK",
+  "L2"
+ ],
+ "early_unlock_enabled": [
+  "DECREED",
+  "RULING_EARLY_UNLOCK (ruled mechanism)",
+  "L2"
+ ],
+ "early_unlock_anchor_age_sec": [
+  "DECREED",
+  "RULING_STALE_ANCHOR_ALLOWANCE (operator threshold)",
+  "L5"
+ ],
+ "fallback_bell_rate_per_min": [
+  "FITTED",
+  "M13 gauge (scorecard-graded nightly)",
+  "L3"
+ ],
+ "fallback_bell_disp_cents": [
+  "DECREED",
+  "SAIDEL replay tuning (C-REALITY-BELL)",
+  "L3"
+ ],
+ "fallback_bell_sustain_polls": [
+  "DECREED",
+  "C-REALITY-BELL",
+  "L3"
+ ],
+ "fallback_bell_enabled": [
+  "DECREED",
+  "C-REALITY-BELL ruling",
+  "L3"
+ ],
+ "percat_gun_prints30": [
+  "FITTED",
+  "M3/M13 volume-ledger OPEN thresholds",
+  "L3"
+ ],
+ "percat_gun_shadow_enabled": [
+  "DECREED",
+  "C-PERCAT-GUN migration shadow",
+  "L3"
+ ],
+ "reality_divergence_cents": [
+  "DECREED",
+  "C-REALITY-BELL Part 2 (named bound)",
+  "L9"
+ ],
+ "reentry_cycle_cap": [
+  "DECREED",
+  "C-CYCLE-CAP operator ruling",
+  "L8"
+ ],
+ "combined_goal": [
+  "DECREED",
+  "pair-97 INTERIM (RULING_PAIR_ECONOMICS: bounded by C-COMPLETION-POLICY)",
+  "L5"
+ ],
+ "completion_combined_ceiling": [
+  "DECREED",
+  "pair-97 interim clause",
+  "L5"
+ ],
+ "completion_all_cells": [
+  "DECREED",
+  "pair-97 interim clause (gated OFF 06-24)",
+  "L5"
+ ],
+ "completion_reprice": [
+  "DECREED",
+  "pair-97 interim clause",
+  "L5"
+ ],
+ "conception_horizon_hours": [
+  "DECREED",
+  "C-CONCEPTION-HORIZON (interim scaffolding; early-canvas study backs the edge)",
+  "L2"
+ ],
+ "per_match_clock": [
+  "DECREED",
+  "C-PM-CLOCK armed (census clock law)",
+  "L1"
+ ],
+ "anchor_hierarchy_enabled": [
+  "DECREED",
+  "C-ANCHOR ruling",
+  "L1"
+ ],
+ "completion_shadow_enabled": [
+  "DECREED",
+  "C-COMPLETION-POLICY shadow",
+  "L6"
+ ],
+ "operator_taker_word": [
+  "DECREED",
+  "operator word gate (RULING_PAIR_ECONOMICS)",
+  "L6"
+ ],
+ "composer_live_shadow_enabled": [
+  "DECREED",
+  "C-COMPOSER-G1 migration shadow",
+  "L4"
+ ],
+ "marketable_stale_pin_exempt": [
+  "NAKED",
+  "UNTRACED LIVE KNOB instance 1 (traced 07-11, uncited in canon)",
+  "L6"
+ ]
+}

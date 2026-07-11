@@ -1,6 +1,6 @@
 # OUTCOME PROOF (C46, two-lane) — C-PERCAT-GUN v1 (the seventh-time class's class-kill candidate; SHADOW ONLY this deploy)
 
-**Candidate SHA: `ae623bcf`** (percat_gun_shadow in _gun_poll + config keys; staged 07-10, deployed now per the operator's resume order).
+**Candidate SHA: `bbcb613c`** (the shadow code was authored at ae623bcf and is byte-identical through this HEAD; the intervening commits are the closed-out range-layer/viewer builds — analysis-side, already C50'd; re-cited at HEAD for the gate's staleness check).
 
 ## Prior art (C45)
 - **CLASS — GUN FIRE-STARVATION (CLASS_LEDGER.md)** — seven instance-fixes on record (volume-burst prematurity 06-19 · fused gun 6d84f27e · gun persistence · te_live resurrection + lock · truth-join · fallback bell · per-instance containments); each fixed an instance, none shaped the trigger to its market.

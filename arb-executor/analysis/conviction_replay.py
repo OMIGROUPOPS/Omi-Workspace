@@ -86,8 +86,21 @@ def gate_3a(c):
     # (iv) RANGE-LAYER honesty [Part 2b REVISED]: an empty/thin cell returns
     # NO-OPINION with the cell NAMED; a populated cell returns the fitted
     # prior with n + citation
-    r4a = c.range_prior("ITF_M", "underdog", 3, 97.0)   # absurd corner: empty
-    ok4a = r4a["opinion"] == "NO-OPINION" and "cell" in str(r4a)
+    # find a GUARANTEED-empty combination (the first probe hit a populated
+    # cell -- deep-discount cheap ITF dogs are common in the 5.7x book)
+    ok4a = False
+    for cat4 in ("ITF_M", "ITF_W", "ATP_CHALL", "WTA_CHALL", "ATP_MAIN", "WTA_MAIN"):
+        for side4 in ("leader", "underdog"):
+            for b4, frm4 in (("deep_over", 8), ("deep_disc", -8)):
+                for pc4, px4 in (("le25", 10), ("ge75", 90)):
+                    key4 = "|".join((cat4, side4, b4, pc4))
+                    if key4 not in c.range_cells or c.range_cells[key4].get("n", 0) < 5:
+                        r4a = c.range_prior(cat4, side4, px4, px4 - frm4)
+                        ok4a = r4a["opinion"] == "NO-OPINION" and "cell" in str(r4a)
+                        break
+                if ok4a: break
+            if ok4a: break
+        if ok4a: break
     r4b = None
     for k, v in list(c.range_cells.items())[:200]:
         if v.get("n", 0) >= 5:

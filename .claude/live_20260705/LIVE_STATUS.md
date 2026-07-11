@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 30 @ **2026-07-10 10:01:33 PM ET** | build `9a4a148b` | session boot 07-10 17:25 ET | log `live_v3_20260710.jsonl` | 12127 session events | monitor READ-ONLY
+- cycle 31 @ **2026-07-10 10:12:01 PM ET** | build `1feb4c76` | session boot 07-10 17:25 ET | log `live_v3_20260710.jsonl` | 13018 session events | monitor READ-ONLY
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
@@ -20,7 +20,7 @@ clean overnight — no watch fires
 - classes now: {'FLOW_ABOVE': 1} | repriceable now: true 1 / false 0 | **cumulative bid_grade lines: 7904 (repriceable true 1071 / false 6833)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ITFMATCH-26JUL10NAKMAT-NAK | 54 | 1m | 7/55-56/99 | 55-55 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→55 |
+| ITFMATCH-26JUL10NAKMAT-NAK | 54 | 12m | 22/55-56/932 | 55-55 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→55 |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
@@ -31,8 +31,8 @@ clean overnight — no watch fires
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
 | ITFMATCH-26JUL10POLMIY | ITF_M | 0.0 | — | **QUIET** |
-| ITFMATCH-26JUL10DELJAS | ITF_M | 15.867 | — | **WAKING** |
-| ITFMATCH-26JUL10NAKMAT | ITF_M | 2.167 | — | **WAKING** |
+| ITFMATCH-26JUL10DELJAS | ITF_M | 24.867 | — | **WAKING** |
+| ITFMATCH-26JUL10NAKMAT | ITF_M | 2.267 | — | **WAKING** |
 
 ## PATTERNS (sub-B) — 7
 - pre_conception_buy: KXITFMATCH-26JUL10POLMIY-POL {"price": 34, "conception_ts": 1783728028.7072625, "detail": "buy 34c predates the conception stamp by 154min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
@@ -41,7 +41,7 @@ clean overnight — no watch fires
 - pre_conception_buy: KXITFMATCH-26JUL10POLMIY-POL {"price": 34, "conception_ts": 1783728028.7072625, "detail": "buy 34c predates the conception stamp by 144min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFMATCH-26JUL10POLMIY-POL {"price": 34, "conception_ts": 1783728028.7072625, "detail": "buy 34c predates the conception stamp by 143min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
 - pre_conception_buy: KXITFMATCH-26JUL10POLMIY-POL {"price": 32, "conception_ts": 1783728028.7072625, "detail": "buy 32c predates the conception stamp by 124min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- half_arm_aging: KXITFMATCH-26JUL10POLMIY-POL {"fill": 32, "age_min": 241, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL10POLMIY-POL {"fill": 32, "age_min": 251, "mode": "PAIRING(sib never rested)"}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

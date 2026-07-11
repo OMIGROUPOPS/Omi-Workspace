@@ -33,7 +33,15 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-11 — C50 keeps this current):
+## STATE (2026-07-11 (2) — C50 keeps this current):
+C-KNOB-CANON done (doc+forensics): census canon 124 knobs (52 NAKED);
+UNTRACED LIVE KNOB founded (instance: marketable_stale_pin_exempt —
+fires SILENTLY, unobservable on tape); WALK-CAP INVERSION filed -0j
+(unratified default governs, ratified table staged-off, anchors
+differ; today 3 walks +1c loose CHALL, ITF 10-16c tight); 4 pair-97
+knobs recorded within interim clause, bounded by C-COMPLETION-POLICY
+v1 NEXT; census drift-hash live. Plex's 3 files: slots reserved
+(paste dropped, 3rd instance). Percat shadow night running.
 C-PERCAT-GUN v1 SHADOW deployed (fitted thresholds ITF>=6/CHALL>=16/
 mains OFF; July-8 replay: ITF coverage 14%->100%, 7%->98%); shadow
 night TONIGHT, scorecard grades it, cutover on the operator's word.

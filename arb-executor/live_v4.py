@@ -1839,6 +1839,10 @@ class LiveV3:
         self._bell_hits: Dict[str, int] = {}
         self._bell_missing_logged: Set[str] = set()
         self._percat_gun_logged: Set[str] = set()   # [C-PERCAT-GUN shadow]
+        # [C-COMPLETION-POLICY v1 shadow]
+        self._completion_shadow_ts: Dict[str, float] = {}
+        self._leg_econ = None
+        self._range_cells = {}
         self._reality_div_logged: Dict[str, float] = {}
         # [C-STALE-ANCHOR-ALLOWANCE 07-10] tk -> last anchor age observed at
         # resolution (buys stamp it; the stale-vs-fresh cohort split)
@@ -6693,11 +6697,69 @@ class LiveV3:
         self._staircase_resolve(pos, "cancel", pos.staircase_ref or pos.target_price, label=label)
         return "cancelled"
 
+    def _completion_shadow(self, tk, pos, now):
+        """[C-COMPLETION-POLICY v1, SHADOW — trades NOTHING] per-leg economics
+        on every one-sided pair (the strand-forming state): the kept leg's
+        EV_hold + both policy branches' verdicts logged beside the live
+        machinery. Branch (b) taker_complete is GATED (operator_taker_word:
+        false) — computes and logs; cannot act. pair-97 consulted nowhere
+        (constraint #11). Dedup 600s/event. Never raises."""
+        try:
+            if not self.config.get("completion_shadow_enabled", False):
+                return
+            if getattr(pos, "entry_qty", 0) <= 0 or pos.phase == "entry_resting":
+                return
+            et = tk.rsplit("-", 1)[0]
+            if now - self._completion_shadow_ts.get(et, 0) < 600:
+                return
+            sib = self._sibling_ticker_any(tk)
+            sp = self.positions.get(sib) if sib else None
+            if sp is not None and getattr(sp, "entry_qty", 0) > 0:
+                return   # both legs filled: not one-sided
+            self._completion_shadow_ts[et] = now
+            if self._leg_econ is None:
+                from oslayer import leg_econ as _le
+                self._leg_econ = _le
+                _rp = Path(__file__).resolve().parent.parent / \
+                    ".claude/range_layer/RANGE_LAYER_3WAY.json"
+                self._range_cells = (json.loads(_rp.read_text()).get("cells")
+                                     if _rp.exists() else {})
+            def rm30(t):
+                pdq = self._trade_prices.get(t)
+                if not pdq:
+                    return None
+                cut = now - 1800
+                v = [px for ts9, px in pdq if ts9 >= cut]
+                return (sum(v) / len(v)) if v else None
+            kb = self.books.get(tk)
+            sb = self.books.get(sib) if sib else None
+            band = (int(getattr(pos, "exit_price", 0) or 0)
+                    - int(getattr(pos, "entry_price", 0) or 0))
+            sib_band = None
+            if sb and sb.best_ask < 100:
+                _br = self.exit_rule_for(pos.category, int(sb.best_ask))
+                sib_band = _br[0] if _br and _br[0] else None
+            res = self._leg_econ.completion_verdict(
+                self._range_cells, pos.category,
+                "leader" if pos.entry_price >= 50 else "underdog",
+                int(pos.entry_price), band,
+                int(kb.best_bid) if kb and kb.best_bid else None,
+                ("leader" if (sb and sb.best_ask >= 50) else "underdog"),
+                int(sb.best_ask) if sb and sb.best_ask < 100 else None,
+                sib_band, rm30(tk), rm30(sib) if sib else None)
+            res.update({"event": et, "gated": "operator_taker_word",
+                        "taker_word": bool(self.config.get("operator_taker_word", False))})
+            self._log("completion_shadow", res, ticker=tk)
+        except Exception:
+            pass
+
     async def check_fills(self):
         """Poll Kalshi for fill status on all active orders."""
+        _cs_now = time.time()
         for tk, pos in list(self.positions.items()):
             if pos.settled:
                 continue
+            self._completion_shadow(tk, pos, _cs_now)
 
             # [C-MONOTONIC-CUT] gated, default-OFF => this line is skipped => byte-identical. On filled
             # legs only, evaluate the in-match monotonic-faller downside cut (shadow-logs would-fire;

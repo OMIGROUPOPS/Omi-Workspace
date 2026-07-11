@@ -107,6 +107,8 @@
   "reality_divergence_cents": 25,
   "percat_gun_shadow_enabled": true,
   "percat_gun_prints30": {"ITF_M": 6, "ITF_W": 6, "ATP_CHALL": 16, "WTA_CHALL": 16},
+  "completion_shadow_enabled": true,
+  "operator_taker_word": false,
   "os_shadow_enabled": true,
   "reentry_cycle_cap": 2
 }

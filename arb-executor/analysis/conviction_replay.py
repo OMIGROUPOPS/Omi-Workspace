@@ -262,6 +262,34 @@ def main():
                                             s3.get("NO-OPINION", 0),
                                             s3.get("pair97_touched", 0))
                  for cat, s3 in sorted(stats.items()))]
+    # [C-COMPLETION-POLICY v1 Part 3] COMPLETION-SHADOW: both branches'
+    # would-have-dones beside the live machinery, per category, nightly
+    try:
+        from collections import Counter as _Ctr
+        cs_v, cs_ev = _Ctr(), _Ctr()
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"completion_shadow"' not in line:
+                continue
+            try:
+                d5 = json.loads(line)
+            except ValueError:
+                continue
+            det5 = d5.get("details") or {}
+            c5 = cat_of(d5.get("ticker", "")) or "?"
+            cs_v[(c5, det5.get("verdict"))] += 1
+            k5 = det5.get("kept") or {}
+            if isinstance(k5, dict) and k5.get("ev_cents") is not None:
+                cs_ev[c5] += k5["ev_cents"]
+        if cs_v:
+            L += ["", "## COMPLETION-SHADOW (per-leg economics beside the live machinery; taker branch GATED behind operator_taker_word)",
+                  "", "| cat | verdict | n |", "|---|---|---|"]
+            for (c5, v5), n5 in sorted(cs_v.items()):
+                L.append("| %s | %s | %d |" % (c5, v5, n5))
+            L.append("")
+            L.append("kept-leg EV sums (¢, two-term frame, win-ride residual excluded): "
+                     + (" | ".join("%s %+.0f" % (c5, e5) for c5, e5 in sorted(cs_ev.items())) or "none"))
+    except Exception:
+        pass
     md = ROOT.parent / (".claude/adjudication/ADJUDICATION_%s.md" % ymd)
     md.write_text("\n".join(L), encoding="utf-8")
     print("adjudication ->", md)

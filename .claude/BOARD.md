@@ -53,7 +53,7 @@
 
 ## QUEUED (next builds, in rough order)
 
-> **OPERATOR QUEUE (07-10 night, standing):** C-PERCAT-GUN v1 (shadow STAGED `ae623bcf`, July-8 replay in flight — resumes NEXT) → composer shadow wiring (G1/G2) → exchange-eye (gated #8 token rotation). Open words riding as gates: taker (operator_taker_word) · −0g FV-aware exits (evidence accruing nightly).
+> **OPERATOR QUEUE (07-11 early, standing):** ~~C-PERCAT-GUN v1~~ SHADOW DEPLOYED (shadow night tonight; cutover on the graded word) → **C-KNOB-CANON v1 (next slot)** → **C-COMPLETION-POLICY v1 (second slot; −0h carries it)** → exchange-eye (gated #8). Range layer DONE (G2 filled). Open words riding as gates: taker (operator_taker_word) · −0g FV-aware exits (evidence accruing nightly) · percat-gun cutover (after tonight's graded shadow).
 
 > **FIX QUEUE (ranked by measured cost — FULL_SLATE_REVIEW 07-10; the reconciliation side feeding this section nightly):** 1. ADVERSE-SELECTION STRAND (55 inst/$6.25 — the completion policy, −0h carries it) · 2. DOCTRINE CONFLICT exit-vs-conviction (10/$3.51 — the −0g FV-aware exit ruling's evidence) · 3. AIM/TIMING no-fill misses (11/$2.60 — feeds the aim-surface refit) · 4. conviction-gap placements (7/$1.05 — composer calibration) · 5. EXCHANGE-TRUTH DAYLIGHT (17 violations — root each before KILLED).
 

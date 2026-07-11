@@ -33,7 +33,11 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-11 early — C50 keeps this current):
+## STATE (2026-07-11 — C50 keeps this current):
+C-PERCAT-GUN v1 SHADOW deployed (fitted thresholds ITF>=6/CHALL>=16/
+mains OFF; July-8 replay: ITF coverage 14%->100%, 7%->98%); shadow
+night TONIGHT, scorecard grades it, cutover on the operator's word.
+Queue: C-KNOB-CANON v1 next, C-COMPLETION-POLICY v1 second.
 RANGE LAYER live (Part 2b REVISED): WINDOW_MAP_3WAY axes verbatim over
 2,783 era-admissible legs -> 204 cells (112 n>=5); composer range_prior
 wired, gate 4/4 (new test iv); G2 FILLED (M15); archive-CHALL coarse

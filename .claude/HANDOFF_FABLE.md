@@ -33,7 +33,12 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-10 late night — C50 keeps this current):
+## STATE (2026-07-11 early — C50 keeps this current):
+RANGE LAYER live (Part 2b REVISED): WINDOW_MAP_3WAY axes verbatim over
+2,783 era-admissible legs -> 204 cells (112 n>=5); composer range_prior
+wired, gate 4/4 (new test iv); G2 FILLED (M15); archive-CHALL coarse
+addendum owed as detached pass. Nightly instrument consumes it from
+tonight's 12:20am run.
 C-LIVE-VIEWER v1 LIVE (tmux live_viewer, loopback 8787): /command
 (meter matches adjudication footer 116/125 number-for-number) +
 /trade/:id (BLIZAN T-20260710-0059 proof: triptych + 9-cell L-strip

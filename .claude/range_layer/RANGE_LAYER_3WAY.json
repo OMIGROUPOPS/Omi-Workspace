@@ -1,0 +1,2047 @@
+{
+ "generated": "2026-07-10 10:29 PM ET",
+ "lineage": "WINDOW_MAP_3WAY axes verbatim; era-admissible live book Jun26->today; runmid=trailing-30min traded mean at fill; census law: ITF live-era only (this table IS live-era); archive CHALL coarse addendum separate",
+ "n_legs": 2783,
+ "cells": {
+  "ATP_MAIN|leader|at_mid|51_75": {
+   "n": 28,
+   "w1": 0,
+   "cor": 0,
+   "w2": 21,
+   "win": 0,
+   "loss": 7,
+   "knife": 7,
+   "cashed": 21
+  },
+  "ATP_CHALL|leader|disc|51_75": {
+   "n": 57,
+   "w1": 23,
+   "cor": 2,
+   "w2": 31,
+   "win": 1,
+   "loss": 8,
+   "knife": 8,
+   "cashed": 48
+  },
+  "ATP_CHALL|underdog|disc|26_50": {
+   "n": 49,
+   "w1": 16,
+   "cor": 2,
+   "w2": 21,
+   "win": 0,
+   "loss": 16,
+   "knife": 16,
+   "cashed": 33
+  },
+  "WTA_MAIN|leader|at_mid|51_75": {
+   "n": 25,
+   "w1": 2,
+   "cor": 0,
+   "w2": 17,
+   "win": 0,
+   "loss": 8,
+   "knife": 7,
+   "cashed": 17
+  },
+  "ATP_CHALL|leader|at_mid|51_75": {
+   "n": 69,
+   "w1": 25,
+   "cor": 1,
+   "w2": 38,
+   "win": 1,
+   "loss": 15,
+   "knife": 15,
+   "cashed": 53
+  },
+  "ATP_MAIN|underdog|disc|26_50": {
+   "n": 4,
+   "w1": 0,
+   "cor": 0,
+   "w2": 4,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 4
+  },
+  "ATP_CHALL|underdog|at_mid|26_50": {
+   "n": 75,
+   "w1": 23,
+   "cor": 2,
+   "w2": 43,
+   "win": 0,
+   "loss": 17,
+   "knife": 17,
+   "cashed": 58
+  },
+  "ATP_CHALL|underdog|at_mid|le25": {
+   "n": 54,
+   "w1": 21,
+   "cor": 2,
+   "w2": 25,
+   "win": 0,
+   "loss": 16,
+   "knife": 15,
+   "cashed": 38
+  },
+  "ATP_CHALL|leader|disc|ge75": {
+   "n": 15,
+   "w1": 6,
+   "cor": 1,
+   "w2": 8,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 13
+  },
+  "ATP_MAIN|underdog|at_mid|26_50": {
+   "n": 24,
+   "w1": 1,
+   "cor": 0,
+   "w2": 20,
+   "win": 0,
+   "loss": 4,
+   "knife": 4,
+   "cashed": 20
+  },
+  "ITF_W|leader|disc|51_75": {
+   "n": 40,
+   "w1": 20,
+   "cor": 0,
+   "w2": 15,
+   "win": 0,
+   "loss": 8,
+   "knife": 8,
+   "cashed": 32
+  },
+  "ITF_M|underdog|disc|26_50": {
+   "n": 28,
+   "w1": 13,
+   "cor": 1,
+   "w2": 13,
+   "win": 0,
+   "loss": 4,
+   "knife": 4,
+   "cashed": 24
+  },
+  "ITF_M|leader|at_mid|ge75": {
+   "n": 26,
+   "w1": 17,
+   "cor": 0,
+   "w2": 5,
+   "win": 0,
+   "loss": 4,
+   "knife": 4,
+   "cashed": 22
+  },
+  "ITF_W|underdog|at_mid|26_50": {
+   "n": 38,
+   "w1": 21,
+   "cor": 0,
+   "w2": 7,
+   "win": 0,
+   "loss": 10,
+   "knife": 10,
+   "cashed": 28
+  },
+  "ITF_W|leader|at_mid|51_75": {
+   "n": 32,
+   "w1": 19,
+   "cor": 1,
+   "w2": 7,
+   "win": 0,
+   "loss": 7,
+   "knife": 6,
+   "cashed": 25
+  },
+  "ITF_M|underdog|disc|le25": {
+   "n": 40,
+   "w1": 20,
+   "cor": 1,
+   "w2": 13,
+   "win": 0,
+   "loss": 9,
+   "knife": 9,
+   "cashed": 31
+  },
+  "ITF_W|underdog|disc|26_50": {
+   "n": 25,
+   "w1": 16,
+   "cor": 0,
+   "w2": 5,
+   "win": 0,
+   "loss": 5,
+   "knife": 5,
+   "cashed": 20
+  },
+  "ITF_M|leader|at_mid|51_75": {
+   "n": 38,
+   "w1": 26,
+   "cor": 0,
+   "w2": 12,
+   "win": 0,
+   "loss": 4,
+   "knife": 4,
+   "cashed": 34
+  },
+  "ITF_W|leader|disc|ge75": {
+   "n": 16,
+   "w1": 9,
+   "cor": 0,
+   "w2": 6,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 14
+  },
+  "ITF_M|leader|disc|ge75": {
+   "n": 19,
+   "w1": 9,
+   "cor": 0,
+   "w2": 9,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 18
+  },
+  "ITF_W|underdog|over|le25": {
+   "n": 3,
+   "w1": 1,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 2
+  },
+  "ITF_M|leader|disc|51_75": {
+   "n": 30,
+   "w1": 19,
+   "cor": 0,
+   "w2": 9,
+   "win": 0,
+   "loss": 3,
+   "knife": 3,
+   "cashed": 27
+  },
+  "ATP_CHALL||at_mid|26_50": {
+   "n": 48,
+   "w1": 14,
+   "cor": 1,
+   "w2": 26,
+   "win": 0,
+   "loss": 12,
+   "knife": 11,
+   "cashed": 36
+  },
+  "ITF_W||at_mid|le25": {
+   "n": 30,
+   "w1": 17,
+   "cor": 1,
+   "w2": 1,
+   "win": 0,
+   "loss": 13,
+   "knife": 13,
+   "cashed": 17
+  },
+  "ITF_W|underdog|deep_disc|26_50": {
+   "n": 18,
+   "w1": 15,
+   "cor": 2,
+   "w2": 2,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 16
+  },
+  "ITF_M|underdog|deep_disc|le25": {
+   "n": 31,
+   "w1": 20,
+   "cor": 0,
+   "w2": 3,
+   "win": 0,
+   "loss": 14,
+   "knife": 10,
+   "cashed": 17
+  },
+  "ATP_CHALL|underdog|deep_over|le25": {
+   "n": 1,
+   "w1": 1,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 0,
+   "cashed": 0
+  },
+  "ATP_CHALL|leader|at_mid|ge75": {
+   "n": 56,
+   "w1": 21,
+   "cor": 1,
+   "w2": 30,
+   "win": 1,
+   "loss": 7,
+   "knife": 7,
+   "cashed": 48
+  },
+  "ITF_M|underdog|at_mid|26_50": {
+   "n": 46,
+   "w1": 24,
+   "cor": 0,
+   "w2": 10,
+   "win": 1,
+   "loss": 11,
+   "knife": 11,
+   "cashed": 34
+  },
+  "ATP_CHALL||disc|le25": {
+   "n": 20,
+   "w1": 8,
+   "cor": 3,
+   "w2": 7,
+   "win": 0,
+   "loss": 8,
+   "knife": 8,
+   "cashed": 12
+  },
+  "ATP_MAIN|leader|disc|51_75": {
+   "n": 6,
+   "w1": 0,
+   "cor": 0,
+   "w2": 4,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 4
+  },
+  "ATP_CHALL|underdog|disc|le25": {
+   "n": 26,
+   "w1": 6,
+   "cor": 2,
+   "w2": 12,
+   "win": 0,
+   "loss": 13,
+   "knife": 13,
+   "cashed": 13
+  },
+  "ATP_CHALL||at_mid|ge75": {
+   "n": 17,
+   "w1": 7,
+   "cor": 2,
+   "w2": 9,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 15
+  },
+  "ITF_M|underdog|deep_disc|26_50": {
+   "n": 15,
+   "w1": 9,
+   "cor": 0,
+   "w2": 2,
+   "win": 0,
+   "loss": 4,
+   "knife": 4,
+   "cashed": 11
+  },
+  "ATP_CHALL||disc|26_50": {
+   "n": 44,
+   "w1": 26,
+   "cor": 3,
+   "w2": 24,
+   "win": 0,
+   "loss": 4,
+   "knife": 4,
+   "cashed": 40
+  },
+  "ITF_M|underdog|deep_disc|51_75": {
+   "n": 3,
+   "w1": 2,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 3
+  },
+  "ATP_CHALL|underdog|deep_disc|le25": {
+   "n": 13,
+   "w1": 8,
+   "cor": 1,
+   "w2": 2,
+   "win": 0,
+   "loss": 4,
+   "knife": 4,
+   "cashed": 9
+  },
+  "ATP_CHALL||at_mid|51_75": {
+   "n": 47,
+   "w1": 26,
+   "cor": 0,
+   "w2": 20,
+   "win": 1,
+   "loss": 8,
+   "knife": 8,
+   "cashed": 38
+  },
+  "ATP_CHALL|underdog|over|26_50": {
+   "n": 4,
+   "w1": 2,
+   "cor": 0,
+   "w2": 3,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 3
+  },
+  "ITF_M||disc|ge75": {
+   "n": 22,
+   "w1": 13,
+   "cor": 0,
+   "w2": 3,
+   "win": 0,
+   "loss": 5,
+   "knife": 5,
+   "cashed": 17
+  },
+  "ATP_MAIN|underdog|disc|le25": {
+   "n": 4,
+   "w1": 1,
+   "cor": 1,
+   "w2": 2,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 2
+  },
+  "WTA_MAIN|leader|at_mid|ge75": {
+   "n": 22,
+   "w1": 1,
+   "cor": 0,
+   "w2": 21,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 21
+  },
+  "ATP_CHALL||disc|51_75": {
+   "n": 49,
+   "w1": 23,
+   "cor": 1,
+   "w2": 27,
+   "win": 0,
+   "loss": 8,
+   "knife": 8,
+   "cashed": 41
+  },
+  "WTA_MAIN|underdog|at_mid|26_50": {
+   "n": 27,
+   "w1": 2,
+   "cor": 0,
+   "w2": 21,
+   "win": 0,
+   "loss": 5,
+   "knife": 5,
+   "cashed": 22
+  },
+  "ATP_MAIN|leader|at_mid|ge75": {
+   "n": 17,
+   "w1": 0,
+   "cor": 0,
+   "w2": 16,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 16
+  },
+  "ATP_CHALL||deep_over|51_75": {
+   "n": 2,
+   "w1": 0,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 0
+  },
+  "ATP_CHALL|leader|over|ge75": {
+   "n": 2,
+   "w1": 0,
+   "cor": 0,
+   "w2": 2,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "ATP_CHALL|underdog|deep_disc|26_50": {
+   "n": 12,
+   "w1": 8,
+   "cor": 0,
+   "w2": 6,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 11
+  },
+  "ITF_M|leader|deep_over|ge75": {
+   "n": 8,
+   "w1": 7,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 8
+  },
+  "ATP_MAIN||at_mid|26_50": {
+   "n": 17,
+   "w1": 1,
+   "cor": 0,
+   "w2": 10,
+   "win": 0,
+   "loss": 5,
+   "knife": 5,
+   "cashed": 12
+  },
+  "ATP_MAIN||at_mid|51_75": {
+   "n": 13,
+   "w1": 0,
+   "cor": 0,
+   "w2": 11,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 11
+  },
+  "ATP_CHALL||over|51_75": {
+   "n": 2,
+   "w1": 0,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 0
+  },
+  "ATP_MAIN||deep_over|51_75": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 0
+  },
+  "WTA_MAIN||at_mid|ge75": {
+   "n": 7,
+   "w1": 0,
+   "cor": 0,
+   "w2": 7,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 7
+  },
+  "ITF_M||at_mid|le25": {
+   "n": 34,
+   "w1": 20,
+   "cor": 2,
+   "w2": 4,
+   "win": 0,
+   "loss": 12,
+   "knife": 11,
+   "cashed": 22
+  },
+  "WTA_MAIN||at_mid|le25": {
+   "n": 8,
+   "w1": 0,
+   "cor": 0,
+   "w2": 6,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 6
+  },
+  "ATP_MAIN|underdog|at_mid|le25": {
+   "n": 23,
+   "w1": 4,
+   "cor": 0,
+   "w2": 15,
+   "win": 0,
+   "loss": 7,
+   "knife": 7,
+   "cashed": 16
+  },
+  "ATP_MAIN||disc|51_75": {
+   "n": 5,
+   "w1": 0,
+   "cor": 0,
+   "w2": 4,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 4
+  },
+  "ATP_MAIN||disc|le25": {
+   "n": 4,
+   "w1": 0,
+   "cor": 1,
+   "w2": 3,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 3
+  },
+  "WTA_MAIN||disc|le25": {
+   "n": 5,
+   "w1": 0,
+   "cor": 0,
+   "w2": 4,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 4
+  },
+  "WTA_MAIN||disc|ge75": {
+   "n": 2,
+   "w1": 0,
+   "cor": 0,
+   "w2": 2,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "WTA_MAIN||disc|51_75": {
+   "n": 5,
+   "w1": 1,
+   "cor": 0,
+   "w2": 3,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 4
+  },
+  "ATP_MAIN||deep_over|26_50": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 0
+  },
+  "ATP_CHALL||deep_disc|26_50": {
+   "n": 28,
+   "w1": 9,
+   "cor": 2,
+   "w2": 13,
+   "win": 0,
+   "loss": 10,
+   "knife": 10,
+   "cashed": 18
+  },
+  "ATP_MAIN||disc|ge75": {
+   "n": 4,
+   "w1": 0,
+   "cor": 0,
+   "w2": 3,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 3
+  },
+  "ATP_CHALL||over|26_50": {
+   "n": 3,
+   "w1": 1,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 3
+  },
+  "WTA_MAIN||at_mid|26_50": {
+   "n": 12,
+   "w1": 1,
+   "cor": 0,
+   "w2": 9,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 10
+  },
+  "ATP_CHALL||deep_disc|51_75": {
+   "n": 20,
+   "w1": 5,
+   "cor": 3,
+   "w2": 9,
+   "win": 0,
+   "loss": 7,
+   "knife": 7,
+   "cashed": 13
+  },
+  "WTA_MAIN||at_mid|51_75": {
+   "n": 15,
+   "w1": 1,
+   "cor": 0,
+   "w2": 14,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 14
+  },
+  "ATP_MAIN||at_mid|le25": {
+   "n": 6,
+   "w1": 0,
+   "cor": 0,
+   "w2": 5,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 5
+  },
+  "ITF_M|leader|deep_disc|51_75": {
+   "n": 22,
+   "w1": 17,
+   "cor": 0,
+   "w2": 4,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 20
+  },
+  "ITF_M||at_mid|ge75": {
+   "n": 36,
+   "w1": 31,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 3,
+   "knife": 3,
+   "cashed": 33
+  },
+  "WTA_MAIN||disc|26_50": {
+   "n": 10,
+   "w1": 0,
+   "cor": 0,
+   "w2": 10,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 10
+  },
+  "ATP_MAIN||deep_disc|51_75": {
+   "n": 4,
+   "w1": 0,
+   "cor": 0,
+   "w2": 4,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 3
+  },
+  "WTA_MAIN|underdog|at_mid|le25": {
+   "n": 11,
+   "w1": 0,
+   "cor": 0,
+   "w2": 7,
+   "win": 0,
+   "loss": 3,
+   "knife": 3,
+   "cashed": 8
+  },
+  "WTA_MAIN||deep_disc|26_50": {
+   "n": 3,
+   "w1": 0,
+   "cor": 0,
+   "w2": 3,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 3
+  },
+  "ITF_W|underdog|over|51_75": {
+   "n": 3,
+   "w1": 2,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 3
+  },
+  "ATP_CHALL||at_mid|le25": {
+   "n": 24,
+   "w1": 15,
+   "cor": 3,
+   "w2": 11,
+   "win": 0,
+   "loss": 3,
+   "knife": 2,
+   "cashed": 21
+  },
+  "ATP_MAIN||at_mid|ge75": {
+   "n": 9,
+   "w1": 0,
+   "cor": 1,
+   "w2": 8,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 8
+  },
+  "ATP_MAIN||deep_disc|le25": {
+   "n": 2,
+   "w1": 0,
+   "cor": 0,
+   "w2": 2,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 1
+  },
+  "ITF_W|leader|deep_disc|51_75": {
+   "n": 12,
+   "w1": 7,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 3,
+   "knife": 3,
+   "cashed": 9
+  },
+  "WTA_MAIN|leader|disc|51_75": {
+   "n": 6,
+   "w1": 0,
+   "cor": 0,
+   "w2": 5,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 5
+  },
+  "ITF_W|underdog|at_mid|51_75": {
+   "n": 5,
+   "w1": 4,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 5
+  },
+  "ITF_M||over|26_50": {
+   "n": 7,
+   "w1": 4,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 3,
+   "knife": 2,
+   "cashed": 4
+  },
+  "ATP_MAIN||over|51_75": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "ATP_MAIN||disc|26_50": {
+   "n": 5,
+   "w1": 0,
+   "cor": 0,
+   "w2": 5,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 5
+  },
+  "WTA_MAIN|underdog|disc|26_50": {
+   "n": 5,
+   "w1": 2,
+   "cor": 0,
+   "w2": 5,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 5
+  },
+  "ITF_M|underdog|deep_over|26_50": {
+   "n": 3,
+   "w1": 2,
+   "cor": 0,
+   "w2": 0,
+   "win": 1,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "WTA_MAIN|leader|deep_disc|51_75": {
+   "n": 3,
+   "w1": 1,
+   "cor": 0,
+   "w2": 2,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 2
+  },
+  "ATP_CHALL|leader|deep_disc|51_75": {
+   "n": 17,
+   "w1": 12,
+   "cor": 1,
+   "w2": 8,
+   "win": 0,
+   "loss": 4,
+   "knife": 3,
+   "cashed": 13
+  },
+  "WTA_MAIN|underdog|disc|le25": {
+   "n": 5,
+   "w1": 0,
+   "cor": 0,
+   "w2": 3,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 3
+  },
+  "ATP_CHALL||deep_disc|ge75": {
+   "n": 6,
+   "w1": 2,
+   "cor": 0,
+   "w2": 4,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 6
+  },
+  "WTA_MAIN|leader|disc|ge75": {
+   "n": 2,
+   "w1": 0,
+   "cor": 0,
+   "w2": 2,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "ITF_W|underdog|deep_over|51_75": {
+   "n": 2,
+   "w1": 1,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "ITF_M||disc|26_50": {
+   "n": 41,
+   "w1": 34,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 6,
+   "knife": 5,
+   "cashed": 35
+  },
+  "ITF_W||at_mid|ge75": {
+   "n": 33,
+   "w1": 28,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 4,
+   "knife": 4,
+   "cashed": 29
+  },
+  "ITF_W|underdog|at_mid|le25": {
+   "n": 33,
+   "w1": 21,
+   "cor": 0,
+   "w2": 4,
+   "win": 0,
+   "loss": 11,
+   "knife": 11,
+   "cashed": 22
+  },
+  "ITF_W||disc|26_50": {
+   "n": 41,
+   "w1": 32,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 9,
+   "knife": 9,
+   "cashed": 32
+  },
+  "ITF_M|leader|deep_over|51_75": {
+   "n": 4,
+   "w1": 2,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 2
+  },
+  "ITF_W||disc|le25": {
+   "n": 25,
+   "w1": 19,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 5,
+   "knife": 5,
+   "cashed": 20
+  },
+  "ITF_W|underdog|disc|le25": {
+   "n": 18,
+   "w1": 14,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 5,
+   "knife": 4,
+   "cashed": 13
+  },
+  "ITF_W|leader|at_mid|ge75": {
+   "n": 23,
+   "w1": 16,
+   "cor": 0,
+   "w2": 3,
+   "win": 1,
+   "loss": 3,
+   "knife": 3,
+   "cashed": 19
+  },
+  "ITF_M|underdog|over|le25": {
+   "n": 4,
+   "w1": 4,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 4
+  },
+  "ITF_M|underdog|over|26_50": {
+   "n": 2,
+   "w1": 1,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "ATP_MAIN|underdog|deep_disc|26_50": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "ATP_CHALL|leader|deep_disc|26_50": {
+   "n": 3,
+   "w1": 2,
+   "cor": 0,
+   "w2": 3,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 2
+  },
+  "ITF_M|leader|deep_disc|26_50": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "ITF_M|underdog|at_mid|le25": {
+   "n": 28,
+   "w1": 19,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 9,
+   "knife": 9,
+   "cashed": 19
+  },
+  "ITF_W|underdog|deep_disc|le25": {
+   "n": 26,
+   "w1": 15,
+   "cor": 0,
+   "w2": 1,
+   "win": 1,
+   "loss": 11,
+   "knife": 10,
+   "cashed": 14
+  },
+  "ITF_M|underdog|disc|51_75": {
+   "n": 2,
+   "w1": 1,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "ITF_M|leader|over|ge75": {
+   "n": 6,
+   "w1": 5,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 5
+  },
+  "ITF_W|underdog|deep_over|le25": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 0
+  },
+  "ATP_CHALL|leader|deep_over|51_75": {
+   "n": 2,
+   "w1": 1,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 1
+  },
+  "ITF_W||at_mid|26_50": {
+   "n": 39,
+   "w1": 33,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 5,
+   "knife": 5,
+   "cashed": 34
+  },
+  "ITF_M||disc|le25": {
+   "n": 29,
+   "w1": 16,
+   "cor": 0,
+   "w2": 2,
+   "win": 0,
+   "loss": 12,
+   "knife": 12,
+   "cashed": 17
+  },
+  "ATP_CHALL|underdog|over|le25": {
+   "n": 3,
+   "w1": 1,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 2
+  },
+  "ATP_CHALL|underdog|at_mid|51_75": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "ITF_M||at_mid|26_50": {
+   "n": 43,
+   "w1": 32,
+   "cor": 2,
+   "w2": 4,
+   "win": 0,
+   "loss": 9,
+   "knife": 9,
+   "cashed": 34
+  },
+  "WTA_MAIN|underdog|deep_disc|26_50": {
+   "n": 1,
+   "w1": 1,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "ITF_M|leader|deep_disc|ge75": {
+   "n": 9,
+   "w1": 7,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 7
+  },
+  "ITF_W|underdog|deep_over|ge75": {
+   "n": 2,
+   "w1": 1,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 1
+  },
+  "ITF_W|underdog|deep_over|26_50": {
+   "n": 4,
+   "w1": 4,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 4
+  },
+  "ITF_W||deep_disc|51_75": {
+   "n": 30,
+   "w1": 21,
+   "cor": 0,
+   "w2": 1,
+   "win": 2,
+   "loss": 9,
+   "knife": 9,
+   "cashed": 19
+  },
+  "ITF_W|leader|over|51_75": {
+   "n": 4,
+   "w1": 4,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 4
+  },
+  "ITF_M|leader|over|51_75": {
+   "n": 2,
+   "w1": 2,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "ITF_W|underdog|over|26_50": {
+   "n": 2,
+   "w1": 1,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 1
+  },
+  "ITF_W|leader|deep_over|ge75": {
+   "n": 2,
+   "w1": 2,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "ATP_MAIN|leader|disc|ge75": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "ITF_M||deep_over|51_75": {
+   "n": 3,
+   "w1": 1,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 1
+  },
+  "WTA_MAIN|underdog|deep_disc|le25": {
+   "n": 1,
+   "w1": 1,
+   "cor": 0,
+   "w2": 1,
+   "win": 1,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 0
+  },
+  "WTA_MAIN|leader|deep_over|ge75": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 0
+  },
+  "ATP_MAIN|leader|deep_disc|ge75": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 0,
+   "win": 1,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 0
+  },
+  "ATP_CHALL|leader|over|51_75": {
+   "n": 2,
+   "w1": 2,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "ITF_M|leader|at_mid|26_50": {
+   "n": 2,
+   "w1": 2,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "WTA_CHALL|underdog|at_mid|le25": {
+   "n": 5,
+   "w1": 3,
+   "cor": 1,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 4
+  },
+  "WTA_CHALL|leader|at_mid|ge75": {
+   "n": 7,
+   "w1": 4,
+   "cor": 0,
+   "w2": 3,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 6
+  },
+  "WTA_CHALL|underdog|at_mid|26_50": {
+   "n": 10,
+   "w1": 9,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 9
+  },
+  "WTA_CHALL|leader|disc|51_75": {
+   "n": 9,
+   "w1": 7,
+   "cor": 0,
+   "w2": 2,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 7
+  },
+  "WTA_CHALL|leader|disc|ge75": {
+   "n": 4,
+   "w1": 2,
+   "cor": 0,
+   "w2": 3,
+   "win": 0,
+   "loss": 1,
+   "knife": 0,
+   "cashed": 3
+  },
+  "WTA_CHALL|underdog|deep_disc|le25": {
+   "n": 2,
+   "w1": 1,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 1
+  },
+  "ATP_CHALL|leader|deep_over|ge75": {
+   "n": 2,
+   "w1": 2,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "WTA_CHALL|leader|at_mid|51_75": {
+   "n": 12,
+   "w1": 8,
+   "cor": 2,
+   "w2": 6,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 10
+  },
+  "WTA_CHALL|underdog|deep_disc|26_50": {
+   "n": 5,
+   "w1": 4,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 4
+  },
+  "ATP_CHALL|leader|deep_disc|ge75": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 0
+  },
+  "WTA_CHALL|underdog|disc|le25": {
+   "n": 4,
+   "w1": 3,
+   "cor": 0,
+   "w2": 2,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 3
+  },
+  "ATP_CHALL||deep_disc|le25": {
+   "n": 8,
+   "w1": 3,
+   "cor": 3,
+   "w2": 1,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 6
+  },
+  "ITF_W||deep_disc|le25": {
+   "n": 29,
+   "w1": 23,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 5,
+   "knife": 4,
+   "cashed": 24
+  },
+  "ITF_M||deep_disc|51_75": {
+   "n": 28,
+   "w1": 21,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 7,
+   "knife": 7,
+   "cashed": 21
+  },
+  "WTA_MAIN||over|51_75": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "ITF_W|leader|deep_disc|ge75": {
+   "n": 3,
+   "w1": 3,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 3
+  },
+  "ITF_M||deep_disc|ge75": {
+   "n": 12,
+   "w1": 10,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 10
+  },
+  "ITF_W|leader|deep_over|51_75": {
+   "n": 2,
+   "w1": 1,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 1
+  },
+  "ITF_M||deep_disc|le25": {
+   "n": 38,
+   "w1": 21,
+   "cor": 1,
+   "w2": 1,
+   "win": 0,
+   "loss": 16,
+   "knife": 15,
+   "cashed": 22
+  },
+  "ITF_M||deep_disc|26_50": {
+   "n": 31,
+   "w1": 24,
+   "cor": 1,
+   "w2": 3,
+   "win": 1,
+   "loss": 5,
+   "knife": 5,
+   "cashed": 25
+  },
+  "WTA_CHALL||at_mid|le25": {
+   "n": 13,
+   "w1": 5,
+   "cor": 1,
+   "w2": 6,
+   "win": 0,
+   "loss": 3,
+   "knife": 3,
+   "cashed": 10
+  },
+  "ITF_W||deep_disc|ge75": {
+   "n": 13,
+   "w1": 12,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 12
+  },
+  "WTA_CHALL||disc|ge75": {
+   "n": 6,
+   "w1": 4,
+   "cor": 1,
+   "w2": 2,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 6
+  },
+  "ITF_M|underdog|at_mid|ge75": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 0
+  },
+  "ATP_CHALL||disc|ge75": {
+   "n": 9,
+   "w1": 4,
+   "cor": 0,
+   "w2": 4,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 8
+  },
+  "ITF_W||deep_disc|26_50": {
+   "n": 35,
+   "w1": 31,
+   "cor": 0,
+   "w2": 1,
+   "win": 1,
+   "loss": 5,
+   "knife": 4,
+   "cashed": 29
+  },
+  "WTA_CHALL||at_mid|26_50": {
+   "n": 14,
+   "w1": 8,
+   "cor": 2,
+   "w2": 8,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 14
+  },
+  "WTA_CHALL|leader|deep_disc|51_75": {
+   "n": 2,
+   "w1": 1,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "ITF_W|underdog|disc|51_75": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 0
+  },
+  "ITF_M||at_mid|51_75": {
+   "n": 29,
+   "w1": 21,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 7,
+   "knife": 7,
+   "cashed": 22
+  },
+  "ITF_W|underdog|deep_disc|51_75": {
+   "n": 3,
+   "w1": 2,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 2
+  },
+  "ITF_M||disc|51_75": {
+   "n": 39,
+   "w1": 28,
+   "cor": 1,
+   "w2": 3,
+   "win": 1,
+   "loss": 7,
+   "knife": 7,
+   "cashed": 31
+  },
+  "ITF_W||disc|51_75": {
+   "n": 34,
+   "w1": 28,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 6,
+   "knife": 6,
+   "cashed": 28
+  },
+  "WTA_CHALL||disc|26_50": {
+   "n": 2,
+   "w1": 1,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "WTA_CHALL||disc|le25": {
+   "n": 4,
+   "w1": 2,
+   "cor": 0,
+   "w2": 2,
+   "win": 0,
+   "loss": 1,
+   "knife": 0,
+   "cashed": 3
+  },
+  "WTA_CHALL||at_mid|51_75": {
+   "n": 8,
+   "w1": 4,
+   "cor": 0,
+   "w2": 6,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 8
+  },
+  "WTA_CHALL||disc|51_75": {
+   "n": 7,
+   "w1": 5,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 5
+  },
+  "ITF_M||over|le25": {
+   "n": 4,
+   "w1": 3,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 3
+  },
+  "ITF_W||at_mid|51_75": {
+   "n": 38,
+   "w1": 35,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 3,
+   "knife": 3,
+   "cashed": 35
+  },
+  "ITF_W||disc|ge75": {
+   "n": 15,
+   "w1": 15,
+   "cor": 0,
+   "w2": 0,
+   "win": 1,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 14
+  },
+  "ITF_W||over|le25": {
+   "n": 4,
+   "w1": 4,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 4
+  },
+  "WTA_MAIN|leader|disc|26_50": {
+   "n": 1,
+   "w1": 1,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "ITF_W||over|51_75": {
+   "n": 8,
+   "w1": 6,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 6
+  },
+  "WTA_CHALL||deep_disc|le25": {
+   "n": 4,
+   "w1": 2,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 3,
+   "knife": 2,
+   "cashed": 1
+  },
+  "WTA_CHALL||deep_disc|51_75": {
+   "n": 3,
+   "w1": 1,
+   "cor": 1,
+   "w2": 2,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 2
+  },
+  "ITF_W||deep_over|51_75": {
+   "n": 4,
+   "w1": 2,
+   "cor": 0,
+   "w2": 0,
+   "win": 1,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 1
+  },
+  "ITF_W|underdog|deep_disc|ge75": {
+   "n": 1,
+   "w1": 1,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "ITF_W||over|ge75": {
+   "n": 3,
+   "w1": 3,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 3
+  },
+  "ITF_W||deep_over|26_50": {
+   "n": 3,
+   "w1": 2,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 2
+  },
+  "ITF_W|leader|over|ge75": {
+   "n": 3,
+   "w1": 2,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 2
+  },
+  "ITF_W||over|26_50": {
+   "n": 4,
+   "w1": 3,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 3
+  },
+  "WTA_CHALL||at_mid|ge75": {
+   "n": 8,
+   "w1": 4,
+   "cor": 0,
+   "w2": 3,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 7
+  },
+  "ITF_M||deep_over|ge75": {
+   "n": 3,
+   "w1": 2,
+   "cor": 0,
+   "w2": 0,
+   "win": 1,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "WTA_CHALL||deep_disc|26_50": {
+   "n": 4,
+   "w1": 1,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 2
+  },
+  "ITF_M||over|ge75": {
+   "n": 2,
+   "w1": 1,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 1
+  },
+  "WTA_CHALL||over|ge75": {
+   "n": 1,
+   "w1": 1,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "ITF_M||deep_over|26_50": {
+   "n": 3,
+   "w1": 1,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 2,
+   "knife": 2,
+   "cashed": 1
+  },
+  "WTA_CHALL||over|le25": {
+   "n": 1,
+   "w1": 1,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "WTA_CHALL|leader|deep_disc|ge75": {
+   "n": 2,
+   "w1": 2,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 2
+  },
+  "ATP_CHALL||deep_over|26_50": {
+   "n": 1,
+   "w1": 1,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "WTA_MAIN||deep_disc|51_75": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 0
+  },
+  "ATP_CHALL||over|le25": {
+   "n": 1,
+   "w1": 0,
+   "cor": 1,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "WTA_CHALL||over|51_75": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 0
+  },
+  "ATP_CHALL|underdog|deep_over|26_50": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "ITF_M||deep_over|le25": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 0
+  },
+  "ITF_M||over|51_75": {
+   "n": 2,
+   "w1": 0,
+   "cor": 0,
+   "w2": 1,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 1
+  },
+  "ITF_M|underdog|deep_over|le25": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 0
+  },
+  "ITF_M|underdog|at_mid|51_75": {
+   "n": 1,
+   "w1": 1,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "ITF_M|underdog|deep_over|51_75": {
+   "n": 1,
+   "w1": 1,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 0,
+   "knife": 0,
+   "cashed": 1
+  },
+  "ITF_M|underdog|disc|ge75": {
+   "n": 1,
+   "w1": 0,
+   "cor": 0,
+   "w2": 0,
+   "win": 0,
+   "loss": 1,
+   "knife": 1,
+   "cashed": 0
+  }
+ }
+}

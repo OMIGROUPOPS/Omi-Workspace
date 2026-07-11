@@ -16,10 +16,11 @@
 | M12 | OS decision core (regime/timing/posture) | L4–L6 | `oslayer/decision_core.py` | all | SHADOW (os_active dormant, 4 conditions open) | cites M1/M2 — inherits their eras |
 | M13 | Flow-state gauge thresholds | L2/L3 | monitor + fallback bell constants | ITF/CHALL (mains excluded) | PROVISIONAL (early-canvas fit; bell fires self-graded nightly) | live-era |
 | M14 | Stranded-winner β / entry-blend arcs | L5 posture | `analysis/stranded/`, entry-blend arc docs | studied cats | NO-SHIP verdicts (graves with lessons) | historical studies — context only |
+| M15 | **Three-price range layer** (WINDOW_MAP_3WAY axes: fill−runmid bucket × price cell × W1/COR/W2, per cat per side; reach/win/cash/knife) | L4–L7 anchor | `.claude/range_layer/RANGE_LAYER_3WAY.json` (builder `analysis/range_layer_build.py`) | all 6 (2,783 era-admissible legs, 204 cells, 112 at n≥5) | composer-wired (range_prior; gate test iv PASS); archive-CHALL coarse addendum pending | live-era book Jun 26→today; census law in header; ITF live-only by construction |
 
 **NAMED GAPS (no admissible anchor — the composer must return NO-OPINION here, never a guess):**
 - **G1: W1 direction prior, mains** — mains clocks convicted + mains excluded from gauge fits → no admissible discovery-time direction model for ATP_MAIN/WTA_MAIN.
-- **G2: per-category W1 volatility map as a standalone artifact** — spike/drop likelihood exists only implicitly (M1 dip depths, M4 traverse); no dedicated fitted volatility surface. Composer cites M1/M2/M4 jointly and says so.
+- **G2: ~~per-category W1 volatility map~~ — FILLED 07-10 by M15** (the June WINDOW_MAP_3WAY framework era-stamped, not a new invention); residual: archive-CHALL coarse addendum + thin cells (92/204 under n=5) stay NO-OPINION.
 - **G3: in-play price model** — beyond the tape itself, nothing fitted for in-play dynamics (by §0A design: exits solved on foundation; entries premarket). Posterior in-play = tape-weighted only.
 - **G4: ITF archive T-relative ranges** — do not exist (M9 has no ITF); anything T-relative for ITF must come from live-era artifacts (M1–M4, M13).
 - **G5: cash-convention** — dollar-precise conviction grading blocked pending −1a000.

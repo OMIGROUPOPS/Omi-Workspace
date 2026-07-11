@@ -165,7 +165,11 @@ def parse_session(log_path):
                                   "divergence": d.get("divergence")})
             elif e == "bell_missing":
                 all_extra = S.setdefault("_extra_pats", [])
+                # [07-11 FIX] every type=="violation" item MUST carry "cls" --
+                # forensic_check groups on it; this one shipped without it and
+                # the first live bell_missing (04:10 am) crashed every cycle after.
                 all_extra.append({"type": "violation", "pattern": "bell_missing",
+                                  "cls": "bell_missing",
                                   "event": d.get("event"), "ticker": d.get("event"),
                                   "ts": ts, "key": f"bm|{d.get('event')}",
                                   "min_past_start": d.get("min_past_start")})
@@ -594,8 +598,12 @@ def forensic_check(all_lines, S, log_path):
                  f"Patch conversation starts NOW.", "",
                  f"## Events ({len(vs)} total this session)"]
         for v in vs:
+            # [07-11 FIX] not every violation item carries "detail" (bell_missing
+            # doesn't) -- render whatever fields it has instead of crashing.
+            det = v.get("detail") or json.dumps({k: x for k, x in v.items()
+                                                 if k not in ("type", "key", "ts", "cls")})
             lines.append(f"- {datetime.fromtimestamp(v['ts'], ET).strftime('%H:%M:%S')} "
-                         f"{v.get('ticker') or v.get('event') or ''} — {v['detail']}")
+                         f"{v.get('ticker') or v.get('event') or ''} — {det}")
         lines += ["", "## Timeline (raw log lines for the burst pair)"]
         keys = {v.get("ticker") or v.get("event") or "" for v in burst if (v.get("ticker") or v.get("event"))}
         if keys:
@@ -901,14 +909,27 @@ def main():
     ap.add_argument("--interval", type=int, default=600)
     args = ap.parse_args()
     n = 0
+    crashes = 0   # [07-11 MONITOR-BLIND class] nobody watches the watcher:
+    # 7h of every-cycle crashes rendered nothing and nothing said so.
+    # >=3 consecutive crashed cycles -> the BOT_DOWN ntfy channel.
     while True:
         n += 1
         try:
             cycle(n)
+            crashes = 0
         except Exception as e:
             import traceback
             print(f"[{now_et()}] CYCLE {n} CRASHED (loop continues): {e}\n{traceback.format_exc()}",
                   flush=True)
+            crashes += 1
+            if crashes == 3:
+                try:
+                    subprocess.run(["/root/notify.sh",
+                                    "live_monitor: 3 consecutive cycles CRASHED -- "
+                                    "LIVE_STATUS is stale; last error: %s" % e],
+                                   timeout=30)
+                except Exception:
+                    pass
         if args.once:
             break
         time.sleep(args.interval)

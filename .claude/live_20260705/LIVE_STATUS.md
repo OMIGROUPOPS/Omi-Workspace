@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 9 @ **2026-07-12 05:42:30 PM ET** | build `24a54d23` | session boot 07-12 17:18 ET | log `live_v3_20260712.jsonl` | 1694 session events | monitor READ-ONLY
+- cycle 10 @ **2026-07-12 05:52:33 PM ET** | build `2ac19291` | session boot 07-12 17:18 ET | log `live_v3_20260712.jsonl` | 2140 session events | monitor READ-ONLY
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
@@ -16,8 +16,8 @@ none yet this session
 - classes now: {'FLOW_ABOVE': 1, 'NO_FLOW': 1} | repriceable now: true 0 / false 2 | **cumulative bid_grade lines: 8710 (repriceable true 1276 / false 7434)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL12YOUDLI-D | 36 | 23m | 4/43-44/134 | 42-43 | 7 | **FLOW_ABOVE** | 40 | flow above but bound 40c < flow -- chasing breaks goal |
-| ATPMATCH-26JUL12ALTGAS-ALT | 55 | 23m | 0 | 57-59 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL12YOUDLI-D | 36 | 33m | 5/43-44/142 | 42-43 | 7 | **FLOW_ABOVE** | 40 | flow above but bound 40c < flow -- chasing breaks goal |
+| ATPMATCH-26JUL12ALTGAS-ALT | 55 | 33m | 0 | 57-59 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 no open half-pairs
@@ -25,7 +25,7 @@ no open half-pairs
 ## FLOW-STATE — 2 tracked game(s) ({'WAKING': 2}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL12YOUDLI | ATP_CHALL | 0.167 | 1 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL12YOUDLI | ATP_CHALL | 0.133 | 1 | **WAKING** |
 | ATPMATCH-26JUL12ALTGAS | ATP_MAIN | 0.0 | 2 | **WAKING** |
 
 ## PATTERNS (sub-B) — 0

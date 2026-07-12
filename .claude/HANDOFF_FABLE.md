@@ -33,7 +33,20 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-11 late night — C50 keeps this current):
+## STATE (2026-07-11 midday — C50 keeps this current):
+C-MORNING-TRIAGE-0711 done: bot ALIVE all night (audit PASS 16 pos/
+57 resting/0 flags); monitor was BLIND 04:09am-12:01pm (bell_missing
+item lacked 'cls' -> forensic_check crashed every cycle, swallowed;
+3 sites fixed failing-then-passing d81a0709/c55f576c; tripwire: 3
+consecutive crashes -> ntfy; MONITOR-BLIND class founded). The 16
+SUSPECT scorecard rows: Kalshi schedule lied 1-6h LATE (tz-shaped),
+te_honest was RIGHT, bell fired at true onset (tape-proven, matches
+ENDED before "scheduled start"); scorecard truth = premarket dribble
+(tape_onset >=5-of-15-any-size rule) -> TRUTH-JOIN DRIBBLE-ONSET
+class founded; SHADOW-GUN GRADES INADMISSIBLE for cutover until -0k
+(onset flow-step fix + clean regrade night). Forensic:
+.claude/triage_20260711/. QUEUE: -0k onset fix (build) -> -0j
+walk-cap word -> gun cutover (after -0k) -> taker word.
 C-SYSTEM-PAGE v1 shipped (3062d639): /system is the viewer's third
 page — census artifact regenerated per deploy (--emit in the deploy
 script, DRIFT hash honest: pin predates composer deploy), config

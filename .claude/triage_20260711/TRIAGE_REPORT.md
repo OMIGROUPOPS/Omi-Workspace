@@ -1,0 +1,37 @@
+# C-MORNING-TRIAGE-0711 v1 — bot health · SUSPECT cluster forensic · the bell graded
+
+Written 2026-07-11 ~12:15 pm ET. Read-only except the monitor fix/restart (no bot restart — the bot never needed one).
+Raw evidence: `.claude/triage_20260711/SUSPECT_FORENSIC.json` (per-event fire details, clock entries, hourly tape histograms).
+
+## PART 0 — BOT HEALTH: ALIVE AND TRADING THE MORNING SLATE
+
+- Process: PID 3164947 up since the 12:38 am composer deploy (`dce5ef7c`), tmux `live_v4`. Log appending live at 11:33 am (staircase holds on the ATP_CHALL morning slate). Zero downtime — **no restart performed, none needed.**
+- Audited path: steady-cadence book audit **11:20:48 am — verdict PASS, 16 positions, 57 resting orders, 0 failures, 0 flags** (bot-vs-exchange on the C47 jsonl path).
+- **The monitor outage, rooted:** LIVE_STATUS stopped at 4:09 am because the monitor's `bell_missing` violation item shipped **without the `cls` key** — the first live `bell_missing` (04:10:14 am, STATOM) made `forensic_check` throw `KeyError: 'cls'` and the per-cycle catch swallowed it **every cycle for ~7h52m** (04:09 am → 12:01 pm). The replay harness then exposed **two more sites in the same family** (`v['detail']` assumed in the forensic block writer AND in the write_status violations table — bell_missing carries neither). All three fixed failing-then-passing (`d81a0709`, `c55f576c`); monitor restarted, **cycle 1 clean 12:01:45 pm, rendering and pushing again.**
+- **The watchdog gap IS a new class — MONITOR-BLIND, filed:** nothing watches the watcher; a monitor that crashes every cycle looks identical to a quiet night. Structural tripwire shipped with the fix: **3 consecutive crashed cycles → the BOT_DOWN ntfy channel.** (Irony on the record: the render outage was caused by the bell's own zero-tolerance line — the instrument that worked broke the instrument that watches.)
+
+## PART 1 — THE SUSPECT CLUSTER: ONE VERDICT, SIXTEEN ROWS
+
+(The dispatch said fourteen; the table carries **16** rows tagged `SUSPECT(truth_predates_fresh_fire)` — all sixteen ruled.)
+
+**Verdict, uniform across all 16: the KALSHI SCHEDULE was the liar (1–6 hours LATE); the bot's te_honest anchor carried the REAL start; the bell fired at true match onset; and the scorecard's "truth" is a third number — premarket dribble caught by a too-loose onset rule.** Neither a per-match-clock defect nor real-tape-before-honest-start: the honest clock was RIGHT and the truth instrument graded it against noise.
+
+Three mutually confirming instruments per row (full numbers in SUSPECT_FORENSIC.json):
+1. **Fire condition path (Part 2's column, from gun_fired details):** 14/16 fired `start_passed=True, anchor_src=te_honest, rise=0` — the gauge-plus-start path on the honest clock. 2/16 fired the clock-liar escape: MONHER (`rise=4`, 16 min before its own te_honest start, tape ramping) and POLMIY-adjacent KALTIK (non-suspect; `rise=6, rate=34.9, anchor_src=kalshi_schedule` — te_honest absent).
+2. **Hourly tape histograms:** every suspect's tape goes from dribble (units/hour) to match-grade flow (hundreds→thousands/hour) **within minutes of the fire**, sustains 1.5–3.5 h, and **ENDS hours before the Kalshi "scheduled start"** — e.g. SHIROB: fire 3:30:18 am, flow 418→4,226→4,540/hr, tape ends 6:41 am, Kalshi sched 9:30 am (the match was settled before its "scheduled" first ball); POLMIY: fire 6:00:26 pm, 3,771→10,056/hr, tape ends 7:45 pm, sched **midnight**; NAKMAT: fire 11:30 pm, 4,905→13,558→13,584/hr, ends 2:35 am, sched 5:00 am; HUEBUT (ATP): fire 4:00:22 am, 2,146/hr, ends 5:29 am, sched 7:00 am.
+3. **te_honest offsets are timezone-shaped:** ITF suspects uniformly sched−6h (9:30→3:30, 10:00→4:00, 7:00→2:00 — CEST↔ET), ATP mains −1h to −3h (tournament-local). The schedule column carried venue-local times mis-stamped as ET.
+
+**Where the scorecard's "truth" came from:** `tape_onset` fires on the first minute with prints in ≥5 of the trailing 15 one-minute bins, **any size**. Overnight European premarket dribble (~1 print/min sustained — MONHER 01:00–03:00 = 76/78/54 prints/hr) passes that rule 75–115 min before the real onset. So `truth_predates_fresh_fire` measured the ONSET RULE, not the fires. The SUSPECT quarantine did its job (none averaged into med|Δ|) — but the instrument needs a flow-STEP requirement, filed below.
+
+- Class filings: **LYING CLOCK (Kalshi schedule), 16 instances in one night — DEFENSE HELD** (anchor hierarchy overrode with te_honest; no live harm; no new class — this is the known schedule-lie phenomenon at slate scale). **TRUTH-JOIN DRIBBLE-ONSET — NEW CLASS founded** (the truth instrument, not the gun): onset rule accepts sustained dribble as match onset. Kill bar: onset requires a rate step vs trailing baseline (e.g. ≥5-of-15 active AND trailing-15 print rate ≥ K× the prior hour's), then one clean regrade night.
+
+**Admissibility of last night's shadow-gun grades for a cutover decision: NO — not admissible as-is.** (a) The truth instrument itself is the defect: 16/33 fire rows quarantined, and the surviving joins grade against the same loose rule; (b) per-cat within-±3 samples are n=2/6 (ITF_M) and n=3/6 (ITF_W) — too thin even before (a); (c) the 71 `percat_gun_shadow` would-fires from last night have no trustworthy truth to grade against until the onset rule is fixed. **Cutover evidence restarts with the fixed onset rule + one clean regrade night, then the operator's word.** (The LIVE bell needs no such caveat — its grades below rest on the raw tape, not the join.)
+
+## PART 2 — THE BELL, GRADED: IT WAS THE ONLY INSTRUMENT THAT WORKED LAST NIGHT
+
+- **The mass simultaneous fires are correct behavior, not a defect.** The 3:30:18 six (SHIROB, TYAMON, ERCHRU, HOSCIR, SMILEY, SAGYOD) all share te_honest = 3:30:00 am; the 4:00:22 five (HUEBUT, TABJEB, DENSTR, KARSUP, SHEYAM) share te_honest = 4:00:00 am — venue slates start together. Every cluster fire cites `start_passed=True` on te_honest with the 10-min rate gauge already satisfied: **gauge-plus-start, zero escape-hatch fires in either cluster.** The bells rang 18–22 s after the honest starts because that was the first gun poll past the start.
+- **The escape hatch fired twice all night, both on tape-confirmed reality, neither on an event hours from its real start:** MONHER (rise 4¢, 16 min before its te_honest 5:30 am; the match's flow ramp was already underway — tape 355→1,514→3,074→7,181/hr, ends 9:01 am) and KALTIK (rise 6¢ at rate 34.9/min where te_honest was absent and only the lying kalshi_schedule anchor existed). **No threshold review item — the escape did exactly what SAIDEL demanded of it.**
+- Said plainly, per the dispatch's own framing: **the clock was the liar and the bell caught reality.** On a night when the Kalshi schedule was 1–6 h late across the slate, the bell put the bot in-play at true onset on ~31 events; its two known misses (bell_missing SNIMAZ 5:10 am, STATOM 4:10 am — both fired ~10 min past start, flagged by the zero-tolerance line) are the exhibit that the missing-bell tripwire also works. The one cost it exacted was indirect: the first bell_missing crashed the unprepared monitor (Part 0).
+
+## CONSTRAINTS
+§0A untouched (no exit surface touched) · one dispatch · read-only throughout except the monitor fix+restart (not on the bot/gate path; bot never restarted). No config changed, no knob moved, no scorecard code touched (the onset-rule fix is FILED, not built — build-before-rerun discipline).

@@ -1,0 +1,1355 @@
+{
+ "KXATPMATCH-26JUL11HUEBUT": {
+  "gun_fired": {
+   "ts": "2026-07-11 04:00:22 AM ET",
+   "event": "KXATPMATCH-26JUL11HUEBUT",
+   "source": "fallback_bell",
+   "tts_legacy_min": 179.6,
+   "tts_honest_min": -0.4,
+   "vol_prints_30m": 48,
+   "prints_10m": 48,
+   "rate_per_min": 4.8,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 01:57:35 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:25:57 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 07:01:10 PM ET",
+    "event": "KXATPMATCH-26JUL11HUEBUT",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783756800.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 180.0
+   },
+   {
+    "ts": "2026-07-10 11:14:21 PM ET",
+    "event": "KXATPMATCH-26JUL11HUEBUT",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783756800.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 180.0
+   },
+   {
+    "ts": "2026-07-10 11:56:58 PM ET",
+    "event": "KXATPMATCH-26JUL11HUEBUT",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783756800.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 180.0
+   },
+   {
+    "ts": "2026-07-11 12:47:21 AM ET",
+    "event": "KXATPMATCH-26JUL11HUEBUT",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783756800.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 180.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 18": 7,
+   "07-10 19": 12,
+   "07-10 20": 6,
+   "07-10 21": 9,
+   "07-10 22": 13,
+   "07-10 23": 20,
+   "07-11 00": 43,
+   "07-11 01": 83,
+   "07-11 02": 148,
+   "07-11 03": 156,
+   "07-11 04": 2146,
+   "07-11 05": 1272
+  },
+  "tape_first": "07-10 06:00 PM",
+  "tape_last": "07-11 05:29 AM",
+  "obs_start": null
+ },
+ "KXATPMATCH-26JUL11MICHEM": {
+  "gun_fired": {
+   "ts": "2026-07-11 06:00:31 AM ET",
+   "event": "KXATPMATCH-26JUL11MICHEM",
+   "source": "fallback_bell",
+   "tts_legacy_min": 59.5,
+   "tts_honest_min": -0.5,
+   "vol_prints_30m": 35,
+   "prints_10m": 32,
+   "rate_per_min": 3.2,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 01:57:35 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:25:57 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 07:01:30 PM ET",
+    "event": "KXATPMATCH-26JUL11MICHEM",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783764000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 60.0
+   },
+   {
+    "ts": "2026-07-11 01:04:27 AM ET",
+    "event": "KXATPMATCH-26JUL11MICHEM",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783764000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 60.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 16": 1,
+   "07-10 18": 2,
+   "07-10 19": 28,
+   "07-10 20": 26,
+   "07-10 21": 4,
+   "07-10 22": 6,
+   "07-10 23": 5,
+   "07-11 00": 10,
+   "07-11 01": 12,
+   "07-11 02": 22,
+   "07-11 03": 16,
+   "07-11 04": 12,
+   "07-11 05": 68,
+   "07-11 06": 654,
+   "07-11 07": 1548,
+   "07-11 08": 1741
+  },
+  "tape_first": "07-10 04:12 PM",
+  "tape_last": "07-11 08:31 AM",
+  "obs_start": null
+ },
+ "KXATPMATCH-26JUL11MONHER": {
+  "gun_fired": {
+   "ts": "2026-07-11 05:14:26 AM ET",
+   "event": "KXATPMATCH-26JUL11MONHER",
+   "source": "fallback_bell",
+   "tts_legacy_min": 105.6,
+   "tts_honest_min": 15.6,
+   "vol_prints_30m": 43,
+   "prints_10m": 41,
+   "rate_per_min": 4.1,
+   "start_passed": false,
+   "ref_rise_cents": 4,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 01:57:34 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:25:57 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 07:58:35 PM ET",
+    "event": "KXATPMATCH-26JUL11MONHER",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783762200.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 90.0
+   },
+   {
+    "ts": "2026-07-10 11:00:51 PM ET",
+    "event": "KXATPMATCH-26JUL11MONHER",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783762200.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 90.0
+   },
+   {
+    "ts": "2026-07-10 11:36:42 PM ET",
+    "event": "KXATPMATCH-26JUL11MONHER",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783762200.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 90.0
+   },
+   {
+    "ts": "2026-07-11 12:40:47 AM ET",
+    "event": "KXATPMATCH-26JUL11MONHER",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783762200.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 90.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 18": 1,
+   "07-10 19": 9,
+   "07-10 20": 14,
+   "07-10 21": 12,
+   "07-10 22": 7,
+   "07-10 23": 26,
+   "07-11 00": 44,
+   "07-11 01": 76,
+   "07-11 02": 78,
+   "07-11 03": 54,
+   "07-11 04": 37,
+   "07-11 05": 355,
+   "07-11 06": 1514,
+   "07-11 07": 3074,
+   "07-11 08": 7181,
+   "07-11 09": 4
+  },
+  "tape_first": "07-10 06:42 PM",
+  "tape_last": "07-11 09:01 AM",
+  "obs_start": null
+ },
+ "KXATPMATCH-26JUL11TABJEB": {
+  "gun_fired": {
+   "ts": "2026-07-11 04:00:22 AM ET",
+   "event": "KXATPMATCH-26JUL11TABJEB",
+   "source": "fallback_bell",
+   "tts_legacy_min": 179.6,
+   "tts_honest_min": -0.4,
+   "vol_prints_30m": 49,
+   "prints_10m": 39,
+   "rate_per_min": 3.9,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 01:57:35 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:25:57 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 05:52:00 PM ET",
+    "event": "KXATPMATCH-26JUL11TABJEB",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783756800.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 180.0
+   },
+   {
+    "ts": "2026-07-10 10:52:36 PM ET",
+    "event": "KXATPMATCH-26JUL11TABJEB",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783756800.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 180.0
+   },
+   {
+    "ts": "2026-07-10 11:35:16 PM ET",
+    "event": "KXATPMATCH-26JUL11TABJEB",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783756800.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 180.0
+   },
+   {
+    "ts": "2026-07-11 12:38:46 AM ET",
+    "event": "KXATPMATCH-26JUL11TABJEB",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783756800.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 180.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 17": 8,
+   "07-10 18": 11,
+   "07-10 19": 15,
+   "07-10 20": 46,
+   "07-10 21": 33,
+   "07-10 22": 24,
+   "07-10 23": 28,
+   "07-11 00": 71,
+   "07-11 01": 40,
+   "07-11 02": 68,
+   "07-11 03": 118,
+   "07-11 04": 849,
+   "07-11 05": 121
+  },
+  "tape_first": "07-10 05:08 PM",
+  "tape_last": "07-11 05:15 AM",
+  "obs_start": null
+ },
+ "KXITFMATCH-26JUL10NAKMAT": {
+  "gun_fired": {
+   "ts": "2026-07-10 11:30:19 PM ET",
+   "event": "KXITFMATCH-26JUL10NAKMAT",
+   "source": "fallback_bell",
+   "tts_legacy_min": 329.7,
+   "tts_honest_min": -0.3,
+   "vol_prints_30m": 13,
+   "prints_10m": 13,
+   "rate_per_min": 1.3,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 11:15:04 AM ET",
+    "start_time": "2026-07-11T05:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 01:13:06 PM ET",
+    "start_time": "2026-07-11T05:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T05:00:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 04:15:59 PM ET",
+    "event": "KXITFMATCH-26JUL10NAKMAT",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783760400.0,
+    "te_honest_start": 1783740600.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 330.0
+   },
+   {
+    "ts": "2026-07-10 05:11:20 PM ET",
+    "event": "KXITFMATCH-26JUL10NAKMAT",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783760400.0,
+    "te_honest_start": 1783740600.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 330.0
+   },
+   {
+    "ts": "2026-07-10 06:00:26 PM ET",
+    "event": "KXITFMATCH-26JUL10NAKMAT",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783760400.0,
+    "te_honest_start": 1783740600.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 330.0
+   },
+   {
+    "ts": "2026-07-10 10:47:58 PM ET",
+    "event": "KXITFMATCH-26JUL10NAKMAT",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783760400.0,
+    "te_honest_start": 1783740600.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 330.0
+   },
+   {
+    "ts": "2026-07-10 11:27:23 PM ET",
+    "event": "KXITFMATCH-26JUL10NAKMAT",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783760400.0,
+    "te_honest_start": 1783740600.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 330.0
+   },
+   {
+    "ts": "2026-07-11 01:55:45 AM ET",
+    "event": "KXITFMATCH-26JUL10NAKMAT",
+    "anchor_source": "gun_truth",
+    "kalshi_start": 1783760400.0,
+    "te_honest_start": 1783740600.0,
+    "gun_fired_ts": 1783740619.7171621,
+    "disagreement_min": 330.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 13": 2,
+   "07-10 14": 4,
+   "07-10 15": 3,
+   "07-10 16": 31,
+   "07-10 17": 25,
+   "07-10 18": 24,
+   "07-10 19": 77,
+   "07-10 20": 163,
+   "07-10 21": 152,
+   "07-10 22": 283,
+   "07-10 23": 1028,
+   "07-11 00": 4905,
+   "07-11 01": 13558,
+   "07-11 02": 13584
+  },
+  "tape_first": "07-10 01:10 PM",
+  "tape_last": "07-11 02:35 AM",
+  "obs_start": null
+ },
+ "KXITFMATCH-26JUL10POLMIY": {
+  "gun_fired": {
+   "ts": "2026-07-10 06:00:26 PM ET",
+   "event": "KXITFMATCH-26JUL10POLMIY",
+   "source": "fallback_bell",
+   "tts_legacy_min": 359.6,
+   "tts_honest_min": -0.4,
+   "vol_prints_30m": 72,
+   "prints_10m": 72,
+   "rate_per_min": 7.2,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 06:12:18 AM ET",
+    "start_time": "2026-07-11T00:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 01:13:07 PM ET",
+    "start_time": "2026-07-11T00:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T00:00:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 02:00:41 PM ET",
+    "event": "KXITFMATCH-26JUL10POLMIY",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783742400.0,
+    "te_honest_start": 1783720800.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-10 05:10:05 PM ET",
+    "event": "KXITFMATCH-26JUL10POLMIY",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783742400.0,
+    "te_honest_start": 1783720800.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-10 05:26:20 PM ET",
+    "event": "KXITFMATCH-26JUL10POLMIY",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783742400.0,
+    "te_honest_start": 1783720800.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 14": 6,
+   "07-10 15": 11,
+   "07-10 16": 42,
+   "07-10 17": 265,
+   "07-10 18": 3771,
+   "07-10 19": 10056
+  },
+  "tape_first": "07-10 02:39 PM",
+  "tape_last": "07-10 07:45 PM",
+  "obs_start": null
+ },
+ "KXITFMATCH-26JUL11DOUROB": {
+  "gun_fired": {
+   "ts": "2026-07-11 04:30:35 AM ET",
+   "event": "KXITFMATCH-26JUL11DOUROB",
+   "source": "fallback_bell",
+   "tts_legacy_min": 359.4,
+   "tts_honest_min": -0.6,
+   "vol_prints_30m": 29,
+   "prints_10m": 29,
+   "rate_per_min": 2.9,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 04:41:39 PM ET",
+    "start_time": "2026-07-11T10:30:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T10:30:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:25:58 PM ET",
+    "start_time": "2026-07-11T10:30:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 08:06:47 PM ET",
+    "event": "KXITFMATCH-26JUL11DOUROB",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783780200.0,
+    "te_honest_start": 1783758600.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-10 10:56:02 PM ET",
+    "event": "KXITFMATCH-26JUL11DOUROB",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783780200.0,
+    "te_honest_start": 1783758600.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-10 11:43:20 PM ET",
+    "event": "KXITFMATCH-26JUL11DOUROB",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783780200.0,
+    "te_honest_start": 1783758600.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-11 12:38:54 AM ET",
+    "event": "KXITFMATCH-26JUL11DOUROB",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783780200.0,
+    "te_honest_start": 1783758600.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 17": 4,
+   "07-10 18": 4,
+   "07-10 19": 3,
+   "07-10 20": 18,
+   "07-10 21": 13,
+   "07-10 22": 8,
+   "07-10 23": 11,
+   "07-11 00": 20,
+   "07-11 01": 14,
+   "07-11 02": 31,
+   "07-11 03": 24,
+   "07-11 04": 233,
+   "07-11 05": 371
+  },
+  "tape_first": "07-10 05:02 PM",
+  "tape_last": "07-11 05:56 AM",
+  "obs_start": null
+ },
+ "KXITFMATCH-26JUL11SHIROB": {
+  "gun_fired": {
+   "ts": "2026-07-11 03:30:18 AM ET",
+   "event": "KXITFMATCH-26JUL11SHIROB",
+   "source": "fallback_bell",
+   "tts_legacy_min": 359.7,
+   "tts_honest_min": -0.3,
+   "vol_prints_30m": 12,
+   "prints_10m": 10,
+   "rate_per_min": 1.0,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 03:46:24 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:25:58 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 11:30:35 PM ET",
+    "event": "KXITFMATCH-26JUL11SHIROB",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-11 12:38:48 AM ET",
+    "event": "KXITFMATCH-26JUL11SHIROB",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 15": 1,
+   "07-10 17": 2,
+   "07-10 18": 5,
+   "07-10 19": 3,
+   "07-10 20": 6,
+   "07-10 21": 1,
+   "07-10 22": 1,
+   "07-10 23": 6,
+   "07-11 00": 6,
+   "07-11 01": 11,
+   "07-11 02": 30,
+   "07-11 03": 418,
+   "07-11 04": 4226,
+   "07-11 05": 4540,
+   "07-11 06": 4552
+  },
+  "tape_first": "07-10 03:58 PM",
+  "tape_last": "07-11 06:41 AM",
+  "obs_start": null
+ },
+ "KXITFMATCH-26JUL11TYAMON": {
+  "gun_fired": {
+   "ts": "2026-07-11 03:30:18 AM ET",
+   "event": "KXITFMATCH-26JUL11TYAMON",
+   "source": "fallback_bell",
+   "tts_legacy_min": 359.7,
+   "tts_honest_min": -0.3,
+   "vol_prints_30m": 19,
+   "prints_10m": 10,
+   "rate_per_min": 1.0,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 03:46:24 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:25:58 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 07:35:23 PM ET",
+    "event": "KXITFMATCH-26JUL11TYAMON",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-10 11:25:23 PM ET",
+    "event": "KXITFMATCH-26JUL11TYAMON",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-10 11:30:02 PM ET",
+    "event": "KXITFMATCH-26JUL11TYAMON",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-11 12:38:48 AM ET",
+    "event": "KXITFMATCH-26JUL11TYAMON",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 15": 1,
+   "07-10 16": 3,
+   "07-10 17": 1,
+   "07-10 18": 2,
+   "07-10 19": 13,
+   "07-10 20": 14,
+   "07-10 21": 17,
+   "07-10 22": 4,
+   "07-10 23": 10,
+   "07-11 00": 20,
+   "07-11 01": 29,
+   "07-11 02": 77,
+   "07-11 03": 304,
+   "07-11 04": 964
+  },
+  "tape_first": "07-10 03:53 PM",
+  "tape_last": "07-11 04:55 AM",
+  "obs_start": null
+ },
+ "KXITFWMATCH-26JUL11ERCHRU": {
+  "gun_fired": {
+   "ts": "2026-07-11 03:30:18 AM ET",
+   "event": "KXITFWMATCH-26JUL11ERCHRU",
+   "source": "fallback_bell",
+   "tts_legacy_min": 359.7,
+   "tts_honest_min": -0.3,
+   "vol_prints_30m": 50,
+   "prints_10m": 44,
+   "rate_per_min": 4.4,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 03:46:25 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:25:58 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 06:44:51 PM ET",
+    "event": "KXITFWMATCH-26JUL11ERCHRU",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-10 11:01:11 PM ET",
+    "event": "KXITFWMATCH-26JUL11ERCHRU",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-10 11:29:59 PM ET",
+    "event": "KXITFWMATCH-26JUL11ERCHRU",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-11 12:38:47 AM ET",
+    "event": "KXITFWMATCH-26JUL11ERCHRU",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 16": 2,
+   "07-10 17": 10,
+   "07-10 18": 12,
+   "07-10 19": 4,
+   "07-10 20": 9,
+   "07-10 21": 28,
+   "07-10 22": 17,
+   "07-10 23": 51,
+   "07-11 00": 61,
+   "07-11 01": 89,
+   "07-11 02": 120,
+   "07-11 03": 1037,
+   "07-11 04": 1422
+  },
+  "tape_first": "07-10 04:15 PM",
+  "tape_last": "07-11 04:47 AM",
+  "obs_start": null
+ },
+ "KXITFWMATCH-26JUL11HOSCIR": {
+  "gun_fired": {
+   "ts": "2026-07-11 03:30:18 AM ET",
+   "event": "KXITFWMATCH-26JUL11HOSCIR",
+   "source": "fallback_bell",
+   "tts_legacy_min": 359.7,
+   "tts_honest_min": -0.3,
+   "vol_prints_30m": 9,
+   "prints_10m": 6,
+   "rate_per_min": 0.6,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 03:46:25 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:25:58 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 07:13:32 PM ET",
+    "event": "KXITFWMATCH-26JUL11HOSCIR",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-10 11:30:36 PM ET",
+    "event": "KXITFWMATCH-26JUL11HOSCIR",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-11 12:38:48 AM ET",
+    "event": "KXITFWMATCH-26JUL11HOSCIR",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 16": 2,
+   "07-10 17": 5,
+   "07-10 18": 3,
+   "07-10 19": 10,
+   "07-10 20": 7,
+   "07-10 21": 2,
+   "07-10 22": 2,
+   "07-10 23": 2,
+   "07-11 00": 10,
+   "07-11 01": 7,
+   "07-11 02": 26,
+   "07-11 03": 392,
+   "07-11 04": 1052,
+   "07-11 05": 2159,
+   "07-11 06": 5489,
+   "07-11 07": 1334
+  },
+  "tape_first": "07-10 04:08 PM",
+  "tape_last": "07-11 07:16 AM",
+  "obs_start": null
+ },
+ "KXITFWMATCH-26JUL11KUBRYS": {
+  "gun_fired": {
+   "ts": "2026-07-11 03:38:03 AM ET",
+   "event": "KXITFWMATCH-26JUL11KUBRYS",
+   "source": "fallback_bell",
+   "tts_legacy_min": 351.9,
+   "tts_honest_min": -8.1,
+   "vol_prints_30m": 5,
+   "prints_10m": 4,
+   "rate_per_min": 0.4,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 03:41:24 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:25:58 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 11:30:38 PM ET",
+    "event": "KXITFWMATCH-26JUL11KUBRYS",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-11 12:38:48 AM ET",
+    "event": "KXITFWMATCH-26JUL11KUBRYS",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 15": 1,
+   "07-10 16": 1,
+   "07-10 17": 2,
+   "07-10 18": 2,
+   "07-10 19": 4,
+   "07-10 20": 3,
+   "07-10 21": 3,
+   "07-10 22": 1,
+   "07-10 23": 3,
+   "07-11 00": 5,
+   "07-11 01": 5,
+   "07-11 02": 14,
+   "07-11 03": 188,
+   "07-11 04": 3226,
+   "07-11 05": 1055
+  },
+  "tape_first": "07-10 03:58 PM",
+  "tape_last": "07-11 05:15 AM",
+  "obs_start": null
+ },
+ "KXITFWMATCH-26JUL11MAKSHO": {
+  "gun_fired": {
+   "ts": "2026-07-11 02:00:18 AM ET",
+   "event": "KXITFWMATCH-26JUL11MAKSHO",
+   "source": "fallback_bell",
+   "tts_legacy_min": 299.7,
+   "tts_honest_min": -0.3,
+   "vol_prints_30m": 119,
+   "prints_10m": 118,
+   "rate_per_min": 11.8,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 01:13:07 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:25:58 PM ET",
+    "start_time": "2026-07-11T07:00:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 06:31:39 PM ET",
+    "event": "KXITFWMATCH-26JUL11MAKSHO",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783749600.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 300.0
+   },
+   {
+    "ts": "2026-07-10 10:52:15 PM ET",
+    "event": "KXITFWMATCH-26JUL11MAKSHO",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783749600.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 300.0
+   },
+   {
+    "ts": "2026-07-10 11:27:23 PM ET",
+    "event": "KXITFWMATCH-26JUL11MAKSHO",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783749600.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 300.0
+   },
+   {
+    "ts": "2026-07-11 12:38:47 AM ET",
+    "event": "KXITFWMATCH-26JUL11MAKSHO",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783767600.0,
+    "te_honest_start": 1783749600.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 300.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 14": 1,
+   "07-10 16": 4,
+   "07-10 17": 4,
+   "07-10 18": 12,
+   "07-10 19": 14,
+   "07-10 20": 31,
+   "07-10 21": 26,
+   "07-10 22": 37,
+   "07-10 23": 54,
+   "07-11 00": 210,
+   "07-11 01": 749,
+   "07-11 02": 11564,
+   "07-11 03": 13529,
+   "07-11 04": 3791
+  },
+  "tape_first": "07-10 02:59 PM",
+  "tape_last": "07-11 04:25 AM",
+  "obs_start": null
+ },
+ "KXITFWMATCH-26JUL11SAGYOD": {
+  "gun_fired": {
+   "ts": "2026-07-11 03:30:18 AM ET",
+   "event": "KXITFWMATCH-26JUL11SAGYOD",
+   "source": "fallback_bell",
+   "tts_legacy_min": 269.7,
+   "tts_honest_min": -0.3,
+   "vol_prints_30m": 89,
+   "prints_10m": 89,
+   "rate_per_min": 8.9,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 02:12:59 PM ET",
+    "start_time": "2026-07-11T08:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T08:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:25:58 PM ET",
+    "start_time": "2026-07-11T08:00:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 06:15:08 PM ET",
+    "event": "KXITFWMATCH-26JUL11SAGYOD",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783771200.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 270.0
+   },
+   {
+    "ts": "2026-07-10 11:05:24 PM ET",
+    "event": "KXITFWMATCH-26JUL11SAGYOD",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783771200.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 270.0
+   },
+   {
+    "ts": "2026-07-10 11:41:15 PM ET",
+    "event": "KXITFWMATCH-26JUL11SAGYOD",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783771200.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 270.0
+   },
+   {
+    "ts": "2026-07-11 12:47:01 AM ET",
+    "event": "KXITFWMATCH-26JUL11SAGYOD",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783771200.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 270.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 15": 1,
+   "07-10 16": 1,
+   "07-10 17": 2,
+   "07-10 18": 18,
+   "07-10 19": 19,
+   "07-10 20": 15,
+   "07-10 21": 10,
+   "07-10 22": 9,
+   "07-10 23": 27,
+   "07-11 00": 64,
+   "07-11 01": 159,
+   "07-11 02": 707,
+   "07-11 03": 518,
+   "07-11 04": 1241,
+   "07-11 05": 3123,
+   "07-11 06": 4020,
+   "07-11 07": 2484
+  },
+  "tape_first": "07-10 03:02 PM",
+  "tape_last": "07-11 07:25 AM",
+  "obs_start": null
+ },
+ "KXITFWMATCH-26JUL11SHEYAM": {
+  "gun_fired": {
+   "ts": "2026-07-11 04:00:22 AM ET",
+   "event": "KXITFWMATCH-26JUL11SHEYAM",
+   "source": "fallback_bell",
+   "tts_legacy_min": 359.6,
+   "tts_honest_min": -0.4,
+   "vol_prints_30m": 27,
+   "prints_10m": 27,
+   "rate_per_min": 2.7,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 04:16:35 PM ET",
+    "start_time": "2026-07-11T10:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T10:00:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:25:58 PM ET",
+    "start_time": "2026-07-11T10:00:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-11 12:00:58 AM ET",
+    "event": "KXITFWMATCH-26JUL11SHEYAM",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783778400.0,
+    "te_honest_start": 1783756800.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-11 12:38:50 AM ET",
+    "event": "KXITFWMATCH-26JUL11SHEYAM",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783778400.0,
+    "te_honest_start": 1783756800.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 19": 1,
+   "07-10 20": 2,
+   "07-10 21": 3,
+   "07-10 22": 4,
+   "07-10 23": 2,
+   "07-11 00": 3,
+   "07-11 01": 7,
+   "07-11 02": 13,
+   "07-11 03": 38,
+   "07-11 04": 815,
+   "07-11 05": 2043,
+   "07-11 06": 620
+  },
+  "tape_first": "07-10 07:50 PM",
+  "tape_last": "07-11 06:10 AM",
+  "obs_start": null
+ },
+ "KXITFWMATCH-26JUL11SMILEY": {
+  "gun_fired": {
+   "ts": "2026-07-11 03:30:18 AM ET",
+   "event": "KXITFWMATCH-26JUL11SMILEY",
+   "source": "fallback_bell",
+   "tts_legacy_min": 359.7,
+   "tts_honest_min": -0.3,
+   "vol_prints_30m": 17,
+   "prints_10m": 16,
+   "rate_per_min": 1.6,
+   "start_passed": true,
+   "ref_rise_cents": 0,
+   "anchor_src": "te_honest"
+  },
+  "schedule_match": [
+   {
+    "ts": "2026-07-10 03:46:25 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:09:42 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   },
+   {
+    "ts": "2026-07-10 05:25:58 PM ET",
+    "start_time": "2026-07-11T09:30:00-04:00",
+    "src": null
+   }
+  ],
+  "pm_clock_shadow": [],
+  "clock_liar": [
+   {
+    "ts": "2026-07-10 06:20:13 PM ET",
+    "event": "KXITFWMATCH-26JUL11SMILEY",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-10 11:30:37 PM ET",
+    "event": "KXITFWMATCH-26JUL11SMILEY",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   },
+   {
+    "ts": "2026-07-11 12:38:49 AM ET",
+    "event": "KXITFWMATCH-26JUL11SMILEY",
+    "anchor_source": "te_honest",
+    "kalshi_start": 1783776600.0,
+    "te_honest_start": 1783755000.0,
+    "gun_fired_ts": null,
+    "disagreement_min": 360.0
+   }
+  ],
+  "hourly_tape": {
+   "07-10 18": 14,
+   "07-10 19": 11,
+   "07-10 20": 20,
+   "07-10 21": 12,
+   "07-10 22": 11,
+   "07-10 23": 8,
+   "07-11 00": 17,
+   "07-11 01": 12,
+   "07-11 02": 45,
+   "07-11 03": 484,
+   "07-11 04": 1540,
+   "07-11 05": 1164
+  },
+  "tape_first": "07-10 06:19 PM",
+  "tape_last": "07-11 05:31 AM",
+  "obs_start": null
+ }
+}

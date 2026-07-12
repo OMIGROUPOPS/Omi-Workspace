@@ -177,7 +177,13 @@ def main():
             trades.append({"tk": tk, "ts": ts, "px": det.get("fill_price"),
                            "qty": det.get("new_fills", det.get("qty", 5)),
                            "cycle": det.get("cycle", 1),
-                           "in_play": det.get("in_play", False)})
+                           "in_play": det.get("in_play", False),
+                           # [-0k JOIN FIX 07-12] the tape's own stamp -- the
+                           # replay must NEVER re-mint: live IDs are minted at
+                           # PLACEMENT, fills arrive out of placement order, and
+                           # fill-order re-minting misnamed 4 trades on 07-11
+                           # (the 4 phantom live-vs-replay "divergences")
+                           "trade_id": det.get("trade_id")})
         elif e == "settled" and tk:
             settles[tk] = det
         elif e == "exit_filled" and tk:
@@ -190,7 +196,7 @@ def main():
     rows, stats = [], defaultdict(lambda: defaultdict(int))
     obs_cache = {}
     for i, t in enumerate(trades, 1):
-        tid = "T-%s-%04d" % (ymd, i)
+        tid = t.get("trade_id") or "T-%s-%04d" % (ymd, i)
         tk, cat = t["tk"], cat_of(t["tk"])
         et = tk.rsplit("-", 1)[0]
         if tk not in obs_cache:
@@ -275,7 +281,7 @@ def main():
                      if t6 is None or x[0] <= t6["ts"]]
             if not cands:
                 continue
-            _, det6 = cands[-1]
+            ts6, det6 = cands[-1]
             checked6 += 1
             live_op = det6.get("opinion")
             if r["grade"] == "NO-OPINION" and live_op == "CONVICTION":
@@ -283,10 +289,22 @@ def main():
             elif r["grade"] != "NO-OPINION" and live_op == "NO-OPINION":
                 div.append((r["id"], "live NO-OPINION vs replay graded"))
             elif live_op == "CONVICTION" and r.get("posterior") is not None \
-                    and det6.get("confidence") is not None \
-                    and abs(det6["confidence"] - r["posterior"]) > 0.10:
-                div.append((r["id"], "conf gap %.2f live vs %.2f replay"
-                            % (det6["confidence"], r["posterior"])))
+                    and det6.get("confidence") is not None:
+                # [-0k TICK-ALIGN 07-12] compare at the SHADOW'S OWN tick, not
+                # the fill tick -- the live line predates the fill by up to the
+                # 300s/site dedup (07-11: FRAMAR-FRA 5m56s), and in-play tape
+                # moves conf past 0.10 in that gap. Same instant, same math.
+                t7 = by_tk.get(r["tk"])
+                pr7 = (t7 or {}).get("prior")
+                if pr7:
+                    obs7 = [o for o in obs_cache.get(r["tk"], []) if o[0] <= ts6]
+                    ser7 = c.tick_posterior(pr7, obs7)
+                    rep_conf = ser7[-1][1] if ser7 else pr7["confidence"]
+                else:
+                    rep_conf = r["posterior"]
+                if abs(det6["confidence"] - rep_conf) > 0.10:
+                    div.append((r["id"], "conf gap %.2f live vs %.2f replay (at the shadow's tick)"
+                                % (det6["confidence"], rep_conf)))
         L += ["", "## LIVE-vs-REPLAY AGREEMENT (same-instrument law, live edition) — "
                   "checked %d, **divergences: %d**" % (checked6, len(div))]
         for i6, why6 in div[:10]:

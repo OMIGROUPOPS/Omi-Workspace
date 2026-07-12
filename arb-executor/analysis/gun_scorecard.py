@@ -47,12 +47,27 @@ def et_str(ts):
     return datetime.fromtimestamp(ts, ET).strftime("%I:%M:%S %p") if ts else "--"
 
 
+# [-0k FLOW-STEP, 07-12 — TRUTH-JOIN DRIBBLE-ONSET kill] the activity rule
+# alone (>=5-of-15 minutes, ANY size) passes sustained overnight premarket
+# dribble 75-115 min before real onset — the 16 SUSPECT rows of 07-11
+# (.claude/triage_20260711/). Onset now ALSO requires a flow STEP measured
+# against the SEARCH WINDOW'S FIRST HOUR (t0 = anchor-2h, definitionally
+# premarket) — NOT the prior hour, because gradual dribble makes every ramp
+# stage a "step" over the stage before it. Rule: trailing-15 prints >=
+# max(ONSET_FLOOR, ONSET_K x first-hour baseline per-15-min). Fit note:
+# 07-11 dribble ran 5-283 prints/hr vs 188-13,500/hr at true ignition;
+# K=3, floor=8 (validated fail-before/pass-after in PROOF_ONSET_FLOWSTEP).
+ONSET_K = 3.0
+ONSET_FLOOR = 8
+
+
 def tape_onset(ev, t0, t1):
-    """Independent tape truth: first minute (within [t0,t1]) with prints in
-    >=5 of the trailing 15 one-minute bins, across both legs.
-    Returns (onset_ts | None, reason) -- reason names WHY when None
-    (no_trades_csv / no_prints_in_window / no_flow_onset), so no row can
-    half-join silently."""
+    """Independent tape truth: first minute (within [t0,t1]) that has BOTH
+    (a) prints in >=5 of the trailing 15 one-minute bins, across both legs,
+    AND (b) a flow step: trailing-15 prints >= max(ONSET_FLOOR, ONSET_K x
+    the window-first-hour baseline). Returns (onset_ts | None, reason) --
+    reason names WHY when None (no_trades_csv / no_prints_in_window /
+    no_flow_onset), so no row can half-join silently."""
     minutes = defaultdict(int)
     n_files = 0
     for f in TRADES.glob(ev + "-*.csv*"):
@@ -83,9 +98,19 @@ def tape_onset(ev, t0, t1):
     if not minutes:
         return None, "no_prints_in_window"
     keys = sorted(minutes)
+    base60 = sum(n for m, n in minutes.items() if m < t0 + 3600)
+    need = max(ONSET_FLOOR, ONSET_K * (base60 / 4.0))
     for m in keys:
         active = sum(1 for k in range(m - 14 * 60, m + 60, 60) if minutes.get(k))
-        if active >= 5:
+        if active < 5:
+            continue
+        t15 = sum(minutes.get(k, 0) for k in range(m - 14 * 60, m + 60, 60))
+        # forward-sustain: a premarket burst CLUMP clears the bar for one
+        # window then dies; a real match keeps printing. 30-min forward
+        # window at the same absolute bar (= half the rate) so thin ITF
+        # tapes (~0.5 prints/min matches) still join.
+        fwd30 = sum(minutes.get(k, 0) for k in range(m + 60, m + 31 * 60, 60))
+        if t15 >= need and fwd30 >= need:
             return m, "ok"
     return None, "no_flow_onset"
 
@@ -270,6 +295,11 @@ def main():
         suspect = None
         if delta is not None and fclass == "FRESH" and delta > 15.0:
             suspect = "truth_predates_fresh_fire"
+        elif delta is not None and fclass == "FRESH" and delta < -20.0:
+            # [-0k] symmetric bound: an onset lagging a FRESH fire >20 min is
+            # a heavy-premarket ambiguity (SAGYOD 07-11: premarket hour ran
+            # hotter than the match's first hour) — quarantine, never average
+            suspect = "onset_lags_fresh_fire"
         elif delta is not None and abs(delta) > 120.0:
             suspect = "join_out_of_bounds"
         truth_cell = (et_str(truth_ts) if truth_ts is not None

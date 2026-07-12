@@ -1,49 +1,36 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 6 @ **2026-07-12 05:12:11 PM ET** | build `b9f2bc28` | session boot 07-12 16:20 ET | log `live_v3_20260712.jsonl` | 7343 session events | monitor READ-ONLY
+- cycle 7 @ **2026-07-12 05:22:14 PM ET** | build `2a14acae` | session boot 07-12 17:18 ET | log `live_v3_20260712.jsonl` | 642 session events | monitor READ-ONLY
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
 - tripwire artifact: absent (quiet)
 
-## ZERO-TOLERANCE — 2 violation(s)
-| ET | class | who | detail |
-|---|---|---|---|
-| 16:21:08 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL12RAIZHU-ZHU | own buys rose 6c (48->54) in 1800s -> match-live presumption, entry buys FROZEN |
-| 16:23:27 | **chase_cap** | KXATPCHALLENGERMATCH-26JUL12YIBMAL-MAL | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17) |
+## ZERO-TOLERANCE — 0 violation(s)
+**NONE.** grace_breach / combined_over_goal(97) / walk_cap_breach / handler_error all clean.
 
-## FILLS — 2 graded (session)
-| ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb | stamp |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| 16:22 | ATPCHALLENGERMATCH-26JUL12CALRAD-R | ATP_CHALL | ? | 40 | 38 | +2 (window_cell) | — | pre | single |  | MIXED |
-| 16:46 | ATPCHALLENGERMATCH-26JUL12YIBMAL-Y | ATP_CHALL | leader | 82 | 80 | +2 (place_cell) | — | pre | single |  | GIFT_CLASS |
+## FILLS — 0 graded (session)
+none yet this session
 
-## RESTING BIDS — 4 tape-graded (starvation = NO_FLOW only)
-- classes now: {'FLOW_ABOVE': 3, 'NO_FLOW': 1} | repriceable now: true 0 / false 4 | **cumulative bid_grade lines: 8706 (repriceable true 1276 / false 7430)** -- the liquid_repost re-arm evidence accumulates here
+## RESTING BIDS — 3 tape-graded (starvation = NO_FLOW only)
+- classes now: {'FLOW_ABOVE': 2, 'NO_FLOW': 1} | repriceable now: true 0 / false 3 | **cumulative bid_grade lines: 8709 (repriceable true 1276 / false 7433)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL12RAIZHU-Z | 54 | 51m | 21/61-63/604 | 61-61 | 7 | **FLOW_ABOVE** | 57 | flow above but bound 57c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL12YIBMAL-M | 15 | 25m | 7/16-17/176 | 15-16 | 1 | **FLOW_ABOVE** | 15 | flow above but bound 15c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL12YOUDLI-D | 36 | 51m | 2/43-43/195 | 42-43 | 7 | **FLOW_ABOVE** | 40 | flow above but bound 40c < flow -- chasing breaks goal |
-| ATPMATCH-26JUL12ALTGAS-ALT | 55 | 51m | 0 | 57-59 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL12YIBMAL-M | 14 | 1m | 1/16-16/23 | 15-16 | 2 | **FLOW_ABOVE** | 13 | flow above but bound 13c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL12YOUDLI-D | 36 | 2m | 1/43-43/2 | 42-43 | 7 | **FLOW_ABOVE** | 40 | flow above but bound 40c < flow -- chasing breaks goal |
+| ATPMATCH-26JUL12ALTGAS-ALT | 55 | 2m | 0 | 57-59 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
-| event | basis | sib ask | achievable | goal | vs goal |
-|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL12CALRAD | 40 | 26 | **66** | 97 | -31 |
-| ATPCHALLENGERMATCH-26JUL12YIBMAL | 82 | 16 | **98** | 97 | +1 |
+no open half-pairs
 
-## FLOW-STATE — 5 tracked game(s) ({'WAKING': 4, 'OPEN': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 3 tracked game(s) ({'OPEN': 1, 'WAKING': 2}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL12YIBMAL | ATP_CHALL | 0.5 | 1 | **OPEN** |
-| ATPCHALLENGERMATCH-26JUL12CALRAD | ATP_CHALL | 7.0 | — | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL12RAIZHU | ATP_CHALL | 0.667 | — | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL12YOUDLI | ATP_CHALL | 0.033 | 1 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL12YIBMAL | ATP_CHALL | 0.367 | 1 | **OPEN** |
+| ATPCHALLENGERMATCH-26JUL12YOUDLI | ATP_CHALL | 0.1 | 1 | **WAKING** |
 | ATPMATCH-26JUL12ALTGAS | ATP_MAIN | 0.0 | 2 | **WAKING** |
 
-## PATTERNS (sub-B) — 1
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL12CALRAD-RAD {"fill": 40, "age_min": 50, "mode": "NO_BID(sib rested earlier, none now)"}
+## PATTERNS (sub-B) — 0
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

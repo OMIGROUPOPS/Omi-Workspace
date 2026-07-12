@@ -33,7 +33,22 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-11 midday — C50 keeps this current):
+## STATE (2026-07-12 afternoon — C50 keeps this current):
+-0k SHIPPED (476b4326): tape_onset flow-step (max(8, 3x window-first-
+hour baseline) + 30-min forward sustain + onset_lags quarantine) --
+10/16 suspects clean joins, 6 quarantine honestly, good rows held.
+Live-vs-replay 4 divergences ROOTED: comparator defects (replay
+re-minted IDs in fill order -> wrong labels; checker compared stale
+shadow line vs fill tick) -- both fixed, rerun 4->1, survivor = live
+n_eff undercount (WS-seen vs full tape; composer boot-seed = review
+item). Percat vs 12 bell_missing: 3 timely/4 dribble-early/3 no-tape/
+2 mains-off -> naked threshold needs gauge-plus-start. WALBAD/MIRMAL
+= COMBINED-CAP BLIND SPOTS class (race second + conception-void
+ledger), remedies await operator. DISK-FULL #4 mid-work: verified-
+twin prune 12,667 files +gzip -> 97%, ws_depth_recorder (7.2G) never
+in archive_sync scope = infra item. TONIGHT = CLEAN REGRADE NIGHT;
+cutover gate reopens on its numbers. Evidence:
+.claude/triage_20260711/ZEROK_REPORT.md + ZEROK_FORENSIC.json.
 C-MORNING-TRIAGE-0711 done: bot ALIVE all night (audit PASS 16 pos/
 57 resting/0 flags); monitor was BLIND 04:09am-12:01pm (bell_missing
 item lacked 'cls' -> forensic_check crashed every cycle, swallowed;

@@ -1,0 +1,190 @@
+{
+ "would_fire": {
+  "KXATPCHALLENGERMATCH-26JUL11SOTCLA": {
+   "honest_start": "10:59 AM",
+   "anchor_src": "te_honest",
+   "threshold_30m": 16,
+   "would_fire": "YES @ 11:14 AM (+14 min vs start)",
+   "vol30_at_start": 2
+  },
+  "KXITFMATCH-26JUL11BAXLOK": {
+   "honest_start": "12:00 PM",
+   "anchor_src": "te_honest",
+   "threshold_30m": 6,
+   "would_fire": "YES @ 12:13 PM (+13 min vs start)",
+   "vol30_at_start": 4
+  },
+  "KXITFMATCH-26JUL11BERBEN": {
+   "honest_start": "04:59 PM",
+   "anchor_src": "kalshi_schedule",
+   "threshold_30m": 6,
+   "would_fire": "NO (vol30 never >= 6 in [start-2h, start+1h])",
+   "vol30_at_start": 0
+  },
+  "KXITFMATCH-26JUL11JOHKLA": {
+   "honest_start": "12:59 PM",
+   "anchor_src": "te_honest",
+   "threshold_30m": 6,
+   "would_fire": "YES @ 01:12 PM (+12 min vs start)",
+   "vol30_at_start": 1
+  },
+  "KXITFMATCH-26JUL11RICHAR": {
+   "honest_start": "04:59 PM",
+   "anchor_src": "kalshi_schedule",
+   "threshold_30m": 6,
+   "would_fire": "NO (vol30 never >= 6 in [start-2h, start+1h])",
+   "vol30_at_start": 0
+  },
+  "KXITFMATCH-26JUL11SAMLOP": {
+   "honest_start": "03:59 PM",
+   "anchor_src": "kalshi_schedule",
+   "threshold_30m": 6,
+   "would_fire": "NO (vol30 never >= 6 in [start-2h, start+1h])",
+   "vol30_at_start": 0
+  },
+  "KXITFMATCH-26JUL11SNIMAZ": {
+   "honest_start": "04:59 AM",
+   "anchor_src": "te_honest",
+   "threshold_30m": 6,
+   "would_fire": "YES @ 03:33 AM (-87 min vs start)",
+   "vol30_at_start": 7
+  },
+  "KXITFWMATCH-26JUL11FULSOU": {
+   "honest_start": "10:59 AM",
+   "anchor_src": "te_honest",
+   "threshold_30m": 6,
+   "would_fire": "YES @ 10:38 AM (-22 min vs start)",
+   "vol30_at_start": 4
+  },
+  "KXITFWMATCH-26JUL11STATOM": {
+   "honest_start": "04:00 AM",
+   "anchor_src": "te_honest",
+   "threshold_30m": 6,
+   "would_fire": "YES @ 02:57 AM (-63 min vs start)",
+   "vol30_at_start": 3
+  },
+  "KXWTACHALLENGERMATCH-26JUL11MINVOL": {
+   "honest_start": "12:00 PM",
+   "anchor_src": "te_honest",
+   "threshold_30m": 16,
+   "would_fire": "YES @ 10:41 AM (-79 min vs start)",
+   "vol30_at_start": 5
+  },
+  "KXWTAMATCH-26JUL11MORSZI": {
+   "honest_start": "12:50 PM",
+   "anchor_src": "te_honest",
+   "threshold_30m": null,
+   "would_fire": "MAINS-OFF (fitted trigger disabled by design)",
+   "vol30_at_start": 0
+  },
+  "KXWTAMATCH-26JUL11YASGLU": {
+   "honest_start": "10:29 AM",
+   "anchor_src": "te_honest",
+   "threshold_30m": null,
+   "would_fire": "MAINS-OFF (fitted trigger disabled by design)",
+   "vol30_at_start": 29
+  }
+ },
+ "divergence_trades": {
+  "T-20260711-0039": [
+   "{\"ts\": \"2026-07-11 04:46:03 AM ET\", \"ts_epoch\": 1783759563.5394945, \"event\": \"entry_filled\", \"ticker\": \"KXITFMATCH-26JUL11TALPAP-PAP\", \"details\": {\"fill_price\": 58, \"posted_price\": 58, \"qty\": 5, \"new_fills\": 5, \"cell\": \"\", \"direction\": \"leader\", \"play_type\": \"v4_resting_maker\", \"kalshi_status\": \"executed\", \"cycle\": 1, \"trade_id\": \"T-20260711-0039\", \"tape_basis\": \"ws_live\"}}",
+   "{\"ts\": \"2026-07-11 06:14:00 AM ET\", \"ts_epoch\": 1783764840.0528264, \"event\": \"exit_filled\", \"ticker\": \"KXITFMATCH-26JUL11TALPAP-PAP\", \"details\": {\"exit_price\": 74, \"entry_price\": 58, \"qty\": 5, \"new_fills\": 5, \"complete\": true, \"pnl_cents\": 80.0, \"pnl_dollars\": 0.8, \"had_dca\": false, \"cycle\": 1, \"in_play\": true, \"bell_source\": \"fallback_bell\", \"trade_id\": \"T-20260711-0039\"}}"
+  ],
+  "T-20260711-0063": [
+   "{\"ts\": \"2026-07-11 05:07:25 AM ET\", \"ts_epoch\": 1783760845.4872468, \"event\": \"entry_filled\", \"ticker\": \"KXATPCHALLENGERMATCH-26JUL11RINCHO-RIN\", \"details\": {\"fill_price\": 32, \"posted_price\": 32, \"qty\": 5, \"new_fills\": 5, \"cell\": \"\", \"direction\": \"underdog\", \"play_type\": \"v4_engagement_join\", \"kalshi_status\": \"executed\", \"cell_at_fill\": 32, \"band_at_fill\": \"r25_34\", \"bucket_at_fill\": null, \"band_on",
+   "{\"ts\": \"2026-07-11 08:50:14 AM ET\", \"ts_epoch\": 1783774214.174243, \"event\": \"exit_filled\", \"ticker\": \"KXATPCHALLENGERMATCH-26JUL11RINCHO-RIN\", \"details\": {\"exit_price\": 40, \"entry_price\": 32, \"qty\": 5, \"new_fills\": 5, \"complete\": true, \"pnl_cents\": 40.0, \"pnl_dollars\": 0.4, \"had_dca\": false, \"cycle\": 1, \"in_play\": true, \"bell_source\": \"fallback_bell\", \"trade_id\": \"T-20260711-0063\"}}"
+  ],
+  "T-20260711-0075": [
+   "{\"ts\": \"2026-07-11 07:13:49 AM ET\", \"ts_epoch\": 1783768429.7469652, \"event\": \"entry_filled\", \"ticker\": \"KXITFWMATCH-26JUL11SHIGAO-GAO\", \"details\": {\"fill_price\": 61, \"posted_price\": 61, \"qty\": 1, \"new_fills\": 1, \"cell\": \"\", \"direction\": \"leader\", \"play_type\": \"v4_engagement_join\", \"kalshi_status\": \"resting\", \"cell_at_fill\": 61, \"band_at_fill\": \"r55_64\", \"bucket_at_fill\": null, \"band_on_table\": fal",
+   "{\"ts\": \"2026-07-11 09:03:25 AM ET\", \"ts_epoch\": 1783775005.671292, \"event\": \"exit_filled\", \"ticker\": \"KXITFWMATCH-26JUL11SHIGAO-GAO\", \"details\": {\"exit_price\": 75, \"entry_price\": 61, \"qty\": 1, \"new_fills\": 1, \"complete\": true, \"pnl_cents\": 14.0, \"pnl_dollars\": 0.14, \"had_dca\": false, \"cycle\": 1, \"in_play\": true, \"bell_source\": \"fallback_bell\", \"trade_id\": \"T-20260711-0075\"}}",
+   "{\"ts\": \"2026-07-11 09:52:21 AM ET\", \"ts_epoch\": 1783777941.570798, \"event\": \"settled\", \"ticker\": \"KXITFWMATCH-26JUL11SHIGAO-GAO\", \"details\": {\"settle\": \"WIN\", \"settle_price\": 100, \"settle_source\": \"ws_lifecycle\", \"settled_ts\": 1783777919, \"pnl_cents\": 170.0, \"pnl_dollars\": 1.7, \"entry_price\": 61, \"had_dca\": false, \"settled_qty\": 4, \"exit_filled_qty\": 1, \"trade_id\": \"T-20260711-0075\"}}"
+  ],
+  "T-20260711-0097": [
+   "{\"ts\": \"2026-07-11 07:23:28 AM ET\", \"ts_epoch\": 1783769008.0005336, \"event\": \"entry_filled\", \"ticker\": \"KXWTAMATCH-26JUL11HODCHA-HOD\", \"details\": {\"fill_price\": 91, \"posted_price\": 91, \"qty\": 5, \"new_fills\": 5, \"cell\": \"\", \"direction\": \"leader\", \"play_type\": \"v4_engagement_join\", \"kalshi_status\": \"executed\", \"cell_at_fill\": 91, \"band_at_fill\": \"r85_94\", \"bucket_at_fill\": null, \"band_on_table\": fal",
+   "{\"ts\": \"2026-07-11 09:57:09 AM ET\", \"ts_epoch\": 1783778229.7568097, \"event\": \"exit_filled\", \"ticker\": \"KXWTAMATCH-26JUL11HODCHA-HOD\", \"details\": {\"exit_price\": 98, \"entry_price\": 91, \"qty\": 5, \"new_fills\": 5, \"complete\": true, \"pnl_cents\": 35.0, \"pnl_dollars\": 0.35, \"had_dca\": false, \"cycle\": 1, \"in_play\": true, \"bell_source\": \"fallback_bell\", \"trade_id\": \"T-20260711-0097\"}}"
+  ]
+ },
+ "breach_sequences": {
+  "KXITFWMATCH-26JUL11MIRMAL": [
+   "{\"ts\": \"2026-07-11 01:14:25 AM ET\", \"ts_epoch\": 1783746865.228555, \"event\": \"conception_horizon_defer\", \"ticker\": \"\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"category\": \"ITF_W\", \"tts_hours\": 11.76, \"horizon_hours\": 8.0}}",
+   "{\"ts\": \"2026-07-11 09:00:43 AM ET\", \"ts_epoch\": 1783774843.6615381, \"event\": \"v4_place\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"direction\": \"leader\", \"cat\": \"ITF_W\", \"regime\": \"r85_94\", \"cell\": 85, \"current_price\": 85, \"anchor_src\": \"no_trade_staircase\", \"table_src\": \"no_trade_stairca",
+   "{\"ts\": \"2026-07-11 09:00:43 AM ET\", \"ts_epoch\": 1783774843.6649888, \"event\": \"os_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"site\": \"v4_place\", \"actual\": {\"px\": 85, \"actual_bid\": 85}, \"would\": {\"regime\": \"climb_side\", \"timing\": \"early\", \"flow_open\": false, \"action\": \"defer\", \"level\": null, \"posture\": null, \"cited\": [\"",
+   "{\"ts\": \"2026-07-11 09:00:43 AM ET\", \"ts_epoch\": 1783774843.665198, \"event\": \"conviction_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"site\": \"v4_place\", \"cat\": \"ITF_W\", \"opinion\": \"CONVICTION\", \"confidence\": 0.858, \"n_eff\": 3.0, \"range_prior\": {\"missing\": \"no observable runmid at this tick (30-min traded mean empty)\"}, ",
+   "{\"ts\": \"2026-07-11 09:00:43 AM ET\", \"ts_epoch\": 1783774843.6653385, \"event\": \"aim_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"site\": \"v4_place\", \"cell\": \"ITF_W|4|23\", \"side\": \"fav\", \"actual_bid\": 85, \"px\": 85, \"sib_px\": 12, \"tts_min\": 239.3, \"book_bid\": 85, \"book_ask\": 88, \"book_s",
+   "{\"ts\": \"2026-07-11 09:00:43 AM ET\", \"ts_epoch\": 1783774843.814476, \"event\": \"order_placed\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"action\": \"buy\", \"side\": \"yes\", \"price\": 85, \"count\": 5, \"order_id\": \"cb3aaa2b-0c85-4188-bad3-56ad45d93bc6\", \"client_order_id\": \"1cfad5e2-5c41-4d83-81fc-c95c6fa72df7\", \"response_status\": \"resti",
+   "{\"ts\": \"2026-07-11 09:00:44 AM ET\", \"ts_epoch\": 1783774844.524462, \"event\": \"v4_place\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"direction\": \"underdog\", \"cat\": \"ITF_W\", \"regime\": \"r05_14\", \"cell\": 14, \"current_price\": 14, \"anchor_src\": \"last_traded\", \"table_src\": \"per_cell\", \"last_trade",
+   "{\"ts\": \"2026-07-11 09:00:44 AM ET\", \"ts_epoch\": 1783774844.5258033, \"event\": \"os_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"site\": \"v4_place\", \"actual\": {\"px\": 14, \"actual_bid\": 11}, \"would\": {\"regime\": \"decay_side\", \"timing\": \"early\", \"flow_open\": false, \"action\": \"wait_window\", \"level\": null, \"posture\": null, \"cite",
+   "{\"ts\": \"2026-07-11 09:00:44 AM ET\", \"ts_epoch\": 1783774844.526006, \"event\": \"conviction_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"site\": \"v4_place\", \"cat\": \"ITF_W\", \"opinion\": \"CONVICTION\", \"confidence\": 0.14, \"n_eff\": 1.0, \"range_prior\": {\"cell\": \"ITF_W|underdog|at_mid|le25\", \"w2_reach\": 0.121, \"knife\": 1.0}, \"edge",
+   "{\"ts\": \"2026-07-11 09:00:44 AM ET\", \"ts_epoch\": 1783774844.5261087, \"event\": \"aim_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"site\": \"v4_place\", \"cell\": \"ITF_W|4|23\", \"side\": \"dog\", \"actual_bid\": 11, \"px\": 14, \"sib_px\": 86, \"tts_min\": 239.3, \"book_bid\": 11, \"book_ask\": 14, \"book_s",
+   "{\"ts\": \"2026-07-11 09:00:44 AM ET\", \"ts_epoch\": 1783774844.8781366, \"event\": \"order_placed\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"action\": \"buy\", \"side\": \"yes\", \"price\": 11, \"count\": 5, \"order_id\": \"2915bc09-496c-4bdc-bb35-19da6526c17b\", \"client_order_id\": \"7ef212e7-c8b1-40f3-97b4-ada4c4bec60b\", \"response_status\": \"rest",
+   "{\"ts\": \"2026-07-11 09:29:34 AM ET\", \"ts_epoch\": 1783776574.9860818, \"event\": \"order_placed\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"action\": \"buy\", \"side\": \"yes\", \"price\": 86, \"count\": 5, \"order_id\": \"13bbc2b0-4f5a-4d64-ade5-7cfd9dd6bbe1\", \"client_order_id\": \"cb92e615-1460-479a-9d8e-648a331b55bf\", \"response_status\": \"rest",
+   "{\"ts\": \"2026-07-11 09:29:34 AM ET\", \"ts_epoch\": 1783776574.986786, \"event\": \"aim_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"site\": \"move_repost\", \"cell\": \"ITF_W|4|48\", \"side\": \"fav\", \"actual_bid\": 86, \"px\": 87, \"sib_px\": 12, \"tts_min\": 570.4, \"book_bid\": 86, \"book_ask\": 88, \"book",
+   "{\"ts\": \"2026-07-11 10:15:00 AM ET\", \"ts_epoch\": 1783779300.672891, \"event\": \"order_placed\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"action\": \"buy\", \"side\": \"yes\", \"price\": 12, \"count\": 5, \"order_id\": \"1cf04f46-c9cd-4678-85a8-6f4813af52f5\", \"client_order_id\": \"57196f10-2a35-450e-997c-a17cdb885558\", \"response_status\": \"resti",
+   "{\"ts\": \"2026-07-11 10:15:00 AM ET\", \"ts_epoch\": 1783779300.678722, \"event\": \"aim_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"site\": \"move_repost\", \"cell\": \"ITF_W|4|48\", \"side\": \"dog\", \"actual_bid\": 12, \"px\": 12, \"sib_px\": 87, \"tts_min\": 525.0, \"book_bid\": 12, \"book_ask\": 13, \"book",
+   "{\"ts\": \"2026-07-11 10:47:46 AM ET\", \"ts_epoch\": 1783781266.6175773, \"event\": \"order_placed\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"action\": \"buy\", \"side\": \"yes\", \"price\": 87, \"count\": 5, \"order_id\": \"61517d30-f641-42fb-afa1-7f927e67c62a\", \"client_order_id\": \"d50fd4bc-9c34-4abe-bdac-cf3f07ef9df2\", \"response_status\": \"rest",
+   "{\"ts\": \"2026-07-11 10:47:46 AM ET\", \"ts_epoch\": 1783781266.6188786, \"event\": \"aim_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"site\": \"move_repost\", \"cell\": \"ITF_W|4|48\", \"side\": \"fav\", \"actual_bid\": 87, \"px\": 88, \"sib_px\": 12, \"tts_min\": 492.3, \"book_bid\": 87, \"book_ask\": 88, \"boo",
+   "{\"ts\": \"2026-07-11 12:52:23 PM ET\", \"ts_epoch\": 1783788743.4297633, \"event\": \"join_queue\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"outcome\": \"fill\", \"depth_at_post\": 425, \"depth_now\": 79, \"fill_latency_sec\": 7481.6, \"reposts\": 2, \"play_type\": \"v4_resting_maker\", \"trial\": false}}",
+   "{\"ts\": \"2026-07-11 12:52:23 PM ET\", \"ts_epoch\": 1783788743.6723711, \"event\": \"order_placed\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"action\": \"sell\", \"side\": \"yes\", \"price\": 98, \"count\": 5, \"order_id\": \"d2c33860-1d96-47b3-b5f0-d6a75310e930\", \"client_order_id\": \"2b8451bd-2e34-458d-b570-a0bcce73887c\", \"response_status\": \"res",
+   "{\"ts\": \"2026-07-11 12:52:23 PM ET\", \"ts_epoch\": 1783788743.6768138, \"event\": \"completion_no_attempt\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"reason\": \"leg1_window_open_unset\", \"leg1_basis\": 87}}",
+   "{\"ts\": \"2026-07-11 12:52:24 PM ET\", \"ts_epoch\": 1783788744.1793387, \"event\": \"order_cancelled\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"order_id\": \"1cf04f46-c9cd-4678-85a8-6f4813af52f5\", \"label\": \"reaim_sibling_lower\", \"success\": true}}",
+   "{\"ts\": \"2026-07-11 12:52:24 PM ET\", \"ts_epoch\": 1783788744.4199975, \"event\": \"order_placed\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"action\": \"buy\", \"side\": \"yes\", \"price\": 10, \"count\": 4.99, \"order_id\": \"a3b07778-dc56-4b95-b004-1b917feebac9\", \"client_order_id\": \"b166f16f-dcab-453f-b336-d0d46f20af62\", \"response_status\": \"r",
+   "{\"ts\": \"2026-07-11 12:52:24 PM ET\", \"ts_epoch\": 1783788744.4259295, \"event\": \"reaim_sibling_arrival\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"leg1\": \"11MIRMAL-MIR\", \"leg1_basis\": 87, \"from\": 12, \"to\": 10, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 12:52:30 PM ET\", \"ts_epoch\": 1783788750.5250666, \"event\": \"completion_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"verdict\": \"flatten_kept\", \"kept\": {\"opinion\": \"EV\", \"cell\": \"ITF_W|leader|at_mid|ge75\", \"n\": 23, \"p_exit_fill\": 0.826, \"p_ride_zero\": 0.13, \"ev_cents\": -2.26, \"band\": 11, \"basis\": 87, \"w",
+   "{\"ts\": \"2026-07-11 12:52:30 PM ET\", \"ts_epoch\": 1783788750.6714616, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 11, \"to\": 8, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 12:52:36 PM ET\", \"ts_epoch\": 1783788756.1322823, \"event\": \"order_placed\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"action\": \"buy\", \"side\": \"yes\", \"price\": 8, \"count\": 4.99, \"order_id\": \"27119a0e-a396-485b-94ec-cf6310251751\", \"client_order_id\": \"cae604be-b557-4e55-8a53-cf980233797a\", \"response_status\": \"re",
+   "{\"ts\": \"2026-07-11 12:52:36 PM ET\", \"ts_epoch\": 1783788756.1335588, \"event\": \"aim_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"site\": \"move_repost\", \"cell\": \"ITF_W|4|36\", \"side\": \"dog\", \"actual_bid\": 8, \"px\": 12, \"sib_px\": 87, \"tts_min\": 367.5, \"book_bid\": 11, \"book_ask\": 14, \"book",
+   "{\"ts\": \"2026-07-11 12:54:53 PM ET\", \"ts_epoch\": 1783788893.9974444, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 11, \"to\": 8, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 12:55:19 PM ET\", \"ts_epoch\": 1783788919.8304677, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 11, \"to\": 8, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 12:56:01 PM ET\", \"ts_epoch\": 1783788961.6223228, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 11, \"to\": 8, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 12:56:34 PM ET\", \"ts_epoch\": 1783788994.393928, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 11, \"to\": 8, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 12:56:47 PM ET\", \"ts_epoch\": 1783789007.3180094, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 11, \"to\": 8, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 12:57:32 PM ET\", \"ts_epoch\": 1783789052.591602, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 11, \"to\": 9, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 12:57:43 PM ET\", \"ts_epoch\": 1783789063.2239866, \"event\": \"order_placed\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"action\": \"buy\", \"side\": \"yes\", \"price\": 9, \"count\": 4.99, \"order_id\": \"2fa51ad2-3485-4d96-a11e-d98b02223330\", \"client_order_id\": \"4f052272-af7b-4a83-aa67-263992f652c1\", \"response_status\": \"re",
+   "{\"ts\": \"2026-07-11 12:57:43 PM ET\", \"ts_epoch\": 1783789063.225003, \"event\": \"aim_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"site\": \"move_repost\", \"cell\": \"ITF_W|4|36\", \"side\": \"dog\", \"actual_bid\": 9, \"px\": 13, \"sib_px\": 87, \"tts_min\": 362.5, \"book_bid\": 11, \"book_ask\": 15, \"book_",
+   "{\"ts\": \"2026-07-11 12:58:34 PM ET\", \"ts_epoch\": 1783789114.677374, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 12, \"to\": 10, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 12:58:44 PM ET\", \"ts_epoch\": 1783789124.4352787, \"event\": \"order_placed\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"action\": \"buy\", \"side\": \"yes\", \"price\": 10, \"count\": 4.99, \"order_id\": \"65302878-2f18-4df8-998a-a4e34cdd5372\", \"client_order_id\": \"3f838cf0-3ba6-4525-a8e3-0d29ccd5b1ba\", \"response_status\": \"r",
+   "{\"ts\": \"2026-07-11 12:58:44 PM ET\", \"ts_epoch\": 1783789124.4453187, \"event\": \"aim_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"site\": \"move_repost\", \"cell\": \"ITF_W|4|36\", \"side\": \"dog\", \"actual_bid\": 10, \"px\": 14, \"sib_px\": 87, \"tts_min\": 361.4, \"book_bid\": 12, \"book_ask\": 15, \"boo",
+   "{\"ts\": \"2026-07-11 01:03:17 PM ET\", \"ts_epoch\": 1783789397.2673528, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 13, \"to\": 10, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 01:03:39 PM ET\", \"ts_epoch\": 1783789419.7274919, \"event\": \"completion_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"verdict\": \"flatten_kept\", \"kept\": {\"opinion\": \"EV\", \"cell\": \"ITF_W|leader|at_mid|ge75\", \"n\": 23, \"p_exit_fill\": 0.826, \"p_ride_zero\": 0.13, \"ev_cents\": -2.26, \"band\": 11, \"basis\": 87, \"w",
+   "{\"ts\": \"2026-07-11 01:03:42 PM ET\", \"ts_epoch\": 1783789422.9434474, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 13, \"to\": 10, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 01:04:11 PM ET\", \"ts_epoch\": 1783789451.455291, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 13, \"to\": 10, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 01:04:32 PM ET\", \"ts_epoch\": 1783789472.4985385, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 13, \"to\": 10, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 01:06:18 PM ET\", \"ts_epoch\": 1783789578.0651371, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 13, \"to\": 10, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 01:06:47 PM ET\", \"ts_epoch\": 1783789607.6691966, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 13, \"to\": 10, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 01:06:51 PM ET\", \"ts_epoch\": 1783789611.7441897, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 13, \"to\": 10, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 01:07:31 PM ET\", \"ts_epoch\": 1783789651.3049293, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 13, \"to\": 10, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 01:08:07 PM ET\", \"ts_epoch\": 1783789687.890756, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 13, \"to\": 10, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 01:08:12 PM ET\", \"ts_epoch\": 1783789692.0766063, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 13, \"to\": 10, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 01:08:19 PM ET\", \"ts_epoch\": 1783789699.9987757, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 13, \"to\": 10, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 01:08:20 PM ET\", \"ts_epoch\": 1783789700.9758081, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 13, \"to\": 10, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 01:08:25 PM ET\", \"ts_epoch\": 1783789705.2483437, \"event\": \"leg2_reshuffle_reaim\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"from\": 12, \"to\": 9, \"leg1_basis\": 87, \"goal\": 97}}",
+   "{\"ts\": \"2026-07-11 01:08:56 PM ET\", \"ts_epoch\": 1783789736.0648444, \"event\": \"adoption_true_basis\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"mark_avg\": 0, \"true_basis\": 12, \"qty\": 0}}",
+   "{\"ts\": \"2026-07-11 01:08:57 PM ET\", \"ts_epoch\": 1783789737.86944, \"event\": \"reconcile_v4_adopted\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"cell_id\": 12, \"avg\": 12, \"qty\": 0, \"rule\": \"exit\", \"context\": \"steady_state_reconcile\", \"attribution\": \"reconciled\", \"category\": \"ITF_W\", \"fv\": null, \"fv_gap\": null, \"fv_sources\": [], \"",
+   "{\"ts\": \"2026-07-11 01:08:57 PM ET\", \"ts_epoch\": 1783789737.8706777, \"event\": \"completion_booking_adoption\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MAL\", \"details\": {\"event\": \"KXITFWMATCH-26JUL11MIRMAL\", \"avg\": 12, \"qty\": 0, \"context\": \"steady_state_reconcile\"}}",
+   "{\"ts\": \"2026-07-11 01:13:46 PM ET\", \"ts_epoch\": 1783790026.960904, \"event\": \"completion_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"verdict\": \"flatten_kept\", \"kept\": {\"opinion\": \"EV\", \"cell\": \"ITF_W|leader|disc|ge75\", \"n\": 16, \"p_exit_fill\": 0.875, \"p_ride_zero\": 0.125, \"ev_cents\": -1.25, \"band\": 11, \"basis\": 87, \"win",
+   "{\"ts\": \"2026-07-11 01:23:59 PM ET\", \"ts_epoch\": 1783790639.3988307, \"event\": \"completion_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"verdict\": \"NO-OPINION\", \"kept\": {\"opinion\": \"NO-OPINION\", \"cell\": \"ITF_W|leader|over|ge75\", \"missing\": \"range cell empty/thin (n=3)\"}, \"cross\": {\"opinion\": \"EV\", \"cell\": \"ITF_W|underdog|",
+   "{\"ts\": \"2026-07-11 01:34:11 PM ET\", \"ts_epoch\": 1783791251.6508014, \"event\": \"completion_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"verdict\": \"flatten_kept\", \"kept\": {\"opinion\": \"EV\", \"cell\": \"ITF_W|leader|at_mid|ge75\", \"n\": 23, \"p_exit_fill\": 0.826, \"p_ride_zero\": 0.13, \"ev_cents\": -2.26, \"band\": 11, \"basis\": 87, \"w",
+   "{\"ts\": \"2026-07-11 01:44:15 PM ET\", \"ts_epoch\": 1783791855.984531, \"event\": \"completion_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"verdict\": \"flatten_kept\", \"kept\": {\"opinion\": \"EV\", \"cell\": \"ITF_W|leader|at_mid|ge75\", \"n\": 23, \"p_exit_fill\": 0.826, \"p_ride_zero\": 0.13, \"ev_cents\": -2.26, \"band\": 11, \"basis\": 87, \"wi",
+   "{\"ts\": \"2026-07-11 01:54:22 PM ET\", \"ts_epoch\": 1783792462.3682396, \"event\": \"completion_shadow\", \"ticker\": \"KXITFWMATCH-26JUL11MIRMAL-MIR\", \"details\": {\"verdict\": \"flatten_kept\", \"kept\": {\"opinion\": \"EV\", \"cell\": \"ITF_W|leader|disc|ge75\", \"n\": 16, \"p_exit_fill\": 0.875, \"p_ride_zero\": 0.125, \"ev_cents\": -1.25, \"band\": 11, \"basis\": 87, \"wi"
+  ],
+  "KXWTACHALLENGERMATCH-26JUL11WALBAD": [
+   "{\"ts\": \"2026-07-11 04:00:48 AM ET\", \"ts_epoch\": 1783756848.5629084, \"event\": \"staircase_hold_place\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-WAL\", \"details\": {\"cat\": \"WTA_CHALL\", \"bid\": 28, \"target\": 28}}",
+   "{\"ts\": \"2026-07-11 04:00:48 AM ET\", \"ts_epoch\": 1783756848.641196, \"event\": \"v4_place\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-WAL\", \"details\": {\"event\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD\", \"direction\": \"underdog\", \"cat\": \"WTA_CHALL\", \"regime\": \"r25_34\", \"cell\": 29, \"current_price\": 29, \"anchor_src\": \"last_traded\", \"table_src\": \"",
+   "{\"ts\": \"2026-07-11 04:00:48 AM ET\", \"ts_epoch\": 1783756848.6417332, \"event\": \"os_shadow\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-WAL\", \"details\": {\"site\": \"v4_place\", \"actual\": {\"px\": 29, \"actual_bid\": 28}, \"would\": {\"regime\": \"decay_side\", \"timing\": \"early\", \"flow_open\": false, \"action\": \"wait_window\", \"level\": null, \"posture\": nu",
+   "{\"ts\": \"2026-07-11 04:00:48 AM ET\", \"ts_epoch\": 1783756848.6419911, \"event\": \"conviction_shadow\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-WAL\", \"details\": {\"site\": \"v4_place\", \"cat\": \"WTA_CHALL\", \"opinion\": \"CONVICTION\", \"confidence\": 0.29, \"n_eff\": 1.0, \"range_prior\": {\"cell\": \"WTA_CHALL|underdog|at_mid|26_50\", \"w2_reach\": 0.0, \"kn",
+   "{\"ts\": \"2026-07-11 04:00:48 AM ET\", \"ts_epoch\": 1783756848.6421444, \"event\": \"aim_shadow\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-WAL\", \"details\": {\"event\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD\", \"site\": \"v4_place\", \"cell\": \"WTA_CHALL|3|23\", \"side\": \"dog\", \"actual_bid\": 28, \"px\": 29, \"sib_px\": 70, \"tts_min\": 239.2, \"book_bid\": 28, \"",
+   "{\"ts\": \"2026-07-11 04:00:49 AM ET\", \"ts_epoch\": 1783756849.4358547, \"event\": \"order_placed\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-WAL\", \"details\": {\"action\": \"buy\", \"side\": \"yes\", \"price\": 28, \"count\": 5, \"order_id\": \"ae4ff0ec-2d59-4fe2-9c49-deaa1c94ad14\", \"client_order_id\": \"e493eecd-775f-4eb9-8564-1ed07553a21b\", \"response_statu",
+   "{\"ts\": \"2026-07-11 04:05:21 AM ET\", \"ts_epoch\": 1783757121.7764862, \"event\": \"staircase_hold_place\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-BAD\", \"details\": {\"cat\": \"WTA_CHALL\", \"bid\": 71, \"target\": 71}}",
+   "{\"ts\": \"2026-07-11 04:05:21 AM ET\", \"ts_epoch\": 1783757121.9794009, \"event\": \"v4_place\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-BAD\", \"details\": {\"event\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD\", \"direction\": \"leader\", \"cat\": \"WTA_CHALL\", \"regime\": \"r65_74\", \"cell\": 72, \"current_price\": 72, \"anchor_src\": \"last_traded\", \"table_src\": \"p",
+   "{\"ts\": \"2026-07-11 04:05:21 AM ET\", \"ts_epoch\": 1783757121.9826696, \"event\": \"os_shadow\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-BAD\", \"details\": {\"site\": \"v4_place\", \"actual\": {\"px\": 72, \"actual_bid\": 71}, \"would\": {\"regime\": \"climb_side\", \"timing\": \"early\", \"flow_open\": false, \"action\": \"wait_t90\", \"level\": null, \"posture\": null,",
+   "{\"ts\": \"2026-07-11 04:05:21 AM ET\", \"ts_epoch\": 1783757121.9829452, \"event\": \"conviction_shadow\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-BAD\", \"details\": {\"site\": \"v4_place\", \"cat\": \"WTA_CHALL\", \"opinion\": \"CONVICTION\", \"confidence\": 0.72, \"n_eff\": 1.0, \"range_prior\": {\"cell\": \"WTA_CHALL|leader|at_mid|51_75\", \"w2_reach\": 0.5, \"knif",
+   "{\"ts\": \"2026-07-11 04:05:21 AM ET\", \"ts_epoch\": 1783757121.9830902, \"event\": \"aim_shadow\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-BAD\", \"details\": {\"event\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD\", \"site\": \"v4_place\", \"cell\": \"WTA_CHALL|3|23\", \"side\": \"fav\", \"actual_bid\": 71, \"px\": 72, \"sib_px\": 28, \"tts_min\": 234.6, \"book_bid\": 71, \"",
+   "{\"ts\": \"2026-07-11 04:05:22 AM ET\", \"ts_epoch\": 1783757122.8019998, \"event\": \"order_placed\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-BAD\", \"details\": {\"action\": \"buy\", \"side\": \"yes\", \"price\": 71, \"count\": 5, \"order_id\": \"46254a17-9ce9-4256-834b-d59c655f506d\", \"client_order_id\": \"d5ca3771-98ec-4309-aed6-f5d218d7fc2a\", \"response_statu",
+   "{\"ts\": \"2026-07-11 08:08:26 AM ET\", \"ts_epoch\": 1783771706.4286025, \"event\": \"order_placed\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-WAL\", \"details\": {\"action\": \"sell\", \"side\": \"yes\", \"price\": 34, \"count\": 5, \"order_id\": \"625285ef-e84d-4372-ac28-d423bae37213\", \"client_order_id\": \"f3fcb621-1cc4-441d-979e-29d487f5fb86\", \"response_stat",
+   "{\"ts\": \"2026-07-11 08:08:26 AM ET\", \"ts_epoch\": 1783771706.7124166, \"event\": \"order_cancelled\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-BAD\", \"details\": {\"order_id\": \"46254a17-9ce9-4256-834b-d59c655f506d\", \"label\": \"reaim_sibling_lower\", \"success\": true}}",
+   "{\"ts\": \"2026-07-11 08:08:27 AM ET\", \"ts_epoch\": 1783771707.4151993, \"event\": \"cancel_fill_race\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-BAD\", \"details\": {\"label\": \"reaim_sibling_lower\", \"order_id\": \"46254a17-9ce9-4256-834b-d59c655f506d\", \"cancel_ok\": true, \"filled\": 2, \"fill_price\": 71, \"status\": \"canceled\"}}",
+   "{\"ts\": \"2026-07-11 08:08:27 AM ET\", \"ts_epoch\": 1783771707.415445, \"event\": \"entry_filled\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-BAD\", \"details\": {\"fill_price\": 71, \"posted_price\": 71, \"qty\": 2, \"new_fills\": 2, \"cell\": \"\", \"direction\": \"leader\", \"play_type\": \"v4_resting_maker\", \"kalshi_status\": \"canceled\", \"source\": \"reaim_siblin",
+   "{\"ts\": \"2026-07-11 08:08:28 AM ET\", \"ts_epoch\": 1783771708.4856138, \"event\": \"order_placed\", \"ticker\": \"KXWTACHALLENGERMATCH-26JUL11WALBAD-BAD\", \"details\": {\"action\": \"sell\", \"side\": \"yes\", \"price\": 89, \"count\": 2, \"order_id\": \"2b49b1e1-94dd-4192-8fb3-718524c151eb\", \"client_order_id\": \"b9a7b508-afe1-43af-97c8-21ed797cf2dc\", \"response_stat"
+  ]
+ }
+}

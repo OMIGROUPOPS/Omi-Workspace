@@ -33,7 +33,24 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-12 afternoon — C50 keeps this current):
+## STATE (2026-07-12 evening — C50 keeps this current):
+C-CHASE-KILL v1 DEPLOYED (8a857ecf, gated): the in-play chase ladder
+is dead -- (A) conception stamp retroactive to first order; (B)
+pursuit cap: upward buy placements per leg cap at reentry_cycle_cap 2
+from FIRST buy incl. early window, while neither leg has fills
+(completion after leg1 exempt; down/equal re-places pass); organ gate
+refuses BEFORE the cancel + chokepoint backstop; (C) self-fill bell =
+gun source SIX (own buys rising >=4c/30min -> gun stamp -> fused-gun
+freeze). Replay on CORBRU's real tape: fail-before 17/17 accepted,
+pass-after frozen at the 51 (15 refusals incl. whole COR side).
+Delta: exchange shows NO 51c fill -- bell feeds on own buy ACTIVITY.
+Cohort triage: FLAT, +415c, no flatten needed. Part 4: rungs were
+v4_move_repost with walk-cap anchor ABSENT -> -0j ESCALATED to
+defect. CAP-VOID closing build shipped (KILLED bar: 7 nights).
+Cutover file .claude/cutover/CUTOVER_EVIDENCE.md: cohort 6/6
+would-fire (CORBRU crossing 29min BEFORE rung one); 55 bell_missing
+today: 12 timely/3 early/17 no-tape/23 mains-off; favor percat as
+ADDITIONAL source. Tomorrow 6:10am = operator's cutover word.
 -0k SHIPPED (476b4326): tape_onset flow-step (max(8, 3x window-first-
 hour baseline) + 30-min forward sustain + onset_lags quarantine) --
 10/16 suspects clean joins, 6 quarantine honestly, good rows held.

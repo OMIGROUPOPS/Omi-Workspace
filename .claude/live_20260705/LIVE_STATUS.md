@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 17 @ **2026-07-12 07:03:05 PM ET** | build `648ce6a0` | session boot 07-12 17:18 ET | log `live_v3_20260712.jsonl` | 6765 session events | monitor READ-ONLY
+- cycle 18 @ **2026-07-12 07:13:09 PM ET** | build `f8bf5135` | session boot 07-12 17:18 ET | log `live_v3_20260712.jsonl` | 7269 session events | monitor READ-ONLY
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
@@ -31,7 +31,7 @@ clean overnight — no watch fires
 - classes now: {'NO_FLOW': 1} | repriceable now: true 0 / false 1 | **cumulative bid_grade lines: 8715 (repriceable true 1276 / false 7439)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPMATCH-26JUL12ALTGAS-ALT | 55 | 103m | 0 | 57-59 | — | **NO_FLOW** | 99 |  |
+| ATPMATCH-26JUL12ALTGAS-ALT | 55 | 113m | 0 | 57-59 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 no open half-pairs
@@ -40,7 +40,7 @@ no open half-pairs
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
 | ATPMATCH-26JUL12ALTGAS | ATP_MAIN | 0.0 | 2 | **WAKING** |
-| ITFWMATCH-26JUL12PANOUN | ITF_W | 0.533 | 19 | **WAKING** |
+| ITFWMATCH-26JUL12PANOUN | ITF_W | 1.0 | — | **WAKING** |
 
 ## PATTERNS (sub-B) — 0
 

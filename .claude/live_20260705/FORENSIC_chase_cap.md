@@ -1,7 +1,7 @@
-# FORENSIC — chase_cap — LIVE DEFECT (>=2 in 60min)  <!-- 1783896173 -->
-written 2026-07-12 06:42:54 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — chase_cap — LIVE DEFECT (>=2 in 60min)  <!-- 1783896655 -->
+written 2026-07-12 06:52:58 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (8 total this session)
+## Events (12 total this session)
 - 18:34:49 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 56)
 - 18:36:52 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 56)
 - 18:37:17 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
@@ -10,6 +10,10 @@ written 2026-07-12 06:42:54 PM ET by live_validation_loop (read-only). Patch con
 - 18:38:53 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
 - 18:40:53 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
 - 18:42:53 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
+- 18:44:54 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
+- 18:46:55 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
+- 18:48:55 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
+- 18:50:55 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-12 06:09:48 PM ET", "ts_epoch": 1783894188.8454065, "event": "v4_place", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"event": "KXITFWMATCH-26JUL12PANOUN", "direction": "leader", "cat": "ITF_W", "regime": "r55_64", "cell": 55, "current_price": 55, "anchor_src": "engagement_join", "table_src": "engagement_wave1", "last_trade_age_sec": -1.0, "offset": 0, "target_bid": 55, "
@@ -43,6 +47,22 @@ written 2026-07-12 06:42:54 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-12 06:40:53 PM ET", "ts_epoch": 1783896053.8527856, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.58, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null}}
     {"ts": "2026-07-12 06:40:53 PM ET", "ts_epoch": 1783896053.8530846, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"event": "KXITFWMATCH-26JUL12PANOUN", "held_price": 55, "proposed": 58, "pursuit_buys": 2, "cap": 2}}
     {"ts": "2026-07-12 06:42:53 PM ET", "ts_epoch": 1783896173.9642463, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"event": "KXITFWMATCH-26JUL12PANOUN", "held_price": 55, "proposed": 58, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 06:44:54 PM ET", "ts_epoch": 1783896294.9330332, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"event": "KXITFWMATCH-26JUL12PANOUN", "held_price": 55, "proposed": 58, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 06:46:55 PM ET", "ts_epoch": 1783896415.3433154, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"site": "hold_review", "actual": {"resting_at": 55, "posted_min_ago": 37}, "would": {"regime": "climb_side", "timing": "early", "flow_open": false, "action": "defer", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_W"
+    {"ts": "2026-07-12 06:46:55 PM ET", "ts_epoch": 1783896415.343454, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.58, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null}}
+    {"ts": "2026-07-12 06:46:55 PM ET", "ts_epoch": 1783896415.3435786, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"event": "KXITFWMATCH-26JUL12PANOUN", "held_price": 55, "proposed": 58, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 06:48:55 PM ET", "ts_epoch": 1783896535.1719403, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"event": "KXITFWMATCH-26JUL12PANOUN", "held_price": 55, "proposed": 58, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 06:50:55 PM ET", "ts_epoch": 1783896655.2313979, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"event": "KXITFWMATCH-26JUL12PANOUN", "held_price": 55, "proposed": 58, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 06:51:36 PM ET", "ts_epoch": 1783896696.7479608, "event": "match_live_grace_armed", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"event": "KXITFWMATCH-26JUL12PANOUN", "grace_sec": 300}}
+    {"ts": "2026-07-12 06:52:02 PM ET", "ts_epoch": 1783896722.0990622, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 5, "n_resting_orders": 8, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1783890861.4503121, "legs_new": [], "legs_gone": ["KXATPCHALLENGERMATCH-26JUL12HOHSUR-SUR", "KXAT
+    {"ts": "2026-07-12 06:52:06 PM ET", "ts_epoch": 1783896726.43835, "event": "entry_filled", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"fill_price": 55, "posted_price": 55, "qty": 5, "new_fills": 5, "cell": "", "direction": "leader", "play_type": "v4_engagement_join", "kalshi_status": "executed", "cell_at_fill": 55, "band_at_fill": "r55_64", "bucket_at_fill": null, "band_on_table": fals
+    {"ts": "2026-07-12 06:52:07 PM ET", "ts_epoch": 1783896727.2895622, "event": "order_placed", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"action": "sell", "side": "yes", "price": 67, "count": 5, "order_id": "18c2f678-d077-481c-a369-cfedb549949f", "client_order_id": "3ea6e6ca-cdbb-46db-abb2-1c7460f48fca", "response_status": "resting"}}
+    {"ts": "2026-07-12 06:52:07 PM ET", "ts_epoch": 1783896727.2918751, "event": "v4_exit_posted", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"exit_price": 67, "band_x": 12, "cell_id": 55, "entry_price": 55, "qty": 5, "depth_at_exit": 0, "depth_within_band": 0, "depth_floor": 250, "depth_ok": false, "order_id": "18c2f678-d077-481c-a369-cfedb549949f"}}
+    {"ts": "2026-07-12 06:52:07 PM ET", "ts_epoch": 1783896727.2920146, "event": "completion_no_attempt", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"event": "KXITFWMATCH-26JUL12PANOUN", "reason": "leg1_window_open_unset", "leg1_basis": 55}}
+    {"ts": "2026-07-12 06:52:11 PM ET", "ts_epoch": 1783896731.5242205, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_W|leader|disc|51_75", "n": 40, "p_exit_fill": 0.8, "p_ride_zero": 0.2, "ev_cents": -1.4, "band": 12, "basis": 55, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LAYER_3WA
+    {"ts": "2026-07-12 06:52:12 PM ET", "ts_epoch": 1783896732.3348086, "event": "order_cancelled", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"order_id": "18c2f678-d077-481c-a369-cfedb549949f", "label": "completion_live_flatten", "success": false}}
+    {"ts": "2026-07-12 06:52:12 PM ET", "ts_epoch": 1783896732.3681982, "event": "order_placed", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"action": "sell", "side": "yes", "price": 23, "count": 5, "order_id": "c0b27310-71d2-440f-bce4-faba489c81c6", "client_order_id": "a15d0214-a360-471f-9a19-c464f954fde8", "response_status": "filled"}}
+    {"ts": "2026-07-12 06:52:12 PM ET", "ts_epoch": 1783896732.3683465, "event": "completion_action", "ticker": "KXITFWMATCH-26JUL12PANOUN-OUN", "details": {"event": "KXITFWMATCH-26JUL12PANOUN", "verdict": "flatten_kept", "outcome": "flattening", "flatten_price": 23, "qty": 5, "kept_basis": 55, "ev_cents": -1.4, "order_id": "c0b27310-71d2-440f-bce4-faba489c81c6"}}
 
 ## Code path
 ?

@@ -1,13 +1,13 @@
 {
- "generated_hash": "05b03dce355d9b026dcc381612d8a08d633017d7959037dda4f5836d6c6aa986",
+ "generated_hash": "5fc3e89d44558dfb790e96acce1a80c8e465ef28c03f5c294539580b9c227011",
  "counts": {
-  "config_keys": 96,
-  "code_config_gets": 121,
-  "union": 122
+  "config_keys": 100,
+  "code_config_gets": 125,
+  "union": 126
  },
  "by_class": {
   "FITTED": 3,
-  "DECREED": 18,
+  "DECREED": 22,
   "NAKED": 101
  },
  "rows": [
@@ -135,6 +135,14 @@
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
+  },
+  {
+   "knob": "chase_pursuit_cap_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-CHASE-KILL 07-12 (operator emergency decree; cap constant = reentry_cycle_cap, cycle ruling 07-08)",
+   "step": "L5"
   },
   {
    "knob": "combined_goal",
@@ -902,6 +910,30 @@
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
+  },
+  {
+   "knob": "self_fill_bell_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-CHASE-KILL 07-12 (bell source six: own blood is the one feed that can't lie)",
+   "step": "L3"
+  },
+  {
+   "knob": "self_fill_rise_cents",
+   "in_config": true,
+   "config_value": 4,
+   "class": "DECREED",
+   "citation": "C-CHASE-KILL 07-12 (operator: >=4 cents)",
+   "step": "L3"
+  },
+  {
+   "knob": "self_fill_window_sec",
+   "in_config": true,
+   "config_value": 1800,
+   "class": "DECREED",
+   "citation": "C-CHASE-KILL 07-12 (operator: within 30 minutes)",
+   "step": "L3"
   },
   {
    "knob": "sizing",

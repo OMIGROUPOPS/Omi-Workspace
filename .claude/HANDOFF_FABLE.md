@@ -33,7 +33,21 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-12 evening — C50 keeps this current):
+## STATE (2026-07-12 night — C50 keeps this current):
+THREE OPERATOR WORDS EXECUTED, one gated deploy (9b26fc17):
+(1) percat bell ARMED -- gun source seven percat_fitted, ADDITIONAL
+under the fused freeze; legacy deletion rides 07-13 6:10 scorecard.
+(2) -0j ARMED -- walk_cap_honest_anchor true (Plex table ITF_W 20/
+ITF_M 14/CHALL 2/MAIN 1 on honest first-target; window-open void
+dead). (3) TAKER WORD -- operator_taker_word + completion_live_
+enabled true: verdicts ACT via _completion_execute (taker cross =
+IOC at ask w/ one-shot fused-gun exemption; flatten_kept sells kept
+at bid + cancels both orders; once per event per boot); nightly
+gains COMPLETION LIVE-vs-SHADOW (divergence + verdict-without-action
+= named violations); replay 5/5 PASS at SHA on box. Boot resolved
+MIYKUZ-KUZ 32c / CALRAD-CAL 57c by engine verdict (see deploy
+report). Remaining words: legacy-trigger deletion (6:10 scorecard),
+COMBINED-CAP remedy, -0g.
 C-CHASE-KILL v1 DEPLOYED (8a857ecf, gated): the in-play chase ladder
 is dead -- (A) conception stamp retroactive to first order; (B)
 pursuit cap: upward buy placements per leg cap at reentry_cycle_cap 2

@@ -363,6 +363,49 @@ def main():
                      + (" | ".join("%s %+.0f" % (c5, e5) for c5, e5 in sorted(cs_ev.items())) or "none"))
     except Exception:
         pass
+    # [C-COMPLETION-LIVE 07-12, operator word] the policy's first live days
+    # are graded against its own shadow record: every completion_action must
+    # match the shadow verdict that triggered it, and every actionable shadow
+    # verdict (taker_complete/flatten_kept, gates open) must have an action
+    # or a named refusal -- any live-vs-shadow divergence is a NAMED violation.
+    try:
+        acts = []           # (ts, event, verdict, outcome)
+        sh_last = {}        # event -> (ts, verdict)
+        sh_actionable = {}  # event -> first actionable (ts, verdict)
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"completion_action"' in line:
+                d8 = json.loads(line)
+                det8 = d8.get("details") or {}
+                acts.append((d8.get("ts_epoch", 0), det8.get("event", ""),
+                             det8.get("verdict"), det8.get("outcome")))
+            elif '"completion_shadow"' in line:
+                d8 = json.loads(line)
+                det8 = d8.get("details") or {}
+                ev8 = det8.get("event", "")
+                sh_last[ev8] = (d8.get("ts_epoch", 0), det8.get("verdict"))
+                if (det8.get("verdict") in ("taker_complete", "flatten_kept")
+                        and ev8 not in sh_actionable):
+                    sh_actionable[ev8] = (d8.get("ts_epoch", 0), det8.get("verdict"))
+        div8 = []
+        for ts8, ev8, v8, o8 in acts:
+            lv = sh_last.get(ev8)
+            if lv and lv[1] != v8 and lv[0] <= ts8:
+                div8.append("action %s on %s but latest shadow said %s" % (v8, ev8, lv[1]))
+            if o8 == "error":
+                div8.append("action ERROR on %s (%s)" % (ev8, v8))
+        acted_evs = {a[1] for a in acts}
+        for ev8, (ts8, v8) in sh_actionable.items():
+            if ev8 not in acted_evs:
+                div8.append("shadow said %s on %s but NO action followed" % (v8, ev8))
+        if acts or sh_actionable:
+            L += ["", "## COMPLETION LIVE-vs-SHADOW (operator word 07-12; the same-instrument law, completion edition) — "
+                      "actions: %d, divergences: %d" % (len(acts), len(div8))]
+            for a in acts[:15]:
+                L.append("- action %s → %s on %s" % (a[2], a[3], a[1]))
+            for w8 in div8[:10]:
+                L.append("- **VIOLATION** %s" % w8)
+    except Exception:
+        pass
     md = ROOT.parent / (".claude/adjudication/ADJUDICATION_%s.md" % ymd)
     md.write_text("\n".join(L), encoding="utf-8")
     print("adjudication ->", md)

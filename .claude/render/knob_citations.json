@@ -96,7 +96,7 @@
  ],
  "operator_taker_word": [
   "DECREED",
-  "operator word gate (RULING_PAIR_ECONOMICS)",
+  "OPERATOR WORD 07-12: taker word GIVEN (was the gate; now true)",
   "L6"
  ],
  "composer_live_shadow_enabled": [
@@ -128,5 +128,20 @@
   "DECREED",
   "C-CHASE-KILL 07-12 (operator: within 30 minutes)",
   "L3"
+ ],
+ "percat_gun_armed": [
+  "DECREED",
+  "OPERATOR WORD 07-12: percat fitted trigger = ADDITIONAL bell source; legacy deletion rides the 6:10 regrade",
+  "L3"
+ ],
+ "completion_live_enabled": [
+  "DECREED",
+  "OPERATOR WORD 07-12: completion policy live per shadow-graded design",
+  "L6"
+ ],
+ "walk_cap_honest_anchor": [
+  "DECREED",
+  "OPERATOR WORD 07-12: -0j armed (PLEX_WALK_CAP_SIZES ratified table; the window-open void dies)",
+  "L5"
  ]
 }

@@ -45,7 +45,8 @@ async def _fake_get(s, ak, pk, path, rl):
     return {}
 
 async def _fake_post(s, ak, pk, path, payload, rl):
-    return {"order": {"order_id": "SIM-OID", "status": "resting"}}
+    # flat v2 create-order shape (parse_order_response_v2)
+    return {"order_id": "SIM-OID", "remaining_count": 5}
 
 lv.api_get = _fake_get
 lv.api_post = _fake_post
@@ -66,6 +67,7 @@ def mk_bot(chase_cap, bell):
     b._gun_state = {}
     b._events_live = set()
     b._trade_times = {}
+    b.event_tickers = {}
     b.event_start_time = {}
     b._pm_honest = {}
     b.reentry_cycle_cap = int(cfg.get("reentry_cycle_cap", 2))

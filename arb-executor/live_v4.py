@@ -3676,7 +3676,15 @@ class LiveV3:
         # legitimate NEW buy (closes POST_GUN_FORENSIC's 80-buys-after-latch
         # class). Sells untouched. Dedup-logged per ticker per boot.
         if action == "buy" and getattr(self, "fused_gun", False):
-            _g = getattr(self, "_gun_state", {}).get(ticker.rsplit("-", 1)[0])
+            # [C-COMPLETION-LIVE 07-12] one-shot exemption: the completion
+            # engine's DELIBERATE taker cross is the single legitimate buy on
+            # a live match (the policy's own math cleared it; operator word).
+            _ca = getattr(self, "_completion_cross_allow", set())
+            if ticker in _ca:
+                _ca.discard(ticker)
+                _g = None
+            else:
+                _g = getattr(self, "_gun_state", {}).get(ticker.rsplit("-", 1)[0])
             if _g is not None:
                 _gs = self.__dict__.setdefault("_gun_refused_logged", set())
                 if ticker not in _gs:
@@ -5705,6 +5713,13 @@ class LiveV3:
                         "live_gun_source": (g7 or {}).get("source"),
                         "live_gun_delta_min": (round((now - g7["ts"]) / 60.0, 1)
                                                if g7 else None)})
+                    # [C-PERCAT-ARM 07-12, operator word] the fitted trigger
+                    # is an ADDITIONAL bell source under the fused freeze
+                    # (gun source seven). Legacy trigger deletion rides
+                    # tomorrow's 6:10 regrade scorecard, not this arm.
+                    if self.config.get("percat_gun_armed", False):
+                        self._gun_stamp(et, "percat_fitted", {
+                            "cat": _c7, "prints_30m": p30, "threshold": t7})
         # ---- [C-REALITY-BELL Part 2] bell-coverage invariant: a tracked
         # event with exposure whose anchored start passed >10 min ago MUST
         # carry a bell (gun or fallback) -- else bell_missing, once per
@@ -6915,8 +6930,99 @@ class LiveV3:
             res.update({"event": et, "gated": "operator_taker_word",
                         "taker_word": bool(self.config.get("operator_taker_word", False))})
             self._log("completion_shadow", res, ticker=tk)
+            return res
         except Exception:
             pass
+        return None
+
+    async def _completion_execute(self, tk, pos, res, now):
+        """[C-COMPLETION-LIVE 07-12, three operator arming words] the policy's
+        verdicts ACT (never-hold-naked enforced; pair-97 arithmetic consulted
+        nowhere -- the engine's own math is the only authority):
+          taker_complete -> cancel the resting sibling maker bid, CROSS the
+            sibling at ask for the kept qty (deliberate taker, post_only=False;
+            fires only when the engine's math cleared AND operator_taker_word)
+          flatten_kept  -> cancel the resting sibling bid AND the kept leg's
+            maker exit, sell the kept leg at the bid (the naked hold ends NOW)
+          hold / NO-OPINION -> nothing.
+        One action per event per boot (a verdict that flips after we acted is
+        tomorrow's adjudication's business, not a re-trade). Never raises."""
+        try:
+            v = (res or {}).get("verdict")
+            if v not in ("taker_complete", "flatten_kept"):
+                return
+            et = tk.rsplit("-", 1)[0]
+            acted = self.__dict__.setdefault("_completion_acted", {})
+            if et in acted:
+                return
+            if v == "taker_complete" and not self.config.get(
+                    "operator_taker_word", False):
+                return
+            sib = self._sibling_ticker_any(tk)
+            sb = self.books.get(sib) if sib else None
+            kb = self.books.get(tk)
+            qty = int(round(float(getattr(pos, "entry_qty", 0) or 0)))
+            if qty <= 0:
+                return
+            acted[et] = (v, now)
+            # cancel the resting sibling maker bid under BOTH verdicts --
+            # after this action the pair pursuit is decided, not pending
+            sp = self.positions.get(sib) if sib else None
+            if (sp is not None and getattr(sp, "entry_order_id", "")
+                    and getattr(sp, "entry_qty", 0) <= 0):
+                await self.cancel_order(sib, sp.entry_order_id,
+                                        "completion_live_resolve")
+            if v == "taker_complete":
+                ask = int(sb.best_ask) if (sb and sb.best_ask) else 0
+                if not (5 <= ask <= 95):
+                    self._log("completion_action", {
+                        "event": et, "verdict": v, "outcome": "refused",
+                        "reason": "sib_ask_out_of_bounds", "sib_ask": ask},
+                        ticker=tk)
+                    return
+                self.__dict__.setdefault(
+                    "_completion_cross_allow", set()).add(sib)
+                oid, resp = await self.place_order(
+                    sib, "buy", "yes", ask, qty, post_only=False)
+                self.__dict__.setdefault(
+                    "_completion_cross_allow", set()).discard(sib)
+                self._log("completion_action", {
+                    "event": et, "verdict": v,
+                    "outcome": "crossed" if oid else "refused",
+                    "sib": sib, "cross_price": ask, "qty": qty,
+                    "kept_basis": int(pos.entry_price or 0),
+                    "ev_cents": (res.get("kept") or {}).get("ev_cents"),
+                    "order_id": oid,
+                    **({} if oid else {"error": str((resp or {}).get("_error"))})},
+                    ticker=tk)
+            else:   # flatten_kept
+                bid = int(kb.best_bid) if (kb and kb.best_bid) else 0
+                if bid < 1:
+                    self._log("completion_action", {
+                        "event": et, "verdict": v, "outcome": "refused",
+                        "reason": "no_bid_to_flatten_into"}, ticker=tk)
+                    return
+                if getattr(pos, "exit_order_id", ""):
+                    await self.cancel_order(tk, pos.exit_order_id,
+                                            "completion_live_flatten")
+                oid, resp = await self.place_order(
+                    tk, "sell", "yes", bid, qty, post_only=False)
+                if oid:
+                    pos.exit_order_id = oid
+                    pos.exit_price = bid
+                self._log("completion_action", {
+                    "event": et, "verdict": v,
+                    "outcome": "flattening" if oid else "refused",
+                    "flatten_price": bid, "qty": qty,
+                    "kept_basis": int(pos.entry_price or 0),
+                    "ev_cents": (res.get("kept") or {}).get("ev_cents"),
+                    "order_id": oid,
+                    **({} if oid else {"error": str((resp or {}).get("_error"))})},
+                    ticker=tk)
+        except Exception as e:
+            self._log("completion_action", {
+                "verdict": (res or {}).get("verdict"),
+                "outcome": "error", "error": str(e)[:200]}, ticker=tk)
 
     async def check_fills(self):
         """Poll Kalshi for fill status on all active orders."""
@@ -6924,7 +7030,10 @@ class LiveV3:
         for tk, pos in list(self.positions.items()):
             if pos.settled:
                 continue
-            self._completion_shadow(tk, pos, _cs_now)
+            _cs_res = self._completion_shadow(tk, pos, _cs_now)
+            # [C-COMPLETION-LIVE 07-12] the verdicts act (operator's word)
+            if _cs_res and self.config.get("completion_live_enabled", False):
+                await self._completion_execute(tk, pos, _cs_res, _cs_now)
 
             # [C-MONOTONIC-CUT] gated, default-OFF => this line is skipped => byte-identical. On filled
             # legs only, evaluate the in-match monotonic-faller downside cut (shadow-logs would-fire;

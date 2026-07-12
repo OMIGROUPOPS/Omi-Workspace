@@ -1997,6 +1997,39 @@ class LiveV3:
                         details.setdefault("trade_id", _cur[1])
         except Exception:
             pass
+        # [C-CHASE-KILL 07-12] Lock A + the locks' bookkeeping at the single
+        # emitter: every ACCEPTED buy placement joins the leg's own-activity
+        # price series (the self-fill bell's feed) and counts the pursuit; the
+        # FIRST order on an event stamps conception RETROACTIVELY to itself
+        # (the cap-void ends by definition -- there is no order before
+        # conception); a booked fill joins the series and ENDS the pursuit
+        # (counter clears -- re-entry after cash is the cycle machinery's).
+        try:
+            if ticker and isinstance(details, dict):
+                if event == "order_placed" and details.get("action") == "buy":
+                    _now7 = time.time()
+                    self.__dict__.setdefault("_selfbuy_pts", {}).setdefault(
+                        ticker, deque(maxlen=64)).append(
+                        (_now7, int(details.get("price") or 0)))
+                    _pc7 = self.__dict__.setdefault("_pursuit_count", {})
+                    _pc7[ticker] = _pc7.get(ticker, 0) + 1
+                    _et7 = ticker.rsplit("-", 1)[0]
+                    _cs7 = self.__dict__.setdefault("_conception_stamped", set())
+                    if _et7 not in _cs7:
+                        _cs7.add(_et7)
+                        self.__dict__.setdefault(
+                            "_first_order_ts", {})[_et7] = _now7
+                        self._log("conception_stamp", {
+                            "event": _et7, "source": "first_order_retro",
+                            "retroactive_to": _now7})
+                elif event == "entry_filled":
+                    self.__dict__.setdefault("_selfbuy_pts", {}).setdefault(
+                        ticker, deque(maxlen=64)).append(
+                        (time.time(), int(details.get("fill_price") or 0)))
+                    self.__dict__.setdefault(
+                        "_pursuit_count", {}).pop(ticker, None)
+        except Exception:
+            pass
         # [C-EARLY-UNLOCK 07-09, operator ruling] cohort stamp at the single
         # emitter: a buy placed while the event's realized-volume unlock is
         # open carries early_unlock + vol-at-placement + basis; its fill
@@ -2757,6 +2790,17 @@ class LiveV3:
             if x != tk and x.rsplit("-", 1)[0] == ev:
                 return x
         return None
+
+    def _event_has_fill(self, tk):
+        """[C-CHASE-KILL] does EITHER leg of tk's event hold booked entry
+        fills? True ends the 'pure entry pursuit' -- placements after leg1
+        are the completion organ (per policy), never chase-capped (else the
+        cap manufactures the starved-single class the abort work named)."""
+        ev = tk.rsplit("-", 1)[0]
+        for x, p in self.positions.items():
+            if x.rsplit("-", 1)[0] == ev and getattr(p, "entry_qty", 0):
+                return True
+        return False
 
     def _walk_cap_cents(self, cat):
         """(4) premarket_walk_cap per-cat allowance above the conception cell. MAIN 2 / CHALL 3 /
@@ -3660,6 +3704,62 @@ class LiveV3:
                         "cap": getattr(self, "reentry_cycle_cap", 2),
                     }, ticker=ticker)
                 return "", {"_error": "cycle_cap"}
+        # [C-CHASE-KILL 07-12, operator decree] the in-play chase ladder dies
+        # here (CORBRU: 14 buy placements 41->65 over 90 min, in-play, while
+        # the walk cap's _window_open anchor was absent (the cap-void), the
+        # cycle cap counted only COMPLETED cycles (a ladder is one pursuit,
+        # zero cycles) and no bell rang). Chokepoint backstop; the organ-level
+        # gate in _v4_move_repost refuses BEFORE the cancel so the resting bid
+        # survives (ICHOCH lesson).
+        # Lock B -- the pursuit cap: while NEITHER leg of the event has a
+        # booked fill (pure entry pursuit -- completion placements after leg1
+        # are the completion organ, per policy), UPWARD buy placements per leg
+        # cap at reentry_cycle_cap (2, DECREED cycle ruling 07-08, extended by
+        # C-CHASE-KILL to bind from the FIRST buy, early window included).
+        # Equal/lower re-places pass: refusing a down-move after a cancel
+        # strands a stale high bid above a falling tape.
+        if (action == "buy" and post_only
+                and self.config.get("chase_pursuit_cap_enabled", True)):
+            _pc9 = self.__dict__.setdefault("_pursuit_count", {})
+            _pts9 = self.__dict__.setdefault("_selfbuy_pts", {}).get(ticker)
+            _last9 = _pts9[-1][1] if _pts9 else None
+            if (_pc9.get(ticker, 0) >= getattr(self, "reentry_cycle_cap", 2)
+                    and (_last9 is None or price > _last9)
+                    and not self._event_has_fill(ticker)):
+                self._log("chase_cap_refused", {
+                    "price": price, "count": count,
+                    "pursuit_buys": _pc9.get(ticker, 0),
+                    "last_own_price": _last9,
+                    "cap": getattr(self, "reentry_cycle_cap", 2),
+                }, ticker=ticker)
+                return "", {"_error": "chase_cap"}
+        # Lock C -- the self-fill bell (gun source six): our own buy activity
+        # on one leg rising >= self_fill_rise_cents within self_fill_window_sec
+        # IS match tape -- the one feed that can't lie. Fires the match-live
+        # presumption through the standard gun stamp: the gun guard above
+        # freezes every later entry buy on the event; held legs complete per
+        # policy; exits untouched. The TRIGGERING placement is allowed through
+        # (it is the evidence, and it keeps the leg's resting bid alive).
+        if (action == "buy" and post_only
+                and self.config.get("self_fill_bell_enabled", True)):
+            _et9 = ticker.rsplit("-", 1)[0]
+            if _et9 not in getattr(self, "_gun_state", {}):
+                _pts9 = self.__dict__.setdefault("_selfbuy_pts", {}).get(ticker)
+                if _pts9:
+                    _cut9 = time.time() - float(
+                        self.config.get("self_fill_window_sec", 1800))
+                    _lo9 = min((p9 for t9, p9 in _pts9 if t9 >= _cut9),
+                               default=None)
+                    _rise9 = int(self.config.get("self_fill_rise_cents", 4))
+                    if _lo9 is not None and price - _lo9 >= _rise9:
+                        self._log("self_fill_bell", {
+                            "event": _et9, "from_cents": int(_lo9),
+                            "to_cents": int(price),
+                            "rise": int(price - _lo9),
+                            "window_sec": int(self.config.get(
+                                "self_fill_window_sec", 1800))}, ticker=ticker)
+                        self._gun_stamp(_et9, "self_fill", {
+                            "from_cents": int(_lo9), "to_cents": int(price)})
         # Position accumulation guard: cap total buy exposure per ticker
         if action == "buy":
             target_max = self.config["sizing"]["entry_contracts"]
@@ -7729,6 +7829,10 @@ class LiveV3:
                                 # DEFINED at unlock-qualification: early-window
                                 # buys carry a stamp, the cycle cap grades on
                                 # the early cohort, the "ungradeable" lines end
+                                # [C-CHASE-KILL] register in the retroactive-
+                                # stamp dedup set -- one conception per event
+                                self.__dict__.setdefault(
+                                    "_conception_stamped", set()).add(et)
                                 for _eutk in tickers:
                                     self._log("conception_stamp", {
                                         "event": et, "source": "early_unlock",
@@ -9254,6 +9358,36 @@ class LiveV3:
                     "projected": int(_projb), "new_target": int(new_target),
                     "held_price": int(pos.entry_price or 0)}, ticker=tk)
             return
+        # [C-CHASE-KILL 07-12, operator decree] the organ-level gate, BEFORE
+        # the cancel (refuse-then-keep the resting bid -- a post-cancel refusal
+        # starves the leg, the ICHOCH class). UP-moves only; down/equal moves
+        # are protective (reshuffle bounds, falling regimes) and pass.
+        if int(new_target) > int(pos.entry_price or 0):
+            _et8 = pos.event_ticker
+            # (1) a fired gun (ANY source, incl. self_fill) means the match is
+            # live -- a live match has no legitimate walk-up. Hold the bid.
+            if _et8 in getattr(self, "_gun_state", {}):
+                _gk8 = self.__dict__.setdefault("_walk_gun_hold_logged", set())
+                if tk not in _gk8:
+                    _gk8.add(tk)
+                    self._log("move_repost_gun_hold", {
+                        "event": _et8, "held_price": int(pos.entry_price or 0),
+                        "proposed": int(new_target),
+                        "gun_source": self._gun_state[_et8].get("source")},
+                        ticker=tk)
+                return
+            # (2) the pursuit cap (CORBRU ladder killer): while neither leg
+            # has fills, upward re-places per leg cap at reentry_cycle_cap.
+            if (self.config.get("chase_pursuit_cap_enabled", True)
+                    and self.__dict__.setdefault("_pursuit_count", {}).get(tk, 0)
+                        >= getattr(self, "reentry_cycle_cap", 2)
+                    and not self._event_has_fill(tk)):
+                self._log("chase_cap_hold", {
+                    "event": _et8, "held_price": int(pos.entry_price or 0),
+                    "proposed": int(new_target),
+                    "pursuit_buys": self._pursuit_count.get(tk, 0),
+                    "cap": getattr(self, "reentry_cycle_cap", 2)}, ticker=tk)
+                return
         # [C-FEEDER FIX-2/3] decision-time capture for the repost keys (the
         # cancel/place awaits below are a book-tick window, same race class as
         # the QUESAM placement-side fire)
@@ -9997,6 +10131,52 @@ class LiveV3:
                                         "open_ids": len(ids),
                                         "seed": ("jsonl_stamps" if ids or seq != fills_today
                                                  else "fill_count_retroactive")})
+        # [C-CHASE-KILL 07-12] 5th lineage rebuild: the pursuit counters, the
+        # self-fill bell's own-activity price series and the retroactive
+        # conception registry survive restarts (the restart-amnesia lesson --
+        # a rebooted bot mid-chase must NOT get a fresh ladder).
+        _pts = {}
+        _pc = {}
+        _cs = set()
+        for p in files:
+            try:
+                with open(p, encoding="utf-8", errors="replace") as fh:
+                    for line in fh:
+                        if ('"order_placed"' in line
+                                and '"action": "buy"' in line):
+                            try:
+                                d = json.loads(line)
+                            except ValueError:
+                                continue
+                            if d.get("ts_epoch", 0) < day0 or not d.get("ticker"):
+                                continue
+                            tk9 = d["ticker"]
+                            det9 = d.get("details") or {}
+                            _pts.setdefault(tk9, deque(maxlen=64)).append(
+                                (d["ts_epoch"], int(det9.get("price") or 0)))
+                            _pc[tk9] = _pc.get(tk9, 0) + 1
+                            _cs.add(tk9.rsplit("-", 1)[0])
+                        elif '"entry_filled"' in line:
+                            try:
+                                d = json.loads(line)
+                            except ValueError:
+                                continue
+                            if d.get("ts_epoch", 0) < day0 or not d.get("ticker"):
+                                continue
+                            tk9 = d["ticker"]
+                            det9 = d.get("details") or {}
+                            _pts.setdefault(tk9, deque(maxlen=64)).append(
+                                (d["ts_epoch"],
+                                 int(det9.get("fill_price") or 0)))
+                            _pc.pop(tk9, None)
+            except OSError:
+                continue
+        self._selfbuy_pts, self._pursuit_count = _pts, _pc
+        self._conception_stamped = _cs
+        self._log("chase_lineage_rebuilt", {
+            "legs_with_activity": len(_pts),
+            "open_pursuits": len(_pc),
+            "events_stamped": len(_cs)})
 
     def _load_cycle_history(self):
         """[C-CYCLE-CAP 2026-07-09, operator ruling: re-entry ALLOWED, capped

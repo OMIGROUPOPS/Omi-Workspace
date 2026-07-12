@@ -163,6 +163,26 @@ def parse_session(log_path):
                                   "kind": d.get("kind"), "ref": d.get("ref"),
                                   "market_mid": d.get("market_mid"),
                                   "divergence": d.get("divergence")})
+            elif e in ("chase_cap_refused", "chase_cap_hold"):
+                # [C-CHASE-KILL 07-12] the named refusal IS the violation line
+                # (every key the violation renderers read is present: cls,
+                # detail, ticker, ts -- the MONITOR-BLIND lesson)
+                all_extra = S.setdefault("_extra_pats", [])
+                all_extra.append({"type": "violation", "pattern": "chase_cap",
+                                  "cls": "chase_cap", "ticker": tk, "ts": ts,
+                                  "key": "cc|%s|%d" % (tk, int(ts // 600)),
+                                  "detail": "chase ladder refused: pursuit_buys %s >= cap %s (proposed %s)"
+                                            % (d.get("pursuit_buys"), d.get("cap"),
+                                               d.get("proposed", d.get("price")))})
+            elif e == "self_fill_bell":
+                all_extra = S.setdefault("_extra_pats", [])
+                all_extra.append({"type": "violation", "pattern": "self_fill_bell",
+                                  "cls": "self_fill_bell",
+                                  "ticker": tk or d.get("event"), "ts": ts,
+                                  "key": "sfb|%s" % d.get("event"),
+                                  "detail": "own buys rose %sc (%s->%s) in %ss -> match-live presumption, entry buys FROZEN"
+                                            % (d.get("rise"), d.get("from_cents"),
+                                               d.get("to_cents"), d.get("window_sec"))})
             elif e == "bell_missing":
                 all_extra = S.setdefault("_extra_pats", [])
                 # [07-11 FIX] every type=="violation" item MUST carry "cls" --

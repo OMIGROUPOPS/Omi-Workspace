@@ -106,10 +106,19 @@
   "fallback_bell_sustain_polls": 1,
   "reality_divergence_cents": 25,
   "percat_gun_shadow_enabled": true,
-  "percat_gun_prints30": {"ITF_M": 6, "ITF_W": 6, "ATP_CHALL": 16, "WTA_CHALL": 16},
+  "percat_gun_prints30": {
+    "ITF_M": 6,
+    "ITF_W": 6,
+    "ATP_CHALL": 16,
+    "WTA_CHALL": 16
+  },
   "completion_shadow_enabled": true,
   "operator_taker_word": false,
   "composer_live_shadow_enabled": true,
   "os_shadow_enabled": true,
-  "reentry_cycle_cap": 2
+  "reentry_cycle_cap": 2,
+  "chase_pursuit_cap_enabled": true,
+  "self_fill_bell_enabled": true,
+  "self_fill_rise_cents": 4,
+  "self_fill_window_sec": 1800
 }

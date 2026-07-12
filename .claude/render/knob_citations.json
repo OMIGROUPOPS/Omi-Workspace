@@ -108,5 +108,25 @@
   "NAKED",
   "UNTRACED LIVE KNOB instance 1 (traced 07-11, uncited in canon)",
   "L6"
+ ],
+ "chase_pursuit_cap_enabled": [
+  "DECREED",
+  "C-CHASE-KILL 07-12 (operator emergency decree; cap constant = reentry_cycle_cap, cycle ruling 07-08)",
+  "L5"
+ ],
+ "self_fill_bell_enabled": [
+  "DECREED",
+  "C-CHASE-KILL 07-12 (bell source six: own blood is the one feed that can't lie)",
+  "L3"
+ ],
+ "self_fill_rise_cents": [
+  "DECREED",
+  "C-CHASE-KILL 07-12 (operator: >=4 cents)",
+  "L3"
+ ],
+ "self_fill_window_sec": [
+  "DECREED",
+  "C-CHASE-KILL 07-12 (operator: within 30 minutes)",
+  "L3"
  ]
 }

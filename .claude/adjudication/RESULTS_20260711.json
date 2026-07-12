@@ -1,5 +1,5 @@
 {
- "generated": "2026-07-12 12:22 AM ET",
+ "generated": "2026-07-12 02:37 PM ET",
  "gate_3a": {
   "honesty": {
    "pass": true,
@@ -7,7 +7,7 @@
   },
   "posterior": {
    "pass": true,
-   "detail": "conf peak 0.63 -> trough 0.24 over 1191 obs"
+   "detail": "conf peak 0.62 -> trough 0.26 over 201 obs"
   },
   "era": {
    "pass": true,
@@ -21,7 +21,7 @@
  "n_trades": 119,
  "rows": [
   {
-   "id": "T-20260711-0001",
+   "id": "T-20260711-0017",
    "tk": "KXITFWMATCH-26JUL11MAKSHO-SHO",
    "cat": "ITF_W",
    "ts_et": "01:00:17 AM",
@@ -35,7 +35,7 @@
    "pnl_cents": 55.0
   },
   {
-   "id": "T-20260711-0002",
+   "id": "T-20260711-0029",
    "tk": "KXITFMATCH-26JUL11LAGRIV-LAG",
    "cat": "ITF_M",
    "ts_et": "01:01:39 AM",
@@ -49,7 +49,7 @@
    "pnl_cents": 95.0
   },
   {
-   "id": "T-20260711-0003",
+   "id": "T-20260711-0017",
    "tk": "KXITFWMATCH-26JUL11MAKSHO-SHO",
    "cat": "ITF_W",
    "ts_et": "01:03:06 AM",
@@ -63,7 +63,7 @@
    "pnl_cents": 55.0
   },
   {
-   "id": "T-20260711-0004",
+   "id": "T-20260711-0016",
    "tk": "KXITFWMATCH-26JUL11ERCHRU-HRU",
    "cat": "ITF_W",
    "ts_et": "01:25:07 AM",
@@ -77,7 +77,7 @@
    "pnl_cents": 80.0
   },
   {
-   "id": "T-20260711-0005",
+   "id": "T-20260711-0014",
    "tk": "KXITFMATCH-26JUL11DOUROB-ROB",
    "cat": "ITF_M",
    "ts_et": "01:33:07 AM",
@@ -91,7 +91,7 @@
    "pnl_cents": 20.0
   },
   {
-   "id": "T-20260711-0006",
+   "id": "T-20260711-0031",
    "tk": "KXITFWMATCH-26JUL11SAGYOD-SAG",
    "cat": "ITF_W",
    "ts_et": "01:34:04 AM",
@@ -105,7 +105,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0007",
+   "id": "T-20260711-0029",
    "tk": "KXITFMATCH-26JUL11LAGRIV-LAG",
    "cat": "ITF_M",
    "ts_et": "01:34:43 AM",
@@ -119,7 +119,7 @@
    "pnl_cents": 95.0
   },
   {
-   "id": "T-20260711-0008",
+   "id": "T-20260711-0031",
    "tk": "KXITFWMATCH-26JUL11SAGYOD-SAG",
    "cat": "ITF_W",
    "ts_et": "01:44:03 AM",
@@ -133,7 +133,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0009",
+   "id": "T-20260711-0030",
    "tk": "KXITFMATCH-26JUL11SNIMAZ-SNI",
    "cat": "ITF_M",
    "ts_et": "01:46:51 AM",
@@ -147,7 +147,7 @@
    "pnl_cents": 95.0
   },
   {
-   "id": "T-20260711-0010",
+   "id": "T-20260711-0008",
    "tk": "KXITFMATCH-26JUL11SHIROB-ROB",
    "cat": "ITF_M",
    "ts_et": "01:49:56 AM",
@@ -161,7 +161,7 @@
    "pnl_cents": 100.0
   },
   {
-   "id": "T-20260711-0011",
+   "id": "T-20260711-0035",
    "tk": "KXITFWMATCH-26JUL11SAGYOD-YOD",
    "cat": "ITF_W",
    "ts_et": "02:04:48 AM",
@@ -175,7 +175,7 @@
    "pnl_cents": 65.0
   },
   {
-   "id": "T-20260711-0012",
+   "id": "T-20260711-0040",
    "tk": "KXATPMATCH-26JUL11HUEBUT-BUT",
    "cat": "ATP_MAIN",
    "ts_et": "02:08:25 AM",
@@ -189,7 +189,7 @@
    "pnl_cents": -255.0
   },
   {
-   "id": "T-20260711-0013",
+   "id": "T-20260711-0051",
    "tk": "KXATPMATCH-26JUL11MONHER-MON",
    "cat": "ATP_MAIN",
    "ts_et": "02:46:41 AM",
@@ -203,7 +203,7 @@
    "pnl_cents": 80.0
   },
   {
-   "id": "T-20260711-0014",
+   "id": "T-20260711-0029",
    "tk": "KXITFMATCH-26JUL11LAGRIV-LAG",
    "cat": "ITF_M",
    "ts_et": "03:11:53 AM",
@@ -217,7 +217,7 @@
    "pnl_cents": 95.0
   },
   {
-   "id": "T-20260711-0015",
+   "id": "T-20260711-0009",
    "tk": "KXITFWMATCH-26JUL11STATOM-STA",
    "cat": "ITF_W",
    "ts_et": "03:18:48 AM",
@@ -231,7 +231,7 @@
    "pnl_cents": -310.0
   },
   {
-   "id": "T-20260711-0016",
+   "id": "T-20260711-0002",
    "tk": "KXITFWMATCH-26JUL11SHEYAM-YAM",
    "cat": "ITF_W",
    "ts_et": "03:23:17 AM",
@@ -245,7 +245,7 @@
    "pnl_cents": -265.0
   },
   {
-   "id": "T-20260711-0017",
+   "id": "T-20260711-0019",
    "tk": "KXITFWMATCH-26JUL11HOSCIR-HOS",
    "cat": "ITF_W",
    "ts_et": "03:32:40 AM",
@@ -259,7 +259,7 @@
    "pnl_cents": 75.0
   },
   {
-   "id": "T-20260711-0018",
+   "id": "T-20260711-0050",
    "tk": "KXITFWMATCH-26JUL11SMILEY-LEY",
    "cat": "ITF_W",
    "ts_et": "03:35:36 AM",
@@ -273,7 +273,7 @@
    "pnl_cents": 70.0
   },
   {
-   "id": "T-20260711-0019",
+   "id": "T-20260711-0055",
    "tk": "KXITFWMATCH-26JUL11KUBRYS-RYS",
    "cat": "ITF_W",
    "ts_et": "03:42:51 AM",
@@ -287,7 +287,7 @@
    "pnl_cents": 35.0
   },
   {
-   "id": "T-20260711-0020",
+   "id": "T-20260711-0011",
    "tk": "KXITFWMATCH-26JUL11PERWIE-WIE",
    "cat": "ITF_W",
    "ts_et": "03:53:12 AM",
@@ -301,7 +301,7 @@
    "pnl_cents": -90.0
   },
   {
-   "id": "T-20260711-0021",
+   "id": "T-20260711-0004",
    "tk": "KXITFWMATCH-26JUL11DENSTR-DEN",
    "cat": "ITF_W",
    "ts_et": "04:03:08 AM",
@@ -315,7 +315,7 @@
    "pnl_cents": 11.0
   },
   {
-   "id": "T-20260711-0022",
+   "id": "T-20260711-0059",
    "tk": "KXATPMATCH-26JUL11VIRDIE-VIR",
    "cat": "ATP_MAIN",
    "ts_et": "04:05:12 AM",
@@ -329,7 +329,7 @@
    "pnl_cents": -325.0
   },
   {
-   "id": "T-20260711-0023",
+   "id": "T-20260711-0047",
    "tk": "KXITFWMATCH-26JUL11KALTIK-TIK",
    "cat": "ITF_W",
    "ts_et": "04:06:44 AM",
@@ -343,7 +343,7 @@
    "pnl_cents": 75.0
   },
   {
-   "id": "T-20260711-0024",
+   "id": "T-20260711-0026",
    "tk": "KXITFWMATCH-26JUL11KARSUP-SUP",
    "cat": "ITF_W",
    "ts_et": "04:06:46 AM",
@@ -357,7 +357,7 @@
    "pnl_cents": -200.0
   },
   {
-   "id": "T-20260711-0025",
+   "id": "T-20260711-0074",
    "tk": "KXITFWMATCH-26JUL11KALTIK-KAL",
    "cat": "ITF_W",
    "ts_et": "04:10:08 AM",
@@ -371,7 +371,7 @@
    "pnl_cents": 35.0
   },
   {
-   "id": "T-20260711-0026",
+   "id": "T-20260711-0006",
    "tk": "KXITFWMATCH-26JUL11STATOM-TOM",
    "cat": "ITF_W",
    "ts_et": "04:10:56 AM",
@@ -385,7 +385,7 @@
    "pnl_cents": 35.0
   },
   {
-   "id": "T-20260711-0027",
+   "id": "T-20260711-0013",
    "tk": "KXITFMATCH-26JUL11DOUROB-DOU",
    "cat": "ITF_M",
    "ts_et": "04:31:36 AM",
@@ -399,7 +399,7 @@
    "pnl_cents": 60.0
   },
   {
-   "id": "T-20260711-0028",
+   "id": "T-20260711-0025",
    "tk": "KXITFMATCH-26JUL11DURBAR-BAR",
    "cat": "ITF_M",
    "ts_et": "04:32:25 AM",
@@ -413,7 +413,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0029",
+   "id": "T-20260711-0012",
    "tk": "KXITFWMATCH-26JUL11FONROJ-ROJ",
    "cat": "ITF_W",
    "ts_et": "04:36:30 AM",
@@ -427,7 +427,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0030",
+   "id": "T-20260711-0039",
    "tk": "KXITFMATCH-26JUL11TALPAP-PAP",
    "cat": "ITF_M",
    "ts_et": "04:46:03 AM",
@@ -441,7 +441,7 @@
    "pnl_cents": 80.0
   },
   {
-   "id": "T-20260711-0031",
+   "id": "T-20260711-0079",
    "tk": "KXATPMATCH-26JUL11DHASAC-DHA",
    "cat": "ATP_MAIN",
    "ts_et": "04:50:19 AM",
@@ -455,7 +455,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0032",
+   "id": "T-20260711-0068",
    "tk": "KXATPMATCH-26JUL11MICHEM-HEM",
    "cat": "ATP_MAIN",
    "ts_et": "05:00:01 AM",
@@ -469,7 +469,7 @@
    "pnl_cents": 60.0
   },
   {
-   "id": "T-20260711-0033",
+   "id": "T-20260711-0063",
    "tk": "KXATPCHALLENGERMATCH-26JUL11RINCHO-RIN",
    "cat": "ATP_CHALL",
    "ts_et": "05:07:25 AM",
@@ -483,7 +483,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0034",
+   "id": "T-20260711-0049",
    "tk": "KXITFMATCH-26JUL11ROHBOR-ROH",
    "cat": "ITF_M",
    "ts_et": "05:31:41 AM",
@@ -497,7 +497,7 @@
    "pnl_cents": 70.0
   },
   {
-   "id": "T-20260711-0035",
+   "id": "T-20260711-0082",
    "tk": "KXWTAMATCH-26JUL11ASLSIE-SIE",
    "cat": "WTA_MAIN",
    "ts_et": "05:33:39 AM",
@@ -511,7 +511,7 @@
    "pnl_cents": 45.0
   },
   {
-   "id": "T-20260711-0036",
+   "id": "T-20260711-0037",
    "tk": "KXITFMATCH-26JUL11FABARZ-ARZ",
    "cat": "ITF_M",
    "ts_et": "05:43:59 AM",
@@ -539,7 +539,7 @@
    "pnl_cents": 95.0
   },
   {
-   "id": "T-20260711-0038",
+   "id": "T-20260711-0067",
    "tk": "KXATPMATCH-26JUL11CINZAH-CIN",
    "cat": "ATP_MAIN",
    "ts_et": "05:58:12 AM",
@@ -553,7 +553,7 @@
    "pnl_cents": 55.0
   },
   {
-   "id": "T-20260711-0039",
+   "id": "T-20260711-0045",
    "tk": "KXITFWMATCH-26JUL11BOSKAR-KAR",
    "cat": "ITF_W",
    "ts_et": "05:58:18 AM",
@@ -567,7 +567,7 @@
    "pnl_cents": 35.0
   },
   {
-   "id": "T-20260711-0040",
+   "id": "T-20260711-0054",
    "tk": "KXITFWMATCH-26JUL11LEEJOR-JOR",
    "cat": "ITF_W",
    "ts_et": "06:03:11 AM",
@@ -581,7 +581,7 @@
    "pnl_cents": -215.0
   },
   {
-   "id": "T-20260711-0041",
+   "id": "T-20260711-0042",
    "tk": "KXITFMATCH-26JUL11NORKOI-NOR",
    "cat": "ITF_M",
    "ts_et": "06:10:14 AM",
@@ -595,7 +595,7 @@
    "pnl_cents": 90.0
   },
   {
-   "id": "T-20260711-0042",
+   "id": "T-20260711-0081",
    "tk": "KXATPMATCH-26JUL11SKACHA-CHA",
    "cat": "ATP_MAIN",
    "ts_et": "06:29:20 AM",
@@ -609,7 +609,7 @@
    "pnl_cents": -30.0
   },
   {
-   "id": "T-20260711-0043",
+   "id": "T-20260711-0095",
    "tk": "KXATPCHALLENGERMATCH-26JUL11CHIGRA-CHI",
    "cat": "ATP_CHALL",
    "ts_et": "06:33:49 AM",
@@ -623,7 +623,7 @@
    "pnl_cents": 45.0
   },
   {
-   "id": "T-20260711-0044",
+   "id": "T-20260711-0070",
    "tk": "KXITFMATCH-26JUL11NICJUA-NIC",
    "cat": "ITF_M",
    "ts_et": "06:39:53 AM",
@@ -637,7 +637,7 @@
    "pnl_cents": 95.0
   },
   {
-   "id": "T-20260711-0045",
+   "id": "T-20260711-0056",
    "tk": "KXITFMATCH-26JUL11RECWIS-REC",
    "cat": "ITF_M",
    "ts_et": "06:44:16 AM",
@@ -651,7 +651,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0046",
+   "id": "T-20260711-0052",
    "tk": "KXITFMATCH-26JUL11RECWIS-WIS",
    "cat": "ITF_M",
    "ts_et": "06:49:02 AM",
@@ -665,7 +665,7 @@
    "pnl_cents": 95.0
   },
   {
-   "id": "T-20260711-0047",
+   "id": "T-20260711-0075",
    "tk": "KXITFWMATCH-26JUL11SHIGAO-GAO",
    "cat": "ITF_W",
    "ts_et": "07:13:49 AM",
@@ -679,7 +679,7 @@
    "pnl_cents": 170.0
   },
   {
-   "id": "T-20260711-0048",
+   "id": "T-20260711-0066",
    "tk": "KXITFWMATCH-26JUL11KOVVED-KOV",
    "cat": "ITF_W",
    "ts_et": "07:19:47 AM",
@@ -693,7 +693,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0049",
+   "id": "T-20260711-0097",
    "tk": "KXWTAMATCH-26JUL11HODCHA-HOD",
    "cat": "WTA_MAIN",
    "ts_et": "07:23:28 AM",
@@ -707,7 +707,7 @@
    "pnl_cents": 35.0
   },
   {
-   "id": "T-20260711-0050",
+   "id": "T-20260711-0123",
    "tk": "KXATPMATCH-26JUL11NARGUE-NAR",
    "cat": "ATP_MAIN",
    "ts_et": "08:04:16 AM",
@@ -721,7 +721,7 @@
    "pnl_cents": -285.0
   },
   {
-   "id": "T-20260711-0051",
+   "id": "T-20260711-0090",
    "tk": "KXATPCHALLENGERMATCH-26JUL11SEABAS-BAS",
    "cat": "ATP_CHALL",
    "ts_et": "08:05:11 AM",
@@ -735,7 +735,7 @@
    "pnl_cents": 30.0
   },
   {
-   "id": "T-20260711-0052",
+   "id": "T-20260711-0069",
    "tk": "KXWTACHALLENGERMATCH-26JUL11WALBAD-WAL",
    "cat": "WTA_CHALL",
    "ts_et": "08:08:26 AM",
@@ -749,7 +749,7 @@
    "pnl_cents": 30.0
   },
   {
-   "id": "T-20260711-0053",
+   "id": "T-20260711-0073",
    "tk": "KXWTACHALLENGERMATCH-26JUL11WALBAD-BAD",
    "cat": "WTA_CHALL",
    "ts_et": "08:08:27 AM",
@@ -763,7 +763,7 @@
    "pnl_cents": 36.0
   },
   {
-   "id": "T-20260711-0054",
+   "id": "T-20260711-0093",
    "tk": "KXITFWMATCH-26JUL11SOBAVD-SOB",
    "cat": "ITF_W",
    "ts_et": "08:12:11 AM",
@@ -777,7 +777,7 @@
    "pnl_cents": 70.0
   },
   {
-   "id": "T-20260711-0055",
+   "id": "T-20260711-0093",
    "tk": "KXITFWMATCH-26JUL11SOBAVD-SOB",
    "cat": "ITF_W",
    "ts_et": "08:12:48 AM",
@@ -791,7 +791,7 @@
    "pnl_cents": 70.0
   },
   {
-   "id": "T-20260711-0056",
+   "id": "T-20260711-0134",
    "tk": "KXATPMATCH-26JUL11TOPMAR-MAR",
    "cat": "ATP_MAIN",
    "ts_et": "08:19:50 AM",
@@ -805,7 +805,7 @@
    "pnl_cents": -310.0
   },
   {
-   "id": "T-20260711-0057",
+   "id": "T-20260711-0120",
    "tk": "KXATPMATCH-26JUL11VUKOLI-OLI",
    "cat": "ATP_MAIN",
    "ts_et": "08:20:50 AM",
@@ -819,7 +819,7 @@
    "pnl_cents": 90.0
   },
   {
-   "id": "T-20260711-0058",
+   "id": "T-20260711-0064",
    "tk": "KXATPCHALLENGERMATCH-26JUL11GIUDAM-DAM",
    "cat": "ATP_CHALL",
    "ts_et": "08:21:05 AM",
@@ -833,7 +833,7 @@
    "pnl_cents": -101.0
   },
   {
-   "id": "T-20260711-0059",
+   "id": "T-20260711-0117",
    "tk": "KXATPCHALLENGERMATCH-26JUL11BERDEL-BER",
    "cat": "ATP_CHALL",
    "ts_et": "08:21:38 AM",
@@ -847,7 +847,7 @@
    "pnl_cents": 35.0
   },
   {
-   "id": "T-20260711-0060",
+   "id": "T-20260711-0091",
    "tk": "KXITFMATCH-26JUL11KELWES-KEL",
    "cat": "ITF_M",
    "ts_et": "08:23:30 AM",
@@ -861,7 +861,7 @@
    "pnl_cents": -315.0
   },
   {
-   "id": "T-20260711-0061",
+   "id": "T-20260711-0077",
    "tk": "KXATPCHALLENGERMATCH-26JUL11CHIGRA-GRA",
    "cat": "ATP_CHALL",
    "ts_et": "08:23:32 AM",
@@ -875,7 +875,7 @@
    "pnl_cents": 75.0
   },
   {
-   "id": "T-20260711-0062",
+   "id": "T-20260711-0115",
    "tk": "KXWTAMATCH-26JUL11YASGLU-YAS",
    "cat": "WTA_MAIN",
    "ts_et": "08:49:11 AM",
@@ -889,7 +889,7 @@
    "pnl_cents": 25.0
   },
   {
-   "id": "T-20260711-0063",
+   "id": "T-20260711-0065",
    "tk": "KXITFWMATCH-26JUL11KOVVED-VED",
    "cat": "ITF_W",
    "ts_et": "08:49:24 AM",
@@ -903,7 +903,7 @@
    "pnl_cents": 60.0
   },
   {
-   "id": "T-20260711-0064",
+   "id": "T-20260711-0104",
    "tk": "KXWTAMATCH-26JUL11TSEMAN-MAN",
    "cat": "WTA_MAIN",
    "ts_et": "08:52:04 AM",
@@ -917,7 +917,7 @@
    "pnl_cents": 20.0
   },
   {
-   "id": "T-20260711-0065",
+   "id": "T-20260711-0111",
    "tk": "KXWTAMATCH-26JUL11MICNIN-NIN",
    "cat": "WTA_MAIN",
    "ts_et": "08:59:59 AM",
@@ -931,7 +931,7 @@
    "pnl_cents": -80.0
   },
   {
-   "id": "T-20260711-0066",
+   "id": "T-20260711-0139",
    "tk": "KXATPCHALLENGERMATCH-26JUL11PIRKYM-PIR",
    "cat": "ATP_CHALL",
    "ts_et": "09:06:15 AM",
@@ -945,7 +945,7 @@
    "pnl_cents": 85.0
   },
   {
-   "id": "T-20260711-0067",
+   "id": "T-20260711-0103",
    "tk": "KXITFWMATCH-26JUL11MARPAR-MAR",
    "cat": "ITF_W",
    "ts_et": "09:28:44 AM",
@@ -959,7 +959,7 @@
    "pnl_cents": 55.0
   },
   {
-   "id": "T-20260711-0068",
+   "id": "T-20260711-0087",
    "tk": "KXATPCHALLENGERMATCH-26JUL11DIAGAS-GAS",
    "cat": "ATP_CHALL",
    "ts_et": "09:59:17 AM",
@@ -973,7 +973,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0069",
+   "id": "T-20260711-0086",
    "tk": "KXATPCHALLENGERMATCH-26JUL11DIAGAS-DIA",
    "cat": "ATP_CHALL",
    "ts_et": "10:01:36 AM",
@@ -987,7 +987,7 @@
    "pnl_cents": 95.0
   },
   {
-   "id": "T-20260711-0070",
+   "id": "T-20260711-0099",
    "tk": "KXITFWMATCH-26JUL11BABGER-BAB",
    "cat": "ITF_W",
    "ts_et": "10:02:34 AM",
@@ -1001,7 +1001,7 @@
    "pnl_cents": 80.0
   },
   {
-   "id": "T-20260711-0071",
+   "id": "T-20260711-0172",
    "tk": "KXITFMATCH-26JUL11SAMLOP-SAM",
    "cat": "ITF_M",
    "ts_et": "10:05:59 AM",
@@ -1015,7 +1015,7 @@
    "pnl_cents": 20.0
   },
   {
-   "id": "T-20260711-0072",
+   "id": "T-20260711-0108",
    "tk": "KXITFWMATCH-26JUL11MARPAR-PAR",
    "cat": "ITF_W",
    "ts_et": "10:07:22 AM",
@@ -1029,7 +1029,7 @@
    "pnl_cents": 45.0
   },
   {
-   "id": "T-20260711-0073",
+   "id": "T-20260711-0105",
    "tk": "KXITFWMATCH-26JUL11HOSDAA-DAA",
    "cat": "ITF_W",
    "ts_et": "10:07:23 AM",
@@ -1043,7 +1043,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0074",
+   "id": "T-20260711-0174",
    "tk": "KXITFMATCH-26JUL11MCIALF-ALF",
    "cat": "ITF_M",
    "ts_et": "10:08:25 AM",
@@ -1057,7 +1057,7 @@
    "pnl_cents": 25.0
   },
   {
-   "id": "T-20260711-0075",
+   "id": "T-20260711-0176",
    "tk": "KXITFMATCH-26JUL11FRAMAR-MAR",
    "cat": "ITF_M",
    "ts_et": "10:09:34 AM",
@@ -1071,7 +1071,7 @@
    "pnl_cents": -305.0
   },
   {
-   "id": "T-20260711-0076",
+   "id": "T-20260711-0100",
    "tk": "KXITFWMATCH-26JUL11BABGER-GER",
    "cat": "ITF_W",
    "ts_et": "10:11:22 AM",
@@ -1085,7 +1085,7 @@
    "pnl_cents": 20.0
   },
   {
-   "id": "T-20260711-0077",
+   "id": "T-20260711-0177",
    "tk": "KXITFMATCH-26JUL11MCIALF-MCI",
    "cat": "ITF_M",
    "ts_et": "10:20:22 AM",
@@ -1099,7 +1099,7 @@
    "pnl_cents": 90.0
   },
   {
-   "id": "T-20260711-0078",
+   "id": "T-20260711-0113",
    "tk": "KXWTAMATCH-26JUL11RENTON-REN",
    "cat": "WTA_MAIN",
    "ts_et": "10:29:06 AM",
@@ -1113,7 +1113,7 @@
    "pnl_cents": 25.0
   },
   {
-   "id": "T-20260711-0079",
+   "id": "T-20260711-0145",
    "tk": "KXWTACHALLENGERMATCH-26JUL11MINVOL-MIN",
    "cat": "WTA_CHALL",
    "ts_et": "10:29:28 AM",
@@ -1127,7 +1127,7 @@
    "pnl_cents": 45.0
   },
   {
-   "id": "T-20260711-0080",
+   "id": "T-20260711-0135",
    "tk": "KXATPMATCH-26JUL11CECAJD-CEC",
    "cat": "ATP_MAIN",
    "ts_et": "10:52:09 AM",
@@ -1141,7 +1141,7 @@
    "pnl_cents": 95.0
   },
   {
-   "id": "T-20260711-0081",
+   "id": "T-20260711-0136",
    "tk": "KXITFMATCH-26JUL11CIGZAR-CIG",
    "cat": "ITF_M",
    "ts_et": "10:55:21 AM",
@@ -1155,7 +1155,7 @@
    "pnl_cents": 49.0
   },
   {
-   "id": "T-20260711-0082",
+   "id": "T-20260711-0129",
    "tk": "KXITFWMATCH-26JUL11FULSOU-FUL",
    "cat": "ITF_W",
    "ts_et": "11:11:18 AM",
@@ -1169,7 +1169,7 @@
    "pnl_cents": -385.0
   },
   {
-   "id": "T-20260711-0083",
+   "id": "T-20260711-0124",
    "tk": "KXATPCHALLENGERMATCH-26JUL11SOTCLA-CLA",
    "cat": "ATP_CHALL",
    "ts_et": "11:14:05 AM",
@@ -1183,7 +1183,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0084",
+   "id": "T-20260711-0161",
    "tk": "KXATPMATCH-26JUL11BRAGOM-BRA",
    "cat": "ATP_MAIN",
    "ts_et": "11:19:09 AM",
@@ -1197,7 +1197,7 @@
    "pnl_cents": 70.0
   },
   {
-   "id": "T-20260711-0085",
+   "id": "T-20260711-0150",
    "tk": "KXITFMATCH-26JUL11BAXLOK-LOK",
    "cat": "ITF_M",
    "ts_et": "11:23:29 AM",
@@ -1211,7 +1211,7 @@
    "pnl_cents": 85.0
   },
   {
-   "id": "T-20260711-0086",
+   "id": "T-20260711-0155",
    "tk": "KXITFMATCH-26JUL11MIYLEG-MIY",
    "cat": "ITF_M",
    "ts_et": "11:24:32 AM",
@@ -1225,7 +1225,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0087",
+   "id": "T-20260711-0146",
    "tk": "KXITFMATCH-26JUL11SVAZHU-SVA",
    "cat": "ITF_M",
    "ts_et": "11:27:15 AM",
@@ -1239,7 +1239,7 @@
    "pnl_cents": 65.0
   },
   {
-   "id": "T-20260711-0088",
+   "id": "T-20260711-0138",
    "tk": "KXITFWMATCH-26JUL11GORKOS-GOR",
    "cat": "ITF_W",
    "ts_et": "11:27:29 AM",
@@ -1253,7 +1253,7 @@
    "pnl_cents": 18.0
   },
   {
-   "id": "T-20260711-0089",
+   "id": "T-20260711-0125",
    "tk": "KXATPMATCH-26JUL11CECAJD-AJD",
    "cat": "ATP_MAIN",
    "ts_et": "11:35:21 AM",
@@ -1267,7 +1267,7 @@
    "pnl_cents": -115.0
   },
   {
-   "id": "T-20260711-0090",
+   "id": "T-20260711-0144",
    "tk": "KXWTAMATCH-26JUL11PANKUL-PAN",
    "cat": "WTA_MAIN",
    "ts_et": "11:37:48 AM",
@@ -1281,7 +1281,7 @@
    "pnl_cents": -45.0
   },
   {
-   "id": "T-20260711-0091",
+   "id": "T-20260711-0137",
    "tk": "KXITFWMATCH-26JUL11GORKOS-KOS",
    "cat": "ITF_W",
    "ts_et": "11:39:56 AM",
@@ -1295,7 +1295,7 @@
    "pnl_cents": -360.0
   },
   {
-   "id": "T-20260711-0092",
+   "id": "T-20260711-0142",
    "tk": "KXWTAMATCH-26JUL11MORSZI-SZI",
    "cat": "WTA_MAIN",
    "ts_et": "11:39:58 AM",
@@ -1309,7 +1309,7 @@
    "pnl_cents": 30.0
   },
   {
-   "id": "T-20260711-0093",
+   "id": "T-20260711-0114",
    "tk": "KXWTAMATCH-26JUL11YASGLU-GLU",
    "cat": "WTA_MAIN",
    "ts_et": "11:42:28 AM",
@@ -1323,7 +1323,7 @@
    "pnl_cents": 85.0
   },
   {
-   "id": "T-20260711-0094",
+   "id": "T-20260711-0184",
    "tk": "KXITFMATCH-26JUL11BERBEN-BEN",
    "cat": "ITF_M",
    "ts_et": "11:46:12 AM",
@@ -1337,7 +1337,7 @@
    "pnl_cents": 60.0
   },
   {
-   "id": "T-20260711-0095",
+   "id": "T-20260711-0171",
    "tk": "KXATPCHALLENGERMATCH-26JUL11WALMIC-WAL",
    "cat": "ATP_CHALL",
    "ts_et": "11:49:21 AM",
@@ -1351,7 +1351,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0096",
+   "id": "T-20260711-0185",
    "tk": "KXATPCHALLENGERMATCH-26JUL11GALFEA-GAL",
    "cat": "ATP_CHALL",
    "ts_et": "11:50:06 AM",
@@ -1365,7 +1365,7 @@
    "pnl_cents": 35.0
   },
   {
-   "id": "T-20260711-0097",
+   "id": "T-20260711-0178",
    "tk": "KXITFMATCH-26JUL11FRAMAR-FRA",
    "cat": "ITF_M",
    "ts_et": "11:52:41 AM",
@@ -1379,7 +1379,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0098",
+   "id": "T-20260711-0143",
    "tk": "KXWTAMATCH-26JUL11TANNEP-TAN",
    "cat": "WTA_MAIN",
    "ts_et": "11:52:44 AM",
@@ -1393,7 +1393,7 @@
    "pnl_cents": 56.0
   },
   {
-   "id": "T-20260711-0099",
+   "id": "T-20260711-0151",
    "tk": "KXITFMATCH-26JUL11ERECRA-CRA",
    "cat": "ITF_M",
    "ts_et": "11:55:19 AM",
@@ -1407,7 +1407,7 @@
    "pnl_cents": -300.0
   },
   {
-   "id": "T-20260711-0100",
+   "id": "T-20260711-0160",
    "tk": "KXITFMATCH-26JUL11YOUKIM-YOU",
    "cat": "ITF_M",
    "ts_et": "12:04:56 PM",
@@ -1421,7 +1421,7 @@
    "pnl_cents": 55.0
   },
   {
-   "id": "T-20260711-0101",
+   "id": "T-20260711-0152",
    "tk": "KXWTAMATCH-26JUL11TANNEP-NEP",
    "cat": "WTA_MAIN",
    "ts_et": "12:05:51 PM",
@@ -1435,7 +1435,7 @@
    "pnl_cents": 85.0
   },
   {
-   "id": "T-20260711-0102",
+   "id": "T-20260711-0148",
    "tk": "KXITFMATCH-26JUL11WEIGHA-WEI",
    "cat": "ITF_M",
    "ts_et": "12:09:59 PM",
@@ -1449,7 +1449,7 @@
    "pnl_cents": -350.0
   },
   {
-   "id": "T-20260711-0103",
+   "id": "T-20260711-0159",
    "tk": "KXITFMATCH-26JUL11WEIGHA-GHA",
    "cat": "ITF_M",
    "ts_et": "12:10:03 PM",
@@ -1463,7 +1463,7 @@
    "pnl_cents": 35.0
   },
   {
-   "id": "T-20260711-0104",
+   "id": "T-20260711-0167",
    "tk": "KXITFMATCH-26JUL11JOHKLA-KLA",
    "cat": "ITF_M",
    "ts_et": "12:15:00 PM",
@@ -1477,7 +1477,7 @@
    "pnl_cents": 35.0
   },
   {
-   "id": "T-20260711-0105",
+   "id": "T-20260711-0186",
    "tk": "KXITFMATCH-26JUL11BERBEN-BER",
    "cat": "ITF_M",
    "ts_et": "12:15:40 PM",
@@ -1491,7 +1491,7 @@
    "pnl_cents": 20.0
   },
   {
-   "id": "T-20260711-0106",
+   "id": "T-20260711-0154",
    "tk": "KXITFMATCH-26JUL11BAXLOK-BAX",
    "cat": "ITF_M",
    "ts_et": "12:20:55 PM",
@@ -1505,7 +1505,7 @@
    "pnl_cents": -185.0
   },
   {
-   "id": "T-20260711-0107",
+   "id": "T-20260711-0158",
    "tk": "KXATPMATCH-26JUL11PRAMAJ-MAJ",
    "cat": "ATP_MAIN",
    "ts_et": "12:24:18 PM",
@@ -1519,7 +1519,7 @@
    "pnl_cents": 25.0
   },
   {
-   "id": "T-20260711-0108",
+   "id": "T-20260711-0157",
    "tk": "KXATPMATCH-26JUL11NEUPOL-POL",
    "cat": "ATP_MAIN",
    "ts_et": "12:29:53 PM",
@@ -1533,7 +1533,7 @@
    "pnl_cents": 35.0
   },
   {
-   "id": "T-20260711-0109",
+   "id": "T-20260711-0156",
    "tk": "KXATPMATCH-26JUL11NEUPOL-NEU",
    "cat": "ATP_MAIN",
    "ts_et": "12:31:21 PM",
@@ -1547,7 +1547,7 @@
    "pnl_cents": 144.0
   },
   {
-   "id": "T-20260711-0110",
+   "id": "T-20260711-0164",
    "tk": "KXITFWMATCH-26JUL11MIRMAL-MIR",
    "cat": "ITF_W",
    "ts_et": "12:52:23 PM",
@@ -1561,7 +1561,7 @@
    "pnl_cents": 55.0
   },
   {
-   "id": "T-20260711-0111",
+   "id": "T-20260711-0166",
    "tk": "KXATPCHALLENGERMATCH-26JUL11MEJVAR-VAR",
    "cat": "ATP_CHALL",
    "ts_et": "01:02:46 PM",
@@ -1575,7 +1575,7 @@
    "pnl_cents": 40.0
   },
   {
-   "id": "T-20260711-0112",
+   "id": "T-20260711-0189",
    "tk": "KXITFMATCH-26JUL11SYDGON-SYD",
    "cat": "ITF_M",
    "ts_et": "01:07:18 PM",
@@ -1589,7 +1589,7 @@
    "pnl_cents": 20.0
   },
   {
-   "id": "T-20260711-0113",
+   "id": "T-20260711-0169",
    "tk": "KXITFMATCH-26JUL11JOHKLA-JOH",
    "cat": "ITF_M",
    "ts_et": "01:16:24 PM",
@@ -1603,7 +1603,7 @@
    "pnl_cents": 95.0
   },
   {
-   "id": "T-20260711-0114",
+   "id": "T-20260711-0141",
    "tk": "KXWTAMATCH-26JUL11MORSZI-MOR",
    "cat": "WTA_MAIN",
    "ts_et": "01:22:56 PM",
@@ -1617,7 +1617,7 @@
    "pnl_cents": 95.0
   },
   {
-   "id": "T-20260711-0115",
+   "id": "T-20260711-0190",
    "tk": "KXITFMATCH-26JUL11BECANG-BEC",
    "cat": "ITF_M",
    "ts_et": "01:43:12 PM",
@@ -1631,7 +1631,7 @@
    "pnl_cents": 95.0
   },
   {
-   "id": "T-20260711-0116",
+   "id": "T-20260711-0191",
    "tk": "KXITFMATCH-26JUL11BECANG-ANG",
    "cat": "ITF_M",
    "ts_et": "01:49:25 PM",
@@ -1645,7 +1645,7 @@
    "pnl_cents": -110.0
   },
   {
-   "id": "T-20260711-0117",
+   "id": "T-20260711-0181",
    "tk": "KXITFWMATCH-26JUL11SHCCHA-CHA",
    "cat": "ITF_W",
    "ts_et": "02:01:28 PM",
@@ -1659,7 +1659,7 @@
    "pnl_cents": 25.0
   },
   {
-   "id": "T-20260711-0118",
+   "id": "T-20260711-0192",
    "tk": "KXITFMATCH-26JUL11JASMAT-JAS",
    "cat": "ITF_M",
    "ts_et": "07:37:21 PM",
@@ -1673,7 +1673,7 @@
    "pnl_cents": 95.0
   },
   {
-   "id": "T-20260711-0119",
+   "id": "T-20260711-0193",
    "tk": "KXITFMATCH-26JUL11JASMAT-MAT",
    "cat": "ITF_M",
    "ts_et": "10:05:40 PM",

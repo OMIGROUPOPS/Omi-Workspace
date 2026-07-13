@@ -148,5 +148,10 @@
   "DECREED",
   "OPERATOR 07-12 C-DELETION-GATE Part 4 (thin-evidence guard: 3/day until n>=30 graded shadow+live taker verdicts)",
   "L6"
+ ],
+ "self_fill_corroborate_prints": [
+  "DECREED",
+  "OPERATOR 07-13 C-BELL-SCOPE Part 1(c): non-self prints corroborate the move",
+  "L3"
  ]
 }

@@ -123,5 +123,6 @@
   "self_fill_window_sec": 1800,
   "percat_gun_armed": true,
   "completion_live_enabled": true,
-  "taker_daily_action_cap": 3
+  "taker_daily_action_cap": 3,
+  "self_fill_corroborate_prints": 5
 }

@@ -2851,6 +2851,19 @@ class LiveV3:
             return "bell"
         return None
 
+    def _sanctioned_walk_cents_cat(self, cat):
+        """[C-BELL-SCOPE 07-13] the CURRENTLY-ARMED walk allowance for a
+        category -- always the live table, never a constant (OVER-BROAD LOCK
+        instance 2: the self-fill bell's 4c threshold was calibrated against
+        the pre-arming walk world and the -0j arming invalidated it same-day.
+        A lock's threshold scopes against sanctioned behavior DYNAMICALLY)."""
+        if getattr(self, "walk_cap_honest_anchor", False):
+            _hcap = {"ATP_MAIN": 1, "WTA_MAIN": 1, "ATP_CHALL": 2,
+                     "WTA_CHALL": 2, "ITF_M": 14, "ITF_W": 20}
+            return int(self.walk_cap_honest_by_cat.get(
+                cat, _hcap.get(cat, 4)))
+        return self._walk_cap_cents(cat)
+
     def _walk_cap_cents(self, cat):
         """(4) premarket_walk_cap per-cat allowance above the conception cell. MAIN 2 / CHALL 3 /
         ITF 4; config override via premarket_walk_cap_by_cat. Matches the aim-table faller depth."""
@@ -3821,14 +3834,53 @@ class LiveV3:
                                default=None)
                     _rise9 = int(self.config.get("self_fill_rise_cents", 4))
                     if _lo9 is not None and price - _lo9 >= _rise9:
-                        self._log("self_fill_bell", {
-                            "event": _et9, "from_cents": int(_lo9),
-                            "to_cents": int(price),
-                            "rise": int(price - _lo9),
-                            "window_sec": int(self.config.get(
-                                "self_fill_window_sec", 1800))}, ticker=ticker)
-                        self._gun_stamp(_et9, "self_fill", {
-                            "from_cents": int(_lo9), "to_cents": int(price)})
+                        # [C-BELL-SCOPE 07-13, operator emergency — OVER-BROAD
+                        # LOCK instance 2] behavior the system itself sanctions
+                        # cannot be its own match-live evidence. Fire only if:
+                        # (a) the leg has >=1 fill (post-fill pursuit, the
+                        #     CORBRU shape), or
+                        # (b) the window rise EXCEEDS the armed walk allowance
+                        #     for the category (walking faster than sanctioned;
+                        #     read from the LIVE table so re-ratifications can
+                        #     never strand this threshold again), or
+                        # (c) non-self prints corroborate the move (the market
+                        #     printed in the same window).
+                        _cat9 = self.get_category(_et9)
+                        _cond9 = None
+                        if (ticker in getattr(self, "_leg_filled", set())
+                                or (self.positions.get(ticker) is not None
+                                    and getattr(self.positions[ticker],
+                                                "entry_qty", 0))):
+                            _cond9 = "leg_fill"
+                        elif (price - _lo9
+                                > self._sanctioned_walk_cents_cat(_cat9)):
+                            _cond9 = "exceeds_sanctioned_walk"
+                        else:
+                            _np9 = 0
+                            for _tk9 in self.event_tickers.get(_et9, ()):
+                                _dq9 = self._trade_times.get(_tk9)
+                                if _dq9:
+                                    _np9 += sum(1 for t9 in _dq9
+                                                if t9 >= _cut9)
+                            if _np9 >= int(self.config.get(
+                                    "self_fill_corroborate_prints", 5)):
+                                _cond9 = "tape_corroborated"
+                        if _cond9:
+                            self._log("self_fill_bell", {
+                                "event": _et9, "from_cents": int(_lo9),
+                                "to_cents": int(price),
+                                "rise": int(price - _lo9),
+                                "condition": _cond9, "cat": _cat9,
+                                "sanctioned_allowance":
+                                    self._sanctioned_walk_cents_cat(_cat9),
+                                "window_sec": int(self.config.get(
+                                    "self_fill_window_sec", 1800))},
+                                ticker=ticker)
+                            self._gun_stamp(_et9, "self_fill", {
+                                "from_cents": int(_lo9),
+                                "to_cents": int(price),
+                                "rise": int(price - _lo9),
+                                "condition": _cond9})
         # Position accumulation guard: cap total buy exposure per ticker
         if action == "buy":
             target_max = self.config["sizing"]["entry_contracts"]
@@ -10490,6 +10542,17 @@ class LiveV3:
             try:
                 with open(p, encoding="utf-8", errors="replace") as fh:
                     for line in fh:
+                        if '"gun_source_confirm"' in line:
+                            try:
+                                d = json.loads(line)
+                            except ValueError:
+                                continue
+                            _ev0 = (d.get("details") or {}).get("event", "")
+                            if _ev0 in self._gun_state:
+                                self._gun_state[_ev0].setdefault(
+                                    "confirms", []).append(
+                                    (d.get("details") or {}).get("source"))
+                            continue
                         if '"gun_fired"' not in line:
                             continue
                         try:
@@ -10504,7 +10567,8 @@ class LiveV3:
                             continue
                         self._gun_state[et] = {"ts": ts,
                                                "source": det.get("source"),
-                                               "rebuilt": True}
+                                               "rebuilt": True,
+                                               "rise": det.get("rise")}
                         self._events_live.add(et)
                         n += 1
             except OSError:
@@ -10512,6 +10576,38 @@ class LiveV3:
         self._log("gun_state_rebuilt", {
             "n": n, "files": [p.name for p in files],
             "events": sorted(e.rsplit("-", 1)[-1] for e in self._gun_state)[:30]})
+        # [C-BELL-SCOPE Part 2, 07-13] the unfreeze audit: a rebuilt gun
+        # entry whose ONLY evidence is a self-fill fire on SANCTIONED
+        # behavior (rise within the armed walk allowance, no fills on
+        # either leg, no other source, no confirm) is a false freeze --
+        # lift it NOW, log the event's true state. Genuinely-live events
+        # re-fire via the other six sources within minutes.
+        try:
+            if self.config.get("self_fill_bell_enabled", True):
+                for _ue, _ug in list(self._gun_state.items()):
+                    if (_ug.get("source") != "self_fill"
+                            or _ug.get("confirms")):
+                        continue
+                    _urise = _ug.get("rise")
+                    _ucat = self.get_category(_ue)
+                    _uallow = self._sanctioned_walk_cents_cat(_ucat)
+                    _ufills = any(
+                        t in getattr(self, "_leg_filled", set())
+                        or (self.positions.get(t) is not None
+                            and getattr(self.positions[t], "entry_qty", 0))
+                        for t in self.event_tickers.get(_ue, ()))
+                    if _ufills or (_urise is not None and _urise > _uallow):
+                        continue
+                    self._gun_state.pop(_ue, None)
+                    self._events_live.discard(_ue)
+                    self._log("self_fill_unfrozen", {
+                        "event": _ue, "true_state": "premarket_quiet",
+                        "recorded_rise": _urise,
+                        "sanctioned_allowance": _uallow, "cat": _ucat,
+                        "had_fills": False,
+                        "reason": "sanctioned_walk_not_evidence"})
+        except Exception:
+            pass
 
     async def _post_boot_book_audit(self, context="boot"):
         """[C47-ENFORCE] Post-boot book audit, assert-and-halt. Within 5 min of

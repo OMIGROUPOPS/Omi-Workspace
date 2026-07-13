@@ -35,7 +35,16 @@ LADDER = [  # (epoch, ticker, price) -- placements as recorded
 ]
 
 CLOCK = {"now": 0.0}
+TAPE_FEED = False   # [C-BELL-SCOPE] lane (i)/(ii): market prints in-window
 lv.time = types.SimpleNamespace(time=lambda: CLOCK["now"], sleep=lambda s: None)
+
+
+class _TT(dict):
+    """fake trade-times: 7 prints inside the trailing window when fed"""
+    def get(self, k, d=None):
+        if not TAPE_FEED:
+            return None
+        return [CLOCK["now"] - 60 * i for i in range(1, 8)]
 
 async def _fake_get(s, ak, pk, path, rl):
     if "positions" in path:
@@ -66,13 +75,19 @@ def mk_bot(chase_cap, bell):
     b.fused_gun = True
     b._gun_state = {}
     b._events_live = set()
-    b._trade_times = {}
-    b.event_tickers = {}
+    b._trade_times = _TT()
+    b.event_tickers = types.SimpleNamespace(
+        get=lambda et, d=(): [et + "-A", et + "-B"])
     b.event_start_time = {}
     b._pm_honest = {}
     b.reentry_cycle_cap = int(cfg.get("reentry_cycle_cap", 2))
     b._cycle_count = {}
     b.entry_size = 5
+    b.walk_cap_honest_anchor = bool(cfg.get("walk_cap_honest_anchor", False))
+    b.walk_cap_honest_by_cat = dict(cfg.get("walk_cap_honest_by_cat", {}))
+    b.premarket_walk_cap_by_cat = dict(cfg.get("premarket_walk_cap_by_cat", {}))
+    b.get_category = lambda et: ("ITF_W" if "ITFW" in et else
+                                 ("ATP_CHALL" if "ATPCHALL" in et else "ITF_M"))
     b._bot_order_ids = set()
     b._bot_order_tickers = set()
     # not-under-test helpers shadowed (horizon needs the pm-clock estate;
@@ -105,12 +120,17 @@ async def main():
     ok &= all(x[2] == "ACCEPT" for x in r0)
     if not all(x[2] == "ACCEPT" for x in r0):
         print("  !! fail-before did not reproduce the tape")
-    r2 = await run(True, True, "LANE (i): CORBRU still freezes at the 51")
+    # [C-BELL-SCOPE] CORBRU's market was PRINTING through the ladder (hour-00
+    # tape: 43 prints) -- condition (c) tape_corroborated carries the freeze
+    global TAPE_FEED
+    TAPE_FEED = True
+    r2 = await run(True, True, "LANE (i): CORBRU still freezes at the 51 (condition c)")
     exp2 = (r2[0][2] == "ACCEPT" and r2[1][2] == "ACCEPT"
             and all(x[2] == "REFUSE:gun_fired" for x in r2[2:]))
     print("  lane (i) verdict:", "PASS (frozen at the 51; %d refusals incl. the whole COR side)"
           % sum(1 for x in r2 if x[2].startswith("REFUSE")) if exp2 else "FAIL")
     ok &= exp2
+    TAPE_FEED = False
     # [C-CAP-SCOPE] cap-only sanity: pre-fill pre-bell, the RESCOPED cap does
     # NOT refuse (normal market-making, unlimited; walk cap bounds each step
     # at the organ). The ladder's killer is the bell, not the count.
@@ -118,26 +138,49 @@ async def main():
     exp1 = all(x[2] == "ACCEPT" for x in r1)
     print("  rescoped cap-only verdict:", "PASS (no pre-arm refusals)" if exp1 else "FAIL")
     ok &= exp1
-    # LANE (ii): tonight's refused re-aims re-run as PASSES -- WONBOW /
-    # BONFAB / SUNYUN shapes: unfilled leg, no bell, repeated upward re-aims
+    # LANE (iii) [C-BELL-SCOPE]: tonight's shapes re-run as NO-FIRE --
+    # unfilled leg, quiet tape, upward re-aims WITHIN the armed ITF_W
+    # allowance (20c): neither the cap nor the bell may touch them
     b = mk_bot(True, True)
     lane2 = [(1783906000 + i * 300, "KXITFWMATCH-26JUL13WONBOW-WON", px)
-             for i, px in enumerate([6, 8, 10, 12, 14])]   # 5 upward re-aims, spaced 5min
+             for i, px in enumerate([6, 8, 10, 12, 14])]   # rise 8c <= 20c sanctioned
     res2 = []
     for ts, tk, px in lane2:
         CLOCK["now"] = float(ts)
         oid, resp = await b.place_order(tk, "buy", "yes", px, 5, post_only=True)
         res2.append((px, "ACCEPT" if oid else "REFUSE:" + (resp or {}).get("_error", "")))
-    print("== LANE (ii): pre-fill pre-bell upward re-aims (WONBOW shape)")
+    print("== LANE (iii): sanctioned pre-fill re-aims, quiet tape (tonight's 24)")
     for r in res2:
         print("  ", r)
-    # +2c steps spaced 5min: each within the 30-min window rises >=4c vs the
-    # window min -> the SELF-FILL BELL will fire at step 3 (6->10). That is
-    # the bell's designed behavior on fast risers; lane (ii)'s bar is the
-    # CAP: no chase_cap refusals pre-arm. Assert: zero chase_cap refusals.
-    exp_l2 = all("chase_cap" not in r[1] for r in res2)
-    print("  lane (ii) verdict:", "PASS (zero chase_cap refusals pre-arm)" if exp_l2 else "FAIL")
+    exp_l2 = all(r[1] == "ACCEPT" for r in res2)
+    print("  lane (iii) verdict:", "PASS (no cap, NO BELL — sanctioned walking is not evidence)"
+          if exp_l2 else "FAIL")
     ok &= exp_l2
+    # bell condition (b): rise EXCEEDING the sanctioned allowance on quiet
+    # tape still fires (walking faster than sanctioned IS the chase)
+    b6 = mk_bot(True, True)
+    resb = []
+    for i, px in enumerate([10, 15, 22, 33]):   # 10->33 = 23c > 20c ITF_W
+        CLOCK["now"] = 1783910000 + i * 120
+        oid, resp = await b6.place_order("KXITFWMATCH-26JUL13FASTRR-FAS",
+                                         "buy", "yes", px, 5, post_only=True)
+        resb.append((px, "ACCEPT" if oid else "REFUSE:" + (resp or {}).get("_error", "")))
+    fired_b = "KXITFWMATCH-26JUL13FASTRR" in b6._gun_state
+    print("== condition (b): 23c rise > 20c allowance ->",
+          "FIRED (source %s) PASS" % b6._gun_state.get("KXITFWMATCH-26JUL13FASTRR", {}).get("source")
+          if fired_b else "did not fire FAIL", resb)
+    ok &= fired_b
+    # bell condition (a): post-fill rise >=4c on quiet tape fires
+    b7 = mk_bot(True, True)
+    b7._leg_filled = {"KXITFWMATCH-26JUL13AFTFIL-AFT"}
+    for i, px in enumerate([30, 36]):
+        CLOCK["now"] = 1783912000 + i * 120
+        await b7.place_order("KXITFWMATCH-26JUL13AFTFIL-AFT",
+                             "buy", "yes", px, 5, post_only=True)
+    fired_a = "KXITFWMATCH-26JUL13AFTFIL" in b7._gun_state
+    print("== condition (a): post-fill +6c rise ->",
+          "FIRED PASS" if fired_a else "did not fire FAIL")
+    ok &= fired_a
     # POST-ARM check: after a fill on the leg, the 3rd upward re-aim refuses
     b2 = mk_bot(True, False)
     b2._leg_filled = {"KXITFWMATCH-26JUL13SIMFIL-SIM"}

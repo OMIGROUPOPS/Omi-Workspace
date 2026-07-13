@@ -128,6 +128,8 @@ def main():
     confirms = {}           # [C-DELETION-GATE] ev -> [(source, first, delta_sec)]
     percat_seen = set()     # events where the fitted threshold crossed (shadow log)
     cap_refusals = []       # [C-CAP-SCOPE] over-broad-lock refusal timestamps
+    sf_refusals = []        # [C-BELL-SCOPE] self-fill-frozen entry refusals
+    sf_unfrozen = 0         # [C-BELL-SCOPE] boot unfreeze count
     for p in files:
         for line in open(p, encoding="utf-8", errors="replace"):
             if '"gun_fired"' not in line and '"gun_truth_delta"' not in line \
@@ -200,6 +202,15 @@ def main():
                 # [C-CAP-SCOPE honesty] the OVER-BROAD LOCK window: refusals
                 # suppressed participation -- the regrade must say so
                 cap_refusals.append(ts)
+                continue
+            elif d["event"] == "gun_buy_refused":
+                # [C-BELL-SCOPE honesty] instance-2 window: entries frozen by
+                # self-fill fires on sanctioned behavior
+                if det.get("gun_source") == "self_fill":
+                    sf_refusals.append(ts)
+                continue
+            elif d["event"] == "self_fill_unfrozen":
+                sf_unfrozen += 1
                 continue
             elif d["event"] == "bell_missing":
                 bells_missing.add(ev)
@@ -441,9 +452,11 @@ def main():
                    if not both4 else ""))
     for e, src, a, b in rows4[:12]:
         gate.append("- %s: fired_by=%s | percat=%s self_fill=%s" % (e[-16:], src, a or "-", b or "-"))
-    # [C-CAP-SCOPE honesty footer] a night with re-aim refusals reads LOW on
-    # fills/coverage inside the refusal window -- say so on the regrade
+    # [C-CAP-SCOPE / C-BELL-SCOPE honesty footer] a night with suppressed
+    # windows reads LOW on fills/coverage inside them -- say so on the regrade
+    n_windows = 0
     if cap_refusals:
+        n_windows += 1
         gate.append("")
         gate.append("**HONESTY (C-CAP-SCOPE): %d re-aim refusals in this window "
                     "(%s → %s ET, OVER-BROAD LOCK before the 07-13 rescope) — "
@@ -451,14 +464,35 @@ def main():
                     "accordingly.**" % (
                         len(cap_refusals),
                         et_str(min(cap_refusals)), et_str(max(cap_refusals))))
+    if sf_refusals:
+        n_windows += 1
+        gate.append("")
+        gate.append("**HONESTY (C-BELL-SCOPE): %d entries refused under self-fill "
+                    "freezes (%s → %s ET, OVER-BROAD LOCK instance 2 — bell fired "
+                    "on sanctioned walk-cap-compliant re-aims; %d events unfrozen "
+                    "at the scope-fix boot) — a SECOND suppressed window in the "
+                    "same night.**" % (
+                        len(sf_refusals), et_str(min(sf_refusals)),
+                        et_str(max(sf_refusals)), sf_unfrozen))
     verdict5 = "OPEN" if (p1 and p2 and p3 and p4) else "REFUSED"
+    if n_windows >= 2 and verdict5 == "OPEN":
+        # [C-BELL-SCOPE Part 4] two strangled windows in one night is not a
+        # clean regrade night -- a clean night means clean
+        verdict5 = "REFUSED"
+        gate.append("")
+        gate.append("**(clean-tape test): TWO suppressed windows tonight — "
+                    "insufficient clean tape for the deletion word, whatever "
+                    "the four proofs say.**")
     gate.append("")
+    _missing5 = ", ".join(n for n, p in
+                          [("i", p1), ("ii", p2), ("iii", p3), ("iv", p4)]
+                          if not p)
     gate.append("**DELETION GATE: %s**%s" % (
         verdict5,
         "" if verdict5 == "OPEN" else
-        " — the deletion word cannot be given on this scorecard (missing proof(s): %s)"
-        % ", ".join(n for n, p in
-                    [("i", p1), ("ii", p2), ("iii", p3), ("iv", p4)] if not p)))
+        " — the deletion word cannot be given on this scorecard (%s)"
+        % (("missing proof(s): " + _missing5) if _missing5
+           else "insufficient clean tape: two suppressed windows")))
     out = "# GUN SCORECARD %s\n\n%s\n\n%s\n\n%s\n%s\n" % (
         now.strftime("%Y-%m-%d %I:%M %p ET"), "\n".join(lines),
         "\n".join("- " + s for s in summary), footer, "\n".join(gate))

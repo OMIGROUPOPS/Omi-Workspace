@@ -33,7 +33,19 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 early — C50 keeps this current):
+## STATE (2026-07-14 pre-6:10 — C50 keeps this current):
+C-LIVE-AIM v1 SHADOW-DEPLOYED (da3deec7): fourth aim design --
+_liveaim_shadow at every v4_place: prior (GUIDEBOOK_V1 page) x live
+state (flow_ratio vs M3/M13 curve, book depth_trend, spread,
+print_sig); verdicts AIM_DEEP(moment_forming)/AIM_PRIOR/AIM_SHALLOW/
+NO_BID_CHASE_GUARD; lib_conf printed per line (ITF humble, hardens
+with archive-sync); NO-OPINION below floor. Nightly LIVE-AIM SHADOW
+dual line from tonight; cutover bar pre-agreed: beat live at n>=300,
+CI clear of zero, operator word. NOTHING ACTS (no acting path
+exists). NEXT: 6:10 deletion word; EV3 re-read n>=300; COMBINED-CAP
+remedy; -0g.
+
+(prior:) ## STATE (2026-07-14 early):
 C-GUIDEBOOK-V2: THIRD REFUSAL, named. Recut on G9 (3.24M ticker-min,
 48 pages, tour only): adverse-selection partition FIXED (8/4 vs v1
 collapse-skew -- the timing axis is right for WHO) but held-out

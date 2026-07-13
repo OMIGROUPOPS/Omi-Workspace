@@ -40,3 +40,5 @@
 **GUIDEBOOK V1 NOTE (07-13, C-GUIDEBOOK-AIM):** M1+fillredo+M6 composition (538 pages) REFUSED by the held-out week replay (-$9.90 vs -$0.62 actual; 114 fills on 247 aims). Built, gated OFF. v2 direction: condition depth on dip TIMING (t_deep page, unexploited) + the three-price shape axis.
 
 **GUIDEBOOK V2 NOTE (07-14, C-GUIDEBOOK-V2):** timing-conditioned recut on G9 (48 pages, tour only -- NO admissible ITF corpus exists, named). Held-out week: -$10.70 vs -$9.30 actual -> THIRD REFUSAL, dark. Partition check PASSED (8/4 vs v1 collapse-skew): the timing axis fixes WHO fills. Windows diffuse ([13,508]/[91,996] min) -- the discount is not a clock moment; v3 = flow-signature conditioning after ITF tape accrual.
+
+**LIVE-AIM NOTE (07-14, C-LIVE-AIM v1):** fourth aim design, SHADOW: prior (GUIDEBOOK_V1 page) x live state (flow_ratio vs M3/M13 curve, depth_trend, spread, print_sig); lib_conf = banked-tape confidence per cat (accrual-aware); nightly LIVE-AIM SHADOW line; forward cutover bar n>=300 + CI clear of zero + operator word.

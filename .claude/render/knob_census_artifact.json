@@ -1,14 +1,14 @@
 {
- "generated_hash": "5fc3e89d44558dfb790e96acce1a80c8e465ef28c03f5c294539580b9c227011",
+ "generated_hash": "2dba2d35b9917a52174137af5a748602a40269622ddebb8cb54aa416d9fd49cb",
  "counts": {
-  "config_keys": 100,
-  "code_config_gets": 125,
-  "union": 126
+  "config_keys": 102,
+  "code_config_gets": 127,
+  "union": 128
  },
  "by_class": {
   "FITTED": 3,
-  "DECREED": 22,
-  "NAKED": 101
+  "DECREED": 25,
+  "NAKED": 100
  },
  "rows": [
   {
@@ -183,6 +183,14 @@
    "class": "DECREED",
    "citation": "pair-97 interim clause",
    "step": "L5"
+  },
+  {
+   "knob": "completion_live_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "OPERATOR WORD 07-12: completion policy live per shadow-graded design",
+   "step": "L6"
   },
   {
    "knob": "completion_reprice",
@@ -685,9 +693,9 @@
   {
    "knob": "operator_taker_word",
    "in_config": true,
-   "config_value": false,
+   "config_value": true,
    "class": "DECREED",
-   "citation": "operator word gate (RULING_PAIR_ECONOMICS)",
+   "citation": "OPERATOR WORD 07-12: taker word GIVEN (was the gate; now true)",
    "step": "L6"
   },
   {
@@ -777,6 +785,14 @@
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
+  },
+  {
+   "knob": "percat_gun_armed",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "OPERATOR WORD 07-12: percat fitted trigger = ADDITIONAL bell source; legacy deletion rides the 6:10 regrade",
+   "step": "L3"
   },
   {
    "knob": "percat_gun_prints30",
@@ -1005,10 +1021,10 @@
   {
    "knob": "walk_cap_honest_anchor",
    "in_config": true,
-   "config_value": false,
-   "class": "NAKED",
-   "citation": "UNCITED -- lands NAKED until a person cites a source",
-   "step": "?"
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "OPERATOR WORD 07-12: -0j armed (PLEX_WALK_CAP_SIZES ratified table; the window-open void dies)",
+   "step": "L5"
   },
   {
    "knob": "walk_cap_honest_by_cat",

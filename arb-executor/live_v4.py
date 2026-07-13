@@ -7040,6 +7040,29 @@ class LiveV3:
                 ("leader" if (sb and sb.best_ask >= 50) else "underdog"),
                 int(sb.best_ask) if sb and sb.best_ask < 100 else None,
                 sib_band, rm30(tk), rm30(sib) if sib else None)
+            # [C-COMPOSER-EV3 07-13, SHADOW STREAM ONLY — Part 3 doctrine:
+            # the three-term frame rides beside the acting two-term verdict;
+            # the leash stays on the actor until the nightly grades EV3
+            # positive on real outcomes and the operator's word cuts over.
+            # posterior hook present, None live for now (the composer's conf
+            # lives in its own shadow lines; the nightly joins them).]
+            try:
+                _r3 = self._leg_econ.completion_verdict3(
+                    self._range_cells, pos.category,
+                    "leader" if pos.entry_price >= 50 else "underdog",
+                    int(pos.entry_price), band,
+                    int(kb.best_bid) if kb and kb.best_bid else None,
+                    ("leader" if (sb and sb.best_ask >= 50) else "underdog"),
+                    int(sb.best_ask) if sb and sb.best_ask < 100 else None,
+                    sib_band, rm30(tk), rm30(sib) if sib else None)
+                res["ev3"] = {"verdict3": _r3.get("verdict"),
+                              **{k9: v9 for k9, v9 in
+                                 (_r3.get("kept") or {}).items()
+                                 if k9 in ("ev3_cents", "p_exit_fill",
+                                           "p_win_ride", "p_loss_ride",
+                                           "cell", "n", "blend")}}
+            except Exception:
+                pass
             res.update({"event": et, "gated": "operator_taker_word",
                         "taker_word": bool(self.config.get("operator_taker_word", False))})
             self._log("completion_shadow", res, ticker=tk)

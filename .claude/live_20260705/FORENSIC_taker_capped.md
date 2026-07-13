@@ -1,7 +1,7 @@
-# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1783960266 -->
-written 2026-07-13 12:40:38 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1783960868 -->
+written 2026-07-13 12:51:34 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (28 total this session)
+## Events (29 total this session)
 - 04:26:50 KXATPMATCH-26JUL13PASKRU-PAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 04:37:01 KXATPMATCH-26JUL13PASKRU-PAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 04:47:13 KXATPMATCH-26JUL13PASKRU-PAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
@@ -30,6 +30,7 @@ written 2026-07-13 12:40:38 PM ET by live_validation_loop (read-only). Patch con
 - 11:13:53 KXATPCHALLENGERMATCH-26JUL13CHOSUR-CHO — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 12:20:57 KXATPMATCH-26JUL12KOPPRI-PRI — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 12:31:06 KXATPMATCH-26JUL12KOPPRI-PRI — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 12:41:08 KXATPMATCH-26JUL12KOPPRI-PRI — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-13 01:30:34 AM ET", "ts_epoch": 1783920634.135717, "event": "tape_seed_live_confirm", "ticker": "KXATPMATCH-26JUL12KOPPRI-PRI", "details": {"seed_price": 72, "live_price": 72, "delta": 0, "seed_age_sec": 94.3}}
@@ -78,6 +79,9 @@ written 2026-07-13 12:40:38 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-13 12:30:18 PM ET", "ts_epoch": 1783960218.2145376, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 8, "n_resting_orders": 24, "n_failures": 0, "n_flags": 1, "failures": [], "flags": [{"tk": "KXITFWMATCH-26JUL13SEMXUX-SEM", "flag": "exit_unpostable_itm", "band": 71, "bid": 83, "held": 4.0}], "diff_vs_banked": {"ba
     {"ts": "2026-07-13 12:31:06 PM ET", "ts_epoch": 1783960266.3018177, "event": "completion_shadow", "ticker": "KXATPMATCH-26JUL12KOPPRI-PRI", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_MAIN|leader|at_mid|51_75", "n": 28, "p_exit_fill": 0.75, "p_ride_zero": 0.25, "ev_cents": -4.25, "band": 19, "basis": 74, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_
     {"ts": "2026-07-13 12:31:06 PM ET", "ts_epoch": 1783960266.3020916, "event": "completion_taker_capped", "ticker": "KXATPMATCH-26JUL12KOPPRI-PRI", "details": {"event": "KXATPMATCH-26JUL12KOPPRI", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-13 12:41:08 PM ET", "ts_epoch": 1783960868.4215274, "event": "completion_shadow", "ticker": "KXATPMATCH-26JUL12KOPPRI-PRI", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_MAIN|leader|at_mid|51_75", "n": 28, "p_exit_fill": 0.75, "p_ride_zero": 0.25, "ev_cents": -4.25, "band": 19, "basis": 74, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_
+    {"ts": "2026-07-13 12:41:08 PM ET", "ts_epoch": 1783960868.4227922, "event": "completion_taker_capped", "ticker": "KXATPMATCH-26JUL12KOPPRI-PRI", "details": {"event": "KXATPMATCH-26JUL12KOPPRI", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-13 12:45:47 PM ET", "ts_epoch": 1783961147.002667, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 7, "n_resting_orders": 22, "n_failures": 0, "n_flags": 1, "failures": [], "flags": [{"tk": "KXITFWMATCH-26JUL13SEMXUX-SEM", "flag": "exit_unpostable_itm", "band": 71, "bid": 70, "held": 4.0}], "diff_vs_banked": {"ban
 
 ## Code path
 ?

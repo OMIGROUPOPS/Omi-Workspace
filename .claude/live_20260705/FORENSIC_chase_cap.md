@@ -1,7 +1,7 @@
-# FORENSIC — chase_cap — LIVE DEFECT (>=2 in 60min)  <!-- 1783918962 -->
-written 2026-07-13 01:03:00 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — chase_cap — LIVE DEFECT (>=2 in 60min)  <!-- 1783919496 -->
+written 2026-07-13 01:13:12 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (732 total this session)
+## Events (833 total this session)
 - 21:03:06 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 53)
 - 21:03:06 KXITFWMATCH-26JUL12SUNYUN-YUN — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 8)
 - 00:02:08 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
@@ -734,32 +734,150 @@ written 2026-07-13 01:03:00 AM ET by live_validation_loop (read-only). Patch con
 - 01:02:27 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 81)
 - 01:02:42 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 82)
 - 01:02:42 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 83)
+- 01:03:04 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 72)
+- 01:03:04 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 72)
+- 01:03:06 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
+- 01:03:23 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:03:25 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
+- 01:03:27 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
+- 01:03:27 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
+- 01:03:27 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
+- 01:03:27 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
+- 01:03:27 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
+- 01:03:27 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 72)
+- 01:03:27 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
+- 01:03:27 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
+- 01:03:27 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
+- 01:03:50 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
+- 01:03:50 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
+- 01:04:11 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
+- 01:04:11 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
+- 01:04:25 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
+- 01:04:25 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
+- 01:04:26 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
+- 01:04:26 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
+- 01:04:27 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
+- 01:04:27 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:04:27 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:04:28 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:04:28 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
+- 01:04:28 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
+- 01:04:29 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
+- 01:04:29 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:04:29 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:04:30 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:04:31 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:04:31 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 18)
+- 01:04:31 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 18)
+- 01:04:31 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:04:32 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:04:32 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:04:33 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:04:33 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
+- 01:04:33 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
+- 01:04:33 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:04:34 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:04:34 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
+- 01:04:34 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
+- 01:04:35 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
+- 01:04:35 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:04:35 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:04:36 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:04:36 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:04:37 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 18)
+- 01:04:37 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 18)
+- 01:04:37 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:04:38 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:04:38 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:04:38 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:04:38 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:04:39 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
+- 01:04:41 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:04:46 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:05:30 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
+- 01:05:30 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
+- 01:05:30 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:05:30 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
+- 01:05:30 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
+- 01:05:30 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
+- 01:05:30 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
+- 01:05:30 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
+- 01:05:30 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
+- 01:06:21 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:06:33 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
+- 01:07:30 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
+- 01:07:30 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
+- 01:07:30 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:07:30 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
+- 01:07:30 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
+- 01:07:30 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 69)
+- 01:07:30 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
+- 01:07:30 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:07:30 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
+- 01:08:56 KXITFMATCH-26JUL13SARANG-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
+- 01:09:31 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
+- 01:09:31 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
+- 01:09:31 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:09:31 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
+- 01:09:31 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
+- 01:09:31 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
+- 01:09:31 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
+- 01:09:31 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:09:31 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
+- 01:09:31 KXITFMATCH-26JUL13SARANG-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
+- 01:11:36 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
+- 01:11:36 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
+- 01:11:36 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
+- 01:11:36 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
+- 01:11:36 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
+- 01:11:36 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 69)
+- 01:11:36 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
+- 01:11:36 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
+- 01:11:36 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
+- 01:11:36 KXITFMATCH-26JUL13SARANG-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
 
 ## Timeline (raw log lines for the burst pair)
-    {"ts": "2026-07-13 12:14:02 AM ET", "ts_epoch": 1783916042.8981495, "event": "tape_seed_live_confirm", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"seed_price": 92, "live_price": 91, "delta": -1, "seed_age_sec": 23241.9}}
-    {"ts": "2026-07-13 01:00:17 AM ET", "ts_epoch": 1783918817.424234, "event": "v4_place", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"event": "KXITFMATCH-26JUL13HASZAG", "direction": "leader", "cat": "ITF_M", "regime": "r65_74", "cell": 67, "current_price": 67, "anchor_src": "no_trade_staircase", "table_src": "no_trade_staircase", "last_trade_age_sec": 2773.9, "offset": 0, "target_bid": 6
-    {"ts": "2026-07-13 01:00:17 AM ET", "ts_epoch": 1783918817.4319122, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"site": "v4_place", "actual": {"px": 67, "actual_bid": 66}, "would": {"regime": "climb_side", "timing": "early", "flow_open": false, "action": "defer", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_M", "cell": 67, "e
-    {"ts": "2026-07-13 01:00:17 AM ET", "ts_epoch": 1783918817.432191, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"site": "v4_place", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.697, "n_eff": 1.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": 2.7, "m16_fitted_margin": 8}}
-    {"ts": "2026-07-13 01:00:17 AM ET", "ts_epoch": 1783918817.432385, "event": "aim_shadow", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"event": "KXITFMATCH-26JUL13HASZAG", "site": "v4_place", "cell": "ITF_M|3|23", "side": "fav", "actual_bid": 66, "px": 67, "sib_px": 11, "tts_min": 239.8, "book_bid": 67, "book_ask": 90, "book_spread": 23, "bid_ex_self": 67, "actual_posture": "below_chain",
-    {"ts": "2026-07-13 01:00:17 AM ET", "ts_epoch": 1783918817.5526924, "event": "order_placed", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"action": "buy", "side": "yes", "price": 66, "count": 5, "order_id": "b51a4809-ed96-4c15-abe5-4a40f7939e09", "client_order_id": "e1dded75-47db-4a8d-9b16-9bc048b39d3e", "response_status": "resting", "trade_id": "T-20260713-0023", "tape_basis": "ws_live",
-    {"ts": "2026-07-13 01:00:20 AM ET", "ts_epoch": 1783918820.853115, "event": "order_cancelled", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"order_id": "b51a4809-ed96-4c15-abe5-4a40f7939e09", "label": "v4_move_repost", "success": true}}
-    {"ts": "2026-07-13 01:00:21 AM ET", "ts_epoch": 1783918821.350889, "event": "join_queue", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"outcome": "cancel", "depth_at_post": 847, "depth_now": 0, "fill_latency_sec": 7.3, "reposts": 0, "play_type": "v4_resting_maker", "trial": false}}
-    {"ts": "2026-07-13 01:00:21 AM ET", "ts_epoch": 1783918821.5341501, "event": "order_placed", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"action": "buy", "side": "yes", "price": 68, "count": 5, "order_id": "1c491a1e-3b5c-4358-9265-77560970ab13", "client_order_id": "c73d7884-753b-4d97-b5f3-b4ff37eee358", "response_status": "resting", "trade_id": "T-20260713-0023", "tape_basis": "ws_live",
-    {"ts": "2026-07-13 01:00:21 AM ET", "ts_epoch": 1783918821.5344877, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"site": "move_repost", "actual": {"px": 79, "actual_bid": 68}, "would": {"regime": "climb_side", "timing": "early", "flow_open": false, "action": "defer", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_M", "cell": 69,
-    {"ts": "2026-07-13 01:00:21 AM ET", "ts_epoch": 1783918821.5357733, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"site": "move_repost", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.714, "n_eff": 1.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": -7.6, "m16_fitted_margin": 8}}
-    {"ts": "2026-07-13 01:00:21 AM ET", "ts_epoch": 1783918821.5360522, "event": "aim_shadow", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"event": "KXITFMATCH-26JUL13HASZAG", "site": "move_repost", "cell": "ITF_M|3|48", "side": "fav", "actual_bid": 68, "px": 79, "sib_px": 11, "tts_min": 599.7, "book_bid": 69, "book_ask": 90, "book_spread": 21, "bid_ex_self": 69, "actual_posture": "below_cha
-    {"ts": "2026-07-13 01:00:21 AM ET", "ts_epoch": 1783918821.5361886, "event": "v4_move_repost", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"mode": "repost_resting", "old_basis": 66, "current_price": 79, "new_regime": "r75_84", "new_offset": 3, "new_target": 68, "current_ask": 90, "move_cents": 13, "runway_status": "full", "reference_source": "join_bid"}}
-    {"ts": "2026-07-13 01:01:21 AM ET", "ts_epoch": 1783918881.9947565, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"site": "hold_review", "actual": {"resting_at": 68, "posted_min_ago": 1}, "would": {"regime": "climb_side", "timing": "early", "flow_open": false, "action": "defer", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_M", 
-    {"ts": "2026-07-13 01:01:21 AM ET", "ts_epoch": 1783918881.994946, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.777, "n_eff": 1.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
-    {"ts": "2026-07-13 01:01:21 AM ET", "ts_epoch": 1783918881.995268, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"event": "KXITFMATCH-26JUL13HASZAG", "held_price": 68, "proposed": 76, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:01:22 AM ET", "ts_epoch": 1783918882.0348926, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"event": "KXITFMATCH-26JUL13HASZAG", "held_price": 68, "proposed": 76, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:01:55 AM ET", "ts_epoch": 1783918915.1169827, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"event": "KXITFMATCH-26JUL13HASZAG", "held_price": 68, "proposed": 77, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:02:06 AM ET", "ts_epoch": 1783918926.3941112, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"event": "KXITFMATCH-26JUL13HASZAG", "held_price": 68, "proposed": 78, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:02:14 AM ET", "ts_epoch": 1783918934.300085, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"event": "KXITFMATCH-26JUL13HASZAG", "held_price": 68, "proposed": 79, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:02:26 AM ET", "ts_epoch": 1783918946.5320418, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"event": "KXITFMATCH-26JUL13HASZAG", "held_price": 68, "proposed": 80, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:02:27 AM ET", "ts_epoch": 1783918947.214781, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"event": "KXITFMATCH-26JUL13HASZAG", "held_price": 68, "proposed": 81, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:02:42 AM ET", "ts_epoch": 1783918962.836266, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"event": "KXITFMATCH-26JUL13HASZAG", "held_price": 68, "proposed": 82, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:02:42 AM ET", "ts_epoch": 1783918962.9044657, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL13HASZAG-HAS", "details": {"event": "KXITFMATCH-26JUL13HASZAG", "held_price": 68, "proposed": 83, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-13 01:00:26 AM ET", "ts_epoch": 1783918826.8853076, "event": "v4_place", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"event": "KXITFWMATCH-26JUL13MALMOO", "direction": "leader", "cat": "ITF_W", "regime": "r75_84", "cell": 76, "current_price": 76, "anchor_src": "no_trade_staircase", "table_src": "no_trade_staircase", "last_trade_age_sec": 2793.8, "offset": 0, "target_bid"
+    {"ts": "2026-07-13 01:00:26 AM ET", "ts_epoch": 1783918826.8908114, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"site": "v4_place", "actual": {"px": 76, "actual_bid": 75}, "would": {"regime": "climb_side", "timing": "early", "flow_open": false, "action": "defer", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_W", "cell": 76, "
+    {"ts": "2026-07-13 01:00:26 AM ET", "ts_epoch": 1783918826.8910768, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"site": "v4_place", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.77, "n_eff": 1.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": 1.0}}
+    {"ts": "2026-07-13 01:00:26 AM ET", "ts_epoch": 1783918826.891246, "event": "aim_shadow", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"event": "KXITFWMATCH-26JUL13MALMOO", "site": "v4_place", "cell": "ITF_W|3|23", "side": "fav", "actual_bid": 75, "px": 76, "sib_px": 17, "tts_min": 239.8, "book_bid": 76, "book_ask": 85, "book_spread": 9, "bid_ex_self": 76, "actual_posture": "below_chain"
+    {"ts": "2026-07-13 01:00:27 AM ET", "ts_epoch": 1783918827.5979636, "event": "order_placed", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"action": "buy", "side": "yes", "price": 75, "count": 5, "order_id": "bdc76829-69a4-4cd6-a9e9-8fd93531b6f2", "client_order_id": "aa54cf41-aca2-4ab4-add2-9c4343528470", "response_status": "resting", "trade_id": "T-20260713-0038", "tape_basis": "ws_live"
+    {"ts": "2026-07-13 01:00:36 AM ET", "ts_epoch": 1783918836.2257357, "event": "v4_place", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"event": "KXITFMATCH-26JUL13SARANG", "direction": "underdog", "cat": "ITF_M", "regime": "r15_24", "cell": 15, "current_price": 15, "anchor_src": "engagement_join", "table_src": "engagement_wave1", "last_trade_age_sec": -1.0, "offset": 0, "target_bid": 15, "
+    {"ts": "2026-07-13 01:00:36 AM ET", "ts_epoch": 1783918836.2264023, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"site": "v4_place", "actual": {"px": 15, "actual_bid": 15}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_M", "cell": 
+    {"ts": "2026-07-13 01:00:36 AM ET", "ts_epoch": 1783918836.226851, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"site": "v4_place", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.15, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": 0.0, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-13 01:00:36 AM ET", "ts_epoch": 1783918836.2269943, "event": "aim_shadow", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"event": "KXITFMATCH-26JUL13SARANG", "site": "v4_place", "cell": "ITF_M|2|23", "side": "dog", "actual_bid": 15, "px": 15, "sib_px": 50, "tts_min": 239.4, "book_bid": 15, "book_ask": 85, "book_spread": 70, "bid_ex_self": 15, "actual_posture": "join", "actu
+    {"ts": "2026-07-13 01:00:36 AM ET", "ts_epoch": 1783918836.8135624, "event": "order_placed", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"action": "buy", "side": "yes", "price": 15, "count": 5, "order_id": "5b374159-0f40-4812-8393-271ecc0ca399", "client_order_id": "1dc8bae1-aa87-4061-aac9-05d75efaa890", "response_status": "resting", "trade_id": "T-20260713-0040"}}
+    {"ts": "2026-07-13 01:00:59 AM ET", "ts_epoch": 1783918859.349799, "event": "order_cancelled", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"order_id": "bdc76829-69a4-4cd6-a9e9-8fd93531b6f2", "label": "v4_move_repost", "success": true}}
+    {"ts": "2026-07-13 01:00:59 AM ET", "ts_epoch": 1783918859.4331977, "event": "join_queue", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"outcome": "cancel", "depth_at_post": 100, "depth_now": 100, "fill_latency_sec": 45.4, "reposts": 0, "play_type": "v4_resting_maker", "trial": false}}
+    {"ts": "2026-07-13 01:01:00 AM ET", "ts_epoch": 1783918860.3541143, "event": "order_placed", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"action": "buy", "side": "yes", "price": 76, "count": 5, "order_id": "3f522a36-cc49-4fc5-a4fc-0c9da74abb06", "client_order_id": "4e1d261b-6b69-47d6-9a00-7247e8150db9", "response_status": "resting", "trade_id": "T-20260713-0038", "tape_basis": "ws_live"
+    {"ts": "2026-07-13 01:01:00 AM ET", "ts_epoch": 1783918860.354378, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"site": "move_repost", "actual": {"px": 80, "actual_bid": 76}, "would": {"regime": "climb_side", "timing": "early", "flow_open": false, "action": "defer", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_W", "cell": 76,
+    {"ts": "2026-07-13 01:01:00 AM ET", "ts_epoch": 1783918860.3545682, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"site": "move_repost", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.77, "n_eff": 1.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": -3.0}}
+    {"ts": "2026-07-13 01:01:00 AM ET", "ts_epoch": 1783918860.3571117, "event": "aim_shadow", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"event": "KXITFWMATCH-26JUL13MALMOO", "site": "move_repost", "cell": "ITF_W|4|48", "side": "fav", "actual_bid": 76, "px": 80, "sib_px": 17, "tts_min": 599.0, "book_bid": 76, "book_ask": 85, "book_spread": 9, "bid_ex_self": 76, "actual_posture": "join", "
+    {"ts": "2026-07-13 01:01:00 AM ET", "ts_epoch": 1783918860.3573158, "event": "v4_move_repost", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"mode": "repost_resting", "old_basis": 75, "current_price": 80, "new_regime": "r75_84", "new_offset": 12, "new_target": 76, "current_ask": 85, "move_cents": 5, "runway_status": "full", "reference_source": "join_bid"}}
+    {"ts": "2026-07-13 01:01:10 AM ET", "ts_epoch": 1783918870.2465005, "event": "order_cancelled", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"order_id": "5b374159-0f40-4812-8393-271ecc0ca399", "label": "v4_move_repost", "success": true}}
+    {"ts": "2026-07-13 01:01:11 AM ET", "ts_epoch": 1783918871.1773753, "event": "order_placed", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"action": "buy", "side": "yes", "price": 16, "count": 5, "order_id": "861cae08-09a1-426e-a86c-6816831679b5", "client_order_id": "9a578650-6f07-4c78-ad4a-9c26bb0674cb", "response_status": "resting", "trade_id": "T-20260713-0040"}}
+    {"ts": "2026-07-13 01:01:11 AM ET", "ts_epoch": 1783918871.1785312, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"site": "move_repost", "actual": {"px": 50, "actual_bid": 16}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_M", "cell
+    {"ts": "2026-07-13 01:01:11 AM ET", "ts_epoch": 1783918871.1803288, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"site": "move_repost", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.16, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": -34.0, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-13 01:01:11 AM ET", "ts_epoch": 1783918871.184934, "event": "aim_shadow", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"event": "KXITFMATCH-26JUL13SARANG", "site": "move_repost", "cell": "ITF_M|2|48", "side": "fav", "actual_bid": 16, "px": 50, "sib_px": 50, "tts_min": 598.8, "book_bid": 16, "book_ask": 84, "book_spread": 68, "bid_ex_self": 16, "actual_posture": "join", "ac
+    {"ts": "2026-07-13 01:01:11 AM ET", "ts_epoch": 1783918871.1851861, "event": "v4_move_repost", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"mode": "repost_resting", "old_basis": 17, "current_price": 50, "new_regime": "r45_54", "new_offset": 7, "new_target": 16, "current_ask": 84, "move_cents": 33, "runway_status": "full", "reference_source": "join_bid"}}
+    {"ts": "2026-07-13 01:01:23 AM ET", "ts_epoch": 1783918883.7802312, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"site": "hold_review", "actual": {"resting_at": 76, "posted_min_ago": 1}, "would": {"regime": "climb_side", "timing": "early", "flow_open": false, "action": "defer", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_W",
+    {"ts": "2026-07-13 01:01:23 AM ET", "ts_epoch": 1783918883.7803757, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.779, "n_eff": 1.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null}}
+    {"ts": "2026-07-13 01:01:24 AM ET", "ts_epoch": 1783918884.7084165, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 1}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "IT
+    {"ts": "2026-07-13 01:01:24 AM ET", "ts_epoch": 1783918884.711547, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.16, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-13 01:03:27 AM ET", "ts_epoch": 1783919007.6710453, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"event": "KXITFWMATCH-26JUL13MALMOO", "held_price": 76, "proposed": 79, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-13 01:05:30 AM ET", "ts_epoch": 1783919130.2147534, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"event": "KXITFWMATCH-26JUL13MALMOO", "held_price": 76, "proposed": 79, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-13 01:06:52 AM ET", "ts_epoch": 1783919212.402389, "event": "reality_divergence", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"kind": "resting_bid", "ref": 16.0, "market_mid": 50.0, "divergence": -34.0, "bound": 25.0}}
+    {"ts": "2026-07-13 01:06:52 AM ET", "ts_epoch": 1783919212.4033613, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 3, "n_resting_orders": 44, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1783904261.082012, "legs_new": ["KXATPCHALLENGERMATCH-26JUL13VILGAN-VIL"], "legs_gone": [], "n_h
+    {"ts": "2026-07-13 01:07:30 AM ET", "ts_epoch": 1783919250.4884381, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"site": "hold_review", "actual": {"resting_at": 76, "posted_min_ago": 7}, "would": {"regime": "climb_side", "timing": "early", "flow_open": false, "action": "defer", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_W",
+    {"ts": "2026-07-13 01:07:30 AM ET", "ts_epoch": 1783919250.4885788, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.797, "n_eff": 1.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null}}
+    {"ts": "2026-07-13 01:07:30 AM ET", "ts_epoch": 1783919250.488822, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"event": "KXITFWMATCH-26JUL13MALMOO", "held_price": 76, "proposed": 79, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-13 01:07:30 AM ET", "ts_epoch": 1783919250.4892654, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 7}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "IT
+    {"ts": "2026-07-13 01:07:30 AM ET", "ts_epoch": 1783919250.489391, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.16, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-13 01:08:56 AM ET", "ts_epoch": 1783919336.1231198, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"event": "KXITFMATCH-26JUL13SARANG", "held_price": 16, "proposed": 17, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-13 01:09:31 AM ET", "ts_epoch": 1783919371.0414293, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"event": "KXITFWMATCH-26JUL13MALMOO", "held_price": 76, "proposed": 79, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-13 01:09:31 AM ET", "ts_epoch": 1783919371.0417721, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"event": "KXITFMATCH-26JUL13SARANG", "held_price": 16, "proposed": 17, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-13 01:11:36 AM ET", "ts_epoch": 1783919496.5330162, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13MALMOO-MAL", "details": {"event": "KXITFWMATCH-26JUL13MALMOO", "held_price": 76, "proposed": 79, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-13 01:11:36 AM ET", "ts_epoch": 1783919496.5332263, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL13SARANG-SAR", "details": {"event": "KXITFMATCH-26JUL13SARANG", "held_price": 16, "proposed": 17, "pursuit_buys": 2, "cap": 2}}
 
 ## Code path
 ?

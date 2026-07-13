@@ -406,6 +406,45 @@ def main():
                 L.append("- **VIOLATION** %s" % w8)
     except Exception:
         pass
+    # [C-DELETION-GATE Part 1, 07-12] GOVERNOR SPLIT: the two live brains'
+    # actions and dollars, separated at the stamp -- no hand-reading logs.
+    # Dollars: each exit_filled attributes its pnl to the governor of the
+    # LAST exit-posting decision on that ticker (maker_exit posts vs
+    # per_leg_policy flattens); completion crosses list their own prices.
+    try:
+        gov_n = defaultdict(int)
+        gov_pnl = defaultdict(float)
+        last_exit_gov = {}
+        cap_hits = 0
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"governed_by"' in line:
+                d9 = json.loads(line)
+                det9 = d9.get("details") or {}
+                g9 = det9.get("governed_by")
+                gov_n[g9] += 1
+                if d9.get("event") in ("v4_exit_posted", "completion_action") \
+                        and d9.get("ticker"):
+                    if d9["event"] == "v4_exit_posted" or \
+                            det9.get("outcome") == "flattening":
+                        last_exit_gov[d9["ticker"]] = g9
+            elif '"exit_filled"' in line:
+                d9 = json.loads(line)
+                det9 = d9.get("details") or {}
+                if det9.get("pnl_cents") is not None and d9.get("ticker"):
+                    gov_pnl[last_exit_gov.get(d9["ticker"], "maker_exit")] += \
+                        det9["pnl_cents"]
+            elif '"completion_taker_capped"' in line:
+                cap_hits += 1
+        if gov_n:
+            L += ["", "## GOVERNOR SPLIT (whose hand moved — actions | exit ¢ attributed)"]
+            for g9 in ("per_leg_policy", "pair97_bound", "maker_exit",
+                       "match_live_cancel"):
+                L.append("- %s: %d actions | %+.0f¢" % (
+                    g9, gov_n.get(g9, 0), gov_pnl.get(g9, 0.0)))
+            if cap_hits:
+                L.append("- **taker cap hits (DECREED 3/day until n≥30 graded): %d — named, never silent**" % cap_hits)
+    except Exception:
+        pass
     md = ROOT.parent / (".claude/adjudication/ADJUDICATION_%s.md" % ymd)
     md.write_text("\n".join(L), encoding="utf-8")
     print("adjudication ->", md)

@@ -174,6 +174,14 @@ def parse_session(log_path):
                                   "detail": "chase ladder refused: pursuit_buys %s >= cap %s (proposed %s)"
                                             % (d.get("pursuit_buys"), d.get("cap"),
                                                d.get("proposed", d.get("price")))})
+            elif e == "completion_taker_capped":
+                # [C-DELETION-GATE Part 4] cap hits are NAMED lines, never silent
+                all_extra = S.setdefault("_extra_pats", [])
+                all_extra.append({"type": "violation", "pattern": "taker_capped",
+                                  "cls": "taker_capped", "ticker": tk, "ts": ts,
+                                  "key": "tcap|%s" % d.get("event"),
+                                  "detail": "taker verdict DEFERRED at daily cap %s (%s today; sunset n>=30 graded)"
+                                            % (d.get("cap"), d.get("taker_actions_today"))})
             elif e == "self_fill_bell":
                 all_extra = S.setdefault("_extra_pats", [])
                 all_extra.append({"type": "violation", "pattern": "self_fill_bell",

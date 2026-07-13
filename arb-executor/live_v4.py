@@ -1997,6 +1997,33 @@ class LiveV3:
                         details.setdefault("trade_id", _cur[1])
         except Exception:
             pass
+        # [C-DELETION-GATE Part 1, 07-12] the GOVERNOR STAMP: every acting
+        # decision on the completion path names the brain whose hand moved --
+        # per_leg_policy | pair97_bound | maker_exit | match_live_cancel --
+        # at the single emitter, so the nightly separates the two live brains'
+        # actions and dollars without hand-reading logs.
+        try:
+            if isinstance(details, dict) and "governed_by" not in details:
+                if event == "completion_action":
+                    details["governed_by"] = "per_leg_policy"
+                elif event in ("reaim_sibling_arrival", "leg2_reshuffle_reaim",
+                               "completion_no_attempt", "sibling_repost_placed",
+                               "aim_unresolved_refused"):
+                    details["governed_by"] = "pair97_bound"
+                elif event == "v4_exit_posted":
+                    details["governed_by"] = "maker_exit"
+                elif event in ("match_live_resting_cancel",):
+                    details["governed_by"] = "match_live_cancel"
+                elif event == "order_cancelled":
+                    _lbl = str(details.get("label") or "")
+                    if _lbl.startswith("completion_live"):
+                        details["governed_by"] = "per_leg_policy"
+                    elif _lbl == "match_live_cancel":
+                        details["governed_by"] = "match_live_cancel"
+                    elif _lbl == "reaim_sibling_lower":
+                        details["governed_by"] = "pair97_bound"
+        except Exception:
+            pass
         # [C-CHASE-KILL 07-12] Lock A + the locks' bookkeeping at the single
         # emitter: every ACCEPTED buy placement joins the leg's own-activity
         # price series (the self-fill bell's feed) and counts the pursuit; the
@@ -3748,6 +3775,15 @@ class LiveV3:
         # freezes every later entry buy on the event; held legs complete per
         # policy; exits untouched. The TRIGGERING placement is allowed through
         # (it is the evidence, and it keeps the leg's resting bid alive).
+        # [C-DELETION-GATE Part 3, 07-12] ACTIVITY-FIRING IS THE DESIGN, not
+        # an accident of CORBRU's tape: the bell feeds on placements AND
+        # fills BY INTENT -- our own placements are the one tape that cannot
+        # be someone else's noise (CORBRU had zero fills below 65; a
+        # fills-only bell could never have frozen the ladder). Known
+        # tension, named: a legit premarket walk under the armed ITF
+        # honest-anchor caps (up to 20c) can rise >=4c inside 30 min and
+        # fire this bell on a not-yet-live match -- the scorecard's
+        # SELF-FILL-UNCONFIRMED count is that mode's nightly meter.
         if (action == "buy" and post_only
                 and self.config.get("self_fill_bell_enabled", True)):
             _et9 = ticker.rsplit("-", 1)[0]
@@ -6958,6 +6994,25 @@ class LiveV3:
             if v == "taker_complete" and not self.config.get(
                     "operator_taker_word", False):
                 return
+            # [C-DELETION-GATE Part 4, DECREED (operator, 07-12): the
+            # thin-evidence guard] taker_daily_action_cap = 3 until combined
+            # shadow+live taker verdicts reach n>=30 graded -- the branch
+            # stays live but cannot compound a miscalibration faster than
+            # the nightly can catch it. Cap hits are NAMED lines, never
+            # silent (monitor-rendered).
+            if v == "taker_complete":
+                _day9 = datetime.now(ET).strftime("%Y%m%d")
+                if getattr(self, "_taker_day", "") != _day9:
+                    self._taker_day, self._taker_n = _day9, 0
+                _cap9 = int(self.config.get("taker_daily_action_cap", 3))
+                if self._taker_n >= _cap9:
+                    self._log("completion_taker_capped", {
+                        "event": et, "verdict": v, "cap": _cap9,
+                        "taker_actions_today": self._taker_n,
+                        "sunset": "n>=30 graded shadow+live taker verdicts"},
+                        ticker=tk)
+                    return
+                self._taker_n += 1
             sib = self._sibling_ticker_any(tk)
             sb = self.books.get(sib) if sib else None
             kb = self.books.get(tk)
@@ -10282,10 +10337,30 @@ class LiveV3:
                 continue
         self._selfbuy_pts, self._pursuit_count = _pts, _pc
         self._conception_stamped = _cs
+        # [C-DELETION-GATE Part 4] the taker daily cap survives restarts --
+        # a reboot mid-day must not grant three fresh crosses
+        _tn = 0
+        for p in files:
+            try:
+                with open(p, encoding="utf-8", errors="replace") as fh:
+                    for line in fh:
+                        if ('"completion_action"' in line
+                                and '"taker_complete"' in line
+                                and '"crossed"' in line):
+                            try:
+                                d = json.loads(line)
+                            except ValueError:
+                                continue
+                            if d.get("ts_epoch", 0) >= day0:
+                                _tn += 1
+            except OSError:
+                continue
+        self._taker_day, self._taker_n = day, _tn
         self._log("chase_lineage_rebuilt", {
             "legs_with_activity": len(_pts),
             "open_pursuits": len(_pc),
-            "events_stamped": len(_cs)})
+            "events_stamped": len(_cs),
+            "taker_actions_today": _tn})
 
     def _load_cycle_history(self):
         """[C-CYCLE-CAP 2026-07-09, operator ruling: re-entry ALLOWED, capped

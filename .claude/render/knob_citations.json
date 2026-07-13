@@ -143,5 +143,10 @@
   "DECREED",
   "OPERATOR WORD 07-12: -0j armed (PLEX_WALK_CAP_SIZES ratified table; the window-open void dies)",
   "L5"
+ ],
+ "taker_daily_action_cap": [
+  "DECREED",
+  "OPERATOR 07-12 C-DELETION-GATE Part 4 (thin-evidence guard: 3/day until n>=30 graded shadow+live taker verdicts)",
+  "L6"
  ]
 }

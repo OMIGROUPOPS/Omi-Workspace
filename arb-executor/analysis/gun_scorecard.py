@@ -125,6 +125,8 @@ def main():
     fires, deltas, sched, boots, honest = {}, {}, {}, [], {}
     bells_missing = set()   # [C-REALITY-BELL] nightly coverage count
     halt_armed_ts, halt_min, unbooked_booked = None, 0.0, 0   # [C-BOOK-THE-FILL]
+    confirms = {}           # [C-DELETION-GATE] ev -> [(source, first, delta_sec)]
+    percat_seen = set()     # events where the fitted threshold crossed (shadow log)
     for p in files:
         for line in open(p, encoding="utf-8", errors="replace"):
             if '"gun_fired"' not in line and '"gun_truth_delta"' not in line \
@@ -181,6 +183,18 @@ def main():
                         honest[ev] = datetime.fromisoformat(hs).timestamp()
                     except Exception:
                         pass
+            elif d["event"] == "gun_source_confirm":
+                # [C-DELETION-GATE Part 2] later sources on an already-fired
+                # event: the multi-source record (first-fire-wins is the code
+                # law at live_v4._gun_stamp: an existing _gun_state entry
+                # short-circuits to gun_source_confirm, never a re-stamp)
+                confirms.setdefault(ev, []).append(
+                    (det.get("source"), det.get("first_source"),
+                     det.get("delta_sec")))
+                continue
+            elif d["event"] == "percat_gun_shadow":
+                percat_seen.add(ev)
+                continue
             elif d["event"] == "bell_missing":
                 bells_missing.add(ev)
                 continue
@@ -350,17 +364,88 @@ def main():
     # late; this line notices it at 6:10 am.
     n_fires = len(fires)
     n_slate = len(set(sched) | set(fires))
+    # [C-DELETION-GATE proof iii] MAINS are OFF by design in the fitted
+    # trigger -- they are EXCLUDED from the coverage denominator, asserted:
+    _mains = {e for e in (set(sched) | set(fires))
+              if cat_of(e) in ("ATP_MAIN", "WTA_MAIN")}
+    n_slate_x = n_slate - len(_mains)
+    n_fires_x = sum(1 for e in fires if e not in _mains)
+    # multi-source + self-fill meters ([C-DELETION-GATE Part 2 / Part 3])
+    multi = {e: c for e, c in confirms.items()}
+    sf_fired = {e for e, f in fires.items() if f.get("source") == "self_fill"}
+    sf_unconfirmed = [e for e in sf_fired
+                      if not multi.get(e) and e not in percat_seen]
     footer = ("FIRES-vs-SLATE: fires=%d tracked_events=%d ratio=%.0f%% | "
+              "NON-MAINS (deletion-gate denominator, MAINS-OFF excluded by "
+              "design): fires=%d/%d ratio=%.0f%% | MULTI-SOURCE events=%d | "
+              "SELF-FILL fires=%d unconfirmed-by-any-other-source=%d | "
               "BELLS-MISSING=%d%s | HALT-MIN=%.1f UNBOOKED-FILLS-BOOKED=%d "
               "(watch: night-over-night drops + uncovered live matches are "
               "named here, not a week later)"
               % (n_fires, n_slate, 100.0 * n_fires / n_slate if n_slate else 0,
+                 n_fires_x, n_slate_x,
+                 100.0 * n_fires_x / n_slate_x if n_slate_x else 0,
+                 len(multi), len(sf_fired), len(sf_unconfirmed),
                  len(bells_missing),
                  (" [" + ",".join(sorted(e.rsplit("-", 1)[-1][-6:] for e in bells_missing)[:6]) + "]")
                  if bells_missing else "", halt_min, unbooked_booked))
-    out = "# GUN SCORECARD %s\n\n%s\n\n%s\n\n%s\n" % (
+    # ---- [C-DELETION-GATE Part 5] the deletion gate: Plex's four proofs.
+    # The legacy-trigger deletion word is REFUSED by this section itself if
+    # any proof is missing.
+    gate = ["", "## DELETION GATE (C-DELETION-GATE v1 — the four proofs)"]
+    # (i) clean regrade, superseding the inadmissible 71
+    p1 = bool(summary)
+    gate.append("**(i) clean-regrade numbers (flow-step onset, -0k):** %s — "
+                "these SUPERSEDE 07-12's 71 percat shadow would-fires, ruled "
+                "INADMISSIBLE by C-MORNING-TRIAGE (TRUTH-JOIN DRIBBLE-ONSET)."
+                % ("PRESENT" if p1 else "MISSING"))
+    # (ii) percat-vs-legacy priority reconciliation on real events
+    pv = []
+    for e, cl in confirms.items():
+        for (src, first, dsec) in cl:
+            if src == "percat_fitted" or first == "percat_fitted":
+                pv.append((e, first, src, dsec))
+    for e, f in fires.items():
+        if f.get("source") == "percat_fitted":
+            pv.append((e, "percat_fitted", "(first fire)", None))
+    p2 = len(pv) > 0
+    gate.append("**(ii) percat-vs-legacy priority reconciliation:** %s (%d rows)"
+                % ("PRESENT" if p2 else "MISSING — no percat co-fire tonight", len(pv)))
+    for e, first, src, dsec in pv[:12]:
+        gate.append("- %s: first=%s, later=%s%s" % (
+            e[-16:], first, src,
+            (" (+%.0fs)" % dsec) if dsec is not None else ""))
+    # (iii) mains-off exclusion asserted (in the footer, by construction)
+    p3 = True
+    gate.append("**(iii) MAINS-OFF excluded from the denominator:** PRESENT — "
+                "footer carries both numbers (%d mains excluded)." % len(_mains))
+    # (iv) percat vs self_fill same-event comparison
+    rows4 = []
+    for e in set(percat_seen) | sf_fired:
+        f = fires.get(e, {})
+        rows4.append((e, f.get("source"),
+                      "percat" if e in percat_seen else "",
+                      "self_fill" if e in sf_fired else ""))
+    both4 = [r for r in rows4 if r[2] and r[3]]
+    p4 = True   # the TABLE is the proof; emptiness is a finding, stated
+    gate.append("**(iv) percat-vs-self-fill same-event table:** PRESENT — "
+                "%d events touched by either, %d by BOTH%s"
+                % (len(rows4), len(both4),
+                   " (zero co-events is tonight's finding, not a missing proof)"
+                   if not both4 else ""))
+    for e, src, a, b in rows4[:12]:
+        gate.append("- %s: fired_by=%s | percat=%s self_fill=%s" % (e[-16:], src, a or "-", b or "-"))
+    verdict5 = "OPEN" if (p1 and p2 and p3 and p4) else "REFUSED"
+    gate.append("")
+    gate.append("**DELETION GATE: %s**%s" % (
+        verdict5,
+        "" if verdict5 == "OPEN" else
+        " — the deletion word cannot be given on this scorecard (missing proof(s): %s)"
+        % ", ".join(n for n, p in
+                    [("i", p1), ("ii", p2), ("iii", p3), ("iv", p4)] if not p)))
+    out = "# GUN SCORECARD %s\n\n%s\n\n%s\n\n%s\n%s\n" % (
         now.strftime("%Y-%m-%d %I:%M %p ET"), "\n".join(lines),
-        "\n".join("- " + s for s in summary), footer)
+        "\n".join("- " + s for s in summary), footer, "\n".join(gate))
     print(out)
 
     if "--nightly" in sys.argv:

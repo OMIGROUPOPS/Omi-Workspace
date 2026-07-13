@@ -122,5 +122,6 @@
   "self_fill_rise_cents": 4,
   "self_fill_window_sec": 1800,
   "percat_gun_armed": true,
-  "completion_live_enabled": true
+  "completion_live_enabled": true,
+  "taker_daily_action_cap": 3
 }

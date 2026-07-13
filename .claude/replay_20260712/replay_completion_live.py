@@ -120,6 +120,23 @@ async def main():
     t4 = not CALLS and not b4._cancelled
     print("hold does nothing:", "PASS" if t4 else "FAIL")
     ok &= t4
+    # 5) [C-DELETION-GATE Part 4] the taker daily cap: the 4th cross defers,
+    # NAMED (completion_taker_capped), never silent
+    CALLS.clear()
+    b5, kept5 = mk(taker_word=True)
+    from datetime import datetime
+    b5._taker_day = datetime.now(lv.ET).strftime("%Y%m%d")
+    b5._taker_n = int(b5.config.get("taker_daily_action_cap", 3))
+    logged = []
+    _orig_log = b5._log
+    def _spy(ev, det=None, ticker=""):
+        logged.append(ev)
+        return _orig_log(ev, det, ticker)
+    b5._log = _spy
+    await b5._completion_execute("EV-KEPT", kept5, res, 1000.0)
+    t5 = (not CALLS and "completion_taker_capped" in logged)
+    print("taker cap defers 4th cross, NAMED:", "PASS" if t5 else "FAIL", logged[-1:])
+    ok &= t5
     print("REPLAY", "PASS" if ok else "FAIL")
     sys.exit(0 if ok else 1)
 

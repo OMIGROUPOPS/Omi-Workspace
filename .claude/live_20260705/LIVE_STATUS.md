@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 15 @ **2026-07-12 11:22:06 PM ET** | build `851fc66b` | session boot 07-12 20:59 ET | log `live_v3_20260712.jsonl` | 15174 session events | monitor READ-ONLY
+- cycle 16 @ **2026-07-12 11:32:09 PM ET** | build `ac8d5e94` | session boot 07-12 20:59 ET | log `live_v3_20260712.jsonl` | 16403 session events | monitor READ-ONLY
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
@@ -20,8 +20,8 @@ none yet this session
 - classes now: {'NO_FLOW': 1, 'FLOW_ABOVE': 1} | repriceable now: true 1 / false 1 | **cumulative bid_grade lines: 8725 (repriceable true 1278 / false 7447)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPMATCH-26JUL12ALTGAS-ALT | 55 | 141m | 0 | 58-59 | — | **NO_FLOW** | 99 |  |
-| ATPMATCH-26JUL12SONSCH-SON | 65 | 141m | 228/67-70/35996 | 68-68 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→67 |
+| ATPMATCH-26JUL12ALTGAS-ALT | 55 | 151m | 0 | 58-59 | — | **NO_FLOW** | 99 |  |
+| ATPMATCH-26JUL12SONSCH-SON | 65 | 151m | 247/67-70/36917 | 68-68 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→67 |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 no open half-pairs
@@ -30,7 +30,7 @@ no open half-pairs
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
 | ATPMATCH-26JUL12ALTGAS | ATP_MAIN | 0.0 | 1 | **WAKING** |
-| ATPMATCH-26JUL12SONSCH | ATP_MAIN | 2.133 | — | **WAKING** |
+| ATPMATCH-26JUL12SONSCH | ATP_MAIN | 2.233 | — | **WAKING** |
 
 ## PATTERNS (sub-B) — 0
 

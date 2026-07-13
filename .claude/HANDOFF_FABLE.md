@@ -33,7 +33,19 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-13 late night — C50 keeps this current):
+## STATE (2026-07-14 early — C50 keeps this current):
+C-GUIDEBOOK-V2: THIRD REFUSAL, named. Recut on G9 (3.24M ticker-min,
+48 pages, tour only): adverse-selection partition FIXED (8/4 vs v1
+collapse-skew -- the timing axis is right for WHO) but held-out
+dollars refused (-$10.70 vs -$9.30 same-universe). Nothing shipped.
+Surviving findings: NO era-admissible ITF depth corpus (the book's
+P&L engine is data-starved -- tape problem before model problem);
+tour dip windows diffuse ([13,508]/[91,996] min) -- discount is not
+a clock moment; v3 = flow-signature conditioning after ITF accrual.
+NEXT: 6:10 deletion word; EV3 re-read n>=300; COMBINED-CAP remedy;
+-0g.
+
+(prior:) ## STATE (2026-07-13 late night):
 C-GUIDEBOOK-AIM v1: BUILT (GUIDEBOOK_V1, 538 pages from M1 recut
 depth distributions + fillredo + M6; doctrine flip named: GET PAID
 not GET FILLED; NAMED NO-BID; walk-past-page = violation) then

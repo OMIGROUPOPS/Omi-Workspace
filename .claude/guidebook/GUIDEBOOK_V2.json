@@ -1,0 +1,915 @@
+{
+ "meta": {
+  "built": "2026-07-13",
+  "corpus": "g9_trades.parquet (train era < 2026-07-10)",
+  "onset": "-0k flow-step rule",
+  "ref": "median of first tape hour",
+  "windows_p25_p75_min_before_onset": {
+   "ATP_CHALL": [
+    13.0,
+    508.0
+   ],
+   "ATP_MAIN": [
+    91.0,
+    996.0
+   ],
+   "WTA_CHALL": [
+    6.0,
+    410.0
+   ],
+   "WTA_MAIN": [
+    58.0,
+    931.0
+   ]
+  },
+  "probe_depth_for_partition_cents": 5,
+  "lineage": [
+   "AIM/TIMING MISSES attempt 3",
+   "axes = cat x shape x price-cell x DIP WINDOW"
+  ]
+ },
+ "pages": {
+  "ATP_CHALL|over|le25": {
+   "n": 36,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 4,
+    "p70": 3,
+    "p90": 2
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     1,
+     14
+    ],
+    "outside": [
+     4,
+     14
+    ]
+   }
+  },
+  "ATP_CHALL|over|ge75": {
+   "n": 84,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 9,
+    "p70": 4,
+    "p90": 2
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     37,
+     19
+    ],
+    "outside": [
+     47,
+     20
+    ]
+   }
+  },
+  "ATP_CHALL|at_mid|26_50": {
+   "n": 2232,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 3,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     186,
+     367
+    ],
+    "outside": [
+     240,
+     511
+    ]
+   }
+  },
+  "ATP_CHALL|at_mid|51_75": {
+   "n": 2277,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 2,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     263,
+     208
+    ],
+    "outside": [
+     340,
+     265
+    ]
+   }
+  },
+  "ATP_CHALL|disc|51_75": {
+   "n": 110,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     4,
+     2
+    ],
+    "outside": [
+     18,
+     6
+    ]
+   }
+  },
+  "ATP_CHALL|disc|26_50": {
+   "n": 59,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     5,
+     3
+    ],
+    "outside": [
+     10,
+     10
+    ]
+   }
+  },
+  "ATP_CHALL|over|26_50": {
+   "n": 105,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 5,
+    "p70": 3,
+    "p90": 1
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     14,
+     42
+    ],
+    "outside": [
+     20,
+     44
+    ]
+   }
+  },
+  "ATP_CHALL|at_mid|ge75": {
+   "n": 1077,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 2,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     266,
+     120
+    ],
+    "outside": [
+     314,
+     139
+    ]
+   }
+  },
+  "ATP_CHALL|at_mid|le25": {
+   "n": 869,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 2,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     33,
+     144
+    ],
+    "outside": [
+     27,
+     162
+    ]
+   }
+  },
+  "ATP_CHALL|over|51_75": {
+   "n": 142,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 5,
+    "p70": 3,
+    "p90": 1
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     39,
+     35
+    ],
+    "outside": [
+     46,
+     34
+    ]
+   }
+  },
+  "ATP_CHALL|disc|ge75": {
+   "n": 59,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     0,
+     1
+    ],
+    "outside": [
+     12,
+     1
+    ]
+   }
+  },
+  "ATP_CHALL|disc|le25": {
+   "n": 21,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     0,
+     2
+    ],
+    "outside": [
+     0,
+     3
+    ]
+   }
+  },
+  "ATP_MAIN|at_mid|51_75": {
+   "n": 1674,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 2,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     289,
+     232
+    ],
+    "outside": [
+     313,
+     264
+    ]
+   }
+  },
+  "ATP_MAIN|at_mid|26_50": {
+   "n": 1551,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 2,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     158,
+     276
+    ],
+    "outside": [
+     187,
+     389
+    ]
+   }
+  },
+  "ATP_MAIN|at_mid|ge75": {
+   "n": 728,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 4,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     221,
+     108
+    ],
+    "outside": [
+     241,
+     130
+    ]
+   }
+  },
+  "ATP_MAIN|at_mid|le25": {
+   "n": 485,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 2,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     10,
+     81
+    ],
+    "outside": [
+     16,
+     94
+    ]
+   }
+  },
+  "ATP_MAIN|over|26_50": {
+   "n": 108,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 8,
+    "p70": 5,
+    "p90": 2
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     21,
+     60
+    ],
+    "outside": [
+     23,
+     59
+    ]
+   }
+  },
+  "ATP_MAIN|disc|51_75": {
+   "n": 85,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     2,
+     0
+    ],
+    "outside": [
+     16,
+     3
+    ]
+   }
+  },
+  "ATP_MAIN|disc|ge75": {
+   "n": 43,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     1,
+     1
+    ],
+    "outside": [
+     16,
+     0
+    ]
+   }
+  },
+  "ATP_MAIN|over|51_75": {
+   "n": 120,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 9,
+    "p70": 6,
+    "p90": 3
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     45,
+     48
+    ],
+    "outside": [
+     55,
+     49
+    ]
+   }
+  },
+  "ATP_MAIN|over|le25": {
+   "n": 40,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 6,
+    "p70": 4,
+    "p90": 3
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     2,
+     25
+    ],
+    "outside": [
+     3,
+     24
+    ]
+   }
+  },
+  "ATP_MAIN|disc|26_50": {
+   "n": 69,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     3,
+     2
+    ],
+    "outside": [
+     9,
+     9
+    ]
+   }
+  },
+  "ATP_MAIN|over|ge75": {
+   "n": 81,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 14,
+    "p70": 8,
+    "p90": 3
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     45,
+     22
+    ],
+    "outside": [
+     50,
+     21
+    ]
+   }
+  },
+  "ATP_MAIN|disc|le25": {
+   "n": 22,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     1,
+     1
+    ],
+    "outside": [
+     0,
+     3
+    ]
+   }
+  },
+  "WTA_CHALL|at_mid|le25": {
+   "n": 151,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 2,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     1,
+     22
+    ],
+    "outside": [
+     5,
+     27
+    ]
+   }
+  },
+  "WTA_CHALL|at_mid|51_75": {
+   "n": 365,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 2,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     37,
+     51
+    ],
+    "outside": [
+     50,
+     57
+    ]
+   }
+  },
+  "WTA_CHALL|at_mid|ge75": {
+   "n": 190,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 3,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     41,
+     16
+    ],
+    "outside": [
+     51,
+     22
+    ]
+   }
+  },
+  "WTA_CHALL|at_mid|26_50": {
+   "n": 361,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 2,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     32,
+     51
+    ],
+    "outside": [
+     40,
+     77
+    ]
+   }
+  },
+  "WTA_CHALL|over|le25": {
+   "n": 9,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 4,
+    "p70": 2,
+    "p90": 2
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     0,
+     4
+    ],
+    "outside": [
+     0,
+     3
+    ]
+   }
+  },
+  "WTA_CHALL|over|ge75": {
+   "n": 7,
+   "verdict": "REFUSE_THIN"
+  },
+  "WTA_CHALL|over|26_50": {
+   "n": 19,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 4,
+    "p70": 3,
+    "p90": 2
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     4,
+     4
+    ],
+    "outside": [
+     4,
+     2
+    ]
+   }
+  },
+  "WTA_CHALL|disc|26_50": {
+   "n": 11,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     0,
+     0
+    ],
+    "outside": [
+     0,
+     2
+    ]
+   }
+  },
+  "WTA_CHALL|disc|51_75": {
+   "n": 16,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     0,
+     0
+    ],
+    "outside": [
+     5,
+     0
+    ]
+   }
+  },
+  "WTA_CHALL|over|51_75": {
+   "n": 29,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 5,
+    "p70": 4,
+    "p90": 1
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     9,
+     9
+    ],
+    "outside": [
+     5,
+     6
+    ]
+   }
+  },
+  "WTA_CHALL|disc|le25": {
+   "n": 6,
+   "verdict": "REFUSE_THIN"
+  },
+  "WTA_CHALL|disc|ge75": {
+   "n": 8,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     0,
+     0
+    ],
+    "outside": [
+     2,
+     0
+    ]
+   }
+  },
+  "WTA_MAIN|at_mid|51_75": {
+   "n": 1423,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 2,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     231,
+     170
+    ],
+    "outside": [
+     253,
+     211
+    ]
+   }
+  },
+  "WTA_MAIN|at_mid|26_50": {
+   "n": 1450,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 2,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     128,
+     268
+    ],
+    "outside": [
+     175,
+     344
+    ]
+   }
+  },
+  "WTA_MAIN|at_mid|le25": {
+   "n": 539,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 2,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     18,
+     89
+    ],
+    "outside": [
+     18,
+     107
+    ]
+   }
+  },
+  "WTA_MAIN|at_mid|ge75": {
+   "n": 798,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 3,
+    "p70": 1,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     224,
+     123
+    ],
+    "outside": [
+     278,
+     134
+    ]
+   }
+  },
+  "WTA_MAIN|over|26_50": {
+   "n": 96,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 8,
+    "p70": 5,
+    "p90": 3
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     17,
+     57
+    ],
+    "outside": [
+     19,
+     62
+    ]
+   }
+  },
+  "WTA_MAIN|disc|51_75": {
+   "n": 77,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     2,
+     1
+    ],
+    "outside": [
+     14,
+     6
+    ]
+   }
+  },
+  "WTA_MAIN|over|le25": {
+   "n": 45,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 6,
+    "p70": 4,
+    "p90": 3
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     6,
+     22
+    ],
+    "outside": [
+     6,
+     23
+    ]
+   }
+  },
+  "WTA_MAIN|disc|ge75": {
+   "n": 60,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     1,
+     1
+    ],
+    "outside": [
+     20,
+     2
+    ]
+   }
+  },
+  "WTA_MAIN|over|51_75": {
+   "n": 90,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 9,
+    "p70": 5,
+    "p90": 3
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     35,
+     36
+    ],
+    "outside": [
+     41,
+     39
+    ]
+   }
+  },
+  "WTA_MAIN|disc|26_50": {
+   "n": 39,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     1,
+     1
+    ],
+    "outside": [
+     6,
+     3
+    ]
+   }
+  },
+  "WTA_MAIN|over|ge75": {
+   "n": 81,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 19,
+    "p70": 10,
+    "p90": 4
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     53,
+     18
+    ],
+    "outside": [
+     57,
+     19
+    ]
+   }
+  },
+  "WTA_MAIN|disc|le25": {
+   "n": 29,
+   "verdict": "AIM",
+   "depth_in_window": {
+    "p50": 0,
+    "p70": 0,
+    "p90": 0
+   },
+   "win_loss_at_probe": {
+    "inside": [
+     0,
+     0
+    ],
+    "outside": [
+     0,
+     2
+    ]
+   }
+  }
+ }
+}

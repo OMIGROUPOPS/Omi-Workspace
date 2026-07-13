@@ -38,3 +38,5 @@
 **EV3 TRIAL NOTE (07-13, C-EV3-BACKTEST):** the three-term frame graded on 264 held-out legs (Jul 11-13 vs M15 trained through Jul 10, leash floor applied): EV3 +$7.70 vs actual +$2.35 vs two-term +$5.75; EV3-minus-actual +$5.35 with 95% CI [-20.20, +29.10] -> FLAT-AT-INSUFFICIENT-N (n<300 pre-agreed bar). Leash stays; posterior-proxy variant grades below cell-only (1/264 flattens) -> posterior wiring not earned. Re-read at accrued n>=300.
 
 **GUIDEBOOK V1 NOTE (07-13, C-GUIDEBOOK-AIM):** M1+fillredo+M6 composition (538 pages) REFUSED by the held-out week replay (-$9.90 vs -$0.62 actual; 114 fills on 247 aims). Built, gated OFF. v2 direction: condition depth on dip TIMING (t_deep page, unexploited) + the three-price shape axis.
+
+**GUIDEBOOK V2 NOTE (07-14, C-GUIDEBOOK-V2):** timing-conditioned recut on G9 (48 pages, tour only -- NO admissible ITF corpus exists, named). Held-out week: -$10.70 vs -$9.30 actual -> THIRD REFUSAL, dark. Partition check PASSED (8/4 vs v1 collapse-skew): the timing axis fixes WHO fills. Windows diffuse ([13,508]/[91,996] min) -- the discount is not a clock moment; v3 = flow-signature conditioning after ITF tape accrual.

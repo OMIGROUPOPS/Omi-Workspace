@@ -127,5 +127,5 @@
   "self_fill_corroborate_prints": 5,
   "flatten_daily_action_cap": 8,
   "flatten_ev_margin_cents": 3.0,
-  "guidebook_shadow_enabled": true
+  "guidebook_shadow_enabled": false
 }

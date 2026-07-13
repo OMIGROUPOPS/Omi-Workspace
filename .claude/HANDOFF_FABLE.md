@@ -33,7 +33,20 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-13 night — C50 keeps this current):
+## STATE (2026-07-13 late night — C50 keeps this current):
+C-GUIDEBOOK-AIM v1: BUILT (GUIDEBOOK_V1, 538 pages from M1 recut
+depth distributions + fillredo + M6; doctrine flip named: GET PAID
+not GET FILLED; NAMED NO-BID; walk-past-page = violation) then
+REFUSED BY ITS OWN TRIAL: held-out week replay -$9.90/$226 staked
+(-4.4% vs 8% bar) vs actual -$0.62 -- static depth w/o flow
+conditioning = adverse selection concentrated. NOTHING SHIPPED
+(guidebook_shadow_enabled=false; code committed, dark). v2 = depth
+conditioned on dip TIMING (t_deep, unexploited) + shape axis.
+AIM/TIMING MISSES open on evidence (2nd refused design). NEXT: 6:10
+deletion word; EV3 re-read n>=300; COMBINED-CAP remedy; -0g;
+guidebook v2 recut.
+
+(prior:) ## STATE (2026-07-13 night):
 C-EV3-BACKTEST DONE (read-only): 264 held-out legs (Jul 11-13, M15
 trained through Jul 10; 33 NO-OPINION excluded/counted). Dollars:
 actual +2.35 / two-term +5.75 / EV3 +7.70 / EV3+posterior-proxy

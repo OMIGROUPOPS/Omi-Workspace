@@ -13956,5 +13956,779 @@
       "live_issues": 0,
       "price_mismatches": 0
     }
+  },
+  {
+    "timestamp": "2026-07-13T21:00:17.048828+00:00",
+    "balances": {
+      "kalshi": 808.67,
+      "polymarket": 0.11,
+      "total": 808.78
+    },
+    "kalshi_positions": [],
+    "kalshi_total_cost": 0,
+    "kalshi_total_exposure": 0,
+    "pm_positions": [],
+    "pm_total_cost": 0,
+    "active_trades": 29,
+    "issues": [
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26MEALBY-ALBY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26TBCAR-CAR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26DETOTT-OTT"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26UNHBING-UNH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26NHCWAG-WAG"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26COOKGRAM-COOK"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26LIBKENN-LIB"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26SEASTL-STL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CHINSH-CHI"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26DELJVST-DEL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26NYIMTL-MTL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CBJBOS-BOS"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXUFCFIGHT-26FEB28VERMAR-VER"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXUFCFIGHT-26FEB28LUNPAC-PAC"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXUFCFIGHT-26FEB28MORKAV-MOR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXUFCFIGHT-26FEB28ZELGRE-GRE"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27DAYGW-GW"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27ODUGAST-ODU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27APPTXST-APP"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28PEAYBELL-PEAY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28FGCUSTET-STET"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-maine-albny-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-tb-car-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-det-ott-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhamp-bing-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhvn-wag-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-bcook-grmbst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-librty-kenest-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-sea-stl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-chi-nas-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-del-jaxst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-nyi-mon-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-cbj-bos-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nba-hou-orl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-ufc-marver-davmar-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-ufc-angpac-sanlun-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-ufc-bramor-lonkav-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-ufc-kingre-danzel-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-ala-tenn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-day-geows-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-old-gast-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-brown-colmb-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-mich-ill-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-merri-cans-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-applst-txst-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-ausp-bella-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-flgc-stetsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-camp-tows-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-lou-clmsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-umass-bowlgr-2026-02-28"
+      }
+    ],
+    "price_mismatches": [],
+    "live_issue_count": 0,
+    "summary": {
+      "k_count": 0,
+      "pm_count": 0,
+      "trades_active": 29,
+      "total_issues": 58,
+      "live_issues": 0,
+      "price_mismatches": 0
+    }
+  },
+  {
+    "timestamp": "2026-07-13T21:30:16.196351+00:00",
+    "balances": {
+      "kalshi": 808.52,
+      "polymarket": 0.11,
+      "total": 808.63
+    },
+    "kalshi_positions": [],
+    "kalshi_total_cost": 0,
+    "kalshi_total_exposure": 0,
+    "pm_positions": [],
+    "pm_total_cost": 0,
+    "active_trades": 29,
+    "issues": [
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26MEALBY-ALBY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26TBCAR-CAR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26DETOTT-OTT"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26UNHBING-UNH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26NHCWAG-WAG"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26COOKGRAM-COOK"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26LIBKENN-LIB"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26SEASTL-STL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CHINSH-CHI"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26DELJVST-DEL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26NYIMTL-MTL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CBJBOS-BOS"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXUFCFIGHT-26FEB28VERMAR-VER"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXUFCFIGHT-26FEB28LUNPAC-PAC"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXUFCFIGHT-26FEB28MORKAV-MOR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXUFCFIGHT-26FEB28ZELGRE-GRE"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27DAYGW-GW"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27ODUGAST-ODU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27APPTXST-APP"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28PEAYBELL-PEAY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28FGCUSTET-STET"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-maine-albny-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-tb-car-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-det-ott-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhamp-bing-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhvn-wag-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-bcook-grmbst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-librty-kenest-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-sea-stl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-chi-nas-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-del-jaxst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-nyi-mon-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-cbj-bos-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nba-hou-orl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-ufc-marver-davmar-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-ufc-angpac-sanlun-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-ufc-bramor-lonkav-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-ufc-kingre-danzel-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-ala-tenn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-day-geows-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-old-gast-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-brown-colmb-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-mich-ill-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-merri-cans-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-applst-txst-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-ausp-bella-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-flgc-stetsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-camp-tows-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-lou-clmsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-umass-bowlgr-2026-02-28"
+      }
+    ],
+    "price_mismatches": [],
+    "live_issue_count": 0,
+    "summary": {
+      "k_count": 0,
+      "pm_count": 0,
+      "trades_active": 29,
+      "total_issues": 58,
+      "live_issues": 0,
+      "price_mismatches": 0
+    }
+  },
+  {
+    "timestamp": "2026-07-13T22:00:17.873047+00:00",
+    "balances": {
+      "kalshi": 808.55,
+      "polymarket": 0.11,
+      "total": 808.66
+    },
+    "kalshi_positions": [],
+    "kalshi_total_cost": 0,
+    "kalshi_total_exposure": 0,
+    "pm_positions": [],
+    "pm_total_cost": 0,
+    "active_trades": 29,
+    "issues": [
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26MEALBY-ALBY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26TBCAR-CAR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26DETOTT-OTT"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26UNHBING-UNH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26NHCWAG-WAG"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26COOKGRAM-COOK"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26LIBKENN-LIB"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26SEASTL-STL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CHINSH-CHI"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB26DELJVST-DEL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26NYIMTL-MTL"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNHLGAME-26FEB26CBJBOS-BOS"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNBAGAME-26FEB26HOUORL-HOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXUFCFIGHT-26FEB28VERMAR-VER"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXUFCFIGHT-26FEB28LUNPAC-PAC"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXUFCFIGHT-26FEB28MORKAV-MOR"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXUFCFIGHT-26FEB28ZELGRE-GRE"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28ALATENN-ALA"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27DAYGW-GW"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27ODUGAST-ODU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27BRWNCLMB-BRWN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MICHILL-MICH"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27MRMKCAN-CAN"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB27APPTXST-APP"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28PEAYBELL-PEAY"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28FGCUSTET-STET"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28CAMPTOWS-CAMP"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28LOUCLEM-LOU"
+      },
+      {
+        "type": "MISSING_K",
+        "ticker": "KXNCAAMBGAME-26FEB28MASSBGSU-MASS"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-maine-albny-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-tb-car-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-det-ott-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhamp-bing-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-nhvn-wag-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-bcook-grmbst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-librty-kenest-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-sea-stl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-chi-nas-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-del-jaxst-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-nyi-mon-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nhl-cbj-bos-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-nba-hou-orl-2026-02-26"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-ufc-marver-davmar-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-ufc-angpac-sanlun-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-ufc-bramor-lonkav-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-ufc-kingre-danzel-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-ala-tenn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-day-geows-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-old-gast-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-brown-colmb-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-mich-ill-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-merri-cans-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-applst-txst-2026-02-27"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-ausp-bella-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-flgc-stetsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-camp-tows-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-lou-clmsn-2026-02-28"
+      },
+      {
+        "type": "MISSING_PM",
+        "slug": "aec-cbb-umass-bowlgr-2026-02-28"
+      }
+    ],
+    "price_mismatches": [],
+    "live_issue_count": 0,
+    "summary": {
+      "k_count": 0,
+      "pm_count": 0,
+      "trades_active": 29,
+      "total_issues": 58,
+      "live_issues": 0,
+      "price_mismatches": 0
+    }
   }
 ]

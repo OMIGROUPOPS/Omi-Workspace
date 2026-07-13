@@ -33,7 +33,21 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-13 ~1:30 am — C50 keeps this current):
+## STATE (2026-07-13 ~3:30 am — C50 keeps this current):
+C-BELL-SCOPE v1 DEPLOYED (0a6ab782, emergency #2): self-fill bell
+fires only on (a) leg_fill / (b) exceeds ARMED walk allowance (live
+table via _sanctioned_walk_cents_cat) / (c) tape_corroborated (>=5
+prints); 24 false freezes (1:30-3:09am, sanctioned re-aims ringing
+the 4c threshold that -0j's 20c allowances invalidated same-day)
+lift at boot (self_fill_unfrozen, true state logged); OVER-BROAD
+LOCK instance 2 (1,780 frozen-min, 42 refusals); replay 3 lanes PASS
+(CORBRU freezes via tape_corroborated; tonight's shapes NO-FIRE;
+both fire conditions proven). 6:10 brands BOTH suppressed windows;
+two windows => DELETION GATE REFUSED (insufficient clean tape).
+NEXT: deletion word waits for a clean night; COMBINED-CAP remedy;
+-0g.
+
+(prior:) ## STATE (2026-07-13 ~1:30 am):
 C-CAP-SCOPE v1 DEPLOYED (22039f30, emergency): pursuit cap RESCOPED
 -- counts from leg's FIRST FILL or event's FIRST BELL (was: every
 placement from first buy = OVER-BROAD LOCK, class founded); pre-arm

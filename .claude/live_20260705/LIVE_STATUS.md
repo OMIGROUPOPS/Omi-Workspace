@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 16 @ **2026-07-12 11:32:09 PM ET** | build `ac8d5e94` | session boot 07-12 20:59 ET | log `live_v3_20260712.jsonl` | 16403 session events | monitor READ-ONLY
+- cycle 17 @ **2026-07-12 11:42:12 PM ET** | build `6119ec4a` | session boot 07-12 20:59 ET | log `live_v3_20260712.jsonl` | 16680 session events | monitor READ-ONLY
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
@@ -16,21 +16,23 @@ clean overnight — no watch fires
 ## FILLS — 0 graded (session)
 none yet this session
 
-## RESTING BIDS — 2 tape-graded (starvation = NO_FLOW only)
-- classes now: {'NO_FLOW': 1, 'FLOW_ABOVE': 1} | repriceable now: true 1 / false 1 | **cumulative bid_grade lines: 8725 (repriceable true 1278 / false 7447)** -- the liquid_repost re-arm evidence accumulates here
+## RESTING BIDS — 3 tape-graded (starvation = NO_FLOW only)
+- classes now: {'NO_FLOW': 2, 'FLOW_ABOVE': 1} | repriceable now: true 1 / false 2 | **cumulative bid_grade lines: 8726 (repriceable true 1278 / false 7448)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPMATCH-26JUL12ALTGAS-ALT | 55 | 151m | 0 | 58-59 | — | **NO_FLOW** | 99 |  |
-| ATPMATCH-26JUL12SONSCH-SON | 65 | 151m | 247/67-70/36917 | 68-68 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→67 |
+| ATPMATCH-26JUL12ALTGAS-ALT | 55 | 161m | 0 | 58-59 | — | **NO_FLOW** | 99 |  |
+| ATPMATCH-26JUL12SONSCH-SON | 65 | 161m | 275/67-70/40312 | 68-68 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→67 |
+| WTAMATCH-26JUL13KAWWAL-WAL | 67 | 9m | 0 | 67-69 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 no open half-pairs
 
-## FLOW-STATE — 2 tracked game(s) ({'WAKING': 2}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 3 tracked game(s) ({'WAKING': 3}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
 | ATPMATCH-26JUL12ALTGAS | ATP_MAIN | 0.0 | 1 | **WAKING** |
-| ATPMATCH-26JUL12SONSCH | ATP_MAIN | 2.233 | — | **WAKING** |
+| ATPMATCH-26JUL12SONSCH | ATP_MAIN | 2.2 | — | **WAKING** |
+| WTAMATCH-26JUL13KAWWAL | WTA_MAIN | 0.033 | 2 | **WAKING** |
 
 ## PATTERNS (sub-B) — 0
 

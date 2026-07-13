@@ -163,5 +163,10 @@
   "DECREED",
   "OPERATOR 07-13 C-ADJUDICATION-READ Part 2 (EV-margin floor; 3c = the noise band where graded deltas straddle zero)",
   "L6"
+ ],
+ "guidebook_shadow_enabled": [
+  "DECREED",
+  "C-GUIDEBOOK-AIM v1 07-13 (shadow-first migration of the aim organ; cutover deletes aim_table)",
+  "L4"
  ]
 }

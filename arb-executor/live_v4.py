@@ -2675,6 +2675,53 @@ class LiveV3:
         except Exception:
             pass
 
+    def _guidebook_shadow(self, tk, et, cat, current_price, live_bid):
+        """[C-GUIDEBOOK-AIM v1, SHADOW — trades nothing] the guidebook lookup
+        at discovery: open the fitted page for (cat, price cell), aim at the
+        depth reached in half of historical window-1s (deep tier cited),
+        price the yield arithmetic explicitly, and refuse loudly on thin
+        pages or failed yield — a NAMED NO-BID, never a shallower bid.
+        Every line carries its guidebook citation (constraint #11)."""
+        try:
+            if not self.config.get("guidebook_shadow_enabled", True):
+                return
+            if getattr(self, "_guidebook", None) is None:
+                _gp = Path(__file__).resolve().parent.parent / \
+                    ".claude/guidebook/GUIDEBOOK_V1.json"
+                self._guidebook = (json.loads(_gp.read_text(encoding="utf-8"))
+                                   if _gp.exists() else {})
+            pages = (self._guidebook or {}).get("pages", {})
+            key = "%s|%d" % (cat, int(current_price))
+            page = pages.get(key)
+            if not page or page.get("verdict") == "REFUSE_THIN":
+                self._log("guidebook_aim", {
+                    "event": et, "verdict": "REFUSE_THIN",
+                    "page": key, "n": (page or {}).get("n", 0),
+                    "live_bid": int(live_bid),
+                    "citation": "GUIDEBOOK_V1 (M1 recut + fillredo)"},
+                    ticker=tk)
+                return
+            depth = int(page.get("depth_p50_of_w1s") or 0)
+            gb_aim = max(1, int(current_price) - depth)
+            band_x, _rule = self.exit_rule_for(cat, gb_aim)
+            band = int(band_x or 0)
+            # yield arithmetic: achievability at depth_p50 = 0.5 by
+            # construction; expected yield per unit staked
+            y = (0.5 * band / gb_aim) if gb_aim > 0 else 0.0
+            verdict = "AIM" if y >= 0.08 else "NO_BID_YIELD"
+            self._log("guidebook_aim", {
+                "event": et, "verdict": verdict, "page": key,
+                "n": page.get("n"), "live_bid": int(live_bid),
+                "gb_aim": gb_aim, "depth_cents": depth,
+                "deep_tier": page.get("depth_p25_of_w1s"),
+                "dip_t_med_min": page.get("dip_t_med_min"),
+                "band": band, "yield_pct": round(y * 100.0, 1),
+                "yield_bar_pct": 8.0,
+                "citation": "GUIDEBOOK_V1 %s (M1 edge_p50; achievability 0.5; "
+                            "M6 band)" % key}, ticker=tk)
+        except Exception:
+            pass
+
     def _aim_shadow_log(self, tk, et, cat, px, actual_bid, tts_min, site):
         """[C-AIM-SHADOW] logging only; never raises into the trading path."""
         if not getattr(self, "aim_shadow", False):
@@ -8556,6 +8603,11 @@ class LiveV3:
                 # [C-AIM-SHADOW] logging only, swallowed on any error
                 self._aim_shadow_log(tk, et, cat, current_price, target_bid,
                                      time_to_start / 60.0, "v4_place")
+                # [C-GUIDEBOOK-AIM v1 07-13, SHADOW — the discovery-to-aim
+                # wire] the fitted history sets the window-1 bid: aim at the
+                # depth this market class actually offers (M1 distribution),
+                # priced against the yield bar — GET PAID, not GET FILLED.
+                self._guidebook_shadow(tk, et, cat, current_price, target_bid)
 
                 # #1 ref-price soft-alert: rolling tight_mid rate over the last 100 placements.
                 self._anchor_src_hist.append(anchor_src)
@@ -9871,6 +9923,27 @@ class LiveV3:
                    (self.event_start_time.get(pos.event_ticker, 0) - now) / 60.0)
         self._aim_shadow_log(tk, pos.event_ticker, pos.category, current_price,
                              new_target, _tts_sh, "move_repost")
+        # [C-GUIDEBOOK-AIM Part 2, SHADOW] the walk inherits the page: a
+        # re-aim past the guidebook depth walks the discount away — the
+        # NAMED violation, observe-only until cutover
+        try:
+            if (self.config.get("guidebook_shadow_enabled", True)
+                    and getattr(self, "_guidebook", None)):
+                _gpg = self._guidebook.get("pages", {}).get(
+                    "%s|%d" % (pos.category, int(current_price)))
+                if _gpg and _gpg.get("verdict") != "REFUSE_THIN":
+                    _gaim = max(1, int(current_price)
+                                - int(_gpg.get("depth_p50_of_w1s") or 0))
+                    if int(new_target) > _gaim:
+                        self._log("guidebook_walk_violation", {
+                            "event": pos.event_ticker,
+                            "new_target": int(new_target), "gb_aim": _gaim,
+                            "walked_past_cents": int(new_target) - _gaim,
+                            "citation": "GUIDEBOOK_V1 %s|%d"
+                                        % (pos.category, int(current_price))},
+                            ticker=tk)
+        except Exception:
+            pass
         self._log("v4_move_repost", {
             "mode": mode, "old_basis": price_basis, "current_price": current_price,
             "new_regime": new_regime, "new_offset": new_offset,

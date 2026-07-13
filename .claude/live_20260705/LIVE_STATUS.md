@@ -1,35 +1,38 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 1 @ **2026-07-12 09:00:59 PM ET** | build `f8aecbd2` | session boot 07-12 20:59 ET | log `live_v3_20260712.jsonl` | 397 session events | monitor READ-ONLY
+- cycle 2 @ **2026-07-12 09:11:07 PM ET** | build `796e7269` | session boot 07-12 20:59 ET | log `live_v3_20260712.jsonl` | 1826 session events | monitor READ-ONLY
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
 - tripwire artifact: absent (quiet)
 
-## ZERO-TOLERANCE — 0 violation(s)
-**NONE.** grace_breach / combined_over_goal(97) / walk_cap_breach / handler_error all clean.
+## ZERO-TOLERANCE — 3 violation(s)
+| ET | class | who | detail |
+|---|---|---|---|
+| 21:03:06 | **chase_cap** | KXITFWMATCH-26JUL12SUNYUN-SUN | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 53) |
+| 21:03:06 | **chase_cap** | KXITFWMATCH-26JUL12SUNYUN-YUN | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 8) |
+| 21:06:16 | **bell_missing** | KXATPMATCH-26JUL12ALTGAS | min_past_start 846.3 |
+
+**LIVE DEFECT(S) — forensic blocks written: FORENSIC_chase_cap.md**
 
 ## FILLS — 0 graded (session)
 none yet this session
 
-## RESTING BIDS — 4 tape-graded (starvation = NO_FLOW only)
-- classes now: {'NO_FLOW': 4} | repriceable now: true 0 / false 4 | **cumulative bid_grade lines: 8724 (repriceable true 1277 / false 7447)** -- the liquid_repost re-arm evidence accumulates here
+## RESTING BIDS — 2 tape-graded (starvation = NO_FLOW only)
+- classes now: {'NO_FLOW': 1, 'FLOW_ABOVE': 1} | repriceable now: true 1 / false 1 | **cumulative bid_grade lines: 8725 (repriceable true 1278 / false 7447)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPMATCH-26JUL12ALTGAS-ALT | 55 | 0m | 0 | 57-59 | — | **NO_FLOW** | 99 |  |
-| ATPMATCH-26JUL12SONSCH-SON | 65 | 0m | 0 | 68-69 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL12SUNYUN-SUN | 51 | 0m | 0 | 61-93 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL12SUNYUN-YUN | 5 | 0m | 0 | 8-26 | — | **NO_FLOW** | 99 |  |
+| ATPMATCH-26JUL12ALTGAS-ALT | 55 | 10m | 0 | 57-59 | — | **NO_FLOW** | 99 |  |
+| ATPMATCH-26JUL12SONSCH-SON | 65 | 10m | 10/69-69/244 | 68-69 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→69 |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 no open half-pairs
 
-## FLOW-STATE — 3 tracked game(s) ({'WAKING': 2, 'OPEN': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 2 tracked game(s) ({'WAKING': 1, 'OPEN': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ATPMATCH-26JUL12SONSCH | ATP_MAIN | 1.433 | 1 | **OPEN** |
+| ATPMATCH-26JUL12SONSCH | ATP_MAIN | 1.267 | 1 | **OPEN** |
 | ATPMATCH-26JUL12ALTGAS | ATP_MAIN | 0.0 | 2 | **WAKING** |
-| ITFWMATCH-26JUL12SUNYUN | ITF_W | 0.033 | 18 | **WAKING** |
 
 ## PATTERNS (sub-B) — 0
 

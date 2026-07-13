@@ -1,47 +1,9 @@
-# FORENSIC — chase_cap — LIVE DEFECT (>=2 in 60min)  <!-- 1783904009 -->
-written 2026-07-12 08:53:46 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — chase_cap — LIVE DEFECT (>=2 in 60min)  <!-- 1783904586 -->
+written 2026-07-12 09:11:06 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (40 total this session)
-- 18:34:49 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 56)
-- 18:36:52 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 56)
-- 18:37:17 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
-- 18:37:18 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
-- 18:37:20 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
-- 18:38:53 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
-- 18:40:53 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
-- 18:42:53 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
-- 18:44:54 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
-- 18:46:55 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
-- 18:48:55 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
-- 18:50:55 KXITFWMATCH-26JUL12PANOUN-OUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
-- 20:35:03 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 55)
-- 20:35:25 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 55)
-- 20:35:25 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 55)
-- 20:37:26 KXITFWMATCH-26JUL12SUNYUN-YUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 8)
-- 20:37:26 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 55)
-- 20:39:26 KXITFWMATCH-26JUL12SUNYUN-YUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 8)
-- 20:39:26 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 55)
-- 20:39:39 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 56)
-- 20:39:39 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 57)
-- 20:41:26 KXITFWMATCH-26JUL12SUNYUN-YUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 8)
-- 20:41:26 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 57)
-- 20:43:27 KXITFWMATCH-26JUL12SUNYUN-YUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 8)
-- 20:43:27 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 57)
-- 20:45:19 KXITFWMATCH-26JUL12SUNYUN-YUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 8)
-- 20:45:25 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 57)
-- 20:45:28 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 57)
-- 20:45:42 KXITFWMATCH-26JUL12SUNYUN-YUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 8)
-- 20:45:42 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 57)
-- 20:45:53 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 60)
-- 20:45:53 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 61)
-- 20:47:28 KXITFWMATCH-26JUL12SUNYUN-YUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 8)
-- 20:47:28 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 61)
-- 20:49:28 KXITFWMATCH-26JUL12SUNYUN-YUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 8)
-- 20:49:28 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 61)
-- 20:51:28 KXITFWMATCH-26JUL12SUNYUN-YUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 8)
-- 20:51:28 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 61)
-- 20:53:29 KXITFWMATCH-26JUL12SUNYUN-YUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 8)
-- 20:53:29 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 61)
+## Events (2 total this session)
+- 21:03:06 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 53)
+- 21:03:06 KXITFWMATCH-26JUL12SUNYUN-YUN — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 8)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-12 07:35:01 PM ET", "ts_epoch": 1783899301.9839592, "event": "v4_place", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "direction": "underdog", "cat": "ITF_W", "regime": "r05_14", "cell": 5, "current_price": 5, "anchor_src": "no_trade_staircase", "table_src": "no_trade_staircase", "last_trade_age_sec": -1.0, "offset": 0, "target_bid": 
@@ -137,6 +99,52 @@ written 2026-07-12 08:53:46 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-12 08:53:29 PM ET", "ts_epoch": 1783904009.2519622, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "held_price": 51, "proposed": 61, "pursuit_buys": 2, "cap": 2}}
     {"ts": "2026-07-12 08:53:37 PM ET", "ts_epoch": 1783904017.8954556, "event": "reality_divergence", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"kind": "resting_bid", "ref": 51.0, "market_mid": 77.0, "divergence": -26.0, "bound": 25.0}}
     {"ts": "2026-07-12 08:53:37 PM ET", "ts_epoch": 1783904017.8967474, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 2, "n_resting_orders": 5, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1783890861.4503121, "legs_new": [], "legs_gone": ["KXATPCHALLENGERMATCH-26JUL12HOHSUR-SUR", "KXAT
+    {"ts": "2026-07-12 08:55:29 PM ET", "ts_epoch": 1783904129.717961, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "held_price": 5, "proposed": 8, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 08:55:29 PM ET", "ts_epoch": 1783904129.718123, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "held_price": 51, "proposed": 61, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 08:55:41 PM ET", "ts_epoch": 1783904141.040814, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "held_price": 51, "proposed": 61, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 08:55:53 PM ET", "ts_epoch": 1783904153.0373864, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "held_price": 51, "proposed": 57, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 08:55:56 PM ET", "ts_epoch": 1783904156.4166555, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "held_price": 5, "proposed": 8, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 08:55:56 PM ET", "ts_epoch": 1783904156.4409091, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "held_price": 51, "proposed": 57, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 08:56:08 PM ET", "ts_epoch": 1783904168.15202, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "held_price": 51, "proposed": 60, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 08:56:08 PM ET", "ts_epoch": 1783904168.1719747, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "held_price": 51, "proposed": 61, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 08:57:29 PM ET", "ts_epoch": 1783904249.9237885, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "held_price": 5, "proposed": 8, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 08:57:29 PM ET", "ts_epoch": 1783904249.9240768, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "held_price": 51, "proposed": 61, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 08:59:29 PM ET", "ts_epoch": 1783904369.0263805, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "held_price": 5, "proposed": 8, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 08:59:30 PM ET", "ts_epoch": 1783904370.665955, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"site": "hold_review", "actual": {"resting_at": 5, "posted_min_ago": 84}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "IT
+    {"ts": "2026-07-12 08:59:30 PM ET", "ts_epoch": 1783904370.6662557, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.3, "n_eff": 2.0, "range_prior": {"cell": "ITF_W|underdog|at_mid|26_50", "w2_reach": 0.184, "knife": 1.0}, "edge_vs_actual": null}}
+    {"ts": "2026-07-12 08:59:30 PM ET", "ts_epoch": 1783904370.666536, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "held_price": 5, "proposed": 8, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 08:59:30 PM ET", "ts_epoch": 1783904370.6698494, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"site": "hold_review", "actual": {"resting_at": 51, "posted_min_ago": 26}, "would": {"regime": "climb_side", "timing": "early", "flow_open": false, "action": "defer", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_W"
+    {"ts": "2026-07-12 08:59:30 PM ET", "ts_epoch": 1783904370.6700563, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.648, "n_eff": 1.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null}}
+    {"ts": "2026-07-12 08:59:30 PM ET", "ts_epoch": 1783904370.6702363, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "held_price": 51, "proposed": 61, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-12 08:59:50 PM ET", "ts_epoch": 1783904390.8214862, "event": "order_cancelled", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"order_id": "9b9d2aca-d3df-4b40-b32e-b7d7dd8915a4", "label": "shutdown_cancel", "success": true}}
+    {"ts": "2026-07-12 08:59:50 PM ET", "ts_epoch": 1783904390.84833, "event": "order_cancelled", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"order_id": "eca7fe1b-b8ce-4773-afc6-789d803921d4", "label": "shutdown_cancel", "success": true}}
+    {"ts": "2026-07-12 09:00:55 PM ET", "ts_epoch": 1783904455.4798167, "event": "order_placed", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"action": "buy", "side": "yes", "price": 5, "count": 5, "order_id": "b21cb88e-155c-48d9-aa8a-c380fcc8cd32", "client_order_id": "9ffbb11e-809b-4af6-9c85-abef9acc1001", "response_status": "resting", "trade_id": "T-20260712-0250", "tape_basis": "rest_seed
+    {"ts": "2026-07-12 09:00:55 PM ET", "ts_epoch": 1783904455.4800036, "event": "drain_replay", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"outcome": "replaced", "order_id": "b21cb88e-155c-48d9-aa8a-c380fcc8cd32", "price": 5, "count": 5}}
+    {"ts": "2026-07-12 09:00:56 PM ET", "ts_epoch": 1783904456.315733, "event": "order_placed", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"action": "buy", "side": "yes", "price": 51, "count": 5, "order_id": "8111e49e-6262-4c0a-8413-73b2659b9c3f", "client_order_id": "824df96f-f97a-4b8d-99c0-d6e45ab15f9c", "response_status": "resting", "trade_id": "T-20260712-0251", "tape_basis": "rest_seed
+    {"ts": "2026-07-12 09:00:56 PM ET", "ts_epoch": 1783904456.3163812, "event": "drain_replay", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"outcome": "replaced", "order_id": "8111e49e-6262-4c0a-8413-73b2659b9c3f", "price": 51, "count": 5}}
+    {"ts": "2026-07-12 09:01:00 PM ET", "ts_epoch": 1783904460.0962005, "event": "skipped", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"reason": "resting_order_exists", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "existing_count": 1}}
+    {"ts": "2026-07-12 09:01:00 PM ET", "ts_epoch": 1783904460.1401627, "event": "skipped", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"reason": "resting_order_exists", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "existing_count": 1}}
+    {"ts": "2026-07-12 09:01:00 PM ET", "ts_epoch": 1783904460.243396, "event": "skipped", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"reason": "resting_order_exists", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "existing_count": 1}}
+    {"ts": "2026-07-12 09:01:00 PM ET", "ts_epoch": 1783904460.2815926, "event": "skipped", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"reason": "resting_order_exists", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "existing_count": 1}}
+    {"ts": "2026-07-12 09:01:06 PM ET", "ts_epoch": 1783904466.456396, "event": "skipped", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"reason": "resting_order_exists", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "existing_count": 1}}
+    {"ts": "2026-07-12 09:01:06 PM ET", "ts_epoch": 1783904466.4972906, "event": "skipped", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"reason": "resting_order_exists", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "existing_count": 1}}
+    {"ts": "2026-07-12 09:02:06 PM ET", "ts_epoch": 1783904526.5043728, "event": "skipped", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"reason": "resting_order_exists", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "existing_count": 1}}
+    {"ts": "2026-07-12 09:02:06 PM ET", "ts_epoch": 1783904526.5363882, "event": "skipped", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"reason": "resting_order_exists", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "existing_count": 1}}
+    {"ts": "2026-07-12 09:02:06 PM ET", "ts_epoch": 1783904526.632572, "event": "order_cancelled", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"order_id": "8111e49e-6262-4c0a-8413-73b2659b9c3f", "label": "orphan_buy_reconcile_cleanup", "success": true}}
+    {"ts": "2026-07-12 09:02:06 PM ET", "ts_epoch": 1783904526.63273, "event": "orphan_buy_cancelled", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"price": 51, "qty": 5}}
+    {"ts": "2026-07-12 09:02:06 PM ET", "ts_epoch": 1783904526.6596386, "event": "order_cancelled", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"order_id": "b21cb88e-155c-48d9-aa8a-c380fcc8cd32", "label": "orphan_buy_reconcile_cleanup", "success": true}}
+    {"ts": "2026-07-12 09:02:06 PM ET", "ts_epoch": 1783904526.659789, "event": "orphan_buy_cancelled", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"price": 5, "qty": 5}}
+    {"ts": "2026-07-12 09:02:06 PM ET", "ts_epoch": 1783904526.7302792, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 2, "n_resting_orders": 5, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1783904261.082012, "legs_new": [], "legs_gone": [], "n_held_now": 2, "n_held_banked": 2}, "table"
+    {"ts": "2026-07-12 09:03:06 PM ET", "ts_epoch": 1783904586.6650867, "event": "v4_place", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "direction": "leader", "cat": "ITF_W", "regime": "r55_64", "cell": 61, "current_price": 61, "anchor_src": "engagement_join", "table_src": "engagement_wave1", "last_trade_age_sec": 8733.6, "offset": 0, "target_bid": 53,
+    {"ts": "2026-07-12 09:03:06 PM ET", "ts_epoch": 1783904586.665447, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"site": "v4_place", "actual": {"px": 61, "actual_bid": 53}, "would": {"regime": "climb_side", "timing": "early", "flow_open": false, "action": "defer", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_W", "cell": 61, "e
+    {"ts": "2026-07-12 09:03:06 PM ET", "ts_epoch": 1783904586.6657052, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"site": "v4_place", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.61, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": 0.0}}
+    {"ts": "2026-07-12 09:03:06 PM ET", "ts_epoch": 1783904586.6658869, "event": "aim_shadow", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "site": "v4_place", "cell": "ITF_W|3|15", "side": "fav", "actual_bid": 53, "px": 61, "sib_px": 17, "tts_min": 151.9, "book_bid": 61, "book_ask": 93, "book_spread": 32, "bid_ex_self": 61, "actual_posture": "below_chai
+    {"ts": "2026-07-12 09:03:06 PM ET", "ts_epoch": 1783904586.66605, "event": "chase_cap_refused", "ticker": "KXITFWMATCH-26JUL12SUNYUN-SUN", "details": {"price": 53, "count": 5, "pursuit_buys": 3, "last_own_price": 51, "cap": 2}}
+    {"ts": "2026-07-12 09:03:06 PM ET", "ts_epoch": 1783904586.7625413, "event": "v4_place", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "direction": "underdog", "cat": "ITF_W", "regime": "r25_34", "cell": 30, "current_price": 30, "anchor_src": "last_traded", "table_src": "per_cell", "last_trade_age_sec": 1696.5, "offset": 4, "target_bid": 8, "current_a
+    {"ts": "2026-07-12 09:03:06 PM ET", "ts_epoch": 1783904586.7640233, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"site": "v4_place", "actual": {"px": 30, "actual_bid": 8}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_W", "cell": 
+    {"ts": "2026-07-12 09:03:06 PM ET", "ts_epoch": 1783904586.7641873, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"site": "v4_place", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.08, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": -22.0}}
+    {"ts": "2026-07-12 09:03:06 PM ET", "ts_epoch": 1783904586.764316, "event": "aim_shadow", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"event": "KXITFWMATCH-26JUL12SUNYUN", "site": "v4_place", "cell": "ITF_W|3|15", "side": "dog", "actual_bid": 8, "px": 30, "sib_px": 77, "tts_min": 151.9, "book_bid": 8, "book_ask": 26, "book_spread": 18, "bid_ex_self": 8, "actual_posture": "join", "actual
+    {"ts": "2026-07-12 09:03:06 PM ET", "ts_epoch": 1783904586.7644968, "event": "chase_cap_refused", "ticker": "KXITFWMATCH-26JUL12SUNYUN-YUN", "details": {"price": 8, "count": 5, "pursuit_buys": 3, "last_own_price": 5, "cap": 2}}
 
 ## Code path
 ?

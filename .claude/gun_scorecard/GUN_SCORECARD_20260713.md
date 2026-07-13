@@ -164,4 +164,4 @@ FIRES-vs-SLATE: fires=122 tracked_events=300 ratio=41% | NON-MAINS (deletion-gat
 - CH-26JUL13SARANG: fired_by=self_fill | percat=- self_fill=self_fill
 - CH-26JUL13BRIDUB: fired_by=self_fill | percat=- self_fill=self_fill
 
-**DELETION GATE: OPEN**
+**DELETION GATE: REFUSED** — corrected 07-13 1:20 pm ET (C-BACKHALF-NOW): the OPEN verdict was UNSOUND — the scorecard scan prefilter swallowed the honesty-brand events (chase_cap_*, gun_buy_refused[self_fill], self_fill_unfrozen) before parsing, so the gate never consumed the two suppressed windows inside this regrade tape (cap window ~9:00 pm–1:30 am · bell window 1:30–3:45 am; 931 re-aim refusals + 24 false freezes/42 refusals). Insufficient clean tape — the deletion word rides tonight's genuinely clean tape. Prefilter fixed in code same push; tonight's 6:10 consumes the brands by construction.

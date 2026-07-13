@@ -2038,8 +2038,12 @@ class LiveV3:
                     self.__dict__.setdefault("_selfbuy_pts", {}).setdefault(
                         ticker, deque(maxlen=64)).append(
                         (_now7, int(details.get("price") or 0)))
-                    _pc7 = self.__dict__.setdefault("_pursuit_count", {})
-                    _pc7[ticker] = _pc7.get(ticker, 0) + 1
+                    # [C-CAP-SCOPE 07-13] placements count toward the pursuit
+                    # cap ONLY once armed (leg fill / event bell) -- pre-fill
+                    # pre-bell re-aims are normal market-making, uncounted
+                    if self._pursuit_armed(ticker):
+                        _pc7 = self.__dict__.setdefault("_pursuit_count", {})
+                        _pc7[ticker] = _pc7.get(ticker, 0) + 1
                     _et7 = ticker.rsplit("-", 1)[0]
                     _cs7 = self.__dict__.setdefault("_conception_stamped", set())
                     if _et7 not in _cs7:
@@ -2053,6 +2057,9 @@ class LiveV3:
                     self.__dict__.setdefault("_selfbuy_pts", {}).setdefault(
                         ticker, deque(maxlen=64)).append(
                         (time.time(), int(details.get("fill_price") or 0)))
+                    # [C-CAP-SCOPE 07-13] a fill ARMS the leg's pursuit cap
+                    # (counting starts here) and resets the counter
+                    self.__dict__.setdefault("_leg_filled", set()).add(ticker)
                     self.__dict__.setdefault(
                         "_pursuit_count", {}).pop(ticker, None)
         except Exception:
@@ -2828,6 +2835,21 @@ class LiveV3:
             if x.rsplit("-", 1)[0] == ev and getattr(p, "entry_qty", 0):
                 return True
         return False
+
+    def _pursuit_armed(self, tk):
+        """[C-CAP-SCOPE 07-13] the pursuit cap counts only from the moment
+        chasing becomes possible: the leg's own first fill, or the event's
+        first bell -- whichever came first. Returns the arming source
+        ('leg_fill' | 'bell') or None (pre-fill, pre-bell: normal
+        market-making, the cap does not look)."""
+        if tk in getattr(self, "_leg_filled", set()):
+            return "leg_fill"
+        p = self.positions.get(tk)
+        if p is not None and getattr(p, "entry_qty", 0):
+            return "leg_fill"
+        if tk.rsplit("-", 1)[0] in getattr(self, "_gun_state", {}):
+            return "bell"
+        return None
 
     def _walk_cap_cents(self, cat):
         """(4) premarket_walk_cap per-cat allowance above the conception cell. MAIN 2 / CHALL 3 /
@@ -3746,26 +3768,29 @@ class LiveV3:
         # zero cycles) and no bell rang). Chokepoint backstop; the organ-level
         # gate in _v4_move_repost refuses BEFORE the cancel so the resting bid
         # survives (ICHOCH lesson).
-        # Lock B -- the pursuit cap: while NEITHER leg of the event has a
-        # booked fill (pure entry pursuit -- completion placements after leg1
-        # are the completion organ, per policy), UPWARD buy placements per leg
-        # cap at reentry_cycle_cap (2, DECREED cycle ruling 07-08, extended by
-        # C-CHASE-KILL to bind from the FIRST buy, early window included).
-        # Equal/lower re-places pass: refusing a down-move after a cancel
-        # strands a stale high bid above a falling tape.
+        # Lock B -- the pursuit cap, RESCOPED (C-CAP-SCOPE 07-13, operator
+        # emergency: the closing build over-rotated -- OVER-BROAD LOCK class;
+        # "cycles became placements"). Pre-fill, pre-bell upward re-aims are
+        # NORMAL MARKET-MAKING: unlimited in count, each bounded per placement
+        # by the armed honest-anchor walk cap. The cap (reentry_cycle_cap=2,
+        # DECREED cycle ruling 07-08, now scoped to its actual words) begins
+        # counting at the FIRST FILL on the leg or the FIRST BELL on the
+        # event, whichever comes first -- exactly where chasing becomes
+        # possible. Equal/lower re-places pass always.
         if (action == "buy" and post_only
-                and self.config.get("chase_pursuit_cap_enabled", True)):
+                and self.config.get("chase_pursuit_cap_enabled", True)
+                and self._pursuit_armed(ticker)):
             _pc9 = self.__dict__.setdefault("_pursuit_count", {})
             _pts9 = self.__dict__.setdefault("_selfbuy_pts", {}).get(ticker)
             _last9 = _pts9[-1][1] if _pts9 else None
             if (_pc9.get(ticker, 0) >= getattr(self, "reentry_cycle_cap", 2)
-                    and (_last9 is None or price > _last9)
-                    and not self._event_has_fill(ticker)):
+                    and (_last9 is None or price > _last9)):
                 self._log("chase_cap_refused", {
                     "price": price, "count": count,
                     "pursuit_buys": _pc9.get(ticker, 0),
                     "last_own_price": _last9,
                     "cap": getattr(self, "reentry_cycle_cap", 2),
+                    "armed_by": self._pursuit_armed(ticker),
                 }, ticker=ticker)
                 return "", {"_error": "chase_cap"}
         # Lock C -- the self-fill bell (gun source six): our own buy activity
@@ -9540,16 +9565,21 @@ class LiveV3:
                         "gun_source": self._gun_state[_et8].get("source")},
                         ticker=tk)
                 return
-            # (2) the pursuit cap (CORBRU ladder killer): while neither leg
-            # has fills, upward re-places per leg cap at reentry_cycle_cap.
+            # (2) the pursuit cap, RESCOPED (C-CAP-SCOPE 07-13): counts only
+            # once ARMED (leg fill / event bell -- where chasing becomes
+            # possible). Pre-fill pre-bell up-walks are normal market-making,
+            # unlimited here, each bounded per placement by the armed
+            # honest-anchor walk cap below. The 9pm-07-12 strandings (WONBOW
+            # 6c vs mid 42, SARBOV 11c vs 50.5) were THIS gate over-rotated.
             if (self.config.get("chase_pursuit_cap_enabled", True)
+                    and self._pursuit_armed(tk)
                     and self.__dict__.setdefault("_pursuit_count", {}).get(tk, 0)
-                        >= getattr(self, "reentry_cycle_cap", 2)
-                    and not self._event_has_fill(tk)):
+                        >= getattr(self, "reentry_cycle_cap", 2)):
                 self._log("chase_cap_hold", {
                     "event": _et8, "held_price": int(pos.entry_price or 0),
                     "proposed": int(new_target),
                     "pursuit_buys": self._pursuit_count.get(tk, 0),
+                    "armed_by": self._pursuit_armed(tk),
                     "cap": getattr(self, "reentry_cycle_cap", 2)}, ticker=tk)
                 return
         # [C-FEEDER FIX-2/3] decision-time capture for the repost keys (the
@@ -10300,8 +10330,10 @@ class LiveV3:
         # conception registry survive restarts (the restart-amnesia lesson --
         # a rebooted bot mid-chase must NOT get a fresh ladder).
         _pts = {}
-        _pc = {}
         _cs = set()
+        _place_ts = {}      # tk -> [(ts, px)] all buy placements today
+        _fill_ts = {}       # tk -> first fill ts today
+        _bell_ts = {}       # ev -> first gun_fired ts today
         for p in files:
             try:
                 with open(p, encoding="utf-8", errors="replace") as fh:
@@ -10318,7 +10350,7 @@ class LiveV3:
                             det9 = d.get("details") or {}
                             _pts.setdefault(tk9, deque(maxlen=64)).append(
                                 (d["ts_epoch"], int(det9.get("price") or 0)))
-                            _pc[tk9] = _pc.get(tk9, 0) + 1
+                            _place_ts.setdefault(tk9, []).append(d["ts_epoch"])
                             _cs.add(tk9.rsplit("-", 1)[0])
                         elif '"entry_filled"' in line:
                             try:
@@ -10332,10 +10364,33 @@ class LiveV3:
                             _pts.setdefault(tk9, deque(maxlen=64)).append(
                                 (d["ts_epoch"],
                                  int(det9.get("fill_price") or 0)))
-                            _pc.pop(tk9, None)
+                            _fill_ts.setdefault(tk9, d["ts_epoch"])
+                        elif '"gun_fired"' in line:
+                            try:
+                                d = json.loads(line)
+                            except ValueError:
+                                continue
+                            _ev9 = (d.get("details") or {}).get("event", "")
+                            if _ev9 and d.get("ts_epoch", 0) >= day0:
+                                _bell_ts.setdefault(_ev9, d["ts_epoch"])
             except OSError:
                 continue
+        # [C-CAP-SCOPE 07-13] armed semantics: count only placements at or
+        # after the leg's arming moment (own first fill / event first bell);
+        # a fill resets the counter, so count post-latest-fill placements.
+        _pc = {}
+        for tk9, tss in _place_ts.items():
+            arm = min([t for t in (
+                _fill_ts.get(tk9),
+                _bell_ts.get(tk9.rsplit("-", 1)[0])) if t is not None],
+                default=None)
+            if arm is None:
+                continue
+            n9 = sum(1 for t in tss if t >= max(arm, _fill_ts.get(tk9, 0)))
+            if n9:
+                _pc[tk9] = n9
         self._selfbuy_pts, self._pursuit_count = _pts, _pc
+        self._leg_filled = set(_fill_ts)
         self._conception_stamped = _cs
         # [C-DELETION-GATE Part 4] the taker daily cap survives restarts --
         # a reboot mid-day must not grant three fresh crosses

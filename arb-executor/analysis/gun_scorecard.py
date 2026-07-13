@@ -127,6 +127,7 @@ def main():
     halt_armed_ts, halt_min, unbooked_booked = None, 0.0, 0   # [C-BOOK-THE-FILL]
     confirms = {}           # [C-DELETION-GATE] ev -> [(source, first, delta_sec)]
     percat_seen = set()     # events where the fitted threshold crossed (shadow log)
+    cap_refusals = []       # [C-CAP-SCOPE] over-broad-lock refusal timestamps
     for p in files:
         for line in open(p, encoding="utf-8", errors="replace"):
             if '"gun_fired"' not in line and '"gun_truth_delta"' not in line \
@@ -194,6 +195,11 @@ def main():
                 continue
             elif d["event"] == "percat_gun_shadow":
                 percat_seen.add(ev)
+                continue
+            elif d["event"] in ("chase_cap_refused", "chase_cap_hold"):
+                # [C-CAP-SCOPE honesty] the OVER-BROAD LOCK window: refusals
+                # suppressed participation -- the regrade must say so
+                cap_refusals.append(ts)
                 continue
             elif d["event"] == "bell_missing":
                 bells_missing.add(ev)
@@ -435,6 +441,16 @@ def main():
                    if not both4 else ""))
     for e, src, a, b in rows4[:12]:
         gate.append("- %s: fired_by=%s | percat=%s self_fill=%s" % (e[-16:], src, a or "-", b or "-"))
+    # [C-CAP-SCOPE honesty footer] a night with re-aim refusals reads LOW on
+    # fills/coverage inside the refusal window -- say so on the regrade
+    if cap_refusals:
+        gate.append("")
+        gate.append("**HONESTY (C-CAP-SCOPE): %d re-aim refusals in this window "
+                    "(%s → %s ET, OVER-BROAD LOCK before the 07-13 rescope) — "
+                    "participation/fills in that span read LOW; grade the window "
+                    "accordingly.**" % (
+                        len(cap_refusals),
+                        et_str(min(cap_refusals)), et_str(max(cap_refusals))))
     verdict5 = "OPEN" if (p1 and p2 and p3 and p4) else "REFUSED"
     gate.append("")
     gate.append("**DELETION GATE: %s**%s" % (

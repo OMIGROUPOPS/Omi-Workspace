@@ -406,6 +406,66 @@ def main():
                 L.append("- **VIOLATION** %s" % w8)
     except Exception:
         pass
+    # [C-LIVE-AIM v1, 07-14] LIVE-AIM SHADOW: the fourth aim design graded
+    # from night one — would-have-aims vs live aims vs tape truth, dollars
+    # and yield vs the 8% bar, per category; n accrues toward the pre-agreed
+    # cutover bar (beat live aims at n>=300 with the interval clear of zero,
+    # the same statistical bar EV3 wears).
+    try:
+        la_rows = {}
+        bells9 = {}
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"liveaim_shadow"' in line:
+                d9 = json.loads(line)
+                det9 = d9.get("details") or {}
+                tk9 = d9.get("ticker", "")
+                if tk9 and tk9 not in la_rows and det9.get("aim_px"):
+                    la_rows[tk9] = (d9.get("ts_epoch", 0), det9)
+            elif '"gun_fired"' in line:
+                d9 = json.loads(line)
+                ev9 = (d9.get("details") or {}).get("event", "")
+                if ev9 and ev9 not in bells9:
+                    bells9[ev9] = d9.get("ts_epoch", 0)
+        if la_rows:
+            live_pnl = {r["tk"]: r["pnl_cents"] for r in rows
+                        if r.get("pnl_cents") is not None}
+            cat_g = defaultdict(lambda: [0, 0.0, 0.0, 0.0])  # n, sh$, live$, staked
+            graded9 = 0
+            for tk9, (ats, det9) in la_rows.items():
+                ev9 = tk9.rsplit("-", 1)[0]
+                won = settles.get(tk9, {}).get("settle")
+                if won not in ("WIN", "LOSS"):
+                    continue
+                obs9 = obs_cache.get(tk9) or leg_observations(tk9)
+                obs_cache[tk9] = obs9
+                w1e = bells9.get(ev9, ats + 8 * 3600)
+                aim9 = det9["aim_px"]
+                fill = next((o for o in obs9 if ats <= o[0] <= w1e
+                             and o[2] <= aim9), None)
+                band9 = 8
+                sh = 0.0
+                if fill is not None:
+                    cashed9 = any(o[2] >= aim9 + band9 for o in obs9
+                                  if o[0] > fill[0])
+                    sh = (band9 if cashed9 else
+                          ((100 - aim9) if won == "WIN" else -aim9)) * 5 / 100.0
+                    cat_g[det9.get("citation", "")[:0] or "x"][3] += aim9 * 5 / 100.0
+                c9 = cat_of(tk9) or "?"
+                g = cat_g[c9]
+                g[0] += 1
+                g[1] += sh
+                g[2] += live_pnl.get(tk9, 0.0) / 100.0 * 1.0 if tk9 in live_pnl else 0.0
+                graded9 += 1
+            if graded9:
+                L += ["", "## LIVE-AIM SHADOW (fourth design, night %s) — graded %d "
+                          "(accruing toward the n>=300 cutover bar)" % (ymd, graded9)]
+                for c9, g in sorted(cat_g.items()):
+                    if c9 == "x" or not g[0]:
+                        continue
+                    L.append("- %s: n=%d | shadow $%+.2f | live $%+.2f" %
+                             (c9, g[0], g[1], g[2]))
+    except Exception:
+        pass
     # [C-DELETION-GATE Part 1, 07-12] GOVERNOR SPLIT: the two live brains'
     # actions and dollars, separated at the stamp -- no hand-reading logs.
     # Dollars: each exit_filled attributes its pnl to the governor of the

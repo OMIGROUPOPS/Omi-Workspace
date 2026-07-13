@@ -168,5 +168,15 @@
   "DECREED",
   "C-GUIDEBOOK-AIM v1 07-13: GATED OFF -- the week replay REFUSED the surface (-$9.90 vs -$0.62 held-out); built, dark, awaiting the v2 recut (timing/shape conditioning)",
   "L4"
+ ],
+ "live_aim_shadow_enabled": [
+  "DECREED",
+  "C-LIVE-AIM v1 07-14 (fourth aim design; shadow logs, acts NEVER until the n>=300 forward bar + operator word)",
+  "L4"
+ ],
+ "liveaim_conf_floor": [
+  "DECREED",
+  "C-LIVE-AIM v1 07-14 Part 2 (accrual-aware honesty floor)",
+  "L4"
  ]
 }

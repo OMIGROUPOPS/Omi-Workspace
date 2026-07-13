@@ -2675,6 +2675,111 @@ class LiveV3:
         except Exception:
             pass
 
+    def _liveaim_shadow(self, tk, et, cat, current_price, live_bid):
+        """[C-LIVE-AIM v1, 07-14 — AIM/TIMING MISSES fourth closing design,
+        SHADOW ONLY, acts never until proven forward] the operator's spec
+        verbatim: every market needs its own tailored analysis in real time
+        upon discovery. The aim posterior = the fitted prior page conditioned
+        by THIS market's live state, revised from its own tape:
+          flow_ratio   prints/30m vs the category's fitted OPEN threshold
+                       (M3/M13 accrual curve)
+          depth_trend  bid-side book depth building(+)/hollowing(−) since the
+                       last read of this ticker
+          spread      ask − bid now
+          print_sig   last-print age + direction of the trailing window
+        Conditioning (v1, citable): deepen toward the deep tier only while
+        the tape says the discount moment is forming (flow at curve + prints
+        falling / book hollowing); step shallow when prints rise (the chase
+        guard); NO-OPINION on thin pages or below the library-confidence
+        floor. Part 2 honesty: every line prints lib_conf — the category's
+        banked-tape confidence, rising daily with the archive-sync — so early
+        ITF opinions are visibly humble and the hardening is a number."""
+        try:
+            if not self.config.get("live_aim_shadow_enabled", True):
+                return
+            if getattr(self, "_guidebook", None) is None:
+                _gp = Path(__file__).resolve().parent.parent / \
+                    ".claude/guidebook/GUIDEBOOK_V1.json"
+                self._guidebook = (json.loads(_gp.read_text(encoding="utf-8"))
+                                   if _gp.exists() else {})
+            if getattr(self, "_liveaim_conf", None) is None:
+                _td = Path(__file__).resolve().parent / "analysis" / "trades"
+                _cnt = {}
+                try:
+                    for _f in _td.iterdir():
+                        _pref = _f.name.split("-")[0]
+                        _cnt[_pref] = _cnt.get(_pref, 0) + 1
+                except OSError:
+                    pass
+                _map = {"KXATPMATCH": "ATP_MAIN", "KXWTAMATCH": "WTA_MAIN",
+                        "KXATPCHALLENGERMATCH": "ATP_CHALL",
+                        "KXWTACHALLENGERMATCH": "WTA_CHALL",
+                        "KXITFMATCH": "ITF_M", "KXITFWMATCH": "ITF_W"}
+                self._liveaim_conf = {c9: min(1.0, _cnt.get(p9, 0) / 500.0)
+                                      for p9, c9 in _map.items()}
+            conf = self._liveaim_conf.get(cat, 0.0)
+            page = (self._guidebook or {}).get("pages", {}).get(
+                "%s|%d" % (cat, int(current_price)))
+            floor9 = float(self.config.get("liveaim_conf_floor", 0.1))
+            if (not page or page.get("verdict") == "REFUSE_THIN"
+                    or conf < floor9):
+                self._log("liveaim_shadow", {
+                    "event": et, "verdict": "NO-OPINION",
+                    "reason": ("lib_conf %.2f < floor" % conf
+                               if conf < floor9 else "thin_page"),
+                    "lib_conf": round(conf, 2), "live_bid": int(live_bid),
+                    "citation": "GUIDEBOOK_V1 prior + M3/M13 curve"},
+                    ticker=tk)
+                return
+            prior_d = int(page.get("depth_p50_of_w1s") or 0)
+            deep_d = int(page.get("depth_p25_of_w1s") or prior_d)
+            now9 = time.time()
+            # live state, from this market's own tape
+            thr9 = (self.config.get("percat_gun_prints30", {}) or {}).get(cat)
+            _dq = self._trade_times.get(tk)
+            p30 = sum(1 for t9 in (_dq or ()) if t9 >= now9 - 1800)
+            flow_ratio = (p30 / float(thr9)) if thr9 else None
+            bk = self.books.get(tk)
+            spread = (int(bk.best_ask) - int(bk.best_bid)) \
+                if (bk and bk.best_ask and bk.best_bid) else None
+            depth_now = sum(q for p9, q in getattr(bk, "bids", {}).items()
+                            if bk and bk.best_bid and p9 >= bk.best_bid - 3) \
+                if bk else 0
+            st9 = self.__dict__.setdefault("_liveaim_state", {})
+            depth_trend = depth_now - st9.get(tk, depth_now)
+            st9[tk] = depth_now
+            pxs = [p9 for t9, p9 in (self._trade_prices.get(tk) or ())
+                   if t9 >= now9 - 1800]
+            sig = ("falling" if len(pxs) >= 3 and pxs[-1] < sorted(pxs)[len(pxs) // 2]
+                   else ("rising" if len(pxs) >= 3
+                         and pxs[-1] > sorted(pxs)[len(pxs) // 2] else "flat"))
+            # conditioning
+            if sig == "rising":
+                depth9, verdict = None, "NO_BID_CHASE_GUARD"
+            elif (flow_ratio is not None and flow_ratio >= 1.0
+                  and (sig == "falling" or depth_trend < 0)):
+                depth9, verdict = deep_d, "AIM_DEEP(moment_forming)"
+            elif flow_ratio is not None and flow_ratio < 0.25 \
+                    and (spread or 0) >= 4:
+                depth9, verdict = max(1, prior_d // 2), "AIM_SHALLOW(quiet)"
+            else:
+                depth9, verdict = prior_d, "AIM_PRIOR"
+            self._log("liveaim_shadow", {
+                "event": et, "verdict": verdict,
+                "aim_px": (max(1, int(current_price) - depth9)
+                           if depth9 is not None else None),
+                "depth": depth9, "prior_depth": prior_d, "deep_tier": deep_d,
+                "live_bid": int(live_bid),
+                "flow_ratio": (round(flow_ratio, 2)
+                               if flow_ratio is not None else None),
+                "spread": spread, "depth_trend": depth_trend,
+                "print_sig": sig, "lib_conf": round(conf, 2),
+                "citation": "GUIDEBOOK_V1 %s|%d prior · M3/M13 curve · "
+                            "live book/tape state" % (cat, int(current_price))},
+                ticker=tk)
+        except Exception:
+            pass
+
     def _guidebook_shadow(self, tk, et, cat, current_price, live_bid):
         """[C-GUIDEBOOK-AIM v1, SHADOW — trades nothing] the guidebook lookup
         at discovery: open the fitted page for (cat, price cell), aim at the
@@ -8608,6 +8713,9 @@ class LiveV3:
                 # depth this market class actually offers (M1 distribution),
                 # priced against the yield bar — GET PAID, not GET FILLED.
                 self._guidebook_shadow(tk, et, cat, current_price, target_bid)
+                # [C-LIVE-AIM v1 07-14, SHADOW] the fourth design: the prior
+                # page conditioned by THIS market's live tape state
+                self._liveaim_shadow(tk, et, cat, current_price, target_bid)
 
                 # #1 ref-price soft-alert: rolling tight_mid rate over the last 100 placements.
                 self._anchor_src_hist.append(anchor_src)

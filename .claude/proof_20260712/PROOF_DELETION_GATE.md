@@ -1,0 +1,24 @@
+# PROOF — C-DELETION-GATE v1 (pre-6:10 build: governor stamp · percat priority defined · self-fill design assertion · taker cap · the four-proof deletion gate)
+
+**Candidate SHA: 9b57bcc4** (C-DELETION-GATE-SHA; ef5df2cb pre-rebase — re-cited at the rebased head, no code delta)
+
+## Part 0 — Plex verbatims
+`migration_day.html` + `PLEX_MIGRATION_FINDINGS.md` committed as RESERVED-VERBATIM slots — the dispatch says the operator relays the file; no body arrived (paste-drop, occurrence six). The verbatim wins on landing. The dispatch's own binding content (the four demanded proofs) is BUILT regardless — the gate does not wait for the prose.
+
+## Part 1 — the governor stamp (Lane 1: stamp-at-emitter, nightly split)
+Every acting decision on the completion path stamps `governed_by` at the single emitter: `completion_action`/`completion_live_*` cancels → `per_leg_policy`; `reaim_sibling_arrival`/`leg2_reshuffle_reaim`/`completion_no_attempt`/`reaim_sibling_lower` cancels → `pair97_bound`; `v4_exit_posted` → `maker_exit`; `match_live_resting_cancel`/`match_live_cancel` cancels → `match_live_cancel`. The nightly adjudication gains **GOVERNOR SPLIT**: actions per brain + exit ¢ attributed to the governor of the last exit-posting decision per ticker. From tonight forward the two live brains' dollars separate without hand-reading logs.
+
+## Part 2 — percat priority, defined (the checkable paragraph)
+All seven sources (te_scoreboard · schedule_live · tape_latch · price_divergence · fallback_bell · self_fill · percat_fitted) feed the SINGLE fused stamp `_gun_stamp`. First-fire-wins is the code law: **the existing-entry short-circuit at the top of `live_v4._gun_stamp` (`g = self._gun_state.get(et); if g is not None: → gun_source_confirm, return False`)** — a later source can never re-stamp, re-time, or re-source a fired event. Precision over the dispatch's word "silently": later fires dedup WITHOUT re-stamp but leave a `gun_source_confirm` disagreement record with the inter-source delta — that record is the evidence, not a leak. Checkable nightly from this build: the scorecard footer carries **MULTI-SOURCE events=N** and the deletion gate's proof (ii) table lists every percat-vs-legacy same-event pair with deltas.
+
+## Part 3 — the self-fill bell: activity-firing is the DESIGN (with the tension named)
+Asserted in the code comment at the bell: it feeds on placements AND fills BY INTENT — our own placements are the one tape that cannot be someone else's noise; CORBRU had zero fills below 65, so a fills-only bell could never have frozen the ladder. **The false-positive mode, stated as the dispatch invites:** with the ITF honest-anchor walk caps armed tonight (up to 20¢), a legitimate premarket walk CAN rise ≥4¢ inside 30 minutes and fire this bell on a not-yet-live match, freezing entries there permanently for the event. The tape shows ZERO instances so far (the bell's only live fire, RAIZHU, was a genuinely live match) — so the design stands, and the mode gets a nightly meter instead of a redesign: **SELF-FILL-UNCONFIRMED** in the scorecard footer (self-fill fires never confirmed by any other source and never crossing the fitted threshold).
+
+## Part 4 — the thin-evidence guard (DECREED, operator citation: C-DELETION-GATE v1 Part 4, 07-12)
+`taker_daily_action_cap = 3` until combined shadow+live taker verdicts reach n≥30 graded. The 4th+ taker verdict per day logs `completion_taker_capped` (NAMED — monitor renders it as a violation line) and defers; the branch stays live. Cap count survives restarts (boot rebuild from the day's `completion_action` crossed rows). **Replay (extended `replay_completion_live.py`, 6/6 PASS expected): the 4th cross defers with the named line and zero orders touched.** Not struck — the guard is correct: 3 crosses/day bounds a miscalibration at ≤ 3 × spread × qty while the nightly grades.
+
+## Part 5 — the deletion gate (Plex's four proofs, wired into the 6:10 scorecard)
+`gun_scorecard.py --nightly` now renders a **DELETION GATE** section: (i) clean-regrade numbers with the explicit supersession line over 07-12's inadmissible 71; (ii) percat-vs-legacy priority reconciliation rows from tonight's real events (gun_fired + gun_source_confirm); (iii) MAINS-OFF excluded from the coverage denominator, asserted in the footer with both ratios printed; (iv) the percat-vs-self-fill same-event table (zero co-events prints as tonight's finding, not a missing proof). **Verdict line: DELETION GATE: OPEN only when all four are present — REFUSED otherwise, with the missing proofs named. The deletion word cannot be given on a refused scorecard; the gate enforces the migration doctrine itself.**
+
+## Lane 2 — economics
+Governor stamp + scorecard + nightly sections: $0, read-only instrumentation. Taker cap: strictly risk-reducing (bounds daily taker spend). No entry-side behavior change; §0A untouched.

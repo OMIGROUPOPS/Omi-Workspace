@@ -33,7 +33,21 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-12 night — C50 keeps this current):
+## STATE (2026-07-12 pre-6:10 — C50 keeps this current):
+C-DELETION-GATE v1 DEPLOYED (9b57bcc4): governed_by stamp at the
+emitter (per_leg_policy|pair97_bound|maker_exit|match_live_cancel) +
+nightly GOVERNOR SPLIT (actions + exit cents per brain); percat
+priority = first-fire-wins, cited at _gun_stamp's existing-entry
+short-circuit, MULTI-SOURCE count in footer; self-fill bell activity-
+firing asserted as DESIGN (CORBRU rationale; ITF-walk false-positive
+mode named, SELF-FILL-UNCONFIRMED meter); taker_daily_action_cap=3
+DECREED (named lines, boot-persistent, sunset n>=30 graded); 6:10
+scorecard renders Plex's FOUR PROOFS + DELETION GATE verdict line
+(REFUSED if any missing -- the gate refuses the word itself). Plex
+migration_day.html + findings = reserved slots (drop occurrence six).
+Chase locks refusing real ladders tonight (FORENSIC_chase_cap).
+TOMORROW 6:10 = deletion word on the gate's verdict; then COMBINED-
+CAP remedy, -0g.
 THREE OPERATOR WORDS EXECUTED, one gated deploy (9b26fc17):
 (1) percat bell ARMED -- gun source seven percat_fitted, ADDITIONAL
 under the fused freeze; legacy deletion rides 07-13 6:10 scorecard.

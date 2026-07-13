@@ -1,10 +1,11 @@
-# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1783972382 -->
-written 2026-07-13 03:55:45 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1783972983 -->
+written 2026-07-13 04:06:16 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (3 total this session)
+## Events (4 total this session)
 - 15:43:02 KXITFWMATCH-26JUL13OLIKAI-KAI — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 15:43:03 KXATPCHALLENGERMATCH-26JUL13RODALK-ALK — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 15:53:02 KXATPCHALLENGERMATCH-26JUL13RODALK-ALK — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 16:03:03 KXATPCHALLENGERMATCH-26JUL13RODALK-ALK — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-13 12:00:49 PM ET", "ts_epoch": 1783958449.7604475, "event": "v4_place", "ticker": "KXATPCHALLENGERMATCH-26JUL13RODALK-ALK", "details": {"event": "KXATPCHALLENGERMATCH-26JUL13RODALK", "direction": "underdog", "cat": "ATP_CHALL", "regime": "r15_24", "cell": 23, "current_price": 23, "anchor_src": "engagement_join", "table_src": "engagement_wave1", "last_trade_age_sec": 2897.3, "offse
@@ -113,6 +114,9 @@ written 2026-07-13 03:55:45 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-13 03:49:26 PM ET", "ts_epoch": 1783972166.9512827, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 7, "n_resting_orders": 19, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1783971118.3525856, "legs_new": [], "legs_gone": [], "n_held_now": 7, "n_held_banked": 7}, "tabl
     {"ts": "2026-07-13 03:53:02 PM ET", "ts_epoch": 1783972382.9957986, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL13RODALK-ALK", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|le25", "n": 54, "p_exit_fill": 0.704, "p_ride_zero": 0.296, "ev_cents": -1.59, "band": 7, "basis": 22, "win_ride_residual_excluded": 0.0, "citation"
     {"ts": "2026-07-13 03:53:02 PM ET", "ts_epoch": 1783972382.9960866, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL13RODALK-ALK", "details": {"event": "KXATPCHALLENGERMATCH-26JUL13RODALK", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-13 04:03:03 PM ET", "ts_epoch": 1783972983.3208396, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL13RODALK-ALK", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|le25", "n": 54, "p_exit_fill": 0.704, "p_ride_zero": 0.296, "ev_cents": -1.59, "band": 7, "basis": 22, "win_ride_residual_excluded": 0.0, "citation"
+    {"ts": "2026-07-13 04:03:03 PM ET", "ts_epoch": 1783972983.3210964, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL13RODALK-ALK", "details": {"event": "KXATPCHALLENGERMATCH-26JUL13RODALK", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-13 04:04:53 PM ET", "ts_epoch": 1783973093.241641, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 7, "n_resting_orders": 25, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1783971118.3525856, "legs_new": [], "legs_gone": [], "n_held_now": 7, "n_held_banked": 7}, "table
 
 ## Code path
 ?

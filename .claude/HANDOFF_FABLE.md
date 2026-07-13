@@ -33,7 +33,19 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-12 pre-6:10 — C50 keeps this current):
+## STATE (2026-07-13 ~1:30 am — C50 keeps this current):
+C-CAP-SCOPE v1 DEPLOYED (22039f30, emergency): pursuit cap RESCOPED
+-- counts from leg's FIRST FILL or event's FIRST BELL (was: every
+placement from first buy = OVER-BROAD LOCK, class founded); pre-arm
+upward re-aims unlimited, bounded by armed honest walk cap; damage
+filed: 931 refusals/20 legs/15 events, 7 stranded bids (WONBOW +36c,
+SARBOV +40c...), 539 sidelined leg-min. Replay 3 lanes PASS (CORBRU
+still freezes via the bell; WONBOW shapes pass; post-arm 3rd re-aim
+refuses). 6:10 scorecard carries the refusal-window honesty footer.
+NEXT: 6:10 deletion word (gate verdict + honesty footer) -> COMBINED-
+CAP remedy -> -0g.
+
+(prior:) ## STATE (2026-07-12 pre-6:10):
 C-DELETION-GATE v1 DEPLOYED (9b57bcc4): governed_by stamp at the
 emitter (per_leg_policy|pair97_bound|maker_exit|match_live_cancel) +
 nightly GOVERNOR SPLIT (actions + exit cents per brain); percat

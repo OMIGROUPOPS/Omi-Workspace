@@ -1,7 +1,7 @@
-# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1783974191 -->
-written 2026-07-13 04:26:55 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1783974682 -->
+written 2026-07-13 04:37:15 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (8 total this session)
+## Events (9 total this session)
 - 15:43:02 KXITFWMATCH-26JUL13OLIKAI-KAI — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 15:43:03 KXATPCHALLENGERMATCH-26JUL13RODALK-ALK — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 15:53:02 KXATPCHALLENGERMATCH-26JUL13RODALK-ALK — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
@@ -10,6 +10,7 @@ written 2026-07-13 04:26:55 PM ET by live_validation_loop (read-only). Patch con
 - 16:13:06 KXATPCHALLENGERMATCH-26JUL13RODALK-ALK — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 16:21:19 KXITFMATCH-26JUL13STEKOT-KOT — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 16:23:11 KXATPCHALLENGERMATCH-26JUL13RODALK-ALK — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 16:31:22 KXITFMATCH-26JUL13STEKOT-KOT — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-13 12:00:49 PM ET", "ts_epoch": 1783958449.7604475, "event": "v4_place", "ticker": "KXATPCHALLENGERMATCH-26JUL13RODALK-ALK", "details": {"event": "KXATPCHALLENGERMATCH-26JUL13RODALK", "direction": "underdog", "cat": "ATP_CHALL", "regime": "r15_24", "cell": 23, "current_price": 23, "anchor_src": "engagement_join", "table_src": "engagement_wave1", "last_trade_age_sec": 2897.3, "offse
@@ -190,6 +191,10 @@ written 2026-07-13 04:26:55 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-13 04:21:19 PM ET", "ts_epoch": 1783974079.6160245, "event": "completion_taker_capped", "ticker": "KXITFMATCH-26JUL13STEKOT-KOT", "details": {"event": "KXITFMATCH-26JUL13STEKOT", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
     {"ts": "2026-07-13 04:23:11 PM ET", "ts_epoch": 1783974191.2903576, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL13RODALK-ALK", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|disc|le25", "n": 26, "p_exit_fill": 0.5, "p_ride_zero": 0.5, "ev_cents": -7.5, "band": 7, "basis": 22, "win_ride_residual_excluded": 0.0, "citation": "M15 
     {"ts": "2026-07-13 04:23:11 PM ET", "ts_epoch": 1783974191.290512, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL13RODALK-ALK", "details": {"event": "KXATPCHALLENGERMATCH-26JUL13RODALK", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-13 04:26:57 PM ET", "ts_epoch": 1783974417.6615012, "event": "exit_filled", "ticker": "KXATPCHALLENGERMATCH-26JUL13RODALK-ALK", "details": {"exit_price": 29, "entry_price": 22, "qty": 5, "new_fills": 5, "complete": true, "pnl_cents": 35.0, "pnl_dollars": 0.35, "had_dca": false, "cycle": 1, "in_play": true, "bell_source": "percat_fitted", "trade_id": "T-20260713-0274"}}
+    {"ts": "2026-07-13 04:31:22 PM ET", "ts_epoch": 1783974682.0062163, "event": "completion_shadow", "ticker": "KXITFMATCH-26JUL13STEKOT-KOT", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ITF_M|underdog|at_mid|le25", "n": 28, "p_exit_fill": 0.679, "p_ride_zero": 0.321, "ev_cents": -2.36, "band": 6, "basis": 20, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_L
+    {"ts": "2026-07-13 04:31:22 PM ET", "ts_epoch": 1783974682.0063837, "event": "completion_taker_capped", "ticker": "KXITFMATCH-26JUL13STEKOT-KOT", "details": {"event": "KXITFMATCH-26JUL13STEKOT", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-13 04:35:39 PM ET", "ts_epoch": 1783974939.708698, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 5, "n_resting_orders": 21, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1783971118.3525856, "legs_new": ["KXITFMATCH-26JUL13STEKOT-KOT"], "legs_gone": ["KXATPCHALLENGERM
 
 ## Code path
 ?

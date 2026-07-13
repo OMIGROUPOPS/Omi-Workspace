@@ -1,9 +1,10 @@
-# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1783931821 -->
-written 2026-07-13 04:45:32 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1783932433 -->
+written 2026-07-13 04:55:38 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (2 total this session)
+## Events (3 total this session)
 - 04:26:50 KXATPMATCH-26JUL13PASKRU-PAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 04:37:01 KXATPMATCH-26JUL13PASKRU-PAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 04:47:13 KXATPMATCH-26JUL13PASKRU-PAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-13 01:30:31 AM ET", "ts_epoch": 1783920631.3110082, "event": "order_placed", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"action": "buy", "side": "yes", "price": 64, "count": 5, "order_id": "fb8c8d3e-ffaf-4fa8-bd93-5ede6cb13b87", "client_order_id": "72c413b2-e93f-44d0-b3e1-f6037eafd2e1", "response_status": "resting", "trade_id": "T-20260713-0046", "tape_basis": "rest_seed
@@ -156,6 +157,18 @@ written 2026-07-13 04:45:32 AM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-13 04:42:10 AM ET", "ts_epoch": 1783932130.32996, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
     {"ts": "2026-07-13 04:43:24 AM ET", "ts_epoch": 1783932204.8400362, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
     {"ts": "2026-07-13 04:44:39 AM ET", "ts_epoch": 1783932279.0359416, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
+    {"ts": "2026-07-13 04:46:00 AM ET", "ts_epoch": 1783932360.3742628, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
+    {"ts": "2026-07-13 04:47:13 AM ET", "ts_epoch": 1783932433.0648491, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
+    {"ts": "2026-07-13 04:47:13 AM ET", "ts_epoch": 1783932433.1291873, "event": "completion_shadow", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_MAIN|leader|at_mid|51_75", "n": 28, "p_exit_fill": 0.75, "p_ride_zero": 0.25, "ev_cents": -2.5, "band": 18, "basis": 64, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_L
+    {"ts": "2026-07-13 04:47:13 AM ET", "ts_epoch": 1783932433.1294768, "event": "completion_taker_capped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"event": "KXATPMATCH-26JUL13PASKRU", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-13 04:48:58 AM ET", "ts_epoch": 1783932538.070113, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
+    {"ts": "2026-07-13 04:50:17 AM ET", "ts_epoch": 1783932617.4363735, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
+    {"ts": "2026-07-13 04:50:41 AM ET", "ts_epoch": 1783932641.228385, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 10, "n_resting_orders": 183, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1783928348.5964181, "legs_new": ["KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE", "KXATPMATCH-26JUL13P
+    {"ts": "2026-07-13 04:51:35 AM ET", "ts_epoch": 1783932695.615425, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
+    {"ts": "2026-07-13 04:52:44 AM ET", "ts_epoch": 1783932764.9953134, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
+    {"ts": "2026-07-13 04:52:51 AM ET", "ts_epoch": 1783932771.6901584, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
+    {"ts": "2026-07-13 04:54:05 AM ET", "ts_epoch": 1783932845.349717, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
+    {"ts": "2026-07-13 04:55:19 AM ET", "ts_epoch": 1783932919.6629617, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
 
 ## Code path
 ?

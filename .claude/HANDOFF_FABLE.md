@@ -33,7 +33,18 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-13 evening — C50 keeps this current):
+## STATE (2026-07-13 night — C50 keeps this current):
+C-EV3-BACKTEST DONE (read-only): 264 held-out legs (Jul 11-13, M15
+trained through Jul 10; 33 NO-OPINION excluded/counted). Dollars:
+actual +2.35 / two-term +5.75 / EV3 +7.70 / EV3+posterior-proxy
++6.60 (1 flatten -- the EV~0 identity made flesh). Cutover number:
+EV3-minus-actual +$5.35, CI [-20.20,+29.10] -> VERDICT FLAT-AT-
+INSUFFICIENT-N (n<300): leash STAYS, no cutover word, posterior
+wiring NOT earned (grades below cell-only). Re-read at accrued
+n>=300 (~1-2 days via nightly dual-frame grading). NEXT: 6:10
+deletion word; EV3 re-read; COMBINED-CAP remedy; -0g.
+
+(prior:) ## STATE (2026-07-13 evening):
 C-COMPOSER-EV3 SHADOW-DEPLOYED (07cf29a2): three-term frame
 (p_exit×band + p_win×(100−basis) − p_loss×basis, all M15 cell
 shares, K_POST=8 posterior hook) rides in completion_shadow's ev3

@@ -33,3 +33,6 @@
 - **HELD_IF_NOT_CANCELLED:** 43% win · −$653 counterfactual under band-asymmetric exits; the pre-start cancel is protective and stays.
 
 > **COMPOSER LIVE-SIDE (07-11, C-COMPOSER-G1 v1):** M12's composer twin now runs in-process (`conviction_shadow` at every decision site; O(1) incremental posterior; purity lint-asserted). G1 distance: 371 settled mains legs + 20,332 mains tape samples banked — fit at honest n, never before.
+
+
+**EV3 TRIAL NOTE (07-13, C-EV3-BACKTEST):** the three-term frame graded on 264 held-out legs (Jul 11-13 vs M15 trained through Jul 10, leash floor applied): EV3 +$7.70 vs actual +$2.35 vs two-term +$5.75; EV3-minus-actual +$5.35 with 95% CI [-20.20, +29.10] -> FLAT-AT-INSUFFICIENT-N (n<300 pre-agreed bar). Leash stays; posterior-proxy variant grades below cell-only (1/264 flattens) -> posterior wiring not earned. Re-read at accrued n>=300.

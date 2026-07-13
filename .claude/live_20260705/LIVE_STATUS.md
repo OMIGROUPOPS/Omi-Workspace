@@ -1,14 +1,15 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 23 @ **2026-07-13 12:42:47 AM ET** | build `1a312e0d` | session boot 07-12 20:59 ET | log `live_v3_20260712.jsonl` | 21204 session events | monitor READ-ONLY
+- cycle 24 @ **2026-07-13 12:52:53 AM ET** | build `f9b7d197` | session boot 07-12 20:59 ET | log `live_v3_20260712.jsonl` | 22396 session events | monitor READ-ONLY
 
-## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 3 item(s)
+## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 4 item(s)
 - **reality_divergence**: KXITFWMATCH-26JUL13WONBOW-WON {"kind": "resting_bid", "ref": 6.0, "market_mid": 42.0, "divergence": -36.0}
-- **reality_divergence**: KXITFMATCH-26JUL13SARBOV-SAR {"kind": "resting_bid", "ref": 11.0, "market_mid": 50.5, "divergence": -39.5, "emitted_et": "2026-07-13 12:42:47 AM ET"}
-- **reality_divergence**: KXITFWMATCH-26JUL13WONBOW-WON {"kind": "resting_bid", "ref": 6.0, "market_mid": 37.5, "divergence": -31.5, "emitted_et": "2026-07-13 12:42:47 AM ET"}
+- **half_arm_aging**: KXATPCHALLENGERMATCH-26JUL13VILGAN-VIL {"fill": 92, "age_min": 37, "mode": "NO_BID(sib rested earlier, none now)", "emitted_et": "2026-07-13 12:52:53 AM ET"}
+- **reality_divergence**: KXITFMATCH-26JUL13SARBOV-SAR {"kind": "resting_bid", "ref": 11.0, "market_mid": 50.5, "divergence": -39.5}
+- **reality_divergence**: KXITFWMATCH-26JUL13WONBOW-WON {"kind": "resting_bid", "ref": 6.0, "market_mid": 37.5, "divergence": -31.5}
 - tripwire artifact: absent (quiet)
 
-## ZERO-TOLERANCE — 307 violation(s)
+## ZERO-TOLERANCE — 569 violation(s)
 | ET | class | who | detail |
 |---|---|---|---|
 | 21:03:06 | **chase_cap** | KXITFWMATCH-26JUL12SUNYUN-SUN | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 53) |
@@ -318,6 +319,268 @@
 | 00:42:45 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
 | 00:42:46 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
 | 00:42:46 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:42:47 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:42:47 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:42:51 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:42:51 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:42:52 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:42:52 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:42:53 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:42:53 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:42:54 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:42:54 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:42:55 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:42:55 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:42:56 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:42:56 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:42:56 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:42:57 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:42:57 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:42:58 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:42:58 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:42:58 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:42:59 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:00 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:00 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:01 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:01 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:01 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:01 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SLA | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17) |
+| 00:43:01 | **chase_cap** | KXITFWMATCH-26JUL13WONBOW-WON | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25) |
+| 00:43:01 | **chase_cap** | KXITFWMATCH-26JUL13SVIART-SVI | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20) |
+| 00:43:01 | **chase_cap** | KXITFMATCH-26JUL13BONFAB-BON | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70) |
+| 00:43:01 | **chase_cap** | KXITFMATCH-26JUL13SARBOV-SAR | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12) |
+| 00:43:01 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:02 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:02 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:04 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:04 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:04 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:04 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:05 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:05 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:06 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:06 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:06 | **chase_cap** | KXITFWMATCH-26JUL13WONBOW-WON | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25) |
+| 00:43:07 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:07 | **chase_cap** | KXITFWMATCH-26JUL13SVIART-SVI | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21) |
+| 00:43:07 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:08 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:08 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:09 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:09 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:09 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:09 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:10 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:10 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:11 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:11 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:11 | **chase_cap** | KXITFWMATCH-26JUL13SVIART-SVI | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21) |
+| 00:43:12 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:12 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:13 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:13 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:14 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:14 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:15 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:15 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:16 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:16 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:16 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:17 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:17 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:18 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:18 | **chase_cap** | KXITFWMATCH-26JUL13WONBOW-WON | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25) |
+| 00:43:18 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:18 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:19 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:19 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:20 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:20 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:20 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:21 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:21 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:22 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:22 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:22 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:23 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:23 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:23 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:24 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:24 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 24) |
+| 00:43:25 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:25 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:25 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25) |
+| 00:43:25 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:26 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:26 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:26 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:27 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:28 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:28 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:29 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:29 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:29 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:30 | **chase_cap** | KXITFWMATCH-26JUL13SVIART-SVI | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21) |
+| 00:43:30 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:30 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:31 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:31 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:32 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:32 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:33 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:33 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:34 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:34 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:34 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:34 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:36 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:36 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:37 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:37 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:38 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:38 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:39 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:39 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:40 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:40 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:40 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:41 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:41 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:42 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:42 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:43 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74) |
+| 00:43:43 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:43:43 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:44:38 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26) |
+| 00:45:09 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26) |
+| 00:45:09 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:45:09 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SLA | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17) |
+| 00:45:09 | **chase_cap** | KXITFWMATCH-26JUL13WONBOW-WON | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26) |
+| 00:45:09 | **chase_cap** | KXITFWMATCH-26JUL13SVIART-SVI | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21) |
+| 00:45:09 | **chase_cap** | KXITFMATCH-26JUL13BONFAB-BON | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70) |
+| 00:45:09 | **chase_cap** | KXITFMATCH-26JUL13SARBOV-SAR | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12) |
+| 00:46:13 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:47:04 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:47:04 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:47:04 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SLA | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17) |
+| 00:47:04 | **chase_cap** | KXITFWMATCH-26JUL13WONBOW-WON | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26) |
+| 00:47:04 | **chase_cap** | KXITFWMATCH-26JUL13SVIART-SVI | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21) |
+| 00:47:04 | **chase_cap** | KXITFMATCH-26JUL13BONFAB-BON | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70) |
+| 00:47:04 | **chase_cap** | KXITFMATCH-26JUL13SARBOV-SAR | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12) |
+| 00:49:04 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:49:04 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:49:04 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SLA | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17) |
+| 00:49:04 | **chase_cap** | KXITFWMATCH-26JUL13WONBOW-WON | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26) |
+| 00:49:04 | **chase_cap** | KXITFWMATCH-26JUL13SVIART-SVI | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21) |
+| 00:49:04 | **chase_cap** | KXITFMATCH-26JUL13BONFAB-BON | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71) |
+| 00:49:04 | **chase_cap** | KXITFMATCH-26JUL13SARBOV-SAR | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12) |
+| 00:51:07 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:07 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SED | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75) |
+| 00:51:07 | **chase_cap** | KXITFWMATCH-26JUL13SLASED-SLA | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17) |
+| 00:51:07 | **chase_cap** | KXITFWMATCH-26JUL13WONBOW-WON | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26) |
+| 00:51:07 | **chase_cap** | KXITFWMATCH-26JUL13SVIART-SVI | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21) |
+| 00:51:07 | **chase_cap** | KXITFMATCH-26JUL13BONFAB-BON | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71) |
+| 00:51:07 | **chase_cap** | KXITFMATCH-26JUL13SARBOV-SAR | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12) |
+| 00:51:14 | **chase_cap** | KXITFMATCH-26JUL13SARBOV-SAR | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12) |
+| 00:51:16 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:17 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:17 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:18 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:18 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:20 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:20 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:22 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:22 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:24 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:24 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:26 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:28 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:28 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:30 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:30 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:32 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:32 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:34 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:34 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:36 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:36 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:38 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:40 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:40 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:42 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:42 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:44 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:44 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:46 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:46 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:48 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:48 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:50 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:52 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:52 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:54 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:54 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:56 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:56 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:57 | **chase_cap** | KXITFWMATCH-26JUL13WONBOW-WON | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26) |
+| 00:51:57 | **chase_cap** | KXITFWMATCH-26JUL13SVIART-SVI | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17) |
+| 00:51:58 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:51:58 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:00 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:00 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:02 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:04 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:04 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:06 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:06 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:07 | **chase_cap** | KXITFMATCH-26JUL13SARBOV-SAR | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 13) |
+| 00:52:07 | **chase_cap** | KXITFMATCH-26JUL13SARBOV-SAR | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 13) |
+| 00:52:08 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:08 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:10 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:10 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:10 | **chase_cap** | KXITFWMATCH-26JUL13WONBOW-WON | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26) |
+| 00:52:12 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:12 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:14 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:16 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:16 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:18 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:18 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:18 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:18 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:20 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:20 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:22 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:22 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:24 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:26 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:26 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:28 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:28 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:30 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:30 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:32 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:34 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:34 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:36 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:36 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:38 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:38 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:39 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:40 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:42 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:42 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:44 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:44 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:46 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:46 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:48 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:50 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:50 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:52 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
+| 00:52:52 | **chase_cap** | KXITFMATCH-26JUL13DUHGAT-GAT | chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27) |
 
 **LIVE DEFECT(S) — forensic blocks written: FORENSIC_chase_cap.md**
 
@@ -327,51 +590,52 @@
 | 00:16 | ATPCHALLENGERMATCH-26JUL13VILGAN-V | ATP_CHALL | leader | 92 | 89 | +3 (place_cell) | — | pre | single |  | PENDING |
 
 ## RESTING BIDS — 16 tape-graded (starvation = NO_FLOW only)
-- classes now: {'NO_FLOW': 10, 'FLOW_ABOVE': 5, 'FLOW_AT_LEVEL': 1} | repriceable now: true 3 / false 13 | **cumulative bid_grade lines: 8751 (repriceable true 1282 / false 7469)** -- the liquid_repost re-arm evidence accumulates here
+- classes now: {'NO_FLOW': 8, 'FLOW_ABOVE': 7, 'FLOW_AT_LEVEL': 1} | repriceable now: true 3 / false 13 | **cumulative bid_grade lines: 8753 (repriceable true 1282 / false 7471)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL13PRICRI-C | 8 | 42m | 3/9-9/115 | 8-9 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→9 |
-| ATPCHALLENGERMATCH-26JUL13PRICRI-P | 90 | 39m | 2/92-92/26 | 90-92 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→92 |
-| ATPMATCH-26JUL12ALTGAS-ALT | 55 | 222m | 0 | 57-59 | — | **NO_FLOW** | 99 |  |
-| ATPMATCH-26JUL12SONSCH-SON | 65 | 222m | 470/67-71/60941 | 69-68 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→67 |
-| ITFMATCH-26JUL13BONFAB-BON | 52 | 37m | 4/72-78/4 | 72-78 | 20 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL13BONFAB-FAB | 21 | 36m | 0 | 21-27 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL13DUHGAT-GAT | 23 | 1m | 0 | 23-45 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL13SARBOV-SAR | 11 | 17m | 0 | 12-89 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL13ARUMCK-MCK | 65 | 8m | 7/65-66/110 | 66-67 | 0 | **FLOW_AT_LEVEL** | 99 |  |
-| ITFWMATCH-26JUL13SLASED-SED | 73 | 42m | 0 | 75-83 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL13SLASED-SLA | 16 | 42m | 5/24-25/49 | 17-24 | 8 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL13SVIART-SVI | 16 | 42m | 0 | 20-40 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL13WONBOW-WON | 6 | 42m | 0 | 27-48 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL13RADREN-R | 15 | 13m | 0 | 15-16 | — | **NO_FLOW** | 99 |  |
-| WTAMATCH-26JUL13KAWWAL-WAL | 67 | 70m | 0 | 67-69 | — | **NO_FLOW** | 99 |  |
-| WTAMATCH-26JUL13QUERUS-QUE | 28 | 49m | 0 | 28-29 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL13PRICRI-C | 8 | 53m | 4/9-9/116 | 8-9 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→9 |
+| ATPCHALLENGERMATCH-26JUL13PRICRI-P | 90 | 49m | 2/92-92/26 | 90-92 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→92 |
+| ATPMATCH-26JUL12ALTGAS-ALT | 55 | 232m | 0 | 57-59 | — | **NO_FLOW** | 99 |  |
+| ATPMATCH-26JUL12SONSCH-SON | 65 | 232m | 491/67-71/63106 | 70-68 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→67 |
+| ITFMATCH-26JUL13BONFAB-BON | 52 | 47m | 4/72-78/4 | 72-78 | 20 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL13BONFAB-FAB | 21 | 47m | 1/27-27/14 | 21-27 | 6 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL13DUHGAT-GAT | 23 | 11m | 0 | 27-49 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL13SARBOV-SAR | 11 | 27m | 0 | 13-87 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL13ARUMCK-MCK | 65 | 18m | 7/65-66/110 | 66-69 | 0 | **FLOW_AT_LEVEL** | 99 |  |
+| ITFWMATCH-26JUL13SLASED-SED | 73 | 52m | 0 | 75-83 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL13SLASED-SLA | 16 | 52m | 5/24-25/49 | 17-24 | 8 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL13SVIART-SVI | 16 | 52m | 0 | 17-38 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL13WONBOW-WON | 6 | 52m | 1/48-48/0 | 29-48 | 42 | **FLOW_ABOVE** | 99 |  |
+| WTACHALLENGERMATCH-26JUL13RADREN-R | 15 | 23m | 0 | 15-16 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL13KAWWAL-WAL | 67 | 80m | 0 | 67-69 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL13QUERUS-QUE | 28 | 59m | 0 | 28-29 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 no open half-pairs
 
-## FLOW-STATE — 14 tracked game(s) ({'WAKING': 8, 'OPEN': 2, 'QUIET': 4}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 14 tracked game(s) ({'WAKING': 10, 'QUIET': 3, 'OPEN': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL13VILGAN | ATP_CHALL | 0.967 | 1 | **OPEN** |
-| ITFWMATCH-26JUL13ARUMCK | ITF_W | 0.367 | 1 | **OPEN** |
+| ITFWMATCH-26JUL13ARUMCK | ITF_W | 0.367 | 3 | **OPEN** |
 | ITFMATCH-26JUL13DUHGAT | ITF_M | 0.0 | 22 | **QUIET** |
-| ITFMATCH-26JUL13SARBOV | ITF_M | 0.0 | 77 | **QUIET** |
-| ITFWMATCH-26JUL13SVIART | ITF_W | 0.0 | 20 | **QUIET** |
-| ITFWMATCH-26JUL13WONBOW | ITF_W | 0.0 | 21 | **QUIET** |
+| ITFMATCH-26JUL13SARBOV | ITF_M | 0.0 | 74 | **QUIET** |
+| ITFWMATCH-26JUL13SVIART | ITF_W | 0.0 | 21 | **QUIET** |
 | ATPCHALLENGERMATCH-26JUL13PRICRI | ATP_CHALL | 0.133 | 1 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL13VILGAN | ATP_CHALL | 0.033 | 1 | **WAKING** |
 | ATPMATCH-26JUL12ALTGAS | ATP_MAIN | 0.0 | 2 | **WAKING** |
-| ATPMATCH-26JUL12SONSCH | ATP_MAIN | 3.167 | — | **WAKING** |
-| ITFMATCH-26JUL13BONFAB | ITF_M | 0.133 | 6 | **WAKING** |
-| ITFWMATCH-26JUL13SLASED | ITF_W | 0.167 | 7 | **WAKING** |
+| ATPMATCH-26JUL12SONSCH | ATP_MAIN | 2.9 | — | **WAKING** |
+| ITFMATCH-26JUL13BONFAB | ITF_M | 0.167 | 6 | **WAKING** |
+| ITFWMATCH-26JUL13SLASED | ITF_W | 0.133 | 7 | **WAKING** |
+| ITFWMATCH-26JUL13WONBOW | ITF_W | 0.033 | 19 | **WAKING** |
 | WTACHALLENGERMATCH-26JUL13RADREN | WTA_CHALL | 0.0 | 1 | **WAKING** |
 | WTAMATCH-26JUL13KAWWAL | WTA_MAIN | 0.0 | 2 | **WAKING** |
 | WTAMATCH-26JUL13QUERUS | WTA_MAIN | 0.0 | 1 | **WAKING** |
 
-## PATTERNS (sub-B) — 3
+## PATTERNS (sub-B) — 4
 - reality_divergence: KXITFWMATCH-26JUL13WONBOW-WON {"kind": "resting_bid", "ref": 6.0, "market_mid": 42.0, "divergence": -36.0}
-- reality_divergence: KXITFMATCH-26JUL13SARBOV-SAR {"kind": "resting_bid", "ref": 11.0, "market_mid": 50.5, "divergence": -39.5, "emitted_et": "2026-07-13 12:42:47 AM ET"}
-- reality_divergence: KXITFWMATCH-26JUL13WONBOW-WON {"kind": "resting_bid", "ref": 6.0, "market_mid": 37.5, "divergence": -31.5, "emitted_et": "2026-07-13 12:42:47 AM ET"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL13VILGAN-VIL {"fill": 92, "age_min": 37, "mode": "NO_BID(sib rested earlier, none now)", "emitted_et": "2026-07-13 12:52:53 AM ET"}
+- reality_divergence: KXITFMATCH-26JUL13SARBOV-SAR {"kind": "resting_bid", "ref": 11.0, "market_mid": 50.5, "divergence": -39.5}
+- reality_divergence: KXITFWMATCH-26JUL13WONBOW-WON {"kind": "resting_bid", "ref": 6.0, "market_mid": 37.5, "divergence": -31.5}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

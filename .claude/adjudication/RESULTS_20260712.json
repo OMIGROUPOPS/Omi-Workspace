@@ -1,0 +1,74 @@
+{
+ "generated": "2026-07-13 12:20 AM ET",
+ "gate_3a": {
+  "honesty": {
+   "pass": true,
+   "detail": "G1: no admissible discovery-time direction model for mains (clocks convicted, gauge fits exclude mains)"
+  },
+  "posterior": {
+   "pass": true,
+   "detail": "conf peak 0.62 -> trough 0.26 over 201 obs"
+  },
+  "era": {
+   "pass": true,
+   "detail": "M9 has no ITF rows and archive anchors are INADMISSIBLE for ITF (census 07-10, gap G4) -- offered archive anchor REFUSED"
+  },
+  "range_layer": {
+   "pass": true,
+   "detail": "empty->NO-OPINION ok=True; populated->PRIOR ok=True (ATP_MAIN|leader|at_mid|51_75)"
+  }
+ },
+ "n_trades": 3,
+ "rows": [
+  {
+   "id": "T-20260712-0235",
+   "tk": "KXATPCHALLENGERMATCH-26JUL12CALRAD-RAD",
+   "cat": "ATP_CHALL",
+   "ts_et": "04:22:26 PM",
+   "px": 40,
+   "cycle": 1,
+   "in_play": false,
+   "grade": "AGREE",
+   "why": "posterior 0.40 vs paid 40 (edge -0.2)",
+   "posterior": 0.3982,
+   "legacy_constant": "",
+   "pnl_cents": 40.0
+  },
+  {
+   "id": "T-20260712-0234",
+   "tk": "KXATPCHALLENGERMATCH-26JUL12YIBMAL-YIB",
+   "cat": "ATP_CHALL",
+   "ts_et": "04:46:11 PM",
+   "px": 82,
+   "cycle": 1,
+   "in_play": false,
+   "grade": "AGREE",
+   "why": "posterior 0.82 vs paid 82 (edge +0.2)",
+   "posterior": 0.822,
+   "legacy_constant": "",
+   "pnl_cents": 85.0
+  },
+  {
+   "id": "T-20260712-0249",
+   "tk": "KXITFWMATCH-26JUL12PANOUN-OUN",
+   "cat": "ITF_W",
+   "ts_et": "06:52:06 PM",
+   "px": 55,
+   "cycle": 1,
+   "in_play": true,
+   "grade": "AGREE",
+   "why": "posterior 0.66 vs paid 55 (edge +10.5)",
+   "posterior": 0.6553,
+   "legacy_constant": "",
+   "pnl_cents": null
+  }
+ ],
+ "per_cat": {
+  "ATP_CHALL": {
+   "AGREE": 2
+  },
+  "ITF_W": {
+   "AGREE": 1
+  }
+ }
+}

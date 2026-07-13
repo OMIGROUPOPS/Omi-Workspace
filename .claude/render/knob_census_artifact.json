@@ -1,13 +1,13 @@
 {
- "generated_hash": "87474b48c3d0e0ffaf7e9a4dc2cdbe316844e5fb7cdacc480f398ac637d08300",
+ "generated_hash": "0fdeead9e6336024c081b417662c807b4ad83acb1dd3858689125e30e0853830",
  "counts": {
-  "config_keys": 103,
-  "code_config_gets": 128,
-  "union": 129
+  "config_keys": 104,
+  "code_config_gets": 129,
+  "union": 130
  },
  "by_class": {
   "FITTED": 3,
-  "DECREED": 26,
+  "DECREED": 27,
   "NAKED": 100
  },
  "rows": [
@@ -933,6 +933,14 @@
    "config_value": true,
    "class": "DECREED",
    "citation": "C-CHASE-KILL 07-12 (bell source six: own blood is the one feed that can't lie)",
+   "step": "L3"
+  },
+  {
+   "knob": "self_fill_corroborate_prints",
+   "in_config": true,
+   "config_value": 5,
+   "class": "DECREED",
+   "citation": "OPERATOR 07-13 C-BELL-SCOPE Part 1(c): non-self prints corroborate the move",
    "step": "L3"
   },
   {

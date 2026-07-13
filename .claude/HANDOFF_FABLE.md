@@ -33,7 +33,20 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-13 ~3:30 am — C50 keeps this current):
+## STATE (2026-07-13 late afternoon — C50 keeps this current):
+C-ADJUDICATION-READ DONE + flatten leash DEPLOYED (b7abdc5b): the
+branch graded NEGATIVE on real settled outcomes (N=36, -$0.264/leg
+vs ride; 16/36 beat; ALL 20 giveaways were WINNERS -- the two-term
+EV frame excludes win-ride residual by design = the named frame
+bias, composer refit queued). Leash (operator word embedded):
+flatten_daily_action_cap=8 + flatten_ev_margin_cents=3.0, named
+defer/cap lines, boot-persistent (today's 32 > cap -> capped now).
+Band collapse decomposed: maker +10-15c vs flatten -3..+2c per cat;
+nightly GOVERNOR SPLIT prints band-by-path. Replay 8/8. NEXT:
+tonight's nightly grades the leash; 6:10 deletion word (honest gate);
+composer EV-frame refit; COMBINED-CAP remedy; -0g.
+
+(prior:) ## STATE (2026-07-13 ~3:30 am):
 C-BELL-SCOPE v1 DEPLOYED (0a6ab782, emergency #2): self-fill bell
 fires only on (a) leg_fill / (b) exceeds ARMED walk allowance (live
 table via _sanctioned_walk_cents_cat) / (c) tape_corroborated (>=5

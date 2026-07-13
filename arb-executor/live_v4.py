@@ -7090,6 +7090,34 @@ class LiveV3:
                         ticker=tk)
                     return
                 self._taker_n += 1
+            # [C-ADJUDICATION-READ Part 2, DECREED (operator word embedded in
+            # the 07-13 dispatch): the flatten branch graded NEGATIVE against
+            # its ride counterfactual on settled tape (N=36, -$0.264/leg,
+            # 16/36 beat the ride; every giveaway was a leg that went on to
+            # WIN -- the two-term EV frame excludes the win-ride residual by
+            # design). The same leash the taker wears:]
+            if v == "flatten_kept":
+                _ev8 = (res.get("kept") or {}).get("ev_cents")
+                _mar8 = float(self.config.get("flatten_ev_margin_cents", 3.0))
+                if _ev8 is not None and _ev8 > -_mar8:
+                    self._log("completion_flatten_deferred", {
+                        "event": et, "ev_cents": _ev8,
+                        "margin_floor": -_mar8,
+                        "reason": "ev_within_noise_margin (graded deltas "
+                                  "straddle zero below 3c)"}, ticker=tk)
+                    return
+                _day8 = datetime.now(ET).strftime("%Y%m%d")
+                if getattr(self, "_flatten_day", "") != _day8:
+                    self._flatten_day, self._flatten_n = _day8, 0
+                _cap8 = int(self.config.get("flatten_daily_action_cap", 8))
+                if self._flatten_n >= _cap8:
+                    self._log("completion_flatten_capped", {
+                        "event": et, "cap": _cap8,
+                        "flatten_actions_today": self._flatten_n,
+                        "sunset": "calibration graded positive on the nightly"},
+                        ticker=tk)
+                    return
+                self._flatten_n += 1
             sib = self._sibling_ticker_any(tk)
             sb = self.books.get(sib) if sib else None
             kb = self.books.get(tk)
@@ -10447,22 +10475,28 @@ class LiveV3:
         # [C-DELETION-GATE Part 4] the taker daily cap survives restarts --
         # a reboot mid-day must not grant three fresh crosses
         _tn = 0
+        _fn = 0
         for p in files:
             try:
                 with open(p, encoding="utf-8", errors="replace") as fh:
                     for line in fh:
-                        if ('"completion_action"' in line
-                                and '"taker_complete"' in line
-                                and '"crossed"' in line):
-                            try:
-                                d = json.loads(line)
-                            except ValueError:
-                                continue
-                            if d.get("ts_epoch", 0) >= day0:
-                                _tn += 1
+                        if '"completion_action"' not in line:
+                            continue
+                        try:
+                            d = json.loads(line)
+                        except ValueError:
+                            continue
+                        if d.get("ts_epoch", 0) < day0:
+                            continue
+                        _o8 = (d.get("details") or {}).get("outcome")
+                        if _o8 == "crossed":
+                            _tn += 1
+                        elif _o8 == "flattening":
+                            _fn += 1
             except OSError:
                 continue
         self._taker_day, self._taker_n = day, _tn
+        self._flatten_day, self._flatten_n = day, _fn
         self._log("chase_lineage_rebuilt", {
             "legs_with_activity": len(_pts),
             "open_pursuits": len(_pc),

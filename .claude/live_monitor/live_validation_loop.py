@@ -174,6 +174,17 @@ def parse_session(log_path):
                                   "detail": "chase ladder refused: pursuit_buys %s >= cap %s (proposed %s)"
                                             % (d.get("pursuit_buys"), d.get("cap"),
                                                d.get("proposed", d.get("price")))})
+            elif e in ("completion_flatten_capped", "completion_flatten_deferred"):
+                # [C-ADJUDICATION-READ Part 4] the flatten leash's named lines
+                all_extra = S.setdefault("_extra_pats", [])
+                all_extra.append({"type": "violation", "pattern": "flatten_leash",
+                                  "cls": "flatten_leash", "ticker": tk, "ts": ts,
+                                  "key": "fl|%s|%s" % (d.get("event"), e[-8:]),
+                                  "detail": ("flatten DEFERRED: ev %s above margin floor %s"
+                                             % (d.get("ev_cents"), d.get("margin_floor")))
+                                            if e.endswith("deferred") else
+                                            ("flatten CAPPED at %s/day (%s today)"
+                                             % (d.get("cap"), d.get("flatten_actions_today")))})
             elif e == "completion_taker_capped":
                 # [C-DELETION-GATE Part 4] cap hits are NAMED lines, never silent
                 all_extra = S.setdefault("_extra_pats", [])

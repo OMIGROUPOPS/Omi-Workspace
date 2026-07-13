@@ -435,12 +435,25 @@ def main():
                         det9["pnl_cents"]
             elif '"completion_taker_capped"' in line:
                 cap_hits += 1
+        # [C-ADJUDICATION-READ Part 3] band-by-path framing: exit band per
+        # governor so the flatten-vs-maker comparison is one table
+        gov_band = defaultdict(list)
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"exit_filled"' not in line:
+                continue
+            d9 = json.loads(line)
+            det9 = d9.get("details") or {}
+            if det9.get("exit_price") is not None and det9.get("entry_price") is not None:
+                gov_band[last_exit_gov.get(d9.get("ticker"), "maker_exit")].append(
+                    det9["exit_price"] - det9["entry_price"])
         if gov_n:
-            L += ["", "## GOVERNOR SPLIT (whose hand moved — actions | exit ¢ attributed)"]
+            L += ["", "## GOVERNOR SPLIT (whose hand moved — actions | exit ¢ attributed | avg band)"]
             for g9 in ("per_leg_policy", "pair97_bound", "maker_exit",
                        "match_live_cancel"):
-                L.append("- %s: %d actions | %+.0f¢" % (
-                    g9, gov_n.get(g9, 0), gov_pnl.get(g9, 0.0)))
+                bl9 = gov_band.get(g9, [])
+                L.append("- %s: %d actions | %+.0f¢ | band %s" % (
+                    g9, gov_n.get(g9, 0), gov_pnl.get(g9, 0.0),
+                    ("%+.1fc (n=%d)" % (sum(bl9) / len(bl9), len(bl9))) if bl9 else "—"))
             if cap_hits:
                 L.append("- **taker cap hits (DECREED 3/day until n≥30 graded): %d — named, never silent**" % cap_hits)
     except Exception:

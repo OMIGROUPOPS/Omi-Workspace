@@ -124,5 +124,7 @@
   "percat_gun_armed": true,
   "completion_live_enabled": true,
   "taker_daily_action_cap": 3,
-  "self_fill_corroborate_prints": 5
+  "self_fill_corroborate_prints": 5,
+  "flatten_daily_action_cap": 8,
+  "flatten_ev_margin_cents": 3.0
 }

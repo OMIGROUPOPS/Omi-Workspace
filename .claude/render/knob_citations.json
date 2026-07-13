@@ -153,5 +153,15 @@
   "DECREED",
   "OPERATOR 07-13 C-BELL-SCOPE Part 1(c): non-self prints corroborate the move",
   "L3"
+ ],
+ "flatten_daily_action_cap": [
+  "DECREED",
+  "OPERATOR 07-13 C-ADJUDICATION-READ Part 2 (pre-authorized bound; flatten graded -$0.264/leg vs ride at N=36)",
+  "L6"
+ ],
+ "flatten_ev_margin_cents": [
+  "DECREED",
+  "OPERATOR 07-13 C-ADJUDICATION-READ Part 2 (EV-margin floor; 3c = the noise band where graded deltas straddle zero)",
+  "L6"
  ]
 }

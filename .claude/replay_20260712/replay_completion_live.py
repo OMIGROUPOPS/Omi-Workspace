@@ -137,6 +137,31 @@ async def main():
     t5 = (not CALLS and "completion_taker_capped" in logged)
     print("taker cap defers 4th cross, NAMED:", "PASS" if t5 else "FAIL", logged[-1:])
     ok &= t5
+    # 6) [C-ADJUDICATION-READ Part 2] the flatten leash: (i) ev within the
+    # noise margin -> DEFERRED named; (ii) daily cap -> CAPPED named
+    CALLS.clear()
+    b8, kept8 = mk()
+    logged8 = []
+    _ol8 = b8._log
+    b8._log = lambda ev, det=None, ticker="": (logged8.append(ev), _ol8(ev, det, ticker))[1]
+    await b8._completion_execute("EV-KEPT", kept8,
+                                 {"verdict": "flatten_kept", "kept": {"ev_cents": -1.2}}, 1000.0)
+    t6a = not CALLS and "completion_flatten_deferred" in logged8
+    print("flatten ev -1.2 > -3.0 floor -> DEFERRED, named:", "PASS" if t6a else "FAIL")
+    ok &= t6a
+    CALLS.clear()
+    b9, kept9 = mk()
+    from datetime import datetime as _dt
+    b9._flatten_day = _dt.now(lv.ET).strftime("%Y%m%d")
+    b9._flatten_n = int(b9.config.get("flatten_daily_action_cap", 8))
+    logged9 = []
+    _ol9 = b9._log
+    b9._log = lambda ev, det=None, ticker="": (logged9.append(ev), _ol9(ev, det, ticker))[1]
+    await b9._completion_execute("EV-KEPT", kept9,
+                                 {"verdict": "flatten_kept", "kept": {"ev_cents": -6.0}}, 1000.0)
+    t6b = not CALLS and "completion_flatten_capped" in logged9
+    print("flatten at daily cap -> CAPPED, named:", "PASS" if t6b else "FAIL")
+    ok &= t6b
     print("REPLAY", "PASS" if ok else "FAIL")
     sys.exit(0 if ok else 1)
 

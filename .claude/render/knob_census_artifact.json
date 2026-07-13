@@ -1,13 +1,13 @@
 {
- "generated_hash": "0fdeead9e6336024c081b417662c807b4ad83acb1dd3858689125e30e0853830",
+ "generated_hash": "54859bf0728abf4517f2ff884007d431f783f87928d2e21aebbae3fd51cb09ff",
  "counts": {
-  "config_keys": 104,
-  "code_config_gets": 129,
-  "union": 130
+  "config_keys": 106,
+  "code_config_gets": 131,
+  "union": 132
  },
  "by_class": {
   "FITTED": 3,
-  "DECREED": 27,
+  "DECREED": 29,
   "NAKED": 100
  },
  "rows": [
@@ -457,6 +457,22 @@
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
+  },
+  {
+   "knob": "flatten_daily_action_cap",
+   "in_config": true,
+   "config_value": 8,
+   "class": "DECREED",
+   "citation": "OPERATOR 07-13 C-ADJUDICATION-READ Part 2 (pre-authorized bound; flatten graded -$0.264/leg vs ride at N=36)",
+   "step": "L6"
+  },
+  {
+   "knob": "flatten_ev_margin_cents",
+   "in_config": true,
+   "config_value": 3.0,
+   "class": "DECREED",
+   "citation": "OPERATOR 07-13 C-ADJUDICATION-READ Part 2 (EV-margin floor; 3c = the noise band where graded deltas straddle zero)",
+   "step": "L6"
   },
   {
    "knob": "freeze_at_gun",

@@ -1,13 +1,13 @@
 {
- "generated_hash": "2dba2d35b9917a52174137af5a748602a40269622ddebb8cb54aa416d9fd49cb",
+ "generated_hash": "74b0ac5196f94c6d2246b0cb2d7a45c958a75021872af4498534329ef6253d18",
  "counts": {
-  "config_keys": 102,
-  "code_config_gets": 127,
-  "union": 128
+  "config_keys": 103,
+  "code_config_gets": 128,
+  "union": 129
  },
  "by_class": {
   "FITTED": 3,
-  "DECREED": 25,
+  "DECREED": 26,
   "NAKED": 100
  },
  "rows": [
@@ -1001,6 +1001,14 @@
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
+  },
+  {
+   "knob": "taker_daily_action_cap",
+   "in_config": true,
+   "config_value": 3,
+   "class": "DECREED",
+   "citation": "OPERATOR 07-12 C-DELETION-GATE Part 4 (thin-evidence guard: 3/day until n>=30 graded shadow+live taker verdicts)",
+   "step": "L6"
   },
   {
    "knob": "tape_gated_abandon",

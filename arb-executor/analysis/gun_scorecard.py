@@ -132,12 +132,20 @@ def main():
     sf_unfrozen = 0         # [C-BELL-SCOPE] boot unfreeze count
     for p in files:
         for line in open(p, encoding="utf-8", errors="replace"):
-            if '"gun_fired"' not in line and '"gun_truth_delta"' not in line \
-                    and '"schedule_match"' not in line \
-                    and '"pm_clock_shadow"' not in line \
-                    and '"clock_liar"' not in line \
-                    and '"bell_missing"' not in line \
-                    and '"system_start"' not in line:
+            # [C-BACKHALF-NOW 07-13, the gate contradiction rooted] this
+            # prefilter is WHY the 6:10 printed OPEN against two suppressed
+            # windows: every event a collector consumes MUST be listed here
+            # or its lines never reach parsing -- the honesty brands, the
+            # MULTI-SOURCE count, HALT-MIN and UNBOOKED were all being
+            # swallowed at this line.
+            if not any(k in line for k in (
+                    '"gun_fired"', '"gun_truth_delta"', '"schedule_match"',
+                    '"pm_clock_shadow"', '"clock_liar"', '"bell_missing"',
+                    '"system_start"', '"gun_source_confirm"',
+                    '"percat_gun_shadow"', '"chase_cap_refused"',
+                    '"chase_cap_hold"', '"gun_buy_refused"',
+                    '"self_fill_unfrozen"', '"conception_halt_armed"',
+                    '"conception_halt_cleared"', '"fill_booked_reconcile"')):
                 continue
             try:
                 d = json.loads(line)

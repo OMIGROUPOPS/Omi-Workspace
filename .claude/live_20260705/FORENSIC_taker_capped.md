@@ -1,10 +1,11 @@
-# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1783932433 -->
-written 2026-07-13 04:55:38 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1783933051 -->
+written 2026-07-13 05:05:49 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (3 total this session)
+## Events (4 total this session)
 - 04:26:50 KXATPMATCH-26JUL13PASKRU-PAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 04:37:01 KXATPMATCH-26JUL13PASKRU-PAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 04:47:13 KXATPMATCH-26JUL13PASKRU-PAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 04:57:31 KXATPMATCH-26JUL13PASKRU-PAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-13 01:30:31 AM ET", "ts_epoch": 1783920631.3110082, "event": "order_placed", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"action": "buy", "side": "yes", "price": 64, "count": 5, "order_id": "fb8c8d3e-ffaf-4fa8-bd93-5ede6cb13b87", "client_order_id": "72c413b2-e93f-44d0-b3e1-f6037eafd2e1", "response_status": "resting", "trade_id": "T-20260713-0046", "tape_basis": "rest_seed
@@ -169,6 +170,13 @@ written 2026-07-13 04:55:38 AM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-13 04:52:51 AM ET", "ts_epoch": 1783932771.6901584, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
     {"ts": "2026-07-13 04:54:05 AM ET", "ts_epoch": 1783932845.349717, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
     {"ts": "2026-07-13 04:55:19 AM ET", "ts_epoch": 1783932919.6629617, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
+    {"ts": "2026-07-13 04:56:40 AM ET", "ts_epoch": 1783933000.2903433, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
+    {"ts": "2026-07-13 04:57:31 AM ET", "ts_epoch": 1783933051.0854049, "event": "completion_shadow", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_MAIN|leader|at_mid|51_75", "n": 28, "p_exit_fill": 0.75, "p_ride_zero": 0.25, "ev_cents": -2.5, "band": 18, "basis": 64, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_L
+    {"ts": "2026-07-13 04:57:31 AM ET", "ts_epoch": 1783933051.0858877, "event": "completion_taker_capped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"event": "KXATPMATCH-26JUL13PASKRU", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-13 04:57:55 AM ET", "ts_epoch": 1783933075.1828117, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
+    {"ts": "2026-07-13 04:59:16 AM ET", "ts_epoch": 1783933156.0754175, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
+    {"ts": "2026-07-13 05:00:13 AM ET", "ts_epoch": 1783933213.2374473, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
+    {"ts": "2026-07-13 05:00:13 AM ET", "ts_epoch": 1783933213.279276, "event": "skipped", "ticker": "KXATPMATCH-26JUL13PASKRU-PAS", "details": {"reason": "manual_first", "event": "KXATPMATCH-26JUL13PASKRU"}}
 
 ## Code path
 ?

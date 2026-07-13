@@ -1,0 +1,23 @@
+skips: {'no_book_tick': 148, 'thin_page': 425, 'cf_unsettled': 83, 'unsettled': 4}
+
+| day | n | engine fills | deep episodes | engine $ | actual $ |
+| 07-10 | 57 | 18 | 169 | $+5.80 | $+2.50 |
+| 07-11 | 116 | 30 | 193 | $+6.15 | $+7.35 |
+| 07-12 | 219 | 31 | 282 | $+0.95 | $+6.80 |
+| 07-13 | 373 | 8 | 3 | $-4.50 | $-5.45 |
+
+per-cat: cat n engine$ actual$
+  ATP_CHALL  190    -1.85    +4.95
+  ATP_MAIN     8    +3.15    +0.35
+  ITF_M      244    +3.35    +6.20
+  ITF_W      321    +3.75    -1.05
+  WTA_MAIN     2    +0.00    +0.75
+
+N=765 era-clean legs | engine $+8.40 vs actual $+11.20 | delta $-2.80 (95% CI [-38.50, +34.35])
+engine yield on wagered: 5.4% ($157 staked) vs 8% bar
+DEEP-fill partition (win-or-cashed vs loss): 10 / 1 (v2 floor 8/4)
+
+== THE MOMENT CENSUS (per cat: episodes, med min-before-bell, med duration, med depth avail) ==
+  ATP_CHALL  episodes=  53 | med 54 min before bell | med dur 2 min | med depth 0.0c
+  ITF_M      episodes= 387 | med 142 min before bell | med dur 2 min | med depth 1.0c
+  ITF_W      episodes= 327 | med 95 min before bell | med dur 2 min | med depth 1.0c

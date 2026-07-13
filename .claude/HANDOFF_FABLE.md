@@ -33,7 +33,21 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 night — C50 keeps this current):
+## STATE (2026-07-14 late night — C50 keeps this current):
+C-FULLWINDOW-REPLAY DONE (detached, read-only): the REAL trial of
+the fourth aim design. N=765 era-clean legs: engine +8.40 vs actual
++11.20 (delta -2.80, CI [-38,+34]) -- no pass, forward clock stands.
+SELECTION VINDICATED: 647 mid-window deep episodes, deep-fill
+partition 10/1 (v1 skew fully inverted). THE MOMENT CENSUS (first
+measurement on our own tape): ATP_CHALL 53 eps/54min-before/2min/
+0.0c; ITF_M 387/142/2/1.0c; ITF_W 327/95/2/1.0c -- the harvestable
+discount-moment is a 1-cent 2-minute flicker: moment-timing cannot
+carry the entry edge on THIS slate; edge must come from prior depth
+or an unmeasured axis. Engine stays in shadow (selection is free).
+Artifacts .claude/fullwindow/. NEXT: 6:10 deletion word; EV3 re-read;
+COMBINED-CAP remedy; -0g.
+
+(prior:) ## STATE (2026-07-14 night):
 C-LIVEAIM-BACKTEST DONE (read-only): 741 era-clean discovery rows --
 engine +9.50 vs actual +11.20 (delta -1.70, CI [-34,+34]); yield
 5.6% vs 8% bar; AIM_DEEP fired ONCE (the moment-forming mechanism is

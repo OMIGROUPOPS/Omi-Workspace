@@ -10568,7 +10568,8 @@ class LiveV3:
                         self._gun_state[et] = {"ts": ts,
                                                "source": det.get("source"),
                                                "rebuilt": True,
-                                               "rise": det.get("rise")}
+                                               "rise": det.get("rise"),
+                                               "condition": det.get("condition")}
                         self._events_live.add(et)
                         n += 1
             except OSError:
@@ -10587,6 +10588,12 @@ class LiveV3:
                 for _ue, _ug in list(self._gun_state.items()):
                     if (_ug.get("source") != "self_fill"
                             or _ug.get("confirms")):
+                        continue
+                    # a post-scope fire carries its evidence condition --
+                    # NEVER unfrozen (fills/prints may not be visible yet
+                    # this early in boot); only pre-scope condition-less
+                    # fires are unfreeze candidates
+                    if _ug.get("condition"):
                         continue
                     _urise = _ug.get("rise")
                     _ucat = self.get_category(_ue)

@@ -1,7 +1,7 @@
-# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1783939102 -->
-written 2026-07-13 06:38:57 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1783939712 -->
+written 2026-07-13 06:49:10 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (9 total this session)
+## Events (11 total this session)
 - 04:26:50 KXATPMATCH-26JUL13PASKRU-PAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 04:37:01 KXATPMATCH-26JUL13PASKRU-PAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 04:47:13 KXATPMATCH-26JUL13PASKRU-PAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
@@ -11,6 +11,8 @@ written 2026-07-13 06:38:57 AM ET by live_validation_loop (read-only). Patch con
 - 06:28:19 KXITFWMATCH-26JUL13MITROM-MIT — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 06:37:35 KXWTAMATCH-26JUL13LIUIPE-IPE — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 06:38:22 KXITFWMATCH-26JUL13MITROM-MIT — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 06:47:35 KXWTAMATCH-26JUL13LIUIPE-IPE — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 06:48:32 KXITFWMATCH-26JUL13MITROM-MIT — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-13 01:43:35 AM ET", "ts_epoch": 1783921415.393065, "event": "tape_seed_live_confirm", "ticker": "KXWTAMATCH-26JUL13LIUIPE-IPE", "details": {"seed_price": 20, "live_price": 19, "delta": -1, "seed_age_sec": 7765.9}}
@@ -305,6 +307,13 @@ written 2026-07-13 06:38:57 AM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-13 06:38:22 AM ET", "ts_epoch": 1783939102.4075935, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL13MITROM-MIT", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ITF_W|underdog|disc|26_50", "n": 25, "p_exit_fill": 0.8, "p_ride_zero": 0.2, "ev_cents": -1.2, "band": 6, "basis": 30, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LAYER_
     {"ts": "2026-07-13 06:38:22 AM ET", "ts_epoch": 1783939102.4090555, "event": "completion_taker_capped", "ticker": "KXITFWMATCH-26JUL13MITROM-MIT", "details": {"event": "KXITFWMATCH-26JUL13MITROM", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
     {"ts": "2026-07-13 06:38:30 AM ET", "ts_epoch": 1783939110.615484, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 17, "n_resting_orders": 101, "n_failures": 1, "n_flags": 1, "failures": [{"tk": "KXITFMATCH-26JUL13VULPAO-PAO", "check": "no_exit", "held": 4.0, "band": 15, "bid": 9}], "flags": [{"tk": "KXWTAMATCH-26JUL13BONSOR-SOR"
+    {"ts": "2026-07-13 06:39:33 AM ET", "ts_epoch": 1783939173.5678816, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 18, "n_resting_orders": 100, "n_failures": 1, "n_flags": 1, "failures": [{"tk": "KXITFMATCH-26JUL13VULPAO-PAO", "check": "no_exit", "held": 4.0, "band": 15, "bid": 9}], "flags": [{"tk": "KXWTAMATCH-26JUL13BONSOR-SOR
+    {"ts": "2026-07-13 06:40:42 AM ET", "ts_epoch": 1783939242.7997866, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "PASS", "n_positions": 18, "n_resting_orders": 100, "n_failures": 0, "n_flags": 2, "failures": [], "flags": [{"tk": "KXITFMATCH-26JUL13VULPAO-PAO", "flag": "exit_unpostable_itm", "band": 15, "bid": 19, "held": 4.0}, {"tk": "KXWTAMATCH-26J
+    {"ts": "2026-07-13 06:42:05 AM ET", "ts_epoch": 1783939325.8848855, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 18, "n_resting_orders": 97, "n_failures": 0, "n_flags": 2, "failures": [], "flags": [{"tk": "KXITFMATCH-26JUL13VULPAO-PAO", "flag": "exit_unpostable_itm", "band": 15, "bid": 21, "held": 4.0}, {"tk": "KXWTAMATCH-26JU
+    {"ts": "2026-07-13 06:47:35 AM ET", "ts_epoch": 1783939655.0445065, "event": "completion_shadow", "ticker": "KXWTAMATCH-26JUL13LIUIPE-IPE", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "WTA_MAIN|underdog|at_mid|le25", "n": 11, "p_exit_fill": 0.727, "p_ride_zero": 0.273, "ev_cents": -1.55, "band": 5, "basis": 19, "win_ride_residual_excluded": 0.0, "citation": "M15 RANG
+    {"ts": "2026-07-13 06:47:35 AM ET", "ts_epoch": 1783939655.0457382, "event": "completion_taker_capped", "ticker": "KXWTAMATCH-26JUL13LIUIPE-IPE", "details": {"event": "KXWTAMATCH-26JUL13LIUIPE", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-13 06:48:32 AM ET", "ts_epoch": 1783939712.6985557, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL13MITROM-MIT", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ITF_W|underdog|disc|26_50", "n": 25, "p_exit_fill": 0.8, "p_ride_zero": 0.2, "ev_cents": -1.2, "band": 6, "basis": 30, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LAYER_
+    {"ts": "2026-07-13 06:48:32 AM ET", "ts_epoch": 1783939712.6988134, "event": "completion_taker_capped", "ticker": "KXITFWMATCH-26JUL13MITROM-MIT", "details": {"event": "KXITFWMATCH-26JUL13MITROM", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
 
 ## Code path
 ?

@@ -42,3 +42,5 @@
 **GUIDEBOOK V2 NOTE (07-14, C-GUIDEBOOK-V2):** timing-conditioned recut on G9 (48 pages, tour only -- NO admissible ITF corpus exists, named). Held-out week: -$10.70 vs -$9.30 actual -> THIRD REFUSAL, dark. Partition check PASSED (8/4 vs v1 collapse-skew): the timing axis fixes WHO fills. Windows diffuse ([13,508]/[91,996] min) -- the discount is not a clock moment; v3 = flow-signature conditioning after ITF tape accrual.
 
 **LIVE-AIM NOTE (07-14, C-LIVE-AIM v1):** fourth aim design, SHADOW: prior (GUIDEBOOK_V1 page) x live state (flow_ratio vs M3/M13 curve, depth_trend, spread, print_sig); lib_conf = banked-tape confidence per cat (accrual-aware); nightly LIVE-AIM SHADOW line; forward cutover bar n>=300 + CI clear of zero + operator word.
+
+**LIVEAIM-BACKTEST NOTE (07-14):** discovery-instant replay N=741 era-clean: engine +9.50 vs actual +11.20 (CI [-34,+34]); AIM_DEEP fired 1x -- the moment-forming mechanism is a re-aim-time phenomenon, unmeasurable at discovery instants. Acceleration refused; forward bar unchanged.

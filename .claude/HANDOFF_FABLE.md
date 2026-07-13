@@ -33,7 +33,18 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 pre-6:10 — C50 keeps this current):
+## STATE (2026-07-14 night — C50 keeps this current):
+C-LIVEAIM-BACKTEST DONE (read-only): 741 era-clean discovery rows --
+engine +9.50 vs actual +11.20 (delta -1.70, CI [-34,+34]); yield
+5.6% vs 8% bar; AIM_DEEP fired ONCE (the moment-forming mechanism is
+a RE-AIM-time phenomenon, structurally invisible at discovery
+instants). ACCELERATION REFUSED per pre-agreement; forward clock
+UNCHANGED (n>=300 shadow-graded, CI clear of zero); NOT refusal #5
+(design ran level, core mechanism untested). Rows committed. NEXT:
+6:10 deletion word; EV3 re-read; COMBINED-CAP remedy; -0g; LIVE-AIM
+forward accrual.
+
+(prior:) ## STATE (2026-07-14 pre-6:10):
 C-LIVE-AIM v1 SHADOW-DEPLOYED (da3deec7): fourth aim design --
 _liveaim_shadow at every v4_place: prior (GUIDEBOOK_V1 page) x live
 state (flow_ratio vs M3/M13 curve, book depth_trend, spread,

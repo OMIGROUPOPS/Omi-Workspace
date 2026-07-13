@@ -33,7 +33,20 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-13 late afternoon — C50 keeps this current):
+## STATE (2026-07-13 evening — C50 keeps this current):
+C-COMPOSER-EV3 SHADOW-DEPLOYED (07cf29a2): three-term frame
+(p_exit×band + p_win×(100−basis) − p_loss×basis, all M15 cell
+shares, K_POST=8 posterior hook) rides in completion_shadow's ev3
+record; two-term actor + leash UNCHANGED. ACID TEST HONEST: bar NOT
+met — winners flip 9/20, saves retained 6/16, 11 residuals cited
+(high-basis leaders: −basis dominates any win share); structural
+finding: ex-ante separator ≈ price itself (market ride EV≈0 by
+identity) — forward tape decides via nightly dual-frame grading.
+Leash floor VALIDATED: +$11.00 net on the graded tape. NEXT: nightly
+grades both frames; 6:10 deletion word; EV3 cutover word (operator,
+on positive grades); COMBINED-CAP remedy; -0g.
+
+(prior:) ## STATE (2026-07-13 late afternoon):
 C-ADJUDICATION-READ DONE + flatten leash DEPLOYED (b7abdc5b): the
 branch graded NEGATIVE on real settled outcomes (N=36, -$0.264/leg
 vs ride; 16/36 beat; ALL 20 giveaways were WINNERS -- the two-term

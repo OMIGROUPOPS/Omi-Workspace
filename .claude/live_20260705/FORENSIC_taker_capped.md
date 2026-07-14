@@ -1,9 +1,10 @@
-# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784058088 -->
-written 2026-07-14 03:42:33 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784059291 -->
+written 2026-07-14 04:03:12 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (2 total this session)
+## Events (3 total this session)
 - 15:41:28 KXITFMATCH-26JUL14VULBAS-BAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 15:41:28 KXITFWMATCH-26JUL14MARKOI-KOI — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 16:01:31 KXITFMATCH-26JUL14VULBAS-BAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-14 10:00:28 AM ET", "ts_epoch": 1784037628.2877686, "event": "v4_place", "ticker": "KXITFWMATCH-26JUL14MARKOI-KOI", "details": {"event": "KXITFWMATCH-26JUL14MARKOI", "direction": "leader", "cat": "ITF_W", "regime": "r75_84", "cell": 84, "current_price": 84, "anchor_src": "no_trade_staircase", "table_src": "no_trade_staircase", "last_trade_age_sec": -1.0, "offset": 0, "target_bid": 
@@ -292,6 +293,13 @@ written 2026-07-14 03:42:33 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-14 03:41:28 PM ET", "ts_epoch": 1784058088.6945114, "event": "completion_taker_capped", "ticker": "KXITFMATCH-26JUL14VULBAS-BAS", "details": {"event": "KXITFMATCH-26JUL14VULBAS", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
     {"ts": "2026-07-14 03:41:28 PM ET", "ts_epoch": 1784058088.8063176, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL14MARKOI-KOI", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ITF_W|leader|disc|ge75", "n": 16, "p_exit_fill": 0.875, "p_ride_zero": 0.125, "ev_cents": -4.25, "band": 8, "basis": 90, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LAYE
     {"ts": "2026-07-14 03:41:28 PM ET", "ts_epoch": 1784058088.8065567, "event": "completion_taker_capped", "ticker": "KXITFWMATCH-26JUL14MARKOI-KOI", "details": {"event": "KXITFWMATCH-26JUL14MARKOI", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-14 03:46:00 PM ET", "ts_epoch": 1784058360.5469332, "event": "exit_filled", "ticker": "KXITFWMATCH-26JUL14MARKOI-KOI", "details": {"exit_price": 98, "entry_price": 90, "qty": 5, "new_fills": 5, "complete": true, "pnl_cents": 40.0, "pnl_dollars": 0.4, "had_dca": false, "cycle": 1, "in_play": true, "bell_source": "fallback_bell", "trade_id": "T-20260714-0594"}}
+    {"ts": "2026-07-14 03:48:28 PM ET", "ts_epoch": 1784058508.6657567, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 15, "n_resting_orders": 23, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784056709.5090506, "legs_new": [], "legs_gone": ["KXATPCHALLENGERMATCH-26JUL14CASSCH-CAS", "KX
+    {"ts": "2026-07-14 03:51:29 PM ET", "ts_epoch": 1784058689.4766066, "event": "completion_shadow", "ticker": "KXITFMATCH-26JUL14VULBAS-BAS", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_M|leader|deep_disc|ge75", "n": 9, "p_exit_fill": 0.778, "p_ride_zero": 0.222, "ev_cents": -2.11, "band": 19, "basis": 76, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LA
+    {"ts": "2026-07-14 03:51:29 PM ET", "ts_epoch": 1784058689.4790275, "event": "completion_flatten_deferred", "ticker": "KXITFMATCH-26JUL14VULBAS-BAS", "details": {"event": "KXITFMATCH-26JUL14VULBAS", "ev_cents": -2.11, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-14 04:01:31 PM ET", "ts_epoch": 1784059291.7031503, "event": "completion_shadow", "ticker": "KXITFMATCH-26JUL14VULBAS-BAS", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ITF_M|leader|deep_disc|ge75", "n": 9, "p_exit_fill": 0.778, "p_ride_zero": 0.222, "ev_cents": -2.11, "band": 19, "basis": 76, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_
+    {"ts": "2026-07-14 04:01:31 PM ET", "ts_epoch": 1784059291.7034235, "event": "completion_taker_capped", "ticker": "KXITFMATCH-26JUL14VULBAS-BAS", "details": {"event": "KXITFMATCH-26JUL14VULBAS", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-14 04:02:46 PM ET", "ts_epoch": 1784059366.9858346, "event": "exit_filled", "ticker": "KXITFMATCH-26JUL14VULBAS-BAS", "details": {"exit_price": 95, "entry_price": 76, "qty": 5, "new_fills": 5, "complete": true, "pnl_cents": 95.0, "pnl_dollars": 0.95, "had_dca": false, "cycle": 1, "in_play": true, "bell_source": "percat_fitted", "trade_id": "T-20260714-0617"}}
 
 ## Code path
 ?

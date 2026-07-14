@@ -1,7 +1,7 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784058690 -->
-written 2026-07-14 03:52:51 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784059292 -->
+written 2026-07-14 04:03:11 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (8 total this session)
+## Events (10 total this session)
 - 15:31:26 KXITFMATCH-26JUL14VULBAS-BAS — flatten DEFERRED: ev -2.11 above margin floor -3.0
 - 15:31:26 KXITFWMATCH-26JUL14MARKOI-KOI — flatten CAPPED at 8/day (8 today)
 - 15:31:27 KXITFWMATCH-26JUL14BARREA-REA — flatten CAPPED at 8/day (8 today)
@@ -10,6 +10,8 @@ written 2026-07-14 03:52:51 PM ET by live_validation_loop (read-only). Patch con
 - 15:51:29 KXITFMATCH-26JUL14VULBAS-BAS — flatten DEFERRED: ev -2.11 above margin floor -3.0
 - 15:51:29 KXITFWMATCH-26JUL14BARREA-REA — flatten CAPPED at 8/day (8 today)
 - 15:51:30 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
+- 16:01:31 KXITFWMATCH-26JUL14BARREA-REA — flatten CAPPED at 8/day (8 today)
+- 16:01:32 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-14 10:00:24 AM ET", "ts_epoch": 1784037624.099774, "event": "staircase_hold_place", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"cat": "ATP_CHALL", "bid": 45, "target": 45}}
@@ -234,6 +236,10 @@ written 2026-07-14 03:52:51 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-14 03:51:29 PM ET", "ts_epoch": 1784058689.6969314, "event": "completion_flatten_capped", "ticker": "KXITFWMATCH-26JUL14BARREA-REA", "details": {"event": "KXITFWMATCH-26JUL14BARREA", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
     {"ts": "2026-07-14 03:51:30 PM ET", "ts_epoch": 1784058690.6120205, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|disc|26_50", "n": 49, "p_exit_fill": 0.673, "p_ride_zero": 0.327, "ev_cents": -8.63, "band": 9, "basis": 45, "win_ride_residual_excluded": 0.0, "citation": "
     {"ts": "2026-07-14 03:51:30 PM ET", "ts_epoch": 1784058690.6122751, "event": "completion_flatten_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
+    {"ts": "2026-07-14 04:01:31 PM ET", "ts_epoch": 1784059291.898069, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL14BARREA-REA", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_W|leader|at_mid|ge75", "n": 23, "p_exit_fill": 0.826, "p_ride_zero": 0.13, "ev_cents": -6.09, "band": 7, "basis": 91, "win_ride_residual_excluded": 0.043, "citation": "M15 RANGE_LAYE
+    {"ts": "2026-07-14 04:01:31 PM ET", "ts_epoch": 1784059291.8983085, "event": "completion_flatten_capped", "ticker": "KXITFWMATCH-26JUL14BARREA-REA", "details": {"event": "KXITFWMATCH-26JUL14BARREA", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
+    {"ts": "2026-07-14 04:01:32 PM ET", "ts_epoch": 1784059292.8413363, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|disc|26_50", "n": 49, "p_exit_fill": 0.673, "p_ride_zero": 0.327, "ev_cents": -8.63, "band": 9, "basis": 45, "win_ride_residual_excluded": 0.0, "citation": "
+    {"ts": "2026-07-14 04:01:32 PM ET", "ts_epoch": 1784059292.8416095, "event": "completion_flatten_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
 
 ## Code path
 ?

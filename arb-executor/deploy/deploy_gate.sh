@@ -50,6 +50,16 @@ rsync -a --delete \
   --exclude='*' \
   "$REPO/" "$SMOKE_ENV/"
 
+# [CUTOVER 07-14] path-mode is the law: the bot prices entries from
+# ../.claude/trendpath/ATLAS_V1.json (+ ORIENT_V1). The smoke sandbox must
+# carry the atlas or every entry is no_path_page_refused and the replay
+# exercises nothing (the first cutover gate run FAILED exactly so).
+mkdir -p "$SMOKE_ENV/../.claude/trendpath"
+cp -f "$REPO/../.claude/trendpath/ATLAS_V1.json" \
+      "$SMOKE_ENV/../.claude/trendpath/" 2>/dev/null || true
+cp -f "$REPO/../.claude/trendpath/ORIENT_V1.json" \
+      "$SMOKE_ENV/../.claude/trendpath/" 2>/dev/null || true
+
 cd "$SMOKE_ENV"
 python3 deploy/smoke_replay.py --ticks-dir "$TICKS_DIR"
 

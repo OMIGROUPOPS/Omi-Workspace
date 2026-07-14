@@ -33,7 +33,13 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 SWEPT — C50 keeps this current):
+## STATE (2026-07-14 TAIL-RULED — C50 keeps this current):
+OPERATOR WORD: hold-and-drain the 24 tail positions (no
+liquidation; exits/settles drain; flatten rulings unchanged;
+INCUMBENT-COST bills nightly). Remaining words pending: SIZING
+(dark) and orientation's own clock.
+
+(prior:) ## STATE (2026-07-14 SWEPT):
 C-TAIL-SWEEP executed: 22 pre-cutover buys cancelled (TAIL_SWEEP
 .json artifact), census clean (2 stamped buys, 26 exits, 24 tail
 positions -- operator's hold/liquidate word PENDING). Definitive

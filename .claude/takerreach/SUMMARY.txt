@@ -1,0 +1,28 @@
+skips: {'cf_unsettled': 727, 'no_book_tick': 31, 'thin_page': 426, 'unsettled': 4}
+
+| day | n | engine E$ | engine E$ (pessimistic x0.5) | actual $ |
+| 07-10 | 41 | $+12.63 | $+11.87 | $+2.50 |
+| 07-11 | 77 | $+15.80 | $+14.94 | $+7.35 |
+| 07-12 | 73 | $+11.57 | $+10.59 | $+6.80 |
+| 07-13 | 53 | $-0.39 | $-0.22 | $-5.45 |
+
+N=244 era-clean legs
+REACH LAW grade:      engine E$+39.61 vs actual $+11.20 | delta $+28.41 (CI [-3.05, +58.03]) | yield 15.4% on E$258 staked
+PESSIMISTIC (x0.5):   engine E$+37.17 | delta $+25.97 (CI [-3.18, +59.13]) | yield 16.0%
+real-print deep partition stands: 10/1 (C-FULLWINDOW, untouched)
+
+== THE HARVESTABLE MAP (taker arrivals + reach, per cat|flow) ==
+  ATP_CHALL|open     arrivals/hr 164.47 | P1c-reach rate/hr 88.769 | 5c 59.569 | 10c 37.875 | hours 22198.0 [g9_train_era]
+  ATP_CHALL|quiet    arrivals/hr 0.42 | P1c-reach rate/hr 0.106 | 5c 0.013 | 10c 0.005 | hours 41708.0 [g9_train_era]
+  ATP_CHALL|warm     arrivals/hr 2.61 | P1c-reach rate/hr 1.285 | 5c 0.220 | 10c 0.099 | hours 10359.0 [g9_train_era]
+  ATP_MAIN|na        arrivals/hr 23.35 | P1c-reach rate/hr 12.771 | 5c 7.669 | 10c 4.680 | hours 106518.0 [g9_train_era]
+  ITF_M|open         arrivals/hr 145.35 | P1c-reach rate/hr 79.118 | 5c 53.686 | 10c 34.172 | hours 1218.0 [live_era_fitted]
+  ITF_M|quiet        arrivals/hr 0.14 | P1c-reach rate/hr 0.013 | 5c 0.000 | 10c 0.000 | hours 525.0 [live_era_fitted]
+  ITF_M|warm         arrivals/hr 0.91 | P1c-reach rate/hr 0.394 | 5c 0.105 | 10c 0.016 | hours 381.0 [live_era_fitted]
+  ITF_W|open         arrivals/hr 175.10 | P1c-reach rate/hr 94.744 | 5c 67.961 | 10c 44.786 | hours 1271.0 [live_era_fitted]
+  ITF_W|quiet        arrivals/hr 0.14 | P1c-reach rate/hr 0.033 | 5c 0.009 | 10c 0.005 | hours 581.0 [live_era_fitted]
+  ITF_W|warm         arrivals/hr 0.75 | P1c-reach rate/hr 0.219 | 5c 0.063 | 10c 0.031 | hours 479.0 [live_era_fitted]
+  WTA_CHALL|open     arrivals/hr 128.05 | P1c-reach rate/hr 69.462 | 5c 49.768 | 10c 32.889 | hours 3479.0 [g9_train_era]
+  WTA_CHALL|quiet    arrivals/hr 0.36 | P1c-reach rate/hr 0.088 | 5c 0.013 | 10c 0.008 | hours 6343.0 [g9_train_era]
+  WTA_CHALL|warm     arrivals/hr 2.64 | P1c-reach rate/hr 1.450 | 5c 0.242 | 10c 0.082 | hours 1530.0 [g9_train_era]
+  WTA_MAIN|na        arrivals/hr 20.18 | P1c-reach rate/hr 11.117 | 5c 7.591 | 10c 4.844 | hours 86410.0 [g9_train_era]

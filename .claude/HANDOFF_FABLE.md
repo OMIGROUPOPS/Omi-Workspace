@@ -33,7 +33,58 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 late night — C50 keeps this current):
+## STATE (2026-07-14 ~9:30 pm — C50 keeps this current):
+
+### >>> THE LOADED SEQUENCE (execute from a fresh session; all code committed at 7338fef7 + this close-out) <<<
+Session-zero: read this file + BOARD + the vault's top three entries, then:
+1. ATLAS BUILD (detached, ALONE on the 2GB box; the reach trial OOM'd
+   once — the builder is already memory-shaped):
+   ssh root@104.131.191.95; cd /root/Omi-Workspace;
+   git pull --rebase origin blend/kalshi-occ-fallback;
+   nohup nice -n 15 python3 arb-executor/analysis/trendpath_build.py > /root/trendpath_out.txt 2>&1 &
+   Watch: "ATLAS_V1:" done | Traceback crash | pgrep -f trendpath_build
+   gone = silent OOM.
+2. SHIMIC LANE-1: the builder prints the ITF_W|underdog|le25 page at the
+   end — compare to the drift the operator watched (MIC discovered ~15-16;
+   operator: "aim the 10-12 drift, not the 16 now"): bottom depth_p50
+   should be >= ~4c; cite it either way.
+3. WEEK RE-GRADE at path prices under the reach law: replay in the
+   liveaim_backtest pattern but aim = discovery_px - atlas
+   bottom.depth_p50 for BOTH legs at discovery; fills judged by
+   .claude/takerreach/LAW.json (P = 1-exp(-rate_X x residency), rate
+   keyed cat|flow_bucket, X = depth below trailing 15m median);
+   pessimistic column x0.5. Doors: pass n>=300 era-clean + CI off zero ->
+   five forward nights -> operator word; fail -> refusal six, axis cited.
+   Re-pull settlements FIRST (the reach trial lost 727 legs to
+   counterfactual-unsettled; more have landed since).
+4. GATED DEPLOY of trendpath_shadow (code in live_v4.py at 7338fef7,
+   flag trendpath_shadow_enabled=true committed): write
+   .claude/proof_20260714/PROOF_TREND_PATH.md citing the literal SHA
+   7338fef7, then on the VPS:
+   cd /root/Omi-Workspace/arb-executor && OUTCOME_PROOF=<path> OUTCOME_PROOF_SHA=7338fef7 bash deploy/deploy_live_v4.sh
+   Known snags: untracked-twin pull collisions (rm the untracked copy,
+   rebase); stash-pop conflict on audit_log.json (git checkout HEAD --
+   the artifact, drop the stash); never trust a chained deploy's exit
+   code — verify state/last_deploy_sha.
+5. C50 ONE PUSH carrying THE OPERATOR RULING VERBATIM into the vault:
+   "option A rejected — no completion fills mid-game; window-1 value is
+   the thesis; flatten-kept remains the only post-bell action."
+   Touch: vault + CLASS_LEDGER (AIM/TIMING attempt five) + MODEL_REGISTRY
+   (atlas note) + BOARD recital + this State.
+STANDING AFTER: 6:10 deletion word (honest gate) · EV3 re-read at n>=300
+· COMBINED-CAP remedy word · -0g · LIVE-AIM forward accrual · reach-law
+re-run at n>=300.
+
+C-TAKER-REACH v1 LANDED: E$+39.61 vs actual +$11.20 (delta +$28.41, CI
+[-3.05,+58.03]); pessimistic x0.5 +$25.97; yield 15.4-16.0% vs the 8%
+bar; N=244 < 300 and CI kisses zero -> DOORS SHUT ON THE LETTER (no
+bar-drop, no refusal five); forward clock stands; record =
+STRONGLY-POSITIVE-BUT-UNDERPOWERED. THE HARVESTABLE MAP: the harvest
+lives ENTIRELY in OPEN flow (ITF_W|open 94.7/68.0/44.8 sweeps/hr at
+1/5/10c; quiet ~0) — the mirror census undercounted 100x. The fill judge
+for all future replays = .claude/takerreach/LAW.json.
+
+(prior:) ## STATE (2026-07-14 late night):
 C-FULLWINDOW-REPLAY DONE (detached, read-only): the REAL trial of
 the fourth aim design. N=765 era-clean legs: engine +8.40 vs actual
 +11.20 (delta -2.80, CI [-38,+34]) -- no pass, forward clock stands.

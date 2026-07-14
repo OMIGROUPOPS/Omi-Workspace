@@ -44,3 +44,5 @@
 **LIVE-AIM NOTE (07-14, C-LIVE-AIM v1):** fourth aim design, SHADOW: prior (GUIDEBOOK_V1 page) x live state (flow_ratio vs M3/M13 curve, depth_trend, spread, print_sig); lib_conf = banked-tape confidence per cat (accrual-aware); nightly LIVE-AIM SHADOW line; forward cutover bar n>=300 + CI clear of zero + operator word.
 
 **LIVEAIM-BACKTEST NOTE (07-14):** discovery-instant replay N=741 era-clean: engine +9.50 vs actual +11.20 (CI [-34,+34]); AIM_DEEP fired 1x -- the moment-forming mechanism is a re-aim-time phenomenon, unmeasurable at discovery instants. Acceleration refused; forward bar unchanged.
+
+**REACH LAW (07-14, C-TAKER-REACH v1) — THE FILL JUDGE:** P(fill at depth X over residency R) = 1-exp(-rate_X*R); rates per cat|flow from G9 taker-sell sweeps (< Jul 10, walk-forward) + live-era ITF (branded). Week re-grade: E$+39.61 vs actual +$11.20, yield 15.4-16.0% vs 8% bar incl. pessimistic x0.5; N=244 (underpowered, CI [-3.05,+58]); doors closed on the letter; forward clock stands. THE HARVESTABLE MAP: the harvest lives in OPEN flow (ITF_W|open 68 five-cent-reach sweeps/hr; quiet ~0). .claude/takerreach/LAW.json

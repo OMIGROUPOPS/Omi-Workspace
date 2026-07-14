@@ -1,0 +1,203 @@
+# ADJUDICATION 20260713 (nightly conviction replay; gate 3a passed)
+
+
+**YIELD-ON-WAGERED: -1.0% (net $-2.27 on $238 staked) vs the 8% bar** (backfill: 07-10 +1.6% · 07-11 +0.8% · 07-12 +0.1% · 07-13 −3.8%)
+**REALIZED-BY-SUBTRACTION: 0 DROP-AS-PAIR refusals (0 graded, dollars-not-lost $+0.00) | seesaw: 0 refused / 0 lifted | one-sided VIOLATIONS: 0 | PACKET COUNTDOWN: n=337/300 (auto re-run 2026-07-14 10:40 AM ET; PACKET FIRED)**
+**INCUMBENT-COST: $-2.27 across 104 incumbent-entered legs (attribution: trendpath_live_aim stamp)**
+| id | ticker | cat | fill ET | paid | cyc | grade | posterior | legacy | pnl¢ |
+|---|---|---|---|---|---|---|---|---|---|
+| T-20260713-0047 | ATPCHALLENGERMATCH-26JUL13YE | ATP_CHALL | 01:35:19 AM | 42 | 1 | AGREE | 0.43 | pair97 | 0.0 |
+| T-20260713-0019 | WTAMATCH-26JUL13AMAHER-AMA | WTA_MAIN | 01:59:24 AM | 35 | 1 | NO-OPINION | — |  | 40.0 |
+| T-20260713-0081 | ATPCHALLENGERMATCH-26JUL13KR | ATP_CHALL | 02:26:05 AM | 85 | 1 | AGREE | 0.84 |  | 65.0 |
+| T-20260713-0106 | ATPMATCH-26JUL12FELKEC-KEC | ATP_MAIN | 02:45:08 AM | 73 | 1 | NO-OPINION | — |  | 95.0 |
+| T-20260713-0087 | ATPMATCH-26JUL12FELKEC-FEL | ATP_MAIN | 02:46:21 AM | 27 | 1 | NO-OPINION | — | pair97 | 35.0 |
+| T-20260713-0010 | ATPCHALLENGERMATCH-26JUL13PR | ATP_CHALL | 03:41:17 AM | 90 | 1 | AGREE | 0.90 |  | -15.0 |
+| T-20260713-0062 | ATPCHALLENGERMATCH-26JUL13BI | ATP_CHALL | 03:45:37 AM | 62 | 1 | AGREE | 0.62 |  | 90.0 |
+| T-20260713-0046 | ATPMATCH-26JUL13PASKRU-PAS | ATP_MAIN | 03:45:38 AM | 64 | 1 | NO-OPINION | — |  | 5.0 |
+| T-20260713-0008 | ITFWMATCH-26JUL13SVIART-SVI | ITF_W | 04:07:09 AM | 22 | 1 | AGREE | 0.26 |  | 30.0 |
+| T-20260713-0060 | ITFWMATCH-26JUL13SVIART-ART | ITF_W | 04:07:42 AM | 79 | 1 | AGREE | 0.78 |  | 95.0 |
+| T-20260713-0054 | ITFWMATCH-26JUL13VELKOR-KOR | ITF_W | 04:09:56 AM | 65 | 1 | AGREE | 0.65 |  | -25.0 |
+| T-20260713-0010 | ATPCHALLENGERMATCH-26JUL13PR | ATP_CHALL | 04:10:46 AM | 89 | 2 | AGREE | 0.89 |  | -15.0 |
+| T-20260713-0213 | ITFMATCH-26JUL13MOHKEZ-MOH | ITF_M | 04:35:43 AM | 90 | 1 | AGREE | 0.91 |  | -10.0 |
+| T-20260713-0212 | ITFMATCH-26JUL13ASUKLU-ASU | ITF_M | 04:36:10 AM | 49 | 1 | AGREE | 0.49 |  | -245.0 |
+| T-20260713-0016 | WTACHALLENGERMATCH-26JUL13RA | WTA_CHALL | 04:40:45 AM | 15 | 1 | AGREE | 0.15 |  | 20.0 |
+| T-20260713-0029 | ITFWMATCH-26JUL13GIZVLA-GIZ | ITF_W | 05:03:07 AM | 14 | 1 | AGREE | 0.16 |  | -10.0 |
+| T-20260713-0020 | WTACHALLENGERMATCH-26JUL13GR | WTA_CHALL | 05:05:23 AM | 20 | 1 | NO-OPINION | — |  | 25.0 |
+| T-20260713-0039 | ITFWMATCH-26JUL13MALMOO-MOO | ITF_W | 05:06:46 AM | 16 | 1 | AGREE | 0.20 |  | 4.0 |
+| T-20260713-0065 | ATPCHALLENGERMATCH-26JUL13YE | ATP_CHALL | 05:07:46 AM | 56 | 1 | AGREE | 0.57 | pair97 | -20.0 |
+| T-20260713-0038 | ITFWMATCH-26JUL13MALMOO-MAL | ITF_W | 05:08:35 AM | 80 | 1 | AGREE | 0.81 |  | 90.0 |
+| T-20260713-0045 | WTACHALLENGERMATCH-26JUL13GR | WTA_CHALL | 05:09:24 AM | 77 | 1 | AGREE | 0.77 | pair97 | 95.0 |
+| T-20260713-0174 | ITFMATCH-26JUL13CASMOL-MOL | ITF_M | 05:09:57 AM | 12 | 1 | AGREE | 0.22 |  | -25.0 |
+| T-20260713-0036 | ITFWMATCH-26JUL13CAKVOZ-CAK | ITF_W | 05:10:08 AM | 71 | 1 | WOULD-REFUSE | 0.63 |  | 55.0 |
+| T-20260713-0022 | WTACHALLENGERMATCH-26JUL13PA | WTA_CHALL | 05:10:11 AM | 22 | 1 | WOULD-REFUSE | 0.20 |  | -110.0 |
+| T-20260713-0177 | ITFWMATCH-26JUL13GRORAS-RAS | ITF_W | 05:10:31 AM | 52 | 1 | AGREE | 0.54 |  | -20.0 |
+| T-20260713-0031 | ITFWMATCH-26JUL13PULWIR-PUL | ITF_W | 05:11:47 AM | 31 | 1 | AGREE | 0.30 |  | -50.0 |
+| T-20260713-0222 | ITFWMATCH-26JUL13DIGZAP-DIG | ITF_W | 05:14:15 AM | 88 | 1 | AGREE | 0.89 |  | 20.0 |
+| T-20260713-0073 | ITFWMATCH-26JUL13FEHKRO-FEH | ITF_W | 05:18:48 AM | 10 | 1 | AGREE | 0.12 |  | -10.0 |
+| T-20260713-0116 | WTAMATCH-26JUL13ROMKUL-ROM | WTA_MAIN | 05:18:54 AM | 76 | 1 | NO-OPINION | — |  | 95.0 |
+| T-20260713-0058 | WTAMATCH-26JUL13CRIJEA-CRI | WTA_MAIN | 05:19:26 AM | 65 | 1 | NO-OPINION | — |  | -10.0 |
+| T-20260713-0228 | WTAMATCH-26JUL13BONSOR-SOR | WTA_MAIN | 05:19:39 AM | 43 | 1 | NO-OPINION | — |  | -215.0 |
+| T-20260713-0175 | ITFMATCH-26JUL13VULPAO-PAO | ITF_M | 05:21:16 AM | 19 | 1 | AGREE | 0.19 |  | -80.0 |
+| T-20260713-0053 | WTAMATCH-26JUL13AVAFET-FET | WTA_MAIN | 05:23:00 AM | 8 | 1 | NO-OPINION | — |  | -40.0 |
+| T-20260713-0162 | ATPMATCH-26JUL13SANDAN-DAN | ATP_MAIN | 05:24:56 AM | 77 | 1 | NO-OPINION | — |  | 100.0 |
+| T-20260713-0145 | ITFMATCH-26JUL13BATSYC-SYC | ITF_M | 05:28:11 AM | 12 | 1 | AGREE | 0.13 |  | 20.0 |
+| T-20260713-0146 | ITFMATCH-26JUL13BENWRI-WRI | ITF_M | 05:28:30 AM | 55 | 1 | AGREE | 0.56 |  | 75.0 |
+| T-20260713-0220 | ATPCHALLENGERMATCH-26JUL12DE | ATP_CHALL | 05:29:54 AM | 57 | 1 | AGREE | 0.58 |  | -15.0 |
+| T-20260713-0145 | ITFMATCH-26JUL13BATSYC-SYC | ITF_M | 05:39:24 AM | 12 | 1 | WOULD-REFUSE | 0.08 |  | 20.0 |
+| T-20260713-0024 | ITFMATCH-26JUL13HASZAG-ZAG | ITF_M | 05:40:16 AM | 13 | 1 | AGREE | 0.14 |  | 20.0 |
+| T-20260713-0071 | ITFWMATCH-26JUL13SCHNDU-SCH | ITF_W | 05:43:15 AM | 51 | 1 | AGREE | 0.49 |  | -20.0 |
+| T-20260713-0138 | ITFMATCH-26JUL13GUNKUZ-KUZ | ITF_M | 05:44:11 AM | 59 | 1 | AGREE | 0.76 |  | open |
+| T-20260713-0118 | ATPCHALLENGERMATCH-26JUL13DO | ATP_CHALL | 05:56:39 AM | 27 | 1 | AGREE | 0.26 |  | -10.0 |
+| T-20260713-0141 | ITFMATCH-26JUL13DUTHAI-HAI | ITF_M | 06:11:12 AM | 8 | 1 | AGREE | 0.09 |  | 24.0 |
+| T-20260713-0232 | WTACHALLENGERMATCH-26JUL13KN | WTA_CHALL | 06:11:42 AM | 12 | 1 | AGREE | 0.12 |  | 15.0 |
+| T-20260713-0103 | ITFWMATCH-26JUL13DELBRO-DEL | ITF_W | 06:13:32 AM | 36 | 1 | AGREE | 0.38 |  | -35.0 |
+| T-20260713-0210 | ITFMATCH-26JUL13TROYUN-TRO | ITF_M | 06:15:46 AM | 8 | 1 | AGREE | 0.08 |  | 20.0 |
+| T-20260713-0082 | ITFMATCH-26JUL13MAYAER-MAY | ITF_M | 06:17:18 AM | 55 | 1 | AGREE | 0.57 |  | 75.0 |
+| T-20260713-0101 | ITFWMATCH-26JUL13MITROM-MIT | ITF_W | 06:28:04 AM | 30 | 1 | AGREE | 0.30 |  | -150.0 |
+| T-20260713-0022 | WTACHALLENGERMATCH-26JUL13PA | WTA_CHALL | 06:32:00 AM | 22 | 1 | WOULD-REFUSE | 0.01 |  | -110.0 |
+| T-20260713-0104 | ITFWMATCH-26JUL13RAJHUT-RAJ | ITF_W | 06:33:37 AM | 74 | 1 | AGREE | 0.73 |  | 20.0 |
+| T-20260713-0128 | WTAMATCH-26JUL13LIUIPE-IPE | WTA_MAIN | 06:37:34 AM | 19 | 1 | NO-OPINION | — |  | 25.0 |
+| T-20260713-0122 | WTACHALLENGERMATCH-26JUL13RI | WTA_CHALL | 06:39:10 AM | 54 | 1 | AGREE | 0.53 |  | 60.0 |
+| T-20260713-0110 | ITFMATCH-26JUL13GARCIO-GAR | ITF_M | 06:53:19 AM | 74 | 1 | AGREE | 0.77 |  | 95.0 |
+| T-20260713-0040 | ITFMATCH-26JUL13SARANG-SAR | ITF_M | 06:55:27 AM | 41 | 1 | AGREE | 0.46 |  | -30.0 |
+| T-20260713-0179 | ATPMATCH-26JUL13FAUDAM-FAU | ATP_MAIN | 07:03:33 AM | 55 | 1 | NO-OPINION | — |  | 0.0 |
+| T-20260713-0225 | ATPMATCH-26JUL13COLSKA-COL | ATP_MAIN | 07:10:50 AM | 83 | 1 | NO-OPINION | — |  | 75.0 |
+| T-20260713-0084 | ITFMATCH-26JUL13MEHJEF-JEF | ITF_M | 07:11:17 AM | 82 | 1 | AGREE | 0.83 |  | 80.0 |
+| T-20260713-0225 | ATPMATCH-26JUL13COLSKA-COL | ATP_MAIN | 07:15:47 AM | 83 | 1 | NO-OPINION | — |  | 75.0 |
+| T-20260713-0112 | ITFMATCH-26JUL13TIMCAR-TIM | ITF_M | 07:17:21 AM | 88 | 1 | AGREE | 0.89 |  | 10.0 |
+| T-20260713-0157 | ITFWMATCH-26JUL13KUMCHA-CHA | ITF_W | 07:17:48 AM | 22 | 1 | WOULD-REFUSE | 0.17 |  | 30.0 |
+| T-20260713-0124 | ITFWMATCH-26JUL13BOEPOH-POH | ITF_W | 07:30:34 AM | 76 | 1 | AGREE | 0.76 |  | -380.0 |
+| T-20260713-0095 | ITFWMATCH-26JUL13PETURB-URB | ITF_W | 07:33:47 AM | 38 | 1 | AGREE | 0.38 |  | -20.0 |
+| T-20260713-0167 | WTACHALLENGERMATCH-26JUL13SA | WTA_CHALL | 07:38:59 AM | 32 | 1 | AGREE | 0.32 |  | 63.0 |
+| T-20260713-0075 | ITFMATCH-26JUL13BERWAL-BER | ITF_M | 07:48:11 AM | 69 | 1 | AGREE | 0.73 |  | 171.0 |
+| T-20260713-0159 | ITFWMATCH-26JUL13IVAKOP-IVA | ITF_W | 07:53:08 AM | 91 | 1 | AGREE | 0.91 |  | -30.0 |
+| T-20260713-0239 | WTAMATCH-26JUL13PODMAR-MAR | WTA_MAIN | 07:56:16 AM | 76 | 1 | NO-OPINION | — |  | 95.0 |
+| T-20260713-0097 | ITFWMATCH-26JUL13KUHSEK-SEK | ITF_W | 07:57:45 AM | 22 | 1 | AGREE | 0.23 |  | 12.0 |
+| T-20260713-0207 | ITFWMATCH-26JUL13STESCH-SCH | ITF_W | 08:03:06 AM | 10 | 1 | AGREE | 0.13 |  | -50.0 |
+| T-20260713-0196 | WTAMATCH-26JUL13CHAJIM-CHA | WTA_MAIN | 08:03:15 AM | 65 | 1 | NO-OPINION | — |  | 90.0 |
+| T-20260713-0195 | ITFWMATCH-26JUL13NAGCHY-NAG | ITF_W | 08:26:11 AM | 93 | 1 | WOULD-REFUSE | 0.91 |  | -10.0 |
+| T-20260713-0194 | ITFWMATCH-26JUL13BALHEJ-HEJ | ITF_W | 08:39:26 AM | 24 | 1 | AGREE | 0.25 |  | -120.0 |
+| T-20260713-0101 | ITFWMATCH-26JUL13MITROM-MIT | ITF_W | 08:52:30 AM | 30 | 1 | WOULD-REFUSE | 0.01 |  | -150.0 |
+| T-20260713-0194 | ITFWMATCH-26JUL13BALHEJ-HEJ | ITF_W | 09:05:07 AM | 24 | 1 | AGREE | 0.25 |  | -120.0 |
+| T-20260713-0231 | WTACHALLENGERMATCH-26JUL13BA | WTA_CHALL | 09:30:31 AM | 40 | 1 | AGREE | 0.40 |  | 63.0 |
+| T-20260713-0217 | ITFMATCH-26JUL13ORTMIN-MIN | ITF_M | 09:34:06 AM | 24 | 1 | AGREE | 0.25 |  | -120.0 |
+| T-20260713-0194 | ITFWMATCH-26JUL13BALHEJ-HEJ | ITF_W | 09:35:53 AM | 24 | 1 | AGREE | 0.24 |  | -120.0 |
+| T-20260713-0058 | WTAMATCH-26JUL13CRIJEA-CRI | WTA_MAIN | 09:40:30 AM | 65 | 1 | NO-OPINION | — |  | -10.0 |
+| T-20260713-0198 | ITFMATCH-26JUL13SEGKAS-SEG | ITF_M | 09:46:48 AM | 25 | 1 | AGREE | 0.29 |  | 35.0 |
+| T-20260713-0124 | ITFWMATCH-26JUL13BOEPOH-POH | ITF_W | 10:06:35 AM | 76 | 1 | WOULD-REFUSE | 0.02 |  | -380.0 |
+| T-20260713-0238 | ITFMATCH-26JUL13GIAMEN-GIA | ITF_M | 10:09:34 AM | 91 | 1 | AGREE | 0.92 |  | 0.0 |
+| T-20260713-0247 | WTAMATCH-26JUL13LINHON-HON | WTA_MAIN | 10:32:35 AM | 16 | 1 | NO-OPINION | — |  | 10.0 |
+| T-20260713-0242 | ATPCHALLENGERMATCH-26JUL13CH | ATP_CHALL | 11:03:29 AM | 21 | 1 | AGREE | 0.21 |  | -105.0 |
+| T-20260713-0243 | ATPCHALLENGERMATCH-26JUL13FO | ATP_CHALL | 11:03:47 AM | 15 | 1 | AGREE | 0.15 |  | -10.0 |
+| T-20260713-0244 | ATPCHALLENGERMATCH-26JUL13MO | ATP_CHALL | 11:14:15 AM | 65 | 1 | AGREE | 0.66 |  | -325.0 |
+| T-20260713-0260 | ITFMATCH-26JUL13NAKDEL-DEL | ITF_M | 11:35:36 AM | 7 | 1 | AGREE | 0.11 |  | 20.0 |
+| T-20260713-0268 | ATPCHALLENGERMATCH-26JUL13IN | ATP_CHALL | 11:37:38 AM | 52 | 1 | AGREE | 0.52 |  | 0.0 |
+| T-20260713-0265 | ITFWMATCH-26JUL13SEMXUX-SEM | ITF_W | 12:07:09 PM | 88 | 1 | AGREE | 0.90 |  | 31.0 |
+| T-20260713-0266 | ATPMATCH-26JUL12KOPPRI-PRI | ATP_MAIN | 12:20:52 PM | 74 | 1 | NO-OPINION | — |  | -5.0 |
+| T-20260713-0271 | WTAMATCH-26JUL13GRAPAR-PAR | WTA_MAIN | 12:28:34 PM | 90 | 1 | NO-OPINION | — |  | 40.0 |
+| T-20260713-0263 | ATPCHALLENGERMATCH-26JUL13SH | ATP_CHALL | 01:02:22 PM | 60 | 1 | AGREE | 0.60 |  | 85.0 |
+| T-20260713-0263 | ATPCHALLENGERMATCH-26JUL13SH | ATP_CHALL | 01:06:39 PM | 60 | 1 | AGREE | 0.60 |  | 85.0 |
+| T-20260713-0275 | ATPCHALLENGERMATCH-26JUL13SA | ATP_CHALL | 02:01:56 PM | 89 | 1 | AGREE | 0.90 |  | -5.0 |
+| T-20260713-0219 | WTAMATCH-26JUL13KRETOM-TOM | WTA_MAIN | 02:54:42 PM | 10 | 1 | NO-OPINION | — |  | open |
+| T-20260713-0274 | ATPCHALLENGERMATCH-26JUL13RO | ATP_CHALL | 03:03:12 PM | 23 | 1 | AGREE | 0.23 |  | 35.0 |
+| T-20260713-0279 | ITFWMATCH-26JUL13OLIKAI-KAI | ITF_W | 03:18:36 PM | 74 | 1 | AGREE | 0.76 |  | 90.0 |
+| T-20260713-0283 | ITFMATCH-26JUL13STEKOT-KOT | ITF_M | 04:11:13 PM | 20 | 1 | AGREE | 0.21 |  | 30.0 |
+| T-20260713-0223 | WTAMATCH-26JUL13BLISAS-SAS | WTA_MAIN | 05:41:22 PM | 55 | 1 | NO-OPINION | — |  | open |
+| T-20260713-0284 | ITFMATCH-26JUL13IBRCAM-IBR | ITF_M | 06:16:41 PM | 40 | 1 | AGREE | 0.42 |  | 40.0 |
+| T-20260713-0296 | ITFWMATCH-26JUL13SHIMIC-MIC | ITF_W | 07:46:34 PM | 16 | 1 | AGREE | 0.19 |  | 20.0 |
+| T-20260713-0296 | ITFWMATCH-26JUL13SHIMIC-MIC | ITF_W | 07:46:55 PM | 16 | 1 | AGREE | 0.19 |  | 20.0 |
+| T-20260713-0286 | ITFMATCH-26JUL13SIKSCH-SCH | ITF_M | 07:59:29 PM | 27 | 1 | AGREE | 0.31 |  | 35.0 |
+| T-20260713-0291 | ITFMATCH-26JUL13SIKSCH-SIK | ITF_M | 08:22:04 PM | 68 | 1 | AGREE | 0.69 |  | 100.0 |
+| T-20260713-0295 | ITFWMATCH-26JUL13RUSCAD-CAD | ITF_W | 09:17:26 PM | 17 | 1 | AGREE | 0.16 |  | 20.0 |
+| T-20260713-0294 | ITFWMATCH-26JUL13RUSCAD-RUS | ITF_W | 09:25:48 PM | 77 | 1 | AGREE | 0.75 |  | open |
+| T-20260713-0293 | ITFMATCH-26JUL13VANBAX-BAX | ITF_M | 09:29:44 PM | 31 | 1 | AGREE | 0.34 |  | 35.0 |
+| T-20260713-0293 | ITFMATCH-26JUL13VANBAX-BAX | ITF_M | 09:57:45 PM | 31 | 1 | AGREE | 0.30 |  | 35.0 |
+| T-20260713-0292 | ITFMATCH-26JUL13DEMTRI-TRI | ITF_M | 10:07:25 PM | 21 | 1 | AGREE | 0.23 |  | 30.0 |
+| T-20260713-0317 | ITFWMATCH-26JUL13SNICAI-CAI | ITF_W | 11:18:37 PM | 9 | 1 | AGREE | 0.09 |  | 15.0 |
+
+## LIVE-vs-REPLAY AGREEMENT (same-instrument law, live edition) — checked 108, **divergences: 5**
+- **VIOLATION** T-20260713-0020: replay NO-OPINION vs live CONVICTION
+- **VIOLATION** T-20260713-0174: conf gap 0.15 live vs 0.34 replay (at the shadow's tick)
+- **VIOLATION** T-20260713-0036: conf gap 0.71 live vs 0.59 replay (at the shadow's tick)
+- **VIOLATION** T-20260713-0138: conf gap 0.59 live vs 0.92 replay (at the shadow's tick)
+- **VIOLATION** T-20260713-0104: conf gap 0.74 live vs 0.62 replay (at the shadow's tick)
+
+**REFUSE-MARGIN SHADOW (ITF_M, M16): fitted 8c would-have-saved +0¢ | decreed 2c -20¢** (held-out winner 07-11: +1170 vs -85; cutover on the operator's word)
+
+**MIGRATION METER: fitted-conviction AGREE 78/108 (72.2%) | WOULD-REFUSE 8 | NO-OPINION 22 | pair-97 touched 4 (3.7%)**
+
+Per category: ATP_CHALL A16/R0/N0 p97:2 | ATP_MAIN A0/R0/N8 p97:1 | ITF_M A27/R1/N0 p97:0 | ITF_W A29/R5/N0 p97:0 | WTA_CHALL A6/R2/N1 p97:1 | WTA_MAIN A0/R0/N13 p97:0
+
+## COMPLETION-SHADOW (per-leg economics beside the live machinery; taker branch GATED behind operator_taker_word)
+
+| cat | verdict | n |
+|---|---|---|
+| ATP_CHALL | NO-OPINION | 80 |
+| ATP_CHALL | flatten_kept | 11 |
+| ATP_CHALL | hold | 46 |
+| ATP_CHALL | taker_complete | 10 |
+| ATP_MAIN | NO-OPINION | 150 |
+| ATP_MAIN | flatten_kept | 3 |
+| ATP_MAIN | hold | 58 |
+| ATP_MAIN | taker_complete | 9 |
+| ITF_M | NO-OPINION | 176 |
+| ITF_M | flatten_kept | 14 |
+| ITF_M | hold | 61 |
+| ITF_M | taker_complete | 13 |
+| ITF_W | NO-OPINION | 96 |
+| ITF_W | flatten_kept | 28 |
+| ITF_W | hold | 4 |
+| ITF_W | taker_complete | 19 |
+| WTA_CHALL | NO-OPINION | 28 |
+| WTA_CHALL | hold | 31 |
+| WTA_MAIN | NO-OPINION | 135 |
+| WTA_MAIN | flatten_kept | 20 |
+| WTA_MAIN | hold | 92 |
+| WTA_MAIN | taker_complete | 4 |
+
+kept-leg EV sums (¢, two-term frame, win-ride residual excluded): ATP_CHALL +37 | ATP_MAIN +214 | ITF_M +303 | ITF_W -119 | WTA_CHALL +36 | WTA_MAIN +373
+
+## COMPLETION LIVE-vs-SHADOW (operator word 07-12; the same-instrument law, completion edition) — actions: 43, divergences: 18
+- action flatten_kept → flattening on KXATPCHALLENGERMATCH-26JUL13YEVCAM
+- action flatten_kept → flattening on KXATPCHALLENGERMATCH-26JUL13VILGAN
+- action taker_complete → crossed on KXATPMATCH-26JUL12FELKEC
+- action flatten_kept → flattening on KXATPCHALLENGERMATCH-26JUL13PRICRI
+- action taker_complete → crossed on KXITFWMATCH-26JUL13SVIART
+- action flatten_kept → flattening on KXITFWMATCH-26JUL13VELKOR
+- action flatten_kept → flattening on KXATPCHALLENGERMATCH-26JUL13PRICRI
+- action flatten_kept → flattening on KXITFMATCH-26JUL13MOHKEZ
+- action flatten_kept → flattening on KXITFWMATCH-26JUL13GIZVLA
+- action flatten_kept → flattening on KXATPCHALLENGERMATCH-26JUL13YEVCAM
+- action flatten_kept → flattening on KXITFMATCH-26JUL13CASMOL
+- action flatten_kept → flattening on KXITFWMATCH-26JUL13GRORAS
+- action flatten_kept → flattening on KXITFWMATCH-26JUL13PULWIR
+- action flatten_kept → flattening on KXITFWMATCH-26JUL13DIGZAP
+- action flatten_kept → flattening on KXATPMATCH-26JUL13PASKRU
+- **VIOLATION** shadow said taker_complete on KXITFWMATCH-26JUL13MALMOO but NO action followed
+- **VIOLATION** shadow said taker_complete on KXITFWMATCH-26JUL13MITROM but NO action followed
+- **VIOLATION** shadow said taker_complete on KXWTAMATCH-26JUL13LIUIPE but NO action followed
+- **VIOLATION** shadow said taker_complete on KXITFWMATCH-26JUL13KUHSEK but NO action followed
+- **VIOLATION** shadow said taker_complete on KXWTAMATCH-26JUL13CHAJIM but NO action followed
+- **VIOLATION** shadow said taker_complete on KXITFWMATCH-26JUL13BALHEJ but NO action followed
+- **VIOLATION** shadow said taker_complete on KXITFMATCH-26JUL13SEGKAS but NO action followed
+- **VIOLATION** shadow said taker_complete on KXATPCHALLENGERMATCH-26JUL13CHOSUR but NO action followed
+- **VIOLATION** shadow said flatten_kept on KXATPCHALLENGERMATCH-26JUL13RODALK but NO action followed
+- **VIOLATION** shadow said taker_complete on KXITFWMATCH-26JUL13OLIKAI but NO action followed
+
+## GOVERNOR SPLIT (whose hand moved — actions | exit ¢ attributed | avg band)
+- per_leg_policy: 101 actions | -276¢ | band -2.1c (n=35)
+- pair97_bound: 1498 actions | +0¢ | band —
+- maker_exit: 115 actions | +2817¢ | band +10.5c (n=55)
+- match_live_cancel: 179 actions | +0¢ | band —
+- **taker cap hits (DECREED 3/day until n≥30 graded): 49 — named, never silent**
+
+## SUNSET LEDGER (C-INCUMBENT-SUNSET: the convicted incumbent's organs, each with a death date, never a surprise in a screenshot)
+- static aim tables -> path-mode NO-CALL posture (trendpath_live): DARK | packet n=337/300 -> default-GO +12h (PENDING-GO (default-GO decreed; STOP file halts))
+- join-the-market placement -> the same path-mode flag: DARK | packet n=337/300 -> default-GO +12h (PENDING-GO (default-GO decreed; STOP file halts))
+- 97-remainder completion pricing -> combined-at-path pair design (rides path-mode): DARK | packet n=337/300 -> default-GO +12h (PENDING-GO (default-GO decreed; STOP file halts))
+- leg-level entry permission -> PAIR-LAW (orientation-composition + seesaw lift): LIVE 07-15
+- static 5-lot sizing -> sizing engine v0 (sizing_live): DARK | awaiting the operator's sizing word (drawdown floor still a named placeholder)
+- undirected placement -> orientation layer (orientation_live): DARK | tells' own clock (week: 8% coverage, n=8/300) — layers in when its bar clears
+
+## FULL-SLATE SUMMARY
+FULL-SLATE: steps FITTED 37%/DECREED 62%/NAKED 4 | no-fill 242 (starved 191) | xt-violations 9

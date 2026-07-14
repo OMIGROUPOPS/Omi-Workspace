@@ -466,6 +466,93 @@ def main():
                              (c9, g[0], g[1], g[2]))
     except Exception:
         pass
+    # [C-CONTENTION-LAW v1, 07-15] SELECTOR: the operator's understanding
+    # as selection law, priced nightly BEFORE it ever touches a live gate.
+    # The would-have slate (TRADE-AT-PATH legs at their contention aims,
+    # tape-touch fills -- the LIVE-AIM grading convention) vs the actual
+    # slate, dollars and yield-on-wagered vs the 8% bar, per category; the
+    # DROP list named with what those legs actually did.
+    try:
+        sel_rows, bells10 = {}, {}
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"trendpath_shadow"' in line:
+                d9 = json.loads(line)
+                det9 = d9.get("details") or {}
+                tk9 = d9.get("ticker", "")
+                if tk9 and tk9 not in sel_rows and det9.get("selector"):
+                    sel_rows[tk9] = (d9.get("ts_epoch", 0), det9)
+            elif '"gun_fired"' in line:
+                d9 = json.loads(line)
+                ev9 = (d9.get("details") or {}).get("event", "")
+                if ev9 and ev9 not in bells10:
+                    bells10[ev9] = d9.get("ts_epoch", 0)
+        if sel_rows:
+            live_pnl10 = {r["tk"]: r["pnl_cents"] for r in rows
+                          if r.get("pnl_cents") is not None}
+            live_stk10 = defaultdict(float)
+            live_act10 = defaultdict(float)
+            for t9 in trades:
+                live_stk10[cat_of(t9["tk"]) or "?"] += \
+                    (t9.get("px") or 0) * (t9.get("qty") or 0) / 100.0
+            for tk9, p9 in live_pnl10.items():
+                live_act10[cat_of(tk9) or "?"] += p9 / 100.0
+            SC = defaultdict(lambda: defaultdict(float))
+            drops10 = []
+            for tk9, (ats, det9) in sorted(sel_rows.items()):
+                c9 = cat_of(tk9) or "?"
+                v9 = det9["selector"]
+                SC[c9][v9] += 1
+                if v9 == "DROP":
+                    drops10.append((tk9, det9.get("contention_best_pct"),
+                                    live_pnl10.get(tk9)))
+                    continue
+                if v9 != "TRADE-AT-PATH":
+                    continue
+                aim9 = det9.get("contention_aim") or det9.get("path_aim")
+                won = settles.get(tk9, {}).get("settle")
+                if not aim9 or won not in ("WIN", "LOSS"):
+                    continue
+                obs9 = obs_cache.get(tk9) or leg_observations(tk9)
+                obs_cache[tk9] = obs9
+                w1e = bells10.get(tk9.rsplit("-", 1)[0], ats + 8 * 3600)
+                fill = next((o for o in obs9 if ats <= o[0] <= w1e
+                             and o[2] <= aim9), None)
+                if fill is None:
+                    continue
+                cashed = any(o[2] >= aim9 + 8 for o in obs9
+                             if o[0] > fill[0])
+                SC[c9]["e"] += (8 if cashed else
+                                ((100 - aim9) if won == "WIN"
+                                 else -aim9)) * 5 / 100.0
+                SC[c9]["stk"] += aim9 * 5 / 100.0
+                SC[c9]["graded"] += 1
+            L += ["", "## SELECTOR (C-CONTENTION-LAW: the path decides WHAT "
+                      "we trade) — would-have slate vs actual, vs the 8% bar"]
+            for c9, S9 in sorted(SC.items()):
+                L.append("- %s: TRADE %d / DROP %d / NO-OPINION %d | "
+                         "would-have $%+.2f on $%.0f staked (%s, %d graded) "
+                         "| actual slate $%+.2f on $%.0f (%s)"
+                         % (c9, S9["TRADE-AT-PATH"], S9["DROP"],
+                            S9["NO-OPINION"], S9["e"], S9["stk"],
+                            ("%+.1f%%" % (100 * S9["e"] / S9["stk"]))
+                            if S9["stk"] else "—", S9["graded"],
+                            live_act10.get(c9, 0.0), live_stk10.get(c9, 0.0),
+                            ("%+.1f%%" % (100 * live_act10.get(c9, 0.0)
+                                          / live_stk10[c9]))
+                            if live_stk10.get(c9) else "—"))
+            if drops10:
+                dropped_pnl = sum(a9 for _, _, a9 in drops10
+                                  if a9 is not None) / 100.0
+                L.append("- **DROP list** (leg | contention %% | actual): " +
+                         "; ".join("%s %s%% %s"
+                                   % ("-".join(t9.split("-")[-2:]), b9,
+                                      ("%+d¢" % a9) if a9 is not None
+                                      else "untraded")
+                                   for t9, b9, a9 in drops10[:12]) +
+                         (" | dropped legs the bot DID trade: $%+.2f"
+                          % dropped_pnl))
+    except Exception:
+        pass
     # [C-DELETION-GATE Part 1, 07-12] GOVERNOR SPLIT: the two live brains'
     # actions and dollars, separated at the stamp -- no hand-reading logs.
     # Dollars: each exit_filled attributes its pnl to the governor of the

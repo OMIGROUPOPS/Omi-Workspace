@@ -18,8 +18,23 @@ PAGES: category x discovery-price cell x side. Each page:
 SOURCES: G9 minute-candles (< Jul 10, era-admissible tour, walk-forward) ·
 live-era local tape for ITF (BRANDED live_era, hardening daily).
 Honest clock: onset = the -0k flow-step rule on per-minute volume.
-Discovery = median price of the first tape hour (the v2 convention)."""
-import json, gzip, sys, bisect
+Discovery = median price of the first tape hour (the v2 convention).
+
+[C-CONTENTION-LAW v1, 07-15] every page gains one number: CONTENTION =
+the achievable swing at the path entry -- the validated exit band (8c, the
+live band, a fitted anchor per section 0A) reachable from the page's
+path-aim, against the ride-loss at that entry weighted by the page's win
+partition OF ENTERED LEGS (legs whose path actually dipped to the aim --
+adverse selection kept, never averaged away). Exit reach = band-touch
+before onset (the week-regrade convention); win = terminal-tape proxy;
+entry fill probability annotated from the reach law (LAW.json) at the
+page's median flow/residency. FITTED AND CITED, NEVER DECREED (#11);
+NO-OPINION on thin tiers (n_entry < 8). Recomputed as pages harden daily
+(the 12:05a cron); operator understanding recorded verbatim in the vault:
+reaching exits in window 1 is the thesis; favorites with higher swings
+entered at the path are in great contention; high-priced favorites get
+dropped where the path shows no promise."""
+import json, gzip, sys, bisect, math
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
 from collections import defaultdict
@@ -32,6 +47,11 @@ SLICES = [480, 360, 240, 180, 120, 90, 60, 45, 30, 20, 10, 5]
 CATS = {"KXATPMATCH": "ATP_MAIN", "KXWTAMATCH": "WTA_MAIN",
         "KXATPCHALLENGERMATCH": "ATP_CHALL", "KXWTACHALLENGERMATCH": "WTA_CHALL",
         "KXITFMATCH": "ITF_M", "KXITFWMATCH": "ITF_W"}
+BAND = 8  # the live validated exit band -- a fitted anchor, cited, not tuned here
+_LAWP = WS / ".claude/takerreach/LAW.json"
+LAW = (json.loads(_LAWP.read_text(encoding="utf-8"))["law"]
+       if _LAWP.exists() else {})
+THR9 = {"ITF_M": 6, "ITF_W": 6, "ATP_CHALL": 16, "WTA_CHALL": 16}
 
 def pcell(px):
     return ("le25" if px <= 25 else "26_50" if px <= 50 else
@@ -77,11 +97,38 @@ def add_leg(pages, cat, series, vol_minutes):
         j = bisect.bisect_right(ts_, t) - 1
         if j >= 0:
             P["path"][sl].append(series[j][1] - disc)
-    pre = [(x[0], x[2]) for x in series if x[0] < on]
-    if pre:
-        bm, bp = min(pre, key=lambda x: x[1])
+    pre3 = [x for x in series if x[0] < on]
+    if pre3:
+        bi = min(range(len(pre3)), key=lambda i: pre3[i][2])
+        bm, bp = pre3[bi][0], pre3[bi][2]
         P["bottom_depth"].append(max(0.0, disc - bp))
         P["bottom_t"].append((on - bm) / 60.0)
+        # [C-CONTENTION-LAW] per-leg primitives: for each integer entry
+        # depth d (1..30 below THIS leg's discovery), did the path dip to
+        # the aim (entry), and after the FIRST touch did the pre-onset tape
+        # rebound to aim+BAND (exit reach, band-touch convention)? Plus the
+        # terminal-tape win proxy and the flow/residency the reach law needs.
+        win = 1 if series[-1][1] >= 50 else 0
+        suff = [0.0] * len(pre3)
+        mx = -1e9
+        for i in range(len(pre3) - 1, -1, -1):
+            mx = max(mx, pre3[i][1])
+            suff[i] = mx
+        reb, runmin, dseen = set(), 1e9, 0
+        for i, (_, _, lo_) in enumerate(pre3):
+            if lo_ < runmin:
+                runmin = lo_
+                dh = int(disc - runmin)
+                while dseen < min(30, dh):
+                    dseen += 1
+                    if suff[i] >= disc - dseen + BAND:
+                        reb.add(dseen)
+        p30 = sum(vol_minutes.get(k, 0)
+                  for k in range(int(bm) - 29 * 60, int(bm) + 60, 60))
+        P["disc"].append(disc)
+        P["res_h"].append((on - t0) / 3600.0)
+        P["p30"].append(p30)
+        P["legs"].append((disc, win, dseen, reb))
 
 def build_tour(pages):
     import pyarrow.parquet as pq
@@ -159,18 +206,84 @@ def q(xs, p):
     xs = sorted(xs)
     return round(xs[int(len(xs) * p)], 1) if xs else None
 
+def contention_of(P, cat):
+    """[C-CONTENTION-LAW v1] the page's one number, fitted: at each bottom
+    quantile depth d, among legs whose path ENTERED (dipped >= d):
+    p_exit = band-touch rate, p_win = win partition of those entered legs;
+    E/share at the page-median discovery = p_exit*BAND +
+    (1-p_exit)*(p_win*(100-aim) - (1-p_win)*aim); yield% = 100*E/aim.
+    Tiers with n_entry < 8 are omitted (NO-OPINION downstream). The live
+    selector recomputes yield at the leg's ACTUAL discovery from these
+    primitives; the reach law prices the entry fill as an annotation."""
+    legs = P.get("legs") or []
+    if len(legs) < 8:
+        return None
+    discs = sorted(x[0] for x in legs)
+    disc_med = discs[len(discs) // 2]
+    res_s = sorted(P.get("res_h") or [4.0])
+    res_med = res_s[len(res_s) // 2]
+    p30s = sorted(P.get("p30") or [])
+    p30_med = p30s[len(p30s) // 2] if p30s else None
+    thr = THR9.get(cat)
+    fb = None
+    if thr and p30_med is not None:
+        r = p30_med / float(thr)
+        fb = "quiet" if r < 0.25 else ("warm" if r < 1.0 else "open")
+    tiers = {}
+    for tq, pp in (("p25", 0.25), ("p50", 0.50), ("p75", 0.75)):
+        dq = q(P["bottom_depth"], pp)
+        if not dq or dq < 1:
+            continue
+        d = int(round(dq))
+        ent = [x for x in legs if x[2] >= d]
+        if len(ent) < 8:
+            continue
+        p_exit = sum(1 for x in ent if d in x[3]) / float(len(ent))
+        p_win = sum(1 for x in ent if x[1]) / float(len(ent))
+        aim = max(1, int(round(disc_med - d)))
+        ev = p_exit * BAND + (1 - p_exit) * (p_win * (100 - aim)
+                                             - (1 - p_win) * aim)
+        t = {"d": d, "n_entry": len(ent), "p_exit": round(p_exit, 3),
+             "p_win_entry": round(p_win, 3),
+             "yield_at_med_pct": round(100.0 * ev / aim, 1)}
+        if fb and LAW:
+            Lw = LAW.get("%s|%s" % (cat, fb))
+            if Lw:
+                rt = Lw["rate_per_hr"].get(str(min(max(d, 1), 20)), 0.0)
+                t["entry_fill_p"] = round(1 - math.exp(-rt * res_med), 3)
+                t["flow_med"] = fb
+        tiers[tq] = t
+    if not tiers:
+        return None
+    return {"band": BAND, "disc_med": disc_med,
+            "tiers": tiers,
+            "best_yield_at_med_pct": max(v["yield_at_med_pct"]
+                                         for v in tiers.values()),
+            "cited": ("exit=band-touch pre-onset (week-regrade convention); "
+                      "win=terminal-tape proxy; ride-loss weighted by the "
+                      "win partition of ENTERED legs (adverse selection "
+                      "kept); entry fill = reach law LAW.json")}
+
 pages = defaultdict(lambda: {"n": 0, "path": defaultdict(list),
-                             "bottom_depth": [], "bottom_t": []})
+                             "bottom_depth": [], "bottom_t": [],
+                             "disc": [], "res_h": [], "p30": [], "legs": []})
 print("atlas: tour from g9_candles ...", flush=True)
 build_tour(pages)
 print("atlas: ITF from live-era tape (BRANDED) ...", flush=True)
 build_itf(pages)
 
-atlas = {"meta": {"built": "2026-07-14",
+atlas = {"meta": {"built": "2026-07-15",
                   "lineage": ["AIM/TIMING MISSES attempt 5 — the path axis",
                               "G9 minute-candles < 2026-07-10 (tour, walk-forward)",
                               "live-era local tape (ITF, BRANDED, hardening)",
-                              "-0k flow-step onset; discovery = first-hour median"],
+                              "-0k flow-step onset; discovery = first-hour median",
+                              "C-CONTENTION-LAW v1: contention fitted per page "
+                              "(band-touch exit; entered-legs win partition; "
+                              "reach-law entry fill) — never decreed"],
+                  "operator_understanding": "reaching exits in window 1 is the "
+                      "thesis; favorites with higher swings entered at the path "
+                      "are in great contention; high-priced favorites get "
+                      "dropped where the path shows no promise",
                   "slices_min_before_onset": SLICES,
                   "operator_ruling": "option A rejected — no completion fills "
                                      "mid-game; window-1 value is the thesis; "
@@ -189,10 +302,17 @@ for key, P in pages.items():
         "bottom": {"depth_p25": q(P["bottom_depth"], 0.25),
                    "depth_p50": q(P["bottom_depth"], 0.50),
                    "depth_p75": q(P["bottom_depth"], 0.75),
-                   "t_med_min": q(P["bottom_t"], 0.50)}}
+                   "t_med_min": q(P["bottom_t"], 0.50)},
+        "contention": contention_of(P, key.split("|")[0])}
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(atlas, indent=1), encoding="utf-8")
 n_path = sum(1 for p in atlas["pages"].values() if p.get("verdict") == "PATH")
 print("ATLAS_V1: %d pages (%d PATH) -> %s" % (len(atlas["pages"]), n_path, OUT))
 sh = atlas["pages"].get("ITF_W|underdog|le25")
 print("SHIMIC page (ITF_W|underdog|le25):", json.dumps(sh)[:400] if sh else "MISSING")
+n_con = sum(1 for p in atlas["pages"].values()
+            if p.get("verdict") == "PATH" and p.get("contention"))
+print("CONTENTION: %d/%d PATH pages carry the fitted number" % (n_con, n_path))
+for k9 in ("ITF_W|leader|ge75", "ITF_W|underdog|le25"):
+    c9 = (atlas["pages"].get(k9) or {}).get("contention")
+    print("  %s -> %s" % (k9, json.dumps(c9)[:360] if c9 else "NO-OPINION"))

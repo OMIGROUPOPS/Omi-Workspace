@@ -2683,15 +2683,25 @@ class LiveV3:
         timing, the favorite at its dip-path target; combined arithmetic
         checked at PATH prices so the pair is designed to complete inside
         the window (operator ruling: no completion fills mid-game;
-        window-1 value is the thesis). NO-OPINION on thin pages."""
+        window-1 value is the thesis). NO-OPINION on thin pages.
+        [C-CONTENTION-LAW v1, 07-15] extended with the SELECTOR — the
+        operator's understanding as selection law: the page's fitted
+        contention recomputed at THIS leg's discovery decides WHAT we
+        trade. TRADE-AT-PATH clears the 8% arithmetic at some path price;
+        DROP clears it at none; NO-OPINION named on thin pages. One logged
+        field per leg, page cited; no acting path."""
         try:
             if not self.config.get("trendpath_shadow_enabled", True):
                 return
-            if getattr(self, "_trendatlas", None) is None:
-                _ap = Path(__file__).resolve().parent.parent / \
-                    ".claude/trendpath/ATLAS_V1.json"
+            _ap = Path(__file__).resolve().parent.parent / \
+                ".claude/trendpath/ATLAS_V1.json"
+            _amt = _ap.stat().st_mtime if _ap.exists() else 0
+            if getattr(self, "_trendatlas", None) is None or \
+                    getattr(self, "_trendatlas_mt", None) != _amt:
+                # pages harden daily (the 12:05a rebuild) -- reload on change
                 self._trendatlas = (json.loads(_ap.read_text(encoding="utf-8"))
                                     if _ap.exists() else {})
+                self._trendatlas_mt = _amt
             pages = (self._trendatlas or {}).get("pages", {})
             side = "leader" if current_price >= 50 else "underdog"
             pc = ("le25" if current_price <= 25 else
@@ -2702,6 +2712,8 @@ class LiveV3:
             if not page or page.get("verdict") != "PATH":
                 self._log("trendpath_shadow", {
                     "event": et, "verdict": "NO-OPINION",
+                    "selector": "NO-OPINION",
+                    "selector_why": "thin page (n<8) — named, never guessed",
                     "page": key, "n": (page or {}).get("n", 0),
                     "citation": "ATLAS_V1"}, ticker=tk)
                 return
@@ -2718,6 +2730,40 @@ class LiveV3:
                    "live_bid": int(live_bid),
                    "branded": page.get("branded"),
                    "citation": "ATLAS_V1 %s (path bottom p50; -0k onset clock)" % key}
+            # [C-CONTENTION-LAW v1] the selector: recompute the page's
+            # fitted contention at THIS leg's discovery. The high-priced
+            # favorite is sometimes the best trade on the slate at the
+            # right entry and sometimes untouchable at every entry — this
+            # field says which, per leg, page cited.
+            con = page.get("contention") or {}
+            tiers = con.get("tiers") or {}
+            cband = con.get("band", 8)
+            best_y = best_tier = best_aim = None
+            by_tier = {}
+            for tq, T in tiers.items():
+                d9, pe, pw = T.get("d"), T.get("p_exit"), T.get("p_win_entry")
+                if d9 is None or pe is None or pw is None:
+                    continue
+                a2 = max(1, int(round(current_price - d9)))
+                ev2 = pe * cband + (1 - pe) * (pw * (100 - a2)
+                                               - (1 - pw) * a2)
+                y2 = 100.0 * ev2 / a2
+                by_tier[tq] = round(y2, 1)
+                if best_y is None or y2 > best_y:
+                    best_y, best_tier, best_aim = y2, tq, a2
+            if best_y is None:
+                rec["selector"] = "NO-OPINION"
+                rec["selector_why"] = "no fitted contention tiers on this page"
+            else:
+                rec["selector"] = ("TRADE-AT-PATH" if best_y >= 8.0
+                                   else "DROP")
+                rec["contention_best_pct"] = round(best_y, 1)
+                rec["contention_tier"] = best_tier
+                rec["contention_aim"] = best_aim
+                rec["contention_by_tier"] = by_tier
+                rec["selector_cited"] = ("contention fitted on %s (n=%d); "
+                                         "the standing 8%% bar"
+                                         % (key, page.get("n") or 0))
             # pair line: combined at PATH prices once both legs seen
             _pc9 = self.__dict__.setdefault("_trendpath_pair", {})
             other = _pc9.get(et)

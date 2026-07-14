@@ -1,7 +1,7 @@
-# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784067135 -->
-written 2026-07-14 06:18:37 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784067735 -->
+written 2026-07-14 06:28:52 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (14 total this session)
+## Events (15 total this session)
 - 15:41:28 KXITFMATCH-26JUL14VULBAS-BAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 15:41:28 KXITFWMATCH-26JUL14MARKOI-KOI — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 16:01:31 KXITFMATCH-26JUL14VULBAS-BAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
@@ -16,6 +16,7 @@ written 2026-07-14 06:18:37 PM ET by live_validation_loop (read-only). Patch con
 - 17:51:59 KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 18:02:10 KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 18:12:15 KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 18:22:15 KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-14 04:30:34 AM ET", "ts_epoch": 1784017834.719929, "event": "sizing_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14DELXIL", "qty_live": 5, "qty_would": 15, "contention_best_pct": 55.9, "day_pnl_cents": 621, "drawdown_floor": -1500, "armed": false}}
@@ -276,6 +277,9 @@ written 2026-07-14 06:18:37 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-14 06:08:58 PM ET", "ts_epoch": 1784066938.3008304, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 9, "n_resting_orders": 29, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784056709.5090506, "legs_new": [], "legs_gone": ["KXATPCHALLENGERMATCH-26JUL14ADDLEO-LEO", "KXA
     {"ts": "2026-07-14 06:12:15 PM ET", "ts_epoch": 1784067135.113059, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|le25", "n": 54, "p_exit_fill": 0.704, "p_ride_zero": 0.296, "ev_cents": -1.52, "band": 5, "basis": 17, "win_ride_residual_excluded": 0.0, "citation":
     {"ts": "2026-07-14 06:12:15 PM ET", "ts_epoch": 1784067135.1133084, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14DELXIL", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-14 06:22:15 PM ET", "ts_epoch": 1784067735.6724286, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|le25", "n": 54, "p_exit_fill": 0.704, "p_ride_zero": 0.296, "ev_cents": -1.52, "band": 5, "basis": 17, "win_ride_residual_excluded": 0.0, "citation"
+    {"ts": "2026-07-14 06:22:15 PM ET", "ts_epoch": 1784067735.6756017, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14DELXIL", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-14 06:24:32 PM ET", "ts_epoch": 1784067872.9319096, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 9, "n_resting_orders": 29, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784056709.5090506, "legs_new": [], "legs_gone": ["KXATPCHALLENGERMATCH-26JUL14ADDLEO-LEO", "KXA
 
 ## Code path
 ?

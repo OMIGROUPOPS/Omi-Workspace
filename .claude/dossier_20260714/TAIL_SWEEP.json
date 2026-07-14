@@ -1,0 +1,213 @@
+{
+ "swept": [
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-MCC",
+   "order_id": "20dc0a3d-2123-4679-9e5a-cee5d4a8cd0f",
+   "age_min": 8,
+   "price": "0.6100",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-RIC",
+   "order_id": "8d4f9159-83f4-4afc-86d1-990330adbc39",
+   "age_min": 14,
+   "price": "0.5500",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14JOHBER-BER",
+   "order_id": "9b341443-e6a3-43dd-a2b2-fe5a28720489",
+   "age_min": 25,
+   "price": "0.4700",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXITFWMATCH-26JUL14SCHSOU-SOU",
+   "order_id": "441a1ba1-4e68-48b6-89e3-a0ba14429c13",
+   "age_min": 32,
+   "price": "0.8300",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXITFWMATCH-26JUL14GAINGU-GAI",
+   "order_id": "367c233f-6a9e-47be-aa76-8ae37f3c4e11",
+   "age_min": 49,
+   "price": "0.4200",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14NEDDAL-NED",
+   "order_id": "18988349-8fb2-4f68-b3b8-0ce80915cecf",
+   "age_min": 51,
+   "price": "0.4600",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXITFWMATCH-26JUL14GAINGU-NGU",
+   "order_id": "f71efcc4-e326-461c-932b-efb72ebfe747",
+   "age_min": 51,
+   "price": "0.4900",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXITFWMATCH-26JUL14MUSBRA-MUS",
+   "order_id": "d5e87124-8375-4c99-bf0d-e12f13adcdd1",
+   "age_min": 59,
+   "price": "0.1500",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXITFWMATCH-26JUL14MUSBRA-BRA",
+   "order_id": "7d280432-e8c3-4b7f-aa03-121c0b1719c5",
+   "age_min": 59,
+   "price": "0.8300",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXITFMATCH-26JUL14COXHAM-COX",
+   "order_id": "0be236ca-8d19-46b0-831b-797ae33d3265",
+   "age_min": 61,
+   "price": "0.6600",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14MILCHA-CHA",
+   "order_id": "268d6535-39ee-4636-9dbd-890c5c52a26c",
+   "age_min": 129,
+   "price": "0.4700",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14SUNGEA-GEA",
+   "order_id": "2bc51a85-3acd-4bcc-8897-cf6897bd2b20",
+   "age_min": 138,
+   "price": "0.7500",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14MILCHA-MIL",
+   "order_id": "5191a969-9798-413f-8536-40ac87a94ea2",
+   "age_min": 153,
+   "price": "0.5100",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14LANYIB-LAN",
+   "order_id": "00453db9-7134-4c9c-bfce-1e18fa7c1dba",
+   "age_min": 158,
+   "price": "0.1300",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXITFWMATCH-26JUL14LAHIVA-IVA",
+   "order_id": "91a41bda-eeaa-4604-8a0b-08c6571d09f5",
+   "age_min": 171,
+   "price": "0.2600",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXITFMATCH-26JUL14VULBAS-VUL",
+   "order_id": "93ab3563-48ee-4e5a-bbd8-58755afcdf59",
+   "age_min": 204,
+   "price": "0.2100",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA",
+   "order_id": "3ccaea9d-0818-45fd-a78c-df833a5c76d0",
+   "age_min": 205,
+   "price": "0.3600",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ",
+   "order_id": "8beb3a2a-174c-404a-910e-38c229a14797",
+   "age_min": 214,
+   "price": "0.5100",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14PACVED-VED",
+   "order_id": "c229f8dc-19ca-4a9e-a823-21cb45a9af74",
+   "age_min": 219,
+   "price": "0.8100",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14CASSCH-SCH",
+   "order_id": "5e444328-7064-4953-adf8-05946829aace",
+   "age_min": 223,
+   "price": "0.5600",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ",
+   "order_id": "b23164a7-80de-442d-97ba-86113db75914",
+   "age_min": 269,
+   "price": "0.4200",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14NEDDAL-DAL",
+   "order_id": "de062352-46f0-4f2c-aa9d-0e4237cf8954",
+   "age_min": 358,
+   "price": "0.5100",
+   "cancelled": true,
+   "http": 200,
+   "cite": "C-TAIL-SWEEP v1 (operator dispatch: the incumbent placed its last order at 2:07 pm; nothing it placed may fill after this deploy)"
+  }
+ ],
+ "failed": [],
+ "kept_stamped": [
+  "KXATPCHALLENGERMATCH-26JUL14LANYIB-YIB",
+  "KXITFMATCH-26JUL14COXHAM-HAM"
+ ],
+ "post_census": {
+  "buys": 2,
+  "unstamped": [],
+  "sells": 26,
+  "positions": 24
+ }
+}

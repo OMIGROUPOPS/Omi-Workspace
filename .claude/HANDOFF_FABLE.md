@@ -33,7 +33,13 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 VAULT-WIRED — C50 keeps this current):
+## STATE (2026-07-14 SWEPT — C50 keeps this current):
+C-TAIL-SWEEP executed: 22 pre-cutover buys cancelled (TAIL_SWEEP
+.json artifact), census clean (2 stamped buys, 26 exits, 24 tail
+positions -- operator's hold/liquidate word PENDING). Definitive
+line structural: all entries flow the path chokepoint.
+
+(prior:) ## STATE (2026-07-14 VAULT-WIRED):
 C-VAULT-WIRED-ENTRY deployed on top of the cutover (92472906):
 entry_dossier at placement + 3 refusal sites (10 surfaces; reach
 law consulted at every aim; M15 entry-band mapping = named GAP =

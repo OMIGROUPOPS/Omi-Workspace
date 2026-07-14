@@ -33,7 +33,17 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 CLAMPED — C50 keeps this current):
+## STATE (2026-07-14 TRIAL-EVE — C50 keeps this current):
+Pre-wave check done: PACVED = verdict (a), pre-cutover fill,
+definitive line HOLDS (no patch); UNBOOKED FILL instance filed
+(4h17m, adoption net caught it). LAJSVA bell root = dead te_live
+feed (INFRA ITEM: observed_starts stale all afternoon) + 55-min
+kalshi schedule lie; fallback correct. TAIL: 9 of 24 remain
+(settles draining it, -$170.31 today vs +$115.97 exits). NEW book
+0 fills, $0/$0. Account $749.36. 3 arming gaps NAMED to census
+intake; nothing patched pre-wave.
+
+(prior:) ## STATE (2026-07-14 CLAMPED):
 C-LEG-RANGE-CLAMP deployed: path aims 5-95 (07-05 adjudication);
 below_leg_floor_refused named; OPERATOR ADJUDICATIONS = census
 surface; BARREA = consultation law violation #1, self-caught day

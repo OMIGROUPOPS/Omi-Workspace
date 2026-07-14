@@ -33,7 +33,18 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 CUTOVER — C50 keeps this current):
+## STATE (2026-07-14 VAULT-WIRED — C50 keeps this current):
+C-VAULT-WIRED-ENTRY deployed on top of the cutover (92472906):
+entry_dossier at placement + 3 refusal sites (10 surfaces; reach
+law consulted at every aim; M15 entry-band mapping = named GAP =
+intake #1); nightly CONSULTATION CENSUS + AUTO-GAPS -> BOARD;
+render dossier section (restart monitor after pulls!); replay
+exhibit .claude/dossier_20260714/. SHADOW aim variants
+(range-shape slice aim, timing delay) accrue to the standing bar.
+VAULT-ALIVE law verbatim (GAP intake both directions; tape
+challenges re-validated walk-forward).
+
+(prior:) ## STATE (2026-07-14 CUTOVER):
 THE CUTOVER IS EXECUTED (operator word waived the 10:40 PM
 deadline; SHA bdd215dd via full gate): path-mode unconditional --
 entries at p50 path aims, NO-CALL posture, pair-cap 97; no fitted

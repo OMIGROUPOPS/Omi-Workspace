@@ -1,6 +1,6 @@
 # PROOF — THE CUTOVER, EXECUTED NOW (operator word waiving the default-GO deadline)
 
-**Candidate SHA: bdd215dd** (path-mode unconditional + incumbent entry organs deleted + standing-law nightly, committed at that SHA).
+**Candidate SHA: eb1d7784 (bdd215dd + the smoke-sandbox atlas staging — the gate refused the first run exactly as designed: an atlas-blind smoke placed zero orders)** (path-mode unconditional + incumbent entry organs deleted + standing-law nightly, committed at that SHA).
 **The operator word, verbatim:** "waive the default-GO deadline: execute the cutover NOW through the full gate. trendpath_live: true — path-mode entries, pair-law, selector enforcement, NO-CALL posture until orientation's own bar clears. Full boot audit; first live path-entry cited with its page; incumbent organs deleted per the migration doctrine — deleted, not disabled. Sizing stays dark pending my separate word."
 **The outcome proof IS the packet** (RULING_PACKET.md, fired 07-14 10:40 AM ET, all three doors PASS at n≥300 with CI off zero):
 - PATH: n=487, delta +$85.49 (CI [+34.75, +139.82]), yield 11.5% (pess 11.1%) — PASS
@@ -20,4 +20,4 @@ Actual over the same graded window: −$44.65 — the incumbent's bill.
 "the goal is solid yield on solid capital wagered — the nightly's first line is forever YIELD-ON-WAGERED versus the 8% bar; below-bar nights print their named reasons, diagnosed, never explained away." Implemented: the header carries the law; below-bar nights print the settled-vs-exited split, worst categories, and the diagnosis line.
 
 ## Deploy gate
-[1/2] lint PASS (at commit) · [2/3] smoke (gate-run) · [3/3] this file, OUTCOME_PROOF_SHA=bdd215dd · [4/4] C50 push (the word + the standing law verbatim in the vault) · [5/5] constraints surface. auto_cutover neutralized (cron removed; PACKET_STATUS marked CUTOVER-DONE by operator word) — the 10:40 PM machinery stands down because the human word outran it.
+[1/2] lint PASS (at commit) · [2/3] smoke (gate-run) · [3/3] this file, OUTCOME_PROOF_SHA=eb1d7784 · [4/4] C50 push (the word + the standing law verbatim in the vault) · [5/5] constraints surface. auto_cutover neutralized (cron removed; PACKET_STATUS marked CUTOVER-DONE by operator word) — the 10:40 PM machinery stands down because the human word outran it.

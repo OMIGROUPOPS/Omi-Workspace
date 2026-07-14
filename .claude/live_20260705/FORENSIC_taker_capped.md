@@ -1,13 +1,18 @@
-# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784053698 -->
-written 2026-07-14 02:36:05 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784054320 -->
+written 2026-07-14 02:46:31 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (6 total this session)
+## Events (11 total this session)
 - 14:18:16 KXITFMATCH-26JUL14UTACAZ-UTA — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 14:18:18 KXATPCHALLENGERMATCH-26JUL14CASSCH-CAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 14:28:17 KXATPCHALLENGERMATCH-26JUL14SUNGEA-SUN — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 14:28:17 KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 14:28:18 KXITFMATCH-26JUL14PINLIM-PIN — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 14:28:18 KXATPCHALLENGERMATCH-26JUL14CASSCH-CAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 14:38:36 KXITFWMATCH-26JUL14MARKOI-KOI — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 14:38:39 KXATPCHALLENGERMATCH-26JUL14SUNGEA-SUN — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 14:38:39 KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 14:38:39 KXITFMATCH-26JUL14PINLIM-PIN — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 14:38:40 KXATPCHALLENGERMATCH-26JUL14CASSCH-CAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-14 06:38:42 AM ET", "ts_epoch": 1784025522.887463, "event": "tape_seed_live_confirm", "ticker": "KXATPCHALLENGERMATCH-26JUL14CASSCH-CAS", "details": {"seed_price": 43, "live_price": 41, "delta": -2, "seed_age_sec": 21040.7}}
@@ -202,6 +207,11 @@ written 2026-07-14 02:36:05 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-14 02:28:18 PM ET", "ts_epoch": 1784053698.2554688, "event": "completion_taker_capped", "ticker": "KXITFMATCH-26JUL14PINLIM-PIN", "details": {"event": "KXITFMATCH-26JUL14PINLIM", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
     {"ts": "2026-07-14 02:28:18 PM ET", "ts_epoch": 1784053698.9574115, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14CASSCH-CAS", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|disc|26_50", "n": 49, "p_exit_fill": 0.673, "p_ride_zero": 0.327, "ev_cents": -7.0, "band": 9, "basis": 40, "win_ride_residual_excluded": 0.0, "citation": 
     {"ts": "2026-07-14 02:28:18 PM ET", "ts_epoch": 1784053698.958841, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14CASSCH-CAS", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14CASSCH", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-14 02:38:39 PM ET", "ts_epoch": 1784054319.7777896, "event": "completion_shadow", "ticker": "KXITFMATCH-26JUL14PINLIM-PIN", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ITF_M|underdog|at_mid|26_50", "n": 46, "p_exit_fill": 0.739, "p_ride_zero": 0.239, "ev_cents": -1.28, "band": 7, "basis": 27, "win_ride_residual_excluded": 0.022, "citation": "M15 RANG
+    {"ts": "2026-07-14 02:38:39 PM ET", "ts_epoch": 1784054319.7780197, "event": "completion_taker_capped", "ticker": "KXITFMATCH-26JUL14PINLIM-PIN", "details": {"event": "KXITFMATCH-26JUL14PINLIM", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-14 02:38:40 PM ET", "ts_epoch": 1784054320.2801905, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14CASSCH-CAS", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|disc|26_50", "n": 49, "p_exit_fill": 0.673, "p_ride_zero": 0.327, "ev_cents": -7.0, "band": 9, "basis": 40, "win_ride_residual_excluded": 0.0, "citation": 
+    {"ts": "2026-07-14 02:38:40 PM ET", "ts_epoch": 1784054320.2803562, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14CASSCH-CAS", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14CASSCH", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-14 02:41:14 PM ET", "ts_epoch": 1784054474.162918, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 22, "n_resting_orders": 50, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784052344.0000687, "legs_new": ["KXITFWMATCH-26JUL14SCHSOU-SCH"], "legs_gone": ["KXATPCHALLENGE
 
 ## Code path
 ?

@@ -33,7 +33,20 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-15 late — C50 keeps this current):
+## STATE (2026-07-15 latest — C50 keeps this current):
+C-INCUMBENT-SUNSET deployed (5c41acbb): incumbent CONVICTED+FROZEN
+(static aims/join-market/97-remainder; no tuning ever again);
+INCUMBENT-COST + SUNSET LEDGER print nightly. DEFAULT-GO armed:
+packet fire -> +12h silence -> auto_cutover.sh (30-min cron) flips
+trendpath_live=true through the FULL gate + ntfy; operator STOP =
+create .claude/trendpath/OPERATOR_STOP (relay word). Cutover mode =
+NO-CALL posture (both legs p50 path aims, pair-cap 97);
+orientation_live + sizing_live stay dark behind own bars. If the
+auto-cutover gate FAILS: incumbent keeps running, ntfy says so,
+manual attention. NEXT: packet (24-48h); 6:10 deletion word;
+COMBINED-CAP; -0g; ws archive extension (overdue).
+
+(prior:) ## STATE (2026-07-15 late):
 C-GOLD-NOW + C-PAIR-LAW + AMENDMENT deployed as ONE gate (SHA
 08e1c8ed): pair-law LIVE -- DROP-AS-PAIR only where no orientation
 (riser-now + faller-deep p75) composes <=97; seesaw lift at every

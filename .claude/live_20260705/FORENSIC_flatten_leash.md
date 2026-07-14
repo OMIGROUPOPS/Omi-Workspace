@@ -1,7 +1,7 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784054778 -->
-written 2026-07-14 02:46:30 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784055388 -->
+written 2026-07-14 02:57:04 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (17 total this session)
+## Events (22 total this session)
 - 14:08:16 KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO — flatten DEFERRED: ev -1.12 above margin floor -3.0
 - 14:18:15 KXWTACHALLENGERMATCH-26JUL14MAZBRO-BRO — flatten DEFERRED: ev -2.44 above margin floor -3.0
 - 14:18:15 KXITFWMATCH-26JUL14MARKOI-KOI — flatten CAPPED at 8/day (8 today)
@@ -19,6 +19,11 @@ written 2026-07-14 02:46:30 PM ET by live_validation_loop (read-only). Patch con
 - 14:38:39 KXITFMATCH-26JUL14UTACAZ-UTA — flatten CAPPED at 8/day (8 today)
 - 14:38:40 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
 - 14:46:18 KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ — flatten CAPPED at 8/day (8 today)
+- 14:48:42 KXITFWMATCH-26JUL14MARKOI-KOI — flatten CAPPED at 8/day (8 today)
+- 14:48:42 KXITFWMATCH-26JUL14BARREA-REA — flatten CAPPED at 8/day (8 today)
+- 14:48:42 KXITFMATCH-26JUL14UTACAZ-UTA — flatten CAPPED at 8/day (8 today)
+- 14:48:43 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
+- 14:56:28 KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ — flatten CAPPED at 8/day (8 today)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-14 10:00:24 AM ET", "ts_epoch": 1784037624.099774, "event": "staircase_hold_place", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"cat": "ATP_CHALL", "bid": 45, "target": 45}}
@@ -189,6 +194,20 @@ written 2026-07-14 02:46:30 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-14 02:45:36 PM ET", "ts_epoch": 1784054736.6570747, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "details": {"bot_entry_price": 42, "kalshi_avg_price": 70, "delta": 28, "entry_qty": 1, "kalshi_qty": 1}}
     {"ts": "2026-07-14 02:46:18 PM ET", "ts_epoch": 1784054778.616769, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|disc|26_50", "n": 49, "p_exit_fill": 0.673, "p_ride_zero": 0.327, "ev_cents": -7.65, "band": 9, "basis": 42, "win_ride_residual_excluded": 0.0, "citation": "M
     {"ts": "2026-07-14 02:46:18 PM ET", "ts_epoch": 1784054778.6170173, "event": "completion_flatten_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14ROZRIC", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
+    {"ts": "2026-07-14 02:46:39 PM ET", "ts_epoch": 1784054799.354364, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "details": {"bot_entry_price": 42, "kalshi_avg_price": 70, "delta": 28, "entry_qty": 1, "kalshi_qty": 1}}
+    {"ts": "2026-07-14 02:47:33 PM ET", "ts_epoch": 1784054853.8681705, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "details": {"bot_entry_price": 42, "kalshi_avg_price": 70, "delta": 28, "entry_qty": 1, "kalshi_qty": 1}}
+    {"ts": "2026-07-14 02:48:35 PM ET", "ts_epoch": 1784054915.0491323, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "details": {"bot_entry_price": 42, "kalshi_avg_price": 70, "delta": 28, "entry_qty": 1, "kalshi_qty": 1}}
+    {"ts": "2026-07-14 02:48:43 PM ET", "ts_epoch": 1784054923.6536827, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|disc|26_50", "n": 49, "p_exit_fill": 0.673, "p_ride_zero": 0.327, "ev_cents": -8.63, "band": 9, "basis": 45, "win_ride_residual_excluded": 0.0, "citation": "
+    {"ts": "2026-07-14 02:48:43 PM ET", "ts_epoch": 1784054923.6539686, "event": "completion_flatten_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
+    {"ts": "2026-07-14 02:50:13 PM ET", "ts_epoch": 1784055013.5910695, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "details": {"bot_entry_price": 42, "kalshi_avg_price": 70, "delta": 28, "entry_qty": 1, "kalshi_qty": 1}}
+    {"ts": "2026-07-14 02:51:23 PM ET", "ts_epoch": 1784055083.179962, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "details": {"bot_entry_price": 42, "kalshi_avg_price": 70, "delta": 28, "entry_qty": 1, "kalshi_qty": 1}}
+    {"ts": "2026-07-14 02:52:56 PM ET", "ts_epoch": 1784055176.9993203, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "details": {"bot_entry_price": 42, "kalshi_avg_price": 70, "delta": 28, "entry_qty": 1, "kalshi_qty": 1}}
+    {"ts": "2026-07-14 02:53:54 PM ET", "ts_epoch": 1784055234.4219406, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "details": {"bot_entry_price": 42, "kalshi_avg_price": 70, "delta": 28, "entry_qty": 1, "kalshi_qty": 1}}
+    {"ts": "2026-07-14 02:54:50 PM ET", "ts_epoch": 1784055290.1909876, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "details": {"bot_entry_price": 42, "kalshi_avg_price": 70, "delta": 28, "entry_qty": 1, "kalshi_qty": 1}}
+    {"ts": "2026-07-14 02:56:28 PM ET", "ts_epoch": 1784055388.5905707, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|disc|26_50", "n": 49, "p_exit_fill": 0.673, "p_ride_zero": 0.327, "ev_cents": -7.65, "band": 9, "basis": 42, "win_ride_residual_excluded": 0.0, "citation": "
+    {"ts": "2026-07-14 02:56:28 PM ET", "ts_epoch": 1784055388.6019268, "event": "completion_flatten_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14ROZRIC", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
+    {"ts": "2026-07-14 02:56:44 PM ET", "ts_epoch": 1784055404.7332737, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "details": {"bot_entry_price": 42, "kalshi_avg_price": 70, "delta": 28, "entry_qty": 1, "kalshi_qty": 1}}
+    {"ts": "2026-07-14 02:56:53 PM ET", "ts_epoch": 1784055413.0336683, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 24, "n_resting_orders": 50, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784052344.0000687, "legs_new": ["KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ", "KXITFMATCH-26JUL14V
 
 ## Code path
 ?

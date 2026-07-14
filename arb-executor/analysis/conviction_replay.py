@@ -553,6 +553,71 @@ def main():
                           % dropped_pnl))
     except Exception:
         pass
+    # [C-VAULT-WIRED-ENTRY v1 Part 2, 07-14] THE CONSULTATION CENSUS:
+    # every decision site x every registry surface — CONSULTED / SHADOW /
+    # NOT-APPLICABLE (reason) / GAP. Any GAP is a board item automatically
+    # (idempotent append under the AUTO-GAPS marker). This is how "the
+    # entry ignores fitted work" becomes impossible to miss again.
+    try:
+        SURFACES = ["atlas_page", "contention_selector", "pair_state",
+                    "reach_law", "range_cell_m15", "dip_timing",
+                    "flow_state", "refuse_margins", "fill_regime",
+                    "honest_clock", "shadow_range_shape"]
+        cen = defaultdict(lambda: defaultdict(int))
+        sites = defaultdict(int)
+        gaps = defaultdict(set)
+        n_dos = 0
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"entry_dossier"' not in line:
+                continue
+            d9 = json.loads(line)
+            det9 = d9.get("details") or {}
+            n_dos += 1
+            site9 = (det9.get("decision") or "?").split(":")[0]
+            sites[site9] += 1
+            for s9, v9 in (det9.get("surfaces") or {}).items():
+                st9 = (v9 or {}).get("status", "GAP")
+                cen[s9][st9] += 1
+                if st9 == "GAP":
+                    gaps[s9].add((v9 or {}).get("why", ""))
+        if n_dos:
+            L += ["", "## CONSULTATION CENSUS (C-VAULT-WIRED-ENTRY: %d "
+                      "dossiers across sites %s)"
+                      % (n_dos, dict(sites))]
+            for s9 in SURFACES:
+                c9 = cen.get(s9, {})
+                if not c9:
+                    gaps[s9].add("surface absent from every dossier")
+                L.append("- %-20s %s" % (s9, dict(c9) if c9
+                                         else "**GAP (never consulted)**"))
+            if gaps:
+                L.append("- **GAPS -> board items (the intake list): %s**"
+                         % "; ".join("%s (%s)" % (k, "; ".join(w for w in v
+                                                               if w)[:90])
+                                     for k, v in gaps.items()))
+                try:
+                    bp9 = ROOT.parent / ".claude/BOARD.md"
+                    bs9 = bp9.read_text(encoding="utf-8")
+                    add9 = []
+                    for k, v in gaps.items():
+                        line9 = ("- AUTO-GAP (consultation census %s): %s — %s"
+                                 % (ymd, k, ("; ".join(w for w in v if w)
+                                             or "unconsulted")[:140]))
+                        if ("AUTO-GAP (consultation census" in bs9
+                                and k in bs9):
+                            continue
+                        add9.append(line9)
+                    if add9:
+                        mk9 = "## AUTO-GAPS (consultation census intake)"
+                        if mk9 not in bs9:
+                            bs9 += "\n\n" + mk9 + "\n"
+                        bs9 = bs9.replace(mk9, mk9 + "\n" + "\n".join(add9),
+                                          1)
+                        bp9.write_text(bs9, encoding="utf-8")
+                except Exception:
+                    pass
+    except Exception:
+        pass
     # [C-DELETION-GATE Part 1, 07-12] GOVERNOR SPLIT: the two live brains'
     # actions and dollars, separated at the stamp -- no hand-reading logs.
     # Dollars: each exit_filled attributes its pnl to the governor of the

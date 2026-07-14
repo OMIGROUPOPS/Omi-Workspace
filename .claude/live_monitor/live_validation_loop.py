@@ -752,6 +752,31 @@ def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, ch
                   "cron).**"]
     except Exception:
         pass
+    # [C-VAULT-WIRED-ENTRY v1 Part 4, 07-14] dossier lines on the render:
+    # the last placements/refusals with their consulted surfaces, compact.
+    try:
+        _dos9 = []
+        for _ln9 in open(log_path, encoding="utf-8", errors="replace"):
+            if '"entry_dossier"' in _ln9:
+                try:
+                    _dos9.append(json.loads(_ln9))
+                except Exception:
+                    pass
+        _dos9 = _dos9[-4:]
+        if _dos9:
+            L += ["", "## ENTRY DOSSIERS (vault-wired: every surface "
+                      "consulted or named — last %d)" % len(_dos9)]
+            for x9 in _dos9:
+                d9 = x9.get("details") or {}
+                sf9 = d9.get("surfaces") or {}
+                stat9 = ",".join("%s:%s" % (k[:12],
+                                            (v or {}).get("status", "?")[:4])
+                                 for k, v in sf9.items())
+                L.append("- %s %s aim=%s | %s" % (
+                    d9.get("decision"), (x9.get("ticker") or "")[-14:],
+                    d9.get("aim"), stat9[:220]))
+    except Exception:
+        pass
     # [MORNING REVIEW 07-10, operator standing order] watches that fire
     # overnight are the FIRST thing read at the AM checkpoint, never buried
     # at line 396 (deep_neg_fv was). Overnight = midnight..9am ET today.

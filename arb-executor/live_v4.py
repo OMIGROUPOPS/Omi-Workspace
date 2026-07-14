@@ -22,6 +22,7 @@ import asyncio
 import aiohttp
 import base64
 import json
+import math
 import os
 import subprocess
 import sys
@@ -2856,6 +2857,159 @@ class LiveV3:
             return base
         except Exception:
             return None
+
+    def _reach_law(self):
+        """THE REACH LAW (LAW.json), hot-reloaded — the fitted fill judge."""
+        _lp = Path(__file__).resolve().parent.parent / \
+            ".claude/takerreach/LAW.json"
+        _lmt = _lp.stat().st_mtime if _lp.exists() else 0
+        if getattr(self, "_reachlaw", None) is None or \
+                getattr(self, "_reachlaw_mt", None) != _lmt:
+            self._reachlaw = (json.loads(_lp.read_text(encoding="utf-8"))
+                              .get("law", {}) if _lp.exists() else {})
+            self._reachlaw_mt = _lmt
+        return self._reachlaw or {}
+
+    def _entry_dossier(self, tk, et, cat, current_price, aim, decision,
+                       sv9=None, pl9=None, regime=None, tts_min=None,
+                       anchor_src=None, lt_age=None):
+        """[C-VAULT-WIRED-ENTRY v1, 07-14 — THE LAW, operator verbatim in
+        the vault] the entry decision consults EVERY registry surface and
+        standing conclusion applicable to the leg, and the line carries the
+        full dossier: every consulted value, every inapplicable surface
+        named with why. A silently-ignored surface is a named violation.
+        Aim-CHANGING consultations (range-shape, timing) ride as SHADOW
+        variants on this same line — logged today, earning the proven lane
+        (Part 3). Never raises; never places."""
+        try:
+            D = {}
+            bot9 = (sv9 or {}).get("bottom") or {}
+            # 1) the atlas page (prices the aim)
+            D["atlas_page"] = {"status": "CONSULTED",
+                               "page": (sv9 or {}).get("page"),
+                               "n": (sv9 or {}).get("n"),
+                               "bottom_p25_50_75": [bot9.get("depth_p25"),
+                                                    bot9.get("depth_p50"),
+                                                    bot9.get("depth_p75")]}
+            # 2) the contention score (the selector, 8% bar enforced)
+            D["contention_selector"] = {
+                "status": "CONSULTED",
+                "verdict": (sv9 or {}).get("selector"),
+                "best_pct": (sv9 or {}).get("best_pct"),
+                "tier": (sv9 or {}).get("tier")}
+            # 3) the pair state (orientation-composition + seesaw)
+            D["pair_state"] = {
+                "status": "CONSULTED" if pl9 else "NOT-APPLICABLE",
+                **({"pair": pl9.get("pair"),
+                    "combined_at_path": pl9.get("combined_at_path"),
+                    "sib_px_est": pl9.get("sib_px_est")} if pl9
+                   else {"why": "pair verdict unavailable at this site"})}
+            # 4) the reach law: fill probability at THIS aim
+            now9 = time.time()
+            _dq9 = self._trade_times.get(tk)
+            p30 = sum(1 for t9 in (_dq9 or ()) if t9 >= now9 - 1800)
+            thr9 = {"ITF_M": 6, "ITF_W": 6,
+                    "ATP_CHALL": 16, "WTA_CHALL": 16}.get(cat)
+            pxs9 = [p9 for t9, p9 in (self._trade_prices.get(tk) or ())
+                    if t9 >= now9 - 900]
+            med9 = (sorted(pxs9)[len(pxs9) // 2] if pxs9
+                    else current_price)
+            fb9 = None
+            if thr9:
+                r9 = p30 / float(thr9)
+                fb9 = ("quiet" if r9 < 0.25 else
+                       "warm" if r9 < 1.0 else "open")
+            law9 = self._reach_law()
+            Lw9 = law9.get("%s|%s" % (cat, fb9)) if fb9 else None
+            if Lw9 and aim is not None:
+                X9 = min(max(int(round(med9 - aim)), 1), 20)
+                rate9 = Lw9.get("rate_per_hr", {}).get(str(X9), 0.0)
+                D["reach_law"] = {"status": "CONSULTED",
+                                  "flow_bucket": fb9, "depth_X": X9,
+                                  "rate_per_hr": rate9,
+                                  "p_fill_1h": round(
+                                      1 - math.exp(-rate9), 3)}
+            else:
+                D["reach_law"] = {"status": "NOT-APPLICABLE",
+                                  "why": ("reach law fitted for ITF/CHALL "
+                                          "flow buckets only" if not thr9
+                                          else "law page absent for %s|%s"
+                                          % (cat, fb9))}
+            # 5) the three-price range cell (M15) — entry-band mapping is a
+            # NAMED GAP: the vault holds completion-frame bands, no fitted
+            # entry-band mapping study yet (the census's intake list)
+            side9 = "leader" if current_price >= 50 else "underdog"
+            pc9 = ("le25" if current_price <= 25 else
+                   "26_50" if current_price <= 50 else
+                   "51_75" if current_price <= 75 else "ge75")
+            _rc9 = (self._range_cells or {}).get(
+                "%s|%s|at_mid|%s" % (cat, side9, pc9))
+            D["range_cell_m15"] = {
+                "status": "GAP",
+                "why": "entry-band mapping unfitted (completion-frame "
+                       "bands only) — vault intake item",
+                "nearest_at_mid": ({"n": _rc9.get("n"),
+                                    "w2_reach": _rc9.get("w2_reach")}
+                                   if _rc9 else None)}
+            # 6) fitted dip timing (+ the timing SHADOW variant)
+            D["dip_timing"] = {"status": "CONSULTED",
+                               "bottom_t_med_min": bot9.get("t_med_min"),
+                               "shadow_would_delay_min":
+                                   (max(0, round((tts_min or 0)
+                                                 - (bot9.get("t_med_min")
+                                                    or 0)))
+                                    if tts_min is not None and
+                                    bot9.get("t_med_min") is not None
+                                    else None)}
+            # 7) flow-state harvest rate (the HARVESTABLE MAP)
+            _h5 = (Lw9 or {}).get("rate_per_hr", {}).get("5")
+            D["flow_state"] = {"status": ("CONSULTED" if fb9 else
+                                          "NOT-APPLICABLE"),
+                               **({"prints_30m": p30, "bucket": fb9,
+                                   "harvest_rate_5c_hr": _h5} if fb9
+                                  else {"why": "no fitted flow threshold "
+                                               "for mains"})}
+            # 8) refuse margins (standing bars enforced at this site)
+            D["refuse_margins"] = {"status": "CONSULTED",
+                                   "contention_bar_pct": 8.0,
+                                   "pair_cap": 97}
+            # 9) fill regime
+            D["fill_regime"] = {"status": ("CONSULTED" if regime
+                                           else "NOT-APPLICABLE"),
+                                "regime": regime}
+            # 10) the honest clock
+            D["honest_clock"] = {"status": "CONSULTED",
+                                 "min_before_start": tts_min,
+                                 "anchor_src": anchor_src,
+                                 "last_trade_age_sec": lt_age}
+            # SHADOW variant: the range-shape axis (atlas path slice at the
+            # current clock — aim-moving, so it EARNS its way in)
+            rs9 = None
+            try:
+                pages9 = self._trendpath_atlas()
+                pg9 = pages9.get((sv9 or {}).get("page") or "")
+                if pg9 and tts_min is not None:
+                    sl9 = min((pg9.get("path") or {}).keys(),
+                              key=lambda s: abs(int(s) - int(tts_min)),
+                              default=None)
+                    if sl9:
+                        p25s = (pg9["path"][sl9] or {}).get("p25")
+                        if p25s is not None:
+                            rs9 = {"slice_min": int(sl9),
+                                   "shadow_aim": max(1, int(round(
+                                       current_price + p25s)))}
+            except Exception:
+                rs9 = None
+            D["shadow_range_shape"] = {"status": "SHADOW", **(rs9 or
+                                       {"why": "no path slice at this clock"})}
+            self._log("entry_dossier", {
+                "event": et, "cat": cat, "decision": decision,
+                "discovery": current_price, "aim": aim,
+                "surfaces": D,
+                "law": "C-VAULT-WIRED-ENTRY v1 (a silently-ignored "
+                       "surface is a named violation)"}, ticker=tk)
+        except Exception:
+            pass
 
     def _orient_table(self):
         """ORIENT_V1 hot-reload (refits nightly with the atlas)."""
@@ -9080,6 +9234,13 @@ class LiveV3:
                             "decree": "C-PAIR-LAW v1 07-15 (amends C-GOLD-NOW "
                                       "Part 1): the entry unit is the pair, "
                                       "never the leg"}, ticker=tk)
+                        self._entry_dossier(
+                            tk, et, cat, current_price, None,
+                            "refused:drop_as_pair", sv9=_sv9, pl9=_pl9,
+                            regime=regime,
+                            tts_min=round(time_to_start / 60),
+                            anchor_src=anchor_src,
+                            lt_age=round(lt_age_sec, 1))
                         continue
                     # the seesaw at entry: live sibling book consulted; a
                     # pair whose second leg died on the way up is refused
@@ -9092,6 +9253,13 @@ class LiveV3:
                             "would_target_bid": target_bid, **_ss9,
                             "decree": "C-PAIR-LAW v1 07-15 Part 3 (fitted "
                                       "seesaw guard)"}, ticker=tk)
+                        self._entry_dossier(
+                            tk, et, cat, current_price, None,
+                            "refused:pair_seesaw", sv9=_sv9, pl9=_pl9,
+                            regime=regime,
+                            tts_min=round(time_to_start / 60),
+                            anchor_src=anchor_src,
+                            lt_age=round(lt_age_sec, 1))
                         continue
                     # [AMENDMENT 07-15] the oriented read, SHADOW — the
                     # tells' accuracy accrues its own n>=300 clock before
@@ -9131,6 +9299,12 @@ class LiveV3:
                                        "price, no entry (the incumbent aim "
                                        "table is DELETED, not consulted)"},
                         ticker=tk)
+                    self._entry_dossier(tk, et, cat, current_price, None,
+                                        "refused:no_path_page", sv9=_sv9,
+                                        pl9=None, regime=regime,
+                                        tts_min=round(time_to_start / 60),
+                                        anchor_src=anchor_src,
+                                        lt_age=round(lt_age_sec, 1))
                     continue
                 if True:
                     _pa9 = max(1, int(round(current_price - _d509)))
@@ -9276,6 +9450,16 @@ class LiveV3:
                 # [C-TREND-PATH v1 07-14, SHADOW] the fifth design: the atlas
                 # says where markets like this one usually travel; aim there
                 self._trendpath_shadow(tk, et, cat, current_price, target_bid)
+                # [C-VAULT-WIRED-ENTRY v1, 07-14] the full dossier on every
+                # placement: every registry surface consulted or named
+                self._entry_dossier(tk, et, cat, current_price,
+                                    int(entry_price),
+                                    "placed:path_aim", sv9=_sv9,
+                                    pl9=(_pl9 if '_pl9' in dir() else None),
+                                    regime=regime,
+                                    tts_min=round(time_to_start / 60),
+                                    anchor_src=anchor_src,
+                                    lt_age=round(lt_age_sec, 1))
 
                 # #1 ref-price soft-alert: rolling tight_mid rate over the last 100 placements.
                 self._anchor_src_hist.append(anchor_src)

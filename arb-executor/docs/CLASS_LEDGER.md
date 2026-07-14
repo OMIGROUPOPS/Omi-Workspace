@@ -37,6 +37,8 @@ The pair-97 constant's two enforcement holes, both organic on 07-11 (combined 99
 
 > C-FULLWINDOW-REPLAY (07-14): the REAL trial — verdict = THE SLATE, not the engine: deep-fill partition 10/1 (selection vindicated) but the moment census measures the harvestable discount at 0–1¢ × 2 min median on our tape; delta −$2.80 CI [−38,+34]; forward clock stands; the aim organ's dollar ceiling on this slate is the census's. AIM/TIMING MISSES reframes: the class's remaining weight is PRIOR-depth and slate-selection, not timing.
 
+> C-TREND-PATH v1 (07-15): the FIFTH closing design EXECUTED — the drift atlas (path axis): SHIMIC Lane-1 PASS (page bottom 6c = the operator's watched 10-12 drift on a 16 discovery); week at path prices x reach law +$29.65 over actual, 9.0% yield both ways, 74/76 pairs complete <=97 at path — doors shut on the letter (n=285<300, CI kisses zero): the SECOND consecutive STRONGLY-POSITIVE-BUT-UNDERPOWERED; shadow deployed, forward grading accrues, re-runs clear n>=300 in days.
+
 > C-LIVEAIM-BACKTEST (07-14): the acceleration attempt REFUSED (engine level with actual on 741 era-clean discovery rows, CI wide; AIM_DEEP untestable at discovery instants — the mechanism lives at re-aim time); NOT refusal five — the forward clock stands (n>=300 shadow-graded, CI clear of zero).
 
 > C-LIVE-AIM v1 (07-14): the FOURTH closing design SHIPPED TO SHADOW (`da3deec7`) — per-market real-time conditioning (prior page × live tape state; chase-guard structural; lib_conf honesty for the ITF tape gap); graded nightly from night one; cutover bar pre-agreed (beat live at n≥300, CI clear of zero). Acts never until proven forward.

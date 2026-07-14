@@ -33,7 +33,23 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 ~9:30 pm — C50 keeps this current):
+## STATE (2026-07-15 early — C50 keeps this current):
+THE LOADED SEQUENCE FROM 7338fef7: EXECUTED COMPLETE. Atlas built
+(30 pages; disk incident #5 mid-run -- pruned 4.5G, ws_depth_recorder
+8.2G = twice-flagged eater, archive-sync extension OVERDUE infra).
+SHIMIC Lane-1 PASS: ITF_W|underdog|le25 bottom p50 6c/27min -> a 16
+discovery path-aims 10 = the operator's watched drift. Week at path
+prices x reach law: N=285, +$29.65 over actual (CI [-1.11,+61.20]),
+pessimistic +$28.00, yield 9.0% both ways, 74/76 pairs <=97 at path.
+DOORS SHUT ON THE LETTER (n<300, CI kisses zero) -- SECOND
+consecutive STRONGLY-POSITIVE-BUT-UNDERPOWERED; no refusal six.
+trendpath_shadow DEPLOYED (gated); ruling verbatim in the vault:
+option A rejected -- no completion fills mid-game; window-1 value is
+the thesis; flatten-kept the only post-bell action. NEXT: 6:10
+deletion word · EV3 re-read n>=300 · reach+path re-runs at n>=300
+(days) · COMBINED-CAP remedy · -0g.
+
+(prior:) ## STATE (2026-07-14 ~9:30 pm):
 
 ### >>> THE LOADED SEQUENCE (execute from a fresh session; all code committed at 7338fef7 + this close-out) <<<
 Session-zero: read this file + BOARD + the vault's top three entries, then:

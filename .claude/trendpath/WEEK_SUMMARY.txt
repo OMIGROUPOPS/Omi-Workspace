@@ -1,0 +1,10 @@
+skips: {'cf_unsettled': 1043, 'no_tape': 117, 'thin_page': 3}
+
+| day | n | path E$ | path E$ (pess x0.5) | actual $ |
+| 07-11 | 85 | $+11.63 | $+11.13 | $+0.45 |
+| 07-12 | 114 | $+10.32 | $+9.41 | $-5.30 |
+| 07-13 | 86 | $+4.65 | $+4.41 | $+1.80 |
+
+N=285 era-clean legs | combined-at-path pairs: 74 <=97, 2 over
+PATH x REACH grade:  E$+26.60 vs actual $-3.05 | delta $+29.65 (CI [-1.11, +61.20]) | yield 9.0% on E$297
+PESSIMISTIC (x0.5):  E$+24.95 | delta $+28.00 (CI [-2.84, +62.14]) | yield 9.0%

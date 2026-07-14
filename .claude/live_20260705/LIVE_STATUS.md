@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 21 @ **2026-07-14 06:28:53 PM ET** | build `4cfa60c4` | session boot 07-14 15:30 ET | log `live_v3_20260714.jsonl` | 12658 session events | monitor READ-ONLY
+- cycle 22 @ **2026-07-14 06:39:18 PM ET** | build `ae31ea48` | session boot 07-14 15:30 ET | log `live_v3_20260714.jsonl` | 13248 session events | monitor READ-ONLY
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
 - refused:below_leg_floor UL14DASDOD-DOD aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,shadow_range:SHAD
@@ -12,7 +12,7 @@
 clean overnight — no watch fires
 - tripwire artifact: **PRESENT — CHECK /tmp/live_v4_TRIPWIRE.json**
 
-## ZERO-TOLERANCE — 44 violation(s)
+## ZERO-TOLERANCE — 46 violation(s)
 | ET | class | who | detail |
 |---|---|---|---|
 | 15:31:26 | **flatten_leash** | KXITFMATCH-26JUL14VULBAS-BAS | flatten DEFERRED: ev -2.11 above margin floor -3.0 |
@@ -59,59 +59,70 @@ clean overnight — no watch fires
 | 18:12:15 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA | flatten CAPPED at 8/day (8 today) |
 | 18:22:15 | **taker_capped** | KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL | taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded) |
 | 18:22:15 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA | flatten CAPPED at 8/day (8 today) |
+| 18:32:17 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL | flatten DEFERRED: ev -1.52 above margin floor -3.0 |
+| 18:32:17 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA | flatten CAPPED at 8/day (8 today) |
 
-**LIVE DEFECT(S) — forensic blocks written: FORENSIC_flatten_leash.md, FORENSIC_taker_capped.md**
+**LIVE DEFECT(S) — forensic blocks written: FORENSIC_flatten_leash.md**
 
 ## FILLS — 1 graded (session)
 | ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb | stamp |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 15:31 | WTACHALLENGERMATCH-26JUL14PACVED-P | WTA_CHALL | ? | 16 | 13 | +3 (adopted_est) | — | pre | single |  | PENDING |
 
-## RESTING BIDS — 20 tape-graded (starvation = NO_FLOW only)
-- classes now: {'FLOW_ABOVE': 15, 'NO_FLOW': 5} | repriceable now: true 0 / false 20 | **cumulative bid_grade lines: 9936 (repriceable true 1467 / false 8469)** -- the liquid_repost re-arm evidence accumulates here
+## RESTING BIDS — 25 tape-graded (starvation = NO_FLOW only)
+- classes now: {'FLOW_ABOVE': 15, 'NO_FLOW': 10} | repriceable now: true 0 / false 25 | **cumulative bid_grade lines: 9941 (repriceable true 1467 / false 8474)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ITFMATCH-26JUL14BOUHUL-BOU | 45 | 89m | 4/56-57/30 | 55-56 | 11 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL14BOUHUL-HUL | 33 | 89m | 3/46-46/104 | 42-46 | 13 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL14DELZHA-DEL | 69 | 76m | 0 | 87-88 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL14DELZHA-ZHA | 7 | 89m | 1/13-13/72 | 11-13 | 6 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL14DEMSAC-DEM | 6 | 89m | 1/13-13/72 | 10-13 | 7 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL14DEMSAC-SAC | 69 | 88m | 3/89-89/22 | 87-88 | 20 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL14HAZMCF-HAZ | 53 | 148m | 9/62-65/149 | 64-65 | 9 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL14HAZMCF-MCF | 25 | 121m | 0 | 34-36 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL14JASJON-JAS | 60 | 75m | 2/81-81/121 | 78-81 | 21 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL14JASJON-JON | 15 | 89m | 3/21-21/26 | 20-21 | 6 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL14VIITAK-TAK | 21 | 127m | 0 | 25-29 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL14VIITAK-VII | 62 | 148m | 8/74-74/154 | 73-74 | 12 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL14KHALIN-KHA | 25 | 59m | 0 | 37-39 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL14KHALIN-LIN | 51 | 59m | 1/62-62/0 | 61-62 | 11 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL14SELSAT-SAT | 47 | 59m | 4/58-63/1965 | 62-59 | 11 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL14SELSAT-SEL | 28 | 59m | 0 | 36-38 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL14SHIRUS-RUS | 64 | 148m | 6/76-76/104 | 75-76 | 12 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL14SHIRUS-SHI | 17 | 148m | 2/25-26/10 | 24-25 | 8 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL14WARSYC-SYC | 43 | 27m | 1/51-51/0 | 47-51 | 8 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL14WARSYC-WAR | 32 | 124m | 1/52-52/3 | 49-52 | 20 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL14BEAOGU-OGU | 36 | 9m | 0 | 47-49 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL14BOUHUL-BOU | 45 | 99m | 4/56-57/30 | 55-56 | 11 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL14BOUHUL-HUL | 33 | 99m | 3/46-46/104 | 42-45 | 13 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL14CHACAM-CAM | 20 | 9m | 0 | 24-27 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL14DELZHA-DEL | 69 | 87m | 0 | 87-88 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL14DELZHA-ZHA | 7 | 99m | 1/13-13/72 | 11-13 | 6 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL14DEMSAC-DEM | 6 | 99m | 1/13-13/72 | 10-13 | 7 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL14DEMSAC-SAC | 69 | 98m | 3/89-89/22 | 87-88 | 20 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL14HAZMCF-HAZ | 53 | 158m | 11/62-65/165 | 62-65 | 9 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL14HAZMCF-MCF | 25 | 132m | 0 | 35-37 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL14JASJON-JAS | 60 | 86m | 2/81-81/121 | 78-81 | 21 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL14JASJON-JON | 15 | 99m | 3/21-21/26 | 20-21 | 6 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL14VIITAK-TAK | 21 | 137m | 0 | 25-29 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL14VIITAK-VII | 62 | 158m | 8/74-74/154 | 73-74 | 12 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL14FAIADA-ADA | 12 | 9m | 0 | 18-19 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL14KHALIN-KHA | 25 | 69m | 0 | 37-39 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL14KHALIN-LIN | 51 | 69m | 1/62-62/0 | 61-62 | 11 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL14OTWTAY-OTW | 21 | 8m | 0 | 33-36 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL14OTWTAY-TAY | 55 | 8m | 0 | 64-65 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL14SELSAT-SAT | 47 | 69m | 5/58-63/1974 | 62-59 | 11 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL14SELSAT-SEL | 28 | 69m | 0 | 36-38 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL14SHIRUS-RUS | 64 | 158m | 6/76-76/104 | 75-76 | 12 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL14SHIRUS-SHI | 17 | 158m | 2/25-26/10 | 24-25 | 8 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL14WARSYC-SYC | 43 | 38m | 1/51-51/0 | 47-51 | 8 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL14WARSYC-WAR | 32 | 135m | 1/52-52/3 | 49-52 | 20 | **FLOW_ABOVE** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 no open half-pairs
 
-## FLOW-STATE — 11 tracked game(s) ({'WAKING': 11}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 15 tracked game(s) ({'WAKING': 15}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ITFMATCH-26JUL14BOUHUL | ITF_M | 0.167 | 1 | **WAKING** |
-| ITFMATCH-26JUL14DELZHA | ITF_M | 0.033 | 1 | **WAKING** |
-| ITFMATCH-26JUL14DEMSAC | ITF_M | 0.033 | 1 | **WAKING** |
-| ITFMATCH-26JUL14HAZMCF | ITF_M | 0.033 | 1 | **WAKING** |
+| ITFMATCH-26JUL14BEAOGU | ITF_M | 0.0 | 2 | **WAKING** |
+| ITFMATCH-26JUL14BOUHUL | ITF_M | 0.033 | 1 | **WAKING** |
+| ITFMATCH-26JUL14CHACAM | ITF_M | 0.0 | 3 | **WAKING** |
+| ITFMATCH-26JUL14DELZHA | ITF_M | 0.0 | 1 | **WAKING** |
+| ITFMATCH-26JUL14DEMSAC | ITF_M | 0.0 | 1 | **WAKING** |
+| ITFMATCH-26JUL14HAZMCF | ITF_M | 0.1 | 2 | **WAKING** |
 | ITFMATCH-26JUL14JASJON | ITF_M | 0.033 | 1 | **WAKING** |
 | ITFMATCH-26JUL14VIITAK | ITF_M | 0.1 | 1 | **WAKING** |
+| ITFWMATCH-26JUL14FAIADA | ITF_W | 0.0 | 1 | **WAKING** |
 | ITFWMATCH-26JUL14KHALIN | ITF_W | 0.033 | 1 | **WAKING** |
-| ITFWMATCH-26JUL14SELSAT | ITF_W | 0.033 | 2 | **WAKING** |
+| ITFWMATCH-26JUL14OTWTAY | ITF_W | 0.033 | 1 | **WAKING** |
+| ITFWMATCH-26JUL14SELSAT | ITF_W | 0.067 | 2 | **WAKING** |
 | ITFWMATCH-26JUL14SHIRUS | ITF_W | 0.033 | 1 | **WAKING** |
 | ITFWMATCH-26JUL14WARSYC | ITF_W | 0.067 | 3 | **WAKING** |
 | WTACHALLENGERMATCH-26JUL14PACVED | WTA_CHALL | 0.0 | 1 | **WAKING** |
 
 ## PATTERNS (sub-B) — 14
-- half_arm_aging: KXWTACHALLENGERMATCH-26JUL14PACVED-PAC {"fill": 16, "age_min": 178, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXWTACHALLENGERMATCH-26JUL14PACVED-PAC {"fill": 16, "age_min": 188, "mode": "PAIRING(sib never rested)"}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL14ROZRIC-RIC {"kind": "resting_bid", "ref": 27.0, "market_mid": 58.5, "divergence": -31.5}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL14ROZRIC-ROZ {"kind": "position_basis", "ref": 70.0, "market_mid": 42.5, "divergence": 27.5}
 - reality_divergence: KXATPMATCH-26JUL14NEUPRA-NEU {"kind": "position_basis", "ref": 64.0, "market_mid": 13.0, "divergence": 51.0}

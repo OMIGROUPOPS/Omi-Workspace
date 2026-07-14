@@ -2024,6 +2024,33 @@ class LiveV3:
                         details["governed_by"] = "pair97_bound"
         except Exception:
             pass
+        # [C-PAIR-LAW v1 Part 2, 07-15] the one-sided-permission watch at
+        # the single emitter: any leg-one fill whose sibling page shows no
+        # reachable completion is a NAMED VIOLATION from tonight (field on
+        # the fill line — monitor-rendered, grep pair_law_violation).
+        try:
+            if event == "entry_filled" and isinstance(details, dict) and \
+                    self.config.get("selector_drop_enforce", False):
+                _ssv = self._pair_seesaw_state(
+                    ticker, int(details.get("fill_price") or 0))
+                if _ssv and _ssv.get("unreachable"):
+                    details["pair_law_violation"] = _ssv.get("why")
+                    details["pair_law_sib_page"] = _ssv.get("sib_page")
+        except Exception:
+            pass
+        # [C-GOLD-NOW Part 2b] day realized P&L accumulator at the single
+        # emitter (feeds the sizing engine's drawdown bound; day-keyed,
+        # boot starts at 0 = conservative toward base size).
+        try:
+            if event == "exit_filled" and isinstance(details, dict) and \
+                    details.get("pnl_cents") is not None:
+                _dk9 = datetime.now(ET).strftime("%Y%m%d")
+                if getattr(self, "_day_pnl_day", "") != _dk9:
+                    self._day_pnl_day, self._day_pnl_cents = _dk9, 0
+                self._day_pnl_cents = int(getattr(self, "_day_pnl_cents", 0)
+                                          + details["pnl_cents"])
+        except Exception:
+            pass
         # [C-CHASE-KILL 07-12] Lock A + the locks' bookkeeping at the single
         # emitter: every ACCEPTED buy placement joins the leg's own-activity
         # price series (the self-fill bell's feed) and counts the pursuit; the
@@ -2675,6 +2702,151 @@ class LiveV3:
         except Exception:
             pass
 
+    def _trendpath_atlas(self):
+        """[C-CONTENTION-LAW/C-GOLD-NOW] the atlas, hot-reloaded on mtime
+        (pages harden via the 12:05a rebuild cron). Never raises."""
+        _ap = Path(__file__).resolve().parent.parent / \
+            ".claude/trendpath/ATLAS_V1.json"
+        _amt = _ap.stat().st_mtime if _ap.exists() else 0
+        if getattr(self, "_trendatlas", None) is None or \
+                getattr(self, "_trendatlas_mt", None) != _amt:
+            self._trendatlas = (json.loads(_ap.read_text(encoding="utf-8"))
+                                if _ap.exists() else {})
+            self._trendatlas_mt = _amt
+        return (self._trendatlas or {}).get("pages", {})
+
+    def _selector_verdict(self, cat, current_price):
+        """[C-CONTENTION-LAW v1 selector, one arithmetic for shadow AND
+        enforcement — never two copies that drift] recompute the page's
+        fitted contention at THIS leg's discovery. Returns a dict
+        {selector, best_pct, tier, aim, by_tier, page, n} or a NO-OPINION
+        dict when the page/tiers are thin (named, never guessed)."""
+        pages = self._trendpath_atlas()
+        side = "leader" if current_price >= 50 else "underdog"
+        pc = ("le25" if current_price <= 25 else
+              "26_50" if current_price <= 50 else
+              "51_75" if current_price <= 75 else "ge75")
+        key = "%s|%s|%s" % (cat, side, pc)
+        page = pages.get(key)
+        if not page or page.get("verdict") != "PATH":
+            return {"selector": "NO-OPINION", "page": key,
+                    "n": (page or {}).get("n", 0), "side": side,
+                    "why": "thin page (n<8) — named, never guessed"}
+        con = page.get("contention") or {}
+        tiers = con.get("tiers") or {}
+        cband = con.get("band", 8)
+        best_y = best_tier = best_aim = None
+        by_tier = {}
+        for tq, T in tiers.items():
+            d9, pe, pw = T.get("d"), T.get("p_exit"), T.get("p_win_entry")
+            if d9 is None or pe is None or pw is None:
+                continue
+            a2 = max(1, int(round(current_price - d9)))
+            ev2 = pe * cband + (1 - pe) * (pw * (100 - a2)
+                                           - (1 - pw) * a2)
+            y2 = 100.0 * ev2 / a2
+            by_tier[tq] = round(y2, 1)
+            if best_y is None or y2 > best_y:
+                best_y, best_tier, best_aim = y2, tq, a2
+        if best_y is None:
+            return {"selector": "NO-OPINION", "page": key,
+                    "n": page.get("n"), "side": side,
+                    "bottom": page.get("bottom") or {},
+                    "branded": page.get("branded"),
+                    "why": "no fitted contention tiers on this page"}
+        return {"selector": ("TRADE-AT-PATH" if best_y >= 8.0 else "DROP"),
+                "best_pct": round(best_y, 1), "tier": best_tier,
+                "aim": best_aim, "by_tier": by_tier, "page": key,
+                "n": page.get("n") or 0, "side": side,
+                "bottom": page.get("bottom") or {},
+                "branded": page.get("branded")}
+
+    _TP_CATMAP = {"KXATPMATCH": "ATP_MAIN", "KXWTAMATCH": "WTA_MAIN",
+                  "KXATPCHALLENGERMATCH": "ATP_CHALL",
+                  "KXWTACHALLENGERMATCH": "WTA_CHALL",
+                  "KXITFMATCH": "ITF_M", "KXITFWMATCH": "ITF_W"}
+
+    def _cat_of_tk(self, tk):
+        return self._TP_CATMAP.get((tk or "").split("-")[0])
+
+    def _pair_verdict(self, cat, current_price):
+        """[C-PAIR-LAW v1, 07-15 — THE ENTRY UNIT IS THE PAIR, NEVER THE
+        LEG (operator decree, cited verbatim in the vault)] the verdict
+        elevates from leg to event: TRADE-PAIR only when both legs' path
+        pages compose — each side priced at its cell (sibling estimated at
+        the 100−p complement at discovery), combined at PATH prices ≤ 97,
+        neither page DROP. One side working = DROP-AS-PAIR: the one-sided
+        state is refused at the root, not manufactured. The CHEVAN nuance
+        survives: the 92¢ favorite isn't dropped for being pricey — its
+        page prices the pair at 79 and THAT gets judged."""
+        v_m = self._selector_verdict(cat, current_price)
+        sib_px = max(1, min(99, 100 - int(current_price)))
+        v_s = self._selector_verdict(cat, sib_px)
+        c97 = None
+        bm, bs = v_m.get("bottom"), v_s.get("bottom")
+        if bm and bs and bm.get("depth_p50") is not None \
+                and bs.get("depth_p50") is not None:
+            a_m = max(1, int(round(current_price - bm["depth_p50"])))
+            a_s = max(1, int(round(sib_px - bs["depth_p50"])))
+            c97 = a_m + a_s
+        if v_m["selector"] == "DROP" or v_s["selector"] == "DROP":
+            pv, why = "DROP-AS-PAIR", "a side's page shows no contention at any path price"
+        elif c97 is not None and c97 > 97:
+            pv, why = "DROP-AS-PAIR", "combined at path prices %d > 97" % c97
+        elif v_m["selector"] == "TRADE-AT-PATH" and \
+                v_s["selector"] == "TRADE-AT-PATH":
+            pv, why = "TRADE-PAIR", "both pages compose; combined %s <= 97" % c97
+        else:
+            pv, why = "PAIR-NO-OPINION", "a side is thin/unpriced — refusals need conviction, not absence of data"
+        return {"pair": pv, "why": why, "mine": v_m, "sib_est": v_s,
+                "sib_px_est": sib_px, "combined_at_path": c97}
+
+    def _pair_seesaw_state(self, tk, my_bid):
+        """[C-PAIR-LAW Part 3 — the seesaw guard, FITTED not decreed] live
+        reachability of the sibling's completion: at the sibling's CURRENT
+        book price, its page's fitted path entry (p50 bottom) must still
+        compose with my bid inside 97. The sibling rising past its page's
+        quantiles = unreachable = the pair stops being enterable BEFORE
+        leg one fills (the lazy-leg-1 root cure). None = no book/page
+        conviction (never refuse on ignorance)."""
+        try:
+            sib = self._sibling_ticker_any(tk)
+            if not sib:
+                return None
+            sb = self.books.get(sib)
+            bid9 = int(getattr(sb, "best_bid", 0) or 0) if sb else 0
+            ask9 = int(getattr(sb, "best_ask", 0) or 0) if sb else 0
+            if not (0 < bid9 <= ask9 <= 99):
+                return None
+            sib_px = (bid9 + ask9) / 2.0
+            cat = self._cat_of_tk(tk)
+            if not cat:
+                return None
+            v_s = self._selector_verdict(cat, sib_px)
+            base = {"sib": sib, "sib_px_live": round(sib_px, 1),
+                    "sib_page": v_s.get("page"), "sib_page_n": v_s.get("n")}
+            if v_s["selector"] == "DROP":
+                base.update({"unreachable": True,
+                             "why": "sibling page DROP at its live price "
+                                    "(no contention at any path)"})
+                return base
+            bs = v_s.get("bottom")
+            if not bs or bs.get("depth_p50") is None:
+                return None
+            sib_aim = max(1, int(round(sib_px - bs["depth_p50"])))
+            base["sib_path_aim"] = sib_aim
+            base["combined_at_path"] = int(my_bid) + sib_aim
+            if int(my_bid) + sib_aim > 97:
+                base.update({"unreachable": True,
+                             "why": "seesaw rose past the page quantiles: "
+                                    "my %d + sibling path-aim %d > 97"
+                                    % (int(my_bid), sib_aim)})
+            else:
+                base["unreachable"] = False
+            return base
+        except Exception:
+            return None
+
     def _trendpath_shadow(self, tk, et, cat, current_price, live_bid):
         """[C-TREND-PATH v1, 07-14 — AIM/TIMING MISSES fifth closing design,
         SHADOW ONLY] the drift atlas: at discovery, look up where markets
@@ -2693,77 +2865,43 @@ class LiveV3:
         try:
             if not self.config.get("trendpath_shadow_enabled", True):
                 return
-            _ap = Path(__file__).resolve().parent.parent / \
-                ".claude/trendpath/ATLAS_V1.json"
-            _amt = _ap.stat().st_mtime if _ap.exists() else 0
-            if getattr(self, "_trendatlas", None) is None or \
-                    getattr(self, "_trendatlas_mt", None) != _amt:
-                # pages harden daily (the 12:05a rebuild) -- reload on change
-                self._trendatlas = (json.loads(_ap.read_text(encoding="utf-8"))
-                                    if _ap.exists() else {})
-                self._trendatlas_mt = _amt
-            pages = (self._trendatlas or {}).get("pages", {})
-            side = "leader" if current_price >= 50 else "underdog"
-            pc = ("le25" if current_price <= 25 else
-                  "26_50" if current_price <= 50 else
-                  "51_75" if current_price <= 75 else "ge75")
-            key = "%s|%s|%s" % (cat, side, pc)
-            page = pages.get(key)
-            if not page or page.get("verdict") != "PATH":
+            v9 = self._selector_verdict(cat, current_price)
+            key = v9["page"]
+            if v9.get("bottom") is None:   # thin page: no PATH data at all
                 self._log("trendpath_shadow", {
                     "event": et, "verdict": "NO-OPINION",
                     "selector": "NO-OPINION",
-                    "selector_why": "thin page (n<8) — named, never guessed",
-                    "page": key, "n": (page or {}).get("n", 0),
+                    "selector_why": v9.get("why"),
+                    "page": key, "n": v9.get("n", 0),
                     "citation": "ATLAS_V1"}, ticker=tk)
                 return
-            bot = page.get("bottom") or {}
+            bot = v9.get("bottom") or {}
             # the favorable quantile: aim at the path's p50 bottom (reached
             # half the time), deep tier = p75; timing = the fitted bottom
             depth = bot.get("depth_p50") or 0
             aim = max(1, int(round(current_price - depth)))
             rec = {"event": et, "verdict": "PATH_AIM", "page": key,
-                   "n": page.get("n"), "side": side,
+                   "n": v9.get("n"), "side": v9.get("side"),
                    "path_aim": aim, "depth_p50": depth,
                    "deep_tier": bot.get("depth_p75"),
                    "bottom_t_med_min": bot.get("t_med_min"),
                    "live_bid": int(live_bid),
-                   "branded": page.get("branded"),
+                   "branded": v9.get("branded"),
                    "citation": "ATLAS_V1 %s (path bottom p50; -0k onset clock)" % key}
-            # [C-CONTENTION-LAW v1] the selector: recompute the page's
-            # fitted contention at THIS leg's discovery. The high-priced
-            # favorite is sometimes the best trade on the slate at the
-            # right entry and sometimes untouchable at every entry — this
-            # field says which, per leg, page cited.
-            con = page.get("contention") or {}
-            tiers = con.get("tiers") or {}
-            cband = con.get("band", 8)
-            best_y = best_tier = best_aim = None
-            by_tier = {}
-            for tq, T in tiers.items():
-                d9, pe, pw = T.get("d"), T.get("p_exit"), T.get("p_win_entry")
-                if d9 is None or pe is None or pw is None:
-                    continue
-                a2 = max(1, int(round(current_price - d9)))
-                ev2 = pe * cband + (1 - pe) * (pw * (100 - a2)
-                                               - (1 - pw) * a2)
-                y2 = 100.0 * ev2 / a2
-                by_tier[tq] = round(y2, 1)
-                if best_y is None or y2 > best_y:
-                    best_y, best_tier, best_aim = y2, tq, a2
-            if best_y is None:
+            # [C-CONTENTION-LAW v1] the selector field: one arithmetic
+            # (_selector_verdict) for shadow and enforcement alike.
+            if v9["selector"] == "NO-OPINION":
                 rec["selector"] = "NO-OPINION"
-                rec["selector_why"] = "no fitted contention tiers on this page"
+                rec["selector_why"] = v9.get("why")
             else:
-                rec["selector"] = ("TRADE-AT-PATH" if best_y >= 8.0
-                                   else "DROP")
-                rec["contention_best_pct"] = round(best_y, 1)
-                rec["contention_tier"] = best_tier
-                rec["contention_aim"] = best_aim
-                rec["contention_by_tier"] = by_tier
+                rec["selector"] = v9["selector"]
+                rec["contention_best_pct"] = v9["best_pct"]
+                rec["contention_tier"] = v9["tier"]
+                rec["contention_aim"] = v9["aim"]
+                rec["contention_by_tier"] = v9["by_tier"]
                 rec["selector_cited"] = ("contention fitted on %s (n=%d); "
                                          "the standing 8%% bar"
-                                         % (key, page.get("n") or 0))
+                                         % (key, v9.get("n") or 0))
             # pair line: combined at PATH prices once both legs seen
             _pc9 = self.__dict__.setdefault("_trendpath_pair", {})
             other = _pc9.get(et)
@@ -4026,6 +4164,26 @@ class LiveV3:
                         "cap": getattr(self, "reentry_cycle_cap", 2),
                     }, ticker=ticker)
                 return "", {"_error": "cycle_cap"}
+        # [C-PAIR-LAW v1, 07-15] the chokepoint half (the C-BAND-CLAMP
+        # make-it-stick lesson: covers the router and every conception
+        # path): no entry buy may rest on an UNFILLED event whose sibling
+        # completion is live-unreachable (seesaw). Filled events skip —
+        # completion of a held leg is never blocked (never-hold-naked).
+        if (action == "buy" and post_only
+                and self.config.get("selector_drop_enforce", False)):
+            _et7 = ticker.rsplit("-", 1)[0]
+            if not self._event_has_fill(_et7):
+                _ss7 = self._pair_seesaw_state(ticker, price)
+                if _ss7 and _ss7.get("unreachable"):
+                    _sk7 = self.__dict__.setdefault(
+                        "_seesaw_refused_logged", set())
+                    if (ticker, int(price)) not in _sk7:
+                        _sk7.add((ticker, int(price)))
+                        self._log("pair_seesaw_refused", {
+                            "price": price, "count": count,
+                            "site": "place_order_chokepoint", **_ss7},
+                            ticker=ticker)
+                    return "", {"_error": "pair_seesaw"}
         # [C-CHASE-KILL 07-12, operator decree] the in-play chase ladder dies
         # here (CORBRU: 14 buy placements 41->65 over 90 min, in-play, while
         # the walk cap's _window_open anchor was absent (the cap-void), the
@@ -8741,6 +8899,113 @@ class LiveV3:
                         "ask": current_ask, "cap": MAX_TAKER_SPREAD}, ticker=tk)
                     continue
 
+                # [C-GOLD-NOW Part 1, DECREED (operator word embedded in the
+                # 07-15 dispatch): DROP ENFORCEMENT — subtraction only] the
+                # selector's DROP verdict blocks entry at discovery: a market
+                # whose fitted page shows no contention at ANY path price is
+                # refused, named line, fail-before cited. Both witnesses
+                # convicted the bucket first (the week: −$17.95 named bleed;
+                # Kalshi's own export: −1.3% on 76% winners). TRADE and
+                # NO-OPINION proceed untouched. Prevents bids, places none.
+                # [C-PAIR-LAW v1, 07-15 — amends C-GOLD-NOW Part 1 before it
+                # distorts a second night, DECREED (operator ruling in the
+                # dispatch): THE ENTRY UNIT IS THE PAIR, NEVER THE LEG.
+                # Permission is per-event: DROP-AS-PAIR refuses both sides
+                # at the root; TRADE-PAIR continues current live behavior
+                # on both sides (volume converts from potential naked
+                # singles into two-sided participation — it is not clipped);
+                # PAIR-NO-OPINION proceeds (refusals need conviction). The
+                # live seesaw is checked here AND at every re-aim.
+                _sv9 = None
+                if self.config.get("selector_drop_enforce", False):
+                    try:
+                        _pl9 = self._pair_verdict(cat, current_price)
+                    except Exception:
+                        _pl9 = None
+                    _sv9 = (_pl9 or {}).get("mine")
+                    if _pl9 and _pl9["pair"] == "DROP-AS-PAIR":
+                        self._log("selector_drop_refused", {
+                            "event": et, "cat": cat, "pair_law": True,
+                            "verdict": "DROP-AS-PAIR",
+                            "discovery": current_price,
+                            "would_target_bid": target_bid,
+                            "sib_px_est": _pl9.get("sib_px_est"),
+                            "combined_at_path": _pl9.get("combined_at_path"),
+                            "my_page": (_pl9["mine"] or {}).get("page"),
+                            "my_contention_pct": (_pl9["mine"] or {}).get("best_pct"),
+                            "sib_page": (_pl9["sib_est"] or {}).get("page"),
+                            "sib_contention_pct": (_pl9["sib_est"] or {}).get("best_pct"),
+                            "fail_before": _pl9.get("why"),
+                            "decree": "C-PAIR-LAW v1 07-15 (amends C-GOLD-NOW "
+                                      "Part 1): the entry unit is the pair, "
+                                      "never the leg"}, ticker=tk)
+                        continue
+                    # the seesaw at entry: live sibling book consulted; a
+                    # pair whose second leg died on the way up is refused
+                    # before leg one ever rests (page-cited, dynamic)
+                    _ss9 = self._pair_seesaw_state(tk, target_bid)
+                    if _ss9 and _ss9.get("unreachable"):
+                        self._log("pair_seesaw_refused", {
+                            "event": et, "cat": cat,
+                            "discovery": current_price,
+                            "would_target_bid": target_bid, **_ss9,
+                            "decree": "C-PAIR-LAW v1 07-15 Part 3 (fitted "
+                                      "seesaw guard)"}, ticker=tk)
+                        continue
+                # [C-GOLD-NOW Part 2a, DARK (trendpath_live=false until the
+                # packet + the operator's words)] full path-mode: on a
+                # TRADE-AT-PATH verdict the entry aims at the page's fitted
+                # path target and the pair is capped to complete inside
+                # window 1 (combined-at-path ≤ 97). One flag flip + boot
+                # audit at cutover, not a build day.
+                if self.config.get("trendpath_live", False) and _sv9 and \
+                        _sv9.get("selector") == "TRADE-AT-PATH" and \
+                        _sv9.get("aim"):
+                    _pa9 = int(_sv9["aim"])
+                    _plc = self.__dict__.setdefault("_trendpath_pair_live", {})
+                    _sib9 = _plc.get(et)
+                    if _sib9 and _sib9[0] != tk:
+                        _pa9 = min(_pa9, 97 - int(_sib9[1]))
+                    if _pa9 >= 1:
+                        self._log("trendpath_live_aim", {
+                            "event": et, "from_target": target_bid,
+                            "path_aim": _pa9, "tier": _sv9.get("tier"),
+                            "page": _sv9.get("page")}, ticker=tk)
+                        entry_price = target_bid = _pa9
+                        _plc[et] = (tk, _pa9)
+                # [C-GOLD-NOW Part 2b, DARK (sizing_live=false) + SHADOW
+                # graded nightly] sizing v0: per-cell via the fitted
+                # contention tier, confidence-scaled (≥50% → 3 lots,
+                # ≥20% → 2, else base), drawdown-bounded (day realized
+                # ≤ −$15 → base; the floor constant is a PLACEHOLDER named
+                # in the proof — the operator's sizing word precedes any
+                # arming). Logs would-be size beside the live size.
+                try:
+                    _bq9 = int(self.entry_size)
+                    _cp9 = (_sv9 or {}).get("best_pct")
+                    _dd9 = int(getattr(self, "_day_pnl_cents", 0))
+                    _qw9 = (_bq9 if _cp9 is None else
+                            (_bq9 * 3 if _cp9 >= 50 else
+                             _bq9 * 2 if _cp9 >= 20 else _bq9))
+                    _ddf9 = int(self.config.get(
+                        "sizing_drawdown_floor_cents", -1500))
+                    if _dd9 <= _ddf9:
+                        _qw9 = _bq9
+                    if self.config.get("sizing_live", False) or _qw9 != _bq9:
+                        self._log("sizing_shadow", {
+                            "event": et, "qty_live": _bq9,
+                            "qty_would": _qw9,
+                            "contention_best_pct": _cp9,
+                            "day_pnl_cents": _dd9,
+                            "drawdown_floor": _ddf9,
+                            "armed": bool(self.config.get("sizing_live",
+                                                          False))}, ticker=tk)
+                    # local override ONLY — never mutate self.entry_size
+                    # (a ratchet would resize every later leg)
+                    _entry_qty9 = (_qw9 if self.config.get("sizing_live",
+                                                           False) else None)
+                except Exception:
+                    _entry_qty9 = None
                 # Pre-post guards: existing resting order / open position.
                 existing = await api_get(self.session, self.ak, self.pk,
                     "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
@@ -8835,8 +9100,11 @@ class LiveV3:
 
                 self.inflight_orders.add(tk)
                 try:
-                    oid, resp = await self.place_order(tk, "buy", "yes", entry_price,
-                                                       self.entry_size, post_only=post_only)
+                    # [C-GOLD-NOW Part 2b] sized only when sizing_live=true
+                    oid, resp = await self.place_order(
+                        tk, "buy", "yes", entry_price,
+                        (_entry_qty9 if _entry_qty9 else self.entry_size),
+                        post_only=post_only)
                 finally:
                     self.inflight_orders.discard(tk)
 
@@ -9913,6 +10181,31 @@ class LiveV3:
                     "projected": int(_projb), "new_target": int(new_target),
                     "held_price": int(pos.entry_price or 0)}, ticker=tk)
             return
+        # [C-PAIR-LAW v1 Part 3, 07-15] THE SEESAW LIFT at every re-aim:
+        # if the sibling's fitted path entry is live-unreachable (rose past
+        # its page's quantiles / combined-at-path > 97 / page DROP at its
+        # live price), the un-filled event's entry LIFTS — deliberate
+        # cancel-and-free (NOT the hold-the-bid pattern: a dead pair's
+        # resting bid is the lazy-leg-1 root). _untombstone_entry frees the
+        # leg; re-conception re-passes the pair-law chokepoint, so entry
+        # returns automatically when the seesaw comes back — dynamic,
+        # page-cited, fitted not decreed.
+        if (self.config.get("selector_drop_enforce", False)
+                and not self._event_has_fill(pos.event_ticker)):
+            _ss8 = self._pair_seesaw_state(tk, int(pos.entry_price
+                                                   or new_target))
+            if _ss8 and _ss8.get("unreachable"):
+                _res8 = await self._cancel_entry_and_resolve(
+                    tk, pos, "pair_seesaw_lifted", "pair_seesaw_race")
+                if _res8 == "cancelled":
+                    self._untombstone_entry(tk, pos)
+                    self._save_v4_resting()
+                self._log("pair_seesaw_lifted", {
+                    "event": pos.event_ticker,
+                    "lifted_price": int(pos.entry_price or 0),
+                    "resolution": _res8, **_ss8,
+                    "decree": "C-PAIR-LAW v1 07-15 Part 3"}, ticker=tk)
+                return
         # [C-CHASE-KILL 07-12, operator decree] the organ-level gate, BEFORE
         # the cancel (refuse-then-keep the resting bid -- a post-cancel refusal
         # starves the leg, the ICHOCH class). UP-moves only; down/equal moves

@@ -130,5 +130,9 @@
   "guidebook_shadow_enabled": false,
   "live_aim_shadow_enabled": true,
   "liveaim_conf_floor": 0.1,
-  "trendpath_shadow_enabled": true
+  "trendpath_shadow_enabled": true,
+  "selector_drop_enforce": true,
+  "trendpath_live": false,
+  "sizing_live": false,
+  "sizing_drawdown_floor_cents": -1500
 }

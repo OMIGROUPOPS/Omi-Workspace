@@ -183,5 +183,25 @@
   "DECREED",
   "C-TREND-PATH v1 07-14 (fifth aim design: the W1 drift atlas; shadow only; operator ruling: window-1 value is the thesis, no mid-game completion)",
   "L4"
+ ],
+ "selector_drop_enforce": [
+  "DECREED",
+  "C-GOLD-NOW v1 07-15 Part 1 (operator word embedded in the dispatch): DROP verdict blocks entry at discovery -- subtraction only; both witnesses convicted the bucket (week -$17.95; export -1.3% on 76% winners)",
+  "L4"
+ ],
+ "trendpath_live": [
+  "DECREED",
+  "C-GOLD-NOW v1 07-15 Part 2a: full path-mode DARK (flag false) until the consolidated n>=300 packet + the operator's words; cutover = flag flip + boot audit",
+  "L4"
+ ],
+ "sizing_live": [
+  "DECREED",
+  "C-GOLD-NOW v1 07-15 Part 2b: sizing engine v0 DARK (flag false), shadow-graded nightly; the operator's sizing word precedes any arming",
+  "L4"
+ ],
+ "sizing_drawdown_floor_cents": [
+  "DECREED",
+  "C-GOLD-NOW v1 07-15 Part 2b: PLACEHOLDER constant (-1500 = $15 day drawdown -> base size), named in the proof; final value = the operator's sizing word",
+  "L4"
  ]
 }

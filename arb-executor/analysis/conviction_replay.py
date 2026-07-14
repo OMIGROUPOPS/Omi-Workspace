@@ -618,6 +618,60 @@ def main():
                     % (100.0 * _net / _stk if _stk else 0.0, _net, _stk))
     except Exception:
         pass
+    # [C-GOLD-NOW Part 4, 07-15] THE REALIZATION LEDGER: returns from
+    # subtraction, printed nightly while the addition arms -- the legs the
+    # DROP decree refused, graded at what they actually did (tape-touch
+    # fill at the would-have bid, band-exit-else-settle, the LIVE-AIM
+    # convention), plus the consolidated-packet countdown.
+    try:
+        _ref9 = []
+        _sees9 = _lift9 = _viol9 = 0
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"pair_seesaw_refused"' in line:
+                _sees9 += 1
+                continue
+            if '"pair_seesaw_lifted"' in line:
+                _lift9 += 1
+                continue
+            if '"pair_law_violation"' in line and '"entry_filled"' in line:
+                _viol9 += 1
+            if '"selector_drop_refused"' not in line:
+                continue
+            d9 = json.loads(line)
+            det9 = d9.get("details") or {}
+            tk9 = d9.get("ticker", "")
+            if tk9 and det9.get("would_target_bid"):
+                _ref9.append((tk9, d9.get("ts_epoch", 0),
+                              det9["would_target_bid"]))
+        _saved = 0.0
+        _graded9 = 0
+        for tk9, ats, bid9 in _ref9:
+            won = settles.get(tk9, {}).get("settle")
+            if won not in ("WIN", "LOSS"):
+                continue
+            obs9 = obs_cache.get(tk9) or leg_observations(tk9)
+            obs_cache[tk9] = obs9
+            fill = next((o for o in obs9 if o[0] >= ats and o[2] <= bid9),
+                        None)
+            if fill is None:
+                continue
+            cashed = any(o[2] >= bid9 + 8 for o in obs9 if o[0] > fill[0])
+            _saved -= (8 if cashed else
+                       ((100 - bid9) if won == "WIN" else -bid9)) * 5 / 100.0
+            _graded9 += 1
+        _pk9 = ROOT.parent / ".claude/trendpath/PACKET_STATUS.json"
+        _pks = (json.loads(_pk9.read_text(encoding="utf-8"))
+                if _pk9.exists() else {})
+        L.insert(4, "**REALIZED-BY-SUBTRACTION: %d DROP-AS-PAIR refusals "
+                    "(%d graded, dollars-not-lost $%+.2f) | seesaw: %d "
+                    "refused / %d lifted | one-sided VIOLATIONS: %d | "
+                    "PACKET COUNTDOWN: n=%s/300 (auto re-run %s%s)**"
+                    % (len(_ref9), _graded9, _saved, _sees9, _lift9, _viol9,
+                       _pks.get("n_min", "?"),
+                       _pks.get("last_run_et", "never"),
+                       "; PACKET FIRED" if _pks.get("fired") else ""))
+    except Exception:
+        pass
     md = ROOT.parent / (".claude/adjudication/ADJUDICATION_%s.md" % ymd)
     md.write_text("\n".join(L), encoding="utf-8")
     print("adjudication ->", md)

@@ -2675,6 +2675,60 @@ class LiveV3:
         except Exception:
             pass
 
+    def _trendpath_shadow(self, tk, et, cat, current_price, live_bid):
+        """[C-TREND-PATH v1, 07-14 — AIM/TIMING MISSES fifth closing design,
+        SHADOW ONLY] the drift atlas: at discovery, look up where markets
+        like this one usually travel across window 1, and aim where it's
+        going — the dog at its path's favorable quantile with the fitted
+        timing, the favorite at its dip-path target; combined arithmetic
+        checked at PATH prices so the pair is designed to complete inside
+        the window (operator ruling: no completion fills mid-game;
+        window-1 value is the thesis). NO-OPINION on thin pages."""
+        try:
+            if not self.config.get("trendpath_shadow_enabled", True):
+                return
+            if getattr(self, "_trendatlas", None) is None:
+                _ap = Path(__file__).resolve().parent.parent / \
+                    ".claude/trendpath/ATLAS_V1.json"
+                self._trendatlas = (json.loads(_ap.read_text(encoding="utf-8"))
+                                    if _ap.exists() else {})
+            pages = (self._trendatlas or {}).get("pages", {})
+            side = "leader" if current_price >= 50 else "underdog"
+            pc = ("le25" if current_price <= 25 else
+                  "26_50" if current_price <= 50 else
+                  "51_75" if current_price <= 75 else "ge75")
+            key = "%s|%s|%s" % (cat, side, pc)
+            page = pages.get(key)
+            if not page or page.get("verdict") != "PATH":
+                self._log("trendpath_shadow", {
+                    "event": et, "verdict": "NO-OPINION",
+                    "page": key, "n": (page or {}).get("n", 0),
+                    "citation": "ATLAS_V1"}, ticker=tk)
+                return
+            bot = page.get("bottom") or {}
+            # the favorable quantile: aim at the path's p50 bottom (reached
+            # half the time), deep tier = p75; timing = the fitted bottom
+            depth = bot.get("depth_p50") or 0
+            aim = max(1, int(round(current_price - depth)))
+            rec = {"event": et, "verdict": "PATH_AIM", "page": key,
+                   "n": page.get("n"), "side": side,
+                   "path_aim": aim, "depth_p50": depth,
+                   "deep_tier": bot.get("depth_p75"),
+                   "bottom_t_med_min": bot.get("t_med_min"),
+                   "live_bid": int(live_bid),
+                   "branded": page.get("branded"),
+                   "citation": "ATLAS_V1 %s (path bottom p50; -0k onset clock)" % key}
+            # pair line: combined at PATH prices once both legs seen
+            _pc9 = self.__dict__.setdefault("_trendpath_pair", {})
+            other = _pc9.get(et)
+            if other and other[0] != tk:
+                rec["combined_at_path"] = aim + other[1]
+                rec["pair_completes_in_window"] = (aim + other[1]) <= 97
+            _pc9[et] = (tk, aim)
+            self._log("trendpath_shadow", rec, ticker=tk)
+        except Exception:
+            pass
+
     def _liveaim_shadow(self, tk, et, cat, current_price, live_bid):
         """[C-LIVE-AIM v1, 07-14 — AIM/TIMING MISSES fourth closing design,
         SHADOW ONLY, acts never until proven forward] the operator's spec
@@ -8716,6 +8770,9 @@ class LiveV3:
                 # [C-LIVE-AIM v1 07-14, SHADOW] the fourth design: the prior
                 # page conditioned by THIS market's live tape state
                 self._liveaim_shadow(tk, et, cat, current_price, target_bid)
+                # [C-TREND-PATH v1 07-14, SHADOW] the fifth design: the atlas
+                # says where markets like this one usually travel; aim there
+                self._trendpath_shadow(tk, et, cat, current_price, target_bid)
 
                 # #1 ref-price soft-alert: rolling tight_mid rate over the last 100 placements.
                 self._anchor_src_hist.append(anchor_src)

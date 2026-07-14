@@ -129,5 +129,6 @@
   "flatten_ev_margin_cents": 3.0,
   "guidebook_shadow_enabled": false,
   "live_aim_shadow_enabled": true,
-  "liveaim_conf_floor": 0.1
+  "liveaim_conf_floor": 0.1,
+  "trendpath_shadow_enabled": true
 }

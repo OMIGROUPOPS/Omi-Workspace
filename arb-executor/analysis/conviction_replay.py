@@ -518,6 +518,19 @@ def main():
                 L.append("- **taker cap hits (DECREED 3/day until n≥30 graded): %d — named, never silent**" % cap_hits)
     except Exception:
         pass
+    # [C-TAKER-REACH rider, 07-14] the operator's metric as the nightly
+    # headline: yield on capital wagered vs the 8% bar. Backfill on record
+    # (C-PNL-TRUTH staked joins): 07-10 +1.6% ($341) · 07-11 +0.8% ($279) ·
+    # 07-12 +0.1% ($279) · 07-13 −3.8% ($221).
+    try:
+        _stk = sum((t.get("px") or 0) * (t.get("qty") or 0) for t in trades) / 100.0
+        _net = sum(r.get("pnl_cents") or 0 for r in rows) / 100.0
+        L.insert(2, "")
+        L.insert(3, "**YIELD-ON-WAGERED: %+.1f%% (net $%+.2f on $%.0f staked) vs the 8%% bar** "
+                    "(backfill: 07-10 +1.6%% · 07-11 +0.8%% · 07-12 +0.1%% · 07-13 −3.8%%)"
+                    % (100.0 * _net / _stk if _stk else 0.0, _net, _stk))
+    except Exception:
+        pass
     md = ROOT.parent / (".claude/adjudication/ADJUDICATION_%s.md" % ymd)
     md.write_text("\n".join(L), encoding="utf-8")
     print("adjudication ->", md)

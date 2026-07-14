@@ -33,7 +33,25 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-15 early — C50 keeps this current):
+## STATE (2026-07-15 — C50 keeps this current):
+C-CONTENTION-LAW v1 EXECUTED: contention fitted per atlas page
+(27/28; ITF_W dogs 87%, ATP_CHALL leaders ge75 -3.2%); selector
+TRADE-AT-PATH/DROP/NO-OPINION SHADOW in trendpath_shadow (deployed
+via gate, SHA 1733bdd5 + doc HEAD); nightly SELECTOR section;
+12:05a atlas-hardening cron. Week as the selector's slate: TRADE
+176 / DROP 145 of 407; 22.6%/23.0% yield vs the 8% bar; EV3
+bleeders DROPPED 24/26; DROP actual bleed -$17.95 named. Doors on
+the letter: N=176<300, CI touches zero -> THIRD consecutive
+STRONGLY-POSITIVE-BUT-UNDERPOWERED. ONE consolidated n>=300 packet
+(path aims + reach law + selector) lands as settlements accrue --
+three words in one sitting. Flatten census (same date): 25
+below-basis sells all pre-leash, guard CLEAN, common cause = the
+two-term frame (win-ride excluded BY DESIGN) -> EV3 cutover is the
+cure. NEXT: 6:10 deletion word - EV3 re-read n>=300 - consolidated
+packet - COMBINED-CAP remedy - -0g - ws_depth_recorder archive
+extension (overdue).
+
+(prior:) ## STATE (2026-07-15 early):
 THE LOADED SEQUENCE FROM 7338fef7: EXECUTED COMPLETE. Atlas built
 (30 pages; disk incident #5 mid-run -- pruned 4.5G, ws_depth_recorder
 8.2G = twice-flagged eater, archive-sync extension OVERDUE infra).

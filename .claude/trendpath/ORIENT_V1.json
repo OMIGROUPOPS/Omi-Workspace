@@ -1,0 +1,89 @@
+{
+ "meta": {
+  "built": "2026-07-15",
+  "tells": [
+   "f_drift (hour-end last vs first-hour median)",
+   "f_range (hour-end pos in hour range)",
+   "f_flow (dog share of pair first-hour prints)",
+   "spread asymmetry: SILENT in this corpus (no book in candles) \u2014 named, not faked"
+  ],
+  "truth": "pre-onset drift >= 2c on either side",
+  "operating_point": {
+   "min_n": 10,
+   "call_hi": 0.65,
+   "call_lo": 0.35
+  },
+  "clock": "orientation accuracy accrues its own n>=300 before it ever touches money"
+ },
+ "cats": {
+  "ATP_CHALL": {
+   "-1|lo|mid": {
+    "n": 10,
+    "dog_rise_rate": 0.3
+   },
+   "-1|lo|hi": {
+    "n": 17,
+    "dog_rise_rate": 0.176
+   },
+   "-1|lo|lo": {
+    "n": 27,
+    "dog_rise_rate": 0.259
+   },
+   "0|lo|lo": {
+    "n": 27,
+    "dog_rise_rate": 0.481
+   },
+   "1|hi|hi": {
+    "n": 16,
+    "dog_rise_rate": 0.375
+   },
+   "0|lo|hi": {
+    "n": 22,
+    "dog_rise_rate": 0.455
+   },
+   "0|hi|lo": {
+    "n": 11,
+    "dog_rise_rate": 0.545
+   },
+   "1|hi|lo": {
+    "n": 10,
+    "dog_rise_rate": 0.5
+   },
+   "0|lo|mid": {
+    "n": 10,
+    "dog_rise_rate": 0.4
+   },
+   "0|hi|hi": {
+    "n": 11,
+    "dog_rise_rate": 0.545
+   }
+  },
+  "ATP_MAIN": {
+   "-1|lo|lo": {
+    "n": 22,
+    "dog_rise_rate": 0.227
+   },
+   "-1|lo|hi": {
+    "n": 13,
+    "dog_rise_rate": 0.154
+   },
+   "0|lo|lo": {
+    "n": 12,
+    "dog_rise_rate": 0.5
+   }
+  },
+  "WTA_CHALL": {},
+  "WTA_MAIN": {
+   "-1|lo|lo": {
+    "n": 13,
+    "dog_rise_rate": 0.077
+   },
+   "0|lo|hi": {
+    "n": 12,
+    "dog_rise_rate": 0.75
+   }
+  },
+  "ITF_W": {},
+  "ITF_M": {}
+ }
+}

@@ -5715,7 +5715,26 @@ class LiveV3:
         sib_ask = sib_book.best_ask if (sib_book and 0 < sib_book.best_ask < 100) else None
         s1 = self._completion_target(s0, x_cell, sib_ask, this_basis)
         cap_headroom = int(self.combined_goal) - this_basis  # [C-BOUND-RULING] goal headroom
-        if s1 <= s0 or s1 < 1:
+        # [CUTOVER 07-14, operator word] the 97-REMAINDER-AS-TARGET pricing
+        # is DELETED: when the sibling has a fitted PATH page, the
+        # completion bid prices AT its path aim (the faller cast at its
+        # quantile), still bounded by the C-BOUND remainder ceiling
+        # (operator adjudication 07-05, RETAINED as the cap) and ask-1.
+        _cp_path = None
+        try:
+            _svc9 = self._selector_verdict(self._cat_of_tk(sib) or "", s0)
+            _dc9 = ((_svc9 or {}).get("bottom") or {}).get("depth_p50")
+            if _dc9 is not None:
+                _cp_path = max(1, int(round(s0 - _dc9)))
+        except Exception:
+            _cp_path = None
+        _path_priced9 = False
+        if _cp_path is not None and _cp_path < s1:
+            s1 = min(_cp_path,
+                     int(self.combined_goal) - int(round(this_basis)),
+                     (sib_ask - 1) if sib_ask is not None else 99)
+            _path_priced9 = True
+        if (s1 <= s0 and not _path_priced9) or s1 < 1:
             self._log("completion_no_attempt", {"event": et, "reason": "no_headroom",
                 "s0": s0, "s1": s1, "x": x_cell, "cap_headroom": cap_headroom,
                 "sib_ask": sib_ask, "cell_at_completion_lookup": wo1["cell"],
@@ -5786,11 +5805,15 @@ class LiveV3:
         sp.completion_prev_target = prev_target
         sp.completion_lookup_cell = wo1["cell"]
         sp.completion_all_cells_arm = _all_cells_arm   # [C-COMPLETE-ALL] tripwire-exempt iff parked by the all-cells branch
+        sp.completion_path_priced = _path_priced9   # [CUTOVER 07-14] rests at its path aim
         self._log("completion_attempt", {
             "event": et, "s0": s0, "s1": price, "x": x_cell,
             "cap_headroom": cap_headroom, "trigger_fill_id": pos.entry_order_id,
             "cell_at_completion_lookup": wo1["cell"], "leg1_basis": this_basis,
             "qty": qty, "sib_ask": sib_ask, "prev_bid": prev_price,
+            "path_priced": _path_priced9,
+            **({"citation": "path aim from sibling page (cutover 07-14)"}
+               if _path_priced9 else {}),
             "order_id": oid}, ticker=sib)
         self._save_v4_resting()
 
@@ -9082,20 +9105,34 @@ class LiveV3:
                                 "event": et, "cat": cat,
                                 "pair_state": (_pl9 or {}).get("pair"),
                                 **_or9}, ticker=tk)
-                # [C-GOLD-NOW Part 2a → C-INCUMBENT-SUNSET Part 3, DARK
-                # (trendpath_live=false until the packet's default-GO)]
-                # path-mode in NO-CALL POSTURE: on every non-dropped event,
-                # BOTH legs rest at their pages' fitted path aims (p50
-                # bottom), pair-capped to complete inside window 1
-                # (combined ≤ 97). Orientation LAYERS IN when its own bar
-                # clears (orientation_live, also dark): the called riser
-                # keeps the near-now incumbent target, the faller casts
-                # deep at p75 — organs activate as they prove, none wait
-                # for the slowest. Cutover = flag flip + full boot audit.
-                if self.config.get("trendpath_live", False) and _sv9 and \
-                        (_sv9.get("bottom") or {}).get("depth_p50") \
-                        is not None:
-                    _d509 = _sv9["bottom"]["depth_p50"]
+                # [CUTOVER EXECUTED 07-14 — operator word waiving the
+                # default-GO deadline; the packet's three letters all PASS]
+                # PATH-MODE IS THE LAW, NO-CALL POSTURE: both legs of every
+                # non-dropped event rest at their pages' fitted path aims
+                # (p50 bottom), pair-capped ≤97. THE INCUMBENT'S STATIC-AIM
+                # ENTRY IS DELETED, NOT DISABLED: no fitted PATH page = no
+                # path price = NO ENTRY, refused by name — the table never
+                # prices another entry. Orientation layers in when its own
+                # bar clears (orientation_live, dark); sizing dark pending
+                # the operator's separate word.
+                if _sv9 is None:
+                    try:
+                        _sv9 = self._selector_verdict(cat, current_price)
+                    except Exception:
+                        _sv9 = None
+                _d509 = ((_sv9 or {}).get("bottom") or {}).get("depth_p50")
+                if _d509 is None:
+                    self._log("no_path_page_refused", {
+                        "event": et, "cat": cat,
+                        "discovery": current_price,
+                        "page": (_sv9 or {}).get("page"),
+                        "page_n": (_sv9 or {}).get("n"),
+                        "fail_before": "no fitted PATH page — no path "
+                                       "price, no entry (the incumbent aim "
+                                       "table is DELETED, not consulted)"},
+                        ticker=tk)
+                    continue
+                if True:
                     _pa9 = max(1, int(round(current_price - _d509)))
                     _mode9 = "no_call_posture"
                     if self.config.get("orientation_live", False):
@@ -9120,6 +9157,10 @@ class LiveV3:
                             "event": et, "from_target": target_bid,
                             "path_aim": _pa9, "mode": _mode9,
                             "page": _sv9.get("page"),
+                            "page_n": _sv9.get("n"),
+                            "citation": "ATLAS_V1 %s (path bottom p50; "
+                                        "cutover 07-14 operator word)"
+                                        % _sv9.get("page"),
                             "entry_governor": "trendpath_path_aim"},
                             ticker=tk)
                         entry_price = target_bid = _pa9
@@ -10357,6 +10398,23 @@ class LiveV3:
                     "resolution": _res8, **_ss8,
                     "decree": "C-PAIR-LAW v1 07-15 Part 3"}, ticker=tk)
                 return
+        # [CUTOVER 07-14, operator word] JOIN-THE-MARKET WALKING IS
+        # DELETED: a path bid RESTS at its fitted aim — get paid, not get
+        # filled. Up-moves on entry bids are held, named (protective
+        # down/equal moves and the completion organ's own repricing are
+        # untouched).
+        if (int(new_target) > int(pos.entry_price or 0)
+                and getattr(pos, "entry_mode", "") != "completion_reprice"):
+            _pm8 = self.__dict__.setdefault("_path_hold_logged", set())
+            if (tk, int(new_target)) not in _pm8:
+                _pm8.add((tk, int(new_target)))
+                self._log("path_mode_hold", {
+                    "event": pos.event_ticker,
+                    "held_price": int(pos.entry_price or 0),
+                    "proposed": int(new_target),
+                    "law": "cutover 07-14: the bid rests at its path aim"},
+                    ticker=tk)
+            return
         # [C-CHASE-KILL 07-12, operator decree] the organ-level gate, BEFORE
         # the cancel (refuse-then-keep the resting bid -- a post-cancel refusal
         # starves the leg, the ICHOCH class). UP-moves only; down/equal moves
@@ -10634,6 +10692,11 @@ class LiveV3:
             await self._completion_revert(tk, pos, book, now, "t0_reached")
             return
         if now - pos.completion_reprice_ts < V4_COMPLETION_FRESHNESS_SEC:
+            return
+        # [CUTOVER 07-14] a path-priced completion bid RESTS at its aim —
+        # the walk-freshness re-pricing was the incumbent's; t0/buffer
+        # handling above still applies.
+        if getattr(pos, "completion_path_priced", False):
             return
         # re-evaluate s1 against the current book (s0 / X / leg-1 basis are frozen at
         # attempt time; only the ask clamp moves) and refresh qty to leg-1's CURRENT

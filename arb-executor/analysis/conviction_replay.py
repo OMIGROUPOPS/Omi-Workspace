@@ -613,9 +613,37 @@ def main():
         _stk = sum((t.get("px") or 0) * (t.get("qty") or 0) for t in trades) / 100.0
         _net = sum(r.get("pnl_cents") or 0 for r in rows) / 100.0
         L.insert(2, "")
+        # [CUTOVER 07-14, STANDING LAW (operator, verbatim in the vault):
+        # "the goal is solid yield on solid capital wagered — the nightly's
+        # first line is forever YIELD-ON-WAGERED versus the 8% bar;
+        # below-bar nights print their named reasons, diagnosed, never
+        # explained away."]
+        _y9 = 100.0 * _net / _stk if _stk else 0.0
         L.insert(3, "**YIELD-ON-WAGERED: %+.1f%% (net $%+.2f on $%.0f staked) vs the 8%% bar** "
                     "(backfill: 07-10 +1.6%% · 07-11 +0.8%% · 07-12 +0.1%% · 07-13 −3.8%%)"
-                    % (100.0 * _net / _stk if _stk else 0.0, _net, _stk))
+                    % (_y9, _net, _stk))
+        if _stk and _y9 < 8.0:
+            _catp = defaultdict(float)
+            _setl = _exl = 0.0
+            for r9 in rows:
+                p9 = r9.get("pnl_cents")
+                if p9 is None:
+                    continue
+                _catp[r9.get("cat", "?")] += p9
+                if r9["tk"] in settles:
+                    _setl += p9
+                else:
+                    _exl += p9
+            _worst = sorted(_catp.items(), key=lambda x: x[1])[:2]
+            L.insert(4, "**BELOW-BAR NIGHT — named: settled legs $%+.2f vs "
+                        "exited legs $%+.2f; worst categories %s; "
+                        "diagnosis, not explanation: %s**"
+                        % (_setl / 100.0, _exl / 100.0,
+                           ", ".join("%s $%+.2f" % (c9, v9 / 100.0)
+                                     for c9, v9 in _worst),
+                           ("ride-to-zero settlements dominate — the "
+                            "payoff-asymmetry class" if _setl < _exl
+                            else "exit-side bleed — band/flatten review")))
     except Exception:
         pass
     # [C-GOLD-NOW Part 4, 07-15] THE REALIZATION LEDGER: returns from
@@ -724,32 +752,27 @@ def main():
         _pk8 = ROOT.parent / ".claude/trendpath/PACKET_STATUS.json"
         _pks8 = (json.loads(_pk8.read_text(encoding="utf-8"))
                  if _pk8.exists() else {})
-        _nmin8 = _pks8.get("n_min", "?")
-        _go8 = _pks8.get("go_state", "packet not yet fired")
-        _tpl = bool(_cf9.get("trendpath_live", False))
-        _dist = ("ACTIVE" if _tpl else
-                 "packet n=%s/300 -> default-GO +12h (%s)" % (_nmin8, _go8))
         L.insert(5, "**INCUMBENT-COST: $%+.2f across %d incumbent-entered "
                     "legs%s (attribution: trendpath_live_aim stamp)**"
                     % (_inc_c / 100.0, _inc_n,
                        (" | replacement legs $%+.2f across %d"
                         % (_rep_c / 100.0, _rep_n)) if _rep_n else ""))
-        L += ["", "## SUNSET LEDGER (C-INCUMBENT-SUNSET: the convicted "
-                  "incumbent's organs, each with a death date, never a "
-                  "surprise in a screenshot)"]
-        L.append("- static aim tables -> path-mode NO-CALL posture "
-                 "(trendpath_live): %s | %s"
-                 % ("LIVE" if _tpl else "DARK", _dist))
-        L.append("- join-the-market placement -> the same path-mode flag: "
-                 "%s | %s" % ("LIVE" if _tpl else "DARK", _dist))
-        L.append("- 97-remainder completion pricing -> combined-at-path "
-                 "pair design (rides path-mode): %s | %s"
-                 % ("LIVE" if _tpl else "DARK", _dist))
+        L += ["", "## SUNSET LEDGER (post-cutover 07-14, operator word: "
+                  "the incumbent's organs and what replaced them)"]
+        L.append("- static aim tables -> DELETED from the entry path "
+                 "(cutover 07-14): path aims are THE law; no fitted page "
+                 "= no entry (no_path_page_refused, named)")
+        L.append("- join-the-market walking -> DELETED (path_mode_hold): "
+                 "the bid rests at its fitted aim — get paid, not filled")
+        L.append("- 97-remainder completion pricing -> remainder-as-TARGET "
+                 "DELETED; the sibling's path aim prices the bid; the "
+                 "C-BOUND remainder CEILING retained (operator "
+                 "adjudication 07-05)")
         L.append("- leg-level entry permission -> PAIR-LAW "
                  "(orientation-composition + seesaw lift): LIVE 07-15")
         L.append("- static 5-lot sizing -> sizing engine v0 (sizing_live): "
-                 "%s | awaiting the operator's sizing word (drawdown floor "
-                 "still a named placeholder)"
+                 "%s | awaiting the operator's SEPARATE sizing word "
+                 "(drawdown floor still a named placeholder)"
                  % ("LIVE" if _cf9.get("sizing_live") else "DARK"))
         L.append("- undirected placement -> orientation layer "
                  "(orientation_live): %s | tells' own clock (week: 8%% "

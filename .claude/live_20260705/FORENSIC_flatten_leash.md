@@ -1,7 +1,7 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784049327 -->
-written 2026-07-14 01:20:29 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784049938 -->
+written 2026-07-14 01:31:24 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (259 total this session)
+## Events (268 total this session)
 - 03:25:22 KXITFMATCH-26JUL14HASSAL-HAS — flatten DEFERRED: ev -2.08 above margin floor -3.0
 - 03:33:24 KXITFWMATCH-26JUL14RICALV-ALV — flatten DEFERRED: ev -2.42 above margin floor -3.0
 - 03:35:37 KXITFMATCH-26JUL14HASSAL-HAS — flatten DEFERRED: ev -2.08 above margin floor -3.0
@@ -261,6 +261,15 @@ written 2026-07-14 01:20:29 PM ET by live_validation_loop (read-only). Patch con
 - 13:14:22 KXITFMATCH-26JUL14TSIKAS-TSI — flatten CAPPED at 8/day (8 today)
 - 13:15:17 KXITFMATCH-26JUL14LORCIG-CIG — flatten DEFERRED: ev -2.78 above margin floor -3.0
 - 13:15:27 KXATPCHALLENGERMATCH-26JUL14SUNGEA-SUN — flatten DEFERRED: ev -2.3 above margin floor -3.0
+- 13:20:51 KXWTAMATCH-26JUL13BLISAS-BLI — flatten DEFERRED: ev -0.44 above margin floor -3.0
+- 13:20:53 KXWTACHALLENGERMATCH-26JUL14MAZBRO-MAZ — flatten DEFERRED: ev -0.6 above margin floor -3.0
+- 13:20:55 KXITFWMATCH-26JUL14MATHUI-MAT — flatten DEFERRED: ev -2.31 above margin floor -3.0
+- 13:20:55 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
+- 13:21:47 KXATPCHALLENGERMATCH-26JUL14JONIVA-JON — flatten DEFERRED: ev -0.48 above margin floor -3.0
+- 13:21:48 KXATPCHALLENGERMATCH-26JUL14ADDLEO-LEO — flatten DEFERRED: ev -1.07 above margin floor -3.0
+- 13:23:48 KXITFWMATCH-26JUL14BARREA-REA — flatten CAPPED at 8/day (8 today)
+- 13:25:28 KXITFMATCH-26JUL14LORCIG-CIG — flatten DEFERRED: ev -2.78 above margin floor -3.0
+- 13:25:38 KXATPCHALLENGERMATCH-26JUL14SUNGEA-SUN — flatten DEFERRED: ev -2.3 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-14 06:41:24 AM ET", "ts_epoch": 1784025684.56895, "event": "v4_place", "ticker": "KXITFMATCH-26JUL14LORCIG-CIG", "details": {"event": "KXITFMATCH-26JUL14LORCIG", "direction": "leader", "cat": "ITF_M", "regime": "r85_94", "cell": 85, "current_price": 85, "anchor_src": "engagement_join", "table_src": "engagement_wave1", "last_trade_age_sec": -1.0, "offset": 0, "target_bid": 48, "curr
@@ -875,6 +884,11 @@ written 2026-07-14 01:20:29 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-14 01:15:27 PM ET", "ts_epoch": 1784049327.2052066, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14SUNGEA-SUN", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|le25", "n": 54, "p_exit_fill": 0.704, "p_ride_zero": 0.296, "ev_cents": -2.3, "band": 6, "basis": 22, "win_ride_residual_excluded": 0.0, "citation": "
     {"ts": "2026-07-14 01:15:27 PM ET", "ts_epoch": 1784049327.2054353, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL14SUNGEA-SUN", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14SUNGEA", "ev_cents": -2.3, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
     {"ts": "2026-07-14 01:17:54 PM ET", "ts_epoch": 1784049474.2484455, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 44, "n_resting_orders": 100, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784012892.4494815, "legs_new": ["KXATPCHALLENGERMATCH-26JUL14ADDLEO-LEO", "KXATPCHALLENGERMAT
+    {"ts": "2026-07-14 01:25:28 PM ET", "ts_epoch": 1784049928.9002678, "event": "completion_shadow", "ticker": "KXITFMATCH-26JUL14LORCIG-CIG", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_M|leader|deep_disc|ge75", "n": 9, "p_exit_fill": 0.778, "p_ride_zero": 0.222, "ev_cents": -2.78, "band": 19, "basis": 79, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LA
+    {"ts": "2026-07-14 01:25:28 PM ET", "ts_epoch": 1784049928.9004905, "event": "completion_flatten_deferred", "ticker": "KXITFMATCH-26JUL14LORCIG-CIG", "details": {"event": "KXITFMATCH-26JUL14LORCIG", "ev_cents": -2.78, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-14 01:25:38 PM ET", "ts_epoch": 1784049938.1988008, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14SUNGEA-SUN", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|le25", "n": 54, "p_exit_fill": 0.704, "p_ride_zero": 0.296, "ev_cents": -2.3, "band": 6, "basis": 22, "win_ride_residual_excluded": 0.0, "citation": "
+    {"ts": "2026-07-14 01:25:38 PM ET", "ts_epoch": 1784049938.1990159, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL14SUNGEA-SUN", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14SUNGEA", "ev_cents": -2.3, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-14 01:29:26 PM ET", "ts_epoch": 1784050166.2943292, "event": "exit_filled", "ticker": "KXITFMATCH-26JUL14LORCIG-CIG", "details": {"exit_price": 98, "entry_price": 79, "qty": 5, "new_fills": 5, "complete": true, "pnl_cents": 95.0, "pnl_dollars": 0.95, "had_dca": false, "cycle": 1, "in_play": true, "bell_source": "self_fill", "trade_id": "T-20260714-0479"}}
 
 ## Code path
 ?

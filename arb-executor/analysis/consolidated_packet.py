@@ -287,7 +287,8 @@ if crossing:
               "+" if summ["selector"]["delta"] > 0 else "",
               summ["selector"]["yield_pct"]))
     try:
-        subprocess.run(["/root/notify.sh", msg], timeout=30)
+        subprocess.run(["/root/notify.sh", "critical",
+                        "CONSOLIDATED PACKET n>=300", msg], timeout=30)
     except Exception:
         try:
             requests.post("https://ntfy.sh/omi-livev4-omqs-x7k3q9v2",

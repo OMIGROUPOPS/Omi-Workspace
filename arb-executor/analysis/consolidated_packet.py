@@ -277,15 +277,26 @@ if crossing:
         "PROOF_GOLD_PAIR.md beside the leg-frame selector letter.\n"
         % (now_et, "\n\n".join(lines), dict(skip)), encoding="utf-8")
     fired = True
+    # [C-INCUMBENT-SUNSET Part 2, DECREED (operator's standing overhaul
+    # mandate, cited in the vault): DEFAULT-GO] the burden of proof
+    # reverses — "stop" halts it; silence for 12 hours after the packet
+    # means the flags flip on the next boot with full audit
+    # (deploy/auto_cutover.sh on the half-hour cron; STOP file =
+    # .claude/trendpath/OPERATOR_STOP).
+    import time as _t
+    go_deadline = _t.time() + 12 * 3600
     msg = ("CONSOLIDATED PACKET FIRED n_min=%d: path %s%.1f%%, reach "
-           "%s%.1f%%, selector %s%.1f%% (yields vs 8%% bar). "
-           "RULING_PACKET.md awaits the three words."
+           "%s%.1f%%, selector %s%.1f%% (yields vs 8%% bar). DEFAULT-GO: "
+           "reply STOP within 12h or trendpath_live flips on the next "
+           "boot with full audit (deadline %s ET)."
            % (n_min, "+" if summ["path"]["delta"] > 0 else "",
               summ["path"]["yield_pct"],
               "+" if summ["reach"]["delta"] > 0 else "",
               summ["reach"]["yield_pct"],
               "+" if summ["selector"]["delta"] > 0 else "",
-              summ["selector"]["yield_pct"]))
+              summ["selector"]["yield_pct"],
+              datetime.fromtimestamp(go_deadline, ET).strftime(
+                  "%m-%d %I:%M %p")))
     try:
         subprocess.run(["/root/notify.sh", "critical",
                         "CONSOLIDATED PACKET n>=300", msg], timeout=30)
@@ -296,11 +307,20 @@ if crossing:
         except Exception:
             pass
 
-STATUS.write_text(json.dumps({
+st9 = {
     "n_path": T["path"]["n"], "n_reach": T["reach"]["n"],
     "n_selector": T["selector"]["n"], "n_min": n_min,
     "last_run_et": now_et, "fired": fired,
-    "summary": summ, "skips": dict(skip)}, indent=1), encoding="utf-8")
+    "summary": summ, "skips": dict(skip)}
+if crossing:
+    st9["go_deadline_epoch"] = go_deadline
+    st9["go_state"] = "PENDING-GO (default-GO decreed; STOP file halts)"
+elif prev.get("go_deadline_epoch"):
+    st9["go_deadline_epoch"] = prev["go_deadline_epoch"]
+    st9["go_state"] = prev.get("go_state")
+if prev.get("cutover_done"):
+    st9["cutover_done"] = prev["cutover_done"]
+STATUS.write_text(json.dumps(st9, indent=1), encoding="utf-8")
 print("PACKET_STATUS: n_min=%d/%d fired=%s" % (n_min, NBAR, fired))
 for ln in lines:
     print(ln)

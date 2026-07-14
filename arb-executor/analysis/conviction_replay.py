@@ -672,6 +672,69 @@ def main():
                        "; PACKET FIRED" if _pks.get("fired") else ""))
     except Exception:
         pass
+    # [C-INCUMBENT-SUNSET, 07-15] Part 1: INCUMBENT-COST — every dollar the
+    # CONVICTED INCUMBENT (static aims / join-the-market / 97-remainder
+    # completion pricing) loses from tonight is attributed to it; legs the
+    # path-mode re-aimed (trendpath_live_aim stamp) are the replacement's.
+    # Part 4: THE SUNSET LEDGER — each incumbent organ with its
+    # replacement's status and distance-to-activation, so "why is this
+    # still hardcoded" is always a printed answer with a date.
+    try:
+        _tp_legs = set()
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"trendpath_live_aim"' in line:
+                d9 = json.loads(line)
+                if d9.get("ticker"):
+                    _tp_legs.add(d9["ticker"])
+        _inc_n = _inc_c = _rep_n = _rep_c = 0
+        for r in rows:
+            if r.get("pnl_cents") is None:
+                continue
+            if r["tk"] in _tp_legs:
+                _rep_n += 1
+                _rep_c += r["pnl_cents"]
+            else:
+                _inc_n += 1
+                _inc_c += r["pnl_cents"]
+        _cfp = ROOT / "config/deploy_v5_live.json"
+        _cf9 = json.loads(_cfp.read_text(encoding="utf-8")) \
+            if _cfp.exists() else {}
+        _pk8 = ROOT.parent / ".claude/trendpath/PACKET_STATUS.json"
+        _pks8 = (json.loads(_pk8.read_text(encoding="utf-8"))
+                 if _pk8.exists() else {})
+        _nmin8 = _pks8.get("n_min", "?")
+        _go8 = _pks8.get("go_state", "packet not yet fired")
+        _tpl = bool(_cf9.get("trendpath_live", False))
+        _dist = ("ACTIVE" if _tpl else
+                 "packet n=%s/300 -> default-GO +12h (%s)" % (_nmin8, _go8))
+        L.insert(5, "**INCUMBENT-COST: $%+.2f across %d incumbent-entered "
+                    "legs%s (attribution: trendpath_live_aim stamp)**"
+                    % (_inc_c / 100.0, _inc_n,
+                       (" | replacement legs $%+.2f across %d"
+                        % (_rep_c / 100.0, _rep_n)) if _rep_n else ""))
+        L += ["", "## SUNSET LEDGER (C-INCUMBENT-SUNSET: the convicted "
+                  "incumbent's organs, each with a death date, never a "
+                  "surprise in a screenshot)"]
+        L.append("- static aim tables -> path-mode NO-CALL posture "
+                 "(trendpath_live): %s | %s"
+                 % ("LIVE" if _tpl else "DARK", _dist))
+        L.append("- join-the-market placement -> the same path-mode flag: "
+                 "%s | %s" % ("LIVE" if _tpl else "DARK", _dist))
+        L.append("- 97-remainder completion pricing -> combined-at-path "
+                 "pair design (rides path-mode): %s | %s"
+                 % ("LIVE" if _tpl else "DARK", _dist))
+        L.append("- leg-level entry permission -> PAIR-LAW "
+                 "(orientation-composition + seesaw lift): LIVE 07-15")
+        L.append("- static 5-lot sizing -> sizing engine v0 (sizing_live): "
+                 "%s | awaiting the operator's sizing word (drawdown floor "
+                 "still a named placeholder)"
+                 % ("LIVE" if _cf9.get("sizing_live") else "DARK"))
+        L.append("- undirected placement -> orientation layer "
+                 "(orientation_live): %s | tells' own clock (week: 8%% "
+                 "coverage, n=8/300) — layers in when its bar clears"
+                 % ("LIVE" if _cf9.get("orientation_live") else "DARK"))
+    except Exception:
+        pass
     md = ROOT.parent / (".claude/adjudication/ADJUDICATION_%s.md" % ymd)
     md.write_text("\n".join(L), encoding="utf-8")
     print("adjudication ->", md)

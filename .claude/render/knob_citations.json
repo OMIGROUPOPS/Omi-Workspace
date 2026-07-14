@@ -203,5 +203,10 @@
   "DECREED",
   "C-GOLD-NOW v1 07-15 Part 2b: PLACEHOLDER constant (-1500 = $15 day drawdown -> base size), named in the proof; final value = the operator's sizing word",
   "L4"
+ ],
+ "orientation_live": [
+  "DECREED",
+  "C-INCUMBENT-SUNSET v1 07-15 Part 3: orientation layers into path-mode when its OWN bar clears (tells clock n>=300; week opens 8% coverage / 62% correct) -- organs activate as they prove, none wait for the slowest. DARK until then.",
+  "L4"
  ]
 }

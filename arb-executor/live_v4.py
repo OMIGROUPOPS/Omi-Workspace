@@ -9082,16 +9082,35 @@ class LiveV3:
                                 "event": et, "cat": cat,
                                 "pair_state": (_pl9 or {}).get("pair"),
                                 **_or9}, ticker=tk)
-                # [C-GOLD-NOW Part 2a, DARK (trendpath_live=false until the
-                # packet + the operator's words)] full path-mode: on a
-                # TRADE-AT-PATH verdict the entry aims at the page's fitted
-                # path target and the pair is capped to complete inside
-                # window 1 (combined-at-path ≤ 97). One flag flip + boot
-                # audit at cutover, not a build day.
+                # [C-GOLD-NOW Part 2a → C-INCUMBENT-SUNSET Part 3, DARK
+                # (trendpath_live=false until the packet's default-GO)]
+                # path-mode in NO-CALL POSTURE: on every non-dropped event,
+                # BOTH legs rest at their pages' fitted path aims (p50
+                # bottom), pair-capped to complete inside window 1
+                # (combined ≤ 97). Orientation LAYERS IN when its own bar
+                # clears (orientation_live, also dark): the called riser
+                # keeps the near-now incumbent target, the faller casts
+                # deep at p75 — organs activate as they prove, none wait
+                # for the slowest. Cutover = flag flip + full boot audit.
                 if self.config.get("trendpath_live", False) and _sv9 and \
-                        _sv9.get("selector") == "TRADE-AT-PATH" and \
-                        _sv9.get("aim"):
-                    _pa9 = int(_sv9["aim"])
+                        (_sv9.get("bottom") or {}).get("depth_p50") \
+                        is not None:
+                    _d509 = _sv9["bottom"]["depth_p50"]
+                    _pa9 = max(1, int(round(current_price - _d509)))
+                    _mode9 = "no_call_posture"
+                    if self.config.get("orientation_live", False):
+                        _orr9 = self._orient_read(tk, et, cat)
+                        if _orr9 and _orr9.get("orientation") == \
+                                "TRADE-ORIENTED":
+                            if _orr9.get("riser") == tk:
+                                _pa9 = int(target_bid)   # riser: near now
+                                _mode9 = "oriented_riser"
+                            else:
+                                _d759 = (_sv9["bottom"] or {}).get(
+                                    "depth_p75") or _d509
+                                _pa9 = max(1, int(round(current_price
+                                                        - _d759)))
+                                _mode9 = "oriented_faller_deep"
                     _plc = self.__dict__.setdefault("_trendpath_pair_live", {})
                     _sib9 = _plc.get(et)
                     if _sib9 and _sib9[0] != tk:
@@ -9099,8 +9118,10 @@ class LiveV3:
                     if _pa9 >= 1:
                         self._log("trendpath_live_aim", {
                             "event": et, "from_target": target_bid,
-                            "path_aim": _pa9, "tier": _sv9.get("tier"),
-                            "page": _sv9.get("page")}, ticker=tk)
+                            "path_aim": _pa9, "mode": _mode9,
+                            "page": _sv9.get("page"),
+                            "entry_governor": "trendpath_path_aim"},
+                            ticker=tk)
                         entry_price = target_bid = _pa9
                         _plc[et] = (tk, _pa9)
                 # [C-GOLD-NOW Part 2b, DARK (sizing_live=false) + SHADOW

@@ -561,7 +561,8 @@ def main():
     try:
         SURFACES = ["atlas_page", "contention_selector", "pair_state",
                     "reach_law", "range_cell_m15", "dip_timing",
-                    "flow_state", "refuse_margins", "fill_regime",
+                    "flow_state", "refuse_margins",
+                    "operator_adjudications", "fill_regime",
                     "honest_clock", "shadow_range_shape"]
         cen = defaultdict(lambda: defaultdict(int))
         sites = defaultdict(int)

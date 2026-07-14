@@ -2973,6 +2973,20 @@ class LiveV3:
             D["refuse_margins"] = {"status": "CONSULTED",
                                    "contention_bar_pct": 8.0,
                                    "pair_cap": 97}
+            # 8b) OPERATOR ADJUDICATIONS as a consultable surface class
+            # [C-LEG-RANGE-CLAMP Part 3]: every standing ruling applicable
+            # to the entry site, enumerated — a silently-ignored ruling is
+            # the consultation law's named violation (BARREA's penny bid
+            # was the first, day one).
+            D["operator_adjudications"] = {
+                "status": "CONSULTED",
+                "leg_range_5_95": ("refused" if aim is not None and aim < 5
+                                   else "clamped" if aim is not None
+                                   and aim > 95 else "in_range"),
+                "combined_goal_97": "applied (pair cap)",
+                "cycle_cap_2": "chokepoint-enforced",
+                "gun_freeze": "chokepoint-enforced",
+                "taker_cap_3_flatten_leash": "completion-side, standing"}
             # 9) fill regime
             D["fill_regime"] = {"status": ("CONSULTED" if regime
                                            else "NOT-APPLICABLE"),
@@ -5879,7 +5893,12 @@ class LiveV3:
             _svc9 = self._selector_verdict(self._cat_of_tk(sib) or "", s0)
             _dc9 = ((_svc9 or {}).get("bottom") or {}).get("depth_p50")
             if _dc9 is not None:
-                _cp_path = max(1, int(round(s0 - _dc9)))
+                _cp_path = int(round(s0 - _dc9))
+                # [C-LEG-RANGE-CLAMP] a path candidate under the 5-floor
+                # (operator 07-05 adjudication) is no candidate — the
+                # legacy C-BOUND formula prices the completion instead
+                if _cp_path < 5:
+                    _cp_path = None
         except Exception:
             _cp_path = None
         _path_priced9 = False
@@ -9326,12 +9345,41 @@ class LiveV3:
                     _sib9 = _plc.get(et)
                     if _sib9 and _sib9[0] != tk:
                         _pa9 = min(_pa9, 97 - int(_sib9[1]))
-                    if _pa9 >= 1:
+                    # [C-LEG-RANGE-CLAMP v1, 07-14] the operator's 5–95 leg
+                    # range (07-05 adjudication, the walk-band law) binds
+                    # the path entry too: below 5 = NAMED REFUSAL — if the
+                    # honest entry for this class is under a nickel, the
+                    # honest verdict is no entry, not a penny bid. Above 95
+                    # clamps, cited.
+                    if _pa9 < 5:
+                        self._log("below_leg_floor_refused", {
+                            "event": et, "cat": cat,
+                            "discovery": current_price,
+                            "path_aim": _pa9, "page": _sv9.get("page"),
+                            "cite": "operator 5-95 leg-range adjudication "
+                                    "07-05 (C-LEG-RANGE-CLAMP v1)"},
+                            ticker=tk)
+                        self._entry_dossier(
+                            tk, et, cat, current_price, None,
+                            "refused:below_leg_floor", sv9=_sv9,
+                            pl9=(_pl9 if '_pl9' in dir() else None),
+                            regime=regime,
+                            tts_min=round(time_to_start / 60),
+                            anchor_src=anchor_src,
+                            lt_age=round(lt_age_sec, 1))
+                        continue
+                    _clamped9 = _pa9 > 95
+                    if _clamped9:
+                        _pa9 = 95
+                    if _pa9 >= 5:
                         self._log("trendpath_live_aim", {
                             "event": et, "from_target": target_bid,
                             "path_aim": _pa9, "mode": _mode9,
                             "page": _sv9.get("page"),
                             "page_n": _sv9.get("n"),
+                            **({"leg_range_clamped": True,
+                                "clamp_cite": "operator 5-95 adjudication "
+                                              "07-05"} if _clamped9 else {}),
                             "citation": "ATLAS_V1 %s (path bottom p50; "
                                         "cutover 07-14 operator word)"
                                         % _sv9.get("page"),

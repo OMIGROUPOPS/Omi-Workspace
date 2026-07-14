@@ -33,7 +33,23 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-15 latest — C50 keeps this current):
+## STATE (2026-07-14 CUTOVER — C50 keeps this current):
+THE CUTOVER IS EXECUTED (operator word waived the 10:40 PM
+deadline; SHA bdd215dd via full gate): path-mode unconditional --
+entries at p50 path aims, NO-CALL posture, pair-cap 97; no fitted
+page = no entry (no_path_page_refused); join-walking DELETED
+(path_mode_hold); completion priced at sibling path aim
+(completion_path_priced; C-BOUND ceiling RETAINED, op adjudication
+07-05); trendpath_live flag REMOVED. auto_cutover cron removed,
+PACKET_STATUS=CUTOVER-DONE. STANDING LAW (verbatim, permanent):
+yield-on-wagered forever first vs the 8% bar; below-bar nights
+print named reasons, diagnosed, never explained away. DARK: sizing
+(operator's separate word), orientation (own n>=300 bar).
+INCUMBENT-COST attribution now splits at trendpath_live_aim
+stamps. NEXT: sizing word; orientation clock; 6:10 deletion word;
+COMBINED-CAP; -0g.
+
+(prior:) ## STATE (2026-07-15 latest):
 C-INCUMBENT-SUNSET deployed (5c41acbb): incumbent CONVICTED+FROZEN
 (static aims/join-market/97-remainder; no tuning ever again);
 INCUMBENT-COST + SUNSET LEDGER print nightly. DEFAULT-GO armed:

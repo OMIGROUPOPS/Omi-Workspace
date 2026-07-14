@@ -33,7 +33,25 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-15 — C50 keeps this current):
+## STATE (2026-07-15 late — C50 keeps this current):
+C-GOLD-NOW + C-PAIR-LAW + AMENDMENT deployed as ONE gate (SHA
+08e1c8ed): pair-law LIVE -- DROP-AS-PAIR only where no orientation
+(riser-now + faller-deep p75) composes <=97; seesaw lift at every
+re-aim (cancel-and-free via _untombstone_entry, dynamic); one-sided
+fills stamp pair_law_violation. VOLUME BRACKET measured: blanket
+-72% vs amended -0% (878/878; no true garbage this week); the DROP
+bleed (-$17.95 week / -1.3% export) sits between -- packet + tells
+decide the line. ORIENT_V1 tells SHADOW (8% coverage, 62% correct,
+n=8/300; ROVIEM direction right, fitted NO-CALL on 3 prints; refits
+12:05a with atlas). DARK flags: trendpath_live, sizing_live (v0,
+drawdown floor -1500c PLACEHOLDER). consolidated_packet.py cron
+*/2h: path+reach+selector re-run per settlement batch; first n>=300
+crossing -> RULING_PACKET.md + ntfy push. Nightly: REALIZED-BY-
+SUBTRACTION + countdown. NEXT: packet fires itself (24-48h) ->
+three words one sitting; 6:10 deletion word; COMBINED-CAP; -0g;
+ws_depth_recorder archive extension (overdue).
+
+(prior:) ## STATE (2026-07-15):
 C-CONTENTION-LAW v1 EXECUTED: contention fitted per atlas page
 (27/28; ITF_W dogs 87%, ATP_CHALL leaders ge75 -3.2%); selector
 TRADE-AT-PATH/DROP/NO-OPINION SHADOW in trendpath_shadow (deployed

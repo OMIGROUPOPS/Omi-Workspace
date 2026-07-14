@@ -33,7 +33,17 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 TRIAL-EVE — C50 keeps this current):
+## STATE (2026-07-14 REACH-VERDICT — C50 keeps this current):
+VERDICT: PRESENCE. 8/36 pairs tilted; 9 tape-touches of our fitted
+aims; 0 fills -- every touch found no standing bid (match-live
+latch cancels hours early + post-latch gun freeze blocks re-place;
+clamp floor lawful on 2). FERCER at slate scale. TWO PROPOSALS
+await the operator word: re-place-on-unlatch; ESPN-status gate for
+match_live_cancel (vaulted 06-19). Oriented lane graded no better
+(2/8 pairs <=97); its clock accrues. 317 below-floor refusals
+tonight (nickel floor binds ITF dogs). NOTHING flipped.
+
+(prior:) ## STATE (2026-07-14 TRIAL-EVE):
 Pre-wave check done: PACVED = verdict (a), pre-cutover fill,
 definitive line HOLDS (no patch); UNBOOKED FILL instance filed
 (4h17m, adoption net caught it). LAJSVA bell root = dead te_live

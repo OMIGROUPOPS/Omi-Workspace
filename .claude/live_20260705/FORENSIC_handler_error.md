@@ -1,9 +1,9 @@
-# FORENSIC — handler_error — LIVE DEFECT (>=2 in 60min)  <!-- 1783355181 -->
-written 2026-07-06 12:29:35 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — handler_error — LIVE DEFECT (>=2 in 60min)  <!-- 1784042469 -->
+written 2026-07-14 12:37:05 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
 ## Events (2 total this session)
-- 12:26:21  — [Errno 28] No space left on device
-- 12:26:21  — [Errno 28] No space left on device
+- 11:21:01  — [Errno 28] No space left on device
+- 11:21:09  — [Errno 28] No space left on device
 
 ## Timeline (raw log lines for the burst pair)
 

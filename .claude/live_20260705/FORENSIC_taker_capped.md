@@ -1,7 +1,7 @@
-# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784067735 -->
-written 2026-07-14 06:28:52 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784070155 -->
+written 2026-07-14 07:10:51 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (15 total this session)
+## Events (16 total this session)
 - 15:41:28 KXITFMATCH-26JUL14VULBAS-BAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 15:41:28 KXITFWMATCH-26JUL14MARKOI-KOI — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 16:01:31 KXITFMATCH-26JUL14VULBAS-BAS — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
@@ -17,6 +17,7 @@ written 2026-07-14 06:28:52 PM ET by live_validation_loop (read-only). Patch con
 - 18:02:10 KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 18:12:15 KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 18:22:15 KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 19:02:35 KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-14 04:30:34 AM ET", "ts_epoch": 1784017834.719929, "event": "sizing_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14DELXIL", "qty_live": 5, "qty_would": 15, "contention_best_pct": 55.9, "day_pnl_cents": 621, "drawdown_floor": -1500, "armed": false}}
@@ -280,6 +281,15 @@ written 2026-07-14 06:28:52 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-14 06:22:15 PM ET", "ts_epoch": 1784067735.6724286, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|le25", "n": 54, "p_exit_fill": 0.704, "p_ride_zero": 0.296, "ev_cents": -1.52, "band": 5, "basis": 17, "win_ride_residual_excluded": 0.0, "citation"
     {"ts": "2026-07-14 06:22:15 PM ET", "ts_epoch": 1784067735.6756017, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14DELXIL", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
     {"ts": "2026-07-14 06:24:32 PM ET", "ts_epoch": 1784067872.9319096, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 9, "n_resting_orders": 29, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784056709.5090506, "legs_new": [], "legs_gone": ["KXATPCHALLENGERMATCH-26JUL14ADDLEO-LEO", "KXA
+    {"ts": "2026-07-14 06:32:17 PM ET", "ts_epoch": 1784068337.628935, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|le25", "n": 54, "p_exit_fill": 0.704, "p_ride_zero": 0.296, "ev_cents": -1.52, "band": 5, "basis": 17, "win_ride_residual_excluded": 0.0, "citation": "
+    {"ts": "2026-07-14 06:32:17 PM ET", "ts_epoch": 1784068337.6291902, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14DELXIL", "ev_cents": -1.52, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-14 06:40:56 PM ET", "ts_epoch": 1784068856.692141, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 9, "n_resting_orders": 34, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784056709.5090506, "legs_new": [], "legs_gone": ["KXATPCHALLENGERMATCH-26JUL14ADDLEO-LEO", "KXAT
+    {"ts": "2026-07-14 06:42:21 PM ET", "ts_epoch": 1784068941.127533, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"verdict": "NO-OPINION", "kept": {"opinion": "NO-OPINION", "missing": "no observable runmid / basis / band"}, "cross": {"opinion": "NO-OPINION", "missing": "no observable runmid / basis / band"}, "ev3": {"verdict3": "NO-OPINION"}, "event":
+    {"ts": "2026-07-14 06:52:22 PM ET", "ts_epoch": 1784069542.6202905, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|le25", "n": 54, "p_exit_fill": 0.704, "p_ride_zero": 0.296, "ev_cents": -1.52, "band": 5, "basis": 17, "win_ride_residual_excluded": 0.0, "citation": 
+    {"ts": "2026-07-14 06:52:22 PM ET", "ts_epoch": 1784069542.6205325, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14DELXIL", "ev_cents": -1.52, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-14 06:55:43 PM ET", "ts_epoch": 1784069743.070212, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 9, "n_resting_orders": 36, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784056709.5090506, "legs_new": [], "legs_gone": ["KXATPCHALLENGERMATCH-26JUL14ADDLEO-LEO", "KXAT
+    {"ts": "2026-07-14 07:02:35 PM ET", "ts_epoch": 1784070155.4760773, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|le25", "n": 54, "p_exit_fill": 0.704, "p_ride_zero": 0.296, "ev_cents": -1.52, "band": 5, "basis": 17, "win_ride_residual_excluded": 0.0, "citation"
+    {"ts": "2026-07-14 07:02:35 PM ET", "ts_epoch": 1784070155.4762485, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14DELXIL", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
 
 ## Code path
 ?

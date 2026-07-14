@@ -718,6 +718,40 @@ def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, ch
          f"- cycle {cycle_n} @ **{now_et()}** | build `{sha}` | session boot "
          f"{datetime.fromtimestamp(S['boot'], ET).strftime('%m-%d %H:%M ET') if S['boot'] else '?'} "
          f"| log `{log_path.name}` | {S['events']} session events | monitor READ-ONLY",]
+    # [C-RESUME-CHECK Part 4, 07-14, DECREED] the ntfy channel publishes to
+    # an UNSUBSCRIBED topic — THIS RENDER is the operator's real phone.
+    # While the packet is fired and the default-GO clock runs, the numbers,
+    # the deadline, and the STOP procedure lead the render, verbatim.
+    try:
+        _pk9 = json.loads((REPO / ".claude/trendpath/PACKET_STATUS.json")
+                          .read_text(encoding="utf-8"))
+        if _pk9.get("fired") and not (_pk9.get("cutover_done")
+                                      or {}).get("verified"):
+            _dl9 = _pk9.get("go_deadline_epoch")
+            _dls9 = (datetime.fromtimestamp(_dl9, ET).strftime(
+                "%m-%d %I:%M %p ET") if _dl9 else "?")
+            _sm9 = _pk9.get("summary", {})
+
+            def _pl9(k):
+                s9 = _sm9.get(k, {})
+                return ("- %s: n=%s | delta $%+.2f (CI %s) | yield %.1f%% "
+                        "(pess %.1f%%) | **%s**"
+                        % (k.upper(), s9.get("n"), s9.get("delta", 0),
+                           s9.get("ci"), s9.get("yield_pct", 0),
+                           s9.get("yield_pess_pct", 0), s9.get("door", "?")))
+            L += ["",
+                  "## ⚠ CONSOLIDATED PACKET FIRED — DEFAULT-GO DEADLINE "
+                  "**" + _dls9 + "** ⚠",
+                  _pl9("path"), _pl9("reach"), _pl9("selector"),
+                  "- go_state: %s" % _pk9.get("go_state"),
+                  "- **STOP PROCEDURE (verbatim): say STOP to the relay; "
+                  "CC creates `.claude/trendpath/OPERATOR_STOP` on the VPS; "
+                  "its presence permanently halts auto_cutover. Silence "
+                  "past the deadline = `trendpath_live` flips on the next "
+                  "boot with full audit (deploy/auto_cutover.sh, 30-min "
+                  "cron).**"]
+    except Exception:
+        pass
     # [MORNING REVIEW 07-10, operator standing order] watches that fire
     # overnight are the FIRST thing read at the AM checkpoint, never buried
     # at line 396 (deep_neg_fv was). Overnight = midnight..9am ET today.

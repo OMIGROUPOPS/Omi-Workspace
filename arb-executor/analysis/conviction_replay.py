@@ -662,6 +662,28 @@ def main():
         _pk9 = ROOT.parent / ".claude/trendpath/PACKET_STATUS.json"
         _pks = (json.loads(_pk9.read_text(encoding="utf-8"))
                 if _pk9.exists() else {})
+        # [C-RESUME-CHECK Part 4, DECREED] the ntfy topic is unsubscribed —
+        # the nightly header is the operator's fallback phone: packet
+        # numbers + deadline + the STOP procedure verbatim, at the top.
+        if _pks.get("fired") and not (_pks.get("cutover_done")
+                                      or {}).get("verified"):
+            _dl9 = _pks.get("go_deadline_epoch")
+            _dls9 = (datetime.fromtimestamp(_dl9, ET).strftime(
+                "%m-%d %I:%M %p ET") if _dl9 else "?")
+            _sm9 = _pks.get("summary", {})
+            L.insert(2, "**⚠ PACKET FIRED — DEFAULT-GO DEADLINE %s ⚠ "
+                        "path %+.1f%%/reach %+.1f%%/selector %+.1f%% "
+                        "(all doors: %s). STOP PROCEDURE: say STOP to the "
+                        "relay; CC creates .claude/trendpath/OPERATOR_STOP; "
+                        "silence past the deadline = trendpath_live flips "
+                        "on the next boot with full audit.**"
+                        % (_dls9,
+                           _sm9.get("path", {}).get("yield_pct", 0),
+                           _sm9.get("reach", {}).get("yield_pct", 0),
+                           _sm9.get("selector", {}).get("yield_pct", 0),
+                           " / ".join(_sm9.get(k, {}).get("door", "?")
+                                      for k in ("path", "reach",
+                                                "selector"))))
         L.insert(4, "**REALIZED-BY-SUBTRACTION: %d DROP-AS-PAIR refusals "
                     "(%d graded, dollars-not-lost $%+.2f) | seesaw: %d "
                     "refused / %d lifted | one-sided VIOLATIONS: %d | "

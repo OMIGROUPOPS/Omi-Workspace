@@ -128,6 +128,9 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-15 · C-LEG-RANGE-CLAMP v1 EXECUTED (urgent): the 07-05 leg-range adjudication binds the path entry — below 5 is a NAMED REFUSAL, not a penny bid; OPERATOR ADJUDICATIONS become a consultable census surface; BARREA was the consultation law's first self-caught violation, day one
+Path aims clamp to the operator's 5–95 leg range (07-05 adjudication, cited on every clamped line): **below 5 → `below_leg_floor_refused`** ("if the honest entry for that market class is under a nickel, the honest verdict is no entry"); above 95 → 95, stamped; completion path candidates under the floor fall back to the C-BOUND formula. **Replay: today's 16 distinct path entries — BARREA-BAR (aim 3) refused, 15 unchanged, zero collateral.** Sweep: 0 out-of-range resting buys (BARREA's 3¢ bid had already died at 2:47 PM to match_live_cancel; no penny fill ever occurred). **The dossier's new surface class OPERATOR ADJUDICATIONS enumerates every standing ruling applicable at the entry site with its applied-status; the census grades it nightly; gaps auto-board.** Proof: `.claude/proof_20260714/PROOF_LEG_CLAMP.md` (SHA 1901e901). Artifacts: CLAMP_SWEEP.json.
+
 ### 2026-07-15 · OPERATOR WORD — THE TAIL RULING, VERBATIM: "hold-and-drain the 24 positions"
 The incumbent's open tail (24 legs, 26 resting exits) HOLDS to its natural drain: exit-band fills and settlements, with the leash-bounded completion policy the only acting hand (the standing flatten rulings — 3¢ EV floor, 8/day cap, flatten-kept post-bell — unchanged). No liquidation. Every tail dollar continues to bill under INCUMBENT-COST nightly until the last leg drains; the new book's dollars are path-cited by the structural line. No code change required — the word confirms the swept state as law.
 

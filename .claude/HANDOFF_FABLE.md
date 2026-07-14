@@ -33,7 +33,13 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 TAIL-RULED — C50 keeps this current):
+## STATE (2026-07-14 CLAMPED — C50 keeps this current):
+C-LEG-RANGE-CLAMP deployed: path aims 5-95 (07-05 adjudication);
+below_leg_floor_refused named; OPERATOR ADJUDICATIONS = census
+surface; BARREA = consultation law violation #1, self-caught day
+one, no fill. All prior state stands.
+
+(prior:) ## STATE (2026-07-14 TAIL-RULED):
 OPERATOR WORD: hold-and-drain the 24 tail positions (no
 liquidation; exits/settles drain; flatten rulings unchanged;
 INCUMBENT-COST bills nightly). Remaining words pending: SIZING

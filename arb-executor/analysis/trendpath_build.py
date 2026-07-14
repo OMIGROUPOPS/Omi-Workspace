@@ -130,6 +130,78 @@ def add_leg(pages, cat, series, vol_minutes):
         P["p30"].append(p30)
         P["legs"].append((disc, win, dseen, reb))
 
+ORIENT = defaultdict(lambda: defaultdict(lambda: [0, 0]))  # cat -> bucket -> [n, dog_rise]
+
+def orient_fit(per_series, vol_of):
+    """[C-PAIR-LAW AMENDMENT, 07-15 — the seesaw is the thesis] fit the
+    directional read per event pair, walk-forward: which side is the
+    riser, from the fitted tells on the DISCOVERY (first-tape-hour) tape:
+      f_drift  sign of (hour-end last − first-hour-median) on the dog
+      f_range  the dog's hour-end position in the hour's [low, high]
+      f_flow   the dog's share of the pair's first-hour prints
+    (spread asymmetry: SILENT in this corpus — candles carry no book;
+    named, not faked.) Truth = the side whose pre-onset drift from its
+    discovery is positive by ≥2¢ (no clear riser → the event doesn't
+    grade). Buckets with n<10 are NO-CALL downstream."""
+    by_ev = defaultdict(dict)
+    for tk, series in per_series.items():
+        by_ev[tk.rsplit("-", 1)[0]][tk] = series
+    for ev, legs in by_ev.items():
+        if len(legs) != 2:
+            continue
+        cat = CATS.get(ev.split("-")[0])
+        if not cat:
+            continue
+        stats = {}
+        ok = True
+        for tk, series in legs.items():
+            if len(series) < 10:
+                ok = False
+                break
+            t0 = series[0][0]
+            hour = [x for x in series if x[0] < t0 + 3600]
+            if len(hour) < 3:
+                ok = False
+                break
+            med = sorted(x[1] for x in hour)[len(hour) // 2]
+            vol = vol_of.get(tk, {})
+            on = onset_of(vol)
+            if on is None or on <= t0 + 3600:
+                ok = False
+                break
+            pre = [x for x in series if x[0] < on]
+            stats[tk] = {"disc": med, "hour_last": hour[-1][1],
+                         "hour_lo": min(x[2] for x in hour),
+                         "hour_hi": max(x[1] for x in hour),
+                         "hour_prints": sum(vol.get(m, 0) for m in
+                                            range(int(t0), int(t0) + 3600,
+                                                  60)),
+                         "pre_last": pre[-1][1] if pre else None}
+        if not ok or len(stats) != 2:
+            continue
+        tks = sorted(stats, key=lambda t: stats[t]["disc"])
+        dog, ldr = tks[0], tks[1]
+        if stats[dog]["disc"] >= 50 or stats[ldr]["disc"] < 50:
+            continue
+        dd = stats[dog]
+        drift_d = (dd["pre_last"] or dd["disc"]) - dd["disc"]
+        drift_l = (stats[ldr]["pre_last"] or stats[ldr]["disc"]) \
+            - stats[ldr]["disc"]
+        if abs(drift_d) < 2 and abs(drift_l) < 2:
+            continue
+        dog_rise = 1 if drift_d >= 2 or drift_l <= -2 else 0
+        f1 = (1 if dd["hour_last"] - dd["disc"] >= 1 else
+              -1 if dd["hour_last"] - dd["disc"] <= -1 else 0)
+        span = max(1.0, dd["hour_hi"] - dd["hour_lo"])
+        rp = (dd["hour_last"] - dd["hour_lo"]) / span
+        f2 = "lo" if rp < 0.33 else ("mid" if rp < 0.67 else "hi")
+        tot = dd["hour_prints"] + stats[ldr]["hour_prints"]
+        fs = dd["hour_prints"] / float(tot) if tot else 0.5
+        f3 = "lo" if fs < 0.4 else ("mid" if fs < 0.6 else "hi")
+        b = ORIENT[cat]["%s|%s|%s" % (f1, f2, f3)]
+        b[0] += 1
+        b[1] += dog_rise
+
 def build_tour(pages):
     import pyarrow.parquet as pq
     pf = pq.ParquetFile(ROOT / "data/durable/g9_candles.parquet")
@@ -158,6 +230,7 @@ def build_tour(pages):
                                    float(v or 0)))
             except Exception:
                 continue
+    per_series, vol_of = {}, {}
     for tk, rows in per_tk.items():
         rows.sort()
         cat = CATS.get(tk.split("-")[0])
@@ -165,7 +238,9 @@ def build_tour(pages):
         series = [(m, c if c > 1 else c * 100, l if l > 1 else l * 100)
                   for m, c, l, _ in rows]
         vol = {m: max(1, int(v)) for m, _, _, v in rows if v}
+        per_series[tk], vol_of[tk] = series, vol
         add_leg(pages, cat, series, vol)
+    orient_fit(per_series, vol_of)
 
 def build_itf(pages):
     TR = ROOT / "analysis/trades"
@@ -192,6 +267,7 @@ def build_itf(pages):
                         continue
         except OSError:
             continue
+    per_series, vol_of = {}, {}
     for tk, rows in per_tk.items():
         rows.sort()
         cat = CATS.get(tk.split("-")[0])
@@ -200,7 +276,9 @@ def build_itf(pages):
             mins[m].append(px)
         series = [(m, v[-1], min(v)) for m, v in sorted(mins.items())]
         vol = {m: len(v) for m, v in mins.items()}
+        per_series[tk], vol_of[tk] = series, vol
         add_leg(pages, cat, series, vol)
+    orient_fit(per_series, vol_of)
 
 def q(xs, p):
     xs = sorted(xs)
@@ -313,6 +391,30 @@ print("SHIMIC page (ITF_W|underdog|le25):", json.dumps(sh)[:400] if sh else "MIS
 n_con = sum(1 for p in atlas["pages"].values()
             if p.get("verdict") == "PATH" and p.get("contention"))
 print("CONTENTION: %d/%d PATH pages carry the fitted number" % (n_con, n_path))
+# [C-PAIR-LAW AMENDMENT] the orientation table: fitted tells -> riser call.
+# v1 operating point (NAMED, its own n>=300 clock before money): bucket
+# n>=10, rate >=0.65 -> dog riser / <=0.35 -> leader riser, else NO-CALL.
+orient = {"meta": {"built": atlas["meta"]["built"],
+                   "tells": ["f_drift (hour-end last vs first-hour median)",
+                             "f_range (hour-end pos in hour range)",
+                             "f_flow (dog share of pair first-hour prints)",
+                             "spread asymmetry: SILENT in this corpus (no "
+                             "book in candles) — named, not faked"],
+                   "truth": "pre-onset drift >= 2c on either side",
+                   "operating_point": {"min_n": 10, "call_hi": 0.65,
+                                       "call_lo": 0.35},
+                   "clock": "orientation accuracy accrues its own n>=300 "
+                            "before it ever touches money"},
+          "cats": {}}
+for cat9, bk in ORIENT.items():
+    orient["cats"][cat9] = {
+        b: {"n": v[0], "dog_rise_rate": round(v[1] / float(v[0]), 3)}
+        for b, v in bk.items() if v[0] >= 10}
+(WS / ".claude/trendpath/ORIENT_V1.json").write_text(
+    json.dumps(orient, indent=1), encoding="utf-8")
+n_ob = sum(len(v) for v in orient["cats"].values())
+print("ORIENT_V1: %d callable buckets across %d cats"
+      % (n_ob, len(orient["cats"])))
 for k9 in ("ITF_W|leader|ge75", "ITF_W|underdog|le25"):
     c9 = (atlas["pages"].get(k9) or {}).get("contention")
     print("  %s -> %s" % (k9, json.dumps(c9)[:360] if c9 else "NO-OPINION"))

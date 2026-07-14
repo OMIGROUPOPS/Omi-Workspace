@@ -2770,36 +2770,47 @@ class LiveV3:
         return self._TP_CATMAP.get((tk or "").split("-")[0])
 
     def _pair_verdict(self, cat, current_price):
-        """[C-PAIR-LAW v1, 07-15 — THE ENTRY UNIT IS THE PAIR, NEVER THE
-        LEG (operator decree, cited verbatim in the vault)] the verdict
-        elevates from leg to event: TRADE-PAIR only when both legs' path
-        pages compose — each side priced at its cell (sibling estimated at
-        the 100−p complement at discovery), combined at PATH prices ≤ 97,
-        neither page DROP. One side working = DROP-AS-PAIR: the one-sided
-        state is refused at the root, not manufactured. The CHEVAN nuance
-        survives: the 92¢ favorite isn't dropped for being pricey — its
-        page prices the pair at 79 and THAT gets judged."""
+        """[C-PAIR-LAW v1 + AMENDMENT, 07-15 — THE ENTRY UNIT IS THE PAIR;
+        THE SEESAW IS THE THESIS, NOT THE RISK (operator rulings, verbatim
+        in the vault)] an event with composed pages is judged by
+        ORIENTATION, not blanket pair-viability: an orientation = buy the
+        riser near now + cast the faller deep at its page's deep quantile
+        (depth_p75); it composes when riser-now + faller-deep ≤ 97.
+        DROP-AS-PAIR is reserved for events where NO orientation composes
+        under 97 — the true garbage, not the hard calls. The oriented
+        CALL itself (which side rises) is SHADOW: the fitted tells accrue
+        their own n≥300 clock before they ever touch money; placement on
+        non-dropped events is current live behavior."""
         v_m = self._selector_verdict(cat, current_price)
         sib_px = max(1, min(99, 100 - int(current_price)))
         v_s = self._selector_verdict(cat, sib_px)
-        c97 = None
         bm, bs = v_m.get("bottom"), v_s.get("bottom")
-        if bm and bs and bm.get("depth_p50") is not None \
-                and bs.get("depth_p50") is not None:
-            a_m = max(1, int(round(current_price - bm["depth_p50"])))
-            a_s = max(1, int(round(sib_px - bs["depth_p50"])))
-            c97 = a_m + a_s
-        if v_m["selector"] == "DROP" or v_s["selector"] == "DROP":
-            pv, why = "DROP-AS-PAIR", "a side's page shows no contention at any path price"
-        elif c97 is not None and c97 > 97:
-            pv, why = "DROP-AS-PAIR", "combined at path prices %d > 97" % c97
-        elif v_m["selector"] == "TRADE-AT-PATH" and \
-                v_s["selector"] == "TRADE-AT-PATH":
-            pv, why = "TRADE-PAIR", "both pages compose; combined %s <= 97" % c97
+        comps = {}
+        # orientation A: I rise (bought near now), sibling cast deep
+        if bs and bs.get("depth_p75") is not None:
+            comps["mine_riser"] = int(current_price) + max(
+                1, int(round(sib_px - bs["depth_p75"])))
+        # orientation B: sibling rises, I cast deep
+        if bm and bm.get("depth_p75") is not None:
+            comps["sib_riser"] = int(sib_px) + max(
+                1, int(round(current_price - bm["depth_p75"])))
+        composed = {k: v for k, v in comps.items() if v <= 97}
+        if comps and not composed:
+            pv, why = "DROP-AS-PAIR", ("no orientation composes under 97 "
+                                       "(%s) — the true garbage"
+                                       % ", ".join("%s=%d" % kv
+                                                   for kv in comps.items()))
+        elif not comps:
+            pv, why = "PAIR-NO-OPINION", ("no deep quantiles on either "
+                                          "page — refusals need conviction")
         else:
-            pv, why = "PAIR-NO-OPINION", "a side is thin/unpriced — refusals need conviction, not absence of data"
+            pv, why = "PAIR-COMPOSED", ("orientation(s) compose: %s"
+                                        % ", ".join("%s=%d" % kv
+                                                    for kv in
+                                                    composed.items()))
         return {"pair": pv, "why": why, "mine": v_m, "sib_est": v_s,
-                "sib_px_est": sib_px, "combined_at_path": c97}
+                "sib_px_est": sib_px, "compositions": comps,
+                "combined_at_path": min(comps.values()) if comps else None}
 
     def _pair_seesaw_state(self, tk, my_bid):
         """[C-PAIR-LAW Part 3 — the seesaw guard, FITTED not decreed] live
@@ -2825,25 +2836,132 @@ class LiveV3:
             v_s = self._selector_verdict(cat, sib_px)
             base = {"sib": sib, "sib_px_live": round(sib_px, 1),
                     "sib_page": v_s.get("page"), "sib_page_n": v_s.get("n")}
-            if v_s["selector"] == "DROP":
-                base.update({"unreachable": True,
-                             "why": "sibling page DROP at its live price "
-                                    "(no contention at any path)"})
-                return base
+            # [AMENDMENT 07-15] composition-only at the DEEP quantile
+            # (depth_p75): unreachable = even the deepest fitted cast of
+            # the sibling cannot complete the pair under 97. Contention
+            # no longer lifts pairs — orientation is the axis.
             bs = v_s.get("bottom")
-            if not bs or bs.get("depth_p50") is None:
+            if not bs or bs.get("depth_p75") is None:
                 return None
-            sib_aim = max(1, int(round(sib_px - bs["depth_p50"])))
-            base["sib_path_aim"] = sib_aim
-            base["combined_at_path"] = int(my_bid) + sib_aim
-            if int(my_bid) + sib_aim > 97:
+            sib_deep = max(1, int(round(sib_px - bs["depth_p75"])))
+            base["sib_deep_aim"] = sib_deep
+            base["combined_at_deep"] = int(my_bid) + sib_deep
+            if int(my_bid) + sib_deep > 97:
                 base.update({"unreachable": True,
-                             "why": "seesaw rose past the page quantiles: "
-                                    "my %d + sibling path-aim %d > 97"
-                                    % (int(my_bid), sib_aim)})
+                             "why": "seesaw rose past the page's deep "
+                                    "quantile: my %d + sibling deep cast "
+                                    "%d > 97" % (int(my_bid), sib_deep)})
             else:
                 base["unreachable"] = False
             return base
+        except Exception:
+            return None
+
+    def _orient_table(self):
+        """ORIENT_V1 hot-reload (refits nightly with the atlas)."""
+        _op = Path(__file__).resolve().parent.parent / \
+            ".claude/trendpath/ORIENT_V1.json"
+        _omt = _op.stat().st_mtime if _op.exists() else 0
+        if getattr(self, "_orient_v1", None) is None or \
+                getattr(self, "_orient_mt", None) != _omt:
+            self._orient_v1 = (json.loads(_op.read_text(encoding="utf-8"))
+                               if _op.exists() else {})
+            self._orient_mt = _omt
+        return self._orient_v1 or {}
+
+    def _orient_read(self, tk, et, cat):
+        """[C-PAIR-LAW AMENDMENT, 07-15 — SHADOW, its own n≥300 clock
+        before money] the directional read at discovery: which side is the
+        riser, from the fitted tells on the pair's first-tape-hour (drift,
+        range shape, flow share; spread asymmetry silent in the fit —
+        named). NO-CALL when the bucket is thin or inside the operating
+        band. Never raises; None = tape unavailable."""
+        try:
+            import gzip as _gz
+            sib = self._sibling_ticker_any(tk)
+            if not sib:
+                return None
+            base = Path(__file__).resolve().parent / "analysis/trades"
+
+            def hour_stats(t9):
+                rows = []
+                for ext in (".csv", ".csv.gz"):
+                    f = base / (t9 + ext)
+                    if not f.exists():
+                        continue
+                    op = _gz.open if ext.endswith("gz") else open
+                    try:
+                        with op(f, "rt", encoding="utf-8",
+                                errors="replace") as fh:
+                            next(fh, None)
+                            for i, ln in enumerate(fh):
+                                if i > 3000:
+                                    break
+                                p = ln.split(",")
+                                if len(p) >= 3:
+                                    try:
+                                        d0, t0, ap0 = p[0].split(" ")
+                                        hh, mm = t0.split(":")[:2]
+                                        ts9 = (int(hh) % 12 +
+                                               (12 if ap0 == "PM" else 0)
+                                               ) * 60 + int(mm)
+                                        rows.append((d0, ts9, float(p[2])))
+                                    except Exception:
+                                        pass
+                    except OSError:
+                        pass
+                if len(rows) < 3:
+                    return None
+                d1, m1 = rows[0][0], rows[0][1]
+                hour = [r for r in rows
+                        if r[0] == d1 and 0 <= r[1] - m1 < 60]
+                if len(hour) < 3:
+                    return None
+                px = [r[2] for r in hour]
+                med = sorted(px)[len(px) // 2]
+                return {"disc": med, "last": px[-1], "lo": min(px),
+                        "hi": max(px), "prints": len(hour)}
+
+            sm, ss = hour_stats(tk), hour_stats(sib)
+            if not sm or not ss:
+                return None
+            dog_tk, dd, dl = ((tk, sm, ss) if sm["disc"] < ss["disc"]
+                              else (sib, ss, sm))
+            if dd["disc"] >= 50:
+                return None
+            f1 = (1 if dd["last"] - dd["disc"] >= 1 else
+                  -1 if dd["last"] - dd["disc"] <= -1 else 0)
+            span = max(1.0, dd["hi"] - dd["lo"])
+            rp = (dd["last"] - dd["lo"]) / span
+            f2 = "lo" if rp < 0.33 else ("mid" if rp < 0.67 else "hi")
+            tot = dd["prints"] + dl["prints"]
+            fs = dd["prints"] / float(tot) if tot else 0.5
+            f3 = "lo" if fs < 0.4 else ("mid" if fs < 0.6 else "hi")
+            bucket = "%s|%s|%s" % (f1, f2, f3)
+            OT = self._orient_table()
+            opx = (OT.get("meta") or {}).get("operating_point") or {}
+            b9 = ((OT.get("cats") or {}).get(cat) or {}).get(bucket)
+            out = {"bucket": bucket, "dog": dog_tk,
+                   "tells": {"f_drift": f1, "f_range": f2, "f_flow": f3},
+                   "citation": "ORIENT_V1 %s|%s (walk-forward tells)"
+                               % (cat, bucket)}
+            if not b9 or b9.get("n", 0) < opx.get("min_n", 10):
+                out.update({"orientation": "NO-CALL",
+                            "why": "tells silent (bucket thin/absent)"})
+                return out
+            r9 = b9["dog_rise_rate"]
+            out.update({"bucket_n": b9["n"], "dog_rise_rate": r9})
+            if r9 >= opx.get("call_hi", 0.65):
+                out.update({"orientation": "TRADE-ORIENTED",
+                            "riser": dog_tk})
+            elif r9 <= opx.get("call_lo", 0.35):
+                out.update({"orientation": "TRADE-ORIENTED",
+                            "riser": (sib if dog_tk == tk else tk)})
+            else:
+                out.update({"orientation": "NO-CALL",
+                            "why": "rate %.2f inside the operating band"
+                                   % r9})
+            return out
         except Exception:
             return None
 
@@ -8907,15 +9025,15 @@ class LiveV3:
                 # convicted the bucket first (the week: −$17.95 named bleed;
                 # Kalshi's own export: −1.3% on 76% winners). TRADE and
                 # NO-OPINION proceed untouched. Prevents bids, places none.
-                # [C-PAIR-LAW v1, 07-15 — amends C-GOLD-NOW Part 1 before it
-                # distorts a second night, DECREED (operator ruling in the
-                # dispatch): THE ENTRY UNIT IS THE PAIR, NEVER THE LEG.
-                # Permission is per-event: DROP-AS-PAIR refuses both sides
-                # at the root; TRADE-PAIR continues current live behavior
-                # on both sides (volume converts from potential naked
-                # singles into two-sided participation — it is not clipped);
-                # PAIR-NO-OPINION proceeds (refusals need conviction). The
-                # live seesaw is checked here AND at every re-aim.
+                # [C-PAIR-LAW v1 + AMENDMENT, 07-15, DECREED]: THE ENTRY
+                # UNIT IS THE PAIR; THE SEESAW IS THE THESIS. Permission is
+                # per-event and judged by ORIENTATION-COMPOSITION:
+                # DROP-AS-PAIR only where NO orientation (riser-near-now +
+                # faller-cast-deep) fits under 97 — the true garbage.
+                # PAIR-COMPOSED / PAIR-NO-OPINION continue current live
+                # behavior; the oriented CALL (which side rises) is SHADOW
+                # on its own n≥300 clock. Live seesaw checked here AND at
+                # every re-aim.
                 _sv9 = None
                 if self.config.get("selector_drop_enforce", False):
                     try:
@@ -8952,6 +9070,18 @@ class LiveV3:
                             "decree": "C-PAIR-LAW v1 07-15 Part 3 (fitted "
                                       "seesaw guard)"}, ticker=tk)
                         continue
+                    # [AMENDMENT 07-15] the oriented read, SHADOW — the
+                    # tells' accuracy accrues its own n>=300 clock before
+                    # any oriented placement touches money
+                    _os9 = self.__dict__.setdefault("_orient_logged", set())
+                    if et not in _os9:
+                        _os9.add(et)
+                        _or9 = self._orient_read(tk, et, cat)
+                        if _or9:
+                            self._log("orientation_shadow", {
+                                "event": et, "cat": cat,
+                                "pair_state": (_pl9 or {}).get("pair"),
+                                **_or9}, ticker=tk)
                 # [C-GOLD-NOW Part 2a, DARK (trendpath_live=false until the
                 # packet + the operator's words)] full path-mode: on a
                 # TRADE-AT-PATH verdict the entry aims at the page's fitted

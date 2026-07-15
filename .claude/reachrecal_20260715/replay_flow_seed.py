@@ -43,7 +43,7 @@ print("unique tickers: %d" % len(tks))
 
 def fetch_trades(tk, oldest_needed):
     out, cursor = [], None
-    for _page in range(20):
+    for _page in range(120):
         url = ("https://api.elections.kalshi.com/trade-api/v2/markets/trades"
                "?ticker=%s&limit=500" % tk)
         if cursor:
@@ -63,6 +63,16 @@ def fetch_trades(tk, oldest_needed):
         if not cursor or not rows or min(r0[0] for r0 in out) < oldest_needed:
             break
         time.sleep(0.15)
+    else:
+        # NO SILENT CAPS: a tape deeper than the page budget is NAMED,
+        # never counted as zero (the first run counted KOA as 0 this way)
+        print("  TRUNCATED %s: page budget hit, oldest fetched %s > needed"
+              % (tk, datetime.fromtimestamp(
+                  min(r0[0] for r0 in out), ET).strftime("%I:%M:%S %p")))
+    if out and min(r0[0] for r0 in out) > oldest_needed:
+        print("  WARNING %s: tape does not reach the window (oldest %s)"
+              % (tk, datetime.fromtimestamp(
+                  min(r0[0] for r0 in out), ET).strftime("%I:%M:%S %p")))
     return out
 
 oldest = min(c["ts"] for c in consults) - 1900

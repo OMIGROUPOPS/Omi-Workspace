@@ -25,7 +25,7 @@
    ],
    "ITF_M": [
     3,
-    15
+    18
    ]
   },
   "dip_def": "bottom >= 3c below discovery",
@@ -691,7 +691,7 @@
    "never_wake_p": 0.0
   },
   "ITF_M|26_50|hi": {
-   "n": 28,
+   "n": 30,
    "dip_freq": 1.0,
    "depth_p25_50_75": [
     14.0,
@@ -700,8 +700,8 @@
    ],
    "dip_t_med_min_before_0k": 39.0,
    "gun_axis": {
-    "n_dual": 28,
-    "lawful_share": 0.107,
+    "n_dual": 30,
+    "lawful_share": 0.1,
     "pre_gun_med_min": 2.7
    },
    "never_wake_p": 0.0
@@ -723,8 +723,8 @@
    "never_wake_p": 0.0
   },
   "ITF_W|le25|mid": {
-   "n": 39,
-   "dip_freq": 0.744,
+   "n": 40,
+   "dip_freq": 0.725,
    "depth_p25_50_75": [
     4.0,
     6.0,
@@ -732,47 +732,47 @@
    ],
    "dip_t_med_min_before_0k": 7.0,
    "gun_axis": {
-    "n_dual": 39,
-    "lawful_share": 0.282,
+    "n_dual": 40,
+    "lawful_share": 0.275,
     "pre_gun_med_min": 104.1
    },
    "never_wake_p": 0.0
   },
   "ITF_M|le25|hi": {
-   "n": 23,
+   "n": 22,
    "dip_freq": 1.0,
    "depth_p25_50_75": [
-    5.0,
-    7.0,
+    6.0,
+    9.0,
     11.0
    ],
-   "dip_t_med_min_before_0k": 28.0,
+   "dip_t_med_min_before_0k": 33.0,
    "gun_axis": {
-    "n_dual": 23,
-    "lawful_share": 0.13,
-    "pre_gun_med_min": 1.1
+    "n_dual": 22,
+    "lawful_share": 0.091,
+    "pre_gun_med_min": 2.4
    },
    "never_wake_p": 0.0
   },
   "ITF_W|51_75|mid": {
-   "n": 25,
-   "dip_freq": 0.8,
+   "n": 26,
+   "dip_freq": 0.808,
    "depth_p25_50_75": [
     9.0,
-    12.0,
-    32.0
+    11.0,
+    21.0
    ],
    "dip_t_med_min_before_0k": 8.0,
    "gun_axis": {
-    "n_dual": 24,
-    "lawful_share": 0.542,
-    "pre_gun_med_min": 67.6
+    "n_dual": 25,
+    "lawful_share": 0.56,
+    "pre_gun_med_min": 67.7
    },
    "never_wake_p": 0.0
   },
   "ITF_M|ge75|mid": {
-   "n": 31,
-   "dip_freq": 0.935,
+   "n": 33,
+   "dip_freq": 0.939,
    "depth_p25_50_75": [
     5.0,
     11.0,
@@ -780,24 +780,24 @@
    ],
    "dip_t_med_min_before_0k": 62.0,
    "gun_axis": {
-    "n_dual": 31,
-    "lawful_share": 0.452,
-    "pre_gun_med_min": 10.6
+    "n_dual": 33,
+    "lawful_share": 0.455,
+    "pre_gun_med_min": 6.7
    },
    "never_wake_p": 0.0
   },
   "ITF_M|le25|mid": {
-   "n": 18,
-   "dip_freq": 0.778,
+   "n": 20,
+   "dip_freq": 0.8,
    "depth_p25_50_75": [
     5.0,
     7.0,
     13.0
    ],
-   "dip_t_med_min_before_0k": 29.0,
+   "dip_t_med_min_before_0k": 28.0,
    "gun_axis": {
-    "n_dual": 18,
-    "lawful_share": 0.056,
+    "n_dual": 20,
+    "lawful_share": 0.1,
     "pre_gun_med_min": 1.1
    },
    "never_wake_p": 0.0
@@ -819,8 +819,8 @@
    "never_wake_p": 0.0
   },
   "ITF_W|26_50|lo": {
-   "n": 33,
-   "dip_freq": 0.697,
+   "n": 34,
+   "dip_freq": 0.676,
    "depth_p25_50_75": [
     4.0,
     8.0,
@@ -828,15 +828,15 @@
    ],
    "dip_t_med_min_before_0k": 4.0,
    "gun_axis": {
-    "n_dual": 31,
-    "lawful_share": 0.452,
+    "n_dual": 32,
+    "lawful_share": 0.438,
     "pre_gun_med_min": 160.4
    },
    "never_wake_p": 0.0
   },
   "ITF_M|51_75|lo": {
-   "n": 37,
-   "dip_freq": 0.703,
+   "n": 38,
+   "dip_freq": 0.684,
    "depth_p25_50_75": [
     8.0,
     13.0,
@@ -844,24 +844,24 @@
    ],
    "dip_t_med_min_before_0k": 7.0,
    "gun_axis": {
-    "n_dual": 36,
-    "lawful_share": 0.361,
-    "pre_gun_med_min": 10.8
+    "n_dual": 37,
+    "lawful_share": 0.378,
+    "pre_gun_med_min": 116.8
    },
    "never_wake_p": 0.0
   },
   "ITF_M|51_75|hi": {
-   "n": 33,
-   "dip_freq": 0.939,
+   "n": 36,
+   "dip_freq": 0.944,
    "depth_p25_50_75": [
-    22.0,
+    23.0,
     31.0,
     38.0
    ],
    "dip_t_med_min_before_0k": 28.0,
    "gun_axis": {
-    "n_dual": 31,
-    "lawful_share": 0.065,
+    "n_dual": 34,
+    "lawful_share": 0.059,
     "pre_gun_med_min": 8.8
    },
    "never_wake_p": 0.0
@@ -886,15 +886,15 @@
    "n": 29,
    "dip_freq": 1.0,
    "depth_p25_50_75": [
-    12.0,
+    16.0,
     19.0,
-    27.0
+    34.0
    ],
    "dip_t_med_min_before_0k": 59.0,
    "gun_axis": {
     "n_dual": 28,
-    "lawful_share": 0.25,
-    "pre_gun_med_min": 2.4
+    "lawful_share": 0.214,
+    "pre_gun_med_min": 5.2
    },
    "never_wake_p": 0.0
   },
@@ -915,17 +915,17 @@
    "never_wake_p": 0.0
   },
   "ITF_M|26_50|lo": {
-   "n": 28,
-   "dip_freq": 0.857,
+   "n": 31,
+   "dip_freq": 0.871,
    "depth_p25_50_75": [
     4.0,
     7.0,
-    18.0
+    17.0
    ],
    "dip_t_med_min_before_0k": 8.0,
    "gun_axis": {
-    "n_dual": 28,
-    "lawful_share": 0.286,
+    "n_dual": 31,
+    "lawful_share": 0.258,
     "pre_gun_med_min": 6.1
    },
    "never_wake_p": 0.0

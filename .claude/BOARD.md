@@ -212,3 +212,8 @@
 - **T-8h** — pre-T-4h expansion beyond the B3 §4 coverage look; folds into the week deliverable (c) spec, not before.
 - **Serialization** — bot state serialization refactor; no build without its own dispatch.
 - **live_scores retention beyond observed_starts** — PARKED per AIM_V2 ruling (own dispatch required); observed_starts shipped 07-06.
+
+
+## AUTO-GAPS (consultation census intake)
+- AUTO-GAP (consultation census 20260714): range_cell_m15 — entry-band mapping unfitted (completion-frame bands only) — vault intake item
+- AUTO-GAP (consultation census 20260714): w1_cohort — cohort thin/absent (n<8) — intake

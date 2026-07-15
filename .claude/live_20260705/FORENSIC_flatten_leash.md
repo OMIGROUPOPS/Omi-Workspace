@@ -1,9 +1,10 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784103770 -->
-written 2026-07-15 04:30:42 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784105428 -->
+written 2026-07-15 04:51:44 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (2 total this session)
+## Events (3 total this session)
 - 04:17:53 KXITFWMATCH-26JUL15WAGCIR-CIR — flatten DEFERRED: ev -1.03 above margin floor -3.0
 - 04:22:50 KXITFWMATCH-26JUL15VOGNUU-NUU — flatten DEFERRED: ev -1.28 above margin floor -3.0
+- 04:50:28 KXITFWMATCH-26JUL15WAGCIR-CIR — flatten DEFERRED: ev -1.03 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-15 12:24:01 AM ET", "ts_epoch": 1784089441.916272, "event": "trendpath_live_aim", "ticker": "KXITFWMATCH-26JUL15VOGNUU-NUU", "details": {"event": "KXITFWMATCH-26JUL15VOGNUU", "from_target": 24, "path_aim": 18, "mode": "no_call_posture", "page": "ITF_W|underdog|le25", "page_n": 104, "citation": "ATLAS_V1 ITF_W|underdog|le25 (path bottom p50; cutover 07-14 operator word)", "entry_gov
@@ -227,6 +228,10 @@ written 2026-07-15 04:30:42 AM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-15 04:23:49 AM ET", "ts_epoch": 1784103829.310923, "event": "exit_filled", "ticker": "KXITFWMATCH-26JUL15VOGNUU-NUU", "details": {"exit_price": 19, "entry_price": 15, "qty": 5, "new_fills": 5, "complete": true, "pnl_cents": 20.0, "pnl_dollars": 0.2, "had_dca": false, "cycle": 1, "in_play": true, "bell_source": "fallback_bell", "trade_id": "T-20260715-0039", "window": {"phase": "W2"
     {"ts": "2026-07-15 04:24:55 AM ET", "ts_epoch": 1784103895.0179343, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 10, "n_resting_orders": 320, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784101024.8137774, "legs_new": ["KXITFMATCH-26JUL15PERBEA-BEA", "KXITFWMATCH-26JUL15WAGCIR-CI
     {"ts": "2026-07-15 04:28:43 AM ET", "ts_epoch": 1784104123.2219627, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL15WAGCIR-CIR", "details": {"verdict": "hold", "kept": {"opinion": "EV", "cell": "ITF_W|leader|disc|51_75", "n": 40, "p_exit_fill": 0.8, "p_ride_zero": 0.2, "ev_cents": 0.6, "band": 18, "basis": 69, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LAYER_3WAY (WINDOW
+    {"ts": "2026-07-15 04:39:33 AM ET", "ts_epoch": 1784104773.7637262, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL15WAGCIR-CIR", "details": {"verdict": "hold", "kept": {"opinion": "EV", "cell": "ITF_W|leader|disc|51_75", "n": 40, "p_exit_fill": 0.8, "p_ride_zero": 0.2, "ev_cents": 0.6, "band": 18, "basis": 69, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LAYER_3WAY (WINDOW
+    {"ts": "2026-07-15 04:42:44 AM ET", "ts_epoch": 1784104964.231529, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 9, "n_resting_orders": 328, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784101024.8137774, "legs_new": ["KXITFMATCH-26JUL15PERBEA-BEA", "KXITFWMATCH-26JUL15WAGCIR-CIR"
+    {"ts": "2026-07-15 04:50:28 AM ET", "ts_epoch": 1784105428.1860816, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL15WAGCIR-CIR", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_W|leader|at_mid|51_75", "n": 32, "p_exit_fill": 0.781, "p_ride_zero": 0.219, "ev_cents": -1.03, "band": 18, "basis": 69, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LA
+    {"ts": "2026-07-15 04:50:28 AM ET", "ts_epoch": 1784105428.1862755, "event": "completion_flatten_deferred", "ticker": "KXITFWMATCH-26JUL15WAGCIR-CIR", "details": {"event": "KXITFWMATCH-26JUL15WAGCIR", "ev_cents": -1.03, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
 
 ## Code path
 ?

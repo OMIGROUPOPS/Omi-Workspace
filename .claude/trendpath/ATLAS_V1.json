@@ -2307,527 +2307,443 @@
     "cited": "exit=band-touch pre-onset (week-regrade convention); win=terminal-tape proxy; ride-loss weighted by the win partition of ENTERED legs (adverse selection kept); entry fill = reach law LAW.json"
    }
   },
-  "ITF_W|leader|ge75": {
-   "n": 89,
+  "ITF_W|underdog|26_50": {
+   "n": 99,
    "verdict": "PATH",
    "branded": "live_era",
    "path": {
     "60": {
-     "p25": -2.0,
+     "p25": -3.0,
      "p50": 0.0,
-     "p75": 0.0,
-     "n": 89
+     "p75": 4.0,
+     "n": 99
     },
     "45": {
-     "p25": -2.0,
+     "p25": -5.0,
      "p50": 0.0,
-     "p75": 0.0,
-     "n": 89
+     "p75": 3.0,
+     "n": 99
     },
     "30": {
-     "p25": -2.0,
+     "p25": -6.0,
      "p50": 0.0,
-     "p75": 0.0,
-     "n": 89
+     "p75": 1.0,
+     "n": 99
     },
     "20": {
-     "p25": -4.0,
+     "p25": -6.0,
      "p50": 0.0,
-     "p75": 0.0,
-     "n": 89
+     "p75": 3.0,
+     "n": 99
     },
     "10": {
      "p25": -6.0,
      "p50": -1.0,
-     "p75": 1.0,
-     "n": 89
+     "p75": 3.0,
+     "n": 99
     },
     "5": {
      "p25": -7.0,
      "p50": -2.0,
-     "p75": 1.0,
-     "n": 89
+     "p75": 3.0,
+     "n": 99
     },
-    "360": {
+    "480": {
      "p25": 0.0,
      "p50": 0.0,
      "p75": 0.0,
      "n": 10
     },
-    "240": {
-     "p25": 0.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 32
-    },
-    "180": {
-     "p25": -1.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 41
-    },
-    "120": {
-     "p25": -1.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 61
-    },
-    "90": {
-     "p25": -3.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 73
-    }
-   },
-   "bottom": {
-    "depth_p25": 8.0,
-    "depth_p50": 13.0,
-    "depth_p75": 31.0,
-    "t_med_min": 18.0
-   },
-   "contention": {
-    "band": 8,
-    "disc_med": 87.0,
-    "tiers": {
-     "p25": {
-      "d": 8,
-      "n_entry": 67,
-      "p_exit": 0.567,
-      "p_win_entry": 0.791,
-      "yield_at_med_pct": 5.8,
-      "entry_fill_p": 1.0,
-      "flow_med": "open"
-     },
-     "p50": {
-      "d": 13,
-      "n_entry": 49,
-      "p_exit": 0.673,
-      "p_win_entry": 0.735,
-      "yield_at_med_pct": 7.0,
-      "entry_fill_p": 1.0,
-      "flow_med": "open"
-     }
-    },
-    "best_yield_at_med_pct": 7.0,
-    "cited": "exit=band-touch pre-onset (week-regrade convention); win=terminal-tape proxy; ride-loss weighted by the win partition of ENTERED legs (adverse selection kept); entry fill = reach law LAW.json"
-   }
-  },
-  "ITF_W|underdog|le25": {
-   "n": 56,
-   "verdict": "PATH",
-   "branded": "live_era",
-   "path": {
-    "480": {
-     "p25": 0.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 8
-    },
     "360": {
      "p25": 0.0,
      "p50": 0.0,
      "p75": 0.0,
-     "n": 15
+     "n": 19
     },
     "240": {
-     "p25": -1.0,
+     "p25": 0.0,
      "p50": 0.0,
      "p75": 0.0,
-     "n": 24
+     "n": 31
     },
     "180": {
-     "p25": -1.0,
+     "p25": -2.0,
      "p50": 0.0,
      "p75": 0.0,
-     "n": 32
+     "n": 34
     },
     "120": {
      "p25": -1.0,
      "p50": 0.0,
-     "p75": 1.0,
+     "p75": 0.0,
      "n": 44
     },
     "90": {
      "p25": -2.0,
      "p50": 0.0,
      "p75": 1.0,
-     "n": 49
-    },
-    "60": {
-     "p25": -2.0,
-     "p50": 0.0,
-     "p75": 2.0,
      "n": 56
-    },
-    "45": {
-     "p25": -2.0,
-     "p50": 0.0,
-     "p75": 1.0,
-     "n": 56
-    },
-    "30": {
-     "p25": -2.0,
-     "p50": 0.0,
-     "p75": 2.0,
-     "n": 56
-    },
-    "20": {
-     "p25": -2.0,
-     "p50": 0.0,
-     "p75": 2.0,
-     "n": 56
-    },
-    "10": {
-     "p25": -2.0,
-     "p50": 0.0,
-     "p75": 4.0,
-     "n": 56
-    },
-    "5": {
-     "p25": -2.0,
-     "p50": 0.0,
-     "p75": 4.0,
-     "n": 56
-    }
-   },
-   "bottom": {
-    "depth_p25": 3.0,
-    "depth_p50": 6.0,
-    "depth_p75": 9.0,
-    "t_med_min": 27.0
-   },
-   "contention": {
-    "band": 8,
-    "disc_med": 18.0,
-    "tiers": {
-     "p25": {
-      "d": 3,
-      "n_entry": 42,
-      "p_exit": 0.381,
-      "p_win_entry": 0.119,
-      "yield_at_med_pct": 7.5,
-      "entry_fill_p": 1.0,
-      "flow_med": "open"
-     },
-     "p50": {
-      "d": 6,
-      "n_entry": 29,
-      "p_exit": 0.552,
-      "p_win_entry": 0.138,
-      "yield_at_med_pct": 43.5,
-      "entry_fill_p": 1.0,
-      "flow_med": "open"
-     },
-     "p75": {
-      "d": 9,
-      "n_entry": 18,
-      "p_exit": 0.5,
-      "p_win_entry": 0.167,
-      "yield_at_med_pct": 87.0,
-      "entry_fill_p": 1.0,
-      "flow_med": "open"
-     }
-    },
-    "best_yield_at_med_pct": 87.0,
-    "cited": "exit=band-touch pre-onset (week-regrade convention); win=terminal-tape proxy; ride-loss weighted by the win partition of ENTERED legs (adverse selection kept); entry fill = reach law LAW.json"
-   }
-  },
-  "ITF_M|underdog|le25": {
-   "n": 26,
-   "verdict": "PATH",
-   "branded": "live_era",
-   "path": {
-    "60": {
-     "p25": -2.0,
-     "p50": 0.0,
-     "p75": 3.0,
-     "n": 26
-    },
-    "45": {
-     "p25": -3.0,
-     "p50": 0.0,
-     "p75": 3.0,
-     "n": 26
-    },
-    "30": {
-     "p25": -4.0,
-     "p50": 0.0,
-     "p75": 4.0,
-     "n": 26
-    },
-    "20": {
-     "p25": -4.0,
-     "p50": -1.0,
-     "p75": 8.0,
-     "n": 26
-    },
-    "10": {
-     "p25": -4.0,
-     "p50": 2.0,
-     "p75": 8.0,
-     "n": 26
-    },
-    "5": {
-     "p25": -3.0,
-     "p50": 3.0,
-     "p75": 9.0,
-     "n": 26
-    },
-    "240": {
-     "p25": 0.0,
-     "p50": 0.0,
-     "p75": 3.0,
-     "n": 10
-    },
-    "180": {
-     "p25": -4.0,
-     "p50": 1.0,
-     "p75": 3.0,
-     "n": 10
-    },
-    "120": {
-     "p25": -4.0,
-     "p50": 1.0,
-     "p75": 3.0,
-     "n": 12
-    },
-    "90": {
-     "p25": -3.0,
-     "p50": 0.0,
-     "p75": 5.0,
-     "n": 15
-    }
-   },
-   "bottom": {
-    "depth_p25": 2.0,
-    "depth_p50": 4.0,
-    "depth_p75": 11.0,
-    "t_med_min": 46.0
-   },
-   "contention": {
-    "band": 8,
-    "disc_med": 16.0,
-    "tiers": {
-     "p25": {
-      "d": 2,
-      "n_entry": 21,
-      "p_exit": 0.619,
-      "p_win_entry": 0.095,
-      "yield_at_med_pct": 23.2,
-      "entry_fill_p": 1.0,
-      "flow_med": "open"
-     },
-     "p50": {
-      "d": 4,
-      "n_entry": 15,
-      "p_exit": 0.6,
-      "p_win_entry": 0.133,
-      "yield_at_med_pct": 44.4,
-      "entry_fill_p": 1.0,
-      "flow_med": "open"
-     }
-    },
-    "best_yield_at_med_pct": 44.4,
-    "cited": "exit=band-touch pre-onset (week-regrade convention); win=terminal-tape proxy; ride-loss weighted by the win partition of ENTERED legs (adverse selection kept); entry fill = reach law LAW.json"
-   }
-  },
-  "ITF_W|leader|51_75": {
-   "n": 69,
-   "verdict": "PATH",
-   "branded": "live_era",
-   "path": {
-    "60": {
-     "p25": -3.0,
-     "p50": 0.0,
-     "p75": 1.0,
-     "n": 69
-    },
-    "45": {
-     "p25": -1.0,
-     "p50": 0.0,
-     "p75": 3.0,
-     "n": 69
-    },
-    "30": {
-     "p25": -2.0,
-     "p50": 0.0,
-     "p75": 5.0,
-     "n": 69
-    },
-    "20": {
-     "p25": -1.0,
-     "p50": 0.0,
-     "p75": 4.0,
-     "n": 69
-    },
-    "10": {
-     "p25": -3.0,
-     "p50": 0.0,
-     "p75": 5.0,
-     "n": 69
-    },
-    "5": {
-     "p25": -8.0,
-     "p50": -1.0,
-     "p75": 3.0,
-     "n": 69
-    },
-    "120": {
-     "p25": -1.0,
-     "p50": 0.0,
-     "p75": 1.0,
-     "n": 52
-    },
-    "90": {
-     "p25": -2.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 61
-    },
-    "480": {
-     "p25": 0.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 14
-    },
-    "360": {
-     "p25": -1.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 19
-    },
-    "240": {
-     "p25": -2.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 29
-    },
-    "180": {
-     "p25": -1.0,
-     "p50": 0.0,
-     "p75": 1.0,
-     "n": 36
-    }
-   },
-   "bottom": {
-    "depth_p25": 5.0,
-    "depth_p50": 10.0,
-    "depth_p75": 22.0,
-    "t_med_min": 25.0
-   },
-   "contention": {
-    "band": 8,
-    "disc_med": 64.0,
-    "tiers": {
-     "p25": {
-      "d": 5,
-      "n_entry": 54,
-      "p_exit": 0.444,
-      "p_win_entry": 0.556,
-      "yield_at_med_pct": 2.8,
-      "entry_fill_p": 1.0,
-      "flow_med": "open"
-     },
-     "p50": {
-      "d": 10,
-      "n_entry": 37,
-      "p_exit": 0.541,
-      "p_win_entry": 0.432,
-      "yield_at_med_pct": -1.1,
-      "entry_fill_p": 1.0,
-      "flow_med": "open"
-     },
-     "p75": {
-      "d": 22,
-      "n_entry": 19,
-      "p_exit": 0.684,
-      "p_win_entry": 0.421,
-      "yield_at_med_pct": 13.1,
-      "entry_fill_p": 1.0,
-      "flow_med": "open"
-     }
-    },
-    "best_yield_at_med_pct": 13.1,
-    "cited": "exit=band-touch pre-onset (week-regrade convention); win=terminal-tape proxy; ride-loss weighted by the win partition of ENTERED legs (adverse selection kept); entry fill = reach law LAW.json"
-   }
-  },
-  "ITF_W|underdog|26_50": {
-   "n": 62,
-   "verdict": "PATH",
-   "branded": "live_era",
-   "path": {
-    "60": {
-     "p25": -2.0,
-     "p50": 0.0,
-     "p75": 1.0,
-     "n": 62
-    },
-    "45": {
-     "p25": -5.0,
-     "p50": 0.0,
-     "p75": 1.0,
-     "n": 62
-    },
-    "30": {
-     "p25": -7.0,
-     "p50": -1.0,
-     "p75": 1.0,
-     "n": 62
-    },
-    "20": {
-     "p25": -7.0,
-     "p50": -1.0,
-     "p75": 1.0,
-     "n": 62
-    },
-    "10": {
-     "p25": -7.0,
-     "p50": -2.0,
-     "p75": 2.0,
-     "n": 62
-    },
-    "5": {
-     "p25": -7.0,
-     "p50": -2.0,
-     "p75": 2.0,
-     "n": 62
-    },
-    "180": {
-     "p25": -2.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 28
-    },
-    "120": {
-     "p25": -1.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 33
-    },
-    "90": {
-     "p25": -2.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 40
-    },
-    "360": {
-     "p25": 0.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 14
-    },
-    "240": {
-     "p25": -1.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 24
     }
    },
    "bottom": {
     "depth_p25": 5.0,
     "depth_p50": 12.0,
-    "depth_p75": 17.0,
-    "t_med_min": 16.0
+    "depth_p75": 19.0,
+    "t_med_min": 22.0
+   },
+   "contention": {
+    "band": 8,
+    "disc_med": 40.0,
+    "tiers": {
+     "p25": {
+      "d": 5,
+      "n_entry": 78,
+      "p_exit": 0.641,
+      "p_win_entry": 0.385,
+      "yield_at_med_pct": 18.2,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     },
+     "p50": {
+      "d": 12,
+      "n_entry": 50,
+      "p_exit": 0.62,
+      "p_win_entry": 0.38,
+      "yield_at_med_pct": 31.3,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     },
+     "p75": {
+      "d": 19,
+      "n_entry": 27,
+      "p_exit": 0.556,
+      "p_win_entry": 0.407,
+      "yield_at_med_pct": 62.9,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     }
+    },
+    "best_yield_at_med_pct": 62.9,
+    "cited": "exit=band-touch pre-onset (week-regrade convention); win=terminal-tape proxy; ride-loss weighted by the win partition of ENTERED legs (adverse selection kept); entry fill = reach law LAW.json"
+   }
+  },
+  "ITF_W|leader|ge75": {
+   "n": 141,
+   "verdict": "PATH",
+   "branded": "live_era",
+   "path": {
+    "60": {
+     "p25": -2.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 141
+    },
+    "45": {
+     "p25": -2.0,
+     "p50": 0.0,
+     "p75": 1.0,
+     "n": 141
+    },
+    "30": {
+     "p25": -2.0,
+     "p50": 0.0,
+     "p75": 2.0,
+     "n": 141
+    },
+    "20": {
+     "p25": -2.0,
+     "p50": 0.0,
+     "p75": 1.0,
+     "n": 141
+    },
+    "10": {
+     "p25": -6.0,
+     "p50": 0.0,
+     "p75": 1.0,
+     "n": 141
+    },
+    "5": {
+     "p25": -7.0,
+     "p50": -1.0,
+     "p75": 2.0,
+     "n": 141
+    },
+    "480": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 22
+    },
+    "360": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 33
+    },
+    "240": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 55
+    },
+    "180": {
+     "p25": -1.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 64
+    },
+    "120": {
+     "p25": -1.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 88
+    },
+    "90": {
+     "p25": -2.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 108
+    }
+   },
+   "bottom": {
+    "depth_p25": 4.0,
+    "depth_p50": 12.0,
+    "depth_p75": 26.0,
+    "t_med_min": 24.0
+   },
+   "contention": {
+    "band": 8,
+    "disc_med": 89.0,
+    "tiers": {
+     "p25": {
+      "d": 4,
+      "n_entry": 107,
+      "p_exit": 0.355,
+      "p_win_entry": 0.766,
+      "yield_at_med_pct": -3.0,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     },
+     "p50": {
+      "d": 12,
+      "n_entry": 73,
+      "p_exit": 0.671,
+      "p_win_entry": 0.699,
+      "yield_at_med_pct": 3.9,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     },
+     "p75": {
+      "d": 26,
+      "n_entry": 39,
+      "p_exit": 0.769,
+      "p_win_entry": 0.692,
+      "yield_at_med_pct": 12.1,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     }
+    },
+    "best_yield_at_med_pct": 12.1,
+    "cited": "exit=band-touch pre-onset (week-regrade convention); win=terminal-tape proxy; ride-loss weighted by the win partition of ENTERED legs (adverse selection kept); entry fill = reach law LAW.json"
+   }
+  },
+  "ITF_W|leader|51_75": {
+   "n": 115,
+   "verdict": "PATH",
+   "branded": "live_era",
+   "path": {
+    "480": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 23
+    },
+    "360": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 27
+    },
+    "240": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 35
+    },
+    "180": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 45
+    },
+    "120": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 66
+    },
+    "90": {
+     "p25": -1.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 84
+    },
+    "60": {
+     "p25": -4.0,
+     "p50": 0.0,
+     "p75": 2.0,
+     "n": 115
+    },
+    "45": {
+     "p25": -3.0,
+     "p50": 0.0,
+     "p75": 3.0,
+     "n": 115
+    },
+    "30": {
+     "p25": -3.0,
+     "p50": 0.0,
+     "p75": 5.0,
+     "n": 115
+    },
+    "20": {
+     "p25": -3.0,
+     "p50": 0.0,
+     "p75": 3.0,
+     "n": 115
+    },
+    "10": {
+     "p25": -5.0,
+     "p50": 0.0,
+     "p75": 4.0,
+     "n": 115
+    },
+    "5": {
+     "p25": -10.0,
+     "p50": -2.0,
+     "p75": 4.0,
+     "n": 115
+    }
+   },
+   "bottom": {
+    "depth_p25": 7.0,
+    "depth_p50": 13.0,
+    "depth_p75": 25.0,
+    "t_med_min": 14.0
+   },
+   "contention": {
+    "band": 8,
+    "disc_med": 63.0,
+    "tiers": {
+     "p25": {
+      "d": 7,
+      "n_entry": 89,
+      "p_exit": 0.573,
+      "p_win_entry": 0.596,
+      "yield_at_med_pct": 10.9,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     },
+     "p50": {
+      "d": 13,
+      "n_entry": 59,
+      "p_exit": 0.627,
+      "p_win_entry": 0.508,
+      "yield_at_med_pct": 10.7,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     },
+     "p75": {
+      "d": 25,
+      "n_entry": 32,
+      "p_exit": 0.719,
+      "p_win_entry": 0.562,
+      "yield_at_med_pct": 28.6,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     }
+    },
+    "best_yield_at_med_pct": 28.6,
+    "cited": "exit=band-touch pre-onset (week-regrade convention); win=terminal-tape proxy; ride-loss weighted by the win partition of ENTERED legs (adverse selection kept); entry fill = reach law LAW.json"
+   }
+  },
+  "ITF_M|underdog|26_50": {
+   "n": 71,
+   "verdict": "PATH",
+   "branded": "live_era",
+   "path": {
+    "60": {
+     "p25": -3.0,
+     "p50": 0.0,
+     "p75": 1.0,
+     "n": 71
+    },
+    "45": {
+     "p25": -4.0,
+     "p50": 0.0,
+     "p75": 1.0,
+     "n": 71
+    },
+    "30": {
+     "p25": -6.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 71
+    },
+    "20": {
+     "p25": -4.0,
+     "p50": 0.0,
+     "p75": 3.0,
+     "n": 71
+    },
+    "10": {
+     "p25": -5.0,
+     "p50": 0.0,
+     "p75": 3.0,
+     "n": 71
+    },
+    "5": {
+     "p25": -7.0,
+     "p50": -1.0,
+     "p75": 5.0,
+     "n": 71
+    },
+    "90": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 44
+    },
+    "180": {
+     "p25": -1.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 21
+    },
+    "120": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 31
+    },
+    "360": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 10
+    },
+    "240": {
+     "p25": -1.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 18
+    }
+   },
+   "bottom": {
+    "depth_p25": 5.0,
+    "depth_p50": 13.0,
+    "depth_p75": 21.0,
+    "t_med_min": 14.0
    },
    "contention": {
     "band": 8,
@@ -2835,387 +2751,513 @@
     "tiers": {
      "p25": {
       "d": 5,
-      "n_entry": 47,
-      "p_exit": 0.532,
-      "p_win_entry": 0.34,
-      "yield_at_med_pct": 12.6,
+      "n_entry": 55,
+      "p_exit": 0.618,
+      "p_win_entry": 0.364,
+      "yield_at_med_pct": 17.2,
       "entry_fill_p": 1.0,
       "flow_med": "open"
      },
      "p50": {
-      "d": 12,
-      "n_entry": 32,
-      "p_exit": 0.531,
-      "p_win_entry": 0.312,
-      "yield_at_med_pct": 23.1,
+      "d": 13,
+      "n_entry": 38,
+      "p_exit": 0.763,
+      "p_win_entry": 0.342,
+      "yield_at_med_pct": 31.0,
       "entry_fill_p": 1.0,
       "flow_med": "open"
      },
      "p75": {
-      "d": 17,
-      "n_entry": 17,
-      "p_exit": 0.588,
-      "p_win_entry": 0.353,
-      "yield_at_med_pct": 46.3,
+      "d": 21,
+      "n_entry": 18,
+      "p_exit": 0.667,
+      "p_win_entry": 0.333,
+      "yield_at_med_pct": 58.0,
       "entry_fill_p": 1.0,
       "flow_med": "open"
      }
     },
-    "best_yield_at_med_pct": 46.3,
+    "best_yield_at_med_pct": 58.0,
     "cited": "exit=band-touch pre-onset (week-regrade convention); win=terminal-tape proxy; ride-loss weighted by the win partition of ENTERED legs (adverse selection kept); entry fill = reach law LAW.json"
    }
   },
-  "ITF_M|leader|51_75": {
-   "n": 57,
+  "ITF_W|underdog|le25": {
+   "n": 102,
    "verdict": "PATH",
    "branded": "live_era",
    "path": {
-    "240": {
-     "p25": -2.0,
-     "p50": -1.0,
+    "480": {
+     "p25": 0.0,
+     "p50": 0.0,
      "p75": 0.0,
-     "n": 29
+     "n": 13
+    },
+    "360": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 26
+    },
+    "240": {
+     "p25": -1.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 46
     },
     "180": {
-     "p25": -2.0,
-     "p50": -1.0,
+     "p25": -1.0,
+     "p50": 0.0,
      "p75": 0.0,
-     "n": 33
+     "n": 53
     },
     "120": {
      "p25": -2.0,
      "p50": 0.0,
-     "p75": 0.0,
-     "n": 39
+     "p75": 1.0,
+     "n": 69
     },
     "90": {
-     "p25": -3.0,
+     "p25": -2.0,
      "p50": 0.0,
-     "p75": 0.0,
-     "n": 44
+     "p75": 1.0,
+     "n": 79
     },
     "60": {
-     "p25": -3.0,
+     "p25": -2.0,
      "p50": 0.0,
-     "p75": 1.0,
-     "n": 57
+     "p75": 2.0,
+     "n": 102
     },
     "45": {
-     "p25": -3.0,
+     "p25": -2.0,
      "p50": 0.0,
      "p75": 1.0,
-     "n": 57
+     "n": 102
     },
     "30": {
-     "p25": -3.0,
+     "p25": -2.0,
      "p50": 0.0,
-     "p75": 1.0,
-     "n": 57
+     "p75": 2.0,
+     "n": 102
     },
     "20": {
-     "p25": -3.0,
-     "p50": -1.0,
-     "p75": 1.0,
-     "n": 57
+     "p25": -2.0,
+     "p50": 0.0,
+     "p75": 2.0,
+     "n": 102
     },
     "10": {
-     "p25": -8.0,
-     "p50": -1.0,
-     "p75": 3.0,
-     "n": 57
+     "p25": -2.0,
+     "p50": 0.0,
+     "p75": 2.0,
+     "n": 102
     },
     "5": {
-     "p25": -8.0,
-     "p50": -2.0,
-     "p75": 3.0,
-     "n": 57
-    },
-    "480": {
-     "p25": -1.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 20
-    },
-    "360": {
-     "p25": -1.0,
+     "p25": -3.0,
      "p50": -1.0,
-     "p75": 0.0,
-     "n": 21
+     "p75": 2.0,
+     "n": 102
     }
    },
    "bottom": {
     "depth_p25": 3.0,
-    "depth_p50": 9.0,
-    "depth_p75": 27.0,
-    "t_med_min": 19.0
+    "depth_p50": 6.0,
+    "depth_p75": 9.0,
+    "t_med_min": 12.0
    },
    "contention": {
     "band": 8,
-    "disc_med": 62.0,
+    "disc_med": 15.0,
     "tiers": {
      "p25": {
       "d": 3,
-      "n_entry": 44,
-      "p_exit": 0.432,
-      "p_win_entry": 0.432,
-      "yield_at_med_pct": -9.4,
+      "n_entry": 80,
+      "p_exit": 0.375,
+      "p_win_entry": 0.138,
+      "yield_at_med_pct": 34.1,
       "entry_fill_p": 1.0,
       "flow_med": "open"
      },
      "p50": {
-      "d": 9,
-      "n_entry": 30,
-      "p_exit": 0.533,
-      "p_win_entry": 0.433,
-      "yield_at_med_pct": -0.5,
+      "d": 6,
+      "n_entry": 56,
+      "p_exit": 0.5,
+      "p_win_entry": 0.125,
+      "yield_at_med_pct": 63.9,
       "entry_fill_p": 1.0,
       "flow_med": "open"
      },
      "p75": {
-      "d": 27,
-      "n_entry": 15,
-      "p_exit": 0.667,
-      "p_win_entry": 0.333,
-      "yield_at_med_pct": 13.7,
+      "d": 9,
+      "n_entry": 31,
+      "p_exit": 0.516,
+      "p_win_entry": 0.097,
+      "yield_at_med_pct": 98.5,
       "entry_fill_p": 1.0,
       "flow_med": "open"
      }
     },
-    "best_yield_at_med_pct": 13.7,
+    "best_yield_at_med_pct": 98.5,
     "cited": "exit=band-touch pre-onset (week-regrade convention); win=terminal-tape proxy; ride-loss weighted by the win partition of ENTERED legs (adverse selection kept); entry fill = reach law LAW.json"
    }
   },
-  "ITF_M|underdog|26_50": {
-   "n": 44,
+  "ITF_M|underdog|le25": {
+   "n": 69,
    "verdict": "PATH",
    "branded": "live_era",
    "path": {
-    "360": {
-     "p25": -4.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 12
-    },
-    "240": {
-     "p25": -3.0,
-     "p50": -1.0,
-     "p75": 0.0,
-     "n": 19
-    },
-    "180": {
-     "p25": -2.0,
-     "p50": -1.0,
-     "p75": 0.0,
-     "n": 23
-    },
-    "120": {
-     "p25": -3.0,
-     "p50": -1.0,
-     "p75": 0.0,
-     "n": 27
-    },
-    "90": {
+    "60": {
      "p25": -1.0,
      "p50": 0.0,
-     "p75": 0.0,
-     "n": 30
-    },
-    "60": {
-     "p25": -4.0,
-     "p50": -1.0,
-     "p75": 0.0,
-     "n": 44
+     "p75": 2.0,
+     "n": 69
     },
     "45": {
      "p25": -2.0,
      "p50": 0.0,
      "p75": 1.0,
-     "n": 44
+     "n": 69
     },
     "30": {
-     "p25": -1.0,
+     "p25": -4.0,
      "p50": 0.0,
-     "p75": 1.0,
-     "n": 44
+     "p75": 3.0,
+     "n": 69
     },
     "20": {
-     "p25": -2.0,
-     "p50": 0.0,
-     "p75": 1.0,
-     "n": 44
-    },
-    "10": {
-     "p25": -5.0,
+     "p25": -4.0,
      "p50": -1.0,
      "p75": 2.0,
-     "n": 44
+     "n": 69
+    },
+    "10": {
+     "p25": -4.0,
+     "p50": -1.0,
+     "p75": 2.0,
+     "n": 69
     },
     "5": {
-     "p25": -5.0,
-     "p50": -1.0,
-     "p75": 3.0,
-     "n": 44
-    }
-   },
-   "bottom": {
-    "depth_p25": 4.0,
-    "depth_p50": 9.0,
-    "depth_p75": 18.0,
-    "t_med_min": 25.0
-   },
-   "contention": {
-    "band": 8,
-    "disc_med": 37.0,
-    "tiers": {
-     "p25": {
-      "d": 4,
-      "n_entry": 36,
-      "p_exit": 0.528,
-      "p_win_entry": 0.306,
-      "yield_at_med_pct": 9.3,
-      "entry_fill_p": 1.0,
-      "flow_med": "open"
-     },
-     "p50": {
-      "d": 9,
-      "n_entry": 22,
-      "p_exit": 0.455,
-      "p_win_entry": 0.227,
-      "yield_at_med_pct": 2.7,
-      "entry_fill_p": 1.0,
-      "flow_med": "open"
-     },
-     "p75": {
-      "d": 18,
-      "n_entry": 12,
-      "p_exit": 0.417,
-      "p_win_entry": 0.167,
-      "yield_at_med_pct": 10.4,
-      "entry_fill_p": 1.0,
-      "flow_med": "open"
-     }
-    },
-    "best_yield_at_med_pct": 10.4,
-    "cited": "exit=band-touch pre-onset (week-regrade convention); win=terminal-tape proxy; ride-loss weighted by the win partition of ENTERED legs (adverse selection kept); entry fill = reach law LAW.json"
-   }
-  },
-  "ITF_M|leader|ge75": {
-   "n": 54,
-   "verdict": "PATH",
-   "branded": "live_era",
-   "path": {
-    "180": {
-     "p25": -4.0,
+     "p25": -3.0,
      "p50": 0.0,
-     "p75": 0.0,
-     "n": 23
+     "p75": 7.0,
+     "n": 69
     },
     "120": {
-     "p25": -4.0,
+     "p25": -2.0,
      "p50": 0.0,
-     "p75": 0.0,
-     "n": 33
+     "p75": 1.0,
+     "n": 35
     },
     "90": {
+     "p25": -2.0,
+     "p50": 0.0,
+     "p75": 1.0,
+     "n": 47
+    },
+    "240": {
      "p25": -1.0,
      "p50": 0.0,
      "p75": 0.0,
-     "n": 39
+     "n": 22
     },
-    "60": {
-     "p25": -8.0,
-     "p50": -1.0,
+    "180": {
+     "p25": -2.0,
+     "p50": 0.0,
      "p75": 0.0,
-     "n": 54
-    },
-    "45": {
-     "p25": -5.0,
-     "p50": -1.0,
-     "p75": 0.0,
-     "n": 54
-    },
-    "30": {
-     "p25": -5.0,
-     "p50": -2.0,
-     "p75": 1.0,
-     "n": 54
-    },
-    "20": {
-     "p25": -8.0,
-     "p50": -2.0,
-     "p75": 1.0,
-     "n": 54
-    },
-    "10": {
-     "p25": -10.0,
-     "p50": -2.0,
-     "p75": 1.0,
-     "n": 54
-    },
-    "5": {
-     "p25": -11.0,
-     "p50": -3.0,
-     "p75": 1.0,
-     "n": 54
+     "n": 26
     },
     "480": {
      "p25": 0.0,
      "p50": 0.0,
      "p75": 0.0,
-     "n": 8
+     "n": 11
     },
     "360": {
-     "p25": -4.0,
+     "p25": 0.0,
      "p50": 0.0,
      "p75": 0.0,
-     "n": 13
-    },
-    "240": {
-     "p25": -1.0,
-     "p50": 0.0,
-     "p75": 0.0,
-     "n": 21
+     "n": 17
     }
    },
    "bottom": {
-    "depth_p25": 9.0,
-    "depth_p50": 18.0,
-    "depth_p75": 36.0,
-    "t_med_min": 43.0
+    "depth_p25": 2.0,
+    "depth_p50": 6.0,
+    "depth_p75": 9.0,
+    "t_med_min": 28.0
    },
    "contention": {
     "band": 8,
-    "disc_med": 87.0,
+    "disc_med": 13.0,
     "tiers": {
      "p25": {
-      "d": 9,
-      "n_entry": 45,
-      "p_exit": 0.556,
-      "p_win_entry": 0.756,
-      "yield_at_med_pct": 4.3,
+      "d": 2,
+      "n_entry": 57,
+      "p_exit": 0.404,
+      "p_win_entry": 0.14,
+      "yield_at_med_pct": 45.8,
       "entry_fill_p": 1.0,
       "flow_med": "open"
      },
      "p50": {
-      "d": 18,
-      "n_entry": 29,
-      "p_exit": 0.586,
-      "p_win_entry": 0.724,
-      "yield_at_med_pct": 8.8,
+      "d": 6,
+      "n_entry": 37,
+      "p_exit": 0.405,
+      "p_win_entry": 0.135,
+      "yield_at_med_pct": 101.7,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     },
+     "p75": {
+      "d": 9,
+      "n_entry": 21,
+      "p_exit": 0.429,
+      "p_win_entry": 0.238,
+      "yield_at_med_pct": 368.7,
       "entry_fill_p": 1.0,
       "flow_med": "open"
      }
     },
-    "best_yield_at_med_pct": 8.8,
+    "best_yield_at_med_pct": 368.7,
     "cited": "exit=band-touch pre-onset (week-regrade convention); win=terminal-tape proxy; ride-loss weighted by the win partition of ENTERED legs (adverse selection kept); entry fill = reach law LAW.json"
    }
   },
-  "ITF_M|leader|26_50": {
-   "n": 7,
-   "verdict": "REFUSE_THIN"
+  "ITF_M|leader|ge75": {
+   "n": 100,
+   "verdict": "PATH",
+   "branded": "live_era",
+   "path": {
+    "60": {
+     "p25": -4.0,
+     "p50": 0.0,
+     "p75": 1.0,
+     "n": 100
+    },
+    "45": {
+     "p25": -3.0,
+     "p50": 0.0,
+     "p75": 2.0,
+     "n": 100
+    },
+    "30": {
+     "p25": -4.0,
+     "p50": 0.0,
+     "p75": 4.0,
+     "n": 100
+    },
+    "20": {
+     "p25": -4.0,
+     "p50": 0.0,
+     "p75": 3.0,
+     "n": 100
+    },
+    "10": {
+     "p25": -5.0,
+     "p50": -1.0,
+     "p75": 3.0,
+     "n": 100
+    },
+    "5": {
+     "p25": -7.0,
+     "p50": 0.0,
+     "p75": 4.0,
+     "n": 100
+    },
+    "90": {
+     "p25": -2.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 69
+    },
+    "180": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 37
+    },
+    "120": {
+     "p25": -2.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 51
+    },
+    "240": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 32
+    },
+    "480": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 15
+    },
+    "360": {
+     "p25": 0.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 22
+    }
+   },
+   "bottom": {
+    "depth_p25": 6.0,
+    "depth_p50": 13.0,
+    "depth_p75": 20.0,
+    "t_med_min": 42.0
+   },
+   "contention": {
+    "band": 8,
+    "disc_med": 86.0,
+    "tiers": {
+     "p25": {
+      "d": 6,
+      "n_entry": 77,
+      "p_exit": 0.506,
+      "p_win_entry": 0.818,
+      "yield_at_med_pct": 6.2,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     },
+     "p50": {
+      "d": 13,
+      "n_entry": 52,
+      "p_exit": 0.635,
+      "p_win_entry": 0.788,
+      "yield_at_med_pct": 9.9,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     },
+     "p75": {
+      "d": 20,
+      "n_entry": 25,
+      "p_exit": 0.64,
+      "p_win_entry": 0.6,
+      "yield_at_med_pct": 4.5,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     }
+    },
+    "best_yield_at_med_pct": 9.9,
+    "cited": "exit=band-touch pre-onset (week-regrade convention); win=terminal-tape proxy; ride-loss weighted by the win partition of ENTERED legs (adverse selection kept); entry fill = reach law LAW.json"
+   }
+  },
+  "ITF_M|leader|51_75": {
+   "n": 86,
+   "verdict": "PATH",
+   "branded": "live_era",
+   "path": {
+    "240": {
+     "p25": -1.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 29
+    },
+    "180": {
+     "p25": -1.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 37
+    },
+    "120": {
+     "p25": -3.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 47
+    },
+    "90": {
+     "p25": -3.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 61
+    },
+    "60": {
+     "p25": -3.0,
+     "p50": 0.0,
+     "p75": 3.0,
+     "n": 86
+    },
+    "45": {
+     "p25": -3.0,
+     "p50": 0.0,
+     "p75": 4.0,
+     "n": 86
+    },
+    "30": {
+     "p25": -6.0,
+     "p50": -1.0,
+     "p75": 2.0,
+     "n": 86
+    },
+    "20": {
+     "p25": -8.0,
+     "p50": -1.0,
+     "p75": 2.0,
+     "n": 86
+    },
+    "10": {
+     "p25": -13.0,
+     "p50": -1.0,
+     "p75": 4.0,
+     "n": 86
+    },
+    "5": {
+     "p25": -15.0,
+     "p50": -2.0,
+     "p75": 4.0,
+     "n": 86
+    },
+    "480": {
+     "p25": -1.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 15
+    },
+    "360": {
+     "p25": -2.0,
+     "p50": 0.0,
+     "p75": 0.0,
+     "n": 18
+    }
+   },
+   "bottom": {
+    "depth_p25": 5.0,
+    "depth_p50": 16.0,
+    "depth_p75": 31.0,
+    "t_med_min": 17.0
+   },
+   "contention": {
+    "band": 8,
+    "disc_med": 61.0,
+    "tiers": {
+     "p25": {
+      "d": 5,
+      "n_entry": 66,
+      "p_exit": 0.515,
+      "p_win_entry": 0.47,
+      "yield_at_med_pct": -0.5,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     },
+     "p50": {
+      "d": 16,
+      "n_entry": 43,
+      "p_exit": 0.744,
+      "p_win_entry": 0.442,
+      "yield_at_med_pct": 12.8,
+      "entry_fill_p": 1.0,
+      "flow_med": "open"
+     }
+    },
+    "best_yield_at_med_pct": 12.8,
+    "cited": "exit=band-touch pre-onset (week-regrade convention); win=terminal-tape proxy; ride-loss weighted by the win partition of ENTERED legs (adverse selection kept); entry fill = reach law LAW.json"
+   }
   },
   "ITF_W|leader|26_50": {
-   "n": 3,
+   "n": 5,
+   "verdict": "REFUSE_THIN"
+  },
+  "ITF_M|leader|26_50": {
+   "n": 5,
    "verdict": "REFUSE_THIN"
   }
  }

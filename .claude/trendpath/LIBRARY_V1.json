@@ -1,0 +1,830 @@
+{
+ "meta": {
+  "built": "2026-07-15",
+  "axes": "cat|pcell|vol_band (first-hour prints, fitted terciles per cat)",
+  "vol_cuts": {
+   "ATP_CHALL": [
+    12,
+    80
+   ],
+   "ATP_MAIN": [
+    17,
+    119
+   ],
+   "WTA_CHALL": [
+    14,
+    100
+   ],
+   "WTA_MAIN": [
+    12,
+    80
+   ],
+   "ITF_W": [
+    2,
+    11
+   ],
+   "ITF_M": [
+    3,
+    18
+   ]
+  },
+  "dip_def": "bottom >= 3c below discovery",
+  "never_wake_def": "total prints < 10 (v1, named)",
+  "timing_axis": "-0k onset clock \u2014 MIS-ANCHORED for live use per CLOCK-XCAL; recut queued",
+  "tts_axis": "na for tour corpus \u2014 GAP, live-era enrichment queued"
+ },
+ "cells": {
+  "ATP_CHALL|le25|hi": {
+   "n": 239,
+   "dip_freq": 0.623,
+   "depth_p25_50_75": [
+    4.0,
+    5.0,
+    7.0
+   ],
+   "dip_t_med_min_before_0k": 78.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_CHALL|ge75|mid": {
+   "n": 233,
+   "dip_freq": 0.631,
+   "depth_p25_50_75": [
+    4.0,
+    8.0,
+    21.0
+   ],
+   "dip_t_med_min_before_0k": 372.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_CHALL|26_50|mid": {
+   "n": 465,
+   "dip_freq": 0.617,
+   "depth_p25_50_75": [
+    4.0,
+    5.0,
+    9.0
+   ],
+   "dip_t_med_min_before_0k": 53.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_CHALL|51_75|mid": {
+   "n": 598,
+   "dip_freq": 0.51,
+   "depth_p25_50_75": [
+    4.0,
+    5.0,
+    9.0
+   ],
+   "dip_t_med_min_before_0k": 261.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_CHALL|51_75|hi": {
+   "n": 516,
+   "dip_freq": 0.5,
+   "depth_p25_50_75": [
+    4.0,
+    6.0,
+    11.0
+   ],
+   "dip_t_med_min_before_0k": 153.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_CHALL|26_50|hi": {
+   "n": 489,
+   "dip_freq": 0.652,
+   "depth_p25_50_75": [
+    4.0,
+    5.0,
+    9.0
+   ],
+   "dip_t_med_min_before_0k": 36.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_CHALL|26_50|lo": {
+   "n": 587,
+   "dip_freq": 0.656,
+   "depth_p25_50_75": [
+    4.0,
+    6.0,
+    10.0
+   ],
+   "dip_t_med_min_before_0k": 78.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_CHALL|51_75|lo": {
+   "n": 500,
+   "dip_freq": 0.532,
+   "depth_p25_50_75": [
+    4.0,
+    7.0,
+    12.0
+   ],
+   "dip_t_med_min_before_0k": 66.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_CHALL|le25|mid": {
+   "n": 185,
+   "dip_freq": 0.573,
+   "depth_p25_50_75": [
+    3.0,
+    5.0,
+    7.0
+   ],
+   "dip_t_med_min_before_0k": 82.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_CHALL|ge75|lo": {
+   "n": 280,
+   "dip_freq": 0.714,
+   "depth_p25_50_75": [
+    6.0,
+    14.0,
+    37.0
+   ],
+   "dip_t_med_min_before_0k": 106.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_CHALL|le25|lo": {
+   "n": 163,
+   "dip_freq": 0.546,
+   "depth_p25_50_75": [
+    4.0,
+    6.0,
+    9.0
+   ],
+   "dip_t_med_min_before_0k": 54.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_CHALL|ge75|hi": {
+   "n": 246,
+   "dip_freq": 0.634,
+   "depth_p25_50_75": [
+    4.0,
+    6.0,
+    10.0
+   ],
+   "dip_t_med_min_before_0k": 357.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_MAIN|26_50|mid": {
+   "n": 149,
+   "dip_freq": 0.678,
+   "depth_p25_50_75": [
+    5.0,
+    8.0,
+    14.0
+   ],
+   "dip_t_med_min_before_0k": 565.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_MAIN|ge75|hi": {
+   "n": 75,
+   "dip_freq": 0.827,
+   "depth_p25_50_75": [
+    6.0,
+    11.0,
+    21.0
+   ],
+   "dip_t_med_min_before_0k": 768.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_MAIN|51_75|lo": {
+   "n": 196,
+   "dip_freq": 0.684,
+   "depth_p25_50_75": [
+    9.0,
+    19.0,
+    48.0
+   ],
+   "dip_t_med_min_before_0k": 588.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_MAIN|26_50|lo": {
+   "n": 165,
+   "dip_freq": 0.63,
+   "depth_p25_50_75": [
+    4.0,
+    8.0,
+    13.0
+   ],
+   "dip_t_med_min_before_0k": 423.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_MAIN|ge75|lo": {
+   "n": 48,
+   "dip_freq": 0.917,
+   "depth_p25_50_75": [
+    12.0,
+    23.0,
+    40.0
+   ],
+   "dip_t_med_min_before_0k": 562.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_MAIN|26_50|hi": {
+   "n": 141,
+   "dip_freq": 0.695,
+   "depth_p25_50_75": [
+    4.0,
+    7.0,
+    12.0
+   ],
+   "dip_t_med_min_before_0k": 344.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_MAIN|51_75|mid": {
+   "n": 194,
+   "dip_freq": 0.68,
+   "depth_p25_50_75": [
+    5.0,
+    11.0,
+    23.0
+   ],
+   "dip_t_med_min_before_0k": 508.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_MAIN|51_75|hi": {
+   "n": 179,
+   "dip_freq": 0.581,
+   "depth_p25_50_75": [
+    4.0,
+    7.0,
+    14.0
+   ],
+   "dip_t_med_min_before_0k": 431.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_MAIN|ge75|mid": {
+   "n": 56,
+   "dip_freq": 0.821,
+   "depth_p25_50_75": [
+    7.0,
+    20.0,
+    34.0
+   ],
+   "dip_t_med_min_before_0k": 774.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_MAIN|le25|mid": {
+   "n": 42,
+   "dip_freq": 0.524,
+   "depth_p25_50_75": [
+    3.0,
+    7.0,
+    11.0
+   ],
+   "dip_t_med_min_before_0k": 428.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_MAIN|le25|lo": {
+   "n": 42,
+   "dip_freq": 0.286,
+   "depth_p25_50_75": [
+    4.0,
+    5.0,
+    10.0
+   ],
+   "dip_t_med_min_before_0k": 742.0,
+   "never_wake_p": 0.0
+  },
+  "ATP_MAIN|le25|hi": {
+   "n": 48,
+   "dip_freq": 0.625,
+   "depth_p25_50_75": [
+    3.0,
+    4.0,
+    6.0
+   ],
+   "dip_t_med_min_before_0k": 414.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_CHALL|le25|mid": {
+   "n": 31,
+   "dip_freq": 0.516,
+   "depth_p25_50_75": [
+    3.0,
+    6.0,
+    11.0
+   ],
+   "dip_t_med_min_before_0k": 189.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_CHALL|51_75|mid": {
+   "n": 106,
+   "dip_freq": 0.613,
+   "depth_p25_50_75": [
+    3.0,
+    5.0,
+    12.0
+   ],
+   "dip_t_med_min_before_0k": 56.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_CHALL|ge75|mid": {
+   "n": 35,
+   "dip_freq": 0.6,
+   "depth_p25_50_75": [
+    4.0,
+    7.0,
+    19.0
+   ],
+   "dip_t_med_min_before_0k": 38.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_CHALL|26_50|lo": {
+   "n": 92,
+   "dip_freq": 0.565,
+   "depth_p25_50_75": [
+    4.0,
+    6.0,
+    12.0
+   ],
+   "dip_t_med_min_before_0k": 5.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_CHALL|le25|hi": {
+   "n": 41,
+   "dip_freq": 0.512,
+   "depth_p25_50_75": [
+    3.0,
+    4.0,
+    7.0
+   ],
+   "dip_t_med_min_before_0k": 95.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_CHALL|le25|lo": {
+   "n": 31,
+   "dip_freq": 0.613,
+   "depth_p25_50_75": [
+    3.0,
+    4.0,
+    8.0
+   ],
+   "dip_t_med_min_before_0k": 4.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_CHALL|51_75|lo": {
+   "n": 100,
+   "dip_freq": 0.67,
+   "depth_p25_50_75": [
+    4.0,
+    7.0,
+    16.0
+   ],
+   "dip_t_med_min_before_0k": 22.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_CHALL|26_50|mid": {
+   "n": 79,
+   "dip_freq": 0.608,
+   "depth_p25_50_75": [
+    4.0,
+    5.0,
+    7.0
+   ],
+   "dip_t_med_min_before_0k": 24.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_CHALL|51_75|hi": {
+   "n": 84,
+   "dip_freq": 0.631,
+   "depth_p25_50_75": [
+    3.0,
+    5.0,
+    10.0
+   ],
+   "dip_t_med_min_before_0k": 30.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_CHALL|26_50|hi": {
+   "n": 89,
+   "dip_freq": 0.674,
+   "depth_p25_50_75": [
+    4.0,
+    5.0,
+    8.0
+   ],
+   "dip_t_med_min_before_0k": 34.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_CHALL|ge75|hi": {
+   "n": 38,
+   "dip_freq": 0.684,
+   "depth_p25_50_75": [
+    3.0,
+    4.0,
+    9.0
+   ],
+   "dip_t_med_min_before_0k": 232.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_CHALL|ge75|lo": {
+   "n": 40,
+   "dip_freq": 0.6,
+   "depth_p25_50_75": [
+    4.0,
+    12.0,
+    23.0
+   ],
+   "dip_t_med_min_before_0k": 135.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_MAIN|51_75|mid": {
+   "n": 146,
+   "dip_freq": 0.644,
+   "depth_p25_50_75": [
+    5.0,
+    9.0,
+    16.0
+   ],
+   "dip_t_med_min_before_0k": 561.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_MAIN|26_50|lo": {
+   "n": 146,
+   "dip_freq": 0.582,
+   "depth_p25_50_75": [
+    4.0,
+    7.0,
+    13.0
+   ],
+   "dip_t_med_min_before_0k": 218.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_MAIN|51_75|hi": {
+   "n": 141,
+   "dip_freq": 0.645,
+   "depth_p25_50_75": [
+    5.0,
+    8.0,
+    13.0
+   ],
+   "dip_t_med_min_before_0k": 650.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_MAIN|ge75|lo": {
+   "n": 110,
+   "dip_freq": 0.809,
+   "depth_p25_50_75": [
+    11.0,
+    33.0,
+    48.0
+   ],
+   "dip_t_med_min_before_0k": 554.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_MAIN|le25|hi": {
+   "n": 71,
+   "dip_freq": 0.62,
+   "depth_p25_50_75": [
+    4.0,
+    5.0,
+    7.0
+   ],
+   "dip_t_med_min_before_0k": 294.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_MAIN|26_50|mid": {
+   "n": 135,
+   "dip_freq": 0.667,
+   "depth_p25_50_75": [
+    5.0,
+    7.0,
+    12.0
+   ],
+   "dip_t_med_min_before_0k": 353.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_MAIN|26_50|hi": {
+   "n": 112,
+   "dip_freq": 0.75,
+   "depth_p25_50_75": [
+    4.0,
+    7.0,
+    9.0
+   ],
+   "dip_t_med_min_before_0k": 426.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_MAIN|51_75|lo": {
+   "n": 114,
+   "dip_freq": 0.57,
+   "depth_p25_50_75": [
+    4.0,
+    8.0,
+    14.0
+   ],
+   "dip_t_med_min_before_0k": 471.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_MAIN|ge75|mid": {
+   "n": 78,
+   "dip_freq": 0.782,
+   "depth_p25_50_75": [
+    7.0,
+    20.0,
+    44.0
+   ],
+   "dip_t_med_min_before_0k": 724.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_MAIN|ge75|hi": {
+   "n": 91,
+   "dip_freq": 0.758,
+   "depth_p25_50_75": [
+    5.0,
+    7.0,
+    14.0
+   ],
+   "dip_t_med_min_before_0k": 1111.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_MAIN|le25|lo": {
+   "n": 58,
+   "dip_freq": 0.328,
+   "depth_p25_50_75": [
+    3.0,
+    6.0,
+    7.0
+   ],
+   "dip_t_med_min_before_0k": 414.0,
+   "never_wake_p": 0.0
+  },
+  "WTA_MAIN|le25|mid": {
+   "n": 45,
+   "dip_freq": 0.511,
+   "depth_p25_50_75": [
+    3.0,
+    5.0,
+    8.0
+   ],
+   "dip_t_med_min_before_0k": 423.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_W|26_50|hi": {
+   "n": 48,
+   "dip_freq": 0.958,
+   "depth_p25_50_75": [
+    11.0,
+    17.0,
+    23.0
+   ],
+   "dip_t_med_min_before_0k": 23.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_W|ge75|hi": {
+   "n": 35,
+   "dip_freq": 0.971,
+   "depth_p25_50_75": [
+    12.0,
+    20.0,
+    31.0
+   ],
+   "dip_t_med_min_before_0k": 64.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_W|51_75|lo": {
+   "n": 50,
+   "dip_freq": 0.86,
+   "depth_p25_50_75": [
+    6.0,
+    10.0,
+    14.0
+   ],
+   "dip_t_med_min_before_0k": 7.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_W|ge75|lo": {
+   "n": 54,
+   "dip_freq": 0.741,
+   "depth_p25_50_75": [
+    10.0,
+    18.0,
+    44.0
+   ],
+   "dip_t_med_min_before_0k": 9.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_M|26_50|hi": {
+   "n": 28,
+   "dip_freq": 1.0,
+   "depth_p25_50_75": [
+    14.0,
+    19.0,
+    23.0
+   ],
+   "dip_t_med_min_before_0k": 39.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_W|le25|lo": {
+   "n": 35,
+   "dip_freq": 0.686,
+   "depth_p25_50_75": [
+    4.0,
+    8.0,
+    10.0
+   ],
+   "dip_t_med_min_before_0k": 3.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_W|le25|mid": {
+   "n": 38,
+   "dip_freq": 0.737,
+   "depth_p25_50_75": [
+    5.0,
+    6.0,
+    7.0
+   ],
+   "dip_t_med_min_before_0k": 7.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_M|le25|hi": {
+   "n": 21,
+   "dip_freq": 1.0,
+   "depth_p25_50_75": [
+    6.0,
+    8.0,
+    11.0
+   ],
+   "dip_t_med_min_before_0k": 33.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_W|51_75|mid": {
+   "n": 24,
+   "dip_freq": 0.792,
+   "depth_p25_50_75": [
+    9.0,
+    12.0,
+    32.0
+   ],
+   "dip_t_med_min_before_0k": 8.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_M|ge75|mid": {
+   "n": 31,
+   "dip_freq": 0.935,
+   "depth_p25_50_75": [
+    6.0,
+    13.0,
+    18.0
+   ],
+   "dip_t_med_min_before_0k": 62.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_M|le25|mid": {
+   "n": 20,
+   "dip_freq": 0.8,
+   "depth_p25_50_75": [
+    5.0,
+    7.0,
+    13.0
+   ],
+   "dip_t_med_min_before_0k": 28.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_W|26_50|mid": {
+   "n": 24,
+   "dip_freq": 0.875,
+   "depth_p25_50_75": [
+    11.0,
+    14.0,
+    19.0
+   ],
+   "dip_t_med_min_before_0k": 4.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_W|26_50|lo": {
+   "n": 32,
+   "dip_freq": 0.719,
+   "depth_p25_50_75": [
+    4.0,
+    8.0,
+    15.0
+   ],
+   "dip_t_med_min_before_0k": 4.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_M|51_75|lo": {
+   "n": 36,
+   "dip_freq": 0.694,
+   "depth_p25_50_75": [
+    9.0,
+    13.0,
+    18.0
+   ],
+   "dip_t_med_min_before_0k": 6.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_M|51_75|hi": {
+   "n": 33,
+   "dip_freq": 0.939,
+   "depth_p25_50_75": [
+    22.0,
+    31.0,
+    38.0
+   ],
+   "dip_t_med_min_before_0k": 28.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_W|51_75|hi": {
+   "n": 41,
+   "dip_freq": 0.976,
+   "depth_p25_50_75": [
+    17.0,
+    25.0,
+    32.0
+   ],
+   "dip_t_med_min_before_0k": 38.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_M|ge75|hi": {
+   "n": 27,
+   "dip_freq": 1.0,
+   "depth_p25_50_75": [
+    12.0,
+    19.0,
+    34.0
+   ],
+   "dip_t_med_min_before_0k": 59.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_W|ge75|mid": {
+   "n": 52,
+   "dip_freq": 0.827,
+   "depth_p25_50_75": [
+    4.0,
+    13.0,
+    22.0
+   ],
+   "dip_t_med_min_before_0k": 14.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_M|26_50|lo": {
+   "n": 28,
+   "dip_freq": 0.857,
+   "depth_p25_50_75": [
+    4.0,
+    7.0,
+    18.0
+   ],
+   "dip_t_med_min_before_0k": 8.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_W|le25|hi": {
+   "n": 29,
+   "dip_freq": 0.966,
+   "depth_p25_50_75": [
+    6.0,
+    9.0,
+    12.0
+   ],
+   "dip_t_med_min_before_0k": 23.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_M|ge75|lo": {
+   "n": 42,
+   "dip_freq": 0.833,
+   "depth_p25_50_75": [
+    6.0,
+    12.0,
+    18.0
+   ],
+   "dip_t_med_min_before_0k": 11.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_M|le25|lo": {
+   "n": 28,
+   "dip_freq": 0.5,
+   "depth_p25_50_75": [
+    5.0,
+    8.0,
+    12.0
+   ],
+   "dip_t_med_min_before_0k": 6.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_M|26_50|mid": {
+   "n": 20,
+   "dip_freq": 0.85,
+   "depth_p25_50_75": [
+    5.0,
+    11.0,
+    19.0
+   ],
+   "dip_t_med_min_before_0k": 12.0,
+   "never_wake_p": 0.0
+  },
+  "ITF_M|51_75|mid": {
+   "n": 17,
+   "dip_freq": 0.824,
+   "depth_p25_50_75": [
+    6.0,
+    8.0,
+    14.0
+   ],
+   "dip_t_med_min_before_0k": 13.0,
+   "never_wake_p": 0.0
+  }
+ }
+}

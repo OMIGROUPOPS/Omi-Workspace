@@ -83,7 +83,21 @@
     "dog_rise_rate": 0.75
    }
   },
-  "ITF_W": {},
-  "ITF_M": {}
+  "ITF_W": {
+   "-1|lo|mid": {
+    "n": 10,
+    "dog_rise_rate": 0.1
+   }
+  },
+  "ITF_M": {
+   "-1|lo|mid": {
+    "n": 10,
+    "dog_rise_rate": 0.5
+   },
+   "-1|lo|lo": {
+    "n": 10,
+    "dog_rise_rate": 0.6
+   }
+  }
  }
 }

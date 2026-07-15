@@ -1,6 +1,6 @@
 # OUTCOME PROOF — −0l STOP-WINDOW FIX (operator word, 2026-07-15: "size the stop window to the book, full gate, now")
 
-**Proven code SHA: `478700d5`** (branch `blend/kalshi-occ-fallback`).
+**Proven code SHA: `c6163580`** (branch `blend/kalshi-occ-fallback`).
 
 ## PRIOR ART (C45)
 

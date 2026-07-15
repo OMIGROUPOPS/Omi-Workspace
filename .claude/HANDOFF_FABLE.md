@@ -42,7 +42,7 @@ python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
 ## STATE (2026-07-15 STOP-WINDOW — C50 keeps this current):
--0l FIXED+DEPLOYED (operator word; 478700d5 full gate): bot drain
+-0l FIXED+DEPLOYED (operator word; c6163580 full gate): bot drain
 budget book-sized (5s+0.25s/bid, cap 180s); script window 200s,
 waits for death, measures stop time; abandonment branch deleted
 (worst case = old bot alive + BOT_DOWN alert, never a dead book).

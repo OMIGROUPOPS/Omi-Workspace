@@ -1,7 +1,7 @@
-# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784112615 -->
-written 2026-07-15 06:52:05 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784113293 -->
+written 2026-07-15 07:03:09 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (8 total this session)
+## Events (9 total this session)
 - 04:49:25 KXITFMATCH-26JUL15DHOPLE-DHO — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 05:13:26 KXATPCHALLENGERMATCH-26JUL15BONJUS-BON — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 05:22:45 KXATPCHALLENGERMATCH-26JUL15BONJUS-BON — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
@@ -10,6 +10,7 @@ written 2026-07-15 06:52:05 AM ET by live_validation_loop (read-only). Patch con
 - 05:36:07 KXITFMATCH-26JUL15MIRMUR-MUR — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 06:40:43 KXWTAMATCH-26JUL15IBRBAD-IBR — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 06:50:15 KXWTAMATCH-26JUL15IBRBAD-IBR — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 07:01:33 KXWTAMATCH-26JUL15IBRBAD-IBR — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-15 12:22:07 AM ET", "ts_epoch": 1784089327.9669876, "event": "skipped", "ticker": "KXWTAMATCH-26JUL15IBRBAD-IBR", "details": {"reason": "skip_no_trade", "anchor_src": "skip_no_trade", "last_trade_age_sec": 3160.8, "cat": "WTA_MAIN", "price": 14}}
@@ -1070,6 +1071,8 @@ written 2026-07-15 06:52:05 AM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-15 06:48:04 AM ET", "ts_epoch": 1784112484.7367392, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 7, "n_resting_orders": 273, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784101024.8137774, "legs_new": ["KXITFMATCH-26JUL15MASDUT-DUT", "KXITFMATCH-26JUL15WANJIN-WAN"
     {"ts": "2026-07-15 06:50:15 AM ET", "ts_epoch": 1784112615.1053345, "event": "completion_shadow", "ticker": "KXWTAMATCH-26JUL15IBRBAD-IBR", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "WTA_MAIN|underdog|at_mid|le25", "n": 11, "p_exit_fill": 0.727, "p_ride_zero": 0.273, "ev_cents": -0.18, "band": 5, "basis": 14, "win_ride_residual_excluded": 0.0, "citation": "M15 RANG
     {"ts": "2026-07-15 06:50:15 AM ET", "ts_epoch": 1784112615.1055996, "event": "completion_taker_capped", "ticker": "KXWTAMATCH-26JUL15IBRBAD-IBR", "details": {"event": "KXWTAMATCH-26JUL15IBRBAD", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-15 07:01:33 AM ET", "ts_epoch": 1784113293.5098982, "event": "completion_shadow", "ticker": "KXWTAMATCH-26JUL15IBRBAD-IBR", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "WTA_MAIN|underdog|at_mid|le25", "n": 11, "p_exit_fill": 0.727, "p_ride_zero": 0.273, "ev_cents": -0.18, "band": 5, "basis": 14, "win_ride_residual_excluded": 0.0, "citation": "M15 RANG
+    {"ts": "2026-07-15 07:01:33 AM ET", "ts_epoch": 1784113293.510152, "event": "completion_taker_capped", "ticker": "KXWTAMATCH-26JUL15IBRBAD-IBR", "details": {"event": "KXWTAMATCH-26JUL15IBRBAD", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
 
 ## Code path
 ?

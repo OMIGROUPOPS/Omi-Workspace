@@ -2941,6 +2941,48 @@ class LiveV3:
             self._reachlaw_mt = _lmt
         return self._reachlaw or {}
 
+    async def _flow_rest_refresh(self, tk, now=None):
+        """[C-FLOW-REST-SEED v1, 07-15 — operator R1 GO word; founding case
+        REACH-RECAL exhibit #1 (KOAYAZ: consulted p_fill 0.000, filled 75s
+        later on a burst the WS gauge hadn't seen)] refresh a consultation-
+        LOCAL trades cache from exchange REST, cooldown-bounded, fail-soft.
+        NEVER writes _trade_times/_trade_prices — the gun's WS-seen counter
+        is fitted on that input and untouched (a gun-input change is its own
+        word). Consumers: _entry_dossier gauge merge ONLY."""
+        if not self.config.get("flow_gauge_rest_seed", False):
+            return
+        now = now or time.time()
+        cache = self.__dict__.setdefault("_rest_flow", {})
+        st = cache.get(tk)
+        if st is not None and now - st.get("ts", 0) < 45:
+            return
+        cache[tk] = dict(st or {"trades": []}, ts=now)  # claim the slot:
+        # the cooldown holds even when the fetch fails (fail-soft, no hammer)
+        try:
+            data = await api_get(
+                self.session, self.ak, self.pk,
+                "/trade-api/v2/markets/trades?ticker=%s&limit=100" % tk,
+                self.rl)
+            rows = []
+            for t in (data or {}).get("trades") or []:
+                try:
+                    ts9 = datetime.fromisoformat(
+                        str(t.get("created_time", ""))
+                        .replace("Z", "+00:00")).timestamp()
+                    praw = t.get("yes_price", t.get("yes_price_dollars", 0))
+                    if isinstance(praw, str):
+                        praw = float(praw)
+                    # same cents/dollars heuristic as apply_trade/_seed_tape
+                    px9 = (round(praw * 100) if praw and float(praw) < 2
+                           else int(float(praw or 0)))
+                except Exception:
+                    continue
+                if now - ts9 <= 1800:
+                    rows.append((ts9, px9))
+            cache[tk] = {"ts": now, "trades": rows}
+        except Exception:
+            pass  # ws gauge stands; the dossier stamps gauge_src honestly
+
     def _entry_dossier(self, tk, et, cat, current_price, aim, decision,
                        sv9=None, pl9=None, regime=None, tts_min=None,
                        anchor_src=None, lt_age=None):
@@ -2976,20 +3018,55 @@ class LiveV3:
                     "sib_px_est": pl9.get("sib_px_est")} if pl9
                    else {"why": "pair verdict unavailable at this site"})}
             # 4) the reach law: fill probability at THIS aim
+            # [C-FLOW-REST-SEED v1, 07-15 — operator R1 GO] the gauge's
+            # honest input: WS-seen count merged with the REST trades cache
+            # (max of the two — REST can only ADD prints the WS missed; the
+            # KOAYAZ founding case read prints_30m=1 against ~15 exchange
+            # prints and answered p_fill 0.000 on a bid that filled in 75s).
+            # Consultation-local ONLY: the gun's counter reads the WS deques
+            # it was fitted on, untouched.
             now9 = time.time()
             _dq9 = self._trade_times.get(tk)
-            p30 = sum(1 for t9 in (_dq9 or ()) if t9 >= now9 - 1800)
+            p30_ws = sum(1 for t9 in (_dq9 or ()) if t9 >= now9 - 1800)
+            _rf9 = (getattr(self, "_rest_flow", None) or {}).get(tk)
+            _rf_fresh = bool(_rf9) and (now9 - _rf9.get("ts", 0) <= 90)
+            p30_rest = (sum(1 for t9, _p in _rf9.get("trades", ())
+                            if t9 >= now9 - 1800) if _rf_fresh else None)
+            p30 = max(p30_ws, p30_rest) if p30_rest is not None else p30_ws
+            gauge_src9 = ("rest_seeded" if p30_rest is not None
+                          else "ws_only")
             thr9 = {"ITF_M": 6, "ITF_W": 6,
                     "ATP_CHALL": 16, "WTA_CHALL": 16}.get(cat)
             pxs9 = [p9 for t9, p9 in (self._trade_prices.get(tk) or ())
                     if t9 >= now9 - 900]
+            _pxr9 = ([p for t9, p in _rf9.get("trades", ())
+                      if t9 >= now9 - 900] if _rf_fresh else [])
+            if len(_pxr9) > len(pxs9):
+                pxs9 = _pxr9   # the richer tape prices the trailing median
             med9 = (sorted(pxs9)[len(pxs9) // 2] if pxs9
                     else current_price)
-            fb9 = None
+            def _fb_of9(n9):
+                r9 = n9 / float(thr9)
+                return ("quiet" if r9 < 0.25 else
+                        "warm" if r9 < 1.0 else "open")
+            fb9 = fb_ws9 = None
             if thr9:
-                r9 = p30 / float(thr9)
-                fb9 = ("quiet" if r9 < 0.25 else
-                       "warm" if r9 < 1.0 else "open")
+                fb9 = _fb_of9(p30)
+                fb_ws9 = _fb_of9(p30_ws)
+                if fb9 != fb_ws9:
+                    # the seed changed the READ — visible, deduped 300s
+                    _fd9 = self.__dict__.setdefault("_flow_seed_dedup", {})
+                    _fk9 = "%s|%s>%s" % (tk, fb_ws9, fb9)
+                    if now9 - _fd9.get(_fk9, 0) >= 300:
+                        _fd9[_fk9] = now9
+                        self._log("flow_rest_seed", {
+                            "event": et, "cat": cat,
+                            "prints_30m_ws": p30_ws,
+                            "prints_30m_rest": p30_rest,
+                            "bucket_ws": fb_ws9, "bucket_used": fb9,
+                            "decree": "C-FLOW-REST-SEED v1 07-15 (operator "
+                                      "R1 GO; REACH-RECAL exhibit #1)"},
+                            ticker=tk)
             law9 = self._reach_law()
             Lw9 = law9.get("%s|%s" % (cat, fb9)) if fb9 else None
             if Lw9 and aim is not None:
@@ -2997,6 +3074,10 @@ class LiveV3:
                 rate9 = Lw9.get("rate_per_hr", {}).get(str(X9), 0.0)
                 D["reach_law"] = {"status": "CONSULTED",
                                   "flow_bucket": fb9, "depth_X": X9,
+                                  "gauge_src": gauge_src9,
+                                  "prints_30m_ws": p30_ws,
+                                  "prints_30m_rest": p30_rest,
+                                  "flow_bucket_ws": fb_ws9,
                                   "rate_per_hr": rate9,
                                   "p_fill_1h": round(
                                       1 - math.exp(-rate9), 3),
@@ -3041,6 +3122,7 @@ class LiveV3:
             D["flow_state"] = {"status": ("CONSULTED" if fb9 else
                                           "NOT-APPLICABLE"),
                                **({"prints_30m": p30, "bucket": fb9,
+                                   "gauge_src": gauge_src9,
                                    "harvest_rate_5c_hr": _h5} if fb9
                                   else {"why": "no fitted flow threshold "
                                                "for mains"})}
@@ -8794,6 +8876,21 @@ class LiveV3:
                 return
 
             start_ts = self.event_start_time.get(et)
+
+            # [C-FLOW-REST-SEED v1, 07-15 — operator R1 GO] warm the
+            # consultation-local trades cache for in-window events.
+            # Fire-and-forget: NEVER blocks the decision slice (the
+            # depth-ahead lesson); cooldown re-checked inside the method.
+            try:
+                if (self.config.get("flow_gauge_rest_seed", False)
+                        and (start_ts is None or start_ts - now < 36000)):
+                    _rfc9 = getattr(self, "_rest_flow", None) or {}
+                    for _tk9 in tickers:
+                        if now - (_rfc9.get(_tk9) or {}).get("ts", 0) >= 45:
+                            asyncio.ensure_future(
+                                self._flow_rest_refresh(_tk9, now))
+            except Exception:
+                pass
 
             # [C-KALSHI-OCC-OBSERVE] pure-observe (NO state change, NO envelope, NO order). This is the
             # primary-miss path where schedule_gap fires. Once per event: if RESOLVED via a real source,

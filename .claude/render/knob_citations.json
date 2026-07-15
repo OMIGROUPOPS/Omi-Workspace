@@ -213,5 +213,10 @@
   "DECREED",
   "C-EARLY-CANVAS-2 v1 07-14 Part 1 (operator word): CHALL placement edge to T-8h for the fader leg's early divot (B3 half_timing ~131c/night); HONEST CLOCKS ONLY (CHALL skew -1.2min); cohort rendered separately nightly; ITF/mains under this window = named defect",
   "L4"
+ ],
+ "flow_gauge_rest_seed": [
+  "DECREED",
+  "C-FLOW-REST-SEED v1 07-15: operator R1 GO word on REACH-RECAL exhibit #1 (KOAYAZ; .claude/reachrecal_20260715/KOAY_EXHIBIT.md)",
+  "L2"
  ]
 }

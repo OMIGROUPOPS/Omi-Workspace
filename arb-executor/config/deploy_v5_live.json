@@ -135,5 +135,6 @@
   "orientation_live": false,
   "sizing_live": false,
   "sizing_drawdown_floor_cents": -1500,
-  "early_chall_window_enabled": true
+  "early_chall_window_enabled": true,
+  "flow_gauge_rest_seed": true
 }

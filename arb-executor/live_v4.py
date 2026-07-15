@@ -2037,6 +2037,36 @@ class LiveV3:
                 details["window"] = self._window_phase(_et0)
         except Exception:
             pass
+        # [C-TAPE-BELL v1 Part 2, 07-15 — ZERO TOLERANCE, operator word:
+        # "W2 FILL = ZERO-TOLERANCE. Any fill stamping W2 from now on is
+        # a violation with a forensic, no exceptions."] The window stamp
+        # already knows the phase; now it enforces. The 75-fill morning
+        # is the founding class (resting buys surviving into live play;
+        # LEOTSI −315¢ the walked example). The line carries the booking
+        # source so adoption-lag bookings are distinguishable IN THE
+        # FORENSIC, never exempted.
+        try:
+            if event == "entry_filled" and isinstance(details, dict):
+                _wp0 = (details.get("window") or {}).get("phase")
+                if _wp0 == "W2":
+                    details["w2_fill_violation"] = True
+                    self._log("w2_fill_violation", {
+                        "event": (details.get("event")
+                                  or ticker.rsplit("-", 1)[0]),
+                        "cls": "w2_fill",
+                        "fill_price": details.get("fill_price"),
+                        "qty": details.get("qty"),
+                        "booking_source": details.get(
+                            "source", details.get("play_type")),
+                        "gun_source": (details.get("window")
+                                       or {}).get("gun_source"),
+                        "gun_fired": (details.get("window")
+                                      or {}).get("gun_fired"),
+                        "decree": "C-TAPE-BELL v1 Part 2 07-15 (zero "
+                                  "tolerance, no exceptions)"},
+                        ticker=ticker)
+        except Exception:
+            pass
         # [C-PAIR-LAW v1 Part 2, 07-15] the one-sided-permission watch at
         # the single emitter: any leg-one fill whose sibling page shows no
         # reachable completion is a NAMED VIOLATION from tonight (field on
@@ -2873,6 +2903,7 @@ class LiveV3:
     _WINDOW_STAMP_EVENTS = frozenset((
         "v4_place", "trendpath_live_aim", "below_leg_floor_refused",
         "below_discovery_floor_refused",
+        "corridor_refused_w1_preference", "corridor_itf_fallback_placed",
         "no_path_page_refused", "selector_drop_refused",
         "pair_seesaw_refused", "pair_seesaw_lifted", "order_placed",
         "order_cancelled", "completion_action", "completion_attempt",
@@ -6782,6 +6813,106 @@ class LiveV3:
                     if self.config.get("percat_gun_armed", False):
                         self._gun_stamp(et, "percat_fitted", {
                             "cat": _c7, "prints_30m": p30, "threshold": t7})
+        # ---- source (8): TAPE-FLOW BELL [C-TAPE-BELL v1 Part 1, 07-15 —
+        # THE TAPE IS THE BELL. Defect class: 75 W2 fills this morning
+        # broke the no-buys-after-start law because every tape-side gun
+        # source reads the WS deques, and the −0k class (ALHVUX, KOAYAZ,
+        # FOMCHA: tape loud on REST, silent on WS) left resting buys
+        # standing into live play (LEOTSI the walked example, −315¢).
+        # The REST trade feed (C-FLOW-REST-SEED's _flow_rest_refresh —
+        # already polling, already proven at the dossier) becomes a gun
+        # source: sustained in-play flow (>= the fitted per-cat OPEN
+        # bucket boundary, prints/30m — the same table the reach gauge
+        # buckets on) on an event PAST its anchored start with no fire
+        # -> _gun_stamp("tape_flow"), evidence-grade (closes the
+        # corridor), grace runs, resting buys swept by the existing
+        # match-live machinery. Mains carry the CHALL boundary as a
+        # DECREED interim (no fitted mains bucket exists — volume does
+        # not open mains for ENTRY, but a mains market printing 16/30m
+        # past its start is a live match by any honest read); cited in
+        # knob_citations. 6h age window (boot on stale events must not
+        # mass-fire; same bound as price_divergence).]
+        if self.config.get("tape_flow_gun_enabled", False):
+            _tf_thr = self.config.get("tape_flow_prints30", {
+                "ITF_M": 6, "ITF_W": 6, "ATP_CHALL": 16, "WTA_CHALL": 16,
+                "ATP_MAIN": 16, "WTA_MAIN": 16})
+            _tf_hits = self.__dict__.setdefault("_tapeflow_hits", {})
+            _tf_disp8 = int(self.config.get("fallback_bell_disp_cents", 5))
+            for et in list(self.event_tickers):
+                if et in self._gun_state:
+                    _tf_hits.pop(et, None)
+                    continue
+                t8 = _tf_thr.get(self.get_category(et))
+                if t8 is None:
+                    continue
+                a8, _as8, _lr8 = self._anchor_state(et, now)
+                _started8 = bool(a8 and now >= a8)
+                if _started8 and (now - a8) > 6 * 3600:
+                    _tf_hits.pop(et, None)
+                    continue
+                for _tk8 in self.event_tickers.get(et, ()):
+                    try:
+                        await self._flow_rest_refresh(_tk8, now)
+                    except Exception:
+                        pass
+                _cut8 = now - 1800
+                p30w8 = p30r8 = 0
+                for _tk8 in self.event_tickers.get(et, ()):
+                    _dq8 = self._trade_times.get(_tk8)
+                    if _dq8:
+                        p30w8 += sum(1 for _t9 in _dq8 if _t9 >= _cut8)
+                    _rf8 = (getattr(self, "_rest_flow", None) or {}).get(_tk8)
+                    if _rf8 and now - _rf8.get("ts", 0) <= 120:
+                        p30r8 += sum(1 for _t9, _p9 in _rf8.get("trades", ())
+                                     if _t9 >= _cut8)
+                _p308 = max(p30w8, p30r8)
+                if _p308 < t8:
+                    _tf_hits.pop(et, None)
+                    continue
+                # the clock-liar escape (the fallback bell's own rule, on
+                # the REST input it never had): NOT past any known start,
+                # but a leg has RISEN >= the disp bound from its window-
+                # open ref on sustained tape = a live match whatever the
+                # clock says (a premarket dip falls, it does not rise —
+                # FERCER's false-cancel class stays excluded). LEOTSI-
+                # class overnight fills (schedule lying LATE, no honest
+                # join) are exactly this mode.
+                _rise8 = 0
+                if not _started8:
+                    for _tk8 in self.event_tickers.get(et, ()):
+                        _wo8 = getattr(self, "_window_open", {}).get(_tk8)
+                        if not _wo8:
+                            continue
+                        _ref8 = int(_wo8.get("price") or 0)
+                        _lp8 = None
+                        _rf8 = (getattr(self, "_rest_flow", None)
+                                or {}).get(_tk8)
+                        if _rf8 and now - _rf8.get("ts", 0) <= 120 and \
+                                _rf8.get("trades"):
+                            # rows are newest-first; the recent traded
+                            # level = max of the last 5 prints
+                            _lp8 = max(_p9 for _t9, _p9
+                                       in _rf8["trades"][:5])
+                        _bk8 = self.books.get(_tk8)
+                        if _lp8 is None and _bk8 and _bk8.last_trade_price:
+                            _lp8 = _bk8.last_trade_price
+                        if _lp8 is not None and _ref8:
+                            _rise8 = max(_rise8, _lp8 - _ref8)
+                    if _rise8 < _tf_disp8:
+                        _tf_hits.pop(et, None)
+                        continue
+                _n8 = _tf_hits.get(et, 0) + 1
+                _tf_hits[et] = _n8
+                if _n8 >= int(self.config.get("tape_flow_sustain_polls", 2)):
+                    _tf_hits.pop(et, None)
+                    self._gun_stamp(et, "tape_flow", {
+                        "cat": self.get_category(et), "prints_30m": _p308,
+                        "prints_30m_ws": p30w8, "prints_30m_rest": p30r8,
+                        "threshold": t8, "anchor_src": _as8,
+                        "start_passed": _started8,
+                        "ref_rise_cents": _rise8,
+                        "min_past_anchor": (round((now - a8) / 60.0, 1)
+                                            if _started8 else None)})
         # ---- [C-REALITY-BELL Part 2] bell-coverage invariant: a tracked
         # event with exposure whose anchored start passed >10 min ago MUST
         # carry a bell (gun or fallback) -- else bell_missing, once per
@@ -8114,6 +8245,38 @@ class LiveV3:
                     self._log("completion_action", {
                         "event": et, "verdict": v, "outcome": "refused",
                         "reason": "sib_ask_out_of_bounds", "sib_ask": ask},
+                        ticker=tk)
+                    return
+                # [C-TAPE-BELL v1 Part 3b, 07-15 — operator standing word;
+                # DELXIL the exhibit: the IOC cross paid 85 on a 17 kept
+                # basis = combined 102, OVER PAR (the maker completion is
+                # C-BOUND-capped at 97−basis; the cross was not). TWO
+                # conditions or refuse-named: (i) combined = ask + kept
+                # basis <= 97 (the pair scoreboard is the cap); (ii) the
+                # cross's engine EV must beat the flatten-now alternative
+                # (kept bid − kept basis, realized) — a cross that prices
+                # worse than the immediate flatten buys nothing but fees.]
+                _kb9 = int(pos.entry_price or 0)
+                if ask + _kb9 > 97:
+                    self._log("completion_action", {
+                        "event": et, "verdict": v, "outcome": "refused",
+                        "reason": "cross_over_combined_cap",
+                        "sib_ask": ask, "kept_basis": _kb9,
+                        "combined": ask + _kb9, "cap": 97,
+                        "decree": "C-TAPE-BELL v1 Part 3b 07-15 (DELXIL "
+                                  "over-par exhibit)"}, ticker=tk)
+                    return
+                _cev9 = (res.get("cross") or {}).get("ev_cents")
+                _kbid9 = int(kb.best_bid) if (kb and kb.best_bid) else 0
+                _fev9 = _kbid9 - _kb9 if _kbid9 else None
+                if _cev9 is None or (_fev9 is not None and _cev9 <= _fev9):
+                    self._log("completion_action", {
+                        "event": et, "verdict": v, "outcome": "refused",
+                        "reason": ("cross_ev_unpriced" if _cev9 is None
+                                   else "cross_ev_not_above_flatten"),
+                        "cross_ev_cents": _cev9,
+                        "flatten_alt_cents": _fev9,
+                        "decree": "C-TAPE-BELL v1 Part 3b 07-15"},
                         ticker=tk)
                     return
                 self.__dict__.setdefault(
@@ -9623,6 +9786,72 @@ class LiveV3:
                 # ITF W1 conception sits at 0-140 discovered shares
                 # (measured 07-15, 8-sample census — a blanket floor would
                 # starve the lane).
+                # [C-TAPE-BELL v1 Part 3a, 07-15 — W1-PREFERENCE ARMED,
+                # operator word verbatim (vaulted 07-15): "late buys are
+                # not preferable; corridor should only be happening as a
+                # fallback when vol is low with ITF." Mains/CHALL CORRIDOR
+                # entry placements = REFUSED, named. ITF corridor entry
+                # permitted ONLY as fallback: discovered >= the armed
+                # floor (event_lifetime_vol, C-DISCOVERY-FLOOR) AND
+                # volume-quiet at placement (prints/30m below 0.25x the
+                # fitted OPEN boundary — the reach gauge's quiet bucket,
+                # REST-seeded read). Resting-early-fills-in-corridor NOT
+                # penalized (this gates PLACEMENT only). Grade basis:
+                # today's 9 corridor buys were ALL mains; open-bucket
+                # placements filled 0/17 expected ~17.]
+                if self.config.get("w1_preference_enabled", False):
+                    _wpref9 = (self._window_phase(et) or {}).get("phase")
+                    if _wpref9 == "CORRIDOR":
+                        _wp_ok9 = False
+                        _wp_why9 = "mains_chall_corridor_refused"
+                        _wp_det9 = {}
+                        if cat in ("ITF_M", "ITF_W"):
+                            _wpv9 = self.event_lifetime_vol.get(et)
+                            _wpthr9 = {"ITF_M": 6, "ITF_W": 6}.get(cat, 6)
+                            _wpcut9 = time.time() - 1800
+                            _wpp9 = 0
+                            _wpdq9 = self._trade_times.get(tk)
+                            if _wpdq9:
+                                _wpp9 = sum(1 for _t9 in _wpdq9
+                                            if _t9 >= _wpcut9)
+                            _wprf9 = (getattr(self, "_rest_flow", None)
+                                      or {}).get(tk)
+                            if _wprf9 and time.time() - _wprf9.get(
+                                    "ts", 0) <= 120:
+                                _wpp9 = max(_wpp9, sum(
+                                    1 for _t9, _p9 in _wprf9.get(
+                                        "trades", ()) if _t9 >= _wpcut9))
+                            _wp_quiet9 = _wpp9 < 0.25 * _wpthr9
+                            _wp_ok9 = ((_wpv9 or 0.0) >= float(
+                                self.config.get("discovery_floor_shares",
+                                                1500))) and _wp_quiet9
+                            _wp_why9 = "itf_corridor_fallback_refused"
+                            _wp_det9 = {"discovered_shares":
+                                        round(_wpv9 or 0.0, 1),
+                                        "prints_30m": _wpp9,
+                                        "volume_quiet": _wp_quiet9}
+                        if not _wp_ok9:
+                            self._log("corridor_refused_w1_preference", {
+                                "event": et, "cat": cat,
+                                "why": _wp_why9, **_wp_det9,
+                                "decree": "C-TAPE-BELL v1 Part 3a 07-15 "
+                                          "(operator window word verbatim "
+                                          "in the vault, 07-15)"},
+                                ticker=tk)
+                            self._entry_dossier(
+                                tk, et, cat, current_price, None,
+                                "refused:w1_preference", sv9=_sv9,
+                                pl9=(_pl9 if '_pl9' in dir() else None),
+                                regime=regime,
+                                tts_min=round(time_to_start / 60),
+                                anchor_src=anchor_src,
+                                lt_age=round(lt_age_sec, 1))
+                            continue
+                        else:
+                            self._log("corridor_itf_fallback_placed", {
+                                "event": et, "cat": cat, **_wp_det9,
+                                "decree": "C-TAPE-BELL v1 Part 3a 07-15"},
+                                ticker=tk)
                 if self.config.get("discovery_floor_enabled", False):
                     _df9 = self._window_phase(et) or {}
                     _dfstale = False
@@ -12227,14 +12456,29 @@ class LiveV3:
                 if sq <= 0.001:
                     band = getattr(pos_obj, "exit_price", 0) if pos_obj else 0
                     bid = None
+                    _mstat4 = None
                     try:
                         m = await api_get(self.session, self.ak, self.pk,
                             "/trade-api/v2/markets/%s" % tk, self.rl)
                         v = (m or {}).get("market", {}).get("yes_bid_dollars")
                         bid = round(float(v) * 100) if v is not None else None
+                        _mstat4 = (m or {}).get("market", {}).get("status")
                     except Exception:
                         pass
-                    if band and bid is not None and band <= bid + 1:
+                    # [C-TAPE-BELL v1 Part 3c, 07-15 — the 9:58 MASDUT
+                    # halt: the match RETIRED, the market DETERMINED at
+                    # 9:58:36, the exchange emptied the book and shed the
+                    # resting exit — the audit read the corpse as a naked
+                    # leg. A determined/settling market is SETTLEMENT-
+                    # PENDING: flag, never FAIL (the settle poll books it
+                    # minutes later; exits cannot govern a dead book).]
+                    if _mstat4 in ("determined", "finalized", "settled"):
+                        flags.append({"tk": tk, "flag": "settlement_pending",
+                                      "held": h, "band": band,
+                                      "market_status": _mstat4})
+                        row["flag"] = (row.get("flag", "")
+                                       + "+settlement_pending").lstrip("+")
+                    elif band and bid is not None and band <= bid + 1:
                         flags.append({"tk": tk, "flag": "exit_unpostable_itm",
                                       "band": band, "bid": bid, "held": h})
                         row["flag"] = "exit_unpostable_itm"
@@ -12259,6 +12503,26 @@ class LiveV3:
                                 _avg4 = held_avg.get(tk) or (pos_obj.entry_price
                                         if pos_obj is not None and getattr(
                                             pos_obj, "entry_price", 0) else None)
+                                _basis_src4 = "exchange_exposure"
+                                # [C-TAPE-BELL v1 Part 3c, 07-15 — the
+                                # band-0 silent-skip root: a seconds-fresh
+                                # fill returns falsy market_exposure and
+                                # the healer fell through WITHOUT A LINE
+                                # (JONURG/TOPGEN/DARCRI). The fingerprint
+                                # registry knows the posted price — the
+                                # honest fallback basis.]
+                                if not _avg4:
+                                    for _fp4 in (getattr(
+                                            self, "_order_fingerprints",
+                                            None) or {}).values():
+                                        if (_fp4.get("ticker") == tk
+                                                and _fp4.get("action") ==
+                                                "buy"
+                                                and _fp4.get("price")):
+                                            _avg4 = int(_fp4["price"])
+                                            _basis_src4 = \
+                                                "fingerprint_price"
+                                            break
                                 if _avg4 and 0 < _avg4 < 100:
                                     await self._v4_reconcile_naked(
                                         tk, tk.rsplit("-", 1)[0], _cat4, _avg4,
@@ -12267,6 +12531,7 @@ class LiveV3:
                                         context="audit_book_the_fill")
                                     self._log("fill_booked_reconcile", {
                                         "held": h, "basis": _avg4,
+                                        "basis_src": _basis_src4,
                                         "lineage": "order_fingerprints",
                                         "trigger": "audit_no_exit"}, ticker=tk)
                                     flags.append({"tk": tk,
@@ -12279,6 +12544,17 @@ class LiveV3:
                                 self._log("fill_book_error", {
                                     "err": str(_bfe)[:150]}, ticker=tk)
                         if not _booked:
+                            # [C-TAPE-BELL v1 Part 3c] the skip is NEVER
+                            # silent again — every fall-through names why
+                            self._log("fill_book_skip", {
+                                "held": h, "band": band, "bid": bid,
+                                "lineage_found": _lin,
+                                "cat": _cat4,
+                                "reason": ("no_lineage" if not _lin else
+                                           "basis_unresolvable"),
+                                "decree": "C-TAPE-BELL v1 Part 3c 07-15 "
+                                          "(band-0 silent-skip root)"},
+                                ticker=tk)
                             failures.append({"tk": tk, "check": "no_exit",
                                              "held": h, "band": band, "bid": bid})
                             row["FAIL"] = (row.get("FAIL", "") + "+no_exit").lstrip("+")

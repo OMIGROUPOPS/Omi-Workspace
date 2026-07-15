@@ -228,5 +228,25 @@
   "DECREED",
   "operator dispatch 07-15: the >=1,500 discovery floor (corridor/stale-dated conceptions)",
   "L2"
+ ],
+ "tape_flow_gun_enabled": [
+  "DECREED",
+  "C-TAPE-BELL v1 Part 1 07-15 (operator dispatch: THE TAPE IS THE BELL; 75 W2 fills the founding class)",
+  "L2"
+ ],
+ "tape_flow_prints30": [
+  "FITTED",
+  "the per-cat OPEN flow-bucket boundaries (reach gauge table; mains carry CHALL boundary as DECREED interim, no fitted mains bucket)",
+  "L2"
+ ],
+ "tape_flow_sustain_polls": [
+  "DECREED",
+  "C-TAPE-BELL v1 Part 1 (sustained = 2 polls)",
+  "L2"
+ ],
+ "w1_preference_enabled": [
+  "DECREED",
+  "operator word verbatim 07-15: late buys not preferable; corridor = ITF fallback only (>=1500 + volume-quiet)",
+  "L2"
  ]
 }

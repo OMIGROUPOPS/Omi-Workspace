@@ -202,6 +202,22 @@ def parse_session(log_path):
                                   "detail": "own buys rose %sc (%s->%s) in %ss -> match-live presumption, entry buys FROZEN"
                                             % (d.get("rise"), d.get("from_cents"),
                                                d.get("to_cents"), d.get("window_sec"))})
+            elif e == "w2_fill_violation":
+                # [C-TAPE-BELL v1 Part 2, 07-15] W2 fill = ZERO TOLERANCE,
+                # no exceptions (the 75-fill morning; LEOTSI -315c the
+                # walked example). booking_source distinguishes adoption
+                # lag IN the forensic, never exempts it.
+                all_extra = S.setdefault("_extra_pats", [])
+                all_extra.append({"type": "violation", "pattern": "w2_fill",
+                                  "cls": "w2_fill",
+                                  "ticker": tk or d.get("event"), "ts": ts,
+                                  "key": "w2f|%s|%d" % (tk or d.get("event"),
+                                                        int(ts)),
+                                  "detail": "W2 FILL (buy after start): %sc x%s "
+                                            "booking=%s gun=%s"
+                                            % (d.get("fill_price"), d.get("qty"),
+                                               d.get("booking_source"),
+                                               d.get("gun_source"))})
             elif e == "bell_missing":
                 all_extra = S.setdefault("_extra_pats", [])
                 # [07-11 FIX] every type=="violation" item MUST carry "cls" --

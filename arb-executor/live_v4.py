@@ -3240,6 +3240,48 @@ class LiveV3:
             D["window_phase"] = {"status": ("CONSULTED"
                                             if _wp9.get("phase") != "UNKNOWN"
                                             else "NOT-APPLICABLE"), **_wp9}
+            # 10c) [C-DAILY-STANDARD v1 Layer 3, 07-15 — THE CASH-WINDOW
+            # STAMP, operator's frame verbatim: "P(band prints in W1/
+            # corridor) from the cell's fitted travel — GOLD-PATH or
+            # W2-DEPENDENT, known at purchase, sized and graded against
+            # the right expectation."] Basis = the w1_cohort gun-axis
+            # lawful_share (the timing recut's fitted share of the
+            # cohort's harvest landing PRE-GUN — exactly P(cash lands in
+            # W1/corridor)). GOLD-PATH at >= 0.5 (DECREED threshold,
+            # cited). No fitted cohort = GAP, named — never guessed.
+            try:
+                _cw9 = ((D.get("w1_cohort") or {}).get("gun_axis")
+                        or {}).get("lawful_share")
+                if _cw9 is not None:
+                    D["cash_window"] = {
+                        "status": "CONSULTED",
+                        "p_w1_cash": _cw9,
+                        "verdict": ("GOLD-PATH" if _cw9 >= 0.5
+                                    else "W2-DEPENDENT"),
+                        "basis": "w1_cohort.gun_axis.lawful_share "
+                                 "(timing recut 07-14)",
+                        "threshold": 0.5}
+                else:
+                    D["cash_window"] = {
+                        "status": "GAP",
+                        "why": "no fitted gun-axis lawful_share for this "
+                               "cohort — cash-window unpriceable, named"}
+                # the W1-VITALITY composite (Layer 3's fingerprint —
+                # LIVE components composed, owed fits named; the
+                # standard's census tracks the GAP columns)
+                _fs9 = D.get("flow_state") or {}
+                D["w1_vitality"] = {
+                    "status": "CONSULTED",
+                    "flow_bucket": _fs9.get("bucket"),
+                    "gauge_src": _fs9.get("gauge_src"),
+                    "discovered_shares": round(
+                        self.event_lifetime_vol.get(et) or 0.0, 1),
+                    "volume_path": "GAP (accretion-vs-burst fit owed)",
+                    "wall_vs_theater": "GAP (fit owed)",
+                    "clock": (D.get("honest_clock") or {}).get(
+                        "anchor_src")}
+            except Exception:
+                pass
             # SHADOW variant: the range-shape axis (atlas path slice at the
             # current clock — aim-moving, so it EARNS its way in)
             rs9 = None
@@ -5497,7 +5539,19 @@ class LiveV3:
             return "cancel"                          # naked / flag OFF -> instant cancel, never ride naked
         if pos.match_live_latch_ts == 0.0:
             return "arm"
-        if (now - pos.match_live_latch_ts) < self.match_live_grace_sec:
+        # [C-DAILY-STANDARD Part 0, 07-15 — PER-SOURCE GRACE, operator
+        # word] a tape_flow fire is evidence-grade BY CONSTRUCTION (real
+        # prints, sustained, fitted threshold) — its grace is 60s, not
+        # the 5-min premature-latch shield the burst sources need. The
+        # acceptance replay's 17 grace-eaten fills (bell fired 0.2–4.6
+        # min pre-fill, the 300s grace let the fill land) convert to
+        # saves; every other source keeps 300s (FERCER protection
+        # unchanged). The nightly grace census grades the knob.
+        _gsrc9 = ((getattr(self, "_gun_state", {}) or {})
+                  .get(pos.event_ticker) or {}).get("source")
+        _gsec9 = (int(self.config.get("tape_flow_grace_sec", 60))
+                  if _gsrc9 == "tape_flow" else self.match_live_grace_sec)
+        if (now - pos.match_live_latch_ts) < _gsec9:
             return "hold"
         return "cancel"                              # grace elapsed -> kill
 
@@ -10738,7 +10792,16 @@ class LiveV3:
             _sfw = self._sustained_flow_windows(pos.event_ticker) if self.sustained_flow_latch else None
             if _gk == "arm":        # [C-GRACE-KILL] held-sibling pair, first latch -> stamp + hold (ride the post-burst dip)
                 pos.match_live_latch_ts = now
-                _d = {"event": pos.event_ticker, "grace_sec": self.match_live_grace_sec}
+                # [C-DAILY-STANDARD Part 0] the armed line prints the
+                # PER-SOURCE grace it will actually run
+                _gsrc0 = ((getattr(self, "_gun_state", {}) or {})
+                          .get(pos.event_ticker) or {}).get("source")
+                _d = {"event": pos.event_ticker,
+                      "grace_sec": (int(self.config.get(
+                          "tape_flow_grace_sec", 60))
+                          if _gsrc0 == "tape_flow"
+                          else self.match_live_grace_sec),
+                      "gun_source": _gsrc0}
                 if _sfw is not None:
                     _d["window_counts"], _d["sustained_window_start_ts"] = _sfw
                 self._log("match_live_grace_armed", _d, ticker=tk)

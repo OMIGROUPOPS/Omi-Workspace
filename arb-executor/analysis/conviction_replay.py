@@ -862,6 +862,152 @@ def main():
                          if _ec_defect else "")]
     except Exception:
         pass
+    # [C-DAILY-STANDARD v1, 07-15 — THE STANDARD (docs/THE_DAILY_STANDARD
+    # .md): Layer 1 three-bucket entry grade + the standard census. The
+    # operating law: layers run forever; a layer that didn't run = NAMED
+    # DEFECT, auto-boarded. No standard depends on the operator reminding
+    # anyone.]
+    try:
+        # ---- Layer 1: the three-bucket entry grade (operator's frame
+        # verbatim: SETTLED — did the thesis realize, a W2-entered winner
+        # still grades F / OPEN — is this position what doctrine ordered
+        # right now, exit cited / POSTED-UNFILLED — was not-filling
+        # correct). Window-stamped, per category.
+        _std_fill, _std_exit, _std_setl, _std_dos = {}, {}, {}, {}
+        _std_grace = defaultdict(lambda: [0, 0])   # src -> [armed, sec]
+        _std_cw = 0
+        _std_ref = defaultdict(int)
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"entry_filled"' in line:
+                d0 = json.loads(line)
+                _std_fill[d0.get("ticker")] = d0
+            elif '"exit_filled"' in line:
+                d0 = json.loads(line)
+                _std_exit[d0.get("ticker")] = d0
+            elif '"settled"' in line and '"event": "settled"' in line:
+                d0 = json.loads(line)
+                _std_setl[d0.get("ticker")] = d0
+            elif '"entry_dossier"' in line:
+                d0 = json.loads(line)
+                if str((d0.get("details") or {}).get(
+                        "decision", "")).startswith("placed"):
+                    _std_dos[d0.get("ticker")] = d0
+                if ((d0.get("details") or {}).get("surfaces")
+                        or {}).get("cash_window"):
+                    _std_cw += 1
+                dc0 = str((d0.get("details") or {}).get("decision", ""))
+                if dc0.startswith("refused"):
+                    _std_ref[dc0] += 1
+            elif '"match_live_grace_armed"' in line:
+                d0 = json.loads(line)
+                det0 = d0.get("details") or {}
+                k0 = det0.get("gun_source") or "unstamped"
+                _std_grace[k0][0] += 1
+                _std_grace[k0][1] = det0.get("grace_sec", 300)
+        _b_set, _b_open, _b_post = defaultdict(list), defaultdict(list), \
+            defaultdict(int)
+        for tk0, d0 in _std_fill.items():
+            det0 = d0.get("details") or {}
+            cat0 = "?"
+            try:
+                cat0 = ("ITF_W" if "ITFWMATCH" in tk0 else
+                        "ITF_M" if "ITFMATCH" in tk0 else
+                        "ATP_CHALL" if "ATPCHALLENGER" in tk0 else
+                        "WTA_CHALL" if "WTACHALLENGER" in tk0 else
+                        "ATP_MAIN" if "ATPMATCH" in tk0 else "WTA_MAIN")
+            except Exception:
+                pass
+            wph0 = ((det0.get("window") or {}).get("phase")) or "?"
+            s0 = _std_setl.get(tk0)
+            x0 = _std_exit.get(tk0)
+            if s0 or x0:
+                pnl0 = ((s0 or x0)["details"].get("pnl_cents") or 0)
+                g0 = ("F(W2-entry)" if wph0 == "W2" else
+                      "A" if pnl0 > 0 else "B" if pnl0 == 0 else "C")
+                _b_set[cat0].append((g0, pnl0, wph0))
+            else:
+                _b_open[cat0].append((tk0.rsplit("-", 1)[-1], wph0))
+        for tk0, d0 in _std_dos.items():
+            if tk0 not in _std_fill:
+                cat0 = (d0.get("details") or {}).get("cat", "?")
+                _b_post[cat0] += 1
+        L += ["", "## THE THREE-BUCKET ENTRY GRADE (THE DAILY STANDARD "
+                  "Layer 1 — SETTLED / OPEN / POSTED-UNFILLED, "
+                  "window-stamped, per category)"]
+        for c0 in sorted(set(list(_b_set) + list(_b_open)
+                             + list(_b_post))):
+            st0 = _b_set.get(c0, [])
+            from collections import Counter as _C0
+            L.append("- %s: SETTLED %d %s (Σ%+.0fc) | OPEN %d (exits "
+                     "resting per audit) | POSTED-UNFILLED %d "
+                     "(+ refusals: %s)"
+                     % (c0, len(st0), dict(_C0(g for g, _p, _w in st0)),
+                        sum(p for _g, p, _w in st0),
+                        len(_b_open.get(c0, [])), _b_post.get(c0, 0),
+                        dict(_std_ref) if c0 == sorted(
+                            set(list(_b_set) + list(_b_open)
+                                + list(_b_post)))[0] else "…"))
+        # ---- Layer 2: the game reports (generated HERE — self-running)
+        _gr_n = 0
+        try:
+            import subprocess as _sp0
+            _sp0.run([sys.executable,
+                      str(ROOT / "analysis" / "game_report.py"),
+                      "--date", ymd, "--active-only"],
+                     timeout=600, capture_output=True)
+        except Exception:
+            pass
+        _gr_dir = ROOT.parent / ".claude" / "game_reports" / ymd
+        _gr_n = len(list(_gr_dir.glob("GR_*.md"))) if _gr_dir.exists() \
+            else 0
+        # ---- Part 0: the grace census (per-source, graded from night 1)
+        L += ["", "## GRACE CENSUS (per-source grace, C-DAILY-STANDARD "
+                  "Part 0 — tape_flow 60s / others 300s)"]
+        if _std_grace:
+            for k0, (n0, sec0) in sorted(_std_grace.items()):
+                L.append("- source %s: %d graced windows @ %ss" % (
+                    k0, n0, sec0))
+        else:
+            L.append("- no graced windows today")
+        # ---- THE STANDARD CENSUS (the teeth)
+        _census = [
+            ("L1_three_bucket", bool(_std_fill or _std_dos),
+             "%d fills / %d placements graded" % (len(_std_fill),
+                                                  len(_std_dos))),
+            ("L2_game_reports", _gr_n > 0,
+             "%d game reports in %s" % (_gr_n, _gr_dir.name)),
+            ("L3_cash_window", _std_cw > 0,
+             "%d dossiers carry the cash-window stamp" % _std_cw),
+            ("P0_grace_census", True,
+             "%d sources graced" % len(_std_grace)),
+        ]
+        L += ["", "## THE STANDARD CENSUS (a layer that didn't run = "
+                  "named defect, auto-boarded)"]
+        _std_defects = []
+        for k0, ok0, det0 in _census:
+            L.append("- %-18s %s — %s" % (
+                k0, "RAN" if ok0 else "**STANDARD DEFECT: DID NOT RUN**",
+                det0))
+            if not ok0:
+                _std_defects.append(k0)
+        if _std_defects:
+            try:
+                bp0 = ROOT.parent / ".claude/BOARD.md"
+                bs0 = bp0.read_text(encoding="utf-8")
+                mk0 = "## AUTO-GAPS (standard census intake)"
+                add0 = ["- STANDARD DEFECT (%s): layer %s did not run — "
+                        "C-DAILY-STANDARD operating law" % (ymd, k0)
+                        for k0 in _std_defects
+                        if "layer %s did not run" % k0 not in bs0]
+                if add0:
+                    if mk0 not in bs0:
+                        bs0 += "\n\n" + mk0 + "\n"
+                    bs0 = bs0.replace(mk0, mk0 + "\n" + "\n".join(add0), 1)
+                    bp0.write_text(bs0, encoding="utf-8")
+            except Exception:
+                pass
+    except Exception:
+        pass
     # [C-TAPE-GATE v1, 07-14 — self-grading forever: the gate's claim is
     # re-earned every night or revoked by its own line] SKIP/KEEP counts
     # + the skip cohort's REALIZED forward outcomes (band exit filled /

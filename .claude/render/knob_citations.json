@@ -248,5 +248,10 @@
   "DECREED",
   "operator word verbatim 07-15: late buys not preferable; corridor = ITF fallback only (>=1500 + volume-quiet)",
   "L2"
+ ],
+ "tape_flow_grace_sec": [
+  "DECREED",
+  "C-DAILY-STANDARD Part 0 07-15 (operator word: per-source grace \u2014 tape fire is evidence-grade by construction; converts the 17 grace-eaten fills)",
+  "L2"
  ]
 }

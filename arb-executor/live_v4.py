@@ -2891,8 +2891,16 @@ class LiveV3:
             sched = self.event_start_time.get(et)
             g = (getattr(self, "_gun_state", {}) or {}).get(et)
             gun_ts = (g or {}).get("ts")
+            src = (g or {}).get("source")
+            # "closes at gun, NEVER AT A BURST": only an evidence-grade
+            # gun closes the corridor. A burst-sourced latch does not
+            # advance the phase — it is branded instead (the acceptance
+            # test's first run proved the circularity: the latch fired
+            # the gun and its own cancels graded lawful).
+            _BURST = ("tape_latch", "price_divergence")
+            evid = gun_ts is not None and src not in _BURST
             out = {}
-            if gun_ts is not None and now >= gun_ts:
+            if evid and now >= gun_ts:
                 out["phase"] = "W2"
             elif sched is not None and now >= sched:
                 out["phase"] = "CORRIDOR"
@@ -2907,7 +2915,10 @@ class LiveV3:
                 out["min_to_scheduled"] = round((sched - now) / 60.0, 1)
             out["gun_fired"] = bool(gun_ts)
             if g:
-                out["gun_source"] = g.get("source")
+                out["gun_source"] = src
+                out["gun_grade"] = "evidence" if evid else "burst"
+            if gun_ts is not None and not evid:
+                out["burst_latch_active"] = True
             if gun_ts is not None and sched is not None:
                 out["two_clock_spread_min"] = round(
                     (gun_ts - sched) / 60.0, 1)

@@ -1,7 +1,7 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784108792 -->
-written 2026-07-15 05:56:05 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784109471 -->
+written 2026-07-15 06:07:00 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (10 total this session)
+## Events (11 total this session)
 - 04:17:53 KXITFWMATCH-26JUL15WAGCIR-CIR — flatten DEFERRED: ev -1.03 above margin floor -3.0
 - 04:22:50 KXITFWMATCH-26JUL15VOGNUU-NUU — flatten DEFERRED: ev -1.28 above margin floor -3.0
 - 04:50:28 KXITFWMATCH-26JUL15WAGCIR-CIR — flatten DEFERRED: ev -1.03 above margin floor -3.0
@@ -12,6 +12,7 @@ written 2026-07-15 05:56:05 AM ET by live_validation_loop (read-only). Patch con
 - 05:38:42 KXITFMATCH-26JUL15CHACHA2-CHA — flatten DEFERRED: ev -2.78 above margin floor -3.0
 - 05:46:29 KXITFWMATCH-26JUL15KRUDUE-KRU — flatten DEFERRED: ev -2.95 above margin floor -3.0
 - 05:46:32 KXITFMATCH-26JUL15CARBAR-CAR — flatten DEFERRED: ev -1.42 above margin floor -3.0
+- 05:57:51 KXITFWMATCH-26JUL15KRUDUE-KRU — flatten DEFERRED: ev -2.95 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-15 12:23:55 AM ET", "ts_epoch": 1784089435.5129976, "event": "trendpath_live_aim", "ticker": "KXITFMATCH-26JUL15CARBAR-CAR", "details": {"event": "KXITFMATCH-26JUL15CARBAR", "from_target": 11, "path_aim": 8, "mode": "no_call_posture", "page": "ITF_M|underdog|le25", "page_n": 73, "citation": "ATLAS_V1 ITF_M|underdog|le25 (path bottom p50; cutover 07-14 operator word)", "entry_govern
@@ -286,6 +287,10 @@ written 2026-07-15 05:56:05 AM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-15 05:46:29 AM ET", "ts_epoch": 1784108789.152802, "event": "completion_flatten_deferred", "ticker": "KXITFWMATCH-26JUL15KRUDUE-KRU", "details": {"event": "KXITFWMATCH-26JUL15KRUDUE", "ev_cents": -2.95, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
     {"ts": "2026-07-15 05:46:32 AM ET", "ts_epoch": 1784108792.0128171, "event": "completion_shadow", "ticker": "KXITFMATCH-26JUL15CARBAR-CAR", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_M|underdog|deep_disc|le25", "n": 31, "p_exit_fill": 0.548, "p_ride_zero": 0.452, "ev_cents": -1.42, "band": 4, "basis": 8, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_L
     {"ts": "2026-07-15 05:46:32 AM ET", "ts_epoch": 1784108792.013112, "event": "completion_flatten_deferred", "ticker": "KXITFMATCH-26JUL15CARBAR-CAR", "details": {"event": "KXITFMATCH-26JUL15CARBAR", "ev_cents": -1.42, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-15 05:57:51 AM ET", "ts_epoch": 1784109471.642778, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL15KRUDUE-KRU", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_W|underdog|at_mid|26_50", "n": 38, "p_exit_fill": 0.737, "p_ride_zero": 0.263, "ev_cents": -2.95, "band": 6, "basis": 28, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LA
+    {"ts": "2026-07-15 05:57:51 AM ET", "ts_epoch": 1784109471.642949, "event": "completion_flatten_deferred", "ticker": "KXITFWMATCH-26JUL15KRUDUE-KRU", "details": {"event": "KXITFWMATCH-26JUL15KRUDUE", "ev_cents": -2.95, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-15 05:57:52 AM ET", "ts_epoch": 1784109472.0275044, "event": "completion_shadow", "ticker": "KXITFMATCH-26JUL15CARBAR-CAR", "details": {"verdict": "hold", "kept": {"opinion": "EV", "cell": "ITF_M|underdog|disc|le25", "n": 40, "p_exit_fill": 0.775, "p_ride_zero": 0.225, "ev_cents": 1.3, "band": 4, "basis": 8, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LAYER_3WAY (WIND
+    {"ts": "2026-07-15 05:59:56 AM ET", "ts_epoch": 1784109596.6715257, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 8, "n_resting_orders": 274, "n_failures": 0, "n_flags": 1, "failures": [], "flags": [{"tk": "KXITFMATCH-26JUL14UTACAZ-UTA", "flag": "unbooked_fill_booked", "held": 5.0, "basis": 39}], "diff_vs_banked": {"banked_ts":
 
 ## Code path
 ?

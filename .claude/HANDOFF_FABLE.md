@@ -41,7 +41,19 @@ doctrine_registry.json receipt (rebuilt every C50:
 python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
-## STATE (2026-07-15 FLOW-REST-SEED — C50 keeps this current):
+## STATE (2026-07-15 STOP-WINDOW — C50 keeps this current):
+-0l FIXED+DEPLOYED (operator word; 478700d5 full gate): bot drain
+budget book-sized (5s+0.25s/bid, cap 180s); script window 200s,
+waits for death, measures stop time; abandonment branch deleted
+(worst case = old bot alive + BOT_DOWN alert, never a dead book).
+Lane-2 live verification = the deploy itself (stop time + boot
+verdict in PROOF_STOP_WINDOW.md). HOLDING for C-EXHIBITS per the
+operator. Standing: fence re-validation read; 40-mains
+adjudication; pair-law census (cancel-stranded intake); 6:10
+scorecard word (inherits AUNALV bell_missing + restart-gap
+honesty windows).
+
+(prior:) ## STATE (2026-07-15 FLOW-REST-SEED — C50 keeps this current):
 C-FLOW-REST-SEED v1 LIVE (boot 02:36:35 AM, last_deploy_sha
 1cfb28b3; audit PASS 0/0, 8 pos/255 resting, gun n=100; first
 rest_seeded stamps 02:38:53). RESTART INCIDENT filed as BOARD

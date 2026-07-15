@@ -33,7 +33,16 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 W1-LIBRARY — C50 keeps this current):
+## STATE (2026-07-14 TAPE-P0 — C50 keeps this current):
+C-READ-THE-TAPE Part 0 closed: boot race dead (8e1ac67d -- replay
+gated on gun-rebuild + live-scan; refused_gun_fired belt; null-
+source auditor tell). 7 race buys: 0 filled, all swept; halt held
+~10min, cleared 8:50:44 PM. THE RUBRIC vaulted verbatim. Parts 1-6
+of the dispatch IN FLIGHT (expression audit by replay, number law
++ 63.9/3.9 exhibit, honest-axis recut, packet re-grade, census
+full-canvas).
+
+(prior:) ## STATE (2026-07-14 W1-LIBRARY):
 C-W1-LIBRARY deployed (ebdb03c9): census = UNACHIEVABLE tonight
 (0/19 pairs <=97 lawful-span; SLATE with numbers); LIBRARY_V1
 cohorts as dossier surface #14 (SHADOW; nightly dip_freq

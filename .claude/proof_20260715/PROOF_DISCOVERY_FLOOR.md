@@ -1,5 +1,7 @@
 # OUTCOME PROOF — C-DISCOVERY-FLOOR v1 (C-MORNING-TRIAGE Part 2, 07-15)
 
+**PROVEN SHA: ea0544c8** (`ea0544c802b947af4236daaa4837e19af08be89d` — the code commit this proof covers; cited post-commit per the gate's ancestry law, the 4ddf1083 re-cite pattern).
+
 ## PRIOR ART (C45 gate)
 - `early_unlock_floor` = 2500 (RULING_EARLY_UNLOCK, 07-09): realized-lifetime-volume floor machinery EXISTS — `event_lifetime_vol` (REST `volume_fp`, rebuilt per discover cycle, atomic swap, live_v4.py ~5202/5343). **Delta: this build reuses that exact organ, adds ZERO new volume plumbing.**
 - C-WINDOW-LAW (07-14): W1/CORRIDOR/W2 phase stamps via `_window_phase` (evidence gun closes the corridor). **Delta: the floor keys on the existing phase computation.**

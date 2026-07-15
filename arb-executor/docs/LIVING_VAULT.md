@@ -18,9 +18,9 @@
 - The exit strategy is SOLVED and VALIDATED: positive at every level on the 14k-N foundation (Atlas / Druid's foundation). Those projections were CONSERVATIVE — scored on TAKER trades at the T-20m mark (the worst entries: crossed, late, the sucker's anchor per A49). Real maker entries earlier in premarket can only beat that baseline.
 - Any "exit looks negative on live trades" reading is a SYMPTOM OF BROKEN ENTRIES, not evidence about the exit. Do NOT gauge exit policies on live trades until entries execute per strategy. P6's E2-negative-frontier reading is this artifact — struck as exit evidence.
 - THE CAUSAL CHAIN: the ENTIRE premarket is the entry canvas; the historics show drift edge FOR ENTRY PURPOSES — enter at discount on the drift → the tailored exit becomes an EASIER SWING → the validated exit does the rest. Entries exist TO GAIN AN EASIER EXIT.
-- THE RECURRING FALLBACK, named: whenever entry work stalls or a study surfaces an exit-shaped number, analysis drifts to "maybe the exit is the lever." It is not. The tell: any sentence proposing to change/score/re-target exit policy while combined ≥98 fills and one-sided strands persist. When the tell appears: STOP, cite this order, return to (1) fill BOTH sides in W1/W2, (2) fill at combined ≤97.
+- THE RECURRING FALLBACK, named: whenever entry work stalls or a study surfaces an exit-shaped number, analysis drifts to "maybe the exit is the lever." It is not. The tell: any sentence proposing to change/score/re-target exit policy while combined ≥98 fills and one-sided strands persist. When the tell appears: STOP, cite this order, return to (1) fill BOTH sides in W1/W2, (2) fill at combined ≤97. **[RETIREMENT STAMP 07-15 (C-ONE-RECORD): the ≤97 clause survives as the pair SCOREBOARD only; as a leg-2 pricing MECHANISM it is buried — see THE PAIR-97 GRAVE below + C-PAIR-LAW (orientation-composition). Chronology law: the newest ruling governs.]**
 
-⛔ PRIORITY 1 = PAIR: rest bids on both legs of every tracked game, always — never skip a game or leg on a projected combined. PRIORITY 2 = pair at good cost: the combined cap binds the SECOND leg's target after the first fills — it is a walk constraint, never a participation filter. Operator: "cant gage a trade if we dont even trade it."
+⛔ PRIORITY 1 = PAIR: rest bids on both legs of every tracked game, always — never skip a game or leg on a projected combined. PRIORITY 2 = pair at good cost: ~~the combined cap binds the SECOND leg's target after the first fills~~ **[RETIREMENT STAMP 07-15: this sentence taught the buried mechanism — cap-binds-leg-2 is THE PAIR-97 GRAVE (operator: "IT NEGLECTS LEG 1 AND FORCES LEG 2"); the governing frame is C-PAIR-LAW orientation-composition + each leg at ITS OWN divot. The ≤97 SCOREBOARD stands.]** — a walk constraint, never a participation filter. Operator: "cant gage a trade if we dont even trade it."
 
 **DEFINITIONS (canonical — correct all prior usage):**
 - **DISCOUNT / DISTORTION = the pair-level measurement of entry success:** the combined cost of the two legs. **≤97 = success. 100 = par. >100 = TOTAL FAILURE regardless of fills** — no tailored exit can save a pair that cost more than it can pay. It is the scoreboard of the entry, not a per-leg event.
@@ -40,7 +40,7 @@
 
 **OPEN ANALYSIS DEBTS (named, tracked on BOARD):** FV-PER-LEG (never built right) · THE EXIT IS WINDOW-BLIND (found in code, unfixed) · tts@fill vs scheduled start (re-anchor on tape onset — largely addressed by the honest clock/flip, residual on BOARD) · PRE-T-4H (first look done 07-06: B3 §4 T-8h coverage sized; exploitation spec = week deliverable (c)) · THE MISSED-OPPORTUNITY LEDGER (half-built: the B3/gold counterfactual machinery is its first real installment).
 
-**THE TWO-PROBLEM FRAME (June's entire scope, operator's words):** (1) not filling in Window 1/2 on both sides of a market; (2) when we do fill, not filling at a good price — where good = combined ≤97. Everything else is a sub-issue of these two.
+**THE TWO-PROBLEM FRAME (June's entire scope, operator's words):** (1) not filling in Window 1/2 on both sides of a market; (2) when we do fill, not filling at a good price — where good = combined ≤97. Everything else is a sub-issue of these two. **[STAMP 07-15: ≤97 here is the MEASUREMENT of (2), never a leg-2 pricing instruction — see THE PAIR-97 GRAVE.]**
 
 **OPERATIONAL INVARIANTS (2026-07-01, Plex, verbatim):** 1. Tier aggregation is doctrine-hostile. Report tier-partitioned or don't report. 2. Boundary contamination invalidates window-scoped scoring. Old numbers do not carry forward. 3. Ceiling results outrank contamination caveats. 4. Peak-concentration ≠ policy scope. 5. Closure over deferral.
 
@@ -80,7 +80,7 @@ The one number that indicts current placement: **rode legs fill med 11.0¢ above
 **S is earned by three tests, all mandatory:**
 1. **Both legs W1-filled.**
 2. **Both cashed in W1/corridor.**
-3. **Combined ≤97 achieved BY LOGIC** — each leg priced **independently off its own fitted value and its own divot**, on a **full input read**: both prices, category, non-self chain, **honest clock, flow state**.
+3. **Combined ≤97 achieved BY LOGIC** — each leg priced **independently off its own fitted value and its own divot**, on a **full input read**: both prices, category, non-self chain, **honest clock, flow state**. **[STAMP 07-15: this test is the ANTIDOTE to the buried mechanism — the provenance clause already convicts 97−basis pricing; the grave below names it in the operator's words.]**
 
 **THE PROVENANCE CLAUSE:** any leg priced from the sibling's accounting — goal−basis, cap-arithmetic, any INTERIM-ARCHAIC form — is **S-INELIGIBLE regardless of outcome**. A cap-forced 96 is the 97-wall in costume. **The grade certifies the DECISION, not the luck.**
 
@@ -125,6 +125,12 @@ The one number that indicts current placement: **rode legs fill med 11.0¢ above
 The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its own divot) × P(the exit cashes in W1/corridor)** — E18/B23's bilateral funnel (multiplicative composition, ~21-23% unconditional double-cash ceiling measured on the foundation). Vault §0E made it the grading law: **A requires the W1 shape; BOUHAR (both legs W1_CASHED) is the headline metric; baseline ZERO across 257 pre-flip legs, 2/357 at the last full cut.** Every entry build is judged by whether it multiplies BOTH factors — a deeper fill that pushes the cash past the corridor, or a faster cash that costs the fill, fails the mandate. This is the frame that unifies the recipe (tight/early = factor 1) and the B3 decomposition (band-arrival/timing = factor 2).
 
 ---
+
+## THE RECORD MANDATE (operator order, 07-15, VERBATIM AND PERMANENT)
+**The consolidated record — LIVING_VAULT, the rulings stack, the class ledger, the constraints file, LAW.json, the registries — is the operation. Every organ, every seat, every model anchors there; nothing anywhere speaks or trades from memory when the disk disagrees.** Enforcement: retirement stamps ride every superseded frame on every operator-facing surface; an unstamped superseded frame is a NAMED DEFECT CLASS, swept at every C50; doctrine_registry.json is machine-rebuilt at every C50 and every seat shows its receipt before doctrine-touching output.
+
+## THE PAIR-97 GRAVE (operator verbatim, 07-15)
+**"IT NEGLECTS LEG 1 AND FORCES LEG 2."** The mechanism, named: the conviction leg (leg 1) is demoted to accounting — its own value read abandoned the moment it fills — and the completion leg (leg 2) is COMPELLED at a subtraction price (97 − basis), post-divot, into the dumped side. 511/662 (77%) of era sibling placements priced at exactly 97−leg1_basis; the S-tier is empty BY CONSTRUCTION under that mechanism (the provenance clause). The ≤97 combined survives as the pair's SCOREBOARD — the measurement of entry success — never as either leg's pricing instruction. Governing frames: C-PAIR-LAW orientation-composition (entry unit = the pair, each leg at its own divot) + DYNAMIC S (each leg off its own fitted value).
 
 # THE LEDGER (newest first — the chronology law applies)
 

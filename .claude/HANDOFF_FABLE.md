@@ -33,7 +33,23 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 HALT2-FIXED — C50 keeps this current):
+## THE RECEIPTS LAW (C-ONE-RECORD, permanent): canon read = the FULL
+stack (LIVING_VAULT front page + ledger + CLASS_LEDGER + rulings +
+OPERATOR_CONSTRAINTS + LAW.json + registries), no remainder. No
+doctrine-touching output from any seat without the
+doctrine_registry.json receipt (rebuilt every C50:
+python analysis/doctrine_registry_build.py). An unstamped
+superseded frame on any operator-facing surface = named defect.
+
+## STATE (2026-07-15 ONE-RECORD — C50 keeps this current):
+RECORD MANDATE vaulted verbatim; front-page stamps applied (21/23/
+26-frame/43/83); PAIR-97 GRAVE carries the operator verbatim + the
+mechanism; DOCTRINE CONFLICT 2-4 filed; UNSTAMPED-FRAME defect
+class founded; doctrine_registry.json generator live. Halt-fix
+gate in flight (unfreeze pending verification); EC2 knob candidate
+7b7a9503 gates after; itf_ticks recording dir restored.
+
+(prior:) ## STATE (2026-07-14 HALT2-FIXED):
 23:10 halt = phantom rebuilt fires (window-stamp gun_fired bool
 vs rebuild substring grep -- occurrence 2, stamp/matcher
 collision). Fixed a35bc46b at 4 organs; halt held correctly both

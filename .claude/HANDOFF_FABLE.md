@@ -41,7 +41,21 @@ doctrine_registry.json receipt (rebuilt every C50:
 python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
-## STATE (2026-07-15 UNFROZEN — C50 keeps this current):
+## STATE (2026-07-15 KOAY-EXHIBIT — C50 keeps this current):
+C-KOAY-EXHIBIT v1 executed (operator live catch): REACH-RECAL
+exhibit #1 = the queued recalibration read DONE. Reach law said
+p_fill 0.000 on a bid that filled 75s later; error's home = the
+FLOW-BUCKET INPUT (stale prints_30m vs exchange tape; the -0k
+undercount class at the consultation site), not page/rates. R1
+remedy priced (REST-seed the gauge), AWAITING THE WORD; no aim
+changes. New census intake: pair-law stamp blind to cancel-made
+one-sided pairs (KOAYAZ the exhibit). Record: nightly
+ADJUDICATION_20260714 + packet artifacts pushed (738ced4c);
+40-mains-legs = disk-recorded DEFECT (adjudication queued).
+Standing queue otherwise: fence re-validation read; 40-mains
+adjudication; pair-law census; 6:10 scorecard word.
+
+(prior:) ## STATE (2026-07-15 UNFROZEN — C50 keeps this current):
 Unfreeze VERIFIED: boot 9de81e29 12:21 AM, rebuild n=108
 all-sourced, audit PASS 0/0, 13 conceptions resumed. EC2 CHALL
 early window ARMED (first early_chall_window_open pending the

@@ -48,11 +48,20 @@ def fetch_trades(tk, oldest_needed):
                "?ticker=%s&limit=500" % tk)
         if cursor:
             url += "&cursor=%s" % cursor
-        try:
-            with urllib.request.urlopen(url, timeout=15) as r:
-                d = json.load(r)
-        except Exception as e:
-            print("  fetch error %s: %s" % (tk, e)); break
+        d = None
+        for _try in range(4):
+            try:
+                with urllib.request.urlopen(url, timeout=15) as r:
+                    d = json.load(r)
+                break
+            except Exception as e:
+                if "429" in str(e) and _try < 3:
+                    time.sleep(6.0 * (_try + 1))
+                    continue
+                print("  fetch error %s: %s" % (tk, e))
+                break
+        if d is None:
+            break
         rows = d.get("trades", [])
         for t in rows:
             ts = datetime.fromisoformat(
@@ -62,7 +71,7 @@ def fetch_trades(tk, oldest_needed):
         cursor = d.get("cursor")
         if not cursor or not rows or min(r0[0] for r0 in out) < oldest_needed:
             break
-        time.sleep(0.15)
+        time.sleep(0.4)
     else:
         # NO SILENT CAPS: a tape deeper than the page budget is NAMED,
         # never counted as zero (the first run counted KOA as 0 this way)

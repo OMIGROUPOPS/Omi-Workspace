@@ -1,7 +1,7 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784121237 -->
-written 2026-07-15 09:16:24 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784121913 -->
+written 2026-07-15 09:27:54 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (28 total this session)
+## Events (30 total this session)
 - 04:17:53 KXITFWMATCH-26JUL15WAGCIR-CIR — flatten DEFERRED: ev -1.03 above margin floor -3.0
 - 04:22:50 KXITFWMATCH-26JUL15VOGNUU-NUU — flatten DEFERRED: ev -1.28 above margin floor -3.0
 - 04:50:28 KXITFWMATCH-26JUL15WAGCIR-CIR — flatten DEFERRED: ev -1.03 above margin floor -3.0
@@ -30,6 +30,8 @@ written 2026-07-15 09:16:24 AM ET by live_validation_loop (read-only). Patch con
 - 08:46:33 KXITFWMATCH-26JUL15WOBSHI-WOB — flatten DEFERRED: ev -1.67 above margin floor -3.0
 - 09:13:49 KXITFWMATCH-26JUL15BRODAE-DAE — flatten CAPPED at 8/day (8 today)
 - 09:13:57 KXITFWMATCH-26JUL15LANSCH-LAN — flatten DEFERRED: ev -2.28 above margin floor -3.0
+- 09:24:27 KXITFWMATCH-26JUL15BRODAE-DAE — flatten CAPPED at 8/day (8 today)
+- 09:25:13 KXITFWMATCH-26JUL15LANSCH-LAN — flatten DEFERRED: ev -2.28 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-15 03:00:59 AM ET", "ts_epoch": 1784098859.992171, "event": "trendpath_live_aim", "ticker": "KXITFWMATCH-26JUL15BRODAE-DAE", "details": {"event": "KXITFWMATCH-26JUL15BRODAE", "from_target": 32, "path_aim": 22, "mode": "no_call_posture", "page": "ITF_W|underdog|26_50", "page_n": 102, "citation": "ATLAS_V1 ITF_W|underdog|26_50 (path bottom p50; cutover 07-14 operator word)", "entry_g
@@ -335,6 +337,12 @@ written 2026-07-15 09:16:24 AM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-15 09:13:49 AM ET", "ts_epoch": 1784121229.476516, "event": "completion_flatten_capped", "ticker": "KXITFWMATCH-26JUL15BRODAE-DAE", "details": {"event": "KXITFWMATCH-26JUL15BRODAE", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
     {"ts": "2026-07-15 09:13:57 AM ET", "ts_epoch": 1784121237.5137818, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL15LANSCH-LAN", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_W|leader|at_mid|51_75", "n": 32, "p_exit_fill": 0.781, "p_ride_zero": 0.219, "ev_cents": -2.28, "band": 15, "basis": 64, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LA
     {"ts": "2026-07-15 09:13:57 AM ET", "ts_epoch": 1784121237.514052, "event": "completion_flatten_deferred", "ticker": "KXITFWMATCH-26JUL15LANSCH-LAN", "details": {"event": "KXITFWMATCH-26JUL15LANSCH", "ev_cents": -2.28, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-15 09:23:51 AM ET", "ts_epoch": 1784121831.4829102, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 11, "n_resting_orders": 213, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784101024.8137774, "legs_new": ["KXATPMATCH-26JUL15BUBHAL-HAL", "KXATPMATCH-26JUL15TRANAV-NAV
+    {"ts": "2026-07-15 09:24:27 AM ET", "ts_epoch": 1784121867.9972708, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL15BRODAE-DAE", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_W|underdog|deep_disc|le25", "n": 26, "p_exit_fill": 0.538, "p_ride_zero": 0.423, "ev_cents": -4.62, "band": 4, "basis": 16, "win_ride_residual_excluded": 0.038, "citation": "M15 RAN
+    {"ts": "2026-07-15 09:24:27 AM ET", "ts_epoch": 1784121867.9975295, "event": "completion_flatten_capped", "ticker": "KXITFWMATCH-26JUL15BRODAE-DAE", "details": {"event": "KXITFWMATCH-26JUL15BRODAE", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
+    {"ts": "2026-07-15 09:25:13 AM ET", "ts_epoch": 1784121913.217636, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL15LANSCH-LAN", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_W|leader|at_mid|51_75", "n": 32, "p_exit_fill": 0.781, "p_ride_zero": 0.219, "ev_cents": -2.28, "band": 15, "basis": 64, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LAY
+    {"ts": "2026-07-15 09:25:13 AM ET", "ts_epoch": 1784121913.2182825, "event": "completion_flatten_deferred", "ticker": "KXITFWMATCH-26JUL15LANSCH-LAN", "details": {"event": "KXITFWMATCH-26JUL15LANSCH", "ev_cents": -2.28, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-15 09:25:13 AM ET", "ts_epoch": 1784121913.6294153, "event": "exit_filled", "ticker": "KXITFWMATCH-26JUL15LANSCH-LAN", "details": {"exit_price": 79, "entry_price": 64, "qty": 5, "new_fills": 5, "complete": true, "pnl_cents": 75.0, "pnl_dollars": 0.75, "had_dca": false, "cycle": 1, "in_play": true, "bell_source": "fallback_bell", "trade_id": "T-20260715-0385", "window": {"phase": "W
 
 ## Code path
 ?

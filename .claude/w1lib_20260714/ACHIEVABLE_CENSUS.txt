@@ -1,0 +1,52 @@
+PART 1 — JOINTLY-ACHIEVABLE W1 CENSUS (lawful span = placement -> evidence gun; size-blind, named)
+
+  26JUL14BLATOM                  NO  combined 101  (TOM 34 @ 04:08 PM | BLA 67 @ 05:17 PM)
+  26JUL14DRATRO                  NO  combined 99  (DRA 74 @ 05:00 PM | TRO 25 @ 05:00 PM)
+  26JUL14IMAMCC                  NO  combined 100  (IMA 38 @ 03:33 PM | MCC 62 @ 03:33 PM)
+  26JUL14LANYIB                  NO  combined 100  (YIB 84 @ 03:14 PM | LAN 16 @ 03:01 PM)
+  26JUL14MILCHA                  ONE-LEG-TAPE best CHA 48 @ 03:34 PM (sib untaped -- combined unbounded, NOT counted)
+  26JUL14NEDDAL                  NO  combined 98  (DAL 52 @ 05:01 PM | NED 46 @ 03:45 PM)
+  26JUL14NEUPRA                  NO-TAPE in lawful span
+  26JUL15BUBHAL                  ONE-LEG-TAPE best BUB 70 @ 07:34 PM (sib untaped -- combined unbounded, NOT counted)
+  26JUL15RUBPEL                  ONE-LEG-TAPE best PEL 27 @ 08:12 PM (sib untaped -- combined unbounded, NOT counted)
+  26JUL14BEAOGU                  ONE-LEG-TAPE best OGU 49 @ 07:37 PM (sib untaped -- combined unbounded, NOT counted)
+  26JUL14BOUHUL                  NO  combined 102  (BOU 56 @ 06:01 PM | HUL 46 @ 06:01 PM)
+  26JUL14BROBOB                  NO-TAPE in lawful span
+  26JUL14CHACAM                  NO-TAPE in lawful span
+  26JUL14COLION                  NO-TAPE in lawful span
+  26JUL14COXHAM                  NO  combined 100  (HAM 11 @ 03:09 PM | COX 89 @ 03:09 PM)
+  26JUL14DELZHA                  NO  combined 100  (ZHA 12 @ 08:11 PM | DEL 88 @ 07:23 PM)
+  26JUL14DEMSAC                  NO  combined 101  (DEM 13 @ 06:01 PM | SAC 88 @ 08:12 PM)
+  26JUL14HAZMCF                  NO  combined 98  (HAZ 62 @ 04:34 PM | MCF 36 @ 07:03 PM)
+  26JUL14IBRBOB                  NO-TAPE in lawful span
+  26JUL14JASJON                  NO  combined 101  (JON 21 @ 05:34 PM | JAS 80 @ 08:11 PM)
+  26JUL14NEFTHO                  NO-TAPE in lawful span
+  26JUL14SIKMAT                  NO-TAPE in lawful span
+  26JUL14STEVOL                  NO  combined 102  (STE 53 @ 05:32 PM | VOL 49 @ 05:32 PM)
+  26JUL14VIITAK                  NO  combined 101  (VII 73 @ 08:08 PM | TAK 28 @ 07:45 PM)
+  26JUL14BARREA                  NO-TAPE in lawful span
+  26JUL14DASDOD                  NO-TAPE in lawful span
+  26JUL14FAIADA                  ONE-LEG-TAPE best FAI 80 @ 07:25 PM (sib untaped -- combined unbounded, NOT counted)
+  26JUL14GILAIA                  NO-TAPE in lawful span
+  26JUL14KHALIN                  NO  combined 101  (LIN 62 @ 06:15 PM | KHA 39 @ 07:49 PM)
+  26JUL14LOPTHO                  ONE-LEG-TAPE best LOP 15 @ 05:34 PM (sib untaped -- combined unbounded, NOT counted)
+  26JUL14MUSBRA                  NO  combined 101  (MUS 16 @ 04:32 PM | BRA 85 @ 03:41 PM)
+  26JUL14OTWTAY                  NO  combined 101  (TAY 65 @ 06:40 PM | OTW 36 @ 07:00 PM)
+  26JUL14SCHSOU                  NO-TAPE in lawful span
+  26JUL14SELSAT                  ONE-LEG-TAPE best SAT 58 @ 05:35 PM (sib untaped -- combined unbounded, NOT counted)
+  26JUL14SHIRUS                  NO  combined 100  (RUS 75 @ 07:17 PM | SHI 25 @ 04:37 PM)
+  26JUL14TSASTE                  NO  combined 102  (TSA 88 @ 04:40 PM | STE 14 @ 04:22 PM)
+  26JUL14WARSYC                  NO  combined 102  (WAR 52 @ 06:28 PM | SYC 50 @ 06:59 PM)
+
+VERDICT ATP_CHALL: 0 achievable / 5 not -> UNACHIEVABLE
+VERDICT ITF_M: 0 achievable / 8 not -> UNACHIEVABLE
+VERDICT ITF_W: 0 achievable / 6 not -> UNACHIEVABLE
+
+PART 3 — CLOCK CROSS-CALIBRATION (gun vs -0k onset, dual-stamp legs, live era)
+
+  ATP_CHALL: n=4 | skew (gun - 0k onset) median -1.2 min | bottom-before-GUN median 687.3 min
+  ATP_MAIN: n=1 | skew (gun - 0k onset) median -0.9 min | bottom-before-GUN median 3.0 min
+  ITF_M: n=4 | skew (gun - 0k onset) median -201.4 min | bottom-before-GUN median 1.0 min
+  ITF_W: n=4 | skew (gun - 0k onset) median -56.0 min | bottom-before-GUN median 137.9 min
+
+ADJUDICATION INPUT: atlas says bottoms 19-27 min before the -0k onset. If skew (gun - onset) ~= +[19-27], the SAME bottoms sit near/AFTER the -0k onset relabeled -- MIS-ANCHORED axis. If skew ~0 and bottoms-before-gun >> 0, tonight was a tail.

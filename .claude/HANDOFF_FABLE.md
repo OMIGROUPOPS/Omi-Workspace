@@ -33,7 +33,17 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 WINDOW-LAW — C50 keeps this current):
+## STATE (2026-07-14 W1-LIBRARY — C50 keeps this current):
+C-W1-LIBRARY deployed (ebdb03c9): census = UNACHIEVABLE tonight
+(0/19 pairs <=97 lawful-span; SLATE with numbers); LIBRARY_V1
+cohorts as dossier surface #14 (SHADOW; nightly dip_freq
+calibration); ATLAS CHALLENGE ADJUDICATED = MIS-ANCHORED (-0k
+onset lags gun 56-201min on ITF; fitted dips are IN-PLAY on the
+gun axis -- explains the W2 touches; depth quantiles stand;
+TIMING RECUT priced, awaiting word). Presence build still gated
+on the word, repriced twice (W2 amendment + slate verdict).
+
+(prior:) ## STATE (2026-07-14 WINDOW-LAW):
 C-WINDOW-LAW deployed (26b18d63): W1/CORRIDOR/W2 stamped
 everywhere (evidence gun closes corridor; bursts branded);
 CORRIDOR-BLIND class = latch family (census committed);

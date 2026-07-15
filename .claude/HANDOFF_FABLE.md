@@ -41,7 +41,29 @@ doctrine_registry.json receipt (rebuilt every C50:
 python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
-## STATE (2026-07-15 MORNING-TRIAGE — C50 keeps this current):
+## STATE (2026-07-15 TAPE-BELL — C50 keeps this current):
+C-TAPE-BELL v1 DEPLOYED (defect class: 75 W2 fills broke
+no-buys-after-start; LEOTSI walked example -315c — schedule lied
+5.5h late, bell_missing printed at 9:13, fallback bell 9:26, fill
+already executed; the REST tape knew the whole time). Part 1: gun
+source 8 tape_flow LIVE (REST tape past honest-anchored start >=
+fitted OPEN boundary sustained 2 polls -> evidence-grade fire ->
+grace -> sweep; mains at CHALL boundary DECREED interim; 6h age
+window; acceptance replay of the morning's W2 fills committed).
+Part 2: W2 fill = ZERO TOLERANCE (w2_fill_violation at the single
+emitter + FORENSIC_w2_fill in the monitor; booking source named,
+no exceptions). Part 3 armed in the same push: (a) W1-PREFERENCE
+ON — mains/CHALL corridor placements refused, ITF corridor =
+fallback only (discovered >=1,500 + volume-quiet + dossier-named);
+(b) IOC completion cross capped (combined <=97 AND cross-EV >
+flatten-EV, refuse-named; DELXIL replays REFUSED); (c) band-0
+healer (fill_book_skip named, fingerprint-price basis fallback,
+determined-market = settlement_pending FLAG never FAIL). Watches:
+tape_flow graded nightly (premature = FERCER signal, tune never
+disable) · w2_fill_violation -> 0 · corridor refusals vs starved
+ITF fallbacks · cross refusal reasons · fill_book_skip · 429s.
+
+(prior:) ## STATE (2026-07-15 MORNING-TRIAGE — C50 keeps this current):
 C-MORNING-TRIAGE v1 EXECUTED (full arc = vault top entry). Part 0:
 JONURG band-0 clear (exit a1a3f307 rested at 11:24:43, audits PASS
 since 11:32); AUDIT-RACE class founded (fill-race band-0 x3 incl.

@@ -33,7 +33,22 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 REACH-VERDICT — C50 keeps this current):
+## STATE (2026-07-14 WINDOW-LAW — C50 keeps this current):
+C-WINDOW-LAW deployed (26b18d63): W1/CORRIDOR/W2 stamped
+everywhere (evidence gun closes corridor; bursts branded);
+CORRIDOR-BLIND class = latch family (census committed);
+acceptance CONVICTED 3 cancels AND amended the reach verdict
+(6/8 touches W2 = not lawful fills; presence proposal REPRICED);
+ATLAS-TIMING CHALLENGE filed (bottoms post-gun vs atlas
+pre-onset -- reconcile onset clocks before timing-conditioned
+aims). WINDOW LEDGER nightly. Gun feed: observed_starts.db
+dedicated (keyhole root deleted); te_live restarted; >30min
+tripwires in render+nightly. Presence build STILL awaits the
+word. Queued: unbooked-fill root; OPEN-transition event;
+reach-count recalibration; M15 intake #1; sizing word;
+orientation clock.
+
+(prior:) ## STATE (2026-07-14 REACH-VERDICT):
 VERDICT: PRESENCE. 8/36 pairs tilted; 9 tape-touches of our fitted
 aims; 0 fills -- every touch found no standing bid (match-live
 latch cancels hours early + post-latch gun freeze blocks re-place;

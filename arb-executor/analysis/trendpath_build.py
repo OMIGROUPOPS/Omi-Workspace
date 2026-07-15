@@ -129,8 +129,15 @@ def add_leg(pages, cat, series, vol_minutes):
         P["res_h"].append((on - t0) / 3600.0)
         P["p30"].append(p30)
         P["legs"].append((disc, win, dseen, reb))
+        # [C-W1-LIBRARY Part 2] the cohort record: category x price band x
+        # realized-volume trajectory -> the W1 story
+        hour_p = sum(v for m, v in vol_minutes.items() if m < t0 + 3600)
+        LIB.append((cat, disc, hour_p, max(0.0, disc - bp),
+                    (on - bm) / 60.0, sum(vol_minutes.values())))
 
 ORIENT = defaultdict(lambda: defaultdict(lambda: [0, 0]))  # cat -> bucket -> [n, dog_rise]
+LIB = []   # [C-W1-LIBRARY] per-leg cohort records: (cat, disc, hour_prints,
+           # bottom_depth, bottom_t_min, total_prints)
 
 def orient_fit(per_series, vol_of):
     """[C-PAIR-LAW AMENDMENT, 07-15 — the seesaw is the thesis] fit the
@@ -415,6 +422,61 @@ for cat9, bk in ORIENT.items():
 n_ob = sum(len(v) for v in orient["cats"].values())
 print("ORIENT_V1: %d callable buckets across %d cats"
       % (n_ob, len(orient["cats"])))
+# [C-W1-LIBRARY v1 Part 2, 07-14 — the operator directive, verbatim in the
+# vault: "we aren't working with nothing — this is all waiting for us"]
+# THE W1-COHORT LIBRARY: cat x price band x realized-volume trajectory ->
+# the cohort's W1 story (dip frequency, depth percentiles, dip timing,
+# never-wake probability). AXIS HONESTY: timing rides the -0k onset clock
+# (the CLOCK X-CAL adjudication found gun-vs-onset skew up to hours on
+# ITF — the timing axis is MIS-ANCHORED for live use until the recut);
+# the minutes-to-scheduled axis is 'na' for the tour corpus (no archive
+# schedule joins) — GAP named, live-era enrichment queued.
+vol_cuts = {}
+by_cat = defaultdict(list)
+for cat9, disc9, hp9, bd9, bt9, tp9 in LIB:
+    by_cat[cat9].append(hp9)
+for cat9, xs in by_cat.items():
+    xs = sorted(xs)
+    vol_cuts[cat9] = [xs[len(xs) // 3], xs[2 * len(xs) // 3]]
+lib_cells = defaultdict(lambda: {"n": 0, "dips": 0, "depths": [],
+                                 "timings": [], "sleep": 0})
+for cat9, disc9, hp9, bd9, bt9, tp9 in LIB:
+    c1, c2 = vol_cuts.get(cat9, [5, 20])
+    vb9 = "lo" if hp9 <= c1 else ("mid" if hp9 <= c2 else "hi")
+    key9 = "%s|%s|%s" % (cat9, pcell(int(disc9)), vb9)
+    cell9 = lib_cells[key9]
+    cell9["n"] += 1
+    if bd9 >= 3:
+        cell9["dips"] += 1
+        cell9["depths"].append(bd9)
+        cell9["timings"].append(bt9)
+    if tp9 < 10:
+        cell9["sleep"] += 1
+library = {"meta": {"built": atlas["meta"]["built"],
+                    "axes": "cat|pcell|vol_band (first-hour prints, fitted "
+                            "terciles per cat)",
+                    "vol_cuts": vol_cuts,
+                    "dip_def": "bottom >= 3c below discovery",
+                    "never_wake_def": "total prints < 10 (v1, named)",
+                    "timing_axis": "-0k onset clock — MIS-ANCHORED for "
+                                   "live use per CLOCK-XCAL; recut queued",
+                    "tts_axis": "na for tour corpus — GAP, live-era "
+                                "enrichment queued"},
+           "cells": {}}
+for key9, c9 in lib_cells.items():
+    if c9["n"] < 8:
+        continue
+    library["cells"][key9] = {
+        "n": c9["n"],
+        "dip_freq": round(c9["dips"] / float(c9["n"]), 3),
+        "depth_p25_50_75": [q(c9["depths"], 0.25), q(c9["depths"], 0.50),
+                            q(c9["depths"], 0.75)],
+        "dip_t_med_min_before_0k": q(c9["timings"], 0.50),
+        "never_wake_p": round(c9["sleep"] / float(c9["n"]), 3)}
+(WS / ".claude/trendpath/LIBRARY_V1.json").write_text(
+    json.dumps(library, indent=1), encoding="utf-8")
+print("LIBRARY_V1: %d cohort cells (n>=8) from %d legs"
+      % (len(library["cells"]), len(LIB)))
 for k9 in ("ITF_W|leader|ge75", "ITF_W|underdog|le25"):
     c9 = (atlas["pages"].get(k9) or {}).get("contention")
     print("  %s -> %s" % (k9, json.dumps(c9)[:360] if c9 else "NO-OPINION"))

@@ -563,7 +563,12 @@ def main():
                     "reach_law", "range_cell_m15", "dip_timing",
                     "flow_state", "refuse_margins",
                     "operator_adjudications", "fill_regime",
-                    "honest_clock", "shadow_range_shape"]
+                    "honest_clock", "shadow_range_shape", "w1_cohort",
+                    "window_phase"]
+        # [C-W1-LIBRARY Part 2] cohort calibration: predicted dip_freq vs
+        # realized dips on today's dossier'd legs (shadow grading before
+        # anything acts)
+        _coh_pred, _coh_real, _coh_n = 0.0, 0, 0
         cen = defaultdict(lambda: defaultdict(int))
         sites = defaultdict(int)
         gaps = defaultdict(set)
@@ -581,6 +586,18 @@ def main():
                 cen[s9][st9] += 1
                 if st9 == "GAP":
                     gaps[s9].add((v9 or {}).get("why", ""))
+            _c14 = (det9.get("surfaces") or {}).get("w1_cohort") or {}
+            if _c14.get("dip_freq") is not None and d9.get("ticker"):
+                tk14 = d9["ticker"]
+                obs14 = obs_cache.get(tk14) or leg_observations(tk14)
+                obs_cache[tk14] = obs14
+                disc14 = det9.get("discovery")
+                if obs14 and disc14:
+                    dipped = any(o[2] <= disc14 - 3 for o in obs14
+                                 if o[0] >= d9["ts_epoch"])
+                    _coh_pred += _c14["dip_freq"]
+                    _coh_real += 1 if dipped else 0
+                    _coh_n += 1
         if n_dos:
             L += ["", "## CONSULTATION CENSUS (C-VAULT-WIRED-ENTRY: %d "
                       "dossiers across sites %s)"
@@ -591,6 +608,12 @@ def main():
                     gaps[s9].add("surface absent from every dossier")
                 L.append("- %-20s %s" % (s9, dict(c9) if c9
                                          else "**GAP (never consulted)**"))
+            if _coh_n:
+                L.append("- W1-COHORT CALIBRATION (shadow): predicted "
+                         "dip_freq mean %.2f vs realized %.2f across %d "
+                         "graded legs"
+                         % (_coh_pred / _coh_n, _coh_real / _coh_n,
+                            _coh_n))
             if gaps:
                 L.append("- **GAPS -> board items (the intake list): %s**"
                          % "; ".join("%s (%s)" % (k, "; ".join(w for w in v

@@ -3064,6 +3064,42 @@ class LiveV3:
                                  "min_before_start": tts_min,
                                  "anchor_src": anchor_src,
                                  "last_trade_age_sec": lt_age}
+            # 10c) W1-COHORT [C-W1-LIBRARY Part 2, intake #3 — the
+            # operator directive: "we aren't working with nothing — this
+            # is all waiting for us"]: the live market matched against the
+            # historical library (cat x price band x volume trajectory) →
+            # the cohort's W1 story. GAP-honest on thin cohorts; SHADOW —
+            # graded nightly before anything acts on it.
+            try:
+                _lp14 = Path(__file__).resolve().parent.parent / \
+                    ".claude/trendpath/LIBRARY_V1.json"
+                _lmt14 = _lp14.stat().st_mtime if _lp14.exists() else 0
+                if getattr(self, "_w1lib", None) is None or \
+                        getattr(self, "_w1lib_mt", None) != _lmt14:
+                    self._w1lib = (json.loads(_lp14.read_text(
+                        encoding="utf-8")) if _lp14.exists() else {})
+                    self._w1lib_mt = _lmt14
+                _hp14 = sum(1 for t14 in (self._trade_times.get(tk) or ())
+                            if t14 >= now9 - 3600)
+                _cuts14 = ((self._w1lib.get("meta") or {})
+                           .get("vol_cuts", {}).get(cat, [5, 20]))
+                _vb14 = ("lo" if _hp14 <= _cuts14[0] else
+                         "mid" if _hp14 <= _cuts14[1] else "hi")
+                _k14 = "%s|%s|%s" % (cat, pc9, _vb14)
+                _cell14 = (self._w1lib.get("cells") or {}).get(_k14)
+                if _cell14:
+                    D["w1_cohort"] = {"status": "SHADOW", "key": _k14,
+                                      **_cell14,
+                                      "axis_caveat": "timing on the -0k "
+                                      "clock (MIS-ANCHORED per X-CAL); "
+                                      "tts axis na"}
+                else:
+                    D["w1_cohort"] = {"status": "GAP", "key": _k14,
+                                      "why": "cohort thin/absent (n<8) — "
+                                             "intake"}
+            except Exception:
+                D["w1_cohort"] = {"status": "GAP",
+                                  "why": "library unavailable"}
             # 10b) WINDOW PHASE [C-WINDOW-LAW Part 1, intake #2 — the
             # operator directive]: W1/CORRIDOR/W2 off both clocks, the
             # two-clock spread first-class

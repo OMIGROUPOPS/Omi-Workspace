@@ -71,7 +71,7 @@ def onset_of(vol_minutes):
             return m
     return None
 
-def add_leg(pages, cat, series, vol_minutes):
+def add_leg(pages, cat, series, vol_minutes, tk=None):
     """series: sorted [(minute_ts, last, low)] ; vol_minutes: {minute: prints}"""
     if len(series) < 10:
         return
@@ -129,11 +129,15 @@ def add_leg(pages, cat, series, vol_minutes):
         P["res_h"].append((on - t0) / 3600.0)
         P["p30"].append(p30)
         P["legs"].append((disc, win, dseen, reb))
+        # [C-TAPE-GATE Part 2, operator word 07-14 — THE TIMING RECUT]
+        # bottom ABSOLUTE minute + ticker kept so the emit phase can join
+        # the evidence-gun clock (dual stamps, live era)
+        P["bottoms_abs"].append((tk, bm))
         # [C-W1-LIBRARY Part 2] the cohort record: category x price band x
         # realized-volume trajectory -> the W1 story
         hour_p = sum(v for m, v in vol_minutes.items() if m < t0 + 3600)
         LIB.append((cat, disc, hour_p, max(0.0, disc - bp),
-                    (on - bm) / 60.0, sum(vol_minutes.values())))
+                    (on - bm) / 60.0, sum(vol_minutes.values()), tk, bm))
 
 ORIENT = defaultdict(lambda: defaultdict(lambda: [0, 0]))  # cat -> bucket -> [n, dog_rise]
 LIB = []   # [C-W1-LIBRARY] per-leg cohort records: (cat, disc, hour_prints,
@@ -246,7 +250,7 @@ def build_tour(pages):
                   for m, c, l, _ in rows]
         vol = {m: max(1, int(v)) for m, _, _, v in rows if v}
         per_series[tk], vol_of[tk] = series, vol
-        add_leg(pages, cat, series, vol)
+        add_leg(pages, cat, series, vol, tk=tk)
     orient_fit(per_series, vol_of)
 
 def build_itf(pages):
@@ -284,7 +288,7 @@ def build_itf(pages):
         series = [(m, v[-1], min(v)) for m, v in sorted(mins.items())]
         vol = {m: len(v) for m, v in mins.items()}
         per_series[tk], vol_of[tk] = series, vol
-        add_leg(pages, cat, series, vol)
+        add_leg(pages, cat, series, vol, tk=tk)
     orient_fit(per_series, vol_of)
 
 def q(xs, p):
@@ -351,7 +355,8 @@ def contention_of(P, cat):
 
 pages = defaultdict(lambda: {"n": 0, "path": defaultdict(list),
                              "bottom_depth": [], "bottom_t": [],
-                             "disc": [], "res_h": [], "p30": [], "legs": []})
+                             "disc": [], "res_h": [], "p30": [],
+                             "legs": [], "bottoms_abs": []})
 print("atlas: tour from g9_candles ...", flush=True)
 build_tour(pages)
 print("atlas: ITF from live-era tape (BRANDED) ...", flush=True)
@@ -388,7 +393,8 @@ for key, P in pages.items():
                    "depth_p50": q(P["bottom_depth"], 0.50),
                    "depth_p75": q(P["bottom_depth"], 0.75),
                    "t_med_min": q(P["bottom_t"], 0.50)},
-        "contention": contention_of(P, key.split("|")[0])}
+        "contention": contention_of(P, key.split("|")[0]),
+        "timing_gun": gun_columns(P)}
 OUT.parent.mkdir(parents=True, exist_ok=True)
 OUT.write_text(json.dumps(atlas, indent=1), encoding="utf-8")
 n_path = sum(1 for p in atlas["pages"].values() if p.get("verdict") == "PATH")
@@ -433,14 +439,14 @@ print("ORIENT_V1: %d callable buckets across %d cats"
 # schedule joins) — GAP named, live-era enrichment queued.
 vol_cuts = {}
 by_cat = defaultdict(list)
-for cat9, disc9, hp9, bd9, bt9, tp9 in LIB:
-    by_cat[cat9].append(hp9)
+for rec9 in LIB:
+    by_cat[rec9[0]].append(rec9[2])
 for cat9, xs in by_cat.items():
     xs = sorted(xs)
     vol_cuts[cat9] = [xs[len(xs) // 3], xs[2 * len(xs) // 3]]
 lib_cells = defaultdict(lambda: {"n": 0, "dips": 0, "depths": [],
                                  "timings": [], "sleep": 0})
-for cat9, disc9, hp9, bd9, bt9, tp9 in LIB:
+for cat9, disc9, hp9, bd9, bt9, tp9, tk9, bm9 in LIB:
     c1, c2 = vol_cuts.get(cat9, [5, 20])
     vb9 = "lo" if hp9 <= c1 else ("mid" if hp9 <= c2 else "hi")
     key9 = "%s|%s|%s" % (cat9, pcell(int(disc9)), vb9)
@@ -452,6 +458,13 @@ for cat9, disc9, hp9, bd9, bt9, tp9 in LIB:
         cell9["timings"].append(bt9)
     if tp9 < 10:
         cell9["sleep"] += 1
+    g9 = GUNS.get((tk9 or "").rsplit("-", 1)[0]) if tk9 else None
+    if g9 is not None:
+        ga9 = cell9.setdefault("gun", {"n": 0, "lawful": 0, "pre": []})
+        ga9["n"] += 1
+        if bm9 < g9:
+            ga9["lawful"] += 1
+            ga9["pre"].append((g9 - bm9) / 60.0)
 library = {"meta": {"built": atlas["meta"]["built"],
                     "axes": "cat|pcell|vol_band (first-hour prints, fitted "
                             "terciles per cat)",
@@ -464,6 +477,11 @@ library = {"meta": {"built": atlas["meta"]["built"],
                                 "enrichment queued"},
            "cells": {}}
 for key9, c9 in lib_cells.items():
+    g9x = c9.get("gun")
+    c9["gun_axis"] = ({"n_dual": g9x["n"],
+                       "lawful_share": round(g9x["lawful"] / float(g9x["n"]), 3),
+                       "pre_gun_med_min": q(g9x["pre"], 0.50)}
+                      if g9x and g9x["n"] >= 8 else None)
     if c9["n"] < 8:
         continue
     library["cells"][key9] = {
@@ -472,7 +490,55 @@ for key9, c9 in lib_cells.items():
         "depth_p25_50_75": [q(c9["depths"], 0.25), q(c9["depths"], 0.50),
                             q(c9["depths"], 0.75)],
         "dip_t_med_min_before_0k": q(c9["timings"], 0.50),
+        "gun_axis": c9.get("gun_axis"),
         "never_wake_p": round(c9["sleep"] / float(c9["n"]), 3)}
+
+# [C-TAPE-GATE Part 2] evidence guns from every day-log on disk (the gun
+# clock; live era only -- tour has no gun archive, its pages keep the -0k
+# axis with the caveat)
+import glob as _g
+GUNS = {}
+_BURST = ("tape_latch", "price_divergence")
+for _lp in sorted(_g.glob(str(ROOT / "logs/live_v3_*.jsonl"))):
+    try:
+        for _ln in open(_lp, encoding="utf-8", errors="replace"):
+            if '"gun_fired"' not in _ln:
+                continue
+            try:
+                _o = json.loads(_ln)
+            except ValueError:
+                continue
+            _d = _o.get("details") or {}
+            _ev = _d.get("event", "")
+            if _ev and _d.get("source") not in _BURST and _ev not in GUNS:
+                GUNS[_ev] = _o["ts_epoch"]
+    except OSError:
+        continue
+
+def gun_columns(P):
+    """gun-axis timing per page: dual-stamp legs only; lawful_share =
+    fraction whose bottom lands PRE-gun."""
+    ts9 = []
+    n_dual = 0
+    lawful = 0
+    for tk9, bm9 in P.get("bottoms_abs", []):
+        if not tk9:
+            continue
+        g9 = GUNS.get(tk9.rsplit("-", 1)[0])
+        if g9 is None:
+            continue
+        n_dual += 1
+        if bm9 < g9:
+            lawful += 1
+            ts9.append((g9 - bm9) / 60.0)
+    if n_dual < 8:
+        return None
+    return {"n_dual": n_dual,
+            "lawful_share": round(lawful / float(n_dual), 3),
+            "bottom_pre_gun_min_p25_50_75": [q(ts9, 0.25), q(ts9, 0.50),
+                                             q(ts9, 0.75)],
+            "axis": "evidence_gun (C-TAPE-GATE recut 07-14)"}
+
 (WS / ".claude/trendpath/LIBRARY_V1.json").write_text(
     json.dumps(library, indent=1), encoding="utf-8")
 print("LIBRARY_V1: %d cohort cells (n>=8) from %d legs"
@@ -480,3 +546,26 @@ print("LIBRARY_V1: %d cohort cells (n>=8) from %d legs"
 for k9 in ("ITF_W|leader|ge75", "ITF_W|underdog|le25"):
     c9 = (atlas["pages"].get(k9) or {}).get("contention")
     print("  %s -> %s" % (k9, json.dumps(c9)[:360] if c9 else "NO-OPINION"))
+
+# [C-TAPE-GATE Part 2] THE LAWFUL HARVEST MAP: where the dips live before
+# the gun, per category -- the fitted "when" every aim consults forward.
+hm = defaultdict(lambda: {"n": 0, "lawful": 0, "pre": []})
+for cat9, disc9, hp9, bd9, bt9, tp9, tk9, bm9 in LIB:
+    g9 = GUNS.get((tk9 or "").rsplit("-", 1)[0]) if tk9 else None
+    if g9 is None:
+        continue
+    hm[cat9]["n"] += 1
+    if bm9 < g9:
+        hm[cat9]["lawful"] += 1
+        hm[cat9]["pre"].append((g9 - bm9) / 60.0)
+HM = ["THE LAWFUL HARVEST MAP (gun clock; dual-stamp legs; recut 07-14)",
+      ""]
+for cat9 in sorted(hm):
+    h9 = hm[cat9]
+    HM.append("%-10s n_dual=%d | lawful_share=%.0f%% | pre-gun bottom "
+              "p25/50/75 = %s / %s / %s min"
+              % (cat9, h9["n"], 100.0 * h9["lawful"] / h9["n"],
+                 q(h9["pre"], 0.25), q(h9["pre"], 0.50), q(h9["pre"], 0.75)))
+(WS / ".claude/trendpath/LAWFUL_HARVEST_MAP.txt").write_text(
+    "\n".join(HM), encoding="utf-8")
+print("\n".join(HM))

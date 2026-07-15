@@ -831,6 +831,44 @@ def main():
             pass
     except Exception:
         pass
+    # [C-TAPE-GATE v1, 07-14 — self-grading forever: the gate's claim is
+    # re-earned every night or revoked by its own line] SKIP/KEEP counts
+    # + the skip cohort's REALIZED forward outcomes (band exit filled /
+    # settled won / settled lost / open).
+    try:
+        _skips9, _keeps9 = [], 0
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"flatten_tape_skipped"' in line:
+                d9 = json.loads(line)
+                _skips9.append((d9["ts_epoch"], d9.get("ticker"),
+                                (d9.get("details") or {}).get("basis")))
+            elif '"completion_action"' in line and '"flattening"' in line:
+                d9 = json.loads(line)
+                det9 = d9.get("details") or {}
+                if det9.get("flatten_price") is not None and \
+                        det9.get("kept_basis") is not None and \
+                        det9["flatten_price"] < det9["kept_basis"]:
+                    _keeps9 += 1
+        if _skips9 or _keeps9:
+            _oc9 = {"band_cashed": 0, "won": 0, "lost": 0, "open": 0}
+            _real9 = 0.0
+            for sts9, stk9, sbas9 in _skips9:
+                if exits.get(stk9):
+                    _oc9["band_cashed"] += 1
+                    _real9 += sum(x.get("pnl_cents", 0)
+                                  for x in exits[stk9]) / 100.0
+                elif stk9 in settles:
+                    w9 = settles[stk9].get("settle") == "WIN"
+                    _oc9["won" if w9 else "lost"] += 1
+                    _real9 += settles[stk9].get("pnl_cents", 0) / 100.0
+                else:
+                    _oc9["open"] += 1
+            L += ["", "## TAPE GATE (C-TAPE-GATE: re-earned nightly or "
+                      "revoked) — skips %d (%s, realized $%+.2f) | "
+                      "below-basis flattens kept %d"
+                      % (len(_skips9), _oc9, _real9, _keeps9)]
+    except Exception:
+        pass
     # [C-DELETION-GATE Part 1, 07-12] GOVERNOR SPLIT: the two live brains'
     # actions and dollars, separated at the stamp -- no hand-reading logs.
     # Dollars: each exit_filled attributes its pnl to the governor of the

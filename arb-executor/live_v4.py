@@ -3092,11 +3092,21 @@ class LiveV3:
                 _k14 = "%s|%s|%s" % (cat, pc9, _vb14)
                 _cell14 = (self._w1lib.get("cells") or {}).get(_k14)
                 if _cell14:
+                    _ga14 = _cell14.get("gun_axis")
                     D["w1_cohort"] = {"status": "SHADOW", "key": _k14,
                                       **_cell14,
-                                      "axis_caveat": "timing on the -0k "
-                                      "clock (MIS-ANCHORED per X-CAL); "
-                                      "tts axis na"}
+                                      # [C-TAPE-GATE Part 2] the caveat
+                                      # lifts only where dual stamps
+                                      # support the gun-axis column
+                                      "axis_caveat": (
+                                          "gun-axis column present "
+                                          "(recut 07-14; lawful_share "
+                                          "%s)" % _ga14.get("lawful_share")
+                                          if _ga14 else
+                                          "timing on the -0k clock "
+                                          "(MIS-ANCHORED per X-CAL); "
+                                          "gun column absent — caveat "
+                                          "STANDS")}
                 else:
                     D["w1_cohort"] = {"status": "GAP", "key": _k14,
                                       "why": "cohort thin/absent (n<8) — "
@@ -8035,6 +8045,34 @@ class LiveV3:
                         "event": et, "verdict": v, "outcome": "refused",
                         "reason": "no_bid_to_flatten_into"}, ticker=tk)
                     return
+                # [C-TAPE-GATE v1, OPERATOR WORD 07-14 — the third ruling
+                # on the twice-convicted giveaway class] ONE tape input
+                # before any BELOW-BASIS flatten: trailing-15-min traded
+                # median >= basis -> SKIP (hold; the resting band exit
+                # stays exactly where it is). Founding table: 25 skips,
+                # 23 BAND-CASHED, gate delta +$15.50 REAL. Inside the
+                # leash, never loosening it. Self-graded nightly or
+                # revoked by its own line.
+                _bas9 = int(pos.entry_price or 0)
+                if bid < _bas9:
+                    _pxg = [p for t9, p in
+                            (self._trade_prices.get(tk) or ())
+                            if t9 >= now - 900]
+                    _medg = (sorted(_pxg)[len(_pxg) // 2]
+                             if _pxg else None)
+                    if _medg is not None and _medg >= _bas9:
+                        # a skip does NOT consume the one-shot: if the
+                        # tape later turns (median < basis) the flatten
+                        # proceeds under the unchanged leash
+                        acted.pop(et, None)
+                        self._log("flatten_tape_skipped", {
+                            "event": et, "median_15m": round(_medg, 1),
+                            "basis": _bas9, "bid": bid,
+                            "n_prints_15m": len(_pxg),
+                            "cite": "C-TAPE-GATE v1 (operator word "
+                                    "07-14; founding delta +$15.50, "
+                                    "23/25 band-cashed)"}, ticker=tk)
+                        return
                 if getattr(pos, "exit_order_id", ""):
                     await self.cancel_order(tk, pos.exit_order_id,
                                             "completion_live_flatten")

@@ -128,14 +128,20 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-15 · HALT TRIAGE 23:10 — occurrence 2 of the boot-fire family, sub-class STAMP/MATCHER COLLISION (the Part-0 probe named its own writer); THE HALT WORKED AGAIN; fixed at all four organs before the Euro slate
+The window stamp's `"gun_fired"` boolean substring-matched the boot rebuild's line grep — every stamped line with a `details.event` became a phantom rebuilt fire (`source: null, rebuilt: true`; the null-source probe shipped in Part 0 printed exactly this). The 23:10 audit refused to certify a book behind phantom fires and HELD conceptions — correct both times it has fired. **Fix (SHA a35bc46b): the rebuild matches the event FIELD and refuses sourceless entries (UNKNOWN, never a fire, grade explicit); the audit ignores sourceless fires with a named flag; the chokepoint gun guard skips them; `_window_phase` evidence requires an explicit source.** Phantoms purge at the fix boot; re-audit clears before the Euro window. CLASS LEDGER: boot-fire family gains sub-class 2 (stamp/matcher collision — a field name colliding with a substring matcher is a class, not an accident; matchers must bind to event fields).
+
 ### 2026-07-15 · C-TAPE-GATE v1 EXECUTED (two operator words): THE FLATTEN TAPE GATE ARMED on its own proof — 23-of-25 dumps were followed by the tape printing through the very exit the flatten tore up; gate delta +$15.50 REAL (the honest number, not the +$20.06 headline); THE TIMING RECUT lands the gun clock into every page
 **THE OPERATOR WORDS, VERBATIM:** "arm the flatten tape gate, conditional on its own proof" · "timing recut on the gun clock." **The lineage — third ruling on the same defendant:** the flatten census (25 below-basis sells, one mechanism) → the leash (N=36, every giveaway a WINNER) → GAP-C's replay price → this gate.
 **Part 1, SHIP-CONDITION MET (FOUNDING_TABLE.txt, real outcomes only):** method line delivered (band exit unmoved at basis+band_x; BAND-CASHED = tape-touch of the exit after the skip; else actual settlement; below-basis scope). **25 skips → 23 BAND-CASHED / 1 WON / 1 LOST; actual −$7.25 → counterfactual +$8.25 = +$15.50.** Honest restatement recorded: +$20.06 was the wider 43-action cohort; **the gate ships on its own scope's +$15.50.** The gate: ONE input inside the unchanged leash — trailing-15-min median ≥ basis → SKIP (`flatten_tape_skipped`, median+basis stamped, one-shot preserved so an honest tape-turn still flattens); the leash (8/day, −3¢ floor) never loosens. **Self-grading forever: the nightly prints SKIP/KEEP + the skip cohort's realized forward outcomes — re-earned every night or revoked by its own line.**
 **Part 2, THE TIMING RECUT:** the builder joins evidence guns at build time; every atlas page gains `timing_gun` (dual-stamp quantiles + lawful_share); library cells gain `gun_axis`; the w1_cohort caveat lifts only where the gun column exists; depth quantiles untouched; no aim values change. **THE LAWFUL HARVEST MAP (first print):**
 ```
-THE LAWFUL HARVEST MAP (gun clock; dual-stamp legs; recut 07-14)
-
-ITF_M      n_dual=333 | lawful_share=24% | pre-gun bottom p25/50/75 = 1.2 / 10.6 / 151.4 min
+THE LAWFUL HARVEST MAP (gun clock; dual-stamp legs; recut 07-14)
+
+
+
+ITF_M      n_dual=333 | lawful_share=24% | pre-gun bottom p25/50/75 = 1.2 / 10.6 / 151.4 min
+
 ITF_W      n_dual=453 | lawful_share=28% | pre-gun bottom p25/50/75 = 2.5 / 41.6 / 151.2 min
 ```
 Proof: `.claude/proof_20260714/PROOF_TAPE_GATE.md` (SHA c070a158).

@@ -33,7 +33,15 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 GATED+RECUT — C50 keeps this current):
+## STATE (2026-07-14 HALT2-FIXED — C50 keeps this current):
+23:10 halt = phantom rebuilt fires (window-stamp gun_fired bool
+vs rebuild substring grep -- occurrence 2, stamp/matcher
+collision). Fixed a35bc46b at 4 organs; halt held correctly both
+times. Deploy clears re-audit before the Euro slate. C-EARLY-
+CANVAS-2 resumes after (Part 1 coded+knobbed, uncommitted deploy
+pending; Parts 2-3 open).
+
+(prior:) ## STATE (2026-07-14 GATED+RECUT):
 C-TAPE-GATE executed (c070a158): flatten tape gate LIVE (skip on
 median>=basis, below-basis scope, leash unchanged, one-shot
 preserved; founding +$15.50 REAL, 23/25 band-cashed; nightly

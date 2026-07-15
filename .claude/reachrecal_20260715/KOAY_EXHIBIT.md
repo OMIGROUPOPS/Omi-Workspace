@@ -52,8 +52,10 @@ What the law was ASKED and what it ANSWERED, against what the tape DID:
 
 | leg | bid (depth) | bucket as consulted | p_fill consulted | honest bucket (exchange tape) | p_fill on honest bucket, gun-bound residency | realized |
 |---|---|---|---|---|---|---|
-| YAZ | 59¢ (16 deep) | quiet (prints_30m=1) | **0.000** | open (burst live 74s) | **0.449** (rate 19.13/hr × 1.87 min) | **FILLED in 75s** |
-| KOA | 29¢ (13 deep) | quiet (prints_30m=1) | **0.000** | open | **0.346** (rate 25.5/hr × 1.0 min) | no fill (residency low 41¢) |
+| YAZ | 59¢ (16 deep) | quiet (prints_30m=1) | **0.000** | **warm** (30m count = 3; see AMENDMENT) | **0.010** (ITF_M\|warm rate 0.0105/hr) | **FILLED in 75s** |
+| KOA | 29¢ (13 deep) | quiet (prints_30m=1) | **0.000** | open (~15 prints/30m at consult) | **0.346** (rate 25.5/hr × 1.0 min) | no fill (residency low 41¢) |
+
+**AMENDMENT (same night, caught by the outcome replay's own instrument):** the first draft of this table put YAZ's honest bucket at "open / 0.449" — WRONG. At the consultation instant (12:25:44) the trailing-30m REST count was **3** (12:02:41 ×2 + 12:25:18) → **warm**, p_fill 0.010; the burst was 26 seconds old and a 30-minute trailing window dilutes it to near-nothing. The KOA read (open, ~15 prints) stands. **The correction adds a SECOND named limitation, distinct from the input-staleness finding: the 30-minute bucket is a LAGGING instrument at onset** — even with a perfectly honest input, a bid placed seconds into a burst reads warm-at-best. R1 cures the input (KOA-type, and the slate's quiet→open flips); it does NOT cure bucket onset-lag (YAZ-type). A short-window burst term is reach-law REFIT territory — its own dispatch, evidence accruing from tonight's `gauge_src` stamps.
 
 (Full-residency KOA — ignoring the gun bound, 6.83 min — would price 0.945: the bound matters. Rates: `LAW.json ITF_M|open`, arrivals 145.35/hr; `ITF_M|quiet` is literally 0.0 at depth ≥10 — the quiet table cannot price an onset.)
 

@@ -2954,10 +2954,12 @@ class LiveV3:
         now = now or time.time()
         cache = self.__dict__.setdefault("_rest_flow", {})
         st = cache.get(tk)
-        if st is not None and now - st.get("ts", 0) < 45:
+        if st is not None and now - st.get("tried", 0) < 45:
             return
-        cache[tk] = dict(st or {"trades": []}, ts=now)  # claim the slot:
-        # the cooldown holds even when the fetch fails (fail-soft, no hammer)
+        # claim the slot: "tried" holds the cooldown even when the fetch
+        # fails (no hammer); "ts" = last SUCCESSFUL fetch (data freshness)
+        # — a failed refresh must never re-stamp stale trades as fresh
+        cache[tk] = dict(st or {"trades": [], "ts": 0}, tried=now)
         try:
             data = await api_get(
                 self.session, self.ak, self.pk,
@@ -2979,7 +2981,7 @@ class LiveV3:
                     continue
                 if now - ts9 <= 1800:
                     rows.append((ts9, px9))
-            cache[tk] = {"ts": now, "trades": rows}
+            cache[tk] = {"ts": now, "tried": now, "trades": rows}
         except Exception:
             pass  # ws gauge stands; the dossier stamps gauge_src honestly
 
@@ -8886,7 +8888,7 @@ class LiveV3:
                         and (start_ts is None or start_ts - now < 36000)):
                     _rfc9 = getattr(self, "_rest_flow", None) or {}
                     for _tk9 in tickers:
-                        if now - (_rfc9.get(_tk9) or {}).get("ts", 0) >= 45:
+                        if now - (_rfc9.get(_tk9) or {}).get("tried", 0) >= 45:
                             asyncio.ensure_future(
                                 self._flow_rest_refresh(_tk9, now))
             except Exception:

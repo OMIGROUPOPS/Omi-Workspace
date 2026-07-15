@@ -1,9 +1,9 @@
 # PROOF — HALT TRIAGE 23:10 (boot-fire family, occurrence 2: STAMP/MATCHER COLLISION)
 
-**Candidate SHA: a35bc46b.** Defect class, jumps everything; full gate.
+**Candidate SHA: 7b7a9503 (= a35bc46b, the four-organ halt fix, + the C-EARLY-CANVAS-2 Part-1 knob rider: early_chall_window_enabled=true — honest clocks only, CHALL cats only, nightly cohort line with the mains-defect assert; the window code itself shipped inert in a35bc46b and this knob lights it under its own operator word).** Defect class, jumps everything; full gate.
 **The probe worked:** Part 0's null-source auditor printed the writer — `{"ts":…, "source": null, "rebuilt": true}`. Root: the window stamp's `"gun_fired": true/false` boolean (shipped with C-WINDOW-LAW) substring-matches the boot rebuild's `'"gun_fired"' in line` grep; every window-stamped line carrying a `details.event` became a phantom rebuilt fire at boot. The 23:10 audit correctly refused to certify a book standing behind phantom fires — **the halt worked, again.**
 **The fix (the operator's letter, applied at all four organs):** (1) the rebuild requires `event == "gun_fired"` (the field, not the substring) AND a truthy source — a sourceless entry is UNKNOWN, never a fire, never inserted; rebuilt entries carry their grade explicitly. (2) The boot audit ignores sourceless fires (flag `unknown_grade_fire_ignored`, raw entry printed — visibility retained, false halts ended). (3) The chokepoint gun guard skips sourceless entries — never a refusal. (4) `_window_phase` evidence now requires an explicit source — null no longer passes as evidence. Tonight's phantoms purge at this boot's rebuild; the re-audit clears conceptions before the Euro slate's window.
 **Lane 2:** the fix REMOVES phantom refusals/halts; real fires (sourced) behave identically at every organ.
 
 ## Deploy gate
-[1/2] lint PASS · [2/3] smoke (gate-run) · [3/3] this file, OUTCOME_PROOF_SHA=a35bc46b · [4/4] C50 rides the next close-out push (this proof + vault note in it) · [5/5] constraints surface.
+[1/2] lint PASS · [2/3] smoke (gate-run) · [3/3] this file, OUTCOME_PROOF_SHA=7b7a9503 · [4/4] C50 rides the next close-out push (this proof + vault note in it) · [5/5] constraints surface.

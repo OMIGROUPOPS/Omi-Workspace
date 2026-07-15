@@ -134,5 +134,6 @@
   "selector_drop_enforce": true,
   "orientation_live": false,
   "sizing_live": false,
-  "sizing_drawdown_floor_cents": -1500
+  "sizing_drawdown_floor_cents": -1500,
+  "early_chall_window_enabled": true
 }

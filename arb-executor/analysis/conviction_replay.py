@@ -831,6 +831,37 @@ def main():
             pass
     except Exception:
         pass
+    # [C-EARLY-CANVAS-2 Part 1, 07-14] the CHALL pre-T-4h cohort, rendered
+    # separately from night one; any ITF/mains leg placed pre-T-4h without
+    # an unlock qualification = NAMED DEFECT on this line.
+    try:
+        _ec_open = 0
+        _ec_pl, _ec_fl = defaultdict(int), defaultdict(int)
+        _ec_defect = []
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"early_chall_window_open"' in line:
+                _ec_open += 1
+            elif '"v4_place"' in line and '"event": "v4_place"' in line:
+                d9 = json.loads(line)
+                det9 = d9.get("details") or {}
+                mb9 = det9.get("min_before_start")
+                c9 = det9.get("cat", "?")
+                if mb9 is not None and mb9 > 240:
+                    if c9 in ("ATP_CHALL", "WTA_CHALL"):
+                        _ec_pl[c9] += 1
+                    elif c9 in ("ATP_MAIN", "WTA_MAIN"):
+                        _ec_defect.append((d9.get("ticker"), mb9))
+        if _ec_open or any(_ec_pl.values()) or _ec_defect:
+            L += ["", "## EARLY-CHALL COHORT (C-EARLY-CANVAS-2: pre-T-4h "
+                      "window, honest clocks) — windows opened %d | "
+                      "placements %s%s"
+                      % (_ec_open, dict(_ec_pl),
+                         (" | **DEFECT: %d mains legs pre-T-4h: %s**"
+                          % (len(_ec_defect),
+                             [t for t, _ in _ec_defect[:4]]))
+                         if _ec_defect else "")]
+    except Exception:
+        pass
     # [C-TAPE-GATE v1, 07-14 — self-grading forever: the gate's claim is
     # re-earned every night or revoked by its own line] SKIP/KEEP counts
     # + the skip cohort's REALIZED forward outcomes (band exit filled /

@@ -42,7 +42,11 @@ python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
 ## STATE (2026-07-15 FLOW-REST-SEED — C50 keeps this current):
-C-FLOW-REST-SEED v1 DEPLOYED (operator R1 GO, full gate): the
+C-FLOW-REST-SEED v1 LIVE (boot 02:36:35 AM, last_deploy_sha
+1cfb28b3; audit PASS 0/0, 8 pos/255 resting, gun n=100; first
+rest_seeded stamps 02:38:53). RESTART INCIDENT filed as BOARD
+-0l: stop-window(20s) lost to drain-budget overrun on a 255-order
+book -> 8-min dead gap, manual restart healed. (build:) the
 dossier flow gauge REST-seeded (consultation-local; p30=max(ws,
 rest); provenance stamps; flip events); gun's fitted WS counter
 UNTOUCHED. Outcome replay: slate flips certified, behavior

@@ -619,6 +619,127 @@ def main():
                     pass
     except Exception:
         pass
+    # [C-WINDOW-LAW v1 Part 4, 07-14 — the operator directive: no night
+    # grades again without the window split] THE WINDOW LEDGER: entries,
+    # refusals, tape touches, fills, cashes-via-exit, rode-to-settlement,
+    # and cancels split W1 / CORRIDOR / W2 per cat — the WINDOW_MAP_3WAY
+    # axes as a standing instrument. Phase from the emitter stamp;
+    # pre-stamp lines and missing joins = UNKNOWN, named.
+    try:
+        WL = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
+        scheds, guns9 = {}, {}
+        aims9 = {}
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"schedule_match"' in line:
+                d9 = json.loads(line)
+                det9 = d9.get("details") or {}
+                ev9 = det9.get("event")
+                st9 = det9.get("start_time")
+                if ev9 and st9 and ev9 not in scheds:
+                    try:
+                        scheds[ev9] = datetime.fromisoformat(st9).timestamp()
+                    except Exception:
+                        pass
+                continue
+            if '"gun_fired"' in line:
+                d9 = json.loads(line)
+                ev9 = (d9.get("details") or {}).get("event")
+                if ev9 and ev9 not in guns9:
+                    guns9[ev9] = d9["ts_epoch"]
+                continue
+            hit9 = None
+            for e9, k9 in (('"v4_place"', "entries"),
+                           ('"below_leg_floor_refused"', "refusals"),
+                           ('"no_path_page_refused"', "refusals"),
+                           ('"selector_drop_refused"', "refusals"),
+                           ('"pair_seesaw_refused"', "refusals"),
+                           ('"entry_filled"', "fills"),
+                           ('"exit_filled"', "cash_via_exit"),
+                           ('"settled"', "rode_to_settle"),
+                           ('"order_cancelled"', "cancels"),
+                           ('"match_live_resting_cancel"', "cancels"),
+                           ('"trendpath_live_aim"', "aims")):
+                if e9 in line:
+                    hit9 = k9
+                    break
+            if not hit9:
+                continue
+            d9 = json.loads(line)
+            det9 = d9.get("details") or {}
+            if hit9 == "aims":
+                tk9 = d9.get("ticker")
+                if tk9 and tk9 not in aims9:
+                    aims9[tk9] = (d9["ts_epoch"], det9.get("path_aim"))
+                continue
+            if hit9 == "entries" and d9.get("event") != "v4_place":
+                continue
+            ph9 = ((det9.get("window") or {}).get("phase")
+                   if isinstance(det9.get("window"), dict) else None)
+            if ph9 is None:
+                ev9 = det9.get("event") or (d9.get("ticker") or
+                                            "").rsplit("-", 1)[0]
+                ts9 = d9["ts_epoch"]
+                sc9, gn9 = scheds.get(ev9), guns9.get(ev9)
+                ph9 = ("W2" if gn9 and ts9 >= gn9 else
+                       "CORRIDOR" if sc9 and ts9 >= sc9 else
+                       "W1" if sc9 else "UNKNOWN")
+            c9 = cat_of(d9.get("ticker") or "") or "?"
+            WL[c9][hit9][ph9] += 1
+        # tape touches for path-aimed legs, phase at touch
+        for tk9, (ats, aim9) in aims9.items():
+            if not aim9:
+                continue
+            obs9 = obs_cache.get(tk9) or leg_observations(tk9)
+            obs_cache[tk9] = obs9
+            t9 = next((o for o in obs9 if o[0] >= ats and o[2] <= aim9),
+                      None)
+            if t9 is None:
+                continue
+            ev9 = tk9.rsplit("-", 1)[0]
+            sc9, gn9 = scheds.get(ev9), guns9.get(ev9)
+            ph9 = ("W2" if gn9 and t9[0] >= gn9 else
+                   "CORRIDOR" if sc9 and t9[0] >= sc9 else
+                   "W1" if sc9 else "UNKNOWN")
+            WL[cat_of(tk9) or "?"]["tape_touches"][ph9] += 1
+        if WL:
+            L += ["", "## WINDOW LEDGER (C-WINDOW-LAW: W1 / CORRIDOR / W2 "
+                      "— no night grades without the split)"]
+            for c9 in sorted(WL):
+                row9 = WL[c9]
+                def _w(k):
+                    v9 = row9.get(k, {})
+                    return "W1:%d C:%d W2:%d U:%d" % (
+                        v9.get("W1", 0), v9.get("CORRIDOR", 0),
+                        v9.get("W2", 0), v9.get("UNKNOWN", 0))
+                L.append("- %s: entries[%s] refusals[%s] touches[%s] "
+                         "fills[%s] cash[%s] rode[%s] cancels[%s]"
+                         % (c9, _w("entries"), _w("refusals"),
+                            _w("tape_touches"), _w("fills"),
+                            _w("cash_via_exit"), _w("rode_to_settle"),
+                            _w("cancels")))
+        # [Part 5 tripwire] gun-feed staleness (min since last NEW in-play
+        # sighting — arrival-gap honest label)
+        try:
+            import sqlite3 as _sq9
+            _osdb = ROOT / "state/observed_starts.db"
+            _src9 = str(_osdb) if _osdb.exists() else str(ROOT / "tennis.db")
+            _con9 = _sq9.connect("file:%s?mode=ro" % _src9, uri=True,
+                                 timeout=2)
+            _mx9 = _con9.execute(
+                "SELECT MAX(inserted_at) FROM observed_starts").fetchone()[0]
+            _con9.close()
+            if _mx9:
+                _age9 = (datetime.now() -
+                         datetime.strptime(_mx9, "%Y-%m-%d %H:%M:%S")
+                         ).total_seconds() / 60.0
+                L.append("- GUN-FEED: last new in-play sighting %.0f min "
+                         "ago (%s)%s" % (_age9, Path(_src9).name,
+                                         " **> 30 min — TRIPWIRE**"
+                                         if _age9 > 30 else ""))
+        except Exception:
+            pass
+    except Exception:
+        pass
     # [C-DELETION-GATE Part 1, 07-12] GOVERNOR SPLIT: the two live brains'
     # actions and dollars, separated at the stamp -- no hand-reading logs.
     # Dollars: each exit_filled attributes its pnl to the governor of the

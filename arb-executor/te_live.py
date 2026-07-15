@@ -232,10 +232,28 @@ def bank_observed_starts():
         log('TE live page error: %s' % str(e)[:60])
         return 0
     pairs = re.findall(r'match-detail/\?id=(\d+)[^>]*>(.*?)</a>', r.text, re.S)
-    conn = get_db()
+    # [C-WINDOW-LAW Part 5, 07-14] THE KEYHOLE ROOT REPAIRED: the 17GB
+    # multi-writer tennis.db write-locked this bank out of ~59 of every 60
+    # minutes (rows landed only in the hourly :13 WAL window; the 07-08
+    # busy_timeout=30s was insufficient). The gun's primary feed now owns
+    # a dedicated single-writer DB — no contention class at all. The
+    # kalshi_codes join still reads tennis.db (read-only, tolerant).
+    kalshi_codes = {}
+    try:
+        conn0 = get_db()
+        c0 = conn0.cursor()
+        c0.execute('SELECT kalshi_code, name FROM players WHERE name IS NOT NULL')
+        kalshi_codes = {row[0]: row[1] for row in c0.fetchall()}
+        conn0.close()
+    except Exception as e:
+        log('players join read failed (tolerated): %s' % str(e)[:60])
+    os_db = os.path.join(os.path.dirname(DB_PATH), 'state',
+                         'observed_starts.db')
+    conn = sqlite3.connect(os_db, timeout=10)
     c = conn.cursor()
-    c.execute('SELECT kalshi_code, name FROM players WHERE name IS NOT NULL')
-    kalshi_codes = {row[0]: row[1] for row in c.fetchall()}
+    c.execute('''CREATE TABLE IF NOT EXISTS observed_starts (
+        te_match_id TEXT PRIMARY KEY, player1 TEXT, player2 TEXT,
+        kalshi_ticker TEXT, first_inplay_at TEXT, inserted_at TEXT)''')
     now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     banked = 0
     seen = set()

@@ -2025,6 +2025,18 @@ class LiveV3:
                         details["governed_by"] = "pair97_bound"
         except Exception:
             pass
+        # [C-WINDOW-LAW v1 Part 1, 07-14] the window-phase stamp at the
+        # single emitter: every placement, refusal, re-aim, cancel, and
+        # completion decision carries its phase (W1 / CORRIDOR / W2) off
+        # BOTH clocks + the two-clock spread. UNKNOWN named, never guessed.
+        try:
+            if isinstance(details, dict) and ticker and \
+                    event in self._WINDOW_STAMP_EVENTS and \
+                    "window" not in details:
+                _et0 = details.get("event") or ticker.rsplit("-", 1)[0]
+                details["window"] = self._window_phase(_et0)
+        except Exception:
+            pass
         # [C-PAIR-LAW v1 Part 2, 07-15] the one-sided-permission watch at
         # the single emitter: any leg-one fill whose sibling page shows no
         # reachable completion is a NAMED VIOLATION from tonight (field on
@@ -2858,6 +2870,51 @@ class LiveV3:
         except Exception:
             return None
 
+    _WINDOW_STAMP_EVENTS = frozenset((
+        "v4_place", "trendpath_live_aim", "below_leg_floor_refused",
+        "no_path_page_refused", "selector_drop_refused",
+        "pair_seesaw_refused", "pair_seesaw_lifted", "order_placed",
+        "order_cancelled", "completion_action", "completion_attempt",
+        "completion_no_attempt", "match_live_resting_cancel",
+        "path_mode_hold", "v4_exit_posted", "entry_filled", "exit_filled"))
+
+    def _window_phase(self, et, now=None):
+        """[C-WINDOW-LAW v1, 07-14 — the operator directive, §5 verbatim:
+        W1 fill→scheduled · CORRIDOR scheduled→gun · W2 gun→settle; the
+        corridor opens at schedule, closes at gun, NEVER at a burst]
+        phase computed off BOTH clocks — the market's (scheduled) and ours
+        (gun) — with the two-clock spread as a first-class number. GAP
+        honest: no schedule join or gun state = UNKNOWN, named, never
+        guessed. Never raises."""
+        try:
+            now = now or time.time()
+            sched = self.event_start_time.get(et)
+            g = (getattr(self, "_gun_state", {}) or {}).get(et)
+            gun_ts = (g or {}).get("ts")
+            out = {}
+            if gun_ts is not None and now >= gun_ts:
+                out["phase"] = "W2"
+            elif sched is not None and now >= sched:
+                out["phase"] = "CORRIDOR"
+            elif sched is not None:
+                out["phase"] = "W1"
+            else:
+                out["phase"] = "UNKNOWN"
+                out["why"] = ("no schedule join%s" %
+                              ("" if gun_ts is None
+                               else " (gun fired without schedule)"))
+            if sched is not None:
+                out["min_to_scheduled"] = round((sched - now) / 60.0, 1)
+            out["gun_fired"] = bool(gun_ts)
+            if g:
+                out["gun_source"] = g.get("source")
+            if gun_ts is not None and sched is not None:
+                out["two_clock_spread_min"] = round(
+                    (gun_ts - sched) / 60.0, 1)
+            return out
+        except Exception:
+            return {"phase": "UNKNOWN", "why": "phase computation error"}
+
     def _reach_law(self):
         """THE REACH LAW (LAW.json), hot-reloaded — the fitted fill judge."""
         _lp = Path(__file__).resolve().parent.parent / \
@@ -2996,6 +3053,13 @@ class LiveV3:
                                  "min_before_start": tts_min,
                                  "anchor_src": anchor_src,
                                  "last_trade_age_sec": lt_age}
+            # 10b) WINDOW PHASE [C-WINDOW-LAW Part 1, intake #2 — the
+            # operator directive]: W1/CORRIDOR/W2 off both clocks, the
+            # two-clock spread first-class
+            _wp9 = self._window_phase(et)
+            D["window_phase"] = {"status": ("CONSULTED"
+                                            if _wp9.get("phase") != "UNKNOWN"
+                                            else "NOT-APPLICABLE"), **_wp9}
             # SHADOW variant: the range-shape axis (atlas path slice at the
             # current clock — aim-moving, so it EARNS its way in)
             rs9 = None
@@ -6355,7 +6419,14 @@ class LiveV3:
         Read-only URI + short timeout: the collector owns the write lock; a
         locked/failed read returns [] and the poll retries next cadence."""
         import sqlite3
-        db = str(Path(__file__).resolve().parent / "tennis.db")
+        # [C-WINDOW-LAW Part 5, 07-14] the feed's own DB first: the 17GB
+        # multi-writer tennis.db write-locked te_live out of ~59 of every
+        # 60 minutes (rows landed only in the hourly :13 WAL window — the
+        # keyhole root). The dedicated single-writer DB removes the
+        # contention class; tennis.db remains the fallback during cutover.
+        _dbn = Path(__file__).resolve().parent / "state/observed_starts.db"
+        db = str(_dbn if _dbn.exists()
+                 else Path(__file__).resolve().parent / "tennis.db")
         wm = self._gun_feed_watermark
         if not wm:
             wm = (datetime.now(ET) - timedelta(hours=3)).strftime("%Y-%m-%d %H:%M:%S")

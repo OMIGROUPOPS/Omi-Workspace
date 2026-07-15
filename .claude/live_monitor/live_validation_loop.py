@@ -718,6 +718,29 @@ def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, ch
          f"- cycle {cycle_n} @ **{now_et()}** | build `{sha}` | session boot "
          f"{datetime.fromtimestamp(S['boot'], ET).strftime('%m-%d %H:%M ET') if S['boot'] else '?'} "
          f"| log `{log_path.name}` | {S['events']} session events | monitor READ-ONLY",]
+    # [C-WINDOW-LAW Part 5, 07-14] gun-feed staleness header tripwire:
+    # > 30 min since the last NEW in-play sighting prints at the top
+    # (arrival-gap honest label; the corridor's closing boundary is only
+    # as honest as this feed).
+    try:
+        import sqlite3 as _sq9
+        _osdb = REPO / "arb-executor/state/observed_starts.db"
+        _src9 = str(_osdb) if _osdb.exists() else \
+            str(REPO / "arb-executor/tennis.db")
+        _con9 = _sq9.connect("file:%s?mode=ro" % _src9, uri=True, timeout=2)
+        _mx9 = _con9.execute(
+            "SELECT MAX(inserted_at) FROM observed_starts").fetchone()[0]
+        _con9.close()
+        if _mx9:
+            _age9 = (datetime.now() - datetime.strptime(
+                _mx9, "%Y-%m-%d %H:%M:%S")).total_seconds() / 60.0
+            if _age9 > 30:
+                L.append("")
+                L.append("## ⚠ GUN FEED: last new in-play sighting %.0f "
+                         "min ago (>30 tripwire; source %s)" %
+                         (_age9, Path(_src9).name))
+    except Exception:
+        pass
     # [C-RESUME-CHECK Part 4, 07-14, DECREED] the ntfy channel publishes to
     # an UNSUBSCRIBED topic — THIS RENDER is the operator's real phone.
     # While the packet is fired and the default-GO clock runs, the numbers,

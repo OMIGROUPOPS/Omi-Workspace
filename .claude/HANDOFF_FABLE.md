@@ -8,6 +8,9 @@ close-out that changes state updates THIS file's State paragraph)
    first; front page = entry doctrine + all laws; RETIRED = graves.
    Chronology law: newer trumps older.
 3. docs/LESSONS.md — A-G principles.
+3b. arb-executor/docs/THE_DAILY_STANDARD.md — THE STANDARD (the OS's
+   day: layers, game reports, census; session-zero read BY LAW —
+   C-DAILY-STANDARD v1 07-15).
 4. .claude/rulings/ — verbatim law: GAME_LIFECYCLE.md (the 8-step
    process) · CLIMBSIDE_SPEC.md · RULING_DYNAMIC_S_CELL_AIM.md ·
    RULING_COMBINED_PRICE_CLAUSE.md · RULING_GRANULARITY_LAW.md ·
@@ -41,7 +44,23 @@ doctrine_registry.json receipt (rebuilt every C50:
 python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
-## STATE (2026-07-15 TAPE-BELL — C50 keeps this current):
+## STATE (2026-07-15 DAILY-STANDARD — C50 keeps this current):
+C-DAILY-STANDARD v1 DEPLOYED. THE STANDARD founded at
+docs/THE_DAILY_STANDARD.md (operating law: layers added once by
+dispatch, run forever, nightly standard-census; a layer that didn't
+run = named defect auto-boarded; session-zero reads it — disk map
+3b). Part 0 per-source grace LIVE (tape_flow 60s / others 300s;
+acceptance replay: catches 37->50 of 77, 13 of the 17 grace-eaten
+convert; GRACE CENSUS nightly). Layer 1 three-bucket entry grade +
+Layer 2 A-then-B grading run in the nightly; Layer 3 cash_window
+(GOLD-PATH/W2-DEPENDENT off lawful_share, >=0.5 DECREED) +
+w1_vitality stamps live on every entry dossier (owed fits named as
+GAPs). GAME REPORTS: analysis/game_report.py daily+on-demand; first
+run 397 reports, LEOTSI renders the walked example machine-made.
+Watches: STANDARD CENSUS 4 keys RAN nightly · grace census converts
+· cash_window split per cat.
+
+(prior:) ## STATE (2026-07-15 TAPE-BELL — C50 keeps this current):
 C-TAPE-BELL v1 DEPLOYED (defect class: 75 W2 fills broke
 no-buys-after-start; LEOTSI walked example -315c — schedule lied
 5.5h late, bell_missing printed at 9:13, fallback bell 9:26, fill

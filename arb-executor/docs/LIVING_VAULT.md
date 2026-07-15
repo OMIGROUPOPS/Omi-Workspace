@@ -134,6 +134,21 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-15 · C-DAILY-STANDARD v1 — THE STANDARD FOUNDED (the OS's day, defined once, run forever, census-enforced) + Part 0 per-source grace (operator word)
+
+**THE OPERATING LAW (verbatim):** "layers are added once, by dispatch, and run forever — enforced by a nightly standard-census (a layer that didn't run = named defect, auto-boarded); every seat's session-zero reads it. **No standard ever depends on the operator reminding anyone.**" The standard lives at `docs/THE_DAILY_STANDARD.md` (its own file, raw URL to Plex for ratification); it is in the HANDOFF disk map.
+
+**Part 0 — PER-SOURCE GRACE (the named knob, word given):** tape_flow fires carry **60s** grace; all other sources keep 300s (a tape fire is evidence-grade by construction — real prints, sustained, fitted threshold; the burst sources keep the FERCER shield). Replayed on today's 77-row acceptance tape: full-chain catches **37 → 50 of 77 — 13 of the 17 grace-eaten fills convert to saves** (4 had sub-60s margins, named). The armed line prints the per-source grace; the nightly GRACE CENSUS grades the knob from night one.
+
+**The three layers (operator's frames verbatim, full text in the standard):**
+- **Layer 1 — the three-bucket entry grade:** every entry decision since midnight lands in exactly one of SETTLED (did the thesis realize — **a W2-entered winner still grades F**) / OPEN (is this position what doctrine ordered right now, exit cited) / POSTED-UNFILLED (was not-filling correct — refusal counterfactuals priced, expired aims graded vs realized lows). Window-stamped, per category, nightly, self-run.
+- **Layer 2 — two-layer grading, in this order:** **A: the leg as an individual, first, always** — basis · discount bucket at fill · required swing to band beside basis (**the favorites law, verbatim: higher swings in great contention, dropped where the path shows no promise**) · TIGHT/EARLY vs its own low · placement-phase and fill-phase · own verdict. **B: the pair as a composition, second, never instead** — combined ≤97 as the measurement · orientation (riser early, faller late) · who-first vs fitted 2:1 · **neither layer launders the other.**
+- **Layer 3 — W1-vitality + the cash-window stamp, at entry:** the fingerprint besides price (flow TRANSITIONS not levels · volume's path to the floor · category fill-regime · side timing anatomy · prints-under-the-wall vs quote theater · clock honesty) **+ CASH-WINDOW ESTIMATE on every entry: P(band prints in W1/corridor) from the cell's fitted travel — GOLD-PATH or W2-DEPENDENT, known at purchase** (a 90s exit = W2-dependent by construction, stamped as such). LIVE basis = the timing recut's `lawful_share`; owed fits (volume-path, wall-vs-theater) are named GAPs the census tracks.
+
+**THE GAME REPORT (the standard's artifact):** per game, daily and on-demand (`analysis/game_report.py`) — header · the window timeline with every action plotted · Layer A · Layer B · the decision log with surfaces and answers · refusal counterfactuals · verdict line (grade, dollars, billed book, owning fix). **First live run: 397 reports; the LEOTSI report renders the walked example machine-made** — the walked-example doctrine (founded yesterday's entry) is now produced BY the OS, not by hand.
+
+**THE TEETH:** the nightly adjudication builds the three-bucket table, generates the reports, prints the GRACE CENSUS, then runs THE STANDARD CENSUS over four keys (L1/L2/L3/P0) — DID NOT RUN = STANDARD DEFECT, auto-boarded under "AUTO-GAPS (standard census intake)".
+
 ### 2026-07-15 · C-TAPE-BELL v1 DEPLOYED (defect class: 75 W2 fills broke the no-buys-after-start law — the trigger missed, not the rule) — THE TAPE IS THE BELL; W2 FILL = ZERO TOLERANCE; the three standing words ARMED
 
 **THE WALKED EXAMPLE (LEOTSI — founding doctrine: every defect entry from now on carries its walked example):**

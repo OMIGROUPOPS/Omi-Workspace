@@ -1,0 +1,8 @@
+PART 5 — THE PACKET RE-GRADED ON LAWFUL-WINDOW FILLS ONLY (W1+corridor = placement -> evidence gun; §5 the sole time authority)
+
+PATH: n=492 | LAWFUL E$+21.15 vs actual $-49.85 | delta $+71.00 (CI [+24.10,+127.05]) | yield 7.5% | unlawful (post-gun) E$+79.40 excluded | prior packet: delta $+85.49 / 11.5% -> **STANDS**
+REACH: n=454 | LAWFUL E$-1.52 vs actual $-47.15 | delta $+45.63 (CI [-2.18,+92.32]) | yield -0.4% | unlawful (post-gun) E$+4.21 excluded | prior packet: delta $+63.89 / 3.9% -> **SHRINKS-TO $+45.63 / -0.4%**
+SELECTOR: n=369 | LAWFUL E$+27.32 vs actual $-37.75 | delta $+65.07 (CI [+23.61,+109.94]) | yield 26.3% | unlawful (post-gun) E$+85.22 excluded | prior packet: delta $+73.90 / 24.3% -> **STANDS**
+
+PART 4 — THE 26.55-vs-9 OVERCOUNT, DECOMPOSED (reach trial, expected-fill mass by window):
+  lawful-window expected fills: 184.58 | post-gun expected fills: 266.14  -> the law's overcount was ACCRUAL PAST THE GUN: the stepped survival kept integrating fill probability into W2, where the thesis never intended to stand. Refit = integrate to the evidence gun, nothing else changes.

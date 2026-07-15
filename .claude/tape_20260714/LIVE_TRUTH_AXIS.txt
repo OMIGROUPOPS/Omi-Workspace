@@ -1,0 +1,44 @@
+PART 4a — THE LIVE-TRUTH CORPUS: where the proven harvest lived (every real fill 07-10.., window-stamped on the EVIDENCE-GUN clock)
+
+  ATP_CHALL|dog      NO-GUN-RECORD|cash_via_exit: n=2 $+0.75 | W1_CORRIDOR|cash_via_exit: n=34 $+9.96 | W1_CORRIDOR|rode_to_settle: n=5 $-8.10 | W2|cash_via_exit: n=5 $+1.71 | W2|rode_to_settle: n=2 $-3.55
+  ATP_CHALL|leader   NO-GUN-RECORD|cash_via_exit: n=2 $+1.95 | W1_CORRIDOR|cash_via_exit: n=24 $+14.52 | W1_CORRIDOR|rode_to_settle: n=3 $-9.25 | W2|cash_via_exit: n=14 $+9.31 | W2|rode_to_settle: n=2 $-7.10
+  ATP_MAIN|dog       W1_CORRIDOR|cash_via_exit: n=12 $+4.60 | W1_CORRIDOR|rode_to_settle: n=2 $-1.25 | W2|cash_via_exit: n=2 $+0.70 | W2|rode_to_settle: n=3 $-4.40
+  ATP_MAIN|leader    NO-GUN-RECORD|cash_via_exit: n=1 $-0.05 | NO-GUN-RECORD|rode_to_settle: n=1 $+0.05 | W1_CORRIDOR|cash_via_exit: n=16 $+10.92 | W1_CORRIDOR|rode_to_settle: n=8 $-24.80 | W2|cash_via_exit: n=2 $+2.34 | W2|rode_to_settle: n=1 $-3.70
+  ITF_M|dog          NO-GUN-RECORD|cash_via_exit: n=3 $+0.60 | NO-GUN-RECORD|rode_to_settle: n=1 $-1.10 | W1_CORRIDOR|cash_via_exit: n=33 $+11.11 | W1_CORRIDOR|rode_to_settle: n=12 $-14.95 | W2|cash_via_exit: n=38 $+10.81 | W2|rode_to_settle: n=12 $-16.75
+  ITF_M|leader       NO-GUN-RECORD|cash_via_exit: n=5 $+4.63 | W1_CORRIDOR|cash_via_exit: n=37 $+30.44 | W1_CORRIDOR|rode_to_settle: n=8 $-25.25 | W2|cash_via_exit: n=39 $+26.83 | W2|rode_to_settle: n=6 $-18.80
+  ITF_W|dog          NO-GUN-RECORD|cash_via_exit: n=4 $+0.94 | NO-GUN-RECORD|rode_to_settle: n=3 $-4.85 | W1_CORRIDOR|cash_via_exit: n=43 $+12.96 | W1_CORRIDOR|rode_to_settle: n=22 $-32.85 | W2|cash_via_exit: n=34 $+6.82 | W2|rode_to_settle: n=7 $-8.55
+  ITF_W|leader       NO-GUN-RECORD|cash_via_exit: n=7 $+6.62 | W1_CORRIDOR|cash_via_exit: n=38 $+25.62 | W1_CORRIDOR|rode_to_settle: n=13 $-42.05 | W2|cash_via_exit: n=34 $+15.62 | W2|rode_to_settle: n=10 $-29.05
+  WTA_CHALL|dog      NO-GUN-RECORD|cash_via_exit: n=1 $+0.35 | W1_CORRIDOR|cash_via_exit: n=12 $+4.38 | W1_CORRIDOR|rode_to_settle: n=5 $-5.80 | W2|cash_via_exit: n=9 $+3.48 | W2|rode_to_settle: n=7 $-6.55
+  WTA_CHALL|leader   NO-GUN-RECORD|cash_via_exit: n=1 $+0.80 | W1_CORRIDOR|cash_via_exit: n=8 $+4.95 | W1_CORRIDOR|rode_to_settle: n=2 $-6.75 | W2|cash_via_exit: n=7 $+4.66 | W2|rode_to_settle: n=2 $-6.80
+  WTA_MAIN|dog       NO-GUN-RECORD|cash_via_exit: n=1 $+0.45 | W1_CORRIDOR|cash_via_exit: n=9 $+2.46 | W1_CORRIDOR|rode_to_settle: n=4 $-3.80 | W2|cash_via_exit: n=7 $+2.10
+  WTA_MAIN|leader    NO-GUN-RECORD|cash_via_exit: n=1 $+0.05 | NO-GUN-RECORD|rode_to_settle: n=2 $-0.20 | W1_CORRIDOR|cash_via_exit: n=11 $+7.50 | W1_CORRIDOR|rode_to_settle: n=3 $-4.05 | W2|cash_via_exit: n=5 $+4.20 | W2|rode_to_settle: n=3 $-9.50
+
+PART 4b — bottoms on the GUN clock (live-era legs w/ evidence gun + tape) + lawful share:
+  ATP_CHALL  n=301 | lawful share (bottom pre-gun): 14% | median bottom 360 min before gun
+  ATP_MAIN   n=89 | lawful share (bottom pre-gun): 18% | median bottom 667 min before gun
+  ITF_M      n=448 | lawful share (bottom pre-gun): 14% | median bottom 2 min before gun
+  ITF_W      n=519 | lawful share (bottom pre-gun): 14% | median bottom 22 min before gun
+  WTA_CHALL  n=116 | lawful share (bottom pre-gun): 14% | median bottom 593 min before gun
+  WTA_MAIN   n=90 | lawful share (bottom pre-gun): 14% | median bottom 745 min before gun
+
+PART 5b — tonight's census, FULL CANVAS (conception -> evidence gun), swing = 100 - best combined:
+  26JUL14BLATOM                  NO combined 101 | swing -1
+  26JUL14DRATRO                  NO combined 99 | swing +1
+  26JUL14IMAMCC                  NO combined 100 | swing +0
+  26JUL14LANYIB                  NO combined 98 | swing +2
+  26JUL14NEDDAL                  NO combined 98 | swing +2
+  26JUL14BOUHUL                  NO combined 102 | swing -2
+  26JUL14COXHAM                  NO combined 100 | swing +0
+  26JUL14DELZHA                  NO combined 100 | swing +0
+  26JUL14DEMSAC                  NO combined 101 | swing -1
+  26JUL14HAZMCF                  NO combined 98 | swing +2
+  26JUL14JASJON                  NO combined 101 | swing -1
+  26JUL14STEVOL                  NO combined 102 | swing -2
+  26JUL14VIITAK                  NO combined 101 | swing -1
+  26JUL14KHALIN                  NO combined 101 | swing -1
+  26JUL14MUSBRA                  NO combined 100 | swing +0
+  26JUL14OTWTAY                  NO combined 101 | swing -1
+  26JUL14SHIRUS                  NO combined 100 | swing +0
+  26JUL14TSASTE                  NO combined 102 | swing -2
+  26JUL14WARSYC                  NO combined 102 | swing -2
+  FULL-CANVAS: 0 achievable / 19 not

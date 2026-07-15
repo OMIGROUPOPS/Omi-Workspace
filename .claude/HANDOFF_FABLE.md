@@ -33,7 +33,19 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 TAPE-P0 — C50 keeps this current):
+## STATE (2026-07-14 TAPE-CLOSED — C50 keeps this current):
+READ-THE-TAPE 1-6 closed + CONVICTED-INSTRUMENTS: reach refit
+DEPLOYED (bound=evidence gun; nightly E-vs-A armed honest). #1
+leak = tape-blind flatten +$20.06 -> TAPE-GATE PROPOSAL awaits
+the word. Frozen aim +$1.30=nothing -> aim lanes stay shadow
+(ruling+receipt). Packet lawful: PATH+SELECTOR STAND, REACH
+SHRINKS. EV3: n=499, delta -$17.20, CI touches zero -> NO
+CUTOVER, stays shadow; vault amended (tape gate, not third term,
+is the cure). MIS-ANCHORED at n=1563 (14% lawful share); timing
+recut priced. UNACHIEVABLE stands full canvas. Artifacts:
+.claude/tape_20260714/.
+
+(prior:) ## STATE (2026-07-14 TAPE-P0):
 C-READ-THE-TAPE Part 0 closed: boot race dead (8e1ac67d -- replay
 gated on gun-rebuild + live-scan; refused_gun_fired belt; null-
 source auditor tell). 7 race buys: 0 filled, all swept; halt held

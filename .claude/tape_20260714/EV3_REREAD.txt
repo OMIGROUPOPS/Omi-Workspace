@@ -1,0 +1,51 @@
+PART 2 — EV3 RE-READ (both frames on every settled completion verdict to date; flatten proxy = trailing-median exit)
+
+graded verdict-legs: 499 (with EV3 opinion: 239)
+two-term frame P&L $-52.15 | three-term (EV3) P&L $-69.35 | delta $-17.20 (CI [-56.20, +22.20])
+PRE-AGREED BAR: n>=300 era-clean AND CI off zero -> VERDICT: AT-THE-LETTER (n>=300, CI touches zero)
+
+THE +$20.06 LEAK, DECOMPOSED (every tape-gate-skipped flatten, window-stamped):
+  07-12 05:20PM -26JUL12TOKROZ-TOK             W2 | sold 48 vs basis 44 | tape med 48.0 (>=basis -> SKIP) | held-to-settle $-2.20 | delta $-2.40
+  07-12 06:52PM -26JUL12PANOUN-OUN             W2 | sold 23 vs basis 55 | tape med 68.0 (>=basis -> SKIP) | held-to-settle $+2.25 | delta $+3.85
+  07-13 01:35AM -26JUL13YEVCAM-YEV             W1 | sold 41 vs basis 42 | tape med 42.0 (>=basis -> SKIP) | held-to-settle $-2.10 | delta $-2.05
+  07-13 01:51AM -26JUL13VILGAN-VIL             W2 | sold 91 vs basis 91 | tape med 92.0 (>=basis -> SKIP) | held-to-settle $+0.45 | delta $+0.45
+  07-13 03:41AM -26JUL13PRICRI-PRI             W1 | sold 89 vs basis 90 | tape med 90.0 (>=basis -> SKIP) | held-to-settle $+0.50 | delta $+0.55
+  07-13 04:09AM -26JUL13VELKOR-KOR             W2 | sold 60 vs basis 65 | tape med 65.0 (>=basis -> SKIP) | held-to-settle $+1.75 | delta $+2.00
+  07-13 04:11AM -26JUL13PRICRI-PRI             W2 | sold 87 vs basis 89 | tape med 89.0 (>=basis -> SKIP) | held-to-settle $+0.55 | delta $+0.65
+  07-13 04:36AM -26JUL13MOHKEZ-MOH             W2 | sold 88 vs basis 90 | tape med 90.0 (>=basis -> SKIP) | held-to-settle $+0.50 | delta $+0.60
+  07-13 05:03AM -26JUL13GIZVLA-GIZ             W2 | sold 12 vs basis 14 | tape med 14.0 (>=basis -> SKIP) | held-to-settle $+4.30 | delta $+4.40
+  07-13 05:08AM -26JUL13YEVCAM-CAM             W2 | sold 52 vs basis 56 | tape med 57.0 (>=basis -> SKIP) | held-to-settle $+2.20 | delta $+2.40
+  07-13 05:12AM -26JUL13PULWIR-PUL             W2 | sold 21 vs basis 31 | tape med 31.0 (>=basis -> SKIP) | held-to-settle $+3.45 | delta $+3.95
+  07-13 05:14AM -26JUL13DIGZAP-DIG             W1 | sold 92 vs basis 88 | tape med 92.0 (>=basis -> SKIP) | held-to-settle $+0.60 | delta $+0.40
+  07-13 05:18AM -26JUL13PASKRU-PAS             W2 | sold 65 vs basis 64 | tape med 65.0 (>=basis -> SKIP) | held-to-settle $-3.20 | delta $-3.25
+  07-13 05:19AM -26JUL13FEHKRO-FEH             W2 | sold 8 vs basis 10 | tape med 10.0 (>=basis -> SKIP) | held-to-settle $-0.50 | delta $-0.40
+  07-13 05:20AM -26JUL13BONSOR-SOR             W1 | sold 43 vs basis 43 | tape med 43.0 (>=basis -> SKIP) | held-to-settle $-2.15 | delta $-2.15
+  07-13 05:21AM -26JUL13VULPAO-PAO             W2 | sold 15 vs basis 19 | tape med 19.0 (>=basis -> SKIP) | held-to-settle $-0.95 | delta $-0.75
+  07-13 05:30AM H-26JUL12DEGEE-GEE             CORRIDOR | sold 54 vs basis 57 | tape med 57.0 (>=basis -> SKIP) | held-to-settle $-2.85 | delta $-2.70
+  07-13 05:56AM -26JUL13DONWES-DON             W1 | sold 25 vs basis 27 | tape med 27.0 (>=basis -> SKIP) | held-to-settle $-1.35 | delta $-1.25
+  07-13 06:01AM -26JUL13CAKVOZ-CAK             W2 | sold 82 vs basis 71 | tape med 79.0 (>=basis -> SKIP) | held-to-settle $+1.45 | delta $+0.90
+  07-13 06:13AM -26JUL13DELBRO-DEL             W2 | sold 29 vs basis 36 | tape med 36.0 (>=basis -> SKIP) | held-to-settle $-1.80 | delta $-1.45
+  07-13 06:55AM -26JUL13SARANG-SAR             W2 | sold 35 vs basis 41 | tape med 53.0 (>=basis -> SKIP) | held-to-settle $-2.05 | delta $-1.75
+  07-13 07:03AM -26JUL13FAUDAM-FAU             W1 | sold 55 vs basis 55 | tape med 56.0 (>=basis -> SKIP) | held-to-settle $-2.75 | delta $-2.75
+  07-13 07:14AM -26JUL13RAJHUT-RAJ             W2 | sold 78 vs basis 74 | tape med 78.0 (>=basis -> SKIP) | held-to-settle $+1.30 | delta $+1.10
+  07-13 07:33AM -26JUL13PETURB-URB             W2 | sold 34 vs basis 38 | tape med 38.0 (>=basis -> SKIP) | held-to-settle $-1.90 | delta $-1.70
+  07-13 08:03AM -26JUL13IVAKOP-IVA             W2 | sold 85 vs basis 91 | tape med 91.0 (>=basis -> SKIP) | held-to-settle $+0.45 | delta $+0.75
+  07-13 08:03AM -26JUL13STESCH-SCH             W1 | sold 10 vs basis 10 | tape med 10.0 (>=basis -> SKIP) | held-to-settle $-0.50 | delta $-0.50
+  07-13 08:18AM -26JUL13TIMCAR-TIM             W2 | sold 90 vs basis 88 | tape med 94.0 (>=basis -> SKIP) | held-to-settle $+0.60 | delta $+0.50
+  07-13 10:09AM -26JUL13GIAMEN-GIA             W2 | sold 91 vs basis 91 | tape med 92.0 (>=basis -> SKIP) | held-to-settle $+0.45 | delta $+0.45
+  07-13 10:17AM -26JUL13NAGCHY-NAG             W2 | sold 91 vs basis 93 | tape med 94.0 (>=basis -> SKIP) | held-to-settle $+0.35 | delta $+0.45
+  07-13 10:42AM -26JUL13LINHON-HON             W2 | sold 18 vs basis 16 | tape med 17.0 (>=basis -> SKIP) | held-to-settle $+4.20 | delta $+4.10
+  07-13 11:04AM -26JUL13FORRAF-RAF             W1 | sold 13 vs basis 15 | tape med 15.0 (>=basis -> SKIP) | held-to-settle $-0.75 | delta $-0.65
+  07-13 11:37AM -26JUL13INCSTE-INC             W1 | sold 52 vs basis 52 | tape med 52.0 (>=basis -> SKIP) | held-to-settle $+2.40 | delta $+2.40
+  07-13 12:07PM -26JUL13SEMXUX-SEM             W2 | sold 71 vs basis 88 | tape med 88.0 (>=basis -> SKIP) | held-to-settle $+0.60 | delta $+1.45
+  07-13 12:51PM -26JUL12KOPPRI-PRI             CORRIDOR | sold 73 vs basis 74 | tape med 74.0 (>=basis -> SKIP) | held-to-settle $+1.30 | delta $+1.35
+  07-13 02:52PM -26JUL13SANLOP-SAN             W1 | sold 88 vs basis 89 | tape med 89.0 (>=basis -> SKIP) | held-to-settle $+0.55 | delta $+0.60
+  07-14 12:31AM -26JUL13BLISAS-SAS             CORRIDOR | sold 56 vs basis 55 | tape med 56.0 (>=basis -> SKIP) | held-to-settle $+2.25 | delta $+2.20
+  07-14 02:15AM -26JUL14VOSVAN-VAN             W2 | sold 93 vs basis 91 | tape med 91.0 (>=basis -> SKIP) | held-to-settle $+0.45 | delta $+0.35
+  07-14 02:32AM -26JUL14PANBEL-PAN             W2 | sold 7 vs basis 13 | tape med 17.0 (>=basis -> SKIP) | held-to-settle $+4.35 | delta $+4.65
+  07-14 03:15AM -26JUL14AUNELN-AUN             W2 | sold 85 vs basis 86 | tape med 92.0 (>=basis -> SKIP) | held-to-settle $+0.70 | delta $+0.75
+  07-14 03:25AM -26JUL14BATKRY-BAT             W2 | sold 48 vs basis 70 | tape med 78.0 (>=basis -> SKIP) | held-to-settle $+1.50 | delta $+2.60
+  07-14 03:32AM -26JUL14BARKOL-BAR             W1 | sold 92 vs basis 92 | tape med 92.0 (>=basis -> SKIP) | held-to-settle $+0.08 | delta $+0.08
+  07-14 03:53AM -26JUL14AVAUCH-AVA             W1 | sold 56 vs basis 56 | tape med 57.0 (>=basis -> SKIP) | held-to-settle $+0.44 | delta $+0.44
+  07-14 03:53AM -26JUL14SALIBR-SAL             W1 | sold 56 vs basis 56 | tape med 56.0 (>=basis -> SKIP) | held-to-settle $-0.56 | delta $-0.56
+  TOTAL tape-gate advantage on settled skips: $+20.06

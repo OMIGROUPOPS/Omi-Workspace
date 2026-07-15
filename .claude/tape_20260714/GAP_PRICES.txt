@@ -1,0 +1,15 @@
+PART 2 — THE GAPS, PRICED BY REPLAY (our own trade days; lawful-window only; size-blind tape, named)
+
+GAP-A: the aim freeze vs tape-following aim (monotone-down, get-paid doctrine)
+  ATP_CHALL  n=76 | frozen: 18 fills $+1.30 | dynamic: 15 fills $+0.10 | delta $-1.20
+  ATP_MAIN   n=31 | frozen: 3 fills $-0.10 | dynamic: 1 fills $+0.40 | delta $+0.50
+  ITF_M      n=149 | frozen: 9 fills $-0.75 | dynamic: 9 fills $-0.75 | delta $+0.00
+  ITF_W      n=162 | frozen: 20 fills $+2.80 | dynamic: 19 fills $+3.60 | delta $+0.80
+  WTA_CHALL  n=43 | frozen: 15 fills $-3.50 | dynamic: 14 fills $-2.30 | delta $+1.20
+  WTA_MAIN   n=32 | frozen: 1 fills $+0.40 | dynamic: 1 fills $+0.40 | delta $+0.00
+  TOTAL delta $+1.30 (CI [-2.00, +5.25], n=493 legs)
+
+GAP-C: the tape-blind flatten, re-graded with ONE tape gate (skip when trailing-15min median >= basis)
+  flatten actions 47 | tape-gate would SKIP 43, KEEP 4 | actual $-6.35 -> tape-gated $+13.71 | GAP-C delta $+20.06
+
+RANKING (measured dollars, not argument): printed above; GAP-B (completion freeze) and GAP-D (os_shadow composite) = INSUFFICIENT tonight (completion n too small post-cutover; os_shadow needs the would-action grader) — named, queued.

@@ -1,48 +1,9 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784074393 -->
-written 2026-07-14 08:13:47 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784077285 -->
+written 2026-07-14 09:06:55 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (41 total this session)
-- 15:31:26 KXITFMATCH-26JUL14VULBAS-BAS — flatten DEFERRED: ev -2.11 above margin floor -3.0
-- 15:31:26 KXITFWMATCH-26JUL14MARKOI-KOI — flatten CAPPED at 8/day (8 today)
-- 15:31:27 KXITFWMATCH-26JUL14BARREA-REA — flatten CAPPED at 8/day (8 today)
-- 15:41:28 KXITFWMATCH-26JUL14BARREA-REA — flatten CAPPED at 8/day (8 today)
-- 15:41:29 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 15:51:29 KXITFMATCH-26JUL14VULBAS-BAS — flatten DEFERRED: ev -2.11 above margin floor -3.0
-- 15:51:29 KXITFWMATCH-26JUL14BARREA-REA — flatten CAPPED at 8/day (8 today)
-- 15:51:30 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 16:01:31 KXITFWMATCH-26JUL14BARREA-REA — flatten CAPPED at 8/day (8 today)
-- 16:01:32 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 16:11:37 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 16:21:37 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 16:31:39 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 16:41:42 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 16:51:42 KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL — flatten DEFERRED: ev -1.52 above margin floor -3.0
-- 16:51:42 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 17:01:46 KXITFMATCH-26JUL14UTACAZ-UTA — flatten CAPPED at 8/day (8 today)
-- 17:01:46 KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL — flatten DEFERRED: ev -1.52 above margin floor -3.0
-- 17:01:46 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 17:11:50 KXITFMATCH-26JUL14UTACAZ-UTA — flatten CAPPED at 8/day (8 today)
-- 17:11:51 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 17:31:54 KXITFWMATCH-26JUL14SCHSOU-SCH — flatten DEFERRED: ev -2.0 above margin floor -3.0
-- 17:41:55 KXITFWMATCH-26JUL14SCHSOU-SCH — flatten DEFERRED: ev -2.0 above margin floor -3.0
-- 17:51:59 KXITFWMATCH-26JUL14SCHSOU-SCH — flatten DEFERRED: ev -2.0 above margin floor -3.0
-- 17:51:59 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 18:02:10 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 18:12:15 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 18:22:15 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 18:32:17 KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL — flatten DEFERRED: ev -1.52 above margin floor -3.0
-- 18:32:17 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 18:42:21 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 18:52:22 KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL — flatten DEFERRED: ev -1.52 above margin floor -3.0
-- 18:52:22 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 19:02:35 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 19:12:42 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 19:22:42 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 19:32:46 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 19:42:51 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 19:52:55 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 20:02:59 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
-- 20:13:13 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
+## Events (2 total this session)
+- 20:50:51 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
+- 21:01:25 KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA — flatten CAPPED at 8/day (8 today)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-14 10:00:24 AM ET", "ts_epoch": 1784037624.099774, "event": "staircase_hold_place", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"cat": "ATP_CHALL", "bid": 45, "target": 45}}
@@ -215,6 +176,32 @@ written 2026-07-14 08:13:47 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-14 08:02:59 PM ET", "ts_epoch": 1784073779.050782, "event": "completion_flatten_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
     {"ts": "2026-07-14 08:13:13 PM ET", "ts_epoch": 1784074393.0889778, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|disc|26_50", "n": 49, "p_exit_fill": 0.673, "p_ride_zero": 0.327, "ev_cents": -8.63, "band": 9, "basis": 45, "win_ride_residual_excluded": 0.0, "citation": "
     {"ts": "2026-07-14 08:13:13 PM ET", "ts_epoch": 1784074393.0892391, "event": "completion_flatten_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
+    {"ts": "2026-07-14 08:14:09 PM ET", "ts_epoch": 1784074449.927147, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 7, "n_resting_orders": 33, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784056709.5090506, "legs_new": [], "legs_gone": ["KXATPCHALLENGERMATCH-26JUL14ADDLEO-LEO", "KXAT
+    {"ts": "2026-07-14 08:16:16 PM ET", "ts_epoch": 1784074576.481544, "event": "post_boot_audit", "ticker": "", "details": {"context": "boot", "verdict": "PASS", "n_positions": 7, "n_resting_orders": 23, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784074449.930927, "legs_new": [], "legs_gone": [], "n_held_now": 7, "n_held_banked": 7}, "table": [{"tk": 
+    {"ts": "2026-07-14 08:16:29 PM ET", "ts_epoch": 1784074589.7755117, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"verdict": "NO-OPINION", "kept": {"opinion": "NO-OPINION", "missing": "no observable runmid / basis / band"}, "cross": {"opinion": "NO-OPINION", "missing": "no observable runmid / basis / band"}, "ev3": {"verdict3": "NO-OPINION"}, "event"
+    {"ts": "2026-07-14 08:17:30 PM ET", "ts_epoch": 1784074650.6565425, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 7, "n_resting_orders": 22, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784074449.930927, "legs_new": [], "legs_gone": [], "n_held_now": 7, "n_held_banked": 7}, "table
+    {"ts": "2026-07-14 08:27:10 PM ET", "ts_epoch": 1784075230.8645065, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"verdict": "NO-OPINION", "kept": {"opinion": "NO-OPINION", "missing": "no observable runmid / basis / band"}, "cross": {"opinion": "EV", "cell": "ATP_CHALL|leader|at_mid|51_75", "n": 69, "p_exit_fill": 0.768, "p_ride_zero": 0.217, "ev_cen
+    {"ts": "2026-07-14 08:32:42 PM ET", "ts_epoch": 1784075562.4455976, "event": "tape_seed_live_confirm", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"seed_price": 47, "live_price": 46, "delta": -1, "seed_age_sec": 1200.6}}
+    {"ts": "2026-07-14 08:33:29 PM ET", "ts_epoch": 1784075609.1814494, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 6, "n_resting_orders": 29, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784074449.930927, "legs_new": [], "legs_gone": ["KXITFMATCH-26JUL14BROBOB-BRO"], "n_held_now": 
+    {"ts": "2026-07-14 08:37:13 PM ET", "ts_epoch": 1784075833.3275156, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|26_50", "n": 75, "p_exit_fill": 0.773, "p_ride_zero": 0.227, "ev_cents": -3.24, "band": 9, "basis": 45, "win_ride_residual_excluded": 0.0, "citation":
+    {"ts": "2026-07-14 08:37:13 PM ET", "ts_epoch": 1784075833.3307061, "event": "completion_flatten_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
+    {"ts": "2026-07-14 08:40:32 PM ET", "ts_epoch": 1784076032.9874039, "event": "post_boot_audit", "ticker": "", "details": {"context": "boot", "verdict": "FAIL", "n_positions": 6, "n_resting_orders": 29, "n_failures": 7, "n_flags": 0, "failures": [{"tk": "KXATPCHALLENGERMATCH-26JUL14VUKARS-ARS", "check": "buy_placed_post_fire", "oid": "3ebe9951-5b9", "fire_src": null, "min_after_fire": 0.2}, {"tk": 
+    {"ts": "2026-07-14 08:40:50 PM ET", "ts_epoch": 1784076050.1323986, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"verdict": "NO-OPINION", "kept": {"opinion": "NO-OPINION", "missing": "no observable runmid / basis / band"}, "cross": {"opinion": "NO-OPINION", "missing": "no observable runmid / basis / band"}, "ev3": {"verdict3": "NO-OPINION"}, "event"
+    {"ts": "2026-07-14 08:41:52 PM ET", "ts_epoch": 1784076112.454319, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 6, "n_resting_orders": 29, "n_failures": 7, "n_flags": 0, "failures": [{"tk": "KXATPCHALLENGERMATCH-26JUL14VUKARS-ARS", "check": "buy_placed_post_fire", "oid": "3ebe9951-5b9", "fire_src": null, "min_after_fire": 0.2}
+    {"ts": "2026-07-14 08:42:52 PM ET", "ts_epoch": 1784076172.58918, "event": "tape_seed_live_confirm", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"seed_price": 46, "live_price": 48, "delta": 2, "seed_age_sec": 613.2}}
+    {"ts": "2026-07-14 08:43:15 PM ET", "ts_epoch": 1784076195.7498293, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 6, "n_resting_orders": 29, "n_failures": 7, "n_flags": 0, "failures": [{"tk": "KXATPCHALLENGERMATCH-26JUL14VUKARS-ARS", "check": "buy_placed_post_fire", "oid": "3ebe9951-5b9", "fire_src": null, "min_after_fire": 0.2
+    {"ts": "2026-07-14 08:43:53 PM ET", "ts_epoch": 1784076233.7228997, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 6, "n_resting_orders": 29, "n_failures": 7, "n_flags": 0, "failures": [{"tk": "KXATPCHALLENGERMATCH-26JUL14VUKARS-ARS", "check": "buy_placed_post_fire", "oid": "3ebe9951-5b9", "fire_src": null, "min_after_fire": 0.2
+    {"ts": "2026-07-14 08:45:27 PM ET", "ts_epoch": 1784076327.943734, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 6, "n_resting_orders": 29, "n_failures": 7, "n_flags": 0, "failures": [{"tk": "KXATPCHALLENGERMATCH-26JUL14VUKARS-ARS", "check": "buy_placed_post_fire", "oid": "3ebe9951-5b9", "fire_src": null, "min_after_fire": 0.2}
+    {"ts": "2026-07-14 08:46:12 PM ET", "ts_epoch": 1784076372.9420867, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 6, "n_resting_orders": 29, "n_failures": 7, "n_flags": 0, "failures": [{"tk": "KXATPCHALLENGERMATCH-26JUL14VUKARS-ARS", "check": "buy_placed_post_fire", "oid": "3ebe9951-5b9", "fire_src": null, "min_after_fire": 0.2
+    {"ts": "2026-07-14 08:47:11 PM ET", "ts_epoch": 1784076431.8349063, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 6, "n_resting_orders": 29, "n_failures": 7, "n_flags": 0, "failures": [{"tk": "KXATPCHALLENGERMATCH-26JUL14VUKARS-ARS", "check": "buy_placed_post_fire", "oid": "3ebe9951-5b9", "fire_src": null, "min_after_fire": 0.2
+    {"ts": "2026-07-14 08:48:12 PM ET", "ts_epoch": 1784076492.2435112, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 6, "n_resting_orders": 29, "n_failures": 7, "n_flags": 0, "failures": [{"tk": "KXATPCHALLENGERMATCH-26JUL14VUKARS-ARS", "check": "buy_placed_post_fire", "oid": "3ebe9951-5b9", "fire_src": null, "min_after_fire": 0.2
+    {"ts": "2026-07-14 08:49:27 PM ET", "ts_epoch": 1784076567.2037785, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 6, "n_resting_orders": 29, "n_failures": 7, "n_flags": 0, "failures": [{"tk": "KXATPCHALLENGERMATCH-26JUL14VUKARS-ARS", "check": "buy_placed_post_fire", "oid": "3ebe9951-5b9", "fire_src": null, "min_after_fire": 0.2
+    {"ts": "2026-07-14 08:50:44 PM ET", "ts_epoch": 1784076644.7254674, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "PASS", "n_positions": 6, "n_resting_orders": 22, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784075609.18611, "legs_new": [], "legs_gone": [], "n_held_now": 6, "n_held_banked": 6}, "table"
+    {"ts": "2026-07-14 08:50:51 PM ET", "ts_epoch": 1784076651.8486383, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|disc|26_50", "n": 49, "p_exit_fill": 0.673, "p_ride_zero": 0.327, "ev_cents": -8.63, "band": 9, "basis": 45, "win_ride_residual_excluded": 0.0, "citation": "
+    {"ts": "2026-07-14 08:50:51 PM ET", "ts_epoch": 1784076651.8488085, "event": "completion_flatten_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
+    {"ts": "2026-07-14 08:52:38 PM ET", "ts_epoch": 1784076758.217473, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 6, "n_resting_orders": 22, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784075609.18611, "legs_new": [], "legs_gone": [], "n_held_now": 6, "n_held_banked": 6}, "table":
+    {"ts": "2026-07-14 09:01:25 PM ET", "ts_epoch": 1784077285.6346068, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|disc|26_50", "n": 49, "p_exit_fill": 0.673, "p_ride_zero": 0.327, "ev_cents": -8.63, "band": 9, "basis": 45, "win_ride_residual_excluded": 0.0, "citation": "
+    {"ts": "2026-07-14 09:01:25 PM ET", "ts_epoch": 1784077285.6440487, "event": "completion_flatten_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA", "details": {"event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
 
 ## Code path
 ?

@@ -1,7 +1,7 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784134588 -->
-written 2026-07-15 12:59:59 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784135273 -->
+written 2026-07-15 01:12:53 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (58 total this session)
+## Events (60 total this session)
 - 04:17:53 KXITFWMATCH-26JUL15WAGCIR-CIR — flatten DEFERRED: ev -1.03 above margin floor -3.0
 - 04:22:50 KXITFWMATCH-26JUL15VOGNUU-NUU — flatten DEFERRED: ev -1.28 above margin floor -3.0
 - 04:50:28 KXITFWMATCH-26JUL15WAGCIR-CIR — flatten DEFERRED: ev -1.03 above margin floor -3.0
@@ -60,6 +60,8 @@ written 2026-07-15 12:59:59 PM ET by live_validation_loop (read-only). Patch con
 - 12:43:50 KXITFWMATCH-26JUL15JACROW-JAC — flatten DEFERRED: ev -1.2 above margin floor -3.0
 - 12:54:08 KXITFWMATCH-26JUL15JACROW-JAC — flatten DEFERRED: ev -1.2 above margin floor -3.0
 - 12:56:28 KXITFWMATCH-26JUL15OXFCHA-OXF — flatten CAPPED at 8/day (8 today)
+- 13:04:16 KXITFWMATCH-26JUL15JACROW-JAC — flatten CAPPED at 8/day (8 today)
+- 13:07:53 KXITFWMATCH-26JUL15OXFCHA-OXF — flatten DEFERRED: ev -2.67 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-15 08:20:28 AM ET", "ts_epoch": 1784118028.4044776, "event": "trendpath_live_aim", "ticker": "KXITFWMATCH-26JUL15OXFCHA-OXF", "details": {"event": "KXITFWMATCH-26JUL15OXFCHA", "from_target": 24, "path_aim": 18, "mode": "no_call_posture", "page": "ITF_W|underdog|le25", "page_n": 104, "citation": "ATLAS_V1 ITF_W|underdog|le25 (path bottom p50; cutover 07-14 operator word)", "entry_go
@@ -272,6 +274,13 @@ written 2026-07-15 12:59:59 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-15 12:56:28 PM ET", "ts_epoch": 1784134588.2358987, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL15OXFCHA-OXF", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_W|underdog|deep_disc|le25", "n": 26, "p_exit_fill": 0.538, "p_ride_zero": 0.423, "ev_cents": -4.92, "band": 5, "basis": 18, "win_ride_residual_excluded": 0.038, "citation": "M15 RAN
     {"ts": "2026-07-15 12:56:28 PM ET", "ts_epoch": 1784134588.2361543, "event": "completion_flatten_capped", "ticker": "KXITFWMATCH-26JUL15OXFCHA-OXF", "details": {"event": "KXITFWMATCH-26JUL15OXFCHA", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
     {"ts": "2026-07-15 12:59:04 PM ET", "ts_epoch": 1784134744.975835, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 17, "n_resting_orders": 98, "n_failures": 1, "n_flags": 0, "failures": [{"tk": "KXITFMATCH-26JUL15LONMIL-MIL", "check": "exit_qty_mismatch", "held": 5.0, "resting_exits": 10.0}], "flags": [], "diff_vs_banked": {"bank
+    {"ts": "2026-07-15 01:02:28 PM ET", "ts_epoch": 1784134948.690778, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 18, "n_resting_orders": 99, "n_failures": 1, "n_flags": 0, "failures": [{"tk": "KXITFMATCH-26JUL15LONMIL-MIL", "check": "exit_qty_mismatch", "held": 5.0, "resting_exits": 10.0}], "flags": [], "diff_vs_banked": {"bank
+    {"ts": "2026-07-15 01:04:16 PM ET", "ts_epoch": 1784135056.9018586, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL15JACROW-JAC", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_W|underdog|at_mid|26_50", "n": 38, "p_exit_fill": 0.737, "p_ride_zero": 0.263, "ev_cents": -3.79, "band": 7, "basis": 34, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_L
+    {"ts": "2026-07-15 01:04:16 PM ET", "ts_epoch": 1784135056.9021945, "event": "completion_flatten_capped", "ticker": "KXITFWMATCH-26JUL15JACROW-JAC", "details": {"event": "KXITFWMATCH-26JUL15JACROW", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
+    {"ts": "2026-07-15 01:07:11 PM ET", "ts_epoch": 1784135231.8335705, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 16, "n_resting_orders": 94, "n_failures": 2, "n_flags": 0, "failures": [{"tk": "KXITFMATCH-26JUL15LONMIL-MIL", "check": "exit_qty_mismatch", "held": 5.0, "resting_exits": 10.0}, {"tk": "KXITFMATCH-26JUL15POPMIC-POP"
+    {"ts": "2026-07-15 01:07:53 PM ET", "ts_epoch": 1784135273.955168, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL15OXFCHA-OXF", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_W|underdog|at_mid|le25", "n": 33, "p_exit_fill": 0.667, "p_ride_zero": 0.333, "ev_cents": -2.67, "band": 5, "basis": 18, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LAY
+    {"ts": "2026-07-15 01:07:53 PM ET", "ts_epoch": 1784135273.9577758, "event": "completion_flatten_deferred", "ticker": "KXITFWMATCH-26JUL15OXFCHA-OXF", "details": {"event": "KXITFWMATCH-26JUL15OXFCHA", "ev_cents": -2.67, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-15 01:10:18 PM ET", "ts_epoch": 1784135418.0452075, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 15, "n_resting_orders": 91, "n_failures": 1, "n_flags": 0, "failures": [{"tk": "KXITFMATCH-26JUL15LONMIL-MIL", "check": "exit_qty_mismatch", "held": 5.0, "resting_exits": 10.0}], "flags": [], "diff_vs_banked": {"ban
 
 ## Code path
 ?

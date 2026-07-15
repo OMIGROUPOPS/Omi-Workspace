@@ -2898,7 +2898,10 @@ class LiveV3:
             # test's first run proved the circularity: the latch fired
             # the gun and its own cancels graded lawful).
             _BURST = ("tape_latch", "price_divergence")
-            evid = gun_ts is not None and src not in _BURST
+            # [HALT TRIAGE 07-14] evidence is an EXPLICIT set — a
+            # sourceless (UNKNOWN-grade) fire never closes the corridor
+            evid = (gun_ts is not None and bool(src)
+                    and src not in _BURST)
             out = {}
             if evid and now >= gun_ts:
                 out["phase"] = "W2"
@@ -4548,6 +4551,11 @@ class LiveV3:
                 _g = None
             else:
                 _g = getattr(self, "_gun_state", {}).get(ticker.rsplit("-", 1)[0])
+                # [HALT TRIAGE 07-14] evidence-grade test at the
+                # chokepoint too: a sourceless entry is UNKNOWN — never
+                # a fire, never a refusal
+                if _g is not None and not _g.get("source"):
+                    _g = None
             if _g is not None:
                 _gs = self.__dict__.setdefault("_gun_refused_logged", set())
                 if ticker not in _gs:
@@ -9021,6 +9029,47 @@ class LiveV3:
                         # basis flip after a restart can undercount; a not-
                         # qualified event must not keep a stale unlock mark
                         self._early_unlock_live.pop(et, None)
+                # [C-EARLY-CANVAS-2 Part 1, OPERATOR WORD 07-14 — the
+                # week-(c) debt paid] ATP_CHALL/WTA_CHALL placement edge
+                # extends toward T-8h for the fader leg's early divot (B3
+                # half_timing: ~131¢/night forfeited by sequential
+                # completion). HONEST CLOCKS ONLY — CHALL skew −1.2 min,
+                # the one category that needs no axis caveat; a clock_liar
+                # event never opens early. Baby sizing (base lot)
+                # unchanged; cohort stamped and rendered separately in the
+                # nightly from night one. ITF/mains under THIS window =
+                # named defect (branch is cat-scoped; the nightly asserts).
+                if (self.config.get("early_chall_window_enabled", False)
+                        and _eu_cat in ("ATP_CHALL", "WTA_CHALL")):
+                    try:
+                        _a9, _asrc9, _liar9 = self._anchor_state(
+                            et, time.time())
+                    except Exception:
+                        _a9, _asrc9, _liar9 = None, None, True
+                    if _a9 and not _liar9:
+                        _eu_cap = int(float(self.config.get(
+                            "conception_horizon_hours", 8)) * 3600)
+                        if time_to_start - _pm_widen > V4_MAX_PLACEMENT_SEC:
+                            self._early_unlock_live[et] = {
+                                "basis": "early_chall_honest_clock",
+                                "anchor_src": _asrc9}
+                            if et not in self._early_unlock_logged:
+                                self._early_unlock_logged.add(et)
+                                self._log("early_chall_window_open", {
+                                    "event": et, "category": _eu_cat,
+                                    "anchor_src": _asrc9,
+                                    "tts_min": round(
+                                        time_to_start / 60.0, 1),
+                                    "cite": "C-EARLY-CANVAS-2 Part 1 "
+                                            "(operator word 07-14; B3 "
+                                            "half_timing ~131c/night)"})
+                                self.__dict__.setdefault(
+                                    "_conception_stamped", set()).add(et)
+                                for _eutk in tickers:
+                                    self._log("conception_stamp", {
+                                        "event": et,
+                                        "source": "early_chall_window"},
+                                        ticker=_eutk)
                 if time_to_start - _pm_widen <= V4_MAX_PLACEMENT_SEC:
                     # standard window reached -- entries from here are the
                     # standard cohort, never stamped
@@ -11803,14 +11852,31 @@ class LiveV3:
                             d = json.loads(line)
                         except ValueError:
                             continue
+                        # [HALT TRIAGE 07-14 ~23:10 — occurrence 2 of the
+                        # boot-fire family, sub-class STAMP/MATCHER
+                        # COLLISION] the window stamp's "gun_fired" bool
+                        # substring-matched this grep and every stamped
+                        # line with a details.event became a phantom
+                        # rebuilt fire (source null). The matcher now
+                        # requires the EVENT FIELD, and a sourceless entry
+                        # is UNKNOWN — never a fire, never inserted.
+                        if d.get("event") != "gun_fired":
+                            continue
                         det = d.get("details") or {}
                         et = det.get("event", "")
                         ts = d.get("ts_epoch", 0.0)
                         if (not et or now - ts > 12 * 3600
                                 or et in self._gun_state):
                             continue
+                        _src0 = det.get("source")
+                        if not _src0:
+                            continue   # UNKNOWN grade: never a fire
                         self._gun_state[et] = {"ts": ts,
-                                               "source": det.get("source"),
+                                               "source": _src0,
+                                               "grade": ("burst" if _src0
+                                                         in ("tape_latch",
+                                                             "price_divergence")
+                                                         else "evidence"),
                                                "rebuilt": True,
                                                "rise": det.get("rise"),
                                                "condition": det.get("condition")}
@@ -12082,6 +12148,13 @@ class LiveV3:
             # dead). Pre-fire bids surviving grace are grace's domain, not
             # this assertion's.
             _g = getattr(self, "_gun_state", {}).get(tk.rsplit("-", 1)[0])
+            # [HALT TRIAGE 07-14] the audit applies the same evidence-grade
+            # test as window-stamp v2: a sourceless fire is UNKNOWN — never
+            # a fire this assertion counts against (flag-only visibility).
+            if _g and not _g.get("source"):
+                flags.append({"tk": tk, "flag": "unknown_grade_fire_ignored",
+                              "fire_entry_raw": json.dumps(_g)[:120]})
+                _g = None
             if _g and buys.get(tk):
                 _fpm = getattr(self, "_order_fingerprints", None) or {}
                 for r in buys[tk]:

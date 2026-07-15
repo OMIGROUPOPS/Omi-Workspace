@@ -6691,6 +6691,10 @@ class LiveV3:
                 self._log("bell_missing", {
                     "event": et, "anchor_src": _asrc,
                     "min_past_start": round((now - a) / 60.0, 1)})
+        # [C-READ-THE-TAPE Part 0] the drain replay's ordering gate: one
+        # full gun-source pass has completed — stamps for currently-live
+        # events are in _gun_state before any drained bid may return.
+        self._live_scan_done = True
 
     def _fv_burst_ready(self, et, now):
         """[C-FV-BURST RE-GATE] OBSERVE-ONLY real-start trigger for the FV snapshot,
@@ -11775,6 +11779,8 @@ class LiveV3:
         self._log("gun_state_rebuilt", {
             "n": n, "files": [p.name for p in files],
             "events": sorted(e.rsplit("-", 1)[-1] for e in self._gun_state)[:30]})
+        # [C-READ-THE-TAPE Part 0] ordering gate, half one
+        self._gun_rebuild_done = True
         # [C-BELL-SCOPE Part 2, 07-13] the unfreeze audit: a rebuilt gun
         # entry whose ONLY evidence is a self-fill fire on SANCTIONED
         # behavior (rise within the armed walk allowance, no fills on
@@ -12042,6 +12048,11 @@ class LiveV3:
                         failures.append({"tk": tk, "check": "buy_placed_post_fire",
                                          "oid": r["oid"][:12],
                                          "fire_src": _g.get("source"),
+                                         # [C-READ-THE-TAPE Part 0] a null
+                                         # source names its writer next time
+                                         **({"fire_entry_raw":
+                                             json.dumps(_g)[:160]}
+                                            if not _g.get("source") else {}),
                                          "min_after_fire": round(
                                              (_fp["ts"] - _g["ts"]) / 60.0, 1)})
                         row["FAIL"] = (row.get("FAIL", "")
@@ -12654,6 +12665,22 @@ class LiveV3:
             mp = Path("state") / "drain_manifest.json"
             if not mp.exists():
                 return
+            # [C-READ-THE-TAPE Part 0, 07-14 — the boot race, dead] the
+            # 20:16 class: replay re-placed 7 bids while live-detection
+            # stamps were still landing (fire_src null on the audit = the
+            # tell); the chokepoint had nothing to refuse against yet.
+            # ORDERING LAW: the replay does not run until the gun rebuild
+            # AND the first live-detection scan have completed; a not-ready
+            # replay defers, NAMED (it retries at halt-clear/cadence).
+            if not (getattr(self, "_gun_rebuild_done", False)
+                    and getattr(self, "_live_scan_done", False)):
+                self._log("drain_replay_deferred", {
+                    "reason": "gun_state_not_ready",
+                    "gun_rebuild_done": getattr(self, "_gun_rebuild_done",
+                                                False),
+                    "live_scan_done": getattr(self, "_live_scan_done",
+                                              False)})
+                return
             man = json.loads(mp.read_text(encoding="utf-8"))
             if time.time() - float(man.get("ts", 0)) > 7200:
                 self._log("drain_replay_stale_discard", {
@@ -12670,6 +12697,17 @@ class LiveV3:
                 if pos is not None and (pos.phase != "entry_resting" or pos.entry_order_id):
                     self._log("drain_replay", {"outcome": "already_covered",
                                                "phase": getattr(pos, "phase", "?")}, ticker=tk)
+                    continue
+                # belt to the ordering suspenders: a fired/live event never
+                # gets its drained bid back — refuse, NAMED
+                _et7 = tk.rsplit("-", 1)[0]
+                _g7 = getattr(self, "_gun_state", {}).get(_et7)
+                if _g7 or _et7 in getattr(self, "_events_live", set()):
+                    self._log("drain_replay", {
+                        "outcome": "refused_gun_fired",
+                        "gun_source": (_g7 or {}).get("source",
+                                                      "events_live"),
+                        "price": price, "count": count}, ticker=tk)
                     continue
                 oid, resp = await self.place_order(tk, "buy", "yes", price, count, post_only=True)
                 err = (resp or {}).get("_error", "")

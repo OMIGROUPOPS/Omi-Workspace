@@ -2996,7 +2996,11 @@ class LiveV3:
                                   "flow_bucket": fb9, "depth_X": X9,
                                   "rate_per_hr": rate9,
                                   "p_fill_1h": round(
-                                      1 - math.exp(-rate9), 3)}
+                                      1 - math.exp(-rate9), 3),
+                                  # [C-CONVICTED-INSTRUMENTS 07-14] the
+                                  # refit contract: expectation integrates
+                                  # only to the evidence gun
+                                  "integration_bound": "evidence_gun"}
             else:
                 D["reach_law"] = {"status": "NOT-APPLICABLE",
                                   "why": ("reach law fitted for ITF/CHALL "

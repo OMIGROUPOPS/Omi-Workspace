@@ -740,6 +740,74 @@ def main():
                             _w("tape_touches"), _w("fills"),
                             _w("cash_via_exit"), _w("rode_to_settle"),
                             _w("cancels")))
+        # [C-CONVICTED-INSTRUMENTS Part 1, 07-14 — the reach refit armed
+        # where expectation is consumed] REACH EXPECTED-VS-ACTUAL, the
+        # honest bound: per new-book leg, E integrates placement ->
+        # min(evidence gun, fill, day end). The sanity line names what the
+        # old unbounded integral would have added (the 26.55-class).
+        try:
+            import math as _m9
+            _lawp9 = ROOT.parent / ".claude/takerreach/LAW.json"
+            _law9 = (json.loads(_lawp9.read_text(encoding="utf-8"))
+                     .get("law", {}) if _lawp9.exists() else {})
+            _thr9 = {"ITF_M": 6, "ITF_W": 6, "ATP_CHALL": 16,
+                     "WTA_CHALL": 16}
+            _eL = _eU = 0.0
+            _nA = _nG = 0
+            _day_end9 = day0 + 24 * 3600
+            for tk9, (ats9, aim9) in aims9.items():
+                if not aim9:
+                    continue
+                c9 = cat_of(tk9) or "?"
+                th9 = _thr9.get(c9)
+                if not th9:
+                    continue
+                ev9 = tk9.rsplit("-", 1)[0]
+                gun9 = bells10.get(ev9)
+                fill9 = None
+                for r9 in rows:
+                    if r9["tk"] == tk9:
+                        fill9 = True
+                        break
+                obs9 = obs_cache.get(tk9) or leg_observations(tk9)
+                obs_cache[tk9] = obs9
+                oT = [o[0] for o in obs9]
+                oP = [o[2] for o in obs9]
+                import bisect as _b9
+                surv9 = 1.0
+                t9 = ats9
+                end_l = min(gun9 or _day_end9, _day_end9)
+                while t9 < _day_end9:
+                    lo9 = _b9.bisect_left(oT, t9 - 900)
+                    hi9 = _b9.bisect_right(oT, t9)
+                    pxs9 = oP[lo9:hi9]
+                    if pxs9:
+                        med9 = sorted(pxs9)[len(pxs9) // 2]
+                        p309 = hi9 - _b9.bisect_left(oT, t9 - 1800)
+                        r9x = p309 / float(th9)
+                        fb9 = ("quiet" if r9x < 0.25 else
+                               "warm" if r9x < 1.0 else "open")
+                        Lw9 = _law9.get("%s|%s" % (c9, fb9)) or {}
+                        X9 = min(max(int(round(med9 - aim9)), 1), 20)
+                        rt9 = Lw9.get("rate_per_hr", {}).get(str(X9), 0.0)
+                        p9x = 1 - _m9.exp(-rt9 * (120.0 / 3600.0))
+                        if t9 < end_l:
+                            _eL += surv9 * p9x
+                        else:
+                            _eU += surv9 * p9x
+                        surv9 *= (1 - p9x)
+                    t9 += 120.0
+                _nG += 1
+                if fill9:
+                    _nA += 1
+            if _nG:
+                L.append("- REACH E-vs-A (refit: integration to the "
+                         "evidence gun): lawful E[fills] %.2f vs actual %d "
+                         "across %d legs | old-class unbounded would have "
+                         "added %.2f (excluded)"
+                         % (_eL, _nA, _nG, _eU))
+        except Exception:
+            pass
         # [Part 5 tripwire] gun-feed staleness (min since last NEW in-play
         # sighting — arrival-gap honest label)
         try:

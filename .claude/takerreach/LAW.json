@@ -6,7 +6,9 @@
    "G9 archive < Jul 10 (tour, walk-forward)",
    "local taker_side CSVs Jul 9-13 (ITF, live-era, BRANDED)"
   ],
-  "model": "P(fill at depth X over residency R) = 1-exp(-rate_X*R)"
+  "model": "P(fill at depth X over residency R) = 1-exp(-rate_X*R)",
+  "integration_bound": "evidence_gun",
+  "refit": "C-CONVICTED-INSTRUMENTS v1 07-14 (operator word): expected-fill integration STOPS at the evidence gun -- the Part-4 decomposition showed 59% (266.14 of 450.72) of expected-fill mass accrued past the gun, where the W1 thesis never stands. Rates unchanged (fitted on sweeps); the integration BOUND is the corrected contract. Every consumer inherits."
  },
  "law": {
   "ATP_CHALL|quiet": {

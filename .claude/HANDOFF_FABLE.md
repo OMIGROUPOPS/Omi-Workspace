@@ -41,7 +41,16 @@ doctrine_registry.json receipt (rebuilt every C50:
 python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
-## STATE (2026-07-15 ONE-RECORD — C50 keeps this current):
+## STATE (2026-07-15 UNFROZEN — C50 keeps this current):
+Unfreeze VERIFIED: boot 9de81e29 12:21 AM, rebuild n=108
+all-sourced, audit PASS 0/0, 13 conceptions resumed. EC2 CHALL
+early window ARMED (first early_chall_window_open pending the
+Euro T-8h band; nightly cohort line waits). QUEUED: EC2 fence
+re-validation read; recording-scope verify; the 12:20 nightly
+print (cron fires on its own schedule). All other BOARD items
+stand.
+
+(prior:) ## STATE (2026-07-15 ONE-RECORD):
 RECORD MANDATE vaulted verbatim; front-page stamps applied (21/23/
 26-frame/43/83); PAIR-97 GRAVE carries the operator verbatim + the
 mechanism; DOCTRINE CONFLICT 2-4 filed; UNSTAMPED-FRAME defect

@@ -1,12 +1,13 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784154356 -->
-written 2026-07-15 06:27:08 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784154959 -->
+written 2026-07-15 06:38:31 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (5 total this session)
+## Events (6 total this session)
 - 16:55:01 KXWTAMATCH-26JUL15IBRBAD-IBR — flatten DEFERRED: ev -0.18 above margin floor -3.0
 - 17:09:12 KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN — flatten DEFERRED: ev -2.56 above margin floor -3.0
 - 18:05:45 KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN — flatten DEFERRED: ev -2.56 above margin floor -3.0
 - 18:15:51 KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN — flatten DEFERRED: ev -2.56 above margin floor -3.0
 - 18:25:56 KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN — flatten DEFERRED: ev -2.56 above margin floor -3.0
+- 18:35:59 KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN — flatten DEFERRED: ev -2.56 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-15 12:25:29 AM ET", "ts_epoch": 1784089529.6172884, "event": "tape_seed_live_confirm", "ticker": "KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN", "details": {"seed_price": 96, "live_price": 95, "delta": -1, "seed_age_sec": 417.0}}
@@ -471,6 +472,8 @@ written 2026-07-15 06:27:08 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-15 06:24:06 PM ET", "ts_epoch": 1784154246.0534408, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 8, "n_resting_orders": 31, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784147226.4462335, "legs_new": ["KXATPMATCH-26JUL15RUBPEL-PEL"], "legs_gone": ["KXATPCHALLENGER
     {"ts": "2026-07-15 06:25:56 PM ET", "ts_epoch": 1784154356.5761247, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|26_50", "n": 75, "p_exit_fill": 0.773, "p_ride_zero": 0.227, "ev_cents": -2.56, "band": 9, "basis": 42, "win_ride_residual_excluded": 0.0, "citation":
     {"ts": "2026-07-15 06:25:56 PM ET", "ts_epoch": 1784154356.5763495, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN", "details": {"event": "KXATPCHALLENGERMATCH-26JUL15YIBYUN", "ev_cents": -2.56, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-15 06:35:59 PM ET", "ts_epoch": 1784154959.0557332, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|26_50", "n": 75, "p_exit_fill": 0.773, "p_ride_zero": 0.227, "ev_cents": -2.56, "band": 9, "basis": 42, "win_ride_residual_excluded": 0.0, "citation":
+    {"ts": "2026-07-15 06:35:59 PM ET", "ts_epoch": 1784154959.056005, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN", "details": {"event": "KXATPCHALLENGERMATCH-26JUL15YIBYUN", "ev_cents": -2.56, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
 
 ## Code path
 ?

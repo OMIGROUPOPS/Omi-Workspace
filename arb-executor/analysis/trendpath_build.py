@@ -362,6 +362,53 @@ build_tour(pages)
 print("atlas: ITF from live-era tape (BRANDED) ...", flush=True)
 build_itf(pages)
 
+# [C-TAPE-GATE Part 2] evidence guns from every day-log on disk (the gun
+# clock; live era only -- tour has no gun archive, its pages keep the -0k
+# axis with the caveat)
+import glob as _g
+GUNS = {}
+_BURST = ("tape_latch", "price_divergence")
+for _lp in sorted(_g.glob(str(ROOT / "logs/live_v3_*.jsonl"))):
+    try:
+        for _ln in open(_lp, encoding="utf-8", errors="replace"):
+            if '"gun_fired"' not in _ln:
+                continue
+            try:
+                _o = json.loads(_ln)
+            except ValueError:
+                continue
+            _d = _o.get("details") or {}
+            _ev = _d.get("event", "")
+            if _ev and _d.get("source") not in _BURST and _ev not in GUNS:
+                GUNS[_ev] = _o["ts_epoch"]
+    except OSError:
+        continue
+
+def gun_columns(P):
+    """gun-axis timing per page: dual-stamp legs only; lawful_share =
+    fraction whose bottom lands PRE-gun."""
+    ts9 = []
+    n_dual = 0
+    lawful = 0
+    for tk9, bm9 in P.get("bottoms_abs", []):
+        if not tk9:
+            continue
+        g9 = GUNS.get(tk9.rsplit("-", 1)[0])
+        if g9 is None:
+            continue
+        n_dual += 1
+        if bm9 < g9:
+            lawful += 1
+            ts9.append((g9 - bm9) / 60.0)
+    if n_dual < 8:
+        return None
+    return {"n_dual": n_dual,
+            "lawful_share": round(lawful / float(n_dual), 3),
+            "bottom_pre_gun_min_p25_50_75": [q(ts9, 0.25), q(ts9, 0.50),
+                                             q(ts9, 0.75)],
+            "axis": "evidence_gun (C-TAPE-GATE recut 07-14)"}
+
+
 atlas = {"meta": {"built": "2026-07-15",
                   "lineage": ["AIM/TIMING MISSES attempt 5 — the path axis",
                               "G9 minute-candles < 2026-07-10 (tour, walk-forward)",
@@ -492,52 +539,6 @@ for key9, c9 in lib_cells.items():
         "dip_t_med_min_before_0k": q(c9["timings"], 0.50),
         "gun_axis": c9.get("gun_axis"),
         "never_wake_p": round(c9["sleep"] / float(c9["n"]), 3)}
-
-# [C-TAPE-GATE Part 2] evidence guns from every day-log on disk (the gun
-# clock; live era only -- tour has no gun archive, its pages keep the -0k
-# axis with the caveat)
-import glob as _g
-GUNS = {}
-_BURST = ("tape_latch", "price_divergence")
-for _lp in sorted(_g.glob(str(ROOT / "logs/live_v3_*.jsonl"))):
-    try:
-        for _ln in open(_lp, encoding="utf-8", errors="replace"):
-            if '"gun_fired"' not in _ln:
-                continue
-            try:
-                _o = json.loads(_ln)
-            except ValueError:
-                continue
-            _d = _o.get("details") or {}
-            _ev = _d.get("event", "")
-            if _ev and _d.get("source") not in _BURST and _ev not in GUNS:
-                GUNS[_ev] = _o["ts_epoch"]
-    except OSError:
-        continue
-
-def gun_columns(P):
-    """gun-axis timing per page: dual-stamp legs only; lawful_share =
-    fraction whose bottom lands PRE-gun."""
-    ts9 = []
-    n_dual = 0
-    lawful = 0
-    for tk9, bm9 in P.get("bottoms_abs", []):
-        if not tk9:
-            continue
-        g9 = GUNS.get(tk9.rsplit("-", 1)[0])
-        if g9 is None:
-            continue
-        n_dual += 1
-        if bm9 < g9:
-            lawful += 1
-            ts9.append((g9 - bm9) / 60.0)
-    if n_dual < 8:
-        return None
-    return {"n_dual": n_dual,
-            "lawful_share": round(lawful / float(n_dual), 3),
-            "bottom_pre_gun_min_p25_50_75": [q(ts9, 0.25), q(ts9, 0.50),
-                                             q(ts9, 0.75)],
-            "axis": "evidence_gun (C-TAPE-GATE recut 07-14)"}
 
 (WS / ".claude/trendpath/LIBRARY_V1.json").write_text(
     json.dumps(library, indent=1), encoding="utf-8")

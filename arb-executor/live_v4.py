@@ -2872,6 +2872,7 @@ class LiveV3:
 
     _WINDOW_STAMP_EVENTS = frozenset((
         "v4_place", "trendpath_live_aim", "below_leg_floor_refused",
+        "below_discovery_floor_refused",
         "no_path_page_refused", "selector_drop_refused",
         "pair_seesaw_refused", "pair_seesaw_lifted", "order_placed",
         "order_cancelled", "completion_action", "completion_attempt",
@@ -9604,6 +9605,66 @@ class LiveV3:
                                 "event": et, "cat": cat,
                                 "pair_state": (_pl9 or {}).get("pair"),
                                 **_or9}, ticker=tk)
+                # [C-DISCOVERY-FLOOR v1 07-15 — C-MORNING-TRIAGE Part 2, the
+                # VU exhibit KXITFMATCH-26JUL14ALHVUX: conceived at 60
+                # discovered shares (sibling's market NEVER traded), one-sided
+                # by construction, rode to zero −385¢; the 1.34M-share flood
+                # arrived post-conception in-play. Operator word 07-15
+                # (verbatim): "late buys are not preferable; corridor should
+                # only be happening as a fallback when vol is low with ITF."
+                # A CORRIDOR-phase conception — or one on a STALE-DATED event
+                # (the lying-clock corridor-equivalent: ALHVUX stamped W1 at
+                # T-17min real because kalshi_schedule said 5:00 AM on a
+                # 12:39 AM match) — requires realized lifetime volume >=
+                # discovery_floor_shares (REST exchange truth via the
+                # early-unlock organ event_lifetime_vol). Refusal NAMED.
+                # Completions are NOT gated here (pair law: never strand a
+                # filled leg). W1 fresh-dated conceptions untouched: lawful
+                # ITF W1 conception sits at 0-140 discovered shares
+                # (measured 07-15, 8-sample census — a blanket floor would
+                # starve the lane).
+                if self.config.get("discovery_floor_enabled", False):
+                    _df9 = self._window_phase(et) or {}
+                    _dfstale = False
+                    try:
+                        _dfd = et.split("-", 1)[1][:7]
+                        _dfmon = ("JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+                                  "JUL", "AUG", "SEP", "OCT", "NOV",
+                                  "DEC").index(_dfd[2:5]) + 1
+                        _dfnow = datetime.now(ET)
+                        _dfstale = ((2000 + int(_dfd[:2]), _dfmon,
+                                     int(_dfd[5:7])) <
+                                    (_dfnow.year, _dfnow.month, _dfnow.day))
+                    except Exception:
+                        _dfstale = False
+                    if _df9.get("phase") == "CORRIDOR" or _dfstale:
+                        _dfvol = self.event_lifetime_vol.get(et)
+                        _dffloor = float(self.config.get(
+                            "discovery_floor_shares", 1500))
+                        if (_dfvol or 0.0) < _dffloor:
+                            self._log("below_discovery_floor_refused", {
+                                "event": et, "cat": cat,
+                                "phase": _df9.get("phase"),
+                                "stale_dated": _dfstale,
+                                "discovered_shares": round(_dfvol or 0.0, 1),
+                                "floor": _dffloor,
+                                "vol_basis": ("kalshi_rest_lifetime"
+                                              if _dfvol is not None
+                                              else "unmeasured"),
+                                "cite": "C-DISCOVERY-FLOOR v1 07-15 "
+                                        "(C-MORNING-TRIAGE Part 2; VU "
+                                        "exhibit ALHVUX; operator corridor "
+                                        "word verbatim in the vault)"},
+                                ticker=tk)
+                            self._entry_dossier(
+                                tk, et, cat, current_price, None,
+                                "refused:below_discovery_floor", sv9=_sv9,
+                                pl9=(_pl9 if '_pl9' in dir() else None),
+                                regime=regime,
+                                tts_min=round(time_to_start / 60),
+                                anchor_src=anchor_src,
+                                lt_age=round(lt_age_sec, 1))
+                            continue
                 # [CUTOVER EXECUTED 07-14 — operator word waiving the
                 # default-GO deadline; the packet's three letters all PASS]
                 # PATH-MODE IS THE LAW, NO-CALL POSTURE: both legs of every

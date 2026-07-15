@@ -100,6 +100,8 @@
   "early_unlock_enabled": true,
   "early_unlock_floor": 2500,
   "early_unlock_anchor_age_sec": 7200,
+  "discovery_floor_enabled": true,
+  "discovery_floor_shares": 1500,
   "fallback_bell_enabled": true,
   "fallback_bell_rate_per_min": 0.4,
   "fallback_bell_disp_cents": 4,

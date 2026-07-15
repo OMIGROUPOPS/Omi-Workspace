@@ -41,7 +41,35 @@ doctrine_registry.json receipt (rebuilt every C50:
 python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
-## STATE (2026-07-15 STOP-WINDOW — C50 keeps this current):
+## STATE (2026-07-15 MORNING-TRIAGE — C50 keeps this current):
+C-MORNING-TRIAGE v1 EXECUTED (full arc = vault top entry). Part 0:
+JONURG band-0 clear (exit a1a3f307 rested at 11:24:43, audits PASS
+since 11:32); AUDIT-RACE class founded (fill-race band-0 x3 incl.
+TOPGEN/DARCRI + settlement-race MASDUT scalar-50 retirement); healer
+silent-skip remedy PRICED not deployed. Part 1: RINTAB 3/3
+exchange-reconciled, no daylight; 40-mains = 17 tickers (list was
+[:4] render truncation), 8/8 filled legs' exits confirmed, zero
+naked. Part 2: C-DISCOVERY-FLOOR v1 ARMED via full gate (corridor/
+stale-dated conceptions need >=1,500 discovered shares; VU exhibit
+ALHVUX 60-share conception never-traded sibling -385c; replay 4
+refuse/+300c net, KOAYAZ +85c forgone named). Part 3: DELXIL
+over-par fork — TAKER-COMPLETE HAS NO COMBINED-PRICE CLAUSE (crossed
+at 102 combined; census intake, remedy shapes await the word).
+Part 5: MORNING GRADE delivered (.claude/triage_20260715_morning/):
+104 fills (W2 75/W1 24/C 5), EARLY 79/TIGHT 25, exit-same-second
+104/104, billing TAIL -280c vs PATH settles -3,159c vs exits
++2,509c; open-bucket placements 0/17 filled vs quiet 59/289 — the
+gauge is anti-predictive at placement instant; census cycles
+100-117 = guard chatter except the rooted halts; GUN SCORECARD:
+DELETION GATE OPEN (four proofs) for the 6:10 word. OPERATOR WINDOW
+WORD VERBATIM vaulted ("late buys are not preferable; corridor only
+as fallback when vol is low with ITF"); W1-PREFERENCE rule PRICED
+(mains/CHALL corridor refused; ITF corridor fallback >=1,500 +
+volume-quiet + dossier-named) — AWAITS THE WORD after the grade.
+Watches: below_discovery_floor_refused nightly w/ counterfactuals ·
+fresh-W1 discovery refusal = defect · scalar-retirement settles.
+
+(prior:) ## STATE (2026-07-15 STOP-WINDOW — C50 keeps this current):
 -0l FIXED+DEPLOYED (operator word; c6163580 full gate): bot drain
 budget book-sized (5s+0.25s/bid, cap 180s); script window 200s,
 waits for death, measures stop time; abandonment branch deleted

@@ -25,7 +25,7 @@
    ],
    "ITF_M": [
     3,
-    18
+    15
    ]
   },
   "dip_def": "bottom >= 3c below discovery",
@@ -43,6 +43,7 @@
     7.0
    ],
    "dip_t_med_min_before_0k": 78.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_CHALL|ge75|mid": {
@@ -54,6 +55,7 @@
     21.0
    ],
    "dip_t_med_min_before_0k": 372.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_CHALL|26_50|mid": {
@@ -65,6 +67,7 @@
     9.0
    ],
    "dip_t_med_min_before_0k": 53.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_CHALL|51_75|mid": {
@@ -76,6 +79,7 @@
     9.0
    ],
    "dip_t_med_min_before_0k": 261.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_CHALL|51_75|hi": {
@@ -87,6 +91,7 @@
     11.0
    ],
    "dip_t_med_min_before_0k": 153.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_CHALL|26_50|hi": {
@@ -98,6 +103,7 @@
     9.0
    ],
    "dip_t_med_min_before_0k": 36.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_CHALL|26_50|lo": {
@@ -109,6 +115,7 @@
     10.0
    ],
    "dip_t_med_min_before_0k": 78.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_CHALL|51_75|lo": {
@@ -120,6 +127,7 @@
     12.0
    ],
    "dip_t_med_min_before_0k": 66.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_CHALL|le25|mid": {
@@ -131,6 +139,7 @@
     7.0
    ],
    "dip_t_med_min_before_0k": 82.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_CHALL|ge75|lo": {
@@ -142,6 +151,7 @@
     37.0
    ],
    "dip_t_med_min_before_0k": 106.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_CHALL|le25|lo": {
@@ -153,6 +163,7 @@
     9.0
    ],
    "dip_t_med_min_before_0k": 54.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_CHALL|ge75|hi": {
@@ -164,6 +175,7 @@
     10.0
    ],
    "dip_t_med_min_before_0k": 357.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_MAIN|26_50|mid": {
@@ -175,6 +187,7 @@
     14.0
    ],
    "dip_t_med_min_before_0k": 565.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_MAIN|ge75|hi": {
@@ -186,6 +199,7 @@
     21.0
    ],
    "dip_t_med_min_before_0k": 768.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_MAIN|51_75|lo": {
@@ -197,6 +211,7 @@
     48.0
    ],
    "dip_t_med_min_before_0k": 588.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_MAIN|26_50|lo": {
@@ -208,6 +223,7 @@
     13.0
    ],
    "dip_t_med_min_before_0k": 423.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_MAIN|ge75|lo": {
@@ -219,6 +235,7 @@
     40.0
    ],
    "dip_t_med_min_before_0k": 562.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_MAIN|26_50|hi": {
@@ -230,6 +247,7 @@
     12.0
    ],
    "dip_t_med_min_before_0k": 344.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_MAIN|51_75|mid": {
@@ -241,6 +259,7 @@
     23.0
    ],
    "dip_t_med_min_before_0k": 508.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_MAIN|51_75|hi": {
@@ -252,6 +271,7 @@
     14.0
    ],
    "dip_t_med_min_before_0k": 431.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_MAIN|ge75|mid": {
@@ -263,6 +283,7 @@
     34.0
    ],
    "dip_t_med_min_before_0k": 774.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_MAIN|le25|mid": {
@@ -274,6 +295,7 @@
     11.0
    ],
    "dip_t_med_min_before_0k": 428.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_MAIN|le25|lo": {
@@ -285,6 +307,7 @@
     10.0
    ],
    "dip_t_med_min_before_0k": 742.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ATP_MAIN|le25|hi": {
@@ -296,6 +319,7 @@
     6.0
    ],
    "dip_t_med_min_before_0k": 414.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_CHALL|le25|mid": {
@@ -307,6 +331,7 @@
     11.0
    ],
    "dip_t_med_min_before_0k": 189.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_CHALL|51_75|mid": {
@@ -318,6 +343,7 @@
     12.0
    ],
    "dip_t_med_min_before_0k": 56.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_CHALL|ge75|mid": {
@@ -329,6 +355,7 @@
     19.0
    ],
    "dip_t_med_min_before_0k": 38.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_CHALL|26_50|lo": {
@@ -340,6 +367,7 @@
     12.0
    ],
    "dip_t_med_min_before_0k": 5.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_CHALL|le25|hi": {
@@ -351,6 +379,7 @@
     7.0
    ],
    "dip_t_med_min_before_0k": 95.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_CHALL|le25|lo": {
@@ -362,6 +391,7 @@
     8.0
    ],
    "dip_t_med_min_before_0k": 4.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_CHALL|51_75|lo": {
@@ -373,6 +403,7 @@
     16.0
    ],
    "dip_t_med_min_before_0k": 22.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_CHALL|26_50|mid": {
@@ -384,6 +415,7 @@
     7.0
    ],
    "dip_t_med_min_before_0k": 24.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_CHALL|51_75|hi": {
@@ -395,6 +427,7 @@
     10.0
    ],
    "dip_t_med_min_before_0k": 30.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_CHALL|26_50|hi": {
@@ -406,6 +439,7 @@
     8.0
    ],
    "dip_t_med_min_before_0k": 34.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_CHALL|ge75|hi": {
@@ -417,6 +451,7 @@
     9.0
    ],
    "dip_t_med_min_before_0k": 232.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_CHALL|ge75|lo": {
@@ -428,6 +463,7 @@
     23.0
    ],
    "dip_t_med_min_before_0k": 135.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_MAIN|51_75|mid": {
@@ -439,6 +475,7 @@
     16.0
    ],
    "dip_t_med_min_before_0k": 561.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_MAIN|26_50|lo": {
@@ -450,6 +487,7 @@
     13.0
    ],
    "dip_t_med_min_before_0k": 218.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_MAIN|51_75|hi": {
@@ -461,6 +499,7 @@
     13.0
    ],
    "dip_t_med_min_before_0k": 650.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_MAIN|ge75|lo": {
@@ -472,6 +511,7 @@
     48.0
    ],
    "dip_t_med_min_before_0k": 554.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_MAIN|le25|hi": {
@@ -483,6 +523,7 @@
     7.0
    ],
    "dip_t_med_min_before_0k": 294.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_MAIN|26_50|mid": {
@@ -494,6 +535,7 @@
     12.0
    ],
    "dip_t_med_min_before_0k": 353.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_MAIN|26_50|hi": {
@@ -505,6 +547,7 @@
     9.0
    ],
    "dip_t_med_min_before_0k": 426.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_MAIN|51_75|lo": {
@@ -516,6 +559,7 @@
     14.0
    ],
    "dip_t_med_min_before_0k": 471.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_MAIN|ge75|mid": {
@@ -527,6 +571,7 @@
     44.0
    ],
    "dip_t_med_min_before_0k": 724.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_MAIN|ge75|hi": {
@@ -538,6 +583,7 @@
     14.0
    ],
    "dip_t_med_min_before_0k": 1111.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_MAIN|le25|lo": {
@@ -549,6 +595,7 @@
     7.0
    ],
    "dip_t_med_min_before_0k": 414.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "WTA_MAIN|le25|mid": {
@@ -560,6 +607,7 @@
     8.0
    ],
    "dip_t_med_min_before_0k": 423.0,
+   "gun_axis": null,
    "never_wake_p": 0.0
   },
   "ITF_W|26_50|hi": {
@@ -571,39 +619,75 @@
     23.0
    ],
    "dip_t_med_min_before_0k": 23.0,
+   "gun_axis": {
+    "n_dual": 47,
+    "lawful_share": 0.085,
+    "pre_gun_med_min": 19.9
+   },
    "never_wake_p": 0.0
   },
   "ITF_W|ge75|hi": {
-   "n": 35,
-   "dip_freq": 0.971,
+   "n": 36,
+   "dip_freq": 0.972,
    "depth_p25_50_75": [
     12.0,
     20.0,
     31.0
    ],
    "dip_t_med_min_before_0k": 64.0,
+   "gun_axis": {
+    "n_dual": 35,
+    "lawful_share": 0.257,
+    "pre_gun_med_min": 5.4
+   },
    "never_wake_p": 0.0
   },
   "ITF_W|51_75|lo": {
-   "n": 50,
-   "dip_freq": 0.86,
+   "n": 51,
+   "dip_freq": 0.863,
    "depth_p25_50_75": [
     6.0,
     10.0,
     14.0
    ],
-   "dip_t_med_min_before_0k": 7.0,
+   "dip_t_med_min_before_0k": 8.0,
+   "gun_axis": {
+    "n_dual": 48,
+    "lawful_share": 0.375,
+    "pre_gun_med_min": 13.0
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_M|le25|lo": {
+   "n": 31,
+   "dip_freq": 0.548,
+   "depth_p25_50_75": [
+    4.0,
+    8.0,
+    12.0
+   ],
+   "dip_t_med_min_before_0k": 6.0,
+   "gun_axis": {
+    "n_dual": 29,
+    "lawful_share": 0.448,
+    "pre_gun_med_min": 153.7
+   },
    "never_wake_p": 0.0
   },
   "ITF_W|ge75|lo": {
-   "n": 54,
-   "dip_freq": 0.741,
+   "n": 55,
+   "dip_freq": 0.745,
    "depth_p25_50_75": [
-    10.0,
-    18.0,
-    44.0
+    9.0,
+    15.0,
+    42.0
    ],
-   "dip_t_med_min_before_0k": 9.0,
+   "dip_t_med_min_before_0k": 8.0,
+   "gun_axis": {
+    "n_dual": 55,
+    "lawful_share": 0.273,
+    "pre_gun_med_min": 87.2
+   },
    "never_wake_p": 0.0
   },
   "ITF_M|26_50|hi": {
@@ -615,6 +699,11 @@
     23.0
    ],
    "dip_t_med_min_before_0k": 39.0,
+   "gun_axis": {
+    "n_dual": 28,
+    "lawful_share": 0.107,
+    "pre_gun_med_min": 2.7
+   },
    "never_wake_p": 0.0
   },
   "ITF_W|le25|lo": {
@@ -626,94 +715,139 @@
     10.0
    ],
    "dip_t_med_min_before_0k": 3.0,
+   "gun_axis": {
+    "n_dual": 34,
+    "lawful_share": 0.294,
+    "pre_gun_med_min": 57.4
+   },
    "never_wake_p": 0.0
   },
   "ITF_W|le25|mid": {
-   "n": 38,
-   "dip_freq": 0.737,
+   "n": 39,
+   "dip_freq": 0.744,
    "depth_p25_50_75": [
-    5.0,
+    4.0,
     6.0,
     7.0
    ],
    "dip_t_med_min_before_0k": 7.0,
+   "gun_axis": {
+    "n_dual": 39,
+    "lawful_share": 0.282,
+    "pre_gun_med_min": 104.1
+   },
    "never_wake_p": 0.0
   },
   "ITF_M|le25|hi": {
-   "n": 21,
+   "n": 23,
    "dip_freq": 1.0,
    "depth_p25_50_75": [
-    6.0,
-    8.0,
+    5.0,
+    7.0,
     11.0
    ],
-   "dip_t_med_min_before_0k": 33.0,
+   "dip_t_med_min_before_0k": 28.0,
+   "gun_axis": {
+    "n_dual": 23,
+    "lawful_share": 0.13,
+    "pre_gun_med_min": 1.1
+   },
    "never_wake_p": 0.0
   },
   "ITF_W|51_75|mid": {
-   "n": 24,
-   "dip_freq": 0.792,
+   "n": 25,
+   "dip_freq": 0.8,
    "depth_p25_50_75": [
     9.0,
     12.0,
     32.0
    ],
    "dip_t_med_min_before_0k": 8.0,
+   "gun_axis": {
+    "n_dual": 24,
+    "lawful_share": 0.542,
+    "pre_gun_med_min": 67.6
+   },
    "never_wake_p": 0.0
   },
   "ITF_M|ge75|mid": {
    "n": 31,
    "dip_freq": 0.935,
    "depth_p25_50_75": [
-    6.0,
-    13.0,
+    5.0,
+    11.0,
     18.0
    ],
    "dip_t_med_min_before_0k": 62.0,
+   "gun_axis": {
+    "n_dual": 31,
+    "lawful_share": 0.452,
+    "pre_gun_med_min": 10.6
+   },
    "never_wake_p": 0.0
   },
   "ITF_M|le25|mid": {
-   "n": 20,
-   "dip_freq": 0.8,
+   "n": 18,
+   "dip_freq": 0.778,
    "depth_p25_50_75": [
     5.0,
     7.0,
     13.0
    ],
-   "dip_t_med_min_before_0k": 28.0,
+   "dip_t_med_min_before_0k": 29.0,
+   "gun_axis": {
+    "n_dual": 18,
+    "lawful_share": 0.056,
+    "pre_gun_med_min": 1.1
+   },
    "never_wake_p": 0.0
   },
   "ITF_W|26_50|mid": {
-   "n": 24,
-   "dip_freq": 0.875,
+   "n": 25,
+   "dip_freq": 0.84,
    "depth_p25_50_75": [
     11.0,
     14.0,
     19.0
    ],
    "dip_t_med_min_before_0k": 4.0,
+   "gun_axis": {
+    "n_dual": 23,
+    "lawful_share": 0.217,
+    "pre_gun_med_min": 8.7
+   },
    "never_wake_p": 0.0
   },
   "ITF_W|26_50|lo": {
-   "n": 32,
-   "dip_freq": 0.719,
+   "n": 33,
+   "dip_freq": 0.697,
    "depth_p25_50_75": [
     4.0,
     8.0,
     15.0
    ],
    "dip_t_med_min_before_0k": 4.0,
+   "gun_axis": {
+    "n_dual": 31,
+    "lawful_share": 0.452,
+    "pre_gun_med_min": 160.4
+   },
    "never_wake_p": 0.0
   },
   "ITF_M|51_75|lo": {
-   "n": 36,
-   "dip_freq": 0.694,
+   "n": 37,
+   "dip_freq": 0.703,
    "depth_p25_50_75": [
-    9.0,
+    8.0,
     13.0,
     18.0
    ],
-   "dip_t_med_min_before_0k": 6.0,
+   "dip_t_med_min_before_0k": 7.0,
+   "gun_axis": {
+    "n_dual": 36,
+    "lawful_share": 0.361,
+    "pre_gun_med_min": 10.8
+   },
    "never_wake_p": 0.0
   },
   "ITF_M|51_75|hi": {
@@ -725,6 +859,11 @@
     38.0
    ],
    "dip_t_med_min_before_0k": 28.0,
+   "gun_axis": {
+    "n_dual": 31,
+    "lawful_share": 0.065,
+    "pre_gun_med_min": 8.8
+   },
    "never_wake_p": 0.0
   },
   "ITF_W|51_75|hi": {
@@ -736,17 +875,27 @@
     32.0
    ],
    "dip_t_med_min_before_0k": 38.0,
+   "gun_axis": {
+    "n_dual": 38,
+    "lawful_share": 0.211,
+    "pre_gun_med_min": 4.8
+   },
    "never_wake_p": 0.0
   },
   "ITF_M|ge75|hi": {
-   "n": 27,
+   "n": 29,
    "dip_freq": 1.0,
    "depth_p25_50_75": [
     12.0,
     19.0,
-    34.0
+    27.0
    ],
    "dip_t_med_min_before_0k": 59.0,
+   "gun_axis": {
+    "n_dual": 28,
+    "lawful_share": 0.25,
+    "pre_gun_med_min": 2.4
+   },
    "never_wake_p": 0.0
   },
   "ITF_W|ge75|mid": {
@@ -758,6 +907,11 @@
     22.0
    ],
    "dip_t_med_min_before_0k": 14.0,
+   "gun_axis": {
+    "n_dual": 50,
+    "lawful_share": 0.32,
+    "pre_gun_med_min": 44.9
+   },
    "never_wake_p": 0.0
   },
   "ITF_M|26_50|lo": {
@@ -769,6 +923,11 @@
     18.0
    ],
    "dip_t_med_min_before_0k": 8.0,
+   "gun_axis": {
+    "n_dual": 28,
+    "lawful_share": 0.286,
+    "pre_gun_med_min": 6.1
+   },
    "never_wake_p": 0.0
   },
   "ITF_W|le25|hi": {
@@ -780,28 +939,27 @@
     12.0
    ],
    "dip_t_med_min_before_0k": 23.0,
+   "gun_axis": {
+    "n_dual": 29,
+    "lawful_share": 0.138,
+    "pre_gun_med_min": 1.1
+   },
    "never_wake_p": 0.0
   },
   "ITF_M|ge75|lo": {
-   "n": 42,
-   "dip_freq": 0.833,
+   "n": 45,
+   "dip_freq": 0.844,
    "depth_p25_50_75": [
     6.0,
-    12.0,
+    11.0,
     18.0
    ],
    "dip_t_med_min_before_0k": 11.0,
-   "never_wake_p": 0.0
-  },
-  "ITF_M|le25|lo": {
-   "n": 28,
-   "dip_freq": 0.5,
-   "depth_p25_50_75": [
-    5.0,
-    8.0,
-    12.0
-   ],
-   "dip_t_med_min_before_0k": 6.0,
+   "gun_axis": {
+    "n_dual": 45,
+    "lawful_share": 0.222,
+    "pre_gun_med_min": 185.5
+   },
    "never_wake_p": 0.0
   },
   "ITF_M|26_50|mid": {
@@ -813,6 +971,11 @@
     19.0
    ],
    "dip_t_med_min_before_0k": 12.0,
+   "gun_axis": {
+    "n_dual": 19,
+    "lawful_share": 0.211,
+    "pre_gun_med_min": 0.9
+   },
    "never_wake_p": 0.0
   },
   "ITF_M|51_75|mid": {
@@ -824,6 +987,11 @@
     14.0
    ],
    "dip_t_med_min_before_0k": 13.0,
+   "gun_axis": {
+    "n_dual": 17,
+    "lawful_share": 0.176,
+    "pre_gun_med_min": 43.3
+   },
    "never_wake_p": 0.0
   }
  }

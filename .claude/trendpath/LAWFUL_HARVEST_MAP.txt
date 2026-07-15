@@ -1,0 +1,4 @@
+THE LAWFUL HARVEST MAP (gun clock; dual-stamp legs; recut 07-14)
+
+ITF_M      n_dual=333 | lawful_share=24% | pre-gun bottom p25/50/75 = 1.2 / 10.6 / 151.4 min
+ITF_W      n_dual=453 | lawful_share=28% | pre-gun bottom p25/50/75 = 2.5 / 41.6 / 151.2 min

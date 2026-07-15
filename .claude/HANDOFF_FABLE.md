@@ -33,7 +33,18 @@ Fable is READ-ONLY: git fetch before every claim; no VPS/exchange access.
 4. Empty-looking operator attachment = paste channel dropped it; say so,
    read git instead.
 
-## STATE (2026-07-14 TAPE-CLOSED — C50 keeps this current):
+## STATE (2026-07-14 GATED+RECUT — C50 keeps this current):
+C-TAPE-GATE executed (c070a158): flatten tape gate LIVE (skip on
+median>=basis, below-basis scope, leash unchanged, one-shot
+preserved; founding +$15.50 REAL, 23/25 band-cashed; nightly
+self-grading or revoked). Timing recut in the builder: timing_gun
++ lawful_share per page, gun_axis in library, LAWFUL_HARVEST_MAP,
+caveat lifts on dual stamps only. Reach refit live (869de031).
+Words pending: sizing; orientation clock. Standing: number-law
+renderer inheritance; GAP-B/D graders; unbooked-fill root; M15
+intake #1.
+
+(prior:) ## STATE (2026-07-14 TAPE-CLOSED):
 READ-THE-TAPE 1-6 closed + CONVICTED-INSTRUMENTS: reach refit
 DEPLOYED (bound=evidence gun; nightly E-vs-A armed honest). #1
 leak = tape-blind flatten +$20.06 -> TAPE-GATE PROPOSAL awaits

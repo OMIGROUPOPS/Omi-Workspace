@@ -1,0 +1,34 @@
+THE FOUNDING TABLE — flatten tape gate (SKIP cohort, REAL outcomes)
+
+COUNTERFACTUAL METHOD: hold the leg; resting band exit UNMOVED at basis+band_x (per-leg posted value); BAND-CASHED = tape printed >= exit level after the skip moment (tape-touch, size-blind, NAMED); else the actual settlement. Below-basis flattens only (the gate's scope).
+
+  07-12 06:52PM CH-26JUL12PANOUN-OUN           sold 23 vs basis 55 (med 68) band+12 -> BAND-CASHED  actual $-1.60 | counterfactual $+0.60 | delta $+2.20
+  07-13 01:35AM CH-26JUL13YEVCAM-YEV           sold 41 vs basis 42 (med 42) band+9 -> BAND-CASHED  actual $-0.05 | counterfactual $+0.45 | delta $+0.50
+  07-13 03:41AM CH-26JUL13PRICRI-PRI           sold 89 vs basis 90 (med 90) band+10 -> SETTLED-WON  actual $-0.05 | counterfactual $+0.50 | delta $+0.55
+  07-13 04:09AM CH-26JUL13VELKOR-KOR           sold 60 vs basis 65 (med 65) band+16 -> BAND-CASHED  actual $-0.25 | counterfactual $+0.80 | delta $+1.05
+  07-13 04:11AM CH-26JUL13PRICRI-PRI           sold 87 vs basis 89 (med 89) band+10 -> BAND-CASHED  actual $-0.10 | counterfactual $+0.50 | delta $+0.60
+  07-13 04:36AM CH-26JUL13MOHKEZ-MOH           sold 88 vs basis 90 (med 90) band+9 -> BAND-CASHED  actual $-0.10 | counterfactual $+0.45 | delta $+0.55
+  07-13 05:03AM CH-26JUL13GIZVLA-GIZ           sold 12 vs basis 14 (med 14) band+4 -> BAND-CASHED  actual $-0.10 | counterfactual $+0.20 | delta $+0.30
+  07-13 05:08AM CH-26JUL13YEVCAM-CAM           sold 52 vs basis 56 (med 57) band+15 -> BAND-CASHED  actual $-0.20 | counterfactual $+0.75 | delta $+0.95
+  07-13 05:12AM CH-26JUL13PULWIR-PUL           sold 21 vs basis 31 (med 31) band+6 -> BAND-CASHED  actual $-0.50 | counterfactual $+0.30 | delta $+0.80
+  07-13 05:19AM CH-26JUL13FEHKRO-FEH           sold  8 vs basis 10 (med 10) band+3 -> BAND-CASHED  actual $-0.10 | counterfactual $+0.15 | delta $+0.25
+  07-13 05:21AM CH-26JUL13VULPAO-PAO           sold 15 vs basis 19 (med 19) band+6 -> BAND-CASHED  actual $-0.20 | counterfactual $+0.30 | delta $+0.50
+  07-13 05:30AM TCH-26JUL12DEGEE-GEE           sold 54 vs basis 57 (med 57) band+16 -> SETTLED-LOST actual $-0.15 | counterfactual $-2.85 | delta $-2.70
+  07-13 05:56AM CH-26JUL13DONWES-DON           sold 25 vs basis 27 (med 27) band+7 -> BAND-CASHED  actual $-0.10 | counterfactual $+0.35 | delta $+0.45
+  07-13 06:13AM CH-26JUL13DELBRO-DEL           sold 29 vs basis 36 (med 36) band+7 -> BAND-CASHED  actual $-0.35 | counterfactual $+0.35 | delta $+0.70
+  07-13 06:55AM CH-26JUL13SARANG-SAR           sold 35 vs basis 41 (med 53) band+8 -> BAND-CASHED  actual $-0.30 | counterfactual $+0.40 | delta $+0.70
+  07-13 07:33AM CH-26JUL13PETURB-URB           sold 34 vs basis 38 (med 38) band+7 -> BAND-CASHED  actual $-0.20 | counterfactual $+0.35 | delta $+0.55
+  07-13 08:03AM CH-26JUL13IVAKOP-IVA           sold 85 vs basis 91 (med 91) band+8 -> BAND-CASHED  actual $-0.30 | counterfactual $+0.40 | delta $+0.70
+  07-13 10:17AM CH-26JUL13NAGCHY-NAG           sold 91 vs basis 93 (med 94) band+6 -> BAND-CASHED  actual $-0.10 | counterfactual $+0.30 | delta $+0.40
+  07-13 11:04AM CH-26JUL13FORRAF-RAF           sold 13 vs basis 15 (med 15) band+5 -> BAND-CASHED  actual $-0.10 | counterfactual $+0.25 | delta $+0.35
+  07-13 12:07PM CH-26JUL13SEMXUX-SEM           sold 71 vs basis 88 (med 88) band+11 -> BAND-CASHED  actual $-0.85 | counterfactual $+0.55 | delta $+1.40
+  07-13 12:51PM CH-26JUL12KOPPRI-PRI           sold 73 vs basis 74 (med 74) band+19 -> BAND-CASHED  actual $-0.05 | counterfactual $+0.95 | delta $+1.00
+  07-13 02:52PM CH-26JUL13SANLOP-SAN           sold 88 vs basis 89 (med 89) band+10 -> BAND-CASHED  actual $-0.05 | counterfactual $+0.50 | delta $+0.55
+  07-14 02:32AM CH-26JUL14PANBEL-PAN           sold  7 vs basis 13 (med 17) band+4 -> BAND-CASHED  actual $-0.30 | counterfactual $+0.20 | delta $+0.50
+  07-14 03:15AM CH-26JUL14AUNELN-AUN           sold 85 vs basis 86 (med 92) band+12 -> BAND-CASHED  actual $-0.05 | counterfactual $+0.60 | delta $+0.65
+  07-14 03:25AM CH-26JUL14BATKRY-BAT           sold 48 vs basis 70 (med 78) band+18 -> BAND-CASHED  actual $-1.10 | counterfactual $+0.90 | delta $+2.00
+
+COHORT: 25 below-basis skips | {'BAND-CASHED': 23, 'SETTLED-WON': 1, 'SETTLED-LOST': 1, 'UNSETTLED': 0}
+TOTAL: actual $-7.25 -> counterfactual $+8.25 | GATE DELTA $+15.50
+
+SHIP-CONDITION: delta supports the +$20.06 headline? YES — SHIP

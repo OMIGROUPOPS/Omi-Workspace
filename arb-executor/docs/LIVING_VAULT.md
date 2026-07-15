@@ -128,6 +128,18 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-15 · C-TAPE-GATE v1 EXECUTED (two operator words): THE FLATTEN TAPE GATE ARMED on its own proof — 23-of-25 dumps were followed by the tape printing through the very exit the flatten tore up; gate delta +$15.50 REAL (the honest number, not the +$20.06 headline); THE TIMING RECUT lands the gun clock into every page
+**THE OPERATOR WORDS, VERBATIM:** "arm the flatten tape gate, conditional on its own proof" · "timing recut on the gun clock." **The lineage — third ruling on the same defendant:** the flatten census (25 below-basis sells, one mechanism) → the leash (N=36, every giveaway a WINNER) → GAP-C's replay price → this gate.
+**Part 1, SHIP-CONDITION MET (FOUNDING_TABLE.txt, real outcomes only):** method line delivered (band exit unmoved at basis+band_x; BAND-CASHED = tape-touch of the exit after the skip; else actual settlement; below-basis scope). **25 skips → 23 BAND-CASHED / 1 WON / 1 LOST; actual −$7.25 → counterfactual +$8.25 = +$15.50.** Honest restatement recorded: +$20.06 was the wider 43-action cohort; **the gate ships on its own scope's +$15.50.** The gate: ONE input inside the unchanged leash — trailing-15-min median ≥ basis → SKIP (`flatten_tape_skipped`, median+basis stamped, one-shot preserved so an honest tape-turn still flattens); the leash (8/day, −3¢ floor) never loosens. **Self-grading forever: the nightly prints SKIP/KEEP + the skip cohort's realized forward outcomes — re-earned every night or revoked by its own line.**
+**Part 2, THE TIMING RECUT:** the builder joins evidence guns at build time; every atlas page gains `timing_gun` (dual-stamp quantiles + lawful_share); library cells gain `gun_axis`; the w1_cohort caveat lifts only where the gun column exists; depth quantiles untouched; no aim values change. **THE LAWFUL HARVEST MAP (first print):**
+```
+THE LAWFUL HARVEST MAP (gun clock; dual-stamp legs; recut 07-14)
+
+ITF_M      n_dual=333 | lawful_share=24% | pre-gun bottom p25/50/75 = 1.2 / 10.6 / 151.4 min
+ITF_W      n_dual=453 | lawful_share=28% | pre-gun bottom p25/50/75 = 2.5 / 41.6 / 151.2 min
+```
+Proof: `.claude/proof_20260714/PROOF_TAPE_GATE.md` (SHA c070a158).
+
 ### 2026-07-15 · C-CONVICTED-INSTRUMENTS v1 — the reach refit DEPLOYED (integration bound = the evidence gun, every consumer inherits); EV3 RE-READ AT n=499: AT-THE-LETTER WITH A NEGATIVE POINT ESTIMATE — NO CUTOVER; and the vault amends its own conclusion: the flatten cure is the TAPE GATE, not the third term
 **Part 1 (SHA 87f495e0, full gate):** LAW.json meta carries the corrected contract (integration_bound: evidence_gun; rates untouched — the BOUND was the defect); the dossier's reach_law surface stamps it; the nightly gains REACH E-vs-A on the honest expectation with the old unbounded mass printed as excluded (the 26.55-class sanity line, standing).
 **Part 2 (EV3_REREAD.txt): graded 499 settled verdict-legs (EV3 opinion on 239): two-term P&L −$52.15 · three-term −$69.35 · delta −$17.20 (CI [−56.20, +22.20]). VERDICT: AT-THE-LETTER — n clears 300, the CI touches zero, and the direction is NEGATIVE. The pre-agreed bar is not met; no cutover; the EV3 lane stays shadow.** Named proxy caveat: flattens graded at the trailing-median exit.

@@ -26,17 +26,29 @@ bash "$ARB/deploy/deploy_gate.sh" "$ARB"
 python3 "$ARB/analysis/knob_census_check.py" --emit || echo "WARN: census emit failed (viewer will show stale census stamp)"
 
 # ---- graceful restart ----
-echo "--- stopping current bot (SIGINT -> graceful drain)"
+# [-0l FIX 07-15, operator word] the stop window sits STRICTLY ABOVE the
+# bot's book-sized drain budget (bot: 5s + 0.25s per resting entry bid,
+# cap 180s). The 07-15 incident (script abandoned at 20s; the bot's own
+# force-exit landed at ~35s; dead book 8 min, nobody restarting) is closed
+# by construction: within 200s the bot is dead by its own watchdog, so the
+# only reachable failure branch is "old bot still alive" — which is loud
+# (BOT_DOWN channel) and SAFE (old code keeps trading; never a dead book).
+STOP_WINDOW_SEC=200
+echo "--- stopping current bot (SIGINT -> graceful drain; window ${STOP_WINDOW_SEC}s)"
 if tmux has-session -t "$TMUX_SESSION" 2>/dev/null; then
   tmux send-keys -t "$TMUX_SESSION" C-c || true
-  for i in $(seq 1 20); do
-    pgrep -f "python3 -u live_v4.py" >/dev/null || break
+  STOP_T0=$(date +%s)
+  STOPPED=0
+  for i in $(seq 1 "$STOP_WINDOW_SEC"); do
+    if ! pgrep -f "python3 -u live_v4.py" >/dev/null; then STOPPED=1; break; fi
     sleep 1
   done
-  if pgrep -f "python3 -u live_v4.py" >/dev/null; then
-    echo "DEPLOY FAIL: bot did not stop within 20s; NOT killing hard. Investigate."
+  if [ "$STOPPED" -ne 1 ]; then
+    echo "DEPLOY FAIL: bot still alive ${STOP_WINDOW_SEC}s post-SIGINT (past its own force-exit watchdog). OLD bot left trading; NOT killing hard."
+    /root/notify.sh crit "deploy stop-window exceeded" "live_v4 survived ${STOP_WINDOW_SEC}s post-SIGINT; old code still trading; manual attention needed" || true
     exit 1
   fi
+  echo "stopped in $(( $(date +%s) - STOP_T0 ))s"
   tmux kill-session -t "$TMUX_SESSION" 2>/dev/null || true
 fi
 

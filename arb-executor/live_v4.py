@@ -12814,16 +12814,37 @@ class LiveV3:
             print("[STOP] second %s -> hard exit" % signame, flush=True)
             os._exit(1)
         self._shutdown_requested = True
-        print("[STOP] %s received -> graceful shutdown (%ds budget)" % (signame, V4_SHUTDOWN_TIMEOUT_SEC), flush=True)
+        # [-0l FIX 07-15, operator word: size the stop window to the book]
+        # the fixed 10s budget expired before the drain even logged its
+        # begin line on a 255-order book under loop load (02:28 AM: no
+        # shutdown_drain_begin, no manifest, hard exit mid-preamble, dead
+        # book 8 min). Budget = 5s + 0.25s per resting entry bid, floor
+        # V4_SHUTDOWN_TIMEOUT_SEC, cap 180s. The deploy script's stop
+        # window (200s) strictly exceeds the cap, closing the race by
+        # construction. The wedge backstop semantics stand — only sized.
         try:
-            asyncio.get_running_loop().call_later(V4_SHUTDOWN_TIMEOUT_SEC, self._force_exit)
+            _n_drain = sum(1 for _p in self.positions.values()
+                           if getattr(_p, "is_v4", False)
+                           and _p.phase == "entry_resting"
+                           and _p.entry_order_id)
+        except Exception:
+            _n_drain = 0
+        _budget = int(max(V4_SHUTDOWN_TIMEOUT_SEC,
+                          min(180, 5 + 0.25 * _n_drain)))
+        self._shutdown_budget_sec = _budget
+        print("[STOP] %s received -> graceful shutdown (%ds budget, "
+              "%d resting entry bids)" % (signame, _budget, _n_drain),
+              flush=True)
+        try:
+            asyncio.get_running_loop().call_later(_budget, self._force_exit)
         except Exception:
             os._exit(1)
 
     def _force_exit(self):
         """#0-infra: hard-deadline backstop. If the graceful drain wedges (API hang / deadlock),
         exit rather than sit in a zombie 'shutting down' state. persist-or-die, not persist-forever."""
-        print("[STOP] shutdown budget (%ds) exceeded -> hard exit" % V4_SHUTDOWN_TIMEOUT_SEC, flush=True)
+        print("[STOP] shutdown budget (%ds) exceeded -> hard exit"
+              % getattr(self, "_shutdown_budget_sec", V4_SHUTDOWN_TIMEOUT_SEC), flush=True)
         os._exit(1)
 
     async def _shutdown_drain(self):

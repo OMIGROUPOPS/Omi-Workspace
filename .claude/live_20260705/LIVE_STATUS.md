@@ -1,15 +1,15 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 74 @ **2026-07-15 03:48:39 AM ET** | build `29a7f3f1` | session boot 07-15 02:36 ET | log `live_v3_20260715.jsonl` | 44673 session events | monitor READ-ONLY
+- cycle 75 @ **2026-07-15 03:59:18 AM ET** | build `6cb5244b` | session boot 07-15 02:36 ET | log `live_v3_20260715.jsonl` | 47038 session events | monitor READ-ONLY
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
-- refused:below_leg_floor UL15STAKOZ-KOZ aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,sh
-- refused:below_leg_floor UL15STAKOZ-KOZ aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,sh
-- refused:below_leg_floor UL15WERJOV-WER aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,sh
+- refused:below_leg_floor UL15KOVAND-KOV aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,sh
+- refused:below_leg_floor UL15SATSUN-SUN aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,sh
 - refused:below_leg_floor UL15YANMET-YAN aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,sh
+- refused:below_leg_floor UL15SHACHO-SHA aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,sh
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 25 item(s)
-- **half_arm_aging**: KXITFWMATCH-26JUL15ARYMAM-ARY {"fill": 15, "age_min": 69, "mode": "NO_BID(sib rested earlier, none now)"}
+- **half_arm_aging**: KXITFWMATCH-26JUL15ARYMAM-ARY {"fill": 15, "age_min": 79, "mode": "NO_BID(sib rested earlier, none now)"}
 - **reality_divergence**: KXITFMATCH-26JUL14ALHVUX-VUX {"kind": "position_basis", "ref": 77.0, "market_mid": 12.5, "divergence": 64.5}
 - **reality_divergence**: KXITFMATCH-26JUL15BERAGI-BER {"kind": "resting_bid", "ref": 17.0, "market_mid": 66.5, "divergence": -49.5}
 - **reality_divergence**: KXITFMATCH-26JUL15DOLDOU-DOL {"kind": "resting_bid", "ref": 10.0, "market_mid": 42.0, "divergence": -32.0}
@@ -18,10 +18,10 @@
 - **reality_divergence**: KXITFMATCH-26JUL15MIRMUR-MIR {"kind": "resting_bid", "ref": 6.0, "market_mid": 80.5, "divergence": -74.5}
 - **reality_divergence**: KXITFMATCH-26JUL15OVCCOR-OVC {"kind": "resting_bid", "ref": 35.0, "market_mid": 92.0, "divergence": -57.0}
 - **reality_divergence**: KXITFMATCH-26JUL15WIEWIT-WIE {"kind": "resting_bid", "ref": 40.0, "market_mid": 86.5, "divergence": -46.5}
-- **half_arm_aging**: KXITFMATCH-26JUL15WIEWIT-WIT {"fill": 10, "age_min": 60, "mode": "NO_BID(sib rested earlier, none now)"}
-- **half_arm_aging**: KXITFWMATCH-26JUL15PERBAR-BAR {"fill": 14, "age_min": 38, "mode": "NO_BID(sib rested earlier, none now)", "emitted_et": "2026-07-15 03:48:35 AM ET"}
-- **half_arm_aging**: KXITFMATCH-26JUL15OVCCOR-COR {"fill": 5, "age_min": 37, "mode": "NO_BID(sib rested earlier, none now)", "emitted_et": "2026-07-15 03:48:35 AM ET"}
-- **half_arm_aging**: KXITFWMATCH-26JUL15VIRRAD-VIR {"fill": 12, "age_min": 36, "mode": "NO_BID(sib rested earlier, none now)", "emitted_et": "2026-07-15 03:48:35 AM ET"}
+- **half_arm_aging**: KXITFMATCH-26JUL15WIEWIT-WIT {"fill": 10, "age_min": 71, "mode": "NO_BID(sib rested earlier, none now)"}
+- **half_arm_aging**: KXITFWMATCH-26JUL15PERBAR-BAR {"fill": 14, "age_min": 49, "mode": "NO_BID(sib rested earlier, none now)"}
+- **half_arm_aging**: KXITFMATCH-26JUL15OVCCOR-COR {"fill": 5, "age_min": 48, "mode": "NO_BID(sib rested earlier, none now)"}
+- **half_arm_aging**: KXITFWMATCH-26JUL15VIRRAD-VIR {"fill": 12, "age_min": 46, "mode": "NO_BID(sib rested earlier, none now)"}
 - **reality_divergence**: KXITFMATCH-26JUL15BERAGI-BER {"kind": "resting_bid", "ref": 17.0, "market_mid": 66.5, "divergence": -49.5}
 - **reality_divergence**: KXITFMATCH-26JUL15DOLDOU-DOL {"kind": "resting_bid", "ref": 10.0, "market_mid": 42.0, "divergence": -32.0}
 - **reality_divergence**: KXITFMATCH-26JUL15GUNDEL-GUN {"kind": "resting_bid", "ref": 35.0, "market_mid": 66.5, "divergence": -31.5}
@@ -62,8 +62,6 @@
 | 03:45:20 | **bell_missing** | KXITFWMATCH-26JUL15WAGCIR | min_past_start 15.3 |
 | 03:45:20 | **bell_missing** | KXITFWMATCH-26JUL15MILDYU | min_past_start 15.3 |
 
-**LIVE DEFECT(S) — forensic blocks written: FORENSIC_bell_missing.md, FORENSIC_taker_capped.md**
-
 ## FILLS — 6 graded (session)
 | ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb | stamp |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -74,356 +72,356 @@
 | 03:12 | ITFWMATCH-26JUL15VIRRAD-VIR | ITF_W | ? | 12 | 8 | +4 (fill_est) | — | pre | single |  | PENDING |
 | 03:34 | ITFMATCH-26JUL15STEMAK-STE | ITF_M | ? | 28 | 24 | +4 (fill_est) | — | pre | single |  | PENDING |
 
-## RESTING BIDS — 307 tape-graded (starvation = NO_FLOW only)
-- classes now: {'FLOW_ABOVE': 51, 'NO_FLOW': 256} | repriceable now: true 15 / false 292 | **cumulative bid_grade lines: 10482 (repriceable true 1484 / false 8998)** -- the liquid_repost re-arm evidence accumulates here
+## RESTING BIDS — 305 tape-graded (starvation = NO_FLOW only)
+- classes now: {'FLOW_ABOVE': 53, 'NO_FLOW': 252} | repriceable now: true 16 / false 289 | **cumulative bid_grade lines: 10487 (repriceable true 1484 / false 9003)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL15BONJUS-B | 35 | 70m | 1/40-40/23 | 39-40 | 5 | **FLOW_ABOVE** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL15BONJUS-J | 57 | 17m | 4/61-61/638 | 60-61 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→61 |
-| ATPCHALLENGERMATCH-26JUL15ROMGAL-G | 65 | 70m | 3/67-67/76 | 66-67 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→67 |
-| ATPCHALLENGERMATCH-26JUL15ROMGAL-R | 28 | 70m | 2/33-33/28 | 32-33 | 5 | **FLOW_ABOVE** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL15WESCOP-C | 77 | 70m | 1/83-83/1 | 82-83 | 6 | **FLOW_ABOVE** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL15WESCOP-W | 15 | 70m | 0 | 17-18 | — | **NO_FLOW** | 99 |  |
-| ATPMATCH-26JUL14RINTAB-TAB | 28 | 70m | 25/33-36/14360 | 32-33 | 5 | **FLOW_ABOVE** | 99 |  |
-| ATPMATCH-26JUL15BASTIR-BAS | 27 | 70m | 0 | 30-31 | — | **NO_FLOW** | 99 |  |
-| ATPMATCH-26JUL15BASTIR-TIR | 66 | 70m | 0 | 70-72 | — | **NO_FLOW** | 99 |  |
-| ATPMATCH-26JUL15BORDIM-BOR | 63 | 70m | 19/66-68/1470 | 65-66 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→66 |
-| ATPMATCH-26JUL15BORDIM-DIM | 30 | 70m | 12/33-35/650 | 34-35 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→33 |
-| ATPMATCH-26JUL15BUBHAL-BUB | 65 | 70m | 1/71-71/49 | 70-71 | 6 | **FLOW_ABOVE** | 99 |  |
-| ATPMATCH-26JUL15BUBHAL-HAL | 27 | 70m | 0 | 31-32 | — | **NO_FLOW** | 99 |  |
-| ATPMATCH-26JUL15CERKEC-CER | 46 | 70m | 2/54-54/22 | 52-54 | 8 | **FLOW_ABOVE** | 54 |  |
-| ATPMATCH-26JUL15CERKEC-KEC | 44 | 70m | 3/49-49/67 | 46-49 | 5 | **FLOW_ABOVE** | 47 | flow above but bound 47c < flow -- chasing breaks goal |
-| ATPMATCH-26JUL15COLSON-COL | 61 | 70m | 94/65-68/20375 | 67-68 | 4 | **FLOW_ABOVE** | 68 | REPRICEABLE→65 |
-| ATPMATCH-26JUL15COLSON-SON | 30 | 70m | 78/33-35/13780 | 33-34 | 3 | **FLOW_ABOVE** | 32 | REPRICEABLE→32 |
-| ATPMATCH-26JUL15RUBPEL-PEL | 22 | 70m | 1/26-26/1 | 23-26 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→26 |
-| ATPMATCH-26JUL15RUBPEL-RUB | 64 | 70m | 2/76-76/155 | 75-76 | 12 | **FLOW_ABOVE** | 99 |  |
-| ATPMATCH-26JUL15TABMID-MID | 23 | 70m | 0 | 23-26 | — | **NO_FLOW** | 99 |  |
-| ATPMATCH-26JUL15TABMID-TAB | 70 | 70m | 4/74-76/159 | 74-76 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→74 |
-| ITFMATCH-26JUL15ANTHEI-ANT | 42 | 69m | 0 | 58-63 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15ANTHEI-HEI | 23 | 69m | 0 | 36-41 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BERAGI-AGI | 12 | 70m | 0 | 30-36 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BERAGI-BER | 17 | 70m | 0 | 64-69 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BERBAR-BAR | 39 | 70m | 0 | 55-61 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BERBAR-BER | 27 | 70m | 0 | 40-44 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BERTON-BER | 64 | 70m | 0 | 78-80 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BERTON-TON | 11 | 70m | 0 | 18-21 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BLAMAR-BLA | 71 | 70m | 0 | 84-89 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BLAMAR-MAR | 9 | 70m | 1/15-15/3 | 10-15 | 6 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL15BOIBRE-BOI | 71 | 70m | 0 | 84-86 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BOIBRE-BRE | 6 | 69m | 0 | 12-15 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BONBER-BER | 37 | 70m | 0 | 53-58 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BONBER-BON | 30 | 70m | 0 | 42-47 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BROVUJ-BRO | 17 | 70m | 0 | 30-34 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BROVUJ-VUJ | 49 | 70m | 0 | 65-70 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BULHOM-BUL | 18 | 17m | 0 | 31-35 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15BULHOM-HOM | 47 | 17m | 0 | 64-69 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15CALMAT-CAL | 36 | 70m | 0 | 52-57 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15CALMAT-MAT | 27 | 70m | 0 | 42-47 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15CARBAR-BAR | 72 | 70m | 0 | 86-90 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15CARBAR-CAR | 8 | 70m | 0 | 11-14 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15CARJAM-CAR | 59 | 70m | 0 | 76-79 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15CARJAM-JAM | 13 | 70m | 0 | 20-25 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15CASCHE-CAS | 42 | 70m | 7/66-68/491 | 63-66 | 24 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL15CASCHE-CHE | 23 | 70m | 0 | 34-35 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15CHOCHE-CHE | 59 | 17m | 0 | 75-80 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15CHOCHE-CHO | 13 | 16m | 0 | 19-24 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15CLEALU-ALU | 50 | 70m | 0 | 66-71 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15CLEALU-CLE | 16 | 70m | 0 | 30-32 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15COCMIS-COC | 35 | 62m | 0 | 46-51 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15COCMIS-MIS | 33 | 70m | 0 | 48-53 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15COLLOP-COL | 37 | 70m | 0 | 53-57 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15COLLOP-LOP | 29 | 70m | 0 | 42-47 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15DELBUT-BUT | 9 | 70m | 0 | 15-19 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15DELBUT-DEL | 68 | 70m | 0 | 81-85 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15DHOPLE-DHO | 12 | 70m | 0 | 17-20 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15DHOPLE-PLE | 66 | 70m | 0 | 79-84 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15DIMBOS-BOS | 63 | 70m | 0 | 77-82 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15DIMBOS-DIM | 12 | 70m | 0 | 18-23 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15DINCOM-COM | 27 | 70m | 0 | 43-45 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15DINCOM-DIN | 38 | 70m | 1/55-55/26 | 54-55 | 17 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL15DOIVAN-DOI | 26 | 70m | 0 | 38-43 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15DOIVAN-VAN | 40 | 70m | 0 | 56-61 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15DOLDOU-DOL | 10 | 70m | 0 | 16-72 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15DOMBER-BER | 21 | 4m | 0 | 43-48 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15DOMBER-DOM | 24 | 5m | 0 | 51-56 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15DUTKLA-DUT | 45 | 70m | 0 | 61-65 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15DUTKLA-KLA | 20 | 70m | 0 | 35-39 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15EICPEN-EIC | 16 | 70m | 0 | 27-31 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15EICPEN-PEN | 51 | 70m | 0 | 68-72 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15FABGRE-FAB | 69 | 70m | 0 | 82-86 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15FABGRE-GRE | 7 | 70m | 0 | 13-18 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15FONHRA-FON | 30 | 69m | 0 | 43-48 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15FONHRA-HRA | 35 | 70m | 0 | 51-56 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15FUNBAR-BAR | 52 | 70m | 0 | 67-73 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15FUNBAR-FUN | 13 | 70m | 0 | 27-32 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15GASCAT-CAT | 58 | 70m | 0 | 75-81 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15GASCAT-GAS | 12 | 70m | 0 | 20-24 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15GLOHAL-GLO | 11 | 70m | 1/26-26/29 | 25-28 | 15 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL15GLOHAL-HAL | 66 | 70m | 1/81-81/60 | 72-75 | 15 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL15GSCTOF-TOF | 33 | 70m | 0 | 46-51 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15GUNDEL-DEL | 15 | 70m | 0 | 28-35 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15GUNDEL-GUN | 35 | 70m | 0 | 64-69 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15HARMIL-HAR | 18 | 69m | 0 | 24-28 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15HARMIL-MIL | 56 | 69m | 0 | 72-77 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15HERPED-HER | 19 | 70m | 0 | 33-36 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15HERPED-PED | 36 | 13m | 0 | 62-67 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15HIPORL-HIP | 32 | 70m | 0 | 45-49 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15HRIJIL-JIL | 76 | 70m | 0 | 89-93 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15IZQSIL-IZQ | 64 | 18m | 0 | 77-78 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15IZQSIL-SIL | 15 | 18m | 0 | 21-25 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15JEFROB-JEF | 21 | 69m | 0 | 34-39 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15JEFROB-ROB | 45 | 69m | 0 | 61-66 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15JONSIN-SIN | 31 | 70m | 0 | 44-49 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15KAMTIM-KAM | 20 | 69m | 0 | 33-37 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15KAMTIM-TIM | 46 | 69m | 0 | 61-66 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15KHOUJV-KHO | 45 | 70m | 0 | 61-65 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15KHOUJV-UJV | 20 | 70m | 0 | 33-38 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15KOBWIS-WIS | 76 | 70m | 0 | 89-93 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15KRUALA-ALA | 5 | 64m | 0 | 11-15 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15KRUALA-KRU | 72 | 69m | 0 | 85-90 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15LANSTR-STR | 34 | 70m | 0 | 47-52 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15LOPTAL-LOP | 47 | 70m | 0 | 61-66 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15LOPTAL-TAL | 9 | 16m | 0 | 33-37 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MAKMAB-MAB | 36 | 70m | 0 | 53-57 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MAKMAB-MAK | 31 | 70m | 0 | 43-47 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MANKAR-KAR | 27 | 70m | 0 | 39-44 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MANKAR-MAN | 38 | 70m | 0 | 55-59 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MARDOM-DOM | 51 | 70m | 0 | 67-73 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MARDOM-MAR | 14 | 70m | 0 | 27-32 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MARSIL-MAR | 52 | 70m | 0 | 68-74 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MARSIL-SIL | 13 | 70m | 0 | 26-31 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MCHSCH-MCH | 45 | 70m | 0 | 61-65 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MCHSCH-SCH | 20 | 70m | 0 | 34-38 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MENKIM-KIM | 68 | 70m | 0 | 81-84 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MENKIM-MEN | 10 | 70m | 0 | 16-19 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MIRMUR-MIR | 6 | 70m | 0 | 78-83 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MIRMUR-MUR | 10 | 70m | 0 | 17-22 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MONLEA-LEA | 43 | 70m | 0 | 59-65 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MONLEA-MON | 23 | 70m | 0 | 35-40 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MORVIL-MOR | 5 | 70m | 0 | 9-15 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MORVIL-VIL | 72 | 70m | 0 | 85-90 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MUTSUN-MUT | 15 | 17m | 0 | 28-31 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15MUTSUN-SUN | 53 | 17m | 0 | 69-72 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15PALTAZ-PAL | 72 | 70m | 0 | 85-87 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15PALTAZ-TAZ | 5 | 70m | 0 | 13-14 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15PANHAN-HAN | 46 | 70m | 0 | 62-64 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15PANHAN-PAN | 24 | 70m | 0 | 36-37 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15PARTAK-PAR | 70 | 70m | 0 | 84-87 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15PARTAK-TAK | 5 | 70m | 0 | 12-16 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15PERBEA-BEA | 35 | 70m | 1/48-48/10 | 49-52 | 13 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL15PERBEA-PER | 31 | 70m | 3/48-51/305 | 49-51 | 17 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL15PERGAR-GAR | 5 | 70m | 0 | 8-12 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15PERGAR-PER | 76 | 70m | 0 | 89-91 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15PISDER-DER | 75 | 17m | 0 | 88-92 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15PLATOR-PLA | 12 | 70m | 0 | 19-23 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15PLATOR-TOR | 63 | 70m | 0 | 76-81 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15RAPROT-RAP | 40 | 18m | 0 | 57-61 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15RAPROT-ROT | 25 | 18m | 0 | 38-43 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15RENMEL-MEL | 55 | 17m | 0 | 71-77 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15RENMEL-REN | 19 | 17m | 0 | 25-28 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15ROBABI-ABI | 13 | 70m | 0 | 26-32 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15ROBABI-ROB | 52 | 70m | 0 | 68-73 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15ROHHWA-HWA | 5 | 39m | 0 | 12-14 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15ROHHWA-ROH | 72 | 70m | 0 | 85-87 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15SARKOI-KOI | 35 | 70m | 0 | 50-55 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15SARKOI-SAR | 31 | 70m | 0 | 44-49 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15SCHLIE-LIE | 34 | 36m | 0 | 48-53 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15SCHLIE-SCH | 33 | 69m | 0 | 47-52 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15SHISTR-SHI | 72 | 70m | 0 | 86-89 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15SHISTR-STR | 5 | 70m | 0 | 10-14 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15SNIBRE-BRE | 11 | 17m | 0 | 18-23 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15SNIBRE-SNI | 64 | 17m | 0 | 77-82 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15STAKOZ-STA | 81 | 70m | 0 | 94-96 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15TAIGUA-GUA | 7 | 70m | 0 | 13-18 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15TAIGUA-TAI | 68 | 70m | 0 | 81-87 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15TOKPAL-PAL | 20 | 70m | 0 | 32-37 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15TOKPAL-TOK | 45 | 70m | 0 | 62-68 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15TRIBAG-BAG | 16 | 70m | 0 | 31-36 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15TRIBAG-TRI | 49 | 70m | 1/68-68/36 | 64-68 | 19 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL15TROIVA-IVA | 21 | 17m | 0 | 34-39 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15TROIVA-TRO | 45 | 17m | 0 | 61-64 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15URRVAL-URR | 49 | 17m | 0 | 66-68 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15URRVAL-VAL | 17 | 17m | 0 | 30-34 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15VANBIL-BIL | 35 | 70m | 2/49-49/106 | 48-49 | 14 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL15VANBIL-VAN | 35 | 69m | 0 | 48-51 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15VIVBET-BET | 8 | 70m | 0 | 16-21 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15VIVBET-VIV | 65 | 70m | 0 | 79-83 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15WANJIN-JIN | 70 | 70m | 0 | 83-87 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15WANJIN-WAN | 6 | 70m | 0 | 12-17 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15WERJOV-JOV | 80 | 70m | 0 | 93-95 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15ZAKLUE-LUE | 19 | 70m | 0 | 36-37 | — | **NO_FLOW** | 99 |  |
-| ITFMATCH-26JUL15ZAKLUE-ZAK | 46 | 70m | 0 | 63-65 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15ADEALL-ADE | 24 | 70m | 0 | 36-38 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15ADEALL-ALL | 49 | 70m | 0 | 62-63 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15ADKINO-ADK | 20 | 70m | 0 | 28-32 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15ADKINO-INO | 54 | 70m | 0 | 68-72 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15ANSSAV-ANS | 5 | 70m | 1/14-14/3 | 13-14 | 9 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15ANSSAV-SAV | 75 | 70m | 0 | 86-87 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15BAIGIL-BAI | 48 | 70m | 0 | 60-65 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15BAIGIL-GIL | 24 | 70m | 0 | 34-39 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15BALVOR-BAL | 38 | 70m | 0 | 52-55 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15BALVOR-VOR | 34 | 70m | 0 | 44-48 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15BARMAR-BAR | 14 | 47m | 0 | 20-25 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15BARMAR-MAR | 62 | 47m | 0 | 75-80 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15BERMAD-BER | 18 | 70m | 0 | 29-32 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15BERMAD-MAD | 54 | 70m | 0 | 67-71 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15BOUDIT-BOU | 24 | 69m | 0 | 35-38 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15BOUDIT-DIT | 48 | 69m | 0 | 61-66 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15BRODAE-BRO | 52 | 48m | 0 | 65-67 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15BRODAE-DAE | 22 | 48m | 0 | 32-36 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15CAKVAR-CAK | 6 | 70m | 0 | 12-14 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15CAKVAR-VAR | 73 | 70m | 0 | 85-88 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15CASPAS-CAS | 6 | 70m | 1/14-14/3 | 12-14 | 8 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15CASPAS-PAS | 74 | 70m | 0 | 86-88 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15CHILEW-CHI | 20 | 70m | 0 | 30-34 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15CHILEW-LEW | 52 | 70m | 0 | 65-70 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15CHOGUR-CHO | 16 | 69m | 0 | 27-32 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15CHOGUR-GUR | 54 | 70m | 0 | 67-72 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15CHOSUN-CHO | 27 | 69m | 0 | 39-43 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15CHOSUN-SUN | 44 | 69m | 0 | 57-61 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15CROCHA-CHA | 57 | 70m | 0 | 68-69 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15CROCHA-CRO | 18 | 70m | 0 | 29-33 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15DANGHI-DAN | 18 | 70m | 0 | 28-32 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15DANGHI-GHI | 55 | 70m | 0 | 68-70 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15DEPMIN-DEP | 7 | 70m | 1/16-16/2 | 13-16 | 9 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15DEPMIN-MIN | 71 | 70m | 0 | 83-87 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15DUDVLA-DUD | 71 | 70m | 0 | 84-85 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15DUDVLA-VLA | 9 | 70m | 0 | 14-16 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15ERCBIE-BIE | 5 | 70m | 4/14-16/562 | 11-16 | 9 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15ERCBIE-ERC | 75 | 70m | 6/84-89/573 | 88-90 | 9 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15GALPAV-GAL | 31 | 70m | 0 | 42-45 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15GALPAV-PAV | 42 | 70m | 0 | 55-59 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15HORBRU-BRU | 27 | 70m | 0 | 39-43 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15HORBRU-HOR | 42 | 70m | 0 | 58-60 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15INIFAL-FAL | 38 | 70m | 0 | 50-56 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15INIFAL-INI | 34 | 70m | 0 | 44-48 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15JOSKRO-JOS | 32 | 70m | 0 | 42-46 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15JOSKRO-KRO | 40 | 70m | 0 | 53-58 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15KRUDUE-DUE | 40 | 70m | 0 | 52-57 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15KRUDUE-KRU | 33 | 70m | 0 | 43-44 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15KUMCHA-KUM | 36 | 70m | 0 | 46-51 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15KUZBEL-BEL | 57 | 70m | 0 | 69-74 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15KUZBEL-KUZ | 16 | 70m | 0 | 25-30 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15LAZSTE-STE | 80 | 70m | 0 | 92-93 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15LENBER-BER | 26 | 70m | 0 | 38-42 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15LENBER-LEN | 46 | 70m | 0 | 59-62 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15LIMJAN-JAN | 22 | 70m | 0 | 35-37 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15LIMJAN-LIM | 49 | 70m | 0 | 63-64 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15LLIULR-LLI | 27 | 70m | 1/41-41/23 | 37-41 | 14 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15LLIULR-ULR | 46 | 70m | 4/64-64/321 | 59-64 | 18 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15LOVROC-LOV | 40 | 70m | 0 | 57-60 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15LOVROC-ROC | 32 | 70m | 0 | 38-43 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15MASLAB-LAB | 73 | 70m | 0 | 85-87 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15MASLAB-MAS | 7 | 70m | 1/14-14/3 | 13-14 | 7 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15MCDKLU-KLU | 46 | 70m | 0 | 61-65 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15MCDKLU-MCD | 28 | 70m | 0 | 35-37 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15MIKBER-BER | 16 | 44m | 0 | 21-26 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15MIKBER-MIK | 62 | 44m | 0 | 76-77 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15MILDYU-DYU | 7 | 70m | 0 | 10-13 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15MILDYU-MIL | 75 | 70m | 1/90-90/1 | 87-90 | 15 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15NAGSIS-NAG | 15 | 17m | 0 | 22-24 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15NAGSIS-SIS | 62 | 17m | 0 | 75-78 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15NILHER-HER | 39 | 17m | 0 | 52-56 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15NILHER-NIL | 34 | 17m | 0 | 45-46 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15OTZSTR-OTZ | 13 | 70m | 0 | 19-20 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15OTZSTR-STR | 68 | 69m | 0 | 80-81 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15PAGRIZ-PAG | 72 | 47m | 0 | 86-88 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15PAGRIZ-RIZ | 5 | 47m | 0 | 11-15 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15PAQIVA-IVA | 23 | 17m | 13/34-34/682 | 28-29 | 11 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15PAQIVA-PAQ | 52 | 17m | 2/69-69/21 | 70-74 | 17 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15PISGIA-GIA | 36 | 70m | 0 | 46-50 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15PISGIA-PIS | 37 | 70m | 0 | 49-53 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15POCMIS-MIS | 61 | 17m | 0 | 75-77 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15POCMIS-POC | 16 | 17m | 0 | 22-25 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15RICSZA-RIC | 55 | 47m | 0 | 69-74 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15RICSZA-SZA | 15 | 47m | 0 | 26-31 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15ROMWIE-ROM | 17 | 69m | 0 | 28-31 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15ROMWIE-WIE | 54 | 69m | 0 | 67-72 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15SAMBAC-BAC | 66 | 48m | 0 | 78-80 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15SAMBAC-SAM | 11 | 48m | 0 | 19-20 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15SATSUN-SAT | 78 | 70m | 0 | 91-92 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15SCHHOS-HOS | 79 | 70m | 0 | 91-93 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15SERKRE-KRE | 28 | 70m | 0 | 38-42 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15SERKRE-SER | 44 | 70m | 0 | 59-60 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15SHACHO-CHO | 81 | 70m | 0 | 93-95 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15SKOYAO-SKO | 16 | 70m | 4/25-26/551 | 23-25 | 9 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15SKOYAO-YAO | 64 | 70m | 0 | 75-77 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15SOLKON-KON | 43 | 16m | 0 | 56-61 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15SOLKON-SOL | 27 | 16m | 0 | 40-43 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15STODIB-STO | 80 | 70m | 0 | 91-93 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15TEPJOV-JOV | 42 | 16m | 0 | 55-60 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15TEPJOV-TEP | 28 | 16m | 0 | 39-44 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15TREHEU-HEU | 16 | 70m | 0 | 21-25 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15TREHEU-TRE | 62 | 70m | 0 | 75-77 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15TSYWEC-TSY | 64 | 47m | 0 | 76-79 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15TSYWEC-WEC | 16 | 47m | 0 | 22-24 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15URRSTE-STE | 54 | 48m | 0 | 67-71 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15URRSTE-URR | 17 | 48m | 0 | 28-32 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15VOGNUU-NUU | 18 | 70m | 0 | 24-26 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15VOGNUU-VOG | 58 | 70m | 0 | 73-76 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15VUJPRI-PRI | 29 | 70m | 0 | 41-46 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15VUJPRI-VUJ | 43 | 70m | 0 | 56-58 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15WAGCIR-CIR | 70 | 70m | 2/85-88/130 | 76-81 | 15 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15WAGCIR-WAG | 9 | 70m | 3/14-25/801 | 21-23 | 5 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15YODAHL-AHL | 35 | 70m | 12/49-59/644 | 51-54 | 14 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15ZIALEE-LEE | 77 | 70m | 0 | 88-92 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL15ZIALEE-ZIA | 5 | 10m | 0 | 8-11 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL15GRAPER-G | 84 | 70m | 2/88-88/2 | 87-88 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→88 |
-| WTACHALLENGERMATCH-26JUL15GRAPER-P | 9 | 70m | 3/12-13/19 | 12-13 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→12 |
-| WTACHALLENGERMATCH-26JUL15RADCHI-C | 32 | 70m | 7/36-36/193 | 35-36 | 4 | **FLOW_ABOVE** | 33 | REPRICEABLE→33 |
-| WTACHALLENGERMATCH-26JUL15RADCHI-R | 63 | 70m | 9/65-65/1373 | 64-65 | 2 | **FLOW_ABOVE** | 62 | flow above but bound 62c < flow -- chasing breaks goal |
-| WTACHALLENGERMATCH-26JUL15TANGAS-G | 52 | 43m | 2/56-56/37 | 55-56 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→56 |
-| WTACHALLENGERMATCH-26JUL15TANGAS-T | 40 | 43m | 0 | 43-44 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL15VANFAL-F | 13 | 48m | 0 | 16-17 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL15VANFAL-V | 79 | 48m | 0 | 82-83 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL15YANLAN-L | 15 | 70m | 8/19-19/586 | 18-19 | 4 | **FLOW_ABOVE** | 16 | REPRICEABLE→16 |
-| WTACHALLENGERMATCH-26JUL15YANLAN-Y | 78 | 70m | 3/82-82/140 | 81-82 | 4 | **FLOW_ABOVE** | 79 | REPRICEABLE→79 |
-| WTAMATCH-26JUL15IBRBAD-BAD | 77 | 70m | 1/84-84/1 | 84-85 | 7 | **FLOW_ABOVE** | 99 |  |
-| WTAMATCH-26JUL15IBRBAD-IBR | 14 | 70m | 1/16-16/2 | 14-16 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→16 |
-| WTAMATCH-26JUL15OLIPRI-OLI | 50 | 70m | 5/55-56/129 | 54-55 | 5 | **FLOW_ABOVE** | 99 |  |
-| WTAMATCH-26JUL15OLIPRI-PRI | 41 | 70m | 0 | 44-45 | — | **NO_FLOW** | 99 |  |
-| WTAMATCH-26JUL15PUTCHA-CHA | 35 | 63m | 1/40-40/46 | 38-39 | 5 | **FLOW_ABOVE** | 99 |  |
-| WTAMATCH-26JUL15SHEQUE-QUE | 30 | 60m | 0 | 34-35 | — | **NO_FLOW** | 99 |  |
-| WTAMATCH-26JUL15SHEQUE-SHE | 61 | 70m | 0 | 64-67 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL15BONJUS-B | 35 | 81m | 1/40-40/23 | 39-40 | 5 | **FLOW_ABOVE** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL15BONJUS-J | 57 | 28m | 4/61-61/638 | 60-61 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→61 |
+| ATPCHALLENGERMATCH-26JUL15ROMGAL-G | 65 | 81m | 3/67-67/76 | 66-67 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→67 |
+| ATPCHALLENGERMATCH-26JUL15ROMGAL-R | 28 | 81m | 2/33-33/28 | 32-33 | 5 | **FLOW_ABOVE** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL15WESCOP-C | 77 | 81m | 1/83-83/1 | 82-83 | 6 | **FLOW_ABOVE** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL15WESCOP-W | 15 | 81m | 0 | 17-18 | — | **NO_FLOW** | 99 |  |
+| ATPMATCH-26JUL14RINTAB-TAB | 28 | 81m | 25/33-36/14360 | 32-33 | 5 | **FLOW_ABOVE** | 99 |  |
+| ATPMATCH-26JUL15BASTIR-BAS | 27 | 81m | 1/31-31/6 | 30-31 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→31 |
+| ATPMATCH-26JUL15BASTIR-TIR | 66 | 81m | 0 | 70-72 | — | **NO_FLOW** | 99 |  |
+| ATPMATCH-26JUL15BORDIM-BOR | 63 | 80m | 19/66-68/1470 | 65-66 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→66 |
+| ATPMATCH-26JUL15BORDIM-DIM | 30 | 80m | 12/33-35/650 | 34-35 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→33 |
+| ATPMATCH-26JUL15BUBHAL-BUB | 65 | 81m | 1/71-71/49 | 70-71 | 6 | **FLOW_ABOVE** | 99 |  |
+| ATPMATCH-26JUL15BUBHAL-HAL | 27 | 80m | 0 | 31-32 | — | **NO_FLOW** | 99 |  |
+| ATPMATCH-26JUL15CERKEC-CER | 46 | 80m | 2/54-54/22 | 52-54 | 8 | **FLOW_ABOVE** | 54 |  |
+| ATPMATCH-26JUL15CERKEC-KEC | 44 | 81m | 3/49-49/67 | 46-49 | 5 | **FLOW_ABOVE** | 47 | flow above but bound 47c < flow -- chasing breaks goal |
+| ATPMATCH-26JUL15COLSON-COL | 61 | 81m | 94/65-68/20375 | 67-68 | 4 | **FLOW_ABOVE** | 68 | REPRICEABLE→65 |
+| ATPMATCH-26JUL15COLSON-SON | 30 | 81m | 79/33-35/13876 | 33-34 | 3 | **FLOW_ABOVE** | 32 | REPRICEABLE→32 |
+| ATPMATCH-26JUL15RUBPEL-PEL | 22 | 81m | 1/26-26/1 | 23-26 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→26 |
+| ATPMATCH-26JUL15RUBPEL-RUB | 64 | 81m | 2/76-76/155 | 75-76 | 12 | **FLOW_ABOVE** | 99 |  |
+| ATPMATCH-26JUL15TABMID-MID | 23 | 81m | 0 | 23-26 | — | **NO_FLOW** | 99 |  |
+| ATPMATCH-26JUL15TABMID-TAB | 70 | 81m | 4/74-76/159 | 74-76 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→74 |
+| ITFMATCH-26JUL15ANTHEI-ANT | 42 | 80m | 0 | 58-62 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15ANTHEI-HEI | 23 | 80m | 0 | 36-41 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15BERAGI-AGI | 12 | 81m | 0 | 30-36 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15BERAGI-BER | 17 | 81m | 0 | 64-69 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15BERBAR-BAR | 39 | 81m | 0 | 55-61 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15BERBAR-BER | 27 | 81m | 0 | 40-44 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15BERTON-BER | 64 | 81m | 0 | 78-80 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15BERTON-TON | 11 | 81m | 0 | 18-21 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15BLAMAR-BLA | 71 | 81m | 0 | 84-89 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15BLAMAR-MAR | 9 | 81m | 1/15-15/3 | 10-15 | 6 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15BOIBRE-BOI | 71 | 81m | 0 | 84-86 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15BOIBRE-BRE | 6 | 80m | 0 | 12-15 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15BONBER-BER | 37 | 81m | 0 | 53-58 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15BONBER-BON | 30 | 81m | 2/47-47/123 | 42-47 | 17 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15BROVUJ-BRO | 17 | 81m | 0 | 30-34 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15BROVUJ-VUJ | 49 | 81m | 0 | 65-70 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15BULHOM-BUL | 18 | 28m | 0 | 31-35 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15BULHOM-HOM | 47 | 28m | 0 | 64-69 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15CALMAT-CAL | 36 | 81m | 0 | 52-57 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15CALMAT-MAT | 27 | 81m | 0 | 42-47 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15CARBAR-BAR | 72 | 81m | 0 | 85-90 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15CARBAR-CAR | 8 | 81m | 1/14-14/20 | 11-14 | 6 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15CARJAM-CAR | 59 | 81m | 0 | 76-79 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15CARJAM-JAM | 13 | 81m | 0 | 20-25 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15CASCHE-CAS | 42 | 81m | 18/59-68/1113 | 60-62 | 17 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15CASCHE-CHE | 23 | 81m | 7/40-46/726 | 38-40 | 17 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15CHOCHE-CHE | 59 | 27m | 0 | 75-80 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15CHOCHE-CHO | 13 | 27m | 0 | 19-24 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15CLEALU-ALU | 50 | 81m | 0 | 66-71 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15CLEALU-CLE | 16 | 81m | 0 | 30-32 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15COCMIS-COC | 35 | 73m | 0 | 46-51 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15COCMIS-MIS | 33 | 81m | 0 | 48-53 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15COLLOP-COL | 37 | 81m | 0 | 53-57 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15COLLOP-LOP | 29 | 81m | 0 | 42-48 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15DELBUT-BUT | 9 | 81m | 0 | 15-19 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15DELBUT-DEL | 68 | 81m | 0 | 81-85 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15DHOPLE-DHO | 12 | 81m | 0 | 17-20 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15DHOPLE-PLE | 66 | 81m | 0 | 79-84 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15DIMBOS-BOS | 63 | 81m | 0 | 76-82 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15DIMBOS-DIM | 12 | 81m | 0 | 18-23 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15DINCOM-COM | 27 | 81m | 0 | 43-45 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15DINCOM-DIN | 38 | 81m | 1/55-55/26 | 54-55 | 17 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15DOIVAN-DOI | 26 | 81m | 0 | 38-43 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15DOIVAN-VAN | 40 | 81m | 0 | 56-61 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15DOLDOU-DOL | 10 | 81m | 0 | 16-72 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15DOMBER-BER | 21 | 15m | 0 | 30-60 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15DOMBER-DOM | 24 | 16m | 0 | 39-68 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15DUTKLA-DUT | 45 | 81m | 0 | 61-65 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15DUTKLA-KLA | 20 | 81m | 0 | 35-39 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15EICPEN-EIC | 16 | 81m | 0 | 27-31 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15EICPEN-PEN | 51 | 81m | 0 | 68-72 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15FABGRE-FAB | 69 | 81m | 0 | 82-86 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15FABGRE-GRE | 7 | 81m | 0 | 13-18 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15FONHRA-FON | 30 | 80m | 0 | 43-48 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15FONHRA-HRA | 35 | 80m | 0 | 51-56 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15FUNBAR-BAR | 52 | 81m | 0 | 67-73 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15FUNBAR-FUN | 13 | 81m | 0 | 27-32 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15GASCAT-CAT | 58 | 81m | 0 | 75-81 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15GASCAT-GAS | 12 | 81m | 0 | 20-24 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15GLOHAL-GLO | 11 | 81m | 3/26-32/137 | 23-24 | 15 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15GLOHAL-HAL | 66 | 81m | 1/81-81/60 | 76-77 | 15 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15GSCTOF-TOF | 33 | 80m | 0 | 46-51 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15GUNDEL-DEL | 6 | 7m | 0 | 28-35 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15GUNDEL-GUN | 35 | 81m | 0 | 64-69 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15HARMIL-HAR | 18 | 80m | 0 | 24-28 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15HARMIL-MIL | 56 | 80m | 0 | 72-77 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15HERPED-HER | 19 | 81m | 0 | 33-36 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15HERPED-PED | 36 | 24m | 0 | 62-67 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15HIPORL-HIP | 32 | 80m | 0 | 45-49 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15HRIJIL-JIL | 76 | 80m | 0 | 89-94 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15IZQSIL-IZQ | 64 | 28m | 0 | 77-78 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15IZQSIL-SIL | 15 | 28m | 0 | 21-25 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15JEFROB-JEF | 21 | 80m | 0 | 34-39 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15JEFROB-ROB | 45 | 80m | 0 | 61-66 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15JONSIN-SIN | 31 | 81m | 0 | 44-49 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15KAMTIM-KAM | 20 | 80m | 0 | 33-37 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15KAMTIM-TIM | 46 | 80m | 0 | 61-66 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15KHOUJV-KHO | 45 | 81m | 0 | 61-65 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15KHOUJV-UJV | 20 | 81m | 0 | 33-38 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15KOBWIS-WIS | 76 | 81m | 0 | 89-93 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15KRUALA-ALA | 5 | 75m | 0 | 10-15 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15KRUALA-KRU | 72 | 80m | 0 | 85-90 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15LANSTR-STR | 34 | 81m | 0 | 47-52 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15LOPTAL-LOP | 47 | 81m | 0 | 61-66 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15LOPTAL-TAL | 9 | 27m | 0 | 33-37 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MAKMAB-MAB | 36 | 81m | 0 | 53-57 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MAKMAB-MAK | 31 | 81m | 0 | 43-47 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MANKAR-KAR | 27 | 81m | 0 | 39-44 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MANKAR-MAN | 38 | 81m | 0 | 55-59 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MARDOM-DOM | 51 | 81m | 0 | 67-73 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MARDOM-MAR | 14 | 81m | 0 | 27-32 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MARSIL-MAR | 52 | 81m | 0 | 68-74 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MARSIL-SIL | 13 | 81m | 0 | 26-31 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MCHSCH-MCH | 45 | 81m | 0 | 61-65 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MCHSCH-SCH | 20 | 81m | 0 | 34-38 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MENKIM-KIM | 68 | 81m | 0 | 81-84 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MENKIM-MEN | 10 | 81m | 0 | 16-19 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MIRMUR-MIR | 6 | 81m | 0 | 78-83 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MIRMUR-MUR | 10 | 81m | 0 | 17-22 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MONLEA-LEA | 43 | 81m | 0 | 59-65 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MONLEA-MON | 23 | 81m | 0 | 35-40 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MORVIL-MOR | 5 | 81m | 0 | 9-15 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MORVIL-VIL | 72 | 81m | 0 | 85-90 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MUTSUN-MUT | 15 | 27m | 0 | 28-31 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15MUTSUN-SUN | 53 | 27m | 0 | 69-72 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15PALTAZ-PAL | 72 | 81m | 0 | 85-87 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15PALTAZ-TAZ | 5 | 81m | 0 | 13-14 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15PANHAN-HAN | 46 | 81m | 0 | 62-64 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15PANHAN-PAN | 24 | 81m | 0 | 36-37 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15PARTAK-PAR | 70 | 81m | 0 | 85-87 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15PARTAK-TAK | 5 | 81m | 0 | 12-15 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15PERBEA-BEA | 35 | 81m | 7/44-48/372 | 48-50 | 9 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15PERBEA-PER | 31 | 81m | 3/48-51/305 | 49-52 | 17 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15PERGAR-GAR | 5 | 81m | 0 | 8-12 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15PERGAR-PER | 76 | 81m | 0 | 89-91 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15PISDER-DER | 75 | 27m | 0 | 88-92 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15PLATOR-PLA | 12 | 81m | 0 | 19-23 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15PLATOR-TOR | 63 | 81m | 0 | 76-81 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15RAPROT-RAP | 40 | 28m | 0 | 57-61 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15RAPROT-ROT | 25 | 28m | 0 | 38-43 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15RENMEL-MEL | 55 | 27m | 0 | 71-77 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15RENMEL-REN | 19 | 27m | 0 | 25-28 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15ROBABI-ABI | 13 | 81m | 0 | 26-32 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15ROBABI-ROB | 52 | 81m | 0 | 68-73 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15ROHHWA-HWA | 5 | 50m | 0 | 12-14 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15ROHHWA-ROH | 72 | 81m | 0 | 85-87 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15SARKOI-KOI | 35 | 81m | 0 | 50-55 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15SARKOI-SAR | 31 | 81m | 0 | 44-49 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15SCHLIE-LIE | 34 | 47m | 0 | 48-53 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15SCHLIE-SCH | 33 | 80m | 0 | 47-52 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15SHISTR-SHI | 72 | 81m | 0 | 86-89 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15SHISTR-STR | 5 | 81m | 0 | 10-14 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15SNIBRE-BRE | 11 | 27m | 0 | 18-23 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15SNIBRE-SNI | 64 | 28m | 0 | 77-82 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15STAKOZ-STA | 81 | 81m | 0 | 94-96 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15TAIGUA-GUA | 7 | 81m | 0 | 13-18 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15TAIGUA-TAI | 68 | 81m | 0 | 81-87 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15TOKPAL-PAL | 20 | 81m | 0 | 32-37 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15TOKPAL-TOK | 45 | 81m | 0 | 62-68 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15TRIBAG-BAG | 16 | 81m | 0 | 31-36 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15TRIBAG-TRI | 49 | 81m | 1/68-68/36 | 64-68 | 19 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15TROIVA-IVA | 21 | 27m | 0 | 34-39 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15TROIVA-TRO | 45 | 27m | 0 | 61-64 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15URRVAL-URR | 49 | 27m | 0 | 65-69 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15URRVAL-VAL | 17 | 27m | 0 | 30-34 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15VANBIL-BIL | 35 | 81m | 2/49-49/106 | 48-49 | 14 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15VANBIL-VAN | 35 | 80m | 0 | 48-51 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15VIVBET-BET | 8 | 81m | 0 | 16-21 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15VIVBET-VIV | 65 | 81m | 0 | 79-83 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15WANJIN-JIN | 70 | 81m | 0 | 83-87 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15WANJIN-WAN | 6 | 81m | 0 | 12-17 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15WERJOV-JOV | 80 | 81m | 0 | 93-95 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15ZAKLUE-LUE | 19 | 81m | 0 | 36-37 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15ZAKLUE-ZAK | 46 | 81m | 0 | 63-65 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15ADEALL-ADE | 24 | 81m | 0 | 35-38 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15ADEALL-ALL | 49 | 81m | 0 | 62-63 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15ADKINO-ADK | 20 | 81m | 0 | 28-32 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15ADKINO-INO | 54 | 81m | 0 | 68-72 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15ANSSAV-ANS | 5 | 81m | 1/14-14/3 | 13-14 | 9 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15ANSSAV-SAV | 75 | 81m | 0 | 86-87 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15BAIGIL-BAI | 48 | 81m | 0 | 60-65 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15BAIGIL-GIL | 24 | 81m | 0 | 34-39 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15BALVOR-BAL | 38 | 81m | 0 | 52-55 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15BALVOR-VOR | 34 | 81m | 0 | 44-48 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15BARMAR-BAR | 14 | 58m | 0 | 20-25 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15BARMAR-MAR | 62 | 58m | 0 | 75-80 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15BERMAD-BER | 18 | 81m | 0 | 29-32 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15BERMAD-MAD | 54 | 81m | 0 | 67-71 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15BOUDIT-BOU | 24 | 80m | 0 | 35-38 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15BOUDIT-DIT | 48 | 80m | 0 | 61-66 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15BRODAE-BRO | 52 | 58m | 0 | 65-67 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15BRODAE-DAE | 22 | 58m | 0 | 32-36 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15CAKVAR-CAK | 6 | 81m | 0 | 12-14 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15CAKVAR-VAR | 73 | 81m | 0 | 85-88 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15CASPAS-CAS | 6 | 81m | 1/14-14/3 | 12-13 | 8 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15CASPAS-PAS | 74 | 81m | 0 | 87-88 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15CHILEW-CHI | 20 | 81m | 0 | 30-34 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15CHILEW-LEW | 52 | 81m | 0 | 65-70 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15CHOGUR-CHO | 16 | 80m | 0 | 27-32 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15CHOGUR-GUR | 54 | 80m | 0 | 67-72 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15CHOSUN-CHO | 27 | 80m | 0 | 38-43 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15CHOSUN-SUN | 44 | 80m | 0 | 57-60 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15CROCHA-CHA | 57 | 81m | 0 | 68-69 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15CROCHA-CRO | 18 | 81m | 0 | 29-33 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15DANGHI-DAN | 18 | 81m | 0 | 28-32 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15DANGHI-GHI | 55 | 81m | 0 | 68-70 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15DEPMIN-DEP | 7 | 81m | 1/16-16/2 | 14-16 | 9 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15DEPMIN-MIN | 71 | 81m | 0 | 85-86 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15DUDVLA-DUD | 71 | 80m | 0 | 84-85 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15DUDVLA-VLA | 9 | 80m | 0 | 14-16 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15GALPAV-GAL | 31 | 80m | 0 | 42-45 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15GALPAV-PAV | 42 | 80m | 0 | 55-59 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15HORBRU-BRU | 27 | 81m | 0 | 39-43 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15HORBRU-HOR | 42 | 81m | 0 | 58-60 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15INIFAL-FAL | 38 | 81m | 0 | 51-56 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15INIFAL-INI | 34 | 81m | 0 | 44-48 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15JOSKRO-JOS | 32 | 81m | 0 | 42-46 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15JOSKRO-KRO | 40 | 81m | 0 | 53-58 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15KRUDUE-DUE | 40 | 81m | 0 | 52-57 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15KRUDUE-KRU | 33 | 81m | 0 | 43-44 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15KUMCHA-KUM | 36 | 81m | 0 | 46-51 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15KUZBEL-BEL | 57 | 81m | 0 | 69-75 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15KUZBEL-KUZ | 16 | 81m | 0 | 25-31 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15LAZSTE-STE | 80 | 81m | 0 | 92-93 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15LENBER-BER | 26 | 81m | 0 | 37-42 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15LENBER-LEN | 46 | 81m | 0 | 59-62 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15LIMJAN-JAN | 22 | 81m | 0 | 35-37 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15LIMJAN-LIM | 49 | 81m | 0 | 63-64 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15LLIULR-LLI | 27 | 81m | 1/41-41/23 | 37-41 | 14 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15LLIULR-ULR | 46 | 81m | 4/64-64/321 | 59-64 | 18 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15LOVROC-LOV | 40 | 81m | 0 | 57-60 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15LOVROC-ROC | 32 | 81m | 0 | 38-43 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15MASLAB-LAB | 73 | 81m | 0 | 85-87 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15MASLAB-MAS | 7 | 81m | 1/14-14/3 | 13-14 | 7 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15MCDKLU-KLU | 46 | 81m | 0 | 61-65 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15MCDKLU-MCD | 28 | 81m | 0 | 35-37 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15MIKBER-BER | 16 | 54m | 0 | 21-26 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15MIKBER-MIK | 62 | 54m | 0 | 76-77 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15MILDYU-DYU | 7 | 81m | 0 | 10-13 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15MILDYU-MIL | 75 | 81m | 1/90-90/1 | 87-90 | 15 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15NAGSIS-NAG | 15 | 27m | 0 | 22-24 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15NAGSIS-SIS | 62 | 27m | 0 | 75-78 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15NILHER-HER | 39 | 27m | 0 | 52-56 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15NILHER-NIL | 34 | 27m | 0 | 45-46 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15OTZSTR-OTZ | 13 | 81m | 0 | 19-20 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15OTZSTR-STR | 68 | 80m | 0 | 81-82 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15PAGRIZ-PAG | 72 | 58m | 0 | 86-88 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15PAGRIZ-RIZ | 5 | 58m | 0 | 11-14 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15PAQIVA-IVA | 23 | 27m | 13/34-34/682 | 28-29 | 11 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15PAQIVA-PAQ | 52 | 27m | 2/69-69/21 | 70-74 | 17 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15PISGIA-GIA | 36 | 81m | 0 | 46-50 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15PISGIA-PIS | 37 | 81m | 0 | 49-53 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15POCMIS-MIS | 61 | 28m | 0 | 76-77 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15POCMIS-POC | 16 | 28m | 0 | 22-24 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15RICSZA-RIC | 55 | 57m | 0 | 69-74 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15RICSZA-SZA | 15 | 57m | 0 | 26-31 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15ROMWIE-ROM | 17 | 80m | 0 | 28-31 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15ROMWIE-WIE | 54 | 80m | 0 | 67-72 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15SAMBAC-BAC | 66 | 58m | 0 | 78-80 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15SAMBAC-SAM | 11 | 58m | 0 | 19-20 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15SATSUN-SAT | 78 | 81m | 0 | 91-92 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15SCHHOS-HOS | 79 | 81m | 0 | 91-93 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15SERKRE-KRE | 28 | 81m | 0 | 38-42 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15SERKRE-SER | 44 | 81m | 0 | 58-60 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15SHACHO-CHO | 81 | 81m | 0 | 93-95 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15SKOYAO-SKO | 16 | 81m | 4/25-26/551 | 23-25 | 9 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15SKOYAO-YAO | 64 | 81m | 0 | 75-77 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15SOLKON-KON | 43 | 27m | 0 | 55-59 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15SOLKON-SOL | 27 | 27m | 0 | 41-46 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15STODIB-STO | 80 | 81m | 0 | 91-93 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15TEPJOV-JOV | 42 | 27m | 0 | 55-60 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15TEPJOV-TEP | 28 | 27m | 0 | 39-44 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15TREHEU-HEU | 16 | 81m | 1/25-25/11 | 21-24 | 9 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15TREHEU-TRE | 62 | 81m | 0 | 76-78 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15TSYWEC-TSY | 64 | 58m | 0 | 77-79 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15TSYWEC-WEC | 16 | 58m | 0 | 22-24 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15URRSTE-STE | 54 | 58m | 0 | 67-71 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15URRSTE-URR | 17 | 58m | 0 | 28-32 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15VOGNUU-NUU | 18 | 81m | 0 | 24-26 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15VOGNUU-VOG | 58 | 81m | 0 | 73-76 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15VUJPRI-PRI | 29 | 81m | 0 | 41-46 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15VUJPRI-VUJ | 43 | 81m | 0 | 56-58 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15WAGCIR-CIR | 69 | 9m | 0 | 72-74 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15WAGCIR-WAG | 9 | 81m | 4/14-25/1239 | 24-26 | 5 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15YODAHL-AHL | 35 | 81m | 16/43-59/878 | 50-52 | 8 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15ZIALEE-LEE | 77 | 81m | 0 | 88-92 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL15ZIALEE-ZIA | 5 | 21m | 0 | 8-11 | — | **NO_FLOW** | 99 |  |
+| WTACHALLENGERMATCH-26JUL15GRAPER-G | 84 | 81m | 2/88-88/2 | 87-88 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→88 |
+| WTACHALLENGERMATCH-26JUL15GRAPER-P | 9 | 81m | 3/12-13/19 | 12-13 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→12 |
+| WTACHALLENGERMATCH-26JUL15RADCHI-C | 32 | 81m | 7/36-36/193 | 35-36 | 4 | **FLOW_ABOVE** | 33 | REPRICEABLE→33 |
+| WTACHALLENGERMATCH-26JUL15RADCHI-R | 63 | 81m | 10/65-65/1377 | 64-65 | 2 | **FLOW_ABOVE** | 62 | flow above but bound 62c < flow -- chasing breaks goal |
+| WTACHALLENGERMATCH-26JUL15TANGAS-G | 52 | 54m | 2/56-56/37 | 55-56 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→56 |
+| WTACHALLENGERMATCH-26JUL15TANGAS-T | 40 | 54m | 0 | 43-44 | — | **NO_FLOW** | 99 |  |
+| WTACHALLENGERMATCH-26JUL15VANFAL-F | 13 | 58m | 0 | 16-17 | — | **NO_FLOW** | 99 |  |
+| WTACHALLENGERMATCH-26JUL15VANFAL-V | 79 | 58m | 0 | 82-83 | — | **NO_FLOW** | 99 |  |
+| WTACHALLENGERMATCH-26JUL15YANLAN-L | 15 | 81m | 8/19-19/586 | 18-19 | 4 | **FLOW_ABOVE** | 16 | REPRICEABLE→16 |
+| WTACHALLENGERMATCH-26JUL15YANLAN-Y | 78 | 81m | 4/82-82/141 | 81-82 | 4 | **FLOW_ABOVE** | 79 | REPRICEABLE→79 |
+| WTAMATCH-26JUL15IBRBAD-BAD | 77 | 81m | 1/84-84/1 | 84-85 | 7 | **FLOW_ABOVE** | 99 |  |
+| WTAMATCH-26JUL15IBRBAD-IBR | 14 | 81m | 1/16-16/2 | 14-16 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→16 |
+| WTAMATCH-26JUL15OLIPRI-OLI | 50 | 81m | 5/55-56/129 | 54-55 | 5 | **FLOW_ABOVE** | 99 |  |
+| WTAMATCH-26JUL15OLIPRI-PRI | 41 | 81m | 0 | 44-45 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL15PUTCHA-CHA | 35 | 74m | 1/40-40/46 | 38-39 | 5 | **FLOW_ABOVE** | 99 |  |
+| WTAMATCH-26JUL15SHEQUE-QUE | 30 | 70m | 0 | 34-35 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL15SHEQUE-SHE | 61 | 81m | 0 | 64-67 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 no open half-pairs
 
-## FLOW-STATE — 169 tracked game(s) ({'OPEN': 12, 'WAKING': 156, 'QUIET': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 168 tracked game(s) ({'WAKING': 155, 'OPEN': 10, 'QUIET': 3}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL15BONJUS | ATP_CHALL | 0.367 | 1 | **OPEN** |
-| ATPMATCH-26JUL15BORDIM | ATP_MAIN | 0.533 | 1 | **OPEN** |
-| ATPMATCH-26JUL15COLSON | ATP_MAIN | 3.6 | 1 | **OPEN** |
-| ITFMATCH-26JUL15CASCHE | ITF_M | 0.233 | 1 | **OPEN** |
-| ITFMATCH-26JUL15OVCCOR | ITF_M | 1.333 | 2 | **OPEN** |
-| ITFMATCH-26JUL15WIEWIT | ITF_M | 8.033 | 1 | **OPEN** |
-| ITFWMATCH-26JUL15ARYMAM | ITF_W | 23.0 | 1 | **OPEN** |
-| ITFWMATCH-26JUL15ERCBIE | ITF_W | 0.333 | 2 | **OPEN** |
+| ATPMATCH-26JUL15COLSON | ATP_MAIN | 1.733 | 1 | **OPEN** |
+| ITFMATCH-26JUL15CASCHE | ITF_M | 0.833 | 2 | **OPEN** |
+| ITFMATCH-26JUL15OVCCOR | ITF_M | 0.6 | 1 | **OPEN** |
+| ITFMATCH-26JUL15PERBEA | ITF_M | 0.267 | 2 | **OPEN** |
+| ITFMATCH-26JUL15STEMAK | ITF_M | 0.4 | 3 | **OPEN** |
+| ITFMATCH-26JUL15WIEWIT | ITF_M | 4.467 | 2 | **OPEN** |
 | ITFWMATCH-26JUL15PAQIVA | ITF_W | 0.5 | 1 | **OPEN** |
-| ITFWMATCH-26JUL15PERBAR | ITF_W | 1.467 | 2 | **OPEN** |
-| ITFWMATCH-26JUL15VIRRAD | ITF_W | 0.5 | 2 | **OPEN** |
-| ITFWMATCH-26JUL15YODAHL | ITF_W | 0.4 | 3 | **OPEN** |
+| ITFWMATCH-26JUL15PERBAR | ITF_W | 1.067 | 1 | **OPEN** |
+| ITFWMATCH-26JUL15WAGCIR | ITF_W | 0.2 | 2 | **OPEN** |
+| ITFWMATCH-26JUL15YODAHL | ITF_W | 0.533 | 2 | **OPEN** |
 | ITFMATCH-26JUL15DOLDOU | ITF_M | 0.0 | 56 | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL15ROMGAL | ATP_CHALL | 0.1 | 1 | **WAKING** |
+| ITFMATCH-26JUL15DOMBER | ITF_M | 0.0 | 29 | **QUIET** |
+| ITFWMATCH-26JUL15KUZBEL | ITF_W | 0.0 | 6 | **QUIET** |
+| ATPCHALLENGERMATCH-26JUL15BONJUS | ATP_CHALL | 0.133 | 1 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL15ROMGAL | ATP_CHALL | 0.067 | 1 | **WAKING** |
 | ATPCHALLENGERMATCH-26JUL15WESCOP | ATP_CHALL | 0.033 | 1 | **WAKING** |
 | ATPMATCH-26JUL14RINTAB | ATP_MAIN | 0.267 | 1 | **WAKING** |
-| ATPMATCH-26JUL15BASTIR | ATP_MAIN | 0.0 | 1 | **WAKING** |
+| ATPMATCH-26JUL15BASTIR | ATP_MAIN | 0.033 | 1 | **WAKING** |
+| ATPMATCH-26JUL15BORDIM | ATP_MAIN | 0.233 | 1 | **WAKING** |
 | ATPMATCH-26JUL15BUBHAL | ATP_MAIN | 0.0 | 1 | **WAKING** |
-| ATPMATCH-26JUL15CERKEC | ATP_MAIN | 0.033 | 2 | **WAKING** |
+| ATPMATCH-26JUL15CERKEC | ATP_MAIN | 0.0 | 2 | **WAKING** |
 | ATPMATCH-26JUL15RUBPEL | ATP_MAIN | 0.033 | 1 | **WAKING** |
-| ATPMATCH-26JUL15TABMID | ATP_MAIN | 0.1 | 2 | **WAKING** |
-| ITFMATCH-26JUL15ANTHEI | ITF_M | 0.0 | 5 | **WAKING** |
+| ATPMATCH-26JUL15TABMID | ATP_MAIN | 0.033 | 2 | **WAKING** |
+| ITFMATCH-26JUL15ANTHEI | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15BERAGI | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15BERBAR | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15BERTON | ITF_M | 0.0 | 2 | **WAKING** |
 | ITFMATCH-26JUL15BLAMAR | ITF_M | 0.033 | 5 | **WAKING** |
 | ITFMATCH-26JUL15BOIBRE | ITF_M | 0.0 | 2 | **WAKING** |
-| ITFMATCH-26JUL15BONBER | ITF_M | 0.0 | 5 | **WAKING** |
+| ITFMATCH-26JUL15BONBER | ITF_M | 0.067 | 5 | **WAKING** |
 | ITFMATCH-26JUL15BROVUJ | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15BULHOM | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15CALMAT | ITF_M | 0.0 | 5 | **WAKING** |
-| ITFMATCH-26JUL15CARBAR | ITF_M | 0.0 | 3 | **WAKING** |
+| ITFMATCH-26JUL15CARBAR | ITF_M | 0.033 | 3 | **WAKING** |
 | ITFMATCH-26JUL15CARJAM | ITF_M | 0.0 | 3 | **WAKING** |
 | ITFMATCH-26JUL15CHOCHE | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15CLEALU | ITF_M | 0.0 | 2 | **WAKING** |
@@ -434,27 +432,26 @@ no open half-pairs
 | ITFMATCH-26JUL15DIMBOS | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15DINCOM | ITF_M | 0.0 | 1 | **WAKING** |
 | ITFMATCH-26JUL15DOIVAN | ITF_M | 0.0 | 5 | **WAKING** |
-| ITFMATCH-26JUL15DOMBER | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15DUTKLA | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15EICPEN | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15FABGRE | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15FONHRA | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15FUNBAR | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15GASCAT | ITF_M | 0.0 | 4 | **WAKING** |
-| ITFMATCH-26JUL15GLOHAL | ITF_M | 0.067 | 3 | **WAKING** |
+| ITFMATCH-26JUL15GLOHAL | ITF_M | 0.133 | 1 | **WAKING** |
 | ITFMATCH-26JUL15GSCTOF | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15GUNDEL | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15HARMIL | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15HERPED | ITF_M | 0.0 | 3 | **WAKING** |
 | ITFMATCH-26JUL15HIPORL | ITF_M | 0.0 | 4 | **WAKING** |
-| ITFMATCH-26JUL15HRIJIL | ITF_M | 0.0 | 4 | **WAKING** |
+| ITFMATCH-26JUL15HRIJIL | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15IZQSIL | ITF_M | 0.0 | 1 | **WAKING** |
 | ITFMATCH-26JUL15JEFROB | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15JONSIN | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15KAMTIM | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15KHOUJV | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15KOBWIS | ITF_M | 0.0 | 4 | **WAKING** |
-| ITFMATCH-26JUL15KRUALA | ITF_M | 0.0 | 4 | **WAKING** |
+| ITFMATCH-26JUL15KRUALA | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15LANSTR | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15LOPTAL | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15MAKMAB | ITF_M | 0.0 | 4 | **WAKING** |
@@ -469,8 +466,7 @@ no open half-pairs
 | ITFMATCH-26JUL15MUTSUN | ITF_M | 0.0 | 3 | **WAKING** |
 | ITFMATCH-26JUL15PALTAZ | ITF_M | 0.0 | 1 | **WAKING** |
 | ITFMATCH-26JUL15PANHAN | ITF_M | 0.0 | 1 | **WAKING** |
-| ITFMATCH-26JUL15PARTAK | ITF_M | 0.0 | 3 | **WAKING** |
-| ITFMATCH-26JUL15PERBEA | ITF_M | 0.1 | 2 | **WAKING** |
+| ITFMATCH-26JUL15PARTAK | ITF_M | 0.0 | 2 | **WAKING** |
 | ITFMATCH-26JUL15PERGAR | ITF_M | 0.0 | 2 | **WAKING** |
 | ITFMATCH-26JUL15PISDER | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15PLATOR | ITF_M | 0.0 | 4 | **WAKING** |
@@ -483,12 +479,11 @@ no open half-pairs
 | ITFMATCH-26JUL15SHISTR | ITF_M | 0.0 | 3 | **WAKING** |
 | ITFMATCH-26JUL15SNIBRE | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15STAKOZ | ITF_M | 0.0 | 2 | **WAKING** |
-| ITFMATCH-26JUL15STEMAK | ITF_M | 0.833 | 5 | **WAKING** |
 | ITFMATCH-26JUL15TAIGUA | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15TOKPAL | ITF_M | 0.0 | 5 | **WAKING** |
 | ITFMATCH-26JUL15TRIBAG | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15TROIVA | ITF_M | 0.0 | 3 | **WAKING** |
-| ITFMATCH-26JUL15URRVAL | ITF_M | 0.0 | 2 | **WAKING** |
+| ITFMATCH-26JUL15URRVAL | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15VANBIL | ITF_M | 0.033 | 1 | **WAKING** |
 | ITFMATCH-26JUL15VIVBET | ITF_M | 0.0 | 4 | **WAKING** |
 | ITFMATCH-26JUL15WANJIN | ITF_M | 0.0 | 4 | **WAKING** |
@@ -497,6 +492,7 @@ no open half-pairs
 | ITFWMATCH-26JUL15ADEALL | ITF_W | 0.0 | 1 | **WAKING** |
 | ITFWMATCH-26JUL15ADKINO | ITF_W | 0.0 | 4 | **WAKING** |
 | ITFWMATCH-26JUL15ANSSAV | ITF_W | 0.033 | 1 | **WAKING** |
+| ITFWMATCH-26JUL15ARYMAM | ITF_W | 13.6 | — | **WAKING** |
 | ITFWMATCH-26JUL15BAIGIL | ITF_W | 0.0 | 5 | **WAKING** |
 | ITFWMATCH-26JUL15BALVOR | ITF_W | 0.0 | 3 | **WAKING** |
 | ITFWMATCH-26JUL15BARMAR | ITF_W | 0.0 | 5 | **WAKING** |
@@ -504,10 +500,10 @@ no open half-pairs
 | ITFWMATCH-26JUL15BOUDIT | ITF_W | 0.0 | 3 | **WAKING** |
 | ITFWMATCH-26JUL15BRODAE | ITF_W | 0.0 | 2 | **WAKING** |
 | ITFWMATCH-26JUL15CAKVAR | ITF_W | 0.0 | 2 | **WAKING** |
-| ITFWMATCH-26JUL15CASPAS | ITF_W | 0.033 | 2 | **WAKING** |
+| ITFWMATCH-26JUL15CASPAS | ITF_W | 0.033 | 1 | **WAKING** |
 | ITFWMATCH-26JUL15CHILEW | ITF_W | 0.0 | 4 | **WAKING** |
 | ITFWMATCH-26JUL15CHOGUR | ITF_W | 0.0 | 5 | **WAKING** |
-| ITFWMATCH-26JUL15CHOSUN | ITF_W | 0.0 | 4 | **WAKING** |
+| ITFWMATCH-26JUL15CHOSUN | ITF_W | 0.0 | 3 | **WAKING** |
 | ITFWMATCH-26JUL15CROCHA | ITF_W | 0.0 | 1 | **WAKING** |
 | ITFWMATCH-26JUL15DANGHI | ITF_W | 0.0 | 2 | **WAKING** |
 | ITFWMATCH-26JUL15DEPMIN | ITF_W | 0.033 | 1 | **WAKING** |
@@ -518,7 +514,6 @@ no open half-pairs
 | ITFWMATCH-26JUL15JOSKRO | ITF_W | 0.0 | 4 | **WAKING** |
 | ITFWMATCH-26JUL15KRUDUE | ITF_W | 0.0 | 1 | **WAKING** |
 | ITFWMATCH-26JUL15KUMCHA | ITF_W | 0.0 | 5 | **WAKING** |
-| ITFWMATCH-26JUL15KUZBEL | ITF_W | 0.0 | 5 | **WAKING** |
 | ITFWMATCH-26JUL15LAZSTE | ITF_W | 0.0 | 1 | **WAKING** |
 | ITFWMATCH-26JUL15LENBER | ITF_W | 0.0 | 3 | **WAKING** |
 | ITFWMATCH-26JUL15LIMJAN | ITF_W | 0.0 | 1 | **WAKING** |
@@ -533,37 +528,37 @@ no open half-pairs
 | ITFWMATCH-26JUL15OTZSTR | ITF_W | 0.0 | 1 | **WAKING** |
 | ITFWMATCH-26JUL15PAGRIZ | ITF_W | 0.0 | 2 | **WAKING** |
 | ITFWMATCH-26JUL15PISGIA | ITF_W | 0.0 | 4 | **WAKING** |
-| ITFWMATCH-26JUL15POCMIS | ITF_W | 0.0 | 2 | **WAKING** |
+| ITFWMATCH-26JUL15POCMIS | ITF_W | 0.0 | 1 | **WAKING** |
 | ITFWMATCH-26JUL15RICSZA | ITF_W | 0.0 | 5 | **WAKING** |
 | ITFWMATCH-26JUL15ROMWIE | ITF_W | 0.0 | 3 | **WAKING** |
 | ITFWMATCH-26JUL15SAMBAC | ITF_W | 0.0 | 1 | **WAKING** |
 | ITFWMATCH-26JUL15SATSUN | ITF_W | 0.0 | 1 | **WAKING** |
 | ITFWMATCH-26JUL15SCHHOS | ITF_W | 0.0 | 2 | **WAKING** |
-| ITFWMATCH-26JUL15SERKRE | ITF_W | 0.0 | 1 | **WAKING** |
+| ITFWMATCH-26JUL15SERKRE | ITF_W | 0.0 | 2 | **WAKING** |
 | ITFWMATCH-26JUL15SHACHO | ITF_W | 0.0 | 2 | **WAKING** |
 | ITFWMATCH-26JUL15SKOYAO | ITF_W | 0.0 | 2 | **WAKING** |
-| ITFWMATCH-26JUL15SOLKON | ITF_W | 0.0 | 3 | **WAKING** |
+| ITFWMATCH-26JUL15SOLKON | ITF_W | 0.0 | 4 | **WAKING** |
 | ITFWMATCH-26JUL15STODIB | ITF_W | 0.0 | 2 | **WAKING** |
 | ITFWMATCH-26JUL15TEPJOV | ITF_W | 0.0 | 5 | **WAKING** |
-| ITFWMATCH-26JUL15TREHEU | ITF_W | 0.0 | 2 | **WAKING** |
+| ITFWMATCH-26JUL15TREHEU | ITF_W | 0.033 | 2 | **WAKING** |
 | ITFWMATCH-26JUL15TSYWEC | ITF_W | 0.0 | 2 | **WAKING** |
 | ITFWMATCH-26JUL15URRSTE | ITF_W | 0.0 | 4 | **WAKING** |
+| ITFWMATCH-26JUL15VIRRAD | ITF_W | 0.433 | — | **WAKING** |
 | ITFWMATCH-26JUL15VOGNUU | ITF_W | 0.0 | 2 | **WAKING** |
 | ITFWMATCH-26JUL15VUJPRI | ITF_W | 0.0 | 2 | **WAKING** |
-| ITFWMATCH-26JUL15WAGCIR | ITF_W | 0.167 | 2 | **WAKING** |
 | ITFWMATCH-26JUL15ZIALEE | ITF_W | 0.033 | 3 | **WAKING** |
-| WTACHALLENGERMATCH-26JUL15GRAPER | WTA_CHALL | 0.1 | 1 | **WAKING** |
-| WTACHALLENGERMATCH-26JUL15RADCHI | WTA_CHALL | 0.1 | 1 | **WAKING** |
+| WTACHALLENGERMATCH-26JUL15GRAPER | WTA_CHALL | 0.033 | 1 | **WAKING** |
+| WTACHALLENGERMATCH-26JUL15RADCHI | WTA_CHALL | 0.033 | 1 | **WAKING** |
 | WTACHALLENGERMATCH-26JUL15TANGAS | WTA_CHALL | 0.067 | 1 | **WAKING** |
 | WTACHALLENGERMATCH-26JUL15VANFAL | WTA_CHALL | 0.0 | 1 | **WAKING** |
-| WTACHALLENGERMATCH-26JUL15YANLAN | WTA_CHALL | 0.067 | 1 | **WAKING** |
+| WTACHALLENGERMATCH-26JUL15YANLAN | WTA_CHALL | 0.1 | 1 | **WAKING** |
 | WTAMATCH-26JUL15IBRBAD | WTA_MAIN | 0.0 | 1 | **WAKING** |
-| WTAMATCH-26JUL15OLIPRI | WTA_MAIN | 0.1 | 1 | **WAKING** |
+| WTAMATCH-26JUL15OLIPRI | WTA_MAIN | 0.067 | 1 | **WAKING** |
 | WTAMATCH-26JUL15PUTCHA | WTA_MAIN | 0.0 | 1 | **WAKING** |
 | WTAMATCH-26JUL15SHEQUE | WTA_MAIN | 0.0 | 1 | **WAKING** |
 
 ## PATTERNS (sub-B) — 25
-- half_arm_aging: KXITFWMATCH-26JUL15ARYMAM-ARY {"fill": 15, "age_min": 69, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL15ARYMAM-ARY {"fill": 15, "age_min": 79, "mode": "NO_BID(sib rested earlier, none now)"}
 - reality_divergence: KXITFMATCH-26JUL14ALHVUX-VUX {"kind": "position_basis", "ref": 77.0, "market_mid": 12.5, "divergence": 64.5}
 - reality_divergence: KXITFMATCH-26JUL15BERAGI-BER {"kind": "resting_bid", "ref": 17.0, "market_mid": 66.5, "divergence": -49.5}
 - reality_divergence: KXITFMATCH-26JUL15DOLDOU-DOL {"kind": "resting_bid", "ref": 10.0, "market_mid": 42.0, "divergence": -32.0}
@@ -572,10 +567,10 @@ no open half-pairs
 - reality_divergence: KXITFMATCH-26JUL15MIRMUR-MIR {"kind": "resting_bid", "ref": 6.0, "market_mid": 80.5, "divergence": -74.5}
 - reality_divergence: KXITFMATCH-26JUL15OVCCOR-OVC {"kind": "resting_bid", "ref": 35.0, "market_mid": 92.0, "divergence": -57.0}
 - reality_divergence: KXITFMATCH-26JUL15WIEWIT-WIE {"kind": "resting_bid", "ref": 40.0, "market_mid": 86.5, "divergence": -46.5}
-- half_arm_aging: KXITFMATCH-26JUL15WIEWIT-WIT {"fill": 10, "age_min": 60, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL15PERBAR-BAR {"fill": 14, "age_min": 38, "mode": "NO_BID(sib rested earlier, none now)", "emitted_et": "2026-07-15 03:48:35 AM ET"}
-- half_arm_aging: KXITFMATCH-26JUL15OVCCOR-COR {"fill": 5, "age_min": 37, "mode": "NO_BID(sib rested earlier, none now)", "emitted_et": "2026-07-15 03:48:35 AM ET"}
-- half_arm_aging: KXITFWMATCH-26JUL15VIRRAD-VIR {"fill": 12, "age_min": 36, "mode": "NO_BID(sib rested earlier, none now)", "emitted_et": "2026-07-15 03:48:35 AM ET"}
+- half_arm_aging: KXITFMATCH-26JUL15WIEWIT-WIT {"fill": 10, "age_min": 71, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL15PERBAR-BAR {"fill": 14, "age_min": 49, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL15OVCCOR-COR {"fill": 5, "age_min": 48, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL15VIRRAD-VIR {"fill": 12, "age_min": 46, "mode": "NO_BID(sib rested earlier, none now)"}
 - reality_divergence: KXITFMATCH-26JUL15BERAGI-BER {"kind": "resting_bid", "ref": 17.0, "market_mid": 66.5, "divergence": -49.5}
 - reality_divergence: KXITFMATCH-26JUL15DOLDOU-DOL {"kind": "resting_bid", "ref": 10.0, "market_mid": 42.0, "divergence": -32.0}
 - reality_divergence: KXITFMATCH-26JUL15GUNDEL-GUN {"kind": "resting_bid", "ref": 35.0, "market_mid": 66.5, "divergence": -31.5}

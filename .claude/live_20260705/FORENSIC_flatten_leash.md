@@ -1,9 +1,10 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784224164 -->
-written 2026-07-16 01:57:07 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784224701 -->
+written 2026-07-16 02:07:19 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (2 total this session)
+## Events (3 total this session)
 - 13:47:43 KXWTACHALLENGERMATCH-26JUL16KOVRIE-RIE — flatten DEFERRED: ev -2.44 above margin floor -3.0
 - 13:49:24 KXITFWMATCH-26JUL16MATREA-REA — flatten DEFERRED: ev -2.44 above margin floor -3.0
+- 13:58:21 KXWTACHALLENGERMATCH-26JUL16KOVRIE-RIE — flatten DEFERRED: ev -2.44 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-16 12:58:12 PM ET", "ts_epoch": 1784221092.46666, "event": "orphan_readopted_fingerprint", "ticker": "KXITFWMATCH-26JUL16MATREA-REA", "details": {"price": 54, "qty": 5, "order_id": "3f9a62c5-2703-49d4-8cd7-2a18d8753628", "posted_ts": 1784208668.1936684}}
@@ -78,6 +79,9 @@ written 2026-07-16 01:57:07 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-16 01:49:24 PM ET", "ts_epoch": 1784224164.4129643, "event": "completion_flatten_deferred", "ticker": "KXITFWMATCH-26JUL16MATREA-REA", "details": {"event": "KXITFWMATCH-26JUL16MATREA", "ev_cents": -2.44, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
     {"ts": "2026-07-16 01:51:18 PM ET", "ts_epoch": 1784224278.3159895, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 6, "n_resting_orders": 39, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784220635.6608171, "legs_new": ["KXATPCHALLENGERMATCH-26JUL16FUESEY-SEY", "KXITFWMATCH-26JUL16M
     {"ts": "2026-07-16 01:51:33 PM ET", "ts_epoch": 1784224293.0886025, "event": "fv_burst_anchor", "ticker": "KXWTACHALLENGERMATCH-26JUL16KOVRIE-RIE", "details": {"event": "KXWTACHALLENGERMATCH-26JUL16KOVRIE", "cat": "WTA_CHALL", "cell": "", "regime": "", "reference_source": "", "legs_filled": 1, "solo_or_pair": "solo", "filled_pre_burst": true, "entry_price": 74, "fill_price": 74, "fv_mid": 75.5, "f
+    {"ts": "2026-07-16 01:58:21 PM ET", "ts_epoch": 1784224701.7775083, "event": "completion_shadow", "ticker": "KXWTACHALLENGERMATCH-26JUL16KOVRIE-RIE", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "WTA_CHALL|leader|disc|51_75", "n": 9, "p_exit_fill": 0.778, "p_ride_zero": 0.222, "ev_cents": -2.44, "band": 18, "basis": 74, "win_ride_residual_excluded": 0.0, "citation": "M1
+    {"ts": "2026-07-16 01:58:21 PM ET", "ts_epoch": 1784224701.7787952, "event": "completion_flatten_deferred", "ticker": "KXWTACHALLENGERMATCH-26JUL16KOVRIE-RIE", "details": {"event": "KXWTACHALLENGERMATCH-26JUL16KOVRIE", "ev_cents": -2.44, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-16 02:01:54 PM ET", "ts_epoch": 1784224914.8715777, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL16MATREA-REA", "details": {"verdict": "NO-OPINION", "kept": {"opinion": "NO-OPINION", "cell": "ITF_W|leader|over|51_75", "missing": "range cell empty/thin (n=4)"}, "cross": {"opinion": "NO-OPINION", "cell": "ITF_W|leader|deep_over|51_75", "missing": "range cell empty/thin (
 
 ## Code path
 ?

@@ -134,6 +134,14 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-16 · C-MERGE-AND-LEDGER v1 — Plex's panel merged · ROOT-LAW VIOLATION #1 filed · THE OPEN LEDGER founded
+
+**MERGE (PR #1, `plex/daysheet-panel`, 15 files, merged `5d390371`):** reviewed — parser pure + NaN-guarded against the real sheet; API route server-side against the public raw LATEST.md (repo public, verified 200 unauthenticated), no secrets; **render-rule compliant: post-bell fills flagged RED as violations, never legitimized**; DAY SHEET tab wired into the command-center shell; Vercel branch deployment READY (SSO-gated, operator's login passes) — panel URL replied on the PR. **The strike order's honest record: the "premarket-maker-entry / knowledge wiki" paragraph was NOT present in the PR body, commit message, or comments at merge time — nothing to strike on that surface; the claim files as the violation below.**
+
+**ROOT-LAW VIOLATION #1 (class founded in CLASS_LEDGER):** a seat consulted a NON-truth/ source for doctrine — Plex's wiki claim declaring post-bell fills "legitimate." The corrective, verbatim with the instance: **post-bell fills are zero-tolerance per the standard; the 71/76 flagged rows are violations or evidence the bell-grading is broken — adjudication belongs to the dial-walk, never to a seat's priors.**
+
+**THE OPEN LEDGER (`truth/OPEN_LEDGER.md`, founded):** four sections — IN-MOTION · OPERATOR DECISION STACK (③ dial-walk clock · ④ ge75 exit recut · ⑤ mains aim policy · ⑥ expression re-run · ⑦ presence · ⑧ sizing · ⑨ retirement-scalar · ⑩ gun-deletion hold, each evidence-linked) · STAGED PASTES (⑪ living-console · ⑫ self-exhibit · ⑬ index-v2 dial-level) · STANDING WATCHES (Wu at T−8h tonight · OT_wiring + TS_render nightly · W2 carve-out evidence · 429s/recorder/expression-empty). **Updated at every C50 BY LAW — gate-checked like the BOARD (deploy_gate [4/4] now requires it in every close-out push); Fable session-zero reads it SECOND, after the INDEX (the generated map carries the line).**
+
 ### 2026-07-16 · C-ONE-TRUTH v1 — the root, the index, both consumers enforced (prior art absorbed: the registry IS the laws section; the HANDOFF map is GENERATED, never hand-maintained again)
 
 **THE ROOT (`truth/`):** VAULT · BOARD · STANDARD · LESSONS · CLASS_LEDGER · rulings/ · surfaces/ (7 fitted files) · archive/ (47 dated studies, one-line finding each) — symlinked in (canonical paths untouched; every cron keeps working). **Outside the root = doesn't exist.**

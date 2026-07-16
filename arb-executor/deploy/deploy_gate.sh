@@ -103,6 +103,8 @@ if [ -f "$LAST_SHA_FILE" ]; then
     MISS=""
     echo "$PUSH_FILES" | grep -q "^\.claude/BOARD\.md$" || MISS="$MISS .claude/BOARD.md"
     echo "$PUSH_FILES" | grep -q "^arb-executor/docs/LIVING_VAULT\.md$" || MISS="$MISS arb-executor/docs/LIVING_VAULT.md"
+    # [C-MERGE-AND-LEDGER v1, 07-16] the OPEN LEDGER is gate-checked like the BOARD
+    echo "$PUSH_FILES" | grep -q "^truth/OPEN_LEDGER\.md$" || MISS="$MISS truth/OPEN_LEDGER.md"
     if [ -n "$MISS" ]; then
       echo "CLOSE-OUT REFUSED (C50): this push ($LAST_SHA..HEAD) does not touch:$MISS"
       echo "Update the BOARD (queue state) and the LIVING_VAULT (ledger entry) and re-push."

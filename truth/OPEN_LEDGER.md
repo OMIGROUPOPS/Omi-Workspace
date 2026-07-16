@@ -1,0 +1,28 @@
+# THE OPEN LEDGER — every open thread, one page (founded 2026-07-16, C-MERGE-AND-LEDGER v1)
+> Updated at every C50 BY LAW (gate-checked like the BOARD). Fable session-zero reads this SECOND, after truth/INDEX.json. Four sections, nothing else: a thread lives here until it ships, dies, or the operator strikes it.
+
+## IN-MOTION (dispatches sent / awaiting)
+- **C-MERGE-AND-LEDGER v1** — this close-out (PR #1 merged `5d390371`; violation #1 filed; this ledger founded).
+- **Tonight's first full nightly** (12:20 AM): standard census (now 6 keys incl. OT_wiring + TS_render) · grace census · signal-grade splits · fund sheet's first NAV close · expression-cohort placeholder.
+- **ITF_W-fav-W1 recut** — the three-day spectrum's named leak ($92.55 wagered, −6.9%, n=28); the recut conversation precedes any expression arm.
+
+## OPERATOR DECISION STACK (numbered, evidence-linked — his lines, his order)
+③ **Dial-walk clock question** — the 71/76 post-bell-flagged rows: violations, or bell-grading broken? Evidence: FORENSIC_w2_fill.md + the tape-bell acceptance rows (`.claude/tapebell_20260715/`) + ROOT-LAW VIOLATION #1's corrective. Adjudication belongs to the dial-walk.
+④ **ge75 exit recut** — ITF_W fav ge75 W1 −16.7% (n=8) vs corridor +25.0% (n=7) pooled: the band on high-basis favs is window-sensitive. Evidence: `.claude/solidify_20260715/SOLIDIFY.md` spectrum.
+⑤ **Mains aim policy** — mains die at the OFFERED stage (books never cross fitted aims pre-gun; ~28 offers/~600 legs) but carry when offered (+35.8% W1 n=5). P-market problem: aim policy or acceptance of the miss. Evidence: SOLIDIFY Part 4 funnel.
+⑥ **Expression re-run** — C-EXPRESS-THE-EDGE HELD (W1 condition failed at n; fav passed). Re-runs after the ITF_W-fav-W1 recut; the staged code is one flip. Evidence: SOLIDIFY + the HELD push.
+⑦ **Presence** — re-place-on-unlatch + ESPN-status gate for match_live_cancel (REACH VERDICT 07-14: aims right, bids gone). Still priced, still awaiting the word.
+⑧ **Sizing** — sizing_live dark behind the operator's separate word; drawdown floor −1500¢ still a named placeholder; the fund sheet's running drawdown now feeds this decision.
+⑨ **Retirement-scalar class** — 3 scalar-50 settles on 07-15 turned >50-basis winners into losses (MASDUT −155); exits structurally can't govern a determined book. Needs a ruling: accept as tail risk, or a retirement-detect carve.
+⑩ **Gun-deletion hold** — DELETION GATE has been OPEN since 07-15 (four proofs present); the legacy-trigger deletion word remains the operator's, now with tape_flow live as source 8.
+
+## STAGED PASTES (relay slots reserved; spec wins on landing)
+⑪ **Living-console** — reserved.
+⑫ **Self-exhibit** — reserved.
+⑬ **Index-v2 dial-level** — reserved (INDEX.json v2: dial-level annotations per law).
+
+## STANDING WATCHES
+- **Wu at T−8h tonight** — YIBYUN: Bu held 5@42 (reschedule class), Wu unworked since the 4:40 PM latch-cancel; the flag panel carries it; if Wu isn't worked inside the horizon, the latch-blocks-replacement class is convicted.
+- **Nightly OT_wiring + TS_render census keys** — 6/6 wirings armed every boot; the today-sheet render clean every day.
+- **W2 carve-out evidence accruing** — every `w2_fill_violation` + FORENSIC_w2_fill row feeds decision ③; the 60s tape-flow grace's first night grades in the grace census.
+- **429 pressure** (tape-bell REST polls) · **fund-tracker recorder cadence** · **expression cohort stays empty until armed**.

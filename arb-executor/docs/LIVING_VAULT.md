@@ -134,6 +134,10 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-16 · C-BRING-IT-HOME v1 — the console comes home (operator ruling: LOCALHOST, never Vercel — the tracker pattern is the law for all operator surfaces)
+
+**The Day Sheet panel (Plex's pair-lens build, merged verbatim) now serves from the fund tracker:** bundled client-side with esbuild (182KB JS + 12KB scoped Tailwind), **zero edits to merged files** — a fetch shim answers the panel's `/api/daysheet` call by pulling `/daysheet.md` from the tracker (LATEST.md from disk) and parsing in the browser with Plex's own pure parser (built reusable; this is that reuse). Same port (8788), same token, same SSH tunnel: **http://127.0.0.1:8788 → DAY SHEET tab.** All four routes verified 200 on the box. **THE EDIT LOOP: change the components → `npm run daysheet:build` → scp the two bundle files (or git pull) → refresh. No cloud pipeline.** The Vercel route stays as dead code, inert under the rule (mechanical call: removing it touches Plex's merged files for zero benefit). **THE STANDING RULE (standard + open ledger): operator surfaces live on the VPS localhost only; a Vercel/public deploy of an operator surface = named defect.**
+
 ### 2026-07-16 · C-MERGE-AND-LEDGER v1 — Plex's panel merged · ROOT-LAW VIOLATION #1 filed · THE OPEN LEDGER founded
 
 **MERGE (PR #1, `plex/daysheet-panel`, 15 files, merged `5d390371`):** reviewed — parser pure + NaN-guarded against the real sheet; API route server-side against the public raw LATEST.md (repo public, verified 200 unauthenticated), no secrets; **render-rule compliant: post-bell fills flagged RED as violations, never legitimized**; DAY SHEET tab wired into the command-center shell; Vercel branch deployment READY (SSO-gated, operator's login passes) — panel URL replied on the PR. **The strike order's honest record: the "premarket-maker-entry / knowledge wiki" paragraph was NOT present in the PR body, commit message, or comments at merge time — nothing to strike on that surface; the claim files as the violation below.**

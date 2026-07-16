@@ -64,6 +64,9 @@ No leg is reported anywhere — DAY SHEET, GAME REPORTS, nightly — without: fi
 ## THE RENDER RULES (C-TODAY-SHEET v1, operator dispatch 07-16, PERMANENT — census key `TS_render`)
 Every operator-facing render obeys: Match and Cat separate columns · full match names from the schedule source (tickers never render) · ET wall-clock with placed+filled standing columns · Fill¢ beside best-achievable W1 fill¢ with timestamp · dual clocks where bell and schedule diverge, gun source named · unfilled-bid language exact ("never traded that low" / "we pulled it (reason, time ET)") — the word "refused" is banned operator-facing · a violating render = STANDARD DEFECT, auto-boarded. THE TODAY SHEET (`analysis/today_sheet.py`) is the standing operator surface: morning-ready 5:55 AM + 11 AM + 4 PM prints + on-demand.
 
+## THE LOCALHOST RULE (C-BRING-IT-HOME v1, operator ruling 07-16, PERMANENT)
+**The trading console is LOCALHOST, never Vercel — the fund-tracker pattern is the law for all operator surfaces** (VPS loopback, token, the operator's SSH tunnel). A Vercel/public deploy of an operator surface = named defect on whoever shipped it. The Day Sheet panel serves from the tracker (8788, DAY SHEET tab); the Vercel route remains dead code, inert under this rule.
+
 ## THE STANDARD CENSUS (the teeth — runs inside the nightly adjudication)
 For each census key above: did the layer RUN today, with counts? **A layer that did not run = `STANDARD DEFECT`, named in the adjudication + auto-boarded** (the AUTO-GAPS marker pattern, standard-census intake). The census never silently passes an absent layer; an absent census is itself the loudest defect (the adjudication's own presence is watched by NIGHTLY_PASS).
 

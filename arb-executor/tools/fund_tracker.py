@@ -361,7 +361,7 @@ td,th{border:1px solid #263041;padding:3px 7px;text-align:left;font-size:12px}
 th{background:#141a24;cursor:pointer} .pos{color:#5dd39e}.neg{color:#e0705d}
 .flag{color:#e0b25d} svg{background:#10151d;border:1px solid #263041}
 .ref{color:#7d8aa0;font-style:italic} a{color:#6aa5e0}</style></head><body>
-<h1>OMI FUND — THE TICKER <span class="ref">(single source of record; every organ cites this ledger)</span></h1>
+<h1>OMI FUND — THE TICKER <span class="ref">(single source of record; every organ cites this ledger)</span> · <a href="/daysheet?token=%(tok)s">DAY SHEET (pair lens)</a></h1>
 %(nav)s
 <h2>EQUITY — %(daylabel)s (midnight ET closes the session) · <a href="?token=%(tok)s&day=all">ALL</a></h2>
 %(chart)s
@@ -436,6 +436,17 @@ class H(BaseHTTPRequestHandler):
     def log_message(self, *a):
         pass
 
+    def _send(self, body, ctype, extra=None):
+        if isinstance(body, str):
+            body = body.encode()
+        self.send_response(200)
+        self.send_header("Content-Type", ctype)
+        self.send_header("Content-Length", str(len(body)))
+        for k, v in (extra or {}).items():
+            self.send_header(k, v)
+        self.end_headers()
+        self.wfile.write(body)
+
     def do_GET(self):
         u = urlparse(self.path)
         qs = parse_qs(u.query)
@@ -443,6 +454,47 @@ class H(BaseHTTPRequestHandler):
             self.send_response(403)
             self.end_headers()
             self.wfile.write(b"token required")
+            return
+        # [C-BRING-IT-HOME v1, 07-16 — operator ruling: operator surfaces
+        # live on THIS localhost, never Vercel] the pair-lens Day Sheet
+        # panel (Plex's merged build, bundled verbatim client-side) as a
+        # tab of this app: same port, same token, same tunnel.
+        DSDIR = ROOT.parent / "tools" / "daysheet_local"
+        if u.path == "/daysheet":
+            self._send(
+                "<!doctype html><html><head><meta charset='utf-8'>"
+                "<title>OMI FUND — DAY SHEET</title>"
+                "<link rel='stylesheet' href='/assets/daysheet.css?token="
+                + TOK + "'></head><body style='background:#0a0a0a'>"
+                "<div style='font:12px ui-monospace;padding:6px'>"
+                "<a style='color:#6aa5e0' href='/?token=" + TOK
+                + "'>&larr; TICKER</a></div>"
+                "<div id='daysheet-root'></div>"
+                "<script src='/assets/daysheet_bundle.js?token=" + TOK
+                + "'></script></body></html>", "text/html; charset=utf-8")
+            return
+        if u.path == "/daysheet.md":
+            p = ROOT.parent / ".claude" / "today_sheet" / "LATEST.md"
+            if p.exists():
+                self._send(p.read_text(encoding="utf-8"),
+                           "text/plain; charset=utf-8",
+                           {"x-sheet-mtime": datetime.fromtimestamp(
+                               p.stat().st_mtime, ET).isoformat()})
+            else:
+                self.send_response(404)
+                self.end_headers()
+            return
+        if u.path.startswith("/assets/"):
+            name = u.path.rsplit("/", 1)[-1]
+            p = DSDIR / name
+            if p.exists() and name in ("daysheet_bundle.js",
+                                       "daysheet.css"):
+                self._send(p.read_bytes(),
+                           "application/javascript" if name.endswith(
+                               ".js") else "text/css")
+            else:
+                self.send_response(404)
+                self.end_headers()
             return
         day = (qs.get("day") or [datetime.now(ET).strftime("%Y%m%d")])[0]
         if day == "all":

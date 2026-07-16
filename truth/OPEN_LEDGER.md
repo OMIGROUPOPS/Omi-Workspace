@@ -22,6 +22,7 @@
 ⑬ **Index-v2 dial-level** — reserved (INDEX.json v2: dial-level annotations per law).
 
 ## STANDING WATCHES
+- **THE LOCALHOST RULE (07-16, permanent):** operator surfaces = VPS localhost only (tracker pattern); a Vercel/public deploy of an operator surface = named defect. Day Sheet panel now serves at 8788 → DAY SHEET tab.
 - **Wu at T−8h tonight** — YIBYUN: Bu held 5@42 (reschedule class), Wu unworked since the 4:40 PM latch-cancel; the flag panel carries it; if Wu isn't worked inside the horizon, the latch-blocks-replacement class is convicted.
 - **Nightly OT_wiring + TS_render census keys** — 6/6 wirings armed every boot; the today-sheet render clean every day.
 - **W2 carve-out evidence accruing** — every `w2_fill_violation` + FORENSIC_w2_fill row feeds decision ③; the 60s tape-flow grace's first night grades in the grace census.

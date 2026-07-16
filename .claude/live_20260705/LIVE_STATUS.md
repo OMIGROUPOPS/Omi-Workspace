@@ -1,20 +1,20 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 33 @ **2026-07-15 10:06:09 PM ET** | build `c398de67` | session boot 07-15 16:43 ET | log `live_v3_20260715.jsonl` | 19955 session events | monitor READ-ONLY
+- cycle 34 @ **2026-07-15 10:18:07 PM ET** | build `b3cf6561` | session boot 07-15 16:43 ET | log `live_v3_20260715.jsonl` | 21148 session events | monitor READ-ONLY
 
-## ⚠ GUN FEED: last new in-play sighting 233 min ago (>30 tripwire; source observed_starts.db)
+## ⚠ GUN FEED: last new in-play sighting 245 min ago (>30 tripwire; source observed_starts.db)
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
-- refused:below_leg_floor UL16KENTUP-KEN aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
+- refused:below_leg_floor UL16MAKSED-SED aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
 - refused:below_leg_floor UL16PANSHO-PAN aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
 - refused:below_leg_floor UL16KENTUP-KEN aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
-- refused:below_leg_floor UL16MAKSED-SED aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
+- refused:below_leg_floor UL16KENTUP-KEN aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
 - tripwire artifact: **PRESENT — CHECK /tmp/live_v4_TRIPWIRE.json**
 
-## ZERO-TOLERANCE — 52 violation(s)
+## ZERO-TOLERANCE — 55 violation(s)
 | ET | class | who | detail |
 |---|---|---|---|
 | 16:55:01 | **taker_capped** | KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN | taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded) |
@@ -69,10 +69,13 @@ clean overnight — no watch fires
 | 21:56:25 | **taker_capped** | KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN | taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded) |
 | 21:56:29 | **flatten_leash** | KXATPMATCH-26JUL15TABMID-MID | flatten DEFERRED: ev -2.43 above margin floor -3.0 |
 | 21:56:29 | **taker_capped** | KXWTAMATCH-26JUL15IBRBAD-IBR | taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded) |
+| 22:08:30 | **taker_capped** | KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN | taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded) |
+| 22:13:30 | **w2_fill** | KXITFMATCH-26JUL15MILOLI-OLI | W2 FILL (buy after start): 30c x2 booking=v4_resting_maker gun=percat_fitted |
+| 22:14:14 | **flatten_leash** | KXITFMATCH-26JUL15MILOLI-OLI | flatten DEFERRED: ev -2.87 above margin floor -3.0 |
 
-**LIVE DEFECT(S) — forensic blocks written: FORENSIC_taker_capped.md, FORENSIC_flatten_leash.md**
+**LIVE DEFECT(S) — forensic blocks written: FORENSIC_taker_capped.md, FORENSIC_flatten_leash.md, FORENSIC_w2_fill.md**
 
-## FILLS — 6 graded (session)
+## FILLS — 7 graded (session)
 | ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb | stamp |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 16:54 | ATPMATCH-26JUL15RUBPEL-PEL | ATP_MAIN | ? | 27 | 25 | +2 (adopted_est) | — | pre | single |  | PENDING |
@@ -81,27 +84,32 @@ clean overnight — no watch fires
 | 20:24 | ITFMATCH-26JUL15VIISAC-VII | ITF_M | ? | 16 | 91 | -75 (window_cell) | — | pre | pair | 70 | EARNED |
 | 21:43 | ITFWMATCH-26JUL15LINRUS-RUS | ITF_W | ? | 29 | 16 | +13 (window_cell) | — | pre | pair | 70 | MIXED |
 | 21:46 | ITFMATCH-26JUL15VIISAC-SAC | ITF_M | ? | 54 | 3 | +51 (window_cell) | — | pre | pair | 70 | GIFT_CLASS |
+| 22:13 | ITFMATCH-26JUL15MILOLI-OLI | ITF_M | underdog | 30 | 57 | -27 (place_cell) | — | pre | single |  | PENDING |
 
-## RESTING BIDS — 16 tape-graded (starvation = NO_FLOW only)
-- classes now: {'FLOW_ABOVE': 13, 'FLOW_AT_LEVEL': 1, 'NO_FLOW': 2} | repriceable now: true 2 / false 14 | **cumulative bid_grade lines: 11434 (repriceable true 1551 / false 9883)** -- the liquid_repost re-arm evidence accumulates here
+## RESTING BIDS — 20 tape-graded (starvation = NO_FLOW only)
+- classes now: {'FLOW_ABOVE': 15, 'FLOW_AT_LEVEL': 1, 'NO_FLOW': 4} | repriceable now: true 2 / false 18 | **cumulative bid_grade lines: 11438 (repriceable true 1551 / false 9887)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL15NAGTOR-T | 38 | 321m | 2/40-41/39 | 38-40 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→40 |
-| ATPMATCH-26JUL15BASTIR-TIR | 65 | 321m | 66/68-70/4722 | 69-70 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→68 |
-| ATPMATCH-26JUL15RUBPEL-RUB | 70 | 311m | 94/71-73/6223 | 72-73 | 1 | **FLOW_ABOVE** | 70 | flow above but bound 70c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL15FERSIK-FER | 55 | 288m | 66/65-77/2268 | 68-71 | 10 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL15FERSIK-SIK | 18 | 305m | 82/25-32/1895 | 27-30 | 7 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15DASYAN-DAS | 33 | 285m | 42/43-50/1048 | 48-50 | 10 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15DASYAN-YAN | 40 | 258m | 76/53-57/2207 | 51-56 | 13 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15WEBFAI-FAI | 36 | 305m | 44/48-55/1207 | 46-49 | 12 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15WEBFAI-WEB | 41 | 305m | 70/49-55/3826 | 50-53 | 8 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL16BELMAT-BEL | 17 | 5m | 0 | 23-25 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL16DESYOD-DES | 23 | 51m | 1/31-31/6 | 29-31 | 8 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL16DESYOD-YOD | 56 | 51m | 0 | 69-70 | — | **NO_FLOW** | 99 |  |
-| ITFWMATCH-26JUL16SAGJAN-JAN | 52 | 51m | 3/65-65/41 | 64-65 | 13 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL16SAGJAN-SAG | 20 | 51m | 1/34-34/5 | 32-37 | 14 | **FLOW_ABOVE** | 99 |  |
-| WTAMATCH-26JUL15KREMON-MON | 8 | 321m | 13/8-9/1070 | 8-9 | 0 | **FLOW_AT_LEVEL** | 99 |  |
-| WTAMATCH-26JUL15SHEQUE-QUE | 32 | 321m | 2/39-40/311 | 38-39 | 7 | **FLOW_ABOVE** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL15NAGTOR-T | 38 | 333m | 2/40-41/39 | 38-40 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→40 |
+| ATPMATCH-26JUL15BASTIR-TIR | 65 | 333m | 69/68-70/5229 | 69-70 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→68 |
+| ATPMATCH-26JUL15RUBPEL-RUB | 70 | 323m | 102/71-73/11468 | 72-73 | 1 | **FLOW_ABOVE** | 70 | flow above but bound 70c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL15ALHSUR-ALH | 6 | 5m | 23/63-75/498 | 65-70 | 57 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15ALHSUR-SUR | 5 | 5m | 31/28-44/308 | 34-37 | 23 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15ANHMOG-MOG | 7 | 1m | 0 | 7-92 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL15FERSIK-FER | 55 | 300m | 89/65-81/3657 | 72-75 | 10 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15FERSIK-SIK | 18 | 317m | 93/25-33/2047 | 27-29 | 7 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15DASYAN-DAS | 33 | 297m | 50/43-51/1406 | 49-50 | 10 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15DASYAN-YAN | 40 | 270m | 79/53-57/2302 | 53-55 | 13 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15WEBFAI-FAI | 36 | 317m | 55/45-55/1342 | 47-48 | 9 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15WEBFAI-WEB | 41 | 317m | 94/49-57/4717 | 51-53 | 8 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL16BELMAT-BEL | 17 | 17m | 0 | 23-25 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL16BELMAT-MAT | 64 | 6m | 0 | 76-78 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL16DESYOD-DES | 23 | 63m | 1/31-31/6 | 29-31 | 8 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL16DESYOD-YOD | 56 | 63m | 0 | 69-70 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL16SAGJAN-JAN | 52 | 63m | 3/65-65/41 | 64-65 | 13 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL16SAGJAN-SAG | 20 | 63m | 1/34-34/5 | 32-37 | 14 | **FLOW_ABOVE** | 99 |  |
+| WTAMATCH-26JUL15KREMON-MON | 8 | 333m | 13/8-9/1070 | 8-9 | 0 | **FLOW_AT_LEVEL** | 99 |  |
+| WTAMATCH-26JUL15SHEQUE-QUE | 32 | 333m | 2/39-40/311 | 38-39 | 7 | **FLOW_ABOVE** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
@@ -109,32 +117,35 @@ clean overnight — no watch fires
 | ITFMATCH-26JUL15STHALM | 22 | 64 | **86** | 97 | -11 |
 | ATPMATCH-26JUL15RUBPEL | 27 | 73 | **100** | 97 | +3 |
 
-## FLOW-STATE — 14 tracked game(s) ({'WAKING': 10, 'OPEN': 3, 'QUIET': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 17 tracked game(s) ({'WAKING': 12, 'OPEN': 4, 'QUIET': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ITFMATCH-26JUL15FERSIK | ITF_M | 1.433 | 3 | **OPEN** |
-| ITFWMATCH-26JUL15DASYAN | ITF_W | 0.867 | 2 | **OPEN** |
-| ITFWMATCH-26JUL15WEBFAI | ITF_W | 0.7 | 3 | **OPEN** |
+| ITFMATCH-26JUL15ALHSUR | ITF_M | 1.867 | 3 | **OPEN** |
+| ITFMATCH-26JUL15FERSIK | ITF_M | 1.7 | 2 | **OPEN** |
+| ITFWMATCH-26JUL15DASYAN | ITF_W | 0.8 | 1 | **OPEN** |
+| ITFWMATCH-26JUL15WEBFAI | ITF_W | 1.733 | 1 | **OPEN** |
 | ITFMATCH-26JUL15STHALM | ITF_M | 0.0 | — | **QUIET** |
 | ATPCHALLENGERMATCH-26JUL15NAGTOR | ATP_CHALL | 0.0 | 2 | **WAKING** |
-| ATPMATCH-26JUL15BASTIR | ATP_MAIN | 0.2 | 1 | **WAKING** |
-| ATPMATCH-26JUL15RUBPEL | ATP_MAIN | 0.333 | 1 | **WAKING** |
-| ITFMATCH-26JUL15VIISAC | ITF_M | 125.767 | — | **WAKING** |
-| ITFWMATCH-26JUL15LINRUS | ITF_W | 56.2 | — | **WAKING** |
+| ATPMATCH-26JUL15BASTIR | ATP_MAIN | 0.233 | 1 | **WAKING** |
+| ATPMATCH-26JUL15RUBPEL | ATP_MAIN | 0.433 | 1 | **WAKING** |
+| ITFMATCH-26JUL15ANHMOG | ITF_M | 0.033 | 85 | **WAKING** |
+| ITFMATCH-26JUL15MILOLI | ITF_M | 2.067 | 4 | **WAKING** |
+| ITFMATCH-26JUL15VIISAC | ITF_M | 93.8 | — | **WAKING** |
+| ITFWMATCH-26JUL15LINRUS | ITF_W | 118.2 | — | **WAKING** |
 | ITFWMATCH-26JUL16BELMAT | ITF_W | 0.0 | 2 | **WAKING** |
-| ITFWMATCH-26JUL16DESYOD | ITF_W | 0.033 | 1 | **WAKING** |
-| ITFWMATCH-26JUL16SAGJAN | ITF_W | 0.133 | 1 | **WAKING** |
+| ITFWMATCH-26JUL16DESYOD | ITF_W | 0.0 | 1 | **WAKING** |
+| ITFWMATCH-26JUL16SAGJAN | ITF_W | 0.067 | 1 | **WAKING** |
 | WTAMATCH-26JUL15KREMON | WTA_MAIN | 0.033 | 1 | **WAKING** |
 | WTAMATCH-26JUL15SHEQUE | WTA_MAIN | 0.0 | 1 | **WAKING** |
 
 ## PATTERNS (sub-B) — 9
-- pre_conception_buy: KXITFWMATCH-26JUL15TAYTSA-TSA {"price": 54, "conception_ts": 1784167391.1038013, "detail": "buy 54c predates the conception stamp by 318min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-15 10:05:53 PM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL15UEMTHO-UEM {"price": 56, "conception_ts": 1784167391.0879495, "detail": "buy 56c predates the conception stamp by 318min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-15 10:05:53 PM ET"}
-- pre_conception_buy: KXITFWMATCH-26JUL15LINRUS-RUS {"price": 29, "conception_ts": 1784167203.9625313, "detail": "buy 29c predates the conception stamp by 315min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-15 10:05:53 PM ET"}
-- pre_conception_buy: KXITFMATCH-26JUL15HULCHA-CHA {"price": 43, "conception_ts": 1784167203.7845948, "detail": "buy 43c predates the conception stamp by 315min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-15 10:05:53 PM ET"}
-- pre_conception_buy: KXITFMATCH-26JUL15VIISAC-SAC {"price": 54, "conception_ts": 1784167200.8286078, "detail": "buy 54c predates the conception stamp by 315min \u2014 honest-window buy, cap not yet defined (ungradeable)", "emitted_et": "2026-07-15 10:05:53 PM ET"}
-- half_arm_aging: KXATPMATCH-26JUL15RUBPEL-PEL {"fill": 27, "age_min": 311, "mode": "SET_BELOW_FLOW(prints 1c above)"}
-- half_arm_aging: KXITFMATCH-26JUL15STHALM-STH {"fill": 22, "age_min": 237, "mode": "NO_BID(sib rested earlier, none now)"}
+- pre_conception_buy: KXITFWMATCH-26JUL15TAYTSA-TSA {"price": 54, "conception_ts": 1784167391.1038013, "detail": "buy 54c predates the conception stamp by 318min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL15UEMTHO-UEM {"price": 56, "conception_ts": 1784167391.0879495, "detail": "buy 56c predates the conception stamp by 318min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFWMATCH-26JUL15LINRUS-RUS {"price": 29, "conception_ts": 1784167203.9625313, "detail": "buy 29c predates the conception stamp by 315min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFMATCH-26JUL15HULCHA-CHA {"price": 43, "conception_ts": 1784167203.7845948, "detail": "buy 43c predates the conception stamp by 315min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- pre_conception_buy: KXITFMATCH-26JUL15VIISAC-SAC {"price": 54, "conception_ts": 1784167200.8286078, "detail": "buy 54c predates the conception stamp by 315min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
+- half_arm_aging: KXATPMATCH-26JUL15RUBPEL-PEL {"fill": 27, "age_min": 323, "mode": "SET_BELOW_FLOW(prints 1c above)"}
+- half_arm_aging: KXITFMATCH-26JUL15STHALM-STH {"fill": 22, "age_min": 249, "mode": "NO_BID(sib rested earlier, none now)"}
 - reality_divergence: KXITFMATCH-26JUL15VIISAC-SAC {"kind": "resting_bid", "ref": 54.0, "market_mid": 79.5, "divergence": -25.5}
 - reality_divergence: KXITFWMATCH-26JUL15LINRUS-RUS {"kind": "resting_bid", "ref": 29.0, "market_mid": 55.0, "divergence": -26.0}
 

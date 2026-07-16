@@ -134,6 +134,19 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-16 · C-TODAY-SHEET v1 — THE OPERATOR'S DAILY SHEET (render rules verbatim, census-enforced; the founding edition committed; standing prints armed)
+
+**THE RENDER RULES (verbatim from the dispatch, permanent, census key `TS_render` in the nightly):**
+1. Match and Cat are separate columns.
+2. Full match names from the schedule source — **tickers never render to the operator.**
+3. All times ET wall-clock; placed time and filled time are standing columns.
+4. Fill¢ prints beside the best-achievable W1 fill¢ with its timestamp.
+5. Dual clock columns wherever the real bell and Kalshi's schedule diverge — gun source named.
+6. Unfilled-bid language is exact: **"never traded that low"** or **"we pulled it (reason, time ET)"** — the word "refused" is banned from operator-facing surfaces.
+7. A render violating any rule = STANDARD DEFECT, auto-boarded.
+
+**THE FOUNDING EDITION (07-16, `.claude/today_sheet/TODAY_SHEET_20260716.md`):** four buckets — ① SETTLED 76 · ② OPEN 3 · ③ POSTED-DID-NOT-FILL 245 · ④ NOT BID 149; carried rows marked ◐; header NAV $751.17 · session realized TAIL +259¢ / PATH +182¢ · wagered $97.46 · P-offered (executor) 24% / P-market (funnel) 5.4%, both labeled. **Banned-token scan on the founding edition: 0 "refused", 0 raw tickers.** Generator `analysis/today_sheet.py`; on-demand any seat; standing prints 5:55 AM (morning-ready) / 11 AM / 4 PM ET crons, each committing + pushing the artifact. No behavior changes — the sheet only.
+
 ### 2026-07-16 · C-THREE-DAY-SOLIDIFY v2 EXECUTED + C-EXPRESS-THE-EDGE v1 **HELD** (the conditional did its job — the single day flattered, the pooled read refused the arm)
 
 **THE POOLED STORY (Jul 13/14/15, current full stack, uniform discovery, honest fill law — `.claude/solidify_20260715/SOLIDIFY.md` + 3,320-row LEGS artifact):** per day +$0.05 / −$8.35 / +$17.85; **pooled wagered $480.00, earned +$9.55, +2.0% — THIN, said plainly. The leak's stage, named: W1 (pooled −$4.95 on $245) — the corridor carries (+$14.50).** The spectrum corrects the single-day lane word: the leak cells are **ITF_W fav W1 (−6.9%, n=28, $92.55 — the biggest dollars)**, ATP_CHALL fav W1 (−8.5%), ITF_W dogs corridor (−20.9%) and ITF dog W1; **ITF_M dogs corridor CARRY (+2.2%)** — no lane word from aggregates, ever. Role split pooled: **fav +4.6% (n=127) / dog −6.1% (n=109)**. Carriers: ITF_M favs both windows (+10.8/+15.3%), ITF_W fav corridor (+4.9%).

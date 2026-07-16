@@ -994,7 +994,30 @@ def main():
               % ("ARMED but no cohort legs settled yet"
                  if False else "not armed / staged")]
         # ---- THE STANDARD CENSUS (the teeth)
+        # [C-TODAY-SHEET v1] the render census: today's edition exists
+        # AND violates no render rule (banned word, raw tickers in the
+        # operator's columns). A violation = STANDARD DEFECT.
+        _ts_ok, _ts_det = False, "sheet absent"
+        try:
+            _tsp = ROOT.parent / ".claude/today_sheet" / (
+                "TODAY_SHEET_%s.md" % ymd)
+            if not _tsp.exists():
+                _tsp = ROOT.parent / ".claude/today_sheet/LATEST.md"
+            if _tsp.exists():
+                _tsb = _tsp.read_text(encoding="utf-8",
+                                      errors="replace")
+                _bad = []
+                if "refused" in _tsb.lower():
+                    _bad.append("banned word present")
+                if "KXATP" in _tsb or "KXITF" in _tsb or "KXWTA" in _tsb:
+                    _bad.append("raw ticker rendered")
+                _ts_ok = not _bad
+                _ts_det = ("clean render (%d bytes)" % len(_tsb)
+                           if _ts_ok else "; ".join(_bad))
+        except Exception as _tse:
+            _ts_det = str(_tse)[:80]
         _census = [
+            ("TS_render", _ts_ok, _ts_det),
             ("L1_three_bucket", bool(_std_fill or _std_dos),
              "%d fills / %d placements graded" % (len(_std_fill),
                                                   len(_std_dos))),

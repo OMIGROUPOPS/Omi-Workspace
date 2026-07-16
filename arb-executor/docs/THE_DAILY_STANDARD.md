@@ -61,6 +61,9 @@ Two participations exist and are never conflated: **P-offered** (the executor gr
 ## THE LEG COLUMNS LAW (C-THREE-DAY-SOLIDIFY Part 3, PERMANENT)
 No leg is reported anywhere — DAY SHEET, GAME REPORTS, nightly — without: fill window + placement window · cost (basis, size, role, band, discount bucket) · **exit required (band ¢ AND % of basis)** · highest tick toward exit after fill (its window + shortfall if the band went unmet) · worst tick · close (exit/flatten/settle, realized $, both grades). Columns whose input is the full exchange tape (highest/worst tick) are GAP-named on live surfaces until the tape column lands nightly; the three-day LEGS artifact is their founding population.
 
+## THE RENDER RULES (C-TODAY-SHEET v1, operator dispatch 07-16, PERMANENT — census key `TS_render`)
+Every operator-facing render obeys: Match and Cat separate columns · full match names from the schedule source (tickers never render) · ET wall-clock with placed+filled standing columns · Fill¢ beside best-achievable W1 fill¢ with timestamp · dual clocks where bell and schedule diverge, gun source named · unfilled-bid language exact ("never traded that low" / "we pulled it (reason, time ET)") — the word "refused" is banned operator-facing · a violating render = STANDARD DEFECT, auto-boarded. THE TODAY SHEET (`analysis/today_sheet.py`) is the standing operator surface: morning-ready 5:55 AM + 11 AM + 4 PM prints + on-demand.
+
 ## THE STANDARD CENSUS (the teeth — runs inside the nightly adjudication)
 For each census key above: did the layer RUN today, with counts? **A layer that did not run = `STANDARD DEFECT`, named in the adjudication + auto-boarded** (the AUTO-GAPS marker pattern, standard-census intake). The census never silently passes an absent layer; an absent census is itself the loudest defect (the adjudication's own presence is watched by NIGHTLY_PASS).
 

@@ -44,7 +44,17 @@ doctrine_registry.json receipt (rebuilt every C50:
 python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
-## STATE (2026-07-16 SOLIDIFY+HELD — C50 keeps this current):
+## STATE (2026-07-16 TODAY-SHEET — C50 keeps this current):
+C-TODAY-SHEET v1 LIVE (sheet only, zero behavior delta): RENDER
+RULES vaulted verbatim + census key TS_render nightly (names never
+tickers; ET wall-clock; fill beside W1-best @ts; dual clocks w/ gun
+source; "refused" banned operator-facing; violations auto-board).
+Founding edition committed (.claude/today_sheet/): S76/O3/P245/N149,
+NAV $751.17, TAIL +259c / PATH +182c, P-offered 24% / P-market 5.4%
+labeled, banned-token scan clean. Standing prints 5:55 AM + 11 AM +
+4 PM ET crons (commit+push each) + on-demand analysis/today_sheet.py.
+
+(prior:) ## STATE (2026-07-16 SOLIDIFY+HELD — C50 keeps this current):
 C-THREE-DAY-SOLIDIFY v2 EXECUTED (Jul 13/14/15 pooled through the
 current stack, honest fill law, 3,320-leg exhaustive artifact):
 pooled +$9.55 on $480 (+2.0% THIN, said plainly); leak stage = W1

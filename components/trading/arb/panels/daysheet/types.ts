@@ -126,3 +126,56 @@ export interface DaySheet {
     sourceMtimeIso: string | null;
   };
 }
+
+// ── PER-GAME PAIRS (operator's primary lens, 2026-07-16) ────────────────────
+// §0A THE OPERATOR'S FRAME: "the whole game is filling BOTH sides of each
+// match in Window 1 at a fair price." This groups settled/open/unfilled rows
+// by `match` so every leg's fill (or aim, if unfilled) can sit beside its
+// sibling leg and beside that leg's own W1-lowest-traded price. "One-sided"
+// is the LIVING_VAULT's own term (§ C-SHIMIC-TRACE / pair_law_violation
+// commentary: "the pair went one-sided BY CANCEL") — reused here as-is,
+// never invented fresh vocabulary for something doctrine already names.
+
+export type LegBucket = "settled" | "open" | "unfilled" | "not_bid";
+
+export interface PairLegSlot {
+  bucket: LegBucket;
+  leg: string; // e.g. "Tor", "Dal"
+  cat: string;
+  // Our side of the trade: what we actually paid (settled/open) or would
+  // have paid (unfilled aim). Null only for not_bid legs (never conceived).
+  ourCents: number | null;
+  ourIsAim: boolean; // true when ourCents is an aim/target, not an actual fill
+  // That leg's own lowest traded price in Window 1, per THE LEG COLUMNS LAW.
+  w1LowCents: number | null;
+  w1LowAt: string | null;
+  w1LowNote: string | null; // e.g. "no pre-bell tape" — never coerced to a number
+  // Delta = ourCents - w1LowCents, in cents. Positive = we paid/aimed above
+  // the leg's own best W1 print (worse); negative = at-or-below it (better).
+  // Null whenever either side of the subtraction is missing.
+  deltaCents: number | null;
+  // Bell-source honesty, per operator point (3): render as an OPEN QUESTION,
+  // never a violation verdict. "live" = tape_flow/percat_fitted/self_fill/
+  // price_divergence sources; "estimated" = fallback_bell. Unknown when no
+  // bell data exists at all (e.g. unfilled/not_bid legs carry none).
+  bellHonesty: "live" | "estimated" | "unknown";
+  realBellSource: string | null;
+  outcome: SettledOutcome | null; // settled rows only
+  pnlCents: number | null; // settled rows only
+  reasonRaw: string | null; // unfilled/not_bid verbatim reason, kept exact
+  plainReason: string | null; // not_bid plain reason, kept exact
+}
+
+export interface GamePair {
+  match: string;
+  carried: boolean;
+  cat: string;
+  legs: PairLegSlot[]; // 1 or 2 — some games print only one leg across all buckets
+  // "One-sided" per doctrine's own term: only one leg has an actual fill
+  // (settled or open) while the sibling is unfilled/not_bid/missing. A game
+  // that never bid either leg is NOT flagged one-sided — it simply has no
+  // filled legs at all and is a separate, quieter case.
+  filledLegCount: number;
+  isOneSided: boolean;
+  isBothFilled: boolean;
+}

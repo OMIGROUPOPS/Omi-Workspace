@@ -2,7 +2,7 @@
 > Updated at every C50 BY LAW (gate-checked like the BOARD). Fable session-zero reads this SECOND, after truth/INDEX.json. Four sections, nothing else: a thread lives here until it ships, dies, or the operator strikes it.
 
 ## IN-MOTION (dispatches sent / awaiting)
-- **C-MERGE-AND-LEDGER v1** — this close-out (PR #1 merged `5d390371`; violation #1 filed; this ledger founded).
+- ~~C-MERGE-AND-LEDGER v1~~ → **SHIPPED complete** (PR #1 merged `5d390371` + the pair-lens tip `261467e0` merged by amend — PER-GAME PAIRS primary view live; **Plex's retraction on record in the commit itself**: the wiki claim withdrawn per the root's doctrine, the RETIRED ride-live experiment named as the bad source — ROOT-LAW VIOLATION #1's instance closes self-corrected; class stays founded).
 - **Tonight's first full nightly** (12:20 AM): standard census (now 6 keys incl. OT_wiring + TS_render) · grace census · signal-grade splits · fund sheet's first NAV close · expression-cohort placeholder.
 - **ITF_W-fav-W1 recut** — the three-day spectrum's named leak ($92.55 wagered, −6.9%, n=28); the recut conversation precedes any expression arm.
 

@@ -134,6 +134,16 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-16 · C-ONE-TRUTH v1 — the root, the index, both consumers enforced (prior art absorbed: the registry IS the laws section; the HANDOFF map is GENERATED, never hand-maintained again)
+
+**THE ROOT (`truth/`):** VAULT · BOARD · STANDARD · LESSONS · CLASS_LEDGER · rulings/ · surfaces/ (7 fitted files) · archive/ (47 dated studies, one-line finding each) — symlinked in (canonical paths untouched; every cron keeps working). **Outside the root = doesn't exist.**
+
+**THE INDEX (`truth/INDEX.json`, rebuilt every C50 by `truth/build_index.py`):** laws **256** (doctrine_registry ABSORBED verbatim — id → file:line → status → date) · surfaces **7** (path → what it fits → fitted date → consuming probes located in the engine source) · sites **6** (path_chokepoint / entry_dossier / gun_sources / completion_engine / exit_machinery / audit_exchange_truth — each with its required surfaces; 6/6 wired-in-source at build) · studies **47** (archive pointer → finding).
+
+**BOTH CONSUMERS, ENFORCED:** the engine loads the INDEX at boot and logs `index_wiring_armed` per site — a missing surface/unwired site/absent INDEX logs `index_wiring_missing` and the nightly census key `OT_wiring` auto-boards it as STANDARD DEFECT. Seats' session-zero = INDEX first (the HANDOFF disk map is now generated between markers by the builder). **THE GATE carries the REGISTRATION LAW:** a push adding a ruling, fitted surface, or dated study without `truth/INDEX.json` in the same range = CLOSE-OUT REFUSED.
+
+**Boot wiring proof:** this entry's own gated deploy (verdict in `.claude/proof_20260716/PROOF_ONE_TRUTH.md`).
+
 ### 2026-07-16 · C-TODAY-SHEET v1 — THE OPERATOR'S DAILY SHEET (render rules verbatim, census-enforced; the founding edition committed; standing prints armed)
 
 **THE RENDER RULES (verbatim from the dispatch, permanent, census key `TS_render` in the nightly):**

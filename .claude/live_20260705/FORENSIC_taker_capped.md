@@ -1,7 +1,7 @@
-# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784178852 -->
-written 2026-07-16 01:19:08 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784179485 -->
+written 2026-07-16 01:30:54 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (44 total this session)
+## Events (45 total this session)
 - 16:55:01 KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 17:09:14 KXWTAMATCH-26JUL15IBRBAD-IBR — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 17:19:32 KXWTAMATCH-26JUL15IBRBAD-IBR — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
@@ -46,6 +46,7 @@ written 2026-07-16 01:19:08 AM ET by live_validation_loop (read-only). Patch con
 - 23:58:45 KXWTAMATCH-26JUL15IBRBAD-IBR — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 01:03:58 KXITFWMATCH-26JUL16SAGJAN-JAN — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 01:14:12 KXITFWMATCH-26JUL16SAGJAN-JAN — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 01:24:45 KXITFWMATCH-26JUL16SAGJAN-JAN — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-15 06:24:59 PM ET", "ts_epoch": 1784154299.254799, "event": "tape_seed_live_confirm", "ticker": "KXITFWMATCH-26JUL16SAGJAN-JAN", "details": {"seed_price": 66, "live_price": 66, "delta": 0, "seed_age_sec": 1634.3}}
@@ -168,6 +169,8 @@ written 2026-07-16 01:19:08 AM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-16 01:17:32 AM ET", "ts_epoch": 1784179052.8384027, "event": "exit_filled", "ticker": "KXITFWMATCH-26JUL16SAGJAN-JAN", "details": {"exit_price": 64, "entry_price": 52, "qty": 4, "new_fills": 4, "complete": true, "pnl_cents": 48.0, "pnl_dollars": 0.48, "had_dca": false, "cycle": 1, "in_play": true, "bell_source": "percat_fitted", "trade_id": "T-20260715-0639", "window": {"phase": "W
     {"ts": "2026-07-16 01:17:32 AM ET", "ts_epoch": 1784179052.8385856, "event": "exit_partial_remainder", "ticker": "KXITFWMATCH-26JUL16SAGJAN-JAN", "details": {"exit_filled_qty": 4, "entry_qty": 5, "open_shares": 1}}
     {"ts": "2026-07-16 01:17:32 AM ET", "ts_epoch": 1784179052.9116, "event": "exit_skip_no_open_shares", "ticker": "KXITFWMATCH-26JUL16SAGJAN-JAN", "details": {"filled": 5, "exit_filled_qty": 4}}
+    {"ts": "2026-07-16 01:24:45 AM ET", "ts_epoch": 1784179485.4259746, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL16SAGJAN-JAN", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ITF_W|leader|deep_disc|51_75", "n": 12, "p_exit_fill": 0.75, "p_ride_zero": 0.25, "ev_cents": -4.0, "band": 12, "basis": 52, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_
+    {"ts": "2026-07-16 01:24:45 AM ET", "ts_epoch": 1784179485.4263918, "event": "completion_taker_capped", "ticker": "KXITFWMATCH-26JUL16SAGJAN-JAN", "details": {"event": "KXITFWMATCH-26JUL16SAGJAN", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
 
 ## Code path
 ?

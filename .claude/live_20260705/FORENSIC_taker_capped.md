@@ -1,7 +1,7 @@
-# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784163094 -->
-written 2026-07-15 08:55:44 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784163706 -->
+written 2026-07-15 09:07:18 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (20 total this session)
+## Events (21 total this session)
 - 16:55:01 KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 17:09:14 KXWTAMATCH-26JUL15IBRBAD-IBR — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 17:19:32 KXWTAMATCH-26JUL15IBRBAD-IBR — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
@@ -22,6 +22,7 @@ written 2026-07-15 08:55:44 PM ET by live_validation_loop (read-only). Patch con
 - 20:34:51 KXITFMATCH-26JUL15VIISAC-VII — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 20:41:15 KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 20:51:34 KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 21:01:46 KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-15 12:25:29 AM ET", "ts_epoch": 1784089529.6172884, "event": "tape_seed_live_confirm", "ticker": "KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN", "details": {"seed_price": 96, "live_price": 95, "delta": -1, "seed_age_sec": 417.0}}
@@ -522,6 +523,9 @@ written 2026-07-15 08:55:44 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-15 08:48:32 PM ET", "ts_epoch": 1784162912.2859519, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 10, "n_resting_orders": 23, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784147226.4462335, "legs_new": ["KXATPMATCH-26JUL15RUBPEL-PEL", "KXITFMATCH-26JUL15VIISAC-VII"
     {"ts": "2026-07-15 08:51:34 PM ET", "ts_epoch": 1784163094.9431343, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|26_50", "n": 75, "p_exit_fill": 0.773, "p_ride_zero": 0.227, "ev_cents": -2.56, "band": 9, "basis": 42, "win_ride_residual_excluded": 0.0, "citation
     {"ts": "2026-07-15 08:51:34 PM ET", "ts_epoch": 1784163094.9432986, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN", "details": {"event": "KXATPCHALLENGERMATCH-26JUL15YIBYUN", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-15 09:01:46 PM ET", "ts_epoch": 1784163706.3229387, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|26_50", "n": 75, "p_exit_fill": 0.773, "p_ride_zero": 0.227, "ev_cents": -2.56, "band": 9, "basis": 42, "win_ride_residual_excluded": 0.0, "citation
+    {"ts": "2026-07-15 09:01:46 PM ET", "ts_epoch": 1784163706.3231256, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN", "details": {"event": "KXATPCHALLENGERMATCH-26JUL15YIBYUN", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-15 09:03:55 PM ET", "ts_epoch": 1784163835.326688, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 8, "n_resting_orders": 21, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784147226.4462335, "legs_new": ["KXATPMATCH-26JUL15RUBPEL-PEL"], "legs_gone": ["KXATPCHALLENGERM
 
 ## Code path
 ?

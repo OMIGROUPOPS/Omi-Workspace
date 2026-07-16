@@ -347,13 +347,38 @@ def _bells():
         return _bells_mem["bells"]
 
 
-def bell_for(ev):
+def first_point_for(ev, sched_ep=None):
+    """C-CORRIDOR-TRUTH (operator ruling, 07-16): the bell MEANS
+    first-point evidence. A match cannot start before its scheduled
+    time, so any bell ESTIMATE earlier than sched is by definition
+    wrong — clamped to >= sched and filed BELL-BEFORE-SCHED. Evidence
+    observations (scoreboard/tape/divergence) stand as observed, but a
+    pre-sched observation is the same named contradiction, filed.
+    Returns None when no gun row exists at all (render: 'first pt not
+    observed (>= sched)')."""
     b = _bells().get(ev)
     if not b or not b.get("bell_ts"):
         return None
     src = b.get("source") or "unknown"
-    return {"ts": b["bell_ts"], "label": _hm(b["bell_ts"]), "src": src,
-            "badge": "LIVE" if src in LIVE_BELL_SOURCES else "EST"}
+    observed = src in LIVE_BELL_SOURCES
+    raw = b["bell_ts"]
+    ts = raw
+    defect = None
+    if sched_ep and raw < sched_ep - 60:
+        defect = "raw %s BEFORE sched %s" % (_hm(raw), _hm(sched_ep))
+        _file_miss("bell_before_sched", "%s|raw=%s|sched=%s|src=%s"
+                   % (ev, _hm(raw), _hm(sched_ep), src))
+        if not observed:
+            ts = sched_ep  # estimates clamp; observations stand, filed
+    return {"raw_ts": raw, "ts": ts, "label": _hm(ts), "src": src,
+            "observed": observed,
+            "badge": "LIVE" if observed else "EST",
+            "defect": defect}
+
+
+def bell_for(ev):
+    """Back-compat shim (first_point_for is the law)."""
+    return first_point_for(ev)
 
 
 # ── PUBLIC TRADES TAPE (Kalshi /markets/trades — no auth) ────────────────
@@ -443,37 +468,38 @@ def _win_cut(prints, lo_ts, hi_ts):
 
 
 def window_summary(ticker, sj, ev=None):
-    """W1 / CORRIDOR cuts of the real tape for one leg. Window law:
-    W1 ends at min(scheduled start, bell); a corridor exists only when
-    the bell fired AFTER the scheduled start (the uncertain zone), or is
-    ongoing when the start passed with no bell yet."""
+    """W1 / CORRIDOR cuts of the real tape for one leg under the
+    CORRIDOR LAW (operator ruling 07-16): corridor = scheduled start ->
+    first point, and it ALWAYS exists when the schedule anchor is known.
+    W1 = before scheduled start. W2 = at/after the (clamped) first
+    point. 'no corridor prints' renders only when the tape is genuinely
+    empty in that span."""
     ev = ev or _ticker_pair_code(ticker)[1]
-    bell = bell_for(ev)
     sched_ep = sj.get("start_ep") if sj else None
-    bell_ts = bell["ts"] if bell else None
-    prints = tape_for(ticker, sched_ep, bell_ts)
+    fp = first_point_for(ev, sched_ep)
+    fp_ts = fp["ts"] if fp else None
+    prints = tape_for(ticker, sched_ep, fp_ts)
+    base = {"sched_ep": sched_ep,
+            "sched_label": _hm(sched_ep) if sched_ep else None,
+            "fp": fp, "bell": fp}  # bell key kept for back-compat
     if prints is None:
-        return {"bell": bell, "state": "tape_error", "w1": None,
-                "corr": None, "tape_n": 0}
+        base.update({"state": "tape_error", "w1": None, "corr": None,
+                     "tape_n": 0})
+        return base
     if not prints:
         _file_miss("no_tape", ticker)
-        return {"bell": bell, "state": "no_tape", "w1": None,
-                "corr": None, "tape_n": 0}
-    w1_end = None
+        base.update({"state": "no_tape", "w1": None, "corr": None,
+                     "tape_n": 0})
+        return base
+    w1_end = sched_ep or fp_ts
     corr = None
-    if bell_ts and sched_ep:
-        w1_end = min(bell_ts, sched_ep)
-        if bell_ts > sched_ep:
-            corr = _win_cut(prints, sched_ep, bell_ts)
-    elif bell_ts:
-        w1_end = bell_ts
-    elif sched_ep:
-        w1_end = sched_ep
-        if time.time() > sched_ep:
-            corr = _win_cut(prints, sched_ep, None)  # corridor ongoing
-    w1 = _win_cut(prints, None, w1_end)
-    return {"bell": bell, "state": "ok", "w1": w1, "corr": corr,
-            "tape_n": len(prints)}
+    if sched_ep:
+        corr = _win_cut(prints, sched_ep, fp_ts)  # fp_ts None = ongoing
+    base.update({"state": "ok",
+                 "w1": _win_cut(prints, None, w1_end),
+                 "corr": corr,
+                 "tape_n": len(prints)})
+    return base
 
 
 def game_report_day(ep):
@@ -580,6 +606,8 @@ def order_history_for_ticker(ticker):
 def _game_head(sample_ticker):
     sj = join_match_name(sample_ticker)
     ev = sj["event"]
+    sched_ep = sj.get("start_ep")
+    fp = first_point_for(ev, sched_ep)
     return sj, {
         "event": ev,
         "joined": sj.get("joined", False),
@@ -588,7 +616,10 @@ def _game_head(sample_ticker):
         "start_time": sj.get("start_time"),
         "tournament": sj.get("tournament"),
         "category": sj.get("category"),
-        "bell": bell_for(ev),
+        # both anchors, always (corridor law): sched + first point
+        "anchors": {"sched": _hm(sched_ep) if sched_ep else None,
+                    "fp": fp},
+        "bell": fp,  # back-compat
         "deeplink": kalshi_deeplink(ev),
     }
 
@@ -750,6 +781,32 @@ def build_closed(day=None):
             ours = int(round(avg_buy)) if avg_buy is not None else None
             w1c = ((win.get("w1") or {}).get("close")
                    if win.get("w1") else None)
+            # fill window under the CLAMPED clocks (corridor law):
+            # W1 < sched · CORR in [sched, first point) · W2 >= first pt
+            fill_window = None
+            if buys:
+                fts = buys[-1][0]
+                sched_ep = win.get("sched_ep")
+                fpts = (win.get("fp") or {}).get("ts")
+                if sched_ep and fts < sched_ep:
+                    fill_window = "W1"
+                elif fpts and fts >= fpts:
+                    fill_window = "W2"
+                elif sched_ep:
+                    fill_window = "CORR"
+                elif fpts:
+                    fill_window = "W1" if fts < fpts else "W2"
+            # RE-GRADE (part 4): an F whose only charge was post-bell by
+            # an EST bell earlier than sched dissolves when the clamped
+            # clock says the fill was NOT W2 — regrade by the same
+            # pnl rubric game_report uses.
+            grade_was = None
+            if (leg_grade and leg_grade.startswith("F")
+                    and fill_window in ("W1", "CORR")):
+                grade_was = leg_grade
+                leg_grade = ("A" if (realized_c or 0) > 0 else
+                             "B" if realized_c in (0, None) else "C")
+                leg_grades[-1] = leg_grade
             game_out["legs"].append({
                 "ticker": tk,
                 "last_name": leg_last_name(tk, sj),
@@ -758,15 +815,19 @@ def build_closed(day=None):
                 "qty": bct,
                 "filled_et": _hm(buys[-1][0]) if buys else None,
                 "placed_et": None,  # schema gap, open ledger
+                "fill_window": fill_window,
                 "exit": ({"price_c": int(round(avg_sell)), "qty": sct,
                           "at": _hm(sells[-1][0])} if sct else None),
                 "win": win,
-                "delta_c": ((ours - w1c) if (ours is not None
-                                             and w1c is not None)
-                            else None),
+                # Δ only has meaning on W1 fills (time law, part 5)
+                "delta_c": ((ours - w1c)
+                            if (fill_window == "W1"
+                                and ours is not None
+                                and w1c is not None) else None),
                 "result": result,
                 "realized_c": realized_c,
                 "grade": leg_grade,
+                "grade_was": grade_was,
                 "grade_row": gr_row,
             })
         if leg_grades:

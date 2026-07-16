@@ -304,12 +304,26 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     return l.last_name ? '<span class="last">' + esc(l.last_name) + '</span>'
                        : '<span class="last join-pending">join pending</span>';
   }
-  // bell chip with source + EST/LIVE badge; "no bell yet" only when true
-  function bellChip(bell){
-    if(!bell) return '<span class="no-bell">no bell yet</span>';
-    const badge = bell.badge === 'LIVE'
-      ? '<span class="live">LIVE</span>' : '<span class="est">EST</span>';
-    return '<span class="bellchip">bell ' + esc(bell.label) + ' · ' + esc(bell.src) + ' ' + badge + '</span>';
+  // CORRIDOR LAW: both anchors always — sched + first point. The bell
+  // MEANS first-point evidence; estimates clamp to >= sched; where no
+  // source observed anything, "first pt not observed (>= sched)" —
+  // never a fabricated time.
+  function anchorsChip(a){
+    if(!a) return '<span class="no-bell">no anchors</span>';
+    const sched = a.sched ? 'sched ' + esc(a.sched) : 'sched unknown';
+    let fpPart;
+    const fp = a.fp;
+    if(fp && fp.observed){
+      fpPart = 'first pt ' + esc(fp.label) + ' (' + esc(fp.src) + ') <span class="live">LIVE</span>';
+    } else if(fp){
+      fpPart = 'first pt not observed' + (a.sched ? ' (≥ ' + esc(a.sched) + ')' : '') +
+               ' · est ' + esc(fp.label) + ' (' + esc(fp.src) + ') <span class="est">EST</span>';
+    } else {
+      fpPart = 'first pt not observed' + (a.sched ? ' (≥ ' + esc(a.sched) + ')' : '');
+    }
+    const defect = (fp && fp.defect)
+      ? ' <span class="loss" title="' + esc(fp.defect) + '">⚠ BELL&lt;SCHED filed</span>' : '';
+    return '<span class="bellchip">' + sched + ' · ' + fpPart + defect + '</span>';
   }
   // W1/CORR lo·hi cell from the real tape; "no tape" is a named state
   function winCell(win, which, ticker, name){
@@ -317,9 +331,10 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     if(win.state === 'tape_error') return '<span class="no-bell">tape fetch error</span>';
     const w = win[which];
     if(!w){
-      if(which === 'corr') return '<span class="no-bell">no corridor</span>';
-      return win.bell ? '<span class="no-bell">no W1 prints</span>'
-                      : '<span class="no-bell">no bell yet</span>';
+      if(which === 'corr') return win.sched_label
+        ? '<span class="no-bell">no corridor prints</span>'
+        : '<span class="no-bell">no sched anchor</span>';
+      return '<span class="no-bell">no W1 prints</span>';
     }
     return '<span class="rangepair proofable" onclick="event.stopPropagation(); openProof(event,\'' + esc(ticker) + '\',\'' + esc(name||ticker) + '\')">' +
       '<span class="lo">' + w.lo + '</span><span class="sep">·</span><span class="hi">' + w.hi + '¢</span></span>';
@@ -329,9 +344,10 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     if(win.state === 'tape_error') return '<span class="no-bell">tape fetch error</span>';
     const w = win[which];
     if(!w){
-      if(which === 'corr') return '<span class="no-bell">no corridor</span>';
-      return win.bell ? '<span class="no-bell">no W1 prints</span>'
-                      : '<span class="no-bell">no bell yet</span>';
+      if(which === 'corr') return win.sched_label
+        ? '<span class="no-bell">no corridor prints</span>'
+        : '<span class="no-bell">no sched anchor</span>';
+      return '<span class="no-bell">no W1 prints</span>';
     }
     return '<span class="proofable" onclick="event.stopPropagation(); openProof(event,\'' + esc(ticker) + '\',\'' + esc(name||ticker) + '\')">' + w.close + '¢</span>';
   }
@@ -339,7 +355,7 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     const link = '<a class="deeplink" href="' + esc(g.deeplink) + '" target="_blank" onclick="event.stopPropagation()">↗ KALSHI</a>';
     return '<div class="gamehead"><span class="names' + (g.joined ? '' : ' join-pending') + '">' + esc(g.names) + '</span>' +
       '<span class="meta">' + esc(g.tournament || '') + '</span>' +
-      '<span class="meta">' + bellChip(g.bell) + '</span>' + link + '</div>';
+      '<span class="meta">' + anchorsChip(g.anchors) + '</span>' + link + '</div>';
   }
 
   // ── proof-on-click: real tape prints fetched per ticker ──
@@ -489,8 +505,9 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
         // ONE ROW PER LEG: OURS = avg entry fill; exit in its own line
         const oursLbl = (l.ours_c === null || l.ours_c === undefined) ? '—'
           : l.ours_c + '¢' + (l.n_entry_fills > 1 ? ' <span class="no-bell">(' + l.n_entry_fills + ' fills avg)</span>' : '');
+        // time law: Δ has meaning only on W1 fills
         const delta = (l.delta_c === null || l.delta_c === undefined)
-          ? '<span class="no-bell">—</span>'
+          ? '<span class="no-bell">' + (l.fill_window && l.fill_window !== 'W1' ? esc(l.fill_window) + ' — Δ n/a' : '—') + '</span>'
           : '<span class="' + (l.delta_c <= 0 ? 'delta-neg' : 'delta-pos') + '">' + (l.delta_c > 0 ? '+' : '') + l.delta_c + '</span>';
         const result = l.result === '99' ? '<span class="result-99">99¢</span>'
           : l.result === '1' ? '<span class="result-1">1¢</span>'
@@ -499,6 +516,14 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
         const realized = (l.realized_c === null || l.realized_c === undefined)
           ? '<span class="no-bell">open</span>'
           : '<span class="' + (l.realized_c >= 0 ? 'win' : 'loss') + '">' + (l.realized_c >= 0 ? '+' : '') + l.realized_c + '¢</span>';
+        // time law: entry line carries placed ET -> filled ET (placed
+        // has no honest source yet — the schema gap stays named)
+        const entryLine = l.filled_et
+          ? '<div class="exitline"><span class="lbl">entry</span> placed <span class="no-bell">— (no source: schema gap)</span> → filled <b>' + esc(l.filled_et) + '</b>' +
+            (l.fill_window ? ' <span class="lbl">[' + esc(l.fill_window) + ']</span>' : '') +
+            (l.grade_was ? ' <span class="loss">regraded (clamped clock): was ' + esc(l.grade_was) + '</span>' : '') +
+            '</div>'
+          : '';
         const exitLine = l.exit
           ? '<div class="exitline"><span class="lbl">exit</span> <b>@' + l.exit.price_c + '¢ ×' + l.exit.qty + '</b> <span class="lbl">filled ' + esc(l.exit.at) + '</span></div>'
           : (l.result === '99' || l.result === '1'
@@ -511,7 +536,7 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
           '<span>' + winClose(l.win, 'corr', l.ticker, l.last_name) + '</span>' +
           '<span>' + result + '</span>' +
           '<span>' + realized + '</span>' +
-          '</div>' + exitLine;
+          '</div>' + entryLine + exitLine;
       }).join('');
       const chip = gradeChip(g.grade_status, g.grade);
       let footnote = '';

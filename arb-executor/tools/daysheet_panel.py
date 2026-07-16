@@ -172,13 +172,23 @@ def join_match_name(ticker):
 def leg_last_name(ticker, sj):
     """Which side of the joined match this leg settles on. Returns the
     FULL SURNAME or None — never a ticker fragment (banned output; the
-    caller renders 'join pending' and the miss is filed)."""
+    caller renders 'join pending' and the miss is filed). Some schedule
+    sources store 'First Last' with no trailing initial — when the whole
+    name matched, prefer the token(s) the ticker suffix actually keys on
+    (SAMSON, not LAURA SAMSON); fall back to the full matched name."""
     leg = ticker.rsplit("-", 1)[-1].upper()
     if not sj.get("joined"):
         return None
     for last in (sj["p1_last"], sj["p2_last"]):
         flat = last.replace(" ", "").replace("-", "")
         if flat.startswith(leg) or leg in flat:
+            toks = last.split()
+            if len(toks) > 1:
+                for i in range(len(toks)):
+                    tail = " ".join(toks[i:])
+                    tflat = tail.replace(" ", "").replace("-", "")
+                    if tflat.startswith(leg):
+                        return tail
             return last
     _file_miss("leg_name", ticker)
     return None
@@ -543,6 +553,7 @@ def build_positions():
     for ev, legs in events.items():
         sj, game_out = _game_head(legs[0][0])
         game_out["legs"] = []
+        game_out["walk"] = walk_footnote(ev)  # provisional walks render
         for tk, qty, exp, mk in legs:
             basis = int(exp / qty) if qty else 0
             fill = fills_by_ticker.get(tk)

@@ -426,7 +426,11 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
           : '<div class="exitline"><span class="lbl">exit</span> <span class="no-bell">no exit resting yet</span></div>')
       )).join('');
       const grayLine = g.gray_line ? '<div class="gray-line">' + esc(g.gray_line) + '</div>' : '';
-      return '<div class="gamebox">' + gameHead(g) + legs + grayLine + '</div>';
+      const walkBar = g.walk
+        ? '<div class="gradebar-inline"><span class="footnote"><b>WALK (provisional — game open)</b> <span class="cls">' + esc(g.walk.charge || '') + '</span>' +
+          (g.walk.verdict ? ' <span class="walkverdict">→ ' + esc(g.walk.verdict) + '</span>' : '') + '</span></div>'
+        : '';
+      return '<div class="gamebox">' + gameHead(g) + legs + grayLine + walkBar + '</div>';
     }).join('');
   }
 
@@ -470,7 +474,9 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     const body = document.getElementById('closed-body');
     let games = [];
     try{
-      const r = await fetch(withTok('/api/closed.json'));
+      // ?day=YYYYMMDD deep-links a prior day's CLOSED sheet
+      const dayParam = new URLSearchParams(window.location.search).get('day');
+      const r = await fetch(withTok('/api/closed.json' + (dayParam ? '?day=' + encodeURIComponent(dayParam) : '')));
       games = await r.json();
     }catch(e){ games = []; }
     document.getElementById('cnt-closed').textContent = '(' + games.length + ')';

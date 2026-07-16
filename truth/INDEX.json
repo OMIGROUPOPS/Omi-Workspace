@@ -1,7 +1,7 @@
 {
- "built": "2026-07-16 18:01",
+ "built": "2026-07-16 19:10",
  "law": "C-ONE-TRUTH v1 (07-16): outside this root = doesn't exist; rebuilt every C50; both consumers enforced (engine boot wiring + seat session-zero); the gate refuses unregistered laws/surfaces/studies",
- "laws_n": 265,
+ "laws_n": 266,
  "laws": [
   {
    "term": "\u00a70A \u2014 THE OPERATOR'S FRAME (verbatim, from the June Vault; unchanged and in force)",
@@ -212,7 +212,7 @@
    "date": "07-15"
   },
   {
-   "term": "2026-07-16 \u00b7 C-THE-WALK BATCH 1 COMPLETE \u2014 five walks in the standing format; ONE mechanism dominates; a new pair-level class founded; the \"missing bell\" convic",
+   "term": "2026-07-16 \u00b7 C-PANEL-TRUTH v1 \u2014 the five render-law violations fixed on the live path; acceptance = the server's own screenshot (docs/screenshots/daysheet-panel",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
    "line": 137,
@@ -220,10 +220,18 @@
    "date": "2026-07-16"
   },
   {
+   "term": "2026-07-16 \u00b7 C-THE-WALK BATCH 1 COMPLETE \u2014 five walks in the standing format; ONE mechanism dominates; a new pair-level class founded; the \"missing bell\" convic",
+   "kind": "ledger_entry",
+   "file": "arb-executor/docs/LIVING_VAULT.md",
+   "line": 146,
+   "status": "RULING",
+   "date": "2026-07-16"
+  },
+  {
    "term": "2026-07-16 \u00b7 C-DAYSHEET-LIVE v1 \u2014 PR 2 MERGED + DEPLOYED (the three-tab panel supersedes the pair-lens bundle; two disclosed gaps filed, one verified down to th",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 148,
+   "line": 157,
    "status": "RETIRED",
    "date": "2026-07-16"
   },
@@ -231,7 +239,7 @@
    "term": "2026-07-16 \u00b7 C-THE-WALK v1 \u2014 the OS answers for itself (standing protocol founded; the founding walk run on the operator's own example)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 156,
+   "line": 165,
    "status": "RULING",
    "date": "2026-07-16"
   },
@@ -239,7 +247,7 @@
    "term": "2026-07-16 \u00b7 C-BRING-IT-HOME v1 \u2014 the console comes home (operator ruling: LOCALHOST, never Vercel \u2014 the tracker pattern is the law for all operator surfaces)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 162,
+   "line": 171,
    "status": "RULING",
    "date": "2026-07-16"
   },
@@ -247,7 +255,7 @@
    "term": "2026-07-16 \u00b7 C-MERGE-AND-LEDGER v1 \u2014 Plex's panel merged \u00b7 ROOT-LAW VIOLATION 1 filed \u00b7 THE OPEN LEDGER founded",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 166,
+   "line": 175,
    "status": "RULING",
    "date": "2026-07-16"
   },
@@ -255,7 +263,7 @@
    "term": "ROOT-LAW VIOLATION 1 (class founded in CLASS_LEDGER): a seat consulted a NON-truth/ source for doctrine \u2014 Plex's wiki claim declaring post-bell fills \"legitimat",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 170,
+   "line": 179,
    "status": "RULING",
    "date": null
   },
@@ -263,7 +271,7 @@
    "term": "THE OPEN LEDGER (`truth/OPEN_LEDGER.md`, founded): four sections \u2014 IN-MOTION \u00b7 OPERATOR DECISION STACK (\u2462 dial-walk clock \u00b7 \u2463 ge75 exit recut \u00b7 \u2464 mains aim poli",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 172,
+   "line": 181,
    "status": "RETIRED",
    "date": null
   },
@@ -271,7 +279,7 @@
    "term": "2026-07-16 \u00b7 C-ONE-TRUTH v1 \u2014 the root, the index, both consumers enforced (prior art absorbed: the registry IS the laws section; the HANDOFF map is GENERATED, ",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 174,
+   "line": 183,
    "status": "RULING",
    "date": "2026-07-16"
   },
@@ -279,7 +287,7 @@
    "term": "BOTH CONSUMERS, ENFORCED: the engine loads the INDEX at boot and logs `index_wiring_armed` per site \u2014 a missing surface/unwired site/absent INDEX logs `index_wi",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 180,
+   "line": 189,
    "status": "RULING",
    "date": null
   },
@@ -287,7 +295,7 @@
    "term": "2026-07-16 \u00b7 C-TODAY-SHEET v1 \u2014 THE OPERATOR'S DAILY SHEET (render rules verbatim, census-enforced; the founding edition committed; standing prints armed)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 184,
+   "line": 193,
    "status": "RULING",
    "date": "2026-07-16"
   },
@@ -295,7 +303,7 @@
    "term": "2026-07-16 \u00b7 C-THREE-DAY-SOLIDIFY v2 EXECUTED + C-EXPRESS-THE-EDGE v1 HELD (the conditional did its job \u2014 the single day flattered, the pooled read refused the ",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 197,
+   "line": 206,
    "status": "RULING",
    "date": "2026-07-16"
   },
@@ -303,7 +311,7 @@
    "term": "EXPRESS HELD (verdict pushed to the operator's channel both forms): fav-side condition PASSED (+4.6% pooled); W1-lane condition FAILED (three negative lanes at ",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 203,
+   "line": 212,
    "status": "RULING",
    "date": null
   },
@@ -311,7 +319,7 @@
    "term": "2026-07-15 \u00b7 C-FUND-TRACKER v2 \u2014 one ledger, one accountability view, both ends (+ Part 5b THE FUND SHEET)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 205,
+   "line": 214,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -319,7 +327,7 @@
    "term": "THE SIGNAL LAW (Part 4a): every monitor alarm self-grades at emission \u2014 DEFECT / GUARD-WORKING / CHATTER; only DEFECT presents as a problem (commit tags now spl",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 211,
+   "line": 220,
    "status": "RULING",
    "date": null
   },
@@ -327,7 +335,7 @@
    "term": "LAWS INTO THE STANDARD (permanent, THE_DAILY_STANDARD.md \u00a7FUND LAWS): cents-beside-basis everywhere (%-of-basis stated) \u00b7 yield-beside-participation (restated) ",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 213,
+   "line": 222,
    "status": "RULING",
    "date": null
   },
@@ -335,7 +343,7 @@
    "term": "2026-07-15 \u00b7 C-PROVE-THE-DAY v1 \u2014 the would-have day (midnight \u2192 ~5 PM through the complete 5 PM stack, one integrated pass, one dollar verdict)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 215,
+   "line": 224,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -343,7 +351,7 @@
    "term": "2026-07-15 \u00b7 C-DAILY-STANDARD v1 \u2014 THE STANDARD FOUNDED (the OS's day, defined once, run forever, census-enforced) + Part 0 per-source grace (operator word)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 229,
+   "line": 238,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -351,7 +359,7 @@
    "term": "THE OPERATING LAW (verbatim): \"layers are added once, by dispatch, and run forever \u2014 enforced by a nightly standard-census (a layer that didn't run = named defe",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 231,
+   "line": 240,
    "status": "RULING",
    "date": null
   },
@@ -359,7 +367,7 @@
    "term": "2026-07-15 \u00b7 C-TAPE-BELL v1 DEPLOYED (defect class: 75 W2 fills broke the no-buys-after-start law \u2014 the trigger missed, not the rule) \u2014 THE TAPE IS THE BELL; W2",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 244,
+   "line": 253,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -367,7 +375,7 @@
    "term": "2026-07-15 \u00b7 C-MORNING-TRIAGE v1 EXECUTED (session-zero dispatch, Parts 0\u20135 one arc) \u2014 the band-0 class rooted; the \u22651,500 discovery floor ARMED; the morning gr",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 266,
+   "line": 275,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -375,7 +383,7 @@
    "term": "Part 3 \u2014 DELXIL OVER-PAR FORK (`EXHIBIT_DELXIL_OVERPAR.md`): the taker completion crossed DEL at 85 on a 17 kept-basis \u2192 combined 102, OVER PAR (ev \u22121.52 accept",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 276,
+   "line": 285,
    "status": "RULING",
    "date": null
   },
@@ -383,7 +391,7 @@
    "term": "2026-07-15 \u00b7 \u22120l FIXED SAME NIGHT (operator word: \"size the stop window to the book, full gate, now\") \u2014 both stop paths sized; the abandonment branch deleted by",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 280,
+   "line": 289,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -391,7 +399,7 @@
    "term": "2026-07-15 \u00b7 C-FLOW-REST-SEED v1 DEPLOYED (operator R1 GO word, same night as the founding exhibit): the consultation gauge gains an exchange-truth input \u2014 REST",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 284,
+   "line": 293,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -399,7 +407,7 @@
    "term": "2026-07-15 \u00b7 C-KOAY-EXHIBIT v1 (operator live catch, ~12:25\u20131:20 AM): the Koay/Yazdani autopsy = REACH-RECAL EXHIBIT 1 \u2014 the queued recalibration read EXECUTED;",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 296,
+   "line": 305,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -407,7 +415,7 @@
    "term": "The autopsy (`.claude/reachrecal_20260715/KOAY_EXHIBIT.md`, full timeline + tape): No completion re-aim ever ran (`completion_no_attempt: leg1_window_open_unset",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 300,
+   "line": 309,
    "status": "RULING",
    "date": null
   },
@@ -415,7 +423,7 @@
    "term": "Record hygiene (same push): the 12:20 nightly (`ADJUDICATION_20260714`) was committed on the VPS but never pushed \u2014 pushed (origin `80ce3751 \u2192 738ced4c`, carryi",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 304,
+   "line": 313,
    "status": "RETIRED",
    "date": "07-14"
   },
@@ -423,7 +431,7 @@
    "term": "2026-07-15 \u00b7 THE UNFREEZE, VERIFIED (12:21 AM boot, gate take three \u2014 twice refused by its own staleness discipline, correctly, until the candidate was honest):",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 306,
+   "line": 315,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -431,7 +439,7 @@
    "term": "2026-07-15 \u00b7 HALT TRIAGE 23:10 \u2014 occurrence 2 of the boot-fire family, sub-class STAMP/MATCHER COLLISION (the Part-0 probe named its own writer); THE HALT WORKE",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 309,
+   "line": 318,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -439,7 +447,7 @@
    "term": "2026-07-15 \u00b7 C-TAPE-GATE v1 EXECUTED (two operator words): THE FLATTEN TAPE GATE ARMED on its own proof \u2014 23-of-25 dumps were followed by the tape printing thro",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 312,
+   "line": 321,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -447,7 +455,7 @@
    "term": "Part 2, THE TIMING RECUT: the builder joins evidence guns at build time; every atlas page gains `timing_gun` (dual-stamp quantiles + lawful_share); library cell",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 315,
+   "line": 324,
    "status": "RULING",
    "date": null
   },
@@ -455,7 +463,7 @@
    "term": "2026-07-15 \u00b7 C-CONVICTED-INSTRUMENTS v1 \u2014 the reach refit DEPLOYED (integration bound = the evidence gun, every consumer inherits); EV3 RE-READ AT n=499: AT-THE",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 327,
+   "line": 336,
    "status": "AMENDED",
    "date": "2026-07-15"
   },
@@ -463,7 +471,7 @@
    "term": "Part 1 (SHA 87f495e0, full gate): LAW.json meta carries the corrected contract (integration_bound: evidence_gun; rates untouched \u2014 the BOUND was the defect); th",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 328,
+   "line": 337,
    "status": "RULING",
    "date": null
   },
@@ -471,7 +479,7 @@
    "term": "2026-07-15 \u00b7 C-READ-THE-TAPE v2 Parts 1\u20136 CLOSED \u2014 the expression audit priced by replay: the machine's 1 measured leak is the tape-blind flatten (+$20.06), the",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 333,
+   "line": 342,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -479,7 +487,7 @@
    "term": "Part 1 (EXPRESSION_AUDIT.md): 12 decision sites walked; the headline row: the os_shadow lane already reads everything per tick \u2014 regime, wake gate, flow, postur",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 334,
+   "line": 343,
    "status": "RULING",
    "date": null
   },
@@ -487,7 +495,7 @@
    "term": "Part 2 (GAP_PRICES.txt) \u2014 ranked by measured dollars, not argument: GAP-C, the tape-blind flatten: +$20.06 across 47 actions \u2014 43 of 47 flattens fired while the",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 335,
+   "line": 344,
    "status": "RULING",
    "date": null
   },
@@ -495,7 +503,7 @@
    "term": "Part 3 (NUMBER_LAW.md): the law stands \u2014 page | band | n | CI | denominator | axis confidence | sibling cell | prior-art/NOVEL; the 63.9/3.9 founding exhibit de",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 336,
+   "line": 345,
    "status": "RULING",
    "date": null
   },
@@ -503,7 +511,7 @@
    "term": "Part 5 (PACKET_LAWFUL.txt) \u2014 the packet re-graded on lawful-window fills only: PATH STANDS (+$71.00, CI [+24.10,+127.05], 7.5% yield \u2014 a hair under the 8 bar, s",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 337,
+   "line": 346,
    "status": "RULING",
    "date": null
   },
@@ -511,7 +519,7 @@
    "term": "2026-07-15 \u00b7 C-READ-THE-TAPE v2 Part 0 \u2014 THE HALT WORKED (vaulted as such): the 20:40 boot audit caught 7 boot-race buys, held conceptions ~10 minutes, zero fil",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 340,
+   "line": 349,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -519,7 +527,7 @@
    "term": "2026-07-15 \u00b7 C-W1-LIBRARY v1 EXECUTED \u2014 tonight's census verdict: UNACHIEVABLE (SLATE, with numbers); the cohort library is live as surface 14; THE ATLAS CHALLE",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 344,
+   "line": 353,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -527,7 +535,7 @@
    "term": "2026-07-15 \u00b7 C-WINDOW-LAW v1 EXECUTED \u2014 the OS is window-aware end to end; the stamp's own acceptance test caught its v1 circularity AND amended last night's ve",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 350,
+   "line": 359,
    "status": "AMENDED",
    "date": "2026-07-15"
   },
@@ -535,7 +543,7 @@
    "term": "Part 5, ROOT REPAIRED: the gun feed starved because the 17GB multi-writer tennis.db write-locked te_live out of ~59 of every 60 minutes \u2014 rows landed only in th",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 356,
+   "line": 365,
    "status": "AMENDED",
    "date": null
   },
@@ -543,7 +551,7 @@
    "term": "2026-07-15 \u00b7 C-REACH-VERDICT v1 \u2014 THE NAMED VERDICT, VERBATIM: PRESENCE \u2014 the aims were right and the bids were gone: premature match-live latches killed or blo",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 358,
+   "line": 367,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -551,7 +559,7 @@
    "term": "2026-07-15 \u00b7 C-TRIAL-EVE v1 (pre-wave check): PACVED RULED verdict (a) \u2014 filled at 11:14 AM, three hours BEFORE the cutover; the definitive line HOLDS; the true",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 365,
+   "line": 374,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -559,7 +567,7 @@
    "term": "PACVED RULING, VERBATIM: verdict (a) \u2014 filled before the sweep ran; clean; bill the incumbent. Timeline to the second: bid placed 9:01:24 AM (order d6d2e755, en",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 366,
+   "line": 375,
    "status": "RULING",
    "date": null
   },
@@ -567,7 +575,7 @@
    "term": "Trial arming audit (verify-don't-build; three gaps NAMED, none patched pre-wave per the constraint): (a) placement-time reach-law p_fill prints on EVERY entry d",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 368,
+   "line": 377,
    "status": "RULING",
    "date": null
   },
@@ -575,7 +583,7 @@
    "term": "2026-07-15 \u00b7 C-LEG-RANGE-CLAMP v1 EXECUTED (urgent): the 07-05 leg-range adjudication binds the path entry \u2014 below 5 is a NAMED REFUSAL, not a penny bid; OPERAT",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 371,
+   "line": 380,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -583,7 +591,7 @@
    "term": "2026-07-15 \u00b7 OPERATOR WORD \u2014 THE TAIL RULING, VERBATIM: \"hold-and-drain the 24 positions\"",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 374,
+   "line": 383,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -591,7 +599,7 @@
    "term": "2026-07-15 \u00b7 C-TAIL-SWEEP v1 EXECUTED (URGENT, operator dispatch cited on every cancellation): 22 pre-cutover buys swept in one cycle, 0 failures; THE DEFINITIV",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 377,
+   "line": 386,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -599,7 +607,7 @@
    "term": "2026-07-15 \u00b7 C-VAULT-WIRED-ENTRY v1 EXECUTED \u2014 the entry decision consults the consolidated vault and every line proves it; the census is the intake list; the v",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 381,
+   "line": 390,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -607,7 +615,7 @@
    "term": "THE LAW, VERBATIM AND BINDING (Part 1): \"LIVING_VAULT.md and the model registry are the entry's required reading. At every placement and every refusal, the engi",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 382,
+   "line": 391,
    "status": "RULING",
    "date": null
   },
@@ -615,7 +623,7 @@
    "term": "THE VAULT-ALIVE LAW, VERBATIM (Part 5): \"(a) Additions: any analysis, forensic, or nightly grading that produces a conclusion the vault doesn't hold yet gets va",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 383,
+   "line": 392,
    "status": "AMENDED",
    "date": null
   },
@@ -623,7 +631,7 @@
    "term": "2026-07-15 \u00b7 THE CUTOVER, EXECUTED (operator word waiving the default-GO deadline): PATH-MODE IS THE LAW \u2014 the incumbent's entry organs DELETED, not disabled; t",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 386,
+   "line": 395,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -631,7 +639,7 @@
    "term": "THE STANDING LAW, VERBATIM AND PERMANENT: \"the goal is solid yield on solid capital wagered \u2014 the nightly's first line is forever YIELD-ON-WAGERED versus the 8%",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 388,
+   "line": 397,
    "status": "RULING",
    "date": null
   },
@@ -639,7 +647,7 @@
    "term": "2026-07-15 \u00b7 C-RESUME-CHECK (read query + one decreed remediation): the halt cleared in 108s, entries resumed 8:42:44 AM; the \u2212$51 splits \u2212$23.51 realized / \u2248\u2212$",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 392,
+   "line": 401,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -647,7 +655,7 @@
    "term": "2026-07-15 \u00b7 C-INCUMBENT-SUNSET v1 EXECUTED \u2014 the convicted machinery gets a death date, not a coexistence deal: the incumbent is named, frozen, and billed nigh",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 395,
+   "line": 404,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -655,7 +663,7 @@
    "term": "2026-07-15 \u00b7 C-GOLD-NOW v1 + C-PAIR-LAW v1 + AMENDMENT EXECUTED (one gated deploy): the entry unit is the pair; THE SEESAW IS THE THESIS \u2014 orientation replaces ",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 402,
+   "line": 411,
    "status": "AMENDED",
    "date": "2026-07-15"
   },
@@ -663,7 +671,7 @@
    "term": "THE OPERATOR RULINGS, VERBATIM AND BINDING: \"the entry unit is the pair, never the leg.\" \u00b7 \"the seesaw is the thesis, not the risk\u2026 TRADE-ORIENTED (buy the rise",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 403,
+   "line": 412,
    "status": "RULING",
    "date": null
   },
@@ -671,7 +679,7 @@
    "term": "LIVE tonight (selector_drop_enforce=true, pair semantics): DROP-AS-PAIR = no orientation (riser-near-now + faller-cast-deep at depth_p75) composes \u226497, refused ",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 404,
+   "line": 413,
    "status": "AMENDED",
    "date": null
   },
@@ -679,7 +687,7 @@
    "term": "DARK (the money half, one flag flip each at cutover): trendpath_live=false (path-target entries, pair-capped \u226497) \u00b7 sizing_live=false (contention-scaled 1\u00d7/2\u00d7/3",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 406,
+   "line": 415,
    "status": "RULING",
    "date": null
   },
@@ -687,7 +695,7 @@
    "term": "2026-07-15 \u00b7 READ QUERY \u2014 Kalshi Pro export reconciliation (closed-positions 07-14, 1,195 rows, window 07-08\u219207-14): fills tie 1195/1195; EIGHT covered-era rows",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 408,
+   "line": 417,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -695,7 +703,7 @@
    "term": "2026-07-15 \u00b7 C-CONTENTION-LAW v1 EXECUTED \u2014 the operator's understanding becomes selection law: the window-1 path decides WHAT we trade, not just where we bid; ",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 413,
+   "line": 422,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -703,7 +711,7 @@
    "term": "2026-07-15 \u00b7 READ QUERY \u2014 flatten-below-basis census (Jul 12\u201313) + exhibits INCSTE/SANLOP/KOPPRI: the post-leash guard is CLEAN; the mechanism is ONE mechanism;",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 419,
+   "line": 428,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -711,7 +719,7 @@
    "term": "INCSTE-INC: flattened AT basis (52\u219252, engine-logged $0.00) at 11:37:45 AM \u2014 seven seconds after the entry filled (11:37:38). ev \u22120.55 = deep inside the noise f",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 421,
+   "line": 430,
    "status": "RULING",
    "date": null
   },
@@ -719,7 +727,7 @@
    "term": "2026-07-15 (early) \u00b7 C-TREND-PATH v1 EXECUTED (the loaded sequence from `7338fef7`, run through disk incident 5): the atlas is real, SHIMIC's page matches the o",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 426,
+   "line": 435,
    "status": "RULING",
    "date": "2026-07-15"
   },
@@ -727,7 +735,7 @@
    "term": "THE OPERATOR RULING, VERBATIM AND BINDING: option A rejected \u2014 no completion fills mid-game; window-1 value is the thesis; flatten-kept remains the only post-be",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 427,
+   "line": 436,
    "status": "RULING",
    "date": null
   },
@@ -735,7 +743,7 @@
    "term": "2026-07-14 (~9:30 pm) \u00b7 C-TAKER-REACH v1 LANDS: the strongest positive evidence of the arc \u2014 engine E$+39.61 vs actual +$11.20, yield 15.4\u201316.0% vs the 8% bar E",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 430,
+   "line": 439,
    "status": "RULING",
    "date": "2026-07-14"
   },
@@ -743,7 +751,7 @@
    "term": "2026-07-14 (~8 pm, read-only, parallel) \u00b7 C-SHIMIC-TRACE: the market the operator is watching, decoded \u2014 the pair is one-sided BY THE MACHINERY'S OWN LOCKS: MIC",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 433,
+   "line": 442,
    "status": "RULING",
    "date": "2026-07-14"
   },
@@ -751,7 +759,7 @@
    "term": "2026-07-14 (late night) \u00b7 C-FULLWINDOW-REPLAY v1 (read-only, detached): the REAL trial \u2014 and the verdict is the THIRD door, said plainly: THE SLATE, NOT THE ENG",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 436,
+   "line": 445,
    "status": "RULING",
    "date": "2026-07-14"
   },
@@ -759,7 +767,7 @@
    "term": "2026-07-14 (night) \u00b7 C-LIVEAIM-BACKTEST v1 (read-only): the acceleration is REFUSED \u2014 engine \u2212$1.70 vs actual on 741 era-clean rows, CI [\u221234, +34] \u2014 but the fai",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 439,
+   "line": 448,
    "status": "RULING",
    "date": "2026-07-14"
   },
@@ -767,7 +775,7 @@
    "term": "2026-07-14 (pre-6:10) \u00b7 C-LIVE-AIM v1 (`da3deec7`, gated deploy, SHADOW): the fourth aim design \u2014 the operator's spec verbatim, every market its own tailored an",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 442,
+   "line": 451,
    "status": "RULING",
    "date": "2026-07-14"
   },
@@ -775,7 +783,7 @@
    "term": "2026-07-14 (early) \u00b7 C-GUIDEBOOK-V2 v1: THE THIRD REFUSAL, named \u2014 the timing-conditioned recut fixes WHO fills (partition 8 win / 4 loss vs v1's collapse-skew)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 445,
+   "line": 454,
    "status": "RULING",
    "date": "2026-07-14"
   },
@@ -783,7 +791,7 @@
    "term": "2026-07-13 (late night) \u00b7 C-GUIDEBOOK-AIM v1: BUILT, TRIED, AND REFUSED BY ITS OWN TRIAL \u2014 the week replay says the guidebook aims LOSE to the live aims on held",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 448,
+   "line": 457,
    "status": "RULING",
    "date": "2026-07-13"
   },
@@ -791,7 +799,7 @@
    "term": "2026-07-13 (night) \u00b7 C-EV3-BACKTEST v1 (read-only trial): EV3 beats actual by +$5.35 on 264 held-out legs \u2014 but the CI straddles zero and n<300: THE PRE-AGREED ",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 451,
+   "line": 460,
    "status": "RULING",
    "date": "2026-07-13"
   },
@@ -799,7 +807,7 @@
    "term": "2026-07-13 (evening) \u00b7 C-COMPOSER-EV3 v1 (`07cf29a2`, gated deploy, SHADOW): the three-term frame ships \u2014 and the acid test is reported as it fell: THE BAR IS N",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 454,
+   "line": 463,
    "status": "RULING",
    "date": "2026-07-13"
   },
@@ -807,7 +815,7 @@
    "term": "2026-07-13 (late afternoon) \u00b7 C-ADJUDICATION-READ v1 (`b7abdc5b`, gated deploy): the flatten branch graded on REAL settled outcomes \u2014 NEGATIVE (N=36, \u2212$0.264/le",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 457,
+   "line": 466,
    "status": "RULING",
    "date": "2026-07-13"
   },
@@ -815,7 +823,7 @@
    "term": "2026-07-13 (afternoon) \u00b7 C-PNL-TRUTH (read-only): the four-day exchange-truth ledger \u2014 bot-only +5.41 / +2.31 / +0.14 / \u22128.48 = \u2212$0.62 cumulative; the June geom",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 460,
+   "line": 469,
    "status": "RULING",
    "date": "2026-07-13"
   },
@@ -823,7 +831,7 @@
    "term": "2026-07-13 (midday) \u00b7 C-BACKHALF-NOW (read-only + one verdict correction): the back half is HEALTHY \u2014 81 fills \u2192 64 cashed / 13 settled / 4 exit-resting / ZERO ",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 463,
+   "line": 472,
    "status": "RULING",
    "date": "2026-07-13"
   },
@@ -831,7 +839,7 @@
    "term": "2026-07-13 (~3:30 am, emergency 2) \u00b7 C-BELL-SCOPE v1 (`0a6ab782`, gated deploy): the self-fill bell scoped to unsanctioned behavior \u2014 OVER-BROAD LOCK instance 2",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 466,
+   "line": 475,
    "status": "RULING",
    "date": "2026-07-13"
   },
@@ -839,7 +847,7 @@
    "term": "2026-07-13 (~1:30 am, emergency) \u00b7 C-CAP-SCOPE v1 (`22039f30`, gated deploy): the pursuit cap rescoped to the operator's actual words \u2014 OVER-BROAD LOCK founded;",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 469,
+   "line": 478,
    "status": "RULING",
    "date": "2026-07-13"
   },
@@ -847,7 +855,7 @@
    "term": "2026-07-12 (pre-6:10 build) \u00b7 C-DELETION-GATE v1 (`9b57bcc4`, gated deploy): the governor stamp separates the two brains; percat priority defined and checkable;",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 472,
+   "line": 481,
    "status": "RULING",
    "date": "2026-07-12"
   },
@@ -855,7 +863,7 @@
    "term": "2026-07-12 (night) \u00b7 THREE OPERATOR WORDS, one gated deploy (`9b26fc17`): percat bell ARMED (source seven) \u00b7 \u22120j ARMED (the window-open void dies) \u00b7 THE TAKER W",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 475,
+   "line": 484,
    "status": "RULING",
    "date": "2026-07-12"
   },
@@ -863,7 +871,7 @@
    "term": "2026-07-12 (late evening) \u00b7 C-SLATE-NOW (read-only): the day's book is ~77 singles / near-zero completed pairs; all 8 open positions are singles ($20.60 at basi",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 478,
+   "line": 487,
    "status": "RULING",
    "date": "2026-07-12"
   },
@@ -871,7 +879,7 @@
    "term": "2026-07-12 (evening) \u00b7 C-CHASE-KILL v1 (`8a857ecf`, gated deploy): the in-play chase ladder dies \u2014 three locks; the cap-void class gets its closing build; the f",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 480,
+   "line": 489,
    "status": "RULING",
    "date": "2026-07-12"
   },
@@ -879,7 +887,7 @@
    "term": "2026-07-12 (afternoon) \u00b7 \u22120k SHIPPED (`476b4326`): the truth instrument cured on its own tape; the four \"divergences\" were the comparator, not the math; the 97-",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 483,
+   "line": 492,
    "status": "RETIRED",
    "date": "2026-07-12"
   },
@@ -887,7 +895,7 @@
    "term": "2026-07-11 (midday) \u00b7 C-MORNING-TRIAGE-0711: bot never blinked; the monitor was blind 8h (MONITOR-BLIND founded); the sixteen SUSPECT rows acquit the bell and c",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 486,
+   "line": 495,
    "status": "RULING",
    "date": "2026-07-11"
   },
@@ -895,7 +903,7 @@
    "term": "2026-07-11 (late night) \u00b7 C-SYSTEM-PAGE v1: the viewer's third page \u2014 the knob canon rendered live, classification a COMPUTED field, the 52-NAKED population per",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 489,
+   "line": 498,
    "status": "RULING",
    "date": "2026-07-11"
   },
@@ -903,7 +911,7 @@
    "term": "2026-07-11 (night) \u00b7 C-COMPOSER-G1 v1: the composer goes LIVE-SIDE \u2014 its opinion at the moment of every decision, O(1) by the math's own construction; live-vs-r",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 492,
+   "line": 501,
    "status": "RULING",
    "date": "2026-07-11"
   },
@@ -911,7 +919,7 @@
    "term": "2026-07-11 (night) \u00b7 C-BOOK-REPLAY v2: the whole book back-adjudicated (2,953 settled legs, composer-graded at their recorded ticks) \u2014 and the held-out gate did",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 496,
+   "line": 505,
    "status": "RULING",
    "date": "2026-07-11"
   },
@@ -919,7 +927,7 @@
    "term": "2026-07-11 \u00b7 C-COMPLETION-POLICY v1 (SHADOW deploy): the worst class's closing design \u2014 per-leg economics live beside every one-sided pair; 44/44 strands verdic",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 500,
+   "line": 509,
    "status": "RULING",
    "date": "2026-07-11"
   },
@@ -927,7 +935,7 @@
    "term": "2026-07-11 \u00b7 C-KNOB-CANON v1 (doc-only + two read-only forensics): the knob census is canon (124: 52 NAKED / 42 DECREED / 28 FITTED / 2 FITTED-UNARMED); UNTRACE",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 504,
+   "line": 513,
    "status": "RULING",
    "date": "2026-07-11"
   },
@@ -935,7 +943,7 @@
    "term": "2026-07-11 (early) \u00b7 C-PERCAT-GUN v1 SHADOW deployed (resumed on the operator's word): one trigger shape per market, FITTED \u2014 the July-8 replay shows the silent",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 508,
+   "line": 517,
    "status": "RULING",
    "date": "2026-07-11"
   },
@@ -943,7 +951,7 @@
    "term": "2026-07-11 (early) \u00b7 THE RANGE LAYER (Part 2b REVISED): the composer's historical anchor is the June framework era-stamped \u2014 WINDOW_MAP_3WAY's exact axes over 2",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 512,
+   "line": 521,
    "status": "RULING",
    "date": "2026-07-11"
   },
@@ -951,7 +959,7 @@
    "term": "2026-07-10 (night) \u00b7 C-LIVE-VIEWER v1: the operator's eyes on the meter \u2014 localhost command picture + per-trade viewer, read-only end to end, truth = the nightl",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 516,
+   "line": 525,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -959,7 +967,7 @@
    "term": "2026-07-10 (night) \u00b7 C-DAYLIGHT-ROOTS v1: all 17 exchange-truth violations ROOTED \u2014 0 double-count (the suspect is innocent) / 6 report error (my arithmetic, fi",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 520,
+   "line": 529,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -967,7 +975,7 @@
    "term": "2026-07-10 (evening) \u00b7 C-FULL-SLATE-REVIEW (read-only): the logic graded, not just the fills \u2014 1,125 step-decisions, the no-fill cohort graded for the first tim",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 524,
+   "line": 533,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -975,7 +983,7 @@
    "term": "2026-07-10 (~6:15 pm) \u00b7 C-NIGHTLY-ADJUDICATION (gated deploy): live trade identifiers + the migration meter prints itself nightly \u2014 no dispatch needed",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 528,
+   "line": 537,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -983,7 +991,7 @@
    "term": "2026-07-10 (~5:30 pm) \u00b7 C-BOOK-THE-FILL (gated deploy): CLASS \u2014 UNBOOKED FILL's closing design \u2014 the day's dominant cost (276.8 min of halts) dies; both replays",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 532,
+   "line": 541,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -991,7 +999,7 @@
    "term": "2026-07-10 (evening) \u00b7 RULING_PAIR_ECONOMICS + THE MIGRATION DOCTRINE recorded (doc-only): pair-97 RETIRED from all logic \u2014 the contradiction is on the record",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 536,
+   "line": 545,
    "status": "RETIRED",
    "date": "2026-07-10"
   },
@@ -999,7 +1007,7 @@
    "term": "2026-07-10 (afternoon) \u00b7 C-CONVICTION-REPLAY: the brain built and acceptance-tested BEFORE the rerun (constraint 1 honored); 123 trades graded at their own tick",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 540,
+   "line": 549,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -1007,7 +1015,7 @@
    "term": "Part 0 triage: the 1:31:59 pm halt CLEARED at 1:32:55 pm (0.9 min) \u2014 GHASPI-SPI `no_exit`, the \u22120f class RECURRING. Day downtime: 5 episodes, 276.8 min (1:38\u20133:",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 541,
+   "line": 550,
    "status": "RULING",
    "date": "10-00"
   },
@@ -1015,7 +1023,7 @@
    "term": "2026-07-10 (afternoon) \u00b7 C-REALITY-BELL (gated deploy): the operator's test FAILED \u2014 recorded verbatim first \u2014 and the bot now knows a match is live without the",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 544,
+   "line": 553,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -1023,7 +1031,7 @@
    "term": "The failed test, verbatim as dispatched: \"the operator's test failed \u2014 the fair-value sweep did not surface Sanchez Izquierdo\u2013Dellien (entry 62, market 24, boug",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 545,
+   "line": 554,
    "status": "RULING",
    "date": null
   },
@@ -1031,7 +1039,7 @@
    "term": "2026-07-10 (~12:45 pm) \u00b7 CASE-FILE EXHIBIT 1 (BLIZAN, both legs) + LIVE FV SWEEP + two contained no_exit halts + MORNING REVIEW standing change",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 548,
+   "line": 557,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -1039,7 +1047,7 @@
    "term": "2026-07-10 (midday) \u00b7 CLOCK CROSS-CALIBRATION CENSUS (BOARD \u22121b1, read-only): no global re-stamp \u2014 a scoped exclusion; ITF's ONLY clock is the live era; self-co",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 552,
+   "line": 561,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -1047,7 +1055,7 @@
    "term": "2026-07-10 (~12:40 am) \u00b7 HAND-RESTORE ADOPTION: the 8 restored orders were floating as manual-class (every healer + the match-live cancel skip them) \u2014 adopted i",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 556,
+   "line": 565,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -1055,7 +1063,7 @@
    "term": "2026-07-10 (~12:20 am) \u00b7 C-DRAIN-REPLAY aftermath: the new watch caught NINE violations on its first judged window \u2014 the transitional boot's own manifest-less d",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 559,
+   "line": 568,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -1063,7 +1071,7 @@
    "term": "2026-07-10 (~12:00 am) \u00b7 C-DRAIN-REPLAY (gated deploy): the deploy drain destroyed a ruling-mandated entry bid and NOTHING noticed \u2014 restored, accounted, class ",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 562,
+   "line": 571,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -1071,7 +1079,7 @@
    "term": "2026-07-10 (early) \u00b7 FABLE SESSION FINDINGS recorded (doc-only; C45-cites the operator's dispatch of this date): the full-information archive is named, it is se",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 565,
+   "line": 574,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -1079,7 +1087,7 @@
    "term": "2026-07-10 (early) \u00b7 C-STALE-ANCHOR-ALLOWANCE (operator THRESHOLD ruling, config-scope gated deploy): unlock-qualified ITF books anchor on prints up to 7,200s o",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 570,
+   "line": 579,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -1087,7 +1095,7 @@
    "term": "2026-07-10 (early) \u00b7 C-TAPE-SEED (gated deploy `2f26cc00` + completion `e7b4e8f0`): last-trade memory boot-seeded from REST \u2014 the restart-amnesia class's FIFTH ",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 573,
+   "line": 582,
    "status": "RULING",
    "date": "2026-07-10"
   },
@@ -1095,7 +1103,7 @@
    "term": "2026-07-09 (late night) \u00b7 C-EARLY-UNLOCK (operator ruling, gated deploy): realized volume \u2265 the staged floor unlocks the FULL T\u22128h window \u2014 ITF only, self-measu",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 577,
+   "line": 586,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1103,7 +1111,7 @@
    "term": "2026-07-09 (late night) \u00b7 Plex's verbatim T3/T4 ruling body LANDED \u2014 the reserved slot in `PLEX_T3_T4_RATIFICATION.md` filled word-for-word (doc-only); the rela",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 580,
+   "line": 589,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1111,7 +1119,7 @@
    "term": "2026-07-09 (late night) \u00b7 C-T4-DUAL-FLAG (gated deploy, shadow/logging only): Plex's binding condition instrumented before the ITF wave \u2014 the floor reading was ",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 582,
+   "line": 591,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1119,7 +1127,7 @@
    "term": "2026-07-09 (night) \u00b7 PLEX RATIFICATION RECORDED \u2014 T3 supersession + T4 hold-gate clause (verbatim body still owed by the relay)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 585,
+   "line": 594,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1127,7 +1135,7 @@
    "term": "2026-07-09 (night) \u00b7 C-INFLIGHT-LOCK (`330266c7`, gated deploy, alone): the GORSTE same-tick race class closed at the chokepoint \u2014 os_active precondition 2 of 5",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 588,
+   "line": 597,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1135,7 +1143,7 @@
    "term": "2026-07-09 (evening) \u00b7 C-BOT-ONLY-BASIS (gated deploy): the operator's basis ruling recorded + operationalized; FRAMAR was HIS manual \u2014 the shake-up worked",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 591,
+   "line": 600,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1143,7 +1151,7 @@
    "term": "2026-07-09 (~5:15 pm) \u00b7 C-TRUTH-JOIN (`572d678a`, gated): the gun scorecard's truth-join debugged \u2014 certification night 3 unblocked; the \u00b13-min bar UNTOUCHED",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 594,
+   "line": 603,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1151,7 +1159,7 @@
    "term": "2026-07-09 (4:07\u21924:47 pm) \u00b7 FOREIGN-POSITION INCIDENT: an external taker buy halted conceptions 40 min; contained without touching the bot",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 597,
+   "line": 606,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1159,7 +1167,7 @@
    "term": "2026-07-09 (~4:30 pm) \u00b7 HANDOFF_FABLE.md established (session-zero read) + C50 checklist extension",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 600,
+   "line": 609,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1167,7 +1175,7 @@
    "term": "2026-07-09 (evening) \u00b7 C-CYCLE-CAP (`bbd8cada`, gated deploy): the re-entry ruling executed \u2014 ALLOWED, capped at 2, persistent, cycle-stamped",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 603,
+   "line": 612,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1175,7 +1183,7 @@
    "term": "2026-07-09 (~3:50 pm) \u00b7 OPEN-BOOK RE-ENTRY SCAN: the live book is CLEAN \u2014 zero open cycle-2 legs; the 2:54 boot minted exactly the two DAALUX legs, both already",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 606,
+   "line": 615,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1183,7 +1191,7 @@
    "term": "2026-07-09 (~3:30 pm) \u00b7 DAALU RE-ENTRY FORENSIC: the no-rebuy guard never covered the router and dies at restarts \u2014 and the defect class is PROFITABLE (+$15.84/",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 609,
+   "line": 618,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1191,7 +1199,7 @@
    "term": "2026-07-09 (evening) \u00b7 THE OS BUILD (`1a187f77`, gated deploy): the consumption layer ships \u2014 shadow-first, order-path-pure by gate assertion, unable to trade t",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 612,
+   "line": 621,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1199,7 +1207,7 @@
    "term": "2026-07-09 (~4:30 pm) \u00b7 STEP 1: the lifecycle pinned \u00b7 the floor roster named (139 matches) \u00b7 projectability verdict STAGED (the floor lives at the HOLD gate) \u00b7",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 615,
+   "line": 624,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1207,7 +1215,7 @@
    "term": "2026-07-09 (~3:20 pm) \u00b7 THE RECONCILIATION: +$502.59 RETRACTED as accounting \u00b7 the settlements `revenue` field is DEAD and prior realized lines parsed ghosts \u00b7 ",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 618,
+   "line": 627,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1215,7 +1223,7 @@
    "term": "2026-07-09 (~2:45 pm) \u00b7 NEVER-WAKE BLEED + EXIT RE-ATTRIBUTION (week scale): a +$1.4k/week exit engine fighting a \u2212$0.9k/week F-bucket \u2014 and the ITF sub-2.5k fl",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 621,
+   "line": 630,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1223,7 +1231,7 @@
    "term": "2026-07-09 (~2:15 pm) \u00b7 SETTLEMENT VOCABULARY (operator ruling \u2192 FOUNDATIONS) \u2014 and the EXTENSIVE Part 1 corrected by it in real time: the exits DID pay us back",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 624,
+   "line": 633,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1231,7 +1239,7 @@
    "term": "2026-07-09 (~1:45 pm) \u00b7 THE EXTENSIVE: nobody paid us back (the climb was marks, proven on settlements) \u00b7 the ITF volume floor exists (~2.5k: a third never wake",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 627,
+   "line": 636,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1239,7 +1247,7 @@
    "term": "2026-07-09 (~1:10 pm) \u00b7 CHAIN PROOF: a third of \"exit never came\" is the entry gap \u00b7 the +121min claim KILLED by its own decomposition (a feed-defect signature)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 630,
+   "line": 639,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1247,7 +1255,7 @@
    "term": "2026-07-09 (~12:15 pm) \u00b7 MASTER PLAN: the GORSTE same-tick race contained by surgery (13 min halted) \u00b7 the anchored era's first clean cohort (1.4% W2 contaminat",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 633,
+   "line": 642,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1255,7 +1263,7 @@
    "term": "2026-07-09 (~3:25 am) \u00b7 FILL REDO: the operator's correction vindicated both ways \u2014 mains is a JOIN market (40\u201350% at the touch at volume), the mains DRIFT-PATH",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 636,
+   "line": 645,
    "status": "AMENDED",
    "date": "2026-07-09"
   },
@@ -1263,7 +1271,7 @@
    "term": "2026-07-09 (early, ~12:15 am) \u00b7 C-VOL-LEDGER forward field + CONFIG HYGIENE (`d8d0c62f`, gated deploy) \u2014 and the volume corpus job dispatched",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 639,
+   "line": 648,
    "status": "RULING",
    "date": "2026-07-09"
   },
@@ -1271,7 +1279,7 @@
    "term": "2026-07-08 (late, ~11:25 pm) \u00b7 WAL PASS (board 19) \u2014 and the honest discovery: tennis.db was ALREADY WAL; tonight's starvation was a HUNG WRITE TRANSACTION, a c",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 642,
+   "line": 651,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1279,7 +1287,7 @@
    "term": "2026-07-08 (night) \u00b7 THE GRANULARITY LAW (operator ruling \u2192 FOUNDATIONS): macro assumes, micro confirms \u2014 either alone is a failed entry",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 645,
+   "line": 654,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1287,7 +1295,7 @@
    "term": "2026-07-08 (night) \u00b7 THE COMBINED-PRICE CLAUSE (operator ruling \u2192 FOUNDATIONS): no fixed number defines a good entry \u2014 the floor is fitted per pair, the combine",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 648,
+   "line": 657,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1295,7 +1303,7 @@
    "term": "2026-07-08 (conformance, ~10:00 pm) \u00b7 FULL AUDIT pulled forward: 8 deploys' tape columns re-run, every new law live-proven, ONE archaic-ARMED flag, six drifts q",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 651,
+   "line": 660,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1303,7 +1311,7 @@
    "term": "2026-07-08 (day close, ~9:35 pm) \u00b7 POSITION GRADE \u2014 first full cut on everything ratified today: S=0 printed honestly, and the day banks TWO BOUHAR pairs",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 654,
+   "line": 663,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1311,7 +1319,7 @@
    "term": "2026-07-08 (night, +1) \u00b7 C-GUN-PERSIST (`1a8a266e`, gated deploy): the scorecard's only PARTIAL closes \u2014 a restart can no longer forget its fired guns",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 657,
+   "line": 666,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1319,7 +1327,7 @@
    "term": "2026-07-08 (night grading pass, ~9:00 pm) \u00b7 THE FIX SCORECARD: every deployed fix vs today's tape \u2014 8 HOLDING \u00b7 1 HOLDING-FRESH \u00b7 1 PARTIAL \u00b7 0 VIOLATED",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 660,
+   "line": 669,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1327,7 +1335,7 @@
    "term": "2026-07-08 (evening cut, ~8:20 pm) \u00b7 SEND-ORDER 6: the wave caught by fallbacks as designed; the \u00b13-min bar UNEVALUABLE (feed coverage + a 3h lock starvation, b",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 663,
+   "line": 672,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1335,7 +1343,7 @@
    "term": "2026-07-08 (late night) \u00b7 C-ANCHOR (`1eeebc7b`, gated deploy): the lying-clock fix \u2014 the anchor class closes (board 14)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 666,
+   "line": 675,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1343,7 +1351,7 @@
    "term": "2026-07-08 (late night) \u00b7 CONSOLIDATED: DYNAMIC S + CELL-AIM RATIFIED \u00b7 bell recovery measured \u00b7 out-of-process exit checker LIVE \u00b7 BOT_DOWN channel LIVE (ntfy)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 669,
+   "line": 678,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1351,7 +1359,7 @@
    "term": "Ratifications committed (`.claude/rulings/RULING_DYNAMIC_S_CELL_AIM.md`, front page updated): dynamic S = \u03a3(own W1-close \u2212 edge_p50(cat,cell)), constants 79/79/",
    "kind": "law",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 670,
+   "line": 679,
    "status": "RETIRED",
    "date": "07-08"
   },
@@ -1359,7 +1367,7 @@
    "term": "2026-07-08 (night, re-cut) \u00b7 THE GRID: sequential floor re-cut per (cat, cell) \u2014 fav/dog binary RETIRED; depth is a property of the CELL",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 672,
+   "line": 681,
    "status": "RETIRED",
    "date": "2026-07-08"
   },
@@ -1367,7 +1375,7 @@
    "term": "2026-07-08 (night) \u00b7 SEQUENTIAL FLOOR: the doctrine's own number \u2014 ITF's achievable combined is 79, the edge lives on the FAV side, and the dog has no depth, on",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 675,
+   "line": 684,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1375,7 +1383,7 @@
    "term": "2026-07-08 (night) \u00b7 C-FUSED-GUN + C-ORPHAN-FINGERPRINT (`6d84f27e`, one build, one gated deploy): the gun becomes multi-source and the restart stops minting or",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 678,
+   "line": 687,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1383,7 +1391,7 @@
    "term": "2026-07-08 (night) \u00b7 POST-GUN FORENSIC: the gun is blind in the S-line's habitat \u2014 detection 17\u201362%, median lag 31\u201346 min; EKSLUX = all four controls failing in",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 681,
+   "line": 690,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1391,7 +1399,7 @@
    "term": "2026-07-08 (evening) \u00b7 EARLY-CANVAS STUDY LANDED (CONCEPTION-HORIZON Part 2): the T-8h bound forfeits NOTHING measurable \u2014 and the floor arrives with the FLOW, ",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 684,
+   "line": 693,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1399,7 +1407,7 @@
    "term": "2026-07-08 (evening close-out) \u00b7 THE ORPHAN CLASS \u2014 one headstone, every costume",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 687,
+   "line": 696,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1407,7 +1415,7 @@
    "term": "2026-07-08 (afternoon) \u00b7 CONCEPTION HORIZON: the unstudied early window gets a bound (T-8h, INTERIM SCAFFOLDING) \u2014 and then gets studied",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 696,
+   "line": 705,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1415,7 +1423,7 @@
    "term": "2026-07-08 (afternoon, addendum) \u00b7 C-BAND-CLAMP-WALK aftermath completion (`b0661bc2`): a failed recovery now FREES the leg",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 701,
+   "line": 710,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1423,7 +1431,7 @@
    "term": "2026-07-08 (midday, second pass) \u00b7 C-BAND-CLAMP-WALK: the band law reaches the walk chokepoint \u2014 and the dossier's \"bypass\" is amended to what it really was: ca",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 704,
+   "line": 713,
    "status": "AMENDED",
    "date": "2026-07-08"
   },
@@ -1431,7 +1439,7 @@
    "term": "2026-07-08 (midday) \u00b7 THE MORNING DOSSIER: last night was a liveness incident wearing an entry ledger \u2014 the clean entry read is 0\u20131\u00a2 off own lows and the gap is",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 707,
+   "line": 716,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1439,7 +1447,7 @@
    "term": "2026-07-08 \u00b7 NAKED-EXIT RECURRENCE = A DEAD BOT, NOT AN EXIT DEFECT: disk-full killed the logger, the logger killed the loop, and every watchdog was inside the ",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 710,
+   "line": 719,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1447,7 +1455,7 @@
    "term": "2026-07-08 \u00b7 POST-FILL MOVE QUOTE: our fills mostly stand in front of REPRICES, not divots \u2014 the aim's conditioning variable named",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 713,
+   "line": 722,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1455,7 +1463,7 @@
    "term": "2026-07-08 (preflight) \u00b7 ENTRY ROLL + BAND CLAMP + OVERNIGHT FREEZE",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 716,
+   "line": 725,
    "status": "RULING",
    "date": "2026-07-08"
   },
@@ -1463,7 +1471,7 @@
    "term": "2026-07-07 (late) \u00b7 EMERGENCY SWEEP: 4 naked legs, two evasion classes named and closed; the audit goes CONTINUOUS; S goes PER-LEG",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 719,
+   "line": 728,
    "status": "RULING",
    "date": "2026-07-07"
   },
@@ -1471,7 +1479,7 @@
    "term": "2026-07-07 \u00b7 EVENING CUT: S/A rubric adopted \u2014 the honest era holds ZERO S pairs",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 722,
+   "line": 731,
    "status": "RULING",
    "date": "2026-07-07"
   },
@@ -1479,7 +1487,7 @@
    "term": "2026-07-07 \u00b7 FLOOR-BY-HOUR: the ITF floor is a last-2-hours phenomenon; the mains-early hypothesis is REFUTED",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 725,
+   "line": 734,
    "status": "RULING",
    "date": "2026-07-07"
   },
@@ -1487,7 +1495,7 @@
    "term": "2026-07-07 \u00b7 PLEX WALK-CAP RULING executed (shadow-first): sizes staged, JOINT SHADOW live",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 728,
+   "line": 737,
    "status": "RULING",
    "date": "2026-07-07"
   },
@@ -1495,7 +1503,7 @@
    "term": "2026-07-07 \u00b7 PAIR-STORY at corpus scale: the achievable floor per cat \u2014 97 reverts to emergency ceiling; S-lines set",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 731,
+   "line": 740,
    "status": "RULING",
    "date": "2026-07-07"
   },
@@ -1503,7 +1511,7 @@
    "term": "2026-07-07 \u00b7 join_trial_mode RETIRED (config flip through the full gate) \u2014 the 06-18 trial's lineage closes",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 734,
+   "line": 743,
    "status": "RETIRED",
    "date": "2026-07-07"
   },
@@ -1511,7 +1519,7 @@
    "term": "2026-07-07 \u00b7 CONFORMANCE: the Vault marched against the live process \u2014 23 laws LIVE-PROVEN on today's tape",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 737,
+   "line": 746,
    "status": "RULING",
    "date": "2026-07-07"
   },
@@ -1519,7 +1527,7 @@
    "term": "2026-07-07 \u00b7 THE CONSOLIDATION (this system) \u2014 C50 lineage",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 740,
+   "line": 749,
    "status": "RULING",
    "date": "2026-07-07"
   },
@@ -1527,7 +1535,7 @@
    "term": "2026-07-07 \u00b7 C47-ENFORCE: post-boot book audit, assert-and-halt (LIVE)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 743,
+   "line": 752,
    "status": "RULING",
    "date": "2026-07-07"
   },
@@ -1535,7 +1543,7 @@
    "term": "2026-07-07 \u00b7 SLATE_LEDGER refresh: days read GROSS and NET-OF-MECHANICAL (\u2691a/\u2691b/\u2691c)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 746,
+   "line": 755,
    "status": "RULING",
    "date": "2026-07-07"
   },
@@ -1543,7 +1551,7 @@
    "term": "2026-07-07 \u00b7 THE BLEED ATTRIBUTION: strategy was POSITIVE; the loss was mechanical",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 749,
+   "line": 758,
    "status": "RULING",
    "date": "2026-07-07"
   },
@@ -1551,7 +1559,7 @@
    "term": "2026-07-07 \u00b7 EX-SELF VERDICT REVERSED + the measurement law (C47's second half)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 752,
+   "line": 761,
    "status": "RULING",
    "date": "2026-07-07"
   },
@@ -1559,7 +1567,7 @@
    "term": "2026-07-07 \u00b7 DUP-BUY STORM: partial exchange-truth reads are worse than none (C47's first half)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 755,
+   "line": 764,
    "status": "RULING",
    "date": "2026-07-07"
   },
@@ -1567,7 +1575,7 @@
    "term": "2026-07-07 \u00b7 EXPRESSION INVARIANT ruled (front page) + spread census",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 758,
+   "line": 767,
    "status": "RULING",
    "date": "2026-07-07"
   },
@@ -1575,7 +1583,7 @@
    "term": "2026-07-06 \u00b7 W1 GRADING LAW (Vault 0E) + B-subgrades",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 761,
+   "line": 770,
    "status": "RULING",
    "date": "2026-07-06"
   },
@@ -1583,7 +1591,7 @@
    "term": "2026-07-06 \u00b7 AIM_V2 built + operationalized, GATED-OFF (Plex parameters)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 764,
+   "line": 773,
    "status": "RULING",
    "date": "2026-07-06"
   },
@@ -1591,7 +1599,7 @@
    "term": "2026-07-06 \u00b7 RISER DISARM (pre-registered rule executed)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 767,
+   "line": 776,
    "status": "RULING",
    "date": "2026-07-06"
   },
@@ -1599,7 +1607,7 @@
    "term": "2026-07-06 \u00b7 HONEST CLOCK FLIP (per_match_clock LIVE, Ratification 20) + post-flip autopsy + 5-fix bundle",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 770,
+   "line": 779,
    "status": "RULING",
    "date": "2026-07-06"
   },
@@ -1607,7 +1615,7 @@
    "term": "2026-07-06 \u00b7 C-RETENTION: observed true starts banked (VAULT_PENDING absorbed)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 773,
+   "line": 782,
    "status": "RULING",
    "date": "2026-07-06"
   },
@@ -1615,7 +1623,7 @@
    "term": "2026-07-05 \u00b7 THE GATE LAWS COMPLETE: C45 prior-art + C46 outcome-proof (two-lane)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 776,
+   "line": 785,
    "status": "RULING",
    "date": "2026-07-05"
   },
@@ -1623,7 +1631,7 @@
    "term": "2026-07-05 \u00b7 Week standing order (07-05\u219207-12): config HOLDS, analysis attacks",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 779,
+   "line": 788,
    "status": "RULING",
    "date": "2026-07-05"
   },
@@ -1631,7 +1639,7 @@
    "term": "2026-07-05 \u00b7 Re-anchor Part-1 staged (ce38ca8c, gated OFF) + PLEX_REANCHOR slot OPEN",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 782,
+   "line": 791,
    "status": "RULING",
    "date": "2026-07-05"
   },
@@ -1639,7 +1647,7 @@
    "term": "2026-07-04 \u00b7 THE GATE IS LAW (C39\u2013C41) + reaim (C42) + fill-is-information (C43) + causal audit method (C44) + F39",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 785,
+   "line": 794,
    "status": "RULING",
    "date": "2026-07-04"
   },
@@ -1647,7 +1655,7 @@
    "term": "2026-07-03 \u00b7 AIM-TABLE DOCTRINE (VAULT_PENDING absorbed): aim = the dip; FV = yardstick, never target",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 788,
+   "line": 797,
    "status": "RULING",
    "date": "2026-07-03"
   },
@@ -1655,7 +1663,7 @@
    "term": "2026-07-01/02 \u00b7 THE JULY ARC OPENING (Vault \u00a74E\u20134I, archived in place)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 791,
+   "line": 800,
    "status": "RULING",
    "date": "2026-07-01"
   },
@@ -1663,7 +1671,7 @@
    "term": "\u22642026-06-30 \u00b7 THE JUNE RECORD (archived)",
    "kind": "ledger_entry",
    "file": "arb-executor/docs/LIVING_VAULT.md",
-   "line": 794,
+   "line": 803,
    "status": "RULING",
    "date": "2026-06-30"
   },

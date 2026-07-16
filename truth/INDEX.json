@@ -1,8 +1,8 @@
 {
  "built": "2026-07-16 12:26",
- "law": "C-ONE-RECORD (operator mandate): the consolidated record IS the operation; nothing speaks or trades from memory when the disk disagrees. Seat preflight: no doctrine-touching output without this registry's receipt.",
- "n": 256,
- "entries": [
+ "law": "C-ONE-TRUTH v1 (07-16): outside this root = doesn't exist; rebuilt every C50; both consumers enforced (engine boot wiring + seat session-zero); the gate refuses unregistered laws/surfaces/studies",
+ "laws_n": 256,
+ "laws": [
   {
    "term": "\u00a70A \u2014 THE OPERATOR'S FRAME (verbatim, from the June Vault; unchanged and in force)",
    "kind": "front_page_section",
@@ -2050,6 +2050,419 @@
    "line": 13,
    "status": "RETIRED",
    "date": "2026-07-10"
+  }
+ ],
+ "surfaces": [
+  {
+   "path": ".claude/trendpath/ATLAS_V1.json",
+   "fits": "path aims + contention per cat|side|band (the entry law)",
+   "exists": true,
+   "fitted_date": "2026-07-15",
+   "consuming_probes_found_in_engine": [
+    "_selector_verdict",
+    "_trendpath_atlas"
+   ]
+  },
+  {
+   "path": ".claude/takerreach/LAW.json",
+   "fits": "reach law: P(fill) = 1-exp(-rate x residency) per cat|flow",
+   "exists": true,
+   "fitted_date": "2026-07-14",
+   "consuming_probes_found_in_engine": [
+    "_reach_law",
+    "reach_law"
+   ]
+  },
+  {
+   "path": ".claude/seqfloor_20260708/recut_cells.json",
+   "fits": "sequential floor recut cells (dynamic S, cell-keyed aim)",
+   "exists": true,
+   "fitted_date": "2026-07-08",
+   "consuming_probes_found_in_engine": [
+    "recut_cells"
+   ]
+  },
+  {
+   "path": ".claude/trendpath/LIBRARY_V1.json",
+   "fits": "W1 cohort library (dip_freq, depth quantiles, gun-axis lawful_share -> the cash-window stamp)",
+   "exists": true,
+   "fitted_date": "2026-07-15",
+   "consuming_probes_found_in_engine": [
+    "LIBRARY_V1",
+    "w1_cohort"
+   ]
+  },
+  {
+   "path": ".claude/trendpath/ORIENT_V1.json",
+   "fits": "oriented tells (SHADOW, own n>=300 clock)",
+   "exists": true,
+   "fitted_date": "2026-07-15",
+   "consuming_probes_found_in_engine": [
+    "ORIENT_V1",
+    "_orient_read"
+   ]
+  },
+  {
+   "path": ".claude/render/knob_citations.json",
+   "fits": "knob provenance: FITTED/DECREED/NAKED (a citation is the only exit from NAKED)",
+   "exists": true,
+   "fitted_date": "2026-07-16",
+   "consuming_probes_found_in_engine": [
+    "knob_citations"
+   ]
+  },
+  {
+   "path": "arb-executor/config/deploy_v5_live.json",
+   "fits": "THE live config (every armed knob)",
+   "exists": true,
+   "fitted_date": "2026-07-16",
+   "consuming_probes_found_in_engine": [
+    "CONFIG_PATH"
+   ]
+  }
+ ],
+ "sites": [
+  {
+   "site": "path_chokepoint",
+   "what": "every entry conception (aims, selector, pair law, floors, W1-preference, expression)",
+   "required_surfaces": [
+    "ATLAS_V1.json",
+    "LAW.json",
+    "deploy_v5_live.json"
+   ],
+   "probes": [
+    "trendpath_live_aim",
+    "below_discovery_floor_refused",
+    "corridor_refused_w1_preference"
+   ],
+   "probes_found_in_engine": [
+    "below_discovery_floor_refused",
+    "corridor_refused_w1_preference",
+    "trendpath_live_aim"
+   ],
+   "wired_in_source": true
+  },
+  {
+   "site": "entry_dossier",
+   "what": "the ten-surface consultation on every placement/refusal",
+   "required_surfaces": [
+    "ATLAS_V1.json",
+    "LAW.json",
+    "LIBRARY_V1.json"
+   ],
+   "probes": [
+    "_entry_dossier",
+    "cash_window"
+   ],
+   "probes_found_in_engine": [
+    "_entry_dossier",
+    "cash_window"
+   ],
+   "wired_in_source": true
+  },
+  {
+   "site": "gun_sources",
+   "what": "the fused gun (te/schedule/tape_latch/divergence/fallback/self_fill/percat/tape_flow) + per-source grace",
+   "required_surfaces": [
+    "deploy_v5_live.json"
+   ],
+   "probes": [
+    "_gun_stamp",
+    "tape_flow_gun_enabled",
+    "tape_flow_grace_sec"
+   ],
+   "probes_found_in_engine": [
+    "_gun_stamp",
+    "tape_flow_grace_sec",
+    "tape_flow_gun_enabled"
+   ],
+   "wired_in_source": true
+  },
+  {
+   "site": "completion_engine",
+   "what": "one-sided pair verdicts (hold/flatten/taker; cross cap; leashes)",
+   "required_surfaces": [
+    "deploy_v5_live.json"
+   ],
+   "probes": [
+    "_completion_execute",
+    "cross_over_combined_cap"
+   ],
+   "probes_found_in_engine": [
+    "_completion_execute",
+    "cross_over_combined_cap"
+   ],
+   "wired_in_source": true
+  },
+  {
+   "site": "exit_machinery",
+   "what": "band exits (cell -> band_x), zero-tolerance W2 stamp",
+   "required_surfaces": [
+    "deploy_v5_live.json"
+   ],
+   "probes": [
+    "v4_exit_posted",
+    "w2_fill_violation"
+   ],
+   "probes_found_in_engine": [
+    "v4_exit_posted",
+    "w2_fill_violation"
+   ],
+   "wired_in_source": true
+  },
+  {
+   "site": "audit_exchange_truth",
+   "what": "steady-cadence audit (no_exit, healer, settlement_pending)",
+   "required_surfaces": [],
+   "probes": [
+    "post_boot_audit",
+    "fill_book_skip",
+    "settlement_pending"
+   ],
+   "probes_found_in_engine": [
+    "fill_book_skip",
+    "post_boot_audit",
+    "settlement_pending"
+   ],
+   "wired_in_source": true
+  }
+ ],
+ "studies_n": 47,
+ "studies": [
+  {
+   "archive": "truth/archive/aim_dispatch_20260703",
+   "source": ".claude/aim_dispatch_20260703",
+   "finding": "Entry-Side Patch Dispatch \u2014 2026-07-03 (HOLD deploy)"
+  },
+  {
+   "archive": "truth/archive/anchor_20260708",
+   "source": ".claude/anchor_20260708",
+   "finding": "RETRO-STAMP \u2014 tonight's ledger rows on known-liar anchors (C-ANCHOR, 2026-07-08 late night; ET)"
+  },
+  {
+   "archive": "truth/archive/autopsy_20260706",
+   "source": ".claude/autopsy_20260706",
+   "finding": "ENTRY-MECHANICS CENSUS \u2014 concluded games, W1 + corridor (flip boot 07-05 23:50 ET \u2192 07-06 12:45)"
+  },
+  {
+   "archive": "truth/archive/autopsy_20260707",
+   "source": ".claude/autopsy_20260707",
+   "finding": "SPREAD-EXPRESSION CENSUS \u2014 posture vs the chain, honest era (2026-07-07 01:50 ET)"
+  },
+  {
+   "archive": "truth/archive/bellrecovery_20260708",
+   "source": ".claude/bellrecovery_20260708",
+   "finding": "finding line pending"
+  },
+  {
+   "archive": "truth/archive/BLEED_ATTRIBUTION_20260707.md",
+   "source": ".claude/BLEED_ATTRIBUTION_20260707.md",
+   "finding": "BLEED ATTRIBUTION 2026-07-07 (STEP 1) \u2014 mechanical vs strategic, honest era"
+  },
+  {
+   "archive": "truth/archive/casefile_20260710",
+   "source": ".claude/casefile_20260710",
+   "finding": "CASE FILE \u2014 EXHIBIT 1: KXWTACHALLENGERMATCH-26JUL10BLIZAN, both legs (2026-07-10; CC extract, Plex renders)"
+  },
+  {
+   "archive": "truth/archive/census_20260710",
+   "source": ".claude/census_20260710",
+   "finding": "CLOCK CROSS-CALIBRATION CENSUS \u2014 BOARD \u22121b1 (2026-07-10, read-only; artifacts: /tmp/census_out.json \u2192 `.claude/census_20260710/census_out.json`, script `census_script.py`)"
+  },
+  {
+   "archive": "truth/archive/CONFORMANCE_20260708.md",
+   "source": ".claude/CONFORMANCE_20260708.md",
+   "finding": "CONFORMANCE AUDIT \u2014 2026-07-08 (~10:00 pm ET; board #4; full pass, pulled forward from 07-14)"
+  },
+  {
+   "archive": "truth/archive/conviction_20260710",
+   "source": ".claude/conviction_20260710",
+   "finding": "CONVICTION REPLAY \u2014 July 10 slate (C-CONVICTION-REPLAY Parts 4+5; generated 2026-07-10 03:23 PM ET)"
+  },
+  {
+   "archive": "truth/archive/dossier_20260708",
+   "source": ".claude/dossier_20260708",
+   "finding": "PART 1 \u2014 FREEZE-BOOT LINEAGE COHORT (fills 2026-07-07 23:12 ET \u2192 2026-07-08 11:45 ET)"
+  },
+  {
+   "archive": "truth/archive/dossier_20260714",
+   "source": ".claude/dossier_20260714",
+   "finding": "finding line pending"
+  },
+  {
+   "archive": "truth/archive/early_canvas_20260708",
+   "source": ".claude/early_canvas_20260708",
+   "finding": "EARLY-CANVAS STUDY \u2014 CONCEPTION-HORIZON Part 2 (T-8h \u2192 T-24h), landed 3:55 pm ET 2026-07-08"
+  },
+  {
+   "archive": "truth/archive/fillredo_20260709",
+   "source": ".claude/fillredo_20260709",
+   "finding": "FILL REDO \u2014 full spread-relative grid + traverse, raw"
+  },
+  {
+   "archive": "truth/archive/FORENSIC_20260707_MORNING.md",
+   "source": ".claude/FORENSIC_20260707_MORNING.md",
+   "finding": "FORENSIC 2026-07-07 MORNING \u2014 overnight dup-buy storm + naked-surplus exits"
+  },
+  {
+   "archive": "truth/archive/live_20260705",
+   "source": ".claude/live_20260705",
+   "finding": "FORENSIC \u2014 bell_missing \u2014 LIVE DEFECT (>=2 in 60min)  <!-- 1784216565 -->"
+  },
+  {
+   "archive": "truth/archive/master_20260709",
+   "source": ".claude/master_20260709",
+   "finding": "MASTER 07-09 \u2014 RAW per-cat entry tables (cohort: clean fills since 07-08 00:00 ET; category law enforced)"
+  },
+  {
+   "archive": "truth/archive/nightly_20260705",
+   "source": ".claude/nightly_20260705",
+   "finding": "FULL-TAPE REGRADE \u2014 the current box, time as a first-class dimension"
+  },
+  {
+   "archive": "truth/archive/overnight_20260703",
+   "source": ".claude/overnight_20260703",
+   "finding": "Overnight Validation \u2014 2026-07-03"
+  },
+  {
+   "archive": "truth/archive/overnight_20260704",
+   "source": ".claude/overnight_20260704",
+   "finding": "Morning Validation \u2014 2026-07-04 (window: ba08243 boot 18:32:05 ET Jul 3 \u2192 hotfix shutdown 12:58:55 ET Jul 4)"
+  },
+  {
+   "archive": "truth/archive/overnight_20260705",
+   "source": ".claude/overnight_20260705",
+   "finding": "Pre-staged morning validation \u2014 2026-07-05 (the five-flag stack's TRUE first night)"
+  },
+  {
+   "archive": "truth/archive/pair_story_20260707",
+   "source": ".claude/pair_story_20260707",
+   "finding": "PAIR-STORY \u2014 the corpus at pair grain, tick level, honest axis (2026-07-07)"
+  },
+  {
+   "archive": "truth/archive/postgun_20260708",
+   "source": ".claude/postgun_20260708",
+   "finding": "POST-GUN FORENSIC \u2014 2026-07-08 (read-only; honest-clock era 07-06 12:00 pm ET \u2192 07-08 ~4:30 pm ET)"
+  },
+  {
+   "archive": "truth/archive/proof_20260705",
+   "source": ".claude/proof_20260705",
+   "finding": "SHADOW-ARM ADDENDUM (Plex source ruling, 2026-07-06)"
+  },
+  {
+   "archive": "truth/archive/proof_20260706",
+   "source": ".claude/proof_20260706",
+   "finding": "OUTCOME PROOF (C46 two-lane) \u2014 C-TRUE-BASIS + C-BOUND-LAW-COMPLETION"
+  },
+  {
+   "archive": "truth/archive/proof_20260707",
+   "source": ".claude/proof_20260707",
+   "finding": "OUTCOME PROOF (C46, two-lane) \u2014 dup-buy storm containment"
+  },
+  {
+   "archive": "truth/archive/proof_20260708",
+   "source": ".claude/proof_20260708",
+   "finding": "OUTCOME PROOF (C46, two-lane) \u2014 C-BAND-CLAMP-WALK (walk-chokepoint half of the [5,95) band law)"
+  },
+  {
+   "archive": "truth/archive/proof_20260709",
+   "source": ".claude/proof_20260709",
+   "finding": "OUTCOME PROOF (C46, two-lane) \u2014 C-EARLY-UNLOCK (operator ruling: realized volume floor unlocks the full 8h window, ITF only)"
+  },
+  {
+   "archive": "truth/archive/proof_20260710",
+   "source": ".claude/proof_20260710",
+   "finding": "OUTCOME PROOF (C46, two-lane) \u2014 C-REALITY-BELL (fallback bell + reality invariant + aim sentinel + unlock conception; nothing else rides)"
+  },
+  {
+   "archive": "truth/archive/proof_20260712",
+   "source": ".claude/proof_20260712",
+   "finding": "PROOF \u2014 C-DELETION-GATE v1 (pre-6:10 build: governor stamp \u00b7 percat priority defined \u00b7 self-fill design assertion \u00b7 taker cap \u00b7 the four-proof deletion gate)"
+  },
+  {
+   "archive": "truth/archive/proof_20260713",
+   "source": ".claude/proof_20260713",
+   "finding": "PROOF \u2014 C-CAP-SCOPE v1 (emergency rescope: the pursuit cap stops strangling premarket, keeps killing chases)"
+  },
+  {
+   "archive": "truth/archive/proof_20260714",
+   "source": ".claude/proof_20260714",
+   "finding": "PROOF \u2014 C-GOLD-NOW v1 + C-PAIR-LAW v1 + AMENDMENT (one deploy; the seesaw is the thesis)"
+  },
+  {
+   "archive": "truth/archive/proof_20260715",
+   "source": ".claude/proof_20260715",
+   "finding": "OUTCOME PROOF \u2014 C-FLOW-REST-SEED v1 (operator R1 GO word, 2026-07-15)"
+  },
+  {
+   "archive": "truth/archive/prove_the_day_20260715",
+   "source": ".claude/prove_the_day_20260715",
+   "finding": "C-PROVE-THE-DAY v1 \u2014 the would-have day (2026-07-15, midnight \u2192 ~5 PM ET, one integrated pass)"
+  },
+  {
+   "archive": "truth/archive/reachrecal_20260715",
+   "source": ".claude/reachrecal_20260715",
+   "finding": "C-KOAY-EXHIBIT v1 \u2014 the Koay/Yazdani two-leg autopsy (REACH-RECAL exhibit #1)"
+  },
+  {
+   "archive": "truth/archive/replay_20260712",
+   "source": ".claude/replay_20260712",
+   "finding": "finding line pending"
+  },
+  {
+   "archive": "truth/archive/seqfloor_20260708",
+   "source": ".claude/seqfloor_20260708",
+   "finding": "SEQUENTIAL FLOOR RE-CUT \u2014 full-spectrum per (cat, cell): 90-cell grid [5,95), 1\u00a2 cells, leg keyed by its OWN W1-close"
+  },
+  {
+   "archive": "truth/archive/solidify_20260715",
+   "source": ".claude/solidify_20260715",
+   "finding": "C-THREE-DAY-SOLIDIFY v2 \u2014 Jul 13/14/15 through the current full stack, one machine"
+  },
+  {
+   "archive": "truth/archive/sweep_20260707",
+   "source": ".claude/sweep_20260707",
+   "finding": "POST-FILL MOVE QUOTE \u2014 divot vs reprice, per fill (2026-07-08 preflight-adjacent; read-only, freeze intact)"
+  },
+  {
+   "archive": "truth/archive/tape_20260714",
+   "source": ".claude/tape_20260714",
+   "finding": "PART 1 \u2014 WHERE THE READING STOPS (C-READ-THE-TAPE v2: every decision site from discovery to fill)"
+  },
+  {
+   "archive": "truth/archive/tapebell_20260715",
+   "source": ".claude/tapebell_20260715",
+   "finding": "finding line pending"
+  },
+  {
+   "archive": "truth/archive/tapegate_20260714",
+   "source": ".claude/tapegate_20260714",
+   "finding": "finding line pending"
+  },
+  {
+   "archive": "truth/archive/triage_20260711",
+   "source": ".claude/triage_20260711",
+   "finding": "\u22120k \u2014 TRUTH-JOIN DRIBBLE-ONSET closing build + the three appended roots"
+  },
+  {
+   "archive": "truth/archive/triage_20260715_morning",
+   "source": ".claude/triage_20260715_morning",
+   "finding": "finding line pending"
+  },
+  {
+   "archive": "truth/archive/volume_20260709",
+   "source": ".claude/volume_20260709",
+   "finding": "VOLUME LEDGER + FLOW CALIBRATION \u2014 findings (2026-07-09 ~1:05 am ET; read-only corpus, 2,448 pairs)"
+  },
+  {
+   "archive": "truth/archive/w1lib_20260714",
+   "source": ".claude/w1lib_20260714",
+   "finding": "finding line pending"
+  },
+  {
+   "archive": "truth/archive/window_20260714",
+   "source": ".claude/window_20260714",
+   "finding": "WINDOW-BOUNDARY CONSUMER CENSUS (C-WINDOW-LAW v1 Part 2 \u2014 every clock consumer in live_v4, its boundary, its lawfulness per \u00a75)"
   }
  ]
 }

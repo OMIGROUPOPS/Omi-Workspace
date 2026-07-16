@@ -1016,7 +1016,17 @@ def main():
                            if _ts_ok else "; ".join(_bad))
         except Exception as _tse:
             _ts_det = str(_tse)[:80]
+        # [C-ONE-TRUTH v1] boot wiring census: any index_wiring_missing
+        # today = defect; armed count reported
+        _iw_arm = _iw_miss = 0
+        for line in open(log, encoding="utf-8", errors="replace"):
+            if '"index_wiring_armed"' in line:
+                _iw_arm += 1
+            elif '"index_wiring_missing"' in line:
+                _iw_miss += 1
         _census = [
+            ("OT_wiring", _iw_miss == 0 and _iw_arm > 0,
+             "%d wirings armed / %d missing" % (_iw_arm, _iw_miss)),
             ("TS_render", _ts_ok, _ts_det),
             ("L1_three_bucket", bool(_std_fill or _std_dos),
              "%d fills / %d placements graded" % (len(_std_fill),

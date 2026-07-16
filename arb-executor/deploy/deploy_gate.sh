@@ -109,6 +109,21 @@ if [ -f "$LAST_SHA_FILE" ]; then
       exit 1
     fi
     echo "two-file law OK: BOARD.md + LIVING_VAULT.md both touched since $LAST_SHA"
+    # [C-ONE-TRUTH v1, 07-16] REGISTRATION LAW: a push that ADDS a law
+    # (ruling), a fitted surface, or a dated study without registering
+    # it (truth/INDEX.json in the same range) is REFUSED. Outside the
+    # root = doesn't exist.
+    NEW_TRUTH=$(git -C "$REPO/.." diff --name-only --diff-filter=A "$LAST_SHA"..HEAD | \
+      grep -E '^\.claude/rulings/.*\.md$|^\.claude/[a-z_]*_20[0-9]{6}/|^\.claude/trendpath/.*\.json$|^\.claude/takerreach/.*\.json$' || true)
+    if [ -n "$NEW_TRUTH" ]; then
+      if ! echo "$PUSH_FILES" | grep -q "^truth/INDEX\.json$"; then
+        echo "CLOSE-OUT REFUSED (C-ONE-TRUTH): this push adds unregistered truth members:"
+        echo "$NEW_TRUTH"
+        echo "Rebuild truth/INDEX.json (python3 truth/build_index.py) in the same push."
+        exit 1
+      fi
+      echo "one-truth registration OK: new members + INDEX in the same range"
+    fi
   else
     echo "C50 WARN: recorded last-deploy SHA $LAST_SHA not in history (branch surgery?) -- warn-pass, re-records at this deploy"
   fi

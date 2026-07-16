@@ -13478,6 +13478,43 @@ class LiveV3:
             self._order_fingerprints = {}
             self._log("order_fingerprints_error", {"err": str(_fpe)[:200]})
 
+        # [C-ONE-TRUTH v1, 07-16 — CONSUMER #1, enforced] the engine
+        # loads truth/INDEX.json at boot and logs every site→surface
+        # wiring it arms; an indexed site with no wiring logged = boot
+        # defect (index_wiring_missing → the nightly census auto-boards
+        # it). Outside the root = doesn't exist.
+        try:
+            _tip = Path(__file__).resolve().parent.parent / \
+                "truth/INDEX.json"
+            _tix = json.loads(_tip.read_text(encoding="utf-8")) \
+                if _tip.exists() else None
+            if _tix is None:
+                self._log("index_wiring_missing", {
+                    "site": "*", "why": "truth/INDEX.json absent",
+                    "decree": "C-ONE-TRUTH v1"})
+            else:
+                _tsurf = {Path(s["path"]).name: s
+                          for s in _tix.get("surfaces", [])}
+                _ws9 = Path(__file__).resolve().parent.parent
+                for _st9 in _tix.get("sites", []):
+                    _miss9 = [n for n in _st9.get("required_surfaces",
+                                                  [])
+                              if not (_ws9 / _tsurf.get(n, {}).get(
+                                  "path", "truth/__absent__")).exists()]
+                    _ok9 = _st9.get("wired_in_source", False) and \
+                        not _miss9
+                    self._log("index_wiring_armed" if _ok9 else
+                              "index_wiring_missing", {
+                                  "site": _st9.get("site"),
+                                  "surfaces_ok": not _miss9,
+                                  "missing_surfaces": _miss9,
+                                  "wired_in_source": _st9.get(
+                                      "wired_in_source"),
+                                  "index_built": _tix.get("built")})
+        except Exception as _tie:
+            self._log("index_wiring_missing", {
+                "site": "*", "why": str(_tie)[:150]})
+
         # [C-GUN-PERSIST 07-08] rebuild fired-gun state from the jsonl BEFORE
         # the first conception/repost pass (board #20: boot amnesia minted
         # post-fire buys on live matches). Fail-soft: no lineage -> empty

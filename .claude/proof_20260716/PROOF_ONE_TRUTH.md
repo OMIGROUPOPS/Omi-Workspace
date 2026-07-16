@@ -15,7 +15,7 @@
 ## BEHAVIOR ISOLATION
 The engine change is a boot-time READ + log lines only — no decision path consults the INDEX (the surfaces themselves were already the consultation inputs; the INDEX proves the wiring, it does not carry it). Zero aim/exit/completion delta. The wiring proof = THIS deploy's own boot: `index_wiring_armed` ×6 expected in the boot log (verdict recorded below post-deploy).
 
-BOOT-WIRING-RESULT-HERE
+**BOOT WIRING VERDICT (the deploy, 12:56:37 PM ET, boot `12019d1a` PID 2610972, `stopped in 21s`, audit PASS): `index_wiring_armed` ×6/6 — path_chokepoint · entry_dossier · gun_sources · completion_engine · exit_machinery · audit_exchange_truth, every one surfaces_ok; zero `index_wiring_missing`. The gate itself printed `one-truth registration OK` on this push (the law's founding live pass).**
 
 ## WATCHES
 - OT_wiring nightly (armed ≥ sites, missing = 0 or auto-board).

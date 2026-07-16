@@ -1,8 +1,8 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 25 @ **2026-07-15 08:32:49 PM ET** | build `a6901fed` | session boot 07-15 16:43 ET | log `live_v3_20260715.jsonl` | 13396 session events | monitor READ-ONLY
+- cycle 26 @ **2026-07-15 08:44:18 PM ET** | build `8b7cbef5` | session boot 07-15 16:43 ET | log `live_v3_20260715.jsonl` | 13980 session events | monitor READ-ONLY
 
-## ⚠ GUN FEED: last new in-play sighting 140 min ago (>30 tripwire; source observed_starts.db)
+## ⚠ GUN FEED: last new in-play sighting 151 min ago (>30 tripwire; source observed_starts.db)
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
 - refused:below_leg_floor UL15SUBWAR-WAR aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
@@ -14,7 +14,7 @@
 clean overnight — no watch fires
 - tripwire artifact: **PRESENT — CHECK /tmp/live_v4_TRIPWIRE.json**
 
-## ZERO-TOLERANCE — 34 violation(s)
+## ZERO-TOLERANCE — 36 violation(s)
 | ET | class | who | detail |
 |---|---|---|---|
 | 16:55:01 | **taker_capped** | KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN | taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded) |
@@ -51,8 +51,10 @@ clean overnight — no watch fires
 | 20:24:16 | **taker_capped** | KXITFMATCH-26JUL15VIISAC-VII | taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded) |
 | 20:27:15 | **taker_capped** | KXITFWMATCH-26JUL15LINRUS-LIN | taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded) |
 | 20:30:47 | **taker_capped** | KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN | taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded) |
+| 20:34:51 | **taker_capped** | KXITFMATCH-26JUL15VIISAC-VII | taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded) |
+| 20:41:15 | **taker_capped** | KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN | taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded) |
 
-**LIVE DEFECT(S) — forensic blocks written: FORENSIC_taker_capped.md, FORENSIC_w2_fill.md**
+**LIVE DEFECT(S) — forensic blocks written: FORENSIC_taker_capped.md**
 
 ## FILLS — 4 graded (session)
 | ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb | stamp |
@@ -66,46 +68,48 @@ clean overnight — no watch fires
 - classes now: {'FLOW_ABOVE': 12, 'FLOW_AT_LEVEL': 1} | repriceable now: true 2 / false 11 | **cumulative bid_grade lines: 11424 (repriceable true 1551 / false 9873)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL15NAGTOR-T | 38 | 228m | 2/40-41/39 | 39-41 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→40 |
-| ATPMATCH-26JUL15BASTIR-TIR | 65 | 228m | 44/68-69/2519 | 67-68 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→68 |
-| ATPMATCH-26JUL15RUBPEL-RUB | 70 | 218m | 66/71-73/4612 | 72-73 | 1 | **FLOW_ABOVE** | 70 | flow above but bound 70c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL15FERSIK-FER | 55 | 195m | 16/71-76/644 | 74-75 | 16 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL15FERSIK-SIK | 18 | 212m | 27/25-30/656 | 27-28 | 7 | **FLOW_ABOVE** | 99 |  |
-| ITFMATCH-26JUL15VIISAC-SAC | 54 | 228m | 128/70-87/5386 | 86-73 | 16 | **FLOW_ABOVE** | 81 |  |
-| ITFWMATCH-26JUL15DASYAN-DAS | 33 | 192m | 6/49-49/36 | 44-49 | 16 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15DASYAN-YAN | 40 | 165m | 5/55-56/60 | 53-55 | 15 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15LINRUS-RUS | 29 | 228m | 179/41-74/10283 | 69-41 | 12 | **FLOW_ABOVE** | 56 |  |
-| ITFWMATCH-26JUL15WEBFAI-FAI | 36 | 212m | 14/48-50/469 | 49-50 | 12 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL15WEBFAI-WEB | 41 | 212m | 29/49-55/1238 | 48-49 | 8 | **FLOW_ABOVE** | 99 |  |
-| WTAMATCH-26JUL15KREMON-MON | 8 | 228m | 11/8-9/951 | 8-9 | 0 | **FLOW_AT_LEVEL** | 99 |  |
-| WTAMATCH-26JUL15SHEQUE-QUE | 32 | 228m | 2/39-40/311 | 38-39 | 7 | **FLOW_ABOVE** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL15NAGTOR-T | 38 | 240m | 2/40-41/39 | 39-41 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→40 |
+| ATPMATCH-26JUL15BASTIR-TIR | 65 | 240m | 48/68-69/2775 | 68-69 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→68 |
+| ATPMATCH-26JUL15RUBPEL-RUB | 70 | 229m | 73/71-73/4847 | 72-73 | 1 | **FLOW_ABOVE** | 70 | flow above but bound 70c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL15FERSIK-FER | 55 | 206m | 19/71-76/681 | 73-75 | 16 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15FERSIK-SIK | 18 | 223m | 29/25-30/730 | 27-29 | 7 | **FLOW_ABOVE** | 99 |  |
+| ITFMATCH-26JUL15VIISAC-SAC | 54 | 240m | 202/70-92/12002 | 92-91 | 16 | **FLOW_ABOVE** | 81 |  |
+| ITFWMATCH-26JUL15DASYAN-DAS | 33 | 204m | 19/49-50/745 | 46-50 | 16 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15DASYAN-YAN | 40 | 177m | 7/54-56/85 | 53-54 | 14 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15LINRUS-RUS | 29 | 240m | 291/41-79/17806 | 78-75 | 12 | **FLOW_ABOVE** | 56 |  |
+| ITFWMATCH-26JUL15WEBFAI-FAI | 36 | 223m | 15/48-50/496 | 49-50 | 12 | **FLOW_ABOVE** | 99 |  |
+| ITFWMATCH-26JUL15WEBFAI-WEB | 41 | 223m | 33/49-55/1352 | 49-51 | 8 | **FLOW_ABOVE** | 99 |  |
+| WTAMATCH-26JUL15KREMON-MON | 8 | 240m | 11/8-9/951 | 8-9 | 0 | **FLOW_AT_LEVEL** | 99 |  |
+| WTAMATCH-26JUL15SHEQUE-QUE | 32 | 240m | 2/39-40/311 | 38-39 | 7 | **FLOW_ABOVE** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
 |---|---|---|---|---|---|
-| ITFWMATCH-26JUL15LINRUS | 41 | 41 | **82** | 97 | -15 |
 | ITFMATCH-26JUL15STHALM | 22 | 64 | **86** | 97 | -11 |
-| ITFMATCH-26JUL15VIISAC | 16 | 73 | **89** | 97 | -8 |
 | ATPMATCH-26JUL15RUBPEL | 27 | 73 | **100** | 97 | +3 |
+| ITFMATCH-26JUL15VIISAC | 16 | 91 | **107** | 97 | +10 |
+| ITFWMATCH-26JUL15LINRUS | 41 | 75 | **116** | 97 | +19 |
 
 ## FLOW-STATE — 11 tracked game(s) ({'WAKING': 7, 'OPEN': 3, 'QUIET': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ITFMATCH-26JUL15FERSIK | ITF_M | 0.7 | 1 | **OPEN** |
-| ITFWMATCH-26JUL15DASYAN | ITF_W | 0.267 | 2 | **OPEN** |
-| ITFWMATCH-26JUL15WEBFAI | ITF_W | 0.567 | 1 | **OPEN** |
+| ITFMATCH-26JUL15FERSIK | ITF_M | 0.733 | 2 | **OPEN** |
+| ITFWMATCH-26JUL15DASYAN | ITF_W | 0.733 | 1 | **OPEN** |
+| ITFWMATCH-26JUL15WEBFAI | ITF_W | 0.367 | 1 | **OPEN** |
 | ITFMATCH-26JUL15STHALM | ITF_M | 0.0 | — | **QUIET** |
 | ATPCHALLENGERMATCH-26JUL15NAGTOR | ATP_CHALL | 0.0 | 2 | **WAKING** |
-| ATPMATCH-26JUL15BASTIR | ATP_MAIN | 0.267 | 1 | **WAKING** |
-| ATPMATCH-26JUL15RUBPEL | ATP_MAIN | 0.233 | 1 | **WAKING** |
-| ITFMATCH-26JUL15VIISAC | ITF_M | 7.867 | — | **WAKING** |
-| ITFWMATCH-26JUL15LINRUS | ITF_W | 9.1 | — | **WAKING** |
+| ATPMATCH-26JUL15BASTIR | ATP_MAIN | 0.367 | 1 | **WAKING** |
+| ATPMATCH-26JUL15RUBPEL | ATP_MAIN | 0.367 | 1 | **WAKING** |
+| ITFMATCH-26JUL15VIISAC | ITF_M | 10.467 | — | **WAKING** |
+| ITFWMATCH-26JUL15LINRUS | ITF_W | 14.933 | — | **WAKING** |
 | WTAMATCH-26JUL15KREMON | WTA_MAIN | 0.0 | 1 | **WAKING** |
 | WTAMATCH-26JUL15SHEQUE | WTA_MAIN | 0.0 | 1 | **WAKING** |
 
-## PATTERNS (sub-B) — 2
-- half_arm_aging: KXATPMATCH-26JUL15RUBPEL-PEL {"fill": 27, "age_min": 218, "mode": "SET_BELOW_FLOW(prints 1c above)"}
-- half_arm_aging: KXITFMATCH-26JUL15STHALM-STH {"fill": 22, "age_min": 144, "mode": "NO_BID(sib rested earlier, none now)"}
+## PATTERNS (sub-B) — 4
+- half_arm_aging: KXATPMATCH-26JUL15RUBPEL-PEL {"fill": 27, "age_min": 229, "mode": "SET_BELOW_FLOW(prints 1c above)"}
+- half_arm_aging: KXITFMATCH-26JUL15STHALM-STH {"fill": 22, "age_min": 156, "mode": "NO_BID(sib rested earlier, none now)"}
+- reality_divergence: KXITFMATCH-26JUL15VIISAC-SAC {"kind": "resting_bid", "ref": 54.0, "market_mid": 79.5, "divergence": -25.5, "emitted_et": "2026-07-15 08:44:15 PM ET"}
+- reality_divergence: KXITFWMATCH-26JUL15LINRUS-RUS {"kind": "resting_bid", "ref": 29.0, "market_mid": 55.0, "divergence": -26.0, "emitted_et": "2026-07-15 08:44:15 PM ET"}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

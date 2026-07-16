@@ -1,7 +1,7 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784166224 -->
-written 2026-07-15 09:53:43 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784166989 -->
+written 2026-07-15 10:06:00 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (19 total this session)
+## Events (20 total this session)
 - 16:55:01 KXWTAMATCH-26JUL15IBRBAD-IBR — flatten DEFERRED: ev -0.18 above margin floor -3.0
 - 17:09:12 KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN — flatten DEFERRED: ev -2.56 above margin floor -3.0
 - 18:05:45 KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN — flatten DEFERRED: ev -2.56 above margin floor -3.0
@@ -21,6 +21,7 @@ written 2026-07-15 09:53:43 PM ET by live_validation_loop (read-only). Patch con
 - 21:32:40 KXATPMATCH-26JUL15TABMID-MID — flatten DEFERRED: ev -2.43 above margin floor -3.0
 - 21:43:44 KXATPMATCH-26JUL15TABMID-MID — flatten DEFERRED: ev -2.43 above margin floor -3.0
 - 21:43:44 KXWTAMATCH-26JUL15IBRBAD-IBR — flatten DEFERRED: ev -0.18 above margin floor -3.0
+- 21:56:29 KXATPMATCH-26JUL15TABMID-MID — flatten DEFERRED: ev -2.43 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-15 12:22:07 AM ET", "ts_epoch": 1784089327.7389374, "event": "staircase_hold_place", "ticker": "KXATPMATCH-26JUL15TABMID-MID", "details": {"cat": "ATP_MAIN", "bid": 23, "target": 23}}
@@ -1534,6 +1535,10 @@ written 2026-07-15 09:53:43 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-15 09:43:44 PM ET", "ts_epoch": 1784166224.4271986, "event": "completion_shadow", "ticker": "KXWTAMATCH-26JUL15IBRBAD-IBR", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "WTA_MAIN|underdog|at_mid|le25", "n": 11, "p_exit_fill": 0.727, "p_ride_zero": 0.273, "ev_cents": -0.18, "band": 5, "basis": 14, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_
     {"ts": "2026-07-15 09:43:44 PM ET", "ts_epoch": 1784166224.42778, "event": "completion_flatten_deferred", "ticker": "KXWTAMATCH-26JUL15IBRBAD-IBR", "details": {"event": "KXWTAMATCH-26JUL15IBRBAD", "ev_cents": -0.18, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
     {"ts": "2026-07-15 09:52:16 PM ET", "ts_epoch": 1784166736.7841477, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 10, "n_resting_orders": 25, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784147226.4462335, "legs_new": ["KXATPMATCH-26JUL15RUBPEL-PEL", "KXITFMATCH-26JUL15VIISAC-SAC"
+    {"ts": "2026-07-15 09:56:29 PM ET", "ts_epoch": 1784166989.1724439, "event": "completion_shadow", "ticker": "KXATPMATCH-26JUL15TABMID-MID", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_MAIN|underdog|at_mid|le25", "n": 23, "p_exit_fill": 0.696, "p_ride_zero": 0.304, "ev_cents": -2.43, "band": 7, "basis": 24, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_
+    {"ts": "2026-07-15 09:56:29 PM ET", "ts_epoch": 1784166989.1799111, "event": "completion_flatten_deferred", "ticker": "KXATPMATCH-26JUL15TABMID-MID", "details": {"event": "KXATPMATCH-26JUL15TABMID", "ev_cents": -2.43, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-15 09:56:29 PM ET", "ts_epoch": 1784166989.40074, "event": "completion_shadow", "ticker": "KXWTAMATCH-26JUL15IBRBAD-IBR", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "WTA_MAIN|underdog|at_mid|le25", "n": 11, "p_exit_fill": 0.727, "p_ride_zero": 0.273, "ev_cents": -0.18, "band": 5, "basis": 14, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_
+    {"ts": "2026-07-15 09:56:29 PM ET", "ts_epoch": 1784166989.4011316, "event": "completion_taker_capped", "ticker": "KXWTAMATCH-26JUL15IBRBAD-IBR", "details": {"event": "KXWTAMATCH-26JUL15IBRBAD", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
 
 ## Code path
 ?

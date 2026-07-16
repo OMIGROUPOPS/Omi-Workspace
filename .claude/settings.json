@@ -1,0 +1,70 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "Bash(git status*)",
+      "Bash(git log*)",
+      "Bash(git diff*)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push origin blend/*)",
+      "Bash(git pull --rebase origin blend/*)",
+      "Bash(git fetch*)",
+      "Bash(git stash*)",
+      "Bash(git rev-parse*)",
+      "Bash(git checkout HEAD -- *)",
+      "Bash(python -m py_compile *)",
+      "Bash(python *)",
+      "Bash(python3 *)",
+      "Bash(ssh root@104.131.191.95 *)",
+      "Bash(ssh -f root@104.131.191.95 *)",
+      "Bash(scp *)",
+      "Bash(curl *)",
+      "Bash(npm run *)",
+      "Bash(npm test*)",
+      "Bash(npx next build*)",
+      "Bash(mkdir *)",
+      "Bash(ls *)",
+      "Bash(wc *)",
+      "Bash(sed -n *)",
+      "Bash(head *)",
+      "Bash(tail *)"
+    ],
+    "deny": [
+      "Bash(rm -rf /*)",
+      "Bash(git push --force*)"
+    ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "bash",
+            "async": true,
+            "timeout": 10,
+            "command": "m=$(python -c \"import sys,json;print(json.load(sys.stdin).get('message','needs input')[:140])\" 2>/dev/null || echo 'needs input'); curl -s -m 6 -d \"CC WAITING: $m\" -H \"Tags: hourglass_flowing_sand\" https://ntfy.sh/omi-livev4-omqs-x7k3q9v2 >/dev/null 2>&1 || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "bash",
+            "async": true,
+            "timeout": 15,
+            "command": "v=$(python -c \"import sys,json;d=json.load(sys.stdin);tp=d.get('transcript_path','');import io\nlast=''\nfor line in io.open(tp,encoding='utf-8',errors='replace') if tp else []:\n    try:\n        import json as j;m=j.loads(line)\n    except Exception:continue\n    if m.get('type')=='assistant':\n        c=m.get('message',{}).get('content',[])\n        for b in c:\n            if isinstance(b,dict) and b.get('type')=='text' and b.get('text'):last=b['text']\nprint((last.strip().splitlines() or ['turn complete'])[0][:150])\" 2>/dev/null || echo 'turn complete'); curl -s -m 6 -d \"CC DONE: $v\" -H \"Tags: white_check_mark\" https://ntfy.sh/omi-livev4-omqs-x7k3q9v2 >/dev/null 2>&1 || true"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1023,6 +1023,30 @@ def cycle(n):
                   and x.get("grade") == "GUARD-WORKING")
     n_chat = sum(1 for x in new if x.get("type") == "violation"
                  and x.get("grade") == "CHATTER")
+    # [C-DESK-FREEDOM Part 3, 07-15] DEFECT-grade alarms ONLY push to the
+    # operator's channel, tagged FUND; guard-working and chatter NEVER
+    # push. Dedupe 1h per cls|ticker (a crashloop must not storm a phone).
+    try:
+        import subprocess as _sp9
+        _pd9 = S.setdefault("_push_dedup", {})
+        _nw9 = time.time()
+        for x in new:
+            if x.get("type") != "violation" or \
+                    x.get("grade", "DEFECT") != "DEFECT":
+                continue
+            _k9 = "%s|%s" % (x.get("cls"), x.get("ticker", ""))
+            if _nw9 - _pd9.get(_k9, 0) < 3600:
+                continue
+            _pd9[_k9] = _nw9
+            _msg9 = "FUND DEFECT: %s %s %s" % (
+                x.get("cls"), x.get("ticker", ""),
+                str(x.get("detail", ""))[:120])
+            _sp9.run(["curl", "-s", "-m", "6", "-d", _msg9,
+                      "-H", "Tags: rotating_light,FUND",
+                      "https://ntfy.sh/omi-livev4-omqs-x7k3q9v2"],
+                     capture_output=True, timeout=10)
+    except Exception:
+        pass
     # [07-09 RE-ENTRY WATCH] open-cycle-2 counter until the re-entry ruling
     # ships its fix: legs whose CURRENT open entry has a prior completed
     # buy->cash cycle in the same log lineage (DAALU class). Count-only.

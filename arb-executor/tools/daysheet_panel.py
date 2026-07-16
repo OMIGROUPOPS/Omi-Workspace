@@ -140,19 +140,80 @@ def _ticker_pair_code(ticker):
     return (m.group(1) if m else raw), ev
 
 
+NAMES_DIR = ROOT / "state" / "daysheet_names"
+
+
+def _kalshi_event_names(ev):
+    """Exchange-truth name fallback: Kalshi's own event object carries
+    the surnames in the title ('Wu vs Bu') and each leg's full player
+    name in yes_sub_title — keyed by the ticker itself, never a fuzzy
+    guess. Disk-cached forever (an event's players never change).
+    Needed because Kalshi keys pair codes on GIVEN names (YIBYUN =
+    Yibing/Yunchaokete) where TennisExplorer keys surnames (WUYUN)."""
+    NAMES_DIR.mkdir(parents=True, exist_ok=True)
+    p = NAMES_DIR / ("%s.json" % ev)
+    try:
+        return json.loads(p.read_text())
+    except Exception:
+        pass
+    try:
+        url = ("https://api.elections.kalshi.com/trade-api/v2/events/"
+               "%s?with_nested_markets=true" % ev)
+        req = urllib.request.Request(url, headers={"User-Agent":
+                                                   "omi-daysheet-panel"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            d = json.load(r)
+    except Exception:
+        return None  # never cache a failure
+    e = d.get("event") or {}
+    legs = {}
+    for m in e.get("markets") or []:
+        suffix = (m.get("ticker") or "").rsplit("-", 1)[-1]
+        nm = (m.get("yes_sub_title") or "").strip()
+        if suffix and nm:
+            legs[suffix] = nm
+    title = (e.get("title") or "").strip()
+    if not legs or " vs " not in title:
+        return None
+    out = {"title": title, "legs": legs}
+    try:
+        p.write_text(json.dumps(out), encoding="utf-8")
+    except OSError:
+        pass
+    return out
+
+
 def join_match_name(ticker):
-    """Real schedule join. A failed join returns joined=False and the
-    caller renders 'name join pending' — never a ticker fragment. Every
-    miss is filed."""
+    """Real schedule join, Kalshi event-object fallback. A failed join
+    returns joined=False and the caller renders 'name join pending' —
+    never a ticker fragment. Every remaining miss is filed."""
     sched = _load_schedule()
     pair_code, ev = _ticker_pair_code(ticker)
     entry = sched.get(pair_code)
-    if not entry:
-        _file_miss("name_join", ev)
-        return {"joined": False, "event": ev}
-    s1 = surname_of(entry.get("p1"))
-    s2 = surname_of(entry.get("p2"))
+    s1 = s2 = None
+    if entry:
+        s1 = surname_of(entry.get("p1"))
+        s2 = surname_of(entry.get("p2"))
     if not s1 or not s2:
+        kn = _kalshi_event_names(ev)
+        if kn:
+            t1, _, t2 = kn["title"].partition(" vs ")
+            t1, t2 = t1.strip(), t2.strip()
+            if t1 and t2:
+                return {
+                    "joined": True,
+                    "source": "kalshi_event",
+                    "event": ev,
+                    "p1_last": t1.upper(),
+                    "p2_last": t2.upper(),
+                    "p1_disp": t1,
+                    "p2_disp": t2,
+                    "kalshi_legs": kn["legs"],
+                    "start_time": None,
+                    "start_ep": None,
+                    "tournament": (entry or {}).get("tournament"),
+                    "category": (entry or {}).get("category"),
+                }
         _file_miss("name_join", ev)
         return {"joined": False, "event": ev}
     return {
@@ -179,6 +240,13 @@ def leg_last_name(ticker, sj):
     leg = ticker.rsplit("-", 1)[-1].upper()
     if not sj.get("joined"):
         return None
+    kl = sj.get("kalshi_legs") or {}
+    if leg in kl:
+        nm = kl[leg].upper()
+        for last in (sj["p1_last"], sj["p2_last"]):
+            if nm.endswith(last):
+                return last
+        return kl[leg]  # full player name — never a fragment
     for last in (sj["p1_last"], sj["p2_last"]):
         flat = last.replace(" ", "").replace("-", "")
         if flat.startswith(leg) or leg in flat:

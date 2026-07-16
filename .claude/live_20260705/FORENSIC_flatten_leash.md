@@ -1,7 +1,7 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784164959 -->
-written 2026-07-15 09:30:38 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784165560 -->
+written 2026-07-15 09:42:14 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (16 total this session)
+## Events (17 total this session)
 - 16:55:01 KXWTAMATCH-26JUL15IBRBAD-IBR — flatten DEFERRED: ev -0.18 above margin floor -3.0
 - 17:09:12 KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN — flatten DEFERRED: ev -2.56 above margin floor -3.0
 - 18:05:45 KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN — flatten DEFERRED: ev -2.56 above margin floor -3.0
@@ -18,6 +18,7 @@ written 2026-07-15 09:30:38 PM ET by live_validation_loop (read-only). Patch con
 - 19:48:43 KXWTAMATCH-26JUL15IBRBAD-IBR — flatten DEFERRED: ev -2.6 above margin floor -3.0
 - 21:12:29 KXATPMATCH-26JUL15TABMID-MID — flatten DEFERRED: ev -2.43 above margin floor -3.0
 - 21:22:39 KXATPMATCH-26JUL15TABMID-MID — flatten DEFERRED: ev -2.43 above margin floor -3.0
+- 21:32:40 KXATPMATCH-26JUL15TABMID-MID — flatten DEFERRED: ev -2.43 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-15 12:22:07 AM ET", "ts_epoch": 1784089327.7389374, "event": "staircase_hold_place", "ticker": "KXATPMATCH-26JUL15TABMID-MID", "details": {"cat": "ATP_MAIN", "bid": 23, "target": 23}}
@@ -381,6 +382,9 @@ written 2026-07-15 09:30:38 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-15 09:21:21 PM ET", "ts_epoch": 1784164881.8962908, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 8, "n_resting_orders": 26, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784147226.4462335, "legs_new": ["KXATPMATCH-26JUL15RUBPEL-PEL"], "legs_gone": ["KXATPCHALLENGER
     {"ts": "2026-07-15 09:22:39 PM ET", "ts_epoch": 1784164959.2157047, "event": "completion_shadow", "ticker": "KXATPMATCH-26JUL15TABMID-MID", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_MAIN|underdog|at_mid|le25", "n": 23, "p_exit_fill": 0.696, "p_ride_zero": 0.304, "ev_cents": -2.43, "band": 7, "basis": 24, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_
     {"ts": "2026-07-15 09:22:39 PM ET", "ts_epoch": 1784164959.2159047, "event": "completion_flatten_deferred", "ticker": "KXATPMATCH-26JUL15TABMID-MID", "details": {"event": "KXATPMATCH-26JUL15TABMID", "ev_cents": -2.43, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-15 09:32:40 PM ET", "ts_epoch": 1784165560.1864498, "event": "completion_shadow", "ticker": "KXATPMATCH-26JUL15TABMID-MID", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_MAIN|underdog|at_mid|le25", "n": 23, "p_exit_fill": 0.696, "p_ride_zero": 0.304, "ev_cents": -2.43, "band": 7, "basis": 24, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_
+    {"ts": "2026-07-15 09:32:40 PM ET", "ts_epoch": 1784165560.191973, "event": "completion_flatten_deferred", "ticker": "KXATPMATCH-26JUL15TABMID-MID", "details": {"event": "KXATPMATCH-26JUL15TABMID", "ev_cents": -2.43, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-15 09:36:23 PM ET", "ts_epoch": 1784165783.1330926, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 8, "n_resting_orders": 26, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784147226.4462335, "legs_new": ["KXATPMATCH-26JUL15RUBPEL-PEL"], "legs_gone": ["KXATPCHALLENGER
 
 ## Code path
 ?

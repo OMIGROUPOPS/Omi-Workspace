@@ -53,6 +53,8 @@
 
 ## QUEUED (next builds, in rough order)
 
+> **C-THE-WALK v1 (07-16 night, protocol ARMED + founding walk done):** per-flag trio (account/amendment/proof) + filing, `analysis/the_walk.py` renders the account. **Founding walk FOMLIM: NEW-CLASS WINDOW-TRUTH BLINDNESS founded** (27 refusals while the tape printed 7¢; W2 +40¢ double-luck on a leg that settled NO; amended fate = lawful pass — never traded that low AT SIZE; shadow-first, word-gated) + the 17-min sibling sweep gap filed to decision ③. **AWAITING THE OPERATOR'S FIRST BATCH of flags off today's sheet.**
+
 > **C-BRING-IT-HOME v1 (07-16 evening, LIVE):** the Day Sheet panel serves from the fund tracker — **http://127.0.0.1:8788 → DAY SHEET tab** (same token/tunnel; pair-lens build bundled client-side, Plex's parser verbatim, 4/4 routes 200). **THE LOCALHOST RULE permanent** (standard + ledger): operator surfaces = VPS localhost only; Vercel deploy of an operator surface = named defect. Edit loop: `npm run daysheet:build` → scp → refresh.
 
 > **C-MERGE-AND-LEDGER v1 (07-16 afternoon, executed):** PR #1 MERGED `5d390371` (Day Sheet panel reviewed + wired into the command-center; Vercel branch deploy READY, SSO-gated; panel URL replied on the PR; strike-order paragraph absent at merge — recorded honestly). **ROOT-LAW VIOLATION class FOUNDED, instance #1 filed** (non-truth doctrine source; corrective: post-bell = zero-tolerance, adjudication = the dial-walk). **THE OPEN LEDGER founded (`truth/OPEN_LEDGER.md`)** — decision stack ③–⑩ + staged pastes ⑪–⑬ + watches; **gate-checked every C50 like the BOARD; session-zero read #2 after the INDEX.**

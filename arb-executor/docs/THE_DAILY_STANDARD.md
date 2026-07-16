@@ -67,6 +67,9 @@ Every operator-facing render obeys: Match and Cat separate columns · full match
 ## THE LOCALHOST RULE (C-BRING-IT-HOME v1, operator ruling 07-16, PERMANENT)
 **The trading console is LOCALHOST, never Vercel — the fund-tracker pattern is the law for all operator surfaces** (VPS loopback, token, the operator's SSH tunnel). A Vercel/public deploy of an operator surface = named defect on whoever shipped it. The Day Sheet panel serves from the tracker (8788, DAY SHEET tab); the Vercel route remains dead code, inert under this rule.
 
+## THE WALK PROTOCOL (C-THE-WALK v1, operator dispatch 07-16, STANDING)
+The operator flags games in plain words during review; per flag the OS answers for itself: **① THE ACCOUNT** (its own decision trail from logs — every consultation: external → what it said → action; entry grade per the rubric; footnote class; `analysis/the_walk.py --event <code>` renders it) · **② THE AMENDMENT** verbalized as consultation logic, never a ticker-shaped patch — a correction no existing external could supply names the MISSING EXTERNAL as the finding · **③ THE PROOF** — the game's recorded tape re-run under the amended logic, corrected fate + grade beside the original · **④ THE FILING** — class ledger (instance or NEW-CLASS numbered), shadow-first, the operator's word gates arming; walk + game report + OPEN_LEDGER in the same push. Batch: flags answered in review order. Founding walk: FOMLIM (07-16).
+
 ## THE STANDARD CENSUS (the teeth — runs inside the nightly adjudication)
 For each census key above: did the layer RUN today, with counts? **A layer that did not run = `STANDARD DEFECT`, named in the adjudication + auto-boarded** (the AUTO-GAPS marker pattern, standard-census intake). The census never silently passes an absent layer; an absent census is itself the loudest defect (the adjudication's own presence is watched by NIGHTLY_PASS).
 

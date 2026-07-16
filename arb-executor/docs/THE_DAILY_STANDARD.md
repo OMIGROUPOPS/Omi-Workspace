@@ -55,6 +55,12 @@ Output: `.claude/game_reports/<date>/GR_<event>.md` + `INDEX.md`. Nightly: invok
 - **THE FUND SHEET (Part 5b) is the day's first page:** NAV & daily return · attribution (book × category × window × role, dollars) · per-trade expectancy (cents AND %-of-basis; the loser-cost asymmetry standing) · exposure & deployment (wagered vs bankroll beside every return) · running drawdown (feeds the sizing-floor decision) · return-on-basis as a Layer-2 column · ratio metrics (Sharpe-class) print with their n and an INSUFFICIENT-N stamp until the series earns them. The $40 and 8% lines appear on it as the operator's reference lines, in exposure context. Census key: `FS_fund_sheet`.
 - **THE SIGNAL LAW (Part 4a):** every alarm self-grades at emission — DEFECT / GUARD-WORKING / CHATTER; only DEFECT presents as a problem; the nightly census re-grades mislabels; an ungraded class defaults DEFECT (loud beats silent).
 
+## THE PARTICIPATION LABEL LAW (C-THREE-DAY-SOLIDIFY Part 4, operator word 07-15, PERMANENT)
+Two participations exist and are never conflated: **P-offered** (the executor grade: taken / lawful-offered — did the doctrine take what its own lawful window offered) and **P-market** (the funnel grade: taken / every listed market — how much of the world's slate the fund touches). **No participation figure prints anywhere without its label.** An unlabeled participation is a named defect on the surface that printed it.
+
+## THE LEG COLUMNS LAW (C-THREE-DAY-SOLIDIFY Part 3, PERMANENT)
+No leg is reported anywhere — DAY SHEET, GAME REPORTS, nightly — without: fill window + placement window · cost (basis, size, role, band, discount bucket) · **exit required (band ¢ AND % of basis)** · highest tick toward exit after fill (its window + shortfall if the band went unmet) · worst tick · close (exit/flatten/settle, realized $, both grades). Columns whose input is the full exchange tape (highest/worst tick) are GAP-named on live surfaces until the tape column lands nightly; the three-day LEGS artifact is their founding population.
+
 ## THE STANDARD CENSUS (the teeth — runs inside the nightly adjudication)
 For each census key above: did the layer RUN today, with counts? **A layer that did not run = `STANDARD DEFECT`, named in the adjudication + auto-boarded** (the AUTO-GAPS marker pattern, standard-census intake). The census never silently passes an absent layer; an absent census is itself the loudest defect (the adjudication's own presence is watched by NIGHTLY_PASS).
 

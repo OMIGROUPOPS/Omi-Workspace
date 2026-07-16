@@ -303,12 +303,31 @@ def daysheet_row(etk, rows):
         grade = ("F(W2)" if w.get("phase") == "W2" else
                  "A" if (pnl or 0) > 0 else
                  "B" if pnl in (0, None) else "C")
+        # [C-THREE-DAY-SOLIDIFY Part 3 — THE LEG COLUMNS LAW] exit
+        # required beside basis, always; tape columns GAP-named until
+        # the nightly tape column lands.
+        xp = next((x["details"] for x in rows
+                   if x["event"] == "v4_exit_posted"
+                   and leg_of(x) == tk), None)
+        xreq = (xp or {}).get("band_x")
         out.append({"game": etk[-16:], "cat": cat,
                     "leg": tk.rsplit("-", 1)[-1], "role": role,
                     "entry": "%d¢ (basis %d)" % (basis, basis),
-                    "window": w.get("phase", "?"),
+                    "window": "%s (placed %s)" % (
+                        w.get("phase", "?"),
+                        (next((str(((x["details"] or {}).get("window")
+                                    or {}).get("phase", "?"))
+                               for x in rows
+                               if x["event"] == "order_placed"
+                               and leg_of(x) == tk
+                               and (x["details"] or {}).get(
+                                   "action") == "buy"), "?"))),
                     "combined": combined, "outcome": outcome,
                     "grade": grade,
+                    "exit_required": ("%d¢ (%.0f%% of basis)"
+                                      % (xreq, xreq / basis * 100)
+                                      if xreq and basis else
+                                      "GAP-named (tape column)"),
                     "dollars": ("%+d¢ (%.0f%% of basis %d¢)"
                                 % (pnl, pnl / basis * 100 if basis else 0,
                                    basis)) if pnl is not None else "open"})

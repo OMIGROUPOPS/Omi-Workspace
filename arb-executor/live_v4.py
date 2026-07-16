@@ -2037,6 +2037,16 @@ class LiveV3:
                 details["window"] = self._window_phase(_et0)
         except Exception:
             pass
+        # [C-EXPRESS-THE-EDGE v1] cohort stamp at the single emitter —
+        # the expression's own P&L is never blended (nightly splits on it)
+        try:
+            if ticker and isinstance(details, dict) and event in (
+                    "order_placed", "entry_filled", "v4_exit_posted",
+                    "exit_filled", "settled") and ticker in getattr(
+                    self, "_express_cohort", ()):
+                details["expression_cohort"] = True
+        except Exception:
+            pass
         # [C-TAPE-BELL v1 Part 2, 07-15 — ZERO TOLERANCE, operator word:
         # "W2 FILL = ZERO-TOLERANCE. Any fill stamping W2 from now on is
         # a violation with a forensic, no exceptions."] The window stamp
@@ -9853,6 +9863,58 @@ class LiveV3:
                 # penalized (this gates PLACEMENT only). Grade basis:
                 # today's 9 corridor buys were ALL mains; open-bucket
                 # placements filled 0/17 expected ~17.]
+                # [C-EXPRESS-THE-EDGE v1, 07-16 — STAGED, arms ONLY on the
+                # three-day pooled confirmation (W1 lanes + fav postures
+                # positive at their cells' n; the verdict pushes to the
+                # operator either way). THE EXPRESSION: fav-side rests
+                # from consultation per its fitted dip window (current
+                # behavior, cohort-stamped); DOG-SIDE JOINS AT ITS FITTED
+                # LATE FLOOR — no dog bid before anchor−2h (the pair-story
+                # doctrine: the dog's floor is its close; ITF floor is
+                # entirely T−2h→bell); ITF dog CORRIDOR held OFF (the
+                # spectrum's named leak lane does not arm). Baby sizing +
+                # every guard unchanged on top. Cohort rendered separately
+                # in the nightly from day one — the expression's own P&L
+                # is never blended.]
+                if self.config.get("expression_enabled", False):
+                    _xrole9 = "fav" if current_price >= 50 else "dog"
+                    if _xrole9 == "dog":
+                        _xa9, _xas9, _ = self._anchor_state(et, time.time())
+                        _xnow9 = time.time()
+                        if _xa9 and _xnow9 < _xa9 - 7200:
+                            _xd9 = self.__dict__.setdefault(
+                                "_express_defer_logged", set())
+                            if tk not in _xd9:
+                                _xd9.add(tk)
+                                self._log("expression_dog_defer", {
+                                    "event": et, "cat": cat,
+                                    "opens_in_min": round(
+                                        (_xa9 - 7200 - _xnow9) / 60.0, 1),
+                                    "anchor_src": _xas9,
+                                    "decree": "C-EXPRESS-THE-EDGE v1 "
+                                              "(dog joins at the late "
+                                              "floor, anchor-2h)"},
+                                    ticker=tk)
+                            continue
+                        _xph9 = (self._window_phase(et) or {}).get("phase")
+                        if cat in ("ITF_M", "ITF_W") and _xph9 == \
+                                "CORRIDOR":
+                            self._log("expression_itf_dog_corridor_off", {
+                                "event": et, "cat": cat,
+                                "decree": "the spectrum's named leak lane "
+                                          "does not arm (C-EXPRESS v1)"},
+                                ticker=tk)
+                            self._entry_dossier(
+                                tk, et, cat, current_price, None,
+                                "refused:expression_leak_lane", sv9=_sv9,
+                                pl9=(_pl9 if '_pl9' in dir() else None),
+                                regime=regime,
+                                tts_min=round(time_to_start / 60),
+                                anchor_src=anchor_src,
+                                lt_age=round(lt_age_sec, 1))
+                            continue
+                    self.__dict__.setdefault(
+                        "_express_cohort", set()).add(tk)
                 if self.config.get("w1_preference_enabled", False):
                     _wpref9 = (self._window_phase(et) or {}).get("phase")
                     if _wpref9 == "CORRIDOR":

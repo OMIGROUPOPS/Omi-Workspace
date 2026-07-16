@@ -969,6 +969,30 @@ def main():
                     k0, n0, sec0))
         else:
             L.append("- no graced windows today")
+        # ---- [C-EXPRESS-THE-EDGE v1] the expression cohort, NEVER
+        # blended: split realized P&L by the cohort stamp from day one
+        _xc_n = _xc_pnl = 0
+        _xo_n = _xo_pnl = 0
+        for tk0, d0 in list(_std_setl.items()) + list(_std_exit.items()):
+            det0 = d0.get("details") or {}
+            p0 = det0.get("pnl_cents")
+            if p0 is None:
+                continue
+            if det0.get("expression_cohort") or (
+                    _std_fill.get(tk0, {}).get("details") or {}).get(
+                    "expression_cohort"):
+                _xc_n += 1
+                _xc_pnl += p0
+            else:
+                _xo_n += 1
+                _xo_pnl += p0
+        L += ["", "## EXPRESSION COHORT (C-EXPRESS-THE-EDGE — separate "
+                  "from day one, never blended)",
+              ("- cohort: %d legs %+.0fc | non-cohort: %d legs %+.0fc"
+               % (_xc_n, _xc_pnl, _xo_n, _xo_pnl)) if _xc_n else
+              "- cohort empty (expression %s)"
+              % ("ARMED but no cohort legs settled yet"
+                 if False else "not armed / staged")]
         # ---- THE STANDARD CENSUS (the teeth)
         _census = [
             ("L1_three_bucket", bool(_std_fill or _std_dos),

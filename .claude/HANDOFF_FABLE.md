@@ -44,7 +44,28 @@ doctrine_registry.json receipt (rebuilt every C50:
 python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
-## STATE (2026-07-15 PROVE+TRACKER — C50 keeps this current):
+## STATE (2026-07-16 SOLIDIFY+HELD — C50 keeps this current):
+C-THREE-DAY-SOLIDIFY v2 EXECUTED (Jul 13/14/15 pooled through the
+current stack, honest fill law, 3,320-leg exhaustive artifact):
+pooled +$9.55 on $480 (+2.0% THIN, said plainly); leak stage = W1
+(pooled -$4.95; corridor +$14.50 carries); leak cells NAMED:
+ITF_W fav W1 (-6.9% n=28, biggest dollars) / ATP_CHALL fav W1
+(-8.5%) / ITF_W dog corridor (-20.9%); ITF_M dog corridor CARRIES
+(+2.2%) — single-day lane word corrected. Role pooled fav +4.6% /
+dog -6.1%. BOTH-PARTICIPATIONS + LEG-COLUMNS laws permanent in the
+standard (P-offered vs P-market labels; mains die at OFFERED =
+P-market problem). C-EXPRESS-THE-EDGE v1: **HELD** (W1 condition
+failed at n; fav passed; verdict PUSHED to the channel); expression
+code staged expression_enabled=false, cohort stamp + nightly split
++ DEFECT-grade anomalies all pre-wired. C-DESK-FREEDOM live
+(workspace allowlist; WAITING/DONE hooks pipe-tested; monitor
+DEFECT-only push tagged FUND; topic = the existing BOT_DOWN
+channel; hooks arm on the operator's next /hooks or restart).
+NEXT: ITF_W-fav-W1 recut (the named leak) before any expression
+arm; first nightly with fund sheet + signal grades + standard
+census; Wu/Bu T-8h watch on the flag panel.
+
+(prior:) ## STATE (2026-07-15 PROVE+TRACKER — C50 keeps this current):
 C-PROVE-THE-DAY v1 EXECUTED: would-have day DELTA +$5.53 (actual
 -538c realized -> +15c; 76/135 fills die lawfully: 2 floor / 1
 preference / 73 tape-bell sweeps; W2 92->18; per-guard verdicts all

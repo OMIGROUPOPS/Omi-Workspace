@@ -1017,6 +1017,12 @@ def cycle(n):
     for x in new:
         if x.get("type") == "violation" and "grade" not in x:
             x["grade"] = SIGNAL_GRADE.get(x.get("cls"), "DEFECT")
+            # [C-EXPRESS-THE-EDGE v1] an anomaly on an expression-cohort
+            # leg grades DEFECT, never chatter — the new posture's first
+            # surprise is always loud
+            if "expression" in str(x.get("detail", "")).lower() or \
+                    "expression" in str(x.get("cls", "")).lower():
+                x["grade"] = "DEFECT"
     nv = sum(1 for x in new if x.get("type") == "violation"
              and x.get("grade", "DEFECT") == "DEFECT")
     n_guard = sum(1 for x in new if x.get("type") == "violation"

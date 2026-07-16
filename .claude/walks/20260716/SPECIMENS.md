@@ -16,7 +16,24 @@
   - REACHABLE: cashable entries exist; best cashable 68c @07-15 12:35:19 PM (band to 88c printed after, size-aware); 4 of 4 window prints cashable
   - pair: sibling worked: 1 buy placements (first 07-15 04:00:25 PM)
 
-## 26JUL15JINLEE (bell none src=None)
+## ~~26JUL15JINLEE (bell none src=None)~~ — SILENT-EMPTY LOOKUP (corrected 07-16, see WALK_JINLEE.md ⓪)
+**The code `26JUL15JINLEE` matches ZERO log lines ever — the real event is `26JUL16JINLEE` (1,131 lines). The bell was never missing; the lookup missed silently. Corrected block, rerun with the true code:**
+
+## 26JUL16JINLEE (bell 07-16 05:59:57 AM src=percat_fitted) [CORRECTED]
+- **LEE**: our fill 52c @07-16 07:47:01 AM [W2] | W1 best 73c @07-16 05:01:16 AM (size<=best 1.0 sh, 4 W1 prints)
+  - REACHABLE: cashable entries exist; best cashable 73c @07-16 05:01:16 AM (band to 92c printed after, size-aware); 2 of 2 window prints cashable
+  - pair: sibling worked: 1 buy placements (first 07-16 02:01:44 AM)
+- **JIN**: our fill 19c @07-16 06:29:21 AM [W2] | W1 best 29c @07-16 05:00:33 AM (size<=best 5.0 sh, 19 W1 prints)
+  - REACHABLE: cashable entries exist; best cashable 29c @07-16 05:00:33 AM (band to 35c printed after, size-aware); 6 of 6 window prints cashable
+  - pair: sibling worked: 1 buy placements (first 07-16 02:23:51 AM)
+
+## 26JUL15YIBYUN (bell 07-15 04:33:45 PM src=fallback_bell) [ADDED 07-16 — the Wu/Bu flag; game OPEN]
+- **YIB (Wu)**: no fill (aims/refusals only; latch-cancelled 4:40 PM, never re-placed) | W1 best 7c @07-15 12:25:08 AM (size<=best 7.0 sh, 54 W1 prints)
+  - REACHABLE: cashable entries exist; best cashable 7c @07-15 12:25:08 AM (band to 11c printed after, size-aware); 7 of 21 window prints cashable
+  - pair: sibling worked: 1 buy placements (first 07-15 10:01:37 AM)
+- **YUN (Bu)**: our fill 42c @07-15 02:53:25 PM [CORRIDOR — held 5@42, reschedule class] | W1 best 15c @07-15 01:16:25 AM (size<=best 10.5 sh, 71 W1 prints)
+  - REACHABLE: cashable entries exist; best cashable 15c @07-15 01:16:25 AM (band to 19c printed after, size-aware); 4 of 19 window prints cashable
+  - pair: sibling worked: 2 buy placements (first 07-15 08:32:21 AM)
 
 ## 26JUL16KOVRIE (bell 07-16 01:30:00 PM src=fallback_bell)
 - **RIE**: our fill 74c @07-16 01:47:21 PM [W2] | W1 best 76c @07-16 12:06:08 AM (size<=best 118.7 sh, 42 W1 prints)

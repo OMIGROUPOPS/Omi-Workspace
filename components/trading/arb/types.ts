@@ -27,7 +27,7 @@ export type TradeFilter = "all" | "live" | "paper";
 export type StatusFilter = "all" | "SUCCESS" | "PM_NO_FILL" | "EXITED" | "UNHEDGED" | "SKIPPED" | "DIRECTIONAL";
 export type TimeHorizon = "1D" | "1W" | "1M" | "YTD" | "ALL";
 export type TradeSortKey = "time" | "spread" | "net" | "qty" | "phase";
-export type DashboardTab = "cross" | "intra";
+export type DashboardTab = "cross" | "intra" | "daysheet";
 
 export interface AlertInfo {
   type: "warning" | "error" | "info";

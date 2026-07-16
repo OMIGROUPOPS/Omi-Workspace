@@ -122,6 +122,12 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     font-style:italic; border-top:1px solid rgba(26,26,46,0.5);
   }
   .no-bell{ color:var(--dimgrey); font-style:italic; }
+  .bellchip{ color:var(--grey); font-size:9px; }
+  .bellchip .est{ color:var(--grey); font-size:8px; border:1px solid var(--border); padding:0 3px; margin-left:2px; }
+  .bellchip .live{ color:var(--blue); font-size:8px; border:1px solid rgba(0,191,255,0.4); padding:0 3px; margin-left:2px; }
+  .gamehead .deeplink{ margin-left:auto; }
+  .footnote .walkpart{ color:var(--grey); }
+  .footnote .walkverdict{ color:var(--green); font-weight:700; }
 
   .overlay{
     position:fixed; inset:0; background:rgba(0,0,0,0.85); display:none;
@@ -293,6 +299,49 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
   function fmtCents(v){ return (v===null||v===undefined) ? '—' : v + '¢'; }
   function fmtDollars(v_c){ return (v_c===null||v_c===undefined) ? '—' : '$' + (v_c/100).toFixed(2); }
 
+  // NAME LAW: a null last_name = failed join — never a ticker fragment
+  function legName(l){
+    return l.last_name ? '<span class="last">' + esc(l.last_name) + '</span>'
+                       : '<span class="last join-pending">join pending</span>';
+  }
+  // bell chip with source + EST/LIVE badge; "no bell yet" only when true
+  function bellChip(bell){
+    if(!bell) return '<span class="no-bell">no bell yet</span>';
+    const badge = bell.badge === 'LIVE'
+      ? '<span class="live">LIVE</span>' : '<span class="est">EST</span>';
+    return '<span class="bellchip">bell ' + esc(bell.label) + ' · ' + esc(bell.src) + ' ' + badge + '</span>';
+  }
+  // W1/CORR lo·hi cell from the real tape; "no tape" is a named state
+  function winCell(win, which, ticker, name){
+    if(!win || win.state === 'no_tape') return '<span class="no-bell">no tape</span>';
+    if(win.state === 'tape_error') return '<span class="no-bell">tape fetch error</span>';
+    const w = win[which];
+    if(!w){
+      if(which === 'corr') return '<span class="no-bell">no corridor</span>';
+      return win.bell ? '<span class="no-bell">no W1 prints</span>'
+                      : '<span class="no-bell">no bell yet</span>';
+    }
+    return '<span class="rangepair proofable" onclick="event.stopPropagation(); openProof(event,\'' + esc(ticker) + '\',\'' + esc(name||ticker) + '\')">' +
+      '<span class="lo">' + w.lo + '</span><span class="sep">·</span><span class="hi">' + w.hi + '¢</span></span>';
+  }
+  function winClose(win, which, ticker, name){
+    if(!win || win.state === 'no_tape') return '<span class="no-bell">no tape</span>';
+    if(win.state === 'tape_error') return '<span class="no-bell">tape fetch error</span>';
+    const w = win[which];
+    if(!w){
+      if(which === 'corr') return '<span class="no-bell">no corridor</span>';
+      return win.bell ? '<span class="no-bell">no W1 prints</span>'
+                      : '<span class="no-bell">no bell yet</span>';
+    }
+    return '<span class="proofable" onclick="event.stopPropagation(); openProof(event,\'' + esc(ticker) + '\',\'' + esc(name||ticker) + '\')">' + w.close + '¢</span>';
+  }
+  function gameHead(g){
+    const link = '<a class="deeplink" href="' + esc(g.deeplink) + '" target="_blank" onclick="event.stopPropagation()">↗ KALSHI</a>';
+    return '<div class="gamehead"><span class="names' + (g.joined ? '' : ' join-pending') + '">' + esc(g.names) + '</span>' +
+      '<span class="meta">' + esc(g.tournament || '') + '</span>' +
+      '<span class="meta">' + bellChip(g.bell) + '</span>' + link + '</div>';
+  }
+
   // ── proof-on-click: real tape prints fetched per ticker ──
   const tapeCache = {};
   async function openProof(evt, ticker, title){
@@ -308,15 +357,21 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
       }
     }
     if(!data.has_receipt || !data.prints.length){
-      pop.innerHTML = '<div class="ptitle">no tape receipt</div><div class="receipt">this value has no fills-API print behind it yet — treat as unverified</div>';
+      pop.innerHTML = '<div class="ptitle">no tape</div><div class="receipt">the public trades tape has no prints for this ticker — the miss is filed server-side, never styled over</div>';
     } else {
+      let winRows = '';
+      if(data.windows){
+        const w = data.windows;
+        if(w.w1) winRows += '<div class="print"><span>W1 lo·hi·close</span><b><span class="lo">' + w.w1.lo + '</span>·<span class="hi">' + w.w1.hi + '</span>·' + w.w1.close + '¢</b><span class="ct">' + w.w1.n + ' prints</span></div>';
+        if(w.corr) winRows += '<div class="print"><span>CORR lo·hi·close</span><b><span class="lo">' + w.corr.lo + '</span>·<span class="hi">' + w.corr.hi + '</span>·' + w.corr.close + '¢</b><span class="ct">' + w.corr.n + ' prints</span></div>';
+      }
       const rows = data.prints.map(p =>
         '<div class="print"><span>' + esc(p.t) + '</span><b>' + esc(p.price_c) + '¢</b><span class="ct">' + esc(p.ct) + ' ct</span></div>'
       ).join('');
       pop.innerHTML =
-        '<div class="ptitle">' + esc(title || ticker) + ' · tape</div>' +
-        rows +
-        '<div class="receipt">source: our own fills record (public market-wide tape mirror not yet wired) · every number here has a receipt</div>';
+        '<div class="ptitle">' + esc(title || ticker) + ' · tape' + (data.n_total ? ' (' + data.n_total + ' prints, last ' + data.prints.length + ' shown)' : '') + '</div>' +
+        winRows + rows +
+        '<div class="receipt">source: ' + esc(data.source || 'kalshi public trades') + ' · every number here has a receipt</div>';
     }
     const rect = evt.target.getBoundingClientRect();
     pop.style.left = Math.min(rect.left, window.innerWidth - 350) + 'px';
@@ -357,26 +412,21 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     body.innerHTML = games.map(g => {
       const legs = g.legs.map(l => (
         '<div class="legrow positions">' +
-        '<span class="last">' + esc(l.last_name) + '</span>' +
+        legName(l) +
         '<span>' + fmtCents(l.mark_c) + '</span>' +
         '<span>' + fmtCents(l.fill_price_c ?? l.basis_c) + '</span>' +
-        '<span class="no-bell">no bell yet</span>' +
-        '<span class="no-bell">no bell yet</span>' +
+        '<span>' + winCell(l.win, 'w1', l.ticker, l.last_name) + '</span>' +
+        '<span>' + winCell(l.win, 'corr', l.ticker, l.last_name) + '</span>' +
         '<span>' + esc(l.qty) + '</span>' +
         '<span>' + fmtDollars(l.basis_c * l.qty) + '</span>' +
         '<span>' + (l.exit_resting ? fmtDollars(l.exit_resting.price_c * l.exit_resting.qty) : '—') + '</span>' +
         '</div>' +
         (l.exit_resting ?
-          '<div class="exitline"><span class="lbl">exit</span> <b>@' + l.exit_resting.price_c + '¢ ×' + l.exit_resting.qty + ' resting</b>' +
-          '<a class="deeplink" href="' + esc(l.deeplink) + '" target="_blank" onclick="event.stopPropagation()">↗ KALSHI</a></div>'
-          : '<div class="exitline"><span class="lbl">exit</span> <span class="no-bell">no exit resting yet</span>' +
-            '<a class="deeplink" href="' + esc(l.deeplink) + '" target="_blank" onclick="event.stopPropagation()">↗ KALSHI</a></div>')
+          '<div class="exitline"><span class="lbl">exit</span> <b>@' + l.exit_resting.price_c + '¢ ×' + l.exit_resting.qty + ' resting</b></div>'
+          : '<div class="exitline"><span class="lbl">exit</span> <span class="no-bell">no exit resting yet</span></div>')
       )).join('');
       const grayLine = g.gray_line ? '<div class="gray-line">' + esc(g.gray_line) + '</div>' : '';
-      return '<div class="gamebox">' +
-        '<div class="gamehead"><span class="names">' + esc(g.names) + '</span>' +
-        '<span class="meta' + (g.joined ? '' : ' join-pending') + '">' + esc(g.tournament || '') + '</span></div>' +
-        legs + grayLine + '</div>';
+      return '<div class="gamebox">' + gameHead(g) + legs + grayLine + '</div>';
     }).join('');
   }
 
@@ -396,16 +446,15 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     body.innerHTML = games.map(g => {
       const legs = g.legs.map(l => (
         '<div class="legrow orders">' +
-        '<span class="last">' + esc(l.last_name) + '</span>' +
+        legName(l) +
         '<span>' + fmtCents(l.aim_c) + '</span>' +
-        '<span class="no-bell">no bell yet</span>' +
-        '<span class="no-bell">no bell yet</span>' +
+        '<span>' + winCell(l.win, 'w1', l.ticker, l.last_name) + '</span>' +
+        '<span>' + winCell(l.win, 'corr', l.ticker, l.last_name) + '</span>' +
         '<span>' + esc(l.qty) + '</span>' +
         '<span>' + esc(l.age_label) + '</span>' +
         '</div>'
       )).join('');
-      return '<div class="gamebox"><div class="gamehead"><span class="names">' + esc(g.names) + '</span>' +
-        '<span class="meta' + (g.joined ? '' : ' join-pending') + '">' + esc(g.tournament || '') + '</span></div>' + legs + '</div>';
+      return '<div class="gamebox">' + gameHead(g) + legs + '</div>';
     }).join('');
   }
 
@@ -430,22 +479,47 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
       return;
     }
     body.innerHTML = games.map(g => {
-      const legs = g.legs.map(l => (
-        '<div class="legrow closed">' +
-        '<span class="last" style="text-align:right;">' + esc(l.last_name) + ' ' + fmtCents(l.fill_price_c) + '</span>' +
-        '<span class="proofable" onclick="event.stopPropagation(); openProof(event,\'' + esc(l.ticker) + '\',\'' + esc(l.last_name) + '\')">no bell yet</span>' +
-        '<span class="no-bell">—</span>' +
-        '<span class="proofable" onclick="event.stopPropagation(); openProof(event,\'' + esc(l.ticker) + '\',\'' + esc(l.last_name) + '\')">no bell yet</span>' +
-        '<span class="no-bell">—</span>' +
-        '<span class="no-bell">—</span>' +
-        '</div>'
-      )).join('');
+      const legs = g.legs.map(l => {
+        // ONE ROW PER LEG: OURS = avg entry fill; exit in its own line
+        const oursLbl = (l.ours_c === null || l.ours_c === undefined) ? '—'
+          : l.ours_c + '¢' + (l.n_entry_fills > 1 ? ' <span class="no-bell">(' + l.n_entry_fills + ' fills avg)</span>' : '');
+        const delta = (l.delta_c === null || l.delta_c === undefined)
+          ? '<span class="no-bell">—</span>'
+          : '<span class="' + (l.delta_c <= 0 ? 'delta-neg' : 'delta-pos') + '">' + (l.delta_c > 0 ? '+' : '') + l.delta_c + '</span>';
+        const result = l.result === '99' ? '<span class="result-99">99¢</span>'
+          : l.result === '1' ? '<span class="result-1">1¢</span>'
+          : l.result === 'cashed' ? '<span class="win">cashed</span>'
+          : '<span class="no-bell">open</span>';
+        const realized = (l.realized_c === null || l.realized_c === undefined)
+          ? '<span class="no-bell">open</span>'
+          : '<span class="' + (l.realized_c >= 0 ? 'win' : 'loss') + '">' + (l.realized_c >= 0 ? '+' : '') + l.realized_c + '¢</span>';
+        const exitLine = l.exit
+          ? '<div class="exitline"><span class="lbl">exit</span> <b>@' + l.exit.price_c + '¢ ×' + l.exit.qty + '</b> <span class="lbl">filled ' + esc(l.exit.at) + '</span></div>'
+          : (l.result === '99' || l.result === '1'
+              ? '<div class="exitline"><span class="lbl">exit</span> <span class="no-bell">settled, no sell fill</span></div>'
+              : '');
+        return '<div class="legrow closed">' +
+          '<span class="last" style="text-align:right;">' + (l.last_name ? esc(l.last_name) : '<span class="join-pending">join pending</span>') + ' ' + oursLbl + '</span>' +
+          '<span>' + winClose(l.win, 'w1', l.ticker, l.last_name) + '</span>' +
+          '<span>' + delta + '</span>' +
+          '<span>' + winClose(l.win, 'corr', l.ticker, l.last_name) + '</span>' +
+          '<span>' + result + '</span>' +
+          '<span>' + realized + '</span>' +
+          '</div>' + exitLine;
+      }).join('');
       const chip = gradeChip(g.grade_status, g.grade);
-      const footnote = g.footnote ? esc(g.footnote) : (g.grade_status === 'ungraded'
-        ? 'DAYSHEET.json not yet generated for this day — no grade rendered'
-        : '');
-      return '<div class="gamebox"><div class="gamehead"><span class="names">' + esc(g.names) + '</span>' +
-        '<span class="meta' + (g.joined ? '' : ' join-pending') + '">' + esc(g.tournament || '') + '</span></div>' +
+      let footnote = '';
+      if(g.walk){
+        // THE WALK footnote, standing format: charge -> amendment -> verdict
+        footnote = '<b>WALK</b> <span class="cls">' + esc(g.walk.charge || '') + '</span>' +
+          (g.walk.amendment ? ' <span class="walkpart">→ ' + esc(g.walk.amendment) + '</span>' : '') +
+          (g.walk.verdict ? ' <span class="walkverdict">→ ' + esc(g.walk.verdict) + '</span>' : '');
+      } else if(g.footnote){
+        footnote = esc(g.footnote);
+      } else if(g.grade_status === 'ungraded'){
+        footnote = 'DAYSHEET.json not yet generated for this day — no grade rendered';
+      }
+      return '<div class="gamebox">' + gameHead(g) +
         legs +
         '<div class="gradebar-inline">' + chip + '<span class="footnote">' + footnote + '</span></div>' +
         '</div>';
@@ -466,6 +540,9 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
   loadOrders();
   loadClosed();
   loadTapeAge();
+  // deep-linkable tabs: /daysheet?token=...#closed opens on CLOSED
+  const hashTab = (window.location.hash || '').replace('#','');
+  if(['positions','orders','closed'].includes(hashTab)) switchTab(hashTab);
   setInterval(() => { loadPositions(); loadOrders(); loadClosed(); loadTapeAge(); }, 30000);
 </script>
 </body>

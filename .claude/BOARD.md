@@ -53,6 +53,8 @@
 
 ## QUEUED (next builds, in rough order)
 
+> **C-DAYSHEET-LIVE v1 (07-16, MERGED+DEPLOYED):** PR #2 merged `439695d9`, fund_tracker restarted (PID 2687114) — `/daysheet` three-tab POSITIONS/ORDERS/CLOSED + 4 JSON routes 200 on the box (tape receipt proven on YIBYUN). **QUEUED BUILD: recorder order-creation capture** — `snap_orders` gains Kalshi order `created_time` (closes the PLACED-ET schema gap) + fills recorder parses `created_time` primary / undocumented `ts` fallback (fragility verified NOT active: 1,160/1,160 rows populated). Both filings live in the open ledger.
+
 > **C-THE-WALK v1 (07-16 night, protocol ARMED + founding walk done):** per-flag trio (account/amendment/proof) + filing, `analysis/the_walk.py` renders the account. **Founding walk FOMLIM: NEW-CLASS WINDOW-TRUTH BLINDNESS founded** (27 refusals while the tape printed 7¢; W2 +40¢ double-luck on a leg that settled NO; amended fate = lawful pass — never traded that low AT SIZE; shadow-first, word-gated) + the 17-min sibling sweep gap filed to decision ③. **AWAITING THE OPERATOR'S FIRST BATCH of flags off today's sheet.**
 
 > **C-BRING-IT-HOME v1 (07-16 evening, LIVE):** the Day Sheet panel serves from the fund tracker — **http://127.0.0.1:8788 → DAY SHEET tab** (same token/tunnel; pair-lens build bundled client-side, Plex's parser verbatim, 4/4 routes 200). **THE LOCALHOST RULE permanent** (standard + ledger): operator surfaces = VPS localhost only; Vercel deploy of an operator surface = named defect. Edit loop: `npm run daysheet:build` → scp → refresh.

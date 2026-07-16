@@ -134,6 +134,14 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-16 · C-DAYSHEET-LIVE v1 — PR #2 MERGED + DEPLOYED (the three-tab panel supersedes the pair-lens bundle; two disclosed gaps filed, one verified down to the row)
+
+**MERGE (PR #2, `plex/daysheet-live-panel`, head `9b39fd82`, merged `439695d9`):** reviewed — stdlib-only sibling modules (`daysheet_panel.py` + `daysheet_template.py`), same token gate, same port/tunnel; spec constraints honored in code (full last names from the schedule join, "name join pending" never a ticker fragment; PLACED/FILLED never conflated; grades only from DAYSHEET.json, "ungraded" never invented; every rendered number backed by `/api/tape/<ticker>.json`). Fixture smoke local: 5 routes 200, three tabs render. **The PR touched NO truth/ files — INDEX regenerated post-merge, zero drift beyond the build stamp (the panel is an operator surface; its registration is THIS entry + the open ledger, not SURFACE_DEFS).**
+
+**DEPLOY (the normal path):** VPS rebase-pull (one untracked-twin DOCKET.md, md5-identical, removed per the runbook; 4 monitor cycles rebased + pushed, origin `3b7d9dd6`); fund_tracker restarted in tmux (PID 2687114). **Verified on the box: `/daysheet` 200 with POSITIONS/ORDERS/CLOSED · `/api/positions.json` · `/api/orders.json` · `/api/closed.json` · `/api/tape/KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN.json` all 200** — the tape receipt route proven on the Wu/Bu watch game itself.
+
+**THE TWO FILINGS (open ledger, same push):** ① PLACED-ET SCHEMA GAP — `snap_orders` has no order-creation timestamp; the column renders honest `None` until the recorder captures Kalshi's order `created_time` (never backfilled from fill time). ② RECORDER `f.get("ts")` FRAGILITY — **verified against the live db before filing: Kalshi's fills payload carries BOTH the undocumented `ts` epoch and the documented `created_time`; 1,160/1,160 rows populated, 0 zeros — a fragility, not an active defect.** Remedy (parse `created_time` primary, `ts` fallback) ships with the PLACED-ET build.
+
 ### 2026-07-16 · C-THE-WALK v1 — the OS answers for itself (standing protocol founded; the founding walk run on the operator's own example)
 
 **THE PROTOCOL (standing, in the standard):** per operator flag — ① THE ACCOUNT (the OS's own decision trail from logs, `analysis/the_walk.py`) · ② THE AMENDMENT verbalized as consultation logic, never a ticker-shaped patch (a correction no external could supply names the MISSING EXTERNAL as the finding) · ③ THE PROOF (the game's tape re-run amended, corrected fate + grade beside the original) · ④ THE FILING (class ledger, shadow-first, the operator's word gates arming) — walk + game report + OPEN_LEDGER one push, flags answered in review order.

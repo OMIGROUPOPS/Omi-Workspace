@@ -28,6 +28,14 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import daysheet_panel as ds  # noqa: E402  [C-DAYSHEET-LIVE] POSITIONS/
+# ORDERS/CLOSED panel — sibling module, same dir, stdlib only. See
+# daysheet_panel.py + daysheet_template.py docstrings for the render spec
+# this supersedes (155a1d6's pair-lens bundle, off the approved mock v4).
+from daysheet_template import PAGE_TEMPLATE as DAYSHEET_PAGE  # noqa: E402
+
 ET = ZoneInfo("America/New_York")
 ROOT = Path(__file__).resolve().parent.parent
 DB = ROOT / "state" / "fund_equity.db"
@@ -455,23 +463,35 @@ class H(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b"token required")
             return
-        # [C-BRING-IT-HOME v1, 07-16 — operator ruling: operator surfaces
-        # live on THIS localhost, never Vercel] the pair-lens Day Sheet
-        # panel (Plex's merged build, bundled verbatim client-side) as a
-        # tab of this app: same port, same token, same tunnel.
-        DSDIR = ROOT.parent / "tools" / "daysheet_local"
+        # [C-DAYSHEET-LIVE, 07-16 — supersedes 155a1d6's pair-lens bundle
+        # per operator ruling: the approved POSITIONS/ORDERS/CLOSED mock v4
+        # is the real spec, and post-dates that bundle's deploy] Day Sheet
+        # panel, self-contained page + 4 JSON routes, same port/token/
+        # tunnel as always. Old pair-lens component tree under
+        # components/trading/arb/panels/daysheet/* and
+        # lib/trading/daysheet-parser.ts is left in the repo untouched —
+        # cleanup is a separate, later push, not this one.
         if u.path == "/daysheet":
-            self._send(
-                "<!doctype html><html><head><meta charset='utf-8'>"
-                "<title>OMI FUND — DAY SHEET</title>"
-                "<link rel='stylesheet' href='/assets/daysheet.css?token="
-                + TOK + "'></head><body style='background:#0a0a0a'>"
-                "<div style='font:12px ui-monospace;padding:6px'>"
-                "<a style='color:#6aa5e0' href='/?token=" + TOK
-                + "'>&larr; TICKER</a></div>"
-                "<div id='daysheet-root'></div>"
-                "<script src='/assets/daysheet_bundle.js?token=" + TOK
-                + "'></script></body></html>", "text/html; charset=utf-8")
+            self._send(DAYSHEET_PAGE, "text/html; charset=utf-8")
+            return
+        if u.path == "/api/positions.json":
+            age = ds.tape_age_seconds()
+            self._send(json.dumps(ds.build_positions()),
+                       "application/json",
+                       {"X-Tape-Age-Seconds": ("%.0f" % age)
+                        if age is not None else ""})
+            return
+        if u.path == "/api/orders.json":
+            self._send(json.dumps(ds.build_orders()), "application/json")
+            return
+        if u.path == "/api/closed.json":
+            day_param = (qs.get("day") or [None])[0]
+            self._send(json.dumps(ds.build_closed(day_param)),
+                       "application/json")
+            return
+        if u.path.startswith("/api/tape/") and u.path.endswith(".json"):
+            ticker = u.path[len("/api/tape/"):-len(".json")]
+            self._send(json.dumps(ds.build_tape(ticker)), "application/json")
             return
         if u.path == "/daysheet.md":
             p = ROOT.parent / ".claude" / "today_sheet" / "LATEST.md"
@@ -480,18 +500,6 @@ class H(BaseHTTPRequestHandler):
                            "text/plain; charset=utf-8",
                            {"x-sheet-mtime": datetime.fromtimestamp(
                                p.stat().st_mtime, ET).isoformat()})
-            else:
-                self.send_response(404)
-                self.end_headers()
-            return
-        if u.path.startswith("/assets/"):
-            name = u.path.rsplit("/", 1)[-1]
-            p = DSDIR / name
-            if p.exists() and name in ("daysheet_bundle.js",
-                                       "daysheet.css"):
-                self._send(p.read_bytes(),
-                           "application/javascript" if name.endswith(
-                               ".js") else "text/css")
             else:
                 self.send_response(404)
                 self.end_headers()

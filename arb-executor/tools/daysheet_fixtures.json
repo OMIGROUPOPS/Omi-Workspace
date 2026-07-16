@@ -1,0 +1,222 @@
+{
+  "_note": "Fixture data for local dev/screenshot of /daysheet without live db or SSH access. Loaded when DAYSHEET_FIXTURE env var points at this file (see daysheet_panel.py). Reproduces the approved mock v4 exhibits (Wu/Bu withdrawn-not-absent, Santillan/Okonkwo time-sourcing exhibit) plus one deliberately ungraded/empty-state closed game to prove the honest-empty-state path renders correctly. Real deployment ignores this file entirely.",
+  "tape_age_seconds": 4,
+
+  "positions": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15WUYIB",
+      "joined": true,
+      "names": "Wu v Bu",
+      "start_time": "2026-07-15T22:30:00Z",
+      "tournament": "ATP Chall",
+      "category": "ATP Challenger",
+      "legs": [
+        {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL15WUYIB-BU",
+          "last_name": "BU",
+          "qty": 5,
+          "basis_c": 42,
+          "mark_c": 41,
+          "exit_resting": {"price_c": 51, "qty": 5},
+          "deeplink": "https://kalshi.com/markets/kxatpchallengermatch-26jul15wuyib",
+          "placed_et": "6:41 AM ET",
+          "filled_et": "7:03 AM ET",
+          "fill_price_c": 42
+        }
+      ],
+      "gray_line": "WU — posted 53¢ · pulled (match-live latch, 4:40 PM yest) · never re-placed"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15HOVCHA",
+      "joined": true,
+      "names": "Hovde v Chang",
+      "start_time": "2026-07-15T21:00:00Z",
+      "tournament": "ITF W",
+      "category": "ITF Women",
+      "legs": [
+        {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL15HOVCHA-HOV",
+          "last_name": "HOVDE",
+          "qty": 5,
+          "basis_c": 31,
+          "mark_c": 20,
+          "exit_resting": {"price_c": 38, "qty": 5},
+          "deeplink": "https://kalshi.com/markets/kxatpchallengermatch-26jul15hovcha",
+          "placed_et": "4:52 PM ET",
+          "filled_et": "4:52 PM ET",
+          "fill_price_c": 31
+        }
+      ],
+      "gray_line": "CHANG — posted 62¢ · never traded that low"
+    },
+    {
+      "event": "KXWTAMAIN-26JUL15MONKRE",
+      "joined": true,
+      "names": "Monnet v Krejcikova",
+      "start_time": "2026-07-15T17:30:00Z",
+      "tournament": "WTA Main",
+      "category": "WTA",
+      "legs": [
+        {
+          "ticker": "KXWTAMAIN-26JUL15MONKRE-MON",
+          "last_name": "MONNET",
+          "qty": 5,
+          "basis_c": 8,
+          "mark_c": 7,
+          "exit_resting": {"price_c": 14, "qty": 5},
+          "deeplink": "https://kalshi.com/markets/kxwtamain-26jul15monkre",
+          "placed_et": "12:58 PM ET",
+          "filled_et": "1:03 PM ET",
+          "fill_price_c": 8
+        }
+      ],
+      "gray_line": "KREJCIKOVA — not bid — aims never crossed"
+    }
+  ],
+
+  "orders": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15ADDGHI",
+      "joined": true,
+      "names": "Added v Ghibaudo",
+      "start_time": "2026-07-16T20:30:00Z",
+      "legs": [
+        {"ticker": "KXATPCHALLENGERMATCH-26JUL15ADDGHI-ADD", "last_name": "ADD", "aim_c": 44, "qty": 5, "age_label": "9h12m"},
+        {"ticker": "KXATPCHALLENGERMATCH-26JUL15ADDGHI-GHI", "last_name": "GHI", "aim_c": 48, "qty": 5, "age_label": "9h12m"}
+      ]
+    }
+  ],
+
+  "closed": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15DELDAL",
+      "joined": true,
+      "names": "Dellien v Dalla Valle",
+      "start_time": "2026-07-15T16:10:00Z",
+      "tournament": "ATP Chall",
+      "legs": [
+        {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL15DELDAL-DAL",
+          "last_name": "DALLA VALLE",
+          "fill_price_c": 34,
+          "filled_et": "11:52 AM ET",
+          "placed_et": "11:52 AM ET",
+          "qty": 5,
+          "grade_row": {"grade": "A"}
+        },
+        {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL15DELDAL-DEL",
+          "last_name": "DELLIEN",
+          "fill_price_c": 57,
+          "filled_et": "12:04 PM ET",
+          "placed_et": "12:04 PM ET",
+          "qty": 5,
+          "grade_row": {"grade": "A"}
+        }
+      ],
+      "grade": "A",
+      "grade_status": "graded",
+      "footnote": "both legs W1, discounts held, cast/hold trail clean · no open class"
+    },
+    {
+      "event": "KXITFMMATCH-26JUL15FOMLIM",
+      "joined": true,
+      "names": "Fomin v Lim",
+      "start_time": "2026-07-15T09:00:00Z",
+      "tournament": "ITF M",
+      "legs": [
+        {
+          "ticker": "KXITFMMATCH-26JUL15FOMLIM-LIM",
+          "last_name": "LIM",
+          "fill_price_c": 39,
+          "filled_et": "5:41 AM ET",
+          "placed_et": "5:41 AM ET",
+          "qty": 5,
+          "grade_row": {"grade": "D"}
+        }
+      ],
+      "grade": "D",
+      "grade_status": "graded",
+      "footnote": "one-sided + paid 27¢ into decay — instance of CLASS: entry-vs-window · fix: dial-walk pending"
+    },
+    {
+      "event": "KXITFMMATCH-26JUL16NEWMAT",
+      "joined": true,
+      "names": "Petrov v Aslanov",
+      "start_time": "2026-07-16T06:00:00Z",
+      "tournament": "ITF M",
+      "legs": [
+        {
+          "ticker": "KXITFMMATCH-26JUL16NEWMAT-PET",
+          "last_name": "PETROV",
+          "fill_price_c": 46,
+          "filled_et": "2:10 AM ET",
+          "placed_et": "2:10 AM ET",
+          "qty": 5,
+          "grade_row": null
+        }
+      ],
+      "grade": null,
+      "grade_status": "ungraded",
+      "footnote": "DAYSHEET.json not yet generated for this day — no grade rendered"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15SANOKO",
+      "joined": true,
+      "names": "Santillan v Okonkwo",
+      "start_time": "2026-07-15T14:00:00Z",
+      "tournament": "ATP Chall",
+      "legs": [
+        {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL15SANOKO-SAN",
+          "last_name": "SANTILLAN",
+          "fill_price_c": 29,
+          "placed_et": "10:01 AM ET",
+          "filled_et": "3:50 PM ET",
+          "qty": 5,
+          "grade_row": {"grade": "A"}
+        },
+        {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL15SANOKO-OKO",
+          "last_name": "OKONKWO",
+          "fill_price_c": 61,
+          "placed_et": "10:03 AM ET",
+          "filled_et": "10:14 AM ET",
+          "qty": 5,
+          "grade_row": {"grade": "A"}
+        }
+      ],
+      "grade": "A",
+      "grade_status": "graded",
+      "footnote": "both legs W1, discounts held · no open class — time-sourcing exhibit: SANTILLAN placed 10:01a, filled 3:50p (resting bid, normal lag) — placed\u2260filled always rendered separately, never conflated"
+    }
+  ],
+
+  "order_history": {
+    "KXATPCHALLENGERMATCH-26JUL15WUYIB-WU": "posted 53¢ · pulled (match-live latch, 4:40 PM yest) · never re-placed",
+    "KXATPCHALLENGERMATCH-26JUL15HOVCHA-CHA": "posted 62¢ · never traded that low",
+    "KXWTAMAIN-26JUL15MONKRE-KRE": null
+  },
+
+  "tape": {
+    "KXATPCHALLENGERMATCH-26JUL15WUYIB-BU": {
+      "has_receipt": true,
+      "prints": [
+        {"t": "Jul 15 6:41 AM", "price_c": 40, "ct": 18},
+        {"t": "Jul 15 6:52 AM", "price_c": 42, "ct": 14},
+        {"t": "Jul 15 7:03 AM", "price_c": 44, "ct": 22}
+      ]
+    },
+    "KXATPCHALLENGERMATCH-26JUL15SANOKO-SAN": {
+      "has_receipt": true,
+      "prints": [
+        {"t": "Jul 15 10:01 AM", "price_c": 30, "ct": 10},
+        {"t": "Jul 15 3:50 PM", "price_c": 29, "ct": 5}
+      ]
+    },
+    "KXITFMMATCH-26JUL16NEWMAT-PET": {
+      "has_receipt": false,
+      "prints": []
+    }
+  }
+}

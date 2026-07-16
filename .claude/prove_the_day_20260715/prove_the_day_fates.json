@@ -1,0 +1,1391 @@
+{
+ "accounting_rules": [
+  "subtractive by construction: the new chain only adds refusals and sweeps; no bid exists in the would-have day that did not exist in the actual day \u2014 no invented fills, no market-impact claims",
+  "counterfactual deaths are real fills removed size-aware at their booked prices; exits/settles scored by the existing machinery against the real tape (their booked outcomes)",
+  "marks = current exchange bid vs basis for open legs"
+ ],
+ "fills_today": 135,
+ "killed": 76,
+ "fates": [
+  {
+   "tk": "KXATPCHALLENGERMATCH-26JUL14DELXIL-DEL",
+   "fill_et": "12:46:10 AM",
+   "px": 85,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "no tape fire",
+   "realized_pnl": 65.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON",
+   "fill_et": "05:10:58 AM",
+   "px": 35,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "fire 05:12:31 AM, margin -1.5 min < grace",
+   "realized_pnl": 40.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPCHALLENGERMATCH-26JUL15IVACRA-IVA",
+   "fill_et": "03:43:48 PM",
+   "px": 32,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION(live-bell era)",
+   "why": "post-deploy fill \u2014 the live bell owns it",
+   "realized_pnl": 40.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPCHALLENGERMATCH-26JUL15NOGSUR-SUR",
+   "fill_et": "02:15:19 PM",
+   "px": 54,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 01:51:16 PM + 60s grace < fill 02:15:19 PM (24.0 min earlier)",
+   "realized_pnl": -270.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPCHALLENGERMATCH-26JUL15RODINC-INC",
+   "fill_et": "02:22:47 PM",
+   "px": 23,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 35.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPCHALLENGERMATCH-26JUL15ROMGAL-GAL",
+   "fill_et": "05:11:55 AM",
+   "px": 65,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "fire 05:14:41 AM, margin -2.8 min < grace",
+   "realized_pnl": 95.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPCHALLENGERMATCH-26JUL15SANERE-ERE",
+   "fill_et": "12:41:22 PM",
+   "px": 52,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 70.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPCHALLENGERMATCH-26JUL15SANERE-SAN",
+   "fill_et": "12:55:27 PM",
+   "px": 38,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 40.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPCHALLENGERMATCH-26JUL15SCHHOU-HOU",
+   "fill_et": "12:13:09 PM",
+   "px": 35,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 12:09:23 PM + 60s grace < fill 12:13:09 PM (3.8 min earlier)",
+   "realized_pnl": 40.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPCHALLENGERMATCH-26JUL15SCHHOU-SCH",
+   "fill_et": "12:23:58 PM",
+   "px": 56,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 12:09:23 PM + 60s grace < fill 12:23:58 PM (14.6 min earlier)",
+   "realized_pnl": 75.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPCHALLENGERMATCH-26JUL15SHIBOU-SHI",
+   "fill_et": "12:25:17 PM",
+   "px": 51,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 11:34:28 AM + 60s grace < fill 12:25:17 PM (50.8 min earlier)",
+   "realized_pnl": -255.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN",
+   "fill_et": "02:53:25 PM",
+   "px": 42,
+   "phase": "CORRIDOR",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": null,
+   "open": true
+  },
+  {
+   "tk": "KXATPCHALLENGERMATCH-26JUL15ZHOPER-ZHO",
+   "fill_et": "12:47:10 PM",
+   "px": 62,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 12:44:39 PM + 60s grace < fill 12:47:10 PM (2.5 min earlier)",
+   "realized_pnl": 90.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPMATCH-26JUL15BASTIR-BAS",
+   "fill_et": "11:23:56 AM",
+   "px": 32,
+   "phase": "CORRIDOR",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": null,
+   "open": true
+  },
+  {
+   "tk": "KXATPMATCH-26JUL15BUBHAL-HAL",
+   "fill_et": "08:34:30 AM",
+   "px": 28,
+   "phase": "CORRIDOR",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": null,
+   "open": true
+  },
+  {
+   "tk": "KXATPMATCH-26JUL15CARUGO-UGO",
+   "fill_et": "12:24:43 PM",
+   "px": 34,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 11:31:09 AM + 60s grace < fill 12:24:43 PM (53.6 min earlier)",
+   "realized_pnl": 35.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPMATCH-26JUL15PRADZU-DZU",
+   "fill_et": "10:21:49 AM",
+   "px": 61,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 10:03:13 AM + 60s grace < fill 10:21:49 AM (18.6 min earlier)",
+   "realized_pnl": 80.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPMATCH-26JUL15PRADZU-PRA",
+   "fill_et": "10:35:24 AM",
+   "px": 31,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 10:03:13 AM + 60s grace < fill 10:35:24 AM (32.2 min earlier)",
+   "realized_pnl": 35.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPMATCH-26JUL15PRIMOL-MOL",
+   "fill_et": "01:40:19 PM",
+   "px": 29,
+   "phase": "CORRIDOR",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 49.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPMATCH-26JUL15RUBPEL-PEL",
+   "fill_et": "04:54:56 PM",
+   "px": 27,
+   "phase": "CORRIDOR",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": null,
+   "open": true
+  },
+  {
+   "tk": "KXATPMATCH-26JUL15TABMID-MID",
+   "fill_et": "10:32:12 AM",
+   "px": 24,
+   "phase": "CORRIDOR",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": null,
+   "open": true
+  },
+  {
+   "tk": "KXATPMATCH-26JUL15TRANAV-NAV",
+   "fill_et": "08:50:30 AM",
+   "px": 83,
+   "phase": "CORRIDOR",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": -415.0,
+   "open": false
+  },
+  {
+   "tk": "KXATPMATCH-26JUL15VANDRO-VAN",
+   "fill_et": "02:34:30 PM",
+   "px": 39,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 02:26:03 PM + 60s grace < fill 02:34:30 PM (8.4 min earlier)",
+   "realized_pnl": 40.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL14ALHVUX-VUX",
+   "fill_et": "12:25:46 AM",
+   "px": 77,
+   "phase": "W1",
+   "fate": "KILLED-AT-CONCEPTION",
+   "why": "discovery floor: 60 shares < 1500 (measured)",
+   "realized_pnl": -385.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL14KOAYAZ-YAZ",
+   "fill_et": "12:27:35 AM",
+   "px": 59,
+   "phase": "W1",
+   "fate": "KILLED-AT-CONCEPTION",
+   "why": "discovery floor: 9 shares < 1500 (measured)",
+   "realized_pnl": 85.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL14SIKMAT-MAT",
+   "fill_et": "02:03:26 AM",
+   "px": 64,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 01:28:16 AM + 60s grace < fill 02:03:26 AM (35.2 min earlier)",
+   "realized_pnl": -320.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL14UTACAZ-CAZ",
+   "fill_et": "01:07:07 AM",
+   "px": 66,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 01:01:58 PM + 60s grace < fill 01:07:07 AM (725.1 min earlier)",
+   "realized_pnl": 95.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL14UTACAZ-UTA",
+   "fill_et": "05:59:55 AM",
+   "px": 39,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 01:01:58 PM + 60s grace < fill 05:59:55 AM (1017.9 min earlier)",
+   "realized_pnl": -195.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15BOCSEK-SEK",
+   "fill_et": "01:41:16 PM",
+   "px": 17,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 01:14:05 PM + 60s grace < fill 01:41:16 PM (27.2 min earlier)",
+   "realized_pnl": -85.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15BROVUJ-VUJ",
+   "fill_et": "04:30:32 AM",
+   "px": 49,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 5.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15CARBAR-CAR",
+   "fill_et": "05:45:13 AM",
+   "px": 8,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 05:32:48 AM + 60s grace < fill 05:45:13 AM (12.4 min earlier)",
+   "realized_pnl": -40.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15CARSEI-SEI",
+   "fill_et": "10:15:50 AM",
+   "px": 43,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 45.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15CHACHA2-CHA",
+   "fill_et": "05:19:32 AM",
+   "px": 79,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 95.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15CLEALU-ALU",
+   "fill_et": "08:28:18 AM",
+   "px": 48,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 08:08:12 AM + 60s grace < fill 08:28:18 AM (20.1 min earlier)",
+   "realized_pnl": 55.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15COLFRU-COL",
+   "fill_et": "01:30:47 PM",
+   "px": 36,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 01:07:58 PM + 60s grace < fill 01:30:47 PM (22.8 min earlier)",
+   "realized_pnl": 40.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15COLLOP-LOP",
+   "fill_et": "04:52:52 AM",
+   "px": 20,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 04:50:46 AM + 60s grace < fill 04:52:52 AM (2.1 min earlier)",
+   "realized_pnl": -100.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15DARCRI-DAR",
+   "fill_et": "12:15:54 PM",
+   "px": 16,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 25.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15DELBUT-DEL",
+   "fill_et": "06:55:51 AM",
+   "px": 68,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 06:42:21 AM + 60s grace < fill 06:55:51 AM (13.5 min earlier)",
+   "realized_pnl": 100.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15DHOPLE-DHO",
+   "fill_et": "04:48:14 AM",
+   "px": 12,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 04:37:06 AM + 60s grace < fill 04:48:14 AM (11.1 min earlier)",
+   "realized_pnl": 20.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15EICPEN-EIC",
+   "fill_et": "07:10:28 AM",
+   "px": 10,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 06:50:36 AM + 60s grace < fill 07:10:28 AM (19.9 min earlier)",
+   "realized_pnl": -50.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15FABGRE-GRE",
+   "fill_et": "07:34:56 AM",
+   "px": 7,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 07:01:46 AM + 60s grace < fill 07:34:56 AM (33.2 min earlier)",
+   "realized_pnl": -35.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15FEREFS-FER",
+   "fill_et": "10:39:10 AM",
+   "px": 19,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 10:23:04 AM + 60s grace < fill 10:39:10 AM (16.1 min earlier)",
+   "realized_pnl": 42.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15FONHRA-FON",
+   "fill_et": "10:26:23 AM",
+   "px": 16,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 25.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15GAIDEL-GAI",
+   "fill_et": "01:48:49 PM",
+   "px": 42,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 18.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15GUTSHA-SHA",
+   "fill_et": "11:08:07 AM",
+   "px": 48,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "fire 11:07:41 AM, margin 0.4 min < grace",
+   "realized_pnl": 55.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15IVAPAP-IVA",
+   "fill_et": "11:24:59 AM",
+   "px": 32,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 40.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15JEFROB-JEF",
+   "fill_et": "09:31:40 AM",
+   "px": 6,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 20.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15KAMTIM-KAM",
+   "fill_et": "09:18:36 AM",
+   "px": 18,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 08:08:24 AM + 60s grace < fill 09:18:36 AM (70.2 min earlier)",
+   "realized_pnl": -90.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15KHOUJV-UJV",
+   "fill_et": "08:31:52 AM",
+   "px": 9,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 08:04:42 AM + 60s grace < fill 08:31:52 AM (27.2 min earlier)",
+   "realized_pnl": -45.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15KRUALA-ALA",
+   "fill_et": "07:23:09 AM",
+   "px": 5,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 06:46:21 AM + 60s grace < fill 07:23:09 AM (36.8 min earlier)",
+   "realized_pnl": 20.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15LEOTSI-LEO",
+   "fill_et": "09:27:08 AM",
+   "px": 63,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "fire 09:26:47 AM, margin 0.4 min < grace",
+   "realized_pnl": -315.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15LERHUR-LER",
+   "fill_et": "12:56:15 PM",
+   "px": 19,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": -95.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15LIEBEC-LIE",
+   "fill_et": "02:01:39 PM",
+   "px": 53,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 70.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15LONMIL-LON",
+   "fill_et": "12:10:39 PM",
+   "px": 16,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 25.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15LONMIL-MIL",
+   "fill_et": "12:38:29 PM",
+   "px": 50,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 12:24:50 PM + 60s grace < fill 12:38:29 PM (13.7 min earlier)",
+   "realized_pnl": 65.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15MAKMAB-MAK",
+   "fill_et": "07:36:47 AM",
+   "px": 5,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 05:38:04 AM + 60s grace < fill 07:36:47 AM (118.7 min earlier)",
+   "realized_pnl": -25.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15MANKAR-KAR",
+   "fill_et": "04:43:52 AM",
+   "px": 14,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "fire 04:44:21 AM, margin -0.5 min < grace",
+   "realized_pnl": 75.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15MARDOM-DOM",
+   "fill_et": "04:54:52 AM",
+   "px": 51,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "fire 04:55:34 AM, margin -0.7 min < grace",
+   "realized_pnl": 65.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15MARSIC-SIC",
+   "fill_et": "11:27:25 AM",
+   "px": 14,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 11:25:44 AM + 60s grace < fill 11:27:25 AM (1.7 min earlier)",
+   "realized_pnl": 25.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15MASDUT-DUT",
+   "fill_et": "06:24:46 AM",
+   "px": 81,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "fire 06:25:35 AM, margin -0.8 min < grace",
+   "realized_pnl": -155.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15MAZTOR-TOR",
+   "fill_et": "01:12:04 PM",
+   "px": 15,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 25.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15MENKIM-MEN",
+   "fill_et": "07:11:44 AM",
+   "px": 10,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 06:28:50 AM + 60s grace < fill 07:11:44 AM (42.9 min earlier)",
+   "realized_pnl": -50.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15MESBAR-MES",
+   "fill_et": "03:09:58 PM",
+   "px": 11,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 02:40:20 PM + 60s grace < fill 03:09:58 PM (29.6 min earlier)",
+   "realized_pnl": 20.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15MIRMUR-MUR",
+   "fill_et": "05:24:32 AM",
+   "px": 10,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 05:20:18 AM + 60s grace < fill 05:24:32 AM (4.2 min earlier)",
+   "realized_pnl": -50.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15OVCCOR-COR",
+   "fill_et": "03:11:30 AM",
+   "px": 5,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 28.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15PALVAN-PAL",
+   "fill_et": "01:02:26 PM",
+   "px": 64,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 19.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15PECJAN-PEC",
+   "fill_et": "02:51:36 PM",
+   "px": 16,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 02:49:14 PM + 60s grace < fill 02:51:36 PM (2.4 min earlier)",
+   "realized_pnl": -80.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15PERBEA-BEA",
+   "fill_et": "04:06:40 AM",
+   "px": 35,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 03:51:02 AM + 60s grace < fill 04:06:40 AM (15.6 min earlier)",
+   "realized_pnl": -175.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15POEMAT-MAT",
+   "fill_et": "01:15:15 PM",
+   "px": 5,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 12:17:18 PM + 60s grace < fill 01:15:15 PM (58.0 min earlier)",
+   "realized_pnl": -25.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15POPMIC-POP",
+   "fill_et": "12:09:37 PM",
+   "px": 18,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": -90.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15RODAGU-AGU",
+   "fill_et": "09:29:04 AM",
+   "px": 9,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 09:13:03 AM + 60s grace < fill 09:29:04 AM (16.0 min earlier)",
+   "realized_pnl": -45.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15STEMAK-STE",
+   "fill_et": "03:34:19 AM",
+   "px": 28,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 03:01:19 AM + 60s grace < fill 03:34:19 AM (33.0 min earlier)",
+   "realized_pnl": 35.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15VIVBET-BET",
+   "fill_et": "07:15:30 AM",
+   "px": 8,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 06:44:08 AM + 60s grace < fill 07:15:30 AM (31.4 min earlier)",
+   "realized_pnl": -40.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15WANJIN-WAN",
+   "fill_et": "06:33:30 AM",
+   "px": 6,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 06:16:16 AM + 60s grace < fill 06:33:30 AM (17.2 min earlier)",
+   "realized_pnl": -30.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15WIEWIT-WIT",
+   "fill_et": "02:48:43 AM",
+   "px": 10,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 02:34:44 AM + 60s grace < fill 02:48:43 AM (14.0 min earlier)",
+   "realized_pnl": 20.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFMATCH-26JUL15ZHAZHA2-ZHA2",
+   "fill_et": "07:57:20 AM",
+   "px": 46,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 45.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15ANSSAV-SAV",
+   "fill_et": "05:15:46 AM",
+   "px": 69,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 05:11:34 AM + 60s grace < fill 05:15:46 AM (4.2 min earlier)",
+   "realized_pnl": 90.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15APPSPI-APP",
+   "fill_et": "08:33:47 AM",
+   "px": 54,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 08:31:25 AM + 60s grace < fill 08:33:47 AM (2.4 min earlier)",
+   "realized_pnl": 60.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15ARYMAM-ARY",
+   "fill_et": "02:39:58 AM",
+   "px": 15,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 02:15:12 AM + 60s grace < fill 02:39:58 AM (24.8 min earlier)",
+   "realized_pnl": 20.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15BARMAR-BAR",
+   "fill_et": "08:05:45 AM",
+   "px": 8,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": -40.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15BRODAE-DAE",
+   "fill_et": "09:12:50 AM",
+   "px": 16,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": -80.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15BULGIZ-BUL",
+   "fill_et": "12:04:00 PM",
+   "px": 38,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 10:28:40 AM + 60s grace < fill 12:04:00 PM (95.3 min earlier)",
+   "realized_pnl": 35.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15DANGHI-GHI",
+   "fill_et": "05:13:51 AM",
+   "px": 52,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 05:08:47 AM + 60s grace < fill 05:13:51 AM (5.1 min earlier)",
+   "realized_pnl": 60.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15DUDVLA-VLA",
+   "fill_et": "07:00:55 AM",
+   "px": 9,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 06:58:51 AM + 60s grace < fill 07:00:55 AM (2.1 min earlier)",
+   "realized_pnl": 15.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15ESTBAB-BAB",
+   "fill_et": "12:15:45 PM",
+   "px": 73,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 11:21:02 AM + 60s grace < fill 12:15:45 PM (54.7 min earlier)",
+   "realized_pnl": 90.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15FIRPAR-FIR",
+   "fill_et": "10:56:42 AM",
+   "px": 37,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 09:59:18 AM + 60s grace < fill 10:56:42 AM (57.4 min earlier)",
+   "realized_pnl": 35.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15GUZPAR-PAR",
+   "fill_et": "11:00:21 AM",
+   "px": 64,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": -70.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15HORBRU-BRU",
+   "fill_et": "06:36:43 AM",
+   "px": 20,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "fire 06:36:07 AM, margin 0.6 min < grace",
+   "realized_pnl": -100.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15IYECHA-IYE",
+   "fill_et": "11:11:28 AM",
+   "px": 10,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 11:09:53 AM + 60s grace < fill 11:11:28 AM (1.6 min earlier)",
+   "realized_pnl": 15.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15JACROW-JAC",
+   "fill_et": "12:41:49 PM",
+   "px": 34,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 12:22:58 PM + 60s grace < fill 12:41:49 PM (18.9 min earlier)",
+   "realized_pnl": 35.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15JANGLU-GLU",
+   "fill_et": "09:49:55 AM",
+   "px": 23,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 09:43:52 AM + 60s grace < fill 09:49:55 AM (6.0 min earlier)",
+   "realized_pnl": 25.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15JANGLU-JAN",
+   "fill_et": "10:12:25 AM",
+   "px": 50,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 09:43:52 AM + 60s grace < fill 10:12:25 AM (28.5 min earlier)",
+   "realized_pnl": 55.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15KONMIR-MIR",
+   "fill_et": "01:06:17 PM",
+   "px": 28,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 30.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15KONPED-KON",
+   "fill_et": "04:23:54 PM",
+   "px": 5,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION(live-bell era)",
+   "why": "post-deploy fill \u2014 the live bell owns it",
+   "realized_pnl": 15.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15KRUDUE-KRU",
+   "fill_et": "05:33:48 AM",
+   "px": 28,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 120.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15KUMCHA-CHA",
+   "fill_et": "07:57:38 AM",
+   "px": 38,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 35.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15LANSCH-LAN",
+   "fill_et": "09:12:17 AM",
+   "px": 64,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 75.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15MASLAB-MAS",
+   "fill_et": "06:09:22 AM",
+   "px": 7,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "fire 06:09:40 AM, margin -0.3 min < grace",
+   "realized_pnl": 15.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15MATRIV-RIV",
+   "fill_et": "11:23:48 AM",
+   "px": 18,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 09:52:39 AM + 60s grace < fill 11:23:48 AM (91.2 min earlier)",
+   "realized_pnl": -90.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15MATSHC-MAT",
+   "fill_et": "03:54:23 PM",
+   "px": 17,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION(live-bell era)",
+   "why": "post-deploy fill \u2014 the live bell owns it",
+   "realized_pnl": -85.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15MAXRAB-MAX",
+   "fill_et": "01:22:57 PM",
+   "px": 65,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 16.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15MIKBER-BER",
+   "fill_et": "07:54:49 AM",
+   "px": 13,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "fire 07:55:39 AM, margin -0.8 min < grace",
+   "realized_pnl": 20.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15NOETEI-TEI",
+   "fill_et": "12:08:15 PM",
+   "px": 17,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 12:02:49 PM + 60s grace < fill 12:08:15 PM (5.4 min earlier)",
+   "realized_pnl": 20.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15OXFCHA-OXF",
+   "fill_et": "12:54:03 PM",
+   "px": 18,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 12:01:22 PM + 60s grace < fill 12:54:03 PM (52.7 min earlier)",
+   "realized_pnl": -90.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15PAGRIZ-RIZ",
+   "fill_et": "10:41:57 AM",
+   "px": 5,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 08:27:14 AM + 60s grace < fill 10:41:57 AM (134.7 min earlier)",
+   "realized_pnl": 15.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15PERBAR-BAR",
+   "fill_et": "03:10:27 AM",
+   "px": 14,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 03:09:09 AM + 60s grace < fill 03:10:27 AM (1.3 min earlier)",
+   "realized_pnl": -70.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15POCMIS-MIS",
+   "fill_et": "04:42:41 AM",
+   "px": 61,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "fire 04:42:30 AM, margin 0.2 min < grace",
+   "realized_pnl": -55.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15SAINAI-NAI",
+   "fill_et": "10:24:30 AM",
+   "px": 39,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 10:14:26 AM + 60s grace < fill 10:24:30 AM (10.1 min earlier)",
+   "realized_pnl": 35.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15SEMALE-ALE",
+   "fill_et": "11:28:16 AM",
+   "px": 24,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": -120.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15SERKRE-KRE",
+   "fill_et": "04:51:19 AM",
+   "px": 27,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 04:48:40 AM + 60s grace < fill 04:51:19 AM (2.6 min earlier)",
+   "realized_pnl": -135.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15TEPJOV-JOV",
+   "fill_et": "10:17:43 AM",
+   "px": 5,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 08:44:46 AM + 60s grace < fill 10:17:43 AM (93.0 min earlier)",
+   "realized_pnl": -25.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15TRAKAR-KAR",
+   "fill_et": "11:18:26 AM",
+   "px": 48,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 50.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15TRAKAR-TRA",
+   "fill_et": "09:43:16 AM",
+   "px": 23,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 25.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15VIRRAD-VIR",
+   "fill_et": "03:12:53 AM",
+   "px": 12,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 03:10:56 AM + 60s grace < fill 03:12:53 AM (2.0 min earlier)",
+   "realized_pnl": 15.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15VOGNUU-NUU",
+   "fill_et": "04:21:44 AM",
+   "px": 15,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 04:19:13 AM + 60s grace < fill 04:21:44 AM (2.5 min earlier)",
+   "realized_pnl": 20.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15WAGCIR-CIR",
+   "fill_et": "04:06:39 AM",
+   "px": 69,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 03:43:41 AM + 60s grace < fill 04:06:39 AM (23.0 min earlier)",
+   "realized_pnl": 155.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15WOBSHI-WOB",
+   "fill_et": "08:45:34 AM",
+   "px": 13,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "fire 08:45:51 AM, margin -0.3 min < grace",
+   "realized_pnl": 20.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15XAVBUE-XAV",
+   "fill_et": "12:02:55 PM",
+   "px": 59,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "fire 12:12:54 PM, margin -10.0 min < grace",
+   "realized_pnl": 65.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15YODAHL-AHL",
+   "fill_et": "04:06:38 AM",
+   "px": 35,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 03:42:27 AM + 60s grace < fill 04:06:38 AM (24.2 min earlier)",
+   "realized_pnl": -175.0,
+   "open": false
+  },
+  {
+   "tk": "KXITFWMATCH-26JUL15ZHALEM-ZHA",
+   "fill_et": "09:58:00 AM",
+   "px": 37,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 09:11:12 AM + 60s grace < fill 09:58:00 AM (46.8 min earlier)",
+   "realized_pnl": 35.0,
+   "open": false
+  },
+  {
+   "tk": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS",
+   "fill_et": "08:09:35 AM",
+   "px": 40,
+   "phase": "W2",
+   "fate": "SURVIVES-W2-VIOLATION",
+   "why": "fire 08:10:09 AM, margin -0.6 min < grace",
+   "realized_pnl": 35.0,
+   "open": false
+  },
+  {
+   "tk": "KXWTACHALLENGERMATCH-26JUL15ASTNOH-NOH",
+   "fill_et": "11:16:39 AM",
+   "px": 57,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 65.0,
+   "open": false
+  },
+  {
+   "tk": "KXWTACHALLENGERMATCH-26JUL15CARPAL-CAR",
+   "fill_et": "10:35:45 AM",
+   "px": 62,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 10:00:25 AM + 60s grace < fill 10:35:45 AM (35.3 min earlier)",
+   "realized_pnl": 70.0,
+   "open": false
+  },
+  {
+   "tk": "KXWTACHALLENGERMATCH-26JUL15GRAPER-PER",
+   "fill_et": "05:52:25 AM",
+   "px": 9,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 05:05:48 AM + 60s grace < fill 05:52:25 AM (46.6 min earlier)",
+   "realized_pnl": 15.0,
+   "open": false
+  },
+  {
+   "tk": "KXWTACHALLENGERMATCH-26JUL15JONURG-JON",
+   "fill_et": "11:24:40 AM",
+   "px": 69,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 11:18:49 AM + 60s grace < fill 11:24:40 AM (5.9 min earlier)",
+   "realized_pnl": 90.0,
+   "open": false
+  },
+  {
+   "tk": "KXWTACHALLENGERMATCH-26JUL15JONURG-URG",
+   "fill_et": "11:14:59 AM",
+   "px": 25,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": 30.0,
+   "open": false
+  },
+  {
+   "tk": "KXWTACHALLENGERMATCH-26JUL15KNUTAR-KNU",
+   "fill_et": "09:57:12 AM",
+   "px": 18,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 09:48:50 AM + 60s grace < fill 09:57:12 AM (8.4 min earlier)",
+   "realized_pnl": 25.0,
+   "open": false
+  },
+  {
+   "tk": "KXWTACHALLENGERMATCH-26JUL15KNUTAR-TAR",
+   "fill_et": "10:09:09 AM",
+   "px": 74,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 09:48:50 AM + 60s grace < fill 10:09:09 AM (20.3 min earlier)",
+   "realized_pnl": 90.0,
+   "open": false
+  },
+  {
+   "tk": "KXWTACHALLENGERMATCH-26JUL15PENFAL-FAL",
+   "fill_et": "09:36:56 AM",
+   "px": 75,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 09:21:46 AM + 60s grace < fill 09:36:56 AM (15.2 min earlier)",
+   "realized_pnl": 95.0,
+   "open": false
+  },
+  {
+   "tk": "KXWTACHALLENGERMATCH-26JUL15PENFAL-PEN",
+   "fill_et": "09:23:36 AM",
+   "px": 18,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 09:21:46 AM + 60s grace < fill 09:23:36 AM (1.8 min earlier)",
+   "realized_pnl": 25.0,
+   "open": false
+  },
+  {
+   "tk": "KXWTACHALLENGERMATCH-26JUL15VANFAL-FAL",
+   "fill_et": "07:09:38 AM",
+   "px": 13,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 07:07:43 AM + 60s grace < fill 07:09:38 AM (1.9 min earlier)",
+   "realized_pnl": 20.0,
+   "open": false
+  },
+  {
+   "tk": "KXWTAMATCH-26JUL15AVAMAR-MAR",
+   "fill_et": "01:57:22 PM",
+   "px": 58,
+   "phase": "W2",
+   "fate": "KILLED-AT-PLACEMENT",
+   "why": "W1-PREFERENCE: mains/CHALL corridor placement refused",
+   "realized_pnl": 80.0,
+   "open": false
+  },
+  {
+   "tk": "KXWTAMATCH-26JUL15IBRBAD-IBR",
+   "fill_et": "06:38:57 AM",
+   "px": 14,
+   "phase": "W1",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": null,
+   "open": true
+  },
+  {
+   "tk": "KXWTAMATCH-26JUL15SHEQUE-SHE",
+   "fill_et": "09:13:19 AM",
+   "px": 65,
+   "phase": "CORRIDOR",
+   "fate": "SURVIVES",
+   "why": "",
+   "realized_pnl": null,
+   "open": true
+  },
+  {
+   "tk": "KXWTAMATCH-26JUL15TAGBEJ-BEJ",
+   "fill_et": "02:12:09 PM",
+   "px": 50,
+   "phase": "W2",
+   "fate": "SWEPT-BY-TAPE-BELL",
+   "why": "bell 02:06:06 PM + 60s grace < fill 02:12:09 PM (6.1 min earlier)",
+   "realized_pnl": 65.0,
+   "open": false
+  }
+ ],
+ "refusal_counts_actual": {
+  "refused:below_leg_floor": 54673,
+  "refused:pair_seesaw": 71
+ },
+ "corridor_mains_placements": [
+  "KXATPCHALLENGERMATCH-26JUL14VUKARS-ARS",
+  "KXATPMATCH-26JUL15BASTIR-TIR",
+  "KXATPMATCH-26JUL15BUBHAL-BUB",
+  "KXATPMATCH-26JUL15KYMTSI-KYM",
+  "KXATPMATCH-26JUL15KYMTSI-TSI",
+  "KXATPMATCH-26JUL15RUBPEL-RUB",
+  "KXATPMATCH-26JUL15TABMID-TAB",
+  "KXATPMATCH-26JUL15TRANAV-TRA",
+  "KXWTAMATCH-26JUL15AVAMAR-AVA",
+  "KXWTAMATCH-26JUL15AVAMAR-MAR",
+  "KXWTAMATCH-26JUL15SHEQUE-QUE"
+ ],
+ "pnl": {
+  "actual_realized": -538.0,
+  "actual_marked": 0.0,
+  "would_realized": 15.0,
+  "would_marked": 0.0,
+  "delta_realized": 553.0,
+  "delta_marked": -0.0,
+  "delta_total": 553.0
+ },
+ "violations": {
+  "actual_w2_fills": 92,
+  "would_have_w2_fills": 18
+ }
+}

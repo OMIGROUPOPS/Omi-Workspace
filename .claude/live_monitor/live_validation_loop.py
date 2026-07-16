@@ -1001,7 +1001,28 @@ def cycle(n):
     forensics = forensic_check(items, S, log_path)
     changed = write_status(S, items, log_path, n, forensics, bid_grades, chf,
                            chf_cum=tuple(cum_rp), flow_rows=flow_rows)
-    nv = sum(1 for x in new if x.get("type") == "violation")
+    # [C-FUND-TRACKER Part 4a — THE SIGNAL LAW, 07-15] every alarm
+    # self-grades at emission: DEFECT / GUARD-WORKING / CHATTER — only
+    # DEFECT presents as a problem (the [N VIOLATION] tag). The nightly
+    # census re-grades mislabels; ungraded classes default DEFECT (loud
+    # beats silent).
+    SIGNAL_GRADE = {
+        "w2_fill": "DEFECT", "grace_breach": "DEFECT",
+        "handler_error": "DEFECT", "walk_cap_breach": "DEFECT",
+        "combined_over_goal": "DEFECT",
+        "chase_cap": "GUARD-WORKING", "flatten_leash": "GUARD-WORKING",
+        "taker_capped": "GUARD-WORKING", "self_fill_bell": "GUARD-WORKING",
+        "bell_missing": "CHATTER"}   # coverage counter; the scorecard
+                                     # owns the real BELLS-MISSING number
+    for x in new:
+        if x.get("type") == "violation" and "grade" not in x:
+            x["grade"] = SIGNAL_GRADE.get(x.get("cls"), "DEFECT")
+    nv = sum(1 for x in new if x.get("type") == "violation"
+             and x.get("grade", "DEFECT") == "DEFECT")
+    n_guard = sum(1 for x in new if x.get("type") == "violation"
+                  and x.get("grade") == "GUARD-WORKING")
+    n_chat = sum(1 for x in new if x.get("type") == "violation"
+                 and x.get("grade") == "CHATTER")
     # [07-09 RE-ENTRY WATCH] open-cycle-2 counter until the re-entry ruling
     # ships its fix: legs whose CURRENT open entry has a prior completed
     # buy->cash cycle in the same log lineage (DAALU class). Count-only.
@@ -1035,7 +1056,9 @@ def cycle(n):
     res = "no-change"
     if new or changed or forensics:
         res = git_push(f"live-monitor cycle {n}: +{len(new)} lines"
-                       f"{' [' + str(nv) + ' VIOLATION]' if nv else ''}"
+                       f"{' [' + str(nv) + ' DEFECT]' if nv else ''}"
+                       f"{' [' + str(n_guard) + ' guard]' if n_guard else ''}"
+                       f"{' [' + str(n_chat) + ' chatter]' if n_chat else ''}"
                        f"{' [FORENSIC ' + ','.join(forensics) + ']' if forensics else ''}"
                        f"{' [OPEN-CYCLE2 ' + str(oc2) + ']' if oc2 > 0 else ''}")
     print(f"[{now_et()}] cycle {n}: events={S['events']} fills={len(S['fills'])} "

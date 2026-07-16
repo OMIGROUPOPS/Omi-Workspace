@@ -44,7 +44,36 @@ doctrine_registry.json receipt (rebuilt every C50:
 python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
-## STATE (2026-07-15 DAILY-STANDARD — C50 keeps this current):
+## STATE (2026-07-15 PROVE+TRACKER — C50 keeps this current):
+C-PROVE-THE-DAY v1 EXECUTED: would-have day DELTA +$5.53 (actual
+-538c realized -> +15c; 76/135 fills die lawfully: 2 floor / 1
+preference / 73 tape-bell sweeps; W2 92->18; per-guard verdicts all
+clean, zero lawful misfires); acceptance fates SUPERSEDED
+(substring-bug floors -> exact parse). Part 5 EARNING REPLAY:
+full doctrine over 394 events = wagered $127.50 earned +$12.30,
+yield +9.6% WITH participation 94.1% — ROLE SPLIT standing print:
+the leak is ITF dog-side CORRIDOR (ITF_W dogs -21.7% / ITF_M -8.9%
+at full participation); favs + all W1 lanes positive. Dress
+rehearsal: 12:20 stack ran early, all 4 census keys RAN, 405
+reports; new intake: 494 unstamped-grace windows (latch arms
+pre-gun, naming gap). Artifacts .claude/prove_the_day_20260715/.
+C-FUND-TRACKER v2 LIVE (no bot change — live bot untouched):
+tools/fund_tracker.py in tmux fund_tracker, loopback 8788, token
+state/fund_tracker.token, tunnel ssh -N -L 8788:127.0.0.1:8788;
+60s equity recorder (cash+marked, exchange truth) into
+state/fund_equity.db = ONE LEDGER (parallel figures = defect on
+the organ); panels: positions/fills/bids/STATE FLAGS (one-sided-
+sibling-unworked = the Wu/Bu YIBYUN founding exhibit: Bu 5@42
+corridor-filled NO GUN on a reschedule, Wu's bid latch-cancelled
+4:40 PM never re-placed — watch Wu gets worked at T-8h)/DAY SHEET
+(DAYSHEET.json 148 rows)/FUND SHEET (Part 5b). SIGNAL LAW live in
+the monitor (DEFECT/GUARD-WORKING/CHATTER; commit tags split).
+FUND LAWS permanent in THE_DAILY_STANDARD (cents-beside-basis,
+$40/day + 8% = operator reference lines, role-split nightly,
+one-ledger). Watches: recorder cadence gaps · state-flag panel ·
+first nightly with signal grades + fund sheet.
+
+(prior:) ## STATE (2026-07-15 DAILY-STANDARD — C50 keeps this current):
 C-DAILY-STANDARD v1 DEPLOYED. THE STANDARD founded at
 docs/THE_DAILY_STANDARD.md (operating law: layers added once by
 dispatch, run forever, nightly standard-census; a layer that didn't

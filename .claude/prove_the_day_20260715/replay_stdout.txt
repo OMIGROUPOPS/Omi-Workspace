@@ -1,0 +1,4 @@
+/root/prove_the_day.py:57: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+  return (datetime.datetime.utcfromtimestamp(ep) - datetime.timedelta(hours=4)).strftime('%I:%M:%S %p')
+fills 135 | killed 76 (conception 2 / placement 1 / swept 73) | W2 92 -> 18
+P&L actual: realized -538c marked +0c | would-have: realized +15c marked +0c | DELTA +553c

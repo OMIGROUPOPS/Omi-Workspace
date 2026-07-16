@@ -273,6 +273,48 @@ def render_event(etk, rows):
     return "\n".join(L) + "\n"
 
 
+def daysheet_row(etk, rows):
+    """[C-FUND-TRACKER Part 3] one row per game-leg for THE DAY SHEET —
+    the game reports' front page. Cents beside basis, always."""
+    out = []
+    cat = next((d["details"].get("cat") for d in rows
+                if (d.get("details") or {}).get("cat")), "?")
+    fills = [(d["ts_epoch"], leg_of(d), d["details"]) for d in rows
+             if d["event"] == "entry_filled"]
+    combined = (sum(f[2].get("fill_price") or 0 for f in sorted(fills)[:2])
+                if len(fills) >= 2 else
+                (fills[0][2].get("fill_price") if fills else None))
+    for d in rows:
+        if d["event"] != "entry_filled":
+            continue
+        det = d["details"]
+        tk = leg_of(d)
+        w = det.get("window") or {}
+        basis = det.get("fill_price") or 0
+        setl = next((x["details"] for x in rows
+                     if x["event"] == "settled" and leg_of(x) == tk), None)
+        exitf = next((x["details"] for x in rows
+                      if x["event"] == "exit_filled" and leg_of(x) == tk),
+                     None)
+        pnl = ((exitf or setl or {}).get("pnl_cents"))
+        outcome = ("CASHED" if exitf else
+                   ("SETTLED-%s" % setl.get("settle")) if setl else "OPEN")
+        role = "fav" if basis >= 50 else "dog"
+        grade = ("F(W2)" if w.get("phase") == "W2" else
+                 "A" if (pnl or 0) > 0 else
+                 "B" if pnl in (0, None) else "C")
+        out.append({"game": etk[-16:], "cat": cat,
+                    "leg": tk.rsplit("-", 1)[-1], "role": role,
+                    "entry": "%d¢ (basis %d)" % (basis, basis),
+                    "window": w.get("phase", "?"),
+                    "combined": combined, "outcome": outcome,
+                    "grade": grade,
+                    "dollars": ("%+d¢ (%.0f%% of basis %d¢)"
+                                % (pnl, pnl / basis * 100 if basis else 0,
+                                   basis)) if pnl is not None else "open"})
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", default=datetime.now().strftime("%Y%m%d"))
@@ -283,6 +325,7 @@ def main():
     ev = load_day(args.date)
     outdir = OUT_ROOT / args.date
     outdir.mkdir(parents=True, exist_ok=True)
+    sheet = []
     idx = []
     for etk, rows in sorted(ev.items()):
         if args.event and args.event not in etk:
@@ -295,6 +338,7 @@ def main():
         md = render_event(etk, rows)
         fp = outdir / ("GR_%s.md" % etk.replace("/", "_"))
         fp.write_text(md, encoding="utf-8")
+        sheet.extend(daysheet_row(etk, rows))
         pnl = sum((d["details"].get("pnl_cents") or 0) for d in rows
                   if d["event"] in ("exit_filled", "settled"))
         idx.append("- [%s](GR_%s.md) events=%d pnl=%+.0fc" % (
@@ -302,7 +346,10 @@ def main():
     (outdir / "INDEX.md").write_text(
         "# GAME REPORTS %s (%d games)\n\n%s\n"
         % (args.date, len(idx), "\n".join(idx)), encoding="utf-8")
-    print("game_reports: %d games -> %s" % (len(idx), outdir))
+    (outdir / "DAYSHEET.json").write_text(
+        json.dumps(sheet, indent=1), encoding="utf-8")
+    print("game_reports: %d games -> %s (+DAYSHEET.json %d rows)"
+          % (len(idx), outdir, len(sheet)))
 
 
 if __name__ == "__main__":

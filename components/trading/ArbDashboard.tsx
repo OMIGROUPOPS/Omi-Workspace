@@ -11,6 +11,7 @@ import { PositionsTable } from "./arb/panels/PositionsTable";
 import { SettledTrades } from "./arb/panels/SettledTrades";
 import { PnlBox } from "./arb/panels/PnlBox";
 import { TradeLog } from "./arb/panels/TradeLog";
+import { DaySheetPanel } from "./arb/panels/daysheet/DaySheetPanel";
 import type { DashboardTab } from "./arb/types";
 
 export default function ArbDashboard() {
@@ -109,9 +110,23 @@ export default function ArbDashboard() {
         >
           K INTRA
         </button>
+        <button
+          onClick={() => setActiveTab("daysheet")}
+          className={`px-4 py-1.5 text-[10px] font-mono font-bold uppercase tracking-wider transition-colors ${
+            activeTab === "daysheet"
+              ? "text-[#00ff88] border-b-2 border-[#00ff88]"
+              : "text-[#ffffff] hover:text-[#00ff88]/60"
+          }`}
+        >
+          DAY SHEET
+        </button>
       </div>
 
-      {activeTab === "cross" ? (
+      {activeTab === "daysheet" ? (
+        <div className="p-3">
+          <DaySheetPanel />
+        </div>
+      ) : activeTab === "cross" ? (
         <div className="p-3 space-y-2">
           {/* ── Stats Row ──────────────────────────────────────── */}
           <div className="grid grid-cols-4 gap-2">

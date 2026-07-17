@@ -1,0 +1,221 @@
+{
+ "generated": "2026-07-17 12:20 AM ET",
+ "gate_3a": {
+  "honesty": {
+   "pass": true,
+   "detail": "G1: no admissible discovery-time direction model for mains (clocks convicted, gauge fits exclude mains)"
+  },
+  "posterior": {
+   "pass": true,
+   "detail": "conf peak 0.62 -> trough 0.26 over 201 obs"
+  },
+  "era": {
+   "pass": true,
+   "detail": "M9 has no ITF rows and archive anchors are INADMISSIBLE for ITF (census 07-10, gap G4) -- offered archive anchor REFUSED"
+  },
+  "range_layer": {
+   "pass": true,
+   "detail": "empty->NO-OPINION ok=True; populated->PRIOR ok=True (ATP_MAIN|leader|at_mid|51_75)"
+  }
+ },
+ "n_trades": 13,
+ "rows": [
+  {
+   "id": "T-20260716-0214",
+   "tk": "KXITFWMATCH-26JUL16CHAGUZ-CHA",
+   "cat": "ITF_W",
+   "ts_et": "01:01:47 PM",
+   "px": 33,
+   "cycle": 1,
+   "in_play": true,
+   "grade": "AGREE",
+   "why": "posterior 0.40 vs paid 33 (edge +7.1)",
+   "posterior": 0.4009,
+   "legacy_constant": "",
+   "pnl_cents": 35.0
+  },
+  {
+   "id": "T-20260716-0240",
+   "tk": "KXATPCHALLENGERMATCH-26JUL16FUESEY-SEY",
+   "cat": "ATP_CHALL",
+   "ts_et": "01:27:27 PM",
+   "px": 80,
+   "cycle": 1,
+   "in_play": true,
+   "grade": "AGREE",
+   "why": "posterior 0.82 vs paid 80 (edge +1.6)",
+   "posterior": 0.8162,
+   "legacy_constant": "",
+   "pnl_cents": 90.0
+  },
+  {
+   "id": "T-20260716-0237",
+   "tk": "KXITFWMATCH-26JUL16MATREA-REA",
+   "cat": "ITF_W",
+   "ts_et": "01:36:18 PM",
+   "px": 54,
+   "cycle": 1,
+   "in_play": true,
+   "grade": "WOULD-REFUSE",
+   "why": "conviction_gap: posterior 0.52 says the leg is worth 52, we paid 54 (2.0 over conviction)",
+   "posterior": 0.5198,
+   "legacy_constant": "",
+   "pnl_cents": 60.0
+  },
+  {
+   "id": "T-20260716-0180",
+   "tk": "KXWTACHALLENGERMATCH-26JUL16KOVRIE-RIE",
+   "cat": "WTA_CHALL",
+   "ts_et": "01:47:21 PM",
+   "px": 74,
+   "cycle": 1,
+   "in_play": true,
+   "grade": "AGREE",
+   "why": "posterior 0.76 vs paid 74 (edge +1.6)",
+   "posterior": 0.756,
+   "legacy_constant": "",
+   "pnl_cents": 90.0
+  },
+  {
+   "id": "T-20260716-0169",
+   "tk": "KXITFWMATCH-26JUL16KOIKUR-KOI",
+   "cat": "ITF_W",
+   "ts_et": "02:23:53 PM",
+   "px": 54,
+   "cycle": 1,
+   "in_play": true,
+   "grade": "AGREE",
+   "why": "posterior 0.53 vs paid 54 (edge -0.7)",
+   "posterior": 0.5335,
+   "legacy_constant": "",
+   "pnl_cents": 60.0
+  },
+  {
+   "id": "T-20260716-0253",
+   "tk": "KXITFMATCH-26JUL16SERBAS-SER",
+   "cat": "ITF_M",
+   "ts_et": "03:26:50 PM",
+   "px": 10,
+   "cycle": 1,
+   "in_play": true,
+   "grade": "AGREE",
+   "why": "posterior 0.09 vs paid 10 (edge -0.9)",
+   "posterior": 0.0913,
+   "legacy_constant": "",
+   "pnl_cents": 20.0
+  },
+  {
+   "id": "T-20260716-0245",
+   "tk": "KXATPCHALLENGERMATCH-26JUL16GRESAN-SAN",
+   "cat": "ATP_CHALL",
+   "ts_et": "03:51:12 PM",
+   "px": 35,
+   "cycle": 1,
+   "in_play": true,
+   "grade": "AGREE",
+   "why": "posterior 0.40 vs paid 35 (edge +5.0)",
+   "posterior": 0.3999,
+   "legacy_constant": "",
+   "pnl_cents": 40.0
+  },
+  {
+   "id": "T-20260716-0179",
+   "tk": "KXITFWMATCH-26JUL16COLMAR-COL",
+   "cat": "ITF_W",
+   "ts_et": "03:51:14 PM",
+   "px": 16,
+   "cycle": 1,
+   "in_play": true,
+   "grade": "AGREE",
+   "why": "posterior 0.14 vs paid 16 (edge -1.9)",
+   "posterior": 0.141,
+   "legacy_constant": "",
+   "pnl_cents": -80.0
+  },
+  {
+   "id": "T-20260716-0179",
+   "tk": "KXITFWMATCH-26JUL16COLMAR-COL",
+   "cat": "ITF_W",
+   "ts_et": "03:55:04 PM",
+   "px": 16,
+   "cycle": 1,
+   "in_play": true,
+   "grade": "WOULD-REFUSE",
+   "why": "conviction_gap: posterior 0.11 says the leg is worth 11, we paid 16 (4.9 over conviction)",
+   "posterior": 0.1111,
+   "legacy_constant": "",
+   "pnl_cents": -80.0
+  },
+  {
+   "id": "T-20260716-0233",
+   "tk": "KXITFMATCH-26JUL16BYNLON-LON",
+   "cat": "ITF_M",
+   "ts_et": "04:18:46 PM",
+   "px": 31,
+   "cycle": 1,
+   "in_play": true,
+   "grade": "AGREE",
+   "why": "posterior 0.34 vs paid 31 (edge +3.2)",
+   "posterior": 0.3423,
+   "legacy_constant": "",
+   "pnl_cents": -155.0
+  },
+  {
+   "id": "T-20260716-0256",
+   "tk": "KXATPCHALLENGERMATCH-26JUL16PALALM-ALM",
+   "cat": "ATP_CHALL",
+   "ts_et": "05:05:33 PM",
+   "px": 66,
+   "cycle": 1,
+   "in_play": true,
+   "grade": "AGREE",
+   "why": "posterior 0.65 vs paid 66 (edge -0.9)",
+   "posterior": 0.651,
+   "legacy_constant": "",
+   "pnl_cents": 95.0
+  },
+  {
+   "id": "T-20260716-0247",
+   "tk": "KXITFMATCH-26JUL16NEFCOX-COX",
+   "cat": "ITF_M",
+   "ts_et": "06:07:35 PM",
+   "px": 16,
+   "cycle": 1,
+   "in_play": true,
+   "grade": "AGREE",
+   "why": "posterior 0.29 vs paid 16 (edge +13.1)",
+   "posterior": 0.2908,
+   "legacy_constant": "",
+   "pnl_cents": 20.0
+  },
+  {
+   "id": "T-20260716-0275",
+   "tk": "KXITFMATCH-26JUL16USMMAS-USM",
+   "cat": "ITF_M",
+   "ts_et": "10:15:44 PM",
+   "px": 20,
+   "cycle": 1,
+   "in_play": true,
+   "grade": "AGREE",
+   "why": "posterior 0.29 vs paid 20 (edge +9.4)",
+   "posterior": 0.294,
+   "legacy_constant": "",
+   "pnl_cents": null
+  }
+ ],
+ "per_cat": {
+  "ITF_W": {
+   "AGREE": 3,
+   "WOULD-REFUSE": 2
+  },
+  "ATP_CHALL": {
+   "AGREE": 3
+  },
+  "WTA_CHALL": {
+   "AGREE": 1
+  },
+  "ITF_M": {
+   "AGREE": 4
+  }
+ }
+}

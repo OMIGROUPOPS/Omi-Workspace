@@ -1,64 +1,89 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 218 @ **2026-07-17 03:19:10 PM ET** | build `50be1351` | session boot 07-17 15:16 ET | log `live_v3_20260717.jsonl` | 586 session events | monitor READ-ONLY
+- cycle 235 @ **2026-07-17 06:15:34 PM ET** | build `afa3dc14` | session boot 07-17 15:16 ET | log `live_v3_20260717.jsonl` | 8670 session events | monitor READ-ONLY
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
-- placed:path_aim UL17THOYOS-THO aim=12 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
-- placed:path_aim UL17SAIBRA-BRA aim=47 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
-- placed:path_aim UL17SAIBRA-SAI aim=28 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
-- placed:path_aim UL17OCODEL-OCO aim=10 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
+- placed:path_aim UL18KALWAN-WAN aim=54 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
+- placed:path_aim JUL18JACDA-JAC aim=77 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
+- placed:path_aim 6JUL18JACDA-DA aim=9 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
+- placed:path_aim UL18PELSIL-PEL aim=80 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
 - tripwire artifact: **PRESENT — CHECK /tmp/live_v4_TRIPWIRE.json**
 
-## ZERO-TOLERANCE — 1 violation(s)
+## ZERO-TOLERANCE — 10 violation(s)
 | ET | class | who | detail |
 |---|---|---|---|
 | 15:18:52 | **self_fill_bell** | KXITFMATCH-26JUL17OCODEL-OCO | own buys rose 6c (10->16) in 1800s -> match-live presumption, entry buys FROZEN |
+| 15:25:55 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL17LAJNOG-NOG | own buys rose 4c (24->28) in 1800s -> match-live presumption, entry buys FROZEN |
+| 15:31:17 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU | flatten DEFERRED: ev -1.29 above margin floor -3.0 |
+| 16:54:35 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL | flatten DEFERRED: ev -0.77 above margin floor -3.0 |
+| 17:04:40 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL | flatten DEFERRED: ev -0.77 above margin floor -3.0 |
+| 17:16:05 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL | flatten DEFERRED: ev -0.77 above margin floor -3.0 |
+| 17:26:15 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL | flatten DEFERRED: ev -0.77 above margin floor -3.0 |
+| 17:36:15 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL | flatten DEFERRED: ev -0.77 above margin floor -3.0 |
+| 17:47:46 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL | flatten DEFERRED: ev -0.77 above margin floor -3.0 |
+| 17:58:36 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL | flatten DEFERRED: ev -0.77 above margin floor -3.0 |
 
-## FILLS — 1 graded (session)
+## FILLS — 8 graded (session)
 | ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb | stamp |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 15:16 | ITFMATCH-26JUL17NEFGAI-GAI | ITF_M | ? | 46 | 39 | +7 (window_cell) | — | pre | single |  | MIXED |
+| 15:31 | ATPCHALLENGERMATCH-26JUL17HOLBOU-B | ATP_CHALL | ? | 33 | 31 | +2 (window_cell) | — | pre | single |  | MIXED |
+| 16:07 | ATPCHALLENGERMATCH-26JUL17WONJOH-W | ATP_CHALL | ? | 64 | 61 | +3 (window_cell) | — | pre | single |  | GIFT_CLASS |
+| 16:32 | ATPCHALLENGERMATCH-26JUL17SMIYUN-Y | ATP_CHALL | ? | 63 | 61 | +2 (window_cell) | — | pre | single |  | GIFT_CLASS |
+| 16:47 | ITFMATCH-26JUL17OCODEL-OCO | ITF_M | ? | 17 | 12 | +5 (place_cell) | — | pre | pair | 99 | PENDING |
+| 16:47 | ITFMATCH-26JUL17OCODEL-DEL | ITF_M | ? | 82 | 79 | +3 (fill_est) | — | pre | pair | 99 | PENDING |
+| 16:54 | ATPCHALLENGERMATCH-26JUL17VUKGAL-G | ATP_CHALL | ? | 53 | 50 | +3 (window_cell) | — | pre | single |  | GIFT_CLASS |
+| 18:06 | ATPCHALLENGERMATCH-26JUL17FORTOM-T | ATP_CHALL | ? | 66 | 63 | +3 (window_cell) | — | pre | single |  | GIFT_CLASS |
 
-## RESTING BIDS — 13 tape-graded (starvation = NO_FLOW only)
-- classes now: {'FLOW_ABOVE': 5, 'NO_FLOW': 8} | repriceable now: true 2 / false 11 | **cumulative bid_grade lines: 12566 (repriceable true 1653 / false 10913)** -- the liquid_repost re-arm evidence accumulates here
+## RESTING BIDS — 5 tape-graded (starvation = NO_FLOW only)
+- classes now: {'FLOW_AT_LEVEL': 1, 'FLOW_ABOVE': 4} | repriceable now: true 0 / false 5 | **cumulative bid_grade lines: 12595 (repriceable true 1655 / false 10940)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL17FORTOM-T | 64 | 2m | 0 | 64-66 | — | **NO_FLOW** | 63 |  |
-| ATPCHALLENGERMATCH-26JUL17HOLBOU-B | 32 | 2m | 2/34-34/5 | 32-34 | 2 | **FLOW_ABOVE** | 31 | flow above but bound 31c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL17HOLBOU-H | 66 | 2m | 3/68-68/372 | 66-67 | 2 | **FLOW_ABOVE** | 64 | flow above but bound 64c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL17LAJNOG-L | 71 | 0m | 0 | 71-72 | — | **NO_FLOW** | 69 |  |
-| ATPCHALLENGERMATCH-26JUL17LAJNOG-N | 24 | 2m | 0 | 28-29 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL17SMIYUN-Y | 59 | 2m | 0 | 62-63 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL17VUKGAL-G | 51 | 2m | 0 | 51-52 | — | **NO_FLOW** | 50 |  |
-| ATPCHALLENGERMATCH-26JUL17VUKGAL-V | 45 | 2m | 1/49-49/76 | 47-48 | 4 | **FLOW_ABOVE** | 46 | REPRICEABLE→46 |
-| ATPCHALLENGERMATCH-26JUL17WONJOH-J | 36 | 0m | 0 | 36-37 | — | **NO_FLOW** | 34 |  |
-| ATPCHALLENGERMATCH-26JUL17WONJOH-W | 64 | 2m | 0 | 64-65 | — | **NO_FLOW** | 61 |  |
-| ITFMATCH-26JUL17NEFGAI-NEF | 51 | 2m | 67/56-60/3251 | 54-56 | 5 | **FLOW_ABOVE** | 51 | flow above but bound 51c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL17OCODEL-DEL | 82 | 2m | 1/84-84/70 | 82-83 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→84 |
-| ITFMATCH-26JUL17OCODEL-OCO | 16 | 0m | 0 | 16-17 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL17FORTOM-F | 31 | 136m | 8/35-35/1060 | 34-35 | 4 | **FLOW_ABOVE** | 31 | flow above but bound 31c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL17LAJNOG-L | 71 | 176m | 47/71-72/10753 | 71-72 | 0 | **FLOW_AT_LEVEL** | 69 |  |
+| ATPCHALLENGERMATCH-26JUL17LAJNOG-N | 28 | 170m | 11/29-29/89 | 28-29 | 1 | **FLOW_ABOVE** | 26 | flow above but bound 26c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL17SMIYUN-S | 32 | 101m | 18/37-38/779 | 37-38 | 5 | **FLOW_ABOVE** | 34 | flow above but bound 34c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL17WONJOH-J | 33 | 128m | 31/36-37/5480 | 36-37 | 3 | **FLOW_ABOVE** | 33 | flow above but bound 33c < flow -- chasing breaks goal |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
 |---|---|---|---|---|---|
-| ITFMATCH-26JUL17NEFGAI | 46 | 56 | **102** | 97 | +5 |
+| ITFMATCH-26JUL17NEFGAI | 46 | 2 | **48** | 97 | -49 |
+| ATPCHALLENGERMATCH-26JUL17WONJOH | 64 | 37 | **101** | 97 | +4 |
+| ATPCHALLENGERMATCH-26JUL17SMIYUN | 63 | 38 | **101** | 97 | +4 |
+| ATPCHALLENGERMATCH-26JUL17FORTOM | 66 | 35 | **101** | 97 | +4 |
+| ATPCHALLENGERMATCH-26JUL17VUKGAL | 53 | 51 | **104** | 97 | +7 |
+| ATPCHALLENGERMATCH-26JUL17HOLBOU | 33 | 97 | **130** | 97 | +33 |
 
-## FLOW-STATE — 8 tracked game(s) ({'WAKING': 6, 'OPEN': 2}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 8 tracked game(s) ({'WAKING': 2, 'QUIET': 2, 'OPEN': 4}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ITFMATCH-26JUL17NEFGAI | ITF_M | 5.133 | 2 | **OPEN** |
-| ITFMATCH-26JUL17OCODEL | ITF_M | 0.4 | 1 | **OPEN** |
-| ATPCHALLENGERMATCH-26JUL17FORTOM | ATP_CHALL | 0.067 | 2 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL17HOLBOU | ATP_CHALL | 0.267 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL17LAJNOG | ATP_CHALL | 0.0 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL17SMIYUN | ATP_CHALL | 0.0 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL17VUKGAL | ATP_CHALL | 0.1 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL17WONJOH | ATP_CHALL | 0.1 | 1 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL17LAJNOG | ATP_CHALL | 0.7 | 1 | **OPEN** |
+| ATPCHALLENGERMATCH-26JUL17SMIYUN | ATP_CHALL | 0.6 | 1 | **OPEN** |
+| ATPCHALLENGERMATCH-26JUL17WONJOH | ATP_CHALL | 1.3 | 1 | **OPEN** |
+| ITFMATCH-26JUL17OCODEL | ITF_M | 2.933 | 1 | **OPEN** |
+| ATPCHALLENGERMATCH-26JUL17HOLBOU | ATP_CHALL | 0.0 | — | **QUIET** |
+| ITFMATCH-26JUL17NEFGAI | ITF_M | 0.0 | — | **QUIET** |
+| ATPCHALLENGERMATCH-26JUL17FORTOM | ATP_CHALL | 0.267 | 1 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL17VUKGAL | ATP_CHALL | 15.233 | — | **WAKING** |
 
-## PATTERNS (sub-B) — 1
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL {"kind": "position_basis", "ref": 86.0, "market_mid": 29.0, "divergence": 57.0, "emitted_et": "2026-07-17 03:19:10 PM ET"}
+## PATTERNS (sub-B) — 13
+- half_arm_aging: KXITFMATCH-26JUL17NEFGAI-GAI {"fill": 46, "age_min": 179, "mode": "NO_BID(sib rested earlier, none now)"}
+- reality_divergence: KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL {"kind": "position_basis", "ref": 86.0, "market_mid": 29.0, "divergence": 57.0}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU {"fill": 33, "age_min": 164, "mode": "NO_BID(sib rested earlier, none now)"}
+- reality_divergence: KXATPCHALLENGERMATCH-26JUL17RODCRA-ROD {"kind": "position_basis", "ref": 71.0, "market_mid": 26.5, "divergence": 44.5}
+- reality_divergence: KXATPCHALLENGERMATCH-26JUL17SANALM-ALM {"kind": "position_basis", "ref": 68.0, "market_mid": 34.5, "divergence": 33.5}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17WONJOH-WON {"fill": 64, "age_min": 128, "mode": "SET_BELOW_FLOW(prints 3c above)"}
+- reality_divergence: KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU {"kind": "position_basis", "ref": 33.0, "market_mid": 1.5, "divergence": 31.5}
+- reality_divergence: KXATPCHALLENGERMATCH-26JUL17RODCRA-ROD {"kind": "position_basis", "ref": 71.0, "market_mid": 36.0, "divergence": 35.0}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17SMIYUN-YUN {"fill": 63, "age_min": 103, "mode": "SET_BELOW_FLOW(prints 5c above)"}
+- combined_over_goal_UNVERIFIED_BASIS: KXITFMATCH-26JUL17OCODEL {"combined": 99, "detail": "pair combined 99c > 97c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) \u2014 exchange-truth check required, NOT a ZT row"}
+- reality_divergence: KXATPCHALLENGERMATCH-26JUL17SANALM-ALM {"kind": "position_basis", "ref": 68.0, "market_mid": 26.0, "divergence": 42.0}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL {"fill": 53, "age_min": 81, "mode": "NO_BID(sib rested earlier, none now)"}
+- reality_divergence: KXATPCHALLENGERMATCH-26JUL17SANALM-ALM {"kind": "position_basis", "ref": 68.0, "market_mid": 12.5, "divergence": 55.5}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

@@ -32,7 +32,10 @@ check("leg1_never_blocked", "if anchor_price >= 50:\n                target_bid 
 check("reshuffle_on_fill", 'getattr(_sp, "entry_qty", 0) > 0 and getattr(_sp, "entry_price", 0)' in SRC)
 # freeze_at_gun gates fresh post (entry anchor returns None) + holds bid at the live latch (no walk)
 check("freeze_entry_gate", 'if self.freeze_at_gun and self._is_match_live(tk.rsplit("-", 1)[0]):\n            return None' in SRC)
-check("freeze_walk_hold",  "if self.freeze_at_gun:\n                self._log(\"freeze_at_gun_hold\"" in SRC)
+# [P0v3 (4) 07-17] the law_collision founding wire now sits between the guard
+# and the hold-log (freeze-vs-sweep collision filed; HOLD current state kept)
+check("freeze_walk_hold",  "if self.freeze_at_gun:" in SRC and 'self._log("freeze_at_gun_hold"' in SRC
+      and SRC.index("if self.freeze_at_gun:") < SRC.index('self._log("freeze_at_gun_hold"'))
 
 # ---------- 3) pure-logic: import the class, call the pure methods ----------
 spec = importlib.util.spec_from_file_location("live_v4_mod", LIVE)

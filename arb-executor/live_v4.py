@@ -1876,6 +1876,15 @@ class LiveV3:
         # trade timestamps + latched live-event set.
         self._trade_times: Dict[str, deque] = defaultdict(deque)
         self._events_live: Set[str] = set()
+        # [P0v3 (1) BELL-BEFORE-SCHED, 07-17] pre-sched voided bell fires held
+        # pending until the schedule floor passes (re-fired sched_clamped), +
+        # once-per-(event,source) void-log dedup. BURMER the founding exhibit:
+        # self_fill fired 58.3 min before the honest start off the bot's own
+        # (15) join churn.
+        self._gun_void_pending: Dict[str, dict] = {}
+        self._gun_void_logged: Set[tuple] = set()
+        # [P0v3 (4) LAW-COLLISION, 07-17] once-per-(knob,ticker) collision-line dedup
+        self._law_collision_logged: Set[tuple] = set()
         # [C-FV-BURST] ticker -> {mid,bid,ask,last,ts} snapshot taken at the real-
         # start latch (observe-only; consumed by _book_v4_entry_fill to tag post-
         # burst fills). Self-pruned by age inside _fv_burst_snapshot.
@@ -3896,7 +3905,15 @@ class LiveV3:
         category -- always the live table, never a constant (OVER-BROAD LOCK
         instance 2: the self-fill bell's 4c threshold was calibrated against
         the pre-arming walk world and the -0j arming invalidated it same-day.
-        A lock's threshold scopes against sanctioned behavior DYNAMICALLY)."""
+        A lock's threshold scopes against sanctioned behavior DYNAMICALLY).
+        [P0v3 (3b) 07-17 — FLAGGED FOR RETIREMENT, not deleted mid-defect]
+        the fixed cents-per-30min allowance (ATP_MAIN 1c/30min et al.) is a
+        hardcoded fossil. After the print-backed seam (P0v3 (3)) it binds
+        only quote-only rises — its last honest job. The replacement is a
+        FITTED per-category/regime sanctioned-walk read from the corpus,
+        shipped as its own follow-on with receipts; the constant dies by
+        evidence. Census owed: historical binds on print-backed rises +
+        cents cost (rides the P0v3 close-out)."""
         if getattr(self, "walk_cap_honest_anchor", False):
             _hcap = {"ATP_MAIN": 1, "WTA_MAIN": 1, "ATP_CHALL": 2,
                      "WTA_CHALL": 2, "ITF_M": 14, "ITF_W": 20}
@@ -5670,6 +5687,33 @@ class LiveV3:
             return False
         return sp.phase == "entry_resting" or sp.entry_qty > 0
 
+    def _law_collision(self, knob, law_a, verdict_a, law_b, verdict_b,
+                       tk=None, et=None):
+        """[P0v3 (4) 07-17, PERMANENT — LAW-COLLISION PROTOCOL] whenever two
+        live laws bind the same knob with different verdicts: HOLD current
+        state (nothing new on that knob), emit ONE law_collision line citing
+        both laws and both verdicts, render it red on the panel, file it for
+        operator ruling. Never loop, never let either law win silently.
+        Extension of the SITE-SCOPED audit: contradictions get caught and
+        brought to the bench, not resolved by thrashing in production.
+        Founding incident: (15) window-truth join vs the sanctioned-walk
+        clamp — BURMER 42 cancel/repost cycles, then the self_fill bell read
+        the joins themselves as match-live evidence. Never raises; the CALLER
+        holds state (this only records)."""
+        try:
+            key = (knob, tk or et)
+            if key in self._law_collision_logged:
+                return
+            self._law_collision_logged.add(key)
+            self._log("law_collision", {
+                "event": et, "knob": knob,
+                "law_a": law_a, "verdict_a": str(verdict_a),
+                "law_b": law_b, "verdict_b": str(verdict_b),
+                "resolution": "HOLD current state; filed for operator ruling",
+                "decree": "P0v3 (4) 07-17 permanent"}, ticker=tk or "")
+        except Exception:
+            pass
+
     def _grace_kill_action(self, pos, live, now):
         """[C-GRACE-KILL] PURE decision for the match-live resting-bid cancel. Returns:
           None     -> not live; caller does nothing (falls through to the normal manage path).
@@ -5683,27 +5727,17 @@ class LiveV3:
         sibling (the existing "we hold the sibling in hedgeable form" predicate)."""
         if not live:
             return "reset" if pos.match_live_latch_ts else None
-        if not (self.match_live_grace_kill
-                and self._carve_abort_for_held_sibling(pos.ticker, pos.event_ticker)):
-            return "cancel"                          # naked / flag OFF -> instant cancel, never ride naked
-        if pos.match_live_latch_ts == 0.0:
-            return "arm"
-        # [C-DAILY-STANDARD Part 0, 07-15 — PER-SOURCE GRACE, operator
-        # word] a tape_flow fire is evidence-grade BY CONSTRUCTION (real
-        # prints, sustained, fitted threshold) — its grace is 60s, not
-        # the 5-min premature-latch shield the burst sources need. The
-        # acceptance replay's 17 grace-eaten fills (bell fired 0.2–4.6
-        # min pre-fill, the 300s grace let the fill land) convert to
-        # saves; every other source keeps 300s (FERCER protection
-        # unchanged). The nightly grace census grades the knob.
-        _gsrc9 = ((getattr(self, "_gun_state", {}) or {})
-                  .get(pos.event_ticker) or {}).get("source")
-        _gsec9 = (int(self.config.get("tape_flow_grace_sec", 60))
-                  if _gsrc9 in ("tape_flow", "milestone_official")
-                  else self.match_live_grace_sec)
-        if (now - pos.match_live_latch_ts) < _gsec9:
-            return "hold"
-        return "cancel"                              # grace elapsed -> kill
+        # [P0v3 (2) 07-17 — SWEEP BEATS FILL] grace RETIRED for resting entry
+        # bids: on any live evidence at/after sched the sweep leads, before
+        # all other actions; grace may permit nothing but the sweep
+        # completing. The 07-15 per-source grace (arm/hold, ride the
+        # post-burst dip) held entry bids resting up to 300s past the fire —
+        # the mechanism under 11 of the 18 W2 fills on the 07-17 sheet
+        # (BYNLON graced 01:00:47, filled 16:18). Premature-latch protection
+        # (the FERCER class) now lives at the BELL-BEFORE-SCHED clamp
+        # (_gun_stamp), not in a post-fire resting window. The grace
+        # constants stay in config, named fossils.
+        return "cancel"
 
     def _sustained_flow_live(self, et):
         """[C-SUSTAINED-FLOW] Tape-anchored real-gun detector for the match_live CANCEL only.
@@ -6741,7 +6775,18 @@ class LiveV3:
         if (now - t0) < LIVE_DETECT_CONFIRM_MIN_GAP_SEC:
             return False  # same window; not yet independent confirmation
         stage1.pop(et, None)
-        self._events_live.add(et)
+        # [P0v3 (1) 07-17] the latch routes through _gun_stamp FIRST — the
+        # BELL-BEFORE-SCHED clamp owns the live declaration. A pre-sched burst
+        # is VOID (phantom_bell_void, held pending to the schedule floor): no
+        # direct _events_live add, no live latch, no W2 label. If another
+        # source already fired, _gun_stamp logs a confirm and the et is
+        # already in _events_live — still live.
+        try:
+            self._gun_stamp(et, "tape_latch", {"trades_in_window": recent})
+        except Exception:
+            pass
+        if et not in self._events_live:
+            return False  # pre-sched void: not a bell (walk-law input only)
         # [C-FV-BURST] observe-only snapshot of FV at the real-start latch. Wrapped
         # so it can NEVER raise into the latch path; runs AFTER the latch and does
         # not touch _events_live / orders / the return value. (try scope = this
@@ -6755,12 +6800,6 @@ class LiveV3:
             "window_sec": LIVE_DETECT_WINDOW_SEC, "signal": "volume_burst",
             "stage1_age_sec": round(now - t0, 1),
             "tts_min": (round(tts / 60.0, 1) if tts is not None else None)})
-        # [C-FUSED-GUN] the tape latch is fused source (3); stamp it (idempotent
-        # -- if an external source already fired, this logs a confirm instead).
-        try:
-            self._gun_stamp(et, "tape_latch", {"trades_in_window": recent})
-        except Exception:
-            pass
         return True
 
     # ------------------------------------------------------------------
@@ -6783,8 +6822,49 @@ class LiveV3:
         st = getattr(self, "event_start_time", {}).get(et)
         hz = (getattr(self, "_pm_honest", {}) or {}).get(et) or {}
         hst = hz.get("start_ts")
+        # [P0v3 (1) BELL-BEFORE-SCHED CLAMP, 07-17 — SCHED IS THE FLOOR OF
+        # TIME] no source may declare a match live before its schedule. The
+        # floor is the NEAREST claimed start (min of legacy + honest clocks —
+        # the conservative side of the clock-liar doctrine, C-ANCHOR 07-08:
+        # void only when EVERY clock says the start is still in the future).
+        # A pre-sched fire is VOID ENTIRELY: no _events_live, no W2 label, no
+        # grace, no sweep, no placement permission — it is held pending and
+        # re-fires sched_clamped the moment the floor passes (_gun_void_refire).
+        # A pre-sched rise is not a bell; it is walk-law input (P0v3 (3)).
+        # BURMER exhibit: self_fill fired at tts_honest 58.3 min off the bot's
+        # own (15) join churn; the fill graded W2 on a match not yet started.
+        _clks = [c for c in (st, hst) if c]
+        _floor = min(_clks) if _clks else None
+        if (_floor is not None and now < _floor
+                and not (detail or {}).get("sched_clamped")):
+            self._gun_void_pending[et] = {
+                "source": source, "first_ts": now,
+                "sched_floor_ts": _floor, "detail": dict(detail or {})}
+            if (et, source) not in self._gun_void_logged:
+                self._gun_void_logged.add((et, source))
+                self._log("phantom_bell_void", {
+                    "event": et, "source": source,
+                    "min_to_sched_min": round((_floor - now) / 60.0, 1),
+                    "tts_legacy_min": (round((st - now) / 60.0, 1) if st else None),
+                    "tts_honest_min": (round((hst - now) / 60.0, 1) if hst else None),
+                    "law": "P0v3 (1) 07-17: sched is the floor of time; "
+                           "pre-sched bells are VOID (no W2, no grace, no "
+                           "sweep, no placement permission)",
+                    **(detail or {})})
+            return False
         self._gun_state[et] = {"ts": now, "source": source}
         self._events_live.add(et)
+        self._gun_void_pending.pop(et, None)
+        # [P0v3 (2) SWEEP BEATS FILL, 07-17] the sweep leads: cancel this
+        # event's resting entry bids NOW, at the fire, before grace/any other
+        # action (kills the cancel-race class at its widest window — BRARIE,
+        # HALSHE). Task-spawned when a loop is running; the manage pass's own
+        # instant cancel (grace retired) is the backstop either way.
+        try:
+            asyncio.get_running_loop().create_task(
+                self._gun_sweep_entry_bids(et, source))
+        except Exception:
+            pass  # no running loop (boot/replay/executor thread): manage pass sweeps next cycle
         # [C-VOL-LEDGER 2026-07-09] vol-at-fire forward field: prints seen in
         # the trailing 30 min across both legs from the in-process deques
         # (pruned ~30min -- this is the honest in-process number; the full
@@ -6802,6 +6882,64 @@ class LiveV3:
             "vol_prints_30m": _v30,
             **(detail or {})})
         return True
+
+    def _gun_void_refire(self, now=None):
+        """[P0v3 (1) 07-17] pending pre-sched voided bells re-fire AT the
+        schedule floor (the clamp semantics: the bell is declared at
+        max(evidence, sched), never before). Recomputes the floor each pass so
+        schedule corrections are honored; a fire by any other source clears
+        the pending entry. Called once per _gun_poll cadence; never raises."""
+        if now is None:
+            now = time.time()
+        for et in list(self._gun_void_pending.keys()):
+            if et in self._gun_state:
+                self._gun_void_pending.pop(et, None)
+                continue
+            p = self._gun_void_pending.get(et) or {}
+            st = getattr(self, "event_start_time", {}).get(et)
+            hst = ((getattr(self, "_pm_honest", {}) or {})
+                   .get(et) or {}).get("start_ts")
+            _clks = [c for c in (st, hst) if c]
+            _floor = min(_clks) if _clks else p.get("sched_floor_ts")
+            if _floor is not None and now < _floor:
+                p["sched_floor_ts"] = _floor
+                continue
+            self._gun_void_pending.pop(et, None)
+            d = dict(p.get("detail") or {})
+            d.update({"sched_clamped": True,
+                      "void_age_sec": round(now - p.get("first_ts", now), 1)})
+            try:
+                self._gun_stamp(et, p.get("source", "sched_clamp_refire"), d)
+            except Exception:
+                pass
+
+    async def _gun_sweep_entry_bids(self, et, source):
+        """[P0v3 (2) SWEEP BEATS FILL, 07-17] on any live evidence at/after
+        sched: cancel the event's resting ENTRY bids FIRST, before all other
+        actions. Grace may permit nothing but this sweep completing.
+        Completion bids keep their own lifecycle (pair policy untouched);
+        exits untouched. Raced fills are booked by _cancel_entry_and_resolve
+        (the residual exchange-side race window, now at its narrowest)."""
+        for tk in list(self.event_tickers.get(et, ())):
+            pos = self.positions.get(tk)
+            if pos is None or getattr(pos, "entry_mode", "") == "completion_reprice":
+                continue
+            if not getattr(pos, "entry_order_id", None):
+                continue
+            try:
+                res = await self._cancel_entry_and_resolve(
+                    tk, pos, "gun_fire_sweep", "gun_fire_sweep_race")
+            except Exception as e:
+                self._log("gun_fire_sweep_error",
+                          {"event": et, "err": str(e)[:120]}, ticker=tk)
+                continue
+            if res == "cancelled":
+                self._log("match_live_resting_cancel", {
+                    "event": et, "gun_source": source,
+                    "sweep": "at_fire",
+                    "law": "P0v3 (2) 07-17: sweep beats fill"}, ticker=tk)
+                self._untombstone_entry(tk, pos)
+                self._save_v4_resting()
 
     def _read_observed_starts(self):
         """Sync sqlite read of the C-RETENTION-2 feed (runs in the executor).
@@ -7210,6 +7348,12 @@ class LiveV3:
                 self._log("bell_missing", {
                     "event": et, "anchor_src": _asrc,
                     "min_past_start": round((now - a) / 60.0, 1)})
+        # [P0v3 (1) 07-17] pending pre-sched voided bells re-fire at the
+        # schedule floor (sched_clamped), once per poll cadence.
+        try:
+            self._gun_void_refire(now)
+        except Exception:
+            pass
         # [C-READ-THE-TAPE Part 0] the drain replay's ordering gate: one
         # full gun-source pass has completed — stamps for currently-live
         # events are in _gun_state before any drained bid may return.
@@ -11063,32 +11207,25 @@ class LiveV3:
             # post-gun on the in-play dip to a static premarket bid. Supersedes match_live_cancel FOR
             # THIS resting bid only. Default OFF => the live-cancel below fires as today (byte-identical).
             if self.freeze_at_gun:
+                # [P0v3 (4) 07-17] LAW COLLISION, founding wire: freeze_at_gun
+                # commands "hold the bid static through the gun" while the
+                # sweep law commands "cancel entry bids first". HOLD current
+                # state (the armed freeze), one typed line, red on the panel,
+                # filed for the operator's ruling — never a silent win.
+                self._law_collision(
+                    "resting_entry_bid_on_live",
+                    "C-FREEZE-AT-GUN (4c) 07-03", "hold",
+                    "P0v3 (2) sweep-beats-fill 07-17", "cancel",
+                    tk=tk, et=pos.event_ticker)
                 self._log("freeze_at_gun_hold", {"event": pos.event_ticker}, ticker=tk)
                 return
             # [C-SUSTAINED-FLOW OBS] capture the K window-counts that triggered THIS latch (observability
-            # only; gated under sustained_flow_latch -> None / no-compute when the burst+clock latch is in
-            # use). READ-ONLY -- no decision reads _sfw; the latch/grace/cancel logic below is unchanged.
+            # only). READ-ONLY -- no decision reads _sfw.
             _sfw = self._sustained_flow_windows(pos.event_ticker) if self.sustained_flow_latch else None
-            if _gk == "arm":        # [C-GRACE-KILL] held-sibling pair, first latch -> stamp + hold (ride the post-burst dip)
-                pos.match_live_latch_ts = now
-                # [C-DAILY-STANDARD Part 0] the armed line prints the
-                # PER-SOURCE grace it will actually run
-                _gsrc0 = ((getattr(self, "_gun_state", {}) or {})
-                          .get(pos.event_ticker) or {}).get("source")
-                _d = {"event": pos.event_ticker,
-                      "grace_sec": (int(self.config.get(
-                          "tape_flow_grace_sec", 60))
-                          if _gsrc0 in ("tape_flow", "milestone_official")
-                          else self.match_live_grace_sec),
-                      "gun_source": _gsrc0}
-                if _sfw is not None:
-                    _d["window_counts"], _d["sustained_window_start_ts"] = _sfw
-                self._log("match_live_grace_armed", _d, ticker=tk)
-                self._save_v4_resting()
-                return
-            if _gk == "hold":       # [C-GRACE-KILL] within grace -> keep resting
-                return
-            res = await self._cancel_entry_and_resolve(   # _gk == "cancel" (naked / flag OFF / grace elapsed)
+            # [P0v3 (2) 07-17] grace arm/hold RETIRED (_grace_kill_action now
+            # yields only cancel when live): the sweep leads, nothing rests in
+            # grace. See the helper's docstring for the mechanism record.
+            res = await self._cancel_entry_and_resolve(   # _gk == "cancel" (sweep-first; grace retired P0v3)
                 tk, pos, "match_live_cancel", "match_live_cancel_race")
             if res == "cancelled":
                 _det = {"event": pos.event_ticker}
@@ -11579,6 +11716,7 @@ class LiveV3:
         # filled. Up-moves on entry bids are held, named (protective
         # down/equal moves and the completion organ's own repricing are
         # untouched).
+        _wt_pb5 = False   # [P0v3 (3)] print-backed (15) re-aim marker; the walk caps below yield to it
         if (int(new_target) > int(pos.entry_price or 0)
                 and getattr(pos, "entry_mode", "") != "completion_reprice"):
             # [⑮ LIVE — P5, Fable dispatch 07-17 under the operator's
@@ -11597,38 +11735,82 @@ class LiveV3:
             _wt5 = None
             _bb5 = _ba5 = 0
             _deep5 = None
+            _wt_pb5 = False   # [P0v3 (3)] this re-aim is a PRINT-BACKED rise (clamp yields)
             if (self.config.get("window_truth_live", False)
                     and not self._event_has_fill(pos.event_ticker)):
                 _bk5 = book or self.books.get(tk)
                 _bb5 = int(getattr(_bk5, "best_bid", 0) or 0)
                 _ba5 = int(getattr(_bk5, "best_ask", 0) or 0)
                 _rf5 = (getattr(self, "_rest_flow", None) or {}).get(tk)
+                _nowt5 = time.time()
+                # [P0v3 (3) PRINT-BACKED TEST, 07-17] one seam: a rise is
+                # STRENGTHENING only if the tape printed real trades at the
+                # higher level inside the last 30 min (REST cache + WS deque
+                # — both, the −0k class taught WS alone lies). Quote-only
+                # rises are unproven: the clamp binds, (15) holds.
                 for _t5, _p5 in ((_rf5 or {}).get("trades") or ())[:50]:
-                    if _p5 <= _held5:
+                    if _deep5 is None and _p5 <= _held5:
                         _deep5 = int(_p5)
-                        break
+                    if (not _wt_pb5 and _bb5 > _held5
+                            and _p5 >= _bb5 and _t5 >= _nowt5 - 1800):
+                        _wt_pb5 = True
+                if not _wt_pb5 and _bb5 > _held5:
+                    for _t5, _p5 in (self._trade_prices.get(tk) or ()):
+                        if _p5 >= _bb5 and _t5 >= _nowt5 - 1800:
+                            _wt_pb5 = True
+                            break
                 if (_deep5 is None and _bk5 is not None
                         and getattr(_bk5, "last_trade_price", None)
                         and _bk5.last_trade_price <= _held5):
                     _deep5 = int(_bk5.last_trade_price)
                 if _deep5 is None and _bb5 > _held5:
-                    _cap5 = min(int(new_target),
-                                (_ba5 - 1) if _ba5 > 1 else 99)
-                    _join5 = min(_bb5 + 1, _cap5)
-                    if _held5 < _join5 <= 95 and _join5 >= 5:
-                        _wt5 = _join5
+                    if _wt_pb5:
+                        _cap5 = min(int(new_target),
+                                    (_ba5 - 1) if _ba5 > 1 else 99)
+                        _join5 = min(_bb5 + 1, _cap5)
+                        if _held5 < _join5 <= 95 and _join5 >= 5:
+                            _wt5 = _join5
+                    else:
+                        # [P0v3 (3) 07-17] quote-only rise: the clamp binds,
+                        # (15) holds — the resting bid HOLDS its queue
+                        # position (never a cancel/repost cycle; BURMER's 42
+                        # reposts are the cost exhibit). ONE line, both
+                        # numbers, per (leg, level).
+                        _wb8 = self.__dict__.setdefault(
+                            "_wt_bind_logged", set())
+                        if (tk, _bb5) not in _wb8:
+                            _wb8.add((tk, _bb5))
+                            self._log("window_truth_bind", {
+                                "event": pos.event_ticker,
+                                "held_price": _held5,
+                                "would_join": min(_bb5 + 1,
+                                                  (_ba5 - 1) if _ba5 > 1 else 99),
+                                "proposed_path": int(new_target),
+                                "best_bid": _bb5, "best_ask": _ba5,
+                                "print_backed": False,
+                                "clamp": "sanctioned walk %dc/30min "
+                                         "(FLAGGED FOR RETIREMENT, P0v3 3b)"
+                                         % self._sanctioned_walk_cents_cat(
+                                             pos.category),
+                                "law": "P0v3 (3) 07-17: print-backed rises "
+                                       "join; quote-only rises bind — the "
+                                       "bid holds"}, ticker=tk)
+                        return
             if _wt5 is not None:
                 self._log("window_truth_reaim", {
                     "event": pos.event_ticker,
                     "old": _held5, "proposed": int(new_target),
                     "new": int(_wt5), "best_bid": _bb5,
                     "best_ask": _ba5, "deep_print_real": False,
-                    "law": "P5 (⑤-15) LIVE 07-17: join/improve "
-                           "best bid +1 strengthening; deep cast only "
-                           "where the deep print is real"}, ticker=tk)
+                    "print_backed": True,
+                    "law": "P5 (⑤-15) LIVE 07-17 + P0v3 (3): join/improve "
+                           "best bid +1 on a PRINT-BACKED rise (clamp "
+                           "yields); deep cast only where the deep print "
+                           "is real"}, ticker=tk)
                 new_target = int(_wt5)
                 # fall through: the existing repost machinery executes
-                # the re-aim (walk caps + band clamps + races unchanged)
+                # the re-aim (band clamps + races unchanged; the walk caps
+                # YIELD to this print-backed join per P0v3 (3))
             else:
                 _pm8 = self.__dict__.setdefault("_path_hold_logged", set())
                 if (tk, int(new_target)) not in _pm8:
@@ -11737,7 +11919,14 @@ class LiveV3:
         # ALCCLA chase). Subtractive sibling of reach_repost_cap above -- both only LOWER new_target,
         # so running them in sequence yields the tighter ceiling. Same _window_open coupling (populated
         # under completion_reprice). OFF => untouched.
-        if getattr(self, "premarket_walk_cap", False):
+        # [P0v3 (3)+(3b) 07-17] the walk caps YIELD to a print-backed (15)
+        # join (real trades at the higher level = sanctioned strengthening);
+        # they bind only quote-only rises — their last honest job. The fixed
+        # per-cat cents/30min allowance is a hardcoded fossil FLAGGED FOR
+        # RETIREMENT (not deleted mid-defect): the fitted per-cat/regime
+        # sanctioned-walk read replaces the constant as its own follow-on,
+        # with receipts (the census line rides the P0v3 close-out).
+        if getattr(self, "premarket_walk_cap", False) and not _wt_pb5:
             _wo2 = self._window_open.get(tk)
             if _wo2 is not None and _wo2.get("cell") is not None:
                 _ceil = int(_wo2["cell"]) + self._walk_cap_cents(pos.category)
@@ -11762,6 +11951,11 @@ class LiveV3:
                         "honest_anchor": int(pos.honest_anchor),
                         "cat": pos.category, "current_price": current_price}, ticker=tk)
                     new_target = _ceil_h
+        elif getattr(self, "premarket_walk_cap", False) and _wt_pb5:
+            self._log("walk_cap_yield_print_backed", {
+                "event": pos.event_ticker, "target": int(new_target),
+                "law": "P0v3 (3) 07-17: print-backed rise — the clamp yields"},
+                ticker=tk)
 
         # [C-BOUND-RECHECK 07-06] the leg2_reshuffle clamp above ran in the pre-await
         # decision slice; the poll/cancel awaits are a 1-3s window in which the sibling's

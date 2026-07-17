@@ -40,7 +40,9 @@ src=open("live_v4.py").read()
 chk("_live source line unchanged", "_live = (self._sustained_flow_live(pos.event_ticker) if self.sustained_flow_latch" in src)
 chk("_gk decision call unchanged", "_gk = self._grace_kill_action(pos, _live, now)" in src)
 chk("cancel call unchanged", 'await self._cancel_entry_and_resolve(   # _gk == "cancel"' in src)
-chk("window_counts added under gate guard (if _sfw is not None)", src.count('_sfw is not None')==2)
+# [P0v3 (2) 07-17] grace arm block RETIRED (sweep beats fill): one _sfw
+# consumer remains (the cancel-log detail), down from two.
+chk("window_counts added under gate guard (if _sfw is not None)", src.count('_sfw is not None')==1)
 chk("_sustained_flow_live decision body untouched (no _sfw / window_counts inside it)",
     "window_counts" not in src[src.index("def _sustained_flow_live"):src.index("def _sustained_flow_windows")])
 

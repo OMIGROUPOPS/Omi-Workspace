@@ -1475,11 +1475,17 @@ def build_alerts(limit=30):
     surface; ntfy demoted to backup; the 07-14 phone decree struck]
     typed engine-log lines + fund flags, newest first, digits only.
     Tail-reads the newest log file (last ~3MB) per request."""
+    # [P0v3 (5) 07-17 — EVERY DEFECT CLASS ON THE GLASS] the feed carries ALL
+    # typed defect/violation lines: nothing detectable is invisible to the
+    # operator. law_collision renders RED per the permanent protocol (P0v3 4);
+    # window_truth_bind / phantom_bell_void are guard-working lines (amber).
     KINDS = ("pair_incomplete_violation",
              "below_discovery_floor_refused",
              "below_discovery_floor_retreat", "w2_fill_violation",
              "gun_feed_error", "gun_feed_ambiguous", "bell_missing",
-             "floor_retreat_error", "window_truth_reaim")
+             "floor_retreat_error", "window_truth_reaim",
+             "law_collision", "window_truth_bind", "phantom_bell_void",
+             "cancel_fill_race", "gun_fire_sweep_error")
     out = []
     try:
         logs = sorted(LOG_DIR.glob("live_v3_*.jsonl"))
@@ -1522,13 +1528,29 @@ def build_alerts(limit=30):
                 elif e == "w2_fill_violation":
                     dig = "%s fill %s post-bell" % (ev,
                                                     d.get("fill_price"))
+                elif e == "law_collision":
+                    dig = "%s %s: %s=%s vs %s=%s" % (
+                        ev, d.get("knob"), d.get("law_a"),
+                        d.get("verdict_a"), d.get("law_b"),
+                        d.get("verdict_b"))
+                elif e == "window_truth_bind":
+                    dig = "%s hold %s (bb %s, quote-only)" % (
+                        ev, d.get("held_price"), d.get("best_bid"))
+                elif e == "phantom_bell_void":
+                    dig = "%s %s voided %smin pre-sched" % (
+                        ev, d.get("source"), d.get("min_to_sched_min"))
+                elif e == "cancel_fill_race":
+                    dig = "%s %s filled %s in cancel window" % (
+                        ev, d.get("label"), d.get("fill_price"))
                 else:
                     dig = "%s %s" % (ev, str(d)[:60])
                 out.append({"ts": j.get("ts_epoch"),
                             "et": (_hm(j["ts_epoch"])
                                    if j.get("ts_epoch") else ""),
                             "kind": e, "digits": dig[:110],
-                            "red": e != "window_truth_reaim"})
+                            "red": e not in ("window_truth_reaim",
+                                             "window_truth_bind",
+                                             "phantom_bell_void")})
     except OSError:
         pass
     try:

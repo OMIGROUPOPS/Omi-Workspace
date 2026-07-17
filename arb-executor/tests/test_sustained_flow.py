@@ -61,7 +61,9 @@ chk("_sustained_flow_live code accesses NO self.event_start_time (window-open un
 chk("_sustained_flow_live code computes NO tts/scheduled clock", "tts" not in gk_code and "event_start_time" not in gk_code)
 # [C-SUSTAINED-FLOW OBS] now 2 cancel-site uses: the _live source + the observability _sfw gate -- BOTH at the cancel block
 _sf_lines=[i for i,l in enumerate(src.split(chr(10))) if "if self.sustained_flow_latch" in l]
-chk("sustained_flow_latch gated ONLY at the cancel site (2 uses: _live source + obs gate, adjacent)", len(_sf_lines)==2 and (_sf_lines[1]-_sf_lines[0])<=15)
+# [P0v3 07-17] the freeze_at_gun law_collision block now sits between the two
+# uses; the adjacency bound widens (same cancel block, still exactly 2 uses)
+chk("sustained_flow_latch gated ONLY at the cancel site (2 uses: _live source + obs gate, same block)", len(_sf_lines)==2 and (_sf_lines[1]-_sf_lines[0])<=40)
 # _trade_times live wiring
 chk("_trade_times init on LiveV3 (live, not paper)", "self._trade_times: Dict[str, deque] = defaultdict(deque)" in src)
 

@@ -16,7 +16,8 @@ check("latch_tape_override_off", 'self.latch_tape_override = bool(self.config.ge
 check("freeze_at_gun_shelved_marked", "SHELVED per doctrine audit" in SRC and "grace_kill owns the hold+cut" in SRC)
 
 # ---- 2) guarded in-source ----
-check("walkcap_guarded", 'if getattr(self, "premarket_walk_cap", False):' in SRC and 'self._walk_cap_cents(pos.category)' in SRC)
+# [P0v3 (3) 07-17] the manage-site cap now also yields to a print-backed (15) join
+check("walkcap_guarded", 'if getattr(self, "premarket_walk_cap", False) and not _wt_pb5:' in SRC and 'self._walk_cap_cents(pos.category)' in SRC)
 check("walkcap_after_reach", SRC.index("reach_repost_capped") < SRC.index("premarket_walk_capped"))
 check("latch_override_guarded", 'getattr(self, "latch_tape_override", False)' in SRC
       and "recent >= LATCH_TAPE_OVERRIDE_BURST" in SRC and "self._max_ref_move(et) >= LATCH_TAPE_OVERRIDE_MOVE_CENTS" in SRC)
@@ -61,6 +62,9 @@ try:
         s.latch_tape_override = override
         s._log = lambda *a, **k: None
         s._fv_burst_snapshot = lambda *a, **k: None
+        # [P0v3 (1) 07-17] the latch routes through _gun_stamp (BELL-BEFORE-SCHED clamp)
+        s._gun_state = {}; s._gun_void_pending = {}; s._gun_void_logged = set()
+        s._pm_honest = {}
         return s, et
     # OFF: floor hard-blocks even with a 40-print gun
     s, et = make_stub(False, 40)
@@ -68,14 +72,22 @@ try:
     # ON but weak burst (20 < 30): override bar unmet -> still blocked
     s, et = make_stub(True, 20)
     check("latch_on_weak_blocked", LiveV3._is_match_live(s, et) is False)
-    # ON strong burst (40 >= 30) + move 20 >= 15: stage-1 arms (False), then confirm -> True
+    # ON strong burst (40 >= 30) + move 20 >= 15: stage-1 arms (False), then
+    # confirm. [P0v3 (1) 07-17] tts = +4000s -> the BELL-BEFORE-SCHED clamp
+    # VOIDS the pre-sched confirm (phantom_bell_void, held pending); the latch
+    # re-fires sched_clamped once the schedule floor passes.
     s, et = make_stub(True, 40)
     first = LiveV3._is_match_live(s, et)      # arms stage1
     T[0] += 70.0                              # >60 gap, <300 ttl
     s._trade_times[et + "-LOP"] = [T[0] - i for i in range(40)]  # keep the burst live
-    second = LiveV3._is_match_live(s, et)     # confirm
+    second = LiveV3._is_match_live(s, et)     # confirm attempt -> VOID (pre-sched)
     check("latch_on_stage1_false", first is False)
-    check("latch_on_confirm_true", second is True and et in s._events_live)
+    check("latch_pre_sched_voided", second is False and et not in s._events_live
+          and et in s._gun_void_pending)
+    T[0] += 4000.0                            # past the schedule floor
+    LiveV3._gun_void_refire(s, T[0])          # pending bell re-fires sched_clamped
+    check("latch_refire_at_sched", et in s._events_live
+          and s._gun_state.get(et, {}).get("source") == "tape_latch")
 finally:
     mod.time.time = orig_time
 

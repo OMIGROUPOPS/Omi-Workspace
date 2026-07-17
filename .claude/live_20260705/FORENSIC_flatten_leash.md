@@ -1,12 +1,13 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784275861 -->
-written 2026-07-17 04:15:19 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784276635 -->
+written 2026-07-17 04:25:33 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (5 total this session)
+## Events (6 total this session)
 - 03:28:57 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 03:40:09 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 03:52:15 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 04:03:46 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 04:11:01 KXITFWMATCH-26JUL17SCHDAD-SCH — flatten DEFERRED: ev -1.72 above margin floor -3.0
+- 04:23:55 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-17 01:04:32 AM ET", "ts_epoch": 1784264672.2620971, "event": "orphan_readopted_fingerprint", "ticker": "KXITFWMATCH-26JUL17SCHDAD-SCH", "details": {"price": 54, "qty": 5, "order_id": "104b0562-4d17-4281-911c-e02fec4680ce", "posted_ts": 1784261060.0748823}}
@@ -150,6 +151,16 @@ written 2026-07-17 04:15:19 AM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-17 04:11:01 AM ET", "ts_epoch": 1784275861.6396773, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL17SCHDAD-SCH", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_W|leader|at_mid|51_75", "n": 32, "p_exit_fill": 0.781, "p_ride_zero": 0.219, "ev_cents": -1.72, "band": 16, "basis": 65, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LA
     {"ts": "2026-07-17 04:11:01 AM ET", "ts_epoch": 1784275861.6400058, "event": "completion_flatten_deferred", "ticker": "KXITFWMATCH-26JUL17SCHDAD-SCH", "details": {"event": "KXITFWMATCH-26JUL17SCHDAD", "ev_cents": -1.72, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
     {"ts": "2026-07-17 04:13:37 AM ET", "ts_epoch": 1784276017.1898246, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17GALCOP-COP", "details": {"verdict": "NO-OPINION", "kept": {"opinion": "NO-OPINION", "missing": "no observable runmid / basis / band"}, "cross": {"opinion": "NO-OPINION", "missing": "no observable runmid / basis / band"}, "ev3": {"verdict3": "NO-OPINION"}, "event"
+    {"ts": "2026-07-17 04:20:59 AM ET", "ts_epoch": 1784276459.6800768, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 6, "n_resting_orders": 21, "n_failures": 0, "n_flags": 4, "failures": [], "flags": [{"tk": "KXATPMATCH-26JUL17BORDAR-BOR", "check": "pair_incomplete", "event": "KXATPMATCH-26JUL17BORDAR", "legs": {"BOR": "absent", "
+    {"ts": "2026-07-17 04:21:41 AM ET", "ts_epoch": 1784276501.3890524, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL17SCHDAD-SCH", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_W|leader|deep_disc|51_75", "n": 12, "p_exit_fill": 0.75, "p_ride_zero": 0.25, "ev_cents": -4.25, "band": 16, "basis": 65, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_L
+    {"ts": "2026-07-17 04:21:43 AM ET", "ts_epoch": 1784276503.540399, "event": "order_cancelled", "ticker": "KXITFWMATCH-26JUL17SCHDAD-SCH", "details": {"order_id": "368a9112-9d68-44f2-b533-b3d4d0ea94ae", "label": "completion_live_flatten", "success": false, "governed_by": "per_leg_policy", "window": {"phase": "W2", "min_to_scheduled": 338.3, "gun_fired": true, "gun_source": "fallback_bell", "gun_gra
+    {"ts": "2026-07-17 04:21:44 AM ET", "ts_epoch": 1784276504.7502425, "event": "order_placed", "ticker": "KXITFWMATCH-26JUL17SCHDAD-SCH", "details": {"action": "sell", "side": "yes", "price": 73, "count": 5, "order_id": "e8cd0a6b-61fd-46fe-ba66-e288ef379bbf", "client_order_id": "b4fcf3b0-a455-4f95-9ff6-b23e2e54e446", "response_status": "filled", "window": {"phase": "W2", "min_to_scheduled": 338.3, "
+    {"ts": "2026-07-17 04:21:44 AM ET", "ts_epoch": 1784276504.750559, "event": "completion_action", "ticker": "KXITFWMATCH-26JUL17SCHDAD-SCH", "details": {"event": "KXITFWMATCH-26JUL17SCHDAD", "verdict": "flatten_kept", "outcome": "flattening", "flatten_price": 73, "qty": 5, "kept_basis": 65, "ev_cents": -4.25, "order_id": "e8cd0a6b-61fd-46fe-ba66-e288ef379bbf", "governed_by": "per_leg_policy", "wind
+    {"ts": "2026-07-17 04:21:45 AM ET", "ts_epoch": 1784276505.555794, "event": "exit_filled", "ticker": "KXITFWMATCH-26JUL17SCHDAD-SCH", "details": {"exit_price": 73, "entry_price": 65, "qty": 5, "new_fills": 5, "complete": true, "pnl_cents": 40.0, "pnl_dollars": 0.4, "had_dca": false, "cycle": 1, "in_play": true, "bell_source": "fallback_bell", "trade_id": "T-20260717-0009", "window": {"phase": "W2"
+    {"ts": "2026-07-17 04:22:58 AM ET", "ts_epoch": 1784276578.976117, "event": "reconcile_price_mismatch", "ticker": "KXITFWMATCH-26JUL17SCHDAD-SCH", "details": {"bot_entry_price": 65, "kalshi_avg_price": 0, "delta": -65, "entry_qty": 5, "kalshi_qty": -5}}
+    {"ts": "2026-07-17 04:23:54 AM ET", "ts_epoch": 1784276634.4145796, "event": "reconcile_price_mismatch", "ticker": "KXITFWMATCH-26JUL17SCHDAD-SCH", "details": {"bot_entry_price": 65, "kalshi_avg_price": 0, "delta": -65, "entry_qty": 5, "kalshi_qty": -5}}
+    {"ts": "2026-07-17 04:23:55 AM ET", "ts_epoch": 1784276635.539561, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17GALCOP-COP", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|leader|at_mid|51_75", "n": 69, "p_exit_fill": 0.768, "p_ride_zero": 0.217, "ev_cents": -0.65, "band": 15, "basis": 56, "win_ride_residual_excluded": 0.014, "citation":
+    {"ts": "2026-07-17 04:23:55 AM ET", "ts_epoch": 1784276635.540877, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL17GALCOP-COP", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17GALCOP", "ev_cents": -0.65, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
 
 ## Code path
 ?

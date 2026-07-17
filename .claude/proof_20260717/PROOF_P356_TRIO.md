@@ -1,5 +1,5 @@
 # OUTCOME PROOF — P3 escape-hatch · P5 ⑮ LIVE · P6 retreat (one gated deploy; carries the floor chokepoint 7760cc5f already proven in PROOF_FLOOR_CHOKEPOINT.md)
-Proven SHA: **SHAP356**
+Proven SHA: **793db396**
 Operator words (07-17, verbatim): P3 "A fitting-gap refusal on a leg whose sibling is posted does not satisfy the pair law — those legs get a priced bid or the event doesn't trade. Wire that into the invariant's check." · P5 (Fable under delegation) "⑮ LIVE. Not shadow… join or improve best bid +1¢ on the strengthening side; the cast holds deep only where the tape shows the deep print real… This is the arm that ends watch-but-don't-touch." · P6 "every open unfilled event whose lifetime volume sits under 1,500 gets both resting bids withdrawn together — one pair-level retreat… Events with a filled leg are positions, not conceptions."
 
 ## Lane 1 — per-game replay
@@ -13,4 +13,4 @@ Operator words (07-17, verbatim): P3 "A fitting-gap refusal on a leg whose sibli
 - P6 gated `discovery_floor_retreat` (DECREED-cited); cancels ride `_cancel_entry_and_resolve` + `_untombstone_entry` (the deliberate cancel-and-free pattern, seesaw-lift precedent); once per event per boot; ITF unfilled events only.
 
 ## Gate
-lint + smoke via deploy/deploy_gate.sh (this file is OUTCOME_PROOF; OUTCOME_PROOF_SHA=SHAP356).
+lint + smoke via deploy/deploy_gate.sh (this file is OUTCOME_PROOF; OUTCOME_PROOF_SHA=793db396).

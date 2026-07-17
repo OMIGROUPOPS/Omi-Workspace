@@ -441,7 +441,13 @@ def log_order_history(ticker):
     """Sibling disposition from the engine's own log (full-day truth,
     unlike snap_orders' 2h window). Returns (text, cap) where cap is
     'C' (honestly attempted — posted lawful, never traded there) or
-    'D' (pulled-and-abandoned / never conceived), per the pair law."""
+    'D' (pulled-and-abandoned / never conceived), per the pair law.
+
+    LEGACY PROSE path — still used by POSITIONS' gray_line fallback and
+    the ORDERS-side snap_orders replay. CLOSED cards use
+    log_order_history_dict(), which returns the same facts as structured
+    fields so the template can render digits without parsing prose.
+    """
     o = _log_scan()["orders"].get(ticker)
     if not o:
         hist = order_history_for_ticker(ticker)  # snap_orders fallback
@@ -469,6 +475,65 @@ def log_order_history(ticker):
                    _hm(o["last_cancel_ts"])), "D")
     return ("posted %s¢ (%s, ×%d) · never traded that low"
             % (px, when, o.get("n_posts", 1)), "C")
+
+
+def log_order_history_dict(ticker):
+    """Structured sibling disposition (Plex render-ownership, 07-17).
+
+    Reads the exact same log lines log_order_history() reads — no new
+    fetches, no new sources. Returns a dict the template can render as
+    digits/icons only, no prose:
+
+      {kind: 'held' | 'pulled' | 'never_bid',
+       px:   int | None,     # posted bid, ¢
+       qty:  int | None,     # n_posts count (best available proxy for
+                              # 'ct' on the sibling side; CT proper
+                              # requires a schema field snap_orders
+                              # does not persist — filed under PLACED-ET)
+       ep:   int | None,     # first-post epoch (⇒ T−X(BID) cell)
+       pulled_by:  str | None,   # cancel label (icon-tooltip only)
+       pulled_ep:  int | None,   # cancel epoch  (⇒ ✕ time cell)
+       cap:  'C' | 'D'}          # pair-law cap (unchanged)
+
+    Never returns None — a missing log entry becomes kind='never_bid',
+    same pair-law verdict (D) the prose path returned. The template's
+    red PAIR ✕ chip is what renders for that case.
+    """
+    o = _log_scan()["orders"].get(ticker)
+    if not o:
+        # snap_orders fallback carries no epochs — the prose path had to
+        # string-match "pulled" to derive cap; the dict path stays
+        # honest: no epochs shipped means the T−X/✕ cells render as
+        # muted — in the template, cap follows the same prose-scan.
+        hist = order_history_for_ticker(ticker)
+        if hist:
+            return {"kind": "pulled" if "pulled" in hist else "held",
+                    "px": None, "qty": None, "ep": None,
+                    "pulled_by": None, "pulled_ep": None,
+                    "cap": "D" if "pulled" in hist else "C",
+                    "source": "snap_orders_fallback"}
+        return {"kind": "never_bid",
+                "px": None, "qty": None, "ep": None,
+                "pulled_by": None, "pulled_ep": None,
+                "cap": "D", "source": "none"}
+    px = o.get("first_px")
+    ep = o.get("first_ts")
+    qty = o.get("n_posts", 1)
+    cancel_ts = o.get("last_cancel_ts")
+    post_ts = o.get("last_post_ts") or 0
+    if cancel_ts and post_ts <= cancel_ts:
+        label = o.get("last_cancel_label") or "cancel"
+        swept = ("match_live" in label or "settlement" in label
+                 or "shutdown" in label)
+        return {"kind": "held" if swept else "pulled",
+                "px": px, "qty": qty, "ep": ep,
+                "pulled_by": label, "pulled_ep": cancel_ts,
+                "cap": "C" if swept else "D",
+                "source": "engine_log"}
+    return {"kind": "held",
+            "px": px, "qty": qty, "ep": ep,
+            "pulled_by": None, "pulled_ep": None,
+            "cap": "C", "source": "engine_log"}
 
 
 OFFICIAL_BELLS = ROOT / "state" / "daysheet_bells_official.json"
@@ -915,7 +980,9 @@ def build_positions():
                 # PLACED ET: no honest source in the schema (open-ledger
                 # gap) — never backfilled from the fill time.
                 "placed_et": None,
+                "placed_ep": None,
                 "filled_et": (_hm(fill[1]) if fill else None),
+                "fill_ep": (fill[1] if fill else None),  # raw epoch (Plex T−X law)
                 "fill_price_c": fill[2] if fill else None,
             })
         held = {l["last_name"] for l in game_out["legs"] if l["last_name"]}
@@ -1084,10 +1151,13 @@ def build_closed(day=None):
                 "n_entry_fills": len(buys),
                 "qty": bct,
                 "filled_et": _hm(buys[-1][0]) if buys else None,
+                "fill_ep": (buys[-1][0] if buys else None),  # raw epoch (Plex T−X law)
                 "placed_et": None,  # schema gap, open ledger
+                "placed_ep": None,
                 "fill_window": fill_window,
                 "exit": ({"price_c": int(round(avg_sell)), "qty": sct,
-                          "at": _hm(sells[-1][0])} if sct else None),
+                          "at": _hm(sells[-1][0]),
+                          "ep": sells[-1][0]} if sct else None),
                 "win": win,
                 # Δ only has meaning on W1 fills (time law, part 5)
                 "delta_c": ((ours - w1c)
@@ -1118,12 +1188,15 @@ def build_closed(day=None):
             kn = {"legs": {s: s for s in filled_suffixes}}
         else:
             kn = _kalshi_event_names(ev)
+        siblings_struct = []  # structured dict per missing side (Plex 07-17)
         if kn and len(kn.get("legs") or {}) >= 2:
             missing = [s for s in kn["legs"] if s not in filled_suffixes]
             if not missing:
                 times = " → ".join(l["filled_et"] or "?"
                                    for l in game_out["legs"]
                                    if l["qty"])
+                # prose kept for backwards compat; digit-grammar template
+                # reads game_out["pair_complete"] instead and renders Σ.
                 sib_line = "pair complete: both legs filled (%s)" % times
             else:
                 parts = []
@@ -1131,14 +1204,24 @@ def build_closed(day=None):
                     entry = kn["legs"][s]
                     nm = (entry.get("last") or entry.get("full")
                           if isinstance(entry, dict) else entry) or s
-                    hist, cap = log_order_history(ev + "-" + s)
+                    sib_tk = ev + "-" + s
+                    hist, cap = log_order_history(sib_tk)
                     parts.append("%s — %s" % (nm.upper(), hist))
                     if sib_cap is None or order[cap] > order[sib_cap]:
                         sib_cap = cap
+                    # STRUCTURED sibling record — same log lines, digit form
+                    sd = log_order_history_dict(sib_tk)
+                    sd["suffix"] = s
+                    sd["last_name"] = nm.upper()
+                    sd["ticker"] = sib_tk
+                    siblings_struct.append(sd)
                 sib_line = "sibling: " + " · ".join(parts)
         else:
             _file_miss("sibling_disposition_missing", ev)
         game_out["sibling_line"] = sib_line
+        game_out["siblings"] = siblings_struct  # digit-grammar consumer
+        game_out["pair_complete"] = bool(
+            kn and len(kn.get("legs") or {}) >= 2 and missing == [])
         any_ungraded_leg = any(l.get("grade_note")
                                for l in game_out["legs"])
         if sib_line is None:
@@ -1175,7 +1258,64 @@ def build_closed(day=None):
     return out
 
 
-# ── /api/tape/<ticker>.json — proof-on-click, REAL public tape ───────────
+# ── /api/slate.json — tab-level dead-space digits (Plex 07-17) ────────
+def build_slate(day=None):
+    """Slate-level counts for the dead-space strip above each tab
+    (Plex 07-17, digit-grammar). Aggregation ONLY over the payload rows
+    the three build_*() functions already emit — no new fetches. On the
+    fixture harness the counts are read from fixtures[\"slate\"] if
+    present, else computed the same way.
+
+    Per-tab fields:
+      games         # cards on the tab
+      both_filled   # cards with 2+ filled legs (⇒ Σ foot eligible)
+      red_slot      # cards with a missing side (⇒ red PAIR ✕)
+      resting       # (CLOSED only) cards whose sibling has a bid but no
+                    # fill — the operator's "resting" bucket in
+                    # \"7 games · 2Σ · 3 (red) · 2 resting\"
+    """
+    if FIXTURE_PATH:
+        fx = json.loads(Path(FIXTURE_PATH).read_text())
+        if "slate" in fx:
+            return fx["slate"]
+    pos = build_positions()
+    ords = build_orders()
+    clsd = build_closed(day)
+
+    pos_stats = {
+        "games": len(pos),
+        "both_filled": sum(
+            1 for g in pos
+            if len([l for l in (g.get("legs") or [])
+                    if (l.get("qty") or 0) > 0]) >= 2),
+        "red_slot": sum(
+            1 for g in pos
+            if len([l for l in (g.get("legs") or [])
+                    if (l.get("qty") or 0) > 0]) < 2
+            and g.get("gray_line") is not None),
+    }
+    ord_stats = {
+        "games": len(ords),
+        "red_slot": sum(1 for g in ords
+                        if len(g.get("legs") or []) < 2),
+    }
+    cls_stats = {
+        "games": len(clsd),
+        "both_filled": sum(1 for g in clsd if g.get("pair_complete")),
+        "red_slot": sum(
+            1 for g in clsd
+            if any(s.get("kind") == "never_bid"
+                   for s in (g.get("siblings") or []))),
+        "resting": sum(
+            1 for g in clsd
+            if any(s.get("kind") in ("held", "pulled")
+                   for s in (g.get("siblings") or []))),
+    }
+    return {"positions": pos_stats, "orders": ord_stats,
+            "closed": cls_stats}
+
+
+# ── /api/tape/<ticker>.json — proof-on-click, REAL public tape ─────────
 def build_tape(ticker):
     if FIXTURE_PATH:
         fx = json.loads(Path(FIXTURE_PATH).read_text())

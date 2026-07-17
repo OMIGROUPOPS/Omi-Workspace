@@ -549,6 +549,10 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
           '</div>' + entryLine + exitLine;
       }).join('');
       const chip = gradeChip(g.grade_status, g.grade);
+      // PAIR LAW: the sibling disposition line is MANDATORY in the box
+      const sibLine = g.sibling_line
+        ? '<div class="gray-line">' + esc(g.sibling_line) + '</div>'
+        : '<div class="gray-line loss">sibling disposition MISSING — UNGRADED, filed</div>';
       let footnote = '';
       if(g.walk){
         // THE WALK footnote, standing format: charge -> amendment -> verdict
@@ -560,8 +564,11 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
       } else if(g.grade_status === 'ungraded'){
         footnote = 'DAYSHEET.json not yet generated for this day — no grade rendered';
       }
+      if(g.grade_cap_note){
+        footnote += (footnote ? ' · ' : '') + '<span class="cls">' + esc(g.grade_cap_note) + '</span>';
+      }
       return '<div class="gamebox">' + gameHead(g) +
-        legs +
+        legs + sibLine +
         '<div class="gradebar-inline">' + chip + '<span class="footnote">' + footnote + '</span></div>' +
         '</div>';
     }).join('');

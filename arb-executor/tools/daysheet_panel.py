@@ -318,26 +318,33 @@ def kalshi_deeplink(ticker_or_event):
 
 # ── BELL JOIN (engine gun_fired lines, incremental, disk-persisted) ─────
 _bells_lock = threading.Lock()
-_bells_mem = {"files": {}, "bells": {}, "loaded": False, "checked": 0.0}
+_bells_mem = {"files": {}, "bells": {}, "orders": {}, "loaded": False,
+              "checked": 0.0}
 
 
-def _bells():
-    """{event_ticker: {gun_ts, bell_ts, source}} from live_v3_<day>.jsonl
-    gun_fired lines — today's and yesterday's files (log files roll
-    mid-day; an event's bell can live in either). Incremental by byte
-    offset, persisted to state/daysheet_bells.json."""
+def _log_scan():
+    """One incremental pass over live_v3_<day>.jsonl (today + yesterday;
+    log files roll mid-day) collecting BOTH bells (gun_fired) and the
+    per-ticker BUY-ORDER HISTORY (order_placed/order_cancelled) — the
+    sibling-disposition source. snap_orders only retains 2h, so it
+    CANNOT answer 'was the missing side honestly attempted' for a
+    morning game; the engine's own log can. Byte-offset incremental,
+    persisted to state/daysheet_bells.json (v2)."""
     with _bells_lock:
         now = time.time()
         if not _bells_mem["loaded"]:
             try:
                 disk = json.loads(BELLS_CACHE.read_text())
-                _bells_mem["files"] = disk.get("files", {})
-                _bells_mem["bells"] = disk.get("bells", {})
+                if disk.get("v") == 2:
+                    _bells_mem["files"] = disk.get("files", {})
+                    _bells_mem["bells"] = disk.get("bells", {})
+                    _bells_mem["orders"] = disk.get("orders", {})
+                # v1 cache: leave offsets empty -> full rescan once
             except Exception:
                 pass
             _bells_mem["loaded"] = True
         if now - _bells_mem["checked"] < 30:
-            return _bells_mem["bells"]
+            return _bells_mem
         _bells_mem["checked"] = now
         days = [(datetime.now(ET) - timedelta(days=n)).strftime("%Y%m%d")
                 for n in (1, 0)]
@@ -361,26 +368,52 @@ def _bells():
                     tail = len(data) - cut
                     data = data[:cut]
                 for line in data.split(b"\n"):
-                    if b'"gun_fired"' not in line:
+                    is_gun = b'"gun_fired"' in line
+                    is_place = b'"order_placed"' in line
+                    is_cancel = b'"order_cancelled"' in line
+                    if not (is_gun or is_place or is_cancel):
                         continue
                     try:
                         j = json.loads(line)
                     except ValueError:
                         continue
-                    if j.get("event") != "gun_fired":
-                        continue
+                    e = j.get("event")
                     det = j.get("details") or {}
-                    ev = det.get("event") or (j.get("ticker", "")
-                                              .rsplit("-", 1)[0])
-                    if not ev or ev in _bells_mem["bells"]:
-                        continue
-                    gts = j.get("ts_epoch")
-                    th = det.get("tts_honest_min")
-                    _bells_mem["bells"][ev] = {
-                        "gun_ts": gts,
-                        "bell_ts": ((gts + th * 60)
-                                    if (gts and th is not None) else gts),
-                        "source": det.get("source") or "unknown"}
+                    ts = j.get("ts_epoch")
+                    if e == "gun_fired":
+                        ev = det.get("event") or (j.get("ticker", "")
+                                                  .rsplit("-", 1)[0])
+                        if not ev or ev in _bells_mem["bells"]:
+                            continue
+                        th = det.get("tts_honest_min")
+                        _bells_mem["bells"][ev] = {
+                            "gun_ts": ts,
+                            "bell_ts": ((ts + th * 60)
+                                        if (ts and th is not None)
+                                        else ts),
+                            "source": det.get("source") or "unknown"}
+                        changed = True
+                    elif e == "order_placed" \
+                            and det.get("action") == "buy":
+                        tk = j.get("ticker")
+                        if not tk:
+                            continue
+                        o = _bells_mem["orders"].setdefault(
+                            tk, {"first_ts": ts,
+                                 "first_px": det.get("price"),
+                                 "n_posts": 0, "last_post_ts": ts,
+                                 "last_cancel_ts": None,
+                                 "last_cancel_label": None})
+                        o["n_posts"] += 1
+                        o["last_post_ts"] = ts
+                        changed = True
+                    elif e == "order_cancelled":
+                        tk = j.get("ticker")
+                        o = _bells_mem["orders"].get(tk)
+                        if o is not None:
+                            o["last_cancel_ts"] = ts
+                            o["last_cancel_label"] = det.get("label")
+                            changed = True
                 _bells_mem["files"][key] = size - tail
                 changed = True
             except OSError:
@@ -388,11 +421,39 @@ def _bells():
         if changed:
             try:
                 BELLS_CACHE.write_text(json.dumps(
-                    {"files": _bells_mem["files"],
-                     "bells": _bells_mem["bells"]}), encoding="utf-8")
+                    {"v": 2, "files": _bells_mem["files"],
+                     "bells": _bells_mem["bells"],
+                     "orders": _bells_mem["orders"]}), encoding="utf-8")
             except OSError:
                 pass
-        return _bells_mem["bells"]
+        return _bells_mem
+
+
+def _bells():
+    return _log_scan()["bells"]
+
+
+def log_order_history(ticker):
+    """Sibling disposition from the engine's own log (full-day truth,
+    unlike snap_orders' 2h window). Returns (text, cap) where cap is
+    'C' (honestly attempted — posted lawful, never traded there) or
+    'D' (pulled-and-abandoned / never conceived), per the pair law."""
+    o = _log_scan()["orders"].get(ticker)
+    if not o:
+        hist = order_history_for_ticker(ticker)  # snap_orders fallback
+        if hist:
+            return (hist, "D" if "pulled" in hist else "C")
+        return ("not bid — never conceived", "D")
+    px = o.get("first_px")
+    when = _hm(o["first_ts"]) if o.get("first_ts") else "?"
+    if o.get("last_cancel_ts") and (o.get("last_post_ts") or 0) \
+            <= o["last_cancel_ts"]:
+        return ("posted %s¢ (%s, ×%d) · pulled (%s %s) · never re-placed"
+                % (px, when, o.get("n_posts", 1),
+                   o.get("last_cancel_label") or "cancel",
+                   _hm(o["last_cancel_ts"])), "D")
+    return ("posted %s¢ (%s, ×%d) · never traded that low"
+            % (px, when, o.get("n_posts", 1)), "C")
 
 
 OFFICIAL_BELLS = ROOT / "state" / "daysheet_bells_official.json"
@@ -1025,11 +1086,72 @@ def build_closed(day=None):
                 "grade_note": grade_note,
                 "grade_row": gr_row,
             })
-        if leg_grades:
-            order = {"A": 0, "B": 1, "C": 2, "D": 3, "F": 4}
-            game_out["grade"] = max(leg_grades,
-                                    key=lambda g: order.get(g, 9))
+        # ── PAIR LAW (grader amend, 07-16): the grade is per GAME,
+        # never per leg. A requires BOTH legs W1; one-sided caps at C
+        # (missing side honestly attempted) or D (never conceived /
+        # pulled-and-abandoned); the sibling disposition line is
+        # MANDATORY — absent = UNGRADED, filed.
+        order = {"A": 0, "B": 1, "C": 2, "D": 3, "F": 4}
+        filled = [l for l in game_out["legs"] if l["qty"]]
+        filled_suffixes = {l["ticker"].rsplit("-", 1)[-1]
+                           for l in filled}
+        kn = _kalshi_event_names(ev)
+        sib_line = None
+        sib_cap = None
+        missing = None
+        if kn and len(kn.get("legs") or {}) >= 2:
+            missing = [s for s in kn["legs"] if s not in filled_suffixes]
+            if not missing:
+                times = " → ".join(l["filled_et"] or "?"
+                                   for l in game_out["legs"]
+                                   if l["qty"])
+                sib_line = "pair complete: both legs filled (%s)" % times
+            else:
+                parts = []
+                for s in missing:
+                    entry = kn["legs"][s]
+                    nm = (entry.get("last") or entry.get("full")
+                          if isinstance(entry, dict) else entry) or s
+                    hist, cap = log_order_history(ev + "-" + s)
+                    parts.append("%s — %s" % (nm.upper(), hist))
+                    if sib_cap is None or order[cap] > order[sib_cap]:
+                        sib_cap = cap
+                sib_line = "sibling: " + " · ".join(parts)
+        else:
+            _file_miss("sibling_disposition_missing", ev)
+        game_out["sibling_line"] = sib_line
+        any_ungraded_leg = any(l.get("grade_note")
+                               for l in game_out["legs"])
+        if sib_line is None:
+            game_out["grade"] = None
+            game_out["grade_status"] = "ungraded"
+            game_out["footnote"] = ("UNGRADED (sibling disposition "
+                                    "unresolvable — filed)")
+        elif any_ungraded_leg or not leg_grades:
+            game_out["grade"] = None
+            game_out["grade_status"] = "ungraded"
+        else:
+            g = max(leg_grades, key=lambda x: order.get(x, 9))
+            cap_note = None
+            if missing:
+                if order.get(sib_cap, 9) > order.get(g, 9):
+                    cap_note = ("capped %s: one-sided (%s)"
+                                % (sib_cap,
+                                   "missing side honestly attempted"
+                                   if sib_cap == "C" else
+                                   "missing side abandoned or never "
+                                   "conceived"))
+                    g = sib_cap
+            elif g == "A" and not (
+                    len(filled) >= 2
+                    and all(l.get("fill_window") == "W1"
+                            for l in filled)):
+                g = "B"
+                cap_note = ("capped B: pair complete but not both legs "
+                            "W1 (A requires both W1, sequenced)")
+            game_out["grade"] = g
             game_out["grade_status"] = "graded"
+            game_out["grade_cap_note"] = cap_note
         out.append(game_out)
     return out
 

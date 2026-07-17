@@ -4767,6 +4767,44 @@ class LiveV3:
                         "cap": getattr(self, "reentry_cycle_cap", 2),
                     }, ticker=ticker)
                 return "", {"_error": "cycle_cap"}
+        # [P3 FLOOR-AT-CONCEPTION, operator dispatch 07-17 — SUPERSEDES
+        # the phase-scoped site (the corridor/stale-only check at the
+        # walk-preference block; BROBRA was conceived in W1 phase and
+        # the floor was never reached). THE SINGLE CHOKEPOINT EVERY
+        # ENTRY PASSES: every ITF event consults lifetime volume at
+        # conception; below floor = the EVENT refused — both legs, one
+        # pair-level refusal, regardless of phase. The corridor and
+        # fallback checks remain as second doors. The number stays
+        # 1,500 — the operator's floor, untouched. Filled events skip
+        # (completion of a held leg is never blocked).]
+        if (action == "buy" and post_only
+                and self.config.get("discovery_floor_enabled", False)):
+            _et3 = ticker.rsplit("-", 1)[0]
+            _cat3 = self._cat_of_tk(ticker) or ""
+            if _cat3 in ("ITF_M", "ITF_W") \
+                    and not self._event_has_fill(_et3):
+                _v3 = self.event_lifetime_vol.get(_et3)
+                _fl3 = float(self.config.get(
+                    "discovery_floor_shares", 1500))
+                if (_v3 or 0.0) < _fl3:
+                    _sk3 = self.__dict__.setdefault(
+                        "_floor_choke_logged", set())
+                    if _et3 not in _sk3:
+                        _sk3.add(_et3)
+                        self._log("below_discovery_floor_refused", {
+                            "event": _et3, "cat": _cat3,
+                            "site": "conception_chokepoint",
+                            "pair_level": True,
+                            "discovered_shares": round(_v3 or 0.0, 1),
+                            "floor": _fl3,
+                            "vol_basis": ("kalshi_rest_lifetime"
+                                          if _v3 is not None
+                                          else "unmeasured"),
+                            "cite": "P3 FLOOR-AT-CONCEPTION 07-17 "
+                                    "(operator; BROBRA the founding "
+                                    "exhibit; number unchanged)"},
+                            ticker=ticker)
+                    return "", {"_error": "below_discovery_floor"}
         # [C-PAIR-LAW v1, 07-15] the chokepoint half (the C-BAND-CLAMP
         # make-it-stick lesson: covers the router and every conception
         # path): no entry buy may rest on an UNFILLED event whose sibling

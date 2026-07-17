@@ -525,6 +525,27 @@ class H(BaseHTTPRequestHandler):
             return
         if u.path == "/api/closed.json":
             day_param = (qs.get("day") or [None])[0]
+            # [P4 DAY BANK, 07-17] a CLOSED day serves from the archive
+            # and never rebuilds: first serve of a past day banks the
+            # payload verbatim; every later request reads the bank —
+            # grades, bells, walks frozen as the day ended (the
+            # dropdown brief reads this archive).
+            today = datetime.now(ET).strftime("%Y%m%d")
+            if day_param and day_param < today:
+                bank = ROOT / "state" / "daysheet_bank"
+                bank.mkdir(parents=True, exist_ok=True)
+                bp = bank / ("closed_%s.json" % day_param)
+                if bp.exists():
+                    self._send(bp.read_text(encoding="utf-8"),
+                               "application/json")
+                    return
+                body = json.dumps(ds.build_closed(day_param))
+                try:
+                    bp.write_text(body, encoding="utf-8")
+                except OSError:
+                    pass
+                self._send(body, "application/json")
+                return
             self._send(json.dumps(ds.build_closed(day_param)),
                        "application/json")
             return

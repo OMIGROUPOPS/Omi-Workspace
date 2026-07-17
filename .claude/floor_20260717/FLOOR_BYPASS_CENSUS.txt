@@ -1,0 +1,34 @@
+non-corridor ITF conceptions since 07-15: 463
+UNDER 1,500 lifetime EVEN NOW (exact lower bound): 31
+realized on the under-floor set: -125c across 3 settled/cashed events
+  26JUL15MASDUT                          phase=W1 vol=924.0 realized=-155.0
+  26JUL16SAKFER                          phase=W1 vol=1489.4 realized=-65.0
+  26JUL15DOLDOU                          phase=W1 vol=14.2 realized=None
+  26JUL17UDVNIJ                          phase=W1 vol=48.8 realized=None
+  26JUL17PALPAP                          phase=W1 vol=30.9 realized=None
+  26JUL17TSYMAR                          phase=W1 vol=199.1 realized=None
+  26JUL17STOLEW                          phase=W1 vol=147.7 realized=None
+  26JUL17SMICIR                          phase=W1 vol=61.2 realized=None
+  26JUL17ZHAWAN                          phase=W1 vol=133.7 realized=None
+  26JUL17WIECUE                          phase=W1 vol=26.7 realized=None
+  26JUL17TURPAP                          phase=W1 vol=25.1 realized=None
+  26JUL17SERZEL                          phase=W1 vol=328.4 realized=None
+  26JUL17BLAGHA                          phase=W1 vol=19.7 realized=None
+  26JUL17MCKTSI                          phase=W1 vol=126.3 realized=None
+  26JUL17STAORL                          phase=W1 vol=0.4 realized=None
+  26JUL17BROBRA                          phase=W1 vol=66.0 realized=None
+  26JUL17KIMDOI                          phase=W1 vol=11.8 realized=None
+  26JUL17KUCSIS                          phase=W1 vol=111.4 realized=None
+  26JUL17VELROB                          phase=W1 vol=0.4 realized=None
+  26JUL17HORROU                          phase=W1 vol=352.4 realized=None
+  26JUL17JADDUR                          phase=W1 vol=19.7 realized=None
+  26JUL17SAHMOS                          phase=W1 vol=10.7 realized=None
+  26JUL17DUDKLU                          phase=W1 vol=706.4 realized=None
+  26JUL17NATRAD                          phase=W1 vol=199.5 realized=None
+  26JUL17KUZPAV                          phase=W1 vol=25.1 realized=None
+  26JUL17JANSCH                          phase=W1 vol=23.9 realized=None
+  26JUL17KUHSTR                          phase=W1 vol=18.4 realized=None
+  26JUL17KOIFIT                          phase=W1 vol=855.8 realized=None
+  26JUL17KUBSHI                          phase=W1 vol=205.0 realized=None
+  26JUL17FITSED                          phase=W1 vol=9.8 realized=None
+  26JUL15CHACHA2                         phase=W1 vol=1235.0 realized=95.0

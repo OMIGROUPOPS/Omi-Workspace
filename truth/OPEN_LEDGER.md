@@ -2,6 +2,7 @@
 > Updated at every C50 BY LAW (gate-checked like the BOARD). Fable session-zero reads this SECOND, after truth/INDEX.json. Four sections, nothing else: a thread lives here until it ships, dies, or the operator strikes it.
 
 ## IN-MOTION (dispatches sent / awaiting)
+- **FABLE'S FOUR SHIPPED (07-17 ~2:30 AM):** PR #4 digit grammar LIVE (glass=Plex, wire=4a–c; slots lit; token posted — note: token PERSISTS across restarts, no rotation) · **FLOOR AT CONCEPTION deployed (pair-level, all phases, 1,500 untouched; census: 463 non-corridor ITF conceptions since 07-15, 31 sub-floor even now — grew 25→31 during the dispatch hour — −125¢ on 3 settled; BROBRA founding exhibit)** · BROBRA charged (batch-2 founding: floor-silent + LIVE-CELL-OVER-SHADOW class question + BRO = exhibit #8→⑮) · day bank live (closed days serve frozen from state/daysheet_bank/, never rebuilt — the dropdown brief's archive exists). **SITE-SCOPED LAW class founded (seesaw/grader/floor) + STANDING AUDIT: every always/every/never law gets its enforcement site named — findings one line each.**
 - **SHELF (C-SHELF-CONSOLIDATION 07-17 — the census folded here; scaffold `.claude/shelf/SHELF_CENSUS.md`; nothing arms without the word):**
   - **AIM_V2** [SHELF: dark | AIM_V2 | unpriced] — gate re-check vs "honest n≥30 per (cat,Tbin) tier": **DOES NOT PASS — the per-tier n table cannot be posted; the honest timing corpus doesn't exist** (bell-recovery graded TRAINING-GRADE, 33.9% overlap; refinement pass never run) and GOMOFN (07-07) stands against deeper thin-book aims. Gap: the corpus.
   - **Expression layer** [SHELF: dark | expression | fav +4.6%/3d] — HELD by its own W1 condition; **the gate is the ITF_W-fav-W1 recut (below), not ④**; switch = expression_enabled, one flip, cohort pre-wired.
@@ -44,6 +45,7 @@
 ⑬ **Index-v2 dial-level** — reserved (INDEX.json v2: dial-level annotations per law).
 
 ## STANDING WATCHES
+- **SITE-SCOPED LAW AUDIT (07-17, permanent):** every vault law whose text says "always"/"every"/"never" gets its enforcement site NAMED and checked against that word; findings → this ledger, one line each; new laws name their site at vaulting.
 - **PLEX PASTE = HANDS-TASK (07-17, permanent):** a Plex paste applies VERBATIM to a `plex/` branch under Plex's author name → fixture smoke → screenshot → PR opened — **zero editorial**; review happens on the PR.
 - **THE LOCALHOST RULE (07-16, permanent):** operator surfaces = VPS localhost only (tracker pattern); a Vercel/public deploy of an operator surface = named defect. Day Sheet panel now serves at 8788 → DAY SHEET tab.
 - **Wu at T−8h tonight** — YIBYUN: Bu held 5@42 (reschedule class), Wu unworked since the 4:40 PM latch-cancel; the flag panel carries it; if Wu isn't worked inside the horizon, the latch-blocks-replacement class is convicted.

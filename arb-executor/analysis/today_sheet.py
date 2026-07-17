@@ -446,6 +446,25 @@ def main():
              % ("$%.2f" % (navrow[0] / 100.0) if navrow else "warming",
                 real_tail, real_path, wag, p_off, n_filled, n_posted,
                 p_mkt, n_filled, n_listed * 2))
+    # [ENTRY-MECHANICS P2b 07-17] THE CHURN METER — reposts per leg per
+    # session-hour, nightly (the panel carries the trailing-hour twin).
+    # Exhibits sized the bar: BURMER 42, top legs 40-53/leg/hr on 07-17.
+    _ch_counts = {}
+    _ch_hours = {}
+    for tk, cl in cancels.items():
+        for c in cl:
+            if c.get("label") == "v4_move_repost" and c["ts"] >= mid:
+                _ch_counts[tk] = _ch_counts.get(tk, 0) + 1
+                _ch_hours.setdefault(tk, set()).add(int(c["ts"] // 3600))
+    if _ch_counts:
+        _ch_rates = sorted(((n / max(1, len(_ch_hours.get(t, ()))), t, n)
+                            for t, n in _ch_counts.items()), reverse=True)
+        _ch_tot = sum(_ch_counts.values())
+        L.append("**CHURN METER** · %d reposts / %d legs today · worst: %s"
+                 % (_ch_tot, len(_ch_counts),
+                    " · ".join("%s %.0f/hr (%d)" % (
+                        t.split("-")[-2][-8:] + "-" + t.split("-")[-1],
+                        r, n) for r, t, n in _ch_rates[:4])))
 
     def table(title, headers, rows):
         L.append("")

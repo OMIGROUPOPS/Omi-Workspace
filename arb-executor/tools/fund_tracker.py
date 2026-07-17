@@ -117,6 +117,9 @@ def init_db():
     CREATE TABLE IF NOT EXISTS orders_ledger(
       order_id TEXT PRIMARY KEY, ticker TEXT, action TEXT,
       yes_price_c INTEGER, created_time TEXT, created_ep REAL);
+    CREATE TABLE IF NOT EXISTS settlements(
+      ticker TEXT PRIMARY KEY, settled_ep REAL, day TEXT,
+      revenue_c INTEGER, raw TEXT);
     CREATE INDEX IF NOT EXISTS eq_day ON equity(day);
     CREATE INDEX IF NOT EXISTS fl_day ON fills(day);
     """)
@@ -236,6 +239,35 @@ def recorder_loop():
                              f.get("order_id"), json.dumps(f)[:800]))
                     cur = (j or {}).get("cursor")
                     if stop or not cur:
+                        break
+                # [ENTRY-MECHANICS P6b 07-17] SETTLEMENTS are the death
+                # record: a closed game files under the day it DIED
+                # (settlement day / last-fill day), never the day its entry
+                # buy filled — the day-key misfile's fix. Same 120s sweep
+                # cadence as fills; INSERT OR REPLACE keeps latest.
+                scur = ""
+                for _sp in range(5):
+                    sj = api_get("/trade-api/v2/portfolio/settlements?"
+                                 "limit=200"
+                                 + (("&cursor=%s" % scur) if scur else ""))
+                    srows = (sj or {}).get("settlements", [])
+                    if not srows:
+                        break
+                    sstop = False
+                    for s in srows:
+                        sep = (iso_ep(s.get("settled_time"))
+                               or s.get("ts") or 0)
+                        if sep and sep < midnight - 3 * 86400:
+                            sstop = True
+                        con.execute(
+                            "INSERT OR REPLACE INTO settlements "
+                            "VALUES(?,?,?,?,?)",
+                            (s.get("ticker"), sep, day_of(sep),
+                             int(round(float(s.get("revenue_dollars")
+                                             or 0) * 100)),
+                             json.dumps(s)[:500]))
+                    scur = (sj or {}).get("cursor")
+                    if sstop or not scur:
                         break
             # STATE FLAGS — wrong-by-state, no event needed
             con.execute("DELETE FROM flags WHERE ts < ?", (now - 86400,))

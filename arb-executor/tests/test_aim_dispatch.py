@@ -27,7 +27,10 @@ check("per_cat_depth_guarded",
 check("leg2_entry_guarded", "if self.leg2_reshuffle and book is not None and 0 < book.best_bid < 100:" in SRC)
 check("leg2_walk_guarded",  "if self.leg2_reshuffle and current_price < 50:" in SRC)
 # leg-1 (riser) never vetoed for projected combined -- riser posts AT best bid, no combined guard
-check("leg1_never_blocked", "if anchor_price >= 50:\n                target_bid = int(book.best_bid)" in SRC)
+# [ENTRY-MECHANICS P1 07-17] the park role now keys on the orientation
+# PRIOR (_role_riser; anchor>=50 survives as the default voice)
+check("leg1_never_blocked", "if _role_riser:\n                target_bid = int(book.best_bid)" in SRC
+      and "_role_riser = anchor_price >= 50" in SRC)
 # reshuffle fires only once leg-1 (sibling) has FILLED
 check("reshuffle_on_fill", 'getattr(_sp, "entry_qty", 0) > 0 and getattr(_sp, "entry_price", 0)' in SRC)
 # freeze_at_gun gates fresh post (entry anchor returns None) + holds bid at the live latch (no walk)

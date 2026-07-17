@@ -1,11 +1,13 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784311307 -->
-written 2026-07-17 02:06:17 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784311934 -->
+written 2026-07-17 02:16:38 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (4 total this session)
+## Events (6 total this session)
 - 13:27:57 KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL — flatten DEFERRED: ev -1.07 above margin floor -3.0
 - 13:37:57 KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD — flatten DEFERRED: ev -0.48 above margin floor -3.0
 - 14:01:47 KXATPCHALLENGERMATCH-26JUL17RODCRA-ROD — flatten DEFERRED: ev -0.84 above margin floor -3.0
 - 14:01:47 KXATPCHALLENGERMATCH-26JUL17SANALM-ALM — flatten DEFERRED: ev -2.37 above margin floor -3.0
+- 14:12:14 KXATPCHALLENGERMATCH-26JUL17RODCRA-ROD — flatten DEFERRED: ev -0.84 above margin floor -3.0
+- 14:12:14 KXATPCHALLENGERMATCH-26JUL17SANALM-ALM — flatten DEFERRED: ev -2.37 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-17 10:30:49 AM ET", "ts_epoch": 1784298649.390926, "event": "staircase_hold_place", "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM", "details": {"cat": "ATP_CHALL", "bid": 48, "target": 48}}
@@ -209,6 +211,18 @@ written 2026-07-17 02:06:17 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-17 02:03:09 PM ET", "ts_epoch": 1784311389.367562, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM", "details": {"bot_entry_price": 48, "kalshi_avg_price": 68, "delta": 20, "entry_qty": 2, "kalshi_qty": 2}}
     {"ts": "2026-07-17 02:03:20 PM ET", "ts_epoch": 1784311400.8340595, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 5, "n_resting_orders": 16, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784308336.4126577, "legs_new": ["KXATPCHALLENGERMATCH-26JUL17DRAGEA-GEA", "KXATPCHALLENGERMATCH
     {"ts": "2026-07-17 02:05:32 PM ET", "ts_epoch": 1784311532.3376496, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM", "details": {"bot_entry_price": 48, "kalshi_avg_price": 68, "delta": 20, "entry_qty": 2, "kalshi_qty": 2}}
+    {"ts": "2026-07-17 02:07:30 PM ET", "ts_epoch": 1784311650.4475992, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM", "details": {"bot_entry_price": 48, "kalshi_avg_price": 68, "delta": 20, "entry_qty": 2, "kalshi_qty": 2}}
+    {"ts": "2026-07-17 02:09:04 PM ET", "ts_epoch": 1784311744.7736092, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM", "details": {"bot_entry_price": 48, "kalshi_avg_price": 68, "delta": 20, "entry_qty": 2, "kalshi_qty": 2}}
+    {"ts": "2026-07-17 02:09:47 PM ET", "ts_epoch": 1784311787.6375394, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM", "details": {"bot_entry_price": 48, "kalshi_avg_price": 68, "delta": 20, "entry_qty": 2, "kalshi_qty": 2}}
+    {"ts": "2026-07-17 02:10:46 PM ET", "ts_epoch": 1784311846.0371273, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM", "details": {"bot_entry_price": 48, "kalshi_avg_price": 68, "delta": 20, "entry_qty": 2, "kalshi_qty": 2}}
+    {"ts": "2026-07-17 02:12:14 PM ET", "ts_epoch": 1784311934.774193, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17RODCRA-ROD", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|leader|at_mid|51_75", "n": 69, "p_exit_fill": 0.768, "p_ride_zero": 0.217, "ev_cents": -0.84, "band": 19, "basis": 71, "win_ride_residual_excluded": 0.014, "citation":
+    {"ts": "2026-07-17 02:12:14 PM ET", "ts_epoch": 1784311934.7745767, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL17RODCRA-ROD", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17RODCRA", "ev_cents": -0.84, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-17 02:12:14 PM ET", "ts_epoch": 1784311934.81246, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|26_50", "n": 75, "p_exit_fill": 0.773, "p_ride_zero": 0.227, "ev_cents": -2.37, "band": 11, "basis": 48, "win_ride_residual_excluded": 0.0, "citation": 
+    {"ts": "2026-07-17 02:12:14 PM ET", "ts_epoch": 1784311934.8149514, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17SANALM", "ev_cents": -2.37, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-17 02:12:44 PM ET", "ts_epoch": 1784311964.2023623, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM", "details": {"bot_entry_price": 48, "kalshi_avg_price": 68, "delta": 20, "entry_qty": 2, "kalshi_qty": 2}}
+    {"ts": "2026-07-17 02:12:50 PM ET", "ts_epoch": 1784311970.7894573, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM", "details": {"bot_entry_price": 48, "kalshi_avg_price": 68, "delta": 20, "entry_qty": 2, "kalshi_qty": 2}}
+    {"ts": "2026-07-17 02:13:48 PM ET", "ts_epoch": 1784312028.1602788, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM", "details": {"bot_entry_price": 48, "kalshi_avg_price": 68, "delta": 20, "entry_qty": 2, "kalshi_qty": 2}}
+    {"ts": "2026-07-17 02:15:50 PM ET", "ts_epoch": 1784312150.046609, "event": "reconcile_price_mismatch", "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM", "details": {"bot_entry_price": 48, "kalshi_avg_price": 68, "delta": 20, "entry_qty": 2, "kalshi_qty": 2}}
 
 ## Code path
 ?

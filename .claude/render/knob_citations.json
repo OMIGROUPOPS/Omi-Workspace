@@ -268,5 +268,10 @@
   "DECREED",
   "C-MILESTONE-GUN v1 07-16 (90s inside the 429 budget: one public GET per un-gunned tracked event)",
   "L4"
+ ],
+ "pair_seesaw_conception_exempt": [
+  "DECREED",
+  "PAIR-PRIORITY ENFORCEMENT 07-16 late night (operator, Vault Priority 1 verbatim: both legs rest from conception, never skip a leg on a projected combined; seesaw stays as scoreboard)",
+  "L4"
  ]
 }

@@ -4762,15 +4762,39 @@ class LiveV3:
             if not self._event_has_fill(_et7):
                 _ss7 = self._pair_seesaw_state(ticker, price)
                 if _ss7 and _ss7.get("unreachable"):
-                    _sk7 = self.__dict__.setdefault(
-                        "_seesaw_refused_logged", set())
-                    if (ticker, int(price)) not in _sk7:
-                        _sk7.add((ticker, int(price)))
-                        self._log("pair_seesaw_refused", {
-                            "price": price, "count": count,
-                            "site": "place_order_chokepoint", **_ss7},
-                            ticker=ticker)
-                    return "", {"_error": "pair_seesaw"}
+                    # [PAIR-PRIORITY ENFORCEMENT, operator dispatch 07-16
+                    # late night — Vault Priority 1 verbatim: "rest bids
+                    # on both legs of every tracked game, always — never
+                    # skip a game or leg on a projected combined."] The
+                    # per-leg refusal here HALF-DROPPED pairs (dog placed,
+                    # favorite refused = one-sided by our own hand —
+                    # tonight: ALHYAZ/CHALIM/FOMALK/KAMNGU/ALHMOG/ABDVUX).
+                    # Under the exemption the seesaw stays as the pair's
+                    # SCOREBOARD (logged, observe-only at conception);
+                    # the ≤97 combined is a measurement, never either
+                    # leg's existence gate.
+                    if self.config.get("pair_seesaw_conception_exempt",
+                                       False):
+                        _sk7 = self.__dict__.setdefault(
+                            "_seesaw_score_logged", set())
+                        if (ticker, int(price)) not in _sk7:
+                            _sk7.add((ticker, int(price)))
+                            self._log("pair_seesaw_scoreboard", {
+                                "price": price, "count": count,
+                                "site": "place_order_chokepoint",
+                                "exempt": "conception (Priority 1, "
+                                          "07-16 word)", **_ss7},
+                                ticker=ticker)
+                    else:
+                        _sk7 = self.__dict__.setdefault(
+                            "_seesaw_refused_logged", set())
+                        if (ticker, int(price)) not in _sk7:
+                            _sk7.add((ticker, int(price)))
+                            self._log("pair_seesaw_refused", {
+                                "price": price, "count": count,
+                                "site": "place_order_chokepoint", **_ss7},
+                                ticker=ticker)
+                        return "", {"_error": "pair_seesaw"}
         # [C-CHASE-KILL 07-12, operator decree] the in-play chase ladder dies
         # here (CORBRU: 14 buy placements 41->65 over 90 min, in-play, while
         # the walk cap's _window_open anchor was absent (the cap-void), the
@@ -7015,7 +7039,21 @@ class LiveV3:
                     if not _ms9:
                         continue
                     _st9 = (_ms9.get("details") or {}).get("status")
-                    if _st9 in (None, "not_started"):
+                    # WHITELIST, never blacklist (first-night misfire:
+                    # ABDVUX fired on ms_status "SCH" — SCHEDULED — with
+                    # a start 4 min in the FUTURE; the vocabulary has
+                    # more pre-start values than not_started). Fire ONLY
+                    # on statuses that PROVE the match started; unknown
+                    # values log once and never fire.
+                    if _st9 not in ("live", "P"):
+                        if _st9 not in (None, "not_started", "SCH"):
+                            _seen9 = self.__dict__.setdefault(
+                                "_ms_status_seen", set())
+                            if _st9 not in _seen9:
+                                _seen9.add(_st9)
+                                self._log("gun_feed_ambiguous", {
+                                    "src": "milestone", "event": et,
+                                    "unknown_status": _st9})
                         continue
                     _sd9 = _ms9.get("start_date")
                     try:

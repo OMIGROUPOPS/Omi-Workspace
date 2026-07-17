@@ -1,6 +1,6 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 241 @ **2026-07-17 07:18:00 PM ET** | build `6df7ff83` | session boot 07-17 15:16 ET | log `live_v3_20260717.jsonl` | 11544 session events | monitor READ-ONLY
+- cycle 242 @ **2026-07-17 07:28:30 PM ET** | build `f4307d22` | session boot 07-17 15:16 ET | log `live_v3_20260717.jsonl` | 12013 session events | monitor READ-ONLY
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
 - placed:path_aim UL18CEXSTO-CEX aim=35 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
@@ -44,51 +44,51 @@ clean overnight — no watch fires
 - classes now: {'FLOW_ABOVE': 2, 'NO_FLOW': 1} | repriceable now: true 1 / false 2 | **cumulative bid_grade lines: 12599 (repriceable true 1656 / false 10943)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL17FORTOM-F | 31 | 198m | 18/33-35/1656 | 34-35 | 2 | **FLOW_ABOVE** | 31 | flow above but bound 31c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL18AGIOVC-AGI | 22 | 15m | 2/23-23/24 | 22-23 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→23 |
-| ITFMATCH-26JUL18AGIOVC-OVC | 68 | 16m | 0 | 76-81 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL17FORTOM-F | 31 | 209m | 18/33-35/1656 | 34-35 | 2 | **FLOW_ABOVE** | 31 | flow above but bound 31c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL18AGIOVC-AGI | 22 | 25m | 2/23-23/24 | 22-23 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→23 |
+| ITFMATCH-26JUL18AGIOVC-OVC | 68 | 26m | 0 | 76-81 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
 |---|---|---|---|---|---|
 | ITFMATCH-26JUL17NEFGAI | 46 | 2 | **48** | 97 | -49 |
-| ATPCHALLENGERMATCH-26JUL17WONJOH | 64 | 35 | **99** | 97 | +2 |
-| ATPCHALLENGERMATCH-26JUL17LAJNOG | 71 | 29 | **100** | 97 | +3 |
+| ATPCHALLENGERMATCH-26JUL17SMIYUN | 63 | 25 | **88** | 97 | -9 |
 | ATPCHALLENGERMATCH-26JUL17FORTOM | 66 | 35 | **101** | 97 | +4 |
-| ATPCHALLENGERMATCH-26JUL17SMIYUN | 63 | 40 | **103** | 97 | +6 |
+| ATPCHALLENGERMATCH-26JUL17LAJNOG | 71 | 32 | **103** | 97 | +6 |
+| ATPCHALLENGERMATCH-26JUL17WONJOH | 64 | 61 | **125** | 97 | +28 |
 | ATPCHALLENGERMATCH-26JUL17HOLBOU | 33 | 97 | **130** | 97 | +33 |
-| ATPCHALLENGERMATCH-26JUL17VUKGAL | 53 | 77 | **130** | 97 | +33 |
+| ATPCHALLENGERMATCH-26JUL17VUKGAL | 53 | 81 | **134** | 97 | +37 |
 
-## FLOW-STATE — 9 tracked game(s) ({'WAKING': 4, 'QUIET': 2, 'OPEN': 3}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 9 tracked game(s) ({'WAKING': 3, 'QUIET': 2, 'OPEN': 4}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL17SMIYUN | ATP_CHALL | 2.367 | 1 | **OPEN** |
-| ATPCHALLENGERMATCH-26JUL17WONJOH | ATP_CHALL | 7.367 | 1 | **OPEN** |
-| ITFMATCH-26JUL17OCODEL | ITF_M | 0.633 | 1 | **OPEN** |
+| ATPCHALLENGERMATCH-26JUL17LAJNOG | ATP_CHALL | 14.433 | 1 | **OPEN** |
+| ATPCHALLENGERMATCH-26JUL17SMIYUN | ATP_CHALL | 5.667 | 1 | **OPEN** |
+| ATPCHALLENGERMATCH-26JUL17WONJOH | ATP_CHALL | 14.1 | 1 | **OPEN** |
+| ITFMATCH-26JUL17OCODEL | ITF_M | 1.167 | 1 | **OPEN** |
 | ATPCHALLENGERMATCH-26JUL17HOLBOU | ATP_CHALL | 0.0 | — | **QUIET** |
 | ITFMATCH-26JUL17NEFGAI | ITF_M | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL17FORTOM | ATP_CHALL | 0.233 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL17LAJNOG | ATP_CHALL | 8.1 | — | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL17VUKGAL | ATP_CHALL | 103.9 | — | **WAKING** |
-| ITFMATCH-26JUL18AGIOVC | ITF_M | 0.133 | 1 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL17FORTOM | ATP_CHALL | 0.2 | 1 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL17VUKGAL | ATP_CHALL | 77.933 | — | **WAKING** |
+| ITFMATCH-26JUL18AGIOVC | ITF_M | 0.067 | 1 | **WAKING** |
 
 ## PATTERNS (sub-B) — 16
-- half_arm_aging: KXITFMATCH-26JUL17NEFGAI-GAI {"fill": 46, "age_min": 241, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL17NEFGAI-GAI {"fill": 46, "age_min": 252, "mode": "NO_BID(sib rested earlier, none now)"}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL {"kind": "position_basis", "ref": 86.0, "market_mid": 29.0, "divergence": 57.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU {"fill": 33, "age_min": 227, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU {"fill": 33, "age_min": 237, "mode": "NO_BID(sib rested earlier, none now)"}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17RODCRA-ROD {"kind": "position_basis", "ref": 71.0, "market_mid": 26.5, "divergence": 44.5}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17SANALM-ALM {"kind": "position_basis", "ref": 68.0, "market_mid": 34.5, "divergence": 33.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17WONJOH-WON {"fill": 64, "age_min": 190, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17WONJOH-WON {"fill": 64, "age_min": 201, "mode": "NO_BID(sib rested earlier, none now)"}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU {"kind": "position_basis", "ref": 33.0, "market_mid": 1.5, "divergence": 31.5}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17RODCRA-ROD {"kind": "position_basis", "ref": 71.0, "market_mid": 36.0, "divergence": 35.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17SMIYUN-YUN {"fill": 63, "age_min": 165, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17SMIYUN-YUN {"fill": 63, "age_min": 176, "mode": "NO_BID(sib rested earlier, none now)"}
 - combined_over_goal_UNVERIFIED_BASIS: KXITFMATCH-26JUL17OCODEL {"combined": 99, "detail": "pair combined 99c > 97c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) \u2014 exchange-truth check required, NOT a ZT row"}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17SANALM-ALM {"kind": "position_basis", "ref": 68.0, "market_mid": 26.0, "divergence": 42.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL {"fill": 53, "age_min": 143, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL {"fill": 53, "age_min": 154, "mode": "NO_BID(sib rested earlier, none now)"}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17SANALM-ALM {"kind": "position_basis", "ref": 68.0, "market_mid": 12.5, "divergence": 55.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17FORTOM-TOM {"fill": 66, "age_min": 71, "mode": "SET_BELOW_FLOW(prints 2c above)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL17FORTOM-FOR {"kind": "resting_bid", "ref": 2.0, "market_mid": 34.5, "divergence": -32.5, "emitted_et": "2026-07-17 07:18:00 PM ET"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL {"kind": "position_basis", "ref": 53.0, "market_mid": 24.5, "divergence": 28.5, "emitted_et": "2026-07-17 07:18:00 PM ET"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17FORTOM-TOM {"fill": 66, "age_min": 81, "mode": "SET_BELOW_FLOW(prints 2c above)"}
+- reality_divergence: KXATPCHALLENGERMATCH-26JUL17FORTOM-FOR {"kind": "resting_bid", "ref": 2.0, "market_mid": 34.5, "divergence": -32.5}
+- reality_divergence: KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL {"kind": "position_basis", "ref": 53.0, "market_mid": 24.5, "divergence": 28.5}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

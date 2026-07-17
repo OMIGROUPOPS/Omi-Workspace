@@ -188,16 +188,19 @@ def _kalshi_event_names(ev):
     Yibing/Yunchaokete) where TennisExplorer keys surnames (WUYUN)."""
     NAMES_DIR.mkdir(parents=True, exist_ok=True)
     p = NAMES_DIR / ("%s.json" % ev)
+    stale = None
     try:
         c = json.loads(p.read_text())
         if c.get("v") == 2:
             return c
+        stale = c  # v1 format — still valid for names/suffixes
     except Exception:
         pass
     try:
         d = _kalshi_get("/events/%s?with_nested_markets=true" % ev)
     except Exception:
-        return None  # never cache a failure
+        return stale  # transient fetch failure: the stale cache beats
+        # nothing (never cache the failure itself)
     e = d.get("event") or {}
     legs = {}
     for m in e.get("markets") or []:
@@ -448,9 +451,20 @@ def log_order_history(ticker):
     when = _hm(o["first_ts"]) if o.get("first_ts") else "?"
     if o.get("last_cancel_ts") and (o.get("last_post_ts") or 0) \
             <= o["last_cancel_ts"]:
+        label = o.get("last_cancel_label") or "cancel"
+        # the BELL SWEEP is not abandonment: a bid that rested until
+        # match_live/settlement swept it was the honest attempt (C).
+        # A pull by our own machinery mid-window with no re-place is
+        # pulled-and-abandoned (D).
+        swept = ("match_live" in label or "settlement" in label
+                 or "shutdown" in label)
+        if swept:
+            return ("posted %s¢ (%s, ×%d) · held to the bell sweep "
+                    "(%s %s) · never traded that low"
+                    % (px, when, o.get("n_posts", 1), label,
+                       _hm(o["last_cancel_ts"])), "C")
         return ("posted %s¢ (%s, ×%d) · pulled (%s %s) · never re-placed"
-                % (px, when, o.get("n_posts", 1),
-                   o.get("last_cancel_label") or "cancel",
+                % (px, when, o.get("n_posts", 1), label,
                    _hm(o["last_cancel_ts"])), "D")
     return ("posted %s¢ (%s, ×%d) · never traded that low"
             % (px, when, o.get("n_posts", 1)), "C")
@@ -1095,10 +1109,14 @@ def build_closed(day=None):
         filled = [l for l in game_out["legs"] if l["qty"]]
         filled_suffixes = {l["ticker"].rsplit("-", 1)[-1]
                            for l in filled}
-        kn = _kalshi_event_names(ev)
         sib_line = None
         sib_cap = None
         missing = None
+        if len(filled) >= 2:
+            # pair already complete — no lookup needed for disposition
+            kn = {"legs": {s: s for s in filled_suffixes}}
+        else:
+            kn = _kalshi_event_names(ev)
         if kn and len(kn.get("legs") or {}) >= 2:
             missing = [s for s in kn["legs"] if s not in filled_suffixes]
             if not missing:

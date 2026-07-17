@@ -487,6 +487,43 @@ def log_order_history(ticker):
             % (px, when, o.get("n_posts", 1)), "C")
 
 
+def log_order_history_dict(ticker):
+    """Structured sibling disposition (Plex render-ownership, 07-17).
+    Reads the exact same log lines log_order_history() reads. Returns a
+    dict the template renders as digits/icons only, no prose."""
+    o = _log_scan()["orders"].get(ticker)
+    if not o:
+        hist = order_history_for_ticker(ticker)
+        if hist:
+            return {"kind": "pulled" if "pulled" in hist else "held",
+                    "px": None, "qty": None, "ep": None,
+                    "pulled_by": None, "pulled_ep": None,
+                    "cap": "D" if "pulled" in hist else "C",
+                    "source": "snap_orders_fallback"}
+        return {"kind": "never_bid",
+                "px": None, "qty": None, "ep": None,
+                "pulled_by": None, "pulled_ep": None,
+                "cap": "D", "source": "none"}
+    px = o.get("first_px")
+    ep = o.get("first_ts")
+    qty = o.get("n_posts", 1)
+    cancel_ts = o.get("last_cancel_ts")
+    post_ts = o.get("last_post_ts") or 0
+    if cancel_ts and post_ts <= cancel_ts:
+        label = o.get("last_cancel_label") or "cancel"
+        swept = ("match_live" in label or "settlement" in label
+                 or "shutdown" in label)
+        return {"kind": "held" if swept else "pulled",
+                "px": px, "qty": qty, "ep": ep,
+                "pulled_by": label, "pulled_ep": cancel_ts,
+                "cap": "C" if swept else "D",
+                "source": "engine_log"}
+    return {"kind": "held",
+            "px": px, "qty": qty, "ep": ep,
+            "pulled_by": None, "pulled_ep": None,
+            "cap": "C", "source": "engine_log"}
+
+
 OFFICIAL_BELLS = ROOT / "state" / "daysheet_bells_official.json"
 _official_lock = threading.Lock()
 _official_mem = {"loaded": False, "data": {}}
@@ -752,6 +789,7 @@ def window_summary(ticker, sj, ev=None):
         w1_state = "no_anchor"
         corr_state = "no_anchor"
     base.update({"state": "ok", "w1": w1, "corr": corr,
+                 "w2": (_win_cut(prints, fp_ts, None) if fp_ts else None),
                  "w1_state": w1_state, "corr_state": corr_state,
                  "tape_n": len(prints)})
     return base
@@ -875,6 +913,17 @@ def order_created_et(order_ids):
     return _hm(ep) if ep else None
 
 
+def order_created_ep(order_ids):
+    """Raw-epoch twin of order_created_et (Plex T−X law wants epochs)."""
+    ids = [o for o in (order_ids or []) if o]
+    if not ids:
+        return None
+    rows = _q("SELECT MIN(created_ep) FROM orders_ledger "
+              "WHERE order_id IN (%s) AND created_ep IS NOT NULL"
+              % ",".join("?" * len(ids)), tuple(ids))
+    return rows[0][0] if rows and rows[0] else None
+
+
 def order_history_for_ticker(ticker):
     """Order-history-sourced status for a leg with NO current fill — the
     'did we even try' line, from snap_orders history + flags only."""
@@ -918,6 +967,7 @@ def _game_head(sample_ticker):
         # (official > our LIVE evidence > not-observed; estimates
         # demoted to the hover note)
         "anchors": {"sched": _hm(sched_ep) if sched_ep else None,
+                    "sched_ep": sched_ep,
                     "fp": fp,
                     "est_note": (fp.get("est_note") if fp
                                  else _est_note(ev))},
@@ -977,7 +1027,10 @@ def build_positions():
                 # gap stays named, never backfilled from fill time)
                 "placed_et": (order_created_et([fill[4]])
                               if fill else None),
+                "placed_ep": (order_created_ep([fill[4]])
+                              if fill else None),
                 "filled_et": (_hm(fill[1]) if fill else None),
+                "fill_ep": (fill[1] if fill else None),
                 "fill_price_c": fill[2] if fill else None,
             })
         # [4a quadruplet + honest suffixes] the unworked side resolves
@@ -1047,6 +1100,7 @@ def build_orders():
                 "win": window_summary(tk, sj, ev),
                 "l1": l1_best(tk),
                 "placed_et": order_created_et([oid]),
+                "placed_ep": order_created_ep([oid]),
                 "age_label": "%dh%dm" % (age_s // 3600,
                                          (age_s % 3600) // 60),
             })
@@ -1177,11 +1231,14 @@ def build_closed(day=None):
                 "n_entry_fills": len(buys),
                 "qty": bct,
                 "filled_et": _hm(buys[-1][0]) if buys else None,
+                "fill_ep": (buys[-1][0] if buys else None),
                 # [4c] PLACED ET from the entry orders' created_time
                 "placed_et": order_created_et(buy_oids),
+                "placed_ep": order_created_ep(buy_oids),
                 "fill_window": fill_window,
                 "exit": ({"price_c": int(round(avg_sell)), "qty": sct,
-                          "at": _hm(sells[-1][0])} if sct else None),
+                          "at": _hm(sells[-1][0]),
+                          "ep": sells[-1][0]} if sct else None),
                 "win": win,
                 # Δ only has meaning on W1 fills (time law, part 5)
                 "delta_c": ((ours - w1c)
@@ -1237,6 +1294,21 @@ def build_closed(day=None):
         # carries BOTH legs x W1+CORR from the real tape: when a side
         # is unworked, its tape renders as a muted sibling row (the
         # window truth exists whether or not we bid it).
+        game_out["pair_complete"] = (missing == [] if missing
+                                     is not None else None)
+        game_out["siblings"] = []
+        if missing:
+            for _sfx2 in missing:
+                _stk2 = ev + "-" + _sfx2
+                _en2 = (kn["legs"].get(_sfx2)
+                        if isinstance(kn.get("legs"), dict) else None)
+                _nm2 = ((_en2.get("last") or _en2.get("full"))
+                        if isinstance(_en2, dict) else
+                        (_en2 if isinstance(_en2, str) else _sfx2))
+                game_out["siblings"].append(dict(
+                    log_order_history_dict(_stk2),
+                    ticker=_stk2, last_name=(_nm2 or _sfx2).upper(),
+                    win=window_summary(_stk2, sj, ev)))
         game_out["sibling_tape"] = None
         if missing:
             _sfx = missing[0]

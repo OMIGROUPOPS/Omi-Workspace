@@ -1,14 +1,14 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 121 @ **2026-07-16 10:38:16 PM ET** | build `2934822c` | session boot 07-16 22:21 ET | log `live_v3_20260716.jsonl` | 1801 session events | monitor READ-ONLY
+- cycle 125 @ **2026-07-16 11:18:52 PM ET** | build `394037e0` | session boot 07-16 22:21 ET | log `live_v3_20260716.jsonl` | 3937 session events | monitor READ-ONLY
 
-## ⚠ GUN FEED: last new in-play sighting 205 min ago (>30 tripwire; source observed_starts.db)
+## ⚠ GUN FEED: last new in-play sighting 245 min ago (>30 tripwire; source observed_starts.db)
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
-- placed:path_aim UL16ALHYAZ-ALH aim=79 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
-- placed:path_aim UL16CHALIM-CHA aim=79 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
-- placed:path_aim UL16FOMALK-FOM aim=79 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
-- placed:path_aim UL17MAKSHO-SHO aim=34 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
+- placed:path_aim UL17BOJKON-KON aim=38 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
+- placed:path_aim UL16FOMALK-ALK aim=18 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
+- placed:path_aim UL17BOJKON-BOJ aim=37 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
+- placed:path_aim UL16ALHYAZ-YAZ aim=54 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
@@ -21,7 +21,7 @@ clean overnight — no watch fires
 none yet this session
 
 ## RESTING BIDS — 0 tape-graded (starvation = NO_FLOW only)
-- classes now: {} | repriceable now: true 0 / false 0 | **cumulative bid_grade lines: 11985 (repriceable true 1581 / false 10404)** -- the liquid_repost re-arm evidence accumulates here
+- classes now: {} | repriceable now: true 0 / false 0 | **cumulative bid_grade lines: 11990 (repriceable true 1581 / false 10409)** -- the liquid_repost re-arm evidence accumulates here
 no resting entry bids
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
@@ -30,7 +30,9 @@ no open half-pairs
 ## FLOW-STATE — 0 tracked game(s) ({}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 no tracked games
 
-## PATTERNS (sub-B) — 0
+## PATTERNS (sub-B) — 2
+- reality_divergence: KXITFMATCH-26JUL16ALHYAZ-YAZ {"kind": "resting_bid", "ref": 18.0, "market_mid": 55.0, "divergence": -37.0}
+- reality_divergence: KXITFMATCH-26JUL16ALHYAZ-YAZ {"kind": "resting_bid", "ref": 18.0, "market_mid": 69.5, "divergence": -51.5, "emitted_et": "2026-07-16 11:18:52 PM ET"}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

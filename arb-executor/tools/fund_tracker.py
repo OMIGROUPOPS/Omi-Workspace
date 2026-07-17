@@ -82,6 +82,15 @@ def api_get(p):
     return {}
 
 
+def iso_ep(iso):
+    """RFC3339 -> epoch; None on absence/garbage (never a fabricated 0)."""
+    try:
+        return datetime.fromisoformat(
+            (iso or "").replace("Z", "+00:00")).timestamp()
+    except Exception:
+        return None
+
+
 def day_of(ep):
     return datetime.fromtimestamp(ep, ET).strftime("%Y%m%d")
 
@@ -105,6 +114,9 @@ def init_db():
       yes_price_c INTEGER, remaining REAL, PRIMARY KEY(ts, order_id));
     CREATE TABLE IF NOT EXISTS flags(
       ts REAL, day TEXT, kind TEXT, ticker TEXT, detail TEXT);
+    CREATE TABLE IF NOT EXISTS orders_ledger(
+      order_id TEXT PRIMARY KEY, ticker TEXT, action TEXT,
+      yes_price_c INTEGER, created_time TEXT, created_ep REAL);
     CREATE INDEX IF NOT EXISTS eq_day ON equity(day);
     CREATE INDEX IF NOT EXISTS fl_day ON fills(day);
     """)
@@ -171,6 +183,18 @@ def recorder_loop():
                                        "yes_price_dollars") or 0) * 100)),
                                    float(o.get("remaining_count_fp")
                                          or 0)))
+                    # [PLACED-ET build, 07-17 — the open-ledger gap
+                    # closes] Kalshi's own order created_time banked
+                    # PERMANENTLY (snap_orders retains 2h; this ledger
+                    # never purges — placed/filled render truthfully)
+                    _ct = o.get("created_time")
+                    con.execute(
+                        "INSERT OR IGNORE INTO orders_ledger "
+                        "VALUES(?,?,?,?,?,?)",
+                        (o.get("order_id"), o["ticker"], o.get("action"),
+                         int(round(float(o.get("yes_price_dollars")
+                                         or 0) * 100)), _ct,
+                         iso_ep(_ct)))
                 cur = (j or {}).get("cursor")
                 if not cur or not rows:
                     break
@@ -192,7 +216,11 @@ def recorder_loop():
                         break
                     stop = False
                     for f in rows:
-                        ep = f.get("ts") or 0
+                        # [PLACED-ET build 07-17] documented field
+                        # primary, undocumented ts fallback (the filed
+                        # recorder fragility's remedy, open ledger 07-16)
+                        ep = (iso_ep(f.get("created_time"))
+                              or f.get("ts") or 0)
                         if ep < midnight - 86400:
                             stop = True
                         con.execute(

@@ -816,6 +816,49 @@ def walk_footnote(ev):
     return None
 
 
+_l1_lock = threading.Lock()
+_l1_mem = {}
+
+
+def l1_best(ticker):
+    """[4b, 07-17] FRESH level-1 best on demand (public market object,
+    30s TTL) — the resting-order row shows the book top NOW, not the
+    recorder's last snapshot."""
+    now = time.time()
+    with _l1_lock:
+        c = _l1_mem.get(ticker)
+        if c and now - c[0] < 30:
+            return c[1]
+    try:
+        m = (_kalshi_get("/markets/%s" % ticker) or {}).get("market") or {}
+        out = {"bid": int(round(float(m.get("yes_bid_dollars") or 0) * 100)),
+               "ask": int(round(float(m.get("yes_ask_dollars") or 0) * 100))}
+        if not (0 < out["bid"] <= 99 or 0 < out["ask"] <= 100):
+            out = None
+    except Exception:
+        out = None  # transient: render the recorder mark, never cache
+    if out is not None:
+        with _l1_lock:
+            _l1_mem[ticker] = (now, out)
+    return out
+
+
+def order_created_et(order_ids):
+    """[4c PLACED-ET, 07-17] earliest Kalshi order created_time among the
+    given order ids, from the recorder's permanent orders_ledger. None =
+    genuinely absent (pre-build orders) — the gap stays named, never
+    backfilled from fill time."""
+    ids = [o for o in (order_ids or []) if o]
+    if not ids:
+        return None
+    qmarks = ",".join("?" * len(ids))
+    rows = _q("SELECT MIN(created_ep) FROM orders_ledger "
+              "WHERE order_id IN (%s) AND created_ep IS NOT NULL"
+              % qmarks, tuple(ids))
+    ep = rows[0][0] if rows and rows[0] else None
+    return _hm(ep) if ep else None
+
+
 def order_history_for_ticker(ticker):
     """Order-history-sourced status for a leg with NO current fill — the
     'did we even try' line, from snap_orders history + flags only."""
@@ -912,18 +955,46 @@ def build_positions():
                     {"price_c": exit_order[0], "qty": exit_order[1]}
                     if exit_order else None),
                 "deeplink": kalshi_deeplink(tk),
-                # PLACED ET: no honest source in the schema (open-ledger
-                # gap) — never backfilled from the fill time.
-                "placed_et": None,
+                "l1": l1_best(tk),
+                # [4c] PLACED ET now sourced from the orders_ledger via
+                # the fill's own order_id; None = pre-build order (the
+                # gap stays named, never backfilled from fill time)
+                "placed_et": (order_created_et([fill[4]])
+                              if fill else None),
                 "filled_et": (_hm(fill[1]) if fill else None),
                 "fill_price_c": fill[2] if fill else None,
             })
-        held = {l["last_name"] for l in game_out["legs"] if l["last_name"]}
-        if sj.get("joined"):
+        # [4a quadruplet + honest suffixes] the unworked side resolves
+        # its TRUE ticker from the Kalshi event object (never the
+        # surname[:3] guess — the YIBYUN lesson) and carries its own
+        # tape row (W1+CORR) beside the disposition line.
+        game_out["sibling_tape"] = None
+        kn_p = _kalshi_event_names(ev)
+        if kn_p and isinstance(kn_p.get("legs"), dict):
+            _held_sfx = {l["ticker"].rsplit("-", 1)[-1]
+                         for l in game_out["legs"]}
+            _miss_p = [x for x in kn_p["legs"] if x not in _held_sfx]
+            if _miss_p:
+                _sfx_p = _miss_p[0]
+                _stk_p = ev + "-" + _sfx_p
+                _en_p = kn_p["legs"].get(_sfx_p)
+                _nm_p = ((_en_p.get("last") or _en_p.get("full"))
+                         if isinstance(_en_p, dict) else
+                         (_en_p if isinstance(_en_p, str) else _sfx_p))
+                hist, _cap_p = log_order_history(_stk_p)
+                game_out["gray_line"] = "%s — %s" % (
+                    (_nm_p or _sfx_p).upper(), hist)
+                game_out["sibling_tape"] = {
+                    "ticker": _stk_p,
+                    "last_name": (_nm_p or _sfx_p).upper(),
+                    "win": window_summary(_stk_p, sj, ev)}
+        elif sj.get("joined"):
+            held = {l["last_name"] for l in game_out["legs"]
+                    if l["last_name"]}
             for other in (sj["p1_last"], sj["p2_last"]):
                 if other not in held:
-                    sib_tk = ev + "-" + other.replace(" ", "")[:3]
-                    hist = order_history_for_ticker(sib_tk)
+                    hist = order_history_for_ticker(
+                        ev + "-" + other.replace(" ", "")[:3])
                     game_out["gray_line"] = "%s — %s" % (
                         other, hist if hist else
                         "not bid — never conceived")
@@ -937,19 +1008,20 @@ def build_orders():
         return json.loads(Path(FIXTURE_PATH).read_text()).get("orders", [])
 
     rows = _q(
-        "SELECT ticker, yes_price_c, remaining, ts FROM snap_orders "
+        "SELECT ticker, yes_price_c, remaining, ts, order_id "
+        "FROM snap_orders "
         "WHERE ts=(SELECT MAX(ts) FROM snap_orders) AND action='buy' "
         "AND remaining > 0")
     events = {}
-    for tk, px, rem, ts in rows:
+    for tk, px, rem, ts, oid in rows:
         _, ev = _ticker_pair_code(tk)
-        events.setdefault(ev, []).append((tk, px, rem, ts))
+        events.setdefault(ev, []).append((tk, px, rem, ts, oid))
     out = []
     now = time.time()
     for ev, legs in events.items():
         sj, game_out = _game_head(legs[0][0])
         game_out["legs"] = []
-        for tk, px, rem, ts in legs:
+        for tk, px, rem, ts, oid in legs:
             age_s = now - ts
             game_out["legs"].append({
                 "ticker": tk,
@@ -957,6 +1029,8 @@ def build_orders():
                 "aim_c": px,
                 "qty": rem,
                 "win": window_summary(tk, sj, ev),
+                "l1": l1_best(tk),
+                "placed_et": order_created_et([oid]),
                 "age_label": "%dh%dm" % (age_s // 3600,
                                          (age_s % 3600) // 60),
             })
@@ -990,10 +1064,13 @@ def build_closed(day=None):
         for tk in tickers:
             # ALL fills for the leg (entry may predate the queried day) —
             # ONE ROW PER LEG: buys average to OURS, sells are the exit.
-            rows = _q("SELECT ts, action, yes_price_c, count_fp FROM "
-                      "fills WHERE ticker=? ORDER BY ts", (tk,))
-            buys = [(ts, px, ct) for ts, a, px, ct in rows if a == "buy"]
-            sells = [(ts, px, ct) for ts, a, px, ct in rows
+            rows = _q("SELECT ts, action, yes_price_c, count_fp, "
+                      "order_id FROM fills WHERE ticker=? ORDER BY ts",
+                      (tk,))
+            buys = [(ts, px, ct) for ts, a, px, ct, _o in rows
+                    if a == "buy"]
+            buy_oids = [_o for ts, a, px, ct, _o in rows if a == "buy"]
+            sells = [(ts, px, ct) for ts, a, px, ct, _o in rows
                      if a == "sell"]
             bct = sum(c for _, _, c in buys)
             sct = sum(c for _, _, c in sells)
@@ -1084,7 +1161,8 @@ def build_closed(day=None):
                 "n_entry_fills": len(buys),
                 "qty": bct,
                 "filled_et": _hm(buys[-1][0]) if buys else None,
-                "placed_et": None,  # schema gap, open ledger
+                # [4c] PLACED ET from the entry orders' created_time
+                "placed_et": order_created_et(buy_oids),
                 "fill_window": fill_window,
                 "exit": ({"price_c": int(round(avg_sell)), "qty": sct,
                           "at": _hm(sells[-1][0])} if sct else None),
@@ -1139,6 +1217,23 @@ def build_closed(day=None):
         else:
             _file_miss("sibling_disposition_missing", ev)
         game_out["sibling_line"] = sib_line
+        # [4a, 07-17 — THE SIBLING TAPE QUADRUPLET] every game box
+        # carries BOTH legs x W1+CORR from the real tape: when a side
+        # is unworked, its tape renders as a muted sibling row (the
+        # window truth exists whether or not we bid it).
+        game_out["sibling_tape"] = None
+        if missing:
+            _sfx = missing[0]
+            _stk = ev + "-" + _sfx
+            _entry = (kn["legs"].get(_sfx)
+                      if isinstance(kn.get("legs"), dict) else None)
+            _snm = ((_entry.get("last") or _entry.get("full"))
+                    if isinstance(_entry, dict) else
+                    (_entry if isinstance(_entry, str) else None))
+            game_out["sibling_tape"] = {
+                "ticker": _stk,
+                "last_name": (_snm or _sfx).upper(),
+                "win": window_summary(_stk, sj, ev)}
         any_ungraded_leg = any(l.get("grade_note")
                                for l in game_out["legs"])
         if sib_line is None:

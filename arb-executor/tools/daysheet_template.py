@@ -80,7 +80,7 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     color:var(--grey); padding:0 12px 6px; font-weight:600;
   }
   .colhead.positions{ grid-template-columns: 112px 46px 46px 150px 150px 30px 60px 80px; }
-  .colhead.orders{ grid-template-columns: 96px 46px 90px 90px 30px 70px; }
+  .colhead.orders{ grid-template-columns: 96px 46px 60px 90px 90px 30px 70px; }
   .colhead.closed{ grid-template-columns: 100px 90px 34px 90px 56px 80px; column-gap:10px; }
   .colhead span{ text-align:right; white-space:nowrap; }
   .colhead span.lbl-last{ text-align:left; }
@@ -107,7 +107,7 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     border-top:1px solid rgba(26,26,46,0.5);
   }
   .legrow.positions{ grid-template-columns: 112px 46px 46px 150px 150px 30px 60px 80px; }
-  .legrow.orders{ grid-template-columns: 96px 46px 90px 90px 30px 70px; }
+  .legrow.orders{ grid-template-columns: 96px 46px 60px 90px 90px 30px 70px; }
   .legrow.closed{ grid-template-columns: 100px 90px 34px 90px 56px 80px; column-gap:10px; }
   .legrow span{ text-align:right; white-space:nowrap; }
   .legrow span.last{ text-align:left; color:var(--orange); font-weight:700; }
@@ -297,7 +297,7 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
 
   <div id="orders" class="tabpanel" style="display:none;">
     <div class="colhead orders">
-      <span class="lbl-last">LAST</span><span>AIM</span><span>W1 LO/HI</span><span>CORR LO/HI</span><span>CT</span><span>AGE</span>
+      <span class="lbl-last">LAST</span><span>AIM</span><span>L1 NOW</span><span>W1 LO/HI</span><span>CORR LO/HI</span><span>CT</span><span>AGE</span>
     </div>
     <div id="orders-body"></div>
   </div>
@@ -417,6 +417,23 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
   // (source badge) + grade chip right-aligned; everything else
   // subordinate. gradeHtml is optional -- only CLOSED game heads pass
   // one; POSITIONS/ORDERS heads render without it, unaffected.
+  // [4a] THE SIBLING TAPE QUADRUPLET: the unworked side's own W1/CORR
+  // from the real tape, rendered muted — the window truth exists
+  // whether or not we bid it.
+  function sibTapeRow(g, cols){
+    if(!g.sibling_tape) return '';
+    const st = g.sibling_tape;
+    return '<div class="legrow ' + cols + '" style="opacity:0.65;">' +
+      '<span class="last micro">' + esc(st.last_name) + ' (unworked)</span>' +
+      (cols === 'closed'
+        ? '<span>' + winClose(st.win, 'w1', st.ticker, st.last_name) + '</span><span class="micro">—</span>' +
+          '<span>' + winClose(st.win, 'corr', st.ticker, st.last_name) + '</span><span class="micro">—</span><span class="micro">—</span>'
+        : '<span class="micro">—</span><span class="micro">—</span>' +
+          '<span>' + winCell(st.win, 'w1', st.ticker, st.last_name) + '</span>' +
+          '<span>' + winCell(st.win, 'corr', st.ticker, st.last_name) + '</span>' +
+          '<span class="micro">—</span><span class="micro">—</span><span class="micro">—</span>') +
+      '</div>';
+  }
   function gameHead(g, gradeHtml){
     const link = '<a class="deeplink" href="' + esc(g.deeplink) + '" target="_blank" onclick="event.stopPropagation()">↗ KALSHI</a>';
     return '<div class="gamehead"><span class="names' + (g.joined ? '' : ' join-pending') + '">' + esc(g.names) + '</span>' +
@@ -496,7 +513,8 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
       const legs = g.legs.map(l => (
         '<div class="legrow positions">' +
         legName(l) +
-        '<span>' + fmtCents(l.mark_c) + '</span>' +
+        '<span' + (l.l1 ? ' title="recorder mark ' + esc(l.mark_c) + '¢ · fresh L1 bid/ask"' : '') + '>' +
+          (l.l1 ? '<span class="lo">' + l.l1.bid + '</span><span class="sep">/</span><span class="hi">' + l.l1.ask + '</span>' : fmtCents(l.mark_c)) + '</span>' +
         '<span>' + fmtCents(l.fill_price_c ?? l.basis_c) + '</span>' +
         '<span>' + winCell(l.win, 'w1', l.ticker, l.last_name) + '</span>' +
         '<span>' + winCell(l.win, 'corr', l.ticker, l.last_name) + '</span>' +
@@ -513,7 +531,7 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
         ? '<div class="gradebar-inline"><span class="footnote"><b>WALK (provisional — game open)</b> <span class="cls">' + esc(g.walk.charge || '') + '</span>' +
           (g.walk.verdict ? ' <span class="walkverdict">→ ' + esc(g.walk.verdict) + '</span>' : '') + '</span></div>'
         : '';
-      return '<div class="gamebox">' + gameHead(g) + legs + grayLine + walkBar + '</div>';
+      return '<div class="gamebox">' + gameHead(g) + legs + sibTapeRow(g, 'positions') + grayLine + walkBar + '</div>';
     }).join('');
   }
 
@@ -534,7 +552,8 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
       const legs = g.legs.map(l => (
         '<div class="legrow orders">' +
         legName(l) +
-        '<span>' + fmtCents(l.aim_c) + '</span>' +
+        '<span' + (l.placed_et ? ' title="placed ' + esc(l.placed_et) + '"' : '') + '>' + fmtCents(l.aim_c) + '</span>' +
+        '<span>' + (l.l1 ? '<span class="lo">' + l.l1.bid + '</span><span class="sep">/</span><span class="hi">' + l.l1.ask + '</span>' : '<span class="micro">—</span>') + '</span>' +
         '<span>' + winCell(l.win, 'w1', l.ticker, l.last_name) + '</span>' +
         '<span>' + winCell(l.win, 'corr', l.ticker, l.last_name) + '</span>' +
         '<span>' + esc(l.qty) + '</span>' +
@@ -587,7 +606,9 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
         // ONE-LINE ENTRY/EXIT (operator, 07-16): each compresses to a
         // single line; the PLACED-ET schema gap and any regrade note
         // move to an icon + tooltip, never inline prose in the row.
-        const placedFlag = '<span class="flag muted" title="PLACED ET has no source yet — snap_orders does not persist order-creation time (schema gap, filed)">ⓘ</span>';
+        const placedFlag = l.placed_et
+          ? ' <span class="lbl">' + esc(l.placed_et) + ' →</span>'
+          : '<span class="flag muted" title="PLACED ET unavailable for this order (pre-build; the orders_ledger records created_time from 07-17 on)">ⓘ</span>';
         const windowTag = l.fill_window ? ' [' + esc(l.fill_window) + ']'
           : '<span class="flag muted" title="fill window could not be classified">ⓘ</span>';
         const regradeBits = [];
@@ -651,7 +672,7 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
         footHtml += (footHtml ? ' · ' : '') + '<span class="footnote cls">' + esc(g.grade_cap_note) + '</span>';
       }
       return '<div class="gamebox">' + gameHead(g, chip) +
-        legs + sibLine +
+        legs + sibTapeRow(g, 'closed') + sibLine +
         (footHtml ? '<div class="gradebar-inline">' + footHtml + '</div>' : '') +
         '</div>';
     }).join('');

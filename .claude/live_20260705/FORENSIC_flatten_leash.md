@@ -1,9 +1,10 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784274009 -->
-written 2026-07-17 03:44:25 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784274735 -->
+written 2026-07-17 03:54:40 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (2 total this session)
+## Events (3 total this session)
 - 03:28:57 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 03:40:09 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
+- 03:52:15 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-17 01:04:32 AM ET", "ts_epoch": 1784264672.4150019, "event": "post_boot_audit", "ticker": "", "details": {"context": "boot", "verdict": "PASS", "n_positions": 1, "n_resting_orders": 48, "n_failures": 0, "n_flags": 2, "failures": [], "flags": [{"tk": "KXATPCHALLENGERMATCH-26JUL17GALCOP-COP", "check": "pair_incomplete", "event": "KXATPCHALLENGERMATCH-26JUL17GALCOP", "legs": {"GAL": "
@@ -64,6 +65,9 @@ written 2026-07-17 03:44:25 AM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-17 03:37:54 AM ET", "ts_epoch": 1784273874.4550154, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 3, "n_resting_orders": 21, "n_failures": 0, "n_flags": 4, "failures": [], "flags": [{"tk": "KXATPMATCH-26JUL17BORDAR-BOR", "check": "pair_incomplete", "event": "KXATPMATCH-26JUL17BORDAR", "legs": {"BOR": "absent", "
     {"ts": "2026-07-17 03:40:09 AM ET", "ts_epoch": 1784274009.3815322, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17GALCOP-COP", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|leader|at_mid|51_75", "n": 69, "p_exit_fill": 0.768, "p_ride_zero": 0.217, "ev_cents": -0.65, "band": 15, "basis": 56, "win_ride_residual_excluded": 0.014, "citation"
     {"ts": "2026-07-17 03:40:09 AM ET", "ts_epoch": 1784274009.3881433, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL17GALCOP-COP", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17GALCOP", "ev_cents": -0.65, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-17 03:49:15 AM ET", "ts_epoch": 1784274555.2041144, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 4, "n_resting_orders": 21, "n_failures": 0, "n_flags": 4, "failures": [], "flags": [{"tk": "KXATPMATCH-26JUL17BORDAR-BOR", "check": "pair_incomplete", "event": "KXATPMATCH-26JUL17BORDAR", "legs": {"BOR": "absent", "
+    {"ts": "2026-07-17 03:52:15 AM ET", "ts_epoch": 1784274735.2153406, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17GALCOP-COP", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|leader|at_mid|51_75", "n": 69, "p_exit_fill": 0.768, "p_ride_zero": 0.217, "ev_cents": -0.65, "band": 15, "basis": 56, "win_ride_residual_excluded": 0.014, "citation"
+    {"ts": "2026-07-17 03:52:15 AM ET", "ts_epoch": 1784274735.2155876, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL17GALCOP-COP", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17GALCOP", "ev_cents": -0.65, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
 
 ## Code path
 ?

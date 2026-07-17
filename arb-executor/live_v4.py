@@ -2936,6 +2936,58 @@ class LiveV3:
         "completion_no_attempt", "match_live_resting_cancel",
         "path_mode_hold", "v4_exit_posted", "entry_filled", "exit_filled"))
 
+    async def _floor_retreat_sweep(self):
+        """[P6 RETREAT FROM THE DEAD BOOKS, operator 07-17]: every OPEN
+        UNFILLED ITF event whose lifetime volume sits under the floor
+        gets BOTH resting bids withdrawn together — one pair-level
+        retreat, below_discovery_floor_retreat logged with the volume
+        seen and both legs named. Filled-leg events are POSITIONS, not
+        conceptions: the unfilled sibling of a filled dead-book leg is
+        the completion organ (never-hold-naked) and stays; the position
+        itself is exit territory, untouched tonight."""
+        _fl6 = float(self.config.get("discovery_floor_shares", 1500))
+        _done6 = self.__dict__.setdefault("_floor_retreat_done", set())
+        _by_ev6 = {}
+        for tk6, pos6 in list(self.positions.items()):
+            if (pos6.is_v4 and pos6.phase == "entry_resting"
+                    and pos6.entry_order_id):
+                _by_ev6.setdefault(pos6.event_ticker,
+                                   []).append((tk6, pos6))
+        for et6, legs6 in _by_ev6.items():
+            if et6 in _done6:
+                continue
+            cat6 = self.get_category(legs6[0][0])
+            if cat6 not in ("ITF_M", "ITF_W"):
+                continue
+            if self._event_has_fill(et6):
+                continue
+            v6 = self.event_lifetime_vol.get(et6)
+            if (v6 or 0.0) >= _fl6:
+                continue
+            _done6.add(et6)
+            _pulled6 = []
+            for tk6, pos6 in legs6:
+                _res6 = await self._cancel_entry_and_resolve(
+                    tk6, pos6, "below_discovery_floor_retreat",
+                    "floor_retreat_race")
+                if _res6 == "cancelled":
+                    pos6.entry_order_id = ""
+                    self._untombstone_entry(tk6, pos6)
+                _pulled6.append({
+                    "tk": tk6.rsplit("-", 1)[-1],
+                    "price": int(pos6.entry_price or 0),
+                    "count": int(getattr(pos6, "entry_count", 0)
+                                 or getattr(pos6, "count", 0) or 0),
+                    "resolution": _res6})
+            self._save_v4_resting()
+            self._log("below_discovery_floor_retreat", {
+                "event": et6, "cat": cat6, "pair_level": True,
+                "discovered_shares": round(v6 or 0.0, 1),
+                "floor": _fl6, "legs": _pulled6,
+                "cite": "P6 RETREAT 07-17 (operator; rides the floor "
+                        "going live; BROBRA-class filled legs exempt "
+                        "per never-hold-naked)"})
+
     def _window_phase(self, et, now=None):
         """[C-WINDOW-LAW v1, 07-14 — the operator directive, §5 verbatim:
         W1 fill→scheduled · CORRIDOR scheduled→gun · W2 gun→settle; the
@@ -5504,6 +5556,15 @@ class LiveV3:
                     break
         if _ev_lifetime_vol:
             self.event_lifetime_vol = dict(_ev_lifetime_vol)  # [C-EARLY-UNLOCK] atomic swap
+            # [P6 RETREAT FROM THE DEAD BOOKS, operator 07-17 — rides
+            # the floor going live] sweep after every volume refresh
+            if (self.config.get("discovery_floor_enabled", False)
+                    and self.config.get("discovery_floor_retreat", False)):
+                try:
+                    await self._floor_retreat_sweep()
+                except Exception as _fre6:
+                    self._log("floor_retreat_error",
+                              {"err": str(_fre6)[:160]})
         await self._seed_tape_memory()   # [C-TAPE-SEED] amnesia dies at every discovery pass
         self._log("discovery", {"total_tickers": len(all_tickers), "by_category": dict(counts)})
         return all_tickers
@@ -11520,16 +11581,70 @@ class LiveV3:
         # untouched).
         if (int(new_target) > int(pos.entry_price or 0)
                 and getattr(pos, "entry_mode", "") != "completion_reprice"):
-            _pm8 = self.__dict__.setdefault("_path_hold_logged", set())
-            if (tk, int(new_target)) not in _pm8:
-                _pm8.add((tk, int(new_target)))
-                self._log("path_mode_hold", {
+            # [⑮ LIVE — P5, Fable dispatch 07-17 under the operator's
+            # delegation; founding exhibits BRO-18-under-prints-54–77
+            # and COL-53-under-58] the resting entry re-reads the LIVING
+            # TAPE at hold-review and acts under the operator's walk
+            # law: THE CAST HOLDS DEEP ONLY WHERE THE TAPE SHOWS THE
+            # DEEP PRINT REAL (a window print at/below the held level);
+            # otherwise join-or-improve best bid +1¢ on the
+            # strengthening side, bounded by the machinery's own
+            # computed target (BRO's 54-inside-65 becomes executable).
+            # Entry bids on UNFILLED events only; completion untouched
+            # (guarded above); every re-aim logs old → new → the tape
+            # evidence. This is the arm that ends watch-but-don't-touch.
+            _held5 = int(pos.entry_price or 0)
+            _wt5 = None
+            _bb5 = _ba5 = 0
+            _deep5 = None
+            if (self.config.get("window_truth_live", False)
+                    and not self._event_has_fill(pos.event_ticker)):
+                _bk5 = book or self.books.get(tk)
+                _bb5 = int(getattr(_bk5, "best_bid", 0) or 0)
+                _ba5 = int(getattr(_bk5, "best_ask", 0) or 0)
+                _rf5 = (getattr(self, "_rest_flow", None) or {}).get(tk)
+                for _t5, _p5 in ((_rf5 or {}).get("trades") or ())[:50]:
+                    if _p5 <= _held5:
+                        _deep5 = int(_p5)
+                        break
+                if (_deep5 is None and _bk5 is not None
+                        and getattr(_bk5, "last_trade_price", None)
+                        and _bk5.last_trade_price <= _held5):
+                    _deep5 = int(_bk5.last_trade_price)
+                if _deep5 is None and _bb5 > _held5:
+                    _cap5 = min(int(new_target),
+                                (_ba5 - 1) if _ba5 > 1 else 99)
+                    _join5 = min(_bb5 + 1, _cap5)
+                    if _held5 < _join5 <= 95 and _join5 >= 5:
+                        _wt5 = _join5
+            if _wt5 is not None:
+                self._log("window_truth_reaim", {
                     "event": pos.event_ticker,
-                    "held_price": int(pos.entry_price or 0),
-                    "proposed": int(new_target),
-                    "law": "cutover 07-14: the bid rests at its path aim"},
-                    ticker=tk)
-            return
+                    "old": _held5, "proposed": int(new_target),
+                    "new": int(_wt5), "best_bid": _bb5,
+                    "best_ask": _ba5, "deep_print_real": False,
+                    "law": "P5 (⑤-15) LIVE 07-17: join/improve "
+                           "best bid +1 strengthening; deep cast only "
+                           "where the deep print is real"}, ticker=tk)
+                new_target = int(_wt5)
+                # fall through: the existing repost machinery executes
+                # the re-aim (walk caps + band clamps + races unchanged)
+            else:
+                _pm8 = self.__dict__.setdefault("_path_hold_logged", set())
+                if (tk, int(new_target)) not in _pm8:
+                    _pm8.add((tk, int(new_target)))
+                    self._log("path_mode_hold", {
+                        "event": pos.event_ticker,
+                        "held_price": _held5,
+                        "proposed": int(new_target),
+                        "deep_print_real": (_deep5 is not None),
+                        "law": "cutover 07-14: the bid rests at its "
+                               "path aim (deep cast lawful: real deep "
+                               "print)" if _deep5 is not None else
+                               "cutover 07-14: the bid rests at its "
+                               "path aim"},
+                        ticker=tk)
+                return
         # [C-CHASE-KILL 07-12, operator decree] the organ-level gate, BEFORE
         # the cancel (refuse-then-keep the resting bid -- a post-cancel refusal
         # starves the leg, the ICHOCH class). UP-moves only; down/equal moves
@@ -12921,6 +13036,15 @@ class LiveV3:
         # + phone ping, once per event per boot. A FLAG, never an audit
         # FAIL (no conception halt — the OVER-BROAD LOCK lesson).
         if self.config.get("pair_invariant_enabled", True):
+            # [P3 ESCAPE-HATCH RULING, operator 07-17, effective
+            # immediately: refusal classes split DOCTRINE-HONEST
+            # (uncashable / gunned / penny-floor / caps / horizon /
+            # discovery floor) from FITTING-GAP (no page, no cell, GAP).
+            # A fitting-gap refusal on a leg whose sibling is POSTED
+            # does not satisfy the pair law — those legs get a priced
+            # bid or the event doesn't trade.]
+            _FGAP0 = frozenset(("no_path_page_refused",
+                                "aim_unresolved_refused"))
             _named0 = getattr(self, "_refusal_named", {}) or {}
             _pinged0 = self.__dict__.setdefault(
                 "_pair_incomplete_pinged", set())
@@ -12930,20 +13054,26 @@ class LiveV3:
                     continue
                 _st0 = {}
                 for _tk0 in _tks0:
-                    _st0[_tk0] = ("filled" if _tk0 in self.positions else
-                                  "resting" if buys.get(_tk0) else
-                                  "refused_named" if _tk0 in _named0 else
-                                  "absent")
+                    _ref0 = _named0.get(_tk0)
+                    _st0[_tk0] = (
+                        "filled" if _tk0 in self.positions else
+                        "resting" if buys.get(_tk0) else
+                        ("fitting_gap:%s" % _ref0[0]
+                         if _ref0 and _ref0[0] in _FGAP0 else
+                         "refused_named" if _ref0 else "absent"))
                 _vals0 = set(_st0.values())
                 if not ({"resting", "filled"} & _vals0) \
-                        or "absent" not in _vals0:
+                        or not any(v == "absent"
+                                   or v.startswith("fitting_gap")
+                                   for v in _vals0):
                     continue
                 _row0 = {"event": _et0,
                          "legs": {t.rsplit("-", 1)[-1]: s
                                   for t, s in _st0.items()}}
-                flags.append({"tk": next(t for t, s in _st0.items()
-                                         if s == "absent"),
-                              "check": "pair_incomplete", **_row0})
+                flags.append({"tk": next(
+                    t for t, s in _st0.items()
+                    if s == "absent" or s.startswith("fitting_gap")),
+                    "check": "pair_incomplete", **_row0})
                 if _et0 not in _pinged0:
                     _pinged0.add(_et0)
                     self._log("pair_incomplete_violation", _row0)

@@ -1118,9 +1118,18 @@ def build_closed(day=None):
 
     day_tickers = sorted({r[0] for r in _q(
         "SELECT DISTINCT ticker FROM fills WHERE day=?", (day,))})
+    # [P2b, 07-17 — the BROBRA misfile] CLOSED excludes events with an
+    # OPEN position (market active, result pending): a filled-today,
+    # still-open game is a POSITION, not a closed card; it joins
+    # CLOSED when it actually closes.
+    _open_evs = {_ticker_pair_code(r[0])[1] for r in _q(
+        "SELECT ticker FROM snap_positions "
+        "WHERE ts=(SELECT MAX(ts) FROM snap_positions) AND qty > 0")}
     events = {}
     for tk in day_tickers:
         _, ev = _ticker_pair_code(tk)
+        if ev in _open_evs:
+            continue
         events.setdefault(ev, []).append(tk)
 
     out = []
@@ -1387,6 +1396,155 @@ def build_tape(ticker):
             "source": "kalshi_public_trades",
             "windows": {"w1": ws.get("w1"), "corr": ws.get("corr")},
             "bell": ws.get("bell")}
+
+
+def build_slate(day=None):
+    """Slate-level counts for the dead-space strip above each tab
+    (Plex 07-17, digit-grammar). Aggregation ONLY over the payload rows
+    the three build_*() functions already emit — no new fetches. On the
+    fixture harness the counts are read from fixtures[\"slate\"] if
+    present, else computed the same way.
+
+    Per-tab fields:
+      games         # cards on the tab
+      both_filled   # cards with 2+ filled legs (⇒ Σ foot eligible)
+      red_slot      # cards with a missing side (⇒ red PAIR ✕)
+      resting       # (CLOSED only) cards whose sibling has a bid but no
+                    # fill — the operator's "resting" bucket in
+                    # \"7 games · 2Σ · 3 (red) · 2 resting\"
+    """
+    if FIXTURE_PATH:
+        fx = json.loads(Path(FIXTURE_PATH).read_text())
+        if "slate" in fx:
+            return fx["slate"]
+    pos = build_positions()
+    ords = build_orders()
+    clsd = build_closed(day)
+
+    pos_stats = {
+        "games": len(pos),
+        "both_filled": sum(
+            1 for g in pos
+            if len([l for l in (g.get("legs") or [])
+                    if (l.get("qty") or 0) > 0]) >= 2),
+        "red_slot": sum(
+            1 for g in pos
+            if len([l for l in (g.get("legs") or [])
+                    if (l.get("qty") or 0) > 0]) < 2
+            and g.get("gray_line") is not None),
+    }
+    ord_stats = {
+        "games": len(ords),
+        "red_slot": sum(1 for g in ords
+                        if len(g.get("legs") or []) < 2),
+    }
+    cls_stats = {
+        "games": len(clsd),
+        "both_filled": sum(1 for g in clsd if g.get("pair_complete")),
+        "red_slot": sum(
+            1 for g in clsd
+            if any(s.get("kind") == "never_bid"
+                   for s in (g.get("siblings") or []))),
+        "resting": sum(
+            1 for g in clsd
+            if any(s.get("kind") in ("held", "pulled")
+                   for s in (g.get("siblings") or []))),
+    }
+    return {"positions": pos_stats, "orders": ord_stats,
+            "closed": cls_stats}
+
+
+# ── /api/tape/<ticker>.json — proof-on-click, REAL public tape ─────────
+
+
+def bank_days():
+    """[P1 day toggle] every banked closed day + today, newest first."""
+    bank = ROOT / "state" / "daysheet_bank"
+    days = set()
+    if bank.exists():
+        for f in bank.glob("closed_*.json"):
+            d = f.stem.replace("closed_", "")
+            if d.isdigit() and len(d) == 8:
+                days.add(d)
+    days.add(datetime.now(ET).strftime("%Y%m%d"))
+    return sorted(days, reverse=True)
+
+
+def build_alerts(limit=30):
+    """[P4 ALERTS ON THE PANEL, operator 07-17: the render IS the alert
+    surface; ntfy demoted to backup; the 07-14 phone decree struck]
+    typed engine-log lines + fund flags, newest first, digits only.
+    Tail-reads the newest log file (last ~3MB) per request."""
+    KINDS = ("pair_incomplete_violation",
+             "below_discovery_floor_refused",
+             "below_discovery_floor_retreat", "w2_fill_violation",
+             "gun_feed_error", "gun_feed_ambiguous", "bell_missing",
+             "floor_retreat_error", "window_truth_reaim")
+    out = []
+    try:
+        logs = sorted(LOG_DIR.glob("live_v3_*.jsonl"))
+        if logs:
+            p = logs[-1]
+            size = p.stat().st_size
+            with open(p, "rb") as fh:
+                if size > 3_000_000:
+                    fh.seek(size - 3_000_000)
+                    fh.readline()
+                data = fh.read()
+            for line in data.split(b"\n"):
+                if not any(k.encode() in line for k in KINDS):
+                    continue
+                try:
+                    j = json.loads(line)
+                except ValueError:
+                    continue
+                e = j.get("event")
+                if e not in KINDS:
+                    continue
+                d = j.get("details") or {}
+                ev = (d.get("event") or j.get("ticker", "")
+                      .rsplit("-", 1)[0]).split("-")[-1]
+                if e == "below_discovery_floor_refused":
+                    dig = "%s vol %s<%s" % (
+                        ev, d.get("discovered_shares"),
+                        int(d.get("floor") or 0))
+                elif e == "below_discovery_floor_retreat":
+                    dig = "%s vol %s · %d legs pulled" % (
+                        ev, d.get("discovered_shares"),
+                        len(d.get("legs") or []))
+                elif e == "pair_incomplete_violation":
+                    dig = "%s %s" % (ev,
+                                     json.dumps(d.get("legs") or {}))
+                elif e == "window_truth_reaim":
+                    dig = "%s %s→%s (bb %s)" % (
+                        ev, d.get("old"), d.get("new"),
+                        d.get("best_bid"))
+                elif e == "w2_fill_violation":
+                    dig = "%s fill %s post-bell" % (ev,
+                                                    d.get("fill_price"))
+                else:
+                    dig = "%s %s" % (ev, str(d)[:60])
+                out.append({"ts": j.get("ts_epoch"),
+                            "et": (_hm(j["ts_epoch"])
+                                   if j.get("ts_epoch") else ""),
+                            "kind": e, "digits": dig[:110],
+                            "red": e != "window_truth_reaim"})
+    except OSError:
+        pass
+    try:
+        for ts, kind, tk, det in _q(
+                "SELECT ts, kind, ticker, detail FROM flags "
+                "WHERE ts > ? ORDER BY ts DESC LIMIT 10",
+                (time.time() - 6 * 3600,)):
+            out.append({"ts": ts, "et": _hm(ts),
+                        "kind": "fund:" + kind,
+                        "digits": "%s %s" % ((tk or "")[-12:],
+                                             (det or "")[:80]),
+                        "red": True})
+    except Exception:
+        pass
+    out.sort(key=lambda x: -(x["ts"] or 0))
+    return out[:limit]
 
 
 def tape_age_seconds():

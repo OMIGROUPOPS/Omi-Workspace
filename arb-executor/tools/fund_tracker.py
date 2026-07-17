@@ -518,6 +518,12 @@ class H(BaseHTTPRequestHandler):
         if u.path == "/api/orders.json":
             self._send(json.dumps(ds.build_orders()), "application/json")
             return
+        if u.path == "/api/bank_days.json":
+            self._send(json.dumps(ds.bank_days()), "application/json")
+            return
+        if u.path == "/api/alerts.json":
+            self._send(json.dumps(ds.build_alerts()), "application/json")
+            return
         if u.path == "/api/slate.json":
             day_param = (qs.get("day") or [None])[0]
             self._send(json.dumps(ds.build_slate(day_param)),

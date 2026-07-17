@@ -35,6 +35,17 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
   }
   .app{ padding:14px 16px 40px; max-width:1400px; margin:0 auto; }
 
+  .alertsbar{
+    padding:2px 4px 8px; font-size:9px; font-family:inherit;
+  }
+  .alertsbar .acount{ color:var(--red); font-weight:800; }
+  .alertsbar .aline{ display:block; color:var(--grey); padding:1px 0; }
+  .alertsbar .aline b{ color:var(--red); font-weight:700; }
+  .alertsbar .aline.info b{ color:var(--blue); }
+  .daysel{
+    background:#0a0a0a; color:var(--orange); border:1px solid var(--border);
+    font-family:inherit; font-size:10px; padding:2px 6px; margin-left:8px;
+  }
   .topbar{
     display:flex; align-items:center; gap:14px; padding:6px 4px 12px;
     font-size:10px; color:var(--grey);
@@ -228,12 +239,16 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     <span class="age">last fill <b id="tapeage">—</b> ago</span>
     <span class="sep">|</span>
     <span class="age">recorder <b id="recage">—</b> <span id="recstate"></span></span>
+    <span class="sep">|</span>
+    <span class="age">alerts <span class="acount" id="acount">0</span></span>
   </div>
+  <div class="alertsbar" id="alertsbar"></div>
 
   <div class="tabs">
     <button class="tab active" data-tab="positions" onclick="switchTab('positions')">POSITIONS <span class="count" id="cnt-positions">(0)</span></button>
     <button class="tab" data-tab="orders" onclick="switchTab('orders')">ORDERS <span class="count" id="cnt-orders">(0)</span></button>
     <button class="tab" data-tab="closed" onclick="switchTab('closed')">CLOSED <span class="count" id="cnt-closed">(0)</span></button>
+    <select class="daysel" id="daysel" onchange="pickDay(this.value)"></select>
   </div>
 
   <div id="positions" class="tabpanel">
@@ -704,6 +719,43 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
   }
 
   loadSlate();
+  // [P4 ALERTS ON THE PANEL — the render IS the alert surface;
+  // digits only, newest first, all tabs]
+  async function loadAlerts(){
+    try{
+      const r = await fetch(withTok('/api/alerts.json'));
+      const rows = await r.json();
+      const reds = rows.filter(x => x.red);
+      document.getElementById('acount').textContent = reds.length;
+      document.getElementById('alertsbar').innerHTML = rows.slice(0, 6).map(x =>
+        '<span class="aline' + (x.red ? '' : ' info') + '">' +
+        esc((x.et||'').replace(' ET','')) + ' <b>' + esc(x.kind.replace('below_discovery_floor_','floor_')) + '</b> ' + esc(x.digits) + '</span>'
+      ).join('');
+    }catch(e){}
+  }
+  // [P1 CLOSED DAY TOGGLE] every banked day servable; ?day= linkable;
+  // default today (midnight ET rolls by the server clock)
+  function pickDay(d){
+    const u = new URLSearchParams(window.location.search);
+    const today = u.get('_today') || null;
+    if(!d || d === 'today'){ u.delete('day'); } else { u.set('day', d); }
+    window.location.search = u.toString();
+  }
+  async function loadDays(){
+    try{
+      const r = await fetch(withTok('/api/bank_days.json'));
+      const days = await r.json();
+      const cur = new URLSearchParams(window.location.search).get('day');
+      const sel = document.getElementById('daysel');
+      sel.innerHTML = days.map((d,i) =>
+        '<option value="' + (i===0 ? 'today' : d) + '"' +
+        ((cur === d || (!cur && i===0)) ? ' selected' : '') + '>' +
+        (i===0 ? d + ' (today)' : d) + '</option>').join('');
+    }catch(e){}
+  }
+  loadDays();
+  loadAlerts();
+  setInterval(loadAlerts, 30000);
   loadPositions();
   loadOrders();
   loadClosed();

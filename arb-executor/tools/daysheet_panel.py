@@ -143,26 +143,59 @@ def _ticker_pair_code(ticker):
 NAMES_DIR = ROOT / "state" / "daysheet_names"
 
 
-def _kalshi_event_names(ev):
-    """Exchange-truth name fallback: Kalshi's own event object carries
-    the surnames in the title ('Wu vs Bu') and each leg's full player
-    name in yes_sub_title — keyed by the ticker itself, never a fuzzy
-    guess. Disk-cached forever (an event's players never change).
-    Needed because Kalshi keys pair codes on GIVEN names (YIBYUN =
-    Yibing/Yunchaokete) where TennisExplorer keys surnames (WUYUN)."""
+def _kalshi_get(path):
+    url = "https://api.elections.kalshi.com/trade-api/v2" + path
+    req = urllib.request.Request(url, headers={"User-Agent":
+                                               "omi-daysheet-panel"})
+    with urllib.request.urlopen(req, timeout=15) as r:
+        return json.load(r)
+
+
+def _structured_target(cid):
+    """Third name-law source (C-MILESTONE-SHADOW word, 07-16): Kalshi's
+    structured target carries the player's AUTHORITATIVE last_name and
+    the exact ticker abbreviation. Cached forever per competitor id."""
     NAMES_DIR.mkdir(parents=True, exist_ok=True)
-    p = NAMES_DIR / ("%s.json" % ev)
+    p = NAMES_DIR / ("st_%s.json" % cid)
     try:
         return json.loads(p.read_text())
     except Exception:
         pass
     try:
-        url = ("https://api.elections.kalshi.com/trade-api/v2/events/"
-               "%s?with_nested_markets=true" % ev)
-        req = urllib.request.Request(url, headers={"User-Agent":
-                                                   "omi-daysheet-panel"})
-        with urllib.request.urlopen(req, timeout=15) as r:
-            d = json.load(r)
+        d = _kalshi_get("/structured_targets/%s" % cid)
+    except Exception:
+        return None  # never cache a failure
+    st = (d.get("structured_target") or {})
+    det = st.get("details") or {}
+    out = {"last": det.get("last_name"), "abbr": det.get("abbreviation"),
+           "name": st.get("name")}
+    if out["last"] or out["name"]:
+        try:
+            p.write_text(json.dumps(out), encoding="utf-8")
+        except OSError:
+            pass
+        return out
+    return None
+
+
+def _kalshi_event_names(ev):
+    """Exchange-truth name fallback: Kalshi's own event object carries
+    the surnames in the title ('Wu vs Bu') and each leg's full player
+    name in yes_sub_title — keyed by the ticker itself, never a fuzzy
+    guess; enriched with the structured target's authoritative
+    last_name + abbreviation per leg. Disk-cached forever. Needed
+    because Kalshi keys pair codes on GIVEN names (YIBYUN =
+    Yibing/Yunchaokete) where TennisExplorer keys surnames (WUYUN)."""
+    NAMES_DIR.mkdir(parents=True, exist_ok=True)
+    p = NAMES_DIR / ("%s.json" % ev)
+    try:
+        c = json.loads(p.read_text())
+        if c.get("v") == 2:
+            return c
+    except Exception:
+        pass
+    try:
+        d = _kalshi_get("/events/%s?with_nested_markets=true" % ev)
     except Exception:
         return None  # never cache a failure
     e = d.get("event") or {}
@@ -170,12 +203,20 @@ def _kalshi_event_names(ev):
     for m in e.get("markets") or []:
         suffix = (m.get("ticker") or "").rsplit("-", 1)[-1]
         nm = (m.get("yes_sub_title") or "").strip()
-        if suffix and nm:
-            legs[suffix] = nm
+        if not (suffix and nm):
+            continue
+        entry = {"full": nm, "last": None, "abbr": None}
+        cid = (m.get("custom_strike") or {}).get("tennis_competitor")
+        if cid:
+            st = _structured_target(cid)
+            if st:
+                entry["last"] = st.get("last")
+                entry["abbr"] = st.get("abbr")
+        legs[suffix] = entry
     title = (e.get("title") or "").strip()
     if not legs or " vs " not in title:
         return None
-    out = {"title": title, "legs": legs}
+    out = {"v": 2, "title": title, "legs": legs}
     try:
         p.write_text(json.dumps(out), encoding="utf-8")
     except OSError:
@@ -242,11 +283,18 @@ def leg_last_name(ticker, sj):
         return None
     kl = sj.get("kalshi_legs") or {}
     if leg in kl:
-        nm = kl[leg].upper()
+        entry = kl[leg]
+        if isinstance(entry, dict):
+            if entry.get("last"):  # structured target: authoritative
+                return entry["last"].upper()
+            full = (entry.get("full") or "")
+        else:
+            full = entry  # pre-v2 cache format
+        nm = full.upper()
         for last in (sj["p1_last"], sj["p2_last"]):
             if nm.endswith(last):
                 return last
-        return kl[leg]  # full player name — never a fragment
+        return full or None  # full player name — never a fragment
     for last in (sj["p1_last"], sj["p2_last"]):
         flat = last.replace(" ", "").replace("-", "")
         if flat.startswith(leg) or leg in flat:
@@ -386,9 +434,15 @@ _tape_lock = threading.Lock()
 
 
 def _trades_fetch(ticker, min_ts):
+    """Newest-first pages. Pages until the fetch REACHES min_ts (or the
+    tape's own beginning) so W1 is never silently truncated on
+    high-volume games; if the page cap trips first, coverage is reported
+    honestly (covered_from = oldest fetched print), never rendered as
+    'no prints' [De Santis exhibit / SILENT-EMPTY TAPE LOOKUP]."""
     prints = []
     cursor = None
-    for _ in range(6):
+    complete = False
+    for _ in range(40):
         url = ("https://api.elections.kalshi.com/trade-api/v2/markets/"
                "trades?ticker=%s&limit=1000" % ticker)
         if min_ts:
@@ -411,24 +465,32 @@ def _trades_fetch(ticker, min_ts):
                 "ct": float(t.get("count_fp") or 0)})
         cursor = d.get("cursor")
         if not cursor or not rows:
+            complete = True
             break
         time.sleep(0.12)
     prints.sort(key=lambda x: x["ts"])
-    return prints
+    covered_from = (min_ts if complete
+                    else (prints[0]["ts"] if prints else None))
+    return prints, covered_from
 
 
 def tape_for(ticker, sched_ep=None, bell_ts=None):
     """Disk-cached public tape. Settled/old games cache as final (their
-    tape can't change); live games refresh on a 600s TTL. Returns the
-    ascending prints list, or None on fetch failure (never cached)."""
+    tape can't change); live games refresh on a 600s TTL. Returns
+    {'prints': ascending list, 'covered_from': epoch|None} or None on
+    fetch failure (never cached). covered_from = the honest left edge
+    of coverage; a window cut left of it is a TAPE GAP, not a fact."""
     TAPE_DIR.mkdir(parents=True, exist_ok=True)
     p = TAPE_DIR / ("%s.json" % ticker)
     now = time.time()
     with _tape_lock:
         try:
             c = json.loads(p.read_text())
-            if c.get("final") or now - c.get("fetched_at", 0) < 600:
-                return c.get("prints") or []
+            # v2 = coverage-aware entries only; v1 caches refetch once
+            if c.get("v") == 2 and (c.get("final")
+                                    or now - c.get("fetched_at", 0) < 600):
+                return {"prints": c.get("prints") or [],
+                        "covered_from": c.get("covered_from")}
         except Exception:
             pass
     min_ts = None
@@ -436,7 +498,7 @@ def tape_for(ticker, sched_ep=None, bell_ts=None):
     if anchor:
         min_ts = anchor - 30 * 3600  # T-30h covers the whole W1 horizon
     try:
-        prints = _trades_fetch(ticker, min_ts)
+        prints, covered_from = _trades_fetch(ticker, min_ts)
     except Exception:
         _file_miss("tape_fetch_error", ticker)
         return None
@@ -445,11 +507,13 @@ def tape_for(ticker, sched_ep=None, bell_ts=None):
                  and now - last > 6 * 3600)
     with _tape_lock:
         try:
-            p.write_text(json.dumps({"fetched_at": now, "final": final,
+            p.write_text(json.dumps({"v": 2, "fetched_at": now,
+                                     "final": final,
+                                     "covered_from": covered_from,
                                      "prints": prints}), encoding="utf-8")
         except OSError:
             pass
-    return prints
+    return {"prints": prints, "covered_from": covered_from}
 
 
 def _win_cut(prints, lo_ts, hi_ts):
@@ -478,26 +542,42 @@ def window_summary(ticker, sj, ev=None):
     sched_ep = sj.get("start_ep") if sj else None
     fp = first_point_for(ev, sched_ep)
     fp_ts = fp["ts"] if fp else None
-    prints = tape_for(ticker, sched_ep, fp_ts)
+    tp = tape_for(ticker, sched_ep, fp_ts)
     base = {"sched_ep": sched_ep,
             "sched_label": _hm(sched_ep) if sched_ep else None,
             "fp": fp, "bell": fp}  # bell key kept for back-compat
-    if prints is None:
+    if tp is None:
         base.update({"state": "tape_error", "w1": None, "corr": None,
+                     "w1_state": "tape_error", "corr_state": "tape_error",
                      "tape_n": 0})
         return base
+    prints, covered_from = tp["prints"], tp.get("covered_from")
     if not prints:
         _file_miss("no_tape", ticker)
         base.update({"state": "no_tape", "w1": None, "corr": None,
+                     "w1_state": "no_tape", "corr_state": "no_tape",
                      "tape_n": 0})
         return base
-    w1_end = sched_ep or fp_ts
-    corr = None
+    # W1 ends at the SCHED anchor only (corridor law). Without a sched
+    # anchor W1 is UNKNOWABLE — an empty cut against an EST bell must
+    # never render as 'no W1 prints' [De Santis exhibit].
+    w1 = corr = None
     if sched_ep:
-        corr = _win_cut(prints, sched_ep, fp_ts)  # fp_ts None = ongoing
-    base.update({"state": "ok",
-                 "w1": _win_cut(prints, None, w1_end),
-                 "corr": corr,
+        w1 = _win_cut(prints, None, sched_ep)
+        if w1 is None and covered_from is not None \
+                and covered_from >= sched_ep:
+            _file_miss("tape_coverage_gap", "%s|w1" % ticker)
+            w1_state = "tape_gap"
+        else:
+            w1_state = "ok" if w1 else "none"
+        corr = _win_cut(prints, sched_ep, fp_ts)  # fp None = ongoing
+        corr_state = "ok" if corr else "none"
+    else:
+        _file_miss("w1_anchor_gap", ticker)
+        w1_state = "no_anchor"
+        corr_state = "no_anchor"
+    base.update({"state": "ok", "w1": w1, "corr": corr,
+                 "w1_state": w1_state, "corr_state": corr_state,
                  "tape_n": len(prints)})
     return base
 
@@ -761,8 +841,6 @@ def build_closed(day=None):
             leg_suffix = tk.rsplit("-", 1)[-1]
             gr_row = _grade_lookup(grades, ev, leg_suffix)
             leg_grade = (gr_row.get("grade") if gr_row else None)
-            if leg_grade:
-                leg_grades.append(re.sub(r"\(.*\)", "", leg_grade))
             outcome = (gr_row or {}).get("outcome")
             realized_c = None
             dollars = (gr_row or {}).get("dollars") or ""
@@ -782,31 +860,54 @@ def build_closed(day=None):
             w1c = ((win.get("w1") or {}).get("close")
                    if win.get("w1") else None)
             # fill window under the CLAMPED clocks (corridor law):
-            # W1 < sched · CORR in [sched, first point) · W2 >= first pt
+            # W1 < sched · CORR in [sched, first point) · W2 >= first pt.
+            # Without a sched anchor, only an OBSERVED first point can
+            # place a fill (in W2); everything else is UNCLASSIFIABLE —
+            # an EST bell alone is not window evidence.
             fill_window = None
             if buys:
                 fts = buys[-1][0]
                 sched_ep = win.get("sched_ep")
-                fpts = (win.get("fp") or {}).get("ts")
-                if sched_ep and fts < sched_ep:
-                    fill_window = "W1"
-                elif fpts and fts >= fpts:
+                fpd = win.get("fp") or {}
+                fpts = fpd.get("ts")
+                if sched_ep:
+                    if fts < sched_ep:
+                        fill_window = "W1"
+                    elif fpts and fts >= fpts:
+                        fill_window = "W2"
+                    else:
+                        fill_window = "CORR"
+                elif fpd.get("observed") and fpts and fts >= fpts:
                     fill_window = "W2"
-                elif sched_ep:
-                    fill_window = "CORR"
-                elif fpts:
-                    fill_window = "W1" if fts < fpts else "W2"
-            # RE-GRADE (part 4): an F whose only charge was post-bell by
-            # an EST bell earlier than sched dissolves when the clamped
-            # clock says the fill was NOT W2 — regrade by the same
-            # pnl rubric game_report uses.
+            # THE GRADE-EVIDENCE LAW (De Santis exhibit): a grade chip
+            # prints only when the row shows its evidence — fill time,
+            # a lawfully classified window, and (on W1 fills) a real Δ.
+            # Missing evidence renders UNGRADED (gap filed), never a
+            # letter.
+            grade_note = None
+            evidence_ok = bool(
+                buys and fill_window in ("W1", "CORR", "W2")
+                and win.get("state") == "ok"
+                and (fill_window != "W1" or win.get("w1") is not None))
+            if leg_grade and not evidence_ok:
+                _file_miss("grade_without_evidence", tk)
+                grade_note = ("UNGRADED (%s — filed)" % (
+                    "no sched anchor" if not win.get("sched_ep")
+                    else "tape gap" if win.get("w1_state") == "tape_gap"
+                    else "no tape" if win.get("state") != "ok"
+                    else "window unclassifiable"))
+                leg_grade = None
+            # RE-GRADE (corridor law part 4): an F whose only charge was
+            # post-bell by an EST bell earlier than sched dissolves when
+            # the clamped clock says the fill was NOT W2.
             grade_was = None
             if (leg_grade and leg_grade.startswith("F")
                     and fill_window in ("W1", "CORR")):
                 grade_was = leg_grade
                 leg_grade = ("A" if (realized_c or 0) > 0 else
                              "B" if realized_c in (0, None) else "C")
-                leg_grades[-1] = leg_grade
+            if leg_grade:
+                leg_grades.append(re.sub(r"\(.*\)", "", leg_grade))
             game_out["legs"].append({
                 "ticker": tk,
                 "last_name": leg_last_name(tk, sj),
@@ -828,6 +929,7 @@ def build_closed(day=None):
                 "realized_c": realized_c,
                 "grade": leg_grade,
                 "grade_was": grade_was,
+                "grade_note": grade_note,
                 "grade_row": gr_row,
             })
         if leg_grades:

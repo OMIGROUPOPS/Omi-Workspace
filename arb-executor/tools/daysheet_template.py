@@ -326,16 +326,21 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     return '<span class="bellchip">' + sched + ' · ' + fpPart + defect + '</span>';
   }
   // W1/CORR lo·hi cell from the real tape; "no tape" is a named state
+  // empty-state text per the SILENT-EMPTY TAPE LOOKUP law: a fact
+  // ("no W1 prints") renders ONLY when coverage proves it; lookup
+  // failures render as the named gap, filed server-side.
+  function winEmpty(win, which){
+    const st = win[which + '_state'];
+    if(st === 'tape_gap') return '<span class="no-bell">tape gap — filed</span>';
+    if(st === 'no_anchor') return '<span class="no-bell">no sched anchor — filed</span>';
+    if(which === 'corr') return '<span class="no-bell">no corridor prints</span>';
+    return '<span class="no-bell">no W1 prints</span>';
+  }
   function winCell(win, which, ticker, name){
     if(!win || win.state === 'no_tape') return '<span class="no-bell">no tape</span>';
     if(win.state === 'tape_error') return '<span class="no-bell">tape fetch error</span>';
     const w = win[which];
-    if(!w){
-      if(which === 'corr') return win.sched_label
-        ? '<span class="no-bell">no corridor prints</span>'
-        : '<span class="no-bell">no sched anchor</span>';
-      return '<span class="no-bell">no W1 prints</span>';
-    }
+    if(!w) return winEmpty(win, which);
     return '<span class="rangepair proofable" onclick="event.stopPropagation(); openProof(event,\'' + esc(ticker) + '\',\'' + esc(name||ticker) + '\')">' +
       '<span class="lo">' + w.lo + '</span><span class="sep">·</span><span class="hi">' + w.hi + '¢</span></span>';
   }
@@ -343,12 +348,7 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     if(!win || win.state === 'no_tape') return '<span class="no-bell">no tape</span>';
     if(win.state === 'tape_error') return '<span class="no-bell">tape fetch error</span>';
     const w = win[which];
-    if(!w){
-      if(which === 'corr') return win.sched_label
-        ? '<span class="no-bell">no corridor prints</span>'
-        : '<span class="no-bell">no sched anchor</span>';
-      return '<span class="no-bell">no W1 prints</span>';
-    }
+    if(!w) return winEmpty(win, which);
     return '<span class="proofable" onclick="event.stopPropagation(); openProof(event,\'' + esc(ticker) + '\',\'' + esc(name||ticker) + '\')">' + w.close + '¢</span>';
   }
   function gameHead(g){
@@ -520,8 +520,9 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
         // has no honest source yet — the schema gap stays named)
         const entryLine = l.filled_et
           ? '<div class="exitline"><span class="lbl">entry</span> placed <span class="no-bell">— (no source: schema gap)</span> → filled <b>' + esc(l.filled_et) + '</b>' +
-            (l.fill_window ? ' <span class="lbl">[' + esc(l.fill_window) + ']</span>' : '') +
+            (l.fill_window ? ' <span class="lbl">[' + esc(l.fill_window) + ']</span>' : ' <span class="no-bell">[window unclassifiable]</span>') +
             (l.grade_was ? ' <span class="loss">regraded (clamped clock): was ' + esc(l.grade_was) + '</span>' : '') +
+            (l.grade_note ? ' <span class="loss">' + esc(l.grade_note) + '</span>' : '') +
             '</div>'
           : '';
         const exitLine = l.exit

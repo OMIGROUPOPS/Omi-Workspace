@@ -1,7 +1,7 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784285397 -->
-written 2026-07-17 06:59:51 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784286181 -->
+written 2026-07-17 07:10:12 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (19 total this session)
+## Events (20 total this session)
 - 03:28:57 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 03:40:09 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 03:52:15 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
@@ -21,6 +21,7 @@ written 2026-07-17 06:59:51 AM ET by live_validation_loop (read-only). Patch con
 - 06:28:03 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
 - 06:39:14 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
 - 06:49:57 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
+- 07:03:01 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-17 01:13:08 AM ET", "ts_epoch": 1784265188.5342462, "event": "tape_seed_live_confirm", "ticker": "KXATPMATCH-26JUL17CERRUU-CER", "details": {"seed_price": 27, "live_price": 27, "delta": 0, "seed_age_sec": 682.7}}
@@ -112,6 +113,10 @@ written 2026-07-17 06:59:51 AM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-17 06:49:57 AM ET", "ts_epoch": 1784285397.333502, "event": "completion_shadow", "ticker": "KXATPMATCH-26JUL17CERRUU-CER", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_MAIN|underdog|at_mid|le25", "n": 23, "p_exit_fill": 0.696, "p_ride_zero": 0.304, "ev_cents": -2.74, "band": 7, "basis": 25, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_L
     {"ts": "2026-07-17 06:49:57 AM ET", "ts_epoch": 1784285397.3338356, "event": "completion_flatten_deferred", "ticker": "KXATPMATCH-26JUL17CERRUU-CER", "details": {"event": "KXATPMATCH-26JUL17CERRUU", "ev_cents": -2.74, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
     {"ts": "2026-07-17 06:53:21 AM ET", "ts_epoch": 1784285601.9627478, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 6, "n_resting_orders": 28, "n_failures": 0, "n_flags": 3, "failures": [], "flags": [{"tk": "KXWTAMATCH-26JUL17KREZHE-ZHE", "check": "pair_incomplete", "event": "KXWTAMATCH-26JUL17KREZHE", "legs": {"ZHE": "absent", "
+    {"ts": "2026-07-17 07:03:01 AM ET", "ts_epoch": 1784286181.0343258, "event": "completion_shadow", "ticker": "KXATPMATCH-26JUL17CERRUU-CER", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_MAIN|underdog|at_mid|le25", "n": 23, "p_exit_fill": 0.696, "p_ride_zero": 0.304, "ev_cents": -2.74, "band": 7, "basis": 25, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_
+    {"ts": "2026-07-17 07:03:01 AM ET", "ts_epoch": 1784286181.0345922, "event": "completion_flatten_deferred", "ticker": "KXATPMATCH-26JUL17CERRUU-CER", "details": {"event": "KXATPMATCH-26JUL17CERRUU", "ev_cents": -2.74, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-17 07:06:16 AM ET", "ts_epoch": 1784286376.9314983, "event": "fv_burst_anchor", "ticker": "KXATPMATCH-26JUL17CERRUU-CER", "details": {"event": "KXATPMATCH-26JUL17CERRUU", "cat": "ATP_MAIN", "cell": "", "regime": "", "reference_source": "", "legs_filled": 1, "solo_or_pair": "solo", "filled_pre_burst": true, "entry_price": 25, "fill_price": 25, "fv_mid": 25.5, "fv_bid": 25, "fv_ask":
+    {"ts": "2026-07-17 07:07:23 AM ET", "ts_epoch": 1784286443.5589666, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 4, "n_resting_orders": 25, "n_failures": 0, "n_flags": 5, "failures": [], "flags": [{"tk": "KXWTAMATCH-26JUL17KREZHE-ZHE", "check": "pair_incomplete", "event": "KXWTAMATCH-26JUL17KREZHE", "legs": {"ZHE": "absent", "
 
 ## Code path
 ?

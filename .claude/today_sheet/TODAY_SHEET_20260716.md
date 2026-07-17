@@ -1,16 +1,16 @@
 # TODAY'S SHEET — July 16, 2026 (session 12:00 AM ET onward; ◐ = carried)
-(C-TODAY-SHEET v1 — render rules vaulted + census-enforced; generated 04:06 PM ET)
+(C-TODAY-SHEET v1 — render rules vaulted + census-enforced; generated 04:41 PM ET)
 
-**NAV $749.48** · session realized: TAIL +219¢ | PATH +297¢ · wagered today $117.51 · **P-offered (executor) 27% (91 filled / 244 posted-unfilled)** · **P-market (funnel) 6.0% (91 filled legs / ~1512 listed legs)**
+**NAV $751.93** · session realized: TAIL +219¢ | PATH +407¢ · wagered today $119.06 · **P-offered (executor) 27% (92 filled / 243 posted-unfilled)** · **P-market (funnel) 5.9% (92 filled legs / ~1562 listed legs)**
 
-## ① SETTLED (87)
+## ① SETTLED (89)
 | Match | Cat | Leg | Band | Placed ET | Filled ET | Fill¢ | W1-best¢ @ET | Real bell | vs Kalshi sched | Exit required | Best tick after fill | Close | $ |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Nagal S. vs Torres J. ◐carried | ATP_CHALL | Tor | 8¢ | 09:31 AM | 11:18 PM | 38¢ | 38¢ @11:15 PM | bell 07:00 AM (percat_fitted) | sched 04:30 PM (Δ+870m) | 46¢ (+8) | 67¢ @09:24 AM | EXIT 46¢ 08:19 AM | +40¢ (105% of basis 38¢) |
 | Dellien H. vs Dalla Valle E. | ATP_CHALL | Dal | 8¢ | 05:01 AM | 10:55 AM | 34¢ | 39¢ @10:54 PM | bell 08:45 AM (fallback_bell) | sched 12:10 PM (Δ-205m) | 42¢ (+8) | 74¢ @11:57 AM | EXIT 42¢ 10:59 AM | +40¢ (118% of basis 34¢) |
 | Dellien H. vs Dalla Valle E. | ATP_CHALL | Del | 16¢ | 05:01 AM | 11:20 AM | 57¢ | 59¢ @08:27 AM | bell 08:45 AM (fallback_bell) | sched 12:10 PM (Δ-205m) | 73¢ (+16) | 99¢ @01:00 PM | EXIT 73¢ 11:30 AM | +48¢ (84% of basis 57¢) |
 | Fuele M. vs Seyboth Wild T. | ATP_CHALL | Sey | 19¢ | 09:44 AM | 01:27 PM | 80¢ | 85¢ @10:29 AM | bell 12:59 PM (percat_fitted) | sched 04:00 PM (Δ-180m) | 98¢ (+19) | 99¢ @02:44 PM | EXIT 98¢ 02:13 PM | +90¢ (112% of basis 80¢) |
-| Grenier H. vs Santillan A. | ATP_CHALL | San | 8¢ | 10:01 AM | 03:51 PM | 35¢ | 40¢ @12:44 PM | bell 01:59 PM (fallback_bell) | sched 04:40 PM (Δ-160m) | 43¢ (+8) | 44¢ @03:55 PM | EXIT 43¢ 03:55 PM | +40¢ (114% of basis 35¢) |
+| Grenier H. vs Santillan A. | ATP_CHALL | San | 8¢ | 10:01 AM | 03:51 PM | 35¢ | 40¢ @12:44 PM | bell 01:59 PM (fallback_bell) | sched 04:40 PM (Δ-160m) | 43¢ (+8) | 69¢ @04:32 PM | EXIT 43¢ 03:55 PM | +40¢ (114% of basis 35¢) |
 | Ivashka I. vs Ouakaa A. | ATP_CHALL | Oua | 5¢ | 08:31 AM | 12:44 PM | 14¢ | 16¢ @01:28 AM | bell 12:30 PM (fallback_bell) | sched 03:30 PM (Δ-180m) | 19¢ (+5) | 15¢ @12:45 PM | SETTLED LOSS 0¢ | -70¢ (-500% of basis 14¢) |
 | Thiago Agustin Tirante vs Nikoloz Basilashvili ◐carried | ATP_MAIN | Bas | 7¢ | 12:22 AM | 11:23 AM | 32¢ | 30¢ @11:24 AM | bell 04:59 AM (fallback_bell) | sched 08:00 AM (Δ+1260m) | 39¢ (+7) | 74¢ @07:32 AM | EXIT 39¢ 05:13 AM | +35¢ (109% of basis 32¢) |
 | Quentin Halys vs Alexander Bublik ◐carried | ATP_MAIN | Hal | 7¢ | 12:47 AM | 08:34 AM | 28¢ | 28¢ @08:34 AM | bell 08:35 AM (fallback_bell) | sched 07:30 AM (Δ+65m) | 35¢ (+7) | 49¢ @11:10 AM | EXIT 35¢ 10:44 AM | +35¢ (125% of basis 28¢) |
@@ -48,6 +48,7 @@
 | Rocha F. vs Marionneau L. | ITF_M | Roc | 8¢ | 02:23 AM | 07:50 AM | 35¢ | 53¢ @01:52 AM | bell 06:00 AM (percat_fitted) | sched 12:00 PM (Δ-360m) | 43¢ (+8) | 99¢ @09:25 AM | EXIT 43¢ 08:29 AM | +40¢ (114% of basis 35¢) |
 | Sahtali T. vs Mabrouk K. | ITF_M | Mab | 4¢ | 12:58 AM | 05:06 AM | 6¢ | 8¢ @06:56 PM | bell 03:59 AM (fallback_bell) | sched 10:00 AM (Δ-360m) | 10¢ (+4) | 9¢ @05:08 AM | SETTLED LOSS 0¢ | -30¢ (-500% of basis 6¢) |
 | Sakellaridis D. vs Ferrari F. | ITF_M | Fer | 4¢ | 11:30 PM | 05:01 AM | 13¢ | 29¢ @01:08 AM | bell 03:30 AM (fallback_bell) | sched 09:30 AM (Δ-360m) | 17¢ (+4) | 2¢ @05:03 AM | SETTLED LOSS 0¢ | -65¢ (-500% of basis 13¢) |
+| Serafini M. vs Basile P. | ITF_M | Ser | 4¢ | 11:00 AM | 03:26 PM | 10¢ | 15¢ @02:23 PM | bell 03:00 PM (percat_fitted) | sched 09:00 PM (Δ-360m) | 14¢ (+4) | 34¢ @04:34 PM | EXIT 14¢ 04:28 PM | +20¢ (200% of basis 10¢) |
 | Snitari I. vs Carteputreda D. | ITF_M | Car | 4¢ | 12:33 AM | 05:08 AM | 7¢ | 5¢ @06:43 PM | bell 04:29 AM (fallback_bell) | sched 10:00 AM (Δ-330m) | 11¢ (+4) | 58¢ @05:09 AM | EXIT 11¢ 05:12 AM | +20¢ (286% of basis 7¢) |
 | Harazaki A. vs Taka Y. | ITF_M | Tak | 5¢ | 02:01 AM | 06:41 AM | 15¢ | 24¢ @05:00 AM | bell 05:59 AM (fallback_bell) | sched 12:00 PM (Δ-360m) | 20¢ (+5) | 19¢ @07:18 AM | SETTLED LOSS 0¢ | -75¢ (-500% of basis 15¢) |
 | Talan Lopatic L. vs Belda M. | ITF_M | Bel | 4¢ | 08:01 AM | 12:19 PM | 5¢ | 13¢ @10:52 AM | bell 12:00 PM (percat_fitted) | sched 06:00 PM (Δ-360m) | 9¢ (+4) | 19¢ @01:16 PM | EXIT 9¢ 01:01 PM | +20¢ (400% of basis 5¢) |
@@ -90,19 +91,19 @@
 | Sinja Kraus vs Eva Bennemann | WTA_CHALL | Ben | 4¢ | 01:02 AM | 05:07 AM | 17¢ | 20¢ @08:02 PM | bell 04:59 AM (fallback_bell) | sched 08:00 AM (Δ-180m) | 21¢ (+4) | 24¢ @05:10 AM | EXIT 21¢ 05:12 AM | +20¢ (118% of basis 17¢) |
 | Laura Samson vs Gina Feistel | WTA_CHALL | Sam | 15¢ | 02:31 AM | 06:26 AM | 64¢ | 50¢ @06:29 AM | bell 06:29 AM (fallback_bell) | sched 09:10 AM (Δ-160m) | 79¢ (+15) | 64¢ @06:26 AM | SETTLED LOSS 0¢ | -320¢ (-500% of basis 64¢) |
 | Jeline Vandromme vs Polona Hercog | WTA_CHALL | Her | 6¢ | 02:31 AM | 06:41 AM | 27¢ | 30¢ @10:26 PM | bell 06:35 AM (fallback_bell) | sched 09:30 AM (Δ-175m) | 33¢ (+6) | 35¢ @06:57 AM | EXIT 33¢ 06:58 AM | +30¢ (111% of basis 27¢) |
+| Julia Riera vs Danka Kovinic | WTA_CHALL | Rie | 18¢ | 07:36 AM | 01:47 PM | 74¢ | 76¢ @12:06 AM | bell 01:30 PM (fallback_bell) | sched 02:10 PM (Δ-40m) | 92¢ (+18) | 99¢ @04:25 PM | EXIT 92¢ 04:21 PM | +90¢ (122% of basis 74¢) |
 | Paula Badosa vs Alevtina Ibragimova ◐carried | WTA_MAIN | Ibr | 5¢ | 02:24 AM | 06:38 AM | 14¢ | 12¢ @12:20 AM | bell 08:58 AM (fallback_bell) | sched 08:00 AM (Δ+59m) | 19¢ (+5) | 91¢ @12:56 PM | EXIT 19¢ 10:41 AM | +25¢ (179% of basis 14¢) |
 | Carole Monnet vs Barbora Krejcikova | WTA_MAIN | Mon | 4¢ | 07:49 AM | 01:17 AM | 8¢ | 7¢ @07:40 AM | bell 12:30 PM (fallback_bell) | sched 01:30 PM (Δ+1380m) | 12¢ (+4) | 10¢ @01:33 PM | SETTLED LOSS 0¢ | -40¢ (-500% of basis 8¢) |
 | Kaitlin Quevedo vs Mayar Sherif ◐carried | WTA_MAIN | She | 18¢ | 12:22 AM | 09:13 AM | 65¢ | 59¢ @12:29 AM | bell 06:00 AM (fallback_bell) | sched 08:00 AM (Δ+1320m) | 83¢ (+18) | 99¢ @08:10 AM | EXIT 83¢ 06:52 AM | +90¢ (138% of basis 65¢) |
 
-## ② OPEN (4)
+## ② OPEN (3)
 | Match | Cat | Leg | Band | Placed ET | Filled ET | Fill¢ | W1-best¢ @ET | Real bell | vs Kalshi sched | Exit required | Best tick after fill | Close | Mark | Exit resting |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Yib vs Yun (name join pending) ◐carried | ATP_CHALL | Yun | 9¢ | 10:01 AM | 02:53 PM | 42¢ | 15¢ @01:16 AM | bell 04:33 PM (fallback_bell) | sched 02:00 PM (Δ+154m) | 51¢ (+9) | 43¢ @08:28 AM | OPEN | 40¢ (-2¢ vs basis) | 51¢ ×5 (order 940b2ed7) |
-| Serafini M. vs Basile P. | ITF_M | Ser | 4¢ | 11:00 AM | 03:26 PM | 10¢ | 15¢ @02:23 PM | bell 03:00 PM (percat_fitted) | sched 09:00 PM (Δ-360m) | 14¢ (+4) | 12¢ @03:44 PM | OPEN | 3¢ (-7¢ vs basis) | 14¢ ×5 (order 96b25410) |
-| Collins K. vs Marino R. | ITF_W | Col | 4¢ | 07:31 AM | 03:51 PM | 16¢ | no pre-bell tape | bell 11:29 AM (tape_flow) | sched 05:00 PM (Δ-330m) | 20¢ (+4) | 14¢ @04:04 PM | OPEN | 9¢ (-7¢ vs basis) | 20¢ ×5 (order e16afe4a) |
-| Julia Riera vs Danka Kovinic | WTA_CHALL | Rie | 18¢ | 07:36 AM | 01:47 PM | 74¢ | 76¢ @12:06 AM | bell 01:30 PM (fallback_bell) | sched 02:10 PM (Δ-40m) | 92¢ (+18) | 84¢ @03:21 PM | OPEN | 28¢ (-46¢ vs basis) | 92¢ ×5 (order 4d3f6c68) |
+| Bynoe E. vs Long D. | ITF_M | Lon | 7¢ | 09:01 AM | 04:18 PM | 31¢ | 45¢ @12:17 PM | bell 12:54 PM (fallback_bell) | sched 06:00 PM (Δ-305m) | 38¢ (+7) | 31¢ @04:20 PM | OPEN | 14¢ (-17¢ vs basis) | 38¢ ×5 (order 7da31f46) |
+| Collins K. vs Marino R. | ITF_W | Col | 4¢ | 07:31 AM | 03:51 PM | 16¢ | no pre-bell tape | bell 11:29 AM (tape_flow) | sched 05:00 PM (Δ-330m) | 20¢ (+4) | 14¢ @04:05 PM | OPEN | 0¢ (-16¢ vs basis) | 20¢ ×5 (order e16afe4a) |
 
-## ③ POSTED, DID NOT FILL (244)
+## ③ POSTED, DID NOT FILL (243)
 | Match | Cat | Leg | Aim¢ | Tape low¢ @ET | Why unfilled |
 |---|---|---|---|---|---|
 | Yib vs Yun (name join pending) | ATP_CHALL | Yib | 55¢ | 7¢ @12:25 AM | we pulled it (match went live, 02:11 PM ET) |
@@ -121,9 +122,9 @@
 | Ivashka I. vs Ouakaa A. | ATP_CHALL | Iva | 77¢ | 82¢ @01:28 AM | we pulled it (orphan_buy_reconcile_cleanup, 12:44 PM ET) |
 | Tomic B. vs McCabe J. | ATP_CHALL | Mcc | 50¢ | 50¢ @10:10 AM | we pulled it (v4_cancel_bid_marketable_stale, 09:14 AM ET) |
 | Tomic B. vs McCabe J. | ATP_CHALL | Tom | 42¢ | 47¢ @01:52 AM | we pulled it (match went live, 11:41 AM ET) |
-| Palan D. vs Almazan Valiente I. | ATP_CHALL | Alm | 67¢ | 72¢ @09:29 AM | never traded that low |
+| Palan D. vs Almazan Valiente I. | ATP_CHALL | Alm | 66¢ | 72¢ @09:29 AM | we pulled it (re-aimed, 04:14 PM ET) |
 | Palan D. vs Almazan Valiente I. | ATP_CHALL | Pal | 24¢ | 28¢ @06:09 AM | never traded that low |
-| Rice K. vs Gea A. | ATP_CHALL | Ric | 14¢ | 17¢ @01:14 PM | never traded that low |
+| Rice K. vs Gea A. | ATP_CHALL | Ric | 14¢ | 17¢ @01:14 PM | we pulled it (match went live, 04:02 PM ET) |
 | Smith C. vs Matsuoka H. | ATP_CHALL | Mat | 16¢ | 18¢ @01:57 PM | we pulled it (match went live, 01:28 PM ET) |
 | Smith C. vs Matsuoka H. | ATP_CHALL | Smi | 75¢ | 80¢ @06:37 AM | we pulled it (match went live, 01:28 PM ET) |
 | Nijboer R. vs Visker N. | ATP_CHALL | Vis | 37¢ | 24¢ @09:18 AM | we pulled it (match went live, 08:57 AM ET) |
@@ -168,8 +169,7 @@
 | Bocchi L. vs Hribar M. | ITF_M | Boc | 79¢ | 68¢ @07:50 PM | we pulled it (match went live, 05:29 AM ET) |
 | Bocchi L. vs Hribar M. | ITF_M | Hri | 5¢ | 10¢ @12:25 AM | we pulled it (match went live, 05:30 AM ET) |
 | Durasovic V. vs Bonnaud A. | ITF_M | Dur | 72¢ | 86¢ @08:45 PM | we pulled it (match went live, 05:12 AM ET) |
-| Bynoe E. vs Long D. | ITF_M | Byn | 37¢ | 56¢ @10:02 AM | never traded that low |
-| Bynoe E. vs Long D. | ITF_M | Lon | 31¢ | 45¢ @12:17 PM | never traded that low |
+| Bynoe E. vs Long D. | ITF_M | Byn | 37¢ | 56¢ @10:02 AM | we pulled it (completion_reprice, 04:18 PM ET) |
 | Castagnola L. vs Fondriest M. ◐carried | ITF_M | Cas | 70¢ | 72¢ @06:38 PM | we pulled it (v4_cancel_degenerate, 05:06 AM ET) |
 | Vanshelboim E. vs Chambonniere M. ◐carried | ITF_M | Cha | 14¢ | 27¢ @08:13 PM | we pulled it (re-aimed, 05:02 AM ET) |
 | Che2 vs Fit2 (name join pending) | ITF_M | Fit2 | 15¢ | 16¢ @12:19 PM | we pulled it (v4_cancel_bid_marketable_stale, 12:21 PM ET) |
@@ -182,8 +182,8 @@
 | Jones R. vs Daryabeigi S. | ITF_M | Jon | 29¢ | 46¢ @01:43 AM | we pulled it (match went live, 05:59 AM ET) |
 | Baris O. vs Davidov T. | ITF_M | Bar | 71¢ | 86¢ @10:19 AM | we pulled it (match went live, 11:02 AM ET) |
 | Baris O. vs Davidov T. | ITF_M | Dav | 9¢ | 15¢ @07:03 AM | we pulled it (match went live, 11:02 AM ET) |
-| Fahim I. vs Colombo K. | ITF_M | Col | 8¢ | 16¢ @01:09 PM | never traded that low |
-| Fahim I. vs Colombo K. | ITF_M | Fah | 68¢ | 85¢ @01:09 PM | never traded that low |
+| Fahim I. vs Colombo K. | ITF_M | Col | 8¢ | 14¢ @04:16 PM | never traded that low |
+| Fahim I. vs Colombo K. | ITF_M | Fah | 68¢ | 83¢ @04:19 PM | never traded that low |
 | Fishback D. vs Gaines Jr J. | ITF_M | Fis | 13¢ | 33¢ @01:35 PM | never traded that low |
 | Fishback D. vs Gaines Jr J. | ITF_M | Gai | 21¢ | 58¢ @08:44 AM | we pulled it (re-aimed, 10:01 AM ET) |
 | Izq vs Dar (name join pending) | ITF_M | Izq | 79¢ | 92¢ @08:05 AM | we pulled it (match went live, 08:38 AM ET) |
@@ -320,8 +320,8 @@
 | Schunk N. vs Lollia M. | ITF_W | Sch | 68¢ | 83¢ @11:35 AM | we pulled it (match went live, 11:42 AM ET) |
 | Schuman A. vs Valente D. | ITF_W | Sch | 74¢ | 84¢ @06:30 PM | we pulled it (match went live, 06:28 AM ET) |
 | Schuman A. vs Valente D. | ITF_W | Val | 6¢ | no tape | we pulled it (match went live, 06:28 AM ET) |
-| Sema E. vs Brace C. | ITF_W | Bra | 75¢ | 88¢ @12:38 PM | never traded that low |
-| Sema E. vs Brace C. | ITF_W | Sem | 6¢ | 14¢ @12:16 PM | never traded that low |
+| Sema E. vs Brace C. | ITF_W | Bra | 75¢ | 87¢ @04:19 PM | we pulled it (match went live, 04:24 PM ET) |
+| Sema E. vs Brace C. | ITF_W | Sem | 6¢ | 14¢ @12:16 PM | we pulled it (match went live, 04:24 PM ET) |
 | Smirnova K. vs Podhajecka D. | ITF_W | Smi | 59¢ | 76¢ @09:47 PM | we pulled it (match went live, 05:29 AM ET) |
 | Pedone G. vs Souza M. | ITF_W | Ped | 72¢ | 86¢ @09:03 AM | we pulled it (match went live, 12:14 PM ET) |
 | Pedone G. vs Souza M. | ITF_W | Sou | 6¢ | 16¢ @11:01 AM | we pulled it (match went live, 12:15 PM ET) |
@@ -350,7 +350,7 @@
 | Miriana Tona vs Clara Tauson | WTA_MAIN | Tau | 94¢ | 88¢ @01:35 PM | we pulled it (match went live, 02:02 PM ET) |
 | Aliaksandra Sasnovich vs Tereza Valentova | WTA_MAIN | Val | 63¢ | 66¢ @02:29 PM | we pulled it (match went live, 10:38 AM ET) |
 
-## ④ NOT BID (156)
+## ④ NOT BID (181)
 | Match | Cat | Band | Intent | Plain reason | What the tape did |
 |---|---|---|---|---|---|
 | Alcala Gurri M. vs Angelini L. | ATP_CHALL | — | never reached a decision | never conceived | tape: see game report |
@@ -396,7 +396,7 @@
 | Bosio G. vs Figl M. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Frusina A. vs Jansen W. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Zarate C. vs Giamichelle S. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
-| Gogineni V. vs Dussault M. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Dussault M. vs Gogineni V. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Kim J. vs Hou C. | ITF_M | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
 | Hulme M. vs Sinclair C. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Khoeblal E. vs Sosedkin F. | ITF_M | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
@@ -435,8 +435,17 @@
 | Wiedenmann L. vs Basile A. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Orlov V. vs Yunis F. | ITF_M | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
 | Aginskiy S. vs Ignatik U. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Barbier Gazeu P. vs Robert N. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Bocchi L. vs Fumagalli F. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Lanik T. vs Bosio G. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Ovcharenko O. vs Cazacu D. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Paldanius O. vs Papamalamis T. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Snitari I. vs Marinescu M. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Thomas F. vs Ruland L. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Timini A. vs Perego G. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Tor vs Bel (name join pending) | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Trifi A. vs Jones R. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Turcanu R. vs Papoe C. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Kha vs Lin (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Aiava D. vs Beck A. | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
 | Ngi vs Des (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
@@ -493,13 +502,29 @@
 | Webb S. vs Yang Y. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Yoshimoto N. vs Taylor L. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Bojovic J. vs Konjikusic P. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Buchnik M. vs Kruger I. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Cex vs Vuj (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Dek vs Gre (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Falkner Z. vs Yaneva V. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Fon vs Dot (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Jang G. vs Kroitor K. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Karatancheva L. vs Ricci B. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Ler vs Van (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Maklakova E. vs Sholokhova M. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Malova A. vs Kalyakina M. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Milovanova V. vs Tupitsyna E. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Paskauskas K. vs Perapekhina Y. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Roj vs Els (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Sato N. vs Gureva A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Schuman A. vs Dada-Mascoll S. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Smirnova K. vs Cirotte A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Stoyanov A. vs Lew Yan Foon A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Tik vs Cho (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Tsygourova K. vs Martinez Cirez C. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Udvardy L. vs Nijkamp R. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Vogt M. vs Trevisan F. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Yodpetch K. vs Matsuda R. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Zhang J. vs Wang J. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Bassols Ribera M. vs Rus A. | WTA_CHALL | — | never reached a decision | never conceived | tape: see game report |
 | Eva Vedder vs Nuria Brancaccio | WTA_CHALL | — | never reached a decision | never conceived | tape: see game report |
 | Prozorova T. vs Khomutsianskaya D. | WTA_CHALL | — | never reached a decision | never conceived | tape: see game report |

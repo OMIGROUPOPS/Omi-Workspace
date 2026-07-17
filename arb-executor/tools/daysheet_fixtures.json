@@ -1,222 +1,199 @@
 {
-  "_note": "Fixture data for local dev/screenshot of /daysheet without live db or SSH access. Loaded when DAYSHEET_FIXTURE env var points at this file (see daysheet_panel.py). Reproduces the approved mock v4 exhibits (Wu/Bu withdrawn-not-absent, Santillan/Okonkwo time-sourcing exhibit) plus one deliberately ungraded/empty-state closed game to prove the honest-empty-state path renders correctly. Real deployment ignores this file entirely.",
-  "tape_age_seconds": 4,
-
   "positions": [
     {
-      "event": "KXATPCHALLENGERMATCH-26JUL15WUYIB",
+      "event": "KXATPCHALLENGERMATCH-26JUL16WUBU",
       "joined": true,
       "names": "Wu v Bu",
-      "start_time": "2026-07-15T22:30:00Z",
+      "start_time": "2026-07-16T13:00:00Z",
       "tournament": "ATP Chall",
-      "category": "ATP Challenger",
+      "anchors": {
+        "sched": "9:00:00 AM ET",
+        "fp": {"raw_ts": 1721142600, "ts": 1721142600, "label": "9:04:12 AM ET",
+               "src": "te_scoreboard", "observed": true, "badge": "LIVE", "defect": null}
+      },
+      "deeplink": "https://kalshi.com/markets/kxatpchallengermatch-26jul16wubu",
+      "walk": null,
       "legs": [
-        {
-          "ticker": "KXATPCHALLENGERMATCH-26JUL15WUYIB-BU",
-          "last_name": "BU",
-          "qty": 5,
-          "basis_c": 42,
-          "mark_c": 41,
-          "exit_resting": {"price_c": 51, "qty": 5},
-          "deeplink": "https://kalshi.com/markets/kxatpchallengermatch-26jul15wuyib",
-          "placed_et": "6:41 AM ET",
-          "filled_et": "7:03 AM ET",
-          "fill_price_c": 42
-        }
+        {"ticker": "KXATPCHALLENGERMATCH-26JUL16WUBU-BU", "last_name": "BU",
+         "qty": 5, "basis_c": 42, "mark_c": 41,
+         "win": {"sched_ep": 1721140800, "state": "ok",
+                 "w1": {"lo": 40, "hi": 44, "close": 42, "n": 18},
+                 "corr": {"lo": 42, "hi": 43, "close": 43, "n": 6},
+                 "w1_state": "ok", "corr_state": "ok"},
+         "exit_resting": {"price_c": 51, "qty": 5},
+         "deeplink": "https://kalshi.com/markets/kxatpchallengermatch-26jul16wubu",
+         "placed_et": null, "filled_et": "9:01:12 AM ET", "fill_price_c": 42}
       ],
-      "gray_line": "WU — posted 53¢ · pulled (match-live latch, 4:40 PM yest) · never re-placed"
-    },
-    {
-      "event": "KXATPCHALLENGERMATCH-26JUL15HOVCHA",
-      "joined": true,
-      "names": "Hovde v Chang",
-      "start_time": "2026-07-15T21:00:00Z",
-      "tournament": "ITF W",
-      "category": "ITF Women",
-      "legs": [
-        {
-          "ticker": "KXATPCHALLENGERMATCH-26JUL15HOVCHA-HOV",
-          "last_name": "HOVDE",
-          "qty": 5,
-          "basis_c": 31,
-          "mark_c": 20,
-          "exit_resting": {"price_c": 38, "qty": 5},
-          "deeplink": "https://kalshi.com/markets/kxatpchallengermatch-26jul15hovcha",
-          "placed_et": "4:52 PM ET",
-          "filled_et": "4:52 PM ET",
-          "fill_price_c": 31
-        }
-      ],
-      "gray_line": "CHANG — posted 62¢ · never traded that low"
-    },
-    {
-      "event": "KXWTAMAIN-26JUL15MONKRE",
-      "joined": true,
-      "names": "Monnet v Krejcikova",
-      "start_time": "2026-07-15T17:30:00Z",
-      "tournament": "WTA Main",
-      "category": "WTA",
-      "legs": [
-        {
-          "ticker": "KXWTAMAIN-26JUL15MONKRE-MON",
-          "last_name": "MONNET",
-          "qty": 5,
-          "basis_c": 8,
-          "mark_c": 7,
-          "exit_resting": {"price_c": 14, "qty": 5},
-          "deeplink": "https://kalshi.com/markets/kxwtamain-26jul15monkre",
-          "placed_et": "12:58 PM ET",
-          "filled_et": "1:03 PM ET",
-          "fill_price_c": 8
-        }
-      ],
-      "gray_line": "KREJCIKOVA — not bid — aims never crossed"
+      "gray_line": "WU — posted 53¢ · pulled (match-live latch, 9:04 AM yest) · never re-placed"
     }
   ],
-
   "orders": [
     {
-      "event": "KXATPCHALLENGERMATCH-26JUL15ADDGHI",
+      "event": "KXATPCHALLENGERMATCH-26JUL16ADDGHI",
       "joined": true,
       "names": "Added v Ghibaudo",
-      "start_time": "2026-07-16T20:30:00Z",
+      "start_time": "2026-07-16T22:00:00Z",
+      "tournament": "ATP Chall",
+      "anchors": {"sched": "6:00:00 PM ET", "fp": null},
+      "deeplink": "https://kalshi.com/markets/kxatpchallengermatch-26jul16addghi",
       "legs": [
-        {"ticker": "KXATPCHALLENGERMATCH-26JUL15ADDGHI-ADD", "last_name": "ADD", "aim_c": 44, "qty": 5, "age_label": "9h12m"},
-        {"ticker": "KXATPCHALLENGERMATCH-26JUL15ADDGHI-GHI", "last_name": "GHI", "aim_c": 48, "qty": 5, "age_label": "9h12m"}
+        {"ticker": "KXATPCHALLENGERMATCH-26JUL16ADDGHI-ADD", "last_name": "ADD",
+         "aim_c": 44, "qty": 5,
+         "win": {"sched_ep": 1721160000, "state": "no_tape", "w1": null, "corr": null,
+                 "w1_state": "no_tape", "corr_state": "no_tape"},
+         "age_label": "9h12m"},
+        {"ticker": "KXATPCHALLENGERMATCH-26JUL16ADDGHI-GHI", "last_name": "GHI",
+         "aim_c": 48, "qty": 5,
+         "win": {"sched_ep": 1721160000, "state": "no_tape", "w1": null, "corr": null,
+                 "w1_state": "no_tape", "corr_state": "no_tape"},
+         "age_label": "9h12m"}
       ]
     }
   ],
-
   "closed": [
     {
-      "event": "KXATPCHALLENGERMATCH-26JUL15DELDAL",
+      "event": "KXATPCHALLENGERMATCH-26JUL16DELDAL",
       "joined": true,
       "names": "Dellien v Dalla Valle",
-      "start_time": "2026-07-15T16:10:00Z",
+      "start_time": "2026-07-16T16:10:00Z",
       "tournament": "ATP Chall",
-      "legs": [
-        {
-          "ticker": "KXATPCHALLENGERMATCH-26JUL15DELDAL-DAL",
-          "last_name": "DALLA VALLE",
-          "fill_price_c": 34,
-          "filled_et": "11:52 AM ET",
-          "placed_et": "11:52 AM ET",
-          "qty": 5,
-          "grade_row": {"grade": "A"}
-        },
-        {
-          "ticker": "KXATPCHALLENGERMATCH-26JUL15DELDAL-DEL",
-          "last_name": "DELLIEN",
-          "fill_price_c": 57,
-          "filled_et": "12:04 PM ET",
-          "placed_et": "12:04 PM ET",
-          "qty": 5,
-          "grade_row": {"grade": "A"}
-        }
-      ],
+      "anchors": {
+        "sched": "12:10:00 PM ET",
+        "fp": {"raw_ts": 1721146212, "ts": 1721146212, "label": "12:10:12 PM ET",
+               "src": "kalshi_milestone", "observed": true, "badge": "LIVE", "defect": null}
+      },
+      "deeplink": "https://kalshi.com/markets/kxatpchallengermatch-26jul16deldal",
+      "walk": null,
+      "footnote": "both legs W1, discounts held, cast/hold trail clean · no open class",
       "grade": "A",
       "grade_status": "graded",
-      "footnote": "both legs W1, discounts held, cast/hold trail clean · no open class"
+      "legs": [
+        {"ticker": "KXATPCHALLENGERMATCH-26JUL16DELDAL-DAL", "last_name": "DALLA VALLE",
+         "ours_c": 34, "n_entry_fills": 1, "qty": 5,
+         "filled_et": "11:52:03 AM ET", "placed_et": null, "fill_window": "W1",
+         "exit": null,
+         "win": {"sched_ep": 1721142600, "state": "ok",
+                 "w1": {"lo": 30, "hi": 36, "close": 34, "n": 14},
+                 "corr": null, "w1_state": "ok", "corr_state": "none"},
+         "delta_c": 2, "result": "99", "realized_c": 65,
+         "grade": "A", "grade_was": null, "grade_note": null},
+        {"ticker": "KXATPCHALLENGERMATCH-26JUL16DELDAL-DEL", "last_name": "DELLIEN",
+         "ours_c": 57, "n_entry_fills": 1, "qty": 5,
+         "filled_et": "12:04:41 AM ET", "placed_et": null, "fill_window": "W1",
+         "exit": null,
+         "win": {"sched_ep": 1721142600, "state": "ok",
+                 "w1": {"lo": 55, "hi": 60, "close": 58, "n": 11},
+                 "corr": null, "w1_state": "ok", "corr_state": "none"},
+         "delta_c": -1, "result": "1", "realized_c": -285,
+         "grade": "A", "grade_was": null, "grade_note": null}
+      ]
     },
     {
-      "event": "KXITFMMATCH-26JUL15FOMLIM",
+      "event": "KXITFMMATCH-26JUL16FOMLIM",
       "joined": true,
       "names": "Fomin v Lim",
-      "start_time": "2026-07-15T09:00:00Z",
+      "start_time": "2026-07-16T09:00:00Z",
       "tournament": "ITF M",
-      "legs": [
-        {
-          "ticker": "KXITFMMATCH-26JUL15FOMLIM-LIM",
-          "last_name": "LIM",
-          "fill_price_c": 39,
-          "filled_et": "5:41 AM ET",
-          "placed_et": "5:41 AM ET",
-          "qty": 5,
-          "grade_row": {"grade": "D"}
-        }
-      ],
+      "anchors": {
+        "sched": "5:00:00 AM ET",
+        "fp": {"raw_ts": 1721121444, "ts": 1721121444, "label": "8:08:44 AM ET",
+               "src": "tape_latch", "observed": true, "badge": "LIVE", "defect": null}
+      },
+      "deeplink": "https://kalshi.com/markets/kxitfmmatch-26jul16fomlim",
+      "walk": null,
+      "footnote": "one-sided + paid 27¢ into decay · instance of CLASS: entry-vs-window · fix: dial-walk pending",
       "grade": "D",
       "grade_status": "graded",
-      "footnote": "one-sided + paid 27¢ into decay — instance of CLASS: entry-vs-window · fix: dial-walk pending"
+      "legs": [
+        {"ticker": "KXITFMMATCH-26JUL16FOMLIM-LIM", "last_name": "LIM",
+         "ours_c": 38, "n_entry_fills": 1, "qty": 5,
+         "filled_et": "8:08:44 AM ET", "placed_et": null, "fill_window": "W2",
+         "exit": {"price_c": 46, "qty": 5, "at": "8:19:00 AM ET"},
+         "win": {"sched_ep": 1721121600, "state": "ok",
+                 "w1": null, "corr": {"lo": 40, "hi": 44, "close": 41, "n": 3},
+                 "w1_state": "none", "corr_state": "ok"},
+         "delta_c": null, "result": "cashed", "realized_c": 40,
+         "grade": "D", "grade_was": "F(W2)", "grade_note": null}
+      ]
     },
     {
-      "event": "KXITFMMATCH-26JUL16NEWMAT",
+      "event": "KXITFMMATCH-26JUL16PETASL",
       "joined": true,
       "names": "Petrov v Aslanov",
-      "start_time": "2026-07-16T06:00:00Z",
+      "start_time": "2026-07-16T09:30:00Z",
       "tournament": "ITF M",
-      "legs": [
-        {
-          "ticker": "KXITFMMATCH-26JUL16NEWMAT-PET",
-          "last_name": "PETROV",
-          "fill_price_c": 46,
-          "filled_et": "2:10 AM ET",
-          "placed_et": "2:10 AM ET",
-          "qty": 5,
-          "grade_row": null
-        }
-      ],
+      "anchors": {
+        "sched": "5:30:00 AM ET",
+        "fp": {"raw_ts": 1721119800, "ts": 1721119800, "label": "5:20:00 AM ET",
+               "src": "schedule_live", "observed": true, "badge": "LIVE",
+               "defect": "raw 5:20:00 AM ET BEFORE sched 5:30:00 AM ET"}
+      },
+      "deeplink": "https://kalshi.com/markets/kxitfmmatch-26jul16petasl",
+      "walk": null,
+      "footnote": null,
       "grade": null,
       "grade_status": "ungraded",
-      "footnote": "DAYSHEET.json not yet generated for this day — no grade rendered"
+      "legs": [
+        {"ticker": "KXITFMMATCH-26JUL16PETASL-PET", "last_name": "PETROV",
+         "ours_c": 46, "n_entry_fills": 1, "qty": 5,
+         "filled_et": "5:25:00 AM ET", "placed_et": null, "fill_window": "CORR",
+         "exit": null,
+         "win": {"sched_ep": 1721119800, "state": "ok",
+                 "w1": null, "corr": {"lo": 45, "hi": 47, "close": 46, "n": 2},
+                 "w1_state": "none", "corr_state": "ok"},
+         "delta_c": null, "result": "open", "realized_c": null,
+         "grade": null, "grade_was": null,
+         "grade_note": "UNGRADED (no sched anchor — filed)"}
+      ]
     },
     {
-      "event": "KXATPCHALLENGERMATCH-26JUL15SANOKO",
+      "event": "KXATPCHALLENGERMATCH-26JUL16SANOKO",
       "joined": true,
       "names": "Santillan v Okonkwo",
-      "start_time": "2026-07-15T14:00:00Z",
+      "start_time": "2026-07-16T14:00:00Z",
       "tournament": "ATP Chall",
-      "legs": [
-        {
-          "ticker": "KXATPCHALLENGERMATCH-26JUL15SANOKO-SAN",
-          "last_name": "SANTILLAN",
-          "fill_price_c": 29,
-          "placed_et": "10:01 AM ET",
-          "filled_et": "3:50 PM ET",
-          "qty": 5,
-          "grade_row": {"grade": "A"}
-        },
-        {
-          "ticker": "KXATPCHALLENGERMATCH-26JUL15SANOKO-OKO",
-          "last_name": "OKONKWO",
-          "fill_price_c": 61,
-          "placed_et": "10:03 AM ET",
-          "filled_et": "10:14 AM ET",
-          "qty": 5,
-          "grade_row": {"grade": "A"}
-        }
-      ],
+      "anchors": {"sched": "10:00:00 AM ET", "fp": null},
+      "deeplink": "https://kalshi.com/markets/kxatpchallengermatch-26jul16sanoko",
+      "walk": {
+        "walk": "20260716/WALK_SANOKO.md",
+        "charge": "one-sided pair on a match that never started",
+        "amendment": "the sibling leg was never bid — no completion funnel to price against",
+        "verdict": "no open class · pairability gap named, not a fill defect"
+      },
+      "footnote": null,
       "grade": "A",
       "grade_status": "graded",
-      "footnote": "both legs W1, discounts held · no open class — time-sourcing exhibit: SANTILLAN placed 10:01a, filled 3:50p (resting bid, normal lag) — placed\u2260filled always rendered separately, never conflated"
+      "legs": [
+        {"ticker": "KXATPCHALLENGERMATCH-26JUL16SANOKO-SAN", "last_name": "SANTILLAN",
+         "ours_c": 29, "n_entry_fills": 1, "qty": 5,
+         "filled_et": "10:01:00 AM ET", "placed_et": null, "fill_window": "W1",
+         "exit": null,
+         "win": {"sched_ep": 1721145600, "state": "ok",
+                 "w1": {"lo": 27, "hi": 31, "close": 29, "n": 9},
+                 "corr": null, "w1_state": "ok", "corr_state": "none"},
+         "delta_c": 0, "result": "99", "realized_c": 70,
+         "grade": "A", "grade_was": null, "grade_note": null}
+      ]
     }
   ],
-
+  "tape_age_seconds": 4,
+  "dayheet_rows": [],
   "order_history": {
-    "KXATPCHALLENGERMATCH-26JUL15WUYIB-WU": "posted 53¢ · pulled (match-live latch, 4:40 PM yest) · never re-placed",
-    "KXATPCHALLENGERMATCH-26JUL15HOVCHA-CHA": "posted 62¢ · never traded that low",
-    "KXWTAMAIN-26JUL15MONKRE-KRE": null
+    "KXATPCHALLENGERMATCH-26JUL16WUBU-WU": "not bid — never conceived"
   },
-
   "tape": {
-    "KXATPCHALLENGERMATCH-26JUL15WUYIB-BU": {
-      "has_receipt": true,
+    "KXATPCHALLENGERMATCH-26JUL16WUBU-BU": {
+      "has_receipt": true, "source": "kalshi_public_trades", "n_total": 24,
+      "windows": {"w1": {"lo": 40, "hi": 44, "close": 42, "n": 18},
+                  "corr": {"lo": 42, "hi": 43, "close": 43, "n": 6}},
       "prints": [
-        {"t": "Jul 15 6:41 AM", "price_c": 40, "ct": 18},
-        {"t": "Jul 15 6:52 AM", "price_c": 42, "ct": 14},
-        {"t": "Jul 15 7:03 AM", "price_c": 44, "ct": 22}
+        {"t": "9:01:12 AM ET", "price_c": 42, "ct": 5},
+        {"t": "9:02:40 AM ET", "price_c": 41, "ct": 3},
+        {"t": "9:04:55 AM ET", "price_c": 43, "ct": 8}
       ]
     },
-    "KXATPCHALLENGERMATCH-26JUL15SANOKO-SAN": {
-      "has_receipt": true,
-      "prints": [
-        {"t": "Jul 15 10:01 AM", "price_c": 30, "ct": 10},
-        {"t": "Jul 15 3:50 PM", "price_c": 29, "ct": 5}
-      ]
-    },
-    "KXITFMMATCH-26JUL16NEWMAT-PET": {
-      "has_receipt": false,
-      "prints": []
+    "KXATPCHALLENGERMATCH-26JUL16DELDAL-DAL": {
+      "has_receipt": false
     }
   }
 }

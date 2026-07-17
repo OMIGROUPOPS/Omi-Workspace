@@ -228,6 +228,46 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     font-size:8px; color:var(--dimgrey); margin-top:6px; padding-top:5px;
     border-top:1px solid var(--border);
   }
+
+  /* PLEX render-ownership additions: icon+tooltip system replaces all
+     inline debug-speak. Native title attr is the tooltip -- no custom
+     JS popover framework, stdlib page stays stdlib. */
+  .flag{
+    display:inline-block; cursor:help; font-size:9px; margin-left:3px;
+    color:var(--orange); border-bottom:none;
+  }
+  .flag.warn{ color:var(--red); }
+  .flag.muted{ color:var(--dimgrey); }
+
+  .micro{
+    color:var(--dimgrey); font-size:8.5px; font-style:normal;
+    text-transform:uppercase; letter-spacing:0.03em;
+  }
+
+  .tapeage-stale{ color:var(--red) !important; font-weight:700; animation:pulse 1s infinite; }
+
+  .oneline{
+    grid-column:1 / -1; padding:3px 12px; font-size:9px; color:var(--blue);
+    border-top:1px solid rgba(26,26,46,0.5); display:flex; align-items:center;
+    gap:6px; white-space:nowrap; overflow:hidden;
+  }
+  .oneline .lbl{ color:var(--grey); flex-shrink:0; }
+  .oneline .sep2{ color:var(--dimgrey); margin:0 2px; }
+
+  .walkfoot{ cursor:pointer; }
+  .walkfoot .walkfull{ display:none; }
+  .walkfoot.expanded .walkfull{ display:inline; }
+  .walkfoot.expanded .walkbrief{ display:none; }
+  .walkfoot .expander{ color:var(--dimgrey); font-size:8px; margin-left:3px; }
+
+  .headright{ margin-left:auto; display:flex; align-items:center; gap:8px; }
+  .schedbell{ color:var(--grey); font-size:9px; display:flex; align-items:center; gap:5px; }
+  .schedbell .official{ color:var(--blue); font-weight:700; }
+  .schedbell .srcbadge{
+    font-size:7.5px; border:1px solid var(--border); padding:0 3px;
+    color:var(--grey); text-transform:uppercase;
+  }
+  .schedbell .srcbadge.live{ color:var(--blue); border-color:rgba(0,191,255,0.4); }
 </style>
 </head>
 <body>
@@ -308,60 +348,81 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
                        : '<span class="last join-pending">join pending</span>';
   }
   // CORRIDOR LAW: both anchors always — sched + first point. The bell
-  // MEANS first-point evidence; estimates clamp to >= sched; where no
-  // source observed anything, "first pt not observed (>= sched)" —
-  // never a fabricated time.
-  // C-OFFICIAL-BELL: THE bell = the official milestone start (KALSHI)
-  // when it exists, else our own LIVE first-point evidence, else
-  // "not observed (≥ sched)". Estimates live only in the hover note.
+  // MEANS first-point evidence; estimates clamp to >= sched. RENDER LAW
+  // (operator, 07-16): every filed-defect note is an icon + native-title
+  // tooltip, never inline prose. A live/official source prints clean;
+  // an estimate demotes to a muted badge with the estimate itself only
+  // in the tooltip. This function is intentionally source-agnostic —
+  // any future src string (e.g. an official KALSHI milestone backfill)
+  // renders through the same LIVE/EST branch with no template change.
   function anchorsChip(a){
-    if(!a) return '<span class="no-bell">no anchors</span>';
-    const sched = a.sched ? 'sched ' + esc(a.sched) : 'sched unknown';
-    let fpPart;
+    if(!a) return '<span class="micro">no anchors</span>';
+    const schedLabel = a.sched ? esc(a.sched) : 'unknown';
     const fp = a.fp;
-    if(fp && fp.badge === 'OFFICIAL'){
-      fpPart = 'bell ' + esc(fp.label) + ' · official <span class="official">KALSHI</span>';
+    let bellHtml;
+    // generic source label: SNAKE_CASE -> spaced caps via CSS
+    // uppercase, so a future official source (e.g. a literal
+    // "kalshi" src string) prints correctly with no new branch.
+    const srcLabel = fp ? esc((fp.src || '').replace(/_/g, ' ')) : '';
+    if(fp && fp.observed){
+      // live/official evidence: prints clean, source in a badge not prose
+      bellHtml = '<b class="official">' + esc(fp.label) + '</b>' +
+        '<span class="srcbadge live">' + srcLabel + '</span>';
     } else if(fp){
-      fpPart = 'bell ' + esc(fp.label) + ' (' + esc(fp.src) + ') <span class="live">LIVE</span>';
+      // estimate: demoted — the estimate value + source move to hover;
+      // the visible label states plainly what this is, nothing more
+      const tip = 'estimate ' + esc(fp.label) + ' (' + srcLabel + ')' +
+        (a.sched ? ' \u00b7 clamped \u2265 sched ' + esc(a.sched) : '');
+      bellHtml = '<span title="' + tip + '">est ' + esc(fp.label) + '</span>' +
+        '<span class="srcbadge">EST</span>';
     } else {
-      fpPart = 'bell not observed' + (a.sched ? ' (≥ ' + esc(a.sched) + ')' : '');
+      bellHtml = '<span class="micro" title="no bell source has fired for this event yet">not observed</span>';
     }
-    const defect = (fp && fp.defect)
-      ? ' <span class="loss" title="' + esc(fp.defect) + '">⚠ BELL&lt;SCHED filed</span>' : '';
+    const defectIcon = (fp && fp.defect)
+      ? '<span class="flag warn" title="' + esc(fp.defect) + '">\u26a0</span>' : '';
     const hover = a.est_note ? ' title="' + esc(a.est_note) + '"' : '';
-    return '<span class="bellchip"' + hover + '>' + sched + ' · ' + fpPart + defect + '</span>';
+    return '<span class="schedbell"' + hover + '><span class="micro">sched ' + schedLabel + '</span>' +
+      bellHtml + defectIcon + '</span>';
   }
   // W1/CORR lo·hi cell from the real tape; "no tape" is a named state
   // empty-state text per the SILENT-EMPTY TAPE LOOKUP law: a fact
   // ("no W1 prints") renders ONLY when coverage proves it; lookup
   // failures render as the named gap, filed server-side.
+  // ONE STATUS VOCABULARY (operator, 07-16): every non-money empty/gap
+  // state is a muted micro-label, lowercase, never orange/red. Red is
+  // reserved for money and true violations only.
   function winEmpty(win, which){
     const st = win[which + '_state'];
-    if(st === 'tape_gap') return '<span class="no-bell">tape gap — filed</span>';
-    if(st === 'no_anchor') return '<span class="no-bell">no sched anchor — filed</span>';
-    if(which === 'corr') return '<span class="no-bell">no corridor prints</span>';
-    return '<span class="no-bell">no W1 prints</span>';
+    if(st === 'tape_gap') return '<span class="micro" title="filed server-side">tape gap</span>';
+    if(st === 'no_anchor') return '<span class="micro" title="filed server-side">no sched anchor</span>';
+    if(which === 'corr') return '<span class="micro">no corridor prints</span>';
+    return '<span class="micro">no w1 prints</span>';
   }
   function winCell(win, which, ticker, name){
-    if(!win || win.state === 'no_tape') return '<span class="no-bell">no tape</span>';
-    if(win.state === 'tape_error') return '<span class="no-bell">tape fetch error</span>';
+    if(!win || win.state === 'no_tape') return '<span class="micro">no tape</span>';
+    if(win.state === 'tape_error') return '<span class="micro" title="filed server-side">tape fetch error</span>';
     const w = win[which];
     if(!w) return winEmpty(win, which);
     return '<span class="rangepair proofable" onclick="event.stopPropagation(); openProof(event,\'' + esc(ticker) + '\',\'' + esc(name||ticker) + '\')">' +
       '<span class="lo">' + w.lo + '</span><span class="sep">·</span><span class="hi">' + w.hi + '¢</span></span>';
   }
   function winClose(win, which, ticker, name){
-    if(!win || win.state === 'no_tape') return '<span class="no-bell">no tape</span>';
-    if(win.state === 'tape_error') return '<span class="no-bell">tape fetch error</span>';
+    if(!win || win.state === 'no_tape') return '<span class="micro">no tape</span>';
+    if(win.state === 'tape_error') return '<span class="micro" title="filed server-side">tape fetch error</span>';
     const w = win[which];
     if(!w) return winEmpty(win, which);
     return '<span class="proofable" onclick="event.stopPropagation(); openProof(event,\'' + esc(ticker) + '\',\'' + esc(name||ticker) + '\')">' + w.close + '¢</span>';
   }
-  function gameHead(g){
+  // HEADER HIERARCHY (operator, 07-16): match name + sched + bell
+  // (source badge) + grade chip right-aligned; everything else
+  // subordinate. gradeHtml is optional -- only CLOSED game heads pass
+  // one; POSITIONS/ORDERS heads render without it, unaffected.
+  function gameHead(g, gradeHtml){
     const link = '<a class="deeplink" href="' + esc(g.deeplink) + '" target="_blank" onclick="event.stopPropagation()">↗ KALSHI</a>';
     return '<div class="gamehead"><span class="names' + (g.joined ? '' : ' join-pending') + '">' + esc(g.names) + '</span>' +
       '<span class="meta">' + esc(g.tournament || '') + '</span>' +
-      '<span class="meta">' + anchorsChip(g.anchors) + '</span>' + link + '</div>';
+      anchorsChip(g.anchors) +
+      '<span class="headright">' + (gradeHtml || '') + link + '</span></div>';
   }
 
   // ── proof-on-click: real tape prints fetched per ticker ──
@@ -487,10 +548,11 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
   // ── CLOSED ──
   function gradeChip(status, grade){
     if(status !== 'graded' || !grade){
-      return '<span class="gradechip grade-UNGRADED">UNGRADED</span>';
+      return '<span class="gradechip grade-UNGRADED" title="DAYSHEET.json not yet generated for this day">UNGRADED</span>';
     }
     return '<span class="gradechip grade-' + esc(grade) + '">GRADE ' + esc(grade) + '</span>';
   }
+  function toggleWalk(el){ el.classList.toggle('expanded'); }
 
   async function loadClosed(){
     const body = document.getElementById('closed-body');
@@ -510,34 +572,47 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
       const legs = g.legs.map(l => {
         // ONE ROW PER LEG: OURS = avg entry fill; exit in its own line
         const oursLbl = (l.ours_c === null || l.ours_c === undefined) ? '—'
-          : l.ours_c + '¢' + (l.n_entry_fills > 1 ? ' <span class="no-bell">(' + l.n_entry_fills + ' fills avg)</span>' : '');
+          : l.ours_c + '¢' + (l.n_entry_fills > 1 ? ' <span class="micro" title="average of ' + l.n_entry_fills + ' entry fills">avg×' + l.n_entry_fills + '</span>' : '');
         // time law: Δ has meaning only on W1 fills
         const delta = (l.delta_c === null || l.delta_c === undefined)
-          ? '<span class="no-bell">' + (l.fill_window && l.fill_window !== 'W1' ? esc(l.fill_window) + ' — Δ n/a' : '—') + '</span>'
+          ? '<span class="micro" title="Δ has meaning only on W1 fills">' + (l.fill_window && l.fill_window !== 'W1' ? esc(l.fill_window) + ' · n/a' : '—') + '</span>'
           : '<span class="' + (l.delta_c <= 0 ? 'delta-neg' : 'delta-pos') + '">' + (l.delta_c > 0 ? '+' : '') + l.delta_c + '</span>';
         const result = l.result === '99' ? '<span class="result-99">99¢</span>'
           : l.result === '1' ? '<span class="result-1">1¢</span>'
           : l.result === 'cashed' ? '<span class="win">cashed</span>'
-          : '<span class="no-bell">open</span>';
+          : '<span class="micro">open</span>';
         const realized = (l.realized_c === null || l.realized_c === undefined)
-          ? '<span class="no-bell">open</span>'
+          ? '<span class="micro">open</span>'
           : '<span class="' + (l.realized_c >= 0 ? 'win' : 'loss') + '">' + (l.realized_c >= 0 ? '+' : '') + l.realized_c + '¢</span>';
-        // time law: entry line carries placed ET -> filled ET (placed
-        // has no honest source yet — the schema gap stays named)
-        const entryLine = l.filled_et
-          ? '<div class="exitline"><span class="lbl">entry</span> placed <span class="no-bell">— (no source: schema gap)</span> → filled <b>' + esc(l.filled_et) + '</b>' +
-            (l.fill_window ? ' <span class="lbl">[' + esc(l.fill_window) + ']</span>' : ' <span class="no-bell">[window unclassifiable]</span>') +
-            (l.grade_was ? (l.grade_was.indexOf('F') === 0
-              ? ' <span class="win">exonerated: fill pre-' + ((l.win && l.win.fp && l.win.fp.badge === 'OFFICIAL') ? 'official-start' : 'first-point') + ' (was ' + esc(l.grade_was) + ')</span>'
-              : ' <span class="loss">convicted vs ' + ((l.win && l.win.fp && l.win.fp.badge === 'OFFICIAL') ? 'official bell' : 'observed first point') + ' (was ' + esc(l.grade_was) + ')</span>') : '') +
-            ((!l.grade_was && (l.grade || '').indexOf('F') === 0 && l.fill_window === 'W2' && l.win && l.win.fp && l.win.fp.badge === 'OFFICIAL') ? ' <span class="loss">convicted vs official bell</span>' : '') +
-            (l.grade_note ? ' <span class="loss">' + esc(l.grade_note) + '</span>' : '') +
-            '</div>'
+        // ONE-LINE ENTRY/EXIT (operator, 07-16): each compresses to a
+        // single line; the PLACED-ET schema gap and any regrade note
+        // move to an icon + tooltip, never inline prose in the row.
+        const placedFlag = '<span class="flag muted" title="PLACED ET has no source yet — snap_orders does not persist order-creation time (schema gap, filed)">ⓘ</span>';
+        const windowTag = l.fill_window ? ' [' + esc(l.fill_window) + ']'
+          : '<span class="flag muted" title="fill window could not be classified">ⓘ</span>';
+        const regradeBits = [];
+        if(l.grade_was){
+          regradeBits.push(l.grade_was.indexOf('F') === 0
+            ? 'exonerated: fill pre-' + ((l.win && l.win.fp && l.win.fp.badge === 'OFFICIAL') ? 'official-start' : 'first-point') + ' (was ' + l.grade_was + ')'
+            : 'convicted vs ' + ((l.win && l.win.fp && l.win.fp.badge === 'OFFICIAL') ? 'official bell' : 'observed first point') + ' (was ' + l.grade_was + ')');
+        }
+        if(!l.grade_was && (l.grade || '').indexOf('F') === 0 && l.fill_window === 'W2' && l.win && l.win.fp && l.win.fp.badge === 'OFFICIAL'){
+          regradeBits.push('convicted vs official bell');
+        }
+        if(l.grade_note) regradeBits.push(l.grade_note);
+        const regradeFlag = regradeBits.length
+          ? '<span class="flag warn" title="' + esc(regradeBits.join(' · ')) + '">⚠</span>'
+          : '';
+        // operator's exact target shape: "in 38¢ ×5 · 8:08:44 AM [W2]"
+        // / "out 46¢ ×5 · 8:19 AM" — no "placed"/"filled" prose words.
+        const entryLine = (l.filled_et && l.ours_c !== null && l.ours_c !== undefined)
+          ? '<div class="oneline"><span class="lbl">in</span> <b>' + l.ours_c + '¢ ×' + l.qty + '</b>' + placedFlag +
+            ' <span class="sep2">·</span> ' + esc(l.filled_et) + windowTag + regradeFlag + '</div>'
           : '';
         const exitLine = l.exit
-          ? '<div class="exitline"><span class="lbl">exit</span> <b>@' + l.exit.price_c + '¢ ×' + l.exit.qty + '</b> <span class="lbl">filled ' + esc(l.exit.at) + '</span></div>'
+          ? '<div class="oneline"><span class="lbl">out</span> <b>' + l.exit.price_c + '¢ ×' + l.exit.qty + '</b> <span class="sep2">·</span> ' + esc(l.exit.at) + '</div>'
           : (l.result === '99' || l.result === '1'
-              ? '<div class="exitline"><span class="lbl">exit</span> <span class="no-bell">settled, no sell fill</span></div>'
+              ? '<div class="oneline"><span class="lbl">out</span> <span class="micro">settled, no sell fill</span></div>'
               : '');
         return '<div class="legrow closed">' +
           '<span class="last" style="text-align:right;">' + (l.last_name ? esc(l.last_name) : '<span class="join-pending">join pending</span>') + ' ' + oursLbl + '</span>' +
@@ -548,28 +623,36 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
           '<span>' + realized + '</span>' +
           '</div>' + entryLine + exitLine;
       }).join('');
+      // grade chip moves to the header (right-aligned, per hierarchy law)
       const chip = gradeChip(g.grade_status, g.grade);
       // PAIR LAW: the sibling disposition line is MANDATORY in the box
       const sibLine = g.sibling_line
         ? '<div class="gray-line">' + esc(g.sibling_line) + '</div>'
         : '<div class="gray-line loss">sibling disposition MISSING — UNGRADED, filed</div>';
-      let footnote = '';
+      let footHtml = '';
       if(g.walk){
-        // THE WALK footnote, standing format: charge -> amendment -> verdict
-        footnote = '<b>WALK</b> <span class="cls">' + esc(g.walk.charge || '') + '</span>' +
+        // WALK FOOTNOTES COLLAPSE (operator, 07-16): one line, click to
+        // expand. Brief = charge only, with a ▸ expand cue; full =
+        // charge -> amendment -> verdict, shown only once clicked.
+        const brief = 'WALK: ' + esc(g.walk.charge || '');
+        const full = '<b>WALK</b> <span class="cls">' + esc(g.walk.charge || '') + '</span>' +
           (g.walk.amendment ? ' <span class="walkpart">→ ' + esc(g.walk.amendment) + '</span>' : '') +
           (g.walk.verdict ? ' <span class="walkverdict">→ ' + esc(g.walk.verdict) + '</span>' : '');
+        footHtml = '<div class="footnote walkfoot" onclick="toggleWalk(this)">' +
+          '<span class="walkbrief">' + brief + ' <span class="expander">▸</span></span>' +
+          '<span class="walkfull">' + full + ' <span class="expander">▾</span></span>' +
+          '</div>';
       } else if(g.footnote){
-        footnote = esc(g.footnote);
+        footHtml = '<span class="footnote">' + esc(g.footnote) + '</span>';
       } else if(g.grade_status === 'ungraded'){
-        footnote = 'DAYSHEET.json not yet generated for this day — no grade rendered';
+        footHtml = '<span class="footnote micro">DAYSHEET.json not yet generated for this day</span>';
       }
       if(g.grade_cap_note){
-        footnote += (footnote ? ' · ' : '') + '<span class="cls">' + esc(g.grade_cap_note) + '</span>';
+        footHtml += (footHtml ? ' · ' : '') + '<span class="footnote cls">' + esc(g.grade_cap_note) + '</span>';
       }
-      return '<div class="gamebox">' + gameHead(g) +
+      return '<div class="gamebox">' + gameHead(g, chip) +
         legs + sibLine +
-        '<div class="gradebar-inline">' + chip + '<span class="footnote">' + footnote + '</span></div>' +
+        (footHtml ? '<div class="gradebar-inline">' + footHtml + '</div>' : '') +
         '</div>';
     }).join('');
   }
@@ -592,8 +675,12 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
       const st = document.getElementById('recstate');
       if(rec){
         recEl.textContent = fmtAge(rec);
+        // RECORDER heartbeat is the liveness alarm (>300s = STALE);
+        // Plex's red pulse rides THIS metric — last-fill age grows
+        // lawfully on a quiet book and never screams.
         const stale = Number(rec) > 300;
-        st.innerHTML = stale ? '<span class="loss">FEED STALE — not serving fresh truth</span>'
+        recEl.classList.toggle('tapeage-stale', stale);
+        st.innerHTML = stale ? '<span class="tapeage-stale">FEED STALE — not serving fresh truth</span>'
                              : '<span class="win">OK</span>';
       } else {
         recEl.textContent = '—';

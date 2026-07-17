@@ -465,6 +465,36 @@ def main():
                     " · ".join("%s %.0f/hr (%d)" % (
                         t.split("-")[-2][-8:] + "-" + t.split("-")[-1],
                         r, n) for r, t, n in _ch_rates[:4])))
+    # [ENTRY-MECHANICS ADDENDUM (a) 07-17] THE CUTOFF IS LAW: every meter
+    # splits old-era vs new-era at the new-law boot epoch — the day reads
+    # as a before/after experiment.
+    try:
+        _ep_p = ROOT / "state" / "new_law_epoch.json"
+        if _ep_p.exists():
+            _ep = float(json.loads(_ep_p.read_text()).get("epoch") or 0)
+            if _ep and _ep > mid:
+                _f_old = sum(1 for f in fills.values() if f["ts"] < _ep)
+                _f_new = sum(1 for f in fills.values() if f["ts"] >= _ep)
+                _r_old = _r_new = 0
+                for cl in cancels.values():
+                    for c in cl:
+                        if c.get("label") == "v4_move_repost" \
+                                and c["ts"] >= mid:
+                            if c["ts"] < _ep:
+                                _r_old += 1
+                            else:
+                                _r_new += 1
+                _hrs_old = max(0.1, (_ep - mid) / 3600.0)
+                _hrs_new = max(0.1, (time.time() - _ep) / 3600.0)
+                L.append("**ERA SPLIT (new-law epoch %s ET)** · fills "
+                         "old %d / new %d · reposts old %d (%.0f/hr) / "
+                         "new %d (%.0f/hr)"
+                         % (datetime.fromtimestamp(_ep, ET).strftime(
+                             "%I:%M %p"), _f_old, _f_new,
+                            _r_old, _r_old / _hrs_old,
+                            _r_new, _r_new / _hrs_new))
+    except Exception:
+        pass
 
     def table(title, headers, rows):
         L.append("")

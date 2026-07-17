@@ -494,6 +494,9 @@ class Position:
     # measure from here — reposting must not blind the meter (Riera's
     # manufactured NO_FLOW, the founding exhibit).
     entry_conception_ts: float = 0.0
+    # [ADDENDUM (b) 07-17] pre-epoch bid already re-judged once by the
+    # migration pass (persisted so restarts never re-judge)
+    migration_judged: bool = False
     match_start_ts: float = 0.0
     entry_filled_ts: float = 0.0
 
@@ -7123,6 +7126,129 @@ class LiveV3:
                 self._untombstone_entry(tk, pos)
                 self._save_v4_resting()
 
+    def _new_law_epoch(self):
+        """[ENTRY-MECHANICS ADDENDUM (a) 07-17] THE CUTOFF IS LAW: the epoch
+        of the first boot under the entry-mechanics law, persisted once —
+        every meter splits old-era vs new-era at this number; the migration
+        pass judges only bids conceived before it. Never raises."""
+        try:
+            p = Path(__file__).resolve().parent / "state/new_law_epoch.json"
+            if p.exists():
+                return float(json.loads(p.read_text()).get("epoch") or 0)
+            ep = time.time()
+            p.write_text(json.dumps({
+                "epoch": ep,
+                "law": "ENTRY-MECHANICS 07-17 (discovery-hour + orientation "
+                       "prior + evidence-only reposts)"}))
+            self._log("new_law_epoch_recorded", {"epoch": ep})
+            return ep
+        except Exception:
+            return 0.0
+
+    async def _migration_pass_delayed(self):
+        try:
+            await asyncio.sleep(90)   # let WS books warm — judgments need BBO
+            await self._migration_pass()
+        except Exception as e:
+            self._log("migration_pass_error", {"err": str(e)[:160]})
+
+    async def _migration_pass(self):
+        """[ENTRY-MECHANICS ADDENDUM (b) 07-17, operator scope] every
+        PRE-EPOCH resting entry bid is re-judged ONCE under the orientation
+        prior:
+          ENDORSE — hold; queue position is an ASSET, not debris (default,
+                    and whenever the prior lacks swap-grade conviction);
+          RE-AIM  — the bid's posture contradicts a convicted prior →
+                    cancel + free the leg; the ROUTER re-parks it this cycle
+                    under the new mechanics (the evidence repost to the
+                    prior's level, by construction);
+          RETREAT — refuse-class event (ITF discovery floor) → PAIR-LEVEL
+                    withdrawal, never one leg.
+        Each verdict logs migration_verdict with the voices' numbers; the
+        tally logs migration_summary. NO blanket cancels."""
+        epoch = self._new_law_epoch()
+        bar = float(self.config.get("orientation_swap_min_conviction", 0.7))
+        tally = {"ENDORSE": 0, "RE-AIM": 0, "RETREAT": 0}
+        retreated_events = set()
+        for tk, pos in list(self.positions.items()):
+            if (not getattr(pos, "entry_order_id", None)
+                    or getattr(pos, "entry_qty", 0)
+                    or getattr(pos, "entry_mode", "") == "completion_reprice"):
+                continue
+            born = (getattr(pos, "entry_conception_ts", 0)
+                    or getattr(pos, "entry_posted_ts", 0))
+            if not born or (epoch and born >= epoch):
+                continue          # new-law bid: not migration scope
+            if getattr(pos, "migration_judged", False):
+                continue
+            pos.migration_judged = True
+            et = pos.event_ticker
+            if et in retreated_events:
+                continue
+            pr = self._orientation_prior(et)
+            book = self.books.get(tk)
+            bb = int(getattr(book, "best_bid", 0) or 0)
+            ba = int(getattr(book, "best_ask", 0) or 0)
+            verdict, why = "ENDORSE", "queue kept (asset; prior below swap bar or posture consistent)"
+            _floor = int(self.config.get("discovery_floor_shares", 1500))
+            _vol = self.event_lifetime_vol.get(et)
+            if (self.config.get("discovery_floor_enabled", False)
+                    and pos.category in ("ITF_M", "ITF_W")
+                    and _vol is not None and _vol < _floor):
+                verdict = "RETREAT"
+                why = "refuse-class: discovered %s < floor %s (pair-level)" % (
+                    round(_vol, 1), _floor)
+            elif (pr and pr.get("riser") and bb
+                    and pr.get("conviction", 0.0) >= bar
+                    and (pr.get("n") or 0) >= 2):
+                _touch = max(1, min(bb, (ba - 1) if ba > 1 else 99))
+                _rest = int(pos.entry_price or 0)
+                if pr["riser"] == tk and _rest < _touch - 1:
+                    verdict = "RE-AIM"
+                    why = ("prior says RISER (conv %.2f n%d): resting %dc, "
+                           "touch %dc — re-park at the prior's level"
+                           % (pr["conviction"], pr["n"], _rest, _touch))
+                elif pr["riser"] != tk and _rest >= _touch:
+                    verdict = "RE-AIM"
+                    why = ("prior says FALLER (conv %.2f n%d): perched at "
+                           "touch %dc — re-park deep"
+                           % (pr["conviction"], pr["n"], _rest))
+            tally[verdict] += 1
+            self._log("migration_verdict", {
+                "event": et, "verdict": verdict, "why": why,
+                "resting": int(pos.entry_price or 0),
+                "best_bid": bb, "born_min_pre_epoch":
+                    (round((epoch - born) / 60.0, 1) if epoch else None),
+                "prior": ({k: pr.get(k) for k in
+                           ("riser", "conviction", "n", "voices")}
+                          if pr else None)}, ticker=tk)
+            if verdict == "RE-AIM":
+                res = await self._cancel_entry_and_resolve(
+                    tk, pos, "migration_reaim", "migration_reaim_race")
+                if res == "cancelled":
+                    self._untombstone_entry(tk, pos)
+                    self._save_v4_resting()
+            elif verdict == "RETREAT":
+                retreated_events.add(et)
+                for _rtk in list(self.event_tickers.get(et, ())):
+                    _rp = self.positions.get(_rtk)
+                    if (_rp is None or not getattr(_rp, "entry_order_id", None)
+                            or getattr(_rp, "entry_qty", 0)):
+                        continue
+                    _rp.migration_judged = True
+                    res = await self._cancel_entry_and_resolve(
+                        _rtk, _rp, "migration_retreat",
+                        "migration_retreat_race")
+                    if res == "cancelled":
+                        self._untombstone_entry(_rtk, _rp)
+                        self.processed_events.add(et)
+                        self._save_v4_resting()
+        self._save_v4_resting()
+        self._log("migration_summary", {
+            "epoch": epoch, **tally,
+            "law": "ADDENDUM (b) 07-17: endorsed queue is an asset; "
+                   "no blanket cancels"})
+
     def _read_observed_starts(self):
         """Sync sqlite read of the C-RETENTION-2 feed (runs in the executor).
         Read-only URI + short timeout: the collector owns the write lock; a
@@ -11150,6 +11276,7 @@ class LiveV3:
                     "direction": pos.direction,
                     "posted_at": pos.entry_posted_ts,
                     "conceived_at": pos.entry_conception_ts or pos.entry_posted_ts,
+                    "migration_judged": bool(getattr(pos, "migration_judged", False)),
                     "posted_price": pos.entry_price,
                     "target_price": pos.target_price,
                     "regime_at_posting": pos.regime_at_posting,
@@ -11259,6 +11386,7 @@ class LiveV3:
                 entry_order_id=d.get("order_id", ""),
                 entry_posted_ts=float(d.get("posted_at", 0.0)),
                 entry_conception_ts=float(d.get("conceived_at", d.get("posted_at", 0.0)) or 0.0),
+                migration_judged=bool(d.get("migration_judged", False)),
                 last_trade_price_at_post=int(d.get("last_trade_price_at_post", 0)),
                 phase="entry_resting", match_start_ts=float(d.get("match_start_ts", 0.0)),
                 play_type=d.get("play_type", "v4_" + d.get("entry_mode", "resting_maker")),
@@ -14337,6 +14465,14 @@ class LiveV3:
         # [C-DRAIN-REPLAY 07-10] replay drain-cancelled entry bids through the
         # chokepoint: re-placed or refusal NAMED, never silently lost.
         await self._drain_replay()
+
+        # [ENTRY-MECHANICS ADDENDUM (b) 07-17] one-time migration pass over
+        # pre-epoch resting bids, delayed until the books warm.
+        try:
+            asyncio.get_running_loop().create_task(
+                self._migration_pass_delayed())
+        except Exception:
+            pass
 
         # Startup skip: events inside the 15-min buffer or past start
         # [C-PARTICIPATE-CLEAN 1] tape_gated_abandon also governs the STARTUP schedule-skip: when on, do NOT

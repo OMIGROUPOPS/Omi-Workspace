@@ -68,3 +68,24 @@ pre-registered scoreboard.
 - smoke: runs on the box at deploy ([2/3])
 - outcome proof: THIS DOC — cites candidate SHA `34ca4715`; doc-only
   commits after it, no code delta.
+
+## ADDENDUM (same dispatch, close-out scope) — proven SHA `7ef19c62`
+
+(a) **THE CUTOFF IS LAW**: `state/new_law_epoch.json` persisted at the first
+new-law boot (recorded on the box: **1784314698.0 = 02:58:18 PM ET 07-17**);
+TODAY_SHEET splits fills/reposts old-era vs new-era at the epoch — the day
+reads as a before/after experiment. Read-only meter change; no trading path.
+(b) **MIGRATION PASS** (`_migration_pass`, one-shot per bid, 90s book-warm
+delay): every PRE-EPOCH resting entry bid re-judged once under the
+orientation prior — ENDORSE (hold; queue an asset, the DEFAULT and the
+verdict whenever the prior lacks swap-grade conviction) / RE-AIM (cancel +
+free; the router re-parks at the prior's level under the new mechanics) /
+RETREAT (refuse-class → pair-level withdrawal, never one leg). Lane-1
+construction: no blanket cancels by design; the endorsed majority keeps its
+queue; every verdict carries the voices' numbers (`migration_verdict`) and
+the tally lands in the close-out (`migration_summary`). `migration_judged`
+persists so restarts never re-judge. Lane 2: n/a (no price/exit change);
+the migration tally itself is the acceptance record.
+
+- lint: PASS at `7ef19c62`; local suite PASS (same one pre-existing red).
+- doc-only commits after `7ef19c62`; no code delta.

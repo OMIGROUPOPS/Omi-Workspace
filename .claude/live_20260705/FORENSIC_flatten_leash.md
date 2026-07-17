@@ -1,7 +1,7 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784306873 -->
-written 2026-07-17 12:53:16 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784307586 -->
+written 2026-07-17 01:03:42 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (39 total this session)
+## Events (40 total this session)
 - 03:28:57 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 03:40:09 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 03:52:15 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
@@ -41,6 +41,7 @@ written 2026-07-17 12:53:16 PM ET by live_validation_loop (read-only). Patch con
 - 12:26:39 KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL — flatten DEFERRED: ev -2.07 above margin floor -3.0
 - 12:38:12 KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL — flatten DEFERRED: ev -2.07 above margin floor -3.0
 - 12:47:53 KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL — flatten DEFERRED: ev -2.07 above margin floor -3.0
+- 12:59:46 KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL — flatten DEFERRED: ev -2.07 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-17 08:01:18 AM ET", "ts_epoch": 1784289678.3285902, "event": "trendpath_live_aim", "ticker": "KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17DELFUE", "from_target": 87, "path_aim": 82, "mode": "no_call_posture", "page": "ATP_CHALL|leader|ge75", "page_n": 759, "citation": "ATLAS_V1 ATP_CHALL|leader|ge75 (path bottom p50; cutover 07-14 oper
@@ -788,6 +789,9 @@ written 2026-07-17 12:53:16 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-17 12:40:34 PM ET", "ts_epoch": 1784306434.8434167, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 3, "n_resting_orders": 21, "n_failures": 0, "n_flags": 1, "failures": [], "flags": [{"tk": "KXWTAMATCH-26JUL17TAUBEJ-BEJ", "check": "pair_incomplete", "event": "KXWTAMATCH-26JUL17TAUBEJ", "legs": {"TAU": "filled", "
     {"ts": "2026-07-17 12:47:53 PM ET", "ts_epoch": 1784306873.1146867, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|leader|disc|ge75", "n": 15, "p_exit_fill": 0.867, "p_ride_zero": 0.133, "ev_cents": -2.07, "band": 11, "basis": 87, "win_ride_residual_excluded": 0.0, "citation": "M1
     {"ts": "2026-07-17 12:47:53 PM ET", "ts_epoch": 1784306873.114933, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17DELFUE", "ev_cents": -2.07, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-17 12:54:09 PM ET", "ts_epoch": 1784307249.7635198, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 2, "n_resting_orders": 19, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784270700.381818, "legs_new": ["KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL", "KXATPCHALLENGERMATCH-
+    {"ts": "2026-07-17 12:59:46 PM ET", "ts_epoch": 1784307586.7028835, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|leader|disc|ge75", "n": 15, "p_exit_fill": 0.867, "p_ride_zero": 0.133, "ev_cents": -2.07, "band": 11, "basis": 87, "win_ride_residual_excluded": 0.0, "citation": "M1
+    {"ts": "2026-07-17 12:59:46 PM ET", "ts_epoch": 1784307586.7031765, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17DELFUE", "ev_cents": -2.07, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
 
 ## Code path
 ?

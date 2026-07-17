@@ -1,5 +1,5 @@
 # OUTCOME PROOF — C-SHELF-CONSOLIDATION Part 0: the pair-completeness invariant
-Proven SHA: **05f19f05**
+Proven SHA: **431bfcaf**
 Operator word (07-17, verbatim): "Every conceived game = 2 resting-or-refused-named bids, checked every cycle. A game with one leg resting and the other neither resting nor refused-by-name = DEFECT ping to the phone. This is the alarm that makes the half-drop impossible to return quietly."
 Prior art (C45): PAIR-PRIORITY ENFORCEMENT 03e68139 (the half-drop killed at the seesaw) · C47-CONTINUOUS steady-cadence audit (the check's home) · SIGNAL LAW (DEFECT-grade ping) · OVER-BROAD LOCK class (why this is a FLAG + ping, never an audit-FAIL conception halt).
 
@@ -15,4 +15,4 @@ The invariant reads, per audit cycle, every 2-leg tracked event NOT gunned: each
 - The `_refusal_named` registry is a dict write at the existing log chokepoint — no new log events except the violation itself.
 
 ## Gate
-lint + smoke via deploy/deploy_gate.sh (this file is OUTCOME_PROOF; OUTCOME_PROOF_SHA=05f19f05).
+lint + smoke via deploy/deploy_gate.sh (this file is OUTCOME_PROOF; OUTCOME_PROOF_SHA=431bfcaf).

@@ -1,7 +1,7 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784308349 -->
-written 2026-07-17 01:14:16 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784308832 -->
+written 2026-07-17 01:24:46 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (43 total this session)
+## Events (44 total this session)
 - 03:28:57 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 03:40:09 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 03:52:15 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
@@ -45,6 +45,7 @@ written 2026-07-17 01:14:16 PM ET by live_validation_loop (read-only). Patch con
 - 13:10:16 KXATPCHALLENGERMATCH-26JUL17PERSAN-PER — flatten CAPPED at 8/day (8 today)
 - 13:10:16 KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL — flatten DEFERRED: ev -2.07 above margin floor -3.0
 - 13:12:29 KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD — flatten CAPPED at 8/day (8 today)
+- 13:20:32 KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL — flatten DEFERRED: ev -2.07 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-17 03:00:54 AM ET", "ts_epoch": 1784271654.1794608, "event": "tape_seed_live_confirm", "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD", "details": {"seed_price": 32, "live_price": 29, "delta": -3, "seed_age_sec": 3374.3}}
@@ -1510,6 +1511,10 @@ written 2026-07-17 01:14:16 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-17 01:11:58 PM ET", "ts_epoch": 1784308318.0883043, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 5, "n_resting_orders": 19, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784270700.381818, "legs_new": ["KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD", "KXATPCHALLENGERMATCH-
     {"ts": "2026-07-17 01:12:29 PM ET", "ts_epoch": 1784308349.4773865, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|disc|26_50", "n": 49, "p_exit_fill": 0.673, "p_ride_zero": 0.327, "ev_cents": -3.78, "band": 7, "basis": 26, "win_ride_residual_excluded": 0.0, "citation": "
     {"ts": "2026-07-17 01:12:29 PM ET", "ts_epoch": 1784308349.4776027, "event": "completion_flatten_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17ADDIVA", "cap": 8, "flatten_actions_today": 8, "sunset": "calibration graded positive on the nightly"}}
+    {"ts": "2026-07-17 01:20:32 PM ET", "ts_epoch": 1784308832.9251611, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|leader|disc|ge75", "n": 15, "p_exit_fill": 0.867, "p_ride_zero": 0.133, "ev_cents": -2.07, "band": 11, "basis": 87, "win_ride_residual_excluded": 0.0, "citation": "M1
+    {"ts": "2026-07-17 01:20:32 PM ET", "ts_epoch": 1784308832.939886, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17DELFUE", "ev_cents": -2.07, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-17 01:23:38 PM ET", "ts_epoch": 1784309018.9793115, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|26_50", "n": 75, "p_exit_fill": 0.773, "p_ride_zero": 0.227, "ev_cents": -0.48, "band": 7, "basis": 26, "win_ride_residual_excluded": 0.0, "citation
+    {"ts": "2026-07-17 01:23:38 PM ET", "ts_epoch": 1784309018.979545, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17ADDIVA", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
 
 ## Code path
 ?

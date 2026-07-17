@@ -1,7 +1,7 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784288932 -->
-written 2026-07-17 07:51:23 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784289128 -->
+written 2026-07-17 08:01:41 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (27 total this session)
+## Events (28 total this session)
 - 03:28:57 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 03:40:09 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 03:52:15 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
@@ -29,6 +29,7 @@ written 2026-07-17 07:51:23 AM ET by live_validation_loop (read-only). Patch con
 - 07:31:45 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
 - 07:42:08 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
 - 07:48:52 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
+- 07:52:08 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-17 01:06:30 AM ET", "ts_epoch": 1784264790.667849, "event": "tape_seed_live_confirm", "ticker": "KXWTAMATCH-26JUL17OLIBUR-BUR", "details": {"seed_price": 45, "live_price": 45, "delta": 0, "seed_age_sec": 1238.8}}
@@ -501,6 +502,10 @@ written 2026-07-17 07:51:23 AM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-17 07:42:08 AM ET", "ts_epoch": 1784288528.0633047, "event": "completion_flatten_deferred", "ticker": "KXWTAMATCH-26JUL17OLIBUR-BUR", "details": {"event": "KXWTAMATCH-26JUL17OLIBUR", "ev_cents": -0.81, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
     {"ts": "2026-07-17 07:48:52 AM ET", "ts_epoch": 1784288932.9715436, "event": "completion_shadow", "ticker": "KXATPMATCH-26JUL17CERRUU-CER", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_MAIN|underdog|at_mid|le25", "n": 23, "p_exit_fill": 0.696, "p_ride_zero": 0.304, "ev_cents": -2.74, "band": 7, "basis": 25, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_
     {"ts": "2026-07-17 07:48:52 AM ET", "ts_epoch": 1784288932.9871764, "event": "completion_flatten_deferred", "ticker": "KXATPMATCH-26JUL17CERRUU-CER", "details": {"event": "KXATPMATCH-26JUL17CERRUU", "ev_cents": -2.74, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-17 07:52:08 AM ET", "ts_epoch": 1784289128.0820677, "event": "exit_filled", "ticker": "KXATPMATCH-26JUL17CERRUU-CER", "details": {"exit_price": 32, "entry_price": 25, "qty": 5, "new_fills": 5, "complete": true, "pnl_cents": 35.0, "pnl_dollars": 0.35, "had_dca": false, "cycle": 1, "in_play": true, "bell_source": "tape_latch", "trade_id": "T-20260717-0081", "window": {"phase": "CORRI
+    {"ts": "2026-07-17 07:52:08 AM ET", "ts_epoch": 1784289128.1799142, "event": "completion_shadow", "ticker": "KXWTAMATCH-26JUL17OLIBUR-BUR", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "WTA_MAIN|underdog|at_mid|26_50", "n": 27, "p_exit_fill": 0.815, "p_ride_zero": 0.185, "ev_cents": -0.81, "band": 9, "basis": 44, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE
+    {"ts": "2026-07-17 07:52:08 AM ET", "ts_epoch": 1784289128.1808763, "event": "completion_flatten_deferred", "ticker": "KXWTAMATCH-26JUL17OLIBUR-BUR", "details": {"event": "KXWTAMATCH-26JUL17OLIBUR", "ev_cents": -0.81, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-17 07:58:01 AM ET", "ts_epoch": 1784289481.9750397, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 2, "n_resting_orders": 28, "n_failures": 0, "n_flags": 1, "failures": [], "flags": [{"tk": "KXITFMATCH-26JUL17NOCMAR-MAR", "check": "pair_incomplete", "event": "KXITFMATCH-26JUL17NOCMAR", "legs": {"MAR": "absent", "
 
 ## Code path
 ?

@@ -379,7 +379,8 @@ def _log_scan():
                     is_gun = b'"gun_fired"' in line
                     is_place = b'"order_placed"' in line
                     is_cancel = b'"order_cancelled"' in line
-                    if not (is_gun or is_place or is_cancel):
+                    is_sched = b'"schedule_match"' in line
+                    if not (is_gun or is_place or is_cancel or is_sched):
                         continue
                     try:
                         j = json.loads(line)

@@ -488,6 +488,12 @@ class Position:
     entry_qty: int = 0
     entry_order_id: str = ""
     entry_posted_ts: float = 0.0
+    # [ENTRY-MECHANICS P3 07-17] the trade's BIRTH: stamped at the leg's
+    # FIRST placement, NEVER re-stamped by reposts (join_post_ts is the
+    # last-post clock; this is the lineage clock). Flow/bid-grade windows
+    # measure from here — reposting must not blind the meter (Riera's
+    # manufactured NO_FLOW, the founding exhibit).
+    entry_conception_ts: float = 0.0
     match_start_ts: float = 0.0
     entry_filled_ts: float = 0.0
 
@@ -1952,6 +1958,35 @@ class LiveV3:
                                     "entry_size": self.entry_size,
                                     "exit_size": self.exit_size,
                                     "exit_cap": EXIT_PRICE_CAP})
+        # [ENTRY-MECHANICS P4, operator word 07-17] CHAIN-AWARENESS AT THE
+        # HANDS: each armed hand posts its evidence line + threshold source
+        # at the flip. Collisions with other laws go to the bench
+        # (law_collision), never resolved silently.
+        for _flag4, _on4, _ev4 in (
+            ("depth_aware_join", self.depth_aware_join,
+             {"floor_shares": self.depth_aware_floor,
+              "floor_by_cat": self.depth_aware_floor_by_cat,
+              "threshold_source": "C-DEPTH-GOVERNOR (real-wall floor in "
+                                  "shares; thin-lone-top perch = seller's "
+                                  "cheap exit)"}),
+            ("wall_skip_enforce", self.wall_skip_enforce,
+             {"wall_skip_contracts": self.wall_skip_contracts,
+              "threshold_source": "would_skip_walled_post filled-vs-starved "
+                                  "offline sizing; ALTMED starved behind a "
+                                  "6.5-11k wall (project_altmed_alt_"
+                                  "placement 06-19)",
+              "pair_aware": "hopeless queue on EITHER leg skips the WHOLE "
+                            "event — never one leg"}),
+            ("best_bid_aware_repost", self.best_bid_aware_repost,
+             {"trigger": "best-bid mismatch on touch postures / dial "
+                         "re-orientation on cast postures (P2 07-17); "
+                         "never a timer",
+              "threshold_source": "C-BESTBID-REPOST (DAEVAS 06-26 strand) "
+                                  "+ P2 evidence gate"}),
+        ):
+            if _on4:
+                self._log("arm_evidence", {"flag": _flag4, "armed": True,
+                                           **_ev4})
         self._load_schedule()
 
         # Paper mode init (spec §2.2)
@@ -3247,6 +3282,40 @@ class LiveV3:
                                    "harvest_rate_5c_hr": _h5} if fb9
                                   else {"why": "no fitted flow threshold "
                                                "for mains"})}
+            # 7b) [ENTRY-MECHANICS P1 07-17] the orientation PRIOR — stamped
+            # with conviction's number and n (voices enumerated). A role is
+            # never assumed silently again.
+            try:
+                _pr8 = self._orientation_prior(et)
+                D["orientation_prior"] = ({"status": "CONSULTED",
+                                           "riser": _pr8.get("riser"),
+                                           "conviction": _pr8.get("conviction"),
+                                           "n": _pr8.get("n"),
+                                           "voices": _pr8.get("voices")}
+                                          if _pr8 else
+                                          {"status": "NOT-APPLICABLE",
+                                           "why": "no book/legs yet"})
+            except Exception:
+                D["orientation_prior"] = {"status": "ERROR"}
+            # 7c) [ENTRY-MECHANICS P5 07-17] the sharp-FV blend PROMOTED from
+            # log-only to a consulted voice: opinion with number and source
+            # ages — no gate, no veto (the dial arms it properly later).
+            try:
+                _fv8 = self._fv_observe_fields(et, tk, "", current_price, False)
+                if _fv8.get("fv") is not None:
+                    D["fv_gap"] = {"status": "CONSULTED",
+                                   "opinion": ("UNDERPRICED"
+                                               if (_fv8.get("fv_gap") or 0) < 0
+                                               else "OVERPRICED"),
+                                   "fv": _fv8.get("fv"),
+                                   "gap": _fv8.get("fv_gap"),
+                                   "sources": _fv8.get("fv_sources")}
+                else:
+                    D["fv_gap"] = {"status": "NO-READ",
+                                   "why": _fv8.get("fv_reason"),
+                                   "sources": _fv8.get("fv_sources")}
+            except Exception:
+                D["fv_gap"] = {"status": "ERROR"}
             # 8) refuse margins (standing bars enforced at this site)
             D["refuse_margins"] = {"status": "CONSULTED",
                                    "contention_bar_pct": 8.0,
@@ -3502,6 +3571,86 @@ class LiveV3:
                 out.update({"orientation": "NO-CALL",
                             "why": "rate %.2f inside the operating band"
                                    % r9})
+            return out
+        except Exception:
+            return None
+
+    def _orientation_prior(self, et):
+        """[ENTRY-MECHANICS P1, operator word 07-17] ORIENTATION IS A PRIOR,
+        NOT A ROLE. Built at conception from every voice available today:
+          chain_tape  — the fitted ORIENT_V1 first-hour tells (_orient_read),
+                        weight 2 (fitted);
+          fv_gap      — the sharp-book blend where FRESH (price under fair =
+                        that leg presumed riser), weight 2 (live external);
+          anchor_role — the incumbent leader-rises presumption (atlas-era
+                        role), DEMOTED to one voice among many, weight 1.
+        Returns {riser, conviction (winning weight share), n (voices
+        present), voices, leader, dog, tts_min} or None. Cached 300s per
+        event. Consumers: the park-role override in _v4_entry_anchor (swap
+        fires only at conviction >= orientation_swap_min_conviction AND
+        n >= 2 — the default survives unless real evidence outvotes it) and
+        the dossier stamp. No gate, no veto — the dial arms it properly
+        later. Never raises."""
+        try:
+            now = time.time()
+            cache = self.__dict__.setdefault("_orient_prior_cache", {})
+            c = cache.get(et)
+            if c and now - c.get("ts", 0) < 300:
+                return c
+            tks = list(self.event_tickers.get(et, ()))
+            if len(tks) != 2:
+                return None
+            bids = {}
+            for _tk in tks:
+                b = self.books.get(_tk)
+                bids[_tk] = int(getattr(b, "best_bid", 0) or 0)
+            leader = max(tks, key=lambda t: bids[t])
+            dog = min(tks, key=lambda t: bids[t])
+            if bids[leader] <= 0:
+                return None
+            cat = self.get_category(et)
+            votes = []   # (voice, riser_tk, weight, detail)
+            try:
+                _or = self._orient_read(leader, et, cat)
+                if (_or and _or.get("orientation") == "TRADE-ORIENTED"
+                        and _or.get("riser")):
+                    votes.append(("chain_tape", _or["riser"], 2.0,
+                                  {"dog_rise_rate": _or.get("dog_rise_rate"),
+                                   "bucket_n": _or.get("bucket_n")}))
+            except Exception:
+                pass
+            try:
+                f = self._fv_observe_fields(et, leader, "", bids[leader], False)
+                if (f.get("fv") is not None and not f.get("fv_reason")
+                        and f.get("fv_gap") is not None
+                        and abs(f["fv_gap"]) >= 2):
+                    votes.append(("fv_gap",
+                                  leader if f["fv_gap"] < 0 else dog, 2.0,
+                                  {"fv": f.get("fv"), "gap": f.get("fv_gap")}))
+            except Exception:
+                pass
+            votes.append(("anchor_role", leader, 1.0,
+                          {"leader_bid": bids[leader], "dog_bid": bids[dog]}))
+            tally = {}
+            for _v, _r, _w, _ in votes:
+                tally[_r] = tally.get(_r, 0.0) + _w
+            riser = max(tally, key=tally.get)
+            total = sum(tally.values())
+            st = self.event_start_time.get(et)
+            out = {"riser": riser,
+                   "conviction": round(tally[riser] / total, 3) if total else 0.0,
+                   "n": len(votes), "leader": leader, "dog": dog,
+                   "tts_min": (round((st - now) / 60.0, 1) if st else None),
+                   "voices": [{"voice": v, "riser": r, "w": w, **d}
+                              for v, r, w, d in votes],
+                   "ts": now}
+            cache[et] = out
+            _lg = self.__dict__.setdefault("_orient_prior_logged", {})
+            if _lg.get(et) != (riser, out["n"]):
+                _lg[et] = (riser, out["n"])
+                self._log("orientation_prior", {k: out[k] for k in (
+                    "riser", "conviction", "n", "leader", "dog",
+                    "tts_min", "voices")}, ticker=riser)
             return out
         except Exception:
             return None
@@ -4024,20 +4173,48 @@ class LiveV3:
         if row is None:
             return None
         placement_min, offset, exp_fill, exp_roi = row
-        # [C-PER-SIDE-PRICING] deepen ONLY the expected-faller (dog) leg to the dip-informed floor; default OFF
-        # => offset unchanged => byte-identical. Favorite (anchor >= 50) keeps the shallow table offset.
-        if self.per_side_placement and anchor_price < 50:
+        # [ENTRY-MECHANICS P1 07-17] the park ROLE comes from the orientation
+        # PRIOR, not from anchor>=50: the presumed-riser parks at best bid
+        # (divots reach down and catch it), the presumed-faller casts deeper.
+        # The anchor-side presumption survives as the default (it is one
+        # voice in the prior); the swap fires only when the prior outvotes it
+        # at conviction >= orientation_swap_min_conviction with n >= 2 voices.
+        _role_riser = anchor_price >= 50
+        try:
+            _pr9 = self._orientation_prior(tk.rsplit("-", 1)[0])
+            if (_pr9 and _pr9.get("riser")
+                    and _pr9.get("conviction", 0.0) >= float(self.config.get(
+                        "orientation_swap_min_conviction", 0.7))
+                    and (_pr9.get("n") or 0) >= 2):
+                _rr9 = (_pr9["riser"] == tk)
+                if _rr9 != _role_riser:
+                    _sw9 = self.__dict__.setdefault("_orient_swap_logged", set())
+                    if tk not in _sw9:
+                        _sw9.add(tk)
+                        self._log("orientation_park_swap", {
+                            "anchor_role": ("riser" if _role_riser else "faller"),
+                            "prior_role": ("riser" if _rr9 else "faller"),
+                            "conviction": _pr9.get("conviction"),
+                            "n": _pr9.get("n"),
+                            "law": "P1 07-17: orientation is a prior, "
+                                   "not a role"}, ticker=tk)
+                _role_riser = _rr9
+        except Exception:
+            pass
+        # [C-PER-SIDE-PRICING] deepen ONLY the presumed-faller leg to the dip-informed floor; default OFF
+        # => offset unchanged => byte-identical. The presumed-riser keeps the shallow table offset.
+        if self.per_side_placement and not _role_riser:
             # (2) per_cat_depth: aim-table per-(cat,bucket) fillable-dip depth replaces the flat
             #     dog_dip_offset_cents (the flat 3c worked in ATP, mis-sized ITF/WTA). OFF => flat 3c.
             _dip = self._aim_faller_depth(cat, anchor_price) if self.per_cat_depth else self.dog_dip_offset_cents
             offset = max(offset, _dip)
         target_bid = max(1, anchor_price - offset)
-        # (1) leg2_reshuffle entry policy (gated; OFF => target_bid unchanged). Leg-1 (expected riser,
-        #     anchor >= 50) posts AT best bid, never vetoed for projected combined. Leg-2 (faller,
-        #     anchor < 50) keeps the aim-depth target above EXCEPT when both legs' best bids already
+        # (1) leg2_reshuffle entry policy (gated; OFF => target_bid unchanged). The presumed-riser
+        #     posts AT best bid, never vetoed for projected combined. The presumed-faller
+        #     keeps the aim-depth target above EXCEPT when both legs' best bids already
         #     sum <= combined_goal -> post at bid immediately (pair already clean, no dip to wait for).
         if self.leg2_reshuffle and book is not None and 0 < book.best_bid < 100:
-            if anchor_price >= 50:
+            if _role_riser:
                 target_bid = int(book.best_bid)
                 # [C-RISER-REVISION] gated (default OFF = byte-identical): the riser
                 # posts riser_post BELOW best bid instead of at it (the C44 finding:
@@ -4375,7 +4552,12 @@ class LiveV3:
         if not st:
             return
         tts = st - now
-        if tts <= 0 or tts > V4_MAX_PLACEMENT_SEC:
+        # [ENTRY-MECHANICS P1 07-17] the window-open reference opens with the
+        # entry window (discovery/horizon), not the dead T-4h gate — early-
+        # parked legs need their conception cell for walk caps / E113 / the
+        # completion frame from the first minute they rest.
+        if tts <= 0 or tts > int(float(self.config.get(
+                "conception_horizon_hours", 8)) * 3600):
             return
         book = self.books.get(tk)
         if not book:
@@ -7877,9 +8059,21 @@ class LiveV3:
             return
         depth_now = self._queue_depth_ahead(book, price)
         latency = (time.time() - pos.join_post_ts) if pos.join_post_ts > 0 else -1.0
+        # [ENTRY-MECHANICS P3 07-17] the flow/bid-grade window measures from
+        # the TRADE'S BIRTH (conception lineage), never the current order's
+        # age — churn re-zeroed fill_latency_sec every repost and
+        # manufactured NO_FLOW reads (Riera, founding exhibit). Both clocks
+        # emit: last-post (legacy) + conception + event first-order.
+        _conc3 = getattr(pos, "entry_conception_ts", 0.0) or pos.entry_posted_ts
+        _ev3 = (getattr(self, "_first_order_ts", {}) or {}).get(pos.event_ticker)
         self._log("join_queue", {
             "outcome": outcome, "depth_at_post": pos.join_depth_post, "depth_now": depth_now,
-            "fill_latency_sec": round(latency, 1), "reposts": pos.join_reposts,
+            "fill_latency_sec": round(latency, 1),
+            "latency_conception_sec": (round(time.time() - _conc3, 1)
+                                       if _conc3 else None),
+            "latency_event_sec": (round(time.time() - _ev3, 1)
+                                  if _ev3 else None),
+            "reposts": pos.join_reposts,
             "play_type": pos.play_type, "trial": pos.join_is_trial}, ticker=tk)
         if not (self.join_trial_mode and pos.join_is_trial):
             return
@@ -9677,7 +9871,18 @@ class LiveV3:
                 # across restarts). Mains/CHALL untouched; everything
                 # downstream (FV, cells, plays, sizing, protections)
                 # unchanged -- this moves ONE number: the window edge.
-                _eu_cap = V4_MAX_PLACEMENT_SEC
+                # [ENTRY-MECHANICS P1, operator word 07-17] DISCOVERY IS THE
+                # ENTRY HOUR: the fitted T-4h event gate dies. The outer bound
+                # is the conception horizon (T-8h honest — the
+                # C-CONCEPTION-HORIZON map edge, UNCHANGED; it moves only on
+                # operator ruling). More W1 owned = more queue owned. Retro
+                # census receipts: median 7.76h discovery->placement lag,
+                # 1,417/2,018 placements waited >4h, median 300 shares queued
+                # ahead at the fitted-hour join (.claude/entrymech_20260717/).
+                # The early-unlock / early-CHALL blocks below can only re-raise
+                # to this same horizon — kept as receipts, now no-ops.
+                _eu_cap = int(float(self.config.get(
+                    "conception_horizon_hours", 8)) * 3600)
                 _eu_cat = self.get_category(et)
                 if (self.config.get("early_unlock_enabled", False)
                         and _eu_cat in ("ITF_M", "ITF_W")):
@@ -9903,12 +10108,13 @@ class LiveV3:
                 (current_price, anchor_src, cell, regime, placement_min, offset,
                  exp_fill, exp_roi, target_bid, table_src) = ent
 
-                # Per-leg placement timing: wait until this leg's window opens
-                # (post at T-placement_minute). Event is NOT marked processed, so
-                # the next tick re-evaluates this leg. [C-PM-CLOCK] fallback mode
-                # widens the leading edge by X (OFF => _pm_widen 0, identical).
-                if time_to_start - _pm_widen > placement_min * 60:
-                    continue
+                # [ENTRY-MECHANICS P1, operator word 07-17] the per-leg fitted
+                # placement minute (post at T-placement_minute) is DEAD:
+                # discovery IS the entry hour — both legs park the moment the
+                # event clears the horizon/quality gates. placement_min stays
+                # in the row for _runway_status bookkeeping only; corpus-fitted
+                # timing may inform the walk side's engagement, nothing else,
+                # pending the re-anchor.
 
                 # [C-FEEDER FIX-2] decision-time book capture. Every downstream
                 # branch, guard, log field and placement-time key derives from
@@ -10615,7 +10821,7 @@ class LiveV3:
                     ticker=tk, event_ticker=et, category=cat,
                     direction=direction, cell_name="", cell_cfg={},
                     entry_price=entry_price, entry_order_id=oid,
-                    entry_posted_ts=now, phase="entry_resting",
+                    entry_posted_ts=now, entry_conception_ts=now, phase="entry_resting",
                     last_trade_price_at_post=((self._fv_anchor_price(tk) or 0) if self.pair_governor_scoot else 0),
                     match_start_ts=start_ts,
                     play_type="v4_" + entry_mode,
@@ -10795,7 +11001,7 @@ class LiveV3:
             category=self.ticker_category.get(tk, "?"),
             direction=direction, cell_name=anchor_cell, cell_cfg=anchor_cell_cfg,
             entry_price=entry_price, entry_order_id=oid,
-            entry_posted_ts=now, phase="entry_resting",
+            entry_posted_ts=now, entry_conception_ts=now, phase="entry_resting",
             last_trade_price_at_post=((self._fv_anchor_price(tk) or 0) if self.pair_governor_scoot else 0),
             match_start_ts=start_ts,
             play_type=scenario,
@@ -10908,7 +11114,7 @@ class LiveV3:
                 category=self.ticker_category.get(tk, "?"),
                 direction=direction, cell_name=fv_cell, cell_cfg=fv_cell_cfg,
                 entry_price=entry_price, entry_order_id=oid,
-                entry_posted_ts=now, phase="entry_resting",
+                entry_posted_ts=now, entry_conception_ts=now, phase="entry_resting",
                 last_trade_price_at_post=((self._fv_anchor_price(tk) or 0) if self.pair_governor_scoot else 0),
                 match_start_ts=self.event_start_time.get(et, 0),
                 play_type=play_type,
@@ -10943,6 +11149,7 @@ class LiveV3:
                     "category": pos.category,
                     "direction": pos.direction,
                     "posted_at": pos.entry_posted_ts,
+                    "conceived_at": pos.entry_conception_ts or pos.entry_posted_ts,
                     "posted_price": pos.entry_price,
                     "target_price": pos.target_price,
                     "regime_at_posting": pos.regime_at_posting,
@@ -11051,6 +11258,7 @@ class LiveV3:
                 entry_price=int(d.get("posted_price", 0)),
                 entry_order_id=d.get("order_id", ""),
                 entry_posted_ts=float(d.get("posted_at", 0.0)),
+                entry_conception_ts=float(d.get("conceived_at", d.get("posted_at", 0.0)) or 0.0),
                 last_trade_price_at_post=int(d.get("last_trade_price_at_post", 0)),
                 phase="entry_resting", match_start_ts=float(d.get("match_start_ts", 0.0)),
                 play_type=d.get("play_type", "v4_" + d.get("entry_mode", "resting_maker")),
@@ -11546,6 +11754,36 @@ class LiveV3:
             # placement/repost -- authoritative vs walk_ref, which is stamped only on join_bid reposts).
             if max(1, min(book.best_bid, book.best_ask - 1)) == pos.target_price:
                 return
+            # [ENTRY-MECHANICS P2, operator word 07-17] EVIDENCE-ONLY
+            # REPOSTS: a deep-cast bid (resting BELOW the touch by design —
+            # the presumed-faller waiting for its divot) is in its designed
+            # state, so bb-mismatch is not evidence against it. Its ONE
+            # lawful trigger is dial re-orientation (regime
+            # reclassification). Touch postures fall through above on real
+            # bb mismatch. The mid-deadband cadence churn dies here —
+            # exhibits: KREZHE-ZHE (churn raced the buy guard, bid died
+            # unrecovered), BRARIE-RIE (same-price churn all morning),
+            # BURMER (42 reposts); 2,839 reposts/123 legs on 07-17 alone,
+            # top legs 40-53/leg/hr.
+            if int(pos.target_price) < int(book.best_bid):
+                if (self.regime_lookup(self._entry_cat(pos.category),
+                                       current_price)
+                        == pos.regime_at_posting):
+                    _nh2 = self.__dict__.setdefault(
+                        "_repost_no_evidence_logged", set())
+                    _nk2 = (tk, int(book.best_bid), pos.regime_at_posting)
+                    if _nk2 not in _nh2:
+                        _nh2.add(_nk2)
+                        self._log("repost_no_evidence_hold", {
+                            "event": pos.event_ticker,
+                            "resting": int(pos.target_price),
+                            "best_bid": int(book.best_bid),
+                            "regime": pos.regime_at_posting,
+                            "law": "P2 07-17: reposts fire on evidence only "
+                                   "(bb mismatch on touch postures / dial "
+                                   "re-orientation on cast postures) — "
+                                   "never on a timer"}, ticker=tk)
+                    return
         elif abs(current_price - price_basis) <= V4_REPRICE_MOVE_CENTS:
             return
 

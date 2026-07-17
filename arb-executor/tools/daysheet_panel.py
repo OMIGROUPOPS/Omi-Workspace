@@ -620,9 +620,20 @@ def first_point_for(ev, sched_ep=None):
         raw = b["bell_ts"]
         defect = None
         if sched_ep and raw < sched_ep - 60:
-            defect = "raw %s BEFORE sched %s" % (_hm(raw), _hm(sched_ep))
+            # [ENTRY-MECHANICS P6a 07-17 + P0v3 (1)] THE GLASS TELLS THE
+            # ADJUDICATED TRUTH: a pre-sched evidence fire is a PHANTOM
+            # BELL — VOID as a clock (sched is the floor of time). The
+            # clock CLAMPS to sched, the badge carries the void, and the
+            # W1/CORR/W2 cut downstream grades fills against the clamped
+            # clock (the census's phantom-relabeled fills render W1 with
+            # their earned grades; true post-bell fills still wear F).
+            defect = "raw %s BEFORE sched %s — VOID, clamped" % (
+                _hm(raw), _hm(sched_ep))
             _file_miss("bell_before_sched", "%s|raw=%s|sched=%s|src=%s"
                        % (ev, _hm(raw), _hm(sched_ep), src))
+            return {"raw_ts": raw, "ts": sched_ep, "label": _hm(sched_ep),
+                    "src": src, "badge": "VOID(pre-sched)→SCHED",
+                    "observed": True, "est_note": note, "defect": defect}
         return {"raw_ts": raw, "ts": raw, "label": _hm(raw), "src": src,
                 "badge": "LIVE", "observed": True, "est_note": note,
                 "defect": defect}
@@ -1116,8 +1127,31 @@ def build_closed(day=None):
     day = day or datetime.now(ET).strftime("%Y%m%d")
     grades = load_dayheet_grades(day)
 
+    # [ENTRY-MECHANICS P6b 07-17 — the DAY-KEY fix] a closed game files
+    # under the day it DIED: settlement day where the settlements record
+    # has it, else the day of its LAST fill (the terminal disposition) —
+    # never the day its entry buy filled. The old key (any fill's day)
+    # filed today's dead under yesterday (entry filled 07-16, settled
+    # 07-17 → keyed 0716) and double-listed sold games on both days.
+    # Banked past days stay frozen verbatim (the freeze scope untouched).
+    _last_fill_day = {}   # ev -> max fill day across legs
+    for tk_, mts_ in _q("SELECT ticker, MAX(ts) FROM fills "
+                        "GROUP BY ticker"):
+        _, ev_ = _ticker_pair_code(tk_)
+        d_ = datetime.fromtimestamp(mts_, ET).strftime("%Y%m%d") \
+            if mts_ else None
+        if d_ and (ev_ not in _last_fill_day or d_ > _last_fill_day[ev_]):
+            _last_fill_day[ev_] = d_
+    _settle_day = {}      # ev -> max settlement day across legs
+    try:
+        for tk_, sd_ in _q("SELECT ticker, day FROM settlements"):
+            _, ev_ = _ticker_pair_code(tk_)
+            if sd_ and (ev_ not in _settle_day or sd_ > _settle_day[ev_]):
+                _settle_day[ev_] = sd_
+    except Exception:
+        pass   # settlements table absent on an old DB — last-fill day governs
     day_tickers = sorted({r[0] for r in _q(
-        "SELECT DISTINCT ticker FROM fills WHERE day=?", (day,))})
+        "SELECT DISTINCT ticker FROM fills")})
     # [P2b, 07-17 — the BROBRA misfile] CLOSED excludes events with an
     # OPEN position (market active, result pending): a filled-today,
     # still-open game is a POSITION, not a closed card; it joins
@@ -1129,6 +1163,9 @@ def build_closed(day=None):
     for tk in day_tickers:
         _, ev = _ticker_pair_code(tk)
         if ev in _open_evs:
+            continue
+        _death = _settle_day.get(ev) or _last_fill_day.get(ev)
+        if _death != day:
             continue
         events.setdefault(ev, []).append(tk)
 
@@ -1487,6 +1524,15 @@ def build_alerts(limit=30):
              "law_collision", "window_truth_bind", "phantom_bell_void",
              "cancel_fill_race", "gun_fire_sweep_error")
     out = []
+    # [ENTRY-MECHANICS P2b+P5 07-17] the CHURN METER (reposts/leg over the
+    # trailing hour; bar 6/hr — BURMER's 42 and the 40-53/leg/hr 07-17
+    # sheet are the sizing exhibits) and the FV FRESHNESS METER (share of
+    # trailing-hour placements priced without the sharp blend — metered at
+    # the consumption site, fv_reason on v4_place) ride the same tail scan.
+    _now_m = time.time()
+    _churn = {}
+    _fv_tot = _fv_stale = 0
+    _fv_last_fresh = None
     try:
         logs = sorted(LOG_DIR.glob("live_v3_*.jsonl"))
         if logs:
@@ -1498,6 +1544,23 @@ def build_alerts(limit=30):
                     fh.readline()
                 data = fh.read()
             for line in data.split(b"\n"):
+                if b'"v4_move_repost"' in line or (b'"v4_place"' in line
+                                                   and b'"fv' in line):
+                    try:
+                        jm = json.loads(line)
+                        if (jm.get("ts_epoch") or 0) >= _now_m - 3600:
+                            if jm.get("event") == "v4_move_repost":
+                                _tkm = jm.get("ticker", "")
+                                _churn[_tkm] = _churn.get(_tkm, 0) + 1
+                            elif jm.get("event") == "v4_place":
+                                _fv_tot += 1
+                                if (jm.get("details") or {}).get(
+                                        "fv_reason"):
+                                    _fv_stale += 1
+                                else:
+                                    _fv_last_fresh = jm.get("ts_epoch")
+                    except ValueError:
+                        pass
                 if not any(k.encode() in line for k in KINDS):
                     continue
                 try:
@@ -1551,6 +1614,27 @@ def build_alerts(limit=30):
                             "red": e not in ("window_truth_reaim",
                                              "window_truth_bind",
                                              "phantom_bell_void")})
+        # churn meter rows (legs over the 6/hr bar, worst first)
+        for _tkm, _n in sorted(_churn.items(), key=lambda x: -x[1])[:5]:
+            if _n > 6:
+                out.append({"ts": _now_m, "et": _hm(_now_m),
+                            "kind": "churn_meter",
+                            "digits": "%s %d reposts/hr (bar 6; P2 "
+                                      "evidence-only law live)"
+                                      % (_tkm.split("-")[-2][-8:] + "-"
+                                         + _tkm.split("-")[-1], _n),
+                            "red": True})
+        # fv freshness meter row (only when the blend is degraded)
+        if _fv_tot and _fv_stale * 2 >= _fv_tot:
+            out.append({"ts": _now_m, "et": _hm(_now_m),
+                        "kind": "fv_freshness",
+                        "digits": "sharp blend STALE on %d/%d placements "
+                                  "last hr%s" % (
+                                      _fv_stale, _fv_tot,
+                                      (" · last fresh %s"
+                                       % _hm(_fv_last_fresh))
+                                      if _fv_last_fresh else ""),
+                        "red": False})
     except OSError:
         pass
     try:

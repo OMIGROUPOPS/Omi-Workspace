@@ -148,5 +148,8 @@
   "milestone_gun_poll_sec": 90,
   "pair_seesaw_conception_exempt": true,
   "window_truth_live": true,
-  "discovery_floor_retreat": true
+  "discovery_floor_retreat": true,
+  "wall_skip_enforce": true,
+  "wall_skip_contracts": 10000,
+  "orientation_swap_min_conviction": 0.7
 }

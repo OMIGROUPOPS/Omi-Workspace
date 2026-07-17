@@ -1,9 +1,10 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784267615 -->
-written 2026-07-17 02:02:17 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784268386 -->
+written 2026-07-17 02:12:29 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (2 total this session)
+## Events (3 total this session)
 - 01:42:22 KXITFWMATCH-26JUL17BROBRA-BRA — flatten DEFERRED: ev -0.8 above margin floor -3.0
 - 01:53:35 KXITFWMATCH-26JUL17BROBRA-BRA — flatten DEFERRED: ev -0.8 above margin floor -3.0
+- 02:06:26 KXITFWMATCH-26JUL17BROBRA-BRA — flatten DEFERRED: ev -0.8 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-17 01:04:32 AM ET", "ts_epoch": 1784264672.249446, "event": "orphan_readopted_fingerprint", "ticker": "KXITFWMATCH-26JUL17BROBRA-BRA", "details": {"price": 60, "qty": 5, "order_id": "164be6d1-6554-415a-9f37-23a58012f4a6", "posted_ts": 1784264512.4178498}}
@@ -43,6 +44,9 @@ written 2026-07-17 02:02:17 AM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-17 01:53:35 AM ET", "ts_epoch": 1784267615.248366, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL17BROBRA-BRA", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_W|underdog|disc|26_50", "n": 25, "p_exit_fill": 0.8, "p_ride_zero": 0.2, "ev_cents": -0.8, "band": 7, "basis": 32, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LAYER_3WA
     {"ts": "2026-07-17 01:53:35 AM ET", "ts_epoch": 1784267615.259176, "event": "completion_flatten_deferred", "ticker": "KXITFWMATCH-26JUL17BROBRA-BRA", "details": {"event": "KXITFWMATCH-26JUL17BROBRA", "ev_cents": -0.8, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
     {"ts": "2026-07-17 01:54:31 AM ET", "ts_epoch": 1784267671.5274162, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 2, "n_resting_orders": 56, "n_failures": 0, "n_flags": 5, "failures": [], "flags": [{"tk": "KXATPMATCH-26JUL17COLVAC-VAC", "check": "pair_incomplete", "event": "KXATPMATCH-26JUL17COLVAC", "legs": {"COL": "filled", "
+    {"ts": "2026-07-17 02:06:26 AM ET", "ts_epoch": 1784268386.975252, "event": "completion_shadow", "ticker": "KXITFWMATCH-26JUL17BROBRA-BRA", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ITF_W|underdog|disc|26_50", "n": 25, "p_exit_fill": 0.8, "p_ride_zero": 0.2, "ev_cents": -0.8, "band": 7, "basis": 32, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_LAYER_3WA
+    {"ts": "2026-07-17 02:06:26 AM ET", "ts_epoch": 1784268386.975511, "event": "completion_flatten_deferred", "ticker": "KXITFWMATCH-26JUL17BROBRA-BRA", "details": {"event": "KXITFWMATCH-26JUL17BROBRA", "ev_cents": -0.8, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-17 02:11:30 AM ET", "ts_epoch": 1784268690.864537, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 2, "n_resting_orders": 72, "n_failures": 0, "n_flags": 5, "failures": [], "flags": [{"tk": "KXATPMATCH-26JUL17COLVAC-VAC", "check": "pair_incomplete", "event": "KXATPMATCH-26JUL17COLVAC", "legs": {"COL": "filled", "V
 
 ## Code path
 ?

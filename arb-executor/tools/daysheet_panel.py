@@ -395,33 +395,116 @@ def _bells():
         return _bells_mem["bells"]
 
 
-def first_point_for(ev, sched_ep=None):
-    """C-CORRIDOR-TRUTH (operator ruling, 07-16): the bell MEANS
-    first-point evidence. A match cannot start before its scheduled
-    time, so any bell ESTIMATE earlier than sched is by definition
-    wrong — clamped to >= sched and filed BELL-BEFORE-SCHED. Evidence
-    observations (scoreboard/tape/divergence) stand as observed, but a
-    pre-sched observation is the same named contradiction, filed.
-    Returns None when no gun row exists at all (render: 'first pt not
-    observed (>= sched)')."""
+OFFICIAL_BELLS = ROOT / "state" / "daysheet_bells_official.json"
+_official_lock = threading.Lock()
+_official_mem = {"loaded": False, "data": {}}
+
+
+def official_bell(ev):
+    """C-OFFICIAL-BELL v1 (07-16): the OFFICIAL record — Kalshi's
+    milestone start_date (Sportradar-fed, second precision; finished
+    games retain the actual start). status 'not_started' means the
+    start_date is still the schedule, NOT an observation — no official
+    bell. Disk-cached; final once status='P'."""
+    with _official_lock:
+        if not _official_mem["loaded"]:
+            try:
+                _official_mem["data"] = json.loads(
+                    OFFICIAL_BELLS.read_text())
+            except Exception:
+                _official_mem["data"] = {}
+            _official_mem["loaded"] = True
+        now = time.time()
+        e = _official_mem["data"].get(ev)
+        if e is not None and (e.get("final")
+                              or now - e.get("fetched_at", 0) < 300):
+            pass
+        else:
+            try:
+                d = _kalshi_get("/milestones?related_event_ticker=%s"
+                                "&limit=5" % ev)
+                ms = (d.get("milestones") or [None])[0]
+            except Exception:
+                ms = None
+                d = None
+            if d is not None:
+                if ms:
+                    det = ms.get("details") or {}
+                    e = {"fetched_at": now,
+                         "status": det.get("status"),
+                         "start_date": ms.get("start_date"),
+                         "start_ep": _iso_ep(ms.get("start_date") or ""),
+                         "final": det.get("status") == "P"}
+                else:
+                    e = {"fetched_at": now, "status": None,
+                         "start_date": None, "start_ep": None,
+                         "final": False}
+                _official_mem["data"][ev] = e
+                try:
+                    OFFICIAL_BELLS.write_text(
+                        json.dumps(_official_mem["data"]),
+                        encoding="utf-8")
+                except OSError:
+                    pass
+        if not e or not e.get("start_ep") \
+                or e.get("status") in (None, "not_started"):
+            return None
+        return {"ts": e["start_ep"], "label": _hm(e["start_ep"]),
+                "status": e.get("status")}
+
+
+def _est_note(ev):
+    """The demoted estimate/evidence hover note (never THE bell)."""
     b = _bells().get(ev)
     if not b or not b.get("bell_ts"):
         return None
     src = b.get("source") or "unknown"
-    observed = src in LIVE_BELL_SOURCES
-    raw = b["bell_ts"]
-    ts = raw
-    defect = None
-    if sched_ep and raw < sched_ep - 60:
-        defect = "raw %s BEFORE sched %s" % (_hm(raw), _hm(sched_ep))
+    kind = "our evidence" if src in LIVE_BELL_SOURCES else "est"
+    return "%s %s (%s) — demoted to note" % (kind, _hm(b["bell_ts"]), src)
+
+
+def first_point_for(ev, sched_ep=None):
+    """THE BELL under C-OFFICIAL-BELL v1: (1) the OFFICIAL milestone
+    start (badge OFFICIAL [KALSHI]); (2) else our own LIVE first-point
+    evidence (scoreboard/tape/divergence — the corridor-truth sources);
+    (3) estimates NEVER serve as a clock — demoted to the hover note.
+    Pre-sched bells file BELL-BEFORE-SCHED (observations stand, filed;
+    the estimate class census keeps accruing). Returns None when no
+    official record and no evidence — render 'bell not observed
+    (>= sched)', never a fabricated time."""
+    ob = official_bell(ev)
+    note = _est_note(ev)
+    if ob:
+        defect = None
+        if sched_ep and ob["ts"] < sched_ep - 60:
+            defect = "official %s BEFORE sched %s" % (ob["label"],
+                                                      _hm(sched_ep))
+            _file_miss("bell_before_sched", "%s|official=%s|sched=%s"
+                       % (ev, ob["label"], _hm(sched_ep)))
+        return {"raw_ts": ob["ts"], "ts": ob["ts"], "label": ob["label"],
+                "src": "official [KALSHI]", "badge": "OFFICIAL",
+                "observed": True, "est_note": note, "defect": defect}
+    b = _bells().get(ev)
+    if b and b.get("bell_ts") \
+            and (b.get("source") or "unknown") in LIVE_BELL_SOURCES:
+        src = b["source"]
+        raw = b["bell_ts"]
+        defect = None
+        if sched_ep and raw < sched_ep - 60:
+            defect = "raw %s BEFORE sched %s" % (_hm(raw), _hm(sched_ep))
+            _file_miss("bell_before_sched", "%s|raw=%s|sched=%s|src=%s"
+                       % (ev, _hm(raw), _hm(sched_ep), src))
+        return {"raw_ts": raw, "ts": raw, "label": _hm(raw), "src": src,
+                "badge": "LIVE", "observed": True, "est_note": note,
+                "defect": defect}
+    if b and b.get("bell_ts") and sched_ep \
+            and b["bell_ts"] < sched_ep - 60:
+        # estimate-quality census stays alive even though estimates no
+        # longer serve as clocks
         _file_miss("bell_before_sched", "%s|raw=%s|sched=%s|src=%s"
-                   % (ev, _hm(raw), _hm(sched_ep), src))
-        if not observed:
-            ts = sched_ep  # estimates clamp; observations stand, filed
-    return {"raw_ts": raw, "ts": ts, "label": _hm(ts), "src": src,
-            "observed": observed,
-            "badge": "LIVE" if observed else "EST",
-            "defect": defect}
+                   % (ev, _hm(b["bell_ts"]), _hm(sched_ep),
+                      b.get("source")))
+    return None
 
 
 def bell_for(ev):
@@ -696,9 +779,13 @@ def _game_head(sample_ticker):
         "start_time": sj.get("start_time"),
         "tournament": sj.get("tournament"),
         "category": sj.get("category"),
-        # both anchors, always (corridor law): sched + first point
+        # both anchors, always (corridor law): sched + THE bell
+        # (official > our LIVE evidence > not-observed; estimates
+        # demoted to the hover note)
         "anchors": {"sched": _hm(sched_ep) if sched_ep else None,
-                    "fp": fp},
+                    "fp": fp,
+                    "est_note": (fp.get("est_note") if fp
+                                 else _est_note(ev))},
         "bell": fp,  # back-compat
         "deeplink": kalshi_deeplink(ev),
     }

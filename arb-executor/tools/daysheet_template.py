@@ -125,6 +125,7 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
   .bellchip{ color:var(--grey); font-size:9px; }
   .bellchip .est{ color:var(--grey); font-size:8px; border:1px solid var(--border); padding:0 3px; margin-left:2px; }
   .bellchip .live{ color:var(--blue); font-size:8px; border:1px solid rgba(0,191,255,0.4); padding:0 3px; margin-left:2px; }
+  .bellchip .official{ color:var(--green); font-size:8px; border:1px solid rgba(0,255,136,0.4); padding:0 3px; margin-left:2px; font-weight:700; }
   .gamehead .deeplink{ margin-left:auto; }
   .footnote .walkpart{ color:var(--grey); }
   .footnote .walkverdict{ color:var(--green); font-weight:700; }
@@ -308,22 +309,25 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
   // MEANS first-point evidence; estimates clamp to >= sched; where no
   // source observed anything, "first pt not observed (>= sched)" —
   // never a fabricated time.
+  // C-OFFICIAL-BELL: THE bell = the official milestone start (KALSHI)
+  // when it exists, else our own LIVE first-point evidence, else
+  // "not observed (≥ sched)". Estimates live only in the hover note.
   function anchorsChip(a){
     if(!a) return '<span class="no-bell">no anchors</span>';
     const sched = a.sched ? 'sched ' + esc(a.sched) : 'sched unknown';
     let fpPart;
     const fp = a.fp;
-    if(fp && fp.observed){
-      fpPart = 'first pt ' + esc(fp.label) + ' (' + esc(fp.src) + ') <span class="live">LIVE</span>';
+    if(fp && fp.badge === 'OFFICIAL'){
+      fpPart = 'bell ' + esc(fp.label) + ' · official <span class="official">KALSHI</span>';
     } else if(fp){
-      fpPart = 'first pt not observed' + (a.sched ? ' (≥ ' + esc(a.sched) + ')' : '') +
-               ' · est ' + esc(fp.label) + ' (' + esc(fp.src) + ') <span class="est">EST</span>';
+      fpPart = 'bell ' + esc(fp.label) + ' (' + esc(fp.src) + ') <span class="live">LIVE</span>';
     } else {
-      fpPart = 'first pt not observed' + (a.sched ? ' (≥ ' + esc(a.sched) + ')' : '');
+      fpPart = 'bell not observed' + (a.sched ? ' (≥ ' + esc(a.sched) + ')' : '');
     }
     const defect = (fp && fp.defect)
       ? ' <span class="loss" title="' + esc(fp.defect) + '">⚠ BELL&lt;SCHED filed</span>' : '';
-    return '<span class="bellchip">' + sched + ' · ' + fpPart + defect + '</span>';
+    const hover = a.est_note ? ' title="' + esc(a.est_note) + '"' : '';
+    return '<span class="bellchip"' + hover + '>' + sched + ' · ' + fpPart + defect + '</span>';
   }
   // W1/CORR lo·hi cell from the real tape; "no tape" is a named state
   // empty-state text per the SILENT-EMPTY TAPE LOOKUP law: a fact
@@ -521,7 +525,8 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
         const entryLine = l.filled_et
           ? '<div class="exitline"><span class="lbl">entry</span> placed <span class="no-bell">— (no source: schema gap)</span> → filled <b>' + esc(l.filled_et) + '</b>' +
             (l.fill_window ? ' <span class="lbl">[' + esc(l.fill_window) + ']</span>' : ' <span class="no-bell">[window unclassifiable]</span>') +
-            (l.grade_was ? ' <span class="loss">regraded (clamped clock): was ' + esc(l.grade_was) + '</span>' : '') +
+            (l.grade_was ? ' <span class="win">exonerated: fill pre-' + ((l.win && l.win.fp && l.win.fp.badge === 'OFFICIAL') ? 'official-start' : 'first-point') + ' (was ' + esc(l.grade_was) + ')</span>' : '') +
+            (((l.grade || '').indexOf('F') === 0 && l.fill_window === 'W2' && l.win && l.win.fp && l.win.fp.badge === 'OFFICIAL') ? ' <span class="loss">convicted vs official bell</span>' : '') +
             (l.grade_note ? ' <span class="loss">' + esc(l.grade_note) + '</span>' : '') +
             '</div>'
           : '';

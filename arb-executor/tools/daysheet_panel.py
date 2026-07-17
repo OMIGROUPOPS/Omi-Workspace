@@ -245,6 +245,7 @@ def join_match_name(ticker):
             t1, _, t2 = kn["title"].partition(" vs ")
             t1, t2 = t1.strip(), t2.strip()
             if t1 and t2:
+                _st_ep = _log_scan()["starts"].get(ev)
                 return {
                     "joined": True,
                     "source": "kalshi_event",
@@ -254,8 +255,10 @@ def join_match_name(ticker):
                     "p1_disp": t1,
                     "p2_disp": t2,
                     "kalshi_legs": kn["legs"],
+                    # sched anchor from the engine's own logged join —
+                    # survives TE forgetting finished games
                     "start_time": None,
-                    "start_ep": None,
+                    "start_ep": _st_ep,
                     "tournament": (entry or {}).get("tournament"),
                     "category": (entry or {}).get("category"),
                 }
@@ -322,8 +325,8 @@ def kalshi_deeplink(ticker_or_event):
 
 # ── BELL JOIN (engine gun_fired lines, incremental, disk-persisted) ─────
 _bells_lock = threading.Lock()
-_bells_mem = {"files": {}, "bells": {}, "orders": {}, "loaded": False,
-              "checked": 0.0}
+_bells_mem = {"files": {}, "bells": {}, "orders": {}, "starts": {},
+              "loaded": False, "checked": 0.0}
 
 
 def _log_scan():
@@ -339,11 +342,12 @@ def _log_scan():
         if not _bells_mem["loaded"]:
             try:
                 disk = json.loads(BELLS_CACHE.read_text())
-                if disk.get("v") == 2:
+                if disk.get("v") == 3:
                     _bells_mem["files"] = disk.get("files", {})
                     _bells_mem["bells"] = disk.get("bells", {})
                     _bells_mem["orders"] = disk.get("orders", {})
-                # v1 cache: leave offsets empty -> full rescan once
+                    _bells_mem["starts"] = disk.get("starts", {})
+                # older cache: leave offsets empty -> full rescan once
             except Exception:
                 pass
             _bells_mem["loaded"] = True
@@ -418,6 +422,16 @@ def _log_scan():
                             o["last_cancel_ts"] = ts
                             o["last_cancel_label"] = det.get("label")
                             changed = True
+                    elif e == "schedule_match":
+                        # [07-17] the sched anchor banked from the
+                        # engine's own join — it survives TE's midnight
+                        # forgetting of finished games (the no_anchor
+                        # regression on yesterday's sheet)
+                        ev = det.get("event")
+                        _st = _iso_ep(det.get("start_time") or "")
+                        if ev and _st:
+                            _bells_mem["starts"][ev] = _st
+                            changed = True
                 _bells_mem["files"][key] = size - tail
                 changed = True
             except OSError:
@@ -425,9 +439,10 @@ def _log_scan():
         if changed:
             try:
                 BELLS_CACHE.write_text(json.dumps(
-                    {"v": 2, "files": _bells_mem["files"],
+                    {"v": 3, "files": _bells_mem["files"],
                      "bells": _bells_mem["bells"],
-                     "orders": _bells_mem["orders"]}), encoding="utf-8")
+                     "orders": _bells_mem["orders"],
+                     "starts": _bells_mem["starts"]}), encoding="utf-8")
             except OSError:
                 pass
         return _bells_mem

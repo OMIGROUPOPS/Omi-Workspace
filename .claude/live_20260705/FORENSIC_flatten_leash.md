@@ -1,51 +1,9 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784308832 -->
-written 2026-07-17 01:24:46 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784309877 -->
+written 2026-07-17 01:45:32 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (44 total this session)
-- 03:28:57 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
-- 03:40:09 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
-- 03:52:15 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
-- 04:03:46 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
-- 04:11:01 KXITFWMATCH-26JUL17SCHDAD-SCH — flatten DEFERRED: ev -1.72 above margin floor -3.0
-- 04:23:55 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
-- 04:37:08 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
-- 04:48:47 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
-- 04:58:50 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
-- 05:11:09 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
-- 05:13:25 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
-- 05:24:23 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
-- 05:35:23 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
-- 05:49:35 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
-- 06:02:09 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
-- 06:15:51 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
-- 06:28:03 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
-- 06:39:14 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
-- 06:49:57 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
-- 07:03:01 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
-- 07:10:36 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
-- 07:16:26 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
-- 07:21:47 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
-- 07:26:42 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
-- 07:31:45 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
-- 07:42:08 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
-- 07:48:52 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
-- 07:52:08 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
-- 08:02:58 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
-- 08:17:37 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
-- 08:27:50 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
-- 08:42:03 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
-- 08:54:51 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
-- 09:05:23 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
-- 09:19:17 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
-- 09:30:43 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
-- 12:26:39 KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL — flatten DEFERRED: ev -2.07 above margin floor -3.0
-- 12:38:12 KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL — flatten DEFERRED: ev -2.07 above margin floor -3.0
-- 12:47:53 KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL — flatten DEFERRED: ev -2.07 above margin floor -3.0
-- 12:59:46 KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL — flatten DEFERRED: ev -2.07 above margin floor -3.0
-- 13:10:16 KXATPCHALLENGERMATCH-26JUL17PERSAN-PER — flatten CAPPED at 8/day (8 today)
-- 13:10:16 KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL — flatten DEFERRED: ev -2.07 above margin floor -3.0
-- 13:12:29 KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD — flatten CAPPED at 8/day (8 today)
-- 13:20:32 KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL — flatten DEFERRED: ev -2.07 above margin floor -3.0
+## Events (2 total this session)
+- 13:27:57 KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL — flatten DEFERRED: ev -1.07 above margin floor -3.0
+- 13:37:57 KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD — flatten DEFERRED: ev -0.48 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-17 03:00:54 AM ET", "ts_epoch": 1784271654.1794608, "event": "tape_seed_live_confirm", "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD", "details": {"seed_price": 32, "live_price": 29, "delta": -3, "seed_age_sec": 3374.3}}
@@ -1515,6 +1473,17 @@ written 2026-07-17 01:24:46 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-17 01:20:32 PM ET", "ts_epoch": 1784308832.939886, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17DELFUE", "ev_cents": -2.07, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
     {"ts": "2026-07-17 01:23:38 PM ET", "ts_epoch": 1784309018.9793115, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|26_50", "n": 75, "p_exit_fill": 0.773, "p_ride_zero": 0.227, "ev_cents": -0.48, "band": 7, "basis": 26, "win_ride_residual_excluded": 0.0, "citation
     {"ts": "2026-07-17 01:23:38 PM ET", "ts_epoch": 1784309018.979545, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17ADDIVA", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-17 01:26:52 PM ET", "ts_epoch": 1784309212.98185, "event": "post_boot_audit", "ticker": "", "details": {"context": "boot", "verdict": "PASS", "n_positions": 4, "n_resting_orders": 16, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784308336.4126577, "legs_new": ["KXATPCHALLENGERMATCH-26JUL17PERSAN-SAN"], "legs_gone": ["KXATPCHALLENGERMA
+    {"ts": "2026-07-17 01:27:55 PM ET", "ts_epoch": 1784309275.8143966, "event": "tape_seed_live_confirm", "ticker": "KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL", "details": {"seed_price": 90, "live_price": 90, "delta": 0, "seed_age_sec": 94.1}}
+    {"ts": "2026-07-17 01:27:56 PM ET", "ts_epoch": 1784309276.2858503, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD", "details": {"verdict": "NO-OPINION", "kept": {"opinion": "NO-OPINION", "missing": "no observable runmid / basis / band"}, "cross": {"opinion": "EV", "cell": "ATP_CHALL|leader|at_mid|ge75", "n": 56, "p_exit_fill": 0.857, "p_ride_zero": 0.125, "ev_cent
+    {"ts": "2026-07-17 01:27:57 PM ET", "ts_epoch": 1784309277.3883262, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|leader|disc|ge75", "n": 15, "p_exit_fill": 0.867, "p_ride_zero": 0.133, "ev_cents": -1.07, "band": 12, "basis": 86, "win_ride_residual_excluded": 0.0, "citation": "M1
+    {"ts": "2026-07-17 01:27:57 PM ET", "ts_epoch": 1784309277.3968792, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17DELFUE", "ev_cents": -1.07, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-17 01:28:30 PM ET", "ts_epoch": 1784309310.9204347, "event": "tape_seed_live_confirm", "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD", "details": {"seed_price": 23, "live_price": 24, "delta": 1, "seed_age_sec": 151.1}}
+    {"ts": "2026-07-17 01:31:44 PM ET", "ts_epoch": 1784309504.795296, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 4, "n_resting_orders": 16, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784308336.4126577, "legs_new": ["KXATPCHALLENGERMATCH-26JUL17PERSAN-SAN"], "legs_gone": ["KXATPC
+    {"ts": "2026-07-17 01:35:15 PM ET", "ts_epoch": 1784309715.6193514, "event": "fv_burst_anchor", "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17ADDIVA", "cat": "ATP_CHALL", "cell": "reconciled", "regime": "", "reference_source": "", "legs_filled": 1, "solo_or_pair": "solo", "filled_pre_burst": true, "entry_price": 26, "fill_price": 26, "fv_mid"
+    {"ts": "2026-07-17 01:37:57 PM ET", "ts_epoch": 1784309877.484324, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|26_50", "n": 75, "p_exit_fill": 0.773, "p_ride_zero": 0.227, "ev_cents": -0.48, "band": 7, "basis": 26, "win_ride_residual_excluded": 0.0, "citation": 
+    {"ts": "2026-07-17 01:37:57 PM ET", "ts_epoch": 1784309877.4845872, "event": "completion_flatten_deferred", "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17ADDIVA", "ev_cents": -0.48, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-17 01:37:57 PM ET", "ts_epoch": 1784309877.6821036, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL", "details": {"verdict": "NO-OPINION", "kept": {"opinion": "NO-OPINION", "cell": "ATP_CHALL|leader|deep_disc|ge75", "missing": "range cell empty/thin (n=1)"}, "cross": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|le25", "n": 54, "p_exit_fill": 
 
 ## Code path
 ?

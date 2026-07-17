@@ -1,5 +1,5 @@
 {
- "built": "2026-07-17 13:10",
+ "built": "2026-07-17 13:11",
  "law": "C-ONE-TRUTH v1 (07-16): outside this root = doesn't exist; rebuilt every C50; both consumers enforced (engine boot wiring + seat session-zero); the gate refuses unregistered laws/surfaces/studies",
  "laws_n": 284,
  "laws": [
@@ -2635,7 +2635,7 @@
   {
    "archive": "truth/archive/proof_20260717",
    "source": ".claude/proof_20260717",
-   "finding": "OUTCOME PROOF \u2014 P3 escape-hatch \u00b7 P5 \u246e LIVE \u00b7 P6 retreat (one gated deploy; carries the floor chokepoint 7760cc5f already proven in PROOF_FLOOR_CHOKEPOINT.md)"
+   "finding": "PROOF_PASS \u2014 P0 v3 (six fixes + census), candidate SHA `b88a4347`"
   },
   {
    "archive": "truth/archive/prove_the_day_20260715",

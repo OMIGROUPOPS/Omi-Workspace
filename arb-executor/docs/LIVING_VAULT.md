@@ -134,6 +134,14 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-16 · GRADER AMEND — THE PAIR LAW (operator ruling): the grade is per GAME, never per leg — and under it, TODAY HAS ZERO A's
+
+**THE LAW:** A requires BOTH legs W1 at held discounts, sequenced (the BOUHAR shape — the grade the whole mandate points at). One-sided games CAP at **C** (missing side honestly attempted — a real posted order, held to the bell sweep, never traded there) or **D** (never conceived / pulled-and-abandoned mid-window by our own machinery / aims never crossed the book). **The sibling disposition line is MANDATORY in every game box — absent = UNGRADED, filed.** Refinement ratified in the build: **the bell sweep is not abandonment** — a bid that rested until match_live/settlement swept it IS the honest attempt; abandonment = our own machinery pulling it mid-window with no re-place (completion_reprice, failed move_repost — the CASHABILITY INVERSION's own labels).
+
+**DATA HONESTY UNDERNEATH:** dispositions come from the engine's OWN log (order_placed/order_cancelled per ticker, collected in the incremental scan) — snap_orders' 2-hour retention would have falsely read "never conceived" on every morning sibling.
+
+**THE RE-GRADE (all 79, per-game, before = official-bell leg rubric → after = PAIR LAW): A 18→0 · B 1 · C 1→12 · D 0→7 · F 57→56 · UNGRADED 2→3.** Sibling shapes: 9 pair-complete / 30 honest-attempt / 40 abandoned-or-never-conceived. **ALL 17 SOLO-LEG A's FALL** — the exhibit first: **Fuele v Seyboth Wild (WILD +90¢ solo wearing an A) → C** ("FUELE posted 12¢, held to the bell sweep, never traded that low"); → C also TIRANTE/BASILASHVILI, HALYS/BUBLIK, PELLEGRINO/RUBLEV, MIDON/TABILO, EGOROVA/MOYANO, SHI/ZHANG, KRAUS/BENNEMANN, VANDROMME/HERCOG, BADOSA/IBRAGIMOVA, QUEVEDO/SHERIF; **→ D (machinery pulled the sibling mid-window):** ALMAZAN/PALAN, BAX/RIVET, NEFVE/COX, PEREGO/PIERRE, KOIKE/KURAMOCHI, JANG/SAGANDYKOVA — and **Samson/Feistel lands D by its own walk's mechanism (FEISTEL pulled by completion_reprice 6:26:06 AM, never re-placed).** **ZERO A's: no game today filled both legs in W1 — the pair law says the day earned no A, and the BOUHAR headline metric now has a grader that cannot be fooled by a lucky solo leg.** Screenshot `docs/screenshots/daysheet-panel-truth/closed_pairlaw.png`.
+
 ### 2026-07-16 · C-OFFICIAL-BELL v1 — the day graded against the official record (read-only, zero engine changes) — AND THE VERDICT CUTS AGAINST US: F 51→64
 
 **THE BACKFILL:** Kalshi milestone actual starts fetched for every event on today's + yesterday's sheets (204 events, **145 with official bells**; today's sheet 66/79) — stored second-precision in `state/daysheet_bells_official.json`; `status='not_started'` = start_date is still the schedule = NO official bell (never treated as an observation).

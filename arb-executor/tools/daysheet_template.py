@@ -336,6 +336,13 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     if(min===null||min===undefined) return null;
     return (min<0?'T−':'T+') + Math.abs(min) + 'm';
   }
+  // [DISPATCH-2 PHASE A rider (a)] hour-scale T-label for the W1 low's
+  // time ("@T−14h"); minute-scale under 2h
+  function fmtTxH(min){
+    if(min===null||min===undefined) return null;
+    const a = Math.abs(min);
+    return (min<0?'T−':'T+') + (a>=120 ? (a/60).toFixed(0)+'h' : a+'m');
+  }
   function fmtEtShort(label){
     // "9:01:12 AM ET" -> "9:01 AM" (digit-only compression for narrow cells)
     if(!label) return '—';
@@ -560,7 +567,7 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     '<div class="colhead closed-filled">' +
     '<span class="lbl-last">PLAYER</span>' +
     '<span>CT</span><span>FILLED</span><span>T−X</span>' +
-    '<span>Δ VS W1</span><span>W1 CLOSE</span><span>CORRIDOR</span>' +
+    '<span>Δ VS W1</span><span>W1 LOW·CLOSE</span><span>CORRIDOR</span>' +
     '<span>EXIT</span><span>YIELD ($)</span><span>ROI</span>' +
     '</div>';
   const CLS_HEAD_UNFILLED =
@@ -600,7 +607,15 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
       '<span class="num">' + cents(l.ours_c) + '</span>' +
       '<span class="grey">' + (tx || mdash('TX')) + '</span>' +
       '<span class="' + deltaCls + '">' + (dW1===null ? mdash('W1_CLOSE') : signedCents(dW1)) + '</span>' +
-      '<span class="num">' + ((l.win && l.win.w1) ? l.win.w1.close + '¢' : mdash('W1_CLOSE')) + '</span>' +
+      // [PHASE A rider (a)] the W1 LOW spans the whole window and CARRIES
+      // ITS TIME — "12¢ @T−14h · close" (lo_ts from the full-span cut,
+      // covered_from honored upstream)
+      '<span class="num">' + ((l.win && l.win.w1)
+        ? (l.win.w1.lo + '¢' +
+           ((l.win.w1.lo_ts && sched_ep)
+             ? ' <span class="grey">@' + fmtTxH(txMin(sched_ep, l.win.w1.lo_ts)) + '</span>' : '') +
+           ' · ' + l.win.w1.close + '¢')
+        : mdash('W1_CLOSE')) + '</span>' +
       '<span class="num">' + ((l.win && l.win.corr) ? l.win.corr.close + '¢' : mdash('W1_CLOSE')) + '</span>' +
       '<span>' + exitCell + '</span>' +
       '<span class="' + yieldCls + '">' + yieldStr + '</span>' +
@@ -632,7 +647,10 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
       '<span class="num">' + (s.qty === null || s.qty === undefined ? '—' : esc(s.qty)) + '</span>' +
       '<span>' + iconCell + '</span>' +
       '<span class="grey">' + txCell + '</span>' +
-      '<span class="num">' + ((s.win && s.win.w1) ? s.win.w1.lo + '¢' : mdash('W1_LOW')) + '</span>' +
+      '<span class="num">' + ((s.win && s.win.w1)
+        ? (s.win.w1.lo + '¢' + ((s.win.w1.lo_ts && sched_ep)
+            ? ' <span class="grey">@' + fmtTxH(txMin(sched_ep, s.win.w1.lo_ts)) + '</span>' : ''))
+        : mdash('W1_LOW')) + '</span>' +
       '<span class="num">' + ((s.win && s.win.w1) ? s.win.w1.close + '¢' : mdash('W1_CLOSE')) + '</span>' +
       '<span class="num">' + ((s.win && s.win.corr) ? s.win.corr.lo + '→' + s.win.corr.hi + '¢' : mdash('BOUNCE')) + '</span>' +
       '<span class="num">' + ((s.win && s.win.w2) ? s.win.w2.hi + '¢' : mdash('W2_HIGH')) + '</span>' +

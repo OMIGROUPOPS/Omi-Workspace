@@ -751,7 +751,10 @@ def _win_cut(prints, lo_ts, hi_ts):
     return {"lo": lo["price_c"], "hi": hi["price_c"],
             "close": close["price_c"], "n": len(sel),
             "lo_t": _hm(lo["ts"]), "hi_t": _hm(hi["ts"]),
-            "close_t": _hm(close["ts"])}
+            "close_t": _hm(close["ts"]),
+            # [DISPATCH-2 PHASE A rider (a) 07-17] the W1 low CARRIES ITS
+            # TIME — raw epoch so renders can say "12c @T-14h"
+            "lo_ts": lo["ts"]}
 
 
 def window_summary(ticker, sj, ev=None):

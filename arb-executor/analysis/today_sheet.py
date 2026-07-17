@@ -495,6 +495,45 @@ def main():
                             _r_new, _r_new / _hrs_new))
     except Exception:
         pass
+    # [DISPATCH-2 PHASE A rider (b) 07-17] THE PRE-HORIZON METER, one
+    # standing line every night: games whose TRUE W1 low printed before
+    # T-8h + the median cents left outside the horizon (true low vs the
+    # best price reachable inside [T-8h, bell]). Evidence feed for the
+    # buried early-canvas question — the horizon moves on operator
+    # ruling only.
+    try:
+        _ph_pre = 0
+        _ph_tot = 0
+        _ph_cents = []
+        for _et in sorted(sched):
+            _sc = sched.get(_et)
+            if not _sc:
+                continue
+            _bell, _ = bell_of(_et)
+            _cut = _bell or _sc
+            for _tk in (tape(_et) or {}):
+                rows_ = tape(_et).get(_tk) or []
+                pre_ = [(px, ep) for ep, px in rows_ if ep <= _cut]
+                if not pre_:
+                    continue
+                _ph_tot += 1
+                _lo_px, _lo_ep = min(pre_)
+                if _lo_ep < _sc - 8 * 3600:
+                    _ph_pre += 1
+                    _in = [(px, ep) for px, ep in pre_
+                           if ep >= _sc - 8 * 3600]
+                    if _in:
+                        _ph_cents.append(min(_in)[0] - _lo_px)
+        if _ph_tot:
+            import statistics as _st
+            L.append("**PRE-HORIZON METER** · %d/%d legs' true W1 low "
+                     "printed before T−8h · median cents left outside "
+                     "the horizon: %s"
+                     % (_ph_pre, _ph_tot,
+                        ("%.0f¢" % _st.median(_ph_cents))
+                        if _ph_cents else "n/a"))
+    except Exception:
+        pass
 
     def table(title, headers, rows):
         L.append("")

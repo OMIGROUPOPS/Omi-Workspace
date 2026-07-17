@@ -919,8 +919,22 @@ def write_status(S, all_lines, log_path, cycle_n, forensics, bid_grades=None, ch
     else:
         L.append("no tracked games")
     L += ["", f"## PATTERNS (sub-B) — {len(pats)}"]
-    for p in sorted(pats, key=lambda y: y["ts"]):
-        L.append(f"- {p['pattern']}: {p.get('ticker') or p.get('event')} "
+    # [C-STATUS-TRUTH 07-16, P0a — the FISGAI phantom-bid read] every
+    # line carries its OWN clock, and only the last hour renders on the
+    # live page: a fresh cycle stamp must never re-date stale echoes
+    # (6:32 PM resting_bid divergence lines read as live phantom bids at
+    # 9:57 PM on markets that settled 8:07 PM; the books were reconciled
+    # the whole time — the page was the liar). Full history stays in
+    # the jsonl.
+    _pat_cut = datetime.now(ET).timestamp() - 3600
+    _pat_fresh = [p for p in pats if p.get("ts", 0) >= _pat_cut]
+    _pat_old = len(pats) - len(_pat_fresh)
+    if _pat_old:
+        L.append(f"- _{_pat_old} older line(s) suppressed from the live "
+                 f"view (>60 min; full history in the jsonl)_")
+    for p in sorted(_pat_fresh, key=lambda y: y["ts"]):
+        L.append(f"- {datetime.fromtimestamp(p['ts'], ET).strftime('%H:%M:%S')} "
+                 f"{p['pattern']}: {p.get('ticker') or p.get('event')} "
                  f"{json.dumps({k: p[k] for k in p if k not in ('key','type','pattern','ts','ticker','event')})}")
     dv = drain_replay_violations(log_path)
     L += ["", f"## DRAIN-REPLAY (zero-tolerance) — "

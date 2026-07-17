@@ -5560,7 +5560,8 @@ class LiveV3:
         _gsrc9 = ((getattr(self, "_gun_state", {}) or {})
                   .get(pos.event_ticker) or {}).get("source")
         _gsec9 = (int(self.config.get("tape_flow_grace_sec", 60))
-                  if _gsrc9 == "tape_flow" else self.match_live_grace_sec)
+                  if _gsrc9 in ("tape_flow", "milestone_official")
+                  else self.match_live_grace_sec)
         if (now - pos.match_live_latch_ts) < _gsec9:
             return "hold"
         return "cancel"                              # grace elapsed -> kill
@@ -6977,6 +6978,69 @@ class LiveV3:
                         "ref_rise_cents": _rise8,
                         "min_past_anchor": (round((now - a8) / 60.0, 1)
                                             if _started8 else None)})
+        # ---- source (9): KALSHI MILESTONE — the exchange's own in-play
+        # signal (C-MILESTONE-GUN v1, 07-16; OPERATOR WORD: decision ⑯ =
+        # YES. Shadow evidence behind the word: status vocabulary
+        # not_started→live→P confirmed live; Sportradar-fed start_date
+        # updates to the SECOND-PRECISION actual start; the official-bell
+        # regrade convicted 16 fills the estimate clocks had missed).
+        # A status flip past not_started, with the start inside the 6h
+        # age window, FIRES THE GUN with the official bell recorded at
+        # fire time; the match-live sweep runs through the normal path —
+        # every resting bid on the match cancelled the moment the
+        # exchange says it started. Budget: one public GET per UN-GUNNED
+        # tracked event per milestone_gun_poll_sec (default 90s), inside
+        # the 429 budget; the */15 shadow cron keeps logging so the
+        # nightly three-clock table proves this arming honest.
+        if self.config.get("milestone_gun_enabled", False):
+            _ms_cad9 = int(self.config.get("milestone_gun_poll_sec", 90))
+            if now - getattr(self, "_ms_gun_last", 0.0) >= _ms_cad9:
+                self._ms_gun_last = now
+                for et in list(self.event_tickers):
+                    if et in self._gun_state:
+                        continue
+                    try:
+                        _md9 = await api_get(
+                            self.session, self.ak, self.pk,
+                            "/trade-api/v2/milestones?"
+                            "related_event_ticker=%s&limit=2" % et,
+                            self.rl)
+                    except Exception as e:
+                        if now - getattr(self, "_ms_gun_err_ts", 0) > 3600:
+                            self._ms_gun_err_ts = now
+                            self._log("gun_feed_error", {
+                                "src": "milestone", "err": str(e)[:160]})
+                        break  # transient API trouble: retry next cadence
+                    _ms9 = ((_md9 or {}).get("milestones") or [None])[0]
+                    if not _ms9:
+                        continue
+                    _st9 = (_ms9.get("details") or {}).get("status")
+                    if _st9 in (None, "not_started"):
+                        continue
+                    _sd9 = _ms9.get("start_date")
+                    try:
+                        _ep9 = datetime.fromisoformat(
+                            (_sd9 or "").replace("Z", "+00:00")).timestamp()
+                    except Exception:
+                        _ep9 = None
+                    # age window (boot on stale events must not mass-fire;
+                    # same bound as tape_flow/price_divergence) + distrust
+                    # a "started" status whose start sits in the future
+                    if _ep9 and (now - _ep9) > 6 * 3600:
+                        continue
+                    if _ep9 and (_ep9 - now) > 300:
+                        continue
+                    self.__dict__.setdefault(
+                        "_official_bell", {})[et] = _ep9
+                    self._gun_stamp(et, "milestone_official", {
+                        "ms_status": _st9,
+                        "official_start": _sd9,
+                        "official_start_ep": _ep9,
+                        "official_lag_sec": (round(now - _ep9, 1)
+                                             if _ep9 else None),
+                        "source_id": (_ms9.get("source_id")
+                                      or (_ms9.get("source_ids") or {})
+                                      .get("source_3_id"))})
         # ---- [C-REALITY-BELL Part 2] bell-coverage invariant: a tracked
         # event with exposure whose anchored start passed >10 min ago MUST
         # carry a bell (gun or fallback) -- else bell_missing, once per
@@ -10861,7 +10925,7 @@ class LiveV3:
                 _d = {"event": pos.event_ticker,
                       "grace_sec": (int(self.config.get(
                           "tape_flow_grace_sec", 60))
-                          if _gsrc0 == "tape_flow"
+                          if _gsrc0 in ("tape_flow", "milestone_official")
                           else self.match_live_grace_sec),
                       "gun_source": _gsrc0}
                 if _sfw is not None:

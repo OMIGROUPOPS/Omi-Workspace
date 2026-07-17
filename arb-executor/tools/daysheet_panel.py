@@ -68,7 +68,8 @@ FIXTURE_PATH = os.environ.get("DAYSHEET_FIXTURE")
 
 # gun sources that are live evidence vs fitted/fallback estimates
 LIVE_BELL_SOURCES = {"te_scoreboard", "tape_latch", "tape_flow",
-                     "schedule_live", "self_fill"}
+                     "schedule_live", "self_fill",
+                     "milestone_official"}
 
 
 def _q(sql, args=()):

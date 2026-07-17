@@ -143,5 +143,7 @@
   "sizing_live": false,
   "sizing_drawdown_floor_cents": -1500,
   "early_chall_window_enabled": true,
-  "flow_gauge_rest_seed": true
+  "flow_gauge_rest_seed": true,
+  "milestone_gun_enabled": true,
+  "milestone_gun_poll_sec": 90
 }

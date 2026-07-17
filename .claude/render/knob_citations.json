@@ -273,5 +273,15 @@
   "DECREED",
   "PAIR-PRIORITY ENFORCEMENT 07-16 late night (operator, Vault Priority 1 verbatim: both legs rest from conception, never skip a leg on a projected combined; seesaw stays as scoreboard)",
   "L4"
+ ],
+ "pair_invariant_enabled": [
+  "DECREED",
+  "C-SHELF-CONSOLIDATION Part 0 07-17 (operator: pair-completeness invariant \u2014 every conceived game = 2 resting-or-refused-named bids, checked every cycle; violation = DEFECT ping; the alarm that makes the half-drop impossible to return quietly)",
+  "L4"
+ ],
+ "notify_script": [
+  "DECREED",
+  "C-SHELF-CONSOLIDATION Part 0 07-17 (phone ping channel; the standing /root/notify.sh BOT_DOWN channel)",
+  "L4"
  ]
 }

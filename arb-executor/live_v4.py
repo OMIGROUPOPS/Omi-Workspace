@@ -1955,7 +1955,23 @@ class LiveV3:
                 "paper_state_max_age_sec": self.config.get("paper_state_max_age_sec", 86400),
             })
 
+    # [C-SHELF-CONSOLIDATION Part 0, 07-17] the refusal-by-name registry:
+    # every NAMED refusal a leg receives this boot, banked at the single
+    # log chokepoint — the pair-completeness invariant reads it (a leg is
+    # lawfully absent only if refused BY NAME, filled, resting, or the
+    # event gunned).
+    _REFUSAL_NAMED_EVENTS = frozenset((
+        "below_leg_floor_refused", "no_path_page_refused",
+        "below_discovery_floor_refused", "corridor_refused_w1_preference",
+        "selector_drop_refused", "gun_buy_refused",
+        "conception_horizon_refused", "pair_seesaw_refused",
+        "chase_cap_refused", "cycle_cap_refused",
+        "aim_unresolved_refused", "refused_gun_fired", "skipped"))
+
     def _log(self, event, details=None, ticker=""):
+        if ticker and event in self._REFUSAL_NAMED_EVENTS:
+            self.__dict__.setdefault("_refusal_named", {})[ticker] = (
+                event, time.time())
         # [C-CYCLE-CAP 2026-07-09, operator ruling] cycle-stamp every fill/
         # exit/scalp row at the single emitter so LEDGER GRADES NEVER BLEND
         # CYCLES: cycle N = completed cycles on this leg + 1 (the cycle the
@@ -12858,6 +12874,53 @@ class LiveV3:
                             row["FAIL"] = (row.get("FAIL", "")
                                            + "+fingerprint_untracked").lstrip("+")
             table.append(row)
+        # [C-SHELF-CONSOLIDATION Part 0, 07-17 — THE PAIR-COMPLETENESS
+        # INVARIANT (operator: "the alarm that makes the half-drop
+        # impossible to return quietly")] every conceived, un-gunned game
+        # = 2 resting-or-refused-NAMED bids, checked every audit cycle.
+        # One leg resting/filled with the sibling neither resting, nor
+        # filled, nor refused by name = DEFECT: pair_incomplete_violation
+        # + phone ping, once per event per boot. A FLAG, never an audit
+        # FAIL (no conception halt — the OVER-BROAD LOCK lesson).
+        if self.config.get("pair_invariant_enabled", True):
+            _named0 = getattr(self, "_refusal_named", {}) or {}
+            _pinged0 = self.__dict__.setdefault(
+                "_pair_incomplete_pinged", set())
+            for _et0, _tks0 in list(self.event_tickers.items()):
+                if len(_tks0) < 2 or _et0 in getattr(self,
+                                                     "_gun_state", {}):
+                    continue
+                _st0 = {}
+                for _tk0 in _tks0:
+                    _st0[_tk0] = ("filled" if _tk0 in self.positions else
+                                  "resting" if buys.get(_tk0) else
+                                  "refused_named" if _tk0 in _named0 else
+                                  "absent")
+                _vals0 = set(_st0.values())
+                if not ({"resting", "filled"} & _vals0) \
+                        or "absent" not in _vals0:
+                    continue
+                _row0 = {"event": _et0,
+                         "legs": {t.rsplit("-", 1)[-1]: s
+                                  for t, s in _st0.items()}}
+                flags.append({"tk": next(t for t, s in _st0.items()
+                                         if s == "absent"),
+                              "check": "pair_incomplete", **_row0})
+                if _et0 not in _pinged0:
+                    _pinged0.add(_et0)
+                    self._log("pair_incomplete_violation", _row0)
+                    _ns0 = self.config.get("notify_script",
+                                           "/root/notify.sh")
+                    try:
+                        import subprocess as _sp0
+                        if Path(_ns0).exists():
+                            _sp0.Popen(
+                                [_ns0, "warn", "PAIR INCOMPLETE",
+                                 "%s: %s" % (_et0.split("-", 1)[-1],
+                                             json.dumps(_row0["legs"]))],
+                                stdout=_sp0.DEVNULL, stderr=_sp0.DEVNULL)
+                    except Exception:
+                        pass
         verdict = "PASS" if not failures else "FAIL"
         self._log("post_boot_audit", {
             "context": context, "verdict": verdict,

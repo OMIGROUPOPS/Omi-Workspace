@@ -1024,7 +1024,39 @@ def main():
                 _iw_arm += 1
             elif '"index_wiring_missing"' in line:
                 _iw_miss += 1
+        # [C-SHELF-CONSOLIDATION Part 3, 07-17 — THE SHELF METER,
+        # permanent organ: the machine says out loud, every night, what
+        # it built and isn't using. Reads the OPEN_LEDGER's
+        # [SHELF: kind | name | dollars] tags; THIS LINE NEVER COMES
+        # OUT. Dollars render verbatim per item (heterogeneous units are
+        # never summed into a fiction).]
+        _sh_items = []
+        _sh_line = "SHELF — meter unreadable (OPEN_LEDGER parse failed)"
+        try:
+            import re as _re9
+            _shp = ROOT.parent / "truth" / "OPEN_LEDGER.md"
+            for _m9 in _re9.finditer(r"\[SHELF:\s*([^\]]+)\]",
+                                     _shp.read_text(encoding="utf-8",
+                                                    errors="replace")):
+                _p9 = [x.strip() for x in _m9.group(1).split("|")]
+                while len(_p9) < 3:
+                    _p9.append("?")
+                _sh_items.append(_p9)
+            _dark9 = [p for p in _sh_items if p[0] == "dark"]
+            _ready9 = [p for p in _sh_items if p[0] == "gate-pass"]
+            _sh_line = ("SHELF — dark %d · dollars dark: %s · "
+                        "gate-passes awaiting word: [%s]"
+                        % (len(_dark9),
+                           ("; ".join("%s %s" % (p[1], p[2])
+                                      for p in _dark9) or "none"),
+                           (", ".join("%s (%s)" % (p[1], p[2])
+                                      for p in _ready9) or "none")))
+        except Exception as _she:
+            _sh_line += " — %s" % str(_she)[:60]
+        L += ["", "## " + _sh_line]
         _census = [
+            ("SHELF_meter", bool(_sh_items),
+             "%d shelf tags read from the OPEN_LEDGER" % len(_sh_items)),
             ("OT_wiring", _iw_miss == 0 and _iw_arm > 0,
              "%d wirings armed / %d missing" % (_iw_arm, _iw_miss)),
             ("TS_render", _ts_ok, _ts_det),

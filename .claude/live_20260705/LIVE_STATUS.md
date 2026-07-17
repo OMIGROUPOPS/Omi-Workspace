@@ -1,8 +1,8 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 125 @ **2026-07-16 11:18:52 PM ET** | build `394037e0` | session boot 07-16 22:21 ET | log `live_v3_20260716.jsonl` | 3937 session events | monitor READ-ONLY
+- cycle 126 @ **2026-07-16 11:29:04 PM ET** | build `98a83011` | session boot 07-16 22:21 ET | log `live_v3_20260716.jsonl` | 4284 session events | monitor READ-ONLY
 
-## ⚠ GUN FEED: last new in-play sighting 245 min ago (>30 tripwire; source observed_starts.db)
+## ⚠ GUN FEED: last new in-play sighting 256 min ago (>30 tripwire; source observed_starts.db)
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
 - placed:path_aim UL17BOJKON-KON aim=38 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_cohort:SHAD,window_phase:CONS,ca
@@ -32,7 +32,7 @@ no tracked games
 
 ## PATTERNS (sub-B) — 2
 - reality_divergence: KXITFMATCH-26JUL16ALHYAZ-YAZ {"kind": "resting_bid", "ref": 18.0, "market_mid": 55.0, "divergence": -37.0}
-- reality_divergence: KXITFMATCH-26JUL16ALHYAZ-YAZ {"kind": "resting_bid", "ref": 18.0, "market_mid": 69.5, "divergence": -51.5, "emitted_et": "2026-07-16 11:18:52 PM ET"}
+- reality_divergence: KXITFMATCH-26JUL16ALHYAZ-YAZ {"kind": "resting_bid", "ref": 18.0, "market_mid": 69.5, "divergence": -51.5}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

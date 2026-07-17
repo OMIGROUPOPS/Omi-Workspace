@@ -236,7 +236,9 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
   <div class="topbar">
     <span class="clock" id="etclock">--:--:-- PM<span class="tz">ET</span></span>
     <span class="sep">|</span>
-    <span class="age">tape <b id="tapeage">--</b> ago</span>
+    <span class="age">last fill <b id="tapeage">--</b> ago</span>
+    <span class="sep">|</span>
+    <span class="age">recorder <b id="recage">--</b> <span id="recstate"></span></span>
   </div>
 
   <div class="tabs">
@@ -563,13 +565,31 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
     }).join('');
   }
 
+  function fmtAge(s){
+    s = Math.round(s);
+    if(s < 120) return s + 's';
+    if(s < 7200) return Math.round(s/60) + 'm';
+    return (s/3600).toFixed(1) + 'h';
+  }
   async function loadTapeAge(){
     try{
       const r = await fetch(withTok('/api/positions.json'));
-      // tape-age comes bundled server-side into a dedicated header via
-      // response header for simplicity here rather than a 5th endpoint
+      // last-fill age grows lawfully on a quiet book; RECORDER age is
+      // the feed-liveness alarm (>300s = STALE, loud, never silent)
       const age = r.headers.get('X-Tape-Age-Seconds');
-      document.getElementById('tapeage').textContent = age ? Math.round(age) + 's' : '—';
+      const rec = r.headers.get('X-Recorder-Age-Seconds');
+      document.getElementById('tapeage').textContent = age ? fmtAge(age) : '—';
+      const recEl = document.getElementById('recage');
+      const st = document.getElementById('recstate');
+      if(rec){
+        recEl.textContent = fmtAge(rec);
+        const stale = Number(rec) > 300;
+        st.innerHTML = stale ? '<span class="loss">FEED STALE — not serving fresh truth</span>'
+                             : '<span class="win">OK</span>';
+      } else {
+        recEl.textContent = '—';
+        st.innerHTML = '<span class="loss">NO HEARTBEAT</span>';
+      }
     }catch(e){}
   }
 

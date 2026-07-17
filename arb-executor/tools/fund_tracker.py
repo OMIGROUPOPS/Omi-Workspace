@@ -475,11 +475,17 @@ class H(BaseHTTPRequestHandler):
             self._send(DAYSHEET_PAGE, "text/html; charset=utf-8")
             return
         if u.path == "/api/positions.json":
+            # two honest ages (07-16 stale-render catch): last-fill age
+            # grows lawfully on a quiet book; RECORDER age is the
+            # feed-liveness signal the panel must alarm on.
             age = ds.tape_age_seconds()
+            rec = ds.recorder_age_seconds()
             self._send(json.dumps(ds.build_positions()),
                        "application/json",
                        {"X-Tape-Age-Seconds": ("%.0f" % age)
-                        if age is not None else ""})
+                        if age is not None else "",
+                        "X-Recorder-Age-Seconds": ("%.0f" % rec)
+                        if rec is not None else ""})
             return
         if u.path == "/api/orders.json":
             self._send(json.dumps(ds.build_orders()), "application/json")

@@ -1060,6 +1060,11 @@ def build_tape(ticker):
 
 
 def tape_age_seconds():
+    """Age of OUR LAST PORTFOLIO FILL — lawfully grows for hours on a
+    quiet book. NOT a feed-liveness signal (the 07-16 9:26 PM catch:
+    8,846s here read as a dead feed when the recorder was 70s fresh
+    and the book simply quiet). Render it as 'last fill', never as
+    'tape'."""
     if FIXTURE_PATH:
         try:
             fx = json.loads(Path(FIXTURE_PATH).read_text())
@@ -1067,6 +1072,18 @@ def tape_age_seconds():
         except Exception:
             return 0
     row = _q("SELECT MAX(ts) FROM fills")
+    if not row or not row[0][0]:
+        return None
+    return time.time() - row[0][0]
+
+
+def recorder_age_seconds():
+    """The ACTUAL feed-liveness signal: age of the recorder's last
+    equity heartbeat (written every poll cycle). >300s = the feed is
+    genuinely stale and the panel must say so loudly."""
+    if FIXTURE_PATH:
+        return 30
+    row = _q("SELECT MAX(ts) FROM equity")
     if not row or not row[0][0]:
         return None
     return time.time() - row[0][0]

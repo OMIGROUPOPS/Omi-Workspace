@@ -1,7 +1,7 @@
-# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784287905 -->
-written 2026-07-17 07:41:06 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — flatten_leash — LIVE DEFECT (>=2 in 60min)  <!-- 1784288932 -->
+written 2026-07-17 07:51:23 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (25 total this session)
+## Events (27 total this session)
 - 03:28:57 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 03:40:09 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
 - 03:52:15 KXATPCHALLENGERMATCH-26JUL17GALCOP-COP — flatten DEFERRED: ev -0.65 above margin floor -3.0
@@ -27,6 +27,8 @@ written 2026-07-17 07:41:06 AM ET by live_validation_loop (read-only). Patch con
 - 07:21:47 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
 - 07:26:42 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
 - 07:31:45 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
+- 07:42:08 KXWTAMATCH-26JUL17OLIBUR-BUR — flatten DEFERRED: ev -0.81 above margin floor -3.0
+- 07:48:52 KXATPMATCH-26JUL17CERRUU-CER — flatten DEFERRED: ev -2.74 above margin floor -3.0
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-17 01:06:30 AM ET", "ts_epoch": 1784264790.667849, "event": "tape_seed_live_confirm", "ticker": "KXWTAMATCH-26JUL17OLIBUR-BUR", "details": {"seed_price": 45, "live_price": 45, "delta": 0, "seed_age_sec": 1238.8}}
@@ -495,6 +497,10 @@ written 2026-07-17 07:41:06 AM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-17 07:31:45 AM ET", "ts_epoch": 1784287905.7429793, "event": "completion_flatten_deferred", "ticker": "KXWTAMATCH-26JUL17OLIBUR-BUR", "details": {"event": "KXWTAMATCH-26JUL17OLIBUR", "ev_cents": -0.81, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
     {"ts": "2026-07-17 07:36:43 AM ET", "ts_epoch": 1784288203.0504558, "event": "completion_shadow", "ticker": "KXATPMATCH-26JUL17CERRUU-CER", "details": {"verdict": "NO-OPINION", "kept": {"opinion": "NO-OPINION", "cell": "ATP_MAIN|underdog|disc|le25", "missing": "range cell empty/thin (n=4)"}, "cross": {"opinion": "EV", "cell": "ATP_MAIN|leader|at_mid|51_75", "n": 28, "p_exit_fill": 0.75, "p_ride_ze
     {"ts": "2026-07-17 07:39:47 AM ET", "ts_epoch": 1784288387.8227384, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 4, "n_resting_orders": 28, "n_failures": 0, "n_flags": 2, "failures": [], "flags": [{"tk": "KXWTAMATCH-26JUL17KREZHE-ZHE", "check": "pair_incomplete", "event": "KXWTAMATCH-26JUL17KREZHE", "legs": {"ZHE": "absent", "
+    {"ts": "2026-07-17 07:42:08 AM ET", "ts_epoch": 1784288528.0630577, "event": "completion_shadow", "ticker": "KXWTAMATCH-26JUL17OLIBUR-BUR", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "WTA_MAIN|underdog|at_mid|26_50", "n": 27, "p_exit_fill": 0.815, "p_ride_zero": 0.185, "ev_cents": -0.81, "band": 9, "basis": 44, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE
+    {"ts": "2026-07-17 07:42:08 AM ET", "ts_epoch": 1784288528.0633047, "event": "completion_flatten_deferred", "ticker": "KXWTAMATCH-26JUL17OLIBUR-BUR", "details": {"event": "KXWTAMATCH-26JUL17OLIBUR", "ev_cents": -0.81, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
+    {"ts": "2026-07-17 07:48:52 AM ET", "ts_epoch": 1784288932.9715436, "event": "completion_shadow", "ticker": "KXATPMATCH-26JUL17CERRUU-CER", "details": {"verdict": "flatten_kept", "kept": {"opinion": "EV", "cell": "ATP_MAIN|underdog|at_mid|le25", "n": 23, "p_exit_fill": 0.696, "p_ride_zero": 0.304, "ev_cents": -2.74, "band": 7, "basis": 25, "win_ride_residual_excluded": 0.0, "citation": "M15 RANGE_
+    {"ts": "2026-07-17 07:48:52 AM ET", "ts_epoch": 1784288932.9871764, "event": "completion_flatten_deferred", "ticker": "KXATPMATCH-26JUL17CERRUU-CER", "details": {"event": "KXATPMATCH-26JUL17CERRUU", "ev_cents": -2.74, "margin_floor": -3.0, "reason": "ev_within_noise_margin (graded deltas straddle zero below 3c)"}}
 
 ## Code path
 ?

@@ -1,13 +1,15 @@
-# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784304952 -->
-written 2026-07-17 12:21:55 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — taker_capped — LIVE DEFECT (>=2 in 60min)  <!-- 1784305583 -->
+written 2026-07-17 12:32:22 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (6 total this session)
+## Events (8 total this session)
 - 11:38:09 KXATPMATCH-26JUL17BURMER-MER — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 11:50:47 KXATPMATCH-26JUL17BURMER-MER — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 11:53:12 KXATPCHALLENGERMATCH-26JUL17SEKCAS-SEK — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 12:04:06 KXATPCHALLENGERMATCH-26JUL17SEKCAS-SEK — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 12:15:51 KXATPCHALLENGERMATCH-26JUL17SEKCAS-SEK — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 - 12:15:52 KXWTAMATCH-26JUL17PARSAK-PAR — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 12:26:08 KXATPCHALLENGERMATCH-26JUL17SEKCAS-SEK — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
+- 12:26:23 KXWTAMATCH-26JUL17PARSAK-PAR — taker verdict DEFERRED at daily cap 3 (3 today; sunset n>=30 graded)
 
 ## Timeline (raw log lines for the burst pair)
     {"ts": "2026-07-17 01:06:57 AM ET", "ts_epoch": 1784264817.3586555, "event": "tape_seed_live_confirm", "ticker": "KXWTAMATCH-26JUL17PARSAK-PAR", "details": {"seed_price": 24, "live_price": 25, "delta": 1, "seed_age_sec": 262.9}}
@@ -275,6 +277,11 @@ written 2026-07-17 12:21:55 PM ET by live_validation_loop (read-only). Patch con
     {"ts": "2026-07-17 12:15:51 PM ET", "ts_epoch": 1784304951.7140458, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL17SEKCAS-SEK", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17SEKCAS", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
     {"ts": "2026-07-17 12:15:52 PM ET", "ts_epoch": 1784304952.9779203, "event": "completion_shadow", "ticker": "KXWTAMATCH-26JUL17PARSAK-PAR", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "WTA_MAIN|underdog|at_mid|le25", "n": 11, "p_exit_fill": 0.727, "p_ride_zero": 0.273, "ev_cents": -1.91, "band": 6, "basis": 23, "win_ride_residual_excluded": 0.0, "citation": "M15 RANG
     {"ts": "2026-07-17 12:15:52 PM ET", "ts_epoch": 1784304952.9782274, "event": "completion_taker_capped", "ticker": "KXWTAMATCH-26JUL17PARSAK-PAR", "details": {"event": "KXWTAMATCH-26JUL17PARSAK", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-17 12:26:07 PM ET", "ts_epoch": 1784305567.0309982, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 3, "n_resting_orders": 22, "n_failures": 0, "n_flags": 2, "failures": [], "flags": [{"tk": "KXWTAMATCH-26JUL17TAUBEJ-BEJ", "check": "pair_incomplete", "event": "KXWTAMATCH-26JUL17TAUBEJ", "legs": {"TAU": "filled", "
+    {"ts": "2026-07-17 12:26:08 PM ET", "ts_epoch": 1784305568.29039, "event": "completion_shadow", "ticker": "KXATPCHALLENGERMATCH-26JUL17SEKCAS-SEK", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "ATP_CHALL|underdog|at_mid|26_50", "n": 75, "p_exit_fill": 0.773, "p_ride_zero": 0.227, "ev_cents": -2.43, "band": 8, "basis": 38, "win_ride_residual_excluded": 0.0, "citation":
+    {"ts": "2026-07-17 12:26:08 PM ET", "ts_epoch": 1784305568.300944, "event": "completion_taker_capped", "ticker": "KXATPCHALLENGERMATCH-26JUL17SEKCAS-SEK", "details": {"event": "KXATPCHALLENGERMATCH-26JUL17SEKCAS", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
+    {"ts": "2026-07-17 12:26:23 PM ET", "ts_epoch": 1784305583.3657935, "event": "completion_shadow", "ticker": "KXWTAMATCH-26JUL17PARSAK-PAR", "details": {"verdict": "taker_complete", "kept": {"opinion": "EV", "cell": "WTA_MAIN|underdog|at_mid|le25", "n": 11, "p_exit_fill": 0.727, "p_ride_zero": 0.273, "ev_cents": -1.91, "band": 6, "basis": 23, "win_ride_residual_excluded": 0.0, "citation": "M15 RANG
+    {"ts": "2026-07-17 12:26:23 PM ET", "ts_epoch": 1784305583.3661811, "event": "completion_taker_capped", "ticker": "KXWTAMATCH-26JUL17PARSAK-PAR", "details": {"event": "KXWTAMATCH-26JUL17PARSAK", "verdict": "taker_complete", "cap": 3, "taker_actions_today": 3, "sunset": "n>=30 graded shadow+live taker verdicts"}}
 
 ## Code path
 ?

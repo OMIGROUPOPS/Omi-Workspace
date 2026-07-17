@@ -355,7 +355,7 @@ def _log_scan():
             return _bells_mem
         _bells_mem["checked"] = now
         days = [(datetime.now(ET) - timedelta(days=n)).strftime("%Y%m%d")
-                for n in (1, 0)]
+                for n in (2, 1, 0)]  # day-2: schedule_match anchors log at first sight
         changed = False
         for d in days:
             p = LOG_DIR / ("live_v3_%s.jsonl" % d)

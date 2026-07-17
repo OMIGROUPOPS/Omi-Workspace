@@ -984,15 +984,21 @@ def build_closed(day=None):
                     else "no tape" if win.get("state") != "ok"
                     else "window unclassifiable"))
                 leg_grade = None
-            # RE-GRADE (corridor law part 4): an F whose only charge was
-            # post-bell by an EST bell earlier than sched dissolves when
-            # the clamped clock says the fill was NOT W2.
+            # RE-GRADE, same rubric both directions (C-OFFICIAL-BELL):
+            # an F whose only charge was post-bell by a clock the
+            # official record refutes is EXONERATED; a non-F on a fill
+            # the official/observed clock places in W2 is CONVICTED FOR
+            # REAL (the engine's stamp missed it).
             grade_was = None
             if (leg_grade and leg_grade.startswith("F")
                     and fill_window in ("W1", "CORR")):
                 grade_was = leg_grade
                 leg_grade = ("A" if (realized_c or 0) > 0 else
                              "B" if realized_c in (0, None) else "C")
+            elif (leg_grade and not leg_grade.startswith("F")
+                    and fill_window == "W2"):
+                grade_was = leg_grade
+                leg_grade = "F(W2)"
             if leg_grade:
                 leg_grades.append(re.sub(r"\(.*\)", "", leg_grade))
             game_out["legs"].append({

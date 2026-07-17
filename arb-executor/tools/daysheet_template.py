@@ -527,8 +527,10 @@ PAGE_TEMPLATE = r"""<!DOCTYPE html>
         const entryLine = l.filled_et
           ? '<div class="exitline"><span class="lbl">entry</span> placed <span class="no-bell">— (no source: schema gap)</span> → filled <b>' + esc(l.filled_et) + '</b>' +
             (l.fill_window ? ' <span class="lbl">[' + esc(l.fill_window) + ']</span>' : ' <span class="no-bell">[window unclassifiable]</span>') +
-            (l.grade_was ? ' <span class="win">exonerated: fill pre-' + ((l.win && l.win.fp && l.win.fp.badge === 'OFFICIAL') ? 'official-start' : 'first-point') + ' (was ' + esc(l.grade_was) + ')</span>' : '') +
-            (((l.grade || '').indexOf('F') === 0 && l.fill_window === 'W2' && l.win && l.win.fp && l.win.fp.badge === 'OFFICIAL') ? ' <span class="loss">convicted vs official bell</span>' : '') +
+            (l.grade_was ? (l.grade_was.indexOf('F') === 0
+              ? ' <span class="win">exonerated: fill pre-' + ((l.win && l.win.fp && l.win.fp.badge === 'OFFICIAL') ? 'official-start' : 'first-point') + ' (was ' + esc(l.grade_was) + ')</span>'
+              : ' <span class="loss">convicted vs ' + ((l.win && l.win.fp && l.win.fp.badge === 'OFFICIAL') ? 'official bell' : 'observed first point') + ' (was ' + esc(l.grade_was) + ')</span>') : '') +
+            ((!l.grade_was && (l.grade || '').indexOf('F') === 0 && l.fill_window === 'W2' && l.win && l.win.fp && l.win.fp.badge === 'OFFICIAL') ? ' <span class="loss">convicted vs official bell</span>' : '') +
             (l.grade_note ? ' <span class="loss">' + esc(l.grade_note) + '</span>' : '') +
             '</div>'
           : '';

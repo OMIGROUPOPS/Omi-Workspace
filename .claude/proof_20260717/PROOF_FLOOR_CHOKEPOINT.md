@@ -1,5 +1,5 @@
 # OUTCOME PROOF — P3 FLOOR-AT-CONCEPTION (pair-level, all phases)
-Proven SHA: **SHAPLACE**
+Proven SHA: **7760cc5f**
 Operator word (07-17, verbatim): "The discovery floor moves to the single conception chokepoint every entry passes: every ITF event consults lifetime volume at conception; below floor = the EVENT is refused — both legs, one pair-level refusal, below_discovery_floor_refused with the volume seen — regardless of phase. Corridor and fallback checks remain as second doors. The number stays 1,500 — the operator's floor, untouched."
 Prior art (C45): C-DISCOVERY-FLOOR v1 07-15 (the number + the corridor site; ALHVUX exhibit) · SITE-SCOPED LAW class (founded this push: the corridor-only site is instance 3) · never-wake probe (sub-floor ITF = −$76.66/wk, the dollars behind the law).
 
@@ -13,4 +13,4 @@ Census since 07-15 (`.claude/floor_20260717/FLOOR_BYPASS_CENSUS.txt`, method in 
 - One pair-level log per event per boot (dedup set), the refusal returns the same `_error` shape as the sibling gates.
 
 ## Gate
-lint + smoke via deploy/deploy_gate.sh (this file is OUTCOME_PROOF; OUTCOME_PROOF_SHA=SHAPLACE).
+lint + smoke via deploy/deploy_gate.sh (this file is OUTCOME_PROOF; OUTCOME_PROOF_SHA=7760cc5f).

@@ -1,5 +1,5 @@
 # OUTCOME PROOF — C-MILESTONE-GUN v1 (gun source 9: milestone_official)
-Proven SHA: **602b04c5** (live_v4.py + deploy_v5_live.json + knob citations)
+Proven SHA: **7abffa6d** (live_v4.py + deploy_v5_live.json + knob citations)
 Operator word: **decision ⑯ = YES** (dispatch 07-16, verbatim: "MILESTONE GUN, ARMED (operator word given: ⑯ = YES)").
 Prior art (C45): decision ⑯ evidence chain — C-CORRIDOR-TRUTH part 6 investigation (status vocabulary + Sportradar second-precision start_date) → C-MILESTONE-SHADOW (*/15 shadow, three-clock table, first medians ms−fp +7.8 min) → C-OFFICIAL-BELL regrade (16 fills convicted that the estimate clocks missed).
 
@@ -17,4 +17,4 @@ Convicted-fill tie-back: today's official-bell regrade convicted 16 fills that l
 - 429 budget: one public GET per UN-GUNNED tracked event per 90s (`milestone_gun_poll_sec`), transient errors log once/hour and retry next cadence; the */15 shadow cron continues unchanged so the nightly three-clock table proves the arming honest.
 
 ## Gate
-lint + smoke via deploy/deploy_gate.sh (this file is OUTCOME_PROOF; OUTCOME_PROOF_SHA=602b04c5).
+lint + smoke via deploy/deploy_gate.sh (this file is OUTCOME_PROOF; OUTCOME_PROOF_SHA=7abffa6d).

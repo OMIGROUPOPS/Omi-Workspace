@@ -1,12 +1,12 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 254 @ **2026-07-17 09:33:51 PM ET** | build `8c88beb2` | session boot 07-17 20:26 ET | log `live_v3_20260717.jsonl` | 6308 session events | monitor READ-ONLY
+- cycle 255 @ **2026-07-17 09:44:16 PM ET** | build `262e64db` | session boot 07-17 20:26 ET | log `live_v3_20260717.jsonl` | 6737 session events | monitor READ-ONLY
 
-## ⚠ GUN FEED: last new in-play sighting 81 min ago (>30 tripwire; source observed_starts.db)
+## ⚠ GUN FEED: last new in-play sighting 91 min ago (>30 tripwire; source observed_starts.db)
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
-- refused:no_path_page UL18DOTROJ-ROJ aim=None | atlas_page:CONS,contention_s:CONS,pair_state:NOT-,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
 - refused:pair_seesaw UL18HONTHA-HON aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
+- refused:no_path_page UL18DOTROJ-ROJ aim=None | atlas_page:CONS,contention_s:CONS,pair_state:NOT-,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
 - refused:pair_seesaw UL18HONTHA-HON aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
 - refused:no_path_page UL18DOTROJ-ROJ aim=None | atlas_page:CONS,contention_s:CONS,pair_state:NOT-,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
 
@@ -107,8 +107,6 @@ clean overnight — no watch fires
 | 21:32:52 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
 | 21:32:59 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
 
-**LIVE DEFECT(S) — forensic blocks written: FORENSIC_chase_cap.md**
-
 ## FILLS — 0 graded (session)
 none yet this session
 
@@ -116,14 +114,14 @@ none yet this session
 - classes now: {'FLOW_ABOVE': 3, 'NO_FLOW': 5} | repriceable now: true 3 / false 5 | **cumulative bid_grade lines: 12615 (repriceable true 1659 / false 10956)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ITFMATCH-26JUL18AGIOVC-AGI | 22 | 60m | 4/23-23/40 | 22-23 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→23 |
-| ITFMATCH-26JUL18AGIOVC-OVC | 76 | 61m | 1/79-79/1 | 76-79 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→79 |
-| ITFMATCH-26JUL18TORKHO-TOR | 46 | 2m | 0 | 46-50 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL18BASKRA-K | 64 | 3m | 0 | 66-67 | — | **NO_FLOW** | 99 |  |
-| WTAMATCH-26JUL18BANGAO-BAN | 34 | 33m | 0 | 37-38 | — | **NO_FLOW** | 99 |  |
-| WTAMATCH-26JUL18BANGAO-GAO | 57 | 28m | 0 | 62-63 | — | **NO_FLOW** | 99 |  |
-| WTAMATCH-26JUL18HONTHA-THA | 17 | 33m | 1/20-20/2 | 20-21 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→20 |
-| WTAMATCH-26JUL18MICFRU-FRU | 70 | 18m | 0 | 74-76 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL18AGIOVC-AGI | 22 | 71m | 4/23-23/40 | 22-23 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→23 |
+| ITFMATCH-26JUL18AGIOVC-OVC | 76 | 72m | 1/79-79/1 | 76-79 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→79 |
+| ITFMATCH-26JUL18TORKHO-TOR | 46 | 12m | 0 | 46-50 | — | **NO_FLOW** | 99 |  |
+| WTACHALLENGERMATCH-26JUL18BASKRA-K | 64 | 14m | 0 | 66-67 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL18BANGAO-BAN | 34 | 43m | 0 | 37-38 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL18BANGAO-GAO | 57 | 39m | 0 | 62-63 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL18HONTHA-THA | 17 | 43m | 1/20-20/2 | 20-21 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→20 |
+| WTAMATCH-26JUL18MICFRU-FRU | 70 | 28m | 0 | 74-76 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 no open half-pairs
@@ -132,10 +130,10 @@ no open half-pairs
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
 | ITFMATCH-26JUL18AGIOVC | ITF_M | 0.167 | 1 | **WAKING** |
-| ITFMATCH-26JUL18TORKHO | ITF_M | 0.2 | 4 | **WAKING** |
+| ITFMATCH-26JUL18TORKHO | ITF_M | 0.0 | 4 | **WAKING** |
 | WTACHALLENGERMATCH-26JUL18BASKRA | WTA_CHALL | 0.033 | 1 | **WAKING** |
 | WTAMATCH-26JUL18BANGAO | WTA_MAIN | 0.0 | 1 | **WAKING** |
-| WTAMATCH-26JUL18HONTHA | WTA_MAIN | 0.033 | 1 | **WAKING** |
+| WTAMATCH-26JUL18HONTHA | WTA_MAIN | 0.0 | 1 | **WAKING** |
 | WTAMATCH-26JUL18MICFRU | WTA_MAIN | 0.033 | 2 | **WAKING** |
 
 ## PATTERNS (sub-B) — 2

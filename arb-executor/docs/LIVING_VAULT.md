@@ -134,6 +134,17 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-17 · DISPATCH 2 PHASE B — THE RANGE SPECTRUM (operator's design, core build) + THE COHORT SURFACE SEEDED
+
+**Prior art (C45):** Phase A corrected table (the right edges consumed here). W1 LIBRARY 07-14 (cohort library shadow — superseded by this build). PAIR-STORY/atlas corpora (the lying-clock fits this replaces). Delta: ranges as PAIRED objects with full tick series and journey vectors, per-cat hard partition, honest edges.
+
+**THE SPECTRUM** — `state/range_spectrum_v1.jsonl`, **12,170 legs / 6,051 pairs** on the re-cut (post 104-event official-tier promotion): ATP_CHALL 6,008 · ATP_MAIN 2,111 · WTA_MAIN 2,109 · WTA_CHALL 1,423 · ITF 519 (recent-era; the pre-Jul-11 ITF archive died in disk-hygiene — counted, never padded). Each pair ONE object: anchors with named stale-anchor rules (`last_before_t8` / `first_after_t8` / `never_traded`), full bid/ask/traded tick series through the corridor, journey vectors (shape grind/dip_recover/late_collapse/flat + low & timing · volume texture · spread regime · wake profile) and the sibling mirror (seesaw corr). Source caveat named: volume texture is per-source; the hard partition prevents cross-source pooling by construction. Queryable: `analysis/spectrum_query.py` (--stats = cohort distributions, thin says thin). Machinery: `range_spectrum_build.py` + `range_spectrum_itf.py` + `promote_and_recut.sh`.
+
+**ACCEPTANCE WALK — BUCKRU (today, in the census doc):** KRU anchor 88 GRINDS +4 (low 86 @T−6.4h) while BUC anchor 17 LATE-COLLAPSES −11 into the bell (low at the edge); seesaw corr −0.212; edge = tick-onset 28s after honest sched. One story, never two orphans.
+
+**THE COHORT SURFACE SEEDED (Phase C's engine):** 42 cells, 16 thin-honest. **FITTED PER-CAT WALK RATES (P0v3-3b fulfilled): mains/CHALL ≈ 1.0–1.16¢/30min — the constant VINDICATED by its own evidence there; ITF fitted 0.56–0.81¢ vs the 14–20¢ honest-anchor caps — the real fiction named.** KINSHIP: NO-BORROW both ITF cats (tolerance receipt refused it; self-executing, no ceremony).
+
+
 ### 2026-07-17 · P0 COMPLETION-DISARM — BOTH TAKER BRANCHES DEAD · THE CONSENT LAW · THE HANDS TABLE FOUNDED · THE COUNTERFACTUAL CENSUS · PROBE + EXPIRATION RECEIPTS
 
 **Prior art (C45):** C-COMPLETION-LIVE 07-12 (the arming now reclassified), RULING_PAIR_ECONOMICS 07-11 (the shadow build), the 07-13 grading study (−$0.264/leg vs ride, N=36), FLATTEN CENSUS 07-15 (the frame conviction), C-COMPLETE-CROSS (staged flag). Delta: the branches die, the consent class closes, the hands get a permanent public table.

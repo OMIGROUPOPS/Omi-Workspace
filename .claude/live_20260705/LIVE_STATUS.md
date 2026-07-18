@@ -1,14 +1,14 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 245 @ **2026-07-17 07:59:46 PM ET** | build `8e2bd686` | session boot 07-17 15:16 ET | log `live_v3_20260717.jsonl` | 13843 session events | monitor READ-ONLY
+- cycle 246 @ **2026-07-17 08:10:13 PM ET** | build `8897f4e5` | session boot 07-17 15:16 ET | log `live_v3_20260717.jsonl` | 14852 session events | monitor READ-ONLY
 
-## ⚠ GUN FEED: last new in-play sighting 46 min ago (>30 tripwire; source observed_starts.db)
+## ⚠ GUN FEED: last new in-play sighting 57 min ago (>30 tripwire; source observed_starts.db)
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
-- placed:path_aim UL18MARJOR-JOR aim=36 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
-- placed:path_aim UL18BUTTAB-TAB aim=41 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
-- placed:path_aim UL18ROCBUE-BUE aim=66 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
-- placed:path_aim UL18ROCBUE-ROC aim=20 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
+- placed:path_aim UL18CORSAC-SAC aim=62 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
+- refused:no_path_page UL18TSYRIC-TSY aim=None | atlas_page:CONS,contention_s:CONS,pair_state:NOT-,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
+- placed:path_aim UL18GAUTSE-GAU aim=53 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
+- refused:no_path_page UL18TSYRIC-TSY aim=None | atlas_page:CONS,contention_s:CONS,pair_state:NOT-,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
@@ -47,52 +47,53 @@ clean overnight — no watch fires
 - classes now: {'FLOW_ABOVE': 2} | repriceable now: true 1 / false 1 | **cumulative bid_grade lines: 12599 (repriceable true 1656 / false 10943)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL17FORTOM-F | 31 | 240m | 21/33-35/1715 | 34-35 | 2 | **FLOW_ABOVE** | 31 | flow above but bound 31c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL18AGIOVC-AGI | 22 | 57m | 2/23-23/24 | 22-23 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→23 |
+| ATPCHALLENGERMATCH-26JUL17FORTOM-F | 31 | 250m | 27/33-35/1767 | 34-35 | 2 | **FLOW_ABOVE** | 31 | flow above but bound 31c < flow -- chasing breaks goal |
+| ITFMATCH-26JUL18AGIOVC-AGI | 22 | 67m | 2/23-23/24 | 22-23 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→23 |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
 |---|---|---|---|---|---|
 | ITFMATCH-26JUL17NEFGAI | 46 | 2 | **48** | 97 | -49 |
-| ATPCHALLENGERMATCH-26JUL17LAJNOG | 71 | 29 | **100** | 97 | +3 |
+| ATPCHALLENGERMATCH-26JUL17LAJNOG | 71 | 16 | **87** | 97 | -10 |
 | ATPCHALLENGERMATCH-26JUL17FORTOM | 66 | 35 | **101** | 97 | +4 |
+| ATPCHALLENGERMATCH-26JUL17WONJOH | 64 | 39 | **103** | 97 | +6 |
 | ATPCHALLENGERMATCH-26JUL17SMIYUN | 63 | 41 | **104** | 97 | +7 |
-| ATPCHALLENGERMATCH-26JUL17WONJOH | 64 | 59 | **123** | 97 | +26 |
-| ATPCHALLENGERMATCH-26JUL17VUKGAL | 53 | 72 | **125** | 97 | +28 |
+| ATPCHALLENGERMATCH-26JUL17VUKGAL | 53 | 68 | **121** | 97 | +24 |
 | ATPCHALLENGERMATCH-26JUL17HOLBOU | 33 | 97 | **130** | 97 | +33 |
 
 ## FLOW-STATE — 9 tracked game(s) ({'OPEN': 2, 'QUIET': 2, 'WAKING': 5}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL17FORTOM | ATP_CHALL | 0.333 | 1 | **OPEN** |
-| ITFMATCH-26JUL17OCODEL | ITF_M | 1.3 | 1 | **OPEN** |
+| ATPCHALLENGERMATCH-26JUL17FORTOM | ATP_CHALL | 0.467 | 1 | **OPEN** |
+| ITFMATCH-26JUL17OCODEL | ITF_M | 0.933 | 1 | **OPEN** |
 | ATPCHALLENGERMATCH-26JUL17HOLBOU | ATP_CHALL | 0.0 | — | **QUIET** |
 | ITFMATCH-26JUL17NEFGAI | ITF_M | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL17LAJNOG | ATP_CHALL | 12.733 | — | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL17SMIYUN | ATP_CHALL | 17.5 | — | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL17VUKGAL | ATP_CHALL | 63.5 | — | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL17WONJOH | ATP_CHALL | 34.1 | — | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL17LAJNOG | ATP_CHALL | 21.0 | — | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL17SMIYUN | ATP_CHALL | 30.367 | — | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL17VUKGAL | ATP_CHALL | 79.633 | — | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL17WONJOH | ATP_CHALL | 54.7 | — | **WAKING** |
 | ITFMATCH-26JUL18AGIOVC | ITF_M | 0.0 | 1 | **WAKING** |
 
-## PATTERNS (sub-B) — 18
-- half_arm_aging: KXITFMATCH-26JUL17NEFGAI-GAI {"fill": 46, "age_min": 283, "mode": "NO_BID(sib rested earlier, none now)"}
+## PATTERNS (sub-B) — 19
+- half_arm_aging: KXITFMATCH-26JUL17NEFGAI-GAI {"fill": 46, "age_min": 293, "mode": "NO_BID(sib rested earlier, none now)"}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL {"kind": "position_basis", "ref": 86.0, "market_mid": 29.0, "divergence": 57.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU {"fill": 33, "age_min": 268, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU {"fill": 33, "age_min": 279, "mode": "NO_BID(sib rested earlier, none now)"}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17RODCRA-ROD {"kind": "position_basis", "ref": 71.0, "market_mid": 26.5, "divergence": 44.5}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17SANALM-ALM {"kind": "position_basis", "ref": 68.0, "market_mid": 34.5, "divergence": 33.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17WONJOH-WON {"fill": 64, "age_min": 232, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17WONJOH-WON {"fill": 64, "age_min": 243, "mode": "NO_BID(sib rested earlier, none now)"}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU {"kind": "position_basis", "ref": 33.0, "market_mid": 1.5, "divergence": 31.5}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17RODCRA-ROD {"kind": "position_basis", "ref": 71.0, "market_mid": 36.0, "divergence": 35.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17SMIYUN-YUN {"fill": 63, "age_min": 207, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17SMIYUN-YUN {"fill": 63, "age_min": 217, "mode": "NO_BID(sib rested earlier, none now)"}
 - combined_over_goal_UNVERIFIED_BASIS: KXITFMATCH-26JUL17OCODEL {"combined": 99, "detail": "pair combined 99c > 97c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) \u2014 exchange-truth check required, NOT a ZT row"}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17SANALM-ALM {"kind": "position_basis", "ref": 68.0, "market_mid": 26.0, "divergence": 42.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL {"fill": 53, "age_min": 185, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL {"fill": 53, "age_min": 196, "mode": "NO_BID(sib rested earlier, none now)"}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17SANALM-ALM {"kind": "position_basis", "ref": 68.0, "market_mid": 12.5, "divergence": 55.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17FORTOM-TOM {"fill": 66, "age_min": 113, "mode": "SET_BELOW_FLOW(prints 2c above)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17LAJNOG-LAJ {"fill": 71, "age_min": 54, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17FORTOM-TOM {"fill": 66, "age_min": 123, "mode": "SET_BELOW_FLOW(prints 2c above)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17LAJNOG-LAJ {"fill": 71, "age_min": 64, "mode": "NO_BID(sib rested earlier, none now)"}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17FORTOM-FOR {"kind": "resting_bid", "ref": 2.0, "market_mid": 34.5, "divergence": -32.5}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL {"kind": "position_basis", "ref": 53.0, "market_mid": 24.5, "divergence": 28.5}
 - reality_divergence: KXATPCHALLENGERMATCH-26JUL17WONJOH-WON {"kind": "position_basis", "ref": 64.0, "market_mid": 36.5, "divergence": 27.5}
+- reality_divergence: KXATPCHALLENGERMATCH-26JUL17WONJOH-WON {"kind": "position_basis", "ref": 64.0, "market_mid": 37.5, "divergence": 26.5, "emitted_et": "2026-07-17 08:10:13 PM ET"}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

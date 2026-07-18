@@ -112,7 +112,7 @@ for line in open(SPEC):
         # reach + low timing
         dip = anchor - v["low"]
         reach_n[band] += 1
-        for d in range(1, 16):
+        for d in range(1, 31):
             if dip >= d:
                 reach[band][d] += 1
         low_frac[band].append(v.get("low_frac", 0))
@@ -143,7 +143,7 @@ for band in sorted(band_n):
     for bin_i, m in sorted(move[band].items()):
         ms[str(bin_i)] = {k: q(vv) for k, vv in m.items() if vv}
     rc = {str(d): round(reach[band][d] / reach_n[band], 3)
-          for d in range(1, 16)} if reach_n[band] else {}
+          for d in range(1, 31)} if reach_n[band] else {}
     lf = q(low_frac[band])
     lc = {}
     for (lvl, bin_i), c in life[band].items():

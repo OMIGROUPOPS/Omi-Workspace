@@ -134,6 +134,25 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-18 · ENTRY SURFACE — STAGE 3: THE GATED JOINT SOLVE (per-band entry tables, staged for the seal; nothing arms)
+
+**Prior art (C45):** the three banked inputs (band map d3ca814f · surfaces+recognition · store+catch tables 59dc1eea) · June's gated-optima discipline (unity → realism → optima, rebuilt entry-side) · the aim-table/3¢ constants this retires at Stage 5. Delta: one pair-aware solve, ROC the metric, holdout + era-proof in the same artifact.
+
+**THE SOLVE** (`state/entry_tables_v1.json` + `ENTRY_SOLVE.md`, machinery `analysis/entry_solve.py`; frame stated plainly: close-based W1 mark, exit-frame blending is Stage 6's word): 36 bands solved under the realism gate (support ≥8 or the level does not enter; thin bands inherit nothing).
+- **RISERS park at the touch** (ATP_MAIN-B4: depth 1¢, P(fill) 0.86, EV +27¢, ROC 0.51 — "the discount that never comes" priced).
+- **FLATS take divot bids** (ATP_MAIN-B3: 11¢ under anchor at 0.87 catches/window, ROC 0.33; ITF_M-B4: 11¢, ROC 0.18; per-band catch tables the source).
+- **MODERATE FALLERS cast DEEP or not at all** (ATP_MAIN-B7: 30¢ → ROC 0.21 at P(fill) 0.56; ATP_MAIN-B2: 26¢ → 0.18; ATP_CHALL-B2 barely positive at 29¢ on p_fill 0.017 — and its holdout REALIZED 0.00, the thin edge honestly killed). **THE VIOLENT FALLER REFUSES: ATP_CHALL-B5 negative even 30¢ deep (EV −7¢) — the solve will not catch that knife.**
+- **PAIR JOINTS (both legs one object):** 17 dominant mirrors solved jointly — 16/17 combine ≤97 FROM THE SOLVED LEVELS THEMSELVES (the scoreboard emerges, not imposed; ITF_W-B7→B1 lands at 98, named). Best joints: **WTA_CHALL-B4→B2 (faller-fav/riser-dog seesaw) weighted ROC 0.25** · ITF_M-B4→B1 0.16 · ATP_MAIN-B5→B3 0.14.
+
+**HOLDOUT (fit pre-Jul-14, judged only on Jul-14+):** ATP_MAIN-B2 realized P(fill) 0.30 vs predicted 0.24 (held ROC 0.22) · WTA_CHALL-B1 0.18 vs 0.16 (0.25) · WTA_CHALL-B4 softer 0.18 vs 0.26 (0.06) · ATP_CHALL-B2 realized 0.00 — killed. Small holdout n's printed; the full solve-replay LOOP rides Stage 4.
+
+**ERA-PROOF (the receipt the dispatch demanded):** identical solve on the poisoned stamps — **4 bands moved: WTA_MAIN-B2 −8¢ (the lying clocks would cast shallower on the moderate faller), ATP_MAIN-B2 +4¢, ±1¢ two more; 8 bands genuinely unchanged, said so.** The clean corpus changed the answer where the corridor mislabeling bit deepest.
+
+**Honesty lines:** first solve run right-censored at 15¢ (the surface's reach range) — caught because every faller railed the boundary; range extended to 30¢ and re-run (a second miss — the dict-comprehension form dodging the first patch — also on the record). Three bands still rail at 30¢ (B5/B7-class); 30¢ under mid anchors is half the price — the practical bound, named not hidden. MIN_TOUCH/MIN_CATCH = 8, decreed and stated.
+
+**Stage 4 (full validation report + the LOOP spec) and Stage 5 (integration + seal ceremony) next on the dispatch's rhythm; Stage 6 on the word. Nothing arms from this C50.**
+
+
 ### 2026-07-18 · P2 THE SUBSECOND CONSOLIDATION (the scatter killed) + P3 THE DIVOT DECONSTRUCTION (the flat-band entry model)
 
 **Prior art (C45):** the scattered sources themselves (daysheet_tape caches, premarket_ticks, depth recorders, engine logs — the scatter WAS the finding), the June divot concept (ALTMED/FERCER-era observations, now counted at population scale), Stage 2's flat-band surfaces (divots confirmed as the flat bands' entire entry story). Delta: one store, one nightly append, and the divot priced per band.

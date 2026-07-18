@@ -134,6 +134,17 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-18 · P2 THE SUBSECOND CONSOLIDATION (the scatter killed) + P3 THE DIVOT DECONSTRUCTION (the flat-band entry model)
+
+**Prior art (C45):** the scattered sources themselves (daysheet_tape caches, premarket_ticks, depth recorders, engine logs — the scatter WAS the finding), the June divot concept (ALTMED/FERCER-era observations, now counted at population scale), Stage 2's flat-band surfaces (divots confirmed as the flat bands' entire entry story). Delta: one store, one nightly append, and the divot priced per band.
+
+**P2 — THE STORE** (`state/subsecond_store.db`, machinery `analysis/subsecond_consolidate.py`, census `.claude/entrysurface_20260717/SUBSECOND_CENSUS.md`): **2,041,870 prints, event/ticker/epoch-keyed, ingest-log resumable; nightly append-forward cron installed (04:35, /etc/cron.d/omi-subsecond) — it never scatters again.** Sources named: public_tape 883,557 true-subsecond prints (**span Jul 12–17 ONLY — the true-subsecond record is six days deep; everything earlier is holes**, the inventory's core finding) · book_transition 1,158,313 (premarket_ticks last-trade transitions, Jul 11–18, transition-grade labeled) · ws_log yielded ZERO (the engine's WS trade lines live under other event names — named miss, not hidden) · book-grade archives (depth_recorder Jul 7–18, ws_depth_recorder, snapshots) inventoried for Phase D, NOT folded into prints.
+
+**P3 — THE DIVOT TABLES** (`state/divot_tables_v1.json` + `DIVOT_TABLES.md`, machinery `analysis/divot_deconstruct.py`; definition stated plainly: print ≥2¢ under the trailing-30-min rolling median with recovery to within 1¢): **724 flat-band windows, 21 bands.** The model: ATP_CHALL flats 2.2–2.4 divots/window (depth p50 ~3¢, p90 7–9¢, duration ~60–70s); **near-wake share 3% — divots are ALL-WINDOW phenomena, the wake-clustering hypothesis dies by count**; ITF flats 1.0–2.0/window with the fat tail living in the HIGH-anchor band (**ITF_M-B6: depth p50 10¢ / p90 27¢, and a bid 10¢ under anchor still catches 0.62 divots/window**). CATCH TABLES price the resting bid per band (e.g., ATP_CHALL-B4: anchor−3¢ catches 1.27/window, −5¢ 0.72). Source-share printed per band (tape vs transition-grade — no silent mixing). **WALKED EXHIBIT: YODMAT-MAT (ITF_W flat, anchor 56¢, 128 prints) — seven divots listed with exact epochs; a bid at 54¢ catches three of them inside 45 minutes.** Thin ITF windows say thin (n per band inline).
+
+**All three parts of the paste now stand (P1 349b32e0; this C50 = P2+P3). Stage 3's solve consumes: casts per faller band + parks per riser band (drift surfaces) + divot bids per flat band (these tables) — one gated joint object, June's rigor, then the seal.**
+
+
 ### 2026-07-18 · ENTRY SURFACE — STAGE 2 P1: THE DRIFT SURFACES + THE RECOGNITION TABLE (per band; the parent key holds)
 
 **Prior art (C45):** band map v1 (the parent key, d3ca814f) · the spectrum (source) · June's movement/lifecycle/reach discipline (rebuilt entry-side). Delta: three surfaces per band + the early-recognition table, counted never fitted.

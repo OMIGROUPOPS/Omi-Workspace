@@ -134,6 +134,15 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-17 · ENTRY SURFACE — STAGE 1: THE BAND TAXONOMY (bands given by the market; the operator reads before Stage 2 fits anything)
+
+**Prior art (C45):** the range spectrum (Phase B — the source object), the cohort surface's fixed anchor-buckets (superseded as the parent key by these evidence-derived bands at Stage 5 integration), June's exit-campaign band discipline (the model this build follows on the entry side). Delta: bands DERIVED from W1 range geometry per cat (k-means on standardized anchor × net × dip; elbow-selected k; deterministic seed — every number reproducible), never imposed deciles; pairs one object.
+
+**THE BAND MAP** (`state/band_map_v1.json` + `.claude/entrysurface_20260717/BAND_MAP.md`, machinery `analysis/band_taxonomy.py`): **ATP_CHALL 6 bands (n=6,008) · ATP_MAIN 8 (2,111) · WTA_MAIN 6 (2,109) · WTA_CHALL 8 (1,423) · ITF_M 7 (266) · ITF_W 8 (253, incl. an n=1 band that says n=1)**. THE CROSS-CAT GRAMMAR, unforced: every category resolves to the same shapes — a dog-basement FLAT band (anchors ~6–34, width p75 ≤8¢) · mid FLATs · a MODERATE FALLER (net ≈−17…−19¢, dip ≈20–24¢) · a VIOLENT FALLER (net ≈−37…−43¢, dip ≈40–51¢) · a RISER (+16…+29¢, dip ≈0–3¢ — risers don't dip: the park-at-bid law's own evidence) · a flat-FAVORITE ceiling band. **PAIR MIRROR (a band assignment is a pair property):** the dominant joints everywhere are flat-fav→flat-dog (ATP_CHALL B6→B1 38% · WTA_MAIN B6→B1 40% · WTA_CHALL B8→B1 28% · ATP_MAIN B5→B3 32%/B8→B1 26% · ITF_M B6→B1 34% · ITF_W B5→B2 36%) and the mid-flat self-pair; the faller bands' mirrors spread into risers and mids — the seesaw's band-level signature, counted not assumed.
+
+**Stage 2 (drift map: movement/lifecycle/reach surfaces per band) WAITS on the operator's read of this map, per the dispatch.**
+
+
 ### 2026-07-17 · PHASE C — THE COHORT ENGINE LIVE (armed to steer) · GAP KILL · POLYMARKET WIRE · KINSHIP RECEIPT · CORRECTIONS EXECUTED
 
 **Prior art (C45):** Phase B spectrum/surface (the source). ⑮ precedent (read-side intelligence straight to live — the standing law this arming rides). C-CHASE-KILL/walk caps (the clamps that still govern). RULING_PAIR_ECONOMICS-era shadows (retired into reachability). Delta: cohort distributions STEER conceptions and hold-reviews; four fragments (range-prior, reach-recal, chain proof, M15 intake) retire into one reachability voice.

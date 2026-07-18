@@ -1,8 +1,8 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 253 @ **2026-07-17 09:23:28 PM ET** | build `0ab97a1b` | session boot 07-17 20:26 ET | log `live_v3_20260717.jsonl` | 5545 session events | monitor READ-ONLY
+- cycle 254 @ **2026-07-17 09:33:51 PM ET** | build `8c88beb2` | session boot 07-17 20:26 ET | log `live_v3_20260717.jsonl` | 6308 session events | monitor READ-ONLY
 
-## ⚠ GUN FEED: last new in-play sighting 71 min ago (>30 tripwire; source observed_starts.db)
+## ⚠ GUN FEED: last new in-play sighting 81 min ago (>30 tripwire; source observed_starts.db)
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
 - refused:no_path_page UL18DOTROJ-ROJ aim=None | atlas_page:CONS,contention_s:CONS,pair_state:NOT-,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
@@ -14,7 +14,7 @@
 clean overnight — no watch fires
 - tripwire artifact: **PRESENT — CHECK /tmp/live_v4_TRIPWIRE.json**
 
-## ZERO-TOLERANCE — 58 violation(s)
+## ZERO-TOLERANCE — 89 violation(s)
 | ET | class | who | detail |
 |---|---|---|---|
 | 21:02:09 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 15) |
@@ -75,34 +75,67 @@ clean overnight — no watch fires
 | 21:22:38 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
 | 21:22:59 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
 | 21:23:23 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:23:58 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:24:13 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:24:13 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:24:36 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:24:58 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:25:12 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:25:22 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:25:36 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:25:54 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:26:09 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:26:24 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:26:45 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:26:51 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:26:52 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:27:05 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:27:22 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:27:39 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:27:49 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:27:54 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:28:01 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:28:10 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:28:14 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:28:30 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:28:38 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:28:40 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:30:38 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:31:56 | **self_fill_bell** | KXITFMATCH-26JUL18TORKHO-TOR | own buys rose 12c (34->46) in 1800s -> match-live presumption, entry buys FROZEN |
+| 21:32:42 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:32:52 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:32:52 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:32:59 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
 
 **LIVE DEFECT(S) — forensic blocks written: FORENSIC_chase_cap.md**
 
 ## FILLS — 0 graded (session)
 none yet this session
 
-## RESTING BIDS — 7 tape-graded (starvation = NO_FLOW only)
-- classes now: {'NO_FLOW': 4, 'FLOW_ABOVE': 3} | repriceable now: true 2 / false 5 | **cumulative bid_grade lines: 12612 (repriceable true 1658 / false 10954)** -- the liquid_repost re-arm evidence accumulates here
+## RESTING BIDS — 8 tape-graded (starvation = NO_FLOW only)
+- classes now: {'FLOW_ABOVE': 3, 'NO_FLOW': 5} | repriceable now: true 3 / false 5 | **cumulative bid_grade lines: 12615 (repriceable true 1659 / false 10956)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ITFMATCH-26JUL17OCODEL-OCO | 14 | 26m | 133/19-42/8321 | 33-35 | 5 | **FLOW_ABOVE** | 16 | flow above but bound 16c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL18AGIOVC-AGI | 22 | 50m | 1/23-23/4 | 22-23 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→23 |
-| ITFMATCH-26JUL18AGIOVC-OVC | 76 | 51m | 0 | 76-79 | — | **NO_FLOW** | 99 |  |
-| WTAMATCH-26JUL18BANGAO-BAN | 34 | 23m | 0 | 37-38 | — | **NO_FLOW** | 99 |  |
-| WTAMATCH-26JUL18BANGAO-GAO | 57 | 18m | 0 | 63-64 | — | **NO_FLOW** | 99 |  |
-| WTAMATCH-26JUL18HONTHA-THA | 17 | 23m | 1/20-20/2 | 20-21 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→20 |
-| WTAMATCH-26JUL18MICFRU-FRU | 70 | 8m | 0 | 73-75 | — | **NO_FLOW** | 99 |  |
+| ITFMATCH-26JUL18AGIOVC-AGI | 22 | 60m | 4/23-23/40 | 22-23 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→23 |
+| ITFMATCH-26JUL18AGIOVC-OVC | 76 | 61m | 1/79-79/1 | 76-79 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→79 |
+| ITFMATCH-26JUL18TORKHO-TOR | 46 | 2m | 0 | 46-50 | — | **NO_FLOW** | 99 |  |
+| WTACHALLENGERMATCH-26JUL18BASKRA-K | 64 | 3m | 0 | 66-67 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL18BANGAO-BAN | 34 | 33m | 0 | 37-38 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL18BANGAO-GAO | 57 | 28m | 0 | 62-63 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL18HONTHA-THA | 17 | 33m | 1/20-20/2 | 20-21 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→20 |
+| WTAMATCH-26JUL18MICFRU-FRU | 70 | 18m | 0 | 74-76 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 no open half-pairs
 
-## FLOW-STATE — 5 tracked game(s) ({'OPEN': 1, 'WAKING': 4}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 6 tracked game(s) ({'WAKING': 6}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ITFMATCH-26JUL17OCODEL | ITF_M | 4.7 | 2 | **OPEN** |
-| ITFMATCH-26JUL18AGIOVC | ITF_M | 0.033 | 1 | **WAKING** |
-| WTAMATCH-26JUL18BANGAO | WTA_MAIN | 0.067 | 1 | **WAKING** |
-| WTAMATCH-26JUL18HONTHA | WTA_MAIN | 0.1 | 1 | **WAKING** |
+| ITFMATCH-26JUL18AGIOVC | ITF_M | 0.167 | 1 | **WAKING** |
+| ITFMATCH-26JUL18TORKHO | ITF_M | 0.2 | 4 | **WAKING** |
+| WTACHALLENGERMATCH-26JUL18BASKRA | WTA_CHALL | 0.033 | 1 | **WAKING** |
+| WTAMATCH-26JUL18BANGAO | WTA_MAIN | 0.0 | 1 | **WAKING** |
+| WTAMATCH-26JUL18HONTHA | WTA_MAIN | 0.033 | 1 | **WAKING** |
 | WTAMATCH-26JUL18MICFRU | WTA_MAIN | 0.033 | 2 | **WAKING** |
 
 ## PATTERNS (sub-B) — 2

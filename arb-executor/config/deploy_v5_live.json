@@ -14,7 +14,7 @@
     "WTA_CHALL"
   ],
   "combined_goal": 97,
-  "complete_cross_enabled": true,
+  "complete_cross_enabled": false,
   "completion_all_cells": true,
   "completion_combined_ceiling": true,
   "completion_reprice": true,
@@ -120,7 +120,7 @@
     "WTA_CHALL": 16
   },
   "completion_shadow_enabled": true,
-  "operator_taker_word": true,
+  "operator_taker_word": false,
   "composer_live_shadow_enabled": true,
   "os_shadow_enabled": true,
   "reentry_cycle_cap": 2,
@@ -129,7 +129,7 @@
   "self_fill_rise_cents": 4,
   "self_fill_window_sec": 1800,
   "percat_gun_armed": true,
-  "completion_live_enabled": true,
+  "completion_live_enabled": false,
   "taker_daily_action_cap": 3,
   "self_fill_corroborate_prints": 5,
   "flatten_daily_action_cap": 8,

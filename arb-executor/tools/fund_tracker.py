@@ -556,6 +556,16 @@ class H(BaseHTTPRequestHandler):
         if u.path == "/api/alerts.json":
             self._send(json.dumps(ds.build_alerts()), "application/json")
             return
+        if u.path == "/hands":
+            # [P0 completion-disarm 07-17] THE HANDS TABLE — permanent,
+            # panel-linked: every hand, its consent, its state.
+            try:
+                body = (ROOT.parent / "truth/HANDS_TABLE.md").read_text(
+                    encoding="utf-8")
+            except OSError:
+                body = "HANDS_TABLE.md missing"
+            self._send(body, "text/plain; charset=utf-8")
+            return
         if u.path == "/api/slate.json":
             day_param = (qs.get("day") or [None])[0]
             self._send(json.dumps(ds.build_slate(day_param)),

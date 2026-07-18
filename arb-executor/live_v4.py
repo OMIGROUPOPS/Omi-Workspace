@@ -8901,7 +8901,19 @@ class LiveV3:
         return None
 
     async def _completion_execute(self, tk, pos, res, now):
-        """[C-COMPLETION-LIVE 07-12, three operator arming words] the policy's
+        """[P0 DISARM 07-17, operator's standing word — BOTH BRANCHES DEAD:
+        completion_live_enabled=false + operator_taker_word=false +
+        complete_cross_enabled=false. No machinery may taker-sell an open
+        position or taker-buy a sibling, under any EV, ever; positions ride
+        to their maker exits or settlement. Grounds: unauthorized (the 07-12
+        "three operator arming words" below were SEAT-DRAFTED text, not
+        operator verbatim — consent reclassified, see the vault's
+        DRAFT-APPROVED law); graded negative by its own 07-13 study
+        (−$0.264/leg vs ride, N=36); blind by design to win-ride payouts;
+        vestigial (both-from-birth + the pair invariant own completeness).
+        The shadow keeps logging (the scorecard survives); the hands do not
+        act. Code retained for the record; the flags are the law.]
+        [C-COMPLETION-LIVE 07-12 — RECLASSIFIED] the policy's
         verdicts ACT (never-hold-naked enforced; pair-97 arithmetic consulted
         nowhere -- the engine's own math is the only authority):
           taker_complete -> cancel the resting sibling maker bid, CROSS the

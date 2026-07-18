@@ -38,3 +38,18 @@ One pair, one object, the seesaw signature intact:
   evidence and is largely VINDICATED for mains/CHALL; the ITF honest-anchor
   caps (14–20¢) were the real fiction. **KINSHIP: NO-BORROW, both ITF cats**
   (tolerance failed on floor-passing cells — the receipt rules; no ceremony).
+
+## PHASE C ACCEPTANCE WALK — tonight's wave, the cohort steering live (09:57–10:06 PM ET boot 21:44)
+- **VANVAN2 (ITF_W dog): the counter-exhibit that proves the honesty.** Old
+  table cast 38¢; cohort cell `ITF_W|dog|26_50` (n=86, native — kinship
+  refused borrowing) says dip_p50 = 1¢, reach 55.8% → **aim RAISED to 41¢**.
+  The empirical read overrides the table in BOTH directions: this leg was
+  being over-cast 3¢ below where its cohort actually fills.
+- **RODCHE-CHE / JACDA / ROCBUE-ROC (ATP_MAIN dogs)**: cell
+  `ATP_MAIN|dog|le25`, **n=268**, dip_p50 3¢ @ 56.3% reach → casts set 1¢
+  deeper than the table (17→16, 2→1, 16→15). Every line carries
+  old-vs-cohort, the cell, its n, and the reach at the chosen depth.
+- 15 cohort_aim steers in the first 25 minutes; `stamped_no_decision` = 0
+  (the gap tooth armed, the wave clean so far); boot audit PASS.
+- The dossiers carry D[cohort] (cell + n + rose% + reach_3c) and D[pm_ref]
+  (53 events mapped on the wire's first run, thin-floor honored).

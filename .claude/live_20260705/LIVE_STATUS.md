@@ -1,14 +1,14 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 355 @ **2026-07-18 03:17:53 PM ET** | build `10bead48` | session boot 07-18 13:59 ET | log `live_v3_20260718.jsonl` | 2858 session events | monitor READ-ONLY
+- cycle 356 @ **2026-07-18 03:28:03 PM ET** | build `d91f3fa9` | session boot 07-18 13:59 ET | log `live_v3_20260718.jsonl` | 3061 session events | monitor READ-ONLY
 
-## ⚠ GUN FEED: last new in-play sighting 185 min ago (>30 tripwire; source observed_starts.db)
+## ⚠ GUN FEED: last new in-play sighting 195 min ago (>30 tripwire; source observed_starts.db)
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
-- placed:path_aim UL18SAIHOS-HOS aim=26 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
 - placed:path_aim UL18BASTAI-TAI aim=8 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
 - placed:path_aim UL18LAJYUN-LAJ aim=33 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
 - placed:path_aim UL18TIKWAN-WAN aim=38 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
+- placed:path_aim UL18TIKWAN-TIK aim=40 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
@@ -33,33 +33,33 @@ clean overnight — no watch fires
 - classes now: {'FLOW_ABOVE': 6, 'NO_FLOW': 1} | repriceable now: true 4 / false 3 | **cumulative bid_grade lines: 12884 (repriceable true 1738 / false 11146)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL18LAJYUN-L | 33 | 71m | 1/37-37/2 | 36-37 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→37 |
-| ATPCHALLENGERMATCH-26JUL18LAJYUN-Y | 63 | 76m | 9/64-64/667 | 63-64 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→64 |
-| ATPCHALLENGERMATCH-26JUL18TOMJOH-J | 55 | 78m | 11/58-59/1455 | 58-59 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→58 |
-| ATPCHALLENGERMATCH-26JUL18TOMJOH-T | 39 | 78m | 13/43-43/489 | 42-43 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→43 |
-| ITFWMATCH-26JUL18SAIHOS-SAI | 52 | 14m | 2/65-65/400 | 63-65 | 13 | **FLOW_ABOVE** | 61 | flow above but bound 61c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL18THOAIA-AIA | 84 | 57m | 15/86-89/437 | 84-89 | 2 | **FLOW_ABOVE** | 84 | flow above but bound 84c < flow -- chasing breaks goal |
-| WTACHALLENGERMATCH-26JUL18TONSPI-T | 31 | 78m | 0 | 31-59 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL18LAJYUN-L | 33 | 81m | 1/37-37/2 | 36-37 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→37 |
+| ATPCHALLENGERMATCH-26JUL18LAJYUN-Y | 63 | 87m | 12/64-64/862 | 63-64 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→64 |
+| ATPCHALLENGERMATCH-26JUL18TOMJOH-J | 55 | 88m | 12/58-59/1495 | 58-59 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→58 |
+| ATPCHALLENGERMATCH-26JUL18TOMJOH-T | 39 | 88m | 16/43-43/518 | 42-43 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→43 |
+| ITFWMATCH-26JUL18SAIHOS-SAI | 52 | 25m | 18/63-66/1131 | 63-64 | 11 | **FLOW_ABOVE** | 61 | flow above but bound 61c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL18THOAIA-AIA | 84 | 67m | 17/86-89/640 | 84-89 | 2 | **FLOW_ABOVE** | 84 | flow above but bound 84c < flow -- chasing breaks goal |
+| WTACHALLENGERMATCH-26JUL18TONSPI-T | 31 | 88m | 0 | 31-59 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
 |---|---|---|---|---|---|
-| ITFWMATCH-26JUL18SAIHOS | 36 | 65 | **101** | 97 | +4 |
+| ITFWMATCH-26JUL18SAIHOS | 36 | 64 | **100** | 97 | +3 |
 | ITFWMATCH-26JUL18THOAIA | 13 | 89 | **102** | 97 | +5 |
 
 ## FLOW-STATE — 6 tracked game(s) ({'WAKING': 1, 'OPEN': 4, 'QUIET': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL18RODSAN | ATP_CHALL | 0.433 | 1 | **OPEN** |
-| ATPCHALLENGERMATCH-26JUL18TOMJOH | ATP_CHALL | 0.3 | 1 | **OPEN** |
-| ITFWMATCH-26JUL18SAIHOS | ITF_W | 0.667 | 2 | **OPEN** |
-| ITFWMATCH-26JUL18THOAIA | ITF_W | 0.5 | 2 | **OPEN** |
+| ATPCHALLENGERMATCH-26JUL18RODSAN | ATP_CHALL | 0.4 | 1 | **OPEN** |
+| ATPCHALLENGERMATCH-26JUL18TOMJOH | ATP_CHALL | 0.367 | 1 | **OPEN** |
+| ITFWMATCH-26JUL18SAIHOS | ITF_W | 2.133 | 1 | **OPEN** |
+| ITFWMATCH-26JUL18THOAIA | ITF_W | 0.633 | 2 | **OPEN** |
 | WTACHALLENGERMATCH-26JUL18TONSPI | WTA_CHALL | 0.0 | 28 | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL18LAJYUN | ATP_CHALL | 0.133 | 1 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL18LAJYUN | ATP_CHALL | 0.2 | 1 | **WAKING** |
 
 ## PATTERNS (sub-B) — 2
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18RODSAN-SAN {"fill": 21, "age_min": 60, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL18THOAIA-THO {"fill": 13, "age_min": 57, "mode": "SET_BELOW_FLOW(prints 2c above)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18RODSAN-SAN {"fill": 21, "age_min": 70, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL18THOAIA-THO {"fill": 13, "age_min": 67, "mode": "SET_BELOW_FLOW(prints 2c above)"}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

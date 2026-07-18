@@ -151,5 +151,8 @@
   "discovery_floor_retreat": true,
   "wall_skip_enforce": true,
   "wall_skip_contracts": 10000,
-  "orientation_swap_min_conviction": 0.7
+  "orientation_swap_min_conviction": 0.7,
+  "cohort_steer_live": true,
+  "cohort_min_n": 30,
+  "sanctioned_walk_fitted": true
 }

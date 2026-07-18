@@ -134,6 +134,23 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-17 · PHASE C — THE COHORT ENGINE LIVE (armed to steer) · GAP KILL · POLYMARKET WIRE · KINSHIP RECEIPT · CORRECTIONS EXECUTED
+
+**Prior art (C45):** Phase B spectrum/surface (the source). ⑮ precedent (read-side intelligence straight to live — the standing law this arming rides). C-CHASE-KILL/walk caps (the clamps that still govern). RULING_PAIR_ECONOMICS-era shadows (retired into reachability). Delta: cohort distributions STEER conceptions and hold-reviews; four fragments (range-prior, reach-recal, chain proof, M15 intake) retire into one reachability voice.
+
+**P0-CORRECTIONS (operator rulings, executed first):** MLB probe KILLED (order 23c37ac1 cancelled 200; its reading DISCARDED — another sport proves nothing about ours); the tennis-only retest re-armed post-deploy on a beyond-T−8h match with the new audit exempt file (`state/audit_exempt_orders.json` — marked test orders carry their tag into the audit; the FORTOM lesson honored: the auditor was right). HANDS RATIFICATIONS BY CITATION applied: engagement join RATIFIED (walk law) · marketable clamp RATIFIED (maker-only doctrine) · drain replay RATIFIED (crash-recovery ruling) · T−20m clamp RATIFIED-PROVISIONAL (replay bench owes the corridor-entry-cost receipt). The DRAFT-APPROVED class is CLOSED.
+
+**P1 — THE COHORT ENGINE, LIVE:** `_cohort_surface`/`_cohort_read` (mtime-reloaded; native cell first, borrowed labeled+discounted, THIN honest with its n) → **conception steer** (the faller's cast depth SET by the cell's empirical dip_p50 where n ≥ 30 — the 3¢ fiction replaced; below the floor the current aim stands with the reason on the dossier; every steer logs `cohort_aim` old-vs-cohort, cell named) · **hold-review steer** (`cohort_reaim` = lawful dial re-orientation when the cohort target differs ≥2¢; concur/thin logged on the hold) · **the cohort joins the orientation prior's voices** (dog-cell rose-rate, w2 native / w1 borrowed) · **dossier voice** D["cohort"] · **FITTED WALK RATES LIVE** (`sanctioned_walk_fitted`: p75 grind-up rates replace the constant — P0v3-3b fulfilled; the constant VINDICATED for mains/CHALL ≈1¢/30m, the ITF caps exposed at 0.56–0.81¢ fitted). Reachability unification: the reach/range/chain/M15 fragments' successor is the cell's reach curve (dossier-consumed; deeper wiring = Phase F bench). Law conflicts → the collision bench.
+
+**P2 — CONCEPTION-GAP KILL (three bodies: BEJ, ZHE, TAB):** the router's SILENT continues named (`side_skip_inflight` — a leaked in-flight marker now visible on first recurrence; `side_skip_cat_disabled`) + **THE INVARIANT'S MISSING TOOTH**: a STAMPED leg (orientation prior on record) reaching NO decision within one audit cycle = `stamped_no_decision` DEFECT — even when the sibling is also absent (the old check required one resting leg; a both-legs-undecided pair never fired). Tonight's wave proves it.
+
+**P3 — POLYMARKET REFERENCE WIRE (ratified by recorded words; read-only):** `tools/polymarket_ref.py` — Gamma discovery (paginated; surname mapping; inverted-YES scar honored) → CLOB top-of-book → `/prices-history` banked; freshness stamps; **thinness floor $50 top-of-book notional below which the voice REFUSES to quote**; dossier voice D["pm_ref"] (divergence¢ + age + inverted flag). Scorecarded seat — no gate, no veto, weight earned at the bench. Cron */5.
+
+**P4 — KINSHIP RECEIPT (self-executing):** the tolerance test ran in the surface build — **NO-BORROW, both ITF cats** (floor-passing ITF cells vs CHALL: <50% within |dip_p50|≤2¢ ∧ |rose%|≤12pts). The receipt ruled; no ceremony. Re-runs at every surface rebuild; borrowing begins the day the receipt passes.
+
+**Acceptance walk: tonight's wave game with its cohort named — appended to the census doc post-deploy (the steer must conceive it live).**
+
+
 ### 2026-07-17 · DISPATCH 2 PHASE B — THE RANGE SPECTRUM (operator's design, core build) + THE COHORT SURFACE SEEDED
 
 **Prior art (C45):** Phase A corrected table (the right edges consumed here). W1 LIBRARY 07-14 (cohort library shadow — superseded by this build). PAIR-STORY/atlas corpora (the lying-clock fits this replaces). Delta: ranges as PAIRED objects with full tick series and journey vectors, per-cat hard partition, honest edges.

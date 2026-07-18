@@ -3319,6 +3319,64 @@ class LiveV3:
                                    "sources": _fv8.get("fv_sources")}
             except Exception:
                 D["fv_gap"] = {"status": "ERROR"}
+            # 7c2) [PHASE-C P3 07-17] POLYMARKET REFERENCE — read-only
+            # consulted voice (live divergence vs the PM top-of-book);
+            # freshness stamped; thin refuses to quote. No gate, no veto —
+            # weight earned at the Phase-F bench.
+            try:
+                _pmp = Path(__file__).resolve().parent / \
+                    "state/polymarket_ref.json"
+                _pmt = _pmp.stat().st_mtime
+                _pmc = self.__dict__.get("_pm_ref_cache")
+                if not _pmc or _pmc[0] != _pmt:
+                    _pmc = (_pmt, json.loads(_pmp.read_text()))
+                    self._pm_ref_cache = _pmc
+                _pmr = (_pmc[1].get("rows") or {}).get(et)
+                if _pmr is None:
+                    D["pm_ref"] = {"status": "NO-MAPPING"}
+                elif _pmr.get("thin"):
+                    D["pm_ref"] = {"status": "THIN-REFUSES",
+                                   "top_notional_usd":
+                                       _pmr.get("top_notional_usd"),
+                                   "floor": _pmr.get("thin_floor_usd")}
+                else:
+                    _pmy = _pmr.get("yes_bid")
+                    if _pmy is not None and _pmr.get("inverted_vs_leg1"):
+                        _pmy = 1.0 - _pmy
+                    _pmc9 = (round(_pmy * 100, 1)
+                             if _pmy is not None else None)
+                    D["pm_ref"] = {"status": "CONSULTED",
+                                   "pm_yes_c": _pmc9,
+                                   "divergence_c": (round(
+                                       current_price - _pmc9, 1)
+                                       if _pmc9 is not None else None),
+                                   "age_sec": round(time.time()
+                                                    - _pmr["fetched_at"]),
+                                   "inverted": _pmr.get(
+                                       "inverted_vs_leg1")}
+            except Exception:
+                D["pm_ref"] = {"status": "NO-FEED"}
+            # 7d) [PHASE-C P1 07-17] THE COHORT VOICE — the leg's cell with
+            # its real n; thin says thin, never padded.
+            try:
+                _cc6, _ck6 = self._cohort_read(
+                    cat, current_price >= 50, current_price)
+                D["cohort"] = ({"status": "THIN", "n": _cc6.get("n"),
+                                "cell": _ck6}
+                               if (_cc6 or {}).get("thin") else
+                               {"status": "CONSULTED", "cell": _ck6,
+                                "n": (_cc6 or {}).get("n"),
+                                "rose_pct": (_cc6 or {}).get("rose_pct"),
+                                "dip_p50": (_cc6 or {}).get("dip_p50"),
+                                "reach_3c": ((_cc6 or {}).get("reach")
+                                             or {}).get("3"),
+                                **({"borrowed_from":
+                                    _cc6["borrowed_from"]}
+                                   if (_cc6 or {}).get("borrowed_from")
+                                   else {})}
+                               if _cc6 else {"status": "NO-SURFACE"})
+            except Exception:
+                D["cohort"] = {"status": "ERROR"}
             # 8) refuse margins (standing bars enforced at this site)
             D["refuse_margins"] = {"status": "CONSULTED",
                                    "contention_bar_pct": 8.0,
@@ -3578,6 +3636,43 @@ class LiveV3:
         except Exception:
             return None
 
+    def _cohort_surface(self):
+        """[PHASE-C P1 07-17, operator dispatch — THE COHORT ENGINE, LIVE]
+        lazy-loaded, mtime-reloaded cohort surface built offline from the
+        re-cut range spectrum (analysis/cohort_surface_build.py →
+        state/cohort_surface_v1.json). Cells are cat-HARD × side × anchor
+        bucket; distributions are empirical; thin is honest. Never raises."""
+        try:
+            p = Path(__file__).resolve().parent / "state/cohort_surface_v1.json"
+            mt = p.stat().st_mtime
+            c = self.__dict__.get("_cohort_cache")
+            if c and c[0] == mt:
+                return c[1]
+            s = json.loads(p.read_text())
+            self._cohort_cache = (mt, s)
+            return s
+        except Exception:
+            return None
+
+    def _cohort_read(self, cat, role_riser, anchor):
+        """One leg's cohort cell (native first; kinship-borrowed fallback,
+        labeled + discounted). Returns the cell dict + key, or a THIN record
+        with its n — never padded with unlike neighbors."""
+        s = self._cohort_surface()
+        if not s:
+            return None, None
+        b = ("le25" if anchor <= 25 else "26_50" if anchor <= 50
+             else "51_75" if anchor <= 75 else "ge76")
+        key = "%s|%s|%s" % (cat, "fav" if role_riser else "dog", b)
+        cell = (s.get("cells") or {}).get(key)
+        floor = int(self.config.get("cohort_min_n", s.get("floor_n", 30)))
+        if cell and cell.get("n", 0) >= floor:
+            return cell, key
+        bcell = (s.get("cells") or {}).get(key + "|borrowed")
+        if bcell:
+            return bcell, key + "|borrowed"
+        return ({"thin": True, "n": (cell or {}).get("n", 0)}, key)
+
     def _orientation_prior(self, et):
         """[ENTRY-MECHANICS P1, operator word 07-17] ORIENTATION IS A PRIOR,
         NOT A ROLE. Built at conception from every voice available today:
@@ -3630,6 +3725,26 @@ class LiveV3:
                     votes.append(("fv_gap",
                                   leader if f["fv_gap"] < 0 else dog, 2.0,
                                   {"fv": f.get("fv"), "gap": f.get("fv_gap")}))
+            except Exception:
+                pass
+            # [PHASE-C P1 07-17] the COHORT joins the prior's voices: the
+            # dog cell's empirical rose-rate calls the riser at weight 2
+            # (discounted 1.0 on a borrowed cell).
+            try:
+                _cp6, _cpk6 = self._cohort_read(cat, False, bids[dog])
+                if _cp6 and not _cp6.get("thin") \
+                        and _cp6.get("rose_pct") is not None:
+                    _w6 = 1.0 if _cp6.get("borrowed_from") else 2.0
+                    if _cp6["rose_pct"] >= 60:
+                        votes.append(("cohort", dog, _w6,
+                                      {"cell": _cpk6,
+                                       "rose_pct": _cp6["rose_pct"],
+                                       "n": _cp6.get("n")}))
+                    elif _cp6["rose_pct"] <= 40:
+                        votes.append(("cohort", leader, _w6,
+                                      {"cell": _cpk6,
+                                       "rose_pct": _cp6["rose_pct"],
+                                       "n": _cp6.get("n")}))
             except Exception:
                 pass
             votes.append(("anchor_role", leader, 1.0,
@@ -4066,6 +4181,19 @@ class LiveV3:
         shipped as its own follow-on with receipts; the constant dies by
         evidence. Census owed: historical binds on print-backed rises +
         cents cost (rides the P0v3 close-out)."""
+        # [PHASE-C P1 07-17 — THE CONSTANT DIES BY EVIDENCE (P0v3-3b
+        # fulfilled)] fitted per-category sanctioned-walk rates from the
+        # re-cut spectrum's grind-up legs (cents-per-30min p75) replace the
+        # hardcoded table wherever the surface carries a fitted rate;
+        # fallback = the old constants, named. Gated sanctioned_walk_fitted.
+        if self.config.get("sanctioned_walk_fitted", False):
+            try:
+                _s9 = self._cohort_surface()
+                _wr9 = ((_s9 or {}).get("walk_rates") or {}).get(cat)
+                if _wr9 and _wr9.get("cents_per_30m_p75") is not None:
+                    return max(1, int(round(_wr9["cents_per_30m_p75"])))
+            except Exception:
+                pass
         if getattr(self, "walk_cap_honest_anchor", False):
             _hcap = {"ATP_MAIN": 1, "WTA_MAIN": 1, "ATP_CHALL": 2,
                      "WTA_CHALL": 2, "ITF_M": 14, "ITF_W": 20}
@@ -4211,6 +4339,43 @@ class LiveV3:
             #     dog_dip_offset_cents (the flat 3c worked in ATP, mis-sized ITF/WTA). OFF => flat 3c.
             _dip = self._aim_faller_depth(cat, anchor_price) if self.per_cat_depth else self.dog_dip_offset_cents
             offset = max(offset, _dip)
+        # [PHASE-C P1 07-17 — COHORT STEER, LIVE per standing law (⑮
+        # precedent: read-side intelligence goes straight to live)] where
+        # the leg's cohort clears its own n floor, the empirical dip
+        # distribution SETS the faller's cast depth (dip_p50 — the 3¢
+        # fiction's replacement); below the floor, the current aim stands
+        # with the reason on the dossier. Every steer logs old-vs-cohort,
+        # cohort named. Downstream clamps (band, caps, floors) unchanged.
+        if (self.config.get("cohort_steer_live", False)
+                and not _role_riser):
+            try:
+                _cc, _ck = self._cohort_read(cat, False, anchor_price)
+                if _cc and not _cc.get("thin") and _cc.get("dip_p50"):
+                    _old_t = max(1, anchor_price - offset)
+                    _co_t = max(1, anchor_price - int(_cc["dip_p50"]))
+                    if _co_t != _old_t:
+                        _cl9 = self.__dict__.setdefault(
+                            "_cohort_aim_logged", set())
+                        if tk not in _cl9:
+                            _cl9.add(tk)
+                            self._log("cohort_aim", {
+                                "cell": _ck, "n": _cc.get("n"),
+                                "old_target": _old_t,
+                                "cohort_target": _co_t,
+                                "dip_p50": _cc.get("dip_p50"),
+                                "reach_at_dip": (_cc.get("reach") or {}).get(
+                                    str(int(_cc["dip_p50"]))),
+                                **({"borrowed_from": _cc["borrowed_from"],
+                                    "weight_discount": _cc.get(
+                                        "weight_discount")}
+                                   if _cc.get("borrowed_from") else {})},
+                                ticker=tk)
+                    # SETS the aim (not max-deepen): the empirical dip is
+                    # the honest read in both directions; protective clamps
+                    # downstream still govern.
+                    offset = int(_cc["dip_p50"])
+            except Exception:
+                pass
         target_bid = max(1, anchor_price - offset)
         # (1) leg2_reshuffle entry policy (gated; OFF => target_bid unchanged). The presumed-riser
         #     posts AT best bid, never vetoed for projected combined. The presumed-faller
@@ -10156,8 +10321,21 @@ class LiveV3:
                         "event": et}, ticker=tk)
                     continue
                 if tk in self.positions:
-                    continue
+                    continue   # lawful presence (position/bid held) — not a gap
                 if tk in self.inflight_orders:
+                    # [PHASE-C P2 07-17 — CONCEPTION-GAP KILL, three bodies:
+                    # BEJ, ZHE, TAB] this continue was SILENT: a leaked
+                    # in-flight marker skips the leg forever with no record.
+                    # Named once per leg per boot — a stuck leak is now
+                    # visible on the first cycle it recurs.
+                    _ifs2 = self.__dict__.setdefault(
+                        "_inflight_skip_logged", set())
+                    if tk not in _ifs2:
+                        _ifs2.add(tk)
+                        self._log("side_skip_inflight", {
+                            "event": et,
+                            "law": "P2 07-17: every continue is named"},
+                            ticker=tk)
                     continue
 
                 book = self.books.get(tk)
@@ -10185,6 +10363,14 @@ class LiveV3:
 
                 # ===== v4 bid-laying placement (STEP 4) =====
                 if cat not in self.categories_enabled:
+                    _ccs2 = self.__dict__.setdefault(
+                        "_cat_skip_logged", set())
+                    if tk not in _ccs2:
+                        _ccs2.add(tk)
+                        self._log("side_skip_cat_disabled", {
+                            "event": et, "cat": cat,
+                            "law": "P2 07-17: every continue is named"},
+                            ticker=tk)
                     continue
                 # [C-ITF-BORROW] ITF liquidity floor: recent in-window flow (not cumulative).
                 # OFF or non-ITF -> short-circuits -> byte-identical.
@@ -12190,10 +12376,79 @@ class LiveV3:
                 # the re-aim (band clamps + races unchanged; the walk caps
                 # YIELD to this print-backed join per P0v3 (3))
             else:
-                _pm8 = self.__dict__.setdefault("_path_hold_logged", set())
-                if (tk, int(new_target)) not in _pm8:
-                    _pm8.add((tk, int(new_target)))
-                    self._log("path_mode_hold", {
+                # [PHASE-C P1 07-17 — HOLD-REVIEW STEER] where the cohort
+                # clears its floor and its empirical target differs from
+                # the held bid by >= 2c, the re-aim is a lawful dial
+                # re-orientation (evidence, not a timer): new_target moves
+                # to the cohort level and falls through to the repost
+                # machinery. Below the floor / inside 2c → the hold stands.
+                _cohort_go = False
+                if self.config.get("cohort_steer_live", False):
+                    try:
+                        _cc7, _ck7 = self._cohort_read(
+                            pos.category, False, int(current_price))
+                        if (_cc7 and not _cc7.get("thin")
+                                and _cc7.get("dip_p50")):
+                            _ct7 = max(1, int(current_price)
+                                       - int(_cc7["dip_p50"]))
+                            if abs(_ct7 - _held5) >= 2 and _ct7 <= 95:
+                                _cohort_go = True
+                                _cr7 = self.__dict__.setdefault(
+                                    "_cohort_reaim_logged", set())
+                                if (tk, _ct7) not in _cr7:
+                                    _cr7.add((tk, _ct7))
+                                    self._log("cohort_reaim", {
+                                        "event": pos.event_ticker,
+                                        "held": _held5,
+                                        "cohort_target": _ct7,
+                                        "cell": _ck7,
+                                        "n": _cc7.get("n"),
+                                        "law": "PHASE-C P1: cohort "
+                                               "re-selects at the dial "
+                                               "spin; evidence re-aim"},
+                                        ticker=tk)
+                                new_target = _ct7
+                                # fall through to the repost machinery
+                                # (caps/races unchanged)
+                            else:
+                                _pm8 = self.__dict__.setdefault(
+                                    "_path_hold_logged", set())
+                                if (tk, int(new_target)) not in _pm8:
+                                    _pm8.add((tk, int(new_target)))
+                                    self._log("path_mode_hold", {
+                                        "event": pos.event_ticker,
+                                        "held_price": _held5,
+                                        "proposed": int(new_target),
+                                        "cohort": {"cell": _ck7,
+                                                   "n": _cc7.get("n"),
+                                                   "within_2c": True},
+                                        "law": "cutover 07-14 + PHASE-C "
+                                               "cohort concurs"},
+                                        ticker=tk)
+                                return
+                        else:
+                            _pm8 = self.__dict__.setdefault(
+                                "_path_hold_logged", set())
+                            if (tk, int(new_target)) not in _pm8:
+                                _pm8.add((tk, int(new_target)))
+                                self._log("path_mode_hold", {
+                                    "event": pos.event_ticker,
+                                    "held_price": _held5,
+                                    "proposed": int(new_target),
+                                    "cohort_thin_n": (_cc7 or {}).get("n"),
+                                    "law": "cutover 07-14: the bid rests "
+                                           "at its path aim (cohort thin "
+                                           "— reason on the record)"},
+                                    ticker=tk)
+                            return
+                    except Exception:
+                        return
+                else:
+                    _pm8 = self.__dict__.setdefault(
+                        "_path_hold_logged", set())
+                    if (tk, int(new_target)) not in _pm8:
+                        _pm8.add((tk, int(new_target)))
+                        self._log("path_mode_hold", {
                         "event": pos.event_ticker,
                         "held_price": _held5,
                         "proposed": int(new_target),
@@ -12204,7 +12459,10 @@ class LiveV3:
                                "cutover 07-14: the bid rests at its "
                                "path aim"},
                         ticker=tk)
-                return
+                if not _cohort_go:
+                    return
+                # cohort re-aim: fall through to the repost machinery
+                # (caps, band clamps, races unchanged)
         # [C-CHASE-KILL 07-12, operator decree] the organ-level gate, BEFORE
         # the cancel (refuse-then-keep the resting bid -- a post-cancel refusal
         # starves the leg, the ICHOCH class). UP-moves only; down/equal moves
@@ -13336,7 +13594,31 @@ class LiveV3:
                 "/trade-api/v2/portfolio/orders?status=resting&limit=200"
                 + ("&cursor=%s" % cur if cur else ""), self.rl)
             rows_ = (j or {}).get("orders", [])
+            # [PHASE-C P0-corr 07-17] TEST-ORDER EXEMPT FILE: marked probe
+            # orders (state/audit_exempt_orders.json, list of order_ids —
+            # the expiration test's guinea pigs) are excluded from the
+            # exchange-truth comparison; every exclusion logs once. The
+            # FORTOM lesson: the auditor was RIGHT to halt on an unmarked
+            # test order; marked ones carry their tag into the audit.
+            _exempt_a = self.__dict__.get("_audit_exempt_ids")
+            if _exempt_a is None:
+                try:
+                    _exempt_a = set(json.loads((Path(__file__).resolve()
+                                    .parent / "state/audit_exempt_orders"
+                                    ".json").read_text()))
+                except Exception:
+                    _exempt_a = set()
+                self._audit_exempt_ids = _exempt_a
             for o in rows_:
+                if o.get("order_id") in _exempt_a:
+                    _exl = self.__dict__.setdefault(
+                        "_audit_exempt_logged", set())
+                    if o.get("order_id") not in _exl:
+                        _exl.add(o.get("order_id"))
+                        self._log("audit_exempt_order", {
+                            "order_id": o.get("order_id"),
+                            "ticker": o.get("ticker")})
+                    continue
                 rec = {"px": round(float(o.get("yes_price_dollars") or 0) * 100),
                        "qty": float(o.get("remaining_count_fp") or 0),
                        "oid": o.get("order_id", "")}
@@ -13634,10 +13916,36 @@ class LiveV3:
                          if _ref0 and _ref0[0] in _FGAP0 else
                          "refused_named" if _ref0 else "absent"))
                 _vals0 = set(_st0.values())
-                if not ({"resting", "filled"} & _vals0) \
-                        or not any(v == "absent"
-                                   or v.startswith("fitting_gap")
-                                   for v in _vals0):
+                # [PHASE-C P2 07-17 — THE MISSING TOOTH, three bodies: BEJ,
+                # ZHE, TAB] a STAMPED leg (the router evaluated the event —
+                # orientation prior on record) that reaches NO decision
+                # within one audit cycle is a DEFECT even when its sibling
+                # is ALSO absent — the old check required one resting/filled
+                # leg, so a both-legs-undecided pair never fired. Same flag
+                # family, once per event per boot.
+                if not ({"resting", "filled"} & _vals0):
+                    if (_et0 in (getattr(self, "_orient_prior_logged", {})
+                                 or {})
+                            and all(v == "absent"
+                                    for v in _st0.values())):
+                        _snd0 = self.__dict__.setdefault(
+                            "_stamped_nodecision_pinged", set())
+                        if _et0 not in _snd0:
+                            _snd0.add(_et0)
+                            _row9 = {"event": _et0,
+                                     "legs": {t.rsplit("-", 1)[-1]: s
+                                              for t, s in _st0.items()},
+                                     "law": "P2 07-17: stamped leg with no "
+                                            "decision within one cycle = "
+                                            "DEFECT (the invariant's "
+                                            "missing tooth)"}
+                            self._log("stamped_no_decision", _row9)
+                            flags.append({"tk": _tks0[0],
+                                          "check": "stamped_no_decision",
+                                          **_row9})
+                    continue
+                if not any(v == "absent" or v.startswith("fitting_gap")
+                           for v in _vals0):
                     continue
                 _row0 = {"event": _et0,
                          "legs": {t.rsplit("-", 1)[-1]: s

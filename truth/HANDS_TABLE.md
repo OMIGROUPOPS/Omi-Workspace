@@ -41,10 +41,10 @@ Legend: consent class = **TYPED** (operator's own words on the record) /
 | 2 | Move/repost (`_v4_manage_resting_inner`→`v4_move_repost`) | Cancels and re-rests an entry bid when the best bid mismatches a touch posture or the regime re-orients | P2 07-17 "Reposts fire on evidence only: best-bid mismatch or a dial re-orientation — never on a timer" | TYPED (dispatch) | ARMED |
 | 3 | ⑮ window-truth re-aim (`window_truth_reaim`) | Joins/improves the best bid when a rise is print-backed; holds on quote-only rises | ⑮ arm 07-17 (operator delegation) + P0v3 (3) print-backed seam | TYPED (dispatch) | ARMED |
 | 4 | Sibling completion re-price (`completion_reprice`, maker) | After one leg fills, re-prices the sibling's resting MAKER bid toward pair completion under the combined ceiling | C-COMPLETION-CEILING arm 06-30 (operator arm) + C-PAIR-LAW 07-15/16 (Priority-1 verbatim) | TYPED | ARMED |
-| 5 | Engagement join (`v4_engagement_join`, maker) | Rests a maker buy AT the standing bid in the engagement window | Engagement re-arm 06-12 (operator-directed after E3 tripwire review); graded nightly since | DRAFT-APPROVED | ARMED |
+| 5 | Engagement join (`v4_engagement_join`, maker) | Rests a maker buy AT the standing bid in the engagement window | **RATIFIED by citation (operator relay 07-17): the walk law — JOIN/IMPROVE +1¢, operator's words on record** | RATIFIED | ARMED |
 | 6 | Staircase walk (`staircase_hold_place`, maker) | Rests no-trade-anchor maker bids that walk a fitted knot schedule | Staircase Ship 3 go (operator, 06-18, Path A live) | TYPED | ARMED |
-| 7 | T−20m fallback maker clamp (`fallback_maker`) | At T−20m re-rests the entry as a maker at ask−1 instead of crossing | RUN-7 config flip (seat-initiated; REPLACED a taker cross with a maker rest) | DRAFT-APPROVED (protective; disarming would restore a taker) | ARMED |
-| 8 | Marketable clamp (`marketable_clamp`) | When a target would cross, rests at ask−1 instead of lifting | Site-clamp family (same protective class as 7) | DRAFT-APPROVED (protective) | ARMED |
+| 7 | T−20m fallback maker clamp (`fallback_maker`) | At T−20m re-rests the entry as a maker at ask−1 instead of crossing | **RATIFIED-PROVISIONAL (operator relay 07-17): lives or dies on the replay bench's corridor-entry-cost receipt** | RATIFIED-PROVISIONAL | ARMED (receipt owed) |
+| 8 | Marketable clamp (`marketable_clamp`) | When a target would cross, rests at ask−1 instead of lifting | **RATIFIED by citation (operator relay 07-17): maker-only doctrine** | RATIFIED | ARMED |
 | 9 | Maker exits (`v4_exit_posted`, sell) | Rests the validated band exit as a maker SELL on every filled leg | §0A operator frame: "The exit strategy is SOLVED and VALIDATED" (typed, standing order) | TYPED | ARMED |
 | 10 | Gun sweep (`gun_fire_sweep` / `match_live_cancel`) | Cancels resting entry bids the moment live evidence fires at/after sched | P0v3 (2) 07-17 "SWEEP BEATS FILL... cancel resting entry bids FIRST" | TYPED (dispatch) | ARMED |
 | 11 | Horizon sweep (`horizon_cancel`) | Cancels entry bids resting beyond T−8h honest | C-CONCEPTION-HORIZON 07-08 (operator ruling; map edge moves on his word only) | TYPED | ARMED |
@@ -57,12 +57,11 @@ Legend: consent class = **TYPED** (operator's own words on the record) /
 | 18 | Monotonic cut (§4 downside flatten) | Would taker-sell a falling leg mid-match | Gated OFF at build (b1aaef9); shadow-first arm doctrine | — | OFF (never armed) |
 | 19 | Freeze-at-gun (4c) | Would hold entry bids static through the gun instead of sweeping | SHELVED 07-03; collision-benched vs sweep law (law_collision founding wire) | — | OFF |
 | 20 | ITM exit-take / no-rebuy (07-07 containment) | Takes an in-the-money exit at settlement-adjacent prices; blocks rebuys after cash | Operator-directed containment sweep 07-07 | TYPED | ARMED |
-| 21 | Deploy drain (`shutdown_cancel` + drain replay) | Cancels resting bids at graceful shutdown; replays them through the chokepoint at boot | C-DRAIN-REPLAY 07-10 (gated deploy, operator-reviewed) | DRAFT-APPROVED | ARMED |
+| 21 | Deploy drain (`shutdown_cancel` + drain replay) | Cancels resting bids at graceful shutdown; replays them through the chokepoint at boot | **RATIFIED by citation (operator relay 07-17): the crash-recovery / orphan-readoption ruling** | RATIFIED | ARMED |
 | 22 | Expiration probe (one-shot, this dispatch) | One 1-share far-from-touch bid with exchange-side expiration, then cancelled | This dispatch's (6), operator-authorized | TYPED (dispatch) | ONE-SHOT tonight |
 
 **Disarm summary this commit: hands 15, 16, 17 — the only acting hands whose
 consent was jargon. Hands 5, 7, 8, 21 are DRAFT-APPROVED with lineage shown
 (5 and 21 operator-directed in substance; 7 and 8 protective clamps whose
-removal would RESTORE taker behavior) — flagged for the operator's typed
-ratification at his convenience, not disarmed: they place nothing the entry
+removal would RESTORE taker behavior) — RATIFIED BY CITATION 07-17 (relay); class closed: they place nothing the entry
 law doesn't already govern and un-arming them worsens the taker surface.**

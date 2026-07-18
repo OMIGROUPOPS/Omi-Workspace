@@ -134,6 +134,19 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-18 · ENTRY SURFACE — STAGE 2 P1: THE DRIFT SURFACES + THE RECOGNITION TABLE (per band; the parent key holds)
+
+**Prior art (C45):** band map v1 (the parent key, d3ca814f) · the spectrum (source) · June's movement/lifecycle/reach discipline (rebuilt entry-side). Delta: three surfaces per band + the early-recognition table, counted never fitted.
+
+**THE SURFACES** (`state/drift_surfaces_v1.json` + `.claude/entrysurface_20260717/DRIFT_SURFACES.md`, machinery `analysis/drift_surfaces.py`; 12,170 legs across 36 populated bands): per band — MOVEMENT ((px−anchor) quartiles per 30-min tts bin, bid/ask/traded), LIFECYCLE (level×tts → P(rise/fall/flat next 30m), cells n≥8 only), REACH (P(dip≥d) d=1..15 + dip-bottom timing quartiles), honest-n inline (thin bands carry "decision-grade NO"). Exhibit reading: the violent-faller bands travel 0 → −32¢ median from T−7.5h to the edge with reach P(≥10¢)=1.00 and lows at the window's end — the collapse is late and total; the flat-favorite bands sit ±2¢ the whole window with dip p50 ≤2¢ — divots are their ENTIRE entry story (P3's charter confirmed by the surface).
+
+**THE RECOGNITION TABLE (counted):** partial-journey fingerprint = anchor-region × net-so-far × dip-so-far, per hour into the window → eventual-band distribution with n. **ATP_CHALL: 61–64% of legs sit in ≥60%-pure buckets at h1–h2, falling to 33–41% h3+ (the early book state is the most predictive hour — churn muddies, not clarifies). ATP_MAIN: 24–28% flat across hours (mains resist early recognition — the recognition voice must stay humble there). ITF: 61–75% (thin books telegraph their band early).** WTA rows in the doc.
+
+**Method catch, named (the census discipline holding its own line):** v1's fingerprint omitted the ANCHOR — flats in different anchor regions were asked to separate on net/dip alone, producing a designed 0% across the board. Caught by its own absurdity BEFORE publishing, fixed as v2, both runs on the record.
+
+**Feeds Stage 3's solve (casts per faller band · parks per riser band · divot bids per flat band — one gated joint object). P2 (subsecond store) still ingesting — 1.39M prints and climbing; its census + P3's divot tables land as their own C50s.**
+
+
 ### 2026-07-17 · ENTRY SURFACE — STAGE 1: THE BAND TAXONOMY (bands given by the market; the operator reads before Stage 2 fits anything)
 
 **Prior art (C45):** the range spectrum (Phase B — the source object), the cohort surface's fixed anchor-buckets (superseded as the parent key by these evidence-derived bands at Stage 5 integration), June's exit-campaign band discipline (the model this build follows on the entry side). Delta: bands DERIVED from W1 range geometry per cat (k-means on standardized anchor × net × dip; elbow-selected k; deterministic seed — every number reproducible), never imposed deciles; pairs one object.

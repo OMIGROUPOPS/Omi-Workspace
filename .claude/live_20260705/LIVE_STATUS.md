@@ -1,8 +1,8 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 358 @ **2026-07-18 03:48:16 PM ET** | build `2ee723db` | session boot 07-18 13:59 ET | log `live_v3_20260718.jsonl` | 3951 session events | monitor READ-ONLY
+- cycle 359 @ **2026-07-18 03:58:19 PM ET** | build `2d341e92` | session boot 07-18 13:59 ET | log `live_v3_20260718.jsonl` | 4104 session events | monitor READ-ONLY
 
-## ⚠ GUN FEED: last new in-play sighting 215 min ago (>30 tripwire; source observed_starts.db)
+## ⚠ GUN FEED: last new in-play sighting 225 min ago (>30 tripwire; source observed_starts.db)
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
 - placed:path_aim UL18BASTAI-TAI aim=8 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
@@ -33,13 +33,13 @@ clean overnight — no watch fires
 - classes now: {'FLOW_ABOVE': 6, 'NO_FLOW': 1} | repriceable now: true 3 / false 4 | **cumulative bid_grade lines: 12884 (repriceable true 1738 / false 11146)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL18LAJYUN-L | 33 | 102m | 1/37-37/2 | 36-37 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→37 |
-| ATPCHALLENGERMATCH-26JUL18LAJYUN-Y | 63 | 107m | 13/64-64/937 | 63-64 | 1 | **FLOW_ABOVE** | 61 | flow above but bound 61c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL18TOMJOH-J | 55 | 108m | 16/58-59/2345 | 58-59 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→58 |
-| ATPCHALLENGERMATCH-26JUL18TOMJOH-T | 39 | 108m | 16/43-43/518 | 42-43 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→43 |
-| ITFWMATCH-26JUL18SAIHOS-SAI | 52 | 45m | 23/63-66/1335 | 63-64 | 11 | **FLOW_ABOVE** | 61 | flow above but bound 61c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL18THOAIA-AIA | 84 | 88m | 17/86-89/640 | 84-89 | 2 | **FLOW_ABOVE** | 84 | flow above but bound 84c < flow -- chasing breaks goal |
-| WTACHALLENGERMATCH-26JUL18TONSPI-T | 31 | 108m | 0 | 31-59 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL18LAJYUN-L | 33 | 112m | 1/37-37/2 | 36-37 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→37 |
+| ATPCHALLENGERMATCH-26JUL18LAJYUN-Y | 63 | 117m | 13/64-64/937 | 63-64 | 1 | **FLOW_ABOVE** | 61 | flow above but bound 61c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL18TOMJOH-J | 55 | 118m | 17/58-59/2401 | 58-59 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→58 |
+| ATPCHALLENGERMATCH-26JUL18TOMJOH-T | 39 | 118m | 16/43-43/518 | 42-43 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→43 |
+| ITFWMATCH-26JUL18SAIHOS-SAI | 52 | 55m | 27/63-66/1364 | 63-64 | 11 | **FLOW_ABOVE** | 61 | flow above but bound 61c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL18THOAIA-AIA | 84 | 98m | 17/86-89/640 | 84-89 | 2 | **FLOW_ABOVE** | 84 | flow above but bound 84c < flow -- chasing breaks goal |
+| WTACHALLENGERMATCH-26JUL18TONSPI-T | 31 | 118m | 0 | 31-59 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
@@ -50,17 +50,17 @@ clean overnight — no watch fires
 ## FLOW-STATE — 6 tracked game(s) ({'WAKING': 2, 'OPEN': 3, 'QUIET': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL18RODSAN | ATP_CHALL | 0.3 | 1 | **OPEN** |
-| ITFWMATCH-26JUL18SAIHOS | ITF_W | 1.967 | 1 | **OPEN** |
-| ITFWMATCH-26JUL18THOAIA | ITF_W | 0.233 | 1 | **OPEN** |
+| ATPCHALLENGERMATCH-26JUL18RODSAN | ATP_CHALL | 0.5 | 1 | **OPEN** |
+| ITFWMATCH-26JUL18SAIHOS | ITF_W | 0.933 | 1 | **OPEN** |
+| ITFWMATCH-26JUL18THOAIA | ITF_W | 0.467 | 1 | **OPEN** |
 | WTACHALLENGERMATCH-26JUL18TONSPI | WTA_CHALL | 0.0 | 28 | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL18LAJYUN | ATP_CHALL | 0.133 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL18TOMJOH | ATP_CHALL | 0.267 | 1 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL18LAJYUN | ATP_CHALL | 0.033 | 1 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL18TOMJOH | ATP_CHALL | 0.167 | 1 | **WAKING** |
 
 ## PATTERNS (sub-B) — 3
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18RODSAN-SAN {"fill": 21, "age_min": 90, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL18THOAIA-THO {"fill": 13, "age_min": 88, "mode": "SET_BELOW_FLOW(prints 2c above)"}
-- half_arm_aging: KXITFWMATCH-26JUL18SAIHOS-HOS {"fill": 36, "age_min": 45, "mode": "SET_BELOW_FLOW(prints 11c above)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18RODSAN-SAN {"fill": 21, "age_min": 100, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL18THOAIA-THO {"fill": 13, "age_min": 98, "mode": "SET_BELOW_FLOW(prints 2c above)"}
+- half_arm_aging: KXITFWMATCH-26JUL18SAIHOS-HOS {"fill": 36, "age_min": 55, "mode": "SET_BELOW_FLOW(prints 11c above)"}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

@@ -1,14 +1,14 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 381 @ **2026-07-18 07:40:58 PM ET** | build `f2bfca65` | session boot 07-18 13:59 ET | log `live_v3_20260718.jsonl` | 23987 session events | monitor READ-ONLY
+- cycle 382 @ **2026-07-18 07:51:07 PM ET** | build `73cd6872` | session boot 07-18 13:59 ET | log `live_v3_20260718.jsonl` | 32717 session events | monitor READ-ONLY
 
-## ⚠ GUN FEED: last new in-play sighting 88 min ago (>30 tripwire; source observed_starts.db)
+## ⚠ GUN FEED: last new in-play sighting 98 min ago (>30 tripwire; source observed_starts.db)
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
-- placed:path_aim UL19RADKON-KON aim=19 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
-- placed:path_aim UL19VANCIR-CIR aim=43 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
-- placed:path_aim UL19DELTOR-TOR aim=39 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
 - placed:path_aim UL18STOZAP-STO aim=31 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
+- placed:path_aim UL18CHAMAN-MAN aim=79 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
+- placed:path_aim UL19CERTRU-CER aim=61 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
+- placed:path_aim UL18DYEHIR-HIR aim=79 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
@@ -36,10 +36,10 @@ clean overnight — no watch fires
 - classes now: {'NO_FLOW': 2, 'FLOW_ABOVE': 2} | repriceable now: true 1 / false 3 | **cumulative bid_grade lines: 12888 (repriceable true 1739 / false 11149)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL18LAJYUN-L | 33 | 334m | 39/35-37/1640 | 35-36 | 2 | **FLOW_ABOVE** | 34 | REPRICEABLE→34 |
-| ITFWMATCH-26JUL18THOAIA-THO | 13 | 21m | 366/19-25/31686 | 21-15 | 6 | **FLOW_ABOVE** | 13 | flow above but bound 13c < flow -- chasing breaks goal |
-| ITFWMATCH-26JUL19VANCIR-CIR | 54 | 9m | 0 | 54-56 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL18TONSPI-T | 31 | 341m | 0 | 31-59 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL18LAJYUN-L | 33 | 344m | 69/35-37/15291 | 35-36 | 2 | **FLOW_ABOVE** | 34 | REPRICEABLE→34 |
+| ITFWMATCH-26JUL18THOAIA-THO | 13 | 31m | 569/19-25/41786 | 21-15 | 6 | **FLOW_ABOVE** | 13 | flow above but bound 13c < flow -- chasing breaks goal |
+| ITFWMATCH-26JUL19VANCIR-CIR | 54 | 20m | 0 | 54-56 | — | **NO_FLOW** | 99 |  |
+| WTACHALLENGERMATCH-26JUL18TONSPI-T | 31 | 351m | 0 | 31-59 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
@@ -49,17 +49,17 @@ clean overnight — no watch fires
 ## FLOW-STATE — 6 tracked game(s) ({'OPEN': 1, 'QUIET': 3, 'WAKING': 2}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL18LAJYUN | ATP_CHALL | 1.9 | 1 | **OPEN** |
+| ATPCHALLENGERMATCH-26JUL18LAJYUN | ATP_CHALL | 2.567 | 1 | **OPEN** |
 | ATPCHALLENGERMATCH-26JUL18RODSAN | ATP_CHALL | 0.0 | — | **QUIET** |
 | ITFWMATCH-26JUL18SAIHOS | ITF_W | 0.0 | — | **QUIET** |
 | WTACHALLENGERMATCH-26JUL18TONSPI | WTA_CHALL | 0.0 | 28 | **QUIET** |
-| ITFWMATCH-26JUL18THOAIA | ITF_W | 17.2 | — | **WAKING** |
-| ITFWMATCH-26JUL19VANCIR | ITF_W | 0.1 | 2 | **WAKING** |
+| ITFWMATCH-26JUL18THOAIA | ITF_W | 20.9 | — | **WAKING** |
+| ITFWMATCH-26JUL19VANCIR | ITF_W | 0.067 | 2 | **WAKING** |
 
 ## PATTERNS (sub-B) — 3
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18RODSAN-SAN {"fill": 21, "age_min": 323, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL18SAIHOS-HOS {"fill": 36, "age_min": 277, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18LAJYUN-YUN {"fill": 63, "age_min": 125, "mode": "SET_BELOW_FLOW(prints 2c above)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18RODSAN-SAN {"fill": 21, "age_min": 333, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL18SAIHOS-HOS {"fill": 36, "age_min": 288, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18LAJYUN-YUN {"fill": 63, "age_min": 135, "mode": "SET_BELOW_FLOW(prints 2c above)"}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

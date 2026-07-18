@@ -154,5 +154,6 @@
   "orientation_swap_min_conviction": 0.7,
   "cohort_steer_live": true,
   "cohort_min_n": 30,
-  "sanctioned_walk_fitted": true
+  "sanctioned_walk_fitted": true,
+  "entry_table_prior_enabled": true
 }

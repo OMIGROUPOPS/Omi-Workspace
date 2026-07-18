@@ -134,6 +134,17 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-18 · ENTRY SURFACE — STAGE 4 (THE LOOP'S VERDICT) + STAGE 5 (THE SEAL, SURVIVORS ONLY)
+
+**Prior art (C45):** Stage 3 tables (9cdc621d) · June's replay/holdout discipline (the loop rebuilt entry-side) · the seal ceremony pattern (LOCKED_DOWN lineage). Delta: the loop RAN and the seal admits only what survived it.
+
+**STAGE 4 — THE DRILL'S VERDICT (the harness did its job):** information-time replay (T−6h decision, decreed; band call from the recognition table with confidence, anchor-default fallback named; bids scored against each leg's own later tape) over 10,118 replayable legs. **10 iterations, CONVERGED at train/holdout gap +0.0194 — TRAIN climbed −0.029→+0.009 while HOLDOUT stalled ≈−0.01: MEMORIZATION CAUGHT BY THE METER, exactly what the harness exists to prove it cannot do silently.** Validation report per band: 10 CI-failures NAMED (the flats' divot-rate frame does not transfer to a single static T−6h bid — a frame mismatch, not a divot disproof; the catch tables priced a resting-all-window bid, the replay placed a T−6h one); most CI-passers still carry negative close-mark ROC. Walked replay day (26JUL16, REPLAY_DAY.md): every bid with band/confidence/zone/level/reasoning printed, fills and honest misses. **THE VERDICT, plainly: the entry brain as framed does NOT clear holdout at scale — said so, per the dispatch's own standard.** Artifacts: LOOP_CAMPAIGN.md · REPLAY_DAY.md · entry_tables_v2.json · machinery analysis/solve_replay_loop.py.
+
+**STAGE 5 — THE SEAL, SURVIVORS ONLY:** `state/entry_tables_sealed_v1.json` sha256 `3e01b92e…` — **SEALED 4 (WTA_CHALL-B3 divot 11¢ +0.019 replay-frame · ATP_MAIN-B2 cast 25¢ ROC 0.218 reach-frame · WTA_CHALL-B1 12¢ 0.252 · ATP_MAIN-B8 park 1¢, labeled thin-park) · REFUSE 5 (violent fallers — the law) · 27 FAILED-HOLDOUT/THIN rows present and SILENT.** LOCKED_DOWN_ENTRY.md carries every input hash + the drill citation; the operator's read is the countersign. **THE WIRE:** `entry_table_prior_enabled=true` — the sealed table speaks ONLY where live cohort n<30 and no borrow exists, TABLE-LABELED (`SEALED-TABLE:<band>` / `REFUSE:<band>` in the logs); rich live cohorts outrank by construction; the refuse consumer holds the aim and names it (`table_refuse_hold`). Gate deploy this C50.
+
+**What Stage 6 inherits (evidence, not sketch):** the frame mismatch is the finding — the divot tables price RESTING-ALL-WINDOW bids and the exit-blend question (close-mark vs band-keyed exit) is exactly the operator's Stage-6 checkpoint. The loop harness is permanent; re-drills run on his word.**
+
+
 ### 2026-07-18 · ENTRY SURFACE — STAGE 3: THE GATED JOINT SOLVE (per-band entry tables, staged for the seal; nothing arms)
 
 **Prior art (C45):** the three banked inputs (band map d3ca814f · surfaces+recognition · store+catch tables 59dc1eea) · June's gated-optima discipline (unity → realism → optima, rebuilt entry-side) · the aim-table/3¢ constants this retires at Stage 5. Delta: one pair-aware solve, ROC the metric, holdout + era-proof in the same artifact.

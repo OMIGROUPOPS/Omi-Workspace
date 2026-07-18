@@ -3671,6 +3671,36 @@ class LiveV3:
         bcell = (s.get("cells") or {}).get(key + "|borrowed")
         if bcell:
             return bcell, key + "|borrowed"
+        # [STAGE 5 SEAL 07-18] where live cohort n is thin, the SEALED band
+        # table speaks — LABELED AS TABLE, never silently; only SEALED rows
+        # (the Stage-4 survivors); FAILED-HOLDOUT/THIN/REFUSE never consult.
+        # The REFUSE law: a violent-faller band match returns refuse=True
+        # (the caller holds the current aim and names it).
+        if self.config.get("entry_table_prior_enabled", False):
+            try:
+                p9 = Path(__file__).resolve().parent / \
+                    "state/entry_tables_sealed_v1.json"
+                mt9 = p9.stat().st_mtime
+                c9 = self.__dict__.get("_sealed_table_cache")
+                if not c9 or c9[0] != mt9:
+                    c9 = (mt9, json.loads(p9.read_text()))
+                    self._sealed_table_cache = c9
+                _bands9 = (c9[1].get("bands") or {})
+                _cands9 = [(b, r) for b, r in _bands9.items()
+                           if b.startswith(cat)]
+                if _cands9:
+                    _b9, _r9 = min(_cands9, key=lambda kv: abs(
+                        kv[1].get("anchor_med", 999) - anchor))
+                    if _r9.get("status") == "SEALED":
+                        return ({"table": True, "dip_p50": _r9["depth"],
+                                 "n": _r9.get("n"),
+                                 "receipt": _r9.get("receipt")},
+                                "SEALED-TABLE:" + _b9)
+                    if _r9.get("status") == "REFUSE":
+                        return ({"table": True, "refuse": True,
+                                 "n": _r9.get("n")}, "REFUSE:" + _b9)
+            except Exception:
+                pass
         return ({"thin": True, "n": (cell or {}).get("n", 0)}, key)
 
     def _orientation_prior(self, et):
@@ -4350,6 +4380,17 @@ class LiveV3:
                 and not _role_riser):
             try:
                 _cc, _ck = self._cohort_read(cat, False, anchor_price)
+                if _cc and _cc.get("refuse"):
+                    # [STAGE 5] the violent-faller REFUSE is law: hold the
+                    # current aim, name it once per leg.
+                    _rf5 = self.__dict__.setdefault(
+                        "_table_refuse_logged", set())
+                    if tk not in _rf5:
+                        _rf5.add(tk)
+                        self._log("table_refuse_hold", {
+                            "cell": _ck, "law": "STAGE-5 seal: violent "
+                            "faller — never catch that knife"}, ticker=tk)
+                    _cc = None
                 if _cc and not _cc.get("thin") and _cc.get("dip_p50"):
                     _old_t = max(1, anchor_price - offset)
                     _co_t = max(1, anchor_price - int(_cc["dip_p50"]))

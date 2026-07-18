@@ -1,99 +1,146 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 246 @ **2026-07-17 08:10:13 PM ET** | build `8897f4e5` | session boot 07-17 15:16 ET | log `live_v3_20260717.jsonl` | 14852 session events | monitor READ-ONLY
+- cycle 254 @ **2026-07-17 09:33:51 PM ET** | build `8c88beb2` | session boot 07-17 20:26 ET | log `live_v3_20260717.jsonl` | 6308 session events | monitor READ-ONLY
 
-## ⚠ GUN FEED: last new in-play sighting 57 min ago (>30 tripwire; source observed_starts.db)
+## ⚠ GUN FEED: last new in-play sighting 81 min ago (>30 tripwire; source observed_starts.db)
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
-- placed:path_aim UL18CORSAC-SAC aim=62 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
-- refused:no_path_page UL18TSYRIC-TSY aim=None | atlas_page:CONS,contention_s:CONS,pair_state:NOT-,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
-- placed:path_aim UL18GAUTSE-GAU aim=53 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
-- refused:no_path_page UL18TSYRIC-TSY aim=None | atlas_page:CONS,contention_s:CONS,pair_state:NOT-,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
+- refused:no_path_page UL18DOTROJ-ROJ aim=None | atlas_page:CONS,contention_s:CONS,pair_state:NOT-,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
+- refused:pair_seesaw UL18HONTHA-HON aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
+- refused:pair_seesaw UL18HONTHA-HON aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
+- refused:no_path_page UL18DOTROJ-ROJ aim=None | atlas_page:CONS,contention_s:CONS,pair_state:NOT-,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS,honest_clock:CONS,w1_co
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
 - tripwire artifact: **PRESENT — CHECK /tmp/live_v4_TRIPWIRE.json**
 
-## ZERO-TOLERANCE — 12 violation(s)
+## ZERO-TOLERANCE — 89 violation(s)
 | ET | class | who | detail |
 |---|---|---|---|
-| 15:18:52 | **self_fill_bell** | KXITFMATCH-26JUL17OCODEL-OCO | own buys rose 6c (10->16) in 1800s -> match-live presumption, entry buys FROZEN |
-| 15:25:55 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL17LAJNOG-NOG | own buys rose 4c (24->28) in 1800s -> match-live presumption, entry buys FROZEN |
-| 15:31:17 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU | flatten DEFERRED: ev -1.29 above margin floor -3.0 |
-| 16:54:35 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL | flatten DEFERRED: ev -0.77 above margin floor -3.0 |
-| 17:04:40 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL | flatten DEFERRED: ev -0.77 above margin floor -3.0 |
-| 17:16:05 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL | flatten DEFERRED: ev -0.77 above margin floor -3.0 |
-| 17:26:15 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL | flatten DEFERRED: ev -0.77 above margin floor -3.0 |
-| 17:36:15 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL | flatten DEFERRED: ev -0.77 above margin floor -3.0 |
-| 17:47:46 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL | flatten DEFERRED: ev -0.77 above margin floor -3.0 |
-| 17:58:36 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL | flatten DEFERRED: ev -0.77 above margin floor -3.0 |
-| 19:06:42 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17LAJNOG-LAJ | flatten DEFERRED: ev -0.84 above margin floor -3.0 |
-| 19:35:14 | **flatten_leash** | KXATPCHALLENGERMATCH-26JUL17LAJNOG-LAJ | flatten DEFERRED: ev -0.84 above margin floor -3.0 |
+| 21:02:09 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 15) |
+| 21:02:48 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 15) |
+| 21:06:17 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:06:19 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:06:32 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:06:40 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:07:41 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:08:34 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:08:59 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:10:25 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:12:46 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:13:42 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:13:44 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:14:45 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:14:57 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:25 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:25 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:26 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:31 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:34 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:50 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:51 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:54 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:55 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:55 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:56 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:56 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:56 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:57 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:15:58 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:16:01 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:16:50 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:16:51 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:16:52 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:16:53 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:16:53 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:17:07 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:17:15 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:17:24 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:17:32 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:17:49 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:18:17 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:18:29 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:19:38 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:20:13 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:21:29 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:21:51 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:21:53 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:21:57 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:22:00 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:22:01 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:22:04 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:22:07 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:22:08 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:22:14 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:22:38 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:22:59 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:23:23 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:23:58 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:24:13 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:24:13 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:24:36 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:24:58 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:25:12 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:25:22 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:25:36 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:25:54 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:26:09 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:26:24 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:26:45 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:26:51 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:26:52 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:27:05 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:27:22 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:27:39 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:27:49 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:27:54 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:28:01 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:28:10 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:28:14 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:28:30 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:28:38 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:28:40 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:30:38 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:31:56 | **self_fill_bell** | KXITFMATCH-26JUL18TORKHO-TOR | own buys rose 12c (34->46) in 1800s -> match-live presumption, entry buys FROZEN |
+| 21:32:42 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:32:52 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:32:52 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
+| 21:32:59 | **chase_cap** | KXITFMATCH-26JUL17OCODEL-OCO | chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16) |
 
-## FILLS — 9 graded (session)
-| ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb | stamp |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| 15:16 | ITFMATCH-26JUL17NEFGAI-GAI | ITF_M | ? | 46 | 39 | +7 (window_cell) | — | pre | single |  | MIXED |
-| 15:31 | ATPCHALLENGERMATCH-26JUL17HOLBOU-B | ATP_CHALL | ? | 33 | 31 | +2 (window_cell) | — | pre | single |  | MIXED |
-| 16:07 | ATPCHALLENGERMATCH-26JUL17WONJOH-W | ATP_CHALL | ? | 64 | 61 | +3 (window_cell) | — | pre | single |  | GIFT_CLASS |
-| 16:32 | ATPCHALLENGERMATCH-26JUL17SMIYUN-Y | ATP_CHALL | ? | 63 | 61 | +2 (window_cell) | — | pre | single |  | GIFT_CLASS |
-| 16:47 | ITFMATCH-26JUL17OCODEL-OCO | ITF_M | ? | 17 | 12 | +5 (place_cell) | — | pre | pair | 99 | PENDING |
-| 16:47 | ITFMATCH-26JUL17OCODEL-DEL | ITF_M | ? | 82 | 79 | +3 (fill_est) | — | pre | pair | 99 | PENDING |
-| 16:54 | ATPCHALLENGERMATCH-26JUL17VUKGAL-G | ATP_CHALL | ? | 53 | 50 | +3 (window_cell) | — | pre | single |  | GIFT_CLASS |
-| 18:06 | ATPCHALLENGERMATCH-26JUL17FORTOM-T | ATP_CHALL | ? | 66 | 63 | +3 (window_cell) | — | pre | single |  | GIFT_CLASS |
-| 19:06 | ATPCHALLENGERMATCH-26JUL17LAJNOG-L | ATP_CHALL | ? | 71 | 69 | +2 (window_cell) | — | pre | single |  | GIFT_CLASS |
+**LIVE DEFECT(S) — forensic blocks written: FORENSIC_chase_cap.md**
 
-## RESTING BIDS — 2 tape-graded (starvation = NO_FLOW only)
-- classes now: {'FLOW_ABOVE': 2} | repriceable now: true 1 / false 1 | **cumulative bid_grade lines: 12599 (repriceable true 1656 / false 10943)** -- the liquid_repost re-arm evidence accumulates here
+## FILLS — 0 graded (session)
+none yet this session
+
+## RESTING BIDS — 8 tape-graded (starvation = NO_FLOW only)
+- classes now: {'FLOW_ABOVE': 3, 'NO_FLOW': 5} | repriceable now: true 3 / false 5 | **cumulative bid_grade lines: 12615 (repriceable true 1659 / false 10956)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL17FORTOM-F | 31 | 250m | 27/33-35/1767 | 34-35 | 2 | **FLOW_ABOVE** | 31 | flow above but bound 31c < flow -- chasing breaks goal |
-| ITFMATCH-26JUL18AGIOVC-AGI | 22 | 67m | 2/23-23/24 | 22-23 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→23 |
+| ITFMATCH-26JUL18AGIOVC-AGI | 22 | 60m | 4/23-23/40 | 22-23 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→23 |
+| ITFMATCH-26JUL18AGIOVC-OVC | 76 | 61m | 1/79-79/1 | 76-79 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→79 |
+| ITFMATCH-26JUL18TORKHO-TOR | 46 | 2m | 0 | 46-50 | — | **NO_FLOW** | 99 |  |
+| WTACHALLENGERMATCH-26JUL18BASKRA-K | 64 | 3m | 0 | 66-67 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL18BANGAO-BAN | 34 | 33m | 0 | 37-38 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL18BANGAO-GAO | 57 | 28m | 0 | 62-63 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL18HONTHA-THA | 17 | 33m | 1/20-20/2 | 20-21 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→20 |
+| WTAMATCH-26JUL18MICFRU-FRU | 70 | 18m | 0 | 74-76 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
-| event | basis | sib ask | achievable | goal | vs goal |
-|---|---|---|---|---|---|
-| ITFMATCH-26JUL17NEFGAI | 46 | 2 | **48** | 97 | -49 |
-| ATPCHALLENGERMATCH-26JUL17LAJNOG | 71 | 16 | **87** | 97 | -10 |
-| ATPCHALLENGERMATCH-26JUL17FORTOM | 66 | 35 | **101** | 97 | +4 |
-| ATPCHALLENGERMATCH-26JUL17WONJOH | 64 | 39 | **103** | 97 | +6 |
-| ATPCHALLENGERMATCH-26JUL17SMIYUN | 63 | 41 | **104** | 97 | +7 |
-| ATPCHALLENGERMATCH-26JUL17VUKGAL | 53 | 68 | **121** | 97 | +24 |
-| ATPCHALLENGERMATCH-26JUL17HOLBOU | 33 | 97 | **130** | 97 | +33 |
+no open half-pairs
 
-## FLOW-STATE — 9 tracked game(s) ({'OPEN': 2, 'QUIET': 2, 'WAKING': 5}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 6 tracked game(s) ({'WAKING': 6}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL17FORTOM | ATP_CHALL | 0.467 | 1 | **OPEN** |
-| ITFMATCH-26JUL17OCODEL | ITF_M | 0.933 | 1 | **OPEN** |
-| ATPCHALLENGERMATCH-26JUL17HOLBOU | ATP_CHALL | 0.0 | — | **QUIET** |
-| ITFMATCH-26JUL17NEFGAI | ITF_M | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL17LAJNOG | ATP_CHALL | 21.0 | — | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL17SMIYUN | ATP_CHALL | 30.367 | — | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL17VUKGAL | ATP_CHALL | 79.633 | — | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL17WONJOH | ATP_CHALL | 54.7 | — | **WAKING** |
-| ITFMATCH-26JUL18AGIOVC | ITF_M | 0.0 | 1 | **WAKING** |
+| ITFMATCH-26JUL18AGIOVC | ITF_M | 0.167 | 1 | **WAKING** |
+| ITFMATCH-26JUL18TORKHO | ITF_M | 0.2 | 4 | **WAKING** |
+| WTACHALLENGERMATCH-26JUL18BASKRA | WTA_CHALL | 0.033 | 1 | **WAKING** |
+| WTAMATCH-26JUL18BANGAO | WTA_MAIN | 0.0 | 1 | **WAKING** |
+| WTAMATCH-26JUL18HONTHA | WTA_MAIN | 0.033 | 1 | **WAKING** |
+| WTAMATCH-26JUL18MICFRU | WTA_MAIN | 0.033 | 2 | **WAKING** |
 
-## PATTERNS (sub-B) — 19
-- half_arm_aging: KXITFMATCH-26JUL17NEFGAI-GAI {"fill": 46, "age_min": 293, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL {"kind": "position_basis", "ref": 86.0, "market_mid": 29.0, "divergence": 57.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU {"fill": 33, "age_min": 279, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL17RODCRA-ROD {"kind": "position_basis", "ref": 71.0, "market_mid": 26.5, "divergence": 44.5}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL17SANALM-ALM {"kind": "position_basis", "ref": 68.0, "market_mid": 34.5, "divergence": 33.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17WONJOH-WON {"fill": 64, "age_min": 243, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU {"kind": "position_basis", "ref": 33.0, "market_mid": 1.5, "divergence": 31.5}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL17RODCRA-ROD {"kind": "position_basis", "ref": 71.0, "market_mid": 36.0, "divergence": 35.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17SMIYUN-YUN {"fill": 63, "age_min": 217, "mode": "NO_BID(sib rested earlier, none now)"}
-- combined_over_goal_UNVERIFIED_BASIS: KXITFMATCH-26JUL17OCODEL {"combined": 99, "detail": "pair combined 99c > 97c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) \u2014 exchange-truth check required, NOT a ZT row"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL17SANALM-ALM {"kind": "position_basis", "ref": 68.0, "market_mid": 26.0, "divergence": 42.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL {"fill": 53, "age_min": 196, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL17SANALM-ALM {"kind": "position_basis", "ref": 68.0, "market_mid": 12.5, "divergence": 55.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17FORTOM-TOM {"fill": 66, "age_min": 123, "mode": "SET_BELOW_FLOW(prints 2c above)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL17LAJNOG-LAJ {"fill": 71, "age_min": 64, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL17FORTOM-FOR {"kind": "resting_bid", "ref": 2.0, "market_mid": 34.5, "divergence": -32.5}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL {"kind": "position_basis", "ref": 53.0, "market_mid": 24.5, "divergence": 28.5}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL17WONJOH-WON {"kind": "position_basis", "ref": 64.0, "market_mid": 36.5, "divergence": 27.5}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL17WONJOH-WON {"kind": "position_basis", "ref": 64.0, "market_mid": 37.5, "divergence": 26.5, "emitted_et": "2026-07-17 08:10:13 PM ET"}
+## PATTERNS (sub-B) — 2
+- reality_divergence: KXATPCHALLENGERMATCH-26JUL17SMIYUN-YUN {"kind": "position_basis", "ref": 63.0, "market_mid": 30.0, "divergence": 33.0}
+- reality_divergence: KXATPCHALLENGERMATCH-26JUL17WONJOH-WON {"kind": "position_basis", "ref": 64.0, "market_mid": 31.0, "divergence": 33.0}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

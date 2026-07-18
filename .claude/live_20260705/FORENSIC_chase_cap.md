@@ -1,1107 +1,570 @@
-# FORENSIC — chase_cap — LIVE DEFECT (>=2 in 60min)  <!-- 1783920188 -->
-written 2026-07-13 01:23:22 AM ET by live_validation_loop (read-only). Patch conversation starts NOW.
+# FORENSIC — chase_cap — LIVE DEFECT (>=2 in 60min)  <!-- 1784338379 -->
+written 2026-07-17 09:33:50 PM ET by live_validation_loop (read-only). Patch conversation starts NOW.
 
-## Events (931 total this session)
-- 21:03:06 KXITFWMATCH-26JUL12SUNYUN-SUN — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 53)
-- 21:03:06 KXITFWMATCH-26JUL12SUNYUN-YUN — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 8)
-- 00:02:08 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:02:08 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:02:41 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:04:39 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:06:37 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:06:39 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:07:01 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 53)
-- 00:07:02 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 53)
-- 00:08:05 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 54)
-- 00:08:06 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 55)
-- 00:08:10 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:08:18 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:08:41 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:08:41 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:08:41 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 55)
-- 00:08:41 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:08:49 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:08:57 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 56)
-- 00:08:58 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:09:11 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:09:12 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 57)
-- 00:09:48 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 58)
-- 00:10:14 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 42)
-- 00:10:14 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:10:15 KXITFMATCH-26JUL13PRADRA-PRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 44)
-- 00:10:26 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 42)
-- 00:10:27 KXITFMATCH-26JUL13PRADRA-PRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 45)
-- 00:10:27 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:10:29 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 59)
-- 00:10:31 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 60)
-- 00:10:42 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:10:42 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:10:42 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 42)
-- 00:10:42 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 60)
-- 00:10:42 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:10:42 KXITFMATCH-26JUL13PRADRA-PRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 45)
-- 00:10:58 KXITFMATCH-26JUL13PRADRA-PRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 45)
-- 00:11:08 KXITFMATCH-26JUL13PRADRA-PRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 45)
-- 00:11:20 KXITFMATCH-26JUL13PRADRA-PRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 45)
-- 00:11:20 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 43)
-- 00:11:21 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 43)
-- 00:11:22 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 41)
-- 00:11:22 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 42)
-- 00:11:23 KXITFMATCH-26JUL13PRADRA-PRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 46)
-- 00:11:24 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 43)
-- 00:11:31 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 43)
-- 00:11:32 KXITFMATCH-26JUL13PRADRA-PRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 47)
-- 00:11:42 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:11:56 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:11:57 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 61)
-- 00:12:08 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 62)
-- 00:12:37 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 43)
-- 00:12:39 KXITFMATCH-26JUL13PRADRA-PRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 48)
-- 00:12:40 KXITFMATCH-26JUL13PRADRA-PRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 49)
-- 00:12:43 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:12:43 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:12:43 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 43)
-- 00:12:43 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 62)
-- 00:12:43 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:12:43 KXITFMATCH-26JUL13PRADRA-PRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 49)
-- 00:13:00 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:13:10 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 43)
-- 00:13:10 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:13:12 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 63)
-- 00:13:22 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 43)
-- 00:13:33 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 43)
-- 00:13:33 KXITFMATCH-26JUL13PRADRA-PRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 50)
-- 00:13:59 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 64)
-- 00:14:15 KXITFMATCH-26JUL13PRADRA-DRA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 43)
-- 00:14:24 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:14:34 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:14:35 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 65)
-- 00:14:46 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:14:46 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:14:46 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 65)
-- 00:14:46 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:15:00 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 66)
-- 00:15:48 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:15:56 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:15:57 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 67)
-- 00:16:47 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:16:47 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:16:47 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 67)
-- 00:16:47 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:17:04 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:17:05 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 30)
-- 00:17:07 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:17:08 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 68)
-- 00:17:24 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:17:24 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 30)
-- 00:17:26 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:17:27 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 69)
-- 00:17:28 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:17:30 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 69)
-- 00:17:30 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:17:31 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 30)
-- 00:17:33 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 31)
-- 00:17:33 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:17:35 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 18)
-- 00:17:35 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 32)
-- 00:17:42 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 31)
-- 00:17:42 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 18)
-- 00:17:42 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 30)
-- 00:17:42 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:17:42 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 30)
-- 00:17:44 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:17:45 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:17:46 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:17:46 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 30)
-- 00:17:46 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:18:47 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:18:47 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:18:47 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:18:47 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 30)
-- 00:18:47 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:18:47 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:20:07 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:20:20 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:20:21 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 00:20:26 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:20:34 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:20:45 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 00:20:50 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:20:50 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:20:50 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:20:50 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 30)
-- 00:20:50 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 00:20:50 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:21:09 KXITFMATCH-26JUL13BONFAB-FAB — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 00:21:09 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:21:10 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:21:12 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:22:35 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 60)
-- 00:22:36 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 60)
-- 00:22:36 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 61)
-- 00:22:37 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 62)
-- 00:22:38 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 63)
-- 00:22:39 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 64)
-- 00:22:39 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 65)
-- 00:22:41 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 66)
-- 00:22:42 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 67)
-- 00:22:43 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 67)
-- 00:22:44 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 69)
-- 00:22:45 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 69)
-- 00:22:46 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 00:22:47 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 00:22:51 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:22:51 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:22:51 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:22:51 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 30)
-- 00:22:51 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 00:24:07 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:24:18 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:24:51 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:24:51 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:24:51 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:24:51 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 30)
-- 00:24:51 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 00:25:46 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:25:47 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:25:47 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 31)
-- 00:26:02 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:26:02 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 32)
-- 00:26:03 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:26:05 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:26:10 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:26:53 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:26:53 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:26:53 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:26:53 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 32)
-- 00:26:53 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 00:28:51 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:28:51 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:28:51 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:28:51 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 32)
-- 00:28:51 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 00:30:55 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:30:55 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:30:55 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:30:55 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 32)
-- 00:30:55 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 00:32:33 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:32:35 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:32:57 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:32:57 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 10)
-- 00:32:57 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:32:57 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 32)
-- 00:32:57 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:34:24 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:34:25 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:34:27 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:34:29 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 33)
-- 00:34:29 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 33)
-- 00:34:31 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12)
-- 00:34:47 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:34:47 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 33)
-- 00:34:49 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 34)
-- 00:34:52 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:34:55 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 00:34:57 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:34:57 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:34:57 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 00:34:57 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:34:57 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12)
-- 00:35:04 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:35:04 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 34)
-- 00:35:05 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 33)
-- 00:35:05 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 33)
-- 00:35:07 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 33)
-- 00:35:13 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 33)
-- 00:35:20 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 33)
-- 00:35:22 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 33)
-- 00:35:24 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 33)
-- 00:35:26 KXITFWMATCH-26JUL13ARUMCK-ARU — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 33)
-- 00:35:37 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:35:39 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:36:57 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:36:57 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:36:57 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:36:57 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12)
-- 00:39:00 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:39:00 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:39:00 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:39:00 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12)
-- 00:41:03 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:41:03 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:41:03 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:41:03 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12)
-- 00:41:52 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 18)
-- 00:41:54 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:41:56 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 18)
-- 00:41:58 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 00:42:00 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 00:42:11 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:11 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:11 KXITFWMATCH-26JUL13SLASED-SLA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:42:11 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:12 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:13 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:13 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:14 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:14 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:15 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:15 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:16 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:16 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:17 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:17 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:18 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:18 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:19 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:20 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:21 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:21 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:22 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:22 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:22 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:23 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:23 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:24 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:24 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:24 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:25 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:25 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:26 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:26 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:27 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:27 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:28 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:28 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:28 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:29 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:29 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:29 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:30 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:30 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:31 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:31 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:32 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:32 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:33 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:33 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:36 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:37 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:38 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:38 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:39 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:39 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:39 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:40 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:40 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:41 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:42 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:42 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:42 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:42 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:43 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:43 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:44 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:44 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:45 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:45 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:46 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:46 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:47 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:47 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:51 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:51 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:52 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:52 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:53 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:53 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:54 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:54 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:55 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:55 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:56 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:56 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:56 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:57 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:57 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:58 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:42:58 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:58 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:42:59 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:00 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:00 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:01 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:01 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:01 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:01 KXITFWMATCH-26JUL13SLASED-SLA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:43:01 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:43:01 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 00:43:01 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:43:01 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12)
-- 00:43:01 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:02 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:02 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:04 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:04 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:04 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:04 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:05 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:05 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:06 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:06 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:06 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:43:07 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:07 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 00:43:07 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:08 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:08 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:09 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:09 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:09 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:09 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:10 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:10 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:11 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:11 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:11 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 00:43:12 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:12 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:13 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:13 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:14 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:14 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:15 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:15 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:16 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:16 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:16 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:17 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:17 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:18 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:18 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:43:18 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:18 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:19 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:19 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:20 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:20 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:20 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:21 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:21 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:22 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:22 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:22 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:23 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:23 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:23 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:24 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:24 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 24)
-- 00:43:25 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:25 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:25 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 00:43:25 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:26 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:26 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:26 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:27 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:28 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:28 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:29 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:29 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:29 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:30 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 00:43:30 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:30 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:31 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:31 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:32 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:32 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:33 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:33 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:34 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:34 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:34 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:34 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:36 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:36 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:37 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:37 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:38 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:38 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:39 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:39 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:40 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:40 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:40 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:41 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:41 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:42 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:42 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:43 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 74)
-- 00:43:43 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:43:43 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:44:38 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 00:45:09 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 00:45:09 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:45:09 KXITFWMATCH-26JUL13SLASED-SLA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:45:09 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 00:45:09 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 00:45:09 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:45:09 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12)
-- 00:46:13 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:47:04 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:47:04 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:47:04 KXITFWMATCH-26JUL13SLASED-SLA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:47:04 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 00:47:04 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 00:47:04 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:47:04 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12)
-- 00:49:04 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:49:04 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:49:04 KXITFWMATCH-26JUL13SLASED-SLA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:49:04 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 00:49:04 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 00:49:04 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 00:49:04 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12)
-- 00:51:07 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:07 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:51:07 KXITFWMATCH-26JUL13SLASED-SLA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:51:07 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 00:51:07 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 00:51:07 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 00:51:07 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12)
-- 00:51:14 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 12)
-- 00:51:16 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:17 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:17 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:18 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:18 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:20 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:20 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:22 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:22 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:24 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:24 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:26 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:28 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:28 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:30 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:30 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:32 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:32 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:34 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:34 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:36 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:36 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:38 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:40 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:40 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:42 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:42 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:44 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:44 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:46 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:46 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:48 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:48 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:50 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:52 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:52 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:54 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:54 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:56 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:56 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:57 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 00:51:57 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:51:58 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:51:58 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:00 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:00 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:02 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:04 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:04 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:06 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:06 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:07 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 13)
-- 00:52:07 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 13)
-- 00:52:08 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:08 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:10 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:10 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:10 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 00:52:12 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:12 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:14 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:16 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:16 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:18 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:18 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:18 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:18 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:20 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:20 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:22 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:22 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:24 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:26 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:26 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:28 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:28 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:30 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:30 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:32 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:34 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:34 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:36 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:36 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:38 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:38 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:39 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:40 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:42 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:42 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:44 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:44 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:46 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:46 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:48 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:50 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:50 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:52 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:52 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:54 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:54 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:56 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:58 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:52:58 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:00 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:00 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:02 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:02 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:04 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:06 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:06 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:08 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:08 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:09 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:09 KXITFWMATCH-26JUL13SLASED-SED — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 75)
-- 00:53:09 KXITFWMATCH-26JUL13SLASED-SLA — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:53:09 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 00:53:09 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:53:09 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 00:53:09 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 13)
-- 00:53:10 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:10 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:12 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:14 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:14 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:16 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:16 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:18 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:18 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:53:20 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:54:49 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:54:50 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:54:51 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:54:51 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:54:53 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:54:53 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:54:55 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:54:57 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:54:57 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:54:59 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:54:59 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:01 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:03 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:03 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:05 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:07 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:07 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:09 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:11 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:11 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:11 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:12 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:12 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 00:55:12 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:55:12 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:55:12 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 13)
-- 00:55:13 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:15 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:15 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:17 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:19 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:19 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:21 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:23 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:23 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:25 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:27 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:27 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:29 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:31 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:31 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:33 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:35 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:35 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:35 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:37 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:39 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:39 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:41 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:43 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:43 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:45 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:47 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:47 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:49 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:51 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:51 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:53 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:55 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:55 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:57 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:59 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:55:59 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:56:01 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:56:03 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:56:03 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:56:05 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:56:07 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:56:07 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:56:08 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:56:09 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:56:11 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:56:14 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:56:25 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:57:12 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:57:12 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 00:57:12 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:57:12 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 00:57:12 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 13)
-- 00:58:02 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 00:59:14 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 00:59:14 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 00:59:14 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 00:59:14 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 00:59:14 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 13)
-- 01:00:31 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 14)
-- 01:00:35 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 15)
-- 01:00:46 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 01:00:46 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 01:00:46 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 31)
-- 01:00:46 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 31)
-- 01:00:47 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 18)
-- 01:00:47 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:00:48 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:00:49 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 01:01:10 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 01:01:12 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:01:13 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:01:14 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:01:21 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 01:01:21 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:01:21 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 01:01:21 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 01:01:21 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 15)
-- 01:01:21 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 76)
-- 01:01:22 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 76)
-- 01:01:30 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 15)
-- 01:01:30 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:01:40 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 01:01:40 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:01:41 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:01:44 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:01:51 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 01:01:51 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 26)
-- 01:01:53 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:01:55 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:01:55 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 77)
-- 01:01:55 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:01:55 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:01:57 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:01:59 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:01:59 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:02:02 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:02:04 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 34)
-- 01:02:04 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 34)
-- 01:02:06 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:02:06 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 78)
-- 01:02:11 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:02:14 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
-- 01:02:26 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 80)
-- 01:02:27 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 81)
-- 01:02:42 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 82)
-- 01:02:42 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 83)
-- 01:03:04 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 72)
-- 01:03:04 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 72)
-- 01:03:06 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 01:03:23 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:03:25 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 01:03:27 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 01:03:27 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:03:27 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 01:03:27 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 01:03:27 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:03:27 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 72)
-- 01:03:27 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:03:27 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 01:03:27 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
-- 01:03:50 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 01:03:50 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 01:04:11 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 01:04:11 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 01:04:25 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 01:04:25 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 01:04:26 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 01:04:26 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 01:04:27 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 22)
-- 01:04:27 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:04:27 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:04:28 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:04:28 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 01:04:28 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 01:04:29 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 01:04:29 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:04:29 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:04:30 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:04:31 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:04:31 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 18)
-- 01:04:31 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 18)
-- 01:04:31 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:04:32 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:04:32 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:04:33 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:04:33 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 01:04:33 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 01:04:33 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:04:34 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:04:34 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 01:04:34 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 01:04:35 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 01:04:35 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:04:35 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:04:36 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:04:36 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:04:37 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 18)
-- 01:04:37 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 18)
-- 01:04:37 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:04:38 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:04:38 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:04:38 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:04:38 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:04:39 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 01:04:41 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:04:46 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:05:30 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 01:05:30 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:05:30 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:05:30 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 01:05:30 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:05:30 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 01:05:30 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:05:30 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 20)
-- 01:05:30 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
-- 01:06:21 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:06:33 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 01:07:30 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 01:07:30 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:07:30 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:07:30 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 01:07:30 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:07:30 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 69)
-- 01:07:30 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:07:30 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:07:30 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
-- 01:08:56 KXITFMATCH-26JUL13SARANG-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 01:09:31 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 01:09:31 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:09:31 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:09:31 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 01:09:31 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:09:31 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 01:09:31 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:09:31 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:09:31 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
-- 01:09:31 KXITFMATCH-26JUL13SARANG-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 01:11:36 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 01:11:36 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:11:36 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:11:36 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 01:11:36 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:11:36 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 69)
-- 01:11:36 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:11:36 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:11:36 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
-- 01:11:36 KXITFMATCH-26JUL13SARANG-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 01:13:41 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 01:13:41 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:13:41 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:13:41 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 01:13:41 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:13:41 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 69)
-- 01:13:41 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:13:41 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:13:41 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
-- 01:13:41 KXITFMATCH-26JUL13SARANG-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 01:15:34 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 69)
-- 01:15:47 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 01:15:47 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:15:47 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:15:47 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 01:15:47 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:15:47 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 69)
-- 01:15:47 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:15:47 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:15:47 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
-- 01:15:47 KXITFMATCH-26JUL13SARANG-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 01:17:45 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:17:52 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 01:17:52 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:17:52 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:17:52 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 01:17:52 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:17:52 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 01:17:52 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:17:52 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:17:52 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
-- 01:17:52 KXITFMATCH-26JUL13SARANG-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 01:18:05 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:18:17 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:19:58 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 01:19:58 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:19:58 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:19:58 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 01:19:58 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:19:58 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 71)
-- 01:19:58 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:19:58 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:19:58 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
-- 01:19:58 KXITFMATCH-26JUL13SARANG-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 01:21:51 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 36)
-- 01:22:00 KXITFMATCH-26JUL13DUHGAT-GAT — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 27)
-- 01:22:00 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 28)
-- 01:22:00 KXITFWMATCH-26JUL13SVIART-SVI — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 21)
-- 01:22:00 KXITFMATCH-26JUL13BONFAB-BON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 70)
-- 01:22:00 KXITFMATCH-26JUL13SARBOV-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:22:00 KXITFMATCH-26JUL13HASZAG-HAS — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 73)
-- 01:22:00 KXITFMATCH-26JUL13SARANG-ANG — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 16)
-- 01:22:00 KXITFWMATCH-26JUL13MICSEB-MIC — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 19)
-- 01:22:00 KXITFWMATCH-26JUL13MALMOO-MAL — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 79)
-- 01:22:00 KXITFMATCH-26JUL13SARANG-SAR — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 17)
-- 01:22:06 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 28)
-- 01:22:06 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 37)
-- 01:22:07 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 37)
-- 01:22:07 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 37)
-- 01:22:08 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 37)
-- 01:22:08 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 37)
-- 01:22:08 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 37)
-- 01:22:09 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:10 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:10 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:10 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:10 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:10 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:10 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 29)
-- 01:22:11 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 29)
-- 01:22:11 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 29)
-- 01:22:12 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 29)
-- 01:22:12 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 29)
-- 01:22:12 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:12 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:13 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:13 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:14 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:14 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:14 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:14 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:15 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:16 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:16 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 25)
-- 01:22:16 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:22:16 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:22:17 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:22:17 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:22:18 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:22:18 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 35)
-- 01:22:18 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 37)
-- 01:22:18 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 37)
-- 01:22:19 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 37)
-- 01:22:19 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 37)
-- 01:22:20 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 37)
-- 01:22:20 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 37)
-- 01:22:22 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 38)
-- 01:23:08 KXITFWMATCH-26JUL13WONBOW-WON — chase ladder refused: pursuit_buys 2 >= cap 2 (proposed 38)
+## Events (88 total this session)
+- 21:02:09 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 15)
+- 21:02:48 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 15)
+- 21:06:17 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:06:19 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:06:32 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:06:40 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:07:41 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:08:34 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:08:59 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:10:25 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:12:46 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:13:42 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:13:44 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:14:45 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:14:57 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:25 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:25 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:26 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:31 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:34 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:50 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:51 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:54 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:55 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:55 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:56 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:56 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:56 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:57 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:15:58 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:16:01 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:16:50 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:16:51 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:16:52 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:16:53 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:16:53 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:17:07 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:17:15 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:17:24 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:17:32 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:17:49 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:18:17 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:18:29 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:19:38 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:20:13 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:21:29 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:21:51 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:21:53 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:21:57 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:22:00 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:22:01 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:22:04 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:22:07 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:22:08 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:22:14 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:22:38 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:22:59 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:23:23 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:23:58 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:24:13 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:24:13 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:24:36 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:24:58 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:25:12 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:25:22 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:25:36 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:25:54 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:26:09 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:26:24 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:26:45 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:26:51 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:26:52 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:27:05 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:27:22 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:27:39 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:27:49 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:27:54 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:28:01 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:28:10 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:28:14 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:28:30 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:28:38 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:28:40 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:30:38 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:32:42 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:32:52 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:32:52 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
+- 21:32:59 KXITFMATCH-26JUL17OCODEL-OCO — chase ladder refused: pursuit_buys 3 >= cap 2 (proposed 16)
 
 ## Timeline (raw log lines for the burst pair)
-    {"ts": "2026-07-13 12:00:23 AM ET", "ts_epoch": 1783915223.996268, "event": "v4_place", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "direction": "underdog", "cat": "ITF_W", "regime": "r05_14", "cell": 5, "current_price": 5, "anchor_src": "no_trade_staircase", "table_src": "no_trade_staircase", "last_trade_age_sec": -1.0, "offset": 0, "target_bid": 5
-    {"ts": "2026-07-13 12:00:23 AM ET", "ts_epoch": 1783915223.997652, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "v4_place", "actual": {"px": 5, "actual_bid": 5}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_W", "cell": 5,
-    {"ts": "2026-07-13 12:00:23 AM ET", "ts_epoch": 1783915223.997825, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "v4_place", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.05, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": 0.0}}
-    {"ts": "2026-07-13 12:00:23 AM ET", "ts_epoch": 1783915223.997971, "event": "aim_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "site": "v4_place", "cell": "ITF_W|2|23", "side": "dog", "actual_bid": 5, "px": 5, "sib_px": 49, "tts_min": 239.7, "book_bid": 5, "book_ask": 94, "book_spread": 89, "bid_ex_self": 5, "actual_posture": "join", "actual_
-    {"ts": "2026-07-13 12:00:24 AM ET", "ts_epoch": 1783915224.8003426, "event": "order_placed", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"action": "buy", "side": "yes", "price": 5, "count": 5, "order_id": "a0ce7df0-0690-4e8c-8db1-34b07dabbfbb", "client_order_id": "0b9835c1-6a1d-499e-bec5-8e36d0e06805", "response_status": "resting", "trade_id": "T-20260713-0007"}}
-    {"ts": "2026-07-13 12:00:27 AM ET", "ts_epoch": 1783915227.8256702, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "actual": {"resting_at": 5, "posted_min_ago": 0}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "IT
-    {"ts": "2026-07-13 12:00:27 AM ET", "ts_epoch": 1783915227.8258965, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.05, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null}}
-    {"ts": "2026-07-13 12:00:28 AM ET", "ts_epoch": 1783915228.6763504, "event": "order_cancelled", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"order_id": "a0ce7df0-0690-4e8c-8db1-34b07dabbfbb", "label": "v4_move_repost", "success": true}}
-    {"ts": "2026-07-13 12:00:28 AM ET", "ts_epoch": 1783915228.7133856, "event": "join_queue", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"outcome": "cancel", "depth_at_post": 69, "depth_now": 25, "fill_latency_sec": 9.0, "reposts": 0, "play_type": "v4_resting_maker", "trial": false}}
-    {"ts": "2026-07-13 12:00:28 AM ET", "ts_epoch": 1783915228.8162181, "event": "order_placed", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"action": "buy", "side": "yes", "price": 6, "count": 5, "order_id": "4c86f394-a87a-4198-8a09-17dd8e42a820", "client_order_id": "8e15bf41-8585-4fac-bcf1-41ec96422f29", "response_status": "resting", "trade_id": "T-20260713-0007"}}
-    {"ts": "2026-07-13 12:00:28 AM ET", "ts_epoch": 1783915228.816569, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "move_repost", "actual": {"px": 50, "actual_bid": 6}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_W", "cell"
-    {"ts": "2026-07-13 12:00:28 AM ET", "ts_epoch": 1783915228.8179145, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "move_repost", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.06, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": -44.0}}
-    {"ts": "2026-07-13 12:00:28 AM ET", "ts_epoch": 1783915228.8180926, "event": "aim_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "site": "move_repost", "cell": "ITF_W|2|48", "side": "fav", "actual_bid": 6, "px": 50, "sib_px": 50, "tts_min": 599.5, "book_bid": 6, "book_ask": 94, "book_spread": 88, "bid_ex_self": 6, "actual_posture": "join", "ac
-    {"ts": "2026-07-13 12:00:28 AM ET", "ts_epoch": 1783915228.8181968, "event": "v4_move_repost", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"mode": "repost_resting", "old_basis": 5, "current_price": 50, "new_regime": "r45_54", "new_offset": 2, "new_target": 6, "current_ask": 94, "move_cents": 45, "runway_status": "full", "reference_source": "join_bid"}}
-    {"ts": "2026-07-13 12:02:08 AM ET", "ts_epoch": 1783915328.7201223, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:02:08 AM ET", "ts_epoch": 1783915328.726884, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:02:41 AM ET", "ts_epoch": 1783915361.6173356, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:04:39 AM ET", "ts_epoch": 1783915479.0714238, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:04:40 AM ET", "ts_epoch": 1783915480.3551378, "event": "reality_divergence", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"kind": "resting_bid", "ref": 6.0, "market_mid": 42.0, "divergence": -36.0, "bound": 25.0}}
-    {"ts": "2026-07-13 12:04:40 AM ET", "ts_epoch": 1783915480.3574424, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 2, "n_resting_orders": 16, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1783904261.082012, "legs_new": [], "legs_gone": [], "n_held_now": 2, "n_held_banked": 2}, "table
-    {"ts": "2026-07-13 12:06:37 AM ET", "ts_epoch": 1783915597.9190924, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:06:39 AM ET", "ts_epoch": 1783915599.1982317, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "actual": {"resting_at": 6, "posted_min_ago": 6}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "IT
-    {"ts": "2026-07-13 12:06:39 AM ET", "ts_epoch": 1783915599.1984148, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.25, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null}}
-    {"ts": "2026-07-13 12:06:39 AM ET", "ts_epoch": 1783915599.201838, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:08:41 AM ET", "ts_epoch": 1783915721.641563, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:10:42 AM ET", "ts_epoch": 1783915842.1483245, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:12:43 AM ET", "ts_epoch": 1783915963.9935746, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "actual": {"resting_at": 6, "posted_min_ago": 12}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
-    {"ts": "2026-07-13 12:12:43 AM ET", "ts_epoch": 1783915963.993788, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.25, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null}}
-    {"ts": "2026-07-13 12:12:43 AM ET", "ts_epoch": 1783915963.9940615, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:14:46 AM ET", "ts_epoch": 1783916086.8821075, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:16:47 AM ET", "ts_epoch": 1783916207.0160983, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:17:04 AM ET", "ts_epoch": 1783916224.7210238, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:17:24 AM ET", "ts_epoch": 1783916244.8219097, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:17:30 AM ET", "ts_epoch": 1783916250.5721893, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:17:42 AM ET", "ts_epoch": 1783916262.8070927, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:17:45 AM ET", "ts_epoch": 1783916265.238409, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:18:47 AM ET", "ts_epoch": 1783916327.50778, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "actual": {"resting_at": 6, "posted_min_ago": 18}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF
-    {"ts": "2026-07-13 12:18:47 AM ET", "ts_epoch": 1783916327.5080333, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.26, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null}}
-    {"ts": "2026-07-13 12:18:47 AM ET", "ts_epoch": 1783916327.5084186, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:20:04 AM ET", "ts_epoch": 1783916404.416371, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 3, "n_resting_orders": 19, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1783904261.082012, "legs_new": ["KXATPCHALLENGERMATCH-26JUL13VILGAN-VIL"], "legs_gone": [], "n_he
-    {"ts": "2026-07-13 12:20:50 AM ET", "ts_epoch": 1783916450.5317183, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:22:51 AM ET", "ts_epoch": 1783916571.300439, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:24:51 AM ET", "ts_epoch": 1783916691.6044075, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "actual": {"resting_at": 6, "posted_min_ago": 25}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
-    {"ts": "2026-07-13 12:24:51 AM ET", "ts_epoch": 1783916691.604647, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.26, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null}}
-    {"ts": "2026-07-13 12:24:51 AM ET", "ts_epoch": 1783916691.6049495, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:25:47 AM ET", "ts_epoch": 1783916747.306187, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:26:02 AM ET", "ts_epoch": 1783916762.335236, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:26:53 AM ET", "ts_epoch": 1783916813.909075, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:28:51 AM ET", "ts_epoch": 1783916931.9540079, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:30:55 AM ET", "ts_epoch": 1783917055.0091352, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "actual": {"resting_at": 6, "posted_min_ago": 31}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
-    {"ts": "2026-07-13 12:30:55 AM ET", "ts_epoch": 1783917055.0100224, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.26, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null}}
-    {"ts": "2026-07-13 12:30:55 AM ET", "ts_epoch": 1783917055.010461, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:32:57 AM ET", "ts_epoch": 1783917177.312091, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 10, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:34:24 AM ET", "ts_epoch": 1783917264.091948, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 17, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:34:25 AM ET", "ts_epoch": 1783917265.7064521, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 17, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:34:33 AM ET", "ts_epoch": 1783917273.337461, "event": "walk_band_refused", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"projected": 2, "new_target": 2, "held_price": 6}}
-    {"ts": "2026-07-13 12:35:28 AM ET", "ts_epoch": 1783917328.02318, "event": "reality_divergence", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"kind": "resting_bid", "ref": 6.0, "market_mid": 37.5, "divergence": -31.5, "bound": 25.0}}
-    {"ts": "2026-07-13 12:35:28 AM ET", "ts_epoch": 1783917328.0233223, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 3, "n_resting_orders": 20, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1783904261.082012, "legs_new": ["KXATPCHALLENGERMATCH-26JUL13VILGAN-VIL"], "legs_gone": [], "n_h
-    {"ts": "2026-07-13 12:36:57 AM ET", "ts_epoch": 1783917417.9913647, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "actual": {"resting_at": 6, "posted_min_ago": 37}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
-    {"ts": "2026-07-13 12:36:57 AM ET", "ts_epoch": 1783917417.9914982, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.27, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null}}
-    {"ts": "2026-07-13 12:43:01 AM ET", "ts_epoch": 1783917781.7837155, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "actual": {"resting_at": 6, "posted_min_ago": 43}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
-    {"ts": "2026-07-13 12:43:01 AM ET", "ts_epoch": 1783917781.783913, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.27, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null}}
-    {"ts": "2026-07-13 12:43:01 AM ET", "ts_epoch": 1783917781.784151, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:43:06 AM ET", "ts_epoch": 1783917786.8965232, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:43:18 AM ET", "ts_epoch": 1783917798.3381557, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:45:09 AM ET", "ts_epoch": 1783917909.8470225, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 26, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:47:04 AM ET", "ts_epoch": 1783918024.9941864, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 26, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:49:04 AM ET", "ts_epoch": 1783918144.66013, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "actual": {"resting_at": 6, "posted_min_ago": 49}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF
-    {"ts": "2026-07-13 12:49:04 AM ET", "ts_epoch": 1783918144.660286, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.48, "n_eff": 1.0, "range_prior": {"cell": "ITF_W|underdog|at_mid|26_50", "w2_reach": 0.184, "knife": 1.0}, "edge_vs_actual": null}}
-    {"ts": "2026-07-13 12:49:04 AM ET", "ts_epoch": 1783918144.6605263, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 26, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:50:57 AM ET", "ts_epoch": 1783918257.5162756, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 3, "n_resting_orders": 19, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1783904261.082012, "legs_new": ["KXATPCHALLENGERMATCH-26JUL13VILGAN-VIL"], "legs_gone": [], "n_h
-    {"ts": "2026-07-13 12:51:07 AM ET", "ts_epoch": 1783918267.739944, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 26, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:51:57 AM ET", "ts_epoch": 1783918317.6213377, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 26, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:52:10 AM ET", "ts_epoch": 1783918330.6366756, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 26, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:53:09 AM ET", "ts_epoch": 1783918389.2378964, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 26, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:55:12 AM ET", "ts_epoch": 1783918512.2958868, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "actual": {"resting_at": 6, "posted_min_ago": 55}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
-    {"ts": "2026-07-13 12:55:12 AM ET", "ts_epoch": 1783918512.2962468, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.48, "n_eff": 1.0, "range_prior": {"cell": "ITF_W|underdog|at_mid|26_50", "w2_reach": 0.184, "knife": 1.0}, "edge_vs_actual": null}}
-    {"ts": "2026-07-13 12:55:12 AM ET", "ts_epoch": 1783918512.2965567, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 26, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:57:12 AM ET", "ts_epoch": 1783918632.3203282, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 26, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:58:02 AM ET", "ts_epoch": 1783918682.6440136, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 26, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 12:59:14 AM ET", "ts_epoch": 1783918754.4732265, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 26, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:00:46 AM ET", "ts_epoch": 1783918846.4126108, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 31, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:00:46 AM ET", "ts_epoch": 1783918846.451364, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 31, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:00:48 AM ET", "ts_epoch": 1783918848.4141824, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:01:12 AM ET", "ts_epoch": 1783918872.1061656, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:01:13 AM ET", "ts_epoch": 1783918873.8430252, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:01:14 AM ET", "ts_epoch": 1783918874.1109726, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:01:21 AM ET", "ts_epoch": 1783918881.9650555, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "actual": {"resting_at": 6, "posted_min_ago": 61}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
-    {"ts": "2026-07-13 01:01:21 AM ET", "ts_epoch": 1783918881.9652932, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.48, "n_eff": 1.0, "range_prior": {"cell": "ITF_W|underdog|at_mid|26_50", "w2_reach": 0.184, "knife": 1.0}, "edge_vs_actual": null}}
-    {"ts": "2026-07-13 01:01:21 AM ET", "ts_epoch": 1783918881.9655738, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:01:51 AM ET", "ts_epoch": 1783918911.0232892, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 26, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:01:51 AM ET", "ts_epoch": 1783918911.1690454, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 26, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:01:53 AM ET", "ts_epoch": 1783918913.0114682, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:01:55 AM ET", "ts_epoch": 1783918915.0097218, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:01:55 AM ET", "ts_epoch": 1783918915.3401792, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:01:57 AM ET", "ts_epoch": 1783918917.015461, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:01:59 AM ET", "ts_epoch": 1783918919.4118788, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:01:59 AM ET", "ts_epoch": 1783918919.439436, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:02:02 AM ET", "ts_epoch": 1783918922.8484104, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:02:04 AM ET", "ts_epoch": 1783918924.2324507, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 34, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:02:04 AM ET", "ts_epoch": 1783918924.3045683, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 34, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:02:06 AM ET", "ts_epoch": 1783918926.2976131, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:02:11 AM ET", "ts_epoch": 1783918931.6514752, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:03:27 AM ET", "ts_epoch": 1783919007.6617477, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:05:30 AM ET", "ts_epoch": 1783919130.210586, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:06:52 AM ET", "ts_epoch": 1783919212.403063, "event": "reality_divergence", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"kind": "resting_bid", "ref": 6.0, "market_mid": 42.0, "divergence": -36.0, "bound": 25.0}}
-    {"ts": "2026-07-13 01:06:52 AM ET", "ts_epoch": 1783919212.4033613, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 3, "n_resting_orders": 44, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1783904261.082012, "legs_new": ["KXATPCHALLENGERMATCH-26JUL13VILGAN-VIL"], "legs_gone": [], "n_h
-    {"ts": "2026-07-13 01:07:30 AM ET", "ts_epoch": 1783919250.4777164, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "actual": {"resting_at": 6, "posted_min_ago": 67}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
-    {"ts": "2026-07-13 01:07:30 AM ET", "ts_epoch": 1783919250.4778883, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.49, "n_eff": 3.0, "range_prior": {"cell": "ITF_W|underdog|at_mid|26_50", "w2_reach": 0.184, "knife": 1.0}, "edge_vs_actual": null}}
-    {"ts": "2026-07-13 01:07:30 AM ET", "ts_epoch": 1783919250.478104, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:09:31 AM ET", "ts_epoch": 1783919371.0351017, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:11:36 AM ET", "ts_epoch": 1783919496.529877, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:13:41 AM ET", "ts_epoch": 1783919621.4467728, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "actual": {"resting_at": 6, "posted_min_ago": 73}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
-    {"ts": "2026-07-13 01:13:41 AM ET", "ts_epoch": 1783919621.4473593, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.49, "n_eff": 4.0, "range_prior": {"cell": "ITF_W|underdog|at_mid|26_50", "w2_reach": 0.184, "knife": 1.0}, "edge_vs_actual": null}}
-    {"ts": "2026-07-13 01:13:41 AM ET", "ts_epoch": 1783919621.44804, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:15:47 AM ET", "ts_epoch": 1783919747.084289, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:17:52 AM ET", "ts_epoch": 1783919872.440016, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:19:58 AM ET", "ts_epoch": 1783919998.6611052, "event": "os_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "actual": {"resting_at": 6, "posted_min_ago": 80}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
-    {"ts": "2026-07-13 01:19:58 AM ET", "ts_epoch": 1783919998.6624796, "event": "conviction_shadow", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"site": "hold_review", "cat": "ITF_W", "opinion": "CONVICTION", "confidence": 0.49, "n_eff": 4.0, "range_prior": {"cell": "ITF_W|underdog|at_mid|26_50", "w2_reach": 0.184, "knife": 1.0}, "edge_vs_actual": null}}
-    {"ts": "2026-07-13 01:19:58 AM ET", "ts_epoch": 1783919998.663868, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:21:51 AM ET", "ts_epoch": 1783920111.9324732, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 36, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:00 AM ET", "ts_epoch": 1783920120.0401464, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 28, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:06 AM ET", "ts_epoch": 1783920126.3281188, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 28, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:06 AM ET", "ts_epoch": 1783920126.703289, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 37, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:07 AM ET", "ts_epoch": 1783920127.2845747, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 37, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:07 AM ET", "ts_epoch": 1783920127.8355312, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 37, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:08 AM ET", "ts_epoch": 1783920128.3461757, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 37, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:08 AM ET", "ts_epoch": 1783920128.3794796, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 37, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:08 AM ET", "ts_epoch": 1783920128.9193401, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 37, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:09 AM ET", "ts_epoch": 1783920129.4937754, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:10 AM ET", "ts_epoch": 1783920130.0444527, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:10 AM ET", "ts_epoch": 1783920130.3465335, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:10 AM ET", "ts_epoch": 1783920130.514352, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:10 AM ET", "ts_epoch": 1783920130.5828154, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:10 AM ET", "ts_epoch": 1783920130.6092134, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:10 AM ET", "ts_epoch": 1783920130.8179572, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 29, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:11 AM ET", "ts_epoch": 1783920131.1243703, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 29, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:11 AM ET", "ts_epoch": 1783920131.6835408, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 29, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:12 AM ET", "ts_epoch": 1783920132.2326705, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 29, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:12 AM ET", "ts_epoch": 1783920132.3493924, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 29, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:12 AM ET", "ts_epoch": 1783920132.7170541, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:12 AM ET", "ts_epoch": 1783920132.7762344, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:13 AM ET", "ts_epoch": 1783920133.322522, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:13 AM ET", "ts_epoch": 1783920133.864988, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:14 AM ET", "ts_epoch": 1783920134.351535, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:14 AM ET", "ts_epoch": 1783920134.4219916, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:14 AM ET", "ts_epoch": 1783920134.5674996, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:14 AM ET", "ts_epoch": 1783920134.9515703, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:15 AM ET", "ts_epoch": 1783920135.5029078, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:16 AM ET", "ts_epoch": 1783920136.041812, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:16 AM ET", "ts_epoch": 1783920136.353186, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 25, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:16 AM ET", "ts_epoch": 1783920136.4187245, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:16 AM ET", "ts_epoch": 1783920136.582294, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:17 AM ET", "ts_epoch": 1783920137.1322262, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:17 AM ET", "ts_epoch": 1783920137.6724458, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:18 AM ET", "ts_epoch": 1783920138.2198918, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:18 AM ET", "ts_epoch": 1783920138.3532288, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 35, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:18 AM ET", "ts_epoch": 1783920138.4210997, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 37, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:18 AM ET", "ts_epoch": 1783920138.7642655, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 37, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:19 AM ET", "ts_epoch": 1783920139.3096356, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 37, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:19 AM ET", "ts_epoch": 1783920139.8523967, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 37, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:20 AM ET", "ts_epoch": 1783920140.3547144, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 37, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:20 AM ET", "ts_epoch": 1783920140.4073584, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 37, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:22 AM ET", "ts_epoch": 1783920142.356328, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 38, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:22:47 AM ET", "ts_epoch": 1783920167.4864876, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 3, "n_resting_orders": 46, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1783904261.082012, "legs_new": ["KXATPCHALLENGERMATCH-26JUL13VILGAN-VIL"], "legs_gone": [], "n_h
-    {"ts": "2026-07-13 01:23:08 AM ET", "ts_epoch": 1783920188.7805629, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 38, "pursuit_buys": 2, "cap": 2}}
-    {"ts": "2026-07-13 01:23:22 AM ET", "ts_epoch": 1783920202.5340645, "event": "chase_cap_hold", "ticker": "KXITFWMATCH-26JUL13WONBOW-WON", "details": {"event": "KXITFWMATCH-26JUL13WONBOW", "held_price": 6, "proposed": 38, "pursuit_buys": 2, "cap": 2}}
+    {"ts": "2026-07-17 02:17:28 PM ET", "ts_epoch": 1784312248.8873177, "event": "tape_seed_live_confirm", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"seed_price": 19, "live_price": 17, "delta": -2, "seed_age_sec": 3582.8}}
+    {"ts": "2026-07-17 02:44:35 PM ET", "ts_epoch": 1784313875.952701, "event": "conception_stamp", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "source": "early_unlock", "vol": 2532.0}}
+    {"ts": "2026-07-17 02:59:11 PM ET", "ts_epoch": 1784314751.552953, "event": "conception_stamp", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "source": "early_unlock", "vol": 2534.0}}
+    {"ts": "2026-07-17 02:59:11 PM ET", "ts_epoch": 1784314751.5689988, "event": "orientation_prior", "ticker": "KXITFMATCH-26JUL17OCODEL-DEL", "details": {"riser": "KXITFMATCH-26JUL17OCODEL-DEL", "conviction": 1.0, "n": 1, "leader": "KXITFMATCH-26JUL17OCODEL-DEL", "dog": "KXITFMATCH-26JUL17OCODEL-OCO", "tts_min": 720.8, "voices": [{"voice": "anchor_role", "riser": "KXITFMATCH-26JUL17OCODEL-DEL", "w":
+    {"ts": "2026-07-17 02:59:13 PM ET", "ts_epoch": 1784314753.0388196, "event": "trendpath_live_aim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from_target": 16, "path_aim": 12, "mode": "no_call_posture", "page": "ITF_M|underdog|le25", "page_n": 73, "citation": "ATLAS_V1 ITF_M|underdog|le25 (path bottom p50; cutover 07-14 operator word)", "entry_gover
+    {"ts": "2026-07-17 02:59:13 PM ET", "ts_epoch": 1784314753.0390074, "event": "sizing_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "qty_live": 5, "qty_would": 15, "contention_best_pct": 123.4, "day_pnl_cents": 0, "drawdown_floor": -1500, "armed": false}}
+    {"ts": "2026-07-17 02:59:13 PM ET", "ts_epoch": 1784314753.3029902, "event": "v4_place", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "direction": "underdog", "cat": "ITF_M", "regime": "r15_24", "cell": 18, "current_price": 18, "anchor_src": "last_traded", "table_src": "per_cell", "last_trade_age_sec": 654.0, "offset": 4, "target_bid": 12, "current_ask
+    {"ts": "2026-07-17 02:59:13 PM ET", "ts_epoch": 1784314753.303363, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "v4_place", "actual": {"px": 18, "actual_bid": 12}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_M", "cell": 1
+    {"ts": "2026-07-17 02:59:13 PM ET", "ts_epoch": 1784314753.3035185, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "v4_place", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.16, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": -2.0, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 02:59:13 PM ET", "ts_epoch": 1784314753.3234484, "event": "aim_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "site": "v4_place", "cell": "ITF_M|4|39", "side": "dog", "actual_bid": 12, "px": 18, "sib_px": 83, "tts_min": 390.9, "book_bid": 16, "book_ask": 18, "book_spread": 2, "bid_ex_self": 16, "actual_posture": "below_chain",
+    {"ts": "2026-07-17 02:59:13 PM ET", "ts_epoch": 1784314753.3253543, "event": "liveaim_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "verdict": "AIM_PRIOR", "aim_px": 18, "depth": 0, "prior_depth": 0, "deep_tier": 5, "live_bid": 12, "flow_ratio": 0.0, "spread": 2, "depth_trend": 0, "print_sig": "flat", "lib_conf": 1.0, "citation": "GUIDEBOOK_V1 
+    {"ts": "2026-07-17 02:59:13 PM ET", "ts_epoch": 1784314753.3311322, "event": "trendpath_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "verdict": "PATH_AIM", "page": "ITF_M|underdog|le25", "n": 73, "side": "underdog", "path_aim": 12, "depth_p50": 6.0, "deep_tier": 9.0, "bottom_t_med_min": 25.0, "live_bid": 12, "branded": "live_era", "citation": 
+    {"ts": "2026-07-17 02:59:13 PM ET", "ts_epoch": 1784314753.3572907, "event": "entry_dossier", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "cat": "ITF_M", "decision": "placed:path_aim", "discovery": 18, "aim": 12, "surfaces": {"atlas_page": {"status": "CONSULTED", "page": "ITF_M|underdog|le25", "n": 73, "bottom_p25_50_75": [3.0, 6.0, 9.0]}, "contention
+    {"ts": "2026-07-17 02:59:13 PM ET", "ts_epoch": 1784314753.9864254, "event": "order_placed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"action": "buy", "side": "yes", "price": 12, "count": 5, "order_id": "d39afce3-5ccf-41d1-9806-b51b17c965b6", "client_order_id": "8dffbf68-7f7c-4756-89db-c3fbf56b931a", "response_status": "resting", "trade_id": "T-20260717-0151", "window": {"phase": "W1"
+    {"ts": "2026-07-17 03:00:49 PM ET", "ts_epoch": 1784314849.1562402, "event": "window_truth_bind", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 12, "would_join": 17, "proposed_path": 16, "best_bid": 16, "best_ask": 18, "print_backed": false, "clamp": "sanctioned walk 14c/30min (FLAGGED FOR RETIREMENT, P0v3 3b)", "law": "P0v3 (3) 07-17: pri
+    {"ts": "2026-07-17 03:01:34 PM ET", "ts_epoch": 1784314894.9890974, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 12, "proposed": 16, "new": 16, "best_bid": 16, "best_ask": 18, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 03:01:44 PM ET", "ts_epoch": 1784314904.876512, "event": "order_cancelled", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"order_id": "d39afce3-5ccf-41d1-9806-b51b17c965b6", "label": "v4_move_repost", "success": true, "window": {"phase": "W1", "min_to_scheduled": 718.3, "gun_fired": false}}}
+    {"ts": "2026-07-17 03:01:45 PM ET", "ts_epoch": 1784314905.0618281, "event": "join_queue", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"outcome": "cancel", "depth_at_post": 800, "depth_now": 360, "fill_latency_sec": 157.1, "latency_conception_sec": 157.1, "latency_event_sec": null, "reposts": 0, "play_type": "v4_resting_maker", "trial": false}}
+    {"ts": "2026-07-17 03:01:45 PM ET", "ts_epoch": 1784314905.0620203, "event": "walk_cap_yield_print_backed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "target": 16, "law": "P0v3 (3) 07-17: print-backed rise \u2014 the clamp yields"}}
+    {"ts": "2026-07-17 03:01:45 PM ET", "ts_epoch": 1784314905.4942796, "event": "order_placed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"action": "buy", "side": "yes", "price": 16, "count": 5, "order_id": "d4cf70b6-0403-444e-91e0-21be4e75ca01", "client_order_id": "17398076-f1e8-4219-95a9-8ed1a772f991", "response_status": "resting", "trade_id": "T-20260717-0151", "window": {"phase": "W1"
+    {"ts": "2026-07-17 03:01:45 PM ET", "ts_epoch": 1784314905.5017142, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "move_repost", "actual": {"px": 17, "actual_bid": 16}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_M", "cell
+    {"ts": "2026-07-17 03:01:45 PM ET", "ts_epoch": 1784314905.5029604, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "move_repost", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.16, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": -1.0, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 03:01:45 PM ET", "ts_epoch": 1784314905.50319, "event": "aim_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "site": "move_repost", "cell": "ITF_M|4|48", "side": "dog", "actual_bid": 16, "px": 17, "sib_px": 83, "tts_min": 718.4, "book_bid": 16, "book_ask": 18, "book_spread": 2, "bid_ex_self": 16, "actual_posture": "join", "actu
+    {"ts": "2026-07-17 03:01:45 PM ET", "ts_epoch": 1784314905.5033267, "event": "v4_move_repost", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"mode": "repost_resting", "old_basis": 12, "current_price": 17, "new_regime": "r15_24", "new_offset": 2, "new_target": 16, "current_ask": 18, "move_cents": 5, "runway_status": "full", "reference_source": "join_bid"}}
+    {"ts": "2026-07-17 03:02:49 PM ET", "ts_epoch": 1784314969.2402027, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 4}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "IT
+    {"ts": "2026-07-17 03:02:49 PM ET", "ts_epoch": 1784314969.240355, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.16, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 03:03:56 PM ET", "ts_epoch": 1784315036.8028977, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 5, "n_resting_orders": 19, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784314403.6242466, "legs_new": [], "legs_gone": ["KXATPMATCH-26JUL17DZUMOL-MOL"], "n_held_now":
+    {"ts": "2026-07-17 03:09:08 PM ET", "ts_epoch": 1784315348.856545, "event": "tape_seed_live_confirm", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"seed_price": 18, "live_price": 18, "delta": 0, "seed_age_sec": 1249.9}}
+    {"ts": "2026-07-17 03:10:02 PM ET", "ts_epoch": 1784315402.8551729, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 11}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
+    {"ts": "2026-07-17 03:10:02 PM ET", "ts_epoch": 1784315402.8554437, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.18, "n_eff": 1.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 03:14:48 PM ET", "ts_epoch": 1784315688.9401019, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 16, "proposed": 17, "new": 17, "best_bid": 17, "best_ask": 18, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 03:14:50 PM ET", "ts_epoch": 1784315690.595996, "event": "order_cancelled", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"order_id": "d4cf70b6-0403-444e-91e0-21be4e75ca01", "label": "v4_move_repost", "success": true, "window": {"phase": "W1", "min_to_scheduled": 705.2, "gun_fired": false}}}
+    {"ts": "2026-07-17 03:14:50 PM ET", "ts_epoch": 1784315690.6534615, "event": "join_queue", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"outcome": "cancel", "depth_at_post": 800, "depth_now": 805, "fill_latency_sec": 795.7, "latency_conception_sec": 942.7, "latency_event_sec": null, "reposts": 1, "play_type": "v4_resting_maker", "trial": false}}
+    {"ts": "2026-07-17 03:14:50 PM ET", "ts_epoch": 1784315690.6536005, "event": "walk_cap_yield_print_backed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "target": 17, "law": "P0v3 (3) 07-17: print-backed rise \u2014 the clamp yields"}}
+    {"ts": "2026-07-17 03:14:50 PM ET", "ts_epoch": 1784315690.9199407, "event": "order_placed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"action": "buy", "side": "yes", "price": 17, "count": 5, "order_id": "62731900-c925-43d8-b77f-415560c2f23a", "client_order_id": "0bc484e5-f710-413d-b52e-b8801fc0a593", "response_status": "resting", "trade_id": "T-20260717-0151", "window": {"phase": "W1"
+    {"ts": "2026-07-17 03:14:50 PM ET", "ts_epoch": 1784315690.9202929, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "move_repost", "actual": {"px": 18, "actual_bid": 17}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_M", "cell
+    {"ts": "2026-07-17 03:14:50 PM ET", "ts_epoch": 1784315690.920477, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "move_repost", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.18, "n_eff": 2.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": 0.0, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 03:14:50 PM ET", "ts_epoch": 1784315690.9311028, "event": "aim_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "site": "move_repost", "cell": "ITF_M|4|48", "side": "dog", "actual_bid": 17, "px": 18, "sib_px": 83, "tts_min": 705.2, "book_bid": 17, "book_ask": 18, "book_spread": 1, "bid_ex_self": 17, "actual_posture": "join", "ac
+    {"ts": "2026-07-17 03:14:50 PM ET", "ts_epoch": 1784315690.9312992, "event": "v4_move_repost", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"mode": "repost_resting", "old_basis": 16, "current_price": 18, "new_regime": "r15_24", "new_offset": 2, "new_target": 17, "current_ask": 18, "move_cents": 2, "runway_status": "full", "reference_source": "join_bid"}}
+    {"ts": "2026-07-17 03:16:41 PM ET", "ts_epoch": 1784315801.789888, "event": "orphan_readopted_fingerprint", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"price": 17, "qty": 5, "order_id": "62731900-c925-43d8-b77f-415560c2f23a", "posted_ts": 1784315690.9199407}}
+    {"ts": "2026-07-17 03:16:42 PM ET", "ts_epoch": 1784315802.6871443, "event": "post_boot_audit", "ticker": "", "details": {"context": "boot", "verdict": "PASS", "n_positions": 5, "n_resting_orders": 17, "n_failures": 0, "n_flags": 2, "failures": [], "flags": [{"tk": "KXATPCHALLENGERMATCH-26JUL17FORTOM-FOR", "check": "pair_incomplete", "event": "KXATPCHALLENGERMATCH-26JUL17FORTOM", "legs": {"FOR": "
+    {"ts": "2026-07-17 03:16:53 PM ET", "ts_epoch": 1784315813.4932256, "event": "conception_stamp", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "source": "early_unlock", "vol": 2563.0}}
+    {"ts": "2026-07-17 03:17:11 PM ET", "ts_epoch": 1784315831.018876, "event": "order_cancelled", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"order_id": "62731900-c925-43d8-b77f-415560c2f23a", "label": "v4_move_repost", "success": true, "window": {"phase": "W1", "min_to_scheduled": 702.8, "gun_fired": false}}}
+    {"ts": "2026-07-17 03:17:11 PM ET", "ts_epoch": 1784315831.2749317, "event": "order_placed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"action": "buy", "side": "yes", "price": 16, "count": 5, "order_id": "6727a3f9-6c3b-47c2-b640-cf4bdce48ec3", "client_order_id": "feca51ae-2dfb-410e-b129-73d6d922f513", "response_status": "resting", "trade_id": "T-20260717-0151", "window": {"phase": "W1"
+    {"ts": "2026-07-17 03:17:11 PM ET", "ts_epoch": 1784315831.2755024, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "move_repost", "actual": {"px": 18, "actual_bid": 16}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_M", "cell
+    {"ts": "2026-07-17 03:17:11 PM ET", "ts_epoch": 1784315831.2774258, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "move_repost", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.16, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": -2.0, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 03:17:11 PM ET", "ts_epoch": 1784315831.277681, "event": "aim_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "site": "move_repost", "cell": "ITF_M|4|48", "side": "dog", "actual_bid": 16, "px": 18, "sib_px": 83, "tts_min": 702.8, "book_bid": 16, "book_ask": 18, "book_spread": 2, "bid_ex_self": 16, "actual_posture": "join", "act
+    {"ts": "2026-07-17 03:17:11 PM ET", "ts_epoch": 1784315831.2778075, "event": "v4_move_repost", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"mode": "repost_resting", "old_basis": 0, "current_price": 18, "new_regime": "r15_24", "new_offset": 2, "new_target": 16, "current_ask": 18, "move_cents": 18, "runway_status": "full", "reference_source": "join_bid"}}
+    {"ts": "2026-07-17 03:17:44 PM ET", "ts_epoch": 1784315864.3962305, "event": "order_cancelled", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"order_id": "6727a3f9-6c3b-47c2-b640-cf4bdce48ec3", "label": "v4_cancel_bid_marketable_stale", "success": true, "window": {"phase": "W1", "min_to_scheduled": 702.3, "gun_fired": false}}}
+    {"ts": "2026-07-17 03:17:44 PM ET", "ts_epoch": 1784315864.5790865, "event": "join_queue", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"outcome": "cancel", "depth_at_post": 800, "depth_now": 800, "fill_latency_sec": 35.1, "latency_conception_sec": 173.7, "latency_event_sec": null, "reposts": 1, "play_type": "v4_resting_maker", "trial": false}}
+    {"ts": "2026-07-17 03:17:44 PM ET", "ts_epoch": 1784315864.5792842, "event": "v4_resting_cancel", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"reason": "bid_marketable_stale", "spread": 1, "bid": 16, "ask": 17, "target_bid": 16}}
+    {"ts": "2026-07-17 03:17:45 PM ET", "ts_epoch": 1784315865.3710966, "event": "tape_seed_live_confirm", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"seed_price": 18, "live_price": 16, "delta": -2, "seed_age_sec": 273.7}}
+    {"ts": "2026-07-17 03:17:55 PM ET", "ts_epoch": 1784315875.6631036, "event": "orientation_prior", "ticker": "KXITFMATCH-26JUL17OCODEL-DEL", "details": {"riser": "KXITFMATCH-26JUL17OCODEL-DEL", "conviction": 1.0, "n": 1, "leader": "KXITFMATCH-26JUL17OCODEL-DEL", "dog": "KXITFMATCH-26JUL17OCODEL-OCO", "tts_min": 702.1, "voices": [{"voice": "anchor_role", "riser": "KXITFMATCH-26JUL17OCODEL-DEL", "w":
+    {"ts": "2026-07-17 03:17:55 PM ET", "ts_epoch": 1784315875.6692667, "event": "trendpath_live_aim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from_target": 16, "path_aim": 10, "mode": "no_call_posture", "page": "ITF_M|underdog|le25", "page_n": 73, "citation": "ATLAS_V1 ITF_M|underdog|le25 (path bottom p50; cutover 07-14 operator word)", "entry_gover
+    {"ts": "2026-07-17 03:17:55 PM ET", "ts_epoch": 1784315875.6694474, "event": "sizing_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "qty_live": 5, "qty_would": 15, "contention_best_pct": 174.2, "day_pnl_cents": 0, "drawdown_floor": -1500, "armed": false}}
+    {"ts": "2026-07-17 03:17:55 PM ET", "ts_epoch": 1784315875.77344, "event": "v4_place", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "direction": "underdog", "cat": "ITF_M", "regime": "r15_24", "cell": 16, "current_price": 16, "anchor_src": "last_traded", "table_src": "per_cell", "last_trade_age_sec": 10.3, "offset": 4, "target_bid": 10, "current_ask": 
+    {"ts": "2026-07-17 03:17:55 PM ET", "ts_epoch": 1784315875.7790968, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "v4_place", "actual": {"px": 16, "actual_bid": 10}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_M", "cell": 
+    {"ts": "2026-07-17 03:17:55 PM ET", "ts_epoch": 1784315875.7793443, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "v4_place", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.16, "n_eff": 1.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": 0.0, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 03:17:55 PM ET", "ts_epoch": 1784315875.7795405, "event": "aim_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "site": "v4_place", "cell": "ITF_M|4|37", "side": "dog", "actual_bid": 10, "px": 16, "sib_px": 83, "tts_min": 372.1, "book_bid": 16, "book_ask": 17, "book_spread": 1, "bid_ex_self": 16, "actual_posture": "below_chain",
+    {"ts": "2026-07-17 03:17:55 PM ET", "ts_epoch": 1784315875.7879865, "event": "liveaim_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "verdict": "AIM_PRIOR", "aim_px": 16, "depth": 0, "prior_depth": 0, "deep_tier": 4, "live_bid": 10, "flow_ratio": 0.17, "spread": 1, "depth_trend": 0, "print_sig": "flat", "lib_conf": 1.0, "citation": "GUIDEBOOK_V1
+    {"ts": "2026-07-17 03:17:55 PM ET", "ts_epoch": 1784315875.7935972, "event": "trendpath_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "verdict": "PATH_AIM", "page": "ITF_M|underdog|le25", "n": 73, "side": "underdog", "path_aim": 10, "depth_p50": 6.0, "deep_tier": 9.0, "bottom_t_med_min": 25.0, "live_bid": 10, "branded": "live_era", "citation": 
+    {"ts": "2026-07-17 03:17:55 PM ET", "ts_epoch": 1784315875.794003, "event": "flow_rest_seed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "cat": "ITF_M", "prints_30m_ws": 1, "prints_30m_rest": 3, "bucket_ws": "quiet", "bucket_used": "warm", "decree": "C-FLOW-REST-SEED v1 07-15 (operator R1 GO; REACH-RECAL exhibit #1)"}}
+    {"ts": "2026-07-17 03:17:55 PM ET", "ts_epoch": 1784315875.810443, "event": "entry_dossier", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "cat": "ITF_M", "decision": "placed:path_aim", "discovery": 16, "aim": 10, "surfaces": {"atlas_page": {"status": "CONSULTED", "page": "ITF_M|underdog|le25", "n": 73, "bottom_p25_50_75": [3.0, 6.0, 9.0]}, "contention_
+    {"ts": "2026-07-17 03:17:55 PM ET", "ts_epoch": 1784315875.972835, "event": "order_placed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"action": "buy", "side": "yes", "price": 10, "count": 5, "order_id": "2a64c13b-64d9-479f-82d2-c89ddf74bbc8", "client_order_id": "df9b4a9a-7e4e-4369-b732-c24abd86b4a7", "response_status": "resting", "trade_id": "T-20260717-0151", "window": {"phase": "W1",
+    {"ts": "2026-07-17 03:17:56 PM ET", "ts_epoch": 1784315876.7120907, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 5, "n_resting_orders": 19, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784315308.7671525, "legs_new": [], "legs_gone": ["KXATPCHALLENGERMATCH-26JUL17DRAGEA-GEA"], "n_
+    {"ts": "2026-07-17 03:17:56 PM ET", "ts_epoch": 1784315876.7144885, "event": "drain_replay", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"outcome": "already_covered", "phase": "entry_resting"}}
+    {"ts": "2026-07-17 03:18:50 PM ET", "ts_epoch": 1784315930.0024548, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 10, "proposed": 16, "new": 16, "best_bid": 16, "best_ask": 18, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 03:18:52 PM ET", "ts_epoch": 1784315932.704496, "event": "order_cancelled", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"order_id": "2a64c13b-64d9-479f-82d2-c89ddf74bbc8", "label": "v4_move_repost", "success": true, "window": {"phase": "W1", "min_to_scheduled": 701.1, "gun_fired": false}}}
+    {"ts": "2026-07-17 03:18:52 PM ET", "ts_epoch": 1784315932.745132, "event": "join_queue", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"outcome": "cancel", "depth_at_post": 800, "depth_now": 69, "fill_latency_sec": 57.1, "latency_conception_sec": 57.1, "latency_event_sec": null, "reposts": 0, "play_type": "v4_resting_maker", "trial": false}}
+    {"ts": "2026-07-17 03:18:52 PM ET", "ts_epoch": 1784315932.7454019, "event": "walk_cap_yield_print_backed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "target": 16, "law": "P0v3 (3) 07-17: print-backed rise \u2014 the clamp yields"}}
+    {"ts": "2026-07-17 03:18:52 PM ET", "ts_epoch": 1784315932.7467523, "event": "self_fill_bell", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from_cents": 10, "to_cents": 16, "rise": 6, "condition": "tape_corroborated", "cat": "ITF_M", "sanctioned_allowance": 14, "window_sec": 1800}}
+    {"ts": "2026-07-17 03:18:53 PM ET", "ts_epoch": 1784315933.0931547, "event": "order_placed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"action": "buy", "side": "yes", "price": 16, "count": 5, "order_id": "b641f263-c069-481d-b9f3-9f9e0ab22f07", "client_order_id": "3b1f5950-fc4a-4782-8503-cea6fb714dc1", "response_status": "resting", "trade_id": "T-20260717-0151", "window": {"phase": "W1"
+    {"ts": "2026-07-17 03:18:53 PM ET", "ts_epoch": 1784315933.1002178, "event": "aim_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "site": "move_repost", "cell": "ITF_M|4|48", "side": "dog", "actual_bid": 16, "px": 17, "sib_px": 82, "tts_min": 701.2, "book_bid": 16, "book_ask": 18, "book_spread": 2, "bid_ex_self": 16, "actual_posture": "join", "ac
+    {"ts": "2026-07-17 03:18:53 PM ET", "ts_epoch": 1784315933.100357, "event": "v4_move_repost", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"mode": "repost_resting", "old_basis": 10, "current_price": 17, "new_regime": "r15_24", "new_offset": 2, "new_target": 16, "current_ask": 18, "move_cents": 7, "runway_status": "full", "reference_source": "join_bid"}}
+    {"ts": "2026-07-17 03:19:09 PM ET", "ts_epoch": 1784315949.390586, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 1}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 16, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR decay f
+    {"ts": "2026-07-17 03:19:09 PM ET", "ts_epoch": 1784315949.3940487, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.18, "n_eff": 8.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 03:28:56 PM ET", "ts_epoch": 1784316536.0077918, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 11}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 16, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR decay
+    {"ts": "2026-07-17 03:28:56 PM ET", "ts_epoch": 1784316536.0081413, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.18, "n_eff": 8.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 03:34:21 PM ET", "ts_epoch": 1784316861.7395082, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 16}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 16, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR decay
+    {"ts": "2026-07-17 03:34:21 PM ET", "ts_epoch": 1784316861.7469807, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.18, "n_eff": 8.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 03:35:58 PM ET", "ts_epoch": 1784316958.6062593, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 5, "n_resting_orders": 16, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784315308.7671525, "legs_new": ["KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU"], "legs_gone": ["KXATP
+    {"ts": "2026-07-17 03:40:19 PM ET", "ts_epoch": 1784317219.7521756, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 22}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
+    {"ts": "2026-07-17 03:40:19 PM ET", "ts_epoch": 1784317219.765291, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.18, "n_eff": 8.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 03:45:38 PM ET", "ts_epoch": 1784317538.8584106, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 28}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
+    {"ts": "2026-07-17 03:45:38 PM ET", "ts_epoch": 1784317538.8586063, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.18, "n_eff": 8.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 03:50:46 PM ET", "ts_epoch": 1784317846.190953, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 33}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "IT
+    {"ts": "2026-07-17 03:50:46 PM ET", "ts_epoch": 1784317846.191368, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.18, "n_eff": 8.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 03:52:45 PM ET", "ts_epoch": 1784317965.7385406, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 5, "n_resting_orders": 16, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784315308.7671525, "legs_new": ["KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU"], "legs_gone": ["KXATP
+    {"ts": "2026-07-17 03:57:24 PM ET", "ts_epoch": 1784318244.2404683, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 39}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
+    {"ts": "2026-07-17 03:57:24 PM ET", "ts_epoch": 1784318244.2437177, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.18, "n_eff": 8.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 04:07:40 PM ET", "ts_epoch": 1784318860.0145175, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 50}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
+    {"ts": "2026-07-17 04:07:40 PM ET", "ts_epoch": 1784318860.027977, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.17, "n_eff": 8.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 04:08:55 PM ET", "ts_epoch": 1784318935.9204462, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 4, "n_resting_orders": 15, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784315308.7671525, "legs_new": ["KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU", "KXATPCHALLENGERMATCH
+    {"ts": "2026-07-17 04:13:39 PM ET", "ts_epoch": 1784319219.906162, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 56}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "IT
+    {"ts": "2026-07-17 04:13:39 PM ET", "ts_epoch": 1784319219.9064066, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.17, "n_eff": 8.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 04:19:58 PM ET", "ts_epoch": 1784319598.2267044, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 62}, "would": {"regime": "decay_side", "timing": "early", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "I
+    {"ts": "2026-07-17 04:19:58 PM ET", "ts_epoch": 1784319598.226917, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.17, "n_eff": 8.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 04:26:46 PM ET", "ts_epoch": 1784320006.4061322, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 4, "n_resting_orders": 14, "n_failures": 0, "n_flags": 1, "failures": [], "flags": [{"tk": "KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU", "flag": "settlement_pending", "held": 5.0, "band": 41, "market_status": "determine
+    {"ts": "2026-07-17 04:27:43 PM ET", "ts_epoch": 1784320063.363396, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 70}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 16, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR decay 
+    {"ts": "2026-07-17 04:27:43 PM ET", "ts_epoch": 1784320063.3698072, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.18, "n_eff": 12.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 04:32:48 PM ET", "ts_epoch": 1784320368.3010366, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": 75}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 16, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR decay
+    {"ts": "2026-07-17 04:32:48 PM ET", "ts_epoch": 1784320368.3014097, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.18, "n_eff": 12.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 04:41:52 PM ET", "ts_epoch": 1784320912.1333401, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 16, "proposed": 17, "new": 17, "best_bid": 17, "best_ask": 19, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 04:41:52 PM ET", "ts_epoch": 1784320912.6130238, "event": "order_cancelled", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"order_id": "b641f263-c069-481d-b9f3-9f9e0ab22f07", "label": "v4_move_repost", "success": true, "window": {"phase": "W1", "min_to_scheduled": 618.1, "gun_fired": false}}}
+    {"ts": "2026-07-17 04:41:52 PM ET", "ts_epoch": 1784320912.6965456, "event": "join_queue", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"outcome": "cancel", "depth_at_post": 800, "depth_now": 805, "fill_latency_sec": 4982.7, "latency_conception_sec": 5037.1, "latency_event_sec": null, "reposts": 1, "play_type": "v4_resting_maker", "trial": false}}
+    {"ts": "2026-07-17 04:41:52 PM ET", "ts_epoch": 1784320912.7131393, "event": "walk_cap_yield_print_backed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "target": 17, "law": "P0v3 (3) 07-17: print-backed rise \u2014 the clamp yields"}}
+    {"ts": "2026-07-17 04:41:53 PM ET", "ts_epoch": 1784320913.1241832, "event": "order_placed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"action": "buy", "side": "yes", "price": 17, "count": 5, "order_id": "c80e6cd8-681b-4454-8ba4-8ba60e11e007", "client_order_id": "39c51805-8c55-4ebf-a6eb-1f6ce57d4f59", "response_status": "resting", "trade_id": "T-20260717-0151", "window": {"phase": "W1"
+    {"ts": "2026-07-17 04:41:53 PM ET", "ts_epoch": 1784320913.124597, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "move_repost", "actual": {"px": 18, "actual_bid": 17}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 16, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR decay floor = clos
+    {"ts": "2026-07-17 04:41:53 PM ET", "ts_epoch": 1784320913.1415913, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "move_repost", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.19, "n_eff": 19.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": 1.0, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 04:41:53 PM ET", "ts_epoch": 1784320913.1613154, "event": "aim_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "site": "move_repost", "cell": "ITF_M|4|48", "side": "dog", "actual_bid": 17, "px": 18, "sib_px": 82, "tts_min": 618.1, "book_bid": 17, "book_ask": 19, "book_spread": 2, "bid_ex_self": 16, "actual_posture": "join", "ac
+    {"ts": "2026-07-17 04:41:53 PM ET", "ts_epoch": 1784320913.1615674, "event": "v4_move_repost", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"mode": "repost_resting", "old_basis": 16, "current_price": 18, "new_regime": "r15_24", "new_offset": 2, "new_target": 17, "current_ask": 19, "move_cents": 2, "runway_status": "full", "reference_source": "join_bid"}}
+    {"ts": "2026-07-17 04:43:51 PM ET", "ts_epoch": 1784321031.4592443, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 17, "posted_min_ago": 86}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 17, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR decay
+    {"ts": "2026-07-17 04:43:51 PM ET", "ts_epoch": 1784321031.4595537, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.19, "n_eff": 19.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 04:47:13 PM ET", "ts_epoch": 1784321233.0186834, "event": "reconcile_v4_adopted", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"cell_id": 17, "avg": 17, "qty": 3, "rule": "exit", "context": "steady_state_reconcile", "attribution": "reconciled", "category": "ITF_M", "fv": null, "fv_gap": null, "fv_sources": [], "fv_reason": "stale_sources"}}
+    {"ts": "2026-07-17 04:47:13 PM ET", "ts_epoch": 1784321233.0189571, "event": "completion_booking_adoption", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "avg": 17, "qty": 3, "context": "steady_state_reconcile"}}
+    {"ts": "2026-07-17 04:47:13 PM ET", "ts_epoch": 1784321233.0194743, "event": "entry_filled", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"fill_price": 17, "posted_price": 17, "qty": 3, "new_fills": 3, "cell": "", "direction": "", "play_type": "v4_reconciled", "kalshi_status": "adopted", "source": "reconcile_adoption", "cycle": 1, "trade_id": "T-20260717-0151", "window": {"phase": "W1", "
+    {"ts": "2026-07-17 04:47:13 PM ET", "ts_epoch": 1784321233.412475, "event": "order_placed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"action": "sell", "side": "yes", "price": 22, "count": 3, "order_id": "f00282d5-6eaf-4f3f-bf99-daf2834aa3e2", "client_order_id": "a842c567-5f73-46d3-b5f4-ec8305234ab8", "response_status": "resting", "window": {"phase": "W1", "min_to_scheduled": 612.8, "g
+    {"ts": "2026-07-17 04:47:13 PM ET", "ts_epoch": 1784321233.4173427, "event": "v4_exit_posted", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"exit_price": 22, "band_x": 5, "cell_id": 17, "entry_price": 17, "qty": 3, "depth_at_exit": 2711, "depth_within_band": 13004, "depth_floor": 250, "depth_ok": true, "order_id": "f00282d5-6eaf-4f3f-bf99-daf2834aa3e2", "governed_by": "maker_exit", "windo
+    {"ts": "2026-07-17 04:47:13 PM ET", "ts_epoch": 1784321233.4175477, "event": "completion_no_attempt", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "reason": "leg1_window_open_unset", "leg1_basis": 17, "governed_by": "pair97_bound", "window": {"phase": "W1", "min_to_scheduled": 612.8, "gun_fired": false}}}
+    {"ts": "2026-07-17 04:47:14 PM ET", "ts_epoch": 1784321234.3218832, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 6, "n_resting_orders": 15, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784315308.7671525, "legs_new": ["KXATPCHALLENGERMATCH-26JUL17SMIYUN-YUN", "KXATPCHALLENGERMATCH
+    {"ts": "2026-07-17 04:59:27 PM ET", "ts_epoch": 1784321967.8193455, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 7, "n_resting_orders": 15, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784315308.7671525, "legs_new": ["KXATPCHALLENGERMATCH-26JUL17SMIYUN-YUN", "KXATPCHALLENGERMATCH
+    {"ts": "2026-07-17 05:14:36 PM ET", "ts_epoch": 1784322876.6696906, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 7, "n_resting_orders": 15, "n_failures": 0, "n_flags": 1, "failures": [], "flags": [{"tk": "KXITFWMATCH-26JUL18TUPSHO-TUP", "check": "pair_incomplete", "event": "KXITFWMATCH-26JUL18TUPSHO", "legs": {"SHO": "filled",
+    {"ts": "2026-07-17 05:33:23 PM ET", "ts_epoch": 1784324003.477998, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 6, "n_resting_orders": 14, "n_failures": 0, "n_flags": 1, "failures": [], "flags": [{"tk": "KXITFWMATCH-26JUL18TUPSHO-TUP", "check": "pair_incomplete", "event": "KXITFWMATCH-26JUL18TUPSHO", "legs": {"SHO": "filled", 
+    {"ts": "2026-07-17 05:43:48 PM ET", "ts_epoch": 1784324628.9343014, "event": "order_placed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"action": "sell", "side": "yes", "price": 22, "count": 2, "order_id": "6e99e8e5-419b-4c77-8f45-c7b3ba5e313e", "client_order_id": "26541130-e98d-419a-bfad-85f56440901e", "response_status": "resting", "window": {"phase": "W1", "min_to_scheduled": 556.2, "
+    {"ts": "2026-07-17 05:43:48 PM ET", "ts_epoch": 1784324628.9345336, "event": "reconcile_exit_topup", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"exit_price": 22, "qty": 2, "position_qty": 5, "resting_sell_qty": 3, "order_id": "6e99e8e5-419b-4c77-8f45-c7b3ba5e313e"}}
+    {"ts": "2026-07-17 05:48:16 PM ET", "ts_epoch": 1784324896.1858892, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 6, "n_resting_orders": 14, "n_failures": 0, "n_flags": 1, "failures": [], "flags": [{"tk": "KXITFWMATCH-26JUL18TUPSHO-TUP", "check": "pair_incomplete", "event": "KXITFWMATCH-26JUL18TUPSHO", "legs": {"SHO": "filled",
+    {"ts": "2026-07-17 06:04:30 PM ET", "ts_epoch": 1784325870.5035968, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 6, "n_resting_orders": 13, "n_failures": 0, "n_flags": 1, "failures": [], "flags": [{"tk": "KXITFWMATCH-26JUL18TUPSHO-TUP", "check": "pair_incomplete", "event": "KXITFWMATCH-26JUL18TUPSHO", "legs": {"SHO": "filled",
+    {"ts": "2026-07-17 06:19:27 PM ET", "ts_epoch": 1784326767.2594473, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 7, "n_resting_orders": 14, "n_failures": 0, "n_flags": 1, "failures": [], "flags": [{"tk": "KXITFWMATCH-26JUL18TUPSHO-TUP", "check": "pair_incomplete", "event": "KXITFWMATCH-26JUL18TUPSHO", "legs": {"SHO": "filled",
+    {"ts": "2026-07-17 06:35:31 PM ET", "ts_epoch": 1784327731.2450953, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 6, "n_resting_orders": 13, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784315308.7671525, "legs_new": ["KXATPCHALLENGERMATCH-26JUL17FORTOM-TOM", "KXATPCHALLENGERMATCH
+    {"ts": "2026-07-17 06:50:54 PM ET", "ts_epoch": 1784328654.852386, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 6, "n_resting_orders": 13, "n_failures": 0, "n_flags": 1, "failures": [], "flags": [{"tk": "KXATPMATCH-26JUL18BUTTAB-TAB", "check": "pair_incomplete", "event": "KXATPMATCH-26JUL18BUTTAB", "legs": {"TAB": "absent", "B
+    {"ts": "2026-07-17 07:06:17 PM ET", "ts_epoch": 1784329577.9621482, "event": "window_open_set", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "price": 18, "cell": 18, "last_trade_age_sec": 0.0, "ttm_min": 473.7}}
+    {"ts": "2026-07-17 07:13:08 PM ET", "ts_epoch": 1784329988.4842584, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "FAIL", "n_positions": 7, "n_resting_orders": 13, "n_failures": 2, "n_flags": 2, "failures": [{"tk": "KXATPCHALLENGERMATCH-26JUL17FORTOM-FOR", "check": "buy_stack", "n": 2, "qty": 6.0}, {"tk": "KXATPCHALLENGERMATCH-26JUL17FORTOM-FOR", "ch
+    {"ts": "2026-07-17 07:15:36 PM ET", "ts_epoch": 1784330136.169462, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 7, "n_resting_orders": 13, "n_failures": 2, "n_flags": 2, "failures": [{"tk": "KXATPCHALLENGERMATCH-26JUL17FORTOM-FOR", "check": "buy_stack", "n": 2, "qty": 6.0}, {"tk": "KXATPCHALLENGERMATCH-26JUL17FORTOM-FOR", "che
+    {"ts": "2026-07-17 07:21:23 PM ET", "ts_epoch": 1784330483.419546, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 7, "n_resting_orders": 13, "n_failures": 2, "n_flags": 2, "failures": [{"tk": "KXATPCHALLENGERMATCH-26JUL17FORTOM-FOR", "check": "buy_stack", "n": 2, "qty": 6.0}, {"tk": "KXATPCHALLENGERMATCH-26JUL17FORTOM-FOR", "che
+    {"ts": "2026-07-17 07:25:18 PM ET", "ts_epoch": 1784330718.4815497, "event": "post_boot_audit", "ticker": "", "details": {"context": "halted_reaudit", "verdict": "FAIL", "n_positions": 7, "n_resting_orders": 13, "n_failures": 2, "n_flags": 2, "failures": [{"tk": "KXATPCHALLENGERMATCH-26JUL17FORTOM-FOR", "check": "buy_stack", "n": 2, "qty": 6.0}, {"tk": "KXATPCHALLENGERMATCH-26JUL17FORTOM-FOR", "ch
+    {"ts": "2026-07-17 07:28:27 PM ET", "ts_epoch": 1784330907.4497902, "event": "buy_blocked_conception_halt", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"price": 14, "count": 5}}
+    {"ts": "2026-07-17 07:28:27 PM ET", "ts_epoch": 1784330907.45, "event": "sibling_repost_failed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "leg1_basis": 82, "level": 14}}
+    {"ts": "2026-07-17 07:28:34 PM ET", "ts_epoch": 1784330914.1871088, "event": "exit_filled", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"exit_price": 22, "entry_price": 17, "qty": 3, "new_fills": 3, "complete": true, "pnl_cents": 15.0, "pnl_dollars": 0.15, "had_dca": false, "cycle": 1, "trade_id": "T-20260717-0151", "window": {"phase": "W1", "min_to_scheduled": 451.4, "gun_fired": false}
+    {"ts": "2026-07-17 07:28:34 PM ET", "ts_epoch": 1784330914.1872785, "event": "exit_partial_remainder", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"exit_filled_qty": 3, "entry_qty": 5, "open_shares": 2}}
+    {"ts": "2026-07-17 07:28:35 PM ET", "ts_epoch": 1784330915.0189776, "event": "exit_skip_no_open_shares", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"filled": 5, "exit_filled_qty": 3}}
+    {"ts": "2026-07-17 08:27:33 PM ET", "ts_epoch": 1784334453.989261, "event": "order_placed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"action": "buy", "side": "yes", "price": 15, "count": 5, "order_id": "5ba1ee58-0a4e-49d1-90da-33b0cdae7dad", "client_order_id": "8a0ea5a0-917b-4553-ad42-694934438347", "response_status": "resting", "trade_id": "T-20260717-0151", "window": {"phase": "W1",
+    {"ts": "2026-07-17 08:27:33 PM ET", "ts_epoch": 1784334453.9927623, "event": "sibling_repost_placed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "leg1": "17OCODEL-DEL", "leg1_basis": 82, "aim": null, "goal_level": 15, "level": 15, "post_only": true, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:27:34 PM ET", "ts_epoch": 1784334454.1997106, "event": "post_boot_audit", "ticker": "", "details": {"context": "boot", "verdict": "PASS", "n_positions": 4, "n_resting_orders": 8, "n_failures": 0, "n_flags": 1, "failures": [], "flags": [{"tk": "KXMLBGAME-26JUL172138DETLAA-DET", "flag": "foreign_position", "held": 0.0, "buy_qty": 1.0, "sell_qty": 0}], "diff_vs_banked": {"banked
+    {"ts": "2026-07-17 08:27:53 PM ET", "ts_epoch": 1784334473.4105258, "event": "window_open_set", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "price": 20, "cell": 20, "last_trade_age_sec": 134.5, "ttm_min": 392.2}}
+    {"ts": "2026-07-17 08:27:57 PM ET", "ts_epoch": 1784334477.1279352, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:27:57 PM ET", "ts_epoch": 1784334477.1284933, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 15, "proposed": 16, "new": 16, "best_bid": 19, "best_ask": 20, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 08:27:57 PM ET", "ts_epoch": 1784334477.446266, "event": "order_cancelled", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"order_id": "5ba1ee58-0a4e-49d1-90da-33b0cdae7dad", "label": "v4_move_repost", "success": true, "window": {"phase": "W1", "min_to_scheduled": 392.0, "gun_fired": false}}}
+    {"ts": "2026-07-17 08:27:57 PM ET", "ts_epoch": 1784334477.7911785, "event": "walk_cap_yield_print_backed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "target": 16, "law": "P0v3 (3) 07-17: print-backed rise \u2014 the clamp yields"}}
+    {"ts": "2026-07-17 08:27:58 PM ET", "ts_epoch": 1784334478.446863, "event": "order_placed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"action": "buy", "side": "yes", "price": 16, "count": 5, "order_id": "56af6637-08a9-46f7-99b4-8ea4ecc4a721", "client_order_id": "a5897da1-4d31-4f23-9a7b-ff22ed3216a9", "response_status": "resting", "trade_id": "T-20260717-0151", "window": {"phase": "W1",
+    {"ts": "2026-07-17 08:27:58 PM ET", "ts_epoch": 1784334478.4472048, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "move_repost", "actual": {"px": 20, "actual_bid": 16}, "would": {"regime": "decay_side", "timing": "resting_window", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": {"cat": "ITF_
+    {"ts": "2026-07-17 08:27:58 PM ET", "ts_epoch": 1784334478.4473977, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "move_repost", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.19, "n_eff": 0.0, "range_prior": {"missing": "no observable runmid at this tick (30-min traded mean empty)"}, "edge_vs_actual": -1.0, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 08:27:58 PM ET", "ts_epoch": 1784334478.44757, "event": "aim_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "site": "move_repost", "cell": "ITF_M|4|39", "side": "dog", "actual_bid": 16, "px": 20, "sib_px": 81, "tts_min": 392.0, "book_bid": 19, "book_ask": 20, "book_spread": 1, "bid_ex_self": 19, "actual_posture": "below_chain"
+    {"ts": "2026-07-17 08:27:58 PM ET", "ts_epoch": 1784334478.4501162, "event": "v4_move_repost", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"mode": "repost_resting", "old_basis": 15, "current_price": 20, "new_regime": "r15_24", "new_offset": 2, "new_target": 16, "current_ask": 20, "move_cents": 5, "runway_status": "full", "reference_source": "join_bid"}}
+    {"ts": "2026-07-17 08:28:28 PM ET", "ts_epoch": 1784334508.2568674, "event": "tape_seed_live_confirm", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"seed_price": 20, "live_price": 20, "delta": 0, "seed_age_sec": 176.3}}
+    {"ts": "2026-07-17 08:31:07 PM ET", "ts_epoch": 1784334667.2774386, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 4, "n_resting_orders": 10, "n_failures": 0, "n_flags": 1, "failures": [], "flags": [{"tk": "KXMLBGAME-26JUL172138DETLAA-DET", "flag": "foreign_position", "held": 0.0, "buy_qty": 1.0, "sell_qty": 0}], "diff_vs_banked
+    {"ts": "2026-07-17 08:33:29 PM ET", "ts_epoch": 1784334809.421239, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": null}, "would": {"regime": "decay_side", "timing": "resting_window", "flow_open": false, "action": "wait_window", "level": null, "posture": null, "cited": ["GAME_LIFECYCLE 2-5"]}, "vec": 
+    {"ts": "2026-07-17 08:33:29 PM ET", "ts_epoch": 1784334809.4214382, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.2, "n_eff": 3.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 08:33:29 PM ET", "ts_epoch": 1784334809.4542823, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:33:29 PM ET", "ts_epoch": 1784334809.4545121, "event": "v4_repost_hold_same_price", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"held_price": 16, "proposed": 16, "reason": "same_price_fifo_hold"}}
+    {"ts": "2026-07-17 08:33:30 PM ET", "ts_epoch": 1784334810.5215342, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:34:30 PM ET", "ts_epoch": 1784334870.8132184, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:35:31 PM ET", "ts_epoch": 1784334931.0058258, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:35:41 PM ET", "ts_epoch": 1784334941.4045923, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:36:51 PM ET", "ts_epoch": 1784335011.4418974, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:38:32 PM ET", "ts_epoch": 1784335112.6152227, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": null}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 19, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR dec
+    {"ts": "2026-07-17 08:38:32 PM ET", "ts_epoch": 1784335112.6155434, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.2, "n_eff": 5.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 08:38:32 PM ET", "ts_epoch": 1784335112.6270242, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:43:15 PM ET", "ts_epoch": 1784335395.728194, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:43:21 PM ET", "ts_epoch": 1784335401.257477, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:46:41 PM ET", "ts_epoch": 1784335601.5294204, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:49:07 PM ET", "ts_epoch": 1784335747.7502878, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:49:08 PM ET", "ts_epoch": 1784335748.767946, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": null}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 19, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR deca
+    {"ts": "2026-07-17 08:49:08 PM ET", "ts_epoch": 1784335748.7682538, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.2, "n_eff": 22.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 08:49:08 PM ET", "ts_epoch": 1784335748.7685163, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:50:45 PM ET", "ts_epoch": 1784335845.960833, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:50:56 PM ET", "ts_epoch": 1784335856.6183016, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:52:42 PM ET", "ts_epoch": 1784335962.7097056, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 3, "n_resting_orders": 7, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784333955.572039, "legs_new": [], "legs_gone": ["KXATPCHALLENGERMATCH-26JUL17LAJNOG-LAJ", "KXATP
+    {"ts": "2026-07-17 08:52:52 PM ET", "ts_epoch": 1784335972.2537115, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:55:38 PM ET", "ts_epoch": 1784336138.5281613, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:56:21 PM ET", "ts_epoch": 1784336181.50185, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 16, "posted_min_ago": null}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 19, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR decay
+    {"ts": "2026-07-17 08:56:21 PM ET", "ts_epoch": 1784336181.5021741, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.2, "n_eff": 22.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 08:56:21 PM ET", "ts_epoch": 1784336181.5023985, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:57:41 PM ET", "ts_epoch": 1784336261.3791196, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 18, "to": 14, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:57:41 PM ET", "ts_epoch": 1784336261.7494183, "event": "order_cancelled", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"order_id": "56af6637-08a9-46f7-99b4-8ea4ecc4a721", "label": "v4_move_repost", "success": true, "window": {"phase": "W1", "min_to_scheduled": 362.3, "gun_fired": false}}}
+    {"ts": "2026-07-17 08:57:41 PM ET", "ts_epoch": 1784336261.9990351, "event": "join_queue", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"outcome": "cancel", "depth_at_post": 971, "depth_now": 721, "fill_latency_sec": 1784.9, "latency_conception_sec": null, "latency_event_sec": null, "reposts": 1, "play_type": "v4_resting_maker", "trial": false}}
+    {"ts": "2026-07-17 08:57:42 PM ET", "ts_epoch": 1784336262.4747777, "event": "order_placed", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"action": "buy", "side": "yes", "price": 14, "count": 5, "order_id": "1dec75ab-bc20-4273-8cb6-7a3cea6ae8fb", "client_order_id": "1ab8577a-4e14-4900-85c4-dd1682802171", "response_status": "resting", "trade_id": "T-20260717-0151", "window": {"phase": "W1"
+    {"ts": "2026-07-17 08:57:42 PM ET", "ts_epoch": 1784336262.474987, "event": "would_skip_walled_post", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "price": 14, "depth_at_price": 10155, "our_size": 5, "spread": 1, "jump_available": false, "play_type": "v4_resting_maker", "cell": ""}}
+    {"ts": "2026-07-17 08:57:42 PM ET", "ts_epoch": 1784336262.4752483, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "move_repost", "actual": {"px": 18, "actual_bid": 14}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 18, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR decay floor = clo
+    {"ts": "2026-07-17 08:57:42 PM ET", "ts_epoch": 1784336262.475436, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "move_repost", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.19, "n_eff": 22.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": 1.0, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 08:57:42 PM ET", "ts_epoch": 1784336262.4755518, "event": "aim_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "site": "move_repost", "cell": "ITF_M|4|36", "side": "dog", "actual_bid": 14, "px": 18, "sib_px": 81, "tts_min": 362.3, "book_bid": 18, "book_ask": 19, "book_spread": 1, "bid_ex_self": 18, "actual_posture": "below_chai
+    {"ts": "2026-07-17 08:57:42 PM ET", "ts_epoch": 1784336262.4840934, "event": "v4_move_repost", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"mode": "repost_resting", "old_basis": 16, "current_price": 18, "new_regime": "r15_24", "new_offset": 2, "new_target": 14, "current_ask": 19, "move_cents": 2, "runway_status": "full", "reference_source": "join_bid"}}
+    {"ts": "2026-07-17 08:59:07 PM ET", "ts_epoch": 1784336347.70545, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 18, "to": 14, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 08:59:07 PM ET", "ts_epoch": 1784336347.7055914, "event": "v4_repost_hold_same_price", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"held_price": 14, "proposed": 14, "reason": "same_price_fifo_hold"}}
+    {"ts": "2026-07-17 08:59:16 PM ET", "ts_epoch": 1784336356.6103625, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 18, "to": 14, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:00:50 PM ET", "ts_epoch": 1784336450.556208, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 18, "to": 14, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:02:09 PM ET", "ts_epoch": 1784336529.925285, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 18, "to": 15, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:02:09 PM ET", "ts_epoch": 1784336529.9361174, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 15, "new": 15, "best_bid": 19, "best_ask": 19, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:02:09 PM ET", "ts_epoch": 1784336529.936318, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 15, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:02:18 PM ET", "ts_epoch": 1784336538.4937296, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 18, "to": 14, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:02:47 PM ET", "ts_epoch": 1784336567.9920955, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 18, "to": 15, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:02:48 PM ET", "ts_epoch": 1784336568.0049305, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 15, "new": 15, "best_bid": 19, "best_ask": 19, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:02:48 PM ET", "ts_epoch": 1784336568.0051603, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 15, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:06:17 PM ET", "ts_epoch": 1784336777.6053128, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:06:17 PM ET", "ts_epoch": 1784336777.606032, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 19, "best_ask": 20, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:06:17 PM ET", "ts_epoch": 1784336777.606145, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:06:19 PM ET", "ts_epoch": 1784336779.4834113, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 14, "posted_min_ago": null}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 19, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR dec
+    {"ts": "2026-07-17 09:06:19 PM ET", "ts_epoch": 1784336779.4959166, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.2, "n_eff": 42.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|le25", "w2_reach": 0.036, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 09:06:19 PM ET", "ts_epoch": 1784336779.4962928, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:06:19 PM ET", "ts_epoch": 1784336779.5117722, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 19, "best_ask": 20, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:06:19 PM ET", "ts_epoch": 1784336779.5145, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:06:32 PM ET", "ts_epoch": 1784336792.5197961, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:06:32 PM ET", "ts_epoch": 1784336792.5252721, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 19, "best_ask": 20, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:06:32 PM ET", "ts_epoch": 1784336792.5254242, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:06:40 PM ET", "ts_epoch": 1784336800.321433, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:06:40 PM ET", "ts_epoch": 1784336800.326221, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 20, "best_ask": 20, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:06:40 PM ET", "ts_epoch": 1784336800.326331, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:07:41 PM ET", "ts_epoch": 1784336861.7272325, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:07:41 PM ET", "ts_epoch": 1784336861.7452595, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 19, "best_ask": 20, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:07:41 PM ET", "ts_epoch": 1784336861.7455235, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:08:34 PM ET", "ts_epoch": 1784336914.374759, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:08:34 PM ET", "ts_epoch": 1784336914.3754056, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 20, "best_ask": 20, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:08:34 PM ET", "ts_epoch": 1784336914.375542, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:08:59 PM ET", "ts_epoch": 1784336939.4164815, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:08:59 PM ET", "ts_epoch": 1784336939.436191, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 20, "best_ask": 20, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:08:59 PM ET", "ts_epoch": 1784336939.4363863, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:09:45 PM ET", "ts_epoch": 1784336985.320846, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 3, "n_resting_orders": 10, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784333955.572039, "legs_new": [], "legs_gone": ["KXATPCHALLENGERMATCH-26JUL17LAJNOG-LAJ", "KXATP
+    {"ts": "2026-07-17 09:10:25 PM ET", "ts_epoch": 1784337025.714369, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:10:25 PM ET", "ts_epoch": 1784337025.7247152, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 19, "best_ask": 20, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:10:25 PM ET", "ts_epoch": 1784337025.7249312, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:12:46 PM ET", "ts_epoch": 1784337166.3765311, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 14, "posted_min_ago": null}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 20, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR dec
+    {"ts": "2026-07-17 09:12:46 PM ET", "ts_epoch": 1784337166.4022002, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.23, "n_eff": 57.0, "range_prior": {"missing": "range-layer cell empty or n<5 (4) -- G2 gap at this cell"}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 09:12:46 PM ET", "ts_epoch": 1784337166.402449, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 20, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:12:46 PM ET", "ts_epoch": 1784337166.420906, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 20, "best_ask": 32, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:12:46 PM ET", "ts_epoch": 1784337166.4210765, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:13:42 PM ET", "ts_epoch": 1784337222.4693213, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:13:42 PM ET", "ts_epoch": 1784337222.4790425, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 21, "best_ask": 33, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:13:42 PM ET", "ts_epoch": 1784337222.4792738, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:13:44 PM ET", "ts_epoch": 1784337224.2227592, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:13:44 PM ET", "ts_epoch": 1784337224.2375042, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 21, "best_ask": 33, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:13:44 PM ET", "ts_epoch": 1784337224.2375968, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:14:45 PM ET", "ts_epoch": 1784337285.1277306, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:14:45 PM ET", "ts_epoch": 1784337285.128379, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 21, "best_ask": 31, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:14:45 PM ET", "ts_epoch": 1784337285.1284835, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:14:57 PM ET", "ts_epoch": 1784337297.7494648, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:14:57 PM ET", "ts_epoch": 1784337297.7635376, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 21, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:14:57 PM ET", "ts_epoch": 1784337297.7760034, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:25 PM ET", "ts_epoch": 1784337325.1002245, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:25 PM ET", "ts_epoch": 1784337325.118313, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 21, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:15:25 PM ET", "ts_epoch": 1784337325.1185088, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:25 PM ET", "ts_epoch": 1784337325.4701562, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:25 PM ET", "ts_epoch": 1784337325.487021, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 21, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:15:25 PM ET", "ts_epoch": 1784337325.4874687, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:26 PM ET", "ts_epoch": 1784337326.4141016, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:26 PM ET", "ts_epoch": 1784337326.4211237, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 21, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:15:26 PM ET", "ts_epoch": 1784337326.4213061, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:31 PM ET", "ts_epoch": 1784337331.7744813, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:31 PM ET", "ts_epoch": 1784337331.7842839, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 21, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:15:31 PM ET", "ts_epoch": 1784337331.784413, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:34 PM ET", "ts_epoch": 1784337334.4720333, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:34 PM ET", "ts_epoch": 1784337334.4920723, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 21, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:15:34 PM ET", "ts_epoch": 1784337334.4922304, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:50 PM ET", "ts_epoch": 1784337350.0931122, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:50 PM ET", "ts_epoch": 1784337350.10512, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 21, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise 
+    {"ts": "2026-07-17 09:15:50 PM ET", "ts_epoch": 1784337350.1053298, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:51 PM ET", "ts_epoch": 1784337351.2403636, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 22, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:51 PM ET", "ts_epoch": 1784337351.2502995, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 22, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:15:51 PM ET", "ts_epoch": 1784337351.250553, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:54 PM ET", "ts_epoch": 1784337354.5941339, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 22, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:54 PM ET", "ts_epoch": 1784337354.605979, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 22, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:15:54 PM ET", "ts_epoch": 1784337354.6062272, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:55 PM ET", "ts_epoch": 1784337355.2675235, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 23, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:55 PM ET", "ts_epoch": 1784337355.277393, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 23, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:15:55 PM ET", "ts_epoch": 1784337355.2775562, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:55 PM ET", "ts_epoch": 1784337355.8276696, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:55 PM ET", "ts_epoch": 1784337355.8550875, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 21, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:15:55 PM ET", "ts_epoch": 1784337355.8553426, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:56 PM ET", "ts_epoch": 1784337356.0120785, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 22, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:56 PM ET", "ts_epoch": 1784337356.0239308, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 22, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:15:56 PM ET", "ts_epoch": 1784337356.0241456, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:56 PM ET", "ts_epoch": 1784337356.4661195, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 24, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:56 PM ET", "ts_epoch": 1784337356.4779081, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 24, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:15:56 PM ET", "ts_epoch": 1784337356.4781687, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:56 PM ET", "ts_epoch": 1784337356.7868774, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 23, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:56 PM ET", "ts_epoch": 1784337356.7875018, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 23, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:15:56 PM ET", "ts_epoch": 1784337356.8097281, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:57 PM ET", "ts_epoch": 1784337357.82097, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 25, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:57 PM ET", "ts_epoch": 1784337357.838728, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 25, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:15:57 PM ET", "ts_epoch": 1784337357.8390179, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:15:58 PM ET", "ts_epoch": 1784337358.8375247, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 26, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:15:58 PM ET", "ts_epoch": 1784337358.8534255, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 26, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:15:58 PM ET", "ts_epoch": 1784337358.8535726, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:16:01 PM ET", "ts_epoch": 1784337361.524604, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:16:01 PM ET", "ts_epoch": 1784337361.525348, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 21, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:16:01 PM ET", "ts_epoch": 1784337361.525486, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:16:50 PM ET", "ts_epoch": 1784337410.2526736, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 22, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:16:50 PM ET", "ts_epoch": 1784337410.2531893, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 22, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:16:50 PM ET", "ts_epoch": 1784337410.2532833, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:16:51 PM ET", "ts_epoch": 1784337411.3618345, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 22, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:16:51 PM ET", "ts_epoch": 1784337411.3622682, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 22, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:16:51 PM ET", "ts_epoch": 1784337411.3623412, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:16:51 PM ET", "ts_epoch": 1784337411.993479, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 22, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:16:52 PM ET", "ts_epoch": 1784337412.0104468, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 22, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:16:52 PM ET", "ts_epoch": 1784337412.018906, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:16:53 PM ET", "ts_epoch": 1784337413.6549098, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 22, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:16:53 PM ET", "ts_epoch": 1784337413.655582, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 22, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:16:53 PM ET", "ts_epoch": 1784337413.678946, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:16:53 PM ET", "ts_epoch": 1784337413.8105967, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 23, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:16:53 PM ET", "ts_epoch": 1784337413.8186014, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 23, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:16:53 PM ET", "ts_epoch": 1784337413.832755, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:17:07 PM ET", "ts_epoch": 1784337427.2171853, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 22, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:17:07 PM ET", "ts_epoch": 1784337427.2240748, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 22, "best_ask": 34, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:17:07 PM ET", "ts_epoch": 1784337427.2242942, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:17:15 PM ET", "ts_epoch": 1784337435.4913745, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 23, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:17:15 PM ET", "ts_epoch": 1784337435.4975946, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 23, "best_ask": 33, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:17:15 PM ET", "ts_epoch": 1784337435.502139, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:17:24 PM ET", "ts_epoch": 1784337444.8931072, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 22, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:17:24 PM ET", "ts_epoch": 1784337444.9179225, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 22, "best_ask": 32, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:17:24 PM ET", "ts_epoch": 1784337444.9181764, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:17:32 PM ET", "ts_epoch": 1784337452.3443289, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 26, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:17:32 PM ET", "ts_epoch": 1784337452.3661463, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 26, "best_ask": 32, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:17:32 PM ET", "ts_epoch": 1784337452.3663344, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:17:49 PM ET", "ts_epoch": 1784337469.7325642, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 23, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:17:49 PM ET", "ts_epoch": 1784337469.7477949, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 23, "best_ask": 32, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:17:49 PM ET", "ts_epoch": 1784337469.7479815, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:18:17 PM ET", "ts_epoch": 1784337497.4830656, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 23, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:18:17 PM ET", "ts_epoch": 1784337497.4834888, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 23, "best_ask": 32, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:18:17 PM ET", "ts_epoch": 1784337497.4835653, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:18:29 PM ET", "ts_epoch": 1784337509.878971, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 23, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:18:29 PM ET", "ts_epoch": 1784337509.8919606, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 23, "best_ask": 32, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:18:29 PM ET", "ts_epoch": 1784337509.8921623, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:19:38 PM ET", "ts_epoch": 1784337578.4186153, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 28, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:19:38 PM ET", "ts_epoch": 1784337578.4263532, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 28, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:19:38 PM ET", "ts_epoch": 1784337578.4264622, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:20:13 PM ET", "ts_epoch": 1784337613.2050977, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 29, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:20:13 PM ET", "ts_epoch": 1784337613.2177725, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 29, "best_ask": 40, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:20:13 PM ET", "ts_epoch": 1784337613.2179856, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:21:29 PM ET", "ts_epoch": 1784337689.4629354, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 29, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:21:29 PM ET", "ts_epoch": 1784337689.474108, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 29, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:21:29 PM ET", "ts_epoch": 1784337689.4743705, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:21:51 PM ET", "ts_epoch": 1784337711.318801, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 28, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:21:51 PM ET", "ts_epoch": 1784337711.3271616, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 30, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:21:51 PM ET", "ts_epoch": 1784337711.3296506, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:21:53 PM ET", "ts_epoch": 1784337713.0502684, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 28, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:21:53 PM ET", "ts_epoch": 1784337713.0557282, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 31, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:21:53 PM ET", "ts_epoch": 1784337713.055862, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:21:57 PM ET", "ts_epoch": 1784337717.515866, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 28, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:21:57 PM ET", "ts_epoch": 1784337717.5280793, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 30, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:21:57 PM ET", "ts_epoch": 1784337717.5282557, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:22:00 PM ET", "ts_epoch": 1784337720.5923476, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 28, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:22:00 PM ET", "ts_epoch": 1784337720.6075664, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 30, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:22:00 PM ET", "ts_epoch": 1784337720.607779, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:22:01 PM ET", "ts_epoch": 1784337721.0110004, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 28, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:22:01 PM ET", "ts_epoch": 1784337721.0355015, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 31, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:22:01 PM ET", "ts_epoch": 1784337721.0445023, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:22:03 PM ET", "ts_epoch": 1784337723.9963062, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 28, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:22:04 PM ET", "ts_epoch": 1784337724.0070856, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 30, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:22:04 PM ET", "ts_epoch": 1784337724.007302, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:22:07 PM ET", "ts_epoch": 1784337727.2379239, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 28, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:22:07 PM ET", "ts_epoch": 1784337727.2549648, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 31, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:22:07 PM ET", "ts_epoch": 1784337727.2552938, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:22:08 PM ET", "ts_epoch": 1784337728.3490636, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 14, "posted_min_ago": null}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 31, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR dec
+    {"ts": "2026-07-17 09:22:08 PM ET", "ts_epoch": 1784337728.3495064, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.35, "n_eff": 58.0, "range_prior": {"missing": "range-layer cell empty or n<5 (3) -- G2 gap at this cell"}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 09:22:08 PM ET", "ts_epoch": 1784337728.3593872, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 28, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:22:08 PM ET", "ts_epoch": 1784337728.3752735, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 31, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:22:08 PM ET", "ts_epoch": 1784337728.3754807, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:22:14 PM ET", "ts_epoch": 1784337734.5803564, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 29, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:22:14 PM ET", "ts_epoch": 1784337734.591958, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 29, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:22:14 PM ET", "ts_epoch": 1784337734.5921547, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:22:38 PM ET", "ts_epoch": 1784337758.0033703, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 29, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:22:38 PM ET", "ts_epoch": 1784337758.0109153, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 29, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:22:38 PM ET", "ts_epoch": 1784337758.0111158, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:22:59 PM ET", "ts_epoch": 1784337779.0883265, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 30, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:22:59 PM ET", "ts_epoch": 1784337779.1010516, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 33, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:22:59 PM ET", "ts_epoch": 1784337779.1011908, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:23:23 PM ET", "ts_epoch": 1784337803.410243, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 30, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:23:23 PM ET", "ts_epoch": 1784337803.4154892, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 33, "best_ask": 35, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:23:23 PM ET", "ts_epoch": 1784337803.426834, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:23:58 PM ET", "ts_epoch": 1784337838.9166954, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 38, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:23:58 PM ET", "ts_epoch": 1784337838.9172995, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 39, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:23:58 PM ET", "ts_epoch": 1784337838.9174244, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:24:13 PM ET", "ts_epoch": 1784337853.305304, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 38, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:24:13 PM ET", "ts_epoch": 1784337853.306986, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 39, "best_ask": 39, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:24:13 PM ET", "ts_epoch": 1784337853.3071744, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:24:13 PM ET", "ts_epoch": 1784337853.4953895, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 38, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:24:13 PM ET", "ts_epoch": 1784337853.5098662, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 39, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:24:13 PM ET", "ts_epoch": 1784337853.510027, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:24:36 PM ET", "ts_epoch": 1784337876.8164444, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 38, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:24:36 PM ET", "ts_epoch": 1784337876.818219, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 39, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:24:36 PM ET", "ts_epoch": 1784337876.8184369, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:24:58 PM ET", "ts_epoch": 1784337898.3834667, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 30, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:24:58 PM ET", "ts_epoch": 1784337898.403441, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 38, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:24:58 PM ET", "ts_epoch": 1784337898.411682, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:25:12 PM ET", "ts_epoch": 1784337912.6457748, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 30, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:25:12 PM ET", "ts_epoch": 1784337912.646541, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 37, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:25:12 PM ET", "ts_epoch": 1784337912.6639783, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:25:22 PM ET", "ts_epoch": 1784337922.4286625, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 30, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:25:22 PM ET", "ts_epoch": 1784337922.444058, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:25:22 PM ET", "ts_epoch": 1784337922.4442706, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:25:34 PM ET", "ts_epoch": 1784337934.3267205, "event": "post_boot_audit", "ticker": "", "details": {"context": "steady_cadence", "verdict": "PASS", "n_positions": 2, "n_resting_orders": 10, "n_failures": 0, "n_flags": 0, "failures": [], "flags": [], "diff_vs_banked": {"banked_ts": 1784333955.572039, "legs_new": [], "legs_gone": ["KXATPCHALLENGERMATCH-26JUL17LAJNOG-LAJ", "KXAT
+    {"ts": "2026-07-17 09:25:36 PM ET", "ts_epoch": 1784337936.460912, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 30, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:25:36 PM ET", "ts_epoch": 1784337936.4614115, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 37, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:25:36 PM ET", "ts_epoch": 1784337936.4614933, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:25:54 PM ET", "ts_epoch": 1784337954.5293584, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 30, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:25:54 PM ET", "ts_epoch": 1784337954.5300887, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:25:54 PM ET", "ts_epoch": 1784337954.5302403, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:26:09 PM ET", "ts_epoch": 1784337969.9342446, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 30, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:26:09 PM ET", "ts_epoch": 1784337969.9407399, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:26:09 PM ET", "ts_epoch": 1784337969.9409316, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:26:24 PM ET", "ts_epoch": 1784337984.5844436, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 30, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:26:24 PM ET", "ts_epoch": 1784337984.596793, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:26:24 PM ET", "ts_epoch": 1784337984.6066566, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:26:45 PM ET", "ts_epoch": 1784338005.7834225, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 30, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:26:45 PM ET", "ts_epoch": 1784338005.7929823, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:26:45 PM ET", "ts_epoch": 1784338005.7953424, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:26:51 PM ET", "ts_epoch": 1784338011.4554882, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 31, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:26:51 PM ET", "ts_epoch": 1784338011.4724944, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:26:51 PM ET", "ts_epoch": 1784338011.47465, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:26:52 PM ET", "ts_epoch": 1784338012.6761534, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 31, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:26:52 PM ET", "ts_epoch": 1784338012.6889846, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:26:52 PM ET", "ts_epoch": 1784338012.689165, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:27:05 PM ET", "ts_epoch": 1784338025.1570897, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 25, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:27:05 PM ET", "ts_epoch": 1784338025.1689103, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:27:05 PM ET", "ts_epoch": 1784338025.16928, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:27:22 PM ET", "ts_epoch": 1784338042.2381034, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 27, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:27:22 PM ET", "ts_epoch": 1784338042.2527452, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 36, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:27:22 PM ET", "ts_epoch": 1784338042.2529345, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:27:39 PM ET", "ts_epoch": 1784338059.6667848, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:27:39 PM ET", "ts_epoch": 1784338059.667492, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 32, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:27:39 PM ET", "ts_epoch": 1784338059.6839156, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:27:49 PM ET", "ts_epoch": 1784338069.5163527, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 22, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:27:49 PM ET", "ts_epoch": 1784338069.5169835, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 33, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:27:49 PM ET", "ts_epoch": 1784338069.5171185, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:27:53 PM ET", "ts_epoch": 1784338073.9871566, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 22, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:27:54 PM ET", "ts_epoch": 1784338074.008539, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 33, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:27:54 PM ET", "ts_epoch": 1784338074.0113282, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:28:01 PM ET", "ts_epoch": 1784338081.6352835, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:28:01 PM ET", "ts_epoch": 1784338081.6454804, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 32, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:28:01 PM ET", "ts_epoch": 1784338081.65391, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:28:10 PM ET", "ts_epoch": 1784338090.2782185, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:28:10 PM ET", "ts_epoch": 1784338090.2951598, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 31, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:28:10 PM ET", "ts_epoch": 1784338090.2953594, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:28:14 PM ET", "ts_epoch": 1784338094.935174, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 21, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:28:14 PM ET", "ts_epoch": 1784338094.945327, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 30, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:28:14 PM ET", "ts_epoch": 1784338094.9454448, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:28:29 PM ET", "ts_epoch": 1784338109.992593, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 19, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:28:30 PM ET", "ts_epoch": 1784338110.010469, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 29, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:28:30 PM ET", "ts_epoch": 1784338110.0241303, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:28:38 PM ET", "ts_epoch": 1784338118.7513082, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 24, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:28:38 PM ET", "ts_epoch": 1784338118.756303, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 31, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:28:38 PM ET", "ts_epoch": 1784338118.7564237, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:28:40 PM ET", "ts_epoch": 1784338120.7878232, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 23, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:28:40 PM ET", "ts_epoch": 1784338120.7903593, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 38, "best_ask": 31, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:28:40 PM ET", "ts_epoch": 1784338120.805754, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:30:38 PM ET", "ts_epoch": 1784338238.4222786, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 24, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:30:38 PM ET", "ts_epoch": 1784338238.4361334, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 24, "best_ask": 32, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:30:38 PM ET", "ts_epoch": 1784338238.4363196, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:32:42 PM ET", "ts_epoch": 1784338362.0370176, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 25, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:32:42 PM ET", "ts_epoch": 1784338362.0375693, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 25, "best_ask": 31, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:32:42 PM ET", "ts_epoch": 1784338362.047897, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:32:52 PM ET", "ts_epoch": 1784338372.4567158, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 26, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:32:52 PM ET", "ts_epoch": 1784338372.4573736, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 26, "best_ask": 31, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:32:52 PM ET", "ts_epoch": 1784338372.4575253, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:32:52 PM ET", "ts_epoch": 1784338372.7214265, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 26, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:32:52 PM ET", "ts_epoch": 1784338372.7230701, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 26, "best_ask": 31, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED ris
+    {"ts": "2026-07-17 09:32:52 PM ET", "ts_epoch": 1784338372.723204, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:32:59 PM ET", "ts_epoch": 1784338379.5371416, "event": "os_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "actual": {"resting_at": 14, "posted_min_ago": null}, "would": {"regime": "decay_side", "timing": "hold_window", "flow_open": true, "action": "rest", "level": 26, "posture": "join_close", "cited": ["GAME_LIFECYCLE 2-5", "SEQFLOOR dec
+    {"ts": "2026-07-17 09:32:59 PM ET", "ts_epoch": 1784338379.537479, "event": "conviction_shadow", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"site": "hold_review", "cat": "ITF_M", "opinion": "CONVICTION", "confidence": 0.31, "n_eff": 136.0, "range_prior": {"cell": "ITF_M|underdog|at_mid|26_50", "w2_reach": 0.217, "knife": 1.0}, "edge_vs_actual": null, "m16_fitted_margin": 8}}
+    {"ts": "2026-07-17 09:32:59 PM ET", "ts_epoch": 1784338379.5391135, "event": "leg2_reshuffle_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "from": 26, "to": 16, "leg1_basis": 81, "goal": 97, "governed_by": "pair97_bound"}}
+    {"ts": "2026-07-17 09:32:59 PM ET", "ts_epoch": 1784338379.540979, "event": "window_truth_reaim", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "old": 14, "proposed": 16, "new": 16, "best_bid": 26, "best_ask": 31, "deep_print_real": false, "print_backed": true, "law": "P5 (\u2464-15) LIVE 07-17 + P0v3 (3): join/improve best bid +1 on a PRINT-BACKED rise
+    {"ts": "2026-07-17 09:32:59 PM ET", "ts_epoch": 1784338379.5411427, "event": "chase_cap_hold", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "held_price": 14, "proposed": 16, "pursuit_buys": 3, "armed_by": "leg_fill", "cap": 2}}
+    {"ts": "2026-07-17 09:32:59 PM ET", "ts_epoch": 1784338379.6740346, "event": "order_cancelled", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"order_id": "1dec75ab-bc20-4273-8cb6-7a3cea6ae8fb", "label": "gun_fire_sweep", "success": true, "window": {"phase": "W1", "min_to_scheduled": 327.0, "gun_fired": true, "gun_source": "price_divergence", "gun_grade": "burst", "burst_latch_active": true
+    {"ts": "2026-07-17 09:33:00 PM ET", "ts_epoch": 1784338380.2295508, "event": "join_queue", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"outcome": "cancel", "depth_at_post": 10155, "depth_now": 10000, "fill_latency_sec": 2118.9, "latency_conception_sec": null, "latency_event_sec": null, "reposts": 2, "play_type": "v4_resting_maker", "trial": false}}
+    {"ts": "2026-07-17 09:33:00 PM ET", "ts_epoch": 1784338380.2318537, "event": "match_live_resting_cancel", "ticker": "KXITFMATCH-26JUL17OCODEL-OCO", "details": {"event": "KXITFMATCH-26JUL17OCODEL", "gun_source": "price_divergence", "sweep": "at_fire", "law": "P0v3 (2) 07-17: sweep beats fill", "governed_by": "match_live_cancel", "window": {"phase": "W1", "min_to_scheduled": 327.0, "gun_fired": true
 
 ## Code path
 ?

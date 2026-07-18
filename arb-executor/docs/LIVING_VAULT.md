@@ -134,6 +134,49 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-18 · ENTRY SURFACE — STAGE 3: THE GATED JOINT SOLVE (per-band entry tables, staged for the seal; nothing arms)
+
+**Prior art (C45):** the three banked inputs (band map d3ca814f · surfaces+recognition · store+catch tables 59dc1eea) · June's gated-optima discipline (unity → realism → optima, rebuilt entry-side) · the aim-table/3¢ constants this retires at Stage 5. Delta: one pair-aware solve, ROC the metric, holdout + era-proof in the same artifact.
+
+**THE SOLVE** (`state/entry_tables_v1.json` + `ENTRY_SOLVE.md`, machinery `analysis/entry_solve.py`; frame stated plainly: close-based W1 mark, exit-frame blending is Stage 6's word): 36 bands solved under the realism gate (support ≥8 or the level does not enter; thin bands inherit nothing).
+- **RISERS park at the touch** (ATP_MAIN-B4: depth 1¢, P(fill) 0.86, EV +27¢, ROC 0.51 — "the discount that never comes" priced).
+- **FLATS take divot bids** (ATP_MAIN-B3: 11¢ under anchor at 0.87 catches/window, ROC 0.33; ITF_M-B4: 11¢, ROC 0.18; per-band catch tables the source).
+- **MODERATE FALLERS cast DEEP or not at all** (ATP_MAIN-B7: 30¢ → ROC 0.21 at P(fill) 0.56; ATP_MAIN-B2: 26¢ → 0.18; ATP_CHALL-B2 barely positive at 29¢ on p_fill 0.017 — and its holdout REALIZED 0.00, the thin edge honestly killed). **THE VIOLENT FALLER REFUSES: ATP_CHALL-B5 negative even 30¢ deep (EV −7¢) — the solve will not catch that knife.**
+- **PAIR JOINTS (both legs one object):** 17 dominant mirrors solved jointly — 16/17 combine ≤97 FROM THE SOLVED LEVELS THEMSELVES (the scoreboard emerges, not imposed; ITF_W-B7→B1 lands at 98, named). Best joints: **WTA_CHALL-B4→B2 (faller-fav/riser-dog seesaw) weighted ROC 0.25** · ITF_M-B4→B1 0.16 · ATP_MAIN-B5→B3 0.14.
+
+**HOLDOUT (fit pre-Jul-14, judged only on Jul-14+):** ATP_MAIN-B2 realized P(fill) 0.30 vs predicted 0.24 (held ROC 0.22) · WTA_CHALL-B1 0.18 vs 0.16 (0.25) · WTA_CHALL-B4 softer 0.18 vs 0.26 (0.06) · ATP_CHALL-B2 realized 0.00 — killed. Small holdout n's printed; the full solve-replay LOOP rides Stage 4.
+
+**ERA-PROOF (the receipt the dispatch demanded):** identical solve on the poisoned stamps — **4 bands moved: WTA_MAIN-B2 −8¢ (the lying clocks would cast shallower on the moderate faller), ATP_MAIN-B2 +4¢, ±1¢ two more; 8 bands genuinely unchanged, said so.** The clean corpus changed the answer where the corridor mislabeling bit deepest.
+
+**Honesty lines:** first solve run right-censored at 15¢ (the surface's reach range) — caught because every faller railed the boundary; range extended to 30¢ and re-run (a second miss — the dict-comprehension form dodging the first patch — also on the record). Three bands still rail at 30¢ (B5/B7-class); 30¢ under mid anchors is half the price — the practical bound, named not hidden. MIN_TOUCH/MIN_CATCH = 8, decreed and stated.
+
+**Stage 4 (full validation report + the LOOP spec) and Stage 5 (integration + seal ceremony) next on the dispatch's rhythm; Stage 6 on the word. Nothing arms from this C50.**
+
+
+### 2026-07-18 · P2 THE SUBSECOND CONSOLIDATION (the scatter killed) + P3 THE DIVOT DECONSTRUCTION (the flat-band entry model)
+
+**Prior art (C45):** the scattered sources themselves (daysheet_tape caches, premarket_ticks, depth recorders, engine logs — the scatter WAS the finding), the June divot concept (ALTMED/FERCER-era observations, now counted at population scale), Stage 2's flat-band surfaces (divots confirmed as the flat bands' entire entry story). Delta: one store, one nightly append, and the divot priced per band.
+
+**P2 — THE STORE** (`state/subsecond_store.db`, machinery `analysis/subsecond_consolidate.py`, census `.claude/entrysurface_20260717/SUBSECOND_CENSUS.md`): **2,041,870 prints, event/ticker/epoch-keyed, ingest-log resumable; nightly append-forward cron installed (04:35, /etc/cron.d/omi-subsecond) — it never scatters again.** Sources named: public_tape 883,557 true-subsecond prints (**span Jul 12–17 ONLY — the true-subsecond record is six days deep; everything earlier is holes**, the inventory's core finding) · book_transition 1,158,313 (premarket_ticks last-trade transitions, Jul 11–18, transition-grade labeled) · ws_log yielded ZERO (the engine's WS trade lines live under other event names — named miss, not hidden) · book-grade archives (depth_recorder Jul 7–18, ws_depth_recorder, snapshots) inventoried for Phase D, NOT folded into prints.
+
+**P3 — THE DIVOT TABLES** (`state/divot_tables_v1.json` + `DIVOT_TABLES.md`, machinery `analysis/divot_deconstruct.py`; definition stated plainly: print ≥2¢ under the trailing-30-min rolling median with recovery to within 1¢): **724 flat-band windows, 21 bands.** The model: ATP_CHALL flats 2.2–2.4 divots/window (depth p50 ~3¢, p90 7–9¢, duration ~60–70s); **near-wake share 3% — divots are ALL-WINDOW phenomena, the wake-clustering hypothesis dies by count**; ITF flats 1.0–2.0/window with the fat tail living in the HIGH-anchor band (**ITF_M-B6: depth p50 10¢ / p90 27¢, and a bid 10¢ under anchor still catches 0.62 divots/window**). CATCH TABLES price the resting bid per band (e.g., ATP_CHALL-B4: anchor−3¢ catches 1.27/window, −5¢ 0.72). Source-share printed per band (tape vs transition-grade — no silent mixing). **WALKED EXHIBIT: YODMAT-MAT (ITF_W flat, anchor 56¢, 128 prints) — seven divots listed with exact epochs; a bid at 54¢ catches three of them inside 45 minutes.** Thin ITF windows say thin (n per band inline).
+
+**All three parts of the paste now stand (P1 349b32e0; this C50 = P2+P3). Stage 3's solve consumes: casts per faller band + parks per riser band (drift surfaces) + divot bids per flat band (these tables) — one gated joint object, June's rigor, then the seal.**
+
+
+### 2026-07-18 · ENTRY SURFACE — STAGE 2 P1: THE DRIFT SURFACES + THE RECOGNITION TABLE (per band; the parent key holds)
+
+**Prior art (C45):** band map v1 (the parent key, d3ca814f) · the spectrum (source) · June's movement/lifecycle/reach discipline (rebuilt entry-side). Delta: three surfaces per band + the early-recognition table, counted never fitted.
+
+**THE SURFACES** (`state/drift_surfaces_v1.json` + `.claude/entrysurface_20260717/DRIFT_SURFACES.md`, machinery `analysis/drift_surfaces.py`; 12,170 legs across 36 populated bands): per band — MOVEMENT ((px−anchor) quartiles per 30-min tts bin, bid/ask/traded), LIFECYCLE (level×tts → P(rise/fall/flat next 30m), cells n≥8 only), REACH (P(dip≥d) d=1..15 + dip-bottom timing quartiles), honest-n inline (thin bands carry "decision-grade NO"). Exhibit reading: the violent-faller bands travel 0 → −32¢ median from T−7.5h to the edge with reach P(≥10¢)=1.00 and lows at the window's end — the collapse is late and total; the flat-favorite bands sit ±2¢ the whole window with dip p50 ≤2¢ — divots are their ENTIRE entry story (P3's charter confirmed by the surface).
+
+**THE RECOGNITION TABLE (counted):** partial-journey fingerprint = anchor-region × net-so-far × dip-so-far, per hour into the window → eventual-band distribution with n. **ATP_CHALL: 61–64% of legs sit in ≥60%-pure buckets at h1–h2, falling to 33–41% h3+ (the early book state is the most predictive hour — churn muddies, not clarifies). ATP_MAIN: 24–28% flat across hours (mains resist early recognition — the recognition voice must stay humble there). ITF: 61–75% (thin books telegraph their band early).** WTA rows in the doc.
+
+**Method catch, named (the census discipline holding its own line):** v1's fingerprint omitted the ANCHOR — flats in different anchor regions were asked to separate on net/dip alone, producing a designed 0% across the board. Caught by its own absurdity BEFORE publishing, fixed as v2, both runs on the record.
+
+**Feeds Stage 3's solve (casts per faller band · parks per riser band · divot bids per flat band — one gated joint object). P2 (subsecond store) still ingesting — 1.39M prints and climbing; its census + P3's divot tables land as their own C50s.**
+
+
 ### 2026-07-17 · ENTRY SURFACE — STAGE 1: THE BAND TAXONOMY (bands given by the market; the operator reads before Stage 2 fits anything)
 
 **Prior art (C45):** the range spectrum (Phase B — the source object), the cohort surface's fixed anchor-buckets (superseded as the parent key by these evidence-derived bands at Stage 5 integration), June's exit-campaign band discipline (the model this build follows on the entry side). Delta: bands DERIVED from W1 range geometry per cat (k-means on standardized anchor × net × dip; elbow-selected k; deterministic seed — every number reproducible), never imposed deciles; pairs one object.

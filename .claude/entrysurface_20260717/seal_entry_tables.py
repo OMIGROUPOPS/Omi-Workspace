@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""STAGE 5 — THE SEAL (survivors only; the failed bands never speak).
+"""STAGE 5 — THE SEAL, 4b AMENDMENT (survivors only; the failed bands never speak).
 
 Survivor law (from the Stage-4 report, stated plainly):
   SEALED  — CI-passing on holdout AND positive holdout ROC in at least one
@@ -21,12 +21,15 @@ V2 = json.loads((ROOT / "state/entry_tables_v2.json").read_text())
 OUT = ROOT / "state/entry_tables_sealed_v1.json"
 
 # survivor decisions, named (from LOOP_CAMPAIGN.md + ENTRY_SOLVE.md):
+# [4b AMENDMENT 07-18] the re-framed drill (LOOP2) demoted both
+# replay-frame survivors: ATP_MAIN-B8 park fills 9/10 but ROC -0.025
+# (fills into losers on the close mark); WTA_CHALL-B3 drilled to 1c,
+# 34/45 fills, ROC -0.049. The seal SHRINKS to the two reach-frame
+# casts; own-frame holdout THIN for both (n=4 / phase-2 rare), both
+# receipts shown. All ten 4a failures = STILL FAIL: REAL.
 SEALED = {
-    # band: (depth, frame, receipt)
-    "WTA_CHALL-B3": (11, "replay_close", "holdout 7/36 fills CI-pass, ROC +0.019"),
-    "ATP_MAIN-B2":  (25, "reach_frame", "Stage-3 holdout: realized 0.30 vs pred 0.24, ROC 0.218"),
-    "WTA_CHALL-B1": (12, "reach_frame", "Stage-3 holdout: realized 0.18 vs pred 0.16, ROC 0.252"),
-    "ATP_MAIN-B8":  (1, "replay_close", "riser park: holdout 4/6 fills, ROC +0.042 (n thin, park-class)"),
+    "ATP_MAIN-B2":  (25, "reach_frame", "Stage-3 holdout: realized 0.30 vs pred 0.24, ROC 0.218; own-frame 4b holdout THIN (phase-2 caller rare) — both receipts shown"),
+    "WTA_CHALL-B1": (12, "reach_frame", "Stage-3 holdout: realized 0.18 vs pred 0.16, ROC 0.252; own-frame 4b holdout n=4 THIN — both receipts shown"),
 }
 REFUSE = {"ATP_CHALL-B5", "WTA_CHALL-B7", "ATP_MAIN-B6", "WTA_MAIN-B5",
           "ITF_M-B7", "ITF_W-B8"}   # violent fallers: the REFUSE is law

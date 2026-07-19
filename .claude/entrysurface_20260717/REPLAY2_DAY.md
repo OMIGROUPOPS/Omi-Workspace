@@ -1,0 +1,212 @@
+# REPLAY2 DAY — 26JUL16 (own-frame; reasoning printed)
+
+- ADDGHI-GHI: anchor 52¢ → band ATP_CHALL-B4 (phase 2) · rest 24¢ → no fill (honest miss)
+- ADDGHI-ADD: anchor 49¢ → band ATP_CHALL-B4 (phase 2) · rest 21¢ → no fill (honest miss)
+- ALCANG-ANG: anchor 19¢ → band ATP_CHALL-B1 (phase 2) · rest 15¢ → no fill (honest miss)
+- ALCANG-ALC: anchor 82¢ → band ATP_CHALL-B6 (phase 2) · rest 52¢ → no fill (honest miss)
+- BICCAS-CAS: anchor 68¢ → band ATP_CHALL-B4 (phase 2) · rest 40¢ → no fill (honest miss)
+- BICCAS-BIC: re-aim REFUSED at phase 2 (band ATP_CHALL-B4)
+- CAMBOO-CAM: anchor 41¢ → band ATP_CHALL-B4 (phase 2) · rest 13¢ → no fill (honest miss)
+- CAMBOO-BOO: anchor 60¢ → band ATP_CHALL-B4 (phase 2) · rest 32¢ → no fill (honest miss)
+- DELDAL-DEL: anchor 61¢ → band ATP_CHALL-B4 (phase 2) · rest 33¢ → no fill (honest miss)
+- DELDAL-DAL: anchor 39¢ → band ATP_CHALL-B4 (phase 2) · rest 11¢ → no fill (honest miss)
+- DENBAR-DEN: anchor 57¢ → band ATP_CHALL-B4 (phase 2) · rest 29¢ → no fill (honest miss)
+- DENBAR-BAR: anchor 44¢ → band ATP_CHALL-B4 (phase 2) · rest 16¢ → no fill (honest miss)
+- DRAMIL-MIL: anchor 33¢ → band ATP_CHALL-B4 (phase 2) · rest 5¢ → no fill (honest miss)
+- DRAMIL-DRA: anchor 68¢ → band ATP_CHALL-B4 (phase 2) · rest 40¢ → no fill (honest miss)
+- FORCUI-FOR: anchor 46¢ → band ATP_CHALL-B4 (phase 2) · rest 18¢ → no fill (honest miss)
+- FORCUI-CUI: anchor 55¢ → band ATP_CHALL-B4 (phase 2) · rest 27¢ → no fill (honest miss)
+- FUESEY-SEY: anchor 87¢ → band ATP_CHALL-B6 (phase 2) · rest 57¢ → no fill (honest miss)
+- FUESEY-FUE: anchor 16¢ → band ATP_CHALL-B1 (phase 2) · rest 12¢ → no fill (honest miss)
+- GLISEK-SEK: anchor 38¢ → band ATP_CHALL-B4 (phase 2) · rest 10¢ → no fill (honest miss)
+- GLISEK-GLI: anchor 61¢ → band ATP_CHALL-B4 (phase 2) · rest 33¢ → no fill (honest miss)
+- GRESAN-SAN: anchor 40¢ → band ATP_CHALL-B4 (phase 2) · rest 12¢ → no fill (honest miss)
+- GRESAN-GRE: anchor 61¢ → band ATP_CHALL-B4 (phase 2) · rest 33¢ → no fill (honest miss)
+- IVAOUA-OUA: anchor 18¢ → band ATP_CHALL-B1 (phase 2) · rest 14¢ → no fill (honest miss)
+- IVAOUA-IVA: anchor 82¢ → band ATP_CHALL-B6 (phase 2) · rest 52¢ → no fill (honest miss)
+- KUMBRO-KUM: anchor 47¢ → band ATP_CHALL-B4 (phase 2) · rest 19¢ → no fill (honest miss)
+- KUMBRO-BRO: anchor 55¢ → band ATP_CHALL-B4 (phase 2) · rest 27¢ → no fill (honest miss)
+- MCCTOM-TOM: anchor 47¢ → band ATP_CHALL-B4 (phase 2) · rest 19¢ → no fill (honest miss)
+- MCCTOM-MCC: anchor 55¢ → band ATP_CHALL-B4 (phase 2) · rest 27¢ → no fill (honest miss)
+- MRVRON-RON: anchor 42¢ → band ATP_CHALL-B4 (phase 2) · rest 14¢ → no fill (honest miss)
+- MRVRON-MRV: anchor 59¢ → band ATP_CHALL-B4 (phase 2) · rest 31¢ → no fill (honest miss)
+- PALALM-PAL: re-aim REFUSED at phase 2 (band ATP_CHALL-B4)
+- PALALM-ALM: anchor 72¢ → band ATP_CHALL-B4 (phase 2) · rest 44¢ → no fill (honest miss)
+- RICGEA-RIC: anchor 17¢ → band ATP_CHALL-B1 (phase 2) · rest 13¢ → no fill (honest miss)
+- RICGEA-GEA: anchor 83¢ → band ATP_CHALL-B6 (phase 2) · rest 53¢ → no fill (honest miss)
+- SMIMAT-SMI: anchor 80¢ → band ATP_CHALL-B6 (phase 2) · rest 50¢ → no fill (honest miss)
+- SMIMAT-MAT: anchor 21¢ → band ATP_CHALL-B1 (phase 2) · rest 17¢ → no fill (honest miss)
+- VISNIJ-VIS: anchor 42¢ → band ATP_CHALL-B4 (phase 2) · rest 14¢ → no fill (honest miss)
+- VISNIJ-NIJ: anchor 59¢ → band ATP_CHALL-B4 (phase 2) · rest 31¢ → no fill (honest miss)
+- BURUGO-UGO: anchor 41¢ → band ATP_MAIN-B3 (phase 2) · rest 16¢ → no fill (honest miss)
+- BURUGO-BUR: anchor 59¢ → band ATP_MAIN-B5 (phase 1) · rest 58¢ → FILLED · close 58¢ → +0¢/sh
+- DEJBAE-DEJ: anchor 54¢ → band ATP_MAIN-B5 (phase 1) · rest 53¢ → FILLED · close 51¢ → -2¢/sh
+- DEJBAE-BAE: anchor 47¢ → band ATP_MAIN-B3 (phase 2) · rest 22¢ → no fill (honest miss)
+- DZUARN-DZU: anchor 34¢ → band ATP_MAIN-B3 (phase 2) · rest 9¢ → no fill (honest miss)
+- DZUARN-ARN: anchor 67¢ → band ATP_MAIN-B5 (phase 1) · rest 66¢ → FILLED · close 68¢ → +2¢/sh
+- FARRUU-RUU: anchor 80¢ → band ATP_MAIN-B8 (phase 1) · rest 79¢ → FILLED · close 81¢ → +2¢/sh
+- FARRUU-FAR: anchor 23¢ → band ATP_MAIN-B1 (phase 1) · rest 22¢ → FILLED · close 19¢ → -3¢/sh
+- MERDRO-MER: anchor 61¢ → band ATP_MAIN-B5 (phase 2) · rest 60¢ → FILLED · close 60¢ → +0¢/sh
+- MERDRO-DRO: anchor 40¢ → band ATP_MAIN-B3 (phase 2) · rest 15¢ → no fill (honest miss)
+- MOLDAV-MOL: anchor 43¢ → band ATP_MAIN-B3 (phase 2) · rest 18¢ → no fill (honest miss)
+- MOLDAV-DAV: anchor 59¢ → band ATP_MAIN-B5 (phase 1) · rest 58¢ → FILLED · close 57¢ → -1¢/sh
+- SHESTR-STR: anchor 53¢ → band ATP_MAIN-B5 (phase 2) · rest 52¢ → FILLED · close 51¢ → -1¢/sh
+- SHESTR-SHE: anchor 49¢ → band ATP_MAIN-B3 (phase 2) · rest 24¢ → no fill (honest miss)
+- BASRUS-RUS: anchor 32¢ → band WTA_CHALL-B3 (phase 2) · rest 31¢ → no fill (honest miss)
+- BASRUS-BAS: anchor 69¢ → band WTA_CHALL-B6 (phase 2) · rest 68¢ → no fill (honest miss)
+- BENKRA-KRA: anchor 80¢ → band WTA_CHALL-B8 (phase 2) · rest 79¢ → no fill (honest miss)
+- BENKRA-BEN: anchor 21¢ → band WTA_CHALL-B1 (phase 2) · rest 5¢ → no fill (honest miss)
+- BRAVED-VED: anchor 60¢ → band WTA_CHALL-B6 (phase 2) · rest 59¢ → FILLED · close 58¢ → -1¢/sh
+- BRAVED-BRA: anchor 40¢ → band WTA_CHALL-B3 (phase 2) · rest 39¢ → FILLED · close 45¢ → +6¢/sh
+- FEISAM-SAM: anchor 67¢ → band WTA_CHALL-B6 (phase 2) · rest 66¢ → no fill (honest miss)
+- FEISAM-FEI: anchor 35¢ → band WTA_CHALL-B3 (phase 1) · rest 34¢ → FILLED · close 34¢ → +0¢/sh
+- GAOVAL-VAL: anchor 50¢ → band WTA_CHALL-B3 (phase 2) · rest 49¢ → FILLED · close 49¢ → +0¢/sh
+- GAOVAL-GAO: anchor 51¢ → band WTA_CHALL-B6 (phase 2) · rest 50¢ → no fill (honest miss)
+- HERVAN-VAN: anchor 71¢ → band WTA_CHALL-B6 (phase 2) · rest 70¢ → FILLED · close 71¢ → +1¢/sh
+- HERVAN-HER: anchor 34¢ → band WTA_CHALL-B3 (phase 1) · rest 33¢ → FILLED · close 31¢ → -2¢/sh
+- KHOPRO-PRO: anchor 85¢ → band WTA_CHALL-B8 (phase 2) · rest 84¢ → no fill (honest miss)
+- KHOPRO-KHO: re-aim REFUSED at phase 2 (band WTA_CHALL-B1)
+- KOSBRO-KOS: anchor 60¢ → band WTA_CHALL-B6 (phase 2) · rest 59¢ → FILLED · close 60¢ → +1¢/sh
+- KOSBRO-BRO: anchor 41¢ → band WTA_CHALL-B3 (phase 2) · rest 40¢ → no fill (honest miss)
+- KOVRIE-RIE: anchor 78¢ → band WTA_CHALL-B8 (phase 2) · rest 77¢ → no fill (honest miss)
+- KOVRIE-KOV: anchor 23¢ → band WTA_CHALL-B1 (phase 2) · rest 7¢ → no fill (honest miss)
+- ZAKSHU-ZAK: anchor 55¢ → band WTA_CHALL-B6 (phase 2) · rest 54¢ → no fill (honest miss)
+- ZAKSHU-SHU: anchor 45¢ → band WTA_CHALL-B3 (phase 2) · rest 44¢ → no fill (honest miss)
+- ZANTRE-ZAN: anchor 44¢ → band WTA_CHALL-B3 (phase 1) · rest 43¢ → FILLED · close 44¢ → +1¢/sh
+- ZANTRE-TRE: anchor 56¢ → band WTA_CHALL-B6 (phase 2) · rest 55¢ → no fill (honest miss)
+- KORANN-KOR: anchor 50¢ → band WTA_MAIN-B3 (phase 2) · rest 39¢ → no fill (honest miss)
+- KORANN-ANN: anchor 52¢ → band WTA_MAIN-B3 (phase 2) · rest 41¢ → no fill (honest miss)
+- TAUTON-TON: anchor 7¢ → band WTA_MAIN-B1 (phase 2) · rest 6¢ → FILLED · close 6¢ → +0¢/sh
+- TAUTON-TAU: anchor 95¢ → band WTA_MAIN-B6 (phase 2) · rest 94¢ → FILLED · close 94¢ → +0¢/sh
+- UDVKAW-UDV: anchor 54¢ → band WTA_MAIN-B3 (phase 2) · rest 43¢ → no fill (honest miss)
+- UDVKAW-KAW: anchor 47¢ → band WTA_MAIN-B3 (phase 2) · rest 36¢ → no fill (honest miss)
+- VALSAS-VAL: anchor 68¢ → band WTA_MAIN-B6 (phase 2) · rest 67¢ → no fill (honest miss)
+- VALSAS-SAS: anchor 33¢ → band WTA_MAIN-B3 (phase 2) · rest 22¢ → no fill (honest miss)
+- ABDVUX-ABD: anchor 40¢ → band ITF_M-B3 (phase 2) · rest 35¢ → no fill (honest miss)
+- ABDVUX-VUX: anchor 92¢ → band ITF_M-B6 (phase 2) · rest 62¢ → FILLED · close 19¢ → -43¢/sh
+- ALHYAZ-ALH: anchor 92¢ → band ITF_M-B6 (phase 2) · rest 62¢ → FILLED · close 37¢ → -25¢/sh
+- ALHYAZ-YAZ: anchor 92¢ → band ITF_M-B6 (phase 2) · rest 62¢ → FILLED · close 55¢ → -7¢/sh
+- BARMAK-BAR: anchor 83¢ → band ITF_M-B6 (phase 2) · rest 53¢ → no fill (honest miss)
+- BARMAK-MAK: anchor 32¢ → band ITF_M-B3 (phase 2) · rest 27¢ → no fill (honest miss)
+- BAXRIV-RIV: anchor 14¢ → band ITF_M-B1 (phase 2) · rest 11¢ → no fill (honest miss)
+- BAXRIV-BAX: anchor 88¢ → band ITF_M-B6 (phase 2) · rest 58¢ → no fill (honest miss)
+- BELGHA-BEL: anchor 16¢ → band ITF_M-B1 (phase 2) · rest 13¢ → no fill (honest miss)
+- BELGHA-GHA: anchor 89¢ → band ITF_M-B6 (phase 2) · rest 59¢ → no fill (honest miss)
+- BOBOCO-BOB: anchor 72¢ → band ITF_M-B4 (phase 2) · rest 61¢ → no fill (honest miss)
+- BOBOCO-OCO: anchor 30¢ → band ITF_M-B3 (phase 2) · rest 25¢ → no fill (honest miss)
+- BONDUR-BON: anchor 17¢ → band ITF_M-B1 (phase 2) · rest 14¢ → no fill (honest miss)
+- BONDUR-DUR: anchor 86¢ → band ITF_M-B6 (phase 2) · rest 56¢ → no fill (honest miss)
+- BYNLON-BYN: anchor 56¢ → band ITF_M-B4 (phase 2) · rest 45¢ → no fill (honest miss)
+- BYNLON-LON: anchor 47¢ → band ITF_M-B3 (phase 2) · rest 42¢ → no fill (honest miss)
+- CASFON-FON: anchor 20¢ → band ITF_M-B1 (phase 2) · rest 17¢ → no fill (honest miss)
+- CASFON-CAS: anchor 72¢ → band ITF_M-B4 (phase 2) · rest 61¢ → no fill (honest miss)
+- CHALIM-LIM: anchor 51¢ → band ITF_M-B4 (phase 2) · rest 40¢ → FILLED · close 40¢ → +0¢/sh
+- CHALIM-CHA: anchor 92¢ → band ITF_M-B6 (phase 2) · rest 62¢ → FILLED · close 74¢ → +12¢/sh
+- CHAVAN-VAN: anchor 72¢ → band ITF_M-B4 (phase 2) · rest 61¢ → no fill (honest miss)
+- CHAVAN-CHA: anchor 28¢ → band ITF_M-B3 (phase 2) · rest 23¢ → no fill (honest miss)
+- DARJON-JON: anchor 46¢ → band ITF_M-B3 (phase 2) · rest 41¢ → no fill (honest miss)
+- DARJON-DAR: anchor 61¢ → band ITF_M-B4 (phase 2) · rest 50¢ → no fill (honest miss)
+- FOMALK-FOM: anchor 92¢ → band ITF_M-B6 (phase 2) · rest 62¢ → no fill (honest miss)
+- FOMALK-ALK: anchor 13¢ → band ITF_M-B1 (phase 2) · rest 10¢ → no fill (honest miss)
+- GSCEFS-GSC: anchor 50¢ → band ITF_M-B3 (phase 1) · rest 45¢ → FILLED · close 21¢ → -24¢/sh
+- GSCEFS-EFS: anchor 66¢ → band ITF_M-B4 (phase 2) · rest 55¢ → no fill (honest miss)
+- HULSIN-SIN: anchor 66¢ → band ITF_M-B4 (phase 2) · rest 55¢ → FILLED · close 56¢ → +1¢/sh
+- HULSIN-HUL: anchor 41¢ → band ITF_M-B3 (phase 1) · rest 36¢ → FILLED · close 45¢ → +9¢/sh
+- JINLEE-JIN: anchor 31¢ → band ITF_M-B3 (phase 2) · rest 26¢ → no fill (honest miss)
+- JINLEE-LEE: anchor 75¢ → band ITF_M-B4 (phase 2) · rest 64¢ → no fill (honest miss)
+- JOVCOC-JOV: anchor 28¢ → band ITF_M-B3 (phase 2) · rest 23¢ → no fill (honest miss)
+- JOVCOC-COC: anchor 73¢ → band ITF_M-B4 (phase 2) · rest 62¢ → no fill (honest miss)
+- KAMNGU-KAM: anchor 92¢ → band ITF_M-B6 (phase 2) · rest 62¢ → no fill (honest miss)
+- KIMBRO-BRO: anchor 35¢ → band ITF_M-B3 (phase 2) · rest 30¢ → FILLED · close 13¢ → -17¢/sh
+- KIMBRO-KIM: anchor 90¢ → band ITF_M-B6 (phase 2) · rest 60¢ → no fill (honest miss)
+- KOEHAS-KOE: anchor 69¢ → band ITF_M-B4 (phase 2) · rest 58¢ → FILLED · close 70¢ → +12¢/sh
+- KOEHAS-HAS: anchor 34¢ → band ITF_M-B3 (phase 2) · rest 29¢ → no fill (honest miss)
+- KRULIE-LIE: anchor 16¢ → band ITF_M-B1 (phase 2) · rest 13¢ → no fill (honest miss)
+- KRULIE-KRU: anchor 87¢ → band ITF_M-B6 (phase 2) · rest 57¢ → no fill (honest miss)
+- MANDER-MAN: anchor 28¢ → band ITF_M-B3 (phase 2) · rest 23¢ → no fill (honest miss)
+- MANDER-DER: anchor 69¢ → band ITF_M-B4 (phase 2) · rest 58¢ → no fill (honest miss)
+- MCKHOO-MCK: anchor 86¢ → band ITF_M-B6 (phase 2) · rest 56¢ → no fill (honest miss)
+- MCKHOO-HOO: anchor 15¢ → band ITF_M-B1 (phase 2) · rest 12¢ → no fill (honest miss)
+- NEFCOX-NEF: anchor 67¢ → band ITF_M-B4 (phase 2) · rest 56¢ → no fill (honest miss)
+- NEFCOX-COX: anchor 38¢ → band ITF_M-B3 (phase 2) · rest 33¢ → FILLED · close 33¢ → +0¢/sh
+- PERJUA-JUA: anchor 38¢ → band ITF_M-B3 (phase 2) · rest 33¢ → no fill (honest miss)
+- PERJUA-PER: anchor 66¢ → band ITF_M-B4 (phase 2) · rest 55¢ → no fill (honest miss)
+- PERPIE-PIE: re-aim REFUSED at phase 2 (band ITF_M-B1)
+- PERPIE-PER: anchor 91¢ → band ITF_M-B6 (phase 2) · rest 61¢ → no fill (honest miss)
+- PLUWAG-PLU: anchor 64¢ → band ITF_M-B4 (phase 2) · rest 53¢ → no fill (honest miss)
+- ROCMAR-ROC: anchor 56¢ → band ITF_M-B4 (phase 2) · rest 45¢ → no fill (honest miss)
+- ROCMAR-MAR: anchor 56¢ → band ITF_M-B4 (phase 2) · rest 45¢ → no fill (honest miss)
+- ROHPAN-PAN: re-aim REFUSED at phase 2 (band ITF_M-B1)
+- ROHPAN-ROH: anchor 94¢ → band ITF_M-B6 (phase 2) · rest 64¢ → no fill (honest miss)
+- SAHMAB-MAB: anchor 8¢ → band ITF_M-B1 (phase 2) · rest 5¢ → no fill (honest miss)
+- SAHMAB-SAH: anchor 92¢ → band ITF_M-B6 (phase 2) · rest 62¢ → no fill (honest miss)
+- SAKFER-SAK: anchor 68¢ → band ITF_M-B4 (phase 2) · rest 57¢ → no fill (honest miss)
+- SAKFER-FER: anchor 30¢ → band ITF_M-B3 (phase 2) · rest 25¢ → no fill (honest miss)
+- SERBAS-BAS: anchor 83¢ → band ITF_M-B6 (phase 2) · rest 53¢ → no fill (honest miss)
+- SERBAS-SER: anchor 19¢ → band ITF_M-B1 (phase 2) · rest 16¢ → FILLED · close 18¢ → +2¢/sh
+- SNICAR-SNI: anchor 92¢ → band ITF_M-B6 (phase 2) · rest 62¢ → no fill (honest miss)
+- SNICAR-CAR: anchor 12¢ → band ITF_M-B1 (phase 2) · rest 9¢ → no fill (honest miss)
+- TAKHAR-TAK: anchor 26¢ → band ITF_M-B3 (phase 2) · rest 21¢ → no fill (honest miss)
+- TAKHAR-HAR: anchor 79¢ → band ITF_M-B6 (phase 2) · rest 49¢ → no fill (honest miss)
+- TALBEL-BEL: anchor 14¢ → band ITF_M-B1 (phase 2) · rest 11¢ → no fill (honest miss)
+- TALBEL-TAL: anchor 87¢ → band ITF_M-B6 (phase 2) · rest 57¢ → no fill (honest miss)
+- TENDEL-DEL: anchor 64¢ → band ITF_M-B4 (phase 2) · rest 53¢ → no fill (honest miss)
+- TENDEL-TEN: anchor 92¢ → band ITF_M-B6 (phase 2) · rest 62¢ → FILLED · close 41¢ → -21¢/sh
+- APPDOD-APP: anchor 34¢ → band ITF_W-B2 (phase 2) · rest 30¢ → no fill (honest miss)
+- APPDOD-DOD: anchor 68¢ → band ITF_W-B5 (phase 2) · rest 58¢ → no fill (honest miss)
+- BOJNIJ-BOJ: anchor 39¢ → band ITF_W-B2 (phase 2) · rest 35¢ → no fill (honest miss)
+- BOJNIJ-NIJ: anchor 62¢ → band ITF_W-B5 (phase 2) · rest 52¢ → no fill (honest miss)
+- CAIMAL-MAL: anchor 70¢ → band ITF_W-B5 (phase 2) · rest 60¢ → no fill (honest miss)
+- CAIMAL-CAI: anchor 34¢ → band ITF_W-B2 (phase 2) · rest 30¢ → no fill (honest miss)
+- CHAGUZ-CHA: anchor 44¢ → band ITF_W-B2 (phase 2) · rest 40¢ → no fill (honest miss)
+- CHAGUZ-GUZ: anchor 58¢ → band ITF_W-B5 (phase 2) · rest 48¢ → no fill (honest miss)
+- COLMAR-MAR: anchor 74¢ → band ITF_W-B5 (phase 2) · rest 64¢ → no fill (honest miss)
+- COLMAR-COL: anchor 32¢ → band ITF_W-B2 (phase 2) · rest 28¢ → FILLED · close 32¢ → +4¢/sh
+- DEKDES-DEK: anchor 80¢ → band ITF_W-B7 (phase 2) · rest 79¢ → no fill (honest miss)
+- FALAND-AND: anchor 20¢ → band ITF_W-B1 (phase 2) · rest 19¢ → no fill (honest miss)
+- FALAND-FAL: anchor 74¢ → band ITF_W-B5 (phase 2) · rest 64¢ → no fill (honest miss)
+- GRETEP-TEP: anchor 21¢ → band ITF_W-B1 (phase 2) · rest 20¢ → no fill (honest miss)
+- GRETEP-GRE: anchor 73¢ → band ITF_W-B5 (phase 2) · rest 63¢ → no fill (honest miss)
+- GURSUN-GUR: anchor 49¢ → band ITF_W-B2 (phase 2) · rest 45¢ → no fill (honest miss)
+- GURSUN-SUN: anchor 56¢ → band ITF_W-B5 (phase 2) · rest 46¢ → no fill (honest miss)
+- HERGON-GON: anchor 80¢ → band ITF_W-B7 (phase 2) · rest 79¢ → no fill (honest miss)
+- HERGON-HER: anchor 33¢ → band ITF_W-B2 (phase 2) · rest 29¢ → FILLED · close 16¢ → -13¢/sh
+- HOVCHA-HOV: anchor 44¢ → band ITF_W-B2 (phase 2) · rest 40¢ → no fill (honest miss)
+- HOVCHA-CHA: anchor 63¢ → band ITF_W-B5 (phase 2) · rest 53¢ → no fill (honest miss)
+- JAMBUC-BUC: anchor 68¢ → band ITF_W-B5 (phase 2) · rest 58¢ → no fill (honest miss)
+- JAMBUC-JAM: anchor 36¢ → band ITF_W-B2 (phase 2) · rest 32¢ → no fill (honest miss)
+- KARMAD-MAD: anchor 29¢ → band ITF_W-B2 (phase 2) · rest 25¢ → no fill (honest miss)
+- KARMAD-KAR: anchor 70¢ → band ITF_W-B5 (phase 2) · rest 60¢ → no fill (honest miss)
+- KHRJOS-JOS: anchor 47¢ → band ITF_W-B2 (phase 2) · rest 43¢ → no fill (honest miss)
+- KHRJOS-KHR: anchor 53¢ → band ITF_W-B5 (phase 2) · rest 43¢ → no fill (honest miss)
+- KOIKUR-KOI: anchor 70¢ → band ITF_W-B5 (phase 2) · rest 60¢ → no fill (honest miss)
+- KOIKUR-KUR: anchor 31¢ → band ITF_W-B2 (phase 2) · rest 27¢ → no fill (honest miss)
+- LENLEW-LEN: anchor 57¢ → band ITF_W-B5 (phase 2) · rest 47¢ → no fill (honest miss)
+- LENLEW-LEW: anchor 46¢ → band ITF_W-B2 (phase 2) · rest 42¢ → no fill (honest miss)
+- LEOKLU-LEO: anchor 21¢ → band ITF_W-B1 (phase 2) · rest 20¢ → no fill (honest miss)
+- LEOKLU-KLU: anchor 78¢ → band ITF_W-B7 (phase 1) · rest 77¢ → FILLED · close 75¢ → -2¢/sh
+- LERCRO-CRO: anchor 28¢ → band ITF_W-B2 (phase 2) · rest 24¢ → no fill (honest miss)
+- LERCRO-LER: anchor 75¢ → band ITF_W-B5 (phase 2) · rest 65¢ → no fill (honest miss)
+- MARYAO-YAO: anchor 56¢ → band ITF_W-B5 (phase 2) · rest 46¢ → no fill (honest miss)
+- MARYAO-MAR: anchor 46¢ → band ITF_W-B2 (phase 2) · rest 42¢ → no fill (honest miss)
+- MATREA-MAT: anchor 33¢ → band ITF_W-B2 (phase 2) · rest 29¢ → FILLED · close 31¢ → +2¢/sh
+- MATREA-REA: anchor 72¢ → band ITF_W-B5 (phase 2) · rest 62¢ → no fill (honest miss)
+- MIKYAN-MIK: anchor 77¢ → band ITF_W-B7 (phase 2) · rest 76¢ → FILLED · close 63¢ → -13¢/sh
+- MOYEGO-EGO: anchor 83¢ → band ITF_W-B7 (phase 2) · rest 82¢ → FILLED · close 82¢ → +0¢/sh
+- MOYEGO-MOY: anchor 21¢ → band ITF_W-B1 (phase 2) · rest 20¢ → FILLED · close 14¢ → -6¢/sh
+- PASSTR-STR: anchor 65¢ → band ITF_W-B5 (phase 2) · rest 55¢ → no fill (honest miss)
+- PAVLUE-LUE: anchor 21¢ → band ITF_W-B1 (phase 2) · rest 20¢ → no fill (honest miss)
+- PAVLUE-PAV: anchor 82¢ → band ITF_W-B7 (phase 2) · rest 81¢ → FILLED · close 81¢ → +0¢/sh
+- POZKON-KON: anchor 72¢ → band ITF_W-B5 (phase 2) · rest 62¢ → no fill (honest miss)
+- POZKON-POZ: anchor 32¢ → band ITF_W-B2 (phase 2) · rest 28¢ → no fill (honest miss)
+- RICKOK-RIC: anchor 60¢ → band ITF_W-B5 (phase 2) · rest 50¢ → no fill (honest miss)
+- SAGJAN-SAG: anchor 35¢ → band ITF_W-B2 (phase 2) · rest 31¢ → no fill (honest miss)
+- SAGJAN-JAN: anchor 66¢ → band ITF_W-B5 (phase 2) · rest 56¢ → FILLED · close 63¢ → +7¢/sh
+- SMIPOD-SMI: anchor 77¢ → band ITF_W-B7 (phase 1) · rest 76¢ → FILLED · close 69¢ → -7¢/sh
+- SMIPOD-POD: anchor 28¢ → band ITF_W-B2 (phase 2) · rest 24¢ → no fill (honest miss)
+- SUBTHO-SUB: anchor 77¢ → band ITF_W-B7 (phase 2) · rest 76¢ → no fill (honest miss)
+- SUBTHO-THO: anchor 20¢ → band ITF_W-B1 (phase 2) · rest 19¢ → FILLED · close 23¢ → +4¢/sh
+- WEBYAN-WEB: anchor 45¢ → band ITF_W-B2 (phase 1) · rest 41¢ → FILLED · close 28¢ → -13¢/sh
+- WEBYAN-YAN: anchor 62¢ → band ITF_W-B5 (phase 2) · rest 52¢ → no fill (honest miss)
+- ZELALH-ZEL: anchor 67¢ → band ITF_W-B5 (phase 2) · rest 57¢ → no fill (honest miss)
+- ZELALH-ALH: anchor 33¢ → band ITF_W-B2 (phase 2) · rest 29¢ → no fill (honest miss)

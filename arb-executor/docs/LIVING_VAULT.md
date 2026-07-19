@@ -134,6 +134,17 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-18 · STAGE 4b — RE-FRAME AND RE-DRILL: THE FAILURES ARE REAL · THE SEAL SHRINKS TO 2 (amendment, same ceremony, new hash)
+
+**Prior art (C45):** Stage 4a's loop + verdict (the frame-mismatch hypothesis this run TESTED) · the seal (0b329001) this amends. Delta: each strategy replayed in its OWN frame — all-window divots (the catch tables' definition), conception casts, touch parks, recognition re-aim at T−6h (two-phase, information-time).
+
+**THE RE-DRILL** (`analysis/solve_replay_loop2.py`, LOOP2_CAMPAIGN.md; 12,164 own-frame legs, 10 iterations, CONVERGED at gap +0.0139): **the frame hypothesis is REFUTED — all ten 4a failures read STILL FAILS: REAL in their own frame** (ITF flats fill 12–27% where the tables predicted 0.4–1.6 rates, and their own-frame holdout ROC sits ≈0 or negative — the decider). **Both replay-frame survivors DEMOTE:** ATP_MAIN-B8 park fills 9/10 and LOSES (−0.025 — fills into losers on the close mark); WTA_CHALL-B3 drill-drifts to 1¢, fills 34/45, −0.049. Named caveat on the CI instrument: catch tables predict RATES, a single bid fills once (units-harsh) — the verdict rests on ROC, not the CI alone.
+
+**THE AMENDMENT (same ceremony, new hash `c0c29e54…`):** **SEALED 2** — ATP_MAIN-B2 cast 25¢ and WTA_CHALL-B1 cast 12¢, reach-frame receipts, own-frame THIN noted with both receipts shown · REFUSE 5 · **29 silent**. Subtractive-only data amendment (fewer table consults live; no code changed; the wire's laws untouched). LOCKED_DOWN_ENTRY.md carries the amendment section.
+
+**THE MONDAY READ, plainly:** the entry surface campaign's honest yield is (1) the corrected clocks and the spectrum (permanent capital), (2) the band grammar and recognition tables (real structure, counted), (3) TWO sealed deep-cast bands with clean receipts, (4) the loop harness as a permanent instrument, and (5) the negative result at scale: single-resting-bid entry off close-marked W1 does NOT clear holdout in most bands — **the exit-blend question (Stage 6, the operator's word) is now the load-bearing question, with the evidence on the table.**
+
+
 ### 2026-07-18 · ENTRY SURFACE — STAGE 4 (THE LOOP'S VERDICT) + STAGE 5 (THE SEAL, SURVIVORS ONLY)
 
 **Prior art (C45):** Stage 3 tables (9cdc621d) · June's replay/holdout discipline (the loop rebuilt entry-side) · the seal ceremony pattern (LOCKED_DOWN lineage). Delta: the loop RAN and the seal admits only what survived it.

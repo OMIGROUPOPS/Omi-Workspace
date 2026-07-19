@@ -1,14 +1,14 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 389 @ **2026-07-18 09:02:14 PM ET** | build `e22d2818` | session boot 07-18 13:59 ET | log `live_v3_20260718.jsonl` | 45747 session events | monitor READ-ONLY
+- cycle 390 @ **2026-07-18 09:12:24 PM ET** | build `69ed7682` | session boot 07-18 13:59 ET | log `live_v3_20260718.jsonl` | 47456 session events | monitor READ-ONLY
 
-## ⚠ GUN FEED: last new in-play sighting 169 min ago (>30 tripwire; source observed_starts.db)
+## ⚠ GUN FEED: last new in-play sighting 179 min ago (>30 tripwire; source observed_starts.db)
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
-- placed:path_aim UL18STOZAP-ZAP aim=54 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
-- placed:path_aim UL19DOTPER-PER aim=42 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
 - placed:path_aim UL19GAOFRU-GAO aim=46 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
 - placed:path_aim UL18CRIKAM-CRI aim=53 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
+- placed:path_aim UL19RYSHON-HON aim=57 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:NOT-,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
+- placed:path_aim UL19VASTAB-VAS aim=21 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
 
 ## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
 clean overnight — no watch fires
@@ -33,51 +33,54 @@ clean overnight — no watch fires
 | 16:59 | ITFWMATCH-26JUL18THOAIA-AIA | ITF_W | ? | 84 | 82 | +2 (fill_est) | — | pre | pair | 97 | PENDING |
 | 17:35 | ATPCHALLENGERMATCH-26JUL18LAJYUN-Y | ATP_CHALL | ? | 63 | 61 | +2 (window_cell) | — | pre | single |  | GIFT_CLASS |
 
-## RESTING BIDS — 14 tape-graded (starvation = NO_FLOW only)
-- classes now: {'NO_FLOW': 5, 'FLOW_ABOVE': 8, 'FLOW_AT_LEVEL': 1} | repriceable now: true 3 / false 11 | **cumulative bid_grade lines: 12907 (repriceable true 1741 / false 11166)** -- the liquid_repost re-arm evidence accumulates here
+## RESTING BIDS — 16 tape-graded (starvation = NO_FLOW only)
+- classes now: {'NO_FLOW': 6, 'FLOW_ABOVE': 9, 'FLOW_AT_LEVEL': 1} | repriceable now: true 4 / false 12 | **cumulative bid_grade lines: 12910 (repriceable true 1742 / false 11168)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL18LAJYUN-L | 33 | 416m | 153/35-37/22313 | 35-36 | 2 | **FLOW_ABOVE** | 34 | REPRICEABLE→34 |
-| ATPCHALLENGERMATCH-26JUL19KUZOPI-K | 79 | 57m | 1/84-84/1 | 82-84 | 5 | **FLOW_ABOVE** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL19KUZOPI-O | 14 | 37m | 0 | 16-17 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL19POUJAN-J | 70 | 56m | 0 | 70-73 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL19VASTAB-T | 72 | 56m | 1/77-77/1 | 75-77 | 5 | **FLOW_ABOVE** | 99 |  |
-| ITFWMATCH-26JUL19VANCIR-CIR | 54 | 91m | 4/54-56/60 | 54-56 | 0 | **FLOW_AT_LEVEL** | 99 |  |
-| ITFWMATCH-26JUL19VANCIR-VAN | 45 | 27m | 0 | 45-46 | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL18TONSPI-T | 31 | 422m | 0 | 31-59 | — | **NO_FLOW** | 99 |  |
-| WTAMATCH-26JUL19GAOFRU-GAO | 46 | 2m | 0 | 51-52 | — | **NO_FLOW** | 99 |  |
-| WTAMATCH-26JUL19JAKAVA-AVA | 74 | 61m | 3/85-85/1 | 83-84 | 11 | **FLOW_ABOVE** | 99 |  |
-| WTAMATCH-26JUL19JAKAVA-JAK | 13 | 61m | 2/15-16/10 | 15-16 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→15 |
-| WTAMATCH-26JUL19LEPPET-LEP | 81 | 61m | 1/91-91/1 | 89-90 | 10 | **FLOW_ABOVE** | 99 |  |
-| WTAMATCH-26JUL19LEPPET-PET | 8 | 61m | 7/10-11/746 | 10-11 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→10 |
-| WTAMATCH-26JUL19MALZAA-ZAA | 70 | 61m | 3/75-75/59 | 73-75 | 5 | **FLOW_ABOVE** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL18LAJYUN-L | 33 | 426m | 161/35-37/22526 | 35-35 | 2 | **FLOW_ABOVE** | 34 | REPRICEABLE→34 |
+| ATPCHALLENGERMATCH-26JUL19KUZOPI-K | 79 | 67m | 1/84-84/1 | 82-84 | 5 | **FLOW_ABOVE** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL19KUZOPI-O | 14 | 47m | 0 | 16-17 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL19POUJAN-J | 70 | 66m | 0 | 70-72 | — | **NO_FLOW** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL19VASTAB-T | 72 | 66m | 1/77-77/1 | 75-77 | 5 | **FLOW_ABOVE** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL19VASTAB-V | 21 | 2m | 0 | 23-24 | — | **NO_FLOW** | 99 |  |
+| ITFWMATCH-26JUL19VANCIR-CIR | 54 | 101m | 4/54-56/60 | 54-56 | 0 | **FLOW_AT_LEVEL** | 99 |  |
+| ITFWMATCH-26JUL19VANCIR-VAN | 45 | 37m | 1/46-46/0 | 45-46 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→46 |
+| WTACHALLENGERMATCH-26JUL18TONSPI-T | 31 | 432m | 0 | 31-59 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL19GAOFRU-GAO | 46 | 12m | 0 | 51-52 | — | **NO_FLOW** | 99 |  |
+| WTAMATCH-26JUL19JAKAVA-AVA | 74 | 71m | 3/85-85/1 | 83-84 | 11 | **FLOW_ABOVE** | 99 |  |
+| WTAMATCH-26JUL19JAKAVA-JAK | 13 | 71m | 2/15-16/10 | 15-16 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→15 |
+| WTAMATCH-26JUL19LEPPET-LEP | 81 | 71m | 1/91-91/1 | 89-90 | 10 | **FLOW_ABOVE** | 99 |  |
+| WTAMATCH-26JUL19LEPPET-PET | 8 | 71m | 7/10-11/746 | 10-11 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→10 |
+| WTAMATCH-26JUL19MALZAA-ZAA | 70 | 71m | 3/75-75/59 | 73-75 | 5 | **FLOW_ABOVE** | 99 |  |
+| WTAMATCH-26JUL19RYSHON-HON | 57 | 2m | 0 | 60-62 | — | **NO_FLOW** | 99 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
 |---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL18LAJYUN | 63 | 36 | **99** | 97 | +2 |
+| ATPCHALLENGERMATCH-26JUL18LAJYUN | 63 | 35 | **98** | 97 | +1 |
 
-## FLOW-STATE — 13 tracked game(s) ({'OPEN': 1, 'QUIET': 3, 'WAKING': 9}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 14 tracked game(s) ({'WAKING': 11, 'QUIET': 3}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL18LAJYUN | ATP_CHALL | 2.133 | 1 | **OPEN** |
 | ATPCHALLENGERMATCH-26JUL18RODSAN | ATP_CHALL | 0.0 | — | **QUIET** |
 | ITFWMATCH-26JUL18SAIHOS | ITF_W | 0.0 | — | **QUIET** |
 | WTACHALLENGERMATCH-26JUL18TONSPI | WTA_CHALL | 0.0 | 28 | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19KUZOPI | ATP_CHALL | 0.033 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL19POUJAN | ATP_CHALL | 0.0 | 3 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL19VASTAB | ATP_CHALL | 0.033 | 2 | **WAKING** |
-| ITFWMATCH-26JUL18THOAIA | ITF_W | 95.367 | — | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL18LAJYUN | ATP_CHALL | 2.0 | — | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL19KUZOPI | ATP_CHALL | 0.0 | 1 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL19POUJAN | ATP_CHALL | 0.0 | 2 | **WAKING** |
+| ATPCHALLENGERMATCH-26JUL19VASTAB | ATP_CHALL | 0.033 | 1 | **WAKING** |
+| ITFWMATCH-26JUL18THOAIA | ITF_W | 101.1 | — | **WAKING** |
 | ITFWMATCH-26JUL19VANCIR | ITF_W | 0.133 | 1 | **WAKING** |
-| WTAMATCH-26JUL19GAOFRU | WTA_MAIN | 0.067 | 1 | **WAKING** |
-| WTAMATCH-26JUL19JAKAVA | WTA_MAIN | 0.067 | 1 | **WAKING** |
-| WTAMATCH-26JUL19LEPPET | WTA_MAIN | 0.133 | 1 | **WAKING** |
-| WTAMATCH-26JUL19MALZAA | WTA_MAIN | 0.033 | 2 | **WAKING** |
+| WTAMATCH-26JUL19GAOFRU | WTA_MAIN | 0.033 | 1 | **WAKING** |
+| WTAMATCH-26JUL19JAKAVA | WTA_MAIN | 0.0 | 1 | **WAKING** |
+| WTAMATCH-26JUL19LEPPET | WTA_MAIN | 0.067 | 1 | **WAKING** |
+| WTAMATCH-26JUL19MALZAA | WTA_MAIN | 0.0 | 2 | **WAKING** |
+| WTAMATCH-26JUL19RYSHON | WTA_MAIN | 0.033 | 2 | **WAKING** |
 
 ## PATTERNS (sub-B) — 3
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18RODSAN-SAN {"fill": 21, "age_min": 404, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL18SAIHOS-HOS {"fill": 36, "age_min": 359, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18LAJYUN-YUN {"fill": 63, "age_min": 207, "mode": "SET_BELOW_FLOW(prints 2c above)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18RODSAN-SAN {"fill": 21, "age_min": 415, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFWMATCH-26JUL18SAIHOS-HOS {"fill": 36, "age_min": 369, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18LAJYUN-YUN {"fill": 63, "age_min": 217, "mode": "SET_BELOW_FLOW(prints 2c above)"}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

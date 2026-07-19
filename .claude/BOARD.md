@@ -53,6 +53,8 @@
 
 ## QUEUED (next builds, in rough order)
 
+> **LOOP 5 HOLDOUT-PASS (07-19, amendment v2 — THE DELTA):** dual 34.2% · med pair Δ −1¢ · 73% negative · n=164 unseen-day duals. Depth-vs-dual curve measured (iter-1: −6¢ @ 11% dual); carriers ATP_CHALL-B4/B1, ATP_MAIN-B5; bleeder ITF_M-B6 named. P1 classes folded; P2 sweep + delta prior ride the next gate; nightly delta meter standing; P3 struck per standing order.
+
 > **STAGE 4b SHIPPED (07-18 afternoon, one C50 — the Monday read):** re-framed drill (own frames, two-phase information-time) REFUTES the frame hypothesis — all ten 4a failures REAL; both replay-frame survivors DEMOTE (B8 park fills-and-loses; B3 drifts to 1¢ and loses); **seal SHRINKS to 2 reach-frame casts (new hash c0c29e54, amendment in LOCKED_DOWN_ENTRY.md, subtractive-only)**; CI units caveat named (verdict rests on ROC). The load-bearing question is now Stage 6's exit blend — evidence on the table, the word is the operator's.
 
 > **STAGES 4+5 SHIPPED (07-18 afternoon, two C50s + gate deploy):** THE LOOP RAN — 10 iters, memorization CAUGHT (gap +0.019), 10 CI-fails named, verdict plain: the brain as framed does NOT clear holdout at scale; frame mismatch identified (divot tables price resting-all-window, replay placed T−6h statics) = Stage 6's evidence. THE SEAL admits SURVIVORS ONLY: 4 sealed / 5 REFUSE-law / 27 silent; LOCKED_DOWN_ENTRY.md hashes everything; wire live as table-labeled cohort fallback (entry_table_prior_enabled), live-outranks-table by construction. Loop harness permanent. **Stage 6 creative checkpoint = operator's word on the sealed receipts.**

@@ -1,0 +1,159 @@
+{
+ "generated": "2026-07-19 12:20 AM ET",
+ "gate_3a": {
+  "honesty": {
+   "pass": true,
+   "detail": "G1: no admissible discovery-time direction model for mains (clocks convicted, gauge fits exclude mains)"
+  },
+  "posterior": {
+   "pass": true,
+   "detail": "conf peak 0.62 -> trough 0.26 over 201 obs"
+  },
+  "era": {
+   "pass": true,
+   "detail": "M9 has no ITF rows and archive anchors are INADMISSIBLE for ITF (census 07-10, gap G4) -- offered archive anchor REFUSED"
+  },
+  "range_layer": {
+   "pass": true,
+   "detail": "empty->NO-OPINION ok=True; populated->PRIOR ok=True (ATP_MAIN|leader|at_mid|51_75)"
+  }
+ },
+ "n_trades": 9,
+ "rows": [
+  {
+   "id": "T-20260718-0079",
+   "tk": "KXATPCHALLENGERMATCH-26JUL18RODSAN-SAN",
+   "cat": "ATP_CHALL",
+   "ts_et": "02:17:51 PM",
+   "px": 21,
+   "cycle": 1,
+   "in_play": false,
+   "grade": "AGREE",
+   "why": "posterior 0.21 vs paid 21 (edge -0.2)",
+   "posterior": 0.2082,
+   "legacy_constant": "",
+   "pnl_cents": -105.0
+  },
+  {
+   "id": "T-20260718-0083",
+   "tk": "KXITFWMATCH-26JUL18THOAIA-THO",
+   "cat": "ITF_W",
+   "ts_et": "02:20:31 PM",
+   "px": 13,
+   "cycle": 1,
+   "in_play": false,
+   "grade": "AGREE",
+   "why": "posterior 0.13 vs paid 13 (edge +0.2)",
+   "posterior": 0.1316,
+   "legacy_constant": "pair97",
+   "pnl_cents": 20.0
+  },
+  {
+   "id": "T-20260718-0083",
+   "tk": "KXITFWMATCH-26JUL18THOAIA-THO",
+   "cat": "ITF_W",
+   "ts_et": "02:25:45 PM",
+   "px": 13,
+   "cycle": 1,
+   "in_play": false,
+   "grade": "AGREE",
+   "why": "posterior 0.14 vs paid 13 (edge +1.0)",
+   "posterior": 0.14,
+   "legacy_constant": "pair97",
+   "pnl_cents": 20.0
+  },
+  {
+   "id": "T-20260718-0088",
+   "tk": "KXITFWMATCH-26JUL18SAIHOS-HOS",
+   "cat": "ITF_W",
+   "ts_et": "03:03:26 PM",
+   "px": 36,
+   "cycle": 1,
+   "in_play": false,
+   "grade": "AGREE",
+   "why": "posterior 0.37 vs paid 36 (edge +1.1)",
+   "posterior": 0.3711,
+   "legacy_constant": "",
+   "pnl_cents": 35.0
+  },
+  {
+   "id": "T-20260718-0082",
+   "tk": "KXITFWMATCH-26JUL18THOAIA-AIA",
+   "cat": "ITF_W",
+   "ts_et": "04:59:58 PM",
+   "px": 84,
+   "cycle": 1,
+   "in_play": false,
+   "grade": "AGREE",
+   "why": "posterior 0.84 vs paid 84 (edge +0.4)",
+   "posterior": 0.8443,
+   "legacy_constant": "pair97",
+   "pnl_cents": 78.0
+  },
+  {
+   "id": "T-20260718-0085",
+   "tk": "KXATPCHALLENGERMATCH-26JUL18LAJYUN-YUN",
+   "cat": "ATP_CHALL",
+   "ts_et": "05:35:37 PM",
+   "px": 63,
+   "cycle": 1,
+   "in_play": false,
+   "grade": "AGREE",
+   "why": "posterior 0.63 vs paid 63 (edge -0.2)",
+   "posterior": 0.6283,
+   "legacy_constant": "",
+   "pnl_cents": 76.0
+  },
+  {
+   "id": "T-20260718-0121",
+   "tk": "KXATPCHALLENGERMATCH-26JUL19DONTOP-DON",
+   "cat": "ATP_CHALL",
+   "ts_et": "10:41:07 PM",
+   "px": 24,
+   "cycle": 1,
+   "in_play": false,
+   "grade": "AGREE",
+   "why": "posterior 0.26 vs paid 24 (edge +2.2)",
+   "posterior": 0.2618,
+   "legacy_constant": "",
+   "pnl_cents": null
+  },
+  {
+   "id": "T-20260718-0133",
+   "tk": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU",
+   "cat": "ATP_CHALL",
+   "ts_et": "11:19:44 PM",
+   "px": 61,
+   "cycle": 1,
+   "in_play": false,
+   "grade": "AGREE",
+   "why": "posterior 0.67 vs paid 61 (edge +5.8)",
+   "posterior": 0.6677,
+   "legacy_constant": "",
+   "pnl_cents": null
+  },
+  {
+   "id": "T-20260718-0147",
+   "tk": "KXATPCHALLENGERMATCH-26JUL19POLSCH-POL",
+   "cat": "ATP_CHALL",
+   "ts_et": "11:22:33 PM",
+   "px": 71,
+   "cycle": 1,
+   "in_play": false,
+   "grade": "AGREE",
+   "why": "posterior 0.74 vs paid 71 (edge +3.1)",
+   "posterior": 0.7409,
+   "legacy_constant": "",
+   "pnl_cents": null
+  }
+ ],
+ "per_cat": {
+  "ATP_CHALL": {
+   "AGREE": 5
+  },
+  "ITF_W": {
+   "AGREE": 4,
+   "pair97_touched": 3
+  }
+ }
+}

@@ -1,6 +1,20 @@
-# OUTCOME PROOF — THE ONE-AUTHORITY GATE (deploy #3)
-Candidate: `b6ecedc9` (one-authority law `7c09adaf` + gauge-label rider).
-C46 two-lane, judged separately.
+# OUTCOME PROOF — THE ONE-AUTHORITY GATE (deploy #3, CONSOLIDATED)
+Candidate: `8679643d` (one-authority law `7c09adaf` + gauge-label rider
+`b6ecedc9` + the RE-ANCHOR DUTY / active-sweep build — gate #3's first run
+was killed mid-smoke and consolidated here: one gate, one restart, the
+deploy-law mirror intact). C46 two-lane, judged separately.
+
+## LANE 1 ADDITION — the re-anchor duty (sweep dispatch)
+The duty converts the audit from flag-only to flag→heal: the three named
+overpay games' sealed-class resting bids (and any future leak) re-anchor to
+the fish within 2 cycles (~2 min), through the chokepoint where every
+standing gate re-checks; refusals retreat pair-aware; era-orphans withdraw
+on engine lineage only (3 cycles); unattributable orders are flagged and
+NEVER touched (the manual-book law). **THE SWEEP the operator ordered IS
+this code's first post-boot cycle** — one owner, no side script, census
+line (`authority_sweep_census`: touched/held/retreated/orphans/cents
+removed) on the panel. Queue wisdom is structural: the mismatch filter
+touches only wrong-priced orders — at-number orders never churn.
 
 ## LANE 1 — MECHANISM (primary, luck-free)
 

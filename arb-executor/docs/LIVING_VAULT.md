@@ -134,6 +134,12 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-20 · THE PER-CLASS NIGHTLY (P4 of the split-gauge dispatch) — THE OPERATOR'S TWO GAUGES AS STANDING LINES
+
+**Prior art (C45):** the ruling (split the gauges per pair class) · the week-widen instrument (`analysis/loop8_exam_week.py`) whose model this nightly runs verbatim · the loop-5 nightly-delta-meter standing add it supersedes in scope. Delta: the gauges become a nightly edition.
+
+**THE METER:** `analysis/perclass_meter.py`, cron 01:10 ET over yesterday's big-4 slate — FLAT-FLAT duals vs the 75% both-neg bar · MIRROR duals vs the combined gauge (combD≤0 · medPairD · sub-par · tiers, loop-5 PASS law cited on the line) · NEITHER counted apart — overall + per-cat, honest skip census on every edition, **era-stamped `post-seal-20260720`** (a re-fit founds a new era label; eras never mix). Appends NIGHTLY_PASS + dated artifact `.claude/perclass_meter/PERCLASS_<date>.md`, commit+push per the milestone-shadow pattern. Read-side measurement by law: the gauges judge; nothing steers until a class clears its bar and a ceremony with members is held.
+
 ### 2026-07-20 · THE SAFETY TEETH (P3 of the split-gauge dispatch) — THE NAKED TOOTH BITES EVERY 60s + THE EXCHANGE-SIDE SELF-DESTRUCT (dark, retest-gated)
 
 **Prior art (C45):** the 7aadbcdc trace (vanished-exit class dissolved; UNBOOKED-FILL + SWEEP×ENGINE double-ownership founded; naked-tooth spec amended: settlement_pending carve-out) · the P0 sweep (operator's eyes found GNI at ~09:40; the owed tooth would have named it ~09:29) · the 07-17 expiration probe (enum rejected, GTC+expiration_ts ACCEPTED; tennis retest pending next boot). Delta: the teeth are code.

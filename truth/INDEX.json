@@ -1,5 +1,5 @@
 {
- "built": "2026-07-20 13:43",
+ "built": "2026-07-20 13:45",
  "law": "C-ONE-TRUTH v1 (07-16): outside this root = doesn't exist; rebuilt every C50; both consumers enforced (engine boot wiring + seat session-zero); the gate refuses unregistered laws/surfaces/studies",
  "laws_n": 301,
  "laws": [
@@ -2586,7 +2586,7 @@
    "wired_in_source": true
   }
  ],
- "studies_n": 58,
+ "studies_n": 59,
  "studies": [
   {
    "archive": "truth/archive/aim_dispatch_20260703",
@@ -2802,6 +2802,11 @@
    "archive": "truth/archive/proof_20260717",
    "source": ".claude/proof_20260717",
    "finding": "PROOF_PASS \u2014 ENTRY MECHANICS (six parts), candidate SHA `34ca4715`"
+  },
+  {
+   "archive": "truth/archive/proof_20260720",
+   "source": ".claude/proof_20260720",
+   "finding": "OUTCOME PROOF \u2014 SPLIT-GAUGE DISPATCH P2+P3 (cascade read-side + safety teeth)"
   },
   {
    "archive": "truth/archive/prove_the_day_20260715",

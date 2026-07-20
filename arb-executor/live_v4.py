@@ -4559,6 +4559,48 @@ class LiveV3:
                     offset = int(_cc["dip_p50"])
             except Exception:
                 pass
+        # [SPLIT-GAUGE SEAL 07-20 PM — COMBINED PRIMARY ruling: the
+        # FLAT-FLAT DUAL-DIVOT class SEALED (week re-score 7/7 sub-par,
+        # both eras; state/pair_policies_sealed_v1.json sha b2f0b670…).
+        # Where the cascade reads the pair FLAT_FLAT and the leg's called
+        # band carries a sealed row, the catch-table depth_p90 SETS the
+        # fish for BOTH legs (both fished below their anchors — the
+        # Vukic/Gea crop). Mirror/neither: REFUSE rows, no steer — the
+        # fader drill continues behind the seal on the mastery meter.
+        # Downstream clamps/floors/W1 law untouched.]
+        if self.config.get("pair_class_steer_enabled", False):
+            try:
+                _et11 = tk.rsplit("-", 1)[0]
+                _pc11 = (self.__dict__.get("_bcasc_pair") or {}).get(_et11)
+                _bst11 = (self.__dict__.get("_bcasc_state") or {}).get(tk)
+                if _pc11 == "flat_flat" and _bst11 and _bst11.get("band"):
+                    p11 = Path(__file__).resolve().parent / \
+                        "state/pair_policies_sealed_v1.json"
+                    mt11 = p11.stat().st_mtime
+                    c11 = self.__dict__.get("_pair_policy_cache")
+                    if not c11 or c11[0] != mt11:
+                        c11 = (mt11, json.loads(p11.read_text()))
+                        self._pair_policy_cache = c11
+                    _row11 = (c11[1].get("bands") or {}).get(_bst11["band"])
+                    if _row11 and _row11.get("status") == "SEALED" \
+                            and _row11.get("depth_p90"):
+                        _old11 = offset
+                        offset = int(round(float(_row11["depth_p90"])))
+                        _dl11 = self.__dict__.setdefault(
+                            "_dual_divot_logged", set())
+                        if tk not in _dl11:
+                            _dl11.add(tk)
+                            self._log("dual_divot_steer", {
+                                "cell": "DUAL-DIVOT:" + _bst11["band"],
+                                "pair_class": "flat_flat",
+                                "old_offset": _old11,
+                                "depth_p90": _row11["depth_p90"],
+                                "seal": "pair_policies_sealed_v1 "
+                                        "b2f0b670 (combined-primary "
+                                        "ruling 07-20 PM)"}, ticker=tk)
+            except Exception as _dde:
+                self._log("dual_divot_steer_error",
+                          {"err": str(_dde)[:120]}, ticker=tk)
         target_bid = max(1, anchor_price - offset)
         # (1) leg2_reshuffle entry policy (gated; OFF => target_bid unchanged). The presumed-riser
         #     posts AT best bid, never vetoed for projected combined. The presumed-faller

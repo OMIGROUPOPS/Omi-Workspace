@@ -157,5 +157,8 @@
   "sanctioned_walk_fitted": true,
   "entry_table_prior_enabled": true,
   "sched_boundary_sweep": true,
-  "sched_boundary_tolerance_sec": 120
+  "sched_boundary_tolerance_sec": 120,
+  "band_cascade_read": true,
+  "pair_class_steer_enabled": true,
+  "expiration_wire_enabled": false
 }

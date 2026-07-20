@@ -247,9 +247,11 @@ for ev, s in sorted(exam.items()):
     pairs.append({'event': ev, 'cat': cat,
                   'legs': dict(zip(legs, sims))})
 
+# [COMBINED-PRIMARY ruling 07-20 PM] pass/fail = combined vs par
+# (sub-par <=97 = pass); dual-negative = MASTERY meter, never pass/fail.
 def tier(c):
-    return '<=93' if c <= 93 else '94-97' if c <= 97 else '98-100' \
-        if c <= 100 else '>100'
+    return '<=93' if c <= 93 else '<=95' if c <= 95 else '<=97' \
+        if c <= 97 else '98-100' if c <= 100 else '>100'
 
 CL = lambda: {'pairs': 0, 'duals': 0, 'both_neg': 0, 'comb_le0': 0,
               'pair_deltas': [], 'tiers': defaultdict(int), 'subpar': 0}
@@ -276,34 +278,39 @@ for pr in pairs:
             if all(sm['fill'] < sm['close'] for sm in sims):
                 b['both_neg'] += 1
 
-def line(name, st, bar):
+def line(name, st, bar='comb'):
     du = st['duals']
     if not du:
         return '- %s: pairs %d duals 0 — NO DUALS' % (name, st['pairs'])
     md = statistics.median(st['pair_deltas'])
-    if bar == 'flat':
-        bn = 100 * st['both_neg'] / du
-        v = 'CLEARS' if bn >= 75 else 'BELOW'
-        g = 'both-neg %.0f%% vs 75%% -> %s' % (bn, v)
-    else:
-        c0 = 100 * st['comb_le0'] / du
-        v = 'PASS' if du >= 10 and md < 0 else 'FAIL'
-        g = ('combD<=0 %.0f%% · medPairD %+d · sub-par %.0f%% -> %s '
-             '(loop-5 law: duals>=10 & medPairD<0)'
-             % (c0, md, 100 * st['subpar'] / du, v))
-    return ('- %s: pairs %d duals %d · %s · tiers %s'
-            % (name, st['pairs'], du, g, dict(sorted(st['tiers'].items()))))
+    sp = sum(v for k, v in st['tiers'].items()
+             if k in ('<=93', '<=95', '<=97'))
+    ps = 100 * sp / du
+    v = 'PASS' if ps >= 50 else 'FAIL'
+    mast = 100 * st['both_neg'] / du
+    return ('- %s: pairs %d duals %d (completion %.0f%%) · SUB-PAR(<=97) '
+            '%d/%d = %.0f%% -> %s · tiers %s · MASTERY dual-neg %.0f%% '
+            '(meter, never pass/fail) · medPairD %+d'
+            % (name, st['pairs'], du, 100 * du / max(1, st['pairs']),
+               sp, du, ps, v, dict(sorted(st['tiers'].items())), mast, md))
 
-L = ['## PERCLASS %s (era %s) — the operator\'s two gauges, standing'
+L = ['## PERCLASS %s (era %s) — COMBINED PRIMARY (ruling 07-20 PM): '
+     'sub-par(<=97)=pass; dual-negative=mastery meter'
      % (DAYTAG, ERA),
      'slate: %d big-4 events · %d scored pairs · skips %s'
      % (len(exam), len(pairs), dict(skip)),
-     line('FLAT-FLAT (75%% bar)', overall['flat_flat'], 'flat'),
-     line('MIRROR (combined gauge)', overall['mirror'], 'comb'),
-     line('NEITHER (counted apart)', overall['neither'], 'comb')]
+     line('FLAT-FLAT (SEALED b2f0b670)', overall['flat_flat']),
+     line('MIRROR (REFUSE; fader drill on the mastery meter)',
+          overall['mirror']),
+     line('NEITHER (counted apart)', overall['neither'])]
+_spall = sum(sum(v for k2, v in s['tiers'].items()
+                 if k2 in ('<=93', '<=95', '<=97'))
+             for s in overall.values())
+L.append('- COMPLETION (volume drill): sub-par duals %d / %d slate pairs '
+         '= %.1f%%' % (_spall, max(1, len(pairs)),
+                       100 * _spall / max(1, len(pairs))))
 for k in sorted(percat):
-    L.append('  ' + line(k, percat[k],
-                         'flat' if k.startswith('flat') else 'comb'))
+    L.append('  ' + line(k, percat[k]))
 out = '\n'.join(L) + '\n'
 art = Path(ROOT).parent / '.claude/perclass_meter'
 art.mkdir(exist_ok=True)

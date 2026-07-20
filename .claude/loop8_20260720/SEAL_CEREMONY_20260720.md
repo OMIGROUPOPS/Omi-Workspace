@@ -67,3 +67,52 @@ reasoning — appended below after the gate deploy.
 Seat: CC (Fable 5), split-gauge dispatch P2 C50. The operator's read of this
 document is the countersign; an objection reopens nothing silently — the next
 seal needs a class that clears and a new ceremony.
+
+## AMENDMENT — THE COMBINED-PRIMARY RULING (2026-07-20 PM, same ceremony, the table seats its member)
+
+The operator re-ruled the gauges: **combined-vs-par is the pass/fail gauge for
+BOTH classes** (sub-par ≤97 = pass; tiers ≤93/≤95/≤97 reported; 98–100 and
+>100 reported apart); **dual-negative demotes to the standing MASTERY METER**
+— reported per class/band nightly, never pass/fail — the measure of judging
+both sides vs riding one. Re-scored from the banked week
+(`WEEK_RESCORE_COMBINED.md`):
+
+- **FLAT-FLAT DUAL-DIVOT: CLEARS — SEALED.** 7/7 duals sub-par (6 ≤93,
+  1 ≤95), 100% in both eras and every cat with duals, medPairD −10.
+  Completion 14% of class pairs. Mastery meter reads 14% dual-neg — the
+  drill gap, on the record, not a bar.
+- **MIRROR: REFUSE.** 0/66 sub-par, both eras. The named miss is the fader
+  leg's destination read (the too-shallow class; 131/131 fills @ medD +14
+  the exhibit). **The continuing drill behind the seal targets exactly this
+  read; its progress is graded on the mastery meter.**
+- **NEITHER: REFUSE.** 9/26 (35%); counted apart, class unnamed by the
+  ruling; the WTA_MAIN band-pair life filed as intake.
+
+### The sealed object (new member)
+- `state/pair_policies_sealed_v1.json`
+  sha256 `b2f0b670f70aabe3fbfef9092c0b227334e00da2ecbd51e9235204158daf7c44`
+- 25 band rows (big-4, depth = divot-v2 dip_p90, frozen at seal), consumed
+  ONLY where the cascade reads the pair FLAT_FLAT; mirror/neither carry
+  REFUSE receipts inside the object itself.
+- Frame note, named: the engine's aim machinery prices offsets against the
+  last-traded anchor; the catch tables price against the rolling 30-min
+  median. For a flat-classed leg (|net| < 5 by construction) anchor ≈ median;
+  the repost machinery re-anchors on evidence. The approximation is declared,
+  not hidden.
+
+### WHEN-FLAT — EXERCISED at this amendment
+- `pair_class_steer_enabled: true` + `band_cascade_read: true` in
+  `config/deploy_v5_live.json`; consumer = the DUAL-DIVOT steer in
+  `_v4_entry_anchor` (`dual_divot_steer` log line, cell label
+  `DUAL-DIVOT:<band>`). `expiration_wire_enabled` stays FALSE — dark until
+  the tennis retest verdict, unchanged.
+- Rides its own full gate deploy (lint + smoke + outcome proof + two-file
+  law), sequenced after the P2+P3 deploy.
+
+### Standing drills named at the seal
+1. **The fader destination read** (mirror class): refit the cast depth
+   against realized terminals (loop-7 net-quantile family vs the net_med+2
+   shallow rendering) — graded on the MASTERY METER per class/band nightly.
+2. **Completion rate** (volume drill): sub-par duals per slate — week
+   baseline 16/200 = 8.0% (≤93: 4.5%) — the number to drill up without
+   surrendering the sub-par law.

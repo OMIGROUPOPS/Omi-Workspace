@@ -134,6 +134,16 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-20 PM · THE COMBINED-PRIMARY RULING — THE CEREMONY SEATS ITS MEMBER: FLAT-FLAT DUAL-DIVOT SEALED; DUAL-NEGATIVE BECOMES THE MASTERY METER
+
+**Prior art (C45):** the split-gauge dispatch (P1–P4, same day) · the week widen (`cf9980e5`) whose banked pairs this re-score consumes · the empty ceremony (`ebec0368`) this amendment fills. Delta: the operator re-ruled the gauge — **combined-vs-par is pass/fail for BOTH classes (sub-par ≤97 = pass; tiers ≤93/≤95/≤97; 98–100 and >100 apart); dual-negative is the standing MASTERY METER, reported per class/band nightly, never pass/fail.**
+
+**THE RE-SCORE (banked, minutes, `WEEK_RESCORE_COMBINED.md`):** FLAT-FLAT **CLEARS** (7/7 sub-par, 6 ≤93; 100% both eras, every cat with duals; medPairD −10; mastery 14%) — **SEALED.** MIRROR **REFUSE** (0/66 sub-par both eras; the fader destination read = the named miss, 131/131 @ +14 the exhibit). NEITHER **REFUSE** (9/26; counted apart). Completion volume baseline: 16 sub-par duals / 200 slate pairs = 8.0% (≤93 4.5%).
+
+**THE SEAL:** `state/pair_policies_sealed_v1.json` sha256 `b2f0b670…` — 25 band rows (depth = divot-v2 dip_p90 frozen at seal), consumed ONLY where the cascade reads FLAT_FLAT; mirror/neither carry REFUSE receipts in the object. **WHEN-FLAT EXERCISED:** `pair_class_steer_enabled=true` + `band_cascade_read=true` in the deploy config; consumer = the DUAL-DIVOT steer in `_v4_entry_anchor` (`dual_divot_steer`, cell `DUAL-DIVOT:<band>`); anchor≈median frame note declared in the ceremony doc. Rides its own full gate, sequenced after the P2+P3 deploy. `expiration_wire_enabled` stays dark pending the tennis retest verdict.
+
+**STANDING DRILLS NAMED:** (1) the fader destination read — refit cast depth vs realized terminals (loop-7 net-quantile family vs the net_med+2 shallow rendering), graded on the mastery meter per class/band nightly; (2) completion rate — sub-par duals per slate, the volume number to drill up without surrendering the sub-par law. The nightly (`perclass_meter.py`) re-grammared to the ruling: pass/fail = combined; mastery + completion standing lines.
+
 ### 2026-07-20 · THE PER-CLASS NIGHTLY (P4 of the split-gauge dispatch) — THE OPERATOR'S TWO GAUGES AS STANDING LINES
 
 **Prior art (C45):** the ruling (split the gauges per pair class) · the week-widen instrument (`analysis/loop8_exam_week.py`) whose model this nightly runs verbatim · the loop-5 nightly-delta-meter standing add it supersedes in scope. Delta: the gauges become a nightly edition.

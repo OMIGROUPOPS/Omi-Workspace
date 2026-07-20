@@ -120,7 +120,23 @@
       "Bash(npm install:*)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(rm:*)",
-      "Bash(ssh:*)"
+      "Bash(ssh:*)",
+      "Bash(mkdir -p .claude/floor_20260717)",
+      "Bash(ssh root@104.131.191.95 \"python3 /root/floor_census.py 2>/dev/null\")",
+      "Bash('/c/Program Files \\(x86\\)/Microsoft/Edge/Application/msedge.exe' --headless=new --disable-gpu --window-size=1440,2400 --virtual-time-budget=25000 '--screenshot=C:\\\\Users\\\\omigr\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-omigr-OMI-Workspace\\\\b6ac2f51-d72f-4f40-b82d-2a4e60ab360b\\\\scratchpad\\\\shots\\\\six.png' 'http://127.0.0.1:18796/daysheet?token=__TRACKED_VAR__&day=20260716#closed')",
+      "Bash(git hash-object *)",
+      "Bash(PYTHONPATH=. python tests/test_grace_kill.py)",
+      "Bash(PYTHONPATH=. python tests/test_sustained_flow.py)",
+      "Bash(PYTHONPATH=. python tests/test_latch_walkcap.py)",
+      "Bash(git show *)",
+      "Bash(PYTHONPATH=. python tests/test_sf_obs.py)",
+      "Bash(PYTHONPATH=. python tests/test_aim_dispatch.py)",
+      "Bash(PYTHONPATH=. python tests/test_bound_ruling.py)",
+      "Bash(PYTHONPATH=. python tests/test_fd_limit.py)",
+      "Bash(cp .claude/corpus_20260717/corpus_restamp.py arb-executor/analysis/corpus_restamp.py)",
+      "Bash(cp .claude/corpus_20260717/corpus_restamp2.py arb-executor/analysis/corpus_restamp2.py)",
+      "Bash(awk 'NR>=13260 && NR<=13340 && \\(/buys/ || /orders/\\)' live_v4.py)",
+      "Bash(awk 'NR>=13300 && NR<=13360' live_v4.py)"
     ]
   }
 }

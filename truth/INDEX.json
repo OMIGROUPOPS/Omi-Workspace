@@ -1,5 +1,5 @@
 {
- "built": "2026-07-19 15:37",
+ "built": "2026-07-20 13:16",
  "law": "C-ONE-TRUTH v1 (07-16): outside this root = doesn't exist; rebuilt every C50; both consumers enforced (engine boot wiring + seat session-zero); the gate refuses unregistered laws/surfaces/studies",
  "laws_n": 300,
  "laws": [
@@ -2578,7 +2578,7 @@
    "wired_in_source": true
   }
  ],
- "studies_n": 56,
+ "studies_n": 58,
  "studies": [
   {
    "archive": "truth/archive/aim_dispatch_20260703",
@@ -2683,7 +2683,12 @@
   {
    "archive": "truth/archive/live_20260705",
    "source": ".claude/live_20260705",
-   "finding": "FORENSIC \u2014 taker_capped \u2014 LIVE DEFECT (>=2 in 60min)  <!-- 1784309018 -->"
+   "finding": "FORENSIC \u2014 bell_missing \u2014 LIVE DEFECT (>=2 in 60min)  <!-- 1784383818 -->"
+  },
+  {
+   "archive": "truth/archive/loop8_20260720",
+   "source": ".claude/loop8_20260720",
+   "finding": "LOOP 8 \u2014 THE WEEK WIDEN under the SPLIT GAUGES (window 07-13 01:04 PM -> 07-20 01:04 PM ET; UNSEEN = JUL18+ only)"
   },
   {
    "archive": "truth/archive/master_20260709",
@@ -2844,6 +2849,11 @@
    "archive": "truth/archive/triage_20260715_morning",
    "source": ".claude/triage_20260715_morning",
    "finding": "finding line pending"
+  },
+  {
+   "archive": "truth/archive/vanished_exit_20260720",
+   "source": ".claude/vanished_exit_20260720",
+   "finding": "VANISHED-EXIT LIFECYCLE TRACE \u2014 2026-07-20 (the owed trace; read-only, exchange-truth)"
   },
   {
    "archive": "truth/archive/volume_20260709",

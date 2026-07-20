@@ -3519,6 +3519,15 @@ class LiveV3:
                 rs9 = None
             D["shadow_range_shape"] = {"status": "SHADOW", **(rs9 or
                                        {"why": "no path slice at this clock"})}
+            # [ONE-AUTHORITY LAW 07-20 PM] the dossier NAMES the leg's
+            # single pricing authority — always.
+            try:
+                _au12, _ab12, _af12 = self._price_authority(tk)
+                D["price_authority"] = {"authority": _au12,
+                                        **({"band": _ab12, "fish": _af12}
+                                           if _ab12 else {})}
+            except Exception:
+                pass
             self._log("entry_dossier", {
                 "event": et, "cat": cat, "decision": decision,
                 "discovery": current_price, "aim": aim,
@@ -3844,6 +3853,42 @@ class LiveV3:
                               else "combined-delta" if cls9 == "mirror"
                               else "counted-apart"),
                     "law": "read-side only; nothing sealed 07-20"})
+
+    def _price_authority(self, tk):
+        """[ONE-AUTHORITY LAW — operator addendum 2026-07-20 PM, vaulted
+        PERMANENT]. At any moment every leg has exactly ONE pricing
+        authority and the dossier names it:
+          SEAL   — the leg's event reads FLAT_FLAT and its called band
+                   carries a SEALED row: the sealed fish (cascade open
+                   ref − frozen depth_p90) IS the price; every other
+                   path is structurally unable to place or move an
+                   entry on that game (enforced at place_order, not
+                   advised).
+          LEGACY — no sealed call: the legacy brain (path_aim) owns it,
+                   named.
+        Two organs pricing one leg is the defect regardless of which
+        one is right. Returns (authority, band, fish)."""
+        try:
+            et = tk.rsplit("-", 1)[0]
+            pc = (self.__dict__.get("_bcasc_pair") or {}).get(et)
+            st = (self.__dict__.get("_bcasc_state") or {}).get(tk)
+            if pc == "flat_flat" and st and st.get("band"):
+                p12 = Path(__file__).resolve().parent / \
+                    "state/pair_policies_sealed_v1.json"
+                mt12 = p12.stat().st_mtime
+                c12 = self.__dict__.get("_pair_policy_cache")
+                if not c12 or c12[0] != mt12:
+                    c12 = (mt12, json.loads(p12.read_text()))
+                    self._pair_policy_cache = c12
+                row12 = (c12[1].get("bands") or {}).get(st["band"])
+                if row12 and row12.get("status") == "SEALED" \
+                        and row12.get("depth_p90"):
+                    return ("SEAL", st["band"],
+                            int(round(st["open"]
+                                      - float(row12["depth_p90"]))))
+        except Exception:
+            pass
+        return "LEGACY:path_aim", None, None
 
     def _orientation_prior(self, et):
         """[ENTRY-MECHANICS P1, operator word 07-17] ORIENTATION IS A PRIOR,
@@ -5652,6 +5697,40 @@ class LiveV3:
                     "target_max": target_max, "price": price,
                 }, ticker=ticker)
 
+        # [ONE-AUTHORITY LAW — operator addendum 07-20 PM, THE CHOKEPOINT
+        # CLAUSE. Entry BUYS only (exits work the book untouched). Where
+        # the SEAL owns the game, THE fish is THE price: any other price
+        # from any organ is re-anchored here (authority_clamp) or refused
+        # (authority_refused when the fish is unpostable) — structurally
+        # unable, not advised against. LEGACY-owned legs pass unchanged,
+        # authority named on the order line. The Shick exhibit (path_aim
+        # 5@48 vs sealed fish 37, +11c) is the founding charge; the
+        # deploy-law mirror holds: this same gate that armed the seal
+        # subordinates the legacy paths.]
+        _auth13 = None
+        if action == "buy" and self.config.get("one_authority_enabled",
+                                               False):
+            try:
+                _auth13, _ab13, _fish13 = self._price_authority(ticker)
+                if _auth13 == "SEAL":
+                    if _fish13 is None or _fish13 < 5:
+                        self._log("authority_refused", {
+                            "band": _ab13, "fish": _fish13,
+                            "attempted_price": price,
+                            "reason": "sealed_fish_unpostable"},
+                            ticker=ticker)
+                        return "", {"_error": "authority_refused"}
+                    if price != _fish13:
+                        self._log("authority_clamp", {
+                            "band": _ab13, "old_price": price,
+                            "fish": _fish13,
+                            "law": "ONE-AUTHORITY 07-20 PM: the seal "
+                                   "owns both legs' prices"},
+                            ticker=ticker)
+                        price = _fish13
+            except Exception as _oae:
+                self._log("authority_error",
+                          {"err": str(_oae)[:120]}, ticker=ticker)
         coid = str(uuid.uuid4())
         path = ORDER_CREATE_V2_PATH                      # [C-ORDER-V2] /portfolio/events/orders
         payload = build_order_payload_v2(ticker, action, price, count, post_only, coid)
@@ -5692,6 +5771,9 @@ class LiveV3:
                 "action": action, "side": side, "price": price, "count": count,
                 "order_id": oid, "client_order_id": coid,
                 "response_status": _v2_status,
+                # [ONE-AUTHORITY] every entry buy carries its authority
+                **({"authority": _auth13} if (action == "buy"
+                                              and _auth13) else {}),
             }, ticker=ticker)
             self._wall_observe(ticker, action, price, count)   # [WALL-OBS] observe-only
             return oid, resp
@@ -14454,6 +14536,40 @@ class LiveV3:
                            "booking; 2 consecutive cycles + live market "
                            "status confirmed"}, ticker=tk)
                 self._save_v4_resting()
+        # ---- (4) ONE-AUTHORITY audit (operator addendum 07-20 PM):
+        # any resting entry whose price is not its named authority's
+        # price = DEFECT, red, every cycle. SEAL-owned games: every
+        # resting buy must sit AT the sealed fish (static per leg —
+        # auditable to the cent). LEGACY-owned: the legacy brain's
+        # prices are its own; the two-organ collision inside legacy is
+        # already the buy_stack assertion's domain. Flag-only: the heal
+        # is the chokepoint clamp on the next repost (evidence-only
+        # repost law untouched — the choice is named on the ledger).
+        if self.config.get("one_authority_enabled", False):
+            seen_a = seen.setdefault("authority", {})
+            for tk, orders in ord_map.items():
+                buys = [o for o in orders if o.get("action") == "buy"]
+                if not buys or self.get_category(tk) is None:
+                    seen_a.pop(tk, None)
+                    continue
+                auth, band, fish = self._price_authority(tk)
+                if auth != "SEAL":
+                    seen_a.pop(tk, None)
+                    continue
+                bad = [o for o in buys
+                       if int(o.get("px", -1)) != int(fish)]
+                if not bad:
+                    seen_a.pop(tk, None)
+                    continue
+                n9 = seen_a[tk] = seen_a.get(tk, 0) + 1
+                self._log("authority_mismatch_defect", {
+                    "band": band, "fish": fish,
+                    "resting": [{"px": o.get("px"), "qty": o.get("qty"),
+                                 "oid": (o.get("oid") or "")[:13]}
+                                for o in bad][:4],
+                    "consecutive_cycles": n9,
+                    "law": "ONE-AUTHORITY 07-20 PM: placing path != "
+                           "named authority = DEFECT"}, ticker=tk)
 
     async def reconcile(self, quiet=False):
         """Load existing positions and resting orders from Kalshi.

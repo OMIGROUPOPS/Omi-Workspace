@@ -151,3 +151,22 @@ policy consumer reads the sealed object, not the label.
 **Watch:** the first `dual_divot_steer` line (fires on the next
 conception/repost of a flat-flat-classed leg) — count vs flat-flat
 conceptions is the standing coverage watch.
+
+## WALK AMENDMENT — THE SHICK HOLD, GRADED AS THE MISS IT IS (operator defect dispatch, 07-20 PM)
+
+The walk above presented the sealed fish (Shick ≈37¢) and OMITTED that the
+book already HELD the Shick leg — 5 shares at 48¢, placed by the legacy
+`path_aim` authority at 09:59 AM (orientation_park_swap 09:58, knob
+`orientation_swap_min_conviction`), filled 01:29 PM via `manage_cancel_race`
+— a weakening leg coming down through a reference-priced bid. **Basis 48 vs
+sealed fish 37 = +11¢ overpay per share, graded F on the sealed class's own
+number.** Both placement and fill pre-date the seal boot (03:08 PM) — the
+seal was not violated in time; the walk was defective in FORM: it presented
+a game without reconciling its positions.
+
+The book-wide reconciliation (`SEAL_BOOK_RECON.md`) names all three
+overpays (Shick +11¢ · Ilagan +10¢ · Trotter +3¢, panel-flagged red) and
+the eight LEGACY-owned legs. The two laws this defect founded —
+ONE-AUTHORITY and WALK-RECONCILES-THE-BOOK — are vaulted verbatim at
+`.claude/rulings/RULING_ONE_AUTHORITY.md` and enforced in code at the
+chokepoint + the 60s audit, this same gate.

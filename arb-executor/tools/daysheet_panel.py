@@ -1530,7 +1530,11 @@ def build_alerts(limit=30):
              # — red by default (not in the amber set): the operator's
              # eyes found GNI at ~09:40; the tooth names it at ~09:29.
              "naked_leg_defect", "unbooked_fill_defect",
-             "phantom_position_defect")
+             "phantom_position_defect",
+             # [ONE-AUTHORITY 07-20 PM] mismatch = red; clamp/refuse =
+             # the guard working (amber, below)
+             "authority_mismatch_defect", "authority_clamp",
+             "authority_refused", "seal_overpay")
     out = []
     # [ENTRY-MECHANICS P2b+P5 07-17] the CHURN METER (reposts/leg over the
     # trailing hour; bar 6/hr — BURMER's 42 and the 40-53/leg/hr 07-17
@@ -1634,7 +1638,9 @@ def build_alerts(limit=30):
                             "kind": e, "digits": dig[:110],
                             "red": e not in ("window_truth_reaim",
                                              "window_truth_bind",
-                                             "phantom_bell_void")})
+                                             "phantom_bell_void",
+                                             "authority_clamp",
+                                             "authority_refused")})
         # churn meter rows (legs over the 6/hr bar, worst first)
         for _tkm, _n in sorted(_churn.items(), key=lambda x: -x[1])[:5]:
             if _n > 6:

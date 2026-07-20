@@ -134,6 +134,14 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-20 PM · THE SHICK DEFECT → THE ONE-AUTHORITY LAW (permanent) + WALK-RECONCILES-THE-BOOK
+
+**The charge (operator's eyes):** the acceptance walk presented Noguchi vs Shick with the sealed fish (37¢) while the book HELD Shick 5@48 — placed 09:59 AM by `path_aim` after an `orientation_park_swap` (09:58), filled 01:29 PM via `manage_cancel_race`: a weakening leg bought at reference, **+11¢ over the sealed number**, omitted from the walk. Provenance timestamped: both placement and fill PRE-DATE the seal boot (03:08 PM) — no organ violated the seal in time; the defect is structural (the legacy path stayed armed and able) and the walk was defective in form.
+
+**THE LAWS, vaulted verbatim (`.claude/rulings/RULING_ONE_AUTHORITY.md`):** (1) **ONE-AUTHORITY** — every leg has exactly one pricing authority at any moment, dossier-named; sealed class called → the seal owns BOTH legs' prices and every other path is structurally UNABLE at the chokepoint; no sealed call → legacy owns it, named; two organs pricing one leg = the defect regardless of which is right; audit = placing path ≠ named authority → DEFECT red every cycle; **deploy-law mirror: arming a new authority requires disarming/subordinating the old in the same gate.** (2) **WALK-RECONCILES-THE-BOOK** — no acceptance walk presents a game without reconciling every existing position in it.
+
+**THE ENFORCEMENT, this gate:** `_price_authority` resolver + dossier voice `price_authority` on every entry dossier · `place_order` chokepoint clause (SEAL-owned: the fish IS the price — `authority_clamp`/`authority_refused`; LEGACY passes named on the order line) · `_naked_tooth_scan` section (4): `authority_mismatch_defect` RED every 60s cycle (flag-only; heal = the clamp at next repost, evidence-law untouched, choice named) · panel carries all four new kinds (mismatch/overpay red; clamp/refuse amber) · knob record: `one_authority_enabled` DECREED + 3 back-cites. **BOOK RECONCILED NOW (`SEAL_BOOK_RECON.md`): 3 overpays flagged red on the panel — Shick +11¢ · Ilagan +10¢ · Trotter +3¢ (120¢ total at 5sh) — 8 LEGACY-owned legs named; ceremony walk amended to grade the Shick hold F on the sealed number.**
+
 ### 2026-07-20 PM · THE COMBINED-PRIMARY RULING — THE CEREMONY SEATS ITS MEMBER: FLAT-FLAT DUAL-DIVOT SEALED; DUAL-NEGATIVE BECOMES THE MASTERY METER
 
 **Prior art (C45):** the split-gauge dispatch (P1–P4, same day) · the week widen (`cf9980e5`) whose banked pairs this re-score consumes · the empty ceremony (`ebec0368`) this amendment fills. Delta: the operator re-ruled the gauge — **combined-vs-par is pass/fail for BOTH classes (sub-par ≤97 = pass; tiers ≤93/≤95/≤97; 98–100 and >100 apart); dual-negative is the standing MASTERY METER, reported per class/band nightly, never pass/fail.**

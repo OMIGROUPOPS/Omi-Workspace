@@ -293,5 +293,25 @@
   "DECREED",
   "P6 RETREAT 07-17 (operator): unfilled sub-floor ITF events withdraw both bids pair-level on every volume refresh; filled legs exempt (never-hold-naked)",
   "L4"
+ ],
+ "one_authority_enabled": [
+  "DECREED",
+  "ONE-AUTHORITY LAW, operator addendum 07-20 PM (vaulted permanent; Shick +11c founding charge)",
+  "L2"
+ ],
+ "pair_class_steer_enabled": [
+  "FITTED",
+  "pair_policies_sealed_v1 b2f0b670 (week re-score 7/7 sub-par; combined-primary ruling 07-20 PM)",
+  "L2"
+ ],
+ "band_cascade_read": [
+  "DECREED",
+  "SPLIT-GAUGE P2 07-20 (read-side cascade; (15) precedent)",
+  "L2"
+ ],
+ "expiration_wire_enabled": [
+  "DECREED",
+  "SAFETY-TEETH P3(b) 07-20 (dark until tennis retest verdict a98bce9d)",
+  "L2"
  ]
 }

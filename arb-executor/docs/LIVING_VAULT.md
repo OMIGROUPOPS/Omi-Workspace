@@ -134,6 +134,14 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-20 · THE JUNE CEREMONY, HELD WITH NO MEMBERS — SPLIT-GAUGE SEAL + THE READ-SIDE CASCADE (P2 of the split-gauge dispatch)
+
+**Prior art (C45):** the operator's 07-20 ruling (SPLIT THE GAUGES: flat-flat → 75% both-neg bar · mirror → combined gauge) · the WEEK WIDEN verdict (`cf9980e5`, `.claude/loop8_20260720/WEEK_WIDEN.md`): honest negative BOTH classes on 200 unseen pairs · loops 5–8 (five frames, one wall). Delta: the ceremony itself.
+
+**THE CEREMONY:** held, recorded, **EMPTY** — the dispatch's own law ("anything failing its own bar stays unsealed and says so") leaves the seal table with no policy members. `SEAL_CEREMONY_20260720.md` carries the verdicts, the input lineage hashed at ceremony (divot v2 `56b3bb46…` · band map `caf255a2…` · drift `aeac847d…` · sealed entry tables `c0c29e54…` UNTOUCHED), and the statement that matters: **WHEN-FLAT NOT EXERCISED — no steering flip rode this gate.** The standing Stage-5 seal (2 casts / 5 REFUSE / 29 silent) stands unamended.
+
+**THE WIRE THAT DID GO LIVE (read-side, the ⑮ precedent):** `_band_cascade_pass` — 60s cadence in the steady loop, `band_cascade_read` gated. Band call at birth (≤60s after conception, features from the live tape, loop-5 recognition convention verbatim), `band_recall` as the window unfolds (cap 12/leg), `pair_class_read` at the lap-5 ±5¢ crossings naming the class AND the gauge that would judge it, every line stamped *read-side only; nothing sealed 07-20*. Aims, offsets, casts, refusals untouched — the cascade is the next campaign's instrument, not a hand. Acceptance walk appended to the ceremony doc post-deploy.
+
 ### 2026-07-19 · FULL-TRADE LOOP (AMENDED v2) — LOOP 5: HOLDOUT-PASS ON THE OPERATOR'S DELTA
 
 **Prior art:** Loops 1–4 (the frames that failed and were named), the amendment striking exits (standing order restored), the P1 autopsy (capture classes → dip_p90 caps folded in). Delta: the score is THE DELTA — dual-fill rate · per-leg (fill − W1 close) · combined pair delta — nothing else.

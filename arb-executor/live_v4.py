@@ -3703,6 +3703,148 @@ class LiveV3:
                 pass
         return ({"thin": True, "n": (cell or {}).get("n", 0)}, key)
 
+    def _bcasc_maps(self):
+        """[SPLIT-GAUGE P2 07-20] lazy mtime-cached loads of the band map +
+        recognition table for the read-side cascade. Returns (cats, recog)
+        or (None, None) when either file is absent/unreadable."""
+        out = []
+        for attr, rel, pick in (
+                ("_bcasc_bmap", "state/band_map_v1.json",
+                 lambda j: j.get("cats")),
+                ("_bcasc_recog", "state/drift_surfaces_v1.json",
+                 lambda j: j.get("recognition") or {})):
+            try:
+                p = Path(__file__).resolve().parent / rel
+                mt = p.stat().st_mtime
+                c = self.__dict__.get(attr)
+                if not c or c[0] != mt:
+                    c = (mt, pick(json.loads(p.read_text())))
+                    setattr(self, attr, c)
+                out.append(c[1])
+            except Exception:
+                out.append(None)
+        return (out[0], out[1]) if all(x is not None for x in out) \
+            else (None, None)
+
+    def _band_cascade_pass(self, now):
+        """[SPLIT-GAUGE P2 2026-07-20 — THE RECOGNITION CASCADE, READ-SIDE
+        ONLY]. The week widen (WEEK_WIDEN.md, 07-20) failed BOTH pair
+        classes on their own gauges (flat-flat BELOW the 75% both-neg bar;
+        mirror FAIL the combined gauge), so NO pair policy steers anything:
+        this pass only NAMES, on the JSONL/dossier surfaces —
+          band_call        at birth (<=60s after conception; sampled
+                           cadence, named), features = (anchor=open ref,
+                           net=last-open, dip=anchor-lo) from the live
+                           tape; recognition h6 cell purity>=0.5 else the
+                           default flat band (the loop-5 convention);
+          band_recall      whenever the unfolding window changes the call
+                           (cap 12 lines per leg);
+          pair_class_read  flat_flat / mirror / neither at the lap-5 +-5c
+                           net crossings, once per class change per event.
+        The (15) precedent: read-side intelligence goes straight to live.
+        Aims, offsets, casts, refusals: UNTOUCHED here by law."""
+        if not self.config.get("band_cascade_read", True):
+            return
+        bmap, recog = self._bcasc_maps()
+        if not bmap:
+            return
+        C = self.__dict__.setdefault("_bcasc_state", {})
+        # purge legs the engine no longer tracks
+        for tk in [t for t in C if t not in self.positions]:
+            C.pop(tk, None)
+        for tk, pos in list(self.positions.items()):
+            try:
+                cat = self.get_category(tk)
+                cm = (bmap or {}).get(cat)
+                if not cm or cm.get("thin"):
+                    continue
+                pdq = self._trade_prices.get(tk)
+                st = C.get(tk)
+                if st is None:
+                    wo = self._window_open.get(tk)
+                    if wo and wo.get("price"):
+                        opn, osrc = int(wo["price"]), "window_open"
+                    elif pdq:
+                        opn, osrc = int(round(pdq[0][1])), "first_seen"
+                    else:
+                        continue          # no reference yet; next pass
+                    st = C[tk] = {"open": opn, "open_src": osrc,
+                                  "lo": opn, "last": opn, "seen_ts": 0.0,
+                                  "band": None, "recalls": 0,
+                                  "up": False, "dn": False}
+                if pdq:
+                    for ts9, px9 in pdq:
+                        if ts9 <= st["seen_ts"] or px9 <= 0:
+                            continue
+                        st["lo"] = min(st["lo"], int(round(px9)))
+                        st["last"] = int(round(px9))
+                    st["seen_ts"] = pdq[-1][0]
+                a9 = st["open"]
+                n9 = st["last"] - st["open"]
+                d9 = max(0, a9 - st["lo"])
+                st["up"] = st["up"] or n9 >= 5
+                st["dn"] = st["dn"] or n9 <= -5
+                ab = ("a25" if a9 <= 25 else "a50" if a9 <= 50
+                      else "a75" if a9 <= 75 else "a95")
+                nb = ("dn10" if n9 <= -10 else "dn3" if n9 <= -3
+                      else "flat" if n9 < 3 else "up3" if n9 < 10
+                      else "up10")
+                key9 = "%s|%s|%s" % (ab, nb, "d0" if d9 <= 2
+                                     else "d3" if d9 <= 9 else "d10")
+                cell9 = ((recog or {}).get(cat + "|h6") or {}).get(key9)
+                rec9 = bool(cell9 and cell9.get("purity", 0) >= 0.5)
+                if rec9:
+                    band9 = cell9["top"]
+                else:
+                    fl9 = [b for b in cm["bands"]
+                           if b["direction"] == "flat"] or cm["bands"]
+                    band9 = min(fl9, key=lambda b: abs(
+                        b["anchor_med"] - a9))["band"]
+                dir9 = next((b["direction"] for b in cm["bands"]
+                             if b["band"] == band9), "?")
+                if st["band"] is None:
+                    st["band"] = band9
+                    self._log("band_call", {
+                        "at": "birth", "band": band9, "direction": dir9,
+                        "recognition": rec9, "anchor": a9, "net": n9,
+                        "dip": d9, "open_src": st["open_src"],
+                        "law": "READ-SIDE ONLY — week-widen 07-20: "
+                               "no pair policy steers"}, ticker=tk)
+                elif band9 != st["band"] and st["recalls"] < 12:
+                    self._log("band_recall", {
+                        "from": st["band"], "to": band9,
+                        "direction": dir9, "recognition": rec9,
+                        "anchor": a9, "net": n9, "dip": d9}, ticker=tk)
+                    st["band"] = band9
+                    st["recalls"] += 1
+            except Exception as _ble:
+                self._log("band_cascade_leg_error",
+                          {"err": str(_ble)[:120]}, ticker=tk)
+        # pair-class read, once per class change per event
+        PC = self.__dict__.setdefault("_bcasc_pair", {})
+        byev = {}
+        for tk, st in C.items():
+            byev.setdefault(self.ticker_to_event.get(
+                tk, tk.rsplit("-", 1)[0]), []).append((tk, st))
+        for et9, legs9 in byev.items():
+            if len(legs9) != 2:
+                continue
+            up9 = any(s["up"] for _, s in legs9)
+            dn9 = any(s["dn"] for _, s in legs9)
+            cls9 = ("mirror" if (up9 and dn9) else
+                    "flat_flat" if not (up9 or dn9) else "neither")
+            if PC.get(et9) != cls9:
+                PC[et9] = cls9
+                self._log("pair_class_read", {
+                    "event": et9, "pair_class": cls9,
+                    "legs": {t: {"band": s["band"], "net":
+                                 s["last"] - s["open"]}
+                             for t, s in legs9},
+                    "gauge": ("75pct-both-neg" if cls9 == "flat_flat"
+                              else "combined-delta" if cls9 == "mirror"
+                              else "counted-apart"),
+                    "law": "read-side only; nothing sealed 07-20"})
+
     def _orientation_prior(self, et):
         """[ENTRY-MECHANICS P1, operator word 07-17] ORIENTATION IS A PRIOR,
         NOT A ROLE. Built at conception from every voice available today:
@@ -15135,6 +15277,14 @@ class LiveV3:
                             self._conception_halt = True
                             self._log("post_boot_audit_error", {
                                 "err": str(_sae)[:200], "context": "steady_cadence"})
+                    # [SPLIT-GAUGE P2 07-20] the recognition cascade —
+                    # READ-SIDE ONLY (week-widen verdict: nothing sealed;
+                    # names bands/classes on the record, steers nothing).
+                    try:
+                        self._band_cascade_pass(now)
+                    except Exception as _bce:
+                        self._log("band_cascade_error",
+                                  {"err": str(_bce)[:150]})
 
                 # Write own heartbeat
                 try:

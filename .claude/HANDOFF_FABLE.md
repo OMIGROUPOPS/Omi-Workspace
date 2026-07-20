@@ -57,7 +57,23 @@ doctrine_registry.json receipt (rebuilt every C50:
 python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
-## STATE (2026-07-20 PM COMBINED-PRIMARY SEAL — C50 keeps this current):
+## STATE (2026-07-20 PM DEPLOYED+WALKED — C50 keeps this current):
+BOTH GATES LANDED. #1 af41024a (cascade read-side + teeth): PASS,
+stop 17s, audit PASS; NAKED TOOTH first-cycle catch = ECHHAR orphan
+pair named 02:35:17, adopted+exits 02:35:19, HAR exit FILLED @86
+02:43 (detection->cash 8 min). #2 da62c277 (dual-divot seal wire):
+PASS, stop 20s, PID 293011, audit PASS; pair_class_steer LIVE;
+cascade 37 band_calls hour one; re-classes observed live. WALK on
+the ceremony doc: Noguchi/Shick, both legs B4-flat by RECOGNITION,
+FLAT_FLAT sealed class, fish 45/37 (depth_p90 10), combined ~82
+sub-par by construction. RETEST ARMED: probe a98bce9d 1sh@2c
+expiration_ts=02:00AM (MCLVOL); checker tmux exp_checker; wire
+flips ONLY on the verdict. RIDER filed: pair_class_read gauge label
+stale vs the ruling (one-liner, next gate). Disk ~1G; tennis.db =
+operator's lever. Perclass founding edition committed (07-19:
+flat-flat 2/2 sub-par PASS · mirror 0/32 · completion 7.6%).
+
+(prior:) ## STATE (2026-07-20 PM COMBINED-PRIMARY SEAL — C50 keeps this current):
 THE RULING EXECUTED one C50: combined-vs-par = pass/fail BOTH
 classes (sub-par <=97 = pass); dual-negative = MASTERY METER
 (standing, never pass/fail). Re-score banked-week: FLAT-FLAT

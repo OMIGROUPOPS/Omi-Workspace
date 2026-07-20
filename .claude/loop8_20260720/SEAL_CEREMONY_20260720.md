@@ -116,3 +116,38 @@ both sides vs riding one. Re-scored from the banked week
 2. **Completion rate** (volume drill): sub-par duals per slate — week
    baseline 16/200 = 8.0% (≤93: 4.5%) — the number to drill up without
    surrendering the sub-par law.
+
+## THE ACCEPTANCE WALK — Noguchi vs Shick (ATP Challenger, 2026-07-20), walked live under the seal
+
+**The game, in the operator's language:** Rio Noguchi against Braden Shick,
+Challenger draw. The engine took the Noguchi side at 11:27 AM under standing
+law — resting buy 5 @49¢, `path_aim`, conviction voice 0.53 — and the Shick
+leg filled earlier and rides its band exit at 59¢. Real game, real book, real
+positions.
+
+**The cascade's reasoning, printed from the lines (first pass after the seal
+boot, 02:52:29 PM ET):**
+- `band_call` at birth, Noguchi leg: **band ATP_CHALL-B4, direction FLAT,
+  recognition TRUE** (purity ≥ 0.5 — a genuine recognition, not the default),
+  anchor 55¢, net 0, dip 0.
+- `band_call` at birth, Shick leg: **band ATP_CHALL-B4, FLAT, recognition
+  TRUE**, anchor 47¢, net 0, dip 0.
+- `pair_class_read`: **FLAT_FLAT — the sealed class.** Neither leg has
+  crossed ±5¢ of its anchor; the pair is the Vukic/Gea shape the ceremony
+  seats.
+- The sealed row this class consults: `ATP_CHALL-B4 depth_p90 = 10¢`
+  (1,694 windows behind it). The fish, when the steer prices the next aim
+  event on these legs: Noguchi ≈ 45¢, Shick ≈ 37¢ — combined ≈ 82,
+  **sub-par by construction** if both catch. Cell label on the line:
+  `DUAL-DIVOT:ATP_CHALL-B4`.
+- Judged, per the ruling, on **combined-vs-par** (sub-par ≤97 = pass);
+  dual-negative reported on the mastery meter, never as a bar.
+
+**Named defect, filed not hidden:** the `pair_class_read` log line still
+stamps flat_flat's gauge as `75pct-both-neg` — a frame superseded by the
+PM ruling. One-line label fix rides the next gate (BOARD rider); the
+policy consumer reads the sealed object, not the label.
+
+**Watch:** the first `dual_divot_steer` line (fires on the next
+conception/repost of a flat-flat-classed leg) — count vs flat-flat
+conceptions is the standing coverage watch.

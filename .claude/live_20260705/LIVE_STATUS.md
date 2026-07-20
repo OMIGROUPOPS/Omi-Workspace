@@ -1,427 +1,162 @@
 # LIVE VALIDATION — rolling status
 
-- cycle 541 @ **2026-07-19 11:56:29 PM ET** | build `499894e0` | session boot 07-18 13:59 ET | log `live_v3_20260718.jsonl` | 318716 session events | monitor READ-ONLY
+- cycle 542 @ **2026-07-20 12:08:33 AM ET** | build `0e454497` | session boot 07-17 21:44 ET | log `live_v3_20260717.jsonl` | 82629 session events | monitor READ-ONLY
 
-## ⚠ GUN FEED: last new in-play sighting 103 min ago (>30 tripwire; source observed_starts.db)
+## ⚠ GUN FEED: last new in-play sighting 115 min ago (>30 tripwire; source observed_starts.db)
 
 ## ENTRY DOSSIERS (vault-wired: every surface consulted or named — last 4)
-- placed:path_aim UL20FIXVAN-VAN aim=34 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
-- placed:path_aim UL20VALGOM-VAL aim=16 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
-- placed:path_aim UL20ZHEBAT-ZHE aim=38 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
-- placed:path_aim UL20PALLEO-PAL aim=38 | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:CONS,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
+- refused:below_leg_floor UL18BASBOE-BOE aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
+- refused:below_leg_floor UL18BASBOE-BOE aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
+- refused:below_leg_floor UL18BASBOE-BOE aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
+- refused:below_leg_floor UL18BASBOE-BOE aim=None | atlas_page:CONS,contention_s:CONS,pair_state:CONS,reach_law:NOT-,range_cell_m:GAP,dip_timing:CONS,flow_state:CONS,orientation_:CONS,fv_gap:NO-R,pm_ref:NO-M,cohort:CONS,refuse_margi:CONS,operator_adj:CONS,fill_regime:CONS
 
-## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 39 item(s)
-- **half_arm_aging**: KXATPCHALLENGERMATCH-26JUL19YEVSTR-YEV {"fill": 9, "age_min": 1397, "mode": "NO_BID(sib rested earlier, none now)"}
-- **half_arm_aging**: KXATPCHALLENGERMATCH-26JUL19DJOMAT-DJO {"fill": 8, "age_min": 1396, "mode": "NO_BID(sib rested earlier, none now)"}
-- **half_arm_aging**: KXITFWMATCH-26JUL19VANCIR-VAN {"fill": 45, "age_min": 1371, "mode": "NO_BID(sib rested earlier, none now)"}
-- **half_arm_aging**: KXWTAMATCH-26JUL19JAKAVA-AVA {"fill": 85, "age_min": 1366, "mode": "NO_BID(sib rested earlier, none now)"}
-- **reality_divergence**: KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS {"kind": "resting_bid", "ref": 11.0, "market_mid": 52.5, "divergence": -41.5}
-- **reality_divergence**: KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS {"kind": "resting_bid", "ref": 11.0, "market_mid": 51.5, "divergence": -40.5}
-- **reality_divergence**: KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS {"kind": "resting_bid", "ref": 11.0, "market_mid": 51.5, "divergence": -40.5}
-- **half_arm_aging**: KXATPCHALLENGERMATCH-26JUL19MALMOR-MAL {"fill": 64, "age_min": 1262, "mode": "NO_BID(sib rested earlier, none now)"}
-- **reality_divergence**: KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS {"kind": "resting_bid", "ref": 11.0, "market_mid": 51.0, "divergence": -40.0}
-- **reality_divergence**: KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS {"kind": "resting_bid", "ref": 11.0, "market_mid": 51.0, "divergence": -40.0}
-- **half_arm_aging**: KXWTAMATCH-26JUL19RYSHON-RYS {"fill": 37, "age_min": 1200, "mode": "NO_BID(sib rested earlier, none now)"}
-- **half_arm_aging**: KXWTAMATCH-26JUL19BRAVON-VON {"fill": 86, "age_min": 1194, "mode": "NO_BID(sib rested earlier, none now)"}
-- **reality_divergence**: KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS {"kind": "resting_bid", "ref": 11.0, "market_mid": 51.5, "divergence": -40.5}
-- **reality_divergence**: KXITFWMATCH-26JUL19VANCIR-VAN {"kind": "position_basis", "ref": 45.0, "market_mid": 8.5, "divergence": 36.5}
-- **deep_neg_fv**: KXATPCHALLENGERMATCH-26JUL19REJWES-WES {"entry_minus_fv_burst": -9.5}
-- **half_arm_aging**: KXATPCHALLENGERMATCH-26JUL19REJWES-WES {"fill": 76, "age_min": 1171, "mode": "NO_BID(sib rested earlier, none now)"}
-- **pre_conception_buy**: KXATPCHALLENGERMATCH-26JUL19WINSHE-SHE {"price": 40, "conception_ts": 1784461479.552582, "detail": "buy 40c predates the conception stamp by 172min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- **reality_divergence**: KXATPMATCH-26JUL19ALTCOL-COL {"kind": "resting_bid", "ref": 32.0, "market_mid": 66.0, "divergence": -34.0}
-- **pre_conception_buy**: KXATPCHALLENGERMATCH-26JUL19WINSHE-SHE {"price": 40, "conception_ts": 1784461479.552582, "detail": "buy 40c predates the conception stamp by 157min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- **half_arm_aging**: KXATPCHALLENGERMATCH-26JUL19MILFAN-FAN {"fill": 31, "age_min": 1124, "mode": "NO_BID(sib rested earlier, none now)"}
-- **half_arm_aging**: KXATPCHALLENGERMATCH-26JUL19WINSHE-SHE {"fill": 40, "age_min": 1118, "mode": "NO_BID(sib rested earlier, none now)"}
-- **reality_divergence**: KXITFWMATCH-26JUL19VANCIR-VAN {"kind": "position_basis", "ref": 45.0, "market_mid": 8.0, "divergence": 37.0}
-- **reality_divergence**: KXATPMATCH-26JUL19ALTCOL-COL {"kind": "resting_bid", "ref": 32.0, "market_mid": 62.5, "divergence": -30.5}
-- **combined_over_goal_UNVERIFIED_BASIS**: KXATPCHALLENGERMATCH-26JUL19CALTEP {"combined": 101, "detail": "pair combined 101c > 97c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) \u2014 exchange-truth check required, NOT a ZT row"}
-- **reality_divergence**: KXATPMATCH-26JUL19ALTCOL-COL {"kind": "resting_bid", "ref": 32.0, "market_mid": 62.5, "divergence": -30.5}
-- **reality_divergence**: KXWTAMATCH-26JUL19RYSHON-RYS {"kind": "position_basis", "ref": 37.0, "market_mid": 2.0, "divergence": 35.0}
-- **half_arm_aging**: KXATPCHALLENGERMATCH-26JUL19TORSEN-SEN {"fill": 5, "age_min": 1056, "mode": "NO_BID(sib rested earlier, none now)"}
-- **reality_divergence**: KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU {"kind": "position_basis", "ref": 61.0, "market_mid": 35.5, "divergence": 25.5}
-- **reality_divergence**: KXATPMATCH-26JUL19ALTCOL-COL {"kind": "resting_bid", "ref": 32.0, "market_mid": 62.5, "divergence": -30.5}
-- **half_arm_aging**: KXATPCHALLENGERMATCH-26JUL19MCKOUA-MCK {"fill": 59, "age_min": 984, "mode": "NO_BID(sib rested earlier, none now)"}
-- **reality_divergence**: KXATPMATCH-26JUL19ALTCOL-COL {"kind": "resting_bid", "ref": 32.0, "market_mid": 64.5, "divergence": -32.5}
-- **half_arm_aging**: KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN {"fill": 7, "age_min": 974, "mode": "NO_BID(sib rested earlier, none now)"}
-- **half_arm_aging**: KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK {"fill": 28, "age_min": 965, "mode": "NO_BID(sib rested earlier, none now)"}
-- **deep_neg_fv**: KXATPCHALLENGERMATCH-26JUL19CASVAS-VAS {"entry_minus_fv_burst": -42.0}
-- **reality_divergence**: KXATPMATCH-26JUL19ALTCOL-COL {"kind": "resting_bid", "ref": 32.0, "market_mid": 66.0, "divergence": -34.0}
-- **pre_conception_buy**: KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOH {"price": 27, "conception_ts": 1784467368.8890374, "detail": "buy 27c predates the conception stamp by 69min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- **half_arm_aging**: KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOH {"fill": 27, "age_min": 942, "mode": "NO_BID(sib rested earlier, none now)"}
-- **reality_divergence**: KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOU {"kind": "resting_bid", "ref": 70.0, "market_mid": 95.5, "divergence": -25.5}
-- **reality_divergence**: KXWTAMATCH-26JUL19BRAVON-VON {"kind": "position_basis", "ref": 86.0, "market_mid": 58.5, "divergence": 27.5}
+## MORNING REVIEW — overnight watch fires (12:00 AM–9:00 AM ET) — 0 item(s)
+clean overnight — no watch fires
 - tripwire artifact: **PRESENT — CHECK /tmp/live_v4_TRIPWIRE.json**
 
-## ZERO-TOLERANCE — 58 violation(s)
+## ZERO-TOLERANCE — 33 violation(s)
 | ET | class | who | detail |
 |---|---|---|---|
-| 14:00:30 | **self_fill_bell** | KXITFWMATCH-26JUL18SAIHOS-HOS | own buys rose 10c (26->36) in 1800s -> match-live presumption, entry buys FROZEN |
-| 14:00:31 | **self_fill_bell** | KXITFMATCH-26JUL18BASTAI-TAI | own buys rose 4c (8->12) in 1800s -> match-live presumption, entry buys FROZEN |
-| 14:00:53 | **self_fill_bell** | KXITFWMATCH-26JUL18SAIHOS-SAI | own buys rose 11c (52->63) in 1800s -> match-live presumption, entry buys FROZEN |
-| 14:09:56 | **self_fill_bell** | KXITFMATCH-26JUL18BASTAI-TAI | own buys rose 5c (8->13) in 1800s -> match-live presumption, entry buys FROZEN |
-| 19:31:31 | **self_fill_bell** | KXITFWMATCH-26JUL19VANCIR-CIR | own buys rose 11c (43->54) in 1800s -> match-live presumption, entry buys FROZEN |
-| 20:35:30 | **self_fill_bell** | KXITFWMATCH-26JUL19VANCIR-VAN | own buys rose 10c (35->45) in 1800s -> match-live presumption, entry buys FROZEN |
-| 22:57:11 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA | own buys rose 4c (30->34) in 1800s -> match-live presumption, entry buys FROZEN |
-| 23:19:22 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA | own buys rose 5c (30->35) in 1800s -> match-live presumption, entry buys FROZEN |
-| 23:20:30 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA | own buys rose 6c (30->36) in 1800s -> match-live presumption, entry buys FROZEN |
-| 01:03:33 | **self_fill_bell** | KXITFMATCH-26JUL18SALTRI-TRI | own buys rose 31c (23->54) in 1800s -> match-live presumption, entry buys FROZEN |
-| 01:28:58 | **self_fill_bell** | KXITFMATCH-26JUL18SALTRI-TRI | own buys rose 35c (23->58) in 1800s -> match-live presumption, entry buys FROZEN |
-| 01:30:58 | **self_fill_bell** | KXITFMATCH-26JUL18SALTRI-TRI | own buys rose 36c (23->59) in 1800s -> match-live presumption, entry buys FROZEN |
-| 04:17:34 | **bell_missing** | KXATPCHALLENGERMATCH-26JUL19POUJAN | min_past_start 13.3 |
-| 04:53:52 | **bell_missing** | KXATPCHALLENGERMATCH-26JUL19ARSMAR | min_past_start 17.5 |
-| 05:18:20 | **bell_missing** | KXITFWMATCH-26JUL19OTZPOL | min_past_start 11.6 |
-| 05:19:47 | **bell_missing** | KXITFWMATCH-26JUL19PETVLC | min_past_start 10.8 |
-| 06:13:45 | **bell_missing** | KXATPCHALLENGERMATCH-26JUL19TORSEN | min_past_start 12.9 |
-| 06:41:48 | **bell_missing** | KXATPMATCH-26JUL19DELDJE | min_past_start 10.8 |
-| 06:59:46 | **bell_missing** | KXWTAMATCH-26JUL19SALKNU | min_past_start 12.7 |
-| 06:59:46 | **bell_missing** | KXWTAMATCH-26JUL19COSAKS | min_past_start 12.7 |
-| 07:20:52 | **bell_missing** | KXITFWMATCH-26JUL19VELMAN | min_past_start 16.4 |
-| 07:33:22 | **bell_missing** | KXITFWMATCH-26JUL19SZIGAS | min_past_start 10.2 |
-| 07:42:45 | **bell_missing** | KXATPMATCH-26JUL19RODSAC | min_past_start 11.0 |
-| 08:22:25 | **bell_missing** | KXATPMATCH-26JUL19FELKOP | min_past_start 15.0 |
-| 08:43:39 | **bell_missing** | KXATPMATCH-26JUL19CERTRU | min_past_start 11.7 |
-| 08:43:39 | **bell_missing** | KXATPMATCH-26JUL19NEUHAN | min_past_start 11.7 |
-| 08:43:39 | **bell_missing** | KXATPMATCH-26JUL19BAEKEC | min_past_start 11.7 |
-| 08:43:39 | **bell_missing** | KXATPMATCH-26JUL19STRSHE | min_past_start 11.7 |
-| 08:43:39 | **bell_missing** | KXATPMATCH-26JUL19MULNAV | min_past_start 11.7 |
-| 08:43:39 | **bell_missing** | KXATPCHALLENGERMATCH-26JUL19SALVRB | min_past_start 11.7 |
-| 09:18:22 | **bell_missing** | KXWTAMATCH-26JUL19YASBAR | min_past_start 14.4 |
-| 09:18:22 | **bell_missing** | KXWTAMATCH-26JUL19PRIMAR | min_past_start 14.4 |
-| 09:22:45 | **bell_missing** | KXITFWMATCH-26JUL19RAMDRU | min_past_start 13.5 |
-| 09:25:17 | **bell_missing** | KXITFWMATCH-26JUL19BORTHO | min_past_start 53.9 |
-| 09:25:17 | **bell_missing** | KXITFWMATCH-26JUL19SARGRA | min_past_start 53.9 |
-| 10:17:50 | **bell_missing** | KXATPMATCH-26JUL19CHODEJ | min_past_start 14.6 |
-| 10:17:50 | **bell_missing** | KXATPMATCH-26JUL19TORBAS | min_past_start 14.6 |
-| 10:17:50 | **bell_missing** | KXATPMATCH-26JUL19GASDZU | min_past_start 14.6 |
-| 10:41:42 | **bell_missing** | KXATPCHALLENGERMATCH-26JUL19BARLEO | min_past_start 14.5 |
-| 11:08:16 | **bell_missing** | KXATPCHALLENGERMATCH-26JUL19PAPROS | min_past_start 14.8 |
-| 11:13:25 | **bell_missing** | KXWTACHALLENGERMATCH-26JUL19SERTOT | min_past_start 10.2 |
-| 11:13:25 | **bell_missing** | KXATPCHALLENGERMATCH-26JUL19VALCAS | min_past_start 10.2 |
-| 11:45:56 | **bell_missing** | KXITFMATCH-26JUL19COUNAM | min_past_start 23.7 |
-| 12:13:13 | **w2_fill** | KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR | W2 FILL (buy after start): 58c x5 booking=gun_fire_sweep_race gun=milestone_official |
-| 12:38:14 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL19CLAKUZ-KUZ | own buys rose 8c (47->55) in 1800s -> match-live presumption, entry buys FROZEN |
-| 13:05:34 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL19VUKGEA-GEA | own buys rose 7c (52->59) in 1800s -> match-live presumption, entry buys FROZEN |
-| 13:07:37 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL19VUKGEA-GEA | own buys rose 10c (52->62) in 1800s -> match-live presumption, entry buys FROZEN |
-| 13:08:48 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL19VUKGEA-GEA | own buys rose 11c (52->63) in 1800s -> match-live presumption, entry buys FROZEN |
-| 13:10:25 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL19VUKGEA-GEA | own buys rose 12c (52->64) in 1800s -> match-live presumption, entry buys FROZEN |
-| 13:13:41 | **bell_missing** | KXATPMATCH-26JUL19GAUCAR | min_past_start 190.4 |
-| 13:13:41 | **bell_missing** | KXATPCHALLENGERMATCH-26JUL19IMATRA | min_past_start 10.4 |
-| 13:14:17 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL19VUKGEA-GEA | own buys rose 6c (52->58) in 1800s -> match-live presumption, entry buys FROZEN |
-| 13:15:18 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL19VUKGEA-GEA | own buys rose 10c (52->62) in 1800s -> match-live presumption, entry buys FROZEN |
-| 13:17:03 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL19VUKGEA-GEA | own buys rose 11c (52->63) in 1800s -> match-live presumption, entry buys FROZEN |
-| 13:19:00 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL19VUKGEA-GEA | own buys rose 12c (52->64) in 1800s -> match-live presumption, entry buys FROZEN |
-| 13:38:05 | **w2_fill** | KXWTACHALLENGERMATCH-26JUL19BASSHI-BAS | W2 FILL (buy after start): 77c x5 booking=reconcile_adoption gun=percat_fitted |
-| 13:38:05 | **w2_fill** | KXWTACHALLENGERMATCH-26JUL19BASSHI-BAS | W2 FILL (buy after start): 77c x5 booking=gun_fire_sweep_race gun=percat_fitted |
-| 16:44:06 | **self_fill_bell** | KXATPCHALLENGERMATCH-26JUL19RODIVA-ROD | own buys rose 9c (57->66) in 1800s -> match-live presumption, entry buys FROZEN |
+| 21:48:16 | **self_fill_bell** | KXITFMATCH-26JUL18PALWIS-WIS | own buys rose 12c (58->70) in 1800s -> match-live presumption, entry buys FROZEN |
+| 21:51:48 | **self_fill_bell** | KXITFMATCH-26JUL18PALWIS-WIS | own buys rose 13c (58->71) in 1800s -> match-live presumption, entry buys FROZEN |
+| 22:40:06 | **self_fill_bell** | KXITFMATCH-26JUL18PALWIS-PAL | own buys rose 13c (16->29) in 1800s -> match-live presumption, entry buys FROZEN |
+| 00:40:42 | **self_fill_bell** | KXITFMATCH-26JUL17LIMABD-ABD | own buys rose 18c (15->33) in 1800s -> match-live presumption, entry buys FROZEN |
+| 00:46:22 | **self_fill_bell** | KXITFMATCH-26JUL17LIMABD-ABD | own buys rose 27c (15->42) in 1800s -> match-live presumption, entry buys FROZEN |
+| 00:58:20 | **self_fill_bell** | KXITFMATCH-26JUL17ALKYAZ-YAZ | own buys rose 39c (15->54) in 1800s -> match-live presumption, entry buys FROZEN |
+| 01:00:54 | **self_fill_bell** | KXITFMATCH-26JUL17ALKYAZ-YAZ | own buys rose 50c (15->65) in 1800s -> match-live presumption, entry buys FROZEN |
+| 01:00:58 | **self_fill_bell** | KXITFMATCH-26JUL17CHAALH-ALH | own buys rose 25c (15->40) in 1800s -> match-live presumption, entry buys FROZEN |
+| 01:04:07 | **self_fill_bell** | KXITFMATCH-26JUL17ALKYAZ-ALK | own buys rose 7c (28->35) in 1800s -> match-live presumption, entry buys FROZEN |
+| 01:04:17 | **self_fill_bell** | KXITFMATCH-26JUL17ALKYAZ-ALK | own buys rose 4c (28->32) in 1800s -> match-live presumption, entry buys FROZEN |
+| 02:30:40 | **self_fill_bell** | KXITFMATCH-26JUL18TORKHO-KHO | own buys rose 4c (48->52) in 1800s -> match-live presumption, entry buys FROZEN |
+| 03:07:13 | **self_fill_bell** | KXITFMATCH-26JUL18ROTLEG-ROT | own buys rose 12c (35->47) in 1800s -> match-live presumption, entry buys FROZEN |
+| 03:37:21 | **self_fill_bell** | KXITFWMATCH-26JUL18DOTROJ-DOT | own buys rose 9c (37->46) in 1800s -> match-live presumption, entry buys FROZEN |
+| 03:38:44 | **self_fill_bell** | KXITFWMATCH-26JUL18DOTROJ-DOT | own buys rose 11c (37->48) in 1800s -> match-live presumption, entry buys FROZEN |
+| 04:11:31 | **bell_missing** | KXITFWMATCH-26JUL18VOGNIJ | min_past_start 10.9 |
+| 04:39:57 | **self_fill_bell** | KXITFMATCH-26JUL18FAHANT-FAH | own buys rose 6c (17->23) in 1800s -> match-live presumption, entry buys FROZEN |
+| 05:41:42 | **bell_missing** | KXITFMATCH-26JUL18VERDEL | min_past_start 11.4 |
+| 06:11:25 | **bell_missing** | KXITFMATCH-26JUL18HARROH | min_past_start 10.8 |
+| 06:15:35 | **self_fill_bell** | KXITFMATCH-26JUL18VANMAR-MAR | own buys rose 16c (51->67) in 1800s -> match-live presumption, entry buys FROZEN |
+| 07:12:20 | **bell_missing** | KXATPMATCH-26JUL18CORSAC | min_past_start 11.6 |
+| 07:31:47 | **self_fill_bell** | KXITFMATCH-26JUL18VANMAR-VAN | own buys rose 12c (20->32) in 1800s -> match-live presumption, entry buys FROZEN |
+| 08:13:52 | **bell_missing** | KXATPMATCH-26JUL18RODCHE | min_past_start 13.1 |
+| 08:13:52 | **bell_missing** | KXWTAMATCH-26JUL18MASRYS | min_past_start 13.1 |
+| 08:13:52 | **bell_missing** | KXWTAMATCH-26JUL18PALHON | min_past_start 13.1 |
+| 08:43:37 | **bell_missing** | KXATPMATCH-26JUL18HEIFEL | min_past_start 11.4 |
+| 09:26:54 | **bell_missing** | KXWTAMATCH-26JUL18MORAKS | min_past_start 11.3 |
+| 09:41:16 | **bell_missing** | KXATPMATCH-26JUL18KOPHER | min_past_start 11.1 |
+| 09:56:28 | **bell_missing** | KXATPCHALLENGERMATCH-26JUL18ALCVIL | min_past_start 10.7 |
+| 09:57:15 | **self_fill_bell** | KXITFMATCH-26JUL18BARBEN-BAR | own buys rose 13c (36->49) in 1800s -> match-live presumption, entry buys FROZEN |
+| 10:10:18 | **bell_missing** | KXATPMATCH-26JUL18DOMSKA | min_past_start 10.3 |
+| 12:09:26 | **w2_fill** | KXWTACHALLENGERMATCH-26JUL18MCASHI-SHI | W2 FILL (buy after start): 45c x5 booking=gun_fire_sweep_race gun=fallback_bell |
+| 12:29:23 | **self_fill_bell** | KXITFWMATCH-26JUL18THOAIA-AIA | own buys rose 11c (77->88) in 1800s -> match-live presumption, entry buys FROZEN |
+| 12:57:39 | **self_fill_bell** | KXITFMATCH-26JUL18BARBEN-BEN | own buys rose 14c (34->48) in 1800s -> match-live presumption, entry buys FROZEN |
 
-## FILLS — 46 graded (session)
+**LIVE DEFECT(S) — forensic blocks written: FORENSIC_self_fill_bell.md, FORENSIC_bell_missing.md**
+
+## FILLS — 19 graded (session)
 | ET | ticker | cat | dir | fill | aim | Δaim | FV(emfb) | latch+min | pair | comb | stamp |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| 14:17 | ATPCHALLENGERMATCH-26JUL18RODSAN-S | ATP_CHALL | ? | 21 | 18 | +3 (adopted_est) | 13.5 | pre | single |  | GIFT_CLASS |
-| 14:20 | ITFWMATCH-26JUL18THOAIA-THO | ITF_W | ? | 13 | 9 | +4 (fill_est) | — | pre | pair | 97 | PENDING |
-| 15:03 | ITFWMATCH-26JUL18SAIHOS-HOS | ITF_W | underdog | 36 | 33 | +3 (place_cell) | 12.5 | pre | single |  | GIFT_CLASS |
-| 16:59 | ITFWMATCH-26JUL18THOAIA-AIA | ITF_W | ? | 84 | 82 | +2 (fill_est) | — | pre | pair | 97 | PENDING |
-| 17:35 | ATPCHALLENGERMATCH-26JUL18LAJYUN-Y | ATP_CHALL | ? | 63 | 61 | +2 (window_cell) | -9.0 | pre | single |  | EARNED |
-| 22:41 | ATPCHALLENGERMATCH-26JUL19DONTOP-D | ATP_CHALL | ? | 24 | 25 | -1 (place_cell) | — | pre | single |  | MIXED |
-| 23:19 | ATPCHALLENGERMATCH-26JUL19BRUKRA-B | ATP_CHALL | leader | 61 | 66 | -5 (place_cell) | 3.0 | pre | single |  | GIFT_CLASS |
-| 23:22 | ATPCHALLENGERMATCH-26JUL19POLSCH-P | ATP_CHALL | leader | 71 | 71 | +0 (place_cell) | 2.5 | pre | single |  | GIFT_CLASS |
-| 00:39 | ATPCHALLENGERMATCH-26JUL19YEVSTR-Y | ATP_CHALL | underdog | 9 | 9 | +0 (place_cell) | 4.0 | pre | single |  | EARNED |
-| 00:39 | ATPCHALLENGERMATCH-26JUL19DJOMAT-D | ATP_CHALL | underdog | 8 | 8 | +0 (place_cell) | — | pre | single |  | MIXED |
-| 01:04 | ITFWMATCH-26JUL19VANCIR-VAN | ITF_W | underdog | 45 | 42 | +3 (place_cell) | — | pre | single |  | MIXED |
-| 01:10 | WTAMATCH-26JUL19JAKAVA-AVA | WTA_MAIN | leader | 85 | 83 | +2 (place_cell) | — | pre | single |  | GIFT_CLASS |
-| 01:51 | ITFMATCH-26JUL18SALTRI-TRI | ITF_M | ? | 59 | 62 | -3 (place_cell) | — | pre | pair | 91 | GIFT_CLASS |
-| 01:51 | ITFMATCH-26JUL18SALTRI-SAL | ITF_M | underdog | 32 | 84 | -52 (place_cell) | — | pre | pair | 91 | EARNED |
-| 02:54 | ATPCHALLENGERMATCH-26JUL19MALMOR-M | ATP_CHALL | leader | 64 | 61 | +3 (place_cell) | — | pre | single |  | PENDING |
-| 03:56 | WTAMATCH-26JUL19RYSHON-RYS | WTA_MAIN | underdog | 37 | 38 | -1 (place_cell) | — | pre | single |  | EARNED |
-| 04:02 | WTAMATCH-26JUL19BRAVON-VON | WTA_MAIN | ? | 86 | 90 | -4 (place_cell) | 1.0 | pre | single |  | MIXED |
-| 04:25 | ATPCHALLENGERMATCH-26JUL19REJWES-W | ATP_CHALL | ? | 76 | 79 | -3 (place_cell) | -9.5 | pre | single |  | EARNED |
-| 05:12 | ATPCHALLENGERMATCH-26JUL19MILFAN-F | ATP_CHALL | underdog | 31 | 32 | -1 (place_cell) | — | pre | single |  | MIXED |
-| 05:18 | ATPCHALLENGERMATCH-26JUL19WINSHE-S | ATP_CHALL | ? | 40 | 41 | -1 (place_cell) | — | pre | single |  | MIXED |
-| 06:06 | ATPCHALLENGERMATCH-26JUL19CALTEP-C | ATP_CHALL | ? | 76 | 75 | +1 (place_cell) | — | pre | pair | 101 | PENDING |
-| 06:06 | ATPCHALLENGERMATCH-26JUL19CALTEP-T | ATP_CHALL | underdog | 25 | 16 | +9 (place_cell) | — | pre | pair | 101 | PENDING |
-| 06:20 | ATPCHALLENGERMATCH-26JUL19TORSEN-S | ATP_CHALL | underdog | 5 | 5 | +0 (place_cell) | — | pre | single |  | MIXED |
-| 06:45 | ATPCHALLENGERMATCH-26JUL19RITGOM-G | ATP_CHALL | leader | 59 | 59 | +0 (place_cell) | 38.5 | pre | pair | 97 | GIFT_CLASS |
-| 07:32 | ATPCHALLENGERMATCH-26JUL19MCKOUA-M | ATP_CHALL | leader | 59 | 59 | +0 (place_cell) | 39.0 | pre | single |  | GIFT_CLASS |
-| 07:42 | ATPCHALLENGERMATCH-26JUL19MENKUM-M | ATP_CHALL | ? | 7 | 7 | +0 (place_cell) | — | pre | single |  | PENDING |
-| 07:51 | ATPCHALLENGERMATCH-26JUL19NIKVRB-N | ATP_CHALL | ? | 28 | 29 | -1 (place_cell) | 7.5 | pre | single |  | EARNED |
-| 07:53 | ATPCHALLENGERMATCH-26JUL19CASVAS-V | ATP_CHALL | leader | 56 | 48 | +8 (place_cell) | -42.0 | pre | pair | 96 | EARNED |
-| 07:58 | ATPCHALLENGERMATCH-26JUL19CASVAS-C | ATP_CHALL | ? | 40 | 39 | +1 (place_cell) | — | pre | pair | 96 | PENDING |
-| 08:14 | ATPCHALLENGERMATCH-26JUL19BOHBOU-B | ATP_CHALL | underdog | 27 | 28 | -1 (place_cell) | — | pre | single |  | MIXED |
-| 09:18 | ATPCHALLENGERMATCH-26JUL19MARWAZ-W | ATP_CHALL | underdog | 20 | 20 | +0 (place_cell) | 8.5 | pre | pair | 93 | EARNED |
-| 09:18 | ATPCHALLENGERMATCH-26JUL19MARWAZ-M | ATP_CHALL | ? | 73 | 75 | -2 (place_cell) | -9.0 | pre | pair | 93 | EARNED |
-| 09:22 | ATPCHALLENGERMATCH-26JUL19PALMUN-M | ATP_CHALL | ? | 44 | 37 | +7 (place_cell) | 22.5 | pre | single |  | GIFT_CLASS |
-| 09:25 | WTAMATCH-26JUL19VEDGAR-GAR | WTA_MAIN | underdog | 9 | 10 | -1 (place_cell) | 1.0 | pre | single |  | EARNED |
-| 09:45 | ATPCHALLENGERMATCH-26JUL19PIENES-P | ATP_CHALL | underdog | 41 | 42 | -1 (place_cell) | 25.5 | pre | single |  | EARNED |
-| 10:13 | ATPMATCH-26JUL19CERTRU-TRU | ATP_MAIN | underdog | 32 | 32 | +0 (place_cell) | — | pre | single |  | PENDING |
-| 10:48 | ATPCHALLENGERMATCH-26JUL19RITGOM-R | ATP_CHALL | ? | 38 | 40 | -2 (place_cell) | -37.5 | pre | pair | 97 | EARNED |
-| 11:13 | ATPCHALLENGERMATCH-26JUL19IMATRA-T | ATP_CHALL | ? | 31 | 32 | -1 (place_cell) | 22.5 | pre | single |  | GIFT_CLASS |
-| 11:23 | ATPCHALLENGERMATCH-26JUL19PAPROS-P | ATP_CHALL | underdog | 19 | 19 | +0 (place_cell) | 10.0 | pre | single |  | EARNED |
-| 12:13 | ATPCHALLENGERMATCH-26JUL19ARSMAR-M | ATP_CHALL | leader | 58 | 58 | +0 (place_cell) | — | pre | single |  | MIXED |
-| 13:26 | ATPCHALLENGERMATCH-26JUL19VUKGEA-G | ATP_CHALL | leader | 64 | 52 | +12 (place_cell) | -3.5 | pre | single |  | EARNED |
-| 13:38 | WTACHALLENGERMATCH-26JUL19BASSHI-B | WTA_CHALL | ? | 77 | 77 | +0 (place_cell) | — | pre | single |  | MIXED |
-| 14:34 | ATPCHALLENGERMATCH-26JUL19HURBIG-H | ATP_CHALL | underdog | 43 | 44 | -1 (place_cell) | 5.5 | pre | single |  | EARNED |
-| 16:15 | ATPCHALLENGERMATCH-26JUL19ZAMKIN-Z | ATP_CHALL | ? | 7 | 7 | +0 (place_cell) | — | pre | pair | 89 | EARNED |
-| 16:36 | ATPCHALLENGERMATCH-26JUL19ZAMKIN-K | ATP_CHALL | leader | 82 | 84 | -2 (place_cell) | — | pre | pair | 89 | MIXED |
-| 18:30 | ATPCHALLENGERMATCH-26JUL19TRODAL-D | ATP_CHALL | underdog | 29 | 25 | +4 (place_cell) | 4.5 | pre | single |  | GIFT_CLASS |
+| 21:50 | WTAMATCH-26JUL18HONTHA-THA | WTA_MAIN | ? | 20 | 16 | +4 (window_cell) | — | pre | single |  | MIXED |
+| 00:46 | ITFMATCH-26JUL17LIMABD-ABD | ITF_M | underdog | 42 | 41 | +1 (place_cell) | — | pre | single |  | EARNED |
+| 00:48 | ITFMATCH-26JUL18PALWIS-WIS | ITF_M | leader | 72 | 71 | +1 (place_cell) | — | pre | single |  | GIFT_CLASS |
+| 01:02 | ITFMATCH-26JUL17ALKYAZ-YAZ | ITF_M | ? | 65 | 51 | +14 (place_cell) | 1.5 | pre | pair | 97 | MIXED |
+| 01:02 | ITFMATCH-26JUL17CHAALH-ALH | ITF_M | ? | 40 | 37 | +3 (place_cell) | -49.5 | pre | pair | 97 | EARNED |
+| 01:04 | ITFMATCH-26JUL17CHAALH-CHA | ITF_M | underdog | 57 | 91 | -34 (place_cell) | 49.0 | pre | pair | 97 | EARNED |
+| 01:14 | ITFMATCH-26JUL17ALKYAZ-ALK | ITF_M | underdog | 32 | 44 | -12 (place_cell) | -4.5 | pre | pair | 97 | EARNED |
+| 01:19 | ITFMATCH-26JUL18AGIOVC-AGI | ITF_M | ? | 24 | 20 | +4 (fill_est) | — | pre | single |  | PENDING |
+| 03:31 | WTAMATCH-26JUL18BANGAO-GAO | WTA_MAIN | ? | 62 | 63 | -1 (window_cell) | — | pre | single |  | GIFT_CLASS |
+| 03:48 | WTACHALLENGERMATCH-26JUL18ERJGRA-G | WTA_CHALL | ? | 44 | 42 | +2 (place_cell) | -32.5 | pre | single |  | EARNED |
+| 03:58 | ITFMATCH-26JUL18TORKHO-KHO | ITF_M | leader | 52 | 48 | +4 (place_cell) | — | pre | single |  | GIFT_CLASS |
+| 07:46 | ATPMATCH-26JUL18LUZTSE-LUZ | ATP_MAIN | underdog | 79 | 91 | -12 (place_cell) | 33.5 | pre | single |  | EARNED |
+| 08:40 | ATPCHALLENGERMATCH-26JUL18GENKUM-K | ATP_CHALL | ? | 44 | 42 | +2 (place_cell) | — | pre | single |  | MIXED |
+| 09:04 | ITFMATCH-26JUL18FAHANT-FAH | ITF_M | underdog | 23 | 19 | +4 (place_cell) | — | pre | single |  | PENDING |
+| 10:38 | WTACHALLENGERMATCH-26JUL18CIRTOT-T | WTA_CHALL | ? | 58 | 58 | +0 (place_cell) | — | pre | single |  | MIXED |
+| 10:38 | WTACHALLENGERMATCH-26JUL18TONSPI-S | WTA_CHALL | ? | 63 | 63 | +0 (place_cell) | — | pre | single |  | MIXED |
+| 11:50 | ITFMATCH-26JUL18MCCGAI-GAI | ITF_M | ? | 39 | 37 | +2 (place_cell) | — | pre | single |  | PENDING |
+| 12:09 | WTACHALLENGERMATCH-26JUL18SERBER-S | WTA_CHALL | leader | 71 | 71 | +0 (place_cell) | — | pre | single |  | MIXED |
+| 12:09 | WTACHALLENGERMATCH-26JUL18MCASHI-S | WTA_CHALL | underdog | 45 | 45 | +0 (place_cell) | — | pre | single |  | EARNED |
 
-## RESTING BIDS — 58 tape-graded (starvation = NO_FLOW only)
-- classes now: {'NO_FLOW': 7, 'FLOW_ABOVE': 51} | repriceable now: true 36 / false 22 | **cumulative bid_grade lines: 13397 (repriceable true 1859 / false 11538)** -- the liquid_repost re-arm evidence accumulates here
+## RESTING BIDS — 11 tape-graded (starvation = NO_FLOW only)
+- classes now: {'FLOW_AT_LEVEL': 9, 'FLOW_ABOVE': 1, 'NO_FLOW': 1} | repriceable now: true 0 / false 11 | **cumulative bid_grade lines: 13405 (repriceable true 1859 / false 11546)** -- the liquid_repost re-arm evidence accumulates here
 | ticker | lvl | age | prints n/rng/sz | book | gap | class | bound(min aim,goal−basis) | note |
 |---|---|---|---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL20CALKUM-C | 67 | 175m | 7/72-72/48 | 70-72 | 5 | **FLOW_ABOVE** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL20CALKUM-K | 25 | 116m | 0 | 28-29 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL20GIUHER-G | 75 | 108m | 9/79-80/431 | 77-78 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→79 |
-| ATPCHALLENGERMATCH-26JUL20GIUHER-H | 19 | 119m | 20/21-22/1874 | 20-21 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→21 |
-| ATPCHALLENGERMATCH-26JUL20KUZJAN-J | 18 | 169m | 33/19-21/710 | 19-21 | 1 | **FLOW_ABOVE** | 17 | flow above but bound 17c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL20KUZJAN-K | 76 | 161m | 33/80-81/630 | 80-81 | 4 | **FLOW_ABOVE** | 78 | REPRICEABLE→78 |
-| ATPCHALLENGERMATCH-26JUL20MARBIT-B | 30 | 166m | 0 | 34-35 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL20MARBIT-M | 61 | 166m | 19/65-65/1072 | 64-65 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→65 |
-| ATPCHALLENGERMATCH-26JUL20MARROS-M | 73 | 25m | 0 | 78-79 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL20MARROS-R | 19 | 25m | 1/22-22/8 | 20-22 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→22 |
-| ATPCHALLENGERMATCH-26JUL20MONNES-M | 66 | 86m | 4/70-70/179 | 69-70 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→70 |
-| ATPCHALLENGERMATCH-26JUL20MONNES-N | 27 | 86m | 1/31-31/6 | 30-31 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→31 |
-| ATPCHALLENGERMATCH-26JUL20OLIZIE-O | 72 | 115m | 6/77-77/25 | 76-77 | 5 | **FLOW_ABOVE** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL20OLIZIE-Z | 17 | 115m | 4/20-20/27 | 19-20 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→20 |
-| ATPCHALLENGERMATCH-26JUL20PALLEO-L | 57 | 56m | 1/60-60/8 | 58-60 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→60 |
-| ATPCHALLENGERMATCH-26JUL20PALLEO-P | 38 | 6m | 0 | 41-42 | — | **NO_FLOW** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL20PETTAB-P | 62 | 115m | 28/65-66/934 | 65-66 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→65 |
-| ATPCHALLENGERMATCH-26JUL20PETTAB-T | 32 | 115m | 10/36-36/640 | 35-36 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→36 |
-| ATPCHALLENGERMATCH-26JUL20POHWES-P | 5 | 205m | 193/8-13/13702 | 8-10 | 3 | **FLOW_ABOVE** | 7 | REPRICEABLE→7 |
-| ATPCHALLENGERMATCH-26JUL20POHWES-W | 87 | 205m | 45/90-92/548 | 90-91 | 3 | **FLOW_ABOVE** | 87 | flow above but bound 87c < flow -- chasing breaks goal |
-| ATPCHALLENGERMATCH-26JUL20POLBRU-B | 36 | 116m | 2/40-40/23 | 38-40 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→40 |
-| ATPCHALLENGERMATCH-26JUL20POLBRU-P | 58 | 150m | 12/61-62/652 | 60-61 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→61 |
-| ATPCHALLENGERMATCH-26JUL20STAMAT-M | 59 | 89m | 4/61-62/46 | 60-62 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→61 |
-| ATPCHALLENGERMATCH-26JUL20STAMAT-S | 36 | 71m | 1/40-40/11 | 38-40 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→40 |
-| ATPCHALLENGERMATCH-26JUL20TORSTR-S | 62 | 85m | 4/65-65/15 | 64-65 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→65 |
-| ATPCHALLENGERMATCH-26JUL20TORSTR-T | 31 | 85m | 5/35-35/496 | 34-35 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→35 |
-| ATPCHALLENGERMATCH-26JUL20VALGOM-G | 78 | 51m | 1/83-83/1 | 80-83 | 5 | **FLOW_ABOVE** | 99 |  |
-| ATPCHALLENGERMATCH-26JUL20VALGOM-V | 16 | 10m | 1/19-19/4 | 18-19 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→19 |
-| ATPCHALLENGERMATCH-26JUL20VANOUA-O | 49 | 56m | 3/52-52/208 | 51-53 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→52 |
-| ATPCHALLENGERMATCH-26JUL20VANOUA-V | 46 | 56m | 4/48-49/336 | 48-49 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→48 |
-| ATPCHALLENGERMATCH-26JUL20VARDON-D | 35 | 112m | 1/37-37/5 | 35-37 | 2 | **FLOW_ABOVE** | 99 | REPRICEABLE→37 |
-| ATPCHALLENGERMATCH-26JUL20VARDON-V | 62 | 167m | 10/63-65/148 | 63-65 | 1 | **FLOW_ABOVE** | 99 | REPRICEABLE→63 |
-| ATPCHALLENGERMATCH-26JUL20VASSIN-S | 21 | 36m | 1/25-25/3 | 22-25 | 4 | **FLOW_ABOVE** | 99 | REPRICEABLE→25 |
-| ATPCHALLENGERMATCH-26JUL20VASSIN-V | 72 | 85m | 5/77-77/41 | 75-77 | 5 | **FLOW_ABOVE** | 99 |  |
-| ATPMATCH-26JUL19BAEKEC-KEC | 51 | 1301m | 8/55-56/230 | 54-55 | 4 | **FLOW_ABOVE** | 56 | REPRICEABLE→55 |
-| ATPMATCH-26JUL19CHODEJ-CHO | 43 | 1285m | 10/45-46/2930 | 44-45 | 2 | **FLOW_ABOVE** | 45 | REPRICEABLE→45 |
-| WTACHALLENGERMATCH-26JUL18TONSPI-T | 31 | 2036m | 0 | ? | — | **NO_FLOW** | 99 |  |
-| WTACHALLENGERMATCH-26JUL19SERTOT-T | 55 | 1246m | 174/58-99/104939 | 99-96 | 3 | **FLOW_ABOVE** | 56 | REPRICEABLE→56 |
-| WTAMATCH-26JUL20LEPAVA-AVA | 61 | 234m | 112/65-68/8589 | 66-68 | 4 | **FLOW_ABOVE** | 68 | REPRICEABLE→65 |
-| WTAMATCH-26JUL20LEPAVA-LEP | 30 | 234m | 116/33-35/10502 | 32-33 | 3 | **FLOW_ABOVE** | 31 | REPRICEABLE→31 |
-| WTAMATCH-26JUL20NIEMAL-MAL | 38 | 214m | 74/41-43/4600 | 42-43 | 3 | **FLOW_ABOVE** | 39 | REPRICEABLE→39 |
-| WTAMATCH-26JUL20NIEMAL-NIE | 54 | 236m | 73/59-60/4411 | 58-59 | 5 | **FLOW_ABOVE** | 59 |  |
-| WTAMATCH-26JUL20OKTDOD-DOD | 28 | 175m | 30/32-33/1570 | 31-32 | 4 | **FLOW_ABOVE** | 30 | REPRICEABLE→30 |
-| WTAMATCH-26JUL20OKTDOD-OKT | 63 | 176m | 46/68-69/5682 | 68-69 | 5 | **FLOW_ABOVE** | 69 |  |
-| WTAMATCH-26JUL20PIECAR-CAR | 73 | 222m | 18/82-83/860 | 81-82 | 9 | **FLOW_ABOVE** | 82 |  |
-| WTAMATCH-26JUL20PIECAR-PIE | 16 | 142m | 27/19-19/875 | 17-19 | 3 | **FLOW_ABOVE** | 17 | REPRICEABLE→17 |
-| WTAMATCH-26JUL20PODLEE-LEE | 53 | 52m | 5/58-58/301 | 57-58 | 5 | **FLOW_ABOVE** | 99 |  |
-| WTAMATCH-26JUL20PODLEE-POD | 39 | 52m | 12/44-45/1428 | 43-44 | 5 | **FLOW_ABOVE** | 99 |  |
-| WTAMATCH-26JUL20PRIBRA-BRA | 6 | 146m | 13/9-9/976 | 8-9 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→9 |
-| WTAMATCH-26JUL20PRIBRA-PRI | 82 | 139m | 5/92-92/34 | 91-92 | 10 | **FLOW_ABOVE** | 99 |  |
-| WTAMATCH-26JUL20QUEKAL-KAL | 63 | 25m | 8/68-69/7130 | 68-69 | 5 | **FLOW_ABOVE** | 69 |  |
-| WTAMATCH-26JUL20QUEKAL-QUE | 29 | 25m | 5/32-33/685 | 31-32 | 3 | **FLOW_ABOVE** | 31 | REPRICEABLE→31 |
-| WTAMATCH-26JUL20SEISNI-SEI | 20 | 155m | 12/22-24/2167 | 21-22 | 2 | **FLOW_ABOVE** | 21 | REPRICEABLE→21 |
-| WTAMATCH-26JUL20SEISNI-SNI | 69 | 160m | 28/78-79/1570 | 78-79 | 9 | **FLOW_ABOVE** | 78 |  |
-| WTAMATCH-26JUL20SORCHA-CHA | 48 | 51m | 0 | 52-53 | — | **NO_FLOW** | 53 |  |
-| WTAMATCH-26JUL20TIMSAS-TIM | 43 | 38m | 0 | 45-47 | — | **NO_FLOW** | 44 |  |
-| WTAMATCH-26JUL20VEDBAR-BAR | 37 | 90m | 3/40-41/9 | 39-40 | 3 | **FLOW_ABOVE** | 99 | REPRICEABLE→40 |
-| WTAMATCH-26JUL20VEDBAR-VED | 56 | 95m | 13/61-62/949 | 60-61 | 5 | **FLOW_ABOVE** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL18LAJYUN-Y | 59 | 2106m | 17884/1-97/3788705 | ? | -58 | **FLOW_AT_LEVEL** | 99 |  |
+| ATPCHALLENGERMATCH-26JUL18RODSAN-R | 72 | 2444m | 872/77-99/274603 | ? | 5 | **FLOW_ABOVE** | 74 | flow above but bound 74c < flow -- chasing breaks goal |
+| ATPCHALLENGERMATCH-26JUL18RODSAN-S | 19 | 2257m | 1675/1-23/491200 | ? | -18 | **FLOW_AT_LEVEL** | 20 |  |
+| ATPCHALLENGERMATCH-26JUL18TOMJOH-J | 55 | 2196m | 21286/1-82/2726947 | ? | -54 | **FLOW_AT_LEVEL** | 55 |  |
+| ATPCHALLENGERMATCH-26JUL18TOMJOH-T | 39 | 2196m | 25613/9-99/3469900 | ? | -30 | **FLOW_AT_LEVEL** | 40 |  |
+| ITFWMATCH-26JUL18THOAIA-AIA | 88 | 2138m | 2900/53-99/615993 | ? | -35 | **FLOW_AT_LEVEL** | 99 |  |
+| ITFWMATCH-26JUL18THOAIA-THO | 13 | 2101m | 9059/1-70/1594497 | ? | -12 | **FLOW_AT_LEVEL** | 99 |  |
+| WTACHALLENGERMATCH-26JUL18BASBOE-B | 93 | 2526m | 287/93-99/148877 | ? | 0 | **FLOW_AT_LEVEL** | 91 |  |
+| WTACHALLENGERMATCH-26JUL18TONSPI-T | 31 | 2249m | 0 | ? | — | **NO_FLOW** | 32 |  |
+| WTAMATCH-26JUL18TAUKRE-KRE | 52 | 2472m | 7166/44-99/2370773 | ? | -8 | **FLOW_AT_LEVEL** | 57 |  |
+| WTAMATCH-26JUL18TAUKRE-TAU | 40 | 2523m | 9240/1-60/2579482 | ? | -39 | **FLOW_AT_LEVEL** | 40 |  |
 
 ## COULD-HAVE-FILLED — open pairs, achievable-combined RIGHT NOW
 | event | basis | sib ask | achievable | goal | vs goal |
 |---|---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL19DONTOP | 24 | 1 | **25** | 97 | -72 |
-| ATPCHALLENGERMATCH-26JUL19HURBIG | 43 | 8 | **51** | 97 | -46 |
-| ATPCHALLENGERMATCH-26JUL19BRUKRA | 61 | 1 | **62** | 97 | -35 |
-| ATPCHALLENGERMATCH-26JUL19POLSCH | 71 | 5 | **76** | 97 | -21 |
-| ATPCHALLENGERMATCH-26JUL19REJWES | 76 | 1 | **77** | 97 | -20 |
-| ATPCHALLENGERMATCH-26JUL19MALMOR | 64 | 14 | **78** | 97 | -19 |
-| WTACHALLENGERMATCH-26JUL19BASSHI | 77 | 1 | **78** | 97 | -19 |
-| WTAMATCH-26JUL19VEDGAR | 9 | 81 | **90** | 97 | -7 |
-| WTAMATCH-26JUL19JAKAVA | 85 | 6 | **91** | 97 | -6 |
-| ATPCHALLENGERMATCH-26JUL19VUKGEA | 64 | 29 | **93** | 97 | -4 |
-| ATPCHALLENGERMATCH-26JUL19NIKVRB | 28 | 69 | **97** | 97 | +0 |
-| ATPCHALLENGERMATCH-26JUL19TORSEN | 5 | 94 | **99** | 97 | +2 |
-| ATPMATCH-26JUL19CERTRU | 32 | 70 | **102** | 97 | +5 |
-| ATPCHALLENGERMATCH-26JUL19MENKUM | 7 | 97 | **104** | 97 | +7 |
-| ATPCHALLENGERMATCH-26JUL19DJOMAT | 8 | 99 | **107** | 97 | +10 |
-| ATPCHALLENGERMATCH-26JUL19YEVSTR | 9 | 99 | **108** | 97 | +11 |
-| ATPCHALLENGERMATCH-26JUL19PAPROS | 19 | 99 | **118** | 97 | +21 |
-| ITFWMATCH-26JUL19VANCIR | 45 | 78 | **123** | 97 | +26 |
-| ATPCHALLENGERMATCH-26JUL19BOHBOU | 27 | 98 | **125** | 97 | +28 |
-| ATPCHALLENGERMATCH-26JUL19TRODAL | 29 | 98 | **127** | 97 | +30 |
-| ATPCHALLENGERMATCH-26JUL19MILFAN | 31 | 99 | **130** | 97 | +33 |
-| ATPCHALLENGERMATCH-26JUL19IMATRA | 31 | 99 | **130** | 97 | +33 |
-| WTAMATCH-26JUL19RYSHON | 37 | 99 | **136** | 97 | +39 |
-| ATPCHALLENGERMATCH-26JUL19WINSHE | 40 | 99 | **139** | 97 | +42 |
-| ATPCHALLENGERMATCH-26JUL19PIENES | 41 | 98 | **139** | 97 | +42 |
-| ATPCHALLENGERMATCH-26JUL19PALMUN | 44 | 98 | **142** | 97 | +45 |
-| ATPCHALLENGERMATCH-26JUL19ARSMAR | 58 | 91 | **149** | 97 | +52 |
-| ATPCHALLENGERMATCH-26JUL19MCKOUA | 59 | 98 | **157** | 97 | +60 |
-| WTAMATCH-26JUL19BRAVON | 86 | 90 | **176** | 97 | +79 |
+| ITFMATCH-26JUL18FAHANT | 23 | 99 | **122** | 97 | +25 |
+| ITFMATCH-26JUL18MCCGAI | 39 | 99 | **138** | 97 | +41 |
 
-## FLOW-STATE — 71 tracked game(s) ({'QUIET': 26, 'WAKING': 41, 'OPEN': 4}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
+## FLOW-STATE — 23 tracked game(s) ({'QUIET': 22, 'WAKING': 1}; thresholds PROVISIONAL, refit by the early-canvas study; window 30m)
 | game | cat | prints/min | spread | state |
 |---|---|---|---|---|
-| ATPCHALLENGERMATCH-26JUL20POHWES | ATP_CHALL | 0.933 | 1 | **OPEN** |
-| WTAMATCH-26JUL20LEPAVA | WTA_MAIN | 0.8 | 1 | **OPEN** |
-| WTAMATCH-26JUL20NIEMAL | WTA_MAIN | 1.1 | 1 | **OPEN** |
-| WTAMATCH-26JUL20PIECAR | WTA_MAIN | 0.6 | 1 | **OPEN** |
+| ATPCHALLENGERMATCH-26JUL18GENKUM | ATP_CHALL | 0.0 | — | **QUIET** |
 | ATPCHALLENGERMATCH-26JUL18LAJYUN | ATP_CHALL | 0.0 | — | **QUIET** |
 | ATPCHALLENGERMATCH-26JUL18RODSAN | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19ARSMAR | ATP_CHALL | 0.0 | 8 | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19BOHBOU | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19BRUKRA | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19CALTEP | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19DJOMAT | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19HURBIG | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19IMATRA | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19MENKUM | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19PAPROS | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19POLSCH | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19RITGOM | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19TORSEN | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19TRODAL | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19VUKGEA | ATP_CHALL | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19ZAMKIN | ATP_CHALL | 0.0 | — | **QUIET** |
-| ITFMATCH-26JUL18SALTRI | ITF_M | 0.0 | — | **QUIET** |
-| ITFWMATCH-26JUL18SAIHOS | ITF_W | 0.0 | — | **QUIET** |
+| ATPCHALLENGERMATCH-26JUL18TOMJOH | ATP_CHALL | 0.0 | — | **QUIET** |
+| ATPMATCH-26JUL18LUZTSE | ATP_MAIN | 0.0 | — | **QUIET** |
+| ITFMATCH-26JUL17ALKYAZ | ITF_M | 0.0 | — | **QUIET** |
+| ITFMATCH-26JUL17CHAALH | ITF_M | 0.0 | — | **QUIET** |
+| ITFMATCH-26JUL17LIMABD | ITF_M | 0.0 | — | **QUIET** |
+| ITFMATCH-26JUL18AGIOVC | ITF_M | 0.0 | — | **QUIET** |
+| ITFMATCH-26JUL18MCCGAI | ITF_M | 0.0 | — | **QUIET** |
+| ITFMATCH-26JUL18PALWIS | ITF_M | 0.0 | — | **QUIET** |
+| ITFMATCH-26JUL18TORKHO | ITF_M | 0.0 | — | **QUIET** |
 | ITFWMATCH-26JUL18THOAIA | ITF_W | 0.0 | — | **QUIET** |
-| ITFWMATCH-26JUL19VANCIR | ITF_W | 0.0 | — | **QUIET** |
+| WTACHALLENGERMATCH-26JUL18BASBOE | WTA_CHALL | 0.0 | — | **QUIET** |
+| WTACHALLENGERMATCH-26JUL18CIRTOT | WTA_CHALL | 0.0 | — | **QUIET** |
+| WTACHALLENGERMATCH-26JUL18ERJGRA | WTA_CHALL | 0.0 | — | **QUIET** |
+| WTACHALLENGERMATCH-26JUL18MCASHI | WTA_CHALL | 0.0 | — | **QUIET** |
+| WTACHALLENGERMATCH-26JUL18SERBER | WTA_CHALL | 0.0 | — | **QUIET** |
 | WTACHALLENGERMATCH-26JUL18TONSPI | WTA_CHALL | 0.0 | — | **QUIET** |
-| WTACHALLENGERMATCH-26JUL19BASSHI | WTA_CHALL | 0.0 | — | **QUIET** |
-| WTACHALLENGERMATCH-26JUL19SERTOT | WTA_CHALL | 0.0 | — | **QUIET** |
-| WTAMATCH-26JUL19BRAVON | WTA_MAIN | 0.0 | — | **QUIET** |
-| WTAMATCH-26JUL19RYSHON | WTA_MAIN | 0.0 | — | **QUIET** |
-| ATPCHALLENGERMATCH-26JUL19CASVAS | ATP_CHALL | 0.0 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL19DONTOP | ATP_CHALL | 0.0 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL19MALMOR | ATP_CHALL | 0.0 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL19MARWAZ | ATP_CHALL | 0.0 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL19MCKOUA | ATP_CHALL | 0.0 | 2 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL19MILFAN | ATP_CHALL | 0.0 | 4 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL19NIKVRB | ATP_CHALL | 4.967 | — | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL19PALMUN | ATP_CHALL | 0.0 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL19PIENES | ATP_CHALL | 0.0 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL19REJWES | ATP_CHALL | 0.0 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL19WINSHE | ATP_CHALL | 0.0 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL19YEVSTR | ATP_CHALL | 0.0 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20CALKUM | ATP_CHALL | 0.067 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20GIUHER | ATP_CHALL | 0.033 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20KUZJAN | ATP_CHALL | 0.267 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20MARBIT | ATP_CHALL | 0.1 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20MARROS | ATP_CHALL | 0.033 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20MONNES | ATP_CHALL | 0.033 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20OLIZIE | ATP_CHALL | 0.067 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20PALLEO | ATP_CHALL | 0.033 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20PETTAB | ATP_CHALL | 0.133 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20POLBRU | ATP_CHALL | 0.067 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20STAMAT | ATP_CHALL | 0.033 | 2 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20TORSTR | ATP_CHALL | 0.033 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20VALGOM | ATP_CHALL | 0.067 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20VANOUA | ATP_CHALL | 0.167 | 1 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20VARDON | ATP_CHALL | 0.133 | 2 | **WAKING** |
-| ATPCHALLENGERMATCH-26JUL20VASSIN | ATP_CHALL | 0.1 | 2 | **WAKING** |
-| ATPMATCH-26JUL19BAEKEC | ATP_MAIN | 0.033 | 1 | **WAKING** |
-| ATPMATCH-26JUL19CERTRU | ATP_MAIN | 0.033 | 1 | **WAKING** |
-| ATPMATCH-26JUL19CHODEJ | ATP_MAIN | 0.0 | 1 | **WAKING** |
-| WTAMATCH-26JUL19JAKAVA | WTA_MAIN | 0.0 | 1 | **WAKING** |
-| WTAMATCH-26JUL19VEDGAR | WTA_MAIN | 0.0 | 1 | **WAKING** |
-| WTAMATCH-26JUL20OKTDOD | WTA_MAIN | 0.4 | 1 | **WAKING** |
-| WTAMATCH-26JUL20PODLEE | WTA_MAIN | 0.467 | 1 | **WAKING** |
-| WTAMATCH-26JUL20PRIBRA | WTA_MAIN | 0.2 | 1 | **WAKING** |
-| WTAMATCH-26JUL20QUEKAL | WTA_MAIN | 0.433 | 1 | **WAKING** |
-| WTAMATCH-26JUL20SEISNI | WTA_MAIN | 0.4 | 1 | **WAKING** |
-| WTAMATCH-26JUL20SORCHA | WTA_MAIN | 0.0 | 1 | **WAKING** |
-| WTAMATCH-26JUL20TIMSAS | WTA_MAIN | 0.0 | 2 | **WAKING** |
-| WTAMATCH-26JUL20VEDBAR | WTA_MAIN | 0.133 | 1 | **WAKING** |
+| WTAMATCH-26JUL18BANGAO | WTA_MAIN | 0.0 | — | **QUIET** |
+| WTAMATCH-26JUL18HONTHA | WTA_MAIN | 0.0 | — | **QUIET** |
+| WTAMATCH-26JUL18TAUKRE | WTA_MAIN | 0.0 | — | **QUIET** |
+| ITFMATCH-26JUL18FAHANT | ITF_M | 0.0 | 1 | **WAKING** |
 
-## PATTERNS (sub-B) — 86
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18RODSAN-SAN {"fill": 21, "age_min": 2019, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL18SAIHOS-HOS {"fill": 36, "age_min": 1973, "mode": "NO_BID(sib rested earlier, none now)"}
-- deep_neg_fv: KXATPCHALLENGERMATCH-26JUL18LAJYUN-YUN {"entry_minus_fv_burst": -9.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18LAJYUN-YUN {"fill": 63, "age_min": 1821, "mode": "NO_BID(sib rested earlier, none now)"}
-- pre_conception_buy: KXATPCHALLENGERMATCH-26JUL19BARSTA-BAR {"price": 44, "conception_ts": 1784436636.5493214, "detail": "buy 44c predates the conception stamp by 137min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- pre_conception_buy: KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU {"price": 66, "conception_ts": 1784431848.815907, "detail": "buy 66c predates the conception stamp by 51min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19DONTOP-DON {"fill": 24, "age_min": 1515, "mode": "NO_BID(sib rested earlier, none now)"}
-- pre_conception_buy: KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU {"price": 66, "conception_ts": 1784431848.815907, "detail": "buy 66c predates the conception stamp by 36min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- pre_conception_buy: KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU {"price": 61, "conception_ts": 1784431848.815907, "detail": "buy 61c predates the conception stamp by 36min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU {"fill": 61, "age_min": 1477, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19POLSCH-POL {"fill": 71, "age_min": 1474, "mode": "NO_BID(sib rested earlier, none now)"}
-- pre_conception_buy: KXATPCHALLENGERMATCH-26JUL19BARSTA-BAR {"price": 43, "conception_ts": 1784436636.5493214, "detail": "buy 43c predates the conception stamp by 87min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- pre_conception_buy: KXATPCHALLENGERMATCH-26JUL19BARSTA-BAR {"price": 40, "conception_ts": 1784436636.5493214, "detail": "buy 40c predates the conception stamp by 87min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- pre_conception_buy: KXATPCHALLENGERMATCH-26JUL19BARSTA-BAR {"price": 40, "conception_ts": 1784436636.5493214, "detail": "buy 40c predates the conception stamp by 87min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- pre_conception_buy: KXATPCHALLENGERMATCH-26JUL19BARSTA-BAR {"price": 40, "conception_ts": 1784436636.5493214, "detail": "buy 40c predates the conception stamp by 87min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- pre_conception_buy: KXATPCHALLENGERMATCH-26JUL19DJOMAT-DJO {"price": 14, "conception_ts": 1784442566.5490172, "detail": "buy 14c predates the conception stamp by 172min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19YEVSTR-YEV {"fill": 9, "age_min": 1397, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19DJOMAT-DJO {"fill": 8, "age_min": 1396, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXITFWMATCH-26JUL19VANCIR-VAN {"fill": 45, "age_min": 1371, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXWTAMATCH-26JUL19JAKAVA-AVA {"fill": 85, "age_min": 1366, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS {"kind": "resting_bid", "ref": 11.0, "market_mid": 52.5, "divergence": -41.5}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS {"kind": "resting_bid", "ref": 11.0, "market_mid": 51.5, "divergence": -40.5}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS {"kind": "resting_bid", "ref": 11.0, "market_mid": 51.5, "divergence": -40.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19MALMOR-MAL {"fill": 64, "age_min": 1262, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS {"kind": "resting_bid", "ref": 11.0, "market_mid": 51.0, "divergence": -40.0}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS {"kind": "resting_bid", "ref": 11.0, "market_mid": 51.0, "divergence": -40.0}
-- half_arm_aging: KXWTAMATCH-26JUL19RYSHON-RYS {"fill": 37, "age_min": 1200, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXWTAMATCH-26JUL19BRAVON-VON {"fill": 86, "age_min": 1194, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS {"kind": "resting_bid", "ref": 11.0, "market_mid": 51.5, "divergence": -40.5}
-- reality_divergence: KXITFWMATCH-26JUL19VANCIR-VAN {"kind": "position_basis", "ref": 45.0, "market_mid": 8.5, "divergence": 36.5}
-- deep_neg_fv: KXATPCHALLENGERMATCH-26JUL19REJWES-WES {"entry_minus_fv_burst": -9.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19REJWES-WES {"fill": 76, "age_min": 1171, "mode": "NO_BID(sib rested earlier, none now)"}
-- pre_conception_buy: KXATPCHALLENGERMATCH-26JUL19WINSHE-SHE {"price": 40, "conception_ts": 1784461479.552582, "detail": "buy 40c predates the conception stamp by 172min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- reality_divergence: KXATPMATCH-26JUL19ALTCOL-COL {"kind": "resting_bid", "ref": 32.0, "market_mid": 66.0, "divergence": -34.0}
-- pre_conception_buy: KXATPCHALLENGERMATCH-26JUL19WINSHE-SHE {"price": 40, "conception_ts": 1784461479.552582, "detail": "buy 40c predates the conception stamp by 157min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19MILFAN-FAN {"fill": 31, "age_min": 1124, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19WINSHE-SHE {"fill": 40, "age_min": 1118, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXITFWMATCH-26JUL19VANCIR-VAN {"kind": "position_basis", "ref": 45.0, "market_mid": 8.0, "divergence": 37.0}
-- reality_divergence: KXATPMATCH-26JUL19ALTCOL-COL {"kind": "resting_bid", "ref": 32.0, "market_mid": 62.5, "divergence": -30.5}
-- combined_over_goal_UNVERIFIED_BASIS: KXATPCHALLENGERMATCH-26JUL19CALTEP {"combined": 101, "detail": "pair combined 101c > 97c but an adopted leg has mark-to-market basis (pre-TRUE-BASIS booking) \u2014 exchange-truth check required, NOT a ZT row"}
-- reality_divergence: KXATPMATCH-26JUL19ALTCOL-COL {"kind": "resting_bid", "ref": 32.0, "market_mid": 62.5, "divergence": -30.5}
-- reality_divergence: KXWTAMATCH-26JUL19RYSHON-RYS {"kind": "position_basis", "ref": 37.0, "market_mid": 2.0, "divergence": 35.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19TORSEN-SEN {"fill": 5, "age_min": 1056, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU {"kind": "position_basis", "ref": 61.0, "market_mid": 35.5, "divergence": 25.5}
-- reality_divergence: KXATPMATCH-26JUL19ALTCOL-COL {"kind": "resting_bid", "ref": 32.0, "market_mid": 62.5, "divergence": -30.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19MCKOUA-MCK {"fill": 59, "age_min": 984, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPMATCH-26JUL19ALTCOL-COL {"kind": "resting_bid", "ref": 32.0, "market_mid": 64.5, "divergence": -32.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN {"fill": 7, "age_min": 974, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK {"fill": 28, "age_min": 965, "mode": "NO_BID(sib rested earlier, none now)"}
-- deep_neg_fv: KXATPCHALLENGERMATCH-26JUL19CASVAS-VAS {"entry_minus_fv_burst": -42.0}
-- reality_divergence: KXATPMATCH-26JUL19ALTCOL-COL {"kind": "resting_bid", "ref": 32.0, "market_mid": 66.0, "divergence": -34.0}
-- pre_conception_buy: KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOH {"price": 27, "conception_ts": 1784467368.8890374, "detail": "buy 27c predates the conception stamp by 69min \u2014 honest-window buy, cap not yet defined (ungradeable)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOH {"fill": 27, "age_min": 942, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOU {"kind": "resting_bid", "ref": 70.0, "market_mid": 95.5, "divergence": -25.5}
-- reality_divergence: KXWTAMATCH-26JUL19BRAVON-VON {"kind": "position_basis", "ref": 86.0, "market_mid": 58.5, "divergence": 27.5}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOU {"kind": "resting_bid", "ref": 70.0, "market_mid": 97.0, "divergence": -27.0}
-- reality_divergence: KXWTAMATCH-26JUL19BRAVON-VON {"kind": "position_basis", "ref": 86.0, "market_mid": 20.5, "divergence": 65.5}
-- deep_neg_fv: KXATPCHALLENGERMATCH-26JUL19MARWAZ-MAR {"entry_minus_fv_burst": -9.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19PALMUN-MUN {"fill": 44, "age_min": 874, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXWTAMATCH-26JUL19VEDGAR-GAR {"fill": 9, "age_min": 871, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOU {"kind": "resting_bid", "ref": 70.0, "market_mid": 96.5, "divergence": -26.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19PIENES-PIE {"fill": 41, "age_min": 851, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXATPMATCH-26JUL19CERTRU-TRU {"fill": 32, "age_min": 823, "mode": "PAIRING(sib never rested)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOU {"kind": "resting_bid", "ref": 70.0, "market_mid": 97.0, "divergence": -27.0}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19PALMUN-MUN {"kind": "position_basis", "ref": 44.0, "market_mid": 6.5, "divergence": 37.5}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19PIENES-PIE {"kind": "position_basis", "ref": 41.0, "market_mid": 14.0, "divergence": 27.0}
-- deep_neg_fv: KXATPCHALLENGERMATCH-26JUL19RITGOM-RIT {"entry_minus_fv_burst": -37.5}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19MCKOUA-MCK {"kind": "position_basis", "ref": 59.0, "market_mid": 28.0, "divergence": 31.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19IMATRA-TRA {"fill": 31, "age_min": 763, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOU {"kind": "resting_bid", "ref": 70.0, "market_mid": 96.5, "divergence": -26.5}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19PIENES-PIE {"kind": "position_basis", "ref": 41.0, "market_mid": 15.5, "divergence": 25.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19PAPROS-PAP {"fill": 19, "age_min": 753, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19MCKOUA-MCK {"kind": "position_basis", "ref": 59.0, "market_mid": 7.5, "divergence": 51.5}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19RITGOM-GOM {"kind": "position_basis", "ref": 59.0, "market_mid": 10.0, "divergence": 49.0}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOU {"kind": "resting_bid", "ref": 70.0, "market_mid": 96.5, "divergence": -26.5}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19RITGOM-GOM {"kind": "position_basis", "ref": 59.0, "market_mid": 31.0, "divergence": 28.0}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR {"fill": 58, "age_min": 703, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOU {"kind": "resting_bid", "ref": 70.0, "market_mid": 96.5, "divergence": -26.5}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR {"kind": "position_basis", "ref": 58.0, "market_mid": 24.0, "divergence": 34.0}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOU {"kind": "resting_bid", "ref": 70.0, "market_mid": 96.5, "divergence": -26.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19VUKGEA-GEA {"fill": 64, "age_min": 630, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXWTACHALLENGERMATCH-26JUL19BASSHI-BAS {"fill": 77, "age_min": 618, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXWTACHALLENGERMATCH-26JUL19BASSHI-BAS {"kind": "position_basis", "ref": 77.0, "market_mid": 51.5, "divergence": 25.5}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR {"fill": 43, "age_min": 562, "mode": "NO_BID(sib rested earlier, none now)"}
-- half_arm_aging: KXATPCHALLENGERMATCH-26JUL19TRODAL-DAL {"fill": 29, "age_min": 326, "mode": "NO_BID(sib rested earlier, none now)"}
-- reality_divergence: KXATPCHALLENGERMATCH-26JUL19TRODAL-DAL {"kind": "position_basis", "ref": 29.0, "market_mid": 1.5, "divergence": 27.5}
+## PATTERNS (sub-B) — 31
+- half_arm_aging: KXWTAMATCH-26JUL18HONTHA-THA {"fill": 20, "age_min": 3017, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL17LIMABD-ABD {"fill": 42, "age_min": 2841, "mode": "PAIRING(sib never rested)"}
+- half_arm_aging: KXITFMATCH-26JUL18PALWIS-WIS {"fill": 72, "age_min": 2839, "mode": "NO_BID(sib rested earlier, none now)"}
+- deep_neg_fv: KXITFMATCH-26JUL17CHAALH-ALH {"entry_minus_fv_burst": -49.5}
+- half_arm_aging: KXITFMATCH-26JUL18AGIOVC-AGI {"fill": 24, "age_min": 2808, "mode": "NO_BID(sib rested earlier, none now)"}
+- reality_divergence: KXITFMATCH-26JUL17ALKYAZ-YAZ {"kind": "position_basis", "ref": 65.0, "market_mid": 24.5, "divergence": 40.5}
+- half_arm_aging: KXWTAMATCH-26JUL18BANGAO-GAO {"fill": 62, "age_min": 2676, "mode": "NO_BID(sib rested earlier, none now)"}
+- deep_neg_fv: KXWTACHALLENGERMATCH-26JUL18ERJGRA-GRA {"entry_minus_fv_burst": -32.5}
+- half_arm_aging: KXWTACHALLENGERMATCH-26JUL18ERJGRA-GRA {"fill": 44, "age_min": 2659, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXITFMATCH-26JUL18TORKHO-KHO {"fill": 52, "age_min": 2649, "mode": "NO_BID(sib rested earlier, none now)"}
+- reality_divergence: KXITFMATCH-26JUL18TORKHO-KHO {"kind": "position_basis", "ref": 52.0, "market_mid": 20.0, "divergence": 32.0}
+- reality_divergence: KXITFMATCH-26JUL18TORKHO-KHO {"kind": "position_basis", "ref": 52.0, "market_mid": 8.5, "divergence": 43.5}
+- reality_divergence: KXITFMATCH-26JUL18TORKHO-KHO {"kind": "position_basis", "ref": 52.0, "market_mid": 3.0, "divergence": 49.0}
+- half_arm_aging: KXATPMATCH-26JUL18LUZTSE-LUZ {"fill": 79, "age_min": 2421, "mode": "NO_BID(sib rested earlier, none now)"}
+- reality_divergence: KXATPMATCH-26JUL18LUZTSE-LUZ {"kind": "position_basis", "ref": 79.0, "market_mid": 15.5, "divergence": 63.5}
+- reality_divergence: KXATPMATCH-26JUL18LUZTSE-TSE {"kind": "resting_bid", "ref": 18.0, "market_mid": 83.0, "divergence": -65.0}
+- reality_divergence: KXATPMATCH-26JUL18LUZTSE-LUZ {"kind": "position_basis", "ref": 79.0, "market_mid": 15.5, "divergence": 63.5}
+- reality_divergence: KXATPMATCH-26JUL18LUZTSE-TSE {"kind": "resting_bid", "ref": 18.0, "market_mid": 82.5, "divergence": -64.5}
+- half_arm_aging: KXATPCHALLENGERMATCH-26JUL18GENKUM-KUM {"fill": 44, "age_min": 2368, "mode": "NO_BID(sib rested earlier, none now)"}
+- reality_divergence: KXATPMATCH-26JUL18LUZTSE-LUZ {"kind": "position_basis", "ref": 79.0, "market_mid": 15.5, "divergence": 63.5}
+- half_arm_aging: KXITFMATCH-26JUL18FAHANT-FAH {"fill": 23, "age_min": 2343, "mode": "NO_BID(sib rested earlier, none now)"}
+- reality_divergence: KXATPMATCH-26JUL18LUZTSE-LUZ {"kind": "position_basis", "ref": 79.0, "market_mid": 13.0, "divergence": 66.0}
+- reality_divergence: KXATPMATCH-26JUL18LUZTSE-LUZ {"kind": "position_basis", "ref": 79.0, "market_mid": 24.5, "divergence": 54.5}
+- half_arm_aging: KXWTACHALLENGERMATCH-26JUL18CIRTOT-TOT {"fill": 58, "age_min": 2249, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXWTACHALLENGERMATCH-26JUL18TONSPI-SPI {"fill": 63, "age_min": 2249, "mode": "STARVATION(no prints since post)"}
+- reality_divergence: KXATPMATCH-26JUL18LUZTSE-LUZ {"kind": "position_basis", "ref": 79.0, "market_mid": 45.5, "divergence": 33.5}
+- reality_divergence: KXATPCHALLENGERMATCH-26JUL18GENKUM-KUM {"kind": "position_basis", "ref": 44.0, "market_mid": 17.5, "divergence": 26.5}
+- half_arm_aging: KXITFMATCH-26JUL18MCCGAI-GAI {"fill": 39, "age_min": 2177, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXWTACHALLENGERMATCH-26JUL18SERBER-SER {"fill": 71, "age_min": 2158, "mode": "NO_BID(sib rested earlier, none now)"}
+- half_arm_aging: KXWTACHALLENGERMATCH-26JUL18MCASHI-SHI {"fill": 45, "age_min": 2158, "mode": "NO_BID(sib rested earlier, none now)"}
+- reality_divergence: KXWTACHALLENGERMATCH-26JUL18SERBER-SER {"kind": "position_basis", "ref": 71.0, "market_mid": 41.5, "divergence": 29.5}
 
 ## DRAIN-REPLAY (zero-tolerance) — 0 violations
 every drained entry bid accounted for (replayed / refused-named / none drained)

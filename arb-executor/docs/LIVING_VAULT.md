@@ -134,6 +134,13 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-19 · FULL-TRADE LOOP (AMENDED v2) — LOOP 5: HOLDOUT-PASS ON THE OPERATOR'S DELTA
+
+**Prior art:** Loops 1–4 (the frames that failed and were named), the amendment striking exits (standing order restored), the P1 autopsy (capture classes → dip_p90 caps folded in). Delta: the score is THE DELTA — dual-fill rate · per-leg (fill − W1 close) · combined pair delta — nothing else.
+
+**THE VERDICT:** holdout (unseen Jul-14+ days): **dual-fill 34.2% · median pair delta −1¢ · 73% of duals negative · n=164 — HOLDOUT-PASS** (dual positions at negative combined delta, repeatably). The drill's trade-off is on the record: iter-1 depths gave medPairD −6¢ at 11% dual; the converged depths buy 3× the dual rate at thinner margin — the depth dial between edge-per-pair and pairs-per-night is now a MEASURED curve, the operator's to set. Carriers: ATP_CHALL-B4 (105 legs, −1 med) / B1 (−5) / ATP_MAIN-B5 (−2); named bleeder ITF_M-B6 (+26 med — the high-anchor ITF flat still refuses to be bought deep). P2 sweep + delta-depth prior ride the next gate; nightly delta meter standing; P3 struck and its artifact deleted; the settlement sweep banked as capital, unused here per the amendment.**
+
+
 ### 2026-07-18 · STAGE 4b — RE-FRAME AND RE-DRILL: THE FAILURES ARE REAL · THE SEAL SHRINKS TO 2 (amendment, same ceremony, new hash)
 
 **Prior art (C45):** Stage 4a's loop + verdict (the frame-mismatch hypothesis this run TESTED) · the seal (0b329001) this amends. Delta: each strategy replayed in its OWN frame — all-window divots (the catch tables' definition), conception casts, touch parks, recognition re-aim at T−6h (two-phase, information-time).

@@ -1,0 +1,44 @@
+# P1 — CAPTURE AUTOPSY (live_v3_20260718.jsonl; 159 posted-unfilled legs)
+
+classes: {'dead_band': 69, 'under_mains_book': 38, 'too_deep_in_flat': 23, 'near_miss_1_2c': 15, 'timing': 14}
+
+- UL18TAUKRE-TAU WTA_MAIN bid 42¢ · min-print-gap None · dead_band
+- UL18TAUKRE-KRE WTA_MAIN bid 57¢ · min-print-gap None · dead_band
+- UL19GAOFRU-FRU WTA_MAIN bid 45¢ · min-print-gap None · dead_band
+- UL19COSAKS-AKS WTA_MAIN bid 33¢ · min-print-gap None · dead_band
+- UL19OLILAS-OLI ATP_CHALL bid 90¢ · min-print-gap None · dead_band
+- UL19STRPAQ-PAQ WTA_MAIN bid 77¢ · min-print-gap None · dead_band
+- UL19DENGEN-GEN ATP_CHALL bid 36¢ · min-print-gap None · dead_band
+- UL19YASBAR-YAS WTA_MAIN bid 5¢ · min-print-gap None · dead_band
+- UL19PAPROS-ROS ATP_CHALL bid 73¢ · min-print-gap None · dead_band
+- UL19VISAHT-VIS ATP_CHALL bid 91¢ · min-print-gap None · dead_band
+- UL19VEDGAR-VED WTA_MAIN bid 79¢ · min-print-gap None · dead_band
+- UL19YASBAR-BAR WTA_MAIN bid 83¢ · min-print-gap None · dead_band
+- UL19EIGCAR-CAR WTA_MAIN bid 85¢ · min-print-gap None · dead_band
+- UL19VANTAR-TAR WTA_CHALL bid 55¢ · min-print-gap None · dead_band
+- UL19BAEKEC-KEC ATP_MAIN bid 51¢ · min-print-gap None · dead_band
+- UL19VANTAR-VAN WTA_CHALL bid 40¢ · min-print-gap None · dead_band
+- UL19CHODEJ-CHO ATP_MAIN bid 43¢ · min-print-gap None · dead_band
+- UL19DEMMAG-MAG ATP_CHALL bid 91¢ · min-print-gap None · dead_band
+- UL19BONALC-ALC ATP_CHALL bid 63¢ · min-print-gap None · dead_band
+- UL19KOTHOD-HOD WTA_CHALL bid 59¢ · min-print-gap None · dead_band
+- UL19JONBRO-JON WTA_CHALL bid 53¢ · min-print-gap None · dead_band
+- UL19JONBRO-BRO WTA_CHALL bid 40¢ · min-print-gap None · dead_band
+- UL19ARSMAR-MAR ATP_CHALL bid 58¢ · min-print-gap None · dead_band
+- UL19ALTCOL-COL ATP_MAIN bid 26¢ · min-print-gap None · dead_band
+- UL19BONALC-BON ATP_CHALL bid 28¢ · min-print-gap None · dead_band
+- UL19SERTOT-SER WTA_CHALL bid 39¢ · min-print-gap None · dead_band
+- UL19CLAKUZ-CLA ATP_CHALL bid 36¢ · min-print-gap None · dead_band
+- UL19WINSHE-WIN ATP_CHALL bid 57¢ · min-print-gap None · dead_band
+- UL19MILFAN-MIL ATP_CHALL bid 66¢ · min-print-gap None · dead_band
+- UL19JOHGEO-GEO ATP_CHALL bid 18¢ · min-print-gap None · dead_band
+- UL19BASSHI-BAS WTA_CHALL bid 77¢ · min-print-gap None · dead_band
+- UL19BARLEO-LEO ATP_CHALL bid 53¢ · min-print-gap None · dead_band
+- UL19KOZVIT-VIT ATP_CHALL bid 9¢ · min-print-gap None · dead_band
+- UL19ROZSHE-SHE ATP_CHALL bid 48¢ · min-print-gap None · dead_band
+- UL19ROZSHE-ROZ ATP_CHALL bid 40¢ · min-print-gap None · dead_band
+- UL19KUHPAS-PAS ATP_CHALL bid 82¢ · min-print-gap None · dead_band
+- UL19VALCAS-CAS ATP_CHALL bid 44¢ · min-print-gap None · dead_band
+- UL19KRESAK-KRE WTA_MAIN bid 50¢ · min-print-gap None · dead_band
+- UL19KRESAK-SAK WTA_MAIN bid 40¢ · min-print-gap None · dead_band
+- UL19NIKVRB-VRB ATP_CHALL bid 69¢ · min-print-gap None · dead_band

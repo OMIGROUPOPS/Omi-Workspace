@@ -11755,6 +11755,33 @@ class LiveV3:
                 self._untombstone_entry(tk, pos)
                 self._save_v4_resting()
             return
+        # [FULL-TRADE P2 07-19 — BELL_MISSING class-kill; gated, deploys at
+        # P5's gate] THE WINDOW ENDS AT SCHED whether or not the tape ever
+        # speaks (W1-only law). Five 07-19 + six 07-18 matches sat 10-15 min
+        # past their honest start with EVERY print-fed gun source silent
+        # (quiet books: no prints -> percat/fallback/tape_flow mute). The
+        # sweep: unfilled ENTRY bids cancel at anchored-start + tolerance,
+        # named sched_boundary_sweep; completion/exits untouched; a later
+        # real bell still owns the corridor for everything else.
+        if (self.config.get("sched_boundary_sweep", False)
+                and pos.event_ticker not in getattr(self, "_gun_state", {})):
+            _a2, _asrc2, _liar2 = self._anchor_state(pos.event_ticker, now)
+            if (_a2 and not _liar2
+                    and now - _a2 >= float(self.config.get(
+                        "sched_boundary_tolerance_sec", 120))):
+                res = await self._cancel_entry_and_resolve(
+                    tk, pos, "sched_boundary_sweep",
+                    "sched_boundary_sweep_race")
+                if res == "cancelled":
+                    self._log("sched_boundary_sweep", {
+                        "event": pos.event_ticker, "anchor_src": _asrc2,
+                        "past_start_min": round((now - _a2) / 60.0, 1),
+                        "law": "P2 07-19: the window ends at sched — no "
+                               "bell required (bell_missing class-kill)"},
+                        ticker=tk)
+                    self._untombstone_entry(tk, pos)
+                    self._save_v4_resting()
+                return
         spread = book.best_ask - book.best_bid
         # Degenerate / wide-spread book: cancel and free the leg for re-entry.
         # T51/T52: cancel a resting entry bid the moment the match goes live --

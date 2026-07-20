@@ -155,5 +155,7 @@
   "cohort_steer_live": true,
   "cohort_min_n": 30,
   "sanctioned_walk_fitted": true,
-  "entry_table_prior_enabled": true
+  "entry_table_prior_enabled": true,
+  "sched_boundary_sweep": true,
+  "sched_boundary_tolerance_sec": 120
 }

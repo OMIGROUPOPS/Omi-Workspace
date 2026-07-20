@@ -1,5 +1,5 @@
 # OUTCOME PROOF — THE ONE-AUTHORITY GATE (deploy #3, CONSOLIDATED)
-Candidate: `0585d8d6` (one-authority law `7c09adaf` + gauge-label rider
+Candidate: `4bdf83c5` (one-authority law `7c09adaf` + gauge-label rider
 `b6ecedc9` + re-anchor duty `8679643d` + the INVENTORY LAW / tmux receipts
 — the gate was killed twice mid-smoke and consolidated: ONE gate, ONE
 restart, the deploy-law mirror intact). C46 two-lane, judged separately.

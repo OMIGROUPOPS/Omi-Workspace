@@ -1,4 +1,24 @@
 #!/usr/bin/env python3
+# CONVICTION DEEPENING v2 (operator dispatch 07-20 evening) — THE
+# UNIFORM CLASSIFIER. v1's June confound was a CAMERA CHANGE, not
+# pattern decay: the path-median classifier read sparse REST tape as
+# flatness. v2 fixes the instrument:
+#   CLASSING (uniform, every era identical): per leg, the endpoint-net
+#   boundary from the band grammar (net >= +5 riser / <= -5 faller /
+#   else flat — endpoint stats survive any fidelity); band_map calls
+#   (whole-window features) are the per-band receipts. Pair class:
+#   flat+flat -> flat_flat · riser+faller -> mirror · else neither.
+#   FILL SIM: the print tape only, per-era fidelity named as before.
+#   WALL GRADE: decision-grade (median judged-leg prints >= 200,
+#   declared constant) vs evidence-grade — thin-tape verdicts carry
+#   their error bars visibly.
+#   BANK: every graded pair -> graded_pairs_v2.jsonl (the labeled
+#   corpus for the fader FRAME search — the depth family is exhausted;
+#   next candidates are new frames, fit on this bank, judged on the
+#   mastery meter).
+# Live seal, tripwire, all lanes untouched. Nightly cron inherits v2.
+#
+# (v1 header follows — fill-sim mechanics unchanged.)
 # CONVICTION DEEPENING (operator dispatch 07-20 PM) — THE ROLLING-ORIGIN
 # BACKWALK. Background drill lane; the live seal trades untouched.
 #   The fit/judge WALL marches week-by-week across the print-deep store:
@@ -270,6 +290,8 @@ for w in walls:
            for f in 'ABC'}
     srcs = defaultdict(int)
     scored = 0
+    dens = []
+    bank = open(OUT / 'graded_pairs_v2.jsonl', 'a')
     for ev, cat, s in week_ev:
         rs = [L.get(tk) for tk in LEGS[ev]]
         if any(r is None or 'anchor' not in r for r in rs):
@@ -281,16 +303,31 @@ for w in walls:
                          for t, p, _ in rows_j if p]
         scored += 1
         for r in rs:
+            dens.append(r.get('n_prints') or 0)
             for k, v in (r.get('srcs') or {}).items():
                 srcs[k] += v
+        # [v2 UNIFORM CLASSIFIER] endpoint-net at the band grammar's
+        # +-5 boundary — identical in every era; the print path plays
+        # no part in classing (camera change retired, named).
+        dirs = ['riser' if r['net'] >= 5 else
+                'faller' if r['net'] <= -5 else 'flat' for r in rs]
+        kl = ('flat_flat' if dirs == ['flat', 'flat'] else
+              'mirror' if sorted(dirs) == ['faller', 'riser']
+              else 'neither')
+        bands_r = [recall(r['cat'], r['anchor'], r['net'], r['dip'])
+                   for r in rs]
+        brow = {'wall': wl, 'event': ev, 'cat': cat, 'class': kl,
+                'dirs': dirs, 'bands': bands_r,
+                'anchors': [r['anchor'] for r in rs],
+                'nets': [r['net'] for r in rs],
+                'closes': [r['close'] for r in rs],
+                'n_prints': [r.get('n_prints') for r in rs],
+                'fills': {}}
         for f in 'ABC':
             sims = [sim_leg(r, T, f) for r in rs]
             if any(x is None for x in sims):
                 continue
-            up = any(x['up'] for x in sims)
-            dn = any(x['dn'] for x in sims)
-            kl = 'mirror' if (up and dn) else 'flat_flat' \
-                if not (up or dn) else 'neither'
+            brow['fills'][f] = [x['fill'] for x in sims]
             st = res[f][kl]
             st['pairs'] += 1
             if all(x['fill'] is not None for x in sims):
@@ -302,12 +339,17 @@ for w in walls:
                     st['pass'] += 1
                 if all(x['fill'] < x['close'] for x in sims):
                     st['dualneg'] += 1
+        bank.write(json.dumps(brow) + '\n')
+    bank.close()
     tot = sum(srcs.values()) or 1
     fid = ' '.join('%s %.0f%%' % (k, 100 * v / tot)
                    for k, v in sorted(srcs.items(), key=lambda x: -x[1]))
+    med_d = sorted(dens)[len(dens) // 2] if dens else 0
+    grade = ('DECISION-GRADE' if med_d >= 200
+             else 'EVIDENCE-GRADE (thin tape — error bars visible)')
     lines = ['## WALL %s (judge %s->%s) · events scored %d · bands fit %d'
-             ' · tape fidelity: %s'
-             % (wl, wl, we, scored, len(T), fid or 'none')]
+             ' · tape fidelity: %s · median prints/leg %d · **%s**'
+             % (wl, wl, we, scored, len(T), fid or 'none', med_d, grade)]
     for kl in ('flat_flat', 'mirror', 'neither'):
         st = res['A'][kl]     # flat/riser arms identical across A/B/C
         if kl == 'flat_flat':
@@ -334,10 +376,15 @@ for w in walls:
     REPORT.append('\n'.join(lines))
     print(lines[0], flush=True)
 
-hdr = ('# CONVICTION BACKWALK — rolling-origin, wall weekly '
-       '(fit < wall; judge week unseen once). Combined-primary + '
-       'mastery meter. Band geometry + recognition HELD FIXED as the '
-       'frame (named). Generated %s ET.\n'
+hdr = ('# CONVICTION BACKWALK v2 — THE UNIFORM CLASSIFIER (rolling-'
+       'origin, wall weekly; fit < wall; judge week unseen once). '
+       'CLASSING = endpoint-net at the band grammar +-5 boundary, '
+       'era-identical (the v1 path-median camera retired, named); '
+       'band_map calls = banding receipts; print tape = FILL SIM ONLY '
+       '(fidelity named per wall); walls graded DECISION vs EVIDENCE '
+       'by median prints/leg (bar 200, declared). Graded pairs bank '
+       'to graded_pairs_v2.jsonl (the fader frame-search corpus). '
+       'Combined-primary + mastery meter. Generated %s ET.\n'
        % datetime.now(ET).strftime('%m-%d %I:%M %p'))
 mode = 'a' if only_latest else 'w'
 open(OUT / 'BACKWALK_WALLS.md', mode).write(

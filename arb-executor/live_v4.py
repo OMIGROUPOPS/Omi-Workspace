@@ -3849,10 +3849,15 @@ class LiveV3:
                     "legs": {t: {"band": s["band"], "net":
                                  s["last"] - s["open"]}
                              for t, s in legs9},
-                    "gauge": ("75pct-both-neg" if cls9 == "flat_flat"
-                              else "combined-delta" if cls9 == "mirror"
+                    # [COMBINED-PRIMARY ruling 07-20 PM] one gauge, both
+                    # classes: combined-vs-par; dual-neg = mastery meter
+                    "gauge": ("combined-vs-par (primary)"
+                              if cls9 in ("flat_flat", "mirror")
                               else "counted-apart"),
-                    "law": "read-side only; nothing sealed 07-20"})
+                    "mastery_meter": "dual-negative (reported, never "
+                                     "pass/fail)",
+                    "law": "combined primary 07-20 PM; flat_flat SEALED "
+                           "b2f0b670, mirror/neither REFUSE"})
 
     def _price_authority(self, tk):
         """[ONE-AUTHORITY LAW — operator addendum 2026-07-20 PM, vaulted

@@ -1,14 +1,14 @@
 {
- "generated_hash": "52cd7125fcb55f6e39ae7fd5beb74d460affcb94824fd21e759656cf55d056d7",
+ "generated_hash": "f501c47d68da0bb64443fdd437e7faa5ff333a0f6aebab57fdcab82978dddfef",
  "counts": {
-  "config_keys": 106,
-  "code_config_gets": 131,
-  "union": 132
+  "config_keys": 137,
+  "code_config_gets": 162,
+  "union": 164
  },
  "by_class": {
-  "FITTED": 3,
-  "DECREED": 29,
-  "NAKED": 100
+  "FITTED": 4,
+  "DECREED": 53,
+  "NAKED": 107
  },
  "rows": [
   {
@@ -145,6 +145,22 @@
    "step": "L5"
   },
   {
+   "knob": "cohort_min_n",
+   "in_config": true,
+   "config_value": 30,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "cohort_steer_live",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
    "knob": "combined_goal",
    "in_config": true,
    "config_value": 97,
@@ -155,7 +171,7 @@
   {
    "knob": "complete_cross_enabled",
    "in_config": true,
-   "config_value": true,
+   "config_value": false,
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
@@ -187,7 +203,7 @@
   {
    "knob": "completion_live_enabled",
    "in_config": true,
-   "config_value": true,
+   "config_value": false,
    "class": "DECREED",
    "citation": "OPERATOR WORD 07-12: completion policy live per shadow-graded design",
    "step": "L6"
@@ -281,12 +297,44 @@
    "step": "?"
   },
   {
+   "knob": "discovery_floor_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-MORNING-TRIAGE Part 2 07-15 (operator dispatch; VU exhibit ALHVUX)",
+   "step": "L2"
+  },
+  {
+   "knob": "discovery_floor_retreat",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "P6 RETREAT 07-17 (operator): unfilled sub-floor ITF events withdraw both bids pair-level on every volume refresh; filled legs exempt (never-hold-naked)",
+   "step": "L4"
+  },
+  {
+   "knob": "discovery_floor_shares",
+   "in_config": true,
+   "config_value": 1500,
+   "class": "DECREED",
+   "citation": "operator dispatch 07-15: the >=1,500 discovery floor (corridor/stale-dated conceptions)",
+   "step": "L2"
+  },
+  {
    "knob": "dog_dip_offset_cents",
    "in_config": true,
    "config_value": 3,
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
+  },
+  {
+   "knob": "early_chall_window_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-EARLY-CANVAS-2 v1 07-14 Part 1 (operator word): CHALL placement edge to T-8h for the fader leg's early divot (B3 half_timing ~131c/night); HONEST CLOCKS ONLY (CHALL skew -1.2min); cohort rendered separately nightly; ITF/mains under this window = named defect",
+   "step": "L4"
   },
   {
    "knob": "early_unlock_anchor_age_sec",
@@ -353,6 +401,14 @@
    "step": "?"
   },
   {
+   "knob": "entry_table_prior_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
    "knob": "error_tripwire_halt",
    "in_config": false,
    "config_value": null,
@@ -393,6 +449,14 @@
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
+  },
+  {
+   "knob": "expression_enabled",
+   "in_config": true,
+   "config_value": false,
+   "class": "DECREED",
+   "citation": "C-EXPRESS-THE-EDGE v1 07-16 (STAGED; arms only on the 3-day pooled confirmation \u2014 W1 lanes + fav postures positive at cell n; ITF dog corridor never arms)",
+   "step": "L2"
   },
   {
    "knob": "expression_invariant",
@@ -475,6 +539,14 @@
    "step": "L6"
   },
   {
+   "knob": "flow_gauge_rest_seed",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-FLOW-REST-SEED v1 07-15: operator R1 GO word on REACH-RECAL exhibit #1 (KOAYAZ; .claude/reachrecal_20260715/KOAY_EXHIBIT.md)",
+   "step": "L2"
+  },
+  {
    "knob": "freeze_at_gun",
    "in_config": false,
    "config_value": null,
@@ -521,6 +593,14 @@
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
+  },
+  {
+   "knob": "guidebook_shadow_enabled",
+   "in_config": true,
+   "config_value": false,
+   "class": "DECREED",
+   "citation": "C-GUIDEBOOK-AIM v1 07-13: GATED OFF -- the week replay REFUSED the surface (-$9.90 vs -$0.62 held-out); built, dark, awaiting the v2 recut (timing/shape conditioning)",
+   "step": "L4"
   },
   {
    "knob": "gun_divergence_move_cents",
@@ -627,6 +707,22 @@
    "step": "?"
   },
   {
+   "knob": "live_aim_shadow_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-LIVE-AIM v1 07-14 (fourth aim design; shadow logs, acts NEVER until the n>=300 forward bar + operator word)",
+   "step": "L4"
+  },
+  {
+   "knob": "liveaim_conf_floor",
+   "in_config": true,
+   "config_value": 0.1,
+   "class": "DECREED",
+   "citation": "C-LIVE-AIM v1 07-14 Part 2 (accrual-aware honesty floor)",
+   "step": "L4"
+  },
+  {
    "knob": "maker_only_entry",
    "in_config": true,
    "config_value": true,
@@ -667,6 +763,22 @@
    "step": "?"
   },
   {
+   "knob": "milestone_gun_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-MILESTONE-GUN v1 07-16 (operator word: decision 16 = YES; shadow evidence = three-clock table + official-bell regrade convicting 16 estimate-missed fills)",
+   "step": "L4"
+  },
+  {
+   "knob": "milestone_gun_poll_sec",
+   "in_config": true,
+   "config_value": 90,
+   "class": "DECREED",
+   "citation": "C-MILESTONE-GUN v1 07-16 (90s inside the 429 budget: one public GET per un-gunned tracked event)",
+   "step": "L4"
+  },
+  {
    "knob": "min_depth_for_exit_realization",
    "in_config": true,
    "config_value": 250,
@@ -699,6 +811,14 @@
    "step": "?"
   },
   {
+   "knob": "notify_script",
+   "in_config": false,
+   "config_value": null,
+   "class": "DECREED",
+   "citation": "C-SHELF-CONSOLIDATION Part 0 07-17 (phone ping channel; the standing /root/notify.sh BOT_DOWN channel)",
+   "step": "L4"
+  },
+  {
    "knob": "operator_manual_mode",
    "in_config": true,
    "config_value": true,
@@ -709,10 +829,26 @@
   {
    "knob": "operator_taker_word",
    "in_config": true,
-   "config_value": true,
+   "config_value": false,
    "class": "DECREED",
    "citation": "OPERATOR WORD 07-12: taker word GIVEN (was the gate; now true)",
    "step": "L6"
+  },
+  {
+   "knob": "orientation_live",
+   "in_config": true,
+   "config_value": false,
+   "class": "DECREED",
+   "citation": "C-INCUMBENT-SUNSET v1 07-15 Part 3: orientation layers into path-mode when its OWN bar clears (tells clock n>=300; week opens 8% coverage / 62% correct) -- organs activate as they prove, none wait for the slowest. DARK until then.",
+   "step": "L4"
+  },
+  {
+   "knob": "orientation_swap_min_conviction",
+   "in_config": true,
+   "config_value": 0.7,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
   },
   {
    "knob": "os_active",
@@ -745,6 +881,22 @@
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
+  },
+  {
+   "knob": "pair_invariant_enabled",
+   "in_config": false,
+   "config_value": null,
+   "class": "DECREED",
+   "citation": "C-SHELF-CONSOLIDATION Part 0 07-17 (operator: pair-completeness invariant \u2014 every conceived game = 2 resting-or-refused-named bids, checked every cycle; violation = DEFECT ping; the alarm that makes the half-drop impossible to return quietly)",
+   "step": "L4"
+  },
+  {
+   "knob": "pair_seesaw_conception_exempt",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "PAIR-PRIORITY ENFORCEMENT 07-16 late night (operator, Vault Priority 1 verbatim: both legs rest from conception, never skip a leg on a projected combined; seesaw stays as scoreboard)",
+   "step": "L4"
   },
   {
    "knob": "paired_cap_enforced",
@@ -936,12 +1088,44 @@
    "step": "?"
   },
   {
+   "knob": "sanctioned_walk_fitted",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
    "knob": "scale_gun_shadow",
    "in_config": true,
    "config_value": true,
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
+  },
+  {
+   "knob": "sched_boundary_sweep",
+   "in_config": true,
+   "config_value": true,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "sched_boundary_tolerance_sec",
+   "in_config": true,
+   "config_value": 120,
+   "class": "NAKED",
+   "citation": "UNCITED -- lands NAKED until a person cites a source",
+   "step": "?"
+  },
+  {
+   "knob": "selector_drop_enforce",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-GOLD-NOW v1 07-15 Part 1 (operator word embedded in the dispatch): DROP verdict blocks entry at discovery -- subtraction only; both witnesses convicted the bucket (week -$17.95; export -1.3% on 76% winners)",
+   "step": "L4"
   },
   {
    "knob": "self_fill_bell_enabled",
@@ -985,6 +1169,22 @@
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
+  },
+  {
+   "knob": "sizing_drawdown_floor_cents",
+   "in_config": true,
+   "config_value": -1500,
+   "class": "DECREED",
+   "citation": "C-GOLD-NOW v1 07-15 Part 2b: PLACEHOLDER constant (-1500 = $15 day drawdown -> base size), named in the proof; final value = the operator's sizing word",
+   "step": "L4"
+  },
+  {
+   "knob": "sizing_live",
+   "in_config": true,
+   "config_value": false,
+   "class": "DECREED",
+   "citation": "C-GOLD-NOW v1 07-15 Part 2b: sizing engine v0 DARK (flag false), shadow-graded nightly; the operator's sizing word precedes any arming",
+   "step": "L4"
   },
   {
    "knob": "staircase_abort_rearm",
@@ -1035,6 +1235,38 @@
    "step": "L6"
   },
   {
+   "knob": "tape_flow_grace_sec",
+   "in_config": true,
+   "config_value": 60,
+   "class": "DECREED",
+   "citation": "C-DAILY-STANDARD Part 0 07-15 (operator word: per-source grace \u2014 tape fire is evidence-grade by construction; converts the 17 grace-eaten fills)",
+   "step": "L2"
+  },
+  {
+   "knob": "tape_flow_gun_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-TAPE-BELL v1 Part 1 07-15 (operator dispatch: THE TAPE IS THE BELL; 75 W2 fills the founding class)",
+   "step": "L2"
+  },
+  {
+   "knob": "tape_flow_prints30",
+   "in_config": false,
+   "config_value": null,
+   "class": "FITTED",
+   "citation": "the per-cat OPEN flow-bucket boundaries (reach gauge table; mains carry CHALL boundary as DECREED interim, no fitted mains bucket)",
+   "step": "L2"
+  },
+  {
+   "knob": "tape_flow_sustain_polls",
+   "in_config": true,
+   "config_value": 2,
+   "class": "DECREED",
+   "citation": "C-TAPE-BELL v1 Part 1 (sustained = 2 polls)",
+   "step": "L2"
+  },
+  {
    "knob": "tape_gated_abandon",
    "in_config": true,
    "config_value": true,
@@ -1043,12 +1275,28 @@
    "step": "?"
   },
   {
+   "knob": "trendpath_shadow_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "C-TREND-PATH v1 07-14 (fifth aim design: the W1 drift atlas; shadow only; operator ruling: window-1 value is the thesis, no mid-game completion)",
+   "step": "L4"
+  },
+  {
    "knob": "version",
    "in_config": true,
    "config_value": "v4_2026-05-25",
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
+  },
+  {
+   "knob": "w1_preference_enabled",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "operator word verbatim 07-15: late buys not preferable; corridor = ITF fallback only (>=1500 + volume-quiet)",
+   "step": "L2"
   },
   {
    "knob": "walk_cap_honest_anchor",
@@ -1075,19 +1323,27 @@
   },
   {
    "knob": "wall_skip_contracts",
-   "in_config": false,
-   "config_value": null,
+   "in_config": true,
+   "config_value": 10000,
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
   },
   {
    "knob": "wall_skip_enforce",
-   "in_config": false,
-   "config_value": null,
+   "in_config": true,
+   "config_value": true,
    "class": "NAKED",
    "citation": "UNCITED -- lands NAKED until a person cites a source",
    "step": "?"
+  },
+  {
+   "knob": "window_truth_live",
+   "in_config": true,
+   "config_value": true,
+   "class": "DECREED",
+   "citation": "P5 (decision 15) LIVE 07-17 (Fable under operator delegation): resting entries act the walk law at hold-review \u2014 join/improve best bid +1 strengthening; deep cast only where the deep print is real; founding exhibits BRO/COL",
+   "step": "L4"
   }
  ]
 }

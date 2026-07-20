@@ -83,20 +83,32 @@
     "dog_rise_rate": 0.75
    }
   },
-  "ITF_W": {
-   "-1|lo|mid": {
+  "ITF_M": {
+   "-1|lo|lo": {
+    "n": 19,
+    "dog_rise_rate": 0.579
+   },
+   "1|hi|hi": {
     "n": 10,
-    "dog_rise_rate": 0.1
+    "dog_rise_rate": 0.8
+   },
+   "-1|lo|hi": {
+    "n": 24,
+    "dog_rise_rate": 0.625
+   },
+   "-1|lo|mid": {
+    "n": 21,
+    "dog_rise_rate": 0.381
    }
   },
-  "ITF_M": {
-   "-1|lo|mid": {
-    "n": 12,
-    "dog_rise_rate": 0.417
-   },
-   "-1|lo|lo": {
-    "n": 10,
+  "ITF_W": {
+   "-1|lo|hi": {
+    "n": 15,
     "dog_rise_rate": 0.6
+   },
+   "-1|lo|mid": {
+    "n": 16,
+    "dog_rise_rate": 0.188
    }
   }
  }

@@ -18,3 +18,4 @@ arms — the delta/tier meters are REPORTING only).
 - Meters: reporting-only additions.
 ## LANE 2 — n/a (subtractive sweep + meters; nightly grades it).
 - OUTCOME_PROOF cites HEAD at deploy; doc-only after.
+- Candidate SHA cited: 6115aefa (code delta vs prior proof = the P2 sched_boundary_sweep block only).

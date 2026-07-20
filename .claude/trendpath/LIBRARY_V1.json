@@ -20,12 +20,12 @@
     80
    ],
    "ITF_W": [
-    2,
-    11
+    1,
+    5
    ],
    "ITF_M": [
-    3,
-    18
+    2,
+    9
    ]
   },
   "dip_def": "bottom >= 3c below discovery",
@@ -610,387 +610,387 @@
    "gun_axis": null,
    "never_wake_p": 0.0
   },
-  "ITF_W|26_50|hi": {
-   "n": 48,
-   "dip_freq": 0.958,
-   "depth_p25_50_75": [
-    11.0,
-    17.0,
-    23.0
-   ],
-   "dip_t_med_min_before_0k": 23.0,
-   "gun_axis": {
-    "n_dual": 47,
-    "lawful_share": 0.085,
-    "pre_gun_med_min": 19.9
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_W|ge75|hi": {
-   "n": 36,
-   "dip_freq": 0.972,
-   "depth_p25_50_75": [
-    12.0,
-    20.0,
-    31.0
-   ],
-   "dip_t_med_min_before_0k": 64.0,
-   "gun_axis": {
-    "n_dual": 35,
-    "lawful_share": 0.257,
-    "pre_gun_med_min": 5.4
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_W|51_75|lo": {
-   "n": 51,
-   "dip_freq": 0.863,
-   "depth_p25_50_75": [
-    6.0,
-    10.0,
-    14.0
-   ],
-   "dip_t_med_min_before_0k": 8.0,
-   "gun_axis": {
-    "n_dual": 48,
-    "lawful_share": 0.375,
-    "pre_gun_med_min": 13.0
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_M|le25|lo": {
-   "n": 31,
-   "dip_freq": 0.548,
-   "depth_p25_50_75": [
-    4.0,
-    8.0,
-    12.0
-   ],
-   "dip_t_med_min_before_0k": 6.0,
-   "gun_axis": {
-    "n_dual": 29,
-    "lawful_share": 0.448,
-    "pre_gun_med_min": 153.7
-   },
-   "never_wake_p": 0.0
-  },
   "ITF_W|ge75|lo": {
-   "n": 55,
-   "dip_freq": 0.745,
-   "depth_p25_50_75": [
-    9.0,
-    15.0,
-    42.0
-   ],
-   "dip_t_med_min_before_0k": 8.0,
-   "gun_axis": {
-    "n_dual": 55,
-    "lawful_share": 0.273,
-    "pre_gun_med_min": 87.2
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_M|26_50|hi": {
-   "n": 30,
-   "dip_freq": 1.0,
-   "depth_p25_50_75": [
-    14.0,
-    19.0,
-    23.0
-   ],
-   "dip_t_med_min_before_0k": 39.0,
-   "gun_axis": {
-    "n_dual": 30,
-    "lawful_share": 0.1,
-    "pre_gun_med_min": 2.7
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_W|le25|lo": {
-   "n": 35,
-   "dip_freq": 0.686,
-   "depth_p25_50_75": [
-    4.0,
-    8.0,
-    10.0
-   ],
-   "dip_t_med_min_before_0k": 3.0,
-   "gun_axis": {
-    "n_dual": 34,
-    "lawful_share": 0.294,
-    "pre_gun_med_min": 57.4
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_W|le25|mid": {
-   "n": 40,
-   "dip_freq": 0.725,
-   "depth_p25_50_75": [
-    4.0,
-    6.0,
-    7.0
-   ],
-   "dip_t_med_min_before_0k": 7.0,
-   "gun_axis": {
-    "n_dual": 40,
-    "lawful_share": 0.275,
-    "pre_gun_med_min": 104.1
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_M|le25|hi": {
-   "n": 22,
-   "dip_freq": 1.0,
+   "n": 107,
+   "dip_freq": 0.738,
    "depth_p25_50_75": [
     6.0,
-    9.0,
-    11.0
-   ],
-   "dip_t_med_min_before_0k": 33.0,
-   "gun_axis": {
-    "n_dual": 22,
-    "lawful_share": 0.091,
-    "pre_gun_med_min": 2.4
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_W|51_75|mid": {
-   "n": 26,
-   "dip_freq": 0.808,
-   "depth_p25_50_75": [
-    9.0,
     11.0,
     21.0
    ],
-   "dip_t_med_min_before_0k": 8.0,
+   "dip_t_med_min_before_0k": 6.0,
    "gun_axis": {
-    "n_dual": 25,
-    "lawful_share": 0.56,
-    "pre_gun_med_min": 67.7
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_M|ge75|mid": {
-   "n": 33,
-   "dip_freq": 0.939,
-   "depth_p25_50_75": [
-    5.0,
-    11.0,
-    18.0
-   ],
-   "dip_t_med_min_before_0k": 62.0,
-   "gun_axis": {
-    "n_dual": 33,
-    "lawful_share": 0.455,
-    "pre_gun_med_min": 6.7
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_M|le25|mid": {
-   "n": 20,
-   "dip_freq": 0.8,
-   "depth_p25_50_75": [
-    5.0,
-    7.0,
-    13.0
-   ],
-   "dip_t_med_min_before_0k": 28.0,
-   "gun_axis": {
-    "n_dual": 20,
-    "lawful_share": 0.1,
-    "pre_gun_med_min": 1.1
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_W|26_50|mid": {
-   "n": 25,
-   "dip_freq": 0.84,
-   "depth_p25_50_75": [
-    11.0,
-    14.0,
-    19.0
-   ],
-   "dip_t_med_min_before_0k": 4.0,
-   "gun_axis": {
-    "n_dual": 23,
-    "lawful_share": 0.217,
-    "pre_gun_med_min": 8.7
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_W|26_50|lo": {
-   "n": 34,
-   "dip_freq": 0.676,
-   "depth_p25_50_75": [
-    4.0,
-    8.0,
-    15.0
-   ],
-   "dip_t_med_min_before_0k": 4.0,
-   "gun_axis": {
-    "n_dual": 32,
-    "lawful_share": 0.438,
-    "pre_gun_med_min": 160.4
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_M|51_75|lo": {
-   "n": 38,
-   "dip_freq": 0.684,
-   "depth_p25_50_75": [
-    8.0,
-    13.0,
-    18.0
-   ],
-   "dip_t_med_min_before_0k": 7.0,
-   "gun_axis": {
-    "n_dual": 37,
-    "lawful_share": 0.378,
-    "pre_gun_med_min": 116.8
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_M|51_75|hi": {
-   "n": 36,
-   "dip_freq": 0.944,
-   "depth_p25_50_75": [
-    23.0,
-    31.0,
-    38.0
-   ],
-   "dip_t_med_min_before_0k": 28.0,
-   "gun_axis": {
-    "n_dual": 34,
-    "lawful_share": 0.059,
-    "pre_gun_med_min": 8.8
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_W|51_75|hi": {
-   "n": 41,
-   "dip_freq": 0.976,
-   "depth_p25_50_75": [
-    17.0,
-    25.0,
-    32.0
-   ],
-   "dip_t_med_min_before_0k": 38.0,
-   "gun_axis": {
-    "n_dual": 38,
-    "lawful_share": 0.211,
-    "pre_gun_med_min": 4.8
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_M|ge75|hi": {
-   "n": 29,
-   "dip_freq": 1.0,
-   "depth_p25_50_75": [
-    16.0,
-    19.0,
-    34.0
-   ],
-   "dip_t_med_min_before_0k": 59.0,
-   "gun_axis": {
-    "n_dual": 28,
-    "lawful_share": 0.214,
-    "pre_gun_med_min": 5.2
+    "n_dual": 57,
+    "lawful_share": 0.175,
+    "pre_gun_med_min": 239.4
    },
    "never_wake_p": 0.0
   },
   "ITF_W|ge75|mid": {
-   "n": 52,
-   "dip_freq": 0.827,
+   "n": 103,
+   "dip_freq": 0.786,
+   "depth_p25_50_75": [
+    5.0,
+    9.0,
+    21.0
+   ],
+   "dip_t_med_min_before_0k": 10.0,
+   "gun_axis": {
+    "n_dual": 45,
+    "lawful_share": 0.267,
+    "pre_gun_med_min": 263.6
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_M|le25|mid": {
+   "n": 53,
+   "dip_freq": 0.642,
    "depth_p25_50_75": [
     4.0,
+    6.0,
+    10.0
+   ],
+   "dip_t_med_min_before_0k": 13.0,
+   "gun_axis": {
+    "n_dual": 36,
+    "lawful_share": 0.222,
+    "pre_gun_med_min": 192.0
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_M|51_75|lo": {
+   "n": 159,
+   "dip_freq": 0.686,
+   "depth_p25_50_75": [
+    5.0,
+    10.0,
+    19.0
+   ],
+   "dip_t_med_min_before_0k": 7.0,
+   "gun_axis": {
+    "n_dual": 123,
+    "lawful_share": 0.228,
+    "pre_gun_med_min": 300.8
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_M|26_50|hi": {
+   "n": 109,
+   "dip_freq": 0.954,
+   "depth_p25_50_75": [
+    13.0,
+    20.0,
+    26.0
+   ],
+   "dip_t_med_min_before_0k": 26.0,
+   "gun_axis": {
+    "n_dual": 62,
+    "lawful_share": 0.048,
+    "pre_gun_med_min": 102.3
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_M|ge75|lo": {
+   "n": 136,
+   "dip_freq": 0.75,
+   "depth_p25_50_75": [
+    6.0,
+    12.0,
+    38.0
+   ],
+   "dip_t_med_min_before_0k": 11.0,
+   "gun_axis": {
+    "n_dual": 90,
+    "lawful_share": 0.256,
+    "pre_gun_med_min": 208.5
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_W|ge75|hi": {
+   "n": 89,
+   "dip_freq": 0.955,
+   "depth_p25_50_75": [
+    10.0,
+    18.0,
+    28.0
+   ],
+   "dip_t_med_min_before_0k": 55.0,
+   "gun_axis": {
+    "n_dual": 26,
+    "lawful_share": 0.192,
+    "pre_gun_med_min": 19.7
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_M|51_75|mid": {
+   "n": 88,
+   "dip_freq": 0.784,
+   "depth_p25_50_75": [
+    7.0,
     13.0,
     22.0
    ],
    "dip_t_med_min_before_0k": 14.0,
    "gun_axis": {
-    "n_dual": 50,
-    "lawful_share": 0.32,
-    "pre_gun_med_min": 44.9
+    "n_dual": 56,
+    "lawful_share": 0.268,
+    "pre_gun_med_min": 191.1
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_W|26_50|lo": {
+   "n": 133,
+   "dip_freq": 0.774,
+   "depth_p25_50_75": [
+    7.0,
+    15.0,
+    24.0
+   ],
+   "dip_t_med_min_before_0k": 4.0,
+   "gun_axis": {
+    "n_dual": 73,
+    "lawful_share": 0.164,
+    "pre_gun_med_min": 246.6
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_M|le25|lo": {
+   "n": 81,
+   "dip_freq": 0.605,
+   "depth_p25_50_75": [
+    4.0,
+    6.0,
+    10.0
+   ],
+   "dip_t_med_min_before_0k": 6.0,
+   "gun_axis": {
+    "n_dual": 54,
+    "lawful_share": 0.13,
+    "pre_gun_med_min": 120.6
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_W|51_75|lo": {
+   "n": 141,
+   "dip_freq": 0.752,
+   "depth_p25_50_75": [
+    5.0,
+    10.0,
+    18.0
+   ],
+   "dip_t_med_min_before_0k": 8.0,
+   "gun_axis": {
+    "n_dual": 93,
+    "lawful_share": 0.215,
+    "pre_gun_med_min": 281.3
    },
    "never_wake_p": 0.0
   },
   "ITF_M|26_50|lo": {
-   "n": 31,
-   "dip_freq": 0.871,
+   "n": 115,
+   "dip_freq": 0.739,
    "depth_p25_50_75": [
-    4.0,
-    7.0,
-    17.0
+    6.0,
+    10.0,
+    18.0
    ],
-   "dip_t_med_min_before_0k": 8.0,
+   "dip_t_med_min_before_0k": 6.0,
+   "gun_axis": {
+    "n_dual": 76,
+    "lawful_share": 0.211,
+    "pre_gun_med_min": 141.9
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_M|ge75|hi": {
+   "n": 82,
+   "dip_freq": 0.963,
+   "depth_p25_50_75": [
+    16.0,
+    22.0,
+    35.0
+   ],
+   "dip_t_med_min_before_0k": 50.0,
    "gun_axis": {
     "n_dual": 31,
-    "lawful_share": 0.258,
-    "pre_gun_med_min": 6.1
+    "lawful_share": 0.161,
+    "pre_gun_med_min": 7.2
    },
    "never_wake_p": 0.0
   },
   "ITF_W|le25|hi": {
-   "n": 29,
-   "dip_freq": 0.966,
+   "n": 78,
+   "dip_freq": 0.833,
    "depth_p25_50_75": [
     6.0,
-    9.0,
-    12.0
-   ],
-   "dip_t_med_min_before_0k": 23.0,
-   "gun_axis": {
-    "n_dual": 29,
-    "lawful_share": 0.138,
-    "pre_gun_med_min": 1.1
-   },
-   "never_wake_p": 0.0
-  },
-  "ITF_M|ge75|lo": {
-   "n": 45,
-   "dip_freq": 0.844,
-   "depth_p25_50_75": [
-    6.0,
-    11.0,
-    18.0
+    8.0,
+    11.0
    ],
    "dip_t_med_min_before_0k": 11.0,
    "gun_axis": {
-    "n_dual": 45,
-    "lawful_share": 0.222,
-    "pre_gun_med_min": 185.5
+    "n_dual": 29,
+    "lawful_share": 0.172,
+    "pre_gun_med_min": 109.7
    },
    "never_wake_p": 0.0
   },
   "ITF_M|26_50|mid": {
-   "n": 20,
-   "dip_freq": 0.85,
+   "n": 79,
+   "dip_freq": 0.797,
    "depth_p25_50_75": [
-    5.0,
-    11.0,
-    19.0
+    7.0,
+    9.0,
+    14.0
    ],
-   "dip_t_med_min_before_0k": 12.0,
+   "dip_t_med_min_before_0k": 10.0,
    "gun_axis": {
-    "n_dual": 19,
-    "lawful_share": 0.211,
-    "pre_gun_med_min": 0.9
+    "n_dual": 54,
+    "lawful_share": 0.167,
+    "pre_gun_med_min": 237.6
    },
    "never_wake_p": 0.0
   },
-  "ITF_M|51_75|mid": {
-   "n": 17,
-   "dip_freq": 0.824,
+  "ITF_W|51_75|mid": {
+   "n": 113,
+   "dip_freq": 0.796,
+   "depth_p25_50_75": [
+    5.0,
+    10.0,
+    19.0
+   ],
+   "dip_t_med_min_before_0k": 7.0,
+   "gun_axis": {
+    "n_dual": 71,
+    "lawful_share": 0.155,
+    "pre_gun_med_min": 219.9
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_W|le25|mid": {
+   "n": 87,
+   "dip_freq": 0.655,
+   "depth_p25_50_75": [
+    3.0,
+    5.0,
+    6.0
+   ],
+   "dip_t_med_min_before_0k": 6.0,
+   "gun_axis": {
+    "n_dual": 45,
+    "lawful_share": 0.422,
+    "pre_gun_med_min": 262.1
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_W|26_50|mid": {
+   "n": 85,
+   "dip_freq": 0.741,
+   "depth_p25_50_75": [
+    4.0,
+    9.0,
+    16.0
+   ],
+   "dip_t_med_min_before_0k": 9.0,
+   "gun_axis": {
+    "n_dual": 48,
+    "lawful_share": 0.229,
+    "pre_gun_med_min": 211.9
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_W|26_50|hi": {
+   "n": 117,
+   "dip_freq": 0.957,
+   "depth_p25_50_75": [
+    11.0,
+    17.0,
+    25.0
+   ],
+   "dip_t_med_min_before_0k": 22.0,
+   "gun_axis": {
+    "n_dual": 53,
+    "lawful_share": 0.094,
+    "pre_gun_med_min": 4.9
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_W|51_75|hi": {
+   "n": 93,
+   "dip_freq": 0.925,
+   "depth_p25_50_75": [
+    12.0,
+    22.0,
+    29.0
+   ],
+   "dip_t_med_min_before_0k": 41.0,
+   "gun_axis": {
+    "n_dual": 31,
+    "lawful_share": 0.29,
+    "pre_gun_med_min": 100.4
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_M|le25|hi": {
+   "n": 70,
+   "dip_freq": 0.914,
+   "depth_p25_50_75": [
+    7.0,
+    9.0,
+    12.0
+   ],
+   "dip_t_med_min_before_0k": 29.0,
+   "gun_axis": {
+    "n_dual": 35,
+    "lawful_share": 0.057,
+    "pre_gun_med_min": 206.0
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_M|51_75|hi": {
+   "n": 109,
+   "dip_freq": 0.972,
+   "depth_p25_50_75": [
+    17.0,
+    23.0,
+    35.0
+   ],
+   "dip_t_med_min_before_0k": 34.0,
+   "gun_axis": {
+    "n_dual": 55,
+    "lawful_share": 0.073,
+    "pre_gun_med_min": 157.3
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_W|le25|lo": {
+   "n": 67,
+   "dip_freq": 0.701,
+   "depth_p25_50_75": [
+    4.0,
+    6.0,
+    11.0
+   ],
+   "dip_t_med_min_before_0k": 4.0,
+   "gun_axis": {
+    "n_dual": 40,
+    "lawful_share": 0.25,
+    "pre_gun_med_min": 286.1
+   },
+   "never_wake_p": 0.0
+  },
+  "ITF_M|ge75|mid": {
+   "n": 67,
+   "dip_freq": 0.866,
    "depth_p25_50_75": [
     6.0,
-    8.0,
-    14.0
+    11.0,
+    17.0
    ],
-   "dip_t_med_min_before_0k": 13.0,
+   "dip_t_med_min_before_0k": 26.0,
    "gun_axis": {
-    "n_dual": 17,
-    "lawful_share": 0.176,
-    "pre_gun_med_min": 43.3
+    "n_dual": 31,
+    "lawful_share": 0.097,
+    "pre_gun_med_min": 330.8
    },
    "never_wake_p": 0.0
   }

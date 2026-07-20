@@ -57,7 +57,18 @@ doctrine_registry.json receipt (rebuilt every C50:
 python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
-## STATE (2026-07-20 PM SWEEP+RE-ANCHOR DUTY — C50 keeps this current):
+## STATE (2026-07-20 PM INVENTORY+TMUX — C50 keeps this current):
+TWO HOLES CLOSED pre-census (same C50 as the sweep): INVENTORY LAW
+vaulted (SEAL-HELD: held leg replaces its fish; chokepoint refuses
+stacks; HOLD-AS-IS ruled — ride exit, fish empty side, pair grades
+held+fish honestly; no averaging-down, no doubling). TMUX RECEIPTS:
+pane 293011 = current book-holder wrapper (py 293014), one python,
+no ghost, stops 17s/20s (−0l CURED); wrapper-PID report + server
+cmdline 'trading' = cosmetic, named. Consolidated gate re-run with
+inventory code IN the boot; sweep = first audit cycle; census +
+boot verification close this C50 on landing.
+
+(prior:) ## STATE (2026-07-20 PM SWEEP+RE-ANCHOR DUTY — C50 keeps this current):
 SWEEP DISPATCH executed one C50 (consolidated gate — gate #3 killed
 mid-smoke, ONE restart): the 60s authority audit gains the RE-ANCHOR
 DUTY permanently (flag -> heal, naked-tooth pattern; 2-cycle race

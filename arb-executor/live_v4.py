@@ -3888,6 +3888,20 @@ class LiveV3:
                 row12 = (c12[1].get("bands") or {}).get(st["band"])
                 if row12 and row12.get("status") == "SEALED" \
                         and row12.get("depth_p90"):
+                    # [INVENTORY LAW — operator 07-20 PM, vaulted: the
+                    # authority READS THE BOOK before fishing. A held
+                    # leg (>= lot) REPLACES its fish — the pair targets
+                    # net lot/lot, one game one pair one size; HOLD-AS-
+                    # IS is the ruled policy for overpaid holds: ride
+                    # the existing exit, fish ONLY the empty side at
+                    # its sealed number, the pair completes at
+                    # held+fish combined and grades honestly. No
+                    # averaging-down. No doubling.]
+                    pos12 = self.positions.get(tk)
+                    if (pos12 is not None
+                            and float(getattr(pos12, "entry_qty", 0)
+                                      or 0) >= float(self.entry_size)):
+                        return ("SEAL-HELD", st["band"], None)
                     return ("SEAL", st["band"],
                             int(round(st["open"]
                                       - float(row12["depth_p90"]))))
@@ -5717,6 +5731,17 @@ class LiveV3:
                                                False):
             try:
                 _auth13, _ab13, _fish13 = self._price_authority(ticker)
+                if _auth13 == "SEAL-HELD":
+                    # [INVENTORY LAW 07-20 PM] the hold REPLACES the
+                    # fish: no entry buy stacks on a held sealed-class
+                    # leg — no averaging-down, no doubling, vaulted.
+                    self._log("authority_refused", {
+                        "band": _ab13, "attempted_price": price,
+                        "reason": "hold_replaces_fish",
+                        "law": "INVENTORY LAW 07-20 PM: held legs "
+                               "count toward the pair; never "
+                               "stacked"}, ticker=ticker)
+                    return "", {"_error": "authority_refused"}
                 if _auth13 == "SEAL":
                     if _fish13 is None or _fish13 < 5:
                         self._log("authority_refused", {
@@ -14629,6 +14654,45 @@ class LiveV3:
                     except Exception as _eoe:
                         self._log("authority_sweep_error", {
                             "err": str(_eoe)[:120]}, ticker=tk)
+                if auth == "SEAL-HELD":
+                    # [INVENTORY LAW 07-20 PM — HOLD-AS-IS, the ruled
+                    # policy] the leg is held: any resting entry buy on
+                    # it is a STACK — withdrawn, never re-priced; the
+                    # hold rides its existing exit; the sibling fishes
+                    # at its own sealed number; the pair completes at
+                    # held+fish combined, graded honestly.
+                    _stk15 = [o for o in buys
+                              if o.get("oid") in _known.union(
+                                  getattr(self, "_bot_order_ids",
+                                          set()))]
+                    for o in _stk15:
+                        try:
+                            await self.cancel_order(
+                                tk, o["oid"], "authority_hold_as_is")
+                            sib15 = self._sibling_ticker_any(tk)
+                            _sf15 = (self._price_authority(sib15)[2]
+                                     if sib15 else None)
+                            _hb15 = int(getattr(pos, "entry_price", 0)
+                                        or 0)
+                            cen["hold_as_is"] = cen.get(
+                                "hold_as_is", 0) + 1
+                            self._log("authority_hold_as_is", {
+                                "held_qty": getattr(pos, "entry_qty",
+                                                    0),
+                                "held_basis": _hb15,
+                                "stack_px_withdrawn": o.get("px"),
+                                "sibling_fish": _sf15,
+                                "honest_combined": (_hb15 + _sf15)
+                                if _sf15 else None,
+                                "law": "INVENTORY LAW 07-20 PM: no "
+                                       "averaging-down, no doubling; "
+                                       "ride the exit, fish the empty "
+                                       "side"}, ticker=tk)
+                        except Exception as _hae:
+                            self._log("authority_sweep_error", {
+                                "err": str(_hae)[:120]}, ticker=tk)
+                    seen_a.pop(tk, None)
+                    continue
                 if auth != "SEAL":
                     seen_a.pop(tk, None)
                     continue

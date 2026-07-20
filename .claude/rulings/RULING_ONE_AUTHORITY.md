@@ -42,6 +42,31 @@
   seal AND subordinated path_aim/orientation-park/window-truth pricing on
   seal-owned games in the same push.
 
+## The inventory law (operator, 07-20 PM — same ruling stack, vaulted)
+> INVENTORY-AWARE AUTHORITY: the price authority must read the book before
+> fishing — per game: held legs COUNT toward the pair (a held Shick@48
+> means the Shick fish is REPLACED or SIZED-NET, never stacked; the pair
+> targets net 5/5, one game one pair one size); overpaid held legs get a
+> named policy, not a flag — HOLD-AS-IS: ride to existing exit, fish only
+> the empty side at its sealed number, pair completes at held+fish
+> combined — graded honestly. No averaging-down, no doubling.
+
+Enforcement: `_price_authority` returns SEAL-HELD for a held (≥ lot)
+sealed-class leg (fish REPLACED); the chokepoint refuses any entry buy on
+it (`hold_replaces_fish`); the re-anchor duty withdraws stacks on held
+legs (`authority_hold_as_is`, with held basis + sibling fish + the honest
+combined on the line) and never re-prices them.
+
+## The tmux receipts (07-20 PM — the signal path proven)
+Book-holder lineage across the day's gates: 09:01 boot (bash 170368 /
+py 170369) → gate #1 boot 14:33 → gate #2 boot 15:07:08 (bash 293011 /
+py 293014). `tmux list-panes -t live_v4` → pane_pid 293011 = the current
+bot's wrapper: **the pane the gates signal IS the process holding the
+book**; exactly one live_v4 python; stops 17s/20s (the −0l chronic
+CURED by the drain-budget fix). Cosmetic notes, named: the deploy script
+reports the WRAPPER pid as "PID="; the tmux server's cmdline carries the
+historic first session name (`trading`). No ghost; no signal fix needed.
+
 ## Founding charge
 Shick (Noguchi vs Shick) — `orientation_park_swap` 09:58 AM →
 `path_aim` buy 5@48 09:59 AM → `manage_cancel_race` fill 01:29 PM;

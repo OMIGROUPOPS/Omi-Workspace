@@ -1540,7 +1540,8 @@ def build_alerts(limit=30):
              # foreign-order flag = red (operator's eyes)
              "authority_reanchor", "authority_retreat",
              "authority_retreat_pair", "authority_era_orphan_cancelled",
-             "authority_foreign_order_flag", "authority_sweep_census")
+             "authority_foreign_order_flag", "authority_sweep_census",
+             "authority_hold_as_is")
     out = []
     # [ENTRY-MECHANICS P2b+P5 07-17] the CHURN METER (reposts/leg over the
     # trailing hour; bar 6/hr — BURMER's 42 and the 40-53/leg/hr 07-17
@@ -1652,7 +1653,8 @@ def build_alerts(limit=30):
                                              "authority_retreat_pair",
                                              "authority_era_orphan_"
                                              "cancelled",
-                                             "authority_sweep_census")})
+                                             "authority_sweep_census",
+                                             "authority_hold_as_is")})
         # churn meter rows (legs over the 6/hr bar, worst first)
         for _tkm, _n in sorted(_churn.items(), key=lambda x: -x[1])[:5]:
             if _n > 6:

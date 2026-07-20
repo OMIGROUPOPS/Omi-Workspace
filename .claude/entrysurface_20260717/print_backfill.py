@@ -18,7 +18,15 @@ for line in open(ROOT / 'state/range_spectrum_v1.jsonl'):
     r = json.loads(line)
     for leg in r['legs']:
         tickers.add(r['event'] + '-' + leg)
-todo = sorted(t for t in tickers if t not in done)
+# [LOOP 8 P1] RECENT-FIRST: the last-7-days exam tape completes first,
+# then the sweep continues backward toward corpus depth.
+def _datekey(t):
+    try:
+        return t.split('-')[1][:7]
+    except IndexError:
+        return '?'
+todo = sorted((t for t in tickers if t not in done),
+              key=_datekey, reverse=True)
 print('backfill todo:', len(todo), 'of', len(tickers), flush=True)
 BASE = ('https://api.elections.kalshi.com/trade-api/v2/markets/trades'
         '?ticker=%s&limit=1000')

@@ -14541,29 +14541,104 @@ class LiveV3:
                            "booking; 2 consecutive cycles + live market "
                            "status confirmed"}, ticker=tk)
                 self._save_v4_resting()
-        # ---- (4) ONE-AUTHORITY audit (operator addendum 07-20 PM):
-        # any resting entry whose price is not its named authority's
-        # price = DEFECT, red, every cycle. SEAL-owned games: every
-        # resting buy must sit AT the sealed fish (static per leg —
-        # auditable to the cent). LEGACY-owned: the legacy brain's
-        # prices are its own; the two-organ collision inside legacy is
-        # already the buy_stack assertion's domain. Flag-only: the heal
-        # is the chokepoint clamp on the next repost (evidence-only
-        # repost law untouched — the choice is named on the ledger).
+        # ---- (4) ONE-AUTHORITY audit + RE-ANCHOR DUTY (operator
+        # addendum + sweep dispatch 07-20 PM): a mismatched resting
+        # entry is FLAGGED RED on detection and RE-ANCHORED on its next
+        # cycle (flag -> heal, the naked-leg tooth's own pattern — the
+        # passive clamp was insufficient: quiet books defer
+        # subordination indefinitely). Queue wisdom: orders already AT
+        # their authority's number are UNTOUCHED (queue position is an
+        # asset; this re-prices the wrong, never churns the right).
+        # SEAL-owned: repost at the fish through place_order — every
+        # standing gate (horizon, gun/W1, guards, the clamp itself)
+        # re-checks there; a refusal = RETREAT, pair-aware, named.
+        # Engine-untracked entry buys (era-orphans, no lineage) are
+        # withdrawn, named. Probe/test orders in the audit-exempt file
+        # are NEVER touched. LEGACY-owned engine-tracked bids are at
+        # legacy-current by construction (the repost machinery is the
+        # legacy authority's own hand). Census logged every cycle work
+        # occurs: touched/held/retreated/orphans/cents removed.
         if self.config.get("one_authority_enabled", False):
             seen_a = seen.setdefault("authority", {})
+            # exempt ids (probe guinea pigs) — mtime-cached, shared
+            # attr with the book audit's loader
+            try:
+                _exp14 = (Path(__file__).resolve().parent
+                          / "state/audit_exempt_orders.json")
+                _exm14 = _exp14.stat().st_mtime
+                _exc14 = self.__dict__.get("_audit_exempt_cache")
+                if not _exc14 or _exc14[0] != _exm14:
+                    _exc14 = (_exm14, set(json.loads(_exp14.read_text())))
+                    self._audit_exempt_cache = _exc14
+                _exempt14 = _exc14[1]
+            except Exception:
+                _exempt14 = (self.__dict__.get("_audit_exempt_cache")
+                             or (0, set()))[1]
+            cen = {"touched": 0, "held_at_number": 0, "retreated": 0,
+                   "era_orphans": 0, "cents_removed": 0.0}
             for tk, orders in ord_map.items():
-                buys = [o for o in orders if o.get("action") == "buy"]
+                buys = [o for o in orders
+                        if o.get("action") == "buy"
+                        and o.get("oid") not in _exempt14]
                 if not buys or self.get_category(tk) is None:
                     seen_a.pop(tk, None)
                     continue
                 auth, band, fish = self._price_authority(tk)
+                pos = self.positions.get(tk)
+                _known = {getattr(pos, "entry_order_id", None)} if pos \
+                    else set()
+                # era-orphans: entry buys no CURRENT organ owns.
+                # Withdraw ONLY what the engine can positively
+                # attribute to itself (fingerprint lineage / own ids),
+                # after 3 confirmed cycles (fresh-boot linking races
+                # settle inside one reconcile pass — 3 min is proof of
+                # abandonment, not a race). Unattributable orders are
+                # the operator's manual book until proven otherwise:
+                # FLAG, NEVER TOUCH (C-BOT-ONLY-BASIS; the over-broad
+                # lock lesson).
+                seen_o = seen.setdefault("era_orphan", {})
+                for o in buys:
+                    _oid14 = o.get("oid")
+                    if _oid14 in _known or _oid14 in getattr(
+                            self, "_bot_order_ids", set()):
+                        continue
+                    _mine14 = _oid14 in (getattr(
+                        self, "_order_fingerprints", None) or {})
+                    n_o = seen_o[_oid14] = seen_o.get(_oid14, 0) + 1
+                    if not _mine14:
+                        if n_o == 1:
+                            self._log("authority_foreign_order_flag", {
+                                "px": o.get("px"), "qty": o.get("qty"),
+                                "oid": (_oid14 or "")[:13],
+                                "law": "unattributable = manual book "
+                                       "until proven; flag never "
+                                       "touch"}, ticker=tk)
+                        continue
+                    if n_o < 3:
+                        continue
+                    cen["era_orphans"] += 1
+                    seen_o.pop(_oid14, None)
+                    try:
+                        await self.cancel_order(
+                            tk, _oid14, "authority_era_orphan")
+                        self._log("authority_era_orphan_cancelled", {
+                            "px": o.get("px"), "qty": o.get("qty"),
+                            "oid": (_oid14 or "")[:13],
+                            "authority": auth,
+                            "lineage": "order_fingerprints"}, ticker=tk)
+                    except Exception as _eoe:
+                        self._log("authority_sweep_error", {
+                            "err": str(_eoe)[:120]}, ticker=tk)
                 if auth != "SEAL":
                     seen_a.pop(tk, None)
                     continue
                 bad = [o for o in buys
-                       if int(o.get("px", -1)) != int(fish)]
+                       if int(o.get("px", -1)) != int(fish)
+                       and o.get("oid") in _known.union(
+                           getattr(self, "_bot_order_ids", set()))]
                 if not bad:
+                    if buys:
+                        cen["held_at_number"] += 1
                     seen_a.pop(tk, None)
                     continue
                 n9 = seen_a[tk] = seen_a.get(tk, 0) + 1
@@ -14575,6 +14650,67 @@ class LiveV3:
                     "consecutive_cycles": n9,
                     "law": "ONE-AUTHORITY 07-20 PM: placing path != "
                            "named authority = DEFECT"}, ticker=tk)
+                # RE-ANCHOR on the second consecutive cycle (a
+                # seconds-fresh fill must not race the cancel; the
+                # naked tooth's own 2-cycle discipline)
+                if n9 < 2 or pos is None:
+                    continue
+                try:
+                    res14 = await self._cancel_entry_and_resolve(
+                        tk, pos, "authority_reanchor",
+                        "authority_cancel_race")
+                    if res14 == "booked":
+                        seen_a.pop(tk, None)
+                        continue        # filled in the race — booked,
+                                        # exits govern now
+                    old14 = bad[0].get("px")
+                    qty14 = int(bad[0].get("qty") or 0) or \
+                        int(self.entry_size)
+                    oid14, resp14 = await self.place_order(
+                        tk, "buy", "yes", int(fish), qty14,
+                        post_only=True)
+                    if oid14:
+                        kept14 = self.positions.get(tk)
+                        if kept14 is not None:
+                            kept14.entry_order_id = oid14
+                            kept14.entry_price = int(fish)
+                        cen["touched"] += 1
+                        cen["cents_removed"] += (old14 - fish) * qty14
+                        self._log("authority_reanchor", {
+                            "band": band, "old_px": old14,
+                            "fish": fish, "qty": qty14,
+                            "new_oid": oid14[:13]}, ticker=tk)
+                        self._save_v4_resting()
+                        seen_a.pop(tk, None)
+                    else:
+                        # the gates refused the repost — RETREAT,
+                        # pair-aware: the sibling's unfilled entry
+                        # withdraws with it (filled legs exempt)
+                        cen["retreated"] += 1
+                        _err14 = str((resp14 or {}).get("_error"))[:60]
+                        self._log("authority_retreat", {
+                            "band": band, "fish": fish,
+                            "refusal": _err14}, ticker=tk)
+                        sib14 = self._sibling_ticker_any(tk)
+                        sp14 = self.positions.get(sib14) if sib14 \
+                            else None
+                        if (sp14 is not None
+                                and getattr(sp14, "entry_order_id", "")
+                                and getattr(sp14, "entry_qty", 0) <= 0):
+                            await self._cancel_entry_and_resolve(
+                                sib14, sp14, "authority_retreat_pair",
+                                "authority_retreat_race")
+                            self._log("authority_retreat_pair", {
+                                "with": tk[-12:]}, ticker=sib14)
+                        seen_a.pop(tk, None)
+                except Exception as _rae14:
+                    self._log("authority_sweep_error", {
+                        "err": str(_rae14)[:150]}, ticker=tk)
+            if cen["touched"] or cen["retreated"] or cen["era_orphans"]:
+                self._log("authority_sweep_census", dict(
+                    cen, law="sweep dispatch 07-20 PM: the book always "
+                             "prices at current doctrine, not at "
+                             "whatever era placed it"))
 
     async def reconcile(self, quiet=False):
         """Load existing positions and resting orders from Kalshi.

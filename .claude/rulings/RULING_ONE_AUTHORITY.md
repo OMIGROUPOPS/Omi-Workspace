@@ -25,9 +25,19 @@
   price (`authority_clamp` / `authority_refused`); LEGACY-owned pass
   named. Entry buys only; exits work the book untouched.
 - `_naked_tooth_scan` section (4) — every 60s cycle: resting entry priced
-  ≠ its named authority's price = `authority_mismatch_defect`, RED.
-  Flag-only; the heal is the chokepoint clamp at the next repost
-  (evidence-only repost law untouched — named choice).
+  ≠ its named authority's price = `authority_mismatch_defect`, RED, and
+  **RE-ANCHORED on its next cycle** (sweep dispatch 07-20 PM — flag →
+  heal, the naked tooth's own pattern; the passive clamp was
+  insufficient, quiet books defer subordination indefinitely). Queue
+  wisdom: orders at their authority's number untouched (queue position
+  is an asset — re-price the wrong, never churn the right). Repost runs
+  through place_order: every standing gate re-checks; refusal = RETREAT,
+  pair-aware, named. Era-orphans (engine-attributable by fingerprint
+  lineage, 3 confirmed cycles) withdrawn; unattributable orders =
+  manual book until proven — FLAG NEVER TOUCH (C-BOT-ONLY-BASIS).
+  Census (`authority_sweep_census`) on every working cycle: touched /
+  held / retreated / orphans / cents removed. The book always prices at
+  current doctrine, not at whatever era placed it.
 - Deploy-law mirror: founding instance = the 07-20 gate that armed the
   seal AND subordinated path_aim/orientation-park/window-truth pricing on
   seal-owned games in the same push.

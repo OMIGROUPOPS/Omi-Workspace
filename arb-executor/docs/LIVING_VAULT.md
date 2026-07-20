@@ -134,6 +134,10 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-20 PM · THE ACTIVE BOOK SWEEP + THE RE-ANCHOR DUTY (sweep dispatch; the tooth gains the heal, permanently)
+
+**The operator's word:** the clamp's passive re-anchor is insufficient — quiet books defer subordination indefinitely. **The duty, permanent:** the 60s authority audit re-anchors any mismatched resting entry within its next cycle — flag → heal, the naked tooth's own pattern. Queue wisdom applied: orders at their authority's number are UNTOUCHED. Reposts run through the chokepoint so every standing gate (W1, horizon, floors, gun, the clamp itself) re-checks; a refusal = RETREAT, pair-aware, named. Era-orphans withdrawn only on engine lineage (fingerprints, 3 confirmed cycles); unattributable orders = the operator's manual book until proven — flag, never touch (C-BOT-ONLY-BASIS). Census every working cycle: touched / held-at-number / retreated / orphans / **cents of mispricing removed** — on the panel and in the ledger. **THE SWEEP ITSELF = the first audit cycle after this gate's boot** — through the engine, one owner, no out-of-band race (the SWEEP×ENGINE double-ownership law this same morning founded is why the sweep is NOT a side script; the sequencing choice is named). Sweep census posts on landing.
+
 ### 2026-07-20 PM · THE SHICK DEFECT → THE ONE-AUTHORITY LAW (permanent) + WALK-RECONCILES-THE-BOOK
 
 **The charge (operator's eyes):** the acceptance walk presented Noguchi vs Shick with the sealed fish (37¢) while the book HELD Shick 5@48 — placed 09:59 AM by `path_aim` after an `orientation_park_swap` (09:58), filled 01:29 PM via `manage_cancel_race`: a weakening leg bought at reference, **+11¢ over the sealed number**, omitted from the walk. Provenance timestamped: both placement and fill PRE-DATE the seal boot (03:08 PM) — no organ violated the seal in time; the defect is structural (the legacy path stayed armed and able) and the walk was defective in form.

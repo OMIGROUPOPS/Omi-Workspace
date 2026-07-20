@@ -1525,7 +1525,12 @@ def build_alerts(limit=30):
              "gun_feed_error", "gun_feed_ambiguous", "bell_missing",
              "floor_retreat_error", "window_truth_reaim",
              "law_collision", "window_truth_bind", "phantom_bell_void",
-             "cancel_fill_race", "gun_fire_sweep_error")
+             "cancel_fill_race", "gun_fire_sweep_error",
+             # [SAFETY-TEETH P3(a) 07-20] the naked tooth's three classes
+             # — red by default (not in the amber set): the operator's
+             # eyes found GNI at ~09:40; the tooth names it at ~09:29.
+             "naked_leg_defect", "unbooked_fill_defect",
+             "phantom_position_defect")
     out = []
     # [ENTRY-MECHANICS P2b+P5 07-17] the CHURN METER (reposts/leg over the
     # trailing hour; bar 6/hr — BURMER's 42 and the 40-53/leg/hr 07-17
@@ -1608,6 +1613,19 @@ def build_alerts(limit=30):
                 elif e == "cancel_fill_race":
                     dig = "%s %s filled %s in cancel window" % (
                         ev, d.get("label"), d.get("fill_price"))
+                elif e == "naked_leg_defect":
+                    dig = "%s NAKED %ssh no exit (cycle %s, %s)" % (
+                        ev, d.get("held"), d.get("consecutive_cycles"),
+                        "engine-known" if d.get("engine_known")
+                        else "ORPHAN")
+                elif e == "unbooked_fill_defect":
+                    dig = "%s exch %s > booked %s (cycle %s)" % (
+                        ev, d.get("exchange_qty"), d.get("engine_qty"),
+                        d.get("consecutive_cycles"))
+                elif e == "phantom_position_defect":
+                    dig = "%s engine %ssh, exchange EMPTY (cycle %s)" % (
+                        ev, d.get("engine_qty"),
+                        d.get("consecutive_cycles"))
                 else:
                     dig = "%s %s" % (ev, str(d)[:60])
                 out.append({"ts": j.get("ts_epoch"),

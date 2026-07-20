@@ -57,7 +57,19 @@ doctrine_registry.json receipt (rebuilt every C50:
 python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
-## STATE (2026-07-20 P2 CEREMONY-EMPTY + CASCADE — C50 keeps this current):
+## STATE (2026-07-20 P3 SAFETY-TEETH — C50 keeps this current):
+P3 SHIPPED one C50 (deploy gate next): NAKED TOOTH live at 60s in
+reconcile — naked_leg_defect (settlement_pending carve-out; 2-cycle
+auto-heal, never-posted AND vanished shapes) · unbooked_fill_defect
+(ROOT READ: check_fills per-order GETs starve under a big book; the
+60s bulk truth is the net) · phantom_position_defect (double-
+ownership guard; exchange truth outranks cancel-race bookings) —
+all RED on the panel. Exempt-file mtime-reload shipped. EXPIRATION
+WIRE dark (expiration_wire_enabled=false; entry buys only, sched-
+clamped); tennis retest fires at this deploy's boot; flip rides the
+verdict. GNI would-have: ~09:29 vs operator's ~09:40.
+
+(prior:) ## STATE (2026-07-20 P2 CEREMONY-EMPTY + CASCADE — C50 keeps this current):
 P2 SHIPPED one C50: the June ceremony HELD WITH NO MEMBERS
 (SEAL_CEREMONY_20260720.md — week-widen verdicts gate it; lineage
 hashed divot-v2 56b3bb46 / band-map caf255a2 / drift aeac847d;

@@ -5613,6 +5613,32 @@ class LiveV3:
         coid = str(uuid.uuid4())
         path = ORDER_CREATE_V2_PATH                      # [C-ORDER-V2] /portfolio/events/orders
         payload = build_order_payload_v2(ticker, action, price, count, post_only, coid)
+        # [SAFETY-TEETH P3(b) 07-20 — THE EXCHANGE-SIDE SELF-DESTRUCT,
+        # DARK until the tennis retest verdict (expiration_wire_enabled;
+        # the 07-17 probe: enum rejected, GTC+expiration_ts ACCEPTED).
+        # Entry BUYS only — exits must outlive us into settlement. Clamp
+        # = the honest sched (bell law floors starts at sched): the order
+        # dies exchange-side at match start even when the engine is dead
+        # — the layer that works when we're not there.]
+        if (action == "buy"
+                and self.config.get("expiration_wire_enabled", False)):
+            try:
+                _et10 = ticker.rsplit("-", 1)[0]
+                _st10 = float(self.event_start_time.get(_et10) or 0)
+                if _st10 > time.time() + 60:
+                    payload["expiration_ts"] = int(_st10)
+                    _xl10 = self.__dict__.setdefault(
+                        "_expiry_wire_logged", set())
+                    if ticker not in _xl10:
+                        _xl10.add(ticker)
+                        self._log("expiration_ts_attached", {
+                            "expiration_ts": int(_st10),
+                            "sched_src": "event_start_time",
+                            "law": "P3(b) 07-20: every resting entry buy "
+                                   "carries its sched-clamped "
+                                   "self-destruct"}, ticker=ticker)
+            except Exception:
+                pass
         resp = await api_post(self.session, self.ak, self.pk, path, payload, self.rl)
         if resp and not resp.get("_error"):
             oid, _v2_status, _v2_fill, _v2_avg = parse_order_response_v2(resp)   # [C-ORDER-V2] flat
@@ -13810,15 +13836,24 @@ class LiveV3:
             # exchange-truth comparison; every exclusion logs once. The
             # FORTOM lesson: the auditor was RIGHT to halt on an unmarked
             # test order; marked ones carry their tag into the audit.
-            _exempt_a = self.__dict__.get("_audit_exempt_ids")
-            if _exempt_a is None:
-                try:
-                    _exempt_a = set(json.loads((Path(__file__).resolve()
-                                    .parent / "state/audit_exempt_orders"
-                                    ".json").read_text()))
-                except Exception:
-                    _exempt_a = set()
-                self._audit_exempt_ids = _exempt_a
+            # [SAFETY-TEETH P3(b) 07-20] mtime-reload (the owed 1-line
+            # hardening): a probe id written mid-run is honored on the
+            # next audit pass — no restart for a 1-share guinea pig.
+            _exempt_a = None
+            try:
+                _exp9 = (Path(__file__).resolve().parent
+                         / "state/audit_exempt_orders.json")
+                _exmt9 = _exp9.stat().st_mtime
+                _exc9 = self.__dict__.get("_audit_exempt_cache")
+                if _exc9 and _exc9[0] == _exmt9:
+                    _exempt_a = _exc9[1]
+                else:
+                    _exempt_a = set(json.loads(_exp9.read_text()))
+                    self._audit_exempt_cache = (_exmt9, _exempt_a)
+            except Exception:
+                _exempt_a = (self.__dict__.get("_audit_exempt_cache")
+                             or (0, set()))[1]
+            self._audit_exempt_ids = _exempt_a
             for o in rows_:
                 if o.get("order_id") in _exempt_a:
                     _exl = self.__dict__.setdefault(
@@ -14238,6 +14273,146 @@ class LiveV3:
             pass
         return verdict
 
+    async def _tooth_market_status(self, tk):
+        """[SAFETY-TEETH P3(a)] market status for the settlement_pending
+        carve-out, 300s-cached per ticker (candidates are rare; the cache
+        keeps the 60s cadence off the rate budget)."""
+        cache = self.__dict__.setdefault("_tooth_mkt_cache", {})
+        c = cache.get(tk)
+        now = time.time()
+        if c and now - c[0] < 300:
+            return c[1]
+        st = None
+        try:
+            m = await api_get(self.session, self.ak, self.pk,
+                              "/trade-api/v2/markets/%s" % tk, self.rl)
+            st = ((m or {}).get("market") or {}).get("status")
+        except Exception:
+            pass
+        cache[tk] = (now, st)
+        return st
+
+    async def _naked_tooth_scan(self, pos_map, ord_map):
+        """[SAFETY-TEETH P3(a) 2026-07-20 — the amended naked tooth, spec
+        per the 7aadbcdc trace + the ledger's owed items]. EVERY steady
+        cycle (this 60s reconcile pass; exchange truth already in hand):
+          (1) NAKED  — filled leg (qty >= 1) with NO resting exit and the
+              market NOT in its determination window -> naked_leg_defect
+              (typed; red on the glass) + auto-heal: engine-known active
+              v4 legs repost their band exit on the spot (the
+              exit_repost_on_cleanup precedent); engine-unknown legs keep
+              the audit's guarded adoption — the DETECTION is never
+              silent either way.
+          (2) UNBOOKED-FILL — exchange qty > engine-booked qty on a
+              tracked leg -> unbooked_fill_defect named with its age in
+              cycles. Root read at this gate: check_fills polls per-order
+              GETs sequentially under the rate limiter — an 80+-order
+              book starves any single order's refresh for many minutes
+              (GNI: 53). This 60s bulk-truth line is the net under it;
+              the booking heal is reconcile's own race-fix branch below.
+          (3) PHANTOM — engine 'active' position ABSENT from exchange,
+              not settling -> phantom_position_defect; DROPPED only after
+              2 consecutive cycles with a market-status check (the GNI
+              cycle-2 kept_position residual; the SWEEP x ENGINE
+              double-ownership class: a cancel-race booking is never
+              trusted over exchange truth).
+        settlement_pending carve-out per the amended spec: determination-
+        window markets (determined/finalized/settled) are never naked."""
+        seen = self.__dict__.setdefault(
+            "_tooth_seen", {"naked": {}, "unbooked": {}, "phantom": {}})
+        DETSET = ("determined", "finalized", "settled")
+        # ---- (1) NAKED: exchange-held, no resting exit ----------------
+        for tk, pinfo in pos_map.items():
+            q = float(pinfo.get("qty") or 0)
+            sq = sum(o.get("qty", 0) for o in ord_map.get(tk, [])
+                     if o.get("action") == "sell")
+            if q < 1.0 or sq >= 1.0:
+                seen["naked"].pop(tk, None)
+                continue
+            pos = self.positions.get(tk)
+            if pos is not None and getattr(pos, "strategy", "") == "hold":
+                seen["naked"].pop(tk, None)
+                continue
+            if self.get_category(tk) is None:
+                continue                    # operator's manual book
+            mstat = await self._tooth_market_status(tk)
+            if mstat in DETSET:
+                seen["naked"].pop(tk, None)
+                continue                    # settlement_pending, never naked
+            n9 = seen["naked"][tk] = seen["naked"].get(tk, 0) + 1
+            self._log("naked_leg_defect", {
+                "held": q, "engine_known": pos is not None,
+                "engine_phase": getattr(pos, "phase", None),
+                "market_status": mstat, "consecutive_cycles": n9,
+                "law": "SAFETY-TEETH P3(a) 07-20: filled leg without "
+                       "resting exit = DEFECT every steady cycle"},
+                ticker=tk)
+            if (n9 >= 2 and pos is not None
+                    and getattr(pos, "is_v4", False)
+                    and pos.phase == "active" and pos.entry_qty > 0):
+                # two confirmed cycles before touching the book (a
+                # seconds-fresh exit fill must not race a repost); covers
+                # BOTH shapes — never-posted AND vanished (engine holds a
+                # stale exit_order_id the exchange no longer shows;
+                # _v4_apply_exit clears stray sells before posting).
+                try:
+                    _stale9 = bool(pos.exit_order_id)
+                    pos.exit_order_id = ""
+                    await self._v4_apply_exit(tk, pos, pos.entry_price,
+                                              pos.entry_qty)
+                    self._log("naked_tooth_heal", {
+                        "action": ("stale_exit_cleared_reposted"
+                                   if _stale9 else "exit_reposted"),
+                        "qty": pos.entry_qty,
+                        "basis": pos.entry_price}, ticker=tk)
+                    self._save_v4_resting()
+                except Exception as _nh:
+                    self._log("naked_tooth_heal_error",
+                              {"err": str(_nh)[:150]}, ticker=tk)
+        # ---- (2) UNBOOKED-FILL: exchange ahead of the engine ----------
+        for tk, pos in list(self.positions.items()):
+            if pos.settled or pos.phase != "entry_resting":
+                seen["unbooked"].pop(tk, None)
+                continue
+            exq = float((pos_map.get(tk) or {}).get("qty") or 0)
+            if exq > float(pos.entry_qty or 0):
+                n9 = seen["unbooked"][tk] = seen["unbooked"].get(tk, 0) + 1
+                self._log("unbooked_fill_defect", {
+                    "exchange_qty": exq, "engine_qty": pos.entry_qty,
+                    "order_id": pos.entry_order_id,
+                    "consecutive_cycles": n9,
+                    "root": "check_fills per-order poll starvation under "
+                            "a large book (GNI 53-min exhibit)"},
+                    ticker=tk)
+            else:
+                seen["unbooked"].pop(tk, None)
+        # ---- (3) PHANTOM: engine position the exchange does not hold --
+        for tk, pos in list(self.positions.items()):
+            if (pos.settled or pos.phase != "active"
+                    or float(pos.entry_qty or 0) < 1.0
+                    or tk in pos_map):
+                seen["phantom"].pop(tk, None)
+                continue
+            mstat = await self._tooth_market_status(tk)
+            if mstat in DETSET or mstat is None:
+                seen["phantom"].pop(tk, None)
+                continue                    # settle poll owns this fate
+            n9 = seen["phantom"][tk] = seen["phantom"].get(tk, 0) + 1
+            self._log("phantom_position_defect", {
+                "engine_qty": pos.entry_qty, "market_status": mstat,
+                "consecutive_cycles": n9,
+                "class": "SWEEP x ENGINE double-ownership (GNI cycle-2 "
+                         "kept_position residual)"}, ticker=tk)
+            if n9 >= 2:
+                seen["phantom"].pop(tk, None)
+                self.positions.pop(tk, None)
+                self._log("phantom_position_dropped", {
+                    "engine_qty": pos.entry_qty,
+                    "law": "exchange truth outranks a cancel-race "
+                           "booking; 2 consecutive cycles + live market "
+                           "status confirmed"}, ticker=tk)
+                self._save_v4_resting()
+
     async def reconcile(self, quiet=False):
         """Load existing positions and resting orders from Kalshi.
         Populate in-memory state so the bot doesn't re-enter or orphan orders.
@@ -14302,6 +14477,14 @@ class LiveV3:
                 "qty": int(float(qty_raw or 0)),
             }
             ord_map.setdefault(tk, []).append(entry)
+
+        # [SAFETY-TEETH P3(a) 07-20] the naked tooth bites EVERY steady
+        # cycle on the exchange truth this pass already fetched — the
+        # 15-min audit cadence was the gap GNI lived naked in for 53 min.
+        try:
+            await self._naked_tooth_scan(pos_map, ord_map)
+        except Exception as _nte:
+            self._log("naked_tooth_error", {"err": str(_nte)[:150]})
 
         # 3. Link positions to exits and populate bot state
         linked = []

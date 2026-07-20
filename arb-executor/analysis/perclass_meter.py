@@ -311,6 +311,87 @@ L.append('- COMPLETION (volume drill): sub-par duals %d / %d slate pairs '
                        100 * _spall / max(1, len(pairs))))
 for k in sorted(percat):
     L.append('  ' + line(k, percat[k]))
+# [DECAY TRIPWIRE — operator one-liner 07-20 PM; SIMONS rule 6 with a
+# bell on it. NEVER silent (the line prints every night: OK / DECAY /
+# insufficient-n), NEVER auto-disarm (the flag demands the operator's
+# ruling; no config is touched here).]
+SEAL_FLOOR = 0.70   # named from the seal's own receipts: sealed at
+                    # 100% (7/7 week + 2/2 founding day); the operator's
+                    # own example names <70% as the bell. Ruling moves it.
+try:
+    import sqlite3
+    roll_p = art_dir = Path(ROOT).parent / '.claude/perclass_meter'
+    art_dir.mkdir(exist_ok=True)
+    roll_f = roll_p / 'rolling.json'
+    try:
+        roll = json.loads(roll_f.read_text())
+    except Exception:
+        roll = {}
+    ffs = overall['flat_flat']
+    sp_today = sum(v for k, v in ffs['tiers'].items()
+                   if k in ('<=93', '<=95', '<=97'))
+    roll[DAYTAG] = {'duals': ffs['duals'], 'subpar': sp_today}
+    roll = {k: roll[k] for k in sorted(roll)[-14:]}
+    roll_f.write_text(json.dumps(roll))
+    last7 = [roll[k] for k in sorted(roll)[-7:]]
+    du7 = sum(r['duals'] for r in last7)
+    sp7 = sum(r['subpar'] for r in last7)
+    decay = []
+    if du7 >= 5:
+        rate7 = sp7 / du7
+        tw = ('OK %.0f%% (floor %.0f%%)' % (100 * rate7,
+                                            100 * SEAL_FLOOR)
+              if rate7 >= SEAL_FLOOR else
+              'DECAY %.0f%% < floor %.0f%%' % (100 * rate7,
+                                               100 * SEAL_FLOOR))
+        if rate7 < SEAL_FLOOR:
+            decay.append('rolling7 %d/%d = %.0f%% < %.0f%%'
+                         % (sp7, du7, 100 * rate7, 100 * SEAL_FLOOR))
+    else:
+        tw = 'insufficient n (rolling duals %d < 5) — no alarm, said' \
+             % du7
+    # backwalk regression: newest wall fails where history passed
+    try:
+        bw = (Path(ROOT).parent
+              / '.claude/backwalk_20260720/BACKWALK_WALLS.md'
+              ).read_text()
+        import re as _re
+        rows = _re.findall(r'## WALL (\d+).*?FLAT-FLAT[^\n]*?SUB-PAR '
+                           r'(\d+)/(\d+)', bw, _re.S)
+        rows = [(d, int(a), int(b)) for d, a, b in rows if int(b) > 0]
+        if len(rows) >= 3:
+            prior = rows[:-1]
+            newest = rows[-1]
+            prior_pass = sum(1 for _, a, b in prior
+                             if a / b >= SEAL_FLOOR)
+            if (newest[1] / newest[2] < SEAL_FLOOR
+                    and prior_pass * 2 >= len(prior)):
+                decay.append('backwalk wall %s %d/%d fails where '
+                             '%d/%d prior walls passed'
+                             % (newest[0], newest[1], newest[2],
+                                prior_pass, len(prior)))
+    except Exception:
+        pass
+    L.append('- SEAL-DECAY TRIPWIRE: ' + (('**SEAL-DECAY — RED; '
+             'operator ruling required; never auto-disarm** [' +
+             ' · '.join(decay) + ']') if decay else tw))
+    if decay:
+        try:
+            con9 = sqlite3.connect(str(Path(ROOT)
+                                       / 'state/fund_equity.db'))
+            con9.execute('INSERT INTO flags VALUES (?,?,?,?,?)',
+                         (time.time(),
+                          datetime.now(ET).strftime('%Y%m%d'),
+                          'SEAL_DECAY', 'flat_flat_dual_divot',
+                          '; '.join(decay)[:200] +
+                          ' — operator ruling required'))
+            con9.commit()
+        except Exception:
+            pass
+except Exception as _twe:
+    L.append('- SEAL-DECAY TRIPWIRE: tripwire error (%s) — never '
+             'silent, said plainly' % str(_twe)[:80])
+
 out = '\n'.join(L) + '\n'
 art = Path(ROOT).parent / '.claude/perclass_meter'
 art.mkdir(exist_ok=True)

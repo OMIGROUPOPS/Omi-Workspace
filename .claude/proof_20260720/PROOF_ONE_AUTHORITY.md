@@ -1,8 +1,20 @@
 # OUTCOME PROOF — THE ONE-AUTHORITY GATE (deploy #3, CONSOLIDATED)
-Candidate: `8679643d` (one-authority law `7c09adaf` + gauge-label rider
-`b6ecedc9` + the RE-ANCHOR DUTY / active-sweep build — gate #3's first run
-was killed mid-smoke and consolidated here: one gate, one restart, the
-deploy-law mirror intact). C46 two-lane, judged separately.
+Candidate: `0585d8d6` (one-authority law `7c09adaf` + gauge-label rider
+`b6ecedc9` + re-anchor duty `8679643d` + the INVENTORY LAW / tmux receipts
+— the gate was killed twice mid-smoke and consolidated: ONE gate, ONE
+restart, the deploy-law mirror intact). C46 two-lane, judged separately.
+
+## LANE 1 ADDITION — the inventory law
+The authority reads the book before fishing: a held (≥ lot) sealed-class
+leg resolves SEAL-HELD — its fish is REPLACED, the chokepoint refuses any
+stack (`hold_replaces_fish`), and the re-anchor duty WITHDRAWS resting
+stacks on holds instead of re-pricing them (`authority_hold_as_is`, with
+held basis + sibling fish + the honest combined printed). Replayed against
+today's book: the Shick hold (5@48) under the duty draws NO new buy and NO
+re-priced stack — its sibling (Noguchi) fishes at its own sealed number;
+the pair completes at 48 + fish, graded honestly. No averaging-down, no
+doubling — by construction, not by advice. The tmux receipts (ruling doc)
+prove the stop/boot signal path against the actual book-holder lineage.
 
 ## LANE 1 ADDITION — the re-anchor duty (sweep dispatch)
 The duty converts the audit from flag-only to flag→heal: the three named

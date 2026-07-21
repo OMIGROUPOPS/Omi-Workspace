@@ -7245,13 +7245,40 @@ class LiveV3:
         old, old_src = stored, self.event_start_source.get(et)
         self.event_start_time[et] = new_start
         self.event_start_source[et] = new_src
-        # Re-derive the window: a start now beyond T-240m means any resting entry
-        # bid for this event is early -> cancel it (exchange-truth resolved; a
-        # raced fill books, _untombstone_entry frees an unfilled leg for re-entry
-        # at the real window). Filled positions and their exits are untouched.
+        # [RESCHEDULE LAW — capture-standard rider P4, 07-20 night] a
+        # sched move > 60 min (EITHER direction) = FULL RE-CONCEIVE:
+        # the game the entries were priced for no longer exists. Both
+        # legs' unfilled entries cancel (race-safe), tombstones clear so
+        # the router re-conceives in the corrected window with fresh
+        # anchors/calls/authority, and the cascade state re-births
+        # (band_call at the new conception). Filled legs + exits ride
+        # untouched, as ever.
         cancelled = []
         new_tts = new_start - now
-        if new_tts > V4_MAX_PLACEMENT_SEC:
+        if (old is not None and abs(new_start - old) > 3600
+                and self.config.get("reschedule_reconceive_enabled",
+                                    True)):
+            for tk, pos in list(self.positions.items()):
+                if (pos.event_ticker == et and pos.phase == "entry_resting"
+                        and pos.entry_order_id):
+                    res = await self._cancel_entry_and_resolve(
+                        tk, pos, "reschedule_reconceive",
+                        "reschedule_race")
+                    if res == "cancelled":
+                        self._untombstone_entry(tk, pos)
+                        cancelled.append(tk)
+            for tk in list(self.event_tickers.get(et, ())):
+                (self.__dict__.get("_bcasc_state") or {}).pop(tk, None)
+            (self.__dict__.get("_bcasc_pair") or {}).pop(et, None)
+            if cancelled:
+                self._save_v4_resting()
+            self._log("reschedule_reconceive", {
+                "event": et, "moved_min": round(
+                    (new_start - old) / 60.0, 1),
+                "cancelled": cancelled,
+                "law": "P4 rider 07-20: >60min sched move = full "
+                       "re-conceive; the priced game no longer exists"})
+        elif new_tts > V4_MAX_PLACEMENT_SEC:
             for tk, pos in list(self.positions.items()):
                 if (pos.event_ticker == et and pos.phase == "entry_resting"
                         and pos.entry_order_id):

@@ -1086,10 +1086,41 @@ def build_positions():
 
 
 # ── /api/orders.json ─────────────────────────────────────────────────────
+def _authority_map():
+    """[P4 PROVENANCE TAGS 07-20] order_id -> placing authority, from
+    the newest jsonl tail's order_placed lines (the chokepoint stamps
+    every entry buy). Pre-stamp orders honestly read 'pre-law'."""
+    m = {}
+    try:
+        logs = sorted(LOG_DIR.glob("live_v3_*.jsonl"))
+        if logs:
+            p = logs[-1]
+            size = p.stat().st_size
+            with open(p, "rb") as fh:
+                if size > 4_000_000:
+                    fh.seek(size - 4_000_000)
+                    fh.readline()
+                for line in fh.read().split(b"\n"):
+                    if b'"order_placed"' not in line:
+                        continue
+                    try:
+                        j = json.loads(line)
+                        d = j["details"]
+                        if d.get("order_id"):
+                            m[d["order_id"]] = d.get("authority",
+                                                     "pre-law")
+                    except Exception:
+                        continue
+    except Exception:
+        pass
+    return m
+
+
 def build_orders():
     if FIXTURE_PATH:
         return json.loads(Path(FIXTURE_PATH).read_text()).get("orders", [])
 
+    _auth = _authority_map()
     rows = _q(
         "SELECT ticker, yes_price_c, remaining, ts, order_id "
         "FROM snap_orders "
@@ -1117,6 +1148,8 @@ def build_orders():
                 "placed_ep": order_created_ep([oid]),
                 "age_label": "%dh%dm" % (age_s // 3600,
                                          (age_s % 3600) // 60),
+                # [P4 PROVENANCE 07-20] the placing authority, on the row
+                "authority": _auth.get(oid, "pre-law"),
             })
         out.append(game_out)
     return out

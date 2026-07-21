@@ -44,8 +44,9 @@ def run(coro):
 
 # ---- routable API stub ------------------------------------------------
 ORDER_RESP = {}      # order_id -> {"order": {...}} or None
-FILLS_RESP = []      # list of fill dicts
+FILLS_RESP = []      # list of canonical /fills rows
 MARKET_STATUS = "active"
+RESTING = []         # list of raw resting-order rows (ticker-scoped feed)
 API_CALLS = []
 
 async def _fake_api_get(sess, ak, pk, path, rl):
@@ -55,15 +56,18 @@ async def _fake_api_get(sess, ak, pk, path, rl):
         return ORDER_RESP.get(oid)
     if "/portfolio/fills" in path:
         return {"fills": list(FILLS_RESP)}
+    if "/portfolio/orders?" in path or "status=resting" in path:
+        return {"orders": list(RESTING)}
     if "/markets/" in path:
         return {"market": {"status": MARKET_STATUS}}
     return {}
 M.api_get = _fake_api_get
 
-STATICS = ("_canon_order", "_exit_coverage")
+STATICS = ("_canon_order", "_exit_coverage", "_canon_receipt")
 BOUND = ("_canon_orders", "_naked_tooth_scan",
          "_reconcile_exit_fill_from_truth", "_tooth_market_status",
-         "_price_authority")
+         "_price_authority", "_exit_receipts", "_book_exit_receipts",
+         "_cancel_resting_buys_on_cash")
 
 def make_pos(tk, **kw):
     kw.setdefault("entry_price", 51)
@@ -121,12 +125,19 @@ def make_bot():
 def evs(s, name):
     return [d for (e, d, t) in s.logs if e == name]
 
-def reset_api(order_resp=None, fills=None, status="active"):
-    global ORDER_RESP, FILLS_RESP, MARKET_STATUS
+def reset_api(order_resp=None, fills=None, status="active", resting=None):
+    global ORDER_RESP, FILLS_RESP, MARKET_STATUS, RESTING
     ORDER_RESP = dict(order_resp or {})
     FILLS_RESP = list(fills or [])
+    RESTING = list(resting or [])
     MARKET_STATUS = status
     API_CALLS.clear()
+
+def rcpt(rid, oid, qty, price_c, ts=1000.0):
+    """A realistic /fills row: fill_id + count_fp + yes_price_dollars."""
+    return {"fill_id": rid, "order_id": oid, "action": "sell",
+            "count_fp": qty, "yes_price_dollars": price_c / 100.0,
+            "created_time": ts}
 
 TK = "KXITFMATCH-26JUL20ICHYAM-YAM"
 
@@ -290,8 +301,7 @@ p = make_pos(TK, exit_order_id="E-MINE")
 s.positions[TK] = p
 reset_api(order_resp={"E-MINE": {"order": {"status": "resting",
                                            "fill_count_fp": 0}}},
-          fills=[{"order_id": "SOMEONE-ELSE", "action": "sell",
-                  "count_fp": 5, "yes_price_dollars": 0.70}])
+          fills=[rcpt("F-OTHER", "SOMEONE-ELSE", 5, 70)])
 r = run(s._reconcile_exit_fill_from_truth(TK, p))
 check(r is False, "foreign-order sell -> NOT confirmed")
 check(TK in s.positions, "foreign-order sell -> position intact")
@@ -302,10 +312,8 @@ p = make_pos(TK, exit_order_id="E-MINE")
 s.positions[TK] = p
 reset_api(order_resp={"E-MINE": {"order": {"status": "resting",
                                            "fill_count_fp": 0}}},
-          fills=[{"order_id": "SOMEONE-ELSE", "action": "sell",
-                  "count_fp": 9, "yes_price_dollars": 0.90},
-                 {"order_id": "E-MINE", "action": "sell",
-                  "count_fp": 5, "yes_price_dollars": 0.64}])
+          fills=[rcpt("F-OTHER", "SOMEONE-ELSE", 9, 90),
+                 rcpt("F-MINE", "E-MINE", 5, 64)])
 r = run(s._reconcile_exit_fill_from_truth(TK, p))
 check(r is True, "own-order fills confirm the cash")
 check(p.exit_filled_qty == 5, "count_fp is authoritative (5)")
@@ -356,9 +364,7 @@ check(len(ef) == 2 and ef[0]["new_fills"] == 2 and ef[1]["new_fills"] == 3,
 s = make_bot()
 p = make_pos(TK, entry_qty=5, exit_order_id="E-1")
 s.positions[TK] = p
-reset_api(order_resp={"E-1": {"order": {"status": "executed",
-                                        "fill_count_fp": 5,
-                                        "average_fill_price_fp": 0.64}}})
+reset_api(fills=[rcpt("F-1", "E-1", 5, 64)])
 run(s._reconcile_exit_fill_from_truth(TK, p))
 pnl_once, cyc_once = p.pnl_cents, s._cycle_count.get(TK)
 run(s._reconcile_exit_fill_from_truth(TK, p))      # observe again
@@ -372,8 +378,7 @@ check(len(evs(s, "phantom_cash_idempotent")) == 1,
 s = make_bot()
 p = make_pos(TK, exit_order_id="")
 s.positions[TK] = p
-reset_api(fills=[{"order_id": "X", "action": "sell", "count_fp": 5,
-                  "yes_price_dollars": 0.64}])
+reset_api(fills=[rcpt("F-X", "X", 5, 64)])
 r = run(s._reconcile_exit_fill_from_truth(TK, p))
 check(r is False and TK in s.positions,
       "no order identity -> unconfirmed, position intact")

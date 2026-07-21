@@ -9932,13 +9932,46 @@ class LiveV3:
                     order = data.get("order", data)
                     status = order.get("status", "")
                     filled = int(float(order.get("fill_count_fp", order.get("count_filled", 0)) or 0))
-                    if filled > pos.exit_filled_qty:
-                        new_exit_fills = filled - pos.exit_filled_qty
-                        pos.exit_filled_qty = filled
-                        complete = (status == "executed"
+                    # [LANE-A REV FIXES 1+2] the current ORDER's
+                    # cumulative count is never differenced against the
+                    # POSITION's cumulative total. Booking runs through
+                    # the one chokepoint on per-fill receipts (exact
+                    # prices, receipt-identity idempotent); the
+                    # order-status count is a labelled approximate
+                    # receipt used only when the feed is silent.
+                    _bk_o = float((pos.__dict__.get(
+                        "_exit_booked_by_order") or {}).get(
+                            pos.exit_order_id, 0.0))
+                    if filled > _bk_o:
+                        _oids = set(pos.__dict__.setdefault(
+                            "_exit_order_ids", set()))
+                        _oids.add(pos.exit_order_id)
+                        _oids |= set((pos.__dict__.get(
+                            "_exit_booked_by_order") or {}).keys())
+                        _rcpts = await self._exit_receipts(
+                            tk, {o for o in _oids if o})
+                        if not _rcpts:
+                            try:
+                                _a = order.get("average_fill_price_fp")
+                                _apx = (float(_a) * 100 if _a is not None
+                                        else float(pos.exit_price or 0))
+                            except (TypeError, ValueError):
+                                _apx = float(pos.exit_price or 0)
+                            _rcpts = [{
+                                "receipt_id": "approx:%s:%d"
+                                              % (pos.exit_order_id,
+                                                 int(filled)),
+                                "order_id": pos.exit_order_id,
+                                "action": "sell",
+                                "qty": filled - _bk_o, "price": _apx,
+                                "ts": time.time(), "approx": True}]
+                        new_exit_fills, _newpnl, _cmpl = \
+                            self._book_exit_receipts(
+                                tk, pos, _rcpts, source="exit_poll")
+                        if new_exit_fills <= 0 and not _cmpl:
+                            continue
+                        complete = (_cmpl or status == "executed"
                                     or pos.exit_filled_qty >= pos.entry_qty)
-                        inc_pnl = (pos.exit_price - pos.entry_price) * new_exit_fills
-                        pos.pnl_cents += inc_pnl
                         if pos.dca_qty > 0 and complete:
                             pos.pnl_cents += (pos.exit_price - pos.dca_price) * pos.dca_qty
                         pnl = pos.pnl_cents
@@ -14455,6 +14488,183 @@ class LiveV3:
         return verdict
 
     @staticmethod
+    def _canon_receipt(f):
+        """[LANE-A REV FIX 2] ONE canonical per-fill receipt shape from
+        /portfolio/fills: receipt_id (fill_id, falling back to
+        trade_id), order_id, qty (count_fp), price (cents from
+        yes_price_dollars), ts. A receipt without an identity or a
+        positive quantity is not bookable."""
+        rid = f.get("fill_id") or f.get("trade_id") or ""
+        try:
+            q = float(f.get("count_fp", f.get("count")) or 0)
+        except (TypeError, ValueError):
+            q = 0.0
+        px = None
+        v = f.get("yes_price_dollars")
+        if v is not None:
+            try:
+                px = float(v) * 100.0
+            except (TypeError, ValueError):
+                px = None
+        if px is None and f.get("yes_price") is not None:
+            try:
+                px = float(f.get("yes_price"))
+            except (TypeError, ValueError):
+                px = None
+        ts = 0.0
+        for k in ("created_time", "ts", "created_ts"):
+            v = f.get(k)
+            if v is None:
+                continue
+            try:
+                ts = float(v)
+                break
+            except (TypeError, ValueError):
+                try:
+                    ts = datetime.fromisoformat(
+                        str(v).replace("Z", "+00:00")).timestamp()
+                    break
+                except Exception:
+                    continue
+        return {"receipt_id": str(rid), "order_id": str(f.get("order_id")
+                                                        or ""),
+                "action": str(f.get("action") or "").lower(),
+                "qty": q, "price": px, "ts": ts, "approx": False}
+
+    async def _exit_receipts(self, tk, order_ids):
+        """Canonical sell receipts for THIS position's exit orders only
+        (exact order_id attribution — a foreign or pre-entry sell can
+        never be attributed here)."""
+        d = await api_get(self.session, self.ak, self.pk,
+                          "/trade-api/v2/portfolio/fills?ticker=%s"
+                          "&limit=200" % tk, self.rl)
+        out = []
+        for f in ((d or {}).get("fills") or []):
+            r = self._canon_receipt(f)
+            if r["action"] != "sell" or r["qty"] <= 0:
+                continue
+            if order_ids and r["order_id"] not in order_ids:
+                continue
+            out.append(r)
+        out.sort(key=lambda r: (r["ts"], r["receipt_id"]))
+        return out
+
+    def _book_exit_receipts(self, tk, pos, receipts, source=""):
+        """[LANE-A REV FIXES 1+2 — THE ONE EXIT-BOOKING CHOKEPOINT]
+        Every exit share booked by this engine passes through here:
+        normal polling and phantom reconciliation both. Rules:
+          · RECEIPT IDENTITY is the idempotency key (fill_id/trade_id);
+            a re-observed receipt is a no-op, always.
+          · ORDER IDENTITY is tracked per exit order id, so
+            pos.exit_filled_qty stays CUMULATIVE ACROSS ALL exit orders
+            (the replacement-order defect: current-order fill counts
+            are never differenced against position-level totals).
+          · Each receipt is priced at ITS OWN fill price — never a
+            cumulative average applied to a delta.
+          · Pre-entry sells are excluded by timestamp.
+          · Legacy quantity booked before this ledger existed is
+            absorbed once (oldest receipts first) so restarts cannot
+            double-book.
+        Returns (newly_qty, newly_pnl, complete)."""
+        seen = pos.__dict__.setdefault("_exit_receipt_ids", set())
+        per_order = pos.__dict__.setdefault("_exit_booked_by_order", {})
+        entry_price = int(getattr(pos, "entry_price", 0) or 0)
+        entry_qty = int(float(getattr(pos, "entry_qty", 0) or 0))
+        if "_exit_legacy_qty" not in pos.__dict__:
+            pos._exit_legacy_qty = float(
+                getattr(pos, "exit_filled_qty", 0) or 0)
+            pos._exit_legacy_absorbed = 0.0
+        entry_ts = float(getattr(pos, "entry_filled_ts", 0) or 0)
+        newly = 0.0
+        newpnl = 0.0
+        for r in sorted(receipts, key=lambda x: (x["ts"],
+                                                 x["receipt_id"])):
+            rid = r["receipt_id"]
+            if not rid or rid in seen or r["qty"] <= 0:
+                continue
+            if entry_ts and r["ts"] and r["ts"] < entry_ts - 1:
+                continue                      # pre-entry historical sell
+            price = r["price"]
+            if price is None:
+                price = float(getattr(pos, "exit_price", 0) or 0)
+            seen.add(rid)
+            q = float(r["qty"])
+            per_order[r["order_id"]] = per_order.get(r["order_id"],
+                                                     0.0) + q
+            absorb = 0.0
+            _left = (float(pos._exit_legacy_qty)
+                     - float(pos._exit_legacy_absorbed))
+            if _left > 0:
+                absorb = min(q, _left)
+                pos._exit_legacy_absorbed += absorb
+            payable = q - absorb
+            if payable > 0:
+                newly += payable
+                newpnl += (price - entry_price) * payable
+        if newly > 0:
+            pos.pnl_cents = float(getattr(pos, "pnl_cents", 0) or 0) \
+                + newpnl
+        cum = sum(per_order.values())
+        legacy_unmatched = max(0.0, float(pos._exit_legacy_qty)
+                               - float(pos._exit_legacy_absorbed))
+        pos.exit_filled_qty = int(round(cum + legacy_unmatched))
+        complete = bool(entry_qty) and pos.exit_filled_qty >= entry_qty
+        if newly > 0:
+            self._log("exit_receipts_booked", {
+                "new_qty": newly, "new_pnl": newpnl,
+                "cumulative_qty": pos.exit_filled_qty,
+                "per_order": {k[:8]: v for k, v in per_order.items()},
+                "pnl_cents": pos.pnl_cents, "complete": complete,
+                "source": source,
+                "law": "one exit-booking chokepoint; receipt-identity "
+                       "idempotent; per-receipt pricing"}, ticker=tk)
+        return newly, newpnl, complete
+
+    async def _cancel_resting_buys_on_cash(self, tk, pos, why="cashed"):
+        """[LANE-A REV FIX 3] A cashed leg's armed bot-owned entry /
+        replacement BUY orders are cancelled BEFORE the position
+        closes — otherwise the cash closes the story while a live bid
+        keeps hunting a second lot. Bot-owned current-strategy orders
+        only; foreign/manual orders are never touched. (No DCA surface
+        is read or written here — that subsystem is out of scope and
+        untouched.)"""
+        n = 0
+        try:
+            d = await api_get(self.session, self.ak, self.pk,
+                              "/trade-api/v2/portfolio/orders?ticker=%s"
+                              "&status=resting" % tk, self.rl)
+            mine = set(getattr(self, "_bot_order_ids", set()) or set())
+            mine |= set((getattr(self, "_order_fingerprints", None)
+                         or {}).keys())
+            _eo = str(getattr(pos, "entry_order_id", "") or "")
+            if _eo:
+                mine.add(_eo)
+            for raw in ((d or {}).get("orders") or []):
+                o = self._canon_order(raw, tk)
+                if o["action"] != "buy" or o["remaining"] <= 0:
+                    continue
+                if o["order_id"] not in mine:
+                    self._log("cash_cleanup_foreign_skipped", {
+                        "order_id": o["order_id"][:13],
+                        "law": "manual/foreign order — never cancelled"},
+                        ticker=tk)
+                    continue
+                await self.cancel_order(tk, o["order_id"],
+                                        "exit_cashed_%s" % why)
+                n += 1
+                self._log("cash_cleanup_buy_cancelled", {
+                    "order_id": o["order_id"][:13], "px": o["price"],
+                    "qty": o["remaining"],
+                    "law": "no resting bid survives the cash"},
+                    ticker=tk)
+        except Exception as _cce:
+            self._log("cash_cleanup_error", {"err": str(_cce)[:150]},
+                      ticker=tk)
+        if getattr(pos, "entry_order_id", ""):
+            pos.entry_order_id = ""
+        return n
+
+    @staticmethod
     def _canon_order(o, ticker=""):
         """[LANE-A FIX 1 — THE ONE NORMALIZATION BOUNDARY] Kalshi raw
         orders, reconcile's ord_map rows and the audit's rows each name
@@ -14551,101 +14761,103 @@ class LiveV3:
         cycle increment, no tombstone, no deletion. Only a FULL cash
         (booked >= entry_qty) closes the story. Returns True only when
         fully booked; the caller retries on False."""
-        booked0 = int(float(getattr(pos, "exit_filled_qty", 0) or 0))
         entry_qty = int(float(getattr(pos, "entry_qty", 0) or 0))
-        oid = str(getattr(pos, "exit_order_id", "") or "")
-        px = None
-        qty = 0
-        src = None
-        if oid:
-            d = await api_get(self.session, self.ak, self.pk,
-                              "/trade-api/v2/portfolio/orders/%s" % oid,
-                              self.rl)
-            o = (d or {}).get("order", d) or {}
-            f = 0
-            for k in ("fill_count_fp", "count_filled", "filled_count"):
-                v = o.get(k)
-                if v is not None:
-                    try:
-                        f = int(float(v))
-                    except (TypeError, ValueError):
-                        f = 0
-                    break
-            if f > 0:
-                qty, src = f, "exit_order:%s" % oid[:8]
-                try:
-                    _a = o.get("average_fill_price_fp")
-                    px = (round(float(_a) * 100) if _a is not None
-                          else None)
-                except (TypeError, ValueError):
-                    px = None
-            if qty <= 0:
-                # identity-scoped fills lookup: THIS order's fills only
-                d2 = await api_get(
-                    self.session, self.ak, self.pk,
-                    "/trade-api/v2/portfolio/fills?ticker=%s&limit=200"
-                    % tk, self.rl)
-                mine = [f_ for f_ in ((d2 or {}).get("fills") or [])
-                        if str(f_.get("order_id") or "") == oid
-                        and str(f_.get("action") or "").lower() == "sell"]
-                tot = 0.0
-                notional = 0.0
-                for f_ in mine:
-                    c = f_.get("count_fp", f_.get("count"))
-                    try:
-                        c = float(c or 0)
-                    except (TypeError, ValueError):
-                        c = 0.0
-                    if c <= 0:
-                        continue
-                    p_ = f_.get("yes_price_dollars")
-                    try:
-                        p_ = (float(p_) * 100 if p_ is not None
-                              else float(f_.get("yes_price") or 0))
-                    except (TypeError, ValueError):
-                        p_ = 0.0
-                    tot += c
-                    notional += c * p_
-                if tot > 0:
-                    qty = int(tot)
-                    px = int(round(notional / tot)) if notional else None
-                    src = "fills[order_id=%s]" % oid[:8]
-        if qty <= 0:
+        oids = set(pos.__dict__.setdefault("_exit_order_ids", set()))
+        cur = str(getattr(pos, "exit_order_id", "") or "")
+        if cur:
+            oids.add(cur)
+        oids |= set((pos.__dict__.get("_exit_booked_by_order")
+                     or {}).keys())
+        oids = {o for o in oids if o}
+        if not oids:
             n_att = getattr(pos, "_phantom_cash_attempts", 0) + 1
             pos._phantom_cash_attempts = n_att
             self._log("phantom_cash_unconfirmed", {
-                "engine_qty": entry_qty, "exit_order_id": oid,
+                "engine_qty": entry_qty, "attempts": n_att,
+                "law": "no exit order identity to attribute a sell to "
+                       "— the record STANDS, no deletion, retry"},
+                ticker=tk)
+            return False
+        # RECEIPTS FIRST (exact per-fill prices, order-scoped). The
+        # order-status count is only a fallback when the feed is silent,
+        # and it is routed through the SAME chokepoint as a labelled
+        # approximate receipt — never a second P&L algorithm.
+        receipts = await self._exit_receipts(tk, oids)
+        src = "fills_receipts"
+        if not receipts:
+            for o_ in sorted(oids):
+                d = await api_get(self.session, self.ak, self.pk,
+                                  "/trade-api/v2/portfolio/orders/%s"
+                                  % o_, self.rl)
+                o = (d or {}).get("order", d) or {}
+                f = 0
+                for k in ("fill_count_fp", "count_filled",
+                          "filled_count"):
+                    v = o.get(k)
+                    if v is not None:
+                        try:
+                            f = int(float(v))
+                        except (TypeError, ValueError):
+                            f = 0
+                        break
+                if f <= 0:
+                    continue
+                booked_o = float((pos.__dict__.get(
+                    "_exit_booked_by_order") or {}).get(o_, 0.0))
+                delta = f - booked_o
+                if delta <= 0:
+                    continue
+                try:
+                    _a = o.get("average_fill_price_fp")
+                    apx = (float(_a) * 100 if _a is not None
+                           else float(getattr(pos, "exit_price", 0) or 0))
+                except (TypeError, ValueError):
+                    apx = float(getattr(pos, "exit_price", 0) or 0)
+                receipts.append({
+                    "receipt_id": "approx:%s:%d" % (o_, int(f)),
+                    "order_id": o_, "action": "sell", "qty": delta,
+                    "price": apx, "ts": time.time(), "approx": True})
+                src = "order_status_approx"
+        if not receipts:
+            n_att = getattr(pos, "_phantom_cash_attempts", 0) + 1
+            pos._phantom_cash_attempts = n_att
+            self._log("phantom_cash_unconfirmed", {
+                "engine_qty": entry_qty, "exit_order_ids": sorted(oids),
                 "attempts": n_att,
                 "law": "no sell confirmed by ORDER IDENTITY — the "
                        "record STANDS, no deletion, retry next cycle"},
                 ticker=tk)
             return False
-        newly = int(qty) - booked0
+        newly, newpnl, complete = self._book_exit_receipts(
+            tk, pos, receipts, source="phantom_cash(%s)" % src)
         if newly <= 0:
             self._log("phantom_cash_idempotent", {
-                "confirmed_qty": int(qty), "already_booked": booked0,
-                "law": "same fill re-observed — no double booking"},
+                "cumulative_qty": pos.exit_filled_qty,
+                "complete": complete,
+                "law": "receipts already booked — no double booking"},
                 ticker=tk)
-            return bool(entry_qty and booked0 >= entry_qty)
-        px = int(px if px else (getattr(pos, "exit_price", 0) or 0))
-        pos.exit_filled_qty = int(qty)
-        pos.pnl_cents = (float(getattr(pos, "pnl_cents", 0) or 0)
-                         + (px - int(pos.entry_price)) * newly)
-        complete = bool(entry_qty) and pos.exit_filled_qty >= entry_qty
+            # nothing new to book; only fall through when a fully-booked
+            # position is still open and genuinely needs closing.
+            if not (complete and tk in self.positions):
+                return complete
         pos.exit_filled = complete
-        self._log("exit_filled", {
-            "exit_price": px, "entry_price": pos.entry_price,
-            "qty": pos.exit_filled_qty, "new_fills": newly,
-            "complete": complete, "pnl_cents": pos.pnl_cents,
-            "source": "phantom_cash_route(%s)" % src,
-            "law": "unbooked EXIT fill booked from exchange truth by "
-                   "order identity; increment only, P&L accrued"},
-            ticker=tk)
+        if newly > 0:
+            self._log("exit_filled", {
+                "exit_price": int(getattr(pos, "exit_price", 0) or 0),
+                "entry_price": pos.entry_price,
+                "qty": pos.exit_filled_qty, "new_fills": newly,
+                "complete": complete, "pnl_cents": pos.pnl_cents,
+                "source": "phantom_cash_route(%s)" % src,
+                "law": "unbooked EXIT fill booked from exchange truth "
+                       "by receipt identity"}, ticker=tk)
         if not complete:
-            # PARTIAL: the leg still owns shares — it stays open, stays
+            # PARTIAL: the leg still owns shares — stays open, stays
             # tracked, keeps its exit. Nothing closes, nothing deletes.
             self._save_v4_resting()
             return False
+        # FULL CASH: clean the book BEFORE closing the story — no armed
+        # bot-owned entry/replacement bid may outlive the cash.
+        await self._cancel_resting_buys_on_cash(tk, pos, why="phantom")
         _sx = self.__dict__.setdefault("_session_exited", set())
         if tk not in _sx:
             _sx.add(tk)
@@ -14955,10 +15167,26 @@ class LiveV3:
                 if auth != "SEAL":
                     seen_a.pop(tk, None)
                     continue
-                bad = [o for o in buys
-                       if o["price"] is not None and int(o["price"]) != int(fish)
-                       and o["order_id"] in _known.union(
-                           getattr(self, "_bot_order_ids", set()))]
+                # [LANE-A REV FIX 4B] FAIL CLOSED: a bot-owned order
+                # whose price cannot be read is a NAMED defect and is
+                # re-anchored — never silently treated as compliant.
+                _own = _known.union(getattr(self, "_bot_order_ids",
+                                            set()))
+                bad = []
+                for o in buys:
+                    if o["order_id"] not in _own:
+                        continue          # foreign/manual — never touched
+                    if o["price"] is None:
+                        self._log("authority_price_unknown_defect", {
+                            "order_id": o["order_id"][:13],
+                            "band": band, "fish": fish,
+                            "law": "bot-owned order with unreadable "
+                                   "price = fail-closed defect, "
+                                   "re-anchored not assumed compliant"},
+                            ticker=tk)
+                        bad.append(o)
+                    elif int(o["price"]) != int(fish):
+                        bad.append(o)
                 if not bad:
                     if buys:
                         cen["held_at_number"] += 1
@@ -14976,13 +15204,34 @@ class LiveV3:
                 # RE-ANCHOR on the second consecutive cycle (a
                 # seconds-fresh fill must not race the cancel; the
                 # naked tooth's own 2-cycle discipline)
-                if n9 < 2 or pos is None:
+                if n9 < 2:
                     continue
                 try:
-                    res14 = await self._cancel_entry_and_resolve(
-                        tk, pos, "authority_reanchor",
-                        "authority_cancel_race")
-                    if res14 == "booked":
+                    # [LANE-A REV FIX 4B] cancel by CANONICAL ORDER ID —
+                    # every mismatched bot-owned order, not merely the
+                    # position's tracked entry order (a replacement buy
+                    # the engine does not hold as entry_order_id was
+                    # previously left resting while something else was
+                    # cancelled). The tracked entry order still takes
+                    # the race-safe resolve path.
+                    res14 = None
+                    raced = False
+                    for o14 in bad:
+                        if (pos is not None
+                                and str(getattr(pos, "entry_order_id",
+                                                "") or "")
+                                == o14["order_id"]):
+                            res14 = await self._cancel_entry_and_resolve(
+                                tk, pos, "authority_reanchor",
+                                "authority_cancel_race")
+                            if res14 == "booked":
+                                raced = True
+                                break
+                        else:
+                            await self.cancel_order(
+                                tk, o14["order_id"],
+                                "authority_reanchor")
+                    if raced:
                         seen_a.pop(tk, None)
                         continue        # filled in the race — booked,
                                         # exits govern now
@@ -14998,7 +15247,8 @@ class LiveV3:
                             kept14.entry_order_id = oid14
                             kept14.entry_price = int(fish)
                         cen["touched"] += 1
-                        cen["cents_removed"] += (old14 - fish) * qty14
+                        if old14 is not None:
+                            cen["cents_removed"] += (old14 - fish) * qty14
                         self._log("authority_reanchor", {
                             "band": band, "old_px": old14,
                             "fish": fish, "qty": qty14,

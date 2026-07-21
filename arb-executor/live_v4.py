@@ -5477,9 +5477,12 @@ class LiveV3:
             # ticker INDEPENDENTLY refuses new post-only conception —
             # before/in addition to cycle-history reconstruction. No API
             # placement, no Position, no cycle increment.
+            # [REV6.1.1] the operator red flag is INDEPENDENT of the
+            # protective-exit lifecycle: a resolved protective exit is
+            # NOT operator reconciliation. Only an explicit
+            # operator_reconciled state releases this guard.
             _qh = [r for r in self.unmatched_holdings.get(ticker, [])
-                   if r.get("operator_state") == "operator_pending"
-                   and r.get("status") != "resolved"]
+                   if r.get("operator_state") == "operator_pending"]
             if _qh:
                 _ql = self.__dict__.setdefault("_quarantine_buy_logged",
                                                set())
@@ -14738,11 +14741,9 @@ class LiveV3:
         entry_ts = float(getattr(pos, "entry_filled_ts", 0) or 0)
         newly = 0.0
         newpnl = 0.0
-        # [REV6.1] the exchange ts at which cumulative exit receipts FIRST
-        # reach entry_qty is the terminal-cash timestamp — a raced buy
-        # must be strictly LATER than this to qualify as a cancellation
-        # race. Computed here, retained once on the position.
-        _cum_before = float(getattr(pos, "exit_filled_qty", 0) or 0)
+        # [REV6.1.1] terminal-cash timestamp is computed inside the loop
+        # from the running exit_filled_qty (per-order sums + unmatched
+        # legacy), counting each economic quantity exactly once.
         for r in sorted(receipts, key=lambda x: (x["ts"],
                                                  x["receipt_id"])):
             rid = r["receipt_id"]
@@ -14767,10 +14768,13 @@ class LiveV3:
             if payable > 0:
                 newly += payable
                 newpnl += (price - entry_price) * payable
-            # terminal-cash ts: the receipt that first lifts cumulative
-            # booked exit qty to >= entry_qty (exchange time, once).
-            _cum_before += q
-            if (entry_qty and _cum_before >= entry_qty
+            # [REV6.1.1] terminal-cash ts: track running exit_filled_qty
+            # with the SAME arithmetic as the final total (per-order sums +
+            # unmatched legacy) so legacy quantity is counted exactly ONCE.
+            _running = (sum(per_order.values())
+                        + max(0.0, float(pos._exit_legacy_qty)
+                              - float(pos._exit_legacy_absorbed)))
+            if (entry_qty and _running >= entry_qty
                     and getattr(pos, "_terminal_cash_ts", None) is None
                     and r["ts"] is not None):
                 pos._terminal_cash_ts = float(r["ts"])
@@ -15280,35 +15284,71 @@ class LiveV3:
             if open_q <= EXCH_ZERO_EPS:
                 r["status"] = "resolved"
                 continue
+            # [REV6.1.1] coverage is BOOK-CONFIRMED: only protective
+            # orders found resting in the fresh cursor-exhausted read
+            # count. A bare create-ack (order id) is NOT coverage.
             covered = sum(rest.get(oid, 0.0)
                           for oid in (r.get("protective_order_ids") or []))
-            shortfall = open_q - covered
-            if shortfall <= EXCH_ZERO_EPS:
+            if covered >= open_q - EXCH_ZERO_EPS:
                 r["_resting_confirmed"] = True
+                r["_await_oids"] = []
                 continue
-            # repost EXACTLY the uncovered shortfall from the raced basis
+            r["_resting_confirmed"] = False
+            # awaited (just-posted, not-yet-visible) orders: WAIT — do NOT
+            # post a duplicate while a fresh post may simply be lagging.
+            await_oids = [o for o in (r.get("_await_oids") or [])
+                          if o not in rest]
+            if await_oids:
+                r["_await_oids"] = await_oids
+                continue        # pending; posted order not yet visible
+            shortfall = open_q - covered
             target = int(r.get("protective_exit_target")
                          or (int(r["price"])))
             oid, resp = await self.place_order(
                 tk, "sell", "yes", target, int(round(shortfall)))
-            if oid:
-                r.setdefault("protective_order_ids", []).append(oid)
-                r["protective_exit_order_id"] = oid
-                r["_resting_confirmed"] = True
-                self._log("quarantine_protective_posted", {
-                    "buy_receipt_id": r["buy_receipt_id"],
-                    "qty": int(round(shortfall)), "target": target,
-                    "order_id": oid[:13],
-                    "law": "protective coverage from the RACED basis for "
-                           "exactly the uncovered quantity"}, ticker=tk)
-            else:
-                r["_resting_confirmed"] = False
+            if not oid:
                 self._log("quarantine_protective_place_failed", {
                     "buy_receipt_id": r["buy_receipt_id"],
                     "qty": int(round(shortfall)), "target": target,
                     "law": "protective placement returned no order — "
                            "retain the exact receipt, retry next cycle"},
                     ticker=tk)
+                continue
+            r.setdefault("protective_order_ids", []).append(oid)
+            r["protective_exit_order_id"] = oid
+            # OPTION A: an explicit create response proving the full
+            # required remaining is resting confirms immediately.
+            _o = ((resp or {}).get("order", resp)
+                  if isinstance(resp, dict) else {})
+            _rem = None
+            for _k in ("remaining_count_fp", "remaining_count"):
+                if isinstance(_o, dict) and _o.get(_k) is not None:
+                    try:
+                        _rem = float(_o.get(_k))
+                    except (TypeError, ValueError):
+                        _rem = None
+                    break
+            _resting = (isinstance(_o, dict)
+                        and str(_o.get("status") or "").lower()
+                        == "resting")
+            if (_rem is not None and _resting
+                    and _rem >= shortfall - EXCH_ZERO_EPS):
+                r["_resting_confirmed"] = True
+                r["_await_oids"] = []
+                _how = "create_response_remaining"
+            else:
+                # OPTION B pending: the NEXT cycle fresh book read must
+                # find this exact order_id before coverage is confirmed.
+                r["_await_oids"] = [oid]
+                _how = "await_book_confirmation"
+            self._log("quarantine_protective_posted", {
+                "buy_receipt_id": r["buy_receipt_id"],
+                "qty": int(round(shortfall)), "target": target,
+                "order_id": oid[:13], "confirmed": _how,
+                "law": "protective coverage from the RACED basis for "
+                       "exactly the uncovered quantity; coverage confirmed "
+                       "only by book truth or an explicit remaining-proving "
+                       "create response"}, ticker=tk)
         self._save_v4_resting()
 
     async def _quarantine_accrue(self, tk):

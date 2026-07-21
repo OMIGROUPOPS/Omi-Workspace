@@ -1526,10 +1526,19 @@ check(TK not in s.positions and s._cycle_count.get(TK) == 1
 check(not s.unmatched_holdings.get(TK), "A: no quarantine on a clean cash")
 
 # ---- Regression B: cancellation-race buy -------------------------------
+# Coverage is BOOK-confirmed: cycle 1 admits + posts protective (pending,
+# old Position retained); cycle 2 finds it resting and closes the old cycle.
 s, p, rget = race_env()
 M.api_get = rget
 try:
-    run(s.check_fills())
+    run(s.check_fills())               # cycle 1: admit + post protective
+    check(TK in s.positions,
+          "B cycle1: old Position PENDING until coverage book-confirmed")
+    check(getattr(p, "_cash_cleanup_pending", False) is True,
+          "B cycle1: cleanup pending")
+    check(len(s.unmatched_holdings.get(TK) or []) == 1,
+          "B cycle1: raced buy quarantined")
+    run(s.check_fills())               # cycle 2: coverage confirmed -> close
 finally:
     M.api_get = _api_get
 check(p.pnl_cents == 65, "B: completed-cycle P&L UNCHANGED (65)")
@@ -1537,7 +1546,7 @@ check(p.exit_filled_qty == 5 and p.entry_qty == 5 and p.entry_price == 51,
       "B: old receipt ledgers unchanged (qty %s basis %s)"
       % (p.exit_filled_qty, p.entry_price))
 check(s._cycle_count.get(TK) == 1, "B: cycle count remains 1")
-check(TK not in s.positions, "B: old completed Position closed, none re-created")
+check(TK not in s.positions, "B: old Position closed AFTER coverage confirmed")
 q = s.unmatched_holdings.get(TK) or []
 check(len(q) == 1, "B: exactly ONE quarantine record")
 check(q and q[0]["buy_receipt_id"] == "BUYRC"
@@ -1882,12 +1891,15 @@ try:
     check(bool(evs(s, "quarantine_protective_place_failed")),
           "20b failed placement is loud")
     place_state["fail"] = False
-    run(s._quarantine_ensure_coverage(TK))
-    check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is True,
-          "20b next cycle succeeds")
+    run(s._quarantine_ensure_coverage(TK))   # posts, AWAITS book confirm
+    check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is False,
+          "20b successful post is AWAITING book confirmation (not ack-confirmed)")
     sells_posted = [x for x in s.placed if x["action"] == "sell"]
     check(len([x for x in sells_posted if x["count"] == 5]) == 2,
           "20b two attempts total (1 fail + 1 success), no over-post")
+    run(s._quarantine_ensure_coverage(TK))   # book now shows it -> confirmed
+    check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is True,
+          "20b next cycle book read CONFIRMS coverage")
     # 20c confirmed protective exit remains -> no duplicate
     run(s._quarantine_ensure_coverage(TK))
     check(len([x for x in s.placed if x["action"] == "sell"
@@ -2039,6 +2051,251 @@ finally:
         _o2.remove(_f.name)
     except OSError:
         pass
+
+# ======================================================================
+print("--- 22. REV6.1.1 D1: ack != confirmed resting coverage ---")
+# ======================================================================
+def cov_bot(protective_ids=None, booked=0.0):
+    s = make_bot()
+    s.unmatched_holdings = {TK: [{
+        "ticker": TK, "buy_receipt_id": "BR", "buy_order_id": "B-RACE",
+        "qty": 5.0, "price": 30, "status": "quarantined",
+        "protective_order_ids": list(protective_ids or []),
+        "protective_exit_order_id": (protective_ids or [""])[-1]
+        if protective_ids else "", "protective_exit_target": 43,
+        "exit_receipt_ids": [], "exit_booked_qty": booked,
+        "exit_pnl_cents": 0.0, "operator_state": "operator_pending",
+        "_await_oids": []}]}
+    return s
+
+# 22.1  create returns oid but refetch does NOT contain it -> NOT confirmed
+s = cov_bot()
+BOOK["orders"] = []
+async def g_ack_only(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return {"orders": []}          # posted order NOT in the book
+    return await _api_get(sess, ak, pk, path, rl)
+async def place_ack(tk, action, side, price, count, post_only=True):
+    s.placed.append({"tk": tk, "action": action, "price": price,
+                     "count": count})
+    return "PX-1", {"order": {"order_id": "PX-1"}}   # bare ack, no remaining
+s.place_order = place_ack
+M.api_get = g_ack_only
+try:
+    run(s._quarantine_ensure_coverage(TK))
+    rec = s.unmatched_holdings[TK][0]
+    check(rec.get("_resting_confirmed") is False,
+          "22.1 bare ack + not-in-book -> NOT confirmed")
+    check(rec.get("_await_oids") == ["PX-1"], "22.1 order id tracked as awaited")
+    check(not s._quarantine_covered(TK), "22.1 quarantine NOT covered")
+    # a second cycle while still not in book -> NO duplicate (waits)
+    run(s._quarantine_ensure_coverage(TK))
+    check(len([x for x in s.placed if x["action"] == "sell"]) == 1,
+          "22.1 awaiting -> NO duplicate posted")
+finally:
+    M.api_get = _api_get
+
+# 22.2  create response remaining=0 -> NOT coverage
+s = cov_bot()
+BOOK["orders"] = []
+async def place_rem0(tk, action, side, price, count, post_only=True):
+    s.placed.append({"tk": tk, "action": action, "price": price,
+                     "count": count})
+    return "PX-0", {"order": {"order_id": "PX-0", "status": "resting",
+                              "remaining_count_fp": 0}}
+s.place_order = place_rem0
+async def g_empty(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return {"orders": []}
+    return await _api_get(sess, ak, pk, path, rl)
+M.api_get = g_empty
+try:
+    run(s._quarantine_ensure_coverage(TK))
+    check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is False,
+          "22.2 create remaining=0 -> NOT coverage")
+finally:
+    M.api_get = _api_get
+
+# 22.3  create returns oid AND fresh book proves exact resting qty -> confirmed
+s = cov_bot()
+async def place_visible(tk, action, side, price, count, post_only=True):
+    s.placed.append({"tk": tk, "action": action, "price": price,
+                     "count": count})
+    BOOK["orders"].append({"order_id": "PX-V", "ticker": tk,
+                           "action": "sell", "yes_price_dollars": price/100.0,
+                           "remaining_count_fp": count})
+    return "PX-V", {"order": {"order_id": "PX-V"}}
+s.place_order = place_visible
+BOOK["orders"] = []
+async def g_book(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return {"orders": [dict(o) for o in BOOK["orders"]]}
+    return await _api_get(sess, ak, pk, path, rl)
+M.api_get = g_book
+try:
+    run(s._quarantine_ensure_coverage(TK))          # posts (await) ...
+    run(s._quarantine_ensure_coverage(TK))          # ... book confirms
+    check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is True,
+          "22.3 fresh book proves exact resting qty -> confirmed")
+    check(s._quarantine_covered(TK), "22.3 quarantine covered")
+    check(len([x for x in s.placed if x["action"] == "sell"]) == 1,
+          "22.3 no duplicate after confirmation")
+finally:
+    M.api_get = _api_get
+
+# 22.3b create response EXPLICITLY proves full remaining -> confirmed at once
+s = cov_bot()
+BOOK["orders"] = []
+async def place_proof(tk, action, side, price, count, post_only=True):
+    s.placed.append({"tk": tk, "action": action, "price": price,
+                     "count": count})
+    return "PX-P", {"order": {"order_id": "PX-P", "status": "resting",
+                              "remaining_count_fp": count}}
+s.place_order = place_proof
+async def g_none_book(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return {"orders": []}       # book empty, but the create PROVED it
+    return await _api_get(sess, ak, pk, path, rl)
+M.api_get = g_none_book
+try:
+    run(s._quarantine_ensure_coverage(TK))
+    check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is True,
+          "22.3b create response proving full remaining -> confirmed once")
+finally:
+    M.api_get = _api_get
+
+# 22.4  confirmed-then-absent -> exactly one replacement
+s = cov_bot(protective_ids=["PX-OLD"])
+s.unmatched_holdings[TK][0]["_resting_confirmed"] = True
+BOOK["orders"] = []                 # PX-OLD disappeared/cancelled
+async def place_rep(tk, action, side, price, count, post_only=True):
+    s.placed.append({"tk": tk, "action": action, "price": price,
+                     "count": count})
+    return "PX-NEW", {"order": {"order_id": "PX-NEW"}}
+s.place_order = place_rep
+async def g_absent2(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return {"orders": []}
+    return await _api_get(sess, ak, pk, path, rl)
+M.api_get = g_absent2
+try:
+    run(s._quarantine_ensure_coverage(TK))
+finally:
+    M.api_get = _api_get
+check(len([x for x in s.placed if x["action"] == "sell"]) == 1,
+      "22.4 confirmed-then-absent -> exactly ONE replacement")
+
+# 22.5  UNKNOWN refetch -> no duplicate, no closure
+s = cov_bot(protective_ids=["PX-A"])
+async def g_unknown2(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return None
+    return await _api_get(sess, ak, pk, path, rl)
+M.api_get = g_unknown2
+try:
+    run(s._quarantine_ensure_coverage(TK))
+finally:
+    M.api_get = _api_get
+check(not [x for x in s.placed if x["action"] == "sell"],
+      "22.5 UNKNOWN refetch -> NO duplicate posted")
+check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is False,
+      "22.5 UNKNOWN -> not confirmed (no closure)")
+
+# 22.6  the narrow closure exception requires book-confirmed coverage
+s, p, rget = race_env()
+M.api_get = rget
+try:
+    run(s.check_fills())               # cycle 1: admit + post (await)
+    check(TK in s.positions,
+          "22.6 old Position CANNOT close on a bare ack (still pending)")
+finally:
+    M.api_get = _api_get
+
+# ======================================================================
+print("--- 23. REV6.1.1 D2: terminal-cash counts legacy ONCE ---")
+# ======================================================================
+def tc_bot():
+    s = make_bot()
+    for nm in ("_book_exit_receipts",):
+        setattr(s, nm, types.MethodType(getattr(M.LiveV3, nm), s))
+    return s
+
+# 23.1  legacy 4 absorbed @1500; final new 1 @1600 completes -> terminal 1600
+s = tc_bot()
+p = make_pos(entry_qty=5, entry_price=51, exit_price=64)
+p.exit_filled_qty = 4          # legacy already booked
+receipts = [{"receipt_id": "H4", "order_id": "E-OLD", "action": "sell",
+             "qty": 4.0, "price": 60.0, "ts": 1500.0, "missing": []},
+            {"receipt_id": "N1", "order_id": "E-NEW", "action": "sell",
+             "qty": 1.0, "price": 62.0, "ts": 1600.0, "missing": []}]
+newq, newpnl, complete = s._book_exit_receipts(TK, p, receipts, source="t")
+check(complete is True, "23.1 completion reached")
+check(getattr(p, "_terminal_cash_ts", None) == 1600.0,
+      "23.1 terminal_cash_ts = 1600 (NOT 1500) -> got %s"
+      % getattr(p, "_terminal_cash_ts", None))
+check(p.exit_filled_qty == 5, "23.1 no double-count (exit qty 5, not 9)")
+# a buy at 1550 is therefore PRE-cash -> rejected
+s2, p2, v2 = causal_case(1550, term_ts=p._terminal_cash_ts)
+check(v2 == "unknown", "23.1 buy@1550 rejected as pre-cash (terminal 1600)")
+
+# 23.2  clean non-legacy completion still stamps the crossing receipt
+s = tc_bot()
+p = make_pos(entry_qty=5, entry_price=51, exit_price=64)
+p.exit_filled_qty = 0
+receipts = [{"receipt_id": "A2", "order_id": "E-1", "action": "sell",
+             "qty": 2.0, "price": 63.0, "ts": 1590.0, "missing": []},
+            {"receipt_id": "B3", "order_id": "E-1", "action": "sell",
+             "qty": 3.0, "price": 64.0, "ts": 1610.0, "missing": []}]
+newq, newpnl, complete = s._book_exit_receipts(TK, p, receipts, source="t")
+check(complete is True and getattr(p, "_terminal_cash_ts", None) == 1610.0,
+      "23.2 non-legacy: terminal ts = the receipt that crossed entry_qty (1610)")
+
+# ======================================================================
+print("--- 24. REV6.1.1 D3: operator_pending blocks regardless of status ---")
+# ======================================================================
+def guard_bot(operator_state, protective_status):
+    s = make_poll_bot()
+    for nm in ("place_order", "_place_order_unlocked"):
+        setattr(s, nm, types.MethodType(getattr(M.LiveV3, nm), s))
+    s.books = {}
+    s.event_tickers = {}
+    s.ticker_to_event = {}
+    s.event_start_time = {}
+    s._events_live = set()
+    s.fused_gun = False
+    s.freeze_at_gun = False
+    s.maker_only_entry = True
+    s._is_match_live = lambda et: False
+    s._horizon_state = lambda et: (False, 0)
+    s._pursuit_armed = lambda tk: False
+    s.reentry_cycle_cap = 1
+    s._cycle_count = {}
+    s.unmatched_holdings = {TK: [{
+        "ticker": TK, "buy_receipt_id": "BR", "qty": 5.0, "price": 30,
+        "status": protective_status, "operator_state": operator_state,
+        "protective_order_ids": ["PX"], "exit_booked_qty": 5.0}]}
+    return s
+
+# 24.1  unresolved + operator_pending -> refused
+s = guard_bot("operator_pending", "quarantined")
+oid, resp = run(s.place_order(TK, "buy", "yes", 45, 5, post_only=True))
+check(oid == "" and (resp or {}).get("_error") == "quarantine_buy_refused",
+      "24.1 unresolved + operator_pending -> refused")
+# 24.2  RESOLVED protective exit + operator_pending -> STILL refused
+s = guard_bot("operator_pending", "resolved")
+oid, resp = run(s.place_order(TK, "buy", "yes", 45, 5, post_only=True))
+check(oid == "" and (resp or {}).get("_error") == "quarantine_buy_refused",
+      "24.2 resolved protective + operator_pending -> STILL refused")
+# 24.3  explicitly operator_reconciled -> this guard no longer refuses
+s = guard_bot("operator_reconciled", "resolved")
+try:
+    oid, resp = run(s.place_order(TK, "buy", "yes", 45, 5, post_only=True))
+    _err = (resp or {}).get("_error")
+except Exception:
+    _err = "downstream_raised"     # a later, unrelated gate — not ours
+check(_err != "quarantine_buy_refused"
+      and not [d for (e, d, t) in s.logs if e == "quarantine_buy_refused"],
+      "24.3 operator_reconciled -> quarantine guard released (no refusal)")
 
 print("\n%s" % ("ALL REVIEW-FIX TESTS PASS" if not fails
                  else "*** %d FAILURE(S)" % fails))

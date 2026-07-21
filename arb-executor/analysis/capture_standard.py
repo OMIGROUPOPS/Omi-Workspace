@@ -493,6 +493,99 @@ def drill():
                  'gap (%.0fpp, %.1f games/day) IS the widening work, '
                  'named per the law.**'
                  % (70 - tv, (0.70 * tot_n - tot_avail) / days_j))))
+    # ---- THE MIRROR QUESTION (operator reporting law, 07-20 night):
+    # the seesaw is ONE trade — mirror laps report the PAIR as the
+    # unit or the report bounces. Per lap: LINK-RATE (% of mirror
+    # games with both legs captured as one seesaw read) beside the
+    # joint line, every riser fill carrying the sibling's full story
+    # in the same row, and the INVERSE-RELATIONSHIP RECEIPT (riser-dip
+    # timing vs fader-floor timing correlation, dense tape) — "one
+    # read, two clocks" proven or corrected by the tape itself.
+    tp_best = 0 if fr == 'open' else (28800 - 14400 if fr == 'f4h'
+                                      else 28800 - 7200)
+    mp = [g for g in judge_g if g['path_class'] == 'mirror']
+    clean, unclean = [], 0
+    pairs_rows = []
+    xs, ys = [], []
+    linked = 0
+    for g in mp:
+        legs = list(g['legs'].items())
+        upl = [(tk, v) for tk, v in legs
+               if v['path_up'] and not v['path_dn']]
+        dnl = [(tk, v) for tk, v in legs
+               if v['path_dn'] and not v['path_up']]
+        if len(upl) != 1 or len(dnl) != 1:
+            unclean += 1
+            continue
+        (rtk, rv), (ftk, fv) = upl[0], dnl[0]
+        clean.append(g)
+        rq = QT.get(rv['band'], {}).get(qr)
+        fq = QT.get(fv['band'], {}).get(qd)
+        r_fill = catch(rv, rq, tp_best) if rq else None
+        f_fill = (catch(fv, fq, max(tp_best, fv['min_print_t']))
+                  if fq else None)
+        r_dips = [d for d in rv['divots'] if d['t'] >= tp_best]
+        r_deep_t = (max(r_dips, key=lambda d: d['depth'])['t']
+                    if r_dips else None)
+        row = {'event': g['event'], 'cat': g['cat'],
+               'riser': {'leg': rtk.rsplit('-', 1)[1],
+                         'fill': r_fill,
+                         'deep_dip_t_min': (round(r_deep_t / 60)
+                                            if r_deep_t else None)},
+               'fader': {'leg': ftk.rsplit('-', 1)[1],
+                         'fade_floor_t_min': round(
+                             fv['min_print_t'] / 60),
+                         'decel_moment_min': round(
+                             fv['min_print_t'] / 60),
+                         'cast_fill': f_fill,
+                         'miss': (None if f_fill is not None else
+                                  ('no-post-floor-divot'
+                                   if not [d for d in fv['divots']
+                                           if d['t'] >=
+                                           fv['min_print_t']]
+                                   else 'post-floor-divots-shallower'))},
+               'pair_combined': ((r_fill + f_fill)
+                                 if (r_fill is not None
+                                     and f_fill is not None) else None),
+               'vs_par': (('%+d' % (r_fill + f_fill - 100))
+                          if (r_fill is not None and f_fill is not None)
+                          else 'incomplete')}
+        pairs_rows.append(row)
+        if r_fill is not None and f_fill is not None:
+            linked += 1
+        if r_deep_t is not None and g['era'] == 'dense':
+            xs.append(r_deep_t)
+            ys.append(fv['min_print_t'])
+    corr = None
+    if len(xs) >= 8:
+        mx, my = sum(xs) / len(xs), sum(ys) / len(ys)
+        num = sum((a - mx) * (b - my) for a, b in zip(xs, ys))
+        den = (sum((a - mx) ** 2 for a in xs)
+               * sum((b - my) ** 2 for b in ys)) ** 0.5
+        corr = num / den if den else None
+    L.append('')
+    L.append('## THE MIRROR REPORT (the pair is the unit — reporting '
+             'law): mirror games %d · clean seesaws %d (unclean shapes '
+             '%d, counted apart) · **LINK-RATE %d/%d = %.0f%%** '
+             '(both legs captured as one seesaw read, best cell '
+             'f%d/r%d/d%d/%s)'
+             % (len(mp), len(clean), unclean, linked, max(1, len(clean)),
+                100 * linked / max(1, len(clean)), qf, qr, qd, fr))
+    L.append('## THE INVERSE-RELATIONSHIP RECEIPT (dense tape): '
+             'riser-deep-dip time vs fader-floor time r = %s (n=%d) — %s'
+             % (('%.2f' % corr) if corr is not None else
+                'insufficient n', len(xs),
+                ('ONE READ, TWO CLOCKS — proven' if corr is not None
+                 and corr >= 0.5 else
+                 'the clocks DISAGREE — the seesaw read needs '
+                 'correction' if corr is not None else 'said plainly')))
+    L.append('sample pair rows (riser fill + sibling full story, same '
+             'row; full set in mirror_pairs.jsonl):')
+    for row in pairs_rows[:6]:
+        L.append('- %s' % json.dumps(row))
+    with open(OUT / 'mirror_pairs.jsonl', 'w') as mf:
+        for row in pairs_rows:
+            mf.write(json.dumps(row) + '\n')
     out = '\n'.join(L) + '\n'
     (OUT / 'LOOP9_DRILL.md').write_text(out)
     print(out)

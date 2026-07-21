@@ -556,6 +556,10 @@ class H(BaseHTTPRequestHandler):
         if u.path == "/api/alerts.json":
             self._send(json.dumps(ds.build_alerts()), "application/json")
             return
+        if u.path == "/api/hunt.json":
+            # [CAPTURE STANDARD P3 07-20] the HUNT line, full rows
+            self._send(json.dumps(ds.build_hunt()), "application/json")
+            return
         if u.path == "/hands":
             # [P0 completion-disarm 07-17] THE HANDS TABLE — permanent,
             # panel-linked: every hand, its consent, its state.

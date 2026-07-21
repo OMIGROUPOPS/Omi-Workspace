@@ -278,13 +278,28 @@ for pr in pairs:
             if all(sm['fill'] < sm['close'] for sm in sims):
                 b['both_neg'] += 1
 
-def line(name, st, bar='comb'):
+def line(name, st, bar='comb', joint=False):
+    # [CAPTURE STANDARD 07-20 night] the sealed class is judged JOINTLY:
+    # COMPLETION (sub-par duals / class games) >= 70 AND QUALITY
+    # (sub-par / duals) >= 70 — completion FIRST, the operator's order.
     du = st['duals']
+    sp = sum(v for k, v in st['tiers'].items()
+             if k in ('<=93', '<=95', '<=97'))
+    if joint:
+        cr = 100 * sp / max(1, st['pairs'])
+        qr = 100 * sp / du if du else 0.0
+        v = ('JOINT PASS' if (cr >= 70 and qr >= 70 and du)
+             else 'JOINT FAIL (bar 70/70)')
+        mast = (100 * st['both_neg'] / du) if du else 0.0
+        md = statistics.median(st['pair_deltas']) if du else 0
+        return ('- %s: **COMPLETION %d/%d = %.0f%% x QUALITY %d/%d = '
+                '%.0f%% -> %s** · tiers %s · MASTERY dual-neg %.0f%% · '
+                'medPairD %+d'
+                % (name, sp, st['pairs'], cr, sp, du, qr, v,
+                   dict(sorted(st['tiers'].items())), mast, md))
     if not du:
         return '- %s: pairs %d duals 0 — NO DUALS' % (name, st['pairs'])
     md = statistics.median(st['pair_deltas'])
-    sp = sum(v for k, v in st['tiers'].items()
-             if k in ('<=93', '<=95', '<=97'))
     ps = 100 * sp / du
     v = 'PASS' if ps >= 50 else 'FAIL'
     mast = 100 * st['both_neg'] / du
@@ -299,7 +314,8 @@ L = ['## PERCLASS %s (era %s) — COMBINED PRIMARY (ruling 07-20 PM): '
      % (DAYTAG, ERA),
      'slate: %d big-4 events · %d scored pairs · skips %s'
      % (len(exam), len(pairs), dict(skip)),
-     line('FLAT-FLAT (SEALED b2f0b670)', overall['flat_flat']),
+     line('FLAT-FLAT (SEALED b2f0b670; capture standard)',
+          overall['flat_flat'], joint=True),
      line('MIRROR (REFUSE; fader drill on the mastery meter)',
           overall['mirror']),
      line('NEITHER (counted apart)', overall['neither'])]
@@ -327,29 +343,41 @@ try:
         roll = json.loads(roll_f.read_text())
     except Exception:
         roll = {}
+    # [CAPTURE STANDARD 07-20 night] the tripwire covers BOTH axes:
+    # rolling-7 COMPLETION (sub-par duals / class games) and QUALITY
+    # (sub-par / duals), each vs the 70 floor.
     ffs = overall['flat_flat']
     sp_today = sum(v for k, v in ffs['tiers'].items()
                    if k in ('<=93', '<=95', '<=97'))
-    roll[DAYTAG] = {'duals': ffs['duals'], 'subpar': sp_today}
+    roll[DAYTAG] = {'duals': ffs['duals'], 'subpar': sp_today,
+                    'pairs': ffs['pairs']}
     roll = {k: roll[k] for k in sorted(roll)[-14:]}
     roll_f.write_text(json.dumps(roll))
     last7 = [roll[k] for k in sorted(roll)[-7:]]
     du7 = sum(r['duals'] for r in last7)
     sp7 = sum(r['subpar'] for r in last7)
+    pr7 = sum(r.get('pairs', 0) for r in last7)
     decay = []
+    tws = []
+    if pr7 >= 10:
+        comp7 = sp7 / pr7
+        tws.append('completion7 %d/%d=%.0f%%' % (sp7, pr7, 100 * comp7))
+        if comp7 < SEAL_FLOOR:
+            decay.append('rolling7 COMPLETION %d/%d = %.0f%% < %.0f%%'
+                         % (sp7, pr7, 100 * comp7, 100 * SEAL_FLOOR))
+    else:
+        tws.append('completion: insufficient n (games %d < 10), said'
+                   % pr7)
     if du7 >= 5:
         rate7 = sp7 / du7
-        tw = ('OK %.0f%% (floor %.0f%%)' % (100 * rate7,
-                                            100 * SEAL_FLOOR)
-              if rate7 >= SEAL_FLOOR else
-              'DECAY %.0f%% < floor %.0f%%' % (100 * rate7,
-                                               100 * SEAL_FLOOR))
+        tws.append('quality7 %d/%d=%.0f%%' % (sp7, du7, 100 * rate7))
         if rate7 < SEAL_FLOOR:
-            decay.append('rolling7 %d/%d = %.0f%% < %.0f%%'
+            decay.append('rolling7 QUALITY %d/%d = %.0f%% < %.0f%%'
                          % (sp7, du7, 100 * rate7, 100 * SEAL_FLOOR))
     else:
-        tw = 'insufficient n (rolling duals %d < 5) — no alarm, said' \
-             % du7
+        tws.append('quality: insufficient n (duals %d < 5), said' % du7)
+    tw = ' · '.join(tws) + (' (floor %.0f%% both axes)'
+                            % (100 * SEAL_FLOOR))
     # backwalk regression: newest wall fails where history passed
     try:
         bw = (Path(ROOT).parent

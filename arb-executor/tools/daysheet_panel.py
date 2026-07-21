@@ -1497,6 +1497,96 @@ def build_slate(day=None):
 # ── /api/tape/<ticker>.json — proof-on-click, REAL public tape ─────────
 
 
+def build_hunt():
+    """[CAPTURE STANDARD P3, 07-20 night] THE HUNT LINE — every LIVE
+    flat-flat: legs, band, anchor, sealed fish, window remaining, and
+    expected catches remaining (divot-v2 dcatch rate x remaining window
+    fraction). Divots-so-far = tape-on-click (the /api/tape route); a
+    per-request tape walk here would eat the panel, named. Sources: the
+    newest jsonl tail (cascade lines + schedules), the sealed object,
+    divot tables. Read-only."""
+    out = []
+    try:
+        seal = json.loads((ROOT / "state/pair_policies_sealed_v1.json"
+                           ).read_text()).get("bands") or {}
+        dv2 = json.loads((ROOT / "state/divot_tables_v2.json"
+                          ).read_text()).get("bands") or {}
+        pcls, calls, scheds = {}, {}, {}
+        logs = sorted(LOG_DIR.glob("live_v3_*.jsonl"))
+        if not logs:
+            return out
+        p = logs[-1]
+        size = p.stat().st_size
+        with open(p, "rb") as fh:
+            if size > 4_000_000:
+                fh.seek(size - 4_000_000)
+                fh.readline()
+            data = fh.read()
+        for line in data.split(b"\n"):
+            if b'"pair_class_read"' in line:
+                try:
+                    j = json.loads(line)
+                    pcls[j["details"]["event"]] = j["details"]
+                except Exception:
+                    continue
+            elif b'"band_call"' in line or b'"band_recall"' in line:
+                try:
+                    j = json.loads(line)
+                    d = j["details"]
+                    calls[j["ticker"]] = {
+                        "band": d.get("band") or d.get("to"),
+                        "anchor": d.get("anchor")}
+                except Exception:
+                    continue
+            elif b'"schedule_match"' in line:
+                try:
+                    j = json.loads(line)
+                    d = j["details"]
+                    scheds[d["event"]] = d.get("start_time")
+                except Exception:
+                    continue
+        now = time.time()
+        for et, d in pcls.items():
+            if d.get("pair_class") != "flat_flat":
+                continue
+            st = scheds.get(et)
+            try:
+                sch = datetime.fromisoformat(st).timestamp() if st else 0
+            except Exception:
+                sch = 0
+            if not sch or sch < now:      # live W1 only
+                continue
+            rem = min(1.0, max(0.0, (sch - now) / 28800.0))
+            legs = []
+            for tk in (d.get("legs") or {}):
+                c = calls.get(tk) or {}
+                row = seal.get(c.get("band") or "")
+                if not row:
+                    continue
+                fish = int(round((c.get("anchor") or 0)
+                                 - row["depth_p90"]))
+                dc = (dv2.get(c["band"]) or {}).get("dcatch") or {}
+                dep = str(int(row["depth_p90"]))
+                rate = None
+                for k in sorted((int(x) for x in dc), reverse=True):
+                    if k <= int(row["depth_p90"]):
+                        rate = dc[str(k)]
+                        break
+                legs.append({"leg": tk.rsplit("-", 1)[1],
+                             "band": c["band"],
+                             "anchor": c.get("anchor"), "fish": fish,
+                             "exp_catches_remaining":
+                                 round((rate or 0) * rem, 2)})
+            if len(legs) == 2:
+                out.append({"event": et,
+                            "tts_min": int((sch - now) / 60),
+                            "legs": legs,
+                            "note": "divots-so-far: tape-on-click"})
+    except Exception:
+        pass
+    return out
+
+
 def bank_days():
     """[P1 day toggle] every banked closed day + today, newest first."""
     bank = ROOT / "state" / "daysheet_bank"
@@ -1688,6 +1778,22 @@ def build_alerts(limit=30):
                         "digits": "%s %s" % ((tk or "")[-12:],
                                              (det or "")[:80]),
                         "red": True})
+    except Exception:
+        pass
+    # [CAPTURE STANDARD P3] the HUNT line rides the alert surface too
+    # (digits only, amber; full rows at /api/hunt.json)
+    try:
+        for h in build_hunt()[:6]:
+            lg = h["legs"]
+            out.append({"ts": time.time(), "et": _hm(time.time()),
+                        "kind": "hunt",
+                        "digits": "%s T-%dm %s fish %s+%s exp %s+%s"
+                        % (h["event"].split("-")[-1], h["tts_min"],
+                           "+".join(x["leg"] for x in lg),
+                           lg[0]["fish"], lg[1]["fish"],
+                           lg[0]["exp_catches_remaining"],
+                           lg[1]["exp_catches_remaining"]),
+                        "red": False})
     except Exception:
         pass
     out.sort(key=lambda x: -(x["ts"] or 0))

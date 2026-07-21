@@ -1,0 +1,66 @@
+{
+  "schema_version": "window1-normalized-v1",
+  "research_base_sha": "193e90da406214d2e5d9b2c7b5f752ddda046895",
+  "inspection_date": "2026-07-21",
+  "complete": false,
+  "sources": {
+    "tracked_shape_samples": {
+      "files": 16,
+      "bytes": 17548295,
+      "name_start": "20260706",
+      "name_end": "20260721",
+      "role": "recent precursor summaries only"
+    },
+    "tracked_live_validation": {
+      "parseable_rows": 30937,
+      "malformed_rows": 2,
+      "exact_order_receipts": false
+    },
+    "tracked_prior_substrate": {
+      "rows": 414,
+      "operational_seed_rows": 187,
+      "seed_end": "20260718",
+      "right_edge_rows": 0,
+      "authoritative_denominator": false
+    },
+    "tracked_backwalk_pairs": {
+      "rows": 3042,
+      "role": "prior frame-search only"
+    },
+    "tracked_milestone_shadow": {
+      "parseable_rows": 746,
+      "malformed_rows": 1,
+      "events": 497
+    },
+    "original_premarket_ticks": {
+      "files": 7,
+      "bytes": 4665,
+      "capture_depth": "top5"
+    },
+    "subsecond_store_db": {
+      "present": false
+    },
+    "depth_recorder": {
+      "files": 0
+    },
+    "ws_depth_recorder": {
+      "files": 0
+    },
+    "operational_live_logs": {
+      "files": 0
+    },
+    "tennis_db": {
+      "bytes": 0
+    }
+  },
+  "missing_required": [
+    "complete big-4 event catalog for 2026-07-12 through 2026-07-20",
+    "exact entry order receipts including non-fills",
+    "exchange fill receipts and timestamps",
+    "January-present subsecond prints and shapes",
+    "receipt-identifiable public tape",
+    "full premarket top-five archive",
+    "depth-recorder archive",
+    "full ws-depth sequence epochs and corruption map"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "research_base_sha": "193e90da406214d2e5d9b2c7b5f752ddda046895",
+  "branch": "codex/window1-definition",
+  "validation_gate_passed": false,
+  "window1_empirically_frozen": false,
+  "D": null,
+  "C": null,
+  "S": null,
+  "C_over_D_target": 0.75,
+  "C_over_D_reached": null,
+  "combined_entry_cost_results": null,
+  "individual_leg_delta_results": null,
+  "material_features": null,
+  "distance_from_target": null,
+  "honest_ceiling": null,
+  "reason": "complete operational event, receipt, print, and full-book evidence is not local",
+  "window2_touched": false,
+  "exits_touched": false,
+  "dca_used": false,
+  "invalid_bookframe_process_running": false,
+  "holdout_viewed": false
+}

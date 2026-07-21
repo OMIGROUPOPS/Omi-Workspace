@@ -1,0 +1,13 @@
+{
+  "status": "not_run_validation_gate_failed",
+  "feature_families": [
+    "macrostructure",
+    "full_ladder_microstructure",
+    "queue_and_own_volume",
+    "true_print_direction_size_tempo",
+    "replenishment_cancellation_absorption",
+    "first_leg_fill_state",
+    "extreme_ask_over_bid_sanity_class"
+  ],
+  "results": null
+}

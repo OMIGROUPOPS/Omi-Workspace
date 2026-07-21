@@ -1,0 +1,10 @@
+{
+  "schema_version": "window1-normalized-v1",
+  "status": "blocked_missing_complete_event_catalog",
+  "immutable": false,
+  "row_count": null,
+  "D_fit": null,
+  "D_holdout": null,
+  "local_prior_seed_rows_not_promoted": 187,
+  "reason": "the local prior substrate is non-exhaustive, lacks right edges, and has only one row on the first holdout day"
+}

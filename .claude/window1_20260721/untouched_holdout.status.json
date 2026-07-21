@@ -1,0 +1,8 @@
+{
+  "status": "untouched_not_run",
+  "period_start": "2026-07-18",
+  "period_end": "2026-07-20",
+  "viewed": false,
+  "evaluation_count": 0,
+  "reason": "validation gate failed and no fit-only Window-1 freeze exists"
+}

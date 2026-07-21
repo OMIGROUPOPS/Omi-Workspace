@@ -1,0 +1,14 @@
+{"mismatch_type":"missing_file","scope":"event_universe","detail":"complete exchange-catalog big-4 event ledger for 2026-07-12 through 2026-07-20 is absent"}
+{"mismatch_type":"order_identity","scope":"live_validation","detail":"exact July-12-forward entry order and client-order fingerprints are absent"}
+{"mismatch_type":"nonfill","scope":"live_validation","detail":"official non-filled entry orders are absent"}
+{"mismatch_type":"fill_receipt","scope":"live_validation","detail":"official fill receipts with order identity, quantity, price, and exchange timestamp are absent"}
+{"mismatch_type":"clock","scope":"schedule","detail":"complete contemporaneous schedule revisions and verified actual-start receipts are absent"}
+{"mismatch_type":"source","scope":"prints","detail":"January-present subsecond store and receipt-identifiable public tape are absent"}
+{"mismatch_type":"source","scope":"prints","detail":"predecessor promotes zero or missing size via float(size or 1)"}
+{"mismatch_type":"source","scope":"prints","detail":"predecessor admits all prints-table sources without true-print restriction"}
+{"mismatch_type":"source","scope":"deduplication","detail":"predecessor merges minute-price buckets instead of exchange receipt identity"}
+{"mismatch_type":"book","scope":"premarket_ticks","detail":"only seven tiny top-five files are local; top-five cannot prove queue"}
+{"mismatch_type":"book","scope":"depth_recorder","detail":"snapshot top-20 archive is absent"}
+{"mismatch_type":"book","scope":"ws_depth","detail":"full ladder sequence epochs are absent"}
+{"mismatch_type":"book","scope":"ws_depth","detail":"known July-20 reconnect and corruption intervals cannot be mapped locally"}
+{"mismatch_type":"queue","scope":"ownership","detail":"aggregate book cannot identify own resting orders without exact engine receipts"}

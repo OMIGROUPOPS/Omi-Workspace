@@ -1,0 +1,19 @@
+{
+  "schema_version": "window1-normalized-v1",
+  "declared_before_candidate_scoring": true,
+  "fit": {
+    "start": "2026-07-12",
+    "end": "2026-07-17"
+  },
+  "holdout": {
+    "start": "2026-07-18",
+    "end": "2026-07-20",
+    "evaluation_count_allowed": 1,
+    "viewed": false
+  },
+  "latest_complete_day_at_declaration": "2026-07-20",
+  "denominator_frozen": false,
+  "window1_selected_and_frozen": false,
+  "reason_not_frozen": "complete event, receipt, print, and full-book evidence bundle is not local",
+  "scoring_permitted": false
+}

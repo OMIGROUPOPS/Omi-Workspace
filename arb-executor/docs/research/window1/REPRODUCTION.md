@@ -6,7 +6,11 @@ The research branch was cut from the fetched authoritative base:
 
 `193e90da406214d2e5d9b2c7b5f752ddda046895`
 
-After review, use the pushed `codex/window1-definition` commit reported in the final handoff. Do not run these commands in the production checkout.
+The byte-exact benchmark implementation and all blocked-state reports are in:
+
+`6de11c533562e636ea0238dca81e8ff109a0cd79`
+
+Do not run these commands in the production checkout.
 
 ## Required VPS staging
 
@@ -35,7 +39,8 @@ Use a separate VPS worktree:
 
 ```bash
 git fetch origin codex/window1-definition
-git worktree add /srv/omi-research/OMI-Workspace-codex-window1 origin/codex/window1-definition
+git cat-file -e 6de11c533562e636ea0238dca81e8ff109a0cd79^{commit}
+git worktree add --detach /srv/omi-research/OMI-Workspace-codex-window1 6de11c533562e636ea0238dca81e8ff109a0cd79
 cd /srv/omi-research/OMI-Workspace-codex-window1
 python -B arb-executor/tests/test_window1_benchmark.py
 ```

@@ -620,6 +620,278 @@ try:
 finally:
     M.api_get = _orig_get
 
+# ======================================================================
+print("--- 11. REV3 D1: cash cleanup must not fail open on UNKNOWN ---")
+# ======================================================================
+# The book state used by every case below: one bot-owned resting buy,
+# a confirmed cash on the exit order. Only the VERIFICATION responses
+# differ. Anything other than two explicit successes must stay pending.
+def d1_case(verify_orders, verify_positions, cancel_ok=True):
+    """verify_* : "ok" | "none" | "nokey" | "malformed" | "raise" """
+    s = make_bot()
+    p = make_pos(exit_order_id="E-1")
+    p.entry_order_id = "B-1"
+    s.positions[TK] = p
+    s._bot_order_ids.add("B-1")
+    reset(orders=[{"order_id": "B-1", "ticker": TK, "action": "buy",
+                   "yes_price_dollars": 0.45, "remaining_count_fp": 5}],
+          fills=[rc("F-1", "E-1", 5, 64, ts=1600)])
+    state = {"orders_calls": 0, "pos_calls": 0}
+    async def verifying_get(sess, ak, pk, path, rl):
+        if "/portfolio/orders" in path and "status=resting" in path:
+            state["orders_calls"] += 1
+            if state["orders_calls"] == 1:       # the pre-cancel read
+                return {"orders": [dict(o) for o in BOOK["orders"]]}
+            if verify_orders == "none": return None
+            if verify_orders == "nokey": return {"other": []}
+            if verify_orders == "malformed": return {"orders": "nope"}
+            if verify_orders == "raise": raise RuntimeError("orders boom")
+            return {"orders": [dict(o) for o in BOOK["orders"]]}
+        if "/portfolio/positions" in path:
+            state["pos_calls"] += 1
+            if verify_positions == "none": return None
+            if verify_positions == "nokey": return {"other": []}
+            if verify_positions == "malformed":
+                return {"market_positions": "nope"}
+            if verify_positions == "raise": raise RuntimeError("pos boom")
+            if verify_positions == "nonzero":
+                return {"market_positions": [{"ticker": TK,
+                                              "position_fp": 5}]}
+            return {"market_positions": []}
+        return await _api_get(sess, ak, pk, path, rl)
+    if not cancel_ok:
+        async def co(tk, oid, label=""):
+            s.cancelled.append({"tk": tk, "oid": oid, "label": label})
+            return False
+        s.cancel_order = co
+    M.api_get = verifying_get
+    try:
+        r = run(s._reconcile_exit_fill_from_truth(TK, p))
+    finally:
+        M.api_get = _api_get
+    return s, p, r
+
+def d1_expect_pending(label, s, p, r, want_orders_ok=None,
+                      want_positions_ok=None, want_failure=True):
+    check(r is False, "%s -> does NOT close" % label)
+    check(TK in s.positions, "%s -> position retained" % label)
+    check(p.entry_order_id == "B-1", "%s -> entry order id retained" % label)
+    check(not evs(s, "cash_cleanup_verified"),
+          "%s -> NEVER emits cash_cleanup_verified" % label)
+    pend = evs(s, "cash_cleanup_pending")
+    check(bool(pend), "%s -> cash_cleanup_pending emitted" % label)
+    if pend and want_orders_ok is not None:
+        check(pend[-1].get("orders_ok") is want_orders_ok,
+              "%s -> names orders_ok=%s" % (label, want_orders_ok))
+    if pend and want_positions_ok is not None:
+        check(pend[-1].get("positions_ok") is want_positions_ok,
+              "%s -> names positions_ok=%s" % (label, want_positions_ok))
+    if pend and want_failure:
+        check(bool(pend[-1].get("verify_failures")),
+              "%s -> names the precise failure: %s"
+              % (label, pend[-1].get("verify_failures")))
+
+# 11.1 orders verification returns None
+s, p, r = d1_case("none", "ok")
+d1_expect_pending("orders=None", s, p, r, False, True)
+# 11.2 orders response lacks 'orders'
+s, p, r = d1_case("nokey", "ok")
+d1_expect_pending("orders missing key", s, p, r, False, True)
+# 11.3 positions verification returns None
+s, p, r = d1_case("ok", "none")
+d1_expect_pending("positions=None", s, p, r, True, False)
+# 11.4 positions response lacks 'market_positions'
+s, p, r = d1_case("ok", "nokey")
+d1_expect_pending("positions missing key", s, p, r, True, False)
+# 11.5 either fetch raises
+s, p, r = d1_case("raise", "ok")
+d1_expect_pending("orders raises", s, p, r, False, True)
+s, p, r = d1_case("ok", "raise")
+d1_expect_pending("positions raises", s, p, r, True, False)
+# malformed collections are UNKNOWN too
+s, p, r = d1_case("malformed", "ok")
+d1_expect_pending("orders malformed", s, p, r, False, True)
+s, p, r = d1_case("ok", "malformed")
+d1_expect_pending("positions malformed", s, p, r, True, False)
+# 11.6 cancel returns True but verification becomes unavailable
+s, p, r = d1_case("none", "none")
+d1_expect_pending("cancel ok, both feeds unknown", s, p, r, False, False)
+check(any(c["oid"] == "B-1" for c in s.cancelled),
+      "cancel was attempted before verification failed")
+# 11.8 explicit NONZERO exchange position stays pending
+s, p, r = d1_case("ok", "nonzero")
+d1_expect_pending("exchange qty 5", s, p, r, True, True,
+                  want_failure=False)
+pend = evs(s, "cash_cleanup_pending")
+check(pend and pend[-1].get("exchange_qty") == 5,
+      "nonzero exchange qty reported as a number")
+# 11.7 THE ONLY VERIFYING CASE: both feeds explicit + empty
+s, p, r = d1_case("ok", "ok")
+check(r is True, "both feeds explicitly empty -> closes")
+check(TK not in s.positions, "verified closure removes the position")
+ver = evs(s, "cash_cleanup_verified")
+check(bool(ver), "cash_cleanup_verified emitted exactly here")
+check(ver and ver[-1].get("orders_ok") is True
+      and ver[-1].get("positions_ok") is True,
+      "verified line names BOTH proofs")
+check(ver and ver[-1].get("exchange_qty") == 0.0,
+      "verified line carries exchange qty 0")
+
+# ======================================================================
+print("--- 12. REV3 D2: fills pagination must exhaust or fail ---")
+# ======================================================================
+PAGES = {"seq": [], "calls": 0}
+async def paging_get(sess, ak, pk, path, rl):
+    if "/portfolio/fills" in path:
+        i = PAGES["calls"]
+        PAGES["calls"] += 1
+        spec = PAGES["seq"][i] if i < len(PAGES["seq"]) else {"fills": []}
+        if spec == "RAISE":
+            raise RuntimeError("page boom")
+        return spec
+    return await _api_get(sess, ak, pk, path, rl)
+
+def d2_bot(pages, ttl=30):
+    s = make_bot()
+    s.config = {"fills_bulk_ttl_sec": ttl}
+    PAGES["seq"] = pages
+    PAGES["calls"] = 0
+    return s
+
+# 12.1 the target receipt exists ONLY on page two
+pages = [{"fills": [rc("F-other", "E-OTHER", 5, 70, ts=1500)],
+          "cursor": "c1"},
+         {"fills": [rc("F-mine", "E-1", 5, 64, ts=1600)]}]
+s = d2_bot(pages)
+p = make_pos(exit_order_id="E-1")
+s.positions[TK] = p
+M.api_get = paging_get
+try:
+    r = run(s._reconcile_exit_fill_from_truth(TK, p))
+finally:
+    M.api_get = _api_get
+check(r is True, "page-two receipt is found and books")
+check(p.exit_filled_qty == 5 and p.pnl_cents == 65,
+      "page-two receipt books exactly (qty %s pnl %s)"
+      % (p.exit_filled_qty, p.pnl_cents))
+check(PAGES["calls"] == 2, "walked exactly 2 pages (got %d)"
+      % PAGES["calls"])
+
+# 12.2 five positions share ONE two-page walk
+pages = [{"fills": [rc("F-%d" % i, "E-%d" % i, 5, 64, ts=1600)
+                    for i in range(3)], "cursor": "c1"},
+         {"fills": [rc("F-%d" % i, "E-%d" % i, 5, 64, ts=1600)
+                    for i in range(3, 5)]}]
+s = d2_bot(pages)
+M.api_get = paging_get
+try:
+    for i in range(5):
+        tki = "KXITFMATCH-26JUL20BBB%d-BBB" % i
+        got, defects, ok = run(s._exit_receipts(tki, {"E-%d" % i}))
+        check(ok is True, "position %d: feed_ok" % i)
+finally:
+    M.api_get = _api_get
+check(PAGES["calls"] == 2,
+      "5 positions consumed ONE two-page walk (pages fetched: %d)"
+      % PAGES["calls"])
+
+# 12.3 page two returns None -> whole fetch fails
+pages = [{"fills": [rc("F-a", "E-1", 2, 64, ts=1600)], "cursor": "c1"},
+         None]
+s = d2_bot(pages)
+p = make_pos(exit_order_id="E-1")
+s.positions[TK] = p
+M.api_get = paging_get
+try:
+    rows, ok = run(s._fills_bulk())
+    r = run(s._reconcile_exit_fill_from_truth(TK, p))
+finally:
+    M.api_get = _api_get
+check(ok is False and rows == [], "page-two None -> feed_ok False, no rows")
+check(r is False and p.exit_filled_qty == 0 and p.pnl_cents == 0,
+      "page-two None -> nothing booked, nothing closed")
+check(evs(s, "fills_bulk_incomplete"), "incomplete pagination logged")
+
+# 12.4 page two raises
+pages = [{"fills": [rc("F-a", "E-1", 2, 64, ts=1600)], "cursor": "c1"},
+         "RAISE"]
+s = d2_bot(pages)
+M.api_get = paging_get
+try:
+    rows, ok = run(s._fills_bulk())
+finally:
+    M.api_get = _api_get
+check(ok is False and rows == [], "page-two raise -> feed_ok False")
+inc = evs(s, "fills_bulk_incomplete")
+check(inc and "exception" in str(inc[-1].get("reason")),
+      "exception named in the failure reason: %s"
+      % (inc[-1].get("reason") if inc else None))
+
+# 12.5 missing `fills` collection
+pages = [{"fills": [rc("F-a", "E-1", 2, 64, ts=1600)], "cursor": "c1"},
+         {"other": []}]
+s = d2_bot(pages)
+M.api_get = paging_get
+try:
+    rows, ok = run(s._fills_bulk())
+finally:
+    M.api_get = _api_get
+check(ok is False and rows == [], "missing fills collection -> feed_ok False")
+
+# 12.6 repeated cursor (loop) -> failure, not a spin
+pages = [{"fills": [], "cursor": "SAME"},
+         {"fills": [], "cursor": "SAME"},
+         {"fills": [], "cursor": "SAME"}]
+s = d2_bot(pages)
+M.api_get = paging_get
+try:
+    rows, ok = run(s._fills_bulk())
+finally:
+    M.api_get = _api_get
+check(ok is False, "repeated cursor -> feed_ok False")
+check(PAGES["calls"] <= 3, "repeated cursor detected fast (%d pages)"
+      % PAGES["calls"])
+inc = evs(s, "fills_bulk_incomplete")
+check(inc and "repeated_cursor" in str(inc[-1].get("reason")),
+      "repeated cursor named: %s" % (inc[-1].get("reason") if inc else None))
+
+# 12.7 duplicate receipt across pages books ONCE
+dup = rc("F-dup", "E-1", 5, 64, ts=1600)
+pages = [{"fills": [dup], "cursor": "c1"}, {"fills": [dup]}]
+s = d2_bot(pages)
+p = make_pos(exit_order_id="E-1")
+s.positions[TK] = p
+M.api_get = paging_get
+try:
+    r = run(s._reconcile_exit_fill_from_truth(TK, p))
+finally:
+    M.api_get = _api_get
+check(r is True, "duplicate-across-pages still completes")
+check(p.exit_filled_qty == 5 and p.pnl_cents == 65,
+      "duplicate booked ONCE (qty %s pnl %s)"
+      % (p.exit_filled_qty, p.pnl_cents))
+
+# 12.8 incomplete pagination cannot close or invent P&L
+pages = [{"fills": [rc("F-a", "E-1", 5, 64, ts=1600)], "cursor": "c1"},
+         None]
+s = d2_bot(pages)
+p = make_pos(exit_order_id="E-1")
+p.entry_order_id = "B-1"
+s.positions[TK] = p
+s._bot_order_ids.add("B-1")
+M.api_get = paging_get
+try:
+    r = run(s._reconcile_exit_fill_from_truth(TK, p))
+finally:
+    M.api_get = _api_get
+check(r is False, "incomplete pagination -> no closure")
+check(TK in s.positions, "incomplete pagination -> position retained")
+check(p.pnl_cents == 0, "incomplete pagination -> NO P&L invented")
+check(s._cycle_count.get(TK, 0) == 0,
+      "incomplete pagination -> no cycle armed")
+check(not evs(s, "cash_cleanup_verified"),
+      "incomplete pagination -> never verified")
+
 print("\n%s" % ("ALL REVIEW-FIX TESTS PASS" if not fails
                  else "*** %d FAILURE(S)" % fails))
 sys.exit(1 if fails else 0)

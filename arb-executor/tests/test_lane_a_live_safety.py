@@ -47,6 +47,7 @@ ORDER_RESP = {}      # order_id -> {"order": {...}} or None
 FILLS_RESP = []      # list of canonical /fills rows
 MARKET_STATUS = "active"
 RESTING = []         # list of raw resting-order rows (ticker-scoped feed)
+POSITIONS = []       # explicit exchange positions (empty == verified empty)
 API_CALLS = []
 
 async def _fake_api_get(sess, ak, pk, path, rl):
@@ -58,6 +59,10 @@ async def _fake_api_get(sess, ak, pk, path, rl):
         return {"fills": list(FILLS_RESP)}
     if "/portfolio/orders?" in path or "status=resting" in path:
         return {"orders": list(RESTING)}
+    # [REV3] exchange truth must be EXPLICIT: the contract treats a
+    # missing collection as UNKNOWN, so the double states it plainly.
+    if "/portfolio/positions" in path:
+        return {"market_positions": list(POSITIONS)}
     if "/markets/" in path:
         return {"market": {"status": MARKET_STATUS}}
     return {}
@@ -125,11 +130,13 @@ def make_bot():
 def evs(s, name):
     return [d for (e, d, t) in s.logs if e == name]
 
-def reset_api(order_resp=None, fills=None, status="active", resting=None):
-    global ORDER_RESP, FILLS_RESP, MARKET_STATUS, RESTING
+def reset_api(order_resp=None, fills=None, status="active", resting=None,
+              positions=None):
+    global ORDER_RESP, FILLS_RESP, MARKET_STATUS, RESTING, POSITIONS
     ORDER_RESP = dict(order_resp or {})
     FILLS_RESP = list(fills or [])
     RESTING = list(resting or [])
+    POSITIONS = list(positions or [])
     MARKET_STATUS = status
     API_CALLS.clear()
 

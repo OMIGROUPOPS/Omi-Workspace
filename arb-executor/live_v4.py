@@ -14546,27 +14546,78 @@ class LiveV3:
                 "ts": ts, "missing": missing}
 
     async def _fills_bulk(self):
-        """[LANE-A REV2 FIX 3] ONE fills-history request per cycle for
-        the WHOLE book, cached briefly and shared by every position —
-        so N active exits never cost N history requests (the poll
-        starvation this repair must not worsen). Returns (rows, ok);
-        ok=False means the feed is unavailable this cycle: callers name
-        the missing truth and retry, never invent."""
+        """[LANE-A REV3 FIX 2] ONE PAGINATED WALK per cache cycle for
+        the WHOLE book, shared by every position (N positions => 1
+        walk, never N). The cursor is followed to EXHAUSTION; anything
+        short of exhaustion is a FAILED fetch, never a truncated
+        "truth":
+          · a page that is None, not a dict, missing/!list `fills`,
+            or raises            -> feed_ok=False
+          · a repeated cursor    -> feed_ok=False (loop guard)
+          · the page bound hit before exhaustion -> feed_ok=False
+        Rows are de-duplicated across pages by canonical receipt
+        identity (fill_id / trade_id). Returns (rows, feed_ok); a
+        False verdict is logged and retried next cycle — callers may
+        never book or close from it."""
         now = time.time()
         ttl = float(self.config.get("fills_bulk_ttl_sec", 10))
         c = self.__dict__.get("_fills_bulk_cache")
         if c and now - c[0] < ttl:
             return c[1], c[2]
         rows, ok = [], False
+        seen_ids, seen_cursors = set(), set()
+        pages = 0
+        max_pages = int(self.config.get("fills_bulk_max_pages", 50))
+        cursor = None
+        reason = None
         try:
-            d = await api_get(self.session, self.ak, self.pk,
-                              "/trade-api/v2/portfolio/fills?limit=1000",
-                              self.rl)
-            if d is not None and "fills" in (d or {}):
-                rows = list((d or {}).get("fills") or [])
-                ok = True
-        except Exception as _fbe:
-            self._log("fills_bulk_error", {"err": str(_fbe)[:150]})
+            while True:
+                path = "/trade-api/v2/portfolio/fills?limit=1000"
+                if cursor:
+                    path += "&cursor=%s" % cursor
+                d = await api_get(self.session, self.ak, self.pk, path,
+                                  self.rl)
+                pages += 1
+                if d is None:
+                    reason = "page_none(page=%d)" % pages
+                    break
+                if not isinstance(d, dict) or "fills" not in d:
+                    reason = "missing_fills_collection(page=%d)" % pages
+                    break
+                page_rows = d.get("fills")
+                if not isinstance(page_rows, list):
+                    reason = "fills_malformed(page=%d)" % pages
+                    break
+                for f in page_rows:
+                    if not isinstance(f, dict):
+                        continue
+                    rid = f.get("fill_id") or f.get("trade_id")
+                    key = str(rid) if rid else None
+                    if key is not None:
+                        if key in seen_ids:
+                            continue          # duplicate across pages
+                        seen_ids.add(key)
+                    rows.append(f)
+                nxt = d.get("cursor") or None
+                if not nxt:
+                    ok = True                 # EXHAUSTED — complete truth
+                    break
+                if nxt in seen_cursors:
+                    reason = "repeated_cursor(page=%d)" % pages
+                    break
+                seen_cursors.add(nxt)
+                cursor = nxt
+                if pages >= max_pages:
+                    reason = "page_bound_%d_before_exhaustion" % max_pages
+                    break
+        except Exception as e:
+            reason = "exception:%s" % type(e).__name__
+        if not ok:
+            rows = []                          # never expose a partial set
+            self._log("fills_bulk_incomplete", {
+                "pages_fetched": pages, "reason": reason,
+                "law": "incomplete pagination is NOT truth — no "
+                       "booking, no closure; retry next cycle"})
         self._fills_bulk_cache = (now, rows, ok)
         return rows, ok
 
@@ -14723,23 +14774,33 @@ class LiveV3:
                       ticker=tk)
             return False
         # VERIFY against a refetch — the cancel result is a claim, the
-        # refetched book is the truth.
-        remaining, ex_qty = await self._cash_cleanup_state(tk, pos)
-        if remaining or ex_qty >= 1 or failed:
+        # refetched book is the truth. [REV3 FIX 1] BOTH sides must be
+        # explicitly KNOWN: silence, malformed data or an exception is
+        # UNKNOWN, and UNKNOWN can never verify closure.
+        (remaining, ex_qty, orders_ok, positions_ok,
+         vfail) = await self._cash_cleanup_state(tk, pos)
+        if (not orders_ok or not positions_ok or remaining
+                or ex_qty >= 1 or failed):
             self._log("cash_cleanup_pending", {
                 "attempted": attempted, "confirmed": confirmed,
+                "orders_ok": orders_ok, "positions_ok": positions_ok,
+                "verify_failures": vfail[:4],
                 "failed": [(o[:13], r) for o, r in failed][:4],
                 "bot_buys_remaining": [o[:13] for o in remaining][:4],
-                "exchange_qty": ex_qty,
-                "law": "closure requires zero bot-owned buys AND "
-                       "consistent exchange truth — retrying, position "
-                       "and order ids retained"}, ticker=tk)
+                "exchange_qty": (ex_qty if positions_ok else "UNKNOWN"),
+                "law": "closure requires orders_ok AND positions_ok AND "
+                       "zero bot-owned buys AND verified exchange qty "
+                       "zero — API silence is not an empty book; "
+                       "position and order ids retained"}, ticker=tk)
             return False
         if getattr(pos, "entry_order_id", ""):
             pos.entry_order_id = ""
         self._log("cash_cleanup_verified", {
             "attempted": attempted, "confirmed": confirmed,
-            "law": "book verified clean — closure may proceed"},
+            "orders_ok": True, "positions_ok": True,
+            "exchange_qty": ex_qty,
+            "law": "BOTH feeds explicitly succeeded, zero bot-owned "
+                   "buys, exchange qty zero — closure may proceed"},
             ticker=tk)
         return True
 
@@ -14755,35 +14816,82 @@ class LiveV3:
         return mine
 
     async def _cash_cleanup_state(self, tk, pos):
-        """Refetched truth: (bot-owned resting buy ids, exchange qty)."""
-        remaining = []
+        """[LANE-A REV3 FIX 1] EXPLICIT TRUTH STATUS — API silence is
+        NOT an empty book. Returns
+            (remaining_bot_buy_ids, ex_qty, orders_ok, positions_ok,
+             failures)
+        where *_ok is True ONLY when the respective response was
+        present, well-formed, and carried its expected collection.
+        None, an exception, a missing/!list collection or malformed
+        rows => that side is UNKNOWN (ok=False) and the caller must
+        refuse closure. ex_qty is meaningful only when
+        positions_ok is True."""
+        remaining, failures = [], []
         ex_qty = 0.0
+        orders_ok = positions_ok = False
         try:
             d = await api_get(self.session, self.ak, self.pk,
                               "/trade-api/v2/portfolio/orders?ticker=%s"
                               "&status=resting" % tk, self.rl)
-            mine = self._bot_owned_ids(pos)
-            for raw in ((d or {}).get("orders") or []):
-                o = self._canon_order(raw, tk)
-                if (o["action"] == "buy" and o["remaining"] > 0
-                        and o["order_id"] in mine):
-                    remaining.append(o["order_id"])
-        except Exception:
-            remaining.append("fetch_failed")
+            if d is None:
+                failures.append("orders_fetch_none")
+            elif not isinstance(d, dict) or "orders" not in d:
+                failures.append("orders_missing_collection")
+            elif not isinstance(d.get("orders"), list):
+                failures.append("orders_malformed")
+            else:
+                mine = self._bot_owned_ids(pos)
+                bad_row = False
+                for raw in d["orders"]:
+                    if not isinstance(raw, dict):
+                        bad_row = True
+                        break
+                    o = self._canon_order(raw, tk)
+                    if (o["action"] == "buy" and o["remaining"] > 0
+                            and o["order_id"] in mine):
+                        remaining.append(o["order_id"])
+                if bad_row:
+                    failures.append("orders_malformed_row")
+                else:
+                    orders_ok = True
+        except Exception as e:
+            failures.append("orders_exception:%s" % type(e).__name__)
         try:
             pd = await api_get(
                 self.session, self.ak, self.pk,
                 "/trade-api/v2/portfolio/positions?ticker=%s"
                 "&count_filter=position&settlement_status=unsettled" % tk,
                 self.rl)
-            for p_ in ((pd or {}).get("market_positions") or []):
-                try:
-                    ex_qty += float(p_.get("position_fp") or 0)
-                except (TypeError, ValueError):
-                    pass
-        except Exception:
-            pass
-        return remaining, ex_qty
+            if pd is None:
+                failures.append("positions_fetch_none")
+            elif not isinstance(pd, dict) or "market_positions" not in pd:
+                failures.append("positions_missing_collection")
+            elif not isinstance(pd.get("market_positions"), list):
+                failures.append("positions_malformed")
+            else:
+                bad_row = False
+                tot = 0.0
+                for p_ in pd["market_positions"]:
+                    if not isinstance(p_, dict):
+                        bad_row = True
+                        break
+                    v = p_.get("position_fp")
+                    if v is None:
+                        bad_row = True
+                        break
+                    try:
+                        tot += float(v)
+                    except (TypeError, ValueError):
+                        bad_row = True
+                        break
+                if bad_row:
+                    failures.append("positions_malformed_row")
+                else:
+                    ex_qty = tot
+                    positions_ok = True
+        except Exception as e:
+            failures.append("positions_exception:%s" % type(e).__name__)
+        return remaining, ex_qty, orders_ok, positions_ok, failures
 
     @staticmethod
     def _canon_order(o, ticker=""):

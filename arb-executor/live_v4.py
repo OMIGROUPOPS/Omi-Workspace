@@ -340,6 +340,10 @@ def auth_headers(ak, pk, method, path):
 # -> create-order-v2 at /portfolio/events/orders. side bid/ask (YES book only), price str-dollars, count
 # str, time_in_force + self_trade_prevention_type required; flat response (no "order" wrapper / no _fp /
 # no status). Cancel (DELETE /portfolio/orders/{id}), GET, and signing are UNCHANGED. Pure/testable.
+# [REV5 FIX 4] verified-zero threshold: a genuine holding is an integer
+# contract count; any |qty| at/above this is a real nonzero position
+# (rejects +0.5 and -5), while true 0.0 and float-sum residue pass.
+EXCH_ZERO_EPS = 1e-6
 ORDER_CREATE_V2_PATH = "/trade-api/v2/portfolio/events/orders"
 
 # [C-INFLIGHT-LOCK 07-09] per-ticker+direction placement lock bound: the
@@ -9973,16 +9977,14 @@ class LiveV3:
                         if pos.dca_qty > 0 and complete:
                             pos.pnl_cents += (pos.exit_price - pos.dca_price) * pos.dca_qty
                         pnl = pos.pnl_cents
-                        # [C-NO-REBUY-AFTER-CASH 07-07, sweep class 2] a leg that
-                        # CASHED this session is a closed story: mark it so the
-                        # sibling-repost sweep and the book audit refuse/flag any
-                        # re-conception (TIKCHO: exit filled 19, fresh 5-lot bid
-                        # 34s later; KUSTAG same at 80/63 -- tonight's sweep).
-                        # [C-CYCLE-CAP 07-09] superseded as a HARD gate by the
-                        # cycle counter (re-entry ALLOWED to cap 2); the set
-                        # stays as telemetry. Increment AFTER the log below so
-                        # this exit row stamps the cycle it closes.
-                        self.__dict__.setdefault("_session_exited", set()).add(tk)
+                        # [REV5 FIX 1] the cash-completion mutations
+                        # (_session_exited, _cycle_count, cash_refusal_armed)
+                        # are owned SOLELY by _finalize_full_cash below and
+                        # happen only on FULL receipt completion — never
+                        # pre-seeded here (the pre-seed suppressed the
+                        # finalizer's arm-once cycle increment, leaving the
+                        # no-rebuy cap unarmed after a normal cash exit).
+                        # Partial receipts touch neither set.
                         self._log("exit_filled", {
                             "exit_price": pos.exit_price,
                             "entry_price": pos.entry_price,
@@ -10040,6 +10042,24 @@ class LiveV3:
                         # foreign/manual buys and ignored failures. The
                         # finalizer above already cancelled only
                         # bot-owned buys, confirmed, before closing.
+                    elif (getattr(pos, "_cash_cleanup_pending", False)
+                          and pos.entry_qty > 0
+                          and pos.exit_filled_qty >= pos.entry_qty):
+                        # [REV5 FIX 2] receipt-complete-but-cleanup-pending
+                        # RETRY, independent of new receipts. Once receipts
+                        # are booked, `filled == _bk_o` and the block above
+                        # never re-enters — so a finalizer that returned
+                        # False (cancellation/verification pending) would
+                        # NEVER be retried by the poll. This branch calls
+                        # the finalizer every applicable cycle until the
+                        # book verifies clean. It NEVER rebooks receipts,
+                        # duplicates P&L/logs, or double-increments the
+                        # cycle (the finalizer arms once and books nothing).
+                        _fin_ok = await self._finalize_full_cash(
+                            tk, pos, source="exit_poll_retry")
+                        if _fin_ok:
+                            self.n_exits += 1
+                        continue
 
             # Check DCA order fill
             if pos.phase == "active" and pos.dca_order_id and not pos.dca_filled and not pos.exit_filled:
@@ -14769,8 +14789,31 @@ class LiveV3:
         # UNKNOWN, and UNKNOWN can never verify closure.
         (remaining, ex_qty, orders_ok, positions_ok,
          vfail) = await self._cash_cleanup_state(tk, pos)
+        # [REV5 FIX 4] VERIFIED ZERO is ACTUAL zero under the exchange
+        # fixed-point precision — not ex_qty < 1. A positive fractional
+        # holding (e.g. +0.5) or a negative quantity (e.g. -5) is NOT
+        # zero and must never verify closure.
+        qty_zero = positions_ok and abs(ex_qty) < EXCH_ZERO_EPS
+        # [REV5 RACE DETECT] a nonzero exchange holding on a fully-cashed
+        # position (its own shares are sold) is a NEW holding — most
+        # likely a bot-owned resting buy that FILLED during the
+        # cancellation race. Name it explicitly; never erase it; the
+        # naked-tooth covers it (see the reported path/state conflict).
+        if (positions_ok and abs(ex_qty) >= EXCH_ZERO_EPS
+                and float(getattr(pos, "exit_filled_qty", 0) or 0)
+                >= float(getattr(pos, "entry_qty", 0) or 0)
+                and float(getattr(pos, "entry_qty", 0) or 0) > 0):
+            self._log("cash_cleanup_raced_holding", {
+                "exchange_qty": ex_qty,
+                "old_entry_qty": pos.entry_qty,
+                "old_exit_filled_qty": pos.exit_filled_qty,
+                "law": "nonzero exchange holding after full cash = a NEW "
+                       "holding (raced buy fill). Fail closed, never "
+                       "erase; naked-tooth posts coverage; adoption "
+                       "into the ticker slot is an architectural "
+                       "decision, NOT invented here"}, ticker=tk)
         if (not orders_ok or not positions_ok or remaining
-                or ex_qty >= 1 or failed):
+                or not qty_zero or failed):
             self._log("cash_cleanup_pending", {
                 "attempted": attempted, "confirmed": confirmed,
                 "orders_ok": orders_ok, "positions_ok": positions_ok,
@@ -14778,10 +14821,12 @@ class LiveV3:
                 "failed": [(o[:13], r) for o, r in failed][:4],
                 "bot_buys_remaining": [o[:13] for o in remaining][:4],
                 "exchange_qty": (ex_qty if positions_ok else "UNKNOWN"),
+                "qty_zero": qty_zero,
                 "law": "closure requires orders_ok AND positions_ok AND "
-                       "zero bot-owned buys AND verified exchange qty "
-                       "zero — API silence is not an empty book; "
-                       "position and order ids retained"}, ticker=tk)
+                       "zero bot-owned buys AND ACTUAL-zero exchange qty "
+                       "(|qty| < precision) — API silence is not an "
+                       "empty book; position and order ids retained"},
+                ticker=tk)
             return False
         if getattr(pos, "entry_order_id", ""):
             pos.entry_order_id = ""
@@ -14999,8 +15044,14 @@ class LiveV3:
         clean = await self._cancel_resting_buys_on_cash(tk, pos,
                                                         why=source)
         if not clean:
+            # [REV5 FIX 2] mark cleanup-pending so the exit-poll retry
+            # branch re-invokes this finalizer every cycle even though
+            # `filled == booked` closes the receipt-booking gate. No
+            # terminal flag is set — the retry must re-enter.
+            pos._cash_cleanup_pending = True
             self._save_v4_resting()
             return False
+        pos._cash_cleanup_pending = False
         pos.exit_filled = True
         pos.settled = True
         pos.phase = "settled"

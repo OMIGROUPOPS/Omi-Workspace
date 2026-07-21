@@ -1649,11 +1649,16 @@ try:
     rec = s.unmatched_holdings[TK][0]
     px_oid = rec["protective_exit_order_id"]
     old_pnl = p.pnl_cents
-    # partial protective fill: 2 @ 45
+    # partial protective fill: 2 @ 45. The order GET is RECONCILED — it
+    # reports fill_count 2 / remaining 3, matching the 2 exact receipts, so
+    # coverage is booked 2 + reconciled resting 3 = 5 (covered, NOT resolved).
     reset(orders=[], positions=[{"ticker": TK, "position_fp": 5}],
           fills=[{"fill_id": "PX1", "order_id": px_oid, "action": "sell",
                   "count_fp": 2, "yes_price_dollars": 0.45,
-                  "created_time": 1700}])
+                  "created_time": 1700}],
+          order_resp={px_oid: {"order": {"status": "resting",
+                                         "fill_count_fp": 2,
+                                         "remaining_count_fp": 3}}})
     async def eget(sess, ak, pk, path, rl):
         if "/portfolio/fills" in path:
             return {"fills": list(FILLS)}
@@ -1661,22 +1666,27 @@ try:
     M.api_get = eget
     run(s._quarantine_poll())
     check(rec["exit_booked_qty"] == 2 and rec["status"] == "quarantined",
-          "E: partial protective fill books 2 into quarantine")
+          "E: partial protective fill books 2 into quarantine (unresolved)")
     check(rec["exit_pnl_cents"] == (45 - 30) * 2,
           "E: quarantine P&L uses the RACED basis 30 (got %s)"
           % rec["exit_pnl_cents"])
     check(p.pnl_cents == old_pnl == 65,
           "E: completed-cycle P&L still UNCHANGED (65)")
-    # remaining 3 @ 45
+    # remaining 3 @ 45; the protective order GET is now TERMINAL (executed,
+    # fill_count 5) and reconciles exactly against the 5 receipts -> the
+    # ONLY path to resolution: booked == qty, zero live cover, oid terminal.
     reset(fills=[{"fill_id": "PX1", "order_id": px_oid, "action": "sell",
                   "count_fp": 2, "yes_price_dollars": 0.45,
                   "created_time": 1700},
                  {"fill_id": "PX2", "order_id": px_oid, "action": "sell",
                   "count_fp": 3, "yes_price_dollars": 0.45,
-                  "created_time": 1800}])
+                  "created_time": 1800}],
+          order_resp={px_oid: {"order": {"status": "executed",
+                                         "fill_count_fp": 5,
+                                         "remaining_count_fp": 0}}})
     run(s._quarantine_poll())
     check(rec["exit_booked_qty"] == 5 and rec["status"] == "resolved",
-          "E: full protective fill -> resolved (record retained)")
+          "E: full fill + oid GET terminal (fill_count==receipts) -> resolved")
     check(rec["exit_pnl_cents"] == (45 - 30) * 5, "E: cumulative quarantine P&L")
     check(TK in s.unmatched_holdings, "E: resolved record REMAINS for audit")
     # idempotent re-poll
@@ -2314,6 +2324,142 @@ except Exception:
 check(_err != "quarantine_buy_refused"
       and not [d for (e, d, t) in s.logs if e == "quarantine_buy_refused"],
       "24.3 operator_reconciled -> quarantine guard released (no refusal)")
+
+# ======================================================================
+print("--- 25. REV6.1.1.3 D4: resolution ONLY through full reconciliation ---")
+# ======================================================================
+# Booking never resolves. A record resolves ONLY when booked == qty AND
+# reconciled resting cover == 0 AND every protective oid is reconciled
+# terminal. Oversell / UNKNOWN / mismatch can never resolve silently.
+def malformed_fill(oid, qty, ts=1600):
+    # a relevant receipt with NO price field -> canonicalizes to malformed
+    return {"fill_id": "M-%s" % oid, "order_id": oid, "action": "sell",
+            "count_fp": qty, "created_time": ts}
+
+# 25.A booked 5 + reconciled resting cover 1 (qty 5) -> NAMED breach,
+#      unresolved, NOT covered
+s = qbot(protective_ids=["PX-EX", "PX-RS"])
+reset(orders=[], positions=[],
+      fills=[rc("R5", "PX-EX", 5, 43, ts=1600)],
+      order_resp={"PX-EX": ordr("executed", 5, 0),
+                  "PX-RS": ordr("resting", 0, 1)})
+run(s._quarantine_ensure_coverage(TK))
+check(bool(evs(s, "quarantine_oversell_invariant_breach")),
+      "25.A booked 5 + resting 1 -> NAMED breach")
+check(qr(s).get("status") != "resolved", "25.A UNRESOLVED")
+check(qr(s).get("_resting_confirmed") is False and nsells(s) == 0,
+      "25.A not covered, no new order")
+
+# 25.B booked 5 + a second protective oid UNKNOWN -> UNKNOWN, unresolved
+s = qbot(protective_ids=["PX-EX", "PX-UNK"])
+reset(orders=[], positions=[],
+      fills=[rc("R5", "PX-EX", 5, 43, ts=1600)],
+      order_resp={"PX-EX": ordr("executed", 5, 0)})   # PX-UNK GET -> None
+run(s._quarantine_ensure_coverage(TK))
+check(bool(evs(s, "quarantine_coverage_unknown")), "25.B UNKNOWN alert")
+check(qr(s).get("status") != "resolved",
+      "25.B booked 5 but a second oid UNKNOWN -> UNRESOLVED (no silent close)")
+
+# 25.C booked 5 + a malformed relevant receipt -> UNKNOWN, unresolved
+s = qbot(protective_ids=["PX-EX"])
+reset(orders=[], positions=[],
+      fills=[rc("R5", "PX-EX", 5, 43, ts=1600),
+             malformed_fill("PX-EX", 1)],
+      order_resp={"PX-EX": ordr("executed", 5, 0)})
+run(s._quarantine_ensure_coverage(TK))
+check(bool(evs(s, "quarantine_coverage_unknown")), "25.C UNKNOWN alert")
+check(qr(s).get("status") != "resolved",
+      "25.C malformed relevant receipt -> UNRESOLVED (census gate first)")
+
+# 25.D booked receipts total 6 (qty 5) -> NAMED breach, unresolved
+s = qbot(protective_ids=["PX-EX"])
+reset(orders=[], positions=[],
+      fills=[rc("R6", "PX-EX", 6, 43, ts=1600)],
+      order_resp={"PX-EX": ordr("executed", 6, 0)})
+run(s._quarantine_ensure_coverage(TK))
+check(abs(float(qr(s).get("exit_booked_qty")) - 6) < 1e-6, "25.D booked 6")
+check(bool(evs(s, "quarantine_oversell_invariant_breach")),
+      "25.D booked 6 > holding 5 -> NAMED breach")
+check(qr(s).get("status") != "resolved", "25.D UNRESOLVED")
+
+# 25.E booked 5 + every oid exact terminal + zero cover -> RESOLVED
+s = qbot(protective_ids=["PX-EX"])
+reset(orders=[], positions=[],
+      fills=[rc("R5", "PX-EX", 5, 43, ts=1600)],
+      order_resp={"PX-EX": ordr("executed", 5, 0)})
+run(s._quarantine_ensure_coverage(TK))
+check(qr(s).get("status") == "resolved",
+      "25.E booked 5 + oid terminal (fill_count==receipts) + zero cover -> resolved")
+check(bool(evs(s, "quarantine_exit_resolved")), "25.E named resolution event")
+
+# 25.F old Position cannot close while the quarantine is breach/UNKNOWN
+#     (_quarantine_covered gates the old-cycle closure; it must be False)
+s = qbot(protective_ids=["PX-EX", "PX-RS"])
+reset(orders=[], positions=[],
+      fills=[rc("R5", "PX-EX", 5, 43, ts=1600)],
+      order_resp={"PX-EX": ordr("executed", 5, 0),
+                  "PX-RS": ordr("resting", 0, 1)})        # breach
+run(s._quarantine_ensure_coverage(TK))
+check(s._quarantine_covered(TK) is False,
+      "25.F breach -> _quarantine_covered False (old Position cannot close)")
+s = qbot(protective_ids=["PX-EX", "PX-UNK"])
+reset(orders=[], positions=[],
+      fills=[rc("R5", "PX-EX", 5, 43, ts=1600)],
+      order_resp={"PX-EX": ordr("executed", 5, 0)})       # UNKNOWN
+run(s._quarantine_ensure_coverage(TK))
+check(s._quarantine_covered(TK) is False,
+      "25.F UNKNOWN -> _quarantine_covered False (old Position cannot close)")
+
+# 25.G after a breach: repeated polls AND restart keep checking + alerting
+s = qbot(protective_ids=["PX-EX", "PX-RS"])
+reset(orders=[], positions=[],
+      fills=[rc("R5", "PX-EX", 5, 43, ts=1600)],
+      order_resp={"PX-EX": ordr("executed", 5, 0),
+                  "PX-RS": ordr("resting", 0, 1)})
+run(s._quarantine_ensure_coverage(TK))
+run(s._quarantine_ensure_coverage(TK))
+check(len(evs(s, "quarantine_oversell_invariant_breach")) == 2,
+      "25.G breach re-alerts every cycle (no premature resolution silences it)")
+s2 = qbot()
+s2.unmatched_holdings = {TK: [
+    {**x, "protective_order_ids": list(x.get("protective_order_ids") or [])}
+    for x in s.unmatched_holdings[TK]]}
+reset(orders=[], positions=[],
+      fills=[rc("R5", "PX-EX", 5, 43, ts=1600)],
+      order_resp={"PX-EX": ordr("executed", 5, 0),
+                  "PX-RS": ordr("resting", 0, 1)})
+run(s2._quarantine_ensure_coverage(TK))
+check(qr(s2).get("status") != "resolved"
+      and bool(evs(s2, "quarantine_oversell_invariant_breach")),
+      "25.G restart preserves the breach -> still unresolved, still alerts")
+
+# 25.H negative fill_count or negative remaining -> UNKNOWN
+s = qbot(protective_ids=["PX"])
+reset(orders=[], positions=[], fills=[], order_resp={"PX": ordr("resting", -1, 2)})
+run(s._quarantine_ensure_coverage(TK))
+check(bool(evs(s, "quarantine_coverage_unknown")) and nsells(s) == 0,
+      "25.H negative fill_count -> UNKNOWN, no repost")
+s = qbot(protective_ids=["PX"])
+reset(orders=[], positions=[], fills=[], order_resp={"PX": ordr("resting", 0, -2)})
+run(s._quarantine_ensure_coverage(TK))
+check(bool(evs(s, "quarantine_coverage_unknown")) and nsells(s) == 0,
+      "25.H negative remaining -> UNKNOWN, no repost")
+
+# 25.I exact terminal resolution is idempotent
+s = qbot(protective_ids=["PX-EX"])
+reset(orders=[], positions=[],
+      fills=[rc("R5", "PX-EX", 5, 43, ts=1600)],
+      order_resp={"PX-EX": ordr("executed", 5, 0)})
+run(s._quarantine_ensure_coverage(TK))
+check(qr(s).get("status") == "resolved", "25.I first pass resolves")
+pnl0 = qr(s).get("exit_pnl_cents")
+n0 = len(evs(s, "quarantine_exit_resolved"))
+run(s._quarantine_ensure_coverage(TK))
+run(s._quarantine_ensure_coverage(TK))
+check(qr(s).get("status") == "resolved"
+      and qr(s).get("exit_pnl_cents") == pnl0
+      and len(evs(s, "quarantine_exit_resolved")) == n0 and nsells(s) == 0,
+      "25.I resolved record is idempotent (no re-book, no re-resolve, no post)")
 
 print("\n%s" % ("ALL REVIEW-FIX TESTS PASS" if not fails
                  else "*** %d FAILURE(S)" % fails))

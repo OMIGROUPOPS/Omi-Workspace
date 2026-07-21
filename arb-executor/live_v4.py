@@ -15253,147 +15253,156 @@ class LiveV3:
                 return False
         return True
 
-    async def _resolve_protective_oid(self, tk, oid, rest):
-        """[REV6.1.1.1] Resolve ONE protective order to EXACT truth.
-        Absence from the fresh resting book is NEVER cancellation — a
-        missing order is resolved by its order-specific status GET before
-        any conclusion, because a poller-lagged fill looks identical to a
-        cancellation in the resting list and reposting against a fill
-        oversells the holding. Returns one of:
-          ("resting", remaining)  live order with resting remaining qty
-          ("terminal", 0.0)       executed/canceled/rejected/terminal-
-                                  partial — a CONFIRMED terminal state;
-                                  its fills accrue via receipts and it
-                                  provides NO resting cover
-          ("unknown", 0.0)        status could not be established — never
-                                  treated as cancellation, never reposted
-                                  against."""
-        if oid in rest and rest[oid] > EXCH_ZERO_EPS:
-            return "resting", rest[oid]
+    async def _resolve_protective_oid(self, tk, oid):
+        """[REV6.1.1.2] Exact order truth via the order-specific GET,
+        ALWAYS — even when the oid also appears in the resting list. The
+        resting list carries only remaining_count, never fill_count, so a
+        partial-fill lag (order shows remaining=2 while it has actually
+        filled 3) is invisible there and reposting the "missing" 3 would
+        oversell. Returns (status, fill_count, remaining):
+          · status normalized to one of the DOCUMENTED REST statuses
+            {"resting","canceled","executed"}; ANY other/blank/unreadable
+            status — including partially_filled, whose terminal semantics
+            are not proven — is returned as "unknown".
+          · fill_count / remaining are floats, or None when unreadable."""
         d = await api_get(self.session, self.ak, self.pk,
                           "/trade-api/v2/portfolio/orders/%s" % oid, self.rl)
         if not isinstance(d, dict):
-            return "unknown", 0.0
+            return "unknown", None, None
         o = d.get("order", d)
         if not isinstance(o, dict):
-            return "unknown", 0.0
-        st = str(o.get("status") or "").lower()
-        if st == "resting":
-            rem = None
-            for k in ("remaining_count_fp", "remaining_count"):
+            return "unknown", None, None
+
+        def _num(*keys):
+            for k in keys:
                 if o.get(k) is not None:
                     try:
-                        rem = float(o.get(k))
+                        return float(o.get(k))
                     except (TypeError, ValueError):
-                        rem = None
-                    break
-            if rem is None or rem <= EXCH_ZERO_EPS:
-                return "unknown", 0.0    # resting but qty unreadable != proof
-            return "resting", rem
-        if st in ("executed", "filled", "canceled", "cancelled",
-                  "rejected", "partially_filled"):
-            # terminal cancellation/fill truth: any fills are booked by the
-            # exact-receipt census; this order provides no resting cover.
-            return "terminal", 0.0
-        return "unknown", 0.0
+                        return None
+            return None
+        fc = _num("fill_count_fp", "fill_count")
+        rem = _num("remaining_count_fp", "remaining_count")
+        st = str(o.get("status") or "").lower()
+        if st == "cancelled":
+            st = "canceled"
+        if st not in ("resting", "canceled", "executed"):
+            return "unknown", fc, rem
+        return st, fc, rem
 
     async def _quarantine_ensure_coverage(self, tk, pos=None):
-        """[REV6.1.1.1] VERIFY quarantine protective coverage against
-        EXACT order + receipt truth (never assumed from ledger existence
-        or from book-absence) and repost EXACTLY the uncovered open
-        quantity from the record's own raced basis. Contract:
-          1. Accrue exact protective-exit receipts FIRST, with a COMPLETE
-             receipt census; an incomplete fills feed gates every repost.
-          2. Read the fresh cursor-exhausted resting book.
-          3. For every protective order NOT resting in that book, resolve
-             its EXACT status by order-specific GET. Resting-with-
-             remaining is cover; executed/partial/cancelled is terminal
-             (fills already accrued, no cover); anything else is UNKNOWN.
-          4. Repost the exact remainder ONLY after terminal-cancellation
-             truth AND a complete census establish it — book-absence
-             alone is never cancellation.
-          5. UNKNOWN status / incomplete census / unproven causality:
-             do NOT repost, do NOT close, preserve every oid + state,
-             keep operator_pending armed, and alert loudly every cycle.
-          6. INVARIANT (never oversell): resting_cover + booked_exit +
-             reposted_remainder == qty, never above the quarantined
-             exchange holding."""
+        """[REV6.1.1.2] VERIFY quarantine protective coverage against
+        EXACT, RECONCILED order+receipt truth and repost EXACTLY the
+        uncovered remainder. No resting-book remaining is trusted until it
+        is receipt-reconciled, and the never-oversell invariant is ENFORCED
+        (a breach is a named halt, not a claim). Per unresolved record:
+          1. Book valid exact receipts (idempotent).
+          2. Fetch the COMPLETE exact-receipt census grouped by order_id.
+          3. For EVERY protective order, GET exact status + fill_count_fp +
+             remaining_count_fp (even if it is resting) and REQUIRE
+             sum(exact valid receipts for the oid) == fill_count_fp.
+          4. Reconciled status=resting contributes remaining_count_fp as
+             cover; reconciled canceled/executed is terminal (fills booked,
+             no cover). ANY of: unavailable order GET, undocumented status
+             (incl partially_filled), incomplete/malformed receipt census,
+             or a fill_count-vs-receipt mismatch => UNKNOWN.
+          5. UNKNOWN on ANY protective order blocks ALL reposting for the
+             record; loud persistent alert; operator_pending stays armed.
+          6. INVARIANT: if booked + reconciled resting cover > qty, emit a
+             named quarantine_oversell_invariant_breach, do NOT call it
+             covered, do NOT place another order, keep operator_pending
+             armed, and stop for operator reconciliation.
+          7. Otherwise repost EXACTLY qty - booked - cover once; the new
+             order confirms only after it is GET-reconciled next cycle."""
         recs = [r for r in self.unmatched_holdings.get(tk, [])
                 if r.get("status") != "resolved"]
         if not recs:
             return
-        # 1. accrue exact receipts FIRST; capture census completeness
-        feed_ok = await self._quarantine_accrue(tk)
-        # 2. fresh cursor-exhausted resting book
-        rows, ok, fail = await self._resting_orders_all(tk)
-        if not ok:
-            for r in recs:
-                r["_resting_confirmed"] = False
-            self._log("quarantine_coverage_unknown", {
-                "verify_failures": fail[:4], "persistent": True,
-                "reason": "resting_book_unknown",
-                "law": "resting book UNKNOWN — do NOT repost, do NOT "
-                       "close; preserve state, operator_pending armed, "
-                       "alert every cycle"}, ticker=tk)
-            return
-        rest = {}
-        for o in rows:
-            if o["action"] == "sell" and o["remaining"] > 0:
-                rest[o["order_id"]] = (rest.get(o["order_id"], 0.0)
-                                       + o["remaining"])
+        # 1. book valid exact receipts first (idempotent)
+        await self._quarantine_accrue(tk)
         for r in recs:
-            open_q = (float(r.get("qty") or 0)
-                      - float(r.get("exit_booked_qty") or 0))
-            if open_q <= EXCH_ZERO_EPS:
-                r["status"] = "resolved"
-                continue
-            # 3. resolve EACH protective oid to exact truth. Book-absence
-            #    alone is never cancellation — GET the exact order status.
-            resting_cov = 0.0
-            any_unknown = False
-            for oid in (r.get("protective_order_ids") or []):
-                state, rem = await self._resolve_protective_oid(tk, oid, rest)
-                if state == "resting":
-                    resting_cov += rem
-                elif state == "unknown":
-                    any_unknown = True
-                # terminal -> fills already accrued in step 1; no cover
-            # 4. recompute open after accrual (a delayed full fill resolves
-            #    here with NO repost)
-            open_q = (float(r.get("qty") or 0)
-                      - float(r.get("exit_booked_qty") or 0))
-            if open_q <= EXCH_ZERO_EPS:
+            qty = float(r.get("qty") or 0)
+            booked = float(r.get("exit_booked_qty") or 0)
+            if qty - booked <= EXCH_ZERO_EPS:
                 r["status"] = "resolved"
                 r["_resting_confirmed"] = True
                 r["_await_oids"] = []
                 continue
-            if resting_cov >= open_q - EXCH_ZERO_EPS:
-                r["_resting_confirmed"] = True
-                r["_await_oids"] = []
+            oids = [o for o in (r.get("protective_order_ids") or []) if o]
+            cover = 0.0
+            unknown = False
+            detail = []
+            if oids:
+                # 2. complete exact-receipt census grouped by order_id
+                got = await self._exit_receipts(tk, set(oids))
+                good = got[0] if isinstance(got, tuple) else got
+                bad = (got[1] if isinstance(got, tuple) and len(got) > 1
+                       else [])
+                census_ok = (got[2] if isinstance(got, tuple)
+                             and len(got) > 2 else True)
+                recsum = {}
+                for g in good:
+                    recsum[g["order_id"]] = (recsum.get(g["order_id"], 0.0)
+                                             + float(g.get("qty") or 0))
+                bad_oids = {b.get("order_id") for b in (bad or [])}
+                # 3-4. reconcile EVERY protective order to exact truth
+                for oid in oids:
+                    st, fc, rem = await self._resolve_protective_oid(tk, oid)
+                    rs = recsum.get(oid, 0.0)
+                    if (st == "unknown" or fc is None or not census_ok
+                            or oid in bad_oids
+                            or abs(rs - fc) > EXCH_ZERO_EPS):
+                        unknown = True
+                        detail.append({
+                            "oid": (oid or "")[:13], "status": st,
+                            "fill_count": fc, "receipt_sum": rs,
+                            "malformed_receipt": oid in bad_oids,
+                            "census_complete": census_ok})
+                        continue
+                    if st == "resting":
+                        if rem is None:
+                            unknown = True
+                            detail.append({"oid": (oid or "")[:13],
+                                           "status": st, "remaining": None})
+                            continue
+                        cover += rem
+                    # canceled/executed: reconciled terminal, receipts
+                    # already booked, provides NO resting cover
+            # 6. ENFORCE the never-oversell invariant (named breach)
+            if booked + cover > qty + EXCH_ZERO_EPS:
+                r["_resting_confirmed"] = False
+                self._log("quarantine_oversell_invariant_breach", {
+                    "buy_receipt_id": r["buy_receipt_id"],
+                    "qty": qty, "exit_booked_qty": booked,
+                    "reconciled_resting_cover": cover,
+                    "sum": booked + cover, "persistent": True,
+                    "law": "booked + confirmed resting protective cover "
+                           "EXCEEDS the quarantined holding — NOT covered, "
+                           "NO new order; operator_pending armed; stop for "
+                           "operator reconciliation"}, ticker=tk)
                 continue
-            r["_resting_confirmed"] = False
-            shortfall = open_q - resting_cov
-            # 5. UNKNOWN order truth OR an incomplete receipt census =>
-            #    NEVER repost. Book-absence is not cancellation and a
-            #    lagging fills feed could hide a fill a repost would
-            #    oversell. Alert loudly and persistently; preserve state.
-            if any_unknown or not feed_ok:
+            # 5. UNKNOWN on ANY protective order blocks ALL reposting
+            if unknown:
+                r["_resting_confirmed"] = False
                 self._log("quarantine_coverage_unknown", {
                     "buy_receipt_id": r["buy_receipt_id"],
-                    "open_qty": open_q, "resting_cover": resting_cov,
-                    "shortfall": shortfall,
-                    "any_unknown_order": any_unknown,
-                    "receipt_census_complete": feed_ok,
+                    "qty": qty, "exit_booked_qty": booked,
+                    "reconciled_cover": cover, "detail": detail[:6],
                     "persistent": True, "naked": True,
-                    "law": "protective coverage UNKNOWN — an order status "
-                           "or the receipt census is incomplete; do NOT "
-                           "repost (book-absence is not cancellation), do "
-                           "NOT close; operator_pending stays armed; alert "
-                           "every cycle until reconciled"}, ticker=tk)
+                    "law": "an order status, receipt census, or "
+                           "fill_count-vs-receipt reconciliation is "
+                           "UNKNOWN; do NOT repost, do NOT close; "
+                           "operator_pending stays armed; alert every "
+                           "cycle until reconciled"}, ticker=tk)
                 continue
-            # 6. terminal-cancellation truth + complete census established:
-            #    repost EXACTLY the uncovered remainder once. Invariant
-            #    holds: resting_cov + booked + shortfall == qty.
+            # fully reconciled and covered
+            if booked + cover >= qty - EXCH_ZERO_EPS:
+                r["_resting_confirmed"] = True
+                r["_await_oids"] = []
+                continue
+            # 7. repost EXACTLY the reconciled uncovered remainder once
+            r["_resting_confirmed"] = False
+            shortfall = qty - booked - cover
             target = int(r.get("protective_exit_target")
                          or (int(r["price"])))
             oid, resp = await self.place_order(
@@ -15408,40 +15417,15 @@ class LiveV3:
                 continue
             r.setdefault("protective_order_ids", []).append(oid)
             r["protective_exit_order_id"] = oid
-            # OPTION A: an explicit create response proving the full
-            # remainder is resting confirms at once; else the NEXT cycle
-            # resolves the exact order status before coverage is claimed.
-            _o = ((resp or {}).get("order", resp)
-                  if isinstance(resp, dict) else {})
-            _rem = None
-            for _k in ("remaining_count_fp", "remaining_count"):
-                if isinstance(_o, dict) and _o.get(_k) is not None:
-                    try:
-                        _rem = float(_o.get(_k))
-                    except (TypeError, ValueError):
-                        _rem = None
-                    break
-            _resting = (isinstance(_o, dict)
-                        and str(_o.get("status") or "").lower()
-                        == "resting")
-            if (_rem is not None and _resting
-                    and _rem >= shortfall - EXCH_ZERO_EPS):
-                r["_resting_confirmed"] = True
-                r["_await_oids"] = []
-                _how = "create_response_remaining"
-            else:
-                r["_await_oids"] = [oid]
-                _how = "await_order_status_confirmation"
+            r["_await_oids"] = [oid]
             self._log("quarantine_protective_posted", {
                 "buy_receipt_id": r["buy_receipt_id"],
                 "qty": int(round(shortfall)), "target": target,
-                "order_id": oid[:13], "confirmed": _how,
-                "law": "protective coverage from the RACED basis for "
-                       "exactly the uncovered remainder; reposted only on "
-                       "terminal-cancellation truth + a complete receipt "
-                       "census; coverage confirmed only by order/book "
-                       "truth or an explicit remaining-proving create "
-                       "response"}, ticker=tk)
+                "order_id": oid[:13], "confirmed": "await_reconciliation",
+                "law": "reposted the exact reconciled uncovered remainder; "
+                       "coverage is confirmed only after this order's exact "
+                       "GET status is reconciled against its receipts "
+                       "(fill_count == receipt sum) next cycle"}, ticker=tk)
         self._save_v4_resting()
 
     async def _quarantine_accrue(self, tk):
@@ -15465,6 +15449,8 @@ class LiveV3:
                 receipts = got[0]
                 if len(got) >= 3 and got[2] is False:
                     feed_ok = False
+                if len(got) >= 2 and got[1]:
+                    feed_ok = False        # malformed/bad receipt => UNKNOWN
             else:
                 receipts = got
             seen = set(rec.get("exit_receipt_ids") or [])

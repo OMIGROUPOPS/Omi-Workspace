@@ -61,11 +61,16 @@ async def _api_get(sess, ak, pk, path, rl):
 
 async def _api_post(sess, ak, pk, path, payload, rl):
     oid = "NEW-%d" % (len(BOOK["orders"]) + 1)
+    cnt = payload.get("count", 0)
     BOOK["orders"].append({
         "order_id": oid, "ticker": payload.get("ticker", TK),
         "action": payload.get("action"), "side": payload.get("side", "yes"),
         "yes_price_dollars": (payload.get("yes_price", 0) or 0) / 100.0,
-        "remaining_count_fp": payload.get("count", 0)})
+        "remaining_count_fp": cnt})
+    # a posted order is GET-reconcilable: fill_count 0, remaining=count,
+    # zero receipts -> reconciles as clean resting cover next cycle
+    ORDERS[oid] = {"order": {"order_id": oid, "status": "resting",
+                             "fill_count_fp": 0, "remaining_count_fp": cnt}}
     return {"order": {"order_id": oid, "status": "resting"}}
 
 M.api_get = _api_get
@@ -1865,67 +1870,46 @@ check(s._quarantine_open_qty(TK) == 3.0,
 s2 = qbot_with_rec(booked=5.0, status="resolved")
 check(s2._quarantine_open_qty(TK) == 0.0, "20a resolved excluded")
 
-# 20b  placement initially FAILS, next cycle succeeds ONCE
-s = qbot_with_rec()
+# 20b  placement initially FAILS, next cycle succeeds, confirmed after
+#      the posted order is GET-reconciled (fill_count==receipts) next cycle
+s = qbot_with_rec()                # no protective ids yet
+reset(orders=[], positions=[], fills=[], order_resp={})
 place_state = {"fail": True}
 async def pfail(tk, action, side, price, count, post_only=True):
     s.placed.append({"tk": tk, "action": action, "price": price,
                      "count": count})
     if place_state["fail"]:
         return "", {"_error": "post_only_cross"}
-    oid = "PX-%d" % len(s.placed)
-    BOOK["orders"].append({"order_id": oid, "ticker": tk,
-                           "action": "sell", "yes_price_dollars": price/100.0,
-                           "remaining_count_fp": count})
-    return oid, {"order": {"order_id": oid}}
+    r = await _api_post(None, None, None, None,
+                        {"ticker": tk, "action": action, "side": side,
+                         "yes_price": price, "count": count}, None)
+    return r["order"]["order_id"], r
 s.place_order = pfail
-async def og(sess, ak, pk, path, rl):
-    if "/portfolio/orders" in path and "status=resting" in path:
-        return {"orders": [dict(o) for o in BOOK["orders"]]}
-    return await _api_get(sess, ak, pk, path, rl)
-M.api_get = og
-try:
-    set_resting([])
-    run(s._quarantine_ensure_coverage(TK))
-    check(not s.unmatched_holdings[TK][0].get("_resting_confirmed"),
-          "20b placement failed -> not confirmed, retained")
-    check(bool(evs(s, "quarantine_protective_place_failed")),
-          "20b failed placement is loud")
-    place_state["fail"] = False
-    run(s._quarantine_ensure_coverage(TK))   # posts, AWAITS book confirm
-    check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is False,
-          "20b successful post is AWAITING book confirmation (not ack-confirmed)")
-    sells_posted = [x for x in s.placed if x["action"] == "sell"]
-    check(len([x for x in sells_posted if x["count"] == 5]) == 2,
-          "20b two attempts total (1 fail + 1 success), no over-post")
-    run(s._quarantine_ensure_coverage(TK))   # book now shows it -> confirmed
-    check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is True,
-          "20b next cycle book read CONFIRMS coverage")
-    # 20c confirmed protective exit remains -> no duplicate
-    run(s._quarantine_ensure_coverage(TK))
-    check(len([x for x in s.placed if x["action"] == "sell"
-               and x["count"] == 5]) == 2,
-          "20c confirmed exit remains -> NO duplicate posted")
-finally:
-    M.api_get = _api_get
+run(s._quarantine_ensure_coverage(TK))
+check(not s.unmatched_holdings[TK][0].get("_resting_confirmed"),
+      "20b placement failed -> not confirmed, retained")
+check(bool(evs(s, "quarantine_protective_place_failed")),
+      "20b failed placement is loud")
+place_state["fail"] = False
+run(s._quarantine_ensure_coverage(TK))          # posts (awaits reconcile)
+check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is False,
+      "20b successful post AWAITS reconciliation (not ack-confirmed)")
+check(len([x for x in s.placed if x["action"] == "sell"
+           and x["count"] == 5]) == 2,
+      "20b two attempts total (1 fail + 1 success), no over-post")
+run(s._quarantine_ensure_coverage(TK))          # GET-reconciles -> confirmed
+check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is True,
+      "20b next cycle reconciles the posted order -> CONFIRMED")
+# 20c confirmed protective exit remains -> no duplicate
+run(s._quarantine_ensure_coverage(TK))
+check(len([x for x in s.placed if x["action"] == "sell"
+           and x["count"] == 5]) == 2,
+      "20c confirmed exit remains -> NO duplicate posted")
 
-# 20d protective exit ABSENT from the book + UNKNOWN exact status ->
-#     NO blind replacement. Book-absence is not cancellation: a poller-
-#     lagged fill looks identical to a cancel in the resting list, so a
-#     repost here could oversell. Resolve exact status first.
+# 20d protective exit ABSENT + UNKNOWN exact status -> NO blind replacement
 s = qbot_with_rec(protective_ids=["OLD-PX"])
-reset(orders=[], positions=[], fills=[], order_resp={})
-async def og_absent(sess, ak, pk, path, rl):
-    if "/portfolio/orders" in path and "status=resting" in path:
-        return {"orders": []}          # OLD-PX not resting
-    if "/portfolio/orders/OLD-PX" in path:
-        return None                    # exact status UNKNOWN
-    return await _api_get(sess, ak, pk, path, rl)
-M.api_get = og_absent
-try:
-    run(s._quarantine_ensure_coverage(TK))
-finally:
-    M.api_get = _api_get
+reset(orders=[], positions=[], fills=[], order_resp={})   # GET(OLD-PX)->None
+run(s._quarantine_ensure_coverage(TK))
 reps = [x for x in s.placed if x["action"] == "sell"]
 check(len(reps) == 0,
       "20d absent + UNKNOWN status -> NO blind replacement (absence != cancel)")
@@ -1934,54 +1918,41 @@ check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is False,
       "20d fail closed (not confirmed)")
 
 # 20d2 absent + CONFIRMED cancellation + complete zero-fill census ->
-#      exactly one replacement of the exact remainder (the legit path)
+#      exactly one replacement of the exact remainder
 s = qbot_with_rec(protective_ids=["OLD-PX"])
 reset(orders=[], positions=[], fills=[],
-      order_resp={"OLD-PX": {"order": {"status": "canceled"}}})
-async def og_cancelled(sess, ak, pk, path, rl):
-    if "/portfolio/orders" in path and "status=resting" in path:
-        return {"orders": []}
-    return await _api_get(sess, ak, pk, path, rl)
-M.api_get = og_cancelled
-try:
-    run(s._quarantine_ensure_coverage(TK))
-finally:
-    M.api_get = _api_get
+      order_resp={"OLD-PX": {"order": {"status": "canceled",
+                                       "fill_count_fp": 0,
+                                       "remaining_count_fp": 0}}})
+run(s._quarantine_ensure_coverage(TK))
 reps = [x for x in s.placed if x["action"] == "sell"]
 check(len(reps) == 1 and reps[0]["count"] == 5 and reps[0]["price"] == 43,
       "20d2 confirmed cancel + complete census -> one replacement of 5 @ 43")
 
-# 20e partial protective coverage -> only the remaining posted
+# 20e reconciled partial resting cover -> repost exactly the uncovered
 s = qbot_with_rec(protective_ids=["PX-A"])
-async def og_partial(sess, ak, pk, path, rl):
-    if "/portfolio/orders" in path and "status=resting" in path:
-        return {"orders": [{"order_id": "PX-A", "ticker": TK,
-                            "action": "sell", "yes_price_dollars": 0.43,
-                            "remaining_count_fp": 3}]}   # 3 of 5 rest
-    return await _api_get(sess, ak, pk, path, rl)
-M.api_get = og_partial
-try:
-    run(s._quarantine_ensure_coverage(TK))
-finally:
-    M.api_get = _api_get
+reset(orders=[], positions=[], fills=[],
+      order_resp={"PX-A": {"order": {"status": "resting",
+                                     "fill_count_fp": 0,
+                                     "remaining_count_fp": 3}}})   # 3 of 5
+run(s._quarantine_ensure_coverage(TK))
 reps = [x for x in s.placed if x["action"] == "sell"]
 check(len(reps) == 1 and reps[0]["count"] == 2,
-      "20e partial coverage -> repost exactly the uncovered 2")
+      "20e reconciled partial cover 3 -> repost exactly the uncovered 2")
 
-# 20f UNKNOWN order response -> no duplicate + loud alert
+# 20f resting order with a PARTIAL-FILL LAG (fill_count 3, remaining 2) but
+#     its receipts have NOT arrived -> reconciliation MISMATCH -> UNKNOWN,
+#     NO repost (posting the "missing" 3 would oversell: 3+2+3 > 5). This is
+#     the exact Blocker-1 oversell race.
 s = qbot_with_rec(protective_ids=["PX-A"])
-async def og_unknown(sess, ak, pk, path, rl):
-    if "/portfolio/orders" in path and "status=resting" in path:
-        return None                    # UNKNOWN order truth
-    return await _api_get(sess, ak, pk, path, rl)
-M.api_get = og_unknown
-try:
-    run(s._quarantine_ensure_coverage(TK))
-finally:
-    M.api_get = _api_get
+reset(orders=[], positions=[], fills=[],
+      order_resp={"PX-A": {"order": {"status": "resting",
+                                     "fill_count_fp": 3,
+                                     "remaining_count_fp": 2}}})   # receipts 0
+run(s._quarantine_ensure_coverage(TK))
 check(not [x for x in s.placed if x["action"] == "sell"],
-      "20f UNKNOWN order truth -> NO blind duplicate posted")
-check(bool(evs(s, "quarantine_coverage_unknown")), "20f loud alert")
+      "20f resting fill_count 3 but receipts 0 -> MISMATCH UNKNOWN, no repost")
+check(bool(evs(s, "quarantine_coverage_unknown")), "20f loud UNKNOWN alert")
 check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is False,
       "20f fail closed (not confirmed)")
 
@@ -2081,13 +2052,14 @@ finally:
         pass
 
 # ======================================================================
-print("--- 22. REV6.1.1.1 D1: coverage from EXACT order+receipt truth ---")
+print("--- 22. REV6.1.1.2 D1: GET-reconciled coverage + hard invariant ---")
 # ======================================================================
-# Book-ABSENCE is NEVER cancellation. An order missing from the fresh
-# resting list is resolved by its order-specific status GET; a repost is
-# withheld until terminal-cancellation truth AND a complete receipt
-# census establish the exact uncovered remainder. Invariant: resting
-# cover + booked exit + reposted remainder never exceeds the holding.
+# EVERY protective order is GET-reconciled: its fill_count_fp must equal
+# the exact per-oid receipt sum before its resting remainder counts as
+# cover. Any mismatch/malformed/incomplete/unavailable => UNKNOWN (no
+# repost). booked + confirmed resting cover may never exceed the holding
+# (a breach is a NAMED halt). The resting book's remaining is never
+# trusted on its own.
 def qbot(qty=5.0, booked=0.0, protective_ids=None, price=30, target=43,
          operator_state="operator_pending"):
     s = make_bot()
@@ -2102,190 +2074,158 @@ def qbot(qty=5.0, booked=0.0, protective_ids=None, price=30, target=43,
         "_await_oids": []}]}
     return s
 
-def qrec(s):
+def qr(s):
     return s.unmatched_holdings[TK][0]
 
 def nsells(s):
     return len([x for x in s.placed if x["action"] == "sell"])
 
-# 22.0  initial protective post: empty book -> post full open ONCE, then
-#       BOOK-confirm on the next cycle (a bare post is not yet coverage)
+def ordr(status, fill, remaining):
+    return {"order": {"status": status, "fill_count_fp": fill,
+                      "remaining_count_fp": remaining}}
+
+# 22.0  initial post: empty book -> post full open once, reconcile-confirm
+#       on the next cycle (the posted order GETs as resting fill_count 0)
 s = qbot()
-reset(orders=[], positions=[], fills=[])
+reset(orders=[], positions=[], fills=[], order_resp={})
 run(s._quarantine_ensure_coverage(TK))
 check(nsells(s) == 1 and s.placed[0]["count"] == 5,
       "22.0 initial protective post = full open once")
-check(qrec(s).get("_resting_confirmed") is False,
-      "22.0 bare post is NOT yet confirmed coverage")
+check(qr(s).get("_resting_confirmed") is False, "22.0 bare post not yet confirmed")
 run(s._quarantine_ensure_coverage(TK))
-check(nsells(s) == 1, "22.0 posted order now resting -> NO duplicate")
-check(qrec(s).get("_resting_confirmed") is True,
-      "22.0 book-confirmed on the next cycle")
+check(nsells(s) == 1, "22.0 posted order reconciles -> NO duplicate")
+check(qr(s).get("_resting_confirmed") is True, "22.0 reconcile-confirmed next cycle")
 
-# 22.J  OPTION A: a create response explicitly proving the full remaining
-#       is resting confirms coverage at once (no await needed)
-s = qbot()
-reset(orders=[], positions=[], fills=[])
-async def place_proof(tk, action, side, price, count, post_only=True):
-    s.placed.append({"tk": tk, "action": action, "price": price,
-                     "count": count})
-    return "PX-P", {"order": {"order_id": "PX-P", "status": "resting",
-                              "remaining_count_fp": count}}
-s.place_order = place_proof
-run(s._quarantine_ensure_coverage(TK))
-check(qrec(s).get("_resting_confirmed") is True,
-      "22.J create response proving full remaining -> confirmed at once")
-check(qrec(s).get("_await_oids") == [],
-      "22.J no await when the create response proves coverage")
-
-# 22.2  create response remaining=0 is NOT coverage
-s = qbot()
-reset(orders=[], positions=[], fills=[])
-async def place_rem0(tk, action, side, price, count, post_only=True):
-    s.placed.append({"tk": tk, "action": action, "price": price,
-                     "count": count})
-    return "PX-0", {"order": {"order_id": "PX-0", "status": "resting",
-                              "remaining_count_fp": 0}}
-s.place_order = place_rem0
-run(s._quarantine_ensure_coverage(TK))
-check(qrec(s).get("_resting_confirmed") is False,
-      "22.2 create remaining=0 -> NOT coverage")
-
-# ---- Regression A: bare ack absent for repeated cycles ----------------
-#      order UNKNOWN (never resting, GET returns nothing) -> NO duplicate,
-#      loud UNKNOWN alert EVERY cycle, still pending
-s = qbot(protective_ids=["PX-A"])
-reset(orders=[], positions=[], fills=[], order_resp={})   # GET(PX-A) -> None
+# ---- Regression A: active resting, fill_count 3 / remaining 2, receipts
+#      temporarily zero -> reconciliation MISMATCH -> UNKNOWN, no repost ----
+s = qbot(protective_ids=["PX"])
+reset(orders=[], positions=[], fills=[], order_resp={"PX": ordr("resting", 3, 2)})
 run(s._quarantine_ensure_coverage(TK))
 check(nsells(s) == 0,
-      "A: UNKNOWN order status -> NO repost (book-absence != cancellation)")
-check(qrec(s).get("_resting_confirmed") is False, "A: not confirmed")
-check(len(evs(s, "quarantine_coverage_unknown")) == 1, "A: loud UNKNOWN alert")
+      "A: resting fill_count 3 but receipts 0 -> UNKNOWN, no repost")
+check(len(evs(s, "quarantine_coverage_unknown")) == 1, "A: loud UNKNOWN")
 run(s._quarantine_ensure_coverage(TK))
-check(nsells(s) == 0, "A: repeated cycle -> still no duplicate, still pending")
-check(len(evs(s, "quarantine_coverage_unknown")) == 2,
-      "A: alert PERSISTS every cycle (a timeout never becomes truth)")
+check(nsells(s) == 0 and len(evs(s, "quarantine_coverage_unknown")) == 2,
+      "A: persists every cycle, still no repost")
 
-# ---- Regression B: bare ack later resting -> confirmed ----------------
-s = qbot(protective_ids=["PX-B"])
-reset(orders=[{"order_id": "PX-B", "ticker": TK, "action": "sell",
-               "yes_price_dollars": 0.43, "remaining_count_fp": 5}],
-      positions=[], fills=[])
-run(s._quarantine_ensure_coverage(TK))
-check(qrec(s).get("_resting_confirmed") is True,
-      "B: previously-acked order later found resting -> confirmed")
-check(nsells(s) == 0, "B: no repost once resting")
-
-# ---- Regression C: absent order + fills feed unavailable -> no repost --
-#      even with a CONFIRMED terminal cancellation, an incomplete receipt
-#      census must withhold the repost (a lagging fill would oversell)
-s = qbot(protective_ids=["PX-C"])
-reset(orders=[], positions=[], fills=[],
-      order_resp={"PX-C": {"order": {"status": "canceled"}}})
-async def c_no_fills(sess, ak, pk, path, rl):
-    if "/portfolio/fills" in path:
-        return None                        # census incomplete
-    return await _api_get(sess, ak, pk, path, rl)
-M.api_get = c_no_fills
-try:
-    run(s._quarantine_ensure_coverage(TK))
-finally:
-    M.api_get = _api_get
-check(nsells(s) == 0,
-      "C: terminal cancel BUT incomplete fills census -> NO repost")
-check(evs(s, "quarantine_coverage_unknown"),
-      "C: loud UNKNOWN on incomplete census")
-
-# ---- Regression D: absent order + delayed FULL-fill receipts ----------
-#      book the fill, resolve, NO repost
-s = qbot(protective_ids=["PX-D"])
+# ---- Regression B: same case AFTER exact receipts for 3 arrive ->
+#      booked 3 + reconciled resting 2, no repost, confirmed ----
+s = qbot(protective_ids=["PX"])
 reset(orders=[], positions=[],
-      fills=[rc("FD", "PX-D", 5, 43, ts=1600)],
-      order_resp={"PX-D": {"order": {"status": "executed"}}})
+      fills=[rc("R3", "PX", 3, 43, ts=1600)],
+      order_resp={"PX": ordr("resting", 3, 2)})
 run(s._quarantine_ensure_coverage(TK))
-check(nsells(s) == 0, "D: delayed full fill -> resolve, NO repost")
-check(qrec(s).get("status") == "resolved", "D: booked to resolved")
-check(abs(float(qrec(s).get("exit_booked_qty")) - 5) < 1e-6,
-      "D: full 5 booked from exact receipts")
+check(abs(float(qr(s).get("exit_booked_qty")) - 3) < 1e-6, "B: booked 3 from receipts")
+check(nsells(s) == 0, "B: booked 3 + reconciled resting 2 = 5 -> no repost")
+check(qr(s).get("_resting_confirmed") is True, "B: confirmed once reconciled")
 
-# ---- Regression E: absent + delayed PARTIAL fill + confirmed cancel ----
-#      book the partial, repost EXACTLY the remainder ONCE
-s = qbot(protective_ids=["PX-E"])
-reset(orders=[], positions=[],
-      fills=[rc("FE", "PX-E", 3, 43, ts=1600)],
-      order_resp={"PX-E": {"order": {"status": "canceled"}}})
+# ---- Regression C: executed fill_count 5 but receipt sum 0 (or 2) ->
+#      UNKNOWN, no repost ----
+s = qbot(protective_ids=["PX"])
+reset(orders=[], positions=[], fills=[], order_resp={"PX": ordr("executed", 5, 0)})
 run(s._quarantine_ensure_coverage(TK))
-check(abs(float(qrec(s).get("exit_booked_qty")) - 3) < 1e-6,
-      "E: partial 3 booked from receipts")
+check(nsells(s) == 0, "C: executed fill_count 5 vs receipts 0 -> UNKNOWN, no repost")
+check(bool(evs(s, "quarantine_coverage_unknown")), "C: loud UNKNOWN")
+s = qbot(protective_ids=["PX"])
+reset(orders=[], positions=[],
+      fills=[rc("R2", "PX", 2, 43, ts=1600)],
+      order_resp={"PX": ordr("executed", 5, 0)})
+run(s._quarantine_ensure_coverage(TK))
+check(nsells(s) == 0, "C: executed fill_count 5 vs receipts 2 -> UNKNOWN, no repost")
+
+# ---- Regression D: canceled fill_count 3 with receipt sum 3 ->
+#      book 3, repost exactly 2 once ----
+s = qbot(protective_ids=["PX"])
+reset(orders=[], positions=[],
+      fills=[rc("R3", "PX", 3, 43, ts=1600)],
+      order_resp={"PX": ordr("canceled", 3, 0)})
+run(s._quarantine_ensure_coverage(TK))
+check(abs(float(qr(s).get("exit_booked_qty")) - 3) < 1e-6, "D: booked the reconciled 3")
 check(nsells(s) == 1 and s.placed[-1]["count"] == 2,
-      "E: exact remainder (2) reposted ONCE")
+      "D: canceled 3 reconciled -> repost exactly the remaining 2 once")
 run(s._quarantine_ensure_coverage(TK))
-check(nsells(s) == 1, "E: remainder reposted only once")
-check(qrec(s).get("_resting_confirmed") is True,
-      "E: confirmed once the remainder rests")
+check(nsells(s) == 1, "D: remainder reposted only once")
 
-# ---- Regression F: confirmed cancel + complete ZERO-fill census --------
-#      exact full replacement ONCE
-s = qbot(protective_ids=["PX-F"])
+# ---- Regression E: malformed receipt belonging to the oid -> UNKNOWN ----
+s = qbot(protective_ids=["PX"])
+# a fill for PX with NO price field -> canonicalizes to a malformed receipt
+reset(orders=[], positions=[],
+      fills=[{"fill_id": "FM", "order_id": "PX", "action": "sell",
+              "count_fp": 3, "created_time": 1600}],
+      order_resp={"PX": ordr("canceled", 3, 0)})
+run(s._quarantine_ensure_coverage(TK))
+check(nsells(s) == 0, "E: malformed receipt for the oid -> UNKNOWN, no repost")
+check(bool(evs(s, "quarantine_coverage_unknown")), "E: loud UNKNOWN")
+
+# ---- Regression F: resting coverage 6 against holding 5 ->
+#      NAMED invariant breach, not covered ----
+s = qbot(protective_ids=["PX"])
+reset(orders=[], positions=[], fills=[], order_resp={"PX": ordr("resting", 0, 6)})
+run(s._quarantine_ensure_coverage(TK))
+check(bool(evs(s, "quarantine_oversell_invariant_breach")),
+      "F: resting cover 6 > holding 5 -> NAMED invariant breach")
+check(nsells(s) == 0, "F: breach -> no new order")
+check(qr(s).get("_resting_confirmed") is False, "F: breach -> NOT covered")
+check(qr(s).get("operator_state") == "operator_pending", "F: operator_pending armed")
+
+# ---- Regression G: booked 3 + resting 3 against holding 5 -> breach ----
+s = qbot(protective_ids=["PX-EX", "PX-RS"])
+reset(orders=[], positions=[],
+      fills=[rc("R3", "PX-EX", 3, 43, ts=1600)],
+      order_resp={"PX-EX": ordr("executed", 3, 0),
+                  "PX-RS": ordr("resting", 0, 3)})
+run(s._quarantine_ensure_coverage(TK))
+check(abs(float(qr(s).get("exit_booked_qty")) - 3) < 1e-6, "G: booked the executed 3")
+check(bool(evs(s, "quarantine_oversell_invariant_breach")),
+      "G: booked 3 + resting 3 = 6 > holding 5 -> NAMED invariant breach")
+check(nsells(s) == 0, "G: breach -> no new order")
+
+# ---- Regression H: multiple oids; ONE UNKNOWN blocks ALL reposting ----
+s = qbot(protective_ids=["PX-OK", "PX-UNK"])
 reset(orders=[], positions=[], fills=[],
-      order_resp={"PX-F": {"order": {"status": "rejected"}}})
-run(s._quarantine_ensure_coverage(TK))
-check(nsells(s) == 1 and s.placed[-1]["count"] == 5,
-      "F: confirmed cancel + zero-fill census -> exact replacement (5) once")
-run(s._quarantine_ensure_coverage(TK))
-check(nsells(s) == 1, "F: replacement not duplicated")
-
-# ---- Regression G: previously RESTING then absent ----------------------
-#      exercises C-F, NOT automatic replacement (this is the old defect)
-s = qbot(protective_ids=["PX-G"])
-qrec(s)["_resting_confirmed"] = True          # was confirmed resting
-reset(orders=[], positions=[], fills=[], order_resp={})   # now absent, GET None
+      order_resp={"PX-OK": ordr("resting", 0, 2)})   # PX-UNK GET -> None
 run(s._quarantine_ensure_coverage(TK))
 check(nsells(s) == 0,
-      "G: confirmed-then-absent + UNKNOWN GET -> NO blind auto-replace")
-check(qrec(s).get("_resting_confirmed") is False,
-      "G: coverage downgraded to pending (not silently kept, not reposted)")
-check(evs(s, "quarantine_coverage_unknown"),
-      "G: loud UNKNOWN instead of a book-absence repost")
+      "H: one UNKNOWN protective order blocks ALL reposting for the record")
+check(bool(evs(s, "quarantine_coverage_unknown")), "H: loud UNKNOWN")
+check(qr(s).get("_resting_confirmed") is False, "H: not confirmed while any UNKNOWN")
 
-# ---- Regression H: restart during a pending state preserves behavior ---
-s = qbot(protective_ids=["PX-H"])
-reset(orders=[], positions=[], fills=[], order_resp={})   # pending UNKNOWN
+# ---- Regression I: restart preserves UNKNOWN and breach state ----
+# UNKNOWN preserved
+s = qbot(protective_ids=["PX"])
+reset(orders=[], positions=[], fills=[], order_resp={"PX": ordr("resting", 3, 2)})
 run(s._quarantine_ensure_coverage(TK))
 s2 = qbot()
 s2.unmatched_holdings = {TK: [
     {**x, "protective_order_ids": list(x.get("protective_order_ids") or [])}
     for x in s.unmatched_holdings[TK]]}
-reset(orders=[], positions=[], fills=[], order_resp={})
+reset(orders=[], positions=[], fills=[], order_resp={"PX": ordr("resting", 3, 2)})
 run(s2._quarantine_ensure_coverage(TK))
-check(nsells(s2) == 0, "H: restart preserves pending -> still no blind repost")
-check(qrec(s2).get("operator_state") == "operator_pending",
-      "H: operator_pending stays armed across restart")
-check(evs(s2, "quarantine_coverage_unknown"),
-      "H: UNKNOWN still alerts after restart")
-
-# ---- Regression I: never oversell --------------------------------------
-#      resting sells + booked exit can never exceed the quarantined holding
-s = qbot(protective_ids=["PX-I"])
-reset(orders=[], positions=[], fills=[],
-      order_resp={"PX-I": {"order": {"status": "canceled"}}})
+check(nsells(s2) == 0 and bool(evs(s2, "quarantine_coverage_unknown")),
+      "I: restart preserves UNKNOWN -> still no repost, still alerts")
+check(qr(s2).get("operator_state") == "operator_pending",
+      "I: operator_pending armed across restart (UNKNOWN)")
+# breach preserved
+s = qbot(protective_ids=["PX"])
+reset(orders=[], positions=[], fills=[], order_resp={"PX": ordr("resting", 0, 6)})
 run(s._quarantine_ensure_coverage(TK))
-resting_sells = sells_total(TK)
-booked = float(qrec(s).get("exit_booked_qty") or 0)
-check(resting_sells + booked <= 5 + 1e-6,
-      "I: resting sells (%s) + booked (%s) never exceed holding 5"
-      % (resting_sells, booked))
-check(abs(resting_sells + booked - 5) < 1e-6,
-      "I: coverage meets the holding EXACTLY, never over")
+s2 = qbot()
+s2.unmatched_holdings = {TK: [
+    {**x, "protective_order_ids": list(x.get("protective_order_ids") or [])}
+    for x in s.unmatched_holdings[TK]]}
+reset(orders=[], positions=[], fills=[], order_resp={"PX": ordr("resting", 0, 6)})
+run(s2._quarantine_ensure_coverage(TK))
+check(bool(evs(s2, "quarantine_oversell_invariant_breach")) and nsells(s2) == 0,
+      "I: restart preserves invariant breach -> named breach, no order")
 
-# 22.6  the narrow old-Position closure exception still requires
-#       book-confirmed coverage (a bare ack cannot close the old cycle)
+# 22.6  the old-Position closure exception still requires reconciled
+#       coverage (a bare ack cannot close the old cycle)
 s, p, rget = race_env()
 M.api_get = rget
 try:
     run(s.check_fills())               # cycle 1: admit + post (pending)
     check(TK in s.positions,
-          "22.6 old Position CANNOT close on a bare ack (still pending)")
+          "22.6 old Position CANNOT close on an unreconciled post (pending)")
 finally:
     M.api_get = _api_get
 

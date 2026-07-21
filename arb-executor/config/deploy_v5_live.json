@@ -123,7 +123,7 @@
   "operator_taker_word": false,
   "composer_live_shadow_enabled": true,
   "os_shadow_enabled": true,
-  "reentry_cycle_cap": 2,
+  "reentry_cycle_cap": 1,
   "chase_pursuit_cap_enabled": true,
   "self_fill_bell_enabled": true,
   "self_fill_rise_cents": 4,

@@ -14454,6 +14454,75 @@ class LiveV3:
             pass
         return verdict
 
+    async def _reconcile_exit_fill_from_truth(self, tk, pos):
+        """[LIVE DEFECT FIX 07-20 late — ICHYAM-YAM] The engine holds a
+        position the exchange does not. That is a CASHED EXIT whose
+        fill has not been booked (per-order poll starvation), NOT a
+        phantom to erase. Confirm the sell against exchange truth (the
+        exit order's own status, else the fills feed), then book the
+        cash through the normal accounting: pnl, session-exited stamp,
+        CYCLE INCREMENT (this is what stops the re-buy), tombstone.
+        Confirmation is required — with none, the record STANDS and the
+        defect stays flagged. Never erases state."""
+        px = qty = None
+        src = None
+        oid = getattr(pos, "exit_order_id", "")
+        if oid:
+            d = await api_get(self.session, self.ak, self.pk,
+                              "/trade-api/v2/portfolio/orders/%s" % oid,
+                              self.rl)
+            o = (d or {}).get("order", d) or {}
+            f = int(float(o.get("fill_count_fp",
+                                o.get("count_filled", 0)) or 0))
+            if f > 0 and o.get("status") in ("executed", "canceled"):
+                qty, src = f, "exit_order_status"
+                try:
+                    px = round(float(o.get("average_fill_price_fp")
+                                     or 0) * 100) or pos.exit_price
+                except (TypeError, ValueError):
+                    px = pos.exit_price
+        if qty is None:
+            d = await api_get(self.session, self.ak, self.pk,
+                              "/trade-api/v2/portfolio/fills?ticker=%s"
+                              "&limit=50" % tk, self.rl)
+            sells = [f for f in ((d or {}).get("fills") or [])
+                     if f.get("action") == "sell"]
+            if sells:
+                qty = sum(int(float(f.get("count") or 0)) for f in sells)
+                try:
+                    px = round(sum(int(float(f.get("count") or 0))
+                                   * float(f.get("yes_price_dollars")
+                                           or 0) * 100
+                                   for f in sells) / max(1, qty))
+                except (TypeError, ValueError, ZeroDivisionError):
+                    px = pos.exit_price
+                src = "fills_feed"
+        if not qty:
+            self._log("phantom_cash_unconfirmed", {
+                "engine_qty": pos.entry_qty,
+                "law": "no sell confirmed — the record STANDS; never "
+                       "erase state on exchange-empty"}, ticker=tk)
+            return
+        px = int(px or pos.exit_price or 0)
+        pos.exit_filled_qty = max(int(getattr(pos, "exit_filled_qty",
+                                              0) or 0), int(qty))
+        pos.exit_filled = True
+        pos.pnl_cents = (px - pos.entry_price) * int(qty)
+        self.__dict__.setdefault("_session_exited", set()).add(tk)
+        self._log("exit_filled", {
+            "exit_price": px, "entry_price": pos.entry_price,
+            "qty": int(qty), "complete": True,
+            "pnl_cents": pos.pnl_cents,
+            "source": "phantom_cash_route(%s)" % src,
+            "law": "unbooked EXIT fill booked from exchange truth — "
+                   "the cash closes the cycle; no re-buy follows"},
+            ticker=tk)
+        self._cycle_count[tk] = self._cycle_count.get(tk, 0) + 1
+        pos.settled = True
+        pos.phase = "closed"
+        self.positions.pop(tk, None)
+        self._save_v4_resting()
+
     async def _tooth_market_status(self, tk):
         """[SAFETY-TEETH P3(a)] market status for the settlement_pending
         carve-out, 300s-cached per ticker (candidates are rare; the cache
@@ -14584,15 +14653,26 @@ class LiveV3:
                 "consecutive_cycles": n9,
                 "class": "SWEEP x ENGINE double-ownership (GNI cycle-2 "
                          "kept_position residual)"}, ticker=tk)
-            if n9 >= 2:
-                seen["phantom"].pop(tk, None)
-                self.positions.pop(tk, None)
-                self._log("phantom_position_dropped", {
-                    "engine_qty": pos.entry_qty,
-                    "law": "exchange truth outranks a cancel-race "
-                           "booking; 2 consecutive cycles + live market "
-                           "status confirmed"}, ticker=tk)
-                self._save_v4_resting()
+            # [LIVE DEFECT FIX 07-20 late, operator catch — ICHYAM-YAM
+            # the exhibit] THE DROP IS DEAD. An engine position the
+            # exchange no longer holds is, overwhelmingly, a CASHED
+            # EXIT whose fill check_fills has not booked yet (the same
+            # per-order poll starvation the unbooked-fill class names).
+            # Dropping the record ERASED the cycle count and the
+            # tombstone, and the router re-conceived the leg seconds
+            # later — a REBUY AFTER CASHING, at a worse price, on the
+            # operator's live book. Detection stays (flag, red, every
+            # cycle); the ONLY action is to route the cash through the
+            # booking path so the cycle increments and the leg is
+            # tombstoned. Never erase state on exchange-empty.
+            if n9 >= 2 and not getattr(pos, "_phantom_cash_routed",
+                                       False):
+                pos._phantom_cash_routed = True
+                try:
+                    await self._reconcile_exit_fill_from_truth(tk, pos)
+                except Exception as _pce:
+                    self._log("phantom_cash_route_error", {
+                        "err": str(_pce)[:150]}, ticker=tk)
         # ---- (4) ONE-AUTHORITY audit + RE-ANCHOR DUTY (operator
         # addendum + sweep dispatch 07-20 PM): a mismatched resting
         # entry is FLAGGED RED on detection and RE-ANCHORED on its next

@@ -1,5 +1,5 @@
 # OUTCOME PROOF — THE RE-BUY-AFTER-CASH DEFECT (live, operator's catch)
-Candidate: this push. C46 two-lane. **Urgent live-money fix.**
+Candidate: `c7ded414`. C46 two-lane. **Urgent live-money fix.**
 
 ## THE DEFECT, from the box (ICHYAM-YAM, 2026-07-20)
 - 09:12–09:34 PM: leg accumulates 5 shares @51 basis; exits posted @64.

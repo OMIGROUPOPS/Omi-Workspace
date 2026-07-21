@@ -1,8 +1,11 @@
 {
   "authoritative_base_sha": "193e90da406214d2e5d9b2c7b5f752ddda046895",
-  "benchmark_commit_sha": "6de11c533562e636ea0238dca81e8ff109a0cd79",
+  "benchmark_commit_sha": "e0bb8650049763929e7c882ccc51940ddee2b07a",
   "branch": "codex/window1-definition",
-  "test_command": "python -B arb-executor/tests/test_window1_benchmark.py",
+  "test_commands": [
+    "python -B arb-executor/tests/test_window1_benchmark.py",
+    "python -B arb-executor/tests/test_window1_policy_runner.py"
+  ],
   "production_touched": false,
   "window2_or_exits_touched": false
 }

@@ -8,7 +8,7 @@ The research branch was cut from the fetched authoritative base:
 
 The byte-exact benchmark implementation and all blocked-state reports are in:
 
-`6de11c533562e636ea0238dca81e8ff109a0cd79`
+`e0bb8650049763929e7c882ccc51940ddee2b07a`
 
 Do not run these commands in the production checkout.
 
@@ -39,8 +39,8 @@ Use a separate VPS worktree:
 
 ```bash
 git fetch origin codex/window1-definition
-git cat-file -e 6de11c533562e636ea0238dca81e8ff109a0cd79^{commit}
-git worktree add --detach /srv/omi-research/OMI-Workspace-codex-window1 6de11c533562e636ea0238dca81e8ff109a0cd79
+git cat-file -e e0bb8650049763929e7c882ccc51940ddee2b07a^{commit}
+git worktree add --detach /srv/omi-research/OMI-Workspace-codex-window1 e0bb8650049763929e7c882ccc51940ddee2b07a
 cd /srv/omi-research/OMI-Workspace-codex-window1
 python -B arb-executor/tests/test_window1_benchmark.py
 python -B arb-executor/tests/test_window1_policy_runner.py

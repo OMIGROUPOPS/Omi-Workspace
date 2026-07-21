@@ -15253,55 +15253,147 @@ class LiveV3:
                 return False
         return True
 
+    async def _resolve_protective_oid(self, tk, oid, rest):
+        """[REV6.1.1.1] Resolve ONE protective order to EXACT truth.
+        Absence from the fresh resting book is NEVER cancellation — a
+        missing order is resolved by its order-specific status GET before
+        any conclusion, because a poller-lagged fill looks identical to a
+        cancellation in the resting list and reposting against a fill
+        oversells the holding. Returns one of:
+          ("resting", remaining)  live order with resting remaining qty
+          ("terminal", 0.0)       executed/canceled/rejected/terminal-
+                                  partial — a CONFIRMED terminal state;
+                                  its fills accrue via receipts and it
+                                  provides NO resting cover
+          ("unknown", 0.0)        status could not be established — never
+                                  treated as cancellation, never reposted
+                                  against."""
+        if oid in rest and rest[oid] > EXCH_ZERO_EPS:
+            return "resting", rest[oid]
+        d = await api_get(self.session, self.ak, self.pk,
+                          "/trade-api/v2/portfolio/orders/%s" % oid, self.rl)
+        if not isinstance(d, dict):
+            return "unknown", 0.0
+        o = d.get("order", d)
+        if not isinstance(o, dict):
+            return "unknown", 0.0
+        st = str(o.get("status") or "").lower()
+        if st == "resting":
+            rem = None
+            for k in ("remaining_count_fp", "remaining_count"):
+                if o.get(k) is not None:
+                    try:
+                        rem = float(o.get(k))
+                    except (TypeError, ValueError):
+                        rem = None
+                    break
+            if rem is None or rem <= EXCH_ZERO_EPS:
+                return "unknown", 0.0    # resting but qty unreadable != proof
+            return "resting", rem
+        if st in ("executed", "filled", "canceled", "cancelled",
+                  "rejected", "partially_filled"):
+            # terminal cancellation/fill truth: any fills are booked by the
+            # exact-receipt census; this order provides no resting cover.
+            return "terminal", 0.0
+        return "unknown", 0.0
+
     async def _quarantine_ensure_coverage(self, tk, pos=None):
-        """[REV6.2] VERIFY quarantine protective coverage against the
-        book (not assumed from ledger existence) and repost EXACTLY the
-        uncovered open quantity from the record's own raced basis. Never
-        the old Position basis; never duplicates a confirmed resting
-        protective order; UNKNOWN order truth alerts + fails closed (no
-        blind repost); foreign sells untouched."""
+        """[REV6.1.1.1] VERIFY quarantine protective coverage against
+        EXACT order + receipt truth (never assumed from ledger existence
+        or from book-absence) and repost EXACTLY the uncovered open
+        quantity from the record's own raced basis. Contract:
+          1. Accrue exact protective-exit receipts FIRST, with a COMPLETE
+             receipt census; an incomplete fills feed gates every repost.
+          2. Read the fresh cursor-exhausted resting book.
+          3. For every protective order NOT resting in that book, resolve
+             its EXACT status by order-specific GET. Resting-with-
+             remaining is cover; executed/partial/cancelled is terminal
+             (fills already accrued, no cover); anything else is UNKNOWN.
+          4. Repost the exact remainder ONLY after terminal-cancellation
+             truth AND a complete census establish it — book-absence
+             alone is never cancellation.
+          5. UNKNOWN status / incomplete census / unproven causality:
+             do NOT repost, do NOT close, preserve every oid + state,
+             keep operator_pending armed, and alert loudly every cycle.
+          6. INVARIANT (never oversell): resting_cover + booked_exit +
+             reposted_remainder == qty, never above the quarantined
+             exchange holding."""
         recs = [r for r in self.unmatched_holdings.get(tk, [])
                 if r.get("status") != "resolved"]
         if not recs:
             return
+        # 1. accrue exact receipts FIRST; capture census completeness
+        feed_ok = await self._quarantine_accrue(tk)
+        # 2. fresh cursor-exhausted resting book
         rows, ok, fail = await self._resting_orders_all(tk)
         if not ok:
             for r in recs:
                 r["_resting_confirmed"] = False
             self._log("quarantine_coverage_unknown", {
-                "verify_failures": fail[:4],
-                "law": "order truth UNKNOWN — do NOT blindly repost a "
-                       "duplicate; alert and fail closed"}, ticker=tk)
+                "verify_failures": fail[:4], "persistent": True,
+                "reason": "resting_book_unknown",
+                "law": "resting book UNKNOWN — do NOT repost, do NOT "
+                       "close; preserve state, operator_pending armed, "
+                       "alert every cycle"}, ticker=tk)
             return
-        # resting sell remaining per order_id (bot-owned protective orders)
         rest = {}
         for o in rows:
             if o["action"] == "sell" and o["remaining"] > 0:
-                rest[o["order_id"]] = rest.get(o["order_id"], 0.0)                     + o["remaining"]
+                rest[o["order_id"]] = (rest.get(o["order_id"], 0.0)
+                                       + o["remaining"])
         for r in recs:
             open_q = (float(r.get("qty") or 0)
                       - float(r.get("exit_booked_qty") or 0))
             if open_q <= EXCH_ZERO_EPS:
                 r["status"] = "resolved"
                 continue
-            # [REV6.1.1] coverage is BOOK-CONFIRMED: only protective
-            # orders found resting in the fresh cursor-exhausted read
-            # count. A bare create-ack (order id) is NOT coverage.
-            covered = sum(rest.get(oid, 0.0)
-                          for oid in (r.get("protective_order_ids") or []))
-            if covered >= open_q - EXCH_ZERO_EPS:
+            # 3. resolve EACH protective oid to exact truth. Book-absence
+            #    alone is never cancellation — GET the exact order status.
+            resting_cov = 0.0
+            any_unknown = False
+            for oid in (r.get("protective_order_ids") or []):
+                state, rem = await self._resolve_protective_oid(tk, oid, rest)
+                if state == "resting":
+                    resting_cov += rem
+                elif state == "unknown":
+                    any_unknown = True
+                # terminal -> fills already accrued in step 1; no cover
+            # 4. recompute open after accrual (a delayed full fill resolves
+            #    here with NO repost)
+            open_q = (float(r.get("qty") or 0)
+                      - float(r.get("exit_booked_qty") or 0))
+            if open_q <= EXCH_ZERO_EPS:
+                r["status"] = "resolved"
+                r["_resting_confirmed"] = True
+                r["_await_oids"] = []
+                continue
+            if resting_cov >= open_q - EXCH_ZERO_EPS:
                 r["_resting_confirmed"] = True
                 r["_await_oids"] = []
                 continue
             r["_resting_confirmed"] = False
-            # awaited (just-posted, not-yet-visible) orders: WAIT — do NOT
-            # post a duplicate while a fresh post may simply be lagging.
-            await_oids = [o for o in (r.get("_await_oids") or [])
-                          if o not in rest]
-            if await_oids:
-                r["_await_oids"] = await_oids
-                continue        # pending; posted order not yet visible
-            shortfall = open_q - covered
+            shortfall = open_q - resting_cov
+            # 5. UNKNOWN order truth OR an incomplete receipt census =>
+            #    NEVER repost. Book-absence is not cancellation and a
+            #    lagging fills feed could hide a fill a repost would
+            #    oversell. Alert loudly and persistently; preserve state.
+            if any_unknown or not feed_ok:
+                self._log("quarantine_coverage_unknown", {
+                    "buy_receipt_id": r["buy_receipt_id"],
+                    "open_qty": open_q, "resting_cover": resting_cov,
+                    "shortfall": shortfall,
+                    "any_unknown_order": any_unknown,
+                    "receipt_census_complete": feed_ok,
+                    "persistent": True, "naked": True,
+                    "law": "protective coverage UNKNOWN — an order status "
+                           "or the receipt census is incomplete; do NOT "
+                           "repost (book-absence is not cancellation), do "
+                           "NOT close; operator_pending stays armed; alert "
+                           "every cycle until reconciled"}, ticker=tk)
+                continue
+            # 6. terminal-cancellation truth + complete census established:
+            #    repost EXACTLY the uncovered remainder once. Invariant
+            #    holds: resting_cov + booked + shortfall == qty.
             target = int(r.get("protective_exit_target")
                          or (int(r["price"])))
             oid, resp = await self.place_order(
@@ -15317,7 +15409,8 @@ class LiveV3:
             r.setdefault("protective_order_ids", []).append(oid)
             r["protective_exit_order_id"] = oid
             # OPTION A: an explicit create response proving the full
-            # required remaining is resting confirms immediately.
+            # remainder is resting confirms at once; else the NEXT cycle
+            # resolves the exact order status before coverage is claimed.
             _o = ((resp or {}).get("order", resp)
                   if isinstance(resp, dict) else {})
             _rem = None
@@ -15337,23 +15430,27 @@ class LiveV3:
                 r["_await_oids"] = []
                 _how = "create_response_remaining"
             else:
-                # OPTION B pending: the NEXT cycle fresh book read must
-                # find this exact order_id before coverage is confirmed.
                 r["_await_oids"] = [oid]
-                _how = "await_book_confirmation"
+                _how = "await_order_status_confirmation"
             self._log("quarantine_protective_posted", {
                 "buy_receipt_id": r["buy_receipt_id"],
                 "qty": int(round(shortfall)), "target": target,
                 "order_id": oid[:13], "confirmed": _how,
                 "law": "protective coverage from the RACED basis for "
-                       "exactly the uncovered quantity; coverage confirmed "
-                       "only by book truth or an explicit remaining-proving "
-                       "create response"}, ticker=tk)
+                       "exactly the uncovered remainder; reposted only on "
+                       "terminal-cancellation truth + a complete receipt "
+                       "census; coverage confirmed only by order/book "
+                       "truth or an explicit remaining-proving create "
+                       "response"}, ticker=tk)
         self._save_v4_resting()
 
     async def _quarantine_accrue(self, tk):
         """Accrue protective-exit receipts ONLY into quarantine records,
-        by protective order identity, idempotent by exit receipt id."""
+        by protective order identity, idempotent by exit receipt id.
+        [REV6.1.1.1] Returns feed_ok: True only if EVERY record's exact
+        receipt census was complete. A False verdict means reposts must
+        be withheld — a lagging fills feed could hide a fill."""
+        feed_ok = True
         for rec in self.unmatched_holdings.get(tk, []):
             if rec.get("status") == "resolved":
                 continue
@@ -15364,7 +15461,12 @@ class LiveV3:
             if not oids:
                 continue
             got = await self._exit_receipts(tk, oids)
-            receipts = got[0] if isinstance(got, tuple) else got
+            if isinstance(got, tuple):
+                receipts = got[0]
+                if len(got) >= 3 and got[2] is False:
+                    feed_ok = False
+            else:
+                receipts = got
             seen = set(rec.get("exit_receipt_ids") or [])
             newq = newpnl = 0.0
             for r in sorted(receipts,
@@ -15394,6 +15496,7 @@ class LiveV3:
                            "quarantine; completed cycle P&L unchanged"},
                     ticker=tk)
                 self._save_v4_resting()
+        return feed_ok
 
     async def _finalize_full_cash(self, tk, pos, source="cash"):
         """[LANE-A REV4 — THE ONE FULL-CASH FINALIZER] Both the normal

@@ -77,6 +77,7 @@ BOUND = ("_fills_bulk", "_bot_owned_ids", "_cash_cleanup_state", "_canon_orders"
          "_cancel_resting_buys_on_cash", "_finalize_full_cash",
          "_quarantine_reconcile", "_quarantine_poll",
          "_quarantine_ensure_coverage", "_quarantine_accrue",
+         "_resolve_protective_oid",
          "_quarantine_covered", "_quarantine_admitted_qty",
          "_quarantine_open_qty", "_quarantine_snapshot",
          "_bot_owned_ids",
@@ -1908,11 +1909,17 @@ try:
 finally:
     M.api_get = _api_get
 
-# 20d protective exit truly ABSENT -> exactly one replacement
+# 20d protective exit ABSENT from the book + UNKNOWN exact status ->
+#     NO blind replacement. Book-absence is not cancellation: a poller-
+#     lagged fill looks identical to a cancel in the resting list, so a
+#     repost here could oversell. Resolve exact status first.
 s = qbot_with_rec(protective_ids=["OLD-PX"])
+reset(orders=[], positions=[], fills=[], order_resp={})
 async def og_absent(sess, ak, pk, path, rl):
     if "/portfolio/orders" in path and "status=resting" in path:
-        return {"orders": []}          # OLD-PX gone
+        return {"orders": []}          # OLD-PX not resting
+    if "/portfolio/orders/OLD-PX" in path:
+        return None                    # exact status UNKNOWN
     return await _api_get(sess, ak, pk, path, rl)
 M.api_get = og_absent
 try:
@@ -1920,8 +1927,29 @@ try:
 finally:
     M.api_get = _api_get
 reps = [x for x in s.placed if x["action"] == "sell"]
+check(len(reps) == 0,
+      "20d absent + UNKNOWN status -> NO blind replacement (absence != cancel)")
+check(bool(evs(s, "quarantine_coverage_unknown")), "20d loud UNKNOWN alert")
+check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is False,
+      "20d fail closed (not confirmed)")
+
+# 20d2 absent + CONFIRMED cancellation + complete zero-fill census ->
+#      exactly one replacement of the exact remainder (the legit path)
+s = qbot_with_rec(protective_ids=["OLD-PX"])
+reset(orders=[], positions=[], fills=[],
+      order_resp={"OLD-PX": {"order": {"status": "canceled"}}})
+async def og_cancelled(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return {"orders": []}
+    return await _api_get(sess, ak, pk, path, rl)
+M.api_get = og_cancelled
+try:
+    run(s._quarantine_ensure_coverage(TK))
+finally:
+    M.api_get = _api_get
+reps = [x for x in s.placed if x["action"] == "sell"]
 check(len(reps) == 1 and reps[0]["count"] == 5 and reps[0]["price"] == 43,
-      "20d absent protective -> one replacement of 5 @ raced basis 43")
+      "20d2 confirmed cancel + complete census -> one replacement of 5 @ 43")
 
 # 20e partial protective coverage -> only the remaining posted
 s = qbot_with_rec(protective_ids=["PX-A"])
@@ -2053,159 +2081,209 @@ finally:
         pass
 
 # ======================================================================
-print("--- 22. REV6.1.1 D1: ack != confirmed resting coverage ---")
+print("--- 22. REV6.1.1.1 D1: coverage from EXACT order+receipt truth ---")
 # ======================================================================
-def cov_bot(protective_ids=None, booked=0.0):
+# Book-ABSENCE is NEVER cancellation. An order missing from the fresh
+# resting list is resolved by its order-specific status GET; a repost is
+# withheld until terminal-cancellation truth AND a complete receipt
+# census establish the exact uncovered remainder. Invariant: resting
+# cover + booked exit + reposted remainder never exceeds the holding.
+def qbot(qty=5.0, booked=0.0, protective_ids=None, price=30, target=43,
+         operator_state="operator_pending"):
     s = make_bot()
     s.unmatched_holdings = {TK: [{
         "ticker": TK, "buy_receipt_id": "BR", "buy_order_id": "B-RACE",
-        "qty": 5.0, "price": 30, "status": "quarantined",
+        "qty": qty, "price": price, "status": "quarantined",
         "protective_order_ids": list(protective_ids or []),
         "protective_exit_order_id": (protective_ids or [""])[-1]
-        if protective_ids else "", "protective_exit_target": 43,
+        if protective_ids else "", "protective_exit_target": target,
         "exit_receipt_ids": [], "exit_booked_qty": booked,
-        "exit_pnl_cents": 0.0, "operator_state": "operator_pending",
+        "exit_pnl_cents": 0.0, "operator_state": operator_state,
         "_await_oids": []}]}
     return s
 
-# 22.1  create returns oid but refetch does NOT contain it -> NOT confirmed
-s = cov_bot()
-BOOK["orders"] = []
-async def g_ack_only(sess, ak, pk, path, rl):
-    if "/portfolio/orders" in path and "status=resting" in path:
-        return {"orders": []}          # posted order NOT in the book
-    return await _api_get(sess, ak, pk, path, rl)
-async def place_ack(tk, action, side, price, count, post_only=True):
-    s.placed.append({"tk": tk, "action": action, "price": price,
-                     "count": count})
-    return "PX-1", {"order": {"order_id": "PX-1"}}   # bare ack, no remaining
-s.place_order = place_ack
-M.api_get = g_ack_only
-try:
-    run(s._quarantine_ensure_coverage(TK))
-    rec = s.unmatched_holdings[TK][0]
-    check(rec.get("_resting_confirmed") is False,
-          "22.1 bare ack + not-in-book -> NOT confirmed")
-    check(rec.get("_await_oids") == ["PX-1"], "22.1 order id tracked as awaited")
-    check(not s._quarantine_covered(TK), "22.1 quarantine NOT covered")
-    # a second cycle while still not in book -> NO duplicate (waits)
-    run(s._quarantine_ensure_coverage(TK))
-    check(len([x for x in s.placed if x["action"] == "sell"]) == 1,
-          "22.1 awaiting -> NO duplicate posted")
-finally:
-    M.api_get = _api_get
+def qrec(s):
+    return s.unmatched_holdings[TK][0]
 
-# 22.2  create response remaining=0 -> NOT coverage
-s = cov_bot()
-BOOK["orders"] = []
-async def place_rem0(tk, action, side, price, count, post_only=True):
-    s.placed.append({"tk": tk, "action": action, "price": price,
-                     "count": count})
-    return "PX-0", {"order": {"order_id": "PX-0", "status": "resting",
-                              "remaining_count_fp": 0}}
-s.place_order = place_rem0
-async def g_empty(sess, ak, pk, path, rl):
-    if "/portfolio/orders" in path and "status=resting" in path:
-        return {"orders": []}
-    return await _api_get(sess, ak, pk, path, rl)
-M.api_get = g_empty
-try:
-    run(s._quarantine_ensure_coverage(TK))
-    check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is False,
-          "22.2 create remaining=0 -> NOT coverage")
-finally:
-    M.api_get = _api_get
+def nsells(s):
+    return len([x for x in s.placed if x["action"] == "sell"])
 
-# 22.3  create returns oid AND fresh book proves exact resting qty -> confirmed
-s = cov_bot()
-async def place_visible(tk, action, side, price, count, post_only=True):
-    s.placed.append({"tk": tk, "action": action, "price": price,
-                     "count": count})
-    BOOK["orders"].append({"order_id": "PX-V", "ticker": tk,
-                           "action": "sell", "yes_price_dollars": price/100.0,
-                           "remaining_count_fp": count})
-    return "PX-V", {"order": {"order_id": "PX-V"}}
-s.place_order = place_visible
-BOOK["orders"] = []
-async def g_book(sess, ak, pk, path, rl):
-    if "/portfolio/orders" in path and "status=resting" in path:
-        return {"orders": [dict(o) for o in BOOK["orders"]]}
-    return await _api_get(sess, ak, pk, path, rl)
-M.api_get = g_book
-try:
-    run(s._quarantine_ensure_coverage(TK))          # posts (await) ...
-    run(s._quarantine_ensure_coverage(TK))          # ... book confirms
-    check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is True,
-          "22.3 fresh book proves exact resting qty -> confirmed")
-    check(s._quarantine_covered(TK), "22.3 quarantine covered")
-    check(len([x for x in s.placed if x["action"] == "sell"]) == 1,
-          "22.3 no duplicate after confirmation")
-finally:
-    M.api_get = _api_get
+# 22.0  initial protective post: empty book -> post full open ONCE, then
+#       BOOK-confirm on the next cycle (a bare post is not yet coverage)
+s = qbot()
+reset(orders=[], positions=[], fills=[])
+run(s._quarantine_ensure_coverage(TK))
+check(nsells(s) == 1 and s.placed[0]["count"] == 5,
+      "22.0 initial protective post = full open once")
+check(qrec(s).get("_resting_confirmed") is False,
+      "22.0 bare post is NOT yet confirmed coverage")
+run(s._quarantine_ensure_coverage(TK))
+check(nsells(s) == 1, "22.0 posted order now resting -> NO duplicate")
+check(qrec(s).get("_resting_confirmed") is True,
+      "22.0 book-confirmed on the next cycle")
 
-# 22.3b create response EXPLICITLY proves full remaining -> confirmed at once
-s = cov_bot()
-BOOK["orders"] = []
+# 22.J  OPTION A: a create response explicitly proving the full remaining
+#       is resting confirms coverage at once (no await needed)
+s = qbot()
+reset(orders=[], positions=[], fills=[])
 async def place_proof(tk, action, side, price, count, post_only=True):
     s.placed.append({"tk": tk, "action": action, "price": price,
                      "count": count})
     return "PX-P", {"order": {"order_id": "PX-P", "status": "resting",
                               "remaining_count_fp": count}}
 s.place_order = place_proof
-async def g_none_book(sess, ak, pk, path, rl):
-    if "/portfolio/orders" in path and "status=resting" in path:
-        return {"orders": []}       # book empty, but the create PROVED it
-    return await _api_get(sess, ak, pk, path, rl)
-M.api_get = g_none_book
-try:
-    run(s._quarantine_ensure_coverage(TK))
-    check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is True,
-          "22.3b create response proving full remaining -> confirmed once")
-finally:
-    M.api_get = _api_get
+run(s._quarantine_ensure_coverage(TK))
+check(qrec(s).get("_resting_confirmed") is True,
+      "22.J create response proving full remaining -> confirmed at once")
+check(qrec(s).get("_await_oids") == [],
+      "22.J no await when the create response proves coverage")
 
-# 22.4  confirmed-then-absent -> exactly one replacement
-s = cov_bot(protective_ids=["PX-OLD"])
-s.unmatched_holdings[TK][0]["_resting_confirmed"] = True
-BOOK["orders"] = []                 # PX-OLD disappeared/cancelled
-async def place_rep(tk, action, side, price, count, post_only=True):
+# 22.2  create response remaining=0 is NOT coverage
+s = qbot()
+reset(orders=[], positions=[], fills=[])
+async def place_rem0(tk, action, side, price, count, post_only=True):
     s.placed.append({"tk": tk, "action": action, "price": price,
                      "count": count})
-    return "PX-NEW", {"order": {"order_id": "PX-NEW"}}
-s.place_order = place_rep
-async def g_absent2(sess, ak, pk, path, rl):
-    if "/portfolio/orders" in path and "status=resting" in path:
-        return {"orders": []}
+    return "PX-0", {"order": {"order_id": "PX-0", "status": "resting",
+                              "remaining_count_fp": 0}}
+s.place_order = place_rem0
+run(s._quarantine_ensure_coverage(TK))
+check(qrec(s).get("_resting_confirmed") is False,
+      "22.2 create remaining=0 -> NOT coverage")
+
+# ---- Regression A: bare ack absent for repeated cycles ----------------
+#      order UNKNOWN (never resting, GET returns nothing) -> NO duplicate,
+#      loud UNKNOWN alert EVERY cycle, still pending
+s = qbot(protective_ids=["PX-A"])
+reset(orders=[], positions=[], fills=[], order_resp={})   # GET(PX-A) -> None
+run(s._quarantine_ensure_coverage(TK))
+check(nsells(s) == 0,
+      "A: UNKNOWN order status -> NO repost (book-absence != cancellation)")
+check(qrec(s).get("_resting_confirmed") is False, "A: not confirmed")
+check(len(evs(s, "quarantine_coverage_unknown")) == 1, "A: loud UNKNOWN alert")
+run(s._quarantine_ensure_coverage(TK))
+check(nsells(s) == 0, "A: repeated cycle -> still no duplicate, still pending")
+check(len(evs(s, "quarantine_coverage_unknown")) == 2,
+      "A: alert PERSISTS every cycle (a timeout never becomes truth)")
+
+# ---- Regression B: bare ack later resting -> confirmed ----------------
+s = qbot(protective_ids=["PX-B"])
+reset(orders=[{"order_id": "PX-B", "ticker": TK, "action": "sell",
+               "yes_price_dollars": 0.43, "remaining_count_fp": 5}],
+      positions=[], fills=[])
+run(s._quarantine_ensure_coverage(TK))
+check(qrec(s).get("_resting_confirmed") is True,
+      "B: previously-acked order later found resting -> confirmed")
+check(nsells(s) == 0, "B: no repost once resting")
+
+# ---- Regression C: absent order + fills feed unavailable -> no repost --
+#      even with a CONFIRMED terminal cancellation, an incomplete receipt
+#      census must withhold the repost (a lagging fill would oversell)
+s = qbot(protective_ids=["PX-C"])
+reset(orders=[], positions=[], fills=[],
+      order_resp={"PX-C": {"order": {"status": "canceled"}}})
+async def c_no_fills(sess, ak, pk, path, rl):
+    if "/portfolio/fills" in path:
+        return None                        # census incomplete
     return await _api_get(sess, ak, pk, path, rl)
-M.api_get = g_absent2
+M.api_get = c_no_fills
 try:
     run(s._quarantine_ensure_coverage(TK))
 finally:
     M.api_get = _api_get
-check(len([x for x in s.placed if x["action"] == "sell"]) == 1,
-      "22.4 confirmed-then-absent -> exactly ONE replacement")
+check(nsells(s) == 0,
+      "C: terminal cancel BUT incomplete fills census -> NO repost")
+check(evs(s, "quarantine_coverage_unknown"),
+      "C: loud UNKNOWN on incomplete census")
 
-# 22.5  UNKNOWN refetch -> no duplicate, no closure
-s = cov_bot(protective_ids=["PX-A"])
-async def g_unknown2(sess, ak, pk, path, rl):
-    if "/portfolio/orders" in path and "status=resting" in path:
-        return None
-    return await _api_get(sess, ak, pk, path, rl)
-M.api_get = g_unknown2
-try:
-    run(s._quarantine_ensure_coverage(TK))
-finally:
-    M.api_get = _api_get
-check(not [x for x in s.placed if x["action"] == "sell"],
-      "22.5 UNKNOWN refetch -> NO duplicate posted")
-check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is False,
-      "22.5 UNKNOWN -> not confirmed (no closure)")
+# ---- Regression D: absent order + delayed FULL-fill receipts ----------
+#      book the fill, resolve, NO repost
+s = qbot(protective_ids=["PX-D"])
+reset(orders=[], positions=[],
+      fills=[rc("FD", "PX-D", 5, 43, ts=1600)],
+      order_resp={"PX-D": {"order": {"status": "executed"}}})
+run(s._quarantine_ensure_coverage(TK))
+check(nsells(s) == 0, "D: delayed full fill -> resolve, NO repost")
+check(qrec(s).get("status") == "resolved", "D: booked to resolved")
+check(abs(float(qrec(s).get("exit_booked_qty")) - 5) < 1e-6,
+      "D: full 5 booked from exact receipts")
 
-# 22.6  the narrow closure exception requires book-confirmed coverage
+# ---- Regression E: absent + delayed PARTIAL fill + confirmed cancel ----
+#      book the partial, repost EXACTLY the remainder ONCE
+s = qbot(protective_ids=["PX-E"])
+reset(orders=[], positions=[],
+      fills=[rc("FE", "PX-E", 3, 43, ts=1600)],
+      order_resp={"PX-E": {"order": {"status": "canceled"}}})
+run(s._quarantine_ensure_coverage(TK))
+check(abs(float(qrec(s).get("exit_booked_qty")) - 3) < 1e-6,
+      "E: partial 3 booked from receipts")
+check(nsells(s) == 1 and s.placed[-1]["count"] == 2,
+      "E: exact remainder (2) reposted ONCE")
+run(s._quarantine_ensure_coverage(TK))
+check(nsells(s) == 1, "E: remainder reposted only once")
+check(qrec(s).get("_resting_confirmed") is True,
+      "E: confirmed once the remainder rests")
+
+# ---- Regression F: confirmed cancel + complete ZERO-fill census --------
+#      exact full replacement ONCE
+s = qbot(protective_ids=["PX-F"])
+reset(orders=[], positions=[], fills=[],
+      order_resp={"PX-F": {"order": {"status": "rejected"}}})
+run(s._quarantine_ensure_coverage(TK))
+check(nsells(s) == 1 and s.placed[-1]["count"] == 5,
+      "F: confirmed cancel + zero-fill census -> exact replacement (5) once")
+run(s._quarantine_ensure_coverage(TK))
+check(nsells(s) == 1, "F: replacement not duplicated")
+
+# ---- Regression G: previously RESTING then absent ----------------------
+#      exercises C-F, NOT automatic replacement (this is the old defect)
+s = qbot(protective_ids=["PX-G"])
+qrec(s)["_resting_confirmed"] = True          # was confirmed resting
+reset(orders=[], positions=[], fills=[], order_resp={})   # now absent, GET None
+run(s._quarantine_ensure_coverage(TK))
+check(nsells(s) == 0,
+      "G: confirmed-then-absent + UNKNOWN GET -> NO blind auto-replace")
+check(qrec(s).get("_resting_confirmed") is False,
+      "G: coverage downgraded to pending (not silently kept, not reposted)")
+check(evs(s, "quarantine_coverage_unknown"),
+      "G: loud UNKNOWN instead of a book-absence repost")
+
+# ---- Regression H: restart during a pending state preserves behavior ---
+s = qbot(protective_ids=["PX-H"])
+reset(orders=[], positions=[], fills=[], order_resp={})   # pending UNKNOWN
+run(s._quarantine_ensure_coverage(TK))
+s2 = qbot()
+s2.unmatched_holdings = {TK: [
+    {**x, "protective_order_ids": list(x.get("protective_order_ids") or [])}
+    for x in s.unmatched_holdings[TK]]}
+reset(orders=[], positions=[], fills=[], order_resp={})
+run(s2._quarantine_ensure_coverage(TK))
+check(nsells(s2) == 0, "H: restart preserves pending -> still no blind repost")
+check(qrec(s2).get("operator_state") == "operator_pending",
+      "H: operator_pending stays armed across restart")
+check(evs(s2, "quarantine_coverage_unknown"),
+      "H: UNKNOWN still alerts after restart")
+
+# ---- Regression I: never oversell --------------------------------------
+#      resting sells + booked exit can never exceed the quarantined holding
+s = qbot(protective_ids=["PX-I"])
+reset(orders=[], positions=[], fills=[],
+      order_resp={"PX-I": {"order": {"status": "canceled"}}})
+run(s._quarantine_ensure_coverage(TK))
+resting_sells = sells_total(TK)
+booked = float(qrec(s).get("exit_booked_qty") or 0)
+check(resting_sells + booked <= 5 + 1e-6,
+      "I: resting sells (%s) + booked (%s) never exceed holding 5"
+      % (resting_sells, booked))
+check(abs(resting_sells + booked - 5) < 1e-6,
+      "I: coverage meets the holding EXACTLY, never over")
+
+# 22.6  the narrow old-Position closure exception still requires
+#       book-confirmed coverage (a bare ack cannot close the old cycle)
 s, p, rget = race_env()
 M.api_get = rget
 try:
-    run(s.check_fills())               # cycle 1: admit + post (await)
+    run(s.check_fills())               # cycle 1: admit + post (pending)
     check(TK in s.positions,
           "22.6 old Position CANNOT close on a bare ack (still pending)")
 finally:

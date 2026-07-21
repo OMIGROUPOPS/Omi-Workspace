@@ -5473,6 +5473,25 @@ class LiveV3:
         # make-it-stick lesson). Counts persist across restarts via the boot
         # lineage rebuild. Dedup-logged per ticker per boot.
         if action == "buy" and post_only:
+            # [REV6.3] a persisted operator-pending quarantine on this
+            # ticker INDEPENDENTLY refuses new post-only conception —
+            # before/in addition to cycle-history reconstruction. No API
+            # placement, no Position, no cycle increment.
+            _qh = [r for r in self.unmatched_holdings.get(ticker, [])
+                   if r.get("operator_state") == "operator_pending"
+                   and r.get("status") != "resolved"]
+            if _qh:
+                _ql = self.__dict__.setdefault("_quarantine_buy_logged",
+                                               set())
+                if ticker not in _ql:
+                    _ql.add(ticker)
+                    self._log("quarantine_buy_refused", {
+                        "price": price, "count": count,
+                        "quarantine_records": len(_qh),
+                        "law": "unresolved cash-cancel-race quarantine — "
+                               "no new conception on this ticker until "
+                               "operator reconciliation"}, ticker=ticker)
+                return "", {"_error": "quarantine_buy_refused"}
             _cc = getattr(self, "_cycle_count", {}).get(ticker, 0)
             if _cc >= getattr(self, "reentry_cycle_cap", 2):
                 _cs = self.__dict__.setdefault("_cycle_cap_logged", set())
@@ -14719,6 +14738,11 @@ class LiveV3:
         entry_ts = float(getattr(pos, "entry_filled_ts", 0) or 0)
         newly = 0.0
         newpnl = 0.0
+        # [REV6.1] the exchange ts at which cumulative exit receipts FIRST
+        # reach entry_qty is the terminal-cash timestamp — a raced buy
+        # must be strictly LATER than this to qualify as a cancellation
+        # race. Computed here, retained once on the position.
+        _cum_before = float(getattr(pos, "exit_filled_qty", 0) or 0)
         for r in sorted(receipts, key=lambda x: (x["ts"],
                                                  x["receipt_id"])):
             rid = r["receipt_id"]
@@ -14743,6 +14767,13 @@ class LiveV3:
             if payable > 0:
                 newly += payable
                 newpnl += (price - entry_price) * payable
+            # terminal-cash ts: the receipt that first lifts cumulative
+            # booked exit qty to >= entry_qty (exchange time, once).
+            _cum_before += q
+            if (entry_qty and _cum_before >= entry_qty
+                    and getattr(pos, "_terminal_cash_ts", None) is None
+                    and r["ts"] is not None):
+                pos._terminal_cash_ts = float(r["ts"])
         if newly > 0:
             pos.pnl_cents = float(getattr(pos, "pnl_cents", 0) or 0) \
                 + newpnl
@@ -15066,42 +15097,53 @@ class LiveV3:
         return out
 
     def _quarantine_open_qty(self, tk):
-        """Total quarantined (admitted) buy quantity for a ticker."""
+        """[REV6.2] ACTUAL unmatched OPEN quantity: admitted buy qty
+        minus exact booked quarantine-exit qty, excluding resolved
+        records. Never a permanent sum of original admitted quantities."""
+        tot = 0.0
+        for r in self.unmatched_holdings.get(tk, []):
+            if r.get("status") == "resolved":
+                continue
+            tot += (float(r.get("qty") or 0)
+                    - float(r.get("exit_booked_qty") or 0))
+        return max(0.0, tot)
+
+    def _quarantine_admitted_qty(self, tk):
+        """Total admitted buy qty (for reconciliation vs exchange qty)."""
         return sum(float(r.get("qty") or 0)
                    for r in self.unmatched_holdings.get(tk, []))
 
     async def _quarantine_reconcile(self, tk, pos, ex_qty):
-        """[REV6 — CASH-CANCEL-RACE, operator law C + ledger preservation]
-        A nonzero exchange holding on a FULLY-CASHED position is a NEW
-        holding beside the completed cycle. Admit it ONLY on exact buy
-        receipts (identity + qty + actual price + timestamp), whose
-        order_id is bot-owned AND was involved in the cancellation
-        attempt, and whose summed unmatched qty explains the exchange
-        holding. On admission: append (idempotent by receipt id) to
-        self.unmatched_holdings and post a QUARANTINE-OWNED protective
-        exit from the raced fill's ACTUAL basis using the standing exit
-        rule — never the old Position's basis. The completed cycle
-        (entry/exit receipts, realized P&L, cycle count, tombstone) is
-        NEVER touched. Returns:
-          "explained" — the whole holding is admitted + protectively
-                        covered (the narrow old-cycle closure exception);
-          "pending"   — admitted/partial but not yet fully covered;
-          "unknown"   — evidence absent/malformed/ambiguous/does not
-                        reconcile -> loud, fail closed, never invent.
-        """
+        """[REV6.1 CAUSAL] Admit a raced holding ONLY on exact bot-owned
+        buy receipts that are STRICTLY LATER than the terminal-cash
+        exchange timestamp (the exchange time cumulative exit receipts
+        first reached entry_qty) AND whose order_id was resting + selected
+        for this cancellation. Local time cannot establish causality;
+        original entry receipts (pre-cash by exchange time) never qualify;
+        missing terminal ts, missing/equal-resolution/pre-cash buy ts, or
+        receipts that do not reconcile to the exchange holding -> UNKNOWN
+        (retain, fail closed, never invent). Returns explained|pending|
+        unknown."""
         q = self.unmatched_holdings.setdefault(tk, [])
         attempted = set(getattr(pos, "_cancel_attempted_buy_ids", None)
                         or set())
         bot = self._bot_owned_ids(pos)
+        term_ts = getattr(pos, "_terminal_cash_ts", None)
+        if term_ts is None:
+            self._log("quarantine_unknown", {
+                "reason": "no_terminal_cash_timestamp",
+                "exchange_qty": ex_qty,
+                "law": "causality needs the exchange time the cash "
+                       "completed — cannot admit without it"}, ticker=tk)
+            return "unknown"
         rows, feed_ok = await self._fills_bulk()
         if not feed_ok:
             self._log("quarantine_unknown", {
                 "reason": "fills_feed_unknown", "exchange_qty": ex_qty,
-                "law": "no receipt truth — retain, fail closed, never "
-                       "invent basis or ownership"}, ticker=tk)
+                "law": "no receipt truth — retain, fail closed"},
+                ticker=tk)
             return "unknown"
-        # exact bot-owned BUY receipts for this ticker, valid + attributed
-        valid, invalid = [], 0
+        valid, invalid, pre_or_ambiguous = [], 0, 0
         for f in rows:
             if str(f.get("ticker") or "") not in ("", tk):
                 continue
@@ -15115,11 +15157,26 @@ class LiveV3:
                 continue
             if r["order_id"] not in bot or r["order_id"] not in attempted:
                 continue                 # foreign or not-in-this-race
+            # STRICT causal gate: exchange ts must be LATER than the
+            # terminal cash. Equal-resolution or earlier is ambiguous/pre.
+            if float(r["ts"]) <= float(term_ts):
+                pre_or_ambiguous += 1
+                continue
             valid.append(r)
+        if pre_or_ambiguous and not valid:
+            self._log("quarantine_unknown", {
+                "reason": "buy_receipts_not_strictly_post_cash",
+                "terminal_cash_ts": term_ts, "exchange_qty": ex_qty,
+                "candidates_pre_or_equal": pre_or_ambiguous,
+                "law": "a buy at/earlier than the terminal cash is a "
+                       "pre-cash or ambiguous fill, never a cancellation "
+                       "race — UNKNOWN, no admission"}, ticker=tk)
+            return "unknown"
         if not valid:
             self._log("quarantine_unknown", {
-                "reason": "no_attributable_buy_receipts",
+                "reason": "no_attributable_post_cash_buy_receipts",
                 "exchange_qty": ex_qty, "invalid_rows": invalid,
+                "terminal_cash_ts": term_ts,
                 "attempted": sorted(attempted)[:4],
                 "law": "nonzero exchange position alone is not a basis — "
                        "retain, fail closed, foreign untouched"},
@@ -15127,15 +15184,15 @@ class LiveV3:
             return "unknown"
         already = {r.get("buy_receipt_id") for r in q}
         new = [r for r in valid if r["receipt_id"] not in already]
+        # reconcile: existing OPEN unmatched + new admits == exchange qty
         total = self._quarantine_open_qty(tk) + sum(r["qty"] for r in new)
         if abs(total - float(ex_qty)) >= EXCH_ZERO_EPS:
             self._log("quarantine_unknown", {
                 "reason": "receipts_do_not_reconcile_to_exchange_qty",
-                "exchange_qty": ex_qty, "receipt_sum": total,
+                "exchange_qty": ex_qty, "open_plus_new": total,
                 "law": "ambiguous/duplicated/short receipts -> UNKNOWN, "
                        "never invent"}, ticker=tk)
             return "unknown"
-        # admit each new receipt + post its protective exit from ITS basis
         cat = self.get_category(tk) or getattr(pos, "category", "?")
         for r in new:
             basis = int(round(r["price"]))
@@ -15145,20 +15202,20 @@ class LiveV3:
                     "buy_receipt_id": r["receipt_id"], "basis": basis,
                     "rule": rule,
                     "law": "standing exit config yields no lawful "
-                           "protective price — STOP AND REPORT, do not "
-                           "invent one"}, ticker=tk)
+                           "protective price — STOP AND REPORT"},
+                    ticker=tk)
                 return "unknown"
-            target = min(basis + int(band_x), EXIT_PRICE_CAP)
             qty = int(round(r["qty"]))
-            oid, resp = await self.place_order(tk, "sell", "yes", target,
-                                               qty)
             rec = {"ticker": tk, "buy_receipt_id": r["receipt_id"],
                    "buy_order_id": r["order_id"], "qty": float(qty),
-                   "price": basis, "exchange_ts": r["ts"],
+                   "price": basis, "exchange_ts": float(r["ts"]),
+                   "terminal_cash_ts": float(term_ts),
                    "local_ts": time.time(), "source": "cash_cancel_race",
                    "status": "quarantined",
-                   "protective_exit_order_id": oid or "",
-                   "protective_exit_target": target,
+                   "protective_order_ids": [],
+                   "protective_exit_order_id": "",
+                   "protective_exit_target": min(basis + int(band_x),
+                                                 EXIT_PRICE_CAP),
                    "exit_receipt_ids": [], "exit_booked_qty": 0.0,
                    "exit_pnl_cents": 0.0,
                    "operator_state": "operator_pending"}
@@ -15166,16 +15223,137 @@ class LiveV3:
             self._log("quarantine_admitted", {
                 "buy_receipt_id": r["receipt_id"],
                 "buy_order_id": r["order_id"][:13], "qty": qty,
-                "basis": basis, "protective_exit_target": target,
-                "protective_exit_order_id": (oid or "")[:13],
-                "law": "raced buy quarantined BESIDE the completed cycle; "
-                       "protective exit from ITS basis; old cycle "
-                       "immutable"}, ticker=tk)
+                "basis": basis, "buy_ts": r["ts"],
+                "terminal_cash_ts": term_ts,
+                "protective_exit_target": rec["protective_exit_target"],
+                "law": "raced buy (strictly post-cash) quarantined BESIDE "
+                       "the completed cycle; old cycle immutable"},
+                ticker=tk)
         self._save_v4_resting()
-        covered = all(r.get("protective_exit_order_id") for r in q)
+        # ensure protective coverage NOW (verified against the book)
+        await self._quarantine_ensure_coverage(tk, pos)
+        covered = self._quarantine_covered(tk)
         explained = (abs(self._quarantine_open_qty(tk) - float(ex_qty))
                      < EXCH_ZERO_EPS and covered)
         return "explained" if explained else "pending"
+
+    def _quarantine_covered(self, tk):
+        """True iff every unresolved record's open qty is fully backed by
+        confirmed resting protective orders (last verified in-book)."""
+        for r in self.unmatched_holdings.get(tk, []):
+            if r.get("status") == "resolved":
+                continue
+            open_q = (float(r.get("qty") or 0)
+                      - float(r.get("exit_booked_qty") or 0))
+            if open_q > EXCH_ZERO_EPS and not r.get("_resting_confirmed"):
+                return False
+        return True
+
+    async def _quarantine_ensure_coverage(self, tk, pos=None):
+        """[REV6.2] VERIFY quarantine protective coverage against the
+        book (not assumed from ledger existence) and repost EXACTLY the
+        uncovered open quantity from the record's own raced basis. Never
+        the old Position basis; never duplicates a confirmed resting
+        protective order; UNKNOWN order truth alerts + fails closed (no
+        blind repost); foreign sells untouched."""
+        recs = [r for r in self.unmatched_holdings.get(tk, [])
+                if r.get("status") != "resolved"]
+        if not recs:
+            return
+        rows, ok, fail = await self._resting_orders_all(tk)
+        if not ok:
+            for r in recs:
+                r["_resting_confirmed"] = False
+            self._log("quarantine_coverage_unknown", {
+                "verify_failures": fail[:4],
+                "law": "order truth UNKNOWN — do NOT blindly repost a "
+                       "duplicate; alert and fail closed"}, ticker=tk)
+            return
+        # resting sell remaining per order_id (bot-owned protective orders)
+        rest = {}
+        for o in rows:
+            if o["action"] == "sell" and o["remaining"] > 0:
+                rest[o["order_id"]] = rest.get(o["order_id"], 0.0)                     + o["remaining"]
+        for r in recs:
+            open_q = (float(r.get("qty") or 0)
+                      - float(r.get("exit_booked_qty") or 0))
+            if open_q <= EXCH_ZERO_EPS:
+                r["status"] = "resolved"
+                continue
+            covered = sum(rest.get(oid, 0.0)
+                          for oid in (r.get("protective_order_ids") or []))
+            shortfall = open_q - covered
+            if shortfall <= EXCH_ZERO_EPS:
+                r["_resting_confirmed"] = True
+                continue
+            # repost EXACTLY the uncovered shortfall from the raced basis
+            target = int(r.get("protective_exit_target")
+                         or (int(r["price"])))
+            oid, resp = await self.place_order(
+                tk, "sell", "yes", target, int(round(shortfall)))
+            if oid:
+                r.setdefault("protective_order_ids", []).append(oid)
+                r["protective_exit_order_id"] = oid
+                r["_resting_confirmed"] = True
+                self._log("quarantine_protective_posted", {
+                    "buy_receipt_id": r["buy_receipt_id"],
+                    "qty": int(round(shortfall)), "target": target,
+                    "order_id": oid[:13],
+                    "law": "protective coverage from the RACED basis for "
+                           "exactly the uncovered quantity"}, ticker=tk)
+            else:
+                r["_resting_confirmed"] = False
+                self._log("quarantine_protective_place_failed", {
+                    "buy_receipt_id": r["buy_receipt_id"],
+                    "qty": int(round(shortfall)), "target": target,
+                    "law": "protective placement returned no order — "
+                           "retain the exact receipt, retry next cycle"},
+                    ticker=tk)
+        self._save_v4_resting()
+
+    async def _quarantine_accrue(self, tk):
+        """Accrue protective-exit receipts ONLY into quarantine records,
+        by protective order identity, idempotent by exit receipt id."""
+        for rec in self.unmatched_holdings.get(tk, []):
+            if rec.get("status") == "resolved":
+                continue
+            oids = set(rec.get("protective_order_ids") or [])
+            if rec.get("protective_exit_order_id"):
+                oids.add(rec["protective_exit_order_id"])
+            oids = {o for o in oids if o}
+            if not oids:
+                continue
+            got = await self._exit_receipts(tk, oids)
+            receipts = got[0] if isinstance(got, tuple) else got
+            seen = set(rec.get("exit_receipt_ids") or [])
+            newq = newpnl = 0.0
+            for r in sorted(receipts,
+                            key=lambda x: (x["ts"], x["receipt_id"])):
+                rid = r["receipt_id"]
+                if not rid or rid in seen or r["qty"] <= 0                         or r["price"] is None:
+                    continue
+                seen.add(rid)
+                newq += r["qty"]
+                newpnl += (r["price"] - rec["price"]) * r["qty"]
+            if newq > 0:
+                rec["exit_receipt_ids"] = sorted(seen)
+                rec["exit_booked_qty"] = float(
+                    rec.get("exit_booked_qty", 0.0)) + newq
+                rec["exit_pnl_cents"] = float(
+                    rec.get("exit_pnl_cents", 0.0)) + newpnl
+                if (float(rec["exit_booked_qty"])
+                        >= float(rec["qty"]) - EXCH_ZERO_EPS):
+                    rec["status"] = "resolved"
+                self._log("quarantine_exit_booked", {
+                    "buy_receipt_id": rec["buy_receipt_id"],
+                    "new_qty": newq, "new_pnl": newpnl,
+                    "exit_booked_qty": rec["exit_booked_qty"],
+                    "exit_pnl_cents": rec["exit_pnl_cents"],
+                    "status": rec["status"],
+                    "law": "protective-exit receipts accrue ONLY in "
+                           "quarantine; completed cycle P&L unchanged"},
+                    ticker=tk)
+                self._save_v4_resting()
 
     async def _finalize_full_cash(self, tk, pos, source="cash"):
         """[LANE-A REV4 — THE ONE FULL-CASH FINALIZER] Both the normal
@@ -15425,52 +15603,18 @@ class LiveV3:
         return st
 
     async def _quarantine_poll(self):
-        """[REV6 items 4/E] Poll quarantine-owned protective exits and
-        accrue their EXACT receipts ONLY into the quarantine record —
-        never the completed cycle. Idempotent by exit receipt identity;
-        marks a record resolved (operator_pending stays for audit) once
-        its protective exit is fully filled. Never deletes history."""
+        """[REV6.2] Each reconcile: accrue protective-exit receipts into
+        quarantine and (re)verify/repost protective coverage per ticker.
+        Never touches the completed cycle; never touches foreign orders."""
         if not self.unmatched_holdings:
             return
-        for tk, recs in list(self.unmatched_holdings.items()):
-            for rec in recs:
-                oid = rec.get("protective_exit_order_id")
-                if (not oid or rec.get("status") == "resolved"
-                        or rec.get("exit_booked_qty", 0.0) >= rec["qty"]):
-                    continue
-                got = await self._exit_receipts(tk, {oid})
-                receipts = got[0] if isinstance(got, tuple) else got
-                seen = set(rec.get("exit_receipt_ids") or [])
-                newq = 0.0
-                newpnl = 0.0
-                for r in sorted(receipts,
-                                key=lambda x: (x["ts"], x["receipt_id"])):
-                    rid = r["receipt_id"]
-                    if not rid or rid in seen or r["qty"] <= 0:
-                        continue
-                    if r["price"] is None:
-                        continue
-                    seen.add(rid)
-                    newq += r["qty"]
-                    newpnl += (r["price"] - rec["price"]) * r["qty"]
-                if newq > 0:
-                    rec["exit_receipt_ids"] = sorted(seen)
-                    rec["exit_booked_qty"] = float(
-                        rec.get("exit_booked_qty", 0.0)) + newq
-                    rec["exit_pnl_cents"] = float(
-                        rec.get("exit_pnl_cents", 0.0)) + newpnl
-                    if rec["exit_booked_qty"] >= rec["qty"]:
-                        rec["status"] = "resolved"
-                    self._log("quarantine_exit_booked", {
-                        "buy_receipt_id": rec["buy_receipt_id"],
-                        "new_qty": newq, "new_pnl": newpnl,
-                        "exit_booked_qty": rec["exit_booked_qty"],
-                        "exit_pnl_cents": rec["exit_pnl_cents"],
-                        "status": rec["status"],
-                        "law": "protective-exit receipts accrue ONLY in "
-                               "quarantine; completed cycle P&L unchanged"},
-                        ticker=tk)
-                    self._save_v4_resting()
+        for tk in list(self.unmatched_holdings.keys()):
+            try:
+                await self._quarantine_accrue(tk)
+                await self._quarantine_ensure_coverage(tk)
+            except Exception as _qpe:
+                self._log("quarantine_poll_error",
+                          {"err": str(_qpe)[:150]}, ticker=tk)
 
     async def _naked_tooth_scan(self, pos_map, ord_map):
         """[SAFETY-TEETH P3(a) 2026-07-20 — the amended naked tooth, spec
@@ -15543,16 +15687,19 @@ class LiveV3:
                        "DEFECT every steady cycle"},
                 ticker=tk)
             if self.unmatched_holdings.get(tk):
-                # [REV6 FIX 6] an ACTIVE quarantine owns coverage for the
-                # raced holding via its own protective exit. The tooth must
-                # NEVER heal it against the old (completed) Position's
-                # basis. The protective sell already counts toward `sq`
-                # above; the tooth stays out of the completed cycle.
-                self._log("naked_tooth_quarantine_deferred", {
+                # [REV6.2] the completed Position is IMMUTABLE — the tooth
+                # never heals it against the old basis. But coverage is not
+                # ASSUMED from ledger existence: verify the quarantine's own
+                # protective orders against the book and repost EXACTLY the
+                # uncovered quarantine quantity from the RACED basis
+                # (quarantine-specific protection, not silent deferral).
+                await self._quarantine_ensure_coverage(tk, pos)
+                self._log("naked_tooth_quarantine_protected", {
                     "held": q, "resting_exit_qty": sq,
-                    "quarantine_records": len(self.unmatched_holdings[tk]),
-                    "law": "quarantine-owned protective exit is the "
-                           "coverage; old Position is immutable"},
+                    "quarantine_open": self._quarantine_open_qty(tk),
+                    "covered": self._quarantine_covered(tk),
+                    "law": "quarantine-owned protective coverage verified/"
+                           "reposted; completed Position untouched"},
                     ticker=tk)
                 continue
             if (n9 >= 2 and pos is not None

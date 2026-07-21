@@ -75,6 +75,8 @@ BOUND = ("_fills_bulk", "_bot_owned_ids", "_cash_cleanup_state", "_canon_orders"
          "_price_authority", "_exit_receipts", "_book_exit_receipts",
          "_cancel_resting_buys_on_cash", "_finalize_full_cash",
          "_quarantine_reconcile", "_quarantine_poll",
+         "_quarantine_ensure_coverage", "_quarantine_accrue",
+         "_quarantine_covered", "_quarantine_admitted_qty",
          "_quarantine_open_qty", "_quarantine_snapshot",
          "_bot_owned_ids",
          "_resting_orders_all", "_positions_qty_all")

@@ -76,6 +76,8 @@ STATICS = ("_canon_order", "_exit_coverage", "_canon_receipt",
 BOUND = ("_fills_bulk", "_bot_owned_ids", "_cash_cleanup_state", "_canon_orders", "_exit_receipts", "_book_exit_receipts",
          "_cancel_resting_buys_on_cash", "_finalize_full_cash",
          "_quarantine_reconcile", "_quarantine_poll",
+         "_quarantine_ensure_coverage", "_quarantine_accrue",
+         "_quarantine_covered", "_quarantine_admitted_qty",
          "_quarantine_open_qty", "_quarantine_snapshot",
          "_bot_owned_ids",
          "_resting_orders_all", "_positions_qty_all", "_naked_tooth_scan",
@@ -1470,7 +1472,7 @@ def rcb(rid, oid, qty, price_c, ts=1500.0):
             "created_time": ts}
 
 def race_env(buy_receipt=True, foreign=True, buy_qty=5, buy_price=30,
-             ex_qty=5):
+             ex_qty=5, buy_ts=1700):
     """Full-cash of a 5-lot; a bot-owned B-RACE buy fills during the
     cancellation race so the exchange ends holding `ex_qty` on TK."""
     s = make_poll_bot()
@@ -1487,7 +1489,7 @@ def race_env(buy_receipt=True, foreign=True, buy_qty=5, buy_price=30,
                        "remaining_count_fp": 9})
     fills = [rc("S-1", "E-1", 5, 64, ts=1600)]     # the exit cash (sell)
     if buy_receipt:
-        fills.append(rcb("BUYRC", "B-RACE", buy_qty, buy_price, ts=1500))
+        fills.append(rcb("BUYRC", "B-RACE", buy_qty, buy_price, ts=buy_ts))
     reset(orders=orders, positions=[], fills=fills)
     async def rget(sess, ak, pk, path, rl):
         if "/portfolio/orders/E-1" in path:
@@ -1576,11 +1578,10 @@ check(len(s.unmatched_holdings.get(TK) or []) == recs1 == 1,
       "C: no duplicate quarantine record across cycles")
 check(len([x for x in s.placed if x["action"] == "sell"]) == sells1,
       "C: no duplicate protective sell")
-check(not any("_v4_apply_exit" in str(e) for e in [])
-      and not evs(s, "naked_tooth_heal"),
+check(not evs(s, "naked_tooth_heal"),
       "C: naked tooth NEVER healed the old Position (no old-basis exit)")
-check(bool(evs(s, "naked_tooth_quarantine_deferred")),
-      "C: tooth deferred to the quarantine-owned coverage")
+check(bool(evs(s, "naked_tooth_quarantine_protected")),
+      "C: tooth verified/held quarantine-owned coverage (not silent)")
 
 # ---- Regression D: restart persists + restores quarantine --------------
 import tempfile, os as _os
@@ -1745,6 +1746,299 @@ try:
     check(s.n_exits == 1, "G: no n_exits duplication")
 finally:
     M.api_get = _api_get
+
+# ======================================================================
+print("--- 19. REV6.1 CAUSAL attribution (strictly post-cash) ---")
+# ======================================================================
+def causal_case(buy_ts, term_ts=1600.0, order_id="B-RACE",
+                in_attempt=True, ex_qty=5, buy_qty=5):
+    s = make_bot()
+    p = make_pos(entry_qty=5, entry_price=51, exit_price=64,
+                 exit_order_id="E-1")
+    p.exit_filled_qty = 5
+    if term_ts is not None:
+        p._terminal_cash_ts = term_ts
+    p._cancel_attempted_buy_ids = {order_id} if in_attempt else set()
+    s.positions[TK] = p
+    s._bot_order_ids.add(order_id)
+    fills = []
+    if buy_ts is not None:
+        fills.append({"fill_id": "BR", "order_id": order_id,
+                      "action": "buy", "count_fp": buy_qty,
+                      "yes_price_dollars": 0.30, "created_time": buy_ts})
+    reset(orders=[], positions=[{"ticker": TK, "position_fp": ex_qty}],
+          fills=fills)
+    async def cg(sess, ak, pk, path, rl):
+        if "/portfolio/orders" in path and "status=resting" in path:
+            return {"orders": []}
+        if "/portfolio/fills" in path:
+            return {"fills": list(FILLS)}
+        return await _api_get(sess, ak, pk, path, rl)
+    M.api_get = cg
+    try:
+        v = run(s._quarantine_reconcile(TK, p, ex_qty))
+    finally:
+        M.api_get = _api_get
+    return s, p, v
+
+# 19.1 exit@1600, buy@1700 -> admitted
+s, p, v = causal_case(1700)
+check(v in ("explained", "pending"), "19.1 buy@1700 (post-cash) admitted")
+check(len(s.unmatched_holdings.get(TK) or []) == 1, "19.1 one record")
+# 19.2 buy@1500 -> pre-cash rejected
+s, p, v = causal_case(1500)
+check(v == "unknown", "19.2 buy@1500 (pre-cash) -> UNKNOWN")
+check(not s.unmatched_holdings.get(TK), "19.2 no admission")
+check(bool(evs(s, "quarantine_unknown")), "19.2 loud UNKNOWN")
+# 19.3 buy@1600 (equal resolution) -> ambiguous UNKNOWN
+s, p, v = causal_case(1600)
+check(v == "unknown", "19.3 buy@1600 (== terminal cash) -> UNKNOWN")
+check(not s.unmatched_holdings.get(TK), "19.3 no admission at equal ts")
+# 19.4 missing buy timestamp -> UNKNOWN
+s = make_bot()
+p = make_pos(entry_qty=5, exit_order_id="E-1")
+p.exit_filled_qty = 5
+p._terminal_cash_ts = 1600.0
+p._cancel_attempted_buy_ids = {"B-RACE"}
+s.positions[TK] = p
+s._bot_order_ids.add("B-RACE")
+reset(orders=[], positions=[{"ticker": TK, "position_fp": 5}],
+      fills=[{"fill_id": "BR", "order_id": "B-RACE", "action": "buy",
+              "count_fp": 5, "yes_price_dollars": 0.30}])  # no ts
+async def cg4(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return {"orders": []}
+    if "/portfolio/fills" in path:
+        return {"fills": list(FILLS)}
+    return await _api_get(sess, ak, pk, path, rl)
+M.api_get = cg4
+try:
+    v = run(s._quarantine_reconcile(TK, p, 5))
+finally:
+    M.api_get = _api_get
+check(v == "unknown" and not s.unmatched_holdings.get(TK),
+      "19.4 missing buy ts -> UNKNOWN, no admission")
+# 19.5 no terminal-cash ts -> UNKNOWN (causality cannot be established)
+s, p, v = causal_case(1700, term_ts=None)
+check(v == "unknown", "19.5 no terminal_cash_ts -> UNKNOWN")
+# 19.6 old original-entry receipt (pre-cash, entry order) -> not admitted
+s, p, v = causal_case(1400, order_id="B-1", in_attempt=False)
+check(v == "unknown" and not s.unmatched_holdings.get(TK),
+      "19.6 original-entry receipt -> not admitted")
+
+# ======================================================================
+print("--- 20. REV6.2 coverage verified, open-qty, repost ---")
+# ======================================================================
+def qbot_with_rec(booked=0.0, protective_ids=None, status="quarantined"):
+    s = make_bot()
+    s.unmatched_holdings = {TK: [{
+        "ticker": TK, "buy_receipt_id": "BR", "buy_order_id": "B-RACE",
+        "qty": 5.0, "price": 30, "exchange_ts": 1700.0,
+        "terminal_cash_ts": 1600.0, "local_ts": 0.0,
+        "source": "cash_cancel_race", "status": status,
+        "protective_order_ids": list(protective_ids or []),
+        "protective_exit_order_id": (protective_ids or [""])[-1]
+        if protective_ids else "",
+        "protective_exit_target": 43, "exit_receipt_ids": [],
+        "exit_booked_qty": booked, "exit_pnl_cents": 0.0,
+        "operator_state": "operator_pending"}]}
+    return s
+
+def set_resting(sells):
+    BOOK["orders"] = [dict(o, ticker=TK, action="sell") for o in sells]
+
+# 20a  _quarantine_open_qty = admitted - booked, excludes resolved
+s = qbot_with_rec(booked=2.0)
+check(s._quarantine_open_qty(TK) == 3.0,
+      "20a open-qty = admitted 5 - booked 2 = 3 (got %s)"
+      % s._quarantine_open_qty(TK))
+s2 = qbot_with_rec(booked=5.0, status="resolved")
+check(s2._quarantine_open_qty(TK) == 0.0, "20a resolved excluded")
+
+# 20b  placement initially FAILS, next cycle succeeds ONCE
+s = qbot_with_rec()
+place_state = {"fail": True}
+async def pfail(tk, action, side, price, count, post_only=True):
+    s.placed.append({"tk": tk, "action": action, "price": price,
+                     "count": count})
+    if place_state["fail"]:
+        return "", {"_error": "post_only_cross"}
+    oid = "PX-%d" % len(s.placed)
+    BOOK["orders"].append({"order_id": oid, "ticker": tk,
+                           "action": "sell", "yes_price_dollars": price/100.0,
+                           "remaining_count_fp": count})
+    return oid, {"order": {"order_id": oid}}
+s.place_order = pfail
+async def og(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return {"orders": [dict(o) for o in BOOK["orders"]]}
+    return await _api_get(sess, ak, pk, path, rl)
+M.api_get = og
+try:
+    set_resting([])
+    run(s._quarantine_ensure_coverage(TK))
+    check(not s.unmatched_holdings[TK][0].get("_resting_confirmed"),
+          "20b placement failed -> not confirmed, retained")
+    check(bool(evs(s, "quarantine_protective_place_failed")),
+          "20b failed placement is loud")
+    place_state["fail"] = False
+    run(s._quarantine_ensure_coverage(TK))
+    check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is True,
+          "20b next cycle succeeds")
+    sells_posted = [x for x in s.placed if x["action"] == "sell"]
+    check(len([x for x in sells_posted if x["count"] == 5]) == 2,
+          "20b two attempts total (1 fail + 1 success), no over-post")
+    # 20c confirmed protective exit remains -> no duplicate
+    run(s._quarantine_ensure_coverage(TK))
+    check(len([x for x in s.placed if x["action"] == "sell"
+               and x["count"] == 5]) == 2,
+          "20c confirmed exit remains -> NO duplicate posted")
+finally:
+    M.api_get = _api_get
+
+# 20d protective exit truly ABSENT -> exactly one replacement
+s = qbot_with_rec(protective_ids=["OLD-PX"])
+async def og_absent(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return {"orders": []}          # OLD-PX gone
+    return await _api_get(sess, ak, pk, path, rl)
+M.api_get = og_absent
+try:
+    run(s._quarantine_ensure_coverage(TK))
+finally:
+    M.api_get = _api_get
+reps = [x for x in s.placed if x["action"] == "sell"]
+check(len(reps) == 1 and reps[0]["count"] == 5 and reps[0]["price"] == 43,
+      "20d absent protective -> one replacement of 5 @ raced basis 43")
+
+# 20e partial protective coverage -> only the remaining posted
+s = qbot_with_rec(protective_ids=["PX-A"])
+async def og_partial(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return {"orders": [{"order_id": "PX-A", "ticker": TK,
+                            "action": "sell", "yes_price_dollars": 0.43,
+                            "remaining_count_fp": 3}]}   # 3 of 5 rest
+    return await _api_get(sess, ak, pk, path, rl)
+M.api_get = og_partial
+try:
+    run(s._quarantine_ensure_coverage(TK))
+finally:
+    M.api_get = _api_get
+reps = [x for x in s.placed if x["action"] == "sell"]
+check(len(reps) == 1 and reps[0]["count"] == 2,
+      "20e partial coverage -> repost exactly the uncovered 2")
+
+# 20f UNKNOWN order response -> no duplicate + loud alert
+s = qbot_with_rec(protective_ids=["PX-A"])
+async def og_unknown(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return None                    # UNKNOWN order truth
+    return await _api_get(sess, ak, pk, path, rl)
+M.api_get = og_unknown
+try:
+    run(s._quarantine_ensure_coverage(TK))
+finally:
+    M.api_get = _api_get
+check(not [x for x in s.placed if x["action"] == "sell"],
+      "20f UNKNOWN order truth -> NO blind duplicate posted")
+check(bool(evs(s, "quarantine_coverage_unknown")), "20f loud alert")
+check(s.unmatched_holdings[TK][0].get("_resting_confirmed") is False,
+      "20f fail closed (not confirmed)")
+
+# 20g REAL naked-tooth cadence: held 5, no protective sell in the book ->
+#     quarantine-specific protection, NOT old-Position heal, NOT silent.
+s = make_poll_bot()
+p = active_exit_pos()
+p.exit_filled_qty = 5
+p.entry_qty = 5
+s.positions[TK] = p              # old completed position still present
+s.unmatched_holdings = {TK: [{
+    "ticker": TK, "buy_receipt_id": "BR", "buy_order_id": "B-RACE",
+    "qty": 5.0, "price": 30, "exchange_ts": 1700.0,
+    "terminal_cash_ts": 1600.0, "local_ts": 0.0,
+    "source": "cash_cancel_race", "status": "quarantined",
+    "protective_order_ids": [], "protective_exit_order_id": "",
+    "protective_exit_target": 43, "exit_receipt_ids": [],
+    "exit_booked_qty": 0.0, "exit_pnl_cents": 0.0,
+    "operator_state": "operator_pending"}]}
+async def tg(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return {"orders": [dict(o) for o in BOOK["orders"]]}
+    if "/markets/" in path:
+        return {"market": {"status": "active"}}
+    return await _api_get(sess, ak, pk, path, rl)
+set_resting([])
+M.api_get = tg
+try:
+    for _ in range(2):
+        run(s._naked_tooth_scan({TK: {"qty": 5.0}}, {TK: []}))
+finally:
+    M.api_get = _api_get
+check(not evs(s, "naked_tooth_heal"),
+      "20g tooth NEVER healed the old Position")
+check(bool(evs(s, "naked_tooth_quarantine_protected")),
+      "20g tooth logged quarantine protection (not silent defer)")
+check(bool(evs(s, "quarantine_protective_posted")),
+      "20g quarantine-specific protective exit was posted from raced basis")
+check(p.entry_price == 51 and p.entry_qty == 5,
+      "20g completed Position untouched (basis 51)")
+
+# ======================================================================
+print("--- 21. REV6.3 restart quarantine refuses new buys ---")
+# ======================================================================
+import tempfile as _tf, os as _o2
+_f = _tf.NamedTemporaryFile(delete=False, suffix=".json")
+_f.close()
+_op = M.V4_RESTING_FILE
+M.V4_RESTING_FILE = _f.name
+try:
+    s1 = make_poll_bot()
+    s1._window_open = {}
+    s1.completion_reprice = False
+    s1.pair_governor_scoot = False
+    s1.unmatched_holdings = {TK: [{
+        "ticker": TK, "buy_receipt_id": "BR", "buy_order_id": "B-RACE",
+        "qty": 5.0, "price": 30, "status": "quarantined",
+        "protective_order_ids": ["PX"], "protective_exit_order_id": "PX",
+        "protective_exit_target": 43, "exit_booked_qty": 0.0,
+        "exit_pnl_cents": 0.0, "operator_state": "operator_pending"}]}
+    setattr(s1, "_save_v4_resting",
+            types.MethodType(M.LiveV3._save_v4_resting, s1))
+    s1._save_v4_resting()
+    # fresh engine restores, then a REAL buy placement is attempted
+    s2 = make_poll_bot()
+    s2._window_open = {}
+    s2.unmatched_holdings = {}
+    for nm in ("_load_v4_resting", "place_order", "_place_order_unlocked"):
+        setattr(s2, nm, types.MethodType(getattr(M.LiveV3, nm), s2))
+    s2.books = {}
+    s2.event_tickers = {}
+    s2.ticker_to_event = {}
+    s2.event_start_time = {}
+    s2._events_live = set()
+    s2.fused_gun = False
+    s2.freeze_at_gun = False
+    s2.maker_only_entry = True
+    s2._is_match_live = lambda et: False
+    s2._horizon_state = lambda et: (False, 0)
+    s2._load_v4_resting()
+    check(s2.unmatched_holdings.get(TK), "21 quarantine restored")
+    oid, resp = run(s2.place_order(TK, "buy", "yes", 45, 5, post_only=True))
+    check(oid == "", "21 restored quarantine REFUSES a new post-only buy")
+    check((resp or {}).get("_error") == "quarantine_buy_refused",
+          "21 refusal reason is quarantine_buy_refused (got %s)"
+          % (resp or {}).get("_error"))
+    check(bool([d for (e, d, t) in s2.logs
+                if e == "quarantine_buy_refused"]),
+          "21 quarantine_buy_refused emitted")
+    check(TK not in s2.positions, "21 no Position created")
+    check(s2._cycle_count.get(TK, 0) == 0, "21 no cycle increment")
+finally:
+    M.V4_RESTING_FILE = _op
+    try:
+        _o2.remove(_f.name)
+    except OSError:
+        pass
 
 print("\n%s" % ("ALL REVIEW-FIX TESTS PASS" if not fails
                  else "*** %d FAILURE(S)" % fails))

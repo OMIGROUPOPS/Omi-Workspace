@@ -57,7 +57,21 @@ doctrine_registry.json receipt (rebuilt every C50:
 python analysis/doctrine_registry_build.py). An unstamped
 superseded frame on any operator-facing surface = named defect.
 
-## STATE (2026-07-20 EVENING CLOSE — C50 keeps this current):
+## STATE (2026-07-20 NIGHT — BACKWALK v2 VERDICT — C50 keeps this current):
+V2 DELIVERED (db20fb16): uniform camera (endpoint-net ±5; band calls
+= receipts; tape = fill-sim only) — v1 balloon WAS the classifier,
+retired. WIDE endpoint-flat class does NOT clear era-wide (20%
+pooled); THE SEALED CLASS IS PATH-CLASSED = UNOBSERVABLE pre-JUL-12,
+not failed: seal HONESTLY ERA-BOUND, boundary = the dense-tape era;
+live meter + 70% tripwire = standing judges; operator rules if it
+narrows. Depth faders exhausted (v2-confirmed). NO wall decision-
+grade (200-bar, said visibly). 3,042 pairs BANKED; three frames
+proposed (timing/book/recognition-led) on the bank, mastery-judged,
+word-gated. Nightly wall cron = v2. Overnight: perclass+tripwire
+01:10 · retest verdict 02:00 (wire dark) · wall 02:50. Bot: pane
+326743, audits PASS, 12 clamps day one, book clean.
+
+(prior:) ## STATE (2026-07-20 EVENING CLOSE — C50 keeps this current):
 THE CONSOLIDATED GATE LANDED (445417e3; launch ssh reset mid-gate,
 gate completed on-box; new boot pane 326743/py 326744, audit PASS).
 SWEEP CENSUS: resting book CLEAN (0 re-anchors needed — the three

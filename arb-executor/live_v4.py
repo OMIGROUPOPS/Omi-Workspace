@@ -14454,6 +14454,80 @@ class LiveV3:
             pass
         return verdict
 
+    @staticmethod
+    def _canon_order(o, ticker=""):
+        """[LANE-A FIX 1 — THE ONE NORMALIZATION BOUNDARY] Kalshi raw
+        orders, reconcile's ord_map rows and the audit's rows each name
+        the same five facts differently (order_id/oid/id ·
+        price/px/yes_price_dollars/yes_price · qty/remaining/
+        remaining_count_fp/remaining_count/count). Every sweep decision
+        reads THIS shape and no other:
+            order_id (str) · ticker (str) · action (buy|sell) ·
+            side (yes|no) · price (int cents | None) ·
+            remaining (float contracts)
+        Unknown price stays None — never a silent -1 that reads as a
+        mismatch (the defect this replaces: o.get('px', -1) against a
+        row carrying 'price', so every order looked wrong and every
+        cancel raised KeyError on o['oid'])."""
+        def _first(*names):
+            for n in names:
+                v = o.get(n)
+                if v is not None and v != "":
+                    return v
+            return None
+        oid = _first("order_id", "oid", "id") or ""
+        action = str(_first("action") or "").lower()
+        side = str(_first("side") or "yes").lower()
+        price = None
+        v = _first("price", "px")
+        if v is not None:
+            try:
+                price = int(round(float(v)))
+            except (TypeError, ValueError):
+                price = None
+        if price is None:
+            v = _first("yes_price_dollars")
+            if v is not None:
+                try:
+                    price = int(round(float(v) * 100))
+                except (TypeError, ValueError):
+                    price = None
+        if price is None:
+            v = _first("yes_price")
+            if v is not None:
+                try:
+                    price = int(round(float(v)))
+                except (TypeError, ValueError):
+                    price = None
+        remaining = 0.0
+        v = _first("remaining", "qty", "remaining_count_fp",
+                   "remaining_count", "count")
+        if v is not None:
+            try:
+                remaining = float(v)
+            except (TypeError, ValueError):
+                remaining = 0.0
+        return {"order_id": str(oid), "ticker": str(_first("ticker")
+                                                   or ticker or ""),
+                "action": action, "side": side, "price": price,
+                "remaining": remaining}
+
+    def _canon_orders(self, ord_map):
+        """Normalize a whole {ticker: [order,...]} map at the sweep's
+        single entry boundary. Accepts every upstream shape."""
+        out = {}
+        for tk, rows in (ord_map or {}).items():
+            out[tk] = [self._canon_order(r, tk) for r in (rows or [])]
+        return out
+
+    @staticmethod
+    def _exit_coverage(canon_rows):
+        """[LANE-A FIX 2] TOTAL remaining resting SELL quantity for a
+        leg — the only honest measure of exit coverage. One resting
+        sell is not coverage for an arbitrary held quantity."""
+        return sum(r["remaining"] for r in (canon_rows or [])
+                   if r["action"] == "sell" and r["remaining"] > 0)
+
     async def _reconcile_exit_fill_from_truth(self, tk, pos):
         """[LIVE DEFECT FIX 07-20 late — ICHYAM-YAM] The engine holds a
         position the exchange does not. That is a CASHED EXIT whose
@@ -14463,65 +14537,124 @@ class LiveV3:
         cash through the normal accounting: pnl, session-exited stamp,
         CYCLE INCREMENT (this is what stops the re-buy), tombstone.
         Confirmation is required — with none, the record STANDS and the
-        defect stays flagged. Never erases state."""
-        px = qty = None
+        defect stays flagged. Never erases state.
+        [LANE-A FIXES 3+4] Identity, not vibes: the sell is attributed
+        by ORDER IDENTITY (the position's own exit order id) — the fills
+        feed is consulted only through that id, so an unrelated
+        historical sell on the same ticker can never be mistaken for
+        this position's cash. Quantity comes from the authoritative
+        filled field (fill_count_fp / count_fp), zero/missing = NOT
+        confirmed. Booking is INCREMENTAL and IDEMPOTENT: only the
+        delta over already-booked exit quantity is added, P&L accrues
+        (never overwritten), and a re-observation of the same fill is a
+        no-op. A PARTIAL exit books its increment and stays OPEN — no
+        cycle increment, no tombstone, no deletion. Only a FULL cash
+        (booked >= entry_qty) closes the story. Returns True only when
+        fully booked; the caller retries on False."""
+        booked0 = int(float(getattr(pos, "exit_filled_qty", 0) or 0))
+        entry_qty = int(float(getattr(pos, "entry_qty", 0) or 0))
+        oid = str(getattr(pos, "exit_order_id", "") or "")
+        px = None
+        qty = 0
         src = None
-        oid = getattr(pos, "exit_order_id", "")
         if oid:
             d = await api_get(self.session, self.ak, self.pk,
                               "/trade-api/v2/portfolio/orders/%s" % oid,
                               self.rl)
             o = (d or {}).get("order", d) or {}
-            f = int(float(o.get("fill_count_fp",
-                                o.get("count_filled", 0)) or 0))
-            if f > 0 and o.get("status") in ("executed", "canceled"):
-                qty, src = f, "exit_order_status"
+            f = 0
+            for k in ("fill_count_fp", "count_filled", "filled_count"):
+                v = o.get(k)
+                if v is not None:
+                    try:
+                        f = int(float(v))
+                    except (TypeError, ValueError):
+                        f = 0
+                    break
+            if f > 0:
+                qty, src = f, "exit_order:%s" % oid[:8]
                 try:
-                    px = round(float(o.get("average_fill_price_fp")
-                                     or 0) * 100) or pos.exit_price
+                    _a = o.get("average_fill_price_fp")
+                    px = (round(float(_a) * 100) if _a is not None
+                          else None)
                 except (TypeError, ValueError):
-                    px = pos.exit_price
-        if qty is None:
-            d = await api_get(self.session, self.ak, self.pk,
-                              "/trade-api/v2/portfolio/fills?ticker=%s"
-                              "&limit=50" % tk, self.rl)
-            sells = [f for f in ((d or {}).get("fills") or [])
-                     if f.get("action") == "sell"]
-            if sells:
-                qty = sum(int(float(f.get("count") or 0)) for f in sells)
-                try:
-                    px = round(sum(int(float(f.get("count") or 0))
-                                   * float(f.get("yes_price_dollars")
-                                           or 0) * 100
-                                   for f in sells) / max(1, qty))
-                except (TypeError, ValueError, ZeroDivisionError):
-                    px = pos.exit_price
-                src = "fills_feed"
-        if not qty:
+                    px = None
+            if qty <= 0:
+                # identity-scoped fills lookup: THIS order's fills only
+                d2 = await api_get(
+                    self.session, self.ak, self.pk,
+                    "/trade-api/v2/portfolio/fills?ticker=%s&limit=200"
+                    % tk, self.rl)
+                mine = [f_ for f_ in ((d2 or {}).get("fills") or [])
+                        if str(f_.get("order_id") or "") == oid
+                        and str(f_.get("action") or "").lower() == "sell"]
+                tot = 0.0
+                notional = 0.0
+                for f_ in mine:
+                    c = f_.get("count_fp", f_.get("count"))
+                    try:
+                        c = float(c or 0)
+                    except (TypeError, ValueError):
+                        c = 0.0
+                    if c <= 0:
+                        continue
+                    p_ = f_.get("yes_price_dollars")
+                    try:
+                        p_ = (float(p_) * 100 if p_ is not None
+                              else float(f_.get("yes_price") or 0))
+                    except (TypeError, ValueError):
+                        p_ = 0.0
+                    tot += c
+                    notional += c * p_
+                if tot > 0:
+                    qty = int(tot)
+                    px = int(round(notional / tot)) if notional else None
+                    src = "fills[order_id=%s]" % oid[:8]
+        if qty <= 0:
+            n_att = getattr(pos, "_phantom_cash_attempts", 0) + 1
+            pos._phantom_cash_attempts = n_att
             self._log("phantom_cash_unconfirmed", {
-                "engine_qty": pos.entry_qty,
-                "law": "no sell confirmed — the record STANDS; never "
-                       "erase state on exchange-empty"}, ticker=tk)
-            return
-        px = int(px or pos.exit_price or 0)
-        pos.exit_filled_qty = max(int(getattr(pos, "exit_filled_qty",
-                                              0) or 0), int(qty))
-        pos.exit_filled = True
-        pos.pnl_cents = (px - pos.entry_price) * int(qty)
-        self.__dict__.setdefault("_session_exited", set()).add(tk)
+                "engine_qty": entry_qty, "exit_order_id": oid,
+                "attempts": n_att,
+                "law": "no sell confirmed by ORDER IDENTITY — the "
+                       "record STANDS, no deletion, retry next cycle"},
+                ticker=tk)
+            return False
+        newly = int(qty) - booked0
+        if newly <= 0:
+            self._log("phantom_cash_idempotent", {
+                "confirmed_qty": int(qty), "already_booked": booked0,
+                "law": "same fill re-observed — no double booking"},
+                ticker=tk)
+            return bool(entry_qty and booked0 >= entry_qty)
+        px = int(px if px else (getattr(pos, "exit_price", 0) or 0))
+        pos.exit_filled_qty = int(qty)
+        pos.pnl_cents = (float(getattr(pos, "pnl_cents", 0) or 0)
+                         + (px - int(pos.entry_price)) * newly)
+        complete = bool(entry_qty) and pos.exit_filled_qty >= entry_qty
+        pos.exit_filled = complete
         self._log("exit_filled", {
             "exit_price": px, "entry_price": pos.entry_price,
-            "qty": int(qty), "complete": True,
-            "pnl_cents": pos.pnl_cents,
+            "qty": pos.exit_filled_qty, "new_fills": newly,
+            "complete": complete, "pnl_cents": pos.pnl_cents,
             "source": "phantom_cash_route(%s)" % src,
-            "law": "unbooked EXIT fill booked from exchange truth — "
-                   "the cash closes the cycle; no re-buy follows"},
+            "law": "unbooked EXIT fill booked from exchange truth by "
+                   "order identity; increment only, P&L accrued"},
             ticker=tk)
-        self._cycle_count[tk] = self._cycle_count.get(tk, 0) + 1
+        if not complete:
+            # PARTIAL: the leg still owns shares — it stays open, stays
+            # tracked, keeps its exit. Nothing closes, nothing deletes.
+            self._save_v4_resting()
+            return False
+        _sx = self.__dict__.setdefault("_session_exited", set())
+        if tk not in _sx:
+            _sx.add(tk)
+            self._cycle_count[tk] = self._cycle_count.get(tk, 0) + 1
         pos.settled = True
         pos.phase = "closed"
         self.positions.pop(tk, None)
         self._save_v4_resting()
+        return True
 
     async def _tooth_market_status(self, tk):
         """[SAFETY-TEETH P3(a)] market status for the settlement_pending
@@ -14571,12 +14704,19 @@ class LiveV3:
         seen = self.__dict__.setdefault(
             "_tooth_seen", {"naked": {}, "unbooked": {}, "phantom": {}})
         DETSET = ("determined", "finalized", "settled")
-        # ---- (1) NAKED: exchange-held, no resting exit ----------------
+        # [LANE-A FIX 1] ONE boundary: every decision below reads the
+        # canonical shape, whatever the caller handed us.
+        ord_map = self._canon_orders(ord_map)
+        # ---- (1) NAKED: held quantity vs TOTAL resting exit quantity --
+        # [LANE-A FIX 2] coverage is an ARITHMETIC comparison, not a
+        # presence check: held 5 with exits totalling 1 leaves FOUR
+        # uncovered contracts and is naked; held 5 with exits 5 is
+        # covered and must never be duplicated.
         for tk, pinfo in pos_map.items():
             q = float(pinfo.get("qty") or 0)
-            sq = sum(o.get("qty", 0) for o in ord_map.get(tk, [])
-                     if o.get("action") == "sell")
-            if q < 1.0 or sq >= 1.0:
+            sq = self._exit_coverage(ord_map.get(tk))
+            uncovered = q - sq
+            if q < 1.0 or uncovered < 1.0:
                 seen["naked"].pop(tk, None)
                 continue
             pos = self.positions.get(tk)
@@ -14591,11 +14731,14 @@ class LiveV3:
                 continue                    # settlement_pending, never naked
             n9 = seen["naked"][tk] = seen["naked"].get(tk, 0) + 1
             self._log("naked_leg_defect", {
-                "held": q, "engine_known": pos is not None,
+                "held": q, "resting_exit_qty": sq,
+                "uncovered": round(uncovered, 2),
+                "engine_known": pos is not None,
                 "engine_phase": getattr(pos, "phase", None),
                 "market_status": mstat, "consecutive_cycles": n9,
-                "law": "SAFETY-TEETH P3(a) 07-20: filled leg without "
-                       "resting exit = DEFECT every steady cycle"},
+                "law": "SAFETY-TEETH P3(a) 07-20 (LANE-A qty coverage): "
+                       "held qty exceeding total resting exit qty = "
+                       "DEFECT every steady cycle"},
                 ticker=tk)
             if (n9 >= 2 and pos is not None
                     and getattr(pos, "is_v4", False)
@@ -14614,6 +14757,7 @@ class LiveV3:
                         "action": ("stale_exit_cleared_reposted"
                                    if _stale9 else "exit_reposted"),
                         "qty": pos.entry_qty,
+                        "uncovered_before": round(uncovered, 2),
                         "basis": pos.entry_price}, ticker=tk)
                     self._save_v4_resting()
                 except Exception as _nh:
@@ -14665,14 +14809,22 @@ class LiveV3:
             # cycle); the ONLY action is to route the cash through the
             # booking path so the cycle increments and the leg is
             # tombstoned. Never erase state on exchange-empty.
+            # [LANE-A FIX 3] the routed latch closes ONLY on a confirmed,
+            # fully-booked cash. An unconfirmed or partial result leaves
+            # it open so the next cycle retries — and nothing is ever
+            # deleted before confirmation.
             if n9 >= 2 and not getattr(pos, "_phantom_cash_routed",
                                        False):
-                pos._phantom_cash_routed = True
                 try:
-                    await self._reconcile_exit_fill_from_truth(tk, pos)
+                    done = await self._reconcile_exit_fill_from_truth(
+                        tk, pos)
+                    if done:
+                        pos._phantom_cash_routed = True
                 except Exception as _pce:
                     self._log("phantom_cash_route_error", {
-                        "err": str(_pce)[:150]}, ticker=tk)
+                        "err": str(_pce)[:150],
+                        "law": "error is not confirmation — retry "
+                               "next cycle"}, ticker=tk)
         # ---- (4) ONE-AUTHORITY audit + RE-ANCHOR DUTY (operator
         # addendum + sweep dispatch 07-20 PM): a mismatched resting
         # entry is FLAGGED RED on detection and RE-ANCHORED on its next
@@ -14711,7 +14863,7 @@ class LiveV3:
             for tk, orders in ord_map.items():
                 buys = [o for o in orders
                         if o.get("action") == "buy"
-                        and o.get("oid") not in _exempt14]
+                        and o["order_id"] not in _exempt14]
                 if not buys or self.get_category(tk) is None:
                     seen_a.pop(tk, None)
                     continue
@@ -14730,7 +14882,7 @@ class LiveV3:
                 # lock lesson).
                 seen_o = seen.setdefault("era_orphan", {})
                 for o in buys:
-                    _oid14 = o.get("oid")
+                    _oid14 = o["order_id"]
                     if _oid14 in _known or _oid14 in getattr(
                             self, "_bot_order_ids", set()):
                         continue
@@ -14740,7 +14892,7 @@ class LiveV3:
                     if not _mine14:
                         if n_o == 1:
                             self._log("authority_foreign_order_flag", {
-                                "px": o.get("px"), "qty": o.get("qty"),
+                                "px": o["price"], "qty": o["remaining"],
                                 "oid": (_oid14 or "")[:13],
                                 "law": "unattributable = manual book "
                                        "until proven; flag never "
@@ -14754,7 +14906,7 @@ class LiveV3:
                         await self.cancel_order(
                             tk, _oid14, "authority_era_orphan")
                         self._log("authority_era_orphan_cancelled", {
-                            "px": o.get("px"), "qty": o.get("qty"),
+                            "px": o["price"], "qty": o["remaining"],
                             "oid": (_oid14 or "")[:13],
                             "authority": auth,
                             "lineage": "order_fingerprints"}, ticker=tk)
@@ -14769,13 +14921,13 @@ class LiveV3:
                     # at its own sealed number; the pair completes at
                     # held+fish combined, graded honestly.
                     _stk15 = [o for o in buys
-                              if o.get("oid") in _known.union(
+                              if o["order_id"] in _known.union(
                                   getattr(self, "_bot_order_ids",
                                           set()))]
                     for o in _stk15:
                         try:
                             await self.cancel_order(
-                                tk, o["oid"], "authority_hold_as_is")
+                                tk, o["order_id"], "authority_hold_as_is")
                             sib15 = self._sibling_ticker_any(tk)
                             _sf15 = (self._price_authority(sib15)[2]
                                      if sib15 else None)
@@ -14787,7 +14939,7 @@ class LiveV3:
                                 "held_qty": getattr(pos, "entry_qty",
                                                     0),
                                 "held_basis": _hb15,
-                                "stack_px_withdrawn": o.get("px"),
+                                "stack_px_withdrawn": o["price"],
                                 "sibling_fish": _sf15,
                                 "honest_combined": (_hb15 + _sf15)
                                 if _sf15 else None,
@@ -14804,8 +14956,8 @@ class LiveV3:
                     seen_a.pop(tk, None)
                     continue
                 bad = [o for o in buys
-                       if int(o.get("px", -1)) != int(fish)
-                       and o.get("oid") in _known.union(
+                       if o["price"] is not None and int(o["price"]) != int(fish)
+                       and o["order_id"] in _known.union(
                            getattr(self, "_bot_order_ids", set()))]
                 if not bad:
                     if buys:
@@ -14815,8 +14967,8 @@ class LiveV3:
                 n9 = seen_a[tk] = seen_a.get(tk, 0) + 1
                 self._log("authority_mismatch_defect", {
                     "band": band, "fish": fish,
-                    "resting": [{"px": o.get("px"), "qty": o.get("qty"),
-                                 "oid": (o.get("oid") or "")[:13]}
+                    "resting": [{"px": o["price"], "qty": o["remaining"],
+                                 "oid": (o["order_id"] or "")[:13]}
                                 for o in bad][:4],
                     "consecutive_cycles": n9,
                     "law": "ONE-AUTHORITY 07-20 PM: placing path != "
@@ -14834,8 +14986,8 @@ class LiveV3:
                         seen_a.pop(tk, None)
                         continue        # filled in the race — booked,
                                         # exits govern now
-                    old14 = bad[0].get("px")
-                    qty14 = int(bad[0].get("qty") or 0) or \
+                    old14 = bad[0]["price"]
+                    qty14 = int(bad[0]["remaining"] or 0) or \
                         int(self.entry_size)
                     oid14, resp14 = await self.place_order(
                         tk, "buy", "yes", int(fish), qty14,

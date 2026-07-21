@@ -122,3 +122,5 @@ slate: 121 big-4 events · 105 scored pairs · skips {'thin_tape': 14, 'one_leg_
   - neither|WTA_CHALL: pairs 3 duals 1 (completion 33%) · SUB-PAR(<=97) 1/1 = 100% -> PASS · tiers {'<=97': 1} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD -13
   - neither|WTA_MAIN: pairs 5 duals 3 (completion 60%) · SUB-PAR(<=97) 2/3 = 67% -> PASS · tiers {'<=93': 1, '<=97': 1, '>100': 1} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD -3
 - SEAL-DECAY TRIPWIRE: insufficient n (rolling duals 2 < 5) — no alarm, said
+
+ADJUDICATION 20260720: AGREE 68/83 | REFUSE 11 | NO-OPINION 4 | pair97 5

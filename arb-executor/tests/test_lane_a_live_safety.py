@@ -74,6 +74,9 @@ BOUND = ("_fills_bulk", "_bot_owned_ids", "_cash_cleanup_state", "_canon_orders"
          "_reconcile_exit_fill_from_truth", "_tooth_market_status",
          "_price_authority", "_exit_receipts", "_book_exit_receipts",
          "_cancel_resting_buys_on_cash", "_finalize_full_cash",
+         "_quarantine_reconcile", "_quarantine_poll",
+         "_quarantine_open_qty", "_quarantine_snapshot",
+         "_bot_owned_ids",
          "_resting_orders_all", "_positions_qty_all")
 
 def make_pos(tk, **kw):
@@ -90,6 +93,7 @@ def make_pos(tk, **kw):
 def make_bot():
     s = types.SimpleNamespace()
     s.positions = {}
+    s.unmatched_holdings = {}
     s.config = {"fills_bulk_ttl_sec": 0}
     s.entry_size = 5
     s.session = None; s.ak = None; s.pk = None; s.rl = None

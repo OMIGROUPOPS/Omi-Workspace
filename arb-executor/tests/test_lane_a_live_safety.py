@@ -68,11 +68,13 @@ async def _fake_api_get(sess, ak, pk, path, rl):
     return {}
 M.api_get = _fake_api_get
 
-STATICS = ("_canon_order", "_exit_coverage", "_canon_receipt")
+STATICS = ("_canon_order", "_exit_coverage", "_canon_receipt",
+           "_validate_order_row")
 BOUND = ("_fills_bulk", "_bot_owned_ids", "_cash_cleanup_state", "_canon_orders", "_naked_tooth_scan",
          "_reconcile_exit_fill_from_truth", "_tooth_market_status",
          "_price_authority", "_exit_receipts", "_book_exit_receipts",
-         "_cancel_resting_buys_on_cash")
+         "_cancel_resting_buys_on_cash", "_finalize_full_cash",
+         "_resting_orders_all", "_positions_qty_all")
 
 def make_pos(tk, **kw):
     kw.setdefault("entry_price", 51)

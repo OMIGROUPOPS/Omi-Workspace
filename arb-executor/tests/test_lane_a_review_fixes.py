@@ -71,9 +71,11 @@ async def _api_post(sess, ak, pk, path, payload, rl):
 M.api_get = _api_get
 M.api_post = _api_post
 
-STATICS = ("_canon_order", "_exit_coverage", "_canon_receipt")
+STATICS = ("_canon_order", "_exit_coverage", "_canon_receipt",
+           "_validate_order_row")
 BOUND = ("_fills_bulk", "_bot_owned_ids", "_cash_cleanup_state", "_canon_orders", "_exit_receipts", "_book_exit_receipts",
-         "_cancel_resting_buys_on_cash", "_naked_tooth_scan",
+         "_cancel_resting_buys_on_cash", "_finalize_full_cash",
+         "_resting_orders_all", "_positions_qty_all", "_naked_tooth_scan",
          "_reconcile_exit_fill_from_truth", "_tooth_market_status",
          "_price_authority", "_v4_apply_exit",
          "_cancel_entry_and_resolve", "_untombstone_entry",
@@ -891,6 +893,273 @@ check(s._cycle_count.get(TK, 0) == 0,
       "incomplete pagination -> no cycle armed")
 check(not evs(s, "cash_cleanup_verified"),
       "incomplete pagination -> never verified")
+
+# ======================================================================
+print("--- 13. REV4 B2: status=executed cannot override exact receipts ---")
+# ======================================================================
+# The phantom path proves the accounting rule directly (the exit-poll
+# path shares the identical _book_exit_receipts completion logic).
+# 13.4  status=executed, order fill_count=5, exact receipts=2 -> books 2
+s = make_bot()
+p = make_pos(entry_qty=5, exit_order_id="E-1")
+s.positions[TK] = p
+reset(fills=[rc("R1", "E-1", 2, 64, ts=1600)],
+      order_resp={"E-1": {"order": {"status": "executed",
+                                    "fill_count_fp": 5,
+                                    "average_fill_price_fp": 0.64}}})
+r = run(s._reconcile_exit_fill_from_truth(TK, p))
+check(r is False, "executed+2-receipts -> NOT complete (books partial)")
+check(p.exit_filled_qty == 2, "exactly 2 booked (got %s)" % p.exit_filled_qty)
+check(p.pnl_cents == (64 - 51) * 2, "P&L for 2 only (got %s)" % p.pnl_cents)
+check(TK in s.positions, "position remains open on partial receipts")
+check(s._cycle_count.get(TK, 0) == 0, "partial -> no cycle increment")
+check(p.exit_filled is not True, "partial -> exit_filled not terminal")
+
+# 13.5  the remaining 3 receipts arrive later -> completes once
+reset(fills=[rc("R1", "E-1", 2, 64, ts=1600),
+             rc("R2", "E-1", 3, 64, ts=1700)])
+r = run(s._reconcile_exit_fill_from_truth(TK, p))
+check(r is True, "remaining 3 receipts complete the cash")
+check(p.exit_filled_qty == 5, "cumulative 5")
+check(p.pnl_cents == (64 - 51) * 5, "cumulative P&L 65 (got %s)" % p.pnl_cents)
+check(s._cycle_count.get(TK) == 1, "completes once, cycle +1")
+check(TK not in s.positions, "closed exactly once")
+
+# ======================================================================
+print("--- 14. REV4 B1: exit-poll + phantom share ONE finalizer ---")
+# ======================================================================
+# 14.9  prove both entry points invoke _finalize_full_cash.
+calls = {"n": 0, "sources": []}
+_orig_fin = M.LiveV3._finalize_full_cash
+async def spy_fin(self, tk, pos, source="cash"):
+    calls["n"] += 1
+    calls["sources"].append(source)
+    return await _orig_fin(self, tk, pos, source)
+M.LiveV3._finalize_full_cash = spy_fin
+try:
+    # phantom entry
+    s = make_bot()
+    s._finalize_full_cash = types.MethodType(spy_fin, s)
+    p = make_pos(exit_order_id="E-1")
+    s.positions[TK] = p
+    reset(fills=[rc("F-1", "E-1", 5, 64, ts=1600)])
+    run(s._reconcile_exit_fill_from_truth(TK, p))
+    check("phantom" in calls["sources"],
+          "phantom reconciliation invoked the finalizer")
+finally:
+    M.LiveV3._finalize_full_cash = _orig_fin
+check(calls["n"] >= 1, "finalizer was the single close path (calls=%d)"
+      % calls["n"])
+
+# 14.1  cancellation returns False -> pending & retryable (no close)
+def poll_bot_with_book(cancel_ok=True, buys=None, ex_positions=None,
+                       verify_ok=True):
+    s = make_bot()
+    p = make_pos(exit_order_id="E-1")
+    p.entry_order_id = "B-1"
+    s.positions[TK] = p
+    for b in (buys or []):
+        s._bot_order_ids.add(b["order_id"])
+    def build():
+        reset(orders=list(buys or []),
+              positions=(ex_positions if ex_positions is not None else []),
+              fills=[rc("F-1", "E-1", 5, 64, ts=1600)])
+    build()
+    st = {}
+    async def vget(sess, ak, pk, path, rl):
+        if "/portfolio/orders" in path and "status=resting" in path:
+            if not verify_ok:
+                return None
+            return {"orders": [dict(o) for o in BOOK["orders"]]}
+        if "/portfolio/positions" in path:
+            return {"market_positions": list(BOOK["positions"])}
+        return await _api_get(sess, ak, pk, path, rl)
+    if not cancel_ok:
+        async def co(tk, oid, label=""):
+            s.cancelled.append({"tk": tk, "oid": oid, "label": label})
+            return False
+        s.cancel_order = co
+    M.api_get = vget
+    try:
+        r = run(s._reconcile_exit_fill_from_truth(TK, p))
+    finally:
+        M.api_get = _api_get
+    return s, p, r
+
+buys = [{"order_id": "B-1", "ticker": TK, "action": "buy",
+         "yes_price_dollars": 0.45, "remaining_count_fp": 5}]
+s, p, r = poll_bot_with_book(cancel_ok=False, buys=buys)
+check(r is False, "cancel False -> pending, no close")
+check(TK in s.positions, "cancel False -> position retained")
+check(p.entry_order_id == "B-1", "cancel False -> entry id retained")
+check(p.exit_filled is not True,
+      "cancel False -> exit_filled NOT set (retry re-enters)")
+check(s._cycle_count.get(TK) == 1, "refusal armed once even while pending")
+
+# 14.2  same position later verifies clean -> closes once, cycle stays 1
+async def good_cancel(tk, oid, label=""):
+    s.cancelled.append({"tk": tk, "oid": oid, "label": label})
+    BOOK["orders"][:] = [o for o in BOOK["orders"] if o["order_id"] != oid]
+    return True
+s.cancel_order = good_cancel
+async def vget2(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return {"orders": [dict(o) for o in BOOK["orders"]]}
+    if "/portfolio/positions" in path:
+        return {"market_positions": []}
+    return await _api_get(sess, ak, pk, path, rl)
+M.api_get = vget2
+try:
+    r2 = run(s._reconcile_exit_fill_from_truth(TK, p))
+finally:
+    M.api_get = _api_get
+check(r2 is True, "verified-clean retry closes")
+check(TK not in s.positions, "closed after verification")
+check(s._cycle_count.get(TK) == 1, "cycle incremented exactly once overall")
+
+# 14.3 & 14.10  foreign buy untouched, every bot-owned buy cancelled
+buys = [{"order_id": "B-1", "ticker": TK, "action": "buy",
+         "yes_price_dollars": 0.45, "remaining_count_fp": 5},
+        {"order_id": "B-2", "ticker": TK, "action": "buy",
+         "yes_price_dollars": 0.40, "remaining_count_fp": 5},
+        {"order_id": "FOREIGN", "ticker": TK, "action": "buy",
+         "yes_price_dollars": 0.20, "remaining_count_fp": 9}]
+s = make_bot()
+p = make_pos(exit_order_id="E-1")
+p.entry_order_id = "B-1"
+s.positions[TK] = p
+s._bot_order_ids.update({"B-1", "B-2"})
+reset(orders=list(buys), positions=[],
+      fills=[rc("F-1", "E-1", 5, 64, ts=1600)])
+async def cancel_del(tk, oid, label=""):
+    s.cancelled.append({"tk": tk, "oid": oid, "label": label})
+    BOOK["orders"][:] = [o for o in BOOK["orders"] if o["order_id"] != oid]
+    return True
+s.cancel_order = cancel_del
+async def vget3(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return {"orders": [dict(o) for o in BOOK["orders"]]}
+    if "/portfolio/positions" in path:
+        return {"market_positions": []}
+    return await _api_get(sess, ak, pk, path, rl)
+M.api_get = vget3
+try:
+    r = run(s._reconcile_exit_fill_from_truth(TK, p))
+finally:
+    M.api_get = _api_get
+cids = {c["oid"] for c in s.cancelled}
+check("B-1" in cids and "B-2" in cids, "every bot-owned buy cancelled")
+check("FOREIGN" not in cids, "foreign buy NEVER cancelled")
+check(r is True, "closes once foreign-safe cleanup verified")
+check(all(o["order_id"] == "FOREIGN" for o in BOOK["orders"]),
+      "only the foreign order remains on the book")
+
+# 14.6  bot-owned buy on ORDERS PAGE TWO -> refused until cancelled+absent
+PAGES2 = {"seq": [], "calls": 0}
+s = make_bot()
+p = make_pos(exit_order_id="E-1")
+p.entry_order_id = "B-2"
+s.positions[TK] = p
+s._bot_order_ids.add("B-2")
+def orders_two_pages(include_b2):
+    pg1 = {"orders": [{"order_id": "FOREIGN", "action": "buy",
+                       "remaining_count_fp": 9}], "cursor": "oc1"}
+    pg2 = {"orders": ([{"order_id": "B-2", "action": "buy",
+                        "remaining_count_fp": 5}] if include_b2 else [])}
+    return [pg1, pg2]
+state6 = {"pages": orders_two_pages(True), "book_has_b2": True}
+async def vget6(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        import re
+        m = re.search(r"cursor=([^&]+)", path)
+        idx = 0 if not m else 1
+        return state6["pages"][idx]
+    if "/portfolio/positions" in path:
+        return {"market_positions": []}
+    if "/portfolio/fills" in path:
+        return {"fills": [rc("F-1", "E-1", 5, 64, ts=1600)]}
+    return await _api_get(sess, ak, pk, path, rl)
+async def cancel6(tk, oid, label=""):
+    s.cancelled.append({"tk": tk, "oid": oid, "label": label})
+    if oid == "B-2":
+        state6["pages"] = orders_two_pages(False)  # now absent on refetch
+    return True
+s.cancel_order = cancel6
+M.api_get = vget6
+try:
+    r = run(s._reconcile_exit_fill_from_truth(TK, p))
+finally:
+    M.api_get = _api_get
+check(any(c["oid"] == "B-2" for c in s.cancelled),
+      "page-two bot buy was discovered and cancelled")
+check(r is True, "closes only after page-two buy verified absent")
+check(TK not in s.positions, "closed once page-two buy gone")
+
+# 14.7  orders page two None -> UNKNOWN -> no closure
+s = make_bot()
+p = make_pos(exit_order_id="E-1")
+s.positions[TK] = p
+async def vget7(sess, ak, pk, path, rl):
+    if "/portfolio/orders" in path and "status=resting" in path:
+        return ({"orders": [], "cursor": "oc1"} if "cursor" not in path
+                else None)
+    if "/portfolio/positions" in path:
+        return {"market_positions": []}
+    if "/portfolio/fills" in path:
+        return {"fills": [rc("F-1", "E-1", 5, 64, ts=1600)]}
+    return await _api_get(sess, ak, pk, path, rl)
+M.api_get = vget7
+try:
+    r = run(s._reconcile_exit_fill_from_truth(TK, p))
+finally:
+    M.api_get = _api_get
+check(r is False, "orders page-two None -> no closure")
+check(TK in s.positions, "orders page-two None -> position retained")
+pend = evs(s, "cash_cleanup_pending")
+check(bool(pend), "pending emitted for truncated orders read")
+
+# 14.8  malformed order row -> UNKNOWN -> no closure
+for label, badrow in (
+        ("no order_id", {"action": "buy", "remaining_count_fp": 5}),
+        ("bad action", {"order_id": "X", "action": "weird",
+                        "remaining_count_fp": 5}),
+        ("nonnumeric remaining", {"order_id": "X", "action": "buy",
+                                  "remaining_count_fp": "NaNish"})):
+    s = make_bot()
+    p = make_pos(exit_order_id="E-1")
+    s.positions[TK] = p
+    async def vget8(sess, ak, pk, path, rl, _bad=badrow):
+        if "/portfolio/orders" in path and "status=resting" in path:
+            return {"orders": [_bad]}
+        if "/portfolio/positions" in path:
+            return {"market_positions": []}
+        if "/portfolio/fills" in path:
+            return {"fills": [rc("F-1", "E-1", 5, 64, ts=1600)]}
+        return await _api_get(sess, ak, pk, path, rl)
+    M.api_get = vget8
+    try:
+        r = run(s._reconcile_exit_fill_from_truth(TK, p))
+    finally:
+        M.api_get = _api_get
+    check(r is False, "malformed order row (%s) -> no closure" % label)
+    check(TK in s.positions, "malformed (%s) -> position retained" % label)
+
+# validator unit checks (a malformed row never silently becomes zero)
+V = M.LiveV3._validate_order_row
+check(V({"action": "buy", "remaining_count_fp": 5}) is None,
+      "validator: missing order_id -> None")
+check(V({"order_id": "X", "action": "nope",
+         "remaining_count_fp": 5}) is None,
+      "validator: bad action -> None")
+check(V({"order_id": "X", "action": "buy",
+         "remaining_count_fp": "x"}) is None,
+      "validator: nonnumeric remaining -> None")
+check(V({"order_id": "X", "action": "buy",
+         "remaining_count_fp": -1}) is None,
+      "validator: negative remaining -> None")
+_okrow = V({"order_id": "X", "action": "buy", "remaining_count_fp": 5})
+check(_okrow == {"order_id": "X", "action": "buy", "remaining": 5.0},
+      "validator: well-formed row canonicalizes")
 
 print("\n%s" % ("ALL REVIEW-FIX TESTS PASS" if not fails
                  else "*** %d FAILURE(S)" % fails))

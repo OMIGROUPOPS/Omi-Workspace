@@ -9965,8 +9965,11 @@ class LiveV3:
                                 tk, pos, _rcpts, source="exit_poll")
                         if new_exit_fills <= 0 and not _cmpl:
                             continue
-                        complete = (_cmpl or status == "executed"
-                                    or pos.exit_filled_qty >= pos.entry_qty)
+                        # [REV4 FIX 2] order status may TRIGGER receipt
+                        # retrieval (above) but never proves accounting
+                        # completion: completion is exact-receipt
+                        # cumulative coverage of entry_qty, nothing else.
+                        complete = _cmpl
                         if pos.dca_qty > 0 and complete:
                             pos.pnl_cents += (pos.exit_price - pos.dca_price) * pos.dca_qty
                         pnl = pos.pnl_cents
@@ -9992,27 +9995,18 @@ class LiveV3:
                         }, ticker=tk)
                         if not complete:
                             continue  # remainder stays managed; nothing closes
-                        # [C-CYCLE-CAP] a COMPLETED cash closes the cycle
-                        # (partials never count; the exit row above already
-                        # stamped the cycle number pre-increment)
-                        self._cycle_count[tk] = self._cycle_count.get(tk, 0) + 1
-                        if (pos.exit_filled_qty < pos.entry_qty
-                                and pos.is_v4):
-                            # exit order terminal but open shares remain
-                            # (TAN-shape history): re-cover the remainder via
-                            # the open-shares-sized exit path.
-                            self._log("exit_partial_remainder", {
-                                "exit_filled_qty": pos.exit_filled_qty,
-                                "entry_qty": pos.entry_qty,
-                                "open_shares": pos.entry_qty - pos.exit_filled_qty,
-                            }, ticker=tk)
-                            pos.exit_order_id = ""
-                            await self._v4_apply_exit(tk, pos, pos.entry_price,
-                                                      pos.entry_qty)
+                        # [REV4 FIX 1] the FULL-CASH finalizer (shared with
+                        # phantom reconciliation): arm-once + confirmed
+                        # bot-owned-buy cancellation + explicit
+                        # verified-empty orders + verified-zero position
+                        # BEFORE any settled/closed transition. On UNKNOWN
+                        # / failure / remaining bot buy it returns False
+                        # and the poll retries next cycle (exit_filled is
+                        # NOT set, so the retry re-enters).
+                        _fin_ok = await self._finalize_full_cash(
+                            tk, pos, source="exit_poll")
+                        if not _fin_ok:
                             continue
-                        pos.exit_filled = True
-                        pos.settled = True
-                        pos.phase = "settled"
                         self.n_exits += 1
                         # Classify: scalp (pregame exit) vs settlement-adjacent
                         # [C-ANCHOR 07-08] the W1 stamp is only as good as its
@@ -10041,12 +10035,11 @@ class LiveV3:
                                 "anchor_source": _sc_src,
                                 "clock_liar": _sc_liar,
                             }, ticker=tk)
-                        # FIX 3: Cancel ALL resting buys on this ticker (DCA + any extras)
-                        cleanup = await api_get(self.session, self.ak, self.pk,
-                            "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
-                        for co in (cleanup or {}).get("orders", []):
-                            if co.get("action") == "buy":
-                                await self.cancel_order(tk, co.get("order_id", ""), "exit_cleanup_dca")
+                        # [REV4 FIX 1] the old blanket "cancel every
+                        # action==buy" loop is REMOVED — it cancelled
+                        # foreign/manual buys and ignored failures. The
+                        # finalizer above already cancelled only
+                        # bot-owned buys, confirmed, before closing.
 
             # Check DCA order fill
             if pos.phase == "active" and pos.dca_order_id and not pos.dca_filled and not pos.exit_filled:
@@ -14732,47 +14725,44 @@ class LiveV3:
         Returns True only when the book is verified clean.
         (No DCA surface is read or written here — out of scope.)"""
         attempted, confirmed, failed = 0, 0, []
-        try:
-            d = await api_get(self.session, self.ak, self.pk,
-                              "/trade-api/v2/portfolio/orders?ticker=%s"
-                              "&status=resting" % tk, self.rl)
-            if d is None:
-                self._log("cash_cleanup_pending", {
-                    "reason": "resting_order_fetch_failed",
-                    "law": "no exchange truth — retry, never close"},
-                    ticker=tk)
-                return False
-            mine = self._bot_owned_ids(pos)
-            for raw in ((d or {}).get("orders") or []):
-                o = self._canon_order(raw, tk)
-                if o["action"] != "buy" or o["remaining"] <= 0:
-                    continue
-                if o["order_id"] not in mine:
-                    self._log("cash_cleanup_foreign_skipped", {
-                        "order_id": o["order_id"][:13],
-                        "law": "manual/foreign order — never cancelled"},
-                        ticker=tk)
-                    continue
-                attempted += 1
-                try:
-                    ok = await self.cancel_order(
-                        tk, o["order_id"], "exit_cashed_%s" % why)
-                except Exception as _ce:
-                    failed.append((o["order_id"], str(_ce)[:60]))
-                    continue
-                if ok:
-                    confirmed += 1
-                    self._log("cash_cleanup_buy_cancelled", {
-                        "order_id": o["order_id"][:13], "px": o["price"],
-                        "qty": o["remaining"],
-                        "law": "confirmed cancel — no resting bid "
-                               "survives the cash"}, ticker=tk)
-                else:
-                    failed.append((o["order_id"], "cancel_returned_false"))
-        except Exception as _cce:
-            self._log("cash_cleanup_error", {"err": str(_cce)[:150]},
-                      ticker=tk)
+        # [REV4 FIX 3] discovery walks the resting-orders cursor to
+        # exhaustion with strict row validation; an UNKNOWN book means
+        # we cannot even enumerate what to cancel -> pending, never
+        # close.
+        rows, disc_ok, disc_fail = await self._resting_orders_all(tk)
+        if not disc_ok:
+            self._log("cash_cleanup_pending", {
+                "reason": "resting_orders_unknown",
+                "verify_failures": disc_fail[:4],
+                "law": "no exchange truth for cancellation discovery — "
+                       "retry, never close"}, ticker=tk)
             return False
+        mine = self._bot_owned_ids(pos)
+        for o in rows:
+            if o["action"] != "buy" or o["remaining"] <= 0:
+                continue
+            if o["order_id"] not in mine:
+                self._log("cash_cleanup_foreign_skipped", {
+                    "order_id": o["order_id"][:13],
+                    "law": "manual/foreign order — never cancelled"},
+                    ticker=tk)
+                continue
+            attempted += 1
+            try:
+                ok = await self.cancel_order(
+                    tk, o["order_id"], "exit_cashed_%s" % why)
+            except Exception as _ce:
+                failed.append((o["order_id"], str(_ce)[:60]))
+                continue
+            if ok:
+                confirmed += 1
+                self._log("cash_cleanup_buy_cancelled", {
+                    "order_id": o["order_id"][:13],
+                    "qty": o["remaining"],
+                    "law": "confirmed cancel — no resting bid survives "
+                           "the cash"}, ticker=tk)
+            else:
+                failed.append((o["order_id"], "cancel_returned_false"))
         # VERIFY against a refetch — the cancel result is a claim, the
         # refetched book is the truth. [REV3 FIX 1] BOTH sides must be
         # explicitly KNOWN: silence, malformed data or an exception is
@@ -14815,82 +14805,230 @@ class LiveV3:
                 mine.add(_eo)
         return mine
 
-    async def _cash_cleanup_state(self, tk, pos):
-        """[LANE-A REV3 FIX 1] EXPLICIT TRUTH STATUS — API silence is
-        NOT an empty book. Returns
-            (remaining_bot_buy_ids, ex_qty, orders_ok, positions_ok,
-             failures)
-        where *_ok is True ONLY when the respective response was
-        present, well-formed, and carried its expected collection.
-        None, an exception, a missing/!list collection or malformed
-        rows => that side is UNKNOWN (ok=False) and the caller must
-        refuse closure. ex_qty is meaningful only when
-        positions_ok is True."""
-        remaining, failures = [], []
-        ex_qty = 0.0
-        orders_ok = positions_ok = False
+    @staticmethod
+    def _validate_order_row(raw):
+        """[LANE-A REV4 FIX 3] Strict order-row validation for TRUTH.
+        Returns a canon dict {order_id, action, remaining} ONLY when
+        every truth field is well-formed: a parseable non-empty
+        order_id, a recognized action (buy|sell), and a numeric
+        nonnegative remaining quantity. Any missing/invalid field ->
+        None (the row is malformed and its whole page is UNKNOWN — a
+        malformed row can never silently become zero)."""
+        if not isinstance(raw, dict):
+            return None
+        def first(*names):
+            for n in names:
+                v = raw.get(n)
+                if v is not None and v != "":
+                    return v
+            return None
+        oid = first("order_id", "oid", "id")
+        if oid is None:
+            return None
+        action = str(first("action") or "").lower()
+        if action not in ("buy", "sell"):
+            return None
+        v = first("remaining", "qty", "remaining_count_fp",
+                  "remaining_count", "count")
+        if v is None:
+            return None
         try:
-            d = await api_get(self.session, self.ak, self.pk,
-                              "/trade-api/v2/portfolio/orders?ticker=%s"
-                              "&status=resting" % tk, self.rl)
-            if d is None:
-                failures.append("orders_fetch_none")
-            elif not isinstance(d, dict) or "orders" not in d:
-                failures.append("orders_missing_collection")
-            elif not isinstance(d.get("orders"), list):
-                failures.append("orders_malformed")
-            else:
-                mine = self._bot_owned_ids(pos)
-                bad_row = False
-                for raw in d["orders"]:
-                    if not isinstance(raw, dict):
-                        bad_row = True
+            rem = float(v)
+        except (TypeError, ValueError):
+            return None
+        if rem < 0:
+            return None
+        return {"order_id": str(oid), "action": action, "remaining": rem}
+
+    async def _resting_orders_all(self, tk):
+        """[LANE-A REV4 FIX 3] Walk the resting-orders cursor to
+        EXHAUSTION for a ticker; return (rows, ok, failures). rows are
+        strictly-validated canon dicts. ok=True ONLY on true exhaustion
+        of well-formed pages. A page that is None, not a dict, missing/
+        non-list `orders`, carries a malformed row, raises, repeats its
+        cursor, or hits the page bound before exhaustion => ok=False and
+        rows=[] (a partial page set is never verified truth)."""
+        rows, ok, failures = [], False, []
+        seen_cursors = set()
+        cursor = None
+        pages = 0
+        maxp = int(self.config.get("resting_orders_max_pages", 50))
+        try:
+            while True:
+                path = ("/trade-api/v2/portfolio/orders?ticker=%s"
+                        "&status=resting" % tk)
+                if cursor:
+                    path += "&cursor=%s" % cursor
+                d = await api_get(self.session, self.ak, self.pk, path,
+                                  self.rl)
+                pages += 1
+                if d is None:
+                    failures.append("orders_page_none(p=%d)" % pages)
+                    break
+                if not isinstance(d, dict) or "orders" not in d:
+                    failures.append("orders_missing_collection(p=%d)"
+                                    % pages)
+                    break
+                page = d.get("orders")
+                if not isinstance(page, list):
+                    failures.append("orders_malformed(p=%d)" % pages)
+                    break
+                bad = False
+                for raw in page:
+                    v = self._validate_order_row(raw)
+                    if v is None:
+                        bad = True
                         break
-                    o = self._canon_order(raw, tk)
-                    if (o["action"] == "buy" and o["remaining"] > 0
-                            and o["order_id"] in mine):
-                        remaining.append(o["order_id"])
-                if bad_row:
-                    failures.append("orders_malformed_row")
-                else:
-                    orders_ok = True
+                    rows.append(v)
+                if bad:
+                    failures.append("orders_malformed_row(p=%d)" % pages)
+                    break
+                nxt = d.get("cursor") or None
+                if not nxt:
+                    ok = True
+                    break
+                if nxt in seen_cursors:
+                    failures.append("orders_repeated_cursor(p=%d)" % pages)
+                    break
+                seen_cursors.add(nxt)
+                cursor = nxt
+                if pages >= maxp:
+                    failures.append("orders_page_bound_%d" % maxp)
+                    break
         except Exception as e:
             failures.append("orders_exception:%s" % type(e).__name__)
+        if not ok:
+            rows = []
+        return rows, ok, failures
+
+    async def _positions_qty_all(self, tk):
+        """[LANE-A REV4 FIX 3] Exchange position quantity for a ticker
+        with cursor exhaustion. Returns (ex_qty, ok, failures). ok=True
+        ONLY on a well-formed, fully-walked response; a cursor present
+        in the response is exhausted or the whole read fails closed."""
+        ex_qty = 0.0
+        ok = False
+        failures = []
+        seen_cursors = set()
+        cursor = None
+        pages = 0
+        maxp = int(self.config.get("positions_max_pages", 50))
         try:
-            pd = await api_get(
-                self.session, self.ak, self.pk,
-                "/trade-api/v2/portfolio/positions?ticker=%s"
-                "&count_filter=position&settlement_status=unsettled" % tk,
-                self.rl)
-            if pd is None:
-                failures.append("positions_fetch_none")
-            elif not isinstance(pd, dict) or "market_positions" not in pd:
-                failures.append("positions_missing_collection")
-            elif not isinstance(pd.get("market_positions"), list):
-                failures.append("positions_malformed")
-            else:
-                bad_row = False
-                tot = 0.0
-                for p_ in pd["market_positions"]:
+            while True:
+                path = ("/trade-api/v2/portfolio/positions?ticker=%s"
+                        "&count_filter=position"
+                        "&settlement_status=unsettled" % tk)
+                if cursor:
+                    path += "&cursor=%s" % cursor
+                pd = await api_get(self.session, self.ak, self.pk, path,
+                                   self.rl)
+                pages += 1
+                if pd is None:
+                    failures.append("positions_page_none(p=%d)" % pages)
+                    break
+                if (not isinstance(pd, dict)
+                        or "market_positions" not in pd):
+                    failures.append("positions_missing_collection(p=%d)"
+                                    % pages)
+                    break
+                mp = pd.get("market_positions")
+                if not isinstance(mp, list):
+                    failures.append("positions_malformed(p=%d)" % pages)
+                    break
+                bad = False
+                for p_ in mp:
                     if not isinstance(p_, dict):
-                        bad_row = True
+                        bad = True
                         break
                     v = p_.get("position_fp")
                     if v is None:
-                        bad_row = True
+                        bad = True
                         break
                     try:
-                        tot += float(v)
+                        ex_qty += float(v)
                     except (TypeError, ValueError):
-                        bad_row = True
+                        bad = True
                         break
-                if bad_row:
-                    failures.append("positions_malformed_row")
-                else:
-                    ex_qty = tot
-                    positions_ok = True
+                if bad:
+                    failures.append("positions_malformed_row(p=%d)"
+                                    % pages)
+                    break
+                nxt = pd.get("cursor") or None
+                if not nxt:
+                    ok = True
+                    break
+                if nxt in seen_cursors:
+                    failures.append("positions_repeated_cursor(p=%d)"
+                                    % pages)
+                    break
+                seen_cursors.add(nxt)
+                cursor = nxt
+                if pages >= maxp:
+                    failures.append("positions_page_bound_%d" % maxp)
+                    break
         except Exception as e:
             failures.append("positions_exception:%s" % type(e).__name__)
+        if not ok:
+            ex_qty = 0.0
+        return ex_qty, ok, failures
+
+    async def _finalize_full_cash(self, tk, pos, source="cash"):
+        """[LANE-A REV4 — THE ONE FULL-CASH FINALIZER] Both the normal
+        exit-poll completion and phantom-cash reconciliation converge
+        here once a position exit is FULLY booked by exact receipts.
+        It (a) arms the cycle/session refusal EXACTLY ONCE, (b) cancels
+        only bot-owned current-strategy entry/replacement buys, confirmed
+        (foreign named + untouched), and (c) transitions the position to
+        settled/closed ONLY on confirmed cancellation + explicit
+        verified-empty resting orders + verified-zero exchange position.
+        On UNKNOWN / failure / remaining bot buy it retains the position
+        and every order id, emits cash_cleanup_pending, and returns
+        False — and it never sets exit_filled or any terminal flag that
+        would suppress the retry. Returns True only on verified closure.
+        """
+        _sx = self.__dict__.setdefault("_session_exited", set())
+        if tk not in _sx:
+            _sx.add(tk)
+            self._cycle_count[tk] = self._cycle_count.get(tk, 0) + 1
+            self._log("cash_refusal_armed", {
+                "source": source,
+                "cycle_count": self._cycle_count.get(tk),
+                "law": "cycle/session refusal armed once at the confirmed "
+                       "cash; conception refused while cleanup completes"},
+                ticker=tk)
+        clean = await self._cancel_resting_buys_on_cash(tk, pos,
+                                                        why=source)
+        if not clean:
+            self._save_v4_resting()
+            return False
+        pos.exit_filled = True
+        pos.settled = True
+        pos.phase = "settled"
+        self.positions.pop(tk, None)
+        self._save_v4_resting()
+        return True
+
+    async def _cash_cleanup_state(self, tk, pos):
+        """[LANE-A REV4 FIX 3] EXPLICIT TRUTH STATUS via cursor-exhausted,
+        strictly-validated reads. Returns
+            (remaining_bot_buy_ids, ex_qty, orders_ok, positions_ok,
+             failures).
+        orders_ok is True only when the resting-orders cursor was walked
+        to exhaustion with every row well-formed; positions_ok only when
+        the positions read was well-formed and fully walked. ex_qty is
+        meaningful only when positions_ok. API silence, truncation,
+        malformed rows and exceptions are all UNKNOWN (ok=False)."""
+        remaining, failures = [], []
+        rows, orders_ok, of = await self._resting_orders_all(tk)
+        failures.extend(of)
+        if orders_ok:
+            mine = self._bot_owned_ids(pos)
+            for o in rows:
+                if (o["action"] == "buy" and o["remaining"] > 0
+                        and o["order_id"] in mine):
+                    remaining.append(o["order_id"])
+        ex_qty, positions_ok, pf = await self._positions_qty_all(tk)
+        failures.extend(pf)
         return remaining, ex_qty, orders_ok, positions_ok, failures
 
     @staticmethod
@@ -15037,7 +15175,7 @@ class LiveV3:
             # position is still open and genuinely needs closing.
             if not (complete and tk in self.positions):
                 return complete
-        pos.exit_filled = complete
+        # completion is RECEIPT-CUMULATIVE only (never order status).
         if newly > 0:
             self._log("exit_filled", {
                 "exit_price": int(getattr(pos, "exit_price", 0) or 0),
@@ -15048,35 +15186,13 @@ class LiveV3:
                 "law": "unbooked EXIT fill booked from exchange truth "
                        "by receipt identity"}, ticker=tk)
         if not complete:
-            # PARTIAL: the leg still owns shares — stays open, stays
-            # tracked, keeps its exit. Nothing closes, nothing deletes.
+            # PARTIAL: still owns shares — stays open, keeps its exit;
+            # no cycle increment, no exit_filled flag, nothing deleted.
             self._save_v4_resting()
             return False
-        # FULL CASH. [REV2 FIX 2] The refusal arms FIRST and EXACTLY
-        # ONCE — no new conception may occur while cleanup is pending —
-        # then the book is cleaned and VERIFIED. Closure happens only on
-        # verified-clean truth; otherwise the position is retained in a
-        # loud cash_cleanup_pending state and retried next cycle.
-        _sx = self.__dict__.setdefault("_session_exited", set())
-        if tk not in _sx:
-            _sx.add(tk)
-            self._cycle_count[tk] = self._cycle_count.get(tk, 0) + 1
-            self._log("cash_refusal_armed", {
-                "cycle_count": self._cycle_count.get(tk),
-                "law": "cycle/session refusal armed once at the "
-                       "confirmed cash; conception refused while "
-                       "cleanup completes"}, ticker=tk)
-        clean = await self._cancel_resting_buys_on_cash(tk, pos,
-                                                        why="phantom")
-        if not clean:
-            pos.exit_filled = True
-            self._save_v4_resting()
-            return False          # retry next cycle; nothing erased
-        pos.settled = True
-        pos.phase = "closed"
-        self.positions.pop(tk, None)
-        self._save_v4_resting()
-        return True
+        # FULL CASH -> the ONE common finalizer (arm-once + verified
+        # cleanup + gated closure; retryable on UNKNOWN).
+        return await self._finalize_full_cash(tk, pos, source="phantom")
 
     async def _tooth_market_status(self, tk):
         """[SAFETY-TEETH P3(a)] market status for the settlement_pending

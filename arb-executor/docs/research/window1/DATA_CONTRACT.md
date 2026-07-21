@@ -40,7 +40,7 @@ Full WebSocket rows also require `epoch_id`, `sequence`, `sequence_valid`, `gap_
 
 ### Fit and holdout outcome files
 
-The causal policy runner emits physically separate fit and holdout JSONL files. Each row contains `event_id`, `candidate_id`, `period`, `status`, the frozen boundary and policy parameters, causal feature receipts, and exactly two leg objects.
+`analysis/window1_policy_runner.py` emits physically separate fit, ablation, and holdout JSONL files. Each row contains `event_id`, `candidate_id`, `period`, `status`, the boundary and policy parameters, causal feature receipts, and exactly two leg objects. It refuses to run until validation passes. Holdout accepts only the fit-frozen definition and refuses an existing output.
 
 Each leg object carries `leg`, `ticker`, `required_quantity`, `filled_quantity`, `fill_vwap_cents`, first-fill and completion exchange timestamps, and the W1-close reference computed at the frozen right edge. Missing, error, unknown, thin, and corrupt states are explicit.
 

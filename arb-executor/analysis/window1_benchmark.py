@@ -377,7 +377,8 @@ def replay_resting_buy(
         ok, reason = valid_full_book(row)
         if not ok:
             invalid_reason = reason
-            if timestamp is not None and placed <= timestamp <= end:
+            if (str(row.get("source") or "") == FULL_BOOK_SOURCE
+                    and timestamp is not None and placed <= timestamp <= end):
                 return ReplayResult("unknown", 0, None, None, None, None,
                                     "book", reason)
             continue
@@ -992,23 +993,22 @@ def command_fit(args: argparse.Namespace) -> int:
         raise BenchmarkError("fit input contains a non-fit row")
     primary_outcomes = [row for row in outcomes
                         if not row.get("feature_removed")]
-    candidate_ids = sorted({str(row.get("candidate_id") or "")
-                            for row in primary_outcomes
-                            if row.get("candidate_id")})
-    if not candidate_ids:
-        raise BenchmarkError("fit input has no candidates")
-    results = [score_outcomes(ledger, primary_outcomes, period="fit",
-                              candidate_id=candidate_id)
-               for candidate_id in candidate_ids]
-    # Results start in candidate-id order, so max preserves the lowest id on
-    # an exact metric tie and makes the fourth selection rule deterministic.
-    selected = max(results, key=selection_key)
-    boundary_ids = sorted({
+    boundary_candidate_ids = sorted({
         str(row.get("candidate_id")) for row in primary_outcomes
         if row.get("experiment_kind") == "boundary"
     })
-    boundary_results = [result for result in results
-                        if result["candidate_id"] in boundary_ids]
+    if len(boundary_candidate_ids) != 16:
+        raise BenchmarkError(
+            "fit input must contain all 16 boundary baseline candidates")
+    boundary_results = [score_outcomes(
+        ledger, primary_outcomes, period="fit", candidate_id=candidate_id)
+        for candidate_id in boundary_candidate_ids]
+    # Candidate ids are sorted, so max preserves the lowest id on an exact
+    # metric tie and makes the final tie-break deterministic.
+    selected_boundary = max(boundary_results, key=selection_key)
+    selected_boundary_id = next(
+        str(row.get("boundary_id")) for row in primary_outcomes
+        if row.get("candidate_id") == selected_boundary["candidate_id"])
     write_json(output_dir / "boundary_sensitivity_fit.json", {
         "fit_only": True,
         "candidate_grid_required": {
@@ -1016,16 +1016,32 @@ def command_fit(args: argparse.Namespace) -> int:
             "schedule_only_corridor_minutes": [15, 30, 45, 60],
         },
         "results": boundary_results,
-        "complete": len(boundary_results) == 16,
+        "complete": True,
+        "selected_boundary_candidate_id": selected_boundary["candidate_id"],
+        "selected_boundary_id": selected_boundary_id,
     })
+    policy_candidate_ids = sorted({
+        str(row.get("candidate_id")) for row in primary_outcomes
+        if row.get("experiment_kind") == "policy"
+        and row.get("boundary_id") == selected_boundary_id
+    })
+    if not policy_candidate_ids:
+        raise BenchmarkError(
+            "fit input has no policy candidates for the selected boundary")
+    policy_results = [score_outcomes(
+        ledger, primary_outcomes, period="fit", candidate_id=candidate_id)
+        for candidate_id in policy_candidate_ids]
+    selected = max(policy_results, key=selection_key)
     write_json(output_dir / "candidate_results_fit.json", {
+        "selected_boundary_id": selected_boundary_id,
         "selection_law": ["maximize C/D", "then maximize S/D",
                           "then minimize mean combined-vs-par delta",
                           "then candidate_id for deterministic tie-break"],
-        "results": results,
+        "results": policy_results,
         "selected_candidate_id": selected["candidate_id"],
     })
-    ablations = [row for row in outcomes if row.get("feature_removed")]
+    ablations = [row for row in outcomes if row.get("feature_removed")
+                 and row.get("boundary_id") == selected_boundary_id]
     ablation_ids = sorted({str(row["candidate_id"]) for row in ablations})
     write_json(output_dir / "ablation_results_fit.json", {
         "results": [score_outcomes(ledger, ablations, period="fit",
@@ -1055,6 +1071,76 @@ def command_fit(args: argparse.Namespace) -> int:
     }
     write_json(output_dir / "window1_freeze.json", freeze)
     print(json.dumps(freeze, indent=2))
+    return 0
+
+
+def command_ablate(args: argparse.Namespace) -> int:
+    output_dir = Path(args.output_dir).resolve()
+    require_gate(output_dir)
+    ledger, ledger_errors = load_ledger(output_dir)
+    if ledger_errors:
+        raise BenchmarkError("immutable ledger failed hash/parse validation")
+    freeze_path = output_dir / "window1_freeze.json"
+    if not freeze_path.is_file():
+        raise BenchmarkError("fit-only Window-1 freeze is missing")
+    freeze = json.loads(freeze_path.read_text(encoding="utf-8"))
+    if freeze.get("holdout_viewed") is True:
+        raise BenchmarkError("ablation cannot run after holdout was viewed")
+    if freeze.get("event_ledger_sha256") != sha256_file(
+            output_dir / "candidate_event_ledger.jsonl"):
+        raise BenchmarkError("denominator changed after fit freeze")
+    outcomes_path = Path(args.fit_outcomes).resolve()
+    outcomes, errors = read_jsonl(outcomes_path)
+    if errors:
+        raise BenchmarkError(f"ablation parse errors: {len(errors)}")
+    forbidden = sorted({path for row in outcomes
+                        for path in forbidden_outcome_paths(row)})
+    if forbidden:
+        raise BenchmarkError(
+            "ablation input contains Window-2/exit/settlement fields: "
+            + ", ".join(forbidden[:10]))
+    if any(row.get("period") != "fit" for row in outcomes):
+        raise BenchmarkError("ablation input contains a non-fit row")
+    if any(not row.get("feature_removed") for row in outcomes):
+        raise BenchmarkError("every ablation row must name feature_removed")
+    selected_window = freeze.get("selected_window_definition") or {}
+    if any(row.get("boundary_id") != selected_window.get("boundary_id")
+           for row in outcomes):
+        raise BenchmarkError("ablation changed the frozen boundary")
+    candidate_ids = sorted({str(row.get("candidate_id") or "")
+                            for row in outcomes if row.get("candidate_id")})
+    results = [score_outcomes(ledger, outcomes, period="fit",
+                              candidate_id=candidate_id)
+               for candidate_id in candidate_ids]
+    candidate_path = output_dir / "candidate_results_fit.json"
+    if not candidate_path.is_file():
+        raise BenchmarkError("fit candidate results are missing")
+    candidate_doc = json.loads(candidate_path.read_text(encoding="utf-8"))
+    baseline = next((row for row in candidate_doc.get("results", [])
+                     if row.get("candidate_id")
+                     == freeze.get("selected_candidate_id")), None)
+    if baseline is None:
+        raise BenchmarkError("selected fit baseline result is missing")
+    for result in results:
+        family = next(str(row.get("feature_removed")) for row in outcomes
+                      if row.get("candidate_id") == result["candidate_id"])
+        result["feature_removed"] = family
+        result["delta_C_vs_selected_fit"] = result["C"] - baseline["C"]
+        result["delta_S_vs_selected_fit"] = result["S"] - baseline["S"]
+        result["delta_C_over_D_vs_selected_fit"] = (
+            (result["C_over_D"] or 0) - (baseline["C_over_D"] or 0))
+        result["delta_S_over_D_vs_selected_fit"] = (
+            (result["S_over_D"] or 0) - (baseline["S_over_D"] or 0))
+    write_json(output_dir / "ablation_results_fit.json", {
+        "fit_only": True,
+        "selected_candidate_id": freeze.get("selected_candidate_id"),
+        "selected_boundary_id": selected_window.get("boundary_id"),
+        "ablation_outcomes_sha256": sha256_file(outcomes_path),
+        "results": results,
+    })
+    print(json.dumps({"ablations": len(results),
+                      "selected_candidate_id": freeze.get(
+                          "selected_candidate_id")}, indent=2))
     return 0
 
 
@@ -1119,6 +1205,10 @@ def parser() -> argparse.ArgumentParser:
     fit.add_argument("--fit-outcomes", required=True)
     fit.add_argument("--output-dir", required=True)
     fit.set_defaults(handler=command_fit)
+    ablate = sub.add_parser("ablate")
+    ablate.add_argument("--fit-outcomes", required=True)
+    ablate.add_argument("--output-dir", required=True)
+    ablate.set_defaults(handler=command_ablate)
     holdout = sub.add_parser("holdout")
     holdout.add_argument("--holdout-outcomes", required=True)
     holdout.add_argument("--output-dir", required=True)

@@ -43,6 +43,7 @@ git cat-file -e 6de11c533562e636ea0238dca81e8ff109a0cd79^{commit}
 git worktree add --detach /srv/omi-research/OMI-Workspace-codex-window1 6de11c533562e636ea0238dca81e8ff109a0cd79
 cd /srv/omi-research/OMI-Workspace-codex-window1
 python -B arb-executor/tests/test_window1_benchmark.py
+python -B arb-executor/tests/test_window1_policy_runner.py
 ```
 
 Set paths for the external normalized bundle and a fresh research output directory:
@@ -50,6 +51,10 @@ Set paths for the external normalized bundle and a fresh research output directo
 ```bash
 INPUT=/srv/omi-research/window1-normalized-v1
 OUTPUT=/srv/omi-research/window1-run-20260721
+SPEC=arb-executor/docs/research/window1/WINDOW1_CANDIDATES.json
+FIT=/srv/omi-research/window1-fit-outcomes.jsonl
+ABLATE=/srv/omi-research/window1-fit-ablations.jsonl
+HOLDOUT=/srv/omi-research/window1-holdout-outcomes.jsonl
 python -B arb-executor/analysis/window1_benchmark.py manifest --input-dir $INPUT --output-dir $OUTPUT
 python -B arb-executor/analysis/window1_benchmark.py ledger --input-dir $INPUT --output-dir $OUTPUT
 python -B arb-executor/analysis/window1_benchmark.py validate --input-dir $INPUT --output-dir $OUTPUT
@@ -57,16 +62,25 @@ python -B arb-executor/analysis/window1_benchmark.py validate --input-dir $INPUT
 
 The next command is forbidden unless validation exits zero and `validation_summary.json` says `gate_pass: true`.
 
-The causal policy runner must emit fit outcomes only, covering 2026-07-12 through 2026-07-17 and every candidate from `WINDOW1_SPEC.md`. Then freeze from fit:
+Produce fit-only outcomes for all 16 boundary baselines and every declared policy. The benchmark selects the boundary first, compares policies only inside that boundary, and freezes both:
 
 ```bash
-python -B arb-executor/analysis/window1_benchmark.py fit --fit-outcomes /srv/omi-research/window1-fit-outcomes.jsonl --output-dir $OUTPUT
+python -B arb-executor/analysis/window1_policy_runner.py --period fit --mode candidates --input-dir $INPUT --event-ledger $OUTPUT/candidate_event_ledger.jsonl --validation-summary $OUTPUT/validation_summary.json --candidate-spec $SPEC --output $FIT
+python -B arb-executor/analysis/window1_benchmark.py fit --fit-outcomes $FIT --output-dir $OUTPUT
 ```
 
-Only after `window1_freeze.json` exists may the runner evaluate the single selected candidate on 2026-07-18 through 2026-07-20. Run the untouched holdout exactly once:
+Run the one-feature-family-at-a-time ablations on fit only, locked to the frozen boundary and selected policy:
 
 ```bash
-python -B arb-executor/analysis/window1_benchmark.py holdout --holdout-outcomes /srv/omi-research/window1-holdout-outcomes.jsonl --output-dir $OUTPUT
+python -B arb-executor/analysis/window1_policy_runner.py --period fit --mode ablations --input-dir $INPUT --event-ledger $OUTPUT/candidate_event_ledger.jsonl --validation-summary $OUTPUT/validation_summary.json --candidate-spec $SPEC --freeze $OUTPUT/window1_freeze.json --output $ABLATE
+python -B arb-executor/analysis/window1_benchmark.py ablate --fit-outcomes $ABLATE --output-dir $OUTPUT
+```
+
+Only then may the runner evaluate the single frozen candidate on 2026-07-18 through 2026-07-20. Run the untouched holdout exactly once:
+
+```bash
+python -B arb-executor/analysis/window1_policy_runner.py --period holdout --mode candidates --input-dir $INPUT --event-ledger $OUTPUT/candidate_event_ledger.jsonl --validation-summary $OUTPUT/validation_summary.json --candidate-spec $SPEC --freeze $OUTPUT/window1_freeze.json --output $HOLDOUT
+python -B arb-executor/analysis/window1_benchmark.py holdout --holdout-outcomes $HOLDOUT --output-dir $OUTPUT
 ```
 
 The holdout command rejects a changed event-ledger hash, a candidate other than the fit selection, a non-holdout row, or an existing holdout result.

@@ -42,7 +42,7 @@ The prior 187-row operational substrate is a non-exhaustive seed ending with one
 - physically separate fit and one-shot holdout commands;
 - no exit or Window-2 consumption.
 
-Twelve isolated unit tests pass with Python bytecode disabled. They cover the nine defect guards, exact fill, exact non-fill, denominator retention under missing data, and raw `D/C/S` metric separation.
+Seventeen isolated unit tests pass with Python bytecode disabled. They cover the nine defect guards, exact fill, exact non-fill, denominator retention under missing data, raw `D/C/S` metric separation, the 16-cell boundary grid, ws-depth continuity, full-ladder features below top five, the extreme imbalance sanity class, causal dual outcome production, and the ablation grid.
 
 ## Work required on the VPS corpus
 

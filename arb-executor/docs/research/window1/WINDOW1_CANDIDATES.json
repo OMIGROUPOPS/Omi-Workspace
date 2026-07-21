@@ -1,0 +1,107 @@
+{
+  "schema_version": "window1-candidate-grid-v1",
+  "boundary_grid": {
+    "left_edge_hours_before_schedule": [8, 6, 4, 2],
+    "schedule_only_corridor_minutes": [15, 30, 45, 60]
+  },
+  "boundary_baseline_policy_id": "park_touch_simultaneous_hold",
+  "policies": [
+    {
+      "policy_id": "park_touch_simultaneous_hold",
+      "placement_rule": "touch",
+      "sequence_rule": "simultaneous",
+      "first_fill_response": "hold"
+    },
+    {
+      "policy_id": "park_touch_favorite_first_reaim_touch",
+      "placement_rule": "touch",
+      "sequence_rule": "favorite_first",
+      "sibling_delay_seconds": 30,
+      "first_fill_response": "reaim_touch"
+    },
+    {
+      "policy_id": "depth_support_simultaneous_hold",
+      "placement_rule": "depth_support",
+      "max_depth_cents": 5,
+      "sequence_rule": "simultaneous",
+      "first_fill_response": "hold"
+    },
+    {
+      "policy_id": "category_offset_simultaneous_hold",
+      "placement_rule": "category_offset",
+      "category_offsets": {
+        "ATP_MAIN": 1,
+        "WTA_MAIN": 1,
+        "ATP_CHALL": 2,
+        "WTA_CHALL": 2
+      },
+      "sequence_rule": "simultaneous",
+      "first_fill_response": "hold"
+    },
+    {
+      "policy_id": "shape_cell_simultaneous_hold",
+      "placement_rule": "shape_cell_offset",
+      "shape_offsets": {
+        "flat": 2,
+        "riser": 0,
+        "faller": 4,
+        "violent_faller": 8,
+        "dip_recover": 3,
+        "late_collapse": 5,
+        "grind": 1
+      },
+      "sequence_rule": "simultaneous",
+      "first_fill_response": "hold"
+    },
+    {
+      "policy_id": "walk_law_simultaneous_hold",
+      "placement_rule": "walk_law",
+      "max_moves": 2,
+      "sequence_rule": "simultaneous",
+      "first_fill_response": "hold"
+    },
+    {
+      "policy_id": "walk_law_firstfill_reaim_touch",
+      "placement_rule": "walk_law",
+      "max_moves": 2,
+      "sequence_rule": "simultaneous",
+      "first_fill_response": "reaim_touch"
+    },
+    {
+      "policy_id": "backwalk_depth2_support",
+      "placement_rule": "backwalk",
+      "initial_depth_cents": 2,
+      "backwalk_start_minutes_before_schedule": 120,
+      "move_step_cents": 1,
+      "move_imbalance_min": 0.0,
+      "max_moves": 3,
+      "sequence_rule": "simultaneous",
+      "first_fill_response": "reaim_depth_support",
+      "max_depth_cents": 5
+    },
+    {
+      "policy_id": "backwalk_depth4_support",
+      "placement_rule": "backwalk",
+      "initial_depth_cents": 4,
+      "backwalk_start_minutes_before_schedule": 60,
+      "move_step_cents": 1,
+      "move_imbalance_min": 0.2,
+      "max_moves": 4,
+      "sequence_rule": "simultaneous",
+      "first_fill_response": "reaim_depth_support",
+      "max_depth_cents": 5
+    }
+  ],
+  "feature_ablations": [
+    "macrostructure",
+    "full_ladder_placement",
+    "below_top5_ladder",
+    "queue_and_own_volume",
+    "true_print_direction_size_tempo",
+    "replenishment_cancellation_absorption",
+    "first_leg_fill_state",
+    "extreme_ask_over_bid_sanity_class"
+  ],
+  "dca": false,
+  "window2_or_exit_inputs": false
+}

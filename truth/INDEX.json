@@ -1,5 +1,5 @@
 {
- "built": "2026-07-20 20:53",
+ "built": "2026-07-20 21:46",
  "law": "C-ONE-TRUTH v1 (07-16): outside this root = doesn't exist; rebuilt every C50; both consumers enforced (engine boot wiring + seat session-zero); the gate refuses unregistered laws/surfaces/studies",
  "laws_n": 309,
  "laws": [
@@ -2650,7 +2650,7 @@
    "wired_in_source": true
   }
  ],
- "studies_n": 60,
+ "studies_n": 61,
  "studies": [
   {
    "archive": "truth/archive/aim_dispatch_20260703",
@@ -2686,6 +2686,11 @@
    "archive": "truth/archive/BLEED_ATTRIBUTION_20260707.md",
    "source": ".claude/BLEED_ATTRIBUTION_20260707.md",
    "finding": "BLEED ATTRIBUTION 2026-07-07 (STEP 1) \u2014 mechanical vs strategic, honest era"
+  },
+  {
+   "archive": "truth/archive/capture_20260720",
+   "source": ".claude/capture_20260720",
+   "finding": "LOOP 9 \u2014 THE COMPLETION DRILL, WHOLE MARKET (joint bar >=70 completion x >=70 sub-par over ALL floor-passing big-4 games; ONLY TWO EXITS per the stopping law; violent-faller REFUSE"
   },
   {
    "archive": "truth/archive/casefile_20260710",

@@ -64,7 +64,7 @@ async def _fake_api_get(sess, ak, pk, path, rl):
 M.api_get = _fake_api_get
 
 STATICS = ("_canon_order", "_exit_coverage", "_canon_receipt")
-BOUND = ("_canon_orders", "_naked_tooth_scan",
+BOUND = ("_fills_bulk", "_bot_owned_ids", "_cash_cleanup_state", "_canon_orders", "_naked_tooth_scan",
          "_reconcile_exit_fill_from_truth", "_tooth_market_status",
          "_price_authority", "_exit_receipts", "_book_exit_receipts",
          "_cancel_resting_buys_on_cash")
@@ -83,7 +83,7 @@ def make_pos(tk, **kw):
 def make_bot():
     s = types.SimpleNamespace()
     s.positions = {}
-    s.config = {}
+    s.config = {"fills_bulk_ttl_sec": 0}
     s.entry_size = 5
     s.session = None; s.ak = None; s.pk = None; s.rl = None
     s._cycle_count = {}
@@ -279,16 +279,14 @@ check(len(evs(s, "phantom_cash_unconfirmed")) == 1, "unconfirmed logged")
 s = make_bot()
 p = make_pos(TK, exit_order_id="E-1", phase="active")
 s.positions[TK] = p
-reset_api(order_resp={"E-1": None})          # API failure
+reset_api(fills=None)                        # feed silent
 run(s._naked_tooth_scan({}, {}))             # cycle 1 (defect only)
 run(s._naked_tooth_scan({}, {}))             # cycle 2 -> route attempt
 check(getattr(p, "_phantom_cash_routed", False) is False,
       "failed confirmation leaves latch OPEN (retryable)")
 check(TK in s.positions, "failed confirmation: position intact")
 # now the exchange answers -> the retry succeeds
-reset_api(order_resp={"E-1": {"order": {"status": "executed",
-                                        "fill_count_fp": 5,
-                                        "average_fill_price_fp": 0.64}}})
+reset_api(fills=[rcpt("F-late", "E-1", 5, 64, ts=1600)])
 run(s._naked_tooth_scan({}, {}))             # cycle 3 -> retry
 check(getattr(p, "_phantom_cash_routed", False) is True,
       "retry after failure SUCCEEDS and latches")
@@ -321,23 +319,29 @@ check(p.pnl_cents == (64 - 51) * 5, "P&L from own fills only: %s"
       % p.pnl_cents)
 
 # 3e. zero / missing quantity is never a cash
-for resp in ({"order": {"status": "executed", "fill_count_fp": 0}},
-             {"order": {"status": "executed"}}):
+for label, bad in (("zero count_fp",
+                    {"fill_id": "Z", "order_id": "E-1", "action": "sell",
+                     "count_fp": 0, "yes_price_dollars": 0.64,
+                     "created_time": 1600}),
+                   ("missing price",
+                    {"fill_id": "Z2", "order_id": "E-1", "action": "sell",
+                     "count_fp": 5, "created_time": 1600}),
+                   ("missing receipt id",
+                    {"order_id": "E-1", "action": "sell", "count_fp": 5,
+                     "yes_price_dollars": 0.64, "created_time": 1600})):
     s = make_bot()
     p = make_pos(TK, exit_order_id="E-1")
     s.positions[TK] = p
-    reset_api(order_resp={"E-1": resp})
+    reset_api(fills=[bad])
     r = run(s._reconcile_exit_fill_from_truth(TK, p))
-    check(r is False and TK in s.positions,
-          "zero/missing filled qty -> not cashed (%s)" % list(resp["order"]))
+    check(r is False and TK in s.positions and p.pnl_cents == 0,
+          "unbookable receipt (%s) -> not cashed, nothing booked" % label)
 
 # 3f. PARTIAL exit books its increment but does NOT close the story
 s = make_bot()
 p = make_pos(TK, entry_qty=5, exit_order_id="E-1")
 s.positions[TK] = p
-reset_api(order_resp={"E-1": {"order": {"status": "resting",
-                                        "fill_count_fp": 2,
-                                        "average_fill_price_fp": 0.64}}})
+reset_api(fills=[rcpt("P-1", "E-1", 2, 64, ts=1600)])
 r = run(s._reconcile_exit_fill_from_truth(TK, p))
 check(r is False, "partial exit -> returns False (not fully cashed)")
 check(p.exit_filled_qty == 2, "partial books 2")
@@ -347,9 +351,8 @@ check(s._cycle_count.get(TK, 0) == 0, "partial: NO cycle increment")
 check(p.pnl_cents == (64 - 51) * 2, "partial: P&L for 2 only")
 
 # 3g. incremental completion accrues P&L, never overwrites
-reset_api(order_resp={"E-1": {"order": {"status": "executed",
-                                        "fill_count_fp": 5,
-                                        "average_fill_price_fp": 0.64}}})
+reset_api(fills=[rcpt("P-1", "E-1", 2, 64, ts=1600),
+                 rcpt("P-2", "E-1", 3, 64, ts=1700)])
 r = run(s._reconcile_exit_fill_from_truth(TK, p))
 check(r is True, "remaining 3 completes the cash")
 check(p.exit_filled_qty == 5, "booked qty now 5")
@@ -394,10 +397,9 @@ def race(first_confirm_fails):
                  phase="active")
     p.exit_order_id = "E-CASH"
     s.positions[TK] = p
-    cashed = {"order": {"status": "executed", "fill_count_fp": 5,
-                        "average_fill_price_fp": 0.64}}
+    cashed = [rcpt("F-CASH", "E-CASH", 5, 64, ts=1600)]
     # cycle 1: defect only (never acts on one observation)
-    reset_api(order_resp={"E-CASH": None if first_confirm_fails else cashed})
+    reset_api(fills=(None if first_confirm_fails else cashed))
     run(s._naked_tooth_scan({}, {}))
     check(TK in s.positions, "cycle 1: position intact (no deletion)")
     check(not evs(s, "exit_filled"), "cycle 1: nothing booked yet")
@@ -411,7 +413,7 @@ def race(first_confirm_fails):
         check(getattr(p, "_phantom_cash_routed", False) is False,
               "cycle 2 (confirm FAILS): retry stays armed")
         # cycle 3: exchange answers -> retry succeeds
-        reset_api(order_resp={"E-CASH": cashed})
+        reset_api(fills=cashed)
         run(s._naked_tooth_scan({}, {}))
     return s, p
 
@@ -449,8 +451,7 @@ check(s._cycle_count.get(TK, 0) >= cap,
 s = make_bot()
 p = make_pos(TK, exit_order_id="E-NONE")
 s.positions[TK] = p
-reset_api(order_resp={"E-NONE": {"order": {"status": "resting",
-                                           "fill_count_fp": 0}}})
+reset_api(fills=None)
 for _ in range(6):
     run(s._naked_tooth_scan({}, {}))
 check(TK in s.positions,

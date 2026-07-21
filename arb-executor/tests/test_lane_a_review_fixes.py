@@ -72,7 +72,7 @@ M.api_get = _api_get
 M.api_post = _api_post
 
 STATICS = ("_canon_order", "_exit_coverage", "_canon_receipt")
-BOUND = ("_canon_orders", "_exit_receipts", "_book_exit_receipts",
+BOUND = ("_fills_bulk", "_bot_owned_ids", "_cash_cleanup_state", "_canon_orders", "_exit_receipts", "_book_exit_receipts",
          "_cancel_resting_buys_on_cash", "_naked_tooth_scan",
          "_reconcile_exit_fill_from_truth", "_tooth_market_status",
          "_price_authority", "_v4_apply_exit",
@@ -99,7 +99,7 @@ def make_pos(tk=TK, **kw):
 def make_bot(cap=1):
     s = types.SimpleNamespace()
     s.positions = {}
-    s.config = {}
+    s.config = {"fills_bulk_ttl_sec": 0}
     s.entry_size = 5
     s.session = None; s.ak = None; s.pk = None; s.rl = None
     s._cycle_count = {}
@@ -423,6 +423,203 @@ finally:
         except OSError:
             pass
 
+# ======================================================================
+print("--- 8. REV2: cancellation must be CONFIRMED ---")
+# ======================================================================
+def cash_with_cleanup(cancel_result="ok", exchange_qty=0):
+    s = make_bot()
+    p = make_pos(exit_order_id="E-1")
+    p.entry_order_id = "B-1"
+    s.positions[TK] = p
+    s._bot_order_ids.add("B-1")
+    reset(orders=[{"order_id": "B-1", "ticker": TK, "action": "buy",
+                   "yes_price_dollars": 0.45, "remaining_count_fp": 5}],
+          positions=([{"ticker": TK, "position_fp": exchange_qty}]
+                     if exchange_qty else []),
+          fills=[rc("F-1", "E-1", 5, 64, ts=1600)])
+    if cancel_result == "false":
+        async def co(tk, oid, label=""):
+            s.cancelled.append({"tk": tk, "oid": oid, "label": label})
+            return False                      # exchange refused
+        s.cancel_order = co
+    elif cancel_result == "raise":
+        async def co(tk, oid, label=""):
+            s.cancelled.append({"tk": tk, "oid": oid, "label": label})
+            raise RuntimeError("network")
+        s.cancel_order = co
+    r = run(s._reconcile_exit_fill_from_truth(TK, p))
+    return s, p, r
+
+# 8a. cancel_order returns False -> pending, nothing erased, refusal armed
+s, p, r = cash_with_cleanup("false")
+check(r is False, "cancel False -> cash does NOT close")
+check(TK in s.positions, "cancel False -> position retained")
+check(p.entry_order_id == "B-1", "cancel False -> entry order id NOT cleared")
+check(evs(s, "cash_cleanup_pending"), "cash_cleanup_pending raised (loud)")
+check(not evs(s, "cash_cleanup_buy_cancelled"),
+      "no 'cancelled' logged for an unconfirmed cancel")
+check(s._cycle_count.get(TK) == 1,
+      "refusal armed exactly once despite pending cleanup")
+check(evs(s, "cash_refusal_armed"), "refusal-armed line present")
+
+# 8b. cancel_order raises -> same discipline
+s, p, r = cash_with_cleanup("raise")
+check(r is False and TK in s.positions,
+      "cancel raises -> pending, position retained")
+check(p.entry_order_id == "B-1", "cancel raises -> order id retained")
+pend = evs(s, "cash_cleanup_pending")
+check(pend and pend[0]["failed"], "failure named in the pending line")
+
+# 8c. exchange position still non-zero -> inconsistent -> pending
+s, p, r = cash_with_cleanup("ok", exchange_qty=5)
+check(r is False, "exchange still holds shares -> not closed")
+pend = evs(s, "cash_cleanup_pending")
+check(pend and pend[0]["exchange_qty"] == 5,
+      "pending names the inconsistent exchange qty")
+
+# 8d. cleanup-pending RETRIES and later closes safely (refusal armed once)
+s = make_bot()
+p = make_pos(exit_order_id="E-1")
+p.entry_order_id = "B-1"
+s.positions[TK] = p
+s._bot_order_ids.add("B-1")
+_state = {"fail": True}
+async def flaky(tk, oid, label=""):
+    s.cancelled.append({"tk": tk, "oid": oid, "label": label})
+    if _state["fail"]:
+        return False
+    BOOK["orders"][:] = [o for o in BOOK["orders"] if o["order_id"] != oid]
+    return True
+s.cancel_order = flaky
+reset(orders=[{"order_id": "B-1", "ticker": TK, "action": "buy",
+               "yes_price_dollars": 0.45, "remaining_count_fp": 5}],
+      fills=[rc("F-1", "E-1", 5, 64, ts=1600)])
+r1 = run(s._reconcile_exit_fill_from_truth(TK, p))
+check(r1 is False and TK in s.positions, "cycle A: pending, retained")
+cyc_after_a = s._cycle_count.get(TK)
+_state["fail"] = False
+reset(orders=[{"order_id": "B-1", "ticker": TK, "action": "buy",
+               "yes_price_dollars": 0.45, "remaining_count_fp": 5}],
+      fills=[rc("F-1", "E-1", 5, 64, ts=1600)])
+r2 = run(s._reconcile_exit_fill_from_truth(TK, p))
+check(r2 is True, "cycle B: retry succeeds and closes")
+check(TK not in s.positions, "closed only after verified-clean book")
+check(s._cycle_count.get(TK) == cyc_after_a == 1,
+      "cycle armed exactly once across the retry (%s)"
+      % s._cycle_count.get(TK))
+check(evs(s, "cash_cleanup_verified"), "verified-clean line present")
+
+# 8e. cancellation races a buy FILL: exchange shows shares -> stay open
+s = make_bot()
+p = make_pos(exit_order_id="E-1")
+p.entry_order_id = "B-1"
+s.positions[TK] = p
+s._bot_order_ids.add("B-1")
+async def racing_cancel(tk, oid, label=""):
+    s.cancelled.append({"tk": tk, "oid": oid, "label": label})
+    BOOK["orders"][:] = [o for o in BOOK["orders"] if o["order_id"] != oid]
+    BOOK["positions"] = [{"ticker": TK, "position_fp": 5}]   # it FILLED
+    return True
+s.cancel_order = racing_cancel
+reset(orders=[{"order_id": "B-1", "ticker": TK, "action": "buy",
+               "yes_price_dollars": 0.45, "remaining_count_fp": 5}],
+      fills=[rc("F-1", "E-1", 5, 64, ts=1600)])
+r = run(s._reconcile_exit_fill_from_truth(TK, p))
+check(r is False, "cancel raced a fill -> NOT closed")
+check(TK in s.positions, "raced fill -> position retained for the tooth")
+pend = evs(s, "cash_cleanup_pending")
+check(pend and pend[0]["exchange_qty"] == 5,
+      "raced fill named via exchange truth")
+
+# ======================================================================
+print("--- 9. REV2: exact receipts or retry (no invented P&L) ---")
+# ======================================================================
+# 9a. receipt without a price cannot book
+s = make_bot()
+p = make_pos(exit_order_id="E-1")
+s.positions[TK] = p
+reset(fills=[{"fill_id": "F-np", "order_id": "E-1", "action": "sell",
+              "count_fp": 5, "created_time": 1600}])
+r = run(s._reconcile_exit_fill_from_truth(TK, p))
+check(r is False and p.pnl_cents == 0,
+      "receipt with NO price -> unbookable, no P&L invented")
+unc = evs(s, "phantom_cash_unconfirmed")
+check(unc and any("yes_price_dollars" in (m or [])
+                  for m in (unc[-1].get("missing") or [])),
+      "the missing truth is named: %s" % (unc[-1].get("missing") if unc
+                                          else None))
+
+# 9b. fills feed temporarily EMPTY -> retry, nothing booked
+s = make_bot()
+p = make_pos(exit_order_id="E-1")
+s.positions[TK] = p
+reset(fills=[])
+r = run(s._reconcile_exit_fill_from_truth(TK, p))
+check(r is False and TK in s.positions, "empty feed -> retry, intact")
+reset(fills=[rc("F-1", "E-1", 5, 64, ts=1600)])
+r = run(s._reconcile_exit_fill_from_truth(TK, p))
+check(r is True and p.pnl_cents == 65, "feed returns -> books exactly")
+
+# 9c. cumulative-average order status ALONE cannot book or close
+s = make_bot()
+p = make_pos(exit_order_id="E-1")
+s.positions[TK] = p
+reset(fills=[], order_resp={"E-1": {"order": {
+    "status": "executed", "fill_count_fp": 5,
+    "average_fill_price_fp": 0.66}}})
+r = run(s._reconcile_exit_fill_from_truth(TK, p))
+check(r is False, "order-status cumulative average CANNOT close the cash")
+check(p.exit_filled_qty == 0 and p.pnl_cents == 0,
+      "order-status cumulative average books NOTHING (qty %s pnl %s)"
+      % (p.exit_filled_qty, p.pnl_cents))
+check(TK in s.positions, "position intact under the silent feed")
+
+# 9d. pre-entry timestamp still excluded under strict rules
+s = make_bot()
+p = make_pos(exit_order_id="E-1")      # entry_filled_ts 500
+s.positions[TK] = p
+reset(fills=[rc("F-old", "E-1", 5, 95, ts=100)])
+r = run(s._reconcile_exit_fill_from_truth(TK, p))
+check(r is False and p.pnl_cents == 0,
+      "pre-entry receipt excluded (no P&L)")
+
+# ======================================================================
+print("--- 10. REV2: N positions do NOT cost N fills requests ---")
+# ======================================================================
+FILLS_CALLS = {"n": 0}
+_orig_get = _api_get
+async def counting_get(sess, ak, pk, path, rl):
+    if "/portfolio/fills" in path:
+        FILLS_CALLS["n"] += 1
+    return await _orig_get(sess, ak, pk, path, rl)
+M.api_get = counting_get
+try:
+    s = make_bot()
+    s.config = {"fills_bulk_ttl_sec": 30}      # one cycle
+    tickers = []
+    rows = []
+    for i in range(5):
+        tki = "KXITFMATCH-26JUL20AAA%d-AAA" % i
+        tickers.append(tki)
+        pi = make_pos(tki, exit_order_id="E-%d" % i)
+        s.positions[tki] = pi
+        row = rc("F-%d" % i, "E-%d" % i, 5, 64, ts=1600)
+        row["ticker"] = tki
+        rows.append(row)
+    reset(fills=rows)
+    FILLS_CALLS["n"] = 0
+    for i, tki in enumerate(tickers):
+        run(s._exit_receipts(tki, {"E-%d" % i}))
+    check(FILLS_CALLS["n"] == 1,
+          "5 positions -> exactly ONE fills-history request (got %d)"
+          % FILLS_CALLS["n"])
+    got = run(s._exit_receipts(tickers[3], {"E-3"}))[0]
+    check(len(got) == 1 and got[0]["order_id"] == "E-3",
+          "per-position receipts resolved from the shared fetch")
+    check(FILLS_CALLS["n"] == 1, "still one request after all lookups")
+finally:
+    M.api_get = _orig_get
+
 print("\n%s" % ("ALL REVIEW-FIX TESTS PASS" if not fails
-                else "*** %d FAILURE(S)" % fails))
+                 else "*** %d FAILURE(S)" % fails))
 sys.exit(1 if fails else 0)

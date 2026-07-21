@@ -9935,10 +9935,11 @@ class LiveV3:
                     # [LANE-A REV FIXES 1+2] the current ORDER's
                     # cumulative count is never differenced against the
                     # POSITION's cumulative total. Booking runs through
-                    # the one chokepoint on per-fill receipts (exact
-                    # prices, receipt-identity idempotent); the
-                    # order-status count is a labelled approximate
-                    # receipt used only when the feed is silent.
+                    # the one chokepoint on EXACT per-fill receipts.
+                    # [REV2 FIX 1] there is no approximate fallback: if
+                    # the receipts are not there, nothing books and the
+                    # poll retries — the engine never invents P&L from
+                    # a cumulative average or a planned exit price.
                     _bk_o = float((pos.__dict__.get(
                         "_exit_booked_by_order") or {}).get(
                             pos.exit_order_id, 0.0))
@@ -9948,25 +9949,19 @@ class LiveV3:
                         _oids.add(pos.exit_order_id)
                         _oids |= set((pos.__dict__.get(
                             "_exit_booked_by_order") or {}).keys())
-                        _rcpts = await self._exit_receipts(
-                            tk, {o for o in _oids if o})
+                        _rcpts, _defects, _feed_ok =                             await self._exit_receipts(
+                                tk, {o for o in _oids if o})
                         if not _rcpts:
-                            try:
-                                _a = order.get("average_fill_price_fp")
-                                _apx = (float(_a) * 100 if _a is not None
-                                        else float(pos.exit_price or 0))
-                            except (TypeError, ValueError):
-                                _apx = float(pos.exit_price or 0)
-                            _rcpts = [{
-                                "receipt_id": "approx:%s:%d"
-                                              % (pos.exit_order_id,
-                                                 int(filled)),
-                                "order_id": pos.exit_order_id,
-                                "action": "sell",
-                                "qty": filled - _bk_o, "price": _apx,
-                                "ts": time.time(), "approx": True}]
-                        new_exit_fills, _newpnl, _cmpl = \
-                            self._book_exit_receipts(
+                            self._log("exit_receipts_missing", {
+                                "order_fill_count": filled,
+                                "booked_for_order": _bk_o,
+                                "feed_ok": _feed_ok,
+                                "defects": [d.get("missing")
+                                            for d in _defects][:4],
+                                "law": "exact receipts or retry — no "
+                                       "approximate booking"}, ticker=tk)
+                            continue
+                        new_exit_fills, _newpnl, _cmpl =                             self._book_exit_receipts(
                                 tk, pos, _rcpts, source="exit_poll")
                         if new_exit_fills <= 0 and not _cmpl:
                             continue
@@ -14489,29 +14484,45 @@ class LiveV3:
 
     @staticmethod
     def _canon_receipt(f):
-        """[LANE-A REV FIX 2] ONE canonical per-fill receipt shape from
-        /portfolio/fills: receipt_id (fill_id, falling back to
-        trade_id), order_id, qty (count_fp), price (cents from
-        yes_price_dollars), ts. A receipt without an identity or a
-        positive quantity is not bookable."""
+        """[LANE-A REV2 FIX 1] ONE canonical per-fill receipt. A receipt
+        is BOOKABLE only with every required truth present:
+          receipt_id (fill_id, falling back to trade_id) ·
+          order_id · positive count_fp · an ACTUAL per-fill price
+          (yes_price_dollars, or yes_price) · a parseable timestamp.
+        Anything missing is named in `missing` and the receipt is NOT
+        bookable — the engine never invents P&L from a cumulative
+        average or a planned exit price."""
+        missing = []
         rid = f.get("fill_id") or f.get("trade_id") or ""
+        if not rid:
+            missing.append("fill_id/trade_id")
+        oid = str(f.get("order_id") or "")
+        if not oid:
+            missing.append("order_id")
+        q = 0.0
+        _q = f.get("count_fp", f.get("count"))
         try:
-            q = float(f.get("count_fp", f.get("count")) or 0)
+            q = float(_q) if _q is not None else 0.0
         except (TypeError, ValueError):
             q = 0.0
+        if q <= 0:
+            missing.append("count_fp")
         px = None
+        src = None
         v = f.get("yes_price_dollars")
         if v is not None:
             try:
-                px = float(v) * 100.0
+                px, src = float(v) * 100.0, "yes_price_dollars"
             except (TypeError, ValueError):
                 px = None
         if px is None and f.get("yes_price") is not None:
             try:
-                px = float(f.get("yes_price"))
+                px, src = float(f.get("yes_price")), "yes_price"
             except (TypeError, ValueError):
                 px = None
-        ts = 0.0
+        if px is None:
+            missing.append("yes_price_dollars")
+        ts = None
         for k in ("created_time", "ts", "created_ts"):
             v = f.get(k)
             if v is None:
@@ -14526,28 +14537,64 @@ class LiveV3:
                     break
                 except Exception:
                     continue
-        return {"receipt_id": str(rid), "order_id": str(f.get("order_id")
-                                                        or ""),
+        if ts is None:
+            missing.append("created_time")
+        return {"receipt_id": str(rid), "order_id": oid,
+                "ticker": str(f.get("ticker") or ""),
                 "action": str(f.get("action") or "").lower(),
-                "qty": q, "price": px, "ts": ts, "approx": False}
+                "qty": q, "price": px, "price_src": src,
+                "ts": ts, "missing": missing}
+
+    async def _fills_bulk(self):
+        """[LANE-A REV2 FIX 3] ONE fills-history request per cycle for
+        the WHOLE book, cached briefly and shared by every position —
+        so N active exits never cost N history requests (the poll
+        starvation this repair must not worsen). Returns (rows, ok);
+        ok=False means the feed is unavailable this cycle: callers name
+        the missing truth and retry, never invent."""
+        now = time.time()
+        ttl = float(self.config.get("fills_bulk_ttl_sec", 10))
+        c = self.__dict__.get("_fills_bulk_cache")
+        if c and now - c[0] < ttl:
+            return c[1], c[2]
+        rows, ok = [], False
+        try:
+            d = await api_get(self.session, self.ak, self.pk,
+                              "/trade-api/v2/portfolio/fills?limit=1000",
+                              self.rl)
+            if d is not None and "fills" in (d or {}):
+                rows = list((d or {}).get("fills") or [])
+                ok = True
+        except Exception as _fbe:
+            self._log("fills_bulk_error", {"err": str(_fbe)[:150]})
+        self._fills_bulk_cache = (now, rows, ok)
+        return rows, ok
 
     async def _exit_receipts(self, tk, order_ids):
-        """Canonical sell receipts for THIS position's exit orders only
-        (exact order_id attribution — a foreign or pre-entry sell can
-        never be attributed here)."""
-        d = await api_get(self.session, self.ak, self.pk,
-                          "/trade-api/v2/portfolio/fills?ticker=%s"
-                          "&limit=200" % tk, self.rl)
-        out = []
-        for f in ((d or {}).get("fills") or []):
+        """Canonical sell receipts for THIS position's exit orders,
+        read from the shared per-cycle bulk fetch. Returns
+        (bookable, defects, feed_ok)."""
+        rows, ok = await self._fills_bulk()
+        if not ok:
+            return [], [{"missing": ["fills_feed"]}], False
+        good, bad = [], []
+        for f in rows:
+            if str(f.get("ticker") or "") not in ("", tk):
+                continue
             r = self._canon_receipt(f)
-            if r["action"] != "sell" or r["qty"] <= 0:
+            if r["action"] != "sell":
                 continue
-            if order_ids and r["order_id"] not in order_ids:
+            if r["order_id"] and order_ids and                     r["order_id"] not in order_ids:
                 continue
-            out.append(r)
-        out.sort(key=lambda r: (r["ts"], r["receipt_id"]))
-        return out
+            if not r["order_id"] and not r["missing"]:
+                continue
+            if r["missing"]:
+                if r["order_id"] in (order_ids or set()):
+                    bad.append(r)
+                continue
+            good.append(r)
+        good.sort(key=lambda r: (r["ts"], r["receipt_id"]))
+        return good, bad, True
 
     def _book_exit_receipts(self, tk, pos, receipts, source=""):
         """[LANE-A REV FIXES 1+2 — THE ONE EXIT-BOOKING CHOKEPOINT]
@@ -14582,11 +14629,11 @@ class LiveV3:
             rid = r["receipt_id"]
             if not rid or rid in seen or r["qty"] <= 0:
                 continue
-            if entry_ts and r["ts"] and r["ts"] < entry_ts - 1:
-                continue                      # pre-entry historical sell
             price = r["price"]
-            if price is None:
-                price = float(getattr(pos, "exit_price", 0) or 0)
+            if price is None or r.get("missing"):
+                continue          # never invent P&L from a planned price
+            if r["ts"] is None or (entry_ts and r["ts"] < entry_ts - 1):
+                continue
             seen.add(rid)
             q = float(r["qty"])
             per_order[r["order_id"]] = per_order.get(r["order_id"],
@@ -14621,24 +14668,30 @@ class LiveV3:
         return newly, newpnl, complete
 
     async def _cancel_resting_buys_on_cash(self, tk, pos, why="cashed"):
-        """[LANE-A REV FIX 3] A cashed leg's armed bot-owned entry /
-        replacement BUY orders are cancelled BEFORE the position
-        closes — otherwise the cash closes the story while a live bid
-        keeps hunting a second lot. Bot-owned current-strategy orders
-        only; foreign/manual orders are never touched. (No DCA surface
-        is read or written here — that subsystem is out of scope and
-        untouched.)"""
-        n = 0
+        """[LANE-A REV2 FIX 2] CANCELLATION MUST BE CONFIRMED. A cashed
+        leg's armed bot-owned entry/replacement BUY orders are cancelled
+        and then VERIFIED against a refetch of exchange truth:
+          · "cancelled" is logged only on a confirmed True result;
+          · a False/exception leaves the order id intact, nothing is
+            cleared, nothing closes — the state goes cash_cleanup_pending
+            and retries next cycle;
+          · closure requires ZERO bot-owned current-strategy buys
+            remaining AND a consistent exchange position (no shares);
+          · foreign/manual orders are never touched, only named.
+        Returns True only when the book is verified clean.
+        (No DCA surface is read or written here — out of scope.)"""
+        attempted, confirmed, failed = 0, 0, []
         try:
             d = await api_get(self.session, self.ak, self.pk,
                               "/trade-api/v2/portfolio/orders?ticker=%s"
                               "&status=resting" % tk, self.rl)
-            mine = set(getattr(self, "_bot_order_ids", set()) or set())
-            mine |= set((getattr(self, "_order_fingerprints", None)
-                         or {}).keys())
-            _eo = str(getattr(pos, "entry_order_id", "") or "")
-            if _eo:
-                mine.add(_eo)
+            if d is None:
+                self._log("cash_cleanup_pending", {
+                    "reason": "resting_order_fetch_failed",
+                    "law": "no exchange truth — retry, never close"},
+                    ticker=tk)
+                return False
+            mine = self._bot_owned_ids(pos)
             for raw in ((d or {}).get("orders") or []):
                 o = self._canon_order(raw, tk)
                 if o["action"] != "buy" or o["remaining"] <= 0:
@@ -14649,20 +14702,88 @@ class LiveV3:
                         "law": "manual/foreign order — never cancelled"},
                         ticker=tk)
                     continue
-                await self.cancel_order(tk, o["order_id"],
-                                        "exit_cashed_%s" % why)
-                n += 1
-                self._log("cash_cleanup_buy_cancelled", {
-                    "order_id": o["order_id"][:13], "px": o["price"],
-                    "qty": o["remaining"],
-                    "law": "no resting bid survives the cash"},
-                    ticker=tk)
+                attempted += 1
+                try:
+                    ok = await self.cancel_order(
+                        tk, o["order_id"], "exit_cashed_%s" % why)
+                except Exception as _ce:
+                    failed.append((o["order_id"], str(_ce)[:60]))
+                    continue
+                if ok:
+                    confirmed += 1
+                    self._log("cash_cleanup_buy_cancelled", {
+                        "order_id": o["order_id"][:13], "px": o["price"],
+                        "qty": o["remaining"],
+                        "law": "confirmed cancel — no resting bid "
+                               "survives the cash"}, ticker=tk)
+                else:
+                    failed.append((o["order_id"], "cancel_returned_false"))
         except Exception as _cce:
             self._log("cash_cleanup_error", {"err": str(_cce)[:150]},
                       ticker=tk)
+            return False
+        # VERIFY against a refetch — the cancel result is a claim, the
+        # refetched book is the truth.
+        remaining, ex_qty = await self._cash_cleanup_state(tk, pos)
+        if remaining or ex_qty >= 1 or failed:
+            self._log("cash_cleanup_pending", {
+                "attempted": attempted, "confirmed": confirmed,
+                "failed": [(o[:13], r) for o, r in failed][:4],
+                "bot_buys_remaining": [o[:13] for o in remaining][:4],
+                "exchange_qty": ex_qty,
+                "law": "closure requires zero bot-owned buys AND "
+                       "consistent exchange truth — retrying, position "
+                       "and order ids retained"}, ticker=tk)
+            return False
         if getattr(pos, "entry_order_id", ""):
             pos.entry_order_id = ""
-        return n
+        self._log("cash_cleanup_verified", {
+            "attempted": attempted, "confirmed": confirmed,
+            "law": "book verified clean — closure may proceed"},
+            ticker=tk)
+        return True
+
+    def _bot_owned_ids(self, pos=None):
+        """Bot-owned current-strategy order ids (never foreign/manual)."""
+        mine = set(getattr(self, "_bot_order_ids", set()) or set())
+        mine |= set((getattr(self, "_order_fingerprints", None)
+                     or {}).keys())
+        if pos is not None:
+            _eo = str(getattr(pos, "entry_order_id", "") or "")
+            if _eo:
+                mine.add(_eo)
+        return mine
+
+    async def _cash_cleanup_state(self, tk, pos):
+        """Refetched truth: (bot-owned resting buy ids, exchange qty)."""
+        remaining = []
+        ex_qty = 0.0
+        try:
+            d = await api_get(self.session, self.ak, self.pk,
+                              "/trade-api/v2/portfolio/orders?ticker=%s"
+                              "&status=resting" % tk, self.rl)
+            mine = self._bot_owned_ids(pos)
+            for raw in ((d or {}).get("orders") or []):
+                o = self._canon_order(raw, tk)
+                if (o["action"] == "buy" and o["remaining"] > 0
+                        and o["order_id"] in mine):
+                    remaining.append(o["order_id"])
+        except Exception:
+            remaining.append("fetch_failed")
+        try:
+            pd = await api_get(
+                self.session, self.ak, self.pk,
+                "/trade-api/v2/portfolio/positions?ticker=%s"
+                "&count_filter=position&settlement_status=unsettled" % tk,
+                self.rl)
+            for p_ in ((pd or {}).get("market_positions") or []):
+                try:
+                    ex_qty += float(p_.get("position_fp") or 0)
+                except (TypeError, ValueError):
+                    pass
+        except Exception:
+            pass
+        return remaining, ex_qty
 
     @staticmethod
     def _canon_order(o, ticker=""):
@@ -14778,53 +14899,21 @@ class LiveV3:
                        "— the record STANDS, no deletion, retry"},
                 ticker=tk)
             return False
-        # RECEIPTS FIRST (exact per-fill prices, order-scoped). The
-        # order-status count is only a fallback when the feed is silent,
-        # and it is routed through the SAME chokepoint as a labelled
-        # approximate receipt — never a second P&L algorithm.
-        receipts = await self._exit_receipts(tk, oids)
+        # [REV2 FIX 1] EXACT RECEIPTS OR RETRY. No order-status
+        # approximation, no cumulative average, no planned price: if
+        # the truth is not on the fills feed, the record stands and we
+        # come back next cycle.
+        receipts, defects, feed_ok = await self._exit_receipts(tk, oids)
         src = "fills_receipts"
-        if not receipts:
-            for o_ in sorted(oids):
-                d = await api_get(self.session, self.ak, self.pk,
-                                  "/trade-api/v2/portfolio/orders/%s"
-                                  % o_, self.rl)
-                o = (d or {}).get("order", d) or {}
-                f = 0
-                for k in ("fill_count_fp", "count_filled",
-                          "filled_count"):
-                    v = o.get(k)
-                    if v is not None:
-                        try:
-                            f = int(float(v))
-                        except (TypeError, ValueError):
-                            f = 0
-                        break
-                if f <= 0:
-                    continue
-                booked_o = float((pos.__dict__.get(
-                    "_exit_booked_by_order") or {}).get(o_, 0.0))
-                delta = f - booked_o
-                if delta <= 0:
-                    continue
-                try:
-                    _a = o.get("average_fill_price_fp")
-                    apx = (float(_a) * 100 if _a is not None
-                           else float(getattr(pos, "exit_price", 0) or 0))
-                except (TypeError, ValueError):
-                    apx = float(getattr(pos, "exit_price", 0) or 0)
-                receipts.append({
-                    "receipt_id": "approx:%s:%d" % (o_, int(f)),
-                    "order_id": o_, "action": "sell", "qty": delta,
-                    "price": apx, "ts": time.time(), "approx": True})
-                src = "order_status_approx"
         if not receipts:
             n_att = getattr(pos, "_phantom_cash_attempts", 0) + 1
             pos._phantom_cash_attempts = n_att
             self._log("phantom_cash_unconfirmed", {
                 "engine_qty": entry_qty, "exit_order_ids": sorted(oids),
-                "attempts": n_att,
-                "law": "no sell confirmed by ORDER IDENTITY — the "
+                "attempts": n_att, "feed_ok": feed_ok,
+                "missing": [d.get("missing") for d in defects][:4],
+                "law": "no EXACT receipt (fill_id + order_id + "
+                       "count_fp + actual price + post-entry ts) — the "
                        "record STANDS, no deletion, retry next cycle"},
                 ticker=tk)
             return False
@@ -14855,13 +14944,26 @@ class LiveV3:
             # tracked, keeps its exit. Nothing closes, nothing deletes.
             self._save_v4_resting()
             return False
-        # FULL CASH: clean the book BEFORE closing the story — no armed
-        # bot-owned entry/replacement bid may outlive the cash.
-        await self._cancel_resting_buys_on_cash(tk, pos, why="phantom")
+        # FULL CASH. [REV2 FIX 2] The refusal arms FIRST and EXACTLY
+        # ONCE — no new conception may occur while cleanup is pending —
+        # then the book is cleaned and VERIFIED. Closure happens only on
+        # verified-clean truth; otherwise the position is retained in a
+        # loud cash_cleanup_pending state and retried next cycle.
         _sx = self.__dict__.setdefault("_session_exited", set())
         if tk not in _sx:
             _sx.add(tk)
             self._cycle_count[tk] = self._cycle_count.get(tk, 0) + 1
+            self._log("cash_refusal_armed", {
+                "cycle_count": self._cycle_count.get(tk),
+                "law": "cycle/session refusal armed once at the "
+                       "confirmed cash; conception refused while "
+                       "cleanup completes"}, ticker=tk)
+        clean = await self._cancel_resting_buys_on_cash(tk, pos,
+                                                        why="phantom")
+        if not clean:
+            pos.exit_filled = True
+            self._save_v4_resting()
+            return False          # retry next cycle; nothing erased
         pos.settled = True
         pos.phase = "closed"
         self.positions.pop(tk, None)

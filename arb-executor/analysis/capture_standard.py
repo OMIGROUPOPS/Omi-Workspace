@@ -114,6 +114,16 @@ def build_substrate():
         legs = {}
         ok = True
         for tk in sorted(tks):
+            # bounded pre-count: failers cost one indexed LIMIT probe,
+            # not a full print pull (the 161-games-in-90-min lesson)
+            bar = 50 if s >= DENSE0 else DENSITY_BAR
+            nquick = con.execute(
+                'SELECT COUNT(*) FROM (SELECT 1 FROM prints WHERE '
+                'ticker=? AND ts>=? AND ts<=? LIMIT ?)',
+                (tk, t8, s, bar + 1)).fetchone()[0]
+            if nquick < bar:
+                ok = False
+                break
             rows = con.execute(
                 'SELECT ts, price FROM prints WHERE ticker=? AND ts>=? '
                 'AND ts<=? ORDER BY ts', (tk, t8 - 86400, s)).fetchall()

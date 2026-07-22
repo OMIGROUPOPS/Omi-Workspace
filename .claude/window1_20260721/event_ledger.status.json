@@ -1,10 +1,15 @@
 {
   "schema_version": "window1-normalized-v1",
-  "status": "blocked_missing_complete_event_catalog",
-  "immutable": false,
-  "row_count": null,
-  "D_fit": null,
-  "D_holdout": null,
+  "status": "immutable_development_ledger",
+  "immutable": true,
+  "row_count": 804,
+  "D_development": 804,
+  "D_forward_holdout": null,
+  "sha256": "28348235eef26c10475e016614e999d83304ce01a587f890cd9f739c41269999",
+  "development_period": [
+    "2026-07-12",
+    "2026-07-20"
+  ],
   "local_prior_seed_rows_not_promoted": 187,
-  "reason": "the local prior substrate is non-exhaustive, lacks right edges, and has only one row on the first holdout day"
+  "reason": "the 804-row exchange-catalog ledger is complete for development; validation failure blocks scoring"
 }

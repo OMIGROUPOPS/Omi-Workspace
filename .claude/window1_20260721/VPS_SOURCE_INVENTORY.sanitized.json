@@ -1,0 +1,268 @@
+{
+  "schema_version": "window1-vps-source-inventory-v1",
+  "census_date_utc": "2026-07-22",
+  "path_policy": "repository-relative or logical aliases only; raw and private absolute paths are intentionally omitted",
+  "development_period": [
+    "2026-07-12",
+    "2026-07-20"
+  ],
+  "sources": {
+    "exchange_big4_catalog": {
+      "coverage": [
+        "2026-07-12",
+        "2026-07-20"
+      ],
+      "series": [
+        "ATP_CHALL",
+        "ATP_MAIN",
+        "WTA_CHALL",
+        "WTA_MAIN"
+      ],
+      "markets": 1608,
+      "events": 804,
+      "markets_per_event": 2,
+      "missing_event_ticker": 0,
+      "missing_occurrence_datetime": 0,
+      "role": "complete development denominator and exchange-listed schedule",
+      "schema_gap": "exchange-listed occurrence time is not a chronological snapshot of every schedule correction or an independently observed start"
+    },
+    "live_engine_jsonl": {
+      "logical_path": "$PROD_REPO/arb-executor/logs/live_v3_202607{12..20}*.jsonl[.gz]",
+      "coverage_et": [
+        "2026-07-12T16:20:23-04:00",
+        "2026-07-21T12:59:59-04:00"
+      ],
+      "snapshot_files": 9,
+      "snapshot_bytes": 318840280,
+      "physical_rows": 3264123,
+      "valid_json_rows": 3264122,
+      "invalid_json_rows": 1,
+      "order_placed_rows": 11475,
+      "order_error_rows": 96,
+      "entry_filled_rows": 961,
+      "overlap": "the original and recovered July-18 files overlap and require receipt deduplication",
+      "mutable_warning": "the active July-20 file grew after this exact census; counts above are a point-in-time snapshot",
+      "schema_gap": "entry_filled rows lack persisted exchange fill timestamp and exact order identity"
+    },
+    "premarket_ticks_top5": {
+      "logical_path": "$PROD_REPO/arb-executor/analysis/premarket_ticks",
+      "all_active_files_snapshot": 5710,
+      "all_active_bytes_snapshot": 7752358734,
+      "development_big4_files": 1494,
+      "development_big4_bytes": 1589606993,
+      "development_rows": null,
+      "row_count_gap": "exact decompressed CSV row census did not complete before active files changed",
+      "development_by_contract_date": {
+        "2026-07-12": {
+          "files": 192,
+          "bytes": 126899502
+        },
+        "2026-07-13": {
+          "files": 228,
+          "bytes": 153826397
+        },
+        "2026-07-14": {
+          "files": 198,
+          "bytes": 139559094
+        },
+        "2026-07-15": {
+          "files": 128,
+          "bytes": 85901269
+        },
+        "2026-07-16": {
+          "files": 84,
+          "bytes": 53388048
+        },
+        "2026-07-17": {
+          "files": 100,
+          "bytes": 71319803
+        },
+        "2026-07-18": {
+          "files": 124,
+          "bytes": 82835484
+        },
+        "2026-07-19": {
+          "files": 242,
+          "bytes": 275699943
+        },
+        "2026-07-20": {
+          "files": 198,
+          "bytes": 600177453
+        }
+      },
+      "label": "top-five only",
+      "schema_gap": "cannot prove full queue or changes below level five"
+    },
+    "depth_recorder": {
+      "logical_path": "$PROD_REPO/arb-executor/data/durable/depth_recorder",
+      "all_files": 210,
+      "all_bytes": 514762711,
+      "development_files": 189,
+      "development_bytes": 435950289,
+      "development_rows": 3079608,
+      "valid_json_rows": 3079608,
+      "rows_with_missing_or_nonpositive_last_size": 3079608,
+      "coverage_by_utc_date": {
+        "2026-07-12": {
+          "files": 13,
+          "bytes": 32063811,
+          "rows": 221814
+        },
+        "2026-07-13": {
+          "files": 18,
+          "bytes": 63574261,
+          "rows": 390126
+        },
+        "2026-07-14": {
+          "files": 23,
+          "bytes": 82576157,
+          "rows": 535340
+        },
+        "2026-07-15": {
+          "files": 24,
+          "bytes": 50910518,
+          "rows": 382886
+        },
+        "2026-07-16": {
+          "files": 24,
+          "bytes": 35754024,
+          "rows": 321484
+        },
+        "2026-07-17": {
+          "files": 24,
+          "bytes": 32695091,
+          "rows": 312061
+        },
+        "2026-07-18": {
+          "files": 24,
+          "bytes": 43710462,
+          "rows": 318130
+        },
+        "2026-07-19": {
+          "files": 23,
+          "bytes": 59158864,
+          "rows": 375618
+        },
+        "2026-07-20": {
+          "files": 16,
+          "bytes": 35507101,
+          "rows": 222149
+        }
+      },
+      "known_gap_utc": [
+        "2026-07-20T02:06:44.130000Z",
+        "2026-07-20T04:15:29.500000Z"
+      ],
+      "label": "change-deduplicated snapshot/top-20",
+      "schema_gap": "not a full causal chain; last-size field cannot establish true prints"
+    },
+    "ws_depth_recorder": {
+      "logical_path": "$PROD_REPO/arb-executor/data/durable/ws_depth_recorder",
+      "initial_snapshot_files": 42,
+      "initial_snapshot_bytes": 1010387170,
+      "coverage_present_at_initial_snapshot": [
+        "2026-07-20",
+        "2026-07-21"
+      ],
+      "july20_files_seen": 19,
+      "july20_bytes_seen": 459056180,
+      "july20_rows": null,
+      "july20_sequence_epochs": null,
+      "post_scan_state": "all July-20 files rotated out before a complete sequence census; read-only search found no local copy",
+      "development_coverage_gap": "no full-ladder archive for July 12-19 and July-20 evidence is now locally unavailable",
+      "schema_gap": "reconnect, corruption, and sequence-gap census cannot be completed without an external retained archive"
+    },
+    "subsecond_store": {
+      "logical_path": "$PROD_REPO/arb-executor/state/subsecond_store.db",
+      "bytes": 6023913472,
+      "ingest_files": 19148,
+      "ingest_declared_rows": 23715462,
+      "ingest_source_rows": {
+        "backfill": 21061384,
+        "book_transition": 1770521,
+        "public_tape": 883557,
+        "ws_log": 0
+      },
+      "physical_print_rows": null,
+      "schema_gap": "prints table lacks receipt identity; transition rows are synthetic; public-tape overlap cannot be causally deduplicated"
+    },
+    "shape_corpus": {
+      "logical_path": "$PROD_REPO/arb-executor/data/shape_corpus",
+      "files": 26,
+      "bytes": 19254032,
+      "sample_coverage": [
+        "2026-07-06",
+        "2026-07-21"
+      ],
+      "schema_gap": "local shape samples do not constitute the requested January-present corpus"
+    },
+    "schedule_and_start": {
+      "current_schedule_rows_snapshot": 1252,
+      "current_schedule_coverage_snapshot": [
+        "2026-07-18T09:05:00Z",
+        "2026-07-23T16:00:00Z"
+      ],
+      "development_schedule_rows": 196,
+      "development_dates_present": [
+        "2026-07-18",
+        "2026-07-19",
+        "2026-07-20"
+      ],
+      "observed_start_rows": 61,
+      "observed_start_coverage": [
+        "2026-07-14T20:10:55Z",
+        "2026-07-21T17:15:18Z"
+      ],
+      "milestone_rows": 12509,
+      "milestone_coverage": [
+        "2026-01-02",
+        "2026-07-18"
+      ],
+      "verified_exchange_status_starts_joined": 40,
+      "schema_gap": "rotating schedule has no July 12-17 snapshot; milestone records are not fully mapped to public event tickers"
+    },
+    "private_exchange_receipts": {
+      "raw_location": "external private research storage; omitted",
+      "fills_all_pages": 13056,
+      "fills_development_timestamp_slice": 1937,
+      "fill_pages": 14,
+      "fill_http_failures": 0,
+      "orders_all_pages": 14928,
+      "orders_development_timestamp_slice": 4391,
+      "order_pages": 15,
+      "order_http_failures": 0,
+      "schema_gap": "the current order-history endpoint returns no receipt for 6032 accepted engine IDs from July 12-16; ten sampled point queries returned not-found"
+    },
+    "normalized_private_bundle": {
+      "raw_location": "external private research storage; omitted",
+      "events": {
+        "rows": 804,
+        "bytes": 336694,
+        "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46"
+      },
+      "orders": {
+        "rows": 9447,
+        "bytes": 5557827,
+        "sha256": "655e20d9662819596c6e662f6014bfde9eafc0a57896436c13a693ac58915624"
+      },
+      "fills": {
+        "rows": 903,
+        "bytes": 278399,
+        "sha256": "a5eedb4169b3dcc69bb2e0545f2770511de4a3fb5ed69bc9b938b82ac353a769"
+      },
+      "prints": {
+        "rows": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "books": {
+        "rows": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  "credential_hygiene": {
+    "finding": "a production helper source file contains a hardcoded exchange credential",
+    "secret_value_copied_or_committed": false,
+    "required_action": "do not push the credential; rotate and remove it in the separate live-safety lane"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "window1-validation-census-v1",
+  "validation_run": "v3",
+  "gate_pass": false,
+  "pass_rule": "100_percent_exact_fills_and_nonfills",
+  "development_D": 804,
+  "entry_attempts_compared": 3332,
+  "accepted_orders_compared": 3318,
+  "failed_attempts_compared": 14,
+  "matched_failed_attempts": 0,
+  "matched_replay_fills": 0,
+  "matched_replay_nonfills": 0,
+  "mismatch_count": 3683,
+  "mismatch_types": {
+    "book": 2615,
+    "clock": 14,
+    "order_identity": 703,
+    "policy": 351
+  },
+  "book_blocked_actual_outcomes": {
+    "filled": 305,
+    "not_filled": 2310
+  },
+  "accepted_exchange_receipt_status": {
+    "canceled": 2308,
+    "executed": 307,
+    "missing_receipt": 703
+  },
+  "policy_details": {
+    "events_with_no_exact_live_entry_attempt_receipts": 292,
+    "events_without_both_leg_receipt_coverage": 59
+  },
+  "mismatch_unique_events": 804,
+  "historical_nine_pair_check": {
+    "banked_slate_rows": 80,
+    "pair_complete_rows": 9,
+    "exact_fill_receipt_reproductions": 9,
+    "required_five_contract_lot_complete": 8,
+    "note": "the ninth pair is a real two-sided fill but one leg is below the benchmark lot; the old W1 label is not adopted as the new boundary"
+  },
+  "strategy_results": {
+    "D": 804,
+    "C": null,
+    "S": null,
+    "C_over_D": null,
+    "S_over_C": null,
+    "combined_entry_delta": null,
+    "individual_leg_delta": null,
+    "reason": "validation failed; candidate scoring is forbidden"
+  },
+  "sensitivity": {
+    "raw_order_ids_included": false,
+    "raw_fill_ids_included": false,
+    "event_trade_identities_included": false,
+    "prices_or_exchange_timestamps_included": false,
+    "private_paths_included": false
+  }
+}

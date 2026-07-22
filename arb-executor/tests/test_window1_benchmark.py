@@ -1,6 +1,9 @@
 import importlib.util
+import json
 import sys
+import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 
@@ -20,6 +23,9 @@ resolve_window_end = window1.resolve_window_end
 score_outcomes = window1.score_outcomes
 valid_full_book = window1.valid_full_book
 validate_replay = window1.validate_replay
+next_complete_utc_dates = window1.next_complete_utc_dates
+period_for_day = window1.period_for_day
+load_holdout_declaration = window1.load_holdout_declaration
 
 
 def book(ticker, timestamp, quantity, *, gap=False, source="ws_depth",
@@ -71,6 +77,51 @@ def true_print(identity, ticker, timestamp, size, *, source="public_tape",
 
 
 class WindowBoundaryTests(unittest.TestCase):
+    def test_inspected_july_18_through_20_are_development(self):
+        for day in ('2026-07-18', '2026-07-19', '2026-07-20'):
+            self.assertEqual(period_for_day(day), 'fit')
+
+    def test_forward_holdout_dates_follow_freeze_utc_date(self):
+        freeze = window1.dt.datetime(
+            2026, 7, 22, 0, 1, tzinfo=window1.dt.timezone.utc)
+        self.assertEqual(next_complete_utc_dates(freeze), [
+            '2026-07-23', '2026-07-24', '2026-07-25'])
+        self.assertEqual(
+            period_for_day('2026-07-23', next_complete_utc_dates(freeze)),
+            'holdout')
+
+    def test_holdout_declaration_proves_committed_freeze_blob(self):
+        freeze = {
+            'forward_holdout': {
+                'dates': ['2026-07-23', '2026-07-24', '2026-07-25'],
+            },
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            freeze_path = root / 'window1_freeze.json'
+            freeze_path.write_text(
+                json.dumps(freeze, sort_keys=True), encoding='utf-8')
+            freeze_bytes = freeze_path.read_bytes()
+            declaration = {
+                'holdout_dates': freeze['forward_holdout']['dates'],
+                'source_freeze_sha256':
+                    window1.sha256_file(freeze_path),
+                'git_commit_sha': 'a' * 40,
+                'freeze_receipt_repo_path':
+                    '.claude/window1/window1_freeze.json',
+                'freeze_and_dates_committed_before_holdout': True,
+            }
+            declaration_path = root / 'declaration.json'
+            declaration_path.write_text(
+                json.dumps(declaration), encoding='utf-8')
+            completed = mock.Mock(
+                returncode=0, stdout=freeze_bytes, stderr=b'')
+            with mock.patch.object(
+                    window1.subprocess, 'run', return_value=completed):
+                loaded = load_holdout_declaration(
+                    declaration_path, freeze, freeze_path)
+            self.assertEqual(loaded, declaration)
+
     def test_schedule_only_gets_named_positive_corridor(self):
         end, source = resolve_window_end(
             {"scheduled_start_exchange_ts": 1_000}, 30)
@@ -223,6 +274,23 @@ class DenominatorAndMetricTests(unittest.TestCase):
 
 
 class ValidationGateTests(unittest.TestCase):
+    def test_failed_attempt_requires_exchange_rejection_receipt(self):
+        events = [{"event_id": "E1", "category": "ATP_MAIN",
+                   "event_date": "2026-07-12", "legs": ["T-A", "T-B"]}]
+        ledger, _ = build_event_ledger(events)
+        attempts = [
+            {**order("E1", "T-A", ""), "accepted": False,
+             "attempt_receipt_id": "attempt-1", "exchange_created_ts": None},
+            order("E1", "T-B", "o2"),
+        ]
+        summary, mismatches = validate_replay(
+            ledger, attempts, [], [], [book("T-B", 9, 3)])
+        self.assertFalse(summary["gate_pass"])
+        self.assertEqual(summary["failed_attempts_compared"], 1)
+        self.assertEqual(summary["matched_failed_attempts"], 0)
+        self.assertTrue(any(row["mismatch_type"] == "clock"
+                            for row in mismatches))
+
     def test_gate_matches_one_fill_and_one_nonfill(self):
         events = [{"event_id": "E1", "category": "ATP_MAIN",
                    "event_date": "2026-07-12", "legs": ["T-A", "T-B"]}]

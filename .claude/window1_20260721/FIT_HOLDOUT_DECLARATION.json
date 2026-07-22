@@ -1,19 +1,26 @@
 {
   "schema_version": "window1-normalized-v1",
   "declared_before_candidate_scoring": true,
-  "fit": {
+  "development": {
     "start": "2026-07-12",
-    "end": "2026-07-17"
-  },
-  "holdout": {
-    "start": "2026-07-18",
     "end": "2026-07-20",
+    "role": "inspected_development_and_backwalk_history",
+    "candidate_scoring_viewed": false
+  },
+  "forward_holdout": {
+    "selection_rule": "first three complete UTC dates strictly after the UTC date containing the fit freeze",
+    "dates": null,
     "evaluation_count_allowed": 1,
-    "viewed": false
+    "viewed": false,
+    "freeze_and_dates_must_be_committed_before_evaluation": true,
+    "dates_may_not_be_extended_after_viewing": true
   },
   "latest_complete_day_at_declaration": "2026-07-20",
-  "denominator_frozen": false,
+  "development_denominator_frozen": true,
+  "development_D": 804,
+  "development_ledger_sha256": "28348235eef26c10475e016614e999d83304ce01a587f890cd9f739c41269999",
+  "forward_denominator_frozen": false,
   "window1_selected_and_frozen": false,
-  "reason_not_frozen": "complete event, receipt, print, and full-book evidence bundle is not local",
+  "reason_not_frozen": "VPS validation gate failed with 3683 mismatches",
   "scoring_permitted": false
 }

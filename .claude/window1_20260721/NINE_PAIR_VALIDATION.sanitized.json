@@ -1,0 +1,85 @@
+{
+  "schema_version": "window1-nine-pair-validation-v1",
+  "source_role": "historical banked pair-complete cohort; validation evidence only",
+  "cohort_rows": 80,
+  "pair_complete_rows": 9,
+  "events": [
+    {
+      "receipt_slot": 1,
+      "both_legs_have_exact_fill_receipts": true,
+      "price_matches": true,
+      "quantity_matches_banked_record": true,
+      "last_fill_exchange_time_matches": true,
+      "meets_five_contract_lot_on_both_legs": false
+    },
+    {
+      "receipt_slot": 2,
+      "both_legs_have_exact_fill_receipts": true,
+      "price_matches": true,
+      "quantity_matches_banked_record": true,
+      "last_fill_exchange_time_matches": true,
+      "meets_five_contract_lot_on_both_legs": true
+    },
+    {
+      "receipt_slot": 3,
+      "both_legs_have_exact_fill_receipts": true,
+      "price_matches": true,
+      "quantity_matches_banked_record": true,
+      "last_fill_exchange_time_matches": true,
+      "meets_five_contract_lot_on_both_legs": true
+    },
+    {
+      "receipt_slot": 4,
+      "both_legs_have_exact_fill_receipts": true,
+      "price_matches": true,
+      "quantity_matches_banked_record": true,
+      "last_fill_exchange_time_matches": true,
+      "meets_five_contract_lot_on_both_legs": true
+    },
+    {
+      "receipt_slot": 5,
+      "both_legs_have_exact_fill_receipts": true,
+      "price_matches": true,
+      "quantity_matches_banked_record": true,
+      "last_fill_exchange_time_matches": true,
+      "meets_five_contract_lot_on_both_legs": true
+    },
+    {
+      "receipt_slot": 6,
+      "both_legs_have_exact_fill_receipts": true,
+      "price_matches": true,
+      "quantity_matches_banked_record": true,
+      "last_fill_exchange_time_matches": true,
+      "meets_five_contract_lot_on_both_legs": true
+    },
+    {
+      "receipt_slot": 7,
+      "both_legs_have_exact_fill_receipts": true,
+      "price_matches": true,
+      "quantity_matches_banked_record": true,
+      "last_fill_exchange_time_matches": true,
+      "meets_five_contract_lot_on_both_legs": true
+    },
+    {
+      "receipt_slot": 8,
+      "both_legs_have_exact_fill_receipts": true,
+      "price_matches": true,
+      "quantity_matches_banked_record": true,
+      "last_fill_exchange_time_matches": true,
+      "meets_five_contract_lot_on_both_legs": true
+    },
+    {
+      "receipt_slot": 9,
+      "both_legs_have_exact_fill_receipts": true,
+      "price_matches": true,
+      "quantity_matches_banked_record": true,
+      "last_fill_exchange_time_matches": true,
+      "meets_five_contract_lot_on_both_legs": true
+    }
+  ],
+  "aggregate": {
+    "exact_fill_receipt_reproductions": 9,
+    "five_contract_duals": 8
+  },
+  "privacy": "ordinal slots only; exact event, order, fill, price, quantity, and timestamp receipts remain in private VPS research storage"
+}

@@ -2,94 +2,150 @@
 
 ## Git identity
 
-The research branch was cut from the fetched authoritative base:
+Authoritative branch base:
 
 `193e90da406214d2e5d9b2c7b5f752ddda046895`
 
-The byte-exact benchmark implementation and all blocked-state reports are in:
+Benchmark implementation commit:
 
-`e0bb8650049763929e7c882ccc51940ddee2b07a`
+`__PIN_AFTER_EVIDENCE_COMMIT__`
 
-Do not run these commands in the production checkout.
+Branch:
 
-## Required VPS staging
+`codex/window1-definition`
 
-Create a research-only normalized directory outside Git, for example:
+Do not run these commands in the production checkout. Use a detached research worktree and external private evidence storage.
 
-`/srv/omi-research/window1-normalized-v1`
+## Research-only setup
 
-Populate the five files defined in `DATA_CONTRACT.md` from read-only copies or read-only queries of:
-
-- the exchange event catalog and chronological schedule/start receipts for every big-4 game from July 12 through July 20;
-- complete engine order and fill receipts, including non-filled entry orders and exchange timestamps;
-- the January-present subsecond print/shape corpus;
-- public tape and trade archives with receipt identities and verified sizes;
-- `premarket_ticks`, labeled top-five;
-- `depth_recorder`, labeled snapshot/top-20/change-deduplicated;
-- `ws_depth_recorder`, retaining full ladders, sequence number, epoch, reconnect, gap, and corruption flags;
-- exact engine fingerprints needed to attribute own resting volume.
-
-Do not copy credentials, environment files, account snapshots, private keys, runtime databases, raw logs, or bulk archives into the Git worktree. The normalized bundle is an external benchmark input.
-
-The local checkout does not contain a reliable raw-schema adapter for the unseen VPS `ws_depth_recorder` archive. CC must normalize that archive without changing these semantics; if a field cannot be produced, leave it missing and let the gate fail rather than infer it.
-
-## Exact benchmark commands
-
-Use a separate VPS worktree:
+The operator chooses an external path and keeps it outside Git:
 
 ```bash
+export RESEARCH_ROOT=/srv/omi-research/window1-forward-review
+export BENCHMARK_COMMIT=__PIN_AFTER_EVIDENCE_COMMIT__
 git fetch origin codex/window1-definition
-git cat-file -e e0bb8650049763929e7c882ccc51940ddee2b07a^{commit}
-git worktree add --detach /srv/omi-research/OMI-Workspace-codex-window1 e0bb8650049763929e7c882ccc51940ddee2b07a
-cd /srv/omi-research/OMI-Workspace-codex-window1
+git cat-file -e "$BENCHMARK_COMMIT^{commit}"
+git worktree add --detach "$RESEARCH_ROOT/worktree" "$BENCHMARK_COMMIT"
+cd "$RESEARCH_ROOT/worktree"
 python -B arb-executor/tests/test_window1_benchmark.py
 python -B arb-executor/tests/test_window1_policy_runner.py
 ```
 
-Set paths for the external normalized bundle and a fresh research output directory:
+Set the normalized input and fresh output paths:
 
 ```bash
-INPUT=/srv/omi-research/window1-normalized-v1
-OUTPUT=/srv/omi-research/window1-run-20260721
-SPEC=arb-executor/docs/research/window1/WINDOW1_CANDIDATES.json
-FIT=/srv/omi-research/window1-fit-outcomes.jsonl
-ABLATE=/srv/omi-research/window1-fit-ablations.jsonl
-HOLDOUT=/srv/omi-research/window1-holdout-outcomes.jsonl
-python -B arb-executor/analysis/window1_benchmark.py manifest --input-dir $INPUT --output-dir $OUTPUT
-python -B arb-executor/analysis/window1_benchmark.py ledger --input-dir $INPUT --output-dir $OUTPUT
-python -B arb-executor/analysis/window1_benchmark.py validate --input-dir $INPUT --output-dir $OUTPUT
+export INPUT="$RESEARCH_ROOT/private/normalized"
+export OUTPUT="$RESEARCH_ROOT/private/validation-output"
+export SPEC=arb-executor/docs/research/window1/WINDOW1_CANDIDATES.json
+mkdir -p "$OUTPUT"
 ```
 
-The next command is forbidden unless validation exits zero and `validation_summary.json` says `gate_pass: true`.
+The private `INPUT` directory contains the five files defined in `DATA_CONTRACT.md`. Do not place raw order/fill payloads, account data, credentials, databases, logs, or recorder archives in the worktree.
 
-Produce fit-only outcomes for all 16 boundary baselines and every declared policy. The benchmark selects the boundary first, compares policies only inside that boundary, and freezes both:
+## Current failed-gate reproduction
+
+Run only tests, manifest, ledger, and validation:
 
 ```bash
-python -B arb-executor/analysis/window1_policy_runner.py --period fit --mode candidates --input-dir $INPUT --event-ledger $OUTPUT/candidate_event_ledger.jsonl --validation-summary $OUTPUT/validation_summary.json --candidate-spec $SPEC --output $FIT
-python -B arb-executor/analysis/window1_benchmark.py fit --fit-outcomes $FIT --output-dir $OUTPUT
+python -B arb-executor/analysis/window1_benchmark.py manifest \
+  --input-dir "$INPUT" --output-dir "$OUTPUT"
+python -B arb-executor/analysis/window1_benchmark.py ledger \
+  --input-dir "$INPUT" --output-dir "$OUTPUT"
+python -B arb-executor/analysis/window1_benchmark.py validate \
+  --input-dir "$INPUT" --output-dir "$OUTPUT"
 ```
 
-Run the one-feature-family-at-a-time ablations on fit only, locked to the frozen boundary and selected policy:
+For the 2026-07-22 evidence snapshot, validation must exit 3 and report:
+
+- `floor_passing_events: 804`;
+- `entry_attempts_compared: 3332`;
+- `orders_compared: 3318`;
+- `failed_attempts_compared: 14`;
+- `mismatch_count: 3683`;
+- mismatch types `book=2615`, `clock=14`, `order_identity=703`, `policy=351`;
+- `strategy_scoring_permitted: false`.
+
+The public candidate ledger must have 804 rows and SHA-256:
+
+`28348235eef26c10475e016614e999d83304ce01a587f890cd9f739c41269999`
+
+Do not run the remaining commands on this failed evidence snapshot.
+
+## Development fit after a future passing gate
+
+Only when `validation_summary.json` says `gate_pass: true` may the full July 12–20 development period be scored:
 
 ```bash
-python -B arb-executor/analysis/window1_policy_runner.py --period fit --mode ablations --input-dir $INPUT --event-ledger $OUTPUT/candidate_event_ledger.jsonl --validation-summary $OUTPUT/validation_summary.json --candidate-spec $SPEC --freeze $OUTPUT/window1_freeze.json --output $ABLATE
-python -B arb-executor/analysis/window1_benchmark.py ablate --fit-outcomes $ABLATE --output-dir $OUTPUT
+export FIT="$RESEARCH_ROOT/private/window1-development-outcomes.jsonl"
+export ABLATE="$RESEARCH_ROOT/private/window1-development-ablations.jsonl"
+python -B arb-executor/analysis/window1_policy_runner.py \
+  --period fit --mode candidates \
+  --input-dir "$INPUT" \
+  --event-ledger "$OUTPUT/candidate_event_ledger.jsonl" \
+  --validation-summary "$OUTPUT/validation_summary.json" \
+  --candidate-spec "$SPEC" --output "$FIT"
+python -B arb-executor/analysis/window1_benchmark.py fit \
+  --fit-outcomes "$FIT" --output-dir "$OUTPUT"
+python -B arb-executor/analysis/window1_policy_runner.py \
+  --period fit --mode ablations \
+  --input-dir "$INPUT" \
+  --event-ledger "$OUTPUT/candidate_event_ledger.jsonl" \
+  --validation-summary "$OUTPUT/validation_summary.json" \
+  --candidate-spec "$SPEC" \
+  --freeze "$OUTPUT/window1_freeze.json" --output "$ABLATE"
+python -B arb-executor/analysis/window1_benchmark.py ablate \
+  --fit-outcomes "$ABLATE" --output-dir "$OUTPUT"
 ```
 
-Only then may the runner evaluate the single frozen candidate on 2026-07-18 through 2026-07-20. Run the untouched holdout exactly once:
+The fit command freezes the boundary, policy, development-ledger subset hash, metrics, input hash, freeze timestamp, and the first three complete UTC dates strictly after the UTC freeze date.
+
+## Required commit ceremony before holdout
+
+Copy only the sanitized freeze receipt into the research branch, commit it and its three dates, then create a declaration bound to that commit and the freeze hash. The declaration schema is:
+
+```json
+{
+  "holdout_dates": ["YYYY-MM-DD", "YYYY-MM-DD", "YYYY-MM-DD"],
+  "source_freeze_sha256": "<sha256 of window1_freeze.json>",
+  "git_commit_sha": "<full SHA of the commit containing the freeze and dates>",
+  "freeze_receipt_repo_path": ".claude/window1_20260721/window1_freeze.json",
+  "freeze_and_dates_committed_before_holdout": true
+}
+```
+
+Commit the declaration before opening holdout evidence. The gate reads `freeze_receipt_repo_path` directly from `git_commit_sha` and requires its blob hash to match the external freeze. Different dates, a different freeze hash, an absent committed blob, an unsafe path, or a non-full Git SHA is rejected.
+
+## Exactly one forward holdout
+
+After all three registered UTC dates are complete, append their public event rows to `events.jsonl`, rebuild the ledger with the committed declaration, and verify that the development subset hash is unchanged:
 
 ```bash
-python -B arb-executor/analysis/window1_policy_runner.py --period holdout --mode candidates --input-dir $INPUT --event-ledger $OUTPUT/candidate_event_ledger.jsonl --validation-summary $OUTPUT/validation_summary.json --candidate-spec $SPEC --freeze $OUTPUT/window1_freeze.json --output $HOLDOUT
-python -B arb-executor/analysis/window1_benchmark.py holdout --holdout-outcomes $HOLDOUT --output-dir $OUTPUT
+export HOLDOUT_DECL="$RESEARCH_ROOT/worktree/.claude/window1_20260721/FORWARD_HOLDOUT_DECLARATION.json"
+export HOLDOUT="$RESEARCH_ROOT/private/window1-forward-holdout-outcomes.jsonl"
+python -B arb-executor/analysis/window1_benchmark.py ledger \
+  --input-dir "$INPUT" --output-dir "$OUTPUT" \
+  --holdout-declaration "$HOLDOUT_DECL"
+python -B arb-executor/analysis/window1_policy_runner.py \
+  --period holdout --mode candidates \
+  --input-dir "$INPUT" \
+  --event-ledger "$OUTPUT/candidate_event_ledger.jsonl" \
+  --validation-summary "$OUTPUT/validation_summary.json" \
+  --candidate-spec "$SPEC" \
+  --freeze "$OUTPUT/window1_freeze.json" \
+  --holdout-declaration "$HOLDOUT_DECL" \
+  --output "$HOLDOUT"
+python -B arb-executor/analysis/window1_benchmark.py holdout \
+  --holdout-outcomes "$HOLDOUT" --output-dir "$OUTPUT" \
+  --holdout-declaration "$HOLDOUT_DECL"
 ```
 
-The holdout command rejects a changed event-ledger hash, a candidate other than the fit selection, a non-holdout row, or an existing holdout result.
+The holdout is exactly those three dates and exactly one evaluation. If `D` is too small for stability, report that fact; do not extend or shop dates.
 
-## Exit codes
+## Exit codes and scope
 
 - `0`: command passed its contract;
 - `2`: manifest or ledger incomplete;
 - `3`: validation gate failed;
 - `4`: scoring blocked by a contract or freeze violation.
 
-No command deploys, reaches the exchange, touches positions, modifies production configuration, or reads an exit result.
+These commands do not deploy, reach the exchange, touch orders or positions, modify production configuration, use DCA, consume Window 2, or analyze exits.

@@ -23,6 +23,7 @@ from window1_benchmark import (
     FULL_BOOK_SOURCE,
     REQUIRED_LOT,
     canonical_true_prints,
+    load_holdout_declaration,
     parse_exchange_ts,
     read_jsonl,
     replay_resting_buy,
@@ -652,6 +653,12 @@ def run(args: argparse.Namespace) -> int:
         if not args.freeze:
             raise BenchmarkError('--freeze is required for holdout')
         freeze = load_json(Path(args.freeze).resolve())
+        if not args.holdout_declaration:
+            raise BenchmarkError(
+                '--holdout-declaration is required before holdout access')
+        load_holdout_declaration(
+            Path(args.holdout_declaration).resolve(), freeze,
+            Path(args.freeze).resolve())
         if freeze.get('holdout_viewed') is True:
             raise BenchmarkError('holdout was already viewed')
         if not freeze.get('selected_window_definition'):
@@ -715,6 +722,7 @@ def parser() -> argparse.ArgumentParser:
     root.add_argument('--candidate-spec', required=True)
     root.add_argument('--output', required=True)
     root.add_argument('--freeze')
+    root.add_argument('--holdout-declaration')
     return root
 
 

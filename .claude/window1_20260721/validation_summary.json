@@ -2,13 +2,23 @@
   "schema_version": "window1-normalized-v1",
   "benchmark_version": "window1-benchmark-v1",
   "gate_pass": false,
-  "gate_stage": "input_coverage_before_event_comparison",
-  "orders_compared": 0,
+  "gate_stage": "complete_event_level_attempt_comparison",
+  "floor_passing_events": 804,
+  "entry_attempts_compared": 3332,
+  "orders_compared": 3318,
+  "failed_attempts_compared": 14,
+  "matched_failed_attempts": 0,
   "matched_fills": 0,
   "matched_nonfills": 0,
-  "mismatch_count": 14,
+  "mismatch_count": 3683,
+  "mismatch_types": {
+    "book": 2615,
+    "clock": 14,
+    "order_identity": 703,
+    "policy": 351
+  },
   "strategy_scoring_permitted": false,
-  "D": null,
+  "D": 804,
   "C": null,
   "S": null
 }

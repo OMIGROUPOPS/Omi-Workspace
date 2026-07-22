@@ -18,7 +18,9 @@ import datetime as dt
 import hashlib
 import json
 import math
+import re
 import statistics
+import subprocess
 import sys
 from collections import Counter, defaultdict
 from dataclasses import dataclass
@@ -38,10 +40,9 @@ TRUE_PRINT_SOURCES = {
     "exchange_trade",
 }
 FULL_BOOK_SOURCE = "ws_depth"
-FIT_START = "2026-07-12"
-FIT_END = "2026-07-17"
-HOLDOUT_START = "2026-07-18"
-HOLDOUT_END = "2026-07-20"
+DEVELOPMENT_START = "2026-07-12"
+DEVELOPMENT_END = "2026-07-20"
+FORWARD_HOLDOUT_DAYS = 3
 ALLOWED_FLOOR_EXCLUSION = "verified_pre_window_cancel_or_void"
 FORBIDDEN_OUTCOME_KEYS = {
     "exit",
@@ -162,12 +163,89 @@ def event_day(row: Mapping[str, Any]) -> str:
             f"event {row.get('event_id')} lacks ISO event_date") from exc
 
 
-def period_for_day(day: str) -> str:
-    if FIT_START <= day <= FIT_END:
+def period_for_day(
+    day: str,
+    forward_holdout_dates: Sequence[str] = (),
+) -> str:
+    """Classify a day without pretending inspected history is untouched."""
+    if DEVELOPMENT_START <= day <= DEVELOPMENT_END:
         return "fit"
-    if HOLDOUT_START <= day <= HOLDOUT_END:
+    if day in set(forward_holdout_dates):
         return "holdout"
     return "outside_operational_period"
+
+
+def next_complete_utc_dates(freeze_timestamp: dt.datetime) -> list[str]:
+    """Return the three whole UTC dates strictly after the freeze date."""
+    if freeze_timestamp.tzinfo is None:
+        raise BenchmarkError("freeze timestamp must be timezone-aware")
+    anchor = freeze_timestamp.astimezone(dt.timezone.utc).date()
+    return [
+        (anchor + dt.timedelta(days=offset)).isoformat()
+        for offset in range(1, FORWARD_HOLDOUT_DAYS + 1)
+    ]
+
+
+def load_holdout_declaration(
+    path: Path,
+    freeze: Mapping[str, Any],
+    freeze_path: Path,
+) -> dict[str, Any]:
+    """Validate the external receipt proving freeze/dates were committed."""
+    try:
+        declaration = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise BenchmarkError(f"cannot read holdout declaration: {exc}") from exc
+    if not isinstance(declaration, dict):
+        raise BenchmarkError("holdout declaration must be a JSON object")
+    expected_dates = (freeze.get("forward_holdout") or {}).get("dates")
+    if declaration.get("holdout_dates") != expected_dates:
+        raise BenchmarkError("holdout declaration changed the frozen dates")
+    if declaration.get("source_freeze_sha256") != sha256_file(freeze_path):
+        raise BenchmarkError("holdout declaration does not match the freeze receipt")
+    commit_sha = str(declaration.get("git_commit_sha") or "")
+    if not re.fullmatch(r"[0-9a-f]{40}", commit_sha):
+        raise BenchmarkError("holdout declaration lacks a full committed Git SHA")
+    receipt_path = str(declaration.get("freeze_receipt_repo_path") or "")
+    receipt_parts = receipt_path.split("/")
+    if (not receipt_path or receipt_path.startswith("/")
+            or chr(92) in receipt_path or ".." in receipt_parts):
+        raise BenchmarkError("holdout declaration has an unsafe freeze receipt path")
+    repo_root = Path(__file__).resolve().parents[2]
+    committed = subprocess.run(
+        ["git", "-C", str(repo_root), "show",
+         f"{commit_sha}:{receipt_path}"],
+        check=False, capture_output=True)
+    if committed.returncode != 0:
+        raise BenchmarkError(
+            "declared Git commit does not contain the freeze receipt")
+    committed_sha256 = hashlib.sha256(committed.stdout).hexdigest()
+    if committed_sha256 != declaration.get("source_freeze_sha256"):
+        raise BenchmarkError(
+            "committed freeze receipt does not match the external freeze")
+    if declaration.get("freeze_and_dates_committed_before_holdout") is not True:
+        raise BenchmarkError("freeze and holdout dates were not committed before holdout")
+    return declaration
+
+
+def ledger_subset_sha256(
+    rows: Sequence[Mapping[str, Any]],
+    period: str,
+) -> str:
+    """Hash one period so future holdout rows cannot rewrite development."""
+    normalized = []
+    for row in rows:
+        if row.get("period") != period:
+            continue
+        normalized.append({key: value for key, value in row.items()
+                           if key != "_line"})
+    normalized.sort(key=lambda row: (str(row.get("event_date") or ""),
+                                     str(row.get("event_id") or "")))
+    digest = hashlib.sha256()
+    for row in normalized:
+        digest.update(json_dump(row).encode("utf-8"))
+        digest.update(b"\n")
+    return digest.hexdigest()
 
 
 def resolve_window_end(event: Mapping[str, Any], corridor_minutes: int) -> tuple[float, str]:
@@ -488,6 +566,7 @@ def replay_resting_buy(
 
 def build_event_ledger(
     events: Sequence[Mapping[str, Any]],
+    forward_holdout_dates: Sequence[str] = (),
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     ledger: list[dict[str, Any]] = []
     errors: list[dict[str, Any]] = []
@@ -511,7 +590,7 @@ def build_event_ledger(
             errors.append({"event_id": event_id,
                            "mismatch_type": "schedule", "detail": str(exc)})
             continue
-        period = period_for_day(day)
+        period = period_for_day(day, forward_holdout_dates)
         if period == "outside_operational_period":
             continue
         exclusion = event.get("floor_exclusion")
@@ -598,12 +677,16 @@ def validate_replay(
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     mismatches: list[dict[str, Any]] = [dict(row) for row in inherited_errors]
     passing_events = {str(row["event_id"]) for row in ledger if row["floor_pass"]}
-    entry_orders = [row for row in orders
-                    if str(row.get("event_id") or "") in passing_events
-                    and row.get("purpose") == "entry"
-                    and row.get("action") == "buy"]
+    entry_attempts = [row for row in orders
+                      if str(row.get("event_id") or "") in passing_events
+                      and row.get("purpose") == "entry"
+                      and row.get("action") == "buy"]
+    failed_attempts = [row for row in entry_attempts
+                       if row.get("accepted") is False]
+    entry_orders = [row for row in entry_attempts
+                    if row.get("accepted") is not False]
     orders_by_event: dict[str, list[Mapping[str, Any]]] = defaultdict(list)
-    for order in entry_orders:
+    for order in entry_attempts:
         orders_by_event[str(order.get("event_id"))].append(order)
     for event_id in sorted(passing_events):
         event_orders = orders_by_event.get(event_id, [])
@@ -622,8 +705,46 @@ def validate_replay(
                 "detail": "live receipt set does not cover both event legs",
             })
     compared = 0
+    matched_failed_attempts = 0
     matched_fills = 0
     matched_nonfills = 0
+    for attempt in failed_attempts:
+        attempt_identity = (attempt.get("attempt_id")
+                            or attempt.get("attempt_receipt_id")
+                            or attempt.get("order_id"))
+        base = {
+            "event_id": str(attempt.get("event_id") or ""),
+            "ticker": attempt.get("ticker"),
+            "leg": attempt.get("leg"),
+            "attempt_receipt_id": attempt_identity,
+            "posted_price_cents": attempt.get("price_cents"),
+            "ordered_quantity": attempt.get("quantity"),
+        }
+        if not attempt_identity:
+            mismatches.append({
+                **base,
+                "mismatch_type": "order_identity",
+                "detail": "failed entry attempt lacks a stable attempt receipt",
+            })
+            continue
+        try:
+            parse_exchange_ts(attempt.get("exchange_rejected_ts"),
+                              "order.exchange_rejected_ts")
+        except BenchmarkError as exc:
+            mismatches.append({
+                **base,
+                "mismatch_type": "clock",
+                "detail": str(exc),
+            })
+            continue
+        if not attempt.get("exchange_rejection_code"):
+            mismatches.append({
+                **base,
+                "mismatch_type": "source",
+                "detail": "failed entry attempt lacks exchange rejection code",
+            })
+            continue
+        matched_failed_attempts += 1
     for order in entry_orders:
         compared += 1
         event_id = str(order.get("event_id") or "")
@@ -691,14 +812,17 @@ def validate_replay(
             matched_fills += 1
         else:
             matched_nonfills += 1
-    gate_pass = compared > 0 and not mismatches
+    gate_pass = bool(entry_attempts) and not mismatches
     summary = {
         "schema_version": SCHEMA_VERSION,
         "benchmark_version": BENCHMARK_VERSION,
         "gate_pass": gate_pass,
         "pass_rule": "100_percent_exact_fills_and_nonfills",
         "floor_passing_events": len(passing_events),
+        "entry_attempts_compared": len(entry_attempts),
         "orders_compared": compared,
+        "failed_attempts_compared": len(failed_attempts),
+        "matched_failed_attempts": matched_failed_attempts,
         "matched_fills": matched_fills,
         "matched_nonfills": matched_nonfills,
         "mismatch_count": len(mismatches),
@@ -916,7 +1040,16 @@ def command_ledger(args: argparse.Namespace) -> int:
     input_dir = Path(args.input_dir).resolve()
     output_dir = Path(args.output_dir).resolve()
     events, parse_errors = read_jsonl(input_dir / "events.jsonl")
-    ledger, ledger_errors = build_event_ledger(events)
+    holdout_dates: Sequence[str] = ()
+    declaration_path = getattr(args, "holdout_declaration", None)
+    if declaration_path:
+        declaration = json.loads(
+            Path(declaration_path).read_text(encoding="utf-8"))
+        holdout_dates = declaration.get("holdout_dates") or ()
+        if (not isinstance(holdout_dates, list)
+                or len(holdout_dates) != FORWARD_HOLDOUT_DAYS):
+            raise BenchmarkError("ledger holdout declaration must name three dates")
+    ledger, ledger_errors = build_event_ledger(events, holdout_dates)
     path = output_dir / "candidate_event_ledger.jsonl"
     write_jsonl(path, ledger)
     summary = {
@@ -924,6 +1057,8 @@ def command_ledger(args: argparse.Namespace) -> int:
         "immutable": True,
         "sha256": sha256_file(path),
         "rows": len(ledger),
+        "development_period": [DEVELOPMENT_START, DEVELOPMENT_END],
+        "forward_holdout_dates": list(holdout_dates),
         "D_fit": sum(row["floor_pass"] and row["period"] == "fit" for row in ledger),
         "D_holdout": sum(row["floor_pass"] and row["period"] == "holdout" for row in ledger),
         "excluded": sum(not row["floor_pass"] for row in ledger),
@@ -1048,6 +1183,8 @@ def command_fit(args: argparse.Namespace) -> int:
                                    candidate_id=candidate_id)
                     for candidate_id in ablation_ids],
     })
+    freeze_created = dt.datetime.now(dt.timezone.utc)
+    forward_dates = next_complete_utc_dates(freeze_created)
     freeze = {
         "schema_version": SCHEMA_VERSION,
         "benchmark_version": BENCHMARK_VERSION,
@@ -1062,8 +1199,19 @@ def command_fit(args: argparse.Namespace) -> int:
         "fit_outcomes_sha256": sha256_file(outcomes_path),
         "event_ledger_sha256": sha256_file(
             output_dir / "candidate_event_ledger.jsonl"),
-        "fit_period": [FIT_START, FIT_END],
-        "holdout_period": [HOLDOUT_START, HOLDOUT_END],
+        "freeze_created_utc": freeze_created.isoformat(),
+        "fit_period": [DEVELOPMENT_START, DEVELOPMENT_END],
+        "fit_role": "development_backwalk_inspected_history",
+        "development_event_ledger_sha256": ledger_subset_sha256(
+            ledger, "fit"),
+        "forward_holdout": {
+            "dates": forward_dates,
+            "selection_rule": (
+                "first three complete UTC dates strictly after the UTC date "
+                "containing the fit freeze"),
+            "evaluation_count_allowed": 1,
+            "freeze_and_dates_must_be_committed_before_evaluation": True,
+        },
         "required_lot_per_leg": REQUIRED_LOT,
         "par_cents": PAR_CENTS,
         "legacy_le_97_reported_separately": True,
@@ -1155,12 +1303,21 @@ def command_holdout(args: argparse.Namespace) -> int:
     if not freeze_path.is_file():
         raise BenchmarkError("fit-only Window-1 freeze is missing")
     freeze = json.loads(freeze_path.read_text(encoding="utf-8"))
+    if not args.holdout_declaration:
+        raise BenchmarkError(
+            "--holdout-declaration is required; freeze and dates must be committed")
+    declaration = load_holdout_declaration(
+        Path(args.holdout_declaration).resolve(), freeze, freeze_path)
     ledger, ledger_errors = load_ledger(output_dir)
     if ledger_errors:
         raise BenchmarkError("immutable ledger failed hash/parse validation")
-    if freeze.get("event_ledger_sha256") != sha256_file(
-            output_dir / "candidate_event_ledger.jsonl"):
-        raise BenchmarkError("denominator changed after fit freeze")
+    if freeze.get("development_event_ledger_sha256") != ledger_subset_sha256(
+            ledger, "fit"):
+        raise BenchmarkError("development denominator changed after fit freeze")
+    holdout_dates = set(declaration["holdout_dates"])
+    if any(row.get("period") == "holdout"
+           and row.get("event_date") not in holdout_dates for row in ledger):
+        raise BenchmarkError("holdout ledger contains an unregistered date")
     outcomes_path = Path(args.holdout_outcomes).resolve()
     outcomes, errors = read_jsonl(outcomes_path)
     if errors:
@@ -1182,6 +1339,10 @@ def command_holdout(args: argparse.Namespace) -> int:
         result["C_over_D"] is not None and result["C_over_D"] >= 0.75)
     result["combined_entry_cost_target"] = "strictly_below_100_cents"
     result["holdout_outcomes_sha256"] = sha256_file(outcomes_path)
+    result["holdout_dates"] = declaration["holdout_dates"]
+    result["freeze_and_dates_commit_sha"] = declaration["git_commit_sha"]
+    result["stability_note"] = (
+        "fixed three-UTC-date forward sample; do not extend after viewing")
     result["one_shot"] = True
     write_json(result_path, result)
     freeze["holdout_viewed"] = True
@@ -1200,6 +1361,8 @@ def parser() -> argparse.ArgumentParser:
         command = sub.add_parser(name)
         command.add_argument("--input-dir", required=True)
         command.add_argument("--output-dir", required=True)
+        if name == "ledger":
+            command.add_argument("--holdout-declaration")
         command.set_defaults(handler=handler)
     fit = sub.add_parser("fit")
     fit.add_argument("--fit-outcomes", required=True)
@@ -1212,6 +1375,7 @@ def parser() -> argparse.ArgumentParser:
     holdout = sub.add_parser("holdout")
     holdout.add_argument("--holdout-outcomes", required=True)
     holdout.add_argument("--output-dir", required=True)
+    holdout.add_argument("--holdout-declaration", required=True)
     holdout.set_defaults(handler=command_holdout)
     return root
 

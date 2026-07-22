@@ -14,9 +14,13 @@ An exclusion requires `floor_exclusion=verified_pre_window_cancel_or_void` and `
 
 ### `orders.jsonl`
 
-One row per official engine order receipt. Required entry fields are `event_id`, `ticker`, `leg`, `order_id`, `client_order_id`, `purpose=entry`, `action=buy`, `price_cents`, `quantity`, `exchange_created_ts`, and an exchange-timestamped lifetime end in `exchange_cancelled_ts`, `exchange_expired_ts`, or `evaluation_end_exchange_ts`.
+One row per engine entry attempt, including rejected or failed submissions.
 
-Local timestamps are retained only as metadata. The order id and client-order id are the ownership fingerprint. Aggregate book volume alone cannot identify our order.
+An accepted order has `accepted=true` and requires `event_id`, `ticker`, `leg`, `order_id`, `client_order_id`, `purpose=entry`, `action=buy`, `price_cents`, `quantity`, `exchange_created_ts`, and an exchange-timestamped lifetime end in `exchange_cancelled_ts`, `exchange_expired_ts`, or `evaluation_end_exchange_ts`.
+
+A rejected attempt has `accepted=false` and requires a stable `attempt_id`, the same event/ticker/leg/price/quantity fields, `exchange_rejected_ts`, and `exchange_rejection_code`. A local engine error with no exchange rejection timestamp remains a named `clock` mismatch; local logging cannot manufacture a rejected exchange receipt.
+
+Local timestamps are retained only as metadata. Accepted-order ownership comes from exact order and client-order fingerprints. Aggregate book volume alone cannot identify our order.
 
 ### `fills.jsonl`
 
@@ -48,7 +52,7 @@ The benchmark ignores and should reject any exit, settlement, Window-2, or reali
 
 ## Validation mismatch classes
 
-- `clock`: exchange time missing, invalid, or not exactly reproduced;
+- `clock`: exchange creation, rejection, fill, cancellation, or expiry time missing, invalid, or not exactly reproduced;
 - `price`: posted or fill price mismatch;
 - `quantity`: required lot or cumulative fill mismatch;
 - `queue`: cancellation ownership or queue interval prevents an exact answer;

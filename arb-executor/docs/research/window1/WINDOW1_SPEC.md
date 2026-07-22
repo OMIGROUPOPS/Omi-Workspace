@@ -1,6 +1,6 @@
 # Window-1 definition and freeze protocol
 
-Status: **selection protocol frozen before candidate scoring; empirical Window-1 selection is blocked because the complete operational evidence bundle is not local.** No candidate is called the frozen Window-1 until the validation gate passes and the fit-only command writes `window1_freeze.json`.
+Status: **selection protocol frozen before candidate scoring; empirical Window-1 selection is blocked because the VPS validation gate fails.** The complete July 12–20 public event universe is ledgered, but causal book, print, and order-receipt gaps prohibit candidate scoring. No candidate is called the frozen Window-1 until validation passes and the development-only fit command writes `window1_freeze.json`.
 
 Research base: `193e90da406214d2e5d9b2c7b5f752ddda046895`, the fetched `origin/blend/kalshi-occ-fallback` tip used to create `codex/window1-definition` on 2026-07-21.
 
@@ -59,7 +59,7 @@ Boundary sensitivity must publish all 16 left-edge and corridor combinations on 
 3. then minimize mean combined-vs-par delta;
 4. then deterministic candidate id.
 
-No boundary result is locally published because the validation gate cannot be run from the local evidence.
+No boundary result is published because the VPS validation run returned 3,683 mismatches. The gate was run; it did not pass.
 
 ## Entry-policy candidates
 
@@ -102,11 +102,13 @@ Queue cancellation ownership is bounded. A simulated fill is exact only if even 
 
 The gate compares every official entry order on every floor-passing operational event, including orders that never filled. It requires exact agreement on event, ticker, leg, order identity, posted price, quantity, exchange clock, fill or non-fill, first-fill time, completion time, and combined entry cost. Passing means 100 percent agreement and at least one compared order; there is no 90-percent or aggregate-pair substitute.
 
-The chronological split was declared before candidate scoring:
+The amended chronological split was declared before any candidate scoring:
 
-- fit: 2026-07-12 through 2026-07-17;
-- untouched holdout: 2026-07-18 through 2026-07-20.
+- development/backwalk history: 2026-07-12 through 2026-07-20 inclusive;
+- forward holdout: the first three complete UTC dates strictly after the UTC date containing the eventual fit freeze.
 
-Boundary selection, policy tuning, and ablation occur on fit only. The fit command freezes the event-ledger hash, selected boundary and policy id, metric constants, and fit-input hash. The holdout command accepts only that candidate, refuses a changed ledger, and refuses to run if a holdout result already exists.
+July 18–20 is inspected history and is not untouched. Boundary selection, policy tuning, and ablation may use the full development period only. The fit command freezes the development-ledger subset hash, selected boundary and policy id, metric constants, fit-input hash, freeze timestamp, and the three forward dates. The freeze receipt and those dates must be committed before the holdout ledger is built or any holdout evidence is opened.
 
-Current freeze state: **not empirically frozen**. Current validation state: **failed before event comparison because required local inputs are absent**. Therefore `D`, `C`, and `S` are not printed as strategy results, the 75-percent target is not adjudicated, and no ceiling is claimed.
+The forward sample is never extended after viewing. If its `D` is too small for a stable claim, the report says so. The holdout runner accepts only the frozen candidate and a declaration tied to the committed freeze receipt, rejects a changed development subset, rejects unregistered holdout dates, and refuses a second result.
+
+Current development-ledger state: **immutable, 804/804 floor-passing big-4 events, SHA-256 `28348235eef26c10475e016614e999d83304ce01a587f890cd9f739c41269999`**. Current freeze state: **not empirically frozen**. Current validation state: **failed after event-level comparison**. Therefore strategy `C` and `S`, delta distributions, the 75-percent target, and an empirical ceiling are not adjudicated.

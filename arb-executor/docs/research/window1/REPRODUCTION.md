@@ -8,7 +8,7 @@ Authoritative branch base:
 
 Benchmark implementation commit:
 
-`__PIN_AFTER_EVIDENCE_COMMIT__`
+`881c290df360cf534cb0e504ef1b0bd2676051e3`
 
 Branch:
 
@@ -22,7 +22,7 @@ The operator chooses an external path and keeps it outside Git:
 
 ```bash
 export RESEARCH_ROOT=/srv/omi-research/window1-forward-review
-export BENCHMARK_COMMIT=__PIN_AFTER_EVIDENCE_COMMIT__
+export BENCHMARK_COMMIT=881c290df360cf534cb0e504ef1b0bd2676051e3
 git fetch origin codex/window1-definition
 git cat-file -e "$BENCHMARK_COMMIT^{commit}"
 git worktree add --detach "$RESEARCH_ROOT/worktree" "$BENCHMARK_COMMIT"

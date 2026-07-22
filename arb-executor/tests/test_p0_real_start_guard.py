@@ -66,6 +66,7 @@ async def _api_post(sess, ak, pk, path, payload, rl):
     return {"order": {"order_id": oid, "status": "resting"}}
 
 async def _api_delete(sess, ak, pk, path, rl):
+    await asyncio.sleep(0)   # real I/O yields -> exercises _mgmt_inflight serialization
     oid = path.rsplit("/", 1)[-1]
     DELETED.append(oid)
     o = ORDERS.get(oid)
@@ -82,7 +83,7 @@ REAL = ("_entry_start_gate", "_strong_live_evidence", "_gun_stamp",
         "_place_order_unlocked", "place_order", "_cancel_entry_and_resolve",
         "_start_gate_cancel_resting", "cancel_order", "_untombstone_entry",
         "_parse_entry_fill", "_book_v4_entry_fill", "_gun_sweep_entry_bids",
-        "_v4_manage_resting_inner")
+        "_v4_manage_resting_inner", "_v4_manage_resting", "validate_resting_buys")
 
 def make_bot():
     s = types.SimpleNamespace()
@@ -101,6 +102,8 @@ def make_bot():
     s._pm_honest = {}
     s._trade_times = {}
     s._booking_inflight = set()
+    s._mgmt_inflight = set()
+    s._os_shadow = lambda *a, **k: None
     s._fv_burst = {}
     s.n_entries = 0
     s.processed_events = set()
@@ -115,7 +118,10 @@ def make_bot():
         return None
     async def _mc(tk, pos, book, now):
         s.completion_calls.append(tk)
-    s._v4_apply_exit = _noop
+    s.exit_calls = []
+    async def _apply_exit(tk, pos, fp, filled):
+        s.exit_calls.append(tk)
+    s._v4_apply_exit = _apply_exit
     s._cancel_sibling_if_paired_over_cap = _noop
     s._reaim_sibling_on_arrival = _noop
     s._v4_manage_completion = _mc
@@ -142,7 +148,13 @@ def mkpos(tk, order_id, qty=0, mode="resting_maker", price=85):
     p.walk_ref = price
     p.staircase_ref = price
     p.match_start_ts = 0
+    p.entry_posted_ts = 0
+    p.legacy = False
     return p
+
+class FakeBook:
+    def __init__(self, age_sec):
+        self.updated = time.time() - age_sec
 
 def evs(s, name):
     return [d for (e, d, t) in s.logs if e == name]
@@ -207,7 +219,7 @@ for label, setup in (("unknown", lambda s: None),
     p = mkpos(MAY, "MAY-OID")
     s.positions[MAY] = p
     ORDERS["MAY-OID"] = {"order_id": "MAY-OID", "status": "resting", "fill_count_fp": 0}
-    run(s._v4_manage_resting_inner(MAY, p, None, time.time()))
+    run(s._v4_manage_resting(MAY, p, None, time.time()))
     check("MAY-OID" in DELETED, "C.%s resting maker bid CANCELLED via api_delete (real path)" % label)
     check(MAY not in s.positions, "C.%s leg untombstoned after confirmed cancel" % label)
     check(bool(evs(s, "post_start_entry_cancelled")), "C.%s post_start_entry_cancelled logged" % label)
@@ -219,7 +231,7 @@ s = make_bot(); reset(); s._events_live = {EV}
 p = mkpos(MIC, "MIC-COMP", mode="completion_reprice")
 s.positions[MIC] = p
 ORDERS["MIC-COMP"] = {"order_id": "MIC-COMP", "status": "resting", "fill_count_fp": 0}
-run(s._v4_manage_resting_inner(MIC, p, None, time.time()))
+run(s._v4_manage_resting(MIC, p, None, time.time()))
 check("MIC-COMP" in DELETED and MIC not in s.positions,
       "D.1 completion_reprice bid cancelled at the manage pass (no exemption)")
 check(s.completion_calls == [], "D.2 start-gate ran BEFORE the completion dispatch")
@@ -303,6 +315,72 @@ s = make_bot(); reset(); s.event_start_time[EV] = FUT
 fired = s._gun_stamp(EV, "milestone_official", {"ms_status": "SCH"})
 check(fired is False and s._strong_live_evidence("milestone_official", {"ms_status": "SCH"}) is False,
       "H.amb ambiguous milestone status is NOT proof-grade (fail closed, voided)")
+
+# ======================================================================
+print("--- ROUND2: start gate is BOOK-INDEPENDENT via validate_resting_buys ---")
+# ======================================================================
+# A. v4 resting maker + UNKNOWN start + book=None -> canceled despite no book.
+s = make_bot(); reset()          # unknown start, no book at all
+p = mkpos(MAY, "MAY-A"); s.positions[MAY] = p
+ORDERS["MAY-A"] = {"order_id": "MAY-A", "status": "resting", "fill_count_fp": 0}
+run(s.validate_resting_buys())   # self.books has NO entry for MAY -> book is None
+check("MAY-A" in DELETED and MAY not in s.positions,
+      "R2.A UNKNOWN start + book=None -> canceled/reconciled via validate_resting_buys")
+check(not evs(s, "validate_skip_stale_book"), "R2.A never hit the stale-book skip for v4")
+
+# B. v4 resting maker + past start + STALE book -> canceled before the skip.
+s = make_bot(); reset(); s.event_start_time[EV] = PAST
+p = mkpos(MAY, "MAY-B"); s.positions[MAY] = p
+s.books[MAY] = FakeBook(3600)    # stale (>900s)
+ORDERS["MAY-B"] = {"order_id": "MAY-B", "status": "resting", "fill_count_fp": 0}
+run(s.validate_resting_buys())
+check("MAY-B" in DELETED and MAY not in s.positions,
+      "R2.B past start + STALE book -> canceled before validate_skip_stale_book")
+
+# C. completion_reprice + LIVE start + stale book -> canceled; manager never runs.
+s = make_bot(); reset(); s._events_live = {EV}
+p = mkpos(MIC, "MIC-C", mode="completion_reprice"); s.positions[MIC] = p
+s.books[MIC] = FakeBook(3600)
+ORDERS["MIC-C"] = {"order_id": "MIC-C", "status": "resting", "fill_count_fp": 0}
+run(s.validate_resting_buys())
+check("MIC-C" in DELETED and MIC not in s.positions,
+      "R2.C completion_reprice + live + stale book -> canceled")
+check(s.completion_calls == [], "R2.C completion manager NEVER runs (gate first)")
+
+# D. CONFIRMED future start + stale book -> stays resting; only repricing skipped.
+s = make_bot(); reset(); s.event_start_time[EV] = FUT
+p = mkpos(MAY, "MAY-D"); s.positions[MAY] = p
+s.books[MAY] = FakeBook(3600)    # stale
+ORDERS["MAY-D"] = {"order_id": "MAY-D", "status": "resting", "fill_count_fp": 0}
+run(s.validate_resting_buys())
+check("MAY-D" not in DELETED and MAY in s.positions,
+      "R2.D confirmed pre-start + stale book -> order REMAINS resting (repricing skipped)")
+
+# E. two concurrent management callers -> exactly one cancel, no double-book.
+s = make_bot(); reset()          # unknown start
+p = mkpos(MAY, "MAY-E"); s.positions[MAY] = p
+ORDERS["MAY-E"] = {"order_id": "MAY-E", "status": "resting", "fill_count_fp": 0}
+async def _both():
+    await asyncio.gather(
+        s._v4_manage_resting(MAY, p, None, time.time()),
+        s._v4_manage_resting(MAY, p, None, time.time()))
+run(_both())
+check(DELETED.count("MAY-E") == 1,
+      "R2.E two concurrent callers -> exactly ONE cancel (_mgmt_inflight serialized)")
+
+# F. raced fill under a STALE book -> booked once, exit applied, sibling cancels.
+s = make_bot(); reset(); s._events_live = {EV}
+may = mkpos(MAY, "MAY-F"); mic = mkpos(MIC, "MIC-F")
+s.positions = {MAY: may, MIC: mic}
+s.books[MAY] = FakeBook(3600); s.books[MIC] = FakeBook(3600)   # both stale
+ORDERS["MAY-F"] = {"order_id": "MAY-F", "status": "executed", "fill_count_fp": 5, "yes_price": 85}
+ORDERS["MIC-F"] = {"order_id": "MIC-F", "status": "resting", "fill_count_fp": 0}
+run(s.validate_resting_buys())
+check(may.entry_qty == 5 and may.phase == "active",
+      "R2.F raced fill BOOKED under a stale book (gate ran book-independently)")
+check(len([1 for (e, d, t) in s.logs if e == "entry_filled"]) == 1, "R2.F booked exactly once")
+check(s.exit_calls == [MAY], "R2.F protective exit application ran for the booked fill")
+check("MIC-F" in DELETED and MIC not in s.positions, "R2.F sibling cancellation continues")
 
 print("\n%s" % ("ALL P0 REAL-START GUARD TESTS PASS" if not fails else "*** %d FAILURE(S)" % fails))
 sys.exit(1 if fails else 0)

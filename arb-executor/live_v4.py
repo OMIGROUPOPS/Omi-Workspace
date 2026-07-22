@@ -7800,9 +7800,12 @@ class LiveV3:
         """[P0v3 (2) SWEEP BEATS FILL, 07-17] on any live evidence at/after
         sched: cancel the event's resting ENTRY bids FIRST, before all other
         actions. Grace may permit nothing but this sweep completing.
-        Completion bids keep their own lifecycle (pair policy untouched);
-        exits untouched. Raced fills are booked by _cancel_entry_and_resolve
-        (the residual exchange-side race window, now at its narrowest)."""
+        [P0 REAL-START FIX 07-22] Completion (completion_reprice) bids ARE swept
+        too -- a completion bid is still an entry that fails closed post-start
+        (operator ruling 07-22); the former lifecycle exemption is removed.
+        Protective exits (sells) and foreign orders are untouched. Raced fills
+        are booked once by _cancel_entry_and_resolve (the residual exchange-side
+        race window, now at its narrowest)."""
         for tk in list(self.event_tickers.get(et, ())):
             pos = self.positions.get(tk)
             # [P0 REAL-START FIX 07-22] no completion_reprice exemption: a
@@ -12288,12 +12291,33 @@ class LiveV3:
     async def _v4_manage_resting(self, tk, pos, book, now):
         """Serialized entry point for v4 resting-bid management. Both
         on_bbo_update (per BBO tick) and validate_resting_buys (120s backstop)
-        can call this; the per-ticker guard ensures only one manager runs at a
-        time so they cannot race a double cancel/repost or double T-20m take."""
+        route through the per-ticker _mgmt_inflight guard so exactly one manager
+        runs at a time -- they cannot race a double cancel/repost, double T-20m
+        take, or double-book a raced fill.
+        [P0 REAL-START FIX 07-22] The REAL-START GATE runs HERE, FIRST, and is
+        BOOK-INDEPENDENT: a resting entry whose match is no longer CONFIRMED
+        pre-start (live / unknown / conflicting / past-start) is cancelled and
+        reconciled EVEN ON A MISSING/STALE book -- the quiet-market / bell-
+        missing class that is the MICMAY defect. Only a confirmed-pre-start bid
+        with a FRESH book proceeds into ordinary repricing (_v4_manage_resting_
+        inner); a stale/missing book merely skips repricing, never the gate."""
         if tk in self._mgmt_inflight:
             return
         self._mgmt_inflight.add(tk)
         try:
+            # (1) REAL-START GATE -- book-independent, before any stale-book
+            #     return. On refusal: cancel + reconcile the raced fill
+            #     (_start_gate_cancel_resting books once, never deletes a raced
+            #     fill, retains state on "unresolved" for the next cadence pass).
+            if getattr(pos, "entry_order_id", None):
+                _refuse, _why = self._entry_start_gate(pos.event_ticker)
+                if _refuse:
+                    await self._start_gate_cancel_resting(tk, pos, "manage_" + _why)
+                    return
+            # (2) confirmed pre-start: ordinary repricing needs a FRESH book.
+            #     A missing/stale book skips ONLY repricing (the gate already ran).
+            if not book or book.updated < now - BOOK_STALENESS_SEC:
+                return
             await self._v4_manage_resting_inner(tk, pos, book, now)
         finally:
             self._mgmt_inflight.discard(tk)
@@ -12303,20 +12327,10 @@ class LiveV3:
         target_bid (re-classifies regime and re-posts when the current Kalshi
         price moves > 1 cell width from the last placement basis), cancels on a
         degenerate/wide-spread book, and crosses as taker if a re-evaluated
-        target becomes marketable. T-20m fallback is handled below (STEP 6)."""
-        # [P0 REAL-START FIX 07-22] BEFORE any completion dispatch / horizon /
-        # reprice logic: a resting ENTRY bid whose match is no longer CONFIRMED
-        # pre-start (live / unknown / conflicting / past-start) is cancelled and
-        # freed -- fail closed. Applies to fresh AND completion_reprice bids (a
-        # completion bid remains an entry; operator ruling 07-22). A raced fill
-        # is booked exactly once via _cancel_entry_and_resolve; protective sells
-        # and foreign orders are never touched. This is the already-resting half
-        # of the MICMAY P0 -- the Michelsen sibling that stayed resting post-start.
-        if pos.entry_order_id:
-            _rf, _wy = self._entry_start_gate(pos.event_ticker)
-            if _rf:
-                await self._start_gate_cancel_resting(tk, pos, "manage_" + _wy)
-                return
+        target becomes marketable. T-20m fallback is handled below (STEP 6).
+        [P0 REAL-START FIX 07-22] Reached ONLY for a confirmed-pre-start bid: the
+        book-independent real-start gate now lives in the _v4_manage_resting
+        wrapper (so it runs on a stale/missing book too), ahead of this."""
         # PART-2: completion bids have their own lifecycle (freshness re-eval, buffer-
         # exempt ride to T-0). They must NEVER enter the regular move-repost / T-20
         # fallback / wide-spread machinery, which would reprice them back to the entry
@@ -13580,14 +13594,14 @@ class LiveV3:
                 continue
 
             book = self.books.get(tk)
-            if not book or book.updated < now - BOOK_STALENESS_SEC:
-                self._log("validate_skip_stale_book", {
-                    "book_age_sec": int(now - book.updated) if book else "missing",
-                }, ticker=tk)
-                continue
 
-            # v4 resting bids are managed by the v4 manager (target-bid based,
-            # not best-bid reprice / FV-anchor freshness).
+            # [P0 REAL-START FIX 07-22] v4 resting bids route through the
+            # serialized manager BEFORE any missing/stale-book return: the
+            # book-independent real-start gate lives in _v4_manage_resting and
+            # MUST run on a silent/missing/stale book (the quiet-market / bell-
+            # missing class -- the MICMAY defect where the tape never bursts).
+            # The wrapper cancels a post-start bid regardless of book, and skips
+            # only the ordinary repricing when the book is stale.
             if pos.is_v4:
                 # [OS BUILD 07-09, Plex T4] hold-gate shadow: TWO separate
                 # readings per resting leg per review (quiet-flag +
@@ -13597,6 +13611,13 @@ class LiveV3:
                                  "posted_min_ago": round((now - pos.entry_posted_ts) / 60)
                                  if pos.entry_posted_ts else None})
                 await self._v4_manage_resting(tk, pos, book, now)
+                continue
+
+            # non-v4 / legacy ordinary reprice needs a fresh book.
+            if not book or book.updated < now - BOOK_STALENESS_SEC:
+                self._log("validate_skip_stale_book", {
+                    "book_age_sec": int(now - book.updated) if book else "missing",
+                }, ticker=tk)
                 continue
 
             # Legacy positions skip validation

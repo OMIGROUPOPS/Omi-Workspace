@@ -1,0 +1,93 @@
+{
+  "daysheet_cache_after_producer_loss": {
+    "input": {
+      "ct": 5.0,
+      "price_c": 42,
+      "ts": 1783857600.0
+    },
+    "inspection": {
+      "admissible_true_print": false,
+      "contract_rejections": [
+        "stable receipt identity was discarded by producer"
+      ],
+      "directional_features_available": false,
+      "preserved_fields": {
+        "exchange_ts": 1783857600.0,
+        "price_cents": 42,
+        "size": 5.0,
+        "source": "daysheet_tape_cache",
+        "ticker": "KXSAMPLEMATCH-26JUL12ABCCDE-ABC"
+      },
+      "repair": "re-fetch or join the upstream trade_id and taker fields; map ct to size without float(value or 1)"
+    }
+  },
+  "depth_top20": {
+    "capture_depth": "top20",
+    "exact_queue_use": false,
+    "exchange_ts": 1783857603.0,
+    "full_ladder": false,
+    "limited_feature_use": true,
+    "required_for_exact_queue": "ws_depth full ladder with epoch, sequence, gap, reconnect, and corruption fields",
+    "source": "depth_recorder",
+    "ticker": "KXSAMPLEMATCH-26JUL12ABCCDE-ABC"
+  },
+  "exact_repair_sequence": [
+    "retain upstream trade_id before cache serialization",
+    "retain count_fp or map cached ct to size",
+    "retain created_time as exchange timestamp",
+    "retain taker_side for directional features",
+    "deduplicate overlapping feeds by trade_id",
+    "never promote zero or missing size",
+    "never admit book_transition as a true print",
+    "normalize top5/top20 books as limited feature sources",
+    "reserve exact queue replay for valid ws_depth sequence epochs"
+  ],
+  "premarket_top5": {
+    "capture_depth": "top5",
+    "exact_queue_use": false,
+    "exchange_ts": 1783857602.0,
+    "full_ladder": false,
+    "limited_feature_use": true,
+    "required_for_exact_queue": "ws_depth full ladder with epoch, sequence, gap, reconnect, and corruption fields",
+    "source": "premarket_ticks",
+    "ticker": "KXSAMPLEMATCH-26JUL12ABCCDE-ABC"
+  },
+  "schema_version": "window1-normalizer-repair-samples-v1",
+  "structural_samples_not_market_observations": true,
+  "synthetic_transition": {
+    "admissible_true_print": false,
+    "exchange_ts": 1783857601.0,
+    "price_cents": 41,
+    "size": 0.0,
+    "source": "book_transition",
+    "ticker": "KXSAMPLEMATCH-26JUL12ABCCDE-ABC",
+    "true_print": false,
+    "use": "diagnostic movement only"
+  },
+  "upstream_public_trade": {
+    "input": {
+      "count_fp": "5",
+      "created_time": "2026-07-12T12:00:00Z",
+      "taker_side": "yes",
+      "trade_id": "sample-redacted-receipt",
+      "yes_price_dollars": "0.42"
+    },
+    "normalized": {
+      "exchange_ts": 1783857600.0,
+      "field_lineage": {
+        "exchange_ts": "created_time",
+        "price_cents": "yes_price_dollars",
+        "receipt_id": "trade_id",
+        "size": "count_fp",
+        "taker_side": "taker_side"
+      },
+      "price_cents": 42,
+      "receipt_id": "sample-redacted-receipt",
+      "size": 5.0,
+      "source": "kalshi_public_trade",
+      "taker_side": "yes",
+      "ticker": "KXSAMPLEMATCH-26JUL12ABCCDE-ABC",
+      "true_print": true
+    }
+  }
+}

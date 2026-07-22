@@ -1,0 +1,63 @@
+{
+  "base_commit": "b703916951f00aab94cab0bc960c32d39c0c48e4",
+  "D": 804,
+  "inputs": [
+    {
+      "path": "corrected_event_ledger.jsonl",
+      "rows": 804,
+      "sha256": "09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb"
+    },
+    {
+      "path": "POLICY_MISMATCH_RECLASSIFICATION.sanitized.jsonl",
+      "rows": 351,
+      "sha256": "4802e9b1eceb0faa5f1cc8912f6822b427aaac31b61f85ef06c02ba181da4f06"
+    },
+    {
+      "path": "CAUSAL_DECISIONS.sanitized.jsonl",
+      "rows": 308,
+      "sha256": "38cf05ee2649c628299577f5d793bf541b9813973f3094efc25d4f1b7ee6ac1f"
+    },
+    {
+      "path": "CORRECTED_VALIDATION_SUMMARY.sanitized.json",
+      "sha256": "46f42b20a3035fb1ef73b17f3535b733014fd101b95dc614eb21bc2745761877"
+    }
+  ],
+  "outputs": [
+    {
+      "bytes": 1988231,
+      "path": "MISMATCH_RECOVERY_LEDGER.sanitized.jsonl",
+      "rows": 1054,
+      "sha256": "958108ea6d65153e979304439875c17226bf74a6908ab9e604ff3125e6f99916"
+    },
+    {
+      "bytes": 1480518,
+      "path": "TERMINAL_RECEIPT_RECOVERY_MANIFEST.sanitized.jsonl",
+      "rows": 703,
+      "sha256": "502373c448efeec2a0fb89cfede268185b64b6fc9d1d5dfd236fe19c33f69612"
+    },
+    {
+      "bytes": 36162,
+      "path": "MAPPING_DEFECTS.sanitized.jsonl",
+      "rows": 47,
+      "sha256": "16deb91a137c5a4eae6b8e483cfda64263c9310c19f44bed900d9d4cd6bd362e"
+    },
+    {
+      "bytes": 1982,
+      "path": "MISMATCH_RECOVERY_SUMMARY.json",
+      "sha256": "de3e5c09396b1989fc5028335a6a911521943f4c7b8c8d0b82e95b653ef3b7cb"
+    },
+    {
+      "bytes": 787,
+      "path": "POST_SAMPLE_MICMAY_FORENSIC.json",
+      "sha256": "74b272f8c252027afcbf269159d5112b81750736d86f84c04c319544a24822de"
+    },
+    {
+      "bytes": 3168,
+      "path": "NORMALIZER_REPAIR_SAMPLES.sanitized.json",
+      "records_are_structural_samples": true,
+      "sha256": "2e7c4ba8f5351e32bda6d339d00e847f8cb308bdcec667c2e0fe563e96e99680"
+    }
+  ],
+  "private_identifiers_emitted": false,
+  "strategy_scoring_permitted": false
+}

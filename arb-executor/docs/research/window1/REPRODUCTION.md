@@ -124,3 +124,31 @@ freeze, exactly once, with no date extension after viewing.
 These commands do not deploy, access exchange trading endpoints, modify the
 live bot, change production configuration, use Window 2, analyze exits or
 settlement, or introduce DCA.
+
+## Local-only mismatch recovery from b7039169
+
+The 1,054-row sanitized recovery ledger can be rebuilt without a VPS, account
+API, raw logs, databases, or private identities. Start from commit
+b703916951f00aab94cab0bc960c32d39c0c48e4 and run:
+
+    python -B arb-executor/analysis/window1_recovery_manifest.py \
+      --events .claude/window1_20260721/corrected_event_ledger.jsonl \
+      --policy-reclassification .claude/window1_20260721/POLICY_MISMATCH_RECLASSIFICATION.sanitized.jsonl \
+      --decisions .claude/window1_20260721/CAUSAL_DECISIONS.sanitized.jsonl \
+      --validation-summary .claude/window1_20260721/CORRECTED_VALIDATION_SUMMARY.sanitized.json \
+      --output-dir .claude/window1_20260721
+
+Expected result: mismatch_rows 1054, terminal_receipts 703,
+mapping_defects 47, and recovery_status_counts possible 3, uncertain 1051,
+impossible 0.
+
+Generate the structural normalizer example and run cache-free tests:
+
+    python -B arb-executor/analysis/window1_normalizer_repair.py \
+      --sample-output .claude/window1_20260721/NORMALIZER_REPAIR_SAMPLES.sanitized.json
+    python -B arb-executor/tests/test_window1_recovery_manifest.py
+    python -B arb-executor/tests/test_window1_normalizer_repair.py
+
+The sample file explicitly declares that its records are synthetic field-shape
+examples and not market observations. These commands must not be followed by
+candidate scoring while validation remains false.

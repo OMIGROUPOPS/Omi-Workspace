@@ -1,0 +1,24 @@
+{
+  "authoritative_for_July12_20_validation": false,
+  "development_interval": [
+    "2026-07-12",
+    "2026-07-20"
+  ],
+  "event_id": "KXATPCHALLENGERMATCH-26JUL21MICMAY",
+  "forensic_class": "post_sample_separate_forensic",
+  "inside_D": false,
+  "named_participants": [
+    "Michelsen",
+    "Mayo"
+  ],
+  "participant_mapping_status": "not established from local July 12-20 artifacts",
+  "present_in_corrected_event_ledger": false,
+  "present_in_policy_reclassification": false,
+  "required_future_sources": [
+    "July-21 exchange catalog event/market objects",
+    "July-21 frozen live_v4 name/schedule/order logs",
+    "structured-target participant cache"
+  ],
+  "schema_version": "window1-post-sample-forensic-v1",
+  "ticker_implied_date": "2026-07-21"
+}

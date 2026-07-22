@@ -1,0 +1,70 @@
+{
+  "D": 804,
+  "causal_decision_leg_total": 308,
+  "identity_coverage": {
+    "private_identity_redacted_event_and_ticker_unknown": 719,
+    "public_event_and_ticker_known": 335,
+    "raw_order_or_attempt_id_emitted": 0
+  },
+  "mapping_defect_events": 47,
+  "mapping_defect_mapped_order_placed_legs": 51,
+  "mapping_defect_missing_legs": 52,
+  "mapping_defect_unobserved_legs": 2,
+  "mismatch_class_counts": {
+    "accepted_order_missing_receipt": 703,
+    "clock": 14,
+    "decision_unobserved": 335,
+    "fill_receipt": 2
+  },
+  "mismatch_rows": 1054,
+  "policy_event_total": 351,
+  "policy_missing_leg_total": 643,
+  "policy_reconciliation": {
+    "accepted_order_with_missing_receipt": {
+      "causal_decision_legs": 1,
+      "events": 6,
+      "missing_legs": 6,
+      "unobserved_legs": 5
+    },
+    "causally_proven_refusal_or_no_placement": {
+      "causal_decision_legs": 253,
+      "events": 132,
+      "missing_legs": 253,
+      "unobserved_legs": 0
+    },
+    "genuinely_unknown": {
+      "causal_decision_legs": 4,
+      "events": 4,
+      "missing_legs": 8,
+      "unobserved_legs": 4
+    },
+    "logging_gap": {
+      "causal_decision_legs": 0,
+      "events": 162,
+      "missing_legs": 324,
+      "unobserved_legs": 324
+    },
+    "mapping_defect": {
+      "causal_decision_legs": 50,
+      "events": 47,
+      "missing_legs": 52,
+      "unobserved_legs": 2
+    }
+  },
+  "recovery_status_counts": {
+    "impossible": 0,
+    "possible": 3,
+    "uncertain": 1051
+  },
+  "schema_version": "window1-mismatch-recovery-v1",
+  "strategy_scoring_permitted": false,
+  "terminal_receipt_source_allocation": {
+    "confirmed_no_surviving_source": 0,
+    "live_v4_logs_assigned": 0,
+    "persisted_order_ledger_assigned": 0,
+    "private_fills_assigned": 0,
+    "private_kalshi_order_history_assigned": 0,
+    "unallocated_pending_private_identity_join": 703
+  },
+  "unobserved_decision_leg_total": 335
+}

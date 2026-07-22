@@ -1,7 +1,7 @@
 # Independent Window-1 correction reproduction
 
 Branch: codex/window1-definition
-Benchmark implementation commit: BENCHMARK_COMMIT_TO_BE_RECORDED
+Benchmark implementation commit: 7cc92744733f680adfddcfde3d9f6744e1d8a0bd
 Production chronology inspected: 7def367c96d3a90f198c59c754109aa04b11e9f5
 Corrected ledger SHA-256:
 09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb
@@ -13,7 +13,7 @@ account payloads, logs, databases, or recorder archives into Git.
 ## Research worktree
 
     export RESEARCH_ROOT=/srv/omi-research/window1-independent-review
-    export BENCHMARK_COMMIT=BENCHMARK_COMMIT_TO_BE_RECORDED
+    export BENCHMARK_COMMIT=7cc92744733f680adfddcfde3d9f6744e1d8a0bd
     git fetch origin codex/window1-definition
     git cat-file -e "$BENCHMARK_COMMIT^{commit}"
     git worktree add --detach "$RESEARCH_ROOT/worktree" "$BENCHMARK_COMMIT"

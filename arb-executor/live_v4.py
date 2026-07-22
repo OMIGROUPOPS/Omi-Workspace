@@ -340,6 +340,10 @@ def auth_headers(ak, pk, method, path):
 # -> create-order-v2 at /portfolio/events/orders. side bid/ask (YES book only), price str-dollars, count
 # str, time_in_force + self_trade_prevention_type required; flat response (no "order" wrapper / no _fp /
 # no status). Cancel (DELETE /portfolio/orders/{id}), GET, and signing are UNCHANGED. Pure/testable.
+# [REV5 FIX 4] verified-zero threshold: a genuine holding is an integer
+# contract count; any |qty| at/above this is a real nonzero position
+# (rejects +0.5 and -5), while true 0.0 and float-sum residue pass.
+EXCH_ZERO_EPS = 1e-6
 ORDER_CREATE_V2_PATH = "/trade-api/v2/portfolio/events/orders"
 
 # [C-INFLIGHT-LOCK 07-09] per-ticker+direction placement lock bound: the
@@ -1867,6 +1871,11 @@ class LiveV3:
         self.event_unmatched_cycles: Dict[str, int] = {}  # discovery cycles without schedule match
 
         self.positions: Dict[str, Position] = {}
+        # [REV6 QUARANTINE] append-only ledger for holdings that are
+        # BESIDE, never INSIDE, a completed cycle — a bot-owned buy that
+        # filled during a cash-cancellation race (operator law C + ledger
+        # preservation, 07-21). Persisted/restored with the resting file.
+        self.unmatched_holdings: Dict[str, list] = {}
         self.pending_entries: Dict[str, dict] = {}  # ticker -> {event, direction, cat, cell_name, cell_cfg, discovered_ts}
         self.inflight_orders: Set[str] = set()  # tickers with orders being placed (race guard)
         self._event_routing: Set[str] = set()   # events currently being routed (on_bbo_update vs backstop sweep)
@@ -5464,6 +5473,28 @@ class LiveV3:
         # make-it-stick lesson). Counts persist across restarts via the boot
         # lineage rebuild. Dedup-logged per ticker per boot.
         if action == "buy" and post_only:
+            # [REV6.3] a persisted operator-pending quarantine on this
+            # ticker INDEPENDENTLY refuses new post-only conception —
+            # before/in addition to cycle-history reconstruction. No API
+            # placement, no Position, no cycle increment.
+            # [REV6.1.1] the operator red flag is INDEPENDENT of the
+            # protective-exit lifecycle: a resolved protective exit is
+            # NOT operator reconciliation. Only an explicit
+            # operator_reconciled state releases this guard.
+            _qh = [r for r in self.unmatched_holdings.get(ticker, [])
+                   if r.get("operator_state") == "operator_pending"]
+            if _qh:
+                _ql = self.__dict__.setdefault("_quarantine_buy_logged",
+                                               set())
+                if ticker not in _ql:
+                    _ql.add(ticker)
+                    self._log("quarantine_buy_refused", {
+                        "price": price, "count": count,
+                        "quarantine_records": len(_qh),
+                        "law": "unresolved cash-cancel-race quarantine — "
+                               "no new conception on this ticker until "
+                               "operator reconciliation"}, ticker=ticker)
+                return "", {"_error": "quarantine_buy_refused"}
             _cc = getattr(self, "_cycle_count", {}).get(ticker, 0)
             if _cc >= getattr(self, "reentry_cycle_cap", 2):
                 _cs = self.__dict__.setdefault("_cycle_cap_logged", set())
@@ -9925,33 +9956,76 @@ class LiveV3:
             # never cancelled while backed by open shares (the only path that
             # replaces it -- _v4_apply_exit on a new entry increment -- is an
             # atomic cancel-and-repost sized to open, never both resting).
-            if pos.phase == "active" and pos.exit_order_id and not pos.exit_filled:
+            if pos.phase == "active" and not pos.exit_filled:
+                # [REV6 FIX 7] receipt-complete + cleanup-pending RETRY runs
+                # FIRST, INDEPENDENT of the old exit-order GET. If the
+                # executed order disappears / 404s / the endpoint fails,
+                # cleanup must still retry from persisted completion truth.
+                if (getattr(pos, "_cash_cleanup_pending", False)
+                        and pos.entry_qty > 0
+                        and pos.exit_filled_qty >= pos.entry_qty):
+                    _fin_ok = await self._finalize_full_cash(
+                        tk, pos, source="exit_poll_retry")
+                    if _fin_ok:
+                        self.n_exits += 1
+                    continue
+                if not pos.exit_order_id:
+                    continue
                 path = "/trade-api/v2/portfolio/orders/%s" % pos.exit_order_id
                 data = await api_get(self.session, self.ak, self.pk, path, self.rl)
                 if data:
                     order = data.get("order", data)
                     status = order.get("status", "")
                     filled = int(float(order.get("fill_count_fp", order.get("count_filled", 0)) or 0))
-                    if filled > pos.exit_filled_qty:
-                        new_exit_fills = filled - pos.exit_filled_qty
-                        pos.exit_filled_qty = filled
-                        complete = (status == "executed"
-                                    or pos.exit_filled_qty >= pos.entry_qty)
-                        inc_pnl = (pos.exit_price - pos.entry_price) * new_exit_fills
-                        pos.pnl_cents += inc_pnl
+                    # [LANE-A REV FIXES 1+2] the current ORDER's
+                    # cumulative count is never differenced against the
+                    # POSITION's cumulative total. Booking runs through
+                    # the one chokepoint on EXACT per-fill receipts.
+                    # [REV2 FIX 1] there is no approximate fallback: if
+                    # the receipts are not there, nothing books and the
+                    # poll retries — the engine never invents P&L from
+                    # a cumulative average or a planned exit price.
+                    _bk_o = float((pos.__dict__.get(
+                        "_exit_booked_by_order") or {}).get(
+                            pos.exit_order_id, 0.0))
+                    if filled > _bk_o:
+                        _oids = set(pos.__dict__.setdefault(
+                            "_exit_order_ids", set()))
+                        _oids.add(pos.exit_order_id)
+                        _oids |= set((pos.__dict__.get(
+                            "_exit_booked_by_order") or {}).keys())
+                        _rcpts, _defects, _feed_ok =                             await self._exit_receipts(
+                                tk, {o for o in _oids if o})
+                        if not _rcpts:
+                            self._log("exit_receipts_missing", {
+                                "order_fill_count": filled,
+                                "booked_for_order": _bk_o,
+                                "feed_ok": _feed_ok,
+                                "defects": [d.get("missing")
+                                            for d in _defects][:4],
+                                "law": "exact receipts or retry — no "
+                                       "approximate booking"}, ticker=tk)
+                            continue
+                        new_exit_fills, _newpnl, _cmpl =                             self._book_exit_receipts(
+                                tk, pos, _rcpts, source="exit_poll")
+                        if new_exit_fills <= 0 and not _cmpl:
+                            continue
+                        # [REV4 FIX 2] order status may TRIGGER receipt
+                        # retrieval (above) but never proves accounting
+                        # completion: completion is exact-receipt
+                        # cumulative coverage of entry_qty, nothing else.
+                        complete = _cmpl
                         if pos.dca_qty > 0 and complete:
                             pos.pnl_cents += (pos.exit_price - pos.dca_price) * pos.dca_qty
                         pnl = pos.pnl_cents
-                        # [C-NO-REBUY-AFTER-CASH 07-07, sweep class 2] a leg that
-                        # CASHED this session is a closed story: mark it so the
-                        # sibling-repost sweep and the book audit refuse/flag any
-                        # re-conception (TIKCHO: exit filled 19, fresh 5-lot bid
-                        # 34s later; KUSTAG same at 80/63 -- tonight's sweep).
-                        # [C-CYCLE-CAP 07-09] superseded as a HARD gate by the
-                        # cycle counter (re-entry ALLOWED to cap 2); the set
-                        # stays as telemetry. Increment AFTER the log below so
-                        # this exit row stamps the cycle it closes.
-                        self.__dict__.setdefault("_session_exited", set()).add(tk)
+                        # [REV5 FIX 1] the cash-completion mutations
+                        # (_session_exited, _cycle_count, cash_refusal_armed)
+                        # are owned SOLELY by _finalize_full_cash below and
+                        # happen only on FULL receipt completion — never
+                        # pre-seeded here (the pre-seed suppressed the
+                        # finalizer's arm-once cycle increment, leaving the
+                        # no-rebuy cap unarmed after a normal cash exit).
+                        # Partial receipts touch neither set.
                         self._log("exit_filled", {
                             "exit_price": pos.exit_price,
                             "entry_price": pos.entry_price,
@@ -9964,27 +10038,18 @@ class LiveV3:
                         }, ticker=tk)
                         if not complete:
                             continue  # remainder stays managed; nothing closes
-                        # [C-CYCLE-CAP] a COMPLETED cash closes the cycle
-                        # (partials never count; the exit row above already
-                        # stamped the cycle number pre-increment)
-                        self._cycle_count[tk] = self._cycle_count.get(tk, 0) + 1
-                        if (pos.exit_filled_qty < pos.entry_qty
-                                and pos.is_v4):
-                            # exit order terminal but open shares remain
-                            # (TAN-shape history): re-cover the remainder via
-                            # the open-shares-sized exit path.
-                            self._log("exit_partial_remainder", {
-                                "exit_filled_qty": pos.exit_filled_qty,
-                                "entry_qty": pos.entry_qty,
-                                "open_shares": pos.entry_qty - pos.exit_filled_qty,
-                            }, ticker=tk)
-                            pos.exit_order_id = ""
-                            await self._v4_apply_exit(tk, pos, pos.entry_price,
-                                                      pos.entry_qty)
+                        # [REV4 FIX 1] the FULL-CASH finalizer (shared with
+                        # phantom reconciliation): arm-once + confirmed
+                        # bot-owned-buy cancellation + explicit
+                        # verified-empty orders + verified-zero position
+                        # BEFORE any settled/closed transition. On UNKNOWN
+                        # / failure / remaining bot buy it returns False
+                        # and the poll retries next cycle (exit_filled is
+                        # NOT set, so the retry re-enters).
+                        _fin_ok = await self._finalize_full_cash(
+                            tk, pos, source="exit_poll")
+                        if not _fin_ok:
                             continue
-                        pos.exit_filled = True
-                        pos.settled = True
-                        pos.phase = "settled"
                         self.n_exits += 1
                         # Classify: scalp (pregame exit) vs settlement-adjacent
                         # [C-ANCHOR 07-08] the W1 stamp is only as good as its
@@ -10013,12 +10078,11 @@ class LiveV3:
                                 "anchor_source": _sc_src,
                                 "clock_liar": _sc_liar,
                             }, ticker=tk)
-                        # FIX 3: Cancel ALL resting buys on this ticker (DCA + any extras)
-                        cleanup = await api_get(self.session, self.ak, self.pk,
-                            "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
-                        for co in (cleanup or {}).get("orders", []):
-                            if co.get("action") == "buy":
-                                await self.cancel_order(tk, co.get("order_id", ""), "exit_cleanup_dca")
+                        # [REV4 FIX 1] the old blanket "cancel every
+                        # action==buy" loop is REMOVED — it cancelled
+                        # foreign/manual buys and ignored failures. The
+                        # finalizer above already cancelled only
+                        # bot-owned buys, confirmed, before closing.
 
             # Check DCA order fill
             if pos.phase == "active" and pos.dca_order_id and not pos.dca_filled and not pos.exit_filled:
@@ -11923,7 +11987,14 @@ class LiveV3:
             cutoff = time.time() - V4_WINDOW_OPEN_MAX_AGE_SEC
             payload = {"_shape": "v2", "legs": out,
                        "window_open": {tk: wo for tk, wo in self._window_open.items()
-                                       if wo.get("ts", 0) >= cutoff}}
+                                       if wo.get("ts", 0) >= cutoff},
+                       "unmatched_holdings": self._quarantine_snapshot()}
+        elif getattr(self, "unmatched_holdings", None):
+            # [REV6] a legacy-shape config still MUST persist quarantine —
+            # promote to the v2 wrapper when holdings exist (restart must not
+            # forget the quarantine or permit reconception).
+            payload = {"_shape": "v2", "legs": out, "window_open": {},
+                       "unmatched_holdings": self._quarantine_snapshot()}
         else:
             payload = out
         tmp = str(V4_RESTING_FILE) + ".tmp"
@@ -11958,6 +12029,29 @@ class LiveV3:
                         n_wo += 1
                 if n_wo:
                     self._log("window_open_restored", {"count": n_wo})
+            uh = data.get("unmatched_holdings", {})
+            if isinstance(uh, dict):
+                n_uh = 0
+                for utk, recs in uh.items():
+                    if isinstance(recs, list) and recs:
+                        # de-dupe by receipt identity on restore (idempotent)
+                        seen_r = set()
+                        clean = []
+                        for r in recs:
+                            if not isinstance(r, dict):
+                                continue
+                            rid = r.get("buy_receipt_id")
+                            if rid in seen_r:
+                                continue
+                            seen_r.add(rid)
+                            clean.append(r)
+                        if clean:
+                            self.unmatched_holdings[utk] = clean
+                            n_uh += len(clean)
+                if n_uh:
+                    self._log("quarantine_restored",
+                              {"tickers": len(self.unmatched_holdings),
+                               "records": n_uh})
             data = data.get("legs", {})
             if not isinstance(data, dict):
                 self._log("v4_resting_bad_shape", {"type": type(data).__name__})
@@ -14454,6 +14548,1127 @@ class LiveV3:
             pass
         return verdict
 
+    @staticmethod
+    def _canon_receipt(f):
+        """[LANE-A REV2 FIX 1] ONE canonical per-fill receipt. A receipt
+        is BOOKABLE only with every required truth present:
+          receipt_id (fill_id, falling back to trade_id) ·
+          order_id · positive count_fp · an ACTUAL per-fill price
+          (yes_price_dollars, or yes_price) · a parseable timestamp.
+        Anything missing is named in `missing` and the receipt is NOT
+        bookable — the engine never invents P&L from a cumulative
+        average or a planned exit price."""
+        missing = []
+        rid = f.get("fill_id") or f.get("trade_id") or ""
+        if not rid:
+            missing.append("fill_id/trade_id")
+        oid = str(f.get("order_id") or "")
+        if not oid:
+            missing.append("order_id")
+        q = 0.0
+        _q = f.get("count_fp", f.get("count"))
+        try:
+            q = float(_q) if _q is not None else 0.0
+        except (TypeError, ValueError):
+            q = 0.0
+        if q <= 0:
+            missing.append("count_fp")
+        px = None
+        src = None
+        v = f.get("yes_price_dollars")
+        if v is not None:
+            try:
+                px, src = float(v) * 100.0, "yes_price_dollars"
+            except (TypeError, ValueError):
+                px = None
+        if px is None and f.get("yes_price") is not None:
+            try:
+                px, src = float(f.get("yes_price")), "yes_price"
+            except (TypeError, ValueError):
+                px = None
+        if px is None:
+            missing.append("yes_price_dollars")
+        ts = None
+        for k in ("created_time", "ts", "created_ts"):
+            v = f.get(k)
+            if v is None:
+                continue
+            try:
+                ts = float(v)
+                break
+            except (TypeError, ValueError):
+                try:
+                    ts = datetime.fromisoformat(
+                        str(v).replace("Z", "+00:00")).timestamp()
+                    break
+                except Exception:
+                    continue
+        if ts is None:
+            missing.append("created_time")
+        return {"receipt_id": str(rid), "order_id": oid,
+                "ticker": str(f.get("ticker") or ""),
+                "action": str(f.get("action") or "").lower(),
+                "qty": q, "price": px, "price_src": src,
+                "ts": ts, "missing": missing}
+
+    async def _fills_bulk(self):
+        """[LANE-A REV3 FIX 2] ONE PAGINATED WALK per cache cycle for
+        the WHOLE book, shared by every position (N positions => 1
+        walk, never N). The cursor is followed to EXHAUSTION; anything
+        short of exhaustion is a FAILED fetch, never a truncated
+        "truth":
+          · a page that is None, not a dict, missing/!list `fills`,
+            or raises            -> feed_ok=False
+          · a repeated cursor    -> feed_ok=False (loop guard)
+          · the page bound hit before exhaustion -> feed_ok=False
+        Rows are de-duplicated across pages by canonical receipt
+        identity (fill_id / trade_id). Returns (rows, feed_ok); a
+        False verdict is logged and retried next cycle — callers may
+        never book or close from it."""
+        now = time.time()
+        ttl = float(self.config.get("fills_bulk_ttl_sec", 10))
+        c = self.__dict__.get("_fills_bulk_cache")
+        if c and now - c[0] < ttl:
+            return c[1], c[2]
+        rows, ok = [], False
+        seen_ids, seen_cursors = set(), set()
+        pages = 0
+        max_pages = int(self.config.get("fills_bulk_max_pages", 50))
+        cursor = None
+        reason = None
+        try:
+            while True:
+                path = "/trade-api/v2/portfolio/fills?limit=1000"
+                if cursor:
+                    path += "&cursor=%s" % cursor
+                d = await api_get(self.session, self.ak, self.pk, path,
+                                  self.rl)
+                pages += 1
+                if d is None:
+                    reason = "page_none(page=%d)" % pages
+                    break
+                if not isinstance(d, dict) or "fills" not in d:
+                    reason = "missing_fills_collection(page=%d)" % pages
+                    break
+                page_rows = d.get("fills")
+                if not isinstance(page_rows, list):
+                    reason = "fills_malformed(page=%d)" % pages
+                    break
+                for f in page_rows:
+                    if not isinstance(f, dict):
+                        continue
+                    rid = f.get("fill_id") or f.get("trade_id")
+                    key = str(rid) if rid else None
+                    if key is not None:
+                        if key in seen_ids:
+                            continue          # duplicate across pages
+                        seen_ids.add(key)
+                    rows.append(f)
+                nxt = d.get("cursor") or None
+                if not nxt:
+                    ok = True                 # EXHAUSTED — complete truth
+                    break
+                if nxt in seen_cursors:
+                    reason = "repeated_cursor(page=%d)" % pages
+                    break
+                seen_cursors.add(nxt)
+                cursor = nxt
+                if pages >= max_pages:
+                    reason = "page_bound_%d_before_exhaustion" % max_pages
+                    break
+        except Exception as e:
+            reason = "exception:%s" % type(e).__name__
+        if not ok:
+            rows = []                          # never expose a partial set
+            self._log("fills_bulk_incomplete", {
+                "pages_fetched": pages, "reason": reason,
+                "law": "incomplete pagination is NOT truth — no "
+                       "booking, no closure; retry next cycle"})
+        self._fills_bulk_cache = (now, rows, ok)
+        return rows, ok
+
+    async def _exit_receipts(self, tk, order_ids):
+        """Canonical sell receipts for THIS position's exit orders,
+        read from the shared per-cycle bulk fetch. Returns
+        (bookable, defects, feed_ok)."""
+        rows, ok = await self._fills_bulk()
+        if not ok:
+            return [], [{"missing": ["fills_feed"]}], False
+        good, bad = [], []
+        for f in rows:
+            if str(f.get("ticker") or "") not in ("", tk):
+                continue
+            r = self._canon_receipt(f)
+            if r["action"] != "sell":
+                continue
+            if r["order_id"] and order_ids and                     r["order_id"] not in order_ids:
+                continue
+            if not r["order_id"] and not r["missing"]:
+                continue
+            if r["missing"]:
+                if r["order_id"] in (order_ids or set()):
+                    bad.append(r)
+                continue
+            good.append(r)
+        good.sort(key=lambda r: (r["ts"], r["receipt_id"]))
+        return good, bad, True
+
+    def _book_exit_receipts(self, tk, pos, receipts, source=""):
+        """[LANE-A REV FIXES 1+2 — THE ONE EXIT-BOOKING CHOKEPOINT]
+        Every exit share booked by this engine passes through here:
+        normal polling and phantom reconciliation both. Rules:
+          · RECEIPT IDENTITY is the idempotency key (fill_id/trade_id);
+            a re-observed receipt is a no-op, always.
+          · ORDER IDENTITY is tracked per exit order id, so
+            pos.exit_filled_qty stays CUMULATIVE ACROSS ALL exit orders
+            (the replacement-order defect: current-order fill counts
+            are never differenced against position-level totals).
+          · Each receipt is priced at ITS OWN fill price — never a
+            cumulative average applied to a delta.
+          · Pre-entry sells are excluded by timestamp.
+          · Legacy quantity booked before this ledger existed is
+            absorbed once (oldest receipts first) so restarts cannot
+            double-book.
+        Returns (newly_qty, newly_pnl, complete)."""
+        seen = pos.__dict__.setdefault("_exit_receipt_ids", set())
+        per_order = pos.__dict__.setdefault("_exit_booked_by_order", {})
+        entry_price = int(getattr(pos, "entry_price", 0) or 0)
+        entry_qty = int(float(getattr(pos, "entry_qty", 0) or 0))
+        if "_exit_legacy_qty" not in pos.__dict__:
+            pos._exit_legacy_qty = float(
+                getattr(pos, "exit_filled_qty", 0) or 0)
+            pos._exit_legacy_absorbed = 0.0
+        entry_ts = float(getattr(pos, "entry_filled_ts", 0) or 0)
+        newly = 0.0
+        newpnl = 0.0
+        # [REV6.1.1] terminal-cash timestamp is computed inside the loop
+        # from the running exit_filled_qty (per-order sums + unmatched
+        # legacy), counting each economic quantity exactly once.
+        for r in sorted(receipts, key=lambda x: (x["ts"],
+                                                 x["receipt_id"])):
+            rid = r["receipt_id"]
+            if not rid or rid in seen or r["qty"] <= 0:
+                continue
+            price = r["price"]
+            if price is None or r.get("missing"):
+                continue          # never invent P&L from a planned price
+            if r["ts"] is None or (entry_ts and r["ts"] < entry_ts - 1):
+                continue
+            seen.add(rid)
+            q = float(r["qty"])
+            per_order[r["order_id"]] = per_order.get(r["order_id"],
+                                                     0.0) + q
+            absorb = 0.0
+            _left = (float(pos._exit_legacy_qty)
+                     - float(pos._exit_legacy_absorbed))
+            if _left > 0:
+                absorb = min(q, _left)
+                pos._exit_legacy_absorbed += absorb
+            payable = q - absorb
+            if payable > 0:
+                newly += payable
+                newpnl += (price - entry_price) * payable
+            # [REV6.1.1] terminal-cash ts: track running exit_filled_qty
+            # with the SAME arithmetic as the final total (per-order sums +
+            # unmatched legacy) so legacy quantity is counted exactly ONCE.
+            _running = (sum(per_order.values())
+                        + max(0.0, float(pos._exit_legacy_qty)
+                              - float(pos._exit_legacy_absorbed)))
+            if (entry_qty and _running >= entry_qty
+                    and getattr(pos, "_terminal_cash_ts", None) is None
+                    and r["ts"] is not None):
+                pos._terminal_cash_ts = float(r["ts"])
+        if newly > 0:
+            pos.pnl_cents = float(getattr(pos, "pnl_cents", 0) or 0) \
+                + newpnl
+        cum = sum(per_order.values())
+        legacy_unmatched = max(0.0, float(pos._exit_legacy_qty)
+                               - float(pos._exit_legacy_absorbed))
+        pos.exit_filled_qty = int(round(cum + legacy_unmatched))
+        complete = bool(entry_qty) and pos.exit_filled_qty >= entry_qty
+        if newly > 0:
+            self._log("exit_receipts_booked", {
+                "new_qty": newly, "new_pnl": newpnl,
+                "cumulative_qty": pos.exit_filled_qty,
+                "per_order": {k[:8]: v for k, v in per_order.items()},
+                "pnl_cents": pos.pnl_cents, "complete": complete,
+                "source": source,
+                "law": "one exit-booking chokepoint; receipt-identity "
+                       "idempotent; per-receipt pricing"}, ticker=tk)
+        return newly, newpnl, complete
+
+    async def _cancel_resting_buys_on_cash(self, tk, pos, why="cashed"):
+        """[LANE-A REV2 FIX 2] CANCELLATION MUST BE CONFIRMED. A cashed
+        leg's armed bot-owned entry/replacement BUY orders are cancelled
+        and then VERIFIED against a refetch of exchange truth:
+          · "cancelled" is logged only on a confirmed True result;
+          · a False/exception leaves the order id intact, nothing is
+            cleared, nothing closes — the state goes cash_cleanup_pending
+            and retries next cycle;
+          · closure requires ZERO bot-owned current-strategy buys
+            remaining AND a consistent exchange position (no shares);
+          · foreign/manual orders are never touched, only named.
+        Returns True only when the book is verified clean.
+        (No DCA surface is read or written here — out of scope.)"""
+        attempted, confirmed, failed = 0, 0, []
+        # [REV4 FIX 3] discovery walks the resting-orders cursor to
+        # exhaustion with strict row validation; an UNKNOWN book means
+        # we cannot even enumerate what to cancel -> pending, never
+        # close.
+        rows, disc_ok, disc_fail = await self._resting_orders_all(tk)
+        if not disc_ok:
+            self._log("cash_cleanup_pending", {
+                "reason": "resting_orders_unknown",
+                "verify_failures": disc_fail[:4],
+                "law": "no exchange truth for cancellation discovery — "
+                       "retry, never close"}, ticker=tk)
+            return False
+        mine = self._bot_owned_ids(pos)
+        _att_ids = pos.__dict__.setdefault("_cancel_attempted_buy_ids",
+                                           set())
+        for o in rows:
+            if o["action"] != "buy" or o["remaining"] <= 0:
+                continue
+            if o["order_id"] not in mine:
+                self._log("cash_cleanup_foreign_skipped", {
+                    "order_id": o["order_id"][:13],
+                    "law": "manual/foreign order — never cancelled"},
+                    ticker=tk)
+                continue
+            attempted += 1
+            _att_ids.add(o["order_id"])   # [REV6] race-attribution set
+            try:
+                ok = await self.cancel_order(
+                    tk, o["order_id"], "exit_cashed_%s" % why)
+            except Exception as _ce:
+                failed.append((o["order_id"], str(_ce)[:60]))
+                continue
+            if ok:
+                confirmed += 1
+                self._log("cash_cleanup_buy_cancelled", {
+                    "order_id": o["order_id"][:13],
+                    "qty": o["remaining"],
+                    "law": "confirmed cancel — no resting bid survives "
+                           "the cash"}, ticker=tk)
+            else:
+                failed.append((o["order_id"], "cancel_returned_false"))
+        # VERIFY against a refetch — the cancel result is a claim, the
+        # refetched book is the truth. [REV3 FIX 1] BOTH sides must be
+        # explicitly KNOWN: silence, malformed data or an exception is
+        # UNKNOWN, and UNKNOWN can never verify closure.
+        (remaining, ex_qty, orders_ok, positions_ok,
+         vfail) = await self._cash_cleanup_state(tk, pos)
+        # [REV5 FIX 4] VERIFIED ZERO is ACTUAL zero under the exchange
+        # fixed-point precision — not ex_qty < 1. A positive fractional
+        # holding (e.g. +0.5) or a negative quantity (e.g. -5) is NOT
+        # zero and must never verify closure.
+        qty_zero = positions_ok and abs(ex_qty) < EXCH_ZERO_EPS
+        # [REV6 CASH-CANCEL-RACE] a nonzero exchange holding on a
+        # fully-cashed position is a NEW holding (a bot-owned buy that
+        # raced the cancellation). Reconcile it into the QUARANTINE
+        # ledger beside the completed cycle. The narrow closure
+        # exception (operator law C, item 5): the old cycle may close
+        # ONLY when the whole nonzero holding is exactly explained by
+        # persisted quarantine receipts + confirmed protective coverage.
+        raced_explained = False
+        if (positions_ok and abs(ex_qty) >= EXCH_ZERO_EPS
+                and float(getattr(pos, "exit_filled_qty", 0) or 0)
+                >= float(getattr(pos, "entry_qty", 0) or 0)
+                and float(getattr(pos, "entry_qty", 0) or 0) > 0):
+            self._log("cash_cleanup_raced_holding", {
+                "exchange_qty": ex_qty,
+                "old_entry_qty": pos.entry_qty,
+                "old_exit_filled_qty": pos.exit_filled_qty,
+                "law": "nonzero exchange holding after full cash = a NEW "
+                       "holding; quarantined BESIDE the completed cycle, "
+                       "never inside it"}, ticker=tk)
+            verdict = await self._quarantine_reconcile(tk, pos, ex_qty)
+            raced_explained = (verdict == "explained")
+        if (not orders_ok or not positions_ok or remaining or failed
+                or (not qty_zero and not raced_explained)):
+            self._log("cash_cleanup_pending", {
+                "attempted": attempted, "confirmed": confirmed,
+                "orders_ok": orders_ok, "positions_ok": positions_ok,
+                "verify_failures": vfail[:4],
+                "failed": [(o[:13], r) for o, r in failed][:4],
+                "bot_buys_remaining": [o[:13] for o in remaining][:4],
+                "exchange_qty": (ex_qty if positions_ok else "UNKNOWN"),
+                "qty_zero": qty_zero,
+                "law": "closure requires orders_ok AND positions_ok AND "
+                       "zero bot-owned buys AND ACTUAL-zero exchange qty "
+                       "(|qty| < precision) — API silence is not an "
+                       "empty book; position and order ids retained"},
+                ticker=tk)
+            return False
+        if getattr(pos, "entry_order_id", ""):
+            pos.entry_order_id = ""
+        self._log("cash_cleanup_verified", {
+            "attempted": attempted, "confirmed": confirmed,
+            "orders_ok": True, "positions_ok": True,
+            "exchange_qty": ex_qty,
+            "raced_explained": raced_explained,
+            "law": ("BOTH feeds explicitly succeeded; exchange qty is "
+                    "ZERO or fully explained by quarantine + protective "
+                    "coverage — closure may proceed, quarantine remains")},
+            ticker=tk)
+        return True
+
+    def _bot_owned_ids(self, pos=None):
+        """Bot-owned current-strategy order ids (never foreign/manual)."""
+        mine = set(getattr(self, "_bot_order_ids", set()) or set())
+        mine |= set((getattr(self, "_order_fingerprints", None)
+                     or {}).keys())
+        if pos is not None:
+            _eo = str(getattr(pos, "entry_order_id", "") or "")
+            if _eo:
+                mine.add(_eo)
+        return mine
+
+    @staticmethod
+    def _validate_order_row(raw):
+        """[LANE-A REV4 FIX 3] Strict order-row validation for TRUTH.
+        Returns a canon dict {order_id, action, remaining} ONLY when
+        every truth field is well-formed: a parseable non-empty
+        order_id, a recognized action (buy|sell), and a numeric
+        nonnegative remaining quantity. Any missing/invalid field ->
+        None (the row is malformed and its whole page is UNKNOWN — a
+        malformed row can never silently become zero)."""
+        if not isinstance(raw, dict):
+            return None
+        def first(*names):
+            for n in names:
+                v = raw.get(n)
+                if v is not None and v != "":
+                    return v
+            return None
+        oid = first("order_id", "oid", "id")
+        if oid is None:
+            return None
+        action = str(first("action") or "").lower()
+        if action not in ("buy", "sell"):
+            return None
+        v = first("remaining", "qty", "remaining_count_fp",
+                  "remaining_count", "count")
+        if v is None:
+            return None
+        try:
+            rem = float(v)
+        except (TypeError, ValueError):
+            return None
+        if rem < 0:
+            return None
+        return {"order_id": str(oid), "action": action, "remaining": rem}
+
+    async def _resting_orders_all(self, tk):
+        """[LANE-A REV4 FIX 3] Walk the resting-orders cursor to
+        EXHAUSTION for a ticker; return (rows, ok, failures). rows are
+        strictly-validated canon dicts. ok=True ONLY on true exhaustion
+        of well-formed pages. A page that is None, not a dict, missing/
+        non-list `orders`, carries a malformed row, raises, repeats its
+        cursor, or hits the page bound before exhaustion => ok=False and
+        rows=[] (a partial page set is never verified truth)."""
+        rows, ok, failures = [], False, []
+        seen_cursors = set()
+        cursor = None
+        pages = 0
+        maxp = int(self.config.get("resting_orders_max_pages", 50))
+        try:
+            while True:
+                path = ("/trade-api/v2/portfolio/orders?ticker=%s"
+                        "&status=resting" % tk)
+                if cursor:
+                    path += "&cursor=%s" % cursor
+                d = await api_get(self.session, self.ak, self.pk, path,
+                                  self.rl)
+                pages += 1
+                if d is None:
+                    failures.append("orders_page_none(p=%d)" % pages)
+                    break
+                if not isinstance(d, dict) or "orders" not in d:
+                    failures.append("orders_missing_collection(p=%d)"
+                                    % pages)
+                    break
+                page = d.get("orders")
+                if not isinstance(page, list):
+                    failures.append("orders_malformed(p=%d)" % pages)
+                    break
+                bad = False
+                for raw in page:
+                    v = self._validate_order_row(raw)
+                    if v is None:
+                        bad = True
+                        break
+                    rows.append(v)
+                if bad:
+                    failures.append("orders_malformed_row(p=%d)" % pages)
+                    break
+                nxt = d.get("cursor") or None
+                if not nxt:
+                    ok = True
+                    break
+                if nxt in seen_cursors:
+                    failures.append("orders_repeated_cursor(p=%d)" % pages)
+                    break
+                seen_cursors.add(nxt)
+                cursor = nxt
+                if pages >= maxp:
+                    failures.append("orders_page_bound_%d" % maxp)
+                    break
+        except Exception as e:
+            failures.append("orders_exception:%s" % type(e).__name__)
+        if not ok:
+            rows = []
+        return rows, ok, failures
+
+    async def _positions_qty_all(self, tk):
+        """[LANE-A REV4 FIX 3] Exchange position quantity for a ticker
+        with cursor exhaustion. Returns (ex_qty, ok, failures). ok=True
+        ONLY on a well-formed, fully-walked response; a cursor present
+        in the response is exhausted or the whole read fails closed."""
+        ex_qty = 0.0
+        ok = False
+        failures = []
+        seen_cursors = set()
+        cursor = None
+        pages = 0
+        maxp = int(self.config.get("positions_max_pages", 50))
+        try:
+            while True:
+                path = ("/trade-api/v2/portfolio/positions?ticker=%s"
+                        "&count_filter=position"
+                        "&settlement_status=unsettled" % tk)
+                if cursor:
+                    path += "&cursor=%s" % cursor
+                pd = await api_get(self.session, self.ak, self.pk, path,
+                                   self.rl)
+                pages += 1
+                if pd is None:
+                    failures.append("positions_page_none(p=%d)" % pages)
+                    break
+                if (not isinstance(pd, dict)
+                        or "market_positions" not in pd):
+                    failures.append("positions_missing_collection(p=%d)"
+                                    % pages)
+                    break
+                mp = pd.get("market_positions")
+                if not isinstance(mp, list):
+                    failures.append("positions_malformed(p=%d)" % pages)
+                    break
+                bad = False
+                for p_ in mp:
+                    if not isinstance(p_, dict):
+                        bad = True
+                        break
+                    v = p_.get("position_fp")
+                    if v is None:
+                        bad = True
+                        break
+                    try:
+                        ex_qty += float(v)
+                    except (TypeError, ValueError):
+                        bad = True
+                        break
+                if bad:
+                    failures.append("positions_malformed_row(p=%d)"
+                                    % pages)
+                    break
+                nxt = pd.get("cursor") or None
+                if not nxt:
+                    ok = True
+                    break
+                if nxt in seen_cursors:
+                    failures.append("positions_repeated_cursor(p=%d)"
+                                    % pages)
+                    break
+                seen_cursors.add(nxt)
+                cursor = nxt
+                if pages >= maxp:
+                    failures.append("positions_page_bound_%d" % maxp)
+                    break
+        except Exception as e:
+            failures.append("positions_exception:%s" % type(e).__name__)
+        if not ok:
+            ex_qty = 0.0
+        return ex_qty, ok, failures
+
+    def _quarantine_snapshot(self):
+        """[REV6] JSON-safe copy of the quarantine ledger for persistence."""
+        out = {}
+        for tk, recs in (self.unmatched_holdings or {}).items():
+            keep = [dict(r) for r in recs if isinstance(r, dict)]
+            if keep:
+                out[tk] = keep
+        return out
+
+    def _quarantine_open_qty(self, tk):
+        """[REV6.2] ACTUAL unmatched OPEN quantity: admitted buy qty
+        minus exact booked quarantine-exit qty, excluding resolved
+        records. Never a permanent sum of original admitted quantities."""
+        tot = 0.0
+        for r in self.unmatched_holdings.get(tk, []):
+            if r.get("status") == "resolved":
+                continue
+            tot += (float(r.get("qty") or 0)
+                    - float(r.get("exit_booked_qty") or 0))
+        return max(0.0, tot)
+
+    def _quarantine_admitted_qty(self, tk):
+        """Total admitted buy qty (for reconciliation vs exchange qty)."""
+        return sum(float(r.get("qty") or 0)
+                   for r in self.unmatched_holdings.get(tk, []))
+
+    async def _quarantine_reconcile(self, tk, pos, ex_qty):
+        """[REV6.1 CAUSAL] Admit a raced holding ONLY on exact bot-owned
+        buy receipts that are STRICTLY LATER than the terminal-cash
+        exchange timestamp (the exchange time cumulative exit receipts
+        first reached entry_qty) AND whose order_id was resting + selected
+        for this cancellation. Local time cannot establish causality;
+        original entry receipts (pre-cash by exchange time) never qualify;
+        missing terminal ts, missing/equal-resolution/pre-cash buy ts, or
+        receipts that do not reconcile to the exchange holding -> UNKNOWN
+        (retain, fail closed, never invent). Returns explained|pending|
+        unknown."""
+        q = self.unmatched_holdings.setdefault(tk, [])
+        attempted = set(getattr(pos, "_cancel_attempted_buy_ids", None)
+                        or set())
+        bot = self._bot_owned_ids(pos)
+        term_ts = getattr(pos, "_terminal_cash_ts", None)
+        if term_ts is None:
+            self._log("quarantine_unknown", {
+                "reason": "no_terminal_cash_timestamp",
+                "exchange_qty": ex_qty,
+                "law": "causality needs the exchange time the cash "
+                       "completed — cannot admit without it"}, ticker=tk)
+            return "unknown"
+        rows, feed_ok = await self._fills_bulk()
+        if not feed_ok:
+            self._log("quarantine_unknown", {
+                "reason": "fills_feed_unknown", "exchange_qty": ex_qty,
+                "law": "no receipt truth — retain, fail closed"},
+                ticker=tk)
+            return "unknown"
+        valid, invalid, pre_or_ambiguous = [], 0, 0
+        for f in rows:
+            if str(f.get("ticker") or "") not in ("", tk):
+                continue
+            r = self._canon_receipt(f)
+            if r["action"] != "buy":
+                continue
+            if (not r["receipt_id"] or not r["order_id"]
+                    or r["qty"] <= 0 or r["price"] is None
+                    or r["ts"] is None):
+                invalid += 1
+                continue
+            if r["order_id"] not in bot or r["order_id"] not in attempted:
+                continue                 # foreign or not-in-this-race
+            # STRICT causal gate: exchange ts must be LATER than the
+            # terminal cash. Equal-resolution or earlier is ambiguous/pre.
+            if float(r["ts"]) <= float(term_ts):
+                pre_or_ambiguous += 1
+                continue
+            valid.append(r)
+        if pre_or_ambiguous and not valid:
+            self._log("quarantine_unknown", {
+                "reason": "buy_receipts_not_strictly_post_cash",
+                "terminal_cash_ts": term_ts, "exchange_qty": ex_qty,
+                "candidates_pre_or_equal": pre_or_ambiguous,
+                "law": "a buy at/earlier than the terminal cash is a "
+                       "pre-cash or ambiguous fill, never a cancellation "
+                       "race — UNKNOWN, no admission"}, ticker=tk)
+            return "unknown"
+        if not valid:
+            self._log("quarantine_unknown", {
+                "reason": "no_attributable_post_cash_buy_receipts",
+                "exchange_qty": ex_qty, "invalid_rows": invalid,
+                "terminal_cash_ts": term_ts,
+                "attempted": sorted(attempted)[:4],
+                "law": "nonzero exchange position alone is not a basis — "
+                       "retain, fail closed, foreign untouched"},
+                ticker=tk)
+            return "unknown"
+        already = {r.get("buy_receipt_id") for r in q}
+        new = [r for r in valid if r["receipt_id"] not in already]
+        # reconcile: existing OPEN unmatched + new admits == exchange qty
+        total = self._quarantine_open_qty(tk) + sum(r["qty"] for r in new)
+        if abs(total - float(ex_qty)) >= EXCH_ZERO_EPS:
+            self._log("quarantine_unknown", {
+                "reason": "receipts_do_not_reconcile_to_exchange_qty",
+                "exchange_qty": ex_qty, "open_plus_new": total,
+                "law": "ambiguous/duplicated/short receipts -> UNKNOWN, "
+                       "never invent"}, ticker=tk)
+            return "unknown"
+        cat = self.get_category(tk) or getattr(pos, "category", "?")
+        for r in new:
+            basis = int(round(r["price"]))
+            band_x, rule = self.exit_rule_for(cat, basis)
+            if rule == "hold" or band_x is None:
+                self._log("quarantine_no_lawful_protective_price", {
+                    "buy_receipt_id": r["receipt_id"], "basis": basis,
+                    "rule": rule,
+                    "law": "standing exit config yields no lawful "
+                           "protective price — STOP AND REPORT"},
+                    ticker=tk)
+                return "unknown"
+            qty = int(round(r["qty"]))
+            rec = {"ticker": tk, "buy_receipt_id": r["receipt_id"],
+                   "buy_order_id": r["order_id"], "qty": float(qty),
+                   "price": basis, "exchange_ts": float(r["ts"]),
+                   "terminal_cash_ts": float(term_ts),
+                   "local_ts": time.time(), "source": "cash_cancel_race",
+                   "status": "quarantined",
+                   "protective_order_ids": [],
+                   "protective_exit_order_id": "",
+                   "protective_exit_target": min(basis + int(band_x),
+                                                 EXIT_PRICE_CAP),
+                   "exit_receipt_ids": [], "exit_booked_qty": 0.0,
+                   "exit_pnl_cents": 0.0,
+                   "operator_state": "operator_pending"}
+            q.append(rec)
+            self._log("quarantine_admitted", {
+                "buy_receipt_id": r["receipt_id"],
+                "buy_order_id": r["order_id"][:13], "qty": qty,
+                "basis": basis, "buy_ts": r["ts"],
+                "terminal_cash_ts": term_ts,
+                "protective_exit_target": rec["protective_exit_target"],
+                "law": "raced buy (strictly post-cash) quarantined BESIDE "
+                       "the completed cycle; old cycle immutable"},
+                ticker=tk)
+        self._save_v4_resting()
+        # ensure protective coverage NOW (verified against the book)
+        await self._quarantine_ensure_coverage(tk, pos)
+        covered = self._quarantine_covered(tk)
+        explained = (abs(self._quarantine_open_qty(tk) - float(ex_qty))
+                     < EXCH_ZERO_EPS and covered)
+        return "explained" if explained else "pending"
+
+    def _quarantine_covered(self, tk):
+        """True iff every unresolved record is safely covered. [REV6.1.1.3]
+        A breach or UNKNOWN coverage state is NEVER covered — even when
+        booked == qty (an oversell has open_q 0 yet is not safe). The
+        coverage state is stamped by _quarantine_ensure_coverage."""
+        for r in self.unmatched_holdings.get(tk, []):
+            if r.get("status") == "resolved":
+                continue
+            if r.get("_coverage_state") in ("breach", "unknown"):
+                return False
+            open_q = (float(r.get("qty") or 0)
+                      - float(r.get("exit_booked_qty") or 0))
+            if open_q > EXCH_ZERO_EPS and not r.get("_resting_confirmed"):
+                return False
+        return True
+
+    async def _resolve_protective_oid(self, tk, oid):
+        """[REV6.1.1.2] Exact order truth via the order-specific GET,
+        ALWAYS — even when the oid also appears in the resting list. The
+        resting list carries only remaining_count, never fill_count, so a
+        partial-fill lag (order shows remaining=2 while it has actually
+        filled 3) is invisible there and reposting the "missing" 3 would
+        oversell. Returns (status, fill_count, remaining):
+          · status normalized to one of the DOCUMENTED REST statuses
+            {"resting","canceled","executed"}; ANY other/blank/unreadable
+            status — including partially_filled, whose terminal semantics
+            are not proven — is returned as "unknown".
+          · fill_count / remaining are floats, or None when unreadable."""
+        d = await api_get(self.session, self.ak, self.pk,
+                          "/trade-api/v2/portfolio/orders/%s" % oid, self.rl)
+        if not isinstance(d, dict):
+            return "unknown", None, None
+        o = d.get("order", d)
+        if not isinstance(o, dict):
+            return "unknown", None, None
+
+        def _num(*keys):
+            for k in keys:
+                if o.get(k) is not None:
+                    try:
+                        return float(o.get(k))
+                    except (TypeError, ValueError):
+                        return None
+            return None
+        fc = _num("fill_count_fp", "fill_count")
+        rem = _num("remaining_count_fp", "remaining_count")
+        st = str(o.get("status") or "").lower()
+        if st == "cancelled":
+            st = "canceled"
+        if st not in ("resting", "canceled", "executed"):
+            return "unknown", fc, rem
+        return st, fc, rem
+
+    async def _quarantine_ensure_coverage(self, tk, pos=None):
+        """[REV6.1.1.2] VERIFY quarantine protective coverage against
+        EXACT, RECONCILED order+receipt truth and repost EXACTLY the
+        uncovered remainder. No resting-book remaining is trusted until it
+        is receipt-reconciled, and the never-oversell invariant is ENFORCED
+        (a breach is a named halt, not a claim). Per unresolved record:
+          1. Book valid exact receipts (idempotent).
+          2. Fetch the COMPLETE exact-receipt census grouped by order_id.
+          3. For EVERY protective order, GET exact status + fill_count_fp +
+             remaining_count_fp (even if it is resting) and REQUIRE
+             sum(exact valid receipts for the oid) == fill_count_fp.
+          4. Reconciled status=resting contributes remaining_count_fp as
+             cover; reconciled canceled/executed is terminal (fills booked,
+             no cover). ANY of: unavailable order GET, undocumented status
+             (incl partially_filled), incomplete/malformed receipt census,
+             or a fill_count-vs-receipt mismatch => UNKNOWN.
+          5. UNKNOWN on ANY protective order blocks ALL reposting for the
+             record; loud persistent alert; operator_pending stays armed.
+          6. INVARIANT: if booked + reconciled resting cover > qty, emit a
+             named quarantine_oversell_invariant_breach, do NOT call it
+             covered, do NOT place another order, keep operator_pending
+             armed, and stop for operator reconciliation.
+          7. Otherwise repost EXACTLY qty - booked - cover once; the new
+             order confirms only after it is GET-reconciled next cycle."""
+        recs = [r for r in self.unmatched_holdings.get(tk, [])
+                if r.get("status") != "resolved"]
+        if not recs:
+            return
+        # 1. book valid exact receipts first (idempotent). Booking NEVER
+        #    resolves a record — resolution is decided ONLY here, after a
+        #    full reconciliation of every protective order and the census.
+        await self._quarantine_accrue(tk)
+        for r in recs:
+            qty = float(r.get("qty") or 0)
+            booked = float(r.get("exit_booked_qty") or 0)
+            # A. validate quantities + reconcile EVERY protective oid and
+            #    the complete receipt census BEFORE any resolution decision,
+            #    even when booked >= qty. Deduplicate oids before summing.
+            oids = []
+            for o in list(r.get("protective_order_ids") or []) + \
+                    [r.get("protective_exit_order_id")]:
+                if o and o not in oids:
+                    oids.append(o)
+            qty_bad = (not (qty == qty) or qty < 0            # NaN or negative
+                       or not (booked == booked) or booked < 0)
+            cover = 0.0
+            unknown = qty_bad
+            all_terminal = True          # every oid reconciled AND terminal
+            detail = []
+            if qty_bad:
+                detail.append({"qty": qty, "booked": booked,
+                               "reason": "non-numeric/negative quantity"})
+            if oids:
+                got = await self._exit_receipts(tk, set(oids))
+                good = got[0] if isinstance(got, tuple) else got
+                bad = (got[1] if isinstance(got, tuple) and len(got) > 1
+                       else [])
+                census_ok = (got[2] if isinstance(got, tuple)
+                             and len(got) > 2 else True)
+                recsum = {}
+                for g in good:
+                    recsum[g["order_id"]] = (recsum.get(g["order_id"], 0.0)
+                                             + float(g.get("qty") or 0))
+                bad_oids = {b.get("order_id") for b in (bad or [])}
+                for oid in oids:
+                    st, fc, rem = await self._resolve_protective_oid(tk, oid)
+                    rs = recsum.get(oid, 0.0)
+                    # H. negative/non-numeric fill_count is UNKNOWN
+                    if (st == "unknown" or fc is None or fc < 0
+                            or not census_ok or oid in bad_oids
+                            or abs(rs - fc) > EXCH_ZERO_EPS):
+                        unknown = True
+                        all_terminal = False
+                        detail.append({
+                            "oid": (oid or "")[:13], "status": st,
+                            "fill_count": fc, "receipt_sum": rs,
+                            "malformed_receipt": oid in bad_oids,
+                            "census_complete": census_ok})
+                        continue
+                    if st == "resting":
+                        if rem is None or rem < 0:
+                            unknown = True
+                            all_terminal = False
+                            detail.append({"oid": (oid or "")[:13],
+                                           "status": st, "remaining": rem})
+                            continue
+                        cover += rem
+                        all_terminal = False    # a live resting order != terminal
+                    # canceled/executed: reconciled terminal, receipts
+                    # already booked, provides NO resting cover
+            # B. any UNKNOWN/malformed/incomplete/mismatch -> coverage
+            #    UNKNOWN, UNRESOLVED, no closure/repost. (Checked before the
+            #    breach so a hidden fill can never be silently "resolved".)
+            if unknown:
+                r["_resting_confirmed"] = False
+                r["_coverage_state"] = "unknown"
+                self._log("quarantine_coverage_unknown", {
+                    "buy_receipt_id": r["buy_receipt_id"],
+                    "qty": qty, "exit_booked_qty": booked,
+                    "reconciled_cover": cover, "detail": detail[:6],
+                    "persistent": True, "naked": True,
+                    "law": "an order status, receipt census, "
+                           "fill_count-vs-receipt reconciliation, or a "
+                           "quantity is UNKNOWN; do NOT resolve, do NOT "
+                           "repost, do NOT close; operator_pending stays "
+                           "armed; alert every cycle until reconciled"},
+                    ticker=tk)
+                continue
+            # C. booked > qty OR booked + reconciled resting cover > qty ->
+            #    NAMED oversell breach, UNRESOLVED, no closure/repost.
+            if (booked > qty + EXCH_ZERO_EPS
+                    or booked + cover > qty + EXCH_ZERO_EPS):
+                r["_resting_confirmed"] = False
+                r["_coverage_state"] = "breach"
+                self._log("quarantine_oversell_invariant_breach", {
+                    "buy_receipt_id": r["buy_receipt_id"],
+                    "qty": qty, "exit_booked_qty": booked,
+                    "reconciled_resting_cover": cover,
+                    "sum": booked + cover, "persistent": True,
+                    "law": "booked exit and/or reconciled resting protective "
+                           "cover EXCEEDS the quarantined holding — NOT "
+                           "covered, NOT resolved, NO new order; "
+                           "operator_pending armed; stop for operator "
+                           "reconciliation"}, ticker=tk)
+                continue
+            # D. booked == qty AND reconciled resting cover == 0 AND EVERY
+            #    protective oid is reconciled terminal -> RESOLVED. This is
+            #    the ONLY path to resolution.
+            if (abs(booked - qty) <= EXCH_ZERO_EPS and cover <= EXCH_ZERO_EPS
+                    and all_terminal):
+                r["status"] = "resolved"
+                r["_resting_confirmed"] = True
+                r["_await_oids"] = []
+                r["_coverage_state"] = "resolved"
+                self._log("quarantine_exit_resolved", {
+                    "buy_receipt_id": r["buy_receipt_id"], "qty": qty,
+                    "exit_booked_qty": booked,
+                    "law": "fully exited: booked == holding, zero live "
+                           "protective cover, every protective order "
+                           "reconciled terminal against its receipts"},
+                    ticker=tk)
+                continue
+            shortfall = qty - booked - cover
+            # E. booked < qty and booked + cover == qty -> COVERED but NOT
+            #    resolved (keep polling); also any residual <= 0 shortfall
+            #    that is not a terminal full exit stays covered-unresolved.
+            if shortfall <= EXCH_ZERO_EPS:
+                r["_resting_confirmed"] = True
+                r["_await_oids"] = []
+                r["_coverage_state"] = "covered"
+                continue
+            # F. repost EXACTLY the reconciled uncovered remainder once; the
+            #    new order confirms only after it is GET-reconciled next cycle.
+            r["_resting_confirmed"] = False
+            r["_coverage_state"] = "pending"
+            target = int(r.get("protective_exit_target")
+                         or (int(r["price"])))
+            oid, resp = await self.place_order(
+                tk, "sell", "yes", target, int(round(shortfall)))
+            if not oid:
+                self._log("quarantine_protective_place_failed", {
+                    "buy_receipt_id": r["buy_receipt_id"],
+                    "qty": int(round(shortfall)), "target": target,
+                    "law": "protective placement returned no order — "
+                           "retain the exact receipt, retry next cycle"},
+                    ticker=tk)
+                continue
+            r.setdefault("protective_order_ids", []).append(oid)
+            r["protective_exit_order_id"] = oid
+            r["_await_oids"] = [oid]
+            self._log("quarantine_protective_posted", {
+                "buy_receipt_id": r["buy_receipt_id"],
+                "qty": int(round(shortfall)), "target": target,
+                "order_id": oid[:13], "confirmed": "await_reconciliation",
+                "law": "reposted the exact reconciled uncovered remainder; "
+                       "coverage is confirmed only after this order's exact "
+                       "GET status is reconciled against its receipts "
+                       "(fill_count == receipt sum) next cycle"}, ticker=tk)
+        self._save_v4_resting()
+
+    async def _quarantine_accrue(self, tk):
+        """Accrue protective-exit receipts ONLY into quarantine records,
+        by protective order identity, idempotent by exit receipt id.
+        [REV6.1.1.1] Returns feed_ok: True only if EVERY record's exact
+        receipt census was complete. A False verdict means reposts must
+        be withheld — a lagging fills feed could hide a fill."""
+        feed_ok = True
+        for rec in self.unmatched_holdings.get(tk, []):
+            if rec.get("status") == "resolved":
+                continue
+            oids = set(rec.get("protective_order_ids") or [])
+            if rec.get("protective_exit_order_id"):
+                oids.add(rec["protective_exit_order_id"])
+            oids = {o for o in oids if o}
+            if not oids:
+                continue
+            got = await self._exit_receipts(tk, oids)
+            if isinstance(got, tuple):
+                receipts = got[0]
+                if len(got) >= 3 and got[2] is False:
+                    feed_ok = False
+                if len(got) >= 2 and got[1]:
+                    feed_ok = False        # malformed/bad receipt => UNKNOWN
+            else:
+                receipts = got
+            seen = set(rec.get("exit_receipt_ids") or [])
+            newq = newpnl = 0.0
+            for r in sorted(receipts,
+                            key=lambda x: (x["ts"], x["receipt_id"])):
+                rid = r["receipt_id"]
+                if not rid or rid in seen or r["qty"] <= 0                         or r["price"] is None:
+                    continue
+                seen.add(rid)
+                newq += r["qty"]
+                newpnl += (r["price"] - rec["price"]) * r["qty"]
+            if newq > 0:
+                rec["exit_receipt_ids"] = sorted(seen)
+                rec["exit_booked_qty"] = float(
+                    rec.get("exit_booked_qty", 0.0)) + newq
+                rec["exit_pnl_cents"] = float(
+                    rec.get("exit_pnl_cents", 0.0)) + newpnl
+                # [REV6.1.1.3] booking NEVER resolves — resolution is
+                # decided ONLY in _quarantine_ensure_coverage after a full
+                # reconciliation of every protective order and the census.
+                self._log("quarantine_exit_booked", {
+                    "buy_receipt_id": rec["buy_receipt_id"],
+                    "new_qty": newq, "new_pnl": newpnl,
+                    "exit_booked_qty": rec["exit_booked_qty"],
+                    "exit_pnl_cents": rec["exit_pnl_cents"],
+                    "status": rec["status"],
+                    "law": "protective-exit receipts accrue ONLY in "
+                           "quarantine; completed cycle P&L unchanged"},
+                    ticker=tk)
+                self._save_v4_resting()
+        return feed_ok
+
+    async def _finalize_full_cash(self, tk, pos, source="cash"):
+        """[LANE-A REV4 — THE ONE FULL-CASH FINALIZER] Both the normal
+        exit-poll completion and phantom-cash reconciliation converge
+        here once a position exit is FULLY booked by exact receipts.
+        It (a) arms the cycle/session refusal EXACTLY ONCE, (b) cancels
+        only bot-owned current-strategy entry/replacement buys, confirmed
+        (foreign named + untouched), and (c) transitions the position to
+        settled/closed ONLY on confirmed cancellation + explicit
+        verified-empty resting orders + verified-zero exchange position.
+        On UNKNOWN / failure / remaining bot buy it retains the position
+        and every order id, emits cash_cleanup_pending, and returns
+        False — and it never sets exit_filled or any terminal flag that
+        would suppress the retry. Returns True only on verified closure.
+        """
+        _sx = self.__dict__.setdefault("_session_exited", set())
+        if tk not in _sx:
+            _sx.add(tk)
+            self._cycle_count[tk] = self._cycle_count.get(tk, 0) + 1
+            self._log("cash_refusal_armed", {
+                "source": source,
+                "cycle_count": self._cycle_count.get(tk),
+                "law": "cycle/session refusal armed once at the confirmed "
+                       "cash; conception refused while cleanup completes"},
+                ticker=tk)
+        clean = await self._cancel_resting_buys_on_cash(tk, pos,
+                                                        why=source)
+        if not clean:
+            # [REV5 FIX 2] mark cleanup-pending so the exit-poll retry
+            # branch re-invokes this finalizer every cycle even though
+            # `filled == booked` closes the receipt-booking gate. No
+            # terminal flag is set — the retry must re-enter.
+            pos._cash_cleanup_pending = True
+            self._save_v4_resting()
+            return False
+        pos._cash_cleanup_pending = False
+        pos.exit_filled = True
+        pos.settled = True
+        pos.phase = "settled"
+        self.positions.pop(tk, None)
+        self._save_v4_resting()
+        return True
+
+    async def _cash_cleanup_state(self, tk, pos):
+        """[LANE-A REV4 FIX 3] EXPLICIT TRUTH STATUS via cursor-exhausted,
+        strictly-validated reads. Returns
+            (remaining_bot_buy_ids, ex_qty, orders_ok, positions_ok,
+             failures).
+        orders_ok is True only when the resting-orders cursor was walked
+        to exhaustion with every row well-formed; positions_ok only when
+        the positions read was well-formed and fully walked. ex_qty is
+        meaningful only when positions_ok. API silence, truncation,
+        malformed rows and exceptions are all UNKNOWN (ok=False)."""
+        remaining, failures = [], []
+        rows, orders_ok, of = await self._resting_orders_all(tk)
+        failures.extend(of)
+        if orders_ok:
+            mine = self._bot_owned_ids(pos)
+            for o in rows:
+                if (o["action"] == "buy" and o["remaining"] > 0
+                        and o["order_id"] in mine):
+                    remaining.append(o["order_id"])
+        ex_qty, positions_ok, pf = await self._positions_qty_all(tk)
+        failures.extend(pf)
+        return remaining, ex_qty, orders_ok, positions_ok, failures
+
+    @staticmethod
+    def _canon_order(o, ticker=""):
+        """[LANE-A FIX 1 — THE ONE NORMALIZATION BOUNDARY] Kalshi raw
+        orders, reconcile's ord_map rows and the audit's rows each name
+        the same five facts differently (order_id/oid/id ·
+        price/px/yes_price_dollars/yes_price · qty/remaining/
+        remaining_count_fp/remaining_count/count). Every sweep decision
+        reads THIS shape and no other:
+            order_id (str) · ticker (str) · action (buy|sell) ·
+            side (yes|no) · price (int cents | None) ·
+            remaining (float contracts)
+        Unknown price stays None — never a silent -1 that reads as a
+        mismatch (the defect this replaces: o.get('px', -1) against a
+        row carrying 'price', so every order looked wrong and every
+        cancel raised KeyError on o['oid'])."""
+        def _first(*names):
+            for n in names:
+                v = o.get(n)
+                if v is not None and v != "":
+                    return v
+            return None
+        oid = _first("order_id", "oid", "id") or ""
+        action = str(_first("action") or "").lower()
+        side = str(_first("side") or "yes").lower()
+        price = None
+        v = _first("price", "px")
+        if v is not None:
+            try:
+                price = int(round(float(v)))
+            except (TypeError, ValueError):
+                price = None
+        if price is None:
+            v = _first("yes_price_dollars")
+            if v is not None:
+                try:
+                    price = int(round(float(v) * 100))
+                except (TypeError, ValueError):
+                    price = None
+        if price is None:
+            v = _first("yes_price")
+            if v is not None:
+                try:
+                    price = int(round(float(v)))
+                except (TypeError, ValueError):
+                    price = None
+        remaining = 0.0
+        v = _first("remaining", "qty", "remaining_count_fp",
+                   "remaining_count", "count")
+        if v is not None:
+            try:
+                remaining = float(v)
+            except (TypeError, ValueError):
+                remaining = 0.0
+        return {"order_id": str(oid), "ticker": str(_first("ticker")
+                                                   or ticker or ""),
+                "action": action, "side": side, "price": price,
+                "remaining": remaining}
+
+    def _canon_orders(self, ord_map):
+        """Normalize a whole {ticker: [order,...]} map at the sweep's
+        single entry boundary. Accepts every upstream shape."""
+        out = {}
+        for tk, rows in (ord_map or {}).items():
+            out[tk] = [self._canon_order(r, tk) for r in (rows or [])]
+        return out
+
+    @staticmethod
+    def _exit_coverage(canon_rows):
+        """[LANE-A FIX 2] TOTAL remaining resting SELL quantity for a
+        leg — the only honest measure of exit coverage. One resting
+        sell is not coverage for an arbitrary held quantity."""
+        return sum(r["remaining"] for r in (canon_rows or [])
+                   if r["action"] == "sell" and r["remaining"] > 0)
+
     async def _reconcile_exit_fill_from_truth(self, tk, pos):
         """[LIVE DEFECT FIX 07-20 late — ICHYAM-YAM] The engine holds a
         position the exchange does not. That is a CASHED EXIT whose
@@ -14463,65 +15678,85 @@ class LiveV3:
         cash through the normal accounting: pnl, session-exited stamp,
         CYCLE INCREMENT (this is what stops the re-buy), tombstone.
         Confirmation is required — with none, the record STANDS and the
-        defect stays flagged. Never erases state."""
-        px = qty = None
-        src = None
-        oid = getattr(pos, "exit_order_id", "")
-        if oid:
-            d = await api_get(self.session, self.ak, self.pk,
-                              "/trade-api/v2/portfolio/orders/%s" % oid,
-                              self.rl)
-            o = (d or {}).get("order", d) or {}
-            f = int(float(o.get("fill_count_fp",
-                                o.get("count_filled", 0)) or 0))
-            if f > 0 and o.get("status") in ("executed", "canceled"):
-                qty, src = f, "exit_order_status"
-                try:
-                    px = round(float(o.get("average_fill_price_fp")
-                                     or 0) * 100) or pos.exit_price
-                except (TypeError, ValueError):
-                    px = pos.exit_price
-        if qty is None:
-            d = await api_get(self.session, self.ak, self.pk,
-                              "/trade-api/v2/portfolio/fills?ticker=%s"
-                              "&limit=50" % tk, self.rl)
-            sells = [f for f in ((d or {}).get("fills") or [])
-                     if f.get("action") == "sell"]
-            if sells:
-                qty = sum(int(float(f.get("count") or 0)) for f in sells)
-                try:
-                    px = round(sum(int(float(f.get("count") or 0))
-                                   * float(f.get("yes_price_dollars")
-                                           or 0) * 100
-                                   for f in sells) / max(1, qty))
-                except (TypeError, ValueError, ZeroDivisionError):
-                    px = pos.exit_price
-                src = "fills_feed"
-        if not qty:
+        defect stays flagged. Never erases state.
+        [LANE-A FIXES 3+4] Identity, not vibes: the sell is attributed
+        by ORDER IDENTITY (the position's own exit order id) — the fills
+        feed is consulted only through that id, so an unrelated
+        historical sell on the same ticker can never be mistaken for
+        this position's cash. Quantity comes from the authoritative
+        filled field (fill_count_fp / count_fp), zero/missing = NOT
+        confirmed. Booking is INCREMENTAL and IDEMPOTENT: only the
+        delta over already-booked exit quantity is added, P&L accrues
+        (never overwritten), and a re-observation of the same fill is a
+        no-op. A PARTIAL exit books its increment and stays OPEN — no
+        cycle increment, no tombstone, no deletion. Only a FULL cash
+        (booked >= entry_qty) closes the story. Returns True only when
+        fully booked; the caller retries on False."""
+        entry_qty = int(float(getattr(pos, "entry_qty", 0) or 0))
+        oids = set(pos.__dict__.setdefault("_exit_order_ids", set()))
+        cur = str(getattr(pos, "exit_order_id", "") or "")
+        if cur:
+            oids.add(cur)
+        oids |= set((pos.__dict__.get("_exit_booked_by_order")
+                     or {}).keys())
+        oids = {o for o in oids if o}
+        if not oids:
+            n_att = getattr(pos, "_phantom_cash_attempts", 0) + 1
+            pos._phantom_cash_attempts = n_att
             self._log("phantom_cash_unconfirmed", {
-                "engine_qty": pos.entry_qty,
-                "law": "no sell confirmed — the record STANDS; never "
-                       "erase state on exchange-empty"}, ticker=tk)
-            return
-        px = int(px or pos.exit_price or 0)
-        pos.exit_filled_qty = max(int(getattr(pos, "exit_filled_qty",
-                                              0) or 0), int(qty))
-        pos.exit_filled = True
-        pos.pnl_cents = (px - pos.entry_price) * int(qty)
-        self.__dict__.setdefault("_session_exited", set()).add(tk)
-        self._log("exit_filled", {
-            "exit_price": px, "entry_price": pos.entry_price,
-            "qty": int(qty), "complete": True,
-            "pnl_cents": pos.pnl_cents,
-            "source": "phantom_cash_route(%s)" % src,
-            "law": "unbooked EXIT fill booked from exchange truth — "
-                   "the cash closes the cycle; no re-buy follows"},
-            ticker=tk)
-        self._cycle_count[tk] = self._cycle_count.get(tk, 0) + 1
-        pos.settled = True
-        pos.phase = "closed"
-        self.positions.pop(tk, None)
-        self._save_v4_resting()
+                "engine_qty": entry_qty, "attempts": n_att,
+                "law": "no exit order identity to attribute a sell to "
+                       "— the record STANDS, no deletion, retry"},
+                ticker=tk)
+            return False
+        # [REV2 FIX 1] EXACT RECEIPTS OR RETRY. No order-status
+        # approximation, no cumulative average, no planned price: if
+        # the truth is not on the fills feed, the record stands and we
+        # come back next cycle.
+        receipts, defects, feed_ok = await self._exit_receipts(tk, oids)
+        src = "fills_receipts"
+        if not receipts:
+            n_att = getattr(pos, "_phantom_cash_attempts", 0) + 1
+            pos._phantom_cash_attempts = n_att
+            self._log("phantom_cash_unconfirmed", {
+                "engine_qty": entry_qty, "exit_order_ids": sorted(oids),
+                "attempts": n_att, "feed_ok": feed_ok,
+                "missing": [d.get("missing") for d in defects][:4],
+                "law": "no EXACT receipt (fill_id + order_id + "
+                       "count_fp + actual price + post-entry ts) — the "
+                       "record STANDS, no deletion, retry next cycle"},
+                ticker=tk)
+            return False
+        newly, newpnl, complete = self._book_exit_receipts(
+            tk, pos, receipts, source="phantom_cash(%s)" % src)
+        if newly <= 0:
+            self._log("phantom_cash_idempotent", {
+                "cumulative_qty": pos.exit_filled_qty,
+                "complete": complete,
+                "law": "receipts already booked — no double booking"},
+                ticker=tk)
+            # nothing new to book; only fall through when a fully-booked
+            # position is still open and genuinely needs closing.
+            if not (complete and tk in self.positions):
+                return complete
+        # completion is RECEIPT-CUMULATIVE only (never order status).
+        if newly > 0:
+            self._log("exit_filled", {
+                "exit_price": int(getattr(pos, "exit_price", 0) or 0),
+                "entry_price": pos.entry_price,
+                "qty": pos.exit_filled_qty, "new_fills": newly,
+                "complete": complete, "pnl_cents": pos.pnl_cents,
+                "source": "phantom_cash_route(%s)" % src,
+                "law": "unbooked EXIT fill booked from exchange truth "
+                       "by receipt identity"}, ticker=tk)
+        if not complete:
+            # PARTIAL: still owns shares — stays open, keeps its exit;
+            # no cycle increment, no exit_filled flag, nothing deleted.
+            self._save_v4_resting()
+            return False
+        # FULL CASH -> the ONE common finalizer (arm-once + verified
+        # cleanup + gated closure; retryable on UNKNOWN).
+        return await self._finalize_full_cash(tk, pos, source="phantom")
 
     async def _tooth_market_status(self, tk):
         """[SAFETY-TEETH P3(a)] market status for the settlement_pending
@@ -14541,6 +15776,20 @@ class LiveV3:
             pass
         cache[tk] = (now, st)
         return st
+
+    async def _quarantine_poll(self):
+        """[REV6.2] Each reconcile: accrue protective-exit receipts into
+        quarantine and (re)verify/repost protective coverage per ticker.
+        Never touches the completed cycle; never touches foreign orders."""
+        if not self.unmatched_holdings:
+            return
+        for tk in list(self.unmatched_holdings.keys()):
+            try:
+                await self._quarantine_accrue(tk)
+                await self._quarantine_ensure_coverage(tk)
+            except Exception as _qpe:
+                self._log("quarantine_poll_error",
+                          {"err": str(_qpe)[:150]}, ticker=tk)
 
     async def _naked_tooth_scan(self, pos_map, ord_map):
         """[SAFETY-TEETH P3(a) 2026-07-20 — the amended naked tooth, spec
@@ -14571,12 +15820,24 @@ class LiveV3:
         seen = self.__dict__.setdefault(
             "_tooth_seen", {"naked": {}, "unbooked": {}, "phantom": {}})
         DETSET = ("determined", "finalized", "settled")
-        # ---- (1) NAKED: exchange-held, no resting exit ----------------
+        # [REV6] accrue quarantine protective-exit receipts each reconcile
+        try:
+            await self._quarantine_poll()
+        except Exception as _qpe:
+            self._log("quarantine_poll_error", {"err": str(_qpe)[:150]})
+        # [LANE-A FIX 1] ONE boundary: every decision below reads the
+        # canonical shape, whatever the caller handed us.
+        ord_map = self._canon_orders(ord_map)
+        # ---- (1) NAKED: held quantity vs TOTAL resting exit quantity --
+        # [LANE-A FIX 2] coverage is an ARITHMETIC comparison, not a
+        # presence check: held 5 with exits totalling 1 leaves FOUR
+        # uncovered contracts and is naked; held 5 with exits 5 is
+        # covered and must never be duplicated.
         for tk, pinfo in pos_map.items():
             q = float(pinfo.get("qty") or 0)
-            sq = sum(o.get("qty", 0) for o in ord_map.get(tk, [])
-                     if o.get("action") == "sell")
-            if q < 1.0 or sq >= 1.0:
+            sq = self._exit_coverage(ord_map.get(tk))
+            uncovered = q - sq
+            if q < 1.0 or uncovered < 1.0:
                 seen["naked"].pop(tk, None)
                 continue
             pos = self.positions.get(tk)
@@ -14591,12 +15852,31 @@ class LiveV3:
                 continue                    # settlement_pending, never naked
             n9 = seen["naked"][tk] = seen["naked"].get(tk, 0) + 1
             self._log("naked_leg_defect", {
-                "held": q, "engine_known": pos is not None,
+                "held": q, "resting_exit_qty": sq,
+                "uncovered": round(uncovered, 2),
+                "engine_known": pos is not None,
                 "engine_phase": getattr(pos, "phase", None),
                 "market_status": mstat, "consecutive_cycles": n9,
-                "law": "SAFETY-TEETH P3(a) 07-20: filled leg without "
-                       "resting exit = DEFECT every steady cycle"},
+                "law": "SAFETY-TEETH P3(a) 07-20 (LANE-A qty coverage): "
+                       "held qty exceeding total resting exit qty = "
+                       "DEFECT every steady cycle"},
                 ticker=tk)
+            if self.unmatched_holdings.get(tk):
+                # [REV6.2] the completed Position is IMMUTABLE — the tooth
+                # never heals it against the old basis. But coverage is not
+                # ASSUMED from ledger existence: verify the quarantine's own
+                # protective orders against the book and repost EXACTLY the
+                # uncovered quarantine quantity from the RACED basis
+                # (quarantine-specific protection, not silent deferral).
+                await self._quarantine_ensure_coverage(tk, pos)
+                self._log("naked_tooth_quarantine_protected", {
+                    "held": q, "resting_exit_qty": sq,
+                    "quarantine_open": self._quarantine_open_qty(tk),
+                    "covered": self._quarantine_covered(tk),
+                    "law": "quarantine-owned protective coverage verified/"
+                           "reposted; completed Position untouched"},
+                    ticker=tk)
+                continue
             if (n9 >= 2 and pos is not None
                     and getattr(pos, "is_v4", False)
                     and pos.phase == "active" and pos.entry_qty > 0):
@@ -14614,6 +15894,7 @@ class LiveV3:
                         "action": ("stale_exit_cleared_reposted"
                                    if _stale9 else "exit_reposted"),
                         "qty": pos.entry_qty,
+                        "uncovered_before": round(uncovered, 2),
                         "basis": pos.entry_price}, ticker=tk)
                     self._save_v4_resting()
                 except Exception as _nh:
@@ -14665,14 +15946,22 @@ class LiveV3:
             # cycle); the ONLY action is to route the cash through the
             # booking path so the cycle increments and the leg is
             # tombstoned. Never erase state on exchange-empty.
+            # [LANE-A FIX 3] the routed latch closes ONLY on a confirmed,
+            # fully-booked cash. An unconfirmed or partial result leaves
+            # it open so the next cycle retries — and nothing is ever
+            # deleted before confirmation.
             if n9 >= 2 and not getattr(pos, "_phantom_cash_routed",
                                        False):
-                pos._phantom_cash_routed = True
                 try:
-                    await self._reconcile_exit_fill_from_truth(tk, pos)
+                    done = await self._reconcile_exit_fill_from_truth(
+                        tk, pos)
+                    if done:
+                        pos._phantom_cash_routed = True
                 except Exception as _pce:
                     self._log("phantom_cash_route_error", {
-                        "err": str(_pce)[:150]}, ticker=tk)
+                        "err": str(_pce)[:150],
+                        "law": "error is not confirmation — retry "
+                               "next cycle"}, ticker=tk)
         # ---- (4) ONE-AUTHORITY audit + RE-ANCHOR DUTY (operator
         # addendum + sweep dispatch 07-20 PM): a mismatched resting
         # entry is FLAGGED RED on detection and RE-ANCHORED on its next
@@ -14711,7 +16000,7 @@ class LiveV3:
             for tk, orders in ord_map.items():
                 buys = [o for o in orders
                         if o.get("action") == "buy"
-                        and o.get("oid") not in _exempt14]
+                        and o["order_id"] not in _exempt14]
                 if not buys or self.get_category(tk) is None:
                     seen_a.pop(tk, None)
                     continue
@@ -14730,7 +16019,7 @@ class LiveV3:
                 # lock lesson).
                 seen_o = seen.setdefault("era_orphan", {})
                 for o in buys:
-                    _oid14 = o.get("oid")
+                    _oid14 = o["order_id"]
                     if _oid14 in _known or _oid14 in getattr(
                             self, "_bot_order_ids", set()):
                         continue
@@ -14740,7 +16029,7 @@ class LiveV3:
                     if not _mine14:
                         if n_o == 1:
                             self._log("authority_foreign_order_flag", {
-                                "px": o.get("px"), "qty": o.get("qty"),
+                                "px": o["price"], "qty": o["remaining"],
                                 "oid": (_oid14 or "")[:13],
                                 "law": "unattributable = manual book "
                                        "until proven; flag never "
@@ -14754,7 +16043,7 @@ class LiveV3:
                         await self.cancel_order(
                             tk, _oid14, "authority_era_orphan")
                         self._log("authority_era_orphan_cancelled", {
-                            "px": o.get("px"), "qty": o.get("qty"),
+                            "px": o["price"], "qty": o["remaining"],
                             "oid": (_oid14 or "")[:13],
                             "authority": auth,
                             "lineage": "order_fingerprints"}, ticker=tk)
@@ -14769,13 +16058,13 @@ class LiveV3:
                     # at its own sealed number; the pair completes at
                     # held+fish combined, graded honestly.
                     _stk15 = [o for o in buys
-                              if o.get("oid") in _known.union(
+                              if o["order_id"] in _known.union(
                                   getattr(self, "_bot_order_ids",
                                           set()))]
                     for o in _stk15:
                         try:
                             await self.cancel_order(
-                                tk, o["oid"], "authority_hold_as_is")
+                                tk, o["order_id"], "authority_hold_as_is")
                             sib15 = self._sibling_ticker_any(tk)
                             _sf15 = (self._price_authority(sib15)[2]
                                      if sib15 else None)
@@ -14787,7 +16076,7 @@ class LiveV3:
                                 "held_qty": getattr(pos, "entry_qty",
                                                     0),
                                 "held_basis": _hb15,
-                                "stack_px_withdrawn": o.get("px"),
+                                "stack_px_withdrawn": o["price"],
                                 "sibling_fish": _sf15,
                                 "honest_combined": (_hb15 + _sf15)
                                 if _sf15 else None,
@@ -14803,10 +16092,26 @@ class LiveV3:
                 if auth != "SEAL":
                     seen_a.pop(tk, None)
                     continue
-                bad = [o for o in buys
-                       if int(o.get("px", -1)) != int(fish)
-                       and o.get("oid") in _known.union(
-                           getattr(self, "_bot_order_ids", set()))]
+                # [LANE-A REV FIX 4B] FAIL CLOSED: a bot-owned order
+                # whose price cannot be read is a NAMED defect and is
+                # re-anchored — never silently treated as compliant.
+                _own = _known.union(getattr(self, "_bot_order_ids",
+                                            set()))
+                bad = []
+                for o in buys:
+                    if o["order_id"] not in _own:
+                        continue          # foreign/manual — never touched
+                    if o["price"] is None:
+                        self._log("authority_price_unknown_defect", {
+                            "order_id": o["order_id"][:13],
+                            "band": band, "fish": fish,
+                            "law": "bot-owned order with unreadable "
+                                   "price = fail-closed defect, "
+                                   "re-anchored not assumed compliant"},
+                            ticker=tk)
+                        bad.append(o)
+                    elif int(o["price"]) != int(fish):
+                        bad.append(o)
                 if not bad:
                     if buys:
                         cen["held_at_number"] += 1
@@ -14815,8 +16120,8 @@ class LiveV3:
                 n9 = seen_a[tk] = seen_a.get(tk, 0) + 1
                 self._log("authority_mismatch_defect", {
                     "band": band, "fish": fish,
-                    "resting": [{"px": o.get("px"), "qty": o.get("qty"),
-                                 "oid": (o.get("oid") or "")[:13]}
+                    "resting": [{"px": o["price"], "qty": o["remaining"],
+                                 "oid": (o["order_id"] or "")[:13]}
                                 for o in bad][:4],
                     "consecutive_cycles": n9,
                     "law": "ONE-AUTHORITY 07-20 PM: placing path != "
@@ -14824,18 +16129,39 @@ class LiveV3:
                 # RE-ANCHOR on the second consecutive cycle (a
                 # seconds-fresh fill must not race the cancel; the
                 # naked tooth's own 2-cycle discipline)
-                if n9 < 2 or pos is None:
+                if n9 < 2:
                     continue
                 try:
-                    res14 = await self._cancel_entry_and_resolve(
-                        tk, pos, "authority_reanchor",
-                        "authority_cancel_race")
-                    if res14 == "booked":
+                    # [LANE-A REV FIX 4B] cancel by CANONICAL ORDER ID —
+                    # every mismatched bot-owned order, not merely the
+                    # position's tracked entry order (a replacement buy
+                    # the engine does not hold as entry_order_id was
+                    # previously left resting while something else was
+                    # cancelled). The tracked entry order still takes
+                    # the race-safe resolve path.
+                    res14 = None
+                    raced = False
+                    for o14 in bad:
+                        if (pos is not None
+                                and str(getattr(pos, "entry_order_id",
+                                                "") or "")
+                                == o14["order_id"]):
+                            res14 = await self._cancel_entry_and_resolve(
+                                tk, pos, "authority_reanchor",
+                                "authority_cancel_race")
+                            if res14 == "booked":
+                                raced = True
+                                break
+                        else:
+                            await self.cancel_order(
+                                tk, o14["order_id"],
+                                "authority_reanchor")
+                    if raced:
                         seen_a.pop(tk, None)
                         continue        # filled in the race — booked,
                                         # exits govern now
-                    old14 = bad[0].get("px")
-                    qty14 = int(bad[0].get("qty") or 0) or \
+                    old14 = bad[0]["price"]
+                    qty14 = int(bad[0]["remaining"] or 0) or \
                         int(self.entry_size)
                     oid14, resp14 = await self.place_order(
                         tk, "buy", "yes", int(fish), qty14,
@@ -14846,7 +16172,8 @@ class LiveV3:
                             kept14.entry_order_id = oid14
                             kept14.entry_price = int(fish)
                         cen["touched"] += 1
-                        cen["cents_removed"] += (old14 - fish) * qty14
+                        if old14 is not None:
+                            cen["cents_removed"] += (old14 - fish) * qty14
                         self._log("authority_reanchor", {
                             "band": band, "old_px": old14,
                             "fish": fish, "qty": qty14,

@@ -3,9 +3,11 @@
 
 This instrument is deliberately separate from the live engine.  It consumes a
 normalized evidence bundle, builds the denominator before simulation, validates
-the queue/print replay against every official entry order (fills *and*
-non-fills), and only then permits fit scoring.  Holdout scoring is a separate,
-one-shot command which requires a fit-only freeze receipt.
+live decisions and accepted orders against official exchange receipts, and only
+then permits fit scoring.  Queue/print replay is a separately reported
+counterfactual bound: absent full causal ladders do not erase an official actual
+fill or cancellation.  Holdout scoring is a separate, one-shot command which
+requires a fit-only freeze receipt.
 
 The normalized schemas and command sequence are documented in
 ``docs/research/window1/REPRODUCTION.md``.  No exit or Window-2 field is read.
@@ -28,8 +30,8 @@ from pathlib import Path
 from typing import Any, Iterable, Iterator, Mapping, Sequence
 
 
-SCHEMA_VERSION = "window1-normalized-v1"
-BENCHMARK_VERSION = "window1-benchmark-v1"
+SCHEMA_VERSION = "window1-normalized-v2"
+BENCHMARK_VERSION = "window1-benchmark-v2"
 BIG4 = {"ATP_MAIN", "WTA_MAIN", "ATP_CHALL", "WTA_CHALL"}
 REQUIRED_LOT = 5
 PAR_CENTS = 100.0
@@ -43,7 +45,15 @@ FULL_BOOK_SOURCE = "ws_depth"
 DEVELOPMENT_START = "2026-07-12"
 DEVELOPMENT_END = "2026-07-20"
 FORWARD_HOLDOUT_DAYS = 3
-ALLOWED_FLOOR_EXCLUSION = "verified_pre_window_cancel_or_void"
+ALLOWED_FLOOR_EXCLUSIONS = {
+    "verified_pre_window_cancel_or_void",
+    "causal_pre_window_violent_faller_refuse",
+}
+CAUSAL_NONPLACEMENT_TYPES = {
+    "causal_refusal",
+    "causal_no_placement",
+}
+TERMINAL_ORDER_STATUSES = {"executed", "canceled", "expired", "rejected"}
 FORBIDDEN_OUTCOME_KEYS = {
     "exit",
     "exit_price",
@@ -595,26 +605,50 @@ def build_event_ledger(
             continue
         exclusion = event.get("floor_exclusion")
         floor_pass = True
-        floor_reason = "all_big4_games_pass_by_default"
+        floor_reason = "no_lawful_pre_simulation_exclusion_receipt"
         floor_evidence = event.get("floor_evidence_receipt_id")
         if exclusion:
-            if exclusion != ALLOWED_FLOOR_EXCLUSION or not floor_evidence:
+            supported = exclusion in ALLOWED_FLOOR_EXCLUSIONS
+            causal_violent = (
+                exclusion == "causal_pre_window_violent_faller_refuse")
+            causal_receipt = (
+                event.get("floor_decision_before_simulation") is True
+                and str(event.get("floor_decision_source") or "") in {
+                    "engine_decision_receipt",
+                    "operator_floor_receipt",
+                })
+            if (not supported or not floor_evidence
+                    or (causal_violent and not causal_receipt)):
                 errors.append({
                     "event_id": event_id,
                     "mismatch_type": "floor_law",
-                    "detail": "unapproved or unsupported floor exclusion",
+                    "detail": (
+                        "unapproved, unsupported, or non-causal floor "
+                        "exclusion"),
                 })
             else:
                 floor_pass = False
-                floor_reason = ALLOWED_FLOOR_EXCLUSION
+                floor_reason = str(exclusion)
         legs = event.get("legs")
         leg_tickers: list[str] = []
+        leg_rows: list[dict[str, Any]] = []
         if isinstance(legs, list):
             for leg in legs:
                 if isinstance(leg, dict) and leg.get("ticker"):
-                    leg_tickers.append(str(leg["ticker"]))
+                    ticker = str(leg["ticker"])
+                    leg_tickers.append(ticker)
+                    leg_rows.append({
+                        "ticker": ticker,
+                        "leg": leg.get("leg") or ticker.rsplit("-", 1)[-1],
+                        "role": leg.get("role"),
+                    })
                 elif isinstance(leg, str):
                     leg_tickers.append(leg)
+                    leg_rows.append({
+                        "ticker": leg,
+                        "leg": leg.rsplit("-", 1)[-1],
+                        "role": None,
+                    })
         data_state = "ready" if len(set(leg_tickers)) == 2 else "unknown_missing_leg_map"
         ledger.append({
             "schema_version": SCHEMA_VERSION,
@@ -625,8 +659,15 @@ def build_event_ledger(
             "floor_pass": floor_pass,
             "floor_reason": floor_reason,
             "floor_evidence_receipt_id": floor_evidence,
+            "floor_rule_citation": event.get("floor_rule_citation"),
+            "floor_decision_source": event.get("floor_decision_source"),
+            "floor_decision_exchange_ts":
+                event.get("floor_decision_exchange_ts"),
+            "floor_decision_before_simulation":
+                event.get("floor_decision_before_simulation"),
             "required_lot_per_leg": REQUIRED_LOT,
             "leg_tickers": sorted(set(leg_tickers)),
+            "legs": sorted(leg_rows, key=lambda row: row["ticker"]),
             "data_state": data_state,
         })
     ledger.sort(key=lambda row: (row["event_date"], row["event_id"]))
@@ -636,21 +677,64 @@ def build_event_ledger(
 def actual_order_result(
     order: Mapping[str, Any], fills: Sequence[Mapping[str, Any]],
 ) -> dict[str, Any]:
+    """Validate one accepted order from official terminal/fill receipts.
+
+    Book reconstruction is intentionally absent here.  Exchange receipts are
+    actual-outcome truth even when no historical ladder survives.
+    """
     order_id = str(order.get("order_id") or "")
+    if not order_id or not order.get("client_order_id"):
+        raise BenchmarkError("accepted order lacks exact order/client identity")
+    terminal_status = str(order.get("exchange_status") or "").lower()
+    if terminal_status not in TERMINAL_ORDER_STATUSES:
+        raise BenchmarkError("accepted order lacks an official terminal receipt")
+    if order.get("exchange_fill_count") in (None, ""):
+        raise BenchmarkError("terminal receipt lacks exchange_fill_count")
+    expected_fill_quantity = normalized_size(order.get("exchange_fill_count"))
+    required = normalized_size(order.get("quantity"))
+    if required <= 0:
+        raise BenchmarkError("accepted order has non-positive quantity")
+    ticker = str(order.get("ticker") or "")
+    action = str(order.get("action") or "")
+    limit_price = int(order.get("price_cents"))
+    created = parse_exchange_ts(order.get("exchange_created_ts"),
+                                "order.exchange_created_ts")
+    end = parse_exchange_ts(order.get("evaluation_end_exchange_ts"),
+                            "order.evaluation_end_exchange_ts")
     order_fills = [row for row in fills
                    if str(row.get("order_id") or "") == order_id]
     normalized: list[tuple[float, float, int]] = []
+    seen_fill_ids: set[str] = set()
     for fill in order_fills:
+        fill_id = str(fill.get("fill_id") or fill.get("trade_id") or "")
+        if not fill_id or fill_id in seen_fill_ids:
+            raise BenchmarkError("official fill identity is missing or duplicated")
+        seen_fill_ids.add(fill_id)
+        if str(fill.get("ticker") or "") != ticker:
+            raise BenchmarkError("official fill ticker differs from order")
+        if str(fill.get("action") or "") != action:
+            raise BenchmarkError("official fill action differs from order")
         timestamp = parse_exchange_ts(fill.get("exchange_ts"),
                                       "fill.exchange_ts")
+        if timestamp < created or timestamp > end:
+            raise BenchmarkError("official fill falls outside order lifetime")
         quantity = normalized_size(fill.get("quantity"))
         price = int(fill.get("price_cents"))
+        if quantity <= 0:
+            raise BenchmarkError("official fill has non-positive quantity")
+        if not 1 <= price <= 99:
+            raise BenchmarkError("official fill price is outside 1..99")
+        if action == "buy" and price > limit_price:
+            raise BenchmarkError("official buy fill exceeds posted limit")
         normalized.append((timestamp, quantity, price))
     normalized.sort()
     quantity = sum(row[1] for row in normalized)
+    if not math.isclose(quantity, expected_fill_quantity,
+                        rel_tol=0.0, abs_tol=1e-9):
+        raise BenchmarkError(
+            "official fill receipts disagree with terminal fill count")
     vwap = (sum(row[1] * row[2] for row in normalized) / quantity
             if quantity else None)
-    required = normalized_size(order.get("quantity"))
     cumulative = 0.0
     completion = None
     first = normalized[0][0] if normalized else None
@@ -658,9 +742,17 @@ def actual_order_result(
         cumulative += size
         if completion is None and cumulative >= required:
             completion = timestamp
+    if terminal_status == "executed" and completion is None:
+        raise BenchmarkError(
+            "executed terminal status does not reach ordered quantity")
+    if terminal_status in {"expired", "rejected"} and quantity > 0:
+        raise BenchmarkError(
+            f"{terminal_status} terminal status carries fills")
     return {
         "status": "filled" if completion is not None else "not_filled",
+        "terminal_status": terminal_status,
         "filled_quantity": quantity,
+        "expected_fill_quantity": expected_fill_quantity,
         "first_fill_exchange_ts": first,
         "completion_exchange_ts": completion,
         "fill_vwap_cents": vwap,
@@ -674,9 +766,13 @@ def validate_replay(
     prints: Sequence[Mapping[str, Any]],
     books: Sequence[Mapping[str, Any]],
     inherited_errors: Sequence[Mapping[str, Any]] = (),
+    decisions: Sequence[Mapping[str, Any]] = (),
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    """Validate actual decisions/receipts; census replay exactness separately."""
     mismatches: list[dict[str, Any]] = [dict(row) for row in inherited_errors]
     passing_events = {str(row["event_id"]) for row in ledger if row["floor_pass"]}
+    ledger_by_event = {
+        str(row["event_id"]): row for row in ledger if row["floor_pass"]}
     entry_attempts = [row for row in orders
                       if str(row.get("event_id") or "") in passing_events
                       and row.get("purpose") == "entry"
@@ -688,26 +784,68 @@ def validate_replay(
     orders_by_event: dict[str, list[Mapping[str, Any]]] = defaultdict(list)
     for order in entry_attempts:
         orders_by_event[str(order.get("event_id"))].append(order)
+    decisions_by_leg: dict[tuple[str, str], list[Mapping[str, Any]]] = (
+        defaultdict(list))
+    decision_contract_errors = 0
+    for decision in decisions:
+        event_id = str(decision.get("event_id") or "")
+        ticker = str(decision.get("ticker") or "")
+        decision_type = str(decision.get("decision_type") or "")
+        if event_id not in passing_events:
+            continue
+        if (not ticker or decision_type not in CAUSAL_NONPLACEMENT_TYPES
+                or not decision.get("decision_id")):
+            mismatches.append({
+                "event_id": event_id or None,
+                "ticker": ticker or None,
+                "mismatch_type": "decision_receipt",
+                "detail": "malformed causal non-placement decision receipt",
+            })
+            decision_contract_errors += 1
+            continue
+        if (decision.get("exchange_ts") in (None, "")
+                and decision.get("local_logged_ts") in (None, "")):
+            mismatches.append({
+                "event_id": event_id,
+                "ticker": ticker,
+                "mismatch_type": "decision_receipt",
+                "detail": "decision receipt has no source timestamp",
+            })
+            decision_contract_errors += 1
+            continue
+        decisions_by_leg[(event_id, ticker)].append(decision)
+    causal_nonplacements = 0
+    causal_nonplacement_events: set[str] = set()
+    unobserved_decisions = 0
     for event_id in sorted(passing_events):
         event_orders = orders_by_event.get(event_id, [])
-        if not event_orders:
+        attempted_tickers = {
+            str(order.get("ticker") or "") for order in event_orders}
+        required_tickers = set(
+            str(ticker) for ticker
+            in ledger_by_event[event_id].get("leg_tickers") or [])
+        for ticker in sorted(required_tickers - attempted_tickers):
+            if decisions_by_leg.get((event_id, ticker)):
+                causal_nonplacements += 1
+                causal_nonplacement_events.add(event_id)
+                continue
             mismatches.append({
                 "event_id": event_id,
-                "mismatch_type": "policy",
-                "detail": "floor-passing event has no exact live entry order receipts",
+                "ticker": ticker,
+                "mismatch_type": "decision_unobserved",
+                "detail": (
+                    "required leg has neither an entry attempt nor a causal "
+                    "refusal/no-placement receipt"),
             })
-            continue
-        tickers = {str(order.get("ticker") or "") for order in event_orders}
-        if len(tickers) < 2:
-            mismatches.append({
-                "event_id": event_id,
-                "mismatch_type": "policy",
-                "detail": "live receipt set does not cover both event legs",
-            })
+            unobserved_decisions += 1
     compared = 0
     matched_failed_attempts = 0
     matched_fills = 0
     matched_nonfills = 0
+    missing_terminal_receipts = 0
+    receipt_validation_errors = 0
+    counterfactual = Counter()
+    counterfactual_disagreements = 0
     for attempt in failed_attempts:
         attempt_identity = (attempt.get("attempt_id")
                             or attempt.get("attempt_receipt_id")
@@ -760,64 +898,38 @@ def validate_replay(
         try:
             actual = actual_order_result(order, fills)
         except (BenchmarkError, TypeError, ValueError) as exc:
-            mismatches.append({**base, "mismatch_type": "fill_receipt",
-                               "detail": str(exc)})
-            continue
-        replay = replay_resting_buy(order, prints, books)
-        if replay.status == "unknown":
-            mismatches.append({
-                **base,
-                "mismatch_type": replay.mismatch_type or "unknown",
-                "detail": replay.detail,
-                "actual_status": actual["status"],
-            })
-            continue
-        if replay.status != actual["status"]:
-            mismatches.append({
-                **base,
-                "mismatch_type": "fill" if actual["status"] == "filled" else "nonfill",
-                "detail": "replay and official receipt outcome disagree",
-                "actual_status": actual["status"],
-                "replay_status": replay.status,
-            })
+            detail = str(exc)
+            mismatch_type = (
+                "accepted_order_missing_receipt"
+                if "terminal receipt" in detail else "fill_receipt")
+            if mismatch_type == "accepted_order_missing_receipt":
+                missing_terminal_receipts += 1
+            else:
+                receipt_validation_errors += 1
+            mismatches.append({**base, "mismatch_type": mismatch_type,
+                               "detail": detail})
             continue
         if actual["status"] == "filled":
-            required = normalized_size(order.get("quantity"))
-            if actual["filled_quantity"] < required:
-                mismatches.append({**base, "mismatch_type": "quantity",
-                                   "detail": "official fills do not reach required lot"})
-                continue
-            if actual["fill_vwap_cents"] != float(order.get("price_cents")):
-                mismatches.append({
-                    **base,
-                    "mismatch_type": "price",
-                    "detail": "official VWAP differs from resting limit",
-                    "actual_fill_vwap_cents": actual["fill_vwap_cents"],
-                })
-                continue
-            actual_completion = actual["completion_exchange_ts"]
-            if (replay.completion_earliest is None
-                    or replay.completion_latest is None
-                    or replay.completion_earliest != replay.completion_latest
-                    or actual_completion != replay.completion_earliest):
-                mismatches.append({
-                    **base,
-                    "mismatch_type": "clock" if replay.completion_earliest == replay.completion_latest else "queue",
-                    "detail": "exact exchange completion time was not reproduced",
-                    "actual_completion_exchange_ts": iso_utc(actual_completion),
-                    "replay_earliest_exchange_ts": iso_utc(replay.completion_earliest),
-                    "replay_latest_exchange_ts": iso_utc(replay.completion_latest),
-                })
-                continue
             matched_fills += 1
         else:
             matched_nonfills += 1
-    gate_pass = bool(entry_attempts) and not mismatches
+        replay = replay_resting_buy(order, prints, books)
+        if replay.status in {"filled", "not_filled"}:
+            counterfactual["exact"] += 1
+            if replay.status != actual["status"]:
+                counterfactual_disagreements += 1
+        elif replay.mismatch_type == "queue":
+            counterfactual["bounded"] += 1
+        else:
+            counterfactual["unavailable"] += 1
+    gate_pass = bool(passing_events) and not mismatches
     summary = {
         "schema_version": SCHEMA_VERSION,
         "benchmark_version": BENCHMARK_VERSION,
         "gate_pass": gate_pass,
-        "pass_rule": "100_percent_exact_fills_and_nonfills",
+        "pass_rule": (
+            "all required legs have a causal placement/refusal decision; "
+            "all accepted orders have exact terminal/fill receipts"),
         "floor_passing_events": len(passing_events),
         "entry_attempts_compared": len(entry_attempts),
         "orders_compared": compared,
@@ -825,6 +937,21 @@ def validate_replay(
         "matched_failed_attempts": matched_failed_attempts,
         "matched_fills": matched_fills,
         "matched_nonfills": matched_nonfills,
+        "causal_nonplacement_legs": causal_nonplacements,
+        "causal_nonplacement_events": len(causal_nonplacement_events),
+        "unobserved_decision_legs": unobserved_decisions,
+        "decision_contract_errors": decision_contract_errors,
+        "accepted_orders_missing_terminal_receipt":
+            missing_terminal_receipts,
+        "receipt_validation_errors": receipt_validation_errors,
+        "counterfactual_replay": {
+            "exact_orders": counterfactual["exact"],
+            "bounded_orders": counterfactual["bounded"],
+            "unavailable_orders": counterfactual["unavailable"],
+            "exact_outcome_disagreements":
+                counterfactual_disagreements,
+            "gates_official_actual_validation": False,
+        },
         "mismatch_count": len(mismatches),
         "mismatch_types": dict(sorted(Counter(
             str(row.get("mismatch_type") or "unknown")
@@ -1003,8 +1130,8 @@ def require_gate(output_dir: Path) -> dict[str, Any]:
 def command_manifest(args: argparse.Namespace) -> int:
     input_dir = Path(args.input_dir).resolve()
     output_dir = Path(args.output_dir).resolve()
-    required = ["events.jsonl", "orders.jsonl", "fills.jsonl",
-                "prints.jsonl", "books.jsonl"]
+    required = ["events.jsonl", "decisions.jsonl", "orders.jsonl",
+                "fills.jsonl", "prints.jsonl", "books.jsonl"]
     files = []
     missing = []
     for name in required:
@@ -1064,9 +1191,10 @@ def command_ledger(args: argparse.Namespace) -> int:
         "excluded": sum(not row["floor_pass"] for row in ledger),
         "errors": parse_errors + ledger_errors,
         "floor_law": {
-            "default": "every big-4 game passes",
-            "only_exclusion": ALLOWED_FLOOR_EXCLUSION,
+            "default": "retain without a lawful pre-simulation receipt",
+            "allowed_exclusions": sorted(ALLOWED_FLOOR_EXCLUSIONS),
             "missing_data_is_exclusion": False,
+            "candidate_policy_refusal_is_exclusion": False,
         },
     }
     write_json(output_dir / "candidate_event_ledger.summary.json", summary)
@@ -1093,15 +1221,16 @@ def command_validate(args: argparse.Namespace) -> int:
     input_dir = Path(args.input_dir).resolve()
     output_dir = Path(args.output_dir).resolve()
     ledger, ledger_errors = load_ledger(output_dir)
+    decisions, decision_errors = read_jsonl(input_dir / "decisions.jsonl")
     orders, order_errors = read_jsonl(input_dir / "orders.jsonl")
     fills, fill_errors = read_jsonl(input_dir / "fills.jsonl")
     raw_prints, print_parse_errors = read_jsonl(input_dir / "prints.jsonl")
     books, book_errors = read_jsonl(input_dir / "books.jsonl")
     prints, print_errors = canonical_true_prints(raw_prints)
-    inherited = (ledger_errors + order_errors + fill_errors
+    inherited = (ledger_errors + decision_errors + order_errors + fill_errors
                  + print_parse_errors + book_errors + print_errors)
     summary, mismatches = validate_replay(
-        ledger, orders, fills, prints, books, inherited)
+        ledger, orders, fills, prints, books, inherited, decisions)
     write_json(output_dir / "validation_summary.json", summary)
     write_jsonl(output_dir / "validation_mismatch_ledger.jsonl", mismatches)
     print(json.dumps(summary, indent=2))

@@ -1,6 +1,6 @@
 # Window-1 definition and freeze protocol
 
-Status: **selection protocol frozen before candidate scoring; empirical Window-1 selection is blocked because the VPS validation gate fails.** The complete July 12–20 public event universe is ledgered, but causal book, print, and order-receipt gaps prohibit candidate scoring. No candidate is called the frozen Window-1 until validation passes and the development-only fit command writes `window1_freeze.json`.
+Status: **the selection protocol is declared, but empirical Window-1 selection is blocked because corrected validation fails.** The lawful July 12-20 denominator is ledgered. Actual receipt/decision gaps block the validation gate, while causal book/print gaps separately block counterfactual candidate replay. No candidate is called frozen until both requirements pass and the development-only fit command writes `window1_freeze.json`.
 
 Research base: `193e90da406214d2e5d9b2c7b5f752ddda046895`, the fetched `origin/blend/kalshi-occ-fallback` tip used to create `codex/window1-definition` on 2026-07-21.
 
@@ -33,7 +33,7 @@ The source universe is every exchange-catalog big-4 match event dated 2026-07-12
 - ATP challenger
 - WTA challenger
 
-Every such game passes by default. The only allowed pre-simulation exclusion is an independently receipted cancellation or void that occurred before the candidate Window-1 left edge. Unknown class, missing band, missing leg map, thin tape, missing file, source gap, corrupt interval, and simulator error are named outcomes and remain in the denominator.
+Every game remains in D absent a lawful causal exclusion receipt. Allowed exclusions are an independently receipted cancellation/void before the left edge, or a contemporaneous pre-simulation violent-faller refusal from an approved engine/operator source. An eventual whole-path band is not causal evidence. Unknown class, missing band, missing leg map, thin tape, missing file, source gap, corrupt interval, and simulator error remain in D.
 
 Each ledger row carries event id, category, date, two leg tickers where known, required lot, floor decision, floor reason, evidence receipt, period, and data state. The ledger is sorted, written once, hashed, and rechecked before fit and holdout.
 
@@ -59,7 +59,7 @@ Boundary sensitivity must publish all 16 left-edge and corridor combinations on 
 3. then minimize mean combined-vs-par delta;
 4. then deterministic candidate id.
 
-No boundary result is published because the VPS validation run returned 3,683 mismatches. The gate was run; it did not pass.
+No boundary result is published because corrected validation returned 1,054 mismatches. The gate was run; it did not pass.
 
 ## Entry-policy candidates
 
@@ -100,7 +100,7 @@ Queue cancellation ownership is bounded. A simulated fill is exact only if even 
 
 ## Validation and freeze sequence
 
-The gate compares every official entry order on every floor-passing operational event, including orders that never filled. It requires exact agreement on event, ticker, leg, order identity, posted price, quantity, exchange clock, fill or non-fill, first-fill time, completion time, and combined entry cost. Passing means 100 percent agreement and at least one compared order; there is no 90-percent or aggregate-pair substitute.
+The gate compares every required-leg causal decision and every official accepted entry order on every floor-passing event. A logged refusal/no-placement is a real noncompletion, not a mismatch. Accepted orders require exact official terminal/fill truth; failed submissions require an exchange clock. Full-ladder replay is a separate exact/bounded/unavailable counterfactual census and does not erase official actual outcomes. Passing means zero decision/receipt mismatches; there is no 90-percent or aggregate-pair substitute.
 
 The amended chronological split was declared before any candidate scoring:
 
@@ -111,4 +111,4 @@ July 18–20 is inspected history and is not untouched. Boundary selection, poli
 
 The forward sample is never extended after viewing. If its `D` is too small for a stable claim, the report says so. The holdout runner accepts only the frozen candidate and a declaration tied to the committed freeze receipt, rejects a changed development subset, rejects unregistered holdout dates, and refuses a second result.
 
-Current development-ledger state: **immutable, 804/804 floor-passing big-4 events, SHA-256 `28348235eef26c10475e016614e999d83304ce01a587f890cd9f739c41269999`**. Current freeze state: **not empirically frozen**. Current validation state: **failed after event-level comparison**. Therefore strategy `C` and `S`, delta distributions, the 75-percent target, and an empirical ceiling are not adjudicated.
+Current development-ledger state: **immutable, U=804 and D=804, SHA-256 `09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb`**. Current freeze state: **not empirically frozen**. Current validation state: **failed with 1,054 mismatches**. Therefore strategy `C` and `S`, delta distributions, distance from the 75-percent target, and an empirical ceiling are not adjudicated. The receipt-inventory bounds in the corrected validation report are explicitly not strategy results.

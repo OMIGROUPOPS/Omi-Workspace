@@ -1,0 +1,19 @@
+{
+  "C": null,
+  "C_over_D": null,
+  "D": 804,
+  "S": null,
+  "S_over_C": null,
+  "S_over_D": null,
+  "exact_actual_dual5_lower_bound": 31,
+  "exact_actual_under_par_dual5_lower_bound": 27,
+  "exact_combined_costs_below_100": 27,
+  "exact_combined_costs_n": 31,
+  "individual_leg_delta_reason": "Window-1 boundary/reference is not frozen while validation fails",
+  "individual_leg_delta_vs_frozen_w1_close": null,
+  "not_a_strategy_result": true,
+  "optimistic_actual_dual5_upper_bound": 217,
+  "optimistic_actual_under_par_dual5_upper_bound": 217,
+  "schema_version": "window1-evidence-reconcile-v1",
+  "validation_inventory_edge": "verified actual start else scheduled start plus 60 minutes"
+}

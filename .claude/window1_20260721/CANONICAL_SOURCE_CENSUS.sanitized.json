@@ -1,0 +1,221 @@
+{
+  "contains_private_rows_or_identifiers": false,
+  "schema_version": "window1-canonical-source-census-v1",
+  "sources": {
+    "corpus_events_v2": {
+      "bytes": 4221024,
+      "date_range": [
+        "2026-01-02",
+        "2026-07-18"
+      ],
+      "distinct_public_tickers": 12509,
+      "leg_objects": 0,
+      "logical_name": "$PROD_REPO/arb-executor/state/corpus_events_v2.jsonl",
+      "malformed_rows": 0,
+      "rows": 12509,
+      "rows_by_category": {
+        "ATP_CHALL": 6131,
+        "ATP_MAIN": 2441,
+        "ITF_M": 170,
+        "ITF_W": 144,
+        "WTA_CHALL": 1243,
+        "WTA_MAIN": 2380
+      },
+      "sha256": "839f0552fd4edf8e0116d4ba8e8f2bf7808db82396bfd7a0a2b1eadd860a3ebf",
+      "shaped_leg_objects": 0,
+      "top_level_field_presence": {
+        "cat": 12509,
+        "era": 12509,
+        "event": 12509,
+        "official_ts": 12509,
+        "old_err_min": 12509,
+        "old_stamp_first": 12509,
+        "old_stamp_last": 12509,
+        "onset_est": 12509,
+        "right_edge": 12509,
+        "right_edge_src": 12509,
+        "sched_honest": 12509,
+        "sched_src": 12509
+      }
+    },
+    "fund_equity_db": {
+      "bytes": 6008832,
+      "logical_name": "$PROD_REPO/arb-executor/state/fund_equity.db",
+      "sha256": "1f9c827c4ef932d49ea66c890b105f422d917e2d460ad2bbadbfd9ffc8b17a73",
+      "tables": {
+        "fills": {
+          "columns": [
+            "fill_id",
+            "ts",
+            "day",
+            "ticker",
+            "action",
+            "side",
+            "count_fp",
+            "yes_price_c",
+            "is_taker",
+            "order_id",
+            "raw"
+          ],
+          "distinct_tickers": 917,
+          "rows": 1773,
+          "rows_by_day": {
+            "20260713": 87,
+            "20260714": 653,
+            "20260715": 264,
+            "20260716": 162,
+            "20260717": 105,
+            "20260718": 54,
+            "20260719": 84,
+            "20260720": 185,
+            "20260721": 102,
+            "20260722": 77
+          },
+          "ts_range": [
+            1783944184.0,
+            1784751378.54025
+          ]
+        },
+        "orders_ledger": {
+          "columns": [
+            "order_id",
+            "ticker",
+            "action",
+            "yes_price_c",
+            "created_time",
+            "created_ep"
+          ],
+          "created_time_range": [
+            "2026-07-13T09:44:12.311524Z",
+            "2026-07-22T20:17:05.712812Z"
+          ],
+          "distinct_tickers": 925,
+          "rows": 3464
+        }
+      }
+    },
+    "range_spectrum_v1": {
+      "bytes": 130935927,
+      "date_range": [
+        "2026-04-20",
+        "2026-07-18"
+      ],
+      "distinct_public_tickers": 6252,
+      "leg_objects": 12361,
+      "logical_name": "$PROD_REPO/arb-executor/state/range_spectrum_v1.jsonl",
+      "malformed_rows": 0,
+      "rows": 6252,
+      "rows_by_category": {
+        "ATP_CHALL": 3038,
+        "ATP_MAIN": 1097,
+        "ITF_M": 154,
+        "ITF_W": 138,
+        "WTA_CHALL": 721,
+        "WTA_MAIN": 1104
+      },
+      "sha256": "1e9891acaaea23a73160aaa26b10b17c87270c1209d9a2a0a23a6a6c56434884",
+      "shaped_leg_objects": 12170,
+      "top_level_field_presence": {
+        "cat": 6252,
+        "edge_src": 6252,
+        "event": 6252,
+        "legs": 6252,
+        "right_edge": 6252,
+        "sched": 6252,
+        "seesaw_corr": 5736,
+        "tick_src": 6252
+      }
+    },
+    "tennis_db": {
+      "bytes": 17145282560,
+      "logical_name": "$PROD_REPO/arb-executor/tennis.db",
+      "tables": {
+        "historical_events": {
+          "columns": [
+            "event_ticker",
+            "category",
+            "winner",
+            "loser",
+            "first_price_winner",
+            "min_price_winner",
+            "max_price_winner",
+            "last_price_winner",
+            "first_price_loser",
+            "total_trades",
+            "first_ts",
+            "last_ts",
+            "min_price_loser",
+            "max_price_loser"
+          ],
+          "distinct_event_tickers": 5889,
+          "first_ts_range": [
+            "2026-01-02T07:43:54.66568Z",
+            "2026-04-10T05:32:02.165725Z"
+          ],
+          "last_ts_range": [
+            "2026-01-02T23:35:00.290018Z",
+            "2026-04-10T19:51:42.867592Z"
+          ],
+          "rows": 5889,
+          "rows_by_category": {
+            "ATP_CHALL": 2982,
+            "ATP_MAIN": 1254,
+            "WTA_CHALL": 453,
+            "WTA_MAIN": 1200
+          }
+        },
+        "kalshi_price_snapshots": {
+          "columns": [
+            "polled_at",
+            "ticker",
+            "event_ticker",
+            "series_ticker",
+            "bid_cents",
+            "ask_cents",
+            "last_cents",
+            "volume_24h",
+            "commence_time"
+          ],
+          "count_status": "omitted: unindexed full-table count intentionally not repeated on the live machine",
+          "rows": null
+        },
+        "matches": {
+          "columns": [
+            "id",
+            "date",
+            "event_ticker",
+            "market_ticker",
+            "tournament",
+            "category",
+            "our_side",
+            "other_side",
+            "entry_price",
+            "other_price",
+            "final_price",
+            "result",
+            "pregame_flat",
+            "dca_price",
+            "total_size",
+            "avg_price",
+            "pnl_cents",
+            "entry_time",
+            "settlement_time",
+            "time_to_settle_min",
+            "max_dip",
+            "scenario",
+            "source"
+          ],
+          "distinct_event_tickers": 2086,
+          "rows": 3627,
+          "rows_by_category": {
+            "ATP_CHALL": 1800,
+            "ATP_MAIN": 789,
+            "WTA_CHALL": 399,
+            "WTA_MAIN": 639
+          }
+        }
+      }
+    }
+  },
+  "started_utc": "2026-07-22T20:23:50.076750+00:00"
+}

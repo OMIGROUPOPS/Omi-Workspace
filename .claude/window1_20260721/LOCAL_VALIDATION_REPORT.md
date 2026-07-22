@@ -1,5 +1,10 @@
 # Window-1 VPS validation report
 
+> Superseded on 2026-07-22 by
+> arb-executor/docs/research/window1/CORRECTED_VALIDATION_REPORT.md and the
+> v2 sanitized census. Counts below are retained as the prior-run fossil and
+> are not current authority.
+
 ## Plain result
 
 - Window-1 definition: **not empirically selected**. The candidate grid and selection law remain frozen, but the evidence gate failed before scoring.

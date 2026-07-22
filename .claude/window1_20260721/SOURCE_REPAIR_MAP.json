@@ -1,72 +1,93 @@
 {
-  "schema_version": "window1-source-repair-map-v1",
+  "schema_version": "window1-source-repair-map-v2",
   "gate_state": "failed_stop_before_scoring",
   "repairs": [
     {
-      "source": "accepted_order_receipts",
+      "source": "accepted_order_terminal_receipts",
       "blocking_census": {
-        "normalized_accepted_ids_missing_current_exchange_receipt_all": 6032,
-        "floor_denominator_orders_missing_exchange_receipt": 703
+        "denominator_accepted_orders_missing_terminal_receipt": 703
       },
-      "required_repair": "obtain a read-only legacy or subaccount order-history export with exact creation, terminal status, quantity, price, and cancellation or expiry timestamps",
+      "required_repair": "obtain a read-only legacy/subaccount export with exact creation, terminal status, fill count, price, quantity, and cancellation or expiry timestamps",
       "may_infer_from_local_log": false
+    },
+    {
+      "source": "required_leg_decisions",
+      "blocking_census": {
+        "unobserved_required_legs": 335,
+        "mapping_defect_events": 47,
+        "logging_gap_or_genuinely_unknown_events": 166
+      },
+      "required_repair": "repair public event/leg mapping and recover causal engine decision receipts; any unrecovered leg stays unknown and inside D",
+      "may_convert_unknown_to_refusal_or_fill": false
     },
     {
       "source": "failed_bid_attempts",
       "blocking_census": {
-        "floor_denominator_failed_attempts": 14,
+        "failed_attempts": 14,
         "with_exchange_rejection_timestamp": 0
       },
-      "required_repair": "obtain exchange-timestamped rejection receipts and rejection codes, or leave each row as a clock mismatch",
-      "may_infer_from_local_log": false
+      "required_repair": "obtain exchange-timestamped rejection receipts/codes or retain each clock mismatch",
+      "may_infer_exchange_time_from_local_log": false
     },
     {
-      "source": "full_ladder",
+      "source": "fill_receipt_consistency",
       "blocking_census": {
-        "orders_without_valid_causal_full_book": 2615,
-        "development_dates_never_recorded": 8,
-        "july20_files_rotated_before_sequence_census": 19
+        "terminal_fill_count_disagreements": 1,
+        "executed_status_below_ordered_quantity": 1
       },
-      "required_repair": "recover an external retained ws_depth archive; normalize only readable sequence epochs and mark every reconnect, gap, and corrupt interval",
-      "may_substitute_top5_or_top20": false
+      "required_repair": "resolve against an immutable official fill/order export",
+      "may_choose_the_favorable_receipt": false
     },
     {
-      "source": "true_prints",
+      "source": "true_prints_for_counterfactual_replay",
       "blocking_census": {
         "normalized_admissible_print_rows": 0,
-        "declared_public_tape_rows_without_receipt_identity": 883557,
+        "cached_public_tape_rows": 883557,
         "synthetic_transition_rows": 1770521
       },
-      "required_repair": "obtain public trade receipts with stable trade identity, exchange timestamp, and verified size; deduplicate overlapping feeds by that identity",
+      "required_repair": "recover stable upstream trade identity, exchange timestamp, verified size, and direction; recognize cached ct as size without treating transitions as trades",
       "may_manufacture_volume_from_transition": false
+    },
+    {
+      "source": "books_for_counterfactual_replay",
+      "blocking_census": {
+        "actual_orders_with_counterfactual_replay_unavailable": 2613,
+        "premarket_top5_files": 1494,
+        "depth_top20_rows": 3079608,
+        "development_dates_without_retained_full_ladder": 8
+      },
+      "required_repair": "normalize top-five/top-20 as limited sources and recover retained ws_depth archives; admit only readable gap-free sequence epochs",
+      "may_substitute_top5_or_top20_for_full_queue": false,
+      "gates_official_actual_outcome": false
     },
     {
       "source": "schedule_and_actual_start",
       "blocking_census": {
         "development_events": 804,
         "verified_exchange_status_actual_starts": 40,
-        "current_schedule_rows_for_july12_through17": 0
+        "current_rotating_schedule_rows_for_july12_through17": 0
       },
-      "required_repair": "recover chronological schedule snapshots and event-mapped official actual-start receipts; keep every unsupported row schedule-only with a named corridor",
+      "required_repair": "recover chronological schedule snapshots and event-mapped official starts; unsupported rows remain schedule-only with a named corridor",
       "may_use_later_schedule_as_prior_truth": false
-    },
-    {
-      "source": "January_present_shape_context",
-      "blocking_census": {
-        "local_shape_files": 26,
-        "local_sample_start": "2026-07-06"
-      },
-      "required_repair": "supply the previously established January-present shape labels and priors as fixed context only",
-      "may_refit_or_mine_a_new_strategy": false
     }
   ],
-  "next_permitted_action": "repair evidence sources and rerun manifest, ledger, and validation only",
+  "next_permitted_actions": [
+    "unit tests",
+    "source census",
+    "decision reconciliation",
+    "manifest",
+    "ledger",
+    "validation",
+    "sanitization"
+  ],
   "forbidden_until_gate_passes": [
     "boundary scoring",
     "policy tuning",
     "feature ablations",
+    "fit freeze",
     "forward holdout",
     "Window 2",
-    "exit analysis"
+    "exit or settlement analysis",
+    "live activation"
   ]
 }

@@ -1,0 +1,95 @@
+{
+  "D": 804,
+  "accepted_orders": 3318,
+  "accepted_terminal_status": {
+    "None": 703,
+    "canceled": 2308,
+    "executed": 307
+  },
+  "causal_receipt_event_type_event_counts": {
+    "band_refused": 2,
+    "below_leg_floor_refused": 14,
+    "complete_cross_skip": 1,
+    "conception_horizon_defer": 7,
+    "corridor_refused_w1_preference": 2,
+    "event_skip_stale_book": 25,
+    "gun_buy_refused": 49,
+    "schedule_abandon_deferred": 130,
+    "skip_live_match": 55,
+    "skipped": 164,
+    "validate_skip_stale_book": 4,
+    "walk_band_refused": 1,
+    "wall_skip_pair": 36,
+    "would_skip_walled_post": 26
+  },
+  "denominator_entry_attempts": 3332,
+  "exact_terminal_orders": 2614,
+  "failed_attempt_clock_gap": 14,
+  "failed_attempt_http_status": {
+    "400": 4,
+    "409": 10
+  },
+  "failed_attempts": 14,
+  "gate_pass": false,
+  "policy_reclassification": {
+    "accepted_order_with_missing_receipt": 6,
+    "causally_proven_refusal_or_no_placement": 132,
+    "genuinely_unknown": 4,
+    "logging_gap": 162,
+    "mapping_defect": 47
+  },
+  "policy_reclassification_sums_to_prior": true,
+  "prior_policy_mismatch_events": 351,
+  "receipt_error_counts": {
+    "accepted_order_missing_terminal_receipt": 703,
+    "terminal_fill_count_mismatch": 1
+  },
+  "recoverable_bounded_irrecoverable": {
+    "bounded_accepted_orders_missing_terminal_receipt": 703,
+    "irrecoverable_or_unobserved_decision_events": 166,
+    "mapping_defect_events": 47,
+    "recoverable_exact_terminal_orders": 2614
+  },
+  "schema_version": "window1-evidence-reconcile-v1",
+  "source_scan": {
+    "active_log_prefix_bytes": 318840280,
+    "event_type_counts": {
+      "aim_shadow": 13964,
+      "aim_unresolved_refused": 12,
+      "band_refused": 259,
+      "below_discovery_floor_refused": 1773,
+      "below_leg_floor_refused": 105766,
+      "chase_cap_refused": 5,
+      "complete_cross_skip": 156,
+      "completion_flatten_deferred": 371,
+      "conception_horizon_defer": 5927,
+      "conception_horizon_refused": 596,
+      "corridor_refused_w1_preference": 16689,
+      "drain_replay_deferred": 10,
+      "entry_dossier": 129303,
+      "event_skip_stale_book": 65099,
+      "exit_skip_no_open_shares": 16,
+      "fill_book_skip": 48,
+      "gun_buy_refused": 1517,
+      "inflight_lock_refused": 13,
+      "no_path_page_refused": 118,
+      "order_error": 96,
+      "order_placed": 11604,
+      "pair_seesaw_refused": 149,
+      "schedule_abandon_deferred": 655883,
+      "sibling_repost_skip": 13,
+      "skip_live_match": 876,
+      "skipped": 1412464,
+      "table_refuse_hold": 37,
+      "v4_place": 7791,
+      "validate_skip_stale_book": 7157,
+      "walk_band_refused": 325,
+      "wall_skip_pair": 28646,
+      "would_skip_walled_post": 1695
+    },
+    "physical_log_rows": 3371071,
+    "selected_log_rows": 2468378
+  },
+  "stop_reason": "accepted terminal receipts and/or required decisions remain unrecoverable; no candidate tuning is lawful",
+  "strategy_scoring_permitted": false
+}

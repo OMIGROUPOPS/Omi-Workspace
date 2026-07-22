@@ -1,0 +1,24 @@
+{
+  "D_fit": 804,
+  "D_holdout": 0,
+  "development_period": [
+    "2026-07-12",
+    "2026-07-20"
+  ],
+  "errors": [],
+  "excluded": 0,
+  "floor_law": {
+    "allowed_exclusions": [
+      "causal_pre_window_violent_faller_refuse",
+      "verified_pre_window_cancel_or_void"
+    ],
+    "candidate_policy_refusal_is_exclusion": false,
+    "default": "retain without a lawful pre-simulation receipt",
+    "missing_data_is_exclusion": false
+  },
+  "forward_holdout_dates": [],
+  "immutable": true,
+  "rows": 804,
+  "schema_version": "window1-normalized-v2",
+  "sha256": "09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb"
+}

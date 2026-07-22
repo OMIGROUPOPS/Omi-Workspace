@@ -1,5 +1,6 @@
 {
-  "status": "not_run_validation_gate_failed",
+  "schema_version": "window1-normalized-v2",
+  "status": "not_run_corrected_validation_gate_failed",
   "feature_families": [
     "macrostructure",
     "full_ladder_microstructure",
@@ -9,5 +10,6 @@
     "first_leg_fill_state",
     "extreme_ask_over_bid_sanity_class"
   ],
-  "results": null
+  "results": null,
+  "gate_mismatch_count": 1054
 }

@@ -1,5 +1,10 @@
 # Window-1 data integrity and provenance
 
+> Superseded on 2026-07-22 by
+> arb-executor/docs/research/window1/CANONICAL_CORPUS_TRADEBOOK_MAP.md and
+> .claude/window1_20260721/RAW_TO_NORMALIZED_SOURCE_LEDGER.json. The prior
+> zero-row normalized result did not mean the raw databases were empty.
+
 ## Authority and roles
 
 The complete development universe comes from the historical exchange catalog for the four designated big-4 series. It contains 804 events and exactly two markets per event. Every event passes the pre-simulation floor. Missing schedules, bands, books, prints, receipts, or reconstruction state remain named outcomes in `D`.

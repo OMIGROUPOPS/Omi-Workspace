@@ -1,0 +1,176 @@
+{
+  "schema_version": "window1-raw-to-normalized-ledger-v2",
+  "audit_date_utc": "2026-07-22",
+  "production_commit": "7def367c96d3a90f198c59c754109aa04b11e9f5",
+  "path_policy": "public logical aliases only; raw/private absolute paths and exchange identities omitted",
+  "source_classes": [
+    {
+      "source": "exchange_catalog",
+      "raw_exists": true,
+      "raw_rows": 1608,
+      "raw_events": 804,
+      "source_genuinely_lacks": [
+        "chronological schedule-revision history",
+        "independently observed actual start for most events"
+      ],
+      "normalized_output": "events.jsonl",
+      "normalized_rows": 804,
+      "normalized_sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46",
+      "contract_result": "accepted_with_named_schedule_or_start_provenance"
+    },
+    {
+      "source": "live_engine_jsonl_frozen_prefix",
+      "raw_exists": true,
+      "raw_physical_rows_scanned": 3371071,
+      "active_log_prefix_bytes": 318840280,
+      "source_genuinely_lacks": [
+        "exchange timestamp on local HTTP submission failures",
+        "persisted exchange terminal receipt for some accepted orders"
+      ],
+      "producer_or_mapping_loss": [
+        "47 prior policy-mismatch events have order_placed evidence not represented by the normalized leg mapping"
+      ],
+      "normalized_output": [
+        "orders.jsonl",
+        "decisions.jsonl"
+      ],
+      "normalized_rows": {
+        "orders_all": 9447,
+        "denominator_entry_attempts": 3332,
+        "decisions": 308
+      },
+      "normalized_sha256": {
+        "orders.jsonl": "655e20d9662819596c6e662f6014bfde9eafc0a57896436c13a693ac58915624",
+        "decisions.jsonl": "38cf05ee2649c628299577f5d793bf541b9813973f3094efc25d4f1b7ee6ac1f"
+      },
+      "contract_result": "partial; decision and exchange-clock gaps remain"
+    },
+    {
+      "source": "official_exchange_order_and_fill_history",
+      "raw_exists": true,
+      "read_only_pages": {
+        "fills_all": 13056,
+        "fills_development_timestamp_slice": 1937,
+        "orders_all": 14928,
+        "orders_development_timestamp_slice": 4391
+      },
+      "source_genuinely_missing_or_not_returned": {
+        "accepted_engine_order_ids_all": 6032,
+        "accepted_denominator_entry_orders": 703
+      },
+      "normalized_output": [
+        "orders.jsonl",
+        "fills.jsonl"
+      ],
+      "normalized_rows": {
+        "orders_all": 9447,
+        "fills": 903
+      },
+      "normalized_sha256": {
+        "orders.jsonl": "655e20d9662819596c6e662f6014bfde9eafc0a57896436c13a693ac58915624",
+        "fills.jsonl": "a5eedb4169b3dcc69bb2e0545f2770511de4a3fb5ed69bc9b938b82ac353a769"
+      },
+      "contract_result": "2613 accepted orders validate exactly; 703 lack terminal receipts; 2 fill-receipt inconsistencies remain"
+    },
+    {
+      "source": "daysheet_tape_public_trade_cache",
+      "raw_exists": true,
+      "raw_files": 476,
+      "raw_bytes": 48019556,
+      "raw_rows": 883557,
+      "upstream_fields_that_existed": [
+        "trade_id",
+        "taker fields",
+        "count_fp",
+        "created_time"
+      ],
+      "producer_retained_fields": [
+        "ct",
+        "price_c",
+        "ts"
+      ],
+      "producer_discarded_fields": [
+        "trade_id",
+        "taker direction"
+      ],
+      "consolidator_discarded_fields": [
+        "ct was not recognized as count or size and became zero"
+      ],
+      "normalized_output": "prints.jsonl",
+      "normalized_rows": 0,
+      "normalized_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "contract_rejection": "stable receipt identity and verified positive size absent after the producer/consolidator chain"
+    },
+    {
+      "source": "historical_public_trade_backfill",
+      "raw_exists": true,
+      "declared_rows": 21061384,
+      "producer_retained_fields": [
+        "count_fp",
+        "price",
+        "timestamp"
+      ],
+      "producer_discarded_fields": [
+        "upstream trade_id",
+        "taker fields"
+      ],
+      "normalized_output": "subsecond_store.db",
+      "contract_rejection": "cannot receipt-deduplicate overlapping feeds after identity loss"
+    },
+    {
+      "source": "book_transition",
+      "raw_exists": true,
+      "declared_rows": 1770521,
+      "source_class": "synthetic quote/last-price transition",
+      "normalized_output": "diagnostic movement only",
+      "contract_result": "never admitted as a true print; size is zero"
+    },
+    {
+      "source": "premarket_ticks",
+      "raw_exists": true,
+      "development_files": 1494,
+      "development_bytes": 1589606993,
+      "source_class": "top-five snapshots",
+      "source_genuinely_lacks": [
+        "levels below five",
+        "sequence-complete causal queue history"
+      ],
+      "normalized_output": "books.jsonl",
+      "normalized_rows": 0,
+      "contract_rejection": "normalization path omitted existing limited-depth rows; they may support limited features but not exact queue replay"
+    },
+    {
+      "source": "depth_recorder",
+      "raw_exists": true,
+      "development_files": 189,
+      "development_bytes": 435950289,
+      "development_rows": 3079608,
+      "source_class": "change-deduplicated snapshot/top-20",
+      "source_genuinely_lacks": [
+        "sequence-complete causal chain",
+        "verified trade size"
+      ],
+      "normalized_output": "books.jsonl",
+      "normalized_rows": 0,
+      "contract_rejection": "normalization path omitted existing limited-depth rows; last-size cannot become a print"
+    },
+    {
+      "source": "ws_depth_recorder",
+      "raw_exists": false,
+      "development_coverage": "no retained July 12-19 archive; July 20 files rotated before complete sequence/corruption census",
+      "source_genuinely_missing_or_corrupt": true,
+      "normalized_output": "books.jsonl",
+      "normalized_rows": 0,
+      "contract_rejection": "no readable development-wide full-ladder sequence epochs"
+    }
+  ],
+  "corrected_outputs": {
+    "event_ledger_rows": 804,
+    "event_ledger_sha256": "09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb",
+    "floor_passing_D": 804,
+    "validation_gate_pass": false,
+    "validation_mismatches": 1054,
+    "strategy_scoring_permitted": false
+  },
+  "sensitive_material_included": false
+}

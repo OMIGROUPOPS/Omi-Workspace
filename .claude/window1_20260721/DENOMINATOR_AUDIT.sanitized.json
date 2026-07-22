@@ -1,0 +1,11 @@
+{
+  "D": 804,
+  "U_raw_unique_catalog_games": 804,
+  "minus_causal_pre_simulation_violent_faller_receipts": 0,
+  "minus_duplicate_market_or_event_rows": 0,
+  "minus_non_match_rows": 0,
+  "minus_reschedule_aliases_proven": 0,
+  "minus_verified_pre_window_cancellations_or_voids": 0,
+  "proof_note": "No eventual-path band label is used as a pre-simulation exclusion; absent a contemporaneous pre-left-edge receipt, the event remains in D.",
+  "schema_version": "window1-evidence-reconcile-v1"
+}

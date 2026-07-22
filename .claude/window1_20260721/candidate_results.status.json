@@ -1,9 +1,12 @@
 {
-  "status": "not_run_validation_gate_failed",
+  "schema_version": "window1-normalized-v2",
+  "status": "not_run_corrected_validation_gate_failed",
   "boundary_sensitivity": null,
   "candidate_results": null,
   "D": null,
   "C": null,
   "S": null,
-  "strategy_verdict": null
+  "strategy_verdict": null,
+  "gate_mismatch_count": 1054,
+  "reason": "Scoring is forbidden until the exact actual decision/order gate passes."
 }

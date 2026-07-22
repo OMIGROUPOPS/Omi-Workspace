@@ -1,0 +1,39 @@
+{
+  "inputs": {
+    "events.jsonl": {
+      "bytes": 336694,
+      "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46"
+    },
+    "fills.jsonl": {
+      "bytes": 278399,
+      "sha256": "a5eedb4169b3dcc69bb2e0545f2770511de4a3fb5ed69bc9b938b82ac353a769"
+    },
+    "orders.jsonl": {
+      "bytes": 5557827,
+      "sha256": "655e20d9662819596c6e662f6014bfde9eafc0a57896436c13a693ac58915624"
+    }
+  },
+  "outputs": {
+    "actual_outcome_bounds.json": {
+      "bytes": 696,
+      "sha256": "d11cf5a95604d3d2e71f8cf6612ebc45c62f2695ced31e365495b50a6e2e5146"
+    },
+    "corrected_mismatch_census.json": {
+      "bytes": 2983,
+      "sha256": "a7453037a099c60acb0c85dab0328b10641ea4b8b16487457f6ffef68c608763"
+    },
+    "decisions.jsonl": {
+      "bytes": 132773,
+      "sha256": "38cf05ee2649c628299577f5d793bf541b9813973f3094efc25d4f1b7ee6ac1f"
+    },
+    "denominator_audit.json": {
+      "bytes": 494,
+      "sha256": "9081fc82135c6036a9771f71ff9b176c169cbcabe6098c70d2814505f7f7ac10"
+    },
+    "policy_mismatch_reclassification.jsonl": {
+      "bytes": 121750,
+      "sha256": "4802e9b1eceb0faa5f1cc8912f6822b427aaac31b61f85ef06c02ba181da4f06"
+    }
+  },
+  "schema_version": "window1-evidence-reconcile-v1"
+}

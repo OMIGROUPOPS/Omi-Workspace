@@ -1,15 +1,17 @@
 {
-  "schema_version": "window1-normalized-v1",
+  "schema_version": "window1-normalized-v2",
   "status": "immutable_development_ledger",
   "immutable": true,
   "row_count": 804,
   "D_development": 804,
   "D_forward_holdout": null,
-  "sha256": "28348235eef26c10475e016614e999d83304ce01a587f890cd9f739c41269999",
+  "sha256": "09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb",
   "development_period": [
     "2026-07-12",
     "2026-07-20"
   ],
-  "local_prior_seed_rows_not_promoted": 187,
-  "reason": "the 804-row exchange-catalog ledger is complete for development; validation failure blocks scoring"
+  "U_raw_catalog_events": 804,
+  "lawful_pre_simulation_exclusions": 0,
+  "floor_law": "retain every big-4 event absent a contemporaneous cancellation/void or causally known violent-faller receipt before simulation",
+  "reason": "the 804-row exchange-catalog ledger is complete for development and no lawful causal exclusion receipt was found; validation failure blocks scoring"
 }

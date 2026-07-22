@@ -1,151 +1,126 @@
-# Independent Window-1 reproduction
+# Independent Window-1 correction reproduction
 
-## Git identity
+Branch: codex/window1-definition
+Benchmark implementation commit: BENCHMARK_COMMIT_TO_BE_RECORDED
+Production chronology inspected: 7def367c96d3a90f198c59c754109aa04b11e9f5
+Corrected ledger SHA-256:
+09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb
 
-Authoritative branch base:
+Do not run this in the production checkout. Use a detached research worktree
+and private evidence under /srv/omi-research. Never copy raw identities,
+account payloads, logs, databases, or recorder archives into Git.
 
-`193e90da406214d2e5d9b2c7b5f752ddda046895`
+## Research worktree
 
-Benchmark implementation commit:
+    export RESEARCH_ROOT=/srv/omi-research/window1-independent-review
+    export BENCHMARK_COMMIT=BENCHMARK_COMMIT_TO_BE_RECORDED
+    git fetch origin codex/window1-definition
+    git cat-file -e "$BENCHMARK_COMMIT^{commit}"
+    git worktree add --detach "$RESEARCH_ROOT/worktree" "$BENCHMARK_COMMIT"
+    cd "$RESEARCH_ROOT/worktree"
+    python -B arb-executor/tests/test_window1_benchmark.py
+    python -B arb-executor/tests/test_window1_policy_runner.py
 
-`881c290df360cf534cb0e504ef1b0bd2676051e3`
+Set private locations without printing them:
 
-Branch:
+    export INPUT="$RESEARCH_ROOT/private/normalized"
+    export OUTPUT="$RESEARCH_ROOT/private/validation"
+    export LOG_DIR="<private production log directory, read-only>"
+    export ACTIVE_PREFIX_BYTES=318840280
+    mkdir -p "$INPUT" "$OUTPUT"
 
-`codex/window1-definition`
+INPUT contains events.jsonl, decisions.jsonl, orders.jsonl, fills.jsonl,
+prints.jsonl, and books.jsonl under DATA_CONTRACT.md. The supplied private
+events/orders/fills hashes must match:
 
-Do not run these commands in the production checkout. Use a detached research worktree and external private evidence storage.
+- events:
+  1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46
+- orders:
+  655e20d9662819596c6e662f6014bfde9eafc0a57896436c13a693ac58915624
+- fills:
+  a5eedb4169b3dcc69bb2e0545f2770511de4a3fb5ed69bc9b938b82ac353a769
+- corrected decisions:
+  38cf05ee2649c628299577f5d793bf541b9813973f3094efc25d4f1b7ee6ac1f
 
-## Research-only setup
+## Reconcile causal decisions
 
-The operator chooses an external path and keeps it outside Git:
+The private normalized directory used as reconciliation input contains the
+events, orders, and fills files. Run against immutable July 12-19 logs and
+exactly the pinned prefix of the active July 20 log:
 
-```bash
-export RESEARCH_ROOT=/srv/omi-research/window1-forward-review
-export BENCHMARK_COMMIT=881c290df360cf534cb0e504ef1b0bd2676051e3
-git fetch origin codex/window1-definition
-git cat-file -e "$BENCHMARK_COMMIT^{commit}"
-git worktree add --detach "$RESEARCH_ROOT/worktree" "$BENCHMARK_COMMIT"
-cd "$RESEARCH_ROOT/worktree"
-python -B arb-executor/tests/test_window1_benchmark.py
-python -B arb-executor/tests/test_window1_policy_runner.py
-```
+    python -B arb-executor/analysis/window1_evidence_reconcile.py +      --normalized-dir "$INPUT" +      --log-dir "$LOG_DIR" +      --active-log-prefix-bytes "$ACTIVE_PREFIX_BYTES" +      --output-dir "$RESEARCH_ROOT/private/reconcile"
 
-Set the normalized input and fresh output paths:
+Expected stop output:
 
-```bash
-export INPUT="$RESEARCH_ROOT/private/normalized"
-export OUTPUT="$RESEARCH_ROOT/private/validation-output"
-export SPEC=arb-executor/docs/research/window1/WINDOW1_CANDIDATES.json
-mkdir -p "$OUTPUT"
-```
+- D 804;
+- prior policy mismatches 351;
+- classifications 132 causally proven refusal/no-placement, 47 mapping
+  defects, 6 accepted-order/missing-receipt intersections, 4 genuinely
+  unknown, and 162 logging gaps;
+- 308 decision rows;
+- 703 accepted orders missing terminal receipts;
+- strategy_scoring_permitted false.
 
-The private `INPUT` directory contains the five files defined in `DATA_CONTRACT.md`. Do not place raw order/fill payloads, account data, credentials, databases, logs, or recorder archives in the worktree.
+Use reconcile/decisions.jsonl as INPUT/decisions.jsonl. Keep the private
+reconciliation directory outside Git.
 
-## Current failed-gate reproduction
+## Manifest, ledger, and corrected validation
 
-Run only tests, manifest, ledger, and validation:
+    python -B arb-executor/analysis/window1_benchmark.py manifest +      --input-dir "$INPUT" --output-dir "$OUTPUT"
+    python -B arb-executor/analysis/window1_benchmark.py ledger +      --input-dir "$INPUT" --output-dir "$OUTPUT"
+    python -B arb-executor/analysis/window1_benchmark.py validate +      --input-dir "$INPUT" --output-dir "$OUTPUT"
 
-```bash
-python -B arb-executor/analysis/window1_benchmark.py manifest \
-  --input-dir "$INPUT" --output-dir "$OUTPUT"
-python -B arb-executor/analysis/window1_benchmark.py ledger \
-  --input-dir "$INPUT" --output-dir "$OUTPUT"
-python -B arb-executor/analysis/window1_benchmark.py validate \
-  --input-dir "$INPUT" --output-dir "$OUTPUT"
-```
+Validation must stop before scoring and report:
 
-For the 2026-07-22 evidence snapshot, validation must exit 3 and report:
+- floor_passing_events 804;
+- entry_attempts_compared 3332;
+- accepted orders compared 3318;
+- failed attempts compared 14;
+- matched fills 305;
+- matched nonfills 2308;
+- causal nonplacement legs 308;
+- unobserved decision legs 335;
+- mismatches 1054:
+  accepted_order_missing_receipt 703, decision_unobserved 335, clock 14,
+  fill_receipt 2;
+- counterfactual unavailable orders 2613;
+- strategy_scoring_permitted false.
 
-- `floor_passing_events: 804`;
-- `entry_attempts_compared: 3332`;
-- `orders_compared: 3318`;
-- `failed_attempts_compared: 14`;
-- `mismatch_count: 3683`;
-- mismatch types `book=2615`, `clock=14`, `order_identity=703`, `policy=351`;
-- `strategy_scoring_permitted: false`.
+The generated candidate_event_ledger.jsonl must have 804 rows and SHA-256:
 
-The public candidate ledger must have 804 rows and SHA-256:
+    09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb
 
-`28348235eef26c10475e016614e999d83304ce01a587f890cd9f739c41269999`
+## Public-safe aggregate
 
-Do not run the remaining commands on this failed evidence snapshot.
+The private mismatch ledger contains exchange identities. Sanitize it before
+anything enters Git:
 
-## Development fit after a future passing gate
+    python -B arb-executor/analysis/window1_sanitize_validation.py +      --summary "$OUTPUT/validation_summary.json" +      --mismatches "$OUTPUT/validation_mismatch_ledger.jsonl" +      --output "$OUTPUT/CORRECTED_VALIDATION_SUMMARY.sanitized.json"
 
-Only when `validation_summary.json` says `gate_pass: true` may the full July 12–20 development period be scored:
+The sanitizer checks aggregate counts and emits no event, ticker, order,
+client-order, attempt, fill, or account identities.
 
-```bash
-export FIT="$RESEARCH_ROOT/private/window1-development-outcomes.jsonl"
-export ABLATE="$RESEARCH_ROOT/private/window1-development-ablations.jsonl"
-python -B arb-executor/analysis/window1_policy_runner.py \
-  --period fit --mode candidates \
-  --input-dir "$INPUT" \
-  --event-ledger "$OUTPUT/candidate_event_ledger.jsonl" \
-  --validation-summary "$OUTPUT/validation_summary.json" \
-  --candidate-spec "$SPEC" --output "$FIT"
-python -B arb-executor/analysis/window1_benchmark.py fit \
-  --fit-outcomes "$FIT" --output-dir "$OUTPUT"
-python -B arb-executor/analysis/window1_policy_runner.py \
-  --period fit --mode ablations \
-  --input-dir "$INPUT" \
-  --event-ledger "$OUTPUT/candidate_event_ledger.jsonl" \
-  --validation-summary "$OUTPUT/validation_summary.json" \
-  --candidate-spec "$SPEC" \
-  --freeze "$OUTPUT/window1_freeze.json" --output "$ABLATE"
-python -B arb-executor/analysis/window1_benchmark.py ablate \
-  --fit-outcomes "$ABLATE" --output-dir "$OUTPUT"
-```
+## Canonical source census
 
-The fit command freezes the boundary, policy, development-ledger subset hash, metrics, input hash, freeze timestamp, and the first three complete UTC dates strictly after the UTC freeze date.
+Run the count/schema-only census at idle I/O and low CPU priority:
 
-## Required commit ceremony before holdout
+    ionice -c3 nice -n 19 python -B +      arb-executor/analysis/window1_source_census.py +      --tennis-db "<private tennis.db path>" +      --fund-db "<private fund_equity.db path>" +      --corpus-events "<private corpus_events_v2.jsonl path>" +      --range-spectrum "<private range_spectrum_v1.jsonl path>" +      --output "$RESEARCH_ROOT/private/CANONICAL_SOURCE_CENSUS.sanitized.json"
 
-Copy only the sanitized freeze receipt into the research branch, commit it and its three dates, then create a declaration bound to that commit and the freeze hash. The declaration schema is:
+It outputs schemas, counts, public category/date aggregates, and hashes only.
+It never emits private database rows or identities.
 
-```json
-{
-  "holdout_dates": ["YYYY-MM-DD", "YYYY-MM-DD", "YYYY-MM-DD"],
-  "source_freeze_sha256": "<sha256 of window1_freeze.json>",
-  "git_commit_sha": "<full SHA of the commit containing the freeze and dates>",
-  "freeze_receipt_repo_path": ".claude/window1_20260721/window1_freeze.json",
-  "freeze_and_dates_committed_before_holdout": true
-}
-```
+## Stop law
 
-Commit the declaration before opening holdout evidence. The gate reads `freeze_receipt_repo_path` directly from `git_commit_sha` and requires its blob hash to match the external freeze. Different dates, a different freeze hash, an absent committed blob, an unsafe path, or a non-full Git SHA is rejected.
+Do not run boundary selection, candidate fit, ablations, a freeze, or holdout
+on this snapshot. The actual validation gate failed and counterfactual book/
+print evidence is unavailable. Repair the named sources and rerun only tests,
+source census, reconciliation, manifest, ledger, validation, and sanitization.
 
-## Exactly one forward holdout
+If a future snapshot passes, July 12-20 is the complete development interval.
+Only then may fit select and freeze a boundary/policy. The forward holdout is
+the first three complete UTC dates strictly after the date of that committed
+freeze, exactly once, with no date extension after viewing.
 
-After all three registered UTC dates are complete, append their public event rows to `events.jsonl`, rebuild the ledger with the committed declaration, and verify that the development subset hash is unchanged:
-
-```bash
-export HOLDOUT_DECL="$RESEARCH_ROOT/worktree/.claude/window1_20260721/FORWARD_HOLDOUT_DECLARATION.json"
-export HOLDOUT="$RESEARCH_ROOT/private/window1-forward-holdout-outcomes.jsonl"
-python -B arb-executor/analysis/window1_benchmark.py ledger \
-  --input-dir "$INPUT" --output-dir "$OUTPUT" \
-  --holdout-declaration "$HOLDOUT_DECL"
-python -B arb-executor/analysis/window1_policy_runner.py \
-  --period holdout --mode candidates \
-  --input-dir "$INPUT" \
-  --event-ledger "$OUTPUT/candidate_event_ledger.jsonl" \
-  --validation-summary "$OUTPUT/validation_summary.json" \
-  --candidate-spec "$SPEC" \
-  --freeze "$OUTPUT/window1_freeze.json" \
-  --holdout-declaration "$HOLDOUT_DECL" \
-  --output "$HOLDOUT"
-python -B arb-executor/analysis/window1_benchmark.py holdout \
-  --holdout-outcomes "$HOLDOUT" --output-dir "$OUTPUT" \
-  --holdout-declaration "$HOLDOUT_DECL"
-```
-
-The holdout is exactly those three dates and exactly one evaluation. If `D` is too small for stability, report that fact; do not extend or shop dates.
-
-## Exit codes and scope
-
-- `0`: command passed its contract;
-- `2`: manifest or ledger incomplete;
-- `3`: validation gate failed;
-- `4`: scoring blocked by a contract or freeze violation.
-
-These commands do not deploy, reach the exchange, touch orders or positions, modify production configuration, use DCA, consume Window 2, or analyze exits.
+These commands do not deploy, access exchange trading endpoints, modify the
+live bot, change production configuration, use Window 2, analyze exits or
+settlement, or introduce DCA.

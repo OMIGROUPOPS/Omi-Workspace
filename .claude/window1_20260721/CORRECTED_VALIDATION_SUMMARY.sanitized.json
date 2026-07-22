@@ -1,0 +1,64 @@
+{
+  "accepted_orders_missing_terminal_receipt": 703,
+  "benchmark_version": "window1-benchmark-v2",
+  "causal_nonplacement_events": 183,
+  "causal_nonplacement_legs": 308,
+  "counterfactual_replay": {
+    "bounded_orders": 0,
+    "exact_orders": 0,
+    "exact_outcome_disagreements": 0,
+    "gates_official_actual_validation": false,
+    "unavailable_orders": 2613
+  },
+  "decision_contract_errors": 0,
+  "entry_attempts_compared": 3332,
+  "failed_attempts_compared": 14,
+  "floor_passing_events": 804,
+  "gate_pass": false,
+  "matched_failed_attempts": 0,
+  "matched_fills": 305,
+  "matched_nonfills": 2308,
+  "mismatch_count": 1054,
+  "mismatch_detail_census": [
+    {
+      "count": 703,
+      "detail": "accepted order lacks an official terminal receipt",
+      "mismatch_type": "accepted_order_missing_receipt"
+    },
+    {
+      "count": 14,
+      "detail": "missing exchange timestamp: order.exchange_rejected_ts",
+      "mismatch_type": "clock"
+    },
+    {
+      "count": 335,
+      "detail": "required leg has neither an entry attempt nor a causal refusal/no-placement receipt",
+      "mismatch_type": "decision_unobserved"
+    },
+    {
+      "count": 1,
+      "detail": "executed terminal status does not reach ordered quantity",
+      "mismatch_type": "fill_receipt"
+    },
+    {
+      "count": 1,
+      "detail": "official fill receipts disagree with terminal fill count",
+      "mismatch_type": "fill_receipt"
+    }
+  ],
+  "mismatch_types": {
+    "accepted_order_missing_receipt": 703,
+    "clock": 14,
+    "decision_unobserved": 335,
+    "fill_receipt": 2
+  },
+  "orders_compared": 3318,
+  "pass_rule": "all required legs have a causal placement/refusal decision; all accepted orders have exact terminal/fill receipts",
+  "private_identifiers_emitted": false,
+  "public_schema_version": "window1-validation-sanitized-v2",
+  "raw_mismatch_rows_emitted": false,
+  "receipt_validation_errors": 2,
+  "schema_version": "window1-normalized-v2",
+  "strategy_scoring_permitted": false,
+  "unobserved_decision_legs": 335
+}

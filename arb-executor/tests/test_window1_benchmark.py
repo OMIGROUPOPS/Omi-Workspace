@@ -59,6 +59,11 @@ def order(event_id, ticker, order_id, *, end=20):
         "quantity": 5,
         "exchange_created_ts": 10,
         "evaluation_end_exchange_ts": end,
+        "accepted": True,
+        "exchange_status": "canceled",
+        "exchange_initial_count": 5,
+        "exchange_fill_count": 0,
+        "exchange_remaining_count": 0,
     }
 
 
@@ -295,9 +300,15 @@ class ValidationGateTests(unittest.TestCase):
         events = [{"event_id": "E1", "category": "ATP_MAIN",
                    "event_date": "2026-07-12", "legs": ["T-A", "T-B"]}]
         ledger, _ = build_event_ledger(events)
-        orders = [order("E1", "T-A", "o1"), order("E1", "T-B", "o2")]
+        filled_order = order("E1", "T-A", "o1")
+        filled_order.update({
+            "exchange_status": "executed",
+            "exchange_fill_count": 5,
+        })
+        orders = [filled_order, order("E1", "T-B", "o2")]
         fills = [{"fill_id": "f1", "order_id": "o1", "ticker": "T-A",
-                  "price_cents": 40, "quantity": 5, "exchange_ts": 12}]
+                  "action": "buy", "price_cents": 40, "quantity": 5,
+                  "exchange_ts": 12}]
         raw_prints = [true_print("r1", "T-A", 12, 8),
                       true_print("r2", "T-B", 12, 2)]
         prints, errors = canonical_true_prints(raw_prints)
@@ -308,6 +319,43 @@ class ValidationGateTests(unittest.TestCase):
         self.assertTrue(summary["gate_pass"])
         self.assertEqual(summary["matched_fills"], 1)
         self.assertEqual(summary["matched_nonfills"], 1)
+        self.assertEqual(mismatches, [])
+
+    def test_causal_no_placement_is_noncompletion_not_mismatch(self):
+        events = [{"event_id": "E1", "category": "ATP_MAIN",
+                   "event_date": "2026-07-12", "legs": ["T-A", "T-B"]}]
+        ledger, _ = build_event_ledger(events)
+        decisions = [
+            {"decision_id": "d1", "event_id": "E1", "ticker": "T-A",
+             "decision_type": "causal_refusal", "local_logged_ts": 10},
+            {"decision_id": "d2", "event_id": "E1", "ticker": "T-B",
+             "decision_type": "causal_no_placement",
+             "local_logged_ts": 11},
+        ]
+        summary, mismatches = validate_replay(
+            ledger, [], [], [], [], decisions=decisions)
+        self.assertTrue(summary["gate_pass"])
+        self.assertEqual(summary["causal_nonplacement_legs"], 2)
+        self.assertEqual(mismatches, [])
+
+    def test_official_actual_does_not_require_full_ladder(self):
+        events = [{"event_id": "E1", "category": "ATP_MAIN",
+                   "event_date": "2026-07-12", "legs": ["T-A", "T-B"]}]
+        ledger, _ = build_event_ledger(events)
+        filled_order = order("E1", "T-A", "o1")
+        filled_order.update({
+            "exchange_status": "executed",
+            "exchange_fill_count": 5,
+        })
+        orders = [filled_order, order("E1", "T-B", "o2")]
+        fills = [{"fill_id": "f1", "order_id": "o1", "ticker": "T-A",
+                  "action": "buy", "price_cents": 40, "quantity": 5,
+                  "exchange_ts": 12}]
+        summary, mismatches = validate_replay(
+            ledger, orders, fills, [], [])
+        self.assertTrue(summary["gate_pass"])
+        self.assertEqual(summary["counterfactual_replay"]
+                         ["unavailable_orders"], 2)
         self.assertEqual(mismatches, [])
 
 

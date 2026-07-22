@@ -1,4 +1,6 @@
 {
+  "authoritative": false,
+  "superseded_by": "CORRECTED_VALIDATION_SUMMARY.sanitized.json",
   "schema_version": "window1-normalized-v1",
   "benchmark_version": "window1-benchmark-v1",
   "gate_pass": false,

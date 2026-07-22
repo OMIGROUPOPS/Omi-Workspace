@@ -1,4 +1,6 @@
 {
+  "authoritative": false,
+  "superseded_by": "CORRECTED_MISMATCH_CENSUS.sanitized.json",
   "schema_version": "window1-validation-census-v1",
   "validation_run": "v3",
   "gate_pass": false,

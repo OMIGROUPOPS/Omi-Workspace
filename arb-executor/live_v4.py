@@ -5441,15 +5441,16 @@ class LiveV3:
                         "price": price, "count": count,
                         "tts_hours": round(_hzt / 3600.0, 2)}, ticker=ticker)
                 return "", {"_error": "conception_horizon"}
-        # [P0 REAL-START ENTRY GUARD 07-22] no NEW ENTRY BUY once the match is
-        # live by REAL evidence, or when the start-state is UNKNOWN/conflicting.
-        # Independent of the (possibly wrong) schedule clock AND of fused_gun --
-        # this is the chokepoint stop for the MICMAY post-start-fill P0 (a wrong
-        # 22:00 schedule let a resting maker entry fill ~36 min into the match).
-        # Only maker ENTRY buys are gated; exits (sells) and the deliberate
-        # completion-cross taker are exempt (post_only=False bypasses entirely).
-        if (action == "buy" and post_only
-                and ticker not in getattr(self, "_completion_cross_allow", set())):
+        # [P0 REAL-START ENTRY GUARD 07-22] no NEW ENTRY BUY unless the match is
+        # CONFIRMED pre-start. The chokepoint stop for the MICMAY post-start-fill
+        # P0 (a wrong 22:00 schedule let a resting maker entry fill ~36 min into
+        # the match). EVERY entry buy is gated -- maker AND taker (post_only=False
+        # deadline force-takes) AND completion crosses: the bot only BUYS to
+        # ENTER, and per the 07-22 operator ruling a completion bid remains an
+        # entry that fails closed post-start pending a separate ruling. NO
+        # generic taker / completion bypass. Independent of the (possibly wrong)
+        # schedule clock and of fused_gun. Exits are SELLS -> untouched.
+        if action == "buy":
             _pet = ticker.rsplit("-", 1)[0]
             _refuse, _why = self._entry_start_gate(_pet)
             if _refuse:
@@ -5458,9 +5459,11 @@ class LiveV3:
                     _rs.add(ticker)
                     self._log("post_start_entry_refused", {
                         "price": price, "count": count, "reason": _why,
+                        "post_only": post_only,
                         "law": "P0-FIX 07-22: entry buys ONLY when confirmed "
                                "PRE-start; live evidence / unknown / conflicting "
-                               "/ past start fails closed"}, ticker=ticker)
+                               "/ past start fails closed (maker+taker+completion)"},
+                        ticker=ticker)
                 return "", {"_error": "post_start_entry_refused"}
         # [C-FUSED-GUN 2026-07-08] NO new buy placement after ANY gun source
         # fires -- grace governs exits only (standing doctrine). ALL buys, maker
@@ -7607,13 +7610,24 @@ class LiveV3:
     # [C-FUSED-GUN 2026-07-08] the fused gun: first credible signal wins
     # ------------------------------------------------------------------
     def _strong_live_evidence(self, source, detail):
-        """[P0 REAL-START FIX 07-22] True iff `detail` proves the match is
-        already IN-PLAY — evidence a schedule claiming a LATER start may not
-        override. Discriminators (any one): a large realized directional price
-        move (real points have been played), or sustained in-play volume well
-        above the fire threshold. Pre-match warm-up quoting produces neither.
-        Conservative-fail: unreadable evidence is NOT strong."""
+        """[P0 REAL-START FIX 07-22] True iff evidence proves the match is
+        IN-PLAY and may override a schedule claiming a LATER start.
+        (a) PROOF-GRADE lifecycle/scoreboard sources are AUTHORITATIVE — an
+            independent live/scoreboard truth outranks a schedule clock and
+            overrides regardless of numeric fields:
+              · te_scoreboard  — the TE scoreboard shows the match in-play;
+              · schedule_live  — the schedule feed's own status == live;
+              · milestone_official with ms_status in {live, P}.
+            Ambiguous milestone statuses are NOT proof-grade (fail closed).
+        (b) else numeric TAPE evidence: a large realized directional move
+            (>=20c) or sustained prints (>=1.5x the fire threshold). Pre-match
+            warm-up quoting produces neither. Unreadable => NOT strong."""
         d = detail or {}
+        if source in ("te_scoreboard", "schedule_live"):
+            return True
+        if (source == "milestone_official"
+                and str(d.get("ms_status") or "").lower() in ("live", "p")):
+            return True
         try:
             if abs(float(d.get("ref_rise_cents") or 0)) >= 20:
                 return True
@@ -7791,7 +7805,9 @@ class LiveV3:
         (the residual exchange-side race window, now at its narrowest)."""
         for tk in list(self.event_tickers.get(et, ())):
             pos = self.positions.get(tk)
-            if pos is None or getattr(pos, "entry_mode", "") == "completion_reprice":
+            # [P0 REAL-START FIX 07-22] no completion_reprice exemption: a
+            # completion bid is still an ENTRY and is swept post-start too.
+            if pos is None:
                 continue
             if not getattr(pos, "entry_order_id", None):
                 continue
@@ -9439,6 +9455,27 @@ class LiveV3:
             return True
         finally:
             self._booking_inflight.discard(key)
+
+    async def _start_gate_cancel_resting(self, tk, pos, why):
+        """[P0 REAL-START FIX 07-22] Cancel a bot-owned resting ENTRY bid whose
+        match is no longer confirmed pre-start. Reconciles a raced fill through
+        _cancel_entry_and_resolve (books once, NEVER deletes a raced fill);
+        never touches protective sells or foreign orders. On a confirmed cancel
+        the leg is untombstoned and the resting file saved. Returns the
+        cancel-resolve verdict ("cancelled" / "booked" / "unresolved")."""
+        res = await self._cancel_entry_and_resolve(
+            tk, pos, why, "post_start_entry_cancel_race")
+        if res == "cancelled":
+            self._log("post_start_entry_cancelled", {
+                "event": pos.event_ticker, "reason": why,
+                "order_id": (getattr(pos, "entry_order_id", "") or "")[:13],
+                "law": "P0-FIX 07-22: a resting entry whose match is live / "
+                       "unknown / conflicting / past-start is cancelled; "
+                       "entries only survive while confirmed PRE-start"},
+                ticker=tk)
+            self._untombstone_entry(tk, pos)
+            self._save_v4_resting()
+        return res
 
     async def _cancel_entry_and_resolve(self, tk, pos, label, source):
         """[C-P0-RACE STEP 3] Cancel a resting v4 entry bid and resolve the outcome
@@ -12267,6 +12304,19 @@ class LiveV3:
         price moves > 1 cell width from the last placement basis), cancels on a
         degenerate/wide-spread book, and crosses as taker if a re-evaluated
         target becomes marketable. T-20m fallback is handled below (STEP 6)."""
+        # [P0 REAL-START FIX 07-22] BEFORE any completion dispatch / horizon /
+        # reprice logic: a resting ENTRY bid whose match is no longer CONFIRMED
+        # pre-start (live / unknown / conflicting / past-start) is cancelled and
+        # freed -- fail closed. Applies to fresh AND completion_reprice bids (a
+        # completion bid remains an entry; operator ruling 07-22). A raced fill
+        # is booked exactly once via _cancel_entry_and_resolve; protective sells
+        # and foreign orders are never touched. This is the already-resting half
+        # of the MICMAY P0 -- the Michelsen sibling that stayed resting post-start.
+        if pos.entry_order_id:
+            _rf, _wy = self._entry_start_gate(pos.event_ticker)
+            if _rf:
+                await self._start_gate_cancel_resting(tk, pos, "manage_" + _wy)
+                return
         # PART-2: completion bids have their own lifecycle (freshness re-eval, buffer-
         # exempt ride to T-0). They must NEVER enter the regular move-repost / T-20
         # fallback / wide-spread machinery, which would reprice them back to the entry
@@ -17046,6 +17096,26 @@ class LiveV3:
 
         # v4: rebuild any persisted resting bids reconcile didn't link (STEP 5)
         self._load_v4_resting()
+
+        # [P0 REAL-START FIX 07-22] FAIL CLOSED ON ADOPTION: both adoption paths
+        # (reconcile + _load_v4_resting) are complete, so cancel any re-adopted
+        # resting ENTRY bid whose match is already live / past / unknown /
+        # conflicting -- the MIC-sibling class (a resting entry that survived a
+        # restart into a live match). Runs BEFORE the post-boot audit. Raced
+        # fills book once via _cancel_entry_and_resolve; protective sells and
+        # foreign orders are untouched.
+        for _tk, _pos in list(self.positions.items()):
+            if not (getattr(_pos, "is_v4", False)
+                    and getattr(_pos, "phase", "") == "entry_resting"
+                    and getattr(_pos, "entry_order_id", None)):
+                continue
+            _brf, _bwy = self._entry_start_gate(_pos.event_ticker)
+            if _brf:
+                try:
+                    await self._start_gate_cancel_resting(_tk, _pos, "boot_" + _bwy)
+                except Exception as _bce:
+                    self._log("post_start_entry_cancel_error",
+                              {"err": str(_bce)[:120]}, ticker=_tk)
 
         # [C-ORPHAN-FINGERPRINT] boot close-out line: adopted-by-fingerprint
         # count vs the gate-banked snapshot, reconciled (the dispatch's proof).

@@ -79,6 +79,7 @@ M.api_post = _api_post
 STATICS = ("_canon_order", "_exit_coverage", "_canon_receipt",
            "_validate_order_row")
 BOUND = ("_fills_bulk", "_bot_owned_ids", "_cash_cleanup_state", "_canon_orders", "_exit_receipts", "_book_exit_receipts",
+         "_entry_start_gate", "_strong_live_evidence",
          "_cancel_resting_buys_on_cash", "_finalize_full_cash",
          "_quarantine_reconcile", "_quarantine_poll",
          "_quarantine_ensure_coverage", "_quarantine_accrue",
@@ -151,8 +152,9 @@ def make_bot(cap=1):
     s.books = {}
     s.event_tickers = {}
     s.ticker_to_event = {}
-    s.event_start_time = {}
+    s.event_start_time = {TK.rsplit("-", 1)[0]: 9_999_999_999}
     s._events_live = set()
+    s._start_conflict = set()
     s._session_exited = set()
     s.fused_gun = False
     s.freeze_at_gun = False
@@ -2035,8 +2037,9 @@ try:
     s2.books = {}
     s2.event_tickers = {}
     s2.ticker_to_event = {}
-    s2.event_start_time = {}
+    s2.event_start_time = {TK.rsplit("-", 1)[0]: 9_999_999_999}
     s2._events_live = set()
+    s2._start_conflict = set()
     s2.fused_gun = False
     s2.freeze_at_gun = False
     s2.maker_only_entry = True
@@ -2288,8 +2291,9 @@ def guard_bot(operator_state, protective_status):
     s.books = {}
     s.event_tickers = {}
     s.ticker_to_event = {}
-    s.event_start_time = {}
+    s.event_start_time = {TK.rsplit("-", 1)[0]: 9_999_999_999}
     s._events_live = set()
+    s._start_conflict = set()
     s.fused_gun = False
     s.freeze_at_gun = False
     s.maker_only_entry = True

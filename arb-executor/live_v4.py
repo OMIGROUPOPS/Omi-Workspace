@@ -1894,6 +1894,10 @@ class LiveV3:
         # trade timestamps + latched live-event set.
         self._trade_times: Dict[str, deque] = defaultdict(deque)
         self._events_live: Set[str] = set()
+        # [P0 REAL-START FIX 07-22] events where STRONG live in-play evidence
+        # conflicts with a schedule claiming the start is still in the future
+        # (the schedule is a liar). New entry buys fail closed on these.
+        self._start_conflict: Set[str] = set()
         # [P0v3 (1) BELL-BEFORE-SCHED, 07-17] pre-sched voided bell fires held
         # pending until the schedule floor passes (re-fired sched_clamped), +
         # once-per-(event,source) void-log dedup. BURMER the founding exhibit:
@@ -5437,6 +5441,27 @@ class LiveV3:
                         "price": price, "count": count,
                         "tts_hours": round(_hzt / 3600.0, 2)}, ticker=ticker)
                 return "", {"_error": "conception_horizon"}
+        # [P0 REAL-START ENTRY GUARD 07-22] no NEW ENTRY BUY once the match is
+        # live by REAL evidence, or when the start-state is UNKNOWN/conflicting.
+        # Independent of the (possibly wrong) schedule clock AND of fused_gun --
+        # this is the chokepoint stop for the MICMAY post-start-fill P0 (a wrong
+        # 22:00 schedule let a resting maker entry fill ~36 min into the match).
+        # Only maker ENTRY buys are gated; exits (sells) and the deliberate
+        # completion-cross taker are exempt (post_only=False bypasses entirely).
+        if (action == "buy" and post_only
+                and ticker not in getattr(self, "_completion_cross_allow", set())):
+            _pet = ticker.rsplit("-", 1)[0]
+            _refuse, _why = self._entry_start_gate(_pet)
+            if _refuse:
+                _rs = self.__dict__.setdefault("_post_start_refused_logged", set())
+                if ticker not in _rs:
+                    _rs.add(ticker)
+                    self._log("post_start_entry_refused", {
+                        "price": price, "count": count, "reason": _why,
+                        "law": "P0-FIX 07-22: entry buys ONLY when confirmed "
+                               "PRE-start; live evidence / unknown / conflicting "
+                               "/ past start fails closed"}, ticker=ticker)
+                return "", {"_error": "post_start_entry_refused"}
         # [C-FUSED-GUN 2026-07-08] NO new buy placement after ANY gun source
         # fires -- grace governs exits only (standing doctrine). ALL buys, maker
         # AND deliberate taker: a fired gun means the match is live; there is no
@@ -6221,8 +6246,13 @@ class LiveV3:
                             except Exception:
                                 pass
                     # [C-KALSHI-OCC] capture Kalshi occurrence_datetime (coarse start fallback source)
+                    # [P0 REAL-START FIX 07-22] expected_expiration_time is the match's
+                    # EXPECTED END, never its start. Using it as the start put MICMAY's
+                    # start ~3h late (22:00 END read as start; match began ~19:00), so a
+                    # post-start entry filled in W1 belief. occurrence_datetime ONLY; if it
+                    # is absent the start stays UNKNOWN and the entry pipeline fails closed.
                     if et not in self.event_kalshi_occ:
-                        occ_str = m.get("occurrence_datetime", "") or m.get("expected_expiration_time", "")
+                        occ_str = m.get("occurrence_datetime", "")
                         if occ_str:
                             try:
                                 self.event_kalshi_occ[et] = datetime.fromisoformat(
@@ -7576,6 +7606,51 @@ class LiveV3:
     # ------------------------------------------------------------------
     # [C-FUSED-GUN 2026-07-08] the fused gun: first credible signal wins
     # ------------------------------------------------------------------
+    def _strong_live_evidence(self, source, detail):
+        """[P0 REAL-START FIX 07-22] True iff `detail` proves the match is
+        already IN-PLAY — evidence a schedule claiming a LATER start may not
+        override. Discriminators (any one): a large realized directional price
+        move (real points have been played), or sustained in-play volume well
+        above the fire threshold. Pre-match warm-up quoting produces neither.
+        Conservative-fail: unreadable evidence is NOT strong."""
+        d = detail or {}
+        try:
+            if abs(float(d.get("ref_rise_cents") or 0)) >= 20:
+                return True
+        except (TypeError, ValueError):
+            pass
+        try:
+            prints = float(d.get("prints_30m") or d.get("prints_10m")
+                           or d.get("trades_in_window") or 0)
+            thr = float(d.get("threshold") or 0)
+            if thr > 0 and prints >= thr * 1.5:
+                return True
+        except (TypeError, ValueError):
+            pass
+        return False
+
+    def _entry_start_gate(self, et):
+        """[P0 REAL-START FIX 07-22] New entry buys place ONLY when the match
+        is CONFIRMED pre-start. Returns (refuse, reason). Fails closed —
+        independent of the (possibly wrong) schedule clock — on: a fired gun
+        (live by real evidence); strong live evidence conflicting with a
+        future schedule; an UNKNOWN start (no reliable scheduled start); or a
+        scheduled start already passed. A reliable start still in the future
+        with no live evidence is the only non-refusing state."""
+        if et in self._events_live:
+            return True, "match_live_gun_fired"
+        if et in getattr(self, "_start_conflict", set()):
+            return True, "live_evidence_conflicts_schedule"
+        st = self.event_start_time.get(et)
+        if not st:
+            return True, "unknown_start"
+        try:
+            if time.time() >= float(st):
+                return True, "past_scheduled_start"
+        except (TypeError, ValueError):
+            return True, "unparseable_start"
+        return False, ""
+
     def _gun_stamp(self, et, source, detail=None):
         """First credible signal fires the gun for an event: stamps gun_source,
         adds the event to _events_live (all live-handling consumers key on it),
@@ -7608,21 +7683,44 @@ class LiveV3:
         _floor = min(_clks) if _clks else None
         if (_floor is not None and now < _floor
                 and not (detail or {}).get("sched_clamped")):
-            self._gun_void_pending[et] = {
-                "source": source, "first_ts": now,
-                "sched_floor_ts": _floor, "detail": dict(detail or {})}
-            if (et, source) not in self._gun_void_logged:
-                self._gun_void_logged.add((et, source))
-                self._log("phantom_bell_void", {
+            # [P0 REAL-START FIX 07-22] STRONG live evidence OVERRIDES a
+            # conflicting FUTURE schedule — the schedule is a liar, not the
+            # tape. A decisive realized directional move / sustained in-play
+            # volume cannot be produced by pre-match warm-up quoting; voiding
+            # it "because the schedule says later" is the MICMAY P0 (a real
+            # bell at ref_rise 71c / 28 prints was voided vs a 22:00 that was
+            # actually the match END). Strong evidence fires the gun here (->
+            # _events_live -> entry sweep -> post-gun placement refusal). Weak
+            # pre-sched blips still void (walk-law input only).
+            if self._strong_live_evidence(source, detail):
+                self._start_conflict.add(et)
+                self._log("sched_liar_override", {
                     "event": et, "source": source,
                     "min_to_sched_min": round((_floor - now) / 60.0, 1),
                     "tts_legacy_min": (round((st - now) / 60.0, 1) if st else None),
                     "tts_honest_min": (round((hst - now) / 60.0, 1) if hst else None),
-                    "law": "P0v3 (1) 07-17: sched is the floor of time; "
-                           "pre-sched bells are VOID (no W2, no grace, no "
-                           "sweep, no placement permission)",
+                    "law": "P0-FIX 07-22: strong live in-play evidence "
+                           "overrides a future schedule; the match is LIVE, "
+                           "the schedule is wrong. Fire the gun (sweep "
+                           "entries, refuse new entry buys).",
                     **(detail or {})})
-            return False
+                # fall through to the fire block below (no void)
+            else:
+                self._gun_void_pending[et] = {
+                    "source": source, "first_ts": now,
+                    "sched_floor_ts": _floor, "detail": dict(detail or {})}
+                if (et, source) not in self._gun_void_logged:
+                    self._gun_void_logged.add((et, source))
+                    self._log("phantom_bell_void", {
+                        "event": et, "source": source,
+                        "min_to_sched_min": round((_floor - now) / 60.0, 1),
+                        "tts_legacy_min": (round((st - now) / 60.0, 1) if st else None),
+                        "tts_honest_min": (round((hst - now) / 60.0, 1) if hst else None),
+                        "law": "P0v3 (1) 07-17: sched is the floor of time; "
+                               "pre-sched bells are VOID (no W2, no grace, no "
+                               "sweep, no placement permission)",
+                        **(detail or {})})
+                return False
         self._gun_state[et] = {"ts": now, "source": source}
         self._events_live.add(et)
         self._gun_void_pending.pop(et, None)

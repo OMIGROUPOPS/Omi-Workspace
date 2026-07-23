@@ -639,6 +639,7 @@ def scan_depth_recorder(
         for ticker, item in stats.items()
     }, {
         "file_count": len(files),
+        "bytes": sum(path.stat().st_size for path in files),
         "physical_rows": physical,
         "parse_errors": parse_errors,
         "required_ticker_count": len(stats),

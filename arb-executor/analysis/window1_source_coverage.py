@@ -960,6 +960,56 @@ def load_precomputed_ws_depth(
     }
 
 
+def reconcile_depth_inventory_receipt(
+    path: Path | None,
+    observed: Mapping[str, Any],
+) -> dict[str, Any]:
+    if path is None:
+        return {"available": False}
+    inventory = json.loads(path.read_text(encoding="utf-8"))
+    claimed = (
+        (inventory.get("sources") or {}).get("depth_recorder") or {}
+    )
+    if not claimed:
+        raise CoverageError(
+            "source inventory has no depth_recorder receipt"
+        )
+    claimed_files = int(claimed.get("development_files") or 0)
+    claimed_rows = int(claimed.get("development_rows") or 0)
+    claimed_bytes = int(claimed.get("development_bytes") or 0)
+    observed_files = int(observed.get("file_count") or 0)
+    observed_rows = int(observed.get("physical_rows") or 0)
+    observed_bytes = int(observed.get("bytes") or 0)
+    return {
+        "available": True,
+        "receipt_sha256": sha256_file(path),
+        "receipt_census_date_utc": inventory.get("census_date_utc"),
+        "receipt_claim": {
+            "files": claimed_files,
+            "rows": claimed_rows,
+            "bytes": claimed_bytes,
+            "coverage_by_utc_date": claimed.get(
+                "coverage_by_utc_date"
+            ),
+        },
+        "frozen_snapshot_observed": {
+            "files": observed_files,
+            "rows": observed_rows,
+            "bytes": observed_bytes,
+        },
+        "not_preserved_in_frozen_snapshot": {
+            "files": max(0, claimed_files - observed_files),
+            "rows": max(0, claimed_rows - observed_rows),
+            "bytes": max(0, claimed_bytes - observed_bytes),
+        },
+        "classification": (
+            "raw source proven present at receipt census, but the later "
+            "frozen snapshot lacks bytes; missing rows are not normalized "
+            "away and cannot be reconstructed from the receipt"
+        ),
+    }
+
+
 def run(args: argparse.Namespace) -> int:
     events = read_jsonl(Path(args.events).resolve())
     if len(events) != D:
@@ -1228,6 +1278,13 @@ def run(args: argparse.Namespace) -> int:
         "tennis_db": tennis_summary,
         "public_tape": public_receipt,
         "depth_recorder": depth_summary,
+        "depth_recorder_receipt_reconciliation": (
+            reconcile_depth_inventory_receipt(
+                Path(args.source_inventory_receipt).resolve()
+                if args.source_inventory_receipt else None,
+                depth_summary,
+            )
+        ),
         "ws_depth": ws_summary,
         "source_laws": {
             "premarket_ticks": (
@@ -1280,6 +1337,7 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--spaces-ticks", required=True)
     result.add_argument("--spaces-trades", required=True)
     result.add_argument("--spaces-ws-depth", required=True)
+    result.add_argument("--source-inventory-receipt")
     result.add_argument("--ledger-output", required=True)
     result.add_argument("--summary-output", required=True)
     return result

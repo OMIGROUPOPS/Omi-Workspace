@@ -146,3 +146,33 @@ def test_public_tape_manifest_proves_complete_zero_trade(tmp_path):
     )
     assert zero == {"EVENT-A"}
     assert receipt["complete_ticker_queries"] == 2
+
+
+def test_depth_receipt_difference_is_named_not_reconstructed(tmp_path):
+    receipt = tmp_path / "source_inventory.json"
+    receipt.write_text(json.dumps({
+        "census_date_utc": "2026-07-22",
+        "sources": {
+            "depth_recorder": {
+                "development_files": 189,
+                "development_rows": 3_079_608,
+                "development_bytes": 435_950_289,
+                "coverage_by_utc_date": {
+                    "2026-07-12": {"files": 13, "rows": 221_814}
+                },
+            }
+        },
+    }), encoding="utf-8")
+    result = MODULE.reconcile_depth_inventory_receipt(
+        receipt, {
+            "file_count": 175,
+            "physical_rows": 2_836_510,
+            "bytes": 400_549_093,
+        }
+    )
+    assert result["not_preserved_in_frozen_snapshot"] == {
+        "files": 14,
+        "rows": 243_098,
+        "bytes": 35_401_196,
+    }
+    assert "cannot be reconstructed" in result["classification"]

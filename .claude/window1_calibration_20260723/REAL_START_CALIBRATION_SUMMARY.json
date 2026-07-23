@@ -1,0 +1,56 @@
+{
+  "D": 804,
+  "censored_events": 775,
+  "gate_pass": true,
+  "laws": {
+    "current_live_score_last_updated_is_exact_start": false,
+    "first_trade_alone_is_start": false,
+    "schedule_only_is_exact": false,
+    "unresolved_events_leave_D": false
+  },
+  "market_lifecycle_v2": {
+    "message_rows": 1421960,
+    "ruling": "no archived market_lifecycle_v2 message encoded a defensible live transition; none was promoted",
+    "valid_live_transition_events": 0
+  },
+  "nonexact_rows_missing_upper_bound": 0,
+  "precedence": [
+    "official_or_milestone_bell",
+    "market_lifecycle_v2_exchange_transition",
+    "mapped_live_score_onset_or_bound",
+    "defensible_tape_regime_onset",
+    "schedule_last_resort_bound"
+  ],
+  "precision_class_counts": {
+    "causal_live_by_bound": 625,
+    "causal_start_interval": 79,
+    "exact_official_or_milestone": 29,
+    "schedule_only_bound": 71
+  },
+  "required_legs": 1608,
+  "schedule_only_events": 71,
+  "schedule_only_promoted_to_exact": 0,
+  "schema_version": "window1-execution-calibration-gate-v1",
+  "selected_source_counts": {
+    "engine_regime_transition:fallback_bell": 188,
+    "engine_regime_transition:percat_fitted": 79,
+    "engine_regime_transition:price_divergence": 7,
+    "engine_regime_transition:self_fill": 10,
+    "engine_regime_transition:tape_flow": 3,
+    "engine_regime_transition:tape_latch": 3,
+    "exchange_milestone_live_transition": 21,
+    "milestone_shadow_official_start": 8,
+    "observed_starts_db_first_observed_inplay": 10,
+    "public_tape_5_prints_in_15m_onset": 316,
+    "schedule_feed_live_transition": 6,
+    "schedule_plus_declared_corridor": 71,
+    "te_scoreboard_first_observed_inplay": 13,
+    "tennis_db_live_scores_current_state": 69
+  },
+  "source_family_counts": {
+    "defensible_tape_regime_onset": 606,
+    "mapped_live_score_onset_or_bound": 98,
+    "official_or_milestone_bell": 29,
+    "schedule_last_resort_bound": 71
+  }
+}

@@ -25,12 +25,19 @@ import os
 import re
 import sqlite3
 import statistics
+import sys
 from bisect import bisect_left, bisect_right
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 from zoneinfo import ZoneInfo
 
+_ANALYSIS_DIR = str(Path(__file__).resolve().parent)
+if _ANALYSIS_DIR not in sys.path:
+    sys.path.insert(0, _ANALYSIS_DIR)
+from window1_execution_kernel import (  # noqa: E402
+    simulate_candidate_actions,
+)
 
 RUNNER_VERSION = "window1-causal-fit-v1"
 D_REQUIRED = 804
@@ -1452,76 +1459,15 @@ def simulate_actions(
     initial_quantity: float = 0.0,
     initial_cost: float = 0.0,
 ) -> dict[str, Any]:
-    quantity = initial_quantity
-    cost = initial_cost
-    first_fill: float | None = None
-    completion: float | None = None
-    if not actions:
-        return {
-            "status": "missing_placement_evidence",
-            "quantity": quantity,
-            "cost": cost,
-            "first_fill_ts": None,
-            "completion_ts": None,
-        }
-    for index, action in enumerate(actions):
-        start = float(action["ts"])
-        stop = (
-            float(actions[index + 1]["ts"])
-            if index + 1 < len(actions) else right
-        )
-        if start >= stop or quantity >= LOT:
-            continue
-        price = int(action["price"])
-        first_index = bisect_right(
-            prints, start, key=lambda row: float(row["ts"])
-        )
-        last_index = bisect_right(
-            prints, stop, key=lambda row: float(row["ts"])
-        )
-        eligible = [
-            row for row in prints[first_index:last_index]
-            if row["taker_side"] == "no"
-            and float(row["size"]) > 0
-            and int(row["price"]) <= price
-        ]
-        same_cumulative = 0.0
-        queue = (
-            float(action["queue_ahead"]) if queue_case == "lower" else 0.0
-        )
-        credited_same = 0.0
-        for trade in eligible:
-            timestamp = float(trade["ts"])
-            if int(trade["price"]) < price:
-                add = LOT - quantity
-            else:
-                same_cumulative += float(trade["size"])
-                new_credit = max(0.0, same_cumulative - queue)
-                add = min(
-                    LOT - quantity,
-                    max(0.0, new_credit - credited_same),
-                )
-                credited_same = new_credit
-            if add <= 0:
-                continue
-            if first_fill is None:
-                first_fill = timestamp
-            quantity += add
-            cost += add * price
-            if quantity >= LOT - 1e-9:
-                quantity = LOT
-                completion = timestamp
-                break
-        if completion is not None:
-            break
-    return {
-        "status": "filled" if quantity >= LOT else "not_filled",
-        "quantity": quantity,
-        "cost": cost,
-        "vwap": cost / quantity if quantity else None,
-        "first_fill_ts": first_fill,
-        "completion_ts": completion,
-    }
+    return simulate_candidate_actions(
+        actions,
+        prints,
+        right,
+        queue_case,
+        initial_quantity=initial_quantity,
+        initial_cost=initial_cost,
+        lot=LOT,
+    )
 
 
 def truncate_actions(

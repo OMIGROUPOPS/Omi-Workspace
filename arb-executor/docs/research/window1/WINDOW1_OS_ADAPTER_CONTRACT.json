@@ -1,0 +1,225 @@
+{
+  "schema_version": "window1-os-research-adapter-contract-v1",
+  "law": {
+    "aim_v2": "failed_dark_excluded",
+    "missing_input": "censor_the_relevant_feature_or_leg; never substitute a simpler proxy",
+    "pair_is_one_object": true,
+    "window": "Window 1 only",
+    "production_mutation": false
+  },
+  "components": [
+    {
+      "component_id": "pair_law",
+      "declared_status": "available",
+      "sources": [
+        ".claude/rulings/RULING_PAIR_ECONOMICS.md",
+        ".claude/rulings/RULING_COMBINED_PRICE_CLAUSE.md",
+        "arb-executor/docs/research/window1/WINDOW1_SPEC.md"
+      ],
+      "reason": "D has exactly two required leg tickers per event and the rulings prohibit singleton substitution.",
+      "missing_action": "censor_event"
+    },
+    {
+      "component_id": "first_fill_sibling_response",
+      "declared_status": "partially_available",
+      "sources": [
+        "arb-executor/live_v4.py",
+        "arb-executor/analysis/window1_execution_kernel.py",
+        ".claude/proof_20260717/PROOF_PAIR_INVARIANT.md"
+      ],
+      "reason": "The deployed response vocabulary and exact historical order lineages exist, but 468 legs remain legitimately censored.",
+      "missing_action": "censor_response_feature"
+    },
+    {
+      "component_id": "sealed_bands",
+      "declared_status": "partially_available",
+      "sources": [
+        ".claude/entrysurface_20260717/entry_tables_sealed_v1.json",
+        ".claude/entrysurface_20260717/LOCKED_DOWN_ENTRY.md",
+        ".claude/proof_20260720/PROOF_DUAL_DIVOT_SEAL.md"
+      ],
+      "reason": "The sealed tables are present; a leg still needs its causal anchor/cell inputs to bind a band.",
+      "missing_action": "censor_band_feature"
+    },
+    {
+      "component_id": "dual_divot_steering_and_catch",
+      "declared_status": "partially_available",
+      "sources": [
+        ".claude/entrysurface_20260717/divot_tables_v1.json",
+        ".claude/entrysurface_20260717/DIVOT_TABLES.md",
+        "arb-executor/analysis/divot_deconstruct.py"
+      ],
+      "reason": "Frozen divot/catch surfaces exist, while causal per-leg feature coverage is not universal.",
+      "missing_action": "censor_divot_or_catch_feature"
+    },
+    {
+      "component_id": "drift_recognition",
+      "declared_status": "partially_available",
+      "sources": [
+        ".claude/entrysurface_20260717/drift_surfaces_v1.json",
+        ".claude/entrysurface_20260717/DRIFT_SURFACES.md",
+        "arb-executor/analysis/drift_surfaces.py"
+      ],
+      "reason": "Chronological drift surfaces are present, but their tape/book inputs have explicit per-leg gaps.",
+      "missing_action": "censor_drift_feature"
+    },
+    {
+      "component_id": "cohort_steering",
+      "declared_status": "partially_available",
+      "sources": [
+        ".claude/master_20260709/cohort.json",
+        ".claude/dossier_20260708/PART1_COHORT.md",
+        "arb-executor/analysis/cohort_surface_build.py"
+      ],
+      "reason": "The frozen cohort prior exists; unmatched or under-supported cohort cells cannot borrow a pooled proxy.",
+      "missing_action": "censor_cohort_feature"
+    },
+    {
+      "component_id": "orientation_prior",
+      "declared_status": "available",
+      "sources": [
+        ".claude/trendpath/ORIENT_V1.json",
+        ".claude/trendpath/RULING_PACKET.md"
+      ],
+      "reason": "The pre-development orientation prior and its ruling are present and hashable.",
+      "missing_action": "censor_orientation_feature"
+    },
+    {
+      "component_id": "walk_park_posture",
+      "declared_status": "partially_available",
+      "sources": [
+        "arb-executor/analysis/the_walk.py",
+        "arb-executor/analysis/blend_park_v8.py",
+        ".claude/entrymech_20260717/ACCEPTANCE_WALK.md",
+        ".claude/backwalk_20260720/BACKWALK_WALLS_V1.md"
+      ],
+      "reason": "The chronological walk/park laws are present; causal BBO/pressure and start bounds decide per-leg availability.",
+      "missing_action": "censor_posture_feature"
+    },
+    {
+      "component_id": "riser_deceleration_mirror_seesaw",
+      "declared_status": "partially_available",
+      "sources": [
+        ".claude/nightly_20260705/PLEX_RISER_BOUNCE_PACKAGE.md",
+        ".claude/proof_20260706/RISER_DISARM.md",
+        ".claude/capture_20260720/mirror_pairs.jsonl",
+        "arb-executor/analysis/conviction_replay.py"
+      ],
+      "reason": "Riser is explicitly disarmed as an actuator; descriptive riser/deceleration/mirror/seesaw evidence remains usable only where its causal tape state exists.",
+      "missing_action": "censor_shape_dynamics_feature"
+    },
+    {
+      "component_id": "dynamic_floor_and_recut_cells",
+      "declared_status": "available",
+      "sources": [
+        ".claude/seqfloor_20260708/recut_cells.json",
+        ".claude/seqfloor_20260708/SEQFLOOR_RECUT.md",
+        ".claude/rulings/RULING_DYNAMIC_S_CELL_AIM.md"
+      ],
+      "reason": "The cell-keyed recut table and dynamic-S ruling are frozen; dynamic-floor gap remains a separate reported measure.",
+      "missing_action": "censor_dynamic_floor_measure"
+    },
+    {
+      "component_id": "atlas_and_reach",
+      "declared_status": "partially_available",
+      "sources": [
+        ".claude/trendpath/ATLAS_V1.json",
+        ".claude/takerreach/LAW.json",
+        "truth/surfaces/REACH_LAW.json"
+      ],
+      "reason": "The frozen priors exist, but ATLAS/reach application needs a causally observed cell/flow/residency.",
+      "missing_action": "censor_atlas_or_reach_feature"
+    },
+    {
+      "component_id": "shape_corpus",
+      "declared_status": "partially_available",
+      "sources": [
+        "arb-executor/data/shape_corpus/manifest.json",
+        "arb-executor/data/shape_corpus/coverage.json"
+      ],
+      "coverage_binding": "feature_coverage.shape_cell_available_rows",
+      "reason": "The historical corpus is present; the frozen fit receipt found 5,423 of 6,432 feature rows with a shape cell.",
+      "missing_action": "censor_shape_feature"
+    },
+    {
+      "component_id": "fv_bookmaker_pinnacle_voices",
+      "declared_status": "partially_available",
+      "sources": [
+        ".claude/window1_20260721/MACRO_PROJECTION_RECEIPT.json",
+        "arb-executor/analysis/window1_fit_benchmark.py"
+      ],
+      "coverage_binding": "feature_coverage.bookmaker_available_rows",
+      "reason": "Causal bookmaker/FV rows exist for 844 of 6,432 feature rows; no causal Pinnacle rows were recorded.",
+      "missing_action": "censor_missing_voice_individually"
+    },
+    {
+      "component_id": "bbo_and_top_five_pressure",
+      "declared_status": "partially_available",
+      "sources": [
+        ".claude/window1_20260721/SOURCE_COVERAGE_SUMMARY.json",
+        ".claude/window1_20260721/WINDOW1_FEATURE_COVERAGE.json"
+      ],
+      "coverage_binding": "feature_coverage.top5_available_rows",
+      "reason": "Top-five local-receipt snapshots cover 6,338 of 6,432 feature rows; they are not a full-depth chain.",
+      "missing_action": "censor_pressure_feature"
+    },
+    {
+      "component_id": "true_print_tape",
+      "declared_status": "available",
+      "sources": [
+        ".claude/window1_20260721/SOURCE_COVERAGE_SUMMARY.json",
+        ".claude/window1_20260721/REAL_START_SUMMARY.json"
+      ],
+      "reason": "All 1,608 ticker queries are cursor-complete and exchange trade identity is retained.",
+      "missing_action": "censor_print_dependent_feature"
+    },
+    {
+      "component_id": "raw_ws_trade_receipts",
+      "declared_status": "available",
+      "sources": [
+        ".claude/window1_20260721/WS_DEPTH_COVERAGE_SUMMARY.json"
+      ],
+      "reason": "Archived trade messages retain exchange trade_id, ticker, exchange timestamp, price, and size.",
+      "missing_action": "use_public_tape_only_after_identity_reconciliation"
+    },
+    {
+      "component_id": "raw_ws_full_depth",
+      "declared_status": "unavailable",
+      "sources": [
+        ".claude/window1_20260721/WS_DEPTH_COVERAGE_SUMMARY.json"
+      ],
+      "reason": "No required ticker has a non-empty ladder snapshot inside a recorder-started, gap-free sequence epoch; reconnect and sequence gaps are retained.",
+      "missing_action": "censor_all_full_depth_features"
+    },
+    {
+      "component_id": "own_order_fingerprints_and_contributed_volume",
+      "declared_status": "partially_available",
+      "sources": [
+        ".claude/window1_20260721/LIFECYCLE_VALIDATION_SUMMARY.json",
+        "arb-executor/analysis/window1_execution_kernel.py"
+      ],
+      "reason": "Actual placement/cancel/fill lineages are reconstructable for the receipt-backed inventory; contribution versus public volume cannot be proven without full queue ancestry and is unavailable on censored legs.",
+      "missing_action": "censor_contribution_feature"
+    },
+    {
+      "component_id": "real_start",
+      "declared_status": "partially_available",
+      "sources": [
+        ".claude/window1_20260721/REAL_START_LEDGER.jsonl",
+        ".claude/window1_20260721/REAL_START_SUMMARY.json"
+      ],
+      "reason": "Every D event retains an exact start, causal interval/live-by bound, or named schedule-only bound; schedule-only is never exact.",
+      "missing_action": "censor_exact_boundary_feature"
+    },
+    {
+      "component_id": "aim_v2",
+      "declared_status": "excluded",
+      "sources": [
+        ".claude/rulings/AIM_V2_SPEC.md",
+        "arb-executor/data/shape_corpus/aim_v2_operational_LATCHCAL.json"
+      ],
+      "reason": "Controlling operator ruling keeps AIM_V2 failed and dark.",
+      "missing_action": "never_activate"
+    }
+  ]
+}

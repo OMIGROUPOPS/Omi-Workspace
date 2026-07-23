@@ -1,0 +1,194 @@
+{
+  "gate_pass": true,
+  "holdout_inputs": [],
+  "inputs": [
+    {
+      "bytes": 31533,
+      "logical_source": "calibration_runner",
+      "path_included": false,
+      "private": false,
+      "sha256": "e6ac696b46db6d4284fd1b3d92642cb721afaa8b2b3509b4efbc70bc313635ed"
+    },
+    {
+      "bytes": 132773,
+      "logical_source": "decisions",
+      "path_included": false,
+      "private": false,
+      "sha256": "38cf05ee2649c628299577f5d793bf541b9813973f3094efc25d4f1b7ee6ac1f"
+    },
+    {
+      "bytes": 336694,
+      "logical_source": "events",
+      "path_included": false,
+      "private": false,
+      "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46"
+    },
+    {
+      "bytes": 31444,
+      "logical_source": "execution_kernel",
+      "path_included": false,
+      "private": false,
+      "sha256": "cd921003f68f993bd8185d5e2413cde9983167be50b7ae8c0dd148b1a9e18893"
+    },
+    {
+      "bytes": 19226,
+      "logical_source": "expected_execution_summary",
+      "path_included": false,
+      "private": false,
+      "sha256": "bfec8d5063a90052ccd46d0ef6207df11b7851f725c22d67fd8ff2f2e6e09ea0"
+    },
+    {
+      "bytes": 1078314,
+      "logical_source": "expected_legs",
+      "path_included": false,
+      "private": false,
+      "sha256": "52dfe9dfbb8a414b16ccd93ae0b136c7f980df0109d3cefa1167204d97121f5e"
+    },
+    {
+      "bytes": 1939,
+      "logical_source": "feature_coverage",
+      "path_included": false,
+      "private": false,
+      "sha256": "ad733270a5c3f4222370816fcb57391efba36f233ec6201fa69c1ebe561ca040"
+    },
+    {
+      "bytes": 913028,
+      "logical_source": "fills",
+      "path_included": false,
+      "private": true,
+      "sha256": "76e7830fc3164ac3d5360d22b1b8fb860a491b7d47257ac706f44527bd32f335"
+    },
+    {
+      "bytes": 116840,
+      "logical_source": "future_fit_runner",
+      "path_included": false,
+      "private": false,
+      "sha256": "c587ea02055aced7b3b72f1c7eeea62dd9b6f03f38ceea66355ab7c57939c34d"
+    },
+    {
+      "bytes": 5606583,
+      "logical_source": "orders",
+      "path_included": false,
+      "private": true,
+      "sha256": "707375e77a55d309e6850b0e54047a3994ebacfe5159304aca03d06e45d19912"
+    },
+    {
+      "bytes": 9606,
+      "logical_source": "os_contract",
+      "path_included": false,
+      "private": false,
+      "sha256": "02c58d259442b7c35798a68c30acb7ee0debb61e91184b30c6ba772872650396"
+    },
+    {
+      "bytes": 1768283,
+      "logical_source": "private_lifecycles",
+      "path_included": false,
+      "private": true,
+      "sha256": "897195b517ad3db6370c3fb05835db53a88f3a69bd7b51cef24e0c544de3d356"
+    },
+    {
+      "bytes": 2754296,
+      "logical_source": "real_start_ledger",
+      "path_included": false,
+      "private": false,
+      "sha256": "90a943b598baa8debe1acd08fa4b664d3661cd3762c2e5ab54e54d781819b947"
+    },
+    {
+      "bytes": 6586,
+      "logical_source": "real_start_summary",
+      "path_included": false,
+      "private": false,
+      "sha256": "de47ef5200d98772212e05fd8b81be9a2a5c0df13cdb32d5eb8c38610940d6cc"
+    },
+    {
+      "bytes": 8779,
+      "logical_source": "source_coverage",
+      "path_included": false,
+      "private": false,
+      "sha256": "231a6ae056d232c7e203cc8c7e7614a0ab6892b38b12d10fdb58f3a0122772df"
+    },
+    {
+      "bytes": 5232,
+      "logical_source": "tape_reconciliation",
+      "path_included": false,
+      "private": false,
+      "sha256": "bb42302887ebdd3b8391cab631edc62ffb90dcb42a10223e698d2133b683f35a"
+    },
+    {
+      "bytes": 20984,
+      "logical_source": "trade_reconciliation_runner",
+      "path_included": false,
+      "private": false,
+      "sha256": "3b6c6b24dad36bdc25b77c5f312e2684f397feaade3a434cf59b7d178ff26ee9"
+    },
+    {
+      "bytes": 3957,
+      "logical_source": "ws_summary",
+      "path_included": false,
+      "private": false,
+      "sha256": "b512360d1082354b61af5a9c3daa9c6968643940d2f0f185b53bc193ec265fa2"
+    }
+  ],
+  "outputs": [
+    {
+      "bytes": 708073,
+      "logical_source": "REAL_START_CALIBRATION_LEDGER.jsonl",
+      "path_included": false,
+      "private": false,
+      "sha256": "b7fc7954f3bf696482ea5ad6911cb07402921130c90b6cc742b865d438b8205c"
+    },
+    {
+      "bytes": 1986,
+      "logical_source": "REAL_START_CALIBRATION_SUMMARY.json",
+      "path_included": false,
+      "private": false,
+      "sha256": "1758dea203ac3a991d2e40a32f81cb59573de48d301b0b069895e8dd9b48e820"
+    },
+    {
+      "bytes": 710948,
+      "logical_source": "EXECUTION_REPLAY_LEDGER.jsonl",
+      "path_included": false,
+      "private": false,
+      "sha256": "03ed22285aaf5722510874782e330eaf0ceb36fccc59fd4fece9af799a897578"
+    },
+    {
+      "bytes": 406028,
+      "logical_source": "EXECUTION_REPLAY_EVENT_LEDGER.jsonl",
+      "path_included": false,
+      "private": false,
+      "sha256": "62ff6b37a51304738e289b5f661bc757ef1c9f5f3c4c0ff26bbf772cfe999171"
+    },
+    {
+      "bytes": 0,
+      "logical_source": "EXECUTION_MISMATCH_LEDGER.jsonl",
+      "path_included": false,
+      "private": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1258,
+      "logical_source": "EXECUTION_REPLAY_SUMMARY.json",
+      "path_included": false,
+      "private": false,
+      "sha256": "d0633880155abccb653ff576e697eda54364eb8773a07db021fd5c340e66944b"
+    },
+    {
+      "bytes": 23308,
+      "logical_source": "WINDOW1_OS_RESEARCH_ADAPTER.json",
+      "path_included": false,
+      "private": false,
+      "sha256": "cc137a5ed4b0218587e64c43da0572a2fa9a4ca1c4e32e02e36ec992d79cf3fe"
+    },
+    {
+      "bytes": 2888,
+      "logical_source": "CALIBRATION_GATE_REPORT.md",
+      "path_included": false,
+      "private": false,
+      "sha256": "405e4be28c247c15a11f89f5962a6164c1ccc48568e5d0edcd3ff7607c4ac0a4"
+    }
+  ],
+  "private_identifiers_emitted": false,
+  "private_paths_emitted": false,
+  "schema_version": "window1-execution-calibration-gate-v1",
+  "scoring_outputs": []
+}

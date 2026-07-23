@@ -1,0 +1,183 @@
+{
+  "D": 804,
+  "archived_ws_trade_stream": {
+    "conflicting_duplicate_identities": 0,
+    "duplicate_receipt_rows_deduplicated": 0,
+    "files": 215,
+    "parse_errors": 0,
+    "physical_rows": 282398961,
+    "read_error_count": 28,
+    "read_errors": [
+      {
+        "error_class": "error",
+        "file": "ws_20260712_15.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260712_16.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260712_17.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260712_18.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260713_20.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260713_21.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260713_22.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260713_23.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260714_00.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260714_01.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260714_02.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260714_03.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260714_13.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260714_14.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260714_15.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_02.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_03.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_04.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_05.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_06.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_07.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_08.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_09.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_10.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_12.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_18.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_19.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_20.jsonl.gz"
+      }
+    ],
+    "read_errors_are_coverage_censoring": true,
+    "required_tickers": 1608,
+    "tickers_with_trade_receipts": 1601,
+    "tickers_without_trade_receipts": 7,
+    "required_trade_receipt_rows": 3322756,
+    "unique_exchange_trade_ids": 3322756,
+    "zero_size_rows": 0
+  },
+  "canonical_true_print_stream": {
+    "identity": "exchange_trade_id",
+    "path_is_private": true,
+    "public_pagination_complete": true,
+    "proven_zero_trade_tickers": [
+      "KXATPCHALLENGERMATCH-26JUL19KRUCAS-CAS",
+      "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB"
+    ],
+    "required_tickers": 1608,
+    "tickers_with_true_prints": 1606,
+    "rows": 4836462,
+    "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+    "source": "complete_public_tape_after_WS_identity_reconciliation",
+    "timestamp": "exchange timestamp; WS compared at its ms precision",
+    "union_rows": 4836462,
+    "zero_size_rows": 0
+  },
+  "execution_law": {
+    "public_or_WS_duplicate_receipt_promoted_twice": false,
+    "touch_without_print_is_fill": false,
+    "true_print_requires_exchange_identity": true,
+    "zero_size_promoted_to_fill": false
+  },
+  "gate_pass": true,
+  "identity_reconciliation": {
+    "WS_identities_absent_from_public_tape": 0,
+    "YES_price_mismatches": 0,
+    "exact_matches": 3322756,
+    "exchange_timestamp_ms_mismatches": 0,
+    "mismatch_total": 0,
+    "size_mismatches": 0,
+    "ticker_mismatches": 0
+  },
+  "input_hashes": {
+    "events": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46",
+    "public_manifest": "d2a3bd4b156f312fce3bbb8a8875114904ac39f2ed5b36801799d9a905e4d575",
+    "public_prints": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+    "ws_summary": "b512360d1082354b61af5a9c3daa9c6968643940d2f0f185b53bc193ec265fa2"
+  },
+  "market_depth_law": {
+    "full_depth_available": false,
+    "full_depth_features_censored": true,
+    "full_depth_reason": "zero required tickers have a ladder-bearing snapshot inside a recorder-started, sequence-valid epoch",
+    "raw_ws_delta_available": true
+  },
+  "private_work_database": {
+    "path_included": false,
+    "retained_outside_git": true
+  },
+  "required_legs": 1608,
+  "schema_version": "window1-ws-public-trade-reconcile-v1"
+}

@@ -1,0 +1,38 @@
+{
+  "D": 804,
+  "causal_nonplacement_receipts": 308,
+  "completed_dual_combined_cost_under_par": 27,
+  "completed_dual_exact_five_events": 31,
+  "gate_pass": true,
+  "kernel_version": "window1-execution-kernel-v1",
+  "leg_status_counts": {
+    "censored": 468,
+    "exact_filled_five": 258,
+    "exact_filled_other_quantity": 12,
+    "exact_nonfill": 870
+  },
+  "lifecycle_rows": 1041,
+  "mismatch_count": 0,
+  "mismatch_types": {},
+  "receipt_grain": {
+    "attributable_accepted_placements": 3318,
+    "cancellation_receipts": 3574,
+    "duplicate_cancel_receipts": 0,
+    "duplicate_fill_memberships": 0,
+    "duplicate_order_memberships": 0,
+    "legitimately_missing_unattributed_placements": 42,
+    "official_fill_export_rows": 1796,
+    "official_fill_receipts": 338,
+    "placement_exchange_timestamps_available": 2615,
+    "placement_local_timestamps_validated": 3332,
+    "placement_prices_validated": 3332,
+    "placement_quantities_validated": 3332,
+    "relevant_accepted_placements": 3360,
+    "relevant_failed_attempts": 14,
+    "successful_cancellation_receipts": 3371,
+    "zero_size_fill_promotions": 0
+  },
+  "replayed_event_rows": 804,
+  "required_legs": 1608,
+  "schedule_fields_consumed": false
+}

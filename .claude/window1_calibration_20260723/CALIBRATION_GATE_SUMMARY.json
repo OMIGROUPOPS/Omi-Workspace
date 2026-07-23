@@ -1,0 +1,38 @@
+{
+  "D": 804,
+  "ablations_executed": false,
+  "aim_v2_activated": false,
+  "artifact_hashes": {
+    "CALIBRATION_EVIDENCE_MANIFEST.json": "dd1b98386cb964fc20697726e6069d3a5680b3bcfefabf1cbe7cfcb5cf74845a",
+    "CALIBRATION_GATE_REPORT.md": "405e4be28c247c15a11f89f5962a6164c1ccc48568e5d0edcd3ff7607c4ac0a4",
+    "EXECUTION_MISMATCH_LEDGER.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "EXECUTION_REPLAY_EVENT_LEDGER.jsonl": "62ff6b37a51304738e289b5f661bc757ef1c9f5f3c4c0ff26bbf772cfe999171",
+    "EXECUTION_REPLAY_LEDGER.jsonl": "03ed22285aaf5722510874782e330eaf0ceb36fccc59fd4fece9af799a897578",
+    "EXECUTION_REPLAY_SUMMARY.json": "d0633880155abccb653ff576e697eda54364eb8773a07db021fd5c340e66944b",
+    "REAL_START_CALIBRATION_LEDGER.jsonl": "b7fc7954f3bf696482ea5ad6911cb07402921130c90b6cc742b865d438b8205c",
+    "REAL_START_CALIBRATION_SUMMARY.json": "1758dea203ac3a991d2e40a32f81cb59573de48d301b0b069895e8dd9b48e820",
+    "WINDOW1_OS_RESEARCH_ADAPTER.json": "cc137a5ed4b0218587e64c43da0572a2fa9a4ca1c4e32e02e36ec992d79cf3fe"
+  },
+  "gate_pass": true,
+  "holdout_opened_or_evaluated": false,
+  "metrics_not_evaluated": [
+    "C",
+    "PC",
+    "NC",
+    "IC",
+    "X",
+    "dynamic_floor_gap",
+    "per_leg_dip_catch"
+  ],
+  "production_mutated": false,
+  "required_legs": 1608,
+  "schema_version": "window1-execution-calibration-gate-v1",
+  "score_or_tune_executed": false,
+  "smallest_next_run_if_passed": "one deterministic, predeclared corrected-instrument replay over all D=804 development events using this adapter/kernel; report C, PC, NC, IC, X, dynamic-floor gap, and per-leg dip/catch separately; no tuning, ablation, or holdout",
+  "subgates": {
+    "causal_market_data": true,
+    "full_os_research_adapter": true,
+    "historical_execution_replay": true,
+    "real_start": true
+  }
+}

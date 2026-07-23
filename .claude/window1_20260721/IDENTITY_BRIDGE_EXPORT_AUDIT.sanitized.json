@@ -1,0 +1,204 @@
+{
+  "immutable_input_hashes": {
+    "api_fills_private": "76e7830fc3164ac3d5360d22b1b8fb860a491b7d47257ac706f44527bd32f335",
+    "api_orders_private": "3c9891b9d85a15ddc90c299672837d3cf24874c2c1853e7db8936cfa3b9ee099",
+    "export_receipt_private": "15756d8cd6a0b39db29f57aee21a3feeff7b2eae24795a5fbc3dfd9102fe4d17",
+    "raw_api_pages_private": "311cd5184d2123b16b31b80a2c51865edc7476bda25c3e568d5bbcc33117df8d",
+    "slot_join_private": "8ab4bf99bd90e7ce707bf256d808bd00d6692ec23904ae35bf87ec8bcc43f01b",
+    "source_mismatches_private": "caf231107e625b6e13acdf92151a66f8f680de0115f1deb3965e29aef63ba337",
+    "source_orders_private": "707375e77a55d309e6850b0e54047a3994ebacfe5159304aca03d06e45d19912"
+  },
+  "log_snapshot": {
+    "active_prefix_bytes": 318840280,
+    "deduplicated_order_placed_rows": 10999,
+    "duplicate_order_placed_rows": 605,
+    "order_placed_physical_rows": 11604,
+    "physical_rows_scanned": 3371070,
+    "selected_parse_errors": 0,
+    "source_hashes": [
+      {
+        "bytes": 1049368,
+        "evidence_class": "immutable_gzip",
+        "logical_name": "live_v3_20260712.jsonl.gz",
+        "sha256": "cd22b73ed50cfb6409004b7bb44a3e46c9149c8850afe76a6599d39ea1ccc7f7"
+      },
+      {
+        "bytes": 7083477,
+        "evidence_class": "immutable_gzip",
+        "logical_name": "live_v3_20260713.jsonl.gz",
+        "sha256": "1f9e5644f48333048155b40ceeecd9aa258fee7272ff25ec09dc759d8a00f443"
+      },
+      {
+        "bytes": 10527559,
+        "evidence_class": "immutable_gzip",
+        "logical_name": "live_v3_20260714.jsonl.gz",
+        "sha256": "b558d4bf3a7816d26641056d68aaeccde669188b7e4d2a1b5190b519e8bd1cac"
+      },
+      {
+        "bytes": 18378982,
+        "evidence_class": "immutable_gzip",
+        "logical_name": "live_v3_20260715.jsonl.gz",
+        "sha256": "791b106a72b70615bfb868296983c1077a4d02fba84e6920a8208c529e9afbb4"
+      },
+      {
+        "bytes": 1354861,
+        "evidence_class": "immutable_gzip",
+        "logical_name": "live_v3_20260716.jsonl.gz",
+        "sha256": "504cccc198ba15228482361a8f7a9a5d84eb483849ef529ab7529c8216a49311"
+      },
+      {
+        "bytes": 7091267,
+        "evidence_class": "immutable_gzip",
+        "logical_name": "live_v3_20260717.jsonl.gz",
+        "sha256": "3c5761010dc36e30ff82074869620349c8fc2438644d8bd2362e3923de22e21f"
+      },
+      {
+        "bytes": 8255867,
+        "evidence_class": "immutable_gzip",
+        "logical_name": "live_v3_20260718.jsonl.gz",
+        "sha256": "da8e08f70e8dd0af3488c33328236108527b1125b68842cea194dea3f08bd477"
+      },
+      {
+        "bytes": 10275222,
+        "evidence_class": "immutable_gzip",
+        "logical_name": "live_v3_20260718_part2_recovered.jsonl.gz",
+        "sha256": "d14fef39e1b0964ff560e91c694534589bdf34b1aff7c42ba3005077eab8cbfe"
+      },
+      {
+        "bytes": 318840280,
+        "evidence_class": "active_byte_pinned",
+        "logical_name": "live_v3_20260720.jsonl:pinned-prefix",
+        "sha256": "71576567e865bb69efcb6afddd6caf0057268363f5d84c8767f1645e85c1d0cd"
+      }
+    ]
+  },
+  "raw_export_audit": {
+    "client_order_id_shapes": {
+      "str:opaque:len-23": 1,
+      "str:uuid_hyphenated:len-36": 2365
+    },
+    "endpoint_filter_key_sets": {
+      "current_fills_collection": [
+        {
+          "keys": [
+            "cursor",
+            "limit",
+            "max_ts",
+            "min_ts"
+          ],
+          "requests": 1
+        },
+        {
+          "keys": [
+            "limit",
+            "max_ts",
+            "min_ts"
+          ],
+          "requests": 1
+        },
+        {
+          "keys": [
+            "limit",
+            "order_id"
+          ],
+          "requests": 716
+        }
+      ],
+      "current_order_exact_id": [
+        {
+          "keys": [],
+          "requests": 716
+        }
+      ],
+      "current_orders_collection": [
+        {
+          "keys": [
+            "event_ticker",
+            "limit",
+            "max_ts",
+            "min_ts"
+          ],
+          "requests": 81
+        }
+      ],
+      "historical_cutoff": [
+        {
+          "keys": [],
+          "requests": 1
+        }
+      ]
+    },
+    "endpoint_http_status_counts": {
+      "current_fills_collection": {
+        "200": 705,
+        "429": 13
+      },
+      "current_order_exact_id": {
+        "404": 703,
+        "429": 13
+      },
+      "current_orders_collection": {
+        "200": 81
+      },
+      "historical_cutoff": {
+        "200": 1
+      }
+    },
+    "endpoint_logical_query_counts": {
+      "current_fills_collection": 704,
+      "current_order_exact_id": 703,
+      "current_orders_collection": 81,
+      "historical_cutoff": 1
+    },
+    "endpoint_request_counts": {
+      "current_fills_collection": 718,
+      "current_order_exact_id": 716,
+      "current_orders_collection": 81,
+      "historical_cutoff": 1
+    },
+    "fill_id_shapes": {
+      "str:uuid_hyphenated:len-36": 222,
+      "str:uuid_loose:len-36": 1574
+    },
+    "identity_normalization": "exact string keys first; UUID canonical form is diagnostic only; no case folding, trimming or numeric coercion can create a match",
+    "methods": {
+      "GET": 1516
+    },
+    "order_id_shapes": {
+      "str:uuid_hyphenated:len-36": 2366
+    },
+    "pagination": {
+      "errors": [],
+      "groups": 785,
+      "groups_ending_empty_cursor": 785,
+      "manifest_completed": 785,
+      "manifest_cursor_cycles": 0,
+      "manifest_queries": 785,
+      "manifest_request_errors": 0
+    },
+    "records": {
+      "deduplicated_fills": 1796,
+      "deduplicated_orders": 2366,
+      "raw_fill_duplicate_occurrences": 0,
+      "raw_fill_occurrences": 1796,
+      "raw_order_duplicate_occurrences": 0,
+      "raw_order_occurrences": 2366,
+      "retry_attempt_rows": 26
+    },
+    "status_coverage": {
+      "canceled": 1736,
+      "executed": 630
+    },
+    "time_bounds_and_timezone": {
+      "bulk_fills_upper_bound": "frozen validation inventory edge",
+      "bulk_orders_upper_bound": "export start; exact order lookups and order-scoped fills were also made without a time filter",
+      "max_ts": 1784644266,
+      "max_utc": "2026-07-21T14:31:06Z",
+      "min_ts": 1783884068,
+      "min_utc": "2026-07-12T19:21:08Z",
+      "timestamp_rule": "one-hour capture buffer before earliest retained D entry clock through one second after latest frozen evaluation edge; local clocks select export range only and never establish causal order",
+      "timezone": "UTC"
+    },
+    "unexpected_methods": {}
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "D": 804,
+  "accepted_order_evidence_counts": {
+    "exchange_accepted_response_corroborated": 703
+  },
+  "candidate_counts": {
+    "tier1_exact_exchange_order_id": 0,
+    "tier1_format_only": 0,
+    "tier2_exact_client_order_id": 0,
+    "tier3_compatible_composite": 0,
+    "tier3_time_incompatible_composite": 46
+  },
+  "collision_counts": {
+    "tier1_exchange_order_id": 0,
+    "tier2_client_order_id": 0,
+    "tier3_composite": 0
+  },
+  "failure_class_counts": {
+    "cents_dollars_or_count_count_fp_mismatch": 0,
+    "exchange_id_absent_from_slot": 0,
+    "exchange_id_present_but_absent_from_api": 703,
+    "genuinely_no_corresponding_exchange_record": 0,
+    "identifier_format_type_mismatch": 0,
+    "query_window_exclusion": 0,
+    "side_or_action_canonicalization_mismatch": 0,
+    "ticker_or_participant_mapping_mismatch": 0,
+    "timestamp_or_timezone_mismatch": 46
+  },
+  "join_hierarchy": [
+    "tier1_exact_exchange_order_id",
+    "tier2_exact_client_order_id",
+    "tier3_unique_corroborated_composite"
+  ],
+  "join_tier_counts": {
+    "tier1_exact_exchange_order_id": 0,
+    "tier2_exact_client_order_id": 0,
+    "tier3_unique_corroborated_composite": 0,
+    "unresolved": 703
+  },
+  "matched_slots": 0,
+  "max_receipt_lag_seconds": 60.0,
+  "micmay_joined": false,
+  "private_identifiers_emitted": false,
+  "schema_version": "window1-identity-bridge-v1",
+  "slot_field_presence_counts": {
+    "action": 703,
+    "event": 703,
+    "price_cents": 703,
+    "quantity": 703,
+    "side": 0,
+    "ticker": 703
+  },
+  "slot_identifier_presence_counts": {
+    "client_order_id": 703,
+    "exchange_order_id": 703,
+    "internal_attempt_id": 0,
+    "internal_trade_id": 703
+  },
+  "slot_log_response_status_counts": {
+    "filled": 1,
+    "resting": 702
+  },
+  "strategy_scoring_permitted": false,
+  "target_slots": 703,
+  "unresolved_slots": 703,
+  "validation_rerun_performed": false,
+  "validation_rerun_required": false
+}

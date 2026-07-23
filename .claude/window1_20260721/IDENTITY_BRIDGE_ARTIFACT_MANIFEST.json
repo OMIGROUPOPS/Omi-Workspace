@@ -1,0 +1,41 @@
+{
+  "D": 804,
+  "base_commit": "eb859cd033eb82e3fb73c4d7e95d292f09baea5d",
+  "private_artifact": {
+    "bytes": 521121,
+    "identities_included": true,
+    "path_included": false,
+    "sha256": "58fec1f1897c2f77619500a6e1722bc712d101f67dca50db086b580f92e044e4"
+  },
+  "sanitized_artifacts": [
+    {
+      "bytes": 1204682,
+      "path": "IDENTITY_BRIDGE.sanitized.jsonl",
+      "rows": 703,
+      "sha256": "e1ba35f21352d4a4c302624cab79b2a1530f89e7baf66ee43a9cfca018b7b652"
+    },
+    {
+      "bytes": 6480,
+      "path": "IDENTITY_BRIDGE_EXPORT_AUDIT.sanitized.json",
+      "sha256": "d694bf4d209e84787e75f1e79b1fef3777c25f75c7ca5b2849bf31dba0c0481a"
+    },
+    {
+      "bytes": 5611,
+      "path": "IDENTITY_BRIDGE_PROOFS.sanitized.json",
+      "sha256": "76bb043da34e3abe88832fce7bb785e0bb77e517b71b5daa3840dab12200efd5"
+    },
+    {
+      "bytes": 1939,
+      "path": "IDENTITY_BRIDGE_SUMMARY.sanitized.json",
+      "sha256": "f05b9a485d1bd2d5be610addf3a754a7b48203caf878af53afd555ab470308ab"
+    }
+  ],
+  "schema_version": "window1-identity-bridge-artifacts-v1",
+  "source_code": {
+    "bytes": 49048,
+    "path": "arb-executor/analysis/window1_identity_bridge.py",
+    "sha256": "7e5ea19d4ae8a7fee37162849f9530c306c5ad2f399b120565d4d73f03f82186"
+  },
+  "validation_rerun_performed": false,
+  "validation_rerun_required": false
+}

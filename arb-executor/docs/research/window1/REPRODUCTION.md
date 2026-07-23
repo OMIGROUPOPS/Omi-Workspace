@@ -199,3 +199,26 @@ The committed receipt for the completed run reports 785 cursor-complete
 queries, zero cursor cycles, zero request errors, 703 exact target lookups and
 703 targets still absent after complete source exhaustion. Validation remains
 false with 1,054 mismatches, so no scoring command is authorized.
+
+## Offline strict identity bridge
+
+Do not call Kalshi during this stage. Use only the immutable private lifecycle
+files, the frozen normalized orders/mismatch ledger, immutable gzip logs, and
+exactly the byte-pinned active-log prefix:
+
+    python -B arb-executor/analysis/window1_identity_bridge.py \
+      --slot-join "$PRIVATE_EVIDENCE/joined/slot_join.private.jsonl" \
+      --source-orders "$PRIVATE_EVIDENCE/joined/orders.jsonl" \
+      --source-mismatches "$PRIOR_PRIVATE/validation_mismatch_ledger.jsonl" \
+      --api-orders "$PRIVATE_EVIDENCE/api_orders.private.jsonl" \
+      --api-fills "$PRIVATE_EVIDENCE/api_fills.private.jsonl" \
+      --raw-pages "$PRIVATE_EVIDENCE/raw_api_pages.private.jsonl" \
+      --export-receipt "$PRIVATE_EVIDENCE/EXPORT_RECEIPT.private.json" \
+      --log-dir "$LOG_DIR" \
+      --active-log-prefix-bytes 318840280 \
+      --output-dir "$PRIVATE_EVIDENCE/identity-bridge"
+
+Expected result at commit time: D 804, target slots 703, exact-order matches 0,
+exact-client matches 0, admissible unique composite matches 0, unresolved 703,
+and `validation_rerun_required` false. The tool has no network client or HTTP
+request operation. Its private identity ledger must remain outside Git.

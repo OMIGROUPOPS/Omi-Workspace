@@ -1,0 +1,191 @@
+{
+  "private_identifiers_emitted": false,
+  "representative_count": 2,
+  "representative_proofs": [
+    {
+      "accepted_evidence_classification": "exchange_accepted_response_corroborated",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12AZKLEO",
+      "failure_classes": [
+        "exchange_id_present_but_absent_from_api"
+      ],
+      "field_presence": {
+        "action": true,
+        "event": true,
+        "price_cents": true,
+        "quantity": true,
+        "side": false,
+        "ticker": true,
+        "timestamps": {
+          "attempt_ts": {
+            "basis": "local",
+            "present": false
+          },
+          "evaluation_end_exchange_ts": {
+            "basis": "exchange",
+            "present": true
+          },
+          "exchange_created_ts": {
+            "basis": "exchange",
+            "present": false
+          },
+          "local_created_ts": {
+            "basis": "local",
+            "present": false
+          },
+          "local_logged_ts": {
+            "basis": "local",
+            "present": true
+          }
+        }
+      },
+      "identifier_presence": {
+        "client_order_id": {
+          "format_class": "uuid_hyphenated",
+          "length": 36,
+          "present": true,
+          "source_type": "str"
+        },
+        "exchange_order_id": {
+          "format_class": "uuid_hyphenated",
+          "length": 36,
+          "present": true,
+          "source_type": "str"
+        },
+        "internal_attempt_id": {
+          "present": false
+        },
+        "internal_trade_id": {
+          "format_class": "opaque",
+          "length": 15,
+          "present": true,
+          "source_type": "str"
+        }
+      },
+      "join": {
+        "collisions": [],
+        "matched": false,
+        "tier": "unresolved",
+        "tier1_exact_order_candidates": 0,
+        "tier1_format_only_candidates": 0,
+        "tier2_exact_client_candidates": 0,
+        "tier3_compatible_composite_candidates": 0,
+        "tier3_time_incompatible_candidates": 0
+      },
+      "leg": "AZK",
+      "persisted_log_proof": {
+        "accepted_response_receipts": 1,
+        "candidate_receipts": 1,
+        "classification": "exchange_accepted_response_corroborated",
+        "field_mismatch_counts": {},
+        "identity_path_counts": {
+          "exact_client_order_id": 1,
+          "exact_exchange_order_id": 1,
+          "exact_internal_trade_id": 1
+        },
+        "independently_corroborated": true,
+        "response_status_counts": {
+          "resting": 1
+        }
+      },
+      "private_identifiers_emitted": false,
+      "schema_version": "window1-identity-bridge-v1",
+      "slot_id": "slot-0001",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12AZKLEO-AZK"
+    },
+    {
+      "accepted_evidence_classification": "exchange_accepted_response_corroborated",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YIBMAL",
+      "failure_classes": [
+        "exchange_id_present_but_absent_from_api",
+        "timestamp_or_timezone_mismatch"
+      ],
+      "field_presence": {
+        "action": true,
+        "event": true,
+        "price_cents": true,
+        "quantity": true,
+        "side": false,
+        "ticker": true,
+        "timestamps": {
+          "attempt_ts": {
+            "basis": "local",
+            "present": false
+          },
+          "evaluation_end_exchange_ts": {
+            "basis": "exchange",
+            "present": true
+          },
+          "exchange_created_ts": {
+            "basis": "exchange",
+            "present": false
+          },
+          "local_created_ts": {
+            "basis": "local",
+            "present": false
+          },
+          "local_logged_ts": {
+            "basis": "local",
+            "present": true
+          }
+        }
+      },
+      "identifier_presence": {
+        "client_order_id": {
+          "format_class": "uuid_hyphenated",
+          "length": 36,
+          "present": true,
+          "source_type": "str"
+        },
+        "exchange_order_id": {
+          "format_class": "uuid_hyphenated",
+          "length": 36,
+          "present": true,
+          "source_type": "str"
+        },
+        "internal_attempt_id": {
+          "present": false
+        },
+        "internal_trade_id": {
+          "format_class": "opaque",
+          "length": 15,
+          "present": true,
+          "source_type": "str"
+        }
+      },
+      "join": {
+        "collisions": [],
+        "matched": false,
+        "tier": "unresolved",
+        "tier1_exact_order_candidates": 0,
+        "tier1_format_only_candidates": 0,
+        "tier2_exact_client_candidates": 0,
+        "tier3_compatible_composite_candidates": 0,
+        "tier3_time_incompatible_candidates": 1
+      },
+      "leg": "YIB",
+      "persisted_log_proof": {
+        "accepted_response_receipts": 1,
+        "candidate_receipts": 2,
+        "classification": "exchange_accepted_response_corroborated",
+        "field_mismatch_counts": {
+          "client_order_id": 1
+        },
+        "identity_path_counts": {
+          "exact_client_order_id": 1,
+          "exact_exchange_order_id": 1,
+          "exact_internal_trade_id": 2
+        },
+        "independently_corroborated": true,
+        "response_status_counts": {
+          "resting": 2
+        }
+      },
+      "private_identifiers_emitted": false,
+      "schema_version": "window1-identity-bridge-v1",
+      "slot_id": "slot-0017",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12YIBMAL-YIB"
+    }
+  ],
+  "schema_version": "window1-identity-bridge-v1",
+  "selection": "first slot in deterministic slot order for each distinct join/failure/acceptance evidence class"
+}

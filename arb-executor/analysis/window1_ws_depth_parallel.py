@@ -532,6 +532,9 @@ def run(args: argparse.Namespace) -> int:
             name,
             required,
         ))
+    # Largest-first dynamic scheduling avoids leaving one multi-million-row
+    # hour as the serial tail after smaller archives have drained.
+    tasks.sort(key=lambda task: task[2], reverse=True)
     results = []
     with concurrent.futures.ProcessPoolExecutor(
         max_workers=args.workers

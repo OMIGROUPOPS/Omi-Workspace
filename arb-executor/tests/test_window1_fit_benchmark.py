@@ -189,6 +189,74 @@ def test_top5_loader_uses_the_row_last_trade_field(tmp_path):
     assert rows[0]["last_trade"] == 41
 
 
+def test_top5_loader_discards_only_a_partial_terminal_row(tmp_path):
+    path = tmp_path / "T-A.csv.gz"
+    with gzip.open(path, "wt", encoding="utf-8", newline="") as handle:
+        handle.write(
+            "ts_et,ticker,bid_1,bid_1_sz,ask_1,ask_1_sz,last_trade\n"
+        )
+        handle.write(
+            "2026-07-12 04:00:00 PM,T-A,40,10,42,12,41\n"
+        )
+        handle.write("2026-07-12 04:01:00 PM")
+    earliest = MODULE.parse_top5_et_fast(
+        "2026-07-12 03:59:00 PM", {}
+    )
+    latest = MODULE.parse_top5_et_fast(
+        "2026-07-12 04:02:00 PM", {}
+    )
+    rows = MODULE.load_top5(path, "T-A", earliest, latest)
+    assert len(rows) == 1
+
+
+def test_top5_loader_recovers_complete_row_after_rotation_prefix(tmp_path):
+    path = tmp_path / "T-A.csv.gz"
+    with gzip.open(path, "wt", encoding="utf-8", newline="") as handle:
+        handle.write(
+            "ts_et,ticker,bid_1,bid_1_sz,ask_1,ask_1_sz,last_trade\n"
+        )
+        handle.write(
+            "2026-07-12 04:00:00 PM,T-A,40,10,42"
+            "2026-07-12 04:01:00 PM,T-A,41,11,43,13,42\n"
+        )
+        handle.write(
+            "2026-07-12 04:02:00 PM,T-A,42,12,44,14,43\n"
+        )
+    earliest = MODULE.parse_top5_et_fast(
+        "2026-07-12 03:59:00 PM", {}
+    )
+    latest = MODULE.parse_top5_et_fast(
+        "2026-07-12 04:03:00 PM", {}
+    )
+    rows = MODULE.load_top5(path, "T-A", earliest, latest)
+    assert [row["best_bid"] for row in rows] == [41, 42]
+    assert [row["last_trade"] for row in rows] == [42, 43]
+
+
+def test_top5_loader_rejects_malformed_interior_row(tmp_path):
+    path = tmp_path / "T-A.csv.gz"
+    with gzip.open(path, "wt", encoding="utf-8", newline="") as handle:
+        handle.write(
+            "ts_et,ticker,bid_1,bid_1_sz,ask_1,ask_1_sz,last_trade\n"
+        )
+        handle.write("not,a,complete,row\n")
+        handle.write(
+            "2026-07-12 04:02:00 PM,T-A,42,12,44,14,43\n"
+        )
+    earliest = MODULE.parse_top5_et_fast(
+        "2026-07-12 03:59:00 PM", {}
+    )
+    latest = MODULE.parse_top5_et_fast(
+        "2026-07-12 04:03:00 PM", {}
+    )
+    try:
+        MODULE.load_top5(path, "T-A", earliest, latest)
+    except MODULE.FitError as exc:
+        assert "malformed premarket row" in str(exc)
+    else:
+        raise AssertionError("interior malformed row was accepted")
+
+
 def test_print_archive_indexes_contiguous_tickers_and_loads_bounds(tmp_path):
     path = tmp_path / "prints.jsonl"
     rows = [

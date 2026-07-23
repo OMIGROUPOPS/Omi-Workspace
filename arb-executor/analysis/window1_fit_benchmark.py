@@ -22,6 +22,7 @@ import hashlib
 import json
 import math
 import os
+import re
 import sqlite3
 import statistics
 from bisect import bisect_left, bisect_right
@@ -38,6 +39,9 @@ PAR = 100.0
 ET = ZoneInfo("America/New_York")
 UTC = dt.timezone.utc
 _CACHE_WORKER_CONTEXT: dict[str, Any] = {}
+_TOP5_ROW_START = re.compile(
+    r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [AP]M,"
+)
 
 
 class FitError(RuntimeError):
@@ -413,51 +417,97 @@ def load_top5(
         midnight_cache: dict[str, float] = {}
         prior_state = None
         for line in handle:
-            values = line.rstrip("\r\n").split(",")
-            if len(values) != len(header):
-                raise FitError(f"malformed premarket row: {path}")
-            timestamp = parse_top5_et_fast(
-                values[positions["ts_et"]], midnight_cache
-            )
-            if timestamp < earliest:
-                continue
-            if timestamp > latest:
-                break
-            if values[positions["ticker"]] != ticker:
-                raise FitError(f"premarket ticker mismatch in {path}")
-            bids = []
-            asks = []
-            for side, destination in (("bid", bids), ("ask", asks)):
-                for index in range(1, 6):
-                    price_position = positions.get(f"{side}_{index}")
-                    if price_position is None:
-                        continue
-                    value = values[price_position]
-                    if value == "":
-                        continue
-                    price = int(float(value))
-                    size_position = positions.get(f"{side}_{index}_sz")
-                    size = (
-                        max(0.0, finite_number(
-                            values[size_position], 0
-                        ))
-                        if size_position is not None else 0.0
+            raw_line = line.rstrip("\r\n")
+            physical_values = raw_line.split(",")
+            logical_rows = [physical_values]
+            if len(physical_values) != len(header):
+                starts = [
+                    match.start()
+                    for match in _TOP5_ROW_START.finditer(raw_line)
+                ]
+                if starts and starts[0] == 0 and len(starts) > 1:
+                    segments = [
+                        raw_line[start:(
+                            starts[index + 1]
+                            if index + 1 < len(starts) else len(raw_line)
+                        )].rstrip(",").split(",")
+                        for index, start in enumerate(starts)
+                    ]
+                    incomplete = [
+                        values for values in segments
+                        if len(values) != len(header)
+                    ]
+                    complete = [
+                        values for values in segments
+                        if len(values) == len(header)
+                    ]
+                    # Rotated recorder members can be concatenated without a
+                    # newline.  Retain every complete logical row and discard
+                    # only a recognizable, incomplete row prefix from the
+                    # preceding member.  No book state is inferred from it.
+                    prefixes_are_proven = all(
+                        2 <= len(values) < len(header)
+                        and _TOP5_ROW_START.fullmatch(values[0] + ",")
+                        and values[positions["ticker"]] == ticker
+                        for values in incomplete
                     )
-                    destination.append((price, size))
-            bids.sort(reverse=True)
-            asks.sort()
-            if not bids or not asks:
-                continue
-            state = (tuple(bids), tuple(asks))
-            if state == prior_state:
-                continue
-            prior_state = state
-            last_trade_position = positions.get("last_trade")
-            last_trade_value = (
-                values[last_trade_position]
-                if last_trade_position is not None else ""
-            )
-            rows.append({
+                    if not complete or not prefixes_are_proven:
+                        raise FitError(
+                            f"malformed premarket row: {path}"
+                        )
+                    logical_rows = complete
+                else:
+                    # A partial final physical row is an observed recorder
+                    # truncation and contributes no causal state.  A malformed
+                    # interior row fails closed.
+                    if handle.readline() == "":
+                        continue
+                    raise FitError(f"malformed premarket row: {path}")
+            for values in logical_rows:
+                timestamp = parse_top5_et_fast(
+                    values[positions["ts_et"]], midnight_cache
+                )
+                if timestamp < earliest:
+                    continue
+                if timestamp > latest:
+                    return rows
+                if values[positions["ticker"]] != ticker:
+                    raise FitError(f"premarket ticker mismatch in {path}")
+                bids = []
+                asks = []
+                for side, destination in (("bid", bids), ("ask", asks)):
+                    for index in range(1, 6):
+                        price_position = positions.get(f"{side}_{index}")
+                        if price_position is None:
+                            continue
+                        value = values[price_position]
+                        if value == "":
+                            continue
+                        price = int(float(value))
+                        size_position = positions.get(
+                            f"{side}_{index}_sz"
+                        )
+                        size = (
+                            max(0.0, finite_number(
+                                values[size_position], 0
+                            ))
+                            if size_position is not None else 0.0
+                        )
+                        destination.append((price, size))
+                bids.sort(reverse=True)
+                asks.sort()
+                if not bids or not asks:
+                    continue
+                state = (tuple(bids), tuple(asks))
+                if state == prior_state:
+                    continue
+                prior_state = state
+                last_trade_position = positions.get("last_trade")
+                last_trade_value = (
+                    values[last_trade_position]
+                    if last_trade_position is not None else ""
+                )
+                rows.append({
                 "ts": timestamp,
                 "bids": bids,
                 "asks": asks,

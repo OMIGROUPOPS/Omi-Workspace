@@ -64,3 +64,32 @@ def test_recorder_start_creates_a_new_complete_epoch():
     assert summary["epoch_count"] == 2
     assert summary["complete_start_epochs"] == 1
     assert output["EVENT-A"]["full_depth_usable"] is True
+
+
+def test_required_ticker_without_ws_rows_is_explicitly_unavailable():
+    rows = [
+        worker_result("a", 1, 2, started=True, ladder=True),
+    ]
+    output, summary = MODULE.merge_results(
+        rows, {"EVENT-A", "EVENT-B"}
+    )
+    assert set(output) == {"EVENT-A", "EVENT-B"}
+    assert output["EVENT-B"]["available"] is False
+    assert output["EVENT-B"]["full_depth_usable"] is False
+    assert summary["required_ticker_count"] == 2
+
+
+def test_fast_scalar_extractors_preserve_ws_values():
+    line = (
+        b'{"m":{"type":"orderbook_delta","sid":1,"seq":7,'
+        b'"msg":{"market_ticker":"EVENT-A",'
+        b'"ts":"2026-07-12T03:59:59.999234Z",'
+        b'"ts_ms":1783828799999}}}'
+    )
+    assert MODULE.fast_quoted(
+        line, b'"type":"', MODULE.TYPE_PATTERN
+    ) == b"orderbook_delta"
+    assert MODULE.fast_uint(
+        line, b'"seq":', MODULE.SEQUENCE_PATTERN
+    ) == 7
+    assert MODULE.timestamp_from_line(line) == 1783828799.999

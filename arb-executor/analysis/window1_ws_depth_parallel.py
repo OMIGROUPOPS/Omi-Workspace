@@ -94,13 +94,61 @@ def finite(value: Any, default: float = 0.0) -> float:
 
 
 def timestamp_from_line(line: bytes) -> float | None:
+    marker = b'"ts_ms":'
+    start = line.find(marker)
+    if start >= 0:
+        start += len(marker)
+        if start < len(line) and line[start] == 34:
+            start += 1
+        end = start
+        while end < len(line) and (
+            48 <= line[end] <= 57 or line[end] == 46
+        ):
+            end += 1
+        if end > start:
+            return parse_epoch(float(line[start:end]))
     match = TS_MS_PATTERN.search(line)
     if match is not None:
         return parse_epoch(float(match.group(1)))
+    marker = b'"ts":"'
+    start = line.find(marker)
+    if start >= 0:
+        start += len(marker)
+        end = line.find(b'"', start)
+        if end > start:
+            return parse_epoch(line[start:end].decode("ascii"))
     match = TS_PATTERN.search(line)
     if match is not None:
         return parse_epoch(float(match.group(1)))
     return None
+
+
+def fast_quoted(
+    line: bytes, marker: bytes, fallback: re.Pattern[bytes],
+) -> bytes | None:
+    start = line.find(marker)
+    if start >= 0:
+        start += len(marker)
+        end = line.find(b'"', start)
+        if end > start:
+            return line[start:end]
+    match = fallback.search(line)
+    return match.group(1) if match is not None else None
+
+
+def fast_uint(
+    line: bytes, marker: bytes, fallback: re.Pattern[bytes],
+) -> int | None:
+    start = line.find(marker)
+    if start >= 0:
+        start += len(marker)
+        end = start
+        while end < len(line) and 48 <= line[end] <= 57:
+            end += 1
+        if end > start:
+            return int(line[start:end])
+    match = fallback.search(line)
+    return int(match.group(1)) if match is not None else None
 
 
 def snapshot_has_ladder(message: Mapping[str, Any]) -> bool:
@@ -179,11 +227,11 @@ def scan_file(
                     prior = {}
                     continue
                 segment_index = len(segments) - 1
-                sequence_match = SEQUENCE_PATTERN.search(line)
-                sid_match = SID_PATTERN.search(line)
-                if sequence_match and sid_match:
-                    sid = int(sid_match.group(1))
-                    sequence = int(sequence_match.group(1))
+                sequence = fast_uint(
+                    line, b'"seq":', SEQUENCE_PATTERN
+                )
+                sid = fast_uint(line, b'"sid":', SID_PATTERN)
+                if sequence is not None and sid is not None:
                     segment = segments[segment_index]
                     segment["first_by_sid"].setdefault(sid, sequence)
                     before = prior.get(sid)
@@ -191,19 +239,23 @@ def scan_file(
                         segment["gap_count"] += 1
                     prior[sid] = sequence
                     segment["last_by_sid"][sid] = sequence
-                type_match = TYPE_PATTERN.search(line)
+                type_value = fast_quoted(
+                    line, b'"type":"', TYPE_PATTERN
+                )
                 message_type = (
-                    type_match.group(1).decode(
+                    type_value.decode(
                         "utf-8", errors="replace"
                     )
-                    if type_match else ""
+                    if type_value is not None else ""
                 )
                 if message_type:
                     message_types[message_type] += 1
-                ticker_match = TICKER_PATTERN.search(line)
-                if ticker_match is None:
+                ticker_value = fast_quoted(
+                    line, b'"market_ticker":"', TICKER_PATTERN
+                )
+                if ticker_value is None:
                     continue
-                ticker = ticker_match.group(1).decode(
+                ticker = ticker_value.decode(
                     "utf-8", errors="replace"
                 )
                 if ticker not in required:
@@ -407,7 +459,8 @@ def merge_results(
                 for value in item["full_snapshot_segments"]
             )
     output = {}
-    for ticker, item in aggregate.items():
+    for ticker in sorted(required):
+        item = aggregate[ticker]
         valid_epochs = [
             epoch for epoch in item["segments"]
             if epoch_complete.get(epoch, False)
@@ -415,7 +468,7 @@ def merge_results(
             and epoch in item["full_snapshot_segments"]
         ]
         output[ticker] = {
-            "available": True,
+            "available": bool(item["segments"]),
             "orderbook_delta_rows": item["delta_rows"],
             "trade_rows": item["trade_rows"],
             "positive_size_trade_rows": item["positive_trade_rows"],
@@ -488,7 +541,7 @@ def run(args: argparse.Namespace) -> int:
             concurrent.futures.as_completed(futures), 1
         ):
             results.append(future.result())
-            if index % 12 == 0 or index == len(futures):
+            if index == 1 or index % 12 == 0 or index == len(futures):
                 print(
                     f"ws_files={index}/{len(futures)}",
                     flush=True,

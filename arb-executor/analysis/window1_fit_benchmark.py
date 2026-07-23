@@ -14,6 +14,7 @@ complete.
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import copy
 import datetime as dt
 import gzip
@@ -36,6 +37,7 @@ LOT = 5.0
 PAR = 100.0
 ET = ZoneInfo("America/New_York")
 UTC = dt.timezone.utc
+_CACHE_WORKER_CONTEXT: dict[str, Any] = {}
 
 
 class FitError(RuntimeError):
@@ -568,6 +570,108 @@ def load_event_market_data(
     except OSError:
         pass
     return legs
+
+
+def initialize_event_cache_worker(
+    print_path: str,
+    print_ranges: dict[str, tuple[int, int, int]],
+    premarket_dir: str,
+    recovered_premarket_dir: str,
+    starts_by_event: dict[str, dict[str, Any]],
+    starts: tuple[int, ...],
+    max_corridor: int,
+    cache_root: str,
+    cache_key: str,
+) -> None:
+    """Initialize a process with a prevalidated, seek-only tape view."""
+    archive = object.__new__(PrintArchive)
+    archive.path = Path(print_path)
+    archive.expected_sha256 = ""
+    archive.ranges = print_ranges
+    archive.sha256 = ""
+    _CACHE_WORKER_CONTEXT.clear()
+    _CACHE_WORKER_CONTEXT.update({
+        "archive": archive,
+        "premarket_dir": Path(premarket_dir),
+        "recovered_premarket_dir": Path(recovered_premarket_dir),
+        "starts_by_event": starts_by_event,
+        "starts": starts,
+        "max_corridor": max_corridor,
+        "cache_root": Path(cache_root),
+        "cache_key": cache_key,
+    })
+
+
+def prebuild_event_cache_worker(
+    event: dict[str, Any],
+) -> tuple[str, int, int]:
+    context = _CACHE_WORKER_CONTEXT
+    legs = load_event_market_data(
+        event,
+        context["archive"],
+        context["premarket_dir"],
+        context["recovered_premarket_dir"],
+        context["starts_by_event"],
+        context["starts"],
+        context["max_corridor"],
+        context["cache_root"],
+        context["cache_key"],
+    )
+    return (
+        str(event["event_id"]),
+        sum(len(row["snapshots"]) for row in legs),
+        sum(len(row["prints"]) for row in legs),
+    )
+
+
+def prebuild_event_caches(
+    events: Sequence[Mapping[str, Any]],
+    archive: PrintArchive,
+    premarket_dir: Path,
+    recovered_premarket_dir: Path,
+    starts_by_event: Mapping[str, Mapping[str, Any]],
+    starts: Sequence[int],
+    max_corridor: int,
+    cache_root: Path,
+    cache_key: str,
+    workers: int,
+) -> None:
+    """Populate the existing immutable event-cache contract in parallel."""
+    if workers <= 1:
+        return
+    cache_root.mkdir(parents=True, exist_ok=True, mode=0o700)
+    event_rows = [dict(event) for event in events]
+    completed = 0
+    with concurrent.futures.ProcessPoolExecutor(
+        max_workers=workers,
+        initializer=initialize_event_cache_worker,
+        initargs=(
+            str(archive.path),
+            archive.ranges,
+            str(premarket_dir),
+            str(recovered_premarket_dir),
+            {
+                str(key): dict(value)
+                for key, value in starts_by_event.items()
+            },
+            tuple(int(value) for value in starts),
+            int(max_corridor),
+            str(cache_root),
+            cache_key,
+        ),
+    ) as executor:
+        futures = [
+            executor.submit(prebuild_event_cache_worker, event)
+            for event in event_rows
+        ]
+        for future in concurrent.futures.as_completed(futures):
+            future.result()
+            completed += 1
+            if completed % 25 == 0 or completed == len(futures):
+                print(
+                    f"event_cache={completed}/{len(futures)}",
+                    flush=True,
+                )
 
 
 def snapshot_after(
@@ -2724,6 +2828,24 @@ def run(args: argparse.Namespace) -> int:
         "file:" + str(Path(args.database).resolve())
         + "?mode=ro&immutable=1"
     )
+    database_projection_receipt = None
+    if args.database_projection_receipt:
+        projection_path = Path(
+            args.database_projection_receipt
+        ).resolve()
+        database_projection_receipt = load_json(projection_path)
+        if (
+            (database_projection_receipt.get("event_ledger") or {})
+            .get("sha256") != sha256_file(events_path)
+            or (database_projection_receipt.get("projection") or {})
+            .get("sha256")
+            != sha256_file(Path(args.database).resolve())
+            or (database_projection_receipt.get("event_ledger") or {})
+            .get("D") != D_REQUIRED
+        ):
+            raise FitError(
+                "database projection receipt/input binding failed"
+            )
     cache_receipt = {
         "runner_version": RUNNER_VERSION,
         "events_sha256": sha256_file(events_path),
@@ -2734,11 +2856,27 @@ def run(args: argparse.Namespace) -> int:
             materialization_path
         ),
         "candidate_spec_sha256": sha256_file(candidate_spec_path),
+        "database_projection_receipt_sha256": (
+            sha256_file(projection_path)
+            if database_projection_receipt is not None else None
+        ),
     }
     cache_key = hashlib.sha256(
         compact(cache_receipt).encode()
     ).hexdigest()
     event_cache_root = event_cache_base / cache_key
+    prebuild_event_caches(
+        events,
+        archive,
+        Path(args.premarket_dir).resolve(),
+        Path(args.recovered_premarket_dir).resolve(),
+        starts_by_event,
+        starts,
+        max(corridors),
+        event_cache_root,
+        cache_key,
+        args.cache_workers,
+    )
     connection = sqlite3.connect(database_uri, uri=True)
     try:
         feature_map, top20_scan = build_feature_matrix_streamed(
@@ -2881,6 +3019,10 @@ def run(args: argparse.Namespace) -> int:
                 materialization_path
             ),
             "database": sha256_file(Path(args.database).resolve()),
+            "database_projection_receipt": (
+                sha256_file(projection_path)
+                if database_projection_receipt is not None else None
+            ),
             "event_cache_key": cache_key,
         },
     }
@@ -2957,6 +3099,7 @@ def parser() -> argparse.ArgumentParser:
         required=True,
         help="owner-only derived event cache outside Git",
     )
+    result.add_argument("--cache-workers", type=int, default=1)
     result.add_argument("--start-ledger", required=True)
     result.add_argument("--source-coverage-summary", required=True)
     result.add_argument(
@@ -2969,6 +3112,7 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--depth-recorder-dir", required=True)
     result.add_argument("--ws-depth-dir", required=True)
     result.add_argument("--database", required=True)
+    result.add_argument("--database-projection-receipt")
     result.add_argument("--feature-output", required=True)
     result.add_argument("--detail-output", required=True)
     result.add_argument("--summary-output", required=True)

@@ -1,0 +1,52 @@
+{
+  "event_ledger": {
+    "D": 804,
+    "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46"
+  },
+  "field_law": {
+    "book_prices": [
+      "event_ticker",
+      "book_key",
+      "player1_name",
+      "player2_name",
+      "book_p1_fv_cents",
+      "book_p2_fv_cents",
+      "polled_at"
+    ],
+    "causal_filter": "runner admits only rows with polled_at <= simulated time",
+    "outcomes_or_settlement_included": false,
+    "players": [
+      "kalshi_code",
+      "name"
+    ],
+    "selection": "exact immutable D event_ticker only"
+  },
+  "privacy": {
+    "account_or_order_data_included": false,
+    "credentials_included": false,
+    "projection_outside_git": true
+  },
+  "projection": {
+    "book_price_rows": 5572,
+    "bytes": 1314816,
+    "events_with_rows": 128,
+    "events_without_rows": 676,
+    "first_polled_at": "2026-06-11 17:23:09",
+    "last_polled_at": "2026-07-20 18:18:41",
+    "player_rows": 612,
+    "quick_check": "ok",
+    "rows_by_category": {
+      "ATP_CHALL": 0,
+      "ATP_MAIN": 0,
+      "WTA_CHALL": 5572,
+      "WTA_MAIN": 0
+    },
+    "sha256": "7244e7f9f773cf4c2ba69209d8e979de2f126937ba9b9d0c26440c2ebaf04a74"
+  },
+  "schema_version": "window1-macro-projection-v1",
+  "source": {
+    "logical_name": "frozen_cutover_tennis_db",
+    "sha256": "f4385843ea8312175897edd874a34c70b99a74b30417fdd9ec6a878db9875815",
+    "start_summary_sha256": "de47ef5200d98772212e05fd8b81be9a2a5c0df13cdb32d5eb8c38610940d6cc"
+  }
+}

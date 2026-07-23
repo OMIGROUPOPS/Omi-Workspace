@@ -1,0 +1,150 @@
+{
+  "D": 804,
+  "events_sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46",
+  "ledger_sha256": "7947476d4b42d73177e094e252df78ace2965fcf198811f3cf33e289520982eb",
+  "privacy": {
+    "credentials_or_account_data_emitted": false,
+    "raw_archives_outside_git": true
+  },
+  "required_tickers": 1608,
+  "schema_version": "window1-ws-depth-parallel-v1",
+  "source_law": "RAW_WS_DELTA unless a non-empty ladder snapshot precedes deltas inside a recorder-started, gap-free sequence epoch",
+  "source_object_manifest_sha256": "c446bee12c9d474b42e77145b83be0f71c21f0c6256ea515ced81d7d720a57ef",
+  "ws_depth": {
+    "all_archives_readable": false,
+    "all_objects_exact": true,
+    "bytes": 5393753162,
+    "complete_start_epochs": 323,
+    "corrupt_files": [
+      {
+        "error_class": "error",
+        "file": "ws_20260712_15.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260712_16.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260712_17.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260712_18.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260713_20.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260713_21.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260713_22.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260713_23.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260714_00.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260714_01.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260714_02.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260714_03.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260714_13.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260714_14.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260714_15.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_02.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_03.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_04.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_05.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_06.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_07.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_08.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_09.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_10.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_12.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_18.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_19.jsonl.gz"
+      },
+      {
+        "error_class": "error",
+        "file": "ws_20260720_20.jsonl.gz"
+      }
+    ],
+    "epoch_count": 324,
+    "epoch_gap_count": 76,
+    "epochs_with_gaps": 7,
+    "file_count": 215,
+    "message_types": {
+      "event_lifecycle": 20807,
+      "market_lifecycle_v2": 1421960,
+      "ok": 4824,
+      "orderbook_delta": 277549270,
+      "orderbook_snapshot": 76798,
+      "subscribed": 969,
+      "trade": 3324010
+    },
+    "parse_errors": 0,
+    "physical_rows": 282398961,
+    "required_ticker_count": 1608,
+    "required_tickers_with_full_depth": 0
+  }
+}

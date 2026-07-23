@@ -1,0 +1,6578 @@
+{
+  "ablations": [
+    {
+      "ablation_family": "macrostructure",
+      "boundary_id": "tminus_8h__corridor_15m",
+      "bounds": {
+        "C": {
+          "best": 252,
+          "observed": 4,
+          "worst": 4
+        },
+        "IC": {
+          "best_including_unreferenced_censoring": 248,
+          "best_known_reference": 6,
+          "observed": 0,
+          "worst": 0
+        },
+        "NC": {
+          "best_including_unreferenced_censoring": 251,
+          "best_known_reference": 9,
+          "observed": 3,
+          "worst": 3
+        },
+        "PC": {
+          "best_including_unpriced_censoring": 215,
+          "best_known_price": 158,
+          "observed": 0,
+          "worst": 0
+        }
+      },
+      "candidate_id": "tminus_8h__corridor_15m__walk_law_simultaneous_hold__without__macrostructure",
+      "change_vs_selected": {
+        "C": 0,
+        "IC": 0,
+        "NC": 0,
+        "PC": 0,
+        "censored": 0
+      },
+      "combined_cost_cents": {
+        "mean": 100.25,
+        "median": 100.0,
+        "n": 4,
+        "p25": 100.0,
+        "p75": 100.0
+      },
+      "combined_reference_delta_cents": {
+        "mean": -0.75,
+        "median": -1.0,
+        "n": 4,
+        "negative_count": 3,
+        "p25": -1.0,
+        "p75": -1.0
+      },
+      "distance_from_75pct_negative_pair_target": {
+        "best_bound_NC_shortfall": 352,
+        "not_an_empirical_ceiling_when_X_positive": true,
+        "observed_bound_NC_shortfall": 600,
+        "required_count": 603,
+        "verdict": "not_supported"
+      },
+      "failure_funnel": {
+        "filled+filled": 102,
+        "filled+not_filled": 311,
+        "missing_placement_evidence+missing_placement_evidence": 57,
+        "not_filled+not_filled": 313,
+        "window_left_not_before_real_start+window_left_not_before_real_start": 17
+      },
+      "individual_leg_reference_delta_cents": {
+        "mean": -0.375,
+        "median": 0.0,
+        "n": 8,
+        "negative_count": 3,
+        "negative_rate": 0.375,
+        "p25": -1.0,
+        "p75": 0.0
+      },
+      "metrics_by_category": {
+        "ATP_CHALL": {
+          "C": 1,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": 0.0
+        },
+        "ATP_MAIN": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL": {
+          "C": 2,
+          "IC": 0,
+          "NC": 2,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.5,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_MAIN": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "metrics_by_shape_cell": {
+        "ATP_CHALL|2|21": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|35": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|37": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|43": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|20": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|38": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|42": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|11": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|16": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": 0.0
+        },
+        "ATP_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|29": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|28": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "ATP_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|14": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|42": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|9": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 101.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "missing": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "pairs_by_category": {
+        "ATP_CHALL": 1,
+        "ATP_MAIN": 1,
+        "WTA_CHALL": 2
+      },
+      "pairs_by_date": {
+        "2026-07-20": 4
+      },
+      "pairs_by_shape_cell": {
+        "ATP_CHALL|4|47": 1,
+        "ATP_MAIN|3|47": 1,
+        "WTA_CHALL|2|42": 1,
+        "WTA_CHALL|4|47": 1
+      },
+      "pairs_per_day": 0.4444444444444444,
+      "percentages": {
+        "C_over_D": 0.004975124378109453,
+        "IC_over_C": 0.0,
+        "IC_over_D": 0.0,
+        "NC_over_C": 0.75,
+        "NC_over_D": 0.0037313432835820895,
+        "PC_over_C": 0.0,
+        "PC_over_D": 0.0
+      },
+      "policy": {
+        "ablate_macrostructure": true,
+        "first_fill_response": "hold",
+        "max_moves": 2,
+        "placement_rule": "walk_law",
+        "policy_id": "walk_law_simultaneous_hold__without__macrostructure",
+        "sequence_rule": "simultaneous"
+      },
+      "policy_id": "walk_law_simultaneous_hold__without__macrostructure",
+      "raw": {
+        "C": 4,
+        "D": 804,
+        "IC": 0,
+        "NC": 3,
+        "PC": 0,
+        "X": 734,
+        "censored": 734
+      },
+      "runner_version": "window1-causal-fit-v1",
+      "window": {
+        "left_edge_authority": "contemporaneous_exchange_catalog_schedule",
+        "left_edge_hours_before_schedule": 8,
+        "right_edge_authority": "exact REAL_START_LEDGER point where verified; otherwise schedule_plus_15m_or_known-live best-case bound with X censoring",
+        "schedule_only_corridor_minutes": 15
+      }
+    },
+    {
+      "ablation_family": "limited_depth_pressure",
+      "boundary_id": "tminus_8h__corridor_15m",
+      "bounds": {
+        "C": {
+          "best": 252,
+          "observed": 4,
+          "worst": 4
+        },
+        "IC": {
+          "best_including_unreferenced_censoring": 248,
+          "best_known_reference": 6,
+          "observed": 0,
+          "worst": 0
+        },
+        "NC": {
+          "best_including_unreferenced_censoring": 251,
+          "best_known_reference": 9,
+          "observed": 3,
+          "worst": 3
+        },
+        "PC": {
+          "best_including_unpriced_censoring": 215,
+          "best_known_price": 158,
+          "observed": 0,
+          "worst": 0
+        }
+      },
+      "candidate_id": "tminus_8h__corridor_15m__walk_law_simultaneous_hold__without__limited_depth_pressure",
+      "change_vs_selected": {
+        "C": 0,
+        "IC": 0,
+        "NC": 0,
+        "PC": 0,
+        "censored": 0
+      },
+      "combined_cost_cents": {
+        "mean": 100.25,
+        "median": 100.0,
+        "n": 4,
+        "p25": 100.0,
+        "p75": 100.0
+      },
+      "combined_reference_delta_cents": {
+        "mean": -0.75,
+        "median": -1.0,
+        "n": 4,
+        "negative_count": 3,
+        "p25": -1.0,
+        "p75": -1.0
+      },
+      "distance_from_75pct_negative_pair_target": {
+        "best_bound_NC_shortfall": 352,
+        "not_an_empirical_ceiling_when_X_positive": true,
+        "observed_bound_NC_shortfall": 600,
+        "required_count": 603,
+        "verdict": "not_supported"
+      },
+      "failure_funnel": {
+        "filled+filled": 102,
+        "filled+not_filled": 311,
+        "missing_placement_evidence+missing_placement_evidence": 57,
+        "not_filled+not_filled": 313,
+        "window_left_not_before_real_start+window_left_not_before_real_start": 17
+      },
+      "individual_leg_reference_delta_cents": {
+        "mean": -0.375,
+        "median": 0.0,
+        "n": 8,
+        "negative_count": 3,
+        "negative_rate": 0.375,
+        "p25": -1.0,
+        "p75": 0.0
+      },
+      "metrics_by_category": {
+        "ATP_CHALL": {
+          "C": 1,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": 0.0
+        },
+        "ATP_MAIN": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL": {
+          "C": 2,
+          "IC": 0,
+          "NC": 2,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.5,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_MAIN": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "metrics_by_shape_cell": {
+        "ATP_CHALL|2|21": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|35": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|37": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|43": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|20": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|38": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|42": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|11": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|16": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": 0.0
+        },
+        "ATP_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|29": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|28": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "ATP_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|14": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|42": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|9": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 101.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "missing": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "pairs_by_category": {
+        "ATP_CHALL": 1,
+        "ATP_MAIN": 1,
+        "WTA_CHALL": 2
+      },
+      "pairs_by_date": {
+        "2026-07-20": 4
+      },
+      "pairs_by_shape_cell": {
+        "ATP_CHALL|4|47": 1,
+        "ATP_MAIN|3|47": 1,
+        "WTA_CHALL|2|42": 1,
+        "WTA_CHALL|4|47": 1
+      },
+      "pairs_per_day": 0.4444444444444444,
+      "percentages": {
+        "C_over_D": 0.004975124378109453,
+        "IC_over_C": 0.0,
+        "IC_over_D": 0.0,
+        "NC_over_C": 0.75,
+        "NC_over_D": 0.0037313432835820895,
+        "PC_over_C": 0.0,
+        "PC_over_D": 0.0
+      },
+      "policy": {
+        "ablate_pressure": true,
+        "first_fill_response": "hold",
+        "max_moves": 2,
+        "placement_rule": "walk_law",
+        "policy_id": "walk_law_simultaneous_hold__without__limited_depth_pressure",
+        "sequence_rule": "simultaneous"
+      },
+      "policy_id": "walk_law_simultaneous_hold__without__limited_depth_pressure",
+      "raw": {
+        "C": 4,
+        "D": 804,
+        "IC": 0,
+        "NC": 3,
+        "PC": 0,
+        "X": 734,
+        "censored": 734
+      },
+      "runner_version": "window1-causal-fit-v1",
+      "window": {
+        "left_edge_authority": "contemporaneous_exchange_catalog_schedule",
+        "left_edge_hours_before_schedule": 8,
+        "right_edge_authority": "exact REAL_START_LEDGER point where verified; otherwise schedule_plus_15m_or_known-live best-case bound with X censoring",
+        "schedule_only_corridor_minutes": 15
+      }
+    },
+    {
+      "ablation_family": "true_print_decision_flow",
+      "boundary_id": "tminus_8h__corridor_15m",
+      "bounds": {
+        "C": {
+          "best": 249,
+          "observed": 2,
+          "worst": 2
+        },
+        "IC": {
+          "best_including_unreferenced_censoring": 245,
+          "best_known_reference": 5,
+          "observed": 1,
+          "worst": 1
+        },
+        "NC": {
+          "best_including_unreferenced_censoring": 248,
+          "best_known_reference": 8,
+          "observed": 1,
+          "worst": 1
+        },
+        "PC": {
+          "best_including_unpriced_censoring": 214,
+          "best_known_price": 157,
+          "observed": 1,
+          "worst": 1
+        }
+      },
+      "candidate_id": "tminus_8h__corridor_15m__walk_law_simultaneous_hold__without__true_print_decision_flow",
+      "change_vs_selected": {
+        "C": -2,
+        "IC": 1,
+        "NC": -2,
+        "PC": 1,
+        "censored": 1
+      },
+      "combined_cost_cents": {
+        "mean": 99.5,
+        "median": 99.5,
+        "n": 2,
+        "p25": 99.0,
+        "p75": 100.0
+      },
+      "combined_reference_delta_cents": {
+        "mean": -1.0,
+        "median": -1.0,
+        "n": 2,
+        "negative_count": 1,
+        "p25": -2.0,
+        "p75": 0.0
+      },
+      "distance_from_75pct_negative_pair_target": {
+        "best_bound_NC_shortfall": 355,
+        "not_an_empirical_ceiling_when_X_positive": true,
+        "observed_bound_NC_shortfall": 602,
+        "required_count": 603,
+        "verdict": "not_supported"
+      },
+      "failure_funnel": {
+        "filled+filled": 86,
+        "filled+not_filled": 311,
+        "missing_placement_evidence+missing_placement_evidence": 57,
+        "not_filled+not_filled": 331,
+        "window_left_not_before_real_start+window_left_not_before_real_start": 17
+      },
+      "individual_leg_reference_delta_cents": {
+        "mean": -0.5,
+        "median": -0.5,
+        "n": 4,
+        "negative_count": 2,
+        "negative_rate": 0.5,
+        "p25": -1.0,
+        "p75": 0.0
+      },
+      "metrics_by_category": {
+        "ATP_CHALL": {
+          "C": 1,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": 0.0
+        },
+        "ATP_MAIN": {
+          "C": 1,
+          "IC": 1,
+          "NC": 1,
+          "PC": 1,
+          "mean_combined_cost_cents": 99.0,
+          "mean_pair_delta_cents": -2.0
+        },
+        "WTA_CHALL": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "metrics_by_shape_cell": {
+        "ATP_CHALL|2|21": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|35": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|37": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|43": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|20": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|38": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|42": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|11": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|16": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": 0.0
+        },
+        "ATP_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|29": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|28": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|47": {
+          "C": 1,
+          "IC": 1,
+          "NC": 1,
+          "PC": 1,
+          "mean_combined_cost_cents": 99.0,
+          "mean_pair_delta_cents": -2.0
+        },
+        "ATP_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|14": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|42": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|9": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "missing": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "pairs_by_category": {
+        "ATP_CHALL": 1,
+        "ATP_MAIN": 1
+      },
+      "pairs_by_date": {
+        "2026-07-20": 2
+      },
+      "pairs_by_shape_cell": {
+        "ATP_CHALL|4|47": 1,
+        "ATP_MAIN|3|47": 1
+      },
+      "pairs_per_day": 0.2222222222222222,
+      "percentages": {
+        "C_over_D": 0.0024875621890547263,
+        "IC_over_C": 0.5,
+        "IC_over_D": 0.0012437810945273632,
+        "NC_over_C": 0.5,
+        "NC_over_D": 0.0012437810945273632,
+        "PC_over_C": 0.5,
+        "PC_over_D": 0.0012437810945273632
+      },
+      "policy": {
+        "first_fill_response": "hold",
+        "max_moves": 0,
+        "placement_rule": "walk_law",
+        "policy_id": "walk_law_simultaneous_hold__without__true_print_decision_flow",
+        "sequence_rule": "simultaneous"
+      },
+      "policy_id": "walk_law_simultaneous_hold__without__true_print_decision_flow",
+      "raw": {
+        "C": 2,
+        "D": 804,
+        "IC": 1,
+        "NC": 1,
+        "PC": 1,
+        "X": 735,
+        "censored": 735
+      },
+      "runner_version": "window1-causal-fit-v1",
+      "window": {
+        "left_edge_authority": "contemporaneous_exchange_catalog_schedule",
+        "left_edge_hours_before_schedule": 8,
+        "right_edge_authority": "exact REAL_START_LEDGER point where verified; otherwise schedule_plus_15m_or_known-live best-case bound with X censoring",
+        "schedule_only_corridor_minutes": 15
+      }
+    },
+    {
+      "ablation_family": "first_leg_fill_state",
+      "boundary_id": "tminus_8h__corridor_15m",
+      "bounds": {
+        "C": {
+          "best": 252,
+          "observed": 4,
+          "worst": 4
+        },
+        "IC": {
+          "best_including_unreferenced_censoring": 248,
+          "best_known_reference": 6,
+          "observed": 0,
+          "worst": 0
+        },
+        "NC": {
+          "best_including_unreferenced_censoring": 251,
+          "best_known_reference": 9,
+          "observed": 3,
+          "worst": 3
+        },
+        "PC": {
+          "best_including_unpriced_censoring": 215,
+          "best_known_price": 158,
+          "observed": 0,
+          "worst": 0
+        }
+      },
+      "candidate_id": "tminus_8h__corridor_15m__walk_law_simultaneous_hold__without__first_leg_fill_state",
+      "change_vs_selected": {
+        "C": 0,
+        "IC": 0,
+        "NC": 0,
+        "PC": 0,
+        "censored": 0
+      },
+      "combined_cost_cents": {
+        "mean": 100.25,
+        "median": 100.0,
+        "n": 4,
+        "p25": 100.0,
+        "p75": 100.0
+      },
+      "combined_reference_delta_cents": {
+        "mean": -0.75,
+        "median": -1.0,
+        "n": 4,
+        "negative_count": 3,
+        "p25": -1.0,
+        "p75": -1.0
+      },
+      "distance_from_75pct_negative_pair_target": {
+        "best_bound_NC_shortfall": 352,
+        "not_an_empirical_ceiling_when_X_positive": true,
+        "observed_bound_NC_shortfall": 600,
+        "required_count": 603,
+        "verdict": "not_supported"
+      },
+      "failure_funnel": {
+        "filled+filled": 102,
+        "filled+not_filled": 311,
+        "missing_placement_evidence+missing_placement_evidence": 57,
+        "not_filled+not_filled": 313,
+        "window_left_not_before_real_start+window_left_not_before_real_start": 17
+      },
+      "individual_leg_reference_delta_cents": {
+        "mean": -0.375,
+        "median": 0.0,
+        "n": 8,
+        "negative_count": 3,
+        "negative_rate": 0.375,
+        "p25": -1.0,
+        "p75": 0.0
+      },
+      "metrics_by_category": {
+        "ATP_CHALL": {
+          "C": 1,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": 0.0
+        },
+        "ATP_MAIN": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL": {
+          "C": 2,
+          "IC": 0,
+          "NC": 2,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.5,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_MAIN": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "metrics_by_shape_cell": {
+        "ATP_CHALL|2|21": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|35": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|37": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|43": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|20": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|38": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|42": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|11": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|16": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": 0.0
+        },
+        "ATP_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|29": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|28": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "ATP_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|14": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|42": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|9": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 101.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "missing": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "pairs_by_category": {
+        "ATP_CHALL": 1,
+        "ATP_MAIN": 1,
+        "WTA_CHALL": 2
+      },
+      "pairs_by_date": {
+        "2026-07-20": 4
+      },
+      "pairs_by_shape_cell": {
+        "ATP_CHALL|4|47": 1,
+        "ATP_MAIN|3|47": 1,
+        "WTA_CHALL|2|42": 1,
+        "WTA_CHALL|4|47": 1
+      },
+      "pairs_per_day": 0.4444444444444444,
+      "percentages": {
+        "C_over_D": 0.004975124378109453,
+        "IC_over_C": 0.0,
+        "IC_over_D": 0.0,
+        "NC_over_C": 0.75,
+        "NC_over_D": 0.0037313432835820895,
+        "PC_over_C": 0.0,
+        "PC_over_D": 0.0
+      },
+      "policy": {
+        "first_fill_response": "hold",
+        "max_moves": 2,
+        "placement_rule": "walk_law",
+        "policy_id": "walk_law_simultaneous_hold__without__first_leg_fill_state",
+        "sequence_rule": "simultaneous"
+      },
+      "policy_id": "walk_law_simultaneous_hold__without__first_leg_fill_state",
+      "raw": {
+        "C": 4,
+        "D": 804,
+        "IC": 0,
+        "NC": 3,
+        "PC": 0,
+        "X": 734,
+        "censored": 734
+      },
+      "runner_version": "window1-causal-fit-v1",
+      "window": {
+        "left_edge_authority": "contemporaneous_exchange_catalog_schedule",
+        "left_edge_hours_before_schedule": 8,
+        "right_edge_authority": "exact REAL_START_LEDGER point where verified; otherwise schedule_plus_15m_or_known-live best-case bound with X censoring",
+        "schedule_only_corridor_minutes": 15
+      }
+    },
+    {
+      "ablation_family": "own_order_decision_attribution",
+      "boundary_id": "tminus_8h__corridor_15m",
+      "bounds": {
+        "C": {
+          "best": 252,
+          "observed": 4,
+          "worst": 4
+        },
+        "IC": {
+          "best_including_unreferenced_censoring": 248,
+          "best_known_reference": 6,
+          "observed": 0,
+          "worst": 0
+        },
+        "NC": {
+          "best_including_unreferenced_censoring": 251,
+          "best_known_reference": 9,
+          "observed": 3,
+          "worst": 3
+        },
+        "PC": {
+          "best_including_unpriced_censoring": 215,
+          "best_known_price": 158,
+          "observed": 0,
+          "worst": 0
+        }
+      },
+      "candidate_id": "tminus_8h__corridor_15m__walk_law_simultaneous_hold__without__own_order_decision_attribution",
+      "change_vs_selected": {
+        "C": 0,
+        "IC": 0,
+        "NC": 0,
+        "PC": 0,
+        "censored": 0
+      },
+      "combined_cost_cents": {
+        "mean": 100.25,
+        "median": 100.0,
+        "n": 4,
+        "p25": 100.0,
+        "p75": 100.0
+      },
+      "combined_reference_delta_cents": {
+        "mean": -0.75,
+        "median": -1.0,
+        "n": 4,
+        "negative_count": 3,
+        "p25": -1.0,
+        "p75": -1.0
+      },
+      "distance_from_75pct_negative_pair_target": {
+        "best_bound_NC_shortfall": 352,
+        "not_an_empirical_ceiling_when_X_positive": true,
+        "observed_bound_NC_shortfall": 600,
+        "required_count": 603,
+        "verdict": "not_supported"
+      },
+      "failure_funnel": {
+        "filled+filled": 102,
+        "filled+not_filled": 311,
+        "missing_placement_evidence+missing_placement_evidence": 57,
+        "not_filled+not_filled": 313,
+        "window_left_not_before_real_start+window_left_not_before_real_start": 17
+      },
+      "individual_leg_reference_delta_cents": {
+        "mean": -0.375,
+        "median": 0.0,
+        "n": 8,
+        "negative_count": 3,
+        "negative_rate": 0.375,
+        "p25": -1.0,
+        "p75": 0.0
+      },
+      "metrics_by_category": {
+        "ATP_CHALL": {
+          "C": 1,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": 0.0
+        },
+        "ATP_MAIN": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL": {
+          "C": 2,
+          "IC": 0,
+          "NC": 2,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.5,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_MAIN": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "metrics_by_shape_cell": {
+        "ATP_CHALL|2|21": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|35": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|37": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|43": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|20": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|38": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|42": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|11": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|16": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": 0.0
+        },
+        "ATP_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|29": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|28": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "ATP_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|14": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|42": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|9": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 101.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "missing": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "pairs_by_category": {
+        "ATP_CHALL": 1,
+        "ATP_MAIN": 1,
+        "WTA_CHALL": 2
+      },
+      "pairs_by_date": {
+        "2026-07-20": 4
+      },
+      "pairs_by_shape_cell": {
+        "ATP_CHALL|4|47": 1,
+        "ATP_MAIN|3|47": 1,
+        "WTA_CHALL|2|42": 1,
+        "WTA_CHALL|4|47": 1
+      },
+      "pairs_per_day": 0.4444444444444444,
+      "percentages": {
+        "C_over_D": 0.004975124378109453,
+        "IC_over_C": 0.0,
+        "IC_over_D": 0.0,
+        "NC_over_C": 0.75,
+        "NC_over_D": 0.0037313432835820895,
+        "PC_over_C": 0.0,
+        "PC_over_D": 0.0
+      },
+      "policy": {
+        "first_fill_response": "hold",
+        "inactive_ablation_reason": "family_not_decision_active_in_july_instrument",
+        "max_moves": 2,
+        "placement_rule": "walk_law",
+        "policy_id": "walk_law_simultaneous_hold__without__own_order_decision_attribution",
+        "sequence_rule": "simultaneous"
+      },
+      "policy_id": "walk_law_simultaneous_hold__without__own_order_decision_attribution",
+      "raw": {
+        "C": 4,
+        "D": 804,
+        "IC": 0,
+        "NC": 3,
+        "PC": 0,
+        "X": 734,
+        "censored": 734
+      },
+      "runner_version": "window1-causal-fit-v1",
+      "window": {
+        "left_edge_authority": "contemporaneous_exchange_catalog_schedule",
+        "left_edge_hours_before_schedule": 8,
+        "right_edge_authority": "exact REAL_START_LEDGER point where verified; otherwise schedule_plus_15m_or_known-live best-case bound with X censoring",
+        "schedule_only_corridor_minutes": 15
+      }
+    },
+    {
+      "ablation_family": "full_depth_sequence",
+      "boundary_id": "tminus_8h__corridor_15m",
+      "bounds": {
+        "C": {
+          "best": 252,
+          "observed": 4,
+          "worst": 4
+        },
+        "IC": {
+          "best_including_unreferenced_censoring": 248,
+          "best_known_reference": 6,
+          "observed": 0,
+          "worst": 0
+        },
+        "NC": {
+          "best_including_unreferenced_censoring": 251,
+          "best_known_reference": 9,
+          "observed": 3,
+          "worst": 3
+        },
+        "PC": {
+          "best_including_unpriced_censoring": 215,
+          "best_known_price": 158,
+          "observed": 0,
+          "worst": 0
+        }
+      },
+      "candidate_id": "tminus_8h__corridor_15m__walk_law_simultaneous_hold__without__full_depth_sequence",
+      "change_vs_selected": {
+        "C": 0,
+        "IC": 0,
+        "NC": 0,
+        "PC": 0,
+        "censored": 0
+      },
+      "combined_cost_cents": {
+        "mean": 100.25,
+        "median": 100.0,
+        "n": 4,
+        "p25": 100.0,
+        "p75": 100.0
+      },
+      "combined_reference_delta_cents": {
+        "mean": -0.75,
+        "median": -1.0,
+        "n": 4,
+        "negative_count": 3,
+        "p25": -1.0,
+        "p75": -1.0
+      },
+      "distance_from_75pct_negative_pair_target": {
+        "best_bound_NC_shortfall": 352,
+        "not_an_empirical_ceiling_when_X_positive": true,
+        "observed_bound_NC_shortfall": 600,
+        "required_count": 603,
+        "verdict": "not_supported"
+      },
+      "failure_funnel": {
+        "filled+filled": 102,
+        "filled+not_filled": 311,
+        "missing_placement_evidence+missing_placement_evidence": 57,
+        "not_filled+not_filled": 313,
+        "window_left_not_before_real_start+window_left_not_before_real_start": 17
+      },
+      "individual_leg_reference_delta_cents": {
+        "mean": -0.375,
+        "median": 0.0,
+        "n": 8,
+        "negative_count": 3,
+        "negative_rate": 0.375,
+        "p25": -1.0,
+        "p75": 0.0
+      },
+      "metrics_by_category": {
+        "ATP_CHALL": {
+          "C": 1,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": 0.0
+        },
+        "ATP_MAIN": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL": {
+          "C": 2,
+          "IC": 0,
+          "NC": 2,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.5,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_MAIN": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "metrics_by_shape_cell": {
+        "ATP_CHALL|2|21": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|35": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|37": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|43": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|20": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|38": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|42": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|11": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|16": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": 0.0
+        },
+        "ATP_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|29": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|28": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "ATP_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|14": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|42": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|9": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|47": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 101.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "missing": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "pairs_by_category": {
+        "ATP_CHALL": 1,
+        "ATP_MAIN": 1,
+        "WTA_CHALL": 2
+      },
+      "pairs_by_date": {
+        "2026-07-20": 4
+      },
+      "pairs_by_shape_cell": {
+        "ATP_CHALL|4|47": 1,
+        "ATP_MAIN|3|47": 1,
+        "WTA_CHALL|2|42": 1,
+        "WTA_CHALL|4|47": 1
+      },
+      "pairs_per_day": 0.4444444444444444,
+      "percentages": {
+        "C_over_D": 0.004975124378109453,
+        "IC_over_C": 0.0,
+        "IC_over_D": 0.0,
+        "NC_over_C": 0.75,
+        "NC_over_D": 0.0037313432835820895,
+        "PC_over_C": 0.0,
+        "PC_over_D": 0.0
+      },
+      "policy": {
+        "first_fill_response": "hold",
+        "inactive_ablation_reason": "family_not_decision_active_in_july_instrument",
+        "max_moves": 2,
+        "placement_rule": "walk_law",
+        "policy_id": "walk_law_simultaneous_hold__without__full_depth_sequence",
+        "sequence_rule": "simultaneous"
+      },
+      "policy_id": "walk_law_simultaneous_hold__without__full_depth_sequence",
+      "raw": {
+        "C": 4,
+        "D": 804,
+        "IC": 0,
+        "NC": 3,
+        "PC": 0,
+        "X": 734,
+        "censored": 734
+      },
+      "runner_version": "window1-causal-fit-v1",
+      "window": {
+        "left_edge_authority": "contemporaneous_exchange_catalog_schedule",
+        "left_edge_hours_before_schedule": 8,
+        "right_edge_authority": "exact REAL_START_LEDGER point where verified; otherwise schedule_plus_15m_or_known-live best-case bound with X censoring",
+        "schedule_only_corridor_minutes": 15
+      }
+    }
+  ],
+  "instrument_stages": [
+    {
+      "boundary_id": "tminus_8h__corridor_15m",
+      "bounds": {
+        "C": {
+          "best": 217,
+          "observed": 2,
+          "worst": 2
+        },
+        "IC": {
+          "best_including_unreferenced_censoring": 211,
+          "best_known_reference": 2,
+          "observed": 0,
+          "worst": 0
+        },
+        "NC": {
+          "best_including_unreferenced_censoring": 216,
+          "best_known_reference": 7,
+          "observed": 2,
+          "worst": 2
+        },
+        "PC": {
+          "best_including_unpriced_censoring": 162,
+          "best_known_price": 103,
+          "observed": 1,
+          "worst": 1
+        }
+      },
+      "candidate_id": "tminus_8h__corridor_15m__stage__bbo_prints_baseline",
+      "change_vs_bbo_prints_baseline": {
+        "C": 0,
+        "IC": 0,
+        "NC": 0,
+        "PC": 0,
+        "censored": 0
+      },
+      "combined_cost_cents": {
+        "mean": 100.0,
+        "median": 100.0,
+        "n": 2,
+        "p25": 99.0,
+        "p75": 101.0
+      },
+      "combined_reference_delta_cents": {
+        "mean": -1.5,
+        "median": -1.5,
+        "n": 2,
+        "negative_count": 2,
+        "p25": -2.0,
+        "p75": -1.0
+      },
+      "distance_from_75pct_negative_pair_target": {
+        "best_bound_NC_shortfall": 387,
+        "not_an_empirical_ceiling_when_X_positive": true,
+        "observed_bound_NC_shortfall": 601,
+        "required_count": 603,
+        "verdict": "not_supported"
+      },
+      "failure_funnel": {
+        "filled+filled": 82,
+        "filled+missing_placement_evidence": 2,
+        "filled+not_filled": 165,
+        "missing_placement_evidence+missing_placement_evidence": 57,
+        "not_filled+not_filled": 479,
+        "window_left_not_before_real_start+window_left_not_before_real_start": 17
+      },
+      "individual_leg_reference_delta_cents": {
+        "mean": -0.75,
+        "median": -1.0,
+        "n": 4,
+        "negative_count": 2,
+        "negative_rate": 0.5,
+        "p25": -2.0,
+        "p75": 0.0
+      },
+      "instrument_stage": "bbo_prints_baseline",
+      "metrics_by_category": {
+        "ATP_CHALL": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 101.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 1,
+          "mean_combined_cost_cents": 99.0,
+          "mean_pair_delta_cents": -2.0
+        },
+        "WTA_MAIN": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "metrics_by_shape_cell": {
+        "ATP_CHALL|2|21": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|35": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|37": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|43": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|20": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|38": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|42": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|11": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|16": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|29": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|28": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|46": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 101.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "ATP_MAIN|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|14": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|42": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 1,
+          "mean_combined_cost_cents": 99.0,
+          "mean_pair_delta_cents": -2.0
+        },
+        "WTA_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|9": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "missing": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "pairs_by_category": {
+        "ATP_MAIN": 1,
+        "WTA_CHALL": 1
+      },
+      "pairs_by_date": {
+        "2026-07-19": 1,
+        "2026-07-20": 1
+      },
+      "pairs_by_shape_cell": {
+        "ATP_MAIN|3|46": 1,
+        "WTA_CHALL|2|42": 1
+      },
+      "pairs_per_day": 0.2222222222222222,
+      "percentages": {
+        "C_over_D": 0.0024875621890547263,
+        "IC_over_C": 0.0,
+        "IC_over_D": 0.0,
+        "NC_over_C": 1.0,
+        "NC_over_D": 0.0024875621890547263,
+        "PC_over_C": 0.5,
+        "PC_over_D": 0.0012437810945273632
+      },
+      "policy": {
+        "ablate_macrostructure": true,
+        "ablate_pressure": true,
+        "ask_over_bid_threshold": 1.5,
+        "base_depth_cents": 1,
+        "first_fill_response": "reaim_touch",
+        "max_depth_cents": 5,
+        "placement_rule": "causal_stack",
+        "policy_id": "causal_stack_simultaneous_reaim__stage__bbo_prints_baseline",
+        "pressure_extra_depth_cents": 1,
+        "sequence_rule": "simultaneous"
+      },
+      "policy_id": "causal_stack_simultaneous_reaim__stage__bbo_prints_baseline",
+      "raw": {
+        "C": 2,
+        "D": 804,
+        "IC": 0,
+        "NC": 2,
+        "PC": 1,
+        "X": 734,
+        "censored": 734
+      },
+      "runner_version": "window1-causal-fit-v1",
+      "window": {
+        "left_edge_authority": "contemporaneous_exchange_catalog_schedule",
+        "left_edge_hours_before_schedule": 8,
+        "right_edge_authority": "exact REAL_START_LEDGER point where verified; otherwise schedule_plus_15m_or_known-live best-case bound with X censoring",
+        "schedule_only_corridor_minutes": 15
+      }
+    },
+    {
+      "boundary_id": "tminus_8h__corridor_15m",
+      "bounds": {
+        "C": {
+          "best": 197,
+          "observed": 2,
+          "worst": 2
+        },
+        "IC": {
+          "best_including_unreferenced_censoring": 193,
+          "best_known_reference": 1,
+          "observed": 0,
+          "worst": 0
+        },
+        "NC": {
+          "best_including_unreferenced_censoring": 196,
+          "best_known_reference": 4,
+          "observed": 2,
+          "worst": 2
+        },
+        "PC": {
+          "best_including_unpriced_censoring": 150,
+          "best_known_price": 91,
+          "observed": 1,
+          "worst": 1
+        }
+      },
+      "candidate_id": "tminus_8h__corridor_15m__stage__top5_pressure_enhancement",
+      "change_vs_bbo_prints_baseline": {
+        "C": 0,
+        "IC": 0,
+        "NC": 0,
+        "PC": 0,
+        "censored": -3
+      },
+      "combined_cost_cents": {
+        "mean": 100.0,
+        "median": 100.0,
+        "n": 2,
+        "p25": 99.0,
+        "p75": 101.0
+      },
+      "combined_reference_delta_cents": {
+        "mean": -1.5,
+        "median": -1.5,
+        "n": 2,
+        "negative_count": 2,
+        "p25": -2.0,
+        "p75": -1.0
+      },
+      "distance_from_75pct_negative_pair_target": {
+        "best_bound_NC_shortfall": 407,
+        "not_an_empirical_ceiling_when_X_positive": true,
+        "observed_bound_NC_shortfall": 601,
+        "required_count": 603,
+        "verdict": "not_supported"
+      },
+      "failure_funnel": {
+        "filled+filled": 79,
+        "filled+missing_placement_evidence": 3,
+        "filled+not_filled": 130,
+        "missing_placement_evidence+missing_placement_evidence": 57,
+        "not_filled+not_filled": 516,
+        "window_left_not_before_real_start+window_left_not_before_real_start": 17
+      },
+      "individual_leg_reference_delta_cents": {
+        "mean": -0.75,
+        "median": -1.0,
+        "n": 4,
+        "negative_count": 2,
+        "negative_rate": 0.5,
+        "p25": -2.0,
+        "p75": 0.0
+      },
+      "instrument_stage": "top5_pressure_enhancement",
+      "metrics_by_category": {
+        "ATP_CHALL": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 101.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "WTA_CHALL": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 1,
+          "mean_combined_cost_cents": 99.0,
+          "mean_pair_delta_cents": -2.0
+        },
+        "WTA_MAIN": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "metrics_by_shape_cell": {
+        "ATP_CHALL|2|21": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|35": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|37": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|43": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|20": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|38": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|42": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|11": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|16": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|29": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|28": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|46": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 101.0,
+          "mean_pair_delta_cents": -1.0
+        },
+        "ATP_MAIN|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|14": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|42": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 1,
+          "mean_combined_cost_cents": 99.0,
+          "mean_pair_delta_cents": -2.0
+        },
+        "WTA_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|9": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "missing": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "pairs_by_category": {
+        "ATP_MAIN": 1,
+        "WTA_CHALL": 1
+      },
+      "pairs_by_date": {
+        "2026-07-19": 1,
+        "2026-07-20": 1
+      },
+      "pairs_by_shape_cell": {
+        "ATP_MAIN|3|46": 1,
+        "WTA_CHALL|2|42": 1
+      },
+      "pairs_per_day": 0.2222222222222222,
+      "percentages": {
+        "C_over_D": 0.0024875621890547263,
+        "IC_over_C": 0.0,
+        "IC_over_D": 0.0,
+        "NC_over_C": 1.0,
+        "NC_over_D": 0.0024875621890547263,
+        "PC_over_C": 0.5,
+        "PC_over_D": 0.0012437810945273632
+      },
+      "policy": {
+        "ablate_macrostructure": true,
+        "ablate_pressure": false,
+        "ask_over_bid_threshold": 1.5,
+        "base_depth_cents": 1,
+        "first_fill_response": "reaim_touch",
+        "max_depth_cents": 5,
+        "placement_rule": "causal_stack",
+        "policy_id": "causal_stack_simultaneous_reaim__stage__top5_pressure_enhancement",
+        "pressure_extra_depth_cents": 1,
+        "sequence_rule": "simultaneous",
+        "use_top20_pressure": false
+      },
+      "policy_id": "causal_stack_simultaneous_reaim__stage__top5_pressure_enhancement",
+      "raw": {
+        "C": 2,
+        "D": 804,
+        "IC": 0,
+        "NC": 2,
+        "PC": 1,
+        "X": 731,
+        "censored": 731
+      },
+      "runner_version": "window1-causal-fit-v1",
+      "window": {
+        "left_edge_authority": "contemporaneous_exchange_catalog_schedule",
+        "left_edge_hours_before_schedule": 8,
+        "right_edge_authority": "exact REAL_START_LEDGER point where verified; otherwise schedule_plus_15m_or_known-live best-case bound with X censoring",
+        "schedule_only_corridor_minutes": 15
+      }
+    },
+    {
+      "boundary_id": "tminus_8h__corridor_15m",
+      "bounds": {
+        "C": {
+          "best": 198,
+          "observed": 2,
+          "worst": 2
+        },
+        "IC": {
+          "best_including_unreferenced_censoring": 194,
+          "best_known_reference": 1,
+          "observed": 0,
+          "worst": 0
+        },
+        "NC": {
+          "best_including_unreferenced_censoring": 197,
+          "best_known_reference": 4,
+          "observed": 2,
+          "worst": 2
+        },
+        "PC": {
+          "best_including_unpriced_censoring": 151,
+          "best_known_price": 92,
+          "observed": 1,
+          "worst": 1
+        }
+      },
+      "candidate_id": "tminus_8h__corridor_15m__stage__limited_top20_pressure_enhancement",
+      "change_vs_bbo_prints_baseline": {
+        "C": 0,
+        "IC": 0,
+        "NC": 0,
+        "PC": 0,
+        "censored": -3
+      },
+      "combined_cost_cents": {
+        "mean": 99.5,
+        "median": 99.5,
+        "n": 2,
+        "p25": 99.0,
+        "p75": 100.0
+      },
+      "combined_reference_delta_cents": {
+        "mean": -2.0,
+        "median": -2.0,
+        "n": 2,
+        "negative_count": 2,
+        "p25": -2.0,
+        "p75": -2.0
+      },
+      "distance_from_75pct_negative_pair_target": {
+        "best_bound_NC_shortfall": 406,
+        "not_an_empirical_ceiling_when_X_positive": true,
+        "observed_bound_NC_shortfall": 601,
+        "required_count": 603,
+        "verdict": "not_supported"
+      },
+      "failure_funnel": {
+        "filled+filled": 78,
+        "filled+missing_placement_evidence": 3,
+        "filled+not_filled": 134,
+        "missing_placement_evidence+missing_placement_evidence": 57,
+        "not_filled+not_filled": 513,
+        "window_left_not_before_real_start+window_left_not_before_real_start": 17
+      },
+      "individual_leg_reference_delta_cents": {
+        "mean": -1.0,
+        "median": -1.0,
+        "n": 4,
+        "negative_count": 2,
+        "negative_rate": 0.5,
+        "p25": -2.0,
+        "p75": 0.0
+      },
+      "instrument_stage": "limited_top20_pressure_enhancement",
+      "metrics_by_category": {
+        "ATP_CHALL": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -2.0
+        },
+        "WTA_CHALL": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 1,
+          "mean_combined_cost_cents": 99.0,
+          "mean_pair_delta_cents": -2.0
+        },
+        "WTA_MAIN": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "metrics_by_shape_cell": {
+        "ATP_CHALL|2|21": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|35": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|37": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|43": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|20": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|38": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|42": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|11": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|16": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|29": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|28": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|46": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -2.0
+        },
+        "ATP_MAIN|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|14": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|42": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 1,
+          "mean_combined_cost_cents": 99.0,
+          "mean_pair_delta_cents": -2.0
+        },
+        "WTA_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|9": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "missing": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "pairs_by_category": {
+        "ATP_MAIN": 1,
+        "WTA_CHALL": 1
+      },
+      "pairs_by_date": {
+        "2026-07-19": 1,
+        "2026-07-20": 1
+      },
+      "pairs_by_shape_cell": {
+        "ATP_MAIN|3|46": 1,
+        "WTA_CHALL|2|42": 1
+      },
+      "pairs_per_day": 0.2222222222222222,
+      "percentages": {
+        "C_over_D": 0.0024875621890547263,
+        "IC_over_C": 0.0,
+        "IC_over_D": 0.0,
+        "NC_over_C": 1.0,
+        "NC_over_D": 0.0024875621890547263,
+        "PC_over_C": 0.5,
+        "PC_over_D": 0.0012437810945273632
+      },
+      "policy": {
+        "ablate_macrostructure": true,
+        "ablate_pressure": false,
+        "ask_over_bid_threshold": 1.5,
+        "base_depth_cents": 1,
+        "first_fill_response": "reaim_touch",
+        "max_depth_cents": 5,
+        "placement_rule": "causal_stack",
+        "policy_id": "causal_stack_simultaneous_reaim__stage__limited_top20_pressure_enhancement",
+        "pressure_extra_depth_cents": 1,
+        "sequence_rule": "simultaneous",
+        "use_top20_pressure": true
+      },
+      "policy_id": "causal_stack_simultaneous_reaim__stage__limited_top20_pressure_enhancement",
+      "raw": {
+        "C": 2,
+        "D": 804,
+        "IC": 0,
+        "NC": 2,
+        "PC": 1,
+        "X": 731,
+        "censored": 731
+      },
+      "runner_version": "window1-causal-fit-v1",
+      "window": {
+        "left_edge_authority": "contemporaneous_exchange_catalog_schedule",
+        "left_edge_hours_before_schedule": 8,
+        "right_edge_authority": "exact REAL_START_LEDGER point where verified; otherwise schedule_plus_15m_or_known-live best-case bound with X censoring",
+        "schedule_only_corridor_minutes": 15
+      }
+    },
+    {
+      "boundary_id": "tminus_8h__corridor_15m",
+      "bounds": {
+        "C": {
+          "best": 179,
+          "observed": 2,
+          "worst": 2
+        },
+        "IC": {
+          "best_including_unreferenced_censoring": 175,
+          "best_known_reference": 1,
+          "observed": 0,
+          "worst": 0
+        },
+        "NC": {
+          "best_including_unreferenced_censoring": 178,
+          "best_known_reference": 4,
+          "observed": 2,
+          "worst": 2
+        },
+        "PC": {
+          "best_including_unpriced_censoring": 141,
+          "best_known_price": 81,
+          "observed": 1,
+          "worst": 1
+        }
+      },
+      "candidate_id": "tminus_8h__corridor_15m__stage__full_causal_stack",
+      "change_vs_bbo_prints_baseline": {
+        "C": 0,
+        "IC": 0,
+        "NC": 0,
+        "PC": 0,
+        "censored": -3
+      },
+      "combined_cost_cents": {
+        "mean": 99.5,
+        "median": 99.5,
+        "n": 2,
+        "p25": 99.0,
+        "p75": 100.0
+      },
+      "combined_reference_delta_cents": {
+        "mean": -2.0,
+        "median": -2.0,
+        "n": 2,
+        "negative_count": 2,
+        "p25": -2.0,
+        "p75": -2.0
+      },
+      "distance_from_75pct_negative_pair_target": {
+        "best_bound_NC_shortfall": 425,
+        "not_an_empirical_ceiling_when_X_positive": true,
+        "observed_bound_NC_shortfall": 601,
+        "required_count": 603,
+        "verdict": "not_supported"
+      },
+      "failure_funnel": {
+        "filled+filled": 69,
+        "filled+missing_placement_evidence": 4,
+        "filled+not_filled": 106,
+        "missing_placement_evidence+missing_placement_evidence": 57,
+        "not_filled+not_filled": 549,
+        "window_left_not_before_real_start+window_left_not_before_real_start": 17
+      },
+      "individual_leg_reference_delta_cents": {
+        "mean": -1.0,
+        "median": -1.0,
+        "n": 4,
+        "negative_count": 2,
+        "negative_rate": 0.5,
+        "p25": -2.0,
+        "p75": 0.0
+      },
+      "instrument_stage": "full_causal_stack",
+      "metrics_by_category": {
+        "ATP_CHALL": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -2.0
+        },
+        "WTA_CHALL": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 1,
+          "mean_combined_cost_cents": 99.0,
+          "mean_pair_delta_cents": -2.0
+        },
+        "WTA_MAIN": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "metrics_by_shape_cell": {
+        "ATP_CHALL|2|21": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|35": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|37": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|43": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|20": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|38": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|42": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|11": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|16": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|29": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|28": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|46": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 0,
+          "mean_combined_cost_cents": 100.0,
+          "mean_pair_delta_cents": -2.0
+        },
+        "ATP_MAIN|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "ATP_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|14": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|41": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|42": {
+          "C": 1,
+          "IC": 0,
+          "NC": 1,
+          "PC": 1,
+          "mean_combined_cost_cents": 99.0,
+          "mean_pair_delta_cents": -2.0
+        },
+        "WTA_CHALL|2|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|2|9": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_CHALL|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|2|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|23": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|44": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|45": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|3|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|46": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|47": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "WTA_MAIN|4|48": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        },
+        "missing": {
+          "C": 0,
+          "IC": 0,
+          "NC": 0,
+          "PC": 0,
+          "mean_combined_cost_cents": null,
+          "mean_pair_delta_cents": null
+        }
+      },
+      "pairs_by_category": {
+        "ATP_MAIN": 1,
+        "WTA_CHALL": 1
+      },
+      "pairs_by_date": {
+        "2026-07-19": 1,
+        "2026-07-20": 1
+      },
+      "pairs_by_shape_cell": {
+        "ATP_MAIN|3|46": 1,
+        "WTA_CHALL|2|42": 1
+      },
+      "pairs_per_day": 0.2222222222222222,
+      "percentages": {
+        "C_over_D": 0.0024875621890547263,
+        "IC_over_C": 0.0,
+        "IC_over_D": 0.0,
+        "NC_over_C": 1.0,
+        "NC_over_D": 0.0024875621890547263,
+        "PC_over_C": 0.5,
+        "PC_over_D": 0.0012437810945273632
+      },
+      "policy": {
+        "ablate_macrostructure": false,
+        "ablate_pressure": false,
+        "ask_over_bid_threshold": 1.5,
+        "base_depth_cents": 1,
+        "first_fill_response": "reaim_touch",
+        "max_depth_cents": 5,
+        "placement_rule": "causal_stack",
+        "policy_id": "causal_stack_simultaneous_reaim__stage__full_causal_stack",
+        "pressure_extra_depth_cents": 1,
+        "sequence_rule": "simultaneous",
+        "use_top20_pressure": true
+      },
+      "policy_id": "causal_stack_simultaneous_reaim__stage__full_causal_stack",
+      "raw": {
+        "C": 2,
+        "D": 804,
+        "IC": 0,
+        "NC": 2,
+        "PC": 1,
+        "X": 731,
+        "censored": 731
+      },
+      "runner_version": "window1-causal-fit-v1",
+      "window": {
+        "left_edge_authority": "contemporaneous_exchange_catalog_schedule",
+        "left_edge_hours_before_schedule": 8,
+        "right_edge_authority": "exact REAL_START_LEDGER point where verified; otherwise schedule_plus_15m_or_known-live best-case bound with X censoring",
+        "schedule_only_corridor_minutes": 15
+      }
+    }
+  ],
+  "runner_version": "window1-causal-fit-v1",
+  "selected_candidate_id": "tminus_8h__corridor_15m__walk_law_simultaneous_hold"
+}

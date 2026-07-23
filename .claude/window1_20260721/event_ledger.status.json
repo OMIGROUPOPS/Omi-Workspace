@@ -13,5 +13,5 @@
   "U_raw_catalog_events": 804,
   "lawful_pre_simulation_exclusions": 0,
   "floor_law": "retain every big-4 event absent a contemporaneous cancellation/void or causally known violent-faller receipt before simulation",
-  "reason": "the 804-row exchange-catalog ledger is complete for development and no lawful causal exclusion receipt was found; validation failure blocks scoring"
+  "reason": "the 804-row exchange-catalog ledger is complete for development, no lawful causal exclusion receipt was found, and the lifecycle-grain validation gate passed"
 }

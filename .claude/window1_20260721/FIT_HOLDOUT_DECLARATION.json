@@ -1,18 +1,22 @@
 {
   "schema_version": "window1-fit-forward-declaration-v3",
-  "amended_at_utc": "2026-07-23T17:57:18.437089Z",
+  "amended_at_utc": "2026-07-23T21:08:05.408699Z",
   "declared_before_candidate_scoring": true,
   "reason_for_amendment": "The old empty books/prints package was a normalization failure. Source recovery and lifecycle-grain validation now permit development scoring only after the pending source-coverage and real-start gates pass.",
   "development": {
     "start": "2026-07-12",
     "end": "2026-07-20",
     "role": "inspected_development_and_backwalk_history",
-    "candidate_scoring_viewed": false,
+    "candidate_scoring_viewed": true,
     "boundary_selection_policy_tuning_and_ablations_permitted": true
   },
   "forward_holdout": {
     "selection_rule": "first three complete UTC dates strictly after the UTC date containing the committed fit freeze",
-    "dates": null,
+    "dates": [
+      "2026-07-24",
+      "2026-07-25",
+      "2026-07-26"
+    ],
     "evaluation_count_allowed": 1,
     "viewed": false,
     "freeze_and_dates_must_be_committed_before_evaluation": true,
@@ -24,9 +28,14 @@
   "development_event_ledger_sha256": "09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb",
   "development_event_leg_lifecycle_ledger_sha256": "52dfe9dfbb8a414b16ccd93ae0b136c7f980df0109d3cefa1167204d97121f5e",
   "lifecycle_grain_gate_passed": true,
-  "source_coverage_gate_pending": true,
-  "real_start_gate_pending": true,
-  "window1_selected_and_frozen": false,
+  "source_coverage_gate_pending": false,
+  "source_coverage_gate_passed": true,
+  "real_start_gate_pending": false,
+  "real_start_gate_passed_with_explicit_censoring": true,
+  "window1_selected_and_frozen": true,
+  "fit_freeze_sha256": "0a854b95896b52db5f053fa80778895d0bd2e20c9e3cdd73ea3e2b9dda93a0d1",
+  "fit_summary_sha256": "ccd12d7a034644549aba3da3991ac3a72beaec62aca6e36417d9dcc2677b0331",
+  "holdout_evaluation_permitted_after_utc": "2026-07-27T00:00:00Z",
   "scoring_permitted_only_after_pending_gates": true,
   "window2_exits_settlement_dca_used": false
 }

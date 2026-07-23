@@ -1,6 +1,6 @@
 # Window-1 definition and freeze protocol
 
-Status: **the game/leg lifecycle reproduction gate passes, but policy scoring remains gated on the repaired raw-source coverage map and real-start ledger.** The lawful July 12-20 denominator is ledgered. The old empty `books.jsonl`/`prints.jsonl` bundle is treated as a pipeline failure, not source absence. No candidate is called frozen until causal BBO/print coverage and right-edge censoring are applied and the development-only fit command writes `window1_freeze.json`.
+Status: **the game/leg lifecycle reproduction gate, repaired raw-source coverage gate, and censored real-start gate pass.** The development-only fit is frozen by `WINDOW1_FIT_FREEZE.json`. The old empty `books.jsonl`/`prints.jsonl` bundle is a superseded pipeline failure, not source absence. The registered holdout dates are 2026-07-24 through 2026-07-26 UTC and cannot be viewed until all three dates are complete.
 
 Research base: `193e90da406214d2e5d9b2c7b5f752ddda046895`, the fetched `origin/blend/kalshi-occ-fallback` tip used to create `codex/window1-definition` on 2026-07-21.
 
@@ -112,4 +112,4 @@ July 18–20 is inspected history and is not untouched. Boundary selection, poli
 
 The forward sample is never extended after viewing. If its `D` is too small for a stable claim, the report says so. The holdout runner accepts only the frozen candidate and a declaration tied to the committed freeze receipt, rejects a changed development subset, rejects unregistered holdout dates, and refuses a second result.
 
-Current development-ledger state: **immutable, U=804 and D=804, SHA-256 `09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb`**. Current freeze state: **not empirically frozen**. Current lifecycle reproduction state: **passed at the game/leg grain with zero mismatches, while start/source coverage repair remains open**. Therefore the existing reproduction bounds are explicitly not policy performance, a distance-from-target verdict, or an empirical market ceiling.
+Current development-ledger state: **immutable, U=804 and D=804, SHA-256 `09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb`**. Current freeze state: **frozen at 2026-07-23T21:08:05.408699Z** to `tminus_8h__corridor_15m__walk_law_simultaneous_hold`. Current lifecycle reproduction state: **passed at the game/leg grain with zero mismatches**. The fit result retains `X=734`; its reported upper bounds are candidate-family development bounds and explicitly not an empirical market ceiling.

@@ -30,6 +30,88 @@ object manifest. The binding execution order is now:
 separate censored count inside `D`. The historical 4.9%-17.0% reproduction
 bound must not be used as policy performance or a ceiling.
 
+## Repaired-source fit and freeze
+
+The development fit executed with runner commit
+`bf7898102c006ffee2dc68435c019a9d207cdc6b` and fit-runner SHA-256
+`ef5539cd615bdcc05f5bbd2969bcbfd421658abd2dc95fd7178e3c2443af302d`.
+Audit source commit `ff0f336f45fde9d54ca2948949689172e8203aff`
+is absorbed on this branch. Use owner-only evidence paths outside Git:
+
+    export FIT_ROOT="<owner-only Window-1 fit root>"
+    export EVENTS="$FIT_ROOT/joined/events.jsonl"
+    export PRINTS="$FIT_ROOT/public/prints.jsonl"
+    export TAPE_MANIFEST="$FIT_ROOT/public/PUBLIC_TAPE_MANIFEST.sanitized.json"
+    export TICKS="$FIT_ROOT/public/ticks"
+    export TOP20="$FIT_ROOT/public/depth_recorder"
+    export EMPTY="$FIT_ROOT/empty"
+    export MACRO_DB="$FIT_ROOT/private/macro_projection.db"
+    export MACRO_RECEIPT="$FIT_ROOT/public/MACRO_PROJECTION_RECEIPT.json"
+    export FIT_OUTPUT="$FIT_ROOT/output"
+    export CACHE="$FIT_ROOT/cache"
+    mkdir -p "$FIT_OUTPUT" "$CACHE" "$EMPTY"
+
+The owner must verify these immutable source identities before executing:
+
+- events:
+  `1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46`;
+- public prints:
+  `e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55`;
+- macro projection:
+  `7244e7f9f773cf4c2ba69209d8e979de2f126937ba9b9d0c26440c2ebaf04a74`;
+- shape prior:
+  `6183ddec56eaab2ad48432aa7c802ea6265e608fa26cdd960aa1dde866824356`;
+- real-start ledger:
+  `90a943b598baa8debe1acd08fa4b664d3661cd3762c2e5ab54e54d781819b947`.
+
+Run the cache-free tests, then the fit:
+
+    python -m pytest -q \
+      arb-executor/tests/test_window1_fit_benchmark.py \
+      arb-executor/tests/test_window1_freeze_fit.py
+    python -B arb-executor/analysis/window1_fit_benchmark.py \
+      --events "$EVENTS" \
+      --validation-summary .claude/window1_20260721/LIFECYCLE_VALIDATION_SUMMARY.json \
+      --tape-manifest "$TAPE_MANIFEST" \
+      --prints "$PRINTS" \
+      --event-cache-dir "$CACHE" \
+      --cache-workers 8 \
+      --start-ledger .claude/window1_20260721/REAL_START_LEDGER.jsonl \
+      --source-coverage-summary .claude/window1_20260721/SOURCE_COVERAGE_SUMMARY.json \
+      --spaces-materialization-summary .claude/window1_20260721/SPACES_MATERIALIZATION_SUMMARY.json \
+      --candidate-spec arb-executor/docs/research/window1/WINDOW1_CANDIDATES.json \
+      --shape-prior arb-executor/data/shape_corpus/aim_v2_operational_LATCHCAL.json \
+      --premarket-dir "$TICKS" \
+      --recovered-premarket-dir "$EMPTY" \
+      --depth-recorder-dir "$TOP20" \
+      --ws-depth-dir "$EMPTY" \
+      --database "$MACRO_DB" \
+      --database-projection-receipt "$MACRO_RECEIPT" \
+      --feature-output "$FIT_OUTPUT/WINDOW1_FEATURE_MATRIX.jsonl" \
+      --detail-output "$FIT_OUTPUT/WINDOW1_CANDIDATE_DETAIL.jsonl" \
+      --summary-output "$FIT_OUTPUT/WINDOW1_FIT_SUMMARY.json" \
+      --ablation-output "$FIT_OUTPUT/WINDOW1_ABLATION_SUMMARY.json" \
+      --coverage-output "$FIT_OUTPUT/WINDOW1_FEATURE_COVERAGE.json"
+
+The expected fit summary SHA-256 is
+`ccd12d7a034644549aba3da3991ac3a72beaec62aca6e36417d9dcc2677b0331`.
+It selects
+`tminus_8h__corridor_15m__walk_law_simultaneous_hold` with raw
+`D=804, C=4, PC=0, NC=3, IC=0, X=734`.
+
+The freeze is a one-way write and must use a new output path:
+
+    python -B arb-executor/analysis/window1_freeze_fit.py \
+      --fit-summary "$FIT_OUTPUT/WINDOW1_FIT_SUMMARY.json" \
+      --event-ledger .claude/window1_20260721/corrected_event_ledger.jsonl \
+      --freeze-timestamp 2026-07-23T21:08:05.408699Z \
+      --output "$FIT_OUTPUT/WINDOW1_FIT_FREEZE.json"
+
+The expected freeze SHA-256 is
+`0a854b95896b52db5f053fa80778895d0bd2e20c9e3cdd73ea3e2b9dda93a0d1`.
+It registers 2026-07-24, 2026-07-25, and 2026-07-26 as the only holdout.
+Do not build or inspect that ledger before 2026-07-27T00:00:00Z.
+
 ## Research worktree
 
     export RESEARCH_ROOT=/srv/omi-research/window1-independent-review

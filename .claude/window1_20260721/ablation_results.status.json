@@ -1,15 +1,33 @@
 {
-  "schema_version": "window1-normalized-v2",
-  "status": "not_run_corrected_validation_gate_failed",
-  "feature_families": [
-    "macrostructure",
-    "full_ladder_microstructure",
-    "queue_and_own_volume",
-    "true_print_direction_size_tempo",
-    "replenishment_cancellation_absorption",
-    "first_leg_fill_state",
-    "extreme_ask_over_bid_sanity_class"
-  ],
-  "results": null,
-  "gate_mismatch_count": 1054
+  "schema_version": "window1-ablation-status-v3",
+  "status": "fit_ablations_complete",
+  "selected_candidate_id": "tminus_8h__corridor_15m__walk_law_simultaneous_hold",
+  "families": 6,
+  "instrument_stages": 4,
+  "material_selected_policy_change": {
+    "family": "true_print_decision_flow",
+    "without_family_delta": {
+      "C": -2,
+      "PC": 1,
+      "NC": -2,
+      "IC": 1,
+      "X": 1
+    }
+  },
+  "top5_stage_change_vs_bbo_prints": {
+    "C": 0,
+    "PC": 0,
+    "NC": 0,
+    "IC": 0,
+    "X": -3
+  },
+  "top20_incremental_change_vs_top5": {
+    "C": 0,
+    "PC": 0,
+    "NC": 0,
+    "IC": 0,
+    "X": 0
+  },
+  "full_depth_sequence_active": false,
+  "results_sha256": "94380203cc495651ad64841be7afa0926b50275738d740f1ad36823241a92723"
 }

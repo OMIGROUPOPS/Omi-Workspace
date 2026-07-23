@@ -1,0 +1,74 @@
+{
+  "schema_version": "window1-fit-artifact-manifest-v1",
+  "generated_at_utc": "2026-07-23T21:08:05.408699Z",
+  "scope": {
+    "development_dates": [
+      "2026-07-12",
+      "2026-07-20"
+    ],
+    "D": 804,
+    "window1_only": true,
+    "window2_exit_settlement_dca_used": false,
+    "holdout_viewed": false
+  },
+  "implementation": {
+    "fit_execution_commit": "bf7898102c006ffee2dc68435c019a9d207cdc6b",
+    "fit_runner_sha256": "ef5539cd615bdcc05f5bbd2969bcbfd421658abd2dc95fd7178e3c2443af302d",
+    "freeze_runner_sha256": "253c2cbe8fb7d7ce9d6379fa50929ca8d664554bd9a1f4cfc380760979e50163",
+    "audit_source_commit": "ff0f336f45fde9d54ca2948949689172e8203aff",
+    "audit_absorbed_as_commit": "c4d7906b7b7535fbf2d0088cb5a0546949f602a4"
+  },
+  "committed_artifacts": {
+    "WINDOW1_FEATURE_MATRIX.jsonl": {
+      "bytes": 20288495,
+      "rows": 6432,
+      "sha256": "4b543313b315af91db86ff049f552335b32fc36654fd53d7a27ae682184584c1"
+    },
+    "WINDOW1_FIT_SUMMARY.json": {
+      "bytes": 2675232,
+      "sha256": "ccd12d7a034644549aba3da3991ac3a72beaec62aca6e36417d9dcc2677b0331"
+    },
+    "WINDOW1_ABLATION_SUMMARY.json": {
+      "bytes": 174466,
+      "sha256": "94380203cc495651ad64841be7afa0926b50275738d740f1ad36823241a92723"
+    },
+    "WINDOW1_FEATURE_COVERAGE.json": {
+      "bytes": 1939,
+      "sha256": "ad733270a5c3f4222370816fcb57391efba36f233ec6201fa69c1ebe561ca040"
+    },
+    "WINDOW1_FIT_FREEZE.json": {
+      "bytes": 5128,
+      "sha256": "0a854b95896b52db5f053fa80778895d0bd2e20c9e3cdd73ea3e2b9dda93a0d1"
+    }
+  },
+  "external_derived_artifacts": {
+    "WINDOW1_CANDIDATE_DETAIL.jsonl": {
+      "bytes": 172716935,
+      "rows": 141504,
+      "sha256": "85e8d0b188c163372e7c5a971bc9c870f410e447b35013629a8437a0452c60b8",
+      "git_status": "outside Git; large per-event derived replay detail"
+    },
+    "WINDOW1_CANDIDATE_DETAIL.diagnostics.jsonl": {
+      "bytes": 10083065,
+      "rows": 8040,
+      "sha256": "b8c5cfa02b240232ff34f0804a343cb5fd451363700bb4536ff47529010523a8",
+      "git_status": "outside Git; large per-event derived ablation detail"
+    }
+  },
+  "raw_evidence_law": {
+    "credentials_committed": false,
+    "private_order_or_account_identifiers_committed": false,
+    "raw_logs_databases_recorders_or_api_exports_committed": false,
+    "raw_and_private_evidence_remain_outside_git": true
+  },
+  "validation_assertions": {
+    "candidate_count": 176,
+    "all_candidates_D_804": true,
+    "PC_NC_IC_are_subsets_of_C": true,
+    "bounds_monotone": true,
+    "feature_events": 804,
+    "feature_tickers": 1608,
+    "private_path_values_in_feature_matrix": 0,
+    "full_depth_sequence_valid_rows": 0
+  }
+}

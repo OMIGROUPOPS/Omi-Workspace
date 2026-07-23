@@ -1,0 +1,123 @@
+{
+  "development_D": 804,
+  "development_ledger_sha256": "09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb",
+  "fit_period": {
+    "end": "2026-07-20",
+    "role": "inspected_development_and_backwalk_history",
+    "start": "2026-07-12"
+  },
+  "fit_result_bounds": {
+    "C": {
+      "best": 252,
+      "observed": 4,
+      "worst": 4
+    },
+    "IC": {
+      "best_including_unreferenced_censoring": 248,
+      "best_known_reference": 6,
+      "observed": 0,
+      "worst": 0
+    },
+    "NC": {
+      "best_including_unreferenced_censoring": 251,
+      "best_known_reference": 9,
+      "observed": 3,
+      "worst": 3
+    },
+    "PC": {
+      "best_including_unpriced_censoring": 215,
+      "best_known_price": 158,
+      "observed": 0,
+      "worst": 0
+    }
+  },
+  "fit_result_percentages": {
+    "C_over_D": 0.004975124378109453,
+    "IC_over_C": 0.0,
+    "IC_over_D": 0.0,
+    "NC_over_C": 0.75,
+    "NC_over_D": 0.0037313432835820895,
+    "PC_over_C": 0.0,
+    "PC_over_D": 0.0
+  },
+  "fit_result_raw": {
+    "C": 4,
+    "D": 804,
+    "IC": 0,
+    "NC": 3,
+    "PC": 0,
+    "X": 734,
+    "censored": 734
+  },
+  "fit_summary_sha256": "ccd12d7a034644549aba3da3991ac3a72beaec62aca6e36417d9dcc2677b0331",
+  "forward_holdout": {
+    "dates": [
+      "2026-07-24",
+      "2026-07-25",
+      "2026-07-26"
+    ],
+    "dates_may_not_be_extended_or_replaced_after_viewing": true,
+    "evaluation_count_allowed": 1,
+    "minimum_complete_after_utc": "2026-07-27T00:00:00+00:00",
+    "selection_rule": "first three complete UTC dates strictly after the UTC date containing this fit freeze",
+    "viewed": false
+  },
+  "freeze_version": "window1-fit-freeze-v1",
+  "frozen_at_utc": "2026-07-23T21:08:05.408699+00:00",
+  "metric_definitions": {
+    "C": "both legs complete exactly five contracts",
+    "D": "all 804 immutable floor-passing July12-20 games",
+    "IC": "C pair where both individual leg deltas are below zero",
+    "NC": "C pair with sum of two leg deltas strictly below zero",
+    "PC": "C pair with combined entry VWAP strictly below 100",
+    "X": "games censored by start, queue, source placement, or missing frozen reference; X remains in D",
+    "censored": "queue bound changes completion, source placement is unobserved, or completed pair lacks a frozen reference",
+    "leg_delta": "leg entry VWAP minus that leg's final positive-size true print in the frozen Window-1 interval",
+    "subset_law": "PC, NC and IC overlap inside C; they do not partition D"
+  },
+  "reference_definition": {
+    "combined_cost": "sum of two five-contract entry VWAPs; compared separately with strict par 100",
+    "later_close_exit_settlement_inputs": false,
+    "leg_delta": "entry VWAP minus the leg's final positive-size, exchange-trade-identified public true print at or before the frozen Window-1 right edge",
+    "name": "own_window1_close_true_print",
+    "pair_delta": "sum of the two individual leg deltas"
+  },
+  "selected_boundary_id": "tminus_8h__corridor_15m",
+  "selected_candidate_id": "tminus_8h__corridor_15m__walk_law_simultaneous_hold",
+  "selected_policy_definition": {
+    "first_fill_response": "hold",
+    "max_moves": 2,
+    "placement_rule": "walk_law",
+    "policy_id": "walk_law_simultaneous_hold",
+    "sequence_rule": "simultaneous"
+  },
+  "selected_window_definition": {
+    "left_edge_authority": "contemporaneous_exchange_catalog_schedule",
+    "left_edge_hours_before_schedule": 8,
+    "right_edge_authority": "exact REAL_START_LEDGER point where verified; otherwise schedule_plus_15m_or_known-live best-case bound with X censoring",
+    "schedule_only_corridor_minutes": 15
+  },
+  "selection_rule": [
+    "maximize observed/proven NC",
+    "maximize observed/proven C",
+    "maximize observed/proven IC",
+    "maximize observed/proven PC",
+    "minimize censored",
+    "lexicographic candidate_id"
+  ],
+  "source_hashes": {
+    "candidate_spec": "0947d58a5b0e09691830997e0ea624a2443ccfce0bc0bce97bda016b02cd2481",
+    "database": "7244e7f9f773cf4c2ba69209d8e979de2f126937ba9b9d0c26440c2ebaf04a74",
+    "database_projection_receipt": "b98eb05105d98b231285f003373efda032add2654f690baf7674ce13bc254427",
+    "event_cache_key": "ad54d6efdd05b77f39267601d438ccb6438c2f22dc8c539051b100352b26a502",
+    "events": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46",
+    "public_prints": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+    "public_tape_manifest": "d2a3bd4b156f312fce3bbb8a8875114904ac39f2ed5b36801799d9a905e4d575",
+    "shape_prior": "6183ddec56eaab2ad48432aa7c802ea6265e608fa26cdd960aa1dde866824356",
+    "source_coverage": "231a6ae056d232c7e203cc8c7e7614a0ab6892b38b12d10fdb58f3a0122772df",
+    "spaces_materialization": "4ed76e8fcd59c7763498e7486e1d0122f75a4b291a361c6b21148e82ee6be00b",
+    "start_ledger": "90a943b598baa8debe1acd08fa4b664d3661cd3762c2e5ab54e54d781819b947",
+    "validation": "bfec8d5063a90052ccd46d0ef6207df11b7851f725c22d67fd8ff2f2e6e09ea0"
+  },
+  "window2_exit_settlement_dca_used": false
+}

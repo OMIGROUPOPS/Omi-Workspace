@@ -1,11 +1,17 @@
 {
-  "schema_version": "window1-forward-holdout-status-v3",
-  "status": "untouched_not_run",
+  "schema_version": "window1-forward-holdout-status-v4",
+  "status": "preregistered_too_early_to_run",
   "date_selection_rule": "first three complete UTC dates strictly after the UTC date containing the committed fit freeze",
-  "dates": null,
+  "dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "minimum_complete_after_utc": "2026-07-27T00:00:00Z",
   "viewed": false,
   "evaluation_count": 0,
-  "freeze_receipt_committed": false,
-  "reason": "July 12-20 is inspected development data. Source coverage, real-start truth, lifecycle boundary reproduction, and development fit must complete before the freeze can preregister the forward dates.",
+  "freeze_receipt_committed": true,
+  "freeze_sha256": "0a854b95896b52db5f053fa80778895d0bd2e20c9e3cdd73ea3e2b9dda93a0d1",
+  "reason": "the three immutable holdout dates have not yet occurred and cannot lawfully be inspected",
   "extension_or_replacement_after_viewing_allowed": false
 }

@@ -1,0 +1,37 @@
+{
+  "D": 804,
+  "bookmaker_available_rows": 844,
+  "boundary_left_edge_count": 4,
+  "development_ws_depth_file_count": 215,
+  "feature_rows": 6432,
+  "full_depth_enhancement_status": "unavailable; no July12-20 sequence-valid ws_depth epoch",
+  "full_depth_sequence_valid_rows": 0,
+  "public_tape_tickers_with_zero_trades": 2,
+  "required_legs": 1608,
+  "runner_version": "window1-causal-fit-v1",
+  "shape_cell_available_rows": 5423,
+  "source_hashes": {
+    "candidate_spec": "0947d58a5b0e09691830997e0ea624a2443ccfce0bc0bce97bda016b02cd2481",
+    "database": "7244e7f9f773cf4c2ba69209d8e979de2f126937ba9b9d0c26440c2ebaf04a74",
+    "database_projection_receipt": "b98eb05105d98b231285f003373efda032add2654f690baf7674ce13bc254427",
+    "event_cache_key": "ad54d6efdd05b77f39267601d438ccb6438c2f22dc8c539051b100352b26a502",
+    "events": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46",
+    "public_prints": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+    "public_tape_manifest": "d2a3bd4b156f312fce3bbb8a8875114904ac39f2ed5b36801799d9a905e4d575",
+    "shape_prior": "6183ddec56eaab2ad48432aa7c802ea6265e608fa26cdd960aa1dde866824356",
+    "source_coverage": "231a6ae056d232c7e203cc8c7e7614a0ab6892b38b12d10fdb58f3a0122772df",
+    "spaces_materialization": "4ed76e8fcd59c7763498e7486e1d0122f75a4b291a361c6b21148e82ee6be00b",
+    "start_ledger": "90a943b598baa8debe1acd08fa4b664d3661cd3762c2e5ab54e54d781819b947",
+    "validation": "bfec8d5063a90052ccd46d0ef6207df11b7851f725c22d67fd8ff2f2e6e09ea0"
+  },
+  "top20_scan": {
+    "file_count": 175,
+    "parse_errors": 0,
+    "physical_rows": 2836510,
+    "relevant_rows": 51518
+  },
+  "top20_snapshot_available_rows": 4322,
+  "top20_status": "causal snapshot/change-deduplicated limited-depth enhancement; not treated as full depth or sequence-continuous",
+  "top5_available_rows": 6338,
+  "top5_missing_rows": 94
+}

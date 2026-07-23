@@ -1,12 +1,28 @@
 {
-  "schema_version": "window1-normalized-v2",
-  "status": "not_run_corrected_validation_gate_failed",
-  "boundary_sensitivity": null,
-  "candidate_results": null,
-  "D": null,
-  "C": null,
-  "S": null,
-  "strategy_verdict": null,
-  "gate_mismatch_count": 1054,
-  "reason": "Scoring is forbidden until the exact actual decision/order gate passes."
+  "schema_version": "window1-fit-status-v3",
+  "status": "fit_complete_frozen",
+  "candidate_count": 176,
+  "selected_candidate_id": "tminus_8h__corridor_15m__walk_law_simultaneous_hold",
+  "raw": {
+    "D": 804,
+    "C": 4,
+    "PC": 0,
+    "NC": 3,
+    "IC": 0,
+    "X": 734
+  },
+  "best_bounds": {
+    "C": 252,
+    "PC": 215,
+    "NC": 251,
+    "IC": 248
+  },
+  "target_required_NC": 603,
+  "observed_NC_shortfall": 600,
+  "best_bound_NC_shortfall": 352,
+  "fit_summary_sha256": "ccd12d7a034644549aba3da3991ac3a72beaec62aca6e36417d9dcc2677b0331",
+  "freeze_sha256": "0a854b95896b52db5f053fa80778895d0bd2e20c9e3cdd73ea3e2b9dda93a0d1",
+  "verdict": "target_not_supported_by_frozen_development_candidate_bounds",
+  "empirical_market_ceiling": false,
+  "reason": "X=734 remains positive; candidate bounds are not a market-wide ceiling"
 }

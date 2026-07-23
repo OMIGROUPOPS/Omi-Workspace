@@ -139,6 +139,26 @@ def test_instrument_stages_hold_boundary_and_mechanics_fixed():
     assert rows[1]["policy"]["use_top20_pressure"] is False
 
 
+def test_corridor_cache_only_collapses_when_another_right_edge_exists():
+    candidate = {
+        "window": {"schedule_only_corridor_minutes": 45}
+    }
+    assert MODULE.corridor_cache_discriminator(
+        candidate, {
+            "safe_prestart_cutoff_utc": "2026-07-12T12:00:00Z",
+            "contradiction": False,
+        }
+    ) is None
+    assert MODULE.corridor_cache_discriminator(
+        candidate, {
+            "known_live_by_utc": "2026-07-12T12:05:00Z",
+        }
+    ) is None
+    assert MODULE.corridor_cache_discriminator(
+        candidate, {}
+    ) == 45
+
+
 def test_sibling_book_is_mapped_into_one_economic_direction():
     own = snapshot(bid=40, ask=42)
     sibling = snapshot(bid=57, ask=59)

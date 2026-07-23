@@ -14,6 +14,7 @@ complete.
 from __future__ import annotations
 
 import argparse
+import copy
 import datetime as dt
 import gzip
 import hashlib
@@ -2497,15 +2498,40 @@ def evaluate_candidates_streamed(
             contexts = contexts_for_event(
                 event, leg_data, starts, feature_map
             )
+            event_outcome_cache: dict[
+                tuple[int, str, int | None], dict[str, Any]
+            ] = {}
             for index, candidate in enumerate(candidates):
                 hours = int(
                     candidate["window"][
                         "left_edge_hours_before_schedule"
                     ]
                 )
-                outcome = evaluate_candidate_event_with_start(
-                    candidate, event, contexts[hours], start
+                # Corridor variants are mathematically identical when an
+                # exact/safe cutoff or a one-sided known-live bound supplies
+                # the right edge.  Cache that identity rather than replaying
+                # the same snapshots and prints four times.
+                corridor_discriminator = corridor_cache_discriminator(
+                    candidate, start
                 )
+                outcome_key = (
+                    hours,
+                    compact(candidate["policy"]),
+                    corridor_discriminator,
+                )
+                cached = event_outcome_cache.get(outcome_key)
+                if cached is None:
+                    outcome = evaluate_candidate_event_with_start(
+                        candidate, event, contexts[hours], start
+                    )
+                    event_outcome_cache[outcome_key] = copy.deepcopy(
+                        outcome
+                    )
+                else:
+                    outcome = copy.deepcopy(cached)
+                    outcome["candidate_id"] = str(
+                        candidate["candidate_id"]
+                    )
                 line = compact(outcome) + "\n"
                 combined.write(line)
                 shard_handles[index].write(line)
@@ -2560,6 +2586,23 @@ def evaluate_candidates_streamed(
     except OSError:
         pass
     return summaries
+
+
+def corridor_cache_discriminator(
+    candidate: Mapping[str, Any],
+    start: Mapping[str, Any],
+) -> int | None:
+    """Return a corridor only when it actually supplies the right edge."""
+    has_safe_right = (
+        start.get("safe_prestart_cutoff_utc") is not None
+        and start.get("contradiction") is not True
+    )
+    has_known_live_right = start.get("known_live_by_utc") is not None
+    if has_safe_right or has_known_live_right:
+        return None
+    return int(
+        candidate["window"]["schedule_only_corridor_minutes"]
+    )
 
 
 def write_json(path: Path, value: Any) -> None:

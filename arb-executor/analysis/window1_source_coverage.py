@@ -376,6 +376,58 @@ def load_public_print_coverage(
     }
 
 
+def validate_public_tape_manifest(
+    path: Path,
+    prints_path: Path,
+    required: set[str],
+) -> tuple[set[str], dict[str, Any]]:
+    manifest = json.loads(path.read_text(encoding="utf-8"))
+    denominator = manifest.get("immutable_denominator") or {}
+    pagination = manifest.get("pagination") or {}
+    artifact = (
+        (manifest.get("artifacts") or {})
+        .get("normalized_true_prints") or {}
+    )
+    if denominator.get("D") != D:
+        raise CoverageError("public tape manifest D changed")
+    if denominator.get("required_leg_tickers") != len(required):
+        raise CoverageError(
+            "public tape manifest required ticker grain changed"
+        )
+    if not (
+        pagination.get("ticker_queries") == len(required)
+        and pagination.get("failed_ticker_count") == 0
+        and pagination.get("all_terminal_cursors_empty") is True
+    ):
+        raise CoverageError(
+            "public tape pagination/source exhaustion is incomplete"
+        )
+    expected_hash = str(artifact.get("sha256") or "")
+    actual_hash = sha256_file(prints_path)
+    if not expected_hash or expected_hash != actual_hash:
+        raise CoverageError(
+            "public tape bytes disagree with the immutable manifest"
+        )
+    zero_tickers = {
+        str(value) for value in (
+            (manifest.get("coverage") or {})
+            .get("tickers_with_zero_trades") or []
+        )
+    }
+    if not zero_tickers <= required:
+        raise CoverageError(
+            "public tape zero-trade list contains a ticker outside D"
+        )
+    return zero_tickers, {
+        "manifest_sha256": sha256_file(path),
+        "normalized_prints_sha256": actual_hash,
+        "complete_ticker_queries": pagination["ticker_queries"],
+        "failed_ticker_queries": pagination["failed_ticker_count"],
+        "terminal_cursors_empty": True,
+        "proven_zero_trade_tickers": sorted(zero_tickers),
+    }
+
+
 def subsecond_coverage(
     path: Path, required: set[str],
 ) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
@@ -964,10 +1016,41 @@ def run(args: argparse.Namespace) -> int:
             if index % 100 == 0 or index == len(required):
                 print(f"csv_tickers={index}/{len(required)}", flush=True)
 
-    public = load_public_print_coverage(
+    public_path = (
         Path(args.public_prints).resolve()
         if args.public_prints else None
     )
+    public = load_public_print_coverage(public_path)
+    public_receipt: dict[str, Any] = {
+        "complete_ticker_queries": 0,
+        "proven_zero_trade_tickers": [],
+    }
+    proven_zero_trade: set[str] = set()
+    if args.public_tape_manifest:
+        if public_path is None:
+            raise CoverageError(
+                "public prints are required with a tape manifest"
+            )
+        proven_zero_trade, public_receipt = (
+            validate_public_tape_manifest(
+                Path(args.public_tape_manifest).resolve(),
+                public_path,
+                required,
+            )
+        )
+        for ticker in proven_zero_trade:
+            public[ticker] = {
+                "available": True,
+                "row_count": 0,
+                "positive_size_rows": 0,
+                "first_exchange_ts": None,
+                "last_exchange_ts": None,
+                "timestamp_semantics": "exchange_created_time",
+                "source_class": "raw_public_exchange_trade",
+                "public_trade_identity_available": True,
+                "private_order_or_fill_receipt_required": False,
+                "complete_zero_trade_query": True,
+            }
     subsecond, subsecond_summary = subsecond_coverage(
         Path(args.subsecond_db).resolve(), required
     )
@@ -1004,8 +1087,11 @@ def run(args: argparse.Namespace) -> int:
         legs = []
         for leg in event["legs"]:
             ticker = str(leg["ticker"])
-            true_exchange_prints = (
-                (public.get(ticker) or {}).get("positive_size_rows", 0) > 0
+            print_tape_complete = ticker in public
+            positive_exchange_prints = (
+                (public.get(ticker) or {}).get(
+                    "positive_size_rows", 0
+                ) > 0
             )
             bbo_available = (
                 top5[ticker].get("valid_bbo_observed_at_endpoint") is True
@@ -1017,9 +1103,9 @@ def run(args: argparse.Namespace) -> int:
             join_failures = []
             if not bbo_available:
                 join_failures.append("no_causal_bbo_source_joined")
-            if not true_exchange_prints:
+            if not print_tape_complete:
                 join_failures.append(
-                    "no_positive_size_exchange_timestamped_true_print"
+                    "no_source_exhaustive_exchange_timestamped_print_tape"
                 )
             if not (ws.get(ticker) or {}).get("full_depth_usable", False):
                 join_failures.append(
@@ -1046,7 +1132,13 @@ def run(args: argparse.Namespace) -> int:
                     ),
                 },
                 "minimum_bbo_plus_print_instrument_available": (
-                    bbo_available and true_exchange_prints
+                    bbo_available and print_tape_complete
+                ),
+                "positive_size_true_print_observed": (
+                    positive_exchange_prints
+                ),
+                "complete_zero_trade_tape": (
+                    ticker in proven_zero_trade
                 ),
                 "join_failures": join_failures,
             })
@@ -1134,6 +1226,7 @@ def run(args: argparse.Namespace) -> int:
         },
         "subsecond_store": subsecond_summary,
         "tennis_db": tennis_summary,
+        "public_tape": public_receipt,
         "depth_recorder": depth_summary,
         "ws_depth": ws_summary,
         "source_laws": {
@@ -1182,6 +1275,7 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--subsecond-db", required=True)
     result.add_argument("--tennis-db", required=True)
     result.add_argument("--public-prints")
+    result.add_argument("--public-tape-manifest")
     result.add_argument("--csv-workers", type=int, default=4)
     result.add_argument("--spaces-ticks", required=True)
     result.add_argument("--spaces-trades", required=True)

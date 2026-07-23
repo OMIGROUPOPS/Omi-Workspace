@@ -116,3 +116,33 @@ def test_precomputed_ws_receipt_must_bind_exact_ledger(tmp_path):
         assert "hash disagrees" in str(exc)
     else:
         raise AssertionError("tampered WS ledger was accepted")
+
+
+def test_public_tape_manifest_proves_complete_zero_trade(tmp_path):
+    prints = tmp_path / "prints.jsonl"
+    prints.write_text("", encoding="utf-8")
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(json.dumps({
+        "immutable_denominator": {
+            "D": 804,
+            "required_leg_tickers": 2,
+        },
+        "pagination": {
+            "ticker_queries": 2,
+            "failed_ticker_count": 0,
+            "all_terminal_cursors_empty": True,
+        },
+        "artifacts": {
+            "normalized_true_prints": {
+                "sha256": MODULE.sha256_file(prints),
+            }
+        },
+        "coverage": {
+            "tickers_with_zero_trades": ["EVENT-A"],
+        },
+    }), encoding="utf-8")
+    zero, receipt = MODULE.validate_public_tape_manifest(
+        manifest, prints, {"EVENT-A", "EVENT-B"}
+    )
+    assert zero == {"EVENT-A"}
+    assert receipt["complete_ticker_queries"] == 2

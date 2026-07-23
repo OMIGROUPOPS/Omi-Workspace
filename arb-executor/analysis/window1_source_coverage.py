@@ -15,6 +15,7 @@ import argparse
 import concurrent.futures
 import datetime as dt
 import gzip
+import hashlib
 import json
 import math
 import re
@@ -593,11 +594,33 @@ def scan_depth_recorder(
 
 
 def snapshot_has_ladder(message: Mapping[str, Any]) -> bool:
-    keys = set(message)
-    return bool(keys & {
+    for key in (
         "yes", "no", "yes_dollars", "no_dollars",
         "bids", "asks", "orderbook",
-    })
+    ):
+        value = message.get(key)
+        if isinstance(value, (list, dict)) and len(value) > 0:
+            return True
+    return False
+
+
+WS_TS_MS_PATTERN = re.compile(
+    rb'"ts_ms"\s*:\s*"?([0-9]+(?:\.[0-9]+)?)"?'
+)
+WS_TS_PATTERN = re.compile(
+    rb'"ts"\s*:\s*"?([0-9]+(?:\.[0-9]+)?)"?'
+)
+
+
+def ws_timestamp_from_line(line: bytes) -> float | None:
+    """Extract exchange time without JSON-decoding high-volume deltas."""
+    match = WS_TS_MS_PATTERN.search(line)
+    if match is not None:
+        return parse_iso(float(match.group(1)))
+    match = WS_TS_PATTERN.search(line)
+    if match is not None:
+        return parse_iso(float(match.group(1)))
+    return None
 
 
 def scan_ws_depth(
@@ -669,24 +692,15 @@ def scan_ws_depth(
                     )
                     if ticker not in required:
                         continue
-                    try:
-                        row = json.loads(line)
-                    except json.JSONDecodeError:
-                        parse_errors += 1
-                        continue
-                    wrapper = row.get("m")
-                    if not isinstance(wrapper, dict):
-                        continue
-                    message_type = str(wrapper.get("type") or "")
-                    message = wrapper.get("msg")
-                    if not isinstance(message, dict):
-                        continue
                     item = stats[ticker]
                     item["epochs"].add(epoch)
-                    timestamp = (
-                        parse_iso(message.get("ts_ms"))
-                        or parse_iso(message.get("ts"))
+                    message_type = (
+                        type_match.group(1).decode(
+                            "utf-8", errors="replace"
+                        )
+                        if type_match else ""
                     )
+                    timestamp = ws_timestamp_from_line(line)
                     if timestamp is not None:
                         item["first_exchange"] = (
                             timestamp if item["first_exchange"] is None
@@ -698,7 +712,19 @@ def scan_ws_depth(
                         )
                     if message_type == "orderbook_delta":
                         item["delta_rows"] += 1
-                    elif message_type == "orderbook_snapshot":
+                        continue
+                    try:
+                        row = json.loads(line)
+                    except json.JSONDecodeError:
+                        parse_errors += 1
+                        continue
+                    wrapper = row.get("m")
+                    if not isinstance(wrapper, dict):
+                        continue
+                    message = wrapper.get("msg")
+                    if not isinstance(message, dict):
+                        continue
+                    if message_type == "orderbook_snapshot":
                         item["snapshot_rows"] += 1
                         has_ladder = snapshot_has_ladder(message)
                         item["full_snapshot_rows"] += has_ladder
@@ -808,6 +834,80 @@ def load_spaces_names(path: Path) -> set[str]:
     }
 
 
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def load_precomputed_ws_depth(
+    ledger_path: Path,
+    summary_path: Path,
+    required: set[str],
+) -> tuple[dict[str, dict[str, Any]], dict[str, Any]]:
+    """Load a receipted offline WS census without rescanning raw archives."""
+    receipt = json.loads(summary_path.read_text(encoding="utf-8"))
+    summary = receipt.get("ws_depth")
+    if not isinstance(summary, dict):
+        raise CoverageError("precomputed WS summary has no ws_depth object")
+    expected = {
+        "D": D,
+        "required_tickers": len(required),
+    }
+    for field, value in expected.items():
+        if receipt.get(field) != value:
+            raise CoverageError(
+                f"precomputed WS {field} changed: "
+                f"{receipt.get(field)!r} != {value!r}"
+            )
+    if summary.get("file_count") != 215:
+        raise CoverageError(
+            "precomputed WS immutable object count changed: "
+            f"{summary.get('file_count')!r}"
+        )
+    if summary.get("all_objects_exact") is not True:
+        raise CoverageError(
+            "precomputed WS did not prove every immutable object"
+        )
+    actual_hash = sha256_file(ledger_path)
+    if receipt.get("ledger_sha256") != actual_hash:
+        raise CoverageError(
+            "precomputed WS ledger hash disagrees with its receipt"
+        )
+    rows = read_jsonl(ledger_path)
+    output: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        ticker = str(row.get("ticker") or "")
+        if not ticker or ticker in output:
+            raise CoverageError(
+                f"invalid/duplicate precomputed WS ticker: {ticker!r}"
+            )
+        output[ticker] = {
+            key: value for key, value in row.items()
+            if key not in {"ticker", "schema_version"}
+        }
+    if set(output) != required:
+        missing = len(required - set(output))
+        extra = len(set(output) - required)
+        raise CoverageError(
+            "precomputed WS ticker grain changed: "
+            f"missing={missing} extra={extra}"
+        )
+    if summary.get("required_ticker_count") != len(required):
+        raise CoverageError(
+            "precomputed WS summary ticker count changed: "
+            f"{summary.get('required_ticker_count')!r}"
+        )
+    return output, {
+        **summary,
+        "precomputed_receipt_sha256": sha256_file(summary_path),
+        "precomputed_ledger_sha256": actual_hash,
+        "scan_reused": True,
+    }
+
+
 def run(args: argparse.Namespace) -> int:
     events = read_jsonl(Path(args.events).resolve())
     if len(events) != D:
@@ -877,9 +977,27 @@ def run(args: argparse.Namespace) -> int:
     depth, depth_summary = scan_depth_recorder(
         Path(args.depth_recorder_dir).resolve(), required
     )
-    ws, ws_summary = scan_ws_depth(
-        Path(args.ws_depth_dir).resolve(), required
-    )
+    if args.ws_precomputed_ledger or args.ws_precomputed_summary:
+        if not (
+            args.ws_precomputed_ledger
+            and args.ws_precomputed_summary
+        ):
+            raise CoverageError(
+                "both precomputed WS ledger and summary are required"
+            )
+        ws, ws_summary = load_precomputed_ws_depth(
+            Path(args.ws_precomputed_ledger).resolve(),
+            Path(args.ws_precomputed_summary).resolve(),
+            required,
+        )
+    else:
+        if not args.ws_depth_dir:
+            raise CoverageError(
+                "ws-depth-dir or a receipted precomputed WS scan is required"
+            )
+        ws, ws_summary = scan_ws_depth(
+            Path(args.ws_depth_dir).resolve(), required
+        )
 
     ledger = []
     for event in events:
@@ -1058,7 +1176,9 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--recovered-ticks-dir", required=True)
     result.add_argument("--recovered-trades-dir", required=True)
     result.add_argument("--depth-recorder-dir", required=True)
-    result.add_argument("--ws-depth-dir", required=True)
+    result.add_argument("--ws-depth-dir")
+    result.add_argument("--ws-precomputed-ledger")
+    result.add_argument("--ws-precomputed-summary")
     result.add_argument("--subsecond-db", required=True)
     result.add_argument("--tennis-db", required=True)
     result.add_argument("--public-prints")

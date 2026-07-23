@@ -1,0 +1,32 @@
+{
+  "D": 804,
+  "after": {
+    "accepted_orders_missing_terminal_receipt": 703,
+    "gate_pass": false,
+    "mismatch_count": 1054,
+    "mismatch_types": {
+      "accepted_order_missing_receipt": 703,
+      "clock": 14,
+      "decision_unobserved": 335,
+      "fill_receipt": 2
+    },
+    "receipt_validation_errors": 2,
+    "unobserved_decision_legs": 335
+  },
+  "before": {
+    "gate_pass": false,
+    "mismatch_count": 1054,
+    "mismatch_types": {
+      "accepted_order_missing_receipt": 703,
+      "clock": 14,
+      "decision_unobserved": 335,
+      "fill_receipt": 2
+    }
+  },
+  "micmay_joined": false,
+  "private_identifiers_emitted": false,
+  "schema_version": "window1-private-lifecycle-v1",
+  "scoring_tuning_ablation_holdout_run": false,
+  "strategy_scoring_permitted": false,
+  "unresolved_rows": 1054
+}

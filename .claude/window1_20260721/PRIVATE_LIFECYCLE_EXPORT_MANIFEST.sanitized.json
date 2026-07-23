@@ -1,0 +1,76 @@
+{
+  "D": 804,
+  "api_endpoint": "https://api.elections.kalshi.com/trade-api/v2",
+  "api_version": "trade-api/v2",
+  "causal_time_bounds": {
+    "law": "one-hour capture buffer before earliest retained D entry clock through one second after latest frozen evaluation edge; local clocks select export range only and never establish causal order",
+    "local_clock_rows_used_for_lower_bound": 717,
+    "max_ts": 1784644266,
+    "max_utc": "2026-07-21T14:31:06Z",
+    "min_ts": 1783884068,
+    "min_utc": "2026-07-12T19:21:08Z",
+    "source_order_rows": 3332
+  },
+  "complete": true,
+  "deduplicated_records": {
+    "duplicate_fill_receipts": 0,
+    "duplicate_order_receipts": 0,
+    "fills": 1796,
+    "orders": 2366
+  },
+  "development_period": [
+    "2026-07-12",
+    "2026-07-20"
+  ],
+  "direct_order_http_status_counts": {
+    "404": 703
+  },
+  "evaluation_end_source_counts": {
+    "event_outside_normalized_D_catalog": 5369,
+    "scheduled_start_plus_60m_corridor": 717,
+    "source_order_existing": 3361
+  },
+  "export_completed_utc": "2026-07-23T05:04:30.988390Z",
+  "export_started_utc": "2026-07-23T04:59:00.789471Z",
+  "historical_cutoff": {
+    "historical_fills_queried": false,
+    "historical_orders_queried": false,
+    "orders_updated_ts": "2026-05-23T00:00:00Z",
+    "trades_created_ts": "2026-05-23T00:00:00Z"
+  },
+  "methods_used": [
+    "GET"
+  ],
+  "micmay_joined": false,
+  "pagination_proof": {
+    "complete": true,
+    "cursor_cycles": 0,
+    "http_get_requests": 1516,
+    "pagination_complete_empty_cursor": 785,
+    "pagination_queries": 785,
+    "rate_limit_responses": 26,
+    "records_returned_before_dedup": {
+      "fills": 1796,
+      "orders": 2366
+    },
+    "request_errors": 0,
+    "retry_attempts": 26
+  },
+  "private_file_hashes": {
+    "api_fills": {
+      "bytes": 913028,
+      "sha256": "76e7830fc3164ac3d5360d22b1b8fb860a491b7d47257ac706f44527bd32f335"
+    },
+    "api_orders": {
+      "bytes": 1753850,
+      "sha256": "3c9891b9d85a15ddc90c299672837d3cf24874c2c1853e7db8936cfa3b9ee099"
+    },
+    "raw_api_pages": {
+      "bytes": 3200000,
+      "sha256": "311cd5184d2123b16b31b80a2c51865edc7476bda25c3e568d5bbcc33117df8d"
+    }
+  },
+  "raw_private_identifiers_emitted_to_console_or_sanitized_manifest": false,
+  "schema_version": "window1-private-lifecycle-v1",
+  "target_slots": 703
+}

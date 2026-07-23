@@ -152,3 +152,50 @@ Generate the structural normalizer example and run cache-free tests:
 The sample file explicitly declares that its records are synthetic field-shape
 examples and not market observations. These commands must not be followed by
 candidate scoring while validation remains false.
+
+## Read-only private lifecycle exhaustion
+
+Run this stage only after independently verifying the storage prerequisite.
+`PRIVATE_EVIDENCE` must resolve to an owner-only directory outside every Git
+worktree. `PRIOR_PRIVATE` is the frozen private normalized bundle that supplied
+the 703 target receipt slots. Neither location may be copied into Git.
+
+    export PRIVATE_EVIDENCE="<owner-only private evidence directory>"
+    export PRIOR_PRIVATE="<frozen private normalized evidence directory>"
+    python -B arb-executor/analysis/window1_private_lifecycle.py preflight \
+      --source-orders "$PRIOR_PRIVATE/orders.jsonl" \
+      --source-mismatches "$PRIOR_PRIVATE/validation_mismatch_ledger.jsonl" \
+      --source-events "$PRIOR_PRIVATE/events.jsonl" \
+      --event-ledger "$PRIOR_PRIVATE/candidate_event_ledger.jsonl"
+    python -B arb-executor/analysis/window1_private_lifecycle.py export \
+      --source-orders "$PRIOR_PRIVATE/orders.jsonl" \
+      --source-mismatches "$PRIOR_PRIVATE/validation_mismatch_ledger.jsonl" \
+      --source-events "$PRIOR_PRIVATE/events.jsonl" \
+      --event-ledger "$PRIOR_PRIVATE/candidate_event_ledger.jsonl" \
+      --auth-module-dir "<production auth module directory>" \
+      --output-dir "$PRIVATE_EVIDENCE/export"
+    python -B arb-executor/analysis/window1_private_lifecycle.py join \
+      --source-normalized-dir "$PRIOR_PRIVATE" \
+      --source-mismatches "$PRIOR_PRIVATE/validation_mismatch_ledger.jsonl" \
+      --decisions "$PRIOR_PRIVATE/decisions.jsonl" \
+      --api-orders "$PRIVATE_EVIDENCE/export/api_orders.jsonl" \
+      --api-fills "$PRIVATE_EVIDENCE/export/api_fills.jsonl" \
+      --output-dir "$PRIVATE_EVIDENCE/joined"
+
+Copy the already-frozen immutable event ledger into a separate validation
+input directory, add the joined private order and fill files there, and run
+validation only:
+
+    python -B arb-executor/analysis/window1_benchmark.py validate \
+      --input-dir "<private joined validation input>" \
+      --output-dir "<private validation output>"
+    python -B arb-executor/analysis/window1_private_lifecycle.py sanitize-validation \
+      --before-summary "$PRIOR_PRIVATE/validation_summary.json" \
+      --after-summary "<private validation output>/validation_summary.json" \
+      --after-mismatches "<private validation output>/validation_mismatch_ledger.jsonl" \
+      --output-dir "<sanitized staging directory>"
+
+The committed receipt for the completed run reports 785 cursor-complete
+queries, zero cursor cycles, zero request errors, 703 exact target lookups and
+703 targets still absent after complete source exhaustion. Validation remains
+false with 1,054 mismatches, so no scoring command is authorized.

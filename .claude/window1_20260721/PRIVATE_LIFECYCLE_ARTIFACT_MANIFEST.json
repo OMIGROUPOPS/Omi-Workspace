@@ -1,0 +1,41 @@
+{
+  "D": 804,
+  "base_commit": "95a02afd49b5e4fcf97cdfe39ae831a3351117a6",
+  "private_raw_export": {
+    "api_fills_sha256": "76e7830fc3164ac3d5360d22b1b8fb860a491b7d47257ac706f44527bd32f335",
+    "api_orders_sha256": "3c9891b9d85a15ddc90c299672837d3cf24874c2c1853e7db8936cfa3b9ee099",
+    "raw_api_pages_sha256": "311cd5184d2123b16b31b80a2c51865edc7476bda25c3e568d5bbcc33117df8d",
+    "raw_paths_or_identities_included": false
+  },
+  "sanitized_artifacts": [
+    {
+      "bytes": 2331,
+      "path": "PRIVATE_LIFECYCLE_EXPORT_MANIFEST.sanitized.json",
+      "sha256": "68a034af95fb74060a556009235c939d5b6845e99ca6a6d473df7dd3dd2d815a"
+    },
+    {
+      "bytes": 919,
+      "path": "PRIVATE_LIFECYCLE_JOIN_SUMMARY.sanitized.json",
+      "sha256": "a530be31c1d1fe642d127a58bd4cc876daba3bf74f77572c43347f51560105d5"
+    },
+    {
+      "bytes": 292854,
+      "path": "PRIVATE_LIFECYCLE_SLOT_RESULTS.sanitized.jsonl",
+      "rows": 703,
+      "sha256": "fdf106d1d09ca918d41955b8fd17c6d2ff2d3f8ad60363fe8c9e3563f461e4e0"
+    },
+    {
+      "bytes": 818,
+      "path": "PRIVATE_LIFECYCLE_VALIDATION_RESULT.sanitized.json",
+      "sha256": "bf79d5e90717881f8dd931058abd573d5ffd712feced76d76d85bbcd6596697a"
+    },
+    {
+      "bytes": 371814,
+      "path": "PRIVATE_LIFECYCLE_UNRESOLVED.sanitized.jsonl",
+      "rows": 1054,
+      "sha256": "852ff351df703e4a2238e842d1e91bfa62ab230c6e98264fd9b9b794161b3ff7"
+    }
+  ],
+  "schema_version": "window1-private-lifecycle-artifacts-v1",
+  "strategy_scoring_permitted": false
+}

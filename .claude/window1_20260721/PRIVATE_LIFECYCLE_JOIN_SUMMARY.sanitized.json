@@ -1,0 +1,25 @@
+{
+  "D": 804,
+  "ambiguous": 0,
+  "classification_counts": {
+    "still_absent_after_complete_source_exhaustion": 703
+  },
+  "evaluation_end_source_counts": {
+    "event_outside_normalized_D_catalog": 5369,
+    "scheduled_start_plus_60m_corridor": 717,
+    "source_order_existing": 3361
+  },
+  "exact_fill_receipt_recovered": 0,
+  "exact_terminal_receipt_recovered": 0,
+  "joined_fill_rows": 903,
+  "joined_order_rows": 9447,
+  "micmay_joined": false,
+  "private_identifiers_emitted": false,
+  "private_slot_join_sha256": "8ab4bf99bd90e7ce707bf256d808bd00d6692ec23904ae35bf87ec8bcc43f01b",
+  "sanitized_slot_results_sha256": "fdf106d1d09ca918d41955b8fd17c6d2ff2d3f8ad60363fe8c9e3563f461e4e0",
+  "schema_version": "window1-private-lifecycle-v1",
+  "still_absent_after_complete_source_exhaustion": 703,
+  "strategy_scoring_permitted": false,
+  "target_slots": 703,
+  "valid_nonfill_cancellation_rejection_recovered": 0
+}

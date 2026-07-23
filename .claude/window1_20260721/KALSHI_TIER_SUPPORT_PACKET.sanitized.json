@@ -1,0 +1,137 @@
+{
+  "schema_version": "window1-live-historical-tier-v1",
+  "generated_from_export_utc": {
+    "started": "2026-07-23T12:05:29.054411Z",
+    "completed": "2026-07-23T12:06:25.080321Z"
+  },
+  "benchmark_context": {
+    "D": 804,
+    "target_receipt_slots": 703,
+    "target_slots_reclassified": false,
+    "validation_rerun_performed": false,
+    "performance_scoring_performed": false
+  },
+  "historical_cutoff": {
+    "orders_updated_ts": "2026-05-24T00:00:00Z",
+    "trades_created_ts": "2026-05-24T00:00:00Z",
+    "market_settled_ts": "2026-05-24T00:00:00Z"
+  },
+  "sample": {
+    "targets": 23,
+    "sibling_controls": 6,
+    "population_strata": {
+      "immediate_fill": 1,
+      "successful_cancel": 671,
+      "cancel_failure_attempt": 24,
+      "cancel_failure_without_later_success": 4,
+      "never_cancelled": 28,
+      "orphan_readopted": 198
+    },
+    "selected_target_strata_nonexclusive": {
+      "immediate_fill": 1,
+      "successful_cancel": 12,
+      "cancel_failure_attempt": 6,
+      "cancel_failure_without_later_success": 4,
+      "never_cancelled": 7,
+      "orphan_readopted": 6
+    }
+  },
+  "query_contract": {
+    "methods": [
+      "GET"
+    ],
+    "api_version": "trade-api/v2",
+    "live_exact_order": true,
+    "live_orders": [
+      "ticker, all statuses and all subaccounts by omission",
+      "ticker with bounded UTC min_ts and max_ts",
+      "ticker separately for resting, canceled and executed",
+      "ticker with explicit primary subaccount control"
+    ],
+    "historical_orders": "fully paginated by ticker",
+    "live_fills": "fully paginated by exact order_id",
+    "historical_fills": "fully paginated by ticker",
+    "query_time_bounds": {
+      "min_ts": 1783884072,
+      "min_utc": "2026-07-12T19:21:12Z",
+      "max_ts": 1784808331,
+      "max_utc": "2026-07-23T12:05:31Z",
+      "timezone": "UTC"
+    },
+    "pagination": {
+      "http_requests": 275,
+      "http_200": 252,
+      "http_404": 23,
+      "logical_paginated_queries": 245,
+      "completed_with_empty_cursor_or_allowed_empty_404": 245,
+      "cursor_cycles": 0,
+      "rate_limits": 0,
+      "retries": 0,
+      "request_errors": 0,
+      "complete": true
+    }
+  },
+  "producer_preservation_audit": {
+    "byte_pinned_log_rows_scanned": 3371070,
+    "target_order_placed_rows": 703,
+    "target_order_cancelled_rows": 697,
+    "raw_post_response_bodies_preserved": 0,
+    "raw_cancel_response_bodies_preserved": 0,
+    "create_producer_semantics": "The producer parses a response only after HTTP 200 or 201, then persists selected order fields. The persisted row does not distinguish HTTP 200 from HTTP 201 and is not the raw response body.",
+    "cancel_producer_semantics": "The producer reduces HTTP 200 or 204 to Boolean true before logging. The persisted row contains no HTTP status, response body, reduced_by/count or exchange timestamp."
+  },
+  "observed": {
+    "target_direct_live_http": {
+      "200": 0,
+      "404": 23
+    },
+    "target_exact_live_orders": 0,
+    "target_exact_historical_orders": 0,
+    "target_exact_live_or_historical_fills": 0,
+    "target_classification": {
+      "D_log_only_acknowledgement_raw_body_absent": 23
+    },
+    "control_direct_live_http": {
+      "200": 6,
+      "404": 0
+    },
+    "control_exact_live_orders": 6,
+    "control_exact_historical_orders": 0,
+    "control_exact_fills": 7,
+    "control_classification": {
+      "A_exchange_created_found_live": 6
+    },
+    "deduplicated_query_records": {
+      "live_orders": 11,
+      "historical_orders": 0,
+      "live_fills": 7,
+      "historical_fills": 0
+    }
+  },
+  "contradiction": {
+    "statement": "The sampled July target IDs are absent from both tiers even though the authoritative historical cutoff precedes their creation and later cancellation/fill observations. Same-period sibling controls are retrievable from the live tier.",
+    "not_established": [
+      "The 703 targets were never exchange-created.",
+      "Every target received HTTP 201 specifically.",
+      "The 703 target slots can be reclassified from this 23-target sample."
+    ],
+    "full_703_export_triggered": false,
+    "reason_full_export_not_triggered": "The predeclared expansion condition required at least one sampled target recovered from historical orders; recovered count was zero."
+  },
+  "support_questions": [
+    "Can Kalshi identify whether the sampled create-response order IDs belong to a legacy or alternate order namespace not exposed by current portfolio orders endpoints?",
+    "Can Kalshi explain why same-period control IDs are retrievable live while sampled target IDs with normalized create acknowledgements are absent from both live and historical orders?",
+    "Is there an archival endpoint or account/subaccount namespace required for orders created through the then-operative portfolio/events/orders create route?",
+    "Can Kalshi retrieve lifecycle records by the private order IDs supplied out of band without requiring ticker-only attribution?"
+  ],
+  "private_evidence_hashes": {
+    "target_sample": "e751f8e223ac3abeb68aceab01fd9943fff8a0ff9bc783dcaab4f763185b2ac2",
+    "raw_query_pages": "989c91f49c2e04f3339f58785cc8133f2e74640cecea05e41bcdd1abe04f2950",
+    "live_orders": "260201ddbdc71c4177e6d7e20dc0b35739d07f6d9b7cf308676382b4cbc103a8",
+    "historical_orders": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "live_fills": "93ccf435009cc26ff06f387957b5125b5326f915086e9cb4efe7b4961b491027",
+    "historical_fills": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "private_results": "7d63a5b563ffd456e229cdd7359b8b08ac6e27faf47c859c575d24f84b6ba7d4"
+  },
+  "private_identifiers_emitted": false
+}

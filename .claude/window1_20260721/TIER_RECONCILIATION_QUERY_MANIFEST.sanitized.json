@@ -1,0 +1,84 @@
+{
+  "schema_version": "window1-live-historical-tier-v1",
+  "D": 804,
+  "export_started_utc": "2026-07-23T12:05:29.054411Z",
+  "export_completed_utc": "2026-07-23T12:06:25.080321Z",
+  "api_endpoint": "https://api.elections.kalshi.com/trade-api/v2",
+  "api_version": "trade-api/v2",
+  "methods_used": [
+    "GET"
+  ],
+  "cutoff": {
+    "market_settled_ts": "2026-05-24T00:00:00Z",
+    "orders_updated_ts": "2026-05-24T00:00:00Z",
+    "trades_created_ts": "2026-05-24T00:00:00Z"
+  },
+  "query_time_bounds": {
+    "min_ts": 1783884072,
+    "min_utc": "2026-07-12T19:21:12Z",
+    "max_ts": 1784808331,
+    "max_utc": "2026-07-23T12:05:31Z",
+    "timezone": "UTC"
+  },
+  "filter_law": {
+    "live_orders": "ticker-only all-status/all-subaccount query; bounded-time query; each documented status; explicit primary-subaccount control; exact ID query",
+    "historical_orders": "ticker-only because historical orders supports ticker, max_ts, limit and cursor but no order_id/status/subaccount",
+    "live_fills": "exact order_id, all subaccounts by omission",
+    "historical_fills": "ticker-only because historical fills has no order_id filter; exact order attribution performed after retrieval"
+  },
+  "direct_live_order_http_status_counts": {
+    "200": 6,
+    "404": 23
+  },
+  "pagination_proof": {
+    "complete": true,
+    "cursor_cycles": 0,
+    "http_requests": 275,
+    "http_status_counts": {
+      "200": 252,
+      "404": 23
+    },
+    "methods": [
+      "GET"
+    ],
+    "pagination_completed_empty_cursor": 245,
+    "pagination_queries": 245,
+    "rate_limit_responses": 0,
+    "request_errors": 0,
+    "retry_attempts": 0
+  },
+  "deduplicated_records": {
+    "historical_fill_duplicate_occurrences": 0,
+    "historical_fills": 0,
+    "historical_order_duplicate_occurrences": 0,
+    "historical_orders": 0,
+    "live_fill_duplicate_occurrences": 0,
+    "live_fills": 7,
+    "live_order_duplicate_occurrences": 39,
+    "live_orders": 11
+  },
+  "sample": {
+    "target_rows": 23,
+    "control_rows": 6,
+    "target_classifications": {
+      "D_log_only_acknowledgement_raw_body_absent": 23
+    },
+    "control_classifications": {
+      "A_exchange_created_found_live": 6
+    },
+    "historical_target_recovered": 0
+  },
+  "full_export_required": false,
+  "validation_rerun_performed": false,
+  "strategy_scoring_permitted": false,
+  "private_identifiers_emitted": false,
+  "private_file_hashes": {
+    "raw_pages": "989c91f49c2e04f3339f58785cc8133f2e74640cecea05e41bcdd1abe04f2950",
+    "live_orders": "260201ddbdc71c4177e6d7e20dc0b35739d07f6d9b7cf308676382b4cbc103a8",
+    "historical_orders": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "live_fills": "93ccf435009cc26ff06f387957b5125b5326f915086e9cb4efe7b4961b491027",
+    "historical_fills": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "private_results": "7d63a5b563ffd456e229cdd7359b8b08ac6e27faf47c859c575d24f84b6ba7d4"
+  },
+  "sanitized_results_sha256": "1de527c226d9ded8ca8d79ea6b62e3ddf904ced35f701b27ffab5f2f00075a71"
+}

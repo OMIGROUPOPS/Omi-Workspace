@@ -1,0 +1,64 @@
+{
+  "schema_version": "window1-live-historical-tier-v1",
+  "D": 804,
+  "target_population": 703,
+  "population_strata": {
+    "cancel_failure": 4,
+    "cancel_failure_attempt": 24,
+    "immediate_fill": 1,
+    "never_cancelled": 28,
+    "orphan_readopted": 198,
+    "successful_cancel": 671
+  },
+  "sample_target_rows": 23,
+  "sample_control_rows": 6,
+  "sample_total_rows": 29,
+  "selected_target_strata": {
+    "cancel_failure": 4,
+    "cancel_failure_attempt": 6,
+    "immediate_fill": 1,
+    "never_cancelled": 7,
+    "orphan_readopted": 6,
+    "successful_cancel": 12
+  },
+  "raw_source_preservation": {
+    "physical_log_rows_scanned": 3371070,
+    "selected_target_lifecycle_rows": 1701,
+    "selected_parse_errors": 0,
+    "placement_detail_fields": {
+      "action": 703,
+      "anchor_age_sec": 448,
+      "client_order_id": 703,
+      "count": 703,
+      "order_id": 703,
+      "price": 703,
+      "response_status": 703,
+      "side": 703,
+      "tape_basis": 690,
+      "trade_id": 703,
+      "window": 159
+    },
+    "cancellation_detail_fields": {
+      "governed_by": 272,
+      "label": 697,
+      "order_id": 697,
+      "success": 697,
+      "window": 169
+    },
+    "raw_post_response_body_rows": 0,
+    "raw_cancel_response_body_rows": 0,
+    "producer_contract": {
+      "post": "successful response JSON was parsed in memory; order_placed persisted selected identity/state fields, not the raw body",
+      "cancel": "DELETE reduced every response to Boolean success before order_cancelled logging; status/body were not persisted"
+    }
+  },
+  "input_hashes": {
+    "source_orders": "707375e77a55d309e6850b0e54047a3994ebacfe5159304aca03d06e45d19912",
+    "source_mismatches": "caf231107e625b6e13acdf92151a66f8f680de0115f1deb3965e29aef63ba337",
+    "existing_api_orders": "3c9891b9d85a15ddc90c299672837d3cf24874c2c1853e7db8936cfa3b9ee099"
+  },
+  "private_sample_sha256": "e751f8e223ac3abeb68aceab01fd9943fff8a0ff9bc783dcaab4f763185b2ac2",
+  "sanitized_sample_sha256": "f4ee885509547d6ba8519cbbca0f3e730b6ed41643c13ad94746afed384e0ff8",
+  "private_identifiers_emitted": false,
+  "strategy_scoring_permitted": false
+}

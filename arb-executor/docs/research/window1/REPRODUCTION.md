@@ -222,3 +222,46 @@ Expected result at commit time: D 804, target slots 703, exact-order matches 0,
 exact-client matches 0, admissible unique composite matches 0, unresolved 703,
 and `validation_rerun_required` false. The tool has no network client or HTTP
 request operation. Its private identity ledger must remain outside Git.
+
+## Read-only live/historical tier reconciliation
+
+The 2026-07-23 decisive sample uses
+`arb-executor/analysis/window1_tier_reconcile.py`. Set
+`PRIVATE_EVIDENCE_ROOT` to the owner-only external evidence directory; never
+place it or its contents in Git.
+
+Offline selection:
+
+```bash
+python3 -B arb-executor/analysis/window1_tier_reconcile.py select \
+  --source-orders "$PRIVATE_EVIDENCE_ROOT/joined/orders.jsonl" \
+  --source-mismatches \
+    "$RESEARCH_ROOT/corrected-run/validation/validation_mismatch_ledger.jsonl" \
+  --existing-api-orders "$PRIVATE_EVIDENCE_ROOT/api_orders.private.jsonl" \
+  --log-dir "$PRODUCTION_READONLY/arb-executor/logs" \
+  --active-log-prefix-bytes 318840280 \
+  --output-dir "$PRIVATE_EVIDENCE_ROOT/tier-reconciliation"
+```
+
+Expected offline receipt: target population 703; successful cancellations
+671; cancellation failure attempts 24; cancellation failures without later
+success 4; never-cancelled 28; one immediate-fill state; sample 23 targets plus
+six exchange-confirmed sibling controls. The selector must report zero
+preserved raw create response bodies and zero preserved raw cancellation
+response bodies.
+
+The authenticated query command is GET-only:
+
+```bash
+python3 -B arb-executor/analysis/window1_tier_reconcile.py query-sample \
+  --sample \
+    "$PRIVATE_EVIDENCE_ROOT/tier-reconciliation/TIER_SAMPLE.private.jsonl" \
+  --auth-module-dir "$PRODUCTION_READONLY/arb-executor" \
+  --output-dir "$PRIVATE_EVIDENCE_ROOT/tier-reconciliation/query"
+```
+
+The frozen run receipt is 275 GETs, 245/245 completed pagination chains, no
+cursor cycle, retry, rate limit or request error, 23 target exact-ID HTTP 404s,
+and six control exact-ID HTTP 200s. Historical target recovery is zero.
+Therefore the predeclared full-703 expansion condition is false and validation
+must not be rerun.

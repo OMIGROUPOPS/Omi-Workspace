@@ -1,0 +1,48 @@
+{
+  "schema_version": "window1-live-historical-tier-artifacts-v1",
+  "created_utc": "2026-07-23T12:06:25.080321Z",
+  "D": 804,
+  "target_slots_reclassified": false,
+  "full_703_export_performed": false,
+  "validation_rerun_performed": false,
+  "strategy_scoring_performed": false,
+  "files": [
+    {
+      "path": "arb-executor/analysis/window1_tier_reconcile.py",
+      "sha256": "cb4dd2ace77852908280fd983f6b2b26f712d2f1861920030f61e3f0fcc8a9bb",
+      "role": "GET-only sample selector and tier reconciler"
+    },
+    {
+      "path": "arb-executor/tests/test_window1_tier_reconcile.py",
+      "sha256": "fd87fb5a67a2d86c74ab0afde1e2ae9c5a00b9fe2c708a1cf3a5b2501fbcbda5",
+      "role": "read-only, pagination and classification tests"
+    },
+    {
+      "path": "arb-executor/docs/research/window1/LIVE_HISTORICAL_TIER_RECONCILIATION.md",
+      "sha256": "1979d9a0ef894ccc36a494725d5975c0c826bcb118ac5fb36b3ad71f6e4d0d55",
+      "role": "human reconciliation report"
+    },
+    {
+      "path": ".claude/window1_20260721/KALSHI_TIER_SUPPORT_PACKET.sanitized.json",
+      "sha256": "8e09a8de3b32d9f0c340074aa6eabdcf5e09dcfdf2ca06c4914a88f862589e68",
+      "role": "sanitized exchange-support packet"
+    },
+    {
+      "path": ".claude/window1_20260721/TIER_RECONCILIATION_QUERY_MANIFEST.sanitized.json",
+      "sha256": "b5705f407633415e95d2e68a9a2422277fdddb67d5ce1d64ef1517adf8b6a440",
+      "role": "sanitized query and pagination receipt"
+    },
+    {
+      "path": ".claude/window1_20260721/TIER_RECONCILIATION_SAMPLE_SELECTION.sanitized.json",
+      "sha256": "ac71a1ceddcfb6a2884b4590abe841ad41da16304e305ea4a7fa7dd936a65e0c",
+      "role": "sanitized population and sample receipt"
+    },
+    {
+      "path": ".claude/window1_20260721/TIER_RECONCILIATION_RESULTS.sanitized.jsonl",
+      "sha256": "1de527c226d9ded8ca8d79ea6b62e3ddf904ced35f701b27ffab5f2f00075a71",
+      "role": "public event/ticker-level sample outcomes"
+    }
+  ],
+  "private_artifacts_committed": false,
+  "private_identifiers_committed": false
+}

@@ -1,5 +1,7 @@
 import importlib.util
 import gzip
+import hashlib
+import json
 import sqlite3
 from pathlib import Path
 
@@ -165,6 +167,83 @@ def test_top5_loader_uses_the_row_last_trade_field(tmp_path):
     rows = MODULE.load_top5(path, "T-A", earliest, latest)
     assert len(rows) == 1
     assert rows[0]["last_trade"] == 41
+
+
+def test_print_archive_indexes_contiguous_tickers_and_loads_bounds(tmp_path):
+    path = tmp_path / "prints.jsonl"
+    rows = [
+        {
+            "exchange_ts": "2026-07-12T12:00:00Z",
+            "price_cents": 40,
+            "size": 5,
+            "taker_side": "no",
+            "ticker": "EVENT-A",
+            "trade_id": "trade-a1",
+            "true_print": True,
+        },
+        {
+            "exchange_ts": "2026-07-12T13:00:00Z",
+            "price_cents": 41,
+            "size": 2,
+            "taker_side": "yes",
+            "ticker": "EVENT-A",
+            "trade_id": "trade-a2",
+            "true_print": True,
+        },
+        {
+            "exchange_ts": "2026-07-12T12:30:00Z",
+            "price_cents": 60,
+            "size": 3,
+            "taker_side": "no",
+            "ticker": "EVENT-B",
+            "trade_id": "trade-b1",
+            "true_print": True,
+        },
+    ]
+    raw = "".join(
+        json.dumps(row, sort_keys=True, separators=(",", ":")) + "\n"
+        for row in rows
+    ).encode()
+    path.write_bytes(raw)
+    archive = MODULE.PrintArchive(
+        path, hashlib.sha256(raw).hexdigest()
+    )
+    earliest = MODULE.parse_utc(
+        "2026-07-12T12:30:00Z", "earliest"
+    )
+    latest = MODULE.parse_utc(
+        "2026-07-12T14:00:00Z", "latest"
+    )
+    loaded = archive.load("EVENT-A", earliest, latest)
+    assert [row["trade_id"] for row in loaded] == ["trade-a2"]
+    assert archive.ranges["EVENT-A"][2] == 2
+    assert archive.ranges["EVENT-B"][2] == 1
+
+
+def test_print_archive_rejects_noncontiguous_ticker_groups(tmp_path):
+    path = tmp_path / "prints.jsonl"
+    rows = []
+    for index, ticker in enumerate(("EVENT-A", "EVENT-B", "EVENT-A")):
+        rows.append({
+            "exchange_ts": f"2026-07-12T12:0{index}:00Z",
+            "price_cents": 40,
+            "size": 1,
+            "taker_side": "no",
+            "ticker": ticker,
+            "trade_id": f"trade-{index}",
+            "true_print": True,
+        })
+    raw = "".join(
+        json.dumps(row, sort_keys=True, separators=(",", ":")) + "\n"
+        for row in rows
+    ).encode()
+    path.write_bytes(raw)
+    try:
+        MODULE.PrintArchive(path, hashlib.sha256(raw).hexdigest())
+    except MODULE.FitError as exc:
+        assert "not ticker-contiguous" in str(exc)
+    else:
+        raise AssertionError("noncontiguous archive was accepted")
 
 
 def test_macro_book_context_maps_the_literal_participant_not_role():

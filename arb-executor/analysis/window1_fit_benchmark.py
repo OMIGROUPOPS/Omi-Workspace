@@ -41,6 +41,155 @@ class FitError(RuntimeError):
     """A fail-closed fit contract violation."""
 
 
+class PrintArchive:
+    """Seekable, ticker-grouped view of the immutable public print JSONL.
+
+    The normalized public export is written one complete ticker query at a
+    time.  Building byte ranges keeps the complete hash/completeness contract
+    while avoiding a multi-gigabyte in-memory dictionary on the VPS.
+    """
+
+    def __init__(self, path: Path, expected_sha256: str) -> None:
+        self.path = path
+        self.expected_sha256 = expected_sha256
+        self.ranges: dict[str, tuple[int, int, int]] = {}
+        self.sha256 = ""
+        self._index()
+
+    @staticmethod
+    def _ticker(raw: bytes, line_number: int) -> str:
+        marker = b'"ticker":"'
+        start = raw.find(marker)
+        if start < 0:
+            raise FitError(
+                f"public print lacks compact ticker field at row "
+                f"{line_number}"
+            )
+        start += len(marker)
+        end = raw.find(b'"', start)
+        if end < 0:
+            raise FitError(
+                f"public print has unterminated ticker at row {line_number}"
+            )
+        try:
+            return raw[start:end].decode("ascii")
+        except UnicodeDecodeError as exc:
+            raise FitError(
+                f"public print ticker is not ASCII at row {line_number}"
+            ) from exc
+
+    def _index(self) -> None:
+        digest = hashlib.sha256()
+        current: str | None = None
+        group_start = 0
+        group_rows = 0
+        closed: set[str] = set()
+        line_number = 0
+        with self.path.open("rb") as handle:
+            while True:
+                offset = handle.tell()
+                raw = handle.readline()
+                if not raw:
+                    break
+                line_number += 1
+                digest.update(raw)
+                ticker = self._ticker(raw, line_number)
+                if current is None:
+                    current = ticker
+                    group_start = offset
+                    group_rows = 1
+                elif ticker == current:
+                    group_rows += 1
+                else:
+                    self.ranges[current] = (
+                        group_start, offset, group_rows
+                    )
+                    closed.add(current)
+                    if ticker in closed:
+                        raise FitError(
+                            "public print archive is not ticker-contiguous: "
+                            f"{ticker}"
+                        )
+                    current = ticker
+                    group_start = offset
+                    group_rows = 1
+            if current is not None:
+                self.ranges[current] = (
+                    group_start, handle.tell(), group_rows
+                )
+        self.sha256 = digest.hexdigest()
+        if self.sha256 != self.expected_sha256:
+            raise FitError("normalized public tape hash mismatch")
+
+    def load(
+        self, ticker: str, earliest: float, latest: float,
+    ) -> list[dict[str, Any]]:
+        byte_range = self.ranges.get(ticker)
+        if byte_range is None:
+            return []
+        start, end, expected_rows = byte_range
+        rows: list[dict[str, Any]] = []
+        seen: dict[str, tuple[Any, ...]] = {}
+        physical_rows = 0
+        with self.path.open("rb") as handle:
+            handle.seek(start)
+            while handle.tell() < end:
+                raw = handle.readline()
+                if not raw:
+                    break
+                physical_rows += 1
+                row = json.loads(raw)
+                identity = str(
+                    row.get("trade_id") or row.get("receipt_id") or ""
+                )
+                row_ticker = str(row.get("ticker") or "")
+                if (
+                    not identity or row_ticker != ticker
+                    or row.get("true_print") is not True
+                ):
+                    raise FitError(
+                        "invalid true print in ticker range "
+                        f"{ticker}:{physical_rows}"
+                    )
+                timestamp = parse_utc(
+                    row.get("exchange_ts"), "print.exchange_ts"
+                )
+                if not earliest <= timestamp <= latest:
+                    continue
+                price = int(row.get("price_cents"))
+                size = finite_number(row.get("size"), 0)
+                if not 1 <= price <= 99 or size < 0:
+                    raise FitError(
+                        "invalid public print price/size in "
+                        f"{ticker}:{physical_rows}"
+                    )
+                canonical = (
+                    ticker, timestamp, price, size, row.get("taker_side")
+                )
+                prior = seen.get(identity)
+                if prior is not None and prior != canonical:
+                    raise FitError(
+                        f"conflicting trade identity: {identity}"
+                    )
+                if prior is not None:
+                    continue
+                seen[identity] = canonical
+                rows.append({
+                    "trade_id": identity,
+                    "ts": timestamp,
+                    "price": price,
+                    "size": size,
+                    "taker_side": str(row.get("taker_side") or ""),
+                })
+        if physical_rows != expected_rows:
+            raise FitError(
+                f"public print byte-range row drift for {ticker}: "
+                f"{physical_rows} != {expected_rows}"
+            )
+        rows.sort(key=lambda row: (row["ts"], row["trade_id"]))
+        return rows
+
+
 def compact(value: Any) -> str:
     return json.dumps(value, sort_keys=True, separators=(",", ":"))
 
@@ -325,6 +474,99 @@ def load_top5(
         else:
             deduped.append(row)
     return deduped
+
+
+def cache_path(cache_root: Path, event_id: str) -> Path:
+    if not event_id or any(
+        character not in
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+        for character in event_id
+    ):
+        raise FitError(f"unsafe event cache identity: {event_id!r}")
+    return cache_root / f"{event_id}.json.gz"
+
+
+def load_event_market_data(
+    event: Mapping[str, Any],
+    archive: PrintArchive,
+    premarket_dir: Path,
+    recovered_premarket_dir: Path,
+    starts_by_event: Mapping[str, Mapping[str, Any]],
+    starts: Sequence[int],
+    max_corridor: int,
+    cache_root: Path,
+    cache_key: str,
+) -> list[dict[str, Any]]:
+    """Load one event's bounded market evidence, caching outside Git."""
+    event_id = str(event["event_id"])
+    path = cache_path(cache_root, event_id)
+    if path.is_file():
+        with gzip.open(path, "rt", encoding="utf-8") as handle:
+            cached = json.load(handle)
+        if (
+            not isinstance(cached, dict)
+            or cached.get("cache_key") != cache_key
+            or cached.get("event_id") != event_id
+            or not isinstance(cached.get("legs"), list)
+            or len(cached["legs"]) != 2
+        ):
+            raise FitError(
+                f"event cache receipt mismatch; preserve and use a new "
+                f"cache root: {path}"
+            )
+        return list(cached["legs"])
+
+    scheduled = parse_utc(
+        event["scheduled_start_exchange_ts"],
+        "scheduled_start_exchange_ts",
+    )
+    earliest = scheduled - max(starts) * 3600 - 301
+    start_row = starts_by_event[event_id]
+    horizons = [scheduled + max_corridor * 60]
+    for field in (
+        "verified_start_utc", "known_live_by_utc",
+        "safe_prestart_cutoff_utc",
+    ):
+        if start_row.get(field):
+            horizons.append(parse_utc(start_row[field], field))
+    latest = max(horizons) + 301
+    legs = []
+    for leg in event["legs"]:
+        ticker = str(leg["ticker"])
+        top5_path = premarket_dir / f"{ticker}.csv.gz"
+        if not top5_path.is_file():
+            top5_path = recovered_premarket_dir / f"{ticker}.csv.gz"
+        legs.append({
+            "ticker": ticker,
+            "leg": leg.get("leg"),
+            "snapshots": load_top5(
+                top5_path, ticker, earliest, latest,
+            ),
+            "prints": archive.load(ticker, earliest, latest),
+        })
+    cache_root.mkdir(parents=True, exist_ok=True, mode=0o700)
+    try:
+        os.chmod(cache_root, 0o700)
+    except OSError:
+        pass
+    payload = {
+        "cache_version": RUNNER_VERSION + "-event-market-v1",
+        "cache_key": cache_key,
+        "event_id": event_id,
+        "earliest_utc": dt.datetime.fromtimestamp(
+            earliest, UTC
+        ).isoformat(),
+        "latest_utc": dt.datetime.fromtimestamp(latest, UTC).isoformat(),
+        "legs": legs,
+    }
+    with gzip.open(path, "wt", encoding="utf-8", newline="\n") as handle:
+        json.dump(payload, handle, sort_keys=True, separators=(",", ":"))
+        handle.write("\n")
+    try:
+        os.chmod(path, 0o600)
+    except OSError:
+        pass
+    return legs
 
 
 def snapshot_after(
@@ -1846,6 +2088,321 @@ def build_contexts(
     return result, top20_scan
 
 
+def event_feature_rows(
+    event: Mapping[str, Any],
+    leg_data: Sequence[Mapping[str, Any]],
+    shape_table: Mapping[str, Any],
+    connection: sqlite3.Connection,
+    starts: Sequence[int],
+    max_corridor: int,
+) -> list[dict[str, Any]]:
+    """Build compact causal feature rows for one event."""
+    scheduled = parse_utc(
+        event["scheduled_start_exchange_ts"],
+        "scheduled_start_exchange_ts",
+    )
+    output: list[dict[str, Any]] = []
+    for hours in starts:
+        left = scheduled - hours * 3600
+        first = [
+            snapshot_after(
+                context["snapshots"], left,
+                scheduled + max_corridor * 60,
+            )
+            for context in leg_data
+        ]
+        mids = [
+            (float(row["best_bid"]) + float(row["best_ask"])) / 2
+            if row else None for row in first
+        ]
+        favorite_index = (
+            0 if mids[0] is not None and mids[1] is not None
+            and float(mids[0]) >= float(mids[1]) else 1
+        )
+        for leg_index, context in enumerate(leg_data):
+            snapshot = first[leg_index]
+            feature: dict[str, Any] = {
+                "event_id": event["event_id"],
+                "event_date": event["event_date"],
+                "category": event["category"],
+                "ticker": context["ticker"],
+                "leg": context["leg"],
+                "boundary_hours_before_schedule": hours,
+                "schedule_source": event.get("schedule_source"),
+                "schedule_confidence": (
+                    "catalog_snapshot_observed_before_window"
+                    if parse_utc(
+                        event["schedule_observed_exchange_ts"],
+                        "schedule_observed_exchange_ts",
+                    ) <= left else "catalog_snapshot_observed_after_left"
+                ),
+                "full_depth_sequence_valid": False,
+                "full_depth_missing_reason": (
+                    "no ladder-bearing snapshot plus gap-free sequence "
+                    "epoch in the recovered July ws_depth archive"
+                ),
+                "top20_snapshot_available": False,
+                "own_historical_order_volume_attributable": False,
+                "hypothetical_own_posted_quantity": LOT,
+            }
+            if snapshot is None or mids[0] is None or mids[1] is None:
+                feature.update({
+                    "top5_available": False,
+                    "causal_post_utc": None,
+                    "causal_post_time_basis": (
+                        "local_premarket_ticks_receipt_et"
+                    ),
+                    "missing_reason": (
+                        "no causal top5 snapshot at/after left edge"
+                    ),
+                })
+            else:
+                timestamp = float(snapshot["ts"])
+                feature.update({
+                    "top5_available": True,
+                    "causal_post_utc": timestamp,
+                    "causal_post_time_basis": (
+                        "local_premarket_ticks_receipt_et"
+                    ),
+                    "minutes_to_scheduled_start": (
+                        scheduled - timestamp
+                    ) / 60,
+                    "market_mid_cents": mids[leg_index],
+                    "sibling_mid_cents": mids[1 - leg_index],
+                })
+                feature.update(depth_features(
+                    snapshot, context["snapshots"]
+                ))
+                feature.update(complement_normalized_features(
+                    snapshot, first[1 - leg_index]
+                ))
+                feature.update(trade_features(
+                    context["prints"], timestamp
+                ))
+                feature.update(shape_context(
+                    shape_table,
+                    str(event["category"]),
+                    float(mids[leg_index]),
+                    float(mids[1 - leg_index]),
+                    (scheduled - timestamp) / 60,
+                    (
+                        "favorite" if leg_index == favorite_index
+                        else "underdog"
+                    ),
+                ))
+                feature.update(macro_book_context(
+                    connection,
+                    str(event["event_id"]),
+                    context["ticker"],
+                    timestamp,
+                    float(mids[leg_index]),
+                ))
+            output.append(feature)
+    return output
+
+
+def build_feature_matrix_streamed(
+    events: Sequence[Mapping[str, Any]],
+    archive: PrintArchive,
+    premarket_dir: Path,
+    recovered_premarket_dir: Path,
+    starts_by_event: Mapping[str, Mapping[str, Any]],
+    shape_table: Mapping[str, Any],
+    connection: sqlite3.Connection,
+    starts: Sequence[int],
+    max_corridor: int,
+    depth_recorder_dir: Path,
+    feature_output: Path,
+    cache_root: Path,
+    cache_key: str,
+) -> tuple[dict[tuple[str, int, str], dict[str, Any]], dict[str, Any]]:
+    feature_rows: list[dict[str, Any]] = []
+    for event_index, event in enumerate(events, 1):
+        leg_data = load_event_market_data(
+            event, archive, premarket_dir, recovered_premarket_dir,
+            starts_by_event, starts, max_corridor, cache_root, cache_key,
+        )
+        feature_rows.extend(event_feature_rows(
+            event, leg_data, shape_table, connection, starts, max_corridor
+        ))
+        if event_index % 25 == 0 or event_index == len(events):
+            print(
+                f"feature_events={event_index}/{len(events)}",
+                flush=True,
+            )
+    top20_scan = apply_top20_features(
+        feature_rows, depth_recorder_dir
+    )
+    feature_output.parent.mkdir(parents=True, exist_ok=True)
+    with feature_output.open("w", encoding="utf-8", newline="\n") as handle:
+        for row in feature_rows:
+            handle.write(compact(row) + "\n")
+    feature_map = {
+        (
+            str(row["event_id"]),
+            int(row["boundary_hours_before_schedule"]),
+            str(row["ticker"]),
+        ): row
+        for row in feature_rows
+    }
+    if len(feature_map) != len(events) * len(starts) * 2:
+        raise FitError("streamed feature key cardinality changed")
+    return feature_map, top20_scan
+
+
+def contexts_for_event(
+    event: Mapping[str, Any],
+    leg_data: Sequence[Mapping[str, Any]],
+    starts: Sequence[int],
+    feature_map: Mapping[
+        tuple[str, int, str], Mapping[str, Any]
+    ],
+) -> dict[int, list[dict[str, Any]]]:
+    output: dict[int, list[dict[str, Any]]] = {}
+    event_id = str(event["event_id"])
+    for hours in starts:
+        rows = []
+        for context in leg_data:
+            ticker = str(context["ticker"])
+            feature = feature_map.get((event_id, int(hours), ticker))
+            if feature is None:
+                raise FitError(
+                    f"missing streamed feature: {event_id}/{hours}/{ticker}"
+                )
+            rows.append({
+                **context,
+                "feature": feature,
+            })
+        output[int(hours)] = rows
+    return output
+
+
+def evaluate_candidate_event_with_start(
+    candidate: Mapping[str, Any],
+    event: Mapping[str, Any],
+    contexts: Sequence[Mapping[str, Any]],
+    start: Mapping[str, Any],
+) -> dict[str, Any]:
+    hours = int(
+        candidate["window"]["left_edge_hours_before_schedule"]
+    )
+    corridor = int(
+        candidate["window"]["schedule_only_corridor_minutes"]
+    )
+    scheduled = parse_utc(
+        event["scheduled_start_exchange_ts"],
+        "scheduled_start_exchange_ts",
+    )
+    left = scheduled - hours * 3600
+    exact_right = (
+        parse_utc(start["verified_start_utc"], "verified_start_utc")
+        if start.get("verified_start_utc") else None
+    )
+    safe_right = (
+        parse_utc(
+            start["safe_prestart_cutoff_utc"],
+            "safe_prestart_cutoff_utc",
+        )
+        if start.get("safe_prestart_cutoff_utc") else None
+    )
+    known_live_by = (
+        parse_utc(start["known_live_by_utc"], "known_live_by_utc")
+        if start.get("known_live_by_utc") else None
+    )
+    boundary_exact = (
+        exact_right is not None
+        and start.get("boundary_censored") is False
+    )
+    boundary_safe = (
+        safe_right is not None
+        and start.get("contradiction") is not True
+    )
+    safe_inclusive = start.get("safe_prestart_cutoff_inclusive")
+    right = (
+        (
+            safe_right
+            if safe_inclusive is not False
+            else math.nextafter(safe_right, -math.inf)
+        ) if boundary_safe
+        else (known_live_by or scheduled + corridor * 60)
+    )
+    if boundary_safe and left >= right:
+        empty_legs = [
+            {
+                "status": "window_left_not_before_real_start",
+                "quantity": 0.0,
+                "cost": 0.0,
+                "vwap": None,
+                "first_fill_ts": None,
+                "completion_ts": None,
+            }
+            for _ in event["legs"]
+        ]
+        outcome = {
+            "candidate_id": str(candidate["candidate_id"]),
+            "event_id": str(event["event_id"]),
+            "event_date": event["event_date"],
+            "category": event["category"],
+            "shape_cell": contexts[0]["feature"].get("shape_cell"),
+            "lower_complete": False,
+            "observed_complete": False,
+            "upper_complete": False,
+            "upper_complete_with_known_price": False,
+            "censored": False,
+            "lower_metrics": None,
+            "upper_metrics": None,
+            "leg_references_cents": [None, None],
+            "lower_leg_results": empty_legs,
+            "upper_leg_results": empty_legs,
+        }
+    else:
+        outcome = event_candidate_outcome(
+            str(candidate["candidate_id"]),
+            candidate["policy"],
+            event,
+            contexts,
+            left, right, scheduled,
+        )
+    outcome["start_state"] = start["start_state"]
+    outcome["boundary_exact"] = boundary_exact
+    outcome["boundary_safe_prestart"] = boundary_safe
+    outcome["right_edge_utc"] = dt.datetime.fromtimestamp(
+        right, UTC
+    ).isoformat()
+    outcome["right_edge_time_basis"] = (
+        start.get("safe_prestart_cutoff_time_basis")
+        if boundary_safe else (
+            start.get("known_live_by_time_basis")
+            or "schedule_plus_declared_corridor"
+        )
+    )
+    outcome["right_edge_inclusive"] = (
+        True if not boundary_safe else safe_inclusive is not False
+    )
+    if not boundary_safe:
+        # A fill conditional on a one-sided/schedule bound is an upper
+        # bound only. It cannot enter observed C/NC/IC.
+        outcome["conditional_lower_queue_complete"] = outcome[
+            "lower_complete"
+        ]
+        outcome["conditional_lower_metrics"] = outcome["lower_metrics"]
+        outcome["lower_complete"] = False
+        outcome["observed_complete"] = False
+        outcome["lower_metrics"] = None
+        outcome["censored"] = True
+        if outcome.get("upper_metrics"):
+            upper = dict(outcome["upper_metrics"])
+            upper.update({
+                "reference_available": False,
+                "leg_deltas": None,
+                "pair_delta": None,
+                "NC": None,
+                "IC": None,
+            })
+            outcome["upper_metrics"] = upper
+    return outcome
+
+
 def evaluate_candidates(
     candidates: Sequence[Mapping[str, Any]],
     events: Sequence[Mapping[str, Any]],
@@ -1861,141 +2418,15 @@ def evaluate_candidates(
             hours = int(
                 candidate["window"]["left_edge_hours_before_schedule"]
             )
-            corridor = int(
-                candidate["window"]["schedule_only_corridor_minutes"]
-            )
             outcomes = []
             for event in events:
                 event_id = str(event["event_id"])
                 start = starts_by_event.get(event_id)
                 if start is None:
                     raise FitError(f"missing real-start row: {event_id}")
-                scheduled = parse_utc(
-                    event["scheduled_start_exchange_ts"],
-                    "scheduled_start_exchange_ts",
+                outcome = evaluate_candidate_event_with_start(
+                    candidate, event, contexts[(event_id, hours)], start
                 )
-                left = scheduled - hours * 3600
-                exact_right = (
-                    parse_utc(
-                        start["verified_start_utc"],
-                        "verified_start_utc",
-                    )
-                    if start.get("verified_start_utc") else None
-                )
-                safe_right = (
-                    parse_utc(
-                        start["safe_prestart_cutoff_utc"],
-                        "safe_prestart_cutoff_utc",
-                    )
-                    if start.get("safe_prestart_cutoff_utc") else None
-                )
-                known_live_by = (
-                    parse_utc(
-                        start["known_live_by_utc"],
-                        "known_live_by_utc",
-                    )
-                    if start.get("known_live_by_utc") else None
-                )
-                boundary_exact = (
-                    exact_right is not None
-                    and start.get("boundary_censored") is False
-                )
-                boundary_safe = (
-                    safe_right is not None
-                    and start.get("contradiction") is not True
-                )
-                safe_inclusive = start.get(
-                    "safe_prestart_cutoff_inclusive"
-                )
-                right = (
-                    (
-                        safe_right
-                        if safe_inclusive is not False
-                        else math.nextafter(safe_right, -math.inf)
-                    ) if boundary_safe
-                    else (
-                        known_live_by
-                        or scheduled + corridor * 60
-                    )
-                )
-                if boundary_safe and left >= right:
-                    empty_legs = [
-                        {
-                            "status": "window_left_not_before_real_start",
-                            "quantity": 0.0,
-                            "cost": 0.0,
-                            "vwap": None,
-                            "first_fill_ts": None,
-                            "completion_ts": None,
-                        }
-                        for _ in event["legs"]
-                    ]
-                    outcome = {
-                        "candidate_id": str(candidate["candidate_id"]),
-                        "event_id": event_id,
-                        "event_date": event["event_date"],
-                        "category": event["category"],
-                        "shape_cell": contexts[
-                            (event_id, hours)
-                        ][0]["feature"].get("shape_cell"),
-                        "lower_complete": False,
-                        "observed_complete": False,
-                        "upper_complete": False,
-                        "upper_complete_with_known_price": False,
-                        "censored": False,
-                        "lower_metrics": None,
-                        "upper_metrics": None,
-                        "leg_references_cents": [None, None],
-                        "lower_leg_results": empty_legs,
-                        "upper_leg_results": empty_legs,
-                    }
-                else:
-                    outcome = event_candidate_outcome(
-                        str(candidate["candidate_id"]),
-                        candidate["policy"],
-                        event,
-                        contexts[(event_id, hours)],
-                        left, right, scheduled,
-                    )
-                outcome["start_state"] = start["start_state"]
-                outcome["boundary_exact"] = boundary_exact
-                outcome["boundary_safe_prestart"] = boundary_safe
-                outcome["right_edge_utc"] = (
-                    dt.datetime.fromtimestamp(right, UTC).isoformat()
-                )
-                outcome["right_edge_time_basis"] = (
-                    start.get("safe_prestart_cutoff_time_basis")
-                    if boundary_safe else (
-                        start.get("known_live_by_time_basis")
-                        or "schedule_plus_declared_corridor"
-                    )
-                )
-                outcome["right_edge_inclusive"] = (
-                    True if not boundary_safe else safe_inclusive is not False
-                )
-                if not boundary_safe:
-                    # A fill conditional on a one-sided/schedule bound is an
-                    # upper bound only. It cannot enter observed C/NC/IC.
-                    outcome["conditional_lower_queue_complete"] = outcome[
-                        "lower_complete"
-                    ]
-                    outcome["conditional_lower_metrics"] = outcome[
-                        "lower_metrics"
-                    ]
-                    outcome["lower_complete"] = False
-                    outcome["observed_complete"] = False
-                    outcome["lower_metrics"] = None
-                    outcome["censored"] = True
-                    if outcome.get("upper_metrics"):
-                        upper = dict(outcome["upper_metrics"])
-                        upper.update({
-                            "reference_available": False,
-                            "leg_deltas": None,
-                            "pair_delta": None,
-                            "NC": None,
-                            "IC": None,
-                        })
-                        outcome["upper_metrics"] = upper
                 outcomes.append(outcome)
                 handle.write(compact(outcome) + "\n")
             summary = aggregate_candidate(candidate, outcomes)
@@ -2009,6 +2440,126 @@ def evaluate_candidates(
                 flush=True,
             )
     return summaries, outcome_map
+
+
+def evaluate_candidates_streamed(
+    candidates: Sequence[Mapping[str, Any]],
+    events: Sequence[Mapping[str, Any]],
+    archive: PrintArchive,
+    premarket_dir: Path,
+    recovered_premarket_dir: Path,
+    starts_by_event: Mapping[str, Mapping[str, Any]],
+    starts: Sequence[int],
+    max_corridor: int,
+    feature_map: Mapping[
+        tuple[str, int, str], Mapping[str, Any]
+    ],
+    cache_root: Path,
+    cache_key: str,
+    detail_output: Path,
+) -> list[dict[str, Any]]:
+    """Evaluate event-major and aggregate candidate-major from disk shards."""
+    detail_output.parent.mkdir(parents=True, exist_ok=True)
+    shard_root = detail_output.with_name(
+        detail_output.name + ".by_candidate"
+    )
+    shard_root.mkdir(parents=True, exist_ok=True, mode=0o700)
+    try:
+        os.chmod(shard_root, 0o700)
+    except OSError:
+        pass
+    shard_paths = [
+        shard_root / f"{index:04d}.jsonl"
+        for index in range(len(candidates))
+    ]
+    existing = [path for path in shard_paths if path.exists()]
+    if existing:
+        raise FitError(
+            "candidate detail shards already exist; preserve them and "
+            "choose a new detail output"
+        )
+    shard_handles = [
+        path.open("w", encoding="utf-8", newline="\n")
+        for path in shard_paths
+    ]
+    combined = detail_output.open("w", encoding="utf-8", newline="\n")
+    try:
+        for event_index, event in enumerate(events, 1):
+            event_id = str(event["event_id"])
+            start = starts_by_event.get(event_id)
+            if start is None:
+                raise FitError(f"missing real-start row: {event_id}")
+            leg_data = load_event_market_data(
+                event, archive, premarket_dir, recovered_premarket_dir,
+                starts_by_event, starts, max_corridor, cache_root,
+                cache_key,
+            )
+            contexts = contexts_for_event(
+                event, leg_data, starts, feature_map
+            )
+            for index, candidate in enumerate(candidates):
+                hours = int(
+                    candidate["window"][
+                        "left_edge_hours_before_schedule"
+                    ]
+                )
+                outcome = evaluate_candidate_event_with_start(
+                    candidate, event, contexts[hours], start
+                )
+                line = compact(outcome) + "\n"
+                combined.write(line)
+                shard_handles[index].write(line)
+            if event_index % 10 == 0 or event_index == len(events):
+                print(
+                    f"candidate_events={event_index}/{len(events)} "
+                    f"candidates={len(candidates)}",
+                    flush=True,
+                )
+    finally:
+        combined.close()
+        for handle in shard_handles:
+            handle.close()
+    for path in [detail_output, *shard_paths]:
+        try:
+            os.chmod(path, 0o600)
+        except OSError:
+            pass
+    summaries = []
+    for index, (candidate, path) in enumerate(
+        zip(candidates, shard_paths), 1
+    ):
+        outcomes = read_jsonl(path)
+        summary = aggregate_candidate(candidate, outcomes)
+        summaries.append(summary)
+        print(
+            f"candidate={index}/{len(candidates)} "
+            f"id={candidate['candidate_id']} "
+            f"C={summary['raw']['C']} NC={summary['raw']['NC']} "
+            f"censored={summary['raw']['censored']}",
+            flush=True,
+        )
+    manifest = {
+        "schema_version": RUNNER_VERSION + "-candidate-shards-v1",
+        "candidate_count": len(candidates),
+        "D_per_candidate": D_REQUIRED,
+        "combined_detail": str(detail_output.name),
+        "combined_detail_sha256": sha256_file(detail_output),
+        "shards": [
+            {
+                "candidate_id": str(candidate["candidate_id"]),
+                "file": path.name,
+                "sha256": sha256_file(path),
+            }
+            for candidate, path in zip(candidates, shard_paths)
+        ],
+    }
+    manifest_path = shard_root / "MANIFEST.json"
+    write_json(manifest_path, manifest)
+    try:
+        os.chmod(manifest_path, 0o600)
+    except OSError:
+        pass
+    return summaries
 
 
 def write_json(path: Path, value: Any) -> None:
@@ -2033,6 +2584,7 @@ def run(args: argparse.Namespace) -> int:
     summary_output = Path(args.summary_output).resolve()
     ablation_output = Path(args.ablation_output).resolve()
     coverage_output = Path(args.coverage_output).resolve()
+    event_cache_base = Path(args.event_cache_dir).resolve()
 
     validation = load_json(validation_path)
     if validation.get("gate_pass") is not True or validation.get("D") != 804:
@@ -2050,10 +2602,6 @@ def run(args: argparse.Namespace) -> int:
         ) == 1608
     ):
         raise FitError("public tape pagination/source gate failed")
-    if sha256_file(prints_path) != tape_manifest["artifacts"][
-            "normalized_true_prints"]["sha256"]:
-        raise FitError("normalized public tape hash mismatch")
-
     events = load_events(events_path)
     starts = read_jsonl(start_ledger_path)
     if len(starts) != D_REQUIRED:
@@ -2082,27 +2630,10 @@ def run(args: argparse.Namespace) -> int:
         int(value) for value in
         spec["boundary_grid"]["schedule_only_corridor_minutes"]
     ]
-    ticker_bounds = {}
-    for event in events:
-        scheduled = parse_utc(
-            event["scheduled_start_exchange_ts"],
-            "scheduled_start_exchange_ts",
-        )
-        start_row = starts_by_event[str(event["event_id"])]
-        horizons = [scheduled + max(corridors) * 60]
-        for field in (
-            "verified_start_utc", "known_live_by_utc",
-            "safe_prestart_cutoff_utc",
-        ):
-            if start_row.get(field):
-                horizons.append(parse_utc(start_row[field], field))
-        bounds = (
-            scheduled - max(starts) * 3600 - 301,
-            max(horizons) + 301,
-        )
-        for leg in event["legs"]:
-            ticker_bounds[str(leg["ticker"])] = bounds
-    prints = load_prints(prints_path, ticker_bounds)
+    expected_print_hash = tape_manifest["artifacts"][
+        "normalized_true_prints"
+    ]["sha256"]
+    archive = PrintArchive(prints_path, expected_print_hash)
     shape_prior = load_json(shape_prior_path)
     shape_table = shape_prior.get("table")
     if not isinstance(shape_table, dict):
@@ -2111,22 +2642,40 @@ def run(args: argparse.Namespace) -> int:
         "file:" + str(Path(args.database).resolve())
         + "?mode=ro&immutable=1"
     )
+    cache_receipt = {
+        "runner_version": RUNNER_VERSION,
+        "events_sha256": sha256_file(events_path),
+        "public_prints_sha256": archive.sha256,
+        "start_ledger_sha256": sha256_file(start_ledger_path),
+        "source_coverage_sha256": sha256_file(source_coverage_path),
+        "candidate_spec_sha256": sha256_file(candidate_spec_path),
+    }
+    cache_key = hashlib.sha256(
+        compact(cache_receipt).encode()
+    ).hexdigest()
+    event_cache_root = event_cache_base / cache_key
     connection = sqlite3.connect(database_uri, uri=True)
     try:
-        contexts, top20_scan = build_contexts(
-            events, prints, Path(args.premarket_dir).resolve(),
+        feature_map, top20_scan = build_feature_matrix_streamed(
+            events, archive, Path(args.premarket_dir).resolve(),
             Path(args.recovered_premarket_dir).resolve(),
             starts_by_event, shape_table, connection, starts,
             max(corridors),
             Path(args.depth_recorder_dir).resolve(),
             feature_output,
+            event_cache_root,
+            cache_key,
         )
     finally:
         connection.close()
 
     candidates = candidate_grid(spec)
-    summaries, outcome_map = evaluate_candidates(
-        candidates, events, contexts, starts_by_event, detail_output
+    summaries = evaluate_candidates_streamed(
+        candidates, events, archive,
+        Path(args.premarket_dir).resolve(),
+        Path(args.recovered_premarket_dir).resolve(),
+        starts_by_event, starts, max(corridors), feature_map,
+        event_cache_root, cache_key, detail_output,
     )
     selected = select_candidate(summaries)
     selected_candidate = next(
@@ -2134,18 +2683,6 @@ def run(args: argparse.Namespace) -> int:
         if candidate["candidate_id"] == selected["candidate_id"]
     )
     ablations = ablation_candidates(selected_candidate)
-    ablation_detail = detail_output.with_name(
-        detail_output.stem + ".ablations.jsonl"
-    )
-    ablation_summaries, _ = evaluate_candidates(
-        ablations, events, contexts, starts_by_event, ablation_detail
-    )
-    for row, candidate in zip(ablation_summaries, ablations):
-        row["ablation_family"] = candidate["ablation_family"]
-        row["change_vs_selected"] = {
-            key: row["raw"][key] - selected["raw"][key]
-            for key in ("C", "PC", "NC", "IC", "censored")
-        }
     causal_template = next(
         candidate["policy"] for candidate in candidates
         if candidate["boundary_id"] == selected["boundary_id"]
@@ -2155,12 +2692,39 @@ def run(args: argparse.Namespace) -> int:
     stage_candidates = instrument_stage_candidates(
         selected, causal_template
     )
+    diagnostic_candidates = [*ablations, *stage_candidates]
+    diagnostic_detail = detail_output.with_name(
+        detail_output.stem + ".diagnostics.jsonl"
+    )
+    diagnostic_summaries = evaluate_candidates_streamed(
+        diagnostic_candidates, events, archive,
+        Path(args.premarket_dir).resolve(),
+        Path(args.recovered_premarket_dir).resolve(),
+        starts_by_event, starts, max(corridors), feature_map,
+        event_cache_root, cache_key, diagnostic_detail,
+    )
+    ablation_summaries = diagnostic_summaries[:len(ablations)]
+    for row, candidate in zip(ablation_summaries, ablations):
+        row["ablation_family"] = candidate["ablation_family"]
+        row["change_vs_selected"] = {
+            key: row["raw"][key] - selected["raw"][key]
+            for key in ("C", "PC", "NC", "IC", "censored")
+        }
     stage_detail = detail_output.with_name(
         detail_output.stem + ".instrument_stages.jsonl"
     )
-    stage_summaries, _ = evaluate_candidates(
-        stage_candidates, events, contexts, starts_by_event, stage_detail
-    )
+    stage_summaries = diagnostic_summaries[len(ablations):]
+    # The combined diagnostic output is authoritative.  The legacy stage
+    # path is a small receipt that points at it rather than duplicating raw
+    # outcome evidence.
+    write_json(stage_detail, {
+        "schema_version": RUNNER_VERSION + "-stage-detail-pointer-v1",
+        "combined_diagnostic_detail": diagnostic_detail.name,
+        "combined_diagnostic_sha256": sha256_file(diagnostic_detail),
+        "stage_candidate_ids": [
+            row["candidate_id"] for row in stage_candidates
+        ],
+    })
     baseline_raw = stage_summaries[0]["raw"]
     for row, candidate in zip(stage_summaries, stage_candidates):
         row["instrument_stage"] = candidate["instrument_stage"]
@@ -2169,7 +2733,7 @@ def run(args: argparse.Namespace) -> int:
             for key in ("C", "PC", "NC", "IC", "censored")
         }
 
-    feature_rows = read_jsonl(feature_output)
+    feature_rows = list(feature_map.values())
     usable_full_depth = int(
         source_coverage.get("ticker_counts", {}).get(
             "ws_full_depth_usable", 0
@@ -2223,12 +2787,13 @@ def run(args: argparse.Namespace) -> int:
             "events": sha256_file(events_path),
             "validation": sha256_file(validation_path),
             "public_tape_manifest": sha256_file(tape_manifest_path),
-            "public_prints": sha256_file(prints_path),
+            "public_prints": archive.sha256,
             "candidate_spec": sha256_file(candidate_spec_path),
             "shape_prior": sha256_file(shape_prior_path),
             "start_ledger": sha256_file(start_ledger_path),
             "source_coverage": sha256_file(source_coverage_path),
             "database": sha256_file(Path(args.database).resolve()),
+            "event_cache_key": cache_key,
         },
     }
     output = {
@@ -2299,6 +2864,11 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--validation-summary", required=True)
     result.add_argument("--tape-manifest", required=True)
     result.add_argument("--prints", required=True)
+    result.add_argument(
+        "--event-cache-dir",
+        required=True,
+        help="owner-only derived event cache outside Git",
+    )
     result.add_argument("--start-ledger", required=True)
     result.add_argument("--source-coverage-summary", required=True)
     result.add_argument("--candidate-spec", required=True)

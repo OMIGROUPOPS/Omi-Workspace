@@ -1,8 +1,17 @@
 {
-  "schema_version": "window1-candidate-grid-v1",
+  "schema_version": "window1-candidate-grid-v2",
+  "fixed_context_inputs": {
+    "shape_prior_path": "arb-executor/data/shape_corpus/aim_v2_operational_LATCHCAL.json",
+    "shape_prior_sha256": "6183ddec56eaab2ad48432aa7c802ea6265e608fa26cdd960aa1dde866824356",
+    "shape_prior_authority_commit": "c8c91b3386d1ab36543f73317326d4a76bfe86db",
+    "shape_prior_authority_date": "2026-07-06T20:24:35-04:00",
+    "shape_prior_causal_law": "pre-development fixed context only; no July12-20 outcome may rebuild or alter it"
+  },
   "boundary_grid": {
     "left_edge_hours_before_schedule": [8, 6, 4, 2],
-    "schedule_only_corridor_minutes": [15, 30, 45, 60]
+    "schedule_only_corridor_minutes": [15, 30, 45, 60],
+    "right_edge_authority": "REAL_START_LEDGER.jsonl",
+    "schedule_corridor_role": "best-case bound only when no exact observed start exists; never an observed close"
   },
   "boundary_baseline_policy_id": "park_touch_simultaneous_hold",
   "policies": [
@@ -41,15 +50,7 @@
     {
       "policy_id": "shape_cell_simultaneous_hold",
       "placement_rule": "shape_cell_offset",
-      "shape_offsets": {
-        "flat": 2,
-        "riser": 0,
-        "faller": 4,
-        "violent_faller": 8,
-        "dip_recover": 3,
-        "late_collapse": 5,
-        "grind": 1
-      },
+      "placement_semantics": "rest at the pre-development LATCHCAL cell median-dip aim when its frozen cell is admissible; otherwise rest at touch",
       "sequence_rule": "simultaneous",
       "first_fill_response": "hold"
     },
@@ -90,18 +91,46 @@
       "sequence_rule": "simultaneous",
       "first_fill_response": "reaim_depth_support",
       "max_depth_cents": 5
+    },
+    {
+      "policy_id": "pressure_aware_simultaneous_hold",
+      "placement_rule": "pressure_aware",
+      "base_depth_cents": 0,
+      "ask_over_bid_threshold": 1.5,
+      "high_ask_pressure_depth_cents": 2,
+      "sequence_rule": "simultaneous",
+      "first_fill_response": "hold"
+    },
+    {
+      "policy_id": "causal_stack_simultaneous_reaim",
+      "placement_rule": "causal_stack",
+      "base_depth_cents": 1,
+      "ask_over_bid_threshold": 1.5,
+      "pressure_extra_depth_cents": 1,
+      "sequence_rule": "simultaneous",
+      "first_fill_response": "reaim_depth_support",
+      "max_depth_cents": 5
     }
   ],
   "feature_ablations": [
     "macrostructure",
-    "full_ladder_placement",
-    "below_top5_ladder",
-    "queue_and_own_volume",
-    "true_print_direction_size_tempo",
-    "replenishment_cancellation_absorption",
+    "limited_depth_pressure",
+    "true_print_decision_flow",
     "first_leg_fill_state",
-    "extreme_ask_over_bid_sanity_class"
+    "own_order_decision_attribution",
+    "full_depth_sequence"
   ],
+  "selection_rule": [
+    "maximize observed/proven N",
+    "maximize observed/proven C",
+    "maximize observed/proven I",
+    "maximize observed/proven P",
+    "minimize censored",
+    "lexicographic candidate_id"
+  ],
+  "selection_rule_declared_before_candidate_scoring": true,
+  "metric_relationship": "P, N and I are overlapping subsets of C; X is reported separately",
+  "boundary_censor_law": "a bounded or schedule-only right edge cannot contribute observed C, N or I; it remains in D and contributes only to explicit upper bounds",
   "dca": false,
   "window2_or_exit_inputs": false
 }

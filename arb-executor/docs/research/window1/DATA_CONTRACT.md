@@ -1,4 +1,4 @@
-# Window-1 normalized evidence contract v2
+# Window-1 normalized evidence contract v3
 
 The benchmark consumes UTF-8 JSON Lines under one private input directory.
 Every file is hashed before use. Malformed rows are mismatches. Credentials,
@@ -10,8 +10,9 @@ recorder archives remain outside Git.
 One row per exchange-catalog candidate event, not one row per observed tape
 file. Required fields are event_id, category, event_date,
 scheduled_start_exchange_ts, schedule_source, schedule_observed_exchange_ts,
-and two public legs. Known actual starts carry timestamp, source, and a
-verified flag.
+and two public legs. Actual-start evidence lives in a separate immutable
+start ledger so exact observations, one-sided bounds, contradictions, and
+schedule-only fallbacks cannot collapse into one timestamp.
 
 An exclusion requires either:
 
@@ -84,18 +85,33 @@ premarket_ticks is labeled top5. depth_recorder is labeled top20 and snapshot
 or change-deduplicated as applicable. They can support limited causal features
 but cannot prove full queue position.
 
+## Real-start ledger
+
+One row per event in D. It retains every candidate authority and selects by
+the declared precedence: exchange/event live transition; timestamped
+scoreboard first-in-play; other official observed start; corroborated tape
+regime bound; schedule plus declared corridor. Only an exact observed point
+can be an uncensored Window-1 right edge. A known-live-by or tape-onset time is
+a one-sided bound. `SCH` and other non-live milestone statuses are not exact
+starts.
+
 ## Validation laws
 
-The actual-outcome gate compares decisions and official exchange truth:
+The actual-outcome gate is evaluated at game/leg lifecycle grain. Every repost
+identity remains provenance, but churn does not manufacture new games or
+validation failures:
 
-1. every required leg has either an entry attempt or causal refusal/no-
-   placement receipt;
-2. every accepted order has official creation, terminal status, fill count,
-   and exact fills where applicable;
-3. every failed attempt has the required exchange clock and code;
-4. event, ticker, leg, price, quantity, status, first fill, completion, and
-   nonfill agree exactly;
-5. there are zero mismatch rows.
+1. FILL comes only from complete, paginated private fill receipts and must
+   reproduce exact price, quantity, and exchange time;
+2. NONFILL requires complete fill pagination, no position/quantity increase,
+   no entry-fill attribution, cancellation/sweep evidence, and no unmatched
+   settlement;
+3. otherwise the leg is CENSORED and its game remains in D;
+4. an exact causal refusal/no-placement is an exact noncompletion;
+5. every day fails closed if private-fill pagination or position
+   reconciliation is incomplete;
+6. event, ticker, leg, quantity, first fill, completion, and nonfill agree
+   exactly at lifecycle grain.
 
 Full-ladder replay is separately labeled exact, bounded, or unavailable. Its
 absence does not erase an official actual fill or cancellation. Strategy
@@ -114,8 +130,9 @@ pessimistic queue bound. Exact nonfill requires failure even under the
 optimistic bound. The interval is queue_unknown, never a fill.
 
 Zero/missing size contributes zero. Synthetic transitions contribute zero.
-Receipt identity deduplicates overlapping tape/WebSocket sources. Local receipt
-time does not order exchange events. Own volume is attributable only from
+Receipt identity deduplicates overlapping tape/WebSocket sources. Local
+receipt time is a conservative state-availability clock but does not
+establish order among exchange events. Own volume is attributable only from
 exact private engine fingerprints.
 
 ## Named defect checks
@@ -138,6 +155,16 @@ Policy outputs are physically separated into fit, ablation, and holdout files.
 Every event remains explicit as filled, not_filled, missing, unknown, thin,
 corrupt, or error. Each candidate uses the same D, required five-contract lot,
 clock, source law, and causal features.
+
+Every result prints raw `D`, `C`, `P`, `N`, `I`, and `X`. `P`, `N`, and `I`
+are overlapping subsets of `C`, not a partition:
+
+- `C`: both required legs fill exactly five contracts inside Window 1;
+- `P`: members of C whose combined entry VWAP is below 100;
+- `N`: members of C whose combined reference delta is negative;
+- `I`: members of C whose two individual-leg reference deltas are both
+  negative;
+- `X`: censored games, reported independently and never removed from D.
 
 No exit, settlement, Window-2, or realized-P-and-L field is accepted as an
 entry input. Holdout accepts only the committed fit freeze and its three

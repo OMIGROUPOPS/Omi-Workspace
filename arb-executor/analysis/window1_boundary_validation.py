@@ -423,7 +423,7 @@ def run(args: argparse.Namespace) -> int:
                 "worst": raw["NC"],
                 "observed": raw["NC"],
                 "best": raw["NC"] + sum(
-                    row["possible_C"] and not row["NC"]
+                    row["possible_C"] and not row["C"]
                     for row in event_rows
                 ),
             },
@@ -431,7 +431,7 @@ def run(args: argparse.Namespace) -> int:
                 "worst": raw["IC"],
                 "observed": raw["IC"],
                 "best": raw["IC"] + sum(
-                    row["possible_C"] and not row["IC"]
+                    row["possible_C"] and not row["C"]
                     for row in event_rows
                 ),
             },

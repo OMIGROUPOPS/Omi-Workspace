@@ -76,6 +76,8 @@ The complete offline census read all 215 immutable `ws_depth/` objects:
 - snapshot messages: 76,798;
 - internally corrupt gzip objects: 28;
 - sequence gaps: 76 across seven epochs;
+- required tickers with at least one retained WS row/delta: 1,608/1,608;
+- required tickers with a retained positive-size WS trade: 1,601/1,608;
 - snapshot messages retaining a nonempty ladder: zero;
 - required tickers with sequence-valid reconstructed full depth: 0/1,608.
 
@@ -102,4 +104,3 @@ before percentages:
 `PC`, `NC`, and `IC` overlap inside `C`; they do not partition `D`. No result
 from the formerly empty normalized bundle is a policy result or empirical
 ceiling.
-

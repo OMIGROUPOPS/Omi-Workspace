@@ -1,8 +1,11 @@
 # Window-1 repaired-source fit and freeze
 
-Freeze time: 2026-07-23T21:08:05.408699Z  
-Development period: 2026-07-12 through 2026-07-20  
-Immutable denominator: D=804  
+Freeze time: 2026-07-23T21:08:05.408699Z
+
+Development period: 2026-07-12 through 2026-07-20
+
+Immutable denominator: D=804
+
 Selected candidate: `tminus_8h__corridor_15m__walk_law_simultaneous_hold`
 
 This is a Window-1 entry report. It contains no Window-2, exit, settlement,

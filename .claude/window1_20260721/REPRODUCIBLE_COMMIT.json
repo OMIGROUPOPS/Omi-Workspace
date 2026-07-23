@@ -1,14 +1,24 @@
 {
   "authoritative_base_sha": "193e90da406214d2e5d9b2c7b5f752ddda046895",
-  "benchmark_commit_sha": "7cc92744733f680adfddcfde3d9f6744e1d8a0bd",
+  "fit_execution_commit_sha": "bf7898102c006ffee2dc68435c019a9d207cdc6b",
+  "frozen_artifact_commit_sha": "58eef38d811e0228ae4b99bed5f81fcef33fd263",
+  "audit_source_commit_sha": "ff0f336f45fde9d54ca2948949689172e8203aff",
   "production_evidence_commit_sha": "7def367c96d3a90f198c59c754109aa04b11e9f5",
   "corrected_event_ledger_sha256": "09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb",
-  "corrected_validation_mismatches": 1054,
+  "lifecycle_validation_mismatches": 0,
+  "fit_summary_sha256": "ccd12d7a034644549aba3da3991ac3a72beaec62aca6e36417d9dcc2677b0331",
+  "fit_freeze_sha256": "0a854b95896b52db5f053fa80778895d0bd2e20c9e3cdd73ea3e2b9dda93a0d1",
   "branch": "codex/window1-definition",
+  "holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "holdout_viewed": false,
   "test_commands": [
-    "python -B arb-executor/tests/test_window1_benchmark.py",
-    "python -B arb-executor/tests/test_window1_policy_runner.py"
+    "python -m pytest -q arb-executor/tests/test_window1_fit_benchmark.py arb-executor/tests/test_window1_freeze_fit.py",
+    "python -m pytest -q arb-executor/tests/test_window1_start_ledger.py arb-executor/tests/test_window1_source_coverage.py arb-executor/tests/test_window1_verify_spaces_materialization.py arb-executor/tests/test_window1_finalize_source_coverage.py"
   ],
   "production_touched": false,
-  "window2_or_exits_touched": false
+  "window2_exit_settlement_dca_touched": false
 }

@@ -35,6 +35,8 @@ bound must not be used as policy performance or a ceiling.
 The development fit executed with runner commit
 `bf7898102c006ffee2dc68435c019a9d207cdc6b` and fit-runner SHA-256
 `ef5539cd615bdcc05f5bbd2969bcbfd421658abd2dc95fd7178e3c2443af302d`.
+The complete frozen sanitized artifact set is commit
+`58eef38d811e0228ae4b99bed5f81fcef33fd263`.
 Audit source commit `ff0f336f45fde9d54ca2948949689172e8203aff`
 is absorbed on this branch. Use owner-only evidence paths outside Git:
 

@@ -1,26 +1,32 @@
 {
-  "schema_version": "window1-normalized-v2",
+  "schema_version": "window1-fit-forward-declaration-v3",
+  "amended_at_utc": "2026-07-23T17:57:18.437089Z",
   "declared_before_candidate_scoring": true,
+  "reason_for_amendment": "The old empty books/prints package was a normalization failure. Source recovery and lifecycle-grain validation now permit development scoring only after the pending source-coverage and real-start gates pass.",
   "development": {
     "start": "2026-07-12",
     "end": "2026-07-20",
     "role": "inspected_development_and_backwalk_history",
-    "candidate_scoring_viewed": false
+    "candidate_scoring_viewed": false,
+    "boundary_selection_policy_tuning_and_ablations_permitted": true
   },
   "forward_holdout": {
-    "selection_rule": "first three complete UTC dates strictly after the UTC date containing the fit freeze",
+    "selection_rule": "first three complete UTC dates strictly after the UTC date containing the committed fit freeze",
     "dates": null,
     "evaluation_count_allowed": 1,
     "viewed": false,
     "freeze_and_dates_must_be_committed_before_evaluation": true,
-    "dates_may_not_be_extended_after_viewing": true
+    "dates_may_not_be_extended_replaced_or_shopped_after_viewing": true,
+    "too_few_D_events_rule": "print the small sample; do not extend dates"
   },
-  "latest_complete_day_at_declaration": "2026-07-20",
   "development_denominator_frozen": true,
   "development_D": 804,
-  "development_ledger_sha256": "09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb",
-  "forward_denominator_frozen": false,
+  "development_event_ledger_sha256": "09671106b65b3f6ac6fc5f84fbae2248bca2c6466972f40076275b8991dbc5eb",
+  "development_event_leg_lifecycle_ledger_sha256": "52dfe9dfbb8a414b16ccd93ae0b136c7f980df0109d3cefa1167204d97121f5e",
+  "lifecycle_grain_gate_passed": true,
+  "source_coverage_gate_pending": true,
+  "real_start_gate_pending": true,
   "window1_selected_and_frozen": false,
-  "reason_not_frozen": "Corrected VPS validation gate failed with 1054 mismatches: 703 accepted orders missing terminal receipts, 335 unobserved required-leg decisions, 14 failed-attempt exchange-clock gaps, and 2 fill-receipt inconsistencies",
-  "scoring_permitted": false
+  "scoring_permitted_only_after_pending_gates": true,
+  "window2_exits_settlement_dca_used": false
 }

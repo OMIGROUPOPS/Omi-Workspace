@@ -1,5 +1,13 @@
 # Window-1 data integrity and provenance
 
+> **July 23 binding correction:** all 1,608 top-five objects are now
+> size/hash verified against Spaces. Complete public-tape pagination recovered
+> 4,836,462 positive-size true prints for 1,606 tickers. Of the 39 absent
+> Spaces trade files, 37 were archive gaps recovered through the public tape
+> and two were genuine zero-trade tickers. The zero-row bundle below is
+> retained only as pipeline-failure history and cannot support a performance,
+> ceiling, or distance-from-target claim.
+>
 > Superseded on 2026-07-22 by
 > arb-executor/docs/research/window1/CANONICAL_CORPUS_TRADEBOOK_MAP.md and
 > .claude/window1_20260721/RAW_TO_NORMALIZED_SOURCE_LEDGER.json. The prior

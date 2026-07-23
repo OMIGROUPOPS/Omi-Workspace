@@ -1,10 +1,11 @@
 {
-  "schema_version": "window1-normalized-v2",
+  "schema_version": "window1-forward-holdout-status-v3",
   "status": "untouched_not_run",
-  "date_selection_rule": "first three complete UTC dates strictly after the UTC date containing the fit freeze",
+  "date_selection_rule": "first three complete UTC dates strictly after the UTC date containing the committed fit freeze",
   "dates": null,
   "viewed": false,
   "evaluation_count": 0,
   "freeze_receipt_committed": false,
-  "reason": "corrected validation gate failed with 1054 mismatches and no development-only Window-1 freeze exists; July 18-20 is inspected development data"
+  "reason": "July 12-20 is inspected development data. Source coverage, real-start truth, lifecycle boundary reproduction, and development fit must complete before the freeze can preregister the forward dates.",
+  "extension_or_replacement_after_viewing_allowed": false
 }

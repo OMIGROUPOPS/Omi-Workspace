@@ -2577,6 +2577,9 @@ def run(args: argparse.Namespace) -> int:
     prints_path = Path(args.prints).resolve()
     start_ledger_path = Path(args.start_ledger).resolve()
     source_coverage_path = Path(args.source_coverage_summary).resolve()
+    materialization_path = Path(
+        args.spaces_materialization_summary
+    ).resolve()
     candidate_spec_path = Path(args.candidate_spec).resolve()
     shape_prior_path = Path(args.shape_prior).resolve()
     feature_output = Path(args.feature_output).resolve()
@@ -2621,6 +2624,16 @@ def run(args: argparse.Namespace) -> int:
         or source_coverage.get("required_tickers") != 1608
     ):
         raise FitError("source coverage gate changed D/ticker count")
+    materialization = load_json(materialization_path)
+    if not (
+        materialization.get("all_exact") is True
+        and materialization.get("prefix") == "ticks"
+        and materialization.get("object_count") == 1608
+        and materialization.get("states") == {
+            "exact_spaces_object": 1608
+        }
+    ):
+        raise FitError("Spaces top-five materialization gate failed")
     spec = load_json(candidate_spec_path)
     starts = [
         int(value) for value in
@@ -2648,6 +2661,9 @@ def run(args: argparse.Namespace) -> int:
         "public_prints_sha256": archive.sha256,
         "start_ledger_sha256": sha256_file(start_ledger_path),
         "source_coverage_sha256": sha256_file(source_coverage_path),
+        "spaces_materialization_sha256": sha256_file(
+            materialization_path
+        ),
         "candidate_spec_sha256": sha256_file(candidate_spec_path),
     }
     cache_key = hashlib.sha256(
@@ -2792,6 +2808,9 @@ def run(args: argparse.Namespace) -> int:
             "shape_prior": sha256_file(shape_prior_path),
             "start_ledger": sha256_file(start_ledger_path),
             "source_coverage": sha256_file(source_coverage_path),
+            "spaces_materialization": sha256_file(
+                materialization_path
+            ),
             "database": sha256_file(Path(args.database).resolve()),
             "event_cache_key": cache_key,
         },
@@ -2871,6 +2890,9 @@ def parser() -> argparse.ArgumentParser:
     )
     result.add_argument("--start-ledger", required=True)
     result.add_argument("--source-coverage-summary", required=True)
+    result.add_argument(
+        "--spaces-materialization-summary", required=True
+    )
     result.add_argument("--candidate-spec", required=True)
     result.add_argument("--shape-prior", required=True)
     result.add_argument("--premarket-dir", required=True)

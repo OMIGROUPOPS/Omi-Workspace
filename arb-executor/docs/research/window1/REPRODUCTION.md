@@ -10,6 +10,26 @@ Do not run this in the production checkout. Use a detached research worktree
 and private evidence under /srv/omi-research. Never copy raw identities,
 account payloads, logs, databases, or recorder archives into Git.
 
+## July 23 supersession
+
+The commands and stop law below reproduce the earlier lifecycle-grain
+correction, but their assertion that counterfactual book/print evidence was
+unavailable is superseded. Audit commit
+`ff0f336f45fde9d54ca2948949689172e8203aff` located the Spaces sources; the
+primary lane then completed the direct public-tape pagination and immutable
+object manifest. The binding execution order is now:
+
+1. verify the Spaces materialization against the committed object hashes;
+2. build the per-game source-coverage ledger from the frozen databases and
+   recovered recorders;
+3. build the causal real-start ledger without treating first trade as start;
+4. rerun actual lifecycle reproduction against those right edges;
+5. only if all gates pass, run the event-streamed fit instrument.
+
+`D=804` never changes. `PC`, `NC`, and `IC` overlap within `C`; `X` remains a
+separate censored count inside `D`. The historical 4.9%-17.0% reproduction
+bound must not be used as policy performance or a ceiling.
+
 ## Research worktree
 
     export RESEARCH_ROOT=/srv/omi-research/window1-independent-review

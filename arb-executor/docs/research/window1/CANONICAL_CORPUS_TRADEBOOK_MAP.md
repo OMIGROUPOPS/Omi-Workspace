@@ -4,6 +4,42 @@ Audit date: 2026-07-22 UTC
 Evidence chronology: production commit 7def367c96d3a90f198c59c754109aa04b11e9f5
 Path policy: public logical aliases only; raw/private absolute paths are omitted
 
+## Superseding July 23 source-recovery receipt
+
+The empty normalized `books.jsonl` and `prints.jsonl` package is not evidence
+that July market data was absent. Independent audit commit
+`ff0f336f45fde9d54ca2948949689172e8203aff` proved that the normalizer had read
+rotated local storage and had imposed a private-receipt requirement on public
+prints. The primary lane then independently enumerated and hash-pinned the
+recovered objects:
+
+- `ticks/`: 1,608/1,608 required leg-tickers, giving both BBO and sized
+  top-five depth for 804/804 games;
+- `trades/`: 1,569/1,608 required leg-tickers;
+- `ws_depth/`: 215 July 12-20 hourly objects, classified as
+  `RAW_WS_DELTA` unless a ladder-bearing snapshot and gap-free sequence epoch
+  prove more;
+- direct public exchange tape: 4,836,462 positive-size true-print rows across
+  1,606/1,608 tickers, 5,678 completely paginated pages, SHA-256
+  `e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55`.
+
+The audit's statement that all 39 missing Spaces trade files were zero-trade
+markets was too broad. Complete public-tape pagination proves that 37 were
+Spaces archive gaps recovered by the public endpoint. Exactly two tickers had
+zero returned trades. Public prints are normalized by public exchange
+`trade_id`, ticker, exchange `created_time`, price, positive size, and taker
+side. A private order or fill receipt is neither present nor required.
+
+The direct tape supplies causal execution evidence, not match-start truth.
+First trade and first `last_trade` appearance remain corroborating regime
+observations only because premarket trading is lawful. The real-start ledger
+uses live-score, first-in-play, official milestone, lifecycle, and bounded
+schedule evidence under the precedence in `WINDOW1_SPEC.md`.
+
+The old 4.9%-17.0% range came from the empty-source/schedule-bound package. It
+is retracted as candidate performance, an empirical ceiling, and evidence of
+distance from the 75% target.
+
 ## Authority finding
 
 There is no single January-present subsecond database on the VPS. The

@@ -1,0 +1,19 @@
+{
+  "all_exact": true,
+  "input_manifest_sha256": "c446bee12c9d474b42e77145b83be0f71c21f0c6256ea515ced81d7d720a57ef",
+  "logical_materializations": {
+    "production_local_read_only": 1488,
+    "spaces_recovered_private": 120
+  },
+  "object_count": 1608,
+  "output_ledger_sha256": "939daccfee17aea10125ace1526bf151112f207893acca3c374a79cd29bab2b9",
+  "prefix": "ticks",
+  "privacy": {
+    "credentials_or_account_data_emitted": false,
+    "raw_absolute_paths_emitted": false
+  },
+  "schema_version": "window1-spaces-materialization-v1",
+  "states": {
+    "exact_spaces_object": 1608
+  }
+}

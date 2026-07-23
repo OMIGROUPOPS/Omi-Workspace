@@ -922,7 +922,8 @@ def price_for_policy(
     elif rule == "pressure_aware":
         ratio = (
             feature.get("ask_over_bid_limited_top20")
-            if not policy.get("ablate_pressure")
+            if policy.get("use_top20_pressure", True)
+            and not policy.get("ablate_pressure")
             and feature.get("top20_snapshot_available")
             else feature.get("ask_over_bid_top5")
         )
@@ -941,7 +942,8 @@ def price_for_policy(
             price = min(price, int(round(float(aim))))
         ratio = (
             feature.get("ask_over_bid_limited_top20")
-            if not policy.get("ablate_pressure")
+            if policy.get("use_top20_pressure", True)
+            and not policy.get("ablate_pressure")
             and feature.get("top20_snapshot_available")
             else feature.get("ask_over_bid_top5")
         )
@@ -1622,6 +1624,63 @@ def ablation_candidates(
     return out
 
 
+def instrument_stage_candidates(
+    selected: Mapping[str, Any],
+    causal_template: Mapping[str, Any],
+) -> list[dict[str, Any]]:
+    """Hold mechanics/boundary fixed while adding feature tiers."""
+    stages = []
+    definitions = [
+        (
+            "bbo_prints_baseline",
+            {"ablate_macrostructure": True, "ablate_pressure": True},
+        ),
+        (
+            "top5_pressure_enhancement",
+            {
+                "ablate_macrostructure": True,
+                "ablate_pressure": False,
+                "use_top20_pressure": False,
+            },
+        ),
+        (
+            "limited_top20_pressure_enhancement",
+            {
+                "ablate_macrostructure": True,
+                "ablate_pressure": False,
+                "use_top20_pressure": True,
+            },
+        ),
+        (
+            "full_causal_stack",
+            {
+                "ablate_macrostructure": False,
+                "ablate_pressure": False,
+                "use_top20_pressure": True,
+            },
+        ),
+    ]
+    for stage, overrides in definitions:
+        policy = dict(causal_template)
+        policy.update(overrides)
+        # Keep the sibling response on BBO touch so the feature-stage
+        # comparison does not silently introduce top-five support selection.
+        policy["first_fill_response"] = "reaim_touch"
+        policy["policy_id"] = (
+            str(causal_template["policy_id"]) + "__stage__" + stage
+        )
+        stages.append({
+            "candidate_id": (
+                str(selected["boundary_id"]) + "__stage__" + stage
+            ),
+            "boundary_id": selected["boundary_id"],
+            "window": dict(selected["window"]),
+            "policy": policy,
+            "instrument_stage": stage,
+        })
+    return stages
+
+
 def build_contexts(
     events: Sequence[Mapping[str, Any]],
     prints: Mapping[str, Sequence[Mapping[str, Any]]],
@@ -1845,8 +1904,15 @@ def evaluate_candidates(
                     safe_right is not None
                     and start.get("contradiction") is not True
                 )
+                safe_inclusive = start.get(
+                    "safe_prestart_cutoff_inclusive"
+                )
                 right = (
-                    safe_right if boundary_safe
+                    (
+                        safe_right
+                        if safe_inclusive is not False
+                        else math.nextafter(safe_right, -math.inf)
+                    ) if boundary_safe
                     else (
                         known_live_by
                         or scheduled + corridor * 60
@@ -1903,6 +1969,9 @@ def evaluate_candidates(
                         start.get("known_live_by_time_basis")
                         or "schedule_plus_declared_corridor"
                     )
+                )
+                outcome["right_edge_inclusive"] = (
+                    True if not boundary_safe else safe_inclusive is not False
                 )
                 if not boundary_safe:
                     # A fill conditional on a one-sided/schedule bound is an
@@ -2077,6 +2146,28 @@ def run(args: argparse.Namespace) -> int:
             key: row["raw"][key] - selected["raw"][key]
             for key in ("C", "PC", "NC", "IC", "censored")
         }
+    causal_template = next(
+        candidate["policy"] for candidate in candidates
+        if candidate["boundary_id"] == selected["boundary_id"]
+        and candidate["policy"]["policy_id"]
+        == "causal_stack_simultaneous_reaim"
+    )
+    stage_candidates = instrument_stage_candidates(
+        selected, causal_template
+    )
+    stage_detail = detail_output.with_name(
+        detail_output.stem + ".instrument_stages.jsonl"
+    )
+    stage_summaries, _ = evaluate_candidates(
+        stage_candidates, events, contexts, starts_by_event, stage_detail
+    )
+    baseline_raw = stage_summaries[0]["raw"]
+    for row, candidate in zip(stage_summaries, stage_candidates):
+        row["instrument_stage"] = candidate["instrument_stage"]
+        row["change_vs_bbo_prints_baseline"] = {
+            key: row["raw"][key] - baseline_raw[key]
+            for key in ("C", "PC", "NC", "IC", "censored")
+        }
 
     feature_rows = read_jsonl(feature_output)
     usable_full_depth = int(
@@ -2191,6 +2282,7 @@ def run(args: argparse.Namespace) -> int:
         "runner_version": RUNNER_VERSION,
         "selected_candidate_id": selected["candidate_id"],
         "ablations": ablation_summaries,
+        "instrument_stages": stage_summaries,
     })
     write_json(coverage_output, coverage)
     print(json.dumps({

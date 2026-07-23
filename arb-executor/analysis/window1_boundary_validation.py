@@ -133,6 +133,16 @@ def final_reference(
     return result
 
 
+def effective_safe_cutoff(start: dict[str, Any]) -> float | None:
+    cutoff = parse_epoch(start.get("safe_prestart_cutoff_utc"))
+    if (
+        cutoff is not None
+        and start.get("safe_prestart_cutoff_inclusive") is False
+    ):
+        return math.nextafter(cutoff, -math.inf)
+    return cutoff
+
+
 def classify_leg(
     lifecycle: dict[str, Any],
     start: dict[str, Any],
@@ -142,7 +152,7 @@ def classify_leg(
     completion = parse_epoch(lifecycle.get("completion_exchange_ts"))
     first_fill = parse_epoch(lifecycle.get("first_fill_exchange_ts"))
     exact_start = parse_epoch(start.get("verified_start_utc"))
-    safe_cutoff = parse_epoch(start.get("safe_prestart_cutoff_utc"))
+    safe_cutoff = effective_safe_cutoff(start)
     known_live_by = parse_epoch(start.get("known_live_by_utc"))
     if status == "exact_nonfill":
         ruling = "exact_window1_nonfill"
@@ -221,7 +231,7 @@ def classify_leg(
         ),
         "boundary_censored": start["boundary_censored"],
         "first_fill_precedes_exact_start": (
-            first_fill <= exact_start
+            first_fill < exact_start
             if first_fill is not None and exact_start is not None else None
         ),
         "first_fill_at_or_after_left_edge": (
@@ -251,7 +261,7 @@ def run(args: argparse.Namespace) -> int:
         raise ValidationError("duplicate start ledger event")
     reference_bounds = {}
     for start in starts:
-        exact = parse_epoch(start.get("safe_prestart_cutoff_utc"))
+        exact = effective_safe_cutoff(start)
         scheduled = parse_epoch(start.get("scheduled_start_exchange_ts"))
         if exact is None or scheduled is None:
             continue
@@ -298,9 +308,7 @@ def run(args: argparse.Namespace) -> int:
                 float(row["official_fill_vwap_cents"]) for row in legs
             ]
             combined = sum(prices)
-            exact_start = parse_epoch(
-                start["safe_prestart_cutoff_utc"]
-            )
+            exact_start = effective_safe_cutoff(start)
             scheduled = parse_epoch(
                 start["scheduled_start_exchange_ts"]
             )

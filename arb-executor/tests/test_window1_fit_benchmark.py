@@ -109,6 +109,34 @@ def test_selection_prioritizes_negative_pair_capture():
     assert MODULE.select_candidate(rows)["candidate_id"] == "negative-capture"
 
 
+def test_instrument_stages_hold_boundary_and_mechanics_fixed():
+    selected = {
+        "boundary_id": "b",
+        "window": {"left_edge_hours_before_schedule": 4},
+    }
+    template = {
+        "policy_id": "causal_stack_simultaneous_reaim",
+        "placement_rule": "causal_stack",
+        "sequence_rule": "simultaneous",
+        "first_fill_response": "reaim_depth_support",
+    }
+    rows = MODULE.instrument_stage_candidates(selected, template)
+    assert [row["instrument_stage"] for row in rows] == [
+        "bbo_prints_baseline",
+        "top5_pressure_enhancement",
+        "limited_top20_pressure_enhancement",
+        "full_causal_stack",
+    ]
+    assert {row["boundary_id"] for row in rows} == {"b"}
+    assert rows[0]["policy"]["placement_rule"] == (
+        rows[-1]["policy"]["placement_rule"]
+    )
+    assert {row["policy"]["first_fill_response"] for row in rows} == {
+        "reaim_touch"
+    }
+    assert rows[1]["policy"]["use_top20_pressure"] is False
+
+
 def test_sibling_book_is_mapped_into_one_economic_direction():
     own = snapshot(bid=40, ask=42)
     sibling = snapshot(bid=57, ask=59)

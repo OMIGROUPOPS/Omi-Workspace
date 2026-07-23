@@ -32,6 +32,11 @@ def start(state, exact=None, bound=None, safe=None):
         "verified_start_utc": exact,
         "known_live_by_utc": bound,
         "safe_prestart_cutoff_utc": safe or exact,
+        "safe_prestart_cutoff_inclusive": (
+            False if exact is not None
+            else True if safe is not None
+            else None
+        ),
         "boundary_censored": state != "verified_exact",
     }
 
@@ -68,6 +73,15 @@ def test_fill_before_not_live_through_bound_is_proven_prestart():
         module.parse_epoch("2026-07-12T09:00:00Z"),
     )
     assert row["proven_window1_fill_five"] is True
+
+
+def test_exact_start_timestamp_is_exclusive():
+    row = module.classify_leg(
+        life("exact_filled_five", 200),
+        start("verified_exact", exact=200),
+        100,
+    )
+    assert row["proven_window1_fill_five"] is False
 
 
 def test_all_time_nonfill_is_window1_nonfill_without_exact_start():

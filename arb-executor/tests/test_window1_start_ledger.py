@@ -33,6 +33,7 @@ def test_exact_precedes_bound_and_schedule():
     assert result["start_state"] == "verified_exact"
     assert result["selected_source"] == "first_point"
     assert result["boundary_censored"] is False
+    assert result["safe_prestart_cutoff_inclusive"] is False
 
 
 def test_schedule_fallback_is_censored():
@@ -129,6 +130,7 @@ def test_bounded_interval_exposes_only_the_proven_prestart_cutoff():
     assert module.parse_epoch(ruling["known_live_by_utc"]) == 180
     assert module.parse_epoch(ruling["safe_prestart_cutoff_utc"]) == 120
     assert ruling["definitely_prestart_scoring_available"] is True
+    assert ruling["safe_prestart_cutoff_inclusive"] is True
 
 
 def test_milestone_shadow_accepts_fresh_live_and_rejects_stale_live(

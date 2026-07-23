@@ -1142,6 +1142,11 @@ def choose_start(
                 if not_live_winner is not None else None
             )
         ),
+        "safe_prestart_cutoff_inclusive": (
+            False if right_edge is not None
+            else True if not_live_winner is not None
+            else None
+        ),
         "start_interval_utc": {
             "lower_exclusive": iso_utc(
                 not_live_winner["timestamp"]

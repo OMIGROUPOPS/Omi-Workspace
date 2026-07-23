@@ -104,3 +104,48 @@ before percentages:
 `PC`, `NC`, and `IC` overlap inside `C`; they do not partition `D`. No result
 from the formerly empty normalized bundle is a policy result or empirical
 ceiling.
+
+## Real-start ledger
+
+The immutable start ledger applies the declared authority order and does not
+promote first trade, first `last_trade`, or a current-state score receipt into
+an exact match start. Its 804 rows classify as:
+
+- 29 `verified_exact`;
+- 79 `bounded_start_interval`;
+- 625 `bounded_live_by_timestamp`;
+- 71 `schedule_only_censored`.
+
+There are 775 boundary-censored events and 32 source contradictions.
+Seventy-six events have at least one defensible definitely-prestart cutoff;
+the remaining games stay in `D` but cannot contribute an observed/proven
+counterfactual result. Any upper result conditional on a known-live or
+schedule corridor is censored.
+
+The exact-start evidence consists of 21 exchange milestone live transitions
+and eight consistent official milestone start timestamps. TE observed-inplay,
+scoreboard current state, live-feed transitions, engine regime transitions,
+and tape onset supply one-sided or corroborating bounds only. The complete
+public-tape onset detector found a regime bound for 672 events, but none is
+called the start.
+
+The start-ledger SHA-256 is
+`90a943b598baa8debe1acd08fa4b664d3661cd3762c2e5ab54e54d781819b947`.
+
+## Mayo/Michelsen post-sample forensic
+
+`KXATPCHALLENGERMATCH-26JUL21MICMAY` is outside the July 12-20 denominator.
+The independent official start is 2026-07-21 23:00:00Z (19:00 ET). The engine
+instead ingested a 22:00 ET expected-expiration/end clock as the match start.
+
+- Mayo placement: 23:36:19.955995Z, post-start;
+- Michelsen placement: 23:36:21.502612Z, post-start;
+- Mayo five-contract fill/adoption known to the engine by
+  23:37:30.792977Z, post-start (the exact exchange fill timestamp is not
+  retained in this log);
+- Michelsen successful sweep cancellation: 02:01:12.049553Z on July 22,
+  post-start.
+
+Thus the Mayo purchase and the persistent Michelsen sibling bid were not
+lawful Window-1 actions. This forensic is diagnostic only and is not joined
+into `D=804`.

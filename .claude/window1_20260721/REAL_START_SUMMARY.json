@@ -1,0 +1,177 @@
+{
+  "D": 804,
+  "boundary_censored_events": 775,
+  "contradictory_events": 32,
+  "definitely_prestart_scorable_events": 76,
+  "laws": {
+    "all_events_remain_in_D": true,
+    "bounded_action_is_scorable_only_if_complete_at_or_before_safe_prestart_cutoff": true,
+    "first_market_trade_alone_is_start": false,
+    "live_scores_last_updated_is_exact_start": false,
+    "post_known_live_placement_is_window1": false,
+    "schedule_only_is_observed": false
+  },
+  "ledger_sha256": "90a943b598baa8debe1acd08fa4b664d3661cd3762c2e5ab54e54d781819b947",
+  "log_scan": {
+    "files": [
+      {
+        "logical_name": "live_v3_20260712.jsonl.gz",
+        "physical_lines_scanned": 53572,
+        "pinned_prefix_bytes": null,
+        "scanned_bytes_sha256": "0c3f308fbc9f231a68d234f37ffb587fc6b6b87e94baf7bc1e2b767dde3554b6",
+        "selected_rows": 421
+      },
+      {
+        "logical_name": "live_v3_20260713.jsonl.gz",
+        "physical_lines_scanned": 372864,
+        "pinned_prefix_bytes": null,
+        "scanned_bytes_sha256": "f5e3e7396d4b9e2ef904b1fa1a584fe138cc4221f9b3bc0b43548fa10af0200f",
+        "selected_rows": 1231
+      },
+      {
+        "logical_name": "live_v3_20260714.jsonl.gz",
+        "physical_lines_scanned": 425356,
+        "pinned_prefix_bytes": null,
+        "scanned_bytes_sha256": "0e449b5044725fa67eab1f8dcfca907fbcaba1b3f43aa08ce170a88e1500344d",
+        "selected_rows": 1364
+      },
+      {
+        "logical_name": "live_v3_20260715.jsonl.gz",
+        "physical_lines_scanned": 789315,
+        "pinned_prefix_bytes": null,
+        "scanned_bytes_sha256": "34513d4bb8188fb3b595b5faf01d6595dab5a9fcf7e54b6493986807096dffff",
+        "selected_rows": 718
+      },
+      {
+        "logical_name": "live_v3_20260716.jsonl.gz",
+        "physical_lines_scanned": 53368,
+        "pinned_prefix_bytes": null,
+        "scanned_bytes_sha256": "9535e4451de37def55502f415afac7b4f41e790726cf8e71af75d333110a9c4b",
+        "selected_rows": 331
+      },
+      {
+        "logical_name": "live_v3_20260717.jsonl.gz",
+        "physical_lines_scanned": 211116,
+        "pinned_prefix_bytes": null,
+        "scanned_bytes_sha256": "16abce47f6f3bfe4334766c103f6327cfede112c2a5b75e1888e565a59b00f64",
+        "selected_rows": 767
+      },
+      {
+        "logical_name": "live_v3_20260718.jsonl.gz",
+        "physical_lines_scanned": 319066,
+        "pinned_prefix_bytes": null,
+        "scanned_bytes_sha256": "6b5661d92954336a256348ab8bf9f72759753bafb4aa05d027af166adfdbdd9c",
+        "selected_rows": 516
+      },
+      {
+        "logical_name": "live_v3_20260718_part2_recovered.jsonl.gz",
+        "physical_lines_scanned": 421020,
+        "pinned_prefix_bytes": null,
+        "scanned_bytes_sha256": "176b967eb8aa9171aa8f64f82aee241a2519cb24c40728134645f48fef580a6b",
+        "selected_rows": 572
+      },
+      {
+        "logical_name": "live_v3_20260720.jsonl",
+        "physical_lines_scanned": 725394,
+        "pinned_prefix_bytes": 318840280,
+        "scanned_bytes_sha256": "71576567e865bb69efcb6afddd6caf0057268363f5d84c8767f1645e85c1d0cd",
+        "selected_rows": 497
+      }
+    ],
+    "parse_errors": 0,
+    "physical_lines_scanned": 3371071,
+    "selected_rows": 6417
+  },
+  "milestone_shadow": {
+    "accepted_exact_rows": 10,
+    "accepted_not_live_rows": 252,
+    "available": true,
+    "parse_errors": 2,
+    "physical_rows": 1442,
+    "rejected_rows": 218,
+    "required_event_rows": 480,
+    "required_events": 248,
+    "sha256": "a0934f7a372655a62213d0edb0756b050279165baf2e335324682b14a7d3dcb1",
+    "status_counts": {
+      "<missing>": 102,
+      "cancelled": 2,
+      "ended": 2,
+      "interrupted": 6,
+      "live": 42,
+      "not_started": 326
+    }
+  },
+  "observed_starts_ambiguous_rows": 36,
+  "observed_starts_db_rows_in_scan": 61,
+  "observed_starts_uniquely_joined_rows": 10,
+  "precedence": [
+    "exchange milestone status live/P with official timestamp",
+    "timestamped scoreboard/first-point evidence when its source carries an actual point clock",
+    "TE first-observed-inplay collector receipt as a one-sided known-live-by bound",
+    "one-sided live-feed transition bound",
+    "identity-deduplicated verified-size public-tape regime bound",
+    "schedule plus declared corridor fallback"
+  ],
+  "public_milestone_export": {
+    "accepted_exact_rows": 0,
+    "accepted_not_live_rows": 0,
+    "available": true,
+    "manifest_sha256": "8b31e859e304942c4b447ea5b82a38b38a3b523502b0ddb0c5a0c22a8ca7f99e",
+    "normalized_sha256": "34d52b35e05bbef854ba4467f1e7f715d54f7ef433741a99b809a3cec922a4c5",
+    "pagination_complete": true,
+    "rejected_rows": 804,
+    "required_events_with_rows": 803,
+    "row_count": 804,
+    "status_counts": {
+      "<missing>": 139,
+      "cancelled": 16,
+      "ended": 4,
+      "live": 226,
+      "not_started": 419
+    }
+  },
+  "public_tape_onset_events": 672,
+  "public_tape_receipt": {
+    "available": true,
+    "manifest_sha256": "d2a3bd4b156f312fce3bbb8a8875114904ac39f2ed5b36801799d9a905e4d575",
+    "normalized_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+    "pagination_complete": true
+  },
+  "schema_version": "window1-real-start-ledger-v2",
+  "selected_source_counts": {
+    "engine_regime_transition:fallback_bell": 188,
+    "engine_regime_transition:percat_fitted": 79,
+    "engine_regime_transition:price_divergence": 7,
+    "engine_regime_transition:self_fill": 10,
+    "engine_regime_transition:tape_flow": 3,
+    "engine_regime_transition:tape_latch": 3,
+    "exchange_milestone_live_transition": 21,
+    "milestone_shadow_official_start": 8,
+    "observed_starts_db_first_observed_inplay": 10,
+    "public_tape_5_prints_in_15m_onset": 316,
+    "schedule_feed_live_transition": 6,
+    "schedule_plus_declared_corridor": 71,
+    "te_scoreboard_first_observed_inplay": 13,
+    "tennis_db_live_scores_current_state": 69
+  },
+  "state_counts": {
+    "bounded_live_by_timestamp": 625,
+    "bounded_start_interval": 79,
+    "schedule_only_censored": 71,
+    "verified_exact": 29
+  },
+  "tennis_db_live_scores": {
+    "ambiguous_or_unmapped_rows": 2310,
+    "available": true,
+    "physical_rows": 2383,
+    "producer_semantics": "te_live.py INSERT OR REPLACE current-state row; last_updated is a local scrape receipt and not first-point history",
+    "sha256": "f4385843ea8312175897edd874a34c70b99a74b30417fdd9ec6a878db9875815",
+    "uniquely_joined_events": 71
+  },
+  "ws_lifecycle": {
+    "available": true,
+    "event_rows": 804,
+    "events_with_live_transition": 0,
+    "sha256": "02a07ff63d9ea7475f26704cfe01f8a514477b6af0069ab66cc336118f57fab2"
+  }
+}

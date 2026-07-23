@@ -1,24 +1,565 @@
 {
-  "authoritative_for_July12_20_validation": false,
-  "development_interval": [
-    "2026-07-12",
-    "2026-07-20"
+  "causal_findings": {
+    "exact_exchange_fill_timestamp_available": false,
+    "mayo_fill_proven_post_start": true,
+    "mayo_placement_post_start": true,
+    "michelsen_cancel_post_start": true,
+    "michelsen_placement_post_start": true,
+    "old_start_defect": "22:00 ET expected-expiration/end clock was treated as the 19:00 ET match start"
+  },
+  "chronology_authority": {
+    "commit": "3f5d85d47a49083dd40056b1866191c649057b7b",
+    "statement": "P0 regression chronology records actual start about 19:00 ET and the false 22:00 schedule"
+  },
+  "entry_buy_row_count": 2,
+  "entry_buy_rows": [
+    {
+      "after_official_start": true,
+      "details": {
+        "action": "buy",
+        "anchor_age_sec": 145.4,
+        "authority": "LEGACY:path_aim",
+        "client_order_id": "[redacted-private-identifier]",
+        "count": 5,
+        "order_id": "[redacted-private-identifier]",
+        "price": 85,
+        "response_status": "resting",
+        "side": "yes",
+        "tape_basis": "rest_seeded",
+        "trade_id": "[redacted-private-identifier]",
+        "window": {
+          "gun_fired": false,
+          "min_to_scheduled": 143.7,
+          "phase": "W1"
+        }
+      },
+      "event_type": "order_placed",
+      "exchange_or_receipt_ts": "2026-07-21T23:36:19.955995+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MAY"
+    },
+    {
+      "after_official_start": true,
+      "details": {
+        "action": "buy",
+        "anchor_age_sec": 103.3,
+        "authority": "LEGACY:path_aim",
+        "client_order_id": "[redacted-private-identifier]",
+        "count": 5,
+        "order_id": "[redacted-private-identifier]",
+        "price": 12,
+        "response_status": "resting",
+        "side": "yes",
+        "tape_basis": "rest_seeded",
+        "trade_id": "[redacted-private-identifier]",
+        "window": {
+          "gun_fired": false,
+          "min_to_scheduled": 143.6,
+          "phase": "W1"
+        }
+      },
+      "event_type": "order_placed",
+      "exchange_or_receipt_ts": "2026-07-21T23:36:21.502612+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MIC"
+    }
+  ],
+  "entry_fill_row_count": 1,
+  "entry_fill_rows": [
+    {
+      "after_official_start": true,
+      "details": {
+        "cell": "",
+        "cycle": 1,
+        "direction": "",
+        "fill_price": 85,
+        "kalshi_status": "adopted",
+        "new_fills": 5,
+        "pair_law_sib_page": "ATP_CHALL|leader|51_75",
+        "pair_law_violation": "seesaw rose past the page's deep quantile: my 85 + sibling deep cast 52 > 97",
+        "play_type": "v4_reconciled",
+        "posted_price": 85,
+        "qty": 5,
+        "source": "reconcile_adoption",
+        "tape_basis": "rest_seeded",
+        "trade_id": "[redacted-private-identifier]",
+        "window": {
+          "gun_fired": false,
+          "min_to_scheduled": 142.5,
+          "phase": "W1"
+        }
+      },
+      "event_type": "entry_filled",
+      "exchange_or_receipt_ts": "2026-07-21T23:37:30.792977+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MAY",
+      "timestamp_semantics": "local engine reconciliation/booking receipt; exact exchange fill timestamp was not retained in this log"
+    }
   ],
   "event_id": "KXATPCHALLENGERMATCH-26JUL21MICMAY",
-  "forensic_class": "post_sample_separate_forensic",
-  "inside_D": false,
-  "named_participants": [
-    "Michelsen",
-    "Mayo"
+  "generic_development_start_ruling": {
+    "boundary_censored": true,
+    "contradiction": false,
+    "definitely_prestart_scoring_available": false,
+    "exact_candidate_spread_seconds": 0,
+    "interval_contradiction": false,
+    "known_live_by_source": "engine_regime_transition:price_divergence",
+    "known_live_by_time_basis": "local_engine_receipt_utc",
+    "known_live_by_utc": "2026-07-22T02:01:11.938251+00:00",
+    "not_live_through_source": null,
+    "not_live_through_time_basis": null,
+    "not_live_through_utc": null,
+    "safe_prestart_cutoff_inclusive": null,
+    "safe_prestart_cutoff_time_basis": null,
+    "safe_prestart_cutoff_utc": null,
+    "schedule_fallback_right_edge_utc": null,
+    "selected_confidence": "low",
+    "selected_evidence_time_basis": "local_engine_receipt_utc",
+    "selected_evidence_utc": "2026-07-22T02:01:11.938251+00:00",
+    "selected_source": "engine_regime_transition:price_divergence",
+    "start_interval_utc": {
+      "lower_exclusive": null,
+      "upper_inclusive": "2026-07-22T02:01:11.938251+00:00"
+    },
+    "start_state": "bounded_live_by_timestamp",
+    "verified_start_time_basis": null,
+    "verified_start_utc": null
+  },
+  "in_D": false,
+  "official_start_ruling": {
+    "confidence": "high",
+    "distinct_reported_start_count": 1,
+    "official_bell": {
+      "fetched_at_utc": "2026-07-23T03:45:14.170522+00:00",
+      "final": false,
+      "official_start_utc": "2026-07-21T23:00:00+00:00",
+      "status": "live"
+    },
+    "reported_starts_consistent_within_one_second": true,
+    "shadow_rows": [
+      {
+        "local_receipt_utc": "2026-07-22T00:00:39.717227+00:00",
+        "official_start_utc": "2026-07-21T23:00:00+00:00",
+        "status": null
+      },
+      {
+        "local_receipt_utc": "2026-07-22T00:15:25.870532+00:00",
+        "official_start_utc": "2026-07-21T23:00:00+00:00",
+        "status": "interrupted"
+      },
+      {
+        "local_receipt_utc": "2026-07-22T17:00:22.081163+00:00",
+        "official_start_utc": "2026-07-21T23:00:00+00:00",
+        "status": "live"
+      },
+      {
+        "local_receipt_utc": "2026-07-22T18:15:14.206095+00:00",
+        "official_start_utc": "2026-07-21T23:00:00+00:00",
+        "status": "interrupted"
+      },
+      {
+        "local_receipt_utc": "2026-07-22T18:30:18.783027+00:00",
+        "official_start_utc": "2026-07-21T23:00:00+00:00",
+        "status": "live"
+      }
+    ],
+    "status_counts": {
+      "<missing>": 1,
+      "interrupted": 2,
+      "live": 3
+    },
+    "timestamp_basis": "consistent_official_milestone_start_date",
+    "verified_start_utc": "2026-07-21T23:00:00+00:00"
+  },
+  "old_start_input": {
+    "details": {
+      "event": "KXATPCHALLENGERMATCH-26JUL21MICMAY",
+      "method": "kalshi_schedule_primary",
+      "start_time": "2026-07-21T22:00:00-04:00"
+    },
+    "event_type": "schedule_match",
+    "exchange_or_receipt_ts": "2026-07-21T23:36:15.528603+00:00",
+    "ticker": ""
+  },
+  "rows_at_or_after_known_live_bound": 0,
+  "sanitized_rows": [
+    {
+      "details": {
+        "event": "KXATPCHALLENGERMATCH-26JUL21MICMAY",
+        "method": "kalshi_schedule_primary",
+        "start_time": "2026-07-21T22:00:00-04:00"
+      },
+      "event_type": "schedule_match",
+      "exchange_or_receipt_ts": "2026-07-21T23:36:15.528603+00:00",
+      "ticker": ""
+    },
+    {
+      "details": {
+        "category": "ATP_CHALL",
+        "delta_sec": 0.0,
+        "event": "KXATPCHALLENGERMATCH-26JUL21MICMAY",
+        "kalshi_occurrence": "2026-07-21T22:00:00-04:00",
+        "resolver_source": "kalshi_primary",
+        "resolver_start": "2026-07-21T22:00:00-04:00"
+      },
+      "event_type": "kalshi_occ_delta",
+      "exchange_or_receipt_ts": "2026-07-21T23:36:17.158804+00:00",
+      "ticker": ""
+    },
+    {
+      "details": {
+        "aim_shadow_on": true,
+        "anchor_src": "last_traded",
+        "book_ask": 87,
+        "book_bid": 5,
+        "book_spread": 82,
+        "cat": "ATP_CHALL",
+        "cell": 90,
+        "current_ask": 87,
+        "current_price": 90,
+        "direction": "underdog",
+        "entry_mode": "resting_maker",
+        "entry_price": 85,
+        "event": "KXATPCHALLENGERMATCH-26JUL21MICMAY",
+        "exp_fill_rate": 0.514,
+        "exp_net_roi_pct": 1.51,
+        "fv": null,
+        "fv_gap": null,
+        "fv_reason": "stale_sources",
+        "fv_sources": [],
+        "last_trade_age_sec": 145.4,
+        "locked_book": false,
+        "min_before_start": 144,
+        "offset": 3,
+        "offset_table": 3,
+        "placement_minute": 120,
+        "post_only": true,
+        "reference_source": "staircase_hold",
+        "regime": "r85_94",
+        "runway_status": "full",
+        "table_src": "per_cell",
+        "target_bid": 85,
+        "window": {
+          "gun_fired": false,
+          "min_to_scheduled": 143.7,
+          "phase": "W1"
+        }
+      },
+      "event_type": "v4_place",
+      "exchange_or_receipt_ts": "2026-07-21T23:36:17.382436+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MAY"
+    },
+    {
+      "details": {
+        "action": "buy",
+        "anchor_age_sec": 145.4,
+        "authority": "LEGACY:path_aim",
+        "client_order_id": "[redacted-private-identifier]",
+        "count": 5,
+        "order_id": "[redacted-private-identifier]",
+        "price": 85,
+        "response_status": "resting",
+        "side": "yes",
+        "tape_basis": "rest_seeded",
+        "trade_id": "[redacted-private-identifier]",
+        "window": {
+          "gun_fired": false,
+          "min_to_scheduled": 143.7,
+          "phase": "W1"
+        }
+      },
+      "event_type": "order_placed",
+      "exchange_or_receipt_ts": "2026-07-21T23:36:19.955995+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MAY"
+    },
+    {
+      "details": {
+        "aim_shadow_on": true,
+        "anchor_src": "last_traded",
+        "book_ask": 95,
+        "book_bid": 18,
+        "book_spread": 77,
+        "cat": "ATP_CHALL",
+        "cell": 94,
+        "current_ask": 95,
+        "current_price": 96,
+        "direction": "underdog",
+        "entry_mode": "resting_maker",
+        "entry_price": 12,
+        "event": "KXATPCHALLENGERMATCH-26JUL21MICMAY",
+        "exp_fill_rate": 0.488,
+        "exp_net_roi_pct": 1.51,
+        "fv": null,
+        "fv_gap": null,
+        "fv_reason": "stale_sources",
+        "fv_sources": [],
+        "last_trade_age_sec": 103.3,
+        "locked_book": false,
+        "min_before_start": 144,
+        "offset": 1,
+        "offset_table": 1,
+        "placement_minute": 120,
+        "post_only": true,
+        "reference_source": "staircase_hold",
+        "regime": "r85_94",
+        "runway_status": "full",
+        "table_src": "per_cell",
+        "target_bid": 12,
+        "window": {
+          "gun_fired": false,
+          "min_to_scheduled": 143.6,
+          "phase": "W1"
+        }
+      },
+      "event_type": "v4_place",
+      "exchange_or_receipt_ts": "2026-07-21T23:36:21.379342+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MIC"
+    },
+    {
+      "details": {
+        "action": "buy",
+        "anchor_age_sec": 103.3,
+        "authority": "LEGACY:path_aim",
+        "client_order_id": "[redacted-private-identifier]",
+        "count": 5,
+        "order_id": "[redacted-private-identifier]",
+        "price": 12,
+        "response_status": "resting",
+        "side": "yes",
+        "tape_basis": "rest_seeded",
+        "trade_id": "[redacted-private-identifier]",
+        "window": {
+          "gun_fired": false,
+          "min_to_scheduled": 143.6,
+          "phase": "W1"
+        }
+      },
+      "event_type": "order_placed",
+      "exchange_or_receipt_ts": "2026-07-21T23:36:21.502612+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MIC"
+    },
+    {
+      "details": {
+        "delta": -78,
+        "live_price": 18,
+        "seed_age_sec": 104.9,
+        "seed_price": 96
+      },
+      "event_type": "tape_seed_live_confirm",
+      "exchange_or_receipt_ts": "2026-07-21T23:36:21.741425+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MIC"
+    },
+    {
+      "details": {
+        "delta": -5,
+        "live_price": 85,
+        "seed_age_sec": 150.1,
+        "seed_price": 90
+      },
+      "event_type": "tape_seed_live_confirm",
+      "exchange_or_receipt_ts": "2026-07-21T23:36:21.830179+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MAY"
+    },
+    {
+      "details": {
+        "consecutive_cycles": 1,
+        "engine_qty": 0,
+        "exchange_qty": 5.0,
+        "order_id": "[redacted-private-identifier]",
+        "root": "check_fills per-order poll starvation under a large book (GNI 53-min exhibit)"
+      },
+      "event_type": "unbooked_fill_defect",
+      "exchange_or_receipt_ts": "2026-07-21T23:37:30.653190+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MAY"
+    },
+    {
+      "details": {
+        "attribution": "reconciled",
+        "avg": 85,
+        "category": "ATP_CHALL",
+        "cell_id": "[redacted-private-identifier]",
+        "context": "steady_state_reconcile",
+        "fv": null,
+        "fv_gap": null,
+        "fv_reason": "stale_sources",
+        "fv_sources": [],
+        "qty": 5,
+        "rule": "exit"
+      },
+      "event_type": "reconcile_v4_adopted",
+      "exchange_or_receipt_ts": "2026-07-21T23:37:30.790454+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MAY"
+    },
+    {
+      "details": {
+        "cell": "",
+        "cycle": 1,
+        "direction": "",
+        "fill_price": 85,
+        "kalshi_status": "adopted",
+        "new_fills": 5,
+        "pair_law_sib_page": "ATP_CHALL|leader|51_75",
+        "pair_law_violation": "seesaw rose past the page's deep quantile: my 85 + sibling deep cast 52 > 97",
+        "play_type": "v4_reconciled",
+        "posted_price": 85,
+        "qty": 5,
+        "source": "reconcile_adoption",
+        "tape_basis": "rest_seeded",
+        "trade_id": "[redacted-private-identifier]",
+        "window": {
+          "gun_fired": false,
+          "min_to_scheduled": 142.5,
+          "phase": "W1"
+        }
+      },
+      "event_type": "entry_filled",
+      "exchange_or_receipt_ts": "2026-07-21T23:37:30.792977+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MAY"
+    },
+    {
+      "details": {
+        "event": "KXATPCHALLENGERMATCH-26JUL21MICMAY",
+        "max_ref_move": 77.0,
+        "source": "price_divergence",
+        "tts_honest_min": null,
+        "tts_legacy_min": -1.2,
+        "vol_prints_30m": 19
+      },
+      "event_type": "gun_fired",
+      "exchange_or_receipt_ts": "2026-07-22T02:01:11.938251+00:00",
+      "ticker": ""
+    },
+    {
+      "details": {
+        "label": "gun_fire_sweep",
+        "order_id": "[redacted-private-identifier]",
+        "success": true,
+        "window": {
+          "burst_latch_active": true,
+          "gun_fired": true,
+          "gun_grade": "burst",
+          "gun_source": "price_divergence",
+          "min_to_scheduled": -1.2,
+          "phase": "CORRIDOR",
+          "two_clock_spread_min": 1.2
+        }
+      },
+      "event_type": "order_cancelled",
+      "exchange_or_receipt_ts": "2026-07-22T02:01:12.049553+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MIC"
+    },
+    {
+      "details": {
+        "governed_by": "match_live_cancel",
+        "label": "match_live_cancel",
+        "order_id": "[redacted-private-identifier]",
+        "success": false,
+        "window": {
+          "burst_latch_active": true,
+          "gun_fired": true,
+          "gun_grade": "burst",
+          "gun_source": "price_divergence",
+          "min_to_scheduled": -1.2,
+          "phase": "CORRIDOR",
+          "two_clock_spread_min": 1.2
+        }
+      },
+      "event_type": "order_cancelled",
+      "exchange_or_receipt_ts": "2026-07-22T02:01:12.593048+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MIC"
+    },
+    {
+      "details": {
+        "event": "KXATPCHALLENGERMATCH-26JUL21MICMAY",
+        "governed_by": "match_live_cancel",
+        "gun_source": "price_divergence",
+        "law": "P0v3 (2) 07-17: sweep beats fill",
+        "sweep": "at_fire",
+        "window": {
+          "burst_latch_active": true,
+          "gun_fired": true,
+          "gun_grade": "burst",
+          "gun_source": "price_divergence",
+          "min_to_scheduled": -1.2,
+          "phase": "CORRIDOR",
+          "two_clock_spread_min": 1.2
+        }
+      },
+      "event_type": "match_live_resting_cancel",
+      "exchange_or_receipt_ts": "2026-07-22T02:01:12.593446+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MIC"
+    },
+    {
+      "details": {
+        "event": "KXATPCHALLENGERMATCH-26JUL21MICMAY",
+        "governed_by": "match_live_cancel",
+        "window": {
+          "burst_latch_active": true,
+          "gun_fired": true,
+          "gun_grade": "burst",
+          "gun_source": "price_divergence",
+          "min_to_scheduled": -1.2,
+          "phase": "CORRIDOR",
+          "two_clock_spread_min": 1.2
+        }
+      },
+      "event_type": "match_live_resting_cancel",
+      "exchange_or_receipt_ts": "2026-07-22T02:01:12.738680+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MIC"
+    },
+    {
+      "details": {
+        "anchor_source": "gun_truth",
+        "disagreement_min": 870.0,
+        "event": "KXATPCHALLENGERMATCH-26JUL21MICMAY",
+        "gun_fired_ts": 1784685671.937592,
+        "kalshi_start": 1784685600.0,
+        "te_honest_start": 1784737800.0
+      },
+      "event_type": "clock_liar",
+      "exchange_or_receipt_ts": "2026-07-22T08:30:46.365604+00:00",
+      "ticker": ""
+    },
+    {
+      "details": {
+        "label": "settlement_cleanup",
+        "order_id": "[redacted-private-identifier]",
+        "success": false,
+        "window": {
+          "burst_latch_active": true,
+          "gun_fired": true,
+          "gun_grade": "burst",
+          "gun_source": "price_divergence",
+          "min_to_scheduled": -1014.3,
+          "phase": "CORRIDOR",
+          "two_clock_spread_min": 1.2
+        }
+      },
+      "event_type": "order_cancelled",
+      "exchange_or_receipt_ts": "2026-07-22T18:54:16.479770+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MAY"
+    }
   ],
-  "participant_mapping_status": "not established from local July 12-20 artifacts",
-  "present_in_corrected_event_ledger": false,
-  "present_in_policy_reclassification": false,
-  "required_future_sources": [
-    "July-21 exchange catalog event/market objects",
-    "July-21 frozen live_v4 name/schedule/order logs",
-    "structured-target participant cache"
-  ],
-  "schema_version": "window1-post-sample-forensic-v1",
-  "ticker_implied_date": "2026-07-21"
+  "scope": "separate_post_sample_boundary_forensic",
+  "selected_log_row_count": 18,
+  "successful_cancel_row_count": 1,
+  "successful_cancel_rows": [
+    {
+      "after_official_start": true,
+      "details": {
+        "label": "gun_fire_sweep",
+        "order_id": "[redacted-private-identifier]",
+        "success": true,
+        "window": {
+          "burst_latch_active": true,
+          "gun_fired": true,
+          "gun_grade": "burst",
+          "gun_source": "price_divergence",
+          "min_to_scheduled": -1.2,
+          "phase": "CORRIDOR",
+          "two_clock_spread_min": 1.2
+        }
+      },
+      "event_type": "order_cancelled",
+      "exchange_or_receipt_ts": "2026-07-22T02:01:12.049553+00:00",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL21MICMAY-MIC"
+    }
+  ]
 }

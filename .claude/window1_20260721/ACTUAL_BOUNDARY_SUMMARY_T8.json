@@ -1,0 +1,115 @@
+{
+  "D": 804,
+  "bounds": {
+    "C": {
+      "best": 240,
+      "observed": 0,
+      "worst": 0
+    },
+    "IC": {
+      "best": 240,
+      "observed": 0,
+      "worst": 0
+    },
+    "NC": {
+      "best": 240,
+      "observed": 0,
+      "worst": 0
+    },
+    "PC": {
+      "best": 240,
+      "observed": 0,
+      "worst": 0
+    }
+  },
+  "combined_reference_delta": {
+    "mean": null,
+    "median": null,
+    "n": 0,
+    "negative_count": 0
+  },
+  "denominators": {
+    "C_over_D": [
+      0,
+      804
+    ],
+    "IC_over_C": [
+      0,
+      0
+    ],
+    "IC_over_D": [
+      0,
+      804
+    ],
+    "NC_over_C": [
+      0,
+      0
+    ],
+    "NC_over_D": [
+      0,
+      804
+    ],
+    "PC_over_C": [
+      0,
+      0
+    ],
+    "PC_over_D": [
+      0,
+      804
+    ],
+    "X_over_D": [
+      456,
+      804
+    ]
+  },
+  "gate_pass": true,
+  "individual_leg_delta": {
+    "mean": null,
+    "median": null,
+    "n": 0,
+    "negative_count": 0,
+    "negative_rate": null
+  },
+  "input_hashes": {
+    "lifecycle_ledger": "52dfe9dfbb8a414b16ccd93ae0b136c7f980df0109d3cefa1167204d97121f5e",
+    "public_prints": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+    "start_ledger": "90a943b598baa8debe1acd08fa4b664d3661cd3762c2e5ab54e54d781819b947"
+  },
+  "leg_ruling_counts": {
+    "censored_lifecycle": 468,
+    "censored_start_boundary": 238,
+    "exact_post_start_noncompletion": 20,
+    "exact_quantity_not_five": 12,
+    "exact_window1_nonfill": 870
+  },
+  "metric_law": {
+    "PC_NC_IC_relationship": "overlapping subsets of C; not partitions",
+    "X_relationship": "reported independently; can overlap exact C only when the frozen reference is unavailable",
+    "combined_cost": "sum of two actual entry VWAPs",
+    "combined_vs_par": "combined entry cost minus 100",
+    "left_edge_hours_before_schedule": 8,
+    "leg_delta": "actual leg VWAP minus that leg's final verified-size public print at or before the exact observed Window-1 close",
+    "pair_delta": "sum of the two individual leg deltas"
+  },
+  "output_hashes": {
+    "event_ledger": "f47b9b91239dd777ee9e71ae49f002d609f21edb5586472ec180451c394396ad",
+    "leg_ledger": "3f8f6f6eb33520e1a53c323d242e759ecc55b8f661f4a52848e56bb7ea50bf4b"
+  },
+  "performance_or_ceiling_verdict": false,
+  "raw": {
+    "C": 0,
+    "D": 804,
+    "IC": 0,
+    "NC": 0,
+    "PC": 0,
+    "X": 456
+  },
+  "schema_version": "window1-boundary-validation-v1",
+  "start_state_counts": {
+    "bounded_live_by_timestamp": 625,
+    "bounded_start_interval": 79,
+    "schedule_only_censored": 71,
+    "verified_exact": 29
+  },
+  "status": "actual_reproduction_with_repaired_start_grain"
+}

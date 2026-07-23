@@ -10,9 +10,9 @@ This is entry research only. Window 2, exits, settlement, and realized exit P&L 
 
 The primary operating target is:
 
-- `N / D >= 0.75`, where `D` is every floor-passing big-4 game, `C` is a game whose two required five-contract legs complete inside the selected Window 1, and `N` is a member of `C` with negative combined delta against the frozen reference.
+- `NC / D >= 0.75`, where `D` is every floor-passing big-4 game, `C` is a game whose two required five-contract legs complete inside the selected Window 1, and `NC` is a member of `C` with negative combined delta against the frozen reference.
 
-The benchmark always prints raw `D`, `C`, `P`, `N`, `I`, and `X` before percentages. `P` is the number of completed games with combined entry cost below 100. `I` is the number of completed games whose two individual-leg deltas are both negative. `X` is the censored-game count and remains in `D`. `P`, `N`, and `I` are overlapping subsets of `C`; they are not mutually exclusive partitions of `D`. Missing, unknown, thin, corrupt, and error games remain in `D`.
+The benchmark always prints raw `D`, `C`, `PC`, `NC`, `IC`, and `X` before percentages. `PC` is the number of completed games with combined entry cost below 100. `IC` is the number of completed games whose two individual-leg deltas are both negative. `X` is the censored-game count and remains in `D`. `PC`, `NC`, and `IC` are overlapping subsets of `C`; they are not mutually exclusive partitions of `D`. Missing, unknown, thin, corrupt, and error games remain in `D`.
 
 The historical yardsticks are kept separate:
 
@@ -47,16 +47,16 @@ Left-edge candidates, evaluated on fit only, are relative to the contemporaneous
 - T minus 4 hours
 - T minus 2 hours
 
-The right edge is the independently verified actual start when the actual-start receipt becomes available. Precedence is: an explicit exchange/event live transition; a timestamped live-score or first-point receipt; another official observed start; a corroborated tape-regime bound; then schedule plus a declared corridor. A one-sided live/tape bound is not an exact start. A milestone status such as `SCH` that does not prove live is rejected as an exact authority. Exchange timestamps control ordering.
+The right edge is the independently verified actual start when the actual-start receipt becomes available. Precedence is: an explicit exchange/event live transition; a timestamped live-score or first-point receipt; another official observed start; a corroborated tape-regime bound; then schedule plus a declared corridor. A one-sided live/tape bound is not an exact start. When a reliable not-live observation and a later live observation bound the start, only actions complete by the not-live-through timestamp are definitely pre-start and may be scored; actions inside the start interval are censored. A milestone status such as `SCH` that does not prove live is rejected as an exact authority. Exchange timestamps control ordering.
 
 When actual start is not observed, the row is explicitly schedule-only and the fit-only corridor candidates are scheduled time plus 15, 30, 45, or 60 minutes. A schedule-only row can never end at scheduled time and can never be labeled an observed right edge.
 
 Boundary sensitivity must publish all 16 left-edge and corridor combinations on the fit denominator. Exact-start rows use their observed right edge. Bounded and schedule-only rows remain censored; their declared corridor is an upper-bound case only. The selected boundary is the deterministic fit winner under this order:
 
-1. maximize proven `N/D`;
+1. maximize proven `NC/D`;
 2. then maximize proven `C/D`;
-3. then maximize proven `I/D`;
-4. then maximize proven `P/D`;
+3. then maximize proven `IC/D`;
+4. then maximize proven `PC/D`;
 5. then minimize censoring;
 6. then deterministic candidate id.
 
@@ -87,7 +87,7 @@ Microstructure features are full bid and ask ladders, depth by level, bid-versus
 
 The Pridankina/Udvarty-style extreme ask-over-bid ladder is a required fit sanity class. It is measured across the corpus at the causal timestamp and ablated; a single screenshot cannot create a rule.
 
-Feature ablations remove one family at a time. Major features are also tested independently where sample support permits. Each result prints the change in raw `D`, `C`, `P`, `N`, `I`, and `X`, combined-vs-par delta, individual leg reference deltas, games per day, and cents by class.
+Feature ablations remove one family at a time. Major features are also tested independently where sample support permits. Each result prints the change in raw `D`, `C`, `PC`, `NC`, `IC`, and `X`, combined-vs-par delta, individual leg reference deltas, games per day, and cents by class.
 
 ## Fill and non-fill law
 

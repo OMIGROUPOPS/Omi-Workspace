@@ -156,13 +156,14 @@ Every event remains explicit as filled, not_filled, missing, unknown, thin,
 corrupt, or error. Each candidate uses the same D, required five-contract lot,
 clock, source law, and causal features.
 
-Every result prints raw `D`, `C`, `P`, `N`, `I`, and `X`. `P`, `N`, and `I`
+Every result prints raw `D`, `C`, `PC`, `NC`, `IC`, and `X`.
+`PC`, `NC`, and `IC`
 are overlapping subsets of `C`, not a partition:
 
 - `C`: both required legs fill exactly five contracts inside Window 1;
-- `P`: members of C whose combined entry VWAP is below 100;
-- `N`: members of C whose combined reference delta is negative;
-- `I`: members of C whose two individual-leg reference deltas are both
+- `PC`: members of C whose combined entry VWAP is below 100;
+- `NC`: members of C whose combined reference delta is negative;
+- `IC`: members of C whose two individual-leg reference deltas are both
   negative;
 - `X`: censored games, reported independently and never removed from D.
 

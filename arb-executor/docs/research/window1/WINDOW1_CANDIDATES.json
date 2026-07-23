@@ -121,16 +121,16 @@
     "full_depth_sequence"
   ],
   "selection_rule": [
-    "maximize observed/proven N",
+    "maximize observed/proven NC",
     "maximize observed/proven C",
-    "maximize observed/proven I",
-    "maximize observed/proven P",
+    "maximize observed/proven IC",
+    "maximize observed/proven PC",
     "minimize censored",
     "lexicographic candidate_id"
   ],
   "selection_rule_declared_before_candidate_scoring": true,
-  "metric_relationship": "P, N and I are overlapping subsets of C; X is reported separately",
-  "boundary_censor_law": "a bounded or schedule-only right edge cannot contribute observed C, N or I; it remains in D and contributes only to explicit upper bounds",
+  "metric_relationship": "PC, NC and IC are overlapping subsets of C; X is reported separately",
+  "boundary_censor_law": "a bounded start may contribute only through actions complete by a proven not-live-through cutoff; ambiguous actions and schedule-only right edges cannot contribute observed C, NC or IC",
   "dca": false,
   "window2_or_exit_inputs": false
 }

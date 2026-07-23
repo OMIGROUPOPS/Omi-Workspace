@@ -1,0 +1,486 @@
+{
+  "D": 804,
+  "D_changed": false,
+  "actual_completion_bounds": {
+    "D": 804,
+    "best_case_dual_five": 240,
+    "censored_event_count": 279,
+    "not_a_policy_result": true,
+    "observed_exact_dual_five": 31,
+    "worst_case_dual_five": 31
+  },
+  "censored_leg_count": 468,
+  "day_closure": {
+    "2026-07-12": {
+      "day_closed": true,
+      "event_count": 156,
+      "position_reconciliation_complete": true,
+      "private_fill_pagination_complete": true,
+      "required_leg_count": 312
+    },
+    "2026-07-13": {
+      "day_closed": true,
+      "event_count": 114,
+      "position_reconciliation_complete": true,
+      "private_fill_pagination_complete": true,
+      "required_leg_count": 228
+    },
+    "2026-07-14": {
+      "day_closed": true,
+      "event_count": 99,
+      "position_reconciliation_complete": true,
+      "private_fill_pagination_complete": true,
+      "required_leg_count": 198
+    },
+    "2026-07-15": {
+      "day_closed": true,
+      "event_count": 64,
+      "position_reconciliation_complete": true,
+      "private_fill_pagination_complete": true,
+      "required_leg_count": 128
+    },
+    "2026-07-16": {
+      "day_closed": true,
+      "event_count": 42,
+      "position_reconciliation_complete": true,
+      "private_fill_pagination_complete": true,
+      "required_leg_count": 84
+    },
+    "2026-07-17": {
+      "day_closed": true,
+      "event_count": 50,
+      "position_reconciliation_complete": true,
+      "private_fill_pagination_complete": true,
+      "required_leg_count": 100
+    },
+    "2026-07-18": {
+      "day_closed": true,
+      "event_count": 62,
+      "position_reconciliation_complete": true,
+      "private_fill_pagination_complete": true,
+      "required_leg_count": 124
+    },
+    "2026-07-19": {
+      "day_closed": true,
+      "event_count": 121,
+      "position_reconciliation_complete": true,
+      "private_fill_pagination_complete": true,
+      "required_leg_count": 242
+    },
+    "2026-07-20": {
+      "day_closed": true,
+      "event_count": 96,
+      "position_reconciliation_complete": true,
+      "private_fill_pagination_complete": true,
+      "required_leg_count": 192
+    }
+  },
+  "engine_log_scan": {
+    "active_log_name": "live_v3_20260720.jsonl",
+    "active_log_prefix_bytes": 318840280,
+    "parse_errors": 0,
+    "physical_rows": 3371071,
+    "selected_rows": 7878
+  },
+  "gate_pass": true,
+  "leg_status_counts": {
+    "censored": 468,
+    "exact_filled_five": 258,
+    "exact_filled_other_quantity": 12,
+    "exact_nonfill": 870
+  },
+  "lifecycle_rows": 1041,
+  "lifecycle_status_counts": {
+    "censored": 109,
+    "censored_unattributed_private_fill": 42,
+    "exact_filled_five": 258,
+    "exact_filled_other_quantity": 12,
+    "exact_nonfill": 620
+  },
+  "mapping_recovery_gaps": [
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DALMAY",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "49b070f9cf6282998ce8",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14DALMAY-MAY"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20FERREN",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "19a489fa515e903cd9b2",
+      "placement_receipt_count": 0,
+      "ticker": "KXWTACHALLENGERMATCH-26JUL20FERREN-REN"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20TOKHUR",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "95487b89084c0f0c8aa0",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20TOKHUR-HUR"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VASSIN",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "c61cd88b4d58a79b6d89",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20VASSIN-SIN"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "00f794db848ad1f78f6b",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20WINARS-ARS"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "af3934eb2a74387f228a",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20ZHESHE-SHE"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ALKFIC",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "a4c138edb56fe0b2924f",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20ALKFIC-ALK"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VISNIK",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "5c165d6e220f3893b3cf",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20VISNIK-NIK"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPMATCH-26JUL20ROCMAR",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "9f8d6eb898817a212b94",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPMATCH-26JUL20ROCMAR-ROC"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CHABOU",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "15e00eb835cf53683770",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20CHABOU-BOU"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20BICWAL",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "169666c0241425651a1d",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20BICWAL-WAL"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXWTAMATCH-26JUL20RUZSAL",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "4025cb28d1b41a477d4e",
+      "placement_receipt_count": 0,
+      "ticker": "KXWTAMATCH-26JUL20RUZSAL-RUZ"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ADDLEO",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "75e3cbaf15bd006fe033",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14ADDLEO-ADD"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CHABOU",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "88e8360e7dd9abfc8eb6",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20CHABOU-CHA"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXWTAMATCH-26JUL20OLISCH",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "c77938dca23b3f8f4e2a",
+      "placement_receipt_count": 0,
+      "ticker": "KXWTAMATCH-26JUL20OLISCH-SCH"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20TROISO",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "6735dc94d489691e7207",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20TROISO-TRO"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20TOTRUG",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "8895af5982e00d1d4c90",
+      "placement_receipt_count": 0,
+      "ticker": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-TOT"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20TOKHUR",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "74a444d057be095798fb",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20TOKHUR-TOK"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YOUDLI",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "21d3dbdd8b05f7884d57",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12YOUDLI-YOU"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXWTAMATCH-26JUL13MONMAS",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "0ee90805eb7db715fe55",
+      "placement_receipt_count": 0,
+      "ticker": "KXWTAMATCH-26JUL13MONMAS-MAS"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ALKFIC",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "1f145226db6d0eb15af2",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20ALKFIC-FIC"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20KABCHI",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "a729859c476b9b7d5356",
+      "placement_receipt_count": 0,
+      "ticker": "KXWTACHALLENGERMATCH-26JUL20KABCHI-CHI"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20BICWAL",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "177bce1e11538c15107e",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20BICWAL-BIC"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14MAZBRO",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "92b84106d25eee2eaf08",
+      "placement_receipt_count": 0,
+      "ticker": "KXWTACHALLENGERMATCH-26JUL14MAZBRO-BRO"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14IATZVO",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "ed6e51a1f6602ee25b19",
+      "placement_receipt_count": 0,
+      "ticker": "KXWTACHALLENGERMATCH-26JUL14IATZVO-IAT"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "ffa0a9c2a19ec15b9a3b",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20IMAKIN-KIN"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20URGYAN",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "6fe9971efe98b2fdf9f9",
+      "placement_receipt_count": 0,
+      "ticker": "KXWTACHALLENGERMATCH-26JUL20URGYAN-YAN"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "58a06fbcb89551564da2",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20WINARS-WIN"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "0740810e412372fcfa40",
+      "placement_receipt_count": 0,
+      "ticker": "KXWTACHALLENGERMATCH-26JUL20MAZSPI-MAZ"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12RAIZHU",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "02dd4d6a9bc7475e5987",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12RAIZHU-RAI"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ECHHAR",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "690bc1acd62a6d5375f6",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20ECHHAR-HAR"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "c6a37dc9e59cb74200c4",
+      "placement_receipt_count": 0,
+      "ticker": "KXWTACHALLENGERMATCH-26JUL20LANRAD-LAN"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MILSHE",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "901fecc8c9eb3ae94600",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20MILSHE-SHE"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20KYMCLA",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "1383c99b66a505b1554c",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20KYMCLA-CLA"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HOHSUR",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "63fd20acb0760464c9c6",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12HOHSUR-SUR"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXWTAMATCH-26JUL20RUZSAL",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "42181003b1dad40917bd",
+      "placement_receipt_count": 0,
+      "ticker": "KXWTAMATCH-26JUL20RUZSAL-SAL"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ECHHAR",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "77ac224d1f5c13ea5e10",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20ECHHAR-ECH"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20KOZPAS",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "0204df9e2128613bc33f",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20KOZPAS-PAS"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CUIFAN",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "d8a3eb749c607ef34372",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14CUIFAN-FAN"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "9924a4284bc3ef438bc0",
+      "placement_receipt_count": 0,
+      "ticker": "KXWTACHALLENGERMATCH-26JUL20GORMIN-GOR"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MILSHE",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "ebc28db99237ccfbe7ea",
+      "placement_receipt_count": 0,
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20MILSHE-MIL"
+    },
+    {
+      "detail": "private buy fill order_id lacks one unique preserved order_placed receipt",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20TOTRUG",
+      "gap_type": "unmapped_private_fill_order",
+      "order_ref": "86bdaf729e176f6e0acb",
+      "placement_receipt_count": 0,
+      "ticker": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-RUG"
+    }
+  ],
+  "mismatch_count": 0,
+  "mismatch_types": {},
+  "position_reconciliation": {
+    "all_unrecovered_fills_preserved_as_censored": true,
+    "complete_with_censoring": true,
+    "recovered_by_exact_order_id_placement": 0,
+    "unattributed_private_buy_fill_rows": 47,
+    "unattributed_private_buy_order_lifecycles": 42,
+    "unrecovered_entry_lineage_gaps": 42
+  },
+  "private_fill_export": {
+    "api_fills_sha256": "76e7830fc3164ac3d5360d22b1b8fb860a491b7d47257ac706f44527bd32f335",
+    "causal_time_bounds": {
+      "law": "one-hour capture buffer before earliest retained D entry clock through one second after latest frozen evaluation edge; local clocks select export range only and never establish causal order",
+      "local_clock_rows_used_for_lower_bound": 717,
+      "max_ts": 1784644266,
+      "max_utc": "2026-07-21T14:31:06Z",
+      "min_ts": 1783884068,
+      "min_utc": "2026-07-12T19:21:08Z",
+      "source_order_rows": 3332
+    },
+    "complete": true,
+    "errors": [],
+    "export_completed_utc": "2026-07-23T05:04:30.988390Z",
+    "export_started_utc": "2026-07-23T04:59:00.789471Z",
+    "pagination_proof": {
+      "complete": true,
+      "cursor_cycles": 0,
+      "http_get_requests": 1516,
+      "pagination_complete_empty_cursor": 785,
+      "pagination_queries": 785,
+      "rate_limit_responses": 26,
+      "records_returned_before_dedup": {
+        "fills": 1796,
+        "orders": 2366
+      },
+      "request_errors": 0,
+      "retry_attempts": 26
+    }
+  },
+  "private_identifiers_in_public_outputs": false,
+  "private_lifecycle_sha256": "897195b517ad3db6370c3fb05835db53a88f3a69bd7b51cef24e0c544de3d356",
+  "public_event_leg_ledger_sha256": "52dfe9dfbb8a414b16ccd93ae0b136c7f980df0109d3cefa1167204d97121f5e",
+  "required_legs": 1608,
+  "schema_version": "window1-lifecycle-validation-v1",
+  "strategy_scoring_permitted": true,
+  "validation_unit": "event_leg_conception_trade_lineage",
+  "window2_exit_settlement_policy_or_dca_used": false
+}

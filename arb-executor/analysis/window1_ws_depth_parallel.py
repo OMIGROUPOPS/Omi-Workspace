@@ -17,6 +17,7 @@ import hashlib
 import json
 import math
 import re
+import zlib
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Mapping
@@ -324,7 +325,7 @@ def scan_file(
                                 if timestamp is not None
                                 else "local_ws_recorder_receipt_utc"
                             )
-    except (OSError, EOFError, gzip.BadGzipFile) as exc:
+    except (OSError, EOFError, gzip.BadGzipFile, zlib.error) as exc:
         result["corrupt_error_class"] = type(exc).__name__
     result["message_types"] = dict(message_types)
     result["segments"] = segments
@@ -508,6 +509,7 @@ def merge_results(
         "all_objects_exact": all(
             row["exact_object"] for row in results
         ),
+        "all_archives_readable": not corrupt_files,
     }
     return output, summary
 

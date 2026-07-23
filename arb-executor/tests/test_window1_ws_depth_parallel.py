@@ -93,3 +93,23 @@ def test_fast_scalar_extractors_preserve_ws_values():
         line, b'"seq":', MODULE.SEQUENCE_PATTERN
     ) == 7
     assert MODULE.timestamp_from_line(line) == 1783828799.999
+
+
+def test_corrupt_archive_is_named_and_invalidates_epoch(tmp_path):
+    path = tmp_path / "bad.jsonl.gz"
+    path.write_bytes(b"not-a-gzip-stream")
+    result = MODULE.scan_file((
+        str(path),
+        MODULE.md5_file(path),
+        path.stat().st_size,
+        path.name,
+        {"EVENT-A"},
+    ))
+    assert result["exact_object"] is True
+    assert result["corrupt_error_class"] in {
+        "BadGzipFile", "error",
+    }
+    _, summary = MODULE.merge_results(
+        [result], {"EVENT-A"}
+    )
+    assert summary["all_archives_readable"] is False

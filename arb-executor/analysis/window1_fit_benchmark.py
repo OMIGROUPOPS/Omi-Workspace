@@ -1393,6 +1393,36 @@ def w1_reference(
     return int(eligible[-1]["price"]) if eligible else None
 
 
+def initial_action_plan(
+    policy: Mapping[str, Any],
+    event: Mapping[str, Any],
+    leg_contexts: Sequence[Mapping[str, Any]],
+    left: float,
+    right: float,
+    scheduled: float,
+) -> list[list[dict[str, Any]]] | None:
+    sequence = str(policy.get("sequence_rule") or "simultaneous")
+    not_before = [left, left]
+    if sequence == "favorite_first":
+        favorite_index = next(
+            (index for index, context in enumerate(leg_contexts)
+            if context["feature"].get("role") == "favorite"),
+            None,
+        )
+        if favorite_index is None:
+            return None
+        not_before[1 - favorite_index] += int(
+            policy.get("sibling_delay_seconds", 30)
+        )
+    actions = []
+    for index, context in enumerate(leg_contexts):
+        actions.append(build_actions(
+            policy, event, context["feature"], context["snapshots"],
+            context["prints"], not_before[index], right, scheduled,
+        ))
+    return actions
+
+
 def evaluate_queue_case(
     policy: Mapping[str, Any],
     event: Mapping[str, Any],
@@ -1401,30 +1431,21 @@ def evaluate_queue_case(
     right: float,
     scheduled: float,
     queue_case: str,
+    action_plan: Sequence[Sequence[Mapping[str, Any]]] | None = None,
 ) -> list[dict[str, Any]]:
-    sequence = str(policy.get("sequence_rule") or "simultaneous")
-    not_before = [left, left]
-    if sequence == "favorite_first":
-        favorite_index = next(
-            (index for index, context in enumerate(leg_contexts)
-             if context["feature"].get("role") == "favorite"),
-            None,
+    actions = (
+        [list(rows) for rows in action_plan]
+        if action_plan is not None
+        else initial_action_plan(
+            policy, event, leg_contexts, left, right, scheduled
         )
-        if favorite_index is None:
-            return [{"status": "missing_role"} for _ in leg_contexts]
-        not_before[1 - favorite_index] += int(
-            policy.get("sibling_delay_seconds", 30)
-        )
-    actions: list[list[dict[str, Any]]] = []
+    )
+    if actions is None:
+        return [{"status": "missing_role"} for _ in leg_contexts]
     initial: list[dict[str, Any]] = []
     for index, context in enumerate(leg_contexts):
-        leg_actions = build_actions(
-            policy, event, context["feature"], context["snapshots"],
-            context["prints"], not_before[index], right, scheduled,
-        )
-        actions.append(leg_actions)
         initial.append(simulate_actions(
-            leg_actions, context["prints"], right, queue_case
+            actions[index], context["prints"], right, queue_case
         ))
     response = str(policy.get("first_fill_response") or "hold")
     completed = [
@@ -1474,11 +1495,16 @@ def event_candidate_outcome(
     right: float,
     scheduled: float,
 ) -> dict[str, Any]:
+    action_plan = initial_action_plan(
+        policy, event, contexts, left, right, scheduled
+    )
     lower = evaluate_queue_case(
-        policy, event, contexts, left, right, scheduled, "lower"
+        policy, event, contexts, left, right, scheduled, "lower",
+        action_plan,
     )
     upper = evaluate_queue_case(
-        policy, event, contexts, left, right, scheduled, "upper"
+        policy, event, contexts, left, right, scheduled, "upper",
+        action_plan,
     )
     references = [
         w1_reference(context["prints"], left, right) for context in contexts

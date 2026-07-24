@@ -1,0 +1,12 @@
+{
+  "D": 804,
+  "artifact_manifest_sha256": "50b0408a5e4eb5a3ac81a27aa5911d5c9f0f9194d20c8727af33ebe70622a243",
+  "candidate_spec_sha256": "ea54cf62fd0ccfab2e4b5dda71a9d5747a81bc00fc4668ff746f891a8ea7785f",
+  "code_sha": "0060331e1ef240b895baabb675ed1adeadfddc07",
+  "execution_ordinal": 1,
+  "freeze_sha256": "31961f1fa1d3fe2362d969c3a1a6b4df116b5f5de84f9433426d4b39ea538150",
+  "holdout_inputs": [],
+  "results_sha256": "3b127486089d18a94c0b40c1c4cb1b24a40aaf84053cc4dedd5e433a1f04f50f",
+  "schema_version": "window1-corrected-os-replay-v1",
+  "state": "execution_complete"
+}

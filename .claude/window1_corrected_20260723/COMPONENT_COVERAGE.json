@@ -1,0 +1,525 @@
+{
+  "aim_v2_consumed": false,
+  "component_count": 21,
+  "components": [
+    {
+      "calibration_status": "available",
+      "component_id": "pair_law",
+      "consumed_for_metric": true,
+      "consumed_for_policy": false,
+      "reason": "D has exactly two required leg tickers per event and the rulings prohibit singleton substitution.",
+      "replay_status": "available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 4675,
+          "sha256": "3cffec450e7cf2fc6142b0d5dd708dc53058846fad1dcbb55ac26a84b3d8d355",
+          "source": ".claude/rulings/RULING_PAIR_ECONOMICS.md"
+        },
+        {
+          "available": true,
+          "bytes": 2854,
+          "sha256": "a433215e225da70508098c4d83d7b2c4b9b0f785e6f35e8b5d35713549fa0852",
+          "source": ".claude/rulings/RULING_COMBINED_PRICE_CLAUSE.md"
+        },
+        {
+          "available": true,
+          "bytes": 11391,
+          "sha256": "41e95792d6a139b84ce1a5d16274bfe329b9a4dff0c34125578867804dc62141",
+          "source": "arb-executor/docs/research/window1/WINDOW1_SPEC.md"
+        }
+      ]
+    },
+    {
+      "calibration_status": "partially_available",
+      "component_id": "first_fill_sibling_response",
+      "consumed_for_metric": false,
+      "consumed_for_policy": false,
+      "reason": "The deployed response vocabulary and exact historical order lineages exist, but 468 legs remain legitimately censored.",
+      "replay_status": "partially_available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 946498,
+          "sha256": "42e32c5a8e6e072caa2bb193cd6e66fbd529432393c81c927291c3175441cedb",
+          "source": "arb-executor/live_v4.py"
+        },
+        {
+          "available": true,
+          "bytes": 31444,
+          "sha256": "cd921003f68f993bd8185d5e2413cde9983167be50b7ae8c0dd148b1a9e18893",
+          "source": "arb-executor/analysis/window1_execution_kernel.py"
+        },
+        {
+          "available": true,
+          "bytes": 2399,
+          "sha256": "e5073b122a6cf5b2c4dbb044438f10f7c549151326e10c008c8e22782ee2ede4",
+          "source": ".claude/proof_20260717/PROOF_PAIR_INVARIANT.md"
+        }
+      ]
+    },
+    {
+      "calibration_status": "partially_available",
+      "component_id": "sealed_bands",
+      "consumed_for_metric": false,
+      "consumed_for_policy": false,
+      "reason": "The sealed tables are present; a leg still needs its causal anchor/cell inputs to bind a band.",
+      "replay_status": "partially_available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 10125,
+          "sha256": "c0c29e54792e2f49cad6e96297367b4ada80051cde464a8f3dddb748ae1ce8e7",
+          "source": ".claude/entrysurface_20260717/entry_tables_sealed_v1.json"
+        },
+        {
+          "available": true,
+          "bytes": 4039,
+          "sha256": "452e72fd774e6e0562450b8909b15d0cb31898ed67653448d31b48593ebc772a",
+          "source": ".claude/entrysurface_20260717/LOCKED_DOWN_ENTRY.md"
+        },
+        {
+          "available": true,
+          "bytes": 2625,
+          "sha256": "32a73dffbc1365f0c5b67e952ecacafbf48456dddb679604ba29e0bad9ca576d",
+          "source": ".claude/proof_20260720/PROOF_DUAL_DIVOT_SEAL.md"
+        }
+      ]
+    },
+    {
+      "calibration_status": "partially_available",
+      "component_id": "dual_divot_steering_and_catch",
+      "consumed_for_metric": true,
+      "consumed_for_policy": false,
+      "reason": "Frozen divot/catch surfaces exist, while causal per-leg feature coverage is not universal.",
+      "replay_status": "partially_available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 16623,
+          "sha256": "89c514ec35673de8f552b2b66b9ceafb8181b9c8f6c00b1679899a3a2a82ac06",
+          "source": ".claude/entrysurface_20260717/divot_tables_v1.json"
+        },
+        {
+          "available": true,
+          "bytes": 8576,
+          "sha256": "56b8e3467f938ab76aad1047cc96489e623260ab838ebc40c5e5e134ad4ecdd8",
+          "source": ".claude/entrysurface_20260717/DIVOT_TABLES.md"
+        },
+        {
+          "available": true,
+          "bytes": 7482,
+          "sha256": "1a23d5cada2260f99a1208755eec4bfa585de0ea8220cadaad3b0bb5120ce431",
+          "source": "arb-executor/analysis/divot_deconstruct.py"
+        }
+      ]
+    },
+    {
+      "calibration_status": "partially_available",
+      "component_id": "drift_recognition",
+      "consumed_for_metric": false,
+      "consumed_for_policy": false,
+      "reason": "Chronological drift surfaces are present, but their tape/book inputs have explicit per-leg gaps.",
+      "replay_status": "partially_available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 182240,
+          "sha256": "7dca4a4f0e6061d28765fd243f4ce717bc36a542b32490bafabc611bd2cf3bab",
+          "source": ".claude/entrysurface_20260717/drift_surfaces_v1.json"
+        },
+        {
+          "available": true,
+          "bytes": 12151,
+          "sha256": "67c6e2d743a0304ba030673549f545c226d794c4463e80074f0ac05629ea96eb",
+          "source": ".claude/entrysurface_20260717/DRIFT_SURFACES.md"
+        },
+        {
+          "available": true,
+          "bytes": 8482,
+          "sha256": "46e076021b8caa0cbb262eb4583124f45452c927880037b31cfe7920fb42d3c9",
+          "source": "arb-executor/analysis/drift_surfaces.py"
+        }
+      ]
+    },
+    {
+      "calibration_status": "partially_available",
+      "component_id": "cohort_steering",
+      "consumed_for_metric": false,
+      "consumed_for_policy": false,
+      "reason": "The frozen cohort prior exists; unmatched or under-supported cohort cells cannot borrow a pooled proxy.",
+      "replay_status": "partially_available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 167391,
+          "sha256": "9e144811b54637e8b71e676a56b122081bc09447e49ea726769539e51f8d8488",
+          "source": ".claude/master_20260709/cohort.json"
+        },
+        {
+          "available": true,
+          "bytes": 55760,
+          "sha256": "310a4d0a398d3317bb204d6009c1946451592f92746929d002adff48416939c3",
+          "source": ".claude/dossier_20260708/PART1_COHORT.md"
+        },
+        {
+          "available": true,
+          "bytes": 6536,
+          "sha256": "56ac5b68eb5309f5d58afbb40964a481ea6da5424cd83d25da833c4ff5f3cb19",
+          "source": "arb-executor/analysis/cohort_surface_build.py"
+        }
+      ]
+    },
+    {
+      "calibration_status": "available",
+      "component_id": "orientation_prior",
+      "consumed_for_metric": false,
+      "consumed_for_policy": false,
+      "reason": "The pre-development orientation prior and its ruling are present and hashable.",
+      "replay_status": "available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 2061,
+          "sha256": "e8003418aa5ed97b58294f390e7c261b11e1d4d9bd50a6be171aebbbba06f5f5",
+          "source": ".claude/trendpath/ORIENT_V1.json"
+        },
+        {
+          "available": true,
+          "bytes": 971,
+          "sha256": "cb3cca2d25c399ac39f52e847950acf3722ce4a9237ecdf871a798badb881cee",
+          "source": ".claude/trendpath/RULING_PACKET.md"
+        }
+      ]
+    },
+    {
+      "calibration_status": "partially_available",
+      "component_id": "walk_park_posture",
+      "consumed_for_metric": false,
+      "consumed_for_policy": false,
+      "reason": "The chronological walk/park laws are present; causal BBO/pressure and start bounds decide per-leg availability.",
+      "replay_status": "partially_available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 5880,
+          "sha256": "012610360c894c88eee638879bd1d7f1d12b4c651025382cbf4599042c6969e8",
+          "source": "arb-executor/analysis/the_walk.py"
+        },
+        {
+          "available": true,
+          "bytes": 6883,
+          "sha256": "9cdcd4345cd6c89c0457b53aee069a4077d15802e3bb4cffb045c97009b90f01",
+          "source": "arb-executor/analysis/blend_park_v8.py"
+        },
+        {
+          "available": true,
+          "bytes": 2754,
+          "sha256": "a2c82edc279c12a32e5f55d04c63dd821149d487af0ac05a6a8a01f34ddd7f2e",
+          "source": ".claude/entrymech_20260717/ACCEPTANCE_WALK.md"
+        },
+        {
+          "available": true,
+          "bytes": 6807,
+          "sha256": "122182c1d7b1ab8bca0d8bdcc2b82b8157744d8f245074c4f8ca3dc005a41498",
+          "source": ".claude/backwalk_20260720/BACKWALK_WALLS_V1.md"
+        }
+      ]
+    },
+    {
+      "calibration_status": "partially_available",
+      "component_id": "riser_deceleration_mirror_seesaw",
+      "consumed_for_metric": false,
+      "consumed_for_policy": false,
+      "reason": "Riser is explicitly disarmed as an actuator; descriptive riser/deceleration/mirror/seesaw evidence remains usable only where its causal tape state exists.",
+      "replay_status": "partially_available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 6085,
+          "sha256": "ff62270bc07cc18a164623bb0a9be0f981ece4e44e3347d923b9ba9a847a8faa",
+          "source": ".claude/nightly_20260705/PLEX_RISER_BOUNCE_PACKAGE.md"
+        },
+        {
+          "available": true,
+          "bytes": 2497,
+          "sha256": "c7e581f2f91f6fe84dbbb6f4fe21d6ed1dd107c018198b8ee74813776e8f37fb",
+          "source": ".claude/proof_20260706/RISER_DISARM.md"
+        },
+        {
+          "available": true,
+          "bytes": 5262,
+          "sha256": "90547fec8be6334d850b3a1ceb9548d1aedac582fea3b076d4cd451db1b9398e",
+          "source": ".claude/capture_20260720/mirror_pairs.jsonl"
+        },
+        {
+          "available": true,
+          "bytes": 72657,
+          "sha256": "0b2139cd25e46b427b079b7f968148dcad54a9ef9bd1d0f9da6c39e26226152f",
+          "source": "arb-executor/analysis/conviction_replay.py"
+        }
+      ]
+    },
+    {
+      "calibration_status": "available",
+      "component_id": "dynamic_floor_and_recut_cells",
+      "consumed_for_metric": true,
+      "consumed_for_policy": false,
+      "reason": "The cell-keyed recut table and dynamic-S ruling are frozen; dynamic-floor gap remains a separate reported measure.",
+      "replay_status": "available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 86928,
+          "sha256": "852ab6678e4358189e4f79987e0286011d1e5662a2653ed0cc34fc18e4fb32b7",
+          "source": ".claude/seqfloor_20260708/recut_cells.json"
+        },
+        {
+          "available": true,
+          "bytes": 5846,
+          "sha256": "f8b4a68aa63728861fc11e32e0aba8fdec8a28a0b6030b1d6b5afcc8fb2e3d01",
+          "source": ".claude/seqfloor_20260708/SEQFLOOR_RECUT.md"
+        },
+        {
+          "available": true,
+          "bytes": 1235,
+          "sha256": "77f1215d678419ec06a28396105fb5f6138f4cf6af02317413364e48d46094b9",
+          "source": ".claude/rulings/RULING_DYNAMIC_S_CELL_AIM.md"
+        }
+      ]
+    },
+    {
+      "calibration_status": "partially_available",
+      "component_id": "atlas_and_reach",
+      "consumed_for_metric": false,
+      "consumed_for_policy": false,
+      "reason": "The frozen priors exist, but ATLAS/reach application needs a causally observed cell/flow/residency.",
+      "replay_status": "partially_available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 67396,
+          "sha256": "797b3e7bd4a107f80244a06a8aea504211680122434fd0141e8f41512031c121",
+          "source": ".claude/trendpath/ATLAS_V1.json"
+        },
+        {
+          "available": true,
+          "bytes": 7824,
+          "sha256": "f1cf8c9ced4fef1337cb397636a40bdeeaee2a126275a9d50ae3310d59aee2fe",
+          "source": ".claude/takerreach/LAW.json"
+        },
+        {
+          "available": true,
+          "bytes": 33,
+          "sha256": "e12254c8a90073741ac218325dd7307f2f752d590b10e61f7138204253122161",
+          "source": "truth/surfaces/REACH_LAW.json"
+        }
+      ]
+    },
+    {
+      "calibration_status": "partially_available",
+      "component_id": "shape_corpus",
+      "consumed_for_metric": false,
+      "consumed_for_policy": false,
+      "reason": "generic corpus retained, but frozen per-row shape fields depend on excluded AIM_V2 prior",
+      "replay_status": "partially_available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 498037,
+          "sha256": "2db26665b83753418e4b6e21a804259a5713bffde481adfaa12a7b6ceb5d5e50",
+          "source": "arb-executor/data/shape_corpus/manifest.json"
+        },
+        {
+          "available": true,
+          "bytes": 87271,
+          "sha256": "7a2aea7b9e3da512a1e037676af7c7016f1fff60fd00d79a22cf8f3e55030459",
+          "source": "arb-executor/data/shape_corpus/coverage.json"
+        }
+      ]
+    },
+    {
+      "calibration_status": "partially_available",
+      "component_id": "fv_bookmaker_pinnacle_voices",
+      "consumed_for_metric": false,
+      "consumed_for_policy": false,
+      "reason": "Causal bookmaker/FV rows exist for 844 of 6,432 feature rows; no causal Pinnacle rows were recorded.",
+      "replay_status": "partially_available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 1474,
+          "sha256": "b98eb05105d98b231285f003373efda032add2654f690baf7674ce13bc254427",
+          "source": ".claude/window1_20260721/MACRO_PROJECTION_RECEIPT.json"
+        },
+        {
+          "available": true,
+          "bytes": 116840,
+          "sha256": "c587ea02055aced7b3b72f1c7eeea62dd9b6f03f38ceea66355ab7c57939c34d",
+          "source": "arb-executor/analysis/window1_fit_benchmark.py"
+        }
+      ]
+    },
+    {
+      "calibration_status": "partially_available",
+      "component_id": "bbo_and_top_five_pressure",
+      "consumed_for_metric": false,
+      "consumed_for_policy": false,
+      "reason": "Top-five local-receipt snapshots cover 6,338 of 6,432 feature rows; they are not a full-depth chain.",
+      "replay_status": "partially_available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 8779,
+          "sha256": "231a6ae056d232c7e203cc8c7e7614a0ab6892b38b12d10fdb58f3a0122772df",
+          "source": ".claude/window1_20260721/SOURCE_COVERAGE_SUMMARY.json"
+        },
+        {
+          "available": true,
+          "bytes": 1939,
+          "sha256": "ad733270a5c3f4222370816fcb57391efba36f233ec6201fa69c1ebe561ca040",
+          "source": ".claude/window1_20260721/WINDOW1_FEATURE_COVERAGE.json"
+        }
+      ]
+    },
+    {
+      "calibration_status": "available",
+      "component_id": "true_print_tape",
+      "consumed_for_metric": true,
+      "consumed_for_policy": false,
+      "reason": "All 1,608 ticker queries are cursor-complete and exchange trade identity is retained.",
+      "replay_status": "available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 8779,
+          "sha256": "231a6ae056d232c7e203cc8c7e7614a0ab6892b38b12d10fdb58f3a0122772df",
+          "source": ".claude/window1_20260721/SOURCE_COVERAGE_SUMMARY.json"
+        },
+        {
+          "available": true,
+          "bytes": 6586,
+          "sha256": "de47ef5200d98772212e05fd8b81be9a2a5c0df13cdb32d5eb8c38610940d6cc",
+          "source": ".claude/window1_20260721/REAL_START_SUMMARY.json"
+        }
+      ]
+    },
+    {
+      "calibration_status": "available",
+      "component_id": "raw_ws_trade_receipts",
+      "consumed_for_metric": false,
+      "consumed_for_policy": false,
+      "reason": "Archived trade messages retain exchange trade_id, ticker, exchange timestamp, price, and size.",
+      "replay_status": "available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 3957,
+          "sha256": "b512360d1082354b61af5a9c3daa9c6968643940d2f0f185b53bc193ec265fa2",
+          "source": ".claude/window1_20260721/WS_DEPTH_COVERAGE_SUMMARY.json"
+        }
+      ]
+    },
+    {
+      "calibration_status": "unavailable",
+      "component_id": "raw_ws_full_depth",
+      "consumed_for_metric": false,
+      "consumed_for_policy": false,
+      "reason": "No required ticker has a non-empty ladder snapshot inside a recorder-started, gap-free sequence epoch; reconnect and sequence gaps are retained.",
+      "replay_status": "unavailable",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 3957,
+          "sha256": "b512360d1082354b61af5a9c3daa9c6968643940d2f0f185b53bc193ec265fa2",
+          "source": ".claude/window1_20260721/WS_DEPTH_COVERAGE_SUMMARY.json"
+        }
+      ]
+    },
+    {
+      "calibration_status": "partially_available",
+      "component_id": "own_order_fingerprints_and_contributed_volume",
+      "consumed_for_metric": true,
+      "consumed_for_policy": false,
+      "reason": "Actual placement/cancel/fill lineages are reconstructable for the receipt-backed inventory; contribution versus public volume cannot be proven without full queue ancestry and is unavailable on censored legs.",
+      "replay_status": "partially_available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 19226,
+          "sha256": "bfec8d5063a90052ccd46d0ef6207df11b7851f725c22d67fd8ff2f2e6e09ea0",
+          "source": ".claude/window1_20260721/LIFECYCLE_VALIDATION_SUMMARY.json"
+        },
+        {
+          "available": true,
+          "bytes": 31444,
+          "sha256": "cd921003f68f993bd8185d5e2413cde9983167be50b7ae8c0dd148b1a9e18893",
+          "source": "arb-executor/analysis/window1_execution_kernel.py"
+        }
+      ]
+    },
+    {
+      "calibration_status": "partially_available",
+      "component_id": "real_start",
+      "consumed_for_metric": true,
+      "consumed_for_policy": false,
+      "reason": "Every D event retains an exact start, causal interval/live-by bound, or named schedule-only bound; schedule-only is never exact.",
+      "replay_status": "partially_available",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 2754296,
+          "sha256": "90a943b598baa8debe1acd08fa4b664d3661cd3762c2e5ab54e54d781819b947",
+          "source": ".claude/window1_20260721/REAL_START_LEDGER.jsonl"
+        },
+        {
+          "available": true,
+          "bytes": 6586,
+          "sha256": "de47ef5200d98772212e05fd8b81be9a2a5c0df13cdb32d5eb8c38610940d6cc",
+          "source": ".claude/window1_20260721/REAL_START_SUMMARY.json"
+        }
+      ]
+    },
+    {
+      "calibration_status": "excluded",
+      "component_id": "aim_v2",
+      "consumed_for_metric": false,
+      "consumed_for_policy": false,
+      "reason": "AIM_V2-only prior lineage; excluded",
+      "replay_status": "excluded",
+      "source_receipts": [
+        {
+          "available": true,
+          "bytes": 4959,
+          "sha256": "46598dc070f408cba3654570d2486b2d8fb9d9233c679bfd99d388bc4d209bcc",
+          "source": ".claude/rulings/AIM_V2_SPEC.md"
+        },
+        {
+          "available": true,
+          "bytes": 343585,
+          "sha256": "6183ddec56eaab2ad48432aa7c802ea6265e608fa26cdd960aa1dde866824356",
+          "source": "arb-executor/data/shape_corpus/aim_v2_operational_LATCHCAL.json"
+        }
+      ]
+    },
+    {
+      "calibration_status": "available",
+      "component_id": "historical_execution",
+      "consumed_for_metric": true,
+      "consumed_for_policy": true,
+      "reason": "actual chronological OS placement/fill/nonfill receipts",
+      "replay_status": "available",
+      "source_receipts": [
+        "private orders hash",
+        "private fills hash",
+        "private lifecycles hash",
+        "causal nonplacement ledger hash"
+      ]
+    }
+  ],
+  "event_feature_censored_count": 804,
+  "full_depth_consumed": false,
+  "leg_feature_censored_count": 1608,
+  "proxy_substitution_used": false,
+  "schema_version": "window1-corrected-os-replay-v1"
+}

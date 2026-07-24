@@ -1,0 +1,119 @@
+{
+  "D": 804,
+  "candidate_id": "chronological_os_strategy_of_record_receipt_replay_v1",
+  "causal_clock_laws": {
+    "local_receipt_used_for_positive_or_post_start": false,
+    "missing_completion_default_used": false,
+    "private_exchange_fill_timestamps_consumed": true,
+    "private_exchange_placement_timestamps_consumed": true,
+    "schedule_used_for_positive_or_post_start": false
+  },
+  "causal_tape": {
+    "distinct_exchange_trade_ids": 4836462,
+    "positive_size_rows": 4836462,
+    "referenced_tickers": 151,
+    "rows": 4836462
+  },
+  "execution_ordinal": 1,
+  "execution_reproduction": {
+    "gate_pass": true,
+    "historical_dual_exact_five_events": 31,
+    "historical_dual_window1_timing_proven": false,
+    "kernel_version": "window1-execution-kernel-v1",
+    "leg_status_counts": {
+      "censored": 468,
+      "exact_filled_five": 258,
+      "exact_filled_other_quantity": 12,
+      "exact_nonfill": 870
+    },
+    "mismatch_count": 0,
+    "ten_contract_overfill_retained_as_other_quantity": 1
+  },
+  "instrument_binding": {
+    "adapter_sha256": "171474c15cef72d390ceac13c4873c730948af6d55aabe134c22d9d48f35a2e8",
+    "aim_v2_consumed": false,
+    "candidate_spec_sha256": "ea54cf62fd0ccfab2e4b5dda71a9d5747a81bc00fc4668ff746f891a8ea7785f",
+    "code_sha": "0060331e1ef240b895baabb675ed1adeadfddc07",
+    "freeze_sha256": "31961f1fa1d3fe2362d969c3a1a6b4df116b5f5de84f9433426d4b39ea538150",
+    "metric_contract_sha256": "ea865b646d528be594889fc505d2660e241e9149fcf3bd0ae0b00cb1707f1e67",
+    "policy_allowlist_sha256": "e4a34c5b5c6a53edd4a546e2d3f37eb9e47512aeb66a1e3cd003b3143ff0b59a",
+    "proxy_substitution_used": false
+  },
+  "primary_bounds": {
+    "distance_from_target_at_optimistic_upper_bound": 363,
+    "distance_from_target_at_strict_lower_bound": 603,
+    "optimistic_upper_bound_count": 240,
+    "optimistic_upper_bound_rate_over_D": 0.29850746268656714,
+    "strict_lower_bound_count": 0,
+    "strict_lower_bound_rate_over_D": 0.0,
+    "target_count": 603,
+    "unresolved_events_assumed_successful_in_upper_bound": 240,
+    "verdict": "target_proven_failed"
+  },
+  "rates_over_D": {
+    "both_individual_leg_deltas_negative": 0.0,
+    "combined_entry_cost_under_par": 0.0,
+    "dynamic_floor_gap_at_or_below_zero": 0.0,
+    "dynamic_floor_gap_evaluated_events": 0.0,
+    "feature_censored_events": 1.0,
+    "non_window1_fill_events": 0.08208955223880597,
+    "nonfill_events": 0.6766169154228856,
+    "one_leg_only_negative_delta": 0.0,
+    "other_quantity_fill_events": 0.014925373134328358,
+    "strict_dual_exact_five_window1_completions": 0.0,
+    "strict_dual_exact_five_window1_completions_with_negative_combined_window1_close_delta": 0.0,
+    "timing_censored_events": 0.9054726368159204
+  },
+  "raw_event_counts": {
+    "D": 804,
+    "both_individual_leg_deltas_negative": 0,
+    "combined_entry_cost_under_par": 0,
+    "dynamic_floor_gap_at_or_below_zero": 0,
+    "dynamic_floor_gap_evaluated_events": 0,
+    "feature_censored_events": 804,
+    "non_window1_fill_events": 66,
+    "nonfill_events": 544,
+    "one_leg_only_negative_delta": 0,
+    "other_quantity_fill_events": 12,
+    "strict_dual_exact_five_window1_completions": 0,
+    "strict_dual_exact_five_window1_completions_with_negative_combined_window1_close_delta": 0,
+    "timing_censored_events": 728
+  },
+  "raw_leg_counts": {
+    "dip_catch_at_or_below_fitted_target": 5,
+    "dip_catch_evaluated_legs": 10,
+    "dip_catch_within_four_cents": 9,
+    "exact_five_filled_legs": 258,
+    "exact_nonfill_legs": 870,
+    "lifecycle_censored_legs": 468,
+    "other_quantity_filled_legs": 12,
+    "proven_non_window1_filled_legs": 75,
+    "proven_window1_exact_five_legs": 13,
+    "required_legs": 1608,
+    "ten_contract_overfill_legs": 1
+  },
+  "run_status": "complete",
+  "schema_version": "window1-corrected-os-replay-v1",
+  "scope_assertions": {
+    "ablation": false,
+    "candidate_search": false,
+    "development_dates_only": [
+      "2026-07-12",
+      "2026-07-20"
+    ],
+    "holdout_inputs": [],
+    "parameter_sweep": false,
+    "production_mutation": false,
+    "threshold_optimization": false,
+    "window2_exit_settlement_dca": false
+  },
+  "start_precision_accounting": {
+    "clean_causal_intervals_positive_capable": 47,
+    "contradictory_intervals_not_positive_capable": 32,
+    "exact_starts": 29,
+    "fully_timing_censored_events": 71,
+    "live_by_events_negative_only": 625,
+    "positive_window1_provable_population": 76,
+    "remaining_timing_censored_population": 728
+  }
+}

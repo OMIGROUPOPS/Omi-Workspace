@@ -1,0 +1,311 @@
+{
+  "D": 804,
+  "adapter_id": "chronological-window1-os-receipt-adapter-v1",
+  "adapter_sha256": "171474c15cef72d390ceac13c4873c730948af6d55aabe134c22d9d48f35a2e8",
+  "aim_v2_consumed": false,
+  "calibration_gate_input_count": 18,
+  "candidate_spec_sha256": "ea54cf62fd0ccfab2e4b5dda71a9d5747a81bc00fc4668ff746f891a8ea7785f",
+  "causal_clock_source_hashes": {
+    "causal_nonplacements": "38cf05ee2649c628299577f5d793bf541b9813973f3094efc25d4f1b7ee6ac1f",
+    "private_fills": "76e7830fc3164ac3d5360d22b1b8fb860a491b7d47257ac706f44527bd32f335",
+    "private_lifecycles": "897195b517ad3db6370c3fb05835db53a88f3a69bd7b51cef24e0c544de3d356",
+    "private_orders": "707375e77a55d309e6850b0e54047a3994ebacfe5159304aca03d06e45d19912",
+    "real_start_ledger": "90a943b598baa8debe1acd08fa4b664d3661cd3762c2e5ab54e54d781819b947"
+  },
+  "code_sha": "0060331e1ef240b895baabb675ed1adeadfddc07",
+  "development_dates_utc_inclusive": [
+    "2026-07-12",
+    "2026-07-20"
+  ],
+  "execution_limit": 1,
+  "freeze_receipt_sha256": "31961f1fa1d3fe2362d969c3a1a6b4df116b5f5de84f9433426d4b39ea538150",
+  "frozen": true,
+  "holdout_inputs": [],
+  "inputs": [
+    {
+      "bytes": 31533,
+      "calibration_gate_input": true,
+      "locator": "arb-executor/analysis/window1_execution_calibration.py",
+      "logical_source": "calibration_runner",
+      "private": false,
+      "sha256": "e6ac696b46db6d4284fd1b3d92642cb721afaa8b2b3509b4efbc70bc313635ed"
+    },
+    {
+      "bytes": 132773,
+      "calibration_gate_input": true,
+      "locator": ".claude/window1_20260721/CAUSAL_DECISIONS.sanitized.jsonl",
+      "logical_source": "decisions",
+      "private": false,
+      "sha256": "38cf05ee2649c628299577f5d793bf541b9813973f3094efc25d4f1b7ee6ac1f"
+    },
+    {
+      "bytes": 336694,
+      "calibration_gate_input": true,
+      "locator": "external-evidence:events.jsonl",
+      "logical_source": "events",
+      "private": false,
+      "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46"
+    },
+    {
+      "bytes": 31444,
+      "calibration_gate_input": true,
+      "locator": "arb-executor/analysis/window1_execution_kernel.py",
+      "logical_source": "execution_kernel",
+      "private": false,
+      "sha256": "cd921003f68f993bd8185d5e2413cde9983167be50b7ae8c0dd148b1a9e18893"
+    },
+    {
+      "bytes": 19226,
+      "calibration_gate_input": true,
+      "locator": ".claude/window1_20260721/LIFECYCLE_VALIDATION_SUMMARY.json",
+      "logical_source": "expected_execution_summary",
+      "private": false,
+      "sha256": "bfec8d5063a90052ccd46d0ef6207df11b7851f725c22d67fd8ff2f2e6e09ea0"
+    },
+    {
+      "bytes": 1078314,
+      "calibration_gate_input": true,
+      "locator": ".claude/window1_20260721/EVENT_LEG_LIFECYCLE_LEDGER.jsonl",
+      "logical_source": "expected_legs",
+      "private": false,
+      "sha256": "52dfe9dfbb8a414b16ccd93ae0b136c7f980df0109d3cefa1167204d97121f5e"
+    },
+    {
+      "bytes": 1939,
+      "calibration_gate_input": true,
+      "locator": ".claude/window1_20260721/WINDOW1_FEATURE_COVERAGE.json",
+      "logical_source": "feature_coverage",
+      "private": false,
+      "sha256": "ad733270a5c3f4222370816fcb57391efba36f233ec6201fa69c1ebe561ca040"
+    },
+    {
+      "bytes": 913028,
+      "calibration_gate_input": true,
+      "locator": "external-private:api_fills.private.jsonl",
+      "logical_source": "fills",
+      "private": true,
+      "sha256": "76e7830fc3164ac3d5360d22b1b8fb860a491b7d47257ac706f44527bd32f335"
+    },
+    {
+      "bytes": 116840,
+      "calibration_gate_input": true,
+      "locator": "arb-executor/analysis/window1_fit_benchmark.py",
+      "logical_source": "future_fit_runner",
+      "private": false,
+      "sha256": "c587ea02055aced7b3b72f1c7eeea62dd9b6f03f38ceea66355ab7c57939c34d"
+    },
+    {
+      "bytes": 5606583,
+      "calibration_gate_input": true,
+      "locator": "external-private:orders.private.jsonl",
+      "logical_source": "orders",
+      "private": true,
+      "sha256": "707375e77a55d309e6850b0e54047a3994ebacfe5159304aca03d06e45d19912"
+    },
+    {
+      "bytes": 9606,
+      "calibration_gate_input": true,
+      "locator": "arb-executor/docs/research/window1/WINDOW1_OS_ADAPTER_CONTRACT.json",
+      "logical_source": "os_contract",
+      "private": false,
+      "sha256": "02c58d259442b7c35798a68c30acb7ee0debb61e91184b30c6ba772872650396"
+    },
+    {
+      "bytes": 1768283,
+      "calibration_gate_input": true,
+      "locator": "external-private:lifecycle.private.jsonl",
+      "logical_source": "private_lifecycles",
+      "private": true,
+      "sha256": "897195b517ad3db6370c3fb05835db53a88f3a69bd7b51cef24e0c544de3d356"
+    },
+    {
+      "bytes": 2754296,
+      "calibration_gate_input": true,
+      "locator": ".claude/window1_20260721/REAL_START_LEDGER.jsonl",
+      "logical_source": "real_start_ledger",
+      "private": false,
+      "sha256": "90a943b598baa8debe1acd08fa4b664d3661cd3762c2e5ab54e54d781819b947"
+    },
+    {
+      "bytes": 6586,
+      "calibration_gate_input": true,
+      "locator": ".claude/window1_20260721/REAL_START_SUMMARY.json",
+      "logical_source": "real_start_summary",
+      "private": false,
+      "sha256": "de47ef5200d98772212e05fd8b81be9a2a5c0df13cdb32d5eb8c38610940d6cc"
+    },
+    {
+      "bytes": 8779,
+      "calibration_gate_input": true,
+      "locator": ".claude/window1_20260721/SOURCE_COVERAGE_SUMMARY.json",
+      "logical_source": "source_coverage",
+      "private": false,
+      "sha256": "231a6ae056d232c7e203cc8c7e7614a0ab6892b38b12d10fdb58f3a0122772df"
+    },
+    {
+      "bytes": 5232,
+      "calibration_gate_input": true,
+      "locator": ".claude/window1_calibration_20260723/CAUSAL_TAPE_RECONCILIATION.json",
+      "logical_source": "tape_reconciliation",
+      "private": false,
+      "sha256": "bb42302887ebdd3b8391cab631edc62ffb90dcb42a10223e698d2133b683f35a"
+    },
+    {
+      "bytes": 20984,
+      "calibration_gate_input": true,
+      "locator": "arb-executor/analysis/window1_ws_trade_reconcile.py",
+      "logical_source": "trade_reconciliation_runner",
+      "private": false,
+      "sha256": "3b6c6b24dad36bdc25b77c5f312e2684f397feaade3a434cf59b7d178ff26ee9"
+    },
+    {
+      "bytes": 3957,
+      "calibration_gate_input": true,
+      "locator": ".claude/window1_20260721/WS_DEPTH_COVERAGE_SUMMARY.json",
+      "logical_source": "ws_summary",
+      "private": false,
+      "sha256": "b512360d1082354b61af5a9c3daa9c6968643940d2f0f185b53bc193ec265fa2"
+    },
+    {
+      "bytes": 69416,
+      "calibration_gate_input": false,
+      "locator": "arb-executor/analysis/window1_corrected_replay.py",
+      "logical_source": "corrected_replay_runner",
+      "private": false,
+      "sha256": "9b981578e35f4bc7a18a0454fbfdcaf860e5c5db350786416c5869b6a2f6e2f7"
+    },
+    {
+      "bytes": 3224,
+      "calibration_gate_input": false,
+      "locator": "arb-executor/docs/research/window1/WINDOW1_CORRECTED_CANDIDATE.json",
+      "logical_source": "corrected_candidate",
+      "private": false,
+      "sha256": "ea54cf62fd0ccfab2e4b5dda71a9d5747a81bc00fc4668ff746f891a8ea7785f"
+    },
+    {
+      "bytes": 1291,
+      "calibration_gate_input": false,
+      "locator": "arb-executor/docs/research/window1/WINDOW1_POLICY_ALLOWLIST.json",
+      "logical_source": "policy_allowlist",
+      "private": false,
+      "sha256": "e4a34c5b5c6a53edd4a546e2d3f37eb9e47512aeb66a1e3cd003b3143ff0b59a"
+    },
+    {
+      "bytes": 2918,
+      "calibration_gate_input": false,
+      "locator": "arb-executor/docs/research/window1/WINDOW1_OS_EXECUTION_ADAPTER.json",
+      "logical_source": "execution_adapter",
+      "private": false,
+      "sha256": "171474c15cef72d390ceac13c4873c730948af6d55aabe134c22d9d48f35a2e8"
+    },
+    {
+      "bytes": 2645,
+      "calibration_gate_input": false,
+      "locator": "arb-executor/docs/research/window1/WINDOW1_CORRECTED_METRIC_CONTRACT.json",
+      "logical_source": "metric_contract",
+      "private": false,
+      "sha256": "ea865b646d528be594889fc505d2660e241e9149fcf3bd0ae0b00cb1707f1e67"
+    },
+    {
+      "bytes": 23308,
+      "calibration_gate_input": false,
+      "locator": ".claude/window1_calibration_20260723/WINDOW1_OS_RESEARCH_ADAPTER.json",
+      "logical_source": "calibration_adapter",
+      "private": false,
+      "sha256": "cc137a5ed4b0218587e64c43da0572a2fa9a4ca1c4e32e02e36ec992d79cf3fe"
+    },
+    {
+      "bytes": 20288495,
+      "calibration_gate_input": false,
+      "locator": ".claude/window1_20260721/WINDOW1_FEATURE_MATRIX.jsonl",
+      "logical_source": "feature_matrix",
+      "private": false,
+      "sha256": "4b543313b315af91db86ff049f552335b32fc36654fd53d7a27ae682184584c1"
+    },
+    {
+      "bytes": 1766090446,
+      "calibration_gate_input": false,
+      "locator": "external-private:prints.jsonl",
+      "logical_source": "public_true_print_tape",
+      "private": true,
+      "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+    },
+    {
+      "bytes": 86928,
+      "calibration_gate_input": false,
+      "locator": ".claude/seqfloor_20260708/recut_cells.json",
+      "logical_source": "recut_cells",
+      "private": false,
+      "sha256": "852ab6678e4358189e4f79987e0286011d1e5662a2653ed0cc34fc18e4fb32b7"
+    },
+    {
+      "bytes": 18225,
+      "calibration_gate_input": false,
+      "locator": ".claude/window1_20260721/POST_SAMPLE_MICMAY_FORENSIC.json",
+      "logical_source": "micmay_forensic",
+      "private": false,
+      "sha256": "7fa6034b9000cd590c57e04c5488f58bedbce844d32d5797cb3d69ef5c6a0f3f"
+    },
+    {
+      "bytes": 2000,
+      "calibration_gate_input": false,
+      "locator": ".claude/window1_20260721/EVIDENCE_RECOVERY_ARTIFACT_MANIFEST.json",
+      "logical_source": "micmay_manifest",
+      "private": false,
+      "sha256": "952e09d6a83c6c7068bb5b056865e6e3bfe426ac8a1a84328c7204a6cfeb38fa"
+    },
+    {
+      "bytes": 11847,
+      "calibration_gate_input": false,
+      "locator": "arb-executor/docs/research/window1/independent-audit/CALIBRATION_GATE_CROSS_REVIEW.md",
+      "logical_source": "independent_cross_review",
+      "private": false,
+      "sha256": "6898c6ef91e987546d71bc9620072cc8aec1286387dd3297eac7b6bc5ad79231"
+    }
+  ],
+  "metric_contract_sha256": "ea865b646d528be594889fc505d2660e241e9149fcf3bd0ae0b00cb1707f1e67",
+  "policy_allowlist": {
+    "allowed_execution_components": [
+      "historical_execution",
+      "pair_law",
+      "real_start",
+      "true_print_tape",
+      "dynamic_floor_and_recut_cells",
+      "dual_divot_steering_and_catch",
+      "first_fill_sibling_response",
+      "sealed_bands",
+      "drift_recognition",
+      "cohort_steering",
+      "orientation_prior",
+      "walk_park_posture",
+      "riser_deceleration_mirror_seesaw",
+      "atlas_and_reach",
+      "shape_corpus",
+      "fv_bookmaker_pinnacle_voices",
+      "bbo_and_top_five_pressure",
+      "raw_ws_trade_receipts",
+      "raw_ws_full_depth",
+      "own_order_fingerprints_and_contributed_volume"
+    ],
+    "allowed_policy_ids": [
+      "chronological_os_strategy_of_record_receipt_replay_v1"
+    ],
+    "forbidden_execution_components": [
+      "aim_v2"
+    ],
+    "forbidden_policy_ids": [
+      "park_touch_simultaneous_hold",
+      "walk_law_simultaneous_hold",
+      "walk_law_firstfill_reaim_touch",
+      "causal_stack_simultaneous_reaim"
+    ],
+    "sha256": "e4a34c5b5c6a53edd4a546e2d3f37eb9e47512aeb66a1e3cd003b3143ff0b59a"
+  },
+  "prohibited_input_sha256": [
+    "6183ddec56eaab2ad48432aa7c802ea6265e608fa26cdd960aa1dde866824356"
+  ],
+  "proxy_substitution_allowed": false,
+  "schema_version": "window1-corrected-freeze-v1",
+  "total_input_count": 30,
+  "window2_exit_settlement_dca_inputs": false
+}

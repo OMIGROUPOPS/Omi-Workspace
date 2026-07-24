@@ -1,0 +1,81 @@
+{
+  "D": 804,
+  "artifacts": {
+    "FINAL_RECONCILIATION_REPORT.md": {
+      "bytes": 4355,
+      "sha256": "e98aff6df8d158654ca7b8cd749fc89bd36c119fdf14a645cdecff80ba3dc2f4"
+    },
+    "POLICY_DECISION_LEDGER_COMPLETE.jsonl": {
+      "bytes": 4134708,
+      "rows": 7256,
+      "sha256": "e7594551984cee20cdafc23f98b010bdbfd02379911787d679189af2efe0949d"
+    },
+    "POLICY_DECISION_SUPPLEMENT.jsonl": {
+      "bytes": 8662,
+      "rows": 14,
+      "sha256": "31799d567d74fe03b6fd3530d3b9b5c90801d007ce4e6910f10c0d49bfac1c90"
+    }
+  },
+  "complete_decision_rows": 7256,
+  "decision_counts": {
+    "accepted_entry_placement": 3318,
+    "accepted_placement_receipt_missing": 42,
+    "cancellation_receipt": 3574,
+    "causal_no_placement": 308,
+    "failed_entry_placement": 14
+  },
+  "event_rows": 804,
+  "execution_ordinal": 1,
+  "failed_decision_supplement_rows": 14,
+  "holdout_inputs": [],
+  "leg_rows": 1608,
+  "metric_results_changed": false,
+  "mismatch_rows": 0,
+  "original_artifact_manifest_sha256": "50b0408a5e4eb5a3ac81a27aa5911d5c9f0f9194d20c8727af33ebe70622a243",
+  "original_artifacts": {
+    "COMPONENT_COVERAGE.json": {
+      "bytes": 19909,
+      "rows": null,
+      "sha256": "fb8c200f31c2a752945ebdc150d715cbf38379e4113c7d2ea3f23cb1f61fa988"
+    },
+    "EVENT_LEG_RESULTS.jsonl": {
+      "bytes": 5230083,
+      "rows": 1608,
+      "sha256": "ed36a98663ba90da769ef2604d221d1dc620594f9a01fd4532ebfd0507bf6bb0"
+    },
+    "EVENT_RESULTS.jsonl": {
+      "bytes": 680809,
+      "rows": 804,
+      "sha256": "4531beb0d6b4a30d05135995fd066279d32dad9f5725eb37756a0a8f2622e709"
+    },
+    "EXECUTION_MISMATCH_LEDGER.jsonl": {
+      "bytes": 0,
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "FROZEN_HASHES.json": {
+      "bytes": 11622,
+      "rows": null,
+      "sha256": "1e6eefd0133f87c35cf924d7e39c8dbf9a26ae41c103a0d5585374927e221280"
+    },
+    "POLICY_DECISION_LEDGER.jsonl": {
+      "bytes": 4126046,
+      "rows": 7242,
+      "sha256": "28239a180746e96293ae65fc075284a3b3389909161fc741a049da910f4e265c"
+    },
+    "REPORT.md": {
+      "bytes": 2283,
+      "rows": null,
+      "sha256": "d01c1d5e420515b094dec1edf1d91b6d4dd13a3723e6601bb0d9cda7a9aa904c"
+    },
+    "RESULTS.json": {
+      "bytes": 4509,
+      "rows": null,
+      "sha256": "3b127486089d18a94c0b40c1c4cb1b24a40aaf84053cc4dedd5e433a1f04f50f"
+    }
+  },
+  "original_artifacts_preserved": true,
+  "private_identifiers_emitted": false,
+  "run_receipt_state": "execution_complete",
+  "schema_version": "window1-corrected-publication-v1"
+}

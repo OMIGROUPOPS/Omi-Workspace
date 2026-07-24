@@ -1,0 +1,110 @@
+{
+  "A_forbidden_fields_refused": {
+    "all_refused": true,
+    "fields": {
+      "evaluation_real_start_ts": "refused",
+      "exact_start_utc": "refused",
+      "known_live_by_utc": "refused",
+      "not_live_through_utc": "refused",
+      "proxy_clock_utc": "refused",
+      "start_interval_utc": "refused",
+      "strict_positive_cutoff_ts": "refused",
+      "verified_start_utc": "refused"
+    }
+  },
+  "B_clock_declarations": {
+    "corridor_mismatch": "refused",
+    "anchor_observed_after_horizon": "refused"
+  },
+  "C_policy_evaluation_separation": {
+    "policy_stream_deterministic_identical": true,
+    "policy_result_carries_no_truth": true,
+    "early_classification": "no_inside_window_fill",
+    "late_classification": "has_inside_window_fill",
+    "classifications_differ": true,
+    "same_policy_stream_hash_in_both": true
+  },
+  "D_schedule_only": {
+    "classification": "censored_start_boundary",
+    "positive_window1_proved": false,
+    "realized_start_on_schedule_only": "refused"
+  },
+  "E_evidence_admission_gate": {
+    "control_divot_fires_on_lawful_print": true,
+    "bad_rows": {
+      "size_zero": {
+        "print_excluded": true,
+        "micro_divot_fired": false,
+        "order_placed": false,
+        "fill_observed": false
+      },
+      "size_none": {
+        "print_excluded": true,
+        "micro_divot_fired": false,
+        "order_placed": false,
+        "fill_observed": false
+      },
+      "size_malformed": {
+        "print_excluded": true,
+        "micro_divot_fired": false,
+        "order_placed": false,
+        "fill_observed": false
+      },
+      "synthetic_transition": {
+        "print_excluded": true,
+        "micro_divot_fired": false,
+        "order_placed": false,
+        "fill_observed": false
+      },
+      "unverified_size": {
+        "print_excluded": true,
+        "micro_divot_fired": false,
+        "order_placed": false,
+        "fill_observed": false
+      },
+      "missing_identity": {
+        "print_excluded": true,
+        "micro_divot_fired": false,
+        "order_placed": false,
+        "fill_observed": false
+      },
+      "unproved_source": {
+        "print_excluded": true,
+        "micro_divot_fired": false,
+        "order_placed": false,
+        "fill_observed": false
+      }
+    },
+    "no_bad_row_triggers_anything": true
+  },
+  "F_walk_chain_zero_size": {
+    "genuine_chain_advances": true,
+    "zero_size_link_advances": false,
+    "defect_fixed": true
+  },
+  "G_cohort_no_call_continuation": {
+    "no_call_emitted": true,
+    "no_call_flags_continuation": true,
+    "feature_censor_absent": true,
+    "order_still_placed": true,
+    "terminal": "complete_counterfactual_stream"
+  },
+  "H_own_volume": {
+    "own_print_logged_excluded": true,
+    "own_print_never_fills": true
+  },
+  "I_holdout_date_fence": {
+    "2026-07-24": "refused",
+    "2026-07-25": "refused",
+    "2026-07-26": "refused",
+    "2026-07-23": "refused",
+    "2026-07-11": "refused"
+  },
+  "J_eligibility_schedule_anchored": {
+    "expected_anchor_minus_144m": 991360.0,
+    "observed": [
+      991360.0
+    ],
+    "matches": true
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "D": 804,
+  "artifacts": {
+    "WINDOW1_OS_FAMILY_ABLATIONS.json": {
+      "bytes": 134457,
+      "sha256": "836bb6e920262c52586935a479cd8178f56acad2e840b86feaee302ae571ae63"
+    },
+    "WINDOW1_OS_FAMILY_FEATURE_COVERAGE.json": {
+      "bytes": 1111,
+      "sha256": "eeac272a8eb4a77a0485f4fe8f84c16f57b2f8fbce07c3488f14bb67fbba0a8c"
+    },
+    "WINDOW1_OS_FAMILY_REPORT.md": {
+      "bytes": 8290,
+      "sha256": "28c2c5fb77d4ba9e6a316411917db57fa6b3a88c30179e4f000b097f63969d02"
+    },
+    "WINDOW1_OS_FAMILY_RESULTS.json": {
+      "bytes": 389457,
+      "sha256": "379e8af47263515949adb84fc97d532975b6760d5c0e83c9c4723945b916ecd1"
+    },
+    "WINDOW1_OS_FAMILY_SELECTED_EVENTS.jsonl": {
+      "bytes": 1942754,
+      "sha256": "f58884f3569d8ac91ddaa17265025114c17972c0db7e35405a3db4f633c2f707"
+    }
+  },
+  "holdout_opened": false,
+  "pre_run_commit": "bb7f994305334fcc95a57ce261f5e90385458798",
+  "private_paths_included": false,
+  "schema_version": "window1-corrected-os-family-search-v1-manifest-v1"
+}

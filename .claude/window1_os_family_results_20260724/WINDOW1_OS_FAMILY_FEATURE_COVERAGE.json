@@ -1,0 +1,34 @@
+{
+  "D": 804,
+  "available_leg_component_counts": {
+    "atlas_and_reach": 851,
+    "bbo_and_top_five_pressure": 1382,
+    "cohort_steering": 1018,
+    "drift_recognition": 1272,
+    "dual_divot_steering_and_catch": 1384,
+    "dynamic_floor_and_recut_cells": 1293,
+    "first_fill_sibling_response": 1384,
+    "fv_and_bookmaker_voice": 139,
+    "orientation_prior": 110,
+    "pair_law": 1384,
+    "riser_deceleration_mirror_seesaw": 37,
+    "sealed_bands": 29,
+    "true_print_tape": 1384,
+    "walk_park_posture": 1384
+  },
+  "event_coverage_classes": {
+    "available_10_of_16": 339,
+    "available_11_of_16": 61,
+    "available_6_of_16": 3,
+    "available_7_of_16": 24,
+    "available_8_of_16": 215,
+    "available_9_of_16": 50,
+    "no_causal_birth_book": 1,
+    "start_boundary_censored": 99,
+    "window_left_after_guarded_start": 12
+  },
+  "full_depth": "unavailable; not used",
+  "required_legs": 1608,
+  "selected_policy_id": "drift_cohort_orientation__walk__reaim",
+  "shape_corpus": "unavailable per event: no independent non-AIM causal cell mapping; not imputed"
+}

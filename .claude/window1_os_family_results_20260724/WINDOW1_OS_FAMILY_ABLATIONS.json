@@ -1,0 +1,5383 @@
+{
+  "ablations": [
+    {
+      "ablations": [
+        "without_sealed_bands"
+      ],
+      "combined_entry_cost_cents": {
+        "max": 101.0,
+        "mean": 97.4,
+        "median": 97.5,
+        "min": 94.0,
+        "n": 10,
+        "p25": 96.0,
+        "p75": 98.0
+      },
+      "combined_window1_close_delta_cents": {
+        "max": 0.0,
+        "mean": -4.2,
+        "median": -4.0,
+        "min": -7.0,
+        "n": 10,
+        "p25": -6.0,
+        "p75": -3.0
+      },
+      "data_ceiling": {
+        "note": "a development miss is not a market ceiling",
+        "optimistic_queue_complete_events": 26,
+        "strict_positive_boundary_events": 705
+      },
+      "distance_from_target": {
+        "raw_shortfall": 594,
+        "reached": false,
+        "target_PC": 603
+      },
+      "failure_census": {
+        "censored": 102,
+        "contradictory": 14,
+        "exact_five": 1,
+        "nonfill": 678
+      },
+      "feature_ceiling": {
+        "events_with_all_16_feature_families": 0,
+        "note": "feature coverage is distinct from fill/data ceiling; missing features were not imputed"
+      },
+      "first_fill_sibling_response": "reaim",
+      "groups": {
+        "by_date": {
+          "2026-07-12": {
+            "C": 4,
+            "D": 156,
+            "IC": 1,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 15,
+              "exact_five": 4,
+              "nonfill": 137
+            }
+          },
+          "2026-07-13": {
+            "C": 0,
+            "D": 114,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 15,
+              "nonfill": 99
+            }
+          },
+          "2026-07-14": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "nonfill": 80
+            }
+          },
+          "2026-07-15": {
+            "C": 1,
+            "D": 64,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 11,
+              "contradictory": 1,
+              "exact_five": 1,
+              "nonfill": 51
+            }
+          },
+          "2026-07-16": {
+            "C": 0,
+            "D": 42,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 6,
+              "contradictory": 1,
+              "nonfill": 35
+            }
+          },
+          "2026-07-17": {
+            "C": 0,
+            "D": 50,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 1,
+              "nonfill": 41
+            }
+          },
+          "2026-07-18": {
+            "C": 0,
+            "D": 62,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 4,
+              "nonfill": 50
+            }
+          },
+          "2026-07-19": {
+            "C": 5,
+            "D": 121,
+            "IC": 3,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 12,
+              "contradictory": 1,
+              "exact_five": 5,
+              "nonfill": 103
+            }
+          },
+          "2026-07-20": {
+            "C": 0,
+            "D": 96,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 6,
+              "nonfill": 82
+            }
+          }
+        },
+        "by_feature_coverage_class": {
+          "available_10_of_16": {
+            "C": 0,
+            "D": 339,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 2,
+              "nonfill": 337
+            }
+          },
+          "available_11_of_16": {
+            "C": 0,
+            "D": 61,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 61
+            }
+          },
+          "available_6_of_16": {
+            "C": 0,
+            "D": 3,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 3
+            }
+          },
+          "available_7_of_16": {
+            "C": 2,
+            "D": 24,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 2,
+              "nonfill": 21
+            }
+          },
+          "available_8_of_16": {
+            "C": 7,
+            "D": 215,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 12,
+              "exact_five": 7,
+              "nonfill": 196
+            }
+          },
+          "available_9_of_16": {
+            "C": 1,
+            "D": 50,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 1,
+              "nonfill": 48
+            }
+          },
+          "no_causal_birth_book": {
+            "C": 0,
+            "D": 1,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 1
+            }
+          },
+          "start_boundary_censored": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 85,
+              "contradictory": 14
+            }
+          },
+          "window_left_after_guarded_start": {
+            "C": 0,
+            "D": 12,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 12
+            }
+          }
+        },
+        "by_start_source_class": {
+          "clean_causal_interval": {
+            "C": 0,
+            "D": 31,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 9,
+              "nonfill": 22
+            }
+          },
+          "contradictory": {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "contradictory": 14
+            }
+          },
+          "live_by_only": {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 52
+            }
+          },
+          "official_exact": {
+            "C": 4,
+            "D": 234,
+            "IC": 2,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 4,
+              "nonfill": 229
+            }
+          },
+          "quantized_late_detection_proxy": {
+            "C": 6,
+            "D": 453,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 20,
+              "exact_five": 6,
+              "nonfill": 427
+            }
+          },
+          "schedule_only": {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20
+            }
+          }
+        },
+        "by_tournament_class": {
+          "ATP_CHALL": {
+            "C": 0,
+            "D": 369,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20,
+              "contradictory": 10,
+              "nonfill": 339
+            }
+          },
+          "ATP_MAIN": {
+            "C": 10,
+            "D": 147,
+            "IC": 4,
+            "PC": 9,
+            "S": 9,
+            "classifications": {
+              "censored": 22,
+              "contradictory": 1,
+              "exact_five": 10,
+              "nonfill": 114
+            }
+          },
+          "WTA_CHALL": {
+            "C": 0,
+            "D": 136,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 41,
+              "contradictory": 1,
+              "nonfill": 94
+            }
+          },
+          "WTA_MAIN": {
+            "C": 0,
+            "D": 152,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "contradictory": 2,
+              "nonfill": 131
+            }
+          }
+        }
+      },
+      "individual_leg_window1_close_delta_cents": {
+        "max": 3.0,
+        "mean": -2.1,
+        "median": -2.0,
+        "min": -10.0,
+        "n": 20,
+        "p25": -3.0,
+        "p75": 1.0
+      },
+      "percentages": {
+        "C_over_D": 0.012437810945273632,
+        "IC_over_C": 0.4,
+        "IC_over_D": 0.004975124378109453,
+        "PC_over_C": 0.9,
+        "PC_over_D": 0.011194029850746268,
+        "S_over_C": 0.9
+      },
+      "policy_family": "drift_cohort_orientation",
+      "policy_id": "drift_cohort_orientation__walk__reaim__without_sealed_bands",
+      "posture": "walk",
+      "raw": {
+        "C": 10,
+        "D": 804,
+        "IC": 4,
+        "PC": 9,
+        "S": 9,
+        "censored": 102,
+        "classifications": {
+          "censored": 102,
+          "contradictory": 14,
+          "exact_five": 10,
+          "nonfill": 678
+        },
+        "contradictory": 14,
+        "exact_five": 10,
+        "nonfill": 678,
+        "other_quantity": 0,
+        "partial": 0
+      },
+      "schema_version": "window1-corrected-os-family-search-v1-candidate-v1"
+    },
+    {
+      "ablations": [
+        "without_divot_catch"
+      ],
+      "combined_entry_cost_cents": {
+        "max": 101.0,
+        "mean": 97.4,
+        "median": 97.5,
+        "min": 93.0,
+        "n": 10,
+        "p25": 96.0,
+        "p75": 99.0
+      },
+      "combined_window1_close_delta_cents": {
+        "max": 0.0,
+        "mean": -4.2,
+        "median": -4.0,
+        "min": -8.0,
+        "n": 10,
+        "p25": -6.0,
+        "p75": -2.0
+      },
+      "data_ceiling": {
+        "note": "a development miss is not a market ceiling",
+        "optimistic_queue_complete_events": 27,
+        "strict_positive_boundary_events": 705
+      },
+      "distance_from_target": {
+        "raw_shortfall": 594,
+        "reached": false,
+        "target_PC": 603
+      },
+      "failure_census": {
+        "censored": 103,
+        "contradictory": 14,
+        "exact_five": 1,
+        "nonfill": 677
+      },
+      "feature_ceiling": {
+        "events_with_all_16_feature_families": 0,
+        "note": "feature coverage is distinct from fill/data ceiling; missing features were not imputed"
+      },
+      "first_fill_sibling_response": "reaim",
+      "groups": {
+        "by_date": {
+          "2026-07-12": {
+            "C": 4,
+            "D": 156,
+            "IC": 1,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 15,
+              "exact_five": 4,
+              "nonfill": 137
+            }
+          },
+          "2026-07-13": {
+            "C": 0,
+            "D": 114,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 15,
+              "nonfill": 99
+            }
+          },
+          "2026-07-14": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "nonfill": 80
+            }
+          },
+          "2026-07-15": {
+            "C": 1,
+            "D": 64,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 12,
+              "contradictory": 1,
+              "exact_five": 1,
+              "nonfill": 50
+            }
+          },
+          "2026-07-16": {
+            "C": 0,
+            "D": 42,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 6,
+              "contradictory": 1,
+              "nonfill": 35
+            }
+          },
+          "2026-07-17": {
+            "C": 0,
+            "D": 50,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 1,
+              "nonfill": 41
+            }
+          },
+          "2026-07-18": {
+            "C": 0,
+            "D": 62,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 4,
+              "nonfill": 50
+            }
+          },
+          "2026-07-19": {
+            "C": 5,
+            "D": 121,
+            "IC": 3,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 12,
+              "contradictory": 1,
+              "exact_five": 5,
+              "nonfill": 103
+            }
+          },
+          "2026-07-20": {
+            "C": 0,
+            "D": 96,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 6,
+              "nonfill": 82
+            }
+          }
+        },
+        "by_feature_coverage_class": {
+          "available_10_of_16": {
+            "C": 0,
+            "D": 339,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 2,
+              "nonfill": 337
+            }
+          },
+          "available_11_of_16": {
+            "C": 0,
+            "D": 61,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 61
+            }
+          },
+          "available_6_of_16": {
+            "C": 0,
+            "D": 3,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 3
+            }
+          },
+          "available_7_of_16": {
+            "C": 2,
+            "D": 24,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 2,
+              "nonfill": 21
+            }
+          },
+          "available_8_of_16": {
+            "C": 7,
+            "D": 215,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 13,
+              "exact_five": 7,
+              "nonfill": 195
+            }
+          },
+          "available_9_of_16": {
+            "C": 1,
+            "D": 50,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 1,
+              "nonfill": 48
+            }
+          },
+          "no_causal_birth_book": {
+            "C": 0,
+            "D": 1,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 1
+            }
+          },
+          "start_boundary_censored": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 85,
+              "contradictory": 14
+            }
+          },
+          "window_left_after_guarded_start": {
+            "C": 0,
+            "D": 12,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 12
+            }
+          }
+        },
+        "by_start_source_class": {
+          "clean_causal_interval": {
+            "C": 0,
+            "D": 31,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 9,
+              "nonfill": 22
+            }
+          },
+          "contradictory": {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "contradictory": 14
+            }
+          },
+          "live_by_only": {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 52
+            }
+          },
+          "official_exact": {
+            "C": 4,
+            "D": 234,
+            "IC": 2,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 4,
+              "nonfill": 229
+            }
+          },
+          "quantized_late_detection_proxy": {
+            "C": 6,
+            "D": 453,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 21,
+              "exact_five": 6,
+              "nonfill": 426
+            }
+          },
+          "schedule_only": {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20
+            }
+          }
+        },
+        "by_tournament_class": {
+          "ATP_CHALL": {
+            "C": 0,
+            "D": 369,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20,
+              "contradictory": 10,
+              "nonfill": 339
+            }
+          },
+          "ATP_MAIN": {
+            "C": 10,
+            "D": 147,
+            "IC": 4,
+            "PC": 9,
+            "S": 9,
+            "classifications": {
+              "censored": 23,
+              "contradictory": 1,
+              "exact_five": 10,
+              "nonfill": 113
+            }
+          },
+          "WTA_CHALL": {
+            "C": 0,
+            "D": 136,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 41,
+              "contradictory": 1,
+              "nonfill": 94
+            }
+          },
+          "WTA_MAIN": {
+            "C": 0,
+            "D": 152,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "contradictory": 2,
+              "nonfill": 131
+            }
+          }
+        }
+      },
+      "individual_leg_window1_close_delta_cents": {
+        "max": 3.0,
+        "mean": -2.1,
+        "median": -2.0,
+        "min": -11.0,
+        "n": 20,
+        "p25": -3.0,
+        "p75": 1.0
+      },
+      "percentages": {
+        "C_over_D": 0.012437810945273632,
+        "IC_over_C": 0.4,
+        "IC_over_D": 0.004975124378109453,
+        "PC_over_C": 0.9,
+        "PC_over_D": 0.011194029850746268,
+        "S_over_C": 0.9
+      },
+      "policy_family": "drift_cohort_orientation",
+      "policy_id": "drift_cohort_orientation__walk__reaim__without_divot_catch",
+      "posture": "walk",
+      "raw": {
+        "C": 10,
+        "D": 804,
+        "IC": 4,
+        "PC": 9,
+        "S": 9,
+        "censored": 103,
+        "classifications": {
+          "censored": 103,
+          "contradictory": 14,
+          "exact_five": 10,
+          "nonfill": 677
+        },
+        "contradictory": 14,
+        "exact_five": 10,
+        "nonfill": 677,
+        "other_quantity": 0,
+        "partial": 0
+      },
+      "schema_version": "window1-corrected-os-family-search-v1-candidate-v1"
+    },
+    {
+      "ablations": [
+        "without_drift_recognition"
+      ],
+      "combined_entry_cost_cents": {
+        "max": 101.0,
+        "mean": 97.4,
+        "median": 97.5,
+        "min": 94.0,
+        "n": 10,
+        "p25": 96.0,
+        "p75": 98.0
+      },
+      "combined_window1_close_delta_cents": {
+        "max": 0.0,
+        "mean": -4.2,
+        "median": -4.0,
+        "min": -7.0,
+        "n": 10,
+        "p25": -6.0,
+        "p75": -3.0
+      },
+      "data_ceiling": {
+        "note": "a development miss is not a market ceiling",
+        "optimistic_queue_complete_events": 26,
+        "strict_positive_boundary_events": 705
+      },
+      "distance_from_target": {
+        "raw_shortfall": 594,
+        "reached": false,
+        "target_PC": 603
+      },
+      "failure_census": {
+        "censored": 102,
+        "contradictory": 14,
+        "exact_five": 1,
+        "nonfill": 678
+      },
+      "feature_ceiling": {
+        "events_with_all_16_feature_families": 0,
+        "note": "feature coverage is distinct from fill/data ceiling; missing features were not imputed"
+      },
+      "first_fill_sibling_response": "reaim",
+      "groups": {
+        "by_date": {
+          "2026-07-12": {
+            "C": 4,
+            "D": 156,
+            "IC": 1,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 15,
+              "exact_five": 4,
+              "nonfill": 137
+            }
+          },
+          "2026-07-13": {
+            "C": 0,
+            "D": 114,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 15,
+              "nonfill": 99
+            }
+          },
+          "2026-07-14": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "nonfill": 80
+            }
+          },
+          "2026-07-15": {
+            "C": 1,
+            "D": 64,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 11,
+              "contradictory": 1,
+              "exact_five": 1,
+              "nonfill": 51
+            }
+          },
+          "2026-07-16": {
+            "C": 0,
+            "D": 42,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 6,
+              "contradictory": 1,
+              "nonfill": 35
+            }
+          },
+          "2026-07-17": {
+            "C": 0,
+            "D": 50,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 1,
+              "nonfill": 41
+            }
+          },
+          "2026-07-18": {
+            "C": 0,
+            "D": 62,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 4,
+              "nonfill": 50
+            }
+          },
+          "2026-07-19": {
+            "C": 5,
+            "D": 121,
+            "IC": 3,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 12,
+              "contradictory": 1,
+              "exact_five": 5,
+              "nonfill": 103
+            }
+          },
+          "2026-07-20": {
+            "C": 0,
+            "D": 96,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 6,
+              "nonfill": 82
+            }
+          }
+        },
+        "by_feature_coverage_class": {
+          "available_10_of_16": {
+            "C": 0,
+            "D": 339,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 2,
+              "nonfill": 337
+            }
+          },
+          "available_11_of_16": {
+            "C": 0,
+            "D": 61,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 61
+            }
+          },
+          "available_6_of_16": {
+            "C": 0,
+            "D": 3,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 3
+            }
+          },
+          "available_7_of_16": {
+            "C": 2,
+            "D": 24,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 2,
+              "nonfill": 21
+            }
+          },
+          "available_8_of_16": {
+            "C": 7,
+            "D": 215,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 12,
+              "exact_five": 7,
+              "nonfill": 196
+            }
+          },
+          "available_9_of_16": {
+            "C": 1,
+            "D": 50,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 1,
+              "nonfill": 48
+            }
+          },
+          "no_causal_birth_book": {
+            "C": 0,
+            "D": 1,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 1
+            }
+          },
+          "start_boundary_censored": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 85,
+              "contradictory": 14
+            }
+          },
+          "window_left_after_guarded_start": {
+            "C": 0,
+            "D": 12,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 12
+            }
+          }
+        },
+        "by_start_source_class": {
+          "clean_causal_interval": {
+            "C": 0,
+            "D": 31,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 9,
+              "nonfill": 22
+            }
+          },
+          "contradictory": {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "contradictory": 14
+            }
+          },
+          "live_by_only": {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 52
+            }
+          },
+          "official_exact": {
+            "C": 4,
+            "D": 234,
+            "IC": 2,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 4,
+              "nonfill": 229
+            }
+          },
+          "quantized_late_detection_proxy": {
+            "C": 6,
+            "D": 453,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 20,
+              "exact_five": 6,
+              "nonfill": 427
+            }
+          },
+          "schedule_only": {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20
+            }
+          }
+        },
+        "by_tournament_class": {
+          "ATP_CHALL": {
+            "C": 0,
+            "D": 369,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20,
+              "contradictory": 10,
+              "nonfill": 339
+            }
+          },
+          "ATP_MAIN": {
+            "C": 10,
+            "D": 147,
+            "IC": 4,
+            "PC": 9,
+            "S": 9,
+            "classifications": {
+              "censored": 22,
+              "contradictory": 1,
+              "exact_five": 10,
+              "nonfill": 114
+            }
+          },
+          "WTA_CHALL": {
+            "C": 0,
+            "D": 136,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 41,
+              "contradictory": 1,
+              "nonfill": 94
+            }
+          },
+          "WTA_MAIN": {
+            "C": 0,
+            "D": 152,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "contradictory": 2,
+              "nonfill": 131
+            }
+          }
+        }
+      },
+      "individual_leg_window1_close_delta_cents": {
+        "max": 3.0,
+        "mean": -2.1,
+        "median": -2.0,
+        "min": -10.0,
+        "n": 20,
+        "p25": -3.0,
+        "p75": 1.0
+      },
+      "percentages": {
+        "C_over_D": 0.012437810945273632,
+        "IC_over_C": 0.4,
+        "IC_over_D": 0.004975124378109453,
+        "PC_over_C": 0.9,
+        "PC_over_D": 0.011194029850746268,
+        "S_over_C": 0.9
+      },
+      "policy_family": "drift_cohort_orientation",
+      "policy_id": "drift_cohort_orientation__walk__reaim__without_drift_recognition",
+      "posture": "walk",
+      "raw": {
+        "C": 10,
+        "D": 804,
+        "IC": 4,
+        "PC": 9,
+        "S": 9,
+        "censored": 102,
+        "classifications": {
+          "censored": 102,
+          "contradictory": 14,
+          "exact_five": 10,
+          "nonfill": 678
+        },
+        "contradictory": 14,
+        "exact_five": 10,
+        "nonfill": 678,
+        "other_quantity": 0,
+        "partial": 0
+      },
+      "schema_version": "window1-corrected-os-family-search-v1-candidate-v1"
+    },
+    {
+      "ablations": [
+        "without_cohort_steering"
+      ],
+      "combined_entry_cost_cents": {
+        "max": 101.0,
+        "mean": 97.4,
+        "median": 97.5,
+        "min": 94.0,
+        "n": 10,
+        "p25": 96.0,
+        "p75": 98.0
+      },
+      "combined_window1_close_delta_cents": {
+        "max": 0.0,
+        "mean": -4.2,
+        "median": -4.0,
+        "min": -7.0,
+        "n": 10,
+        "p25": -6.0,
+        "p75": -3.0
+      },
+      "data_ceiling": {
+        "note": "a development miss is not a market ceiling",
+        "optimistic_queue_complete_events": 26,
+        "strict_positive_boundary_events": 705
+      },
+      "distance_from_target": {
+        "raw_shortfall": 594,
+        "reached": false,
+        "target_PC": 603
+      },
+      "failure_census": {
+        "censored": 102,
+        "contradictory": 14,
+        "exact_five": 1,
+        "nonfill": 678
+      },
+      "feature_ceiling": {
+        "events_with_all_16_feature_families": 0,
+        "note": "feature coverage is distinct from fill/data ceiling; missing features were not imputed"
+      },
+      "first_fill_sibling_response": "reaim",
+      "groups": {
+        "by_date": {
+          "2026-07-12": {
+            "C": 4,
+            "D": 156,
+            "IC": 1,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 15,
+              "exact_five": 4,
+              "nonfill": 137
+            }
+          },
+          "2026-07-13": {
+            "C": 0,
+            "D": 114,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 15,
+              "nonfill": 99
+            }
+          },
+          "2026-07-14": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "nonfill": 80
+            }
+          },
+          "2026-07-15": {
+            "C": 1,
+            "D": 64,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 11,
+              "contradictory": 1,
+              "exact_five": 1,
+              "nonfill": 51
+            }
+          },
+          "2026-07-16": {
+            "C": 0,
+            "D": 42,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 6,
+              "contradictory": 1,
+              "nonfill": 35
+            }
+          },
+          "2026-07-17": {
+            "C": 0,
+            "D": 50,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 1,
+              "nonfill": 41
+            }
+          },
+          "2026-07-18": {
+            "C": 0,
+            "D": 62,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 4,
+              "nonfill": 50
+            }
+          },
+          "2026-07-19": {
+            "C": 5,
+            "D": 121,
+            "IC": 3,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 12,
+              "contradictory": 1,
+              "exact_five": 5,
+              "nonfill": 103
+            }
+          },
+          "2026-07-20": {
+            "C": 0,
+            "D": 96,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 6,
+              "nonfill": 82
+            }
+          }
+        },
+        "by_feature_coverage_class": {
+          "available_10_of_16": {
+            "C": 0,
+            "D": 339,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 2,
+              "nonfill": 337
+            }
+          },
+          "available_11_of_16": {
+            "C": 0,
+            "D": 61,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 61
+            }
+          },
+          "available_6_of_16": {
+            "C": 0,
+            "D": 3,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 3
+            }
+          },
+          "available_7_of_16": {
+            "C": 2,
+            "D": 24,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 2,
+              "nonfill": 21
+            }
+          },
+          "available_8_of_16": {
+            "C": 7,
+            "D": 215,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 12,
+              "exact_five": 7,
+              "nonfill": 196
+            }
+          },
+          "available_9_of_16": {
+            "C": 1,
+            "D": 50,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 1,
+              "nonfill": 48
+            }
+          },
+          "no_causal_birth_book": {
+            "C": 0,
+            "D": 1,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 1
+            }
+          },
+          "start_boundary_censored": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 85,
+              "contradictory": 14
+            }
+          },
+          "window_left_after_guarded_start": {
+            "C": 0,
+            "D": 12,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 12
+            }
+          }
+        },
+        "by_start_source_class": {
+          "clean_causal_interval": {
+            "C": 0,
+            "D": 31,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 9,
+              "nonfill": 22
+            }
+          },
+          "contradictory": {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "contradictory": 14
+            }
+          },
+          "live_by_only": {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 52
+            }
+          },
+          "official_exact": {
+            "C": 4,
+            "D": 234,
+            "IC": 2,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 4,
+              "nonfill": 229
+            }
+          },
+          "quantized_late_detection_proxy": {
+            "C": 6,
+            "D": 453,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 20,
+              "exact_five": 6,
+              "nonfill": 427
+            }
+          },
+          "schedule_only": {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20
+            }
+          }
+        },
+        "by_tournament_class": {
+          "ATP_CHALL": {
+            "C": 0,
+            "D": 369,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20,
+              "contradictory": 10,
+              "nonfill": 339
+            }
+          },
+          "ATP_MAIN": {
+            "C": 10,
+            "D": 147,
+            "IC": 4,
+            "PC": 9,
+            "S": 9,
+            "classifications": {
+              "censored": 22,
+              "contradictory": 1,
+              "exact_five": 10,
+              "nonfill": 114
+            }
+          },
+          "WTA_CHALL": {
+            "C": 0,
+            "D": 136,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 41,
+              "contradictory": 1,
+              "nonfill": 94
+            }
+          },
+          "WTA_MAIN": {
+            "C": 0,
+            "D": 152,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "contradictory": 2,
+              "nonfill": 131
+            }
+          }
+        }
+      },
+      "individual_leg_window1_close_delta_cents": {
+        "max": 3.0,
+        "mean": -2.1,
+        "median": -2.0,
+        "min": -10.0,
+        "n": 20,
+        "p25": -3.0,
+        "p75": 1.0
+      },
+      "percentages": {
+        "C_over_D": 0.012437810945273632,
+        "IC_over_C": 0.4,
+        "IC_over_D": 0.004975124378109453,
+        "PC_over_C": 0.9,
+        "PC_over_D": 0.011194029850746268,
+        "S_over_C": 0.9
+      },
+      "policy_family": "drift_cohort_orientation",
+      "policy_id": "drift_cohort_orientation__walk__reaim__without_cohort_steering",
+      "posture": "walk",
+      "raw": {
+        "C": 10,
+        "D": 804,
+        "IC": 4,
+        "PC": 9,
+        "S": 9,
+        "censored": 102,
+        "classifications": {
+          "censored": 102,
+          "contradictory": 14,
+          "exact_five": 10,
+          "nonfill": 678
+        },
+        "contradictory": 14,
+        "exact_five": 10,
+        "nonfill": 678,
+        "other_quantity": 0,
+        "partial": 0
+      },
+      "schema_version": "window1-corrected-os-family-search-v1-candidate-v1"
+    },
+    {
+      "ablations": [
+        "without_orientation_prior"
+      ],
+      "combined_entry_cost_cents": {
+        "max": 101.0,
+        "mean": 97.4,
+        "median": 97.5,
+        "min": 94.0,
+        "n": 10,
+        "p25": 96.0,
+        "p75": 98.0
+      },
+      "combined_window1_close_delta_cents": {
+        "max": 0.0,
+        "mean": -4.2,
+        "median": -4.0,
+        "min": -7.0,
+        "n": 10,
+        "p25": -6.0,
+        "p75": -3.0
+      },
+      "data_ceiling": {
+        "note": "a development miss is not a market ceiling",
+        "optimistic_queue_complete_events": 26,
+        "strict_positive_boundary_events": 705
+      },
+      "distance_from_target": {
+        "raw_shortfall": 594,
+        "reached": false,
+        "target_PC": 603
+      },
+      "failure_census": {
+        "censored": 102,
+        "contradictory": 14,
+        "exact_five": 1,
+        "nonfill": 678
+      },
+      "feature_ceiling": {
+        "events_with_all_16_feature_families": 0,
+        "note": "feature coverage is distinct from fill/data ceiling; missing features were not imputed"
+      },
+      "first_fill_sibling_response": "reaim",
+      "groups": {
+        "by_date": {
+          "2026-07-12": {
+            "C": 4,
+            "D": 156,
+            "IC": 1,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 15,
+              "exact_five": 4,
+              "nonfill": 137
+            }
+          },
+          "2026-07-13": {
+            "C": 0,
+            "D": 114,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 15,
+              "nonfill": 99
+            }
+          },
+          "2026-07-14": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "nonfill": 80
+            }
+          },
+          "2026-07-15": {
+            "C": 1,
+            "D": 64,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 11,
+              "contradictory": 1,
+              "exact_five": 1,
+              "nonfill": 51
+            }
+          },
+          "2026-07-16": {
+            "C": 0,
+            "D": 42,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 6,
+              "contradictory": 1,
+              "nonfill": 35
+            }
+          },
+          "2026-07-17": {
+            "C": 0,
+            "D": 50,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 1,
+              "nonfill": 41
+            }
+          },
+          "2026-07-18": {
+            "C": 0,
+            "D": 62,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 4,
+              "nonfill": 50
+            }
+          },
+          "2026-07-19": {
+            "C": 5,
+            "D": 121,
+            "IC": 3,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 12,
+              "contradictory": 1,
+              "exact_five": 5,
+              "nonfill": 103
+            }
+          },
+          "2026-07-20": {
+            "C": 0,
+            "D": 96,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 6,
+              "nonfill": 82
+            }
+          }
+        },
+        "by_feature_coverage_class": {
+          "available_10_of_16": {
+            "C": 0,
+            "D": 339,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 2,
+              "nonfill": 337
+            }
+          },
+          "available_11_of_16": {
+            "C": 0,
+            "D": 61,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 61
+            }
+          },
+          "available_6_of_16": {
+            "C": 0,
+            "D": 3,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 3
+            }
+          },
+          "available_7_of_16": {
+            "C": 2,
+            "D": 24,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 2,
+              "nonfill": 21
+            }
+          },
+          "available_8_of_16": {
+            "C": 7,
+            "D": 215,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 12,
+              "exact_five": 7,
+              "nonfill": 196
+            }
+          },
+          "available_9_of_16": {
+            "C": 1,
+            "D": 50,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 1,
+              "nonfill": 48
+            }
+          },
+          "no_causal_birth_book": {
+            "C": 0,
+            "D": 1,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 1
+            }
+          },
+          "start_boundary_censored": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 85,
+              "contradictory": 14
+            }
+          },
+          "window_left_after_guarded_start": {
+            "C": 0,
+            "D": 12,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 12
+            }
+          }
+        },
+        "by_start_source_class": {
+          "clean_causal_interval": {
+            "C": 0,
+            "D": 31,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 9,
+              "nonfill": 22
+            }
+          },
+          "contradictory": {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "contradictory": 14
+            }
+          },
+          "live_by_only": {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 52
+            }
+          },
+          "official_exact": {
+            "C": 4,
+            "D": 234,
+            "IC": 2,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 4,
+              "nonfill": 229
+            }
+          },
+          "quantized_late_detection_proxy": {
+            "C": 6,
+            "D": 453,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 20,
+              "exact_five": 6,
+              "nonfill": 427
+            }
+          },
+          "schedule_only": {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20
+            }
+          }
+        },
+        "by_tournament_class": {
+          "ATP_CHALL": {
+            "C": 0,
+            "D": 369,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20,
+              "contradictory": 10,
+              "nonfill": 339
+            }
+          },
+          "ATP_MAIN": {
+            "C": 10,
+            "D": 147,
+            "IC": 4,
+            "PC": 9,
+            "S": 9,
+            "classifications": {
+              "censored": 22,
+              "contradictory": 1,
+              "exact_five": 10,
+              "nonfill": 114
+            }
+          },
+          "WTA_CHALL": {
+            "C": 0,
+            "D": 136,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 41,
+              "contradictory": 1,
+              "nonfill": 94
+            }
+          },
+          "WTA_MAIN": {
+            "C": 0,
+            "D": 152,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "contradictory": 2,
+              "nonfill": 131
+            }
+          }
+        }
+      },
+      "individual_leg_window1_close_delta_cents": {
+        "max": 3.0,
+        "mean": -2.1,
+        "median": -2.0,
+        "min": -10.0,
+        "n": 20,
+        "p25": -3.0,
+        "p75": 1.0
+      },
+      "percentages": {
+        "C_over_D": 0.012437810945273632,
+        "IC_over_C": 0.4,
+        "IC_over_D": 0.004975124378109453,
+        "PC_over_C": 0.9,
+        "PC_over_D": 0.011194029850746268,
+        "S_over_C": 0.9
+      },
+      "policy_family": "drift_cohort_orientation",
+      "policy_id": "drift_cohort_orientation__walk__reaim__without_orientation_prior",
+      "posture": "walk",
+      "raw": {
+        "C": 10,
+        "D": 804,
+        "IC": 4,
+        "PC": 9,
+        "S": 9,
+        "censored": 102,
+        "classifications": {
+          "censored": 102,
+          "contradictory": 14,
+          "exact_five": 10,
+          "nonfill": 678
+        },
+        "contradictory": 14,
+        "exact_five": 10,
+        "nonfill": 678,
+        "other_quantity": 0,
+        "partial": 0
+      },
+      "schema_version": "window1-corrected-os-family-search-v1-candidate-v1"
+    },
+    {
+      "ablations": [
+        "without_dynamic_floor_recut"
+      ],
+      "combined_entry_cost_cents": {
+        "max": 101.0,
+        "mean": 97.4,
+        "median": 97.5,
+        "min": 94.0,
+        "n": 10,
+        "p25": 96.0,
+        "p75": 98.0
+      },
+      "combined_window1_close_delta_cents": {
+        "max": 0.0,
+        "mean": -4.2,
+        "median": -4.0,
+        "min": -7.0,
+        "n": 10,
+        "p25": -6.0,
+        "p75": -3.0
+      },
+      "data_ceiling": {
+        "note": "a development miss is not a market ceiling",
+        "optimistic_queue_complete_events": 26,
+        "strict_positive_boundary_events": 705
+      },
+      "distance_from_target": {
+        "raw_shortfall": 594,
+        "reached": false,
+        "target_PC": 603
+      },
+      "failure_census": {
+        "censored": 102,
+        "contradictory": 14,
+        "exact_five": 1,
+        "nonfill": 678
+      },
+      "feature_ceiling": {
+        "events_with_all_16_feature_families": 0,
+        "note": "feature coverage is distinct from fill/data ceiling; missing features were not imputed"
+      },
+      "first_fill_sibling_response": "reaim",
+      "groups": {
+        "by_date": {
+          "2026-07-12": {
+            "C": 4,
+            "D": 156,
+            "IC": 1,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 15,
+              "exact_five": 4,
+              "nonfill": 137
+            }
+          },
+          "2026-07-13": {
+            "C": 0,
+            "D": 114,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 15,
+              "nonfill": 99
+            }
+          },
+          "2026-07-14": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "nonfill": 80
+            }
+          },
+          "2026-07-15": {
+            "C": 1,
+            "D": 64,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 11,
+              "contradictory": 1,
+              "exact_five": 1,
+              "nonfill": 51
+            }
+          },
+          "2026-07-16": {
+            "C": 0,
+            "D": 42,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 6,
+              "contradictory": 1,
+              "nonfill": 35
+            }
+          },
+          "2026-07-17": {
+            "C": 0,
+            "D": 50,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 1,
+              "nonfill": 41
+            }
+          },
+          "2026-07-18": {
+            "C": 0,
+            "D": 62,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 4,
+              "nonfill": 50
+            }
+          },
+          "2026-07-19": {
+            "C": 5,
+            "D": 121,
+            "IC": 3,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 12,
+              "contradictory": 1,
+              "exact_five": 5,
+              "nonfill": 103
+            }
+          },
+          "2026-07-20": {
+            "C": 0,
+            "D": 96,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 6,
+              "nonfill": 82
+            }
+          }
+        },
+        "by_feature_coverage_class": {
+          "available_10_of_16": {
+            "C": 0,
+            "D": 339,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 2,
+              "nonfill": 337
+            }
+          },
+          "available_11_of_16": {
+            "C": 0,
+            "D": 61,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 61
+            }
+          },
+          "available_6_of_16": {
+            "C": 0,
+            "D": 3,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 3
+            }
+          },
+          "available_7_of_16": {
+            "C": 2,
+            "D": 24,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 2,
+              "nonfill": 21
+            }
+          },
+          "available_8_of_16": {
+            "C": 7,
+            "D": 215,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 12,
+              "exact_five": 7,
+              "nonfill": 196
+            }
+          },
+          "available_9_of_16": {
+            "C": 1,
+            "D": 50,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 1,
+              "nonfill": 48
+            }
+          },
+          "no_causal_birth_book": {
+            "C": 0,
+            "D": 1,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 1
+            }
+          },
+          "start_boundary_censored": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 85,
+              "contradictory": 14
+            }
+          },
+          "window_left_after_guarded_start": {
+            "C": 0,
+            "D": 12,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 12
+            }
+          }
+        },
+        "by_start_source_class": {
+          "clean_causal_interval": {
+            "C": 0,
+            "D": 31,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 9,
+              "nonfill": 22
+            }
+          },
+          "contradictory": {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "contradictory": 14
+            }
+          },
+          "live_by_only": {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 52
+            }
+          },
+          "official_exact": {
+            "C": 4,
+            "D": 234,
+            "IC": 2,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 4,
+              "nonfill": 229
+            }
+          },
+          "quantized_late_detection_proxy": {
+            "C": 6,
+            "D": 453,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 20,
+              "exact_five": 6,
+              "nonfill": 427
+            }
+          },
+          "schedule_only": {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20
+            }
+          }
+        },
+        "by_tournament_class": {
+          "ATP_CHALL": {
+            "C": 0,
+            "D": 369,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20,
+              "contradictory": 10,
+              "nonfill": 339
+            }
+          },
+          "ATP_MAIN": {
+            "C": 10,
+            "D": 147,
+            "IC": 4,
+            "PC": 9,
+            "S": 9,
+            "classifications": {
+              "censored": 22,
+              "contradictory": 1,
+              "exact_five": 10,
+              "nonfill": 114
+            }
+          },
+          "WTA_CHALL": {
+            "C": 0,
+            "D": 136,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 41,
+              "contradictory": 1,
+              "nonfill": 94
+            }
+          },
+          "WTA_MAIN": {
+            "C": 0,
+            "D": 152,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "contradictory": 2,
+              "nonfill": 131
+            }
+          }
+        }
+      },
+      "individual_leg_window1_close_delta_cents": {
+        "max": 3.0,
+        "mean": -2.1,
+        "median": -2.0,
+        "min": -10.0,
+        "n": 20,
+        "p25": -3.0,
+        "p75": 1.0
+      },
+      "percentages": {
+        "C_over_D": 0.012437810945273632,
+        "IC_over_C": 0.4,
+        "IC_over_D": 0.004975124378109453,
+        "PC_over_C": 0.9,
+        "PC_over_D": 0.011194029850746268,
+        "S_over_C": 0.9
+      },
+      "policy_family": "drift_cohort_orientation",
+      "policy_id": "drift_cohort_orientation__walk__reaim__without_dynamic_floor_recut",
+      "posture": "walk",
+      "raw": {
+        "C": 10,
+        "D": 804,
+        "IC": 4,
+        "PC": 9,
+        "S": 9,
+        "censored": 102,
+        "classifications": {
+          "censored": 102,
+          "contradictory": 14,
+          "exact_five": 10,
+          "nonfill": 678
+        },
+        "contradictory": 14,
+        "exact_five": 10,
+        "nonfill": 678,
+        "other_quantity": 0,
+        "partial": 0
+      },
+      "schema_version": "window1-corrected-os-family-search-v1-candidate-v1"
+    },
+    {
+      "ablations": [
+        "without_atlas_reach"
+      ],
+      "combined_entry_cost_cents": {
+        "max": 101.0,
+        "mean": 97.4,
+        "median": 97.5,
+        "min": 94.0,
+        "n": 10,
+        "p25": 96.0,
+        "p75": 98.0
+      },
+      "combined_window1_close_delta_cents": {
+        "max": 0.0,
+        "mean": -4.2,
+        "median": -4.0,
+        "min": -7.0,
+        "n": 10,
+        "p25": -6.0,
+        "p75": -3.0
+      },
+      "data_ceiling": {
+        "note": "a development miss is not a market ceiling",
+        "optimistic_queue_complete_events": 26,
+        "strict_positive_boundary_events": 705
+      },
+      "distance_from_target": {
+        "raw_shortfall": 594,
+        "reached": false,
+        "target_PC": 603
+      },
+      "failure_census": {
+        "censored": 102,
+        "contradictory": 14,
+        "exact_five": 1,
+        "nonfill": 678
+      },
+      "feature_ceiling": {
+        "events_with_all_16_feature_families": 0,
+        "note": "feature coverage is distinct from fill/data ceiling; missing features were not imputed"
+      },
+      "first_fill_sibling_response": "reaim",
+      "groups": {
+        "by_date": {
+          "2026-07-12": {
+            "C": 4,
+            "D": 156,
+            "IC": 1,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 15,
+              "exact_five": 4,
+              "nonfill": 137
+            }
+          },
+          "2026-07-13": {
+            "C": 0,
+            "D": 114,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 15,
+              "nonfill": 99
+            }
+          },
+          "2026-07-14": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "nonfill": 80
+            }
+          },
+          "2026-07-15": {
+            "C": 1,
+            "D": 64,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 11,
+              "contradictory": 1,
+              "exact_five": 1,
+              "nonfill": 51
+            }
+          },
+          "2026-07-16": {
+            "C": 0,
+            "D": 42,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 6,
+              "contradictory": 1,
+              "nonfill": 35
+            }
+          },
+          "2026-07-17": {
+            "C": 0,
+            "D": 50,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 1,
+              "nonfill": 41
+            }
+          },
+          "2026-07-18": {
+            "C": 0,
+            "D": 62,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 4,
+              "nonfill": 50
+            }
+          },
+          "2026-07-19": {
+            "C": 5,
+            "D": 121,
+            "IC": 3,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 12,
+              "contradictory": 1,
+              "exact_five": 5,
+              "nonfill": 103
+            }
+          },
+          "2026-07-20": {
+            "C": 0,
+            "D": 96,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 6,
+              "nonfill": 82
+            }
+          }
+        },
+        "by_feature_coverage_class": {
+          "available_10_of_16": {
+            "C": 0,
+            "D": 339,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 2,
+              "nonfill": 337
+            }
+          },
+          "available_11_of_16": {
+            "C": 0,
+            "D": 61,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 61
+            }
+          },
+          "available_6_of_16": {
+            "C": 0,
+            "D": 3,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 3
+            }
+          },
+          "available_7_of_16": {
+            "C": 2,
+            "D": 24,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 2,
+              "nonfill": 21
+            }
+          },
+          "available_8_of_16": {
+            "C": 7,
+            "D": 215,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 12,
+              "exact_five": 7,
+              "nonfill": 196
+            }
+          },
+          "available_9_of_16": {
+            "C": 1,
+            "D": 50,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 1,
+              "nonfill": 48
+            }
+          },
+          "no_causal_birth_book": {
+            "C": 0,
+            "D": 1,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 1
+            }
+          },
+          "start_boundary_censored": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 85,
+              "contradictory": 14
+            }
+          },
+          "window_left_after_guarded_start": {
+            "C": 0,
+            "D": 12,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 12
+            }
+          }
+        },
+        "by_start_source_class": {
+          "clean_causal_interval": {
+            "C": 0,
+            "D": 31,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 9,
+              "nonfill": 22
+            }
+          },
+          "contradictory": {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "contradictory": 14
+            }
+          },
+          "live_by_only": {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 52
+            }
+          },
+          "official_exact": {
+            "C": 4,
+            "D": 234,
+            "IC": 2,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 4,
+              "nonfill": 229
+            }
+          },
+          "quantized_late_detection_proxy": {
+            "C": 6,
+            "D": 453,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 20,
+              "exact_five": 6,
+              "nonfill": 427
+            }
+          },
+          "schedule_only": {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20
+            }
+          }
+        },
+        "by_tournament_class": {
+          "ATP_CHALL": {
+            "C": 0,
+            "D": 369,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20,
+              "contradictory": 10,
+              "nonfill": 339
+            }
+          },
+          "ATP_MAIN": {
+            "C": 10,
+            "D": 147,
+            "IC": 4,
+            "PC": 9,
+            "S": 9,
+            "classifications": {
+              "censored": 22,
+              "contradictory": 1,
+              "exact_five": 10,
+              "nonfill": 114
+            }
+          },
+          "WTA_CHALL": {
+            "C": 0,
+            "D": 136,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 41,
+              "contradictory": 1,
+              "nonfill": 94
+            }
+          },
+          "WTA_MAIN": {
+            "C": 0,
+            "D": 152,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "contradictory": 2,
+              "nonfill": 131
+            }
+          }
+        }
+      },
+      "individual_leg_window1_close_delta_cents": {
+        "max": 3.0,
+        "mean": -2.1,
+        "median": -2.0,
+        "min": -10.0,
+        "n": 20,
+        "p25": -3.0,
+        "p75": 1.0
+      },
+      "percentages": {
+        "C_over_D": 0.012437810945273632,
+        "IC_over_C": 0.4,
+        "IC_over_D": 0.004975124378109453,
+        "PC_over_C": 0.9,
+        "PC_over_D": 0.011194029850746268,
+        "S_over_C": 0.9
+      },
+      "policy_family": "drift_cohort_orientation",
+      "policy_id": "drift_cohort_orientation__walk__reaim__without_atlas_reach",
+      "posture": "walk",
+      "raw": {
+        "C": 10,
+        "D": 804,
+        "IC": 4,
+        "PC": 9,
+        "S": 9,
+        "censored": 102,
+        "classifications": {
+          "censored": 102,
+          "contradictory": 14,
+          "exact_five": 10,
+          "nonfill": 678
+        },
+        "contradictory": 14,
+        "exact_five": 10,
+        "nonfill": 678,
+        "other_quantity": 0,
+        "partial": 0
+      },
+      "schema_version": "window1-corrected-os-family-search-v1-candidate-v1"
+    },
+    {
+      "ablations": [
+        "without_shape_corpus"
+      ],
+      "combined_entry_cost_cents": {
+        "max": 101.0,
+        "mean": 97.4,
+        "median": 97.5,
+        "min": 94.0,
+        "n": 10,
+        "p25": 96.0,
+        "p75": 98.0
+      },
+      "combined_window1_close_delta_cents": {
+        "max": 0.0,
+        "mean": -4.2,
+        "median": -4.0,
+        "min": -7.0,
+        "n": 10,
+        "p25": -6.0,
+        "p75": -3.0
+      },
+      "data_ceiling": {
+        "note": "a development miss is not a market ceiling",
+        "optimistic_queue_complete_events": 26,
+        "strict_positive_boundary_events": 705
+      },
+      "distance_from_target": {
+        "raw_shortfall": 594,
+        "reached": false,
+        "target_PC": 603
+      },
+      "failure_census": {
+        "censored": 102,
+        "contradictory": 14,
+        "exact_five": 1,
+        "nonfill": 678
+      },
+      "feature_ceiling": {
+        "events_with_all_16_feature_families": 0,
+        "note": "feature coverage is distinct from fill/data ceiling; missing features were not imputed"
+      },
+      "first_fill_sibling_response": "reaim",
+      "groups": {
+        "by_date": {
+          "2026-07-12": {
+            "C": 4,
+            "D": 156,
+            "IC": 1,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 15,
+              "exact_five": 4,
+              "nonfill": 137
+            }
+          },
+          "2026-07-13": {
+            "C": 0,
+            "D": 114,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 15,
+              "nonfill": 99
+            }
+          },
+          "2026-07-14": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "nonfill": 80
+            }
+          },
+          "2026-07-15": {
+            "C": 1,
+            "D": 64,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 11,
+              "contradictory": 1,
+              "exact_five": 1,
+              "nonfill": 51
+            }
+          },
+          "2026-07-16": {
+            "C": 0,
+            "D": 42,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 6,
+              "contradictory": 1,
+              "nonfill": 35
+            }
+          },
+          "2026-07-17": {
+            "C": 0,
+            "D": 50,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 1,
+              "nonfill": 41
+            }
+          },
+          "2026-07-18": {
+            "C": 0,
+            "D": 62,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 4,
+              "nonfill": 50
+            }
+          },
+          "2026-07-19": {
+            "C": 5,
+            "D": 121,
+            "IC": 3,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 12,
+              "contradictory": 1,
+              "exact_five": 5,
+              "nonfill": 103
+            }
+          },
+          "2026-07-20": {
+            "C": 0,
+            "D": 96,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 6,
+              "nonfill": 82
+            }
+          }
+        },
+        "by_feature_coverage_class": {
+          "available_10_of_16": {
+            "C": 0,
+            "D": 339,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 2,
+              "nonfill": 337
+            }
+          },
+          "available_11_of_16": {
+            "C": 0,
+            "D": 61,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 61
+            }
+          },
+          "available_6_of_16": {
+            "C": 0,
+            "D": 3,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 3
+            }
+          },
+          "available_7_of_16": {
+            "C": 2,
+            "D": 24,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 2,
+              "nonfill": 21
+            }
+          },
+          "available_8_of_16": {
+            "C": 7,
+            "D": 215,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 12,
+              "exact_five": 7,
+              "nonfill": 196
+            }
+          },
+          "available_9_of_16": {
+            "C": 1,
+            "D": 50,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 1,
+              "nonfill": 48
+            }
+          },
+          "no_causal_birth_book": {
+            "C": 0,
+            "D": 1,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 1
+            }
+          },
+          "start_boundary_censored": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 85,
+              "contradictory": 14
+            }
+          },
+          "window_left_after_guarded_start": {
+            "C": 0,
+            "D": 12,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 12
+            }
+          }
+        },
+        "by_start_source_class": {
+          "clean_causal_interval": {
+            "C": 0,
+            "D": 31,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 9,
+              "nonfill": 22
+            }
+          },
+          "contradictory": {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "contradictory": 14
+            }
+          },
+          "live_by_only": {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 52
+            }
+          },
+          "official_exact": {
+            "C": 4,
+            "D": 234,
+            "IC": 2,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 4,
+              "nonfill": 229
+            }
+          },
+          "quantized_late_detection_proxy": {
+            "C": 6,
+            "D": 453,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 20,
+              "exact_five": 6,
+              "nonfill": 427
+            }
+          },
+          "schedule_only": {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20
+            }
+          }
+        },
+        "by_tournament_class": {
+          "ATP_CHALL": {
+            "C": 0,
+            "D": 369,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20,
+              "contradictory": 10,
+              "nonfill": 339
+            }
+          },
+          "ATP_MAIN": {
+            "C": 10,
+            "D": 147,
+            "IC": 4,
+            "PC": 9,
+            "S": 9,
+            "classifications": {
+              "censored": 22,
+              "contradictory": 1,
+              "exact_five": 10,
+              "nonfill": 114
+            }
+          },
+          "WTA_CHALL": {
+            "C": 0,
+            "D": 136,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 41,
+              "contradictory": 1,
+              "nonfill": 94
+            }
+          },
+          "WTA_MAIN": {
+            "C": 0,
+            "D": 152,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "contradictory": 2,
+              "nonfill": 131
+            }
+          }
+        }
+      },
+      "individual_leg_window1_close_delta_cents": {
+        "max": 3.0,
+        "mean": -2.1,
+        "median": -2.0,
+        "min": -10.0,
+        "n": 20,
+        "p25": -3.0,
+        "p75": 1.0
+      },
+      "percentages": {
+        "C_over_D": 0.012437810945273632,
+        "IC_over_C": 0.4,
+        "IC_over_D": 0.004975124378109453,
+        "PC_over_C": 0.9,
+        "PC_over_D": 0.011194029850746268,
+        "S_over_C": 0.9
+      },
+      "policy_family": "drift_cohort_orientation",
+      "policy_id": "drift_cohort_orientation__walk__reaim__without_shape_corpus",
+      "posture": "walk",
+      "raw": {
+        "C": 10,
+        "D": 804,
+        "IC": 4,
+        "PC": 9,
+        "S": 9,
+        "censored": 102,
+        "classifications": {
+          "censored": 102,
+          "contradictory": 14,
+          "exact_five": 10,
+          "nonfill": 678
+        },
+        "contradictory": 14,
+        "exact_five": 10,
+        "nonfill": 678,
+        "other_quantity": 0,
+        "partial": 0
+      },
+      "schema_version": "window1-corrected-os-family-search-v1-candidate-v1"
+    },
+    {
+      "ablations": [
+        "without_bookmaker_fv"
+      ],
+      "combined_entry_cost_cents": {
+        "max": 101.0,
+        "mean": 97.4,
+        "median": 97.5,
+        "min": 94.0,
+        "n": 10,
+        "p25": 96.0,
+        "p75": 98.0
+      },
+      "combined_window1_close_delta_cents": {
+        "max": 0.0,
+        "mean": -4.2,
+        "median": -4.0,
+        "min": -7.0,
+        "n": 10,
+        "p25": -6.0,
+        "p75": -3.0
+      },
+      "data_ceiling": {
+        "note": "a development miss is not a market ceiling",
+        "optimistic_queue_complete_events": 26,
+        "strict_positive_boundary_events": 705
+      },
+      "distance_from_target": {
+        "raw_shortfall": 594,
+        "reached": false,
+        "target_PC": 603
+      },
+      "failure_census": {
+        "censored": 102,
+        "contradictory": 14,
+        "exact_five": 1,
+        "nonfill": 678
+      },
+      "feature_ceiling": {
+        "events_with_all_16_feature_families": 0,
+        "note": "feature coverage is distinct from fill/data ceiling; missing features were not imputed"
+      },
+      "first_fill_sibling_response": "reaim",
+      "groups": {
+        "by_date": {
+          "2026-07-12": {
+            "C": 4,
+            "D": 156,
+            "IC": 1,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 15,
+              "exact_five": 4,
+              "nonfill": 137
+            }
+          },
+          "2026-07-13": {
+            "C": 0,
+            "D": 114,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 15,
+              "nonfill": 99
+            }
+          },
+          "2026-07-14": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "nonfill": 80
+            }
+          },
+          "2026-07-15": {
+            "C": 1,
+            "D": 64,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 11,
+              "contradictory": 1,
+              "exact_five": 1,
+              "nonfill": 51
+            }
+          },
+          "2026-07-16": {
+            "C": 0,
+            "D": 42,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 6,
+              "contradictory": 1,
+              "nonfill": 35
+            }
+          },
+          "2026-07-17": {
+            "C": 0,
+            "D": 50,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 1,
+              "nonfill": 41
+            }
+          },
+          "2026-07-18": {
+            "C": 0,
+            "D": 62,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 4,
+              "nonfill": 50
+            }
+          },
+          "2026-07-19": {
+            "C": 5,
+            "D": 121,
+            "IC": 3,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 12,
+              "contradictory": 1,
+              "exact_five": 5,
+              "nonfill": 103
+            }
+          },
+          "2026-07-20": {
+            "C": 0,
+            "D": 96,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 6,
+              "nonfill": 82
+            }
+          }
+        },
+        "by_feature_coverage_class": {
+          "available_10_of_16": {
+            "C": 0,
+            "D": 339,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 2,
+              "nonfill": 337
+            }
+          },
+          "available_11_of_16": {
+            "C": 0,
+            "D": 61,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 61
+            }
+          },
+          "available_6_of_16": {
+            "C": 0,
+            "D": 3,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 3
+            }
+          },
+          "available_7_of_16": {
+            "C": 2,
+            "D": 24,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 2,
+              "nonfill": 21
+            }
+          },
+          "available_8_of_16": {
+            "C": 7,
+            "D": 215,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 12,
+              "exact_five": 7,
+              "nonfill": 196
+            }
+          },
+          "available_9_of_16": {
+            "C": 1,
+            "D": 50,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 1,
+              "nonfill": 48
+            }
+          },
+          "no_causal_birth_book": {
+            "C": 0,
+            "D": 1,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 1
+            }
+          },
+          "start_boundary_censored": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 85,
+              "contradictory": 14
+            }
+          },
+          "window_left_after_guarded_start": {
+            "C": 0,
+            "D": 12,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 12
+            }
+          }
+        },
+        "by_start_source_class": {
+          "clean_causal_interval": {
+            "C": 0,
+            "D": 31,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 9,
+              "nonfill": 22
+            }
+          },
+          "contradictory": {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "contradictory": 14
+            }
+          },
+          "live_by_only": {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 52
+            }
+          },
+          "official_exact": {
+            "C": 4,
+            "D": 234,
+            "IC": 2,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 4,
+              "nonfill": 229
+            }
+          },
+          "quantized_late_detection_proxy": {
+            "C": 6,
+            "D": 453,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 20,
+              "exact_five": 6,
+              "nonfill": 427
+            }
+          },
+          "schedule_only": {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20
+            }
+          }
+        },
+        "by_tournament_class": {
+          "ATP_CHALL": {
+            "C": 0,
+            "D": 369,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20,
+              "contradictory": 10,
+              "nonfill": 339
+            }
+          },
+          "ATP_MAIN": {
+            "C": 10,
+            "D": 147,
+            "IC": 4,
+            "PC": 9,
+            "S": 9,
+            "classifications": {
+              "censored": 22,
+              "contradictory": 1,
+              "exact_five": 10,
+              "nonfill": 114
+            }
+          },
+          "WTA_CHALL": {
+            "C": 0,
+            "D": 136,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 41,
+              "contradictory": 1,
+              "nonfill": 94
+            }
+          },
+          "WTA_MAIN": {
+            "C": 0,
+            "D": 152,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "contradictory": 2,
+              "nonfill": 131
+            }
+          }
+        }
+      },
+      "individual_leg_window1_close_delta_cents": {
+        "max": 3.0,
+        "mean": -2.1,
+        "median": -2.0,
+        "min": -10.0,
+        "n": 20,
+        "p25": -3.0,
+        "p75": 1.0
+      },
+      "percentages": {
+        "C_over_D": 0.012437810945273632,
+        "IC_over_C": 0.4,
+        "IC_over_D": 0.004975124378109453,
+        "PC_over_C": 0.9,
+        "PC_over_D": 0.011194029850746268,
+        "S_over_C": 0.9
+      },
+      "policy_family": "drift_cohort_orientation",
+      "policy_id": "drift_cohort_orientation__walk__reaim__without_bookmaker_fv",
+      "posture": "walk",
+      "raw": {
+        "C": 10,
+        "D": 804,
+        "IC": 4,
+        "PC": 9,
+        "S": 9,
+        "censored": 102,
+        "classifications": {
+          "censored": 102,
+          "contradictory": 14,
+          "exact_five": 10,
+          "nonfill": 678
+        },
+        "contradictory": 14,
+        "exact_five": 10,
+        "nonfill": 678,
+        "other_quantity": 0,
+        "partial": 0
+      },
+      "schema_version": "window1-corrected-os-family-search-v1-candidate-v1"
+    },
+    {
+      "ablations": [
+        "without_top_five_pressure"
+      ],
+      "combined_entry_cost_cents": {
+        "max": 101.0,
+        "mean": 97.4,
+        "median": 97.5,
+        "min": 94.0,
+        "n": 10,
+        "p25": 96.0,
+        "p75": 98.0
+      },
+      "combined_window1_close_delta_cents": {
+        "max": 0.0,
+        "mean": -4.2,
+        "median": -4.0,
+        "min": -7.0,
+        "n": 10,
+        "p25": -6.0,
+        "p75": -3.0
+      },
+      "data_ceiling": {
+        "note": "a development miss is not a market ceiling",
+        "optimistic_queue_complete_events": 26,
+        "strict_positive_boundary_events": 705
+      },
+      "distance_from_target": {
+        "raw_shortfall": 594,
+        "reached": false,
+        "target_PC": 603
+      },
+      "failure_census": {
+        "censored": 102,
+        "contradictory": 14,
+        "exact_five": 1,
+        "nonfill": 678
+      },
+      "feature_ceiling": {
+        "events_with_all_16_feature_families": 0,
+        "note": "feature coverage is distinct from fill/data ceiling; missing features were not imputed"
+      },
+      "first_fill_sibling_response": "reaim",
+      "groups": {
+        "by_date": {
+          "2026-07-12": {
+            "C": 4,
+            "D": 156,
+            "IC": 1,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 15,
+              "exact_five": 4,
+              "nonfill": 137
+            }
+          },
+          "2026-07-13": {
+            "C": 0,
+            "D": 114,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 15,
+              "nonfill": 99
+            }
+          },
+          "2026-07-14": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "nonfill": 80
+            }
+          },
+          "2026-07-15": {
+            "C": 1,
+            "D": 64,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 11,
+              "contradictory": 1,
+              "exact_five": 1,
+              "nonfill": 51
+            }
+          },
+          "2026-07-16": {
+            "C": 0,
+            "D": 42,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 6,
+              "contradictory": 1,
+              "nonfill": 35
+            }
+          },
+          "2026-07-17": {
+            "C": 0,
+            "D": 50,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 1,
+              "nonfill": 41
+            }
+          },
+          "2026-07-18": {
+            "C": 0,
+            "D": 62,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 4,
+              "nonfill": 50
+            }
+          },
+          "2026-07-19": {
+            "C": 5,
+            "D": 121,
+            "IC": 3,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 12,
+              "contradictory": 1,
+              "exact_five": 5,
+              "nonfill": 103
+            }
+          },
+          "2026-07-20": {
+            "C": 0,
+            "D": 96,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 6,
+              "nonfill": 82
+            }
+          }
+        },
+        "by_feature_coverage_class": {
+          "available_10_of_16": {
+            "C": 0,
+            "D": 339,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 2,
+              "nonfill": 337
+            }
+          },
+          "available_11_of_16": {
+            "C": 0,
+            "D": 61,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 61
+            }
+          },
+          "available_6_of_16": {
+            "C": 0,
+            "D": 3,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 3
+            }
+          },
+          "available_7_of_16": {
+            "C": 2,
+            "D": 24,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 2,
+              "nonfill": 21
+            }
+          },
+          "available_8_of_16": {
+            "C": 7,
+            "D": 215,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 12,
+              "exact_five": 7,
+              "nonfill": 196
+            }
+          },
+          "available_9_of_16": {
+            "C": 1,
+            "D": 50,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 1,
+              "nonfill": 48
+            }
+          },
+          "no_causal_birth_book": {
+            "C": 0,
+            "D": 1,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 1
+            }
+          },
+          "start_boundary_censored": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 85,
+              "contradictory": 14
+            }
+          },
+          "window_left_after_guarded_start": {
+            "C": 0,
+            "D": 12,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 12
+            }
+          }
+        },
+        "by_start_source_class": {
+          "clean_causal_interval": {
+            "C": 0,
+            "D": 31,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 9,
+              "nonfill": 22
+            }
+          },
+          "contradictory": {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "contradictory": 14
+            }
+          },
+          "live_by_only": {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 52
+            }
+          },
+          "official_exact": {
+            "C": 4,
+            "D": 234,
+            "IC": 2,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 4,
+              "nonfill": 229
+            }
+          },
+          "quantized_late_detection_proxy": {
+            "C": 6,
+            "D": 453,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 20,
+              "exact_five": 6,
+              "nonfill": 427
+            }
+          },
+          "schedule_only": {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20
+            }
+          }
+        },
+        "by_tournament_class": {
+          "ATP_CHALL": {
+            "C": 0,
+            "D": 369,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20,
+              "contradictory": 10,
+              "nonfill": 339
+            }
+          },
+          "ATP_MAIN": {
+            "C": 10,
+            "D": 147,
+            "IC": 4,
+            "PC": 9,
+            "S": 9,
+            "classifications": {
+              "censored": 22,
+              "contradictory": 1,
+              "exact_five": 10,
+              "nonfill": 114
+            }
+          },
+          "WTA_CHALL": {
+            "C": 0,
+            "D": 136,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 41,
+              "contradictory": 1,
+              "nonfill": 94
+            }
+          },
+          "WTA_MAIN": {
+            "C": 0,
+            "D": 152,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "contradictory": 2,
+              "nonfill": 131
+            }
+          }
+        }
+      },
+      "individual_leg_window1_close_delta_cents": {
+        "max": 3.0,
+        "mean": -2.1,
+        "median": -2.0,
+        "min": -10.0,
+        "n": 20,
+        "p25": -3.0,
+        "p75": 1.0
+      },
+      "percentages": {
+        "C_over_D": 0.012437810945273632,
+        "IC_over_C": 0.4,
+        "IC_over_D": 0.004975124378109453,
+        "PC_over_C": 0.9,
+        "PC_over_D": 0.011194029850746268,
+        "S_over_C": 0.9
+      },
+      "policy_family": "drift_cohort_orientation",
+      "policy_id": "drift_cohort_orientation__walk__reaim__without_top_five_pressure",
+      "posture": "walk",
+      "raw": {
+        "C": 10,
+        "D": 804,
+        "IC": 4,
+        "PC": 9,
+        "S": 9,
+        "censored": 102,
+        "classifications": {
+          "censored": 102,
+          "contradictory": 14,
+          "exact_five": 10,
+          "nonfill": 678
+        },
+        "contradictory": 14,
+        "exact_five": 10,
+        "nonfill": 678,
+        "other_quantity": 0,
+        "partial": 0
+      },
+      "schema_version": "window1-corrected-os-family-search-v1-candidate-v1"
+    },
+    {
+      "ablations": [
+        "without_own_order_fingerprints"
+      ],
+      "combined_entry_cost_cents": {
+        "max": 101.0,
+        "mean": 97.4,
+        "median": 97.5,
+        "min": 94.0,
+        "n": 10,
+        "p25": 96.0,
+        "p75": 98.0
+      },
+      "combined_window1_close_delta_cents": {
+        "max": 0.0,
+        "mean": -4.2,
+        "median": -4.0,
+        "min": -7.0,
+        "n": 10,
+        "p25": -6.0,
+        "p75": -3.0
+      },
+      "data_ceiling": {
+        "note": "a development miss is not a market ceiling",
+        "optimistic_queue_complete_events": 26,
+        "strict_positive_boundary_events": 705
+      },
+      "distance_from_target": {
+        "raw_shortfall": 594,
+        "reached": false,
+        "target_PC": 603
+      },
+      "failure_census": {
+        "censored": 102,
+        "contradictory": 14,
+        "exact_five": 1,
+        "nonfill": 678
+      },
+      "feature_ceiling": {
+        "events_with_all_16_feature_families": 0,
+        "note": "feature coverage is distinct from fill/data ceiling; missing features were not imputed"
+      },
+      "first_fill_sibling_response": "reaim",
+      "groups": {
+        "by_date": {
+          "2026-07-12": {
+            "C": 4,
+            "D": 156,
+            "IC": 1,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 15,
+              "exact_five": 4,
+              "nonfill": 137
+            }
+          },
+          "2026-07-13": {
+            "C": 0,
+            "D": 114,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 15,
+              "nonfill": 99
+            }
+          },
+          "2026-07-14": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "nonfill": 80
+            }
+          },
+          "2026-07-15": {
+            "C": 1,
+            "D": 64,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 11,
+              "contradictory": 1,
+              "exact_five": 1,
+              "nonfill": 51
+            }
+          },
+          "2026-07-16": {
+            "C": 0,
+            "D": 42,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 6,
+              "contradictory": 1,
+              "nonfill": 35
+            }
+          },
+          "2026-07-17": {
+            "C": 0,
+            "D": 50,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 1,
+              "nonfill": 41
+            }
+          },
+          "2026-07-18": {
+            "C": 0,
+            "D": 62,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 4,
+              "nonfill": 50
+            }
+          },
+          "2026-07-19": {
+            "C": 5,
+            "D": 121,
+            "IC": 3,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 12,
+              "contradictory": 1,
+              "exact_five": 5,
+              "nonfill": 103
+            }
+          },
+          "2026-07-20": {
+            "C": 0,
+            "D": 96,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 6,
+              "nonfill": 82
+            }
+          }
+        },
+        "by_feature_coverage_class": {
+          "available_10_of_16": {
+            "C": 0,
+            "D": 339,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 2,
+              "nonfill": 337
+            }
+          },
+          "available_11_of_16": {
+            "C": 0,
+            "D": 61,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 61
+            }
+          },
+          "available_6_of_16": {
+            "C": 0,
+            "D": 3,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 3
+            }
+          },
+          "available_7_of_16": {
+            "C": 2,
+            "D": 24,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 2,
+              "nonfill": 21
+            }
+          },
+          "available_8_of_16": {
+            "C": 7,
+            "D": 215,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 12,
+              "exact_five": 7,
+              "nonfill": 196
+            }
+          },
+          "available_9_of_16": {
+            "C": 1,
+            "D": 50,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 1,
+              "nonfill": 48
+            }
+          },
+          "no_causal_birth_book": {
+            "C": 0,
+            "D": 1,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 1
+            }
+          },
+          "start_boundary_censored": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 85,
+              "contradictory": 14
+            }
+          },
+          "window_left_after_guarded_start": {
+            "C": 0,
+            "D": 12,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 12
+            }
+          }
+        },
+        "by_start_source_class": {
+          "clean_causal_interval": {
+            "C": 0,
+            "D": 31,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 9,
+              "nonfill": 22
+            }
+          },
+          "contradictory": {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "contradictory": 14
+            }
+          },
+          "live_by_only": {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 52
+            }
+          },
+          "official_exact": {
+            "C": 4,
+            "D": 234,
+            "IC": 2,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 4,
+              "nonfill": 229
+            }
+          },
+          "quantized_late_detection_proxy": {
+            "C": 6,
+            "D": 453,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 20,
+              "exact_five": 6,
+              "nonfill": 427
+            }
+          },
+          "schedule_only": {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20
+            }
+          }
+        },
+        "by_tournament_class": {
+          "ATP_CHALL": {
+            "C": 0,
+            "D": 369,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20,
+              "contradictory": 10,
+              "nonfill": 339
+            }
+          },
+          "ATP_MAIN": {
+            "C": 10,
+            "D": 147,
+            "IC": 4,
+            "PC": 9,
+            "S": 9,
+            "classifications": {
+              "censored": 22,
+              "contradictory": 1,
+              "exact_five": 10,
+              "nonfill": 114
+            }
+          },
+          "WTA_CHALL": {
+            "C": 0,
+            "D": 136,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 41,
+              "contradictory": 1,
+              "nonfill": 94
+            }
+          },
+          "WTA_MAIN": {
+            "C": 0,
+            "D": 152,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "contradictory": 2,
+              "nonfill": 131
+            }
+          }
+        }
+      },
+      "individual_leg_window1_close_delta_cents": {
+        "max": 3.0,
+        "mean": -2.1,
+        "median": -2.0,
+        "min": -10.0,
+        "n": 20,
+        "p25": -3.0,
+        "p75": 1.0
+      },
+      "percentages": {
+        "C_over_D": 0.012437810945273632,
+        "IC_over_C": 0.4,
+        "IC_over_D": 0.004975124378109453,
+        "PC_over_C": 0.9,
+        "PC_over_D": 0.011194029850746268,
+        "S_over_C": 0.9
+      },
+      "policy_family": "drift_cohort_orientation",
+      "policy_id": "drift_cohort_orientation__walk__reaim__without_own_order_fingerprints",
+      "posture": "walk",
+      "raw": {
+        "C": 10,
+        "D": 804,
+        "IC": 4,
+        "PC": 9,
+        "S": 9,
+        "censored": 102,
+        "classifications": {
+          "censored": 102,
+          "contradictory": 14,
+          "exact_five": 10,
+          "nonfill": 678
+        },
+        "contradictory": 14,
+        "exact_five": 10,
+        "nonfill": 678,
+        "other_quantity": 0,
+        "partial": 0
+      },
+      "schema_version": "window1-corrected-os-family-search-v1-candidate-v1"
+    },
+    {
+      "ablations": [
+        "without_first_fill_sibling_response"
+      ],
+      "combined_entry_cost_cents": {
+        "max": 96.0,
+        "mean": 95.66666666666667,
+        "median": 96.0,
+        "min": 95.0,
+        "n": 6,
+        "p25": 95.0,
+        "p75": 96.0
+      },
+      "combined_window1_close_delta_cents": {
+        "max": -5.0,
+        "mean": -6.166666666666667,
+        "median": -6.0,
+        "min": -7.0,
+        "n": 6,
+        "p25": -7.0,
+        "p75": -6.0
+      },
+      "data_ceiling": {
+        "note": "a development miss is not a market ceiling",
+        "optimistic_queue_complete_events": 16,
+        "strict_positive_boundary_events": 705
+      },
+      "distance_from_target": {
+        "raw_shortfall": 597,
+        "reached": false,
+        "target_PC": 603
+      },
+      "failure_census": {
+        "censored": 95,
+        "contradictory": 14,
+        "nonfill": 689
+      },
+      "feature_ceiling": {
+        "events_with_all_16_feature_families": 0,
+        "note": "feature coverage is distinct from fill/data ceiling; missing features were not imputed"
+      },
+      "first_fill_sibling_response": "reaim",
+      "groups": {
+        "by_date": {
+          "2026-07-12": {
+            "C": 3,
+            "D": 156,
+            "IC": 1,
+            "PC": 3,
+            "S": 3,
+            "classifications": {
+              "censored": 14,
+              "exact_five": 3,
+              "nonfill": 139
+            }
+          },
+          "2026-07-13": {
+            "C": 0,
+            "D": 114,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 15,
+              "nonfill": 99
+            }
+          },
+          "2026-07-14": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 16,
+              "nonfill": 83
+            }
+          },
+          "2026-07-15": {
+            "C": 2,
+            "D": 64,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "classifications": {
+              "censored": 9,
+              "contradictory": 1,
+              "exact_five": 2,
+              "nonfill": 52
+            }
+          },
+          "2026-07-16": {
+            "C": 0,
+            "D": 42,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 6,
+              "contradictory": 1,
+              "nonfill": 35
+            }
+          },
+          "2026-07-17": {
+            "C": 0,
+            "D": 50,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 7,
+              "contradictory": 1,
+              "nonfill": 42
+            }
+          },
+          "2026-07-18": {
+            "C": 0,
+            "D": 62,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 4,
+              "nonfill": 50
+            }
+          },
+          "2026-07-19": {
+            "C": 1,
+            "D": 121,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 12,
+              "contradictory": 1,
+              "exact_five": 1,
+              "nonfill": 107
+            }
+          },
+          "2026-07-20": {
+            "C": 0,
+            "D": 96,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 6,
+              "nonfill": 82
+            }
+          }
+        },
+        "by_feature_coverage_class": {
+          "available_10_of_16": {
+            "C": 0,
+            "D": 339,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 339
+            }
+          },
+          "available_11_of_16": {
+            "C": 0,
+            "D": 61,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 61
+            }
+          },
+          "available_6_of_16": {
+            "C": 0,
+            "D": 3,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 3
+            }
+          },
+          "available_7_of_16": {
+            "C": 0,
+            "D": 24,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 1,
+              "nonfill": 23
+            }
+          },
+          "available_8_of_16": {
+            "C": 5,
+            "D": 215,
+            "IC": 1,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 7,
+              "exact_five": 5,
+              "nonfill": 203
+            }
+          },
+          "available_9_of_16": {
+            "C": 1,
+            "D": 50,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 1,
+              "nonfill": 48
+            }
+          },
+          "no_causal_birth_book": {
+            "C": 0,
+            "D": 1,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 1
+            }
+          },
+          "start_boundary_censored": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 85,
+              "contradictory": 14
+            }
+          },
+          "window_left_after_guarded_start": {
+            "C": 0,
+            "D": 12,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 12
+            }
+          }
+        },
+        "by_start_source_class": {
+          "clean_causal_interval": {
+            "C": 0,
+            "D": 31,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 9,
+              "nonfill": 22
+            }
+          },
+          "contradictory": {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "contradictory": 14
+            }
+          },
+          "live_by_only": {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 52
+            }
+          },
+          "official_exact": {
+            "C": 2,
+            "D": 234,
+            "IC": 2,
+            "PC": 2,
+            "S": 2,
+            "classifications": {
+              "exact_five": 2,
+              "nonfill": 232
+            }
+          },
+          "quantized_late_detection_proxy": {
+            "C": 4,
+            "D": 453,
+            "IC": 0,
+            "PC": 4,
+            "S": 4,
+            "classifications": {
+              "censored": 14,
+              "exact_five": 4,
+              "nonfill": 435
+            }
+          },
+          "schedule_only": {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20
+            }
+          }
+        },
+        "by_tournament_class": {
+          "ATP_CHALL": {
+            "C": 0,
+            "D": 369,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 18,
+              "contradictory": 10,
+              "nonfill": 341
+            }
+          },
+          "ATP_MAIN": {
+            "C": 6,
+            "D": 147,
+            "IC": 2,
+            "PC": 6,
+            "S": 6,
+            "classifications": {
+              "censored": 17,
+              "contradictory": 1,
+              "exact_five": 6,
+              "nonfill": 123
+            }
+          },
+          "WTA_CHALL": {
+            "C": 0,
+            "D": 136,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 41,
+              "contradictory": 1,
+              "nonfill": 94
+            }
+          },
+          "WTA_MAIN": {
+            "C": 0,
+            "D": 152,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "contradictory": 2,
+              "nonfill": 131
+            }
+          }
+        }
+      },
+      "individual_leg_window1_close_delta_cents": {
+        "max": 4.0,
+        "mean": -3.0833333333333335,
+        "median": -3.0,
+        "min": -10.0,
+        "n": 12,
+        "p25": -7.0,
+        "p75": 1.0
+      },
+      "percentages": {
+        "C_over_D": 0.007462686567164179,
+        "IC_over_C": 0.3333333333333333,
+        "IC_over_D": 0.0024875621890547263,
+        "PC_over_C": 1.0,
+        "PC_over_D": 0.007462686567164179,
+        "S_over_C": 1.0
+      },
+      "policy_family": "drift_cohort_orientation",
+      "policy_id": "drift_cohort_orientation__walk__reaim__without_first_fill_sibling_response",
+      "posture": "walk",
+      "raw": {
+        "C": 6,
+        "D": 804,
+        "IC": 2,
+        "PC": 6,
+        "S": 6,
+        "censored": 95,
+        "classifications": {
+          "censored": 95,
+          "contradictory": 14,
+          "exact_five": 6,
+          "nonfill": 689
+        },
+        "contradictory": 14,
+        "exact_five": 6,
+        "nonfill": 689,
+        "other_quantity": 0,
+        "partial": 0
+      },
+      "schema_version": "window1-corrected-os-family-search-v1-candidate-v1"
+    },
+    {
+      "ablations": [
+        "without_true_print_walk"
+      ],
+      "combined_entry_cost_cents": {
+        "max": 101.0,
+        "mean": 98.11111111111111,
+        "median": 98.0,
+        "min": 96.0,
+        "n": 9,
+        "p25": 97.0,
+        "p75": 99.0
+      },
+      "combined_window1_close_delta_cents": {
+        "max": 0.0,
+        "mean": -3.5555555555555554,
+        "median": -4.0,
+        "min": -7.0,
+        "n": 9,
+        "p25": -4.0,
+        "p75": -2.0
+      },
+      "data_ceiling": {
+        "note": "a development miss is not a market ceiling",
+        "optimistic_queue_complete_events": 26,
+        "strict_positive_boundary_events": 705
+      },
+      "distance_from_target": {
+        "raw_shortfall": 595,
+        "reached": false,
+        "target_PC": 603
+      },
+      "failure_census": {
+        "censored": 103,
+        "contradictory": 14,
+        "exact_five": 1,
+        "nonfill": 678
+      },
+      "feature_ceiling": {
+        "events_with_all_16_feature_families": 0,
+        "note": "feature coverage is distinct from fill/data ceiling; missing features were not imputed"
+      },
+      "first_fill_sibling_response": "reaim",
+      "groups": {
+        "by_date": {
+          "2026-07-12": {
+            "C": 3,
+            "D": 156,
+            "IC": 0,
+            "PC": 2,
+            "S": 1,
+            "classifications": {
+              "censored": 16,
+              "exact_five": 3,
+              "nonfill": 137
+            }
+          },
+          "2026-07-13": {
+            "C": 0,
+            "D": 114,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 15,
+              "nonfill": 99
+            }
+          },
+          "2026-07-14": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "nonfill": 80
+            }
+          },
+          "2026-07-15": {
+            "C": 1,
+            "D": 64,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "classifications": {
+              "censored": 11,
+              "contradictory": 1,
+              "exact_five": 1,
+              "nonfill": 51
+            }
+          },
+          "2026-07-16": {
+            "C": 0,
+            "D": 42,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 6,
+              "contradictory": 1,
+              "nonfill": 35
+            }
+          },
+          "2026-07-17": {
+            "C": 0,
+            "D": 50,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 1,
+              "nonfill": 41
+            }
+          },
+          "2026-07-18": {
+            "C": 0,
+            "D": 62,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 4,
+              "nonfill": 50
+            }
+          },
+          "2026-07-19": {
+            "C": 5,
+            "D": 121,
+            "IC": 3,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 12,
+              "contradictory": 1,
+              "exact_five": 5,
+              "nonfill": 103
+            }
+          },
+          "2026-07-20": {
+            "C": 0,
+            "D": 96,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 8,
+              "contradictory": 6,
+              "nonfill": 82
+            }
+          }
+        },
+        "by_feature_coverage_class": {
+          "available_10_of_16": {
+            "C": 0,
+            "D": 339,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 2,
+              "nonfill": 337
+            }
+          },
+          "available_11_of_16": {
+            "C": 0,
+            "D": 61,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 61
+            }
+          },
+          "available_6_of_16": {
+            "C": 0,
+            "D": 3,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 3
+            }
+          },
+          "available_7_of_16": {
+            "C": 2,
+            "D": 24,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 2,
+              "nonfill": 21
+            }
+          },
+          "available_8_of_16": {
+            "C": 6,
+            "D": 215,
+            "IC": 2,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 13,
+              "exact_five": 6,
+              "nonfill": 196
+            }
+          },
+          "available_9_of_16": {
+            "C": 1,
+            "D": 50,
+            "IC": 0,
+            "PC": 1,
+            "S": 0,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 1,
+              "nonfill": 48
+            }
+          },
+          "no_causal_birth_book": {
+            "C": 0,
+            "D": 1,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 1
+            }
+          },
+          "start_boundary_censored": {
+            "C": 0,
+            "D": 99,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 85,
+              "contradictory": 14
+            }
+          },
+          "window_left_after_guarded_start": {
+            "C": 0,
+            "D": 12,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "nonfill": 12
+            }
+          }
+        },
+        "by_start_source_class": {
+          "clean_causal_interval": {
+            "C": 0,
+            "D": 31,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 9,
+              "nonfill": 22
+            }
+          },
+          "contradictory": {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "contradictory": 14
+            }
+          },
+          "live_by_only": {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 52
+            }
+          },
+          "official_exact": {
+            "C": 4,
+            "D": 234,
+            "IC": 1,
+            "PC": 3,
+            "S": 2,
+            "classifications": {
+              "censored": 1,
+              "exact_five": 4,
+              "nonfill": 229
+            }
+          },
+          "quantized_late_detection_proxy": {
+            "C": 5,
+            "D": 453,
+            "IC": 2,
+            "PC": 5,
+            "S": 5,
+            "classifications": {
+              "censored": 21,
+              "exact_five": 5,
+              "nonfill": 427
+            }
+          },
+          "schedule_only": {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20
+            }
+          }
+        },
+        "by_tournament_class": {
+          "ATP_CHALL": {
+            "C": 0,
+            "D": 369,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 20,
+              "contradictory": 10,
+              "nonfill": 339
+            }
+          },
+          "ATP_MAIN": {
+            "C": 9,
+            "D": 147,
+            "IC": 3,
+            "PC": 8,
+            "S": 7,
+            "classifications": {
+              "censored": 23,
+              "contradictory": 1,
+              "exact_five": 9,
+              "nonfill": 114
+            }
+          },
+          "WTA_CHALL": {
+            "C": 0,
+            "D": 136,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 41,
+              "contradictory": 1,
+              "nonfill": 94
+            }
+          },
+          "WTA_MAIN": {
+            "C": 0,
+            "D": 152,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "classifications": {
+              "censored": 19,
+              "contradictory": 2,
+              "nonfill": 131
+            }
+          }
+        }
+      },
+      "individual_leg_window1_close_delta_cents": {
+        "max": 3.0,
+        "mean": -1.7777777777777777,
+        "median": -2.0,
+        "min": -10.0,
+        "n": 18,
+        "p25": -3.0,
+        "p75": 1.0
+      },
+      "percentages": {
+        "C_over_D": 0.011194029850746268,
+        "IC_over_C": 0.3333333333333333,
+        "IC_over_D": 0.0037313432835820895,
+        "PC_over_C": 0.8888888888888888,
+        "PC_over_D": 0.009950248756218905,
+        "S_over_C": 0.7777777777777778
+      },
+      "policy_family": "drift_cohort_orientation",
+      "policy_id": "drift_cohort_orientation__walk__reaim__without_true_print_walk",
+      "posture": "park",
+      "raw": {
+        "C": 9,
+        "D": 804,
+        "IC": 3,
+        "PC": 8,
+        "S": 7,
+        "censored": 103,
+        "classifications": {
+          "censored": 103,
+          "contradictory": 14,
+          "exact_five": 9,
+          "nonfill": 678
+        },
+        "contradictory": 14,
+        "exact_five": 9,
+        "nonfill": 678,
+        "other_quantity": 0,
+        "partial": 0
+      },
+      "schema_version": "window1-corrected-os-family-search-v1-candidate-v1"
+    }
+  ],
+  "selected_policy_id": "drift_cohort_orientation__walk__reaim"
+}

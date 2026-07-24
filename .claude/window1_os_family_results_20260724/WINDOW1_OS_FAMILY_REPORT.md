@@ -1,5 +1,13 @@
 # Corrected Window-1 OS-family development result
 
+> **Superseded for interpretation.** This is the immutable Round-1 result
+> artifact from commit `f7cd420951f074104dbc602b84137c5eed7455da`.
+> Its selected-candidate metrics remain valid, but its aggregate nonfill,
+> frozen-grid ceiling, all-family-effect, and four `pair_divot_core` comparison
+> claims are corrected by
+> `.claude/window1_round1_corrected_20260724/WINDOW1_ROUND1_CORRECTED_REPORT.md`.
+> Do not cite this file without that correction record.
+
 Authoritative PRE-RUN commit:
 `bb7f994305334fcc95a57ce261f5e90385458798`.
 

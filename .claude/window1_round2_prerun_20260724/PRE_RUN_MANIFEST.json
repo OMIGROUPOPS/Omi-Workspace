@@ -1,0 +1,589 @@
+{
+  "D": 804,
+  "ablation_scoring_performed": false,
+  "adapter": {
+    "adapter_id": "chronological-two-leg-window1-round2-v1",
+    "adapter_schema_version": "window1-round2-execution-adapter-v1",
+    "instrument_version": "window1-round2-causal-instrument-v1",
+    "receipt": {
+      "bytes": 2624,
+      "git_blob_oid": "6ec5547593084f157cd0d71e7fb47cf0d1bc1b80",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_EXECUTION_ADAPTER_V1.json",
+      "sha256": "b68cf3b4842145f41019a2d6b3683a2ae64536a9a84ce9e374161cd2a80bccc1"
+    }
+  },
+  "allowed_feature_families": [
+    "start_boundary",
+    "asynchronous_divot_timing",
+    "leg_specific_posture",
+    "nonself_one_cent_walk",
+    "first_fill_sibling_response",
+    "pair_divot_recut",
+    "causal_orientation",
+    "causal_drift_recognition",
+    "cohort_steering",
+    "true_print_flow",
+    "bbo_top5_pressure",
+    "own_order_contribution_subtraction"
+  ],
+  "allowed_feature_families_sha256": "3585dbe67a2d9f263949888978cdd2ad85be5e949ad10fae29ad1c9645000702",
+  "branch": "codex/window1-definition",
+  "candidate_policy_ids": [
+    "r2_async_pair__park_join__hold",
+    "r2_async_pair__park_join__reaim",
+    "r2_async_pair__touch_park__hold",
+    "r2_async_pair__touch_park__reaim",
+    "r2_causal_steer__park_join__hold",
+    "r2_causal_steer__park_join__reaim",
+    "r2_full_os__park_join__hold",
+    "r2_full_os__park_join__reaim",
+    "r2_full_os__walk_park__hold",
+    "r2_full_os__walk_park__reaim"
+  ],
+  "candidate_policy_ids_sha256": "a7be0b73e031adeaf5ceaeb9cdb70f9936b4130fa85cdf71b051b70bc57e5c4a",
+  "candidate_scoring_performed": false,
+  "capability_gate": {
+    "advertised_family_count": 12,
+    "failed_or_inert_families": [],
+    "gate_pass": true,
+    "receipt": {
+      "bytes": 6424,
+      "git_blob_oid": "5889dcf83aed7bd608aa7dcc7f9d69f6930a1295",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_20260724/ROUND2_CAPABILITY_PROOF.json",
+      "sha256": "a4ab8e6ba9707ca985bb989fe8d28b0221ebc7e6421c262742367afc8c987aad"
+    }
+  },
+  "controlling_round1_audit": {
+    "bytes": 17968,
+    "commit": "024f03bb5b1944bae39ad5afef6ee019ef5dc06d",
+    "git_blob_oid": "a03165cde91422ec43a870ae5e21b55c7b8c64ad",
+    "merged_wholesale": false,
+    "path": ".claude/audit_20260724_osfamily/OS_FAMILY_RESULT_CROSS_AUDIT.md",
+    "role": "controlling independent audit of Round-1 results",
+    "sha256": "efea1873c6329e5fe94cb65cec34df441f1fbef872e2be13233041da656409e1"
+  },
+  "delta_reference_law": {
+    "C": "both legs fill exactly five contracts inside lawful Window 1",
+    "IC": "C and both individual Window-1-close deltas strictly negative",
+    "PC": "C and negative combined Window-1-close delta",
+    "S": "C and combined entry cost strictly below 100 cents",
+    "combined_delta": "sum of the two individual deltas",
+    "individual_delta": "leg fill VWAP minus the last lawful true-print Window-1-close reference for that leg"
+  },
+  "development_dates_utc": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "free_numeric_parameters": [],
+  "freeze_status": "frozen_not_scored",
+  "frozen_at_utc": "2026-07-24T18:01:40.690023+00:00",
+  "hash_basis": "staged_git_blob_lf",
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "invariants": {
+    "D_immutable": true,
+    "all_candidates_complete_two_leg_stream": true,
+    "future_information_prohibited": true,
+    "holdout_unopened": true,
+    "missing_feature_censored": true,
+    "own_activity_never_confirms_market": true,
+    "per_leg_independent_timestamps": true,
+    "round2_not_scored": true,
+    "schedule_only_positive_prohibited": true,
+    "target_PC_603": true
+  },
+  "metric_contract": {
+    "D": 804,
+    "definitions": {
+      "C": "both legs fill exactly five contracts inside lawful Window 1",
+      "IC": "C and both individual Window-1-close deltas strictly negative",
+      "PC": "C and negative combined Window-1-close delta",
+      "S": "C and combined entry cost strictly below 100 cents",
+      "combined_delta": "sum of the two individual deltas",
+      "individual_delta": "leg fill VWAP minus the last lawful true-print Window-1-close reference for that leg"
+    },
+    "lot_per_leg": 5,
+    "missing_data": "remains in D and is censored; never success and never silently nonfill",
+    "negative_law": "strictly less than zero",
+    "required_outputs": [
+      "D",
+      "C",
+      "PC",
+      "S",
+      "IC",
+      "combined_entry_cost",
+      "combined_delta",
+      "both_individual_deltas",
+      "exact_five",
+      "partial",
+      "other_quantity",
+      "genuine_zero_fill",
+      "naked_single_leg",
+      "zero_length_window",
+      "contradictory",
+      "censored"
+    ],
+    "schema_version": "window1-round2-metric-contract-v1",
+    "scoring_status": "frozen_not_executed",
+    "target_PC": 603
+  },
+  "metric_contract_sha256": "19795e4d8bc7b6920e9fe93f7fa60bd1c051df94dade31de4c7909b40953cb76",
+  "parameter_surface": {
+    "cohort_minimum_n": 30,
+    "cohort_minimum_reaim_delta_cents": 2,
+    "divot_definition": {
+      "ask_hold_within_cents": 1,
+      "minimum_depth_cents": 2,
+      "minimum_prior_nonself_prints": 3,
+      "trailing_median_seconds": 1800
+    },
+    "first_fill_sibling_reaim_cents": 1,
+    "flow_minimum_nonself_prints_30m": {
+      "ATP_CHALL": 16,
+      "ATP_MAIN": 1,
+      "WTA_CHALL": 16,
+      "WTA_MAIN": 1
+    },
+    "lot_per_leg": 5,
+    "never_marketable": true,
+    "orientation_checkpoint_seconds_after_left": 3600,
+    "recognition_checkpoint_seconds_after_left": 7200,
+    "top5_ask_over_external_bid_threshold": 1.5,
+    "top5_pressure_extra_depth_cents": 1,
+    "walk": {
+      "maximum_journey_cents": {
+        "ATP_CHALL": 2,
+        "ATP_MAIN": 1,
+        "WTA_CHALL": 2,
+        "WTA_MAIN": 1
+      },
+      "minimum_chain_prints": 2,
+      "requires_verified_nonself_chain": true,
+      "step_cents": 1
+    }
+  },
+  "parameter_surface_sha256": "ceb8d3c7afb147ffb565abdd9a37755c7f912556f4f2d28e8a3ef21baa216b97",
+  "parent_commit": "f7cd420951f074104dbc602b84137c5eed7455da",
+  "predeclared_ablations": [
+    "without_asynchronous_divot_timing",
+    "without_leg_specific_posture",
+    "without_nonself_one_cent_walk",
+    "without_first_fill_sibling_response",
+    "without_pair_divot_recut",
+    "without_causal_orientation",
+    "without_causal_drift_recognition",
+    "without_cohort_steering",
+    "without_bbo_top5_pressure"
+  ],
+  "predeclared_ablations_sha256": "3a1d732de77d3d625afc8a6f00eb3c7bba608677bc48734af55b77e964db1076",
+  "prohibitions": [
+    "schedule_as_start",
+    "future_information",
+    "post_decision_reference",
+    "self_trade_confirmation",
+    "narrow_proxy_substitution",
+    "feature_gap_imputation",
+    "denominator_change",
+    "holdout_access",
+    "production_or_live_mutation"
+  ],
+  "round1_correction": {
+    "nonfill_replacement": {
+      "genuine_zero_fill": 582,
+      "naked_single_leg_fill": 84,
+      "zero_length_window1_opportunity": 12
+    },
+    "pair_divot_core_rows_struck": 4,
+    "selected_metrics": {
+      "C": 10,
+      "D": 804,
+      "IC": 4,
+      "PC": 9,
+      "S": 9
+    }
+  },
+  "schema_version": "window1-round2-prerun-v1",
+  "sealed_holdout_dates_utc": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "source_and_code_receipts": {
+    ".claude/backwalk_20260720/BACKWALK_WALLS_V1.md": {
+      "bytes": 6748,
+      "git_blob_oid": "b412e7f8c23d65aa72772667ea5e889eafe13cd4",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/backwalk_20260720/BACKWALK_WALLS_V1.md",
+      "sha256": "2964249bb78a09c420e26e29f523286fc0b50ebc8f2ff9b1ee65fd847f8c6aa3"
+    },
+    ".claude/entrymech_20260717/ACCEPTANCE_WALK.md": {
+      "bytes": 2704,
+      "git_blob_oid": "9be413864cd324df75887c19ab8b0a78f0d7616b",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/entrymech_20260717/ACCEPTANCE_WALK.md",
+      "sha256": "ceefe13cfa06c13e7c96bf26ea53031eb1708ad02b292efa04eae9bfa31ef3db"
+    },
+    ".claude/entrysurface_20260717/DIVOT_TABLES.md": {
+      "bytes": 8466,
+      "git_blob_oid": "98c9705415cf7e09a0268ac4b718b449b8e47e20",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/entrysurface_20260717/DIVOT_TABLES.md",
+      "sha256": "ee3fad61c57c33e979d23834d083f7cec67dd61dac13e4385bfa720f4b9f136a"
+    },
+    ".claude/entrysurface_20260717/DRIFT_SURFACES.md": {
+      "bytes": 11994,
+      "git_blob_oid": "abe89a8b86ccadb10f9e6ecfc7f7b071193b73df",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/entrysurface_20260717/DRIFT_SURFACES.md",
+      "sha256": "1625d68e7778e8c8bcd0005930f33bd2e7f314fc909e11f733689431f4d36619"
+    },
+    ".claude/entrysurface_20260717/band_map_v1.json": {
+      "bytes": 15520,
+      "git_blob_oid": "d919b8e402f010e3703cd7fc3aad33e650c8ae2c",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/entrysurface_20260717/band_map_v1.json",
+      "sha256": "caf255a283bbb32f1d9bd2edd5f4d898d5f50fc8e67d5f9a076579b695a9e68c"
+    },
+    ".claude/entrysurface_20260717/divot_tables_v1.json": {
+      "bytes": 16623,
+      "git_blob_oid": "0145907c60213fc5b65f15618667c82b38a19f42",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/entrysurface_20260717/divot_tables_v1.json",
+      "sha256": "89c514ec35673de8f552b2b66b9ceafb8181b9c8f6c00b1679899a3a2a82ac06"
+    },
+    ".claude/entrysurface_20260717/drift_surfaces_v1.json": {
+      "bytes": 182240,
+      "git_blob_oid": "2c0d4d3ea7b7a687d38d859df817f2a551fccac2",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/entrysurface_20260717/drift_surfaces_v1.json",
+      "sha256": "7dca4a4f0e6061d28765fd243f4ce717bc36a542b32490bafabc611bd2cf3bab"
+    },
+    ".claude/master_20260709/cohort.json": {
+      "bytes": 167390,
+      "git_blob_oid": "7b5f89c703679d69986c146692cce90c99c655cf",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/master_20260709/cohort.json",
+      "sha256": "476b951001d8d7f5ba0905291ca22c7b27de2ee305d5abd3efee50f9b851e0ca"
+    },
+    ".claude/proof_20260709/PROOF_OS_BUILD.md": {
+      "bytes": 2764,
+      "git_blob_oid": "12b62638c5cac553d77fb79c3e4d1a994e13e96a",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/proof_20260709/PROOF_OS_BUILD.md",
+      "sha256": "a32ee0a53ffe24dfe39df5a37f7c142bc7f83d93699ae2e016f8c50207a209a5"
+    },
+    ".claude/proof_20260717/PROOF_PAIR_INVARIANT.md": {
+      "bytes": 2381,
+      "git_blob_oid": "8fb009678bb51ad6d5837cc98d407acb04f24896",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/proof_20260717/PROOF_PAIR_INVARIANT.md",
+      "sha256": "1d9d1eba045bafdc5eed6ea50dac30da10f077542e262cf11c95abbfd2935496"
+    },
+    ".claude/proof_20260720/PROOF_DUAL_DIVOT_SEAL.md": {
+      "bytes": 2578,
+      "git_blob_oid": "ccca3992d2b2d67bd8996dfad761529f0c688f01",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/proof_20260720/PROOF_DUAL_DIVOT_SEAL.md",
+      "sha256": "d6da0f3732ef76ed9a1a6a8e1d6f31755b404d4c610d9aa6939afdc4977d569a"
+    },
+    ".claude/rulings/RULING_COMBINED_PRICE_CLAUSE.md": {
+      "bytes": 2836,
+      "git_blob_oid": "c1372a53a2e2d1b82757ec341e3dbdae4e07dd70",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/rulings/RULING_COMBINED_PRICE_CLAUSE.md",
+      "sha256": "98bcba63e8e59bee93eebfc0ae65b80f2b926c4a98175556b81e9c1dcf27ac93"
+    },
+    ".claude/rulings/RULING_PAIR_ECONOMICS.md": {
+      "bytes": 4661,
+      "git_blob_oid": "71c11fcf81908d4b83c36cc562a64685533c309c",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/rulings/RULING_PAIR_ECONOMICS.md",
+      "sha256": "fcfd90f74acc24bfcd67436cbc3e77716582d43b3b4cac1bbcbe0b2a84c3f9c1"
+    },
+    ".claude/seqfloor_20260708/SEQFLOOR_RECUT.md": {
+      "bytes": 5804,
+      "git_blob_oid": "0338b942a23f48004c2c0c93baa6c65338920230",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/seqfloor_20260708/SEQFLOOR_RECUT.md",
+      "sha256": "f98288ff2005dd2db5a0efd7a1078db5233610aefa3fe209c1c950e6213867a0"
+    },
+    ".claude/seqfloor_20260708/recut_cells.json": {
+      "bytes": 82073,
+      "git_blob_oid": "9e9a60110a1803aba301b4dda60073b2178fe12a",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/seqfloor_20260708/recut_cells.json",
+      "sha256": "3674e3361704463a71a9f6c139b2b2b2cc82fbc6f93a2f2ba07c675642db244a"
+    },
+    ".claude/trendpath/ORIENT_V1.json": {
+      "bytes": 1947,
+      "git_blob_oid": "8971516ed0e248fed7a744d3ee4c7f90a27c833f",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/trendpath/ORIENT_V1.json",
+      "sha256": "048105723d89dcd592fb5c79e8e69e34f2f24aadf2a7b00459b0e9c6dfdbd0ef"
+    },
+    ".claude/window1_20260721/LIFECYCLE_VALIDATION_SUMMARY.json": {
+      "bytes": 19226,
+      "git_blob_oid": "2aaf49defb84e9b33db1716cc800d26f608f40ca",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_20260721/LIFECYCLE_VALIDATION_SUMMARY.json",
+      "sha256": "bfec8d5063a90052ccd46d0ef6207df11b7851f725c22d67fd8ff2f2e6e09ea0"
+    },
+    ".claude/window1_20260721/MACRO_PROJECTION_RECEIPT.json": {
+      "bytes": 1474,
+      "git_blob_oid": "0b44886838f7f642e5d2e2dee579ce571225f32c",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_20260721/MACRO_PROJECTION_RECEIPT.json",
+      "sha256": "b98eb05105d98b231285f003373efda032add2654f690baf7674ce13bc254427"
+    },
+    ".claude/window1_20260721/SOURCE_COVERAGE_SUMMARY.json": {
+      "bytes": 8779,
+      "git_blob_oid": "416bf7065cee48f52fae232812682d3414c7f6dc",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_20260721/SOURCE_COVERAGE_SUMMARY.json",
+      "sha256": "231a6ae056d232c7e203cc8c7e7614a0ab6892b38b12d10fdb58f3a0122772df"
+    },
+    ".claude/window1_20260721/WINDOW1_FEATURE_COVERAGE.json": {
+      "bytes": 1902,
+      "git_blob_oid": "57435b864bf38b5b0e2291ea0218033d0244aae8",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_20260721/WINDOW1_FEATURE_COVERAGE.json",
+      "sha256": "9bd25a9d1384fd3cfdaa57ea45075c0b7ff04a8d2fb77b8f9f4570192cfcb76f"
+    },
+    ".claude/window1_20260721/WS_DEPTH_COVERAGE_SUMMARY.json": {
+      "bytes": 3807,
+      "git_blob_oid": "53882680f244e3aaf9facfe0e0442d68b5786acd",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_20260721/WS_DEPTH_COVERAGE_SUMMARY.json",
+      "sha256": "b827ef8d6af579703a74f66bed1f96303c1ce4b35a47499448bf9bb313647f78"
+    },
+    ".claude/window1_os_family_results_20260724/WINDOW1_OS_FAMILY_REPORT.md": {
+      "bytes": 8750,
+      "git_blob_oid": "6a9b9743442f80473e1de0dfee5186abd56cc6f4",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_os_family_results_20260724/WINDOW1_OS_FAMILY_REPORT.md",
+      "sha256": "f96c676a0d8891b6ec0383c07d92db9b791c5d763fb6055ae573cc5bf2017400"
+    },
+    ".claude/window1_round1_corrected_20260724/ROUND1_CORRECTION_RECEIPT.json": {
+      "bytes": 10360,
+      "git_blob_oid": "e6630b601a3819d78a86c103d8c7a7ecc55e323f",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round1_corrected_20260724/ROUND1_CORRECTION_RECEIPT.json",
+      "sha256": "fa13932891b15a0844a30bf72c8a24535c8551bb8f24d4350f97557b0b866141"
+    },
+    ".claude/window1_round1_corrected_20260724/WINDOW1_ROUND1_CORRECTED_REPORT.md": {
+      "bytes": 4637,
+      "git_blob_oid": "2bc092eaeac173c00d61dcb7c776925b2c8d659e",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round1_corrected_20260724/WINDOW1_ROUND1_CORRECTED_REPORT.md",
+      "sha256": "00621996deb785b6c2b2d9c023781ef4166bc1631883b1a33ee68a54b1a83bde"
+    },
+    ".claude/window1_round2_prerun_20260724/ROUND2_CAPABILITY_PROOF.json": {
+      "bytes": 6424,
+      "git_blob_oid": "5889dcf83aed7bd608aa7dcc7f9d69f6930a1295",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_20260724/ROUND2_CAPABILITY_PROOF.json",
+      "sha256": "a4ab8e6ba9707ca985bb989fe8d28b0221ebc7e6421c262742367afc8c987aad"
+    },
+    ".claude/window1_round2_prerun_20260724/ROUND2_FAMILY_CAPABILITY_MATRIX.md": {
+      "bytes": 1818,
+      "git_blob_oid": "e79de9ed3d35530bc3d6bebfa604294e9751725b",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_20260724/ROUND2_FAMILY_CAPABILITY_MATRIX.md",
+      "sha256": "e3f2a01267d1613b55b65f385aa205e33948f7e7482c560469668796f33ccc35"
+    },
+    ".claude/window1_round2_prerun_20260724/T8_T6_LOOKAHEAD_PROOF.json": {
+      "bytes": 720,
+      "git_blob_oid": "e8e0ecae627e9d25cd7ba749a6a7d5fc6b8114b6",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_20260724/T8_T6_LOOKAHEAD_PROOF.json",
+      "sha256": "fe56d814efd93e61099f55fa6aa258a1980efb803a45852824936235e683885a"
+    },
+    ".claude/window1_start_guard_calibration_20260724/START_GUARD_CALIBRATION.json": {
+      "bytes": 6181,
+      "git_blob_oid": "80225a706bfece7335d65c88bd937cc144d06064",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_start_guard_calibration_20260724/START_GUARD_CALIBRATION.json",
+      "sha256": "2829f893a9e07cb95f86c6421c70e7dae6c2cc8f7015a6abac1290fe36d19687"
+    },
+    ".claude/window1_start_guard_corrected_20260724/HISTORICAL_WITNESSES_GUARDED.json": {
+      "bytes": 16270,
+      "git_blob_oid": "f8bf68bc682c934ea78181744546e6dace7c8e3a",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_start_guard_corrected_20260724/HISTORICAL_WITNESSES_GUARDED.json",
+      "sha256": "aa54f17694a87b1d53fec5e51a4d16f90c6453d77edbad1d52bcff4a546cca6e"
+    },
+    ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl": {
+      "bytes": 3696777,
+      "git_blob_oid": "9207dd44d12c66fa29711e2d95ebafc66cafd155",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+      "sha256": "c6204d016aeeab9cec54c5f989e695cb74a13e40b8e25085a3a9410a2c5548ed"
+    },
+    ".claude/window1_start_guard_corrected_20260724/REAL_START_SUMMARY_V5.json": {
+      "bytes": 20475,
+      "git_blob_oid": "0a637513863feabd1067ab92c283482634242ba7",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_start_guard_corrected_20260724/REAL_START_SUMMARY_V5.json",
+      "sha256": "50d178cbfb1c6d4454cc0fc57dd93d034a4e8d149c2e55570f5119ec12c46cfa"
+    },
+    "arb-executor/analysis/window1_round1_audit_correction.py": {
+      "bytes": 20231,
+      "git_blob_oid": "2f339da40f2ecb9eef940e8617363c5df2a025c8",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/analysis/window1_round1_audit_correction.py",
+      "sha256": "41df7b442c45f2db7febad76ede3546c2ccfadfb4518dfab53c25129522e1a64"
+    },
+    "arb-executor/analysis/window1_round2_capability_proof.py": {
+      "bytes": 19183,
+      "git_blob_oid": "32945091761f4893f91f03b66d997d1c98a42e61",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/analysis/window1_round2_capability_proof.py",
+      "sha256": "5737079032eeb163260836953437c3c8724c77a5af9f39ae4c9317f2aa720733"
+    },
+    "arb-executor/analysis/window1_round2_instrument.py": {
+      "bytes": 45920,
+      "git_blob_oid": "8b6967fa1c464b288c54a17e7d56031b57a40d8c",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/analysis/window1_round2_instrument.py",
+      "sha256": "e57c9cd81c9e902151bd987b73a9cfb4beb4e6fb57a1f7cea1fef8cb2f350feb"
+    },
+    "arb-executor/analysis/window1_round2_prerun.py": {
+      "bytes": 21751,
+      "git_blob_oid": "e076ec18eb843a97214cd6737c6930dd2375b5a0",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/analysis/window1_round2_prerun.py",
+      "sha256": "bebcb5e27ebeaab7484549239b525a1f4f69c9ffbcb85a3eeaf2084e1250b71b"
+    },
+    "arb-executor/docs/LIVING_VAULT.md": {
+      "bytes": 409744,
+      "git_blob_oid": "5908e602a56bce39c0b99142e7cd6961ce88672d",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/LIVING_VAULT.md",
+      "sha256": "dff289b80cbeb7b6d40f8c344f1c1e62f0aa139ed9a6b5487a4f11147f1869e1"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_CANDIDATES_V1.json": {
+      "bytes": 3478,
+      "git_blob_oid": "ee62e169475ad1cf33806e60bae1a0419d3b54ea",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_CANDIDATES_V1.json",
+      "sha256": "4436c82b2d173e37f29554145c83e25c8e57241f22bcd4a3143a32aeb5ec4136"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_EXECUTION_ADAPTER_V1.json": {
+      "bytes": 2624,
+      "git_blob_oid": "6ec5547593084f157cd0d71e7fb47cf0d1bc1b80",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_EXECUTION_ADAPTER_V1.json",
+      "sha256": "b68cf3b4842145f41019a2d6b3683a2ae64536a9a84ce9e374161cd2a80bccc1"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_FEATURE_ALLOWLIST_V1.json": {
+      "bytes": 1139,
+      "git_blob_oid": "33924f02b66c08ceddefe8ad34ad67a050fb99d2",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_FEATURE_ALLOWLIST_V1.json",
+      "sha256": "d3b7cceef2bd9e530311d4760df9777a85da63a346dbe0f220888fa3367e5dc3"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_METRIC_CONTRACT_V1.json": {
+      "bytes": 1075,
+      "git_blob_oid": "91489b6367d38ba28374359192823ebb4542c0b0",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_METRIC_CONTRACT_V1.json",
+      "sha256": "19795e4d8bc7b6920e9fe93f7fa60bd1c051df94dade31de4c7909b40953cb76"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_POLICY_FAMILY_SPEC.md": {
+      "bytes": 5599,
+      "git_blob_oid": "be6d3cb3f7c0658a92e17a838cf71ff36af40ea3",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_POLICY_FAMILY_SPEC.md",
+      "sha256": "ce788bd52804888413a858de24dee4daee5019afd16960f7037b45311aa9c813"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_PROSPECTIVE_HOLDOUT_V1.json": {
+      "bytes": 573,
+      "git_blob_oid": "179cd9f7939b33e89aa9afe60c2f10b89a94c721",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_PROSPECTIVE_HOLDOUT_V1.json",
+      "sha256": "8fbbeb381d29e0523f3d04f5ee3d42ef945d5a00eb4c36b8a8fa70fa409f921f"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_SPEC.md": {
+      "bytes": 11391,
+      "git_blob_oid": "9408a8bf09a254eedfc153d1ac173b24c43ad8e0",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/research/window1/WINDOW1_SPEC.md",
+      "sha256": "41e95792d6a139b84ce1a5d16274bfe329b9a4dff0c34125578867804dc62141"
+    },
+    "arb-executor/tests/test_window1_round1_audit_correction.py": {
+      "bytes": 2143,
+      "git_blob_oid": "ac317a96c84c9bd4806883a832ef78a159a64b26",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/tests/test_window1_round1_audit_correction.py",
+      "sha256": "2c0524caeb79a1b34b04131d0fc5bc89388afe72d33c1c347c578e3160ecce78"
+    },
+    "arb-executor/tests/test_window1_round2_instrument.py": {
+      "bytes": 7383,
+      "git_blob_oid": "7be4753c9c3fc6f42b205eb97fdb40711572b71f",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/tests/test_window1_round2_instrument.py",
+      "sha256": "0d4b4372621a791463ef87d5416ae0da384565420e251d8902d6478dac3fa9e9"
+    }
+  },
+  "start_boundary_law": {
+    "actual_start_interval": "[proxy_clock-900s, proxy_clock+600s]",
+    "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+    "inside_band_law": "censored",
+    "negative_guard_seconds": 600.0,
+    "official_exact": 234,
+    "one_sided_conflict_law": {
+      "law_id": "retain-stronger-causal-bounds-v1",
+      "only_strictly_higher_rank_not_live_may_block": true,
+      "proxy_never_exact": true,
+      "proxy_never_overwrites_earlier_live_by": true,
+      "ties_never_promote_proxy_to_exact": true
+    },
+    "positive_capable_after_named_censors": 705,
+    "positive_capable_before_named_censors": 718,
+    "positive_guard_seconds": 900.0,
+    "proxy_promotable_to_exact": false,
+    "quantized_late_detection_proxy": 453,
+    "schedule_only_positive_allowed": false,
+    "source_conservation": {
+      "clean_interval": 31,
+      "contradictory": 14,
+      "live_by_only": 52,
+      "schedule_only": 20,
+      "start_clock": 687
+    },
+    "strict_post_start_law": "completion_exchange_ts >= proxy_clock+600s",
+    "strict_window1_law": "completion_exchange_ts <= proxy_clock-900s"
+  },
+  "t8_t6_lookahead_proof": {
+    "T6_recognition_ts": 1007200.0,
+    "T8_left_ts": 1000000.0,
+    "changed_input": "recognition mapping only",
+    "fixture": "FIXTURE-R2-BASE",
+    "future_information_used_before_T6": false,
+    "post_T6_decision_sha256_a": "e32c5c113c16e6fa50aad01e9f669c350a7c17ac21e93e84b185c788d960b36c",
+    "post_T6_decision_sha256_b": "5f509d7dc9d19d83be29750b8471c467396102958e2dae9cb1870ec88751c08c",
+    "post_T6_decisions_differ": true,
+    "pre_T6_decision_sha256_a": "78e60e441860e59c6cada565bdeb0060026c4dad2fa168d91c158790d43a02ac",
+    "pre_T6_decision_sha256_b": "78e60e441860e59c6cada565bdeb0060026c4dad2fa168d91c158790d43a02ac",
+    "pre_T6_decisions_identical": true,
+    "schema_version": "window1-round2-t8-t6-lookahead-proof-v1"
+  },
+  "target_PC": 603,
+  "tuning_performed": false,
+  "unavailable": {
+    "full_depth": "snapshot ancestry plus gap-free sequence-continuous reconstruction not proved",
+    "pinnacle": "zero causal rows",
+    "riser_actuator": "lawfully disarmed",
+    "sealed_pair_policy": "uncommitted source; not reconstructed",
+    "shape": "no independent non-AIM causal cell mapping"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "schema_version": "window1-round2-candidates-v1",
+  "instrument_version": "window1-round2-causal-instrument-v1",
+  "selection_scope": "development dates 2026-07-12 through 2026-07-20 only",
+  "order_stream_law": "every candidate emits independently timestamped placement, repricing, cancellation, fill-observation, sibling-hold, and terminal records for both legs",
+  "common_parameters": {
+    "lot_per_leg": 5,
+    "divot_definition": {
+      "minimum_depth_cents": 2,
+      "trailing_median_seconds": 1800,
+      "minimum_prior_nonself_prints": 3,
+      "ask_hold_within_cents": 1
+    },
+    "flow_minimum_nonself_prints_30m": {
+      "ATP_CHALL": 16,
+      "WTA_CHALL": 16,
+      "ATP_MAIN": 1,
+      "WTA_MAIN": 1
+    },
+    "walk": {
+      "step_cents": 1,
+      "requires_verified_nonself_chain": true,
+      "minimum_chain_prints": 2,
+      "maximum_journey_cents": {
+        "ATP_CHALL": 2,
+        "WTA_CHALL": 2,
+        "ATP_MAIN": 1,
+        "WTA_MAIN": 1
+      }
+    },
+    "orientation_checkpoint_seconds_after_left": 3600,
+    "recognition_checkpoint_seconds_after_left": 7200,
+    "cohort_minimum_n": 30,
+    "cohort_minimum_reaim_delta_cents": 2,
+    "top5_ask_over_external_bid_threshold": 1.5,
+    "top5_pressure_extra_depth_cents": 1,
+    "first_fill_sibling_reaim_cents": 1,
+    "never_marketable": true
+  },
+  "profiles": {
+    "r2_async_pair": [
+      "start_boundary",
+      "asynchronous_divot_timing",
+      "leg_specific_posture",
+      "first_fill_sibling_response",
+      "pair_divot_recut",
+      "true_print_flow",
+      "own_order_contribution_subtraction"
+    ],
+    "r2_causal_steer": [
+      "start_boundary",
+      "asynchronous_divot_timing",
+      "leg_specific_posture",
+      "first_fill_sibling_response",
+      "pair_divot_recut",
+      "causal_orientation",
+      "causal_drift_recognition",
+      "cohort_steering",
+      "true_print_flow",
+      "bbo_top5_pressure",
+      "own_order_contribution_subtraction"
+    ],
+    "r2_full_os": [
+      "start_boundary",
+      "asynchronous_divot_timing",
+      "leg_specific_posture",
+      "nonself_one_cent_walk",
+      "first_fill_sibling_response",
+      "pair_divot_recut",
+      "causal_orientation",
+      "causal_drift_recognition",
+      "cohort_steering",
+      "true_print_flow",
+      "bbo_top5_pressure",
+      "own_order_contribution_subtraction"
+    ]
+  },
+  "posture_pairs": {
+    "park_join": {
+      "favorite": "park",
+      "underdog": "join"
+    },
+    "touch_park": {
+      "favorite": "touch",
+      "underdog": "park"
+    },
+    "walk_park": {
+      "favorite": "walk",
+      "underdog": "park"
+    }
+  },
+  "candidate_ids": [
+    "r2_async_pair__park_join__hold",
+    "r2_async_pair__park_join__reaim",
+    "r2_async_pair__touch_park__hold",
+    "r2_async_pair__touch_park__reaim",
+    "r2_causal_steer__park_join__hold",
+    "r2_causal_steer__park_join__reaim",
+    "r2_full_os__park_join__hold",
+    "r2_full_os__park_join__reaim",
+    "r2_full_os__walk_park__hold",
+    "r2_full_os__walk_park__reaim"
+  ],
+  "predeclared_selected_candidate_ablations": [
+    "without_asynchronous_divot_timing",
+    "without_leg_specific_posture",
+    "without_nonself_one_cent_walk",
+    "without_first_fill_sibling_response",
+    "without_pair_divot_recut",
+    "without_causal_orientation",
+    "without_causal_drift_recognition",
+    "without_cohort_steering",
+    "without_bbo_top5_pressure"
+  ],
+  "free_numeric_parameters": [],
+  "tuning_allowed_after_freeze": false
+}

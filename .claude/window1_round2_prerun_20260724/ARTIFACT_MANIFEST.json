@@ -1,0 +1,25 @@
+{
+  "artifacts": {
+    "PRE_RUN_MANIFEST.json": {
+      "bytes": 25965,
+      "sha256": "1c67906de9b92ae71097550894f900b95461b3b1ee443b7b8e61f637448919a3"
+    },
+    "PRE_RUN_REPORT.md": {
+      "bytes": 1733,
+      "sha256": "d8738c7f3957ceb6b542820d01c1cc7c76f06a378b60130ae2ea472dee46bf53"
+    },
+    "ROUND2_CAPABILITY_PROOF.json": {
+      "bytes": 6424,
+      "sha256": "a4ab8e6ba9707ca985bb989fe8d28b0221ebc7e6421c262742367afc8c987aad"
+    },
+    "ROUND2_FAMILY_CAPABILITY_MATRIX.md": {
+      "bytes": 1818,
+      "sha256": "e3f2a01267d1613b55b65f385aa205e33948f7e7482c560469668796f33ccc35"
+    },
+    "T8_T6_LOOKAHEAD_PROOF.json": {
+      "bytes": 720,
+      "sha256": "fe56d814efd93e61099f55fa6aa258a1980efb803a45852824936235e683885a"
+    }
+  },
+  "schema_version": "window1-round2-prerun-artifacts-v1"
+}

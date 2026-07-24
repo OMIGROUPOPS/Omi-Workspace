@@ -1,0 +1,34 @@
+{
+  "schema_version": "window1-round2-feature-allowlist-v1",
+  "allowed": [
+    "start_boundary",
+    "asynchronous_divot_timing",
+    "leg_specific_posture",
+    "nonself_one_cent_walk",
+    "first_fill_sibling_response",
+    "pair_divot_recut",
+    "causal_orientation",
+    "causal_drift_recognition",
+    "cohort_steering",
+    "true_print_flow",
+    "bbo_top5_pressure",
+    "own_order_contribution_subtraction"
+  ],
+  "conditionally_allowed": {
+    "bookmaker_fv": "only when the individual observation is causal, participant-mapped, and source-proven; no candidate requires it in v1",
+    "shape_corpus": "only after an independent non-AIM causal cell mapping exists; unavailable in v1",
+    "pinnacle": "unavailable in v1",
+    "raw_ws_full_depth": "unavailable until snapshot ancestry and gap-free sequence continuity are proved"
+  },
+  "prohibited": [
+    "schedule_as_actual_start",
+    "future_or_post_decision_reference",
+    "self_trade_as_market_confirmation",
+    "narrow_proxy_for_missing_feature",
+    "feature_gap_imputation",
+    "AIM_V2",
+    "settlement",
+    "exit_or_window2_state",
+    "holdout_observation"
+  ]
+}

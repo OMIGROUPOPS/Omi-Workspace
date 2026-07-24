@@ -1,0 +1,35 @@
+{
+  "schema_version": "window1-round2-metric-contract-v1",
+  "D": 804,
+  "target_PC": 603,
+  "lot_per_leg": 5,
+  "definitions": {
+    "C": "both legs fill exactly five contracts inside lawful Window 1",
+    "PC": "C and negative combined Window-1-close delta",
+    "S": "C and combined entry cost strictly below 100 cents",
+    "IC": "C and both individual Window-1-close deltas strictly negative",
+    "individual_delta": "leg fill VWAP minus the last lawful true-print Window-1-close reference for that leg",
+    "combined_delta": "sum of the two individual deltas"
+  },
+  "required_outputs": [
+    "D",
+    "C",
+    "PC",
+    "S",
+    "IC",
+    "combined_entry_cost",
+    "combined_delta",
+    "both_individual_deltas",
+    "exact_five",
+    "partial",
+    "other_quantity",
+    "genuine_zero_fill",
+    "naked_single_leg",
+    "zero_length_window",
+    "contradictory",
+    "censored"
+  ],
+  "missing_data": "remains in D and is censored; never success and never silently nonfill",
+  "negative_law": "strictly less than zero",
+  "scoring_status": "frozen_not_executed"
+}

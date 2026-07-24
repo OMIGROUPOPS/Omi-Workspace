@@ -1,0 +1,353 @@
+{
+  "D": 804,
+  "candidate_scoring_performed": false,
+  "classification_history": {
+    "censored": 102,
+    "contradictory": 14,
+    "exact_five": 10,
+    "nonfill": 678
+  },
+  "failure_decomposition": {
+    "by_date": {
+      "2026-07-12": {
+        "genuine_zero_fill": 112,
+        "naked_single_leg_fill": 25
+      },
+      "2026-07-13": {
+        "genuine_zero_fill": 92,
+        "naked_single_leg_fill": 7
+      },
+      "2026-07-14": {
+        "genuine_zero_fill": 75,
+        "naked_single_leg_fill": 5
+      },
+      "2026-07-15": {
+        "genuine_zero_fill": 43,
+        "naked_single_leg_fill": 8
+      },
+      "2026-07-16": {
+        "genuine_zero_fill": 31,
+        "naked_single_leg_fill": 4
+      },
+      "2026-07-17": {
+        "genuine_zero_fill": 41
+      },
+      "2026-07-18": {
+        "genuine_zero_fill": 42,
+        "naked_single_leg_fill": 8
+      },
+      "2026-07-19": {
+        "genuine_zero_fill": 78,
+        "naked_single_leg_fill": 13,
+        "zero_length_window1_opportunity": 12
+      },
+      "2026-07-20": {
+        "genuine_zero_fill": 68,
+        "naked_single_leg_fill": 14
+      }
+    },
+    "censored": {
+      "missing_feature_or_birth_book": 11,
+      "queue_ambiguous": 6,
+      "start_boundary": 85
+    },
+    "censored_total": 102,
+    "corrected": {
+      "genuine_zero_fill": 582,
+      "naked_single_leg_fill": 84,
+      "zero_length_window1_opportunity": 12
+    },
+    "former_nonfill_total": 678
+  },
+  "feature_family_capability_matrix": [
+    {
+      "actually_selected": true,
+      "available": true,
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "two-leg object and complete-stream law",
+      "family_id": "pair_law",
+      "loaded": true
+    },
+    {
+      "actually_selected": true,
+      "available": "partial",
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "selected reaim ablation changed C from 10 to 6",
+      "family_id": "first_fill_sibling_response",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": "partial",
+      "decision_changing": false,
+      "evaluated": true,
+      "evidence": "selected ablation identical; pair-family use is struck",
+      "family_id": "sealed_bands",
+      "loaded": true
+    },
+    {
+      "actually_selected": true,
+      "available": "partial",
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "static divot depth changed base price; catch timing was absent",
+      "family_id": "dual_divot_steering_and_catch",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": "partial",
+      "decision_changing": false,
+      "evaluated": true,
+      "evidence": "selected ablation identical",
+      "family_id": "drift_recognition",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": "partial",
+      "decision_changing": false,
+      "evaluated": true,
+      "evidence": "selected ablation identical",
+      "family_id": "cohort_steering",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": "partial",
+      "decision_changing": false,
+      "evaluated": true,
+      "evidence": "selected ablation identical",
+      "family_id": "orientation_prior",
+      "loaded": true
+    },
+    {
+      "actually_selected": true,
+      "available": "partial",
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "walk ablation changed selected C from 10 to 9",
+      "family_id": "walk_park_posture",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": "partial",
+      "decision_changing": false,
+      "evaluated": false,
+      "evidence": "coverage flag only; riser actuator lawfully disarmed",
+      "family_id": "riser_deceleration_mirror_seesaw",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": "partial",
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "recut family distinct; selected family did not select it",
+      "family_id": "dynamic_floor_and_recut_cells",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": "partial",
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "recut-atlas family distinct",
+      "family_id": "atlas",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": "partial",
+      "decision_changing": false,
+      "evaluated": true,
+      "evidence": "computed and stored only; no pricing/action consumer",
+      "family_id": "reach",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": false,
+      "decision_changing": false,
+      "evaluated": false,
+      "evidence": "no independent non-AIM causal cell mapping",
+      "family_id": "shape_corpus",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": "partial",
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "changed causal-micro/full prices where causal",
+      "family_id": "bookmaker_fv",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": false,
+      "decision_changing": false,
+      "evaluated": false,
+      "evidence": "zero causal rows; unavailable and unused",
+      "family_id": "pinnacle",
+      "loaded": false
+    },
+    {
+      "actually_selected": true,
+      "available": "partial",
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "base order expression and queue state",
+      "family_id": "causal_bbo",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": "partial",
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "changed causal-micro/full prices, not selected family",
+      "family_id": "top_five_pressure",
+      "loaded": true
+    },
+    {
+      "actually_selected": true,
+      "available": true,
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "fill evidence and walk trigger",
+      "family_id": "true_print_flow",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": "partial",
+      "decision_changing": false,
+      "evaluated": true,
+      "evidence": "coverage flag only; contributed volume was not separated",
+      "family_id": "own_order_fingerprints",
+      "loaded": true
+    },
+    {
+      "actually_selected": true,
+      "available": "partial",
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "boundary and censoring law, never schedule-as-start",
+      "family_id": "real_start_guard",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": false,
+      "decision_changing": false,
+      "evaluated": false,
+      "evidence": "no snapshot-ancestry plus sequence-continuous reconstruction",
+      "family_id": "raw_ws_full_depth",
+      "loaded": false
+    }
+  ],
+  "generated_from": {
+    "controlling_audit_commit": "024f03bb5b1944bae39ad5afef6ee019ef5dc06d",
+    "results_commit": "f7cd420951f074104dbc602b84137c5eed7455da",
+    "results_path": ".claude/window1_os_family_results_20260724/WINDOW1_OS_FAMILY_RESULTS.json",
+    "results_sha256": "379e8af47263515949adb84fc97d532975b6760d5c0e83c9c4723945b916ecd1",
+    "selected_ledger_path": ".claude/window1_os_family_results_20260724/WINDOW1_OS_FAMILY_SELECTED_EVENTS.jsonl",
+    "selected_ledger_sha256": "f58884f3569d8ac91ddaa17265025114c17972c0db7e35405a3db4f633c2f707"
+  },
+  "holdout": {
+    "dates": [
+      "2026-07-24",
+      "2026-07-25",
+      "2026-07-26"
+    ],
+    "opened": false,
+    "queried": false
+  },
+  "lookahead_correction": {
+    "defect": "T8 order price consumed sealed_depth(called_band) where called_band used T6 recognition",
+    "ineligible_candidate_ids": [
+      "pair_divot_core__park__hold",
+      "pair_divot_core__park__reaim",
+      "pair_divot_core__walk__hold",
+      "pair_divot_core__walk__reaim"
+    ],
+    "replacement_scores_asserted": false,
+    "selected_candidate_affected": false
+  },
+  "optimistic_completion_bound": {
+    "count": 26,
+    "data_ceiling": false,
+    "market_ceiling": false,
+    "scope": "selected candidate and frozen 24-candidate Round-1 grid counterfactual order streams, including allowed post-start intervals"
+  },
+  "os_family_capability_matrix": [
+    {
+      "actually_selected": false,
+      "available": false,
+      "decision_changing": "unusable",
+      "evaluated": true,
+      "evidence": "all four rows struck: T8 price read a T6-derived called_band through sealed_depth",
+      "family_id": "pair_divot_core",
+      "loaded": true
+    },
+    {
+      "actually_selected": true,
+      "available": true,
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "selected family; T6 delay, walk, and sibling reaim changed decisions, while drift/cohort/orientation did not",
+      "family_id": "drift_cohort_orientation",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": true,
+      "decision_changing": false,
+      "evaluated": true,
+      "evidence": "decision-identical to drift_cohort_orientation at every committed reporting grain",
+      "family_id": "mirror_deceleration",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": true,
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "recut and atlas defined distinct prices and C=2",
+      "family_id": "dynamic_recut_atlas",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": true,
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "top-five pressure and causal bookmaker FV changed prices",
+      "family_id": "causal_micro_pressure",
+      "loaded": true
+    },
+    {
+      "actually_selected": false,
+      "available": true,
+      "decision_changing": true,
+      "evaluated": true,
+      "evidence": "distinct combined lawful actuator stack",
+      "family_id": "full_chronological_stack",
+      "loaded": true
+    }
+  ],
+  "schema_version": "window1-round1-audit-correction-v1",
+  "selected_metrics": {
+    "C": 10,
+    "D": 804,
+    "IC": 4,
+    "PC": 9,
+    "S": 9
+  },
+  "selected_policy_id": "drift_cohort_orientation__walk__reaim",
+  "strategy_search_rerun": false
+}

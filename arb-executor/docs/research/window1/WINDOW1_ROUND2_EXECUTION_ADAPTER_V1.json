@@ -1,0 +1,79 @@
+{
+  "schema_version": "window1-round2-execution-adapter-v1",
+  "adapter_id": "chronological-two-leg-window1-round2-v1",
+  "instrument_version": "window1-round2-causal-instrument-v1",
+  "input_contract": {
+    "event_fields": [
+      "event_id",
+      "event_date",
+      "category",
+      "left_ts",
+      "strict_positive_cutoff_ts",
+      "start_source_class",
+      "start_guard",
+      "legs"
+    ],
+    "leg_fields": [
+      "leg_id",
+      "ticker",
+      "role",
+      "feature_availability",
+      "observations"
+    ],
+    "observation_types": {
+      "book": [
+        "exchange_or_causal_receipt_timestamp",
+        "top_five_bid_levels",
+        "top_five_ask_levels",
+        "fingerprinted_own_bid_quantity_by_price"
+      ],
+      "print": [
+        "exchange_timestamp",
+        "exchange_trade_id",
+        "price",
+        "size",
+        "taker_side",
+        "own_order_fingerprint"
+      ]
+    }
+  },
+  "causal_order": [
+    "bind birth cell from the first causal non-self BBO",
+    "derive each leg's independent eligibility clock from its own frozen recut cell",
+    "require contemporaneous non-self micro flow/divot evidence",
+    "apply orientation only at the first-hour checkpoint",
+    "apply drift recognition only at the T6 checkpoint using history through T6",
+    "recut a leg only on that leg's causal book-cell change",
+    "apply sibling response only after the first leg's simulated full fill",
+    "cancel each still-resting leg independently at its guarded cutoff"
+  ],
+  "start_boundary_law": {
+    "positive_capable": [
+      "official_exact",
+      "quantized_late_detection_proxy",
+      "clean_causal_interval"
+    ],
+    "positive_prohibited": [
+      "schedule_only",
+      "live_by_only",
+      "contradictory"
+    ],
+    "guard_required_beside_positive_stream": true,
+    "tennisexplorer_proxy_may_be_exact": false
+  },
+  "missingness_law": {
+    "missing_required_feature": "censored_feature",
+    "zero_length_window": "zero_length_window1_opportunity",
+    "no_micro_trigger_with_features_present": "no_eligible_micro_trigger",
+    "silent_proxy_substitution": false,
+    "feature_gap_imputation": false
+  },
+  "own_order_law": "fingerprints may subtract contributed book/print volume; fingerprinted activity is never fill, divot, flow, orientation, drift, or walk confirmation",
+  "full_depth": "unavailable; top-five only",
+  "pinnacle": "unavailable",
+  "shape_corpus": "unavailable without independent non-AIM causal cell mapping",
+  "counterfactual_order_creation": true,
+  "scoring_implemented": false,
+  "network_interface": false,
+  "production_interface": false
+}

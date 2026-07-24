@@ -1,0 +1,53 @@
+# Independent cross-review — Real-start ledger V4 / Round-2 start-truth recovery
+
+Reviewed commit: `b79f20f2f7c5fa00bd05a23318fa1cea0e1e72be` ("Freeze Window-1 start truth recovery round 2", codex/window1-definition, 2026-07-24 00:40 -0400), with predecessors f5adf5f5 / 34e383b3 / 5ff18478 / 224417da.
+Review date: 2026-07-24. Read-only; no network access; no candidate scoring or tuning performed. Four independent passes; population-level recomputation (all 804 / 539 / 453 rows), full offline re-derivation of the crosswalk from the frozen raw pages.
+
+## Gate verdict: PASS as a population-coverage gate — with a mandatory precision relabeling and a corrected witness count. The "7 strict duals" claim does NOT survive review as stated.
+
+## 1. Ledger conservation — PASS with one corrected count
+
+Recomputed from REAL_START_LEDGER_V4.jsonl: **687 exact + 31 clean intervals + 14 contradictory + 20 schedule-only + 52 live-by-only = 804**; positive-capable = 718 (flag ≡ class, 0 mismatches); 0 unresolved; single-field class, mutually exclusive. **The operator's brief's 26/20/40 split is wrong — the committed artifacts already state 14/20/52** (26 was the stale V3 contradictory count; round 2 resolved 12 of them to exact). All 234 V3 exact starts and 31 clean intervals byte-identical in V4; 234+453=687; the 539-event residual and 464 = 453+11 crosswalk arithmetic close exactly; zero class regressions; zero non-TE exact promotions.
+
+## 2. Coverage — PASS exactly
+
+ATP Challenger 346/369, ATP main 139/147, WTA Challenger/125 94/136, WTA main 139/152 (Σ 718/804) all recompute; the full date × class matrix matches REAL_START_SUMMARY_V4 with zero discrepancies.
+
+## 3. TennisExplorer source validity — sound identity, policy-blind, NOT schedule substitution; but the clocks are 5-minute-quantized, late-biased start PROXIES, not "exact" starts
+
+- **Identity: PASS.** Surname+initial double-match (milestone title AND structured targets) with ITF-class hard guard; 453/453 unique TE match ids and slug-consistent players; the only two in-corridor ambiguous pairs (PALCOL, AKSCOS) were rejected by the uniqueness law; all 7 ticker-code anomalies resolve correctly. Date joins within ±2 days (436 at 0); Europe/Berlin conversion correct, no DST edge, 19 midnight-adjacent cases all coherent. Full offline re-derivation from the frozen raw pages reproduces all 539 decisions bit-for-bit.
+- **Not the exchange schedule: PROVEN.** TE clock = exchange-catalog schedule in only 1/453 (median offset −105 min against the documented "lying schedule").
+- **But not "exact" either: 453/453 promoted clocks sit on a 5-minute grid** while the same pages carry true minute precision for other events. Calibrated against the 234 frozen official actual starts: median **+5 min late**, 47 exact-to-second, 93% within 15 min, 6.8% tail >15 min off (postponement/resumption cases reach +16–22 h). The clock behaves as late-biased live-detection: **"known live by clock" is safe; "not live before clock" is not.** Estimated ~30 of the 453 are >15 min wrong. Named events not positively cleared: **KYMTSI, MAKSEY, NAPBAR, SHESTR (+16–21 h vs provider final start), DELFUE (−50 min)**, plus 8 conflict-bearing rows (MOLOFN, BURJAC, BURUGO, MATMOR, COLCER, CORSAC, TRUDAV, ALTDAR).
+- **Historical-surface claim: CONFIRMED** (te_live.py VPS copy, parse_tennisexplorer.py, te_honest in the Vault's anchor hierarchy, all predating the benchmark). Pages fetched once post-window and hash-pinned; raw bytes exist locally and verify.
+
+## 4. Collisions and conflicts — PASS as committed
+
+The 38 same-city rejections reproduce exactly (WTA 125K Istanbul / Istanbul 2 vs "Istanbul 10 ITF", full event list verified in raw HTML). The 11 higher-precedence blocks reproduce exactly (rank-2 milestone `not_started` at/after the clock — incl. GONTOB blocked on a 20-second margin, showing the guard has teeth). No schedule-only promotion (20 rows, none clocked); no self-fill candidate anywhere in V4 (34e383b3 exclusion complete; the stale pre-exclusion ledger exists only in the private store). Walkovers/retirements/suspensions/rollovers: no escaped instance found; the completed-scoreline shape excludes pure walkovers.
+
+**However, the conflict law is one-sided:** a pre-clock live-by observation can never block promotion regardless of rank (5 equal-rank demotions are mislabeled "controls_by_precedence"), and promotion **overwrites `known_live_by_utc` with the new exact start**, erasing the competing bound from the row the adjudicator consumes. Blocking requires strictly-higher-rank `not_started` at/after the clock. Ties systematically resolve toward promotion.
+
+## 5. Causal blindness — PASS (mechanical)
+
+Full input inventory of acquire/adjudicate/finalize: no placements, fills, prices, deltas, decision ledgers, replay results, or policy outcomes are read; `tennis.db.matches` explicitly refused as a mixed table; `sets_won` used only as a completed-result existence bit (winner never identified, no score emitted); residual targeting is purely V3 start-precision class (all 539 treated uniformly — no conditioning on the 31 duals); retained-source reads occur after rulings are computed. Zero outcome fields in any committed artifact.
+
+## 6. Historical re-adjudication — fills real; the "7 strict duals" claim is overstated
+
+All seven claimed witnesses verify on receipts: both legs exactly 5.0, one filled order per leg (no repost double-count), placement ≤ fill, completion clocks present, combined costs correct (5 under par, ALCTAB and COLVAC at exactly 100¢; "SMILIA" is a brief typo for SMIILA). Leg conservation 258/12/870/468 unchanged; the 10-lot overfill stays outside exact-five. Strict duals over all 804 = exactly 7 (structurally confined to the historical 31). Census 7 strict + 22 post-start-proven + 2 still-censored (AKSVAL 97¢, DILFAL 99¢) = 31.
+
+**The defect is the proof standard, not the receipts.** W1 margins for the seven (last fill → V4 clock): ALCTAB 11,869 s · COLVAC 772 s · SMIILA 364 s · YEVCAM 134 s · MARBIT 75 s · GRABER 59 s · **TOPUGO 1.4 s**. The comparator is strict sub-second `completion < exact_start` against a clock that is 5-minute-quantized and empirically **+5 min median late**. TOPUGO and GRABER sit entirely inside any honest uncertainty radius; MARBIT and YEVCAM are marginal; even SMIILA's 364 s is within the median late bias. The reversals of the prior post-start rulings (TOPUGO, COLVAC, GRABER, **and YEVCAM — a fourth undisclosed flip**) were categorical (TE rank-3 demotes tape-onset rank-7 / engine rank-4 bounds), not per-event refutations. Retiring tape-onset as a liveness proof is justified — 282/377 onsets precede the TE clock, median 25.5 min (a premarket-flow detector, per the Vault's own "first trade is never used alone" law) — but the replacement standard was weakened in exactly the direction that favors the witnesses, and FINAL_REPORT.md discloses neither the four flips, nor the shrink of "permanently post-start" legs 106→82, nor the W1 single-leg expansion 45→146.
+
+**Corrected witness statement:** 7 is not defensible. With a minimal 60-second guard band: **5 strict (3 under par: YEVCAM, SMIILA, MARBIT — ALCTAB and COLVAC at par)**. Under a bias-aware guard (~10 min per the calibration), only ALCTAB (at par) and arguably COLVAC (at par) survive — i.e., possibly **zero under-par proven duals**. Any citation must state the guard band used.
+
+## 7. Freeze and hash integrity — PASS with one ordering caveat
+
+All 15 manifest pins, freeze pins, baseline-V3 pin, published-lifecycle pin, and all code hashes match committed LF blobs; raw TE pages (13/13), the 578-target hash-set, and the private acquisition manifest all verify byte-exact against the frozen receipts. Jul 24–26 holdout untouched (declaration unviewed; no Jul-24+ event/market/trading data consumed; TE pages beyond Jul 20 serve only the ±2-day identity corridor). Six-family/24-policy runner (6 families × {park,walk} × {hold,reaim}) pinned at 5ff18478 with 16/16 input hashes verifying and `candidate_scoring_performed: false` — unscored, confirmed from tree state. New tests 4/4 pass; worktree clean. **Caveat: Round-2 code was committed in the same commit as its outputs** (V3's code-first ordering held; Round 2's did not) — mitigated by byte-identical run-time code hashes in the freeze, but strict code-before-extraction fails for Round 2 and the finalize EXPECTED constants were authored post-result.
+
+## Answers to the operator's five questions
+
+1. **Start gate: PASS** — as a population gate. The 718 positive-capable population is real, policy-blind, and correctly identified; the 86 timing-blocked decompose 14/20/52 (correcting the brief's 26/20/40).
+2. **Corrected counts:** timing-blocked = 14 contradictory / 20 schedule-only / 52 live-by-only. Strict dual witnesses = **5 under a 60-s guard (3 under par), not 7 (5 under par)**; fewer under a bias-aware guard. Precision class of the 453 must be relabeled from "exact" to "5-minute-quantized late-biased start proxy (median +5 min, 93% ≤15 min)".
+3. **Questionable/rejected events:** the 38 Istanbul rejections and 11 milestone blocks are correct as committed. Not positively cleared: KYMTSI, MAKSEY, NAPBAR, SHESTR, DELFUE, and conflict-bearing MOLOFN, BURJAC, BURUGO, MATMOR, COLCER, CORSAC, TRUDAV, ALTDAR (13 events; treat as interval- or censored-class for scoring). Witnesses TOPUGO (1.4 s) and GRABER (59 s) are not proven at the precision claimed.
+4. **≥603 after corrections: YES.** 718 − 13 named − ~30 estimated tail ≈ 675 ≥ 603; the margin of 115 absorbs every correction this review found.
+5. **May Codex begin development-only OS-family tuning: YES, conditionally.** Conditions: (a) predeclare a guard-band law for all start-boundary comparisons (asymmetric per the calibration: positives require fill ≤ clock − guard; negatives fill ≥ clock + guard; guard ≥ the calibrated uncertainty, or use interval semantics [clock−15m, clock]) before any scoring; (b) relabel the 453 precision class and republish the witness count under the declared guard; (c) stop overwriting `known_live_by_utc` — retain competing bounds, fix the one-sided conflict law and the 5 mislabeled equal-rank demotions; (d) interval-ize or censor the 13 named events; (e) disclose the four post→strict flips, the 106→82 shrink, and the 45→146 W1-leg expansion in the record; (f) commit tuning-lane code before execution (restore code-first ordering); (g) development window only, holdout sealed, verdicts carry the scope clause and dynamic-floor gap per Vault law.
+
+— Independent cross-review (Fable seat), read-only. Recomputation scripts retained in session scratch, outside git.

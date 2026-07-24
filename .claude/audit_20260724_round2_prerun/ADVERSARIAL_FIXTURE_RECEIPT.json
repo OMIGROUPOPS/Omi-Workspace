@@ -1,0 +1,198 @@
+{
+  "1_legA_timing_independent": {
+    "base_eligible_A": [
+      1020160.0
+    ],
+    "variant_eligible_A": [
+      1000000.0
+    ],
+    "A_changed": true,
+    "B_invariant": true
+  },
+  "2_legB_timing_independent": {
+    "B_changed": true,
+    "A_invariant": true
+  },
+  "1b_eligibility_is_cutoff_anchored": {
+    "expected_A": 1020160.0,
+    "observed_A": [
+      1020160.0
+    ],
+    "note": "eligible_ts = cutoff + t_deep_p50*60 (realized-start anchored)"
+  },
+  "3_posture_changes_decision": {
+    "park_join_L1_orders": [
+      [
+        55,
+        "park"
+      ]
+    ],
+    "touch_park_L1_orders": [
+      [
+        57,
+        "touch"
+      ]
+    ],
+    "decision_differs": true
+  },
+  "4_sibling_response": {
+    "first_fill_observed": true,
+    "hold_emits_sibling_hold": true,
+    "reaim_emits_decision": true,
+    "reaim_bias_cents": [
+      1
+    ],
+    "sibling_L1_orders_hold": [
+      [
+        1020260.0,
+        55
+      ]
+    ],
+    "sibling_L1_orders_reaim": [
+      [
+        1020260.0,
+        56
+      ]
+    ],
+    "reaim_changed_sibling_price_by_1c_on_own_clock": true
+  },
+  "5_missing_feature_censored": {
+    "event_terminal": "censored_feature",
+    "L1_terminal": "censored_feature",
+    "L1_placed_any_order": false,
+    "censor_action_named": true
+  },
+  "6_schedule_only": {
+    "no_orders_without_cutoff": true,
+    "terminal": "censored_start_boundary",
+    "positive_cutoff_refused": true
+  },
+  "7_t8_t6_isolation_own_fixture": {
+    "pre_T6_identical": true,
+    "post_T6_differ": true
+  },
+  "8a_zero_size_flow": {
+    "L1_placed_on_zero_size_flow": false
+  },
+  "8b_own_print_never_fills": {
+    "excluded_action_present": true,
+    "no_fill_from_own_print": true
+  },
+  "8c_walk_chain": {
+    "genuine_chain_advances_exactly_1c": [
+      [
+        20370.0,
+        56
+      ]
+    ],
+    "zero_size_link_also_advances_DEFECT": [
+      [
+        20370.0,
+        56
+      ]
+    ],
+    "spec_violated": true
+  },
+  "8d_zero_size_divot_signal": {
+    "micro_divot_emitted_from_zero_size": true
+  },
+  "9_top5_pressure": {
+    "ask_heavy_orders_price_depth": [
+      [
+        54,
+        3.0
+      ]
+    ],
+    "balanced_orders_price_depth": [
+      [
+        55,
+        2.0
+      ]
+    ],
+    "pressure_added_exactly_1c_depth": true,
+    "missing_top5_censored": true
+  },
+  "11_per_leg_recut": {
+    "L1_actions": [
+      [
+        20260.0,
+        "place",
+        55,
+        null
+      ],
+      [
+        20460.0,
+        "pair_recut",
+        null,
+        2.0
+      ],
+      [
+        20460.0,
+        "cancel",
+        55,
+        null
+      ],
+      [
+        20460.0,
+        "reprice",
+        42,
+        null
+      ],
+      [
+        28800.0,
+        "cancel",
+        42,
+        null
+      ]
+    ],
+    "L2_untouched": true
+  },
+  "14_cohort_structurally_dead": {
+    "cohort_rows_with_cell_edge_by_dev_category_zone": {
+      "ATP_MAIN": {},
+      "WTA_MAIN": {
+        "1": 1,
+        "2": 1
+      },
+      "ATP_CHALL": {
+        "2": 15,
+        "1": 11,
+        "0": 6,
+        "3": 4
+      },
+      "WTA_CHALL": {
+        "1": 2,
+        "0": 3,
+        "2": 2,
+        "3": 2
+      }
+    },
+    "frozen_cohort_minimum_n": 30,
+    "any_dev_zone_reaches_min_n": false,
+    "consequence": "every leg of every D=804 event is feature-censored at birth for the six cohort_steering candidates (r2_causal_steer x2, r2_full_os x4); capability gate passed only on synthetic surfaces"
+  },
+  "10_exclusions_absent_from_code": {
+    "pinnacle": true,
+    "aim_v2": true,
+    "shape_aim": true,
+    "full_depth": true,
+    "pair_policies_sealed": true,
+    "riser": true
+  },
+  "12_holdout_and_date_fence": {
+    "2026-07-24": "refused: sealed holdout event refused",
+    "2026-07-25": "refused: sealed holdout event refused",
+    "2026-07-26": "refused: sealed holdout event refused",
+    "2026-07-22": "refused: event date is outside frozen development dates",
+    "2026-07-11": "refused: event date is outside frozen development dates"
+  },
+  "13_complete_streams": {
+    "both_legs_open_and_terminal": true,
+    "orders_generated_not_replayed": true,
+    "scored_flag": false,
+    "metrics_field": null
+  },
+  "extra_zero_length_class": {
+    "terminal": "zero_length_window1_opportunity"
+  }
+}

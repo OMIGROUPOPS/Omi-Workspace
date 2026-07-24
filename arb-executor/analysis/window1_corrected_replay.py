@@ -1818,7 +1818,7 @@ def parser() -> argparse.ArgumentParser:
         default=calibration / "WINDOW1_OS_RESEARCH_ADAPTER.json",
     )
     result.add_argument(
-        "--events", default=fit / "corrected_event_ledger.jsonl"
+        "--events", default=private / "events.jsonl"
     )
     result.add_argument(
         "--expected-legs",

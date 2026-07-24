@@ -64,10 +64,8 @@ def sanitized_locator(path: Path, private: bool) -> str:
         return f"external-private:{path.name}"
     try:
         return path.resolve().relative_to(REPO).as_posix()
-    except ValueError as exc:
-        raise FreezeError(
-            f"public input is outside repository: {path}"
-        ) from exc
+    except ValueError:
+        return f"external-evidence:{path.name}"
 
 
 def runtime_paths(args: argparse.Namespace) -> dict[str, Path]:
@@ -247,7 +245,7 @@ def parser() -> argparse.ArgumentParser:
         default=calibration / "WINDOW1_OS_RESEARCH_ADAPTER.json",
     )
     result.add_argument(
-        "--events", default=fit / "corrected_event_ledger.jsonl"
+        "--events", default=private / "events.jsonl"
     )
     result.add_argument(
         "--expected-legs",

@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import gzip
 import hashlib
 import json
 import math
@@ -90,7 +91,7 @@ def verify_prerun(
     events_path: Path,
 ) -> dict[str, Any]:
     freeze = read_json(freeze_path)
-    if freeze.get("schema_version") != "window1-os-family-prerun-v1":
+    if freeze.get("schema_version") != "window1-os-family-prerun-v2":
         raise SearchError("unrecognized PRE-RUN schema")
     if freeze.get("execution_order", {}).get(
         "candidate_scoring_performed"
@@ -139,6 +140,88 @@ def verify_prerun(
     ):
         raise SearchError("development/holdout freeze changed")
     return freeze
+
+
+def market_cache_receipt(path: Path) -> dict[str, Any]:
+    files = sorted(path.glob("*.json.gz"), key=lambda item: item.name)
+    rows = [{
+        "name": item.name,
+        "bytes": item.stat().st_size,
+        "sha256": sha256_file(item),
+    } for item in files]
+    return {
+        "files": len(files),
+        "bytes": sum(row["bytes"] for row in rows),
+        "hash_set_sha256": hashlib.sha256(
+            compact(rows).encode()
+        ).hexdigest(),
+    }
+
+
+def load_frozen_event_market(
+    event: Mapping[str, Any],
+    start: Mapping[str, Any],
+    source: Path,
+    expected_cache_key: str,
+    left: float,
+    right: float,
+) -> list[dict[str, Any]]:
+    event_id = str(event["event_id"])
+    path = source / f"{event_id}.json.gz"
+    if not path.is_file():
+        raise SearchError(f"market cache missing event: {event_id}")
+    with gzip.open(path, "rt", encoding="utf-8") as handle:
+        payload = json.load(handle)
+    if (
+        payload.get("event_id") != event_id
+        or payload.get("cache_key") != expected_cache_key
+        or not isinstance(payload.get("legs"), list)
+        or len(payload["legs"]) != 2
+    ):
+        raise SearchError(f"market cache receipt mismatch: {event_id}")
+    earliest = fit.parse_utc(
+        payload.get("earliest_utc"), "cache.earliest_utc"
+    )
+    latest = fit.parse_utc(
+        payload.get("latest_utc"), "cache.latest_utc"
+    )
+    if earliest > left or latest < right:
+        raise SearchError(
+            f"market cache does not cover guarded window: {event_id}"
+        )
+    expected_tickers = {
+        str(row["ticker"]) for row in event["legs"]
+    }
+    actual_tickers = {
+        str(row.get("ticker") or "") for row in payload["legs"]
+    }
+    if expected_tickers != actual_tickers:
+        raise SearchError(f"market cache ticker set differs: {event_id}")
+    for leg in payload["legs"]:
+        prior_snapshot = -math.inf
+        for snapshot in leg.get("snapshots") or []:
+            timestamp = float(snapshot["ts"])
+            if timestamp < prior_snapshot:
+                raise SearchError(
+                    f"market snapshots unsorted: {event_id}"
+                )
+            prior_snapshot = timestamp
+        seen_trades = set()
+        prior_print = -math.inf
+        for trade in leg.get("prints") or []:
+            identity = str(trade.get("trade_id") or "")
+            timestamp = float(trade["ts"])
+            if (
+                not identity or identity in seen_trades
+                or timestamp < prior_print
+                or float(trade.get("size") or 0) <= 0
+            ):
+                raise SearchError(
+                    f"cached true-print contract failed: {event_id}"
+                )
+            seen_trades.add(identity)
+            prior_print = timestamp
+    return list(payload["legs"])
 
 
 def nearest_int(value: float) -> int:
@@ -924,12 +1007,9 @@ def evaluate(
     policies: Sequence[Mapping[str, Any]],
     events: Sequence[Mapping[str, Any]],
     starts: Mapping[str, Mapping[str, Any]],
-    archive: fit.PrintArchive,
     feature_map: Mapping[tuple[str, int, str], Mapping[str, Any]],
-    premarket_dir: Path,
-    recovered_premarket_dir: Path,
-    cache_root: Path,
-    cache_key: str,
+    market_cache_source: Path,
+    expected_cache_key: str,
 ) -> dict[str, list[dict[str, Any]]]:
     output = {
         str(policy["policy_id"]): [] for policy in policies
@@ -980,9 +1060,9 @@ def evaluate(
                 )
             continue
 
-        leg_data = fit.load_event_market_data(
-            event, archive, premarket_dir, recovered_premarket_dir,
-            starts, [8], 0, cache_root, cache_key,
+        leg_data = load_frozen_event_market(
+            event, start, market_cache_source,
+            expected_cache_key, left, cutoff,
         )
         contexts = fit.contexts_for_event(
             event, leg_data, [8], feature_map
@@ -1173,13 +1253,26 @@ def run(args: argparse.Namespace) -> int:
         .get("normalized_true_prints", {})
         .get("sha256")
     )
-    archive = fit.PrintArchive(prints_path, expected_print_hash)
     frozen_print_hash = (
         freeze.get("private_development_input_receipts", {})
         .get("normalized_true_prints", {}).get("sha256")
     )
-    if archive.sha256 != frozen_print_hash:
+    if expected_print_hash != frozen_print_hash:
         raise SearchError("normalized true-print PRE-RUN binding failed")
+    market_cache_source = Path(args.market_cache_source).resolve()
+    frozen_market_cache = (
+        freeze.get("private_development_input_receipts", {})
+        .get("validated_event_market_cache", {})
+    )
+    current_market_cache = market_cache_receipt(market_cache_source)
+    for field in ("files", "bytes", "hash_set_sha256"):
+        if current_market_cache.get(field) != frozen_market_cache.get(field):
+            raise SearchError(
+                f"validated market-cache PRE-RUN drift: {field}"
+            )
+    expected_cache_key = str(frozen_market_cache.get("cache_key") or "")
+    if not expected_cache_key:
+        raise SearchError("validated market cache lacks cache key")
 
     spec = read_json(candidate_path)
     policies = candidate_policies(spec)
@@ -1191,22 +1284,18 @@ def run(args: argparse.Namespace) -> int:
     cache_receipt = {
         "runner": VERSION,
         "events": sha256_file(events_path),
-        "prints": archive.sha256,
+        "prints": expected_print_hash,
         "starts": sha256_file(start_path),
         "features": sha256_file(feature_path),
         "pre_run_commit": args.pre_run_commit,
     }
     cache_key = hashlib.sha256(compact(cache_receipt).encode()).hexdigest()
-    cache_root = Path(args.event_cache_dir).resolve() / cache_key
-
     fit.price_for_policy = family_price
     fit.build_actions = family_build_actions
     try:
         grid_rows = evaluate(
-            policies, events, starts, archive, feature_map,
-            Path(args.premarket_dir).resolve(),
-            Path(args.recovered_premarket_dir).resolve(),
-            cache_root, cache_key,
+            policies, events, starts, feature_map,
+            market_cache_source, expected_cache_key,
         )
         summaries = [
             summarize_candidate(
@@ -1233,10 +1322,8 @@ def run(args: argparse.Namespace) -> int:
                 policy["posture"] = "park"
             ablation_policies.append(policy)
         ablation_rows = evaluate(
-            ablation_policies, events, starts, archive, feature_map,
-            Path(args.premarket_dir).resolve(),
-            Path(args.recovered_premarket_dir).resolve(),
-            cache_root, cache_key,
+            ablation_policies, events, starts, feature_map,
+            market_cache_source, expected_cache_key,
         )
         ablations = [
             summarize_candidate(
@@ -1358,9 +1445,7 @@ def parser() -> argparse.ArgumentParser:
     result.add_argument("--pre-run-commit", required=True)
     result.add_argument("--events", required=True)
     result.add_argument("--prints", required=True)
-    result.add_argument("--premarket-dir", required=True)
-    result.add_argument("--recovered-premarket-dir", required=True)
-    result.add_argument("--event-cache-dir", required=True)
+    result.add_argument("--market-cache-source", required=True)
     result.add_argument(
         "--candidates",
         default=(

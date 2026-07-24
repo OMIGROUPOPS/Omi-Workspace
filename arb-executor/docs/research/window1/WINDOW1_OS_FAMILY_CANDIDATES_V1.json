@@ -45,6 +45,7 @@
     "full_depth": "unavailable",
     "top_five": "use only timestamped causal rows where present",
     "bookmaker_fv": "use only timestamped identity-mapped causal rows where present",
+    "market_evidence_materialization": "consume the frozen 804-event cache created by window1_fit_benchmark from the hash-pinned complete public true-print archive and top-five recorder; verify the cache hash-set, event/ticker identities, time coverage, sorted snapshots, unique positive-size trade identities, and original cache key before use",
     "pinnacle": "never"
   },
   "frozen_numeric_constants": {

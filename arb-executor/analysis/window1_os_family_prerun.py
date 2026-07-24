@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import gzip
 import hashlib
 import json
 import subprocess
@@ -11,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 
-VERSION = "window1-os-family-prerun-v1"
+VERSION = "window1-os-family-prerun-v2"
 D_REQUIRED = 804
 TARGET = 603
 DEV_DATES = [f"2026-07-{day:02d}" for day in range(12, 21)]
@@ -39,6 +40,28 @@ def sha256_file(path: Path) -> str:
 
 def canonical_hash(value: Any) -> str:
     return hashlib.sha256(compact(value).encode()).hexdigest()
+
+
+def directory_receipt(path: Path) -> dict[str, Any]:
+    files = sorted(path.glob("*.json.gz"), key=lambda item: item.name)
+    if len(files) != D_REQUIRED:
+        raise PreRunError(
+            f"market-cache event count changed: {len(files)}"
+        )
+    rows = [{
+        "name": item.name,
+        "bytes": item.stat().st_size,
+        "sha256": sha256_file(item),
+    } for item in files]
+    with gzip.open(files[0], "rt", encoding="utf-8") as handle:
+        sample = json.load(handle)
+    return {
+        "files": len(files),
+        "bytes": sum(row["bytes"] for row in rows),
+        "hash_set_sha256": canonical_hash(rows),
+        "cache_version": sample.get("cache_version"),
+        "cache_key": sample.get("cache_key"),
+    }
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -224,6 +247,19 @@ def run(args: argparse.Namespace) -> int:
     events_path = Path(args.events).resolve()
     prints_path = Path(args.prints).resolve()
     tape_manifest_path = Path(args.tape_manifest).resolve()
+    market_cache_path = Path(args.market_cache_source).resolve()
+    market_cache_receipt = directory_receipt(market_cache_path)
+    event_ids = {
+        str(json.loads(line)["event_id"])
+        for line in events_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    }
+    cache_event_ids = {
+        item.name[:-8]
+        for item in market_cache_path.glob("*.json.gz")
+    }
+    if len(event_ids) != D_REQUIRED or cache_event_ids != event_ids:
+        raise PreRunError("market-cache/event identity set differs")
     private_receipts = {
         "development_events": {
             "bytes": events_path.stat().st_size,
@@ -239,6 +275,7 @@ def run(args: argparse.Namespace) -> int:
             "bytes": tape_manifest_path.stat().st_size,
             "sha256": sha256_file(tape_manifest_path),
         },
+        "validated_event_market_cache": market_cache_receipt,
     }
     tape_manifest = read_json(tape_manifest_path)
     expected_print_hash = (
@@ -323,7 +360,10 @@ def run(args: argparse.Namespace) -> int:
         "source_hash_bundle_sha256": canonical_hash({
             **{key: value["sha256"] for key, value in receipts.items()},
             **{
-                key: value["sha256"]
+                key: (
+                    value.get("sha256")
+                    or value.get("hash_set_sha256")
+                )
                 for key, value in private_receipts.items()
             },
         }),
@@ -408,6 +448,7 @@ def parser() -> argparse.ArgumentParser:
         default=".claude/window1_20260721/WINDOW1_FEATURE_MATRIX.jsonl",
     )
     result.add_argument("--tape-manifest", required=True)
+    result.add_argument("--market-cache-source", required=True)
     result.add_argument(
         "--source-coverage",
         default=(

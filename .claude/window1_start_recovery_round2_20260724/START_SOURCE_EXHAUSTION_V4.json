@@ -1,0 +1,203 @@
+{
+  "D": 804,
+  "exhaustion_verdict": "The start gate passed. No exhausted query was repeated as a new source; the existing six-family/24-policy runner remains frozen and unscored pending independent ledger review.",
+  "policy_blind": true,
+  "private_retained_receipts": {
+    "corpus_events_v2.jsonl": {
+      "bytes": 4221024,
+      "sha256": "839f0552fd4edf8e0116d4ba8e8f2bf7808db82396bfd7a0a2b1eadd860a3ebf"
+    },
+    "daysheet_bells_official.json": {
+      "bytes": 23687,
+      "sha256": "8c3f0b43d4b99f4f979c9feccffb5751d4afa3b04e65589605e38332b3b06eb2"
+    },
+    "milestone_starts.json": {
+      "bytes": 1594797,
+      "sha256": "d25c9ced5c14f8f74d3a7cde4e1245aec788dfbc6eec71d21bf471555334789d"
+    },
+    "observed_starts.db": {
+      "bytes": 20480,
+      "sha256": "c753c4f9caad13376eedfa0b9ee0dc77a7802b199480a327702057b5c3c70950"
+    },
+    "round1_live_scores": {
+      "bytes": 366865,
+      "sha256": "96ffc11a7b1af4407a26f88c4e75b47dcc6925ddee383c94ec7e65ec1b377ec3"
+    },
+    "round1_observed_starts": {
+      "bytes": 2084,
+      "sha256": "2cc00f59dc75574da2538d68e46696e934781c803538be8a4f4686667b4ca7ec"
+    }
+  },
+  "remote_log_receipts": {
+    "betexplorer.log": {
+      "bytes": 38078,
+      "sha256": "9c6f14f32b53926a2194aaa76294ca5d6e46d14643576e10b4e32d04104458dc"
+    },
+    "daysheet_misses.current": {
+      "bytes": 4899158,
+      "sha256": "dab3098bef08c619abd55f3f8585b55e34bd139c7a6cfeadab9c176d6482df71"
+    },
+    "fv_monitor.log": {
+      "bytes": 2862,
+      "sha256": "bd771cbfdf2793c84ae0169612bf8f7c21b4ac5db9c14bb6da97d3ec29d0864e"
+    },
+    "kalshi_price.log": {
+      "bytes": 18365,
+      "sha256": "a8b59c96bf752d5933699274326e275dac28d4d665b2b0d9d7d48f53258a42d4"
+    },
+    "milestone_shadow.current": {
+      "bytes": 514445,
+      "sha256": "ee27ceda409492f9fa44b5b52e1073910b707c50e751c75e715706649ad09428"
+    },
+    "receipt_scope": "read-only metadata/hash snapshot; logs continue to accrue",
+    "subsecond_store.db": {
+      "bytes": 6132076544,
+      "schema": {
+        "ingest_log": "src,path,rows,ingested_at",
+        "prints": "event,ticker,ts,price,size,src"
+      },
+      "sha256": "not_rehashed_large_live_store"
+    },
+    "te_live.log": {
+      "bytes": 1235506,
+      "sha256": "8edd5dd863f2798696eb318b6817f141d43c684c4e54d9c20b8d01b1e7a2dd35"
+    },
+    "tennis_odds.log": {
+      "bytes": 709086,
+      "sha256": "66f6f3810b956d5ac73069005a6f307b514e64d02060a1ae1ad6dff9b9e64a44"
+    }
+  },
+  "residual_targeted": 539,
+  "schema_version": "window1-start-truth-round2-source-inventory-v1",
+  "surfaces": [
+    {
+      "D_start_promotions": 0,
+      "availability": "excluded",
+      "reason": "mixed execution/policy table; blindness law forbids row reads and frozen event identity already supplies D",
+      "source": "tennis.db.matches"
+    },
+    {
+      "D_start_promotions": 0,
+      "availability": "partial",
+      "reason": "UNIQUE(te_match_id) INSERT OR REPLACE retains current/final state, not monotonic status history; one-sided upper only",
+      "retained_rows": 2035,
+      "source": "tennis.db.live_scores",
+      "status_counts": {
+        "finished": 1868,
+        "scheduled": 167
+      }
+    },
+    {
+      "D_start_promotions": 0,
+      "availability": "unavailable",
+      "reason": "no append-only historical table existed for July 12-20",
+      "source": "tennis.db.score_status_history"
+    },
+    {
+      "D_start_promotions": 0,
+      "availability": "partial",
+      "reason": "set-once first sighting supplies a live-by upper but no independent pre-live lower",
+      "retained_rows": 14,
+      "source": "tennis.db.observed_starts_main"
+    },
+    {
+      "D_start_promotions": 0,
+      "availability": "partial",
+      "exact_TE_match_id_joins": 18,
+      "joins_still_blocked": 1,
+      "reason": "first in-play receipt is upper-only; joined rows corroborate but cannot independently create a two-sided interval",
+      "retained_rows": 86,
+      "source": "state/observed_starts.db"
+    },
+    {
+      "D_start_promotions": 0,
+      "availability": "identity_only",
+      "reason": "first_ts/last_ts are market-price retention clocks, not match status clocks; price behavior is prohibited",
+      "source": "tennis.db.historical_events"
+    },
+    {
+      "D_start_promotions": 0,
+      "availability": "identity_time_alignment_only",
+      "reason": "open-market poll metadata does not contractually prove not-started; price fields were not read",
+      "source": "tennis.db.kalshi_price_snapshots"
+    },
+    {
+      "D_start_promotions": 0,
+      "availability": "identity_time_alignment_only",
+      "reason": "listing/poll clocks carry no explicit pre-live or live status; odds and prices were not used",
+      "source": "betexplorer_staging/bookmaker_odds/fv_monitor/tennis_odds producer records"
+    },
+    {
+      "D_start_promotions_round2": 0,
+      "availability": "available",
+      "baseline_receipt": {
+        "accepted_exact": 50,
+        "accepted_not_live": 252,
+        "parse_errors": 2,
+        "physical_rows": 1494,
+        "required_events": 128,
+        "required_rows": 480,
+        "sha256": "fcf2a13aa18a51abdf935653e9fdb14a4afcc1551a580d760d4c99736702355e",
+        "status_counts": {
+          "<missing>": 102,
+          "cancelled": 2,
+          "ended": 2,
+          "interrupted": 6,
+          "live": 42,
+          "not_started": 326
+        }
+      },
+      "current_official_D_rows": 4,
+      "current_official_status_counts": {
+        "not_started": 4
+      },
+      "reason": "already consumed in V3; current D additions are not_started receipts and cannot be promoted",
+      "source": "milestone_shadow and official bell caches"
+    },
+    {
+      "D_start_promotions_round2": 0,
+      "availability": "partial",
+      "blocked_events_with_official_ts": 0,
+      "corpus_D_rows": 562,
+      "corpus_right_edge_counts": {
+        "official_actual": 14,
+        "onset_snapshot_est": 394,
+        "sched_only_no_evidence": 154
+      },
+      "milestone_D_rows": 562,
+      "milestone_D_status_counts": {
+        "<missing>": 562
+      },
+      "reason": "official actuals already sit in the preserved baseline; onset estimates and schedule rows cannot prove positives",
+      "source": "milestone_starts/corpus_events_v2"
+    },
+    {
+      "D_start_promotions_round2": 0,
+      "availability": "available_previously_consumed",
+      "reason": "V3 retained policy-blind start/status candidates; the Round-2 residual scan found no new explicit pre/live pair",
+      "source": "live_v3/live_v4 immutable logs"
+    },
+    {
+      "D_start_promotions": 0,
+      "availability": "partial_or_unavailable_for_start",
+      "reason": "retained subsecond store contains prints plus ingest provenance, not event-resolved status transitions; price movement and unproven depth continuity cannot establish start",
+      "source": "market_lifecycle_v2/raw WS lifecycle/reconnect/depth snapshots"
+    },
+    {
+      "D_start_promotions": 0,
+      "availability": "available_current_state_only",
+      "reason": "current final score/status has no historical receipt or start timestamp",
+      "response_404": 1,
+      "responses": 537,
+      "source": "public retained milestone score endpoint"
+    },
+    {
+      "D_start_promotions": 453,
+      "availability": "available",
+      "higher_precedence_conflicts_blocked": 11,
+      "reason": "same provider surface used by te_live/te_honest; exact player, tournament class/name, date, match ID, completed result, and minute clock required",
+      "source": "TennisExplorer historical completed-result start clock",
+      "strict_crosswalk_start_clocks": 464
+    }
+  ]
+}

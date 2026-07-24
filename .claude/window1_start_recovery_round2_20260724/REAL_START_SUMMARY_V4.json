@@ -1,0 +1,631 @@
+{
+  "D": 804,
+  "artifacts": {
+    "conflicts": {
+      "path": "START_CONFLICT_LEDGER_V4.jsonl",
+      "rows": 625,
+      "sha256": "74149913b3a1a9a362a979e3e2d187af68bf2aadeb667bae8cdb2d5068dad345"
+    },
+    "crosswalk": {
+      "path": "START_CROSSWALK_V4.jsonl",
+      "rows": 539,
+      "sha256": "4195fbed137113d978592e30173e47e1201a6a5947d2ffa43f201b9fe4913bc8"
+    },
+    "event_evidence": {
+      "path": "START_EVENT_EVIDENCE_V4.jsonl",
+      "rows": 804,
+      "sha256": "a5010bf81092a5b325246b61c68c62843eeb2e2d8a42a3d4049ac60cb0ab9c81"
+    },
+    "ledger": {
+      "path": "REAL_START_LEDGER_V4.jsonl",
+      "rows": 804,
+      "sha256": "9d972c17837d3e36789c10396bd3a7c825c512c2eac3aa2fcbeabf96ed6a23e0"
+    },
+    "source_exhaustion": {
+      "path": "START_SOURCE_EXHAUSTION_V4.json",
+      "sha256": "67d7b776d4374e57acc3cc17b9e7341b5299e162d128c494a04974fe280bd8af",
+      "surfaces": 14
+    }
+  },
+  "baseline": {
+    "clean_intervals_preserved": 31,
+    "exact_starts_preserved": 234,
+    "ledger_sha256": "1d7fe6a56837ceb0c0b8c932a05daecacc0cefbea94384e16c84975f2ed98ce5",
+    "positive_capable_preserved": 265,
+    "residual_targeted": 539
+  },
+  "calibration_against_preserved_exact": {
+    "comparable_unique_crosswalks": 222,
+    "conflicts_do_not_modify_frozen_exact_rows": true,
+    "difference_buckets_exclusive": {
+      "exact_to_second": 47,
+      "over_15_minutes_conflict": 15,
+      "within_15_minutes": 58,
+      "within_5_minutes": 102
+    },
+    "frozen_exact_population": 234,
+    "over_15_minutes_conflicts": 15,
+    "purpose": "source_semantics_only_no_frozen_ruling_changed",
+    "within_15_minutes_inclusive": 207,
+    "within_5_minutes_inclusive": 149
+  },
+  "coverage": {
+    "by_category": {
+      "ATP_CHALL": {
+        "D": 369,
+        "clean_interval": 7,
+        "contradictory": 10,
+        "exact": 339,
+        "live_by_only": 9,
+        "newly_recovered": 231,
+        "positive_capable": 346,
+        "schedule_only": 4
+      },
+      "ATP_MAIN": {
+        "D": 147,
+        "clean_interval": 9,
+        "contradictory": 1,
+        "exact": 130,
+        "live_by_only": 5,
+        "newly_recovered": 93,
+        "positive_capable": 139,
+        "schedule_only": 2
+      },
+      "WTA_CHALL": {
+        "D": 136,
+        "clean_interval": 1,
+        "contradictory": 1,
+        "exact": 93,
+        "live_by_only": 32,
+        "newly_recovered": 53,
+        "positive_capable": 94,
+        "schedule_only": 9
+      },
+      "WTA_MAIN": {
+        "D": 152,
+        "clean_interval": 14,
+        "contradictory": 2,
+        "exact": 125,
+        "live_by_only": 6,
+        "newly_recovered": 76,
+        "positive_capable": 139,
+        "schedule_only": 5
+      }
+    },
+    "by_competition_class": {
+      "ATP": {
+        "D": 147,
+        "clean_interval": 9,
+        "contradictory": 1,
+        "exact": 130,
+        "live_by_only": 5,
+        "newly_recovered": 93,
+        "positive_capable": 139,
+        "schedule_only": 2
+      },
+      "ATP_CHALLENGER": {
+        "D": 369,
+        "clean_interval": 7,
+        "contradictory": 10,
+        "exact": 339,
+        "live_by_only": 9,
+        "newly_recovered": 231,
+        "positive_capable": 346,
+        "schedule_only": 4
+      },
+      "WTA": {
+        "D": 152,
+        "clean_interval": 14,
+        "contradictory": 2,
+        "exact": 125,
+        "live_by_only": 6,
+        "newly_recovered": 76,
+        "positive_capable": 139,
+        "schedule_only": 5
+      },
+      "WTA_CHALLENGER_OR_125": {
+        "D": 136,
+        "clean_interval": 1,
+        "contradictory": 1,
+        "exact": 93,
+        "live_by_only": 32,
+        "newly_recovered": 53,
+        "positive_capable": 94,
+        "schedule_only": 9
+      }
+    },
+    "by_date": {
+      "2026-07-12": {
+        "D": 156,
+        "exact": 142,
+        "live_by_only": 3,
+        "newly_recovered": 99,
+        "positive_capable": 142,
+        "schedule_only": 11
+      },
+      "2026-07-13": {
+        "D": 114,
+        "exact": 99,
+        "live_by_only": 13,
+        "newly_recovered": 65,
+        "positive_capable": 99,
+        "schedule_only": 2
+      },
+      "2026-07-14": {
+        "D": 99,
+        "exact": 85,
+        "live_by_only": 12,
+        "newly_recovered": 57,
+        "positive_capable": 85,
+        "schedule_only": 2
+      },
+      "2026-07-15": {
+        "D": 64,
+        "contradictory": 1,
+        "exact": 59,
+        "live_by_only": 4,
+        "newly_recovered": 43,
+        "positive_capable": 59
+      },
+      "2026-07-16": {
+        "D": 42,
+        "contradictory": 1,
+        "exact": 37,
+        "live_by_only": 4,
+        "newly_recovered": 24,
+        "positive_capable": 37
+      },
+      "2026-07-17": {
+        "D": 50,
+        "contradictory": 1,
+        "exact": 43,
+        "live_by_only": 6,
+        "newly_recovered": 37,
+        "positive_capable": 43
+      },
+      "2026-07-18": {
+        "D": 62,
+        "clean_interval": 3,
+        "contradictory": 4,
+        "exact": 52,
+        "live_by_only": 3,
+        "newly_recovered": 26,
+        "positive_capable": 55
+      },
+      "2026-07-19": {
+        "D": 121,
+        "clean_interval": 15,
+        "contradictory": 1,
+        "exact": 98,
+        "live_by_only": 5,
+        "newly_recovered": 60,
+        "positive_capable": 113,
+        "schedule_only": 2
+      },
+      "2026-07-20": {
+        "D": 96,
+        "clean_interval": 13,
+        "contradictory": 6,
+        "exact": 72,
+        "live_by_only": 2,
+        "newly_recovered": 42,
+        "positive_capable": 85,
+        "schedule_only": 3
+      }
+    },
+    "by_selected_provider": {
+      "engine_regime_transition:fallback_bell": 36,
+      "engine_regime_transition:percat_fitted": 9,
+      "engine_regime_transition:price_divergence": 3,
+      "engine_regime_transition:tape_flow": 2,
+      "milestone_shadow_official_start": 4,
+      "observed_starts_db_first_observed_inplay": 1,
+      "official_provider_match_start": 230,
+      "public_tape_5_prints_in_15m_onset": 45,
+      "schedule_or_unresolved": 20,
+      "te_scoreboard_first_observed_inplay": 1,
+      "tennisexplorer_historical_result_start_clock": 453
+    },
+    "by_tournament": {
+      "<preserved_not_requeried>": {
+        "D": 266,
+        "clean_interval": 31,
+        "exact": 234,
+        "live_by_only": 1,
+        "newly_recovered": 0,
+        "positive_capable": 265
+      },
+      "ATP Bastad": {
+        "D": 29,
+        "exact": 28,
+        "newly_recovered": 28,
+        "positive_capable": 28,
+        "schedule_only": 1
+      },
+      "ATP Challenger Bloomfield Hills": {
+        "D": 10,
+        "contradictory": 1,
+        "exact": 9,
+        "newly_recovered": 9,
+        "positive_capable": 9
+      },
+      "ATP Challenger Bogota": {
+        "D": 1,
+        "exact": 1,
+        "newly_recovered": 1,
+        "positive_capable": 1
+      },
+      "ATP Challenger Bunschoten": {
+        "D": 37,
+        "contradictory": 1,
+        "exact": 34,
+        "live_by_only": 1,
+        "newly_recovered": 34,
+        "positive_capable": 34,
+        "schedule_only": 1
+      },
+      "ATP Challenger Cordenons": {
+        "D": 41,
+        "exact": 40,
+        "live_by_only": 1,
+        "newly_recovered": 40,
+        "positive_capable": 40
+      },
+      "ATP Challenger Granby": {
+        "D": 36,
+        "exact": 33,
+        "live_by_only": 3,
+        "newly_recovered": 33,
+        "positive_capable": 33
+      },
+      "ATP Challenger Liege": {
+        "D": 1,
+        "exact": 1,
+        "newly_recovered": 1,
+        "positive_capable": 1
+      },
+      "ATP Challenger Lincoln (NE)": {
+        "D": 33,
+        "contradictory": 3,
+        "exact": 28,
+        "live_by_only": 2,
+        "newly_recovered": 28,
+        "positive_capable": 28
+      },
+      "ATP Challenger Newport": {
+        "D": 1,
+        "exact": 1,
+        "newly_recovered": 1,
+        "positive_capable": 1
+      },
+      "ATP Challenger Nottingham": {
+        "D": 1,
+        "exact": 1,
+        "newly_recovered": 1,
+        "positive_capable": 1
+      },
+      "ATP Challenger Pozoblanco": {
+        "D": 29,
+        "contradictory": 1,
+        "exact": 28,
+        "newly_recovered": 28,
+        "positive_capable": 28
+      },
+      "ATP Challenger Segovia": {
+        "D": 19,
+        "contradictory": 2,
+        "exact": 17,
+        "newly_recovered": 17,
+        "positive_capable": 17
+      },
+      "ATP Challenger Tampere": {
+        "D": 12,
+        "exact": 10,
+        "live_by_only": 1,
+        "newly_recovered": 10,
+        "positive_capable": 10,
+        "schedule_only": 1
+      },
+      "ATP Challenger Trieste": {
+        "D": 1,
+        "exact": 1,
+        "newly_recovered": 1,
+        "positive_capable": 1
+      },
+      "ATP Challenger Winnipeg": {
+        "D": 10,
+        "contradictory": 1,
+        "exact": 9,
+        "newly_recovered": 9,
+        "positive_capable": 9
+      },
+      "ATP Challenger Zug": {
+        "D": 21,
+        "contradictory": 1,
+        "exact": 18,
+        "newly_recovered": 18,
+        "positive_capable": 18,
+        "schedule_only": 2
+      },
+      "ATP Estoril": {
+        "D": 19,
+        "contradictory": 1,
+        "exact": 15,
+        "live_by_only": 3,
+        "newly_recovered": 15,
+        "positive_capable": 15
+      },
+      "ATP Gstaad": {
+        "D": 21,
+        "exact": 21,
+        "newly_recovered": 21,
+        "positive_capable": 21
+      },
+      "ATP Kitzbuhel": {
+        "D": 15,
+        "exact": 14,
+        "live_by_only": 1,
+        "newly_recovered": 14,
+        "positive_capable": 14
+      },
+      "ATP Umag": {
+        "D": 17,
+        "exact": 15,
+        "live_by_only": 1,
+        "newly_recovered": 15,
+        "positive_capable": 15,
+        "schedule_only": 1
+      },
+      "WTA 125K Contrexeville": {
+        "D": 1,
+        "live_by_only": 1,
+        "newly_recovered": 0,
+        "positive_capable": 0
+      },
+      "WTA 125K Istanbul": {
+        "D": 19,
+        "live_by_only": 15,
+        "newly_recovered": 0,
+        "positive_capable": 0,
+        "schedule_only": 4
+      },
+      "WTA 125K Istanbul 2": {
+        "D": 20,
+        "live_by_only": 16,
+        "newly_recovered": 0,
+        "positive_capable": 0,
+        "schedule_only": 4
+      },
+      "WTA 125K Kitzbuhel": {
+        "D": 22,
+        "exact": 21,
+        "newly_recovered": 21,
+        "positive_capable": 21,
+        "schedule_only": 1
+      },
+      "WTA 125K Palermo": {
+        "D": 7,
+        "contradictory": 1,
+        "exact": 6,
+        "newly_recovered": 6,
+        "positive_capable": 6
+      },
+      "WTA 125K Rome": {
+        "D": 26,
+        "exact": 26,
+        "newly_recovered": 26,
+        "positive_capable": 26
+      },
+      "WTA Athens": {
+        "D": 28,
+        "exact": 27,
+        "newly_recovered": 27,
+        "positive_capable": 27,
+        "schedule_only": 1
+      },
+      "WTA Hamburg": {
+        "D": 7,
+        "exact": 7,
+        "newly_recovered": 7,
+        "positive_capable": 7
+      },
+      "WTA Iasi": {
+        "D": 42,
+        "exact": 34,
+        "live_by_only": 6,
+        "newly_recovered": 34,
+        "positive_capable": 34,
+        "schedule_only": 2
+      },
+      "WTA Prague": {
+        "D": 12,
+        "contradictory": 2,
+        "exact": 8,
+        "newly_recovered": 8,
+        "positive_capable": 8,
+        "schedule_only": 2
+      }
+    },
+    "exact_vs_interval": {
+      "clean_interval": 31,
+      "exact": 687,
+      "other": 86
+    },
+    "reason_still_unresolved": {
+      "multiple_completed_exact_crosswalks": 2,
+      "no_exact_player_tournament_date_crosswalk": 30,
+      "structured_player_crosswalk_mismatch": 4,
+      "structured_target_identity_unavailable": 1,
+      "tournament_class_or_name_mismatch": 38
+    }
+  },
+  "crosswalk_dispositions": {
+    "multiple_completed_exact_crosswalks": 2,
+    "no_exact_player_tournament_date_crosswalk": 30,
+    "recovered_start_clock": 464,
+    "structured_player_crosswalk_mismatch": 4,
+    "structured_target_identity_unavailable": 1,
+    "tournament_class_or_name_mismatch": 38
+  },
+  "extraction_law": {
+    "candidate_results_examined": false,
+    "deltas_examined": false,
+    "fills_examined": false,
+    "higher_precedence_conflict_chosen_for_performance": false,
+    "live_by_promoted_to_exact": false,
+    "placements_examined": false,
+    "policy_decisions_examined": false,
+    "prices_examined": false,
+    "schedule_used_as_start_endpoint": false
+  },
+  "frozen_runner": {
+    "candidate_scoring_run": false,
+    "holdout_opened": false,
+    "permitted_family_count": 6,
+    "permitted_policy_count": 24,
+    "preflight_sha256": "6016c24981bf55d10c0cb6c1448ea5297dfbe5ae9ea78935ec45d84e7085b861",
+    "tuning_run": false
+  },
+  "higher_precedence_conflict_blocked": 11,
+  "newly_recovered_exact": 453,
+  "positive_capable_population": 718,
+  "precision_counts": {
+    "clean_interval": 31,
+    "contradictory": 14,
+    "exact": 687,
+    "live_by_only": 52,
+    "schedule_only": 20
+  },
+  "schema_version": "window1-real-start-ledger-v4-round2",
+  "selected_source_counts": {
+    "engine_regime_transition:fallback_bell": 36,
+    "engine_regime_transition:percat_fitted": 9,
+    "engine_regime_transition:price_divergence": 3,
+    "engine_regime_transition:tape_flow": 2,
+    "milestone_shadow_official_start": 4,
+    "observed_starts_db_first_observed_inplay": 1,
+    "official_provider_match_start": 230,
+    "public_tape_5_prints_in_15m_onset": 45,
+    "schedule_or_unresolved": 20,
+    "te_scoreboard_first_observed_inplay": 1,
+    "tennisexplorer_historical_result_start_clock": 453
+  },
+  "source_receipts": {
+    "acquisition_manifest": {
+      "failures": [
+        {
+          "detail": "HTTP Error 404: Not Found",
+          "error": "HTTPError",
+          "request_id_sha256": "a4f2ce452246126475735bfa3ab11f32fd110d4375efd0a59eafad836a43e3ee",
+          "request_kind": "retained_milestone_score"
+        }
+      ],
+      "http_requests": 1115,
+      "sha256": "6769943c8e2b058aeb719fcacdb7f00d0b7412cc98678f36e5ebab8f25d87aa3",
+      "te_pages": 13
+    },
+    "residual_identity": {
+      "crosswalk_sha256": "621554efaade6862547d44198d4daac82c0c8a2989cf4fd8c6581adaf842f1a0",
+      "events": 539,
+      "target_raw_hash_set_sha256": "aa7b28fe24883a11592877753f3899c2b1c0c2571b14f167bba48dcdfc67b0fd",
+      "targets_with_player_key": 578,
+      "unique_targets": 578
+    },
+    "retained_score_endpoint": {
+      "historical_start_timestamp_present": false,
+      "missing_response_events": 1,
+      "promoted_events": 0,
+      "reason": "current retained final score has no historical receipt clock and therefore cannot create a past start boundary",
+      "role": "status_and_identity_only"
+    },
+    "tennisexplorer_results": {
+      "matches": 6075,
+      "page_hash_set_sha256": "0af8cd1a460de33d0cef18b9d9a0b8fe2446b53de71f79cdb2fd1a9d20ea1597",
+      "page_receipts": [
+        {
+          "date": "2026-07-11",
+          "display_timezone": "Europe/Berlin",
+          "rows": 190,
+          "sha256": "0d124bd56e5c52e73b28ac407535c771e3b839df508559c30e51f02ecc89507a"
+        },
+        {
+          "date": "2026-07-12",
+          "display_timezone": "Europe/Berlin",
+          "rows": 615,
+          "sha256": "5720161b9033042b3681f2ab28573588e88f49f5a5ad277598ebb105935ea212"
+        },
+        {
+          "date": "2026-07-13",
+          "display_timezone": "Europe/Berlin",
+          "rows": 570,
+          "sha256": "1efbcf07dfcf2f98b9fde719e5179094cab12ccdca0815a605e7307dbc95a266"
+        },
+        {
+          "date": "2026-07-14",
+          "display_timezone": "Europe/Berlin",
+          "rows": 661,
+          "sha256": "a4e2417b93f414a271dbd5cf76bfde974e8e5586d4f0ec2639cff0d4c8b468ef"
+        },
+        {
+          "date": "2026-07-15",
+          "display_timezone": "Europe/Berlin",
+          "rows": 639,
+          "sha256": "8f7db7b36b0cc352cc7e64f52d0df24c2f5b585c01cd0f7549a13439e033c0a4"
+        },
+        {
+          "date": "2026-07-16",
+          "display_timezone": "Europe/Berlin",
+          "rows": 502,
+          "sha256": "264b866ce4c028f4c75c51aec766661cb48d047ae910ed43901dc26ed73cd762"
+        },
+        {
+          "date": "2026-07-17",
+          "display_timezone": "Europe/Berlin",
+          "rows": 309,
+          "sha256": "6309d75dde5729cfcbb4cbef47a21b4d4a1e226c6f625a6bbee093f3265e57ba"
+        },
+        {
+          "date": "2026-07-18",
+          "display_timezone": "Europe/Berlin",
+          "rows": 230,
+          "sha256": "d882ef8ee5602431c36d112e9b7c0d9ccff686eb1ef100fb10c50e58908d7844"
+        },
+        {
+          "date": "2026-07-19",
+          "display_timezone": "Europe/Berlin",
+          "rows": 467,
+          "sha256": "2819226e2e2b3b602d86bf93c2ec92c3bc61a8f0dd644defe9d28411e7de6383"
+        },
+        {
+          "date": "2026-07-20",
+          "display_timezone": "Europe/Berlin",
+          "rows": 423,
+          "sha256": "5074183e17f93842b7bce194d9944ec7b2c78db7b1909b7351e06390dbd55b2f"
+        },
+        {
+          "date": "2026-07-21",
+          "display_timezone": "Europe/Berlin",
+          "rows": 503,
+          "sha256": "1e87e1144a3ed20a0a2c387cad57ec0418bd500307c952579e3ac7549056c24c"
+        },
+        {
+          "date": "2026-07-22",
+          "display_timezone": "Europe/Berlin",
+          "rows": 515,
+          "sha256": "bca049d00f6172d35901ff51ab386b246e167feb7416b9c6b5f32cbd9ce2a397"
+        },
+        {
+          "date": "2026-07-23",
+          "display_timezone": "Europe/Berlin",
+          "rows": 451,
+          "sha256": "d00deac7101caebccb52510b269585fc43145d22938a727d445fe9e0f55f8558"
+        }
+      ],
+      "pages": 13
+    }
+  },
+  "start_gate_margin": 115,
+  "start_gate_pass": true,
+  "start_gate_required": 603,
+  "timing_blocked_population": 86
+}

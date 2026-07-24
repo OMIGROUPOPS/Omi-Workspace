@@ -1,0 +1,71 @@
+{
+  "D": 804,
+  "artifact_count": 15,
+  "artifacts": {
+    "FINAL_REPORT.md": {
+      "bytes": 2139,
+      "sha256": "fe4388f3ca32a2683acb23270b9df5116feaafc487f9bac2a3bdb1336d589bf8"
+    },
+    "FINAL_RESULTS.json": {
+      "bytes": 2558,
+      "sha256": "f0d89e14d7a914cc1c9ef5043eefb8cff05f6a18d1d1046e8f91e5f10965887f"
+    },
+    "HISTORICAL_START_RULINGS_EVENTS.jsonl": {
+      "bytes": 335140,
+      "sha256": "6c71254171abfdd933d2dbe2e37e1af628bf9f98a6b94c7cbf69ef49987a1496"
+    },
+    "HISTORICAL_START_RULINGS_LEGS.jsonl": {
+      "bytes": 1040482,
+      "sha256": "8c38753d4f1537989b8d0c44b0d3fd6059a989e18b43d4c3afc994bf35777bbf"
+    },
+    "HISTORICAL_START_RULING_REPORT.md": {
+      "bytes": 1050,
+      "sha256": "2840cf547830880e62459a5f84d0a8ae2730617c74e7bd5f994523f34498b2be"
+    },
+    "HISTORICAL_START_RULING_SUMMARY.json": {
+      "bytes": 2258,
+      "sha256": "92edf25f5cfb3f9693f265584f1b8abd61379424fc7ca8f4bd63ee88e3ce5bec"
+    },
+    "REAL_START_LEDGER_V4.jsonl": {
+      "bytes": 3074769,
+      "sha256": "9d972c17837d3e36789c10396bd3a7c825c512c2eac3aa2fcbeabf96ed6a23e0"
+    },
+    "REAL_START_REPORT_V4.md": {
+      "bytes": 1677,
+      "sha256": "1b5ffbeaf856fc3145a3ff55650ea8d1ecb0c21b3b4d309990e1264dacc73413"
+    },
+    "REAL_START_SUMMARY_V4.json": {
+      "bytes": 17792,
+      "sha256": "c79c35f05733ca880e96a02ecd0f92c284dec96cc19a9208cf606a168c120f90"
+    },
+    "START_CONFLICT_LEDGER_V4.jsonl": {
+      "bytes": 230139,
+      "sha256": "74149913b3a1a9a362a979e3e2d187af68bf2aadeb667bae8cdb2d5068dad345"
+    },
+    "START_CROSSWALK_V4.jsonl": {
+      "bytes": 680063,
+      "sha256": "4195fbed137113d978592e30173e47e1201a6a5947d2ffa43f201b9fe4913bc8"
+    },
+    "START_EVENT_EVIDENCE_V4.jsonl": {
+      "bytes": 2289930,
+      "sha256": "a5010bf81092a5b325246b61c68c62843eeb2e2d8a42a3d4049ac60cb0ab9c81"
+    },
+    "START_LEDGER_FREEZE_V4.json": {
+      "bytes": 2369,
+      "sha256": "47f56a0bfcf431ae8b19142c0a00df5eb9afd256159392d6a745785da2b81b25"
+    },
+    "START_SOURCE_EXHAUSTION_V4.json": {
+      "bytes": 7655,
+      "sha256": "67d7b776d4374e57acc3cc17b9e7341b5299e162d128c494a04974fe280bd8af"
+    },
+    "START_SOURCE_EXHAUSTION_V4.md": {
+      "bytes": 2771,
+      "sha256": "502362fa2904de9365f3f976443dec43319b88a3eb124a6573482b90866315ff"
+    }
+  },
+  "candidate_scoring_performed": false,
+  "holdout_opened": false,
+  "manifest_self_hash_excluded": true,
+  "private_raw_responses_committed": false,
+  "schema_version": "window1-start-truth-round2-artifact-manifest-v1"
+}

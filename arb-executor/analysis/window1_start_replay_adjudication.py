@@ -297,7 +297,7 @@ def report(summary: Mapping[str, Any]) -> str:
         )
         if recovered else "- none"
     )
-    return f"""# Historical execution re-adjudication against start ledger v3
+    return f"""# Historical execution re-adjudication against frozen start ledger
 
 No placement, cancellation, fill, quantity, or price was changed.
 
@@ -321,8 +321,12 @@ def run(args: argparse.Namespace) -> int:
     starts_path = Path(args.start_ledger).resolve()
     published_path = Path(args.published_leg_ledger).resolve()
     output = Path(args.output).resolve()
+    start_rows = read_jsonl(starts_path)
     legs, events, summary = adjudicate(
-        read_jsonl(starts_path), read_jsonl(published_path)
+        start_rows, read_jsonl(published_path)
+    )
+    summary["start_ledger_schema_version"] = (
+        start_rows[0].get("schema_version") if start_rows else None
     )
     summary["inputs"] = {
         "start_ledger": {

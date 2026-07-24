@@ -1,0 +1,85 @@
+{
+  "D": 804,
+  "candidate_scoring_run": false,
+  "frozen_runner": {
+    "candidate_results_opened": false,
+    "candidate_scoring_performed": false,
+    "family_count": 6,
+    "holdout_opened": false,
+    "policy_count": 24
+  },
+  "historical_witnesses": {
+    "historical_dual_exact_five_events": 31,
+    "lifecycle_conservation": {
+      "exact_five_filled_legs": 258,
+      "exact_nonfills": 870,
+      "legs": 1608,
+      "lifecycle_censored_legs": 468,
+      "other_quantity_filled_legs": 12,
+      "receipt_proven_post_start_filled_legs": 82,
+      "strict_window1_exact_five_legs": 146,
+      "timing_censored_exact_five_legs": 30
+    },
+    "receipt_proven_post_start_duals": 22,
+    "strict_window1_dual_events": [
+      {
+        "combined_entry_cost_cents": 98.0,
+        "combined_entry_cost_under_par": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13YEVCAM"
+      },
+      {
+        "combined_entry_cost_cents": 100.0,
+        "combined_entry_cost_under_par": false,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14ALCTAB"
+      },
+      {
+        "combined_entry_cost_cents": 98.0,
+        "combined_entry_cost_under_par": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14SMIILA"
+      },
+      {
+        "combined_entry_cost_cents": 97.0,
+        "combined_entry_cost_under_par": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20MARBIT"
+      },
+      {
+        "combined_entry_cost_cents": 97.0,
+        "combined_entry_cost_under_par": true,
+        "event_id": "KXATPMATCH-26JUL14TOPUGO"
+      },
+      {
+        "combined_entry_cost_cents": 100.0,
+        "combined_entry_cost_under_par": false,
+        "event_id": "KXATPMATCH-26JUL17COLVAC"
+      },
+      {
+        "combined_entry_cost_cents": 97.0,
+        "combined_entry_cost_under_par": true,
+        "event_id": "KXWTACHALLENGERMATCH-26JUL13GRABER"
+      }
+    ],
+    "strict_window1_duals": 7,
+    "ten_contract_overfill_outside_exact_five": 1
+  },
+  "holdout_opened": false,
+  "production_modified": false,
+  "schema_version": "window1-start-truth-round2-freeze-v1",
+  "source_base_commit": "224417da642a9f378a0d83f76edffe9890cb4a6f",
+  "start_gate": {
+    "higher_precedence_conflicts_blocked": 11,
+    "margin": 115,
+    "newly_recovered_exact": 453,
+    "pass": true,
+    "positive_capable_population": 718,
+    "precision_counts": {
+      "clean_interval": 31,
+      "contradictory": 14,
+      "exact": 687,
+      "live_by_only": 52,
+      "schedule_only": 20
+    },
+    "required": 603,
+    "timing_blocked_population": 86
+  },
+  "tuning_run": false
+}

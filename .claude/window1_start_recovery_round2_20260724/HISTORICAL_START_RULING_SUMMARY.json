@@ -1,0 +1,68 @@
+{
+  "D": 804,
+  "candidate_policy_scoring_performed": false,
+  "historical_dual_events_with_receipt_proven_post_start_leg": 22,
+  "historical_dual_exact_five_events": 31,
+  "inputs": {
+    "published_leg_ledger": {
+      "bytes": 5230083,
+      "sha256": "ed36a98663ba90da769ef2604d221d1dc620594f9a01fd4532ebfd0507bf6bb0"
+    },
+    "start_ledger": {
+      "bytes": 3074769,
+      "sha256": "9d972c17837d3e36789c10396bd3a7c825c512c2eac3aa2fcbeabf96ed6a23e0"
+    }
+  },
+  "newly_recovered_historical_dual_events": [
+    {
+      "combined_entry_cost_cents": 98.0,
+      "combined_entry_cost_under_par": true,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13YEVCAM"
+    },
+    {
+      "combined_entry_cost_cents": 100.0,
+      "combined_entry_cost_under_par": false,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ALCTAB"
+    },
+    {
+      "combined_entry_cost_cents": 98.0,
+      "combined_entry_cost_under_par": true,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SMIILA"
+    },
+    {
+      "combined_entry_cost_cents": 97.0,
+      "combined_entry_cost_under_par": true,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MARBIT"
+    },
+    {
+      "combined_entry_cost_cents": 97.0,
+      "combined_entry_cost_under_par": true,
+      "event_id": "KXATPMATCH-26JUL14TOPUGO"
+    },
+    {
+      "combined_entry_cost_cents": 100.0,
+      "combined_entry_cost_under_par": false,
+      "event_id": "KXATPMATCH-26JUL17COLVAC"
+    },
+    {
+      "combined_entry_cost_cents": 97.0,
+      "combined_entry_cost_under_par": true,
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13GRABER"
+    }
+  ],
+  "newly_recovered_historical_strict_window1_duals": 7,
+  "permanently_post_start_fill_events": 71,
+  "permanently_post_start_filled_legs": 82,
+  "placement_cancellation_fill_values_modified": false,
+  "ruling_counts": {
+    "historical_exact_five_timing_censored": 30,
+    "historical_exact_five_window1_fill": 146,
+    "historical_exact_nonfill": 870,
+    "historical_lifecycle_censored": 468,
+    "historical_other_quantity_fill": 12,
+    "historical_receipt_proven_post_start_fill": 82
+  },
+  "schema_version": "window1-start-replay-adjudication-v1",
+  "start_ledger_schema_version": "window1-real-start-ledger-v4-round2",
+  "ten_contract_overfill_outside_exact_five": 1
+}

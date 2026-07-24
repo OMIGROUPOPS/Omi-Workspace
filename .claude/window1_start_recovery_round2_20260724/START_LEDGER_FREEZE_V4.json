@@ -1,0 +1,51 @@
+{
+  "D": 804,
+  "blindness": {
+    "candidate_results_examined": false,
+    "deltas_examined": false,
+    "fills_examined": false,
+    "higher_precedence_conflict_chosen_for_performance": false,
+    "live_by_promoted_to_exact": false,
+    "placements_examined": false,
+    "policy_decisions_examined": false,
+    "prices_examined": false,
+    "schedule_used_as_start_endpoint": false
+  },
+  "branch": "codex/window1-definition",
+  "code_sha256": {
+    "arb-executor/analysis/window1_start_replay_adjudication.py": "91f86ba1f8e1a6e0b7ccf474adc3ba33e038a31d1360056d042460864768be99",
+    "arb-executor/analysis/window1_start_truth_round2.py": "2a8cc1d96d3c027c746c07b09e2a434d3671a9cfeae03ee9709bd51386a6aeb8",
+    "arb-executor/analysis/window1_start_truth_round2_acquire.py": "be1a2d1edfcb12ff3974cdf6da41e74d2c506bfe8062923608c37e8ca242318f",
+    "arb-executor/analysis/window1_start_truth_round2_finalize.py": "6fb39f07292e739bc683c63d76b690c22c563ea1e2928ad7aec6c4870a266b5c",
+    "arb-executor/tests/test_window1_start_truth_round2.py": "872f684e779ab7eaed7a4461e0c567ee82a5704f8e72c98d953b2488e1ae5ce8"
+  },
+  "development_runner": {
+    "candidate_results_opened": false,
+    "candidate_scoring_performed": false,
+    "family_count": 6,
+    "holdout_opened": false,
+    "policy_count": 24
+  },
+  "inputs": {
+    "acquisition_manifest_sha256": "6769943c8e2b058aeb719fcacdb7f00d0b7412cc98678f36e5ebab8f25d87aa3",
+    "baseline_v3_ledger_sha256": "1d7fe6a56837ceb0c0b8c932a05daecacc0cefbea94384e16c84975f2ed98ce5",
+    "crosswalk_sha256": "4195fbed137113d978592e30173e47e1201a6a5947d2ffa43f201b9fe4913bc8",
+    "preflight_sha256": "6016c24981bf55d10c0cb6c1448ea5297dfbe5ae9ea78935ec45d84e7085b861",
+    "published_lifecycle_ledger_sha256": "ed36a98663ba90da769ef2604d221d1dc620594f9a01fd4532ebfd0507bf6bb0",
+    "source_inventory_sha256": "67d7b776d4374e57acc3cc17b9e7341b5299e162d128c494a04974fe280bd8af"
+  },
+  "ledger": {
+    "bytes": 3074769,
+    "path": "REAL_START_LEDGER_V4.jsonl",
+    "rows": 804,
+    "sha256": "9d972c17837d3e36789c10396bd3a7c825c512c2eac3aa2fcbeabf96ed6a23e0"
+  },
+  "private_raw_responses_committed": false,
+  "schema_version": "window1-start-truth-round2-freeze-v1",
+  "source_base_commit": "224417da642a9f378a0d83f76edffe9890cb4a6f",
+  "start_gate": {
+    "pass": true,
+    "positive_capable_population": 718,
+    "required": 603
+  }
+}

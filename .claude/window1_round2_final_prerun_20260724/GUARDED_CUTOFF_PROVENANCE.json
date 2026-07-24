@@ -1,0 +1,48 @@
+{
+  "all_804_rows_rederived_without_candidate_streams": true,
+  "authoritative_V5_ledger": {
+    "bytes": 3696777,
+    "date_range": [
+      "2026-07-12",
+      "2026-07-20"
+    ],
+    "events": 804,
+    "git_blob_oid": "9207dd44d12c66fa29711e2d95ebafc66cafd155",
+    "holdout_rows": 0,
+    "path": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+    "rows": 804,
+    "sha256": "c6204d016aeeab9cec54c5f989e695cb74a13e40b8e25085a3a9410a2c5548ed",
+    "tickers": 1608
+  },
+  "authoritative_V5_summary": {
+    "bytes": 20950,
+    "git_blob_oid": "0a637513863feabd1067ab92c283482634242ba7",
+    "path": ".claude/window1_start_guard_corrected_20260724/REAL_START_SUMMARY_V5.json",
+    "sha256": "eb8ec4a3eaffb382f9aedeabe81c3d21b0930fd542f31d59bedfc366a6fa572c"
+  },
+  "candidate_performance_examined": false,
+  "cutoff_law": {
+    "clean_causal_interval": "start_interval_utc.lower_inclusive minus 60 seconds; causal-interval-strict-60s-v1",
+    "official_exact": "exact_start_utc minus 60 seconds; official-point-strict-60s-v1",
+    "quantized_late_detection_proxy": "proxy_clock_utc minus 900 seconds; te-calibration-central-93pct-asymmetric-v1; negative guard remains 600 seconds",
+    "raw_realized_start_is_cutoff": false,
+    "schedule_only_positive_allowed": false
+  },
+  "derived_status_census": {
+    "censored": 85,
+    "contradictory": 14,
+    "positive": 705
+  },
+  "gate_pass": true,
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "schema_version": "window1-round2-guarded-cutoff-provenance-v1",
+  "source_class_census": {
+    "clean_causal_interval": 31,
+    "contradictory": 14,
+    "live_by_only": 52,
+    "official_exact": 234,
+    "quantized_late_detection_proxy": 453,
+    "schedule_only": 20
+  }
+}

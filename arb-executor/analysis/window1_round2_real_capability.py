@@ -17,17 +17,16 @@ import window1_round2_data_binding as binding
 import window1_round2_instrument as instrument
 
 
-VERSION = "window1-round2-real-capability-v1"
+VERSION = "window1-round2-real-capability-v2"
 DECISION_ACTIONS = {
     "place", "reprice", "cancel",
-    "sibling_hold", "sibling_reaim_decision",
 }
 FAMILY_ACTIONS = {
     "asynchronous_divot_timing": {"macro_bind"},
     "leg_specific_posture": {"place", "reprice"},
     "nonself_one_cent_walk": {"reprice"},
     "first_fill_sibling_response": {
-        "sibling_hold", "sibling_reaim_decision"
+        "sibling_reaim_applied", "reprice", "place"
     },
     "pair_divot_recut": {"pair_recut"},
     "causal_orientation": {"orientation_observed"},
@@ -271,7 +270,8 @@ def decision_signature(result: Mapping[str, Any]) -> list[dict[str, Any]]:
             for key in (
                 "leg_id", "ts", "action", "reason", "price_cents",
                 "quantity", "remaining_quantity", "posture",
-                "reaim_cents",
+                "reaim_cents", "base_sibling_order_cents",
+                "reaim_sibling_order_cents",
             )
         }
         for row in result["order_stream"]
@@ -347,9 +347,9 @@ def event_summary(
             row["action"] == "pair_recut" for row in actions
         ),
         "sibling_response_exercised": any(
-            row["action"] in {
-                "sibling_hold", "sibling_reaim_decision"
-            } for row in actions
+            row["action"] == "sibling_reaim_applied"
+            and row.get("exact_reaim_difference_cents") == 1
+            for row in actions
         ),
         "walk_exercised": any(
             row["action"] == "reprice"
@@ -385,6 +385,7 @@ def summarize_candidate(
     decisions = Counter()
     missing = Counter()
     cohort_status = Counter()
+    reaim_no_call = Counter()
     by_leg = Counter()
     for row in rows:
         censored.update(row["feature_censors"])
@@ -392,6 +393,14 @@ def summarize_candidate(
         missing.update(row["missing_feature_legs"])
         for item in row["cohort"]:
             cohort_status[str(item["cohort_status"])] += 1
+        reaim_no_call.update({
+            reason: int(count)
+            for reason, count in row["reason_counts"].items()
+            if reason in {
+                "required_sibling_policy_evidence_unavailable",
+                "no_later_lawful_sibling_trigger",
+            }
+        })
         for leg, counts in row["per_leg_decisions"].items():
             for action, count in counts.items():
                 by_leg[f"{leg}:{action}"] += int(count)
@@ -409,6 +418,8 @@ def summarize_candidate(
             if status.startswith("NO_CALL")
         ),
         "cohort_status_counts": dict(sorted(cohort_status.items())),
+        "reaim_NO_CALL_count": sum(reaim_no_call.values()),
+        "reaim_NO_CALL_reasons": dict(sorted(reaim_no_call.items())),
         "distinct_order_decisions_versus_base_events": distinct,
         "decision_counts": dict(sorted(decisions.items())),
         "per_leg_place_reprice_cancel": dict(sorted(by_leg.items())),
@@ -499,8 +510,15 @@ def family_matrix(
             status = "available" if available else "inert_on_development"
         elif family == "first_fill_sibling_response":
             decision_changing = (
-                action_seen["sibling_hold"]
-                + action_seen["sibling_reaim_decision"] > 0
+                action_seen["sibling_reaim_applied"] > 0
+                and (
+                    reason_seen[
+                        "first_fill_sibling_reaim_later_trigger"
+                    ] > 0
+                    or reason_seen[
+                        "first_fill_sibling_reaim_later_trigger_cancel"
+                    ] > 0
+                )
             )
             available = decision_changing
             status = "available" if available else "inert_on_development"

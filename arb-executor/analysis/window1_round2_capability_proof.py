@@ -18,14 +18,12 @@ from typing import Any, Iterable, Mapping
 import window1_round2_instrument as instrument
 
 
-VERSION = "window1-round2-capability-proof-v2"
+VERSION = "window1-round2-capability-proof-v3"
 BASE_CANDIDATE = "r2_full_os__walk_park__hold"
 DECISION_ACTIONS = {
     "place",
     "reprice",
     "cancel",
-    "sibling_hold",
-    "sibling_reaim_decision",
 }
 
 
@@ -294,6 +292,16 @@ def no_flow_event() -> dict[str, Any]:
     return event
 
 
+def reaim_event() -> dict[str, Any]:
+    event = base_event()
+    event["event_id"] = "FIXTURE-R2-LATER-SIBLING-REAIM"
+    left = float(event["policy_left_ts"])
+    event["legs"][1]["observations"].append(
+        book(left + 7500, 39, 42)
+    )
+    return event
+
+
 def schedule_only_event() -> dict[str, Any]:
     event = base_event()
     event["event_id"] = "FIXTURE-R2-SCHEDULE"
@@ -404,9 +412,65 @@ def capability_proof(repo: Path) -> dict[str, Any]:
         "enabled_decision_count": len(decision_signature(walk)),
         "ablated_decision_count": len(decision_signature(park)),
     })
+    reaim_fixture = reaim_event()
+    reaim_hold = run_policy(
+        repo,
+        surfaces,
+        reaim_fixture,
+        "r2_full_os__walk_park__hold",
+    )
+    reaim_enabled = run_policy(
+        repo,
+        surfaces,
+        reaim_fixture,
+        "r2_full_os__walk_park__reaim",
+    )
+    applied = next(
+        row for row in reaim_enabled["order_stream"]
+        if row["action"] == "sibling_reaim_applied"
+    )
+    trigger_ts = float(applied["ts"])
+    hold_prefix = decision_signature(reaim_hold, before=trigger_ts)
+    reaim_prefix = decision_signature(reaim_enabled, before=trigger_ts)
+    rows.append({
+        "family_id": "first_fill_sibling_response",
+        "eligible_fixture": reaim_fixture["event_id"],
+        "proof_mode": "hold_vs_reaim_at_later_sibling_owned_trigger",
+        "enabled_decision_sha256": instrument.sha256_json(
+            decision_signature(reaim_enabled)
+        ),
+        "ablated_decision_sha256": instrument.sha256_json(
+            decision_signature(reaim_hold)
+        ),
+        "decision_changing": (
+            decision_signature(reaim_enabled)
+            != decision_signature(reaim_hold)
+            and hold_prefix == reaim_prefix
+            and applied["exact_reaim_difference_cents"] == 1
+        ),
+        "earlier_order_decisions_byte_identical": (
+            hold_prefix == reaim_prefix
+        ),
+        "first_leg_fill_ts": applied["first_leg_fill_ts"],
+        "sibling_lawful_trigger_ts": applied["ts"],
+        "base_sibling_order_cents": (
+            applied["base_sibling_order_cents"]
+        ),
+        "reaim_sibling_order_cents": (
+            applied["reaim_sibling_order_cents"]
+        ),
+        "exact_reaim_difference_cents": (
+            applied["exact_reaim_difference_cents"]
+        ),
+        "enabled_decision_count": len(
+            decision_signature(reaim_enabled)
+        ),
+        "ablated_decision_count": len(
+            decision_signature(reaim_hold)
+        ),
+    })
     for family in (
         "nonself_one_cent_walk",
-        "first_fill_sibling_response",
         "pair_divot_recut",
         "causal_orientation",
         "causal_drift_recognition",

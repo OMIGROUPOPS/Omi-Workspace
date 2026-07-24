@@ -18,7 +18,7 @@ import window1_round2_instrument as round2  # noqa: E402
 
 def test_frozen_grid_has_no_free_numeric_parameters():
     spec = round2.load_candidate_spec(ROOT)
-    assert len(spec["candidate_ids"]) == 4
+    assert len(spec["candidate_ids"]) == 8
     assert spec["free_numeric_parameters"] == []
     assert len(spec["predeclared_selected_candidate_ablations"]) == 9
     for candidate_id in spec["candidate_ids"]:
@@ -83,6 +83,93 @@ def test_first_fill_hold_changes_only_unfilled_sibling():
     assert len(holds) == 1
     assert holds[0]["leg_id"] == "B"
     assert holds[0]["first_filled_leg"] == "A"
+
+
+def test_reaim_waits_for_siblings_later_trigger_and_changes_order_by_one():
+    event = proof.reaim_event()
+    surfaces = proof.synthetic_surfaces()
+    hold = proof.run_policy(
+        ROOT, surfaces, event, "r2_full_os__walk_park__hold"
+    )
+    reaim = proof.run_policy(
+        ROOT, surfaces, event, "r2_full_os__walk_park__reaim"
+    )
+    armed = next(
+        row for row in reaim["order_stream"]
+        if row["action"] == "sibling_reaim_armed"
+    )
+    applied = next(
+        row for row in reaim["order_stream"]
+        if row["action"] == "sibling_reaim_applied"
+    )
+    assert applied["ts"] > armed["ts"]
+    assert applied["ts"] >= armed["sibling_eligible_ts"]
+    assert applied["reaim_sibling_order_cents"] == (
+        applied["base_sibling_order_cents"] + 1
+    )
+    assert proof.decision_signature(
+        hold, before=applied["ts"]
+    ) == proof.decision_signature(
+        reaim, before=applied["ts"]
+    )
+    assert not any(
+        row["leg_id"] == armed["leg_id"]
+        and row["ts"] == armed["ts"]
+        and row["action"] in {"place", "reprice", "cancel"}
+        for row in reaim["order_stream"]
+    )
+
+
+def test_reaim_without_later_sibling_evidence_is_no_call_not_censor():
+    result = proof.run_policy(
+        ROOT,
+        proof.synthetic_surfaces(),
+        proof.base_event(),
+        "r2_full_os__walk_park__reaim",
+    )
+    no_calls = [
+        row for row in result["order_stream"]
+        if row["action"] == "sibling_reaim_no_call"
+    ]
+    assert no_calls
+    assert all(
+        row["response_status"] == "NO_CALL_UNAVAILABLE"
+        and row["underlying_policy_continues"] is True
+        for row in no_calls
+    )
+    assert result["event_terminal"] != "censored_feature"
+
+
+def test_reaim_guard_abstention_cannot_create_sibling_book_reprice():
+    event = proof.reaim_event()
+    surfaces = proof.synthetic_surfaces()
+    spec = round2.load_candidate_spec(ROOT)
+    hold_policy = round2.candidate_policy(
+        spec, "r2_full_os__walk_park__hold"
+    )
+    reaim_policy = round2.candidate_policy(
+        spec, "r2_full_os__walk_park__reaim"
+    )
+    reaim_policy["parameters"][
+        "first_fill_sibling_max_combined_cost_cents"
+    ] = 1
+    hold = round2.CausalInstrument(
+        surfaces, hold_policy
+    ).run(event)
+    reaim = round2.CausalInstrument(
+        surfaces, reaim_policy
+    ).run(event)
+    assert not any(
+        row["action"] == "sibling_reaim_applied"
+        for row in reaim["order_stream"]
+    )
+    assert proof.decision_signature(hold) == proof.decision_signature(
+        reaim
+    )
+    assert any(
+        row["action"] == "sibling_reaim_no_call"
+        for row in reaim["order_stream"]
+    )
 
 
 def test_t8_actions_are_invariant_to_future_t6_recognition_mapping():
@@ -364,10 +451,11 @@ def test_binding_validator_rejects_changed_manifest_before_execution(tmp_path):
 
 def test_real_capability_candidates_are_eligible_distinct_and_unscored():
     receipt = json.loads((
-        ROOT / ".claude/window1_round2_prerun_v2_20260724/"
+        ROOT / ".claude/window1_round2_final_prerun_20260724/"
         "ROUND2_REAL_CAPABILITY.json"
     ).read_text(encoding="utf-8"))
     assert receipt["D"] == 804
+    assert receipt["candidate_count"] == 8
     assert receipt["candidate_gate_pass"] is True
     assert receipt["duplicate_candidate_groups"] == []
     assert receipt["candidate_scoring_performed"] is False
@@ -385,7 +473,7 @@ def test_real_capability_candidates_are_eligible_distinct_and_unscored():
 
 def test_actual_family_proof_counts_only_real_decision_witnesses():
     receipt = json.loads((
-        ROOT / ".claude/window1_round2_prerun_v2_20260724/"
+        ROOT / ".claude/window1_round2_final_prerun_20260724/"
         "ROUND2_ACTUAL_FAMILY_PROOF.json"
     ).read_text(encoding="utf-8"))
     assert receipt["gate_pass"] is True
@@ -403,3 +491,23 @@ def test_actual_family_proof_counts_only_real_decision_witnesses():
     assert unavailable[
         "own_order_contribution_subtraction"
     ]["counted_as_coverage"] is False
+
+
+def test_all_four_reaim_pairs_have_real_later_trigger_order_witnesses():
+    receipt = json.loads((
+        ROOT / ".claude/window1_round2_final_prerun_20260724/"
+        "ROUND2_REAIM_PAIR_PROOF.json"
+    ).read_text(encoding="utf-8"))
+    assert receipt["gate_pass"] is True
+    assert receipt["candidate_pair_count"] == 4
+    assert receipt[
+        "sibling_hold_bookkeeping_counted_as_order_witness"
+    ] is False
+    assert all(
+        row["real_D804_events_with_order_change"] > 0
+        and row["witness"]["exact_reaim_difference_cents"] == 1
+        and row["witness"][
+            "earlier_order_decisions_byte_identical"
+        ] is True
+        for row in receipt["pairs"]
+    )

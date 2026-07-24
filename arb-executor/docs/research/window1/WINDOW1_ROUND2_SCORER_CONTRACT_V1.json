@@ -1,0 +1,119 @@
+{
+  "schema_version": "window1-round2-scorer-contract-spec-v1",
+  "execution_status": "implemented_frozen_not_executed",
+  "D": 804,
+  "target_PC": 603,
+  "lot_per_leg": 5,
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "sealed_holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "candidate_ids": [
+    "r2_async_pair__park_join__hold",
+    "r2_async_pair__park_join__reaim",
+    "r2_async_pair__touch_park__hold",
+    "r2_async_pair__touch_park__reaim",
+    "r2_causal_steer__park_join__hold",
+    "r2_causal_steer__park_join__reaim",
+    "r2_full_os__walk_park__hold",
+    "r2_full_os__walk_park__reaim"
+  ],
+  "metric_definitions": {
+    "C": "both legs filled exactly five contracts at or before each leg's authoritative V5 guarded strict cutoff",
+    "PC": "C and the sum of the two individual fill-VWAP-minus-Window-1-close deltas is strictly less than zero",
+    "S": "C and the sum of the two entry VWAP costs is strictly less than 100 cents",
+    "IC": "C and each individual fill-VWAP-minus-Window-1-close delta is strictly less than zero",
+    "individual_delta": "leg fill VWAP minus the last lawful true-print Window-1-close reference for that leg",
+    "combined_delta": "sum of the two individual deltas"
+  },
+  "guarded_cutoff_law": {
+    "direction": "positive cutoff equals authoritative anchor minus positive guard",
+    "official_exact": {
+      "guard_id": "official-point-strict-60s-v1",
+      "anchor_field": "exact_start_utc",
+      "positive_guard_seconds": 60
+    },
+    "quantized_late_detection_proxy": {
+      "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+      "anchor_field": "proxy_clock_utc",
+      "positive_guard_seconds": 900,
+      "negative_guard_seconds": 600,
+      "committed_cutoff_field": "guard_band.strict_window1_completion_lte_utc"
+    },
+    "clean_causal_interval": {
+      "guard_id": "causal-interval-strict-60s-v1",
+      "anchor_field": "start_interval_utc.lower_inclusive",
+      "positive_guard_seconds": 60
+    },
+    "schedule_only_positive_allowed": false,
+    "live_by_only_positive_allowed": false,
+    "contradictory_positive_allowed": false,
+    "raw_realized_start_is_cutoff": false
+  },
+  "primary_event_census": [
+    "exact_five",
+    "partial",
+    "other_quantity",
+    "genuine_nonfill",
+    "naked_single_leg",
+    "zero_length_window",
+    "contradictory",
+    "censored"
+  ],
+  "census_law": {
+    "each_event_exactly_once": true,
+    "sum": 804,
+    "NO_CALL_is_nonfill": false,
+    "NO_CALL_is_censor": false,
+    "missing_feature_is_nonfill": false,
+    "naked_single_is_dual_completion": false,
+    "zero_length_is_generic_nonfill": false
+  },
+  "consumed_sections": [
+    "event_ledger",
+    "candidate_order_streams",
+    "fill_evidence",
+    "start_boundaries",
+    "references",
+    "feature_classifications",
+    "data_binding_manifest"
+  ],
+  "hard_refusals": [
+    "missing_or_changed_receipt",
+    "unknown_event_or_leg_identity",
+    "outside_development_date",
+    "sealed_holdout_date",
+    "unbound_input",
+    "schedule_only_positive_proof",
+    "missing_start_provenance",
+    "post_freeze_candidate_change",
+    "post_freeze_metric_change",
+    "duplicate_fill_receipt"
+  ],
+  "identity_binding": {
+    "event_count": 804,
+    "leg_identity_count": 1608,
+    "exact_event_date_leg_ticker_manifest_required": true,
+    "candidate_event_stream_sha256_required": true,
+    "candidate_event_stream_receipts_are_frozen_pre_run": true,
+    "self_asserted_runtime_stream_hash_is_sufficient": false
+  },
+  "raw_integers_before_percentages": true,
+  "candidate_scoring_performed": false,
+  "tuning_performed": false,
+  "performance_ablation_performed": false,
+  "holdout_opened": false,
+  "holdout_queried": false
+}

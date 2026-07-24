@@ -1,7 +1,7 @@
 {
-  "schema_version": "window1-round2-execution-adapter-v2",
-  "adapter_id": "chronological-two-leg-window1-round2-v2",
-  "instrument_version": "window1-round2-causal-instrument-v2",
+  "schema_version": "window1-round2-execution-adapter-v3",
+  "adapter_id": "chronological-two-leg-window1-round2-v3",
+  "instrument_version": "window1-round2-causal-instrument-v3",
   "input_contract": {
     "event_fields": [
       "event_id",
@@ -48,7 +48,7 @@
     "apply orientation only at the first-hour checkpoint",
     "apply drift recognition only at the T6 checkpoint using history through T6",
     "recut a leg only on that leg's causal book-cell change",
-    "apply sibling response only after the first leg's simulated full fill",
+    "arm sibling response only after the first leg's simulated full fill; reaim may alter an order only at the sibling's own strictly later lawful trigger and never before its own eligibility",
     "cancel each still-resting leg independently at the declared policy horizon"
   ],
   "clock_separation_law": {
@@ -90,13 +90,23 @@
     "silent_proxy_substitution": false,
     "feature_gap_imputation": false
   },
+  "sibling_reaim_law": {
+    "first_fill_immediate_order_change": false,
+    "later_sibling_owned_trigger_required": true,
+    "exact_order_change_cents": 1,
+    "maximum_combined_cost_cents": 100,
+    "missing_later_evidence": "NO_CALL_UNAVAILABLE; underlying policy continues",
+    "bookkeeping_is_order_witness": false
+  },
   "positive_size_law": "zero, null, malformed, or synthetic transition size contributes zero and cannot trigger divot, flow, pressure, posture, walk, join, touch, park, recut, replenishment, or fill",
   "own_order_law": "fingerprints may subtract contributed book/print volume; fingerprinted activity is never fill, divot, flow, orientation, drift, or walk confirmation",
   "full_depth": "unavailable; top-five only",
   "pinnacle": "unavailable",
   "shape_corpus": "unavailable without independent non-AIM causal cell mapping",
   "counterfactual_order_creation": true,
-  "scoring_implemented": false,
+  "scoring_implemented": true,
+  "scoring_status": "hash_bound_not_executed",
+  "scorer_version": "window1-round2-deterministic-scorer-v1",
   "network_interface": false,
   "production_interface": false
 }

@@ -1,8 +1,8 @@
 {
-  "schema_version": "window1-round2-candidates-v2",
-  "instrument_version": "window1-round2-causal-instrument-v2",
+  "schema_version": "window1-round2-candidates-v3",
+  "instrument_version": "window1-round2-causal-instrument-v3",
   "selection_scope": "development dates 2026-07-12 through 2026-07-20 only",
-  "order_stream_law": "every candidate emits independently timestamped placement, repricing, cancellation, fill-observation, sibling-hold, and terminal records for both legs",
+  "order_stream_law": "every candidate emits independently timestamped placement, repricing, cancellation, fill-observation, sibling-response, and terminal records for both legs; reaim arms at the first fill but may alter the sibling only at that sibling's own strictly later lawful causal trigger",
   "common_parameters": {
     "lot_per_leg": 5,
     "divot_definition": {
@@ -35,6 +35,7 @@
     "top5_ask_over_external_bid_threshold": 1.5,
     "top5_pressure_extra_depth_cents": 1,
     "first_fill_sibling_reaim_cents": 1,
+    "first_fill_sibling_max_combined_cost_cents": 100,
     "policy_corridor_seconds_after_anchor": 0,
     "never_marketable": true
   },
@@ -92,36 +93,33 @@
   },
   "candidate_ids": [
     "r2_async_pair__park_join__hold",
+    "r2_async_pair__park_join__reaim",
     "r2_async_pair__touch_park__hold",
+    "r2_async_pair__touch_park__reaim",
     "r2_causal_steer__park_join__hold",
-    "r2_full_os__walk_park__hold"
+    "r2_causal_steer__park_join__reaim",
+    "r2_full_os__walk_park__hold",
+    "r2_full_os__walk_park__reaim"
   ],
   "removed_before_superseding_freeze": [
-    {
-      "candidate_id": "r2_async_pair__park_join__reaim",
-      "reason": "non-minimal response variant; hold retains executable first-fill sibling response"
-    },
-    {
-      "candidate_id": "r2_async_pair__touch_park__reaim",
-      "reason": "non-minimal response variant; hold retains executable first-fill sibling response"
-    },
-    {
-      "candidate_id": "r2_causal_steer__park_join__reaim",
-      "reason": "non-minimal response variant; hold retains executable first-fill sibling response"
-    },
-    {
-      "candidate_id": "r2_full_os__walk_park__reaim",
-      "reason": "non-minimal response variant; hold retains executable first-fill sibling response"
-    },
     {
       "candidate_id": "r2_full_os__park_join__hold",
       "reason": "walk actuator is unreachable under park_join; structurally duplicates causal-steer posture"
     },
     {
       "candidate_id": "r2_full_os__park_join__reaim",
-      "reason": "walk actuator is unreachable under park_join; structurally duplicates causal-steer posture and uses removed response variant"
+      "reason": "walk actuator is unreachable under park_join; structurally duplicates the causal-steer reaim posture"
     }
   ],
+  "reaim_contract": {
+    "arming_event": "first leg exact-five completion from admitted public fill evidence",
+    "immediate_sibling_order_change": false,
+    "activation_event": "sibling's own strictly later causal trigger after its own eligibility",
+    "order_difference_cents": 1,
+    "maximum_combined_cost_cents": 100,
+    "guard_law": "same causal band/depth, price bounds, maker ceiling, par and maximum-cost guards as the underlying sibling policy",
+    "missing_evidence": "NO_CALL_UNAVAILABLE; underlying policy continues without censor"
+  },
   "predeclared_selected_candidate_ablations": [
     "without_asynchronous_divot_timing",
     "without_leg_specific_posture",

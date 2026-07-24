@@ -1,0 +1,73 @@
+{
+  "artifacts": {
+    "CANDIDATE_DEDUP_ELIGIBILITY_REPORT.md": {
+      "bytes": 1092,
+      "sha256": "e85cd1320a57f7b5fd48973a71703e761ec5186169e4982e3aa2037cb35381c6"
+    },
+    "FINAL_CORRECTION_REPORT.md": {
+      "bytes": 865,
+      "sha256": "90958b7c7715020bb70a88fdd43c68f621e23fe52d09634040165c775d964ac1"
+    },
+    "GUARDED_CUTOFF_PROVENANCE.json": {
+      "bytes": 1753,
+      "sha256": "f52cc5525a8921175dd27d2cd725d93c2c0d0fe8c2cf7f5e647522f10c81cc52"
+    },
+    "POLICY_EVALUATION_CLOCK_PROOF.json": {
+      "bytes": 903,
+      "sha256": "01210f0be5e465462bc8f7ba5081ebd31225473174aacb312382346efed0e6b7"
+    },
+    "PRE_RUN_MANIFEST.json": {
+      "bytes": 1074824,
+      "sha256": "607035d9bb0b9aeb3beb0d94d5b1d60ff77bb966bc88b725371b33e5b894adcd"
+    },
+    "PRE_RUN_REPORT.md": {
+      "bytes": 765,
+      "sha256": "fb8e75cecf6758313c42d865927085a82d986e850e2a13b81c389ce829b54f24"
+    },
+    "PRIOR_HOLD_LINEAGE_PARITY_PROOF.json": {
+      "bytes": 2070,
+      "sha256": "db10ceb5b5a3e59e7c842398dc89f38db73447f33ea8f9630dac1073e13384aa"
+    },
+    "ROUND2_ACTUAL_FAMILY_PROOF.json": {
+      "bytes": 6994,
+      "sha256": "15f8910d91689be513e9505725f69fbf8847533f51a937bbced6498d873dba99"
+    },
+    "ROUND2_REAIM_PAIR_DIFFERENCE_REPORT.md": {
+      "bytes": 1455,
+      "sha256": "99555b7c4eef8e1fa085c4a1c900e497efe6ea26af5946ae424fbcfb225081c9"
+    },
+    "ROUND2_REAIM_PAIR_PROOF.json": {
+      "bytes": 34931,
+      "sha256": "82812f7fdfebbb704490e5868021898e1e3b26422b3a11cda4fa2d9c604f5b68"
+    },
+    "ROUND2_REAL_CAPABILITY.json": {
+      "bytes": 5299098,
+      "sha256": "adb879d68d0d3b43d441097cb676281474de0fd48eb10e6412d3912820a472c1"
+    },
+    "ROUND2_REAL_FAMILY_CAPABILITY_MATRIX.md": {
+      "bytes": 1438,
+      "sha256": "673200f557903e5309ccdceb8cde374db471c555b740d22ba27bc98bbf2bece5"
+    },
+    "SCORER_FIXTURE_TEST_MANIFEST.json": {
+      "bytes": 1751,
+      "sha256": "3a5f412e64a8f5ea98fdee76f133ef9b099f07de419d1a24738a628131a5d9d4"
+    },
+    "SCORER_FREEZE_CONTRACT.json": {
+      "bytes": 983461,
+      "sha256": "6684ee34bee79c8b29f98a83158004a7cf381b30a094ce7e2675021186806bb4"
+    },
+    "T8_T6_LOOKAHEAD_PROOF.json": {
+      "bytes": 720,
+      "sha256": "b5a180c5b8769494ebc09e863e554dfc6f60e73a0bc94d471f6c08c17deccc8e"
+    },
+    "ZERO_SIZE_EXCLUSION_PROOF.json": {
+      "bytes": 809,
+      "sha256": "9893b46cd6599d55fde1a9b6b72cc3065d90438dda7ee666826c75e113521f36"
+    }
+  },
+  "candidate_scoring_performed": false,
+  "controlling_audit": "7851204a2f1ffac1d6af61670b67bc0bf6794f9e",
+  "holdout_queried": false,
+  "parent_rejected_prerun": "7667157fa7cb4dce32974025d41ba661a656a354",
+  "schema_version": "window1-round2-final-prerun-v1-artifacts-v1"
+}

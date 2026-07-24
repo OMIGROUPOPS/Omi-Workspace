@@ -2,9 +2,9 @@
 
 Status: **PRE-RUN construction only. No Round-2 candidate has been scored.**
 
-This superseding instrument repairs the four blockers established by the
-independent cross-audit at commit
-`fb17a98fb93ac73668e3ebd731aa0d9c1b99ca43`.
+This final superseding instrument preserves the passed gates and repairs R1
+and R2 established by the independent audit at commit
+`7851204a2f1ffac1d6af61670b67bc0bf6794f9e`.
 The immutable development population remains D=804 for July 12-20 UTC, the
 primary target remains PC=603, and July 24-26 remains sealed and unqueried.
 
@@ -36,8 +36,11 @@ book, queue, posture, active order, fill state, and cancellation clock.
 5. Drift recognition is first callable at T6. It computes net and dip from
    BBO history observed through T6 and can change only T6-or-later actions.
 6. A causal book-cell change may recut and reprice only that leg.
-7. A full five-contract fill on one leg may create a timestamped hold or
-   one-cent sibling reaim on the still-independent other leg.
+7. A full five-contract fill on one leg may create a timestamped hold or arm
+   reaim on the still-independent other leg. Arming never changes an order.
+   Reaim may apply only when that sibling reaches its own strictly later
+   lawful causal trigger after its own eligibility. The changed sibling order
+   must be exactly one cent above the otherwise-lawful guarded order.
 8. Remaining orders cancel independently at the declared policy horizon.
    A separate ex-post evaluator may then use independently reconstructed start
    truth to classify actions; it cannot create or time an order.
@@ -55,8 +58,10 @@ differ.
 - **Leg posture:** touch, join, park, and walk are selected per leg role.
 - **Exact walk:** a walk requires a verified non-self print chain and advances
   exactly one cent, never marketably.
-- **First-fill sibling response:** hold or reaim occurs only after the first
-  leg's causal full fill.
+- **First-fill sibling response:** hold is bookkeeping only. Reaim arms after
+  the first causal full fill and becomes order-affecting only at the sibling's
+  later lawful trigger. Missing trigger evidence returns
+  `NO_CALL_UNAVAILABLE`; it never creates an action or censor.
 - **Pair/divot recut:** the current leg alone reacts to its current book-cell
   change; no identical pair timestamp is imposed.
 - **Orientation:** the frozen orientation table may deepen/reprice the called
@@ -88,22 +93,38 @@ coverage.
 
 ## Frozen grid
 
-The superseding allowlist contains four real-eligible, pairwise-distinct
+The final superseding allowlist contains eight real-eligible, pairwise-distinct
 candidate IDs:
 
-- async pair: park/join hold and touch/park hold;
-- causal steer: park/join hold;
-- full OS: walk/park hold.
+- async pair: park/join hold/reaim and touch/park hold/reaim;
+- causal steer: park/join hold/reaim;
+- full OS: walk/park hold/reaim.
 
-Four non-minimal reaim variants were removed before freeze. The two full-stack
-park/join variants were removed because the walk actuator is unreachable under
-that posture and the remaining policy is structurally the causal-steer
-park/join chain.
+The four lawful reaim variants are restored. The two full-stack park/join
+variants remain removed because the walk actuator is unreachable under that
+posture and the remaining policies are structurally the corresponding
+causal-steer park/join chains.
 
 There are nine predeclared selected-candidate ablations and no free numeric
 parameter. True-print flow and own-volume subtraction are invariant evidence
 laws, not ablatable shortcuts. The exact IDs and values live in
 `WINDOW1_ROUND2_CANDIDATES_V1.json`.
+
+## Frozen scorer
+
+The deterministic scorer is complete and hash-bound in this PRE-RUN but has
+not been executed on any candidate. It consumes only the frozen event ledger,
+candidate streams, admitted public fill receipts, V5 start ledger, close
+references, feature/censor classifications, and immutable binding receipts.
+It derives the strict positive cutoff as official start minus 60 seconds,
+proxy clock minus 900 seconds, or clean interval lower bound minus 60 seconds.
+Schedule-only and live-by-only rows are censored and contradictory rows remain
+separate. Raw realized start is never a cutoff.
+
+The scorer preserves D=804 and the frozen C/PC/S/IC definitions, reports every
+event exactly once into the corrected census, and keeps cohort/reaim NO_CALL
+and feature unavailability separate. Only minimal synthetic contract fixtures
+were executed to test it.
 
 ## Missingness and terminal law
 

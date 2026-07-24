@@ -1,0 +1,30 @@
+{
+  "D804_test_population": "synthetic conservation fixture only",
+  "all_required_test_functions_present": true,
+  "candidate_scoring_performed": false,
+  "fixture_scope": "minimal synthetic contract fixtures only",
+  "gate_pass": true,
+  "holdout_queried": false,
+  "real_candidate_performance_executed": false,
+  "required_case_count": 17,
+  "requirements": {
+    "D804_conservation": "test_metric_totals_conserve_to_D804",
+    "NO_CALL_continues": "test_NO_CALL_continues_and_is_not_nonfill_or_censor",
+    "changed_hash_fails": "test_changed_input_hash_hard_fails",
+    "cost_100_not_S": "test_combined_cost_exactly_100_is_not_S",
+    "delta_zero_not_PC": "test_exact_combined_delta_zero_is_not_PC",
+    "deterministic_bytes": "test_scorer_is_byte_identical_on_same_synthetic_contract",
+    "duplicate_receipt_no_inflation": "test_duplicate_receipt_cannot_inflate_quantity",
+    "exact_dual_five_pre_cutoff_C": "test_exact_dual_five_before_guarded_cutoff_is_C",
+    "holdout_outside_date_fails": "test_holdout_or_nondevelopment_date_hard_fails",
+    "individual_zero_not_IC": "test_one_individual_delta_zero_is_not_IC",
+    "missing_feature_censored": "test_missing_feature_remains_censored_unavailable",
+    "naked_single_separate": "test_naked_single_stays_separately_classified",
+    "official_proxy_guards": "test_official_and_proxy_use_their_frozen_guards",
+    "one_leg_after_cutoff_not_C": "test_one_leg_after_guarded_cutoff_is_not_C",
+    "partial_other_not_C": "test_partial_or_other_quantity_is_not_C",
+    "raw_start_no_bypass": "test_raw_realized_start_cannot_bypass_guarded_cutoff",
+    "schedule_only_not_positive": "test_schedule_only_row_cannot_become_positive"
+  },
+  "schema_version": "window1-round2-scorer-fixture-tests-v1"
+}

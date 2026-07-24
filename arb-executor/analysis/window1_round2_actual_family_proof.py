@@ -14,7 +14,7 @@ import window1_round2_instrument as instrument
 import window1_round2_real_capability as capability
 
 
-VERSION = "window1-round2-actual-family-proof-v1"
+VERSION = "window1-round2-actual-family-proof-v2"
 PROVABLE_FAMILIES = [
     "asynchronous_divot_timing",
     "leg_specific_posture",
@@ -118,7 +118,14 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     disabled = {
         family: _disabled_policy(spec, candidate_id, family)
         for family in PROVABLE_FAMILIES
+        if family != "first_fill_sibling_response"
     }
+    reaim_candidate_id = "r2_full_os__walk_park__reaim"
+    if reaim_candidate_id not in spec["candidate_ids"]:
+        raise ProofError("full-stack reaim witness candidate not retained")
+    reaim_policy = instrument.candidate_policy(
+        spec, reaim_candidate_id
+    )
     surfaces = instrument.load_surfaces(repo)
     corridor = float(
         spec["common_parameters"]["policy_corridor_seconds_after_anchor"]
@@ -138,29 +145,44 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             surfaces, base_policy
         ).run(normalized)
         base_signature = capability.decision_signature(base)
+        reaim = instrument.CausalInstrument(
+            surfaces, reaim_policy
+        ).run(normalized)
+        reaim_signature = capability.decision_signature(reaim)
         for family in PROVABLE_FAMILIES:
             if family in witnesses:
                 continue
-            contrast = instrument.CausalInstrument(
-                surfaces, disabled[family]
-            ).run(normalized)
-            contrast_signature = capability.decision_signature(contrast)
-            if base_signature != contrast_signature:
+            if family == "first_fill_sibling_response":
+                enabled_signature = reaim_signature
+                contrast_signature = base_signature
+                enabled_candidate_id = reaim_candidate_id
+                proof_mode = (
+                    "same_real_causal_history_hold_vs_later_trigger_reaim"
+                )
+            else:
+                contrast = instrument.CausalInstrument(
+                    surfaces, disabled[family]
+                ).run(normalized)
+                contrast_signature = capability.decision_signature(contrast)
+                enabled_signature = base_signature
+                enabled_candidate_id = candidate_id
+                proof_mode = (
+                    "same_real_causal_history_isolated_family_disable"
+                )
+            if enabled_signature != contrast_signature:
                 witnesses[family] = {
                     "family_id": family,
                     "event_id": event_id,
                     "event_date": event["event_date"],
-                    "candidate_id": candidate_id,
-                    "proof_mode": (
-                        "same_real_causal_history_isolated_family_disable"
-                    ),
+                    "candidate_id": enabled_candidate_id,
+                    "proof_mode": proof_mode,
                     "enabled_decision_sha256": (
-                        instrument.sha256_json(base_signature)
+                        instrument.sha256_json(enabled_signature)
                     ),
                     "disabled_decision_sha256": (
                         instrument.sha256_json(contrast_signature)
                     ),
-                    "enabled_decision_count": len(base_signature),
+                    "enabled_decision_count": len(enabled_signature),
                     "disabled_decision_count": len(contrast_signature),
                     "decision_changing": True,
                     "scored": False,

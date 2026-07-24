@@ -22,7 +22,7 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping, MutableMapping, Sequence
 
 
-VERSION = "window1-round2-causal-instrument-v2"
+VERSION = "window1-round2-causal-instrument-v3"
 LOT = 5.0
 DEVELOPMENT_DATES = {
     f"2026-07-{day:02d}" for day in range(12, 21)
@@ -502,6 +502,12 @@ class CausalInstrument:
             "actions": [],
             "books": [],
             "nonself_prints": [],
+            "flow_sell_timestamps": deque(),
+            "walk_sell_evidence": deque(
+                maxlen=int(
+                    self.parameters["walk"]["minimum_chain_prints"]
+                )
+            ),
             "divot_window": deque(),
             "divot_prices_sorted": [],
             "current_book": None,
@@ -526,6 +532,12 @@ class CausalInstrument:
             "quantity": 0.0,
             "cost": 0.0,
             "sibling_bias_cents": 0,
+            "sibling_reaim_pending": False,
+            "sibling_reaim_armed_ts": None,
+            "sibling_reaim_first_filled_leg": None,
+            "sibling_reaim_first_fill_vwap_cents": None,
+            "sibling_reaim_applied_ts": None,
+            "sibling_reaim_no_call_reason": None,
             "walk_distance_cents": 0,
             "last_walk_evidence_index": 0,
             "terminal": None,
@@ -787,10 +799,19 @@ class CausalInstrument:
         state: MutableMapping[str, Any],
         timestamp: float,
         reason: str,
+        *,
+        sibling_trigger: str | None = None,
     ) -> None:
         order = state.get("active_order")
         if order is None or state["feature_censored"]:
             return
+        activated_reaim = False
+        if sibling_trigger is not None:
+            activated_reaim = self._activate_pending_sibling_reaim(
+                state, timestamp, sibling_trigger
+            )
+        if activated_reaim:
+            reason = "first_fill_sibling_reaim_later_trigger"
         target = self._target_price(state)
         if target == int(order["price"]):
             return
@@ -799,18 +820,99 @@ class CausalInstrument:
             state, timestamp, reason, action_type="reprice"
         )
 
-    def _flow_count(
-        self, state: Mapping[str, Any], timestamp: float,
-    ) -> int:
-        return sum(
-            1 for row in state["nonself_prints"]
-            if timestamp - 1800 <= float(row["ts"]) <= timestamp
-            and str(row.get("taker_side")) == "no"
-            and positive_public_print(row)[0]
+    def _activate_pending_sibling_reaim(
+        self,
+        state: MutableMapping[str, Any],
+        timestamp: float,
+        trigger: str,
+    ) -> bool:
+        """Apply reaim only at the sibling's own later lawful trigger."""
+        if not state.get("sibling_reaim_pending"):
+            return False
+        armed_at = state.get("sibling_reaim_armed_ts")
+        if (
+            armed_at is None
+            or timestamp <= float(armed_at)
+            or timestamp < float(state["eligible_ts"])
+            or state["feature_censored"]
+            or state["quantity"] >= LOT
+            or state["current_book"] is None
+        ):
+            return False
+        old_bias = int(state.get("sibling_bias_cents") or 0)
+        state["sibling_bias_cents"] = 0
+        try:
+            base_price = self._target_price(state)
+            state["sibling_bias_cents"] = int(
+                self.parameters["first_fill_sibling_reaim_cents"]
+            )
+            reaim_price = self._target_price(state)
+        except InstrumentError:
+            state["sibling_bias_cents"] = old_bias
+            return False
+        first_fill_vwap = state.get(
+            "sibling_reaim_first_fill_vwap_cents"
         )
+        maximum_pair_cost = float(
+            self.parameters[
+                "first_fill_sibling_max_combined_cost_cents"
+            ]
+        )
+        exact_plus_one = reaim_price == base_price + 1
+        pair_cost = (
+            float(first_fill_vwap) + reaim_price
+            if first_fill_vwap is not None else None
+        )
+        active_order = state.get("active_order")
+        prior_order_price = (
+            int(active_order["price"]) if active_order is not None else None
+        )
+        guards_pass = (
+            exact_plus_one
+            and pair_cost is not None
+            and pair_cost <= maximum_pair_cost
+            and (
+                prior_order_price is None
+                or reaim_price != prior_order_price
+            )
+        )
+        if not guards_pass:
+            state["sibling_bias_cents"] = old_bias
+            return False
+        state["sibling_reaim_pending"] = False
+        state["sibling_reaim_applied_ts"] = float(timestamp)
+        _action(
+            state,
+            timestamp,
+            "sibling_reaim_applied",
+            "first_fill_reaim_at_sibling_later_lawful_trigger",
+            first_filled_leg=state["sibling_reaim_first_filled_leg"],
+            first_leg_fill_ts=float(armed_at),
+            sibling_lawful_trigger=trigger,
+            base_sibling_order_cents=base_price,
+            reaim_sibling_order_cents=reaim_price,
+            prior_sibling_order_cents=prior_order_price,
+            exact_reaim_difference_cents=reaim_price - base_price,
+            first_fill_vwap_cents=float(first_fill_vwap),
+            combined_maximum_cost_cents=maximum_pair_cost,
+            combined_reaim_cost_cents=pair_cost,
+            price_guard_passed=True,
+            par_guard_passed=True,
+            band_guard_passed=True,
+            maximum_cost_guard_passed=True,
+        )
+        return True
+
+    def _flow_count(
+        self, state: MutableMapping[str, Any], timestamp: float,
+    ) -> int:
+        window = state["flow_sell_timestamps"]
+        while window and float(window[0]) < timestamp - 1800:
+            window.popleft()
+        return len(window)
 
     def _flow_confirmed(
-        self, state: Mapping[str, Any], timestamp: float,
+        self, state: MutableMapping[str, Any], timestamp: float,
     ) -> bool:
         if "true_print_flow" not in self.families:
             return True
@@ -851,7 +953,17 @@ class CausalInstrument:
             state, timestamp
         ):
             return
-        self._place(state, timestamp, reason)
+        activated_reaim = self._activate_pending_sibling_reaim(
+            state, timestamp, reason
+        )
+        self._place(
+            state,
+            timestamp,
+            (
+                "first_fill_sibling_reaim_later_trigger"
+                if activated_reaim else reason
+            ),
+        )
 
     def _detect_divot(
         self,
@@ -922,13 +1034,7 @@ class CausalInstrument:
         )
         if int(state["walk_distance_cents"]) >= cap:
             return
-        rows = state["nonself_prints"]
-        start = int(state["last_walk_evidence_index"])
-        candidates = [
-            row for row in rows[start:]
-            if str(row.get("taker_side")) == "no"
-            and positive_public_print(row)[0]
-        ]
+        candidates = list(state["walk_sell_evidence"])
         needed = int(self.parameters["walk"]["minimum_chain_prints"])
         if len(candidates) < needed:
             return
@@ -973,7 +1079,10 @@ class CausalInstrument:
         state["walk_distance_cents"] = (
             int(state["walk_distance_cents"]) + 1
         )
-        state["last_walk_evidence_index"] = len(rows)
+        state["last_walk_evidence_index"] = len(
+            state["nonself_prints"]
+        )
+        state["walk_sell_evidence"].clear()
 
     def _fill_from_print(
         self,
@@ -1023,10 +1132,12 @@ class CausalInstrument:
         sibling = next(
             state for state in self.states if state is not filled_state
         )
-        if sibling["quantity"] >= LOT or sibling["feature_censored"]:
+        if sibling["quantity"] >= LOT:
             return
         response = str(self.policy["sibling_response"])
         if response == "hold":
+            if sibling["feature_censored"]:
+                return
             _action(
                 sibling,
                 timestamp,
@@ -1038,25 +1149,40 @@ class CausalInstrument:
             return
         if response != "reaim":
             raise InstrumentError(f"unknown sibling response: {response}")
-        sibling["sibling_bias_cents"] = int(
-            self.parameters["first_fill_sibling_reaim_cents"]
+        if sibling["feature_censored"]:
+            sibling["sibling_reaim_no_call_reason"] = (
+                "required_sibling_policy_evidence_unavailable"
+            )
+            _action(
+                sibling,
+                timestamp,
+                "sibling_reaim_no_call",
+                "required_sibling_policy_evidence_unavailable",
+                response_status="NO_CALL_UNAVAILABLE",
+                first_filled_leg=filled_state["leg_id"],
+                underlying_policy_continues=True,
+            )
+            return
+        sibling["sibling_reaim_pending"] = True
+        sibling["sibling_reaim_armed_ts"] = float(timestamp)
+        sibling["sibling_reaim_first_filled_leg"] = filled_state["leg_id"]
+        sibling["sibling_reaim_first_fill_vwap_cents"] = (
+            float(filled_state["cost"]) / float(filled_state["quantity"])
         )
         _action(
             sibling,
             timestamp,
-            "sibling_reaim_decision",
-            "first_leg_fill_is_causal_information",
+            "sibling_reaim_armed",
+            "first_leg_fill_arms_later_sibling_owned_trigger",
             first_filled_leg=filled_state["leg_id"],
-            reaim_cents=sibling["sibling_bias_cents"],
+            first_leg_fill_ts=float(timestamp),
+            reaim_cents=int(
+                self.parameters["first_fill_sibling_reaim_cents"]
+            ),
+            immediate_order_change=False,
+            sibling_eligible_ts=float(sibling["eligible_ts"]),
+            underlying_policy_continues=True,
         )
-        if sibling["active_order"] is not None:
-            self._reprice(
-                sibling, timestamp, "first_fill_sibling_reaim"
-            )
-        else:
-            self._maybe_place(
-                sibling, timestamp, "first_fill_sibling_reaim"
-            )
 
     def _on_book(
         self, state: MutableMapping[str, Any], row: Mapping[str, Any],
@@ -1097,8 +1223,24 @@ class CausalInstrument:
                         recut_depth_cents=current,
                     )
                     self._reprice(
-                        state, timestamp, "leg_specific_pair_recut"
+                        state,
+                        timestamp,
+                        "leg_specific_pair_recut",
+                        sibling_trigger="leg_specific_pair_recut",
                     )
+        if (
+            state.get("sibling_reaim_pending")
+            and state["active_order"] is not None
+        ):
+            activated_reaim = self._activate_pending_sibling_reaim(
+                state, timestamp, "causal_sibling_book"
+            )
+            if activated_reaim:
+                self._reprice(
+                    state,
+                    timestamp,
+                    "first_fill_sibling_reaim_later_trigger",
+                )
         self._maybe_place(state, timestamp, "eligible_causal_book")
 
     def _on_print(
@@ -1132,6 +1274,9 @@ class CausalInstrument:
         completed = self._fill_from_print(state, row)
         self._detect_divot(state, row)
         state["nonself_prints"].append(dict(row))
+        if str(row.get("taker_side")) == "no":
+            state["flow_sell_timestamps"].append(timestamp)
+            state["walk_sell_evidence"].append(dict(row))
         state["divot_window"].append((
             timestamp, float(row["price"])
         ))
@@ -1222,6 +1367,23 @@ class CausalInstrument:
                 )
 
     def _terminalize(self, state: MutableMapping[str, Any]) -> None:
+        if state.get("sibling_reaim_pending"):
+            state["sibling_reaim_pending"] = False
+            state["sibling_reaim_no_call_reason"] = (
+                "no_later_lawful_sibling_trigger"
+            )
+            _action(
+                state,
+                self.horizon,
+                "sibling_reaim_no_call",
+                "no_later_lawful_sibling_trigger",
+                response_status="NO_CALL_UNAVAILABLE",
+                first_filled_leg=state[
+                    "sibling_reaim_first_filled_leg"
+                ],
+                first_leg_fill_ts=state["sibling_reaim_armed_ts"],
+                underlying_policy_continues=True,
+            )
         if state["active_order"] is not None:
             self._cancel(state, self.horizon, "declared_policy_horizon")
         quantity = float(state["quantity"])

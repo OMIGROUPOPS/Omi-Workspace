@@ -1,5 +1,5 @@
 {
-  "schema_version": "window1-round2-feature-allowlist-v2",
+  "schema_version": "window1-round2-feature-allowlist-v3",
   "allowed": [
     "start_boundary",
     "asynchronous_divot_timing",
@@ -36,6 +36,7 @@
       "start_boundary"
     ]
   },
+  "first_fill_sibling_response_proof_law": "counted only when a restored reaim candidate changes the sibling's real order by exactly +1 at its own later lawful trigger; sibling_hold and sibling_reaim_armed bookkeeping are not order witnesses",
   "conditionally_allowed": {
     "bookmaker_fv": "only when the individual observation is causal, participant-mapped, and source-proven; no candidate requires it in v1",
     "shape_corpus": "only after an independent non-AIM causal cell mapping exists; unavailable in v1",

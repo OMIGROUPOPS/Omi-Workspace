@@ -1,0 +1,60 @@
+{
+  "all_3216_full_event_streams_byte_identical": true,
+  "candidate_rows": [
+    {
+      "candidate_id": "r2_async_pair__park_join__hold",
+      "censored_count_identical": true,
+      "cohort_NO_CALL_identical": true,
+      "decision_counts_identical": true,
+      "eligible_count_identical": true,
+      "event_stream_count": 804,
+      "full_stream_difference_count": 0,
+      "full_stream_difference_event_ids": [],
+      "gate_pass": true,
+      "positive_size_print_count_identical": true
+    },
+    {
+      "candidate_id": "r2_async_pair__touch_park__hold",
+      "censored_count_identical": true,
+      "cohort_NO_CALL_identical": true,
+      "decision_counts_identical": true,
+      "eligible_count_identical": true,
+      "event_stream_count": 804,
+      "full_stream_difference_count": 0,
+      "full_stream_difference_event_ids": [],
+      "gate_pass": true,
+      "positive_size_print_count_identical": true
+    },
+    {
+      "candidate_id": "r2_causal_steer__park_join__hold",
+      "censored_count_identical": true,
+      "cohort_NO_CALL_identical": true,
+      "decision_counts_identical": true,
+      "eligible_count_identical": true,
+      "event_stream_count": 804,
+      "full_stream_difference_count": 0,
+      "full_stream_difference_event_ids": [],
+      "gate_pass": true,
+      "positive_size_print_count_identical": true
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__hold",
+      "censored_count_identical": true,
+      "cohort_NO_CALL_identical": true,
+      "decision_counts_identical": true,
+      "eligible_count_identical": true,
+      "event_stream_count": 804,
+      "full_stream_difference_count": 0,
+      "full_stream_difference_event_ids": [],
+      "gate_pass": true,
+      "positive_size_print_count_identical": true
+    }
+  ],
+  "candidate_scoring_performed": false,
+  "events_per_candidate": 804,
+  "gate_pass": true,
+  "holdout_queried": false,
+  "inherited_candidate_count": 4,
+  "parent_rejected_prerun": "7667157fa7cb4dce32974025d41ba661a656a354",
+  "schema_version": "window1-round2-hold-lineage-parity-v1"
+}

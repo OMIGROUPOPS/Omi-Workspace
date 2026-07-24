@@ -1,0 +1,31 @@
+{
+  "bound_real_cache_invalid_size_rows": 0,
+  "cases": [
+    {
+      "case": "divot_size_0",
+      "divot_triggered_by_bad_row": false,
+      "excluded": true
+    },
+    {
+      "case": "divot_size_None",
+      "divot_triggered_by_bad_row": false,
+      "excluded": true
+    },
+    {
+      "case": "divot_size_'malformed'",
+      "divot_triggered_by_bad_row": false,
+      "excluded": true
+    },
+    {
+      "case": "synthetic_transition_divot",
+      "divot_triggered_by_bad_row": false,
+      "excluded": true
+    }
+  ],
+  "gate_pass": true,
+  "holdout_queried": false,
+  "law": "zero, null, malformed, or synthetic transition size contributes zero to all evidence/decision surfaces",
+  "schema_version": "window1-round2-zero-size-proof-v1",
+  "scored": false,
+  "zero_size_walk_chain_triggered": false
+}

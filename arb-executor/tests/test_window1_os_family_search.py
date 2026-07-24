@@ -1,7 +1,11 @@
 from __future__ import annotations
 
+import gzip
+import json
 import sys
 from pathlib import Path
+
+import pytest
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -176,3 +180,33 @@ def test_metric_names_follow_corrected_contract():
     assert summary["raw"]["S"] == 0
     assert summary["raw"]["nonfill"] == 804
     assert summary["distance_from_target"]["raw_shortfall"] == 603
+
+
+def test_market_cache_version_is_mechanically_bound(tmp_path):
+    event = {
+        "event_id": "E",
+        "legs": [
+            {"ticker": "E-A"},
+            {"ticker": "E-B"},
+        ],
+    }
+    payload = {
+        "event_id": "E",
+        "cache_key": "key",
+        "cache_version": "older-cache",
+        "earliest_utc": "2026-07-12T00:00:00Z",
+        "latest_utc": "2026-07-13T00:00:00Z",
+        "legs": [
+            {"ticker": "E-A", "snapshots": [], "prints": []},
+            {"ticker": "E-B", "snapshots": [], "prints": []},
+        ],
+    }
+    with gzip.open(
+        tmp_path / "E.json.gz", "wt", encoding="utf-8"
+    ) as handle:
+        json.dump(payload, handle)
+    with pytest.raises(search.SearchError, match="receipt mismatch"):
+        search.load_frozen_event_market(
+            event, {}, tmp_path, "key", "corrected-cache",
+            0.0, 1.0,
+        )

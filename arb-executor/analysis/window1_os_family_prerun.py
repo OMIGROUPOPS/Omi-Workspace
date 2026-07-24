@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 
-VERSION = "window1-os-family-prerun-v2"
+VERSION = "window1-os-family-prerun-v3"
 D_REQUIRED = 804
 TARGET = 603
 DEV_DATES = [f"2026-07-{day:02d}" for day in range(12, 21)]
@@ -218,6 +218,7 @@ def run(args: argparse.Namespace) -> int:
         args.spaces_materialization,
         "arb-executor/analysis/window1_os_family_prerun.py",
         "arb-executor/analysis/window1_os_family_search.py",
+        "arb-executor/analysis/window1_guarded_cache_materializer.py",
         "arb-executor/analysis/window1_start_guard.py",
         "arb-executor/analysis/window1_fit_benchmark.py",
         "arb-executor/analysis/window1_execution_kernel.py",
@@ -249,6 +250,11 @@ def run(args: argparse.Namespace) -> int:
     tape_manifest_path = Path(args.tape_manifest).resolve()
     market_cache_path = Path(args.market_cache_source).resolve()
     market_cache_receipt = directory_receipt(market_cache_path)
+    if (
+        market_cache_receipt.get("cache_version")
+        != "window1-guarded-event-market-cache-v3"
+    ):
+        raise PreRunError("corrected guarded cache version changed")
     event_ids = {
         str(json.loads(line)["event_id"])
         for line in events_path.read_text(encoding="utf-8").splitlines()
@@ -276,6 +282,18 @@ def run(args: argparse.Namespace) -> int:
             "sha256": sha256_file(tape_manifest_path),
         },
         "validated_event_market_cache": market_cache_receipt,
+        "market_cache_materialization": {
+            "materializer": (
+                "arb-executor/analysis/"
+                "window1_guarded_cache_materializer.py"
+            ),
+            "law": (
+                "reuse only cache rows spanning the corrected guarded "
+                "window; rebuild every shorter horizon from frozen true "
+                "prints and causal top-five snapshots; never score here"
+            ),
+            "candidate_scoring_performed": False,
+        },
     }
     tape_manifest = read_json(tape_manifest_path)
     expected_print_hash = (

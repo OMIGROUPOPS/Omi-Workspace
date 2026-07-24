@@ -91,7 +91,7 @@ def verify_prerun(
     events_path: Path,
 ) -> dict[str, Any]:
     freeze = read_json(freeze_path)
-    if freeze.get("schema_version") != "window1-os-family-prerun-v2":
+    if freeze.get("schema_version") != "window1-os-family-prerun-v3":
         raise SearchError("unrecognized PRE-RUN schema")
     if freeze.get("execution_order", {}).get(
         "candidate_scoring_performed"
@@ -163,6 +163,7 @@ def load_frozen_event_market(
     start: Mapping[str, Any],
     source: Path,
     expected_cache_key: str,
+    expected_cache_version: str,
     left: float,
     right: float,
 ) -> list[dict[str, Any]]:
@@ -175,6 +176,7 @@ def load_frozen_event_market(
     if (
         payload.get("event_id") != event_id
         or payload.get("cache_key") != expected_cache_key
+        or payload.get("cache_version") != expected_cache_version
         or not isinstance(payload.get("legs"), list)
         or len(payload["legs"]) != 2
     ):
@@ -1010,6 +1012,7 @@ def evaluate(
     feature_map: Mapping[tuple[str, int, str], Mapping[str, Any]],
     market_cache_source: Path,
     expected_cache_key: str,
+    expected_cache_version: str,
 ) -> dict[str, list[dict[str, Any]]]:
     output = {
         str(policy["policy_id"]): [] for policy in policies
@@ -1062,7 +1065,7 @@ def evaluate(
 
         leg_data = load_frozen_event_market(
             event, start, market_cache_source,
-            expected_cache_key, left, cutoff,
+            expected_cache_key, expected_cache_version, left, cutoff,
         )
         contexts = fit.contexts_for_event(
             event, leg_data, [8], feature_map
@@ -1271,8 +1274,13 @@ def run(args: argparse.Namespace) -> int:
                 f"validated market-cache PRE-RUN drift: {field}"
             )
     expected_cache_key = str(frozen_market_cache.get("cache_key") or "")
-    if not expected_cache_key:
-        raise SearchError("validated market cache lacks cache key")
+    expected_cache_version = str(
+        frozen_market_cache.get("cache_version") or ""
+    )
+    if not expected_cache_key or not expected_cache_version:
+        raise SearchError(
+            "validated market cache lacks key/version"
+        )
 
     spec = read_json(candidate_path)
     policies = candidate_policies(spec)
@@ -1296,6 +1304,7 @@ def run(args: argparse.Namespace) -> int:
         grid_rows = evaluate(
             policies, events, starts, feature_map,
             market_cache_source, expected_cache_key,
+            expected_cache_version,
         )
         summaries = [
             summarize_candidate(
@@ -1324,6 +1333,7 @@ def run(args: argparse.Namespace) -> int:
         ablation_rows = evaluate(
             ablation_policies, events, starts, feature_map,
             market_cache_source, expected_cache_key,
+            expected_cache_version,
         )
         ablations = [
             summarize_candidate(

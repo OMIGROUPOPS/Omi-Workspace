@@ -1,0 +1,341 @@
+{
+  "adapter_id": "chronological-window1-os-family-development-adapter-v2",
+  "allowed_feature_families": [
+    "pair_law",
+    "first_fill_sibling_response",
+    "sealed_bands",
+    "dual_divot_steering_and_catch",
+    "drift_recognition",
+    "cohort_steering",
+    "orientation_prior",
+    "walk_park_posture",
+    "riser_deceleration_mirror_seesaw",
+    "dynamic_floor_and_recut_cells",
+    "atlas_and_reach",
+    "shape_corpus",
+    "fv_and_bookmaker_voice",
+    "bbo_and_top_five_pressure",
+    "own_order_fingerprints_and_contributed_volume",
+    "true_print_tape"
+  ],
+  "allowed_feature_families_sha256": "84b96a9a3590f3a51443c7d6adbaede425845146b6fd9bb691b03bb921e771b4",
+  "branch": "codex/window1-definition",
+  "candidate_generation_sha256": "df7f6c5598a10dfa75d149951192ff80f0294a77707dddb942b2bfbc6fd69855",
+  "candidate_policy_ids": [
+    "pair_divot_core__park__hold",
+    "pair_divot_core__park__reaim",
+    "pair_divot_core__walk__hold",
+    "pair_divot_core__walk__reaim",
+    "drift_cohort_orientation__park__hold",
+    "drift_cohort_orientation__park__reaim",
+    "drift_cohort_orientation__walk__hold",
+    "drift_cohort_orientation__walk__reaim",
+    "mirror_deceleration__park__hold",
+    "mirror_deceleration__park__reaim",
+    "mirror_deceleration__walk__hold",
+    "mirror_deceleration__walk__reaim",
+    "dynamic_recut_atlas__park__hold",
+    "dynamic_recut_atlas__park__reaim",
+    "dynamic_recut_atlas__walk__hold",
+    "dynamic_recut_atlas__walk__reaim",
+    "causal_micro_pressure__park__hold",
+    "causal_micro_pressure__park__reaim",
+    "causal_micro_pressure__walk__hold",
+    "causal_micro_pressure__walk__reaim",
+    "full_chronological_stack__park__hold",
+    "full_chronological_stack__park__reaim",
+    "full_chronological_stack__walk__hold",
+    "full_chronological_stack__walk__reaim"
+  ],
+  "candidate_policy_ids_sha256": "4bcc02e9e7d7218a4948c0c04af74c4a4c456a8bbfdb42c7388584d6f2fc6aff",
+  "delta_reference_law": {
+    "combined_delta": "sum of the two individual deltas",
+    "future_print_allowed": false,
+    "individual_delta": "leg fill VWAP cents minus per-leg Window-1-close cents",
+    "missing_reference": "PC and IC are false/unknown, never success; C remains a fill fact",
+    "negative": "strictly less than zero",
+    "per_leg_window1_close": "last positive-size exchange-identified deduplicated true print at or before that event's strict positive start cutoff and at or after T-8h",
+    "schedule_as_close_allowed": false
+  },
+  "development": {
+    "D": 804,
+    "dates": [
+      "2026-07-12",
+      "2026-07-13",
+      "2026-07-14",
+      "2026-07-15",
+      "2026-07-16",
+      "2026-07-17",
+      "2026-07-18",
+      "2026-07-19",
+      "2026-07-20"
+    ],
+    "target_PC": 603
+  },
+  "execution_order": {
+    "candidate_results_opened": false,
+    "candidate_scoring_performed": false,
+    "pre_run_commit_and_push_required_before_scoring": true
+  },
+  "execution_parameters_sha256": "6511326ec9ba00b5a667b8e75183ee0e4c118ff4f6fc9c6f98e38317db743f92",
+  "frozen_numeric_constants": {
+    "bookmaker_extra_depth_cents": 1,
+    "bookmaker_negative_divergence_threshold_cents": -3,
+    "orientation_call_hi": 0.65,
+    "orientation_call_lo": 0.35,
+    "orientation_drift_cents": 1,
+    "orientation_flow_high": 0.6,
+    "orientation_flow_low": 0.4,
+    "orientation_min_n": 10,
+    "orientation_range_high": 0.67,
+    "orientation_range_low": 0.33,
+    "pair_class_net_cents": 5,
+    "pressure_extra_depth_cents": 1,
+    "pressure_ratio_threshold": 1.5,
+    "recognition_hour": 6,
+    "recognition_min_purity": 0.5,
+    "source": "pre-existing WINDOW1_CANDIDATES.json, ORIENT_V1, band-cascade and causal-stack laws",
+    "walk_max_moves": 2,
+    "walk_move_step_cents": 1
+  },
+  "frozen_numeric_constants_sha256": "aed53c96cf3d02ee4bda0c72c3a7087e8358b7e84fc35aa90e9515cb86e54af7",
+  "git_head_before_prerun_commit": "004f9d404ca64a542d12104ac6a6009945a5ee43",
+  "holdout": {
+    "dates": [
+      "2026-07-24",
+      "2026-07-25",
+      "2026-07-26"
+    ],
+    "opened": false,
+    "queried": false
+  },
+  "independent_audit_provenance": {
+    "artifact": "START_LEDGER_V4_CROSS_REVIEW.md",
+    "branch": "origin/audit/window1-independent",
+    "commit": "9919de9462f3df4a0bd33239b7e8f648b71e20fb"
+  },
+  "metric_contract_sha256": "be2ebf4b14ad58ad509d1c7cdb52b2755cddb412286e5ea69e68cff5eecc5e5e",
+  "parameter_ranges_sha256": "47ecef650c0b4b87813a03a983324ead5db1ee29f1f585f8a5eea3db09eb2119",
+  "predeclared_ablations": [
+    "without_sealed_bands",
+    "without_divot_catch",
+    "without_drift_recognition",
+    "without_cohort_steering",
+    "without_orientation_prior",
+    "without_dynamic_floor_recut",
+    "without_atlas_reach",
+    "without_shape_corpus",
+    "without_bookmaker_fv",
+    "without_top_five_pressure",
+    "without_own_order_fingerprints",
+    "without_first_fill_sibling_response",
+    "without_true_print_walk"
+  ],
+  "predeclared_ablations_sha256": "57bd627b0c8e38ed87599f70d6e775ddc1c1e29351a85dca763583037c953032",
+  "private_development_input_receipts": {
+    "development_events": {
+      "D": 804,
+      "bytes": 336694,
+      "dates": [
+        "2026-07-12",
+        "2026-07-13",
+        "2026-07-14",
+        "2026-07-15",
+        "2026-07-16",
+        "2026-07-17",
+        "2026-07-18",
+        "2026-07-19",
+        "2026-07-20"
+      ],
+      "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46"
+    },
+    "market_cache_materialization": {
+      "candidate_scoring_performed": false,
+      "law": "reuse only cache rows spanning the corrected guarded window; rebuild every shorter horizon from frozen true prints and causal top-five snapshots; never score here",
+      "materializer": "arb-executor/analysis/window1_guarded_cache_materializer.py"
+    },
+    "normalized_true_prints": {
+      "bytes": 1766090446,
+      "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+    },
+    "public_tape_manifest": {
+      "bytes": 2245,
+      "sha256": "d2a3bd4b156f312fce3bbb8a8875114904ac39f2ed5b36801799d9a905e4d575"
+    },
+    "validated_event_market_cache": {
+      "bytes": 197461623,
+      "cache_key": "b85371c8eb52996f66ac25d9b60f0b41f6fbbba4afe883b135962782ae491b0b",
+      "cache_version": "window1-guarded-event-market-cache-v3",
+      "files": 804,
+      "hash_set_sha256": "aad8d055e90bb429f7da87b450dc9c4e2dc6a6ef114e40368535b8953b86425e"
+    }
+  },
+  "prohibitions": {
+    "aim_v2": true,
+    "feature_gap_imputation": true,
+    "future_information": true,
+    "narrow_proxy_substitution": true,
+    "pinnacle": true,
+    "schedule_as_start": true,
+    "unproven_full_depth": true,
+    "window2_exits_settlement_dca": true
+  },
+  "repository_input_receipts": {
+    ".claude/entrysurface_20260717/band_map_v1.json": {
+      "bytes": 15520,
+      "locator": ".claude/entrysurface_20260717/band_map_v1.json",
+      "sha256": "caf255a283bbb32f1d9bd2edd5f4d898d5f50fc8e67d5f9a076579b695a9e68c"
+    },
+    ".claude/entrysurface_20260717/divot_tables_v1.json": {
+      "bytes": 16623,
+      "locator": ".claude/entrysurface_20260717/divot_tables_v1.json",
+      "sha256": "89c514ec35673de8f552b2b66b9ceafb8181b9c8f6c00b1679899a3a2a82ac06"
+    },
+    ".claude/entrysurface_20260717/drift_surfaces_v1.json": {
+      "bytes": 182240,
+      "locator": ".claude/entrysurface_20260717/drift_surfaces_v1.json",
+      "sha256": "7dca4a4f0e6061d28765fd243f4ce717bc36a542b32490bafabc611bd2cf3bab"
+    },
+    ".claude/entrysurface_20260717/entry_tables_sealed_v1.json": {
+      "bytes": 10125,
+      "locator": ".claude/entrysurface_20260717/entry_tables_sealed_v1.json",
+      "sha256": "c0c29e54792e2f49cad6e96297367b4ada80051cde464a8f3dddb748ae1ce8e7"
+    },
+    ".claude/loop8_20260720/SEAL_CEREMONY_20260720.md": {
+      "bytes": 10104,
+      "locator": ".claude/loop8_20260720/SEAL_CEREMONY_20260720.md",
+      "sha256": "aba8c12eacae25bab63d612477e9bddd4e691c113e4b35e288f29e3319f69d7d"
+    },
+    ".claude/master_20260709/cohort.json": {
+      "bytes": 167391,
+      "locator": ".claude/master_20260709/cohort.json",
+      "sha256": "9e144811b54637e8b71e676a56b122081bc09447e49ea726769539e51f8d8488"
+    },
+    ".claude/proof_20260720/PROOF_DUAL_DIVOT_SEAL.md": {
+      "bytes": 2625,
+      "locator": ".claude/proof_20260720/PROOF_DUAL_DIVOT_SEAL.md",
+      "sha256": "32a73dffbc1365f0c5b67e952ecacafbf48456dddb679604ba29e0bad9ca576d"
+    },
+    ".claude/seqfloor_20260708/recut_cells.json": {
+      "bytes": 86928,
+      "locator": ".claude/seqfloor_20260708/recut_cells.json",
+      "sha256": "852ab6678e4358189e4f79987e0286011d1e5662a2653ed0cc34fc18e4fb32b7"
+    },
+    ".claude/takerreach/LAW.json": {
+      "bytes": 7824,
+      "locator": ".claude/takerreach/LAW.json",
+      "sha256": "f1cf8c9ced4fef1337cb397636a40bdeeaee2a126275a9d50ae3310d59aee2fe"
+    },
+    ".claude/trendpath/ATLAS_V1.json": {
+      "bytes": 67396,
+      "locator": ".claude/trendpath/ATLAS_V1.json",
+      "sha256": "797b3e7bd4a107f80244a06a8aea504211680122434fd0141e8f41512031c121"
+    },
+    ".claude/trendpath/ORIENT_V1.json": {
+      "bytes": 2061,
+      "locator": ".claude/trendpath/ORIENT_V1.json",
+      "sha256": "e8003418aa5ed97b58294f390e7c261b11e1d4d9bd50a6be171aebbbba06f5f5"
+    },
+    ".claude/window1_20260721/SOURCE_COVERAGE_SUMMARY.json": {
+      "bytes": 8779,
+      "locator": ".claude/window1_20260721/SOURCE_COVERAGE_SUMMARY.json",
+      "sha256": "231a6ae056d232c7e203cc8c7e7614a0ab6892b38b12d10fdb58f3a0122772df"
+    },
+    ".claude/window1_20260721/SPACES_MATERIALIZATION_SUMMARY.json": {
+      "bytes": 589,
+      "locator": ".claude/window1_20260721/SPACES_MATERIALIZATION_SUMMARY.json",
+      "sha256": "4ed76e8fcd59c7763498e7486e1d0122f75a4b291a361c6b21148e82ee6be00b"
+    },
+    ".claude/window1_20260721/WINDOW1_FEATURE_MATRIX.jsonl": {
+      "bytes": 20288495,
+      "locator": ".claude/window1_20260721/WINDOW1_FEATURE_MATRIX.jsonl",
+      "sha256": "4b543313b315af91db86ff049f552335b32fc36654fd53d7a27ae682184584c1"
+    },
+    ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl": {
+      "bytes": 3696777,
+      "locator": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+      "sha256": "c6204d016aeeab9cec54c5f989e695cb74a13e40b8e25085a3a9410a2c5548ed"
+    },
+    ".claude/window1_start_guard_corrected_20260724/REAL_START_SUMMARY_V5.json": {
+      "bytes": 20950,
+      "locator": ".claude/window1_start_guard_corrected_20260724/REAL_START_SUMMARY_V5.json",
+      "sha256": "eb8ec4a3eaffb382f9aedeabe81c3d21b0930fd542f31d59bedfc366a6fa572c"
+    },
+    "arb-executor/analysis/window1_execution_kernel.py": {
+      "bytes": 31444,
+      "locator": "arb-executor/analysis/window1_execution_kernel.py",
+      "sha256": "cd921003f68f993bd8185d5e2413cde9983167be50b7ae8c0dd148b1a9e18893"
+    },
+    "arb-executor/analysis/window1_fit_benchmark.py": {
+      "bytes": 116840,
+      "locator": "arb-executor/analysis/window1_fit_benchmark.py",
+      "sha256": "c587ea02055aced7b3b72f1c7eeea62dd9b6f03f38ceea66355ab7c57939c34d"
+    },
+    "arb-executor/analysis/window1_guarded_cache_materializer.py": {
+      "bytes": 11303,
+      "locator": "arb-executor/analysis/window1_guarded_cache_materializer.py",
+      "sha256": "b949201bc7ca32f0143b4e8518c0696a1260383b19417e433099f05e19a76fad"
+    },
+    "arb-executor/analysis/window1_os_family_prerun.py": {
+      "bytes": 17189,
+      "locator": "arb-executor/analysis/window1_os_family_prerun.py",
+      "sha256": "23ca5b5d12d1ad4d944c0b8e7a35258b0548da370e44003ef47e08738bc273ef"
+    },
+    "arb-executor/analysis/window1_os_family_search.py": {
+      "bytes": 51466,
+      "locator": "arb-executor/analysis/window1_os_family_search.py",
+      "sha256": "fc7f65bcf85d401ef525dd64e2f38b557e89dae20fbbb6bee9adb18c59e9f941"
+    },
+    "arb-executor/analysis/window1_start_guard.py": {
+      "bytes": 13398,
+      "locator": "arb-executor/analysis/window1_start_guard.py",
+      "sha256": "2d4fe2172e0c9c077464d3182cc74da5cc0be6f2aac7cf7a86a860c5a842b54e"
+    },
+    "arb-executor/data/shape_corpus/manifest.json": {
+      "bytes": 498037,
+      "locator": "arb-executor/data/shape_corpus/manifest.json",
+      "sha256": "2db26665b83753418e4b6e21a804259a5713bffde481adfaa12a7b6ceb5d5e50"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_ADAPTER_V1.json": {
+      "bytes": 3251,
+      "locator": "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_ADAPTER_V1.json",
+      "sha256": "86036b15c3d8b8a8ef97b0bb289e68d2ae7eb0086c0741ed9212ab145db2e0d1"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_CANDIDATES_V1.json": {
+      "bytes": 9399,
+      "locator": "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_CANDIDATES_V1.json",
+      "sha256": "cc804c054b8011846d531ed00d5cffb4564098bead5041abbc4219f544a68769"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_FEATURE_ALLOWLIST_V1.json": {
+      "bytes": 1668,
+      "locator": "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_FEATURE_ALLOWLIST_V1.json",
+      "sha256": "4b63e67da00183ac26ed615d12cd20fb66fcc840582dda9abf70538985649c1d"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_METRIC_CONTRACT_V1.json": {
+      "bytes": 2574,
+      "locator": "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_METRIC_CONTRACT_V1.json",
+      "sha256": "be2ebf4b14ad58ad509d1c7cdb52b2755cddb412286e5ea69e68cff5eecc5e5e"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_PROSPECTIVE_HOLDOUT_V1.json": {
+      "bytes": 805,
+      "locator": "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_PROSPECTIVE_HOLDOUT_V1.json",
+      "sha256": "1a02bac4a083862389de501c0343a3192fdf9665adcd2fba11f64c9536230bd0"
+    },
+    "arb-executor/tests/test_window1_os_family_search.py": {
+      "bytes": 6169,
+      "locator": "arb-executor/tests/test_window1_os_family_search.py",
+      "sha256": "57c366fee29a4138cf81c8711e41ac25db9c99812eb8eb4ec2401c7ae7b0a455"
+    }
+  },
+  "schema_version": "window1-os-family-prerun-v3",
+  "source_hash_bundle_sha256": "45f5297ea315aa6817e44906a6bc99db34377bf62bbf6a6c85e94743736f75c8",
+  "start_boundary": {
+    "ambiguous": "censored",
+    "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+    "named_proxy_censors": 13,
+    "official_guard_seconds": 60,
+    "positive_capable_after_named_censors": 705,
+    "proxy_negative_guard_seconds": 600,
+    "proxy_positive_guard_seconds": 900
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "candidate_policy_forbidden_field_read_sites": [],
+  "early_evaluation_classification": "no_inside_window_fill",
+  "evaluation_real_start": "ex-post evaluator only",
+  "evaluator_classifications_differ": true,
+  "future_realized_starts_differ": true,
+  "gate_pass": true,
+  "holdout_queried": false,
+  "identical_causal_histories": true,
+  "late_evaluation_classification": "has_inside_window_fill",
+  "leaked_realized_start_refused": true,
+  "policy_anchor": "timestamped exchange schedule observed at or before policy activation",
+  "policy_stream_a_sha256": "b9eae3e060f6796aa0c0d058e8edda3808f5719145651a47543e33a90ab5234a",
+  "policy_stream_b_sha256": "b9eae3e060f6796aa0c0d058e8edda3808f5719145651a47543e33a90ab5234a",
+  "policy_streams_byte_identical": true,
+  "schedule_only_positive_proof_allowed": false,
+  "schema_version": "window1-round2-clock-separation-proof-v1",
+  "scored": false
+}

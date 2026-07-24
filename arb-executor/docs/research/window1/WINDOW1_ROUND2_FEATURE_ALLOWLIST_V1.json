@@ -1,5 +1,5 @@
 {
-  "schema_version": "window1-round2-feature-allowlist-v1",
+  "schema_version": "window1-round2-feature-allowlist-v2",
   "allowed": [
     "start_boundary",
     "asynchronous_divot_timing",
@@ -14,6 +14,28 @@
     "bbo_top5_pressure",
     "own_order_contribution_subtraction"
   ],
+  "real_development_capability_status": {
+    "decision_changing_and_counted_as_coverage": [
+      "asynchronous_divot_timing",
+      "leg_specific_posture",
+      "nonself_one_cent_walk",
+      "first_fill_sibling_response",
+      "pair_divot_recut",
+      "causal_orientation",
+      "causal_drift_recognition",
+      "true_print_flow",
+      "bbo_top5_pressure"
+    ],
+    "loaded_evaluated_unavailable_NO_CALL": [
+      "cohort_steering"
+    ],
+    "mandatory_safety_law_inert_zero_attributable_volume": [
+      "own_order_contribution_subtraction"
+    ],
+    "evaluation_only_not_policy_coverage": [
+      "start_boundary"
+    ]
+  },
   "conditionally_allowed": {
     "bookmaker_fv": "only when the individual observation is causal, participant-mapped, and source-proven; no candidate requires it in v1",
     "shape_corpus": "only after an independent non-AIM causal cell mapping exists; unavailable in v1",

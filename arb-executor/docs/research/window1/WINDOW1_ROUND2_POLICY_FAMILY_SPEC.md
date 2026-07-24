@@ -2,8 +2,9 @@
 
 Status: **PRE-RUN construction only. No Round-2 candidate has been scored.**
 
-This instrument repairs the under-expression established by the independent
-cross-audit at commit `024f03bb5b1944bae39ad5afef6ee019ef5dc06d`.
+This superseding instrument repairs the four blockers established by the
+independent cross-audit at commit
+`fb17a98fb93ac73668e3ebd731aa0d9c1b99ca43`.
 The immutable development population remains D=804 for July 12-20 UTC, the
 primary target remains PC=603, and July 24-26 remains sealed and unqueried.
 
@@ -23,9 +24,11 @@ book, queue, posture, active order, fill state, and cancellation clock.
 
 1. The first causal BBO binds the leg's birth cell and the frozen pre-development
    recut/divot surfaces.
-2. The recut cell's `t_deep_p50` produces that leg's own eligibility timestamp,
-   clamped to the guarded Window-1 interval. The sibling may have a different
-   timestamp.
+2. `policy_anchor_ts` is the timestamped exchange schedule known to the policy.
+   The recut cell's `t_deep_p50` produces that leg's own eligibility timestamp
+   relative to that policy anchor and declared corridor. The sibling may have
+   a different timestamp. `evaluation_real_start_ts` is never passed to this
+   code.
 3. Macro values never trigger an order. Public non-self true prints and a
    contemporaneous BBO/ask-hold state provide the micro confirmation.
 4. Orientation is first callable at the first-hour checkpoint and uses only
@@ -35,7 +38,9 @@ book, queue, posture, active order, fill state, and cancellation clock.
 6. A causal book-cell change may recut and reprice only that leg.
 7. A full five-contract fill on one leg may create a timestamped hold or
    one-cent sibling reaim on the still-independent other leg.
-8. Remaining orders cancel independently at the guarded right edge.
+8. Remaining orders cancel independently at the declared policy horizon.
+   A separate ex-post evaluator may then use independently reconstructed start
+   truth to classify actions; it cannot create or time an order.
 
 The four Round-1 `pair_divot_core` rows failed item 5 by reading a T6
 `called_band` in a T8 price. Round 2 has no T8 pricing function that accepts a
@@ -59,27 +64,41 @@ differ.
 - **Drift recognition:** the frozen h6 table may change an order only at/after
   T6.
 - **Cohort steering:** the frozen pre-development cohort is callable only at
-  n>=30 and only when its depth differs by at least two cents.
-- **True-print flow:** zero-size, synthetic, or fingerprinted-own activity
-  never confirms flow, divot, walk, or fill.
+  n>=30 and only when its depth differs by at least two cents. Below-floor
+  support returns `NO_CALL_UNAVAILABLE`; it never censors the leg, erases the
+  underlying posture/divot decision, or changes the event to nonfill.
+- **True-print flow:** only receipt-identified, independently size-verified
+  positive public prints are admitted. Zero, null, malformed, synthetic, or
+  fingerprinted-own activity contributes zero and never confirms divot, flow,
+  pressure, posture, walk, join, touch, park, recut, replenishment, or fill.
 - **BBO/top-five pressure:** the causal top-five ask/external-bid ratio may add
   the frozen one-cent pressure depth where the feature is present.
 - **Own-order subtraction:** exact fingerprints subtract contributed book and
   print volume. They can remove false evidence but can never add confirmation.
-- **Start boundary:** schedule-only, live-by-only, and contradictory rows cannot
-  create a positive Window-1 stream; every positive-capable stream carries the
-  frozen guard object.
+- **Start boundary:** a timestamped schedule may lawfully anchor policy time,
+  but schedule-only, live-by-only, and contradictory truth can never prove a
+  positive Window-1 result. The guarded actual start is evaluation-only.
 
-Each family above changes at least one eligible decision in the synthetic
-causal-fixture campaign. Names that cannot pass that test are not advertised.
+Nine policy families change at least one decision in isolated contrasts on
+the bound real D=804 development population. Cohort is loaded and evaluated
+but unavailable at n=30, own-order subtraction is a mandatory safety law but
+inert because all 1,608 T8 receipts show zero attributable own volume, and the
+start boundary is evaluation-only. None of those three is counted as policy
+coverage.
 
 ## Frozen grid
 
-The allowlist contains ten candidate IDs:
+The superseding allowlist contains four real-eligible, pairwise-distinct
+candidate IDs:
 
-- async pair: park/join or touch/park, each with hold or reaim;
-- causal steer: park/join, with hold or reaim;
-- full OS: park/join or walk/park, each with hold or reaim.
+- async pair: park/join hold and touch/park hold;
+- causal steer: park/join hold;
+- full OS: walk/park hold.
+
+Four non-minimal reaim variants were removed before freeze. The two full-stack
+park/join variants were removed because the walk actuator is unreachable under
+that posture and the remaining policy is structurally the causal-steer
+park/join chain.
 
 There are nine predeclared selected-candidate ablations and no free numeric
 parameter. True-print flow and own-volume subtraction are invariant evidence
@@ -88,8 +107,8 @@ laws, not ablatable shortcuts. The exact IDs and values live in
 
 ## Missingness and terminal law
 
-A missing required feature produces `censored_feature`, not nonfill. A
-zero-length guarded interval produces `zero_length_window1_opportunity`. A
+A missing required feature produces `censored_feature`, not nonfill. Cohort
+abstention is not missingness and does not censor. A
 feature-complete leg that had a lawful order and zero fills produces
 `genuine_zero_fill`; a feature-complete leg whose micro trigger never appeared
 produces `no_eligible_micro_trigger`. Missingness never changes D and never

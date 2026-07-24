@@ -1,0 +1,614 @@
+{
+  "D": 804,
+  "adapter": {
+    "adapter_id": "chronological-two-leg-window1-round2-v2",
+    "causal_order": [
+      "bind birth cell from the first causal non-self BBO",
+      "derive each leg's independent eligibility clock from policy_anchor_ts plus its own frozen recut cell",
+      "require contemporaneous non-self micro flow/divot evidence",
+      "apply orientation only at the first-hour checkpoint",
+      "apply drift recognition only at the T6 checkpoint using history through T6",
+      "recut a leg only on that leg's causal book-cell change",
+      "apply sibling response only after the first leg's simulated full fill",
+      "cancel each still-resting leg independently at the declared policy horizon"
+    ],
+    "clock_separation_law": {
+      "candidate_forbidden_fields": [
+        "evaluation_real_start_ts",
+        "strict_positive_cutoff_ts",
+        "verified_start_utc",
+        "exact_start_utc",
+        "proxy_clock_utc",
+        "known_live_by_utc",
+        "not_live_through_utc",
+        "start_interval_utc"
+      ],
+      "evaluation_clock": "evaluation_real_start_ts is accepted only by the separate ex-post evaluator",
+      "identical_causal_history_different_realized_start": "byte-identical policy order stream",
+      "policy_clock": "policy_anchor_ts plus timestamped schedule observation and declared corridor only",
+      "schedule_only_policy_anchor_allowed": true,
+      "schedule_only_positive_evaluation_allowed": false
+    },
+    "counterfactual_order_creation": true,
+    "full_depth": "unavailable; top-five only",
+    "input_contract": {
+      "event_fields": [
+        "event_id",
+        "event_date",
+        "category",
+        "policy_anchor_ts",
+        "policy_anchor_observed_at_ts",
+        "policy_anchor_source",
+        "policy_left_ts",
+        "policy_decision_horizon_ts",
+        "policy_corridor_seconds_after_anchor",
+        "legs"
+      ],
+      "leg_fields": [
+        "leg_id",
+        "ticker",
+        "role",
+        "feature_availability",
+        "observations"
+      ],
+      "observation_types": {
+        "book": [
+          "exchange_or_causal_receipt_timestamp",
+          "top_five_bid_levels",
+          "top_five_ask_levels",
+          "fingerprinted_own_bid_quantity_by_price"
+        ],
+        "print": [
+          "exchange_timestamp",
+          "exchange_trade_id",
+          "source_and_deduplication_identity",
+          "price",
+          "size",
+          "independent_size_verification",
+          "taker_side",
+          "own_order_fingerprint"
+        ]
+      }
+    },
+    "instrument_version": "window1-round2-causal-instrument-v2",
+    "missingness_law": {
+      "cohort_below_floor": "named NO_CALL_UNAVAILABLE; underlying policy continues",
+      "feature_gap_imputation": false,
+      "missing_required_feature": "censored_feature",
+      "no_micro_trigger_with_features_present": "no_eligible_micro_trigger",
+      "silent_proxy_substitution": false,
+      "zero_length_window": "zero_length_window1_opportunity"
+    },
+    "network_interface": false,
+    "own_order_law": "fingerprints may subtract contributed book/print volume; fingerprinted activity is never fill, divot, flow, orientation, drift, or walk confirmation",
+    "pinnacle": "unavailable",
+    "positive_size_law": "zero, null, malformed, or synthetic transition size contributes zero and cannot trigger divot, flow, pressure, posture, walk, join, touch, park, recut, replenishment, or fill",
+    "production_interface": false,
+    "schema_version": "window1-round2-execution-adapter-v2",
+    "scoring_implemented": false,
+    "shape_corpus": "unavailable without independent non-AIM causal cell mapping",
+    "start_boundary_law": {
+      "guard_required_beside_positive_stream": true,
+      "positive_capable": [
+        "official_exact",
+        "quantized_late_detection_proxy",
+        "clean_causal_interval"
+      ],
+      "positive_prohibited": [
+        "schedule_only",
+        "live_by_only",
+        "contradictory"
+      ],
+      "tennisexplorer_proxy_may_be_exact": false
+    }
+  },
+  "branch": "codex/window1-definition",
+  "candidate_policy_ids": [
+    "r2_async_pair__park_join__hold",
+    "r2_async_pair__touch_park__hold",
+    "r2_causal_steer__park_join__hold",
+    "r2_full_os__walk_park__hold"
+  ],
+  "candidate_policy_ids_sha256": "1fc754cd4b9c0d0c3704ad1f8e56a92952ce347c41434ae8a8f905f863523dc9",
+  "candidate_scoring_performed": false,
+  "controlling_audit": {
+    "branch": "origin/audit/window1-independent",
+    "bytes": 11977,
+    "commit": "fb17a98fb93ac73668e3ebd731aa0d9c1b99ca43",
+    "git_blob_oid": "bd0fdefa158ece947825a07ed3549f51060e878a",
+    "merged_wholesale": false,
+    "path": ".claude/audit_20260724_round2_prerun/ROUND2_PRERUN_CROSS_AUDIT.md",
+    "sha256": "88c39ac75e3f77248f63841c8656ed235b4c378902da97be957c639b834ad46c"
+  },
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "exact_ancestry": {
+    "commit_count_after_rejected": 1,
+    "parent_of_rejected": "f7cd420951f074104dbc602b84137c5eed7455da",
+    "parent_rejected_prerun": "6eecbd1d9adc7c41af28526d0cabe1038f3ae18b",
+    "superseding_commit": "this_manifest_commit"
+  },
+  "feature_family_contract": {
+    "allowed": [
+      "start_boundary",
+      "asynchronous_divot_timing",
+      "leg_specific_posture",
+      "nonself_one_cent_walk",
+      "first_fill_sibling_response",
+      "pair_divot_recut",
+      "causal_orientation",
+      "causal_drift_recognition",
+      "cohort_steering",
+      "true_print_flow",
+      "bbo_top5_pressure",
+      "own_order_contribution_subtraction"
+    ],
+    "conditionally_allowed": {
+      "bookmaker_fv": "only when the individual observation is causal, participant-mapped, and source-proven; no candidate requires it in v1",
+      "pinnacle": "unavailable in v1",
+      "raw_ws_full_depth": "unavailable until snapshot ancestry and gap-free sequence continuity are proved",
+      "shape_corpus": "only after an independent non-AIM causal cell mapping exists; unavailable in v1"
+    },
+    "prohibited": [
+      "schedule_as_actual_start",
+      "future_or_post_decision_reference",
+      "self_trade_as_market_confirmation",
+      "narrow_proxy_for_missing_feature",
+      "feature_gap_imputation",
+      "AIM_V2",
+      "settlement",
+      "exit_or_window2_state",
+      "holdout_observation"
+    ],
+    "real_development_capability_status": {
+      "decision_changing_and_counted_as_coverage": [
+        "asynchronous_divot_timing",
+        "leg_specific_posture",
+        "nonself_one_cent_walk",
+        "first_fill_sibling_response",
+        "pair_divot_recut",
+        "causal_orientation",
+        "causal_drift_recognition",
+        "true_print_flow",
+        "bbo_top5_pressure"
+      ],
+      "evaluation_only_not_policy_coverage": [
+        "start_boundary"
+      ],
+      "loaded_evaluated_unavailable_NO_CALL": [
+        "cohort_steering"
+      ],
+      "mandatory_safety_law_inert_zero_attributable_volume": [
+        "own_order_contribution_subtraction"
+      ]
+    },
+    "schema_version": "window1-round2-feature-allowlist-v2"
+  },
+  "free_numeric_parameters": [],
+  "freeze_status": "frozen_not_scored",
+  "frozen_at_utc": "2026-07-24T20:23:56.126494+00:00",
+  "hash_basis": "staged_git_blob_lf",
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "immutable_data_binding": {
+    "D": 804,
+    "binding_bundle_sha256": "4a56deea7651970717df54d450da2ab3c453696963f1196c6a44ae0233af3a9b",
+    "holdout_dates_present": 0,
+    "leg_identities": 1608,
+    "receipt": {
+      "bytes": 332562,
+      "git_blob_oid": "b616c3a715ea0ab6a70083c7a3b1b808c9b25af2",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json",
+      "sha256": "5b97aab24132a1e04a8f4d552fa2a6c026113aa5ad7d629c4ea07344b1238fa6"
+    }
+  },
+  "invariants": {
+    "D_804": true,
+    "all_candidates_pairwise_distinct": true,
+    "all_candidates_real_eligible": true,
+    "all_inputs_bound": true,
+    "cohort_abstention_never_censors": true,
+    "holdout_unqueried": true,
+    "metrics_unchanged": true,
+    "policy_evaluation_clocks_separate": true,
+    "positive_size_only": true,
+    "round2_not_scored": true,
+    "target_PC_603": true
+  },
+  "metric_contract": {
+    "D": 804,
+    "definitions": {
+      "C": "both legs fill exactly five contracts inside lawful Window 1",
+      "IC": "C and both individual Window-1-close deltas strictly negative",
+      "PC": "C and negative combined Window-1-close delta",
+      "S": "C and combined entry cost strictly below 100 cents",
+      "combined_delta": "sum of the two individual deltas",
+      "individual_delta": "leg fill VWAP minus the last lawful true-print Window-1-close reference for that leg"
+    },
+    "lot_per_leg": 5,
+    "missing_data": "remains in D and is censored; never success and never silently nonfill",
+    "negative_law": "strictly less than zero",
+    "required_outputs": [
+      "D",
+      "C",
+      "PC",
+      "S",
+      "IC",
+      "combined_entry_cost",
+      "combined_delta",
+      "both_individual_deltas",
+      "exact_five",
+      "partial",
+      "other_quantity",
+      "genuine_zero_fill",
+      "naked_single_leg",
+      "zero_length_window",
+      "contradictory",
+      "censored"
+    ],
+    "schema_version": "window1-round2-metric-contract-v1",
+    "scoring_status": "frozen_not_executed",
+    "target_PC": 603
+  },
+  "metric_contract_sha256": "19795e4d8bc7b6920e9fe93f7fa60bd1c051df94dade31de4c7909b40953cb76",
+  "parameter_surface": {
+    "cohort_minimum_n": 30,
+    "cohort_minimum_reaim_delta_cents": 2,
+    "divot_definition": {
+      "ask_hold_within_cents": 1,
+      "minimum_depth_cents": 2,
+      "minimum_prior_nonself_prints": 3,
+      "trailing_median_seconds": 1800
+    },
+    "first_fill_sibling_reaim_cents": 1,
+    "flow_minimum_nonself_prints_30m": {
+      "ATP_CHALL": 16,
+      "ATP_MAIN": 1,
+      "WTA_CHALL": 16,
+      "WTA_MAIN": 1
+    },
+    "lot_per_leg": 5,
+    "never_marketable": true,
+    "orientation_checkpoint_seconds_after_left": 3600,
+    "policy_corridor_seconds_after_anchor": 0,
+    "recognition_checkpoint_seconds_after_left": 7200,
+    "top5_ask_over_external_bid_threshold": 1.5,
+    "top5_pressure_extra_depth_cents": 1,
+    "walk": {
+      "maximum_journey_cents": {
+        "ATP_CHALL": 2,
+        "ATP_MAIN": 1,
+        "WTA_CHALL": 2,
+        "WTA_MAIN": 1
+      },
+      "minimum_chain_prints": 2,
+      "requires_verified_nonself_chain": true,
+      "step_cents": 1
+    }
+  },
+  "parameter_surface_sha256": "6517a4867f3ff70b3b3dec149540b21a36e9bc25b91c9a112b5bfdb00d725275",
+  "performance_ablation_performed": false,
+  "policy_evaluation_clock": {
+    "candidate_policy_forbidden_field_read_sites": [],
+    "early_evaluation_classification": "no_inside_window_fill",
+    "evaluation_real_start": "ex-post evaluator only",
+    "evaluator_classifications_differ": true,
+    "future_realized_starts_differ": true,
+    "gate_pass": true,
+    "holdout_queried": false,
+    "identical_causal_histories": true,
+    "late_evaluation_classification": "has_inside_window_fill",
+    "leaked_realized_start_refused": true,
+    "policy_anchor": "timestamped exchange schedule observed at or before policy activation",
+    "policy_stream_a_sha256": "b9eae3e060f6796aa0c0d058e8edda3808f5719145651a47543e33a90ab5234a",
+    "policy_stream_b_sha256": "b9eae3e060f6796aa0c0d058e8edda3808f5719145651a47543e33a90ab5234a",
+    "policy_streams_byte_identical": true,
+    "schedule_only_positive_proof_allowed": false,
+    "schema_version": "window1-round2-clock-separation-proof-v1",
+    "scored": false
+  },
+  "positive_size_gate": {
+    "bound_real_cache_invalid_size_rows": 0,
+    "cases": [
+      {
+        "case": "divot_size_0",
+        "divot_triggered_by_bad_row": false,
+        "excluded": true
+      },
+      {
+        "case": "divot_size_None",
+        "divot_triggered_by_bad_row": false,
+        "excluded": true
+      },
+      {
+        "case": "divot_size_'malformed'",
+        "divot_triggered_by_bad_row": false,
+        "excluded": true
+      },
+      {
+        "case": "synthetic_transition_divot",
+        "divot_triggered_by_bad_row": false,
+        "excluded": true
+      }
+    ],
+    "gate_pass": true,
+    "holdout_queried": false,
+    "law": "zero, null, malformed, or synthetic transition size contributes zero to all evidence/decision surfaces",
+    "schema_version": "window1-round2-zero-size-proof-v1",
+    "scored": false,
+    "zero_size_walk_chain_triggered": false
+  },
+  "predeclared_ablations": [
+    "without_asynchronous_divot_timing",
+    "without_leg_specific_posture",
+    "without_nonself_one_cent_walk",
+    "without_first_fill_sibling_response",
+    "without_pair_divot_recut",
+    "without_causal_orientation",
+    "without_causal_drift_recognition",
+    "without_cohort_steering",
+    "without_bbo_top5_pressure"
+  ],
+  "prohibitions": [
+    "future_information",
+    "realized_start_policy_oracle",
+    "schedule_as_positive_evaluation_truth",
+    "post_decision_reference",
+    "self_trade_confirmation",
+    "zero_or_missing_size_trigger",
+    "feature_gap_imputation",
+    "denominator_change",
+    "holdout_access",
+    "production_or_live_mutation"
+  ],
+  "real_capability_gate": {
+    "candidate_count": 4,
+    "candidate_gate_pass": true,
+    "censored_event_counts": {
+      "r2_async_pair__park_join__hold": 110,
+      "r2_async_pair__touch_park__hold": 110,
+      "r2_causal_steer__park_join__hold": 110,
+      "r2_full_os__walk_park__hold": 110
+    },
+    "cohort_status": "unavailable_NO_CALL_not_coverage",
+    "duplicate_candidate_groups": [],
+    "eligible_event_counts": {
+      "r2_async_pair__park_join__hold": 694,
+      "r2_async_pair__touch_park__hold": 694,
+      "r2_causal_steer__park_join__hold": 694,
+      "r2_full_os__walk_park__hold": 694
+    },
+    "family_witness_count": 9,
+    "own_subtraction_status": "mandatory_safety_law_inert_zero_attributable_volume"
+  },
+  "removed_candidate_ids": [
+    {
+      "candidate_id": "r2_async_pair__park_join__reaim",
+      "reason": "non-minimal response variant; hold retains executable first-fill sibling response"
+    },
+    {
+      "candidate_id": "r2_async_pair__touch_park__reaim",
+      "reason": "non-minimal response variant; hold retains executable first-fill sibling response"
+    },
+    {
+      "candidate_id": "r2_causal_steer__park_join__reaim",
+      "reason": "non-minimal response variant; hold retains executable first-fill sibling response"
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__reaim",
+      "reason": "non-minimal response variant; hold retains executable first-fill sibling response"
+    },
+    {
+      "candidate_id": "r2_full_os__park_join__hold",
+      "reason": "walk actuator is unreachable under park_join; structurally duplicates causal-steer posture"
+    },
+    {
+      "candidate_id": "r2_full_os__park_join__reaim",
+      "reason": "walk actuator is unreachable under park_join; structurally duplicates causal-steer posture and uses removed response variant"
+    }
+  ],
+  "schema_version": "window1-round2-superseding-prerun-v2",
+  "sealed_holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "source_code_data_metric_receipts": {
+    ".claude/window1_round1_corrected_20260724/ROUND1_CORRECTION_RECEIPT.json": {
+      "bytes": 10360,
+      "git_blob_oid": "e6630b601a3819d78a86c103d8c7a7ecc55e323f",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round1_corrected_20260724/ROUND1_CORRECTION_RECEIPT.json",
+      "sha256": "fa13932891b15a0844a30bf72c8a24535c8551bb8f24d4350f97557b0b866141"
+    },
+    ".claude/window1_round2_prerun_20260724/PRE_RUN_SUPERSESSION.md": {
+      "bytes": 594,
+      "git_blob_oid": "e6681f034ec3cd680eec804d44e15828d00773d4",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_20260724/PRE_RUN_SUPERSESSION.md",
+      "sha256": "d32df8e6e5c6ee92a0affa00763a02617dce62271e346240bcbff7b6cb9a4cf1"
+    },
+    ".claude/window1_round2_prerun_v2_20260724/BLOCKER_CORRECTION_REPORT.md": {
+      "bytes": 1909,
+      "git_blob_oid": "9b8d9a0d8b799cfbc4d3bddd5d784f8de206b874",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_v2_20260724/BLOCKER_CORRECTION_REPORT.md",
+      "sha256": "578d7695cf245fef1f94a954f96fc0cb4e5eb2ad2f7d832a47623f728d2f045f"
+    },
+    ".claude/window1_round2_prerun_v2_20260724/CANDIDATE_DEDUP_ELIGIBILITY_REPORT.md": {
+      "bytes": 2658,
+      "git_blob_oid": "4bf65e4016409c7df13d9229068b30867eecbb3e",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_v2_20260724/CANDIDATE_DEDUP_ELIGIBILITY_REPORT.md",
+      "sha256": "78de5865c60645f33c4e4891ff58d41c98fa709536644e8a6e44645ab8ace199"
+    },
+    ".claude/window1_round2_prerun_v2_20260724/POLICY_EVALUATION_CLOCK_PROOF.json": {
+      "bytes": 903,
+      "git_blob_oid": "b88c297e0a70e77315cb2bcf546bc1f5f9a57435",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_v2_20260724/POLICY_EVALUATION_CLOCK_PROOF.json",
+      "sha256": "01210f0be5e465462bc8f7ba5081ebd31225473174aacb312382346efed0e6b7"
+    },
+    ".claude/window1_round2_prerun_v2_20260724/ROUND2_ACTUAL_FAMILY_PROOF.json": {
+      "bytes": 6986,
+      "git_blob_oid": "e5ed34a168b5fa8077c8f0ea844e9d0a253615fd",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_v2_20260724/ROUND2_ACTUAL_FAMILY_PROOF.json",
+      "sha256": "d10a31fed5c2ca64f05b19007f100bcbcb2ed747144226514549d6a4ebdadaee"
+    },
+    ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json": {
+      "bytes": 332562,
+      "git_blob_oid": "b616c3a715ea0ab6a70083c7a3b1b808c9b25af2",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json",
+      "sha256": "5b97aab24132a1e04a8f4d552fa2a6c026113aa5ad7d629c4ea07344b1238fa6"
+    },
+    ".claude/window1_round2_prerun_v2_20260724/ROUND2_REAL_CAPABILITY.json": {
+      "bytes": 2691798,
+      "git_blob_oid": "a9743a66bf1a93c78e748a42efeae80d15109b49",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_v2_20260724/ROUND2_REAL_CAPABILITY.json",
+      "sha256": "3ab014eb418ab7144dbb567f41442d60f9cd5e59900ffb79955e3834acc120ff"
+    },
+    ".claude/window1_round2_prerun_v2_20260724/ROUND2_REAL_FAMILY_CAPABILITY_MATRIX.md": {
+      "bytes": 1377,
+      "git_blob_oid": "c0f78150116b7112e9c185a855101563b45c03ca",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_v2_20260724/ROUND2_REAL_FAMILY_CAPABILITY_MATRIX.md",
+      "sha256": "5e1eda38160e160e3bda1e2150e7055545d4e3a558109d273834bbd91fbea3c3"
+    },
+    ".claude/window1_round2_prerun_v2_20260724/T8_T6_LOOKAHEAD_PROOF.json": {
+      "bytes": 720,
+      "git_blob_oid": "1b1980a69ecf5686539ff165282974294d1bad10",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_v2_20260724/T8_T6_LOOKAHEAD_PROOF.json",
+      "sha256": "f52090275735432ccd8010578a68c9456297781082946e587c492fd36c0a3b38"
+    },
+    ".claude/window1_round2_prerun_v2_20260724/ZERO_SIZE_EXCLUSION_PROOF.json": {
+      "bytes": 809,
+      "git_blob_oid": "a52cf50a10932d40d15f9f0dc6b77f2c221490fd",
+      "hash_basis": "staged_git_blob_lf",
+      "path": ".claude/window1_round2_prerun_v2_20260724/ZERO_SIZE_EXCLUSION_PROOF.json",
+      "sha256": "9893b46cd6599d55fde1a9b6b72cc3065d90438dda7ee666826c75e113521f36"
+    },
+    "arb-executor/analysis/window1_round2_actual_family_proof.py": {
+      "bytes": 9390,
+      "git_blob_oid": "c10cfdc1558d8df78b74a7b9e25134c01789d8f6",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/analysis/window1_round2_actual_family_proof.py",
+      "sha256": "afd30168c05643ff788b1b2932b2077c1f68dfad51124b2e23a10b0d6e28064a"
+    },
+    "arb-executor/analysis/window1_round2_capability_proof.py": {
+      "bytes": 18564,
+      "git_blob_oid": "45942aac5e78104c4b7377ec61083a92c5df5850",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/analysis/window1_round2_capability_proof.py",
+      "sha256": "9a92ba6d8517a04a88efbfc9d125b4c2eccd919b38539deeb89fcb318884dcba"
+    },
+    "arb-executor/analysis/window1_round2_data_binding.py": {
+      "bytes": 29179,
+      "git_blob_oid": "96399aff302c3ba7ccfddb495c182921e67e74d2",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/analysis/window1_round2_data_binding.py",
+      "sha256": "7a1b633d299044a0c0707d6f0a212708c491cb2c59e4de6726a60a16f358b1a8"
+    },
+    "arb-executor/analysis/window1_round2_instrument.py": {
+      "bytes": 54195,
+      "git_blob_oid": "94ab579e54f2588d3b7ea4f05ba8fb54e5520e8d",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/analysis/window1_round2_instrument.py",
+      "sha256": "28aac92191d5b0f55c305862212e28cc63aaff3c828e3f97c1555e710306912e"
+    },
+    "arb-executor/analysis/window1_round2_real_capability.py": {
+      "bytes": 28326,
+      "git_blob_oid": "411c7657dbe1d9f9701b8c2532f775e3a518d535",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/analysis/window1_round2_real_capability.py",
+      "sha256": "f7f0943211709b3ee63713baffb6597248272b1dcbf19a8e5496648f6b396d0c"
+    },
+    "arb-executor/analysis/window1_round2_superseding_prerun.py": {
+      "bytes": 29449,
+      "git_blob_oid": "8028b826c106c28cf9d7fccd47423e612b0df08b",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/analysis/window1_round2_superseding_prerun.py",
+      "sha256": "82231c1896ad93aa44631797bfd4d7c72b9e6b00c24d5e4336fd6386bcf54d51"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_CANDIDATES_V1.json": {
+      "bytes": 4408,
+      "git_blob_oid": "2e016f42241e1795cc239b166924ecbc2df9da7d",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_CANDIDATES_V1.json",
+      "sha256": "4c07d56c609255fad17f1f8b29807619720aeaa30f9f5750bf681a7b428cc8d9"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_EXECUTION_ADAPTER_V1.json": {
+      "bytes": 3839,
+      "git_blob_oid": "25e64512a22c1d2b263c407897b43c62f17b8aa7",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_EXECUTION_ADAPTER_V1.json",
+      "sha256": "806559e3b2495f10b443f3bc6355fbd765d7041ad7f990a492e6ef78503c00aa"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_FEATURE_ALLOWLIST_V1.json": {
+      "bytes": 1778,
+      "git_blob_oid": "e4ab98905b2cfccadba4fd7453997d5aebd3bdad",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_FEATURE_ALLOWLIST_V1.json",
+      "sha256": "38cdfc7057459d055907f924b97cc15da75e7955c3f28b2d75acf35b4bec9be6"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_METRIC_CONTRACT_V1.json": {
+      "bytes": 1075,
+      "git_blob_oid": "91489b6367d38ba28374359192823ebb4542c0b0",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_METRIC_CONTRACT_V1.json",
+      "sha256": "19795e4d8bc7b6920e9fe93f7fa60bd1c051df94dade31de4c7909b40953cb76"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_POLICY_FAMILY_SPEC.md": {
+      "bytes": 6755,
+      "git_blob_oid": "c6ceabc98eef8958a9859cb0a78d0a7a16991684",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_POLICY_FAMILY_SPEC.md",
+      "sha256": "3f6f8ca274c24163443f827e2f825e8fa21026a499a131cef77e0c99bd2a6c68"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_PROSPECTIVE_HOLDOUT_V1.json": {
+      "bytes": 573,
+      "git_blob_oid": "179cd9f7939b33e89aa9afe60c2f10b89a94c721",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_PROSPECTIVE_HOLDOUT_V1.json",
+      "sha256": "8fbbeb381d29e0523f3d04f5ee3d42ef945d5a00eb4c36b8a8fa70fa409f921f"
+    },
+    "arb-executor/tests/test_window1_round2_instrument.py": {
+      "bytes": 13663,
+      "git_blob_oid": "2802b8625a9fa054fcad98d01980ea4fd257970a",
+      "hash_basis": "staged_git_blob_lf",
+      "path": "arb-executor/tests/test_window1_round2_instrument.py",
+      "sha256": "2125252b6b033ba9d20e1a98c6c03bab9e087ecbf572ce951accde8fd80995b2"
+    }
+  },
+  "start_boundary_law": {
+    "TennisExplorer_proxy_exact": false,
+    "evaluation_real_start_policy_access": false,
+    "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+    "official_guard_seconds": 60,
+    "policy_anchor": "timestamped causal exchange schedule",
+    "proxy_negative_guard_seconds": 600,
+    "proxy_positive_guard_seconds": 900,
+    "schedule_only_positive_allowed": false
+  },
+  "target_PC": 603,
+  "tuning_performed": false,
+  "unavailable": {
+    "Pinnacle": "zero causal rows",
+    "cohort_steering": "all real cells below n=30",
+    "full_depth": "snapshot ancestry plus gap-free sequence continuity unproved",
+    "shape_policy_mapping": "no independent non-AIM causal Round-2 mapping"
+  }
+}

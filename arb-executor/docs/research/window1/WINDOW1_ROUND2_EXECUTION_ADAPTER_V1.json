@@ -1,16 +1,18 @@
 {
-  "schema_version": "window1-round2-execution-adapter-v1",
-  "adapter_id": "chronological-two-leg-window1-round2-v1",
-  "instrument_version": "window1-round2-causal-instrument-v1",
+  "schema_version": "window1-round2-execution-adapter-v2",
+  "adapter_id": "chronological-two-leg-window1-round2-v2",
+  "instrument_version": "window1-round2-causal-instrument-v2",
   "input_contract": {
     "event_fields": [
       "event_id",
       "event_date",
       "category",
-      "left_ts",
-      "strict_positive_cutoff_ts",
-      "start_source_class",
-      "start_guard",
+      "policy_anchor_ts",
+      "policy_anchor_observed_at_ts",
+      "policy_anchor_source",
+      "policy_left_ts",
+      "policy_decision_horizon_ts",
+      "policy_corridor_seconds_after_anchor",
       "legs"
     ],
     "leg_fields": [
@@ -30,8 +32,10 @@
       "print": [
         "exchange_timestamp",
         "exchange_trade_id",
+        "source_and_deduplication_identity",
         "price",
         "size",
+        "independent_size_verification",
         "taker_side",
         "own_order_fingerprint"
       ]
@@ -39,14 +43,31 @@
   },
   "causal_order": [
     "bind birth cell from the first causal non-self BBO",
-    "derive each leg's independent eligibility clock from its own frozen recut cell",
+    "derive each leg's independent eligibility clock from policy_anchor_ts plus its own frozen recut cell",
     "require contemporaneous non-self micro flow/divot evidence",
     "apply orientation only at the first-hour checkpoint",
     "apply drift recognition only at the T6 checkpoint using history through T6",
     "recut a leg only on that leg's causal book-cell change",
     "apply sibling response only after the first leg's simulated full fill",
-    "cancel each still-resting leg independently at its guarded cutoff"
+    "cancel each still-resting leg independently at the declared policy horizon"
   ],
+  "clock_separation_law": {
+    "policy_clock": "policy_anchor_ts plus timestamped schedule observation and declared corridor only",
+    "evaluation_clock": "evaluation_real_start_ts is accepted only by the separate ex-post evaluator",
+    "candidate_forbidden_fields": [
+      "evaluation_real_start_ts",
+      "strict_positive_cutoff_ts",
+      "verified_start_utc",
+      "exact_start_utc",
+      "proxy_clock_utc",
+      "known_live_by_utc",
+      "not_live_through_utc",
+      "start_interval_utc"
+    ],
+    "identical_causal_history_different_realized_start": "byte-identical policy order stream",
+    "schedule_only_policy_anchor_allowed": true,
+    "schedule_only_positive_evaluation_allowed": false
+  },
   "start_boundary_law": {
     "positive_capable": [
       "official_exact",
@@ -63,11 +84,13 @@
   },
   "missingness_law": {
     "missing_required_feature": "censored_feature",
+    "cohort_below_floor": "named NO_CALL_UNAVAILABLE; underlying policy continues",
     "zero_length_window": "zero_length_window1_opportunity",
     "no_micro_trigger_with_features_present": "no_eligible_micro_trigger",
     "silent_proxy_substitution": false,
     "feature_gap_imputation": false
   },
+  "positive_size_law": "zero, null, malformed, or synthetic transition size contributes zero and cannot trigger divot, flow, pressure, posture, walk, join, touch, park, recut, replenishment, or fill",
   "own_order_law": "fingerprints may subtract contributed book/print volume; fingerprinted activity is never fill, divot, flow, orientation, drift, or walk confirmation",
   "full_depth": "unavailable; top-five only",
   "pinnacle": "unavailable",

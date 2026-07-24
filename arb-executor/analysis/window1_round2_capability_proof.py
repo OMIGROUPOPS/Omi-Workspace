@@ -18,8 +18,8 @@ from typing import Any, Iterable, Mapping
 import window1_round2_instrument as instrument
 
 
-VERSION = "window1-round2-capability-proof-v1"
-BASE_CANDIDATE = "r2_full_os__walk_park__reaim"
+VERSION = "window1-round2-capability-proof-v2"
+BASE_CANDIDATE = "r2_full_os__walk_park__hold"
 DECISION_ACTIONS = {
     "place",
     "reprice",
@@ -169,13 +169,17 @@ def trade(
         "size": size,
         "taker_side": "no",
         "trade_id": trade_id,
+        "receipt_id": trade_id,
+        "source": "normalized_public_true_print",
+        "size_verified": True,
+        "synthetic_transition": False,
         "own_order_fingerprint": own,
     }
 
 
 def base_event() -> dict[str, Any]:
     left = 1_000_000.0
-    cutoff = left + 8 * 3600
+    anchor = left + 8 * 3600
     leg_a = [
         book(
             left + 10, 60, 62, own={"60": 5},
@@ -211,19 +215,19 @@ def base_event() -> dict[str, Any]:
         "event_id": "FIXTURE-R2-BASE",
         "event_date": "2026-07-12",
         "category": "ATP_MAIN",
-        "left_ts": left,
-        "strict_positive_cutoff_ts": cutoff,
-        "start_source_class": "official_exact",
-        "start_guard": {
-            "guard_id": "fixture-official-exact",
-            "law": "strict-positive-cutoff",
-        },
+        "policy_anchor_ts": anchor,
+        "policy_anchor_observed_at_ts": left - 60,
+        "policy_anchor_source": "fixture_causal_schedule",
+        "policy_left_ts": left,
+        "policy_decision_horizon_ts": anchor,
+        "policy_corridor_seconds_after_anchor": 0,
         "legs": [
             {
                 "leg_id": "A",
                 "ticker": "FIXTURE-A",
                 "role": "favorite",
                 "feature_availability": {
+                    "causal_role": True,
                     "true_prints": True,
                     "top5": True,
                     "own_order_fingerprints": True,
@@ -235,6 +239,7 @@ def base_event() -> dict[str, Any]:
                 "ticker": "FIXTURE-B",
                 "role": "underdog",
                 "feature_availability": {
+                    "causal_role": True,
                     "true_prints": True,
                     "top5": True,
                     "own_order_fingerprints": True,
@@ -248,7 +253,7 @@ def base_event() -> dict[str, Any]:
 def timing_event() -> dict[str, Any]:
     event = base_event()
     event["event_id"] = "FIXTURE-R2-ASYNC"
-    left = float(event["left_ts"])
+    left = float(event["policy_left_ts"])
     for leg, anchor in zip(event["legs"], (60, 40)):
         leg["observations"] = [
             book(left + 10, anchor, anchor + 2),
@@ -276,7 +281,7 @@ def timing_event() -> dict[str, Any]:
 def no_flow_event() -> dict[str, Any]:
     event = base_event()
     event["event_id"] = "FIXTURE-R2-FLOW"
-    left = float(event["left_ts"])
+    left = float(event["policy_left_ts"])
     event["legs"][0]["role"] = "underdog"
     event["legs"][1]["role"] = "favorite"
     event["legs"][0]["observations"] = [
@@ -292,9 +297,6 @@ def no_flow_event() -> dict[str, Any]:
 def schedule_only_event() -> dict[str, Any]:
     event = base_event()
     event["event_id"] = "FIXTURE-R2-SCHEDULE"
-    event["start_source_class"] = "schedule_only"
-    event["strict_positive_cutoff_ts"] = None
-    event["start_guard"] = None
     return event
 
 
@@ -382,10 +384,10 @@ def capability_proof(repo: Path) -> dict[str, Any]:
     ))
 
     park = run_policy(
-        repo, surfaces, event, "r2_full_os__park_join__reaim"
+        repo, surfaces, event, "r2_causal_steer__park_join__hold"
     )
     walk = run_policy(
-        repo, surfaces, event, "r2_full_os__walk_park__reaim"
+        repo, surfaces, event, "r2_full_os__walk_park__hold"
     )
     rows.append({
         "family_id": "leg_specific_posture",
@@ -418,7 +420,7 @@ def capability_proof(repo: Path) -> dict[str, Any]:
     # while keeping the exact same frozen policy.
     no_flow = no_flow_event()
     with_flow = copy.deepcopy(no_flow)
-    left = float(with_flow["left_ts"])
+    left = float(with_flow["policy_left_ts"])
     with_flow["legs"][0]["observations"].append(
         trade(left + 7205, 40, trade_id="FLOW-CONFIRM")
     )
@@ -426,13 +428,13 @@ def capability_proof(repo: Path) -> dict[str, Any]:
         repo,
         surfaces,
         with_flow,
-        "r2_full_os__park_join__reaim",
+        "r2_causal_steer__park_join__hold",
     )
     flow_absent = run_policy(
         repo,
         surfaces,
         no_flow,
-        "r2_full_os__park_join__reaim",
+        "r2_causal_steer__park_join__hold",
     )
     rows.append({
         "family_id": "true_print_flow",
@@ -479,25 +481,6 @@ def capability_proof(repo: Path) -> dict[str, Any]:
         "ablated_decision_count": len(decision_signature(same_size_external)),
     })
 
-    positive = run_policy(repo, surfaces, event)
-    schedule = run_policy(repo, surfaces, schedule_only_event())
-    rows.append({
-        "family_id": "start_boundary",
-        "eligible_fixture": "FIXTURE-R2-BASE_vs_FIXTURE-R2-SCHEDULE",
-        "enabled_decision_sha256": instrument.sha256_json(
-            decision_signature(positive)
-        ),
-        "ablated_decision_sha256": instrument.sha256_json(
-            decision_signature(schedule)
-        ),
-        "decision_changing": (
-            decision_signature(positive) != decision_signature(schedule)
-            and schedule["event_terminal"] == "censored_start_boundary"
-        ),
-        "enabled_decision_count": len(decision_signature(positive)),
-        "ablated_decision_count": len(decision_signature(schedule)),
-    })
-
     # Exact T8/T6 proof: change only the frozen recognition mapping.  Since
     # recognition is read at the T6 checkpoint, the complete decision prefix
     # must be identical while the post-T6 stream must differ.
@@ -516,7 +499,7 @@ def capability_proof(repo: Path) -> dict[str, Any]:
     )
     first = run_policy(repo, surfaces, event)
     second = run_policy(repo, alternate, event)
-    checkpoint = float(event["left_ts"]) + 7200
+    checkpoint = float(event["policy_left_ts"]) + 7200
     prefix_first = decision_signature(first, before=checkpoint)
     prefix_second = decision_signature(second, before=checkpoint)
     suffix_first = decision_signature(first, after_or_at=checkpoint)
@@ -524,7 +507,7 @@ def capability_proof(repo: Path) -> dict[str, Any]:
     lookahead = {
         "schema_version": "window1-round2-t8-t6-lookahead-proof-v1",
         "fixture": event["event_id"],
-        "T8_left_ts": event["left_ts"],
+        "T8_left_ts": event["policy_left_ts"],
         "T6_recognition_ts": checkpoint,
         "changed_input": "recognition mapping only",
         "pre_T6_decision_sha256_a": instrument.sha256_json(prefix_first),

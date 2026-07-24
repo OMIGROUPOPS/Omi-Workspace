@@ -1,6 +1,6 @@
 {
-  "schema_version": "window1-round2-candidates-v1",
-  "instrument_version": "window1-round2-causal-instrument-v1",
+  "schema_version": "window1-round2-candidates-v2",
+  "instrument_version": "window1-round2-causal-instrument-v2",
   "selection_scope": "development dates 2026-07-12 through 2026-07-20 only",
   "order_stream_law": "every candidate emits independently timestamped placement, repricing, cancellation, fill-observation, sibling-hold, and terminal records for both legs",
   "common_parameters": {
@@ -35,6 +35,7 @@
     "top5_ask_over_external_bid_threshold": 1.5,
     "top5_pressure_extra_depth_cents": 1,
     "first_fill_sibling_reaim_cents": 1,
+    "policy_corridor_seconds_after_anchor": 0,
     "never_marketable": true
   },
   "profiles": {
@@ -91,15 +92,35 @@
   },
   "candidate_ids": [
     "r2_async_pair__park_join__hold",
-    "r2_async_pair__park_join__reaim",
     "r2_async_pair__touch_park__hold",
-    "r2_async_pair__touch_park__reaim",
     "r2_causal_steer__park_join__hold",
-    "r2_causal_steer__park_join__reaim",
-    "r2_full_os__park_join__hold",
-    "r2_full_os__park_join__reaim",
-    "r2_full_os__walk_park__hold",
-    "r2_full_os__walk_park__reaim"
+    "r2_full_os__walk_park__hold"
+  ],
+  "removed_before_superseding_freeze": [
+    {
+      "candidate_id": "r2_async_pair__park_join__reaim",
+      "reason": "non-minimal response variant; hold retains executable first-fill sibling response"
+    },
+    {
+      "candidate_id": "r2_async_pair__touch_park__reaim",
+      "reason": "non-minimal response variant; hold retains executable first-fill sibling response"
+    },
+    {
+      "candidate_id": "r2_causal_steer__park_join__reaim",
+      "reason": "non-minimal response variant; hold retains executable first-fill sibling response"
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__reaim",
+      "reason": "non-minimal response variant; hold retains executable first-fill sibling response"
+    },
+    {
+      "candidate_id": "r2_full_os__park_join__hold",
+      "reason": "walk actuator is unreachable under park_join; structurally duplicates causal-steer posture"
+    },
+    {
+      "candidate_id": "r2_full_os__park_join__reaim",
+      "reason": "walk actuator is unreachable under park_join; structurally duplicates causal-steer posture and uses removed response variant"
+    }
   ],
   "predeclared_selected_candidate_ablations": [
     "without_asynchronous_divot_timing",

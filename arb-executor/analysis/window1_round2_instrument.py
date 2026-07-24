@@ -11,16 +11,18 @@ Window-2, or holdout interface.
 from __future__ import annotations
 
 import argparse
+import bisect
 import hashlib
 import json
 import math
 import statistics
+from collections import deque
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable, Mapping, MutableMapping, Sequence
 
 
-VERSION = "window1-round2-causal-instrument-v1"
+VERSION = "window1-round2-causal-instrument-v2"
 LOT = 5.0
 DEVELOPMENT_DATES = {
     f"2026-07-{day:02d}" for day in range(12, 21)
@@ -28,12 +30,22 @@ DEVELOPMENT_DATES = {
 SEALED_HOLDOUT_DATES = {
     "2026-07-24", "2026-07-25", "2026-07-26"
 }
-START_POSITIVE_CLASSES = {
+FORBIDDEN_POLICY_CLOCK_FIELDS = {
+    "evaluation_real_start_ts",
+    "strict_positive_cutoff_ts",
+    "verified_start_utc",
+    "exact_start_utc",
+    "proxy_clock_utc",
+    "known_live_by_utc",
+    "not_live_through_utc",
+    "start_interval_utc",
+}
+EVALUATION_POSITIVE_CLASSES = {
     "official_exact",
     "quantized_late_detection_proxy",
     "clean_causal_interval",
 }
-START_CENSORED_CLASSES = {
+EVALUATION_CENSORED_CLASSES = {
     "schedule_only",
     "live_by_only",
     "contradictory",
@@ -73,6 +85,33 @@ def sha256_json(value: Any) -> str:
         value, sort_keys=True, separators=(",", ":"), ensure_ascii=True
     ).encode("utf-8")
     return hashlib.sha256(raw).hexdigest()
+
+
+def positive_public_print(
+    row: Mapping[str, Any],
+) -> tuple[bool, str]:
+    """Validate evidence before it can reach any microstructure surface."""
+    if row.get("synthetic_transition") is True:
+        return False, "synthetic_transition"
+    identity = str(
+        row.get("trade_id") or row.get("receipt_id") or ""
+    ).strip()
+    if not identity:
+        return False, "missing_receipt_identity"
+    if row.get("size_verified") is not True:
+        return False, "size_not_independently_verified"
+    try:
+        size = float(row.get("size"))
+    except (TypeError, ValueError):
+        return False, "malformed_size"
+    if not math.isfinite(size) or size <= 0:
+        return False, "nonpositive_size"
+    if str(row.get("source") or "") not in {
+        "normalized_public_true_print",
+        "independently_size_verified_public_trade",
+    }:
+        return False, "unproved_public_print_source"
+    return True, "positive_receipt_identified_public_print"
 
 
 def load_surfaces(repo: Path) -> SurfaceBundle:
@@ -233,16 +272,27 @@ def cohort_depth(
     )), len(rows)
 
 
+def positive_level_size(value: Any) -> float:
+    """Return only finite positive displayed size; invalid levels are zero."""
+    try:
+        size = float(value)
+    except (TypeError, ValueError):
+        return 0.0
+    return size if math.isfinite(size) and size > 0 else 0.0
+
+
 def external_bids(
     book: Mapping[str, Any], subtract_own: bool,
 ) -> list[tuple[int, float]]:
     own = {
-        int(price): max(0.0, float(size))
+        int(price): positive_level_size(size)
         for price, size in (book.get("own_bid_size_by_price") or {}).items()
     }
     output = []
     for raw in book.get("bids") or []:
-        price, size = int(raw[0]), max(0.0, float(raw[1]))
+        if not isinstance(raw, Sequence) or len(raw) < 2:
+            continue
+        price, size = int(raw[0]), positive_level_size(raw[1])
         external = max(0.0, size - (own.get(price, 0.0) if subtract_own else 0))
         if external > 0:
             output.append((price, external))
@@ -252,9 +302,13 @@ def external_bids(
 
 def asks(book: Mapping[str, Any]) -> list[tuple[int, float]]:
     output = [
-        (int(raw[0]), max(0.0, float(raw[1])))
+        (int(raw[0]), positive_level_size(raw[1]))
         for raw in book.get("asks") or []
-        if float(raw[1]) > 0
+        if (
+            isinstance(raw, Sequence)
+            and len(raw) >= 2
+            and positive_level_size(raw[1]) > 0
+        )
     ]
     output.sort()
     return output
@@ -288,6 +342,7 @@ def orientation_call(
         rows = [
             row for row in state["nonself_prints"]
             if left <= float(row["ts"]) <= checkpoint
+            and positive_public_print(row)[0]
         ]
         if len(rows) < 3:
             return None
@@ -378,7 +433,7 @@ class CausalInstrument:
         self.states: list[MutableMapping[str, Any]] = []
         self.event: Mapping[str, Any] = {}
         self.left = 0.0
-        self.cutoff = 0.0
+        self.horizon = 0.0
 
     def _validate_event(self, event: Mapping[str, Any]) -> None:
         event_date = str(event.get("event_date"))
@@ -389,26 +444,46 @@ class CausalInstrument:
         legs = list(event.get("legs") or [])
         if len(legs) != 2:
             raise InstrumentError("pair law requires exactly two legs")
-        source_class = str(event.get("start_source_class"))
-        cutoff = event.get("strict_positive_cutoff_ts")
-        if source_class in START_CENSORED_CLASSES and cutoff is not None:
+        leaked = sorted(FORBIDDEN_POLICY_CLOCK_FIELDS & set(event))
+        if leaked:
             raise InstrumentError(
-                f"{source_class} may not create a positive cutoff"
+                "evaluation truth is inaccessible to policy code: "
+                + ",".join(leaked)
             )
-        if source_class in START_POSITIVE_CLASSES:
-            if cutoff is None:
-                raise InstrumentError("positive-capable start lacks cutoff")
-            guard = event.get("start_guard")
-            if not isinstance(guard, dict) or not guard.get("guard_id"):
-                raise InstrumentError("positive-capable start lacks guard")
-        if source_class not in START_POSITIVE_CLASSES | START_CENSORED_CLASSES:
-            raise InstrumentError(f"unknown start source class: {source_class}")
+        required = {
+            "policy_anchor_ts",
+            "policy_anchor_observed_at_ts",
+            "policy_anchor_source",
+            "policy_left_ts",
+            "policy_decision_horizon_ts",
+        }
+        missing = sorted(required - set(event))
+        if missing:
+            raise InstrumentError(
+                "policy clock field missing: " + ",".join(missing)
+            )
+        anchor = float(event["policy_anchor_ts"])
+        observed = float(event["policy_anchor_observed_at_ts"])
+        left = float(event["policy_left_ts"])
+        horizon = float(event["policy_decision_horizon_ts"])
+        if observed > horizon:
+            raise InstrumentError(
+                "policy anchor was unavailable before policy horizon"
+            )
+        if not left < anchor <= horizon:
+            raise InstrumentError("invalid declared policy clock corridor")
+        if horizon - anchor != float(
+            event.get("policy_corridor_seconds_after_anchor") or 0
+        ):
+            raise InstrumentError("policy corridor declaration mismatch")
 
     def _new_state(
         self, event: Mapping[str, Any], leg: Mapping[str, Any],
     ) -> MutableMapping[str, Any]:
         availability = dict(leg.get("feature_availability") or {})
         required = []
+        if "leg_specific_posture" in self.families:
+            required.append("causal_role")
         if "true_print_flow" in self.families:
             required.append("true_prints")
         if "bbo_top5_pressure" in self.families:
@@ -427,6 +502,8 @@ class CausalInstrument:
             "actions": [],
             "books": [],
             "nonself_prints": [],
+            "divot_window": deque(),
+            "divot_prices_sorted": [],
             "current_book": None,
             "birth_anchor": None,
             "birth_band": None,
@@ -436,6 +513,8 @@ class CausalInstrument:
             "divot_depth": None,
             "cohort_depth": None,
             "cohort_n": 0,
+            "cohort_zone": None,
+            "cohort_status": "NOT_LOADED",
             "recognition_depth": None,
             "recognition": None,
             "orientation": None,
@@ -507,11 +586,13 @@ class CausalInstrument:
             state["eligible_ts"] = max(
                 self.left,
                 min(
-                    self.cutoff,
-                    self.cutoff + float(cell["t_deep_p50"]) * 60.0,
+                    self.horizon,
+                    float(self.event["policy_anchor_ts"])
+                    + float(cell["t_deep_p50"]) * 60.0,
                 ),
             )
         minimum_n = int(self.parameters["cohort_minimum_n"])
+        cohort_zone = int(max(0, min(3, anchor // 25)))
         cohort, cohort_n = cohort_depth(
             self.surfaces,
             str(self.event["category"]),
@@ -519,24 +600,44 @@ class CausalInstrument:
             minimum_n,
         )
         state["cohort_n"] = cohort_n
+        state["cohort_zone"] = cohort_zone
         if "cohort_steering" in self.families:
             if cohort is None:
-                state["feature_censored"] = True
-                state["missing_features"].append("cohort_cell_n30")
+                state["cohort_status"] = "NO_CALL_UNAVAILABLE"
                 _action(
-                    state, timestamp, "feature_censor",
+                    state, timestamp, "cohort_no_call",
                     "cohort_cell_below_frozen_min_n",
+                    cohort_status="NO_CALL_UNAVAILABLE",
                     cohort_n=cohort_n,
+                    cohort_minimum_n=minimum_n,
+                    cohort_zone=cohort_zone,
+                    category=str(self.event["category"]),
+                    underlying_policy_continues=True,
                 )
             elif abs(cohort - float(state["recut_depth"])) >= float(
                 self.parameters["cohort_minimum_reaim_delta_cents"]
             ):
+                state["cohort_status"] = "CALL"
                 state["cohort_depth"] = cohort
                 _action(
                     state, timestamp, "cohort_steer",
                     "frozen_cohort_n30_delta_ge_2",
+                    cohort_status="CALL",
                     cohort_n=cohort_n,
+                    cohort_zone=cohort_zone,
                     depth_cents=cohort,
+                )
+            else:
+                state["cohort_status"] = "NO_CALL_BELOW_REAIM_DELTA"
+                _action(
+                    state, timestamp, "cohort_no_call",
+                    "cohort_supported_but_below_reaim_delta",
+                    cohort_status="NO_CALL_BELOW_REAIM_DELTA",
+                    cohort_n=cohort_n,
+                    cohort_minimum_n=minimum_n,
+                    cohort_zone=cohort_zone,
+                    category=str(self.event["category"]),
+                    underlying_policy_continues=True,
                 )
         _action(
             state,
@@ -705,7 +806,7 @@ class CausalInstrument:
             1 for row in state["nonself_prints"]
             if timestamp - 1800 <= float(row["ts"]) <= timestamp
             and str(row.get("taker_side")) == "no"
-            and float(row.get("size") or 0) > 0
+            and positive_public_print(row)[0]
         )
 
     def _flow_confirmed(
@@ -757,23 +858,29 @@ class CausalInstrument:
         state: MutableMapping[str, Any],
         print_row: Mapping[str, Any],
     ) -> None:
-        if str(print_row.get("taker_side")) != "no":
+        if (
+            str(print_row.get("taker_side")) != "no"
+            or not positive_public_print(print_row)[0]
+        ):
             return
         timestamp = float(print_row["ts"])
-        prior = [
-            row for row in state["nonself_prints"]
-            if timestamp - float(
-                self.parameters["divot_definition"]["trailing_median_seconds"]
-            ) <= float(row["ts"]) < timestamp
-        ]
+        duration = float(
+            self.parameters["divot_definition"]["trailing_median_seconds"]
+        )
+        window = state["divot_window"]
+        prices = state["divot_prices_sorted"]
+        while window and float(window[0][0]) < timestamp - duration:
+            _, stale_price = window.popleft()
+            position = bisect.bisect_left(prices, stale_price)
+            if position >= len(prices) or prices[position] != stale_price:
+                raise InstrumentError("divot rolling median state corrupt")
+            prices.pop(position)
         minimum = int(
             self.parameters["divot_definition"]["minimum_prior_nonself_prints"]
         )
-        if len(prior) < minimum or state["current_book"] is None:
+        if len(prices) < minimum or state["current_book"] is None:
             return
-        median = float(statistics.median(
-            float(row["price"]) for row in prior
-        ))
+        median = float(statistics.median(prices))
         depth = median - float(print_row["price"])
         if depth < float(
             self.parameters["divot_definition"]["minimum_depth_cents"]
@@ -820,6 +927,7 @@ class CausalInstrument:
         candidates = [
             row for row in rows[start:]
             if str(row.get("taker_side")) == "no"
+            and positive_public_print(row)[0]
         ]
         needed = int(self.parameters["walk"]["minimum_chain_prints"])
         if len(candidates) < needed:
@@ -910,6 +1018,8 @@ class CausalInstrument:
     def _sibling_response(
         self, filled_state: MutableMapping[str, Any], timestamp: float,
     ) -> None:
+        if "first_fill_sibling_response" not in self.families:
+            return
         sibling = next(
             state for state in self.states if state is not filled_state
         )
@@ -995,6 +1105,20 @@ class CausalInstrument:
         self, state: MutableMapping[str, Any], row: Mapping[str, Any],
     ) -> None:
         timestamp = float(row["ts"])
+        valid, validation_reason = positive_public_print(row)
+        if not valid:
+            _action(
+                state,
+                timestamp,
+                "print_excluded",
+                validation_reason,
+                trade_id=row.get("trade_id"),
+                receipt_id=row.get("receipt_id"),
+                raw_size=row.get("size"),
+                contributes_zero=True,
+                triggered_surfaces=[],
+            )
+            return
         if row.get("own_order_fingerprint") is True:
             _action(
                 state,
@@ -1008,6 +1132,12 @@ class CausalInstrument:
         completed = self._fill_from_print(state, row)
         self._detect_divot(state, row)
         state["nonself_prints"].append(dict(row))
+        state["divot_window"].append((
+            timestamp, float(row["price"])
+        ))
+        bisect.insort(
+            state["divot_prices_sorted"], float(row["price"])
+        )
         if completed:
             self._sibling_response(state, timestamp)
         self._maybe_walk(state, timestamp)
@@ -1093,7 +1223,7 @@ class CausalInstrument:
 
     def _terminalize(self, state: MutableMapping[str, Any]) -> None:
         if state["active_order"] is not None:
-            self._cancel(state, self.cutoff, "lawful_window_end")
+            self._cancel(state, self.horizon, "declared_policy_horizon")
         quantity = float(state["quantity"])
         if state["feature_censored"]:
             terminal = "censored_feature"
@@ -1108,7 +1238,7 @@ class CausalInstrument:
         state["terminal"] = terminal
         _action(
             state,
-            self.cutoff,
+            self.horizon,
             "terminal",
             terminal,
             quantity=quantity,
@@ -1194,11 +1324,40 @@ class CausalInstrument:
             "ablations": list(self.policy.get("ablations") or []),
             "event_id": event["event_id"],
             "event_date": event["event_date"],
-            "start_source_class": event["start_source_class"],
-            "start_guard": event.get("start_guard"),
+            "policy_clock": {
+                "policy_anchor_ts": event["policy_anchor_ts"],
+                "policy_anchor_observed_at_ts": (
+                    event["policy_anchor_observed_at_ts"]
+                ),
+                "policy_anchor_source": event["policy_anchor_source"],
+                "policy_left_ts": event["policy_left_ts"],
+                "policy_activation_ts": self.left,
+                "policy_decision_horizon_ts": (
+                    event["policy_decision_horizon_ts"]
+                ),
+                "policy_corridor_seconds_after_anchor": (
+                    event["policy_corridor_seconds_after_anchor"]
+                ),
+            },
+            "evaluation_truth_present": False,
             "event_terminal": event_terminal,
             "leg_streams": streams,
             "order_stream": flattened,
+            "evidence_census_by_leg": [
+                {
+                    "leg_id": state["leg_id"],
+                    "positive_prints_consumed": len(
+                        state.get("nonself_prints") or []
+                    ),
+                    "causal_books_consumed": len(
+                        state.get("books") or []
+                    ),
+                    "cohort_status": state.get("cohort_status"),
+                    "cohort_n": state.get("cohort_n"),
+                    "cohort_zone": state.get("cohort_zone"),
+                }
+                for state in states
+            ],
             "scored": False,
             "metrics": None,
             "holdout_queried": False,
@@ -1208,13 +1367,11 @@ class CausalInstrument:
     def run(self, event: Mapping[str, Any]) -> dict[str, Any]:
         self._validate_event(event)
         self.event = event
-        self.left = float(event["left_ts"])
-        source_class = str(event["start_source_class"])
-        if source_class in START_CENSORED_CLASSES:
-            return self._censored_start_result(event)
-        self.cutoff = float(event["strict_positive_cutoff_ts"])
-        if self.cutoff <= self.left:
-            return self._zero_length_result(event)
+        self.left = max(
+            float(event["policy_left_ts"]),
+            float(event["policy_anchor_observed_at_ts"]),
+        )
+        self.horizon = float(event["policy_decision_horizon_ts"])
         self.states = [
             self._new_state(event, leg) for leg in event["legs"]
         ]
@@ -1243,7 +1400,7 @@ class CausalInstrument:
         ])
         timeline.sort(key=lambda value: (value[0], value[1], value[2]))
         for timestamp, _, key, row in timeline:
-            if timestamp < self.left or timestamp >= self.cutoff:
+            if timestamp < self.left or timestamp >= self.horizon:
                 continue
             if key == "*orientation":
                 self._on_orientation(timestamp)
@@ -1265,6 +1422,64 @@ class CausalInstrument:
             else "complete_counterfactual_stream"
         )
         return self._result(event, self.states, event_terminal)
+
+
+def evaluate_order_stream(
+    policy_result: Mapping[str, Any],
+    evaluation_truth: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Classify policy actions ex post without exposing truth to policy code.
+
+    This is deliberately not strategy scoring: it computes no C/PC/S/IC,
+    costs, deltas, or candidate ordering.
+    """
+    source_class = str(evaluation_truth.get("start_source_class") or "")
+    if source_class not in (
+        EVALUATION_POSITIVE_CLASSES | EVALUATION_CENSORED_CLASSES
+    ):
+        raise InstrumentError("unknown evaluation start source class")
+    if source_class in EVALUATION_CENSORED_CLASSES:
+        if evaluation_truth.get("evaluation_real_start_ts") is not None:
+            raise InstrumentError(
+                f"{source_class} may not prove a positive Window-1 result"
+            )
+        return {
+            "schema_version": "window1-round2-evaluation-classification-v1",
+            "event_id": policy_result["event_id"],
+            "classification": "censored_start_boundary",
+            "start_source_class": source_class,
+            "positive_window1_proved": False,
+            "inside_window_fill_action_count": 0,
+            "policy_stream_sha256": policy_result["stream_sha256"],
+        }
+    real_start = evaluation_truth.get("evaluation_real_start_ts")
+    guard = evaluation_truth.get("start_guard")
+    if real_start is None or not isinstance(guard, Mapping) or not guard.get(
+        "guard_id"
+    ):
+        raise InstrumentError("positive evaluation truth lacks guarded start")
+    boundary = float(real_start)
+    fills = [
+        row for row in policy_result.get("order_stream") or []
+        if row.get("action") == "fill_observed"
+    ]
+    inside = [row for row in fills if float(row["ts"]) <= boundary]
+    outside = [row for row in fills if float(row["ts"]) > boundary]
+    return {
+        "schema_version": "window1-round2-evaluation-classification-v1",
+        "event_id": policy_result["event_id"],
+        "classification": (
+            "has_inside_window_fill"
+            if inside else "no_inside_window_fill"
+        ),
+        "start_source_class": source_class,
+        "positive_window1_proved": bool(inside),
+        "inside_window_fill_action_count": len(inside),
+        "post_start_fill_action_count": len(outside),
+        "evaluation_real_start_ts": boundary,
+        "start_guard": dict(guard),
+        "policy_stream_sha256": policy_result["stream_sha256"],
+    }
 
 
 def run_event(

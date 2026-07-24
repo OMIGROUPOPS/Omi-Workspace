@@ -1,0 +1,164 @@
+{
+  "D": 804,
+  "candidate_id": "r2_full_os__walk_park__hold",
+  "candidate_scoring_performed": false,
+  "events_examined_until_all_witnesses": 4,
+  "family_witnesses": [
+    {
+      "candidate_id": "r2_full_os__walk_park__hold",
+      "decision_changing": true,
+      "disabled_decision_count": 2,
+      "disabled_decision_sha256": "aeaa63a334b4d94da14b26fef4689bbf01ffc16bbb0ba751826f4c40d0961d05",
+      "enabled_decision_count": 0,
+      "enabled_decision_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+      "family_id": "asynchronous_divot_timing",
+      "proof_mode": "same_real_causal_history_isolated_family_disable",
+      "scored": false
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__hold",
+      "decision_changing": true,
+      "disabled_decision_count": 2,
+      "disabled_decision_sha256": "b86a6f304f44802903f8d3d39a80d1500ae2fd0a7d9feff87280cdb76658dd29",
+      "enabled_decision_count": 0,
+      "enabled_decision_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+      "family_id": "leg_specific_posture",
+      "proof_mode": "same_real_causal_history_isolated_family_disable",
+      "scored": false
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__hold",
+      "decision_changing": true,
+      "disabled_decision_count": 26,
+      "disabled_decision_sha256": "a26c022ae7ce9aaa3fda94aca807bc3bee7b6e03814a8e373d3fe47b838f854e",
+      "enabled_decision_count": 28,
+      "enabled_decision_sha256": "f7aa97de97666fba7a6c596c71c637d7dda945f7a08c38caa0e01e50cf90487c",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12AZKLEO",
+      "family_id": "nonself_one_cent_walk",
+      "proof_mode": "same_real_causal_history_isolated_family_disable",
+      "scored": false
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__hold",
+      "decision_changing": true,
+      "disabled_decision_count": 27,
+      "disabled_decision_sha256": "fbf96415097b60936288cb530e1c1435b5d592fecb0668bbc6189264b6be54ed",
+      "enabled_decision_count": 28,
+      "enabled_decision_sha256": "f7aa97de97666fba7a6c596c71c637d7dda945f7a08c38caa0e01e50cf90487c",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12AZKLEO",
+      "family_id": "first_fill_sibling_response",
+      "proof_mode": "same_real_causal_history_isolated_family_disable",
+      "scored": false
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__hold",
+      "decision_changing": true,
+      "disabled_decision_count": 4,
+      "disabled_decision_sha256": "a54c665348b6a8f7cf998e0dc9a3fc512af22c759c1522c1ee492d799f076044",
+      "enabled_decision_count": 28,
+      "enabled_decision_sha256": "f7aa97de97666fba7a6c596c71c637d7dda945f7a08c38caa0e01e50cf90487c",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12AZKLEO",
+      "family_id": "pair_divot_recut",
+      "proof_mode": "same_real_causal_history_isolated_family_disable",
+      "scored": false
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__hold",
+      "decision_changing": true,
+      "disabled_decision_count": 2,
+      "disabled_decision_sha256": "544c52caddd780f10eac0c2f0907fab09b026fa5fd9fbc8f4746ba0be3cb5c5b",
+      "enabled_decision_count": 4,
+      "enabled_decision_sha256": "00f5e7ec333b3d4229626a0cfb0ee91d4a259a3b7caab4b7171f8f1fa122b984",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12TABHUE",
+      "family_id": "causal_orientation",
+      "proof_mode": "same_real_causal_history_isolated_family_disable",
+      "scored": false
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__hold",
+      "decision_changing": true,
+      "disabled_decision_count": 178,
+      "disabled_decision_sha256": "540b567cfd92ff26504ec4b7e72d98d9a6d12084a8fbdb949e2695e7462b5be2",
+      "enabled_decision_count": 32,
+      "enabled_decision_sha256": "563ffff73e5e682ffa9095077a9c7a42a273e64f7d5fa36bed90337d73b92068",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+      "family_id": "causal_drift_recognition",
+      "proof_mode": "same_real_causal_history_isolated_family_disable",
+      "scored": false
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__hold",
+      "decision_changing": true,
+      "disabled_decision_count": 28,
+      "disabled_decision_sha256": "9b3086c1251309cb8ccb5bd229c5e5cff1dae547954e507d77310892f962c9a2",
+      "enabled_decision_count": 28,
+      "enabled_decision_sha256": "f7aa97de97666fba7a6c596c71c637d7dda945f7a08c38caa0e01e50cf90487c",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12AZKLEO",
+      "family_id": "true_print_flow",
+      "proof_mode": "same_real_causal_history_isolated_family_disable",
+      "scored": false
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__hold",
+      "decision_changing": true,
+      "disabled_decision_count": 28,
+      "disabled_decision_sha256": "9f44b704da67a0caa1e8453b078f70de18a64e8d55d5f68bf7360b9d4757f62d",
+      "enabled_decision_count": 28,
+      "enabled_decision_sha256": "f7aa97de97666fba7a6c596c71c637d7dda945f7a08c38caa0e01e50cf90487c",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12AZKLEO",
+      "family_id": "bbo_top5_pressure",
+      "proof_mode": "same_real_causal_history_isolated_family_disable",
+      "scored": false
+    }
+  ],
+  "gate_pass": true,
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "performance_ablation_performed": false,
+  "schema_version": "window1-round2-actual-family-proof-v1",
+  "unavailable_or_noncoverage": [
+    {
+      "counted_as_coverage": false,
+      "decision_changing": false,
+      "family_id": "cohort_steering",
+      "reason": "all real cohort cells remain below frozen n=30; underlying policy continues",
+      "status": "unavailable_NO_CALL"
+    },
+    {
+      "counted_as_coverage": false,
+      "decision_changing": false,
+      "family_id": "own_order_contribution_subtraction",
+      "reason": "all 1,608 T8 receipts report zero attributable own volume; subtraction remains mandatory if present",
+      "status": "safety_law_inert_on_development"
+    },
+    {
+      "counted_as_coverage": false,
+      "decision_changing": false,
+      "family_id": "start_boundary_evaluator",
+      "reason": "realized start is inaccessible to policy code",
+      "status": "evaluation_only"
+    }
+  ],
+  "witness_seed": {
+    "event_ids": [
+      "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+      "KXATPCHALLENGERMATCH-26JUL12AZKLEO",
+      "KXATPMATCH-26JUL12TABHUE",
+      "KXATPCHALLENGERMATCH-26JUL12BINGIL"
+    ],
+    "performance_outcomes_used": false,
+    "receipt": ".claude\\window1_round2_prerun_v2_20260724\\ROUND2_ACTUAL_FAMILY_PROOF.json",
+    "role": "capability witness replay only"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "T6_recognition_ts": 1007200.0,
+  "T8_left_ts": 1000000.0,
+  "changed_input": "recognition mapping only",
+  "fixture": "FIXTURE-R2-BASE",
+  "future_information_used_before_T6": false,
+  "post_T6_decision_sha256_a": "df02c342ad4186ba86c9b211101534b3ec2db82def40cc54ce6a2fe816f114db",
+  "post_T6_decision_sha256_b": "0f8a2ccb6e446f4f284aa87aa2b558c12054c6f9733a6f3a8cfaf577f7ee992a",
+  "post_T6_decisions_differ": true,
+  "pre_T6_decision_sha256_a": "78e60e441860e59c6cada565bdeb0060026c4dad2fa168d91c158790d43a02ac",
+  "pre_T6_decision_sha256_b": "78e60e441860e59c6cada565bdeb0060026c4dad2fa168d91c158790d43a02ac",
+  "pre_T6_decisions_identical": true,
+  "schema_version": "window1-round2-t8-t6-lookahead-proof-v1"
+}

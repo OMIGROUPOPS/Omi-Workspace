@@ -247,6 +247,7 @@ def freeze_receipt(
     repo: Path,
     paths: Mapping[str, Path],
     commit: str,
+    candidate_spec: Mapping[str, Any],
 ) -> dict[str, Any]:
     resolved_commit = subprocess.check_output(
         ["git", "rev-parse", commit], cwd=repo
@@ -257,6 +258,25 @@ def freeze_receipt(
         )
         for name, path in paths.items()
     }
+    policy_allowlist = candidate_spec["permitted_policy_ids"]
+    parameter_ranges = candidate_spec["parameter_ranges"]
+    policy_allowlist_hash = hashlib.sha256(
+        compact(policy_allowlist).encode()
+    ).hexdigest()
+    parameter_ranges_hash = hashlib.sha256(
+        compact(parameter_ranges).encode()
+    ).hexdigest()
+    surface_hashes = {
+        name.removeprefix("parameter_surface__"): receipt["sha256"]
+        for name, receipt in inputs.items()
+        if name.startswith("parameter_surface__")
+    }
+    if PROHIBITED_AIM_SHA in {
+        receipt["sha256"] for receipt in inputs.values()
+    }:
+        raise TuningPreflightError(
+            "prohibited AIM_V2 blob entered the freeze"
+        )
     return {
         "schema_version": VERSION,
         "frozen_at_utc": dt.datetime.now(UTC).isoformat(),
@@ -264,6 +284,11 @@ def freeze_receipt(
         "hash_basis": "committed_git_blob_lf",
         "inputs": inputs,
         "candidate_spec_hash": inputs["candidate_spec"]["sha256"],
+        "policy_allowlist": policy_allowlist,
+        "policy_allowlist_hash": policy_allowlist_hash,
+        "parameter_ranges": parameter_ranges,
+        "parameter_ranges_hash": parameter_ranges_hash,
+        "fixed_parameter_surface_hashes": surface_hashes,
         "adapter_hash": inputs["adapter"]["sha256"],
         "causal_feature_allowlist_hash": inputs[
             "feature_allowlist"
@@ -281,8 +306,10 @@ def freeze_receipt(
 
 def run(args: argparse.Namespace) -> int:
     repo = Path(args.repo).resolve()
+    candidate_spec_path = Path(args.candidate_spec).resolve()
+    candidate_spec = read_json(candidate_spec_path)
     paths = {
-        "candidate_spec": Path(args.candidate_spec).resolve(),
+        "candidate_spec": candidate_spec_path,
         "adapter": Path(args.adapter).resolve(),
         "feature_allowlist": Path(args.feature_allowlist).resolve(),
         "fill_kernel": Path(args.fill_kernel).resolve(),
@@ -292,14 +319,22 @@ def run(args: argparse.Namespace) -> int:
         ).resolve(),
         "runner": Path(__file__).resolve(),
     }
+    for name, locator in (
+        candidate_spec.get("fixed_parameter_sources") or {}
+    ).items():
+        paths[f"parameter_surface__{name}"] = (
+            repo / str(locator)
+        ).resolve()
     validation = validate_contracts(
-        read_json(paths["candidate_spec"]),
+        candidate_spec,
         read_json(paths["adapter"]),
         read_json(paths["feature_allowlist"]),
         read_json(paths["metric_contract"]),
         read_json(paths["prospective_holdout"]),
     )
-    freeze = freeze_receipt(repo, paths, args.hash_commit)
+    freeze = freeze_receipt(
+        repo, paths, args.hash_commit, candidate_spec
+    )
     start_summary_path = Path(args.start_summary).resolve()
     summary = read_json(start_summary_path)
     freeze["start_evidence"] = {

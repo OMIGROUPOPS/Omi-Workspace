@@ -64,7 +64,9 @@ policy IDs and parameter ranges.  It contains no free numeric parameters;
 numeric values may only come from its named pre-existing frozen surfaces.
 The adapter, feature allowlist, fill kernel, metric contract, prospective
 holdout declaration, runner, and candidate specification are hashed as
-committed LF Git blobs.
+committed LF Git blobs.  Every named fixed parameter surface receives its
+own committed-blob receipt; the exact policy allowlist and parameter-range
+objects receive independent canonical hashes as well.
 
 AIM_V2 and SHA-256
 `6183ddec56eaab2ad48432aa7c802ea6265e608fa26cdd960aa1dde866824356`

@@ -132,6 +132,15 @@ def assemble(
             "candidate_spec_hash": preflight["freeze"][
                 "candidate_spec_hash"
             ],
+            "policy_allowlist_hash": preflight["freeze"][
+                "policy_allowlist_hash"
+            ],
+            "parameter_ranges_hash": preflight["freeze"][
+                "parameter_ranges_hash"
+            ],
+            "fixed_parameter_surface_hashes": preflight["freeze"][
+                "fixed_parameter_surface_hashes"
+            ],
             "adapter_hash": preflight["freeze"]["adapter_hash"],
             "feature_allowlist_hash": preflight["freeze"][
                 "causal_feature_allowlist_hash"

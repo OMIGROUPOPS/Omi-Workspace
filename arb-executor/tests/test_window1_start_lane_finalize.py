@@ -59,6 +59,9 @@ class StartLaneFinalizeTests(unittest.TestCase):
                 "start_gate": {"pass": False},
                 "freeze": {
                     "candidate_spec_hash": "candidate",
+                    "policy_allowlist_hash": "policies",
+                    "parameter_ranges_hash": "ranges",
+                    "fixed_parameter_surface_hashes": {},
                     "adapter_hash": "adapter",
                     "causal_feature_allowlist_hash": "features",
                     "fill_kernel_hash": "kernel",

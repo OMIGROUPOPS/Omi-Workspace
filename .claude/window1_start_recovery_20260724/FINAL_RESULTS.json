@@ -1,0 +1,108 @@
+{
+  "D": 804,
+  "corrected_historical_bound": {
+    "corrected_rate_over_D": 0.2810945273631841,
+    "corrected_receipts_only_upper": 226,
+    "distance_from_target": 377,
+    "published_preserved": true,
+    "published_upper": 240,
+    "strict_lower": 0
+  },
+  "development_candidate_preflight": {
+    "adapter_hash": "29098d741637329338a9ebddf52668451cd0a1c8317d7b3867f5072f50d36fb1",
+    "aim_v2_excluded": true,
+    "candidate_results_opened": false,
+    "candidate_scoring_performed": false,
+    "candidate_spec_hash": "f957533a5c21461b7a6e4a5fa58db74481a705e98b5ed13d4f394e3dee89056d",
+    "code_commit": "5ff18478611cdca2344d18d4dd8f64bbc1194d2c",
+    "contract_validation": "pass",
+    "family_count": 6,
+    "feature_allowlist_hash": "699e8d324375ec2e0568c633a6102c0c4ecbb898736b0e2a7f18c94f43314e2f",
+    "fill_kernel_hash": "cd921003f68f993bd8185d5e2413cde9983167be50b7ae8c0dd148b1a9e18893",
+    "fixed_parameter_surface_hashes": {
+      "atlas": "0f22ca9217ecb20a0b70f07b38c2d87196d2a7f39926c48094af5a72b55353da",
+      "cohort_surface": "476b951001d8d7f5ba0905291ca22c7b27de2ee305d5abd3efee50f9b851e0ca",
+      "divot_surfaces": "89c514ec35673de8f552b2b66b9ceafb8181b9c8f6c00b1679899a3a2a82ac06",
+      "drift_surfaces": "7dca4a4f0e6061d28765fd243f4ce717bc36a542b32490bafabc611bd2cf3bab",
+      "dynamic_floor_recut": "3674e3361704463a71a9f6c139b2b2b2cc82fbc6f93a2f2ba07c675642db244a",
+      "orientation_prior": "048105723d89dcd592fb5c79e8e69e34f2f24aadf2a7b00459b0e9c6dfdbd0ef",
+      "reach": "dc90a2d4d9bf2c7f628484fef5e475566fb70898a9ee05264d98f871a9f192cf",
+      "sealed_bands": "c0c29e54792e2f49cad6e96297367b4ada80051cde464a8f3dddb748ae1ce8e7",
+      "shape_manifest": "2db26665b83753418e4b6e21a804259a5713bffde481adfaa12a7b6ceb5d5e50"
+    },
+    "holdout_declaration_hash": "c93cbc4fb9b51cbd9fa415b9fec31bc365feeeec4984bb026f1df5cc637ec5f6",
+    "holdout_opened": false,
+    "metric_contract_hash": "82a84e3f78413195e61106658989644ef1c4ae6fac7e71a3a202776bbf51404d",
+    "parameter_ranges_hash": "47ecef650c0b4b87813a03a983324ead5db1ee29f1f585f8a5eea3db09eb2119",
+    "policy_allowlist_hash": "4bcc02e9e7d7218a4948c0c04af74c4a4c456a8bbfdb42c7388584d6f2fc6aff",
+    "policy_count": 24,
+    "stop_reason": "start_gate_below_603"
+  },
+  "historical_re_adjudication": {
+    "dual_exact_five_witnesses": 31,
+    "dual_witnesses_with_proven_post_start_leg": 26,
+    "newly_recovered_strict_window1_duals": 0,
+    "permanently_post_start_fill_events": 93,
+    "permanently_post_start_filled_legs": 106,
+    "ruling_counts": {
+      "historical_exact_five_timing_censored": 107,
+      "historical_exact_five_window1_fill": 45,
+      "historical_exact_nonfill": 870,
+      "historical_lifecycle_censored": 468,
+      "historical_other_quantity_fill": 12,
+      "historical_receipt_proven_post_start_fill": 106
+    },
+    "ten_contract_overfill_outside_exact_five": 1
+  },
+  "input_receipts": {
+    "historical_summary": {
+      "bytes": 1124,
+      "sha256": "9981dd822ac1bedb21b68e615f7bfba32dc1877455a6afa7729156c8e64f7f64"
+    },
+    "receipt_correction": {
+      "bytes": 3605,
+      "sha256": "301f8107d918e9b2c68e57754754e3dce4e8266d1d5fb440dd4f9682c725ee17"
+    },
+    "start_summary": {
+      "bytes": 3743,
+      "sha256": "4884ba62e9abaea3418badfb8e6e15f1beebef2186af199648d6df661c7e0e6a"
+    },
+    "tuning_preflight": {
+      "bytes": 9938,
+      "sha256": "6016c24981bf55d10c0cb6c1448ea5297dfbe5ae9ea78935ec45d84e7085b861"
+    }
+  },
+  "schema_version": "window1-start-gated-development-lane-v1",
+  "scope": "July 12-20 development only; no candidate scoring",
+  "start_gate": {
+    "clean_intervals": 31,
+    "contradictory": 26,
+    "evidence_blocker": {
+      "additional_exact_or_clean_boundaries_required": 338,
+      "blocked_precision_classes": {
+        "contradictory": 26,
+        "live_by_only": 450,
+        "schedule_only": 63,
+        "unresolved": 0
+      },
+      "events_without_a_positive_capable_boundary": 539,
+      "required_missing_source_kind": "an event-resolved official exact start, or both a causal not-live-through lower bound and causal live-by upper bound forming a noncontradictory interval"
+    },
+    "exact_starts": 234,
+    "ledger_sha256": "1d7fe6a56837ceb0c0b8c932a05daecacc0cefbea94384e16c84975f2ed98ce5",
+    "live_by_only": 450,
+    "missing": 338,
+    "pass": false,
+    "provable_positive_population": 265,
+    "required": 603,
+    "schedule_only": 63,
+    "unresolved": 0
+  },
+  "verdict_law": {
+    "full_os_family_failure_claimed": false,
+    "historical_replay_rejected_frozen_behavior_only": true,
+    "market_ceiling_claimed": false,
+    "reason": "start gate below 603",
+    "strategy_75_percent_verdict_issued": false
+  }
+}

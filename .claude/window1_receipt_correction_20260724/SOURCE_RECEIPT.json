@@ -1,0 +1,31 @@
+{
+  "independent_audit_commit": "56ab6cfd724dc1659b1d44b58c4026642408eed3",
+  "issued_utc": "2026-07-24T03:03:34.915669+00:00",
+  "legacy_start_ledger": {
+    "bytes": 2754296,
+    "sha256": "90a943b598baa8debe1acd08fa4b664d3661cd3762c2e5ab54e54d781819b947"
+  },
+  "no_policy_execution": true,
+  "normalized_hash_commit": "5ff18478611cdca2344d18d4dd8f64bbc1194d2c",
+  "published_artifacts_preserved": true,
+  "published_directory": ".claude\\window1_corrected_20260723",
+  "published_inputs": {
+    "EVENT_LEG_RESULTS.jsonl": {
+      "bytes": 5230083,
+      "sha256": "ed36a98663ba90da769ef2604d221d1dc620594f9a01fd4532ebfd0507bf6bb0"
+    },
+    "EVENT_RESULTS.jsonl": {
+      "bytes": 680809,
+      "sha256": "4531beb0d6b4a30d05135995fd066279d32dad9f5725eb37756a0a8f2622e709"
+    },
+    "FROZEN_HASHES.json": {
+      "bytes": 11622,
+      "sha256": "1e6eefd0133f87c35cf924d7e39c8dbf9a26ae41c103a0d5585374927e221280"
+    },
+    "RESULTS.json": {
+      "bytes": 4509,
+      "sha256": "3b127486089d18a94c0b40c1c4cb1b24a40aaf84053cc4dedd5e433a1f04f50f"
+    }
+  },
+  "schema_version": "window1-replay-receipt-correction-v1"
+}

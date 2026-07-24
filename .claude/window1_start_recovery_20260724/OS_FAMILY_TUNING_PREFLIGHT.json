@@ -1,0 +1,213 @@
+{
+  "aim_v2_excluded": true,
+  "candidate_results_opened": false,
+  "candidate_scoring_performed": false,
+  "contract_validation": "pass",
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-20"
+  ],
+  "family_count": 6,
+  "freeze": {
+    "adapter_hash": "29098d741637329338a9ebddf52668451cd0a1c8317d7b3867f5072f50d36fb1",
+    "candidate_results_opened": false,
+    "candidate_spec_hash": "f957533a5c21461b7a6e4a5fa58db74481a705e98b5ed13d4f394e3dee89056d",
+    "causal_feature_allowlist_hash": "699e8d324375ec2e0568c633a6102c0c4ecbb898736b0e2a7f18c94f43314e2f",
+    "code_commit": "5ff18478611cdca2344d18d4dd8f64bbc1194d2c",
+    "development_dates": [
+      "2026-07-12",
+      "2026-07-20"
+    ],
+    "fill_kernel_hash": "cd921003f68f993bd8185d5e2413cde9983167be50b7ae8c0dd148b1a9e18893",
+    "fixed_parameter_surface_hashes": {
+      "atlas": "0f22ca9217ecb20a0b70f07b38c2d87196d2a7f39926c48094af5a72b55353da",
+      "cohort_surface": "476b951001d8d7f5ba0905291ca22c7b27de2ee305d5abd3efee50f9b851e0ca",
+      "divot_surfaces": "89c514ec35673de8f552b2b66b9ceafb8181b9c8f6c00b1679899a3a2a82ac06",
+      "drift_surfaces": "7dca4a4f0e6061d28765fd243f4ce717bc36a542b32490bafabc611bd2cf3bab",
+      "dynamic_floor_recut": "3674e3361704463a71a9f6c139b2b2b2cc82fbc6f93a2f2ba07c675642db244a",
+      "orientation_prior": "048105723d89dcd592fb5c79e8e69e34f2f24aadf2a7b00459b0e9c6dfdbd0ef",
+      "reach": "dc90a2d4d9bf2c7f628484fef5e475566fb70898a9ee05264d98f871a9f192cf",
+      "sealed_bands": "c0c29e54792e2f49cad6e96297367b4ada80051cde464a8f3dddb748ae1ce8e7",
+      "shape_manifest": "2db26665b83753418e4b6e21a804259a5713bffde481adfaa12a7b6ceb5d5e50"
+    },
+    "frozen_at_utc": "2026-07-24T03:03:36.824694+00:00",
+    "hash_basis": "committed_git_blob_lf",
+    "holdout_opened": false,
+    "inputs": {
+      "adapter": {
+        "bytes": 2201,
+        "git_blob_oid": "9c68c981dbd90a7b4d37bea790d055286b8d1343",
+        "hash_basis": "committed_git_blob_lf",
+        "path": "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_ADAPTER_V1.json",
+        "sha256": "29098d741637329338a9ebddf52668451cd0a1c8317d7b3867f5072f50d36fb1"
+      },
+      "candidate_spec": {
+        "bytes": 6395,
+        "git_blob_oid": "2af2c68ee04c8df81bca6348281deea7e660420e",
+        "hash_basis": "committed_git_blob_lf",
+        "path": "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_CANDIDATES_V1.json",
+        "sha256": "f957533a5c21461b7a6e4a5fa58db74481a705e98b5ed13d4f394e3dee89056d"
+      },
+      "feature_allowlist": {
+        "bytes": 1471,
+        "git_blob_oid": "ced928045f46f74a01b7ba878faae0b505149f47",
+        "hash_basis": "committed_git_blob_lf",
+        "path": "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_FEATURE_ALLOWLIST_V1.json",
+        "sha256": "699e8d324375ec2e0568c633a6102c0c4ecbb898736b0e2a7f18c94f43314e2f"
+      },
+      "fill_kernel": {
+        "bytes": 31444,
+        "git_blob_oid": "c5ef3c3419d41173810b99f368fb6a578b01db67",
+        "hash_basis": "committed_git_blob_lf",
+        "path": "arb-executor/analysis/window1_execution_kernel.py",
+        "sha256": "cd921003f68f993bd8185d5e2413cde9983167be50b7ae8c0dd148b1a9e18893"
+      },
+      "metric_contract": {
+        "bytes": 1057,
+        "git_blob_oid": "40d48e5fa4f9ac62dfc22fb9fae4aad24219e5ef",
+        "hash_basis": "committed_git_blob_lf",
+        "path": "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_METRIC_CONTRACT_V1.json",
+        "sha256": "82a84e3f78413195e61106658989644ef1c4ae6fac7e71a3a202776bbf51404d"
+      },
+      "parameter_surface__atlas": {
+        "bytes": 63832,
+        "git_blob_oid": "9e04a5061d8a9018fcedf4b923834310ba4cf268",
+        "hash_basis": "committed_git_blob_lf",
+        "path": ".claude/trendpath/ATLAS_V1.json",
+        "sha256": "0f22ca9217ecb20a0b70f07b38c2d87196d2a7f39926c48094af5a72b55353da"
+      },
+      "parameter_surface__cohort_surface": {
+        "bytes": 167390,
+        "git_blob_oid": "7b5f89c703679d69986c146692cce90c99c655cf",
+        "hash_basis": "committed_git_blob_lf",
+        "path": ".claude/master_20260709/cohort.json",
+        "sha256": "476b951001d8d7f5ba0905291ca22c7b27de2ee305d5abd3efee50f9b851e0ca"
+      },
+      "parameter_surface__divot_surfaces": {
+        "bytes": 16623,
+        "git_blob_oid": "0145907c60213fc5b65f15618667c82b38a19f42",
+        "hash_basis": "committed_git_blob_lf",
+        "path": ".claude/entrysurface_20260717/divot_tables_v1.json",
+        "sha256": "89c514ec35673de8f552b2b66b9ceafb8181b9c8f6c00b1679899a3a2a82ac06"
+      },
+      "parameter_surface__drift_surfaces": {
+        "bytes": 182240,
+        "git_blob_oid": "2c0d4d3ea7b7a687d38d859df817f2a551fccac2",
+        "hash_basis": "committed_git_blob_lf",
+        "path": ".claude/entrysurface_20260717/drift_surfaces_v1.json",
+        "sha256": "7dca4a4f0e6061d28765fd243f4ce717bc36a542b32490bafabc611bd2cf3bab"
+      },
+      "parameter_surface__dynamic_floor_recut": {
+        "bytes": 82073,
+        "git_blob_oid": "9e9a60110a1803aba301b4dda60073b2178fe12a",
+        "hash_basis": "committed_git_blob_lf",
+        "path": ".claude/seqfloor_20260708/recut_cells.json",
+        "sha256": "3674e3361704463a71a9f6c139b2b2b2cc82fbc6f93a2f2ba07c675642db244a"
+      },
+      "parameter_surface__orientation_prior": {
+        "bytes": 1947,
+        "git_blob_oid": "8971516ed0e248fed7a744d3ee4c7f90a27c833f",
+        "hash_basis": "committed_git_blob_lf",
+        "path": ".claude/trendpath/ORIENT_V1.json",
+        "sha256": "048105723d89dcd592fb5c79e8e69e34f2f24aadf2a7b00459b0e9c6dfdbd0ef"
+      },
+      "parameter_surface__reach": {
+        "bytes": 7432,
+        "git_blob_oid": "ceadaf11d1f539f8d3a2105fe29d8cd96c22656a",
+        "hash_basis": "committed_git_blob_lf",
+        "path": ".claude/takerreach/LAW.json",
+        "sha256": "dc90a2d4d9bf2c7f628484fef5e475566fb70898a9ee05264d98f871a9f192cf"
+      },
+      "parameter_surface__sealed_bands": {
+        "bytes": 10125,
+        "git_blob_oid": "1036f64c82ed76e7b20ea3660398e7afd7d90a4d",
+        "hash_basis": "committed_git_blob_lf",
+        "path": ".claude/entrysurface_20260717/entry_tables_sealed_v1.json",
+        "sha256": "c0c29e54792e2f49cad6e96297367b4ada80051cde464a8f3dddb748ae1ce8e7"
+      },
+      "parameter_surface__shape_manifest": {
+        "bytes": 498037,
+        "git_blob_oid": "8aaeef6f1aaa0ad55bbd5d758ea1967687d4fa72",
+        "hash_basis": "committed_git_blob_lf",
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "sha256": "2db26665b83753418e4b6e21a804259a5713bffde481adfaa12a7b6ceb5d5e50"
+      },
+      "prospective_holdout": {
+        "bytes": 724,
+        "git_blob_oid": "b904a7565f4572fbcdcda416251153d74e2f5236",
+        "hash_basis": "committed_git_blob_lf",
+        "path": "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_PROSPECTIVE_HOLDOUT_V1.json",
+        "sha256": "c93cbc4fb9b51cbd9fa415b9fec31bc365feeeec4984bb026f1df5cc637ec5f6"
+      },
+      "runner": {
+        "bytes": 13980,
+        "git_blob_oid": "8712a081a7ae6486d566b3f4f8f5b6bc3d121efd",
+        "hash_basis": "committed_git_blob_lf",
+        "path": "arb-executor/analysis/window1_os_family_tuning_runner.py",
+        "sha256": "254921d57d3e57315470d77bdcf555a967fbaf0a8cc57ee3217084aac4fb19d5"
+      }
+    },
+    "metric_contract_hash": "82a84e3f78413195e61106658989644ef1c4ae6fac7e71a3a202776bbf51404d",
+    "parameter_ranges": {
+      "first_fill_sibling_response": [
+        "hold_sibling_at_own_divot",
+        "reaim_sibling_to_its_own_divot"
+      ],
+      "free_numeric_parameters": [],
+      "numeric_values": "read only from the named pre-existing frozen surfaces; no interpolation, optimization, or newly invented threshold",
+      "posture": [
+        "park_at_own_divot",
+        "bounded_walk_with_nonself_chain"
+      ]
+    },
+    "parameter_ranges_hash": "47ecef650c0b4b87813a03a983324ead5db1ee29f1f585f8a5eea3db09eb2119",
+    "policy_allowlist": [
+      "pair_divot_core__park__hold",
+      "pair_divot_core__park__reaim",
+      "pair_divot_core__walk__hold",
+      "pair_divot_core__walk__reaim",
+      "drift_cohort_orientation__park__hold",
+      "drift_cohort_orientation__park__reaim",
+      "drift_cohort_orientation__walk__hold",
+      "drift_cohort_orientation__walk__reaim",
+      "mirror_deceleration__park__hold",
+      "mirror_deceleration__park__reaim",
+      "mirror_deceleration__walk__hold",
+      "mirror_deceleration__walk__reaim",
+      "dynamic_recut_atlas__park__hold",
+      "dynamic_recut_atlas__park__reaim",
+      "dynamic_recut_atlas__walk__hold",
+      "dynamic_recut_atlas__walk__reaim",
+      "causal_micro_pressure__park__hold",
+      "causal_micro_pressure__park__reaim",
+      "causal_micro_pressure__walk__hold",
+      "causal_micro_pressure__walk__reaim",
+      "full_chronological_stack__park__hold",
+      "full_chronological_stack__park__reaim",
+      "full_chronological_stack__walk__hold",
+      "full_chronological_stack__walk__reaim"
+    ],
+    "policy_allowlist_hash": "4bcc02e9e7d7218a4948c0c04af74c4a4c456a8bbfdb42c7388584d6f2fc6aff",
+    "prospective_holdout_declaration_hash": "c93cbc4fb9b51cbd9fa415b9fec31bc365feeeec4984bb026f1df5cc637ec5f6",
+    "schema_version": "window1-os-family-tuning-preflight-v1",
+    "start_evidence": {
+      "ledger_sha256": "1d7fe6a56837ceb0c0b8c932a05daecacc0cefbea94384e16c84975f2ed98ce5",
+      "policy_outcomes_examined_during_extraction": false,
+      "schema_version": "window1-real-start-ledger-v3",
+      "summary_sha256": "4884ba62e9abaea3418badfb8e6e15f1beebef2186af199648d6df661c7e0e6a"
+    }
+  },
+  "full_depth_excluded": true,
+  "holdout_opened": false,
+  "pinnacle_excluded": true,
+  "policy_count": 24,
+  "schema_version": "window1-os-family-tuning-preflight-v1",
+  "silent_proxy_substitution_allowed": false,
+  "start_gate": {
+    "missing": 338,
+    "pass": false,
+    "provable_positive_population": 265,
+    "required": 603
+  },
+  "stop_reason": "start_gate_below_603"
+}

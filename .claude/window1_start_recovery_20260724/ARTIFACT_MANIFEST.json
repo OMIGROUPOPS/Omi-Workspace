@@ -1,0 +1,49 @@
+{
+  "D": 804,
+  "artifact_count": 10,
+  "artifacts": {
+    "FINAL_REPORT.md": {
+      "bytes": 2393,
+      "sha256": "151877a4bbc72f76a253a2a06ac5cf3b088f77cbf71c9da91b673561b8b30ab1"
+    },
+    "FINAL_RESULTS.json": {
+      "bytes": 4702,
+      "sha256": "617d0564068912b51ad3bcc70cddf7e9ca3adfc77dfb914afcd91846fcf0402e"
+    },
+    "HISTORICAL_START_RULINGS_EVENTS.jsonl": {
+      "bytes": 338351,
+      "sha256": "75d66045283b77c2def578ae1382089f60a1a3bbc88134819cac55e6df06ced6"
+    },
+    "HISTORICAL_START_RULINGS_LEGS.jsonl": {
+      "bytes": 1036516,
+      "sha256": "4db240240577a5b5bea00f2987a8e070d35916ba3177d2b23fc6f3ec5dafdaf1"
+    },
+    "HISTORICAL_START_RULING_REPORT.md": {
+      "bytes": 594,
+      "sha256": "ccd09936adb0c5fddb2146ba6af1c1829bfee2588122775ca5e4fa7f05ecceaf"
+    },
+    "HISTORICAL_START_RULING_SUMMARY.json": {
+      "bytes": 1124,
+      "sha256": "9981dd822ac1bedb21b68e615f7bfba32dc1877455a6afa7729156c8e64f7f64"
+    },
+    "OS_FAMILY_TUNING_PREFLIGHT.json": {
+      "bytes": 9938,
+      "sha256": "6016c24981bf55d10c0cb6c1448ea5297dfbe5ae9ea78935ec45d84e7085b861"
+    },
+    "REAL_START_LEDGER_V3.jsonl": {
+      "bytes": 1732159,
+      "sha256": "1d7fe6a56837ceb0c0b8c932a05daecacc0cefbea94384e16c84975f2ed98ce5"
+    },
+    "REAL_START_REPORT_V3.md": {
+      "bytes": 1029,
+      "sha256": "535d27ee65ed3d57680a84e68e472a6257c3e492b5c35c6eade2f9cac22a58e1"
+    },
+    "REAL_START_SUMMARY_V3.json": {
+      "bytes": 3743,
+      "sha256": "4884ba62e9abaea3418badfb8e6e15f1beebef2186af199648d6df661c7e0e6a"
+    }
+  },
+  "candidate_scoring_performed": false,
+  "holdout_opened": false,
+  "schema_version": "window1-start-gated-development-lane-v1"
+}

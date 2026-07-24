@@ -1,0 +1,112 @@
+{
+  "D": 804,
+  "clean_intervals": 31,
+  "contradictory": 26,
+  "evidence_blocker": {
+    "additional_exact_or_clean_boundaries_required": 338,
+    "blocked_precision_classes": {
+      "contradictory": 26,
+      "live_by_only": 450,
+      "schedule_only": 63,
+      "unresolved": 0
+    },
+    "events_without_a_positive_capable_boundary": 539,
+    "required_missing_source_kind": "an event-resolved official exact start, or both a causal not-live-through lower bound and causal live-by upper bound forming a noncontradictory interval"
+  },
+  "exact_starts": 234,
+  "extraction_law": {
+    "live_by_promoted_to_exact": false,
+    "missing_source_invents_timestamp": false,
+    "official_historical_six_hour_freshness_rule": "not applied to in-play/ended provider match-start facts",
+    "policy_outcome_candidate_sources_excluded": [
+      "engine_regime_transition:self_fill"
+    ],
+    "policy_outcomes_examined": false,
+    "schedule_can_prove_positive": false
+  },
+  "ledger_sha256": "1d7fe6a56837ceb0c0b8c932a05daecacc0cefbea94384e16c84975f2ed98ce5",
+  "live_by_only": 450,
+  "missing_from_start_gate": 338,
+  "precedence": [
+    "exact_official_provider_match_start",
+    "raw_milestone_shadow",
+    "tennis_db_start_or_live_score",
+    "live_v3_live_v4_historical_log",
+    "mapped_score_onset_interval",
+    "event_resolved_exchange_lifecycle",
+    "true_tape_regime_interval",
+    "schedule_last_resort_bound"
+  ],
+  "provable_positive_population": 265,
+  "schedule_only": 63,
+  "schema_version": "window1-real-start-ledger-v3",
+  "selected_source_counts": {
+    "engine_regime_transition:fallback_bell": 145,
+    "engine_regime_transition:percat_fitted": 62,
+    "engine_regime_transition:price_divergence": 6,
+    "engine_regime_transition:tape_flow": 3,
+    "engine_regime_transition:tape_latch": 1,
+    "milestone_shadow_official_start": 4,
+    "observed_starts_db_first_observed_inplay": 3,
+    "official_provider_match_start": 230,
+    "public_tape_5_prints_in_15m_onset": 277,
+    "schedule_or_unresolved": 63,
+    "te_scoreboard_first_observed_inplay": 5,
+    "tennis_db_live_scores_current_state": 5
+  },
+  "source_receipts": {
+    "events": {
+      "bytes": 336694,
+      "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46"
+    },
+    "prior_policy_blind_source_ledger": {
+      "bytes": 2754296,
+      "policy_outcome_candidates_excluded": {
+        "engine_regime_transition:self_fill": 16
+      },
+      "sha256": "90a943b598baa8debe1acd08fa4b664d3661cd3762c2e5ab54e54d781819b947"
+    },
+    "public_milestones": {
+      "accepted_exact": 230,
+      "accepted_not_live": 0,
+      "manifest_sha256": "6e6dd4e8655a80c6f750b21382d3c73d3e68312e547130f76dc207fb932a6df4",
+      "normalized_sha256": "43085971671dd2de95999bec1f1d335a56dd6366c1019bc7103f6b3902908f0c",
+      "pagination_complete": true,
+      "rows": 804,
+      "status_counts": {
+        "<missing>": 139,
+        "cancelled": 16,
+        "ended": 4,
+        "live": 226,
+        "not_started": 419
+      }
+    },
+    "raw_milestone_shadow": {
+      "accepted_exact": 50,
+      "accepted_not_live": 252,
+      "parse_errors": 2,
+      "physical_rows": 1494,
+      "required_events": 128,
+      "required_rows": 480,
+      "sha256": "fcf2a13aa18a51abdf935653e9fdb14a4afcc1551a580d760d4c99736702355e",
+      "status_counts": {
+        "<missing>": 102,
+        "cancelled": 2,
+        "ended": 2,
+        "interrupted": 6,
+        "live": 42,
+        "not_started": 326
+      }
+    }
+  },
+  "start_gate_pass": false,
+  "start_gate_required": 603,
+  "timing_blocked_by_precision": {
+    "contradictory": 26,
+    "live_by_only": 450,
+    "schedule_only": 63,
+    "unresolved": 0
+  },
+  "timing_blocked_population": 539,
+  "unresolved": 0
+}

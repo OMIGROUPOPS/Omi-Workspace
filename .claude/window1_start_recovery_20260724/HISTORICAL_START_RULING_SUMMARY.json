@@ -1,0 +1,31 @@
+{
+  "D": 804,
+  "candidate_policy_scoring_performed": false,
+  "historical_dual_events_with_receipt_proven_post_start_leg": 26,
+  "historical_dual_exact_five_events": 31,
+  "inputs": {
+    "published_leg_ledger": {
+      "bytes": 5230083,
+      "sha256": "ed36a98663ba90da769ef2604d221d1dc620594f9a01fd4532ebfd0507bf6bb0"
+    },
+    "start_ledger": {
+      "bytes": 1732159,
+      "sha256": "1d7fe6a56837ceb0c0b8c932a05daecacc0cefbea94384e16c84975f2ed98ce5"
+    }
+  },
+  "newly_recovered_historical_dual_events": [],
+  "newly_recovered_historical_strict_window1_duals": 0,
+  "permanently_post_start_fill_events": 93,
+  "permanently_post_start_filled_legs": 106,
+  "placement_cancellation_fill_values_modified": false,
+  "ruling_counts": {
+    "historical_exact_five_timing_censored": 107,
+    "historical_exact_five_window1_fill": 45,
+    "historical_exact_nonfill": 870,
+    "historical_lifecycle_censored": 468,
+    "historical_other_quantity_fill": 12,
+    "historical_receipt_proven_post_start_fill": 106
+  },
+  "schema_version": "window1-start-replay-adjudication-v1",
+  "ten_contract_overfill_outside_exact_five": 1
+}

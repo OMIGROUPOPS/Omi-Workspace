@@ -1,0 +1,101 @@
+{
+  "D": 804,
+  "D1_censoring_only_event_candidates": {
+    "added_count": 11,
+    "audit_count": 14,
+    "not_added_due_to_independent_hard_sibling": 3
+  },
+  "D2_published_events_with_post_start_leg_removed": 18,
+  "D3_unsound_cutoff_only_legs_reclassified_censored": {
+    "count": 4,
+    "tickers": [
+      "KXATPCHALLENGERMATCH-26JUL20GALLLA-GAL",
+      "KXWTAMATCH-26JUL18BANGAO-GAO",
+      "KXWTAMATCH-26JUL19BRAVON-VON",
+      "KXWTAMATCH-26JUL19JAKAVA-AVA"
+    ]
+  },
+  "D4_live_by_reselection": {
+    "events": 7,
+    "newly_proven_post_start_legs": 11,
+    "tickers": [
+      "KXATPCHALLENGERMATCH-26JUL15SCHHOU-HOU",
+      "KXATPCHALLENGERMATCH-26JUL15SCHHOU-SCH",
+      "KXATPCHALLENGERMATCH-26JUL17NIJDEN-DEN",
+      "KXATPCHALLENGERMATCH-26JUL17NIJDEN-NIJ",
+      "KXWTACHALLENGERMATCH-26JUL13GRABER-GRA",
+      "KXWTACHALLENGERMATCH-26JUL14HRUBUY-HRU",
+      "KXWTACHALLENGERMATCH-26JUL15PENFAL-FAL",
+      "KXWTACHALLENGERMATCH-26JUL15PENFAL-PEN",
+      "KXWTACHALLENGERMATCH-26JUL17VANTAN-TAN",
+      "KXWTACHALLENGERMATCH-26JUL17YANTRE-TRE",
+      "KXWTACHALLENGERMATCH-26JUL17YANTRE-YAN"
+    ]
+  },
+  "added_to_published_bound": {
+    "count": 11,
+    "events": [
+      "KXATPCHALLENGERMATCH-26JUL20BICWAL",
+      "KXATPCHALLENGERMATCH-26JUL20CHABOU",
+      "KXATPCHALLENGERMATCH-26JUL20ECHHAR",
+      "KXATPCHALLENGERMATCH-26JUL20TOKHUR",
+      "KXATPCHALLENGERMATCH-26JUL20VISNIK",
+      "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+      "KXWTACHALLENGERMATCH-26JUL20FERREN",
+      "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+      "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+      "KXWTACHALLENGERMATCH-26JUL20TOTRUG"
+    ]
+  },
+  "corrected_non_window1_fill_counts": {
+    "events": 69,
+    "legs": 82
+  },
+  "corrected_rate_over_D": 0.2810945273631841,
+  "corrected_receipts_only_optimistic_upper_bound": 226,
+  "distance_from_75_percent_target": 377,
+  "historical_execution_conservation": {
+    "censored_legs": 468,
+    "exact_five_filled_legs": 258,
+    "exact_nonfill_legs": 870,
+    "other_quantity_filled_legs": 12,
+    "ten_contract_overfill_outside_exact_five": 1
+  },
+  "no_scoring_or_tuning_performed": true,
+  "published_and_still_possible": 215,
+  "published_optimistic_upper_bound": 240,
+  "removed_from_published_bound": {
+    "count": 25,
+    "events": [
+      "KXATPCHALLENGERMATCH-26JUL14GENPET",
+      "KXATPCHALLENGERMATCH-26JUL14MARCAM",
+      "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "KXATPCHALLENGERMATCH-26JUL15SANERE",
+      "KXATPCHALLENGERMATCH-26JUL15SCHHOU",
+      "KXATPCHALLENGERMATCH-26JUL17NIJDEN",
+      "KXATPCHALLENGERMATCH-26JUL17PERSAN",
+      "KXATPCHALLENGERMATCH-26JUL17SEKCAS",
+      "KXATPCHALLENGERMATCH-26JUL19CALTEP",
+      "KXATPCHALLENGERMATCH-26JUL19CASVAS",
+      "KXATPCHALLENGERMATCH-26JUL20JOHAGU",
+      "KXATPMATCH-26JUL14CECBUR",
+      "KXATPMATCH-26JUL14GOMMCD",
+      "KXATPMATCH-26JUL14TOPUGO",
+      "KXATPMATCH-26JUL15PRADZU",
+      "KXATPMATCH-26JUL17COLVAC",
+      "KXWTACHALLENGERMATCH-26JUL13GRABER",
+      "KXWTACHALLENGERMATCH-26JUL14FALYUA",
+      "KXWTACHALLENGERMATCH-26JUL14HRUBUY",
+      "KXWTACHALLENGERMATCH-26JUL15JONURG",
+      "KXWTACHALLENGERMATCH-26JUL15KNUTAR",
+      "KXWTACHALLENGERMATCH-26JUL15PENFAL",
+      "KXWTACHALLENGERMATCH-26JUL17JONNOH",
+      "KXWTACHALLENGERMATCH-26JUL17VANTAN",
+      "KXWTACHALLENGERMATCH-26JUL17YANTRE"
+    ]
+  },
+  "schema_version": "window1-replay-receipt-correction-v1",
+  "scope": "semantic correction to the frozen historical execution only; no alternative policy, market ceiling, or OS-family verdict",
+  "strict_lower_bound": 0
+}

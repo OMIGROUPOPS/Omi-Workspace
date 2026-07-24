@@ -1,0 +1,185 @@
+{
+  "D_ledger": 804,
+  "classification_counts": {
+    "nonfill": 678,
+    "censored": 102,
+    "exact_five": 10,
+    "contradictory": 14
+  },
+  "conservation_sum": 804,
+  "reproduced": {
+    "C": 10,
+    "PC": 9,
+    "S": 9,
+    "IC": 4
+  },
+  "codex_selected_raw": {
+    "C": 10,
+    "PC": 9,
+    "S": 9,
+    "IC": 4,
+    "exact_five": 10,
+    "partial": 0,
+    "other_quantity": 0,
+    "nonfill": 678,
+    "contradictory": 14,
+    "censored": 102
+  },
+  "flag_mismatches": {
+    "C": [],
+    "PC": [],
+    "S": [],
+    "IC": []
+  },
+  "optimistic_queue_complete_reproduced": 26,
+  "guard_missing_events": [
+    "KXATPCHALLENGERMATCH-26JUL12BRUGAD",
+    "KXATPCHALLENGERMATCH-26JUL12TOKROZ",
+    "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+    "KXATPMATCH-26JUL12KRUFER",
+    "KXWTACHALLENGERMATCH-26JUL12ARIZHA",
+    "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+    "KXWTACHALLENGERMATCH-26JUL12CIRHUA",
+    "KXWTACHALLENGERMATCH-26JUL12KHOVIG",
+    "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+    "KXWTACHALLENGERMATCH-26JUL12PANYOR",
+    "KXWTACHALLENGERMATCH-26JUL12SAIETO",
+    "KXWTACHALLENGERMATCH-26JUL12SHEVAN",
+    "KXWTACHALLENGERMATCH-26JUL12SHITUR",
+    "KXWTACHALLENGERMATCH-26JUL12ZELFAL",
+    "KXATPCHALLENGERMATCH-26JUL13KRASAL",
+    "KXATPCHALLENGERMATCH-26JUL13SHIHAR",
+    "KXWTACHALLENGERMATCH-26JUL13BAIPRO",
+    "KXWTACHALLENGERMATCH-26JUL13KHOZHA",
+    "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+    "KXWTACHALLENGERMATCH-26JUL13OKATAR"
+  ],
+  "guard_missing_count": 72,
+  "schedule_or_liveby_positives": [],
+  "holdout_dates_in_ledger": [],
+  "window_left_events_classified_nonfill": 12,
+  "nonfill_leg_statuses": {
+    "not_filled": 1248,
+    "filled": 84,
+    "window_left_after_guarded_start": 24
+  },
+  "censored_breakdown": {
+    "('available_10_of_16', ('filled', 'missing_placement_evidence'))": 1,
+    "('available_10_of_16', ('filled', 'not_filled'))": 1,
+    "('available_7_of_16', ('missing_placement_evidence',))": 1,
+    "('available_8_of_16', ('filled', 'not_filled'))": 3,
+    "('available_8_of_16', ('missing_placement_evidence',))": 7,
+    "('available_8_of_16', ('not_filled',))": 2,
+    "('available_9_of_16', ('missing_placement_evidence',))": 1,
+    "('no_causal_birth_book', ('missing_placement_evidence',))": 1,
+    "('start_boundary_censored', ('start_boundary_censored',))": 85
+  },
+  "ratios": {
+    "C_over_D": 0.012437810945273632,
+    "PC_over_D": 0.011194029850746268,
+    "PC_over_C": 0.9,
+    "S_over_C": 0.9,
+    "IC_over_D": 0.004975124378109453
+  },
+  "by_date": {
+    "2026-07-12": {
+      "D": 156,
+      "C": 4,
+      "PC": 3
+    },
+    "2026-07-13": {
+      "D": 114,
+      "C": 0,
+      "PC": 0
+    },
+    "2026-07-14": {
+      "D": 99,
+      "C": 0,
+      "PC": 0
+    },
+    "2026-07-15": {
+      "D": 64,
+      "C": 1,
+      "PC": 1
+    },
+    "2026-07-16": {
+      "D": 42,
+      "C": 0,
+      "PC": 0
+    },
+    "2026-07-17": {
+      "D": 50,
+      "C": 0,
+      "PC": 0
+    },
+    "2026-07-18": {
+      "D": 62,
+      "C": 0,
+      "PC": 0
+    },
+    "2026-07-19": {
+      "D": 121,
+      "C": 5,
+      "PC": 5
+    },
+    "2026-07-20": {
+      "D": 96,
+      "C": 0,
+      "PC": 0
+    }
+  },
+  "by_tournament_class": {
+    "ATP_CHALL": {
+      "D": 369,
+      "C": 0,
+      "PC": 0
+    },
+    "ATP_MAIN": {
+      "D": 147,
+      "C": 10,
+      "PC": 9
+    },
+    "WTA_CHALL": {
+      "D": 136,
+      "C": 0,
+      "PC": 0
+    },
+    "WTA_MAIN": {
+      "D": 152,
+      "C": 0,
+      "PC": 0
+    }
+  },
+  "by_start_source_class": {
+    "clean_causal_interval": {
+      "D": 31,
+      "C": 0,
+      "PC": 0
+    },
+    "contradictory": {
+      "D": 14,
+      "C": 0,
+      "PC": 0
+    },
+    "live_by_only": {
+      "D": 52,
+      "C": 0,
+      "PC": 0
+    },
+    "official_exact": {
+      "D": 234,
+      "C": 4,
+      "PC": 3
+    },
+    "quantized_late_detection_proxy": {
+      "D": 453,
+      "C": 6,
+      "PC": 6
+    },
+    "schedule_only": {
+      "D": 20,
+      "C": 0,
+      "PC": 0
+    }
+  }
+}

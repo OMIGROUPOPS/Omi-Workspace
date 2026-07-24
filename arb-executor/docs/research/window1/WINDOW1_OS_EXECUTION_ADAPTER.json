@@ -1,0 +1,85 @@
+{
+  "schema_version": "window1-os-execution-adapter-v1",
+  "adapter_id": "chronological-window1-os-receipt-adapter-v1",
+  "calibration_adapter": {
+    "path": ".claude/window1_calibration_20260723/WINDOW1_OS_RESEARCH_ADAPTER.json",
+    "sha256": "cc137a5ed4b0218587e64c43da0572a2fa9a4ca1c4e32e02e36ec992d79cf3fe",
+    "component_count": 20
+  },
+  "execution_mode": "actual historical decisions and exchange receipts; feature surfaces retained at their chronological coverage state",
+  "laws": {
+    "pair_is_one_object": true,
+    "exact_quantity_per_leg": 5,
+    "missing_feature": "censor_feature",
+    "silent_proxy_substitution_allowed": false,
+    "aim_v2": "excluded",
+    "full_depth_claim_allowed": false,
+    "counterfactual_order_creation_allowed": false
+  },
+  "metric_executable_components": [
+    "pair_law",
+    "historical_execution",
+    "real_start",
+    "true_print_tape",
+    "dynamic_floor_and_recut_cells",
+    "dual_divot_steering_and_catch"
+  ],
+  "feature_coverage_components": [
+    "first_fill_sibling_response",
+    "sealed_bands",
+    "drift_recognition",
+    "cohort_steering",
+    "orientation_prior",
+    "walk_park_posture",
+    "riser_deceleration_mirror_seesaw",
+    "atlas_and_reach",
+    "shape_corpus",
+    "fv_bookmaker_pinnacle_voices",
+    "bbo_and_top_five_pressure",
+    "raw_ws_trade_receipts",
+    "raw_ws_full_depth",
+    "own_order_fingerprints_and_contributed_volume"
+  ],
+  "component_overrides": {
+    "aim_v2": {
+      "status": "excluded",
+      "consumed": false,
+      "reason": "the pinned shape prior has only AIM_V2 LATCHCAL lineage"
+    },
+    "shape_corpus": {
+      "status": "partially_available",
+      "consumed_for_policy": false,
+      "reason": "shape-cell and shape-offset fields in the frozen feature matrix depend on the excluded AIM_V2 LATCHCAL table"
+    },
+    "dynamic_floor_and_recut_cells": {
+      "status": "available",
+      "consumed_for_policy": false,
+      "consumed_for_reporting": true,
+      "source": ".claude/seqfloor_20260708/recut_cells.json"
+    },
+    "raw_ws_full_depth": {
+      "status": "unavailable",
+      "consumed": false,
+      "reason": "snapshot ancestry, sequence continuity, and reconnect epochs are not proven"
+    },
+    "fv_bookmaker_pinnacle_voices": {
+      "status": "partially_available",
+      "pinnacle": "unavailable",
+      "bookmaker": "partial causal coverage",
+      "consumed_for_policy": false
+    },
+    "bbo_and_top_five_pressure": {
+      "status": "partially_available",
+      "consumed_for_policy": false,
+      "reason": "causal snapshots exist but are not universally aligned to private exchange placement clocks"
+    }
+  },
+  "prohibited_substitutions": [
+    "walk_law_for_missing_component",
+    "touch_for_missing_component",
+    "schedule_for_real_start",
+    "local_receipt_for_exchange_clock",
+    "aim_v2_shape_table_for_generic_shape_prior",
+    "limited_depth_for_full_depth"
+  ]
+}

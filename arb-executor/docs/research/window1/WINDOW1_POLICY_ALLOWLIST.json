@@ -1,0 +1,44 @@
+{
+  "schema_version": "window1-policy-allowlist-v1",
+  "allowed_policy_ids": [
+    "chronological_os_strategy_of_record_receipt_replay_v1"
+  ],
+  "allowed_execution_components": [
+    "historical_execution",
+    "pair_law",
+    "real_start",
+    "true_print_tape",
+    "dynamic_floor_and_recut_cells",
+    "dual_divot_steering_and_catch",
+    "first_fill_sibling_response",
+    "sealed_bands",
+    "drift_recognition",
+    "cohort_steering",
+    "orientation_prior",
+    "walk_park_posture",
+    "riser_deceleration_mirror_seesaw",
+    "atlas_and_reach",
+    "shape_corpus",
+    "fv_bookmaker_pinnacle_voices",
+    "bbo_and_top_five_pressure",
+    "raw_ws_trade_receipts",
+    "raw_ws_full_depth",
+    "own_order_fingerprints_and_contributed_volume"
+  ],
+  "forbidden_policy_ids": [
+    "park_touch_simultaneous_hold",
+    "walk_law_simultaneous_hold",
+    "walk_law_firstfill_reaim_touch",
+    "causal_stack_simultaneous_reaim"
+  ],
+  "forbidden_execution_components": [
+    "aim_v2"
+  ],
+  "prohibited_input_sha256": [
+    "6183ddec56eaab2ad48432aa7c802ea6265e608fa26cdd960aa1dde866824356"
+  ],
+  "unknown_policy_action": "refuse_execution",
+  "unknown_component_action": "refuse_execution",
+  "missing_component_action": "censor_relevant_feature",
+  "proxy_substitution_allowed": false
+}

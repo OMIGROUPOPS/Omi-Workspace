@@ -1,0 +1,42 @@
+{
+  "schema_version": "window1-corrected-metric-contract-v1",
+  "D": 804,
+  "target": {
+    "metric": "strict_dual_exact_five_window1_completion_with_negative_combined_window1_close_delta",
+    "rate": 0.75,
+    "count": 603
+  },
+  "start_precision": {
+    "exact_starts": 29,
+    "clean_causal_intervals_positive_capable": 47,
+    "contradictory_intervals_not_positive_capable": 32,
+    "live_by_events_negative_only": 625,
+    "fully_timing_censored_events": 71,
+    "positive_window1_provable_population": 76,
+    "remaining_timing_censored_population": 728
+  },
+  "strict_completion": "both required legs prove exactly five contracts filled from private exchange receipts, with a non-null exchange placement clock for every filled order, non-null exchange fill and completion clocks, and completion no later than an exact-start or clean-interval safe pre-start cutoff",
+  "non_window1_fill": "a filled leg with a non-null completion exchange clock at or after an official-provider or public-exchange-tape known-live-by upper bound, or after an exact/clean safe pre-start cutoff; a local receipt bound cannot prove this ruling",
+  "reference": "last positive-size exchange-identified true print for the leg at or before its exact or clean-interval safe pre-start cutoff",
+  "leg_delta": "actual exact-five fill VWAP minus leg Window-1-close reference",
+  "combined_delta": "sum of the two individual leg deltas",
+  "combined_cost_under_par": "sum of exact-five leg VWAPs strictly below 100 cents",
+  "both_individual_negative": "both individual leg deltas are strictly negative",
+  "one_leg_only_negative": "exactly one individual leg delta is strictly negative",
+  "dynamic_floor": "sum over both legs of Window-1 close minus edge_p50(category, integer close-price cell) from recut_cells.json",
+  "dynamic_floor_gap": "combined entry cost minus dynamic floor",
+  "per_leg_dip_catch": {
+    "fitted_target": "Window-1 close minus edge_p50(category, integer close-price cell)",
+    "gap": "leg fill VWAP minus fitted target",
+    "at_or_below_target": "gap <= 0",
+    "within_four_cents": "gap <= 4"
+  },
+  "bounds": {
+    "strict_lower_bound": "observed primary successes only",
+    "optimistic_upper_bound": "observed primary successes plus every event whose two leg lifecycle upper bounds still permit exact-five success and whose primary ruling remains evidentially unresolved"
+  },
+  "censor_law": "censored events remain in D and never count as observed successes",
+  "schedule_used_for_positive_or_post_start_ruling": false,
+  "local_receipt_used_for_positive_or_post_start_ruling": false,
+  "window2_exit_settlement_dca_used": false
+}

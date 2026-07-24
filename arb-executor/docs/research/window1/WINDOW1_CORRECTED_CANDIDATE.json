@@ -1,0 +1,89 @@
+{
+  "schema_version": "window1-corrected-candidate-v1",
+  "candidate_id": "chronological_os_strategy_of_record_receipt_replay_v1",
+  "population": {
+    "D": 804,
+    "dates_utc_inclusive": [
+      "2026-07-12",
+      "2026-07-20"
+    ],
+    "required_legs_per_event": 2,
+    "required_quantity_per_leg": 5
+  },
+  "mode": "deterministic_historical_receipt_reproduction",
+  "policy": {
+    "policy_id": "chronological_os_strategy_of_record_receipt_replay_v1",
+    "orders": "only actual historical entry placement receipts",
+    "fills": "only complete private exchange fill receipts",
+    "nonfills": "only exact closed-order or causal nonplacement receipts",
+    "counterfactual_orders_allowed": false,
+    "synthetic_fills_allowed": false,
+    "simplified_proxy_allowed": false,
+    "candidate_search_allowed": false,
+    "parameter_sweep_allowed": false,
+    "threshold_optimization_allowed": false,
+    "ablation_allowed": false
+  },
+  "window": {
+    "name": "Window 1",
+    "positive_start_classes": [
+      "exact_official_or_milestone",
+      "causal_start_interval_clean"
+    ],
+    "positive_requires_exchange_placement_clock": true,
+    "positive_requires_exchange_fill_clock": true,
+    "positive_requires_safe_prestart_cutoff": true,
+    "schedule_may_prove_positive": false,
+    "local_receipt_time_may_prove_positive": false,
+    "missing_completion_clock_may_prove_negative": false
+  },
+  "metrics": [
+    "strict_dual_exact_five_window1_completion",
+    "negative_combined_window1_close_delta",
+    "combined_entry_cost_under_par",
+    "both_individual_leg_window1_close_deltas_negative",
+    "one_leg_only_window1_close_delta_negative",
+    "dynamic_floor_gap",
+    "per_leg_dip_catch"
+  ],
+  "component_execution": {
+    "pair_law": "mechanical two-leg exact-five conjunction",
+    "historical_execution": "shared receipt-replay kernel",
+    "real_start": "causal exact or clean-interval safe cutoff",
+    "true_print_tape": "last positive-size exchange-identified print at or before safe cutoff",
+    "dynamic_floor_and_recut_cells": "reporting measure only",
+    "other_os_components": "retained as feature-source coverage; missing values are censored and never proxied"
+  },
+  "required_execution_components": [
+    "pair_law",
+    "historical_execution",
+    "real_start",
+    "true_print_tape",
+    "dynamic_floor_and_recut_cells",
+    "dual_divot_steering_and_catch"
+  ],
+  "feature_coverage_components": [
+    "first_fill_sibling_response",
+    "sealed_bands",
+    "drift_recognition",
+    "cohort_steering",
+    "orientation_prior",
+    "walk_park_posture",
+    "riser_deceleration_mirror_seesaw",
+    "atlas_and_reach",
+    "shape_corpus",
+    "fv_bookmaker_pinnacle_voices",
+    "bbo_and_top_five_pressure",
+    "raw_ws_trade_receipts",
+    "raw_ws_full_depth",
+    "own_order_fingerprints_and_contributed_volume"
+  ],
+  "aim_v2": {
+    "status": "excluded",
+    "shape_prior_consumed": false,
+    "excluded_sha256": "6183ddec56eaab2ad48432aa7c802ea6265e608fa26cdd960aa1dde866824356",
+    "feature_gap": "cell-conditioned resting aim and shape-cell offset unavailable because the only pinned table has AIM_V2 lineage"
+  },
+  "holdout_inputs": [],
+  "window2_exit_settlement_dca_inputs": false
+}

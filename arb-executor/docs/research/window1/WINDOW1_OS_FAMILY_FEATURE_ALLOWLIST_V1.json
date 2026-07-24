@@ -1,0 +1,34 @@
+{
+  "schema_version": "window1-os-family-feature-allowlist-v1",
+  "allowed": [
+    "pair_law",
+    "first_fill_sibling_response",
+    "sealed_bands",
+    "dual_divot_steering_and_catch",
+    "drift_recognition",
+    "cohort_steering",
+    "orientation_prior",
+    "walk_park_posture",
+    "riser_deceleration_mirror_seesaw",
+    "dynamic_floor_and_recut_cells",
+    "atlas_and_reach",
+    "shape_corpus",
+    "fv_and_bookmaker_voice",
+    "bbo_and_top_five_pressure",
+    "own_order_fingerprints_and_contributed_volume",
+    "true_print_tape"
+  ],
+  "excluded": {
+    "aim_v2": "failed and dark by operator ruling",
+    "pinnacle": "not causally recorded for the development window",
+    "raw_ws_full_depth": "no ladder-bearing snapshot ancestry or gap-free reconnect epoch",
+    "future_information": "causal development replay only",
+    "window2_exit_settlement_dca": "outside Window-1 entry scope"
+  },
+  "missing_feature_law": "disable the named feature for that timestamp; preserve the event and all other causal features",
+  "proxy_substitution_allowed": false,
+  "bookmaker_law": "consume only a timestamped identity-mapped causal record",
+  "shape_law": "consume independent corpus records only; LATCHCAL sha256 6183ddec... is prohibited",
+  "own_order_law": "consume only reconstructed own-order lineage; contributed volume is unavailable when ancestry is unproven",
+  "riser_law": "descriptive evidence allowed; the disarmed riser actuator remains disarmed"
+}

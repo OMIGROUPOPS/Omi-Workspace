@@ -9,6 +9,7 @@ from collections import Counter
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -143,8 +144,15 @@ class RecoveryManifestTests(unittest.TestCase):
         for section in ("inputs", "outputs"):
             for item in manifest[section]:
                 path = ARTIFACTS / item["path"]
-                digest = hashlib.sha256(path.read_bytes()).hexdigest()
+                relative = path.relative_to(REPO).as_posix()
+                blob = subprocess.check_output(
+                    ["git", "show", f"HEAD:{relative}"],
+                    cwd=REPO,
+                )
+                digest = hashlib.sha256(blob).hexdigest()
                 self.assertEqual(item["sha256"], digest, item["path"])
+                if "bytes" in item:
+                    self.assertEqual(item["bytes"], len(blob), item["path"])
 
     def test_committed_jsonl_outputs_equal_the_builder(self):
         self.assertEqual(

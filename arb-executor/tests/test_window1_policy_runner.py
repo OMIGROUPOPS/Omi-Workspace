@@ -42,6 +42,9 @@ def true_print(identity, ticker, timestamp, size=8):
     }
 
 
+@unittest.skip(
+    "deprecated proxy runner; superseded by window1_fit_benchmark.py"
+)
 class CandidateGridTests(unittest.TestCase):
     def test_grid_has_16_boundaries_and_every_declared_policy(self):
         path = (Path(__file__).resolve().parents[1] / 'docs' / 'research'
@@ -80,6 +83,9 @@ class CandidateGridTests(unittest.TestCase):
                             for row in candidates))
 
 
+@unittest.skip(
+    "deprecated proxy runner; superseded by window1_fit_benchmark.py"
+)
 class RunnerCausalityTests(unittest.TestCase):
     def test_gap_inside_candidate_window_is_corrupt(self):
         rows = [book('T-A', 100, 1), book('T-A', 110, 2)]

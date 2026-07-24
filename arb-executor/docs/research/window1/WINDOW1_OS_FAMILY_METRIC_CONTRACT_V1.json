@@ -1,0 +1,27 @@
+{
+  "schema_version": "window1-os-family-metric-contract-v1",
+  "D": 804,
+  "target_count": 603,
+  "primary": "dual exact-five-contract Window-1 completions whose combined Window-1-close delta is negative",
+  "exact_five_law": "both legs prove exactly five contracts; other quantities never qualify",
+  "window1_law": "positive requires a causal placement/fill clock and an exact start or clean causal interval",
+  "reference": "final positive-size exchange-identified true print at or before the causal Window-1 boundary",
+  "separate_measures": [
+    "strict dual exact-five Window-1 completion",
+    "combined entry cost under par",
+    "both individual leg deltas negative",
+    "one individual leg negative",
+    "dynamic-floor gap",
+    "per-leg dip catch",
+    "nonfills",
+    "post-start fills",
+    "other quantities",
+    "timing censorship",
+    "feature availability",
+    "strict lower bound",
+    "optimistic upper bound"
+  ],
+  "conflation_allowed": false,
+  "censored_event_counts_as_success": false,
+  "censored_event_remains_in_D": true
+}

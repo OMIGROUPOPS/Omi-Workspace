@@ -1,0 +1,15 @@
+{
+  "schema_version": "window1-os-family-prospective-holdout-declaration-v1",
+  "status": "declaration_only_not_frozen_to_dates",
+  "existing_july_24_26_baseline_holdout": {
+    "preserved": true,
+    "opened": false,
+    "automatically_reused": false
+  },
+  "new_holdout_trigger": "only after a corrected OS-family candidate reaches 603 of 804 on development and is frozen",
+  "date_selection_law": "first complete prospective UTC event dates strictly after the successful candidate freeze; dates fixed before collection or evaluation",
+  "evaluation_count": 1,
+  "development_data_allowed": false,
+  "current_holdout_dates": [],
+  "reason_dates_empty": "the start gate has not yet passed and no candidate has qualified"
+}

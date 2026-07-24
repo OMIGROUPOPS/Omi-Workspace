@@ -1,0 +1,56 @@
+{
+  "schema_version": "window1-os-family-research-adapter-v1",
+  "adapter_id": "chronological-window1-os-family-development-adapter-v1",
+  "base_inventory": ".claude/window1_calibration_20260723/WINDOW1_OS_RESEARCH_ADAPTER.json",
+  "execution_kernel": "arb-executor/analysis/window1_execution_kernel.py",
+  "causal_tape": "deduplicated exchange-identity true prints",
+  "real_start": "REAL_START_LEDGER_V3.jsonl",
+  "laws": {
+    "pair_is_one_object": true,
+    "exact_quantity_per_leg": 5,
+    "window": "Window 1 only",
+    "missing_feature": "disable_feature_only",
+    "missing_feature_censors_entire_event": false,
+    "silent_proxy_substitution_allowed": false,
+    "candidate_policy_must_be_allowlisted": true,
+    "schedule_can_prove_positive": false,
+    "aim_v2": "excluded",
+    "pinnacle": "excluded",
+    "full_depth": "excluded_until_sequence_ancestry_is_proven"
+  },
+  "chronological_sources": {
+    "pair_and_sibling": [
+      ".claude/rulings/RULING_PAIR_ECONOMICS.md",
+      ".claude/proof_20260717/PROOF_PAIR_INVARIANT.md"
+    ],
+    "sealed_bands_and_divots": [
+      ".claude/entrysurface_20260717/entry_tables_sealed_v1.json",
+      ".claude/entrysurface_20260717/divot_tables_v1.json"
+    ],
+    "drift_cohort_orientation": [
+      ".claude/entrysurface_20260717/drift_surfaces_v1.json",
+      ".claude/master_20260709/cohort.json",
+      ".claude/trendpath/ORIENT_V1.json"
+    ],
+    "walk_park_and_shape_dynamics": [
+      "arb-executor/analysis/the_walk.py",
+      "arb-executor/analysis/blend_park_v8.py",
+      ".claude/proof_20260706/RISER_DISARM.md",
+      ".claude/capture_20260720/mirror_pairs.jsonl"
+    ],
+    "dynamic_floor_atlas_reach": [
+      ".claude/seqfloor_20260708/recut_cells.json",
+      ".claude/trendpath/ATLAS_V1.json",
+      ".claude/takerreach/LAW.json"
+    ],
+    "market_micro": [
+      ".claude/window1_20260721/WINDOW1_FEATURE_MATRIX.jsonl",
+      ".claude/window1_20260721/SOURCE_COVERAGE_SUMMARY.json",
+      ".claude/window1_calibration_20260723/CAUSAL_TAPE_RECONCILIATION.json"
+    ],
+    "own_orders": [
+      ".claude/window1_20260721/LIFECYCLE_VALIDATION_SUMMARY.json",
+      "arb-executor/analysis/window1_execution_kernel.py"
+    ]
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "schema_version": "window1-os-family-candidates-v1",
+  "development_period": {
+    "start": "2026-07-12",
+    "end": "2026-07-20",
+    "D": 804,
+    "role": "development_only"
+  },
+  "candidate_generation": {
+    "order": "family_then_posture_then_first_fill_response",
+    "posture_values": [
+      "park_at_own_divot",
+      "bounded_walk_with_nonself_chain"
+    ],
+    "first_fill_response_values": [
+      "hold_sibling_at_own_divot",
+      "reaim_sibling_to_its_own_divot"
+    ],
+    "numeric_surface_mode": "frozen_surface_lookup_only",
+    "post_result_parameter_invention_allowed": false
+  },
+  "parameter_ranges": {
+    "free_numeric_parameters": [],
+    "posture": [
+      "park_at_own_divot",
+      "bounded_walk_with_nonself_chain"
+    ],
+    "first_fill_sibling_response": [
+      "hold_sibling_at_own_divot",
+      "reaim_sibling_to_its_own_divot"
+    ],
+    "numeric_values": "read only from the named pre-existing frozen surfaces; no interpolation, optimization, or newly invented threshold"
+  },
+  "families": [
+    {
+      "family_id": "pair_divot_core",
+      "required_components": [
+        "pair_law",
+        "first_fill_sibling_response",
+        "sealed_bands",
+        "dual_divot_steering_and_catch",
+        "true_print_tape"
+      ]
+    },
+    {
+      "family_id": "drift_cohort_orientation",
+      "required_components": [
+        "pair_law",
+        "first_fill_sibling_response",
+        "sealed_bands",
+        "dual_divot_steering_and_catch",
+        "drift_recognition",
+        "cohort_steering",
+        "orientation_prior",
+        "true_print_tape"
+      ]
+    },
+    {
+      "family_id": "mirror_deceleration",
+      "required_components": [
+        "pair_law",
+        "first_fill_sibling_response",
+        "sealed_bands",
+        "dual_divot_steering_and_catch",
+        "orientation_prior",
+        "riser_deceleration_mirror_seesaw",
+        "true_print_tape"
+      ],
+      "laws": {
+        "riser_actuator": "disarmed",
+        "riser_deceleration_mirror_seesaw": "causal_evidence_only"
+      }
+    },
+    {
+      "family_id": "dynamic_recut_atlas",
+      "required_components": [
+        "pair_law",
+        "first_fill_sibling_response",
+        "sealed_bands",
+        "dual_divot_steering_and_catch",
+        "dynamic_floor_and_recut_cells",
+        "atlas_and_reach",
+        "shape_corpus",
+        "true_print_tape"
+      ]
+    },
+    {
+      "family_id": "causal_micro_pressure",
+      "required_components": [
+        "pair_law",
+        "first_fill_sibling_response",
+        "sealed_bands",
+        "dual_divot_steering_and_catch",
+        "bbo_and_top_five_pressure",
+        "own_order_fingerprints_and_contributed_volume",
+        "true_print_tape"
+      ]
+    },
+    {
+      "family_id": "full_chronological_stack",
+      "required_components": [
+        "pair_law",
+        "first_fill_sibling_response",
+        "sealed_bands",
+        "dual_divot_steering_and_catch",
+        "drift_recognition",
+        "cohort_steering",
+        "orientation_prior",
+        "walk_park_posture",
+        "riser_deceleration_mirror_seesaw",
+        "dynamic_floor_and_recut_cells",
+        "atlas_and_reach",
+        "shape_corpus",
+        "fv_and_bookmaker_voice",
+        "bbo_and_top_five_pressure",
+        "own_order_fingerprints_and_contributed_volume",
+        "true_print_tape"
+      ]
+    }
+  ],
+  "permitted_policy_ids": [
+    "pair_divot_core__park__hold",
+    "pair_divot_core__park__reaim",
+    "pair_divot_core__walk__hold",
+    "pair_divot_core__walk__reaim",
+    "drift_cohort_orientation__park__hold",
+    "drift_cohort_orientation__park__reaim",
+    "drift_cohort_orientation__walk__hold",
+    "drift_cohort_orientation__walk__reaim",
+    "mirror_deceleration__park__hold",
+    "mirror_deceleration__park__reaim",
+    "mirror_deceleration__walk__hold",
+    "mirror_deceleration__walk__reaim",
+    "dynamic_recut_atlas__park__hold",
+    "dynamic_recut_atlas__park__reaim",
+    "dynamic_recut_atlas__walk__hold",
+    "dynamic_recut_atlas__walk__reaim",
+    "causal_micro_pressure__park__hold",
+    "causal_micro_pressure__park__reaim",
+    "causal_micro_pressure__walk__hold",
+    "causal_micro_pressure__walk__reaim",
+    "full_chronological_stack__park__hold",
+    "full_chronological_stack__park__reaim",
+    "full_chronological_stack__walk__hold",
+    "full_chronological_stack__walk__reaim"
+  ],
+  "fixed_parameter_sources": {
+    "sealed_bands": ".claude/entrysurface_20260717/entry_tables_sealed_v1.json",
+    "divot_surfaces": ".claude/entrysurface_20260717/divot_tables_v1.json",
+    "drift_surfaces": ".claude/entrysurface_20260717/drift_surfaces_v1.json",
+    "cohort_surface": ".claude/master_20260709/cohort.json",
+    "orientation_prior": ".claude/trendpath/ORIENT_V1.json",
+    "dynamic_floor_recut": ".claude/seqfloor_20260708/recut_cells.json",
+    "atlas": ".claude/trendpath/ATLAS_V1.json",
+    "reach": ".claude/takerreach/LAW.json",
+    "shape_manifest": "arb-executor/data/shape_corpus/manifest.json"
+  },
+  "shape_lineage_law": {
+    "allowed": "raw non-LATCHCAL corpus observations whose manifest lineage begins at commit f853daf820fd29af6db89c7eb5e046c6a2887a3f before the AIM_V2 derivation commits",
+    "excluded": "all AIM_V2-derived cells, offsets, priors, targets, LATCHCAL tables and fallback hierarchies",
+    "unavailable_behavior": "disable shape_corpus only at that timestamp"
+  },
+  "hard_exclusions": [
+    "aim_v2",
+    "pinnacle",
+    "unproven_reconstructed_full_depth",
+    "future_information",
+    "window2",
+    "exits",
+    "settlement",
+    "dca",
+    "narrow_walk_law_proxy_substitution",
+    "post_result_feature_or_parameter"
+  ],
+  "prohibited_input_sha256": [
+    "6183ddec56eaab2ad48432aa7c802ea6265e608fa26cdd960aa1dde866824356"
+  ],
+  "missing_feature_law": "disable_only_that_feature_at_that_timestamp",
+  "missing_feature_censors_entire_event": false,
+  "selection_law": {
+    "primary": "maximize strict dual exact-five Window-1 completions with negative combined Window-1-close delta",
+    "target_count": 603,
+    "tie_breaks": [
+      "maximize strict dual exact-five Window-1 completions",
+      "maximize both individual legs negative",
+      "maximize combined cost under par",
+      "minimize dynamic-floor gap",
+      "maximize per-leg dip catch",
+      "lexicographic policy_id"
+    ],
+    "day_blocking": "whole UTC event dates; no row-random split"
+  }
+}

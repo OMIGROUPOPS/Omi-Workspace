@@ -1,0 +1,24 @@
+{
+  "D": 804,
+  "artifacts": {
+    "HISTORICAL_WITNESSES_GUARDED.json": {
+      "bytes": 16671,
+      "sha256": "959316fa9db9dc7b19ad8d1c78f957a00e60065fb0196e80295404eb66ab15b4"
+    },
+    "REAL_START_LEDGER_V5.jsonl": {
+      "bytes": 3696777,
+      "sha256": "c6204d016aeeab9cec54c5f989e695cb74a13e40b8e25085a3a9410a2c5548ed"
+    },
+    "REAL_START_SUMMARY_V5.json": {
+      "bytes": 20950,
+      "sha256": "eb8ec4a3eaffb382f9aedeabe81c3d21b0930fd542f31d59bedfc366a6fa572c"
+    },
+    "START_LEDGER_V5_CORRECTION_REPORT.md": {
+      "bytes": 2150,
+      "sha256": "1bbe72da9bb366fd3c63ff6542765862b60c7ed50663b2c3cbe1e5e194c3ff5a"
+    }
+  },
+  "candidate_scoring_run": false,
+  "holdout_opened": false,
+  "schema_version": "window1-start-guard-repair-v1-manifest"
+}

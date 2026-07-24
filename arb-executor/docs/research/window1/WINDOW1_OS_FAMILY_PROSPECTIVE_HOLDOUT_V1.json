@@ -1,15 +1,27 @@
 {
-  "schema_version": "window1-os-family-prospective-holdout-declaration-v1",
-  "status": "declaration_only_not_frozen_to_dates",
-  "existing_july_24_26_baseline_holdout": {
-    "preserved": true,
-    "opened": false,
-    "automatically_reused": false
-  },
-  "new_holdout_trigger": "only after a corrected OS-family candidate reaches 603 of 804 on development and is frozen",
-  "date_selection_law": "first complete prospective UTC event dates strictly after the successful candidate freeze; dates fixed before collection or evaluation",
-  "evaluation_count": 1,
-  "development_data_allowed": false,
-  "current_holdout_dates": [],
-  "reason_dates_empty": "the start gate has not yet passed and no candidate has qualified"
+  "schema_version": "window1-os-family-prospective-holdout-declaration-v2",
+  "status": "frozen_unopened",
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "holdout_event_or_market_inputs_allowed": false,
+  "identity_corridor_pages_after_july_20_are_not_holdout_evaluation": true,
+  "evaluation_count_if_later_authorized": 1,
+  "automatic_reuse_allowed": false,
+  "law": "no event, market, order, fill, position, result, settlement, or feature evidence dated July 24-26 may be queried or consumed by this development lane"
 }

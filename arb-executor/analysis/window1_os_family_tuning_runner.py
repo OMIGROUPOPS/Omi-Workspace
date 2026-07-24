@@ -174,12 +174,11 @@ def validate_contracts(
         or metric.get("conflation_allowed") is not False
     ):
         raise TuningPreflightError("metric contract changed")
-    existing = holdout.get("existing_july_24_26_baseline_holdout") or {}
     if (
-        existing.get("preserved") is not True
-        or existing.get("opened") is not False
-        or existing.get("automatically_reused") is not False
-        or holdout.get("current_holdout_dates") != []
+        holdout.get("holdout_dates")
+        != ["2026-07-24", "2026-07-25", "2026-07-26"]
+        or holdout.get("holdout_opened") is not False
+        or holdout.get("holdout_queried") is not False
     ):
         raise TuningPreflightError("holdout declaration changed")
     return {

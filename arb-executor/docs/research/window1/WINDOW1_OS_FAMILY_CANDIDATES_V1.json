@@ -1,5 +1,5 @@
 {
-  "schema_version": "window1-os-family-candidates-v1",
+  "schema_version": "window1-os-family-candidates-v2",
   "development_period": {
     "start": "2026-07-12",
     "end": "2026-07-20",
@@ -18,6 +18,54 @@
     ],
     "numeric_surface_mode": "frozen_surface_lookup_only",
     "post_result_parameter_invention_allowed": false
+  },
+  "window": {
+    "left_edge": "T-8h from the contemporaneously recorded exchange schedule",
+    "right_edge": "strict_positive_cutoff from REAL_START_LEDGER_V5",
+    "schedule_as_start": false,
+    "free_boundary_parameters": []
+  },
+  "execution_parameters": {
+    "lot_per_leg": 5,
+    "maker_only": true,
+    "never_marketable": true,
+    "queue_cases": [
+      "pessimistic_exact_fill",
+      "optimistic_censor_bound"
+    ],
+    "pair_object": true,
+    "initial_decision_clock": "T-8h",
+    "recognition_clock": "T-6h when two causal hours exist",
+    "park": "one own-divot post with no timer repost",
+    "walk": "only a verified non-self true-print chain may advance one cent; maximum advances come from the frozen divot depth and never exceed its recorded catch depth",
+    "hold": "the sibling retains its own original divot",
+    "reaim": "after first-leg exact completion, rebuild only the sibling's own frozen-family divot at the causal book then visible",
+    "sealed_policy_law": "consume only committed sealed rows; the documented July-20 pair-policy object is unavailable as a committed source and is therefore feature-unavailable, never reconstructed",
+    "riser_actuator": "disarmed",
+    "full_depth": "unavailable",
+    "top_five": "use only timestamped causal rows where present",
+    "bookmaker_fv": "use only timestamped identity-mapped causal rows where present",
+    "pinnacle": "never"
+  },
+  "frozen_numeric_constants": {
+    "recognition_hour": 6,
+    "recognition_min_purity": 0.5,
+    "pair_class_net_cents": 5,
+    "orientation_min_n": 10,
+    "orientation_call_hi": 0.65,
+    "orientation_call_lo": 0.35,
+    "orientation_drift_cents": 1,
+    "orientation_range_low": 0.33,
+    "orientation_range_high": 0.67,
+    "orientation_flow_low": 0.4,
+    "orientation_flow_high": 0.6,
+    "walk_max_moves": 2,
+    "walk_move_step_cents": 1,
+    "pressure_ratio_threshold": 1.5,
+    "pressure_extra_depth_cents": 1,
+    "bookmaker_negative_divergence_threshold_cents": -3,
+    "bookmaker_extra_depth_cents": 1,
+    "source": "pre-existing WINDOW1_CANDIDATES.json, ORIENT_V1, band-cascade and causal-stack laws"
   },
   "parameter_ranges": {
     "free_numeric_parameters": [],
@@ -145,6 +193,7 @@
     "full_chronological_stack__walk__reaim"
   ],
   "fixed_parameter_sources": {
+    "band_map": ".claude/entrysurface_20260717/band_map_v1.json",
     "sealed_bands": ".claude/entrysurface_20260717/entry_tables_sealed_v1.json",
     "divot_surfaces": ".claude/entrysurface_20260717/divot_tables_v1.json",
     "drift_surfaces": ".claude/entrysurface_20260717/drift_surfaces_v1.json",
@@ -177,6 +226,21 @@
   ],
   "missing_feature_law": "disable_only_that_feature_at_that_timestamp",
   "missing_feature_censors_entire_event": false,
+  "predeclared_ablations": [
+    "without_sealed_bands",
+    "without_divot_catch",
+    "without_drift_recognition",
+    "without_cohort_steering",
+    "without_orientation_prior",
+    "without_dynamic_floor_recut",
+    "without_atlas_reach",
+    "without_shape_corpus",
+    "without_bookmaker_fv",
+    "without_top_five_pressure",
+    "without_own_order_fingerprints",
+    "without_first_fill_sibling_response",
+    "without_true_print_walk"
+  ],
   "selection_law": {
     "primary": "maximize strict dual exact-five Window-1 completions with negative combined Window-1-close delta",
     "target_count": 603,

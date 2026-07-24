@@ -1,5 +1,5 @@
 {
-  "schema_version": "window1-os-family-feature-allowlist-v1",
+  "schema_version": "window1-os-family-feature-allowlist-v2",
   "allowed": [
     "pair_law",
     "first_fill_sibling_response",
@@ -27,6 +27,11 @@
   },
   "missing_feature_law": "disable the named feature for that timestamp; preserve the event and all other causal features",
   "proxy_substitution_allowed": false,
+  "feature_gap_imputation_allowed": false,
+  "future_information_allowed": false,
+  "schedule_as_start_allowed": false,
+  "narrow_walk_proxy_allowed": false,
+  "per_event_coverage_required": true,
   "bookmaker_law": "consume only a timestamped identity-mapped causal record",
   "shape_law": "consume independent corpus records only; LATCHCAL sha256 6183ddec... is prohibited",
   "own_order_law": "consume only reconstructed own-order lineage; contributed volume is unavailable when ancestry is unproven",

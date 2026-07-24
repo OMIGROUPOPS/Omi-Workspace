@@ -32,6 +32,12 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping
 from zoneinfo import ZoneInfo
 
+from window1_start_guard import (
+    NAMED_PROXY_CENSORS,
+    PROXY_NEGATIVE_GUARD_SECONDS,
+    PROXY_POSITIVE_GUARD_SECONDS,
+)
+
 
 VERSION = "window1-real-start-ledger-v4-round2"
 D = 804
@@ -621,8 +627,8 @@ def te_candidate(crosswalk: Mapping[str, Any]) -> dict[str, Any] | None:
         "source_family": "tennis_db_start_or_live_score",
         "precedence_rank": 3,
         "timestamp_utc": iso_utc(timestamp),
-        "direction": "exact",
-        "precision": "minute",
+        "direction": "quantized_late_detection_proxy",
+        "precision": "five_minute_quantized",
         "timestamp_basis": (
             "historical_results_completed_match_start_clock_"
             "Europe_Berlin_converted_to_UTC"
@@ -692,25 +698,26 @@ def adjudicate_residual(
             "round2_conflicts": [],
         }
         return row, []
-    exact_ts = parse_ts(candidate_row["timestamp_utc"])
+    proxy_ts = parse_ts(candidate_row["timestamp_utc"])
     conflicts = []
     higher_precedence_not_live = []
+    retained_live_by = []
     for existing in candidates:
         timestamp = parse_ts(existing.get("timestamp_utc"))
         if timestamp is None or existing is candidate_row:
             continue
         direction = existing.get("direction")
         rank = int(existing.get("precedence_rank") or 99)
-        if direction == "not_live_through" and timestamp >= exact_ts:
+        if direction == "not_live_through" and timestamp >= proxy_ts:
             conflict = {
-                "kind": "not_live_observation_at_or_after_result_start",
+                "kind": "not_live_observation_at_or_after_proxy_clock",
                 "source": existing.get("source"),
                 "source_family": existing.get("source_family"),
                 "precedence_rank": rank,
                 "source_timestamp_utc": existing.get("timestamp_utc"),
-                "result_start_utc": candidate_row["timestamp_utc"],
+                "proxy_clock_utc": candidate_row["timestamp_utc"],
                 "disposition": (
-                    "blocks_promotion"
+                    "blocks_proxy_interval"
                     if rank < int(candidate_row["precedence_rank"])
                     else "retained_lower_precedence_conflict"
                 ),
@@ -718,27 +725,27 @@ def adjudicate_residual(
             conflicts.append(conflict)
             if rank < int(candidate_row["precedence_rank"]):
                 higher_precedence_not_live.append(conflict)
-        elif direction == "live_by" and timestamp < exact_ts:
+        elif direction in {"live_by", "exact"}:
+            retained_live_by.append((timestamp, existing))
+        if direction == "live_by" and timestamp < proxy_ts:
             conflicts.append({
-                "kind": "live_by_observation_before_result_start",
+                "kind": "live_by_observation_before_proxy_clock",
                 "source": existing.get("source"),
                 "source_family": existing.get("source_family"),
                 "precedence_rank": rank,
                 "source_timestamp_utc": existing.get("timestamp_utc"),
-                "result_start_utc": candidate_row["timestamp_utc"],
-                "disposition": (
-                    "exact_result_start_controls_by_precedence"
-                ),
+                "proxy_clock_utc": candidate_row["timestamp_utc"],
+                "disposition": "retain_causal_live_by_proxy_never_overwrites",
             })
-        elif direction == "exact" and abs(timestamp - exact_ts) > 60:
+        elif direction == "exact" and abs(timestamp - proxy_ts) > 60:
             conflicts.append({
-                "kind": "exact_start_disagreement_over_one_minute",
+                "kind": "exact_start_disagreement_with_proxy",
                 "source": existing.get("source"),
                 "source_family": existing.get("source_family"),
                 "precedence_rank": rank,
                 "source_timestamp_utc": existing.get("timestamp_utc"),
-                "result_start_utc": candidate_row["timestamp_utc"],
-                "disposition": "higher_precedence_exact_controls",
+                "proxy_clock_utc": candidate_row["timestamp_utc"],
+                "disposition": "retain_exact_proxy_never_controls",
             })
     lowers = [
         parse_ts(row["timestamp_utc"]) for row in candidates
@@ -748,35 +755,38 @@ def adjudicate_residual(
     if higher_precedence_not_live:
         precision_class = "contradictory"
         positive = False
-        exact_start = None
         conflict_status = (
-            "higher_precedence_not_live_after_te_result_start"
+            "higher_precedence_not_live_after_te_proxy_clock"
         )
     else:
-        precision_class = "exact"
-        positive = True
-        exact_start = exact_ts
+        precision_class = "quantized_late_detection_proxy"
+        positive = baseline["event_id"] not in NAMED_PROXY_CENSORS
         conflict_status = (
             "lower_precedence_source_conflict" if conflicts else "none"
         )
+        if not positive:
+            conflict_status = "named_proxy_conflict_censored"
+    proxy_lower = proxy_ts - PROXY_POSITIVE_GUARD_SECONDS
+    proxy_upper = proxy_ts + PROXY_NEGATIVE_GUARD_SECONDS
+    earlier_live_by = min(
+        (value for value, _ in retained_live_by), default=None
+    )
+    known_live_by = min(
+        value for value in (earlier_live_by, proxy_upper)
+        if value is not None
+    )
     row = {
         **baseline,
         "schema_version": VERSION,
         "precision_class": precision_class,
         "positive_window1_provable": positive,
-        "exact_start_utc": iso_utc(exact_start),
+        "exact_start_utc": None,
+        "proxy_clock_utc": iso_utc(proxy_ts),
         "not_live_through_utc": iso_utc(max(lowers)) if lowers else None,
-        "known_live_by_utc": iso_utc(exact_start) if positive else baseline.get(
-            "known_live_by_utc"
-        ),
+        "known_live_by_utc": iso_utc(known_live_by),
         "start_interval_utc": {
-            "lower_inclusive": iso_utc(max(lowers)) if lowers else None,
-            "upper_inclusive": (
-                iso_utc(exact_start) if positive
-                else baseline.get("start_interval_utc", {}).get(
-                    "upper_inclusive"
-                )
-            ),
+            "lower_inclusive": iso_utc(proxy_lower),
+            "upper_inclusive": iso_utc(proxy_upper),
         },
         "selected_source": (
             candidate_row["source"] if positive
@@ -798,7 +808,8 @@ def adjudicate_residual(
         "candidate_sources": candidates,
         "round2_targeted": True,
         "round2_crosswalk": dict(crosswalk),
-        "round2_new_exact_recovered": positive,
+        "round2_new_exact_recovered": False,
+        "round2_new_quantized_proxy_recovered": positive,
         "round2_conflicts": conflicts,
         "policy_outcomes_examined_during_extraction": False,
     }

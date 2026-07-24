@@ -1,0 +1,198 @@
+{
+  "absolute_15m_central_band": {
+    "count": 207,
+    "long_tail_count": 15,
+    "long_tail_rate": 0.06756756756756757,
+    "rate": 0.9324324324324325
+  },
+  "blindness": {
+    "candidate_results_read": false,
+    "deltas_read": false,
+    "fills_read": false,
+    "holdout_read": false,
+    "placements_read": false,
+    "prices_read": false
+  },
+  "calibration_outliers_abs_over_15m": [
+    {
+      "difference_seconds": 60000.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18VUKHOL"
+    },
+    {
+      "difference_seconds": 57900.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB"
+    },
+    {
+      "difference_seconds": 66600.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20HSUHAR"
+    },
+    {
+      "difference_seconds": 73200.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20NOGSHI"
+    },
+    {
+      "difference_seconds": 69900.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20WATILA"
+    },
+    {
+      "difference_seconds": 70200.0,
+      "event_id": "KXATPMATCH-26JUL15BUBHAL"
+    },
+    {
+      "difference_seconds": 2100.0,
+      "event_id": "KXATPMATCH-26JUL17TABTIR"
+    },
+    {
+      "difference_seconds": 1800.0,
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14WOLVAN"
+    },
+    {
+      "difference_seconds": 78900.0,
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15CARPAL"
+    },
+    {
+      "difference_seconds": 4800.0,
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18CIRTOT"
+    },
+    {
+      "difference_seconds": -8400.0,
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18TONSPI"
+    },
+    {
+      "difference_seconds": 1800.0,
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19GRAKRA"
+    },
+    {
+      "difference_seconds": 1200.0,
+      "event_id": "KXWTAMATCH-26JUL13GRAPAR"
+    },
+    {
+      "difference_seconds": 1500.0,
+      "event_id": "KXWTAMATCH-26JUL19RUSKAZ"
+    },
+    {
+      "difference_seconds": 1200.0,
+      "event_id": "KXWTAMATCH-26JUL20ROMERJ"
+    }
+  ],
+  "comparable_unique_crosswalks": 222,
+  "derived_guard": {
+    "actual_start_interval": "[proxy_clock-900s, proxy_clock+600s]",
+    "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+    "inside_band_law": "censored",
+    "negative_guard_seconds": 600.0,
+    "positive_guard_seconds": 900.0,
+    "strict_post_start_law": "completion_exchange_ts >= proxy_clock+600s",
+    "strict_window1_law": "completion_exchange_ts <= proxy_clock-900s"
+  },
+  "difference_definition": "tennisexplorer_proxy_clock_minus_official_start_seconds",
+  "five_minute_grid_proxy_rows": 453,
+  "input_receipts": {
+    "baseline_v3_ledger": {
+      "bytes": 1732159,
+      "sha256": "1d7fe6a56837ceb0c0b8c932a05daecacc0cefbea94384e16c84975f2ed98ce5"
+    },
+    "official_milestone_pages": {
+      "files": 804,
+      "hash_set_sha256": "a4b1b1d2826aba0e30166c6005b4d291a764413b4589cd8130f4e3442f785189"
+    },
+    "tennisexplorer_pages": {
+      "files": 13,
+      "hash_set_sha256": "6f7e1ec4a94eb2d81e9007ca12ea113c2d53bb98699ae71e603c1ca30bb2977e"
+    },
+    "tennisexplorer_parser_receipt": {
+      "matches": 6075,
+      "page_hash_set_sha256": "0af8cd1a460de33d0cef18b9d9a0b8fe2446b53de71f79cdb2fd1a9d20ea1597",
+      "page_receipts": [
+        {
+          "date": "2026-07-11",
+          "display_timezone": "Europe/Berlin",
+          "rows": 190,
+          "sha256": "0d124bd56e5c52e73b28ac407535c771e3b839df508559c30e51f02ecc89507a"
+        },
+        {
+          "date": "2026-07-12",
+          "display_timezone": "Europe/Berlin",
+          "rows": 615,
+          "sha256": "5720161b9033042b3681f2ab28573588e88f49f5a5ad277598ebb105935ea212"
+        },
+        {
+          "date": "2026-07-13",
+          "display_timezone": "Europe/Berlin",
+          "rows": 570,
+          "sha256": "1efbcf07dfcf2f98b9fde719e5179094cab12ccdca0815a605e7307dbc95a266"
+        },
+        {
+          "date": "2026-07-14",
+          "display_timezone": "Europe/Berlin",
+          "rows": 661,
+          "sha256": "a4e2417b93f414a271dbd5cf76bfde974e8e5586d4f0ec2639cff0d4c8b468ef"
+        },
+        {
+          "date": "2026-07-15",
+          "display_timezone": "Europe/Berlin",
+          "rows": 639,
+          "sha256": "8f7db7b36b0cc352cc7e64f52d0df24c2f5b585c01cd0f7549a13439e033c0a4"
+        },
+        {
+          "date": "2026-07-16",
+          "display_timezone": "Europe/Berlin",
+          "rows": 502,
+          "sha256": "264b866ce4c028f4c75c51aec766661cb48d047ae910ed43901dc26ed73cd762"
+        },
+        {
+          "date": "2026-07-17",
+          "display_timezone": "Europe/Berlin",
+          "rows": 309,
+          "sha256": "6309d75dde5729cfcbb4cbef47a21b4d4a1e226c6f625a6bbee093f3265e57ba"
+        },
+        {
+          "date": "2026-07-18",
+          "display_timezone": "Europe/Berlin",
+          "rows": 230,
+          "sha256": "d882ef8ee5602431c36d112e9b7c0d9ccff686eb1ef100fb10c50e58908d7844"
+        },
+        {
+          "date": "2026-07-19",
+          "display_timezone": "Europe/Berlin",
+          "rows": 467,
+          "sha256": "2819226e2e2b3b602d86bf93c2ec92c3bc61a8f0dd644defe9d28411e7de6383"
+        },
+        {
+          "date": "2026-07-20",
+          "display_timezone": "Europe/Berlin",
+          "rows": 423,
+          "sha256": "5074183e17f93842b7bce194d9944ec7b2c78db7b1909b7351e06390dbd55b2f"
+        },
+        {
+          "date": "2026-07-21",
+          "display_timezone": "Europe/Berlin",
+          "rows": 503,
+          "sha256": "1e87e1144a3ed20a0a2c387cad57ec0418bd500307c952579e3ac7549056c24c"
+        },
+        {
+          "date": "2026-07-22",
+          "display_timezone": "Europe/Berlin",
+          "rows": 515,
+          "sha256": "bca049d00f6172d35901ff51ab386b246e167feb7416b9c6b5f32cbd9ce2a397"
+        },
+        {
+          "date": "2026-07-23",
+          "display_timezone": "Europe/Berlin",
+          "rows": 451,
+          "sha256": "d00deac7101caebccb52510b269585fc43145d22938a727d445fe9e0f55f8558"
+        }
+      ],
+      "pages": 13
+    }
+  },
+  "median_seconds": 300.0,
+  "official_start_population": 234,
+  "purpose": "policy_blind_start_semantics_calibration_before_scoring",
+  "schema_version": "window1-start-guard-calibration-v1",
+  "signed_counts": {
+    "negative": 7,
+    "positive": 168,
+    "zero": 47
+  }
+}

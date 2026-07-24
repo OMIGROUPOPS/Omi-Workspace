@@ -1,0 +1,475 @@
+{
+  "D": 804,
+  "blindness": {
+    "candidate_results_opened": false,
+    "candidate_scoring_run": false,
+    "holdout_opened": false
+  },
+  "guard": {
+    "actual_start_interval": "[proxy_clock-900s, proxy_clock+600s]",
+    "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+    "inside_band_law": "censored",
+    "negative_guard_seconds": 600.0,
+    "positive_guard_seconds": 900.0,
+    "strict_post_start_law": "completion_exchange_ts >= proxy_clock+600s",
+    "strict_window1_law": "completion_exchange_ts <= proxy_clock-900s"
+  },
+  "historical_witnesses": {
+    "claimed_population": 7,
+    "frozen_guard_strict_count": 1,
+    "frozen_guard_under_par_count": 0,
+    "rows": [
+      {
+        "combined_entry_cost_cents": 98.0,
+        "combined_entry_cost_under_par": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13YEVCAM",
+        "frozen_asymmetric_proxy_guard": {
+          "dual_strict_window1": false,
+          "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "leg_verdicts": [
+            {
+              "completion_exchange_ts": 1783933666.356633,
+              "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+              "margin_to_proxy_seconds": 133.64336705207825,
+              "negative_cutoff_utc": "2026-07-13T09:20:00+00:00",
+              "negative_guard_seconds": 600.0,
+              "positive_cutoff_utc": "2026-07-13T08:55:00+00:00",
+              "positive_guard_seconds": 900.0,
+              "verdict": "censored_guard_band"
+            },
+            {
+              "completion_exchange_ts": 1783920918.621171,
+              "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+              "margin_to_proxy_seconds": 12881.37882900238,
+              "negative_cutoff_utc": "2026-07-13T09:20:00+00:00",
+              "negative_guard_seconds": 600.0,
+              "positive_cutoff_utc": "2026-07-13T08:55:00+00:00",
+              "positive_guard_seconds": 900.0,
+              "verdict": "strict_window1"
+            }
+          ]
+        },
+        "strict_60_second_guard": {
+          "dual_strict_window1": true,
+          "leg_verdicts": [
+            {
+              "completion_exchange_ts": 1783933666.356633,
+              "guard_id": "te-strict-60s-witness-only",
+              "margin_to_proxy_seconds": 133.64336705207825,
+              "negative_cutoff_utc": "2026-07-13T09:11:00+00:00",
+              "negative_guard_seconds": 60.0,
+              "positive_cutoff_utc": "2026-07-13T09:09:00+00:00",
+              "positive_guard_seconds": 60.0,
+              "verdict": "strict_window1"
+            },
+            {
+              "completion_exchange_ts": 1783920918.621171,
+              "guard_id": "te-strict-60s-witness-only",
+              "margin_to_proxy_seconds": 12881.37882900238,
+              "negative_cutoff_utc": "2026-07-13T09:11:00+00:00",
+              "negative_guard_seconds": 60.0,
+              "positive_cutoff_utc": "2026-07-13T09:09:00+00:00",
+              "positive_guard_seconds": 60.0,
+              "verdict": "strict_window1"
+            }
+          ]
+        }
+      },
+      {
+        "combined_entry_cost_cents": 100.0,
+        "combined_entry_cost_under_par": false,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14ALCTAB",
+        "frozen_asymmetric_proxy_guard": {
+          "dual_strict_window1": true,
+          "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "leg_verdicts": [
+            {
+              "completion_exchange_ts": 1784004730.91524,
+              "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+              "margin_to_proxy_seconds": 11869.084759950638,
+              "negative_cutoff_utc": "2026-07-14T08:20:00+00:00",
+              "negative_guard_seconds": 600.0,
+              "positive_cutoff_utc": "2026-07-14T07:55:00+00:00",
+              "positive_guard_seconds": 900.0,
+              "verdict": "strict_window1"
+            },
+            {
+              "completion_exchange_ts": 1784004710.546003,
+              "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+              "margin_to_proxy_seconds": 11889.453996896744,
+              "negative_cutoff_utc": "2026-07-14T08:20:00+00:00",
+              "negative_guard_seconds": 600.0,
+              "positive_cutoff_utc": "2026-07-14T07:55:00+00:00",
+              "positive_guard_seconds": 900.0,
+              "verdict": "strict_window1"
+            }
+          ]
+        },
+        "strict_60_second_guard": {
+          "dual_strict_window1": true,
+          "leg_verdicts": [
+            {
+              "completion_exchange_ts": 1784004730.91524,
+              "guard_id": "te-strict-60s-witness-only",
+              "margin_to_proxy_seconds": 11869.084759950638,
+              "negative_cutoff_utc": "2026-07-14T08:11:00+00:00",
+              "negative_guard_seconds": 60.0,
+              "positive_cutoff_utc": "2026-07-14T08:09:00+00:00",
+              "positive_guard_seconds": 60.0,
+              "verdict": "strict_window1"
+            },
+            {
+              "completion_exchange_ts": 1784004710.546003,
+              "guard_id": "te-strict-60s-witness-only",
+              "margin_to_proxy_seconds": 11889.453996896744,
+              "negative_cutoff_utc": "2026-07-14T08:11:00+00:00",
+              "negative_guard_seconds": 60.0,
+              "positive_cutoff_utc": "2026-07-14T08:09:00+00:00",
+              "positive_guard_seconds": 60.0,
+              "verdict": "strict_window1"
+            }
+          ]
+        }
+      },
+      {
+        "combined_entry_cost_cents": 98.0,
+        "combined_entry_cost_under_par": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14SMIILA",
+        "frozen_asymmetric_proxy_guard": {
+          "dual_strict_window1": false,
+          "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "leg_verdicts": [
+            {
+              "completion_exchange_ts": 1784041734.89696,
+              "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+              "margin_to_proxy_seconds": 365.1030399799347,
+              "negative_cutoff_utc": "2026-07-14T15:25:00+00:00",
+              "negative_guard_seconds": 600.0,
+              "positive_cutoff_utc": "2026-07-14T15:00:00+00:00",
+              "positive_guard_seconds": 900.0,
+              "verdict": "censored_guard_band"
+            },
+            {
+              "completion_exchange_ts": 1784041735.77496,
+              "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+              "margin_to_proxy_seconds": 364.22503995895386,
+              "negative_cutoff_utc": "2026-07-14T15:25:00+00:00",
+              "negative_guard_seconds": 600.0,
+              "positive_cutoff_utc": "2026-07-14T15:00:00+00:00",
+              "positive_guard_seconds": 900.0,
+              "verdict": "censored_guard_band"
+            }
+          ]
+        },
+        "strict_60_second_guard": {
+          "dual_strict_window1": true,
+          "leg_verdicts": [
+            {
+              "completion_exchange_ts": 1784041734.89696,
+              "guard_id": "te-strict-60s-witness-only",
+              "margin_to_proxy_seconds": 365.1030399799347,
+              "negative_cutoff_utc": "2026-07-14T15:16:00+00:00",
+              "negative_guard_seconds": 60.0,
+              "positive_cutoff_utc": "2026-07-14T15:14:00+00:00",
+              "positive_guard_seconds": 60.0,
+              "verdict": "strict_window1"
+            },
+            {
+              "completion_exchange_ts": 1784041735.77496,
+              "guard_id": "te-strict-60s-witness-only",
+              "margin_to_proxy_seconds": 364.22503995895386,
+              "negative_cutoff_utc": "2026-07-14T15:16:00+00:00",
+              "negative_guard_seconds": 60.0,
+              "positive_cutoff_utc": "2026-07-14T15:14:00+00:00",
+              "positive_guard_seconds": 60.0,
+              "verdict": "strict_window1"
+            }
+          ]
+        }
+      },
+      {
+        "combined_entry_cost_cents": 97.0,
+        "combined_entry_cost_under_par": true,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20MARBIT",
+        "frozen_asymmetric_proxy_guard": {
+          "dual_strict_window1": false,
+          "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "leg_verdicts": [
+            {
+              "completion_exchange_ts": 1784537360.026025,
+              "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+              "margin_to_proxy_seconds": 1539.973974943161,
+              "negative_cutoff_utc": "2026-07-20T09:25:00+00:00",
+              "negative_guard_seconds": 600.0,
+              "positive_cutoff_utc": "2026-07-20T09:00:00+00:00",
+              "positive_guard_seconds": 900.0,
+              "verdict": "strict_window1"
+            },
+            {
+              "completion_exchange_ts": 1784538825.049723,
+              "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+              "margin_to_proxy_seconds": 74.95027709007263,
+              "negative_cutoff_utc": "2026-07-20T09:25:00+00:00",
+              "negative_guard_seconds": 600.0,
+              "positive_cutoff_utc": "2026-07-20T09:00:00+00:00",
+              "positive_guard_seconds": 900.0,
+              "verdict": "censored_guard_band"
+            }
+          ]
+        },
+        "strict_60_second_guard": {
+          "dual_strict_window1": true,
+          "leg_verdicts": [
+            {
+              "completion_exchange_ts": 1784537360.026025,
+              "guard_id": "te-strict-60s-witness-only",
+              "margin_to_proxy_seconds": 1539.973974943161,
+              "negative_cutoff_utc": "2026-07-20T09:16:00+00:00",
+              "negative_guard_seconds": 60.0,
+              "positive_cutoff_utc": "2026-07-20T09:14:00+00:00",
+              "positive_guard_seconds": 60.0,
+              "verdict": "strict_window1"
+            },
+            {
+              "completion_exchange_ts": 1784538825.049723,
+              "guard_id": "te-strict-60s-witness-only",
+              "margin_to_proxy_seconds": 74.95027709007263,
+              "negative_cutoff_utc": "2026-07-20T09:16:00+00:00",
+              "negative_guard_seconds": 60.0,
+              "positive_cutoff_utc": "2026-07-20T09:14:00+00:00",
+              "positive_guard_seconds": 60.0,
+              "verdict": "strict_window1"
+            }
+          ]
+        }
+      },
+      {
+        "combined_entry_cost_cents": 97.0,
+        "combined_entry_cost_under_par": true,
+        "event_id": "KXATPMATCH-26JUL14TOPUGO",
+        "frozen_asymmetric_proxy_guard": {
+          "dual_strict_window1": false,
+          "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "leg_verdicts": [
+            {
+              "completion_exchange_ts": 1784031322.572503,
+              "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+              "margin_to_proxy_seconds": 6877.427496910095,
+              "negative_cutoff_utc": "2026-07-14T14:20:00+00:00",
+              "negative_guard_seconds": 600.0,
+              "positive_cutoff_utc": "2026-07-14T13:55:00+00:00",
+              "positive_guard_seconds": 900.0,
+              "verdict": "strict_window1"
+            },
+            {
+              "completion_exchange_ts": 1784038198.553912,
+              "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+              "margin_to_proxy_seconds": 1.4460880756378174,
+              "negative_cutoff_utc": "2026-07-14T14:20:00+00:00",
+              "negative_guard_seconds": 600.0,
+              "positive_cutoff_utc": "2026-07-14T13:55:00+00:00",
+              "positive_guard_seconds": 900.0,
+              "verdict": "censored_guard_band"
+            }
+          ]
+        },
+        "strict_60_second_guard": {
+          "dual_strict_window1": false,
+          "leg_verdicts": [
+            {
+              "completion_exchange_ts": 1784031322.572503,
+              "guard_id": "te-strict-60s-witness-only",
+              "margin_to_proxy_seconds": 6877.427496910095,
+              "negative_cutoff_utc": "2026-07-14T14:11:00+00:00",
+              "negative_guard_seconds": 60.0,
+              "positive_cutoff_utc": "2026-07-14T14:09:00+00:00",
+              "positive_guard_seconds": 60.0,
+              "verdict": "strict_window1"
+            },
+            {
+              "completion_exchange_ts": 1784038198.553912,
+              "guard_id": "te-strict-60s-witness-only",
+              "margin_to_proxy_seconds": 1.4460880756378174,
+              "negative_cutoff_utc": "2026-07-14T14:11:00+00:00",
+              "negative_guard_seconds": 60.0,
+              "positive_cutoff_utc": "2026-07-14T14:09:00+00:00",
+              "positive_guard_seconds": 60.0,
+              "verdict": "censored_guard_band"
+            }
+          ]
+        }
+      },
+      {
+        "combined_entry_cost_cents": 100.0,
+        "combined_entry_cost_under_par": false,
+        "event_id": "KXATPMATCH-26JUL17COLVAC",
+        "frozen_asymmetric_proxy_guard": {
+          "dual_strict_window1": false,
+          "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "leg_verdicts": [
+            {
+              "completion_exchange_ts": 1784276828.444788,
+              "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+              "margin_to_proxy_seconds": 771.555212020874,
+              "negative_cutoff_utc": "2026-07-17T08:50:00+00:00",
+              "negative_guard_seconds": 600.0,
+              "positive_cutoff_utc": "2026-07-17T08:25:00+00:00",
+              "positive_guard_seconds": 900.0,
+              "verdict": "censored_guard_band"
+            },
+            {
+              "completion_exchange_ts": 1784276290.908981,
+              "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+              "margin_to_proxy_seconds": 1309.0910189151764,
+              "negative_cutoff_utc": "2026-07-17T08:50:00+00:00",
+              "negative_guard_seconds": 600.0,
+              "positive_cutoff_utc": "2026-07-17T08:25:00+00:00",
+              "positive_guard_seconds": 900.0,
+              "verdict": "strict_window1"
+            }
+          ]
+        },
+        "strict_60_second_guard": {
+          "dual_strict_window1": true,
+          "leg_verdicts": [
+            {
+              "completion_exchange_ts": 1784276828.444788,
+              "guard_id": "te-strict-60s-witness-only",
+              "margin_to_proxy_seconds": 771.555212020874,
+              "negative_cutoff_utc": "2026-07-17T08:41:00+00:00",
+              "negative_guard_seconds": 60.0,
+              "positive_cutoff_utc": "2026-07-17T08:39:00+00:00",
+              "positive_guard_seconds": 60.0,
+              "verdict": "strict_window1"
+            },
+            {
+              "completion_exchange_ts": 1784276290.908981,
+              "guard_id": "te-strict-60s-witness-only",
+              "margin_to_proxy_seconds": 1309.0910189151764,
+              "negative_cutoff_utc": "2026-07-17T08:41:00+00:00",
+              "negative_guard_seconds": 60.0,
+              "positive_cutoff_utc": "2026-07-17T08:39:00+00:00",
+              "positive_guard_seconds": 60.0,
+              "verdict": "strict_window1"
+            }
+          ]
+        }
+      },
+      {
+        "combined_entry_cost_cents": 97.0,
+        "combined_entry_cost_under_par": true,
+        "event_id": "KXWTACHALLENGERMATCH-26JUL13GRABER",
+        "frozen_asymmetric_proxy_guard": {
+          "dual_strict_window1": false,
+          "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "leg_verdicts": [
+            {
+              "completion_exchange_ts": 1783933521.43387,
+              "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+              "margin_to_proxy_seconds": 278.5661299228668,
+              "negative_cutoff_utc": "2026-07-13T09:20:00+00:00",
+              "negative_guard_seconds": 600.0,
+              "positive_cutoff_utc": "2026-07-13T08:55:00+00:00",
+              "positive_guard_seconds": 900.0,
+              "verdict": "censored_guard_band"
+            },
+            {
+              "completion_exchange_ts": 1783933741.004391,
+              "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+              "margin_to_proxy_seconds": 58.99560904502869,
+              "negative_cutoff_utc": "2026-07-13T09:20:00+00:00",
+              "negative_guard_seconds": 600.0,
+              "positive_cutoff_utc": "2026-07-13T08:55:00+00:00",
+              "positive_guard_seconds": 900.0,
+              "verdict": "censored_guard_band"
+            }
+          ]
+        },
+        "strict_60_second_guard": {
+          "dual_strict_window1": false,
+          "leg_verdicts": [
+            {
+              "completion_exchange_ts": 1783933521.43387,
+              "guard_id": "te-strict-60s-witness-only",
+              "margin_to_proxy_seconds": 278.5661299228668,
+              "negative_cutoff_utc": "2026-07-13T09:11:00+00:00",
+              "negative_guard_seconds": 60.0,
+              "positive_cutoff_utc": "2026-07-13T09:09:00+00:00",
+              "positive_guard_seconds": 60.0,
+              "verdict": "strict_window1"
+            },
+            {
+              "completion_exchange_ts": 1783933741.004391,
+              "guard_id": "te-strict-60s-witness-only",
+              "margin_to_proxy_seconds": 58.99560904502869,
+              "negative_cutoff_utc": "2026-07-13T09:11:00+00:00",
+              "negative_guard_seconds": 60.0,
+              "positive_cutoff_utc": "2026-07-13T09:09:00+00:00",
+              "positive_guard_seconds": 60.0,
+              "verdict": "censored_guard_band"
+            }
+          ]
+        }
+      }
+    ],
+    "strict_60_count": 5,
+    "strict_60_under_par_count": 3
+  },
+  "mandatory_disclosures": {
+    "permanently_unavailable_legs_after": 82,
+    "permanently_unavailable_legs_before": 106,
+    "post_to_strict_reversals": [
+      "KXATPMATCH-26JUL14TOPUGO",
+      "KXATPMATCH-26JUL17COLVAC",
+      "KXWTACHALLENGERMATCH-26JUL13GRABER",
+      "KXATPCHALLENGERMATCH-26JUL13YEVCAM"
+    ],
+    "window1_legs_after": 146,
+    "window1_legs_before": 45
+  },
+  "named_evidence_censors": {
+    "KXATPCHALLENGERMATCH-26JUL14MAKSEY": "provider_final_start_differs_by_about_20h",
+    "KXATPCHALLENGERMATCH-26JUL14MATMOR": "retained_causal_live_by_conflicts_with_proxy_band",
+    "KXATPCHALLENGERMATCH-26JUL15NAPBAR": "provider_final_start_differs_by_about_16h",
+    "KXATPCHALLENGERMATCH-26JUL17DELFUE": "proxy_precedes_retained_live_by_conflict",
+    "KXATPMATCH-26JUL15ALTDAR": "retained_causal_live_by_conflicts_with_proxy_band",
+    "KXATPMATCH-26JUL15KYMTSI": "provider_final_start_differs_by_about_21h",
+    "KXATPMATCH-26JUL15TRUDAV": "retained_causal_live_by_conflicts_with_proxy_band",
+    "KXATPMATCH-26JUL16BURUGO": "retained_causal_live_by_conflicts_with_proxy_band",
+    "KXATPMATCH-26JUL16SHESTR": "provider_final_start_differs_by_about_16h",
+    "KXATPMATCH-26JUL18COLCER": "retained_causal_live_by_conflicts_with_proxy_band",
+    "KXATPMATCH-26JUL18CORSAC": "retained_causal_live_by_conflicts_with_proxy_band",
+    "KXATPMATCH-26JUL19MOLOFN": "retained_causal_live_by_conflicts_with_proxy_band",
+    "KXWTAMATCH-26JUL15BURJAC": "retained_causal_live_by_conflicts_with_proxy_band"
+  },
+  "one_sided_conflict_law": {
+    "law_id": "retain-stronger-causal-bounds-v1",
+    "only_strictly_higher_rank_not_live_may_block": true,
+    "proxy_never_exact": true,
+    "proxy_never_overwrites_earlier_live_by": true,
+    "ties_never_promote_proxy_to_exact": true
+  },
+  "population_gate_positive_capable_before_named_censors": 718,
+  "positive_capable_after_named_censors": 705,
+  "provenance": {
+    "calibration_sha256": "288a085bb4fa5735b383f7189f9e60ab382d58072ca77eee809974ca03138073",
+    "historical_events_sha256": "6c71254171abfdd933d2dbe2e37e1af628bf9f98a6b94c7cbf69ef49987a1496",
+    "historical_legs_sha256": "8c38753d4f1537989b8d0c44b0d3fd6059a989e18b43d4c3afc994bf35777bbf",
+    "independent_artifact": "START_LEDGER_V4_CROSS_REVIEW.md",
+    "independent_audit_branch": "origin/audit/window1-independent",
+    "independent_audit_commit": "9919de9462f3df4a0bd33239b7e8f648b71e20fb",
+    "v4_ledger_sha256": "9d972c17837d3e36789c10396bd3a7c825c512c2eac3aa2fcbeabf96ed6a23e0"
+  },
+  "schema_version": "window1-start-guard-repair-v1",
+  "source_conservation": {
+    "clean_interval": 31,
+    "contradictory": 14,
+    "live_by_only": 52,
+    "schedule_only": 20,
+    "start_clock": 687
+  },
+  "start_clock_decomposition": {
+    "official_exact": 234,
+    "quantized_late_detection_proxy": 453
+  }
+}

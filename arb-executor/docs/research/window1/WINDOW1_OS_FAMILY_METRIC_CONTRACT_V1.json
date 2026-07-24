@@ -1,27 +1,71 @@
 {
-  "schema_version": "window1-os-family-metric-contract-v1",
+  "schema_version": "window1-os-family-metric-contract-v2",
   "D": 804,
   "target_count": 603,
-  "primary": "dual exact-five-contract Window-1 completions whose combined Window-1-close delta is negative",
-  "exact_five_law": "both legs prove exactly five contracts; other quantities never qualify",
-  "window1_law": "positive requires a causal placement/fill clock and an exact start or clean causal interval",
-  "reference": "final positive-size exchange-identified true print at or before the causal Window-1 boundary",
-  "separate_measures": [
-    "strict dual exact-five Window-1 completion",
-    "combined entry cost under par",
-    "both individual leg deltas negative",
-    "one individual leg negative",
-    "dynamic-floor gap",
-    "per-leg dip catch",
-    "nonfills",
-    "post-start fills",
-    "other quantities",
-    "timing censorship",
-    "feature availability",
-    "strict lower bound",
-    "optimistic upper bound"
+  "raw_integer_print_order": [
+    "D",
+    "C",
+    "PC",
+    "S",
+    "IC",
+    "exact_five",
+    "partial",
+    "other_quantity",
+    "nonfill",
+    "contradictory",
+    "censored"
   ],
+  "definitions": {
+    "C": "events where both legs fill exactly five contracts inside the guarded lawful Window 1",
+    "PC": "events satisfying C with negative combined Window-1-close delta",
+    "S": "events satisfying C whose two entry VWAP costs sum below 100 cents",
+    "IC": "events satisfying C whose two individual Window-1-close deltas are both negative"
+  },
+  "primary_objective": "PC / D >= 0.75",
+  "primary_objective_raw": "PC >= 603",
+  "reference_law": {
+    "per_leg_window1_close": "last positive-size exchange-identified deduplicated true print at or before that event's strict positive start cutoff and at or after T-8h",
+    "individual_delta": "leg fill VWAP cents minus per-leg Window-1-close cents",
+    "combined_delta": "sum of the two individual deltas",
+    "negative": "strictly less than zero",
+    "future_print_allowed": false,
+    "schedule_as_close_allowed": false,
+    "missing_reference": "PC and IC are false/unknown, never success; C remains a fill fact"
+  },
+  "start_boundary_law": {
+    "official_exact": "completion_exchange_ts <= exact_start_utc - 60 seconds",
+    "clean_causal_interval": "completion_exchange_ts <= lower_inclusive - 60 seconds",
+    "quantized_late_detection_proxy": "completion_exchange_ts <= proxy_clock_utc - 900 seconds",
+    "proxy_post_start": "completion_exchange_ts >= proxy_clock_utc + 600 seconds",
+    "proxy_interior": "censored",
+    "named_proxy_conflicts": "censored",
+    "schedule_only": "never positive",
+    "live_by_only": "never positive",
+    "guard_id": "te-calibration-central-93pct-asymmetric-v1"
+  },
+  "ratios_reported": [
+    "C / D",
+    "PC / D",
+    "PC / C",
+    "S / C",
+    "IC / D",
+    "IC / C"
+  ],
+  "groupings": [
+    "event_date",
+    "tournament_class",
+    "start_source_class",
+    "policy_family",
+    "feature_coverage_class"
+  ],
+  "separate_distributions": [
+    "combined_entry_cost_cents",
+    "combined_window1_close_delta_cents",
+    "individual_leg_window1_close_delta_cents"
+  ],
+  "missing_event_law": "every missing, uncertain, thin, corrupt, contradictory, censored, or error event remains in D and is never success",
   "conflation_allowed": false,
   "censored_event_counts_as_success": false,
-  "censored_event_remains_in_D": true
+  "censored_event_remains_in_D": true,
+  "target_may_be_lowered": false
 }

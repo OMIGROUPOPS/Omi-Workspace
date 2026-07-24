@@ -73,19 +73,27 @@ class StartTruthRound2Tests(unittest.TestCase):
             "ATP Challenger Lincoln (NE)", "Lincoln challenger"
         ))
 
-    def test_lower_precedence_tape_conflict_does_not_erase_exact_start(self):
+    def test_live_by_conflict_is_retained_and_proxy_is_never_exact(self):
         row, conflicts = round2.adjudicate_residual(
             self.baseline(), self.crosswalk()
         )
-        self.assertEqual("exact", row["precision_class"])
+        self.assertEqual(
+            "quantized_late_detection_proxy",
+            row["precision_class"],
+        )
         self.assertTrue(row["positive_window1_provable"])
+        self.assertIsNone(row["exact_start_utc"])
+        self.assertEqual(
+            "2026-07-12T10:05:00+00:00",
+            row["known_live_by_utc"],
+        )
         self.assertEqual(
             "tennisexplorer_historical_result_start_clock",
             row["selected_source"],
         )
         self.assertEqual(1, len(conflicts))
         self.assertEqual(
-            "exact_result_start_controls_by_precedence",
+            "retain_causal_live_by_proxy_never_overwrites",
             conflicts[0]["disposition"],
         )
 
@@ -107,7 +115,7 @@ class StartTruthRound2Tests(unittest.TestCase):
         self.assertEqual("contradictory", row["precision_class"])
         self.assertFalse(row["positive_window1_provable"])
         self.assertTrue(any(
-            conflict["disposition"] == "blocks_promotion"
+            conflict["disposition"] == "blocks_proxy_interval"
             for conflict in conflicts
         ))
 

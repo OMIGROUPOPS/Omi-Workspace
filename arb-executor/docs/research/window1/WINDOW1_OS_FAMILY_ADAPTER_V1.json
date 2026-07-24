@@ -1,10 +1,18 @@
 {
-  "schema_version": "window1-os-family-research-adapter-v1",
-  "adapter_id": "chronological-window1-os-family-development-adapter-v1",
+  "schema_version": "window1-os-family-research-adapter-v2",
+  "adapter_id": "chronological-window1-os-family-development-adapter-v2",
   "base_inventory": ".claude/window1_calibration_20260723/WINDOW1_OS_RESEARCH_ADAPTER.json",
   "execution_kernel": "arb-executor/analysis/window1_execution_kernel.py",
   "causal_tape": "deduplicated exchange-identity true prints",
-  "real_start": "REAL_START_LEDGER_V3.jsonl",
+  "real_start": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+  "start_boundary_law": {
+    "implementation": "arb-executor/analysis/window1_start_guard.py",
+    "guard_id": "te-calibration-central-93pct-asymmetric-v1",
+    "official_guard_seconds": 60,
+    "proxy_positive_guard_seconds": 900,
+    "proxy_negative_guard_seconds": 600,
+    "ambiguous": "censored"
+  },
   "laws": {
     "pair_is_one_object": true,
     "exact_quantity_per_leg": 5,
@@ -14,6 +22,10 @@
     "silent_proxy_substitution_allowed": false,
     "candidate_policy_must_be_allowlisted": true,
     "schedule_can_prove_positive": false,
+    "quantized_proxy_can_be_exact": false,
+    "future_information_allowed": false,
+    "feature_gap_imputation_allowed": false,
+    "narrow_proxy_substitution_allowed": false,
     "aim_v2": "excluded",
     "pinnacle": "excluded",
     "full_depth": "excluded_until_sequence_ancestry_is_proven"
@@ -24,8 +36,11 @@
       ".claude/proof_20260717/PROOF_PAIR_INVARIANT.md"
     ],
     "sealed_bands_and_divots": [
+      ".claude/entrysurface_20260717/band_map_v1.json",
       ".claude/entrysurface_20260717/entry_tables_sealed_v1.json",
-      ".claude/entrysurface_20260717/divot_tables_v1.json"
+      ".claude/entrysurface_20260717/divot_tables_v1.json",
+      ".claude/loop8_20260720/SEAL_CEREMONY_20260720.md",
+      ".claude/proof_20260720/PROOF_DUAL_DIVOT_SEAL.md"
     ],
     "drift_cohort_orientation": [
       ".claude/entrysurface_20260717/drift_surfaces_v1.json",
@@ -51,6 +66,12 @@
     "own_orders": [
       ".claude/window1_20260721/LIFECYCLE_VALIDATION_SUMMARY.json",
       "arb-executor/analysis/window1_execution_kernel.py"
+    ],
+    "corrected_start_semantics": [
+      ".claude/window1_start_guard_calibration_20260724/START_GUARD_CALIBRATION.json",
+      ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+      ".claude/window1_start_guard_corrected_20260724/REAL_START_SUMMARY_V5.json",
+      "arb-executor/analysis/window1_start_guard.py"
     ]
   }
 }

@@ -339,6 +339,7 @@ def legacy_candidates(
         if (
             source.startswith("public_milestone_")
             or "milestone_shadow" in source
+            or source == "engine_regime_transition:self_fill"
             or raw.get("bound_direction") == "rejected"
         ):
             continue
@@ -595,6 +596,9 @@ def summarize(
         "ledger_sha256": ledger_hash,
         "extraction_law": {
             "policy_outcomes_examined": False,
+            "policy_outcome_candidate_sources_excluded": [
+                "engine_regime_transition:self_fill"
+            ],
             "schedule_can_prove_positive": False,
             "live_by_promoted_to_exact": False,
             "missing_source_invents_timestamp": False,
@@ -670,9 +674,14 @@ def run(args: argparse.Namespace) -> int:
         public_path, manifest_path, required
     )
     shadow, shadow_receipt = shadow_candidates(shadow_path, required)
-    rows = build(
-        events, read_jsonl(prior_path), public, shadow
+    prior_rows = read_jsonl(prior_path)
+    excluded_policy_outcome_candidates = sum(
+        str(candidate_row.get("source") or "")
+        == "engine_regime_transition:self_fill"
+        for event_row in prior_rows
+        for candidate_row in event_row.get("candidate_evidence") or []
     )
+    rows = build(events, prior_rows, public, shadow)
     ledger_path = output / "REAL_START_LEDGER_V3.jsonl"
     write_jsonl(ledger_path, rows)
     source_receipts = {
@@ -683,6 +692,11 @@ def run(args: argparse.Namespace) -> int:
         "prior_policy_blind_source_ledger": {
             "sha256": sha256_file(prior_path),
             "bytes": prior_path.stat().st_size,
+            "policy_outcome_candidates_excluded": {
+                "engine_regime_transition:self_fill": (
+                    excluded_policy_outcome_candidates
+                )
+            },
         },
         "public_milestones": public_receipt,
         "raw_milestone_shadow": shadow_receipt,

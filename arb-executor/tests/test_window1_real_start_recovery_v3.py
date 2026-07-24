@@ -15,6 +15,17 @@ import window1_start_replay_adjudication as adjudication  # noqa: E402
 
 
 class RealStartRecoveryV3Tests(unittest.TestCase):
+    def test_legacy_self_fill_start_candidate_is_excluded(self):
+        rows = recovery.legacy_candidates({
+            "candidate_evidence": [{
+                "source": "engine_regime_transition:self_fill",
+                "timestamp": "2026-07-12T12:00:00+00:00",
+                "bound_direction": "live_by",
+                "timestamp_basis": "local_engine_receipt_utc",
+            }]
+        })
+        self.assertEqual([], rows)
+
     def event(self):
         return {
             "event_id": "E",

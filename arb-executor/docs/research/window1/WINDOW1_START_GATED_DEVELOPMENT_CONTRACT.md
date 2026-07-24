@@ -48,6 +48,11 @@ not-live-through lower bound and causal live-by upper bound, can prove a
 positive Window-1 event.  A live-by-only or schedule-only timestamp cannot.
 Contradictory evidence remains contradictory.
 
+The historical-log class excludes
+`engine_regime_transition:self_fill`: an actual own fill is a policy outcome,
+not an independent start source.  It cannot supply even a negative-only
+live-by bound in the policy-blind extraction.
+
 The gate passes only when at least 603 events have a positive-capable
 boundary.  Below 603, no development candidate result may be opened and no
 75% strategy verdict may be issued.

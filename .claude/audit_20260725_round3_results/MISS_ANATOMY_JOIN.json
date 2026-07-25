@@ -1,0 +1,74 @@
+{
+  "r3_causal_steer__park_join__hold": {
+    "max_nocall_one_event": 2,
+    "naked": {
+      "sibling_posted_but_unfilled": 264
+    },
+    "nonfill": {
+      "both_legs_posted_no_fill": 347
+    }
+  },
+  "r3_causal_steer__park_join__reaim": {
+    "max_nocall_one_event": 2,
+    "naked": {
+      "sibling_posted_but_unfilled": 263
+    },
+    "nonfill": {
+      "both_legs_posted_no_fill": 347
+    }
+  },
+  "r3_full_os__walk_park__hold": {
+    "max_nocall_one_event": 2,
+    "naked": {
+      "sibling_posted_but_unfilled": 38
+    },
+    "nonfill": {
+      "both_legs_posted_no_fill": 577
+    }
+  },
+  "r3_full_os__walk_park__reaim": {
+    "max_nocall_one_event": 2,
+    "naked": {
+      "sibling_posted_but_unfilled": 38
+    },
+    "nonfill": {
+      "both_legs_posted_no_fill": 577
+    }
+  },
+  "r3_pair_presence__park_join__hold": {
+    "max_nocall_one_event": 0,
+    "naked": {
+      "sibling_posted_but_unfilled": 281
+    },
+    "nonfill": {
+      "both_legs_posted_no_fill": 332
+    }
+  },
+  "r3_pair_presence__park_join__reaim": {
+    "max_nocall_one_event": 2,
+    "naked": {
+      "sibling_posted_but_unfilled": 278
+    },
+    "nonfill": {
+      "both_legs_posted_no_fill": 332
+    }
+  },
+  "r3_pair_presence__touch_park__hold": {
+    "max_nocall_one_event": 0,
+    "naked": {
+      "sibling_posted_but_unfilled": 165
+    },
+    "nonfill": {
+      "both_legs_posted_no_fill": 446
+    }
+  },
+  "r3_pair_presence__touch_park__reaim": {
+    "max_nocall_one_event": 2,
+    "naked": {
+      "sibling_posted_but_unfilled": 165
+    },
+    "nonfill": {
+      "both_legs_posted_no_fill": 446
+    }
+  }
+}

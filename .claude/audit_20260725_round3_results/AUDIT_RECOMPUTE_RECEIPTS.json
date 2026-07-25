@@ -1,0 +1,1186 @@
+{
+  "duals": [
+    {
+      "IC": true,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__park_join__hold",
+      "close_refs": [
+        15.0,
+        94.0
+      ],
+      "combined_cost": 89.64000000000001,
+      "combined_delta": -19.359999999999985,
+      "entry_vwaps": [
+        5.0,
+        84.64000000000001
+      ],
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -10.0,
+        -9.359999999999985
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        2
+      ]
+    },
+    {
+      "IC": true,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__park_join__hold",
+      "close_refs": [
+        68.0,
+        36.0
+      ],
+      "combined_cost": 96.0,
+      "combined_delta": -8.0,
+      "entry_vwaps": [
+        64.0,
+        32.0
+      ],
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -4.0,
+        -4.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        2,
+        1
+      ]
+    },
+    {
+      "IC": false,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__park_join__hold",
+      "close_refs": [
+        57.0,
+        45.0
+      ],
+      "combined_cost": 98.0,
+      "combined_delta": -4.0,
+      "entry_vwaps": [
+        50.0,
+        48.0
+      ],
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15CERKEC",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -7.0,
+        3.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": true,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__park_join__reaim",
+      "close_refs": [
+        15.0,
+        94.0
+      ],
+      "combined_cost": 90.64,
+      "combined_delta": -18.36,
+      "entry_vwaps": [
+        5.0,
+        85.64
+      ],
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -10.0,
+        -8.36
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        2
+      ]
+    },
+    {
+      "IC": true,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__park_join__reaim",
+      "close_refs": [
+        68.0,
+        36.0
+      ],
+      "combined_cost": 97.0,
+      "combined_delta": -7.0,
+      "entry_vwaps": [
+        64.0,
+        33.0
+      ],
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -4.0,
+        -3.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        2,
+        1
+      ]
+    },
+    {
+      "IC": false,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__park_join__reaim",
+      "close_refs": [
+        57.0,
+        45.0
+      ],
+      "combined_cost": 99.0,
+      "combined_delta": -3.0,
+      "entry_vwaps": [
+        51.0,
+        48.0
+      ],
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15CERKEC",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -6.0,
+        3.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        2,
+        1
+      ]
+    },
+    {
+      "IC": false,
+      "PC": true,
+      "S": false,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__park_join__reaim",
+      "close_refs": [
+        66.0,
+        36.0
+      ],
+      "combined_cost": 100.0,
+      "combined_delta": -2.0,
+      "entry_vwaps": [
+        66.0,
+        34.0
+      ],
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15COLSON",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        0.0,
+        -2.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": true,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__park_join__reaim",
+      "close_refs": [
+        56.0,
+        45.0
+      ],
+      "combined_cost": 99.0,
+      "combined_delta": -2.0,
+      "entry_vwaps": [
+        55.0,
+        44.0
+      ],
+      "event_date": "2026-07-17",
+      "event_id": "KXATPMATCH-26JUL17TABTIR",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -1.0,
+        -1.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": false,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__park_join__reaim",
+      "close_refs": [
+        27.0,
+        74.0
+      ],
+      "combined_cost": 97.0,
+      "combined_delta": -4.0,
+      "entry_vwaps": [
+        22.0,
+        75.0
+      ],
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18SHETSI",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -5.0,
+        1.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": false,
+      "PC": true,
+      "S": false,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__touch_park__hold",
+      "close_refs": [
+        83.0,
+        18.0
+      ],
+      "combined_cost": 100.0,
+      "combined_delta": -1.0,
+      "entry_vwaps": [
+        82.0,
+        18.0
+      ],
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16RICGEA",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -1.0,
+        0.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": false,
+      "PC": true,
+      "S": false,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__touch_park__hold",
+      "close_refs": [
+        15.0,
+        94.0
+      ],
+      "combined_cost": 101.0,
+      "combined_delta": -8.0,
+      "entry_vwaps": [
+        5.0,
+        96.0
+      ],
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -10.0,
+        2.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": false,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__touch_park__hold",
+      "close_refs": [
+        29.0,
+        72.0
+      ],
+      "combined_cost": 99.0,
+      "combined_delta": -2.0,
+      "entry_vwaps": [
+        29.0,
+        70.0
+      ],
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        0.0,
+        -2.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": false,
+      "PC": true,
+      "S": false,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__touch_park__reaim",
+      "close_refs": [
+        83.0,
+        18.0
+      ],
+      "combined_cost": 100.0,
+      "combined_delta": -1.0,
+      "entry_vwaps": [
+        82.0,
+        18.0
+      ],
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16RICGEA",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -1.0,
+        0.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": false,
+      "PC": true,
+      "S": false,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__touch_park__reaim",
+      "close_refs": [
+        15.0,
+        94.0
+      ],
+      "combined_cost": 102.0,
+      "combined_delta": -7.0,
+      "entry_vwaps": [
+        6.0,
+        96.0
+      ],
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -9.0,
+        2.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": false,
+      "PC": true,
+      "S": false,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_pair_presence__touch_park__reaim",
+      "close_refs": [
+        61.0,
+        42.0
+      ],
+      "combined_cost": 100.0,
+      "combined_delta": -3.0,
+      "entry_vwaps": [
+        58.0,
+        42.0
+      ],
+      "event_date": "2026-07-14",
+      "event_id": "KXATPMATCH-26JUL14GOMMCD",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -3.0,
+        0.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": true,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_causal_steer__park_join__hold",
+      "close_refs": [
+        15.0,
+        94.0
+      ],
+      "combined_cost": 88.64000000000001,
+      "combined_delta": -20.359999999999985,
+      "entry_vwaps": [
+        5.0,
+        83.64000000000001
+      ],
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -10.0,
+        -10.359999999999985
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        2
+      ]
+    },
+    {
+      "IC": false,
+      "PC": false,
+      "S": false,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_causal_steer__park_join__hold",
+      "close_refs": [
+        54.0,
+        46.0
+      ],
+      "combined_cost": 104.0,
+      "combined_delta": 4.0,
+      "entry_vwaps": [
+        59.0,
+        45.0
+      ],
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MCKOUA",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        5.0,
+        -1.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": false,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_causal_steer__park_join__hold",
+      "close_refs": [
+        57.0,
+        45.0
+      ],
+      "combined_cost": 98.0,
+      "combined_delta": -4.0,
+      "entry_vwaps": [
+        50.0,
+        48.0
+      ],
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15CERKEC",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -7.0,
+        3.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": true,
+      "PC": true,
+      "S": false,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_causal_steer__park_join__reaim",
+      "close_refs": [
+        40.0,
+        62.0
+      ],
+      "combined_cost": 100.0,
+      "combined_delta": -2.0,
+      "entry_vwaps": [
+        39.0,
+        61.0
+      ],
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -1.0,
+        -1.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": true,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_causal_steer__park_join__reaim",
+      "close_refs": [
+        15.0,
+        94.0
+      ],
+      "combined_cost": 89.64000000000001,
+      "combined_delta": -19.359999999999985,
+      "entry_vwaps": [
+        5.0,
+        84.64000000000001
+      ],
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -10.0,
+        -9.359999999999985
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        2
+      ]
+    },
+    {
+      "IC": false,
+      "PC": false,
+      "S": false,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_causal_steer__park_join__reaim",
+      "close_refs": [
+        54.0,
+        46.0
+      ],
+      "combined_cost": 104.0,
+      "combined_delta": 4.0,
+      "entry_vwaps": [
+        59.0,
+        45.0
+      ],
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MCKOUA",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        5.0,
+        -1.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": false,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_causal_steer__park_join__reaim",
+      "close_refs": [
+        57.0,
+        45.0
+      ],
+      "combined_cost": 98.0,
+      "combined_delta": -4.0,
+      "entry_vwaps": [
+        50.0,
+        48.0
+      ],
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15CERKEC",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -7.0,
+        3.0
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        1
+      ]
+    },
+    {
+      "IC": true,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_full_os__walk_park__hold",
+      "close_refs": [
+        15.0,
+        94.0
+      ],
+      "combined_cost": 87.64000000000001,
+      "combined_delta": -21.359999999999985,
+      "entry_vwaps": [
+        4.0,
+        83.64000000000001
+      ],
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -11.0,
+        -10.359999999999985
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        2
+      ]
+    },
+    {
+      "IC": true,
+      "PC": true,
+      "S": true,
+      "boundary_status": [
+        "positive",
+        "positive"
+      ],
+      "candidate_id": "r3_full_os__walk_park__reaim",
+      "close_refs": [
+        15.0,
+        94.0
+      ],
+      "combined_cost": 88.64000000000001,
+      "combined_delta": -20.359999999999985,
+      "entry_vwaps": [
+        5.0,
+        83.64000000000001
+      ],
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "fill_ts_ok": true,
+      "individual_deltas": [
+        -10.0,
+        -10.359999999999985
+      ],
+      "quantities": [
+        5.0,
+        5.0
+      ],
+      "receipts": [
+        1,
+        2
+      ]
+    }
+  ],
+  "per_candidate": {
+    "r3_causal_steer__park_join__hold": {
+      "C": 3,
+      "C_over_D": 0.003731,
+      "IC": 1,
+      "PC": 2,
+      "PC_over_C": 0.666667,
+      "PC_over_D": 0.002488,
+      "S": 2,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "exact_five": 3,
+        "genuine_nonfill": 347,
+        "naked_single_leg": 264,
+        "partial": 2,
+        "zero_length_window": 13
+      },
+      "census_sum": 804,
+      "cohort_NO_CALL_sum": 1471,
+      "cost_range": {
+        "max": 104.0,
+        "median": 98.0,
+        "min": 88.64000000000001,
+        "n": 3
+      },
+      "delta_range": {
+        "max": 4.0,
+        "median": -4.0,
+        "min": -20.359999999999985,
+        "n": 3
+      },
+      "dup_receipt_ids": 0,
+      "fills_after_boundary": 0,
+      "flags_mismatched": 0,
+      "leg_delta_signs": {
+        "neg": 4,
+        "pos": 2,
+        "zero": 0
+      },
+      "qty_crossfoot_fail": 0,
+      "reaim_NO_CALL_sum": 0,
+      "report_mismatched_keys": []
+    },
+    "r3_causal_steer__park_join__reaim": {
+      "C": 4,
+      "C_over_D": 0.004975,
+      "IC": 2,
+      "PC": 3,
+      "PC_over_C": 0.75,
+      "PC_over_D": 0.003731,
+      "S": 2,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "exact_five": 4,
+        "genuine_nonfill": 347,
+        "naked_single_leg": 263,
+        "partial": 2,
+        "zero_length_window": 13
+      },
+      "census_sum": 804,
+      "cohort_NO_CALL_sum": 1471,
+      "cost_range": {
+        "max": 104.0,
+        "median": 99.0,
+        "min": 89.64000000000001,
+        "n": 4
+      },
+      "delta_range": {
+        "max": 4.0,
+        "median": -3.0,
+        "min": -19.359999999999985,
+        "n": 4
+      },
+      "dup_receipt_ids": 0,
+      "fills_after_boundary": 0,
+      "flags_mismatched": 0,
+      "leg_delta_signs": {
+        "neg": 6,
+        "pos": 2,
+        "zero": 0
+      },
+      "qty_crossfoot_fail": 0,
+      "reaim_NO_CALL_sum": 354,
+      "report_mismatched_keys": []
+    },
+    "r3_full_os__walk_park__hold": {
+      "C": 1,
+      "C_over_D": 0.001244,
+      "IC": 1,
+      "PC": 1,
+      "PC_over_C": 1.0,
+      "PC_over_D": 0.001244,
+      "S": 1,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "exact_five": 1,
+        "genuine_nonfill": 577,
+        "naked_single_leg": 38,
+        "zero_length_window": 13
+      },
+      "census_sum": 804,
+      "cohort_NO_CALL_sum": 1471,
+      "cost_range": {
+        "max": 87.64000000000001,
+        "median": 87.64000000000001,
+        "min": 87.64000000000001,
+        "n": 1
+      },
+      "delta_range": {
+        "max": -21.359999999999985,
+        "median": -21.359999999999985,
+        "min": -21.359999999999985,
+        "n": 1
+      },
+      "dup_receipt_ids": 0,
+      "fills_after_boundary": 0,
+      "flags_mismatched": 0,
+      "leg_delta_signs": {
+        "neg": 2,
+        "pos": 0,
+        "zero": 0
+      },
+      "qty_crossfoot_fail": 0,
+      "reaim_NO_CALL_sum": 0,
+      "report_mismatched_keys": []
+    },
+    "r3_full_os__walk_park__reaim": {
+      "C": 1,
+      "C_over_D": 0.001244,
+      "IC": 1,
+      "PC": 1,
+      "PC_over_C": 1.0,
+      "PC_over_D": 0.001244,
+      "S": 1,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "exact_five": 1,
+        "genuine_nonfill": 577,
+        "naked_single_leg": 38,
+        "zero_length_window": 13
+      },
+      "census_sum": 804,
+      "cohort_NO_CALL_sum": 1471,
+      "cost_range": {
+        "max": 88.64000000000001,
+        "median": 88.64000000000001,
+        "min": 88.64000000000001,
+        "n": 1
+      },
+      "delta_range": {
+        "max": -20.359999999999985,
+        "median": -20.359999999999985,
+        "min": -20.359999999999985,
+        "n": 1
+      },
+      "dup_receipt_ids": 0,
+      "fills_after_boundary": 0,
+      "flags_mismatched": 0,
+      "leg_delta_signs": {
+        "neg": 2,
+        "pos": 0,
+        "zero": 0
+      },
+      "qty_crossfoot_fail": 0,
+      "reaim_NO_CALL_sum": 288,
+      "report_mismatched_keys": []
+    },
+    "r3_pair_presence__park_join__hold": {
+      "C": 3,
+      "C_over_D": 0.003731,
+      "IC": 2,
+      "PC": 3,
+      "PC_over_C": 1.0,
+      "PC_over_D": 0.003731,
+      "S": 3,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "exact_five": 3,
+        "genuine_nonfill": 332,
+        "naked_single_leg": 281,
+        "zero_length_window": 13
+      },
+      "census_sum": 804,
+      "cohort_NO_CALL_sum": 0,
+      "cost_range": {
+        "max": 98.0,
+        "median": 96.0,
+        "min": 89.64000000000001,
+        "n": 3
+      },
+      "delta_range": {
+        "max": -4.0,
+        "median": -8.0,
+        "min": -19.359999999999985,
+        "n": 3
+      },
+      "dup_receipt_ids": 0,
+      "fills_after_boundary": 0,
+      "flags_mismatched": 0,
+      "leg_delta_signs": {
+        "neg": 5,
+        "pos": 1,
+        "zero": 0
+      },
+      "qty_crossfoot_fail": 0,
+      "reaim_NO_CALL_sum": 0,
+      "report_mismatched_keys": []
+    },
+    "r3_pair_presence__park_join__reaim": {
+      "C": 6,
+      "C_over_D": 0.007463,
+      "IC": 3,
+      "PC": 6,
+      "PC_over_C": 1.0,
+      "PC_over_D": 0.007463,
+      "S": 5,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "exact_five": 6,
+        "genuine_nonfill": 332,
+        "naked_single_leg": 278,
+        "zero_length_window": 13
+      },
+      "census_sum": 804,
+      "cohort_NO_CALL_sum": 0,
+      "cost_range": {
+        "max": 100.0,
+        "median": 98.0,
+        "min": 90.64,
+        "n": 6
+      },
+      "delta_range": {
+        "max": -2.0,
+        "median": -3.5,
+        "min": -18.36,
+        "n": 6
+      },
+      "dup_receipt_ids": 0,
+      "fills_after_boundary": 0,
+      "flags_mismatched": 0,
+      "leg_delta_signs": {
+        "neg": 9,
+        "pos": 2,
+        "zero": 1
+      },
+      "qty_crossfoot_fail": 0,
+      "reaim_NO_CALL_sum": 324,
+      "report_mismatched_keys": []
+    },
+    "r3_pair_presence__touch_park__hold": {
+      "C": 3,
+      "C_over_D": 0.003731,
+      "IC": 0,
+      "PC": 3,
+      "PC_over_C": 1.0,
+      "PC_over_D": 0.003731,
+      "S": 1,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "exact_five": 3,
+        "genuine_nonfill": 446,
+        "naked_single_leg": 165,
+        "partial": 2,
+        "zero_length_window": 13
+      },
+      "census_sum": 804,
+      "cohort_NO_CALL_sum": 0,
+      "cost_range": {
+        "max": 101.0,
+        "median": 100.0,
+        "min": 99.0,
+        "n": 3
+      },
+      "delta_range": {
+        "max": -1.0,
+        "median": -2.0,
+        "min": -8.0,
+        "n": 3
+      },
+      "dup_receipt_ids": 0,
+      "fills_after_boundary": 0,
+      "flags_mismatched": 0,
+      "leg_delta_signs": {
+        "neg": 3,
+        "pos": 1,
+        "zero": 2
+      },
+      "qty_crossfoot_fail": 0,
+      "reaim_NO_CALL_sum": 0,
+      "report_mismatched_keys": []
+    },
+    "r3_pair_presence__touch_park__reaim": {
+      "C": 3,
+      "C_over_D": 0.003731,
+      "IC": 0,
+      "PC": 3,
+      "PC_over_C": 1.0,
+      "PC_over_D": 0.003731,
+      "S": 0,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "exact_five": 3,
+        "genuine_nonfill": 446,
+        "naked_single_leg": 165,
+        "partial": 2,
+        "zero_length_window": 13
+      },
+      "census_sum": 804,
+      "cohort_NO_CALL_sum": 0,
+      "cost_range": {
+        "max": 102.0,
+        "median": 100.0,
+        "min": 100.0,
+        "n": 3
+      },
+      "delta_range": {
+        "max": -1.0,
+        "median": -3.0,
+        "min": -7.0,
+        "n": 3
+      },
+      "dup_receipt_ids": 0,
+      "fills_after_boundary": 0,
+      "flags_mismatched": 0,
+      "leg_delta_signs": {
+        "neg": 3,
+        "pos": 1,
+        "zero": 2
+      },
+      "qty_crossfoot_fail": 0,
+      "reaim_NO_CALL_sum": 347,
+      "report_mismatched_keys": []
+    }
+  }
+}

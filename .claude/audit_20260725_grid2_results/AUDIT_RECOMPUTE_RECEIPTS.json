@@ -1,0 +1,270 @@
+{
+  "r2_async_pair__park_join__hold": {
+    "cost_dist_cents": null,
+    "crossfoot_failures": 0,
+    "delta_dist_cents": null,
+    "derived": {
+      "C": 0,
+      "IC": 0,
+      "PC": 0,
+      "S": 0,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "genuine_nonfill": 615,
+        "naked_single_leg": 1,
+        "zero_length_window": 13
+      },
+      "cohort_NO_CALL": 0,
+      "exact_five": 0,
+      "feature_unavailable_rows": 110,
+      "partial": 1,
+      "reaim_NO_CALL": 0
+    },
+    "duplicate_fill_receipts": 0,
+    "file": "01_r2_async_pair__park_join__hold_EVENT_LEDGER.jsonl",
+    "flag_mismatches": 0,
+    "rates": {
+      "C/D": 0.0,
+      "IC/C": null,
+      "PC/D": 0.0,
+      "S/C": null
+    },
+    "reported_mismatched_keys": [
+      "partial"
+    ]
+  },
+  "r2_async_pair__park_join__reaim": {
+    "cost_dist_cents": null,
+    "crossfoot_failures": 0,
+    "delta_dist_cents": null,
+    "derived": {
+      "C": 0,
+      "IC": 0,
+      "PC": 0,
+      "S": 0,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "genuine_nonfill": 615,
+        "naked_single_leg": 1,
+        "zero_length_window": 13
+      },
+      "cohort_NO_CALL": 0,
+      "exact_five": 0,
+      "feature_unavailable_rows": 110,
+      "partial": 1,
+      "reaim_NO_CALL": 185
+    },
+    "duplicate_fill_receipts": 0,
+    "file": "02_r2_async_pair__park_join__reaim_EVENT_LEDGER.jsonl",
+    "flag_mismatches": 0,
+    "rates": {
+      "C/D": 0.0,
+      "IC/C": null,
+      "PC/D": 0.0,
+      "S/C": null
+    },
+    "reported_mismatched_keys": [
+      "partial"
+    ]
+  },
+  "r2_async_pair__touch_park__hold": {
+    "cost_dist_cents": null,
+    "crossfoot_failures": 0,
+    "delta_dist_cents": null,
+    "derived": {
+      "C": 0,
+      "IC": 0,
+      "PC": 0,
+      "S": 0,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "genuine_nonfill": 587,
+        "naked_single_leg": 29,
+        "zero_length_window": 13
+      },
+      "cohort_NO_CALL": 0,
+      "exact_five": 0,
+      "feature_unavailable_rows": 110,
+      "partial": 29,
+      "reaim_NO_CALL": 0
+    },
+    "duplicate_fill_receipts": 0,
+    "file": "03_r2_async_pair__touch_park__hold_EVENT_LEDGER.jsonl",
+    "flag_mismatches": 0,
+    "rates": {
+      "C/D": 0.0,
+      "IC/C": null,
+      "PC/D": 0.0,
+      "S/C": null
+    },
+    "reported_mismatched_keys": [
+      "partial"
+    ]
+  },
+  "r2_async_pair__touch_park__reaim": {
+    "cost_dist_cents": null,
+    "crossfoot_failures": 0,
+    "delta_dist_cents": null,
+    "derived": {
+      "C": 0,
+      "IC": 0,
+      "PC": 0,
+      "S": 0,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "genuine_nonfill": 587,
+        "naked_single_leg": 29,
+        "zero_length_window": 13
+      },
+      "cohort_NO_CALL": 0,
+      "exact_five": 0,
+      "feature_unavailable_rows": 110,
+      "partial": 29,
+      "reaim_NO_CALL": 251
+    },
+    "duplicate_fill_receipts": 0,
+    "file": "04_r2_async_pair__touch_park__reaim_EVENT_LEDGER.jsonl",
+    "flag_mismatches": 0,
+    "rates": {
+      "C/D": 0.0,
+      "IC/C": null,
+      "PC/D": 0.0,
+      "S/C": null
+    },
+    "reported_mismatched_keys": [
+      "partial"
+    ]
+  },
+  "r2_causal_steer__park_join__hold": {
+    "cost_dist_cents": null,
+    "crossfoot_failures": 0,
+    "delta_dist_cents": null,
+    "derived": {
+      "C": 0,
+      "IC": 0,
+      "PC": 0,
+      "S": 0,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "genuine_nonfill": 616,
+        "zero_length_window": 13
+      },
+      "cohort_NO_CALL": 1471,
+      "exact_five": 0,
+      "feature_unavailable_rows": 110,
+      "partial": 0,
+      "reaim_NO_CALL": 0
+    },
+    "duplicate_fill_receipts": 0,
+    "file": "05_r2_causal_steer__park_join__hold_EVENT_LEDGER.jsonl",
+    "flag_mismatches": 0,
+    "rates": {
+      "C/D": 0.0,
+      "IC/C": null,
+      "PC/D": 0.0,
+      "S/C": null
+    },
+    "reported_mismatched_keys": []
+  },
+  "r2_causal_steer__park_join__reaim": {
+    "cost_dist_cents": null,
+    "crossfoot_failures": 0,
+    "delta_dist_cents": null,
+    "derived": {
+      "C": 0,
+      "IC": 0,
+      "PC": 0,
+      "S": 0,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "genuine_nonfill": 616,
+        "zero_length_window": 13
+      },
+      "cohort_NO_CALL": 1471,
+      "exact_five": 0,
+      "feature_unavailable_rows": 110,
+      "partial": 0,
+      "reaim_NO_CALL": 182
+    },
+    "duplicate_fill_receipts": 0,
+    "file": "06_r2_causal_steer__park_join__reaim_EVENT_LEDGER.jsonl",
+    "flag_mismatches": 0,
+    "rates": {
+      "C/D": 0.0,
+      "IC/C": null,
+      "PC/D": 0.0,
+      "S/C": null
+    },
+    "reported_mismatched_keys": []
+  },
+  "r2_full_os__walk_park__hold": {
+    "cost_dist_cents": null,
+    "crossfoot_failures": 0,
+    "delta_dist_cents": null,
+    "derived": {
+      "C": 0,
+      "IC": 0,
+      "PC": 0,
+      "S": 0,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "genuine_nonfill": 616,
+        "zero_length_window": 13
+      },
+      "cohort_NO_CALL": 1471,
+      "exact_five": 0,
+      "feature_unavailable_rows": 110,
+      "partial": 0,
+      "reaim_NO_CALL": 0
+    },
+    "duplicate_fill_receipts": 0,
+    "file": "07_r2_full_os__walk_park__hold_EVENT_LEDGER.jsonl",
+    "flag_mismatches": 0,
+    "rates": {
+      "C/D": 0.0,
+      "IC/C": null,
+      "PC/D": 0.0,
+      "S/C": null
+    },
+    "reported_mismatched_keys": []
+  },
+  "r2_full_os__walk_park__reaim": {
+    "cost_dist_cents": null,
+    "crossfoot_failures": 0,
+    "delta_dist_cents": null,
+    "derived": {
+      "C": 0,
+      "IC": 0,
+      "PC": 0,
+      "S": 0,
+      "census": {
+        "censored": 161,
+        "contradictory": 14,
+        "genuine_nonfill": 616,
+        "zero_length_window": 13
+      },
+      "cohort_NO_CALL": 1471,
+      "exact_five": 0,
+      "feature_unavailable_rows": 110,
+      "partial": 0,
+      "reaim_NO_CALL": 168
+    },
+    "duplicate_fill_receipts": 0,
+    "file": "08_r2_full_os__walk_park__reaim_EVENT_LEDGER.jsonl",
+    "flag_mismatches": 0,
+    "rates": {
+      "C/D": 0.0,
+      "IC/C": null,
+      "PC/D": 0.0,
+      "S/C": null
+    },
+    "reported_mismatched_keys": []
+  }
+}

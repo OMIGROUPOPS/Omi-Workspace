@@ -1,0 +1,73 @@
+{
+  "bundle_hash_mismatch": {
+    "refused": true,
+    "error": "execution input-bundle hash changed",
+    "expected_reason_matched": true
+  },
+  "candidate_missing": {
+    "refused": true,
+    "error": "missing or additional candidate grid refused",
+    "expected_reason_matched": true
+  },
+  "candidate_additional": {
+    "refused": true,
+    "error": "missing or additional candidate grid refused",
+    "expected_reason_matched": true
+  },
+  "candidate_duplicated": {
+    "refused": true,
+    "error": "duplicated candidate grid refused",
+    "expected_reason_matched": true
+  },
+  "candidate_reordered": {
+    "refused": true,
+    "error": "reordered candidate grid refused",
+    "expected_reason_matched": true
+  },
+  "execution_id_changed": {
+    "refused": true,
+    "error": "execution identity/command contract changed",
+    "expected_reason_matched": true
+  },
+  "command_changed": {
+    "refused": true,
+    "error": "execution identity/command contract changed",
+    "expected_reason_matched": true
+  },
+  "holdout_in_dev_dates": {
+    "refused": true,
+    "error": "denominator/date/target contract changed",
+    "expected_reason_matched": true
+  },
+  "denominator_changed": {
+    "refused": true,
+    "error": "denominator/date/target contract changed",
+    "expected_reason_matched": true
+  },
+  "validate_dates_holdout": {
+    "refused": true,
+    "error": "July 24-26 holdout hard-refused",
+    "expected_reason_matched": true
+  },
+  "validate_dates_nondev": {
+    "refused": true,
+    "error": "non-development date hard-refused",
+    "expected_reason_matched": true
+  },
+  "dispatcher_out_of_order": {
+    "refused": true,
+    "error": "reordered scorer invocation refused: expected r2_async_pair__park_join__hold, go"
+  },
+  "dispatcher_double_invoke": {
+    "refused": true,
+    "error": "additional scorer invocation refused",
+    "single_pass_counts_all_one": true,
+    "invocation_order_frozen": true
+  },
+  "untampered_detached_worktree": {
+    "refused": true,
+    "error": "validation-only requires the frozen Codex branch",
+    "refused_at_branch_guard": true,
+    "meaning": "hash/identity/grid/denominator checks all passed on the committed package; refusal happened only at the git-state guard, which is the correct behavior off-branch"
+  }
+}

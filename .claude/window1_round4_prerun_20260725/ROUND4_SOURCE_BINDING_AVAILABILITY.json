@@ -1,0 +1,239 @@
+{
+  "available_and_bound": [
+    {
+      "family": "independent pair presence",
+      "policy_effect": "independent per-leg maker order",
+      "source": "frozen public BBO snapshots"
+    },
+    {
+      "family": "true-print microdivot and recut",
+      "policy_effect": "evidence-triggered recut only",
+      "source": "receipt-identifiable positive-size public prints"
+    },
+    {
+      "family": "chronological drift and fitted reach",
+      "policy_effect": "lawful depth/posture; never skip",
+      "source": ".claude/entrysurface_20260717/drift_surfaces_v1.json"
+    },
+    {
+      "family": "G9 atlas reach",
+      "policy_effect": "p50 depth and advisory t_deep",
+      "source": ".claude/trendpath/ATLAS_V1.json"
+    },
+    {
+      "family": "orientation",
+      "policy_effect": "latent posture; movement only on later print",
+      "source": ".claude/trendpath/ORIENT_V1.json"
+    },
+    {
+      "availability_law": "CALL only n>=30; otherwise NO_CALL and continue",
+      "family": "cohort steering",
+      "source": ".claude/master_20260709/cohort.json"
+    },
+    {
+      "availability_law": "top-five used only where causal and present",
+      "family": "BBO/top-five pressure",
+      "source": "bound guarded-cache book receipts"
+    },
+    {
+      "family": "own-order subtraction",
+      "policy_effect": "subtract contributed volume; never self-confirm",
+      "source": "frozen own-order fingerprints"
+    },
+    {
+      "family": "displayed queue observation",
+      "policy_effect": "placement input and sensitivity diagnostic only; never changes primary qualifying-print fill",
+      "source": "bound causal BBO/top-five snapshots"
+    }
+  ],
+  "git_source_receipts": [
+    {
+      "availability": "available",
+      "bytes": 3697581,
+      "git_blob_oid": "9207dd44d12c66fa29711e2d95ebafc66cafd155",
+      "path": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+      "role": "frozen start-boundary ledger and guarded cutoffs",
+      "sha256": "68f607b8bc4d5acbd55d2d4451e27fa41e379170cd0ef49e5124f6dbc7252f53"
+    },
+    {
+      "availability": "available",
+      "bytes": 20294927,
+      "git_blob_oid": "e40fb47bf779847657416cbfcc4cf4dfeff20529",
+      "path": ".claude/window1_20260721/WINDOW1_FEATURE_MATRIX.jsonl",
+      "role": "frozen 1,608-leg feature availability ledger",
+      "sha256": "3e87122c0ede3b7a240781ecb4cbfe3b98a7c035e74c217ca3ffec01e1a0b4e9"
+    },
+    {
+      "availability": "available",
+      "bytes": 15520,
+      "git_blob_oid": "d919b8e402f010e3703cd7fc3aad33e650c8ae2c",
+      "path": ".claude/entrysurface_20260717/band_map_v1.json",
+      "role": "frozen macro birth-band map",
+      "sha256": "caf255a283bbb32f1d9bd2edd5f4d898d5f50fc8e67d5f9a076579b695a9e68c"
+    },
+    {
+      "availability": "available",
+      "bytes": 16623,
+      "git_blob_oid": "0145907c60213fc5b65f15618667c82b38a19f42",
+      "path": ".claude/entrysurface_20260717/divot_tables_v1.json",
+      "role": "frozen divot surfaces",
+      "sha256": "89c514ec35673de8f552b2b66b9ceafb8181b9c8f6c00b1679899a3a2a82ac06"
+    },
+    {
+      "availability": "available",
+      "bytes": 182240,
+      "git_blob_oid": "2c0d4d3ea7b7a687d38d859df817f2a551fccac2",
+      "path": ".claude/entrysurface_20260717/drift_surfaces_v1.json",
+      "role": "frozen 12,170-leg drift/reach surfaces",
+      "sha256": "7dca4a4f0e6061d28765fd243f4ce717bc36a542b32490bafabc611bd2cf3bab"
+    },
+    {
+      "availability": "available",
+      "bytes": 86928,
+      "git_blob_oid": "9e9a60110a1803aba301b4dda60073b2178fe12a",
+      "path": ".claude/seqfloor_20260708/recut_cells.json",
+      "role": "frozen dynamic recut cells",
+      "sha256": "852ab6678e4358189e4f79987e0286011d1e5662a2653ed0cc34fc18e4fb32b7"
+    },
+    {
+      "availability": "available",
+      "bytes": 167391,
+      "git_blob_oid": "7b5f89c703679d69986c146692cce90c99c655cf",
+      "path": ".claude/master_20260709/cohort.json",
+      "role": "frozen cohort n>=30 surfaces",
+      "sha256": "9e144811b54637e8b71e676a56b122081bc09447e49ea726769539e51f8d8488"
+    },
+    {
+      "availability": "available",
+      "bytes": 2061,
+      "git_blob_oid": "8971516ed0e248fed7a744d3ee4c7f90a27c833f",
+      "path": ".claude/trendpath/ORIENT_V1.json",
+      "role": "frozen orientation surface",
+      "sha256": "e8003418aa5ed97b58294f390e7c261b11e1d4d9bd50a6be171aebbbba06f5f5"
+    },
+    {
+      "availability": "available",
+      "bytes": 67396,
+      "git_blob_oid": "9e04a5061d8a9018fcedf4b923834310ba4cf268",
+      "path": ".claude/trendpath/ATLAS_V1.json",
+      "role": "source-proved G9 atlas reach surface",
+      "sha256": "797b3e7bd4a107f80244a06a8aea504211680122434fd0141e8f41512031c121"
+    },
+    {
+      "availability": "available",
+      "bytes": 31372,
+      "git_blob_oid": "9cf2f7e3c3ccb961e2d08ee0e21076f2b9dde0f2",
+      "path": "arb-executor/analysis/window1_round2_scorer.py",
+      "role": "unchanged frozen scorer reserved for later authorization",
+      "sha256": "1053ed4af1605c9442ec2c44d675e7d6eaf3a9ad9a4eafc78b239e1e3b75d3a2"
+    },
+    {
+      "availability": "available",
+      "bytes": 1110,
+      "git_blob_oid": "91489b6367d38ba28374359192823ebb4542c0b0",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_METRIC_CONTRACT_V1.json",
+      "role": "unchanged D/C/PC/S/IC metric contract",
+      "sha256": "b2b9553485f116ade32f46a9ef9115f14876ccd46dfd1717c7395e22fb792738"
+    },
+    {
+      "availability": "available",
+      "bytes": 4001,
+      "git_blob_oid": "292ecc3926455af1fc229b3672121478d98f7f81",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_SCORER_CONTRACT_V1.json",
+      "role": "unchanged scorer contract",
+      "sha256": "e32c27026bdffc01eed2cad17fb3417d3fefeffca095738bfe9431094ec796ca"
+    }
+  ],
+  "holdout_opened": false,
+  "optional_NO_CALL_suppresses_presence": false,
+  "primary_fill_contract": {
+    "accumulation": "qualifying volume after placement and before the guarded Window-1 cutoff accumulates across prints until exactly five",
+    "authority": "chronological receipt-identified positive-size non-self executed trade volume at the active maker order limit or better",
+    "not_required": [
+      "five contracts displayed simultaneously",
+      "complete top-five or full depth",
+      "estimated or unobservable ahead-queue clearance",
+      "five contracts in one print",
+      "strict trade-through below the order limit",
+      "a separate depth-size conjunction",
+      "depth or queue certainty as an eligibility or NO_CALL gate"
+    ],
+    "order_quantity_per_leg": 5,
+    "partial_fills": "recorded cumulatively and capped at the five-contract simulated order quantity",
+    "queue_treatment": "displayed queue may guide placement and is retained only as a labeled sensitivity diagnostic; it never changes, censors or overrides the primary print-volume fill"
+  },
+  "private_data_receipt_binding": {
+    "event_leg_identities_sha256": "c7bc10c3432e0ff7e6432cf51311e40eb90015b120c6ac3dac32766ab0a7f6cd",
+    "event_leg_identity_count": 1608,
+    "external_inputs": [
+      {
+        "availability": "available",
+        "bytes": 336694,
+        "date_range": [
+          "2026-07-12",
+          "2026-07-20"
+        ],
+        "git_blob_oid": null,
+        "holdout_dates_present": 0,
+        "path": "../OMI-Window1-private/joined/events.jsonl",
+        "role": "immutable_D804_event_ledger",
+        "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46"
+      },
+      {
+        "availability": "available",
+        "bytes": 1766090446,
+        "date_range": [
+          "2026-07-12",
+          "2026-07-20"
+        ],
+        "git_blob_oid": null,
+        "holdout_dates_present": 0,
+        "path": "../OMI-Window1-private/fit-local/prints.jsonl",
+        "role": "frozen_public_fill_evidence_archive",
+        "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+      },
+      {
+        "availability": "available",
+        "bytes": 2245,
+        "date_range": [
+          "2026-07-12",
+          "2026-07-20"
+        ],
+        "git_blob_oid": null,
+        "holdout_dates_present": 0,
+        "path": "../OMI-Window1-private/fit-local/PUBLIC_TAPE_MANIFEST.sanitized.json",
+        "role": "frozen_public_tape_manifest",
+        "sha256": "d2a3bd4b156f312fce3bbb8a8875114904ac39f2ed5b36801799d9a905e4d575"
+      }
+    ],
+    "inherited_round3_bundle": {
+      "availability": "available",
+      "bytes": 6004424,
+      "git_blob_oid": "90cb17502fea40874d366031d032f8b499929325",
+      "path": ".claude/window1_round3_execution_package_20260725/SCORING_INPUT_BUNDLE.json",
+      "role": "audited private-input receipt authority",
+      "sha256": "bc810a4d812893ca70ad37c70228a5e415057e113c5fff60e7767b0071660183"
+    },
+    "market_cache_aggregate": {
+      "bytes": 197461623,
+      "file_count": 804,
+      "git_blob_oid": null,
+      "holdout_dates_present": 0,
+      "path": "../OMI-Window1-private/fit-local/guarded-cache-v3",
+      "role": "frozen_per_event_market_stream_directory",
+      "sha256": "aad8d055e90bb429f7da87b450dc9c4e2dc6a6ef114e40368535b8953b86425e"
+    },
+    "market_cache_file_count": 804,
+    "market_cache_file_receipts_sha256": "825c27a6c8f789ce76db26033afa5ae59acfea735716f04159bfdc8bb89a48ea",
+    "raw_private_data_committed": false
+  },
+  "schema_version": "window1-round4-source-availability-v1",
+  "unavailable_not_proxied": [
+    "sealed dual-divot pair policy",
+    "Pinnacle",
+    "bookmaker/FV",
+    "proved full depth (top-five is not full depth)",
+    "lawful independent shape mapping",
+    "timestamped schedule revisions beyond bound schedule receipt"
+  ]
+}

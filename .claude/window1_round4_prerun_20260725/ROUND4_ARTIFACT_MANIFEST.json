@@ -1,0 +1,283 @@
+{
+  "artifacts": [
+    {
+      "availability": "available",
+      "bytes": 78282881,
+      "git_blob_oid": "edea58753561c982f36b31718aeb64b269e2c526",
+      "path": ".claude/window1_round4_prerun_20260725/FROZEN_CANDIDATE_EVENT_STREAMS.jsonl.gz",
+      "role": "1,608 score-free candidate-event streams",
+      "sha256": "489c14e5cdbc439a3408e22f08e6f04efd30161e6183876999c6fb856e15b9e2"
+    },
+    {
+      "availability": "available",
+      "bytes": 161330,
+      "git_blob_oid": "7eaa90aefa1314e6fbbe04f0ebe650e302ba8c2c",
+      "path": ".claude/window1_round4_prerun_20260725/ROUND4_STREAM_RECEIPTS.jsonl.gz",
+      "role": "per-stream immutable receipts",
+      "sha256": "bdee2a70047d9f3274a14f56bff5670ef46de7b718c86bb69b92abb826aed769"
+    },
+    {
+      "availability": "available",
+      "bytes": 4237,
+      "git_blob_oid": "6c2a4887e696e9e6b69e535914fff1d7c309c07d",
+      "path": ".claude/window1_round4_prerun_20260725/ROUND4_REAL_CAPABILITY.json",
+      "role": "real-input capability and distinctness proof",
+      "sha256": "62eee06c16713734102ecd10794ac66352dbb14610d3fc2afa9237f358339056"
+    },
+    {
+      "availability": "available",
+      "bytes": 672604,
+      "git_blob_oid": "5886ded26c0fa569fa27122d671469d9cd70d132",
+      "path": ".claude/window1_round4_prerun_20260725/ROUND4_CANDIDATE_ORDER_DIFFERENCES.jsonl",
+      "role": "real-event candidate order differences",
+      "sha256": "464b91e31ceccd21abe518b3a875b2a72e78fa91ff66777231dc1379e8960018"
+    },
+    {
+      "availability": "available",
+      "bytes": 13160319,
+      "git_blob_oid": "b44fc8af81e81983ee34f2ddb7c9a9f1eac9aaf3",
+      "path": ".claude/window1_round4_prerun_20260725/ROUND4_HEADROOM_DECISION_RECEIPTS.jsonl.gz",
+      "role": "causal headroom decision receipts",
+      "sha256": "79ca7806e5d1687e143103e9a90ed51414240ea927d66deb7b81edc741a7b45f"
+    },
+    {
+      "availability": "available",
+      "bytes": 64628533,
+      "git_blob_oid": "d6d5461aabb011052a8e5431c9a7b77675c92857",
+      "path": ".claude/window1_round4_prerun_20260725/WINDOW1_OPPORTUNITY_LEDGER_01.jsonl.gz",
+      "role": "804-event score-separated opportunity ledger shard 1/2",
+      "sha256": "470b84a57f4396e8cef47f4270245f17487c5f437cefe8c8d466d5a03e14c41e"
+    },
+    {
+      "availability": "available",
+      "bytes": 44884645,
+      "git_blob_oid": "4a42fb5e3552ccc5d26422b9eb5c2f81090eabc2",
+      "path": ".claude/window1_round4_prerun_20260725/WINDOW1_OPPORTUNITY_LEDGER_02.jsonl.gz",
+      "role": "804-event score-separated opportunity ledger shard 2/2",
+      "sha256": "042b079f14e4b25758e66498daea37df33ea81d0cf0d8280090e4c66f56c8cdb"
+    },
+    {
+      "availability": "available",
+      "bytes": 678,
+      "git_blob_oid": "3e256a5f5ca099c12024710c90d1badfb1261099",
+      "path": ".claude/window1_round4_prerun_20260725/WINDOW1_OPPORTUNITY_LEDGER_MANIFEST.json",
+      "role": "ordered 804-event opportunity-ledger shard manifest",
+      "sha256": "feb8665964cff8694e9d7f5669dfaff72ee48f427070a4c03c4ded2299a0fbdf"
+    },
+    {
+      "availability": "available",
+      "bytes": 897227,
+      "git_blob_oid": "d85f87151f29f4ae88fc213dd2d80458481a8632",
+      "path": ".claude/window1_round4_prerun_20260725/CAUSAL_REFERENCE_CALIBRATION.json",
+      "role": "causal b_i versus ex-post d_i diagnostic",
+      "sha256": "98e4583ab23846606cbc82e05ae982ce7a030c4a2f406c00d9ef3d15ef17fddd"
+    },
+    {
+      "availability": "available",
+      "bytes": 5434,
+      "git_blob_oid": "02a4f9b24adb5a14cc6b92c38e27f9338121998d",
+      "path": ".claude/window1_round4_prerun_20260725/ORACLE_FALSE_NEGATIVE_CENSUS.json",
+      "role": "independent Round-3 eight-candidate oracle census",
+      "sha256": "7fc4e3bf8b5c10ab384b0c472331ba8e9af0d5a8fbf7b05b285030fe2bf2900f"
+    },
+    {
+      "availability": "available",
+      "bytes": 1226,
+      "git_blob_oid": "2ecbdf7fcd9741173bbf0cd602db571db299556b",
+      "path": ".claude/window1_round4_prerun_20260725/ROUND4_DIAGNOSTIC_RECEIPT.json",
+      "role": "oracle-separation and D conservation receipt",
+      "sha256": "63d314b2f84c29d38474926a9d3e5b7d0ef8f6778d71784c0ebdd2928218e82a"
+    },
+    {
+      "availability": "available",
+      "bytes": 9660,
+      "git_blob_oid": "85379d1b3c3d0f7cd9ee2a9e7e487c3be3772544",
+      "path": ".claude/window1_round4_prerun_20260725/ROUND4_SOURCE_BINDING_AVAILABILITY.json",
+      "role": "source binding and unavailable-family disclosure",
+      "sha256": "0d5d7938dde3281a6afd0b76d204034c3abe92ac9d86bc361d4ca59e8709e31a"
+    },
+    {
+      "availability": "available",
+      "bytes": 712784,
+      "git_blob_oid": "fa34ab8c963df69d7803075130ea525d68b5e51a",
+      "path": ".claude/window1_round4_prerun_20260725/ROUND4_EXECUTION_PACKAGE_INVENTORY.json",
+      "role": "later execution inventory",
+      "sha256": "91c24b9dad58947cf9bc488f133c50a67dbfa68f12da9e9d818b8ad08ccd73c0"
+    },
+    {
+      "availability": "available",
+      "bytes": 724140,
+      "git_blob_oid": "5c62fc73c8d48dd6532608fc889ec67ca3e83b25",
+      "path": ".claude/window1_round4_prerun_20260725/ROUND4_PRE_RUN_MANIFEST.json",
+      "role": "authoritative Round-4 PRE-RUN manifest",
+      "sha256": "36a65594105e60a8386e06945608947601e2732b470279aa479ce72b0dc30e92"
+    },
+    {
+      "availability": "available",
+      "bytes": 4549,
+      "git_blob_oid": "47bbbc09d9862ef590d081bc93feffb516327a89",
+      "path": ".claude/window1_round4_prerun_20260725/ROUND4_PRE_RUN_REPORT.md",
+      "role": "human-readable Round-4 PRE-RUN report",
+      "sha256": "878c38e4703b6388176b22f377e27922c59ca496be55c5263196b2c7e96323d0"
+    }
+  ],
+  "benchmark_execution_authorized": false,
+  "code": [
+    {
+      "availability": "available",
+      "bytes": 47209,
+      "git_blob_oid": "8d0187f1152559a6d600378fe36a08157e6d8d69",
+      "path": "arb-executor/analysis/window1_round4_instrument.py",
+      "role": "Round-4 policy instrument",
+      "sha256": "f2dbe597a9b9c626297aaa0065adc035132c83a7004929a1f70f8d304208ca60"
+    },
+    {
+      "availability": "available",
+      "bytes": 19123,
+      "git_blob_oid": "f59aa110e5bc665d886f120a65d173277c97e0a4",
+      "path": "arb-executor/analysis/window1_round4_prerun_builder.py",
+      "role": "score-free real-input stream builder",
+      "sha256": "52fd20f15b9f8de167d36d34ffde4fe4ae13ac88c6c520619670c41a10a21028"
+    },
+    {
+      "availability": "available",
+      "bytes": 59187,
+      "git_blob_oid": "31c884d3ddb8a18a14e0ad8c222cedf289d75d4c",
+      "path": "arb-executor/analysis/window1_round4_diagnostics.py",
+      "role": "oracle-separated diagnostic builder",
+      "sha256": "c23ddfedc71d1469bd52502154d88fd6166118ff871945b8cd536d523405f79b"
+    },
+    {
+      "availability": "available",
+      "bytes": 27923,
+      "git_blob_oid": "450a4954e7dccf643a7243d7594e67abd044cb8d",
+      "path": "arb-executor/analysis/window1_round4_freeze.py",
+      "role": "PRE-RUN manifest freezer",
+      "sha256": "85b2fe0ce7c1ce59cefb8fb5040233441ee4c1a5943d90fd5d254ce2d177904f"
+    },
+    {
+      "availability": "available",
+      "bytes": 6387,
+      "git_blob_oid": "1bce5af99a2f6403e40903b2d5b5906dacc51346",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND4_CANDIDATES_V1.json",
+      "role": "exact two-candidate policy specification",
+      "sha256": "b25b5f0221409056c9a469a296149689d401c12bcdd131f11cb32f93ac4c3a0e"
+    },
+    {
+      "availability": "available",
+      "bytes": 15587,
+      "git_blob_oid": "44b7318762449b2f1edd1389ba9d8f6ee8c7eb93",
+      "path": "arb-executor/tests/test_window1_round4_instrument.py",
+      "role": "focused causal actuator fixtures",
+      "sha256": "2a9d16f2ae4b8bab76e3cdf5f564ecabc9207a0a57d5ecd8b53bee77a6d099ec"
+    },
+    {
+      "availability": "available",
+      "bytes": 10283,
+      "git_blob_oid": "57021f4925d6724b2291f0facd2e07903fad8f49",
+      "path": "arb-executor/tests/test_window1_round4_diagnostics.py",
+      "role": "oracle-separation and opportunity-ledger fixtures",
+      "sha256": "ee7f7178a34111b49d640d24725f69fe273466a885598a2d2e0e4ad3a1ac7722"
+    }
+  ],
+  "frozen_inputs": [
+    {
+      "availability": "available",
+      "bytes": 3697581,
+      "git_blob_oid": "9207dd44d12c66fa29711e2d95ebafc66cafd155",
+      "path": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+      "role": "frozen start-boundary ledger and guarded cutoffs",
+      "sha256": "68f607b8bc4d5acbd55d2d4451e27fa41e379170cd0ef49e5124f6dbc7252f53"
+    },
+    {
+      "availability": "available",
+      "bytes": 20294927,
+      "git_blob_oid": "e40fb47bf779847657416cbfcc4cf4dfeff20529",
+      "path": ".claude/window1_20260721/WINDOW1_FEATURE_MATRIX.jsonl",
+      "role": "frozen 1,608-leg feature availability ledger",
+      "sha256": "3e87122c0ede3b7a240781ecb4cbfe3b98a7c035e74c217ca3ffec01e1a0b4e9"
+    },
+    {
+      "availability": "available",
+      "bytes": 15520,
+      "git_blob_oid": "d919b8e402f010e3703cd7fc3aad33e650c8ae2c",
+      "path": ".claude/entrysurface_20260717/band_map_v1.json",
+      "role": "frozen macro birth-band map",
+      "sha256": "caf255a283bbb32f1d9bd2edd5f4d898d5f50fc8e67d5f9a076579b695a9e68c"
+    },
+    {
+      "availability": "available",
+      "bytes": 16623,
+      "git_blob_oid": "0145907c60213fc5b65f15618667c82b38a19f42",
+      "path": ".claude/entrysurface_20260717/divot_tables_v1.json",
+      "role": "frozen divot surfaces",
+      "sha256": "89c514ec35673de8f552b2b66b9ceafb8181b9c8f6c00b1679899a3a2a82ac06"
+    },
+    {
+      "availability": "available",
+      "bytes": 182240,
+      "git_blob_oid": "2c0d4d3ea7b7a687d38d859df817f2a551fccac2",
+      "path": ".claude/entrysurface_20260717/drift_surfaces_v1.json",
+      "role": "frozen 12,170-leg drift/reach surfaces",
+      "sha256": "7dca4a4f0e6061d28765fd243f4ce717bc36a542b32490bafabc611bd2cf3bab"
+    },
+    {
+      "availability": "available",
+      "bytes": 86928,
+      "git_blob_oid": "9e9a60110a1803aba301b4dda60073b2178fe12a",
+      "path": ".claude/seqfloor_20260708/recut_cells.json",
+      "role": "frozen dynamic recut cells",
+      "sha256": "852ab6678e4358189e4f79987e0286011d1e5662a2653ed0cc34fc18e4fb32b7"
+    },
+    {
+      "availability": "available",
+      "bytes": 167391,
+      "git_blob_oid": "7b5f89c703679d69986c146692cce90c99c655cf",
+      "path": ".claude/master_20260709/cohort.json",
+      "role": "frozen cohort n>=30 surfaces",
+      "sha256": "9e144811b54637e8b71e676a56b122081bc09447e49ea726769539e51f8d8488"
+    },
+    {
+      "availability": "available",
+      "bytes": 2061,
+      "git_blob_oid": "8971516ed0e248fed7a744d3ee4c7f90a27c833f",
+      "path": ".claude/trendpath/ORIENT_V1.json",
+      "role": "frozen orientation surface",
+      "sha256": "e8003418aa5ed97b58294f390e7c261b11e1d4d9bd50a6be171aebbbba06f5f5"
+    },
+    {
+      "availability": "available",
+      "bytes": 67396,
+      "git_blob_oid": "9e04a5061d8a9018fcedf4b923834310ba4cf268",
+      "path": ".claude/trendpath/ATLAS_V1.json",
+      "role": "source-proved G9 atlas reach surface",
+      "sha256": "797b3e7bd4a107f80244a06a8aea504211680122434fd0141e8f41512031c121"
+    },
+    {
+      "availability": "available",
+      "bytes": 31372,
+      "git_blob_oid": "9cf2f7e3c3ccb961e2d08ee0e21076f2b9dde0f2",
+      "path": "arb-executor/analysis/window1_round2_scorer.py",
+      "role": "unchanged frozen scorer reserved for later authorization",
+      "sha256": "1053ed4af1605c9442ec2c44d675e7d6eaf3a9ad9a4eafc78b239e1e3b75d3a2"
+    },
+    {
+      "availability": "available",
+      "bytes": 1110,
+      "git_blob_oid": "91489b6367d38ba28374359192823ebb4542c0b0",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_METRIC_CONTRACT_V1.json",
+      "role": "unchanged D/C/PC/S/IC metric contract",
+      "sha256": "b2b9553485f116ade32f46a9ef9115f14876ccd46dfd1717c7395e22fb792738"
+    },
+    {
+      "availability": "available",
+      "bytes": 4001,
+      "git_blob_oid": "292ecc3926455af1fc229b3672121478d98f7f81",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_SCORER_CONTRACT_V1.json",
+      "role": "unchanged scorer contract",
+      "sha256": "e32c27026bdffc01eed2cad17fb3417d3fefeffca095738bfe9431094ec796ca"
+    }
+  ],
+  "schema_version": "window1-round4-artifact-manifest-v1",
+  "scorer_invocations": 0
+}

@@ -1,0 +1,19 @@
+{
+  "D": 804,
+  "aggregate_sha256": "b86f11569fd3d92f2a393bb0af443516650779d3e95cfab78b0ea78c7225f86c",
+  "ordered_shards": [
+    {
+      "bytes": 64628533,
+      "path": ".claude/window1_round4_prerun_20260725/WINDOW1_OPPORTUNITY_LEDGER_01.jsonl.gz",
+      "row_count": 402,
+      "sha256": "470b84a57f4396e8cef47f4270245f17487c5f437cefe8c8d466d5a03e14c41e"
+    },
+    {
+      "bytes": 44884645,
+      "path": ".claude/window1_round4_prerun_20260725/WINDOW1_OPPORTUNITY_LEDGER_02.jsonl.gz",
+      "row_count": 402,
+      "sha256": "042b079f14e4b25758e66498daea37df33ea81d0cf0d8280090e4c66f56c8cdb"
+    }
+  ],
+  "schema_version": "window1-round4-opportunity-ledger-shards-v1"
+}

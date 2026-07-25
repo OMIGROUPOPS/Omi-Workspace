@@ -1,0 +1,126 @@
+{
+  "D": 804,
+  "candidate_count": 2,
+  "candidate_distinctness_witness": {
+    "candidate_decision": {
+      "action": "place",
+      "leg_id": "FOR",
+      "price_cents": 46,
+      "quantity": 5.0,
+      "queue_ahead": 0.0,
+      "reason": "independent_first_causal_bbo_presence",
+      "remaining_quantity": null,
+      "ts": 1783854600.0
+    },
+    "candidate_decision_sha256": "ca34fde956e83a9abc8702fdaba1ce1aa439c94771d276ed4d106e52ac6a2643",
+    "candidate_id": "r4_full_drift_stack__causal_headroom_ladder",
+    "event_date": "2026-07-12",
+    "event_id": "KXATPCHALLENGERMATCH-26JUL12AVEFOR",
+    "expected_order_action_difference": true,
+    "first_difference_index": 0,
+    "metrics": null,
+    "reference_candidate_id": "r4_pair_presence__park_join__causal_headroom_ladder",
+    "reference_decision": {
+      "action": "place",
+      "leg_id": "FOR",
+      "price_cents": 49,
+      "quantity": 5.0,
+      "queue_ahead": 633.0,
+      "reason": "independent_first_causal_bbo_presence",
+      "remaining_quantity": null,
+      "ts": 1783854600.0
+    },
+    "reference_decision_sha256": "778bc111e46b00053b80fbca29ed20a65547d70d441cc0af8f4831f9dc8db5b1",
+    "schema_version": "window1-round4-order-difference-v1",
+    "scored": false
+  },
+  "candidate_event_stream_count": 1608,
+  "candidate_ids": [
+    "r4_pair_presence__park_join__causal_headroom_ladder",
+    "r4_full_drift_stack__causal_headroom_ladder"
+  ],
+  "candidate_scoring_performed": false,
+  "candidate_summaries": [
+    {
+      "BBO_covered_event_count": 799,
+      "aggregate_order_decision_sha256": "074a33ee0e6a782795f7f9fdcb5c5f2258576ce5f5666d5fb50d6d171a757f33",
+      "both_legs_present_event_count": 799,
+      "cancel_count": 13540,
+      "candidate_id": "r4_pair_presence__park_join__causal_headroom_ladder",
+      "censor_reasons": {
+        "causal_role": 5
+      },
+      "censored_event_count": 5,
+      "cohort_NO_CALL_count": 0,
+      "eligible_event_count": 799,
+      "events_distinct_from_other_candidate": 707,
+      "feature_NO_CALL_count": 127,
+      "headroom_decision_count": 79571,
+      "headroom_exact5_arm_count": 689,
+      "headroom_order_change_count": 13003,
+      "metrics": null,
+      "order_decision_count": 28292,
+      "partial_arm_count": 714,
+      "place_count": 1598,
+      "positive_size_print_count_consumed": 2249391,
+      "reprice_count": 13154,
+      "scored": false,
+      "top5_covered_event_count": 799
+    },
+    {
+      "BBO_covered_event_count": 799,
+      "aggregate_order_decision_sha256": "57607bd54a1cfbc55c8d177afa58537ce0da439006514146871755f9b2996d79",
+      "both_legs_present_event_count": 799,
+      "cancel_count": 15422,
+      "candidate_id": "r4_full_drift_stack__causal_headroom_ladder",
+      "censor_reasons": {
+        "causal_role": 5
+      },
+      "censored_event_count": 5,
+      "cohort_NO_CALL_count": 1598,
+      "eligible_event_count": 799,
+      "events_distinct_from_other_candidate": 707,
+      "feature_NO_CALL_count": 160,
+      "headroom_decision_count": 82686,
+      "headroom_exact5_arm_count": 684,
+      "headroom_order_change_count": 14556,
+      "metrics": null,
+      "order_decision_count": 32047,
+      "partial_arm_count": 707,
+      "place_count": 1598,
+      "positive_size_print_count_consumed": 2249391,
+      "reprice_count": 15027,
+      "scored": false,
+      "top5_covered_event_count": 799
+    }
+  ],
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "leg_identity_count": 1608,
+  "live_or_production_access": false,
+  "metric_contract_changed": false,
+  "performance_metrics_computed": false,
+  "policy_clock": {
+    "corridor_seconds_after_anchor": 0.0,
+    "evaluation_real_start_access": false,
+    "statistical_tdeep_is_hard_gate": false,
+    "window1_close_access": false
+  },
+  "ranking_performed": false,
+  "schema_version": "window1-round4-real-capability-v1",
+  "source_receipts": {
+    "atlas": "797b3e7bd4a107f80244a06a8aea504211680122434fd0141e8f41512031c121",
+    "drift": "7dca4a4f0e6061d28765fd243f4ce717bc36a542b32490bafabc611bd2cf3bab"
+  }
+}

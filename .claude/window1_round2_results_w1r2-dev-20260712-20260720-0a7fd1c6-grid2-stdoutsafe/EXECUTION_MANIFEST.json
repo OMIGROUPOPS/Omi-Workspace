@@ -1,0 +1,58 @@
+{
+  "authoritative_progress_path": "PROGRESS.log",
+  "authorization_audit": "2ac4a2f49b55a5284cc1a9146047c3f42ea7561e",
+  "authorized_parent": "4b243babee97fe251bde21fa6a1197dfbba5387d",
+  "candidate_dispatch_order": [
+    "r2_async_pair__park_join__hold",
+    "r2_async_pair__park_join__reaim",
+    "r2_async_pair__touch_park__hold",
+    "r2_async_pair__touch_park__reaim",
+    "r2_causal_steer__park_join__hold",
+    "r2_causal_steer__park_join__reaim",
+    "r2_full_os__walk_park__hold",
+    "r2_full_os__walk_park__reaim"
+  ],
+  "console_echo": {
+    "stderr_enabled": true,
+    "stderr_failure": null,
+    "stderr_rebound_to_devnull": false,
+    "stdout_enabled": true,
+    "stdout_failure": null,
+    "stdout_rebound_to_devnull": false
+  },
+  "controlling_forensic_commit": "2ac4a2f49b55a5284cc1a9146047c3f42ea7561e",
+  "controlling_forensic_report_blob_oid": "b587b24173eb7e3605fa00b0fd06666b88b14442",
+  "ended_at_utc": "2026-07-25T07:06:51.173253+00:00",
+  "exact_command": "python -B arb-executor/analysis/window1_round2_grid_runner.py --repo . --package .claude/window1_round2_stdout_safe_execution_package_20260725/SCORING_INPUT_BUNDLE.json --mode execute",
+  "execution_id": "w1r2-dev-20260712-20260720-0a7fd1c6-grid2-stdoutsafe",
+  "exit_code": 0,
+  "git_sha": "47bfbd4335a435a30054be9007c5029331252eee",
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "input_bundle_sha256": "e0e088e355589f77e3b3a9cf1a9da51b3045f70c551721fe41e3da5df4ffee2b",
+  "live_or_production_access": false,
+  "runtime_versions": {
+    "implementation": "CPython",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "python_executable": "C:\\Users\\omigr\\AppData\\Local\\Programs\\Python\\Python311\\python.exe"
+  },
+  "schema_version": "window1-round2-deterministic-grid-runner-stdout-safe-v2-execution-v1",
+  "scorer_contract_sha256": "6684ee34bee79c8b29f98a83158004a7cf381b30a094ce7e2675021186806bb4",
+  "scorer_invocations": {
+    "r2_async_pair__park_join__hold": 1,
+    "r2_async_pair__park_join__reaim": 1,
+    "r2_async_pair__touch_park__hold": 1,
+    "r2_async_pair__touch_park__reaim": 1,
+    "r2_causal_steer__park_join__hold": 1,
+    "r2_causal_steer__park_join__reaim": 1,
+    "r2_full_os__walk_park__hold": 1,
+    "r2_full_os__walk_park__reaim": 1
+  },
+  "scorer_source_sha256": "b41e6915882fd5b81b583d4c03317d21f1d708fd7710ea4b26a4a6da428fe997",
+  "selection_status": "UNRANKED_FROZEN_SELECTION_RULE_ABSENT",
+  "started_at_utc": "2026-07-25T06:34:15.770158+00:00",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_sha256": "a3137e64fa203c57fd0f42d1a2f06fda4441100c546b9c06c93ca6a03e0cc9ce",
+  "total_scorer_invocations": 8
+}

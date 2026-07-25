@@ -1,0 +1,55 @@
+{
+  "all_candidates_conserve_to_D804": true,
+  "candidate_rows": [
+    {
+      "D": 804,
+      "candidate_id": "r2_async_pair__park_join__hold",
+      "classification_total": 804,
+      "gate_pass": true
+    },
+    {
+      "D": 804,
+      "candidate_id": "r2_async_pair__park_join__reaim",
+      "classification_total": 804,
+      "gate_pass": true
+    },
+    {
+      "D": 804,
+      "candidate_id": "r2_async_pair__touch_park__hold",
+      "classification_total": 804,
+      "gate_pass": true
+    },
+    {
+      "D": 804,
+      "candidate_id": "r2_async_pair__touch_park__reaim",
+      "classification_total": 804,
+      "gate_pass": true
+    },
+    {
+      "D": 804,
+      "candidate_id": "r2_causal_steer__park_join__hold",
+      "classification_total": 804,
+      "gate_pass": true
+    },
+    {
+      "D": 804,
+      "candidate_id": "r2_causal_steer__park_join__reaim",
+      "classification_total": 804,
+      "gate_pass": true
+    },
+    {
+      "D": 804,
+      "candidate_id": "r2_full_os__walk_park__hold",
+      "classification_total": 804,
+      "gate_pass": true
+    },
+    {
+      "D": 804,
+      "candidate_id": "r2_full_os__walk_park__reaim",
+      "classification_total": 804,
+      "gate_pass": true
+    }
+  ],
+  "execution_id": "w1r2-dev-20260712-20260720-0a7fd1c6-grid2-stdoutsafe",
+  "schema_version": "window1-round2-deterministic-grid-runner-stdout-safe-v2-conservation-v1"
+}

@@ -1,0 +1,78 @@
+{
+  "execution_id": "w1r2-dev-20260712-20260720-0a7fd1c6-grid2-stdoutsafe",
+  "outputs": {
+    "01_r2_async_pair__park_join__hold_EVENT_LEDGER.jsonl": {
+      "bytes": 1168434,
+      "sha256": "3619e26d1c24d0a9bc7aa73a39cb5724eef7d86336822698d5880184aa0399f1"
+    },
+    "02_r2_async_pair__park_join__reaim_EVENT_LEDGER.jsonl": {
+      "bytes": 1169238,
+      "sha256": "d6441563bd57f37d31e88b1991f5d584bff51882378264416a07a125d6971b80"
+    },
+    "03_r2_async_pair__touch_park__hold_EVENT_LEDGER.jsonl": {
+      "bytes": 1173928,
+      "sha256": "90a70dbc6840bb5da85da774e5da722f517f91b4a27271e7f6141691d0ae564a"
+    },
+    "04_r2_async_pair__touch_park__reaim_EVENT_LEDGER.jsonl": {
+      "bytes": 1174732,
+      "sha256": "02fea352a9a5cdcd98839ae81e8f14afcb7b3a7b075fe2e0e53aedb69e475f1a"
+    },
+    "05_r2_causal_steer__park_join__hold_EVENT_LEDGER.jsonl": {
+      "bytes": 1170130,
+      "sha256": "e82ca87c19d3bfea10d123c957adfc8ef3d511aaa4ad6cea4f1cc98833b6e248"
+    },
+    "06_r2_causal_steer__park_join__reaim_EVENT_LEDGER.jsonl": {
+      "bytes": 1170934,
+      "sha256": "87c9704a17b5a1ff031e0614d61740bf52a98d7b550aef43cc337e39e2cdde63"
+    },
+    "07_r2_full_os__walk_park__hold_EVENT_LEDGER.jsonl": {
+      "bytes": 1166110,
+      "sha256": "027e2cfe8962d77171da4c91f01d8a075f49512dce519c8ece48f34140655c29"
+    },
+    "08_r2_full_os__walk_park__reaim_EVENT_LEDGER.jsonl": {
+      "bytes": 1166914,
+      "sha256": "2385baf4b9ddd22f98bacf681ec9efe4283e10d7d5f6ebc34dc98550ccd120e0"
+    },
+    "BASE_REAIM_COMPARISON.json": {
+      "bytes": 17450,
+      "sha256": "e4e61d3e84164e6326b071acf1448e29b4346b7d1ac5a06babd4cc4e35d6d586"
+    },
+    "EIGHT_CANDIDATE_RESULTS.json": {
+      "bytes": 96788,
+      "sha256": "df8c0b1742bb0895c3859b639931a15f37a277b49d18197cc03e9d5fec23341c"
+    },
+    "EXECUTION_MANIFEST.json": {
+      "bytes": 2782,
+      "sha256": "ff0a604002884eb1949c38206d0ad29def6d4e6b06697a3141b50bc01a965909"
+    },
+    "EXECUTION_START_RECEIPT.json": {
+      "bytes": 1966,
+      "sha256": "8b550950baf650872087da23832664a5b424c3411e187c98492d69db81195c2d"
+    },
+    "HOLDOUT_NONPRODUCTION_NONACCESS_PROOF.json": {
+      "bytes": 930,
+      "sha256": "1440cb68f84ca6fe5d79f5c6686b36190c5dd4471de2c9af8427e08f7b7417e7"
+    },
+    "METRIC_CONSERVATION_REPORT.json": {
+      "bytes": 1397,
+      "sha256": "d93e8833af72afdf746b0d37400bd8081cd54f818902c16823bb567889ac7560"
+    },
+    "PROGRESS.log": {
+      "bytes": 931,
+      "sha256": "a3137e64fa203c57fd0f42d1a2f06fda4441100c546b9c06c93ca6a03e0cc9ce"
+    },
+    "STDERR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "STDOUT.log": {
+      "bytes": 931,
+      "sha256": "a3137e64fa203c57fd0f42d1a2f06fda4441100c546b9c06c93ca6a03e0cc9ce"
+    },
+    "WINDOW1_ROUND2_DEVELOPMENT_REPORT.md": {
+      "bytes": 1306,
+      "sha256": "527c43784da5a06014378157cf20da3b97508575f93ade8fe2ef50836213fc44"
+    }
+  },
+  "schema_version": "window1-round2-deterministic-grid-runner-stdout-safe-v2-output-hashes-v1"
+}

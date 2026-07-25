@@ -1,0 +1,94 @@
+{
+  "audited_commit": "781b6d6fac65381a67f74a177478947bfd804dc8",
+  "controlling_amendment": "abe543e33bf40cf6cca14e046c40904d2de5e878",
+  "d_and_metrics": {
+    "C_PC_S_IC_populated": false,
+    "D": 804,
+    "actionable_by_candidate": 804,
+    "all_metrics_null": true,
+    "membership_not_conflated_with_placement": true,
+    "ranking_or_selection": false,
+    "scorer_imported_or_invoked": false
+  },
+  "final_ruling": "PASS \u2014 mechanical V2 censor/100-cent correction closed; scoring NOT authorized; last-trade/chain and macro-x-micro composition omissions remain open for their own PRE-RUN reconciliation",
+  "inherited_law": {
+    "accepted_action_count_reconciles": "21838+5721=27559 == committed invariant receipt",
+    "accepted_improvements": 21838,
+    "b2_max_mismatches": 0,
+    "budget_corrections": 5721,
+    "headroom_law_changed_flag": false,
+    "headroom_receipts_v2_decompressed_byte_identical_v1": true,
+    "receipts": 167501,
+    "strict_budget_violations": 0,
+    "v1_mechanics_unchanged": true
+  },
+  "isolation": {
+    "holdout_opened": false,
+    "no_live_production_order_position_w2_exit_settlement_dca": true,
+    "oracle_fields_unreachable": true,
+    "policy_imports_diagnostics": false
+  },
+  "item5_semantics": {
+    "D_membership": "804 actionable per candidate in manifest and streams",
+    "event_terminals": "complete_counterfactual_stream (non-censored) with per-leg terminal market_evidence_unavailable_no_call",
+    "evidence_census": "reproduced this day at parent SHA against the identical pinned caches: 10/10 legs zero lawful in-window positive-size BBO; CREMAT 7/4 in-window prints are executions (2303/3044 snapshots all outside window); four events have zero evidence entirely",
+    "market_no_call_reason": "lawful_positive_size_external_bbo_unavailable_no_order (all 10 streams, both legs, flags placement_created=false fabricated_price=false print_substituted_for_BBO=false D_membership_continues=true)",
+    "never_marketable_requires_ask": "V2 _target_price raises unless BOTH external bid and ask exist",
+    "no_fabricated_price": true,
+    "no_print_as_bbo": true,
+    "placements_on_ten_legs": 0,
+    "role_no_call_reason": "causal_role_unavailable_role_specific_steering_disabled (all 10 streams, both legs)"
+  },
+  "lineage": {
+    "additions": 26,
+    "inherited_v1_bytes_changed": 0,
+    "modifications_or_deletions": 0,
+    "overlay_scope": "availability law (causal_role NO_CALL + market-evidence NO_CALL) + stale 100c parameter removal only; Round4InstrumentV2 subclasses V1, overrides _new_state/_posture/_target_price/_terminalize/_pair-cost-free spec loader",
+    "remote_tip": true,
+    "sole_child": true
+  },
+  "original_audit": "84cdf87a12f3b0c4986ba3133c84711bce4e74c7",
+  "parent_exact": "4f65344672430adc51fe0a5a7e8c9279b2b354ed",
+  "receipts_verified": {
+    "amendment_blob_oid_pinned_and_verified": true,
+    "artifact": 16,
+    "code": 6,
+    "failures": 0,
+    "opportunity_ledger_shards_verified": true,
+    "supersession_receipt": "V1 retracted from execution; V2 binding required; candidate ids and fill/headroom law unchanged; V1 files preserved"
+  },
+  "regeneration": {
+    "all_byte_identical_to_committed_blobs": true,
+    "artifacts_compared": 5,
+    "command": "python -B arb-executor/analysis/window1_round4_prerun_builder_v2.py --repo . --events <private>/joined/events.jsonl --market-cache <private>/fit-local/guarded-cache-v3 --output-dir <fresh temp> --workers 6",
+    "files": [
+      "FROZEN_CANDIDATE_EVENT_STREAMS_V2.jsonl.gz (decompressed)",
+      "ROUND4_V2_HEADROOM_DECISION_RECEIPTS.jsonl.gz (decompressed)",
+      "ROUND4_V2_CANDIDATE_ORDER_DIFFERENCES.jsonl",
+      "ROUND4_V2_REAL_CAPABILITY.json",
+      "ROUND4_V1_V2_STREAM_IDENTITY_RECEIPT.json"
+    ],
+    "nondeterminism": 0
+  },
+  "schema_version": "w1-round4-v2-prerun-independent-audit-receipts-v1",
+  "stale_100c": {
+    "fields_absent_from_spec_and_params": true,
+    "only_occurrences_are_rejection_assertions": "FORBIDDEN_INERT_PARAMETERS raises in load_candidate_spec and candidate_policy",
+    "value_can_affect_decision": false
+  },
+  "stream_identity": {
+    "byte_identical_vs_v1": 1598,
+    "changed_events_exactly_five_named": true,
+    "changed_vs_v1": 10,
+    "identity_receipt_matches_recomputation": true,
+    "receipt_mismatches": 0,
+    "stream_hash_mismatches": 0,
+    "total_streams": 1608,
+    "unaffected_per_candidate": 799
+  },
+  "tests": {
+    "inherited_r4_and_r3_suites": "52 passed",
+    "test_window1_round4_v2": "8 passed",
+    "total_relevant": 60
+  }
+}

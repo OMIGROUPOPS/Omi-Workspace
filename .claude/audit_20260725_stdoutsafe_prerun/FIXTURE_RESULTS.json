@@ -1,0 +1,137 @@
+{
+  "all_pass": true,
+  "cases": [
+    {
+      "case": "pipe_live",
+      "console_receipt": {
+        "stderr_enabled": true,
+        "stderr_failure": null,
+        "stderr_rebound_to_devnull": false,
+        "stdout_enabled": true,
+        "stdout_failure": null,
+        "stdout_rebound_to_devnull": false
+      },
+      "exit_code": 0,
+      "final_receipt_written": true,
+      "pass": true,
+      "progress_duplicates": false,
+      "progress_events": 18,
+      "progress_exact_match": true,
+      "scorer_invocations": 0
+    },
+    {
+      "case": "pipe_closed_early",
+      "console_receipt": {
+        "stderr_enabled": true,
+        "stderr_failure": null,
+        "stderr_rebound_to_devnull": false,
+        "stdout_enabled": false,
+        "stdout_failure": "OSError: [Errno 22] Invalid argument",
+        "stdout_rebound_to_devnull": true
+      },
+      "exit_code": 0,
+      "final_receipt_written": true,
+      "pass": true,
+      "progress_duplicates": false,
+      "progress_events": 18,
+      "progress_exact_match": true,
+      "scorer_invocations": 0
+    },
+    {
+      "case": "detached_no_console",
+      "console_receipt": {
+        "stderr_enabled": true,
+        "stderr_failure": null,
+        "stderr_rebound_to_devnull": false,
+        "stdout_enabled": true,
+        "stdout_failure": null,
+        "stdout_rebound_to_devnull": false
+      },
+      "exit_code": 0,
+      "final_receipt_written": true,
+      "pass": true,
+      "progress_duplicates": false,
+      "progress_events": 18,
+      "progress_exact_match": true,
+      "scorer_invocations": 0
+    },
+    {
+      "case": "redirect_file",
+      "console_receipt": {
+        "stderr_enabled": true,
+        "stderr_failure": null,
+        "stderr_rebound_to_devnull": false,
+        "stdout_enabled": true,
+        "stdout_failure": null,
+        "stdout_rebound_to_devnull": false
+      },
+      "exit_code": 0,
+      "final_receipt_written": true,
+      "pass": true,
+      "progress_duplicates": false,
+      "progress_events": 18,
+      "progress_exact_match": true,
+      "scorer_invocations": 0
+    },
+    {
+      "case": "redirect_devnull",
+      "console_receipt": {
+        "stderr_enabled": true,
+        "stderr_failure": null,
+        "stderr_rebound_to_devnull": false,
+        "stdout_enabled": true,
+        "stdout_failure": null,
+        "stdout_rebound_to_devnull": false
+      },
+      "exit_code": 0,
+      "final_receipt_written": true,
+      "pass": true,
+      "progress_duplicates": false,
+      "progress_events": 18,
+      "progress_exact_match": true,
+      "scorer_invocations": 0
+    },
+    {
+      "case": "closed_in_process",
+      "console_receipt": {
+        "stderr_enabled": true,
+        "stderr_failure": null,
+        "stderr_rebound_to_devnull": false,
+        "stdout_enabled": false,
+        "stdout_failure": "ValueError: I/O operation on closed file",
+        "stdout_rebound_to_devnull": true
+      },
+      "exit_code": 0,
+      "final_receipt_written": true,
+      "pass": true,
+      "progress_duplicates": false,
+      "progress_events": 18,
+      "progress_exact_match": true,
+      "scorer_invocations": 0
+    },
+    {
+      "case": "stderr_dead",
+      "console_receipt": {
+        "stderr_enabled": false,
+        "stderr_failure": "ValueError: I/O operation on closed file",
+        "stderr_rebound_to_devnull": true,
+        "stdout_enabled": true,
+        "stdout_failure": null,
+        "stdout_rebound_to_devnull": false
+      },
+      "exit_code": 0,
+      "final_receipt_written": true,
+      "pass": true,
+      "progress_duplicates": false,
+      "progress_events": 18,
+      "progress_exact_match": true,
+      "scorer_invocations": 0
+    }
+  ],
+  "platform": "win32",
+  "python": "3.11.9",
+  "real_scorer_invocations": 0,
+  "runner_dir": "C:\\Users\\omigr\\AppData\\Local\\Temp\\claude\\audit_wt_47bfbd43\\arb-executor\\analysis",
+  "schema_version": "w1r2-stdoutsafe-audit-fixture-v1",
+  "synthetic_only": true
+}

@@ -1,0 +1,95 @@
+{
+  "additive_files": 20,
+  "audited_commit": "14e0e846e8922da98f656aef1f43d2c48da96ee7",
+  "censoring": {
+    "censor_reasons": {
+      "dynamic_recut_cell_unavailable": 1016,
+      "required_feature_absent": 80
+    },
+    "censored_event_streams": 880,
+    "legs_with_real_decisions_after_censor": 0,
+    "no_call_actions": {
+      "cohort_no_call": 5884,
+      "feature_no_call": 40,
+      "pair_cost_no_call": 16,
+      "sibling_reaim_no_call": 1313
+    },
+    "streams_with_pre_censor_orders": 664
+  },
+  "distinctness": {
+    "all_exact_plus_one_cent": true,
+    "censored_per_candidate": 110,
+    "censored_sets_identical_across_candidates": true,
+    "earlier_decisions_byte_identical_all": true,
+    "eligible_per_candidate": 694,
+    "non_applied_events_with_real_decision_diffs": 0,
+    "pairwise_real_decision_distinct_pairs": 28,
+    "proof_problems": 0,
+    "proofs_independently_rederived": 1160,
+    "reaim_real_order_changes": {
+      "r3_causal_steer__park_join__reaim": 291,
+      "r3_full_os__walk_park__reaim": 278,
+      "r3_pair_presence__park_join__reaim": 322,
+      "r3_pair_presence__touch_park__reaim": 269
+    },
+    "reaim_total_proofs": 1160,
+    "zero_difference_pairs": 0
+  },
+  "execution_readiness": {
+    "benchmark_execution_authorized_in_manifest": false,
+    "execution_command": null,
+    "execution_id": null,
+    "round3_runner_or_scorer_binding_present": false,
+    "separate_additions_only_execution_package_required": true
+  },
+  "freeze": {
+    "artifact_failures": 0,
+    "artifact_receipts_verified": 13,
+    "doc_receipts_note": "5 governance docs bind exact HEAD blob OIDs; recorded sha256/bytes are over CRLF disk reads of those same blobs (verified equivalent)",
+    "event_ledger_sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46",
+    "holdout_rows_in_inputs": 0,
+    "market_cache_aggregate_sha256": "aad8d055e90bb429f7da87b450dc9c4e2dc6a6ef114e40368535b8953b86425e",
+    "market_cache_files": 804,
+    "source_contract_receipts_verified": 19
+  },
+  "holdout_opened": false,
+  "modified_or_deleted_files": 0,
+  "parent": "10ac6dbc68d65cb21ab3718e118ff34d7220ad87",
+  "production_touched": false,
+  "remote_tip_codex_window1_definition": true,
+  "requested_sha_string": "14e0e846e892cda98f656aeef1f43d2c48da96ee7 (41 hex chars, malformed; resolved via parent+tip+subject)",
+  "root_cause_forensic": {
+    "category_census": {
+      "cutoff_policy_horizon_composite": 8,
+      "eligibility_after_cutoff": 16,
+      "partial_fill_response_not_armed": 4,
+      "reaim_without_later_trigger": 16,
+      "sibling_never_called": 16
+    },
+    "category_invariant_violations": 0,
+    "exhaustive_sum": 60,
+    "ledger_rows_match_grid2_naked_rows_exactly": 60,
+    "mutually_exclusive": true,
+    "reaim_changed_order_events_round2": 327,
+    "round2_pairs_completed": 0,
+    "stranded_rows_recomputed": 60,
+    "window1_fills_recomputed": 82
+  },
+  "schema_version": "w1-round3-prerun-independent-audit-receipts-v1",
+  "scoring_run": false,
+  "sole_child_of_parent": true,
+  "streams": {
+    "candidates": 8,
+    "count": 6432,
+    "dates_within_dev_window": true,
+    "order_stream_hash_basis": "sha256(canonical(order_stream))",
+    "per_candidate": 804,
+    "receipt_mismatches": 0,
+    "self_hash_mismatches": 0,
+    "truth_leaks": 0
+  },
+  "tests": {
+    "scorer_invocations_during_audit": 0,
+    "test_window1_round3_instrument": "20 passed"
+  }
+}

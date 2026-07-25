@@ -1,0 +1,53 @@
+{
+  "additions": 23,
+  "audited_commit": "4f65344672430adc51fe0a5a7e8c9279b2b354ed",
+  "censor_code_location": "arb-executor/analysis/window1_round3_instrument.py:87 (causal_role required when leg_specific_posture family present; both R4 profiles include it); missing carve-out vs the dynamic_recut_cell pattern in window1_round4_instrument.py _initialize_birth",
+  "censored_events": [
+    "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+    "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+    "KXWTAMATCH-26JUL13TAUTOM",
+    "KXWTAMATCH-26JUL14PUTJEA",
+    "KXWTAMATCH-26JUL20KUDKOR"
+  ],
+  "distinctness": {
+    "differing_events_frozen_signature": 707,
+    "label_only_extras": 31,
+    "set_equals_committed": true,
+    "wider_signature_count": 738
+  },
+  "final_ruling": "BLOCKED_DO_NOT_RUN_ROUND_4",
+  "headroom_verification": {
+    "accepted_improvements": 21838,
+    "b2_gt_b2max_accepted": 0,
+    "b2_max_mismatches_vs_frozen_fn": 0,
+    "budget_reducing_corrections": 5721,
+    "exact5_arms": 1373,
+    "guard_refusals": 134698,
+    "partial_arms": 1421,
+    "receipts": 167501,
+    "strict_guard_violations": 0
+  },
+  "item_results": {
+    "1_identity_freeze": "PASS",
+    "2_tests_and_regeneration": "PASS (52/52; all 4 regenerable artifacts byte-identical to git blobs; zero nondeterminism)",
+    "3_primary_fill_path": "PASS",
+    "4_causal_headroom": "PASS (167501 receipts; b2_max=floor(-b1-fee-1) 0 mismatches; 21838 accepted improvements 0 guard violations)",
+    "5_hard_censor_audit": "BLOCK \u2014 5 events terminally censored on causal_role with zero placements in both candidates; D actionable = 799",
+    "6_hard_100c_audit": "INERT \u2014 perturb (57/31) and delete both fields => byte-identical stream hashes on 16-sample with fidelity proof; removal/deprecation REQUIRED",
+    "7_distinctness_attribution": "PASS (707 exact; 669 posture-depth/21 recut/17 walk/32 ladder; cohort 1598 = 2x799 all NO_CALL n<30; atlas 23 NO_CALL; top5 256 real)",
+    "8_presence_lifecycle": "PASS (3196/3196 eligible legs placed; 781 cancel-endings all declared_policy_horizon)",
+    "9_oracle_firewall": "PASS (no diagnostic imports; FORBIDDEN_ORACLE_FIELDS enforced; R3 census matches audited 281/278/165/165/264/263/38/38; all metrics null)"
+  },
+  "modifications": 0,
+  "no_scoring_no_holdout_no_live": true,
+  "pair_cost_code_location": "window1_round4_instrument.py:198-210 unconditional True; only other consumer window1_round2_instrument.py:858 unreachable (zero sibling_reaim/pair_cost actions in all 1608 streams)",
+  "parent": "754415bb81a328d671cd327f216d1753802442b1",
+  "remote_tip": true,
+  "reproduction_commands": {
+    "regeneration": "python -B arb-executor/analysis/window1_round4_prerun_builder.py --repo . --events <private>/joined/events.jsonl --market-cache <private>/fit-local/guarded-cache-v3 --output-dir <temp> --workers 6",
+    "tests": "python -B -m pytest -q arb-executor/tests/test_window1_round4_instrument.py arb-executor/tests/test_window1_round4_diagnostics.py arb-executor/tests/test_window1_round3_instrument.py  # 52 passed"
+  },
+  "schema_version": "w1-round4-prerun-independent-audit-receipts-v1",
+  "sole_child": true,
+  "target_commit_untouched": true
+}

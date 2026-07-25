@@ -1,0 +1,77 @@
+{
+  "D": 804,
+  "all_external_inputs_verified": 3,
+  "all_git_inputs_verified": 22,
+  "all_market_cache_files_verified": 804,
+  "authorization_audit": "dd6fc30812f5199e048ecee1c80f5649c826bb4d",
+  "authorized_parent": "0a7fd1c62d5cf662929c29f2298ed80aeecee1df",
+  "candidate_count": 8,
+  "candidate_dispatch_order": [
+    "r2_async_pair__park_join__hold",
+    "r2_async_pair__park_join__reaim",
+    "r2_async_pair__touch_park__hold",
+    "r2_async_pair__touch_park__reaim",
+    "r2_causal_steer__park_join__hold",
+    "r2_causal_steer__park_join__reaim",
+    "r2_full_os__walk_park__hold",
+    "r2_full_os__walk_park__reaim"
+  ],
+  "candidate_event_stream_receipts_verified": 6432,
+  "candidate_event_streams_loaded": 6432,
+  "candidate_instrument_invocations": 0,
+  "dispatch_plan": [
+    {
+      "candidate_id": "r2_async_pair__park_join__hold",
+      "ordinal": 1,
+      "scorer_invocation_count_if_executed": 1
+    },
+    {
+      "candidate_id": "r2_async_pair__park_join__reaim",
+      "ordinal": 2,
+      "scorer_invocation_count_if_executed": 1
+    },
+    {
+      "candidate_id": "r2_async_pair__touch_park__hold",
+      "ordinal": 3,
+      "scorer_invocation_count_if_executed": 1
+    },
+    {
+      "candidate_id": "r2_async_pair__touch_park__reaim",
+      "ordinal": 4,
+      "scorer_invocation_count_if_executed": 1
+    },
+    {
+      "candidate_id": "r2_causal_steer__park_join__hold",
+      "ordinal": 5,
+      "scorer_invocation_count_if_executed": 1
+    },
+    {
+      "candidate_id": "r2_causal_steer__park_join__reaim",
+      "ordinal": 6,
+      "scorer_invocation_count_if_executed": 1
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__hold",
+      "ordinal": 7,
+      "scorer_invocation_count_if_executed": 1
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__reaim",
+      "ordinal": 8,
+      "scorer_invocation_count_if_executed": 1
+    }
+  ],
+  "execution_id": "w1r2-dev-20260712-20260720-0a7fd1c6-grid1",
+  "gate_pass": true,
+  "git_state_contract": "authorized_parent_precommit_or_clean_sole_PRE_RUN_child",
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "input_bundle_sha256": "b8424ce782299254891e4c616ea7fd9f67fd476462c740e97fa2421ffaaa617e",
+  "leg_identities_verified": 1608,
+  "live_or_production_access": false,
+  "mode": "validate-only",
+  "performance_results_produced": false,
+  "result_directory_created": false,
+  "schema_version": "window1-round2-deterministic-grid-runner-v1-validation-only-v1",
+  "scorer_invocations": 0
+}

@@ -1,0 +1,29 @@
+{
+  "artifacts": {
+    "FROZEN_CANDIDATE_EVENT_STREAMS.jsonl.gz": {
+      "bytes": 36556344,
+      "sha256": "6ea3e12508232336e7d34e6b25b763cf6a5c5fcbbe08ab27314322f726ffa707"
+    },
+    "PRE_RUN_MANIFEST.json": {
+      "bytes": 15930,
+      "sha256": "e4b02169adf1bb7c7762370b1efcbbf7fb8d0dcce8c09ab8ec663e51162899ee"
+    },
+    "PRE_RUN_REPORT.md": {
+      "bytes": 887,
+      "sha256": "9468287e855c72732e129f716f3d41425e7ad2a076ac6199aba110ed4552db05"
+    },
+    "SCORING_INPUT_BUNDLE.json": {
+      "bytes": 5895034,
+      "sha256": "1998eb43f74335934e9188921e8aa7c7d94c9358726cdfa981a8fd4f63d2278f"
+    },
+    "VALIDATION_ONLY_RECEIPT.json": {
+      "bytes": 2489,
+      "sha256": "effb08829206165ffca6f6093b1b7194fcfadd636a70aeb635f20c0d3f0d2b28"
+    }
+  },
+  "candidate_scoring_performed": false,
+  "execution_id": "w1r2-dev-20260712-20260720-0a7fd1c6-grid1",
+  "holdout_queried": false,
+  "parent": "0a7fd1c62d5cf662929c29f2298ed80aeecee1df",
+  "schema_version": "window1-round2-execution-packager-v1-artifacts-v1"
+}

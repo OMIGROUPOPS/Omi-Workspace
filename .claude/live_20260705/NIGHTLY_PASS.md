@@ -211,3 +211,24 @@ slate: 24 big-4 events · 24 scored pairs · skips {'thin_tape': 0, 'one_leg_fil
 - SEAL-DECAY TRIPWIRE: **SEAL-DECAY — RED; operator ruling required; never auto-disarm** [rolling7 COMPLETION 15/64 = 23% < 70%]
 
 GUN SCORECARD 20260724: ATP_CHALL n=6 FRESH-within±3min=2/2 med|Δ|=1.4m catchup=0 suspect=[HOLDRA,MATCHI,INCSMI,ONCGEN] unjoinable=0 misses=[] | ITF_M n=25 FRESH-within±3min=2/9 med|Δ|=7.2m catchup=0 suspect=[BOUHUL,DELJOV,FERMAR,PAPAND…] unjoinable=10 misses=[] | ITF_W n=19 FRESH-within±3min=4/5 med|Δ|=1.4m catchup=0 suspect=[ALEKUR,ARAUCH,MILAIA,WANYOS…] unjoinable=4 misses=[] | WTA_MAIN n=2 FRESH-within±3min=1/2 med|Δ|=5.6m catchup=0 suspect=[] unjoinable=0 misses=[] | FIRES-vs-SLATE: fires=52 tracked_events=137 ratio=38% | NON-MAINS (deletion-gate denominator, MAINS-OFF excluded by design): fires=50/135 ratio=37% | MULTI-SOURCE events=5 | SELF-FILL fires=2 unconfirmed-by-any-other-source=0 | BELLS-MISSING=0 | HALT-MIN=0.0 UNBOOKED-FILLS-BOOKED=0 (watch: night-over-night drops + uncovered live matches are named here, not a week later)
+
+OS SHADOW 2026-07-24: n=20333 sites={'v4_place': 2226, 'move_repost': 500, 'hold_review': 17607} | placement agree(±1c)=135 diverge=249 | divergence classes: {'climb_side|hold_window': 130, 'decay_side|hold_window': 85, 'mains_join|hold_window': 18, 'climb_side|resting_window': 16} | hold: {'reviews': 17607, 'quiet': 969, 'floor_miss': 3196, 'both': 176, 'diverge': 3813, 'floor_unevaluable': 49, 'pre_instrument': 0} | cap-sensitivity: DEFERRED (joint-shadow n>=30 gate, operator 07-09)
+
+## PERCLASS 20260724 (era post-seal-20260720) — COMBINED PRIMARY (ruling 07-20 PM): sub-par(<=97)=pass; dual-negative=mastery meter
+slate: 38 big-4 events · 38 scored pairs · skips {'thin_tape': 0, 'one_leg_file': 0, 'dead_band': 0, 'no_tape': 0}
+- FLAT-FLAT (SEALED b2f0b670; capture standard): **COMPLETION 2/8 = 25% x QUALITY 2/2 = 100% -> JOINT FAIL (bar 70/70)** · tiers {'<=93': 2} · MASTERY dual-neg 0% · medPairD -12
+- MIRROR (REFUSE; fader drill on the mastery meter): pairs 24 duals 15 (completion 62%) · SUB-PAR(<=97) 0/15 = 0% -> FAIL · tiers {'98-100': 1, '>100': 14} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD +17
+- NEITHER (counted apart): pairs 6 duals 4 (completion 67%) · SUB-PAR(<=97) 2/4 = 50% -> PASS · tiers {'<=93': 2, '>100': 2} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD -2
+- COMPLETION (volume drill): sub-par duals 4 / 38 slate pairs = 10.5%
+  - flat_flat|ATP_CHALL: pairs 2 duals 0 — NO DUALS
+  - flat_flat|ATP_MAIN: pairs 2 duals 1 (completion 50%) · SUB-PAR(<=97) 1/1 = 100% -> PASS · tiers {'<=93': 1} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD -9
+  - flat_flat|WTA_CHALL: pairs 1 duals 1 (completion 100%) · SUB-PAR(<=97) 1/1 = 100% -> PASS · tiers {'<=93': 1} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD -16
+  - flat_flat|WTA_MAIN: pairs 3 duals 0 — NO DUALS
+  - mirror|ATP_CHALL: pairs 15 duals 8 (completion 53%) · SUB-PAR(<=97) 0/8 = 0% -> FAIL · tiers {'98-100': 1, '>100': 7} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD +16
+  - mirror|ATP_MAIN: pairs 2 duals 2 (completion 100%) · SUB-PAR(<=97) 0/2 = 0% -> FAIL · tiers {'>100': 2} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD +5
+  - mirror|WTA_CHALL: pairs 3 duals 3 (completion 100%) · SUB-PAR(<=97) 0/3 = 0% -> FAIL · tiers {'>100': 3} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD +17
+  - mirror|WTA_MAIN: pairs 4 duals 2 (completion 50%) · SUB-PAR(<=97) 0/2 = 0% -> FAIL · tiers {'>100': 2} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD +24
+  - neither|ATP_CHALL: pairs 3 duals 3 (completion 100%) · SUB-PAR(<=97) 2/3 = 67% -> PASS · tiers {'<=93': 2, '>100': 1} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD -10
+  - neither|ATP_MAIN: pairs 2 duals 1 (completion 50%) · SUB-PAR(<=97) 0/1 = 0% -> FAIL · tiers {'>100': 1} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD +40
+  - neither|WTA_MAIN: pairs 1 duals 0 — NO DUALS
+- SEAL-DECAY TRIPWIRE: **SEAL-DECAY — RED; operator ruling required; never auto-disarm** [rolling7 COMPLETION 17/72 = 24% < 70%]

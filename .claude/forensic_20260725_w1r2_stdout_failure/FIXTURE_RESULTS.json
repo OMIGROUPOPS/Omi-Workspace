@@ -1,0 +1,259 @@
+{
+  "cases": [
+    {
+      "case": "console_inherit",
+      "completed_all_emits": true,
+      "emits_attempted": 3,
+      "emits_survived": 3,
+      "exception_errno": null,
+      "exception_str": null,
+      "exception_type": null,
+      "exit_code": 0,
+      "failure_files_written": false,
+      "files_in_result_dir": [
+        "01_synthetic_EVENT_LEDGER.jsonl"
+      ],
+      "mode": "runner",
+      "progress_file_lines": null,
+      "verdict_file_missing": false
+    },
+    {
+      "case": "console_inherit",
+      "completed_all_emits": true,
+      "emits_attempted": 3,
+      "emits_survived": 3,
+      "exception_errno": null,
+      "exception_str": null,
+      "exception_type": null,
+      "exit_code": 0,
+      "failure_files_written": false,
+      "files_in_result_dir": [
+        "01_synthetic_EVENT_LEDGER.jsonl",
+        "PROGRESS.log"
+      ],
+      "mode": "repaired",
+      "progress_file_lines": 3,
+      "verdict_file_missing": false
+    },
+    {
+      "case": "redirect_file",
+      "completed_all_emits": true,
+      "emits_attempted": 3,
+      "emits_survived": 3,
+      "exception_errno": null,
+      "exception_str": null,
+      "exception_type": null,
+      "exit_code": 0,
+      "failure_files_written": false,
+      "files_in_result_dir": [
+        "01_synthetic_EVENT_LEDGER.jsonl"
+      ],
+      "mode": "runner",
+      "progress_file_lines": null,
+      "verdict_file_missing": false
+    },
+    {
+      "case": "redirect_file",
+      "completed_all_emits": true,
+      "emits_attempted": 3,
+      "emits_survived": 3,
+      "exception_errno": null,
+      "exception_str": null,
+      "exception_type": null,
+      "exit_code": 0,
+      "failure_files_written": false,
+      "files_in_result_dir": [
+        "01_synthetic_EVENT_LEDGER.jsonl",
+        "PROGRESS.log"
+      ],
+      "mode": "repaired",
+      "progress_file_lines": 3,
+      "verdict_file_missing": false
+    },
+    {
+      "case": "redirect_devnull",
+      "completed_all_emits": true,
+      "emits_attempted": 3,
+      "emits_survived": 3,
+      "exception_errno": null,
+      "exception_str": null,
+      "exception_type": null,
+      "exit_code": 0,
+      "failure_files_written": false,
+      "files_in_result_dir": [
+        "01_synthetic_EVENT_LEDGER.jsonl"
+      ],
+      "mode": "runner",
+      "progress_file_lines": null,
+      "verdict_file_missing": false
+    },
+    {
+      "case": "redirect_devnull",
+      "completed_all_emits": true,
+      "emits_attempted": 3,
+      "emits_survived": 3,
+      "exception_errno": null,
+      "exception_str": null,
+      "exception_type": null,
+      "exit_code": 0,
+      "failure_files_written": false,
+      "files_in_result_dir": [
+        "01_synthetic_EVENT_LEDGER.jsonl",
+        "PROGRESS.log"
+      ],
+      "mode": "repaired",
+      "progress_file_lines": 3,
+      "verdict_file_missing": false
+    },
+    {
+      "case": "pipe_open",
+      "completed_all_emits": true,
+      "emits_attempted": 3,
+      "emits_survived": 3,
+      "exception_errno": null,
+      "exception_str": null,
+      "exception_type": null,
+      "exit_code": 0,
+      "failure_files_written": false,
+      "files_in_result_dir": [
+        "01_synthetic_EVENT_LEDGER.jsonl"
+      ],
+      "mode": "runner",
+      "progress_file_lines": null,
+      "verdict_file_missing": false
+    },
+    {
+      "case": "pipe_open",
+      "completed_all_emits": true,
+      "emits_attempted": 3,
+      "emits_survived": 3,
+      "exception_errno": null,
+      "exception_str": null,
+      "exception_type": null,
+      "exit_code": 0,
+      "failure_files_written": false,
+      "files_in_result_dir": [
+        "01_synthetic_EVENT_LEDGER.jsonl",
+        "PROGRESS.log"
+      ],
+      "mode": "repaired",
+      "progress_file_lines": 3,
+      "verdict_file_missing": false
+    },
+    {
+      "case": "pipe_closed_early",
+      "completed_all_emits": false,
+      "emits_attempted": 3,
+      "emits_survived": 2,
+      "exception_errno": 22,
+      "exception_str": "[Errno 22] Invalid argument",
+      "exception_type": "OSError",
+      "exit_code": 120,
+      "failure_files_written": true,
+      "files_in_result_dir": [
+        "01_synthetic_EVENT_LEDGER.jsonl",
+        "EXECUTION_FAILURE.json",
+        "STDERR.log",
+        "STDOUT.log"
+      ],
+      "mode": "runner",
+      "progress_file_lines": null,
+      "verdict_file_missing": false
+    },
+    {
+      "case": "pipe_closed_early",
+      "completed_all_emits": true,
+      "emits_attempted": 3,
+      "emits_survived": 3,
+      "exception_errno": null,
+      "exception_str": null,
+      "exception_type": null,
+      "exit_code": 120,
+      "failure_files_written": false,
+      "files_in_result_dir": [
+        "01_synthetic_EVENT_LEDGER.jsonl",
+        "PROGRESS.log"
+      ],
+      "mode": "repaired",
+      "progress_file_lines": 3,
+      "verdict_file_missing": false
+    },
+    {
+      "case": "detached_no_console",
+      "completed_all_emits": true,
+      "emits_attempted": 3,
+      "emits_survived": 3,
+      "exception_errno": null,
+      "exception_str": null,
+      "exception_type": null,
+      "exit_code": 0,
+      "failure_files_written": false,
+      "files_in_result_dir": [
+        "01_synthetic_EVENT_LEDGER.jsonl"
+      ],
+      "mode": "runner",
+      "progress_file_lines": null,
+      "verdict_file_missing": false
+    },
+    {
+      "case": "detached_no_console",
+      "completed_all_emits": true,
+      "emits_attempted": 3,
+      "emits_survived": 3,
+      "exception_errno": null,
+      "exception_str": null,
+      "exception_type": null,
+      "exit_code": 0,
+      "failure_files_written": false,
+      "files_in_result_dir": [
+        "01_synthetic_EVENT_LEDGER.jsonl",
+        "PROGRESS.log"
+      ],
+      "mode": "repaired",
+      "progress_file_lines": 3,
+      "verdict_file_missing": false
+    },
+    {
+      "case": "closed_in_process",
+      "completed_all_emits": false,
+      "emits_attempted": 0,
+      "emits_survived": 0,
+      "exception_errno": null,
+      "exception_str": "I/O operation on closed file.",
+      "exception_type": "ValueError",
+      "exit_code": 1,
+      "failure_files_written": true,
+      "files_in_result_dir": [
+        "EXECUTION_FAILURE.json",
+        "STDERR.log",
+        "STDOUT.log"
+      ],
+      "mode": "runner",
+      "progress_file_lines": null,
+      "verdict_file_missing": false
+    },
+    {
+      "case": "closed_in_process",
+      "completed_all_emits": true,
+      "emits_attempted": 3,
+      "emits_survived": 3,
+      "exception_errno": null,
+      "exception_str": null,
+      "exception_type": null,
+      "exit_code": 0,
+      "failure_files_written": false,
+      "files_in_result_dir": [
+        "01_synthetic_EVENT_LEDGER.jsonl",
+        "PROGRESS.log"
+      ],
+      "mode": "repaired",
+      "progress_file_lines": 3,
+      "verdict_file_missing": false
+    }
+  ],
+  "fixture_root": "C:\\Users\\omigr\\AppData\\Local\\Temp\\w1r2_emit_fixture__laoqpfq",
+  "platform": "win32",
+  "python": "3.11.9",
+  "schema_version": "w1r2-emit-fixture-results-v1",
+  "synthetic_only": true
+}

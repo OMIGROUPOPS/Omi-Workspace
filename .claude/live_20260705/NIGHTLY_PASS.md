@@ -232,3 +232,5 @@ slate: 38 big-4 events · 38 scored pairs · skips {'thin_tape': 0, 'one_leg_fil
   - neither|ATP_MAIN: pairs 2 duals 1 (completion 50%) · SUB-PAR(<=97) 0/1 = 0% -> FAIL · tiers {'>100': 1} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD +40
   - neither|WTA_MAIN: pairs 1 duals 0 — NO DUALS
 - SEAL-DECAY TRIPWIRE: **SEAL-DECAY — RED; operator ruling required; never auto-disarm** [rolling7 COMPLETION 17/72 = 24% < 70%]
+
+GUN SCORECARD 20260725: ATP_CHALL n=3 FRESH-within±3min=0/2 med|Δ|=9.4m catchup=0 suspect=[MOCMON] unjoinable=0 misses=[] | ITF_M n=14 FRESH-within±3min=2/7 med|Δ|=5.9m catchup=0 suspect=[SINGEL,WIJQAB] unjoinable=5 misses=[] | ITF_W n=11 FRESH-within±3min=2/7 med|Δ|=8.3m catchup=0 suspect=[TSAARA,MIRSAN] unjoinable=2 misses=[] | FIRES-vs-SLATE: fires=28 tracked_events=130 ratio=22% | NON-MAINS (deletion-gate denominator, MAINS-OFF excluded by design): fires=28/88 ratio=32% | MULTI-SOURCE events=6 | SELF-FILL fires=0 unconfirmed-by-any-other-source=0 | BELLS-MISSING=0 | HALT-MIN=0.0 UNBOOKED-FILLS-BOOKED=0 (watch: night-over-night drops + uncovered live matches are named here, not a week later)

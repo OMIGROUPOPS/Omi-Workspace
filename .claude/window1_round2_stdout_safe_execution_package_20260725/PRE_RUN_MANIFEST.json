@@ -1,0 +1,551 @@
+{
+  "D": 804,
+  "ablation_performed": false,
+  "authorization_audit": "2ac4a2f49b55a5284cc1a9146047c3f42ea7561e",
+  "branch": "codex/window1-definition",
+  "candidate_event_stream_bundle": {
+    "path": ".claude/window1_round2_execution_package_20260724/FROZEN_CANDIDATE_EVENT_STREAMS.jsonl.gz",
+    "per_stream_input_receipts": 6432,
+    "receipt": {
+      "availability": "available",
+      "bytes": 36556344,
+      "git_blob_oid": "f9623954bce5096184b0eb30618d89ff622b9ce5",
+      "path": ".claude/window1_round2_execution_package_20260724/FROZEN_CANDIDATE_EVENT_STREAMS.jsonl.gz",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "6ea3e12508232336e7d34e6b25b763cf6a5c5fcbbe08ab27314322f726ffa707"
+    }
+  },
+  "candidate_event_stream_count": 6432,
+  "candidate_event_stream_receipts_sha256": "043189c77ea885a773acebc167e46ff1023db70508417918846c5cfa51812ae8",
+  "candidate_ids": [
+    "r2_async_pair__park_join__hold",
+    "r2_async_pair__park_join__reaim",
+    "r2_async_pair__touch_park__hold",
+    "r2_async_pair__touch_park__reaim",
+    "r2_causal_steer__park_join__hold",
+    "r2_causal_steer__park_join__reaim",
+    "r2_full_os__walk_park__hold",
+    "r2_full_os__walk_park__reaim"
+  ],
+  "candidate_scoring_performed": false,
+  "controlling_forensic": {
+    "commit": "2ac4a2f49b55a5284cc1a9146047c3f42ea7561e",
+    "report_blob_oid": "b587b24173eb7e3605fa00b0fd06666b88b14442",
+    "report_path": ".claude/forensic_20260725_w1r2_stdout_failure/FORENSIC_REPORT.md",
+    "verdict": "CATEGORY_A_OUTPUT_ONLY_INFRASTRUCTURE_FAILURE"
+  },
+  "deterministic_grid_runner": {
+    "candidate_order": [
+      "r2_async_pair__park_join__hold",
+      "r2_async_pair__park_join__reaim",
+      "r2_async_pair__touch_park__hold",
+      "r2_async_pair__touch_park__reaim",
+      "r2_causal_steer__park_join__hold",
+      "r2_causal_steer__park_join__reaim",
+      "r2_full_os__walk_park__hold",
+      "r2_full_os__walk_park__reaim"
+    ],
+    "path": "arb-executor/analysis/window1_round2_grid_runner.py",
+    "receipt": {
+      "availability": "available",
+      "bytes": 57625,
+      "git_blob_oid": "23ec4690816fe5edbb6b7cb60fc93f4ce99b60fc",
+      "path": "arb-executor/analysis/window1_round2_grid_runner.py",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "b8c02d16fa39cb43bd60901f8a3eb8bbaf47de04446fc9092b7f3df84746f83b"
+    },
+    "scorer_invocations_per_candidate": 1,
+    "total_scorer_invocations": 8
+  },
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "exact_ancestry": {
+    "commit_count_after_parent": 1,
+    "parent": "4b243babee97fe251bde21fa6a1197dfbba5387d",
+    "superseding_commit": "this_manifest_commit"
+  },
+  "exact_execution_command": "python -B arb-executor/analysis/window1_round2_grid_runner.py --repo . --package .claude/window1_round2_stdout_safe_execution_package_20260725/SCORING_INPUT_BUNDLE.json --mode execute",
+  "exact_validation_command": "python -B arb-executor/analysis/window1_round2_grid_runner.py --repo . --package .claude/window1_round2_stdout_safe_execution_package_20260725/SCORING_INPUT_BUNDLE.json --mode validate-only",
+  "execution_id": "w1r2-dev-20260712-20260720-0a7fd1c6-grid2-stdoutsafe",
+  "freeze_status": "frozen_not_scored",
+  "frozen_at_utc": "2026-07-25T06:15:39.967953+00:00",
+  "frozen_event_leg_identities_sha256": "c7bc10c3432e0ff7e6432cf51311e40eb90015b120c6ac3dac32766ab0a7f6cd",
+  "frozen_surface_parity": {
+    "all_checks_pass": true,
+    "baseline_PRE_RUN": "4b243babee97fe251bde21fa6a1197dfbba5387d",
+    "candidate_event_stream_inputs_sha256": "5fc7067ac65ad3a9c8125e54dcece42e57b1bd82b1fe82d0301f96f43f7c85aa",
+    "candidate_event_stream_receipts_sha256": "043189c77ea885a773acebc167e46ff1023db70508417918846c5cfa51812ae8",
+    "checks": {
+      "D": true,
+      "candidate_event_stream_inputs": true,
+      "candidate_event_stream_receipts": true,
+      "candidate_ids": true,
+      "external_inputs": true,
+      "frozen_event_leg_identities": true,
+      "guarded_cutoff_law": true,
+      "market_cache_aggregate": true,
+      "market_cache_files": true,
+      "metric_law": true,
+      "non_runner_git_inputs": true
+    },
+    "external_inputs_sha256": "f5ea5ea9355d9edd5bd5c2b14c6ff0563ab0eb8a3800691778b5c0955383a54b",
+    "frozen_event_leg_identities_sha256": "c7bc10c3432e0ff7e6432cf51311e40eb90015b120c6ac3dac32766ab0a7f6cd",
+    "market_cache_files_sha256": "683c065b214d82afdf6c617f539a0d8c68cce55de5d9190192b80b4ea0fd2fc6",
+    "non_runner_git_input_count": 21,
+    "non_runner_git_inputs_sha256": "86d3f44623f04c20ebe995a8d5f64748f92e0884940a4f50f19aed0792b41a79"
+  },
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "input_bundle": {
+    "canonical_sha256": "e0e088e355589f77e3b3a9cf1a9da51b3045f70c551721fe41e3da5df4ffee2b",
+    "path": ".claude/window1_round2_stdout_safe_execution_package_20260725/SCORING_INPUT_BUNDLE.json",
+    "receipt": {
+      "availability": "available",
+      "bytes": 5897049,
+      "git_blob_oid": "c74a364554d69a8ae0fa78719a278e8806531d46",
+      "path": ".claude/window1_round2_stdout_safe_execution_package_20260725/SCORING_INPUT_BUNDLE.json",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "47e1afff7d58f75f6b6c945e263b9d8a2feed5296edd73f94a2f4195cbc9a4ec"
+    }
+  },
+  "invariants": {
+    "all_1608_leg_identities_preserved": true,
+    "all_21_non_runner_git_inputs_byte_identical": true,
+    "all_6432_stream_contents_materialized_and_bound": true,
+    "all_6432_stream_receipts_preserved": true,
+    "benchmark_not_executed": true,
+    "complete_input_bundle_hash_bound": true,
+    "controlling_forensic_commit_and_blob_bound": true,
+    "development_dates_only": true,
+    "eight_candidate_order_exact": true,
+    "execution_id_frozen": true,
+    "frozen_scorer_and_metric_unchanged": true,
+    "guard_law_unchanged": true,
+    "holdout_hard_refused": true,
+    "new_result_directory_refuses_existing": true,
+    "one_exact_execution_command": true,
+    "overwrite_resume_retry_refused": true,
+    "parent_exact_4b243bab": true,
+    "progress_log_authoritative_and_flushed_first": true,
+    "retired_grid1_not_reused_or_consumed": true,
+    "stdout_stderr_console_echo_nonfatal": true,
+    "validation_only_zero_scorer_invocations": true
+  },
+  "leg_identity_count": 1608,
+  "live_or_production_access": false,
+  "package_source_code_receipts": {
+    ".claude/window1_round2_execution_package_20260724/ARTIFACT_MANIFEST.json": {
+      "availability": "available",
+      "bytes": 1026,
+      "git_blob_oid": "2ec651b7df62bfa5268cf987d80be598e4329765",
+      "path": ".claude/window1_round2_execution_package_20260724/ARTIFACT_MANIFEST.json",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "da8d7e7e05829d9ed3b161e272c7408bf0bf2fa6671eaf0165e95998f526e391"
+    },
+    ".claude/window1_round2_execution_package_20260724/FROZEN_CANDIDATE_EVENT_STREAMS.jsonl.gz": {
+      "availability": "available",
+      "bytes": 36556344,
+      "git_blob_oid": "f9623954bce5096184b0eb30618d89ff622b9ce5",
+      "path": ".claude/window1_round2_execution_package_20260724/FROZEN_CANDIDATE_EVENT_STREAMS.jsonl.gz",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "6ea3e12508232336e7d34e6b25b763cf6a5c5fcbbe08ab27314322f726ffa707"
+    },
+    ".claude/window1_round2_execution_package_20260724/PRE_RUN_MANIFEST.json": {
+      "availability": "available",
+      "bytes": 15930,
+      "git_blob_oid": "95cac60ad5f20ab0a92a5d583f1a884a2d805396",
+      "path": ".claude/window1_round2_execution_package_20260724/PRE_RUN_MANIFEST.json",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "e4b02169adf1bb7c7762370b1efcbbf7fb8d0dcce8c09ab8ec663e51162899ee"
+    },
+    ".claude/window1_round2_execution_package_20260724/SCORING_INPUT_BUNDLE.json": {
+      "availability": "available",
+      "bytes": 5895034,
+      "git_blob_oid": "c28f34bc7637da514ab605169ec28347e030cd8f",
+      "path": ".claude/window1_round2_execution_package_20260724/SCORING_INPUT_BUNDLE.json",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "1998eb43f74335934e9188921e8aa7c7d94c9358726cdfa981a8fd4f63d2278f"
+    },
+    ".claude/window1_round2_final_prerun_20260724/ROUND2_REAIM_PAIR_PROOF.json": {
+      "availability": "available",
+      "bytes": 34931,
+      "git_blob_oid": "44c6db1cc023fe474aaf5045f31c22a015e71d66",
+      "path": ".claude/window1_round2_final_prerun_20260724/ROUND2_REAIM_PAIR_PROOF.json",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "82812f7fdfebbb704490e5868021898e1e3b26422b3a11cda4fa2d9c604f5b68"
+    },
+    ".claude/window1_round2_final_prerun_20260724/ROUND2_REAL_CAPABILITY.json": {
+      "availability": "available",
+      "bytes": 5299098,
+      "git_blob_oid": "dc010001a23b23718516e59b5eb6d34e13cb9c7e",
+      "path": ".claude/window1_round2_final_prerun_20260724/ROUND2_REAL_CAPABILITY.json",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "adb879d68d0d3b43d441097cb676281474de0fd48eb10e6412d3912820a472c1"
+    },
+    ".claude/window1_round2_final_prerun_20260724/SCORER_FREEZE_CONTRACT.json": {
+      "availability": "available",
+      "bytes": 983461,
+      "git_blob_oid": "daab0932b8a8763e7e60f6989b4134dd5f7649e4",
+      "path": ".claude/window1_round2_final_prerun_20260724/SCORER_FREEZE_CONTRACT.json",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "6684ee34bee79c8b29f98a83158004a7cf381b30a094ce7e2675021186806bb4"
+    },
+    ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json": {
+      "availability": "available",
+      "bytes": 332562,
+      "git_blob_oid": "b616c3a715ea0ab6a70083c7a3b1b808c9b25af2",
+      "path": ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "5b97aab24132a1e04a8f4d552fa2a6c026113aa5ad7d629c4ea07344b1238fa6"
+    },
+    ".claude/window1_round2_stdout_safe_execution_package_20260725/SCORING_INPUT_BUNDLE.json": {
+      "availability": "available",
+      "bytes": 5897049,
+      "git_blob_oid": "c74a364554d69a8ae0fa78719a278e8806531d46",
+      "path": ".claude/window1_round2_stdout_safe_execution_package_20260725/SCORING_INPUT_BUNDLE.json",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "47e1afff7d58f75f6b6c945e263b9d8a2feed5296edd73f94a2f4195cbc9a4ec"
+    },
+    ".claude/window1_round2_stdout_safe_execution_package_20260725/VALIDATION_ONLY_RECEIPT.json": {
+      "availability": "available",
+      "bytes": 2819,
+      "git_blob_oid": "0489843202d01e8ee5a4e5405bb366f93c326f0e",
+      "path": ".claude/window1_round2_stdout_safe_execution_package_20260725/VALIDATION_ONLY_RECEIPT.json",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "366baa2cc53e6d2d8c3c2c44978cb61264c479df9b22dc9f0fbba128e2476556"
+    },
+    "arb-executor/analysis/window1_round2_execution_packager.py": {
+      "availability": "available",
+      "bytes": 37485,
+      "git_blob_oid": "e001ac1b50aa509ab5553cb425060b17b3cedf28",
+      "path": "arb-executor/analysis/window1_round2_execution_packager.py",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "9285096055f0a209e7b094fc69a7818f1c03cc9dc425042dc51e53a337077f2e"
+    },
+    "arb-executor/analysis/window1_round2_grid_runner.py": {
+      "availability": "available",
+      "bytes": 57625,
+      "git_blob_oid": "23ec4690816fe5edbb6b7cb60fc93f4ce99b60fc",
+      "path": "arb-executor/analysis/window1_round2_grid_runner.py",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "b8c02d16fa39cb43bd60901f8a3eb8bbaf47de04446fc9092b7f3df84746f83b"
+    },
+    "arb-executor/tests/test_window1_round2_grid_runner.py": {
+      "availability": "available",
+      "bytes": 20033,
+      "git_blob_oid": "292f068f34dcf7b347c73b38246ee2366446db02",
+      "path": "arb-executor/tests/test_window1_round2_grid_runner.py",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "9eb5d22c77e8ee8223697790576df0ad37ffb736e050ddd0767c176525075efa"
+    },
+    "arb-executor/tests/test_window1_round2_stdout_safe.py": {
+      "availability": "available",
+      "bytes": 6669,
+      "git_blob_oid": "5f22e0152499144ecde77bcd020d7db24e70a272",
+      "path": "arb-executor/tests/test_window1_round2_stdout_safe.py",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "9d428ac7ca70954111eeb937481e2e707657e395d70321eb309ee68ede710dc7"
+    }
+  },
+  "preserved_inherited_blobs": {
+    ".claude/entrysurface_20260717/band_map_v1.json": {
+      "availability": "available",
+      "bytes": 15520,
+      "git_blob_oid": "d919b8e402f010e3703cd7fc3aad33e650c8ae2c",
+      "path": ".claude/entrysurface_20260717/band_map_v1.json",
+      "role": "frozen_policy_surface_or_contract",
+      "sha256": "caf255a283bbb32f1d9bd2edd5f4d898d5f50fc8e67d5f9a076579b695a9e68c"
+    },
+    ".claude/entrysurface_20260717/divot_tables_v1.json": {
+      "availability": "available",
+      "bytes": 16623,
+      "git_blob_oid": "0145907c60213fc5b65f15618667c82b38a19f42",
+      "path": ".claude/entrysurface_20260717/divot_tables_v1.json",
+      "role": "frozen_policy_surface_or_contract",
+      "sha256": "89c514ec35673de8f552b2b66b9ceafb8181b9c8f6c00b1679899a3a2a82ac06"
+    },
+    ".claude/entrysurface_20260717/drift_surfaces_v1.json": {
+      "availability": "available",
+      "bytes": 182240,
+      "git_blob_oid": "2c0d4d3ea7b7a687d38d859df817f2a551fccac2",
+      "path": ".claude/entrysurface_20260717/drift_surfaces_v1.json",
+      "role": "frozen_policy_surface_or_contract",
+      "sha256": "7dca4a4f0e6061d28765fd243f4ce717bc36a542b32490bafabc611bd2cf3bab"
+    },
+    ".claude/master_20260709/cohort.json": {
+      "availability": "available",
+      "bytes": 167390,
+      "git_blob_oid": "7b5f89c703679d69986c146692cce90c99c655cf",
+      "path": ".claude/master_20260709/cohort.json",
+      "role": "frozen_policy_surface_or_contract",
+      "sha256": "476b951001d8d7f5ba0905291ca22c7b27de2ee305d5abd3efee50f9b851e0ca"
+    },
+    ".claude/seqfloor_20260708/recut_cells.json": {
+      "availability": "available",
+      "bytes": 82073,
+      "git_blob_oid": "9e9a60110a1803aba301b4dda60073b2178fe12a",
+      "path": ".claude/seqfloor_20260708/recut_cells.json",
+      "role": "frozen_policy_surface_or_contract",
+      "sha256": "3674e3361704463a71a9f6c139b2b2b2cc82fbc6f93a2f2ba07c675642db244a"
+    },
+    ".claude/trendpath/ORIENT_V1.json": {
+      "availability": "available",
+      "bytes": 1947,
+      "git_blob_oid": "8971516ed0e248fed7a744d3ee4c7f90a27c833f",
+      "path": ".claude/trendpath/ORIENT_V1.json",
+      "role": "frozen_policy_surface_or_contract",
+      "sha256": "048105723d89dcd592fb5c79e8e69e34f2f24aadf2a7b00459b0e9c6dfdbd0ef"
+    },
+    ".claude/window1_20260721/WINDOW1_FEATURE_MATRIX.jsonl": {
+      "availability": "available",
+      "bytes": 20288495,
+      "git_blob_oid": "e40fb47bf779847657416cbfcc4cf4dfeff20529",
+      "path": ".claude/window1_20260721/WINDOW1_FEATURE_MATRIX.jsonl",
+      "role": "frozen_leg_identity_and_feature_ledger",
+      "sha256": "4b543313b315af91db86ff049f552335b32fc36654fd53d7a27ae682184584c1"
+    },
+    ".claude/window1_round2_execution_package_20260724/FROZEN_CANDIDATE_EVENT_STREAMS.jsonl.gz": {
+      "availability": "available",
+      "bytes": 36556344,
+      "git_blob_oid": "f9623954bce5096184b0eb30618d89ff622b9ce5",
+      "path": ".claude/window1_round2_execution_package_20260724/FROZEN_CANDIDATE_EVENT_STREAMS.jsonl.gz",
+      "role": "frozen_candidate_event_stream_bundle",
+      "sha256": "6ea3e12508232336e7d34e6b25b763cf6a5c5fcbbe08ab27314322f726ffa707"
+    },
+    ".claude/window1_round2_final_prerun_20260724/ROUND2_REAIM_PAIR_PROOF.json": {
+      "availability": "available",
+      "bytes": 34931,
+      "git_blob_oid": "44c6db1cc023fe474aaf5045f31c22a015e71d66",
+      "path": ".claude/window1_round2_final_prerun_20260724/ROUND2_REAIM_PAIR_PROOF.json",
+      "role": "frozen_base_reaim_changed_order_receipts",
+      "sha256": "82812f7fdfebbb704490e5868021898e1e3b26422b3a11cda4fa2d9c604f5b68"
+    },
+    ".claude/window1_round2_final_prerun_20260724/ROUND2_REAL_CAPABILITY.json": {
+      "availability": "available",
+      "bytes": 5299098,
+      "git_blob_oid": "dc010001a23b23718516e59b5eb6d34e13cb9c7e",
+      "path": ".claude/window1_round2_final_prerun_20260724/ROUND2_REAL_CAPABILITY.json",
+      "role": "frozen_candidate_stream_receipt_ledger",
+      "sha256": "adb879d68d0d3b43d441097cb676281474de0fd48eb10e6412d3912820a472c1"
+    },
+    ".claude/window1_round2_final_prerun_20260724/SCORER_FREEZE_CONTRACT.json": {
+      "availability": "available",
+      "bytes": 983461,
+      "git_blob_oid": "daab0932b8a8763e7e60f6989b4134dd5f7649e4",
+      "path": ".claude/window1_round2_final_prerun_20260724/SCORER_FREEZE_CONTRACT.json",
+      "role": "frozen_scorer_contract",
+      "sha256": "6684ee34bee79c8b29f98a83158004a7cf381b30a094ce7e2675021186806bb4"
+    },
+    ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json": {
+      "availability": "available",
+      "bytes": 332562,
+      "git_blob_oid": "b616c3a715ea0ab6a70083c7a3b1b808c9b25af2",
+      "path": ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json",
+      "role": "immutable_data_binding_manifest",
+      "sha256": "5b97aab24132a1e04a8f4d552fa2a6c026113aa5ad7d629c4ea07344b1238fa6"
+    },
+    ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl": {
+      "availability": "available",
+      "bytes": 3696777,
+      "git_blob_oid": "9207dd44d12c66fa29711e2d95ebafc66cafd155",
+      "path": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+      "role": "frozen_start_boundary_ledger",
+      "sha256": "c6204d016aeeab9cec54c5f989e695cb74a13e40b8e25085a3a9410a2c5548ed"
+    },
+    "arb-executor/analysis/window1_round2_data_binding.py": {
+      "availability": "available",
+      "bytes": 29179,
+      "git_blob_oid": "96399aff302c3ba7ccfddb495c182921e67e74d2",
+      "path": "arb-executor/analysis/window1_round2_data_binding.py",
+      "role": "frozen_input_validator",
+      "sha256": "7a1b633d299044a0c0707d6f0a212708c491cb2c59e4de6726a60a16f358b1a8"
+    },
+    "arb-executor/analysis/window1_round2_instrument.py": {
+      "availability": "available",
+      "bytes": 60437,
+      "git_blob_oid": "24b5eb805181cfdee94d06e77c26f06e73b7aeb7",
+      "path": "arb-executor/analysis/window1_round2_instrument.py",
+      "role": "frozen_candidate_stream_generator",
+      "sha256": "d712a50a066768a0356eafa3f9ac42d721e228bd12905112d8ce57304f8bdcc3"
+    },
+    "arb-executor/analysis/window1_round2_real_capability.py": {
+      "availability": "available",
+      "bytes": 29082,
+      "git_blob_oid": "fc06cf40d30a44ce666929a44220952df226f269",
+      "path": "arb-executor/analysis/window1_round2_real_capability.py",
+      "role": "frozen_normalization_adapter",
+      "sha256": "865a244558b822475947c58557c138ab8f9ced9cba8300695ea0cc5aaa17c7d1"
+    },
+    "arb-executor/analysis/window1_round2_scorer.py": {
+      "availability": "available",
+      "bytes": 30524,
+      "git_blob_oid": "9cf2f7e3c3ccb961e2d08ee0e21076f2b9dde0f2",
+      "path": "arb-executor/analysis/window1_round2_scorer.py",
+      "role": "frozen_scorer",
+      "sha256": "b41e6915882fd5b81b583d4c03317d21f1d708fd7710ea4b26a4a6da428fe997"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_CANDIDATES_V1.json": {
+      "availability": "available",
+      "bytes": 4595,
+      "git_blob_oid": "7e8ecfa146f3fa0aeca6f5358b810f84a31ed644",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_CANDIDATES_V1.json",
+      "role": "frozen_policy_surface_or_contract",
+      "sha256": "64f0c7cbd806b59865ac96a9435590b3bfe735a556f077a3d775dfce1bc31334"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_EXECUTION_ADAPTER_V1.json": {
+      "availability": "available",
+      "bytes": 4391,
+      "git_blob_oid": "60511265c2b4db5e67a859715f94b05fdff8d3ad",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_EXECUTION_ADAPTER_V1.json",
+      "role": "frozen_policy_surface_or_contract",
+      "sha256": "91e49554a7d0835d618fb3b8dcc2d59f7aa7cf67cfd15dc34d4cb5bb220816f4"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_METRIC_CONTRACT_V1.json": {
+      "availability": "available",
+      "bytes": 1075,
+      "git_blob_oid": "91489b6367d38ba28374359192823ebb4542c0b0",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_METRIC_CONTRACT_V1.json",
+      "role": "frozen_policy_surface_or_contract",
+      "sha256": "19795e4d8bc7b6920e9fe93f7fa60bd1c051df94dade31de4c7909b40953cb76"
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ROUND2_SCORER_CONTRACT_V1.json": {
+      "availability": "available",
+      "bytes": 3882,
+      "git_blob_oid": "292ecc3926455af1fc229b3672121478d98f7f81",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_SCORER_CONTRACT_V1.json",
+      "role": "frozen_policy_surface_or_contract",
+      "sha256": "76dbec45ecaedd964f42306cb0cf30efd6014d4c82a1193c4240507e2b7c3009"
+    }
+  },
+  "ranking_performed": false,
+  "result_directory": ".claude/window1_round2_results_w1r2-dev-20260712-20260720-0a7fd1c6-grid2-stdoutsafe",
+  "retired_execution": {
+    "consumed_as_package_input": false,
+    "execution_id": "w1r2-dev-20260712-20260720-0a7fd1c6-grid1",
+    "permanently_inadmissible": true,
+    "result_directory": ".claude/window1_round2_results_w1r2-dev-20260712-20260720-0a7fd1c6-grid1",
+    "retry_or_resume_permitted": false
+  },
+  "schema_version": "window1-round2-stdout-safe-execution-packager-v2-prerun-v1",
+  "sealed_holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "selection_status": "UNRANKED_FROZEN_SELECTION_RULE_ABSENT",
+  "stdout_safe_fixture_proof": {
+    "real_D804_bundle_consumed": false,
+    "receipt": {
+      "availability": "available",
+      "bytes": 6669,
+      "git_blob_oid": "5f22e0152499144ecde77bcd020d7db24e70a272",
+      "path": "arb-executor/tests/test_window1_round2_stdout_safe.py",
+      "role": "bound_PRE_RUN_input",
+      "sha256": "9d428ac7ca70954111eeb937481e2e707657e395d70321eb309ee68ede710dc7"
+    },
+    "required_cases": [
+      "pipe_reader_disappears_after_initial_success",
+      "detached_non_console_stdout",
+      "explicitly_closed_stdout",
+      "ValueError_from_closed_text_stream",
+      "exit_time_flush_after_pipe_failure",
+      "all_fixture_candidates_and_final_receipts_continue",
+      "equivalent_nonfatal_stderr_guard"
+    ],
+    "scorer_invocations": 0,
+    "synthetic_candidates_only": true,
+    "test_path": "arb-executor/tests/test_window1_round2_stdout_safe.py"
+  },
+  "target_PC": 603,
+  "tuning_performed": false,
+  "validation_only": {
+    "D": 804,
+    "all_external_inputs_verified": 3,
+    "all_git_inputs_verified": 22,
+    "all_market_cache_files_verified": 804,
+    "authorization_audit": "2ac4a2f49b55a5284cc1a9146047c3f42ea7561e",
+    "authorized_parent": "4b243babee97fe251bde21fa6a1197dfbba5387d",
+    "candidate_count": 8,
+    "candidate_dispatch_order": [
+      "r2_async_pair__park_join__hold",
+      "r2_async_pair__park_join__reaim",
+      "r2_async_pair__touch_park__hold",
+      "r2_async_pair__touch_park__reaim",
+      "r2_causal_steer__park_join__hold",
+      "r2_causal_steer__park_join__reaim",
+      "r2_full_os__walk_park__hold",
+      "r2_full_os__walk_park__reaim"
+    ],
+    "candidate_event_stream_receipts_verified": 6432,
+    "candidate_event_streams_loaded": 6432,
+    "candidate_instrument_invocations": 0,
+    "controlling_forensic_commit": "2ac4a2f49b55a5284cc1a9146047c3f42ea7561e",
+    "controlling_forensic_report_blob_oid": "b587b24173eb7e3605fa00b0fd06666b88b14442",
+    "dispatch_plan": [
+      {
+        "candidate_id": "r2_async_pair__park_join__hold",
+        "ordinal": 1,
+        "scorer_invocation_count_if_executed": 1
+      },
+      {
+        "candidate_id": "r2_async_pair__park_join__reaim",
+        "ordinal": 2,
+        "scorer_invocation_count_if_executed": 1
+      },
+      {
+        "candidate_id": "r2_async_pair__touch_park__hold",
+        "ordinal": 3,
+        "scorer_invocation_count_if_executed": 1
+      },
+      {
+        "candidate_id": "r2_async_pair__touch_park__reaim",
+        "ordinal": 4,
+        "scorer_invocation_count_if_executed": 1
+      },
+      {
+        "candidate_id": "r2_causal_steer__park_join__hold",
+        "ordinal": 5,
+        "scorer_invocation_count_if_executed": 1
+      },
+      {
+        "candidate_id": "r2_causal_steer__park_join__reaim",
+        "ordinal": 6,
+        "scorer_invocation_count_if_executed": 1
+      },
+      {
+        "candidate_id": "r2_full_os__walk_park__hold",
+        "ordinal": 7,
+        "scorer_invocation_count_if_executed": 1
+      },
+      {
+        "candidate_id": "r2_full_os__walk_park__reaim",
+        "ordinal": 8,
+        "scorer_invocation_count_if_executed": 1
+      }
+    ],
+    "execution_id": "w1r2-dev-20260712-20260720-0a7fd1c6-grid2-stdoutsafe",
+    "gate_pass": true,
+    "git_state_contract": "authorized_parent_precommit_or_clean_sole_PRE_RUN_child_with_only_retired_grid1_untracked",
+    "holdout_opened": false,
+    "holdout_queried": false,
+    "input_bundle_sha256": "e0e088e355589f77e3b3a9cf1a9da51b3045f70c551721fe41e3da5df4ffee2b",
+    "leg_identities_verified": 1608,
+    "live_or_production_access": false,
+    "mode": "validate-only",
+    "performance_results_produced": false,
+    "result_directory_created": false,
+    "retired_execution_consumed": false,
+    "retired_execution_id": "w1r2-dev-20260712-20260720-0a7fd1c6-grid1",
+    "schema_version": "window1-round2-deterministic-grid-runner-stdout-safe-v2-validation-only-v1",
+    "scorer_invocations": 0
+  }
+}

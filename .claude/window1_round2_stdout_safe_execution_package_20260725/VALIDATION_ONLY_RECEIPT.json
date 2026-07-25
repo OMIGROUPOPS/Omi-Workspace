@@ -1,0 +1,81 @@
+{
+  "D": 804,
+  "all_external_inputs_verified": 3,
+  "all_git_inputs_verified": 22,
+  "all_market_cache_files_verified": 804,
+  "authorization_audit": "2ac4a2f49b55a5284cc1a9146047c3f42ea7561e",
+  "authorized_parent": "4b243babee97fe251bde21fa6a1197dfbba5387d",
+  "candidate_count": 8,
+  "candidate_dispatch_order": [
+    "r2_async_pair__park_join__hold",
+    "r2_async_pair__park_join__reaim",
+    "r2_async_pair__touch_park__hold",
+    "r2_async_pair__touch_park__reaim",
+    "r2_causal_steer__park_join__hold",
+    "r2_causal_steer__park_join__reaim",
+    "r2_full_os__walk_park__hold",
+    "r2_full_os__walk_park__reaim"
+  ],
+  "candidate_event_stream_receipts_verified": 6432,
+  "candidate_event_streams_loaded": 6432,
+  "candidate_instrument_invocations": 0,
+  "controlling_forensic_commit": "2ac4a2f49b55a5284cc1a9146047c3f42ea7561e",
+  "controlling_forensic_report_blob_oid": "b587b24173eb7e3605fa00b0fd06666b88b14442",
+  "dispatch_plan": [
+    {
+      "candidate_id": "r2_async_pair__park_join__hold",
+      "ordinal": 1,
+      "scorer_invocation_count_if_executed": 1
+    },
+    {
+      "candidate_id": "r2_async_pair__park_join__reaim",
+      "ordinal": 2,
+      "scorer_invocation_count_if_executed": 1
+    },
+    {
+      "candidate_id": "r2_async_pair__touch_park__hold",
+      "ordinal": 3,
+      "scorer_invocation_count_if_executed": 1
+    },
+    {
+      "candidate_id": "r2_async_pair__touch_park__reaim",
+      "ordinal": 4,
+      "scorer_invocation_count_if_executed": 1
+    },
+    {
+      "candidate_id": "r2_causal_steer__park_join__hold",
+      "ordinal": 5,
+      "scorer_invocation_count_if_executed": 1
+    },
+    {
+      "candidate_id": "r2_causal_steer__park_join__reaim",
+      "ordinal": 6,
+      "scorer_invocation_count_if_executed": 1
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__hold",
+      "ordinal": 7,
+      "scorer_invocation_count_if_executed": 1
+    },
+    {
+      "candidate_id": "r2_full_os__walk_park__reaim",
+      "ordinal": 8,
+      "scorer_invocation_count_if_executed": 1
+    }
+  ],
+  "execution_id": "w1r2-dev-20260712-20260720-0a7fd1c6-grid2-stdoutsafe",
+  "gate_pass": true,
+  "git_state_contract": "authorized_parent_precommit_or_clean_sole_PRE_RUN_child_with_only_retired_grid1_untracked",
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "input_bundle_sha256": "e0e088e355589f77e3b3a9cf1a9da51b3045f70c551721fe41e3da5df4ffee2b",
+  "leg_identities_verified": 1608,
+  "live_or_production_access": false,
+  "mode": "validate-only",
+  "performance_results_produced": false,
+  "result_directory_created": false,
+  "retired_execution_consumed": false,
+  "retired_execution_id": "w1r2-dev-20260712-20260720-0a7fd1c6-grid1",
+  "schema_version": "window1-round2-deterministic-grid-runner-stdout-safe-v2-validation-only-v1",
+  "scorer_invocations": 0
+}

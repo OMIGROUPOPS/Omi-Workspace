@@ -19,6 +19,7 @@ import datetime as dt
 import gzip
 import hashlib
 import json
+import os
 import platform
 import subprocess
 import sys
@@ -32,21 +33,33 @@ import window1_round2_real_capability as capability
 import window1_round2_scorer as scorer
 
 
-VERSION = "window1-round2-deterministic-grid-runner-v1"
-PACKAGE_SCHEMA = "window1-round2-execution-package-v1"
-EXECUTION_ID = "w1r2-dev-20260712-20260720-0a7fd1c6-grid1"
-AUTHORIZED_PARENT = "0a7fd1c62d5cf662929c29f2298ed80aeecee1df"
-AUTHORIZED_AUDIT = "dd6fc30812f5199e048ecee1c80f5649c826bb4d"
+VERSION = "window1-round2-deterministic-grid-runner-stdout-safe-v2"
+PACKAGE_SCHEMA = "window1-round2-execution-package-stdout-safe-v2"
+EXECUTION_ID = (
+    "w1r2-dev-20260712-20260720-0a7fd1c6-grid2-stdoutsafe"
+)
+AUTHORIZED_PARENT = "4b243babee97fe251bde21fa6a1197dfbba5387d"
+CONTROLLING_FORENSIC = "2ac4a2f49b55a5284cc1a9146047c3f42ea7561e"
+FORENSIC_REPORT_PATH = (
+    ".claude/forensic_20260725_w1r2_stdout_failure/FORENSIC_REPORT.md"
+)
+FORENSIC_REPORT_BLOB_OID = "b587b24173eb7e3605fa00b0fd06666b88b14442"
+AUTHORIZED_AUDIT = CONTROLLING_FORENSIC
+RETIRED_EXECUTION_ID = "w1r2-dev-20260712-20260720-0a7fd1c6-grid1"
+RETIRED_RESULT_DIRECTORY = (
+    ".claude/window1_round2_results_"
+    "w1r2-dev-20260712-20260720-0a7fd1c6-grid1"
+)
 PACKAGE_PATH = (
-    ".claude/window1_round2_execution_package_20260724/"
+    ".claude/window1_round2_stdout_safe_execution_package_20260725/"
     "SCORING_INPUT_BUNDLE.json"
 )
 RESULT_DIRECTORY = (
     ".claude/window1_round2_results_"
-    "w1r2-dev-20260712-20260720-0a7fd1c6-grid1"
+    "w1r2-dev-20260712-20260720-0a7fd1c6-grid2-stdoutsafe"
 )
 VALIDATION_RECEIPT_PATH = (
-    ".claude/window1_round2_execution_package_20260724/"
+    ".claude/window1_round2_stdout_safe_execution_package_20260725/"
     "VALIDATION_ONLY_RECEIPT.json"
 )
 STREAM_BUNDLE_PATH = (
@@ -56,13 +69,13 @@ STREAM_BUNDLE_PATH = (
 EXACT_EXECUTION_COMMAND = (
     "python -B arb-executor/analysis/window1_round2_grid_runner.py "
     "--repo . --package "
-    ".claude/window1_round2_execution_package_20260724/"
+    ".claude/window1_round2_stdout_safe_execution_package_20260725/"
     "SCORING_INPUT_BUNDLE.json --mode execute"
 )
 EXACT_VALIDATION_COMMAND = (
     "python -B arb-executor/analysis/window1_round2_grid_runner.py "
     "--repo . --package "
-    ".claude/window1_round2_execution_package_20260724/"
+    ".claude/window1_round2_stdout_safe_execution_package_20260725/"
     "SCORING_INPUT_BUNDLE.json --mode validate-only"
 )
 FROZEN_CANDIDATES = [
@@ -157,6 +170,7 @@ OUTPUT_FILENAMES = [
     "BASE_REAIM_COMPARISON.json",
     "WINDOW1_ROUND2_DEVELOPMENT_REPORT.md",
     "HOLDOUT_NONPRODUCTION_NONACCESS_PROOF.json",
+    "PROGRESS.log",
     "STDOUT.log",
     "STDERR.log",
     "EXECUTION_MANIFEST.json",
@@ -166,6 +180,79 @@ OUTPUT_FILENAMES = [
 
 class GridExecutionError(RuntimeError):
     """Raised when a frozen grid execution or receipt contract is violated."""
+
+
+class ConsoleEchoGuard:
+    """Keep cosmetic console failures outside the authoritative run path."""
+
+    def __init__(self) -> None:
+        self.stdout_enabled = True
+        self.stderr_enabled = True
+        self.stdout_failure: str | None = None
+        self.stderr_failure: str | None = None
+        self._devnull_handles: list[Any] = []
+
+    def _disable(self, stream_name: str, exc: BaseException) -> None:
+        if stream_name == "stdout":
+            self.stdout_enabled = False
+            self.stdout_failure = f"{type(exc).__name__}: {exc}"
+        else:
+            self.stderr_enabled = False
+            self.stderr_failure = f"{type(exc).__name__}: {exc}"
+        devnull = open(os.devnull, "w", encoding="utf-8")
+        self._devnull_handles.append(devnull)
+        setattr(sys, stream_name, devnull)
+
+    def echo_stdout(self, message: str) -> None:
+        if not self.stdout_enabled:
+            return
+        try:
+            print(message, file=sys.stdout, flush=True)
+        except (OSError, ValueError) as exc:
+            self._disable("stdout", exc)
+
+    def echo_stderr(self, message: str) -> None:
+        if not self.stderr_enabled:
+            return
+        try:
+            print(message, file=sys.stderr, flush=True)
+        except (OSError, ValueError) as exc:
+            self._disable("stderr", exc)
+
+    def receipt(self) -> dict[str, Any]:
+        return {
+            "stdout_enabled": self.stdout_enabled,
+            "stdout_failure": self.stdout_failure,
+            "stderr_enabled": self.stderr_enabled,
+            "stderr_failure": self.stderr_failure,
+            "stdout_rebound_to_devnull": not self.stdout_enabled,
+            "stderr_rebound_to_devnull": not self.stderr_enabled,
+        }
+
+
+class ProgressEmitter:
+    """Append authoritative progress before attempting cosmetic stdout."""
+
+    def __init__(
+        self,
+        progress_path: Path,
+        stdout_lines: list[str],
+        console: ConsoleEchoGuard,
+    ) -> None:
+        self.progress_path = progress_path
+        self.stdout_lines = stdout_lines
+        self.console = console
+
+    def __call__(self, message: str) -> None:
+        if "\n" in message or "\r" in message:
+            raise GridExecutionError("progress event must be exactly one line")
+        with self.progress_path.open(
+            "a", encoding="utf-8", newline="\n"
+        ) as handle:
+            handle.write(message + "\n")
+            handle.flush()
+        self.stdout_lines.append(message)
+        self.console.echo_stdout(message)
 
 
 class FrozenScorerDispatcher:
@@ -329,6 +416,13 @@ def assert_exact_input_paths(
         raise GridExecutionError(f"{reason} {label} input refused")
 
 
+def unexpected_worktree_status(repo: Path) -> list[str]:
+    """Allow only the preserved, retired grid1 evidence directory."""
+    lines = git(repo, "status", "--porcelain").decode().splitlines()
+    allowed = f"?? {RETIRED_RESULT_DIRECTORY}/"
+    return [line for line in lines if line != allowed]
+
+
 def validate_dates(rows: Sequence[Mapping[str, Any]]) -> None:
     if len(rows) != 804:
         raise GridExecutionError("D=804 event ledger required")
@@ -484,6 +578,19 @@ def validate_package(
         or package.get("result_directory") != RESULT_DIRECTORY
     ):
         raise GridExecutionError("execution identity/command contract changed")
+    if package.get("controlling_forensic") != {
+        "commit": CONTROLLING_FORENSIC,
+        "report_path": FORENSIC_REPORT_PATH,
+        "report_blob_oid": FORENSIC_REPORT_BLOB_OID,
+        "verdict": "CATEGORY_A_OUTPUT_ONLY_INFRASTRUCTURE_FAILURE",
+    }:
+        raise GridExecutionError("controlling forensic binding changed")
+    if (
+        package.get("retired_execution_id") != RETIRED_EXECUTION_ID
+        or package.get("retired_result_directory")
+        != RETIRED_RESULT_DIRECTORY
+    ):
+        raise GridExecutionError("retired failed execution binding changed")
     assert_exact_candidate_order(package.get("candidate_ids") or [])
     if (
         package.get("D") != 804
@@ -503,8 +610,10 @@ def validate_package(
             raise GridExecutionError(
                 "execution must run from sole PRE-RUN child"
             )
-        if git(repo, "status", "--porcelain").strip():
-            raise GridExecutionError("execution requires a clean worktree")
+        if unexpected_worktree_status(repo):
+            raise GridExecutionError(
+                "execution requires a clean worktree except retired grid1"
+            )
         git_ref = "HEAD"
     elif mode == "validate-only":
         if branch != "codex/window1-definition":
@@ -523,9 +632,10 @@ def validate_package(
                 raise GridExecutionError(
                     "validation-only requires sole PRE-RUN child"
                 )
-            if git(repo, "status", "--porcelain").strip():
+            if unexpected_worktree_status(repo):
                 raise GridExecutionError(
-                    "committed validation-only requires clean worktree"
+                    "committed validation-only requires clean worktree "
+                    "except retired grid1"
                 )
             git_ref = "HEAD"
     else:
@@ -630,8 +740,15 @@ def validation_only(repo: Path, package_path: Path) -> dict[str, Any]:
         "execution_id": EXECUTION_ID,
         "authorized_parent": AUTHORIZED_PARENT,
         "authorization_audit": AUTHORIZED_AUDIT,
+        "controlling_forensic_commit": CONTROLLING_FORENSIC,
+        "controlling_forensic_report_blob_oid": (
+            FORENSIC_REPORT_BLOB_OID
+        ),
+        "retired_execution_id": RETIRED_EXECUTION_ID,
+        "retired_execution_consumed": False,
         "git_state_contract": (
-            "authorized_parent_precommit_or_clean_sole_PRE_RUN_child"
+            "authorized_parent_precommit_or_clean_sole_PRE_RUN_child_"
+            "with_only_retired_grid1_untracked"
         ),
         "input_bundle_sha256": validated["input_bundle_sha256"],
         "D": 804,
@@ -1071,10 +1188,10 @@ def execute_grid(repo: Path, package_path: Path) -> int:
     started = dt.datetime.now(dt.timezone.utc)
     stdout_lines: list[str] = []
     stderr_lines: list[str] = []
-
-    def emit(message: str) -> None:
-        stdout_lines.append(message)
-        print(message, flush=True)
+    console = ConsoleEchoGuard()
+    emit = ProgressEmitter(
+        result_dir / "PROGRESS.log", stdout_lines, console
+    )
 
     start_receipt = {
         "schema_version": VERSION + "-start-v1",
@@ -1083,6 +1200,12 @@ def execute_grid(repo: Path, package_path: Path) -> int:
         "git_sha": validated["head"],
         "authorized_parent": AUTHORIZED_PARENT,
         "authorization_audit": AUTHORIZED_AUDIT,
+        "controlling_forensic_commit": CONTROLLING_FORENSIC,
+        "controlling_forensic_report_blob_oid": (
+            FORENSIC_REPORT_BLOB_OID
+        ),
+        "retired_execution_id": RETIRED_EXECUTION_ID,
+        "retired_execution_consumed": False,
         "started_at_utc": started.isoformat(),
         "runtime_versions": _runtime_versions(),
         "input_bundle_sha256": package["input_bundle_sha256"],
@@ -1323,6 +1446,10 @@ def execute_grid(repo: Path, package_path: Path) -> int:
             "git_sha": validated["head"],
             "authorized_parent": AUTHORIZED_PARENT,
             "authorization_audit": AUTHORIZED_AUDIT,
+            "controlling_forensic_commit": CONTROLLING_FORENSIC,
+            "controlling_forensic_report_blob_oid": (
+                FORENSIC_REPORT_BLOB_OID
+            ),
             "started_at_utc": started.isoformat(),
             "ended_at_utc": ended.isoformat(),
             "exit_code": 0,
@@ -1341,6 +1468,8 @@ def execute_grid(repo: Path, package_path: Path) -> int:
             "selection_status": (
                 "UNRANKED_FROZEN_SELECTION_RULE_ABSENT"
             ),
+            "authoritative_progress_path": "PROGRESS.log",
+            "console_echo": console.receipt(),
             "holdout_opened": False,
             "holdout_queried": False,
             "live_or_production_access": False,
@@ -1376,12 +1505,16 @@ def execute_grid(repo: Path, package_path: Path) -> int:
             "error": message,
             "retry_permitted": False,
             "partial_log_preserved": True,
+            "authoritative_progress_path": "PROGRESS.log",
+            "console_echo": console.receipt(),
+            "controlling_forensic_commit": CONTROLLING_FORENSIC,
+            "retired_execution_consumed": False,
             "holdout_opened": False,
             "holdout_queried": False,
             "live_or_production_access": False,
         })
         _write_output_hashes(result_dir)
-        print(message, file=sys.stderr, flush=True)
+        console.echo_stderr(message)
         return 1
 
 
@@ -1410,7 +1543,9 @@ def main() -> int:
         else:
             receipt_path.parent.mkdir(parents=True, exist_ok=True)
             write_json(receipt_path, value)
-        print(json.dumps(value, indent=2, sort_keys=True))
+        ConsoleEchoGuard().echo_stdout(
+            json.dumps(value, indent=2, sort_keys=True)
+        )
         return 0
     return execute_grid(repo, package_path)
 

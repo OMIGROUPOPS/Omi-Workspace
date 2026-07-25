@@ -103,6 +103,14 @@ def package_fixture() -> tuple[dict, dict]:
         "execution_id": grid.EXECUTION_ID,
         "authorized_parent": grid.AUTHORIZED_PARENT,
         "authorization_audit": grid.AUTHORIZED_AUDIT,
+        "controlling_forensic": {
+            "commit": grid.CONTROLLING_FORENSIC,
+            "report_path": grid.FORENSIC_REPORT_PATH,
+            "report_blob_oid": grid.FORENSIC_REPORT_BLOB_OID,
+            "verdict": "CATEGORY_A_OUTPUT_ONLY_INFRASTRUCTURE_FAILURE",
+        },
+        "retired_execution_id": grid.RETIRED_EXECUTION_ID,
+        "retired_result_directory": grid.RETIRED_RESULT_DIRECTORY,
         "exact_execution_command": grid.EXACT_EXECUTION_COMMAND,
         "exact_validation_command": grid.EXACT_VALIDATION_COMMAND,
         "result_directory": grid.RESULT_DIRECTORY,
@@ -221,7 +229,7 @@ def test_execution_identity_and_commands_are_fully_fixed():
     assert grid.EXACT_EXECUTION_COMMAND == (
         "python -B arb-executor/analysis/"
         "window1_round2_grid_runner.py --repo . --package "
-        ".claude/window1_round2_execution_package_20260724/"
+        ".claude/window1_round2_stdout_safe_execution_package_20260725/"
         "SCORING_INPUT_BUNDLE.json --mode execute"
     )
     assert "*" not in grid.EXACT_EXECUTION_COMMAND
@@ -298,6 +306,29 @@ def test_existing_execution_id_refuses_overwrite_or_resume(tmp_path):
         grid.GridExecutionError, match="overwrite/resume"
     ):
         grid.validate_result_directory_absent(tmp_path, package)
+
+
+def test_only_retired_grid1_untracked_status_is_allowed(monkeypatch, tmp_path):
+    monkeypatch.setattr(
+        grid,
+        "git",
+        lambda repo, *args: (
+            f"?? {grid.RETIRED_RESULT_DIRECTORY}/\n".encode()
+        ),
+    )
+    assert grid.unexpected_worktree_status(tmp_path) == []
+
+    monkeypatch.setattr(
+        grid,
+        "git",
+        lambda repo, *args: (
+            f"?? {grid.RETIRED_RESULT_DIRECTORY}/\n"
+            "?? unrelated.txt\n"
+        ).encode(),
+    )
+    assert grid.unexpected_worktree_status(tmp_path) == [
+        "?? unrelated.txt"
+    ]
 
 
 def test_changed_or_missing_git_input_receipt_hard_fails(

@@ -1,0 +1,27 @@
+{
+  "artifacts": {
+    "PRE_RUN_MANIFEST.json": {
+      "bytes": 25616,
+      "sha256": "504c3d5f5d0e137b5a3055f34f7cb8f53de5d670e8e0a1ab13a825221c2844c9"
+    },
+    "PRE_RUN_REPORT.md": {
+      "bytes": 1180,
+      "sha256": "dc9cd51995c5e145eca907ab3d31bc7fac8ecd583b5076b7611c8a44d7aff018"
+    },
+    "SCORING_INPUT_BUNDLE.json": {
+      "bytes": 5897049,
+      "sha256": "47e1afff7d58f75f6b6c945e263b9d8a2feed5296edd73f94a2f4195cbc9a4ec"
+    },
+    "VALIDATION_ONLY_RECEIPT.json": {
+      "bytes": 2819,
+      "sha256": "366baa2cc53e6d2d8c3c2c44978cb61264c479df9b22dc9f0fbba128e2476556"
+    }
+  },
+  "candidate_scoring_performed": false,
+  "controlling_forensic_commit": "2ac4a2f49b55a5284cc1a9146047c3f42ea7561e",
+  "controlling_forensic_report_blob_oid": "b587b24173eb7e3605fa00b0fd06666b88b14442",
+  "execution_id": "w1r2-dev-20260712-20260720-0a7fd1c6-grid2-stdoutsafe",
+  "holdout_queried": false,
+  "parent": "4b243babee97fe251bde21fa6a1197dfbba5387d",
+  "schema_version": "window1-round2-stdout-safe-execution-packager-v2-artifacts-v1"
+}

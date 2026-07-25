@@ -18,18 +18,28 @@ import window1_round2_instrument as instrument
 import window1_round2_real_capability as capability
 
 
-VERSION = "window1-round2-execution-packager-v1"
-PARENT = "0a7fd1c62d5cf662929c29f2298ed80aeecee1df"
-AUDIT = "dd6fc30812f5199e048ecee1c80f5649c826bb4d"
-OUTPUT = Path(".claude/window1_round2_execution_package_20260724")
+VERSION = "window1-round2-stdout-safe-execution-packager-v2"
+PARENT = "4b243babee97fe251bde21fa6a1197dfbba5387d"
+AUDIT = "2ac4a2f49b55a5284cc1a9146047c3f42ea7561e"
+FORENSIC_REPORT = (
+    ".claude/forensic_20260725_w1r2_stdout_failure/FORENSIC_REPORT.md"
+)
+FORENSIC_REPORT_BLOB_OID = "b587b24173eb7e3605fa00b0fd06666b88b14442"
+OUTPUT = Path(
+    ".claude/window1_round2_stdout_safe_execution_package_20260725"
+)
 BUNDLE = OUTPUT / "SCORING_INPUT_BUNDLE.json"
-STREAM_BUNDLE = OUTPUT / "FROZEN_CANDIDATE_EVENT_STREAMS.jsonl.gz"
+PRIOR_PACKAGE = Path(".claude/window1_round2_execution_package_20260724")
+PRIOR_BUNDLE = PRIOR_PACKAGE / "SCORING_INPUT_BUNDLE.json"
+STREAM_BUNDLE = (
+    PRIOR_PACKAGE / "FROZEN_CANDIDATE_EVENT_STREAMS.jsonl.gz"
+)
 VALIDATION = OUTPUT / "VALIDATION_ONLY_RECEIPT.json"
 ORIGINAL_FREEZE = Path(
     ".claude/window1_round2_final_prerun_20260724"
 )
-ORIGINAL_MANIFEST = ORIGINAL_FREEZE / "PRE_RUN_MANIFEST.json"
-ORIGINAL_ARTIFACTS = ORIGINAL_FREEZE / "ARTIFACT_MANIFEST.json"
+ORIGINAL_MANIFEST = PRIOR_PACKAGE / "PRE_RUN_MANIFEST.json"
+ORIGINAL_ARTIFACTS = PRIOR_PACKAGE / "ARTIFACT_MANIFEST.json"
 CONTRACT = ORIGINAL_FREEZE / "SCORER_FREEZE_CONTRACT.json"
 CAPABILITY = ORIGINAL_FREEZE / "ROUND2_REAL_CAPABILITY.json"
 PAIR_PROOF = ORIGINAL_FREEZE / "ROUND2_REAIM_PAIR_PROOF.json"
@@ -45,6 +55,9 @@ PACKAGER_SOURCE = Path(
 )
 TEST_SOURCE = Path(
     "arb-executor/tests/test_window1_round2_grid_runner.py"
+)
+STDOUT_TEST_SOURCE = Path(
+    "arb-executor/tests/test_window1_round2_stdout_safe.py"
 )
 
 RUNTIME_GIT_INPUTS = [
@@ -152,6 +165,13 @@ def git(repo: Path, *args: str) -> bytes:
             + result.stderr.decode(errors="replace").strip()
         )
     return result.stdout
+
+
+def verify_forensic_binding(repo: Path) -> None:
+    commit = git(repo, "rev-parse", f"{AUDIT}^{{commit}}").decode().strip()
+    blob = git(repo, "rev-parse", f"{AUDIT}:{FORENSIC_REPORT}").decode().strip()
+    if commit != AUDIT or blob != FORENSIC_REPORT_BLOB_OID:
+        raise PackagingError("controlling forensic commit/report binding changed")
 
 
 def _path(value: Path) -> str:
@@ -322,6 +342,8 @@ def materialize_frozen_streams(repo: Path, output: Path) -> None:
 def build_package(repo: Path) -> dict[str, Any]:
     if git(repo, "rev-parse", "HEAD").decode().strip() != PARENT:
         raise PackagingError("prepare requires exact authorized parent")
+    verify_forensic_binding(repo)
+    prior_bundle = read_json(repo / PRIOR_BUNDLE)
     contract = read_json(repo / CONTRACT)
     capability = read_json(repo / CAPABILITY)
     pair = read_json(repo / PAIR_PROOF)
@@ -368,7 +390,7 @@ def build_package(repo: Path) -> dict[str, Any]:
         role = role_by_path.get(_path(path), "frozen_policy_surface_or_contract")
         git_inputs.append(
             worktree_receipt(repo, path, role)
-            if path in {RUNNER_SOURCE, STREAM_BUNDLE}
+            if path == RUNNER_SOURCE
             else head_receipt(repo, path, role)
         )
     stream_container = next(
@@ -468,6 +490,15 @@ def build_package(repo: Path) -> dict[str, Any]:
         "execution_id": runner.EXECUTION_ID,
         "authorized_parent": PARENT,
         "authorization_audit": AUDIT,
+        "controlling_forensic": {
+            "commit": AUDIT,
+            "report_path": FORENSIC_REPORT,
+            "report_blob_oid": FORENSIC_REPORT_BLOB_OID,
+            "verdict": "CATEGORY_A_OUTPUT_ONLY_INFRASTRUCTURE_FAILURE",
+        },
+        "retired_execution_id": runner.RETIRED_EXECUTION_ID,
+        "retired_result_directory": runner.RETIRED_RESULT_DIRECTORY,
+        "retired_attempt_consumed_as_input": False,
         "exact_execution_command": runner.EXACT_EXECUTION_COMMAND,
         "exact_validation_command": runner.EXACT_VALIDATION_COMMAND,
         "required_working_directory": "repository root",
@@ -593,6 +624,10 @@ def build_package(repo: Path) -> dict[str, Any]:
             "resume": False,
             "retry": False,
             "partial_failure_log_preserved": True,
+            "authoritative_progress": "PROGRESS.log",
+            "progress_file_flushed_before_console_echo": True,
+            "stdout_stderr_echo_nonfatal": True,
+            "console_failure_rebinds_to_os_devnull": True,
         },
         "candidate_scoring_performed": False,
         "tuning_performed": False,
@@ -601,6 +636,78 @@ def build_package(repo: Path) -> dict[str, Any]:
         "holdout_opened": False,
         "holdout_queried": False,
         "live_or_production_access": False,
+    }
+    current_non_runner = [
+        row for row in package["git_inputs"]
+        if row["role"] != "deterministic_grid_runner"
+    ]
+    prior_non_runner = [
+        row for row in prior_bundle["git_inputs"]
+        if row["role"] != "deterministic_grid_runner"
+    ]
+    parity_checks = {
+        "non_runner_git_inputs": current_non_runner == prior_non_runner,
+        "external_inputs": (
+            package["external_inputs"] == prior_bundle["external_inputs"]
+        ),
+        "market_cache_files": (
+            package["market_cache_files"]
+            == prior_bundle["market_cache_files"]
+        ),
+        "market_cache_aggregate": (
+            package["market_cache_aggregate"]
+            == prior_bundle["market_cache_aggregate"]
+        ),
+        "candidate_event_stream_inputs": (
+            package["candidate_event_stream_inputs"]
+            == prior_bundle["candidate_event_stream_inputs"]
+        ),
+        "candidate_event_stream_receipts": (
+            package["candidate_event_stream_receipts"]
+            == prior_bundle["candidate_event_stream_receipts"]
+        ),
+        "frozen_event_leg_identities": (
+            package["frozen_event_leg_identities"]
+            == prior_bundle["frozen_event_leg_identities"]
+        ),
+        "metric_law": package["metric_law"] == prior_bundle["metric_law"],
+        "guarded_cutoff_law": (
+            package["guarded_cutoff_law"]
+            == prior_bundle["guarded_cutoff_law"]
+        ),
+        "candidate_ids": (
+            package["candidate_ids"] == prior_bundle["candidate_ids"]
+        ),
+        "D": package["D"] == prior_bundle["D"] == 804,
+    }
+    if (
+        len(current_non_runner) != 21
+        or not all(parity_checks.values())
+    ):
+        raise PackagingError("frozen non-runner surface parity failed")
+    package["frozen_surface_parity"] = {
+        "baseline_PRE_RUN": PARENT,
+        "non_runner_git_input_count": 21,
+        "non_runner_git_inputs_sha256": canonical_sha256(
+            current_non_runner
+        ),
+        "external_inputs_sha256": canonical_sha256(
+            package["external_inputs"]
+        ),
+        "market_cache_files_sha256": canonical_sha256(
+            package["market_cache_files"]
+        ),
+        "candidate_event_stream_inputs_sha256": canonical_sha256(
+            package["candidate_event_stream_inputs"]
+        ),
+        "candidate_event_stream_receipts_sha256": package[
+            "candidate_event_stream_receipts_sha256"
+        ],
+        "frozen_event_leg_identities_sha256": package[
+            "frozen_event_leg_identities_sha256"
+        ],
+        "checks": parity_checks,
+        "all_checks_pass": True,
     }
     package["input_bundle_sha256"] = canonical_sha256(package)
     return package
@@ -633,7 +740,9 @@ def prepare(repo: Path, output: Path) -> None:
         if target.exists():
             target.unlink()
     if not (repo / STREAM_BUNDLE).is_file():
-        materialize_frozen_streams(repo, output)
+        raise PackagingError(
+            "frozen 4b243bab stream bundle missing; rematerialization refused"
+        )
     write_json(output / BUNDLE.name, build_package(repo))
 
 
@@ -641,9 +750,11 @@ BOUND_PATHS = [
     RUNNER_SOURCE,
     PACKAGER_SOURCE,
     TEST_SOURCE,
+    STDOUT_TEST_SOURCE,
     BUNDLE,
     STREAM_BUNDLE,
     VALIDATION,
+    PRIOR_BUNDLE,
     ORIGINAL_MANIFEST,
     ORIGINAL_ARTIFACTS,
     CONTRACT,
@@ -662,6 +773,7 @@ def freeze(repo: Path, output: Path) -> None:
         or git(repo, "rev-parse", "HEAD").decode().strip() != PARENT
     ):
         raise PackagingError("freeze requires exact parent and branch")
+    verify_forensic_binding(repo)
     if git(repo, "diff", "--name-only").strip():
         raise PackagingError("freeze refuses unstaged package changes")
     receipts = {
@@ -682,6 +794,15 @@ def freeze(repo: Path, output: Path) -> None:
         or package["candidate_ids"] != runner.FROZEN_CANDIDATES
         or package["candidate_event_stream_count"] != 6432
         or package["leg_identity_count"] != 1608
+        or package.get("controlling_forensic", {}).get("commit") != AUDIT
+        or package.get("controlling_forensic", {}).get(
+            "report_blob_oid"
+        ) != FORENSIC_REPORT_BLOB_OID
+        or package.get("retired_execution_id")
+        != runner.RETIRED_EXECUTION_ID
+        or package.get("frozen_surface_parity", {}).get(
+            "all_checks_pass"
+        ) is not True
         or validation.get("gate_pass") is not True
         or validation.get("scorer_invocations") != 0
         or validation.get("performance_results_produced") is not False
@@ -690,28 +811,10 @@ def freeze(repo: Path, output: Path) -> None:
         or (repo / runner.RESULT_DIRECTORY).exists()
     ):
         raise PackagingError("execution package freeze gate failed")
-    preserved_paths = [
-        "arb-executor/analysis/window1_round2_instrument.py",
-        "arb-executor/analysis/window1_round2_scorer.py",
-        (
-            "arb-executor/docs/research/window1/"
-            "WINDOW1_ROUND2_CANDIDATES_V1.json"
-        ),
-        (
-            "arb-executor/docs/research/window1/"
-            "WINDOW1_ROUND2_METRIC_CONTRACT_V1.json"
-        ),
-        _path(CONTRACT),
-        _path(CAPABILITY),
-        (
-            ".claude/window1_start_guard_corrected_20260724/"
-            "REAL_START_LEDGER_V5.jsonl"
-        ),
-        ".claude/window1_20260721/WINDOW1_FEATURE_MATRIX.jsonl",
-    ]
     preserved = {
-        path: head_receipt(repo, Path(path), "preserved_inherited_blob")
-        for path in preserved_paths
+        row["path"]: row
+        for row in package["git_inputs"]
+        if row["role"] != "deterministic_grid_runner"
     }
     manifest = {
         "schema_version": VERSION + "-prerun-v1",
@@ -724,6 +827,19 @@ def freeze(repo: Path, output: Path) -> None:
             "commit_count_after_parent": 1,
         },
         "authorization_audit": AUDIT,
+        "controlling_forensic": {
+            "commit": AUDIT,
+            "report_path": FORENSIC_REPORT,
+            "report_blob_oid": FORENSIC_REPORT_BLOB_OID,
+            "verdict": "CATEGORY_A_OUTPUT_ONLY_INFRASTRUCTURE_FAILURE",
+        },
+        "retired_execution": {
+            "execution_id": runner.RETIRED_EXECUTION_ID,
+            "result_directory": runner.RETIRED_RESULT_DIRECTORY,
+            "permanently_inadmissible": True,
+            "consumed_as_package_input": False,
+            "retry_or_resume_permitted": False,
+        },
         "execution_id": runner.EXECUTION_ID,
         "exact_execution_command": runner.EXACT_EXECUTION_COMMAND,
         "exact_validation_command": runner.EXACT_VALIDATION_COMMAND,
@@ -739,6 +855,22 @@ def freeze(repo: Path, output: Path) -> None:
             "candidate_order": runner.FROZEN_CANDIDATES,
             "scorer_invocations_per_candidate": 1,
             "total_scorer_invocations": 8,
+        },
+        "stdout_safe_fixture_proof": {
+            "test_path": _path(STDOUT_TEST_SOURCE),
+            "receipt": receipts[_path(STDOUT_TEST_SOURCE)],
+            "synthetic_candidates_only": True,
+            "real_D804_bundle_consumed": False,
+            "scorer_invocations": 0,
+            "required_cases": [
+                "pipe_reader_disappears_after_initial_success",
+                "detached_non_console_stdout",
+                "explicitly_closed_stdout",
+                "ValueError_from_closed_text_stream",
+                "exit_time_flush_after_pipe_failure",
+                "all_fixture_candidates_and_final_receipts_continue",
+                "equivalent_nonfatal_stderr_guard",
+            ],
         },
         "validation_only": validation,
         "D": 804,
@@ -759,6 +891,7 @@ def freeze(repo: Path, output: Path) -> None:
         "frozen_event_leg_identities_sha256": package[
             "frozen_event_leg_identities_sha256"
         ],
+        "frozen_surface_parity": package["frozen_surface_parity"],
         "preserved_inherited_blobs": preserved,
         "package_source_code_receipts": receipts,
         "selection_status": "UNRANKED_FROZEN_SELECTION_RULE_ABSENT",
@@ -770,7 +903,10 @@ def freeze(repo: Path, output: Path) -> None:
         "holdout_queried": False,
         "live_or_production_access": False,
         "invariants": {
-            "parent_exact_0a7fd1c6": True,
+            "parent_exact_4b243bab": True,
+            "controlling_forensic_commit_and_blob_bound": True,
+            "retired_grid1_not_reused_or_consumed": True,
+            "new_result_directory_refuses_existing": True,
             "execution_id_frozen": True,
             "one_exact_execution_command": True,
             "complete_input_bundle_hash_bound": True,
@@ -779,23 +915,27 @@ def freeze(repo: Path, output: Path) -> None:
             "all_6432_stream_contents_materialized_and_bound": True,
             "all_1608_leg_identities_preserved": True,
             "frozen_scorer_and_metric_unchanged": True,
+            "all_21_non_runner_git_inputs_byte_identical": True,
             "guard_law_unchanged": True,
             "development_dates_only": True,
             "holdout_hard_refused": True,
             "overwrite_resume_retry_refused": True,
             "validation_only_zero_scorer_invocations": True,
+            "stdout_stderr_console_echo_nonfatal": True,
+            "progress_log_authoritative_and_flushed_first": True,
             "benchmark_not_executed": True,
         },
     }
     write_json(output / "PRE_RUN_MANIFEST.json", manifest)
     (output / "PRE_RUN_REPORT.md").write_text(
         "\n".join([
-            "# Round-2 deterministic execution-package PRE-RUN",
+            "# Round-2 stdout-safe deterministic execution-package PRE-RUN",
             "",
             "Status: **FROZEN, VALIDATED, NOT SCORED.**",
             "",
             f"- Parent: `{PARENT}`",
-            f"- Authorization audit: `{AUDIT}`",
+            f"- Controlling forensic: `{AUDIT}`",
+            f"- Forensic report blob: `{FORENSIC_REPORT_BLOB_OID}`",
             f"- Execution ID: `{runner.EXECUTION_ID}`",
             f"- Input-bundle SHA-256: `{package_hash}`",
             f"- Exact command: `{runner.EXACT_EXECUTION_COMMAND}`",
@@ -803,6 +943,9 @@ def freeze(repo: Path, output: Path) -> None:
             "- All 6,432 frozen candidate-event streams are materialized and "
             "hash-bound as scorer inputs.",
             "- The frozen scorer is invoked exactly once per candidate.",
+            "- `PROGRESS.log` is authoritative; stdout/stderr echo is nonfatal.",
+            "- Seven synthetic output-handle fixture cases are bound in tests.",
+            "- Retired grid1 evidence is excluded and never consumed.",
             "- Validation-only loaded all receipts with zero scorer calls.",
             "- No benchmark, ranking, tuning, ablation, or holdout ran.",
             "",
@@ -825,6 +968,10 @@ def freeze(repo: Path, output: Path) -> None:
     write_json(output / "ARTIFACT_MANIFEST.json", {
         "schema_version": VERSION + "-artifacts-v1",
         "parent": PARENT,
+        "controlling_forensic_commit": AUDIT,
+        "controlling_forensic_report_blob_oid": (
+            FORENSIC_REPORT_BLOB_OID
+        ),
         "execution_id": runner.EXECUTION_ID,
         "artifacts": artifacts,
         "candidate_scoring_performed": False,

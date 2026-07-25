@@ -1,0 +1,78 @@
+{
+  "execution_id": "w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+  "outputs": {
+    "01_r3_pair_presence__park_join__hold_EVENT_LEDGER.jsonl": {
+      "bytes": 1212065,
+      "sha256": "ba74f95bea90b832a49c6a5fc6a49897a5f97e777d183b66fc722048a8f34704"
+    },
+    "02_r3_pair_presence__park_join__reaim_EVENT_LEDGER.jsonl": {
+      "bytes": 1213249,
+      "sha256": "2af36b55b21bf0e5259b0c10d0fc463f1958c067eb29f88e59acbd752ea99363"
+    },
+    "03_r3_pair_presence__touch_park__hold_EVENT_LEDGER.jsonl": {
+      "bytes": 1197055,
+      "sha256": "1f1350037485c1598ac2a3d179ea517ee1d992e1ab206325d3b7ef593b740a13"
+    },
+    "04_r3_pair_presence__touch_park__reaim_EVENT_LEDGER.jsonl": {
+      "bytes": 1197979,
+      "sha256": "b878afa615ca5cf225934f1e2bad8288c3962e848e63c00a8e90f9c99a103b46"
+    },
+    "05_r3_causal_steer__park_join__hold_EVENT_LEDGER.jsonl": {
+      "bytes": 1209014,
+      "sha256": "1dd59a448bf4fd173dd86f56a557f3389dbdc3bea723fa5bf9352ff7e3979eb4"
+    },
+    "06_r3_causal_steer__park_join__reaim_EVENT_LEDGER.jsonl": {
+      "bytes": 1209926,
+      "sha256": "633d46f39addcf75f9d7d70aa4715fb824d601203b28d140f7dd6ae56809e4f3"
+    },
+    "07_r3_full_os__walk_park__hold_EVENT_LEDGER.jsonl": {
+      "bytes": 1171313,
+      "sha256": "9cb5846402d6487174d256832225208a98566f695b10e0cb54c49564cf9350df"
+    },
+    "08_r3_full_os__walk_park__reaim_EVENT_LEDGER.jsonl": {
+      "bytes": 1172117,
+      "sha256": "b331e7aac534b7eb73fb172a557d81d01cf8271d32ab0d4418944d52c52e5b44"
+    },
+    "BASE_REAIM_COMPARISON.json": {
+      "bytes": 53511,
+      "sha256": "23c7980513c7fa92d9cb6abaea8e366161c832961c6e3ff0d47851c396c21275"
+    },
+    "EIGHT_CANDIDATE_RESULTS.json": {
+      "bytes": 98781,
+      "sha256": "9c22723fa4dc90848195a869c0bb9865fc85fbb2f34ffb4549ab679e20ce4713"
+    },
+    "EXECUTION_MANIFEST.json": {
+      "bytes": 3279,
+      "sha256": "8d84932d02e5f944acf03ad63fa89476656cf2853cda0f51d290d1aa49f33608"
+    },
+    "EXECUTION_START_RECEIPT.json": {
+      "bytes": 2341,
+      "sha256": "8ebb64ec1a5d7fa767e0fbded0ae242befa25d876252b5f935ca9e0e485399e8"
+    },
+    "HOLDOUT_NONPRODUCTION_NONACCESS_PROOF.json": {
+      "bytes": 930,
+      "sha256": "4a270803ea23554cad74d9eea202186f08757bbd99863048f4737b03c3c630e9"
+    },
+    "METRIC_CONSERVATION_REPORT.json": {
+      "bytes": 1409,
+      "sha256": "baa002ddca2133bbab46bc718c415fe652b03e2086abfe6025f5fc9939d02d8c"
+    },
+    "PROGRESS.log": {
+      "bytes": 1018,
+      "sha256": "f2f23493cf051e7318cbf9ccbe72e4608bf0b58846715f2d2deec49bddc915c5"
+    },
+    "STDERR.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "STDOUT.log": {
+      "bytes": 1018,
+      "sha256": "f2f23493cf051e7318cbf9ccbe72e4608bf0b58846715f2d2deec49bddc915c5"
+    },
+    "WINDOW1_ROUND3_DEVELOPMENT_REPORT.md": {
+      "bytes": 1318,
+      "sha256": "7008a74316bdf42e158e48ef8252f892e8bf4cf2b69650460b5021ed4224aad4"
+    }
+  },
+  "schema_version": "window1-round3-deterministic-grid-runner-stdout-safe-v1-output-hashes-v1"
+}

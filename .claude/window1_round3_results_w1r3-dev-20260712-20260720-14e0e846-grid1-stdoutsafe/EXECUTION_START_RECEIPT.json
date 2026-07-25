@@ -1,0 +1,46 @@
+{
+  "authorization_audit": "b415a98e2430642242f8e0205fb9b5edfee841b5",
+  "authorized_parent": "14e0e846e8922da98f656aef1f43d2c48da96ee7",
+  "candidate_dispatch_order": [
+    "r3_pair_presence__park_join__hold",
+    "r3_pair_presence__park_join__reaim",
+    "r3_pair_presence__touch_park__hold",
+    "r3_pair_presence__touch_park__reaim",
+    "r3_causal_steer__park_join__hold",
+    "r3_causal_steer__park_join__reaim",
+    "r3_full_os__walk_park__hold",
+    "r3_full_os__walk_park__reaim"
+  ],
+  "candidate_scorer_invocations_completed": 8,
+  "controlling_identities": {
+    "round2_results": "10ac6dbc68d65cb21ab3718e118ff34d7220ad87",
+    "round2_results_audit": {
+      "commit": "807e2c865c3cf7384757c54a3b879518568dec4f",
+      "report_blob_oid": "9bb51a3dc19fd055156ee958a6f208b1a725cbc4",
+      "report_path": ".claude/audit_20260725_grid2_results/AUDIT_REPORT.md"
+    },
+    "round3_prerun": "14e0e846e8922da98f656aef1f43d2c48da96ee7",
+    "round3_prerun_audit": {
+      "commit": "b415a98e2430642242f8e0205fb9b5edfee841b5",
+      "report_blob_oid": "e4b32d218f3e4e1feeb3043ff4f4b3ba36033ac0",
+      "report_path": ".claude/audit_20260725_round3_prerun/AUDIT_REPORT.md"
+    }
+  },
+  "exact_command": "python -B arb-executor/analysis/window1_round3_grid_runner.py --repo . --package .claude/window1_round3_execution_package_20260725/SCORING_INPUT_BUNDLE.json --mode execute",
+  "execution_id": "w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+  "git_sha": "6daab089d1e6c11bd75a684b4e8609e815fec8f4",
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "input_bundle_sha256": "7dec1673c79dd548899f2e003ce753d90af01b182c929aa04be5f20714b24cb5",
+  "live_or_production_access": false,
+  "runtime_versions": {
+    "implementation": "CPython",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "python_executable": "C:\\Users\\omigr\\AppData\\Local\\Programs\\Python\\Python311\\python.exe"
+  },
+  "schema_version": "window1-round3-deterministic-grid-runner-stdout-safe-v1-start-v1",
+  "scorer_contract_sha256": "c0918343eb53bd0cdaebc7efe585ed4d4ee6af9e64ef2a651aae3243a3840c27",
+  "scorer_source_sha256": "b41e6915882fd5b81b583d4c03317d21f1d708fd7710ea4b26a4a6da428fe997",
+  "started_at_utc": "2026-07-25T16:37:54.201721+00:00"
+}

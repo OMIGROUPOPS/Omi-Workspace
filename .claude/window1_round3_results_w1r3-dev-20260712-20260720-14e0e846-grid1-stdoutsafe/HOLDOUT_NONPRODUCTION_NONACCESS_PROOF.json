@@ -1,0 +1,32 @@
+{
+  "configuration_paths_written": [],
+  "development_dates_only": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "execution_id": "w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+  "gate_pass": true,
+  "holdout_opened": false,
+  "holdout_paths_opened": [],
+  "holdout_queried": false,
+  "input_manifest_holdout_rows": 0,
+  "live_exchange_calls": 0,
+  "live_v4_paths_written": [],
+  "network_calls": 0,
+  "only_result_directory_written": ".claude/window1_round3_results_w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+  "orders_positions_window2_exits_settlement_DCA_written": [],
+  "production_paths_written": [],
+  "schema_version": "window1-round3-deterministic-grid-runner-stdout-safe-v1-nonaccess-v1",
+  "sealed_holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "artifacts": {
+    "EXPECTED_OUTPUT_INVENTORY.json": {
+      "bytes": 1217,
+      "sha256": "6eba00c8ebc0a8fa6b168e182fc132949ba4a4cd48bd5603c34b0d48fd76be59"
+    },
+    "EXPECTED_PROGRESS_SEQUENCE.json": {
+      "bytes": 1474,
+      "sha256": "64bec1ae3a39aa19a76f17f4432377d3410901e1a0372b0c1c2fc8ee60919d95"
+    },
+    "PACKAGING_TEST_RECEIPT.json": {
+      "bytes": 916,
+      "sha256": "7fc00f17f5cfc20520e37fdda41912b9cecab0a3ce28ffe5ce8e2a19491a6133"
+    },
+    "PRE_RUN_MANIFEST.json": {
+      "bytes": 18896,
+      "sha256": "84d8eb0b89d68c23099d1f18706c846e729f241798c7067c296acf2c088b97ac"
+    },
+    "PRE_RUN_REPORT.md": {
+      "bytes": 1250,
+      "sha256": "71197a438794e505e8fc1579fc6e8977dd19cbe9cfa377f4624581f07cb263ac"
+    },
+    "REFUSAL_FIXTURE_RESULTS.json": {
+      "bytes": 1395,
+      "sha256": "f0ccfd9bb1266c5476671bacfc8ac5803d9996d6dea3d1e74b3a9efbdb8b6660"
+    },
+    "SCORER_FREEZE_CONTRACT.json": {
+      "bytes": 983731,
+      "sha256": "c0918343eb53bd0cdaebc7efe585ed4d4ee6af9e64ef2a651aae3243a3840c27"
+    },
+    "SCORING_INPUT_BUNDLE.json": {
+      "bytes": 5893945,
+      "sha256": "807b2375a1015d414845ddc439373feb5cd7c4b7d2e536449bd4b80631c8b787"
+    },
+    "VALIDATION_ONLY_RECEIPT.json": {
+      "bytes": 3184,
+      "sha256": "c75ffdd3371a79f4d6d772d697609df4cb7ef0a41d5e8bd265d1a2d438082889"
+    }
+  },
+  "candidate_scoring_performed": false,
+  "execution_id": "w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+  "holdout_queried": false,
+  "parent": "14e0e846e8922da98f656aef1f43d2c48da96ee7",
+  "schema_version": "window1-round3-execution-packager-v1-artifacts-v1",
+  "scorer_invocations": 0
+}

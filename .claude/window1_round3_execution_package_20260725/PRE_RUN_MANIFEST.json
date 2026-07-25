@@ -1,0 +1,403 @@
+{
+  "D": 804,
+  "ablation_performed": false,
+  "bound_package_receipts": {
+    ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json": {
+      "availability": "available",
+      "bytes": 332562,
+      "git_blob_oid": "b616c3a715ea0ab6a70083c7a3b1b808c9b25af2",
+      "path": ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json",
+      "role": "bound_round3_execution_package_input",
+      "sha256": "5b97aab24132a1e04a8f4d552fa2a6c026113aa5ad7d629c4ea07344b1238fa6"
+    },
+    ".claude/window1_round3_execution_package_20260725/EXPECTED_OUTPUT_INVENTORY.json": {
+      "availability": "available",
+      "bytes": 1217,
+      "git_blob_oid": "ed3bafe57dbf7a30997d34e99bdc892ab17a159b",
+      "path": ".claude/window1_round3_execution_package_20260725/EXPECTED_OUTPUT_INVENTORY.json",
+      "role": "bound_round3_execution_package_input",
+      "sha256": "6eba00c8ebc0a8fa6b168e182fc132949ba4a4cd48bd5603c34b0d48fd76be59"
+    },
+    ".claude/window1_round3_execution_package_20260725/EXPECTED_PROGRESS_SEQUENCE.json": {
+      "availability": "available",
+      "bytes": 1474,
+      "git_blob_oid": "0c3114f27c760da3349f35cc58274b6ee9e6e879",
+      "path": ".claude/window1_round3_execution_package_20260725/EXPECTED_PROGRESS_SEQUENCE.json",
+      "role": "bound_round3_execution_package_input",
+      "sha256": "64bec1ae3a39aa19a76f17f4432377d3410901e1a0372b0c1c2fc8ee60919d95"
+    },
+    ".claude/window1_round3_execution_package_20260725/PACKAGING_TEST_RECEIPT.json": {
+      "availability": "available",
+      "bytes": 916,
+      "git_blob_oid": "d13f4d0f89c684b96aa7f315c1682567903921f5",
+      "path": ".claude/window1_round3_execution_package_20260725/PACKAGING_TEST_RECEIPT.json",
+      "role": "bound_round3_execution_package_input",
+      "sha256": "7fc00f17f5cfc20520e37fdda41912b9cecab0a3ce28ffe5ce8e2a19491a6133"
+    },
+    ".claude/window1_round3_execution_package_20260725/REFUSAL_FIXTURE_RESULTS.json": {
+      "availability": "available",
+      "bytes": 1395,
+      "git_blob_oid": "6a79229930c9208495ac8f01552bbed1bb6f21ca",
+      "path": ".claude/window1_round3_execution_package_20260725/REFUSAL_FIXTURE_RESULTS.json",
+      "role": "bound_round3_execution_package_input",
+      "sha256": "f0ccfd9bb1266c5476671bacfc8ac5803d9996d6dea3d1e74b3a9efbdb8b6660"
+    },
+    ".claude/window1_round3_execution_package_20260725/SCORER_FREEZE_CONTRACT.json": {
+      "availability": "available",
+      "bytes": 983731,
+      "git_blob_oid": "c3461b72fb9cfb9eef9c1fa812f02ec8a8676e47",
+      "path": ".claude/window1_round3_execution_package_20260725/SCORER_FREEZE_CONTRACT.json",
+      "role": "bound_round3_execution_package_input",
+      "sha256": "c0918343eb53bd0cdaebc7efe585ed4d4ee6af9e64ef2a651aae3243a3840c27"
+    },
+    ".claude/window1_round3_execution_package_20260725/SCORING_INPUT_BUNDLE.json": {
+      "availability": "available",
+      "bytes": 5893945,
+      "git_blob_oid": "90cb17502fea40874d366031d032f8b499929325",
+      "path": ".claude/window1_round3_execution_package_20260725/SCORING_INPUT_BUNDLE.json",
+      "role": "bound_round3_execution_package_input",
+      "sha256": "807b2375a1015d414845ddc439373feb5cd7c4b7d2e536449bd4b80631c8b787"
+    },
+    ".claude/window1_round3_execution_package_20260725/VALIDATION_ONLY_RECEIPT.json": {
+      "availability": "available",
+      "bytes": 3184,
+      "git_blob_oid": "839b8d2bf4212bca47bab1f9d8375ad0a6265ade",
+      "path": ".claude/window1_round3_execution_package_20260725/VALIDATION_ONLY_RECEIPT.json",
+      "role": "bound_round3_execution_package_input",
+      "sha256": "c75ffdd3371a79f4d6d772d697609df4cb7ef0a41d5e8bd265d1a2d438082889"
+    },
+    ".claude/window1_round3_prerun_20260725/FROZEN_CANDIDATE_EVENT_STREAMS.jsonl.gz": {
+      "availability": "available",
+      "bytes": 46242650,
+      "git_blob_oid": "032d7028cab0bd49fe0db685681ab04fad8e058b",
+      "path": ".claude/window1_round3_prerun_20260725/FROZEN_CANDIDATE_EVENT_STREAMS.jsonl.gz",
+      "role": "bound_round3_execution_package_input",
+      "sha256": "db61cb7a70326d991a5e8a89cae21920e7d0ed594b0e7ae5ad540184461ced96"
+    },
+    ".claude/window1_round3_prerun_20260725/ROUND3_PRE_RUN_MANIFEST.json": {
+      "availability": "available",
+      "bytes": 1712863,
+      "git_blob_oid": "f08427ff6449f9f92305c3f345803adb0e8a2fa8",
+      "path": ".claude/window1_round3_prerun_20260725/ROUND3_PRE_RUN_MANIFEST.json",
+      "role": "bound_round3_execution_package_input",
+      "sha256": "79858e8e827d8190bbd9c19e657e0a88a9431d644722c3ccbfd1be457dba4297"
+    },
+    "arb-executor/analysis/window1_round3_execution_packager.py": {
+      "availability": "available",
+      "bytes": 34678,
+      "git_blob_oid": "f0b78fe43a42fd5bc101d3efc42a1fc48d3b9434",
+      "path": "arb-executor/analysis/window1_round3_execution_packager.py",
+      "role": "bound_round3_execution_package_input",
+      "sha256": "ca428e0fe8a560c97cb3f4b937058ceb68a2e6e3ed288395cc4b0d69b8e8dc79"
+    },
+    "arb-executor/analysis/window1_round3_grid_runner.py": {
+      "availability": "available",
+      "bytes": 59251,
+      "git_blob_oid": "c2fed7236dc6d1f541530504985d8ff906728c10",
+      "path": "arb-executor/analysis/window1_round3_grid_runner.py",
+      "role": "bound_round3_execution_package_input",
+      "sha256": "f9dfab1e73574b25640a55205e3d00e5a28056f55f38fb3419adb728795ce5b4"
+    },
+    "arb-executor/tests/test_window1_round3_grid_runner.py": {
+      "availability": "available",
+      "bytes": 20450,
+      "git_blob_oid": "b096e5598d4a5d31f84c9960aae72571910f7271",
+      "path": "arb-executor/tests/test_window1_round3_grid_runner.py",
+      "role": "bound_round3_execution_package_input",
+      "sha256": "ebab5c0f92b14b63deaba22f4e845cbf617c934482f783d0123b3e54f83f25fc"
+    },
+    "arb-executor/tests/test_window1_round3_stdout_safe.py": {
+      "availability": "available",
+      "bytes": 7114,
+      "git_blob_oid": "a627a0f4940b75e9afc83dd5a1f5d64d0b3a4866",
+      "path": "arb-executor/tests/test_window1_round3_stdout_safe.py",
+      "role": "bound_round3_execution_package_input",
+      "sha256": "76166ee351fa3a5317baee32798f59001949dda843573657fb0dc6cb3bf23d13"
+    }
+  },
+  "candidate_event_stream_count": 6432,
+  "candidate_event_stream_receipts_sha256": "0a2831e1d6e7749bd9d88ef5610228e2a395e1e4b81a168fa067a9ee6b963deb",
+  "candidate_ids": [
+    "r3_pair_presence__park_join__hold",
+    "r3_pair_presence__park_join__reaim",
+    "r3_pair_presence__touch_park__hold",
+    "r3_pair_presence__touch_park__reaim",
+    "r3_causal_steer__park_join__hold",
+    "r3_causal_steer__park_join__reaim",
+    "r3_full_os__walk_park__hold",
+    "r3_full_os__walk_park__reaim"
+  ],
+  "candidate_scoring_performed": false,
+  "controlling_identities": {
+    "round2_results": "10ac6dbc68d65cb21ab3718e118ff34d7220ad87",
+    "round2_results_audit": {
+      "commit": "807e2c865c3cf7384757c54a3b879518568dec4f",
+      "report_blob_oid": "9bb51a3dc19fd055156ee958a6f208b1a725cbc4",
+      "report_path": ".claude/audit_20260725_grid2_results/AUDIT_REPORT.md"
+    },
+    "round3_prerun": "14e0e846e8922da98f656aef1f43d2c48da96ee7",
+    "round3_prerun_audit": {
+      "commit": "b415a98e2430642242f8e0205fb9b5edfee841b5",
+      "report_blob_oid": "e4b32d218f3e4e1feeb3043ff4f4b3ba36033ac0",
+      "report_path": ".claude/audit_20260725_round3_prerun/AUDIT_REPORT.md"
+    }
+  },
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "exact_ancestry": {
+    "commit_count_after_parent": 1,
+    "package_commit": "this_manifest_commit",
+    "parent": "14e0e846e8922da98f656aef1f43d2c48da96ee7",
+    "parent_of_parent": "10ac6dbc68d65cb21ab3718e118ff34d7220ad87"
+  },
+  "exact_execution_command": "python -B arb-executor/analysis/window1_round3_grid_runner.py --repo . --package .claude/window1_round3_execution_package_20260725/SCORING_INPUT_BUNDLE.json --mode execute",
+  "exact_validation_command": "python -B arb-executor/analysis/window1_round3_grid_runner.py --repo . --package .claude/window1_round3_execution_package_20260725/SCORING_INPUT_BUNDLE.json --mode validate-only",
+  "execution_id": "w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+  "expected_output_inventory": [
+    "01_r3_pair_presence__park_join__hold_EVENT_LEDGER.jsonl",
+    "02_r3_pair_presence__park_join__reaim_EVENT_LEDGER.jsonl",
+    "03_r3_pair_presence__touch_park__hold_EVENT_LEDGER.jsonl",
+    "04_r3_pair_presence__touch_park__reaim_EVENT_LEDGER.jsonl",
+    "05_r3_causal_steer__park_join__hold_EVENT_LEDGER.jsonl",
+    "06_r3_causal_steer__park_join__reaim_EVENT_LEDGER.jsonl",
+    "07_r3_full_os__walk_park__hold_EVENT_LEDGER.jsonl",
+    "08_r3_full_os__walk_park__reaim_EVENT_LEDGER.jsonl",
+    "BASE_REAIM_COMPARISON.json",
+    "EIGHT_CANDIDATE_RESULTS.json",
+    "EXECUTION_MANIFEST.json",
+    "EXECUTION_START_RECEIPT.json",
+    "HOLDOUT_NONPRODUCTION_NONACCESS_PROOF.json",
+    "METRIC_CONSERVATION_REPORT.json",
+    "OUTPUT_HASH_MANIFEST.json",
+    "PROGRESS.log",
+    "STDERR.log",
+    "STDOUT.log",
+    "WINDOW1_ROUND3_DEVELOPMENT_REPORT.md"
+  ],
+  "expected_output_inventory_sha256": "ff47c44ff2f0e7d4f04a4b9ce94439eec794c37bc6aae4ded553a50bcf4ae281",
+  "expected_progress_sequence": [
+    "execution_id=w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+    "git_sha={RESULT_COMMIT_SHA}",
+    "candidate_start=1:r3_pair_presence__park_join__hold",
+    "candidate_complete=1:r3_pair_presence__park_join__hold",
+    "candidate_start=2:r3_pair_presence__park_join__reaim",
+    "candidate_complete=2:r3_pair_presence__park_join__reaim",
+    "candidate_start=3:r3_pair_presence__touch_park__hold",
+    "candidate_complete=3:r3_pair_presence__touch_park__hold",
+    "candidate_start=4:r3_pair_presence__touch_park__reaim",
+    "candidate_complete=4:r3_pair_presence__touch_park__reaim",
+    "candidate_start=5:r3_causal_steer__park_join__hold",
+    "candidate_complete=5:r3_causal_steer__park_join__hold",
+    "candidate_start=6:r3_causal_steer__park_join__reaim",
+    "candidate_complete=6:r3_causal_steer__park_join__reaim",
+    "candidate_start=7:r3_full_os__walk_park__hold",
+    "candidate_complete=7:r3_full_os__walk_park__hold",
+    "candidate_start=8:r3_full_os__walk_park__reaim",
+    "candidate_complete=8:r3_full_os__walk_park__reaim",
+    "final_receipt_publication_started",
+    "output_hash_manifest_pending"
+  ],
+  "expected_progress_sequence_sha256": "f7ad6372fc0472f92d92508ff91a52edd428706b9aeff09bae8b430296b896a5",
+  "freeze_status": "FROZEN_VALIDATED_NOT_SCORED",
+  "frozen_at_utc": "2026-07-25T16:19:41.136669+00:00",
+  "frozen_event_leg_identities_sha256": "c7bc10c3432e0ff7e6432cf51311e40eb90015b120c6ac3dac32766ab0a7f6cd",
+  "frozen_source_receipts_sha256": "d2dac348acafd0400c311d1bd47b49c81e3cc74fd593e9799bb40aede6d859e7",
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "input_bundle_receipt": {
+    "availability": "available",
+    "bytes": 5893945,
+    "git_blob_oid": "90cb17502fea40874d366031d032f8b499929325",
+    "path": ".claude/window1_round3_execution_package_20260725/SCORING_INPUT_BUNDLE.json",
+    "role": "bound_round3_execution_package_input",
+    "sha256": "807b2375a1015d414845ddc439373feb5cd7c4b7d2e536449bd4b80631c8b787"
+  },
+  "input_bundle_sha256": "7dec1673c79dd548899f2e003ce753d90af01b182c929aa04be5f20714b24cb5",
+  "invariants": {
+    "additions_only_child": true,
+    "all_1608_leg_identities_bound": true,
+    "all_6432_streams_bound": true,
+    "benchmark_not_executed": true,
+    "frozen_candidates_and_streams_not_regenerated": true,
+    "holdout_and_prohibited_surfaces_inaccessible": true,
+    "new_execution_id_and_absent_result_directory": true,
+    "one_attempt_no_retry_resume_overwrite": true,
+    "stdout_stderr_safe_file_first_progress": true,
+    "unchanged_scorer_metric_guard": true,
+    "validation_only_zero_scorer_invocations": true
+  },
+  "leg_identity_count": 1608,
+  "live_or_production_access": false,
+  "metric_contract_sha256": "19795e4d8bc7b6920e9fe93f7fa60bd1c051df94dade31de4c7909b40953cb76",
+  "performance_results_produced": false,
+  "ranking_performed": false,
+  "refusal_fixture_receipt": {
+    "all_refusal_fixtures_passed": true,
+    "candidate_performance_evaluated": false,
+    "execution_id": "w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+    "fixture_cases": {
+      "additional_candidate": "PASS_REFUSED",
+      "changed_external_input_receipt": "PASS_REFUSED",
+      "changed_git_blob_or_sha256": "PASS_REFUSED",
+      "changed_input_bundle_hash": "PASS_REFUSED",
+      "changed_leg_identity": "PASS_REFUSED",
+      "changed_stream_receipt": "PASS_REFUSED",
+      "closed_stderr": "PASS_NONFATAL",
+      "closed_stdout_ValueError": "PASS_NONFATAL",
+      "dead_pipe_after_successful_write": "PASS_NONFATAL",
+      "detached_nonconsole_stdout": "PASS_NONFATAL",
+      "duplicate_candidate": "PASS_REFUSED",
+      "existing_execution_directory": "PASS_REFUSED",
+      "exit_time_flush_after_pipe_failure": "PASS_NONFATAL_EXIT_ZERO",
+      "holdout_date": "PASS_REFUSED",
+      "missing_candidate": "PASS_REFUSED",
+      "nondevelopment_date": "PASS_REFUSED",
+      "reordered_candidate": "PASS_REFUSED",
+      "synthetic_eight_candidate_publication_after_console_loss": "PASS_ALL_EXPECTED_FIXTURE_ARTIFACTS_WRITTEN_ONCE",
+      "zero_scorer_validation_only_dispatch": "PASS_ZERO_INVOCATIONS"
+    },
+    "holdout_opened": false,
+    "performance_results_produced": false,
+    "real_candidate_streams_scored": 0,
+    "schema_version": "window1-round3-refusal-fixture-results-v1",
+    "synthetic_fixture_candidates_only": true
+  },
+  "result_directory": ".claude/window1_round3_results_w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+  "runner_receipt": {
+    "availability": "available",
+    "bytes": 59251,
+    "git_blob_oid": "c2fed7236dc6d1f541530504985d8ff906728c10",
+    "path": "arb-executor/analysis/window1_round3_grid_runner.py",
+    "role": "bound_round3_execution_package_input",
+    "sha256": "f9dfab1e73574b25640a55205e3d00e5a28056f55f38fb3419adb728795ce5b4"
+  },
+  "schema_version": "window1-round3-execution-packager-v1-prerun-v1",
+  "scorer_contract_sha256": "c0918343eb53bd0cdaebc7efe585ed4d4ee6af9e64ef2a651aae3243a3840c27",
+  "scorer_invocations": 0,
+  "scorer_source_sha256": "b41e6915882fd5b81b583d4c03317d21f1d708fd7710ea4b26a4a6da428fe997",
+  "sealed_holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "target_PC": 603,
+  "test_receipt": {
+    "all_tests_passed": true,
+    "candidate_performance_evaluated": false,
+    "command": "python -B -m pytest -q arb-executor/tests/test_window1_round3_grid_runner.py arb-executor/tests/test_window1_round3_stdout_safe.py arb-executor/tests/test_window1_round3_instrument.py arb-executor/tests/test_window1_round2_scorer.py",
+    "execution_id": "w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+    "holdout_opened": false,
+    "performance_results_produced": false,
+    "schema_version": "window1-round3-packaging-test-receipt-v1",
+    "scorer_invocations_on_real_D804_bundle": 0,
+    "test_count": 72,
+    "test_result": "72 passed",
+    "test_scope": [
+      "Round-3 packaging, refusal, integrity, deterministic dispatch and output schema",
+      "Round-3 stdout/stderr loss and dead-pipe synthetic fixtures",
+      "Frozen Round-3 causal instrument contract fixtures",
+      "Unchanged scorer minimal contract fixtures only"
+    ]
+  },
+  "tuning_performed": false,
+  "validation_only_receipt": {
+    "D": 804,
+    "all_external_inputs_verified": 3,
+    "all_git_inputs_verified": 21,
+    "all_market_cache_files_verified": 804,
+    "authorization_audit": "b415a98e2430642242f8e0205fb9b5edfee841b5",
+    "authorized_parent": "14e0e846e8922da98f656aef1f43d2c48da96ee7",
+    "candidate_count": 8,
+    "candidate_dispatch_order": [
+      "r3_pair_presence__park_join__hold",
+      "r3_pair_presence__park_join__reaim",
+      "r3_pair_presence__touch_park__hold",
+      "r3_pair_presence__touch_park__reaim",
+      "r3_causal_steer__park_join__hold",
+      "r3_causal_steer__park_join__reaim",
+      "r3_full_os__walk_park__hold",
+      "r3_full_os__walk_park__reaim"
+    ],
+    "candidate_event_stream_receipts_verified": 6432,
+    "candidate_event_streams_loaded": 6432,
+    "candidate_instrument_invocations": 0,
+    "controlling_identities": {
+      "round2_results": "10ac6dbc68d65cb21ab3718e118ff34d7220ad87",
+      "round2_results_audit": {
+        "commit": "807e2c865c3cf7384757c54a3b879518568dec4f",
+        "report_blob_oid": "9bb51a3dc19fd055156ee958a6f208b1a725cbc4",
+        "report_path": ".claude/audit_20260725_grid2_results/AUDIT_REPORT.md"
+      },
+      "round3_prerun": "14e0e846e8922da98f656aef1f43d2c48da96ee7",
+      "round3_prerun_audit": {
+        "commit": "b415a98e2430642242f8e0205fb9b5edfee841b5",
+        "report_blob_oid": "e4b32d218f3e4e1feeb3043ff4f4b3ba36033ac0",
+        "report_path": ".claude/audit_20260725_round3_prerun/AUDIT_REPORT.md"
+      }
+    },
+    "dispatch_plan": [
+      {
+        "candidate_id": "r3_pair_presence__park_join__hold",
+        "ordinal": 1,
+        "scorer_invocation_count_if_executed": 1
+      },
+      {
+        "candidate_id": "r3_pair_presence__park_join__reaim",
+        "ordinal": 2,
+        "scorer_invocation_count_if_executed": 1
+      },
+      {
+        "candidate_id": "r3_pair_presence__touch_park__hold",
+        "ordinal": 3,
+        "scorer_invocation_count_if_executed": 1
+      },
+      {
+        "candidate_id": "r3_pair_presence__touch_park__reaim",
+        "ordinal": 4,
+        "scorer_invocation_count_if_executed": 1
+      },
+      {
+        "candidate_id": "r3_causal_steer__park_join__hold",
+        "ordinal": 5,
+        "scorer_invocation_count_if_executed": 1
+      },
+      {
+        "candidate_id": "r3_causal_steer__park_join__reaim",
+        "ordinal": 6,
+        "scorer_invocation_count_if_executed": 1
+      },
+      {
+        "candidate_id": "r3_full_os__walk_park__hold",
+        "ordinal": 7,
+        "scorer_invocation_count_if_executed": 1
+      },
+      {
+        "candidate_id": "r3_full_os__walk_park__reaim",
+        "ordinal": 8,
+        "scorer_invocation_count_if_executed": 1
+      }
+    ],
+    "execution_id": "w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+    "gate_pass": true,
+    "git_state_contract": "authorized_parent_precommit_or_clean_sole_PRE_RUN_child",
+    "holdout_opened": false,
+    "holdout_queried": false,
+    "input_bundle_sha256": "7dec1673c79dd548899f2e003ce753d90af01b182c929aa04be5f20714b24cb5",
+    "leg_identities_verified": 1608,
+    "live_or_production_access": false,
+    "mode": "validate-only",
+    "performance_results_produced": false,
+    "result_directory_created": false,
+    "schema_version": "window1-round3-deterministic-grid-runner-stdout-safe-v1-validation-only-v1",
+    "scorer_invocations": 0
+  }
+}

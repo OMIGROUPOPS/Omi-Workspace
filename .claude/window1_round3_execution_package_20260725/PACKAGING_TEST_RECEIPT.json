@@ -1,0 +1,18 @@
+{
+  "all_tests_passed": true,
+  "candidate_performance_evaluated": false,
+  "command": "python -B -m pytest -q arb-executor/tests/test_window1_round3_grid_runner.py arb-executor/tests/test_window1_round3_stdout_safe.py arb-executor/tests/test_window1_round3_instrument.py arb-executor/tests/test_window1_round2_scorer.py",
+  "execution_id": "w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+  "holdout_opened": false,
+  "performance_results_produced": false,
+  "scorer_invocations_on_real_D804_bundle": 0,
+  "schema_version": "window1-round3-packaging-test-receipt-v1",
+  "test_count": 72,
+  "test_result": "72 passed",
+  "test_scope": [
+    "Round-3 packaging, refusal, integrity, deterministic dispatch and output schema",
+    "Round-3 stdout/stderr loss and dead-pipe synthetic fixtures",
+    "Frozen Round-3 causal instrument contract fixtures",
+    "Unchanged scorer minimal contract fixtures only"
+  ]
+}

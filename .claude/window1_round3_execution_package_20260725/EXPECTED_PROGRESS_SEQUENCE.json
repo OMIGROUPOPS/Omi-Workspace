@@ -1,0 +1,29 @@
+{
+  "authoritative_file": "PROGRESS.log",
+  "execution_id": "w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+  "schema_version": "window1-round3-execution-packager-v1-expected-progress-v1",
+  "scoring_performed": false,
+  "sequence": [
+    "execution_id=w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+    "git_sha={RESULT_COMMIT_SHA}",
+    "candidate_start=1:r3_pair_presence__park_join__hold",
+    "candidate_complete=1:r3_pair_presence__park_join__hold",
+    "candidate_start=2:r3_pair_presence__park_join__reaim",
+    "candidate_complete=2:r3_pair_presence__park_join__reaim",
+    "candidate_start=3:r3_pair_presence__touch_park__hold",
+    "candidate_complete=3:r3_pair_presence__touch_park__hold",
+    "candidate_start=4:r3_pair_presence__touch_park__reaim",
+    "candidate_complete=4:r3_pair_presence__touch_park__reaim",
+    "candidate_start=5:r3_causal_steer__park_join__hold",
+    "candidate_complete=5:r3_causal_steer__park_join__hold",
+    "candidate_start=6:r3_causal_steer__park_join__reaim",
+    "candidate_complete=6:r3_causal_steer__park_join__reaim",
+    "candidate_start=7:r3_full_os__walk_park__hold",
+    "candidate_complete=7:r3_full_os__walk_park__hold",
+    "candidate_start=8:r3_full_os__walk_park__reaim",
+    "candidate_complete=8:r3_full_os__walk_park__reaim",
+    "final_receipt_publication_started",
+    "output_hash_manifest_pending"
+  ],
+  "sequence_sha256": "f7ad6372fc0472f92d92508ff91a52edd428706b9aeff09bae8b430296b896a5"
+}

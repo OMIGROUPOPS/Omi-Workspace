@@ -1,0 +1,31 @@
+{
+  "all_refusal_fixtures_passed": true,
+  "candidate_performance_evaluated": false,
+  "execution_id": "w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+  "fixture_cases": {
+    "additional_candidate": "PASS_REFUSED",
+    "changed_external_input_receipt": "PASS_REFUSED",
+    "changed_git_blob_or_sha256": "PASS_REFUSED",
+    "changed_input_bundle_hash": "PASS_REFUSED",
+    "changed_leg_identity": "PASS_REFUSED",
+    "changed_stream_receipt": "PASS_REFUSED",
+    "closed_stderr": "PASS_NONFATAL",
+    "closed_stdout_ValueError": "PASS_NONFATAL",
+    "dead_pipe_after_successful_write": "PASS_NONFATAL",
+    "detached_nonconsole_stdout": "PASS_NONFATAL",
+    "duplicate_candidate": "PASS_REFUSED",
+    "existing_execution_directory": "PASS_REFUSED",
+    "exit_time_flush_after_pipe_failure": "PASS_NONFATAL_EXIT_ZERO",
+    "holdout_date": "PASS_REFUSED",
+    "missing_candidate": "PASS_REFUSED",
+    "nondevelopment_date": "PASS_REFUSED",
+    "reordered_candidate": "PASS_REFUSED",
+    "synthetic_eight_candidate_publication_after_console_loss": "PASS_ALL_EXPECTED_FIXTURE_ARTIFACTS_WRITTEN_ONCE",
+    "zero_scorer_validation_only_dispatch": "PASS_ZERO_INVOCATIONS"
+  },
+  "holdout_opened": false,
+  "performance_results_produced": false,
+  "real_candidate_streams_scored": 0,
+  "schema_version": "window1-round3-refusal-fixture-results-v1",
+  "synthetic_fixture_candidates_only": true
+}

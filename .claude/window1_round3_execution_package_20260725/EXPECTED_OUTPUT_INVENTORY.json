@@ -1,0 +1,28 @@
+{
+  "execution_id": "w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+  "inventory_sha256": "ff47c44ff2f0e7d4f04a4b9ce94439eec794c37bc6aae4ded553a50bcf4ae281",
+  "outputs_created_during_packaging": 0,
+  "schema_version": "window1-round3-execution-packager-v1-expected-output-inventory-v1",
+  "scoring_performed": false,
+  "successful_output_files": [
+    "01_r3_pair_presence__park_join__hold_EVENT_LEDGER.jsonl",
+    "02_r3_pair_presence__park_join__reaim_EVENT_LEDGER.jsonl",
+    "03_r3_pair_presence__touch_park__hold_EVENT_LEDGER.jsonl",
+    "04_r3_pair_presence__touch_park__reaim_EVENT_LEDGER.jsonl",
+    "05_r3_causal_steer__park_join__hold_EVENT_LEDGER.jsonl",
+    "06_r3_causal_steer__park_join__reaim_EVENT_LEDGER.jsonl",
+    "07_r3_full_os__walk_park__hold_EVENT_LEDGER.jsonl",
+    "08_r3_full_os__walk_park__reaim_EVENT_LEDGER.jsonl",
+    "BASE_REAIM_COMPARISON.json",
+    "EIGHT_CANDIDATE_RESULTS.json",
+    "EXECUTION_MANIFEST.json",
+    "EXECUTION_START_RECEIPT.json",
+    "HOLDOUT_NONPRODUCTION_NONACCESS_PROOF.json",
+    "METRIC_CONSERVATION_REPORT.json",
+    "OUTPUT_HASH_MANIFEST.json",
+    "PROGRESS.log",
+    "STDERR.log",
+    "STDOUT.log",
+    "WINDOW1_ROUND3_DEVELOPMENT_REPORT.md"
+  ]
+}

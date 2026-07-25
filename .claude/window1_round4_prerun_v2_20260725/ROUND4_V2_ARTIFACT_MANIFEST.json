@@ -1,0 +1,284 @@
+{
+  "all_metrics_null": true,
+  "artifacts": [
+    {
+      "bytes": 78283064,
+      "git_blob_oid": "f303ef05946de8657b953204d6550da021839bfb",
+      "path": ".claude/window1_round4_prerun_v2_20260725/FROZEN_CANDIDATE_EVENT_STREAMS_V2.jsonl.gz",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "cce26972c9c22f5990ff259bbc0a47fdecfcf1f42a7999341876a479568dbbdf"
+    },
+    {
+      "bytes": 8726,
+      "git_blob_oid": "0fc5907108836db3de2781db26ae115e0a90c108",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V1_V2_STREAM_IDENTITY_RECEIPT.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "f84fe290a7c47261677975e441d2bfd8c357079b448cc182a820d3e23787b68d"
+    },
+    {
+      "bytes": 4173,
+      "git_blob_oid": "e2eba943697ba827a176c4b3e597b7d0433e1d9b",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_REAL_CAPABILITY.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "9fa120cc57b8fb5b364d69205b38c9725ebb8452452cabc5fa12a3ea309500ae"
+    },
+    {
+      "bytes": 672604,
+      "git_blob_oid": "5886ded26c0fa569fa27122d671469d9cd70d132",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_CANDIDATE_ORDER_DIFFERENCES.jsonl",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "464b91e31ceccd21abe518b3a875b2a72e78fa91ff66777231dc1379e8960018"
+    },
+    {
+      "bytes": 13160319,
+      "git_blob_oid": "b44fc8af81e81983ee34f2ddb7c9a9f1eac9aaf3",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_HEADROOM_DECISION_RECEIPTS.jsonl.gz",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "79ca7806e5d1687e143103e9a90ed51414240ea927d66deb7b81edc741a7b45f"
+    },
+    {
+      "bytes": 64628823,
+      "git_blob_oid": "30cd4e163d50c08ade07b7acafc951f187f08f2e",
+      "path": ".claude/window1_round4_prerun_v2_20260725/WINDOW1_OPPORTUNITY_LEDGER_V2_01.jsonl.gz",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "4b0bc24778866ab322df274fcf0e3edd40202ade35a038999b613f5b64b87cb5"
+    },
+    {
+      "bytes": 44884848,
+      "git_blob_oid": "84a6a8292490951361deefb7f5cbf4aada13468c",
+      "path": ".claude/window1_round4_prerun_v2_20260725/WINDOW1_OPPORTUNITY_LEDGER_V2_02.jsonl.gz",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "bb85304bc81b704b4d9dfd51f1c9287a24e029c4bfa9e3c7392d750a7a2bb8c0"
+    },
+    {
+      "bytes": 690,
+      "git_blob_oid": "e6a181637d688a82b2226bd4fb6668b325e8f1a8",
+      "path": ".claude/window1_round4_prerun_v2_20260725/WINDOW1_OPPORTUNITY_LEDGER_V2_MANIFEST.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "abdec0327a304c8ff63d1db79504d99dfdb9b34ef8227abebd5f3626e43af8c2"
+    },
+    {
+      "bytes": 1288,
+      "git_blob_oid": "eca2b1977593e3eb8333fd71737e920cd4650a0b",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_DIAGNOSTIC_RECEIPT.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "910befe0bdd51ad7a209b7773bbd462d1de729de931160b59862d6c55b4799f1"
+    },
+    {
+      "bytes": 897227,
+      "git_blob_oid": "d85f87151f29f4ae88fc213dd2d80458481a8632",
+      "path": ".claude/window1_round4_prerun_v2_20260725/CAUSAL_REFERENCE_CALIBRATION_V2.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "98e4583ab23846606cbc82e05ae982ce7a030c4a2f406c00d9ef3d15ef17fddd"
+    },
+    {
+      "bytes": 5434,
+      "git_blob_oid": "02a4f9b24adb5a14cc6b92c38e27f9338121998d",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ORACLE_FALSE_NEGATIVE_CENSUS_V2.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "7fc4e3bf8b5c10ab384b0c472331ba8e9af0d5a8fbf7b05b285030fe2bf2900f"
+    },
+    {
+      "bytes": 153484,
+      "git_blob_oid": "4db3b2e6b23cab2a16d5c6a304f9a0a0dfa618dc",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_STREAM_RECEIPTS.jsonl.gz",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "90daa68eb6265bb7c3db6f5837f0fd57e55967c994e362c2b851f61025815c6a"
+    },
+    {
+      "bytes": 179,
+      "git_blob_oid": "463278c44b3fa01d867e037dc8ef2a052e19dffa",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_HEADROOM_INVARIANT_RECEIPT.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "ba0f7b1041746e90fc60dd840c08690603d4da0ad63db52c4247dea08cd15ac9"
+    },
+    {
+      "bytes": 3834,
+      "git_blob_oid": "9dee18c658495f7938a2ca423245a842e9a6b6ce",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_FIVE_EVENT_PROOF.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "13490278eb9c19bd0c9bdd19bc9051afde7c7dadf4367a4eec83548240888221"
+    },
+    {
+      "bytes": 482,
+      "git_blob_oid": "23b4b13cb6ab2a5b0cb2ac6b5870c9bccca97f42",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V1_SUPERSESSION_RECEIPT.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "b5dbb99d4bed119c773f8a8917471cb54d92359eaec49ae7c08ab60582c482c0"
+    },
+    {
+      "bytes": 9963,
+      "git_blob_oid": "cb6d416dcb7c6e28022726dd3fe3145ef3f3cc2e",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_SOURCE_BINDING_AVAILABILITY.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "c614167da3239d98b356ec10c7f4440364b1feefa84b5fed85bb9e46e3a9792f"
+    },
+    {
+      "bytes": 6145,
+      "git_blob_oid": "8410b43bef053dda3206a9eb6483256ec8f63e32",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_EXECUTION_PACKAGE_INVENTORY.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "e994c2f3cded216576f46f0d68db850a3f759cf0ebda5a7564f859f8bf618dfd"
+    },
+    {
+      "bytes": 12284,
+      "git_blob_oid": "31ca1bdb82ff57408f0d7c9fa2d6dfc63691c050",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_PRE_RUN_MANIFEST.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "c430485a983fae07276879813719f401e110c46f656693521958fc1975908fdd"
+    },
+    {
+      "bytes": 1186,
+      "git_blob_oid": "5682ab26aca18a59e747bfb57798f2d2b62a8b46",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_PRE_RUN_REPORT.md",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "7fbc7ff96d1ce3df44dfd4c495ca587344daa1d05c5b8ffc9ab46b81bef34f15"
+    }
+  ],
+  "code": [
+    {
+      "bytes": 7219,
+      "git_blob_oid": "fc06f6680fc52e1621358643a1bfced75b575310",
+      "path": "arb-executor/analysis/window1_round4_instrument_v2.py",
+      "role": "V2 code/spec/test",
+      "sha256": "c19f17c0edffb1c50157211fb00c75b8e712254f024b0c5451bb7e14d164ab68"
+    },
+    {
+      "bytes": 8074,
+      "git_blob_oid": "206ade6779b82faf946dde9bcedc7d8ddecaf114",
+      "path": "arb-executor/analysis/window1_round4_prerun_builder_v2.py",
+      "role": "V2 code/spec/test",
+      "sha256": "86c2091af7c7cef779a80905fdc0c9bcd6e728f1b8829d9090a778f0e8bb02bd"
+    },
+    {
+      "bytes": 2078,
+      "git_blob_oid": "883cf8f9678d36f8a0d85b3efab9e3ec446955cd",
+      "path": "arb-executor/analysis/window1_round4_diagnostics_v2.py",
+      "role": "V2 code/spec/test",
+      "sha256": "ff4e02a54769fb03880dc17a57ebd6da7e08f772b3c6313d1a6b1f01fd931ada"
+    },
+    {
+      "bytes": 17424,
+      "git_blob_oid": "c4d3490185f131ba72aa225e1a83907f848fea6b",
+      "path": "arb-executor/analysis/window1_round4_freeze_v2.py",
+      "role": "V2 code/spec/test",
+      "sha256": "0c6bafbb16b60bd969b6c733a4a52cdc439534a822af1401789e7ccc02cb473d"
+    },
+    {
+      "bytes": 5770,
+      "git_blob_oid": "8aefddb9b7e1d46a620d03c54e332620722fb07f",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND4_CANDIDATES_V2.json",
+      "role": "V2 code/spec/test",
+      "sha256": "a3864fae235193e45e058b95af3fd89b13781c4e39ac46e2829809ae001686db"
+    },
+    {
+      "bytes": 7136,
+      "git_blob_oid": "59d76788a58c467f7a212a97fd41cc50ec0a004b",
+      "path": "arb-executor/tests/test_window1_round4_v2.py",
+      "role": "V2 code/spec/test",
+      "sha256": "38cfa7d7c4fb79729e53c97dfb3e0f0eeebcfdc48f352fd892fc5f6eb6f9975f"
+    }
+  ],
+  "controlling_amendment": "abe543e33bf40cf6cca14e046c40904d2de5e878",
+  "exact_parent": "4f65344672430adc51fe0a5a7e8c9279b2b354ed",
+  "frozen_source_receipts": [
+    {
+      "availability": "available",
+      "bytes": 3697581,
+      "git_blob_oid": "9207dd44d12c66fa29711e2d95ebafc66cafd155",
+      "path": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+      "role": "frozen start-boundary ledger and guarded cutoffs",
+      "sha256": "68f607b8bc4d5acbd55d2d4451e27fa41e379170cd0ef49e5124f6dbc7252f53"
+    },
+    {
+      "availability": "available",
+      "bytes": 20294927,
+      "git_blob_oid": "e40fb47bf779847657416cbfcc4cf4dfeff20529",
+      "path": ".claude/window1_20260721/WINDOW1_FEATURE_MATRIX.jsonl",
+      "role": "frozen 1,608-leg feature availability ledger",
+      "sha256": "3e87122c0ede3b7a240781ecb4cbfe3b98a7c035e74c217ca3ffec01e1a0b4e9"
+    },
+    {
+      "availability": "available",
+      "bytes": 15520,
+      "git_blob_oid": "d919b8e402f010e3703cd7fc3aad33e650c8ae2c",
+      "path": ".claude/entrysurface_20260717/band_map_v1.json",
+      "role": "frozen macro birth-band map",
+      "sha256": "caf255a283bbb32f1d9bd2edd5f4d898d5f50fc8e67d5f9a076579b695a9e68c"
+    },
+    {
+      "availability": "available",
+      "bytes": 16623,
+      "git_blob_oid": "0145907c60213fc5b65f15618667c82b38a19f42",
+      "path": ".claude/entrysurface_20260717/divot_tables_v1.json",
+      "role": "frozen divot surfaces",
+      "sha256": "89c514ec35673de8f552b2b66b9ceafb8181b9c8f6c00b1679899a3a2a82ac06"
+    },
+    {
+      "availability": "available",
+      "bytes": 182240,
+      "git_blob_oid": "2c0d4d3ea7b7a687d38d859df817f2a551fccac2",
+      "path": ".claude/entrysurface_20260717/drift_surfaces_v1.json",
+      "role": "frozen 12,170-leg drift/reach surfaces",
+      "sha256": "7dca4a4f0e6061d28765fd243f4ce717bc36a542b32490bafabc611bd2cf3bab"
+    },
+    {
+      "availability": "available",
+      "bytes": 86928,
+      "git_blob_oid": "9e9a60110a1803aba301b4dda60073b2178fe12a",
+      "path": ".claude/seqfloor_20260708/recut_cells.json",
+      "role": "frozen dynamic recut cells",
+      "sha256": "852ab6678e4358189e4f79987e0286011d1e5662a2653ed0cc34fc18e4fb32b7"
+    },
+    {
+      "availability": "available",
+      "bytes": 167391,
+      "git_blob_oid": "7b5f89c703679d69986c146692cce90c99c655cf",
+      "path": ".claude/master_20260709/cohort.json",
+      "role": "frozen cohort n>=30 surfaces",
+      "sha256": "9e144811b54637e8b71e676a56b122081bc09447e49ea726769539e51f8d8488"
+    },
+    {
+      "availability": "available",
+      "bytes": 2061,
+      "git_blob_oid": "8971516ed0e248fed7a744d3ee4c7f90a27c833f",
+      "path": ".claude/trendpath/ORIENT_V1.json",
+      "role": "frozen orientation surface",
+      "sha256": "e8003418aa5ed97b58294f390e7c261b11e1d4d9bd50a6be171aebbbba06f5f5"
+    },
+    {
+      "availability": "available",
+      "bytes": 67396,
+      "git_blob_oid": "9e04a5061d8a9018fcedf4b923834310ba4cf268",
+      "path": ".claude/trendpath/ATLAS_V1.json",
+      "role": "source-proved G9 atlas reach surface",
+      "sha256": "797b3e7bd4a107f80244a06a8aea504211680122434fd0141e8f41512031c121"
+    },
+    {
+      "availability": "available",
+      "bytes": 31372,
+      "git_blob_oid": "9cf2f7e3c3ccb961e2d08ee0e21076f2b9dde0f2",
+      "path": "arb-executor/analysis/window1_round2_scorer.py",
+      "role": "unchanged frozen scorer reserved for later authorization",
+      "sha256": "1053ed4af1605c9442ec2c44d675e7d6eaf3a9ad9a4eafc78b239e1e3b75d3a2"
+    },
+    {
+      "availability": "available",
+      "bytes": 1110,
+      "git_blob_oid": "91489b6367d38ba28374359192823ebb4542c0b0",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_METRIC_CONTRACT_V1.json",
+      "role": "unchanged D/C/PC/S/IC metric contract",
+      "sha256": "b2b9553485f116ade32f46a9ef9115f14876ccd46dfd1717c7395e22fb792738"
+    },
+    {
+      "availability": "available",
+      "bytes": 4001,
+      "git_blob_oid": "292ecc3926455af1fc229b3672121478d98f7f81",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_SCORER_CONTRACT_V1.json",
+      "role": "unchanged scorer contract",
+      "sha256": "e32c27026bdffc01eed2cad17fb3417d3fefeffca095738bfe9431094ec796ca"
+    }
+  ],
+  "schema_version": "window1-round4-v2-artifact-manifest-v1",
+  "scorer_invocations": 0
+}

@@ -1,0 +1,316 @@
+{
+  "C_PC_S_IC_populated": false,
+  "D": 804,
+  "actionable_event_count_by_candidate": {
+    "r4_full_drift_stack__causal_headroom_ladder": 804,
+    "r4_pair_presence__park_join__causal_headroom_ladder": 804
+  },
+  "all_metrics_null": true,
+  "artifact_receipts": [
+    {
+      "bytes": 78283064,
+      "git_blob_oid": "f303ef05946de8657b953204d6550da021839bfb",
+      "path": ".claude/window1_round4_prerun_v2_20260725/FROZEN_CANDIDATE_EVENT_STREAMS_V2.jsonl.gz",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "cce26972c9c22f5990ff259bbc0a47fdecfcf1f42a7999341876a479568dbbdf"
+    },
+    {
+      "bytes": 8726,
+      "git_blob_oid": "0fc5907108836db3de2781db26ae115e0a90c108",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V1_V2_STREAM_IDENTITY_RECEIPT.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "f84fe290a7c47261677975e441d2bfd8c357079b448cc182a820d3e23787b68d"
+    },
+    {
+      "bytes": 4173,
+      "git_blob_oid": "e2eba943697ba827a176c4b3e597b7d0433e1d9b",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_REAL_CAPABILITY.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "9fa120cc57b8fb5b364d69205b38c9725ebb8452452cabc5fa12a3ea309500ae"
+    },
+    {
+      "bytes": 672604,
+      "git_blob_oid": "5886ded26c0fa569fa27122d671469d9cd70d132",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_CANDIDATE_ORDER_DIFFERENCES.jsonl",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "464b91e31ceccd21abe518b3a875b2a72e78fa91ff66777231dc1379e8960018"
+    },
+    {
+      "bytes": 13160319,
+      "git_blob_oid": "b44fc8af81e81983ee34f2ddb7c9a9f1eac9aaf3",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_HEADROOM_DECISION_RECEIPTS.jsonl.gz",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "79ca7806e5d1687e143103e9a90ed51414240ea927d66deb7b81edc741a7b45f"
+    },
+    {
+      "bytes": 64628823,
+      "git_blob_oid": "30cd4e163d50c08ade07b7acafc951f187f08f2e",
+      "path": ".claude/window1_round4_prerun_v2_20260725/WINDOW1_OPPORTUNITY_LEDGER_V2_01.jsonl.gz",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "4b0bc24778866ab322df274fcf0e3edd40202ade35a038999b613f5b64b87cb5"
+    },
+    {
+      "bytes": 44884848,
+      "git_blob_oid": "84a6a8292490951361deefb7f5cbf4aada13468c",
+      "path": ".claude/window1_round4_prerun_v2_20260725/WINDOW1_OPPORTUNITY_LEDGER_V2_02.jsonl.gz",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "bb85304bc81b704b4d9dfd51f1c9287a24e029c4bfa9e3c7392d750a7a2bb8c0"
+    },
+    {
+      "bytes": 690,
+      "git_blob_oid": "e6a181637d688a82b2226bd4fb6668b325e8f1a8",
+      "path": ".claude/window1_round4_prerun_v2_20260725/WINDOW1_OPPORTUNITY_LEDGER_V2_MANIFEST.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "abdec0327a304c8ff63d1db79504d99dfdb9b34ef8227abebd5f3626e43af8c2"
+    },
+    {
+      "bytes": 1288,
+      "git_blob_oid": "eca2b1977593e3eb8333fd71737e920cd4650a0b",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_DIAGNOSTIC_RECEIPT.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "910befe0bdd51ad7a209b7773bbd462d1de729de931160b59862d6c55b4799f1"
+    },
+    {
+      "bytes": 897227,
+      "git_blob_oid": "d85f87151f29f4ae88fc213dd2d80458481a8632",
+      "path": ".claude/window1_round4_prerun_v2_20260725/CAUSAL_REFERENCE_CALIBRATION_V2.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "98e4583ab23846606cbc82e05ae982ce7a030c4a2f406c00d9ef3d15ef17fddd"
+    },
+    {
+      "bytes": 5434,
+      "git_blob_oid": "02a4f9b24adb5a14cc6b92c38e27f9338121998d",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ORACLE_FALSE_NEGATIVE_CENSUS_V2.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "7fc4e3bf8b5c10ab384b0c472331ba8e9af0d5a8fbf7b05b285030fe2bf2900f"
+    },
+    {
+      "bytes": 153484,
+      "git_blob_oid": "4db3b2e6b23cab2a16d5c6a304f9a0a0dfa618dc",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_STREAM_RECEIPTS.jsonl.gz",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "90daa68eb6265bb7c3db6f5837f0fd57e55967c994e362c2b851f61025815c6a"
+    },
+    {
+      "bytes": 179,
+      "git_blob_oid": "463278c44b3fa01d867e037dc8ef2a052e19dffa",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_HEADROOM_INVARIANT_RECEIPT.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "ba0f7b1041746e90fc60dd840c08690603d4da0ad63db52c4247dea08cd15ac9"
+    },
+    {
+      "bytes": 3834,
+      "git_blob_oid": "9dee18c658495f7938a2ca423245a842e9a6b6ce",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_FIVE_EVENT_PROOF.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "13490278eb9c19bd0c9bdd19bc9051afde7c7dadf4367a4eec83548240888221"
+    },
+    {
+      "bytes": 482,
+      "git_blob_oid": "23b4b13cb6ab2a5b0cb2ac6b5870c9bccca97f42",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V1_SUPERSESSION_RECEIPT.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "b5dbb99d4bed119c773f8a8917471cb54d92359eaec49ae7c08ab60582c482c0"
+    },
+    {
+      "bytes": 9963,
+      "git_blob_oid": "cb6d416dcb7c6e28022726dd3fe3145ef3f3cc2e",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_SOURCE_BINDING_AVAILABILITY.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "c614167da3239d98b356ec10c7f4440364b1feefa84b5fed85bb9e46e3a9792f"
+    }
+  ],
+  "benchmark_execution_authorized": false,
+  "byte_identical_to_V1_stream_count": 1598,
+  "candidate_count": 2,
+  "candidate_distinctness_event_count": 707,
+  "candidate_event_stream_count": 1608,
+  "candidate_ids": [
+    "r4_pair_presence__park_join__causal_headroom_ladder",
+    "r4_full_drift_stack__causal_headroom_ladder"
+  ],
+  "changed_from_V1_stream_count": 10,
+  "code_receipts": [
+    {
+      "bytes": 7219,
+      "git_blob_oid": "fc06f6680fc52e1621358643a1bfced75b575310",
+      "path": "arb-executor/analysis/window1_round4_instrument_v2.py",
+      "role": "V2 code/spec/test",
+      "sha256": "c19f17c0edffb1c50157211fb00c75b8e712254f024b0c5451bb7e14d164ab68"
+    },
+    {
+      "bytes": 8074,
+      "git_blob_oid": "206ade6779b82faf946dde9bcedc7d8ddecaf114",
+      "path": "arb-executor/analysis/window1_round4_prerun_builder_v2.py",
+      "role": "V2 code/spec/test",
+      "sha256": "86c2091af7c7cef779a80905fdc0c9bcd6e728f1b8829d9090a778f0e8bb02bd"
+    },
+    {
+      "bytes": 2078,
+      "git_blob_oid": "883cf8f9678d36f8a0d85b3efab9e3ec446955cd",
+      "path": "arb-executor/analysis/window1_round4_diagnostics_v2.py",
+      "role": "V2 code/spec/test",
+      "sha256": "ff4e02a54769fb03880dc17a57ebd6da7e08f772b3c6313d1a6b1f01fd931ada"
+    },
+    {
+      "bytes": 17424,
+      "git_blob_oid": "c4d3490185f131ba72aa225e1a83907f848fea6b",
+      "path": "arb-executor/analysis/window1_round4_freeze_v2.py",
+      "role": "V2 code/spec/test",
+      "sha256": "0c6bafbb16b60bd969b6c733a4a52cdc439534a822af1401789e7ccc02cb473d"
+    },
+    {
+      "bytes": 5770,
+      "git_blob_oid": "8aefddb9b7e1d46a620d03c54e332620722fb07f",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND4_CANDIDATES_V2.json",
+      "role": "V2 code/spec/test",
+      "sha256": "a3864fae235193e45e058b95af3fd89b13781c4e39ac46e2829809ae001686db"
+    },
+    {
+      "bytes": 7136,
+      "git_blob_oid": "59d76788a58c467f7a212a97fd41cc50ec0a004b",
+      "path": "arb-executor/tests/test_window1_round4_v2.py",
+      "role": "V2 code/spec/test",
+      "sha256": "38cfa7d7c4fb79729e53c97dfb3e0f0eeebcfdc48f352fd892fc5f6eb6f9975f"
+    }
+  ],
+  "controlling_item5_amendment": "abe543e33bf40cf6cca14e046c40904d2de5e878",
+  "controlling_item5_amendment_blob_oid": "372149951be8bd88e7b1ddb3e87121a34030d63c",
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "exact_parent": "4f65344672430adc51fe0a5a7e8c9279b2b354ed",
+  "five_event_proof": [
+    {
+      "D_membership_continues": true,
+      "candidate_id": "r4_pair_presence__park_join__causal_headroom_ladder",
+      "causal_role_NO_CALL_count": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "event_terminal": "complete_counterfactual_stream",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0
+    },
+    {
+      "D_membership_continues": true,
+      "candidate_id": "r4_full_drift_stack__causal_headroom_ladder",
+      "causal_role_NO_CALL_count": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "event_terminal": "complete_counterfactual_stream",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0
+    },
+    {
+      "D_membership_continues": true,
+      "candidate_id": "r4_pair_presence__park_join__causal_headroom_ladder",
+      "causal_role_NO_CALL_count": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "event_terminal": "complete_counterfactual_stream",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0
+    },
+    {
+      "D_membership_continues": true,
+      "candidate_id": "r4_full_drift_stack__causal_headroom_ladder",
+      "causal_role_NO_CALL_count": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "event_terminal": "complete_counterfactual_stream",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0
+    },
+    {
+      "D_membership_continues": true,
+      "candidate_id": "r4_pair_presence__park_join__causal_headroom_ladder",
+      "causal_role_NO_CALL_count": 2,
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "event_terminal": "complete_counterfactual_stream",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0
+    },
+    {
+      "D_membership_continues": true,
+      "candidate_id": "r4_full_drift_stack__causal_headroom_ladder",
+      "causal_role_NO_CALL_count": 2,
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "event_terminal": "complete_counterfactual_stream",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0
+    },
+    {
+      "D_membership_continues": true,
+      "candidate_id": "r4_pair_presence__park_join__causal_headroom_ladder",
+      "causal_role_NO_CALL_count": 2,
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "event_terminal": "complete_counterfactual_stream",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0
+    },
+    {
+      "D_membership_continues": true,
+      "candidate_id": "r4_full_drift_stack__causal_headroom_ladder",
+      "causal_role_NO_CALL_count": 2,
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "event_terminal": "complete_counterfactual_stream",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0
+    },
+    {
+      "D_membership_continues": true,
+      "candidate_id": "r4_pair_presence__park_join__causal_headroom_ladder",
+      "causal_role_NO_CALL_count": 2,
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "event_terminal": "complete_counterfactual_stream",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0
+    },
+    {
+      "D_membership_continues": true,
+      "candidate_id": "r4_full_drift_stack__causal_headroom_ladder",
+      "causal_role_NO_CALL_count": 2,
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "event_terminal": "complete_counterfactual_stream",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0
+    }
+  ],
+  "headroom_law_changed": false,
+  "headroom_validation": {
+    "accepted_action_count": 27559,
+    "arithmetic_violation_count": 0,
+    "b2_max_mismatch_count": 0,
+    "metrics": null,
+    "receipt_count": 167501,
+    "strict_law": "b1+b2+fee<0"
+  },
+  "holdout_opened": false,
+  "leg_identity_count": 1608,
+  "live_or_production_access": false,
+  "original_audit": "84cdf87a12f3b0c4986ba3133c84711bce4e74c7",
+  "primary_fill_law_changed": false,
+  "ranking_tuning_or_ablation": false,
+  "retired_100_fields_present": false,
+  "schema_version": "window1-round4-prerun-freeze-v2",
+  "scorer_invocation_count": 0,
+  "sealed_holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ]
+}

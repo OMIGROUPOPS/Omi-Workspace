@@ -1,0 +1,141 @@
+{
+  "schema_version": "window1-round4-candidates-v2",
+  "instrument_version": "window1-round4-causal-headroom-instrument-v1",
+  "overlay_version": "window1-round4-item5-amended-overlay-v2",
+  "supersedes_prerun": "4f65344672430adc51fe0a5a7e8c9279b2b354ed",
+  "original_audit": "84cdf87a12f3b0c4986ba3133c84711bce4e74c7",
+  "controlling_item5_amendment": "abe543e33bf40cf6cca14e046c40904d2de5e878",
+  "selection_scope": "development dates 2026-07-12 through 2026-07-20 only; July 2026-07-24 through 2026-07-26 sealed",
+  "control_result": "Round-3 result 754415bb81a328d671cd327f216d1753802442b1 audited by 25735d9c9d9775a122da2a067962f45312aa62dc; the control is not rerun",
+  "candidate_ids": [
+    "r4_pair_presence__park_join__causal_headroom_ladder",
+    "r4_full_drift_stack__causal_headroom_ladder"
+  ],
+  "profiles": {
+    "r4_pair_presence": [
+      "start_boundary",
+      "independent_pair_presence",
+      "leg_specific_posture",
+      "first_fill_sibling_response",
+      "causal_headroom_ladder",
+      "positive_print_divot_recut",
+      "true_print_flow",
+      "own_order_contribution_subtraction"
+    ],
+    "r4_full_drift_stack": [
+      "start_boundary",
+      "independent_pair_presence",
+      "leg_specific_posture",
+      "first_fill_sibling_response",
+      "causal_headroom_ladder",
+      "positive_print_divot_recut",
+      "nonself_one_cent_walk",
+      "causal_orientation",
+      "causal_drift_recognition",
+      "source_proved_drift_reach",
+      "source_proved_atlas_reach",
+      "dynamic_band_cell_recut",
+      "cohort_steering",
+      "true_print_flow",
+      "bbo_top5_pressure",
+      "own_order_contribution_subtraction"
+    ]
+  },
+  "posture_by_role": {
+    "favorite": "park",
+    "underdog": "join"
+  },
+  "causal_role_unavailable_contract": {
+    "reason": "causal_role_unavailable_role_specific_steering_disabled",
+    "family_id": "leg_specific_posture",
+    "response_status": "NO_CALL_UNAVAILABLE",
+    "underlying_policy_continues": true,
+    "neutral_posture_when_bbo_exists": "join_external_best_bid",
+    "role_inference_allowed": false
+  },
+  "market_evidence_unavailable_contract": {
+    "reason": "lawful_positive_size_external_bbo_unavailable_no_order",
+    "family_id": "independent_pair_presence",
+    "response_status": "NO_CALL_UNAVAILABLE",
+    "D_membership_continues": true,
+    "placement_created": false,
+    "print_substitution_allowed": false,
+    "fabricated_price_allowed": false
+  },
+  "common_parameters": {
+    "lot_per_leg": 5,
+    "headroom_fee_cents": 0,
+    "headroom_step_cents": 1,
+    "headroom_strict_margin_cents": 1,
+    "divot_definition": {
+      "minimum_depth_cents": 2,
+      "trailing_median_seconds": 1800,
+      "minimum_prior_nonself_prints": 3,
+      "ask_hold_within_cents": 1
+    },
+    "flow_minimum_nonself_prints_30m": {
+      "ATP_CHALL": 16,
+      "WTA_CHALL": 16,
+      "ATP_MAIN": 1,
+      "WTA_MAIN": 1
+    },
+    "walk": {
+      "step_cents": 1,
+      "requires_verified_nonself_chain": true,
+      "minimum_chain_prints": 2,
+      "maximum_journey_cents": {
+        "ATP_CHALL": 2,
+        "WTA_CHALL": 2,
+        "ATP_MAIN": 1,
+        "WTA_MAIN": 1
+      }
+    },
+    "orientation_checkpoint_seconds_after_left": 3600,
+    "recognition_checkpoint_seconds_after_left": 7200,
+    "cohort_minimum_n": 30,
+    "cohort_minimum_reaim_delta_cents": 2,
+    "top5_ask_over_external_bid_threshold": 1.5,
+    "top5_pressure_extra_depth_cents": 1,
+    "first_fill_sibling_reaim_cents": 1,
+    "policy_corridor_seconds_after_anchor": 0,
+    "never_marketable": true
+  },
+  "headroom_contract": {
+    "partial_fill": "any positive partial fill arms the sibling but cannot create or spend a headroom balance",
+    "activation": "the first leg to reach exactly five freezes its VWAP and the contemporaneous own-subtracted external best bid R1",
+    "b1": "first_leg_exact5_vwap_cents - R1_cents",
+    "fee_cents": 0,
+    "later_trigger": "strictly later receipt-identifiable positive-size non-self sibling public print",
+    "b2": "proposed_sibling_limit_price_cents - contemporaneous_R2_external_bid_cents",
+    "b2_max": "-b1 - fee_cents - 1 at integer-cent precision",
+    "strict_guard": "b1 + b2 + fee_cents < 0",
+    "movement": "at most one +1-cent improvement at each lawful trigger; a budget-reducing correction may occur only at such a trigger",
+    "diagnostics_not_gates": [
+      "individual leg delta / IC",
+      "combined entry cost / S"
+    ]
+  },
+  "primary_fill_contract": {
+    "order_quantity_per_leg": 5,
+    "authority": "chronological receipt-identified positive-size non-self executed trade volume at the active maker order limit or better",
+    "accumulation": "qualifying volume after placement and before the guarded Window-1 cutoff accumulates across prints until exactly five",
+    "partial_fills": "recorded cumulatively and capped at the five-contract simulated order quantity",
+    "not_required": [
+      "five contracts displayed simultaneously",
+      "complete top-five or full depth",
+      "estimated or unobservable ahead-queue clearance",
+      "five contracts in one print",
+      "strict trade-through below the order limit",
+      "a separate depth-size conjunction",
+      "depth or queue certainty as an eligibility or NO_CALL gate"
+    ],
+    "queue_treatment": "displayed queue may guide placement and is retained only as a labeled sensitivity diagnostic; it never changes, censors or overrides the primary print-volume fill"
+  },
+  "combined_entry_cost_is_diagnostic_only": true,
+  "individual_delta_is_diagnostic_only": true,
+  "pair_cost_gate_enabled": false,
+  "free_numeric_parameters": [],
+  "candidate_additions_after_freeze_allowed": false,
+  "tuning_allowed_after_freeze": false,
+  "benchmark_execution_authorized": false
+}

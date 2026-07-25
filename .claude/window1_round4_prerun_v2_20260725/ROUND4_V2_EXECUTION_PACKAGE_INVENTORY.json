@@ -1,0 +1,150 @@
+{
+  "D": 804,
+  "benchmark_execution_authorized": false,
+  "bind_V2_only": true,
+  "candidate_event_stream_count": 1608,
+  "candidate_ids_in_frozen_order": [
+    "r4_pair_presence__park_join__causal_headroom_ladder",
+    "r4_full_drift_stack__causal_headroom_ladder"
+  ],
+  "execution_command": null,
+  "execution_id": null,
+  "frozen_source_receipts": [
+    {
+      "availability": "available",
+      "bytes": 3697581,
+      "git_blob_oid": "9207dd44d12c66fa29711e2d95ebafc66cafd155",
+      "path": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+      "role": "frozen start-boundary ledger and guarded cutoffs",
+      "sha256": "68f607b8bc4d5acbd55d2d4451e27fa41e379170cd0ef49e5124f6dbc7252f53"
+    },
+    {
+      "availability": "available",
+      "bytes": 20294927,
+      "git_blob_oid": "e40fb47bf779847657416cbfcc4cf4dfeff20529",
+      "path": ".claude/window1_20260721/WINDOW1_FEATURE_MATRIX.jsonl",
+      "role": "frozen 1,608-leg feature availability ledger",
+      "sha256": "3e87122c0ede3b7a240781ecb4cbfe3b98a7c035e74c217ca3ffec01e1a0b4e9"
+    },
+    {
+      "availability": "available",
+      "bytes": 15520,
+      "git_blob_oid": "d919b8e402f010e3703cd7fc3aad33e650c8ae2c",
+      "path": ".claude/entrysurface_20260717/band_map_v1.json",
+      "role": "frozen macro birth-band map",
+      "sha256": "caf255a283bbb32f1d9bd2edd5f4d898d5f50fc8e67d5f9a076579b695a9e68c"
+    },
+    {
+      "availability": "available",
+      "bytes": 16623,
+      "git_blob_oid": "0145907c60213fc5b65f15618667c82b38a19f42",
+      "path": ".claude/entrysurface_20260717/divot_tables_v1.json",
+      "role": "frozen divot surfaces",
+      "sha256": "89c514ec35673de8f552b2b66b9ceafb8181b9c8f6c00b1679899a3a2a82ac06"
+    },
+    {
+      "availability": "available",
+      "bytes": 182240,
+      "git_blob_oid": "2c0d4d3ea7b7a687d38d859df817f2a551fccac2",
+      "path": ".claude/entrysurface_20260717/drift_surfaces_v1.json",
+      "role": "frozen 12,170-leg drift/reach surfaces",
+      "sha256": "7dca4a4f0e6061d28765fd243f4ce717bc36a542b32490bafabc611bd2cf3bab"
+    },
+    {
+      "availability": "available",
+      "bytes": 86928,
+      "git_blob_oid": "9e9a60110a1803aba301b4dda60073b2178fe12a",
+      "path": ".claude/seqfloor_20260708/recut_cells.json",
+      "role": "frozen dynamic recut cells",
+      "sha256": "852ab6678e4358189e4f79987e0286011d1e5662a2653ed0cc34fc18e4fb32b7"
+    },
+    {
+      "availability": "available",
+      "bytes": 167391,
+      "git_blob_oid": "7b5f89c703679d69986c146692cce90c99c655cf",
+      "path": ".claude/master_20260709/cohort.json",
+      "role": "frozen cohort n>=30 surfaces",
+      "sha256": "9e144811b54637e8b71e676a56b122081bc09447e49ea726769539e51f8d8488"
+    },
+    {
+      "availability": "available",
+      "bytes": 2061,
+      "git_blob_oid": "8971516ed0e248fed7a744d3ee4c7f90a27c833f",
+      "path": ".claude/trendpath/ORIENT_V1.json",
+      "role": "frozen orientation surface",
+      "sha256": "e8003418aa5ed97b58294f390e7c261b11e1d4d9bd50a6be171aebbbba06f5f5"
+    },
+    {
+      "availability": "available",
+      "bytes": 67396,
+      "git_blob_oid": "9e04a5061d8a9018fcedf4b923834310ba4cf268",
+      "path": ".claude/trendpath/ATLAS_V1.json",
+      "role": "source-proved G9 atlas reach surface",
+      "sha256": "797b3e7bd4a107f80244a06a8aea504211680122434fd0141e8f41512031c121"
+    },
+    {
+      "availability": "available",
+      "bytes": 31372,
+      "git_blob_oid": "9cf2f7e3c3ccb961e2d08ee0e21076f2b9dde0f2",
+      "path": "arb-executor/analysis/window1_round2_scorer.py",
+      "role": "unchanged frozen scorer reserved for later authorization",
+      "sha256": "1053ed4af1605c9442ec2c44d675e7d6eaf3a9ad9a4eafc78b239e1e3b75d3a2"
+    },
+    {
+      "availability": "available",
+      "bytes": 1110,
+      "git_blob_oid": "91489b6367d38ba28374359192823ebb4542c0b0",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_METRIC_CONTRACT_V1.json",
+      "role": "unchanged D/C/PC/S/IC metric contract",
+      "sha256": "b2b9553485f116ade32f46a9ef9115f14876ccd46dfd1717c7395e22fb792738"
+    },
+    {
+      "availability": "available",
+      "bytes": 4001,
+      "git_blob_oid": "292ecc3926455af1fc229b3672121478d98f7f81",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND2_SCORER_CONTRACT_V1.json",
+      "role": "unchanged scorer contract",
+      "sha256": "e32c27026bdffc01eed2cad17fb3417d3fefeffca095738bfe9431094ec796ca"
+    }
+  ],
+  "required_V2_inputs": [
+    {
+      "bytes": 7219,
+      "git_blob_oid": "fc06f6680fc52e1621358643a1bfced75b575310",
+      "path": "arb-executor/analysis/window1_round4_instrument_v2.py",
+      "role": "V2 code/spec/test",
+      "sha256": "c19f17c0edffb1c50157211fb00c75b8e712254f024b0c5451bb7e14d164ab68"
+    },
+    {
+      "bytes": 5770,
+      "git_blob_oid": "8aefddb9b7e1d46a620d03c54e332620722fb07f",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND4_CANDIDATES_V2.json",
+      "role": "V2 code/spec/test",
+      "sha256": "a3864fae235193e45e058b95af3fd89b13781c4e39ac46e2829809ae001686db"
+    },
+    {
+      "bytes": 78283064,
+      "git_blob_oid": "f303ef05946de8657b953204d6550da021839bfb",
+      "path": ".claude/window1_round4_prerun_v2_20260725/FROZEN_CANDIDATE_EVENT_STREAMS_V2.jsonl.gz",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "cce26972c9c22f5990ff259bbc0a47fdecfcf1f42a7999341876a479568dbbdf"
+    },
+    {
+      "bytes": 153484,
+      "git_blob_oid": "4db3b2e6b23cab2a16d5c6a304f9a0a0dfa618dc",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_STREAM_RECEIPTS.jsonl.gz",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "90daa68eb6265bb7c3db6f5837f0fd57e55967c994e362c2b851f61025815c6a"
+    },
+    {
+      "bytes": 9963,
+      "git_blob_oid": "cb6d416dcb7c6e28022726dd3fe3145ef3f3cc2e",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_SOURCE_BINDING_AVAILABILITY.json",
+      "role": "V2 PRE-RUN artifact",
+      "sha256": "c614167da3239d98b356ec10c7f4440364b1feefa84b5fed85bb9e46e3a9792f"
+    }
+  ],
+  "schema_version": "window1-round4-v2-execution-inventory-v1",
+  "scorer_invocation_count": 0,
+  "target_PC": 603
+}

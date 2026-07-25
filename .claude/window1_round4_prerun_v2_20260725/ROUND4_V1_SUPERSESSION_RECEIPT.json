@@ -1,0 +1,13 @@
+{
+  "V1_prerun_retracted_from_execution": "4f65344672430adc51fe0a5a7e8c9279b2b354ed",
+  "V2_execution_binding_required": true,
+  "benchmark_execution_authorized": false,
+  "candidate_ids_changed": false,
+  "fill_or_headroom_law_changed": false,
+  "historical_V1_files_preserved": true,
+  "reasons": [
+    "causal_role was an unlawful terminal event censor",
+    "two inert 100-cent fields were ambiguous stale surface"
+  ],
+  "schema_version": "window1-round4-v1-supersession-v2"
+}

@@ -1,0 +1,158 @@
+{
+  "candidates": [
+    {
+      "candidate_id": "r3_causal_steer__park_join__hold",
+      "filled_leg_ex_post_d1_negative_count": 91,
+      "later_logged_strict_price_reach_count": 15,
+      "naked_single_count": 264,
+      "negative_d1_sibling_fill_only_after_cutoff_count": 52,
+      "unused_ex_post_pair_allowance": {
+        "at_least_1_cent": 73,
+        "at_least_2_cents": 69,
+        "at_least_3_cents": 64,
+        "at_least_5_cents": 45,
+        "median_cents": 4.0,
+        "n": 91
+      }
+    },
+    {
+      "candidate_id": "r3_causal_steer__park_join__reaim",
+      "filled_leg_ex_post_d1_negative_count": 90,
+      "later_logged_strict_price_reach_count": 14,
+      "naked_single_count": 263,
+      "negative_d1_sibling_fill_only_after_cutoff_count": 51,
+      "unused_ex_post_pair_allowance": {
+        "at_least_1_cent": 75,
+        "at_least_2_cents": 67,
+        "at_least_3_cents": 61,
+        "at_least_5_cents": 35,
+        "median_cents": 4.0,
+        "n": 90
+      }
+    },
+    {
+      "candidate_id": "r3_full_os__walk_park__hold",
+      "filled_leg_ex_post_d1_negative_count": 18,
+      "later_logged_strict_price_reach_count": 4,
+      "naked_single_count": 38,
+      "negative_d1_sibling_fill_only_after_cutoff_count": 6,
+      "unused_ex_post_pair_allowance": {
+        "at_least_1_cent": 18,
+        "at_least_2_cents": 18,
+        "at_least_3_cents": 17,
+        "at_least_5_cents": 11,
+        "median_cents": 5.0,
+        "n": 18
+      }
+    },
+    {
+      "candidate_id": "r3_full_os__walk_park__reaim",
+      "filled_leg_ex_post_d1_negative_count": 18,
+      "later_logged_strict_price_reach_count": 4,
+      "naked_single_count": 38,
+      "negative_d1_sibling_fill_only_after_cutoff_count": 6,
+      "unused_ex_post_pair_allowance": {
+        "at_least_1_cent": 18,
+        "at_least_2_cents": 17,
+        "at_least_3_cents": 14,
+        "at_least_5_cents": 9,
+        "median_cents": 4.5,
+        "n": 18
+      }
+    },
+    {
+      "candidate_id": "r3_pair_presence__park_join__hold",
+      "filled_leg_ex_post_d1_negative_count": 95,
+      "later_logged_strict_price_reach_count": 15,
+      "naked_single_count": 281,
+      "negative_d1_sibling_fill_only_after_cutoff_count": 54,
+      "unused_ex_post_pair_allowance": {
+        "at_least_1_cent": 78,
+        "at_least_2_cents": 76,
+        "at_least_3_cents": 69,
+        "at_least_5_cents": 49,
+        "median_cents": 5.0,
+        "n": 95
+      }
+    },
+    {
+      "candidate_id": "r3_pair_presence__park_join__reaim",
+      "filled_leg_ex_post_d1_negative_count": 92,
+      "later_logged_strict_price_reach_count": 12,
+      "naked_single_count": 278,
+      "negative_d1_sibling_fill_only_after_cutoff_count": 53,
+      "unused_ex_post_pair_allowance": {
+        "at_least_1_cent": 75,
+        "at_least_2_cents": 68,
+        "at_least_3_cents": 59,
+        "at_least_5_cents": 40,
+        "median_cents": 4.0,
+        "n": 92
+      }
+    },
+    {
+      "candidate_id": "r3_pair_presence__touch_park__hold",
+      "filled_leg_ex_post_d1_negative_count": 69,
+      "later_logged_strict_price_reach_count": 13,
+      "naked_single_count": 165,
+      "negative_d1_sibling_fill_only_after_cutoff_count": 41,
+      "unused_ex_post_pair_allowance": {
+        "at_least_1_cent": 61,
+        "at_least_2_cents": 59,
+        "at_least_3_cents": 53,
+        "at_least_5_cents": 30,
+        "median_cents": 4.0,
+        "n": 69
+      }
+    },
+    {
+      "candidate_id": "r3_pair_presence__touch_park__reaim",
+      "filled_leg_ex_post_d1_negative_count": 70,
+      "later_logged_strict_price_reach_count": 13,
+      "naked_single_count": 165,
+      "negative_d1_sibling_fill_only_after_cutoff_count": 43,
+      "unused_ex_post_pair_allowance": {
+        "at_least_1_cent": 64,
+        "at_least_2_cents": 53,
+        "at_least_3_cents": 44,
+        "at_least_5_cents": 23,
+        "median_cents": 3.0,
+        "n": 70
+      }
+    }
+  ],
+  "estimated_queue_required_for_primary_completion": false,
+  "five_contract_primary_print_volume_required_for_completion": true,
+  "logged_price_reach_definition": "receipt-backed sibling microdivot after filled-leg exact five and before guarded cutoff, strictly above every actually posted sibling price and <= the strict ex-post allowance",
+  "logged_price_reach_is_completion_claim": false,
+  "post_cutoff_fills_excluded_from_PC": true,
+  "queue_sensitivity_alters_primary_completion": false,
+  "schema_version": "window1-round3-oracle-false-negative-census-v1",
+  "source_round3_audit": "25735d9c9d9775a122da2a067962f45312aa62dc",
+  "source_round3_result": "754415bb81a328d671cd327f216d1753802442b1",
+  "supplied_count_comparison": {
+    "actual": {
+      "allowance_at_least_1": 75,
+      "allowance_at_least_2": 68,
+      "allowance_at_least_3": 59,
+      "allowance_at_least_5": 40,
+      "allowance_median": 4.0,
+      "filled_leg_ex_post_d1_negative_count": 92,
+      "later_logged_strict_price_reach": 12,
+      "naked_single_count": 278,
+      "post_cutoff_sibling_fills": 53
+    },
+    "expected": {
+      "allowance_at_least_1": 75,
+      "allowance_at_least_2": 68,
+      "allowance_at_least_3": 59,
+      "allowance_at_least_5": 40,
+      "allowance_median": 4,
+      "filled_leg_ex_post_d1_negative_count": 92,
+      "later_logged_strict_price_reach": 12,
+      "naked_single_count": 278,
+      "post_cutoff_sibling_fills": 53
+    }
+  },
+  "supplied_selected_candidate_counts_reproduced": true
+}

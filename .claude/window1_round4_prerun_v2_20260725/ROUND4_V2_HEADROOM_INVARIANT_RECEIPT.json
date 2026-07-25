@@ -1,0 +1,8 @@
+{
+  "accepted_action_count": 27559,
+  "arithmetic_violation_count": 0,
+  "b2_max_mismatch_count": 0,
+  "metrics": null,
+  "receipt_count": 167501,
+  "strict_law": "b1+b2+fee<0"
+}

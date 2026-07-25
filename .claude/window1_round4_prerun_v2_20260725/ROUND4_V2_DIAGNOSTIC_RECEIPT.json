@@ -1,0 +1,35 @@
+{
+  "C_PC_S_IC_populated": false,
+  "D": 804,
+  "V2_policy_overlay": "window1-round4-item5-amended-overlay-v2",
+  "all_stream_metrics_null": true,
+  "calibration_sample_count": 1826,
+  "candidate_event_diagnostic_count": 1608,
+  "candidate_ids": [
+    "r4_pair_presence__park_join__causal_headroom_ladder",
+    "r4_full_drift_stack__causal_headroom_ladder"
+  ],
+  "candidate_scoring_performed": false,
+  "event_rows": 804,
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "opportunity_ledger_aggregate_sha256": "b81b661c95155649e59a820c1a2986c1f6d360a73bbdd86b9d599be6d39fa197",
+  "opportunity_ledger_shards": [
+    {
+      "bytes": 64628823,
+      "path": ".claude/window1_round4_prerun_v2_20260725/WINDOW1_OPPORTUNITY_LEDGER_V2_01.jsonl.gz",
+      "row_count": 402,
+      "sha256": "4b0bc24778866ab322df274fcf0e3edd40202ade35a038999b613f5b64b87cb5"
+    },
+    {
+      "bytes": 44884848,
+      "path": ".claude/window1_round4_prerun_v2_20260725/WINDOW1_OPPORTUNITY_LEDGER_V2_02.jsonl.gz",
+      "row_count": 402,
+      "sha256": "bb85304bc81b704b4d9dfd51f1c9287a24e029c4bfa9e3c7392d750a7a2bb8c0"
+    }
+  ],
+  "policy_module_imports_diagnostics": false,
+  "schema_version": "window1-round4-diagnostics-v2",
+  "scorer_invoked": false,
+  "threshold_tuned_from_diagnostics": false
+}

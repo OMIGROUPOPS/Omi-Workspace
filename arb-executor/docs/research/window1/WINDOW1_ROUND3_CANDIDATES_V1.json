@@ -1,0 +1,135 @@
+{
+  "schema_version": "window1-round3-candidates-v1",
+  "instrument_version": "window1-round3-causal-instrument-v1",
+  "selection_scope": "development dates 2026-07-12 through 2026-07-20 only; July 2026-07-24 through 2026-07-26 sealed",
+  "design_basis": "Round-2 admitted partner-starvation forensic at results 10ac6dbc68d65cb21ab3718e118ff34d7220ad87 and audit 807e2c865c3cf7384757c54a3b879518568dec4f",
+  "order_stream_law": "both legs independently establish maker presence from their first positive-size public BBO after policy activation; statistical t_deep is advisory and never a hard eligibility gate; later recut, walk, pressure, and sibling actions require receipt-identifiable positive-size causal evidence",
+  "common_parameters": {
+    "lot_per_leg": 5,
+    "divot_definition": {
+      "minimum_depth_cents": 2,
+      "trailing_median_seconds": 1800,
+      "minimum_prior_nonself_prints": 3,
+      "ask_hold_within_cents": 1
+    },
+    "flow_minimum_nonself_prints_30m": {
+      "ATP_CHALL": 16,
+      "WTA_CHALL": 16,
+      "ATP_MAIN": 1,
+      "WTA_MAIN": 1
+    },
+    "walk": {
+      "step_cents": 1,
+      "requires_verified_nonself_chain": true,
+      "minimum_chain_prints": 2,
+      "maximum_journey_cents": {
+        "ATP_CHALL": 2,
+        "WTA_CHALL": 2,
+        "ATP_MAIN": 1,
+        "WTA_MAIN": 1
+      }
+    },
+    "orientation_checkpoint_seconds_after_left": 3600,
+    "recognition_checkpoint_seconds_after_left": 7200,
+    "cohort_minimum_n": 30,
+    "cohort_minimum_reaim_delta_cents": 2,
+    "top5_ask_over_external_bid_threshold": 1.5,
+    "top5_pressure_extra_depth_cents": 1,
+    "first_fill_sibling_reaim_cents": 1,
+    "first_fill_sibling_max_combined_cost_cents": 100,
+    "maximum_pair_order_cost_cents": 100,
+    "policy_corridor_seconds_after_anchor": 0,
+    "never_marketable": true
+  },
+  "profiles": {
+    "r3_pair_presence": [
+      "start_boundary",
+      "independent_pair_presence",
+      "leg_specific_posture",
+      "first_fill_sibling_response",
+      "positive_print_divot_recut",
+      "true_print_flow",
+      "own_order_contribution_subtraction"
+    ],
+    "r3_causal_steer": [
+      "start_boundary",
+      "independent_pair_presence",
+      "leg_specific_posture",
+      "first_fill_sibling_response",
+      "positive_print_divot_recut",
+      "causal_orientation",
+      "causal_drift_recognition",
+      "cohort_steering",
+      "true_print_flow",
+      "bbo_top5_pressure",
+      "own_order_contribution_subtraction"
+    ],
+    "r3_full_os": [
+      "start_boundary",
+      "independent_pair_presence",
+      "leg_specific_posture",
+      "nonself_one_cent_walk",
+      "first_fill_sibling_response",
+      "positive_print_divot_recut",
+      "causal_orientation",
+      "causal_drift_recognition",
+      "cohort_steering",
+      "true_print_flow",
+      "bbo_top5_pressure",
+      "own_order_contribution_subtraction"
+    ]
+  },
+  "posture_pairs": {
+    "park_join": {
+      "favorite": "park",
+      "underdog": "join"
+    },
+    "touch_park": {
+      "favorite": "touch",
+      "underdog": "park"
+    },
+    "walk_park": {
+      "favorite": "walk",
+      "underdog": "park"
+    }
+  },
+  "candidate_ids": [
+    "r3_pair_presence__park_join__hold",
+    "r3_pair_presence__park_join__reaim",
+    "r3_pair_presence__touch_park__hold",
+    "r3_pair_presence__touch_park__reaim",
+    "r3_causal_steer__park_join__hold",
+    "r3_causal_steer__park_join__reaim",
+    "r3_full_os__walk_park__hold",
+    "r3_full_os__walk_park__reaim"
+  ],
+  "family_availability_law": {
+    "cohort_steering": "NO_CALL_UNAVAILABLE below n=30; underlying policy continues",
+    "bbo_top5_pressure": "NO_CALL_UNAVAILABLE where top-five is absent; underlying BBO policy continues",
+    "causal_orientation": "NO_CALL_UNAVAILABLE where its frozen causal cell is absent or thin; underlying policy continues",
+    "causal_drift_recognition": "NO_CALL_UNAVAILABLE where its frozen causal cell is absent or thin; underlying policy continues",
+    "deployed_pair_policy_seal": "UNAVAILABLE; the latest deployed sealed pair-policy object is not bound in this research checkout and is not replaced by the older entry-surface tables",
+    "timestamped_schedule_revisions": "UNAVAILABLE beyond the bound exchange schedule observation; the policy horizon remains causal but may end before ex-post actual start",
+    "shape_mapping": "UNAVAILABLE; not loaded and not proxied",
+    "pinnacle": "UNAVAILABLE; not loaded and not proxied",
+    "full_depth": "UNAVAILABLE; top-five is not full depth"
+  },
+  "sibling_response_contract": {
+    "arming_event": "first positive-size fill on the first-filled leg",
+    "immediate_sibling_order_change": false,
+    "activation_event": "sibling's own strictly later receipt-identifiable positive-size flow or divot trigger after its own independent presence",
+    "order_difference_cents": 1,
+    "maximum_combined_cost_cents": 100,
+    "guard_law": "maker ceiling, exact +1, positive price band, par, maximum-cost, and one-price-authority guards all pass",
+    "missing_evidence": "NO_CALL_UNAVAILABLE; underlying sibling order remains independently managed and the event is not censored solely by response abstention"
+  },
+  "recut_contract": {
+    "cell_updates": "causal BBO updates may update the latent cell without cancelling an order",
+    "order_change": "a recut may change an order only on a later receipt-identifiable positive-size divot or recognized causal checkpoint",
+    "queue_law": "unchanged evidence means hold the current order and preserve queue position"
+  },
+  "free_numeric_parameters": [],
+  "candidate_additions_after_freeze_allowed": false,
+  "tuning_allowed_after_freeze": false,
+  "ranking_or_selection_frozen": false
+}

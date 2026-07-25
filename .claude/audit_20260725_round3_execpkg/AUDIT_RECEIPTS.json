@@ -1,0 +1,67 @@
+{
+  "additions": 14,
+  "audited_package_commit": "6daab089d1e6c11bd75a684b4e8609e815fec8f4",
+  "frozen_population": {
+    "D": 804,
+    "cache_receipts": 804,
+    "candidates": 8,
+    "eligibility_carryover": "694 eligible + 110 named censored per candidate and 28-pair distinctness carry over by content-address (frozen stream blob unchanged; verified at b415a98e)",
+    "leg_identities": 1608,
+    "stream_bundle_blob_unchanged_from_parent": true,
+    "stream_receipts": 6432,
+    "stream_receipts_identical_to_audited_round3_prerun": true
+  },
+  "hash_verification": {
+    "all_claimed_hashes_reproduced": true,
+    "input_bundle_canonical_sha256": "7dec1673c79dd548899f2e003ce753d90af01b182c929aa04be5f20714b24cb5",
+    "manifest_receipts_verified": "input_bundle, runner, 14 bound package receipts, embedded test/refusal/validation receipts \u2014 all reproduce",
+    "metric_contract_sha256_unchanged": "19795e4d8bc7b6920e9fe93f7fa60bd1c051df94dade31de4c7909b40953cb76",
+    "round2_results_audit_report_blob_pinned": "9bb51a3dc19fd055156ee958a6f208b1a725cbc4 (verified)",
+    "round3_audit_report_blob_pinned_in_runner": "e4b32d218f3e4e1feeb3043ff4f4b3ba36033ac0 (verified == b415a98e blob)",
+    "runner_sha256": "f9dfab1e73574b25640a55205e3d00e5a28056f55f38fb3419adb728795ce5b4",
+    "scorer_contract_sha256": "c0918343eb53bd0cdaebc7efe585ed4d4ee6af9e64ef2a651aae3243a3840c27",
+    "scorer_sha256_unchanged_round2": "b41e6915882fd5b81b583d4c03317d21f1d708fd7710ea4b26a4a6da428fe997"
+  },
+  "isolation": {
+    "execute_time_imports_hash_pinned": true,
+    "holdout_rows_in_inputs": 0,
+    "holdout_sealed": true,
+    "no_network_kalshi_vps_live_production_config_order_position_w2_exit_settlement_dca_interfaces": true
+  },
+  "modifications_or_deletions": 0,
+  "one_attempt_law": {
+    "execution_id": "w1r3-dev-20260712-20260720-14e0e846-grid1-stdoutsafe",
+    "execution_id_new_and_unused": true,
+    "no_resume_retry_overwrite_partial_reuse": true,
+    "real_scorer_invocations_to_date": 0,
+    "results_directory_absent_everywhere": true,
+    "runner_refuses_existing_directory": true
+  },
+  "operational_condition": "Runner requires an EXACTLY clean worktree; the Codex worktree at 6daab089 carries the preserved untracked grid1 evidence directory and would be refused. Execute from a fresh clean checkout of 6daab089; do NOT delete or move the preserved grid1 evidence.",
+  "parent": "14e0e846e8922da98f656aef1f43d2c48da96ee7",
+  "remote_tip_codex_window1_definition": true,
+  "runner_safety": {
+    "contracts_enforced_at_validate_and_completion": true,
+    "expected_output_inventory_files": 19,
+    "expected_progress_sequence_lines": 20,
+    "guard_classes_byte_identical_to_proven_round2": [
+      "ConsoleEchoGuard",
+      "ProgressEmitter",
+      "FrozenScorerDispatcher"
+    ],
+    "independent_deadpipe_campaign": {
+      "all_pass": true,
+      "cases": 7,
+      "results_file": ".claude/audit_20260725_round3_execpkg/FIXTURE_RESULTS.json"
+    },
+    "unguarded_console_writes": 0
+  },
+  "schema_version": "w1-round3-execution-package-independent-audit-receipts-v1",
+  "sole_child_of_parent": true,
+  "tests": {
+    "committed_packaging_test_receipt_matches": true,
+    "committed_refusal_fixture_results": "19 cases all PASS (refusals, nonfatal console, one-shot artifact publication, zero-scorer dispatch)",
+    "frozen_suites": "72/72 pass (grid_runner, stdout_safe, instrument, round2_scorer)"
+  },
+  "zero_execution_and_scoring_during_audit": true
+}

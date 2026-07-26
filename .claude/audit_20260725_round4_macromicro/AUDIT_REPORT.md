@@ -70,3 +70,7 @@ Narrow corrections required (do not implement here; each must arrive in a supers
 7. **Item 9:** every directional confirm mapping either sourced to a ratified fitted study or removed.
 8. **Item 10:** apply the join/improve-by-exactly-1¢ invariant after all bias terms (zero actions above nonself_bid+1).
 9. Deterministic regeneration must be independently confirmed in the corrected PRE-RUN's audit (the check was still running at this report's ruling and is immaterial to the BLOCK).
+
+## Determinism addendum (post-ruling)
+
+The fresh-directory regeneration completed after the ruling was committed: **all 10 regenerable artifacts are byte-identical to the committed git blobs** (four stream shards, FIELD_CONSUMPTION_RECEIPTS, LAST_TRADE_PRESERVATION_CENSUS, HEADROOM_RECEIPTS, ORDER_DIFFERENCES, REAL_CAPABILITY, FIVE_EVENT proof; gz compared on decompressed content). Zero nondeterminism. The DETERMINISTIC_REGENERATION_RECEIPT claim is now independently confirmed. This strengthens item 1 and does not alter the BLOCKED ruling, which rests entirely on the semantic defects of items 3-10.

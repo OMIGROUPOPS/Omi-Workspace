@@ -37,6 +37,6 @@
     "item12_five_event_fill_law": "D=804 both candidates; 10 legs zero placements, named NO_CALLs, non-censored; headroom 129173 receipts 0 violations, 29695 improvements",
     "item2_last_trade": "PASS"
   },
-  "regeneration_status": "still running at ruling time; immaterial to BLOCK; must be confirmed in corrected PRE-RUN audit",
+  "regeneration_status": "CONFIRMED after ruling: all 10 regenerable artifacts byte-identical to committed blobs (4 stream shards, field-consumption receipts, last-trade census, headroom receipts, order differences, capability, five-event proof); zero nondeterminism; ruling unchanged (BLOCKED on semantic defects)",
   "schema_version": "w1-round4-macromicro-independent-audit-receipts-v1"
 }

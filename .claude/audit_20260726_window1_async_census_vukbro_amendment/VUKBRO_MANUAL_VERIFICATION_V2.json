@@ -1,0 +1,248 @@
+{
+  "authoritative_boundary_and_reference_source": "REAL_START_LEDGER_V5 -> reference_adapter_v2.guarded_cutoff, frozen as FROZEN_X_EVIDENCE_LEDGER.boundary; contemporaneous reference bid = FROZEN_X_EVIDENCE_LEDGER.book_and_chain_at_first_observation.nonself_best_bid_cents for the credited (event,leg,price)",
+  "controlling_truth": "the narrative print at 1783979002.68 with d1=0/b2_max=-1 is correct for BOTH candidates; the census row's d1=-1/b2_max=0/1783971964.6/52-episode figures are refuted (reference bid mis-derived from the merged stream as a same-second 59 instead of the authoritatively-bound 58)",
+  "frozen_result_ledger_credited_leg": "BRO fillable PRICE_REACHED X1=58 qty=5 ts0=1783949040.451872; VUK uncredited sibling (identical in both candidates)",
+  "metrics": null,
+  "no_earlier_qualifying_episode": "the 1783979002.68 print is the earliest strictly-later in-window in-budget episode under the correct b2_max=-1; the census's earlier 1783971964.6 point only qualified under the erroneous permissive b2_max=0",
+  "schema_version": "w1-async-census-vukbro-manual-verification-v2",
+  "scored": false,
+  "supersedes": {
+    "BOUNDARY_COMPLIANT_EVENT_LEVEL_CENSUS.json": "VUKBRO row (d1=-1/b2_max=0/first_recovery_ts=1783971964.600592/52 episodes) \u2014 WRONG, superseded",
+    "ITEM_BOUNDARY_AMENDMENT.md": "VUKBRO prose/example (print 41/bid 42/ts 1783979002.68) \u2014 that example was CORRECT and is affirmed; the amendment's aggregate table is superseded (see reconciliation receipt)",
+    "MANUAL_VERIFICATION_RECEIPT.json": "VUKBRO row (d1=0/b2_max=-1/inwin_qualifying_first=null \u2014 the null was a strict-ask-only helper artifact; recovery is print-based)"
+  },
+  "vukbro_truth_per_candidate": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "X1": 58,
+      "all_episodes": [
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "e7faf7a4-9b16-7c2a-9c2a-c00c092b4e30",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783979002.679826,
+          "type": "print"
+        },
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "0e7d3815-7cd4-47b7-3cce-8f0c6dbdfb5d",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783982271.157324,
+          "type": "print"
+        },
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "9457dfa5-2bc8-4918-1140-e7f28926a3f8",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783982271.157324,
+          "type": "print"
+        },
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "aadedcce-e7a4-4f9f-3978-a3a55d17f1de",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783982271.157324,
+          "type": "print"
+        },
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "3bb454f4-1bf3-4c3d-4a98-86f0d0070bec",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783982633.379576,
+          "type": "print"
+        },
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "66be1ffc-87db-4891-4e75-123dd73bcbe6",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783982633.379576,
+          "type": "print"
+        },
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "962c0198-6418-47c7-7a4b-e886a9eee371",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783982633.379576,
+          "type": "print"
+        },
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "dba6acf1-3b5f-4310-5c58-56cf0e475664",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783982633.379576,
+          "type": "print"
+        }
+      ],
+      "b2_max": -1,
+      "capacity_reported_separately_from_price_reach": true,
+      "credited_leg": "BRO",
+      "d1": 0,
+      "earliest": [
+        1783979002.679826,
+        "print",
+        41,
+        42,
+        -1
+      ],
+      "earliest_qualifying_episode": {
+        "X": 41,
+        "at_or_before_cutoff": true,
+        "contemporaneous_sibling_bid": 42,
+        "d2": -1,
+        "receipt": "e7faf7a4-9b16-7c2a-9c2a-c00c092b4e30",
+        "strict_budget_d1_plus_d2": -1,
+        "strictly_later_than_first_fill": true,
+        "ts": 1783979002.679826,
+        "type": "print"
+      },
+      "episodes": 8,
+      "fee_cents": 0,
+      "five_contract_capacity_at_earliest_executed_volume_at_or_below_X": 4378.7,
+      "guarded_cutoff_ts": 1783992600.0,
+      "positive_window1_provable": true,
+      "qualifying_episodes": 8,
+      "sibling": "VUK",
+      "ts0": 1783949040.451872,
+      "xevidence_bid": 58
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "X1": 58,
+      "all_episodes": [
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "e7faf7a4-9b16-7c2a-9c2a-c00c092b4e30",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783979002.679826,
+          "type": "print"
+        },
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "0e7d3815-7cd4-47b7-3cce-8f0c6dbdfb5d",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783982271.157324,
+          "type": "print"
+        },
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "9457dfa5-2bc8-4918-1140-e7f28926a3f8",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783982271.157324,
+          "type": "print"
+        },
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "aadedcce-e7a4-4f9f-3978-a3a55d17f1de",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783982271.157324,
+          "type": "print"
+        },
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "3bb454f4-1bf3-4c3d-4a98-86f0d0070bec",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783982633.379576,
+          "type": "print"
+        },
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "66be1ffc-87db-4891-4e75-123dd73bcbe6",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783982633.379576,
+          "type": "print"
+        },
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "962c0198-6418-47c7-7a4b-e886a9eee371",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783982633.379576,
+          "type": "print"
+        },
+        {
+          "<=cutoff": true,
+          "X": 41,
+          "bid": 42,
+          "d2": -1,
+          "receipt": "dba6acf1-3b5f-4310-5c58-56cf0e475664",
+          "strict_budget_d1+d2": -1,
+          "ts": 1783982633.379576,
+          "type": "print"
+        }
+      ],
+      "b2_max": -1,
+      "capacity_reported_separately_from_price_reach": true,
+      "credited_leg": "BRO",
+      "d1": 0,
+      "earliest": [
+        1783979002.679826,
+        "print",
+        41,
+        42,
+        -1
+      ],
+      "earliest_qualifying_episode": {
+        "X": 41,
+        "at_or_before_cutoff": true,
+        "contemporaneous_sibling_bid": 42,
+        "d2": -1,
+        "receipt": "e7faf7a4-9b16-7c2a-9c2a-c00c092b4e30",
+        "strict_budget_d1_plus_d2": -1,
+        "strictly_later_than_first_fill": true,
+        "ts": 1783979002.679826,
+        "type": "print"
+      },
+      "episodes": 8,
+      "fee_cents": 0,
+      "five_contract_capacity_at_earliest_executed_volume_at_or_below_X": 4378.7,
+      "guarded_cutoff_ts": 1783992600.0,
+      "positive_window1_provable": true,
+      "qualifying_episodes": 8,
+      "sibling": "VUK",
+      "ts0": 1783949040.451872,
+      "xevidence_bid": 58
+    }
+  }
+}

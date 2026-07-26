@@ -1,0 +1,58 @@
+{
+  "artifact_hashes": {
+    "CORRECTED_AGGREGATE_RECONCILIATION_RECEIPT.json": {
+      "bytes": 2712,
+      "sha256": "87e73fcd0eafcde2e00080da17c152cc483b00c85dceed9d5b10d594048b7826"
+    },
+    "ITEM_VUKBRO_RECEIPT_AMENDMENT.md": {
+      "bytes": 6902,
+      "sha256": "2e555227a8f4d6af9b50505732c5732b4ccb68a78342823ebcacdcb3eb945c03"
+    },
+    "VUKBRO_MANUAL_VERIFICATION_V2.json": {
+      "bytes": 8332,
+      "sha256": "f1ab7ea1f2f6d1d554ffc28b41a21740a1f345b7ba516386b4b0930f912f4e85"
+    }
+  },
+  "authoritative_sources": {
+    "credited_leg": "frozen result ledger 01/02_..._EVENT_LEDGER.jsonl (BRO fillable PRICE_REACHED X1=58)",
+    "reference_bid_and_boundary": "FROZEN_X_EVIDENCE_LEDGER.book_and_chain_at_first_observation + boundary.guarded_cutoff_ts/positive_window1_provable",
+    "sibling_episodes": "normalized guarded-cache-v3 books (strict-ask X>ask) + positive-size prints, clipped to [policy_left_ts, guarded_cutoff_ts]"
+  },
+  "corrected_aggregates": {
+    "episodes": [
+      4622,
+      4948
+    ],
+    "no_fill_either_union_unchanged": [
+      81,
+      84
+    ],
+    "recovered_naked": [
+      46,
+      49
+    ],
+    "recurring_x_levels": [
+      112,
+      119
+    ],
+    "residual_no_lawful": [
+      191,
+      191
+    ]
+  },
+  "frozen_census": "9220eba26b00a5b94e86d9c644adef16382942a0",
+  "no_scoring_no_holdout_no_live": true,
+  "parent": "0abe9a3a48ebe12bcc965174b63fd2d4d5e4ea00",
+  "schema_version": "w1-async-census-vukbro-amendment-source-and-hash-receipt-v1",
+  "vukbro_controlling": {
+    "X": 41,
+    "b2_max": -1,
+    "both_candidates_identical": true,
+    "d1": 0,
+    "d2": -1,
+    "episodes": 8,
+    "first_recovery_ts": 1783979002.679826,
+    "first_recovery_type": "print",
+    "sibling_bid": 42
+  }
+}

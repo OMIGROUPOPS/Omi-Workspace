@@ -1,0 +1,72 @@
+{
+  "corrected_vs_superseded": {
+    "first_recovery_evidence_split": {
+      "corrected_macro_hold": {
+        "print": 25,
+        "strict_ask": 21
+      },
+      "corrected_macro_micro": {
+        "print": 28,
+        "strict_ask": 21
+      }
+    },
+    "no_fill_either_union": {
+      "unchanged": [
+        81,
+        84
+      ]
+    },
+    "qualifying_in_window_episodes": {
+      "corrected_authoritative": [
+        4622,
+        4948
+      ],
+      "superseded_0abe9a3a": [
+        5603,
+        5929
+      ]
+    },
+    "recovered_naked_events": {
+      "corrected_authoritative": [
+        46,
+        49
+      ],
+      "superseded_0abe9a3a": [
+        49,
+        52
+      ]
+    },
+    "recurring_x_levels": {
+      "boundary_amendment_0abe9a3a": [
+        117,
+        124
+      ],
+      "corrected_authoritative": [
+        112,
+        119
+      ],
+      "note_2718_2773_were_the_ORIGINAL_d3bc4365_no_boundary": true,
+      "superseded_0abe9a3a": [
+        2718,
+        2773
+      ]
+    },
+    "residual_no_lawful_later_opportunity": {
+      "boundary_amendment_0abe9a3a": [
+        188,
+        188
+      ],
+      "corrected_authoritative": [
+        191,
+        191
+      ]
+    }
+  },
+  "metrics": null,
+  "residual_disclosure": "sibling-episode contemporaneous bids are read from each observation's own chain_state; coarse 1-second tape can still make individual episode COUNTS marginally sensitive, but membership (>=1 qualifying episode) and earliest-recovery identification are robust where d2 margins are non-zero. bid0 (first-leg reference) is now bound authoritatively from x-evidence.",
+  "root_cause": "the boundary amendment (d3bc4365 child 0abe9a3a) derived each credited leg's reference bid (bid0) from the merged books+prints stream; at coarse 1-second timestamps where the bid oscillates, the last same-second value could be off by one. The authoritative reference is the frozen x-evidence contemporaneous book (book_and_chain_at_first_observation). Re-deriving bid0 from x-evidence corrects d1/b2_max for VUKBRO and for other naked events sharing the artifact.",
+  "schema_version": "w1-async-census-vukbro-aggregate-reconciliation-v1",
+  "scope": "naked-event recovery aggregates only (the aggregate VUKBRO lives in). No-fill union uses order-independent min-d1 over each leg's own observations and is unaffected.",
+  "scored": false,
+  "structural_ruling": "V1 global-first-X construction REMAINS BLOCKED: 46/237 and 49/240 naked events still recover a lawful in-window in-budget later opportunity, and 112/119 sibling X-levels still had a lawful in-window recurrence discarded by the global-first rule."
+}

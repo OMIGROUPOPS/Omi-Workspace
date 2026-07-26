@@ -1,0 +1,42 @@
+{
+  "audited_commit": "84959172330a6659df4ef7db04d971ec0bb8d893",
+  "blockers": {
+    "item10_expression": "27 ladder actions (17+10) priced above nonself_bid+1 per their own micro receipts \u2014 bias bypasses join/improve-by-1c invariant",
+    "item3_macro_target": "fitted_target = bid - edge (instrument :467) vs study/spec 'own W1-close-projection - edge_p50'; cell keyed by birth_anchor not own-close cell; witness P02 documents the moving target",
+    "item4_climb_law": "universal anchor>=50 split (:414); 284 CLIMB_SIDE legs in edge_p50==0 cells (ATP_CHALL 134, WTA_CHALL 96, ATP_MAIN 32, WTA_MAIN 22) vs CHALL ~80 crossover / mains par-lock",
+    "item5_hold": "108537/64304 reprices (~68/leg); up-majority 68487v40050 & 38569v25735; modal step +1c x93771; every reprice cancel+replace surrendering queue; spec: 'upward revision does not exist'",
+    "item6_volume": "matrix claims BOUND 'taker side, volume and cadence'; executable stores/consumes only last print taker_side (:706-713, :797-803); P06 perturbs only taker_side",
+    "item7_annotation": "composed_macro_micro=true stamped on inherited actions never gated by composition: headroom ladder 37299x2, horizon 853, divot 252x2, places 3196",
+    "item8_witnesses": "9 committed witnesses are bare input/output rows without event identity/receipts/production-path lineage",
+    "item9_mappings": "climb/decay last_trade, pressure, taker-side confirm directions have no ratified source in rulings/study/Vault"
+  },
+  "final_ruling": "BLOCKED",
+  "last_trade_census_reproduced": {
+    "carried": 504279,
+    "fallback_engaged_in_sample": 0,
+    "normalized_books": 1741891,
+    "print_creation": 0,
+    "raw_positive_last_trade": 12773011,
+    "raw_positive_prints": 3025875,
+    "raw_snapshots": 13479418,
+    "reduction": "out-of-corridor majority + inherited price-state/minute thinning (sample 15579/65735 in-window)",
+    "verified": 1051712
+  },
+  "lineage": {
+    "additions": 28,
+    "manifest_receipts_verified": 27,
+    "modifications": 0,
+    "remote_tip": true,
+    "sole_child": true,
+    "tests": "12/12"
+  },
+  "no_scoring_no_holdout_no_live": true,
+  "parent": "781b6d6fac65381a67f74a177478947bfd804dc8",
+  "passes": {
+    "item11_availability": "PASS with top20 history note",
+    "item12_five_event_fill_law": "D=804 both candidates; 10 legs zero placements, named NO_CALLs, non-censored; headroom 129173 receipts 0 violations, 29695 improvements",
+    "item2_last_trade": "PASS"
+  },
+  "regeneration_status": "still running at ruling time; immaterial to BLOCK; must be confirmed in corrected PRE-RUN audit",
+  "schema_version": "w1-round4-macromicro-independent-audit-receipts-v1"
+}

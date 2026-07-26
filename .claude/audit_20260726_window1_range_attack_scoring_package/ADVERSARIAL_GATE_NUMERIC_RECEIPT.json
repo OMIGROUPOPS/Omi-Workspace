@@ -1,0 +1,118 @@
+{
+  "adapter": "arb-executor/analysis/window1_range_attack_guarded_fill_adapter_v1.py",
+  "audited_commit": "f774d9060acc70efd4a80d48bfa7d4c6b1b9daf1",
+  "authorization_gate": {
+    "formal_argument": "a commit SHA is SHA-1 over its tree/parents/metadata; requiring the tree to contain that SHA is a hash fixed-point (preimage) construction \u2014 computationally infeasible; no ordinary finite audit workflow can satisfy the gate",
+    "function": "authorize_execute (window1_range_attack_scoring_runner_v1.py:305-343)",
+    "requirement": "git show <audit_commit>:<report> must contain the exact execution command embedding <audit_commit> itself",
+    "synthetic_repo_proof": "6 fixed-point iterations; each commit's tree cites only the previous SHA; never converges",
+    "verdict_gate": "BLOCKED \u2014 unsatisfiable self-referential authorization requirement"
+  },
+  "duplicate_leg_fail_crash": {
+    "adapter_behavior": "adapt_fillability_rows raises 'multiple eligible intervals for one candidate/event/leg'",
+    "detail": {
+      "macro_hold LANRAD RAD": 2,
+      "macro_micro BOHBOU BOH": 3,
+      "macro_micro LANRAD RAD": 2
+    },
+    "fillable_rows_total": 995,
+    "legs_with_multiple_fillable_intervals": 3,
+    "rows": 7,
+    "unique_legs": 991,
+    "verdict": "BLOCKED \u2014 the execute path fail-crashes on its own frozen fill source; the 995 'leg fills' census counts interval rows, not legs (991)"
+  },
+  "holdout_untouched": true,
+  "no_scoring_performed": true,
+  "numeric_truncation_cases": [
+    {
+      "case": "control_exact_integers",
+      "detail": {
+        "price": 40,
+        "qty": 5,
+        "target": 40
+      },
+      "outcome": "ACCEPTED"
+    },
+    {
+      "case": "quantity_5.9",
+      "detail": {
+        "price": 40,
+        "qty": 5,
+        "target": 40
+      },
+      "outcome": "ACCEPTED"
+    },
+    {
+      "case": "target_40.9_fill_40.9",
+      "detail": {
+        "price": 40,
+        "qty": 5,
+        "target": 40
+      },
+      "outcome": "ACCEPTED"
+    },
+    {
+      "case": "fill_40.9_only",
+      "detail": {
+        "price": 40,
+        "qty": 5,
+        "target": 40
+      },
+      "outcome": "ACCEPTED"
+    },
+    {
+      "case": "quantity_5.0001",
+      "detail": {
+        "price": 40,
+        "qty": 5,
+        "target": 40
+      },
+      "outcome": "ACCEPTED"
+    },
+    {
+      "case": "fractional_print_price_39.7",
+      "detail": {
+        "price": 40,
+        "qty": 5,
+        "target": 40
+      },
+      "outcome": "ACCEPTED"
+    },
+    {
+      "case": "strict_ask_control",
+      "detail": {
+        "price": 40,
+        "qty": 5,
+        "target": 40
+      },
+      "outcome": "ACCEPTED"
+    },
+    {
+      "case": "strict_ask_fractional_evidence_target_40.9",
+      "detail": {
+        "price": 40,
+        "qty": 5,
+        "target": 40
+      },
+      "outcome": "ACCEPTED"
+    },
+    {
+      "case": "strict_ask_fractional_ask_39.9",
+      "detail": {
+        "price": 40,
+        "qty": 5,
+        "target": 40
+      },
+      "outcome": "ACCEPTED"
+    }
+  ],
+  "reference_tie_law": {
+    "legs_checked": 1408,
+    "legs_with_differing_prices_at_tie": 64,
+    "legs_with_multiple_receipts_at_latest_admitted_ts": 271,
+    "tie_break": "sorted by (ts, receipt); chosen = last => lexicographically greatest UUID receipt",
+    "verdict": "BLOCKED \u2014 invented, unsupported tie law that is outcome-relevant on 64 legs (reference price, hence delta/PC/IC, depends on UUID ordering)"
+  },
+  "schema_version": "w1-range-attack-scoring-package-adversarial-gate-numeric-receipt-v1",
+  "verdict_numeric": "BLOCKED \u2014 8/8 fractional cases silently truncated and ACCEPTED (quantity 5.9->5, 5.0001->5; target/fill 40.9->40; fractional evidence targets/asks/prints accepted); exact-five and integer-cent contract violated by int(_finite(...)) truncation"
+}

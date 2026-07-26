@@ -1,0 +1,181 @@
+{
+  "committed_sources": [
+    {
+      "git_blob_oid": "cf9db5140d5c1025014dd308dc44ba1ca0aa9332",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 76247,
+      "path": "arb-executor/analysis/window1_asynchronous_opportunity_policy_census.py",
+      "sha256": "8483346b6894d0010861b1e63fd2d7e5ec9da7b5b310649a248f795280f18dbf"
+    },
+    {
+      "git_blob_oid": "30c938b7184b3570f5734eb473193084d27eb4ca",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 6506,
+      "path": "arb-executor/tests/test_window1_asynchronous_opportunity_policy_census.py",
+      "sha256": "5cd5052eb48106dc0105ccc4c2609165cd17c86bbe3d532189615f8fc505de1b"
+    },
+    {
+      "git_blob_oid": "8286373a73cd117d60bb3210b2aea12a5adb3897",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 21841,
+      "path": ".claude/window1_range_attack_prerun_20260725/MECHANISM_RECOVERY_TABLE.json",
+      "sha256": "b3106d490c14e75941ab0224291ae8331a7a41b0a48f2071aba32f943be21690"
+    },
+    {
+      "git_blob_oid": "7c203a01c53d63a42c83d07e9962d81acefd50fe",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 1634533,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/WINDOW1_PRICE_RANGE_LADDER_01.jsonl.gz",
+      "sha256": "a3788ca1614d20595a039d8ea47c0eef3399ae27e81bf13f60c24be9d6347806"
+    },
+    {
+      "git_blob_oid": "c33439b5e9c221ef12b0877b1552e85af9b57fd7",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 2054672,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/WINDOW1_PRICE_RANGE_LADDER_02.jsonl.gz",
+      "sha256": "35fe87ce7f300fa2fc5dd1db366cfb48d7617e9aa8f5674bc92f93e50f084f5f"
+    },
+    {
+      "git_blob_oid": "6962de424268ba27a4bc7b21f6b6ba78dd3ca493",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 2395806,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/WINDOW1_PRICE_RANGE_LADDER_03.jsonl.gz",
+      "sha256": "76294f45893e8723086bd9718e934ba68f59c4f8ad48dd5726b0fd8957c64069"
+    },
+    {
+      "git_blob_oid": "f307fcd6e7d7a90e27f20176b16bd22be21a6515",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 1938484,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/WINDOW1_PRICE_RANGE_LADDER_04.jsonl.gz",
+      "sha256": "6e0ae37a8fd8cabc6c8c6dff50a2eecf5f46221255e5f9eb6b20e34070fd6d57"
+    },
+    {
+      "git_blob_oid": "1e3080b1c3bdec01bc30095e1a44a0f01533ee3f",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 14575058,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_01.jsonl.gz",
+      "sha256": "0502c5fb2f9981cbb007ada7a44e78c29ff3e6e420009ae9f32769d817aa7bcc"
+    },
+    {
+      "git_blob_oid": "7de330507c1ee0be39ebe4c2a82fca8d0d286dfd",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 16653345,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_02.jsonl.gz",
+      "sha256": "5f5aaa0eea0629086a5ef14992cf9e259d7b903586d2fb07f372ef50ed3a25aa"
+    },
+    {
+      "git_blob_oid": "5520b7c9c5d3f9dfc1815ee3fac3ba12610262e6",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 7511510,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_03.jsonl.gz",
+      "sha256": "755ca5529b6269e4736267487f57f6b3d25eefcbaf9de95b31f060f1af185db3"
+    },
+    {
+      "git_blob_oid": "49b02230c9a3acd17918524bdf2f71d04dde4877",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 6574261,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_04.jsonl.gz",
+      "sha256": "c1a38436268bbd2914ceddba3fac3df20c903c91b5ad85cfcd68fac3797dcc67"
+    },
+    {
+      "git_blob_oid": "9324460d111172034398f7fa782ceeadd76d53eb",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 6724583,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/ACTION_AUTHORITY_RECEIPTS.jsonl.gz",
+      "sha256": "6c90f24b78e88ce9a4cd740343f24fbd8efd9071d220f5008da3ba24d6a5f182"
+    },
+    {
+      "git_blob_oid": "81e9b8739fd6f1eda15e2dcce8f180878f9f2b76",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 5487646,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/COMBINED_HEADROOM_RECEIPTS.jsonl.gz",
+      "sha256": "a62a56bcdeac8564b7b44dbf70938eb80d5276bfe2f11a1b9924abd29af9b00c"
+    },
+    {
+      "git_blob_oid": "fe0d079d8367fef0713d5e0d394c81667acb9d3e",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 1837661,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/PRICE_FILLABILITY_RECEIPTS.jsonl.gz",
+      "sha256": "2f1f124cc56815f1caa2026dd6dcc07a53412e9befbc43d49fcd464ac708eb2c"
+    },
+    {
+      "git_blob_oid": "3a4c788bd0c2ccff1f4fc636ed0dd0c9f96e2925",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 437976,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/DEPTH_VOLUME_STRESS_RECEIPTS.jsonl.gz",
+      "sha256": "f69773ee56263b7178dc81785261992d31425c532bec22f80cede4ef5f23ffc8"
+    },
+    {
+      "git_blob_oid": "1128a345d12829c9839aaa1473e4b999056ab98c",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 326472,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/PAIRWISE_ASYNCHRONOUS_OPPORTUNITY_LEDGER.jsonl.gz",
+      "sha256": "c4737c669febdd05aed6bd874e29ae5dc2f32e3acadbe9ca755e15fb396bb45b"
+    },
+    {
+      "git_blob_oid": "75b731ddc6453a496d064c389877a416c50300a2",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 1716660,
+      "path": ".claude/window1_range_attack_results_w1-range-attack-v2-dev-20260712-20260720-grid2-scorepkg-v2/01_w1_range_attack__macro_hold__combined_headroom_EVENT_LEDGER.jsonl",
+      "sha256": "5ce1f15910f2ea7946ff29b1b59b69fa6f52f59bdbeef99015ed1d271156bf31"
+    },
+    {
+      "git_blob_oid": "3878c66477bbbceba4ed43ec37e19d57ad96542c",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 1716412,
+      "path": ".claude/window1_range_attack_results_w1-range-attack-v2-dev-20260712-20260720-grid2-scorepkg-v2/02_w1_range_attack__macro_micro__combined_headroom_EVENT_LEDGER.jsonl",
+      "sha256": "384c8bae35b1cead0b7df28669abd3005c330490af114c5475a8c2013877fc37"
+    },
+    {
+      "git_blob_oid": "b616c3a715ea0ab6a70083c7a3b1b808c9b25af2",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 332562,
+      "path": ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json",
+      "sha256": "5b97aab24132a1e04a8f4d552fa2a6c026113aa5ad7d629c4ea07344b1238fa6"
+    },
+    {
+      "git_blob_oid": "f85b5844d192af31aaba9cc338ce192844c33d96",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 6673,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/ARTIFACT_HASH_MANIFEST.json",
+      "sha256": "dae6f911addb5a9ee75bb2a9a91254916ece0822be3eb51e8ac5ce534731f434"
+    },
+    {
+      "git_blob_oid": "fb8912464fe4f1641a16895361763d1cc41da597",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 1177,
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/WINDOW1_RANGE_ATTACK_V2_PRE_RUN_MANIFEST.json",
+      "sha256": "bb1cf802eeb15fdca66a389e6e6b27ec14c46f1e37b41dbc42feeba6408a621f"
+    }
+  ],
+  "controlling_audit": {
+    "bytes": 7537,
+    "commit": "e6aab4698015a2c45e6e9a607c7a0c994e756d8f",
+    "git_blob_oid": "6ec438f4c0a0dde9e5f4afbbe341be96f1883f53",
+    "path": ".claude/audit_20260726_window1_range_attack_execution_results/AUDIT_REPORT.md",
+    "sha256": "a406efc697c2f3b051a403abbb6cdb1b669e601347b7beae970cf465a82d28ec"
+  },
+  "controlling_audit_receipts": {
+    "bytes": 4273,
+    "commit": "e6aab4698015a2c45e6e9a607c7a0c994e756d8f",
+    "git_blob_oid": "cb926a5d70fe33d69cb773f92a9e6f6063173913",
+    "path": ".claude/audit_20260726_window1_range_attack_execution_results/AUDIT_RECEIPTS.json",
+    "sha256": "41b0c3869a5b951a7c9648e96b23d9e29f2721990df7796014fc9090b9eb702a"
+  },
+  "holdout_inputs": 0,
+  "implementation_parent": "53eaf2b5b10b82b86b71b651bb720028a6ee7979",
+  "private_development_cache": {
+    "events": 804,
+    "holdout_dates_present": 0,
+    "path": "../OMI-Window1-private/fit-local/guarded-cache-v3",
+    "receipt_source": ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json",
+    "runtime_network_access": false,
+    "tickers": 1608
+  },
+  "schema_version": "window1-asynchronous-opportunity-policy-census-v1-source-hash-manifest-v1",
+  "strict_ask_lineage": {
+    "determinism_addendum": "d413f23125d5931a56077c70f475d8815ffe36c0",
+    "implementation": "851346343eecbff64bd836992876592784874c86",
+    "independent_PASS": "5579b93774267779ae916eb9cb46766de66a9efe"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "Window2_access": false,
+  "benchmark_executions": 0,
+  "candidate_ids_added": 0,
+  "exit_settlement_DCA_access": false,
+  "holdout_access": false,
+  "live_access": false,
+  "metrics": null,
+  "network_calls": 0,
+  "performance": null,
+  "policy_actions_created": 0,
+  "production_access": false,
+  "schema_version": "window1-asynchronous-opportunity-policy-census-v1-forbidden-access-v1",
+  "scored": false,
+  "scorer_imports": 0,
+  "scorer_invocations": 0,
+  "strategy_parameters_added": 0
+}

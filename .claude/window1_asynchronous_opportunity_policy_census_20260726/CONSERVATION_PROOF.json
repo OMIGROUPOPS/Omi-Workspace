@@ -1,0 +1,27 @@
+{
+  "D_membership_changed": false,
+  "benchmark_metrics_computed": false,
+  "candidate_rows": [
+    {
+      "both_orientations_retained": true,
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "orientation_event_rows": 1608,
+      "required_orientation_event_rows": 1608,
+      "terminal_classification_total": 1608,
+      "unique_event_identities": 804
+    },
+    {
+      "both_orientations_retained": true,
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "orientation_event_rows": 1608,
+      "required_orientation_event_rows": 1608,
+      "terminal_classification_total": 1608,
+      "unique_event_identities": 804
+    }
+  ],
+  "immutable_population_events_per_candidate": 804,
+  "metrics": null,
+  "performance": null,
+  "schema_version": "window1-asynchronous-opportunity-policy-census-v1-conservation-v1",
+  "scored": false
+}

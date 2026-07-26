@@ -1,0 +1,127 @@
+{
+  "artifact_inventory": [
+    {
+      "bytes": 1464057,
+      "name": "ASYNCHRONOUS_ORIENTATION_EVENT_SUMMARY_01.jsonl.gz",
+      "sha256": "35cf26d729e910d80f2f49ebc6e930db255e811e9314f2c71f5c9f7f7f574356"
+    },
+    {
+      "bytes": 1463937,
+      "name": "ASYNCHRONOUS_ORIENTATION_EVENT_SUMMARY_02.jsonl.gz",
+      "sha256": "4e3923a8bd40f5225c208cdfd68d1c4773873ab33c8723c7bff6bcc29856b104"
+    },
+    {
+      "bytes": 1451481,
+      "name": "ASYNCHRONOUS_ORIENTATION_EVENT_SUMMARY_03.jsonl.gz",
+      "sha256": "1e9fc351557198df9c537addc680e6dc59b452efc30006302d41ecbb7b47a086"
+    },
+    {
+      "bytes": 1320334,
+      "name": "ASYNCHRONOUS_ORIENTATION_EVENT_SUMMARY_04.jsonl.gz",
+      "sha256": "f85b9011ad64ca74e7213eeeb5e7bc865dab3bdabccfb43b0c4c23e2280e3a98"
+    },
+    {
+      "bytes": 2727532,
+      "name": "ASYNCHRONOUS_ORIENTATION_X_CENSUS_01.jsonl.gz",
+      "sha256": "131af31ff5171b12fc0f20c951136b80ce9280f1a6498fc3cadfb8da4b36aabd"
+    },
+    {
+      "bytes": 3614726,
+      "name": "ASYNCHRONOUS_ORIENTATION_X_CENSUS_02.jsonl.gz",
+      "sha256": "f2dadc45b9a000c3c30f6e1c05f47fb6c3ce76b54326448ea929ace13fe283a6"
+    },
+    {
+      "bytes": 6008779,
+      "name": "ASYNCHRONOUS_ORIENTATION_X_CENSUS_03.jsonl.gz",
+      "sha256": "a28b3fc64a1e7d10779c16a6d7199cd84652aac2c0399fe4de6bb647b2069adc"
+    },
+    {
+      "bytes": 3041946,
+      "name": "ASYNCHRONOUS_ORIENTATION_X_CENSUS_04.jsonl.gz",
+      "sha256": "dcb61e468d6f22a25ade5dbe5fd9d2c7edc32364d513260b083ef7fd9b41d921"
+    },
+    {
+      "bytes": 2298735,
+      "name": "BREAKDOWN_TABLES.json",
+      "sha256": "120474f759c173b346425081ee9d1f26e29e3ffda3b48a346911a846ca825767"
+    },
+    {
+      "bytes": 2743141,
+      "name": "CANDIDATE_POLICY_AT_X_LEDGER_01.jsonl.gz",
+      "sha256": "ff9fa1a0412a323f44e5e9207d9036413741c8bdae3f84d1e009a82e6a6a04ec"
+    },
+    {
+      "bytes": 2718053,
+      "name": "CANDIDATE_POLICY_AT_X_LEDGER_02.jsonl.gz",
+      "sha256": "0eb0c7e638950be5c6ad627c3c4f2ff4c161bb26f3b1af8f794b11f9e39e4fff"
+    },
+    {
+      "bytes": 2661904,
+      "name": "CANDIDATE_POLICY_AT_X_LEDGER_03.jsonl.gz",
+      "sha256": "8a77e1a2517e9ea4ba1e825a71abf860316e6b1e8ee977204ee042e8a1b2a5be"
+    },
+    {
+      "bytes": 2624283,
+      "name": "CANDIDATE_POLICY_AT_X_LEDGER_04.jsonl.gz",
+      "sha256": "4fda3a4615178d056501e799685e01e14d83d120d97ed9c512880c4174273f71"
+    },
+    {
+      "bytes": 889,
+      "name": "CENSUS_REPORT.md",
+      "sha256": "9dccfade89a5997ff35d41a16d5a2e7afd494ab8eeea5a3a1bd5485290811cc2"
+    },
+    {
+      "bytes": 892,
+      "name": "CONSERVATION_PROOF.json",
+      "sha256": "962aba91e48f391dfeb7c6afe5184bee21316ea0e14103af013b394c4cbca6cc"
+    },
+    {
+      "bytes": 663102,
+      "name": "DECISIVE_NAKED_SINGLE_NO_CREDIT_TABLE.json",
+      "sha256": "45db96a682a1388ecb208221fb0300f8ad7698ec9979570ed79862c88a18e018"
+    },
+    {
+      "bytes": 498,
+      "name": "FORBIDDEN_ACCESS_NO_SCORER_RECEIPT.json",
+      "sha256": "f1c15d9f1dbd034ca622652d7a994add322542100e0c8af43d36675def345992"
+    },
+    {
+      "bytes": 3053296,
+      "name": "FROZEN_X_EVIDENCE_LEDGER_01.jsonl.gz",
+      "sha256": "ca86612ff2517c7aea444da44a4cc47a236b9c2ab27445ba32b1ca69335e7762"
+    },
+    {
+      "bytes": 3207834,
+      "name": "FROZEN_X_EVIDENCE_LEDGER_02.jsonl.gz",
+      "sha256": "a7e0319c9fb3c3a45f92f3e0e6b649baea600ecb63e7d23d95c316b8457d4176"
+    },
+    {
+      "bytes": 3326930,
+      "name": "FROZEN_X_EVIDENCE_LEDGER_03.jsonl.gz",
+      "sha256": "a80244bcb151f93d43fbac68001d8bbb536b1b4ec75c06ceedb0a6e4cbb16e3a"
+    },
+    {
+      "bytes": 3135829,
+      "name": "FROZEN_X_EVIDENCE_LEDGER_04.jsonl.gz",
+      "sha256": "1e180f82d32c2c98770038e3c17ed3520b9a19f3e4f1689f84173d0b461c8e5d"
+    },
+    {
+      "bytes": 2681,
+      "name": "RAW_DIAGNOSTIC_CENSUS.json",
+      "sha256": "c520a7d3616264d989591cf0025afdbcc1b0491db1c259f0055e38c093dd45f2"
+    },
+    {
+      "bytes": 8826,
+      "name": "SOURCE_HASH_MANIFEST.json",
+      "sha256": "dba4579352d7095fc5edab1b92dcafac2d664c6d0e10d36f727449a28ec96635"
+    }
+  ],
+  "byte_identical": true,
+  "fresh_builds": 2,
+  "metrics": null,
+  "performance": null,
+  "schema_version": "window1-asynchronous-opportunity-policy-census-v1-deterministic-regeneration-v1",
+  "scored": false,
+  "scorer_imports": 0,
+  "scorer_invocations": 0
+}

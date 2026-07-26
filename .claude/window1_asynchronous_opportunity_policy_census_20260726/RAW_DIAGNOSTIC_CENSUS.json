@@ -1,0 +1,75 @@
+{
+  "candidate_count": 2,
+  "candidate_policy_at_x": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "credited": 501,
+      "ever_exposed": 6832,
+      "exposed": 572,
+      "rows": 159192
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "credited": 490,
+      "ever_exposed": 7558,
+      "exposed": 569,
+      "rows": 159192
+    }
+  },
+  "cumulative_five_gate_on_price_reach": false,
+  "immutable_population_events_per_candidate": 804,
+  "individual_negative_gate": false,
+  "integer_cent_levels_per_leg": 99,
+  "leg_identities": 1608,
+  "metrics": null,
+  "orientation_event_summaries": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "completed_by_policy": 132,
+      "evidence_unavailable": 228,
+      "lawful_in_budget_opportunity_policy_never_exposed": 67,
+      "no_lawful_in_budget_later_sibling_opportunity_observed": 333,
+      "policy_exposed_without_execution_proof": 846,
+      "price_reached_five_contract_capacity_unproved": 2,
+      "rows": 1608
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "completed_by_policy": 125,
+      "evidence_unavailable": 228,
+      "lawful_in_budget_opportunity_policy_never_exposed": 68,
+      "no_lawful_in_budget_later_sibling_opportunity_observed": 330,
+      "policy_exposed_without_execution_proof": 854,
+      "price_reached_five_contract_capacity_unproved": 3,
+      "rows": 1608
+    }
+  },
+  "orientation_x": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "completed_by_policy": 132,
+      "evidence_unavailable": 15255,
+      "lawful_in_budget_opportunity_policy_never_exposed": 200,
+      "no_lawful_in_budget_later_sibling_opportunity_observed": 20522,
+      "policy_exposed_without_execution_proof": 46348,
+      "price_reached_five_contract_capacity_unproved": 4,
+      "rows": 82461
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "completed_by_policy": 125,
+      "evidence_unavailable": 15255,
+      "lawful_in_budget_opportunity_policy_never_exposed": 199,
+      "no_lawful_in_budget_later_sibling_opportunity_observed": 20284,
+      "policy_exposed_execution_or_strict_ask_proved_not_credited": 2,
+      "policy_exposed_without_execution_proof": 46591,
+      "price_reached_five_contract_capacity_unproved": 5,
+      "rows": 82461
+    }
+  },
+  "performance": null,
+  "schema_version": "window1-asynchronous-opportunity-policy-census-v1-raw-diagnostic-census-v1",
+  "scored": false,
+  "simultaneous_pair_evidence_required": false,
+  "x_evidence": {
+    "capacity_proven": 79056,
+    "price_reached": 80783,
+    "price_reached_capacity_unproved": 1727,
+    "rows": 159192,
+    "strict_ask": 80160
+  }
+}

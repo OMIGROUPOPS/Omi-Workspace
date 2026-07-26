@@ -47,6 +47,6 @@ D = **804 per candidate** (1,608 streams, key set identical to V1). The five no-
 
 **Scope:** this PASS authorizes only the construction of a separately frozen scoring/execution package (with the guarded `FILLABLE_AT_X` receipts as its sole fill-accounting source), which must itself pass independent audit before any execution. It does not authorize scoring.
 
-## Determinism addendum
+## Determinism addendum (confirmed)
 
-Fresh-directory regeneration was launched at audit time; its byte-comparison result is recorded here when available. If the execution environment terminates it (as occurred twice in the `43dab8df` session), the DETERMINISTIC_REGENERATION_RECEIPT remains unconfirmed by this audit and MUST be independently confirmed in the scoring-package audit before execution. All committed hashes were verified either way.
+Fresh-directory regeneration completed after the ruling was committed: **all 17 regenerable core artifacts are byte-identical to the committed git blobs** (four stream shards, four ladder shards, fillability/headroom/authority/stress/opportunity receipts, diagnostics, last-trade bindings, accounting summary, five-event proof; gz compared on decompressed content). Zero nondeterminism. The DETERMINISTIC_REGENERATION_RECEIPT claim is independently confirmed, completing item 9 in full.

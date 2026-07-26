@@ -1,0 +1,38 @@
+{
+  "execution_id": "w1-range-attack-v2-dev-20260712-20260720-grid2-scorepkg-v2",
+  "outputs": {
+    "01_w1_range_attack__macro_hold__combined_headroom_EVENT_LEDGER.jsonl": {
+      "bytes": 1716660,
+      "sha256": "5ce1f15910f2ea7946ff29b1b59b69fa6f52f59bdbeef99015ed1d271156bf31"
+    },
+    "02_w1_range_attack__macro_micro__combined_headroom_EVENT_LEDGER.jsonl": {
+      "bytes": 1716412,
+      "sha256": "384c8bae35b1cead0b7df28669abd3005c330490af114c5475a8c2013877fc37"
+    },
+    "EXECUTION_MANIFEST.json": {
+      "bytes": 1511,
+      "sha256": "d726143602c4767e90ba40f844cbbc69b10378691ecf47beae57237dde3482eb"
+    },
+    "EXECUTION_START_RECEIPT.json": {
+      "bytes": 1239,
+      "sha256": "8d963f7d7a47d6e6b6be41a56d05ab8ae7ccc1fe912fd10756252f074cb3ad52"
+    },
+    "HOLDOUT_NONPRODUCTION_NONACCESS_PROOF.json": {
+      "bytes": 712,
+      "sha256": "16c0fd852b0c885e7d6c4f35f5f290adb5674c4fa8123df027dc2d98ad57fc25"
+    },
+    "METRIC_CONSERVATION_REPORT.json": {
+      "bytes": 548,
+      "sha256": "78d4d093c37e7954113f75a536c1cdaa4c3366fde5a5e2d5bba2f15fc1ca26a1"
+    },
+    "PROGRESS.log": {
+      "bytes": 524,
+      "sha256": "cbef575fb5731aa0fc7903f1913890eb0c772663aab59f8facfc97e2a657e2c1"
+    },
+    "TWO_CANDIDATE_RESULTS.json": {
+      "bytes": 11633,
+      "sha256": "affceed7b9ec9a0ddcfe4a2eaf815627cd0ed419184eeb51c58a559958503b6d"
+    }
+  },
+  "schema_version": "window1-range-attack-scoring-runner-v2-output-hashes-v1"
+}

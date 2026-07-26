@@ -1,0 +1,26 @@
+{
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "execution_id": "w1-range-attack-v2-dev-20260712-20260720-grid2-scorepkg-v2",
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "live_or_production_access": false,
+  "network_calls": 0,
+  "only_results_directory_written": ".claude/window1_range_attack_results_w1-range-attack-v2-dev-20260712-20260720-grid2-scorepkg-v2",
+  "prohibited_surface_writes": [],
+  "schema_version": "window1-range-attack-scoring-runner-v2-nonaccess-v1",
+  "sealed_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ]
+}

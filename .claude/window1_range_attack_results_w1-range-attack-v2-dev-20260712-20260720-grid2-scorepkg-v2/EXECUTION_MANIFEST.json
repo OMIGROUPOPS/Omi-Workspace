@@ -1,0 +1,27 @@
+{
+  "authorization_commit": "582c062eef1f66c388d235687380b8345832a0e2",
+  "authorization_report": ".claude/audit_20260726_window1_range_attack_scoring_package_v2/EXECUTION_AUTHORIZATION.md",
+  "console_echo": {
+    "console_authoritative": false,
+    "devnull_handles_retained": 0,
+    "stderr_enabled_at_end": true,
+    "stdout_enabled_at_end": true
+  },
+  "ended_at_utc": "2026-07-26T18:01:09.886894+00:00",
+  "exact_command": "python -B arb-executor/analysis/window1_range_attack_scoring_runner_v2.py --repo . --package .claude/window1_range_attack_scoring_package_v2_prerun_20260726/SCORING_INPUT_MANIFEST.json --mode execute --authorization-commit 582c062eef1f66c388d235687380b8345832a0e2 --authorization-report .claude/audit_20260726_window1_range_attack_scoring_package_v2/EXECUTION_AUTHORIZATION.md",
+  "execution_id": "w1-range-attack-v2-dev-20260712-20260720-grid2-scorepkg-v2",
+  "exit_code": 0,
+  "holdout_opened": false,
+  "input_bundle_sha256": "21b4db24ac041d4fcea27f99367881571a16c74b4fbf7b3b2e80ccddabd8c732",
+  "live_or_production_access": false,
+  "package_commit": "e7e7b9071b9238868d0599a2e5f24bb92dcc9bdd",
+  "ranking_or_selection_applied": false,
+  "retry_count": 0,
+  "runtime": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]"
+  },
+  "schema_version": "window1-range-attack-scoring-runner-v2-execution-v1",
+  "scorer_invocations": 2,
+  "started_at_utc": "2026-07-26T17:58:18.086824+00:00"
+}

@@ -1,0 +1,160 @@
+{
+  "schema_version": "window1-range-mastery-attack-candidates-v1",
+  "instrument_version": "window1-range-attack-simulator-v1",
+  "exact_parent": "84959172330a6659df4ef7db04d971ec0bb8d893",
+  "controlling_blocked_audit": "9a0177af3ed93289c9a15f1df3acbc7bd2ee28bc",
+  "determinism_addendum": "ffa412554d5cda9b3c669ef96cfe407c5c9aabf0",
+  "supersedes_for_future_execution": "84959172330a6659df4ef7db04d971ec0bb8d893",
+  "candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "sealed_holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "population_contract": {
+    "D": 804,
+    "leg_identities": 1608,
+    "simulated_order_quantity_per_leg": 5,
+    "target_PC": 603,
+    "performance_metrics_populated_in_prerun": false
+  },
+  "causal_macro_target": {
+    "source": ".claude/trendpath/ATLAS_V1.json",
+    "source_builder": "arb-executor/analysis/trendpath_build.py",
+    "native_discovery": "median price of lawful positive-size true prints in [first lawful print, first lawful print + 60 minutes)",
+    "availability": "only after the complete discovery interval has elapsed",
+    "challenger_target": "frozen discovery price minus the native ATLAS_V1 page bottom.depth_p50",
+    "mains_target": "PAR_LOCK_JOIN at the first lawful external bid; no deep aim",
+    "page_key": "category|native ATLAS leader-or-underdog key|native discovery price bucket",
+    "target_frozen_once": true,
+    "moving_bid_minus_edge_forbidden": true,
+    "current_bid_as_close_projection_forbidden": true,
+    "future_own_close_as_policy_input_forbidden": true,
+    "recut_cell_contract": "recut_cells is close-keyed and remains NO_CALL for decision targeting when a causal own-close projection is unavailable",
+    "other_historical_surface_contract": {
+      "drift_surfaces_v1": "NO_CALL when the native fitted band requires future net/dip components",
+      "band_map_v1": "NO_CALL when the native category band requires future net/dip components",
+      "divot_tables_v1": "the band-keyed historical table is NO_CALL without a causal fitted band; receipt-identifiable chronological divots remain independently bound",
+      "LIBRARY_V1": "NO_CALL for action timing because its own metadata marks the -0k timing axis mis-anchored",
+      "ORIENT_V1": "NO_CALL without a separately frozen causal pair-tell consumer",
+      "D_continues_on_every_NO_CALL": true
+    },
+    "missing_behavior": "MACRO_TARGET_NO_CALL; D continues and lawful BBO join-presence remains"
+  },
+  "common_order_law": {
+    "pair_presence": "both legs join the first coherent lawful positive-size external BBO pair read",
+    "initial_presence_is_optional_feature_gated": false,
+    "print_can_substitute_for_BBO": false,
+    "fabricated_price_allowed": false,
+    "target_expression": "after every adjustment: target at or below non-self bid rests at target; target above bid expresses at exactly bid+1; final price must be below ask and inside 1..99",
+    "automatic_bid_following": false,
+    "upward_climb_chase": false,
+    "queue_preserved_between_source-authorized transitions": true,
+    "candidate_A_revisions": [
+      "one initial downward macro target adoption",
+      "causal pair-headroom",
+      "maker safety",
+      "policy horizon"
+    ],
+    "candidate_B_additional_revisions": [
+      "source-bound LIVE-AIM AIM_DEEP downward transition"
+    ]
+  },
+  "price_fillability_contract": {
+    "primary_truth": "PRICE_REACHED",
+    "PRICE_REACHED": "a receipt-identified positive-size non-self public execution occurs at or below the exposed buy limit",
+    "CERTAIN_FILL": "a public execution occurs strictly below the limit or the lawful external ask moves strictly below the limit",
+    "EXACT_TOUCH": "a public execution or lawful external ask reaches the limit exactly",
+    "accounting_after_fillability": "once PRICE_REACHED, assign exactly five simulated shares at the exposed limit for later C/PC accounting",
+    "not_required": [
+      "displayed depth of five",
+      "one five-share print",
+      "cumulative printed size reaching five",
+      "observable or estimated queue clearance",
+      "strict trade-through",
+      "a depth-size conjunction"
+    ],
+    "queue_and_depth_role": "decision input and stress diagnostic only; never a primary fillability gate",
+    "cumulative_five_counterfactual": "reported only as a false-negative diagnostic",
+    "performance_metrics": null
+  },
+  "liveaim_contract": {
+    "enabled_only_for": "w1_range_attack__macro_micro__combined_headroom",
+    "source_proof": ".claude/proof_20260714/PROOF_LIVE_AIM.md",
+    "source_function": "arb-executor/live_v4.py::_liveaim_shadow",
+    "prior_source": ".claude/guidebook/GUIDEBOOK_V1.json",
+    "rolling_window_seconds": 1800,
+    "open_print_thresholds": {
+      "ITF_M": 6,
+      "ITF_W": 6,
+      "ATP_CHALL": 16,
+      "WTA_CHALL": 16,
+      "ATP_MAIN": null,
+      "WTA_MAIN": null
+    },
+    "mapping": {
+      "rising_print_signature": "NO_BID_CHASE_GUARD_HOLD",
+      "flow_ratio_at_least_one_and_falling_or_hollowing": "AIM_DEEP",
+      "flow_ratio_below_quarter_and_spread_at_least_four": "AIM_SHALLOW_HOLD_NO_UPWARD_REVISION",
+      "otherwise": "AIM_PRIOR_HOLD"
+    },
+    "executed_share_volume_and_cadence": "stored on every state receipt and stress grade; no unsourced standalone direction gate",
+    "last_trade_direction_gate": false,
+    "top5_pressure_sign_gate": false,
+    "isolated_taker_side_gate": false
+  },
+  "divot_contract": {
+    "minimum_depth_cents": 2,
+    "trailing_median_seconds": 1800,
+    "minimum_prior_positive_prints": 3,
+    "ask_hold_within_cents": 1,
+    "action": "confirm and hold the already selected target; re-expose only when the same target lacks an order and lawful BBO authority returns",
+    "displayed_size_gate": false
+  },
+  "combined_headroom_contract": {
+    "fee_cents": 0,
+    "first_fill": "first PRICE_REACHED leg is assigned exactly five shares at its exposed limit",
+    "d1": "first_leg_limit_price minus contemporaneous first-leg non-self external bid",
+    "b2_max": "floor(-d1-fee_cents-1)",
+    "later_trigger": "strictly later receipt-identified positive-size non-self sibling public execution",
+    "movement": "at most one +1-cent sibling improvement per lawful trigger",
+    "strict_guard": "d1+d2+fee_cents<0",
+    "d2": "fully expressed proposed sibling limit minus contemporaneous sibling non-self external bid",
+    "expression_after_adjustments": true,
+    "IC_gate": false,
+    "S_gate": false
+  },
+  "action_authorities": [
+    "INITIAL_PAIR_BBO",
+    "ATLAS_DISCOVERY_MACRO",
+    "LIVEAIM_SOURCE_MAPPING",
+    "DIVOT_SOURCE_MAPPING",
+    "CAUSAL_PAIR_HEADROOM",
+    "MAKER_SAFETY",
+    "POLICY_HORIZON"
+  ],
+  "free_numeric_parameters": [],
+  "candidate_additions_after_freeze_allowed": false,
+  "ranking_selection_tuning_allowed": false,
+  "benchmark_or_scorer_execution_authorized": false,
+  "performance_metrics": {
+    "C": null,
+    "PC": null,
+    "S": null,
+    "IC": null
+  }
+}

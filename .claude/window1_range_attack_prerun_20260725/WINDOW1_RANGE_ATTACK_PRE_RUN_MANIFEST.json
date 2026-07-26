@@ -1,0 +1,30 @@
+{
+  "D_per_candidate": {
+    "w1_range_attack__macro_hold__combined_headroom": 804,
+    "w1_range_attack__macro_micro__combined_headroom": 804
+  },
+  "all_C_PC_S_IC_null": true,
+  "artifact_hash_manifest": {
+    "bytes": 7040,
+    "git_blob_oid": "4b5a0513790b77ed41e417556159ab0a27e27b1b",
+    "path": ".claude/window1_range_attack_prerun_20260725/ARTIFACT_HASH_MANIFEST.json",
+    "sha256": "6a7393125bcc8914b6cf181353a20ea144affd39cadab3bafaf0745f2372d068"
+  },
+  "candidate_event_stream_count": 1608,
+  "candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "controlling_audit": "9a0177af3ed93289c9a15f1df3acbc7bd2ee28bc",
+  "determinism_addendum": "ffa412554d5cda9b3c669ef96cfe407c5c9aabf0",
+  "exact_parent": "84959172330a6659df4ef7db04d971ec0bb8d893",
+  "execution_authorized": false,
+  "holdout_live_production_access": false,
+  "integer_cent_range_row_count": 159192,
+  "leg_range_ladder_count": 1608,
+  "metrics": null,
+  "price_fillability_law": "PRICE_REACHED_PRIMARY_NO_SIZE5_GATE",
+  "schema_version": "window1-range-attack-prerun-manifest-v1",
+  "scored": false,
+  "scorer_or_benchmark_invoked": false
+}

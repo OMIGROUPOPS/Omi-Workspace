@@ -1,0 +1,111 @@
+{
+  "all_byte_identical": true,
+  "artifact_count": 16,
+  "candidate_order_fixed": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "command": "python -B arb-executor/analysis/window1_range_attack_prerun_builder.py --repo . --events C:\\\\Users\\\\omigr\\\\OMI-Window1-private\\\\joined\\\\events.jsonl --market-cache C:\\\\Users\\\\omigr\\\\OMI-Window1-private\\\\fit-local\\\\guarded-cache-v3 --output-dir .claude/window1_range_attack_prerun_20260725 --workers 6",
+  "gzip_mtime": 0,
+  "metrics": null,
+  "reference_and_fresh_regeneration": [
+    {
+      "byte_identical": true,
+      "bytes": 7942371,
+      "path": "ACTION_AUTHORITY_RECEIPTS.jsonl.gz",
+      "sha256": "4217a76b8e35b927709cc272fed7616fd14ce6d44ce2f3bea02e913f56fc2059"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 5911615,
+      "path": "COMBINED_HEADROOM_RECEIPTS.jsonl.gz",
+      "sha256": "301b0c1082ac24be85e80515feba8b70cff716e5f19ea8fb5a1f782fee3509ca"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 445062,
+      "path": "DEPTH_VOLUME_STRESS_RECEIPTS.jsonl.gz",
+      "sha256": "d696a387a3c3b3634d7f620467a8faafbe76f7f9f8886b803b6cf25ae12246c9"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 3460,
+      "path": "FIVE_EVENT_D_MEMBERSHIP_PROOF.json",
+      "sha256": "4a5a290761cd97f15de178849b86d1e4802412e3f8bf52abbc228cb9adc2f51b"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 313418,
+      "path": "PAIRWISE_ASYNCHRONOUS_OPPORTUNITY_LEDGER.jsonl.gz",
+      "sha256": "913e4df03ca199e729a0c2c9a19f9e270ee4b37f4b7467b1a9c27f5a21c760ee"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 1831202,
+      "path": "PRICE_FILLABILITY_RECEIPTS.jsonl.gz",
+      "sha256": "4e62d25cefc978e42d74ef3757341ad7ee632adbd4e4c588b2afd9bd20fba85b"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 7211,
+      "path": "RANGE_ATTACK_DIAGNOSTICS.json",
+      "sha256": "5be0dbfb8d01a98a0f86ef4872ab108fb220db6547e46e0ddf7791e623141530"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 839,
+      "path": "RAW_LAST_TRADE_CHAIN_VOLUME_BINDINGS.json",
+      "sha256": "74a3349e4b1df5ad86e94ddf42d6dd13136b60d6a08cf8c7c45dca77d16bed2d"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 15314417,
+      "path": "UNSCORED_CANDIDATE_EVENT_STREAMS_01.jsonl.gz",
+      "sha256": "693d11cd42a536faad57237a12279b1e8c97bf9c37e4fa26f87caf5f0e079134"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 17095817,
+      "path": "UNSCORED_CANDIDATE_EVENT_STREAMS_02.jsonl.gz",
+      "sha256": "42ed56e7ab3f13a2af55ad58ee3c9caf70a5b446987e3cd391ca1d2c1d229313"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 8007441,
+      "path": "UNSCORED_CANDIDATE_EVENT_STREAMS_03.jsonl.gz",
+      "sha256": "3d970eee294e3957588349b41817f507fa3fa3170bdf5aab8ef96a8e5b475946"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 6573561,
+      "path": "UNSCORED_CANDIDATE_EVENT_STREAMS_04.jsonl.gz",
+      "sha256": "ec10dc78c0aa077b6d4ace5ac869bdaef15b4ea1970a434efd8f41f02e40925d"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 1634533,
+      "path": "WINDOW1_PRICE_RANGE_LADDER_01.jsonl.gz",
+      "sha256": "a3788ca1614d20595a039d8ea47c0eef3399ae27e81bf13f60c24be9d6347806"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 2054672,
+      "path": "WINDOW1_PRICE_RANGE_LADDER_02.jsonl.gz",
+      "sha256": "35fe87ce7f300fa2fc5dd1db366cfb48d7617e9aa8f5674bc92f93e50f084f5f"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 2395806,
+      "path": "WINDOW1_PRICE_RANGE_LADDER_03.jsonl.gz",
+      "sha256": "76294f45893e8723086bd9718e934ba68f59c4f8ad48dd5726b0fd8957c64069"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 1938484,
+      "path": "WINDOW1_PRICE_RANGE_LADDER_04.jsonl.gz",
+      "sha256": "6e0ae37a8fd8cabc6c8c6dff50a2eecf5f46221255e5f9eb6b20e34070fd6d57"
+    }
+  ],
+  "schema_version": "range-attack-determinism-v1",
+  "scored": false
+}

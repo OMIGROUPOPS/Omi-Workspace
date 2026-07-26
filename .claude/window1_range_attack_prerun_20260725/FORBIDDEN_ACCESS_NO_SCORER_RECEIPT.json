@@ -1,0 +1,23 @@
+{
+  "C_PC_S_IC_populated": false,
+  "Window2_exits_settlement_DCA_access": false,
+  "benchmark_executed": false,
+  "holdout_opened_or_queried": false,
+  "live_or_production_access": false,
+  "metrics": null,
+  "network_or_exchange_access": false,
+  "orders_positions_configuration_mutated": false,
+  "policy_source_forbidden_tokens": [
+    "evaluation_real_start_ts",
+    "exact_start_utc",
+    "guarded_cutoff_ts",
+    "proxy_clock_utc",
+    "verified_start_utc",
+    "window1_close",
+    "window1_close_cents"
+  ],
+  "schema_version": "range-attack-forbidden-access-v1",
+  "scored": false,
+  "scorer_imported": false,
+  "scorer_invoked": false
+}

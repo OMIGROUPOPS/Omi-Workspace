@@ -1,0 +1,20 @@
+{
+  "execution_authorized": false,
+  "execution_command": null,
+  "execution_id": null,
+  "metrics": null,
+  "ranking_rule": null,
+  "required_frozen_roles": [
+    "D804_event_and_leg_identity_ledger",
+    "V5_start_boundary_and_guard_ledger",
+    "two_frozen_candidate_definitions",
+    "1608_unscored_candidate_event_streams",
+    "price_fillability_and_stress_contract",
+    "existing_frozen_metric_scorer_and_contract",
+    "all_source_and_private_input_hash_receipts",
+    "new_stdout_safe_deterministic_grid_runner"
+  ],
+  "schema_version": "range-attack-later-package-inventory-v1",
+  "scored": false,
+  "status": "INVENTORY_ONLY_NO_EXECUTION_PACKAGE_AUTHORIZATION"
+}

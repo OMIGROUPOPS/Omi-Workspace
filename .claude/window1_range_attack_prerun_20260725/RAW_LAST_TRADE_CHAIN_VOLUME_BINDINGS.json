@@ -1,0 +1,22 @@
+{
+  "actual_print_cadence_preserved": true,
+  "actual_print_volume_preserved": true,
+  "carried_before_first_window1_print_count": 70247,
+  "carried_execution_time_unknown_count": 504279,
+  "constructed_midpoint_used": false,
+  "event_count": 804,
+  "last_trade_created_print_count": 0,
+  "last_trade_direction_gate": false,
+  "last_trade_is_BBO_authority": false,
+  "last_trade_is_fill_volume": false,
+  "legs_with_carried_state_and_no_window1_print_count": 7,
+  "metrics": null,
+  "normalized_book_count": 1741891,
+  "normalized_positive_last_trade_count": 1555991,
+  "raw_positive_last_trade_count": 12773011,
+  "raw_snapshot_count": 13479418,
+  "schema_version": "window1-range-mastery-attack-prerun-v1-raw-normalized-binding-census-v1",
+  "scored": false,
+  "top5_chain_preserved": true,
+  "verified_print_timestamp_count": 1051712
+}

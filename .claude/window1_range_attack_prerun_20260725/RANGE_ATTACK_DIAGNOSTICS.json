@@ -1,0 +1,236 @@
+{
+  "D_per_candidate": {
+    "w1_range_attack__macro_hold__combined_headroom": 804,
+    "w1_range_attack__macro_micro__combined_headroom": 804
+  },
+  "action_authority_counts": [
+    {
+      "authority": "ATLAS_DISCOVERY_MACRO",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "count": 1368
+    },
+    {
+      "authority": "CAUSAL_PAIR_HEADROOM",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "count": 10560
+    },
+    {
+      "authority": "INITIAL_PAIR_BBO",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "count": 1598
+    },
+    {
+      "authority": "MAKER_SAFETY",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "count": 3230
+    },
+    {
+      "authority": "POLICY_HORIZON",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "count": 327
+    },
+    {
+      "authority": "ATLAS_DISCOVERY_MACRO",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "count": 1368
+    },
+    {
+      "authority": "CAUSAL_PAIR_HEADROOM",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "count": 33444
+    },
+    {
+      "authority": "INITIAL_PAIR_BBO",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "count": 1598
+    },
+    {
+      "authority": "LIVEAIM_SOURCE_MAPPING",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "count": 17156
+    },
+    {
+      "authority": "MAKER_SAFETY",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "count": 3104
+    },
+    {
+      "authority": "POLICY_HORIZON",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "count": 333
+    }
+  ],
+  "all_C_PC_S_IC_null": true,
+  "benchmark_or_scorer_invoked": false,
+  "candidate_count": 2,
+  "candidate_event_stream_count": 1608,
+  "exact_touch_depth_volume_stress": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "DEPTH_UNKNOWN|EXECUTED_GE5": 25,
+      "DEPTH_UNKNOWN|EXECUTED_LT5": 229,
+      "DISPLAY_GE5|EXECUTED_GE5": 325,
+      "DISPLAY_GE5|EXECUTED_LT5": 109,
+      "DISPLAY_LT5|EXECUTED_GE5": 5,
+      "DISPLAY_LT5|EXECUTED_LT5": 22
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "DEPTH_UNKNOWN|EXECUTED_GE5": 24,
+      "DEPTH_UNKNOWN|EXECUTED_LT5": 229,
+      "DISPLAY_GE5|EXECUTED_GE5": 317,
+      "DISPLAY_GE5|EXECUTED_LT5": 109,
+      "DISPLAY_LT5|EXECUTED_GE5": 5,
+      "DISPLAY_LT5|EXECUTED_LT5": 22
+    }
+  },
+  "headroom": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "accepted_count": 5280,
+      "activation_count": 691,
+      "decision_count": 41227,
+      "sibling_opportunity_inside_budget_count": 24822
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "accepted_count": 16722,
+      "activation_count": 690,
+      "decision_count": 54500,
+      "sibling_opportunity_inside_budget_count": 39248
+    }
+  },
+  "integer_cent_range_row_count": 159192,
+  "leg_range_ladder_count": 1608,
+  "mechanism_classification_totals": {
+    "ABSENT": 4,
+    "BOUND": 9,
+    "PROXIED": 10,
+    "RETRACTED": 5
+  },
+  "price_fillability_counts": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "CERTAIN_FILL": 50,
+      "EXACT_TOUCH": 715,
+      "PRICE_REACHED": 495,
+      "cumulative_five_false_negative": 38
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "CERTAIN_FILL": 49,
+      "EXACT_TOUCH": 706,
+      "PRICE_REACHED": 486,
+      "cumulative_five_false_negative": 38
+    }
+  },
+  "queue_preserved_counts": {
+    "w1_range_attack__macro_hold__combined_headroom": 1156,
+    "w1_range_attack__macro_micro__combined_headroom": 13850
+  },
+  "queue_reposted_counts": {
+    "w1_range_attack__macro_hold__combined_headroom": 7906,
+    "w1_range_attack__macro_micro__combined_headroom": 27869
+  },
+  "ranking_selection_or_tuning": false,
+  "reprice_counts_by_direction_authority": [
+    {
+      "authority": "ATLAS_DISCOVERY_MACRO",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "count": 684,
+      "direction": "DOWN"
+    },
+    {
+      "authority": "MAKER_SAFETY",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "count": 1615,
+      "direction": "DOWN"
+    },
+    {
+      "authority": "CAUSAL_PAIR_HEADROOM",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "count": 5280,
+      "direction": "UP"
+    },
+    {
+      "authority": "ATLAS_DISCOVERY_MACRO",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "count": 684,
+      "direction": "DOWN"
+    },
+    {
+      "authority": "LIVEAIM_SOURCE_MAPPING",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "count": 8578,
+      "direction": "DOWN"
+    },
+    {
+      "authority": "MAKER_SAFETY",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "count": 1552,
+      "direction": "DOWN"
+    },
+    {
+      "authority": "CAUSAL_PAIR_HEADROOM",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "count": 16722,
+      "direction": "UP"
+    }
+  ],
+  "schema_version": "window1-range-mastery-attack-prerun-v1-diagnostics-v1",
+  "target_change_counts_by_reason_direction_authority": [
+    {
+      "authority": "ATLAS_DISCOVERY_MACRO",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "count": 684,
+      "direction": "DOWN",
+      "reason": "native_ATLAS_path_target_adoption"
+    },
+    {
+      "authority": "MAKER_SAFETY",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "count": 1615,
+      "direction": "DOWN",
+      "reason": "maker_safety_external_ask_move"
+    },
+    {
+      "authority": "CAUSAL_PAIR_HEADROOM",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "count": 5280,
+      "direction": "UP",
+      "reason": "causal_pair_headroom_plus_one"
+    },
+    {
+      "authority": "ATLAS_DISCOVERY_MACRO",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "count": 684,
+      "direction": "DOWN",
+      "reason": "native_ATLAS_path_target_adoption"
+    },
+    {
+      "authority": "LIVEAIM_SOURCE_MAPPING",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "count": 8578,
+      "direction": "DOWN",
+      "reason": "LIVEAIM_AIM_DEEP_source_authorized"
+    },
+    {
+      "authority": "MAKER_SAFETY",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "count": 1552,
+      "direction": "DOWN",
+      "reason": "maker_safety_external_ask_move"
+    },
+    {
+      "authority": "CAUSAL_PAIR_HEADROOM",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "count": 16722,
+      "direction": "UP",
+      "reason": "causal_pair_headroom_plus_one"
+    }
+  ],
+  "target_exposure_counts": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "exposed_event": 799,
+      "macro_target_available": 1556
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "exposed_event": 799,
+      "macro_target_available": 1556
+    }
+  }
+}

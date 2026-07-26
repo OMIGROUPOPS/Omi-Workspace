@@ -1,0 +1,67 @@
+{
+  "schema_version": "window1-range-attack-scorer-contract-v1",
+  "scorer_version": "window1-range-attack-deterministic-scorer-v1",
+  "guarded_fill_adapter_version": "window1-range-attack-guarded-fill-adapter-v1",
+  "reference_adapter_version": "window1-range-attack-reference-adapter-v1",
+  "runner_version": "window1-range-attack-stdout-safe-runner-v1",
+  "implementation_parent": "851346343eecbff64bd836992876592784874c86",
+  "controlling_pass_audit": "5579b93774267779ae916eb9cb46766de66a9efe",
+  "candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "D": 804,
+  "target_PC": 603,
+  "lot_per_leg": 5,
+  "fee_cents": 0,
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "sealed_holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "definitions": {
+    "C": "both event legs have one lawful guarded FILLABLE_AT_X receipt, exactly five accounting contracts per leg, inside guarded Window 1",
+    "PC": "C and the sum of both fill-price-minus-Window-1-close deltas is strictly below zero",
+    "S": "C and combined entry cost is strictly below 100 cents",
+    "IC": "C and each of the two individual deltas is strictly below zero"
+  },
+  "reference_law": {
+    "source": "guarded-cache-v3 true-print streams",
+    "selection": "last positive-size exchange-identified deduplicated true print at or before the V5 guarded cutoff and at or after T-8h",
+    "future_print_allowed": false,
+    "schedule_as_reference_allowed": false,
+    "missing_reference": "C remains a fill fact; PC and IC cannot succeed"
+  },
+  "sole_fill_source": {
+    "role": "PRICE_FILLABILITY_RECEIPTS_V2_GUARDED",
+    "required": [
+      "FILLABLE_AT_X=true",
+      "positive_window1_provable=true",
+      "evidence_ts<=evaluated_right_ts",
+      "accounting_quantity=5",
+      "accounting_fill_price=exposed_target_X"
+    ],
+    "supported_evidence_types": [
+      "PRICE_REACHED",
+      "STRICT_ASK_CERTAIN_FILL"
+    ],
+    "raw_causal_policy_state_allowed": false,
+    "candidate_order_stream_fill_state_allowed": false,
+    "exact_ask_touch_allowed": false,
+    "cumulative_volume_fill_gate": false
+  },
+  "selection_or_ranking_allowed": false,
+  "pre_run_metrics": null,
+  "pre_run_scored": false
+}

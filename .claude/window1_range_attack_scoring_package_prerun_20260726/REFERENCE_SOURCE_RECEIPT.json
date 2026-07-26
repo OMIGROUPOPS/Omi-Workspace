@@ -1,0 +1,41 @@
+{
+  "data_binding_manifest": {
+    "bytes": 341043,
+    "git_blob_oid": "b616c3a715ea0ab6a70083c7a3b1b808c9b25af2",
+    "path": ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json",
+    "sha256": "71e094e186ec67a54c82bbb109b91f1044552c6a36fc761aee1fcb0fe4997d9f"
+  },
+  "derivation": "last positive-size exchange-identified deduplicated true print at or before V5 guarded cutoff and at or after T-8h",
+  "future_print_allowed": false,
+  "guarded_cutoff_provenance": {
+    "bytes": 1801,
+    "git_blob_oid": "819aac913004dded5545e05a012c7c2e89c1ca3c",
+    "path": ".claude/window1_round2_final_prerun_20260724/GUARDED_CUTOFF_PROVENANCE.json",
+    "sha256": "f74eaec5191793159018b31dc9d9f2975ec34181b6b8c5c7e41db64955f5cdb0"
+  },
+  "metrics": null,
+  "precomputed_reference_values_accepted": false,
+  "reference_law_source": {
+    "bytes": 2645,
+    "git_blob_oid": "780aa7c20c1640b6c0e42a843e80774639f56ada",
+    "path": "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_METRIC_CONTRACT_V1.json",
+    "sha256": "8de6b3607724c8e71d39ca490d75b22a8ff5d693deb137d50fdf142e15a4fa97"
+  },
+  "schedule_as_reference_allowed": false,
+  "schema_version": "window1-range-attack-reference-source-v1",
+  "scored": false,
+  "start_ledger": {
+    "bytes": 3697581,
+    "git_blob_oid": "9207dd44d12c66fa29711e2d95ebafc66cafd155",
+    "path": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+    "sha256": "68f607b8bc4d5acbd55d2d4451e27fa41e379170cd0ef49e5124f6dbc7252f53"
+  },
+  "true_print_streams": {
+    "aggregate_sha256": "aad8d055e90bb429f7da87b450dc9c4e2dc6a6ef114e40368535b8953b86425e",
+    "bytes": 197461623,
+    "event_files": 804,
+    "hash_set": ".claude/window1_range_attack_scoring_package_prerun_20260726/GUARDED_CACHE_V3_HASH_SET.json",
+    "path": "../OMI-Window1-private/fit-local/guarded-cache-v3",
+    "positive_size_print_rows": 3025875
+  }
+}

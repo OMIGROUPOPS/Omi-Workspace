@@ -1,0 +1,217 @@
+{
+  "D": 804,
+  "candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "controlling_audit_report_blob_oid": "93d98e6478228814b4a9d6ca5c95a28ea379394e",
+  "controlling_audit_report_sha256": "d5875bd46b3b4da23c1ea2a01a0c0e0dddf998cffd93df87aeb602e3fdb0fc3f",
+  "controlling_pass_audit": "5579b93774267779ae916eb9cb46766de66a9efe",
+  "execution_authorized_now": false,
+  "execution_id": "w1-range-attack-v2-dev-20260712-20260720-grid1",
+  "forbidden_scoring_roles": [
+    "causal_policy_fill_state_by_leg",
+    "raw strict_ask_certain_fill actions",
+    "candidate order-stream fill state",
+    "raw post-cutoff policy actions"
+  ],
+  "future_independent_pass_required": true,
+  "implementation_parent": "851346343eecbff64bd836992876592784874c86",
+  "input_bundle_payload": {
+    "D": 804,
+    "candidate_ids": [
+      "w1_range_attack__macro_hold__combined_headroom",
+      "w1_range_attack__macro_micro__combined_headroom"
+    ],
+    "committed_source_receipts": [
+      {
+        "bytes": 10452,
+        "git_blob_oid": "f1f1adabd8cbbee25f6a35bc9706439a4148bbd7",
+        "path": "arb-executor/analysis/window1_range_attack_guarded_fill_adapter_v1.py",
+        "sha256": "6d9b90941cea00ecb7eb8b82749d05e3e683c8a6107694428091f9c45c1dccc0"
+      },
+      {
+        "bytes": 11193,
+        "git_blob_oid": "f558bbbcf57b187e523752f4483eafce7d04361e",
+        "path": "arb-executor/analysis/window1_range_attack_reference_adapter_v1.py",
+        "sha256": "5e400a08598177d089a66012c66a6f1e7c894db00f5d071cdd6caceff7d21d41"
+      },
+      {
+        "bytes": 14330,
+        "git_blob_oid": "9759e7e51e2182e08ec07afc361ffc2db50b8c03",
+        "path": "arb-executor/analysis/window1_range_attack_scorer_v1.py",
+        "sha256": "cf8bd8bc70dac1b0f396fb433eec99a9806fcb84824358ea545e7cc9f81f1e90"
+      },
+      {
+        "bytes": 23807,
+        "git_blob_oid": "8d4d52342b04e46e973d6d4b7c9a4c532b57feaa",
+        "path": "arb-executor/analysis/window1_range_attack_scoring_runner_v1.py",
+        "sha256": "27612bf2ddb88bef5605079840076a0b3ecba2cd9e028dba6c6b2ad9ba1d99f6"
+      },
+      {
+        "bytes": 23810,
+        "git_blob_oid": "40509f675ea8254d81d135e615a22880f9d0c381",
+        "path": "arb-executor/analysis/window1_range_attack_scoring_package_builder_v1.py",
+        "sha256": "39e3f11add5b7b35a84ffef5f877f1bf23f81fc0dcd79189fcab05d51f16f4ee"
+      },
+      {
+        "bytes": 4840,
+        "git_blob_oid": "ba20915e0f9719755222cc179d7bebaaf356229b",
+        "path": "arb-executor/analysis/window1_range_attack_scoring_package_freeze_v1.py",
+        "sha256": "1dcda7963572a6b36ae6e4cb7de36242a8e548570a31db5b71914d6e4a5b4232"
+      },
+      {
+        "bytes": 2424,
+        "git_blob_oid": "3b5c622a81d60f466d9c295986511c8949e4fc1a",
+        "path": "arb-executor/docs/research/window1/WINDOW1_RANGE_ATTACK_SCORER_CONTRACT_V1.json",
+        "sha256": "a17bd57c0a15bfac1872e040500e78c6ff1c8a68cd6e2a666bd4366e1305bb1e"
+      },
+      {
+        "bytes": 10590,
+        "git_blob_oid": "0d1f648624941be99d0c8c3d80f1b17273cf2b75",
+        "path": "arb-executor/tests/test_window1_range_attack_scoring_package_v1.py",
+        "sha256": "123c7e586d50a8885612866a81c9423893c856caedeb63494cff95c112c9bcb4"
+      },
+      {
+        "bytes": 2470,
+        "git_blob_oid": "c40a2f26145fedfd5ac69a2907365c918319e0f0",
+        "path": "arb-executor/docs/research/window1/WINDOW1_RANGE_ATTACK_CANDIDATES_V2_STRICT_ASK.json",
+        "sha256": "1264838a390b6815afdd27d0a48382a28855f93bf38a97600767842e5cc7107f"
+      },
+      {
+        "bytes": 2645,
+        "git_blob_oid": "780aa7c20c1640b6c0e42a843e80774639f56ada",
+        "path": "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_METRIC_CONTRACT_V1.json",
+        "sha256": "8de6b3607724c8e71d39ca490d75b22a8ff5d693deb137d50fdf142e15a4fa97"
+      },
+      {
+        "bytes": 1837661,
+        "git_blob_oid": "fe0d079d8367fef0713d5e0d394c81667acb9d3e",
+        "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/PRICE_FILLABILITY_RECEIPTS.jsonl.gz",
+        "sha256": "2f1f124cc56815f1caa2026dd6dcc07a53412e9befbc43d49fcd464ac708eb2c"
+      },
+      {
+        "bytes": 1177,
+        "git_blob_oid": "fb8912464fe4f1641a16895361763d1cc41da597",
+        "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/WINDOW1_RANGE_ATTACK_V2_PRE_RUN_MANIFEST.json",
+        "sha256": "bb1cf802eeb15fdca66a389e6e6b27ec14c46f1e37b41dbc42feeba6408a621f"
+      },
+      {
+        "bytes": 6673,
+        "git_blob_oid": "f85b5844d192af31aaba9cc338ce192844c33d96",
+        "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/ARTIFACT_HASH_MANIFEST.json",
+        "sha256": "dae6f911addb5a9ee75bb2a9a91254916ece0822be3eb51e8ac5ce534731f434"
+      },
+      {
+        "bytes": 341043,
+        "git_blob_oid": "b616c3a715ea0ab6a70083c7a3b1b808c9b25af2",
+        "path": ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json",
+        "sha256": "71e094e186ec67a54c82bbb109b91f1044552c6a36fc761aee1fcb0fe4997d9f"
+      },
+      {
+        "bytes": 1801,
+        "git_blob_oid": "819aac913004dded5545e05a012c7c2e89c1ca3c",
+        "path": ".claude/window1_round2_final_prerun_20260724/GUARDED_CUTOFF_PROVENANCE.json",
+        "sha256": "f74eaec5191793159018b31dc9d9f2975ec34181b6b8c5c7e41db64955f5cdb0"
+      },
+      {
+        "bytes": 3697581,
+        "git_blob_oid": "9207dd44d12c66fa29711e2d95ebafc66cafd155",
+        "path": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+        "sha256": "68f607b8bc4d5acbd55d2d4451e27fa41e379170cd0ef49e5124f6dbc7252f53"
+      }
+    ],
+    "controlling_pass_audit": "5579b93774267779ae916eb9cb46766de66a9efe",
+    "development_dates": [
+      "2026-07-12",
+      "2026-07-13",
+      "2026-07-14",
+      "2026-07-15",
+      "2026-07-16",
+      "2026-07-17",
+      "2026-07-18",
+      "2026-07-19",
+      "2026-07-20"
+    ],
+    "event_leg_identities_sha256": "9e9b854bf9f2b267245e8ab103810f80dd362b991967289d796830ba74b5d8d6",
+    "guarded_cache_event_hash_set_sha256": "b271ddbf2fc5b3729ba4daed6eae04b2c4d2f0a2dfda7dfcbd37f395ae73087f",
+    "implementation_parent": "851346343eecbff64bd836992876592784874c86",
+    "leg_identities": 1608,
+    "private_source_receipts": [
+      {
+        "bytes": 336694,
+        "date_range": [
+          "2026-07-12",
+          "2026-07-20"
+        ],
+        "events": 804,
+        "holdout_dates_present": 0,
+        "path": "../OMI-Window1-private/joined/events.jsonl",
+        "role": "immutable_event_ledger",
+        "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46",
+        "tickers": 1608
+      },
+      {
+        "bytes": 197461623,
+        "date_range": [
+          "2026-07-12",
+          "2026-07-20"
+        ],
+        "events": 804,
+        "holdout_dates_present": 0,
+        "path": "../OMI-Window1-private/fit-local/guarded-cache-v3",
+        "per_file_hash_set": ".claude/window1_range_attack_scoring_package_prerun_20260726/GUARDED_CACHE_V3_HASH_SET.json",
+        "role": "guarded_cache_v3_directory",
+        "sha256": "aad8d055e90bb429f7da87b450dc9c4e2dc6a6ef114e40368535b8953b86425e",
+        "tickers": 1608
+      }
+    ],
+    "roles": {
+      "authorization_gate": ".claude/window1_range_attack_scoring_package_prerun_20260726/EXECUTION_AUTHORIZATION_GATE.json",
+      "candidate_definitions": "arb-executor/docs/research/window1/WINDOW1_RANGE_ATTACK_CANDIDATES_V2_STRICT_ASK.json",
+      "data_binding_manifest": ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json",
+      "event_ledger": "../OMI-Window1-private/joined/events.jsonl",
+      "event_leg_identities": ".claude/window1_range_attack_scoring_package_prerun_20260726/FROZEN_EVENT_LEG_IDENTITIES.json",
+      "expected_output_schema": ".claude/window1_range_attack_scoring_package_prerun_20260726/EXPECTED_OUTPUT_SCHEMA.json",
+      "guarded_cache_directory": "../OMI-Window1-private/fit-local/guarded-cache-v3",
+      "guarded_cache_hash_set": ".claude/window1_range_attack_scoring_package_prerun_20260726/GUARDED_CACHE_V3_HASH_SET.json",
+      "guarded_fill_source_receipt": ".claude/window1_range_attack_scoring_package_prerun_20260726/GUARDED_FILL_SOURCE_RECEIPT.json",
+      "guarded_fillability_receipts": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/PRICE_FILLABILITY_RECEIPTS.jsonl.gz",
+      "metric_contract": "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_METRIC_CONTRACT_V1.json",
+      "reference_source_receipt": ".claude/window1_range_attack_scoring_package_prerun_20260726/REFERENCE_SOURCE_RECEIPT.json",
+      "scorer_contract": "arb-executor/docs/research/window1/WINDOW1_RANGE_ATTACK_SCORER_CONTRACT_V1.json",
+      "source_hash_manifest": ".claude/window1_range_attack_scoring_package_prerun_20260726/SOURCE_HASH_MANIFEST.json",
+      "start_ledger": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl"
+    },
+    "sealed_holdout_dates": [
+      "2026-07-24",
+      "2026-07-25",
+      "2026-07-26"
+    ]
+  },
+  "input_bundle_sha256": "549717d97f08bff4b9e57a7eef06c576de5c9cb2cd28e77fd6556b41e021f2d8",
+  "metrics": null,
+  "outstanding_audit_note": "Independently verify V2 deterministic regeneration during the scoring-package audit if no completed audit addendum exists.",
+  "performance": null,
+  "results_directory": ".claude/window1_range_attack_results_w1-range-attack-v2-dev-20260712-20260720-grid1",
+  "roles": {
+    "authorization_gate": ".claude/window1_range_attack_scoring_package_prerun_20260726/EXECUTION_AUTHORIZATION_GATE.json",
+    "candidate_definitions": "arb-executor/docs/research/window1/WINDOW1_RANGE_ATTACK_CANDIDATES_V2_STRICT_ASK.json",
+    "data_binding_manifest": ".claude/window1_round2_prerun_v2_20260724/ROUND2_DATA_BINDING_MANIFEST.json",
+    "event_ledger": "../OMI-Window1-private/joined/events.jsonl",
+    "event_leg_identities": ".claude/window1_range_attack_scoring_package_prerun_20260726/FROZEN_EVENT_LEG_IDENTITIES.json",
+    "expected_output_schema": ".claude/window1_range_attack_scoring_package_prerun_20260726/EXPECTED_OUTPUT_SCHEMA.json",
+    "guarded_cache_directory": "../OMI-Window1-private/fit-local/guarded-cache-v3",
+    "guarded_cache_hash_set": ".claude/window1_range_attack_scoring_package_prerun_20260726/GUARDED_CACHE_V3_HASH_SET.json",
+    "guarded_fill_source_receipt": ".claude/window1_range_attack_scoring_package_prerun_20260726/GUARDED_FILL_SOURCE_RECEIPT.json",
+    "guarded_fillability_receipts": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/PRICE_FILLABILITY_RECEIPTS.jsonl.gz",
+    "metric_contract": "arb-executor/docs/research/window1/WINDOW1_OS_FAMILY_METRIC_CONTRACT_V1.json",
+    "reference_source_receipt": ".claude/window1_range_attack_scoring_package_prerun_20260726/REFERENCE_SOURCE_RECEIPT.json",
+    "scorer_contract": "arb-executor/docs/research/window1/WINDOW1_RANGE_ATTACK_SCORER_CONTRACT_V1.json",
+    "source_hash_manifest": ".claude/window1_range_attack_scoring_package_prerun_20260726/SOURCE_HASH_MANIFEST.json",
+    "start_ledger": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl"
+  },
+  "schema_version": "window1-range-attack-scoring-input-manifest-v1",
+  "scored": false,
+  "target_PC": 603
+}

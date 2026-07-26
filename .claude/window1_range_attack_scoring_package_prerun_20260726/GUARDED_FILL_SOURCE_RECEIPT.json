@@ -1,0 +1,34 @@
+{
+  "accepted_evidence_types": [
+    "PRICE_REACHED",
+    "STRICT_ASK_CERTAIN_FILL"
+  ],
+  "all_362_causal_strict_ask_actions_countable": false,
+  "candidate_order_stream_is_a_role": false,
+  "guarded_census": {
+    "after_evaluated_right_fillable_rows": 0,
+    "after_right_strict_ask_actions_ineligible": 283,
+    "boundary_unprovable_fillable_rows": 0,
+    "boundary_unprovable_strict_ask_actions_ineligible": 53,
+    "evidence_type_counts": {
+      "PRICE_REACHED": 969,
+      "STRICT_ASK_CERTAIN_FILL": 26
+    },
+    "fillable_rows": 995,
+    "guarded_strict_ask_rows_eligible": 26,
+    "raw_causal_strict_ask_action_count": 362,
+    "rows": 33033
+  },
+  "metrics": null,
+  "only_26_guarded_strict_ask_receipts_countable": true,
+  "raw_causal_policy_state_is_a_role": false,
+  "schema_version": "window1-range-attack-guarded-fill-source-v1",
+  "scored": false,
+  "sole_scoring_fill_source": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/PRICE_FILLABILITY_RECEIPTS.jsonl.gz",
+  "source": {
+    "bytes": 1837661,
+    "git_blob_oid": "fe0d079d8367fef0713d5e0d394c81667acb9d3e",
+    "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/PRICE_FILLABILITY_RECEIPTS.jsonl.gz",
+    "sha256": "2f1f124cc56815f1caa2026dd6dcc07a53412e9befbc43d49fcd464ac708eb2c"
+  }
+}

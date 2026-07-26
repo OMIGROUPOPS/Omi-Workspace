@@ -1,0 +1,25 @@
+{
+  "D": 804,
+  "candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "complete_grid_dispatch_schema_loaded": true,
+  "controlling_pass_audit": "5579b93774267779ae916eb9cb46766de66a9efe",
+  "execution_authorized": false,
+  "fill_adapter_invoked": false,
+  "future_independent_PASS_required": true,
+  "gate_pass": true,
+  "implementation_parent": "851346343eecbff64bd836992876592784874c86",
+  "input_bundle_sha256": "549717d97f08bff4b9e57a7eef06c576de5c9cb2cd28e77fd6556b41e021f2d8",
+  "performance_metrics": {
+    "C": null,
+    "IC": null,
+    "PC": null,
+    "S": null
+  },
+  "real_population_loaded": false,
+  "reference_adapter_invoked": false,
+  "schema_version": "window1-range-attack-scoring-package-validation-only-v1",
+  "scorer_invoked": false
+}

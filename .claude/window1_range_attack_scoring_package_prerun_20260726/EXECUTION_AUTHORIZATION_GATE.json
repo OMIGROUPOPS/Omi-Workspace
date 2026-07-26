@@ -1,0 +1,17 @@
+{
+  "command_template": "python -B arb-executor/analysis/window1_range_attack_scoring_runner_v1.py --repo . --package .claude/window1_range_attack_scoring_package_prerun_20260726/SCORING_INPUT_MANIFEST.json --mode execute --authorization-commit {FUTURE_PASS_AUDIT_SHA} --authorization-report {FUTURE_AUDIT_REPORT_PATH}",
+  "execution_authorized_now": false,
+  "execution_id": "w1-range-attack-v2-dev-20260712-20260720-grid1",
+  "future_audit_must_bind": [
+    "exact package commit SHA",
+    "execution ID",
+    "input-bundle SHA-256",
+    "exact execution command"
+  ],
+  "future_independent_PASS_audit_required": true,
+  "one_attempt_only": true,
+  "real_execution_invoked": false,
+  "results_directory": ".claude/window1_range_attack_results_w1-range-attack-v2-dev-20260712-20260720-grid1",
+  "retry_or_resume_allowed": false,
+  "schema_version": "window1-range-attack-execution-gate-v1"
+}

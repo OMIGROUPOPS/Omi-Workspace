@@ -1,0 +1,108 @@
+{
+  "build_command": "python -B arb-executor/analysis/window1_range_attack_scoring_package_freeze_v1.py --repo . --output-dir .claude/window1_range_attack_scoring_package_prerun_20260726",
+  "byte_identical": true,
+  "core_file_count": 11,
+  "first_build": {
+    "EXECUTION_AUTHORIZATION_GATE.json": {
+      "bytes": 893,
+      "sha256": "3d3229ed8455b193715db473a3b4d5936e7035f8aa469f8ec64f567239cf6ee3"
+    },
+    "EXPECTED_OUTPUT_SCHEMA.json": {
+      "bytes": 1330,
+      "sha256": "86971e5210af0fd5eebf85a486e037bf646aa8d59fe07caa161e5511d51b7a5e"
+    },
+    "FROZEN_EVENT_LEG_IDENTITIES.json": {
+      "bytes": 332033,
+      "sha256": "685e116537969496db2adf632848e1b63d8fe5bc334f514f64fa9d57f39d1203"
+    },
+    "GUARDED_CACHE_V3_HASH_SET.json": {
+      "bytes": 286205,
+      "sha256": "93ebe4b25fb0b841ee3da58e339dc7981f9c0667e7e404482112a5ae59297e1d"
+    },
+    "GUARDED_FILL_SOURCE_RECEIPT.json": {
+      "bytes": 1291,
+      "sha256": "a310d0c5648419f224a562f292b05de9258a7a85c826adffc872331109c48bfe"
+    },
+    "NO_EXECUTION_NO_METRICS_RECEIPT.json": {
+      "bytes": 474,
+      "sha256": "2bc58a265008b18278b33610a5a956efd9953ee0f133c6a23d9f0e7f10789edb"
+    },
+    "PRE_RUN_REPORT.md": {
+      "bytes": 1215,
+      "sha256": "31451edbddf63d2559d62e013512b43cd948f3fa689ad80d898e641ecb44dd78"
+    },
+    "REFERENCE_SOURCE_RECEIPT.json": {
+      "bytes": 1905,
+      "sha256": "70f6ed028ae017fc9edbe89e6411c258f2f4022f3b018aae7c4d953b3b092030"
+    },
+    "SCORING_INPUT_MANIFEST.json": {
+      "bytes": 11306,
+      "sha256": "c5a6c576c1dd7aec05de6114f9a031aad14c77c3d85f28351b5553ae9833ff6e"
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "bytes": 6548,
+      "sha256": "5177c9b4f8bad57c674de8df74bb5bf5474557a9a6516aa3fd21959526111602"
+    },
+    "VALIDATION_ONLY_RECEIPT.json": {
+      "bytes": 836,
+      "sha256": "d0d2e5dd20edacc0bd4eb8f20258e6c742d0a3350bbd76bd3d78b89db30a8276"
+    }
+  },
+  "fresh_builds_compared": 2,
+  "implementation_parent": "851346343eecbff64bd836992876592784874c86",
+  "metrics": {
+    "C": null,
+    "IC": null,
+    "PC": null,
+    "S": null
+  },
+  "real_population_scored": false,
+  "schema_version": "window1-range-attack-scoring-package-regeneration-v1",
+  "scorer_invoked": false,
+  "second_build": {
+    "EXECUTION_AUTHORIZATION_GATE.json": {
+      "bytes": 893,
+      "sha256": "3d3229ed8455b193715db473a3b4d5936e7035f8aa469f8ec64f567239cf6ee3"
+    },
+    "EXPECTED_OUTPUT_SCHEMA.json": {
+      "bytes": 1330,
+      "sha256": "86971e5210af0fd5eebf85a486e037bf646aa8d59fe07caa161e5511d51b7a5e"
+    },
+    "FROZEN_EVENT_LEG_IDENTITIES.json": {
+      "bytes": 332033,
+      "sha256": "685e116537969496db2adf632848e1b63d8fe5bc334f514f64fa9d57f39d1203"
+    },
+    "GUARDED_CACHE_V3_HASH_SET.json": {
+      "bytes": 286205,
+      "sha256": "93ebe4b25fb0b841ee3da58e339dc7981f9c0667e7e404482112a5ae59297e1d"
+    },
+    "GUARDED_FILL_SOURCE_RECEIPT.json": {
+      "bytes": 1291,
+      "sha256": "a310d0c5648419f224a562f292b05de9258a7a85c826adffc872331109c48bfe"
+    },
+    "NO_EXECUTION_NO_METRICS_RECEIPT.json": {
+      "bytes": 474,
+      "sha256": "2bc58a265008b18278b33610a5a956efd9953ee0f133c6a23d9f0e7f10789edb"
+    },
+    "PRE_RUN_REPORT.md": {
+      "bytes": 1215,
+      "sha256": "31451edbddf63d2559d62e013512b43cd948f3fa689ad80d898e641ecb44dd78"
+    },
+    "REFERENCE_SOURCE_RECEIPT.json": {
+      "bytes": 1905,
+      "sha256": "70f6ed028ae017fc9edbe89e6411c258f2f4022f3b018aae7c4d953b3b092030"
+    },
+    "SCORING_INPUT_MANIFEST.json": {
+      "bytes": 11306,
+      "sha256": "c5a6c576c1dd7aec05de6114f9a031aad14c77c3d85f28351b5553ae9833ff6e"
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "bytes": 6548,
+      "sha256": "5177c9b4f8bad57c674de8df74bb5bf5474557a9a6516aa3fd21959526111602"
+    },
+    "VALIDATION_ONLY_RECEIPT.json": {
+      "bytes": 836,
+      "sha256": "d0d2e5dd20edacc0bd4eb8f20258e6c742d0a3350bbd76bd3d78b89db30a8276"
+    }
+  }
+}

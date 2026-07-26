@@ -1,0 +1,17 @@
+{
+  "C": null,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "benchmark_executed": false,
+  "candidate_performance_calculated": false,
+  "holdout_opened": false,
+  "holdout_queried": false,
+  "live_or_production_access": false,
+  "performance": null,
+  "real_population_loaded_by_package_builder": false,
+  "results_directory_exists": false,
+  "schema_version": "window1-range-attack-no-execution-v1",
+  "scorer_imported_by_package_builder": false,
+  "scorer_invoked": false
+}

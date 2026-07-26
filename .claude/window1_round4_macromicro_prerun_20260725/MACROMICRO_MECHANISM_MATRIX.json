@@ -1,0 +1,160 @@
+{
+  "classification_totals": {
+    "ABSENT": 5,
+    "BOUND": 9,
+    "PROXIED": 6,
+    "RETRACTED": 2
+  },
+  "every_BOUND_has_controlled_decision_perturbation": true,
+  "metrics": null,
+  "rows": [
+    {
+      "classification": "BOUND",
+      "decision": "fitted maker target",
+      "mechanism": "category_own_price_cell_edge_p50",
+      "normalizer": "category plus rounded own external BBO cell",
+      "perturbation_witness": "P01_CATEGORY_CELL_EDGE",
+      "source": ".claude/seqfloor_20260708/recut_cells.json",
+      "state": "macro_edge_p50_cents"
+    },
+    {
+      "classification": "BOUND",
+      "decision": "maker authority, target and chronological trigger",
+      "mechanism": "nonself_BBO_and_bid_chain_transition",
+      "normalizer": "positive levels plus own-order subtraction",
+      "perturbation_witness": "P02_EXTERNAL_BBO_CHAIN",
+      "source": "guarded-cache top-five book snapshots",
+      "state": "current external bid/ask and chain delta hash"
+    },
+    {
+      "classification": "BOUND",
+      "decision": "park/hold or join/improve posture",
+      "mechanism": "climb_side_decay_side_posture",
+      "normalizer": "own price-cell side, never fav/dog",
+      "perturbation_witness": "P03_CLIMB_DECAY_POSTURE",
+      "source": ".claude/rulings/CLIMBSIDE_SPEC.md",
+      "state": "CLIMB_SIDE or DECAY_SIDE"
+    },
+    {
+      "classification": "BOUND",
+      "decision": "confirm or withhold later fitted reprice",
+      "mechanism": "last_trade_relative_to_chain",
+      "normalizer": "honest verified/carried provenance",
+      "perturbation_witness": "P04_LAST_TRADE_RELATIVE_CHAIN",
+      "source": "raw chronological book cache last_trade",
+      "state": "last_trade position versus bid/ask/spread"
+    },
+    {
+      "classification": "BOUND",
+      "decision": "flow candidate confirms/withholds reprice",
+      "mechanism": "top5_pressure_when_bound",
+      "normalizer": "nonself positive-level size sums",
+      "perturbation_witness": "P05_TOP5_PRESSURE",
+      "source": "positive-size top-five bid/ask chains",
+      "state": "BID/ASK/BALANCED pressure sign"
+    },
+    {
+      "classification": "BOUND",
+      "decision": "flow candidate confirms/withholds reprice",
+      "mechanism": "actual_positive_print_flow",
+      "normalizer": "deduplicated taker side, volume and cadence",
+      "perturbation_witness": "P06_ACTUAL_PRINT_FLOW",
+      "source": "receipt-identified positive-size public prints",
+      "state": "last causal flow direction"
+    },
+    {
+      "classification": "BOUND",
+      "decision": "partial versus exact-five fill action",
+      "mechanism": "cumulative_positive_size_print_fill",
+      "normalizer": "chronological size at active limit or better",
+      "perturbation_witness": "P07_CUMULATIVE_PRINT_FILL",
+      "source": "receipt-identified positive-size public prints",
+      "state": "cumulative simulated quantity capped at five"
+    },
+    {
+      "classification": "BOUND",
+      "decision": "two initial maker placements",
+      "mechanism": "coherent_initial_pair_read",
+      "normalizer": "one content-bound two-leg pair receipt",
+      "perturbation_witness": "P08_COHERENT_PAIR_READ",
+      "source": "both legs' first lawful external BBO receipts",
+      "state": "pair_read_id plus independent leg states"
+    },
+    {
+      "classification": "BOUND",
+      "decision": "sibling +1 acceptance/refusal",
+      "mechanism": "causal_combined_headroom",
+      "normalizer": "V2 receipt-identifiable strict-later law",
+      "perturbation_witness": "P09_CAUSAL_PAIR_HEADROOM",
+      "source": "first exact-five VWAP and contemporaneous R1/R2",
+      "state": "d1, fee and floor(-d1-fee-1)"
+    },
+    {
+      "classification": "PROXIED",
+      "mechanism": "spread",
+      "reason": "reported and used by inherited maker guard; no standalone composed family"
+    },
+    {
+      "classification": "PROXIED",
+      "mechanism": "walls_slopes_persistence",
+      "reason": "level chains receipted; no independently fitted mapping"
+    },
+    {
+      "classification": "PROXIED",
+      "mechanism": "ask_hold_divot",
+      "reason": "inherited V2 microdivot remains; no new standalone mapping"
+    },
+    {
+      "classification": "PROXIED",
+      "mechanism": "wake_timing_distribution",
+      "reason": "t_deep remains advisory and cannot timestamp action"
+    },
+    {
+      "classification": "PROXIED",
+      "mechanism": "cohort",
+      "reason": "inherited source exists; composition overlay makes no new cohort claim"
+    },
+    {
+      "classification": "PROXIED",
+      "mechanism": "orientation_checkpoint",
+      "reason": "historical checkpoint cannot trigger composed actions"
+    },
+    {
+      "classification": "ABSENT",
+      "mechanism": "top20_depth",
+      "reason": "raw development cache binds top five only; named NO_CALL emitted"
+    },
+    {
+      "classification": "ABSENT",
+      "mechanism": "proved_full_depth",
+      "reason": "no sequence-continuous full-depth reconstruction"
+    },
+    {
+      "classification": "ABSENT",
+      "mechanism": "Pinnacle",
+      "reason": "no authoritative causal coverage"
+    },
+    {
+      "classification": "ABSENT",
+      "mechanism": "bookmaker_FV",
+      "reason": "no authoritative causal coverage"
+    },
+    {
+      "classification": "ABSENT",
+      "mechanism": "schedule_revision_stream",
+      "reason": "no timestamped revision stream beyond frozen anchor receipt"
+    },
+    {
+      "classification": "RETRACTED",
+      "mechanism": "borrowed_AIM_shape_mapping",
+      "reason": "no independently frozen mapping"
+    },
+    {
+      "classification": "RETRACTED",
+      "mechanism": "sealed_dual_divot_pair_policy",
+      "reason": "unavailable sealed policy remains unproxied"
+    }
+  ],
+  "schema_version": "round4-macromicro-mechanism-matrix-v1",
+  "scored": false
+}

@@ -1,0 +1,200 @@
+{
+  "all_metrics_null": true,
+  "artifacts": [
+    {
+      "bytes": 20357389,
+      "git_blob_oid": "d56d38e91e187ec315db099f6aa3ba4e772fa2f1",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/FIELD_CONSUMPTION_RECEIPTS.jsonl.gz",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "5ea2efdb8ab2c358306974e5f6d9ba236c4c9381a3521f4790633dee8322d7c5"
+    },
+    {
+      "bytes": 3142,
+      "git_blob_oid": "57efd1e316340ff5e919acfef3d6f3869ba8656b",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/FIVE_EVENT_NO_CALL_D_MEMBERSHIP_PROOF.json",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "60aba3f3d64fd079f4564f5a7c5a47198a3b0072b306410b96a987c051670815"
+    },
+    {
+      "bytes": 59109161,
+      "git_blob_oid": "be1f6385fa5045937fa5702036e54374e08dd9e5",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/FROZEN_MACROMICRO_CANDIDATE_EVENT_STREAMS_01.jsonl.gz",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "401703dcb081adfd723791e589d06fd779ed29c444274ec1b87f089e8be94a50"
+    },
+    {
+      "bytes": 38550821,
+      "git_blob_oid": "27b57b022f5eccf635e942f1456c7606f26ec99e",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/FROZEN_MACROMICRO_CANDIDATE_EVENT_STREAMS_02.jsonl.gz",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "719059a8e28d5099ee1140fed9b80c28fc984ebe74841fab162b0773abf6ce46"
+    },
+    {
+      "bytes": 40435359,
+      "git_blob_oid": "abbf80ec9cf7c144403f50f4a9b1886312a1f39d",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/FROZEN_MACROMICRO_CANDIDATE_EVENT_STREAMS_03.jsonl.gz",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "b821112a6454239eb336da04df8a4d6b0c48bf5767e441c19ecc5cb7ab705692"
+    },
+    {
+      "bytes": 42656942,
+      "git_blob_oid": "3504ea1b5711cb859e99c2237f5a48777d7ff968",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/FROZEN_MACROMICRO_CANDIDATE_EVENT_STREAMS_04.jsonl.gz",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "1af47f3be7ae53919fca67586a0aee38aaa09ba1b009de69b52b55f4b6a251f0"
+    },
+    {
+      "bytes": 421092,
+      "git_blob_oid": "ea6bde26ca565d4d6312319ade40689a452f9bcb",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/LAST_TRADE_PRESERVATION_CENSUS.json",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "721e510c4a02cfd4ddb64f122fb972040e64a61be87aa7fcbe1dedd1fbfc4b03"
+    },
+    {
+      "bytes": 9538614,
+      "git_blob_oid": "8ffe896b48e12e3ea6d3f6a7cddba607b580da8d",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/ROUND4_MACROMICRO_HEADROOM_RECEIPTS.jsonl.gz",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "aba4594725cb6f0f840551eacbaf02f9f0c0373a3f88e3d44b1f25e9ddd28cfe"
+    },
+    {
+      "bytes": 3406393,
+      "git_blob_oid": "40bc66028a337893fddabd383445718118a7b133",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/ROUND4_MACROMICRO_ORDER_DIFFERENCES.jsonl",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "92b39a598cbe64a3f5deb75135ac475c363a8b53c4500dca32bc575ca8db851d"
+    },
+    {
+      "bytes": 2624,
+      "git_blob_oid": "cf99af6680e7a0773f95fe5e1723a905c80ebac5",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/ROUND4_MACROMICRO_REAL_CAPABILITY.json",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "4b161767b9c9f4f05e60cad876c78f2b948ea5bb764a28a695f2c5f1ca4fd5c3"
+    },
+    {
+      "bytes": 3371,
+      "git_blob_oid": "798d169ecbf2ff75a9a624e520044a713b2a291b",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/DETERMINISTIC_REGENERATION_RECEIPT.json",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "d404b101afc7a8c0e3dc1f84f3c4a17e286c71fd3601eb38f4bee530f0f6d84b"
+    },
+    {
+      "bytes": 148934,
+      "git_blob_oid": "194c664490ea887f648c7a2722d103093331c6a6",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/MACROMICRO_STREAM_RECEIPTS.jsonl.gz",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "56be8f1c06a916ea55f52b4c3535233ce94a6ff18ddccf1cb466c718c7cc8fb7"
+    },
+    {
+      "bytes": 149,
+      "git_blob_oid": "3210248533a9651eb71686f231d7533e61ad2f09",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/PAIR_HEADROOM_INVARIANT_RECEIPT.json",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "0c0656c0995f1df66c602ffda94b37a9b948e6c09b631b6c0c403c850862fca3"
+    },
+    {
+      "bytes": 3798,
+      "git_blob_oid": "85960bbbabd391bd4940e907bc67dcb24182b47c",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/CONTROLLED_PERTURBATION_RECEIPTS.json",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "18b37d6f6e651d5cdbdc5c261979c4b21051f4a72d076511695f8f6356415e15"
+    },
+    {
+      "bytes": 5828,
+      "git_blob_oid": "efab60ec4d374800a010a214df46ff42fd60af08",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/MACROMICRO_MECHANISM_MATRIX.json",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "aaff319b9e3a49b5e66d9d9a2b4ece720253d1f3b6aec27d5baaf78dfeefe4eb"
+    },
+    {
+      "bytes": 7298,
+      "git_blob_oid": "aa346d918d4dfb3e3a22b989cbf0abb2e42c0dfa",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/INHERITED_V2_BYTE_IDENTITY_RECEIPT.json",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "e03495965b87d560e521d91e44352fe4de38078d5a6f16b88e3fec15c0c11608"
+    },
+    {
+      "bytes": 912,
+      "git_blob_oid": "408850698f9d8e429dde793ecf8654bca85f3063",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/FORBIDDEN_ACCESS_NO_SCORER_RECEIPT.json",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "0647fcb755c37a1843ba53217f9a00b2c05b859b465337969367f51aad101659"
+    },
+    {
+      "bytes": 9171,
+      "git_blob_oid": "05c3418a3f1d7ca399b0522d6076bebc5a5dd645",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/AUTHORITATIVE_SOURCE_MANIFEST.json",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "c1d7cf7dc9c2cd5a7ffe09f0aa837f42f9cae13c4a99516c6d6cbc8bf5d33b9b"
+    },
+    {
+      "bytes": 1078,
+      "git_blob_oid": "3b8c3276c49bbe3aa1e15ef8ff7976c4033a8b70",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/ROUND4_MACROMICRO_EXECUTION_INVENTORY.json",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "a2dd4f1ee3cc11e2ad75faa18d1037735c2d89033bcea71b851c4336b7c87811"
+    },
+    {
+      "bytes": 14400,
+      "git_blob_oid": "1ffbc3f5691ca6b5e6f39f931c5ea91292b6f253",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/ROUND4_MACROMICRO_PRE_RUN_MANIFEST.json",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "0ac7498983a734f6dd43ee74f1a57635abf57ec8d1c8bec8eea7df89bce6ef79"
+    },
+    {
+      "bytes": 1428,
+      "git_blob_oid": "dc4d523351d77100e9b0cbfd55af4b2dbc80da34",
+      "path": ".claude/window1_round4_macromicro_prerun_20260725/ROUND4_MACROMICRO_PRE_RUN_REPORT.md",
+      "role": "score-free PRE-RUN artifact",
+      "sha256": "2be01988431375fc2a640ff9631dc09a93cd8530a0c4f9719fda122cff706135"
+    }
+  ],
+  "code": [
+    {
+      "bytes": 32801,
+      "git_blob_oid": "a1a7039c3d1fd846f7c1f2ededbdeceb086c7d10",
+      "path": "arb-executor/analysis/window1_round4_macromicro_instrument.py",
+      "role": "composition code/spec/test",
+      "sha256": "6367860e1af6dcc686fc1a298d8dee3a5abf7d3dd02808546b1fb06299c9f40c"
+    },
+    {
+      "bytes": 19413,
+      "git_blob_oid": "f4687687510812711c24fd1cba5815ad2879bdaf",
+      "path": "arb-executor/analysis/window1_round4_macromicro_prerun_builder.py",
+      "role": "composition code/spec/test",
+      "sha256": "889237c353242fed41163e2962a415116e81c4b0375c95802bf88b3d082cf562"
+    },
+    {
+      "bytes": 1941,
+      "git_blob_oid": "164fe3064191349d61cd14982c60b924e89c026b",
+      "path": "arb-executor/analysis/window1_round4_macromicro_verify.py",
+      "role": "composition code/spec/test",
+      "sha256": "87d96a09605a2b05592d6846f284ef158b96547020cbdb5b1556e818756bb41c"
+    },
+    {
+      "bytes": 34623,
+      "git_blob_oid": "eb650cc9d1686975e1ead4c4e4537b6946809559",
+      "path": "arb-executor/analysis/window1_round4_macromicro_freeze.py",
+      "role": "composition code/spec/test",
+      "sha256": "6e3430d90a81bf187c6dd897864c5b80a1aa7f0640fbc3937ea49feb8a6f2958"
+    },
+    {
+      "bytes": 4042,
+      "git_blob_oid": "1ee82d7410d3bf209f2f35e51781315b57ba14f0",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND4_MACROMICRO_CANDIDATES_V1.json",
+      "role": "composition code/spec/test",
+      "sha256": "029a3f7a2221efc18e836fd386b36e35bad440b85a4b831ef3e314d5a27903e5"
+    },
+    {
+      "bytes": 9653,
+      "git_blob_oid": "dfa17b69ebaa6f32dfc2e3104a079496f0bf2c19",
+      "path": "arb-executor/tests/test_window1_round4_macromicro.py",
+      "role": "composition code/spec/test",
+      "sha256": "4602a7a218c088fd90e298e2f69a4ead9b22861016ccad4b03319a8940b9f286"
+    }
+  ],
+  "controlling_audit": "8fc80e359efc873f8962ab2beb2320119b1f5e12",
+  "exact_parent": "781b6d6fac65381a67f74a177478947bfd804dc8",
+  "schema_version": "round4-macromicro-artifact-manifest-v1",
+  "scorer_invocation_count": 0
+}

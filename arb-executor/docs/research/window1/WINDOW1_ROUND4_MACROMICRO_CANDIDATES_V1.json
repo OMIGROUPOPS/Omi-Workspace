@@ -1,0 +1,121 @@
+{
+  "schema_version": "window1-round4-macromicro-candidates-v1",
+  "instrument_version": "window1-round4-macromicro-composition-v1",
+  "exact_parent": "781b6d6fac65381a67f74a177478947bfd804dc8",
+  "controlling_audit": "8fc80e359efc873f8962ab2beb2320119b1f5e12",
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "sealed_holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "inherited_v2_controls": [
+    "r4_pair_presence__park_join__causal_headroom_ladder",
+    "r4_full_drift_stack__causal_headroom_ladder"
+  ],
+  "candidate_ids": [
+    "r4m_climb_decay__last_trade_chain__causal_headroom",
+    "r4m_climb_decay__last_trade_chain_flow__causal_headroom"
+  ],
+  "profiles": {
+    "r4m_last_trade_chain": {
+      "macro": [
+        "category_own_price_cell_edge_p50",
+        "climb_side_decay_side_posture",
+        "advisory_t_deep",
+        "sequential_per_leg_recut"
+      ],
+      "micro": [
+        "positive_size_external_bbo",
+        "last_trade_relative_to_chain",
+        "bid_ask_chain_transition",
+        "positive_size_true_print_fill"
+      ],
+      "pair": [
+        "coherent_initial_pair_read",
+        "independent_per_leg_timing",
+        "asynchronous_exact_five",
+        "causal_combined_headroom"
+      ]
+    },
+    "r4m_last_trade_chain_flow": {
+      "macro": [
+        "category_own_price_cell_edge_p50",
+        "climb_side_decay_side_posture",
+        "advisory_t_deep",
+        "sequential_per_leg_recut"
+      ],
+      "micro": [
+        "positive_size_external_bbo",
+        "last_trade_relative_to_chain",
+        "bid_ask_chain_transition",
+        "positive_size_true_print_fill",
+        "actual_print_flow_and_cadence",
+        "top5_pressure_when_bound"
+      ],
+      "pair": [
+        "coherent_initial_pair_read",
+        "independent_per_leg_timing",
+        "asynchronous_exact_five",
+        "causal_combined_headroom"
+      ]
+    }
+  },
+  "macro_law": {
+    "vocabulary": [
+      "CLIMB_SIDE",
+      "DECAY_SIDE"
+    ],
+    "role_or_fav_dog_selects_posture": false,
+    "climb_side_cells": "own positive BBO price cells 50 through 99",
+    "decay_side_cells": "own positive BBO price cells 1 through 49",
+    "target": "nonself external best bid minus authoritative category/own-price-cell edge_p50",
+    "t_deep": "advisory only",
+    "checkpoint_can_trigger_order_action": false,
+    "missing_optional_macro_can_suppress_presence": false
+  },
+  "micro_law": {
+    "action_clock": "strictly chronological receipt-identified book or positive-size public print",
+    "last_trade_is_bbo_authority": false,
+    "last_trade_is_fill_volume": false,
+    "carried_last_trade_is_new_execution": false,
+    "constructed_midpoint_allowed": false,
+    "maker_presence_requires_positive_external_bid_and_ask": true,
+    "top5_absence_behavior": "named NO_CALL; base chain policy continues",
+    "full_depth_behavior": "ABSENT",
+    "pinnacle_behavior": "ABSENT",
+    "borrowed_AIM_shape_behavior": "RETRACTED"
+  },
+  "headroom_contract": {
+    "inherited_byte_authority": "arb-executor/analysis/window1_round4_instrument_v2.py",
+    "fee_cents": 0,
+    "d1": "first-leg exact-five VWAP minus contemporaneous external R1",
+    "b2_max": "floor(-d1-frozen_fee-1)",
+    "strict_guard": "d1+d2+frozen_fee<0",
+    "positive_sibling_delta_allowed": true,
+    "IC_gate": false,
+    "S_gate": false
+  },
+  "fill_contract": {
+    "inherited_byte_authority": "arb-executor/analysis/window1_round4_instrument_v2.py",
+    "order_quantity_per_leg": 5,
+    "primary_authority": "cumulative chronological qualifying positive-size executed print volume at the active limit or better",
+    "displayed_depth_gate": false,
+    "single_print_size_gate": false,
+    "queue_clearance_gate": false
+  },
+  "free_numeric_parameters": [],
+  "candidate_additions_after_freeze_allowed": false,
+  "benchmark_execution_authorized": false,
+  "performance_metrics": null
+}

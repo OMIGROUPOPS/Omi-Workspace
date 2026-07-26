@@ -1,0 +1,101 @@
+{
+  "all_D_members": true,
+  "all_named_market_evidence_NO_CALL": true,
+  "all_zero_placements": true,
+  "metrics": null,
+  "row_count": 10,
+  "rows": [
+    {
+      "D_member": true,
+      "candidate_id": "r4m_climb_decay__last_trade_chain__causal_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "r4m_climb_decay__last_trade_chain_flow__causal_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "r4m_climb_decay__last_trade_chain__causal_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "r4m_climb_decay__last_trade_chain_flow__causal_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "r4m_climb_decay__last_trade_chain__causal_headroom",
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "r4m_climb_decay__last_trade_chain_flow__causal_headroom",
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "r4m_climb_decay__last_trade_chain__causal_headroom",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "r4m_climb_decay__last_trade_chain_flow__causal_headroom",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "r4m_climb_decay__last_trade_chain__causal_headroom",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "r4m_climb_decay__last_trade_chain_flow__causal_headroom",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    }
+  ],
+  "schema_version": "round4-five-event-proof-v1",
+  "scored": false
+}

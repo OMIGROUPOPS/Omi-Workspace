@@ -1,0 +1,173 @@
+{
+  "every_witness_changes_action_or_posture": true,
+  "metrics": null,
+  "real_candidate_performance_used": false,
+  "row_count": 9,
+  "rows": [
+    {
+      "decision_changed": true,
+      "input_A": {
+        "edge_p50": 1
+      },
+      "input_B": {
+        "edge_p50": 3
+      },
+      "mechanism": "category_own_price_cell_edge_p50",
+      "output_A": {
+        "target_price": 59
+      },
+      "output_B": {
+        "target_price": 57
+      },
+      "witness_id": "P01_CATEGORY_CELL_EDGE"
+    },
+    {
+      "decision_changed": true,
+      "input_A": {
+        "external_bid": 60
+      },
+      "input_B": {
+        "external_bid": 61
+      },
+      "mechanism": "nonself_BBO_and_bid_chain_transition",
+      "output_A": {
+        "target_price": 59
+      },
+      "output_B": {
+        "target_price": 60
+      },
+      "witness_id": "P02_EXTERNAL_BBO_CHAIN"
+    },
+    {
+      "decision_changed": true,
+      "input_A": {
+        "macro_side": "CLIMB_SIDE"
+      },
+      "input_B": {
+        "macro_side": "DECAY_SIDE"
+      },
+      "mechanism": "climb_side_decay_side_posture",
+      "output_A": {
+        "posture": "fitted_edge_park_hold"
+      },
+      "output_B": {
+        "posture": "fitted_edge_join_improve"
+      },
+      "witness_id": "P03_CLIMB_DECAY_POSTURE"
+    },
+    {
+      "decision_changed": true,
+      "input_A": {
+        "bid": 60,
+        "last_trade": 59
+      },
+      "input_B": {
+        "bid": 60,
+        "last_trade": 61
+      },
+      "mechanism": "last_trade_relative_to_chain",
+      "output_A": {
+        "reprice_confirmed": true
+      },
+      "output_B": {
+        "reprice_confirmed": false
+      },
+      "witness_id": "P04_LAST_TRADE_RELATIVE_CHAIN"
+    },
+    {
+      "decision_changed": true,
+      "input_A": {
+        "pressure": "BID"
+      },
+      "input_B": {
+        "pressure": "ASK"
+      },
+      "mechanism": "top5_pressure_when_bound",
+      "output_A": {
+        "reprice_confirmed": true
+      },
+      "output_B": {
+        "reprice_confirmed": false
+      },
+      "witness_id": "P05_TOP5_PRESSURE"
+    },
+    {
+      "decision_changed": true,
+      "input_A": {
+        "taker_side": "no"
+      },
+      "input_B": {
+        "taker_side": "yes"
+      },
+      "mechanism": "actual_positive_print_flow",
+      "output_A": {
+        "reprice_confirmed": true
+      },
+      "output_B": {
+        "reprice_confirmed": false
+      },
+      "witness_id": "P06_ACTUAL_PRINT_FLOW"
+    },
+    {
+      "decision_changed": true,
+      "input_A": {
+        "cumulative_size": 4
+      },
+      "input_B": {
+        "cumulative_size": 5
+      },
+      "mechanism": "cumulative_positive_size_print_fill",
+      "output_A": {
+        "complete": false,
+        "quantity": 4.0
+      },
+      "output_B": {
+        "complete": true,
+        "quantity": 5.0
+      },
+      "witness_id": "P07_CUMULATIVE_PRINT_FILL"
+    },
+    {
+      "decision_changed": true,
+      "input_A": {
+        "lawful_BBO_legs": 1
+      },
+      "input_B": {
+        "lawful_BBO_legs": 2
+      },
+      "mechanism": "coherent_initial_pair_read",
+      "output_A": {
+        "pair_placement_count": 0
+      },
+      "output_B": {
+        "pair_compose_receipts": 2,
+        "pair_placement_count": 2
+      },
+      "witness_id": "P08_COHERENT_PAIR_READ"
+    },
+    {
+      "decision_changed": true,
+      "input_A": {
+        "d1": -7,
+        "d2": 6,
+        "fee": 0
+      },
+      "input_B": {
+        "d1": -7,
+        "d2": 7,
+        "fee": 0
+      },
+      "mechanism": "causal_combined_headroom",
+      "output_A": {
+        "b2_max": 6,
+        "guard": true
+      },
+      "output_B": {
+        "b2_max": 6,
+        "guard": false
+      },
+      "witness_id": "P09_CAUSAL_PAIR_HEADROOM"
+    }
+  ],
+  "schema_version": "round4-controlled-perturbations-v1"
+}

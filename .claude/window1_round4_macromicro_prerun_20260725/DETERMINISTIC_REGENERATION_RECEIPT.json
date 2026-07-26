@@ -1,0 +1,79 @@
+{
+  "all_byte_identical": true,
+  "artifact_count": 10,
+  "artifacts": [
+    {
+      "byte_identical": true,
+      "bytes": 20357389,
+      "path": "FIELD_CONSUMPTION_RECEIPTS.jsonl.gz",
+      "reference_sha256": "5ea2efdb8ab2c358306974e5f6d9ba236c4c9381a3521f4790633dee8322d7c5",
+      "regenerated_sha256": "5ea2efdb8ab2c358306974e5f6d9ba236c4c9381a3521f4790633dee8322d7c5"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 3142,
+      "path": "FIVE_EVENT_NO_CALL_D_MEMBERSHIP_PROOF.json",
+      "reference_sha256": "60aba3f3d64fd079f4564f5a7c5a47198a3b0072b306410b96a987c051670815",
+      "regenerated_sha256": "60aba3f3d64fd079f4564f5a7c5a47198a3b0072b306410b96a987c051670815"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 59109161,
+      "path": "FROZEN_MACROMICRO_CANDIDATE_EVENT_STREAMS_01.jsonl.gz",
+      "reference_sha256": "401703dcb081adfd723791e589d06fd779ed29c444274ec1b87f089e8be94a50",
+      "regenerated_sha256": "401703dcb081adfd723791e589d06fd779ed29c444274ec1b87f089e8be94a50"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 38550821,
+      "path": "FROZEN_MACROMICRO_CANDIDATE_EVENT_STREAMS_02.jsonl.gz",
+      "reference_sha256": "719059a8e28d5099ee1140fed9b80c28fc984ebe74841fab162b0773abf6ce46",
+      "regenerated_sha256": "719059a8e28d5099ee1140fed9b80c28fc984ebe74841fab162b0773abf6ce46"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 40435359,
+      "path": "FROZEN_MACROMICRO_CANDIDATE_EVENT_STREAMS_03.jsonl.gz",
+      "reference_sha256": "b821112a6454239eb336da04df8a4d6b0c48bf5767e441c19ecc5cb7ab705692",
+      "regenerated_sha256": "b821112a6454239eb336da04df8a4d6b0c48bf5767e441c19ecc5cb7ab705692"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 42656942,
+      "path": "FROZEN_MACROMICRO_CANDIDATE_EVENT_STREAMS_04.jsonl.gz",
+      "reference_sha256": "1af47f3be7ae53919fca67586a0aee38aaa09ba1b009de69b52b55f4b6a251f0",
+      "regenerated_sha256": "1af47f3be7ae53919fca67586a0aee38aaa09ba1b009de69b52b55f4b6a251f0"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 421092,
+      "path": "LAST_TRADE_PRESERVATION_CENSUS.json",
+      "reference_sha256": "721e510c4a02cfd4ddb64f122fb972040e64a61be87aa7fcbe1dedd1fbfc4b03",
+      "regenerated_sha256": "721e510c4a02cfd4ddb64f122fb972040e64a61be87aa7fcbe1dedd1fbfc4b03"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 9538614,
+      "path": "ROUND4_MACROMICRO_HEADROOM_RECEIPTS.jsonl.gz",
+      "reference_sha256": "aba4594725cb6f0f840551eacbaf02f9f0c0373a3f88e3d44b1f25e9ddd28cfe",
+      "regenerated_sha256": "aba4594725cb6f0f840551eacbaf02f9f0c0373a3f88e3d44b1f25e9ddd28cfe"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 3406393,
+      "path": "ROUND4_MACROMICRO_ORDER_DIFFERENCES.jsonl",
+      "reference_sha256": "92b39a598cbe64a3f5deb75135ac475c363a8b53c4500dca32bc575ca8db851d",
+      "regenerated_sha256": "92b39a598cbe64a3f5deb75135ac475c363a8b53c4500dca32bc575ca8db851d"
+    },
+    {
+      "byte_identical": true,
+      "bytes": 2624,
+      "path": "ROUND4_MACROMICRO_REAL_CAPABILITY.json",
+      "reference_sha256": "4b161767b9c9f4f05e60cad876c78f2b948ea5bb764a28a695f2c5f1ca4fd5c3",
+      "regenerated_sha256": "4b161767b9c9f4f05e60cad876c78f2b948ea5bb764a28a695f2c5f1ca4fd5c3"
+    }
+  ],
+  "metrics": null,
+  "schema_version": "round4-macromicro-regeneration-v1",
+  "scorer_invocation_count": 0
+}

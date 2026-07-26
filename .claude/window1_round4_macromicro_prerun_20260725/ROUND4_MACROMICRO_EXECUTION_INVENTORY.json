@@ -1,0 +1,28 @@
+{
+  "D": 804,
+  "benchmark_execution_authorized": false,
+  "candidate_event_stream_count": 1608,
+  "candidate_ids_in_frozen_order": [
+    "r4m_climb_decay__last_trade_chain__causal_headroom",
+    "r4m_climb_decay__last_trade_chain_flow__causal_headroom"
+  ],
+  "candidate_ranking_or_selection": false,
+  "execution_command": null,
+  "execution_id": null,
+  "metrics": null,
+  "required_future_package_inputs": [
+    "arb-executor/docs/research/window1/WINDOW1_ROUND4_MACROMICRO_CANDIDATES_V1.json",
+    "arb-executor/analysis/window1_round4_macromicro_instrument.py",
+    "AUTHORITATIVE_SOURCE_MANIFEST.json",
+    "MACROMICRO_STREAM_RECEIPTS.jsonl.gz"
+  ],
+  "schema_version": "round4-macromicro-execution-inventory-v1",
+  "scorer": "unchanged inherited scorer; not imported or invoked",
+  "stream_shards": [
+    "FROZEN_MACROMICRO_CANDIDATE_EVENT_STREAMS_01.jsonl.gz",
+    "FROZEN_MACROMICRO_CANDIDATE_EVENT_STREAMS_02.jsonl.gz",
+    "FROZEN_MACROMICRO_CANDIDATE_EVENT_STREAMS_03.jsonl.gz",
+    "FROZEN_MACROMICRO_CANDIDATE_EVENT_STREAMS_04.jsonl.gz"
+  ],
+  "target_PC": 603
+}

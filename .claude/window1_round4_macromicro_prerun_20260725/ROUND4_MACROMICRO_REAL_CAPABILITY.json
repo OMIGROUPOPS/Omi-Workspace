@@ -1,0 +1,81 @@
+{
+  "D": 804,
+  "all_metrics_null": true,
+  "candidate_count": 2,
+  "candidate_event_stream_count": 1608,
+  "candidate_ids": [
+    "r4m_climb_decay__last_trade_chain__causal_headroom",
+    "r4m_climb_decay__last_trade_chain_flow__causal_headroom"
+  ],
+  "candidate_summaries": [
+    {
+      "C": null,
+      "D": 804,
+      "IC": null,
+      "PC": null,
+      "S": null,
+      "aggregate_decision_sha256": "5a0ada9511af8cdf33a2ec65bab53efa83a873048866b1dffca4a39c87b30143",
+      "cancel_count": 108972,
+      "candidate_event_stream_count": 804,
+      "candidate_id": "r4m_climb_decay__last_trade_chain__causal_headroom",
+      "composed_receipt_count": 219107,
+      "decision_count": 219107,
+      "eligible_D_membership_count": 804,
+      "events_distinct_from_other_candidate": 747,
+      "feature_censor_event_count": 0,
+      "last_trade_NO_CALL_count": 140,
+      "metrics": null,
+      "place_count": 1598,
+      "reprice_count": 108537,
+      "scored": false,
+      "top20_NO_CALL_count": 1598,
+      "top5_NO_CALL_count": 0
+    },
+    {
+      "C": null,
+      "D": 804,
+      "IC": null,
+      "PC": null,
+      "S": null,
+      "aggregate_decision_sha256": "853ca52967431c1c37041c365e767dafbb03695472fbbaba843b3a75be8a6ccb",
+      "cancel_count": 64722,
+      "candidate_event_stream_count": 804,
+      "candidate_id": "r4m_climb_decay__last_trade_chain_flow__causal_headroom",
+      "composed_receipt_count": 130624,
+      "decision_count": 130624,
+      "eligible_D_membership_count": 804,
+      "events_distinct_from_other_candidate": 747,
+      "feature_censor_event_count": 0,
+      "last_trade_NO_CALL_count": 140,
+      "metrics": null,
+      "place_count": 1598,
+      "reprice_count": 64304,
+      "scored": false,
+      "top20_NO_CALL_count": 1598,
+      "top5_NO_CALL_count": 0
+    }
+  ],
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "holdout_opened_or_queried": false,
+  "leg_identity_count": 1608,
+  "live_or_production_access": false,
+  "ranking_selection_or_tuning": false,
+  "schema_version": "window1-round4-macromicro-real-capability-v1",
+  "scorer_imported_or_invoked": false,
+  "source_receipts": {
+    "climb_spec": "cc968de43d45d0f5f5d6fc4639eeed8a973bed3f98fdc405ffd7905fef0057e8",
+    "expression": "85e8f3c022f219308d2694e97aacc0736b139d9a84228d195caf9cd732b6209a",
+    "granularity": "80055b07b35997b84d80a3fc6d81d0a717b65145792f8d26de298c128a184b2f",
+    "recut": "852ab6678e4358189e4f79987e0286011d1e5662a2653ed0cc34fc18e4fb32b7"
+  }
+}

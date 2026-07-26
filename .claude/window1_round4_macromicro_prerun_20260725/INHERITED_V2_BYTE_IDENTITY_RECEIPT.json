@@ -1,0 +1,164 @@
+{
+  "all_byte_identical": true,
+  "exact_parent": "781b6d6fac65381a67f74a177478947bfd804dc8",
+  "path_count": 26,
+  "paths": [
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "d85f87151f29f4ae88fc213dd2d80458481a8632",
+      "path": ".claude/window1_round4_prerun_v2_20260725/CAUSAL_REFERENCE_CALIBRATION_V2.json",
+      "worktree_blob_oid": "d85f87151f29f4ae88fc213dd2d80458481a8632"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "f303ef05946de8657b953204d6550da021839bfb",
+      "path": ".claude/window1_round4_prerun_v2_20260725/FROZEN_CANDIDATE_EVENT_STREAMS_V2.jsonl.gz",
+      "worktree_blob_oid": "f303ef05946de8657b953204d6550da021839bfb"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "02a4f9b24adb5a14cc6b92c38e27f9338121998d",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ORACLE_FALSE_NEGATIVE_CENSUS_V2.json",
+      "worktree_blob_oid": "02a4f9b24adb5a14cc6b92c38e27f9338121998d"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "23b4b13cb6ab2a5b0cb2ac6b5870c9bccca97f42",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V1_SUPERSESSION_RECEIPT.json",
+      "worktree_blob_oid": "23b4b13cb6ab2a5b0cb2ac6b5870c9bccca97f42"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "0fc5907108836db3de2781db26ae115e0a90c108",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V1_V2_STREAM_IDENTITY_RECEIPT.json",
+      "worktree_blob_oid": "0fc5907108836db3de2781db26ae115e0a90c108"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "bdc2eee15667efaa95d9047b58f10da7680a6aa3",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_ARTIFACT_MANIFEST.json",
+      "worktree_blob_oid": "bdc2eee15667efaa95d9047b58f10da7680a6aa3"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "5886ded26c0fa569fa27122d671469d9cd70d132",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_CANDIDATE_ORDER_DIFFERENCES.jsonl",
+      "worktree_blob_oid": "5886ded26c0fa569fa27122d671469d9cd70d132"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "eca2b1977593e3eb8333fd71737e920cd4650a0b",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_DIAGNOSTIC_RECEIPT.json",
+      "worktree_blob_oid": "eca2b1977593e3eb8333fd71737e920cd4650a0b"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "8410b43bef053dda3206a9eb6483256ec8f63e32",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_EXECUTION_PACKAGE_INVENTORY.json",
+      "worktree_blob_oid": "8410b43bef053dda3206a9eb6483256ec8f63e32"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "9dee18c658495f7938a2ca423245a842e9a6b6ce",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_FIVE_EVENT_PROOF.json",
+      "worktree_blob_oid": "9dee18c658495f7938a2ca423245a842e9a6b6ce"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "b44fc8af81e81983ee34f2ddb7c9a9f1eac9aaf3",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_HEADROOM_DECISION_RECEIPTS.jsonl.gz",
+      "worktree_blob_oid": "b44fc8af81e81983ee34f2ddb7c9a9f1eac9aaf3"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "463278c44b3fa01d867e037dc8ef2a052e19dffa",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_HEADROOM_INVARIANT_RECEIPT.json",
+      "worktree_blob_oid": "463278c44b3fa01d867e037dc8ef2a052e19dffa"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "31ca1bdb82ff57408f0d7c9fa2d6dfc63691c050",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_PRE_RUN_MANIFEST.json",
+      "worktree_blob_oid": "31ca1bdb82ff57408f0d7c9fa2d6dfc63691c050"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "5682ab26aca18a59e747bfb57798f2d2b62a8b46",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_PRE_RUN_REPORT.md",
+      "worktree_blob_oid": "5682ab26aca18a59e747bfb57798f2d2b62a8b46"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "e2eba943697ba827a176c4b3e597b7d0433e1d9b",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_REAL_CAPABILITY.json",
+      "worktree_blob_oid": "e2eba943697ba827a176c4b3e597b7d0433e1d9b"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "cb6d416dcb7c6e28022726dd3fe3145ef3f3cc2e",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_SOURCE_BINDING_AVAILABILITY.json",
+      "worktree_blob_oid": "cb6d416dcb7c6e28022726dd3fe3145ef3f3cc2e"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "4db3b2e6b23cab2a16d5c6a304f9a0a0dfa618dc",
+      "path": ".claude/window1_round4_prerun_v2_20260725/ROUND4_V2_STREAM_RECEIPTS.jsonl.gz",
+      "worktree_blob_oid": "4db3b2e6b23cab2a16d5c6a304f9a0a0dfa618dc"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "30cd4e163d50c08ade07b7acafc951f187f08f2e",
+      "path": ".claude/window1_round4_prerun_v2_20260725/WINDOW1_OPPORTUNITY_LEDGER_V2_01.jsonl.gz",
+      "worktree_blob_oid": "30cd4e163d50c08ade07b7acafc951f187f08f2e"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "84a6a8292490951361deefb7f5cbf4aada13468c",
+      "path": ".claude/window1_round4_prerun_v2_20260725/WINDOW1_OPPORTUNITY_LEDGER_V2_02.jsonl.gz",
+      "worktree_blob_oid": "84a6a8292490951361deefb7f5cbf4aada13468c"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "e6a181637d688a82b2226bd4fb6668b325e8f1a8",
+      "path": ".claude/window1_round4_prerun_v2_20260725/WINDOW1_OPPORTUNITY_LEDGER_V2_MANIFEST.json",
+      "worktree_blob_oid": "e6a181637d688a82b2226bd4fb6668b325e8f1a8"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "883cf8f9678d36f8a0d85b3efab9e3ec446955cd",
+      "path": "arb-executor/analysis/window1_round4_diagnostics_v2.py",
+      "worktree_blob_oid": "883cf8f9678d36f8a0d85b3efab9e3ec446955cd"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "c4d3490185f131ba72aa225e1a83907f848fea6b",
+      "path": "arb-executor/analysis/window1_round4_freeze_v2.py",
+      "worktree_blob_oid": "c4d3490185f131ba72aa225e1a83907f848fea6b"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "fc06f6680fc52e1621358643a1bfced75b575310",
+      "path": "arb-executor/analysis/window1_round4_instrument_v2.py",
+      "worktree_blob_oid": "fc06f6680fc52e1621358643a1bfced75b575310"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "206ade6779b82faf946dde9bcedc7d8ddecaf114",
+      "path": "arb-executor/analysis/window1_round4_prerun_builder_v2.py",
+      "worktree_blob_oid": "206ade6779b82faf946dde9bcedc7d8ddecaf114"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "8aefddb9b7e1d46a620d03c54e332620722fb07f",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ROUND4_CANDIDATES_V2.json",
+      "worktree_blob_oid": "8aefddb9b7e1d46a620d03c54e332620722fb07f"
+    },
+    {
+      "byte_identical": true,
+      "parent_blob_oid": "59d76788a58c467f7a212a97fd41cc50ec0a004b",
+      "path": "arb-executor/tests/test_window1_round4_v2.py",
+      "worktree_blob_oid": "59d76788a58c467f7a212a97fd41cc50ec0a004b"
+    }
+  ],
+  "schema_version": "round4-inherited-v2-identity-v1"
+}

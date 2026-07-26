@@ -71,3 +71,7 @@ The narrow correction (not implemented here) is a frozen accounting rule for str
 ## Determinism addendum policy
 
 Fresh-directory regeneration was running at ruling time; its result will be recorded in a follow-up receipt when complete. It cannot affect this BLOCK.
+
+## Determinism addendum (final)
+
+The fresh-directory regeneration was launched twice and terminated by the execution environment both times before producing output (the range-attack builder is the heaviest in the series: 13.5M-snapshot normalization plus 38,311 ladder-interval evaluations). **The committed DETERMINISTIC_REGENERATION_RECEIPT therefore remains unconfirmed by this audit.** This is immaterial to the BLOCKED ruling, which rests on the demonstrated strict-ask measurement censoring; but deterministic regeneration MUST be independently confirmed as part of the corrected PRE-RUN's audit before any scoring package is considered. All 24 artifact hashes were verified against the committed blobs; what remains unproven is only the regenerate-from-frozen-inputs byte-identity claim.

@@ -1,0 +1,165 @@
+{
+  "adversarial_numeric_cases": [
+    {
+      "case": "control_real_row",
+      "detail": {
+        "price": 49,
+        "qty": 5
+      },
+      "outcome": "ACCEPTED"
+    },
+    {
+      "case": "quantity_5.9",
+      "detail": "accounting quantity is not an exact integer",
+      "outcome": "REJECTED"
+    },
+    {
+      "case": "quantity_5.0001",
+      "detail": "accounting quantity is not an exact integer",
+      "outcome": "REJECTED"
+    },
+    {
+      "case": "target_fill_40.9",
+      "detail": "target price is not an exact integer",
+      "outcome": "REJECTED"
+    },
+    {
+      "case": "fill_49.9_only",
+      "detail": "accounting fill price is not an exact integer",
+      "outcome": "REJECTED"
+    },
+    {
+      "case": "quantity_bool_True",
+      "detail": "accounting quantity is boolean",
+      "outcome": "REJECTED"
+    },
+    {
+      "case": "quantity_nan",
+      "detail": "accounting quantity is not finite",
+      "outcome": "REJECTED"
+    },
+    {
+      "case": "price_inf",
+      "detail": "target price is not finite",
+      "outcome": "REJECTED"
+    },
+    {
+      "case": "price_0_below_band",
+      "detail": "target price is below 1",
+      "outcome": "REJECTED"
+    },
+    {
+      "case": "price_100_above_band",
+      "detail": "target price is above 99",
+      "outcome": "REJECTED"
+    },
+    {
+      "case": "fractional_print_price_48.7",
+      "detail": "print evidence price is not an exact integer",
+      "outcome": "REJECTED"
+    },
+    {
+      "case": "quantity_4",
+      "detail": "accounting quantity is below 5",
+      "outcome": "REJECTED"
+    },
+    {
+      "case": "quantity_6",
+      "detail": "accounting quantity is above 5",
+      "outcome": "REJECTED"
+    },
+    {
+      "case": "quantity_5.0_exact_float",
+      "detail": {
+        "price": 49,
+        "qty": 5
+      },
+      "outcome": "ACCEPTED"
+    },
+    {
+      "case": "price_49.0_exact_float",
+      "detail": {
+        "price": 49,
+        "qty": 5
+      },
+      "outcome": "ACCEPTED"
+    },
+    {
+      "case": "strict_ask_control",
+      "detail": {
+        "price": 73,
+        "qty": 5
+      },
+      "outcome": "ACCEPTED"
+    },
+    {
+      "case": "strict_ask_fractional_ask_38.9",
+      "detail": "strict external ask is not an exact integer",
+      "outcome": "REJECTED"
+    },
+    {
+      "case": "strict_ask_fractional_evtarget",
+      "detail": "strict-ask evidence target is not an exact integer",
+      "outcome": "REJECTED"
+    }
+  ],
+  "audited_commit": "e7e7b9071b9238868d0599a2e5f24bb92dcc9bdd",
+  "authorization_gate": {
+    "fail_closed_negatives": [
+      "wrong_package_commit",
+      "wrong_execution_id",
+      "wrong_bundle",
+      "missing_report_path",
+      "wrong_template",
+      "non_ancestor_commit",
+      "malformed_sha"
+    ],
+    "finite_workflow": "AUTHORIZED in synthetic repo (report cites package/ID/bundle/template; SHA supplied separately)",
+    "no_check_weakened": true
+  },
+  "controlling_block_audit": "3811a772aea381767a763af90320a1af91475816",
+  "determinism": {
+    "bundle_hash_recomputed": true,
+    "dual_checkout_builds": "CRLF and LF each 12/12 byte-identical to committed",
+    "package_artifact_receipts": "14/14",
+    "source_receipts": "22/22",
+    "tests": "123/123"
+  },
+  "final_ruling": "PASS (authorizes only the separately bound scoring execution)",
+  "no_execution": {
+    "all_metrics_null": true,
+    "holdout": "sealed",
+    "real_population_scorer_invocations": 0,
+    "results_directory": "absent"
+  },
+  "schema_version": "w1-range-attack-scoring-package-v2-audit-receipt-v1",
+  "tie_census": {
+    "authoritative_sequences_found": 0,
+    "controlling_audit_reported": 271,
+    "correct": 272,
+    "decomposition": {
+      "differing_price_unavailable": 64,
+      "same_price_reference_available": 208
+    },
+    "delta_resolved": "CREMAT/CRE \u2014 positive boundary, zero exposed intervals (interval-map blind spot), 3 receipts at latest ts all price 63 (same-price tie), verified from raw cache",
+    "differing_price_class_identical_in_both_computations": true,
+    "law": "D retained; C/S preserved; no PC/IC; separately reportable via per-leg tie fields",
+    "named_reason": "ambiguous_latest_timestamp_multiple_prices_no_authoritative_sequence"
+  },
+  "unique_ledger_rebuild": {
+    "excess_removed": 4,
+    "independent_rebuild_differences": 0,
+    "macro_hold": 501,
+    "macro_micro": 490,
+    "print_backed": 965,
+    "raw": 995,
+    "resolutions": {
+      "macro_hold LANRAD/RAD": "interval0005 X=80",
+      "macro_micro BOHBOU/BOH": "interval0007 X=3",
+      "macro_micro LANRAD/RAD": "interval0005 X=80"
+    },
+    "runtime_sole_source": "validate_package hard-fails on fillability/stream/causal roles; only unique_guarded_fill_ledger consumed",
+    "strict_ask_backed": 26,
+    "unique": 991
+  }
+}

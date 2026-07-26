@@ -1,0 +1,97 @@
+{
+  "artifact_hashes": {
+    "CONTEMPORANEOUS_EPISODE_CENSUS.json": {
+      "bytes": 40679,
+      "sha256": "bb74cc2d35a5ee85d76479a7eee948eb142ff79e128dcf676c0c971ca4cf27c7"
+    },
+    "EPISODE_SELF_CONSISTENCY_RECEIPT.json": {
+      "bytes": 1214,
+      "sha256": "c74d6047ee59048163007ee06ba4a4cd6b7c3d68da4898f2821a8f8861b8710f"
+    },
+    "ITEM_EPISODE_REFERENCE_AMENDMENT.md": {
+      "bytes": 7521,
+      "sha256": "cfcf1a768cd1cf1504db8c6cd3bf0f4f3e1eca59dbc05ae1f59f5dc869cfec76"
+    },
+    "VUKBRO_EPISODE_RECONCILIATION.json": {
+      "bytes": 3526,
+      "sha256": "52297e5e0a2a8d45794f35b953245dd2785c24337bbf0973555c7b3834776c69"
+    }
+  },
+  "authoritative_sources": {
+    "credited_leg": "frozen result ledger (BRO fillable X1=58)",
+    "episode_contemporaneous_BBO": "RAW guarded-cache-v3 snapshots, lawful non-crossed, latest ts<=episode ts",
+    "guarded_boundary": "FROZEN_X_EVIDENCE_LEDGER.boundary.guarded_cutoff_ts + positive_window1_provable",
+    "reference_bid0": "FROZEN_X_EVIDENCE_LEDGER.book_and_chain_at_first_observation"
+  },
+  "bound_vukbro_cache_sha256": "fbacf0abb3dadfa4ef59abc1c58e0edee94e9d479288ab9817123d3989116a07",
+  "final": {
+    "episodes": [
+      3229,
+      3278
+    ],
+    "evidence_split": {
+      "macro_hold": {
+        "print": 16,
+        "strict_ask": 6
+      },
+      "macro_micro": {
+        "print": 19,
+        "strict_ask": 6
+      }
+    },
+    "naked_recovered": [
+      22,
+      25
+    ],
+    "nofill": {
+      "both": [
+        52,
+        54
+      ],
+      "either": [
+        65,
+        68
+      ],
+      "neither": [
+        271,
+        272
+      ],
+      "one": [
+        13,
+        14
+      ]
+    },
+    "recurring_x_levels": [
+      18,
+      25
+    ],
+    "residual_no_lawful": [
+      215,
+      215
+    ],
+    "vukbro_lawful_episodes": 1
+  },
+  "frozen_census": "9220eba26b00a5b94e86d9c644adef16382942a0",
+  "no_scoring_no_holdout_no_live": true,
+  "parent": "30ca8e85fbfbc0cfa1e30d514c8c1769d006a82c",
+  "schema_version": "w1-async-census-episode-amendment-source-and-hash-receipt-v1",
+  "self_consistency": {
+    "conservation_pass": true,
+    "row_level_mismatches": 0,
+    "rows_validated": 47,
+    "scanner_episode_undercount_corrected": [
+      3,
+      3
+    ],
+    "third_path_confirm": "matched"
+  },
+  "stale_reference_rows_found": {
+    "naked_membership_reclassified_vs_30ca8e85": [
+      24,
+      24
+    ],
+    "nofill_union_81_84_to_65_68": true,
+    "note": "every prior episode row used the thinned/normalized sibling bid; the 24/24 naked events and 16/16 no-fill events lost membership because their qualifying episodes relied on stale or crossed sibling BBOs",
+    "vukbro_episodes_8_to_1": true
+  }
+}

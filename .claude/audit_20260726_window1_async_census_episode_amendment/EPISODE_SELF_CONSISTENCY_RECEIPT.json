@@ -1,0 +1,43 @@
+{
+  "all_conservation_pass": true,
+  "conservation": {
+    "episode_totals_sum": true,
+    "evidence_split_sums_recovered": true,
+    "recovered_equals_survivor_rows": true,
+    "recovered_plus_no_lawful_eq_total": true
+  },
+  "row_level_mismatch_count": 0,
+  "rows_validated": 47,
+  "scanner_vs_authoritative_episode_delta": {
+    "w1_range_attack__macro_hold__combined_headroom": -3,
+    "w1_range_attack__macro_micro__combined_headroom": -3
+  },
+  "schema_version": "w1-async-census-episode-self-consistency-v2",
+  "third_path_confirm": [
+    {
+      "candidate": "w1_range_attack__mac",
+      "count": 1,
+      "event": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+      "match": true
+    },
+    {
+      "candidate": "w1_range_attack__mac",
+      "count": 1,
+      "event": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+      "match": true
+    },
+    {
+      "candidate": "w1_range_attack__mac",
+      "count": 16,
+      "event": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+      "match": true
+    },
+    {
+      "candidate": "w1_range_attack__mac",
+      "count": 16,
+      "event": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+      "match": true
+    }
+  ],
+  "vukbro_lawful_episode_count": 1
+}

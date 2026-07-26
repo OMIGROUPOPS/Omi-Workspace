@@ -1,0 +1,109 @@
+{
+  "b2_max": -1,
+  "both_candidates_identical": true,
+  "bound_cache_sha256": "fbacf0abb3dadfa4ef59abc1c58e0edee94e9d479288ab9817123d3989116a07",
+  "codex_agreement": "matches Cursor Codex exactly: one lawful episode at 1783979002.679826 (bid 42, d2=-1); seven unlawful with bid 41, d2=0",
+  "credited_first_leg": "BRO (PRICE_REACHED, X1=58, ts0=1783949040.451872, qty=5)",
+  "d1": 0,
+  "eight_previously_claimed_episodes": [
+    {
+      "X": 41,
+      "ask": 43,
+      "bid": 42,
+      "classification": "LAWFUL",
+      "combined_delta": -1,
+      "contemporaneous_bbo_ts": 1783979002.0,
+      "d2": -1,
+      "print_ts": 1783979002.679826,
+      "receipt": "e7faf7a4-9b16-7c2a-9c2a-c00c092b4e30"
+    },
+    {
+      "X": 41,
+      "ask": 42,
+      "bid": 41,
+      "classification": "UNLAWFUL: strict-negative violated (d1+d2=0)",
+      "combined_delta": 0,
+      "contemporaneous_bbo_ts": 1783982271.0,
+      "d2": 0,
+      "print_ts": 1783982271.157324,
+      "receipt": "0e7d3815-7cd4-47b7-3cce-8f0c6dbdfb5d"
+    },
+    {
+      "X": 41,
+      "ask": 42,
+      "bid": 41,
+      "classification": "UNLAWFUL",
+      "combined_delta": 0,
+      "contemporaneous_bbo_ts": 1783982271.0,
+      "d2": 0,
+      "print_ts": 1783982271.157324,
+      "receipt": "9457dfa5-2bc8-4918-1140-e7f28926a3f8"
+    },
+    {
+      "X": 41,
+      "ask": 42,
+      "bid": 41,
+      "classification": "UNLAWFUL",
+      "combined_delta": 0,
+      "contemporaneous_bbo_ts": 1783982271.0,
+      "d2": 0,
+      "print_ts": 1783982271.157324,
+      "receipt": "aadedcce-e7a4-4f9f-3978-a3a55d17f1de"
+    },
+    {
+      "X": 41,
+      "ask": 42,
+      "bid": 41,
+      "classification": "UNLAWFUL",
+      "combined_delta": 0,
+      "contemporaneous_bbo_ts": 1783982631.0,
+      "d2": 0,
+      "print_ts": 1783982633.379576,
+      "receipt": "3bb454f4-1bf3-4c3d-4a98-86f0d0070bec"
+    },
+    {
+      "X": 41,
+      "ask": 42,
+      "bid": 41,
+      "classification": "UNLAWFUL",
+      "combined_delta": 0,
+      "contemporaneous_bbo_ts": 1783982631.0,
+      "d2": 0,
+      "print_ts": 1783982633.379576,
+      "receipt": "66be1ffc-87db-4891-4e75-123dd73bcbe6"
+    },
+    {
+      "X": 41,
+      "ask": 42,
+      "bid": 41,
+      "classification": "UNLAWFUL",
+      "combined_delta": 0,
+      "contemporaneous_bbo_ts": 1783982631.0,
+      "d2": 0,
+      "print_ts": 1783982633.379576,
+      "receipt": "962c0198-6418-47c7-7a4b-e886a9eee371"
+    },
+    {
+      "X": 41,
+      "ask": 42,
+      "bid": 41,
+      "classification": "UNLAWFUL",
+      "combined_delta": 0,
+      "contemporaneous_bbo_ts": 1783982631.0,
+      "d2": 0,
+      "print_ts": 1783982633.379576,
+      "receipt": "dba6acf1-3b5f-4310-5c58-56cf0e475664"
+    }
+  ],
+  "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+  "fee_cents": 0,
+  "guarded_cutoff_ts": 1783992600.0,
+  "lawful_episode_count": 1,
+  "metrics": null,
+  "positive_window1_provable": true,
+  "prior_30ca8e85_claim": "8 episodes with bid=42/d2=-1 (all lawful) \u2014 REFUTED",
+  "root_cause": "30ca8e85 read the sibling contemporaneous bid from the thinned/normalized observation stream, which left a stale, CROSSED book (bid 42 / ask 41 at 1783974571) standing for the seven later prints; the raw guarded-cache snapshots show contemporaneous bid=41 at those prints, so d2=0 and combined delta=0 (unlawful).",
+  "schema_version": "w1-async-vukbro-episode-reconciliation-v1",
+  "scored": false,
+  "sibling_leg": "VUK"
+}

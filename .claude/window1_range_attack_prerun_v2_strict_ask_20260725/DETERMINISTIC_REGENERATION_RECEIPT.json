@@ -1,0 +1,112 @@
+{
+  "all_byte_identical": true,
+  "artifact_count": 17,
+  "command": "python -B arb-executor/analysis/window1_range_attack_prerun_builder_v2_strict_ask.py --repo . --events C:\\\\Users\\\\omigr\\\\OMI-Window1-private\\\\joined\\\\events.jsonl --market-cache C:\\\\Users\\\\omigr\\\\OMI-Window1-private\\\\fit-local\\\\guarded-cache-v3 --output-dir <fresh-absent-dir> --workers 32",
+  "metrics": null,
+  "rows": [
+    {
+      "byte_identical": true,
+      "fresh_sha256": "0502c5fb2f9981cbb007ada7a44e78c29ff3e6e420009ae9f32769d817aa7bcc",
+      "path": "UNSCORED_CANDIDATE_EVENT_STREAMS_01.jsonl.gz",
+      "reference_sha256": "0502c5fb2f9981cbb007ada7a44e78c29ff3e6e420009ae9f32769d817aa7bcc"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "5f5aaa0eea0629086a5ef14992cf9e259d7b903586d2fb07f372ef50ed3a25aa",
+      "path": "UNSCORED_CANDIDATE_EVENT_STREAMS_02.jsonl.gz",
+      "reference_sha256": "5f5aaa0eea0629086a5ef14992cf9e259d7b903586d2fb07f372ef50ed3a25aa"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "755ca5529b6269e4736267487f57f6b3d25eefcbaf9de95b31f060f1af185db3",
+      "path": "UNSCORED_CANDIDATE_EVENT_STREAMS_03.jsonl.gz",
+      "reference_sha256": "755ca5529b6269e4736267487f57f6b3d25eefcbaf9de95b31f060f1af185db3"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "c1a38436268bbd2914ceddba3fac3df20c903c91b5ad85cfcd68fac3797dcc67",
+      "path": "UNSCORED_CANDIDATE_EVENT_STREAMS_04.jsonl.gz",
+      "reference_sha256": "c1a38436268bbd2914ceddba3fac3df20c903c91b5ad85cfcd68fac3797dcc67"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "a3788ca1614d20595a039d8ea47c0eef3399ae27e81bf13f60c24be9d6347806",
+      "path": "WINDOW1_PRICE_RANGE_LADDER_01.jsonl.gz",
+      "reference_sha256": "a3788ca1614d20595a039d8ea47c0eef3399ae27e81bf13f60c24be9d6347806"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "35fe87ce7f300fa2fc5dd1db366cfb48d7617e9aa8f5674bc92f93e50f084f5f",
+      "path": "WINDOW1_PRICE_RANGE_LADDER_02.jsonl.gz",
+      "reference_sha256": "35fe87ce7f300fa2fc5dd1db366cfb48d7617e9aa8f5674bc92f93e50f084f5f"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "76294f45893e8723086bd9718e934ba68f59c4f8ad48dd5726b0fd8957c64069",
+      "path": "WINDOW1_PRICE_RANGE_LADDER_03.jsonl.gz",
+      "reference_sha256": "76294f45893e8723086bd9718e934ba68f59c4f8ad48dd5726b0fd8957c64069"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "6e0ae37a8fd8cabc6c8c6dff50a2eecf5f46221255e5f9eb6b20e34070fd6d57",
+      "path": "WINDOW1_PRICE_RANGE_LADDER_04.jsonl.gz",
+      "reference_sha256": "6e0ae37a8fd8cabc6c8c6dff50a2eecf5f46221255e5f9eb6b20e34070fd6d57"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "2f1f124cc56815f1caa2026dd6dcc07a53412e9befbc43d49fcd464ac708eb2c",
+      "path": "PRICE_FILLABILITY_RECEIPTS.jsonl.gz",
+      "reference_sha256": "2f1f124cc56815f1caa2026dd6dcc07a53412e9befbc43d49fcd464ac708eb2c"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "f69773ee56263b7178dc81785261992d31425c532bec22f80cede4ef5f23ffc8",
+      "path": "DEPTH_VOLUME_STRESS_RECEIPTS.jsonl.gz",
+      "reference_sha256": "f69773ee56263b7178dc81785261992d31425c532bec22f80cede4ef5f23ffc8"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "c4737c669febdd05aed6bd874e29ae5dc2f32e3acadbe9ca755e15fb396bb45b",
+      "path": "PAIRWISE_ASYNCHRONOUS_OPPORTUNITY_LEDGER.jsonl.gz",
+      "reference_sha256": "c4737c669febdd05aed6bd874e29ae5dc2f32e3acadbe9ca755e15fb396bb45b"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "a62a56bcdeac8564b7b44dbf70938eb80d5276bfe2f11a1b9924abd29af9b00c",
+      "path": "COMBINED_HEADROOM_RECEIPTS.jsonl.gz",
+      "reference_sha256": "a62a56bcdeac8564b7b44dbf70938eb80d5276bfe2f11a1b9924abd29af9b00c"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "6c90f24b78e88ce9a4cd740343f24fbd8efd9071d220f5008da3ba24d6a5f182",
+      "path": "ACTION_AUTHORITY_RECEIPTS.jsonl.gz",
+      "reference_sha256": "6c90f24b78e88ce9a4cd740343f24fbd8efd9071d220f5008da3ba24d6a5f182"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "74a3349e4b1df5ad86e94ddf42d6dd13136b60d6a08cf8c7c45dca77d16bed2d",
+      "path": "RAW_LAST_TRADE_CHAIN_VOLUME_BINDINGS.json",
+      "reference_sha256": "74a3349e4b1df5ad86e94ddf42d6dd13136b60d6a08cf8c7c45dca77d16bed2d"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "28eef74bd2cfef12a626576691ce2d4df099ee1cc439a12c827e124b3695ba3e",
+      "path": "RANGE_ATTACK_DIAGNOSTICS.json",
+      "reference_sha256": "28eef74bd2cfef12a626576691ce2d4df099ee1cc439a12c827e124b3695ba3e"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "4a5a290761cd97f15de178849b86d1e4802412e3f8bf52abbc228cb9adc2f51b",
+      "path": "FIVE_EVENT_D_MEMBERSHIP_PROOF.json",
+      "reference_sha256": "4a5a290761cd97f15de178849b86d1e4802412e3f8bf52abbc228cb9adc2f51b"
+    },
+    {
+      "byte_identical": true,
+      "fresh_sha256": "0683a12d130d52b1d452c2bde4fce5da64c07acb061d64039113df2b6bd6c60a",
+      "path": "STRICT_ASK_ACCOUNTING_SUMMARY.json",
+      "reference_sha256": "0683a12d130d52b1d452c2bde4fce5da64c07acb061d64039113df2b6bd6c60a"
+    }
+  ],
+  "schema_version": "window1-range-attack-strict-ask-freeze-v2-determinism-v1",
+  "scored": false
+}

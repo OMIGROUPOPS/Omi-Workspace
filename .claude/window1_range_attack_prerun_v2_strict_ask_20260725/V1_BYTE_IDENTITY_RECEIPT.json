@@ -1,0 +1,196 @@
+{
+  "all_byte_identical": true,
+  "exact_parent": "66b50db35e9dcec756ce6366bed1fe44147f8e29",
+  "inherited_file_count": 31,
+  "metrics": null,
+  "rows": [
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "6a1f8cf2fae100787e909372b19d1c3a389cc866",
+      "parent_blob_oid": "6a1f8cf2fae100787e909372b19d1c3a389cc866",
+      "path": "arb-executor/analysis/window1_range_attack_instrument.py"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "e326a55e16962650db6523ccf0721714f621875d",
+      "parent_blob_oid": "e326a55e16962650db6523ccf0721714f621875d",
+      "path": "arb-executor/analysis/window1_range_attack_prerun_builder.py"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "9fe984c6de68dd7ac193cb586b35a03c8d7c8557",
+      "parent_blob_oid": "9fe984c6de68dd7ac193cb586b35a03c8d7c8557",
+      "path": "arb-executor/analysis/window1_range_attack_freeze.py"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "55d6e6f57caee01e0f8c5c3c2c693cc3bafe2e4b",
+      "parent_blob_oid": "55d6e6f57caee01e0f8c5c3c2c693cc3bafe2e4b",
+      "path": "arb-executor/docs/research/window1/WINDOW1_RANGE_ATTACK_CANDIDATES_V1.json"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "cb70db5bcd2a8eb4721126b4ea08c3ce4d1942b6",
+      "parent_blob_oid": "cb70db5bcd2a8eb4721126b4ea08c3ce4d1942b6",
+      "path": "arb-executor/tests/test_window1_range_attack_prerun.py"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "79c181f603eefcbd4aa6eddc210ec8e6ce550ae9",
+      "parent_blob_oid": "79c181f603eefcbd4aa6eddc210ec8e6ce550ae9",
+      "path": ".claude/window1_range_attack_prerun_20260725/ACTION_AUTHORITY_RECEIPTS.jsonl.gz"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "4b5a0513790b77ed41e417556159ab0a27e27b1b",
+      "parent_blob_oid": "4b5a0513790b77ed41e417556159ab0a27e27b1b",
+      "path": ".claude/window1_range_attack_prerun_20260725/ARTIFACT_HASH_MANIFEST.json"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "755b4af55af658303914f861f095624895afa95c",
+      "parent_blob_oid": "755b4af55af658303914f861f095624895afa95c",
+      "path": ".claude/window1_range_attack_prerun_20260725/AUTHORITATIVE_CHRONOLOGY_SOURCE_MANIFEST.json"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "776536425bf3c4d59b9ff4defbfd7b41bdca95d0",
+      "parent_blob_oid": "776536425bf3c4d59b9ff4defbfd7b41bdca95d0",
+      "path": ".claude/window1_range_attack_prerun_20260725/COMBINED_HEADROOM_RECEIPTS.jsonl.gz"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "ca51f11f762c43016a1228ca5bcf4060eb07ceb9",
+      "parent_blob_oid": "ca51f11f762c43016a1228ca5bcf4060eb07ceb9",
+      "path": ".claude/window1_range_attack_prerun_20260725/DEPTH_VOLUME_STRESS_RECEIPTS.jsonl.gz"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "335df81a73d166991701546c323ebb39c2f25e14",
+      "parent_blob_oid": "335df81a73d166991701546c323ebb39c2f25e14",
+      "path": ".claude/window1_range_attack_prerun_20260725/DETERMINISTIC_REGENERATION_RECEIPT.json"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "78949d3545cda6aeacecc13496558a11a6017457",
+      "parent_blob_oid": "78949d3545cda6aeacecc13496558a11a6017457",
+      "path": ".claude/window1_range_attack_prerun_20260725/FIVE_EVENT_D_MEMBERSHIP_PROOF.json"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "145beed0d5235f73a64a66996656dd0fc94f9994",
+      "parent_blob_oid": "145beed0d5235f73a64a66996656dd0fc94f9994",
+      "path": ".claude/window1_range_attack_prerun_20260725/FORBIDDEN_ACCESS_NO_SCORER_RECEIPT.json"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "1f8fd0f9a760527a89bbe3a9447e0daa00c37ad8",
+      "parent_blob_oid": "1f8fd0f9a760527a89bbe3a9447e0daa00c37ad8",
+      "path": ".claude/window1_range_attack_prerun_20260725/LATER_EXECUTION_PACKAGE_INVENTORY.json"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "a5a46706dd6d4128511f7d05c8cd7681b09f5e42",
+      "parent_blob_oid": "a5a46706dd6d4128511f7d05c8cd7681b09f5e42",
+      "path": ".claude/window1_range_attack_prerun_20260725/MACROMICRO_PAIR_STATE_MACHINE.md"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "8286373a73cd117d60bb3210b2aea12a5adb3897",
+      "parent_blob_oid": "8286373a73cd117d60bb3210b2aea12a5adb3897",
+      "path": ".claude/window1_range_attack_prerun_20260725/MECHANISM_RECOVERY_TABLE.json"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "b54eec24c5f9032c0c0b1ae404f322f9a13f215f",
+      "parent_blob_oid": "b54eec24c5f9032c0c0b1ae404f322f9a13f215f",
+      "path": ".claude/window1_range_attack_prerun_20260725/PAIRWISE_ASYNCHRONOUS_OPPORTUNITY_LEDGER.jsonl.gz"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "e74ba3ca0432c4e6b91c6701db2b034c261a7895",
+      "parent_blob_oid": "e74ba3ca0432c4e6b91c6701db2b034c261a7895",
+      "path": ".claude/window1_range_attack_prerun_20260725/PRICE_FILLABILITY_RECEIPTS.jsonl.gz"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "148d1333d44c750a0e2d084257dc168c46a3f6d3",
+      "parent_blob_oid": "148d1333d44c750a0e2d084257dc168c46a3f6d3",
+      "path": ".claude/window1_range_attack_prerun_20260725/RANGE_ATTACK_DIAGNOSTICS.json"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "440d66fc4456c6e6e47d49514732fbe608d0b056",
+      "parent_blob_oid": "440d66fc4456c6e6e47d49514732fbe608d0b056",
+      "path": ".claude/window1_range_attack_prerun_20260725/RAW_LAST_TRADE_CHAIN_VOLUME_BINDINGS.json"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "3f51ce3b7447834621151182ea9d738897fe4417",
+      "parent_blob_oid": "3f51ce3b7447834621151182ea9d738897fe4417",
+      "path": ".claude/window1_range_attack_prerun_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_01.jsonl.gz"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "4f9f0658e55edab00ef98ebb6caedeb000421671",
+      "parent_blob_oid": "4f9f0658e55edab00ef98ebb6caedeb000421671",
+      "path": ".claude/window1_range_attack_prerun_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_02.jsonl.gz"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "6e371879e61f2f857a75907821b11211e9fe11d8",
+      "parent_blob_oid": "6e371879e61f2f857a75907821b11211e9fe11d8",
+      "path": ".claude/window1_range_attack_prerun_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_03.jsonl.gz"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "0d20b1c0739b6a56c2b3b36b8b4c84bb6adad716",
+      "parent_blob_oid": "0d20b1c0739b6a56c2b3b36b8b4c84bb6adad716",
+      "path": ".claude/window1_range_attack_prerun_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_04.jsonl.gz"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "27cdad8aa737e1f26eb9109733db35e3a3469881",
+      "parent_blob_oid": "27cdad8aa737e1f26eb9109733db35e3a3469881",
+      "path": ".claude/window1_range_attack_prerun_20260725/V1V2_SUPERSESSION_AND_IDENTITY_RECEIPT.json"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "7c203a01c53d63a42c83d07e9962d81acefd50fe",
+      "parent_blob_oid": "7c203a01c53d63a42c83d07e9962d81acefd50fe",
+      "path": ".claude/window1_range_attack_prerun_20260725/WINDOW1_PRICE_RANGE_LADDER_01.jsonl.gz"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "c33439b5e9c221ef12b0877b1552e85af9b57fd7",
+      "parent_blob_oid": "c33439b5e9c221ef12b0877b1552e85af9b57fd7",
+      "path": ".claude/window1_range_attack_prerun_20260725/WINDOW1_PRICE_RANGE_LADDER_02.jsonl.gz"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "6962de424268ba27a4bc7b21f6b6ba78dd3ca493",
+      "parent_blob_oid": "6962de424268ba27a4bc7b21f6b6ba78dd3ca493",
+      "path": ".claude/window1_range_attack_prerun_20260725/WINDOW1_PRICE_RANGE_LADDER_03.jsonl.gz"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "f307fcd6e7d7a90e27f20176b16bd22be21a6515",
+      "parent_blob_oid": "f307fcd6e7d7a90e27f20176b16bd22be21a6515",
+      "path": ".claude/window1_range_attack_prerun_20260725/WINDOW1_PRICE_RANGE_LADDER_04.jsonl.gz"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "c075f5871ffa409dd023f3a0f0362348fee36c96",
+      "parent_blob_oid": "c075f5871ffa409dd023f3a0f0362348fee36c96",
+      "path": ".claude/window1_range_attack_prerun_20260725/WINDOW1_RANGE_ATTACK_PRE_RUN_MANIFEST.json"
+    },
+    {
+      "byte_identical": true,
+      "current_worktree_blob_oid": "f9e1c0091e2e8b0363b837eda0cf849fa57824c8",
+      "parent_blob_oid": "f9e1c0091e2e8b0363b837eda0cf849fa57824c8",
+      "path": ".claude/window1_range_attack_prerun_20260725/WINDOW1_RANGE_ATTACK_PRE_RUN_REPORT.md"
+    }
+  ],
+  "schema_version": "window1-range-attack-strict-ask-freeze-v2-V1-byte-identity-v1",
+  "scored": false
+}

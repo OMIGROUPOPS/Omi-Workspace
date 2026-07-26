@@ -1,0 +1,15 @@
+{
+  "current_PRE_RUN_contains_execution_command": false,
+  "current_PRE_RUN_contains_scorer": false,
+  "metrics": null,
+  "required_future_inputs": [
+    "two frozen V2 candidate definitions",
+    "1,608 score-free V2 candidate-event streams",
+    "frozen V5 guarded boundaries",
+    "unchanged scorer and metric contract",
+    "new execution identity and stdout-safe runner"
+  ],
+  "schema_version": "window1-range-attack-strict-ask-freeze-v2-later-execution-inventory-v1",
+  "scored": false,
+  "status": "INVENTORY_ONLY_NOT_CONSTRUCTED_NOT_AUTHORIZED"
+}

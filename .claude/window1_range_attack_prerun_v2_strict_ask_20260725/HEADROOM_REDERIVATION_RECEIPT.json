@@ -1,0 +1,249 @@
+{
+  "audited_first_fill_position": 20,
+  "audited_rows": 26,
+  "b2_max_law": "floor(-d1-fee-1)",
+  "corrected_first_fill_count": 20,
+  "metrics": null,
+  "new_or_differently_armed_paths": 20,
+  "rows": [
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 3.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "BRO",
+      "strict_ask_ts": 1783829989.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 2.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YEVBOR",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "YEV",
+      "strict_ask_ts": 1783833079.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "corrected_first_fill": false,
+      "d1_cents": -1.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+      "first_fill_headroom_effect": "LEG_ALREADY_FOLLOWS_EARLIER_PAIR_FILL",
+      "leg_id": "IMA",
+      "strict_ask_ts": 1784474507.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 2.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MCKOUA",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "MCK",
+      "strict_ask_ts": 1784458531.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 4.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "SHE",
+      "strict_ask_ts": 1784464654.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 2.0,
+      "event_id": "KXATPMATCH-26JUL12JACTRU",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "TRU",
+      "strict_ask_ts": 1783858370.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "corrected_first_fill": false,
+      "d1_cents": 0.0,
+      "event_id": "KXATPMATCH-26JUL14CINHAL",
+      "first_fill_headroom_effect": "LEG_ALREADY_FOLLOWS_EARLIER_PAIR_FILL",
+      "leg_id": "CIN",
+      "strict_ask_ts": 1784005080.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 2.0,
+      "event_id": "KXATPMATCH-26JUL18DOMSKA",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "SKA",
+      "strict_ask_ts": 1784362494.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 2.0,
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "MAL",
+      "strict_ask_ts": 1783852906.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 3.0,
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KABPER",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "KAB",
+      "strict_ask_ts": 1783943640.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 2.0,
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18URGKOT",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "KOT",
+      "strict_ask_ts": 1784383198.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "corrected_first_fill": false,
+      "d1_cents": 0.0,
+      "event_id": "KXWTAMATCH-26JUL12WERAMA",
+      "first_fill_headroom_effect": "LEG_ALREADY_FOLLOWS_EARLIER_PAIR_FILL",
+      "leg_id": "AMA",
+      "strict_ask_ts": 1783832940.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 2.0,
+      "event_id": "KXWTAMATCH-26JUL18COSHIB",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "HIB",
+      "strict_ask_ts": 1784345845.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 3.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "BRO",
+      "strict_ask_ts": 1783829989.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 2.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YEVBOR",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "YEV",
+      "strict_ask_ts": 1783833079.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "corrected_first_fill": false,
+      "d1_cents": -1.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+      "first_fill_headroom_effect": "LEG_ALREADY_FOLLOWS_EARLIER_PAIR_FILL",
+      "leg_id": "IMA",
+      "strict_ask_ts": 1784474507.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 2.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MCKOUA",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "MCK",
+      "strict_ask_ts": 1784458531.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 4.0,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "SHE",
+      "strict_ask_ts": 1784464654.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 2.0,
+      "event_id": "KXATPMATCH-26JUL12JACTRU",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "TRU",
+      "strict_ask_ts": 1783858370.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "corrected_first_fill": false,
+      "d1_cents": 0.0,
+      "event_id": "KXATPMATCH-26JUL14CINHAL",
+      "first_fill_headroom_effect": "LEG_ALREADY_FOLLOWS_EARLIER_PAIR_FILL",
+      "leg_id": "CIN",
+      "strict_ask_ts": 1784005080.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 2.0,
+      "event_id": "KXATPMATCH-26JUL18DOMSKA",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "SKA",
+      "strict_ask_ts": 1784362494.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 2.0,
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "MAL",
+      "strict_ask_ts": 1783852906.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 3.0,
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KABPER",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "KAB",
+      "strict_ask_ts": 1783943640.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 2.0,
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18URGKOT",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "KOT",
+      "strict_ask_ts": 1784383198.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "corrected_first_fill": false,
+      "d1_cents": 0.0,
+      "event_id": "KXWTAMATCH-26JUL12WERAMA",
+      "first_fill_headroom_effect": "LEG_ALREADY_FOLLOWS_EARLIER_PAIR_FILL",
+      "leg_id": "AMA",
+      "strict_ask_ts": 1783832940.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "corrected_first_fill": true,
+      "d1_cents": 2.0,
+      "event_id": "KXWTAMATCH-26JUL18COSHIB",
+      "first_fill_headroom_effect": "NEW_OR_RETIMED_STRICT_ASK_ARM",
+      "leg_id": "HIB",
+      "strict_ask_ts": 1784345845.0
+    }
+  ],
+  "same_timestamp_sibling_headroom_action_count": 0,
+  "schema_version": "window1-range-attack-strict-ask-freeze-v2-headroom-rederivation-v1",
+  "scored": false,
+  "strict_pair_law": "d1+d2+fee<0",
+  "strictly_later_trigger_law_preserved": true
+}

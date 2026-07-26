@@ -1,0 +1,10 @@
+{
+  "V1_files_modified": 0,
+  "V2_execution_package_authorized": false,
+  "candidate_strategy_changed": false,
+  "metrics": null,
+  "reason": "strict-ask measurement censor in audit item 3 only",
+  "retracted_from_future_execution": "66b50db35e9dcec756ce6366bed1fe44147f8e29",
+  "schema_version": "window1-range-attack-strict-ask-freeze-v2-supersession-v1",
+  "scored": false
+}

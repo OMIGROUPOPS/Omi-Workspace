@@ -1,0 +1,33 @@
+{
+  "D_per_candidate": {
+    "w1_range_attack__macro_hold__combined_headroom": 804,
+    "w1_range_attack__macro_micro__combined_headroom": 804
+  },
+  "accounting_union": "PRICE_REACHED OR STRICT_ASK_CERTAIN_FILL",
+  "candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "credit_before_maker_safety": true,
+  "metrics": null,
+  "price_fillability_counts": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "CERTAIN_FILL": 49,
+      "EXACT_TOUCH": 702,
+      "FILLABLE_AT_X": 502,
+      "PRICE_REACHED": 489,
+      "STRICT_ASK_CERTAIN_FILL": 13,
+      "cumulative_five_false_negative": 38
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "CERTAIN_FILL": 48,
+      "EXACT_TOUCH": 693,
+      "FILLABLE_AT_X": 493,
+      "PRICE_REACHED": 480,
+      "STRICT_ASK_CERTAIN_FILL": 13,
+      "cumulative_five_false_negative": 38
+    }
+  },
+  "schema_version": "window1-range-mastery-attack-prerun-v2-strict-ask-accounting-summary-v1",
+  "scored": false
+}

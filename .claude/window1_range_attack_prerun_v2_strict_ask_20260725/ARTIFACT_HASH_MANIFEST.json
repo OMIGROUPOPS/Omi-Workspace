@@ -1,0 +1,170 @@
+{
+  "artifact_count": 27,
+  "artifacts": [
+    {
+      "bytes": 6724583,
+      "git_blob_oid": "9324460d111172034398f7fa782ceeadd76d53eb",
+      "path": "ACTION_AUTHORITY_RECEIPTS.jsonl.gz",
+      "sha256": "6c90f24b78e88ce9a4cd740343f24fbd8efd9071d220f5008da3ba24d6a5f182"
+    },
+    {
+      "bytes": 120732,
+      "git_blob_oid": "d7e397484b6b532d7abb0bd958c41585962cef50",
+      "path": "AFFECTED_UNAFFECTED_SEMANTIC_IDENTITY_RECEIPT.json",
+      "sha256": "767e391a52985628185086e1e67e9dfef90228303f5f3b807aa11abf2efad519"
+    },
+    {
+      "bytes": 5487646,
+      "git_blob_oid": "81e9b8739fd6f1eda15e2dcce8f180878f9f2b76",
+      "path": "COMBINED_HEADROOM_RECEIPTS.jsonl.gz",
+      "sha256": "a62a56bcdeac8564b7b44dbf70938eb80d5276bfe2f11a1b9924abd29af9b00c"
+    },
+    {
+      "bytes": 437976,
+      "git_blob_oid": "3a4c788bd0c2ccff1f4fc636ed0dd0c9f96e2925",
+      "path": "DEPTH_VOLUME_STRESS_RECEIPTS.jsonl.gz",
+      "sha256": "f69773ee56263b7178dc81785261992d31425c532bec22f80cede4ef5f23ffc8"
+    },
+    {
+      "bytes": 5321,
+      "git_blob_oid": "1e5ed07ccc9bda69e4a3be667a4af50a2cc7deb2",
+      "path": "DETERMINISTIC_REGENERATION_RECEIPT.json",
+      "sha256": "a096b23fa2ea6958d0d7a6a3ef41c9dcfaaccad8dd9e45f8cdad488bad64c1ca"
+    },
+    {
+      "bytes": 3460,
+      "git_blob_oid": "78949d3545cda6aeacecc13496558a11a6017457",
+      "path": "FIVE_EVENT_D_MEMBERSHIP_PROOF.json",
+      "sha256": "4a5a290761cd97f15de178849b86d1e4802412e3f8bf52abbc228cb9adc2f51b"
+    },
+    {
+      "bytes": 459,
+      "git_blob_oid": "a5c31bacf1009b82843d476fae71514dfe58cd7e",
+      "path": "FORBIDDEN_ACCESS_NO_SCORER_RECEIPT.json",
+      "sha256": "87bd72178b0f11b56628dd3914c98f1d6d46a9bd71ea974f4755eed3e94ab50f"
+    },
+    {
+      "bytes": 8952,
+      "git_blob_oid": "1bf91808076b4bc91ce111d6acf6492864240c70",
+      "path": "HEADROOM_REDERIVATION_RECEIPT.json",
+      "sha256": "5935de40c1e1392cd44154ae52fb4987c61711a9f0e15791a10c5f04d64859d5"
+    },
+    {
+      "bytes": 556,
+      "git_blob_oid": "cf4ee4c199f0757062612748355c180f78601cc2",
+      "path": "LATER_EXECUTION_PACKAGE_INVENTORY.json",
+      "sha256": "74841e45832ef942f497a29b6d04308df05205d0df229db9ed200fc450aa0d51"
+    },
+    {
+      "bytes": 326472,
+      "git_blob_oid": "1128a345d12829c9839aaa1473e4b999056ab98c",
+      "path": "PAIRWISE_ASYNCHRONOUS_OPPORTUNITY_LEDGER.jsonl.gz",
+      "sha256": "c4737c669febdd05aed6bd874e29ae5dc2f32e3acadbe9ca755e15fb396bb45b"
+    },
+    {
+      "bytes": 1837661,
+      "git_blob_oid": "fe0d079d8367fef0713d5e0d394c81667acb9d3e",
+      "path": "PRICE_FILLABILITY_RECEIPTS.jsonl.gz",
+      "sha256": "2f1f124cc56815f1caa2026dd6dcc07a53412e9befbc43d49fcd464ac708eb2c"
+    },
+    {
+      "bytes": 7467,
+      "git_blob_oid": "88540b5ae499ce2004620c334b30550186d7d547",
+      "path": "RANGE_ATTACK_DIAGNOSTICS.json",
+      "sha256": "28eef74bd2cfef12a626576691ce2d4df099ee1cc439a12c827e124b3695ba3e"
+    },
+    {
+      "bytes": 839,
+      "git_blob_oid": "440d66fc4456c6e6e47d49514732fbe608d0b056",
+      "path": "RAW_LAST_TRADE_CHAIN_VOLUME_BINDINGS.json",
+      "sha256": "74a3349e4b1df5ad86e94ddf42d6dd13136b60d6a08cf8c7c45dca77d16bed2d"
+    },
+    {
+      "bytes": 1059,
+      "git_blob_oid": "99ba2dc1ec34fd9acae0fad8da53f3432e4f0c26",
+      "path": "STRICT_ASK_ACCOUNTING_SUMMARY.json",
+      "sha256": "0683a12d130d52b1d452c2bde4fce5da64c07acb061d64039113df2b6bd6c60a"
+    },
+    {
+      "bytes": 158883,
+      "git_blob_oid": "4f249e94387d428ee839af6a256d38c7d06a74ea",
+      "path": "STRICT_ASK_V1_TO_V2_MIGRATION_RECEIPT.json",
+      "sha256": "ca6471c7a243fec554bd218b0f4a9e91b21caf5e2cd9acfe959207a9e7f68876"
+    },
+    {
+      "bytes": 2201,
+      "git_blob_oid": "706c93f7ed26fa808e8e2517b391307b4b4783d7",
+      "path": "STRICT_ASK_V2_SOURCE_BINDING_MANIFEST.json",
+      "sha256": "30d26ea7aef8719c6293a4c5043fe6b1e3d5df85966c866091a412c8c95243a2"
+    },
+    {
+      "bytes": 14575058,
+      "git_blob_oid": "1e3080b1c3bdec01bc30095e1a44a0f01533ee3f",
+      "path": "UNSCORED_CANDIDATE_EVENT_STREAMS_01.jsonl.gz",
+      "sha256": "0502c5fb2f9981cbb007ada7a44e78c29ff3e6e420009ae9f32769d817aa7bcc"
+    },
+    {
+      "bytes": 16653345,
+      "git_blob_oid": "7de330507c1ee0be39ebe4c2a82fca8d0d286dfd",
+      "path": "UNSCORED_CANDIDATE_EVENT_STREAMS_02.jsonl.gz",
+      "sha256": "5f5aaa0eea0629086a5ef14992cf9e259d7b903586d2fb07f372ef50ed3a25aa"
+    },
+    {
+      "bytes": 7511510,
+      "git_blob_oid": "5520b7c9c5d3f9dfc1815ee3fac3ba12610262e6",
+      "path": "UNSCORED_CANDIDATE_EVENT_STREAMS_03.jsonl.gz",
+      "sha256": "755ca5529b6269e4736267487f57f6b3d25eefcbaf9de95b31f060f1af185db3"
+    },
+    {
+      "bytes": 6574261,
+      "git_blob_oid": "49b02230c9a3acd17918524bdf2f71d04dde4877",
+      "path": "UNSCORED_CANDIDATE_EVENT_STREAMS_04.jsonl.gz",
+      "sha256": "c1a38436268bbd2914ceddba3fac3df20c903c91b5ad85cfcd68fac3797dcc67"
+    },
+    {
+      "bytes": 9172,
+      "git_blob_oid": "e914236c27ef38ee3e7df06fe160635309188624",
+      "path": "V1_BYTE_IDENTITY_RECEIPT.json",
+      "sha256": "f2d9c385afbf0676d8d812157720639ebeafd09744184f628cee2b30379da544"
+    },
+    {
+      "bytes": 378,
+      "git_blob_oid": "2c97c851ab87e4badb27faad8cdb3062c23e4f44",
+      "path": "V1_SUPERSESSION_RECEIPT.json",
+      "sha256": "9e75f295532add7f8634c898a9dd811a10793fa5572a8fc9f37ff72269c1f877"
+    },
+    {
+      "bytes": 1634533,
+      "git_blob_oid": "7c203a01c53d63a42c83d07e9962d81acefd50fe",
+      "path": "WINDOW1_PRICE_RANGE_LADDER_01.jsonl.gz",
+      "sha256": "a3788ca1614d20595a039d8ea47c0eef3399ae27e81bf13f60c24be9d6347806"
+    },
+    {
+      "bytes": 2054672,
+      "git_blob_oid": "c33439b5e9c221ef12b0877b1552e85af9b57fd7",
+      "path": "WINDOW1_PRICE_RANGE_LADDER_02.jsonl.gz",
+      "sha256": "35fe87ce7f300fa2fc5dd1db366cfb48d7617e9aa8f5674bc92f93e50f084f5f"
+    },
+    {
+      "bytes": 2395806,
+      "git_blob_oid": "6962de424268ba27a4bc7b21f6b6ba78dd3ca493",
+      "path": "WINDOW1_PRICE_RANGE_LADDER_03.jsonl.gz",
+      "sha256": "76294f45893e8723086bd9718e934ba68f59c4f8ad48dd5726b0fd8957c64069"
+    },
+    {
+      "bytes": 1938484,
+      "git_blob_oid": "f307fcd6e7d7a90e27f20176b16bd22be21a6515",
+      "path": "WINDOW1_PRICE_RANGE_LADDER_04.jsonl.gz",
+      "sha256": "6e0ae37a8fd8cabc6c8c6dff50a2eecf5f46221255e5f9eb6b20e34070fd6d57"
+    },
+    {
+      "bytes": 804,
+      "git_blob_oid": "08886a6027d609b730d5333afcf169078b4236c3",
+      "path": "WINDOW1_RANGE_ATTACK_V2_PRE_RUN_REPORT.md",
+      "sha256": "8fb913ecc43e63ac0f1c3552c8e004bbdf39fb5fa47b0342e7d03e603d0b889e"
+    }
+  ],
+  "metrics": null,
+  "schema_version": "window1-range-attack-strict-ask-freeze-v2-artifact-hashes-v1",
+  "scored": false
+}

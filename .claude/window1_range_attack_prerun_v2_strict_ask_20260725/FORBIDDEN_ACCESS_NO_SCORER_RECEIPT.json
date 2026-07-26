@@ -1,0 +1,13 @@
+{
+  "C_PC_S_IC_computed": false,
+  "V2_execution_package_authorized": false,
+  "benchmark_executed": false,
+  "holdout_dates_opened": [],
+  "live_or_production_interfaces": [],
+  "metrics": null,
+  "network_access_by_instrument_or_builder": false,
+  "orders_positions_window2_exits_settlement_DCA_accessed": false,
+  "schema_version": "window1-range-attack-strict-ask-freeze-v2-forbidden-access-v1",
+  "scored": false,
+  "scorer_imported_or_invoked": false
+}

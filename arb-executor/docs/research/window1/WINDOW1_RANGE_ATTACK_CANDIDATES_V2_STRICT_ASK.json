@@ -1,0 +1,64 @@
+{
+  "schema_version": "window1-range-mastery-attack-candidates-v2-strict-ask",
+  "instrument_version": "window1-range-attack-simulator-v2-strict-ask-accounting",
+  "exact_parent": "66b50db35e9dcec756ce6366bed1fe44147f8e29",
+  "controlling_audit": "43dab8df0c7ce2394d35beadd7d035b8519f66ac",
+  "audit_report_blob_oid": "b9ab235e51f0d2ca82dd066c1a78a318d644dec7",
+  "audit_census_blob_oid": "8a769ba40669408a4f0945302b99ea9495c5038f",
+  "supersedes_for_future_execution": "66b50db35e9dcec756ce6366bed1fe44147f8e29",
+  "candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "strategy_definition": "byte-identical V1 candidate policy; only the accounting-fill union and chronological credit-before-maker-safety ordering are versioned",
+  "strict_ask_accounting_contract": {
+    "PRICE_REACHED": "receipt-identified positive-size non-self public print at or below exposed X",
+    "STRICT_ASK_CERTAIN_FILL": "lawful positive-size external best ask strictly below exposed X",
+    "FILLABLE_AT_X": "PRICE_REACHED OR STRICT_ASK_CERTAIN_FILL",
+    "accounting_quantity": 5,
+    "simulated_fill_price": "original exposed X",
+    "ask_equal_X_auto_credit": false,
+    "book_before_print_precedence": "strict ask is credited once at original X; a same-timestamp print cannot duplicate it",
+    "maker_safety_ordering": "credit FILLABLE_AT_X before maker-safety cancel or reprice",
+    "cumulative_printed_size_gate": false,
+    "single_five_print_gate": false,
+    "displayed_depth_gate": false,
+    "queue_clearance_gate": false
+  },
+  "combined_headroom_contract": {
+    "fee_cents": 0,
+    "d1": "first credited leg exposed X minus contemporaneous external bid",
+    "b2_max": "floor(-d1-fee_cents-1)",
+    "later_sibling_trigger_must_be_strictly_later": true,
+    "strict_guard": "d1+d2+fee_cents<0",
+    "headroom_step_cents": 1,
+    "IC_gate": false,
+    "S_gate": false
+  },
+  "D": 804,
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "sealed_holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "free_numeric_parameters": [],
+  "candidate_additions_after_freeze_allowed": false,
+  "benchmark_or_scorer_execution_authorized": false,
+  "performance_metrics": {
+    "C": null,
+    "PC": null,
+    "S": null,
+    "IC": null
+  }
+}

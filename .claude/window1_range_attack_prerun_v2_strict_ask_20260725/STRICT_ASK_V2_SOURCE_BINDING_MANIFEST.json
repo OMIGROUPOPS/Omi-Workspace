@@ -1,0 +1,51 @@
+{
+  "V1_strategy_and_data_surfaces_inherited_unchanged": true,
+  "audit_census": {
+    "blob_oid": "8a769ba40669408a4f0945302b99ea9495c5038f",
+    "path": ".claude/audit_20260725_window1_range_attack/PRICE_AT_X_CENSUS.json",
+    "row_count": 26,
+    "sha256": "7abaebdd5c6983df07b7b708fd10934f1b08c5fc023175d91625cced113bd7b7"
+  },
+  "audit_report": {
+    "blob_oid": "b9ab235e51f0d2ca82dd066c1a78a318d644dec7",
+    "path": ".claude/audit_20260725_window1_range_attack/AUDIT_REPORT.md",
+    "sha256": "56fda32f298a8cbdbbc1dee5f4d5cb393209e8c2f7c910d9ae4d985c2d3893ad"
+  },
+  "controlling_audit": "43dab8df0c7ce2394d35beadd7d035b8519f66ac",
+  "exact_parent": "66b50db35e9dcec756ce6366bed1fe44147f8e29",
+  "metrics": null,
+  "schema_version": "window1-range-attack-strict-ask-freeze-v2-source-bindings-v1",
+  "scored": false,
+  "source_rows": [
+    {
+      "bytes": 19324,
+      "git_blob_oid": "daee01f402b2f50acfaeb0036fdd09af87d787ab",
+      "path": "arb-executor/analysis/window1_range_attack_instrument_v2.py",
+      "sha256": "4466bf18ab2518b7f4a7c7dc4ef756fc10d411c5312138ce6c576601b0de51aa"
+    },
+    {
+      "bytes": 13864,
+      "git_blob_oid": "062e1be09141b15a745de18aea190af8d40c84a6",
+      "path": "arb-executor/analysis/window1_range_attack_prerun_builder_v2_strict_ask.py",
+      "sha256": "8f6dccd5bd2e72f2a3dfa5f73d131af24153d3234478175068976105f7432615"
+    },
+    {
+      "bytes": 25171,
+      "git_blob_oid": "bfc69a4a2dfc90f40077fe5543eba600a00dc77d",
+      "path": "arb-executor/analysis/window1_range_attack_freeze_v2_strict_ask.py",
+      "sha256": "2e7d3ab6c819bc9f076d28639e032d17f197ad1fd221443d99fb03d68c9a0d17"
+    },
+    {
+      "bytes": 2470,
+      "git_blob_oid": "c40a2f26145fedfd5ac69a2907365c918319e0f0",
+      "path": "arb-executor/docs/research/window1/WINDOW1_RANGE_ATTACK_CANDIDATES_V2_STRICT_ASK.json",
+      "sha256": "1264838a390b6815afdd27d0a48382a28855f93bf38a97600767842e5cc7107f"
+    },
+    {
+      "bytes": 8357,
+      "git_blob_oid": "3913e834a5ff01dcea8394b900a80d965290d366",
+      "path": "arb-executor/tests/test_window1_range_attack_strict_ask_v2.py",
+      "sha256": "ca27e36e42bb842262517d7bef5cc96ac3f623170e6a838b3b8bcee6c4bbc69f"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "all_D_members": true,
+  "all_named_market_evidence_NO_CALL": true,
+  "all_zero_orders": true,
+  "metrics": null,
+  "row_count": 10,
+  "rows": [
+    {
+      "D_member": true,
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "fabricated_price_count": 0,
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "fabricated_price_count": 0,
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "fabricated_price_count": 0,
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "fabricated_price_count": 0,
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "fabricated_price_count": 0,
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "fabricated_price_count": 0,
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "fabricated_price_count": 0,
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "fabricated_price_count": 0,
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "fabricated_price_count": 0,
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    },
+    {
+      "D_member": true,
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "fabricated_price_count": 0,
+      "market_evidence_NO_CALL_count": 2,
+      "metrics": null,
+      "placement_count": 0,
+      "terminal_censored": false
+    }
+  ],
+  "schema_version": "window1-range-mastery-attack-prerun-v1-five-event-proof-v1",
+  "scored": false
+}

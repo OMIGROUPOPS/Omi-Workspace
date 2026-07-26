@@ -1,0 +1,32 @@
+{
+  "D_per_candidate": 804,
+  "accounting_law": {
+    "FILLABLE_AT_X": "PRICE_REACHED OR STRICT_ASK_CERTAIN_FILL",
+    "PRICE_REACHED": "public print at or below X",
+    "STRICT_ASK_CERTAIN_FILL": "external ask strictly below X",
+    "accounting_quantity": 5,
+    "credit_before_maker_safety": true,
+    "fill_price": "original exposed X"
+  },
+  "artifact_hash_manifest_sha256": "dae6f911addb5a9ee75bb2a9a91254916ece0822be3eb51e8ac5ce534731f434",
+  "benchmark_or_scorer_invoked": false,
+  "candidate_event_stream_count": 1608,
+  "candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "controlling_audit": "43dab8df0c7ce2394d35beadd7d035b8519f66ac",
+  "deterministic_regeneration": true,
+  "exact_parent": "66b50db35e9dcec756ce6366bed1fe44147f8e29",
+  "holdout_or_live_access": false,
+  "metrics": null,
+  "migration_receipt_sha256": "ca6471c7a243fec554bd218b0f4a9e91b21caf5e2cd9acfe959207a9e7f68876",
+  "performance_metrics": {
+    "C": null,
+    "IC": null,
+    "PC": null,
+    "S": null
+  },
+  "schema_version": "window1-range-attack-strict-ask-freeze-v2-prerun-manifest-v1",
+  "scored": false
+}

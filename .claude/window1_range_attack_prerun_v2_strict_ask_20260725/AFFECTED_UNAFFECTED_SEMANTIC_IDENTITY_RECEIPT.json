@@ -1,0 +1,2171 @@
+{
+  "all_changes_causally_descend_from_strict_ask_correction": true,
+  "all_production_strict_ask_affected_candidate_event_count": 308,
+  "audit_affected_candidate_event_count": 26,
+  "candidate_event_count": 1608,
+  "changed_rows": [
+    {
+      "V1_order_stream_sha256": "8f2b1063c2d53d6bde7fa25088ed7a578186096e7f855879bddc9ef097747074",
+      "V2_order_stream_sha256": "d24279505399a6054c2faec1da801d3fff2f80964b1b6efb2e88487d22fe2959",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "f88aa7537b240370ff4f4a1bb77db8a51955aed38f30539f43b1f773cabf580f",
+      "V2_order_stream_sha256": "0cf85c72626ce5d55884bc28ef61f703b5dd3c42471105d0d6f24be14a52ed4d",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "a7ca8a2391c06734240c825c72bb5464bc5b3e340e6381364d45b7d6e6803146",
+      "V2_order_stream_sha256": "3f5137327eb9512ba64157e207b4921dcfa478d607ef0cca3658cabed8e00cc9",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "95aebbc718166cd4a5df9761c4427fb8a830b8b2d084f3eff212f2e792836a29",
+      "V2_order_stream_sha256": "5ef9477c171a1a4dfe492bd5a389d7fe92b26ded64b4ab56c6e3f61c7cfb44f6",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CHISEA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3a22323c16f4d35e5760fa9e9c1ac245cd9fb7ac3bd2d8c8425bbc4f283f1d4f",
+      "V2_order_stream_sha256": "58aecb966d8be0fe1b50ec40723f84395deb00dd9acd79f6bf700951ad91655a",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CRIBAS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e847e17feb2832d667dad5db79aa6a53ab4fc7bb22db47ebb9ef6527e906cffb",
+      "V2_order_stream_sha256": "c24be1fdf4f2d56bae77dfee50f4bcff6fe7154bcd6b8bf1cccd97aabdb7419c",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DELMAK",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "99f9d25bf289732c054e25effbcbd31d59524369ee75e623a58028340b2b81e2",
+      "V2_order_stream_sha256": "3f8ccf885c7b52a8e995b431c9cf942a1c34d317e88125eec7a9a8fc733cf2e8",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e3b34c770af7284a0e50682724c699a521f56349ae9613b60c39062ffc5243e4",
+      "V2_order_stream_sha256": "2e7fd9579d7bf900daccaf4e8fd7ed271c11e4e3f68b1eee85533888dd0a7e54",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FANBIG",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "18761be5c28f429316708a3997e88160b06ab59956fb2404cd751ed6fedca98c",
+      "V2_order_stream_sha256": "b1ecc3357bac038e0e926cde24b8ca16acb0d3f04ed47efa2a8616950310f2ee",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FORPAM",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "c9f1882fa4a05aa0d2a2372acd597b3aea4c5d3f5c6a0dc707a252e4149e5f3f",
+      "V2_order_stream_sha256": "bad70df501121067bd031a122c49aacf052935c97dbdda853d8fbeae73583f1e",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GANJAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "ebbf6ef382c00d46dafb6fd12b78dea39bea553b9f0e6fd916c488e70d280ad4",
+      "V2_order_stream_sha256": "c60fb9f8361a6f73eeeb826d76962472bfbb9e723bd08e669b1ec348199b1758",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "c37a6822bf212cd9a229e08af96841e58d04b718080b753ffb1c3ed169d45521",
+      "V2_order_stream_sha256": "4b869f853a2b7dc487c39c9ec9399da83b2fba31f03a3023ad84b02f57381d4c",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GUTCAM",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9050c442cdfa622010948d234a10469078c61dea10d99e5c1ac8461acf263fdf",
+      "V2_order_stream_sha256": "79455470e334a1f2813d40d917aa8abfab22ec5072c86d321eb147cb6493dc3e",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "1a4c80ea8ed9dc555219d8379a0aa6e16aef0402ea6c119cd433efac5ac10c42",
+      "V2_order_stream_sha256": "15719945aa7cae27981015351962fc74fadfd1066d869a6a8fc2e24253ddb42e",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HOHSUR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "97cac11d6c7f693cbb585665f5d7288d7d9cda8c2dd4520f2837e418b8065bfe",
+      "V2_order_stream_sha256": "feca4190e5fcce7d78df8fc5f3ce5b677615bd31b1ef3bb0279bf647ad2421a8",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KRALOR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "5eef90f17ccb8178e4e818491c9a4ff763080cde05fbe7570a898bfd2cac63ff",
+      "V2_order_stream_sha256": "85044dea5ac110ea18c4d041c7b4160c6c3913646bc6f367ef8344450d937c7d",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KUMTUR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "fe8236ab31830f838f5b4fd8ac1b32c17e8a8446641e23ccf66b4023e46474cf",
+      "V2_order_stream_sha256": "0363441841b55f2e2703e09abfbfdf46986117475a1bd2e33936b3eef1f2d71a",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12LAGTEP",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "12f812ae40ed259874417c6fb85d2f6b053c5ac66ec4167f7088164203c6490b",
+      "V2_order_stream_sha256": "50b00c7586625444f37a89f27a657f308ebcd6302dd12f8e6d73113f14f177e2",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MARARS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "dfd527189712e22bcdd2570c632631ae06f96d3b3eeb786be1d3be45f404e0d0",
+      "V2_order_stream_sha256": "35065ebef02bbc07d59ee9ceb81220d949666b7e24505e74dcc8c038789ddd57",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MORPET",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "28232bf42f983a2ffd776e1bde906dd94feddd8c733bf27b4dadf043fa967b87",
+      "V2_order_stream_sha256": "2a2abeb89d36409c734a1e1fec80a9e5f11f73bd8f7ad63add268b7466c7ed72",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLVIN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "61c740d60a0a452192221ef1e83f576a5ba098d2c6503c2a87f0fb7ce0cec87f",
+      "V2_order_stream_sha256": "24c584d79f27bc3017fe3debadbea2e718a18ad80ebeb25720c15045b5e22214",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12RAIZHU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "debcb72e628c29ff34a6a993d552c48ae8233ef6d58b8bae43f3a6435e754f46",
+      "V2_order_stream_sha256": "e11a11f2f85ee7fd352d6277b0e66af2ae0ce6f72477b7141b8774cb58910383",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12RAQKUM",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "90b075259ef8994634d63725e30cc3cde8e3051033c8dc204ebd09977a4eb73d",
+      "V2_order_stream_sha256": "b56b45e48ce227b98ea27a1eede1ead3ddc7b79c3aeabf530cd99bfc9b98f8bb",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12VILRAH",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "f5f4e10ebed7220ec11bfda7d15922da151d335b34ae6c6b84d0f2f98bdb3339",
+      "V2_order_stream_sha256": "31e3efd23507785f100180f16237a0c5d554cf3f849c9332f7f0bc3ff6f62e1e",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YEVBOR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e826fcfeeee820e3c1d2c96326a1c9c231f3730ee553c611134e48a45e8dee3f",
+      "V2_order_stream_sha256": "e35e565979f2067e1325386c617051f502801a994ee984811cfc27cdc06ec728",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13AGABAR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "78083796d6b4e6e7663034ae9bad15f38fc1d32f7762b8a67861fe5db43ef21a",
+      "V2_order_stream_sha256": "acc1c65b7559ec888208493feebed003695209edc4bfc6bdbe1857691a116efb",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ALVKUM",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "f82a204f869e19a5806183bd9476bc0e3016fcc0312101a79c06a2953053ad9e",
+      "V2_order_stream_sha256": "549e84c47ea12353fe939dc9384c5f507f887b302a9cb85625e645b7c886d960",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ARSDAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "eff4e08fa6dd19fcd8f31750c5b27378c9855809d720e497287cf3481afa45bb",
+      "V2_order_stream_sha256": "6dce3522564e6c551089de99e15bad8d84dd4ee9b35ae5a9e4a27e9ba85afce3",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13BOUGAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "2cfa8786f411ffc608b65c56a74aead659a065d3be72ed72a86241e1f3b6cd08",
+      "V2_order_stream_sha256": "887a0f52ff665037e263ce8f3b13f501d4801a4e88b2d40fad4ac63112b416e9",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13CHOSUR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3fa81319209efc85a21313b2caa7a00496e3a2aaaddf913a5b265ce660e26c6d",
+      "V2_order_stream_sha256": "8064cd634cd6fe7710353edcf1ffda6abf70a070a77231e79f9524fa2cd71c5a",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13DONWES",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "2e9711e7237f1462ca40667f322674caa8f3e669c9ee149268d65a2167f12f02",
+      "V2_order_stream_sha256": "c72e0b64e61738404f4fef6d383db957b43ff65a587eebdf3552d848c9014fc8",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13FORHUA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9f48f596c2837670191ac297f9834b64a1a2ec75c559f5fde296e77ac97b2f01",
+      "V2_order_stream_sha256": "0314bb67f40b19be5c9de0c7ae75004eaf8e65b67bb90c9870ddb954726b9058",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13FORMAK",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "d8f995704c1edc763fab8e11c760efae5f2ca8930daec62cd275de738df3b10a",
+      "V2_order_stream_sha256": "bd3975c6fb912f53333c0a3e53d677bfa97ef198e3935c8ff77d6925a01d97d3",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e1b04ebdb25718d5b479507961a35cd5e9f572d597ac1ad25beb37d6a5944a0d",
+      "V2_order_stream_sha256": "cd4fe30ed56c962b506f35e9d14489e16572745fad7a87fd04091b04f5db3f46",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13JONPET",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "a86ace34a377c1dc853c1be9d26c7df764d9c5390fec45d1542195bd54842fb7",
+      "V2_order_stream_sha256": "16dc3bd6dc234b2d286370a2552f1d53590266521606e24766252871acf9cabc",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KRASAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e96c008b9a64beb717e1337eb4fa70ed7de4b24ca3e56e2b6cd7f8c546955607",
+      "V2_order_stream_sha256": "86ec7cbb1a1c46df0ef364973fb219f56311d1fee9c3660eb6e0566ce5e62ce7",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KRUMAR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "cba992b1696e1a4fb835ff0aade7956202fedfc1606b00a61e334ed0f30284df",
+      "V2_order_stream_sha256": "6f10b4bf8490ecafd818f48ded2a888189bb8fa0186a7fd1c762f412dcf1e839",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KUZNIJ",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "4e1d610019b82363e34a2df06ce786aa4a43f58a08c2b4275d19b75b6046fc82",
+      "V2_order_stream_sha256": "cef3203dce769139fa27584ad3d38d5762a64aff2931760ab457b1b53b47800f",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13MORFAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "42991e2248bf5c2a02d28b967b62d491ba5883e99af10e840a5747353466fc9d",
+      "V2_order_stream_sha256": "9521b03ee9f89cf1cdcd191d30ce73f943446b532d6f890ee8649d4f22cbf9bf",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13NOGBRO",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "363e2a16092ed98e07d091934d10e769001fc27226497348f50f08e531e809cc",
+      "V2_order_stream_sha256": "02240b7b1b1d1f8bcd338d4a7a12dca2f895d3aee2583e7dfb9c6610ca6ef4a9",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13PERTOB",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "c16373dd13154f14187ffaadfac834af6188a32b516e9d2b1b6abd0ac340e101",
+      "V2_order_stream_sha256": "f55abb97b44e2c0fbf48bf116de2dc78ed3c6435f2e18b252e2874727ddeef46",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13RADIVA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "db1f9423c81b1d9649c6c4eb5062528749f66d994c1f1c0d5bab7e456e601805",
+      "V2_order_stream_sha256": "79cc4f4ba585272a73ba60f99a3913b8c0e6b5b8fd05ba1c8b6989882fdcf5d3",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13REHJUS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "4e29830c77e305501226d0baf3e467fb5b31e4f571533ab21db0d6e57456022e",
+      "V2_order_stream_sha256": "ec995a15addec9a7e08ad36642fd189259b4751db2bee7036b377f1ef04be84b",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13RODALK",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9279ed9e766da9785f7a300b523f4b97c15da41504bd4a15dc4f86e03cb33130",
+      "V2_order_stream_sha256": "8eacfb3e04a1646c7b25bebd055acb1b0e40784cc5d03c52c19ffb875b4c5710",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13TABVIN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "ec7f08377d8e8216a3bfcbf83a4f138a876c6b27594f2c1d3d843226f894de19",
+      "V2_order_stream_sha256": "33f2993914ba78aedb7f89b95cdc6bd848c1042edf06261d885f0c52efdc89bd",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13TROGEO",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "45fa6a133b6e97a015e58973015fc26049e7379b898515345734e49e8041b416",
+      "V2_order_stream_sha256": "cefbec62aa1541453dddcf1137862550d39184cc414e45b48fae7c1062b9af7a",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ZHUDLI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "5a469cf3f74988080f41f20895ed395c1b25e05656d1cae899bdd737cd6c905d",
+      "V2_order_stream_sha256": "bf34d9759e7bb835b49608b5bf658a1eeb1722d1c090256802a232cd4209e922",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "1d19b69c3cbfffa530fe9b7b965a13918a895ded84a379d1ff7559549f5ae115",
+      "V2_order_stream_sha256": "7e01b6a2a6f09831c6da721e30769da0f0370ede98473f71b52c38b4d69cbb10",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CLAWES",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "a2f13b40110dc75d7ffdcbcd67219ddf99b7a35131d528bfe34e5ece264e4533",
+      "V2_order_stream_sha256": "287123b1c1ae53275f48615c043c44d79d666031b8b8e3626a10798f438f4f83",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DALMAY",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9b4dc273c79d6ae23323512a38e6bb1967eeed30f4eab5b1ed261a8bf92ac0c7",
+      "V2_order_stream_sha256": "1f7226c8cd577f934c062b7b4304a63e48f51274a901ac8422decc37d75a3e62",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DENYEV",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "71fd5e030718be2f990d9505a9296752e4fded89a4f6755049f4ccfd884ec605",
+      "V2_order_stream_sha256": "f589e2a3a89a2c3c1c3b9b822f703366f2ea8f76f2c904fdbca35499575cfb8c",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14FUEPRI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3f1c312b7933213d174c67daf7edf14ce8fca60f4830ac96d6b5add4ad383ccd",
+      "V2_order_stream_sha256": "b8edaabfeac88918b423b0a8aba90c38a22ca1de3c0d24eb97debd80a9d8e90e",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GALFOR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "ee80b66dc74dee3820f5fd301eb49722eb46ea99c86ba20e7caabd77c1f9aaf6",
+      "V2_order_stream_sha256": "4495444b369b3096d9bab57df5e8ffbaca6d6873799e777a353d7c48f6e27781",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "f4b00d04066726fccde89e71ce0cbf799197b34f14521aa88f8ed166720e59c3",
+      "V2_order_stream_sha256": "f67bb69c6c7f70b292ca315469218597c5fbf703303f284511a0b33cfb9d6390",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GENPET",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "74710a3e75e0978e65c094f3af7baed12220aaab2fed34f78174e6c2e9d873aa",
+      "V2_order_stream_sha256": "e08eb4148b7080c29d41eef66e4b1dac6f31cb12d38a0e1b1f63bdc2e4b7c016",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "74f628276a9df91c7c08be78df5c28b68773ccc72c12f206af8b138731ac3a40",
+      "V2_order_stream_sha256": "dc575620103a9427ef50023199dc1a264527ee34b95a73e55ac787ce45d6a5bc",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14KRATOR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "105596911ca727e6c281972f0ea03ebecdfbd7065cbabfddbaeba26e94e3f271",
+      "V2_order_stream_sha256": "ca4a530a41ccaf5537651e6e9b7433ac8592e691470a24be8607c04bf00e0f4e",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14RONGIU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "a8a9b66f2521f4199eae88f98420ddee2fd6e6979d3d2818e32674a74fa8a381",
+      "V2_order_stream_sha256": "aa9049ea99ffe817f33d5080489c6f8ab8a9efb9f38c8e86d0d43cc48c674cc4",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SQUKUM",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b76af6809217704b747f1a9b534a1e73328cd63a58b1615080a8abf4c64fb873",
+      "V2_order_stream_sha256": "a1d11e3bdf3dd8f0664f02baa70c35f4c753e74a35fe3091ea85ba97da054dcd",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3dcffdbed4705d01b25ff80304d4698500ebe425c9d9cd27db0c2a131596ac7c",
+      "V2_order_stream_sha256": "7c42a1d93705f0e2df0e2b494a86d28c84fd68857703a35319883e08839a6249",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "91d60672a3d9a8f6eaa000358e27c4b6509becca5098c809bc128dbaee6a2b57",
+      "V2_order_stream_sha256": "0ecae28e09c2c7e54913cc3e176bbdacb2ab3bf64fc477900d815dd934d7146a",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15RODINC",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "f9e6799e6b3741383cc2877d3670d67f8e2fc5b9e4dc72e5a8528cfef2f4fb26",
+      "V2_order_stream_sha256": "43b901eec60012f1921ab93b60ef7501a0ed744904acf39024cae1be222dab0d",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15ROMGAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "ffd32af8ff45cd263c7d2e8acb7c17e371bb9e18e481fe3a583e58f3400bd484",
+      "V2_order_stream_sha256": "47a99012874cdc5d1f1fde2a1972f277f298769be28bee3c2f1919dbb3bcce49",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15SANERE",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "f1f04b17d5218e43417530834f3584006f122df1a93050f7825568438384590a",
+      "V2_order_stream_sha256": "21b198825a097500a23a94057efde9b05c47b76814b362c09d0f376f04e0738d",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15VILMAR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "6d645a2eb97c08a63ad50e95baf360628687a45c7e09e00c129025950acd9ded",
+      "V2_order_stream_sha256": "d921adb3955bf9b4c8a0e27716c7a3199a4d5c295b5c2060c2959ca6e6fd3b25",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WESCOP",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b49e08abc943ae92dfde077d150ced0c99fd0601961dc64c83afe3e6b4cf89aa",
+      "V2_order_stream_sha256": "08515fd545c1cda2488834eb300af360a49421c00d75683e03fa679aa47c03bf",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16VISNIJ",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "fece6c7f64cf1fbe0d8e76df453d1313482530b1c02105b5cc11518480bc3a31",
+      "V2_order_stream_sha256": "90fe8e20f52c9204c2cc8950e3056bdc7181937029c31b7307f4ab0886a833f0",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17ADDIVA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "6ff9054ccd21a4d2ad6c9a74a02a347bd1abfa8d7ec0fb99ecf8bd90f1ada623",
+      "V2_order_stream_sha256": "15f59973557e0b4d8ae6bb03b33ea812beee2c7827c0f1cc97e5fc2b0606f0b5",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "a0ec0fecad0e028bb653ab7766f19ed5d5379c5a792ad6fc66773f324973dc70",
+      "V2_order_stream_sha256": "6c62760a90794c06ce4bec0aa672de47aba841ede122e5c18920221eb2fa03cd",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17GENHOU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "14c6156954eea104a5fe506b61463673ae02cefb2caa68bdac08307600c71b76",
+      "V2_order_stream_sha256": "c4ece5383e864291935bdd81b10288b274d39abe6cedd716df45e73068adc3e5",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17SEKCAS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "325bd58b24e6afa73d94aeacf7985243f7752ebe410ab3f0d0f5ccd96fea8345",
+      "V2_order_stream_sha256": "c86d86b81ff2bcbe8c7c6150b2906e378cac4a653f47f65c4e82de9e60785f64",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18ALCVIL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "1160df405889764a10cca8d11a1d52bb61b506edbeb7027f701971ce54ab26af",
+      "V2_order_stream_sha256": "183c17d5b6b73eaa47bd3b2827475cb7be93859f124c20ca7a17895ad44488ac",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19AVECHA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e4979d05612488003ce6eca115d67b23e669ef425f4915abb5febaa1bc67d482",
+      "V2_order_stream_sha256": "ce13de338657fe660cf02cca82fbe22dd99e985dfc85819f18a6b15b50de4665",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BARLEO",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e3efd6bb8d64e4203a62e203849b02e443dbf7cdbb489e3bb1824f3d0c4dab18",
+      "V2_order_stream_sha256": "3b87f0dfa5ffdbfc5f62d8ae510e0acaa34f3cf0ddb827790858dec4b7c41e46",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BARSTA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "00f1d8df94c90811310e1848b23251ecc7619858828daa430c4c82a63bc3c255",
+      "V2_order_stream_sha256": "7b1ae2ad5cbdf82fd3dfe8e954ec7654753169e4fb21fd8ef5448716daeeb176",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BONALC",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "fab6887bffa77e605ae414f7ea54b19366df561259e74ae5239f26f28596b25a",
+      "V2_order_stream_sha256": "ceeadf232f9b1d963d1200a15dcd9c842fba458cff11ec6c58a48ff6140ee70b",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "ab136e3416a05c3bdd5a13b8ddf97b802685a18e1d1c6429362ca875200f9ca3",
+      "V2_order_stream_sha256": "398b8ff05f8899712b5891beb68dcbbc5d53ac53dcdba4d9ea030fbee5d6a55b",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19CASVAS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "4df2a30e55a3fea530e70c53e3f0b409ffddf53636fc3a6de51517ce2aed32cb",
+      "V2_order_stream_sha256": "b36809b18e6b49c500835670597628e16f87c7d083f689a649feafc6d7f36392",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "69a41dadb2a8e512168d0d10f339c38127e78d19b453e065f1f9e0ba9d699919",
+      "V2_order_stream_sha256": "d7d34f7ae7303078d363c495a5c52b7a88537696372b58eb51da2dd9ce90ca2e",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KIRAGU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "7789ca1489931c3cf38088b0b972e09850ade4bfde3e4352bb6ad2a92ec18d3c",
+      "V2_order_stream_sha256": "1bb6c8762ffe5216c729a537dfbb9d5192ae60d4edb4449a5b4fbd8514b32726",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MCKOUA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "2821ef8e69f4af1398c8bd48774494a77d1514a2b83987dd547c5c3a52ae6d53",
+      "V2_order_stream_sha256": "91e561891ec3f30688dc251e0e00f7bb42f0580983d73d5aa70b95dead9ec54a",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MILFAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "561819c8f3bc8ba29c31b45fbee5f7c88e9977f481a52f0af83a0c725c85e2ef",
+      "V2_order_stream_sha256": "956c45bf7109d1e91924b5bbd54fd65a62d8963ae272296e47d247d1f175de88",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19POLSCH",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "83e9d997fd3cc09a45cc6dc63bfc81ec1e86b92910ead0eff7164e7d3b44c1d3",
+      "V2_order_stream_sha256": "ab11deb48b8122e42d75ccdaec8decf4315f699e45518b09b054010635f50e52",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19POUJAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "7cce1714459204b813fed74ca1275230e702f231cd1769ab7d4d8c1187ae0834",
+      "V2_order_stream_sha256": "dd34aaf5868dc8e81c98ea60a91b9e56fcc1bf8152298dfdee5b0bf01db442d9",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VANRAD",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3cf99b88015d5f5501eb00a82e9613f61e5c7e56d0f0762d2954784d4ae43834",
+      "V2_order_stream_sha256": "76837e9d7ffc6ddcbd21e46893a9c65601c23671244e2c73ab676815472bcdb3",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e6c5d4555d44ec12d7e4a8b1758dd72ab4be86f88e5f00982dd54256a7e251ba",
+      "V2_order_stream_sha256": "d2384ed63b3af2479be3c01c7e41148f440905f190d8cb3428bc669f4fb09bcc",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "88313e20368f59d8e99aa4ce9e979253617c6590fe5882a0003c5beb931547cc",
+      "V2_order_stream_sha256": "a9d6ff3171db2cc045359a65ff533eb67b1b7fdbce935222f940e772833aab13",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20JOHAGU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "55c8bd5a5d732a402a40a24558e6b3ed772c2fea0362880e9064c25da7d03eb4",
+      "V2_order_stream_sha256": "325c5f3be22f2271a2ad5a12ef7eff1f93e85d48e2edaab99a131582fbc01579",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "03294c91838eece7ab26f120dff6dbe4e9122457091dfb1e7effa6e3b3dccf55",
+      "V2_order_stream_sha256": "e7144da939968d89da4304491694f300ff479e29e801a9bdecb5d94ac6899078",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL12BUEMAR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3fca9994f3fb11ecc0617a278d25577ef7947b7a3db964dd36d385b1ee6baa19",
+      "V2_order_stream_sha256": "ff520cbfab65992000e28324b7c8fc115d2e41a55938a5e098e9df66cab132bf",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL12JACTRU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "98b0316887e951550f882026914109786c5889867cc60caf1ae2ce2ae4a2cd07",
+      "V2_order_stream_sha256": "63a367f941aed23ca9207ee1f093bc40a5ba49dd4a51591f2f5ceff0c8e78c78",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL12PASKAS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "4018b57bbc9e31129a89a53678f8c879d1b62fe6b03fba3303e4735fb0272973",
+      "V2_order_stream_sha256": "bb2dda619e79bb21def7d5b66db26ef57a0f622f68aceb017c9059a83e66559e",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL13FAUDAM",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "358ab22f791af77e21302a1105b2fb0fd3e52026f0915b05281f6440432ac06c",
+      "V2_order_stream_sha256": "b59658be22d815f3a3c4e2bbf665c0c372d7a02255b406d4dfefeff7874287e0",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL14CINHAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "143ffd5b92924a28b0488c3ef44367a474fb57c190838cc643c0b33c13b036ab",
+      "V2_order_stream_sha256": "e3787a50d02f8ac6b5c6de743f731d66e642029bb4c7dc779cfe48b83a4dcdf1",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL14DIAMID",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "723f650c60d2095ca478c500e18e752e8ba2b70e7a9d957e30a2b45283b36951",
+      "V2_order_stream_sha256": "adccfc0cd7d1ee2961f83d899fa972a6ec18d1a0554cfbc19a50a9b81543000e",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL18BUTTAB",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "1135e4919625137b32aa07ebb1fac95084e4c90af48673f4f83542489c2d8804",
+      "V2_order_stream_sha256": "1a0b5dcb53e14d3eb12bc1d78792d369db498e284a0c49ac716ee6a39d24373f",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL18CINMIC",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "f855e6f23905c1c5e6b3a6ac552f86adc66c90868cd35073106b2a5681c37da2",
+      "V2_order_stream_sha256": "ac6243ece90b38b69b40634f44fd1ed668fb20943c49a5710d40c5360079821e",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL18DELRIB",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3c717be6bff742c7b45d4bccfdfe98de5cd45bafdceb8d6a37f79f1aeb588441",
+      "V2_order_stream_sha256": "8b1f76a364329115c8b66e90624eadc93a992710f9013247ecd3466ee3520f47",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL18DOMSKA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "790ebf6d976ca93c9aaabdd25bc693f9a2e930e17716aa71fb5a034d2fe1de88",
+      "V2_order_stream_sha256": "f69b204b6b8c2d13391fe2faac64119f5e6e27b32dd63b4d1e78b81df74a6363",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL19JACDAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "6d269a3323cb8cbfc7585361816c5335e6a34b267775aec5b16a6d658d7f2ff9",
+      "V2_order_stream_sha256": "96b5a708bdfd98bde4f86079effb6bdad5730363d14187059a3f8ef67470d378",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ARIZHA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3b8bd4de4accf7f7571ec1d0a9d28681ac9ef96e147ecab7a18a689949af87cb",
+      "V2_order_stream_sha256": "0b9af344515d736f134cdbec00766336837528c8a5ffe0b894e553c7cc968b4b",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BOSKOV",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "aa2edbd85c61c7b4e3d8867ba1331835e9370df865f7c7d8ab94f2ff9012c20d",
+      "V2_order_stream_sha256": "9a51104c50479ef7477f6659ff69055b226c91ebf30f3d2044f893ee0e3a0356",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12FEICHE",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "f7776154dfe32d35dc6deb8ccef8ad137b4dd4e97cdc7ae51857408696c56aca",
+      "V2_order_stream_sha256": "44b4e0f5e8c31f4f0fa1739121c514cd2d83b4fdb7ca74958fd126e71dd56580",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "c5b45b06b230e1fe77843ad97fb2a9a82319fba44f28fcf98c6c6ebeaa33f2b2",
+      "V2_order_stream_sha256": "4b43fc8f61db521de872c22c8aad94d9c2b77e7b729af76fe062e5b7ae857ef4",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12MAZGAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "02dfe61e2593f2678da151be603a1afa74bc439c8ec5ac9e53ea1ed1fe988297",
+      "V2_order_stream_sha256": "bff127097eb1c280fa4210f2d8288f44ea50a0668dab6b1df21856e02d82b553",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "fd354dbe791d742bbd29099920fce849f282cc8aec46abf3ffc2da40bf1c122e",
+      "V2_order_stream_sha256": "677986b0e88344dd1e07bdc612683e3ed26065ca59fc5c68ac06ca2ee4dbed5d",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12PANYOR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "4d5f80b9aed8488556003b7017902b9e186f9d59644132d536955b89944ceaff",
+      "V2_order_stream_sha256": "3b336027c9833e1b8c2176812c028f8b6d8e600a768c1685bcebd18a9cbc3ffa",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ROUJAK",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "bb3b2548b873ea8cf4cc7f76531f37e39a32c9ebdfbd759313119c8f23b1fce7",
+      "V2_order_stream_sha256": "d6be743c82c3b8e1c61fca303e45723c92e4c414d5a8391af57179971f6ae2e5",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SHEVAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b7d5eb0a4caa7d2158430e17922ea1794485e8590e7e463b2da59b03506bd81a",
+      "V2_order_stream_sha256": "a58b7e2048e265cc068962dc615f5f4ab60d5063aa2a2cba1d15422ac66350a2",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SHITUR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b7e5369fd176864509c447deab23d658498a41d485d83faa8a57b840ded27e37",
+      "V2_order_stream_sha256": "7cb07fa830e5eaa132ee4e1b609da273b797cfc881fa20d8b595a7cfcf4d01c2",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "039c7a8ea0f4502e508d9b5383138d5b49cfacde2909d9d0008eac42a74dd807",
+      "V2_order_stream_sha256": "870e5da498e8894b7ccaa6c19d0b863b6839f5c7c3c8b81b2d53b452a8e19a93",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13GJOCHI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "f483a1c750e923a7814c3968cfcaec6c49aa33f348439c12019df12965dc3c36",
+      "V2_order_stream_sha256": "1b016a589c7f7f1e2f3cdfc53d42bef5b154648745d21d9b0a72f4a8dc04e822",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13JONSPI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "74dbae147e72d5beb15b4acce1ee7c9f2f8452719c251aa64e604e3f91fa00e4",
+      "V2_order_stream_sha256": "e5ba48f8866fc003c0cff7f044dcdc4935a98bb05c425d654f4bf16fd8a0c697",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KABPER",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "bc186e8dc9e80622757df7f476092aaf1542321860a6a204b280a543d18fb489",
+      "V2_order_stream_sha256": "2ff5595197b555d4a5d93dc10641588c669657b3680c84a12e3ef3f6033cbfca",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KHOZHA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "bcbce4da0a91be917c4031e03b033fea8f586db19debc801a755f79edc2ee8c5",
+      "V2_order_stream_sha256": "6348a4051940b984dace397418e437149085518d6e779a6e0abdc0961d8b3fad",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KOTURG",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "70f6023e991d415545a1b8b41323e215075f0aa0e5b6154d61177eb1ac15ca2a",
+      "V2_order_stream_sha256": "26306e8893abf0bb49d9c60aafeff82fdfa318e74f197966fd142838caf58af0",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13LANMAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "74867b607fd22114ce139036de0b1b5ae74bf6a0cb099aa41c630e5e82a7dfa3",
+      "V2_order_stream_sha256": "5eb78cd48f557bcd8b0e64b96234cf685dc28afaf362fc551082b3336da219aa",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "352cf3f0c43ebc603819bbeb6702505762079cdb9da23a459faea2f122b6332c",
+      "V2_order_stream_sha256": "40c3004754ef2ecda145452f0996bbc7805f76eec6b7c17f7d6f01b116a3fc82",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PAPAND",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "717af7d03ba46849f02210f0e10b806bbc8924d50d97074000389da3dd8ce0e6",
+      "V2_order_stream_sha256": "b7d9685a050ddf1a2f9acde835815b5ca7b8a50d177693e831974a5fe2754d97",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RADREN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "de3441977a88a08fc85b698a1468f99e092a2ebebf72e932b178cda53afefc85",
+      "V2_order_stream_sha256": "3ce47382d23a8807392ee18c4cba51ddfd866740bc0d80033b563c0c388dbe88",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RISPOH",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "db8d1f3d152b27fe7f49add075fd4c51bfe0f633e4338e108b465af6173922cb",
+      "V2_order_stream_sha256": "8d76e7f1df58b848a43e275c48d3d6f4895c9d714428f38343b2482dafee99d4",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SAINUG",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "001fc38e9f90a59d165e06b3b0cf0943dbd9f86adbe26277d2a06464dfb9f83e",
+      "V2_order_stream_sha256": "46e17906f027a2da712afe0c6694922320f21e3f71edfab7c841ef773579094d",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SHIHUA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "bb8b549a0913c895547c648104b2dc9be1610a778de8696aef5c85baf5ace650",
+      "V2_order_stream_sha256": "b78479266807642c34edeb8745870fcd1868dac03982c374fe55a1276d504226",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13TIKBEN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "4763bd27fa2951e0dac15ce42fae5a285451a8af1367a34dae8d0b76ebee50aa",
+      "V2_order_stream_sha256": "0ed361f747751c5e08f2832381d49afcc3cdfa2330e0a5fd07cc13308ffec188",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13VANLEE",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "0340357acf66133f01c6379514cdce4f7d93d6ed6a6c825bc2d1193e5f55a581",
+      "V2_order_stream_sha256": "1df252f77f23f67260f084d21da4420304aae39c8dca1c8ab48cedda48da77ab",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9395c54c8fffa0709c60f0af731e4938e5fd4979ec012a0a372a13dde1b55f19",
+      "V2_order_stream_sha256": "b2d0550278d686bd5f3ed610ad43f8cfcbe549a552a311d04b11fbadfb8406d1",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14DILFAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b56349077c5ab4cf0d787145e715cd8f64294a6f439b1b84cbadd7988c3cf913",
+      "V2_order_stream_sha256": "edcc8eb051e200b0d5250c998e81a422a2431a2b7e0fe2d3f211bc7a64c9258e",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FALYUA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9248c4c5f6de23211d2bbd623bb77402afe470ea639cdbc66e09ccf7b544b420",
+      "V2_order_stream_sha256": "1d9b923901174aa456d6424ef63f4eb1e07b0c100341cdfb763490786ebca61d",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "d76474190f2de15d0ecee08e4ff208aa16026f8925bea06799f18cff6ce37090",
+      "V2_order_stream_sha256": "963530c78c58bc01bda8376edcf94e75ca31bd6d4e70cdec8ce6a3432f0958bd",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14KOVBAS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "bc847ab86f0f9627f703e4aa962e4c0ad669c4b25db3431662f63022caf714e8",
+      "V2_order_stream_sha256": "e65c8b2de913239947f0717cd29fc329c6ec4d36e736b4c76d6e7edfd2eefde5",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14TANHAV",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "bb22cd6daa136455f961997ad86d83d55e95c07bc2080bc44f2cba3386e12525",
+      "V2_order_stream_sha256": "fcf510dbc93bb733e802da457b3ef78e7b5d4fa4e11d8a594b375c29ea224daf",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14ZAKTKA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9881724d22ff21fc9480492a0655964ee1f363de176d7bd7ba8124a671d8b664",
+      "V2_order_stream_sha256": "914197aad0e0353295feef0cbfdb88b61da8c1313f74d145cf35dd8e56bf7159",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15ERJBAR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "5d287a6552ac6dc161706b7189a3afe90008bb85f98311e82186af8487fd1e5a",
+      "V2_order_stream_sha256": "347652ed4ff4a9b85659a97c36762723692e3698664690cf1d63d3792e751718",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "cff5169493483b01c8fcec50a3d02d8bf61f8d9e1f988943eebf2929b5369da8",
+      "V2_order_stream_sha256": "f624c6c2f32c7e9450446397bb531f8d07d2644f276eb53197258a4cca887178",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15RADCHI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "900051d689f27b44811b8594c4ea7de508ac57456019732ed021ad65849db021",
+      "V2_order_stream_sha256": "d8757ee1a8efe3e7440a913c31f2fd9309654c45d95610d34c9e692cb035947d",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15TANGAS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "57d61359cc5350da1bc2e7354ea8d9ad2ca9ef564e1ddbfb453dded0c2e438a4",
+      "V2_order_stream_sha256": "d06189e2ad292fa3269e3625d986182457fa57b26549665f016f8ef1c9f99956",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BENKRA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "cf2986b8686ae7ce75e704e1fbabf602913eb999ed9a25b9fc69d2b55a9c9d08",
+      "V2_order_stream_sha256": "c7823cf890ae95b737bea4a8d0eb756c10122a399447b511a1d7257e7c0a9cba",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZAKSHU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3e3a6f47e844a343f15e665976046a425c456d391e88f0c9dfcadbfae1b92a73",
+      "V2_order_stream_sha256": "3ed459cc29f511262a9453f3c28a77b163d69c5e4d9b89636c9d0388f755867a",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ERJFEI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "1a748569e073c75a07cc2c02262c2eaa8f37c4f85391fcdd9c5d572bab713e41",
+      "V2_order_stream_sha256": "03912d40cb90ec304fb17131b55485df1457c6d51a6acf74e34dff3fc5302096",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17VALFAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "85a57cd2dd8f6f4d69dc42c662ba9c5db3c456cca7d31d0480d5506c824db686",
+      "V2_order_stream_sha256": "41faa4743e6673f8224895b1efb950256206138c4a8831dc60a67026413669d3",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18BASKRA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "958da8de8e0600684739c7b3dbe21a5f00aa7425913c993b99e814ccd7073f3b",
+      "V2_order_stream_sha256": "b4ad4b8e3e97660edb5ecdfbe4eaca6d875b26fa2ffb259f1c19bc5771b32101",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18MCASHI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "ced606fc77c22794b11531e36ceedb0f4f2e1a1fb5a591f91d3c9d23469d2881",
+      "V2_order_stream_sha256": "0b33560f21c46434c13bbc167571a7f4fe80286de73d7128c1f78128b65c9aa3",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18URGKOT",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9b6d50d85e60bf14fcc7f89717876d1ae1fe1675997b168edd2e2451a038039e",
+      "V2_order_stream_sha256": "40a3ec720b9d446c3d6ad0c485dff30b430d3d37895e8edfbed1ff42a2af2d6f",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19GRAKRA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "5a1ac8cad6966ce97058e458a080256601c7613f831221c8d801af1d218de68b",
+      "V2_order_stream_sha256": "0533d7b21df0acd2863cd98b3af9a2eb5f0195c363bcf6e44c8f06445e75b189",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19SERTOT",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "0bf677186d7c9783a95db93237b8a496b28c78f390e1c74b3e870cab59144545",
+      "V2_order_stream_sha256": "88773701eea0d4a18b07fe7c0911e432947b8c4abe93c0c67c58be81dba5259a",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL12ITOMAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "454426f3a9981bb622ffd2faf8e8e89cda8cb19adeddb978914b892d623977fb",
+      "V2_order_stream_sha256": "5f488e1e4ddfe8a6036a6693ece9abc099a82f389881c9cac94f937f0ebdcbaf",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL12WERAMA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9fc20b3c2a8e58285aed56c24c4f04f465c81da12672aee0405e2ddb587256d3",
+      "V2_order_stream_sha256": "baf57eec475be79997a71790473359d7a4e7c25e9a01ba82db4f3cf16741dd44",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL13LIUIPE",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "a55bbcb94d8cc09033e4b429212876d5986fac7bced613658835513a9a2040a7",
+      "V2_order_stream_sha256": "41dc065934603e4297bafacfa2d0c69536899c80b6ed4de843c1511d1dea357b",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL18COSHIB",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "cf5ca0cf1492061dbf61710d63fb4956cc7bf78a8dd1ddd13c3a43e52dd78adf",
+      "V2_order_stream_sha256": "f5dc6078b4b577c5a5e7ddc3f3ce6b2c0f7b1a7ebd94c7be388990b599b28dd5",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL18MICFRU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "979ed31c11b3180f4cbbfe98ea1dab1f4e97cd6346fc26b800cc998972314e04",
+      "V2_order_stream_sha256": "037ef1344897547e5a9596ca7866ed39ff2613de3e158a23b5bcedbdd4892e18",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL19JAKAVA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e297e93a806295300d643a47f636c75300bf0b62a38b36f8adf005bf56571394",
+      "V2_order_stream_sha256": "afb3f91d1872ffb1a9fe553ec50f839c3c3c276a3cca94310a4c12d167a46187",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL19MONPIE",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "498c6309fba400afbf0ab25048dbf24497f644a11dfee1d2128c816ae75807f4",
+      "V2_order_stream_sha256": "a7767aa75092fd2ee0e3ad21ea2f88bc6b56b4d1045f2a0806236664e79940a9",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL19PODSAI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "7dbf4e70d296b2bb1bcc00ee96a528c887eb144372609e3a82aa6d4e27ce0d1a",
+      "V2_order_stream_sha256": "eba803a18969a034b3b89c303fcac10d50cda0b4a3a5ea7e6278fce0ca82b596",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL19RUSKAZ",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "d4c3fcd6906afe8f3fbe78eb9de764f14f0b0ccbbf905bd910b961580e297a4a",
+      "V2_order_stream_sha256": "697572409db339caee2e269d93e353b7a9dd89e6619a44b21ef40c8cd85ad0f6",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL20OKTDOD",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "4e71764b86c5dc8e2e1d551fbf58e3f3103f002a086ecf33d1e84ee7722e4bfd",
+      "V2_order_stream_sha256": "57259d8e369303cbf683c1a5694e94b3c12ce6b1c5fff56e19ce5d490e0485f6",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL20SEISNI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e36eebd772ed0239791eef71d3878aeb30c1421126e79149ffa53ce25d111299",
+      "V2_order_stream_sha256": "a45f77a033bb03b438ebc6bff5328b4d807e538d999870c05ff341138e9b5737",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e773e855be01fa085ffb40ca9aca54ddad6a1bfb94fd695fff581bf8b9032518",
+      "V2_order_stream_sha256": "86770361618ed4d9a12996a489709e11063c15179d0c1b89fd7bae7f74c89bb9",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12AVEFOR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "17d11e2cdf8a6456bbd3dfc89eb2bb2f93a4b5e4a37a6e037ed3702c7747b800",
+      "V2_order_stream_sha256": "e7732603157ab25bb11bfb8aec84c0cc89d24f7998f0ba6a18b380e6715679f8",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "0f66e98eff81d2c29b7d30f4eb79a9ee63917e6a92e7ee7ddeb835e57e141867",
+      "V2_order_stream_sha256": "2c653dc78908dd53a020c8c486c6a90420af1dc86dcd39d2a364b373e921433e",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "f44a3f28cb6f3727e8379cbdfe859f005fc3f8e5eff23ca3a4c2c1a7d3409cbb",
+      "V2_order_stream_sha256": "11d6dcfd383a682fcae22341f13d9e8ec612ea66432ebe474f07775eb9ff4f4c",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CHISEA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b2e470d009a146b3742e949c257745721b2c174df00fe1c345d532990d748a81",
+      "V2_order_stream_sha256": "033ebbe260f714f9f9d1c99559e4d56479fbe75d0cd3b9211ba989023c65f3cf",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CRIBAS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "6273171cb8eb1c3ce14669ff01dfa84b4de3071b797389cacaa30c12d77cdbcb",
+      "V2_order_stream_sha256": "79471c41553259786261c9dc499c0a98c8371fd4a8869baa4c44385c5f2cd680",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DELMAK",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "5a423117685f7c384827aaa2e523a3805911e9f21936b2efb446d7169a222473",
+      "V2_order_stream_sha256": "eca79cbc37d6e185b3d3eba67fd71e32a76e2cf94692e87bebac68c572f934a2",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FANBIG",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "0840bf6f1fdbf7faee61354e08f58d098f06f0da54c8a4ad5aa230588563de43",
+      "V2_order_stream_sha256": "d39f6b54ece665e601278ddefeeebd34f56ca33028f531389052856dc1c89bcd",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FORPAM",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "1de7d9f783195555962f74c8f5b3430e2b504c77b10b82a6032e9ea6f3b16b70",
+      "V2_order_stream_sha256": "6468f674396872308dd9e5a7deae5e8641f3bad7089392f3f7d5c29c9020afb8",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GANJAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "0fa26ea2b5c502dc3bb99d2ee3bd1d41fe3df039301955e0ffa1e93620a3647a",
+      "V2_order_stream_sha256": "a5d7ca8a31d9975f5cb3cb357b1282b6ba05071401b3a22e6e7d91f486d349e7",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "d46d3bd90b062108bb3b95b8ebf8b5b388ae78aee8b8043621481e0ec3a66ec5",
+      "V2_order_stream_sha256": "2bc8a7a9c8bc134a148d6d036eacb8cbcdade44b058543964799cd6c1d821416",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "d4c351190ab4d81f22803c39705aae2ecb283f771154cecf0e198d1297abbb92",
+      "V2_order_stream_sha256": "37f4c836884f3a32c1632091eac44a9794b2781176d60698f02d9559647e417a",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HOHSUR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "f40ab5be17035eff5a882de18f3be7a3ff61eda3257572c3d11983c66c1fde9e",
+      "V2_order_stream_sha256": "a6fd6d4ed6adc89b597ef712b3bc8dd60b9ccac69e48fad82d8aef47f29d529e",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KRALOR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "89c06f6d348c72ad3f1af4b005ab1d3b14c1f774d8f35c255201039959f0d792",
+      "V2_order_stream_sha256": "bcd68efa43db1426a98377758f26dda5fe307a0df9e71e8d516908de66f77d43",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KUMTUR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e4243dc61729120d6d64db1bb4dc30a9d909c01b79e5bc97eeea6e5b0bdf51df",
+      "V2_order_stream_sha256": "c4a499fbc9441114f55167dc185ddfe9505ecf31e9e4a9f19b1b7a72947cd215",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MARARS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "8a4aa061ee6124a343a52e62db7f035a01906e30a2c49cfd2e0c1df4ae6686ee",
+      "V2_order_stream_sha256": "98ffbbcc685917943f11de3a1592856eb7f927513ddf6d0056b060aff1e4fa81",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MEJSOT",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "35c2f2f4a0893559a2ee2848e225ac00e070607c779bd671f8d508030cfe9827",
+      "V2_order_stream_sha256": "41c38620d8aa41e8b8a79624c9d97f1461e7b20d387b26d88100b9d477a28b56",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MORPET",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "c3d876636a7f105d2758e4f2443b5a41f40ef76baaa2cd3fb04534c3ec7e9f87",
+      "V2_order_stream_sha256": "0c46d53190318679766b68577a31f5410a68a933b43d627a1a9e0f4a3e8222f8",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLVIN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9a22e9b358d068053607a36d5c10b78dd8b83f413146b65bb0291dc8c3a3468b",
+      "V2_order_stream_sha256": "6044273b5da0ce228a871c97355eb0fa225b80c1fcea0bef4aa3b9c49459eec0",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12RAIZHU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "60d805425ba684069362825843f4efaf305283ffd12db7c9f0c5a4093ebdf750",
+      "V2_order_stream_sha256": "be4fba92b3bbdedfd29d5fccc149ead96044624e4b74d4fd6053c736deeb54cd",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12RAQKUM",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "8ef93a920b373bf8992513411af06403674e315f1802af912d2f3c9cd15e964a",
+      "V2_order_stream_sha256": "4006661791f5d06d72fb55166dcc9426e44634b220b23f35f1f5ca6c56913c86",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12VILRAH",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "6f55ed5677255736f12f89783619ae7658d6cf37cccb5bff37f93208aa890a01",
+      "V2_order_stream_sha256": "7755cda9ac432884319760175b4750a9e2085727b4193220f07e4ed7039764d5",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12WINROB",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "1e58414f426318c7a2a3d78bbfb60613bb2d124b55343176e0c0a48173a366be",
+      "V2_order_stream_sha256": "b6fea0cc803b00578c90ec02a2904ac3684574b51e6d74d1f34d0ce875d542ce",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YEVBOR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "87520d914f8f9669c82b2b011e8ddb05b17300ae243aa3821783ac9200d894c7",
+      "V2_order_stream_sha256": "57a5052ebf89722abb7a52f965e699399b53bafb2ff138f156ce137ba7094479",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13AGABAR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "c16e25a177c92569f6db4607fc1f5ef9eb68df7ce7ad930e834f07165ed72ed7",
+      "V2_order_stream_sha256": "340f6fd86f0f891fd6c97cb7e7fd2f06cc291b98cd7a71de614958f782857608",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ARSDAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "f738b87123556bb84a34459c7087929ffa90d9d98338e3a3e1dd8424461dbbe4",
+      "V2_order_stream_sha256": "ce51164ab986761a5241a98c8d78625ab86d5048b54d24d83ab1e46828be4a16",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13BOUGAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "0594bb1847e9671a565ac1c6b949b3a6307a6205fac8be4df6e45b0b0d4103d6",
+      "V2_order_stream_sha256": "49414abd3901cd61701b26d9637632bb94ee4f9d1aa96e4823a74fac68ed31d8",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13CHOSUR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "80b8744f6bcd9524eba364162c5fd573dd5e1eff30d91938e2ae752191003271",
+      "V2_order_stream_sha256": "10b361393b65c325d7755d29c971c8fda01532a91139f9eef50e6df29d194e43",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13DONWES",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "be592b849614d38f975c32466ae109b0c5d8abc8d52e84fe0da0ee88cb191f9a",
+      "V2_order_stream_sha256": "29876a2f730effc5a7bb7c3794b67c6342f5ba65142364dd2f4d120e849519d4",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13FORHUA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3b6934376b4f0b2dcc94585f9efd34e9f16697fb50963a401380e6bbf324d06b",
+      "V2_order_stream_sha256": "3cb24b39342bc75fdab99ae816263cc2495e3c56851715ae8f2d8a77af329e35",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13FORMAK",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "1f9b5774f63b11ffa75357fcc1b1923949371303153d8040034cd5a6bdda2149",
+      "V2_order_stream_sha256": "a899af7a6e86cdf2979745dc2c83b6c92fe92b674924a3377a601a6e01dc622d",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "8dadf336939faf4bdec958fb9b698ee20a1a2226cab2a8cbfec1b64f91efc4f9",
+      "V2_order_stream_sha256": "92bb61f8f3764a7d6630becf473462cece72f24e31134c406fa654a7c59a4ada",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13JONPET",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "55a6e2a53516dd0810db33a4cfc9e54e063dcdf1f20332cb1eabf2b86fa9d70d",
+      "V2_order_stream_sha256": "712f8ffd13199d6450773d0426dd03985cf83ff49df7e7db788a185ceb782e5d",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KRASAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "337375ae92d3d989864dc7c34784e6be8fb882249219f4fc844ece9b445c7149",
+      "V2_order_stream_sha256": "ba197ca66c2f31a20a103ac51f3c82a8d3f679aacd2961fb892b20a38daf36f3",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KRUMAR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3690548429ab1584e91da0f10792d3fce137f45a9c5bb8106d73196a0f8c7748",
+      "V2_order_stream_sha256": "243f6fa16a390b677627797b44e3bdbd8411f6a9cf46c15ceee1bb09392ce5de",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KUZNIJ",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "237f78ee24205532e20eacd3d008cc5b620bf452f04482b98cde3dcee20aaef1",
+      "V2_order_stream_sha256": "12d8aa55fe974e63213ac968ef732596e2eec24ffcc2175986f27bfc321eed71",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13MORFAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "08ef3b8fb2d9e1c0385c082b89a5742d11ddbcbdec1242d3851890523874d3c8",
+      "V2_order_stream_sha256": "3eea99a8fea97a29cbfb5c307d427485ee3cbc40031dec20d8a8f7b6e5bcacc4",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "2c10f80ff757e114fef87a0059391f9575a44d87edb0d52663e60bd9b17908f3",
+      "V2_order_stream_sha256": "41caa281c24458db8279828dde47a1505d34bf8dd4f0e329708fe7094c3257f2",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13NOGBRO",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "4fbdd054f688e0ab5410b184830f22b6b48a9b9ed76d910479ad2e7eda7c8706",
+      "V2_order_stream_sha256": "7f7e5414a08028cef50eef6975bfd943044d8f634193dcfd9ac94f7a748ee095",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13PERTOB",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "8f3fd5090dd670530454ea5aba591aa44c69ee47e5f544db3dba93d561a258cc",
+      "V2_order_stream_sha256": "0686f9a20b84a501f24b392a38190cbb80b6c5e62b6835e857fec12a17e419fb",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13RADIVA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "2956c378ec052d2f11bf187ba252cace5b0353639b3256648c8fdc24f6286bc8",
+      "V2_order_stream_sha256": "d464927c24531b416388fe349689df7a5ad6ee3f8bdfe9e6b45efdb52c53699d",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13REHJUS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "2a2817bfa4e56015cc49a9a4dc71bf9751b3f2352e763f713540234dfbc152a0",
+      "V2_order_stream_sha256": "03e7859390d5eb41af2394723df74b5290bc74d515e646f8e49f6e8fdc66c59f",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13RODALK",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "6956a804f813e46d95c9c01a37dc9261f34e5ddca4661601f48fa96420cb71c3",
+      "V2_order_stream_sha256": "8a9c62198c9e4a3d7ca14c90a10fd415ccb893b1fa300985062bcd7df7f2dc75",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13TABVIN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "2784417e90e9dd19044936f7b1d66df2ce090791e1c434ea72dd264a11d904a5",
+      "V2_order_stream_sha256": "674b2b605a3a409aa926bca57c677b64c4c6f403d47028b4c7d49797cd480066",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13TROGEO",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "26500181a1f240fd0240ebe56391acedd9bc1f14af4a2e7066def74d26f5a3af",
+      "V2_order_stream_sha256": "f8aa755b5acda13ae030b4f181a60ad98947db41a7d1fd08fef7469208257ee0",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ZHUDLI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "cfbb56d043921db6492b85f1401439f944abe5fb0f52c28cdb6a27922cc36c98",
+      "V2_order_stream_sha256": "045287a1e0b174a6ab79d2142fda6414d860e3e4bcad52adec4ab1c6e9375c0f",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "71b85970585c68e8826da608d97e26c9b82c14c2143d654383aaf9170910c0f6",
+      "V2_order_stream_sha256": "77967d6657cec50f1db36943599eb086e0aaf353f14655f7983e6fdc825f3fcd",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CLAWES",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "ef9a3a6e9160f07d40a3d642c4673839a074be48bbf42695e78ed494a18c8c58",
+      "V2_order_stream_sha256": "5083a9c2cc162ec7454d5f3fa6b0db382e5b56792bc1fb3b46550ed1f5ca419f",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DALMAY",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "5c1047242150da620b9085e14e8276e73b49f706a9ac048521d35d4a5c1c21b4",
+      "V2_order_stream_sha256": "ed820b303b4b109730eb7ef5eb3a4b3486b0b1da0447b60171223865976d734e",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DENYEV",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "6a64c4e38902dcac6f3d94bdb3082c18883b077e9841a5053470393edd7ec9d3",
+      "V2_order_stream_sha256": "5e5324719eec2d59b73d960d996ed9c7c4f6d653259c21f5af091e2c062e3292",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14FUEPRI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "ecd321f555a8312eec7134d91bba384f17654ddde266e9bcc4bcede25b196c5d",
+      "V2_order_stream_sha256": "0cbb2de74eda572f0831b9eb624ff0670c9c0af689f5b4ec3c4dacc14b88078e",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GALFOR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "7a021fc964c41e9f2b798d3841c95853a8d5b0b96c65c6537d676c9975326890",
+      "V2_order_stream_sha256": "935e85fe6a684eecaa3cec5f4f1b6ff45d06f2e764737fe82f3685f2477fd4bc",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "902bb68f28f30b160db90cad2733f0e55e4b8d47a6fc7110f1da5f6c16f4a6fd",
+      "V2_order_stream_sha256": "ca8ed84c793d342781721200d68954fc8c93f11fe7f1e01890450f5fb98cad27",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GENPET",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "748b248b0c6d9cf84e82ce95daecb5c20eda3ebfed1665b3ffe2f3fee65e499b",
+      "V2_order_stream_sha256": "64003e682e61ac0a0558f66affe49c3e02f7151eb681ab430d54df89fc5c3454",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "537d058a6afca54646c7328c72d785b851c465843ec16c229c9b2ee1fbb3dd92",
+      "V2_order_stream_sha256": "e13195f8221f6c70e5165aff03a72d141f1b0851116e47e571652b7c2d43649d",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14KRATOR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9e783ba814a3289e79fe46e984af178cf93bb57f58166449e7663791b949a8ec",
+      "V2_order_stream_sha256": "1e109129ddd0cb1260e8467c5b65c74b9e0bcc6fe896e159f25b7f5f9a42b2eb",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14RONGIU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "36273b85f0372d83505572363ddb0b4846be7dc3849849bb6130eb5a09e7e4af",
+      "V2_order_stream_sha256": "3cdfd85fc105a4b10bdc95e8efa135b9cdf70a526fbb7e3872a677acf1b5dec6",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "da89ab860bf10a451fb4727c620af98b3727cf5a17e1e4a65030cdc256f1e5ba",
+      "V2_order_stream_sha256": "e2045107cffba15b757146adf9dd4beb09fe3e06c7aac127505a5d0c24d65292",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14VILRIB",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "69be42ca508e982e266efd03bee7ba7d64e73321efb6f4247d33e16782a2a71c",
+      "V2_order_stream_sha256": "e33e87f6f397e6d25df6d02fd6f864ab63be997fde9ce83382be92fa1ec7b4da",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "6462e8ab0ce334392246cb71cd89cc262d9e4bd7285869b3f18e32a60178c1ae",
+      "V2_order_stream_sha256": "87823656d720ecba7ac40daba77907113eb7d9d014e17669bb6180714d19bd2b",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "a56466b3afd5747b793ad5706d10344157dc2a5400d696af2de162360b9b71b6",
+      "V2_order_stream_sha256": "c8b82744876cde76ced435f1e73e67e230bfab67366c7dd04526f217085b13f5",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15RODINC",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "171ac26968331f45295e494485843b8478439f790e6e7664e6b97aef1e6ff115",
+      "V2_order_stream_sha256": "373beaca6c185eec09e96f6b4810d30b0dda122968de4e718c3e43e63418c73f",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15ROMGAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "2ba564128b3eeabf62b29709c73464e370049f0d27078b7fe766da82fda7b864",
+      "V2_order_stream_sha256": "9b533b7ae915575d5a21d4cb75ed256812d221ccc8a99a2c9d327437e1c34a92",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15SANERE",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "05decb9872a449755641a9b56ee977980997ce5258d38c83718e91f6e1c42740",
+      "V2_order_stream_sha256": "98e96fa25299674c76225e62e7eb7ace7241610102225059f70221d38a80e469",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15VILMAR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "08927f376bc585a8f44eee2ecdc9f4bb0aae0c21e0edbae8b35f9e72d9fc2959",
+      "V2_order_stream_sha256": "753a71fd9facfe77992768d3206f8503bb426baa1be78f20e56bcbe56ce368a6",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WESCOP",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b9561c37202b9d576ad423965144d8830d2b37c8721ecddcec782f9bba1995e6",
+      "V2_order_stream_sha256": "0ff1bf8b0a326bc934628afe2f9805c81e19225bf6e5269b0273192e09fc08d7",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16VISNIJ",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3b6849ded3df69d734fe079bd0a91f9907cc4d6ec7cce0a1475dbf262889e504",
+      "V2_order_stream_sha256": "bee591b29f606181cec3413dcbf145641c1e62793b6c79bc66a48bb5a4a961de",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17ADDIVA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "720290e2e9298aa276c946f8113b49eae1c20593876e2ff7d54d0e01e3d08f95",
+      "V2_order_stream_sha256": "7e9665274e06b97e29f57be9ac73cd99931a0c3aca9575d9bccb08402f0659db",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "38b9632b3f8c150302042d1be1afdcde2127b6cee4512a1b05dc3b3e124f3d4f",
+      "V2_order_stream_sha256": "81850e3806d3bee6862fcb7dc848e4066c8ddd27b8666e5d359a3141255b0680",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18ALCVIL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "55fe67c8f4b92c61013042b38303bb86f2dbfbf1976b96c38d9ab0c2ad896ecd",
+      "V2_order_stream_sha256": "ee6d38da0ea05cbdffe48be693b9c4ad685148ddd24b2d17dbb45e92051a7f6c",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19AVECHA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "976db1da3398f8c41ccbca084a8715a8580d7c1f37ae16437273c91e512832ef",
+      "V2_order_stream_sha256": "a07425a2c4e73b3edb5177fc2279f943979679030f4443fa43c997acf132aea4",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BARSTA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "aed69452c4cc1cf0efae47d89369a67d9d86a26f17b2b9228b6a79fc02553309",
+      "V2_order_stream_sha256": "e4af3102aa29cbb6da7332c9386084b523993f2319e08335a18ec7f10555c2de",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BONALC",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "2b91be8f1a4e12c06834f050d02d57c692812b384474cb063f33235a13b22449",
+      "V2_order_stream_sha256": "76b95066940cfe545784a89156d30af69964f855ec82b617e791576336e4823e",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "547da29755f19152c6edd789f366723935d4ba75f575a65a8b5fa6ed7edd0d29",
+      "V2_order_stream_sha256": "7c7cd401f0b5a88cc37ba348d9d247d255b3af45aa7b2a981842595c52191c2c",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19CASVAS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e3959428e3057e8f25eb7acda83bf9d6cd31bac5e717acd36db9c9a540027714",
+      "V2_order_stream_sha256": "966f6c71258f2cff3d7d2a1a3e395261aeda05e456591cc7aaa47e4dfe651ad7",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DENGEN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "859d1fb9ae5a1ef51a8b39c15571e4c941d5f6f12ee317a2662a4cf0aec01afb",
+      "V2_order_stream_sha256": "4edc5a26350775beb456b7f5888476a620486b04587c7119fe9f1a14c0d23f15",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "6719d538bf8cf2eee0d10e6d14f799fe9c37aa78986ea6dec706505321387559",
+      "V2_order_stream_sha256": "047e1d8e06c558191229e7ceea4978d7d599ebd8e7d78ff702ab28797a8a2628",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KIRAGU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9554da2004d35805cb7b6c5dba69937b0cdb14b13b6c45daf343137b7d982d93",
+      "V2_order_stream_sha256": "54d378d8720c4681e872cd52a254852cb138eb0f90bd6cf294db393891523733",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MCKOUA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "c519408de467131499f4d6ffe1b8a340a9b2108d624b61c3ee1a5d49bf4ee601",
+      "V2_order_stream_sha256": "5c5a33e5fd6ba29f4364e9ae3228c9e757a92e87e6df60d7ea97a44c51250da5",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19POLSCH",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9f356626232fe852e16cc4d1a36f9a9590fabe0e0baca820d3144426e7d873ea",
+      "V2_order_stream_sha256": "141164ff728b8f1db41508e6b5646e07f6c2f9c001a3d72258e9bb2ad4fc4b22",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19POUJAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "40725047884abbad7dc8faea34b579f492c62dbac44f6d6f5a802f5375b49237",
+      "V2_order_stream_sha256": "9f1f07256a226dbf175233c432a6a4b193ba7e961ca4a8bb304d973badb3116c",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VANRAD",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "8b33fc39b858023f472269e5ee86a372ea0448edc5c2e0ad9fdbc40093c86c50",
+      "V2_order_stream_sha256": "0c032bc30d9646b522b4d9f7c252c0cd68a434732cd468b952fef9f0fc66ee6a",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "1a91ca8a0a4c2be8b98b7dc8cc98516fb897be2495e1ee564bbc3de44145eb17",
+      "V2_order_stream_sha256": "51f06be0440038c6df5d0a8009c43a42e5eafae46be9f6bb44d982c66a556507",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20JOHAGU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "af55a5946eddfc8dae72c01aa1717a0d424626142a84d475b1c80098ad77616f",
+      "V2_order_stream_sha256": "5cf5409c6aec3a271cfeb424b233a91af11a772f481be61c409ed332765fd49e",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "7bb0dc2d58408c375bd69fb15ec42f1627a0b7608d10a1f48d9abad207603626",
+      "V2_order_stream_sha256": "b625055419f2104e87089bff68ecdbc9744908b09ad879e48e5e2b6069d1411f",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3f33af4379f05dd36e933fcaaeb8a88cfced9bcf1dd4a1cc65335d46dacb7dba",
+      "V2_order_stream_sha256": "dc8d013735f83e6095d2df7c328a801c1150983494e54717baeda037291b8421",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL12BUEMAR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "ece58fdd6c04c2233e759970925cdb130c8be3c9099f9b5780fd93f40eb54dd3",
+      "V2_order_stream_sha256": "0d75c923c9adaa1418cb418563488eacaed4e707cb486f34e33f93981b5980c1",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL12JACTRU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "949e606a54a62202e6175e263989a3695343e7302a8e581504901a17da07a8fc",
+      "V2_order_stream_sha256": "747343b294eff0c538b16c39273b3d9362d3726b272e5ee45285bb509880754b",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL12PASKAS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "7aefbd4ebdfeeaae566095bd96e23385de7d55a1c26852fdc98ebe2d5609614d",
+      "V2_order_stream_sha256": "0097890efb2093af91f67f982c4daa7306a3138f299c62a3c06a6a054b6cfc75",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL13FAUDAM",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "0dc6c49758e23160e15353e6d3d407dff9a58ea4830f0c12885d952bf42d5506",
+      "V2_order_stream_sha256": "9792cb9734130f177b0f0c3a3cc73f4f2548c4c8c76aee9b723b72efb5353dc7",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL14CINHAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "cd19657eb3415d99c393b91289bc56c29e35ab5b8e340b7d7f9c4d7257521340",
+      "V2_order_stream_sha256": "b212ebd772a5505c0804772519d33956988febfad547e321a3fa5dc65a0a876d",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL14DIAMID",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "784d15d5fd8113a17b96ed9152276bad1346a7c4697842315f695b4310ba5304",
+      "V2_order_stream_sha256": "d8612dc2841c59924a16a6c948f4c962bdbb8f0b997ac0966a68f82173a67f97",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL18BUTTAB",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b2798a85277ee4c871dc0fc78838255409e29ce60a0012fada437b59e84545ef",
+      "V2_order_stream_sha256": "6b13cd8f82d009f54e09b8954991406d520a5fe53efb74eb29e68c81328a43bb",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL18CINMIC",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "4d1e2c2fab0a2a369c2fa9ab59171d51144d87449d07bcab02150a87565ff987",
+      "V2_order_stream_sha256": "9310f96030cf42ac370603088992a51a4e219f7aa0d8d02e2aa1827f17b23ee5",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL18DELRIB",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "fbd38aed5c606c6e1b30c22693af403280013499a1f4c4ed72f2db14e41fd484",
+      "V2_order_stream_sha256": "140f0115dfb3f5d23f7fc40ecb34bd504660093d190c1aceeba8d3218a1c5206",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL18DOMSKA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "abef337d245c21c34e70ceba74d1dcc0ea970a136671b99f65e8f0716f47fb14",
+      "V2_order_stream_sha256": "388f3a2e0cd97d1291ee2f002aa8acee6b896fa0fa7830a9f8e659f42d7d96e8",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL19JACDAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "7a2768f0be5c74e6a5f7970f86366059382a2998008844011ff5411a0922baed",
+      "V2_order_stream_sha256": "ee5f8a924d48b9dc3ca8113f817d4fcd7464c495eba2f331459524c6ae49be6f",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ARIZHA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9e7362253efed27b8e2f0ebb1d66cb8d810deac963756f396375424f1f55fa29",
+      "V2_order_stream_sha256": "b59fdb176fdbeb95c5a604c9c6c2ce784088204a58ebd3d33bc8a4819af6ae5d",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BOSKOV",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "ed1f2656f8247678def9104490859380c5923ecfdd685e376b4631054ebb6e68",
+      "V2_order_stream_sha256": "cb00b92c95fe78027fc18df88c9d8fcd71efa1e8d825ca40b86fc2e31ad235f0",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12FEICHE",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9f601510456db2e4ab148cf8ba16a4394ffa2487a127bed536a8b69aeb648b8a",
+      "V2_order_stream_sha256": "0fa7d15a0902be09f0dcb06b30038f8691757fe09975f6259fc65a079dc9a3e0",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "ae953572ea27de1e40fb933152569423f7ea94f384467f0a64c931bfc8d79006",
+      "V2_order_stream_sha256": "8d2b8b2bbebf8df773548a0eec5c124c6678165aff7164e4f9f5a5270895c14a",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12MAZGAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "782c96af10e13cc7bbccdba01bd45191340fb6ee0f7b2555646bd8d60a28b29d",
+      "V2_order_stream_sha256": "80fcfd5c0f32ea35976bb58b3f7683ed8473d2c57776fcf1ecd19fdd9c9c8bd9",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "d5c929ccce7d2a3e174bfff9ae2c79ab7568f315d94ce82e0c904bf63ebad48e",
+      "V2_order_stream_sha256": "cc2d7420f4353ba5faab5c2409b68c70062a2a931687b67d57a7d56ba95ca7d5",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12PANYOR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "a92e3f74aff66e8bd8a6f86c636bd18a9e4bbd4ac69cbe63191a3e2057ef2e85",
+      "V2_order_stream_sha256": "5ba8533159bd9a205d1aa45044fa47cd133ea69acb78af19108068d3a66d9f31",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ROUJAK",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "d77c6c6235680d2df16852de75f8c89cb0dd1a7d043f81752d7a1b784ec3d254",
+      "V2_order_stream_sha256": "a69601fe9de43f5546cc06395cd563bb5bb7edaa6de43a8fb9da5394abf1f88b",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SHEVAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e895f66d583cde30a903785986f137412b743bcecc77cf2a1d5a450f2272b45b",
+      "V2_order_stream_sha256": "71fdfb1899dc22eedc62ecdd587cec1efeee9c7c407ec714e5059683e213de13",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SHITUR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "43360041c0ff8ba93db70819b643509312f985e856d4677e99844c8d83a9b434",
+      "V2_order_stream_sha256": "8336d3e4a241d6f465681b32041ab1d993988b20616a8e61f4d871667b950553",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "28e0ade63d071f82ff6d89a2d8f35f91cdb543f5997c3fdd3c78d10d742ecf00",
+      "V2_order_stream_sha256": "78b324ec83eb7a8f0fc027403d226917aa359605f386eadf6f9d2c0446762bd8",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13GJOCHI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "db91fdf2c33d7b93d4b61c90af8b98e64bdd4fb869de019e3ba777310c03ac87",
+      "V2_order_stream_sha256": "c9f7bba05b6206b9a41b008d3d585f2f87b63f4fb8d872ad624fdeb4128bdab9",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13JONSPI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b2283d680fb21260a8a5ecf20266bd3570edde4cee26a50baf99f554d7672ef2",
+      "V2_order_stream_sha256": "0a1a82a347fe7c9556f6ef37425a3f14b0bbb9cdc21068c1cb51c3be0ff75558",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KABPER",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "7e2ee8f46d157b910b134e5bcbf07526346215a4173be9a6ba2e02282c387922",
+      "V2_order_stream_sha256": "c75b5fe1b067dcaf7fed47800f94aa74b63c728a76e3de85a56bef2aec4d650d",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KHOZHA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "04ca4c9672712dc711397af8378565d918840aeae61fa6294cb671ae1cb69b5d",
+      "V2_order_stream_sha256": "455b461cc28c94f8ed5f6c6e955891f2d45eb1797e2bff06f1a54149bbf6c683",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KOTURG",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "5b96b263c350a8baa82befae3905fa79e684bf886756bdffea0682a753bc753f",
+      "V2_order_stream_sha256": "878c9c640bf2db0f5fbedd1b271062167807a2abe4b70fc785cc8787395315fc",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13LANMAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "838387909706d28241e43b58ba09b44b289422382367a48e48db2420fb4b4dc6",
+      "V2_order_stream_sha256": "0c007c13c71138e309fc842b26332a539d7c427c78fc17cefd2662bdc440738e",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "dd618109ecde8e76f309c76c39f65f80e2058d7b3f05819cef5382dd9db5888e",
+      "V2_order_stream_sha256": "e5a8616d6abbe0c1f7b6a0d3d5eb23b80918536962d07d0412975dd808e5cbc2",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PAPAND",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "8adf9f6de7feb5cef4539c320cb1c6ee2c04b14fba2d630ff9cdf7d224de6deb",
+      "V2_order_stream_sha256": "0710932042b2625cbec049fc222032b91ed8828de70ce5f5b67194fb1dccf644",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RADREN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "ec612909b7f63047f1c681cf9ec209c6dbfd8a9aa8acb32be0caa607af12383e",
+      "V2_order_stream_sha256": "e0c3211b9c1bdd10e8c4c0389b5fdc0510ef83d221164af7b76f98dae7196616",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RISPOH",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e1bbc551c074a0e36527dfbcaab4aec0f6e8f96e87f4ccdbdba6c26a1d892859",
+      "V2_order_stream_sha256": "9bb90cbbfda40ce9b5e186c04752430554df37a3736fce7868febba95a1074f9",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SAINUG",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b4643a31371dd415f4f392d3700ad22e59d3805a0c30082917832a8556172ce6",
+      "V2_order_stream_sha256": "be0002795b52894e34aba5282a9099a4b6e9dcebf39acef24e1b1d1a35d6a5b4",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SHIHUA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "2a18f26b829ac666f889e5c1f4ececbe0bf84abbd4844fe5c0046cae45c52f7e",
+      "V2_order_stream_sha256": "1aaf9016f9a7e562de1f040463ed2a6ff6c9559b8e3639c633c4a2d5a5272164",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13TIKBEN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "6e79c703082f0009b5058c7678011bd219bba3cb06d3fcb4bdd773b399433037",
+      "V2_order_stream_sha256": "57993e598078c705f3cc69a797329ec529566c881a8527127de042bd3af72626",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13VANLEE",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3592cc135ba049272d40df5883d0f9a60145077c8d47db1ec44e06a32e3dc3d6",
+      "V2_order_stream_sha256": "91e94151cfafe0c2776a51476ecf9d3d9fdde2699e6fa9bc7412dd59f9af8c58",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "83f378eecfc0acf50ebf0e37b8b87a90846d93c523d1bdb572c60d6fdf3fae68",
+      "V2_order_stream_sha256": "cbd5802b77ff9de7b717c6ed8c37dd530b7a2e93c18fa576a4eeed5276f4ed4a",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14DILFAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9bf7ea4e756185c7537d34340a843886f52a2882833e24404ecae2be2e510a5d",
+      "V2_order_stream_sha256": "618fe3435732db03961be5e1aa72c3a3ce2760a47d217500f419921c9c9c0acf",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FALYUA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e0674de87d591996059fcb75427d2b7015d4f7a09adf00229c6eb8864b52b320",
+      "V2_order_stream_sha256": "293a058739624d1f6fb18c848dfd68db008f567b6138ba40ad3477d5e63b0504",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b89d1e152a7f7931303ced01ba73b46dfec3e5a29432b99a04f994572d238d55",
+      "V2_order_stream_sha256": "6da380f47dc471d6c546a232aabea353d6aa8d37bfd6e41907dbe28f377d4c7b",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14KOVBAS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b78a8341319dfeb39af2a4b95bef44aca50ce9120b054d1b84ea01bf0e22a7b3",
+      "V2_order_stream_sha256": "a756965b2cdb5e15556c4ddfcf450817f27c3a82239ae2b4a9f9871732551146",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14TANHAV",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "535366b4bedf0b8667724cb761ad361e1fa4e0fe7a65112cb29e0c16127ec45d",
+      "V2_order_stream_sha256": "68d93c47bd533e1a50d98514bb8ec931ac7601b2e493cac220c32aff36c83755",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14ZAKTKA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "3ec6cf62183ce747c19fbc8f11e560ec9aa263342cd20aa4154500b60f5d1d35",
+      "V2_order_stream_sha256": "5914158cb081d89ff46e10e27c3f3e8a6cee8697111ac04558620463905539e0",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15ERJBAR",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "18a581b110a0cbaddd1abc679c6a061f169c90b6537222c43d43d1ba81dd212c",
+      "V2_order_stream_sha256": "64780eee50d801e01970090c801dcca5e97b4553ddd2e46ff9d0ff0bc07efe44",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "47376fe352c61dd6316df66dad0ecc84e8307caa25f20f11b746f3516b0c4e86",
+      "V2_order_stream_sha256": "c80ba80956a00aed68bc52b9c5197650569aee4ccf6fb74ac78e12336205b35c",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15RADCHI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b91f0fd35081368b8427c82aefaefa422eb09cd44a3a9db4be766e50c345e662",
+      "V2_order_stream_sha256": "c5ae3eaa0d4c0135e6c58a87e8965f33748d5c98d7580539eb37b0e44aa5c9f6",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15TANGAS",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "f5734e78ae292980080bf1af9a3715909f58cfb81e731e83bb2eac3dc2b5c2d4",
+      "V2_order_stream_sha256": "4866a153b042a7f0b230e79af39070943f7c31713bc276419dbccb24f9114f6c",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BENKRA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "7793147a33ef122abea5f12a56d2ed54f96b62e862fce79c7f173905d7a04237",
+      "V2_order_stream_sha256": "7d4a33ee0376703c2535d40613807c56bd6f0aa2370a5d62954823b96ddadeef",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZAKSHU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "2feb0df04503d940deef5c343bad79d3a81669687c9eabd4ac925344218f64af",
+      "V2_order_stream_sha256": "a7664f35420d3bdfcb74f58cbd1a614f6fbbe6e890d642ea1ba3228c60efb111",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ERJFEI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9ab91fd41c1edaedd15942f915a1eaede752e43ae66b7abc4af9914c4392c148",
+      "V2_order_stream_sha256": "6eb74ece40cbd398a1e358c26fd62008d91a12cd84c8d868dc9c362fa81e598d",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17VALFAL",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9cef8441a1fa8ccfce8e5e254457bf099d62dc7cce0df6329b97578e96c14e9a",
+      "V2_order_stream_sha256": "119d3c903f2fde3d1deec19a949dd60ce504e1e9aa718b08b19b506a7b237e8f",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18BASKRA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "e6b1f116c542087a9d642b3e702d87ae24ab4a2c7fdc5f3bacf3df74b6375df0",
+      "V2_order_stream_sha256": "dfbca9696260aa067ee7e86da5e55a0a4e2e41912978ea866266503b86cb0336",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18MCASHI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "96bc972bf7ca8a21efa111f77bcade86ef8fe54ef7d703d296a1e9e7382ad34b",
+      "V2_order_stream_sha256": "807b63de740a98b79aff4bd4263843e3ad382e1f380af466b75edd57ddb6a586",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18URGKOT",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "144180fabf67f5d37edbfc23fcc7ab5584a7c4a9542f214d8c164a58b883afde",
+      "V2_order_stream_sha256": "c86c36ece2ae2e23f29898157c0731e3efeb52d93a30230faa8df6a6f75455fc",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19GRAKRA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "615ab28a3c41257385162d87c84fb278cdd55db732c345d464e5c43f899560d4",
+      "V2_order_stream_sha256": "9849d56c7d8def70eb1a7a14b035dc4311a96b2d1f3e69e6f04dc490446032c3",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19SERTOT",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "a7733c033c0d28e37cf3f6238c8ca51e2e0a91a5ae9a3a48d6b07dc163988c16",
+      "V2_order_stream_sha256": "d25d796aa8736bc445784673c84242f65191f042db4fddeec41e7cc51f706605",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL12ITOMAN",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "720f8b688deec6201e6894660af8c00d36a1c37780619d050f566ae49787c1e7",
+      "V2_order_stream_sha256": "3cc4130e41e8b17d9d6e2237aa45476f25509bd3816284eecce281b8b41bbc04",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL12WERAMA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "d435e312ef32856bb7ad2aae1411038a1622694b2d260b305b1d7b3239d193fb",
+      "V2_order_stream_sha256": "c284ef378f94ce9aceb7ff9d1ee092728d4744e05c556effd7dd7fb2684884aa",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL13LIUIPE",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "d3a7aa089075e5a05ce53573810e5ed22fcff46779c0863dbdf75ad1f6346900",
+      "V2_order_stream_sha256": "58e1dd7380a4e472d0f995d8279eb791265135e93cdcc6f70223e6d91c809dc4",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL18COSHIB",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "ee39268aa96bb20736ce4e03ff4fd7395cec743162fef4470f7c9dfbc46d4678",
+      "V2_order_stream_sha256": "a8b36d3c337942911c64f24b0c6e159e85fd5c84b9144cb6fa0dfd5a32ef78ef",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL18MICFRU",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b8065651e5d8235bdd10e04add026132e4f818dd1ef616218642bd407bc0309f",
+      "V2_order_stream_sha256": "936483615ab5be16e9b45ab2f55727d8ea7c849ac219705abb4bfcd9013caa4b",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL19JAKAVA",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "9dce1c83df3c50f1214c40dd3d3da13d331060a1fe22d2675613922f3ef885be",
+      "V2_order_stream_sha256": "15e3c9271b5b6e71a6b6046dc6df298b89993829346889acd77b8a8337298895",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL19MONPIE",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "b599a0b8fdac069b582dd3fae915ae014c25143f7639acb7b84a2188e9b0ed68",
+      "V2_order_stream_sha256": "2d79100c323b6f3b02e8e7a4004fd018c235de93d18188694609a2584a27d27a",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL19PODSAI",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "bd4cac0fd738a3bc79ff1c31ca746747fd564a3d739dfb7c57ee125a7e5c8b23",
+      "V2_order_stream_sha256": "54c84df44b95fc8d65cdba08e1dae9ea63fb8f08e42f5edd07384fcdc6b735ad",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL19RUSKAZ",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "6564bf4972621e7400c77b3145924da9643d0248cd8513c4676b9f92ca5f35e7",
+      "V2_order_stream_sha256": "3acc11eea65ee33aa8f2bb746d96c86fc46863a0165175f393a9272f3a406f31",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL20OKTDOD",
+      "order_decision_semantics_identical": false
+    },
+    {
+      "V1_order_stream_sha256": "57a8d76209e9c8f705817a4a8bbdbb0ba4355e355d7eb47c71c145c8361c2d4d",
+      "V2_order_stream_sha256": "b7d3fef06f2f39dcbe27685b63f8b3d8950946526888fb129e5949acb01886a5",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTAMATCH-26JUL20SEISNI",
+      "order_decision_semantics_identical": false
+    }
+  ],
+  "metrics": null,
+  "order_semantics_byte_identical_count": 1300,
+  "order_semantics_changed_count": 308,
+  "schema_version": "window1-range-attack-strict-ask-freeze-v2-semantic-identity-v1",
+  "scored": false,
+  "unaffected_rows_sha256": "409102116dd9b2d5e8a9af38eda533c68d7518ecaa2dae7670a6e00e4b413fa5",
+  "unexpected_unaffected_change_count": 0
+}

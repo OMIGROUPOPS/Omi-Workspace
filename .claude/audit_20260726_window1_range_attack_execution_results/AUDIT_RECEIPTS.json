@@ -1,0 +1,128 @@
+{
+  "audited_results_commit": "53eaf2b5b10b82b86b71b651bb720028a6ee7979",
+  "authorization_commit": "582c062eef1f66c388d235687380b8345832a0e2",
+  "classification_census": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "censored_boundary": 99,
+      "completed_PC": 116,
+      "completed_non_PC": 9,
+      "completed_reference_missing": 7,
+      "naked_single": 237,
+      "no_fill": 336
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "censored_boundary": 99,
+      "completed_PC": 111,
+      "completed_non_PC": 7,
+      "completed_reference_missing": 7,
+      "naked_single": 240,
+      "no_fill": 340
+    }
+  },
+  "diagnostics_not_metric_law": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "PC_over_reference_determinate_completed": 0.928,
+      "max_attainable_PC_over_D_at_observed_C": 0.164179,
+      "official_PC_over_C": 0.878788
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "PC_over_reference_determinate_completed": 0.940678,
+      "max_attainable_PC_over_D_at_observed_C": 0.155473,
+      "official_PC_over_C": 0.888
+    }
+  },
+  "discrepancy_censor_table": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "completed_PC_policy_outcome": 116,
+      "completed_non_PC_policy_outcome": 9,
+      "evidence_censoring_boundary": 99,
+      "instrument_no_fill": 336,
+      "naked_single_failure": 237,
+      "partition_sums_to_D804": true,
+      "reference_ambiguity_completed": 7
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "completed_PC_policy_outcome": 111,
+      "completed_non_PC_policy_outcome": 7,
+      "evidence_censoring_boundary": 99,
+      "instrument_no_fill": 340,
+      "naked_single_failure": 240,
+      "partition_sums_to_D804": true,
+      "reference_ambiguity_completed": 7
+    }
+  },
+  "final_ruling": "PASS (validates only these two frozen candidate results)",
+  "holdout_untouched": true,
+  "independently_recomputed_metric_table": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "C": 132,
+      "IC": 38,
+      "PC": 116,
+      "PC_not_IC": 78,
+      "S": 101,
+      "censored_boundary": 99,
+      "completed_PC": 116,
+      "completed_non_PC": 9,
+      "completed_reference_missing": 7,
+      "naked_single": 237,
+      "no_fill": 336
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "C": 125,
+      "IC": 36,
+      "PC": 111,
+      "PC_not_IC": 75,
+      "S": 96,
+      "censored_boundary": 99,
+      "completed_PC": 111,
+      "completed_non_PC": 7,
+      "completed_reference_missing": 7,
+      "naked_single": 240,
+      "no_fill": 340
+    }
+  },
+  "no_execution_by_audit": true,
+  "package_commit": "e7e7b9071b9238868d0599a2e5f24bb92dcc9bdd",
+  "package_pass_audit": "fa9bab4752041f045d7e7962168b483235a9db8b",
+  "reference_ambiguity": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "ambiguous_events": 58,
+      "ambiguous_legs": 64,
+      "completed_reference_missing_pairs": [
+        "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+        "KXATPCHALLENGERMATCH-26JUL17GALCOP",
+        "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+        "KXATPMATCH-26JUL15COBBUR",
+        "KXATPMATCH-26JUL18PELSIL",
+        "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+        "KXWTAMATCH-26JUL20PRIBRA"
+      ]
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "ambiguous_events": 58,
+      "ambiguous_legs": 64,
+      "completed_reference_missing_pairs": [
+        "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+        "KXATPCHALLENGERMATCH-26JUL17GALCOP",
+        "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+        "KXATPMATCH-26JUL15COBBUR",
+        "KXATPMATCH-26JUL18PELSIL",
+        "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+        "KXWTAMATCH-26JUL20PRIBRA"
+      ]
+    }
+  },
+  "row_difference_receipt": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "committed": 804,
+      "differences": 0,
+      "reproduced": 804
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "committed": 804,
+      "differences": 0,
+      "reproduced": 804
+    }
+  },
+  "schema_version": "w1-range-attack-execution-results-audit-receipt-v1"
+}

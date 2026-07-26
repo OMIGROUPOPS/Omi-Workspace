@@ -1,0 +1,156 @@
+{
+  "candidate_counts": {
+    "w1_range_attack__macro_hold__combined_headroom": 501,
+    "w1_range_attack__macro_micro__combined_headroom": 490
+  },
+  "duplicate_groups": [
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+      "leg_id": "RAD",
+      "raw_guarded_rows": [
+        {
+          "evidence_receipt": "b3563fda-04af-641f-cab6-010e1dce6386",
+          "evidence_timestamp": 1784549772.436682,
+          "order_interval_id": "w1_range_attack__macro_hold__combined_headroom|KXWTACHALLENGERMATCH-26JUL20LANRAD|RAD|0004",
+          "target_price_cents": 81
+        },
+        {
+          "evidence_receipt": "e921fd1b-6daf-4675-49b1-ed4e4b0417d7",
+          "evidence_timestamp": 1784559667.126684,
+          "order_interval_id": "w1_range_attack__macro_hold__combined_headroom|KXWTACHALLENGERMATCH-26JUL20LANRAD|RAD|0005",
+          "target_price_cents": 80
+        }
+      ],
+      "removed_excess_rows": 1,
+      "selected_evidence_receipt": "e921fd1b-6daf-4675-49b1-ed4e4b0417d7",
+      "selected_order_interval_id": "w1_range_attack__macro_hold__combined_headroom|KXWTACHALLENGERMATCH-26JUL20LANRAD|RAD|0005",
+      "selected_target_price_cents": 80,
+      "selection_basis": "POLICY_SELECTED_INTERVAL_AND_EVIDENCE_IDENTITY",
+      "selector_order_stream_sha256": "b93686600c82384789090f49205a70723347492d7991c3d089694815b0f50237",
+      "selector_source_stream": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_04.jsonl.gz"
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "leg_id": "BOH",
+      "raw_guarded_rows": [
+        {
+          "evidence_receipt": "823a7bc8-25ed-58f0-820d-30110244656c",
+          "evidence_timestamp": 1784480369.51114,
+          "order_interval_id": "w1_range_attack__macro_micro__combined_headroom|KXATPCHALLENGERMATCH-26JUL19BOHBOU|BOH|0005",
+          "target_price_cents": 3
+        },
+        {
+          "evidence_receipt": "823a7bc8-25ed-58f0-820d-30110244656c",
+          "evidence_timestamp": 1784480369.51114,
+          "order_interval_id": "w1_range_attack__macro_micro__combined_headroom|KXATPCHALLENGERMATCH-26JUL19BOHBOU|BOH|0006",
+          "target_price_cents": 2
+        },
+        {
+          "evidence_receipt": "823a7bc8-25ed-58f0-820d-30110244656c",
+          "evidence_timestamp": 1784480369.51114,
+          "order_interval_id": "w1_range_attack__macro_micro__combined_headroom|KXATPCHALLENGERMATCH-26JUL19BOHBOU|BOH|0007",
+          "target_price_cents": 3
+        }
+      ],
+      "removed_excess_rows": 2,
+      "selected_evidence_receipt": "823a7bc8-25ed-58f0-820d-30110244656c",
+      "selected_order_interval_id": "w1_range_attack__macro_micro__combined_headroom|KXATPCHALLENGERMATCH-26JUL19BOHBOU|BOH|0007",
+      "selected_target_price_cents": 3,
+      "selection_basis": "POLICY_SELECTED_INTERVAL_AND_EVIDENCE_IDENTITY",
+      "selector_order_stream_sha256": "dcb763702175a5e510f367ecea9f44b91415d2b03cad4751cda4f33c387f5104",
+      "selector_source_stream": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_02.jsonl.gz"
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+      "leg_id": "RAD",
+      "raw_guarded_rows": [
+        {
+          "evidence_receipt": "b3563fda-04af-641f-cab6-010e1dce6386",
+          "evidence_timestamp": 1784549772.436682,
+          "order_interval_id": "w1_range_attack__macro_micro__combined_headroom|KXWTACHALLENGERMATCH-26JUL20LANRAD|RAD|0004",
+          "target_price_cents": 81
+        },
+        {
+          "evidence_receipt": "e921fd1b-6daf-4675-49b1-ed4e4b0417d7",
+          "evidence_timestamp": 1784559667.126684,
+          "order_interval_id": "w1_range_attack__macro_micro__combined_headroom|KXWTACHALLENGERMATCH-26JUL20LANRAD|RAD|0005",
+          "target_price_cents": 80
+        }
+      ],
+      "removed_excess_rows": 1,
+      "selected_evidence_receipt": "e921fd1b-6daf-4675-49b1-ed4e4b0417d7",
+      "selected_order_interval_id": "w1_range_attack__macro_micro__combined_headroom|KXWTACHALLENGERMATCH-26JUL20LANRAD|RAD|0005",
+      "selected_target_price_cents": 80,
+      "selection_basis": "POLICY_SELECTED_INTERVAL_AND_EVIDENCE_IDENTITY",
+      "selector_order_stream_sha256": "08da6e688ad8b819dedd619b683dc253e20b98e7abb7e142f4412d0a59e5825a",
+      "selector_source_stream": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_04.jsonl.gz"
+    }
+  ],
+  "evidence_type_counts": {
+    "PRICE_REACHED": 965,
+    "STRICT_ASK_CERTAIN_FILL": 26
+  },
+  "frozen_unique_ledger_rows": 991,
+  "maximum_rows_per_candidate_event_leg": 1,
+  "metrics": null,
+  "quantity_price_timestamp_boundary_and_evidence_authority": "guarded receipt only",
+  "raw_candidate_event_leg_keys": 991,
+  "raw_guarded_fillable_rows": 995,
+  "removed_excess_interval_rows": 4,
+  "runtime_reads_raw_interval_fillability_receipts": false,
+  "runtime_reads_raw_policy_streams": false,
+  "schema_version": "window1-range-attack-unique-fill-derivation-v2",
+  "scored": false,
+  "selector_authority": "interval and evidence identity only during package construction",
+  "singleton_terminal_selector_supersessions": [
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+      "guarded_evidence_receipt": "fd848d95-4bdf-76c9-a9ee-b4d86caed989",
+      "guarded_interval_id": "w1_range_attack__macro_hold__combined_headroom|KXATPCHALLENGERMATCH-26JUL16CAMBOO|CAM|0007",
+      "leg_id": "CAM",
+      "terminal_policy_evidence_receipt": "e3486fff-1fbf-5381-0354-e250f5822061",
+      "terminal_policy_interval_id": "w1_range_attack__macro_hold__combined_headroom|KXATPCHALLENGERMATCH-26JUL16CAMBOO|CAM|0007",
+      "treatment": "singleton guarded receipt is already unique; later non-guarded policy supersession is not a runtime scoring source"
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL13PASKRU",
+      "guarded_evidence_receipt": "6e15aaea-925c-4c86-2cea-1ae13044c4db",
+      "guarded_interval_id": "w1_range_attack__macro_hold__combined_headroom|KXATPMATCH-26JUL13PASKRU|KRU|0002",
+      "leg_id": "KRU",
+      "terminal_policy_evidence_receipt": "12795e36-9052-5b4f-f7ca-870150884f82",
+      "terminal_policy_interval_id": "w1_range_attack__macro_hold__combined_headroom|KXATPMATCH-26JUL13PASKRU|KRU|0016",
+      "treatment": "singleton guarded receipt is already unique; later non-guarded policy supersession is not a runtime scoring source"
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+      "guarded_evidence_receipt": "b2001b4e-a395-55cc-48e7-89f6fb7f7fe3",
+      "guarded_interval_id": "w1_range_attack__macro_micro__combined_headroom|KXATPCHALLENGERMATCH-26JUL12FEAWAL|FEA|0057",
+      "leg_id": "FEA",
+      "terminal_policy_evidence_receipt": "0db4e507-d86c-4509-89cd-de444070558b",
+      "terminal_policy_interval_id": "w1_range_attack__macro_micro__combined_headroom|KXATPCHALLENGERMATCH-26JUL12FEAWAL|FEA|0102",
+      "treatment": "singleton guarded receipt is already unique; later non-guarded policy supersession is not a runtime scoring source"
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "event_id": "KXATPMATCH-26JUL13PASKRU",
+      "guarded_evidence_receipt": "6e15aaea-925c-4c86-2cea-1ae13044c4db",
+      "guarded_interval_id": "w1_range_attack__macro_micro__combined_headroom|KXATPMATCH-26JUL13PASKRU|KRU|0002",
+      "leg_id": "KRU",
+      "terminal_policy_evidence_receipt": "12795e36-9052-5b4f-f7ca-870150884f82",
+      "terminal_policy_interval_id": "w1_range_attack__macro_micro__combined_headroom|KXATPMATCH-26JUL13PASKRU|KRU|0016",
+      "treatment": "singleton guarded receipt is already unique; later non-guarded policy supersession is not a runtime scoring source"
+    }
+  ],
+  "unique_ledger": {
+    "bytes": 613036,
+    "git_blob_oid": "25937093be7c657c600b8e70b2b70dd3e0968cf9",
+    "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/UNIQUE_GUARDED_FILL_LEDGER.jsonl.gz",
+    "sha256": "2cc098d3212c8670ad70d2555b2868fcb5fb9a090b1db3b3d04d9af03597a8b8"
+  }
+}

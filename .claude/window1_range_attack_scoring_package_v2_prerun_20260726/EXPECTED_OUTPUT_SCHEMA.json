@@ -1,0 +1,15 @@
+{
+  "candidate_event_rows": 1608,
+  "candidate_order": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "ranking_or_selection_allowed": false,
+  "reference_fields_added": [
+    "reference_supporting_receipts",
+    "reference_latest_timestamp_tie_count",
+    "reference_latest_timestamp_distinct_prices",
+    "reference_authoritative_sequence_available"
+  ],
+  "schema_version": "window1-range-attack-expected-output-schema-v2"
+}

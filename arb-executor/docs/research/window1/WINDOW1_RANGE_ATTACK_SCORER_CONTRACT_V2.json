@@ -1,0 +1,83 @@
+{
+  "schema_version": "window1-range-attack-scorer-contract-v2",
+  "implementation_parent": "f774d9060acc70efd4a80d48bfa7d4c6b1b9daf1",
+  "controlling_audit": "3811a772aea381767a763af90320a1af91475816",
+  "strict_ask_instrument": "d413f23125d5931a56077c70f475d8815ffe36c0",
+  "candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "D": 804,
+  "target_PC": 603,
+  "lot_per_leg": 5,
+  "fee_cents": 0,
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "sealed_holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "definitions": {
+    "C": "both event legs have one lawful unique guarded FILLABLE_AT_X receipt, exactly five accounting contracts per leg, inside guarded Window 1",
+    "PC": "C and the sum of both fill-price-minus-Window-1-close deltas is strictly below zero",
+    "S": "C and combined entry cost is strictly below 100 cents",
+    "IC": "C and each of the two individual deltas is strictly below zero"
+  },
+  "numeric_contract": {
+    "booleans_as_numbers": "rejected",
+    "nonfinite_numbers": "rejected",
+    "fractional_contract_quantity": "rejected",
+    "credited_quantity": 5,
+    "contract_prices": "exact integer cents in 1..99",
+    "positive_print_size": "may be fractional",
+    "numeric_truncation": "forbidden"
+  },
+  "sole_runtime_fill_source": {
+    "role": "UNIQUE_GUARDED_FILL_LEDGER_V2",
+    "construction_source": "guarded V2 PRICE_FILLABILITY_RECEIPTS plus policy-selected interval/evidence identity only",
+    "row_count": 991,
+    "candidate_counts": {
+      "w1_range_attack__macro_hold__combined_headroom": 501,
+      "w1_range_attack__macro_micro__combined_headroom": 490
+    },
+    "evidence_counts": {
+      "PRICE_REACHED": 965,
+      "STRICT_ASK_CERTAIN_FILL": 26
+    },
+    "runtime_raw_policy_stream_access": false,
+    "runtime_raw_fillability_receipt_access": false,
+    "duplicate_leg_credit": "hard fail"
+  },
+  "reference_law": {
+    "source": "guarded-cache-v3 true-print streams",
+    "selection": "latest positive-size exchange-identified deduplicated true-print timestamp at or before V5 guarded cutoff and at or after T-8h",
+    "same_latest_timestamp_same_price": "available at shared price; retain every supporting receipt",
+    "same_latest_timestamp_differing_prices": "unavailable: ambiguous_latest_timestamp_multiple_prices_no_authoritative_sequence",
+    "receipt_uuid_ordering": "forbidden",
+    "price_or_volume_tie_breaking": "forbidden",
+    "missing_reference": "C and S remain fill facts; PC and IC cannot succeed"
+  },
+  "authorization_law": {
+    "audit_report_binds": [
+      "exact package commit",
+      "execution ID",
+      "input-bundle SHA-256",
+      "frozen command template"
+    ],
+    "authorization_commit": "supplied separately and report read from that exact commit",
+    "audit_commit_self_reference": "not required"
+  },
+  "selection_or_ranking_allowed": false,
+  "pre_run_metrics": null,
+  "pre_run_scored": false
+}

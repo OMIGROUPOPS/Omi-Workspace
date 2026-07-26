@@ -1,0 +1,56 @@
+{
+  "authoritative_ordering_result": "NOT_AVAILABLE",
+  "metrics": null,
+  "normalization_path": {
+    "cache_materializer": {
+      "git_blob_oid": "63dfeaffedf51800da8d8b3087dcf716b519d346",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 11303,
+      "path": "arb-executor/analysis/window1_guarded_cache_materializer.py",
+      "sha256": "b949201bc7ca32f0143b4e8518c0696a1260383b19417e433099f05e19a76fad"
+    },
+    "exporter": {
+      "git_blob_oid": "e909e3c1d254909d514d74f4edb1155429522a82",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 21789,
+      "path": "arb-executor/analysis/window1_public_tape_export.py",
+      "sha256": "b6e837cf234c8810788ffe633f2de59fd14bd29b858b8140cb095fe5dbbbcc3c"
+    },
+    "finding": "exported rows bind created_time and trade_id but no authoritative exchange sequence; cache materialization orders equal timestamps by trade_id, which is not lawful reference precedence",
+    "normalized_source_row_ordinal_is_authoritative": false,
+    "receipt_uuid_ordering_allowed": false
+  },
+  "normalized_source": {
+    "authoritative_sequence_fields_observed": [],
+    "bytes": 1766090446,
+    "canonical_rows": 4836462,
+    "exchange_clock": "created_time",
+    "fields_observed_on_tie_rows": [
+      "exchange_ts",
+      "is_block_trade",
+      "price_cents",
+      "receipt_id",
+      "size",
+      "source",
+      "taker_book_side",
+      "taker_outcome_side",
+      "taker_side",
+      "ticker",
+      "trade_id",
+      "true_print"
+    ],
+    "identity": "trade_id",
+    "manifest_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+    "path": "../OMI-Window1-private/fit-local/prints.jsonl",
+    "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+  },
+  "raw_source": {
+    "endpoint": "https://api.elections.kalshi.com/trade-api/v2/markets/trades",
+    "exchange_sequence_bound": false,
+    "raw_hash_set_sha256": "98513f1ab93baffd4037b0723ff8271915ff4c2d46116e5f9de031fa19a00a1a",
+    "raw_ticker_file_count": 1608
+  },
+  "schema_version": "window1-range-attack-reference-source-trace-v2",
+  "scored": false,
+  "tie_receipts_traced": 914
+}

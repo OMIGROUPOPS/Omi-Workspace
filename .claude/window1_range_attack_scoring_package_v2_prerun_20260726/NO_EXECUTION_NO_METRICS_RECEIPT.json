@@ -1,0 +1,14 @@
+{
+  "C": null,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "execution_id": "w1-range-attack-v2-dev-20260712-20260720-grid2-scorepkg-v2",
+  "holdout_access": false,
+  "live_or_production_access": false,
+  "performance": null,
+  "ranking_or_selection": null,
+  "real_population_scorer_invocations": 0,
+  "results_directory_exists": false,
+  "schema_version": "window1-range-attack-no-execution-v2"
+}

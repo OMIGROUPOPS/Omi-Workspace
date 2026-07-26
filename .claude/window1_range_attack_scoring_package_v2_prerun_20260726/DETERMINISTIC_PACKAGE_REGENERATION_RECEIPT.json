@@ -1,0 +1,16 @@
+{
+  "LF_CRLF_byte_identical": true,
+  "builds_compared": 2,
+  "fresh_output_directories": true,
+  "gate_pass": true,
+  "implementation_parent": "f774d9060acc70efd4a80d48bfa7d4c6b1b9daf1",
+  "performance_metrics": {
+    "C": null,
+    "IC": null,
+    "PC": null,
+    "S": null
+  },
+  "real_population_scorer_invocations": 0,
+  "results_directories_created": 0,
+  "schema_version": "window1-range-attack-deterministic-package-regeneration-v2"
+}

@@ -1,0 +1,107 @@
+{
+  "artifact_count": 14,
+  "artifacts": [
+    {
+      "git_blob_oid": "30eb9761c19d1556f6b2e0804b8e806b33b1f7d0",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 443,
+      "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/DETERMINISTIC_PACKAGE_REGENERATION_RECEIPT.json",
+      "sha256": "8a07b645ed97a3ae9e78c6c76376c0cb9e3573c99c8d18718f2136c84b51f2e4"
+    },
+    {
+      "git_blob_oid": "f3e6595dd20c886c202c5b6dffa048513204b608",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 1076,
+      "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/EXECUTION_AUTHORIZATION_GATE.json",
+      "sha256": "4b262c9de8b863a1ba03c0f874a3781a10b2d63895de4826802bd13c3fd8bbb1"
+    },
+    {
+      "git_blob_oid": "ab6706414e05cac9f6e1b0ddc55fd20ff8dadc16",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 497,
+      "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/EXPECTED_OUTPUT_SCHEMA.json",
+      "sha256": "71f15b2e6431b5a464f8310ddfbb725667c8791648dd7da1acc1983472516336"
+    },
+    {
+      "git_blob_oid": "ffb9158d18b51b551c7106f88bc153e40791560e",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 332033,
+      "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/FROZEN_EVENT_LEG_IDENTITIES.json",
+      "sha256": "a7910de424ab63420d658dc6cc9986069b661b2a75a25bf593b0ca2dd8dd336f"
+    },
+    {
+      "git_blob_oid": "c6b60b3d62bd370899091af881f8d36d8bac174e",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 286205,
+      "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/GUARDED_CACHE_V3_HASH_SET.json",
+      "sha256": "da7e1dc63b72d81d8b497663fd0857cca2cd4340d46f72867cf7281ef447cc69"
+    },
+    {
+      "git_blob_oid": "3fda8c2e89a4740c9396374257fd659d0cd6689c",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 2459,
+      "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/NEWLINE_PORTABILITY_RECEIPT.json",
+      "sha256": "495bc50679f4690b57c907f18e8226e618f3cf0888bd482d4b7de25ca66423d0"
+    },
+    {
+      "git_blob_oid": "9e784df57d4ed92b09aa3a566e5e669b5b644a64",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 397,
+      "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/NO_EXECUTION_NO_METRICS_RECEIPT.json",
+      "sha256": "675e8e7b810bb85e007e0e64adae01cc863fdf9e4429ad19d9e8d556a481f100"
+    },
+    {
+      "git_blob_oid": "54cf78117357f6b15094f478b8d0fee3126a2ac4",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 1412,
+      "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/PRE_RUN_REPORT.md",
+      "sha256": "dc17c0fa8fe09677223cae5d45058fe58d221764146e8beeae7fd930109303f1"
+    },
+    {
+      "git_blob_oid": "044c4f497df45d543bb2b6bd552960d6212f6a33",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 386225,
+      "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/REFERENCE_LATEST_TIMESTAMP_TIE_CENSUS.json",
+      "sha256": "235987ab05bcad5325c0fdd917eeb3c0fb918ea4b18ad506aa2e627a664d0c2b"
+    },
+    {
+      "git_blob_oid": "253f777d730515f5de0a918476109bb103e47bd9",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 2170,
+      "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/REFERENCE_SOURCE_ORDER_TRACE.json",
+      "sha256": "43dda2322999862971f57a5ad34c7b5319d0188badc54626a7141783ca1a65d8"
+    },
+    {
+      "git_blob_oid": "7c40f1575bc35a11acc5e0d8fa086b8b49c7f4f7",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 14653,
+      "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/SCORING_INPUT_MANIFEST.json",
+      "sha256": "ca4f2acaf1ef0f29c323362e4e7837f63b7a385afcd449cd46244de164dfe0dc"
+    },
+    {
+      "git_blob_oid": "aba30b127e1e8017ee419847764d25b4ce776262",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 12152,
+      "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/SOURCE_HASH_MANIFEST.json",
+      "sha256": "a6c7ada5492bfd3a3c42b5029073378f68a35a6ea240b3c3203051d10ff91832"
+    },
+    {
+      "git_blob_oid": "8c97eaccd67a80f9b0626d45c1a5ce31b18aaeaf",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 8507,
+      "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/UNIQUE_GUARDED_FILL_DERIVATION_RECEIPT.json",
+      "sha256": "378dfa789d189f354334d2639ec0ae49f9a5ca692a44e640678177321b99877f"
+    },
+    {
+      "git_blob_oid": "25937093be7c657c600b8e70b2b70dd3e0968cf9",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 613036,
+      "path": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/UNIQUE_GUARDED_FILL_LEDGER.jsonl.gz",
+      "sha256": "2cc098d3212c8670ad70d2555b2868fcb5fb9a090b1db3b3d04d9af03597a8b8"
+    }
+  ],
+  "implementation_parent": "f774d9060acc70efd4a80d48bfa7d4c6b1b9daf1",
+  "metrics": null,
+  "schema_version": "window1-range-attack-package-artifacts-v2",
+  "scored": false
+}

@@ -1,0 +1,77 @@
+{
+  "artifact_count_before_freeze_receipts": 12,
+  "artifact_inventories_byte_identical": true,
+  "artifact_inventory": [
+    {
+      "bytes": 1076,
+      "name": "EXECUTION_AUTHORIZATION_GATE.json",
+      "sha256": "4b262c9de8b863a1ba03c0f874a3781a10b2d63895de4826802bd13c3fd8bbb1"
+    },
+    {
+      "bytes": 497,
+      "name": "EXPECTED_OUTPUT_SCHEMA.json",
+      "sha256": "71f15b2e6431b5a464f8310ddfbb725667c8791648dd7da1acc1983472516336"
+    },
+    {
+      "bytes": 332033,
+      "name": "FROZEN_EVENT_LEG_IDENTITIES.json",
+      "sha256": "a7910de424ab63420d658dc6cc9986069b661b2a75a25bf593b0ca2dd8dd336f"
+    },
+    {
+      "bytes": 286205,
+      "name": "GUARDED_CACHE_V3_HASH_SET.json",
+      "sha256": "da7e1dc63b72d81d8b497663fd0857cca2cd4340d46f72867cf7281ef447cc69"
+    },
+    {
+      "bytes": 397,
+      "name": "NO_EXECUTION_NO_METRICS_RECEIPT.json",
+      "sha256": "675e8e7b810bb85e007e0e64adae01cc863fdf9e4429ad19d9e8d556a481f100"
+    },
+    {
+      "bytes": 1412,
+      "name": "PRE_RUN_REPORT.md",
+      "sha256": "dc17c0fa8fe09677223cae5d45058fe58d221764146e8beeae7fd930109303f1"
+    },
+    {
+      "bytes": 386225,
+      "name": "REFERENCE_LATEST_TIMESTAMP_TIE_CENSUS.json",
+      "sha256": "235987ab05bcad5325c0fdd917eeb3c0fb918ea4b18ad506aa2e627a664d0c2b"
+    },
+    {
+      "bytes": 2170,
+      "name": "REFERENCE_SOURCE_ORDER_TRACE.json",
+      "sha256": "43dda2322999862971f57a5ad34c7b5319d0188badc54626a7141783ca1a65d8"
+    },
+    {
+      "bytes": 14653,
+      "name": "SCORING_INPUT_MANIFEST.json",
+      "sha256": "ca4f2acaf1ef0f29c323362e4e7837f63b7a385afcd449cd46244de164dfe0dc"
+    },
+    {
+      "bytes": 12152,
+      "name": "SOURCE_HASH_MANIFEST.json",
+      "sha256": "a6c7ada5492bfd3a3c42b5029073378f68a35a6ea240b3c3203051d10ff91832"
+    },
+    {
+      "bytes": 8507,
+      "name": "UNIQUE_GUARDED_FILL_DERIVATION_RECEIPT.json",
+      "sha256": "378dfa789d189f354334d2639ec0ae49f9a5ca692a44e640678177321b99877f"
+    },
+    {
+      "bytes": 613036,
+      "name": "UNIQUE_GUARDED_FILL_LEDGER.jsonl.gz",
+      "sha256": "2cc098d3212c8670ad70d2555b2868fcb5fb9a090b1db3b3d04d9af03597a8b8"
+    }
+  ],
+  "binary_identity": "exact bytes",
+  "canonical_text_identity": "LF",
+  "checkout_forms": [
+    "LF",
+    "CRLF"
+  ],
+  "clean_builds": 2,
+  "implementation_parent": "f774d9060acc70efd4a80d48bfa7d4c6b1b9daf1",
+  "metrics": null,
+  "schema_version": "window1-range-attack-newline-portability-receipt-v2",
+  "scored": false
+}

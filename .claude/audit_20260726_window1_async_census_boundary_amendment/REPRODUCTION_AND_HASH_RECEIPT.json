@@ -1,0 +1,54 @@
+{
+  "amends_audit": "d3bc43650e0ad340aa6d8450ed1aa1e7d3a59481",
+  "artifact_hashes": {
+    "BOUNDARY_COMPLIANT_EVENT_LEVEL_CENSUS.json": {
+      "bytes": 55263,
+      "sha256": "e70c6a1a955541ae607006372b5497a7ab096222c035050c2d8eb59e91e63a8e"
+    },
+    "ITEM_BOUNDARY_AMENDMENT.md": {
+      "bytes": 8496,
+      "sha256": "46bbcc02ead4a9dfd52c4b1a00afa42a46c9850f6e1ea79ef3e6bb43d853cace"
+    },
+    "MANUAL_VERIFICATION_RECEIPT.json": {
+      "bytes": 3749,
+      "sha256": "17528b9a01fbb468c512fc9c3eba192cc5e12eaa3d40111cc6af940245bd5039"
+    }
+  },
+  "boundary_source": "REAL_START_LEDGER_V5 -> reference_adapter_v2.guarded_cutoff; frozen as FROZEN_X_EVIDENCE_LEDGER.boundary.{guarded_cutoff_ts, positive_window1_provable}; right-inclusive",
+  "conflict_reproduced_against_prior": {
+    "AVEFOR_excess_s": 1357.0,
+    "excess_s_range": [
+      8.0,
+      4248.795
+    ],
+    "macro_hold_first_recovery_after_cutoff": 145,
+    "macro_micro": 145
+  },
+  "frozen_census": "9220eba26b00a5b94e86d9c644adef16382942a0",
+  "lawful_counts": {
+    "episodes": [
+      5603,
+      5929
+    ],
+    "naked_recovered": [
+      49,
+      52
+    ],
+    "nofill_either": [
+      81,
+      84
+    ],
+    "recurring_x_levels": [
+      117,
+      124
+    ]
+  },
+  "method": "post-first-leg chronological rescan over normalized nonself books + positive-size prints clipped to [policy_left_ts, guarded_cutoff_ts]; d1 vs latest prior lawful bid; b2_max=floor(-d1-1); strict d1+d2<0; strictly-later; every in-window recurrence an episode",
+  "no_scoring_no_holdout_no_live": true,
+  "parent_required": "d3bc43650e0ad340aa6d8450ed1aa1e7d3a59481",
+  "removed_solely_post_boundary_naked_events": [
+    145,
+    145
+  ],
+  "schema_version": "w1-async-census-boundary-amendment-reproduction-receipt-v1"
+}

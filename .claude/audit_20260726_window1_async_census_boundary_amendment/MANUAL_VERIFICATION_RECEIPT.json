@@ -1,0 +1,177 @@
+{
+ "survivors": [
+  {
+   "event_id": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+   "cutoff": 1783852800.0,
+   "provable": true,
+   "ts0": 1783829989.0,
+   "X1": 73,
+   "bid0": 70,
+   "d1": 3,
+   "b2_max": -4,
+   "inwin_qualifying_first": [
+    1783833581.0,
+    30
+   ],
+   "post_boundary_books": 43
+  },
+  {
+   "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+   "cutoff": 1783850100.0,
+   "provable": true,
+   "ts0": 1783835438.554676,
+   "X1": 36,
+   "bid0": 38,
+   "d1": -2,
+   "b2_max": 1,
+   "inwin_qualifying_first": [
+    1783835470.0,
+    62
+   ],
+   "post_boundary_books": 1938
+  },
+  {
+   "event_id": "KXATPCHALLENGERMATCH-26JUL13BOUGAN",
+   "cutoff": 1783951740.0,
+   "provable": true,
+   "ts0": 1783941045.827018,
+   "X1": 38,
+   "bid0": 38,
+   "d1": 0,
+   "b2_max": -1,
+   "inwin_qualifying_first": [
+    1783941328.0,
+    66
+   ],
+   "post_boundary_books": 1047
+  },
+  {
+   "event_id": "KXATPCHALLENGERMATCH-26JUL13VILGAN",
+   "cutoff": 1783929300.0,
+   "provable": true,
+   "ts0": 1783916154.496959,
+   "X1": 92,
+   "bid0": 92,
+   "d1": 0,
+   "b2_max": -1,
+   "inwin_qualifying_first": [
+    1783916166.0,
+    8
+   ],
+   "post_boundary_books": 247
+  },
+  {
+   "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+   "cutoff": 1783992600.0,
+   "provable": true,
+   "ts0": 1783949040.451872,
+   "X1": 58,
+   "bid0": 58,
+   "d1": 0,
+   "b2_max": -1,
+   "inwin_qualifying_first": null,
+   "post_boundary_books": 0
+  },
+  {
+   "event_id": "KXATPCHALLENGERMATCH-26JUL16DENBAR",
+   "cutoff": 1784198940.0,
+   "provable": true,
+   "ts0": 1784182140.607422,
+   "X1": 57,
+   "bid0": 57,
+   "d1": 0,
+   "b2_max": -1,
+   "inwin_qualifying_first": [
+    1784184324.0,
+    43
+   ],
+   "post_boundary_books": 1388
+  }
+ ],
+ "removed_postboundary": [
+  {
+   "event_id": "KXATPCHALLENGERMATCH-26JUL12AVEFOR",
+   "cutoff": 1783879200.0,
+   "provable": true,
+   "ts0": 1783877730.803094,
+   "X1": 49,
+   "bid0": 47,
+   "d1": 2,
+   "b2_max": -3,
+   "inwin_qualifying_first": null,
+   "post_boundary_books": 432
+  },
+  {
+   "event_id": "KXATPCHALLENGERMATCH-26JUL12BOUVIT",
+   "cutoff": 1783864500.0,
+   "provable": true,
+   "ts0": 1783850921.249761,
+   "X1": 80,
+   "bid0": 80,
+   "d1": 0,
+   "b2_max": -1,
+   "inwin_qualifying_first": null,
+   "post_boundary_books": 461
+  },
+  {
+   "event_id": "KXATPCHALLENGERMATCH-26JUL12BROGIU",
+   "cutoff": 1783859100.0,
+   "provable": true,
+   "ts0": 1783849104.719057,
+   "X1": 52,
+   "bid0": 52,
+   "d1": 0,
+   "b2_max": -1,
+   "inwin_qualifying_first": null,
+   "post_boundary_books": 1951
+  },
+  {
+   "event_id": "KXATPCHALLENGERMATCH-26JUL12DELMAK",
+   "cutoff": 1783850100.0,
+   "provable": true,
+   "ts0": 1783849073.517377,
+   "X1": 7,
+   "bid0": 6,
+   "d1": 1,
+   "b2_max": -2,
+   "inwin_qualifying_first": null,
+   "post_boundary_books": 224
+  },
+  {
+   "event_id": "KXATPCHALLENGERMATCH-26JUL12DEVGON",
+   "cutoff": 1783880640.0,
+   "provable": true,
+   "ts0": 1783877260.622503,
+   "X1": 31,
+   "bid0": 30,
+   "d1": 1,
+   "b2_max": -2,
+   "inwin_qualifying_first": null,
+   "post_boundary_books": 536
+  },
+  {
+   "event_id": "KXATPCHALLENGERMATCH-26JUL12FANBIG",
+   "cutoff": 1783869540.0,
+   "provable": true,
+   "ts0": 1783854017.132571,
+   "X1": 38,
+   "bid0": 38,
+   "d1": 0,
+   "b2_max": -1,
+   "inwin_qualifying_first": null,
+   "post_boundary_books": 1179
+  }
+ ],
+ "AVEFOR": {
+  "event_id": "KXATPCHALLENGERMATCH-26JUL12AVEFOR",
+  "cutoff": 1783879200.0,
+  "provable": true,
+  "ts0": 1783877730.803094,
+  "X1": 49,
+  "bid0": 47,
+  "d1": 2,
+  "b2_max": -3,
+  "inwin_qualifying_first": null,
+  "post_boundary_books": 432
+ }
+}

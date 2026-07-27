@@ -1,0 +1,154 @@
+{
+ "audit_parent": "b96873c9a5eb340a7abb0eda9bffd6f0cedb4341",
+ "authorization_scope": "construction of a separately frozen scoring package for these eight T1 candidates ONLY; no scoring or execution authorized",
+ "candidate_matrix": {
+  "D_per_candidate_all_804": true,
+  "baselines_byte_bound_references": true,
+  "candidates": 8,
+  "free_parameters": 0,
+  "overlays": 6432,
+  "switch_matrix_frozen": true
+ },
+ "causality": {
+  "decision_kinds": {
+   "HOLD": 476710
+  },
+  "decision_violations": 0,
+  "duplicate_trigger_receipts": 0,
+  "episode_keyed_decisions": 476710,
+  "note_all_decisions_HOLD": "every decision point already carried active sibling exposure; PLACE/NO_CALL branches law-verified and fixture-tested",
+  "pre_fill_post_action_violations": 0,
+  "same_timestamp_ordering_deterministic": true,
+  "silent_episodes": 0,
+  "trigger_receipt_never_fills_new_action": true
+ },
+ "combined_headroom": {
+  "b2_max_equals_floor_neg_d1_minus_fee_minus_1": true,
+  "integer_cent_exact": true,
+  "no_combined_zero_admitted": true,
+  "no_ic_or_both_negative_gate": true,
+  "positive_d2_share": 0.00489,
+  "selected_positive_d2": 82,
+  "selected_targets": 16759,
+  "target_constructions_verified": 51186,
+  "violations": 0
+ },
+ "controlling_attribution_pass": "b96873c9a5eb340a7abb0eda9bffd6f0cedb4341",
+ "determinism": {
+  "build_a_equals_build_b": true,
+  "byte_identical_to_committed": true,
+  "committed_receipts_not_used_as_expected_answers": true,
+  "environment": "scratch clone at 88b0eae8, core.autocrlf=false",
+  "fresh_clean_regenerations": 2,
+  "regenerable_artifacts": 47
+ },
+ "fixture_migrations": {
+  "expected": {
+   "capacity_unproved": 2,
+   "persistence_fixture_variant_rows_passed": 34,
+   "response_fixture_variant_rows_passed": 48,
+   "target_fixture_variant_rows_passed": 8
+  },
+  "independent_counts": {
+   "capacity_unproved": 2,
+   "persistence_fixture_variant_rows_passed": 34,
+   "response_fixture_variant_rows_passed": 48,
+   "target_fixture_variant_rows_passed": 8
+  },
+  "matches_committed_receipt": true,
+  "multiplier": "each of 24/4/17 fixture rows x the 2 variants arming its switch; capacity rows carried once, uncredited"
+ },
+ "forbidden_access": {
+  "benchmark": false,
+  "holdout": false,
+  "live_network_production": false,
+  "order_position": false,
+  "parent_package_mutation": false,
+  "result_package": false,
+  "scorer": false,
+  "tuning_ranking_selection": false,
+  "window2_exit_settlement_dca": false
+ },
+ "implementation_parent_verified": "7fe299e50a9fc018378873e1277c7c891ce313c0",
+ "implementation_under_audit": "88b0eae8620172f41e2f5d45320408357de24c6f",
+ "integrity": {
+  "artifact_manifest_rows_verified": 48,
+  "audit_blob_pins_verified": 2,
+  "committed_input_hashes_verified": 19,
+  "determinism_inventory_rows_verified": 47,
+  "gzip_payloads_verified": 21,
+  "null_scored_cpcics_violations": 0,
+  "private_input_hashes_verified": 805
+ },
+ "lineage": {
+  "diff": {
+   "additions": 53,
+   "deletions": 0,
+   "modifications": 0
+  },
+  "inherited_tree_byte_identical": true,
+  "no_event_specific_hardcoding": true,
+  "parent_exact": true,
+  "remote_codex_tip": "88b0eae8620172f41e2f5d45320408357de24c6f",
+  "sole_child_of_7fe299e5": true
+ },
+ "metrics": null,
+ "performance": null,
+ "persistence_queue": {
+  "cancel_causes_all_lawful_receipt_backed": true,
+  "guarded_cutoff_controls_post_fill_termination": true,
+  "guarded_cutoff_extensions": 412,
+  "hold_rows": 26532,
+  "initial_extend_flags_132_refuted_by_start_ledger": "audit-side artifact: V2 boundary receipt covers only census events; all 412 extensions verify against the authoritative START_LEDGER boundary contract for all 804 events",
+  "receipt_backed_surrenders": 872,
+  "suppressed_authorities_on_hold": {
+   "ATLAS_DISCOVERY_MACRO": 188,
+   "CAUSAL_PAIR_HEADROOM": 24794,
+   "LIVEAIM_SOURCE_MAPPING": 1550
+  },
+  "true_violations": 0
+ },
+ "ruling": "PASS",
+ "schema_version": "w1-t1-post-first-leg-independent-audit-reproduction-v1",
+ "scored": false,
+ "semantic_identity": {
+  "baseline_nofill_rows": 216,
+  "changed_event_id_lists_match": true,
+  "changed_per_candidate": {
+   "w1_t1__macro_hold__full_stack": 697,
+   "w1_t1__macro_hold__persistence_only": 697,
+   "w1_t1__macro_hold__response_only": 697,
+   "w1_t1__macro_hold__target_completeness_only": 697,
+   "w1_t1__macro_micro__full_stack": 695,
+   "w1_t1__macro_micro__persistence_only": 695,
+   "w1_t1__macro_micro__response_only": 695,
+   "w1_t1__macro_micro__target_completeness_only": 695
+  },
+  "first_leg_mismatches": 0,
+  "five_no_bbo_events_retained": true,
+  "nofill_mismatches": 0,
+  "post_action_sha_mismatches": 0,
+  "variant_nofill_rows_checked": 864
+ },
+ "strict_ask": {
+  "ask_equal_x_never_auto_credits": true,
+  "committed_proof_reproduced": true,
+  "global_credit_actions": 1472,
+  "no_double_credit": true,
+  "ordering_violations": 0
+ },
+ "target_completeness": {
+  "formula_verified_all_rows": "min(ask-1,bid+min(1,b2_max))",
+  "highest_lawful_maker_price_selected": true,
+  "missing_bbo_named_no_call": true,
+  "prints_never_substitute_bbo": true,
+  "single_active_five_contract_exposure_overlap_violations": 0,
+  "unlawful_macro_target_never_retained": true
+ },
+ "tests": {
+  "inherited_suites": 8,
+  "t1": 16,
+  "total": 135,
+  "total_passed": 135
+ }
+}

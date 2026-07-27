@@ -1,0 +1,10 @@
+{
+  "T1_switches_inactive_without_first_fill": true,
+  "T1_variant_nofill_rows_checked": 864,
+  "baseline_candidate_event_nofill_rows": 216,
+  "metrics": null,
+  "mismatch_count": 0,
+  "performance": null,
+  "schema_version": "window1-t1-post-first-leg-prerun-v1-nofill-identity-v1",
+  "scored": false
+}

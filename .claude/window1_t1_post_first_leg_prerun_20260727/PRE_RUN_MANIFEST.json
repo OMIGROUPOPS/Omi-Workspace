@@ -1,0 +1,26 @@
+{
+  "D_per_candidate": 804,
+  "baseline_candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "benchmark_execution_authorized": false,
+  "candidate_event_overlay_count": 6432,
+  "candidate_ids": [
+    "w1_t1__macro_hold__response_only",
+    "w1_t1__macro_hold__target_completeness_only",
+    "w1_t1__macro_hold__persistence_only",
+    "w1_t1__macro_hold__full_stack",
+    "w1_t1__macro_micro__response_only",
+    "w1_t1__macro_micro__target_completeness_only",
+    "w1_t1__macro_micro__persistence_only",
+    "w1_t1__macro_micro__full_stack"
+  ],
+  "controlling_attribution_PASS": "b96873c9a5eb340a7abb0eda9bffd6f0cedb4341",
+  "exact_parent": "7fe299e50a9fc018378873e1277c7c891ce313c0",
+  "metrics": null,
+  "performance": null,
+  "schema_version": "window1-t1-post-first-leg-prerun-v1-manifest-v1",
+  "scored": false,
+  "scorer_present": false
+}

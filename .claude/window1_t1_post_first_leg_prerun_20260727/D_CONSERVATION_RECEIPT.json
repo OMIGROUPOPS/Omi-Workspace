@@ -1,0 +1,20 @@
+{
+  "D_per_candidate": {
+    "w1_t1__macro_hold__full_stack": 804,
+    "w1_t1__macro_hold__persistence_only": 804,
+    "w1_t1__macro_hold__response_only": 804,
+    "w1_t1__macro_hold__target_completeness_only": 804,
+    "w1_t1__macro_micro__full_stack": 804,
+    "w1_t1__macro_micro__persistence_only": 804,
+    "w1_t1__macro_micro__response_only": 804,
+    "w1_t1__macro_micro__target_completeness_only": 804
+  },
+  "all_events_retained": true,
+  "candidate_count": 8,
+  "candidate_event_overlay_count": 6432,
+  "immutable_D": 804,
+  "metrics": null,
+  "performance": null,
+  "schema_version": "window1-t1-post-first-leg-prerun-v1-D-conservation-v1",
+  "scored": false
+}

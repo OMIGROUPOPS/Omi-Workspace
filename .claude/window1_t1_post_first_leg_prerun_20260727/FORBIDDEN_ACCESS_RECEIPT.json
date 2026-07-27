@@ -1,0 +1,16 @@
+{
+  "Window2_exit_settlement_DCA_access": false,
+  "benchmark_executed": false,
+  "development_inputs_only": true,
+  "holdout_access": false,
+  "live_or_network_access": false,
+  "metrics": null,
+  "orders_or_positions_access": false,
+  "performance": null,
+  "production_access": false,
+  "ranking_or_selection": false,
+  "schema_version": "window1-t1-post-first-leg-prerun-v1-forbidden-access-v1",
+  "scored": false,
+  "scorer_imported_or_invoked": false,
+  "tuning_against_outcomes": false
+}

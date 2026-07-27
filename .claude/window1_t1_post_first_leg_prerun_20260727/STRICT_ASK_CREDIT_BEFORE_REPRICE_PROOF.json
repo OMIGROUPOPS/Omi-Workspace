@@ -1,0 +1,51 @@
+{
+  "credit_before_cancel_or_reprice_count": 4,
+  "metrics": null,
+  "performance": null,
+  "rows": [
+    {
+      "candidate_id": "w1_t1__macro_hold__full_stack",
+      "conflicting_actions": [],
+      "credited_before_cancel_or_reprice": true,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+      "external_ask_price_cents": 64,
+      "limit_price_cents": 65,
+      "order_interval_id": "w1_t1__macro_hold__full_stack|KXATPCHALLENGERMATCH-26JUL12DODDEL|DEL|0018",
+      "timestamp": 1783852179.0
+    },
+    {
+      "candidate_id": "w1_t1__macro_hold__persistence_only",
+      "conflicting_actions": [],
+      "credited_before_cancel_or_reprice": true,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+      "external_ask_price_cents": 64,
+      "limit_price_cents": 65,
+      "order_interval_id": "w1_t1__macro_hold__persistence_only|KXATPCHALLENGERMATCH-26JUL12DODDEL|DEL|0018",
+      "timestamp": 1783852179.0
+    },
+    {
+      "candidate_id": "w1_t1__macro_hold__response_only",
+      "conflicting_actions": [],
+      "credited_before_cancel_or_reprice": true,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+      "external_ask_price_cents": 64,
+      "limit_price_cents": 65,
+      "order_interval_id": "w1_t1__macro_hold__response_only|KXATPCHALLENGERMATCH-26JUL12DODDEL|DEL|0018",
+      "timestamp": 1783852179.0
+    },
+    {
+      "candidate_id": "w1_t1__macro_hold__target_completeness_only",
+      "conflicting_actions": [],
+      "credited_before_cancel_or_reprice": true,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+      "external_ask_price_cents": 64,
+      "limit_price_cents": 65,
+      "order_interval_id": "w1_t1__macro_hold__target_completeness_only|KXATPCHALLENGERMATCH-26JUL12DODDEL|DEL|0013",
+      "timestamp": 1783852179.0
+    }
+  ],
+  "schema_version": "window1-t1-post-first-leg-prerun-v1-strict-ask-ordering-v1",
+  "scored": false,
+  "strict_ask_action_count": 4,
+  "violation_count": 0
+}

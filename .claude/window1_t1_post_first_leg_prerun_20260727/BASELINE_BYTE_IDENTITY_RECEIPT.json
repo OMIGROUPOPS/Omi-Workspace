@@ -1,0 +1,40 @@
+{
+  "baseline_candidate_event_rows": 1608,
+  "baseline_candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "baseline_files_modified": 0,
+  "baseline_rows_regenerated": 0,
+  "baseline_stream_files": [
+    {
+      "bytes": 14575058,
+      "git_blob_oid": "1e3080b1c3bdec01bc30095e1a44a0f01533ee3f",
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_01.jsonl.gz",
+      "sha256": "0502c5fb2f9981cbb007ada7a44e78c29ff3e6e420009ae9f32769d817aa7bcc"
+    },
+    {
+      "bytes": 16653345,
+      "git_blob_oid": "7de330507c1ee0be39ebe4c2a82fca8d0d286dfd",
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_02.jsonl.gz",
+      "sha256": "5f5aaa0eea0629086a5ef14992cf9e259d7b903586d2fb07f372ef50ed3a25aa"
+    },
+    {
+      "bytes": 7511510,
+      "git_blob_oid": "5520b7c9c5d3f9dfc1815ee3fac3ba12610262e6",
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_03.jsonl.gz",
+      "sha256": "755ca5529b6269e4736267487f57f6b3d25eefcbaf9de95b31f060f1af185db3"
+    },
+    {
+      "bytes": 6574261,
+      "git_blob_oid": "49b02230c9a3acd17918524bdf2f71d04dde4877",
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_04.jsonl.gz",
+      "sha256": "c1a38436268bbd2914ceddba3fac3df20c903c91b5ad85cfcd68fac3797dcc67"
+    }
+  ],
+  "byte_identical_references": true,
+  "metrics": null,
+  "performance": null,
+  "schema_version": "window1-t1-post-first-leg-prerun-v1-baseline-identity-v1",
+  "scored": false
+}

@@ -1,0 +1,64 @@
+{
+  "baseline_candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "candidate_ids": [
+    "w1_t1__macro_hold__response_only",
+    "w1_t1__macro_hold__target_completeness_only",
+    "w1_t1__macro_hold__persistence_only",
+    "w1_t1__macro_hold__full_stack",
+    "w1_t1__macro_micro__response_only",
+    "w1_t1__macro_micro__target_completeness_only",
+    "w1_t1__macro_micro__persistence_only",
+    "w1_t1__macro_micro__full_stack"
+  ],
+  "free_parameters": [],
+  "metrics": null,
+  "performance": null,
+  "post_first_only": true,
+  "schema_version": "window1-t1-post-first-leg-prerun-v1-candidate-matrix-v1",
+  "scored": false,
+  "switch_matrix": {
+    "w1_t1__macro_hold__full_stack": {
+      "lawful_persistence": true,
+      "receipt_keyed_response": true,
+      "target_completeness": true
+    },
+    "w1_t1__macro_hold__persistence_only": {
+      "lawful_persistence": true,
+      "receipt_keyed_response": false,
+      "target_completeness": false
+    },
+    "w1_t1__macro_hold__response_only": {
+      "lawful_persistence": false,
+      "receipt_keyed_response": true,
+      "target_completeness": false
+    },
+    "w1_t1__macro_hold__target_completeness_only": {
+      "lawful_persistence": false,
+      "receipt_keyed_response": false,
+      "target_completeness": true
+    },
+    "w1_t1__macro_micro__full_stack": {
+      "lawful_persistence": true,
+      "receipt_keyed_response": true,
+      "target_completeness": true
+    },
+    "w1_t1__macro_micro__persistence_only": {
+      "lawful_persistence": true,
+      "receipt_keyed_response": false,
+      "target_completeness": false
+    },
+    "w1_t1__macro_micro__response_only": {
+      "lawful_persistence": false,
+      "receipt_keyed_response": true,
+      "target_completeness": false
+    },
+    "w1_t1__macro_micro__target_completeness_only": {
+      "lawful_persistence": false,
+      "receipt_keyed_response": false,
+      "target_completeness": true
+    }
+  }
+}

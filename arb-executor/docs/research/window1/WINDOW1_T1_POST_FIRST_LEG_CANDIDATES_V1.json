@@ -1,0 +1,77 @@
+{
+  "schema_version": "window1-t1-post-first-leg-candidates-v1",
+  "instrument_version": "window1-t1-post-first-leg-response-persistence-v1",
+  "exact_parent": "7fe299e50a9fc018378873e1277c7c891ce313c0",
+  "controlling_audit": "b96873c9a5eb340a7abb0eda9bffd6f0cedb4341",
+  "baseline_candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "candidate_ids": [
+    "w1_t1__macro_hold__response_only",
+    "w1_t1__macro_hold__target_completeness_only",
+    "w1_t1__macro_hold__persistence_only",
+    "w1_t1__macro_hold__full_stack",
+    "w1_t1__macro_micro__response_only",
+    "w1_t1__macro_micro__target_completeness_only",
+    "w1_t1__macro_micro__persistence_only",
+    "w1_t1__macro_micro__full_stack"
+  ],
+  "switch_matrix": {
+    "w1_t1__macro_hold__response_only": {
+      "receipt_keyed_response": true,
+      "target_completeness": false,
+      "lawful_persistence": false
+    },
+    "w1_t1__macro_hold__target_completeness_only": {
+      "receipt_keyed_response": false,
+      "target_completeness": true,
+      "lawful_persistence": false
+    },
+    "w1_t1__macro_hold__persistence_only": {
+      "receipt_keyed_response": false,
+      "target_completeness": false,
+      "lawful_persistence": true
+    },
+    "w1_t1__macro_hold__full_stack": {
+      "receipt_keyed_response": true,
+      "target_completeness": true,
+      "lawful_persistence": true
+    },
+    "w1_t1__macro_micro__response_only": {
+      "receipt_keyed_response": true,
+      "target_completeness": false,
+      "lawful_persistence": false
+    },
+    "w1_t1__macro_micro__target_completeness_only": {
+      "receipt_keyed_response": false,
+      "target_completeness": true,
+      "lawful_persistence": false
+    },
+    "w1_t1__macro_micro__persistence_only": {
+      "receipt_keyed_response": false,
+      "target_completeness": false,
+      "lawful_persistence": true
+    },
+    "w1_t1__macro_micro__full_stack": {
+      "receipt_keyed_response": true,
+      "target_completeness": true,
+      "lawful_persistence": true
+    }
+  },
+  "headroom_target_formula": "min(ask-1,bid+min(1,b2_max))",
+  "strict_pair_law": "d1+d2+fee<0",
+  "fee_cents": 0,
+  "simulated_order_quantity": 5,
+  "first_leg_behavior_changed": false,
+  "no_fill_behavior_changed": false,
+  "switches_active_before_first_fill": false,
+  "positive_sibling_delta_allowed_inside_combined_headroom": true,
+  "IC_gate": false,
+  "S_gate": false,
+  "free_numeric_parameters": [],
+  "candidate_additions_after_freeze_allowed": false,
+  "metrics": null,
+  "performance": null,
+  "scored": false
+}

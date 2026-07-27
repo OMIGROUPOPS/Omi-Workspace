@@ -1,0 +1,10 @@
+{
+  "candidate_event_rows_checked": 6432,
+  "first_leg_selection_exposure_fill_price_evidence_unchanged": true,
+  "metrics": null,
+  "mismatch_count": 0,
+  "performance": null,
+  "prefix_through_first_fill_unchanged": true,
+  "schema_version": "window1-t1-post-first-leg-prerun-v1-first-leg-identity-v1",
+  "scored": false
+}

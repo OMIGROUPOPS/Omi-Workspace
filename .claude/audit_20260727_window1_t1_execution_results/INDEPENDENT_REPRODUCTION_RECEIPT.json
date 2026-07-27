@@ -1,0 +1,151 @@
+{
+ "audit_parent": "07ec71e7aecc643750a2deb618ff06a029f263fb",
+ "authorization_scope_of_pass": "validates these eight frozen results only; NOT a market ceiling, opportunity rate, full-OS verdict, or proof that Window-1 drift is absent",
+ "independent_reproduction": {
+  "driver": "own orchestration over frozen package inputs; audited adapter/reference/scorer modules; execute mode never invoked; no results directory written",
+  "event_rows_compared": 6432,
+  "metric_law_violations": 0,
+  "output_hashes_verified": 14,
+  "reported_aggregates_reproduced_exactly": {
+   "w1_t1__macro_hold__full_stack": {
+    "C": 94,
+    "IC": 32,
+    "PC": 88,
+    "PC_but_not_IC": 56,
+    "PC_over_D_pct": 10.9453,
+    "S": 77,
+    "change_count_reported": 154,
+    "positive_d2_completed_PC": 0
+   },
+   "w1_t1__macro_hold__persistence_only": {
+    "C": 102,
+    "IC": 34,
+    "PC": 93,
+    "PC_but_not_IC": 59,
+    "PC_over_D_pct": 11.5672,
+    "S": 79,
+    "change_count_reported": 145,
+    "positive_d2_completed_PC": 0
+   },
+   "w1_t1__macro_hold__response_only": {
+    "C": 131,
+    "IC": 37,
+    "PC": 115,
+    "PC_but_not_IC": 78,
+    "PC_over_D_pct": 14.3035,
+    "S": 100,
+    "change_count_reported": 107,
+    "positive_d2_completed_PC": 0
+   },
+   "w1_t1__macro_hold__target_completeness_only": {
+    "C": 134,
+    "IC": 36,
+    "PC": 114,
+    "PC_but_not_IC": 78,
+    "PC_over_D_pct": 14.1791,
+    "S": 101,
+    "change_count_reported": 122,
+    "positive_d2_completed_PC": 0
+   },
+   "w1_t1__macro_micro__full_stack": {
+    "C": 94,
+    "IC": 33,
+    "PC": 88,
+    "PC_but_not_IC": 55,
+    "PC_over_D_pct": 10.9453,
+    "S": 77,
+    "change_count_reported": 148,
+    "positive_d2_completed_PC": 0
+   },
+   "w1_t1__macro_micro__persistence_only": {
+    "C": 98,
+    "IC": 32,
+    "PC": 91,
+    "PC_but_not_IC": 59,
+    "PC_over_D_pct": 11.3184,
+    "S": 77,
+    "change_count_reported": 142,
+    "positive_d2_completed_PC": 0
+   },
+   "w1_t1__macro_micro__response_only": {
+    "C": 123,
+    "IC": 34,
+    "PC": 109,
+    "PC_but_not_IC": 75,
+    "PC_over_D_pct": 13.5572,
+    "S": 94,
+    "change_count_reported": 108,
+    "positive_d2_completed_PC": 0
+   },
+   "w1_t1__macro_micro__target_completeness_only": {
+    "C": 128,
+    "IC": 35,
+    "PC": 109,
+    "PC_but_not_IC": 74,
+    "PC_over_D_pct": 13.5572,
+    "S": 95,
+    "change_count_reported": 123,
+    "positive_d2_completed_PC": 0
+   }
+  },
+  "row_level_differences": 0,
+  "summaries_identical": true
+ },
+ "lineage_and_execution": {
+  "attempts": 1,
+  "authorization_commit": "07ec71e7aecc643750a2deb618ff06a029f263fb",
+  "authorization_report": "EXECUTION_AUTHORIZATION_BRANCH_RECOVERY.md",
+  "candidate_mutation_ranking_rerun": false,
+  "diff": "15 additions, all inside the named results directory; 0 modifications/deletions",
+  "execution_id": "w1-t1-dev-20260712-20260720-grid1-scorepkg-v1",
+  "exit_code": 0,
+  "holdout_live_network_access": false,
+  "input_bundle_sha256": "67a9166a229eca4e048c57bb2316a3298de679ea2b6dad215203e31206743cd0",
+  "no_failure_artifact": true,
+  "remote_codex_tip_equals_results_commit": true,
+  "retries": 0,
+  "round2_preservation": {
+   "directory_present_untracked": true,
+   "external_claimed_manifest_sha_law_not_reproducible": "56e47204... law unspecified in audited materials; byte-integrity proven via the stronger internal check",
+   "files": 6,
+   "verified_against_own_creation_manifest": "OUTPUT_HASH_MANIFEST.json 5 entries, 0 drift"
+  },
+  "scorer_invocations": 8,
+  "sole_child_of_package": true
+ },
+ "metric_law": {
+  "D_804_all_eight": true,
+  "PC_but_not_IC_per_candidate": {
+   "w1_t1__macro_hold__full_stack": 56,
+   "w1_t1__macro_hold__persistence_only": 59,
+   "w1_t1__macro_hold__response_only": 78,
+   "w1_t1__macro_hold__target_completeness_only": 78,
+   "w1_t1__macro_micro__full_stack": 55,
+   "w1_t1__macro_micro__persistence_only": 59,
+   "w1_t1__macro_micro__response_only": 75,
+   "w1_t1__macro_micro__target_completeness_only": 74
+  },
+  "PC_is_combined_negative_not_both_negative": true,
+  "S_not_substituted_for_PC": true,
+  "combined_zero_rejected": true,
+  "fee_zero_frozen": true,
+  "positive_d2_eligible_when_budget_allowed": true,
+  "reference_rules_verified": true,
+  "silent_PC_to_IC_tightening_rows": 0
+ },
+ "package_parent_verified": "bbf6f632795d612be4e237d927821bcd01dc1898",
+ "positive_d2_funnel": {
+  "PC_achieved": 0,
+  "exposed_at_selected_X": 72,
+  "exposed_but_no_lawful_fill_evidence_at_X": 72,
+  "filled_at_selected_X": 0,
+  "pair_completed": 0,
+  "persistence_HOLD_retained_prior_price": 10,
+  "selected_targets": 82,
+  "zero_cause": "10 persistence-retained + 72 genuine observed non-execution at the exposed maker price; no scorer exclusion, no arithmetic loss, no tightening"
+ },
+ "results_commit_under_audit": "d710ba0606084f67625e255e87ebad1cd016bf6a",
+ "ruling": "PASS",
+ "schema_version": "w1-t1-execution-results-independent-audit-reproduction-v1",
+ "scored_results_validated_only": true
+}

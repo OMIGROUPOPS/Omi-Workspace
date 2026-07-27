@@ -1,0 +1,6907 @@
+{
+ "full_stack_convergence": {
+  "both_C_94": true,
+  "hold_C_events": [
+   "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+   "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+   "KXATPCHALLENGERMATCH-26JUL14MILCHA",
+   "KXATPCHALLENGERMATCH-26JUL15NAGTOR",
+   "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+   "KXATPCHALLENGERMATCH-26JUL16ADDGHI",
+   "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+   "KXATPCHALLENGERMATCH-26JUL17GALCOP",
+   "KXATPCHALLENGERMATCH-26JUL17NIJDEN",
+   "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+   "KXATPCHALLENGERMATCH-26JUL19KUHPAS",
+   "KXATPCHALLENGERMATCH-26JUL19SURPER",
+   "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+   "KXATPCHALLENGERMATCH-26JUL20KUZJAN",
+   "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+   "KXATPCHALLENGERMATCH-26JUL20ZHUMAL",
+   "KXATPCHALLENGERMATCH-26JUL20ZINZHA",
+   "KXATPMATCH-26JUL12CARSAN",
+   "KXATPMATCH-26JUL12CORDAN",
+   "KXATPMATCH-26JUL12GUEGOM",
+   "KXATPMATCH-26JUL12LAJVAN",
+   "KXATPMATCH-26JUL12SLADAM",
+   "KXATPMATCH-26JUL12TABHUE",
+   "KXATPMATCH-26JUL14CINHAL",
+   "KXATPMATCH-26JUL14KYMDIE",
+   "KXATPMATCH-26JUL14TOPUGO",
+   "KXATPMATCH-26JUL14VALDAM",
+   "KXATPMATCH-26JUL14VANDAN",
+   "KXATPMATCH-26JUL15BORDIM",
+   "KXATPMATCH-26JUL15CERKEC",
+   "KXATPMATCH-26JUL15COBBUR",
+   "KXATPMATCH-26JUL15COLSON",
+   "KXATPMATCH-26JUL15ETCMER",
+   "KXATPMATCH-26JUL15GOMARN",
+   "KXATPMATCH-26JUL15HANVAC",
+   "KXATPMATCH-26JUL15PRADZU",
+   "KXATPMATCH-26JUL15TRANAV",
+   "KXATPMATCH-26JUL16DEJBAE",
+   "KXATPMATCH-26JUL16DZUARN",
+   "KXATPMATCH-26JUL16FARRUU",
+   "KXATPMATCH-26JUL16MERDRO",
+   "KXATPMATCH-26JUL16MOLDAV",
+   "KXATPMATCH-26JUL17BORDAR",
+   "KXATPMATCH-26JUL17CERRUU",
+   "KXATPMATCH-26JUL17COLVAC",
+   "KXATPMATCH-26JUL17DZUMOL",
+   "KXATPMATCH-26JUL17RINTSI",
+   "KXATPMATCH-26JUL17RUBBAE",
+   "KXATPMATCH-26JUL17TABTIR",
+   "KXATPMATCH-26JUL18MERDZU",
+   "KXATPMATCH-26JUL18PELSIL",
+   "KXATPMATCH-26JUL18ROCBUE",
+   "KXATPMATCH-26JUL18RUBTAB",
+   "KXATPMATCH-26JUL18SHETSI",
+   "KXATPMATCH-26JUL18WALDJE",
+   "KXATPMATCH-26JUL19LUZTAB",
+   "KXATPMATCH-26JUL19TSICOL",
+   "KXATPMATCH-26JUL20DIACIN",
+   "KXATPMATCH-26JUL20ROCMAR",
+   "KXWTACHALLENGERMATCH-26JUL17GRAVAN",
+   "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+   "KXWTAMATCH-26JUL12GARPRI",
+   "KXWTAMATCH-26JUL12KULZAA",
+   "KXWTAMATCH-26JUL12MICKUL",
+   "KXWTAMATCH-26JUL12WERAMA",
+   "KXWTAMATCH-26JUL13AMAHER",
+   "KXWTAMATCH-26JUL13ARGTAG",
+   "KXWTAMATCH-26JUL13CHAJIM",
+   "KXWTAMATCH-26JUL13KUDSAK",
+   "KXWTAMATCH-26JUL13LINHON",
+   "KXWTAMATCH-26JUL13MORBEJ",
+   "KXWTAMATCH-26JUL13ROMKUL",
+   "KXWTAMATCH-26JUL13ZHEBOU",
+   "KXWTAMATCH-26JUL14UDVROM",
+   "KXWTAMATCH-26JUL15AVAMAR",
+   "KXWTAMATCH-26JUL15IBRBAD",
+   "KXWTAMATCH-26JUL15MICZHE",
+   "KXWTAMATCH-26JUL15PUTCHA",
+   "KXWTAMATCH-26JUL15TAGBEJ",
+   "KXWTAMATCH-26JUL16KORANN",
+   "KXWTAMATCH-26JUL17OLIBUR",
+   "KXWTAMATCH-26JUL17PARSAK",
+   "KXWTAMATCH-26JUL17TAUBEJ",
+   "KXWTAMATCH-26JUL17UDVBAD",
+   "KXWTAMATCH-26JUL18BADZID",
+   "KXWTAMATCH-26JUL18BERSAI",
+   "KXWTAMATCH-26JUL18PODKRE",
+   "KXWTAMATCH-26JUL18SAKKOR",
+   "KXWTAMATCH-26JUL18TAUKRE",
+   "KXWTAMATCH-26JUL19KRESAK",
+   "KXWTAMATCH-26JUL20BOUBOU2",
+   "KXWTAMATCH-26JUL20PODLEE",
+   "KXWTAMATCH-26JUL20PRIBRA",
+   "KXWTAMATCH-26JUL20VEDBAR"
+  ],
+  "hold_only": [],
+  "identical_sets": true,
+  "micro_C_events": [
+   "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+   "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+   "KXATPCHALLENGERMATCH-26JUL14MILCHA",
+   "KXATPCHALLENGERMATCH-26JUL15NAGTOR",
+   "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+   "KXATPCHALLENGERMATCH-26JUL16ADDGHI",
+   "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+   "KXATPCHALLENGERMATCH-26JUL17GALCOP",
+   "KXATPCHALLENGERMATCH-26JUL17NIJDEN",
+   "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+   "KXATPCHALLENGERMATCH-26JUL19KUHPAS",
+   "KXATPCHALLENGERMATCH-26JUL19SURPER",
+   "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+   "KXATPCHALLENGERMATCH-26JUL20KUZJAN",
+   "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+   "KXATPCHALLENGERMATCH-26JUL20ZHUMAL",
+   "KXATPCHALLENGERMATCH-26JUL20ZINZHA",
+   "KXATPMATCH-26JUL12CARSAN",
+   "KXATPMATCH-26JUL12CORDAN",
+   "KXATPMATCH-26JUL12GUEGOM",
+   "KXATPMATCH-26JUL12LAJVAN",
+   "KXATPMATCH-26JUL12SLADAM",
+   "KXATPMATCH-26JUL12TABHUE",
+   "KXATPMATCH-26JUL14CINHAL",
+   "KXATPMATCH-26JUL14KYMDIE",
+   "KXATPMATCH-26JUL14TOPUGO",
+   "KXATPMATCH-26JUL14VALDAM",
+   "KXATPMATCH-26JUL14VANDAN",
+   "KXATPMATCH-26JUL15BORDIM",
+   "KXATPMATCH-26JUL15CERKEC",
+   "KXATPMATCH-26JUL15COBBUR",
+   "KXATPMATCH-26JUL15COLSON",
+   "KXATPMATCH-26JUL15ETCMER",
+   "KXATPMATCH-26JUL15GOMARN",
+   "KXATPMATCH-26JUL15HANVAC",
+   "KXATPMATCH-26JUL15PRADZU",
+   "KXATPMATCH-26JUL15TRANAV",
+   "KXATPMATCH-26JUL16DEJBAE",
+   "KXATPMATCH-26JUL16DZUARN",
+   "KXATPMATCH-26JUL16FARRUU",
+   "KXATPMATCH-26JUL16MERDRO",
+   "KXATPMATCH-26JUL16MOLDAV",
+   "KXATPMATCH-26JUL17BORDAR",
+   "KXATPMATCH-26JUL17CERRUU",
+   "KXATPMATCH-26JUL17COLVAC",
+   "KXATPMATCH-26JUL17DZUMOL",
+   "KXATPMATCH-26JUL17RINTSI",
+   "KXATPMATCH-26JUL17RUBBAE",
+   "KXATPMATCH-26JUL17TABTIR",
+   "KXATPMATCH-26JUL18MERDZU",
+   "KXATPMATCH-26JUL18PELSIL",
+   "KXATPMATCH-26JUL18ROCBUE",
+   "KXATPMATCH-26JUL18RUBTAB",
+   "KXATPMATCH-26JUL18SHETSI",
+   "KXATPMATCH-26JUL18WALDJE",
+   "KXATPMATCH-26JUL19LUZTAB",
+   "KXATPMATCH-26JUL19TSICOL",
+   "KXATPMATCH-26JUL20DIACIN",
+   "KXATPMATCH-26JUL20ROCMAR",
+   "KXWTACHALLENGERMATCH-26JUL17GRAVAN",
+   "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+   "KXWTAMATCH-26JUL12GARPRI",
+   "KXWTAMATCH-26JUL12KULZAA",
+   "KXWTAMATCH-26JUL12MICKUL",
+   "KXWTAMATCH-26JUL12WERAMA",
+   "KXWTAMATCH-26JUL13AMAHER",
+   "KXWTAMATCH-26JUL13ARGTAG",
+   "KXWTAMATCH-26JUL13CHAJIM",
+   "KXWTAMATCH-26JUL13KUDSAK",
+   "KXWTAMATCH-26JUL13LINHON",
+   "KXWTAMATCH-26JUL13MORBEJ",
+   "KXWTAMATCH-26JUL13ROMKUL",
+   "KXWTAMATCH-26JUL13ZHEBOU",
+   "KXWTAMATCH-26JUL14UDVROM",
+   "KXWTAMATCH-26JUL15AVAMAR",
+   "KXWTAMATCH-26JUL15IBRBAD",
+   "KXWTAMATCH-26JUL15MICZHE",
+   "KXWTAMATCH-26JUL15PUTCHA",
+   "KXWTAMATCH-26JUL15TAGBEJ",
+   "KXWTAMATCH-26JUL16KORANN",
+   "KXWTAMATCH-26JUL17OLIBUR",
+   "KXWTAMATCH-26JUL17PARSAK",
+   "KXWTAMATCH-26JUL17TAUBEJ",
+   "KXWTAMATCH-26JUL17UDVBAD",
+   "KXWTAMATCH-26JUL18BADZID",
+   "KXWTAMATCH-26JUL18BERSAI",
+   "KXWTAMATCH-26JUL18PODKRE",
+   "KXWTAMATCH-26JUL18SAKKOR",
+   "KXWTAMATCH-26JUL18TAUKRE",
+   "KXWTAMATCH-26JUL19KRESAK",
+   "KXWTAMATCH-26JUL20BOUBOU2",
+   "KXWTAMATCH-26JUL20PODLEE",
+   "KXWTAMATCH-26JUL20PRIBRA",
+   "KXWTAMATCH-26JUL20VEDBAR"
+  ],
+  "micro_only": [],
+  "shared_C_events": [
+   "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+   "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+   "KXATPCHALLENGERMATCH-26JUL14MILCHA",
+   "KXATPCHALLENGERMATCH-26JUL15NAGTOR",
+   "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+   "KXATPCHALLENGERMATCH-26JUL16ADDGHI",
+   "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+   "KXATPCHALLENGERMATCH-26JUL17GALCOP",
+   "KXATPCHALLENGERMATCH-26JUL17NIJDEN",
+   "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+   "KXATPCHALLENGERMATCH-26JUL19KUHPAS",
+   "KXATPCHALLENGERMATCH-26JUL19SURPER",
+   "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+   "KXATPCHALLENGERMATCH-26JUL20KUZJAN",
+   "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+   "KXATPCHALLENGERMATCH-26JUL20ZHUMAL",
+   "KXATPCHALLENGERMATCH-26JUL20ZINZHA",
+   "KXATPMATCH-26JUL12CARSAN",
+   "KXATPMATCH-26JUL12CORDAN",
+   "KXATPMATCH-26JUL12GUEGOM",
+   "KXATPMATCH-26JUL12LAJVAN",
+   "KXATPMATCH-26JUL12SLADAM",
+   "KXATPMATCH-26JUL12TABHUE",
+   "KXATPMATCH-26JUL14CINHAL",
+   "KXATPMATCH-26JUL14KYMDIE",
+   "KXATPMATCH-26JUL14TOPUGO",
+   "KXATPMATCH-26JUL14VALDAM",
+   "KXATPMATCH-26JUL14VANDAN",
+   "KXATPMATCH-26JUL15BORDIM",
+   "KXATPMATCH-26JUL15CERKEC",
+   "KXATPMATCH-26JUL15COBBUR",
+   "KXATPMATCH-26JUL15COLSON",
+   "KXATPMATCH-26JUL15ETCMER",
+   "KXATPMATCH-26JUL15GOMARN",
+   "KXATPMATCH-26JUL15HANVAC",
+   "KXATPMATCH-26JUL15PRADZU",
+   "KXATPMATCH-26JUL15TRANAV",
+   "KXATPMATCH-26JUL16DEJBAE",
+   "KXATPMATCH-26JUL16DZUARN",
+   "KXATPMATCH-26JUL16FARRUU",
+   "KXATPMATCH-26JUL16MERDRO",
+   "KXATPMATCH-26JUL16MOLDAV",
+   "KXATPMATCH-26JUL17BORDAR",
+   "KXATPMATCH-26JUL17CERRUU",
+   "KXATPMATCH-26JUL17COLVAC",
+   "KXATPMATCH-26JUL17DZUMOL",
+   "KXATPMATCH-26JUL17RINTSI",
+   "KXATPMATCH-26JUL17RUBBAE",
+   "KXATPMATCH-26JUL17TABTIR",
+   "KXATPMATCH-26JUL18MERDZU",
+   "KXATPMATCH-26JUL18PELSIL",
+   "KXATPMATCH-26JUL18ROCBUE",
+   "KXATPMATCH-26JUL18RUBTAB",
+   "KXATPMATCH-26JUL18SHETSI",
+   "KXATPMATCH-26JUL18WALDJE",
+   "KXATPMATCH-26JUL19LUZTAB",
+   "KXATPMATCH-26JUL19TSICOL",
+   "KXATPMATCH-26JUL20DIACIN",
+   "KXATPMATCH-26JUL20ROCMAR",
+   "KXWTACHALLENGERMATCH-26JUL17GRAVAN",
+   "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+   "KXWTAMATCH-26JUL12GARPRI",
+   "KXWTAMATCH-26JUL12KULZAA",
+   "KXWTAMATCH-26JUL12MICKUL",
+   "KXWTAMATCH-26JUL12WERAMA",
+   "KXWTAMATCH-26JUL13AMAHER",
+   "KXWTAMATCH-26JUL13ARGTAG",
+   "KXWTAMATCH-26JUL13CHAJIM",
+   "KXWTAMATCH-26JUL13KUDSAK",
+   "KXWTAMATCH-26JUL13LINHON",
+   "KXWTAMATCH-26JUL13MORBEJ",
+   "KXWTAMATCH-26JUL13ROMKUL",
+   "KXWTAMATCH-26JUL13ZHEBOU",
+   "KXWTAMATCH-26JUL14UDVROM",
+   "KXWTAMATCH-26JUL15AVAMAR",
+   "KXWTAMATCH-26JUL15IBRBAD",
+   "KXWTAMATCH-26JUL15MICZHE",
+   "KXWTAMATCH-26JUL15PUTCHA",
+   "KXWTAMATCH-26JUL15TAGBEJ",
+   "KXWTAMATCH-26JUL16KORANN",
+   "KXWTAMATCH-26JUL17OLIBUR",
+   "KXWTAMATCH-26JUL17PARSAK",
+   "KXWTAMATCH-26JUL17TAUBEJ",
+   "KXWTAMATCH-26JUL17UDVBAD",
+   "KXWTAMATCH-26JUL18BADZID",
+   "KXWTAMATCH-26JUL18BERSAI",
+   "KXWTAMATCH-26JUL18PODKRE",
+   "KXWTAMATCH-26JUL18SAKKOR",
+   "KXWTAMATCH-26JUL18TAUKRE",
+   "KXWTAMATCH-26JUL19KRESAK",
+   "KXWTAMATCH-26JUL20BOUBOU2",
+   "KXWTAMATCH-26JUL20PODLEE",
+   "KXWTAMATCH-26JUL20PRIBRA",
+   "KXWTAMATCH-26JUL20VEDBAR"
+  ]
+ },
+ "loss_refinement_admission_vs_behavioral": {
+  "w1_t1__macro_hold__full_stack": {
+   "rows": [
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+     "guarded_cutoff_ts": 1783882200.0,
+     "leg": "FEA",
+     "parent_ledger_credit": [
+      true,
+      48
+     ],
+     "parent_stream_fill": [
+      48,
+      1783881903.534967
+     ],
+     "t1_stream_fill": [
+      47,
+      1783882806.342191
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+     "guarded_cutoff_ts": 1783972200.0,
+     "leg": "INC",
+     "parent_ledger_credit": [
+      true,
+      54
+     ],
+     "parent_stream_fill": [
+      54,
+      1783971534.760749
+     ],
+     "t1_stream_fill": [
+      54,
+      1783973123.143691
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL13WOLFEN",
+     "guarded_cutoff_ts": 1783989600.0,
+     "leg": "FEN",
+     "parent_ledger_credit": [
+      true,
+      21
+     ],
+     "parent_stream_fill": [
+      21,
+      1783982372.285505
+     ],
+     "t1_stream_fill": [
+      21,
+      1783990500.00913
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL14BLATOM",
+     "guarded_cutoff_ts": 1784082900.0,
+     "leg": "TOM",
+     "parent_ledger_credit": [
+      true,
+      34
+     ],
+     "parent_stream_fill": [
+      34,
+      1784082230.748971
+     ],
+     "t1_stream_fill": [
+      35,
+      1784083667.700983
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+     "guarded_cutoff_ts": 1784016240.0,
+     "leg": "PER",
+     "parent_ledger_credit": [
+      true,
+      5
+     ],
+     "parent_stream_fill": [
+      5,
+      1784008795.573811
+     ],
+     "t1_stream_fill": [
+      4,
+      1784016755.306648
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+     "guarded_cutoff_ts": 1784159700.0,
+     "leg": "WON",
+     "parent_ledger_credit": [
+      true,
+      82
+     ],
+     "parent_stream_fill": [
+      82,
+      1784158388.938929
+     ],
+     "t1_stream_fill": [
+      83,
+      1784160639.910557
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+     "guarded_cutoff_ts": 1784217540.0,
+     "leg": "CAM",
+     "parent_ledger_credit": [
+      true,
+      43
+     ],
+     "parent_stream_fill": [
+      43,
+      1784215241.047127
+     ],
+     "t1_stream_fill": [
+      40,
+      1784218119.68086
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+     "guarded_cutoff_ts": 1784235240.0,
+     "leg": "DRA",
+     "parent_ledger_credit": [
+      true,
+      66
+     ],
+     "parent_stream_fill": [
+      66,
+      1784216850.299528
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16SMIMAT",
+     "guarded_cutoff_ts": 1784232540.0,
+     "leg": "SMI",
+     "parent_ledger_credit": [
+      true,
+      80
+     ],
+     "parent_stream_fill": [
+      80,
+      1784222658.416301
+     ],
+     "t1_stream_fill": [
+      80,
+      1784233384.660624
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+     "guarded_cutoff_ts": 1784484240.0,
+     "leg": "CLA",
+     "parent_ledger_credit": [
+      true,
+      43
+     ],
+     "parent_stream_fill": [
+      43,
+      1784482116.114186
+     ],
+     "t1_stream_fill": [
+      43,
+      1784484654.804917
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "C_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+     "guarded_cutoff_ts": 1784505540.0,
+     "leg": "BIG",
+     "parent_ledger_credit": [
+      true,
+      62
+     ],
+     "parent_stream_fill": [
+      62,
+      1784498510.597049
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+     "guarded_cutoff_ts": 1784484600.0,
+     "leg": "IMA",
+     "parent_ledger_credit": [
+      true,
+      66
+     ],
+     "parent_stream_fill": [
+      66,
+      1784474507.0
+     ],
+     "t1_stream_fill": [
+      64,
+      1784485404.354959
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+     "guarded_cutoff_ts": 1784462400.0,
+     "leg": "KUM",
+     "parent_ledger_credit": [
+      true,
+      94
+     ],
+     "parent_stream_fill": [
+      94,
+      1784460921.036264
+     ],
+     "t1_stream_fill": [
+      97,
+      1784465841.668558
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+     "guarded_cutoff_ts": 1784588940.0,
+     "leg": "HAR",
+     "parent_ledger_credit": [
+      true,
+      59
+     ],
+     "parent_stream_fill": [
+      59,
+      1784587414.595712
+     ],
+     "t1_stream_fill": [
+      56,
+      1784590025.247463
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+     "guarded_cutoff_ts": 1784565600.0,
+     "leg": "IMA",
+     "parent_ledger_credit": [
+      true,
+      67
+     ],
+     "parent_stream_fill": [
+      67,
+      1784559946.909726
+     ],
+     "t1_stream_fill": [
+      72,
+      1784566581.925815
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+     "guarded_cutoff_ts": 1784584740.0,
+     "leg": "NOG",
+     "parent_ledger_credit": [
+      true,
+      54
+     ],
+     "parent_stream_fill": [
+      54,
+      1784579957.682488
+     ],
+     "t1_stream_fill": [
+      54,
+      1784585441.06186
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+     "guarded_cutoff_ts": 1784541567.27248,
+     "leg": "OLI",
+     "parent_ledger_credit": [
+      true,
+      82
+     ],
+     "parent_stream_fill": [
+      82,
+      1784529302.981978
+     ],
+     "t1_stream_fill": [
+      86,
+      1784542033.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20POHWES",
+     "guarded_cutoff_ts": 1784535900.0,
+     "leg": "POH",
+     "parent_ledger_credit": [
+      true,
+      8
+     ],
+     "parent_stream_fill": [
+      8,
+      1784524846.112438
+     ],
+     "t1_stream_fill": [
+      9,
+      1784536786.742865
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+     "guarded_cutoff_ts": 1784566800.0,
+     "leg": "SUR",
+     "parent_ledger_credit": [
+      true,
+      67
+     ],
+     "parent_stream_fill": [
+      67,
+      1784555069.12632
+     ],
+     "t1_stream_fill": [
+      72,
+      1784567808.983029
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+     "guarded_cutoff_ts": 1784555700.0,
+     "leg": "GEE",
+     "parent_ledger_credit": [
+      true,
+      26
+     ],
+     "parent_stream_fill": [
+      26,
+      1784555456.343136
+     ],
+     "t1_stream_fill": [
+      25,
+      1784556285.393782
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13COLSKA",
+     "guarded_cutoff_ts": 1783946700.0,
+     "leg": "SKA",
+     "parent_ledger_credit": [
+      true,
+      16
+     ],
+     "parent_stream_fill": [
+      16,
+      1783944132.986623
+     ],
+     "t1_stream_fill": [
+      16,
+      1783947251.049726
+     ]
+    },
+    {
+     "cause_class": "admission_law_difference_identical_post_right_fill_fact",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13PASKRU",
+     "guarded_cutoff_ts": 1783932900.0,
+     "leg": "KRU",
+     "parent_ledger_credit": [
+      true,
+      36
+     ],
+     "parent_stream_fill": [
+      30,
+      1783934608.971315
+     ],
+     "t1_stream_fill": [
+      30,
+      1783934608.971315
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13TABROD",
+     "guarded_cutoff_ts": 1783937640.0,
+     "leg": "TAB",
+     "parent_ledger_credit": [
+      true,
+      59
+     ],
+     "parent_stream_fill": [
+      59,
+      1783927042.807138
+     ],
+     "t1_stream_fill": [
+      58,
+      1783938474.129464
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL14GOMMCD",
+     "guarded_cutoff_ts": 1784050140.0,
+     "leg": "GOM",
+     "parent_ledger_credit": [
+      true,
+      57
+     ],
+     "parent_stream_fill": [
+      57,
+      1784048094.511122
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPMATCH-26JUL15VANDRO",
+     "guarded_cutoff_ts": 1784139600.0,
+     "leg": "DRO",
+     "parent_ledger_credit": [
+      true,
+      57
+     ],
+     "parent_stream_fill": [
+      57,
+      1784137596.383468
+     ],
+     "t1_stream_fill": [
+      87,
+      1784141926.356543
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPMATCH-26JUL15VANVAL",
+     "guarded_cutoff_ts": 1784105700.0,
+     "leg": "VAL",
+     "parent_ledger_credit": [
+      true,
+      53
+     ],
+     "parent_stream_fill": [
+      53,
+      1784102283.003299
+     ],
+     "t1_stream_fill": [
+      50,
+      1784106733.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL18KOPHER",
+     "guarded_cutoff_ts": 1784388300.0,
+     "leg": "KOP",
+     "parent_ledger_credit": [
+      true,
+      58
+     ],
+     "parent_stream_fill": [
+      58,
+      1784377737.94061
+     ],
+     "t1_stream_fill": [
+      58,
+      1784389104.359956
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPMATCH-26JUL18MARJOR",
+     "guarded_cutoff_ts": 1784378700.0,
+     "leg": "JOR",
+     "parent_ledger_credit": [
+      true,
+      32
+     ],
+     "parent_stream_fill": [
+      32,
+      1784377737.977539
+     ],
+     "t1_stream_fill": [
+      31,
+      1784379113.732892
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+     "guarded_cutoff_ts": 1784051340.0,
+     "leg": "VED",
+     "parent_ledger_credit": [
+      true,
+      83
+     ],
+     "parent_stream_fill": [
+      83,
+      1784051201.121596
+     ],
+     "t1_stream_fill": [
+      90,
+      1784052205.686953
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+     "guarded_cutoff_ts": 1784042100.0,
+     "leg": "RAB",
+     "parent_ledger_credit": [
+      true,
+      4
+     ],
+     "parent_stream_fill": [
+      4,
+      1784037966.8513
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+     "guarded_cutoff_ts": 1784103600.0,
+     "leg": "YAN",
+     "parent_ledger_credit": [
+      true,
+      80
+     ],
+     "parent_stream_fill": [
+      80,
+      1784102819.109235
+     ],
+     "t1_stream_fill": [
+      77,
+      1784104893.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+     "guarded_cutoff_ts": 1784278200.0,
+     "leg": "KRA",
+     "parent_ledger_credit": [
+      true,
+      74
+     ],
+     "parent_stream_fill": [
+      74,
+      1784274651.598378
+     ],
+     "t1_stream_fill": [
+      73,
+      1784279084.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+     "guarded_cutoff_ts": 1784561340.0,
+     "leg": "GJO",
+     "parent_ledger_credit": [
+      true,
+      36
+     ],
+     "parent_stream_fill": [
+      36,
+      1784559560.625148
+     ],
+     "t1_stream_fill": [
+      36,
+      1784561995.071162
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+     "guarded_cutoff_ts": 1784569740.0,
+     "leg": "MIN",
+     "parent_ledger_credit": [
+      true,
+      54
+     ],
+     "parent_stream_fill": [
+      54,
+      1784555786.080903
+     ],
+     "t1_stream_fill": [
+      52,
+      1784570228.0971
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+     "guarded_cutoff_ts": 1783929300.0,
+     "leg": "GAR",
+     "parent_ledger_credit": [
+      true,
+      6
+     ],
+     "parent_stream_fill": [
+      6,
+      1783927951.479839
+     ],
+     "t1_stream_fill": [
+      6,
+      1783930055.818092
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTAMATCH-26JUL15DARSAK",
+     "guarded_cutoff_ts": 1784132700.0,
+     "leg": "SAK",
+     "parent_ledger_credit": [
+      true,
+      78
+     ],
+     "parent_stream_fill": [
+      78,
+      1784132195.237923
+     ],
+     "t1_stream_fill": [
+      85,
+      1784134002.633663
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXWTAMATCH-26JUL15HONPAR",
+     "guarded_cutoff_ts": 1784136840.0,
+     "leg": "PAR",
+     "parent_ledger_credit": [
+      true,
+      59
+     ],
+     "parent_stream_fill": [
+      59,
+      1784136224.829007
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "C_lost",
+     "event_id": "KXWTAMATCH-26JUL18HONTHA",
+     "guarded_cutoff_ts": 1784365440.0,
+     "leg": "HON",
+     "parent_ledger_credit": [
+      true,
+      85
+     ],
+     "parent_stream_fill": [
+      85,
+      1784365345.870729
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    }
+   ],
+   "taxonomy": {
+    "C_lost|behavioral_shifted_fill_landed_post_right": 8,
+    "C_lost|behavioral_true_loss_t1_stream_never_filled_leg": 2,
+    "PC_lost|admission_law_difference_identical_post_right_fill_fact": 1,
+    "PC_lost|behavioral_shifted_fill_landed_post_right": 23,
+    "PC_lost|behavioral_true_loss_t1_stream_never_filled_leg": 4
+   }
+  },
+  "w1_t1__macro_hold__persistence_only": {
+   "rows": [
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+     "guarded_cutoff_ts": 1783882200.0,
+     "leg": "FEA",
+     "parent_ledger_credit": [
+      true,
+      48
+     ],
+     "parent_stream_fill": [
+      48,
+      1783881903.534967
+     ],
+     "t1_stream_fill": [
+      47,
+      1783882806.342191
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+     "guarded_cutoff_ts": 1783972200.0,
+     "leg": "INC",
+     "parent_ledger_credit": [
+      true,
+      54
+     ],
+     "parent_stream_fill": [
+      54,
+      1783971534.760749
+     ],
+     "t1_stream_fill": [
+      54,
+      1783973123.143691
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL14BLATOM",
+     "guarded_cutoff_ts": 1784082900.0,
+     "leg": "TOM",
+     "parent_ledger_credit": [
+      true,
+      34
+     ],
+     "parent_stream_fill": [
+      34,
+      1784082230.748971
+     ],
+     "t1_stream_fill": [
+      35,
+      1784083667.700983
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+     "guarded_cutoff_ts": 1784159700.0,
+     "leg": "WON",
+     "parent_ledger_credit": [
+      true,
+      82
+     ],
+     "parent_stream_fill": [
+      82,
+      1784158388.938929
+     ],
+     "t1_stream_fill": [
+      82,
+      1784159720.501019
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+     "guarded_cutoff_ts": 1784217540.0,
+     "leg": "CAM",
+     "parent_ledger_credit": [
+      true,
+      43
+     ],
+     "parent_stream_fill": [
+      43,
+      1784215241.047127
+     ],
+     "t1_stream_fill": [
+      40,
+      1784218119.68086
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+     "guarded_cutoff_ts": 1784235240.0,
+     "leg": "DRA",
+     "parent_ledger_credit": [
+      true,
+      66
+     ],
+     "parent_stream_fill": [
+      66,
+      1784216850.299528
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16SMIMAT",
+     "guarded_cutoff_ts": 1784232540.0,
+     "leg": "SMI",
+     "parent_ledger_credit": [
+      true,
+      80
+     ],
+     "parent_stream_fill": [
+      80,
+      1784222658.416301
+     ],
+     "t1_stream_fill": [
+      80,
+      1784233384.660624
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+     "guarded_cutoff_ts": 1784484240.0,
+     "leg": "CLA",
+     "parent_ledger_credit": [
+      true,
+      43
+     ],
+     "parent_stream_fill": [
+      43,
+      1784482116.114186
+     ],
+     "t1_stream_fill": [
+      43,
+      1784484654.804917
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+     "guarded_cutoff_ts": 1784484600.0,
+     "leg": "IMA",
+     "parent_ledger_credit": [
+      true,
+      66
+     ],
+     "parent_stream_fill": [
+      66,
+      1784474507.0
+     ],
+     "t1_stream_fill": [
+      64,
+      1784485404.354959
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+     "guarded_cutoff_ts": 1784462400.0,
+     "leg": "KUM",
+     "parent_ledger_credit": [
+      true,
+      94
+     ],
+     "parent_stream_fill": [
+      94,
+      1784460921.036264
+     ],
+     "t1_stream_fill": [
+      97,
+      1784465841.668558
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+     "guarded_cutoff_ts": 1784588940.0,
+     "leg": "HAR",
+     "parent_ledger_credit": [
+      true,
+      59
+     ],
+     "parent_stream_fill": [
+      59,
+      1784587414.595712
+     ],
+     "t1_stream_fill": [
+      56,
+      1784590025.247463
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+     "guarded_cutoff_ts": 1784565600.0,
+     "leg": "IMA",
+     "parent_ledger_credit": [
+      true,
+      67
+     ],
+     "parent_stream_fill": [
+      67,
+      1784559946.909726
+     ],
+     "t1_stream_fill": [
+      72,
+      1784566581.925815
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+     "guarded_cutoff_ts": 1784541567.27248,
+     "leg": "OLI",
+     "parent_ledger_credit": [
+      true,
+      82
+     ],
+     "parent_stream_fill": [
+      82,
+      1784529302.981978
+     ],
+     "t1_stream_fill": [
+      86,
+      1784542033.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+     "guarded_cutoff_ts": 1784566800.0,
+     "leg": "SUR",
+     "parent_ledger_credit": [
+      true,
+      67
+     ],
+     "parent_stream_fill": [
+      67,
+      1784555069.12632
+     ],
+     "t1_stream_fill": [
+      72,
+      1784567808.983029
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+     "guarded_cutoff_ts": 1784555700.0,
+     "leg": "GEE",
+     "parent_ledger_credit": [
+      true,
+      26
+     ],
+     "parent_stream_fill": [
+      26,
+      1784555456.343136
+     ],
+     "t1_stream_fill": [
+      25,
+      1784556285.393782
+     ]
+    },
+    {
+     "cause_class": "admission_law_difference_identical_post_right_fill_fact",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13PASKRU",
+     "guarded_cutoff_ts": 1783932900.0,
+     "leg": "KRU",
+     "parent_ledger_credit": [
+      true,
+      36
+     ],
+     "parent_stream_fill": [
+      30,
+      1783934608.971315
+     ],
+     "t1_stream_fill": [
+      30,
+      1783934608.971315
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL14GOMMCD",
+     "guarded_cutoff_ts": 1784050140.0,
+     "leg": "GOM",
+     "parent_ledger_credit": [
+      true,
+      57
+     ],
+     "parent_stream_fill": [
+      57,
+      1784048094.511122
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPMATCH-26JUL15VANDRO",
+     "guarded_cutoff_ts": 1784139600.0,
+     "leg": "DRO",
+     "parent_ledger_credit": [
+      true,
+      57
+     ],
+     "parent_stream_fill": [
+      57,
+      1784137596.383468
+     ],
+     "t1_stream_fill": [
+      87,
+      1784141926.356543
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL18KOPHER",
+     "guarded_cutoff_ts": 1784388300.0,
+     "leg": "KOP",
+     "parent_ledger_credit": [
+      true,
+      58
+     ],
+     "parent_stream_fill": [
+      58,
+      1784377737.94061
+     ],
+     "t1_stream_fill": [
+      58,
+      1784389104.359956
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPMATCH-26JUL18MARJOR",
+     "guarded_cutoff_ts": 1784378700.0,
+     "leg": "JOR",
+     "parent_ledger_credit": [
+      true,
+      32
+     ],
+     "parent_stream_fill": [
+      32,
+      1784377737.977539
+     ],
+     "t1_stream_fill": [
+      31,
+      1784379113.732892
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+     "guarded_cutoff_ts": 1784051340.0,
+     "leg": "VED",
+     "parent_ledger_credit": [
+      true,
+      83
+     ],
+     "parent_stream_fill": [
+      83,
+      1784051201.121596
+     ],
+     "t1_stream_fill": [
+      90,
+      1784052205.686953
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+     "guarded_cutoff_ts": 1784042100.0,
+     "leg": "RAB",
+     "parent_ledger_credit": [
+      true,
+      4
+     ],
+     "parent_stream_fill": [
+      4,
+      1784037966.8513
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+     "guarded_cutoff_ts": 1784103600.0,
+     "leg": "YAN",
+     "parent_ledger_credit": [
+      true,
+      80
+     ],
+     "parent_stream_fill": [
+      80,
+      1784102819.109235
+     ],
+     "t1_stream_fill": [
+      77,
+      1784104893.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+     "guarded_cutoff_ts": 1784278200.0,
+     "leg": "KRA",
+     "parent_ledger_credit": [
+      true,
+      74
+     ],
+     "parent_stream_fill": [
+      74,
+      1784274651.598378
+     ],
+     "t1_stream_fill": [
+      73,
+      1784279084.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+     "guarded_cutoff_ts": 1784561340.0,
+     "leg": "GJO",
+     "parent_ledger_credit": [
+      true,
+      36
+     ],
+     "parent_stream_fill": [
+      36,
+      1784559560.625148
+     ],
+     "t1_stream_fill": [
+      36,
+      1784561995.071162
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+     "guarded_cutoff_ts": 1784569740.0,
+     "leg": "MIN",
+     "parent_ledger_credit": [
+      true,
+      54
+     ],
+     "parent_stream_fill": [
+      54,
+      1784555786.080903
+     ],
+     "t1_stream_fill": [
+      52,
+      1784570228.0971
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+     "guarded_cutoff_ts": 1783929300.0,
+     "leg": "GAR",
+     "parent_ledger_credit": [
+      true,
+      6
+     ],
+     "parent_stream_fill": [
+      6,
+      1783927951.479839
+     ],
+     "t1_stream_fill": [
+      6,
+      1783930055.818092
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTAMATCH-26JUL15DARSAK",
+     "guarded_cutoff_ts": 1784132700.0,
+     "leg": "SAK",
+     "parent_ledger_credit": [
+      true,
+      78
+     ],
+     "parent_stream_fill": [
+      78,
+      1784132195.237923
+     ],
+     "t1_stream_fill": [
+      85,
+      1784134002.633663
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXWTAMATCH-26JUL15HONPAR",
+     "guarded_cutoff_ts": 1784136840.0,
+     "leg": "PAR",
+     "parent_ledger_credit": [
+      true,
+      59
+     ],
+     "parent_stream_fill": [
+      59,
+      1784136224.829007
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "C_lost",
+     "event_id": "KXWTAMATCH-26JUL18HONTHA",
+     "guarded_cutoff_ts": 1784365440.0,
+     "leg": "HON",
+     "parent_ledger_credit": [
+      true,
+      85
+     ],
+     "parent_stream_fill": [
+      85,
+      1784365345.870729
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    }
+   ],
+   "taxonomy": {
+    "C_lost|behavioral_shifted_fill_landed_post_right": 6,
+    "C_lost|behavioral_true_loss_t1_stream_never_filled_leg": 1,
+    "PC_lost|admission_law_difference_identical_post_right_fill_fact": 1,
+    "PC_lost|behavioral_shifted_fill_landed_post_right": 18,
+    "PC_lost|behavioral_true_loss_t1_stream_never_filled_leg": 4
+   }
+  },
+  "w1_t1__macro_hold__response_only": {
+   "rows": [
+    {
+     "cause_class": "admission_law_difference_identical_post_right_fill_fact",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13PASKRU",
+     "guarded_cutoff_ts": 1783932900.0,
+     "leg": "KRU",
+     "parent_ledger_credit": [
+      true,
+      36
+     ],
+     "parent_stream_fill": [
+      30,
+      1783934608.971315
+     ],
+     "t1_stream_fill": [
+      30,
+      1783934608.971315
+     ]
+    }
+   ],
+   "taxonomy": {
+    "PC_lost|admission_law_difference_identical_post_right_fill_fact": 1
+   }
+  },
+  "w1_t1__macro_hold__target_completeness_only": {
+   "rows": [
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "PC_gained",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16DELDAL",
+     "leg": "DAL",
+     "parent_stream_fill": [
+      39,
+      1784213577.061924
+     ],
+     "t1_stream_fill": [
+      40,
+      1784212284.765502
+     ]
+    },
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "PC_gained",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16KUMBRO",
+     "leg": "KUM",
+     "parent_stream_fill": [
+      48,
+      1784198515.927848
+     ],
+     "t1_stream_fill": [
+      49,
+      1784193008.602635
+     ]
+    },
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "C_gained",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19CASVAS",
+     "leg": "CAS",
+     "parent_stream_fill": [
+      42,
+      1784461865.0
+     ],
+     "t1_stream_fill": [
+      42,
+      1784454482.310269
+     ]
+    },
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "C_gained",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19JONISO",
+     "leg": "ISO",
+     "parent_stream_fill": [
+      null,
+      null
+     ],
+     "t1_stream_fill": [
+      61,
+      1784485585.623435
+     ]
+    },
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "PC_gained",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+     "leg": "GEA",
+     "parent_stream_fill": [
+      67,
+      1784491453.491891
+     ],
+     "t1_stream_fill": [
+      68,
+      1784486783.667707
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+     "guarded_cutoff_ts": 1784541567.27248,
+     "leg": "OLI",
+     "parent_ledger_credit": [
+      true,
+      82
+     ],
+     "parent_stream_fill": [
+      82,
+      1784529302.981978
+     ],
+     "t1_stream_fill": [
+      82,
+      1784541762.47152
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20POHWES",
+     "guarded_cutoff_ts": 1784535900.0,
+     "leg": "POH",
+     "parent_ledger_credit": [
+      true,
+      8
+     ],
+     "parent_stream_fill": [
+      8,
+      1784524846.112438
+     ],
+     "t1_stream_fill": [
+      8,
+      1784536574.793659
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13COLSKA",
+     "guarded_cutoff_ts": 1783946700.0,
+     "leg": "SKA",
+     "parent_ledger_credit": [
+      true,
+      16
+     ],
+     "parent_stream_fill": [
+      16,
+      1783944132.986623
+     ],
+     "t1_stream_fill": [
+      22,
+      1783948345.275229
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13PASKRU",
+     "guarded_cutoff_ts": 1783932900.0,
+     "leg": "KRU",
+     "parent_ledger_credit": [
+      true,
+      36
+     ],
+     "parent_stream_fill": [
+      30,
+      1783934608.971315
+     ],
+     "t1_stream_fill": [
+      32,
+      1783934608.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13TABROD",
+     "guarded_cutoff_ts": 1783937640.0,
+     "leg": "TAB",
+     "parent_ledger_credit": [
+      true,
+      59
+     ],
+     "parent_stream_fill": [
+      59,
+      1783927042.807138
+     ],
+     "t1_stream_fill": [
+      58,
+      1783938474.129464
+     ]
+    },
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "C_gained",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+     "leg": "CIR",
+     "parent_stream_fill": [
+      null,
+      null
+     ],
+     "t1_stream_fill": [
+      42,
+      1784387023.0
+     ]
+    },
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "C_gained",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL18URGKOT",
+     "leg": "URG",
+     "parent_stream_fill": [
+      null,
+      null
+     ],
+     "t1_stream_fill": [
+      67,
+      1784386516.038713
+     ]
+    }
+   ],
+   "taxonomy": {
+    "C_gained|gain_new_in_window_fill": 4,
+    "PC_gained|gain_new_in_window_fill": 3,
+    "PC_lost|behavioral_shifted_fill_landed_post_right": 5
+   }
+  },
+  "w1_t1__macro_micro__full_stack": {
+   "rows": [
+    {
+     "cause_class": "admission_law_difference_identical_post_right_fill_fact",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+     "guarded_cutoff_ts": 1783882200.0,
+     "leg": "FEA",
+     "parent_ledger_credit": [
+      true,
+      48
+     ],
+     "parent_stream_fill": [
+      46,
+      1783883078.084392
+     ],
+     "t1_stream_fill": [
+      46,
+      1783883078.084392
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+     "guarded_cutoff_ts": 1783972200.0,
+     "leg": "INC",
+     "parent_ledger_credit": [
+      true,
+      54
+     ],
+     "parent_stream_fill": [
+      54,
+      1783971534.760749
+     ],
+     "t1_stream_fill": [
+      54,
+      1783973123.143691
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+     "guarded_cutoff_ts": 1784159700.0,
+     "leg": "WON",
+     "parent_ledger_credit": [
+      true,
+      82
+     ],
+     "parent_stream_fill": [
+      82,
+      1784158388.938929
+     ],
+     "t1_stream_fill": [
+      83,
+      1784160639.910557
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+     "guarded_cutoff_ts": 1784235240.0,
+     "leg": "DRA",
+     "parent_ledger_credit": [
+      true,
+      66
+     ],
+     "parent_stream_fill": [
+      66,
+      1784216850.299528
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+     "guarded_cutoff_ts": 1784484240.0,
+     "leg": "CLA",
+     "parent_ledger_credit": [
+      true,
+      43
+     ],
+     "parent_stream_fill": [
+      43,
+      1784482116.114186
+     ],
+     "t1_stream_fill": [
+      41,
+      1784486163.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+     "guarded_cutoff_ts": 1784484600.0,
+     "leg": "IMA",
+     "parent_ledger_credit": [
+      true,
+      66
+     ],
+     "parent_stream_fill": [
+      66,
+      1784474507.0
+     ],
+     "t1_stream_fill": [
+      64,
+      1784485404.354959
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+     "guarded_cutoff_ts": 1784462400.0,
+     "leg": "KUM",
+     "parent_ledger_credit": [
+      true,
+      94
+     ],
+     "parent_stream_fill": [
+      94,
+      1784460921.036264
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+     "guarded_cutoff_ts": 1784588940.0,
+     "leg": "HAR",
+     "parent_ledger_credit": [
+      true,
+      59
+     ],
+     "parent_stream_fill": [
+      59,
+      1784587414.595712
+     ],
+     "t1_stream_fill": [
+      54,
+      1784590050.172788
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+     "guarded_cutoff_ts": 1784565600.0,
+     "leg": "IMA",
+     "parent_ledger_credit": [
+      true,
+      67
+     ],
+     "parent_stream_fill": [
+      67,
+      1784559946.909726
+     ],
+     "t1_stream_fill": [
+      72,
+      1784566581.925815
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+     "guarded_cutoff_ts": 1784541567.27248,
+     "leg": "OLI",
+     "parent_ledger_credit": [
+      true,
+      82
+     ],
+     "parent_stream_fill": [
+      82,
+      1784529302.981978
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20POHWES",
+     "guarded_cutoff_ts": 1784535900.0,
+     "leg": "POH",
+     "parent_ledger_credit": [
+      true,
+      8
+     ],
+     "parent_stream_fill": [
+      8,
+      1784524846.112438
+     ],
+     "t1_stream_fill": [
+      9,
+      1784536786.742865
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+     "guarded_cutoff_ts": 1784566800.0,
+     "leg": "SUR",
+     "parent_ledger_credit": [
+      true,
+      67
+     ],
+     "parent_stream_fill": [
+      67,
+      1784555069.12632
+     ],
+     "t1_stream_fill": [
+      70,
+      1784569334.98305
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+     "guarded_cutoff_ts": 1784555700.0,
+     "leg": "GEE",
+     "parent_ledger_credit": [
+      true,
+      26
+     ],
+     "parent_stream_fill": [
+      26,
+      1784555456.343136
+     ],
+     "t1_stream_fill": [
+      25,
+      1784556285.393782
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13COLSKA",
+     "guarded_cutoff_ts": 1783946700.0,
+     "leg": "SKA",
+     "parent_ledger_credit": [
+      true,
+      16
+     ],
+     "parent_stream_fill": [
+      16,
+      1783944132.986623
+     ],
+     "t1_stream_fill": [
+      16,
+      1783947251.049726
+     ]
+    },
+    {
+     "cause_class": "admission_law_difference_identical_post_right_fill_fact",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13PASKRU",
+     "guarded_cutoff_ts": 1783932900.0,
+     "leg": "KRU",
+     "parent_ledger_credit": [
+      true,
+      36
+     ],
+     "parent_stream_fill": [
+      30,
+      1783934608.971315
+     ],
+     "t1_stream_fill": [
+      30,
+      1783934608.971315
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13TABROD",
+     "guarded_cutoff_ts": 1783937640.0,
+     "leg": "TAB",
+     "parent_ledger_credit": [
+      true,
+      59
+     ],
+     "parent_stream_fill": [
+      59,
+      1783927042.807138
+     ],
+     "t1_stream_fill": [
+      58,
+      1783938474.129464
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL14GOMMCD",
+     "guarded_cutoff_ts": 1784050140.0,
+     "leg": "GOM",
+     "parent_ledger_credit": [
+      true,
+      57
+     ],
+     "parent_stream_fill": [
+      57,
+      1784048094.511122
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPMATCH-26JUL15VANDRO",
+     "guarded_cutoff_ts": 1784139600.0,
+     "leg": "DRO",
+     "parent_ledger_credit": [
+      true,
+      57
+     ],
+     "parent_stream_fill": [
+      57,
+      1784137596.383468
+     ],
+     "t1_stream_fill": [
+      87,
+      1784141926.356543
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPMATCH-26JUL15VANVAL",
+     "guarded_cutoff_ts": 1784105700.0,
+     "leg": "VAL",
+     "parent_ledger_credit": [
+      true,
+      53
+     ],
+     "parent_stream_fill": [
+      53,
+      1784102283.003299
+     ],
+     "t1_stream_fill": [
+      50,
+      1784106733.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL18KOPHER",
+     "guarded_cutoff_ts": 1784388300.0,
+     "leg": "KOP",
+     "parent_ledger_credit": [
+      true,
+      58
+     ],
+     "parent_stream_fill": [
+      58,
+      1784377737.94061
+     ],
+     "t1_stream_fill": [
+      58,
+      1784389104.359956
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPMATCH-26JUL18MARJOR",
+     "guarded_cutoff_ts": 1784378700.0,
+     "leg": "JOR",
+     "parent_ledger_credit": [
+      true,
+      32
+     ],
+     "parent_stream_fill": [
+      32,
+      1784377737.977539
+     ],
+     "t1_stream_fill": [
+      31,
+      1784379113.732892
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+     "guarded_cutoff_ts": 1784051340.0,
+     "leg": "VED",
+     "parent_ledger_credit": [
+      true,
+      83
+     ],
+     "parent_stream_fill": [
+      83,
+      1784051201.121596
+     ],
+     "t1_stream_fill": [
+      90,
+      1784052205.686953
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+     "guarded_cutoff_ts": 1784042100.0,
+     "leg": "RAB",
+     "parent_ledger_credit": [
+      true,
+      4
+     ],
+     "parent_stream_fill": [
+      4,
+      1784037966.8513
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+     "guarded_cutoff_ts": 1784103600.0,
+     "leg": "YAN",
+     "parent_ledger_credit": [
+      true,
+      80
+     ],
+     "parent_stream_fill": [
+      80,
+      1784102819.109235
+     ],
+     "t1_stream_fill": [
+      77,
+      1784104893.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+     "guarded_cutoff_ts": 1784278200.0,
+     "leg": "KRA",
+     "parent_ledger_credit": [
+      true,
+      74
+     ],
+     "parent_stream_fill": [
+      74,
+      1784274651.598378
+     ],
+     "t1_stream_fill": [
+      73,
+      1784279084.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+     "guarded_cutoff_ts": 1784561340.0,
+     "leg": "GJO",
+     "parent_ledger_credit": [
+      true,
+      36
+     ],
+     "parent_stream_fill": [
+      36,
+      1784559560.625148
+     ],
+     "t1_stream_fill": [
+      36,
+      1784561995.071162
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+     "guarded_cutoff_ts": 1784569740.0,
+     "leg": "MIN",
+     "parent_ledger_credit": [
+      true,
+      54
+     ],
+     "parent_stream_fill": [
+      54,
+      1784555786.080903
+     ],
+     "t1_stream_fill": [
+      52,
+      1784570228.0971
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+     "guarded_cutoff_ts": 1783929300.0,
+     "leg": "GAR",
+     "parent_ledger_credit": [
+      true,
+      6
+     ],
+     "parent_stream_fill": [
+      6,
+      1783927951.479839
+     ],
+     "t1_stream_fill": [
+      6,
+      1783930055.818092
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTAMATCH-26JUL15DARSAK",
+     "guarded_cutoff_ts": 1784132700.0,
+     "leg": "SAK",
+     "parent_ledger_credit": [
+      true,
+      78
+     ],
+     "parent_stream_fill": [
+      78,
+      1784132195.237923
+     ],
+     "t1_stream_fill": [
+      85,
+      1784134002.633663
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXWTAMATCH-26JUL15HONPAR",
+     "guarded_cutoff_ts": 1784136840.0,
+     "leg": "PAR",
+     "parent_ledger_credit": [
+      true,
+      59
+     ],
+     "parent_stream_fill": [
+      59,
+      1784136224.829007
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "C_lost",
+     "event_id": "KXWTAMATCH-26JUL18HONTHA",
+     "guarded_cutoff_ts": 1784365440.0,
+     "leg": "HON",
+     "parent_ledger_credit": [
+      true,
+      85
+     ],
+     "parent_stream_fill": [
+      85,
+      1784365345.870729
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    }
+   ],
+   "taxonomy": {
+    "C_lost|behavioral_shifted_fill_landed_post_right": 7,
+    "C_lost|behavioral_true_loss_t1_stream_never_filled_leg": 1,
+    "PC_lost|admission_law_difference_identical_post_right_fill_fact": 2,
+    "PC_lost|behavioral_shifted_fill_landed_post_right": 15,
+    "PC_lost|behavioral_true_loss_t1_stream_never_filled_leg": 6
+   }
+  },
+  "w1_t1__macro_micro__persistence_only": {
+   "rows": [
+    {
+     "cause_class": "admission_law_difference_identical_post_right_fill_fact",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+     "guarded_cutoff_ts": 1783882200.0,
+     "leg": "FEA",
+     "parent_ledger_credit": [
+      true,
+      48
+     ],
+     "parent_stream_fill": [
+      46,
+      1783883078.084392
+     ],
+     "t1_stream_fill": [
+      46,
+      1783883078.084392
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+     "guarded_cutoff_ts": 1783972200.0,
+     "leg": "INC",
+     "parent_ledger_credit": [
+      true,
+      54
+     ],
+     "parent_stream_fill": [
+      54,
+      1783971534.760749
+     ],
+     "t1_stream_fill": [
+      54,
+      1783973123.143691
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+     "guarded_cutoff_ts": 1784159700.0,
+     "leg": "WON",
+     "parent_ledger_credit": [
+      true,
+      82
+     ],
+     "parent_stream_fill": [
+      82,
+      1784158388.938929
+     ],
+     "t1_stream_fill": [
+      82,
+      1784159720.501019
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+     "guarded_cutoff_ts": 1784235240.0,
+     "leg": "DRA",
+     "parent_ledger_credit": [
+      true,
+      66
+     ],
+     "parent_stream_fill": [
+      66,
+      1784216850.299528
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+     "guarded_cutoff_ts": 1784484240.0,
+     "leg": "CLA",
+     "parent_ledger_credit": [
+      true,
+      43
+     ],
+     "parent_stream_fill": [
+      43,
+      1784482116.114186
+     ],
+     "t1_stream_fill": [
+      41,
+      1784486163.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+     "guarded_cutoff_ts": 1784484600.0,
+     "leg": "IMA",
+     "parent_ledger_credit": [
+      true,
+      66
+     ],
+     "parent_stream_fill": [
+      66,
+      1784474507.0
+     ],
+     "t1_stream_fill": [
+      64,
+      1784485404.354959
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+     "guarded_cutoff_ts": 1784462400.0,
+     "leg": "KUM",
+     "parent_ledger_credit": [
+      true,
+      94
+     ],
+     "parent_stream_fill": [
+      94,
+      1784460921.036264
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+     "guarded_cutoff_ts": 1784588940.0,
+     "leg": "HAR",
+     "parent_ledger_credit": [
+      true,
+      59
+     ],
+     "parent_stream_fill": [
+      59,
+      1784587414.595712
+     ],
+     "t1_stream_fill": [
+      54,
+      1784590050.172788
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+     "guarded_cutoff_ts": 1784565600.0,
+     "leg": "IMA",
+     "parent_ledger_credit": [
+      true,
+      67
+     ],
+     "parent_stream_fill": [
+      67,
+      1784559946.909726
+     ],
+     "t1_stream_fill": [
+      72,
+      1784566581.925815
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+     "guarded_cutoff_ts": 1784541567.27248,
+     "leg": "OLI",
+     "parent_ledger_credit": [
+      true,
+      82
+     ],
+     "parent_stream_fill": [
+      82,
+      1784529302.981978
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+     "guarded_cutoff_ts": 1784566800.0,
+     "leg": "SUR",
+     "parent_ledger_credit": [
+      true,
+      67
+     ],
+     "parent_stream_fill": [
+      67,
+      1784555069.12632
+     ],
+     "t1_stream_fill": [
+      70,
+      1784569334.98305
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+     "guarded_cutoff_ts": 1784555700.0,
+     "leg": "GEE",
+     "parent_ledger_credit": [
+      true,
+      26
+     ],
+     "parent_stream_fill": [
+      26,
+      1784555456.343136
+     ],
+     "t1_stream_fill": [
+      25,
+      1784556285.393782
+     ]
+    },
+    {
+     "cause_class": "admission_law_difference_identical_post_right_fill_fact",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13PASKRU",
+     "guarded_cutoff_ts": 1783932900.0,
+     "leg": "KRU",
+     "parent_ledger_credit": [
+      true,
+      36
+     ],
+     "parent_stream_fill": [
+      30,
+      1783934608.971315
+     ],
+     "t1_stream_fill": [
+      30,
+      1783934608.971315
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL14GOMMCD",
+     "guarded_cutoff_ts": 1784050140.0,
+     "leg": "GOM",
+     "parent_ledger_credit": [
+      true,
+      57
+     ],
+     "parent_stream_fill": [
+      57,
+      1784048094.511122
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPMATCH-26JUL15VANDRO",
+     "guarded_cutoff_ts": 1784139600.0,
+     "leg": "DRO",
+     "parent_ledger_credit": [
+      true,
+      57
+     ],
+     "parent_stream_fill": [
+      57,
+      1784137596.383468
+     ],
+     "t1_stream_fill": [
+      87,
+      1784141926.356543
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL18KOPHER",
+     "guarded_cutoff_ts": 1784388300.0,
+     "leg": "KOP",
+     "parent_ledger_credit": [
+      true,
+      58
+     ],
+     "parent_stream_fill": [
+      58,
+      1784377737.94061
+     ],
+     "t1_stream_fill": [
+      58,
+      1784389104.359956
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXATPMATCH-26JUL18MARJOR",
+     "guarded_cutoff_ts": 1784378700.0,
+     "leg": "JOR",
+     "parent_ledger_credit": [
+      true,
+      32
+     ],
+     "parent_stream_fill": [
+      32,
+      1784377737.977539
+     ],
+     "t1_stream_fill": [
+      31,
+      1784379113.732892
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+     "guarded_cutoff_ts": 1784051340.0,
+     "leg": "VED",
+     "parent_ledger_credit": [
+      true,
+      83
+     ],
+     "parent_stream_fill": [
+      83,
+      1784051201.121596
+     ],
+     "t1_stream_fill": [
+      90,
+      1784052205.686953
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+     "guarded_cutoff_ts": 1784042100.0,
+     "leg": "RAB",
+     "parent_ledger_credit": [
+      true,
+      4
+     ],
+     "parent_stream_fill": [
+      4,
+      1784037966.8513
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+     "guarded_cutoff_ts": 1784103600.0,
+     "leg": "YAN",
+     "parent_ledger_credit": [
+      true,
+      80
+     ],
+     "parent_stream_fill": [
+      80,
+      1784102819.109235
+     ],
+     "t1_stream_fill": [
+      77,
+      1784104893.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+     "guarded_cutoff_ts": 1784278200.0,
+     "leg": "KRA",
+     "parent_ledger_credit": [
+      true,
+      74
+     ],
+     "parent_stream_fill": [
+      74,
+      1784274651.598378
+     ],
+     "t1_stream_fill": [
+      73,
+      1784279084.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+     "guarded_cutoff_ts": 1784561340.0,
+     "leg": "GJO",
+     "parent_ledger_credit": [
+      true,
+      36
+     ],
+     "parent_stream_fill": [
+      36,
+      1784559560.625148
+     ],
+     "t1_stream_fill": [
+      36,
+      1784561995.071162
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "C_lost",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+     "guarded_cutoff_ts": 1784569740.0,
+     "leg": "MIN",
+     "parent_ledger_credit": [
+      true,
+      54
+     ],
+     "parent_stream_fill": [
+      54,
+      1784555786.080903
+     ],
+     "t1_stream_fill": [
+      52,
+      1784570228.0971
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+     "guarded_cutoff_ts": 1783929300.0,
+     "leg": "GAR",
+     "parent_ledger_credit": [
+      true,
+      6
+     ],
+     "parent_stream_fill": [
+      6,
+      1783927951.479839
+     ],
+     "t1_stream_fill": [
+      6,
+      1783930055.818092
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXWTAMATCH-26JUL15DARSAK",
+     "guarded_cutoff_ts": 1784132700.0,
+     "leg": "SAK",
+     "parent_ledger_credit": [
+      true,
+      78
+     ],
+     "parent_stream_fill": [
+      78,
+      1784132195.237923
+     ],
+     "t1_stream_fill": [
+      85,
+      1784134002.633663
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "PC_lost",
+     "event_id": "KXWTAMATCH-26JUL15HONPAR",
+     "guarded_cutoff_ts": 1784136840.0,
+     "leg": "PAR",
+     "parent_ledger_credit": [
+      true,
+      59
+     ],
+     "parent_stream_fill": [
+      59,
+      1784136224.829007
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    },
+    {
+     "cause_class": "behavioral_true_loss_t1_stream_never_filled_leg",
+     "change": "C_lost",
+     "event_id": "KXWTAMATCH-26JUL18HONTHA",
+     "guarded_cutoff_ts": 1784365440.0,
+     "leg": "HON",
+     "parent_ledger_credit": [
+      true,
+      85
+     ],
+     "parent_stream_fill": [
+      85,
+      1784365345.870729
+     ],
+     "t1_stream_fill": [
+      null,
+      null
+     ]
+    }
+   ],
+   "taxonomy": {
+    "C_lost|behavioral_shifted_fill_landed_post_right": 6,
+    "C_lost|behavioral_true_loss_t1_stream_never_filled_leg": 1,
+    "PC_lost|admission_law_difference_identical_post_right_fill_fact": 2,
+    "PC_lost|behavioral_shifted_fill_landed_post_right": 12,
+    "PC_lost|behavioral_true_loss_t1_stream_never_filled_leg": 6
+   }
+  },
+  "w1_t1__macro_micro__response_only": {
+   "rows": [
+    {
+     "cause_class": "admission_law_difference_identical_post_right_fill_fact",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+     "guarded_cutoff_ts": 1783882200.0,
+     "leg": "FEA",
+     "parent_ledger_credit": [
+      true,
+      48
+     ],
+     "parent_stream_fill": [
+      46,
+      1783883078.084392
+     ],
+     "t1_stream_fill": [
+      46,
+      1783883078.084392
+     ]
+    },
+    {
+     "cause_class": "admission_law_difference_identical_post_right_fill_fact",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13PASKRU",
+     "guarded_cutoff_ts": 1783932900.0,
+     "leg": "KRU",
+     "parent_ledger_credit": [
+      true,
+      36
+     ],
+     "parent_stream_fill": [
+      30,
+      1783934608.971315
+     ],
+     "t1_stream_fill": [
+      30,
+      1783934608.971315
+     ]
+    }
+   ],
+   "taxonomy": {
+    "PC_lost|admission_law_difference_identical_post_right_fill_fact": 2
+   }
+  },
+  "w1_t1__macro_micro__target_completeness_only": {
+   "rows": [
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "PC_gained",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16KUMBRO",
+     "leg": "KUM",
+     "parent_stream_fill": [
+      32,
+      1784200724.289687
+     ],
+     "t1_stream_fill": [
+      49,
+      1784193008.602635
+     ]
+    },
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "C_gained",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19CASVAS",
+     "leg": "CAS",
+     "parent_stream_fill": [
+      42,
+      1784461865.0
+     ],
+     "t1_stream_fill": [
+      42,
+      1784454482.310269
+     ]
+    },
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "C_gained",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+     "leg": "BIG",
+     "parent_stream_fill": [
+      null,
+      null
+     ],
+     "t1_stream_fill": [
+      62,
+      1784500172.818314
+     ]
+    },
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "C_gained",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19JONISO",
+     "leg": "ISO",
+     "parent_stream_fill": [
+      null,
+      null
+     ],
+     "t1_stream_fill": [
+      61,
+      1784485585.623435
+     ]
+    },
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "PC_gained",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+     "leg": "GEA",
+     "parent_stream_fill": [
+      67,
+      1784491453.491891
+     ],
+     "t1_stream_fill": [
+      68,
+      1784486783.667707
+     ]
+    },
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "PC_gained",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+     "leg": "NOG",
+     "parent_stream_fill": [
+      54,
+      1784585441.06186
+     ],
+     "t1_stream_fill": [
+      53,
+      1784579957.682488
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+     "guarded_cutoff_ts": 1784541567.27248,
+     "leg": "OLI",
+     "parent_ledger_credit": [
+      true,
+      82
+     ],
+     "parent_stream_fill": [
+      82,
+      1784529302.981978
+     ],
+     "t1_stream_fill": [
+      82,
+      1784541762.47152
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20POHWES",
+     "guarded_cutoff_ts": 1784535900.0,
+     "leg": "POH",
+     "parent_ledger_credit": [
+      true,
+      8
+     ],
+     "parent_stream_fill": [
+      8,
+      1784524846.112438
+     ],
+     "t1_stream_fill": [
+      8,
+      1784536574.793659
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13COLSKA",
+     "guarded_cutoff_ts": 1783946700.0,
+     "leg": "SKA",
+     "parent_ledger_credit": [
+      true,
+      16
+     ],
+     "parent_stream_fill": [
+      16,
+      1783944132.986623
+     ],
+     "t1_stream_fill": [
+      22,
+      1783948345.275229
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13PASKRU",
+     "guarded_cutoff_ts": 1783932900.0,
+     "leg": "KRU",
+     "parent_ledger_credit": [
+      true,
+      36
+     ],
+     "parent_stream_fill": [
+      30,
+      1783934608.971315
+     ],
+     "t1_stream_fill": [
+      32,
+      1783934608.0
+     ]
+    },
+    {
+     "cause_class": "behavioral_shifted_fill_landed_post_right",
+     "change": "PC_lost",
+     "event_id": "KXATPMATCH-26JUL13TABROD",
+     "guarded_cutoff_ts": 1783937640.0,
+     "leg": "TAB",
+     "parent_ledger_credit": [
+      true,
+      59
+     ],
+     "parent_stream_fill": [
+      59,
+      1783927042.807138
+     ],
+     "t1_stream_fill": [
+      58,
+      1783938474.129464
+     ]
+    },
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "C_gained",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+     "leg": "CIR",
+     "parent_stream_fill": [
+      null,
+      null
+     ],
+     "t1_stream_fill": [
+      42,
+      1784387023.0
+     ]
+    },
+    {
+     "cause_class": "gain_new_in_window_fill",
+     "change": "C_gained",
+     "event_id": "KXWTACHALLENGERMATCH-26JUL18URGKOT",
+     "leg": "URG",
+     "parent_stream_fill": [
+      null,
+      null
+     ],
+     "t1_stream_fill": [
+      67,
+      1784386516.038713
+     ]
+    }
+   ],
+   "taxonomy": {
+    "C_gained|gain_new_in_window_fill": 5,
+    "PC_gained|gain_new_in_window_fill": 3,
+    "PC_lost|behavioral_shifted_fill_landed_post_right": 5
+   }
+  }
+ },
+ "metrics": null,
+ "migration_class_outcomes": {
+  "capacity_control": {
+   "rows": 2
+  },
+  "persistence": {
+   "C_changed": 0,
+   "PC_changed": 0,
+   "credited_fill_changed": 0,
+   "neutral": 34,
+   "rows": 34,
+   "stream_changed": 34
+  },
+  "response": {
+   "C_changed": 0,
+   "PC_changed": 0,
+   "credited_fill_changed": 0,
+   "neutral": 48,
+   "rows": 48,
+   "stream_changed": 48
+  },
+  "target_completeness": {
+   "C_changed": 2,
+   "PC_changed": 2,
+   "credited_fill_changed": 2,
+   "improved": 2,
+   "neutral": 6,
+   "rows": 8,
+   "stream_changed": 8
+  }
+ },
+ "migration_rows": [
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__target_completeness_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+   "layer": "target_completeness",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+   "layer": "target_completeness",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": true,
+   "PC_changed": true,
+   "T1_candidate": "w1_t1__macro_hold__target_completeness_only",
+   "credited_fill_changed": true,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+   "layer": "target_completeness",
+   "outcome": "improved",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    true,
+    true
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+   "layer": "target_completeness",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12CERKOL",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12CERKOL",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12DAHBAE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12DAHBAE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12DODCAR",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12DODCAR",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12REJMID",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12REJMID",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12TSIBUS",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12TSIBUS",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL15BASTIR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL15BASTIR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL19GASDZU",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL19GASDZU",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL19STRSHE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL19STRSHE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL19VANFAR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL19VANFAR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "event_id": "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+   "layer": "capacity_control",
+   "outcome": "diagnostic_only_no_conversion_claim",
+   "source_candidate": "w1_range_attack__macro_hold__combined_headroom"
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL12FETPIE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL12FETPIE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL12OKAIPE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL12OKAIPE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL12PRIION",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL12PRIION",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL16UDVKAW",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL16UDVKAW",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL19EIGCAR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL19EIGCAR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_hold__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__target_completeness_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+   "layer": "target_completeness",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+   "layer": "target_completeness",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": true,
+   "PC_changed": true,
+   "T1_candidate": "w1_t1__macro_micro__target_completeness_only",
+   "credited_fill_changed": true,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+   "layer": "target_completeness",
+   "outcome": "improved",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    true,
+    true
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+   "layer": "target_completeness",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12CERKOL",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12CERKOL",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12DAHBAE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12DAHBAE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12DODCAR",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12DODCAR",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12REJMID",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12REJMID",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12TSIBUS",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL12TSIBUS",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL15BASTIR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL15BASTIR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL19GASDZU",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL19GASDZU",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL19STRSHE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL19STRSHE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL19VANFAR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXATPMATCH-26JUL19VANFAR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "event_id": "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+   "layer": "capacity_control",
+   "outcome": "diagnostic_only_no_conversion_claim",
+   "source_candidate": "w1_range_attack__macro_micro__combined_headroom"
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL12FETPIE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL12FETPIE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL12OKAIPE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL12OKAIPE",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL12PRIION",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL12PRIION",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__response_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL16UDVKAW",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL16UDVKAW",
+   "layer": "response",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL19EIGCAR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL19EIGCAR",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__persistence_only",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  },
+  {
+   "C_changed": false,
+   "PC_changed": false,
+   "T1_candidate": "w1_t1__macro_micro__full_stack",
+   "credited_fill_changed": false,
+   "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+   "layer": "persistence",
+   "outcome": "neutral",
+   "parent_C_PC": [
+    false,
+    false
+   ],
+   "stream_changed": true,
+   "t1_C_PC": [
+    false,
+    false
+   ]
+  }
+ ],
+ "persistence_loss_taxonomy": {
+  "w1_t1__macro_hold__full_stack": {
+   "events": [
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783863650.115323,
+      "held_price": 46,
+      "holds": 99,
+      "leg": "FEA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+     "lost_legs": [
+      "FEA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783968006.009547,
+      "held_price": 49,
+      "holds": 73,
+      "leg": "INC",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+     "lost_legs": [
+      "INC"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783975322.600751,
+      "held_price": 20,
+      "holds": 123,
+      "leg": "FEN",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL13WOLFEN",
+     "lost_legs": [
+      "FEN"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784081788.574234,
+      "held_price": 30,
+      "holds": 25,
+      "leg": "TOM",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL14BLATOM",
+     "lost_legs": [
+      "TOM"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784006098.202496,
+      "held_price": 3,
+      "holds": 103,
+      "leg": "PER",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+     "lost_legs": [
+      "PER"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784146074.341856,
+      "held_price": 77,
+      "holds": 358,
+      "leg": "WON",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+     "lost_legs": [
+      "WON"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784213143.943785,
+      "held_price": 38,
+      "holds": 13,
+      "leg": "CAM",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+     "lost_legs": [
+      "CAM"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784211959.599788,
+      "held_price": 65,
+      "holds": 41,
+      "leg": "DRA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+     "lost_legs": [
+      "DRA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784217714.588049,
+      "held_price": 76,
+      "holds": 162,
+      "leg": "SMI",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16SMIMAT",
+     "lost_legs": [
+      "SMI"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784466126.0,
+      "held_price": 40,
+      "holds": 29,
+      "leg": "CLA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+     "lost_legs": [
+      "CLA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784486273.40509,
+      "held_price": 52,
+      "holds": 67,
+      "leg": "BIG",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+     "lost_legs": [
+      "BIG"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784473888.225955,
+      "held_price": 63,
+      "holds": 37,
+      "leg": "IMA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+     "lost_legs": [
+      "IMA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784450553.784636,
+      "held_price": 90,
+      "holds": 15,
+      "leg": "KUM",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+     "lost_legs": [
+      "KUM"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784586594.381565,
+      "held_price": 55,
+      "holds": 55,
+      "leg": "HAR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+     "lost_legs": [
+      "HAR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784556301.654759,
+      "held_price": 63,
+      "holds": 64,
+      "leg": "IMA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+     "lost_legs": [
+      "IMA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784569066.210222,
+      "held_price": 50,
+      "holds": 337,
+      "leg": "NOG",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+     "lost_legs": [
+      "NOG"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784524765.483863,
+      "held_price": 80,
+      "holds": 29,
+      "leg": "OLI",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+     "lost_legs": [
+      "OLI"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784529571.150409,
+      "held_price": 7,
+      "holds": 65,
+      "leg": "POH",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20POHWES",
+     "lost_legs": [
+      "POH"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784553569.064861,
+      "held_price": 65,
+      "holds": 194,
+      "leg": "SUR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+     "lost_legs": [
+      "SUR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784546939.321367,
+      "held_price": 25,
+      "holds": 14,
+      "leg": "GEE",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+     "lost_legs": [
+      "GEE"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783929132.174061,
+      "held_price": 13,
+      "holds": 122,
+      "leg": "SKA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL13COLSKA",
+     "lost_legs": [
+      "SKA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783928946.120988,
+      "held_price": 35,
+      "holds": 6,
+      "leg": "KRU",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL13PASKRU",
+     "lost_legs": [
+      "KRU"
+     ]
+    },
+    {
+     "cause": "receipt_backed_cancel_then_no_refill",
+     "detail": {
+      "close_reason": "maker_safety_external_ask_move_cancel",
+      "leg": "TAB"
+     },
+     "event_id": "KXATPMATCH-26JUL13TABROD",
+     "lost_legs": [
+      "TAB"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784041985.675317,
+      "held_price": 55,
+      "holds": 104,
+      "leg": "GOM",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXATPMATCH-26JUL14GOMMCD",
+     "lost_legs": [
+      "GOM"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784131006.222458,
+      "held_price": 55,
+      "holds": 77,
+      "leg": "DRO",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL15VANDRO",
+     "lost_legs": [
+      "DRO"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784091640.036168,
+      "held_price": 51,
+      "holds": 156,
+      "leg": "VAL",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL15VANVAL",
+     "lost_legs": [
+      "VAL"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784375311.844812,
+      "held_price": 55,
+      "holds": 31,
+      "leg": "KOP",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL18KOPHER",
+     "lost_legs": [
+      "KOP"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784360490.984023,
+      "held_price": 31,
+      "holds": 8,
+      "leg": "JOR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL18MARJOR",
+     "lost_legs": [
+      "JOR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784042918.161596,
+      "held_price": 81,
+      "holds": 12,
+      "leg": "VED",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+     "lost_legs": [
+      "VED"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784027535.152239,
+      "held_price": 2,
+      "holds": 61,
+      "leg": "RAB",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+     "lost_legs": [
+      "RAB"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784091087.639616,
+      "held_price": 79,
+      "holds": 33,
+      "leg": "YAN",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+     "lost_legs": [
+      "YAN"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784265200.312174,
+      "held_price": 71,
+      "holds": 90,
+      "leg": "KRA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+     "lost_legs": [
+      "KRA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784551108.40511,
+      "held_price": 35,
+      "holds": 17,
+      "leg": "GJO",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+     "lost_legs": [
+      "GJO"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784551417.51522,
+      "held_price": 53,
+      "holds": 15,
+      "leg": "MIN",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+     "lost_legs": [
+      "MIN"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783920556.20541,
+      "held_price": 5,
+      "holds": 124,
+      "leg": "GAR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+     "lost_legs": [
+      "GAR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784125508.783907,
+      "held_price": 77,
+      "holds": 23,
+      "leg": "SAK",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTAMATCH-26JUL15DARSAK",
+     "lost_legs": [
+      "SAK"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784130939.184078,
+      "held_price": 58,
+      "holds": 75,
+      "leg": "PAR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXWTAMATCH-26JUL15HONPAR",
+     "lost_legs": [
+      "PAR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784364140.783567,
+      "held_price": 82,
+      "holds": 5,
+      "leg": "HON",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTAMATCH-26JUL18HONTHA",
+     "lost_legs": [
+      "HON"
+     ]
+    }
+   ],
+   "taxonomy": {
+    "lawful_HOLD_retained_price_never_filled_missed_later_opportunity": 37,
+    "receipt_backed_cancel_then_no_refill": 1
+   }
+  },
+  "w1_t1__macro_hold__persistence_only": {
+   "events": [
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783863650.115323,
+      "held_price": 46,
+      "holds": 99,
+      "leg": "FEA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+     "lost_legs": [
+      "FEA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783968006.009547,
+      "held_price": 49,
+      "holds": 73,
+      "leg": "INC",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+     "lost_legs": [
+      "INC"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784081788.574234,
+      "held_price": 30,
+      "holds": 25,
+      "leg": "TOM",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL14BLATOM",
+     "lost_legs": [
+      "TOM"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784146074.341856,
+      "held_price": 77,
+      "holds": 319,
+      "leg": "WON",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+     "lost_legs": [
+      "WON"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784213143.943785,
+      "held_price": 38,
+      "holds": 13,
+      "leg": "CAM",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+     "lost_legs": [
+      "CAM"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784211959.599788,
+      "held_price": 65,
+      "holds": 41,
+      "leg": "DRA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+     "lost_legs": [
+      "DRA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784217714.588049,
+      "held_price": 76,
+      "holds": 155,
+      "leg": "SMI",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16SMIMAT",
+     "lost_legs": [
+      "SMI"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784466126.0,
+      "held_price": 40,
+      "holds": 29,
+      "leg": "CLA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+     "lost_legs": [
+      "CLA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784473888.225955,
+      "held_price": 63,
+      "holds": 37,
+      "leg": "IMA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+     "lost_legs": [
+      "IMA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784450553.784636,
+      "held_price": 90,
+      "holds": 15,
+      "leg": "KUM",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+     "lost_legs": [
+      "KUM"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784586594.381565,
+      "held_price": 55,
+      "holds": 55,
+      "leg": "HAR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+     "lost_legs": [
+      "HAR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784556301.654759,
+      "held_price": 63,
+      "holds": 64,
+      "leg": "IMA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+     "lost_legs": [
+      "IMA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784524765.483863,
+      "held_price": 80,
+      "holds": 10,
+      "leg": "OLI",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+     "lost_legs": [
+      "OLI"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784553569.064861,
+      "held_price": 65,
+      "holds": 194,
+      "leg": "SUR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+     "lost_legs": [
+      "SUR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784546939.321367,
+      "held_price": 25,
+      "holds": 14,
+      "leg": "GEE",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+     "lost_legs": [
+      "GEE"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783928946.120988,
+      "held_price": 35,
+      "holds": 6,
+      "leg": "KRU",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL13PASKRU",
+     "lost_legs": [
+      "KRU"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784041985.675317,
+      "held_price": 55,
+      "holds": 104,
+      "leg": "GOM",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXATPMATCH-26JUL14GOMMCD",
+     "lost_legs": [
+      "GOM"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784131006.222458,
+      "held_price": 55,
+      "holds": 77,
+      "leg": "DRO",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL15VANDRO",
+     "lost_legs": [
+      "DRO"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784375311.844812,
+      "held_price": 55,
+      "holds": 31,
+      "leg": "KOP",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL18KOPHER",
+     "lost_legs": [
+      "KOP"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784360490.984023,
+      "held_price": 31,
+      "holds": 8,
+      "leg": "JOR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL18MARJOR",
+     "lost_legs": [
+      "JOR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784042918.161596,
+      "held_price": 81,
+      "holds": 12,
+      "leg": "VED",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+     "lost_legs": [
+      "VED"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784027535.152239,
+      "held_price": 2,
+      "holds": 61,
+      "leg": "RAB",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+     "lost_legs": [
+      "RAB"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784091087.639616,
+      "held_price": 79,
+      "holds": 33,
+      "leg": "YAN",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+     "lost_legs": [
+      "YAN"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784265200.312174,
+      "held_price": 71,
+      "holds": 90,
+      "leg": "KRA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+     "lost_legs": [
+      "KRA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784551108.40511,
+      "held_price": 35,
+      "holds": 17,
+      "leg": "GJO",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+     "lost_legs": [
+      "GJO"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784551417.51522,
+      "held_price": 53,
+      "holds": 15,
+      "leg": "MIN",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+     "lost_legs": [
+      "MIN"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783920556.20541,
+      "held_price": 5,
+      "holds": 124,
+      "leg": "GAR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+     "lost_legs": [
+      "GAR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784125508.783907,
+      "held_price": 77,
+      "holds": 23,
+      "leg": "SAK",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTAMATCH-26JUL15DARSAK",
+     "lost_legs": [
+      "SAK"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784130939.184078,
+      "held_price": 58,
+      "holds": 74,
+      "leg": "PAR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXWTAMATCH-26JUL15HONPAR",
+     "lost_legs": [
+      "PAR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784364140.783567,
+      "held_price": 83,
+      "holds": 5,
+      "leg": "HON",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTAMATCH-26JUL18HONTHA",
+     "lost_legs": [
+      "HON"
+     ]
+    }
+   ],
+   "taxonomy": {
+    "lawful_HOLD_retained_price_never_filled_missed_later_opportunity": 30
+   }
+  },
+  "w1_t1__macro_micro__full_stack": {
+   "events": [
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783863650.115323,
+      "held_price": 46,
+      "holds": 99,
+      "leg": "FEA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+     "lost_legs": [
+      "FEA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783968006.009547,
+      "held_price": 49,
+      "holds": 73,
+      "leg": "INC",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+     "lost_legs": [
+      "INC"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784146074.341856,
+      "held_price": 77,
+      "holds": 358,
+      "leg": "WON",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+     "lost_legs": [
+      "WON"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784211959.599788,
+      "held_price": 65,
+      "holds": 42,
+      "leg": "DRA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+     "lost_legs": [
+      "DRA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784466126.0,
+      "held_price": 40,
+      "holds": 29,
+      "leg": "CLA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+     "lost_legs": [
+      "CLA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784473888.225955,
+      "held_price": 63,
+      "holds": 37,
+      "leg": "IMA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+     "lost_legs": [
+      "IMA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784450553.784636,
+      "held_price": 90,
+      "holds": 15,
+      "leg": "KUM",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+     "lost_legs": [
+      "KUM"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784586594.381565,
+      "held_price": 54,
+      "holds": 55,
+      "leg": "HAR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+     "lost_legs": [
+      "HAR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784556301.654759,
+      "held_price": 63,
+      "holds": 93,
+      "leg": "IMA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+     "lost_legs": [
+      "IMA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784524765.483863,
+      "held_price": 80,
+      "holds": 58,
+      "leg": "OLI",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+     "lost_legs": [
+      "OLI"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784529571.150409,
+      "held_price": 7,
+      "holds": 65,
+      "leg": "POH",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20POHWES",
+     "lost_legs": [
+      "POH"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784553569.064861,
+      "held_price": 65,
+      "holds": 288,
+      "leg": "SUR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+     "lost_legs": [
+      "SUR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784546939.321367,
+      "held_price": 25,
+      "holds": 14,
+      "leg": "GEE",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+     "lost_legs": [
+      "GEE"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783929132.174061,
+      "held_price": 13,
+      "holds": 122,
+      "leg": "SKA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL13COLSKA",
+     "lost_legs": [
+      "SKA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783928946.120988,
+      "held_price": 35,
+      "holds": 6,
+      "leg": "KRU",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL13PASKRU",
+     "lost_legs": [
+      "KRU"
+     ]
+    },
+    {
+     "cause": "receipt_backed_cancel_then_no_refill",
+     "detail": {
+      "close_reason": "maker_safety_external_ask_move_cancel",
+      "leg": "TAB"
+     },
+     "event_id": "KXATPMATCH-26JUL13TABROD",
+     "lost_legs": [
+      "TAB"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784041985.675317,
+      "held_price": 55,
+      "holds": 104,
+      "leg": "GOM",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXATPMATCH-26JUL14GOMMCD",
+     "lost_legs": [
+      "GOM"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784131006.222458,
+      "held_price": 55,
+      "holds": 77,
+      "leg": "DRO",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL15VANDRO",
+     "lost_legs": [
+      "DRO"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784091640.036168,
+      "held_price": 51,
+      "holds": 156,
+      "leg": "VAL",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL15VANVAL",
+     "lost_legs": [
+      "VAL"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784375311.844812,
+      "held_price": 55,
+      "holds": 31,
+      "leg": "KOP",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL18KOPHER",
+     "lost_legs": [
+      "KOP"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784360490.984023,
+      "held_price": 31,
+      "holds": 8,
+      "leg": "JOR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL18MARJOR",
+     "lost_legs": [
+      "JOR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784042918.161596,
+      "held_price": 81,
+      "holds": 12,
+      "leg": "VED",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+     "lost_legs": [
+      "VED"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784027535.152239,
+      "held_price": 2,
+      "holds": 61,
+      "leg": "RAB",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+     "lost_legs": [
+      "RAB"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784091087.639616,
+      "held_price": 79,
+      "holds": 33,
+      "leg": "YAN",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+     "lost_legs": [
+      "YAN"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784265200.312174,
+      "held_price": 71,
+      "holds": 90,
+      "leg": "KRA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+     "lost_legs": [
+      "KRA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784551108.40511,
+      "held_price": 35,
+      "holds": 17,
+      "leg": "GJO",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+     "lost_legs": [
+      "GJO"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784551417.51522,
+      "held_price": 53,
+      "holds": 15,
+      "leg": "MIN",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+     "lost_legs": [
+      "MIN"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783920556.20541,
+      "held_price": 5,
+      "holds": 124,
+      "leg": "GAR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+     "lost_legs": [
+      "GAR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784125508.783907,
+      "held_price": 77,
+      "holds": 23,
+      "leg": "SAK",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTAMATCH-26JUL15DARSAK",
+     "lost_legs": [
+      "SAK"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784130939.184078,
+      "held_price": 58,
+      "holds": 75,
+      "leg": "PAR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXWTAMATCH-26JUL15HONPAR",
+     "lost_legs": [
+      "PAR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784364140.783567,
+      "held_price": 82,
+      "holds": 5,
+      "leg": "HON",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTAMATCH-26JUL18HONTHA",
+     "lost_legs": [
+      "HON"
+     ]
+    }
+   ],
+   "taxonomy": {
+    "lawful_HOLD_retained_price_never_filled_missed_later_opportunity": 30,
+    "receipt_backed_cancel_then_no_refill": 1
+   }
+  },
+  "w1_t1__macro_micro__persistence_only": {
+   "events": [
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783863650.115323,
+      "held_price": 46,
+      "holds": 99,
+      "leg": "FEA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+     "lost_legs": [
+      "FEA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783968006.009547,
+      "held_price": 49,
+      "holds": 73,
+      "leg": "INC",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+     "lost_legs": [
+      "INC"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784146074.341856,
+      "held_price": 77,
+      "holds": 319,
+      "leg": "WON",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+     "lost_legs": [
+      "WON"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784211959.599788,
+      "held_price": 65,
+      "holds": 42,
+      "leg": "DRA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+     "lost_legs": [
+      "DRA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784466126.0,
+      "held_price": 40,
+      "holds": 29,
+      "leg": "CLA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+     "lost_legs": [
+      "CLA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784473888.225955,
+      "held_price": 63,
+      "holds": 37,
+      "leg": "IMA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+     "lost_legs": [
+      "IMA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784450553.784636,
+      "held_price": 90,
+      "holds": 15,
+      "leg": "KUM",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+     "lost_legs": [
+      "KUM"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784586594.381565,
+      "held_price": 54,
+      "holds": 55,
+      "leg": "HAR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+     "lost_legs": [
+      "HAR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784556301.654759,
+      "held_price": 63,
+      "holds": 93,
+      "leg": "IMA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+     "lost_legs": [
+      "IMA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784524765.483863,
+      "held_price": 80,
+      "holds": 54,
+      "leg": "OLI",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+     "lost_legs": [
+      "OLI"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784553569.064861,
+      "held_price": 65,
+      "holds": 288,
+      "leg": "SUR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+     "lost_legs": [
+      "SUR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784546939.321367,
+      "held_price": 25,
+      "holds": 14,
+      "leg": "GEE",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+     "lost_legs": [
+      "GEE"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783928946.120988,
+      "held_price": 35,
+      "holds": 6,
+      "leg": "KRU",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL13PASKRU",
+     "lost_legs": [
+      "KRU"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784041985.675317,
+      "held_price": 55,
+      "holds": 104,
+      "leg": "GOM",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXATPMATCH-26JUL14GOMMCD",
+     "lost_legs": [
+      "GOM"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784131006.222458,
+      "held_price": 55,
+      "holds": 77,
+      "leg": "DRO",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL15VANDRO",
+     "lost_legs": [
+      "DRO"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784375311.844812,
+      "held_price": 55,
+      "holds": 31,
+      "leg": "KOP",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL18KOPHER",
+     "lost_legs": [
+      "KOP"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784360490.984023,
+      "held_price": 31,
+      "holds": 8,
+      "leg": "JOR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXATPMATCH-26JUL18MARJOR",
+     "lost_legs": [
+      "JOR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784042918.161596,
+      "held_price": 81,
+      "holds": 12,
+      "leg": "VED",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+     "lost_legs": [
+      "VED"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784027535.152239,
+      "held_price": 2,
+      "holds": 61,
+      "leg": "RAB",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+     "lost_legs": [
+      "RAB"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784091087.639616,
+      "held_price": 79,
+      "holds": 33,
+      "leg": "YAN",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+     "lost_legs": [
+      "YAN"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784265200.312174,
+      "held_price": 71,
+      "holds": 90,
+      "leg": "KRA",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+     "lost_legs": [
+      "KRA"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784551108.40511,
+      "held_price": 35,
+      "holds": 17,
+      "leg": "GJO",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+     "lost_legs": [
+      "GJO"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784551417.51522,
+      "held_price": 53,
+      "holds": 15,
+      "leg": "MIN",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+     "lost_legs": [
+      "MIN"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1783920556.20541,
+      "held_price": 5,
+      "holds": 124,
+      "leg": "GAR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+     "lost_legs": [
+      "GAR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784125508.783907,
+      "held_price": 77,
+      "holds": 23,
+      "leg": "SAK",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTAMATCH-26JUL15DARSAK",
+     "lost_legs": [
+      "SAK"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784130939.184078,
+      "held_price": 58,
+      "holds": 74,
+      "leg": "PAR",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": true
+     },
+     "event_id": "KXWTAMATCH-26JUL15HONPAR",
+     "lost_legs": [
+      "PAR"
+     ]
+    },
+    {
+     "cause": "lawful_HOLD_retained_price_never_filled_missed_later_opportunity",
+     "detail": {
+      "first_hold_ts": 1784364140.783567,
+      "held_price": 83,
+      "holds": 5,
+      "leg": "HON",
+      "suppressed_replacement": null,
+      "terminal_cutoff_close": false
+     },
+     "event_id": "KXWTAMATCH-26JUL18HONTHA",
+     "lost_legs": [
+      "HON"
+     ]
+    }
+   ],
+   "taxonomy": {
+    "lawful_HOLD_retained_price_never_filled_missed_later_opportunity": 27
+   }
+  }
+ },
+ "receipted_answers": {
+  "macro_context_effect": "Parent regimes differ (C 132 vs 125; PC 116 vs 111) via macro target selection. Under response-only and target-completeness the regime gap persists; under persistence/full-stack it collapses to zero because held exposure never re-reads the regime surface.",
+  "why_both_full_stacks_converged_to_C94_PC88": "The full-stack C event sets are IDENTICAL across macro-hold and macro-micro (94 shared events). Persistence dominates the stack: it pins sibling exposure to the same held prices in both regimes, erasing the macro-context differences that separate the parents (132 vs 125 C). The shared surviving set yields identical C=94/PC=88/S=77 with only IC differing (32 vs 33).",
+  "why_persistence_sharply_reduced_C_and_PC": "Persistence HOLD lawfully retained the original X against headroom/LIVE-AIM/macro reprice suggestions. The receipted event-level effect: 30 (hold) / 27 (micro) C losses, of which 24 (hold) / 18 (micro) are behavioral_shifted_fill_landed_post_right (the held/late-walked exposure fill fact landed after the guarded cutoff), 5/7 true never-filled legs, and 1/2 admission artifacts. Every one of the 30/27 lost events carries t1_persistence_hold receipts on the lost leg: lawful queue preservation measurably missed the later reprice path that filled the parent in-window. Lawful is not good: persistence-only cost 23/20 PC.",
+  "why_response_only_finished_below_parents": "All three response-only PC deficits (PASKRU in both regimes, FEAWAL in macro-micro) are admission-law surface differences, not behavior: the T1 stream fill facts are IDENTICAL to the parent stream fill facts (KRU X=30 @1783934608.97 vs cutoff 1783932900; FEA X=46 @1783883078.08 vs cutoff 1783882200), both post-right. The T1 scoring package admits only in-window frozen simulated fills; the parent results package credited guarded FILLABLE_AT_X evidence within the window (KRU@36, FEA@48). Response-only produced zero true behavioral C/PC losses and zero gains: its 476,710 explicit decisions were all HOLDs on already-active exposure.",
+  "why_target_completeness_raised_C_but_not_PC": "Genuine gains exist: +4C/+3PC (hold) and +5C/+3PC (micro) from new in-window fills at complete headroom targets. But the modified exposure sequence also shifted 5 (hold) and 5 (micro) previously-PC events so their eventual fill facts landed post-right (behavioral_shifted_fill), netting PC 116->114 and 111->109 while C rose 132->134 and 125->128. Two of the gained completions per regime are completed_non_PC (combined delta not strictly negative), so C rose more than PC."
+ },
+ "schema_version": "w1-t1-execution-mechanism-outcome-census-v1",
+ "scored": false,
+ "w1_t1__macro_hold__target_completeness_only_C_gained_detail": [
+  {
+   "PC": true,
+   "classification": "completed_PC",
+   "combined_delta_cents": -3,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL16DELDAL"
+  },
+  {
+   "PC": true,
+   "classification": "completed_PC",
+   "combined_delta_cents": -2,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL16KUMBRO"
+  },
+  {
+   "PC": false,
+   "classification": "completed_non_PC",
+   "combined_delta_cents": 1,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19CASVAS"
+  },
+  {
+   "PC": false,
+   "classification": "completed_non_PC",
+   "combined_delta_cents": 1,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19JONISO"
+  },
+  {
+   "PC": true,
+   "classification": "completed_PC",
+   "combined_delta_cents": -2,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA"
+  },
+  {
+   "PC": null,
+   "classification": "completed_reference_missing_or_ambiguous",
+   "combined_delta_cents": null,
+   "event_id": "KXWTACHALLENGERMATCH-26JUL18CIRTOT"
+  },
+  {
+   "PC": null,
+   "classification": "completed_reference_missing_or_ambiguous",
+   "combined_delta_cents": null,
+   "event_id": "KXWTACHALLENGERMATCH-26JUL18URGKOT"
+  }
+ ],
+ "w1_t1__macro_micro__target_completeness_only_C_gained_detail": [
+  {
+   "PC": true,
+   "classification": "completed_PC",
+   "combined_delta_cents": -2,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL16KUMBRO"
+  },
+  {
+   "PC": false,
+   "classification": "completed_non_PC",
+   "combined_delta_cents": 1,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19CASVAS"
+  },
+  {
+   "PC": false,
+   "classification": "completed_non_PC",
+   "combined_delta_cents": 4,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG"
+  },
+  {
+   "PC": false,
+   "classification": "completed_non_PC",
+   "combined_delta_cents": 1,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19JONISO"
+  },
+  {
+   "PC": true,
+   "classification": "completed_PC",
+   "combined_delta_cents": -2,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA"
+  },
+  {
+   "PC": true,
+   "classification": "completed_PC",
+   "combined_delta_cents": -1,
+   "event_id": "KXATPCHALLENGERMATCH-26JUL20NOGSHI"
+  },
+  {
+   "PC": null,
+   "classification": "completed_reference_missing_or_ambiguous",
+   "combined_delta_cents": null,
+   "event_id": "KXWTACHALLENGERMATCH-26JUL18CIRTOT"
+  },
+  {
+   "PC": null,
+   "classification": "completed_reference_missing_or_ambiguous",
+   "combined_delta_cents": null,
+   "event_id": "KXWTACHALLENGERMATCH-26JUL18URGKOT"
+  }
+ ]
+}

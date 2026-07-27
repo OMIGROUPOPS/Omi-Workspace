@@ -1,0 +1,279 @@
+{
+ "audit_parent": "de2f627e53885bd1a44a42b92f23b5b93a391a47",
+ "audited_scorer_commit_verified": "e7e7b9071b9238868d0599a2e5f24bb92dcc9bdd",
+ "authorization_gate": {
+  "fail_closed_worktree_and_results_checks": true,
+  "no_self_referential_sha_requirement": true,
+  "real_package_not_executed": true,
+  "real_verifier_exercised": true,
+  "rejections_verified": [
+   "missing PASS",
+   "wrong package commit",
+   "unknown commit",
+   "wrong execution ID",
+   "truncated bundle SHA",
+   "altered command template",
+   "commit not on audit ref"
+  ],
+  "valid_synthetic_authorization_accepted": true
+ },
+ "authorization_scope": "one separately bound deterministic scoring execution after an explicit authorization addendum ONLY; this PASS does not itself authorize execution",
+ "candidate_set": {
+  "D_each": 804,
+  "candidates": 8,
+  "frozen_order": true,
+  "overlay_identity_bindings_verified_per_row": true,
+  "parents_reference_only_not_rerun": true
+ },
+ "chronology": {
+  "evidence_never_precedes_action": true,
+  "fills_from_decisions_targets_holds_nocalls": 0,
+  "first_leg_facts_identical_to_parent": true,
+  "guarded_cutoff_extensions_inside_window1": true,
+  "older_favorable_bbo_selections": 0,
+  "pre_first_fill_t1_actions": 0,
+  "self_trigger_fills": 0,
+  "sibling_evidence_strictly_later": true
+ },
+ "classification_conservation": {
+  "boundary_cases_exercised_through_real_scorer": true,
+  "conserve_to_D804": true,
+  "diagnostics_cannot_alter_membership": true,
+  "six_classes_mutually_exclusive": true
+ },
+ "controlling_t1_pass": "de2f627e53885bd1a44a42b92f23b5b93a391a47",
+ "hashes_and_determinism": {
+  "artifact_receipts_verified": 14,
+  "committed_input_receipts_verified": 48,
+  "component_hashes_match_all_claims": true,
+  "event_leg_identities": {
+   "D": 804,
+   "legs": 1608
+  },
+  "gzip_payload_rows": 3840,
+  "input_bundle_sha256_reproduced": "67a9166a229eca4e048c57bb2316a3298de679ea2b6dad215203e31206743cd0",
+  "package_tree_sha256_reproduced": "80ee2dfb6c4427f10809b7c00821e3b520f5d571b29f2def6cf65a20adaabea2",
+  "regenerations": {
+   "all_16_files_byte_identical_to_committed": true,
+   "committed_receipts_not_used_as_expected_answers": true,
+   "crlf_configured_build_byte_identical": true,
+   "lf_freeze_two_builds_byte_identical": true
+  }
+ },
+ "implementation_parent_verified": "88b0eae8620172f41e2f5d45320408357de24c6f",
+ "implementation_under_audit": "bbf6f632795d612be4e237d927821bcd01dc1898",
+ "lineage": {
+  "diff": {
+   "additions": 22,
+   "deletions": 0,
+   "insertions": 15780,
+   "modifications": 0
+  },
+  "inherited_tree_byte_identical": true,
+  "no_event_specific_hardcoding": true,
+  "no_hidden_results_cache_ranking_artifacts": true,
+  "package_files": 16,
+  "parent_exact": true,
+  "remote_codex_tip": "bbf6f632795d612be4e237d927821bcd01dc1898",
+  "sole_child_of_88b0eae8": true
+ },
+ "metric_law_fixtures": {
+  "C_both_legs_exact_five": true,
+  "D_804": true,
+  "IC_diagnostic_only_no_both_negative_gate": true,
+  "PC_combined_minus1_qualifies": true,
+  "PC_combined_zero_rejected": true,
+  "PC_over_C_labeled_diagnostic_only": true,
+  "PC_without_IC": true,
+  "S_99_qualifies_100_rejected": true,
+  "S_PC_independent_both_ways": true,
+  "checks_total": 71,
+  "failures": 0,
+  "no_candidate_ranking": true,
+  "official_denominator_D_never_C": true,
+  "positive_sibling_d2_qualifies_PC": true,
+  "target_PC_603": true
+ },
+ "metrics": null,
+ "null_and_forbidden": {
+  "holdout": false,
+  "live_production_network": false,
+  "null_scan_violations": 0,
+  "orders_positions": false,
+  "parent_mutation": false,
+  "ranking_selection": false,
+  "results_directory": false,
+  "scorer_invocations_by_builder": 0,
+  "window2_exit_settlement_dca": false
+ },
+ "numeric_validation": {
+  "accepted_only": "exact integer five and exact integer cents",
+  "fixture_checks_via_real_adapter": true,
+  "rejected": [
+   "qty 4",
+   "qty 6",
+   "5.9",
+   "5.0001",
+   "booleans",
+   "NaN",
+   "infinity",
+   "fractional fill price",
+   "fractional X",
+   "fractional reference bid",
+   "out-of-band cents",
+   "missing causal identity",
+   "conflicting duplicate fills",
+   "duplicate leg fills",
+   "ask=X",
+   "evidence-before-action",
+   "sealed dates",
+   "wrong b2_max",
+   "self-trigger fill"
+  ],
+  "silent_coercion_paths": 0
+ },
+ "performance": null,
+ "reference_law": {
+  "audited_files_byte_identical_at_e7e7b907": 5,
+  "differing_price_tie_named_ambiguous": true,
+  "populations_candidate_independent": true,
+  "populations_per_parent_candidate": {
+   "hold|completed_reference_missing": 7,
+   "hold|leg_reference_available": 1410,
+   "hold|reference_record_missing": 198,
+   "micro|completed_reference_missing": 7,
+   "micro|leg_reference_available": 1410,
+   "micro|reference_record_missing": 198
+  },
+  "reference_unavailable_completion": {
+   "PC_IC_unavailable_not_false": true,
+   "S_eligible": true,
+   "class": "completed_reference_missing_or_ambiguous",
+   "stays_in_C": true,
+   "stays_in_D": true
+  },
+  "same_price_tie_reference_available": true,
+  "scorer_sha256_matches_claim": true
+ },
+ "ruling": "PASS",
+ "schema_version": "w1-t1-scoring-package-independent-audit-reproduction-v1",
+ "scored": false,
+ "strict_ask": {
+  "ask_equal_x_credits": 0,
+  "ask_strictly_below_x_all": true,
+  "credited_at_original_x": true,
+  "double_credits": 0,
+  "post_right_rows": 0,
+  "reconciled_into_3840": true,
+  "rows": 100
+ },
+ "tests": {
+  "additional_probes": 71,
+  "claimed": 160,
+  "composition": "20 new + 140 across bound suites; 198 total incl. census/attribution suites",
+  "passed_at_bbf6f632": 160
+ },
+ "unique_fill_rebuild": {
+  "all_conserve_to_804": true,
+  "committed_rows": 3840,
+  "conflicts_refused": 0,
+  "driver": "fresh code; frozen T1 overlays + START_LEDGER + private events + raw caches via inherited audited normalizer; package code never imported; committed ledger never used as expected answer",
+  "duplicates_removed": 0,
+  "excluded_post_right_or_unprovable": 6381,
+  "law_violations": {},
+  "per_candidate": {
+   "w1_t1__macro_hold__full_stack": {
+    "PRICE_REACHED": 451,
+    "STRICT_ASK_CERTAIN_FILL": 12,
+    "conserves_to_804": true,
+    "credited_leg_rows": 463,
+    "events_one_leg": 275,
+    "events_two_legs": 94,
+    "events_zero_legs": 435,
+    "excluded_post_right_or_unprovable": 815,
+    "positive_d2_sibling_fills": 0
+   },
+   "w1_t1__macro_hold__persistence_only": {
+    "PRICE_REACHED": 459,
+    "STRICT_ASK_CERTAIN_FILL": 12,
+    "conserves_to_804": true,
+    "credited_leg_rows": 471,
+    "events_one_leg": 267,
+    "events_two_legs": 102,
+    "events_zero_legs": 435,
+    "excluded_post_right_or_unprovable": 808,
+    "positive_d2_sibling_fills": 0
+   },
+   "w1_t1__macro_hold__response_only": {
+    "PRICE_REACHED": 487,
+    "STRICT_ASK_CERTAIN_FILL": 13,
+    "conserves_to_804": true,
+    "credited_leg_rows": 500,
+    "events_one_leg": 238,
+    "events_two_legs": 131,
+    "events_zero_legs": 435,
+    "excluded_post_right_or_unprovable": 784,
+    "positive_d2_sibling_fills": 0
+   },
+   "w1_t1__macro_hold__target_completeness_only": {
+    "PRICE_REACHED": 490,
+    "STRICT_ASK_CERTAIN_FILL": 13,
+    "conserves_to_804": true,
+    "credited_leg_rows": 503,
+    "events_one_leg": 235,
+    "events_two_legs": 134,
+    "events_zero_legs": 435,
+    "excluded_post_right_or_unprovable": 788,
+    "positive_d2_sibling_fills": 0
+   },
+   "w1_t1__macro_micro__full_stack": {
+    "PRICE_REACHED": 447,
+    "STRICT_ASK_CERTAIN_FILL": 12,
+    "conserves_to_804": true,
+    "credited_leg_rows": 459,
+    "events_one_leg": 271,
+    "events_two_legs": 94,
+    "events_zero_legs": 439,
+    "excluded_post_right_or_unprovable": 808,
+    "positive_d2_sibling_fills": 0
+   },
+   "w1_t1__macro_micro__persistence_only": {
+    "PRICE_REACHED": 451,
+    "STRICT_ASK_CERTAIN_FILL": 12,
+    "conserves_to_804": true,
+    "credited_leg_rows": 463,
+    "events_one_leg": 267,
+    "events_two_legs": 98,
+    "events_zero_legs": 439,
+    "excluded_post_right_or_unprovable": 804,
+    "positive_d2_sibling_fills": 0
+   },
+   "w1_t1__macro_micro__response_only": {
+    "PRICE_REACHED": 475,
+    "STRICT_ASK_CERTAIN_FILL": 13,
+    "conserves_to_804": true,
+    "credited_leg_rows": 488,
+    "events_one_leg": 242,
+    "events_two_legs": 123,
+    "events_zero_legs": 439,
+    "excluded_post_right_or_unprovable": 786,
+    "positive_d2_sibling_fills": 0
+   },
+   "w1_t1__macro_micro__target_completeness_only": {
+    "PRICE_REACHED": 480,
+    "STRICT_ASK_CERTAIN_FILL": 13,
+    "conserves_to_804": true,
+    "credited_leg_rows": 493,
+    "events_one_leg": 237,
+    "events_two_legs": 128,
+    "events_zero_legs": 439,
+    "excluded_post_right_or_unprovable": 788,
+    "positive_d2_sibling_fills": 0
+   }
+  },
+  "raw_fill_facts": 10221,
+  "rebuilt_rows": 3840,
+  "row_level_differences": 0,
+  "total_3840_reproduced": true
+ }
+}

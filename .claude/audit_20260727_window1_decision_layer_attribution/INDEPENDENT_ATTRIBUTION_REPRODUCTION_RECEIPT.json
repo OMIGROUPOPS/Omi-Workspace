@@ -1,0 +1,204 @@
+{
+ "attribution_counts": {
+  "capacity_unproved": {
+   "candidate_rows": 2,
+   "distinct_games": 1,
+   "no_capacity_invention": true,
+   "not_conflated_with_policy_absence": true,
+   "price_reach_preserved": true
+  },
+  "moved_away": {
+   "LIVE_AIM_reprice": 1,
+   "corridor_window_termination": 8,
+   "counterfactual_only_and_no_certain_fill_claim_on_all_rows": true,
+   "headroom_reprice": 8,
+   "layers_not_conflated": true,
+   "no_future_evidence_in_causal_action": true,
+   "total": 17
+  },
+  "never_exposed": {
+   "first_fill_sibling_response_failed_to_create_exposure": 24,
+   "never24_headroom_arm_receipted_verified": true,
+   "never24_no_matching_episode_keyed_decision_verified": true,
+   "no_forced_rows": true,
+   "target4_same_receipt_target_omits_lawful_X_verified": true,
+   "target_selection_never_included_lawful_X": 4,
+   "total": 28
+  }
+ },
+ "audit_parent": "26dd6e5e19a7890f02b538cc8b14a900f36e5b2f",
+ "authorization_scope": "operator use of the attribution map to formulate a later Window-1 tuning instruction ONLY; no tuning, scoring, ranking, deployment, or benchmark authorized",
+ "conservation": {
+  "47_equals_28_plus_17_plus_2": true,
+  "classes_mutually_exclusive_and_exhaustive": true,
+  "episodes_3226_3275_6501": true,
+  "macro_hold_22_equals_14_7_1": true,
+  "macro_micro_25_equals_14_10_1": true,
+  "positive_d2_6310": true
+ },
+ "controlling_independent_pass": "26dd6e5e19a7890f02b538cc8b14a900f36e5b2f",
+ "crosswalk": {
+  "all_shared_same_credited_first_leg": true,
+  "all_shared_same_earliest_lawful_sibling_episode": true,
+  "all_shared_terminal_attribution_agrees": true,
+  "candidate_rows": {
+   "macro_hold": 22,
+   "macro_micro": 25,
+   "total": 47
+  },
+  "candidate_rows_never_presented_as_games": true,
+  "distinct_game_union": 25,
+  "macro_hold_only": 0,
+  "macro_micro_only": 3,
+  "shared_recovered_games": 22
+ },
+ "episode_feature_analysis": {
+  "all_crosstabs_conserve_to_6501": true,
+  "episode_rows_never_rendered_as_event_counts": true,
+  "episodes": [
+   3226,
+   3275,
+   6501
+  ],
+  "positive_d2": 6310,
+  "positive_d2_means_positive_sibling_delta_inside_strictly_negative_combined": true
+ },
+ "immutable_input_discipline": {
+  "all_sources_in_passed_v2_and_mechanism_lineage": true,
+  "no_bbo_or_first_leg_or_boundary_or_headroom_alteration": true,
+  "no_cpcics_or_performance": true,
+  "no_opportunity_rescan_or_redefinition": true,
+  "no_policy_state_fabrication": true,
+  "no_scorer_import": true,
+  "raw_cache_access_limited_to_frozen_witness_id_resolution": true,
+  "source_manifest_rows_verified": {
+   "audit_blobs": 2,
+   "bad": 0,
+   "immutable_inputs": 23,
+   "targeted_raw_witness_receipts": 68
+  },
+  "v2_census_consumed_as_immutable_evidence": true
+ },
+ "implementation_parent_verified": "e60f6af4f6db5bab5b8a30704a0cb1fc98c774a7",
+ "implementation_under_audit": "7fe299e50a9fc018378873e1277c7c891ce313c0",
+ "independent_reconstruction": {
+  "aggregate_difference_count": 0,
+  "capacity_receipt_compared": true,
+  "conservation_receipt_compared": true,
+  "crosswalk_compared": true,
+  "decision_rows_compared": 47,
+  "driver": "fresh implementation; never imports window1_decision_layer_attribution.py",
+  "feature_breakdown_compared": true,
+  "geometry_rows_compared": 372,
+  "mechanism_matrix_compared": true,
+  "moved_away_rows_compared": 17,
+  "never_exposed_rows_compared": 28,
+  "row_level_difference_count": 0
+ },
+ "integrity_tests_determinism": {
+  "artifact_manifest_rows_verified": 12,
+  "byte_identical_to_committed_package": true,
+  "conservation_recomputed_independently": true,
+  "determinism_inventory_rows_verified": 13,
+  "fresh_clean_regenerations": 2,
+  "gzip_payloads_verified": 4,
+  "internal_builds_byte_identical": true,
+  "regenerated_package_files": 14,
+  "regeneration_environment": "scratch clone pinned to freeze-time refs (origin/codex/window1-definition=e60f6af4), core.autocrlf=false, three frozen source files placed untracked",
+  "tests": {
+   "attribution": 13,
+   "census": 25,
+   "total": 38,
+   "total_passed": 38
+  }
+ },
+ "lineage": {
+  "diff": {
+   "additions": 17,
+   "deletions": 0,
+   "modifications": 0
+  },
+  "inherited_tree_byte_identical": true,
+  "package_contents": "score-free attribution implementation + spec + tests + 14 receipts/artifacts only",
+  "parent_exact": true,
+  "remote_codex_tip": "7fe299e50a9fc018378873e1277c7c891ce313c0",
+  "sole_child_of_e60f6af4": true
+ },
+ "mechanism_matrix": {
+  "layers_are_existing_os_layers_only": true,
+  "new_mechanisms_or_parameters": 0,
+  "promotions_found": 0,
+  "statuses_from_frozen_table_only": true
+ },
+ "metrics": null,
+ "metrics_and_forbidden": {
+  "benchmark": false,
+  "holdout": false,
+  "live_production_network": false,
+  "null_scored_cpcics_violations": 0,
+  "order_position_mutation": false,
+  "parameter_or_candidate_proposal": false,
+  "scorer": false,
+  "tuning_ranking_selection": false,
+  "window2_exit_settlement_dca": false
+ },
+ "nofill_geometry": {
+  "both": [
+   52,
+   54
+  ],
+  "counterfactual_true_and_realized_miss_false_on_all_rows": true,
+  "hold_only": 0,
+  "micro_only": 3,
+  "neither": [
+   271,
+   272
+  ],
+  "no_counterfactual_geometry_in_realized_attribution": true,
+  "one": [
+   13,
+   14
+  ],
+  "orientation_rows": [
+   117,
+   122
+  ],
+  "shared": 65,
+  "unions": [
+   65,
+   68
+  ],
+  "witnesses_verified_row_by_row": true
+ },
+ "performance": null,
+ "recurring_x_context": {
+  "classes_separate": true,
+  "context_only": true,
+  "ledger_rejected": [
+   27,
+   34
+  ],
+  "not_redefined": true,
+  "raw_absent": [
+   16,
+   16
+  ]
+ },
+ "ruling": "PASS",
+ "schema_version": "w1-decision-layer-attribution-independent-audit-reproduction-v1",
+ "scored": false,
+ "semantics": {
+  "checked": [
+   "candidate rows vs games",
+   "episodes vs events",
+   "reach vs capacity",
+   "policy absence vs market absence",
+   "moved-away vs guaranteed fill",
+   "counterfactual vs realized miss",
+   "macro context vs micro authority",
+   "positive d2 vs positive combined"
+  ],
+  "reviewed": "prose, field names, tables, receipts",
+  "violations_found": 0
+ }
+}

@@ -1,0 +1,207 @@
+{
+ "audit_parent": "0350c081a26e06216a34f58eed8a13e72ef5e236",
+ "authorization_scope": "operator use of this score-free census for Window-1 opportunity-versus-policy diagnosis ONLY; no scoring, strategy tuning, deployment, or benchmark authorized",
+ "controlling_law_binding": {
+  "acceptance_comparison_after_construction_only": true,
+  "audit_blob_oids_verified": 5,
+  "audit_commit_bound": "0350c081a26e06216a34f58eed8a13e72ef5e236",
+  "forbidden_superseded_fixtures_absent": [
+   "170/173",
+   "49/52",
+   "46/49",
+   "3229/3278",
+   "18/25",
+   "81/84",
+   "559-union"
+  ]
+ },
+ "deterministic_regeneration": {
+  "byte_differing_files": [],
+  "byte_identical_to_committed_package": true,
+  "fresh_clean_regenerations": 2,
+  "internal_builds_byte_identical": true,
+  "regenerated_package_files": 21,
+  "regeneration_environment": "detached audit worktree at 9220eba2 with the three frozen V2 source files placed untracked (they do not exist in the 9220eba2 tree; the frozen builder hashes them from the working tree)"
+ },
+ "disputed_three_receipts": {
+  "cerkol_older_favorable_refused": 218159,
+  "cerkol_selected_ordinal": 218181,
+  "combined_delta": 0,
+  "controlling_bid": 17,
+  "d2": 0,
+  "excluded_everywhere": true,
+  "frukre_older_favorable_refused": 58363,
+  "frukre_selected_ordinal": 58380,
+  "unlawful": true
+ },
+ "exposure_attribution": {
+  "events_covered": 473,
+  "every_row_reconciled": true,
+  "fully_proven_rows": {
+   "macro_hold": 533,
+   "macro_micro": 2302
+  },
+  "named_unavailable_rows": {
+   "macro_hold": 1004,
+   "macro_micro": 6894
+  },
+  "named_unproven_requirement_frequencies": {
+   "guarded_corridor_overlap": 7210,
+   "inside_combined_headroom": 1686,
+   "lawful_contemporaneous_external_bbo": 28,
+   "strictly_post_first_fill": 598
+  },
+  "rows_audited": 10733
+ },
+ "forbidden_access": {
+  "benchmark": false,
+  "holdout": false,
+  "live_production_network": false,
+  "order_position_mutation": false,
+  "scorer": false,
+  "tuning_ranking_selection": false,
+  "verified_from": [
+   "code read",
+   "imports",
+   "receipts",
+   "paths",
+   "execution"
+  ],
+  "window2_exit_settlement_dca": false
+ },
+ "implementation_parent_verified": "9220eba26b00a5b94e86d9c644adef16382942a0",
+ "implementation_under_audit": "e60f6af4f6db5bab5b8a30704a0cb1fc98c774a7",
+ "independent_reconstruction": {
+  "avefor_recovered": false,
+  "bbo_selection_mismatch_count": 0,
+  "corridor_violations": 0,
+  "disputed_receipts_in_qualifying_sets": [],
+  "driver": "fresh implementation from frozen laws; never imports the V2 module",
+  "episode_rows_compared": 6501,
+  "episodes_only_in_package": 0,
+  "event_rows_compared": 1608,
+  "exposure_attribution_rows_compared": 10733,
+  "final_naked": {
+   "w1_range_attack__macro_hold__combined_headroom": {
+    "evidence_split_first_recovery": {
+     "print": 16,
+     "strict_ask": 6
+    },
+    "qualifying_episodes": 3226,
+    "recovered": 22,
+    "recurring_x_levels_globalfirst_rejected": 27,
+    "residual_no_lawful": 215,
+    "total": 237,
+    "x_levels_lawful_recurrence_but_no_ledger_observation": 16
+   },
+   "w1_range_attack__macro_micro__combined_headroom": {
+    "evidence_split_first_recovery": {
+     "print": 19,
+     "strict_ask": 6
+    },
+    "qualifying_episodes": 3275,
+    "recovered": 25,
+    "recurring_x_levels_globalfirst_rejected": 34,
+    "residual_no_lawful": 215,
+    "total": 240,
+    "x_levels_lawful_recurrence_but_no_ledger_observation": 16
+   }
+  },
+  "final_nofill": {
+   "w1_range_attack__macro_hold__combined_headroom": {
+    "both": 52,
+    "either": 65,
+    "neither": 271,
+    "one": 13,
+    "total": 336
+   },
+   "w1_range_attack__macro_micro__combined_headroom": {
+    "both": 54,
+    "either": 68,
+    "neither": 272,
+    "one": 14,
+    "total": 340
+   }
+  },
+  "first_leg_reference_rows_compared": 473,
+  "null_field_violations_in_package_rows": 0,
+  "older_or_favorable_selection_count": 0,
+  "orientation_rows_compared": 1352,
+  "row_level_difference_count": 0,
+  "strictly_later_violations": 0,
+  "vukbro_lawful_episodes": {
+   "w1_range_attack__macro_hold__combined_headroom": 1,
+   "w1_range_attack__macro_micro__combined_headroom": 1
+  }
+ },
+ "integrity": {
+  "artifact_manifest_rows_verified": 19,
+  "audit_blob_rows_verified": 5,
+  "determinism_inventory_rows_verified": 20,
+  "gzip_payloads_verified": 9,
+  "raw_cache_file_count": 804,
+  "raw_cache_set_sha256_match": true,
+  "source_manifest_rows_verified": 16,
+  "vukbro_cache_sha256_match": true
+ },
+ "lineage": {
+  "diff": {
+   "additions": 24,
+   "deletions": 0,
+   "modifications": 0
+  },
+  "inherited_tests_untouched": true,
+  "inherited_tree_byte_identical": true,
+  "local_branch_ref_stale_ancestor": "6daab089d1e6c11bd75a684b4e8609e815fec8f4",
+  "parent_exact": true,
+  "remote_tip_codex_window1_definition": "e60f6af4f6db5bab5b8a30704a0cb1fc98c774a7",
+  "sole_child_of_9220eba2": true
+ },
+ "metrics": null,
+ "population_and_nulls": {
+  "D_member_all_true": true,
+  "D_per_candidate": 804,
+  "all_metrics_performance_null": true,
+  "event_rows": 1608,
+  "evidence_unavailable_rows": [
+   [
+    "KXATPMATCH-26JUL14NEUPRA",
+    2
+   ],
+   [
+    "KXATPMATCH-26JUL15BUBHAL",
+    2
+   ]
+  ],
+  "five_no_bbo_events_in_D": [
+   "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+   "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+   "KXWTAMATCH-26JUL13TAUTOM",
+   "KXWTAMATCH-26JUL14PUTJEA",
+   "KXWTAMATCH-26JUL20KUDKOR"
+  ],
+  "no_fabricated_placement": true,
+  "no_scorer_import_or_invocation": true
+ },
+ "recurring_x_classes": {
+  "classes_disjoint": true,
+  "raw_lawful_recurrence_without_v1_ledger_observation": [
+   16,
+   16
+  ],
+  "unlabeled_total_not_published": true,
+  "v1_ledger_globalfirst_rejected_with_lawful_recurrence": [
+   27,
+   34
+  ],
+  "x17_in_neither_class": true
+ },
+ "ruling": "PASS",
+ "schema_version": "w1-async-census-v2-independent-audit-reproduction-v1",
+ "scored": false,
+ "tests": {
+  "inherited_weakening": false,
+  "passed": 25,
+  "total": 25
+ }
+}

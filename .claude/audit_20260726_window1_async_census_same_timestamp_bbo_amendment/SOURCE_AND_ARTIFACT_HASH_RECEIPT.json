@@ -1,0 +1,229 @@
+{
+ "artifact_hashes": {
+  "CONTEMPORANEOUS_BBO_SELECTION_CENSUS.json": {
+   "bytes": 54093,
+   "sha256": "b6240a2cfa313c67891e2e90cc3db5ed2bff740385fcddb6c1000cbf924f5fac"
+  },
+  "DISPUTED_THREE_EPISODE_RECEIPT.json": {
+   "bytes": 4445,
+   "sha256": "908440b44f7d188173c2ebdfe27c7ea6acf394ae42db246c5355c646dbb21e1b"
+  },
+  "INDEPENDENT_RAW_ROW_VALIDATION_RECEIPT.json": {
+   "bytes": 1366,
+   "sha256": "23fd2647ae8c711186a2fb218e34e37dd28893cbd402ec70ef334a84c0b97d2d"
+  },
+  "ITEM_SAME_TIMESTAMP_BBO_AMENDMENT.md": {
+   "bytes": 8526,
+   "sha256": "9ff25f5e2c8c1256f1166194676a2c1f264392c9b6c01b188a417288c74f7847"
+  }
+ },
+ "authoritative_sources": {
+  "disputed_prints": "guarded-cache-v3 prints by trade_id",
+  "episode_contemporaneous_BBO": "RAW guarded-cache-v3 snapshots; latest lawful preserved row (ts, then preserved ordinal) <= evidence ts",
+  "recurring_x_first_observation": "FROZEN_X_EVIDENCE_LEDGER at 9220eba2 (git blob OIDs below)",
+  "survivor_constants": "b8840a01 CONTEMPORANEOUS_EPISODE_CENSUS.json (ts0, d1, guarded_right_ts, sibling)"
+ },
+ "bound_source_cache_files": {
+  "KXATPCHALLENGERMATCH-26JUL12DODDEL": {
+   "bytes": 435780,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL12DODDEL.json.gz",
+   "sha256": "bcdcc9a23cc943cc68e0e6a3d12378b188435161f6c5db9e5695e4dadaed5c09"
+  },
+  "KXATPCHALLENGERMATCH-26JUL13VUKBRO": {
+   "bytes": 215273,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL13VUKBRO.json.gz",
+   "sha256": "fbacf0abb3dadfa4ef59abc1c58e0edee94e9d479288ab9817123d3989116a07"
+  },
+  "KXATPCHALLENGERMATCH-26JUL14PERCRA": {
+   "bytes": 165128,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL14PERCRA.json.gz",
+   "sha256": "9fe009ba61339a9052939989d4d450e886218fae2ecb19ffd5e0330d4c340331"
+  },
+  "KXATPCHALLENGERMATCH-26JUL16GLISEK": {
+   "bytes": 27970,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL16GLISEK.json.gz",
+   "sha256": "e3d1fd6dbdf124fed687b9797ccf18014a9b4a80183de4db9b2f391f21875605"
+  },
+  "KXATPCHALLENGERMATCH-26JUL19HURBIG": {
+   "bytes": 85232,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19HURBIG.json.gz",
+   "sha256": "8f1a7d6e7625d90487523ef95264533360ce462ceaf6f1ed767451594f8aae18"
+  },
+  "KXATPCHALLENGERMATCH-26JUL19VUKGEA": {
+   "bytes": 244269,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19VUKGEA.json.gz",
+   "sha256": "958a75e899ce8d6a07ef5e9bf6ae010ca4796499ffa8aa674d9aebb0d62ff414"
+  },
+  "KXATPCHALLENGERMATCH-26JUL20NOGSHI": {
+   "bytes": 819028,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL20NOGSHI.json.gz",
+   "sha256": "7300c72af0ae9011b63fcfeaeb64535920b2a6723834cbbe6234ba283200162c"
+  },
+  "KXATPMATCH-26JUL12CERKOL": {
+   "bytes": 907762,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPMATCH-26JUL12CERKOL.json.gz",
+   "sha256": "2e6cb4f03082baaadf5da68c34c1d844475e1edfb598f82562302d8f3246aa74"
+  },
+  "KXATPMATCH-26JUL12DAHBAE": {
+   "bytes": 494008,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPMATCH-26JUL12DAHBAE.json.gz",
+   "sha256": "181c0aa86111d64b93b68df666ea6c40fee54ed60964958200b5187b99429bc4"
+  },
+  "KXATPMATCH-26JUL12DODCAR": {
+   "bytes": 208031,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPMATCH-26JUL12DODCAR.json.gz",
+   "sha256": "47306cdff6baaa9fefd65f93710684e60ad3bbc86872bf6c2bbece1f3aefda77"
+  },
+  "KXATPMATCH-26JUL12REJMID": {
+   "bytes": 153702,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPMATCH-26JUL12REJMID.json.gz",
+   "sha256": "f2e8cc4b60374c93317bce52fbdd2254e6a9412b27804c158a6e0e9ffac964c5"
+  },
+  "KXATPMATCH-26JUL12TSIBUS": {
+   "bytes": 601786,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPMATCH-26JUL12TSIBUS.json.gz",
+   "sha256": "3af10371b3812ec27b3a8fa94e0184951383fcfccc02634c674365f61ed6a95c"
+  },
+  "KXATPMATCH-26JUL15BASTIR": {
+   "bytes": 59798,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPMATCH-26JUL15BASTIR.json.gz",
+   "sha256": "490719881f9bb4b0dbc7d7d71d80b1054934a31623eb796228c47a5192bb3a3a"
+  },
+  "KXATPMATCH-26JUL19GASDZU": {
+   "bytes": 225432,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPMATCH-26JUL19GASDZU.json.gz",
+   "sha256": "5e0833d4fddc6665c6329737858ed02caee7a87f4504a1d95ca3d05efdbbed10"
+  },
+  "KXATPMATCH-26JUL19STRSHE": {
+   "bytes": 499911,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPMATCH-26JUL19STRSHE.json.gz",
+   "sha256": "8ec46e0241e707a6e4e082050f30f3a6e1c00afec26102bf8cf81ff9e02cb9b5"
+  },
+  "KXATPMATCH-26JUL19VANFAR": {
+   "bytes": 235033,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXATPMATCH-26JUL19VANFAR.json.gz",
+   "sha256": "14b2e1002db979e0f0a6720875a8ab0d47889bff9be5c6028f6914f54855e174"
+  },
+  "KXWTACHALLENGERMATCH-26JUL16BRAVED": {
+   "bytes": 75404,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXWTACHALLENGERMATCH-26JUL16BRAVED.json.gz",
+   "sha256": "79502c80b8ba03671e5e490ea4087d859b901f86e6fbe704eb2ad17a962aebd3"
+  },
+  "KXWTACHALLENGERMATCH-26JUL18TONSPI": {
+   "bytes": 11957,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXWTACHALLENGERMATCH-26JUL18TONSPI.json.gz",
+   "sha256": "e242ebe661edfd2370f6cd83b87ceef7dababfac96f2b39d625f245acc0551a1"
+  },
+  "KXWTAMATCH-26JUL12FETPIE": {
+   "bytes": 27909,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXWTAMATCH-26JUL12FETPIE.json.gz",
+   "sha256": "e16abd0859891316b59347e100564ebf67e743c95a0d481441e03f829dc058ff"
+  },
+  "KXWTAMATCH-26JUL12OKAIPE": {
+   "bytes": 33013,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXWTAMATCH-26JUL12OKAIPE.json.gz",
+   "sha256": "d4d71833b87c0a220d4ca75d3a375b8025cb6a3d3b99c0889ac8d3bb32ba680c"
+  },
+  "KXWTAMATCH-26JUL12PRIION": {
+   "bytes": 53451,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXWTAMATCH-26JUL12PRIION.json.gz",
+   "sha256": "ffc0fce2c353122b6229a0154b8510803a8c1532f296a7d6871ebf4a9c7e9ccf"
+  },
+  "KXWTAMATCH-26JUL13GRAPAR": {
+   "bytes": 80521,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXWTAMATCH-26JUL13GRAPAR.json.gz",
+   "sha256": "0a6a9ac6fffd94448be94c0805fc44f2d240a0469842cc823e012e97b7cd0084"
+  },
+  "KXWTAMATCH-26JUL16UDVKAW": {
+   "bytes": 76766,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXWTAMATCH-26JUL16UDVKAW.json.gz",
+   "sha256": "25dc718f7fe57901c8e994012bc4acd251c7ad685cc1596d9a7cc14a48a193fa"
+  },
+  "KXWTAMATCH-26JUL19EIGCAR": {
+   "bytes": 31122,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXWTAMATCH-26JUL19EIGCAR.json.gz",
+   "sha256": "e59d58385c4ca02260ef20b01e3597be3132754de4ece0b60cc3370b3f1bbcb2"
+  },
+  "KXWTAMATCH-26JUL20FRUKRE": {
+   "bytes": 692612,
+   "path": "../OMI-Window1-private/fit-local/guarded-cache-v3/KXWTAMATCH-26JUL20FRUKRE.json.gz",
+   "sha256": "786ab53a63d403abaa6277d434ac6123abee17ef110e566051dacd73cca59166"
+  }
+ },
+ "disputed_receipts_excluded": [
+  "06a93c92-0d52-4040-1ed2-6882d5490b0a",
+  "8f0d3c80-128b-4359-4f43-1d9e5a6b57d1",
+  "3e4c49d6-a936-45a0-6577-5f2fdefe62b9"
+ ],
+ "final": {
+  "episodes": [
+   3226,
+   3275
+  ],
+  "evidence_split": {
+   "macro_hold": {
+    "print": 16,
+    "strict_ask": 6
+   },
+   "macro_micro": {
+    "print": 19,
+    "strict_ask": 6
+   }
+  },
+  "naked_recovered": [
+   22,
+   25
+  ],
+  "nofill": {
+   "both": [
+    52,
+    54
+   ],
+   "either": [
+    65,
+    68
+   ],
+   "neither": [
+    271,
+    272
+   ],
+   "one": [
+    13,
+    14
+   ]
+  },
+  "recurring_x_levels_globalfirst_rejected": [
+   27,
+   34
+  ],
+  "residual_no_lawful": [
+   215,
+   215
+  ],
+  "vukbro_lawful_episodes": 1,
+  "x_levels_no_ledger_observation": [
+   16,
+   16
+  ]
+ },
+ "frozen_census": "9220eba26b00a5b94e86d9c644adef16382942a0",
+ "frozen_ledger_blob_oids": {
+  ".claude/window1_asynchronous_opportunity_policy_census_20260726/FROZEN_X_EVIDENCE_LEDGER_01.jsonl.gz": "e8df4886d627b119ef95cf90823f8a66d5810c88",
+  ".claude/window1_asynchronous_opportunity_policy_census_20260726/FROZEN_X_EVIDENCE_LEDGER_02.jsonl.gz": "c3d0d298cc0c3cc8190a99667b5af2334f42d27d",
+  ".claude/window1_asynchronous_opportunity_policy_census_20260726/FROZEN_X_EVIDENCE_LEDGER_03.jsonl.gz": "e7a360de032ee7280663e1af8a1664b104e6597e",
+  ".claude/window1_asynchronous_opportunity_policy_census_20260726/FROZEN_X_EVIDENCE_LEDGER_04.jsonl.gz": "d9f102862b1c780bf5cedda174680e6c71ec493c"
+ },
+ "no_scoring_no_holdout_no_live": true,
+ "parent": "b8840a01471eeb30a0f66e786c19ef0378c7dd83",
+ "schema_version": "w1-async-census-same-timestamp-bbo-source-and-hash-receipt-v1",
+ "validation": {
+  "bbo_selection_mismatches": 0,
+  "conservation_pass": true,
+  "earliest_recovery_mismatches": 0,
+  "episodes_checked_second_path": 6501,
+  "older_or_favorable_selections_remaining": 0,
+  "row_level_mismatch_count": 0,
+  "survivor_rows_matching_parent_scanner": 47,
+  "survivor_rows_validated": 47
+ }
+}

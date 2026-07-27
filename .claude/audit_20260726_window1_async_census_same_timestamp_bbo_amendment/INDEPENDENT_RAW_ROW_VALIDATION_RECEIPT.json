@@ -1,0 +1,38 @@
+{
+ "bbo_selection_mismatches": 0,
+ "conservation": {
+  "episode_totals": {
+   "w1_range_attack__macro_hold__combined_headroom": 3226,
+   "w1_range_attack__macro_micro__combined_headroom": 3275
+  },
+  "episode_totals_equal_sum_of_rows": true,
+  "evidence_split_sums_recovered": true,
+  "parent_authoritative_minus_amended": {
+   "w1_range_attack__macro_hold__combined_headroom": 3,
+   "w1_range_attack__macro_micro__combined_headroom": 3
+  },
+  "recovered_equals_survivor_rows": {
+   "w1_range_attack__macro_hold__combined_headroom": 22,
+   "w1_range_attack__macro_micro__combined_headroom": 25
+  },
+  "recovered_plus_residual_equals_total": true
+ },
+ "disputed_three_excluded": true,
+ "earliest_recovery_mismatches_vs_parent": 0,
+ "episodes_checked_second_path": 6501,
+ "metrics": null,
+ "older_or_favorable_selections_remaining": 0,
+ "parent": "b8840a01471eeb30a0f66e786c19ef0378c7dd83",
+ "prose_examples_cross_checked": {
+  "cerkol_scanner_10_reproduced": true,
+  "disputed_bid17_rows_verified": 3,
+  "frukre_scanner_4_reproduced": true,
+  "older_bid18_same_second_rows_verified": 3,
+  "vukbro_single_lawful_episode": true
+ },
+ "row_level_mismatch_count": 0,
+ "schema_version": "w1-async-census-independent-raw-row-validation-v1",
+ "scored": false,
+ "survivor_rows_matching_parent_scanner": 47,
+ "survivor_rows_validated": 47
+}

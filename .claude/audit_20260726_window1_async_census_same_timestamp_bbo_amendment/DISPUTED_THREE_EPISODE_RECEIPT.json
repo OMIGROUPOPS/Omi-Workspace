@@ -1,0 +1,133 @@
+{
+ "b8840a01_position": "REFUTED: authoritative enumerator counted all three via the older same-second bid=18 rows",
+ "cursor_codex_position": "CONFIRMED: all three unlawful; lawful episode totals 3226/3275",
+ "disputed_episodes": [
+  {
+   "X": 17,
+   "classification": "UNLAWFUL: strict-negative violated (d1+d2=0); counting requires reusing preserved ordinal 218159 (bid 18) after 22 newer lawful rows exist - forbidden",
+   "combined_delta": 0,
+   "controlling_latest_lawful_row": {
+    "best_ask": 18,
+    "best_bid": 17,
+    "lawful": true,
+    "preserved_ordinal": 218181,
+    "source": "premarket_ticks_top5",
+    "ts": 1784015992.0
+   },
+   "d1": 0,
+   "d2_controlling": 0,
+   "event_id": "KXATPMATCH-26JUL12CERKOL",
+   "latest_row_any": {
+    "best_ask": 17,
+    "best_bid": 17,
+    "lawful": false,
+    "preserved_ordinal": 218190,
+    "source": "premarket_ticks_top5",
+    "ts": 1784015992.0
+   },
+   "newer_lawful_rows_after_favorable_row": 22,
+   "older_favorable_bid18_row": {
+    "best_ask": 19,
+    "best_bid": 18,
+    "lawful": true,
+    "preserved_ordinal": 218159,
+    "source": "premarket_ticks_top5",
+    "ts": 1784015992.0
+   },
+   "present_in_amended_qualifying_set": false,
+   "print_size": 91.94,
+   "print_ts": 1784015992.802679,
+   "receipt": "06a93c92-0d52-4040-1ed2-6882d5490b0a",
+   "same_second_tie": true,
+   "sibling_leg": "KOL",
+   "taker_side": "no"
+  },
+  {
+   "X": 17,
+   "classification": "UNLAWFUL: strict-negative violated (d1+d2=0); counting requires reusing preserved ordinal 218159 (bid 18) after 22 newer lawful rows exist - forbidden",
+   "combined_delta": 0,
+   "controlling_latest_lawful_row": {
+    "best_ask": 18,
+    "best_bid": 17,
+    "lawful": true,
+    "preserved_ordinal": 218181,
+    "source": "premarket_ticks_top5",
+    "ts": 1784015992.0
+   },
+   "d1": 0,
+   "d2_controlling": 0,
+   "event_id": "KXATPMATCH-26JUL12CERKOL",
+   "latest_row_any": {
+    "best_ask": 17,
+    "best_bid": 17,
+    "lawful": false,
+    "preserved_ordinal": 218222,
+    "source": "premarket_ticks_top5",
+    "ts": 1784016000.0
+   },
+   "newer_lawful_rows_after_favorable_row": 22,
+   "older_favorable_bid18_row": {
+    "best_ask": 19,
+    "best_bid": 18,
+    "lawful": true,
+    "preserved_ordinal": 218159,
+    "source": "premarket_ticks_top5",
+    "ts": 1784015992.0
+   },
+   "present_in_amended_qualifying_set": false,
+   "print_size": 27.79,
+   "print_ts": 1784016002.654942,
+   "receipt": "8f0d3c80-128b-4359-4f43-1d9e5a6b57d1",
+   "same_second_tie": true,
+   "sibling_leg": "KOL",
+   "taker_side": "yes"
+  },
+  {
+   "X": 17,
+   "classification": "UNLAWFUL: strict-negative violated (d1+d2=0); counting requires reusing preserved ordinal 58363 (bid 18) after 17 newer lawful rows exist - forbidden",
+   "combined_delta": 0,
+   "controlling_latest_lawful_row": {
+    "best_ask": 18,
+    "best_bid": 17,
+    "lawful": true,
+    "preserved_ordinal": 58380,
+    "source": "premarket_ticks_top5",
+    "ts": 1784613175.0
+   },
+   "d1": 0,
+   "d2_controlling": 0,
+   "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+   "latest_row_any": {
+    "best_ask": 18,
+    "best_bid": 17,
+    "lawful": true,
+    "preserved_ordinal": 58380,
+    "source": "premarket_ticks_top5",
+    "ts": 1784613175.0
+   },
+   "newer_lawful_rows_after_favorable_row": 17,
+   "older_favorable_bid18_row": {
+    "best_ask": 19,
+    "best_bid": 18,
+    "lawful": true,
+    "preserved_ordinal": 58363,
+    "source": "premarket_ticks_top5",
+    "ts": 1784613175.0
+   },
+   "present_in_amended_qualifying_set": false,
+   "print_size": 1.0,
+   "print_ts": 1784613175.116969,
+   "receipt": "3e4c49d6-a936-45a0-6577-5f2fdefe62b9",
+   "same_second_tie": true,
+   "sibling_leg": "FRU",
+   "taker_side": "no"
+  }
+ ],
+ "frozen_census": "9220eba26b00a5b94e86d9c644adef16382942a0",
+ "law_applied": "contemporaneous bid = latest lawful preserved row (ts, then preserved ordinal) <= print ts; strict d1+d2+fee(0) < 0; older favorable rows forbidden once a newer lawful row exists",
+ "metrics": null,
+ "parent": "b8840a01471eeb30a0f66e786c19ef0378c7dd83",
+ "schema_version": "w1-async-census-disputed-three-episode-receipt-v1",
+ "scored": false,
+ "x17_ledger_status": "X=17 has NO FROZEN_X_EVIDENCE_LEDGER observation for either event (first_observation_timestamp=null); X=17 was never a lawful recurring X-level in any construction"
+}

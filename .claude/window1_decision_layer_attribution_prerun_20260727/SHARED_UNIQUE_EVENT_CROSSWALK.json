@@ -1,0 +1,219 @@
+{
+  "candidate_row_counts": {
+    "w1_range_attack__macro_hold__combined_headroom": 22,
+    "w1_range_attack__macro_micro__combined_headroom": 25
+  },
+  "candidate_rows_are_not_distinct_games": true,
+  "distinct_game_union_count": 25,
+  "macro_hold_only_count": 0,
+  "macro_hold_only_events": [],
+  "macro_micro_only_count": 3,
+  "macro_micro_only_events": [
+    "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+    "KXATPCHALLENGERMATCH-26JUL20NOGSHI"
+  ],
+  "metrics": null,
+  "performance": null,
+  "shared_event_count": 22,
+  "shared_events": [
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+      "macro_hold_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "macro_micro_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+      "macro_hold_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "macro_micro_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+      "macro_hold_terminal": "policy_moved_away",
+      "macro_micro_terminal": "policy_moved_away",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+      "macro_hold_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "macro_micro_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXATPMATCH-26JUL12CERKOL",
+      "macro_hold_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "macro_micro_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXATPMATCH-26JUL12DAHBAE",
+      "macro_hold_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "macro_micro_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXATPMATCH-26JUL12DODCAR",
+      "macro_hold_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "macro_micro_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXATPMATCH-26JUL12REJMID",
+      "macro_hold_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "macro_micro_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXATPMATCH-26JUL12TSIBUS",
+      "macro_hold_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "macro_micro_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXATPMATCH-26JUL15BASTIR",
+      "macro_hold_terminal": "policy_moved_away",
+      "macro_micro_terminal": "policy_moved_away",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXATPMATCH-26JUL19GASDZU",
+      "macro_hold_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "macro_micro_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXATPMATCH-26JUL19STRSHE",
+      "macro_hold_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "macro_micro_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXATPMATCH-26JUL19VANFAR",
+      "macro_hold_terminal": "policy_moved_away",
+      "macro_micro_terminal": "policy_moved_away",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "macro_hold_terminal": "policy_moved_away",
+      "macro_micro_terminal": "policy_moved_away",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+      "macro_hold_terminal": "price_reached_but_five_contract_capacity_unproved",
+      "macro_micro_terminal": "price_reached_but_five_contract_capacity_unproved",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXWTAMATCH-26JUL12FETPIE",
+      "macro_hold_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "macro_micro_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXWTAMATCH-26JUL12OKAIPE",
+      "macro_hold_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "macro_micro_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXWTAMATCH-26JUL12PRIION",
+      "macro_hold_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "macro_micro_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+      "macro_hold_terminal": "policy_moved_away",
+      "macro_micro_terminal": "policy_moved_away",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXWTAMATCH-26JUL16UDVKAW",
+      "macro_hold_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "macro_micro_terminal": "lawful_opportunity_but_policy_never_exposed",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXWTAMATCH-26JUL19EIGCAR",
+      "macro_hold_terminal": "policy_moved_away",
+      "macro_micro_terminal": "policy_moved_away",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    },
+    {
+      "agreement_or_difference_reason": "same frozen policy-at-opportunity state",
+      "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+      "macro_hold_terminal": "policy_moved_away",
+      "macro_micro_terminal": "policy_moved_away",
+      "same_credited_first_leg": true,
+      "same_earliest_lawful_sibling_episode": true,
+      "terminal_attribution_agrees": true
+    }
+  ]
+}

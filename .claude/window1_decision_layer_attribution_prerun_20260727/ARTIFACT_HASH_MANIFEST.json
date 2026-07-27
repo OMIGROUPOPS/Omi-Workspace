@@ -1,0 +1,68 @@
+{
+  "artifact_count_before_manifest": 12,
+  "artifacts": [
+    {
+      "bytes": 41193,
+      "path": "CAPACITY_UNPROVED_RECEIPT.json",
+      "sha256": "5b32767851b2985f133add70c07ea9b4599fdef71f94cb4b0de1446069413e36"
+    },
+    {
+      "bytes": 19459,
+      "path": "CONSERVATION_RECEIPT.json",
+      "sha256": "2b68bd1c0dad06b2b0d81f13315157084b36d1c5965d80379c4ae42a55a48368"
+    },
+    {
+      "bytes": 12804,
+      "path": "DECISION_LAYER_EVENT_LEDGER.jsonl.gz",
+      "sha256": "07ddeb42cf7da2bc57351a0e82d1cfe7ae26b101ae543467b5f2f8ee23ef59e3"
+    },
+    {
+      "bytes": 15253197,
+      "path": "EPISODE_FEATURE_BREAKDOWN.json",
+      "sha256": "6eeb3d579e71c62d1cf35869dad5a228f432dd645dd8cd5cf6da29c6fcaaaf85"
+    },
+    {
+      "bytes": 495,
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "59d40501bd1f294d483c4f85a15ddc54bc717fe85acbe9395eb5a43743e684b3"
+    },
+    {
+      "bytes": 16079,
+      "path": "MECHANISM_STATUS_DECISION_MATRIX.json",
+      "sha256": "ef0845e1af8fff9d126422088577c811d98197b54e8137053ca8a439747e7804"
+    },
+    {
+      "bytes": 8210,
+      "path": "MOVED_AWAY_ATTRIBUTION.jsonl.gz",
+      "sha256": "6dde2763c03b5a92d0dd0cfc84a189030559c02a8d837cf35fe8c81b9909223f"
+    },
+    {
+      "bytes": 10406,
+      "path": "NEVER_EXPOSED_ATTRIBUTION.jsonl.gz",
+      "sha256": "e768124a92c28077008cbcbc79fa1df1f1ad42924edae6fdb50ea3687449bd85"
+    },
+    {
+      "bytes": 103998,
+      "path": "NOFILL_COUNTERFACTUAL_GEOMETRY.jsonl.gz",
+      "sha256": "4af8151f00bb6db9d07343542f9c17f7115b7c020cdf3cb2347f89a17499e4bf"
+    },
+    {
+      "bytes": 1246,
+      "path": "PRE_RUN_REPORT.md",
+      "sha256": "6b67acd85d2e49d015a2b57deebb0ef68662122a137b58f44a7697b91ebe99e0"
+    },
+    {
+      "bytes": 9709,
+      "path": "SHARED_UNIQUE_EVENT_CROSSWALK.json",
+      "sha256": "6af01026cf361b9367e8bdcf6cb6de456cee3f51bf849e401e987b9c4d0e4bc9"
+    },
+    {
+      "bytes": 30616,
+      "path": "SOURCE_HASH_MANIFEST.json",
+      "sha256": "f1059f34f6ceac4263179c81f396a7d29349614011024ff0ad00dda535fa86a9"
+    }
+  ],
+  "metrics": null,
+  "performance": null,
+  "schema_version": "window1-decision-layer-attribution-v1-artifact-manifest-v1"
+}

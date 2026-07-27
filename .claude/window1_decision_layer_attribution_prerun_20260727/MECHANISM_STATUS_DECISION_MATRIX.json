@@ -1,0 +1,281 @@
+{
+  "mechanism_classification_totals": {
+    "ABSENT": 4,
+    "BOUND": 9,
+    "PROXIED": 10,
+    "RETRACTED": 5
+  },
+  "metrics": null,
+  "performance": null,
+  "proxy_never_promoted_to_BOUND": true,
+  "rows": [
+    {
+      "candidate_event_row_ids": [
+        "w1_range_attack__macro_micro__combined_headroom|KXATPCHALLENGERMATCH-26JUL14PERCRA"
+      ],
+      "candidate_overlap_distinct_games": 0,
+      "decision_layer": "LIVE_AIM_reprice",
+      "distinct_games": 1,
+      "exact_evidence_sources": [
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/CORRECTED_EVENT_LEVEL_CENSUS.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_01.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_02.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_03.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_04.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/ACTION_AUTHORITY_RECEIPTS.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_01.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_02.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_03.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_04.jsonl.gz"
+      ],
+      "mechanisms": [
+        {
+          "classification": "BOUND",
+          "decision_effect": "B-only hold or source-authorized downward AIM_DEEP",
+          "mechanism": "LIVE_AIM_source_mapping"
+        }
+      ],
+      "proven_affected_candidate_rows": 1,
+      "qualifying_episodes": 11,
+      "what_is_proven": [
+        "closed interval and same-timestamp frozen action receipt identify LIVE_AIM_reprice"
+      ],
+      "what_remains_unresolved": []
+    },
+    {
+      "candidate_event_row_ids": [
+        "w1_range_attack__macro_hold__combined_headroom|KXWTACHALLENGERMATCH-26JUL18TONSPI",
+        "w1_range_attack__macro_micro__combined_headroom|KXWTACHALLENGERMATCH-26JUL18TONSPI"
+      ],
+      "candidate_overlap_distinct_games": 1,
+      "decision_layer": "capacity_measurement_unproved",
+      "distinct_games": 1,
+      "exact_evidence_sources": [
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/CORRECTED_EVENT_LEVEL_CENSUS.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_01.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_02.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_03.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_04.jsonl.gz"
+      ],
+      "mechanisms": [
+        {
+          "classification": "PROXIED",
+          "decision_effect": "stress and LIVE-AIM print-count context; no invented direction",
+          "mechanism": "executed_share_volume_and_cadence"
+        },
+        {
+          "classification": "PROXIED",
+          "decision_effect": "exact-touch stress diagnostic only",
+          "mechanism": "taker_reach_probability"
+        },
+        {
+          "classification": "ABSENT",
+          "decision_effect": "none",
+          "mechanism": "full_depth_beyond_bound_top5"
+        },
+        {
+          "classification": "BOUND",
+          "decision_effect": "pair presence, expression, maker safety and hollowing",
+          "mechanism": "nonself_external_BBO_and_top5_chain"
+        }
+      ],
+      "proven_affected_candidate_rows": 2,
+      "qualifying_episodes": 22,
+      "what_is_proven": [
+        "price evidence exists while every retained episode's chronological executed capacity remains below five"
+      ],
+      "what_remains_unresolved": [
+        "five_contract_chronological_executed_capacity"
+      ]
+    },
+    {
+      "candidate_event_row_ids": [
+        "w1_range_attack__macro_hold__combined_headroom|KXATPCHALLENGERMATCH-26JUL16GLISEK",
+        "w1_range_attack__macro_hold__combined_headroom|KXATPMATCH-26JUL15BASTIR",
+        "w1_range_attack__macro_hold__combined_headroom|KXATPMATCH-26JUL19VANFAR",
+        "w1_range_attack__macro_hold__combined_headroom|KXWTAMATCH-26JUL19EIGCAR",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPCHALLENGERMATCH-26JUL16GLISEK",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPMATCH-26JUL15BASTIR",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPMATCH-26JUL19VANFAR",
+        "w1_range_attack__macro_micro__combined_headroom|KXWTAMATCH-26JUL19EIGCAR"
+      ],
+      "candidate_overlap_distinct_games": 4,
+      "decision_layer": "corridor_window_termination",
+      "distinct_games": 4,
+      "exact_evidence_sources": [
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/CORRECTED_EVENT_LEVEL_CENSUS.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_01.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_02.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_03.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_04.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/ACTION_AUTHORITY_RECEIPTS.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_01.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_02.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_03.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_04.jsonl.gz"
+      ],
+      "mechanisms": [
+        {
+          "classification": "BOUND",
+          "decision_effect": "policy eligibility and horizon only",
+          "mechanism": "timestamped_schedule_policy_clock"
+        }
+      ],
+      "proven_affected_candidate_rows": 8,
+      "qualifying_episodes": 4950,
+      "what_is_proven": [
+        "closed interval and same-timestamp frozen action receipt identify corridor_window_termination"
+      ],
+      "what_remains_unresolved": []
+    },
+    {
+      "candidate_event_row_ids": [
+        "w1_range_attack__macro_hold__combined_headroom|KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+        "w1_range_attack__macro_hold__combined_headroom|KXATPMATCH-26JUL12CERKOL",
+        "w1_range_attack__macro_hold__combined_headroom|KXATPMATCH-26JUL12DAHBAE",
+        "w1_range_attack__macro_hold__combined_headroom|KXATPMATCH-26JUL12DODCAR",
+        "w1_range_attack__macro_hold__combined_headroom|KXATPMATCH-26JUL12REJMID",
+        "w1_range_attack__macro_hold__combined_headroom|KXATPMATCH-26JUL12TSIBUS",
+        "w1_range_attack__macro_hold__combined_headroom|KXATPMATCH-26JUL19GASDZU",
+        "w1_range_attack__macro_hold__combined_headroom|KXATPMATCH-26JUL19STRSHE",
+        "w1_range_attack__macro_hold__combined_headroom|KXWTAMATCH-26JUL12FETPIE",
+        "w1_range_attack__macro_hold__combined_headroom|KXWTAMATCH-26JUL12OKAIPE",
+        "w1_range_attack__macro_hold__combined_headroom|KXWTAMATCH-26JUL12PRIION",
+        "w1_range_attack__macro_hold__combined_headroom|KXWTAMATCH-26JUL16UDVKAW",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPMATCH-26JUL12CERKOL",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPMATCH-26JUL12DAHBAE",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPMATCH-26JUL12DODCAR",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPMATCH-26JUL12REJMID",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPMATCH-26JUL12TSIBUS",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPMATCH-26JUL19GASDZU",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPMATCH-26JUL19STRSHE",
+        "w1_range_attack__macro_micro__combined_headroom|KXWTAMATCH-26JUL12FETPIE",
+        "w1_range_attack__macro_micro__combined_headroom|KXWTAMATCH-26JUL12OKAIPE",
+        "w1_range_attack__macro_micro__combined_headroom|KXWTAMATCH-26JUL12PRIION",
+        "w1_range_attack__macro_micro__combined_headroom|KXWTAMATCH-26JUL16UDVKAW"
+      ],
+      "candidate_overlap_distinct_games": 12,
+      "decision_layer": "first_fill_sibling_response_failed_to_create_exposure",
+      "distinct_games": 12,
+      "exact_evidence_sources": [
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/CORRECTED_EVENT_LEVEL_CENSUS.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_01.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_02.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_03.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_04.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/COMBINED_HEADROOM_RECEIPTS.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_01.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_02.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_03.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_04.jsonl.gz"
+      ],
+      "mechanisms": [
+        {
+          "classification": "BOUND",
+          "decision_effect": "strictly later at-most-one-cent sibling improvement",
+          "mechanism": "pair_combined_headroom"
+        },
+        {
+          "classification": "BOUND",
+          "decision_effect": "discovery, divot, fillability and later headroom trigger",
+          "mechanism": "receipt_identified_positive_public_true_print"
+        }
+      ],
+      "proven_affected_candidate_rows": 24,
+      "qualifying_episodes": 1430,
+      "what_is_proven": [
+        "headroom arm is receipted, but no sibling decision is keyed to the earliest lawful opportunity receipt"
+      ],
+      "what_remains_unresolved": [
+        "explicit_reason_no_episode_keyed_sibling_decision_was_emitted"
+      ]
+    },
+    {
+      "candidate_event_row_ids": [
+        "w1_range_attack__macro_hold__combined_headroom|KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "w1_range_attack__macro_hold__combined_headroom|KXWTAMATCH-26JUL13GRAPAR",
+        "w1_range_attack__macro_hold__combined_headroom|KXWTAMATCH-26JUL20FRUKRE",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+        "w1_range_attack__macro_micro__combined_headroom|KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "w1_range_attack__macro_micro__combined_headroom|KXWTAMATCH-26JUL13GRAPAR",
+        "w1_range_attack__macro_micro__combined_headroom|KXWTAMATCH-26JUL20FRUKRE"
+      ],
+      "candidate_overlap_distinct_games": 3,
+      "decision_layer": "headroom_reprice",
+      "distinct_games": 5,
+      "exact_evidence_sources": [
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/CORRECTED_EVENT_LEVEL_CENSUS.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_01.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_02.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_03.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_04.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/ACTION_AUTHORITY_RECEIPTS.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_01.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_02.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_03.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_04.jsonl.gz"
+      ],
+      "mechanisms": [
+        {
+          "classification": "BOUND",
+          "decision_effect": "strictly later at-most-one-cent sibling improvement",
+          "mechanism": "pair_combined_headroom"
+        }
+      ],
+      "proven_affected_candidate_rows": 8,
+      "qualifying_episodes": 52,
+      "what_is_proven": [
+        "closed interval and same-timestamp frozen action receipt identify headroom_reprice"
+      ],
+      "what_remains_unresolved": []
+    },
+    {
+      "candidate_event_row_ids": [
+        "w1_range_attack__macro_hold__combined_headroom|KXATPCHALLENGERMATCH-26JUL12DODDEL",
+        "w1_range_attack__macro_hold__combined_headroom|KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPCHALLENGERMATCH-26JUL12DODDEL",
+        "w1_range_attack__macro_micro__combined_headroom|KXATPCHALLENGERMATCH-26JUL19VUKGEA"
+      ],
+      "candidate_overlap_distinct_games": 2,
+      "decision_layer": "target_selection_never_included_lawful_X",
+      "distinct_games": 2,
+      "exact_evidence_sources": [
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/CORRECTED_EVENT_LEVEL_CENSUS.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_01.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_02.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_03.jsonl.gz",
+        ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726/QUALIFYING_EPISODE_LEDGER_04.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/COMBINED_HEADROOM_RECEIPTS.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_01.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_02.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_03.jsonl.gz",
+        ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_04.jsonl.gz"
+      ],
+      "mechanisms": [
+        {
+          "classification": "BOUND",
+          "decision_effect": "one frozen Challenger macro target",
+          "mechanism": "Trendpath_ATLAS_native_discovery_path"
+        },
+        {
+          "classification": "BOUND",
+          "decision_effect": "pair presence, expression, maker safety and hollowing",
+          "mechanism": "nonself_external_BBO_and_top5_chain"
+        },
+        {
+          "classification": "BOUND",
+          "decision_effect": "strictly later at-most-one-cent sibling improvement",
+          "mechanism": "pair_combined_headroom"
+        }
+      ],
+      "proven_affected_candidate_rows": 4,
+      "qualifying_episodes": 36,
+      "what_is_proven": [
+        "same-receipt sibling decision selected a different complete raw target"
+      ],
+      "what_remains_unresolved": []
+    }
+  ]
+}

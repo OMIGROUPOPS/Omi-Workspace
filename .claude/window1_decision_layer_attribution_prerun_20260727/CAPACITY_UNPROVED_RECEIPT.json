@@ -1,0 +1,1470 @@
+{
+  "candidate_row_count": 2,
+  "candidate_rows": [
+    {
+      "attributed_layer": "capacity_measurement_unproved",
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "category": "WTA_CHALL",
+      "credited_first_leg": {
+        "authoritative_bid0_cents": 66,
+        "authoritative_book_source": "premarket_ticks_top5",
+        "authoritative_book_timestamp": 1784385350.0,
+        "b2_max_cents": 2,
+        "d1_cents": -3,
+        "evidence_receipt": "1bd793de-cb73-41cb-17af-f8c316df03b6",
+        "evidence_type": "PRICE_REACHED",
+        "leg_id": "SPI",
+        "order_interval_id": "w1_range_attack__macro_hold__combined_headroom|KXWTACHALLENGERMATCH-26JUL18TONSPI|SPI|0002",
+        "price_x_cents": 63,
+        "sibling_leg_id": "TON",
+        "timestamp": 1784385364.438908,
+        "x_evidence_id": "9cc0a39eed8c5fff7b378856a03da7085b0816ca1946b6eba31d40aeaf2d053a"
+      },
+      "earliest_lawful_opportunity": {
+        "combined_delta_cents": -1,
+        "contemporaneous_bid_cents": 33,
+        "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book306|1784385435.000000|33x34",
+        "d2_cents": 2,
+        "episode_id": "87bdf483b47f90b4f9a43eece98e16913c49c2590895087233734e6720ddac75",
+        "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book306|1784385435.000000|33x34",
+        "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+        "price_x_cents": 35,
+        "timestamp": 1784385435.0
+      },
+      "episodes": [
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book306|1784385435.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "87bdf483b47f90b4f9a43eece98e16913c49c2590895087233734e6720ddac75",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book306|1784385435.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385435.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              100.0
+            ],
+            [
+              39,
+              1530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              751.0
+            ],
+            [
+              31,
+              1000.0
+            ],
+            [
+              30,
+              505.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book307|1784385522.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "94d845de517688764a4a833a79bb5745690acfeabb5a556231245e48487b3f24",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book307|1784385522.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385522.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              100.0
+            ],
+            [
+              39,
+              1530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              751.0
+            ],
+            [
+              31,
+              1000.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book308|1784385523.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "10a5db61fbb0ab19eead0799f7a00d5fe80e174b3a70ecf8267d9bce46a64fc7",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book308|1784385523.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385523.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              100.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              751.0
+            ],
+            [
+              31,
+              1000.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book309|1784385525.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "be9054cd57ede138d1d57ba920a1a6efacf46f657a8161a5fcee2638db67a36b",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book309|1784385525.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385525.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              100.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              751.0
+            ],
+            [
+              31,
+              1005.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book310|1784385562.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "63a20db16e988082dcf2776a29e344166636e3dc962b24f35a30d49e4e8385df",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book310|1784385562.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385562.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              100.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              751.0
+            ],
+            [
+              31,
+              1755.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book311|1784385656.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "755ff9fa2e3de28c4b3a3a3d2b6040cb82257dafb0d36ff26b9d9be90e824b2a",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book311|1784385656.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385656.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              100.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              1.0
+            ],
+            [
+              31,
+              1005.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book312|1784385663.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "5d6bcbc65225603ed60cdbc5968e809822495afb5e5b4cfb03e2bba677c328fb",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book312|1784385663.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385663.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              1316.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              1.0
+            ],
+            [
+              31,
+              1005.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book313|1784385847.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "33c7f1e3ff245530c944baf892817152076e3eb33323b7695d1fed1734780cee",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book313|1784385847.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385847.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              1316.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              1751.0
+            ],
+            [
+              31,
+              755.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book314|1784385857.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "bf26c05fd3de023acadb6c27f20880b08e98ff4d7f17b77e7f9bdc467e1e9f68",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book314|1784385857.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385857.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              1316.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              751.0
+            ],
+            [
+              31,
+              1755.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book315|1784385867.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "80596007f0c150aff53ebc07e1e32e2d6aaf3e0901d082bb24a8e610e61d50cc",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book315|1784385867.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385867.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              1316.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              1.0
+            ],
+            [
+              31,
+              1005.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book316|1784385946.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "efe7f0b5435543a4f97d00b5e564072778c405b1497d044c1dab576d625f62c3",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book316|1784385946.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385946.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              1316.0
+            ],
+            [
+              39,
+              1230.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              1.0
+            ],
+            [
+              31,
+              1005.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        }
+      ],
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+      "lawful_qualifying_episode_count": 11,
+      "metrics": null,
+      "missing_evidence": [
+        "five_contract_chronological_executed_capacity"
+      ],
+      "performance": null,
+      "policy_absence_class": false,
+      "price_reach_is_not_erased": true,
+      "proof": "price evidence exists while every retained episode's chronological executed capacity remains below five",
+      "schema_version": "window1-decision-layer-attribution-v1-decision-event-v1",
+      "scored": false,
+      "sibling_leg_id": "TON",
+      "terminal_policy_attribution": "price_reached_but_five_contract_capacity_unproved"
+    },
+    {
+      "attributed_layer": "capacity_measurement_unproved",
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "category": "WTA_CHALL",
+      "credited_first_leg": {
+        "authoritative_bid0_cents": 66,
+        "authoritative_book_source": "premarket_ticks_top5",
+        "authoritative_book_timestamp": 1784385350.0,
+        "b2_max_cents": 2,
+        "d1_cents": -3,
+        "evidence_receipt": "1bd793de-cb73-41cb-17af-f8c316df03b6",
+        "evidence_type": "PRICE_REACHED",
+        "leg_id": "SPI",
+        "order_interval_id": "w1_range_attack__macro_micro__combined_headroom|KXWTACHALLENGERMATCH-26JUL18TONSPI|SPI|0002",
+        "price_x_cents": 63,
+        "sibling_leg_id": "TON",
+        "timestamp": 1784385364.438908,
+        "x_evidence_id": "9cc0a39eed8c5fff7b378856a03da7085b0816ca1946b6eba31d40aeaf2d053a"
+      },
+      "earliest_lawful_opportunity": {
+        "combined_delta_cents": -1,
+        "contemporaneous_bid_cents": 33,
+        "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book306|1784385435.000000|33x34",
+        "d2_cents": 2,
+        "episode_id": "87bdf483b47f90b4f9a43eece98e16913c49c2590895087233734e6720ddac75",
+        "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book306|1784385435.000000|33x34",
+        "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+        "price_x_cents": 35,
+        "timestamp": 1784385435.0
+      },
+      "episodes": [
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book306|1784385435.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "87bdf483b47f90b4f9a43eece98e16913c49c2590895087233734e6720ddac75",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book306|1784385435.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385435.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              100.0
+            ],
+            [
+              39,
+              1530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              751.0
+            ],
+            [
+              31,
+              1000.0
+            ],
+            [
+              30,
+              505.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book307|1784385522.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "94d845de517688764a4a833a79bb5745690acfeabb5a556231245e48487b3f24",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book307|1784385522.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385522.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              100.0
+            ],
+            [
+              39,
+              1530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              751.0
+            ],
+            [
+              31,
+              1000.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book308|1784385523.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "10a5db61fbb0ab19eead0799f7a00d5fe80e174b3a70ecf8267d9bce46a64fc7",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book308|1784385523.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385523.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              100.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              751.0
+            ],
+            [
+              31,
+              1000.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book309|1784385525.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "be9054cd57ede138d1d57ba920a1a6efacf46f657a8161a5fcee2638db67a36b",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book309|1784385525.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385525.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              100.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              751.0
+            ],
+            [
+              31,
+              1005.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book310|1784385562.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "63a20db16e988082dcf2776a29e344166636e3dc962b24f35a30d49e4e8385df",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book310|1784385562.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385562.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              100.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              751.0
+            ],
+            [
+              31,
+              1755.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book311|1784385656.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "755ff9fa2e3de28c4b3a3a3d2b6040cb82257dafb0d36ff26b9d9be90e824b2a",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book311|1784385656.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385656.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              100.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              1.0
+            ],
+            [
+              31,
+              1005.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book312|1784385663.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "5d6bcbc65225603ed60cdbc5968e809822495afb5e5b4cfb03e2bba677c328fb",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book312|1784385663.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385663.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              1316.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              1.0
+            ],
+            [
+              31,
+              1005.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book313|1784385847.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "33c7f1e3ff245530c944baf892817152076e3eb33323b7695d1fed1734780cee",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book313|1784385847.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385847.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              1316.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              1751.0
+            ],
+            [
+              31,
+              755.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book314|1784385857.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "bf26c05fd3de023acadb6c27f20880b08e98ff4d7f17b77e7f9bdc467e1e9f68",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book314|1784385857.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385857.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              1316.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              751.0
+            ],
+            [
+              31,
+              1755.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book315|1784385867.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "80596007f0c150aff53ebc07e1e32e2d6aaf3e0901d082bb24a8e610e61d50cc",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book315|1784385867.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385867.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              1316.0
+            ],
+            [
+              39,
+              5530.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              1.0
+            ],
+            [
+              31,
+              1005.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        },
+        {
+          "contemporaneous_ask_cents": 34,
+          "contemporaneous_bid_cents": 33,
+          "contemporaneous_book_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book316|1784385946.000000|33x34",
+          "displayed_depth_at_or_ahead_of_x": 0,
+          "episode_id": "efe7f0b5435543a4f97d00b5e564072778c405b1497d044c1dab576d625f62c3",
+          "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON|raw-book316|1784385946.000000|33x34",
+          "evidence_type": "STRICT_ASK_CERTAIN_FILL",
+          "executed_volume_at_or_better_after_episode": 0,
+          "five_contract_capacity_proven": false,
+          "interprint_cadence_seconds_30m": null,
+          "missing_capacity_contracts": 5.0,
+          "price_x_cents": 35,
+          "rolling_executed_volume_30m": 35.52,
+          "rolling_print_count_30m": 1,
+          "spread_cents": 1,
+          "timestamp": 1784385946.0,
+          "top5_asks": [
+            [
+              34,
+              460.0
+            ],
+            [
+              35,
+              400.0
+            ],
+            [
+              36,
+              1556.0
+            ],
+            [
+              38,
+              1316.0
+            ],
+            [
+              39,
+              1230.0
+            ]
+          ],
+          "top5_bids": [
+            [
+              33,
+              400.0
+            ],
+            [
+              32,
+              1.0
+            ],
+            [
+              31,
+              1005.0
+            ],
+            [
+              30,
+              500.0
+            ],
+            [
+              28,
+              100.0
+            ]
+          ]
+        }
+      ],
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+      "lawful_qualifying_episode_count": 11,
+      "metrics": null,
+      "missing_evidence": [
+        "five_contract_chronological_executed_capacity"
+      ],
+      "performance": null,
+      "policy_absence_class": false,
+      "price_reach_is_not_erased": true,
+      "proof": "price evidence exists while every retained episode's chronological executed capacity remains below five",
+      "schema_version": "window1-decision-layer-attribution-v1-decision-event-v1",
+      "scored": false,
+      "sibling_leg_id": "TON",
+      "terminal_policy_attribution": "price_reached_but_five_contract_capacity_unproved"
+    }
+  ],
+  "distinct_games": 1,
+  "metrics": null,
+  "performance": null,
+  "policy_absence_conflation": false,
+  "price_reach_and_capacity_separate": true
+}

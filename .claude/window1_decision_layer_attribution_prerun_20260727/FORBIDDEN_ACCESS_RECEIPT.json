@@ -1,0 +1,15 @@
+{
+  "benchmark_executed": false,
+  "holdout_accessed": false,
+  "live_or_production_accessed": false,
+  "metrics": null,
+  "opportunity_rescanned_or_redefined": false,
+  "orders_positions_window2_exits_settlement_DCA_accessed": false,
+  "parameter_proposed_or_tuned": false,
+  "performance": null,
+  "ranking_or_selection": false,
+  "raw_access_limited_to_fixed_witness_receipt_resolution": true,
+  "scorer_imported": false,
+  "scorer_invoked": false,
+  "strategy_or_candidate_changed": false
+}

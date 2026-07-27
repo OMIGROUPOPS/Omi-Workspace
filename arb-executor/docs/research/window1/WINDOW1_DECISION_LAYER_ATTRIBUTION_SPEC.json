@@ -1,0 +1,51 @@
+{
+  "candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "controlling_independent_pass": "26dd6e5e19a7890f02b538cc8b14a900f36e5b2f",
+  "denominator_per_candidate": 804,
+  "diagnostic_only": true,
+  "event_and_episode_separation": {
+    "candidate_rows_are_not_distinct_games": true,
+    "counterfactual_paths_are_not_realized_misses": true,
+    "episodes_are_not_events": true,
+    "policy_absence_is_not_market_absence": true,
+    "price_reach_is_not_capacity": true
+  },
+  "fixed_input_package": ".claude/window1_asynchronous_opportunity_policy_census_v2_20260726",
+  "metrics": null,
+  "no_fill_receipt_resolution": {
+    "allowed": "resolve exact already-frozen witness episode IDs to source receipts",
+    "forbidden": [
+      "enumerate new opportunities",
+      "change orientation membership",
+      "choose a better witness",
+      "rescan or redefine opportunity"
+    ]
+  },
+  "parent": "e60f6af4f6db5bab5b8a30704a0cb1fc98c774a7",
+  "performance": null,
+  "permitted_attribution_layers": {
+    "moved_away": [
+      "maker_safety_reprice",
+      "LIVE_AIM_reprice",
+      "headroom_reprice",
+      "cancel_without_replacement",
+      "target_supersession",
+      "queue_surrendering_move",
+      "corridor_window_termination",
+      "other_named_existing_action",
+      "unresolved"
+    ],
+    "never_exposed": [
+      "discovery_recognition_unavailable_or_no_call",
+      "target_selection_never_included_lawful_X",
+      "target_included_X_but_no_initial_exposure_created",
+      "first_fill_sibling_response_failed_to_create_exposure",
+      "policy_evidence_insufficient_to_distinguish"
+    ]
+  },
+  "score_free": true,
+  "version": "window1-decision-layer-attribution-v1"
+}

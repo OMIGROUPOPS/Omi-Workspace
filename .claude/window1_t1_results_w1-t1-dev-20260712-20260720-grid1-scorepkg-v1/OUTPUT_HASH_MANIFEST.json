@@ -1,0 +1,62 @@
+{
+  "execution_id": "w1-t1-dev-20260712-20260720-grid1-scorepkg-v1",
+  "outputs": {
+    "01_w1_t1__macro_hold__response_only_EVENT_LEDGER.jsonl": {
+      "bytes": 1996086,
+      "sha256": "47d94795f5d39a924201a163af096201aa0448e766e49cf4933654afcaed3b03"
+    },
+    "02_w1_t1__macro_hold__target_completeness_only_EVENT_LEDGER.jsonl": {
+      "bytes": 2010967,
+      "sha256": "58d8a9cc1b1eefc7f7cf46c12338bfda826e6cf17e07fd4939bd4cc0ac47149b"
+    },
+    "03_w1_t1__macro_hold__persistence_only_EVENT_LEDGER.jsonl": {
+      "bytes": 1996185,
+      "sha256": "b5b34afa0ba29fcf7f13194e66708499bceda6899e15855313fe3e9f4b4d09b0"
+    },
+    "04_w1_t1__macro_hold__full_stack_EVENT_LEDGER.jsonl": {
+      "bytes": 1987620,
+      "sha256": "cb05fb3b872ef57a201fb188db40b06789f2056b0d2d0894cac2d2d0eae8adcf"
+    },
+    "05_w1_t1__macro_micro__response_only_EVENT_LEDGER.jsonl": {
+      "bytes": 1995879,
+      "sha256": "e5e9c3534086555adac5cade9d482dad47a65e4afa86d8e374951ea5024b2ad7"
+    },
+    "06_w1_t1__macro_micro__target_completeness_only_EVENT_LEDGER.jsonl": {
+      "bytes": 2010902,
+      "sha256": "f0fc33fd42de3e00be20510ecef6a3dc699bed7426f215c1141150742f9a3470"
+    },
+    "07_w1_t1__macro_micro__persistence_only_EVENT_LEDGER.jsonl": {
+      "bytes": 1996408,
+      "sha256": "8268dd3818e16eb12aa0701045a860335b6433c24a2c20689bf6967a5adbc94d"
+    },
+    "08_w1_t1__macro_micro__full_stack_EVENT_LEDGER.jsonl": {
+      "bytes": 1988361,
+      "sha256": "a2b2595b9384621f15f5376015a87fe0552071d433519d9b2d04c3635f94225e"
+    },
+    "EIGHT_CANDIDATE_RESULTS.json": {
+      "bytes": 46423,
+      "sha256": "741fab26dc78c72c8168293171bd2a7aa7165dc9691811cd5f69f8ba6a6b3486"
+    },
+    "EXECUTION_MANIFEST.json": {
+      "bytes": 1471,
+      "sha256": "4a15c8edc9875cdc70dd8169ec649a5b9884adb98a251b786b749f68dc13b50c"
+    },
+    "EXECUTION_START_RECEIPT.json": {
+      "bytes": 1199,
+      "sha256": "3b286351f4e30d9f58883596b9544591789ac936c80dcea261993f87802c822b"
+    },
+    "HOLDOUT_NONPRODUCTION_NONACCESS_PROOF.json": {
+      "bytes": 397,
+      "sha256": "9452ef33d2a06b935ef12c3ae1f94280d31b4df7d3ecf4eaa0256e7ff5ea3d51"
+    },
+    "METRIC_CONSERVATION_REPORT.json": {
+      "bytes": 1331,
+      "sha256": "14ded1e6aa58f2c50ec4dd6d70bcaf3dde2f7c0ac046dea69077436d4daf2df3"
+    },
+    "PROGRESS.log": {
+      "bytes": 1135,
+      "sha256": "d5be1347e573cc41f5c044b7617993dca4784013df2b6c060e03ed3e58e23f45"
+    }
+  },
+  "schema_version": "window1-t1-scoring-runner-v1-output-hashes-v1"
+}

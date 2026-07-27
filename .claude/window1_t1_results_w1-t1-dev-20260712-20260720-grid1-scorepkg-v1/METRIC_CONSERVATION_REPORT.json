@@ -1,0 +1,54 @@
+{
+  "all_candidates_conserve_D804": true,
+  "candidate_rows": [
+    {
+      "D": 804,
+      "candidate_id": "w1_t1__macro_hold__response_only",
+      "classification_total": 804,
+      "gate_pass": true
+    },
+    {
+      "D": 804,
+      "candidate_id": "w1_t1__macro_hold__target_completeness_only",
+      "classification_total": 804,
+      "gate_pass": true
+    },
+    {
+      "D": 804,
+      "candidate_id": "w1_t1__macro_hold__persistence_only",
+      "classification_total": 804,
+      "gate_pass": true
+    },
+    {
+      "D": 804,
+      "candidate_id": "w1_t1__macro_hold__full_stack",
+      "classification_total": 804,
+      "gate_pass": true
+    },
+    {
+      "D": 804,
+      "candidate_id": "w1_t1__macro_micro__response_only",
+      "classification_total": 804,
+      "gate_pass": true
+    },
+    {
+      "D": 804,
+      "candidate_id": "w1_t1__macro_micro__target_completeness_only",
+      "classification_total": 804,
+      "gate_pass": true
+    },
+    {
+      "D": 804,
+      "candidate_id": "w1_t1__macro_micro__persistence_only",
+      "classification_total": 804,
+      "gate_pass": true
+    },
+    {
+      "D": 804,
+      "candidate_id": "w1_t1__macro_micro__full_stack",
+      "classification_total": 804,
+      "gate_pass": true
+    }
+  ],
+  "schema_version": "window1-t1-scoring-runner-v1-conservation-v1"
+}

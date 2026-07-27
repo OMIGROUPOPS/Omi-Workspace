@@ -1,0 +1,1902 @@
+{
+  "candidate_order": [
+    "w1_t1__macro_hold__response_only",
+    "w1_t1__macro_hold__target_completeness_only",
+    "w1_t1__macro_hold__persistence_only",
+    "w1_t1__macro_hold__full_stack",
+    "w1_t1__macro_micro__response_only",
+    "w1_t1__macro_micro__target_completeness_only",
+    "w1_t1__macro_micro__persistence_only",
+    "w1_t1__macro_micro__full_stack"
+  ],
+  "candidate_results": [
+    {
+      "C": 131,
+      "C_over_D": 0.16293532338308458,
+      "D": 804,
+      "IC": 37,
+      "IC_over_D": 0.046019900497512436,
+      "PC": 115,
+      "PC_but_not_IC": 78,
+      "PC_over_D": 0.14303482587064675,
+      "PC_shortfall_from_603": 488,
+      "S": 100,
+      "S_over_D": 0.12437810945273632,
+      "breakdowns": {
+        "by_boundary_source_class": [
+          {
+            "C": 2,
+            "D": 31,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "boundary_source_class": "clean_causal_interval"
+          },
+          {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "contradictory"
+          },
+          {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "live_by_only"
+          },
+          {
+            "C": 45,
+            "D": 234,
+            "IC": 9,
+            "PC": 38,
+            "S": 32,
+            "boundary_source_class": "official_exact"
+          },
+          {
+            "C": 84,
+            "D": 453,
+            "IC": 27,
+            "PC": 75,
+            "S": 66,
+            "boundary_source_class": "quantized_late_detection_proxy"
+          },
+          {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "schedule_only"
+          }
+        ],
+        "by_category": [
+          {
+            "C": 37,
+            "D": 369,
+            "IC": 13,
+            "PC": 31,
+            "S": 32,
+            "category": "ATP_CHALL"
+          },
+          {
+            "C": 49,
+            "D": 147,
+            "IC": 9,
+            "PC": 43,
+            "S": 34,
+            "category": "ATP_MAIN"
+          },
+          {
+            "C": 8,
+            "D": 136,
+            "IC": 3,
+            "PC": 6,
+            "S": 7,
+            "category": "WTA_CHALL"
+          },
+          {
+            "C": 37,
+            "D": 152,
+            "IC": 12,
+            "PC": 35,
+            "S": 27,
+            "category": "WTA_MAIN"
+          }
+        ],
+        "by_date": [
+          {
+            "C": 12,
+            "D": 156,
+            "IC": 6,
+            "PC": 12,
+            "S": 10,
+            "event_date": "2026-07-12"
+          },
+          {
+            "C": 13,
+            "D": 114,
+            "IC": 6,
+            "PC": 13,
+            "S": 11,
+            "event_date": "2026-07-13"
+          },
+          {
+            "C": 13,
+            "D": 99,
+            "IC": 3,
+            "PC": 13,
+            "S": 11,
+            "event_date": "2026-07-14"
+          },
+          {
+            "C": 22,
+            "D": 64,
+            "IC": 8,
+            "PC": 18,
+            "S": 11,
+            "event_date": "2026-07-15"
+          },
+          {
+            "C": 11,
+            "D": 42,
+            "IC": 2,
+            "PC": 9,
+            "S": 9,
+            "event_date": "2026-07-16"
+          },
+          {
+            "C": 15,
+            "D": 50,
+            "IC": 4,
+            "PC": 13,
+            "S": 12,
+            "event_date": "2026-07-17"
+          },
+          {
+            "C": 14,
+            "D": 62,
+            "IC": 1,
+            "PC": 11,
+            "S": 11,
+            "event_date": "2026-07-18"
+          },
+          {
+            "C": 11,
+            "D": 121,
+            "IC": 2,
+            "PC": 9,
+            "S": 8,
+            "event_date": "2026-07-19"
+          },
+          {
+            "C": 20,
+            "D": 96,
+            "IC": 5,
+            "PC": 17,
+            "S": 17,
+            "event_date": "2026-07-20"
+          }
+        ]
+      },
+      "candidate_id": "w1_t1__macro_hold__response_only",
+      "candidate_versus_parent_event_level_change_count": 107,
+      "classification_conservation": {
+        "censored_or_boundary_unprovable": 99,
+        "completed_PC": 115,
+        "completed_non_PC": 9,
+        "completed_reference_missing_or_ambiguous": 7,
+        "equals_D804": true,
+        "naked_single": 238,
+        "no_fill": 336,
+        "total": 804
+      },
+      "completion_conditioned_diagnostics": {
+        "IC_over_C": 0.2824427480916031,
+        "PC_over_C": 0.8778625954198473,
+        "S_over_C": 0.7633587786259542,
+        "official_target_metrics": false
+      },
+      "distributions": {
+        "combined_delta_cents": {
+          "count": 124,
+          "max": 4.0,
+          "mean": -2.3225806451612905,
+          "min": -10.0,
+          "p25": -3.0,
+          "p50": -2.0,
+          "p75": -1.75,
+          "p90": -1.0
+        },
+        "combined_entry_cost_cents": {
+          "count": 131,
+          "max": 106.0,
+          "mean": 99.0381679389313,
+          "min": 94.0,
+          "p25": 98.0,
+          "p50": 99.0,
+          "p75": 99.0,
+          "p90": 100.0
+        },
+        "individual_delta_cents": {
+          "count": 248,
+          "max": 5.0,
+          "mean": -1.1612903225806452,
+          "min": -12.0,
+          "p25": -2.0,
+          "p50": -1.0,
+          "p75": 0.0,
+          "p90": 1.0
+        }
+      },
+      "fill_evidence_decomposition": {
+        "print/print": 128,
+        "print/strict-ask": 0,
+        "strict-ask/print": 3,
+        "strict-ask/strict-ask": 0
+      },
+      "official_target_metric": "PC_over_D",
+      "parent_reference_candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "persistence_participation_event_count": 0,
+      "positive_d2_completed_PC": 0,
+      "ranking_or_selection_applied": false,
+      "schema_version": "window1-t1-scoring-adapter-v1-candidate-summary-v1"
+    },
+    {
+      "C": 134,
+      "C_over_D": 0.16666666666666666,
+      "D": 804,
+      "IC": 36,
+      "IC_over_D": 0.04477611940298507,
+      "PC": 114,
+      "PC_but_not_IC": 78,
+      "PC_over_D": 0.1417910447761194,
+      "PC_shortfall_from_603": 489,
+      "S": 101,
+      "S_over_D": 0.1256218905472637,
+      "breakdowns": {
+        "by_boundary_source_class": [
+          {
+            "C": 1,
+            "D": 31,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "boundary_source_class": "clean_causal_interval"
+          },
+          {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "contradictory"
+          },
+          {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "live_by_only"
+          },
+          {
+            "C": 47,
+            "D": 234,
+            "IC": 10,
+            "PC": 37,
+            "S": 33,
+            "boundary_source_class": "official_exact"
+          },
+          {
+            "C": 86,
+            "D": 453,
+            "IC": 26,
+            "PC": 76,
+            "S": 67,
+            "boundary_source_class": "quantized_late_detection_proxy"
+          },
+          {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "schedule_only"
+          }
+        ],
+        "by_category": [
+          {
+            "C": 40,
+            "D": 369,
+            "IC": 11,
+            "PC": 32,
+            "S": 32,
+            "category": "ATP_CHALL"
+          },
+          {
+            "C": 47,
+            "D": 147,
+            "IC": 9,
+            "PC": 41,
+            "S": 34,
+            "category": "ATP_MAIN"
+          },
+          {
+            "C": 10,
+            "D": 136,
+            "IC": 3,
+            "PC": 6,
+            "S": 7,
+            "category": "WTA_CHALL"
+          },
+          {
+            "C": 37,
+            "D": 152,
+            "IC": 13,
+            "PC": 35,
+            "S": 28,
+            "category": "WTA_MAIN"
+          }
+        ],
+        "by_date": [
+          {
+            "C": 12,
+            "D": 156,
+            "IC": 6,
+            "PC": 12,
+            "S": 10,
+            "event_date": "2026-07-12"
+          },
+          {
+            "C": 11,
+            "D": 114,
+            "IC": 6,
+            "PC": 11,
+            "S": 11,
+            "event_date": "2026-07-13"
+          },
+          {
+            "C": 13,
+            "D": 99,
+            "IC": 3,
+            "PC": 13,
+            "S": 11,
+            "event_date": "2026-07-14"
+          },
+          {
+            "C": 22,
+            "D": 64,
+            "IC": 8,
+            "PC": 18,
+            "S": 11,
+            "event_date": "2026-07-15"
+          },
+          {
+            "C": 13,
+            "D": 42,
+            "IC": 2,
+            "PC": 11,
+            "S": 11,
+            "event_date": "2026-07-16"
+          },
+          {
+            "C": 15,
+            "D": 50,
+            "IC": 4,
+            "PC": 13,
+            "S": 12,
+            "event_date": "2026-07-17"
+          },
+          {
+            "C": 16,
+            "D": 62,
+            "IC": 1,
+            "PC": 11,
+            "S": 12,
+            "event_date": "2026-07-18"
+          },
+          {
+            "C": 14,
+            "D": 121,
+            "IC": 2,
+            "PC": 10,
+            "S": 8,
+            "event_date": "2026-07-19"
+          },
+          {
+            "C": 18,
+            "D": 96,
+            "IC": 4,
+            "PC": 15,
+            "S": 15,
+            "event_date": "2026-07-20"
+          }
+        ]
+      },
+      "candidate_id": "w1_t1__macro_hold__target_completeness_only",
+      "candidate_versus_parent_event_level_change_count": 122,
+      "classification_conservation": {
+        "censored_or_boundary_unprovable": 99,
+        "completed_PC": 114,
+        "completed_non_PC": 11,
+        "completed_reference_missing_or_ambiguous": 9,
+        "equals_D804": true,
+        "naked_single": 235,
+        "no_fill": 336,
+        "total": 804
+      },
+      "completion_conditioned_diagnostics": {
+        "IC_over_C": 0.26865671641791045,
+        "PC_over_C": 0.8507462686567164,
+        "S_over_C": 0.753731343283582,
+        "official_target_metrics": false
+      },
+      "distributions": {
+        "combined_delta_cents": {
+          "count": 125,
+          "max": 4.0,
+          "mean": -2.24,
+          "min": -10.0,
+          "p25": -3.0,
+          "p50": -2.0,
+          "p75": -2.0,
+          "p90": -1.0
+        },
+        "combined_entry_cost_cents": {
+          "count": 134,
+          "max": 106.0,
+          "mean": 99.11194029850746,
+          "min": 94.0,
+          "p25": 99.0,
+          "p50": 99.0,
+          "p75": 99.0,
+          "p90": 100.0
+        },
+        "individual_delta_cents": {
+          "count": 250,
+          "max": 5.0,
+          "mean": -1.12,
+          "min": -12.0,
+          "p25": -2.0,
+          "p50": -1.0,
+          "p75": 0.0,
+          "p90": 1.0
+        }
+      },
+      "fill_evidence_decomposition": {
+        "print/print": 130,
+        "print/strict-ask": 0,
+        "strict-ask/print": 4,
+        "strict-ask/strict-ask": 0
+      },
+      "official_target_metric": "PC_over_D",
+      "parent_reference_candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "persistence_participation_event_count": 0,
+      "positive_d2_completed_PC": 0,
+      "ranking_or_selection_applied": false,
+      "schema_version": "window1-t1-scoring-adapter-v1-candidate-summary-v1"
+    },
+    {
+      "C": 102,
+      "C_over_D": 0.12686567164179105,
+      "D": 804,
+      "IC": 34,
+      "IC_over_D": 0.04228855721393035,
+      "PC": 93,
+      "PC_but_not_IC": 59,
+      "PC_over_D": 0.11567164179104478,
+      "PC_shortfall_from_603": 510,
+      "S": 79,
+      "S_over_D": 0.09825870646766169,
+      "breakdowns": {
+        "by_boundary_source_class": [
+          {
+            "C": 1,
+            "D": 31,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "boundary_source_class": "clean_causal_interval"
+          },
+          {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "contradictory"
+          },
+          {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "live_by_only"
+          },
+          {
+            "C": 34,
+            "D": 234,
+            "IC": 8,
+            "PC": 29,
+            "S": 23,
+            "boundary_source_class": "official_exact"
+          },
+          {
+            "C": 67,
+            "D": 453,
+            "IC": 25,
+            "PC": 63,
+            "S": 55,
+            "boundary_source_class": "quantized_late_detection_proxy"
+          },
+          {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "schedule_only"
+          }
+        ],
+        "by_category": [
+          {
+            "C": 22,
+            "D": 369,
+            "IC": 11,
+            "PC": 18,
+            "S": 19,
+            "category": "ATP_CHALL"
+          },
+          {
+            "C": 45,
+            "D": 147,
+            "IC": 11,
+            "PC": 41,
+            "S": 34,
+            "category": "ATP_MAIN"
+          },
+          {
+            "C": 2,
+            "D": 136,
+            "IC": 2,
+            "PC": 2,
+            "S": 1,
+            "category": "WTA_CHALL"
+          },
+          {
+            "C": 33,
+            "D": 152,
+            "IC": 10,
+            "PC": 32,
+            "S": 25,
+            "category": "WTA_MAIN"
+          }
+        ],
+        "by_date": [
+          {
+            "C": 11,
+            "D": 156,
+            "IC": 5,
+            "PC": 11,
+            "S": 9,
+            "event_date": "2026-07-12"
+          },
+          {
+            "C": 11,
+            "D": 114,
+            "IC": 4,
+            "PC": 11,
+            "S": 9,
+            "event_date": "2026-07-13"
+          },
+          {
+            "C": 9,
+            "D": 99,
+            "IC": 4,
+            "PC": 9,
+            "S": 8,
+            "event_date": "2026-07-14"
+          },
+          {
+            "C": 17,
+            "D": 64,
+            "IC": 6,
+            "PC": 15,
+            "S": 9,
+            "event_date": "2026-07-15"
+          },
+          {
+            "C": 8,
+            "D": 42,
+            "IC": 1,
+            "PC": 6,
+            "S": 6,
+            "event_date": "2026-07-16"
+          },
+          {
+            "C": 14,
+            "D": 50,
+            "IC": 5,
+            "PC": 13,
+            "S": 12,
+            "event_date": "2026-07-17"
+          },
+          {
+            "C": 11,
+            "D": 62,
+            "IC": 1,
+            "PC": 10,
+            "S": 11,
+            "event_date": "2026-07-18"
+          },
+          {
+            "C": 8,
+            "D": 121,
+            "IC": 3,
+            "PC": 7,
+            "S": 6,
+            "event_date": "2026-07-19"
+          },
+          {
+            "C": 13,
+            "D": 96,
+            "IC": 5,
+            "PC": 11,
+            "S": 9,
+            "event_date": "2026-07-20"
+          }
+        ]
+      },
+      "candidate_id": "w1_t1__macro_hold__persistence_only",
+      "candidate_versus_parent_event_level_change_count": 145,
+      "classification_conservation": {
+        "censored_or_boundary_unprovable": 99,
+        "completed_PC": 93,
+        "completed_non_PC": 4,
+        "completed_reference_missing_or_ambiguous": 5,
+        "equals_D804": true,
+        "naked_single": 267,
+        "no_fill": 336,
+        "total": 804
+      },
+      "completion_conditioned_diagnostics": {
+        "IC_over_C": 0.3333333333333333,
+        "PC_over_C": 0.9117647058823529,
+        "S_over_C": 0.7745098039215687,
+        "official_target_metrics": false
+      },
+      "distributions": {
+        "combined_delta_cents": {
+          "count": 97,
+          "max": 4.0,
+          "mean": -2.484536082474227,
+          "min": -11.0,
+          "p25": -3.0,
+          "p50": -2.0,
+          "p75": -2.0,
+          "p90": -1.0
+        },
+        "combined_entry_cost_cents": {
+          "count": 102,
+          "max": 106.0,
+          "mean": 98.86274509803921,
+          "min": 94.0,
+          "p25": 98.0,
+          "p50": 99.0,
+          "p75": 99.0,
+          "p90": 100.0
+        },
+        "individual_delta_cents": {
+          "count": 194,
+          "max": 4.0,
+          "mean": -1.2422680412371134,
+          "min": -13.0,
+          "p25": -2.0,
+          "p50": -1.0,
+          "p75": 0.0,
+          "p90": 1.0
+        }
+      },
+      "fill_evidence_decomposition": {
+        "print/print": 100,
+        "print/strict-ask": 0,
+        "strict-ask/print": 2,
+        "strict-ask/strict-ask": 0
+      },
+      "official_target_metric": "PC_over_D",
+      "parent_reference_candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "persistence_participation_event_count": 102,
+      "positive_d2_completed_PC": 0,
+      "ranking_or_selection_applied": false,
+      "schema_version": "window1-t1-scoring-adapter-v1-candidate-summary-v1"
+    },
+    {
+      "C": 94,
+      "C_over_D": 0.11691542288557213,
+      "D": 804,
+      "IC": 32,
+      "IC_over_D": 0.03980099502487562,
+      "PC": 88,
+      "PC_but_not_IC": 56,
+      "PC_over_D": 0.10945273631840796,
+      "PC_shortfall_from_603": 515,
+      "S": 77,
+      "S_over_D": 0.09577114427860696,
+      "breakdowns": {
+        "by_boundary_source_class": [
+          {
+            "C": 1,
+            "D": 31,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "boundary_source_class": "clean_causal_interval"
+          },
+          {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "contradictory"
+          },
+          {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "live_by_only"
+          },
+          {
+            "C": 30,
+            "D": 234,
+            "IC": 8,
+            "PC": 27,
+            "S": 23,
+            "boundary_source_class": "official_exact"
+          },
+          {
+            "C": 63,
+            "D": 453,
+            "IC": 23,
+            "PC": 60,
+            "S": 53,
+            "boundary_source_class": "quantized_late_detection_proxy"
+          },
+          {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "schedule_only"
+          }
+        ],
+        "by_category": [
+          {
+            "C": 17,
+            "D": 369,
+            "IC": 8,
+            "PC": 15,
+            "S": 16,
+            "category": "ATP_CHALL"
+          },
+          {
+            "C": 42,
+            "D": 147,
+            "IC": 11,
+            "PC": 39,
+            "S": 34,
+            "category": "ATP_MAIN"
+          },
+          {
+            "C": 2,
+            "D": 136,
+            "IC": 2,
+            "PC": 2,
+            "S": 1,
+            "category": "WTA_CHALL"
+          },
+          {
+            "C": 33,
+            "D": 152,
+            "IC": 11,
+            "PC": 32,
+            "S": 26,
+            "category": "WTA_MAIN"
+          }
+        ],
+        "by_date": [
+          {
+            "C": 11,
+            "D": 156,
+            "IC": 5,
+            "PC": 11,
+            "S": 9,
+            "event_date": "2026-07-12"
+          },
+          {
+            "C": 8,
+            "D": 114,
+            "IC": 3,
+            "PC": 8,
+            "S": 8,
+            "event_date": "2026-07-13"
+          },
+          {
+            "C": 8,
+            "D": 99,
+            "IC": 3,
+            "PC": 8,
+            "S": 7,
+            "event_date": "2026-07-14"
+          },
+          {
+            "C": 16,
+            "D": 64,
+            "IC": 6,
+            "PC": 15,
+            "S": 9,
+            "event_date": "2026-07-15"
+          },
+          {
+            "C": 8,
+            "D": 42,
+            "IC": 1,
+            "PC": 6,
+            "S": 6,
+            "event_date": "2026-07-16"
+          },
+          {
+            "C": 14,
+            "D": 50,
+            "IC": 5,
+            "PC": 13,
+            "S": 12,
+            "event_date": "2026-07-17"
+          },
+          {
+            "C": 11,
+            "D": 62,
+            "IC": 1,
+            "PC": 10,
+            "S": 11,
+            "event_date": "2026-07-18"
+          },
+          {
+            "C": 7,
+            "D": 121,
+            "IC": 3,
+            "PC": 7,
+            "S": 6,
+            "event_date": "2026-07-19"
+          },
+          {
+            "C": 11,
+            "D": 96,
+            "IC": 5,
+            "PC": 10,
+            "S": 9,
+            "event_date": "2026-07-20"
+          }
+        ]
+      },
+      "candidate_id": "w1_t1__macro_hold__full_stack",
+      "candidate_versus_parent_event_level_change_count": 154,
+      "classification_conservation": {
+        "censored_or_boundary_unprovable": 99,
+        "completed_PC": 88,
+        "completed_non_PC": 1,
+        "completed_reference_missing_or_ambiguous": 5,
+        "equals_D804": true,
+        "naked_single": 275,
+        "no_fill": 336,
+        "total": 804
+      },
+      "completion_conditioned_diagnostics": {
+        "IC_over_C": 0.3404255319148936,
+        "PC_over_C": 0.9361702127659575,
+        "S_over_C": 0.8191489361702128,
+        "official_target_metrics": false
+      },
+      "distributions": {
+        "combined_delta_cents": {
+          "count": 89,
+          "max": 0.0,
+          "mean": -2.640449438202247,
+          "min": -11.0,
+          "p25": -3.0,
+          "p50": -2.0,
+          "p75": -2.0,
+          "p90": -1.0
+        },
+        "combined_entry_cost_cents": {
+          "count": 94,
+          "max": 100.0,
+          "mean": 98.70212765957447,
+          "min": 94.0,
+          "p25": 98.0,
+          "p50": 99.0,
+          "p75": 99.0,
+          "p90": 100.0
+        },
+        "individual_delta_cents": {
+          "count": 178,
+          "max": 4.0,
+          "mean": -1.3202247191011236,
+          "min": -13.0,
+          "p25": -2.0,
+          "p50": -1.0,
+          "p75": 0.0,
+          "p90": 1.0
+        }
+      },
+      "fill_evidence_decomposition": {
+        "print/print": 92,
+        "print/strict-ask": 0,
+        "strict-ask/print": 2,
+        "strict-ask/strict-ask": 0
+      },
+      "official_target_metric": "PC_over_D",
+      "parent_reference_candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "persistence_participation_event_count": 94,
+      "positive_d2_completed_PC": 0,
+      "ranking_or_selection_applied": false,
+      "schema_version": "window1-t1-scoring-adapter-v1-candidate-summary-v1"
+    },
+    {
+      "C": 123,
+      "C_over_D": 0.15298507462686567,
+      "D": 804,
+      "IC": 34,
+      "IC_over_D": 0.04228855721393035,
+      "PC": 109,
+      "PC_but_not_IC": 75,
+      "PC_over_D": 0.13557213930348258,
+      "PC_shortfall_from_603": 494,
+      "S": 94,
+      "S_over_D": 0.11691542288557213,
+      "breakdowns": {
+        "by_boundary_source_class": [
+          {
+            "C": 2,
+            "D": 31,
+            "IC": 1,
+            "PC": 2,
+            "S": 2,
+            "boundary_source_class": "clean_causal_interval"
+          },
+          {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "contradictory"
+          },
+          {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "live_by_only"
+          },
+          {
+            "C": 40,
+            "D": 234,
+            "IC": 8,
+            "PC": 35,
+            "S": 29,
+            "boundary_source_class": "official_exact"
+          },
+          {
+            "C": 81,
+            "D": 453,
+            "IC": 25,
+            "PC": 72,
+            "S": 63,
+            "boundary_source_class": "quantized_late_detection_proxy"
+          },
+          {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "schedule_only"
+          }
+        ],
+        "by_category": [
+          {
+            "C": 29,
+            "D": 369,
+            "IC": 10,
+            "PC": 25,
+            "S": 26,
+            "category": "ATP_CHALL"
+          },
+          {
+            "C": 49,
+            "D": 147,
+            "IC": 9,
+            "PC": 43,
+            "S": 34,
+            "category": "ATP_MAIN"
+          },
+          {
+            "C": 8,
+            "D": 136,
+            "IC": 3,
+            "PC": 6,
+            "S": 7,
+            "category": "WTA_CHALL"
+          },
+          {
+            "C": 37,
+            "D": 152,
+            "IC": 12,
+            "PC": 35,
+            "S": 27,
+            "category": "WTA_MAIN"
+          }
+        ],
+        "by_date": [
+          {
+            "C": 11,
+            "D": 156,
+            "IC": 5,
+            "PC": 11,
+            "S": 9,
+            "event_date": "2026-07-12"
+          },
+          {
+            "C": 12,
+            "D": 114,
+            "IC": 5,
+            "PC": 12,
+            "S": 10,
+            "event_date": "2026-07-13"
+          },
+          {
+            "C": 11,
+            "D": 99,
+            "IC": 2,
+            "PC": 11,
+            "S": 9,
+            "event_date": "2026-07-14"
+          },
+          {
+            "C": 22,
+            "D": 64,
+            "IC": 8,
+            "PC": 18,
+            "S": 11,
+            "event_date": "2026-07-15"
+          },
+          {
+            "C": 9,
+            "D": 42,
+            "IC": 2,
+            "PC": 7,
+            "S": 7,
+            "event_date": "2026-07-16"
+          },
+          {
+            "C": 15,
+            "D": 50,
+            "IC": 4,
+            "PC": 13,
+            "S": 12,
+            "event_date": "2026-07-17"
+          },
+          {
+            "C": 14,
+            "D": 62,
+            "IC": 1,
+            "PC": 11,
+            "S": 11,
+            "event_date": "2026-07-18"
+          },
+          {
+            "C": 10,
+            "D": 121,
+            "IC": 2,
+            "PC": 9,
+            "S": 8,
+            "event_date": "2026-07-19"
+          },
+          {
+            "C": 19,
+            "D": 96,
+            "IC": 5,
+            "PC": 17,
+            "S": 17,
+            "event_date": "2026-07-20"
+          }
+        ]
+      },
+      "candidate_id": "w1_t1__macro_micro__response_only",
+      "candidate_versus_parent_event_level_change_count": 108,
+      "classification_conservation": {
+        "censored_or_boundary_unprovable": 99,
+        "completed_PC": 109,
+        "completed_non_PC": 7,
+        "completed_reference_missing_or_ambiguous": 7,
+        "equals_D804": true,
+        "naked_single": 242,
+        "no_fill": 340,
+        "total": 804
+      },
+      "completion_conditioned_diagnostics": {
+        "IC_over_C": 0.2764227642276423,
+        "PC_over_C": 0.8861788617886179,
+        "S_over_C": 0.7642276422764228,
+        "official_target_metrics": false
+      },
+      "distributions": {
+        "combined_delta_cents": {
+          "count": 116,
+          "max": 2.0,
+          "mean": -2.3448275862068964,
+          "min": -10.0,
+          "p25": -3.0,
+          "p50": -2.0,
+          "p75": -1.75,
+          "p90": -1.0
+        },
+        "combined_entry_cost_cents": {
+          "count": 123,
+          "max": 102.0,
+          "mean": 98.98373983739837,
+          "min": 94.0,
+          "p25": 98.5,
+          "p50": 99.0,
+          "p75": 99.0,
+          "p90": 100.0
+        },
+        "individual_delta_cents": {
+          "count": 232,
+          "max": 5.0,
+          "mean": -1.1724137931034482,
+          "min": -12.0,
+          "p25": -2.0,
+          "p50": -1.0,
+          "p75": 0.0,
+          "p90": 1.0
+        }
+      },
+      "fill_evidence_decomposition": {
+        "print/print": 120,
+        "print/strict-ask": 0,
+        "strict-ask/print": 3,
+        "strict-ask/strict-ask": 0
+      },
+      "official_target_metric": "PC_over_D",
+      "parent_reference_candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "persistence_participation_event_count": 0,
+      "positive_d2_completed_PC": 0,
+      "ranking_or_selection_applied": false,
+      "schema_version": "window1-t1-scoring-adapter-v1-candidate-summary-v1"
+    },
+    {
+      "C": 128,
+      "C_over_D": 0.15920398009950248,
+      "D": 804,
+      "IC": 35,
+      "IC_over_D": 0.043532338308457715,
+      "PC": 109,
+      "PC_but_not_IC": 74,
+      "PC_over_D": 0.13557213930348258,
+      "PC_shortfall_from_603": 494,
+      "S": 95,
+      "S_over_D": 0.1181592039800995,
+      "breakdowns": {
+        "by_boundary_source_class": [
+          {
+            "C": 1,
+            "D": 31,
+            "IC": 0,
+            "PC": 1,
+            "S": 1,
+            "boundary_source_class": "clean_causal_interval"
+          },
+          {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "contradictory"
+          },
+          {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "live_by_only"
+          },
+          {
+            "C": 44,
+            "D": 234,
+            "IC": 9,
+            "PC": 35,
+            "S": 30,
+            "boundary_source_class": "official_exact"
+          },
+          {
+            "C": 83,
+            "D": 453,
+            "IC": 26,
+            "PC": 73,
+            "S": 64,
+            "boundary_source_class": "quantized_late_detection_proxy"
+          },
+          {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "schedule_only"
+          }
+        ],
+        "by_category": [
+          {
+            "C": 34,
+            "D": 369,
+            "IC": 10,
+            "PC": 27,
+            "S": 26,
+            "category": "ATP_CHALL"
+          },
+          {
+            "C": 47,
+            "D": 147,
+            "IC": 9,
+            "PC": 41,
+            "S": 34,
+            "category": "ATP_MAIN"
+          },
+          {
+            "C": 10,
+            "D": 136,
+            "IC": 3,
+            "PC": 6,
+            "S": 7,
+            "category": "WTA_CHALL"
+          },
+          {
+            "C": 37,
+            "D": 152,
+            "IC": 13,
+            "PC": 35,
+            "S": 28,
+            "category": "WTA_MAIN"
+          }
+        ],
+        "by_date": [
+          {
+            "C": 12,
+            "D": 156,
+            "IC": 6,
+            "PC": 12,
+            "S": 10,
+            "event_date": "2026-07-12"
+          },
+          {
+            "C": 10,
+            "D": 114,
+            "IC": 5,
+            "PC": 10,
+            "S": 10,
+            "event_date": "2026-07-13"
+          },
+          {
+            "C": 11,
+            "D": 99,
+            "IC": 2,
+            "PC": 11,
+            "S": 9,
+            "event_date": "2026-07-14"
+          },
+          {
+            "C": 22,
+            "D": 64,
+            "IC": 8,
+            "PC": 18,
+            "S": 11,
+            "event_date": "2026-07-15"
+          },
+          {
+            "C": 10,
+            "D": 42,
+            "IC": 2,
+            "PC": 8,
+            "S": 8,
+            "event_date": "2026-07-16"
+          },
+          {
+            "C": 15,
+            "D": 50,
+            "IC": 4,
+            "PC": 13,
+            "S": 12,
+            "event_date": "2026-07-17"
+          },
+          {
+            "C": 16,
+            "D": 62,
+            "IC": 1,
+            "PC": 11,
+            "S": 12,
+            "event_date": "2026-07-18"
+          },
+          {
+            "C": 14,
+            "D": 121,
+            "IC": 2,
+            "PC": 10,
+            "S": 8,
+            "event_date": "2026-07-19"
+          },
+          {
+            "C": 18,
+            "D": 96,
+            "IC": 5,
+            "PC": 16,
+            "S": 15,
+            "event_date": "2026-07-20"
+          }
+        ]
+      },
+      "candidate_id": "w1_t1__macro_micro__target_completeness_only",
+      "candidate_versus_parent_event_level_change_count": 123,
+      "classification_conservation": {
+        "censored_or_boundary_unprovable": 99,
+        "completed_PC": 109,
+        "completed_non_PC": 10,
+        "completed_reference_missing_or_ambiguous": 9,
+        "equals_D804": true,
+        "naked_single": 237,
+        "no_fill": 340,
+        "total": 804
+      },
+      "completion_conditioned_diagnostics": {
+        "IC_over_C": 0.2734375,
+        "PC_over_C": 0.8515625,
+        "S_over_C": 0.7421875,
+        "official_target_metrics": false
+      },
+      "distributions": {
+        "combined_delta_cents": {
+          "count": 119,
+          "max": 4.0,
+          "mean": -2.2100840336134455,
+          "min": -10.0,
+          "p25": -3.0,
+          "p50": -2.0,
+          "p75": -1.5,
+          "p90": -1.0
+        },
+        "combined_entry_cost_cents": {
+          "count": 128,
+          "max": 106.0,
+          "mean": 99.125,
+          "min": 94.0,
+          "p25": 99.0,
+          "p50": 99.0,
+          "p75": 100.0,
+          "p90": 100.0
+        },
+        "individual_delta_cents": {
+          "count": 238,
+          "max": 5.0,
+          "mean": -1.1050420168067228,
+          "min": -12.0,
+          "p25": -2.0,
+          "p50": -1.0,
+          "p75": 0.0,
+          "p90": 1.0
+        }
+      },
+      "fill_evidence_decomposition": {
+        "print/print": 124,
+        "print/strict-ask": 0,
+        "strict-ask/print": 4,
+        "strict-ask/strict-ask": 0
+      },
+      "official_target_metric": "PC_over_D",
+      "parent_reference_candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "persistence_participation_event_count": 0,
+      "positive_d2_completed_PC": 0,
+      "ranking_or_selection_applied": false,
+      "schema_version": "window1-t1-scoring-adapter-v1-candidate-summary-v1"
+    },
+    {
+      "C": 98,
+      "C_over_D": 0.12189054726368159,
+      "D": 804,
+      "IC": 32,
+      "IC_over_D": 0.03980099502487562,
+      "PC": 91,
+      "PC_but_not_IC": 59,
+      "PC_over_D": 0.11318407960199005,
+      "PC_shortfall_from_603": 512,
+      "S": 77,
+      "S_over_D": 0.09577114427860696,
+      "breakdowns": {
+        "by_boundary_source_class": [
+          {
+            "C": 1,
+            "D": 31,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "boundary_source_class": "clean_causal_interval"
+          },
+          {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "contradictory"
+          },
+          {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "live_by_only"
+          },
+          {
+            "C": 31,
+            "D": 234,
+            "IC": 7,
+            "PC": 28,
+            "S": 22,
+            "boundary_source_class": "official_exact"
+          },
+          {
+            "C": 66,
+            "D": 453,
+            "IC": 24,
+            "PC": 62,
+            "S": 54,
+            "boundary_source_class": "quantized_late_detection_proxy"
+          },
+          {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "schedule_only"
+          }
+        ],
+        "by_category": [
+          {
+            "C": 18,
+            "D": 369,
+            "IC": 9,
+            "PC": 16,
+            "S": 17,
+            "category": "ATP_CHALL"
+          },
+          {
+            "C": 45,
+            "D": 147,
+            "IC": 11,
+            "PC": 41,
+            "S": 34,
+            "category": "ATP_MAIN"
+          },
+          {
+            "C": 2,
+            "D": 136,
+            "IC": 2,
+            "PC": 2,
+            "S": 1,
+            "category": "WTA_CHALL"
+          },
+          {
+            "C": 33,
+            "D": 152,
+            "IC": 10,
+            "PC": 32,
+            "S": 25,
+            "category": "WTA_MAIN"
+          }
+        ],
+        "by_date": [
+          {
+            "C": 11,
+            "D": 156,
+            "IC": 5,
+            "PC": 11,
+            "S": 9,
+            "event_date": "2026-07-12"
+          },
+          {
+            "C": 10,
+            "D": 114,
+            "IC": 3,
+            "PC": 10,
+            "S": 8,
+            "event_date": "2026-07-13"
+          },
+          {
+            "C": 8,
+            "D": 99,
+            "IC": 3,
+            "PC": 8,
+            "S": 7,
+            "event_date": "2026-07-14"
+          },
+          {
+            "C": 17,
+            "D": 64,
+            "IC": 6,
+            "PC": 15,
+            "S": 9,
+            "event_date": "2026-07-15"
+          },
+          {
+            "C": 8,
+            "D": 42,
+            "IC": 1,
+            "PC": 6,
+            "S": 6,
+            "event_date": "2026-07-16"
+          },
+          {
+            "C": 14,
+            "D": 50,
+            "IC": 5,
+            "PC": 13,
+            "S": 12,
+            "event_date": "2026-07-17"
+          },
+          {
+            "C": 11,
+            "D": 62,
+            "IC": 1,
+            "PC": 10,
+            "S": 11,
+            "event_date": "2026-07-18"
+          },
+          {
+            "C": 7,
+            "D": 121,
+            "IC": 3,
+            "PC": 7,
+            "S": 6,
+            "event_date": "2026-07-19"
+          },
+          {
+            "C": 12,
+            "D": 96,
+            "IC": 5,
+            "PC": 11,
+            "S": 9,
+            "event_date": "2026-07-20"
+          }
+        ]
+      },
+      "candidate_id": "w1_t1__macro_micro__persistence_only",
+      "candidate_versus_parent_event_level_change_count": 142,
+      "classification_conservation": {
+        "censored_or_boundary_unprovable": 99,
+        "completed_PC": 91,
+        "completed_non_PC": 2,
+        "completed_reference_missing_or_ambiguous": 5,
+        "equals_D804": true,
+        "naked_single": 267,
+        "no_fill": 340,
+        "total": 804
+      },
+      "completion_conditioned_diagnostics": {
+        "IC_over_C": 0.32653061224489793,
+        "PC_over_C": 0.9285714285714286,
+        "S_over_C": 0.7857142857142857,
+        "official_target_metrics": false
+      },
+      "distributions": {
+        "combined_delta_cents": {
+          "count": 93,
+          "max": 1.0,
+          "mean": -2.5591397849462365,
+          "min": -11.0,
+          "p25": -3.0,
+          "p50": -2.0,
+          "p75": -2.0,
+          "p90": -1.0
+        },
+        "combined_entry_cost_cents": {
+          "count": 98,
+          "max": 101.0,
+          "mean": 98.76530612244898,
+          "min": 94.0,
+          "p25": 98.0,
+          "p50": 99.0,
+          "p75": 99.0,
+          "p90": 100.0
+        },
+        "individual_delta_cents": {
+          "count": 186,
+          "max": 4.0,
+          "mean": -1.2795698924731183,
+          "min": -13.0,
+          "p25": -2.0,
+          "p50": -1.0,
+          "p75": 0.0,
+          "p90": 1.0
+        }
+      },
+      "fill_evidence_decomposition": {
+        "print/print": 96,
+        "print/strict-ask": 0,
+        "strict-ask/print": 2,
+        "strict-ask/strict-ask": 0
+      },
+      "official_target_metric": "PC_over_D",
+      "parent_reference_candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "persistence_participation_event_count": 98,
+      "positive_d2_completed_PC": 0,
+      "ranking_or_selection_applied": false,
+      "schema_version": "window1-t1-scoring-adapter-v1-candidate-summary-v1"
+    },
+    {
+      "C": 94,
+      "C_over_D": 0.11691542288557213,
+      "D": 804,
+      "IC": 33,
+      "IC_over_D": 0.041044776119402986,
+      "PC": 88,
+      "PC_but_not_IC": 55,
+      "PC_over_D": 0.10945273631840796,
+      "PC_shortfall_from_603": 515,
+      "S": 77,
+      "S_over_D": 0.09577114427860696,
+      "breakdowns": {
+        "by_boundary_source_class": [
+          {
+            "C": 1,
+            "D": 31,
+            "IC": 1,
+            "PC": 1,
+            "S": 1,
+            "boundary_source_class": "clean_causal_interval"
+          },
+          {
+            "C": 0,
+            "D": 14,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "contradictory"
+          },
+          {
+            "C": 0,
+            "D": 52,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "live_by_only"
+          },
+          {
+            "C": 30,
+            "D": 234,
+            "IC": 8,
+            "PC": 27,
+            "S": 23,
+            "boundary_source_class": "official_exact"
+          },
+          {
+            "C": 63,
+            "D": 453,
+            "IC": 24,
+            "PC": 60,
+            "S": 53,
+            "boundary_source_class": "quantized_late_detection_proxy"
+          },
+          {
+            "C": 0,
+            "D": 20,
+            "IC": 0,
+            "PC": 0,
+            "S": 0,
+            "boundary_source_class": "schedule_only"
+          }
+        ],
+        "by_category": [
+          {
+            "C": 17,
+            "D": 369,
+            "IC": 9,
+            "PC": 15,
+            "S": 16,
+            "category": "ATP_CHALL"
+          },
+          {
+            "C": 42,
+            "D": 147,
+            "IC": 11,
+            "PC": 39,
+            "S": 34,
+            "category": "ATP_MAIN"
+          },
+          {
+            "C": 2,
+            "D": 136,
+            "IC": 2,
+            "PC": 2,
+            "S": 1,
+            "category": "WTA_CHALL"
+          },
+          {
+            "C": 33,
+            "D": 152,
+            "IC": 11,
+            "PC": 32,
+            "S": 26,
+            "category": "WTA_MAIN"
+          }
+        ],
+        "by_date": [
+          {
+            "C": 11,
+            "D": 156,
+            "IC": 5,
+            "PC": 11,
+            "S": 9,
+            "event_date": "2026-07-12"
+          },
+          {
+            "C": 8,
+            "D": 114,
+            "IC": 3,
+            "PC": 8,
+            "S": 8,
+            "event_date": "2026-07-13"
+          },
+          {
+            "C": 8,
+            "D": 99,
+            "IC": 3,
+            "PC": 8,
+            "S": 7,
+            "event_date": "2026-07-14"
+          },
+          {
+            "C": 16,
+            "D": 64,
+            "IC": 6,
+            "PC": 15,
+            "S": 9,
+            "event_date": "2026-07-15"
+          },
+          {
+            "C": 8,
+            "D": 42,
+            "IC": 1,
+            "PC": 6,
+            "S": 6,
+            "event_date": "2026-07-16"
+          },
+          {
+            "C": 14,
+            "D": 50,
+            "IC": 5,
+            "PC": 13,
+            "S": 12,
+            "event_date": "2026-07-17"
+          },
+          {
+            "C": 11,
+            "D": 62,
+            "IC": 1,
+            "PC": 10,
+            "S": 11,
+            "event_date": "2026-07-18"
+          },
+          {
+            "C": 7,
+            "D": 121,
+            "IC": 3,
+            "PC": 7,
+            "S": 6,
+            "event_date": "2026-07-19"
+          },
+          {
+            "C": 11,
+            "D": 96,
+            "IC": 6,
+            "PC": 10,
+            "S": 9,
+            "event_date": "2026-07-20"
+          }
+        ]
+      },
+      "candidate_id": "w1_t1__macro_micro__full_stack",
+      "candidate_versus_parent_event_level_change_count": 148,
+      "classification_conservation": {
+        "censored_or_boundary_unprovable": 99,
+        "completed_PC": 88,
+        "completed_non_PC": 1,
+        "completed_reference_missing_or_ambiguous": 5,
+        "equals_D804": true,
+        "naked_single": 271,
+        "no_fill": 340,
+        "total": 804
+      },
+      "completion_conditioned_diagnostics": {
+        "IC_over_C": 0.35106382978723405,
+        "PC_over_C": 0.9361702127659575,
+        "S_over_C": 0.8191489361702128,
+        "official_target_metrics": false
+      },
+      "distributions": {
+        "combined_delta_cents": {
+          "count": 89,
+          "max": 0.0,
+          "mean": -2.662921348314607,
+          "min": -11.0,
+          "p25": -3.0,
+          "p50": -2.0,
+          "p75": -2.0,
+          "p90": -1.0
+        },
+        "combined_entry_cost_cents": {
+          "count": 94,
+          "max": 100.0,
+          "mean": 98.68085106382979,
+          "min": 94.0,
+          "p25": 98.0,
+          "p50": 99.0,
+          "p75": 99.0,
+          "p90": 100.0
+        },
+        "individual_delta_cents": {
+          "count": 178,
+          "max": 4.0,
+          "mean": -1.3314606741573034,
+          "min": -13.0,
+          "p25": -2.0,
+          "p50": -1.0,
+          "p75": 0.0,
+          "p90": 1.0
+        }
+      },
+      "fill_evidence_decomposition": {
+        "print/print": 92,
+        "print/strict-ask": 0,
+        "strict-ask/print": 2,
+        "strict-ask/strict-ask": 0
+      },
+      "official_target_metric": "PC_over_D",
+      "parent_reference_candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "persistence_participation_event_count": 94,
+      "positive_d2_completed_PC": 0,
+      "ranking_or_selection_applied": false,
+      "schema_version": "window1-t1-scoring-adapter-v1-candidate-summary-v1"
+    }
+  ],
+  "execution_id": "w1-t1-dev-20260712-20260720-grid1-scorepkg-v1",
+  "parent_reference_candidates": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "ranking_or_selection_applied": false,
+  "schema_version": "window1-t1-scoring-runner-v1-eight-candidate-results-v1",
+  "selected_candidate": null
+}

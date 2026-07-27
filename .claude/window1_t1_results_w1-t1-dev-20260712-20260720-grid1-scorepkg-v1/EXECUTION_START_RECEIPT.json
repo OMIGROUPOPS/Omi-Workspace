@@ -1,0 +1,18 @@
+{
+  "authorization_commit": "07ec71e7aecc643750a2deb618ff06a029f263fb",
+  "authorization_report": ".claude/audit_20260727_window1_t1_scoring_package/EXECUTION_AUTHORIZATION_BRANCH_RECOVERY.md",
+  "exact_command": "python -B arb-executor/analysis/window1_t1_scoring_runner_v1.py --repo . --package .claude/window1_t1_scoring_package_prerun_20260727/SCORING_INPUT_MANIFEST.json --mode execute --authorization-commit 07ec71e7aecc643750a2deb618ff06a029f263fb --authorization-report .claude/audit_20260727_window1_t1_scoring_package/EXECUTION_AUTHORIZATION_BRANCH_RECOVERY.md",
+  "execution_id": "w1-t1-dev-20260712-20260720-grid1-scorepkg-v1",
+  "holdout_opened": false,
+  "input_bundle_sha256": "67a9166a229eca4e048c57bb2316a3298de679ea2b6dad215203e31206743cd0",
+  "live_or_production_access": false,
+  "package_commit": "bbf6f632795d612be4e237d927821bcd01dc1898",
+  "retry_count": 0,
+  "runtime": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]"
+  },
+  "schema_version": "window1-t1-scoring-runner-v1-execution-start-v1",
+  "scorer_invocations": 8,
+  "started_at_utc": "2026-07-27T21:15:41.251783+00:00"
+}

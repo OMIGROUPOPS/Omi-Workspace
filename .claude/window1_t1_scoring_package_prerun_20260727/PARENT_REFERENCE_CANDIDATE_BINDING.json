@@ -1,0 +1,37 @@
+{
+  "T1_candidate_to_parent": {
+    "w1_t1__macro_hold__full_stack": "w1_range_attack__macro_hold__combined_headroom",
+    "w1_t1__macro_hold__persistence_only": "w1_range_attack__macro_hold__combined_headroom",
+    "w1_t1__macro_hold__response_only": "w1_range_attack__macro_hold__combined_headroom",
+    "w1_t1__macro_hold__target_completeness_only": "w1_range_attack__macro_hold__combined_headroom",
+    "w1_t1__macro_micro__full_stack": "w1_range_attack__macro_micro__combined_headroom",
+    "w1_t1__macro_micro__persistence_only": "w1_range_attack__macro_micro__combined_headroom",
+    "w1_t1__macro_micro__response_only": "w1_range_attack__macro_micro__combined_headroom",
+    "w1_t1__macro_micro__target_completeness_only": "w1_range_attack__macro_micro__combined_headroom"
+  },
+  "audited_parent_result_ledgers": [
+    {
+      "git_blob_oid": "75b731ddc6453a496d064c389877a416c50300a2",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 1716660,
+      "path": ".claude/window1_range_attack_results_w1-range-attack-v2-dev-20260712-20260720-grid2-scorepkg-v2/01_w1_range_attack__macro_hold__combined_headroom_EVENT_LEDGER.jsonl",
+      "role": "audited_parent_reference_result",
+      "sha256": "5ce1f15910f2ea7946ff29b1b59b69fa6f52f59bdbeef99015ed1d271156bf31"
+    },
+    {
+      "git_blob_oid": "3878c66477bbbceba4ed43ec37e19d57ad96542c",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 1716412,
+      "path": ".claude/window1_range_attack_results_w1-range-attack-v2-dev-20260712-20260720-grid2-scorepkg-v2/02_w1_range_attack__macro_micro__combined_headroom_EVENT_LEDGER.jsonl",
+      "role": "audited_parent_reference_result",
+      "sha256": "384c8bae35b1cead0b7df28669abd3005c330490af114c5475a8c2013877fc37"
+    }
+  ],
+  "parent_candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "parent_candidates_rerun_by_T1_package": false,
+  "ranking_or_selection": null,
+  "schema_version": "window1-t1-scoring-package-builder-v1-parent-reference-v1"
+}

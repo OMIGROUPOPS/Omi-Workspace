@@ -1,0 +1,28 @@
+{
+  "Window2_exits_settlement_DCA_access": false,
+  "builder_interfaces": [
+    "local committed files",
+    "local private read-only inputs"
+  ],
+  "development_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "holdout_opened_or_queried": false,
+  "live_or_production_access": false,
+  "network_calls": 0,
+  "orders_positions_configuration_mutated": false,
+  "schema_version": "window1-t1-scoring-package-builder-v1-forbidden-access-v1",
+  "sealed_holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ]
+}

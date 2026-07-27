@@ -1,0 +1,40 @@
+{
+  "D": 804,
+  "closed_classifications": [
+    "completed_PC",
+    "completed_non_PC",
+    "completed_reference_missing_or_ambiguous",
+    "naked_single",
+    "no_fill",
+    "censored_or_boundary_unprovable"
+  ],
+  "fixtures": [
+    {
+      "counts": {
+        "censored_or_boundary_unprovable": 1,
+        "completed_PC": 1,
+        "completed_non_PC": 1,
+        "completed_reference_missing_or_ambiguous": 1,
+        "naked_single": 1,
+        "no_fill": 1
+      },
+      "name": "one_event_per_closed_class",
+      "total": 6
+    },
+    {
+      "counts": {
+        "censored_or_boundary_unprovable": 1,
+        "completed_PC": 1,
+        "completed_non_PC": 1,
+        "completed_reference_missing_or_ambiguous": 1,
+        "naked_single": 1,
+        "no_fill": 799
+      },
+      "name": "D804_conservation",
+      "total": 804
+    }
+  ],
+  "real_performance_metrics": null,
+  "schema_version": "window1-t1-scoring-package-builder-v1-classification-fixtures-v1",
+  "synthetic_fixture_only": true
+}

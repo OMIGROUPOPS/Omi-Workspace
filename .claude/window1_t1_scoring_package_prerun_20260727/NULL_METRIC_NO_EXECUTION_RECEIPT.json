@@ -1,0 +1,71 @@
+{
+  "D_per_candidate": 804,
+  "candidate_ids": [
+    "w1_t1__macro_hold__response_only",
+    "w1_t1__macro_hold__target_completeness_only",
+    "w1_t1__macro_hold__persistence_only",
+    "w1_t1__macro_hold__full_stack",
+    "w1_t1__macro_micro__response_only",
+    "w1_t1__macro_micro__target_completeness_only",
+    "w1_t1__macro_micro__persistence_only",
+    "w1_t1__macro_micro__full_stack"
+  ],
+  "execution_authorized_now": false,
+  "metrics_by_candidate": {
+    "w1_t1__macro_hold__full_stack": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null
+    },
+    "w1_t1__macro_hold__persistence_only": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null
+    },
+    "w1_t1__macro_hold__response_only": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null
+    },
+    "w1_t1__macro_hold__target_completeness_only": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null
+    },
+    "w1_t1__macro_micro__full_stack": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null
+    },
+    "w1_t1__macro_micro__persistence_only": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null
+    },
+    "w1_t1__macro_micro__response_only": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null
+    },
+    "w1_t1__macro_micro__target_completeness_only": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null
+    }
+  },
+  "performance": null,
+  "real_population_scored": false,
+  "results_directory": ".claude/window1_t1_results_w1-t1-dev-20260712-20260720-grid1-scorepkg-v1",
+  "results_directory_exists_during_freeze": false,
+  "schema_version": "window1-t1-scoring-package-builder-v1-null-noexecution-v1",
+  "scorer_imported_by_builder": false,
+  "scorer_invocations": 0
+}

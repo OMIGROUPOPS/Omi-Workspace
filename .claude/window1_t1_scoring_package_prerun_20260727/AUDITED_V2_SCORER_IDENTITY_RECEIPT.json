@@ -1,0 +1,43 @@
+{
+  "all_byte_identical": true,
+  "audited_commit": "e7e7b9071b9238868d0599a2e5f24bb92dcc9bdd",
+  "files": [
+    {
+      "audited_commit": "e7e7b9071b9238868d0599a2e5f24bb92dcc9bdd",
+      "byte_identical": true,
+      "git_blob_oid": "24c4108d38d8be0674ead9817caf94aa208564d3",
+      "path": "arb-executor/analysis/window1_range_attack_scorer_v2.py",
+      "sha256": "a110c2ebcaac150246f880f587401c2cf4284d92f92b87880406f0ff46dd1090"
+    },
+    {
+      "audited_commit": "e7e7b9071b9238868d0599a2e5f24bb92dcc9bdd",
+      "byte_identical": true,
+      "git_blob_oid": "1616033b54c34c870ec82c93c62a7dd3387826e4",
+      "path": "arb-executor/analysis/window1_range_attack_reference_adapter_v2.py",
+      "sha256": "29b9ab82d6dd6a1f683ba40348c14a93b8d61e62d9eca8aef724c15529f7c8fb"
+    },
+    {
+      "audited_commit": "e7e7b9071b9238868d0599a2e5f24bb92dcc9bdd",
+      "byte_identical": true,
+      "git_blob_oid": "b6371110a52bb75bb0d1cb937ed94ed5f5031c9a",
+      "path": "arb-executor/analysis/window1_range_attack_guarded_fill_adapter_v2.py",
+      "sha256": "a4a31f1bea8a5a1722451797d560f53416e8d37f78575517645f2d251560306a"
+    },
+    {
+      "audited_commit": "e7e7b9071b9238868d0599a2e5f24bb92dcc9bdd",
+      "byte_identical": true,
+      "git_blob_oid": "2973dd54e4e3ddf7a20f364b8123ea8292e55050",
+      "path": "arb-executor/analysis/window1_range_attack_scoring_runner_v2.py",
+      "sha256": "83549a2da1ad25177ad5b5af2e123d06c60f156ce2edbc3c158ca2c179f1703e"
+    },
+    {
+      "audited_commit": "e7e7b9071b9238868d0599a2e5f24bb92dcc9bdd",
+      "byte_identical": true,
+      "git_blob_oid": "b9a6f562893107da641cc82ee2579c0afe11113e",
+      "path": "arb-executor/docs/research/window1/WINDOW1_RANGE_ATTACK_SCORER_CONTRACT_V2.json",
+      "sha256": "78f3285918785c4ad0f85d7733084bc313c68d83e31034063c83f13d93980d05"
+    }
+  ],
+  "metric_or_reference_law_changed": false,
+  "schema_version": "window1-t1-scoring-package-builder-v1-audited-v2-identity-v1"
+}

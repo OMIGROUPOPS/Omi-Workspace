@@ -1,0 +1,12 @@
+{
+  "artifact_inventory_sha256": "cfebf7896cac4175b7baa7c6c6ddfcca199bf15d4ec93afb6a20d1f4241a4b18",
+  "byte_identical_clean_builds": true,
+  "canonical_newline_law": "LF for text; exact bytes for gzip/binary",
+  "gzip_mtime": 0,
+  "metrics": null,
+  "performance": null,
+  "required_builds": 2,
+  "schema_version": "window1-t1-scoring-package-builder-v1-determinism-v1",
+  "scored": false,
+  "verified_by_freezer": true
+}

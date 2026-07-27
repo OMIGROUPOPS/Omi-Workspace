@@ -1,0 +1,19 @@
+{
+  "attempts_per_execution_id": 1,
+  "authorization_commit_supplied_separately": true,
+  "authorization_report_must_bind": [
+    "exact package commit",
+    "exact execution ID",
+    "exact input-bundle SHA-256",
+    "exact command-template literal"
+  ],
+  "clean_relevant_worktree_required": true,
+  "command_template_literal": "python -B arb-executor/analysis/window1_t1_scoring_runner_v1.py --repo . --package .claude/window1_t1_scoring_package_prerun_20260727/SCORING_INPUT_MANIFEST.json --mode execute --authorization-commit <AUDIT_COMMIT_SUPPLIED_SEPARATELY> --authorization-report <AUDIT_REPORT_PATH>",
+  "execution_id": "w1-t1-dev-20260712-20260720-grid1-scorepkg-v1",
+  "future_independent_PASS_required": true,
+  "local_remote_equality_required": true,
+  "new_results_directory_required": ".claude/window1_t1_results_w1-t1-dev-20260712-20260720-grid1-scorepkg-v1",
+  "package_commit_requirement": "exact_git_HEAD_at_execution",
+  "schema_version": "window1-t1-scoring-package-builder-v1-authorization-gate-v1",
+  "self_referential_audit_text_required": false
+}

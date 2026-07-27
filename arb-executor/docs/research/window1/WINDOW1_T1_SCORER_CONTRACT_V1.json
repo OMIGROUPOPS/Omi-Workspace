@@ -1,0 +1,74 @@
+{
+  "schema_version": "window1-t1-scorer-contract-v1",
+  "metric_implementation": {
+    "audited_scorer": "arb-executor/analysis/window1_range_attack_scorer_v2.py",
+    "audited_reference_adapter": "arb-executor/analysis/window1_range_attack_reference_adapter_v2.py",
+    "audited_guarded_fill_adapter": "arb-executor/analysis/window1_range_attack_guarded_fill_adapter_v2.py",
+    "audited_contract": "arb-executor/docs/research/window1/WINDOW1_RANGE_ATTACK_SCORER_CONTRACT_V2.json",
+    "audited_commit": "e7e7b9071b9238868d0599a2e5f24bb92dcc9bdd",
+    "metric_redefinition_permitted": false
+  },
+  "population": {
+    "D": 804,
+    "development_dates": [
+      "2026-07-12",
+      "2026-07-13",
+      "2026-07-14",
+      "2026-07-15",
+      "2026-07-16",
+      "2026-07-17",
+      "2026-07-18",
+      "2026-07-19",
+      "2026-07-20"
+    ],
+    "sealed_holdout_dates": [
+      "2026-07-24",
+      "2026-07-25",
+      "2026-07-26"
+    ]
+  },
+  "candidate_count": 8,
+  "candidate_ids": [
+    "w1_t1__macro_hold__response_only",
+    "w1_t1__macro_hold__target_completeness_only",
+    "w1_t1__macro_hold__persistence_only",
+    "w1_t1__macro_hold__full_stack",
+    "w1_t1__macro_micro__response_only",
+    "w1_t1__macro_micro__target_completeness_only",
+    "w1_t1__macro_micro__persistence_only",
+    "w1_t1__macro_micro__full_stack"
+  ],
+  "metric_law": {
+    "C": "both event legs receive exactly one lawful guarded credited fill of exactly five contracts",
+    "individual_delta": "fill_price_cents-reference_bid_cents",
+    "pair_delta": "sum(individual_delta)+fee_cents",
+    "PC": "C and pair_delta<0",
+    "IC": "C and both individual_delta<0",
+    "S": "C and sum(fill_price_cents)<100",
+    "fee_cents": 0,
+    "primary_rate": "PC/D",
+    "target_PC": 603,
+    "PC_is_not_IC": true,
+    "PC_is_not_S": true,
+    "combined_zero_is_PC": false
+  },
+  "reference_unavailable_law": {
+    "C_remains_countable": true,
+    "S_remains_countable": true,
+    "PC": null,
+    "IC": null,
+    "classification": "completed_reference_missing_or_ambiguous"
+  },
+  "closed_classifications": [
+    "completed_PC",
+    "completed_non_PC",
+    "completed_reference_missing_or_ambiguous",
+    "naked_single",
+    "no_fill",
+    "censored_or_boundary_unprovable"
+  ],
+  "selection_or_ranking": null,
+  "metrics": null,
+  "performance": null,
+  "scored": false
+}

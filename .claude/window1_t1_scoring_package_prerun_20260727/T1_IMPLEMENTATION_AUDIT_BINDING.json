@@ -1,0 +1,45 @@
+{
+  "T1_package": ".claude/window1_t1_post_first_leg_prerun_20260727",
+  "audit_report": {
+    "audit_commit": "de2f627e53885bd1a44a42b92f23b5b93a391a47",
+    "bytes": 11011,
+    "git_blob_oid": "960a61c9c2450c3afe78828f788c34b18c576caa",
+    "path": ".claude/audit_20260727_window1_t1_post_first_leg/AUDIT_REPORT.md",
+    "sha256": "8224fd3de0fd7bed1140bf2e1c0213927ded320feb1258f83fd3333b15c107d0"
+  },
+  "audit_reproduction_receipt": {
+    "audit_commit": "de2f627e53885bd1a44a42b92f23b5b93a391a47",
+    "bytes": 5412,
+    "git_blob_oid": "0f87c188a9332093a13f8e9182d4a44c3592ec02",
+    "path": ".claude/audit_20260727_window1_t1_post_first_leg/INDEPENDENT_T1_REPRODUCTION_RECEIPT.json",
+    "sha256": "ba35f36898f95ba0f7a31971d8db6af81a3f6428d1588b6f654e4ac2b216884d"
+  },
+  "candidate_ids": [
+    "w1_t1__macro_hold__response_only",
+    "w1_t1__macro_hold__target_completeness_only",
+    "w1_t1__macro_hold__persistence_only",
+    "w1_t1__macro_hold__full_stack",
+    "w1_t1__macro_micro__response_only",
+    "w1_t1__macro_micro__target_completeness_only",
+    "w1_t1__macro_micro__persistence_only",
+    "w1_t1__macro_micro__full_stack"
+  ],
+  "candidate_or_mechanism_changed": false,
+  "candidate_specification": "arb-executor/docs/research/window1/WINDOW1_T1_POST_FIRST_LEG_CANDIDATES_V1.json",
+  "candidate_switch_sha256": {
+    "w1_t1__macro_hold__full_stack": "36f7b9eed03cbdfa2890eccd597c5247563ef4ad28f05a1dcca2119b71b341e9",
+    "w1_t1__macro_hold__persistence_only": "731d8ffd328f7501d02d94a047b451d69390834fa70e19aadbb87450e84d2978",
+    "w1_t1__macro_hold__response_only": "d84eb68aa8a5c9aa651e363a041de8ddc64d768303d3094427e9974c6f46d3ca",
+    "w1_t1__macro_hold__target_completeness_only": "4188b31012ccbe226c8532b480264b3d9082124d3d4483ac713ab183af52e12e",
+    "w1_t1__macro_micro__full_stack": "36f7b9eed03cbdfa2890eccd597c5247563ef4ad28f05a1dcca2119b71b341e9",
+    "w1_t1__macro_micro__persistence_only": "731d8ffd328f7501d02d94a047b451d69390834fa70e19aadbb87450e84d2978",
+    "w1_t1__macro_micro__response_only": "d84eb68aa8a5c9aa651e363a041de8ddc64d768303d3094427e9974c6f46d3ca",
+    "w1_t1__macro_micro__target_completeness_only": "4188b31012ccbe226c8532b480264b3d9082124d3d4483ac713ab183af52e12e"
+  },
+  "controlling_T1_PASS": "de2f627e53885bd1a44a42b92f23b5b93a391a47",
+  "implementation_parent": "88b0eae8620172f41e2f5d45320408357de24c6f",
+  "metrics": null,
+  "performance": null,
+  "schema_version": "window1-t1-scoring-package-builder-v1-T1-binding-v1",
+  "scored": false
+}

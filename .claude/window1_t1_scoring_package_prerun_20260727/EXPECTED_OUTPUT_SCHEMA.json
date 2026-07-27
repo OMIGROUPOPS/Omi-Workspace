@@ -1,0 +1,50 @@
+{
+  "candidate_count": 8,
+  "candidate_order": [
+    "w1_t1__macro_hold__response_only",
+    "w1_t1__macro_hold__target_completeness_only",
+    "w1_t1__macro_hold__persistence_only",
+    "w1_t1__macro_hold__full_stack",
+    "w1_t1__macro_micro__response_only",
+    "w1_t1__macro_micro__target_completeness_only",
+    "w1_t1__macro_micro__persistence_only",
+    "w1_t1__macro_micro__full_stack"
+  ],
+  "closed_classifications": [
+    "completed_PC",
+    "completed_non_PC",
+    "completed_reference_missing_or_ambiguous",
+    "naked_single",
+    "no_fill",
+    "censored_or_boundary_unprovable"
+  ],
+  "diagnostics": [
+    "PC_but_not_IC",
+    "positive_d2_completed_PC",
+    "fill_evidence_decomposition",
+    "pair_delta_distribution",
+    "individual_delta_distribution",
+    "combined_cost_distribution",
+    "first_leg_sibling_fill_ordering",
+    "persistence_participation",
+    "candidate_versus_parent_event_level_change_count"
+  ],
+  "event_rows_per_candidate": 804,
+  "official_target_metric": "PC_over_D",
+  "ranking_or_selection": null,
+  "schema_version": "window1-t1-scoring-package-builder-v1-expected-output-v1",
+  "summary_fields": [
+    "candidate_id",
+    "D",
+    "C",
+    "C_over_D",
+    "PC",
+    "PC_over_D",
+    "PC_shortfall_from_603",
+    "IC",
+    "IC_over_D",
+    "S",
+    "S_over_D"
+  ],
+  "target_PC": 603
+}

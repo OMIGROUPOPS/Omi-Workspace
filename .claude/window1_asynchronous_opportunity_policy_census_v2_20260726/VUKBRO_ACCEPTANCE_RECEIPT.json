@@ -1,0 +1,41 @@
+{
+  "candidate_rows": 2,
+  "lawful_episode_count_per_candidate": {
+    "w1_range_attack__macro_hold__combined_headroom": 1,
+    "w1_range_attack__macro_micro__combined_headroom": 1
+  },
+  "lawful_rows": [
+    {
+      "b2_max_cents": -1,
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "combined_delta_cents": -1,
+      "contemporaneous_ask_cents": 43,
+      "contemporaneous_bid_cents": 42,
+      "d1_cents": 0,
+      "d2_cents": -1,
+      "evidence_receipt": "e7faf7a4-9b16-7c2a-9c2a-c00c092b4e30",
+      "evidence_type": "PRICE_REACHED",
+      "first_fill_timestamp": 1783949040.451872,
+      "first_leg_id": "BRO",
+      "price_x_cents": 41,
+      "sibling_leg_id": "VUK",
+      "timestamp": 1783979002.679826
+    },
+    {
+      "b2_max_cents": -1,
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "combined_delta_cents": -1,
+      "contemporaneous_ask_cents": 43,
+      "contemporaneous_bid_cents": 42,
+      "d1_cents": 0,
+      "d2_cents": -1,
+      "evidence_receipt": "e7faf7a4-9b16-7c2a-9c2a-c00c092b4e30",
+      "evidence_type": "PRICE_REACHED",
+      "first_fill_timestamp": 1783949040.451872,
+      "first_leg_id": "BRO",
+      "price_x_cents": 41,
+      "sibling_leg_id": "VUK",
+      "timestamp": 1783979002.679826
+    }
+  ]
+}

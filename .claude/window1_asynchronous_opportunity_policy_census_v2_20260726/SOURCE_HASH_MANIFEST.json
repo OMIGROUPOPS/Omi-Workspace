@@ -1,0 +1,143 @@
+{
+  "audit_is_acceptance_only_not_runtime_construction_input": true,
+  "controlling_audit": "0350c081a26e06216a34f58eed8a13e72ef5e236",
+  "controlling_audit_artifacts": [
+    {
+      "bytes": 8526,
+      "git_blob_oid": "d3df9d9d2eeca690cc4484fcce8ebc490fb1c838",
+      "path": ".claude/audit_20260726_window1_async_census_same_timestamp_bbo_amendment/ITEM_SAME_TIMESTAMP_BBO_AMENDMENT.md",
+      "sha256": "9ff25f5e2c8c1256f1166194676a2c1f264392c9b6c01b188a417288c74f7847"
+    },
+    {
+      "bytes": 54093,
+      "git_blob_oid": "bd5f94802aa34c8ae211e7d5511fb72c76df027b",
+      "path": ".claude/audit_20260726_window1_async_census_same_timestamp_bbo_amendment/CONTEMPORANEOUS_BBO_SELECTION_CENSUS.json",
+      "sha256": "b6240a2cfa313c67891e2e90cc3db5ed2bff740385fcddb6c1000cbf924f5fac"
+    },
+    {
+      "bytes": 4445,
+      "git_blob_oid": "9a38f0c048d22ee6be7fe17294f66101db8766f3",
+      "path": ".claude/audit_20260726_window1_async_census_same_timestamp_bbo_amendment/DISPUTED_THREE_EPISODE_RECEIPT.json",
+      "sha256": "908440b44f7d188173c2ebdfe27c7ea6acf394ae42db246c5355c646dbb21e1b"
+    },
+    {
+      "bytes": 1366,
+      "git_blob_oid": "df841fdbb8d11013f493a07e05460289ac3d6612",
+      "path": ".claude/audit_20260726_window1_async_census_same_timestamp_bbo_amendment/INDEPENDENT_RAW_ROW_VALIDATION_RECEIPT.json",
+      "sha256": "23fd2647ae8c711186a2fb218e34e37dd28893cbd402ec70ef334a84c0b97d2d"
+    },
+    {
+      "bytes": 9304,
+      "git_blob_oid": "e0ae636ed934b7ad47f46d5f83bca0b5eb6ea2bd",
+      "path": ".claude/audit_20260726_window1_async_census_same_timestamp_bbo_amendment/SOURCE_AND_ARTIFACT_HASH_RECEIPT.json",
+      "sha256": "53cb38e7afb9aafd737ecea180d11a7d2e7acb69bd98b080c558fc4c7e26d00b"
+    }
+  ],
+  "implementation_parent": "9220eba26b00a5b94e86d9c644adef16382942a0",
+  "metrics": null,
+  "raw_cache": {
+    "controlling_audit_raw_cache_sha256": "fbacf0abb3dadfa4ef59abc1c58e0edee94e9d479288ab9817123d3989116a07",
+    "file_count": 804,
+    "name_and_content_set_sha256": "ece42789c378f85e34ab7d9571a4ed4574ff0628184786838956b865a02f0846",
+    "path": "../OMI-Window1-private/fit-local/guarded-cache-v3"
+  },
+  "schema_version": "window1-asynchronous-opportunity-policy-census-v2-source-manifest-v1",
+  "sources": [
+    {
+      "bytes": 73536,
+      "git_blob_oid": "da3b246b963a7b65ff095d413f820b3ccaac8286",
+      "path": "arb-executor/analysis/window1_asynchronous_opportunity_policy_census_v2.py",
+      "sha256": "22865a60c5c870a31c99505101d95e6e34a7f19302e59b75c27b88f932e39d1a"
+    },
+    {
+      "bytes": 9010,
+      "git_blob_oid": "841f28728b36dd625e261a4de796e7e74cafa17f",
+      "path": "arb-executor/tests/test_window1_asynchronous_opportunity_policy_census_v2.py",
+      "sha256": "827f0d6e1555c1e8deaf6b15893bf102db53658a343d42a7db8ca117f66a2190"
+    },
+    {
+      "bytes": 1951,
+      "git_blob_oid": "fd0ea98ff9fc933be2045bffc15ed6a2b754931f",
+      "path": "arb-executor/docs/research/window1/WINDOW1_ASYNC_OPPORTUNITY_POLICY_CENSUS_V2_SPEC.json",
+      "sha256": "ba78381e8b08ddb864089573ebb9ecc60a9e065ee6c91e8a664958e33daed489"
+    },
+    {
+      "bytes": 3053296,
+      "git_blob_oid": "e8df4886d627b119ef95cf90823f8a66d5810c88",
+      "path": ".claude/window1_asynchronous_opportunity_policy_census_20260726/FROZEN_X_EVIDENCE_LEDGER_01.jsonl.gz",
+      "sha256": "ca86612ff2517c7aea444da44a4cc47a236b9c2ab27445ba32b1ca69335e7762"
+    },
+    {
+      "bytes": 3207834,
+      "git_blob_oid": "c3d0d298cc0c3cc8190a99667b5af2334f42d27d",
+      "path": ".claude/window1_asynchronous_opportunity_policy_census_20260726/FROZEN_X_EVIDENCE_LEDGER_02.jsonl.gz",
+      "sha256": "a7e0319c9fb3c3a45f92f3e0e6b649baea600ecb63e7d23d95c316b8457d4176"
+    },
+    {
+      "bytes": 3326930,
+      "git_blob_oid": "e7a360de032ee7280663e1af8a1664b104e6597e",
+      "path": ".claude/window1_asynchronous_opportunity_policy_census_20260726/FROZEN_X_EVIDENCE_LEDGER_03.jsonl.gz",
+      "sha256": "a80244bcb151f93d43fbac68001d8bbb536b1b4ec75c06ceedb0a6e4cbb16e3a"
+    },
+    {
+      "bytes": 3135829,
+      "git_blob_oid": "d9f102862b1c780bf5cedda174680e6c71ec493c",
+      "path": ".claude/window1_asynchronous_opportunity_policy_census_20260726/FROZEN_X_EVIDENCE_LEDGER_04.jsonl.gz",
+      "sha256": "1e180f82d32c2c98770038e3c17ed3520b9a19f3e4f1689f84173d0b461c8e5d"
+    },
+    {
+      "bytes": 14575058,
+      "git_blob_oid": "1e3080b1c3bdec01bc30095e1a44a0f01533ee3f",
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_01.jsonl.gz",
+      "sha256": "0502c5fb2f9981cbb007ada7a44e78c29ff3e6e420009ae9f32769d817aa7bcc"
+    },
+    {
+      "bytes": 16653345,
+      "git_blob_oid": "7de330507c1ee0be39ebe4c2a82fca8d0d286dfd",
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_02.jsonl.gz",
+      "sha256": "5f5aaa0eea0629086a5ef14992cf9e259d7b903586d2fb07f372ef50ed3a25aa"
+    },
+    {
+      "bytes": 7511510,
+      "git_blob_oid": "5520b7c9c5d3f9dfc1815ee3fac3ba12610262e6",
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_03.jsonl.gz",
+      "sha256": "755ca5529b6269e4736267487f57f6b3d25eefcbaf9de95b31f060f1af185db3"
+    },
+    {
+      "bytes": 6574261,
+      "git_blob_oid": "49b02230c9a3acd17918524bdf2f71d04dde4877",
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/UNSCORED_CANDIDATE_EVENT_STREAMS_04.jsonl.gz",
+      "sha256": "c1a38436268bbd2914ceddba3fac3df20c903c91b5ad85cfcd68fac3797dcc67"
+    },
+    {
+      "bytes": 6724583,
+      "git_blob_oid": "9324460d111172034398f7fa782ceeadd76d53eb",
+      "path": ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/ACTION_AUTHORITY_RECEIPTS.jsonl.gz",
+      "sha256": "6c90f24b78e88ce9a4cd740343f24fbd8efd9071d220f5008da3ba24d6a5f182"
+    },
+    {
+      "bytes": 1716660,
+      "git_blob_oid": "75b731ddc6453a496d064c389877a416c50300a2",
+      "path": ".claude/window1_range_attack_results_w1-range-attack-v2-dev-20260712-20260720-grid2-scorepkg-v2/01_w1_range_attack__macro_hold__combined_headroom_EVENT_LEDGER.jsonl",
+      "sha256": "5ce1f15910f2ea7946ff29b1b59b69fa6f52f59bdbeef99015ed1d271156bf31"
+    },
+    {
+      "bytes": 1716412,
+      "git_blob_oid": "3878c66477bbbceba4ed43ec37e19d57ad96542c",
+      "path": ".claude/window1_range_attack_results_w1-range-attack-v2-dev-20260712-20260720-grid2-scorepkg-v2/02_w1_range_attack__macro_micro__combined_headroom_EVENT_LEDGER.jsonl",
+      "sha256": "384c8bae35b1cead0b7df28669abd3005c330490af114c5475a8c2013877fc37"
+    },
+    {
+      "bytes": 8826,
+      "git_blob_oid": "95715dbbbb37f8a466188cdcf958550e6e1f4842",
+      "path": ".claude/window1_asynchronous_opportunity_policy_census_20260726/SOURCE_HASH_MANIFEST.json",
+      "sha256": "dba4579352d7095fc5edab1b92dcafac2d664c6d0e10d36f727449a28ec96635"
+    },
+    {
+      "bytes": 7533,
+      "git_blob_oid": "244e96ee2e123b456f1d586398325d16a73d3fd4",
+      "path": ".claude/window1_asynchronous_opportunity_policy_census_20260726/ARTIFACT_HASH_MANIFEST.json",
+      "sha256": "bc981294c66d521ecc037d6ee8b4bc46f2a4fe33a8e2da962fbe96c81a7836fe"
+    }
+  ]
+}

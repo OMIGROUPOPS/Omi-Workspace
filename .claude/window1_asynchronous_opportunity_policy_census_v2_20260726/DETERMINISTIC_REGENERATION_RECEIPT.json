@@ -1,0 +1,108 @@
+{
+  "byte_identical": true,
+  "clean_build_count": 2,
+  "inventory": [
+    {
+      "bytes": 3424,
+      "path": "ARTIFACT_HASH_MANIFEST.json",
+      "sha256": "edb15f4361968e744e34468f67f6a67ecd0ac3be38ade7067e5911b64ae5ae33"
+    },
+    {
+      "bytes": 77201,
+      "path": "AUTHORITATIVE_FIRST_LEG_REFERENCE_RECEIPT.jsonl.gz",
+      "sha256": "08368d46c3a346bed69c2e80c70abb5e296342a60b8fddbecc5c3b7c4f289e2a"
+    },
+    {
+      "bytes": 205981,
+      "path": "BOUNDARY_SOURCE_RECEIPT.json",
+      "sha256": "c3b056a0476911e674c5e2c83bd5922e8185290ee579d7eaaaa8a84207a4a734"
+    },
+    {
+      "bytes": 190364,
+      "path": "BOUNDED_POLICY_EXPOSURE_ATTRIBUTION.jsonl.gz",
+      "sha256": "4b82bda74a079ba142e41914886452e5d756146e0bf605e8c42b87729f35c673"
+    },
+    {
+      "bytes": 1005,
+      "path": "CONTROLLING_AUDIT_ACCEPTANCE_RECEIPT.json",
+      "sha256": "7b92588d24fda800cddb6e85da56c409b5ce2a026bdf0903c652388973e96c8d"
+    },
+    {
+      "bytes": 80741,
+      "path": "CORRECTED_EVENT_LEVEL_CENSUS.jsonl.gz",
+      "sha256": "af90fbfd1ce4f2a16750a9bf0fd60e887d1350b4e905d3ac90dabd6c4670fafc"
+    },
+    {
+      "bytes": 49091,
+      "path": "COUNTERFACTUAL_ORIENTATION_DIAGNOSTICS.jsonl.gz",
+      "sha256": "857e80bbfcfd77907188f59c90f4258a7aceaafd9247113afd426db0abd5a1e9"
+    },
+    {
+      "bytes": 383,
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "535a27fd85c30e96ac13d31c0b2c9d6e7abec05f89f5c68820ee74723d1245b8"
+    },
+    {
+      "bytes": 5243,
+      "path": "INDEPENDENT_SELF_CONSISTENCY_RECEIPT.json",
+      "sha256": "d26cabab6620b203ea3e499bda68e2979f2342d489b6e5c805ca68957cc88b74"
+    },
+    {
+      "bytes": 1205,
+      "path": "PRE_RUN_REPORT.md",
+      "sha256": "27ced81f18a02eb83236e0951ab9ff04f32d5c9dc2ff7064911f8c7432851da6"
+    },
+    {
+      "bytes": 17544,
+      "path": "QUALIFYING_EPISODE_LEDGER_01.jsonl.gz",
+      "sha256": "be90811664cc30bca99f22f51105a6ea928079fba2c4857cc25c5c9d5fe447d9"
+    },
+    {
+      "bytes": 88864,
+      "path": "QUALIFYING_EPISODE_LEDGER_02.jsonl.gz",
+      "sha256": "53421fb370bd21c35deae0b765dd93e2af6e00304cf65b5b5e6b746b16e08f1e"
+    },
+    {
+      "bytes": 11336,
+      "path": "QUALIFYING_EPISODE_LEDGER_03.jsonl.gz",
+      "sha256": "2d2fe87e66bd5e96e2a761c909f68f7aa0d8d55a7dcd0ced68c35aa8c3a20959"
+    },
+    {
+      "bytes": 327338,
+      "path": "QUALIFYING_EPISODE_LEDGER_04.jsonl.gz",
+      "sha256": "e7e66728f6268e6a7c9d628c29103bb7c9e282a6f0ddcd3a65e60c15a897fb10"
+    },
+    {
+      "bytes": 362860,
+      "path": "RAW_CONTEMPORANEOUS_BBO_RECEIPT.jsonl.gz",
+      "sha256": "9bc64237ba44cb7d11a1f93cfbc0bf79bbe93f8ec3f52319f3aa40e8ef9501f9"
+    },
+    {
+      "bytes": 2781,
+      "path": "RAW_DIAGNOSTIC_CENSUS.json",
+      "sha256": "e3990c6fdf8e7d8603a996ebc4726555705f1f551a3f04624c5e5640c36186ff"
+    },
+    {
+      "bytes": 11713,
+      "path": "RECURRING_X_CLASS_RECEIPT.json",
+      "sha256": "1898d6af7800f9767e828b45108dca7e6e7be015b4e521f377da92015f312283"
+    },
+    {
+      "bytes": 7165,
+      "path": "SOURCE_HASH_MANIFEST.json",
+      "sha256": "bc3d7b50edd72dd2bd50c654c2491d084aa8fcc82aa98732b382453dea9925e5"
+    },
+    {
+      "bytes": 514,
+      "path": "V1_TO_V2_RECONCILIATION_RECEIPT.json",
+      "sha256": "b7c1b01805720906cede7198acb6109b65afa317514188483a9bdf8fb32ec458"
+    },
+    {
+      "bytes": 1301,
+      "path": "VUKBRO_ACCEPTANCE_RECEIPT.json",
+      "sha256": "f6076a53d0d997511246b93b92e2c65d1c4d753cc887f1a7f0cbd88c7a3f666d"
+    }
+  ],
+  "metrics": null,
+  "schema_version": "window1-asynchronous-opportunity-policy-census-v2-determinism-v1"
+}

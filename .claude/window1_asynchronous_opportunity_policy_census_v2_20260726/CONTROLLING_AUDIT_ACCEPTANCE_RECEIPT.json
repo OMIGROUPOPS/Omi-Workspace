@@ -1,0 +1,13 @@
+{
+  "audit_blobs": {
+    ".claude/audit_20260726_window1_async_census_same_timestamp_bbo_amendment/CONTEMPORANEOUS_BBO_SELECTION_CENSUS.json": "bd5f94802aa34c8ae211e7d5511fb72c76df027b",
+    ".claude/audit_20260726_window1_async_census_same_timestamp_bbo_amendment/DISPUTED_THREE_EPISODE_RECEIPT.json": "9a38f0c048d22ee6be7fe17294f66101db8766f3",
+    ".claude/audit_20260726_window1_async_census_same_timestamp_bbo_amendment/INDEPENDENT_RAW_ROW_VALIDATION_RECEIPT.json": "df841fdbb8d11013f493a07e05460289ac3d6612",
+    ".claude/audit_20260726_window1_async_census_same_timestamp_bbo_amendment/ITEM_SAME_TIMESTAMP_BBO_AMENDMENT.md": "d3df9d9d2eeca690cc4484fcce8ebc490fb1c838",
+    ".claude/audit_20260726_window1_async_census_same_timestamp_bbo_amendment/SOURCE_AND_ARTIFACT_HASH_RECEIPT.json": "e0ae636ed934b7ad47f46d5f83bca0b5eb6ea2bd"
+  },
+  "audit_commit": "0350c081a26e06216a34f58eed8a13e72ef5e236",
+  "comparison_only_after_independent_construction": true,
+  "matched": true,
+  "mismatch_count": 0
+}

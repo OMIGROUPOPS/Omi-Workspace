@@ -1,0 +1,133 @@
+{
+  "BBO_selection_mismatch_count": 0,
+  "VUKBRO_lawful_episode_count_per_candidate": {
+    "w1_range_attack__macro_hold__combined_headroom": 1,
+    "w1_range_attack__macro_micro__combined_headroom": 1
+  },
+  "aggregate_membership_mismatch_count": 0,
+  "all_conservation_pass": true,
+  "conservation": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "evidence_split_equals_recovered": true,
+      "nofill_both_plus_one_equals_either": true,
+      "nofill_either_plus_neither_equals_total": true,
+      "recovered_plus_residual_equals_total": true
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "evidence_split_equals_recovered": true,
+      "nofill_both_plus_one_equals_either": true,
+      "nofill_either_plus_neither_equals_total": true,
+      "recovered_plus_residual_equals_total": true
+    }
+  },
+  "counterfactual_survivor_event_counts": {
+    "w1_range_attack__macro_hold__combined_headroom": 65,
+    "w1_range_attack__macro_micro__combined_headroom": 68
+  },
+  "disputed_receipt_validation": [
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "combined_delta_cents": 0,
+      "d1_cents": 0,
+      "d2_cents": 0,
+      "event_id": "KXATPMATCH-26JUL12CERKOL",
+      "lawful": false,
+      "present_in_qualifying_rows": false,
+      "price_x_cents": 17,
+      "print_timestamp": 1784015992.802679,
+      "receipt": "06a93c92-0d52-4040-1ed2-6882d5490b0a",
+      "selected_bid_cents": 17,
+      "selected_book_receipt": "KXATPMATCH-26JUL12CERKOL-KOL|raw-book218181|1784015992.000000|17x18",
+      "selected_book_source_ordinal": 218181,
+      "selected_book_timestamp": 1784015992.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "combined_delta_cents": 0,
+      "d1_cents": 0,
+      "d2_cents": 0,
+      "event_id": "KXATPMATCH-26JUL12CERKOL",
+      "lawful": false,
+      "present_in_qualifying_rows": false,
+      "price_x_cents": 17,
+      "print_timestamp": 1784015992.802679,
+      "receipt": "06a93c92-0d52-4040-1ed2-6882d5490b0a",
+      "selected_bid_cents": 17,
+      "selected_book_receipt": "KXATPMATCH-26JUL12CERKOL-KOL|raw-book218181|1784015992.000000|17x18",
+      "selected_book_source_ordinal": 218181,
+      "selected_book_timestamp": 1784015992.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "combined_delta_cents": 0,
+      "d1_cents": 0,
+      "d2_cents": 0,
+      "event_id": "KXATPMATCH-26JUL12CERKOL",
+      "lawful": false,
+      "present_in_qualifying_rows": false,
+      "price_x_cents": 17,
+      "print_timestamp": 1784016002.654942,
+      "receipt": "8f0d3c80-128b-4359-4f43-1d9e5a6b57d1",
+      "selected_bid_cents": 17,
+      "selected_book_receipt": "KXATPMATCH-26JUL12CERKOL-KOL|raw-book218181|1784015992.000000|17x18",
+      "selected_book_source_ordinal": 218181,
+      "selected_book_timestamp": 1784015992.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "combined_delta_cents": 0,
+      "d1_cents": 0,
+      "d2_cents": 0,
+      "event_id": "KXATPMATCH-26JUL12CERKOL",
+      "lawful": false,
+      "present_in_qualifying_rows": false,
+      "price_x_cents": 17,
+      "print_timestamp": 1784016002.654942,
+      "receipt": "8f0d3c80-128b-4359-4f43-1d9e5a6b57d1",
+      "selected_bid_cents": 17,
+      "selected_book_receipt": "KXATPMATCH-26JUL12CERKOL-KOL|raw-book218181|1784015992.000000|17x18",
+      "selected_book_source_ordinal": 218181,
+      "selected_book_timestamp": 1784015992.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+      "combined_delta_cents": 0,
+      "d1_cents": 0,
+      "d2_cents": 0,
+      "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+      "lawful": false,
+      "present_in_qualifying_rows": false,
+      "price_x_cents": 17,
+      "print_timestamp": 1784613175.116969,
+      "receipt": "3e4c49d6-a936-45a0-6577-5f2fdefe62b9",
+      "selected_bid_cents": 17,
+      "selected_book_receipt": "KXWTAMATCH-26JUL20FRUKRE-FRU|raw-book58380|1784613175.000000|17x18",
+      "selected_book_source_ordinal": 58380,
+      "selected_book_timestamp": 1784613175.0
+    },
+    {
+      "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+      "combined_delta_cents": 0,
+      "d1_cents": 0,
+      "d2_cents": 0,
+      "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+      "lawful": false,
+      "present_in_qualifying_rows": false,
+      "price_x_cents": 17,
+      "print_timestamp": 1784613175.116969,
+      "receipt": "3e4c49d6-a936-45a0-6577-5f2fdefe62b9",
+      "selected_bid_cents": 17,
+      "selected_book_receipt": "KXWTAMATCH-26JUL20FRUKRE-FRU|raw-book58380|1784613175.000000|17x18",
+      "selected_book_source_ordinal": 58380,
+      "selected_book_timestamp": 1784613175.0
+    }
+  ],
+  "disputed_receipts_in_qualifying_sets": [],
+  "metrics": null,
+  "older_or_favorable_selection_count": 0,
+  "qualifying_episode_rows_validated": 6501,
+  "row_level_mismatch_count": 0,
+  "schema_version": "window1-asynchronous-opportunity-policy-census-v2-independent-validator-v1",
+  "second_implementation_path": "independent reverse raw-row BBO selection plus brute chronological survivor recomputation",
+  "survivor_rows_validated": 47
+}

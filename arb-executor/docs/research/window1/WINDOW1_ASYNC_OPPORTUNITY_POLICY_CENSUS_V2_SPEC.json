@@ -1,0 +1,45 @@
+{
+  "candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "controlling_audit_amendment": "0350c081a26e06216a34f58eed8a13e72ef5e236",
+  "denominator_per_candidate": 804,
+  "fee_cents": 0,
+  "first_leg_reference_law": {
+    "authority": "frozen_X_evidence_book_and_chain_at_first_observation",
+    "formula": "d1 = credited_fill_X - authoritative_bid0",
+    "forbidden": [
+      "merged_event_stream",
+      "same_second_neighbor",
+      "carried_last_trade",
+      "later_book",
+      "sibling_evidence",
+      "favorable_receipt_selection"
+    ]
+  },
+  "metrics": null,
+  "no_fill_orientation_law": {
+    "description": "both orientations are counterfactual diagnostics; their deduplicated event union is primary",
+    "realized_policy_miss_claim": false,
+    "strictly_later_required": true
+  },
+  "parent": "9220eba26b00a5b94e86d9c644adef16382942a0",
+  "performance": null,
+  "policy_exposed_without_execution_proof_requirements": [
+    "strictly_post_first_fill",
+    "inside_contemporaneous_combined_headroom",
+    "lawful_contemporaneous_positive_size_external_BBO",
+    "overlaps_remaining_guarded_Window1_corridor",
+    "no_lawful_print_or_strict_ask_proof_during_exposure"
+  ],
+  "score_free": true,
+  "sibling_episode_reference_law": {
+    "print": "X is the positive-size true-print price; bid is the latest lawful raw guarded-cache external BBO at or before the full-precision print timestamp, ordered by timestamp then preserved source-list ordinal",
+    "same_timestamp_order": "larger/later preserved source-list ordinal controls; older favorable bid and derived-stream merge order are forbidden",
+    "strict_ask": "X is ask+1; bid and ask are from the same lawful raw guarded-cache snapshot",
+    "strict_combined_law": "d1 + d2 + fee_cents < 0",
+    "strictly_later_required": true
+  },
+  "version": "window1-asynchronous-opportunity-policy-census-v2"
+}

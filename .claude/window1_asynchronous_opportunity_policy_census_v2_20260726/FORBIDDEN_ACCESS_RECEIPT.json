@@ -1,0 +1,16 @@
+{
+  "benchmark_executed": false,
+  "candidate_changed": false,
+  "holdout_accessed": false,
+  "holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "live_or_production_accessed": false,
+  "metrics": null,
+  "orders_positions_window2_exits_settlement_DCA_accessed": false,
+  "scorer_imported": false,
+  "scorer_invoked": false,
+  "tuning_or_ranking": false
+}

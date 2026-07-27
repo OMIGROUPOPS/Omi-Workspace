@@ -1,0 +1,13 @@
+{
+  "V1_defects_repaired": [
+    "global_first_observation_per_X_replaced_by_episode_scan",
+    "thinned_sibling_bid_replaced_by_raw_contemporaneous_BBO",
+    "unbounded_exposure_class_replaced_by_five_requirement_gate",
+    "orientation_rows_separated_from_primary_event_counts"
+  ],
+  "V1_package": ".claude/window1_asynchronous_opportunity_policy_census_20260726",
+  "V1_preserved_byte_identically": true,
+  "V2_candidate_or_policy_change_count": 0,
+  "V2_result_or_scorer_change_count": 0,
+  "metrics": null
+}

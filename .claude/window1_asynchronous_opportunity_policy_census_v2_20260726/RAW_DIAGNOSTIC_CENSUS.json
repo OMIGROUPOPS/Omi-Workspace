@@ -1,0 +1,92 @@
+{
+  "AVEFOR_recovered": false,
+  "D_per_candidate": 804,
+  "VUKBRO": {
+    "candidate_rows": 2,
+    "lawful_episode_count_per_candidate": {
+      "w1_range_attack__macro_hold__combined_headroom": 1,
+      "w1_range_attack__macro_micro__combined_headroom": 1
+    },
+    "lawful_rows": [
+      {
+        "b2_max_cents": -1,
+        "candidate_id": "w1_range_attack__macro_hold__combined_headroom",
+        "combined_delta_cents": -1,
+        "contemporaneous_ask_cents": 43,
+        "contemporaneous_bid_cents": 42,
+        "d1_cents": 0,
+        "d2_cents": -1,
+        "evidence_receipt": "e7faf7a4-9b16-7c2a-9c2a-c00c092b4e30",
+        "evidence_type": "PRICE_REACHED",
+        "first_fill_timestamp": 1783949040.451872,
+        "first_leg_id": "BRO",
+        "price_x_cents": 41,
+        "sibling_leg_id": "VUK",
+        "timestamp": 1783979002.679826
+      },
+      {
+        "b2_max_cents": -1,
+        "candidate_id": "w1_range_attack__macro_micro__combined_headroom",
+        "combined_delta_cents": -1,
+        "contemporaneous_ask_cents": 43,
+        "contemporaneous_bid_cents": 42,
+        "d1_cents": 0,
+        "d2_cents": -1,
+        "evidence_receipt": "e7faf7a4-9b16-7c2a-9c2a-c00c092b4e30",
+        "evidence_type": "PRICE_REACHED",
+        "first_fill_timestamp": 1783949040.451872,
+        "first_leg_id": "BRO",
+        "price_x_cents": 41,
+        "sibling_leg_id": "VUK",
+        "timestamp": 1783979002.679826
+      }
+    ]
+  },
+  "candidate_event_rows": 1608,
+  "final_naked": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "evidence_split_first_recovery": {
+        "print": 16,
+        "strict_ask": 6
+      },
+      "qualifying_episodes": 3226,
+      "recovered": 22,
+      "recurring_x_levels_globalfirst_rejected": 27,
+      "residual_no_lawful": 215,
+      "total": 237,
+      "x_levels_lawful_recurrence_but_no_ledger_observation": 16
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "evidence_split_first_recovery": {
+        "print": 19,
+        "strict_ask": 6
+      },
+      "qualifying_episodes": 3275,
+      "recovered": 25,
+      "recurring_x_levels_globalfirst_rejected": 34,
+      "residual_no_lawful": 215,
+      "total": 240,
+      "x_levels_lawful_recurrence_but_no_ledger_observation": 16
+    }
+  },
+  "final_nofill": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "both": 52,
+      "either": 65,
+      "neither": 271,
+      "one": 13,
+      "total": 336
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "both": 54,
+      "either": 68,
+      "neither": 272,
+      "one": 14,
+      "total": 340
+    }
+  },
+  "metrics": null,
+  "performance": null,
+  "schema_version": "window1-asynchronous-opportunity-policy-census-v2-diagnostic-summary-v1",
+  "scored": false
+}

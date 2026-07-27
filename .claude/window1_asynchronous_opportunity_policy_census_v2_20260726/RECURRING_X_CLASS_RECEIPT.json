@@ -1,0 +1,485 @@
+{
+  "candidate_counts": {
+    "w1_range_attack__macro_hold__combined_headroom": {
+      "V1_ledger_global_first_rejected_then_lawful_recurrence": 27,
+      "raw_lawful_recurrence_without_V1_X_ledger_observation": 16
+    },
+    "w1_range_attack__macro_micro__combined_headroom": {
+      "V1_ledger_global_first_rejected_then_lawful_recurrence": 34,
+      "raw_lawful_recurrence_without_V1_X_ledger_observation": 16
+    }
+  },
+  "classes_are_separate": true,
+  "event_details": {
+    "w1_range_attack__macro_hold__combined_headroom": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+        "globalfirst_rejected_X": [
+          64
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "DEL",
+        "ts0": 1783835438.554676
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+        "globalfirst_rejected_X": [
+          41
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "VUK",
+        "ts0": 1783949040.451872
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+        "globalfirst_rejected_X": [
+          62
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "GLI",
+        "ts0": 1784210987.230644
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+        "globalfirst_rejected_X": [
+          67,
+          68
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "GEA",
+        "ts0": 1784483783.716388
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL12CERKOL",
+        "globalfirst_rejected_X": [],
+        "no_ledger_observation_X": [
+          19,
+          21,
+          22
+        ],
+        "sibling": "KOL",
+        "ts0": 1783846471.802454
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL12DAHBAE",
+        "globalfirst_rejected_X": [],
+        "no_ledger_observation_X": [
+          92
+        ],
+        "sibling": "BAE",
+        "ts0": 1783843328.035523
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL12DODCAR",
+        "globalfirst_rejected_X": [],
+        "no_ledger_observation_X": [
+          71,
+          72
+        ],
+        "sibling": "CAR",
+        "ts0": 1783858737.024627
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL12REJMID",
+        "globalfirst_rejected_X": [
+          93,
+          94
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "MID",
+        "ts0": 1783827038.538569
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL12TSIBUS",
+        "globalfirst_rejected_X": [],
+        "no_ledger_observation_X": [
+          43
+        ],
+        "sibling": "TSI",
+        "ts0": 1783849930.725458
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL15BASTIR",
+        "globalfirst_rejected_X": [],
+        "no_ledger_observation_X": [
+          30
+        ],
+        "sibling": "BAS",
+        "ts0": 1784106401.736295
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL19GASDZU",
+        "globalfirst_rejected_X": [
+          46,
+          50
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "GAS",
+        "ts0": 1784458756.799151
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL19STRSHE",
+        "globalfirst_rejected_X": [
+          41
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "SHE",
+        "ts0": 1784459723.333403
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL19VANFAR",
+        "globalfirst_rejected_X": [
+          43
+        ],
+        "no_ledger_observation_X": [
+          37,
+          38,
+          39,
+          40
+        ],
+        "sibling": "VAN",
+        "ts0": 1784459614.693641
+      },
+      {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "globalfirst_rejected_X": [
+          41
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "BRA",
+        "ts0": 1784226486.061595
+      },
+      {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+        "globalfirst_rejected_X": [
+          35
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "TON",
+        "ts0": 1784385364.438908
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL12FETPIE",
+        "globalfirst_rejected_X": [
+          67,
+          68,
+          69
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "PIE",
+        "ts0": 1783843716.631482
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL12OKAIPE",
+        "globalfirst_rejected_X": [
+          86,
+          87,
+          88
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "IPE",
+        "ts0": 1783827039.439555
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL12PRIION",
+        "globalfirst_rejected_X": [
+          95,
+          96
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "PRI",
+        "ts0": 1783827042.03268
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+        "globalfirst_rejected_X": [],
+        "no_ledger_observation_X": [
+          89
+        ],
+        "sibling": "PAR",
+        "ts0": 1783922046.487545
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL16UDVKAW",
+        "globalfirst_rejected_X": [],
+        "no_ledger_observation_X": [
+          43,
+          44
+        ],
+        "sibling": "KAW",
+        "ts0": 1784178586.167139
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL19EIGCAR",
+        "globalfirst_rejected_X": [
+          93,
+          94,
+          95,
+          96,
+          97
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "CAR",
+        "ts0": 1784430689.174166
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+        "globalfirst_rejected_X": [
+          24
+        ],
+        "no_ledger_observation_X": [
+          21
+        ],
+        "sibling": "FRU",
+        "ts0": 1784516495.935168
+      }
+    ],
+    "w1_range_attack__macro_micro__combined_headroom": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+        "globalfirst_rejected_X": [
+          64
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "DEL",
+        "ts0": 1783835438.554676
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+        "globalfirst_rejected_X": [
+          41
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "VUK",
+        "ts0": 1783949040.451872
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+        "globalfirst_rejected_X": [
+          62
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "GLI",
+        "ts0": 1784210987.230644
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "globalfirst_rejected_X": [
+          58,
+          59,
+          60,
+          61,
+          62,
+          63
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "BIG",
+        "ts0": 1784486038.286417
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+        "globalfirst_rejected_X": [
+          67,
+          68
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "GEA",
+        "ts0": 1784483783.716388
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+        "globalfirst_rejected_X": [
+          53
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "NOG",
+        "ts0": 1784568485.984784
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL12CERKOL",
+        "globalfirst_rejected_X": [],
+        "no_ledger_observation_X": [
+          19,
+          21,
+          22
+        ],
+        "sibling": "KOL",
+        "ts0": 1783846471.802454
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL12DAHBAE",
+        "globalfirst_rejected_X": [],
+        "no_ledger_observation_X": [
+          92
+        ],
+        "sibling": "BAE",
+        "ts0": 1783843328.035523
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL12DODCAR",
+        "globalfirst_rejected_X": [],
+        "no_ledger_observation_X": [
+          71,
+          72
+        ],
+        "sibling": "CAR",
+        "ts0": 1783858737.024627
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL12REJMID",
+        "globalfirst_rejected_X": [
+          93,
+          94
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "MID",
+        "ts0": 1783827038.538569
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL12TSIBUS",
+        "globalfirst_rejected_X": [],
+        "no_ledger_observation_X": [
+          43
+        ],
+        "sibling": "TSI",
+        "ts0": 1783849930.725458
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL15BASTIR",
+        "globalfirst_rejected_X": [],
+        "no_ledger_observation_X": [
+          30
+        ],
+        "sibling": "BAS",
+        "ts0": 1784106401.736295
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL19GASDZU",
+        "globalfirst_rejected_X": [
+          46,
+          50
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "GAS",
+        "ts0": 1784458756.799151
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL19STRSHE",
+        "globalfirst_rejected_X": [
+          41
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "SHE",
+        "ts0": 1784459723.333403
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL19VANFAR",
+        "globalfirst_rejected_X": [
+          43
+        ],
+        "no_ledger_observation_X": [
+          37,
+          38,
+          39,
+          40
+        ],
+        "sibling": "VAN",
+        "ts0": 1784459614.693641
+      },
+      {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "globalfirst_rejected_X": [
+          41
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "BRA",
+        "ts0": 1784226486.061595
+      },
+      {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+        "globalfirst_rejected_X": [
+          35
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "TON",
+        "ts0": 1784385364.438908
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL12FETPIE",
+        "globalfirst_rejected_X": [
+          67,
+          68,
+          69
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "PIE",
+        "ts0": 1783843716.631482
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL12OKAIPE",
+        "globalfirst_rejected_X": [
+          86,
+          87,
+          88
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "IPE",
+        "ts0": 1783827039.439555
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL12PRIION",
+        "globalfirst_rejected_X": [
+          95,
+          96
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "PRI",
+        "ts0": 1783827042.03268
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+        "globalfirst_rejected_X": [],
+        "no_ledger_observation_X": [
+          89
+        ],
+        "sibling": "PAR",
+        "ts0": 1783922046.487545
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL16UDVKAW",
+        "globalfirst_rejected_X": [],
+        "no_ledger_observation_X": [
+          43,
+          44
+        ],
+        "sibling": "KAW",
+        "ts0": 1784178586.167139
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL19EIGCAR",
+        "globalfirst_rejected_X": [
+          93,
+          94,
+          95,
+          96,
+          97
+        ],
+        "no_ledger_observation_X": [],
+        "sibling": "CAR",
+        "ts0": 1784430689.174166
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+        "globalfirst_rejected_X": [
+          24
+        ],
+        "no_ledger_observation_X": [
+          21
+        ],
+        "sibling": "FRU",
+        "ts0": 1784516495.935168
+      }
+    ]
+  },
+  "metrics": null
+}

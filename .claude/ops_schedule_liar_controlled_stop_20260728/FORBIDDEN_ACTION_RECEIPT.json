@@ -1,0 +1,21 @@
+{
+  "schema_version": "schedule-liar-controlled-stop-forbidden-action-v1",
+  "deployment_actions": 0,
+  "code_changes": 0,
+  "source_changes": 0,
+  "configuration_changes_other_than_one_cron_line": 0,
+  "cron_lines_changed": 1,
+  "cron_restorations": 0,
+  "engine_restarts": 0,
+  "entry_orders_placed_by_ceremony": 0,
+  "dca_actions": 0,
+  "position_mutations": 0,
+  "exit_orders_cancelled": 0,
+  "protective_exit_heals": 0,
+  "halt_mutations": 0,
+  "sigint_signals": 1,
+  "second_signals": 0,
+  "sigkill_signals": 0,
+  "integrated_candidate_work": 0,
+  "t2_work": 0
+}

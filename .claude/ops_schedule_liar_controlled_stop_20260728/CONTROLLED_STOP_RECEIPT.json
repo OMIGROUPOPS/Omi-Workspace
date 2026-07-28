@@ -1,0 +1,136 @@
+{
+  "schema_version": "schedule-liar-controlled-stop-receipt-v1",
+  "status": "STOPPED_AND_CONTAINED",
+  "controlling_receipts": {
+    "containment": "1ae9a9ca6e9d45e0a7b179a7e98afa48ace761c0",
+    "stop_preflight": "e7004235c342a2ddaaa53610d85a76c32fb93fdc",
+    "branch": "codex/ops-schedule-liar-containment-20260728"
+  },
+  "engine": {
+    "pre_pid": 3504442,
+    "post_process_count": 0,
+    "process_start": "Tue Jul 28 00:16:01 2026",
+    "source_blob": "f1857199164664037fef41b024e60f27fa373548",
+    "source_sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54",
+    "source_bytes": 997352,
+    "source_unchanged": true,
+    "configuration_sha256": "3d5b07af10523e9b724f019dc367e4cf74b93f4dd66c0ff7bed0d347c72722a1",
+    "configuration_bytes": 5037,
+    "configuration_unchanged": true
+  },
+  "keepalive": {
+    "preimage_sha256": "4c38967f85112908020b7207f491a8486cbfc9c70a8b9d6c8cc5d0a2500c98f4",
+    "preimage_bytes": 6081,
+    "backup_path": "/root/root.crontab.pre_schedule_liar_stop_20260728_e7004235.raw",
+    "backup_mode": "0400",
+    "backup_owner": "root:root",
+    "backup_absent_before_creation": true,
+    "installed_sha256": "0e2af22e4ab536b4273e61d9251359eda71e369fb8591f22443c66aa88709926",
+    "installed_bytes": 6135,
+    "installed_mode": "0600",
+    "installed_owner": "root:crontab",
+    "changed_lines": [
+      17
+    ],
+    "unrelated_lines_byte_identical": true,
+    "active_live_v4_launch_lines_after": 0,
+    "maintenance_marker": "TEMP_MAINTENANCE_SCHEDULE_LIAR_CONTAINMENT_20260728",
+    "restoration_prohibited": true
+  },
+  "new_holding_reconciliation": {
+    "ticker": "KXITFMATCH-26JUL28LAZGHE-LAZ",
+    "event": "KXITFMATCH-26JUL28LAZGHE",
+    "entry_order_id": "70cba478-f1ec-4f53-b947-cce2522597f6",
+    "entry_quantity": 5,
+    "entry_price_cents": 26,
+    "entry_created_utc": "2026-07-28T10:15:17.273259Z",
+    "entry_filled_utc": "2026-07-28T10:15:32.167242Z",
+    "exit_order_id": "6ca81fa8-62f7-4a5a-891d-a9db0637cabf",
+    "exit_quantity": 5,
+    "exit_price_cents": 33,
+    "exit_created_utc": "2026-07-28T10:22:05.554224Z",
+    "exit_filled_utc": "2026-07-28T11:01:56.800031Z",
+    "current_unsettled_quantity": 0,
+    "coverage_result": "FULLY_EXITED_BEFORE_CEREMONY",
+    "protective_heal_required": false,
+    "protective_heal_performed": false
+  },
+  "entry_cancellation": {
+    "orders_cancelled": 12,
+    "contracts_cancelled": 60,
+    "final_status": {
+      "canceled": 12,
+      "filled_quantity": 0
+    },
+    "final_resting_tennis_entry_orders": 0,
+    "final_resting_tennis_entry_quantity": 0
+  },
+  "pre_stop_invariant": {
+    "captured_utc": "2026-07-28T12:40:04.935896Z",
+    "resting_exit_orders": 12,
+    "resting_exit_quantity": 50,
+    "held_markets": 11,
+    "held_quantity": 50.58,
+    "whole_contract_holdings_covered_exactly": true,
+    "named_fractional_residue": {
+      "ticker": "KXWTACHALLENGERMATCH-26JUL26ARSANN-ANN",
+      "quantity": 0.58,
+      "required_executable_exit_quantity": 0,
+      "law": "running C47 post-boot audit uses sub-share tolerance and names int-floor fractional residues bot-invisible"
+    }
+  },
+  "shutdown": {
+    "first_signal": "SIGINT",
+    "first_signal_utc": "2026-07-28T12:40:23.774914916Z",
+    "first_signal_count": 1,
+    "second_signal_count": 0,
+    "sigkill_count": 0,
+    "internal_resting_entry_state_count": 49,
+    "raw_budget_formula_seconds": 17.25,
+    "computed_integer_budget_seconds": 17,
+    "authorized_second_signal_deadline_seconds": 27,
+    "last_positive_process_observation_elapsed_ms": 21141,
+    "first_absent_process_observation_elapsed_ms": 44503,
+    "exact_exit_duration_available": false,
+    "exit_duration_evidence": "Process was alive at 21.141 seconds, the source logged its internal watchdog hard exit at 08:40:46 America/New_York, and the process was absent by 44.503 seconds.",
+    "exit_path": "existing_internal_shutdown_watchdog_os_exit",
+    "graceful_drain_begin_receipt_observed": false,
+    "second_signal_required": false
+  },
+  "post_stop": {
+    "final_snapshot_utc": "2026-07-28T12:49:12.530864Z",
+    "process_count": 0,
+    "tmux_live_v4_session_present": false,
+    "active_keepalive_launch_lines": 0,
+    "resting_tennis_entry_orders": 0,
+    "resting_tennis_entry_quantity": 0,
+    "resting_exit_orders": 12,
+    "resting_exit_quantity": 50,
+    "held_markets": 11,
+    "held_quantity": 50.58,
+    "pre_stop_exit_rows_identical": true,
+    "pre_stop_positions_identical": true,
+    "natural_exit_fills": 0,
+    "drain_replay_adoption_rows": 0,
+    "new_conception_or_entry_receipts": 0,
+    "drain_manifest_present": false
+  },
+  "observation": {
+    "continuous_monitor_start_utc": "2026-07-28T12:42:36.789611958Z",
+    "continuous_monitor_end_utc": "2026-07-28T12:48:12.226781360Z",
+    "continuous_monitor_duration_seconds": 335.437,
+    "sample_count": 23,
+    "replacement_pid_samples": 0,
+    "active_keepalive_line_samples": 0,
+    "tmux_session_present_samples": 0,
+    "missed_keepalive_windows_utc": [
+      "2026-07-28T12:42:00Z",
+      "2026-07-28T12:44:00Z",
+      "2026-07-28T12:46:00Z",
+      "2026-07-28T12:48:00Z"
+    ],
+    "missed_keepalive_window_count": 4
+  },
+  "integrated_prerun_containment_ruling": "UNBLOCKED_FOR_READ_ONLY_CONSTRUCTION_ONLY",
+  "deployment_restart_authorized": false
+}

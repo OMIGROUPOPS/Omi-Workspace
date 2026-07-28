@@ -1,0 +1,17 @@
+{
+  "schema_version": "schedule-liar-future-restart-prerequisite-v1",
+  "current_state": "LIVE_V4_STOPPED_KEEPALIVE_DISABLED",
+  "cron_restoration_authorized": false,
+  "engine_restart_authorized": false,
+  "required_before_any_restart": [
+    "The integrated P0 REAL-START plus CASUKA D1-D3 candidate has a fresh independent PASS audit.",
+    "A separate operator authorization binds the exact integrated source bytes, deployment ceremony, restart, and cron restoration.",
+    "The complete exchange holdings and resting exits are re-read with full pagination immediately before deployment.",
+    "Every post-stop natural exit execution is incorporated into the restart-window drain-replay adoption census.",
+    "The temporary maintenance marker remains active through candidate deployment and the single authorized restart.",
+    "The future ceremony proves P0 REAL-START initialization before conception and re-enables keepalive only under its explicit authorization."
+  ],
+  "current_post_stop_natural_fill_rows": 0,
+  "current_drain_manifest_present": false,
+  "prohibition": "Do not restore the disabled cron line or restart live_v4 outside the future independently audited and separately authorized integrated deployment ceremony."
+}

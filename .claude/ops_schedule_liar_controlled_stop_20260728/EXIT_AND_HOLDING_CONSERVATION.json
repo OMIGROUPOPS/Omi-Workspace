@@ -1,0 +1,39 @@
+{
+  "schema_version": "schedule-liar-exit-holding-conservation-v1",
+  "pre_stop_source": "FINAL_ZERO_ENTRIES_SNAPSHOT.json",
+  "post_stop_source": "POST_STOP_FINAL_AFTER_OBSERVATION.json",
+  "pre_stop": {
+    "captured_utc": "2026-07-28T12:40:04.935896Z",
+    "exit_orders": 12,
+    "exit_quantity": 50,
+    "held_markets": 11,
+    "held_quantity": 50.58
+  },
+  "post_stop": {
+    "captured_utc": "2026-07-28T12:49:12.530864Z",
+    "exit_orders": 12,
+    "exit_quantity": 50,
+    "held_markets": 11,
+    "held_quantity": 50.58
+  },
+  "exit_order_identity": {
+    "same_order_ids": true,
+    "same_tickers": true,
+    "same_prices": true,
+    "same_remaining_quantities": true,
+    "same_statuses": true
+  },
+  "position_identity": {
+    "same_tickers": true,
+    "same_quantities": true
+  },
+  "natural_exit_executions_after_stop": [],
+  "drain_replay_adoption_census": [],
+  "fractional_residue": {
+    "ticker": "KXWTACHALLENGERMATCH-26JUL26ARSANN-ANN",
+    "quantity": 0.58,
+    "whole_contract_required_exit_quantity": 0,
+    "classification": "named_sub_share_residue"
+  },
+  "conservation": "PASS"
+}

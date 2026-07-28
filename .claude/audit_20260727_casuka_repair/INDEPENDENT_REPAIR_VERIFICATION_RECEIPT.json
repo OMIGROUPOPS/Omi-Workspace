@@ -1,0 +1,90 @@
+{
+ "acceptance_fixtures_reproduced": [
+  "F1",
+  "F2",
+  "F3",
+  "F4",
+  "F5"
+ ],
+ "audit_parent": "b442908f3b253d1e13d5b2a5e93c3dbf0491320d",
+ "auditor_probes": {
+  "d1": [
+   "heal->topup one 5-lot + topup 0",
+   "topup->heal converges",
+   "2-cycle idempotent",
+   "conservation resting<=held"
+  ],
+  "d2": [
+   "oversell refused in full pre-POST",
+   "exact allowed",
+   "covered refuses",
+   "zero/negative refused",
+   "fractional never rounds up",
+   "zero-position refused",
+   "api-unavailable fails closed",
+   "buy path ungated",
+   "refusal receipted+alert wired"
+  ],
+  "d3": [
+   "zero-booked entry_resting -> absent",
+   "resting -> resting",
+   "settled -> settled",
+   "stale booked no holding -> absent",
+   "genuine -> filled",
+   "fitting-gap preserved"
+  ],
+  "failures": 0,
+  "total": 21
+ },
+ "authorization_scope": "construction of a separately gated deployment package and the standard deployment ceremony ONLY (lint+smoke+prior-art+outcome-proof, including the smoke the clean worktree could not run and the P0 v2+v3 rider); NOT deployment itself",
+ "baseline_note": {
+  "claimed": "parent blob 949f6995 == audited engine",
+  "consequence": "deploying the repair also deploys P0 guard v2+v3; ceremony must gate this",
+  "finding": "audited RUNNING engine is blob f1857199 (P0 guard v1, eca101c6); repair parent is 2 undeployed commits ahead (P0 guard v2+v3, 239 diff lines) confined to entry-buy start-guard surfaces; CASUKA surfaces byte-identical between running engine and baseline (keyword scan: 0 hits)"
+ },
+ "causal_sequence_reproduced": true,
+ "census_parity": {
+  "child": "47/85 pass, 38 fail",
+  "formerly_passing_now_failing": 0,
+  "identical_failure_identities": true,
+  "identical_failure_signatures": true,
+  "new_delta": "test_casuka_live_safety_repair.py passing",
+  "parent": "46/84 pass, 38 fail"
+ },
+ "hashes": {
+  "artifact_rows_verified": 8,
+  "blob_oids_verified": [
+   "1809085d live_v4",
+   "8287d4a5 tests",
+   "949f6995 parent engine",
+   "c31f208e audit report",
+   "cd41db2e repair packet"
+  ],
+  "receipts_reproduce_from_committed_code": true,
+  "source_byte_shas_verified": 2
+ },
+ "lineage": {
+  "clean_worktree": true,
+  "parent_exact": true,
+  "remote_equality": true,
+  "scope": "1 modified (arb-executor/live_v4.py +359/-19) + 10 additive receipts/tests",
+  "unrelated_second_child_of_parent": "3a476b5c (Jul-22 ops commit, other branch)"
+ },
+ "non_action": {
+  "engine_blob_unchanged": "f1857199",
+  "engine_pid_unchanged": 2241929,
+  "no_deploy_restart_order_position_halt_action": true,
+  "t2_worktree": "87ac9382c23b586f536cf457883c507ebf366ba3 clean"
+ },
+ "repair_commit": "94be41137c0b64bfa448546c8bc3ee7c4ae32a60",
+ "repair_parent_verified": "a4996dd00e82ed3534f97a09251697f1d82dbbab",
+ "replay_receipt_matches_auditor_harness": true,
+ "ruling": "PASS",
+ "schema_version": "casuka-live-safety-repair-independent-audit-v1",
+ "tests": {
+  "compile": "PASS",
+  "focused": "12/12",
+  "lint": "AST core PASS (flake8 absent, disclosed)",
+  "relevant_inherited": "7/7"
+ }
+}

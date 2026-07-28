@@ -1,0 +1,92 @@
+[
+ {
+  "case": "correct_bindings_dangling_auth",
+  "status": "FAIL",
+  "error": "authorization commit not on audit ref",
+  "no_mutation": true
+ },
+ {
+  "case": "wrong_package_commit",
+  "status": "FAIL",
+  "error": "package commit is not the sole V1 child",
+  "no_mutation": true
+ },
+ {
+  "case": "wrong_audit_pass_commit",
+  "status": "FAIL",
+  "error": "authorization commit must be the sole child of the supplied PASS",
+  "no_mutation": true
+ },
+ {
+  "case": "wrong_candidate_sha256",
+  "status": "FAIL",
+  "error": "runtime bindings differ from control: candidate_sha256",
+  "no_mutation": true
+ },
+ {
+  "case": "wrong_candidate_blob",
+  "status": "FAIL",
+  "error": "runtime bindings differ from control: candidate_blob",
+  "no_mutation": true
+ },
+ {
+  "case": "wrong_preimage_sha256",
+  "status": "FAIL",
+  "error": "runtime bindings differ from control: preimage_sha256",
+  "no_mutation": true
+ },
+ {
+  "case": "wrong_host",
+  "status": "FAIL",
+  "error": "runtime bindings differ from control: host",
+  "no_mutation": true
+ },
+ {
+  "case": "wrong_target_path",
+  "status": "FAIL",
+  "error": "runtime bindings differ from control: target_path",
+  "no_mutation": true
+ },
+ {
+  "case": "wrong_deployment_id",
+  "status": "FAIL",
+  "error": "runtime bindings differ from control: deployment_id",
+  "no_mutation": true
+ },
+ {
+  "case": "wrong_results_dir",
+  "status": "FAIL",
+  "error": "runtime bindings differ from control: results_dir",
+  "no_mutation": true
+ },
+ {
+  "case": "wrong_deployment_command",
+  "status": "FAIL",
+  "error": "runtime bindings differ from control: deployment_command",
+  "no_mutation": true
+ },
+ {
+  "case": "wrong_rollback_command",
+  "status": "FAIL",
+  "error": "runtime bindings differ from control: rollback_command",
+  "no_mutation": true
+ },
+ {
+  "case": "wrong_outcome_proof_sha",
+  "status": "FAIL",
+  "error": "runtime bindings differ from control: outcome_proof_sha256",
+  "no_mutation": true
+ },
+ {
+  "case": "wrong_integration_commit",
+  "status": "FAIL",
+  "error": "runtime bindings differ from control: integration_commit",
+  "no_mutation": true
+ },
+ {
+  "case": "truncated_candidate_hash",
+  "status": "FAIL",
+  "error": "runtime bindings differ from control: candidate_sha256",
+  "no_mutation": true
+ }
+]

@@ -1,0 +1,40 @@
+{
+  "C": null,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "available_count": 1307,
+  "boundary_source_class_counts": {
+    "clean_causal_interval": 62,
+    "contradictory": 28,
+    "live_by_only": 104,
+    "official_exact": 468,
+    "quantized_late_detection_proxy": 906,
+    "schedule_only": 40
+  },
+  "carried_last_trade_substitution_count": 0,
+  "constructed_midpoint_substitution_count": 0,
+  "event_count": 804,
+  "event_leg_row_count": 1608,
+  "expected_event_leg_row_count": 1608,
+  "holdout_rows": 0,
+  "latest_timestamp_differing_price_ambiguity_count": 64,
+  "latest_timestamp_tie_row_count": 272,
+  "performance": null,
+  "raw_v5_rows_consumed": 804,
+  "raw_v5_sha256": "c6204d016aeeab9cec54c5f989e695cb74a13e40b8e25085a3a9410a2c5548ed",
+  "receipt_id_price_tiebreak_count": 0,
+  "schedule_derived_reference_count": 0,
+  "schema_version": "window1-t2-reference-boundary-v3-reference-census-v1",
+  "scorer_invocations": 0,
+  "supporting_receipt_count": 2013,
+  "unavailability_reason_counts": {
+    "None": 0,
+    "ambiguous_latest_timestamp_multiple_prices_no_authoritative_sequence": 64,
+    "boundary_not_positive": 170,
+    "contradictory_boundary": 28,
+    "window1_close_reference_missing": 39
+  },
+  "unavailable_count": 301,
+  "unique_event_leg_count": 1608
+}

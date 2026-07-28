@@ -1,0 +1,50 @@
+{
+  "C": null,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "all_event_identities_conserved": true,
+  "boundary_law_conserved": true,
+  "censored_count": 85,
+  "contradictory_count": 14,
+  "cutoff_conserved": true,
+  "events_compared": 804,
+  "field_mismatch_count": 0,
+  "guard_id_conserved": true,
+  "guard_seconds_conserved": true,
+  "guarded_cutoff_status_counts": {
+    "censored": 85,
+    "contradictory": 14,
+    "positive": 705
+  },
+  "mismatch_event_ids": [],
+  "mismatches": [],
+  "normalized_boundary_ledger": {
+    "contract": "derived cutoff contract only; not valid raw-V5 input to window1_range_attack_reference_adapter_v2",
+    "path": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_BOUNDARY_LEDGER.jsonl",
+    "row_count": 804,
+    "sha256": "c2c652dab2e382869a28785dd807cc8bb1bbe1c78842192ed39a54c685799faf"
+  },
+  "package_blocked": false,
+  "performance": null,
+  "positive_censored_status_conserved": true,
+  "positive_count": 705,
+  "raw_boundary_contract_derivations": 804,
+  "raw_guarded_cutoff_derivations": 804,
+  "raw_v5_ledger": {
+    "path": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+    "row_count": 804,
+    "sha256": "c6204d016aeeab9cec54c5f989e695cb74a13e40b8e25085a3a9410a2c5548ed"
+  },
+  "schema_version": "window1-t2-reference-boundary-v3-compatibility-receipt-v1",
+  "scorer_invocations": 0,
+  "source_class_conserved": true,
+  "source_class_counts": {
+    "clean_causal_interval": 31,
+    "contradictory": 14,
+    "live_by_only": 52,
+    "official_exact": 234,
+    "quantized_late_detection_proxy": 453,
+    "schedule_only": 20
+  }
+}

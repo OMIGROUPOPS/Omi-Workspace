@@ -1,0 +1,57 @@
+{
+  "C": null,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "V2_package_commit": "b73679edc9186eb72236cd1bee5f886ac141cac4",
+  "authorization_consumed": true,
+  "authorization_reusable": false,
+  "consumed_authorization_commit": "e4e57baca0c2172244e63f45b2086f2ef4df53e9",
+  "error": "ReferenceError: positive boundary lacks V5 guard artifact",
+  "exit_code": 1,
+  "failed_results_commit": "3f8fa0fb372c9e89fa97f89fd26156892745afe1",
+  "failed_results_parent": "b73679edc9186eb72236cd1bee5f886ac141cac4",
+  "failure_receipt_sha256": "d17d8a3e6119cea681d62d0636d8d93ea2ae75e0a6b3c9877708f2deec5d767e",
+  "files": [
+    {
+      "bytes": 426,
+      "git_blob_oid": "986a979290672553629499e642c7d65185c790e1",
+      "path": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v2/EXECUTION_FAILURE.json",
+      "sha256": "d17d8a3e6119cea681d62d0636d8d93ea2ae75e0a6b3c9877708f2deec5d767e"
+    },
+    {
+      "bytes": 1178,
+      "git_blob_oid": "222c531e1aa85d00f962718f93c8ceb133ada1b5",
+      "path": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v2/EXECUTION_START_RECEIPT.json",
+      "sha256": "f73c6e4fa4bae8ac71f08b599c84285f173e2141f9fdb16a90b941473d0ff931"
+    },
+    {
+      "bytes": 726,
+      "git_blob_oid": "71b2b8cdb31eafa4d22cbb2e0961379f1085bf80",
+      "path": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v2/OUTPUT_HASH_MANIFEST.json",
+      "sha256": "785ce8f15c46a34c5fe2b13768a8cb63421989630c86bff08b84f8e64030d976"
+    },
+    {
+      "bytes": 75,
+      "git_blob_oid": "bb6a3839b1f210e580473c6a2d5fa8669e58a61e",
+      "path": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v2/PROGRESS.log",
+      "sha256": "cdc2dd8f3c99f0549ee4d057d27df1cfecaca132a358478a1394c179930b9a15"
+    },
+    {
+      "bytes": 866,
+      "git_blob_oid": "a2105368f2a1d545082f1a9bbcc2509afd5231aa",
+      "path": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v2/STDERR.log",
+      "sha256": "208974e1b83651fce6ffff5c8ed022a12d29313090baf71670c381999591f81f"
+    }
+  ],
+  "holdout_opened": false,
+  "invocation_count": 1,
+  "live_or_trading_access": false,
+  "output_manifest_sha256": "785ce8f15c46a34c5fe2b13768a8cb63421989630c86bff08b84f8e64030d976",
+  "performance": null,
+  "performance_result_produced": false,
+  "retry_count": 0,
+  "schema_version": "window1-t2-scoring-package-builder-v3-consumed-failure-binding-v1",
+  "scorer_invocations": 0,
+  "selection_or_ranking_performed": false
+}

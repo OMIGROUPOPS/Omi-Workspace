@@ -1,0 +1,20 @@
+{
+  "C": null,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "all_committed_performance_fields_null": true,
+  "consumed_authorization_rejected": "e4e57baca0c2172244e63f45b2086f2ef4df53e9",
+  "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v3",
+  "frontier": null,
+  "future_independent_PASS_required": true,
+  "future_separate_authorization_required": true,
+  "performance": null,
+  "ranking": null,
+  "real_scorer_invocations": 0,
+  "regret": null,
+  "results_directory": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v3",
+  "results_directory_exists": false,
+  "schema_version": "window1-t2-scoring-package-builder-v3-null-no-execution-v1",
+  "selection": null
+}

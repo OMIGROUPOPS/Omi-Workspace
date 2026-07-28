@@ -1,0 +1,15 @@
+{
+  "authorization_commit": "e4e57baca0c2172244e63f45b2086f2ef4df53e9",
+  "authorization_parent": "3f415f3697b0983925923444f5688ef35865c1bd",
+  "authorization_preceded_execution": true,
+  "authorization_report_path": ".claude/audit_20260729_t2_scoring_package/ONE_EXECUTION_AUTHORIZATION.md",
+  "consumed_authorization_amended": false,
+  "discrepancy": "authorization document printed 10:43 PM ET; Git metadata records 6:44:29 PM ET and execution began 6:53:49 PM ET",
+  "document_printed_label": "10:43 PM ET",
+  "document_printed_time": "2026-07-28T22:43:00-04:00",
+  "execution_started_at_eastern": "2026-07-28T18:53:49.591444-04:00",
+  "execution_started_at_utc": "2026-07-28T22:53:49.591444+00:00",
+  "git_commit_metadata_time": "2026-07-28T18:44:29-04:00",
+  "operator_facing_eastern_time_law_satisfied": false,
+  "schema_version": "window1-t2-scoring-package-builder-v3-authorization-time-discrepancy-v1"
+}

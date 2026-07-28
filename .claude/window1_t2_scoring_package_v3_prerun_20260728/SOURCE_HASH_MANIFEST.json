@@ -1,0 +1,252 @@
+{
+  "T2_independent_PASS": "8743939745e25f090d69dfd4d56906a93671f331",
+  "T2_prerun": "87ac9382c23b586f536cf457883c507ebf366ba3",
+  "V2_package_commit": "b73679edc9186eb72236cd1bee5f886ac141cac4",
+  "committed_source_inputs": [
+    {
+      "git_blob_oid": "f558bbbcf57b187e523752f4483eafce7d04361e",
+      "identity_bytes": 11193,
+      "newline_identity": "canonical_LF",
+      "path": "arb-executor/analysis/window1_range_attack_reference_adapter_v1.py",
+      "role": "raw_V5_guarded_cutoff_law",
+      "sha256": "5e400a08598177d089a66012c66a6f1e7c894db00f5d071cdd6caceff7d21d41",
+      "working_tree_bytes": 11193
+    },
+    {
+      "git_blob_oid": "1616033b54c34c870ec82c93c62a7dd3387826e4",
+      "identity_bytes": 7040,
+      "newline_identity": "canonical_LF",
+      "path": "arb-executor/analysis/window1_range_attack_reference_adapter_v2.py",
+      "role": "audited_sequence_honest_reference_law",
+      "sha256": "29b9ab82d6dd6a1f683ba40348c14a93b8d61e62d9eca8aef724c15529f7c8fb",
+      "working_tree_bytes": 7040
+    },
+    {
+      "git_blob_oid": "e94c33b2c5fb4e0f25494850b6ef59cab0689251",
+      "identity_bytes": 12497,
+      "newline_identity": "canonical_LF",
+      "path": "arb-executor/analysis/window1_t2_scoring_adapter_v1.py",
+      "role": "audited_exact_integer_fill_adapter",
+      "sha256": "c4965c0502c1cd9348c12196b6fc713be574dcd96c4eed0bbcb2be3a4b119bac",
+      "working_tree_bytes": 12497
+    },
+    {
+      "git_blob_oid": "616814cb87381d412ed1a1a951739fcefc7b9450",
+      "identity_bytes": 15209,
+      "newline_identity": "canonical_LF",
+      "path": "arb-executor/analysis/window1_t2_frontier_regret_scorer_v1.py",
+      "role": "frozen_T2_scorer",
+      "sha256": "dfb00059a9645b72934fb9ef6bc446dbb90202ed66f5073459f849774416171c",
+      "working_tree_bytes": 15209
+    },
+    {
+      "git_blob_oid": "05e6aa7463d687a7737f2e9d8237213e3eb94e48",
+      "identity_bytes": 27622,
+      "newline_identity": "canonical_LF",
+      "path": "arb-executor/analysis/window1_t2_scoring_correction_v2.py",
+      "role": "frozen_V2_authority_d2_correction",
+      "sha256": "9e2cdf2d879ecaa3ef2ae356648bba98f6a7f7766bd0c66bc44f6332ea9107dd",
+      "working_tree_bytes": 27622
+    },
+    {
+      "git_blob_oid": "0bb52c4e7502aac48350e700831d2490a705f5ae",
+      "identity_bytes": 22632,
+      "newline_identity": "canonical_LF",
+      "path": "arb-executor/analysis/window1_t2_reference_boundary_v3.py",
+      "role": "V3_boundary_reference_adapter",
+      "sha256": "2ac11ba2cf62c628feb3613b479e212b0d1d26ea3aff69d0574f76fd17ddc65e",
+      "working_tree_bytes": 22632
+    },
+    {
+      "git_blob_oid": "1024fa49fb53f30b6ac3de81ee795a8b8dc02333",
+      "identity_bytes": 43162,
+      "newline_identity": "canonical_LF",
+      "path": "arb-executor/analysis/window1_t2_scoring_runner_v3.py",
+      "role": "V3_stdout_safe_runner",
+      "sha256": "fd69e6c53a65b7189bcf81dbaea335d4a1f9b6c065b9e9bddc353bd939412f2f",
+      "working_tree_bytes": 43162
+    },
+    {
+      "git_blob_oid": "cc8b5dd1cba183d0fb0b00004e23a428498661a9",
+      "identity_bytes": 34959,
+      "newline_identity": "canonical_LF",
+      "path": "arb-executor/analysis/window1_t2_scoring_package_builder_v3.py",
+      "role": "V3_package_builder",
+      "sha256": "22e0743732b749a9e5515efe73a6933bef261b18954662cc3613f38f672332f8",
+      "working_tree_bytes": 34959
+    },
+    {
+      "git_blob_oid": "aeaa8a6e5759e748a89e227f124239610ac1252c",
+      "identity_bytes": 4130,
+      "newline_identity": "canonical_LF",
+      "path": "arb-executor/analysis/window1_t2_scoring_package_freeze_v3.py",
+      "role": "V3_two_clean_build_freezer",
+      "sha256": "219301aa8a10e47a9440b56c5108fafd14d4742d1241911f6b1783100c4bd07f",
+      "working_tree_bytes": 4130
+    },
+    {
+      "git_blob_oid": "bea5c9a17ae131ce2c5baf518126619cf83553a3",
+      "identity_bytes": 8314,
+      "newline_identity": "canonical_LF",
+      "path": "arb-executor/tests/test_window1_t2_scoring_package_v3.py",
+      "role": "V3_tests",
+      "sha256": "cdde37010633443ba6ca3fb2bdbe2d274bdf6a22b71ff0e57e07604b9288bde4",
+      "working_tree_bytes": 8314
+    },
+    {
+      "git_blob_oid": "1a51db6dde24f8a7fe4adade7e308e0e7144e76c",
+      "identity_bytes": 1910,
+      "newline_identity": "canonical_LF",
+      "path": "arb-executor/docs/research/window1/WINDOW1_T2_SCORING_EXECUTION_READINESS_CONTRACT_V3.json",
+      "role": "V3_execution_readiness_contract",
+      "sha256": "b454765ab6b6a84f20588fa18f9f88d80695619691a073c17d12e531986e8601",
+      "working_tree_bytes": 1910
+    }
+  ],
+  "consumed_failure_commit": "3f8fa0fb372c9e89fa97f89fd26156892745afe1",
+  "frozen_binary_inputs": [
+    {
+      "bytes": 3696777,
+      "path": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+      "role": "full_raw_V5_boundary_ledger",
+      "sha256": "c6204d016aeeab9cec54c5f989e695cb74a13e40b8e25085a3a9410a2c5548ed"
+    },
+    {
+      "bytes": 386143,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_BOUNDARY_LEDGER.jsonl",
+      "role": "normalized_boundary_contract",
+      "sha256": "c2c652dab2e382869a28785dd807cc8bb1bbe1c78842192ed39a54c685799faf"
+    },
+    {
+      "bytes": 4491,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/CLAIM_FENCE_MANIFEST.json",
+      "role": "inherited_claim_fence_manifest",
+      "sha256": "822f60e1ceef25adbc4348cb4d04478f133681592e9d6c9940c0a3fa89ef72f7"
+    },
+    {
+      "bytes": 878,
+      "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/COMBINED_HEADROOM_ARITHMETIC_RECEIPT.json",
+      "role": "inherited_combined_headroom_arithmetic_receipt",
+      "sha256": "d19993dfccdbe27769da8b060818cb56f2fb51733254aec5f40b78b9deefbae3"
+    },
+    {
+      "bytes": 336694,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/IMMUTABLE_EVENT_LEDGER.jsonl",
+      "role": "inherited_event_ledger",
+      "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46"
+    },
+    {
+      "bytes": 332033,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FROZEN_EVENT_LEG_IDENTITIES.json",
+      "role": "inherited_event_leg_identities",
+      "sha256": "a7910de424ab63420d658dc6cc9986069b661b2a75a25bf593b0ca2dd8dd336f"
+    },
+    {
+      "bytes": 1383,
+      "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/EXPECTED_OUTPUT_SCHEMA_V2.json",
+      "role": "inherited_expected_output_schema",
+      "sha256": "9d01833f9c8cf632ebf63718990bd61a586cb8a007e88b7b16121abfab050e0a"
+    },
+    {
+      "bytes": 142443,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FIT_POSTFIT_BOUNDARY_LEDGER.json",
+      "role": "inherited_fit_postfit_ledger",
+      "sha256": "8e6e86ccbc531f56b40e06bf2ff36f96f4e486f741907ed4624a85369e049a5a"
+    },
+    {
+      "bytes": 3864,
+      "path": "arb-executor/docs/research/window1/WINDOW1_T2_FRONTIER_REGRET_CONTRACT_V2.json",
+      "role": "inherited_frontier_regret_contract_v2",
+      "sha256": "1007feb2553c1e854fc19440954e7a91855aaa1251b5a9ba6419831d83b32c64"
+    },
+    {
+      "bytes": 286205,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_CACHE_V3_HASH_SET.json",
+      "role": "inherited_guarded_cache_hash_set",
+      "sha256": "da7e1dc63b72d81d8b497663fd0857cca2cd4340d46f72867cf7281ef447cc69"
+    },
+    {
+      "bytes": 238189,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/TAPE_AND_FIVE_CONTRACT_FLOOR_LEDGER.jsonl.gz",
+      "role": "inherited_oracle_leg_floor_ledger",
+      "sha256": "727d63ae80cf8739ac40b956aba31fe0d39d87f49d75334a3e10331519594e28"
+    },
+    {
+      "bytes": 78244,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/ASYNCHRONOUS_PAIR_FLOOR_LEDGER.jsonl.gz",
+      "role": "inherited_oracle_pair_floor_ledger",
+      "sha256": "825620d8f11804552cff741b32f6f9916432269d1e820b556d24fad5ba6396ee"
+    },
+    {
+      "bytes": 4828647,
+      "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/T2_REGRET_CHAIN_INPUT_LEDGER_V2.jsonl.gz",
+      "role": "inherited_regret_chain_input_ledger",
+      "sha256": "b2b622c191ea8330bf21d95694e43acd14b43f4413edff4e385ca3b8d823c91d"
+    },
+    {
+      "bytes": 14418,
+      "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/SOURCE_HASH_MANIFEST.json",
+      "role": "inherited_source_hash_manifest",
+      "sha256": "cb274242cecc69cbfbcbf493d7faf002ce4e9218e541496fd86fbd5d34d0803c"
+    },
+    {
+      "bytes": 205925,
+      "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/TARGET_AUTHORITY_D2_PROVENANCE_LEDGER.jsonl.gz",
+      "role": "inherited_target_authority_d2_provenance_ledger",
+      "sha256": "d01c3fad2cf33d097ba9e9e3a93539140c514f4d97aa34a3b617a2b7ff0f2acf"
+    },
+    {
+      "bytes": 11208,
+      "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/TARGET_SURFACE_CENSUS_RECONCILIATION.json",
+      "role": "inherited_target_surface_reconciliation",
+      "sha256": "4990902a82a4f4390e0fbaaa5ae7ec62d629652fe10ea46025a9aeb909fe619e"
+    },
+    {
+      "bytes": 1371823,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/T2_UNIQUE_CREDITED_FILL_LEDGER.jsonl.gz",
+      "role": "inherited_unique_T2_fill_ledger",
+      "sha256": "fa1f695653ca1b9fcb108a2fbcb62325d5d8ea1ea145f2caf409fb179d7612b6"
+    }
+  ],
+  "holdout_opened": false,
+  "implementation_parent": "b73679edc9186eb72236cd1bee5f886ac141cac4",
+  "live_or_production_access": false,
+  "private_cache_verification": {
+    "all_files_verified": true,
+    "event_file_count": 804,
+    "hash_set_path": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_CACHE_V3_HASH_SET.json",
+    "hash_set_sha256": "da7e1dc63b72d81d8b497663fd0857cca2cd4340d46f72867cf7281ef447cc69",
+    "total_bytes": 197461623
+  },
+  "private_runtime_inputs": [
+    {
+      "bytes": 336694,
+      "date_range": [
+        "2026-07-12",
+        "2026-07-20"
+      ],
+      "events": 804,
+      "holdout_dates_present": 0,
+      "path": "../OMI-Window1-private/joined/events.jsonl",
+      "role": "immutable_event_ledger",
+      "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46",
+      "tickers": 1608
+    },
+    {
+      "bytes": 197461623,
+      "date_range": [
+        "2026-07-12",
+        "2026-07-20"
+      ],
+      "events": 804,
+      "holdout_dates_present": 0,
+      "path": "../OMI-Window1-private/fit-local/guarded-cache-v3",
+      "per_file_hash_set": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/GUARDED_CACHE_V3_HASH_SET.json",
+      "role": "guarded_cache_v3_directory",
+      "sha256": "aad8d055e90bb429f7da87b450dc9c4e2dc6a6ef114e40368535b8953b86425e",
+      "tickers": 1608
+    }
+  ],
+  "schema_version": "window1-t2-scoring-package-builder-v3-source-hash-manifest-v1",
+  "scorer_invocations": 0
+}

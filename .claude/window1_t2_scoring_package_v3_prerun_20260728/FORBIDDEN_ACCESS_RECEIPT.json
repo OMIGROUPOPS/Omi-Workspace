@@ -1,0 +1,17 @@
+{
+  "C": null,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "exit_settlement_DCA_or_Window2_access": false,
+  "holdout_dates_opened": [],
+  "live_or_production_access": false,
+  "network_or_trading_access": false,
+  "order_or_position_access": false,
+  "performance": null,
+  "results_directory_created": false,
+  "schema_version": "window1-t2-scoring-package-builder-v3-forbidden-access-v1",
+  "scorer_imported_by_builder": false,
+  "scorer_invocations": 0,
+  "tuning_ranking_selection_or_authorization": false
+}

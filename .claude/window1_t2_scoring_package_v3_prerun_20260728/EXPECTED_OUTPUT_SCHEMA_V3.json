@@ -1,0 +1,41 @@
+{
+  "D_per_candidate": 804,
+  "candidate_count": 8,
+  "candidate_ids": [
+    "w1_t2__macro_hold__fixed_admission_parent_control",
+    "w1_t2__macro_hold__non_displacing_target_completeness",
+    "w1_t2__macro_hold__target_completeness_evidence_decay",
+    "w1_t2__macro_hold__full_causal_divot_stack",
+    "w1_t2__macro_micro__fixed_admission_parent_control",
+    "w1_t2__macro_micro__non_displacing_target_completeness",
+    "w1_t2__macro_micro__target_completeness_evidence_decay",
+    "w1_t2__macro_micro__full_causal_divot_stack"
+  ],
+  "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v3",
+  "output_files_after_future_authorized_execution": [
+    "EXECUTION_START_RECEIPT.json",
+    "T2_EVENT_RESULTS.jsonl.gz",
+    "T2_CANDIDATE_SUMMARY.json",
+    "OUTPUT_HASH_MANIFEST.json",
+    "PROGRESS.log",
+    "FORBIDDEN_ACCESS_RECEIPT.json"
+  ],
+  "performance_outputs": {
+    "C": null,
+    "IC": null,
+    "PC": null,
+    "S": null,
+    "frontier": null,
+    "performance": null,
+    "ranking": null,
+    "regret": null,
+    "selection": null
+  },
+  "reference_input": {
+    "normalized_boundary_passed_to_raw_adapter": false,
+    "role": "frozen_reference_ledger",
+    "runtime_raw_v5_derivation": false,
+    "schema": "window1-close-reference-ledger-v3"
+  },
+  "schema_version": "window1-t2-scoring-output-schema-v3"
+}

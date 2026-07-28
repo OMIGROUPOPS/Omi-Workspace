@@ -1,0 +1,57 @@
+{
+  "authorization": {
+    "consumed_v2_authorization": "e4e57baca0c2172244e63f45b2086f2ef4df53e9",
+    "consumed_v2_authorization_rejected": true,
+    "future_independent_audit_required": true,
+    "future_separate_authorization_required": true
+  },
+  "boundary_law": {
+    "normalized_boundary_role": "derived_cutoff_contract",
+    "raw_reference_derivation_role": "full_raw_V5_guard_row",
+    "runtime_reference_role": "strictly_validated_frozen_reference_ledger",
+    "runtime_raw_reference_derivation": false
+  },
+  "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v3",
+  "execution_readiness": {
+    "load_real_development_population": true,
+    "maximum_stage": "immediately_before_first_scorer_call",
+    "performance_fields": null,
+    "results_directory_creation": false,
+    "scorer_invocations": 0
+  },
+  "immutables": {
+    "D": 804,
+    "candidate_count": 8,
+    "event_leg_count": 1608,
+    "fit_D": 525,
+    "holdout_dates": [
+      "2026-07-24",
+      "2026-07-25",
+      "2026-07-26"
+    ],
+    "post_fit_D": 279
+  },
+  "metrics": {
+    "C": null,
+    "IC": null,
+    "PC": null,
+    "S": null,
+    "frontier": null,
+    "performance": null,
+    "ranking": null,
+    "regret": null,
+    "selection": null
+  },
+  "reference_law": {
+    "adapter": "window1_range_attack_reference_adapter_v2",
+    "carried_last_trade_substitution": false,
+    "latest_timestamp_differing_prices": "ambiguous_latest_timestamp_multiple_prices_no_authoritative_sequence",
+    "latest_timestamp_same_price": "available_with_all_supporting_receipts",
+    "midpoint_construction": false,
+    "receipt_id_price_tiebreak": false,
+    "schedule_reference_substitution": false
+  },
+  "results_directory": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v3",
+  "schema_version": "window1-t2-scoring-execution-readiness-contract-v3",
+  "score_free": true
+}

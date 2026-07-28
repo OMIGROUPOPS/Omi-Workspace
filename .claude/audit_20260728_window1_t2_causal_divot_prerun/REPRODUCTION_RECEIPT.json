@@ -1,0 +1,148 @@
+{
+  "chronology": {
+    "action_after_recognition_and_first_fill_violations": 0,
+    "duplicate_receipt_recurrences": 0,
+    "fill_after_action_violations": 0,
+    "pre_first_fill_t2_actions": 0,
+    "recurrence_after_recognition_violations": 0,
+    "same_receipt_action_fill": 0
+  },
+  "containment": {
+    "additions": 89,
+    "deletions": 0,
+    "files": 89,
+    "modifications": 0
+  },
+  "date_utc": "2026-07-28",
+  "determinism": {
+    "build_A_vs_committed": "83/83 byte-identical",
+    "build_B_vs_committed": "83/83 byte-identical",
+    "clean_builds": 2,
+    "freeze_inventory_sha256": "cb2be2d9811ba4a5b8075f607b872771049275974917886616d1d7cadfa3904b",
+    "freeze_of_my_builds_vs_committed": "85/85 byte-identical"
+  },
+  "divot_actions": {
+    "by_candidate": {
+      "w1_t2__macro_hold__full_causal_divot_stack": 69,
+      "w1_t2__macro_micro__full_causal_divot_stack": 71
+    },
+    "selected_d2_signs": {
+      "NEGATIVE_D2": 140
+    },
+    "total": 140
+  },
+  "independent_ledger_recount": {
+    "D_per_candidate": {
+      "w1_t2__macro_hold__fixed_admission_parent_control": 804,
+      "w1_t2__macro_hold__full_causal_divot_stack": 804,
+      "w1_t2__macro_hold__non_displacing_target_completeness": 804,
+      "w1_t2__macro_hold__target_completeness_evidence_decay": 804,
+      "w1_t2__macro_micro__fixed_admission_parent_control": 804,
+      "w1_t2__macro_micro__full_causal_divot_stack": 804,
+      "w1_t2__macro_micro__non_displacing_target_completeness": 804,
+      "w1_t2__macro_micro__target_completeness_evidence_decay": 804
+    },
+    "all_metrics_null": true,
+    "chronology_violations": 0,
+    "combined_zero_or_positive_admitted": 0,
+    "decisions": {
+      "HOLD": 1162210,
+      "NO_CALL": 3401933,
+      "PARK": 6963,
+      "PLACE": 5414,
+      "REPRICE": 274
+    },
+    "divot_chronology": {
+      "LATER_ACTION": 140,
+      "LATER_RECURRENCE": 176435,
+      "RECOGNITION": 166644,
+      "STILL_LATER_INDEPENDENT_FILL_EVIDENCE": 81
+    },
+    "event_dates_x8": {
+      "2026-07-12": 1248,
+      "2026-07-13": 912,
+      "2026-07-14": 792,
+      "2026-07-15": 512,
+      "2026-07-16": 336,
+      "2026-07-17": 400,
+      "2026-07-18": 496,
+      "2026-07-19": 968,
+      "2026-07-20": 768
+    },
+    "evidence_decay_PARK": 6963,
+    "evidence_decay_replacements": 274,
+    "first_fill_budget_rows": 4176,
+    "first_leg_semantic_mismatches": 0,
+    "lawful_positive_d2_target_count": 38061,
+    "lawful_sibling_X_count": 2996560,
+    "lawful_target_law_violations": {},
+    "overlay_null_ok": true,
+    "overlay_rows": 6432,
+    "parent_exposure_HOLD_receipts": 10763,
+    "positive_d2_targets_exposed": 54,
+    "preserved_exposure_count": 1172973,
+    "support_decay_rows": 1180210,
+    "target_surface_rows": 4576794
+  },
+  "inputs": {
+    "artifact_manifest_rows": 84,
+    "bad": 0,
+    "committed_sources_verified": 8,
+    "event_dates": {
+      "2026-07-12": 156,
+      "2026-07-13": 114,
+      "2026-07-14": 99,
+      "2026-07-15": 64,
+      "2026-07-16": 42,
+      "2026-07-17": 50,
+      "2026-07-18": 62,
+      "2026-07-19": 121,
+      "2026-07-20": 96
+    },
+    "holdout_dates_excluded": [
+      "2026-07-24",
+      "2026-07-25",
+      "2026-07-26"
+    ],
+    "missing": 0,
+    "private_inputs_verified": 805
+  },
+  "mechanism_manifest": {
+    "ABSENT": 4,
+    "BOUND": 12,
+    "PROXIED": 10,
+    "RETRACTED": 8,
+    "verified": "each classification independently verified; see AUDIT_REPORT"
+  },
+  "named_causes": {
+    "parks_by_condition": {
+      "COMBINED_BUDGET_OR_MAKER_LAW_INVALIDATED": 6963
+    },
+    "parks_unnamed": 0,
+    "replacements_by_authority": {
+      "CAUSAL_PAIR_HEADROOM": 146,
+      "LIVEAIM_SOURCE_MAPPING": 128
+    },
+    "replacements_unnamed": 0
+  },
+  "positive_d2_exposures": {
+    "by_decision": {
+      "PLACE": 24,
+      "REPRICE": 30
+    },
+    "source": {
+      "NATIVE_MACRO_TARGET": 54
+    },
+    "total": 54
+  },
+  "ruling": "PASS - score-free, claims fenced; next = frozen T2 scoring package encoding the frontier reporting law",
+  "schema": "window1-t2-causal-divot-independent-audit-reproduction-v1",
+  "tests": {
+    "focused_pytest": "22/22 PASS"
+  },
+  "under_audit": {
+    "branch": "codex/window1-definition",
+    "package_commit": "87ac9382c23b586f536cf457883c507ebf366ba3",
+    "parent": "d710ba0606084f67625e255e87ebad1cd016bf6a"
+  }
+}

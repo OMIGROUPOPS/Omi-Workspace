@@ -21,8 +21,6 @@ live_v3.py @366d8aa -- DO NOT modify those paths.
 import asyncio
 import aiohttp
 import base64
-import hashlib
-import functools
 import json
 import math
 import os
@@ -33,7 +31,6 @@ import traceback
 import uuid
 from collections import defaultdict, deque
 from dataclasses import dataclass, field
-from decimal import Decimal, InvalidOperation
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Dict, Set, List, Optional
@@ -46,18 +43,6 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 
 from fv import get_consensus_fv, check_fv_stability
-
-
-def _serialize_reconcile_exit_intent(fn):
-    """Bracket reconcile without replacing its inspectable implementation."""
-    @functools.wraps(fn)
-    async def wrapped(self, *args, **kwargs):
-        LiveV3._begin_reconcile_exit_intent_cycle(self)
-        try:
-            return await fn(self, *args, **kwargs)
-        finally:
-            LiveV3._end_reconcile_exit_intent_cycle(self)
-    return wrapped
 
 try:
     from intelligence import recommended_window_seconds, kalshi_price_anchor
@@ -217,22 +202,6 @@ def cross_bounds_ok(sib_fill, ask):
 # match stays price-flat so price-move is blind, proven on TIAARN's 50-51c book).
 LIVE_DETECT_WINDOW_SEC = 60       # rolling window for the trade-burst signal
 LIVE_TRADE_BURST = 10             # >= this many trade prints in the window across both legs => match is live (tunable; pre-match tennis books trade far below this)
-
-# [P0 REAL-START v4] Fresh-boot historical-tape barrier. These are mechanical
-# source/retention bounds, not new trading thresholds:
-#   * 1800s is the existing tape-flow gun / REST-flow retention law;
-#   * 100 rows is the existing _flow_rest_refresh request size;
-#   * 10 pages is the existing bounded Kalshi discovery pagination ceiling;
-#   * MAX_RPS is the already-frozen exchange request budget.
-P0_BOOT_TAPE_WINDOW_SEC = 1800
-P0_BOOT_TAPE_PAGE_LIMIT = 100
-P0_BOOT_TAPE_MAX_PAGES = 10
-P0_BOOT_TAPE_MAX_CONCURRENCY = MAX_RPS
-P0_BOOT_TAPE_PENDING = "BOOT_TAPE_PENDING"
-P0_BOOT_TAPE_EVALUATING = "BOOT_TAPE_EVALUATING"
-P0_BOOT_TAPE_INSUFFICIENT = "BOOT_TAPE_INSUFFICIENT"
-P0_BOOT_TAPE_REAL_START = "REAL_START"
-P0_BOOT_TAPE_NO_CALL = "BOOT_TAPE_NO_CALL"
 LIVE_TRADE_RETENTION_SEC = 600    # prune per-ticker trade-time deques older than this
 # [C-MONOTONIC-CUT] DECOUPLED gun predicate for the in-match downside-CUT window ONLY. These four
 # constants are DELIBERATELY SEPARATE from LIVE_TRADE_BURST / sustained_flow_K (the cancel-latch gun).
@@ -1925,25 +1894,6 @@ class LiveV3:
         # trade timestamps + latched live-event set.
         self._trade_times: Dict[str, deque] = defaultdict(deque)
         self._events_live: Set[str] = set()
-        # [P0 REAL-START v4] Every discovered event is fail-closed until its
-        # bounded, receipt-identified REST trade history has been evaluated.
-        # This state never gates exits/reconcile/settlement; it is consulted
-        # only by entry routing and the single buy POST chokepoint.
-        self._boot_tape_state: Dict[str, dict] = {}
-        self._boot_tape_ticker_state: Dict[str, dict] = {}
-        self._boot_tape_tasks: Dict[str, asyncio.Task] = {}
-        self._boot_tape_hydration_enabled = False
-        self._boot_tape_semaphore = None
-        self._boot_tape_boot_started_ts = time.time()
-        self._boot_tape_stats = {
-            "events_evaluated": 0, "tape_rows_read": 0,
-            "admitted": 0, "deduplicated": 0, "rejected": 0,
-            "duration_ms": 0.0,
-        }
-        # [P0 REAL-START FIX 07-22] events where STRONG live in-play evidence
-        # conflicts with a schedule claiming the start is still in the future
-        # (the schedule is a liar). New entry buys fail closed on these.
-        self._start_conflict: Set[str] = set()
         # [P0v3 (1) BELL-BEFORE-SCHED, 07-17] pre-sched voided bell fires held
         # pending until the schedule floor passes (re-fired sched_clamped), +
         # once-per-(event,source) void-log dedup. BURMER the founding exhibit:
@@ -5401,234 +5351,6 @@ class LiveV3:
                 worst_tk = tk
         return (worst > bar, worst, worst_tk)
 
-    # [CASUKA LIVE-SAFETY 2026-07-27] Exit intent is serialized per ticker
-    # inside a reconcile cycle.  The exchange remains authoritative; this
-    # ledger closes the one-second visibility gap in which a successful heal
-    # had posted a replacement exit but a later organ still held the cycle's
-    # pre-heal order snapshot.
-    def _begin_reconcile_exit_intent_cycle(self):
-        seq = int(getattr(self, "_reconcile_exit_intent_seq", 0)) + 1
-        self._reconcile_exit_intent_seq = seq
-        self._reconcile_exit_intent_active = True
-        self._reconcile_exit_intent = {"cycle_id": seq, "tickers": {}}
-
-    def _end_reconcile_exit_intent_cycle(self):
-        self._reconcile_exit_intent_active = False
-
-    def _exit_intent_state(self, ticker):
-        if not getattr(self, "_reconcile_exit_intent_active", False):
-            return None
-        ledger = getattr(self, "_reconcile_exit_intent", None)
-        if not ledger:
-            return None
-        return ledger["tickers"].setdefault(ticker, {
-            "resting_sell_floor": 0.0, "changes": []})
-
-    def _record_exit_intent_change(self, ticker, action, **details):
-        state = LiveV3._exit_intent_state(self, ticker)
-        if state is None:
-            return
-        state["changes"].append({"action": action, **details})
-
-    def _record_exit_intent_reset(self, ticker, reason):
-        state = LiveV3._exit_intent_state(self, ticker)
-        if state is None:
-            return
-        state["resting_sell_floor"] = 0.0
-        state["changes"].append({"action": "reset", "reason": reason})
-
-    def _record_exit_intent_post(self, ticker, count,
-                                 authoritative_resting_qty):
-        state = LiveV3._exit_intent_state(self, ticker)
-        if state is None:
-            return
-        before = max(float(state.get("resting_sell_floor", 0.0)),
-                     float(authoritative_resting_qty))
-        state["resting_sell_floor"] = before + float(count)
-        state["changes"].append({
-            "action": "post", "count": float(count),
-            "authoritative_resting_before": float(
-                authoritative_resting_qty),
-            "resting_sell_floor_after": state["resting_sell_floor"]})
-
-    async def _authoritative_sell_snapshot(self, ticker):
-        """Read position and resting sells together for the sell chokepoint.
-
-        None means exchange truth was unavailable and the caller must refuse.
-        Quantity remains floating-point because Kalshi can report fractional
-        residues; integer sell proposals may never round those residues up.
-        """
-        try:
-            positions = []
-            cursor = None
-            seen = set()
-            while True:
-                path = (
-                    "/trade-api/v2/portfolio/positions?ticker=%s"
-                    "&count_filter=position&settlement_status=unsettled"
-                    % ticker)
-                if cursor:
-                    path += "&cursor=%s" % cursor
-                pdata = await api_get(
-                    self.session, self.ak, self.pk, path, self.rl)
-                if pdata is None or not isinstance(
-                        pdata.get("market_positions"), list):
-                    self._log("sell_guard_api_fail", {
-                        "positions_ok": False, "orders_ok": None,
-                        "reason": "positions_collection_unavailable"},
-                        ticker=ticker)
-                    return None
-                rows = pdata["market_positions"]
-                positions.extend(rows)
-                nxt = pdata.get("cursor")
-                if not nxt or not rows:
-                    break
-                if nxt in seen:
-                    self._log("sell_guard_api_fail", {
-                        "positions_ok": False, "orders_ok": None,
-                        "reason": "positions_repeated_cursor"},
-                        ticker=ticker)
-                    return None
-                seen.add(nxt)
-                cursor = nxt
-
-            orders = []
-            cursor = None
-            seen = set()
-            while True:
-                path = (
-                    "/trade-api/v2/portfolio/orders?ticker=%s"
-                    "&status=resting" % ticker)
-                if cursor:
-                    path += "&cursor=%s" % cursor
-                odata = await api_get(
-                    self.session, self.ak, self.pk, path, self.rl)
-                if odata is None or not isinstance(
-                        odata.get("orders"), list):
-                    self._log("sell_guard_api_fail", {
-                        "positions_ok": True, "orders_ok": False,
-                        "reason": "orders_collection_unavailable"},
-                        ticker=ticker)
-                    return None
-                rows = odata["orders"]
-                orders.extend(rows)
-                nxt = odata.get("cursor")
-                if not nxt or not rows:
-                    break
-                if nxt in seen:
-                    self._log("sell_guard_api_fail", {
-                        "positions_ok": True, "orders_ok": False,
-                        "reason": "orders_repeated_cursor"},
-                        ticker=ticker)
-                    return None
-                seen.add(nxt)
-                cursor = nxt
-        except Exception as exc:
-            self._log("sell_guard_api_fail", {
-                "error": str(exc)[:160], "positions_ok": False,
-                "orders_ok": False}, ticker=ticker)
-            return None
-        held = sum(float(p.get("position_fp") or 0)
-                   for p in positions)
-        sell_orders = []
-        resting = 0.0
-        for order in orders:
-            if order.get("action") != "sell":
-                continue
-            qty = float(order.get(
-                "remaining_count_fp",
-                order.get("remaining_count",
-                          order.get("initial_count_fp", 0))) or 0)
-            if qty <= 0:
-                continue
-            resting += qty
-            sell_orders.append(order)
-        state = LiveV3._exit_intent_state(self, ticker)
-        cycle_floor = (float(state.get("resting_sell_floor", 0.0))
-                       if state is not None else 0.0)
-        effective_resting = max(resting, cycle_floor)
-        return {
-            "position_qty": held,
-            "authoritative_resting_sell_qty": resting,
-            "cycle_resting_sell_floor": cycle_floor,
-            "effective_resting_sell_qty": effective_resting,
-            "available_sell_qty": max(0.0, held - effective_resting),
-            "sell_orders": sell_orders,
-        }
-
-    def _alert_sell_guard_refusal(self, ticker, details):
-        """Best-effort operator alert; the refusal itself never depends on it."""
-        self._log("sell_exchange_truth_refused", details, ticker=ticker)
-        script = self.config.get("notify_script", "/root/notify.sh")
-        try:
-            import subprocess as _sp
-            if Path(script).exists():
-                _sp.Popen(
-                    [script, "warn", "SELL SAFETY REFUSAL",
-                     "%s proposed=%s available=%s held=%s resting=%s"
-                     % (ticker, details.get("attempted_count"),
-                        details.get("available_sell_qty"),
-                        details.get("exchange_position_qty"),
-                        details.get("effective_resting_sell_qty"))],
-                    stdout=_sp.DEVNULL, stderr=_sp.DEVNULL)
-        except Exception:
-            pass
-
-    async def _reconcile_exit_topup_from_truth(self, ticker, fallback_price):
-        """Top up only from a post-heal authoritative snapshot.
-
-        This is deliberately separate from reconcile's initial pos_map/ord_map.
-        The sell chokepoint re-reads once more immediately before submission.
-        """
-        snap = await LiveV3._authoritative_sell_snapshot(self, ticker)
-        if snap is None:
-            self._log("reconcile_exit_topup_deferred", {
-                "reason": "authoritative_snapshot_unavailable"},
-                ticker=ticker)
-            return ""
-        gap = snap["available_sell_qty"]
-        if gap <= 0:
-            self._log("reconcile_exit_topup_noop", {
-                "position_qty": snap["position_qty"],
-                "authoritative_resting_sell_qty":
-                    snap["authoritative_resting_sell_qty"],
-                "cycle_resting_sell_floor":
-                    snap["cycle_resting_sell_floor"],
-                "effective_resting_sell_qty":
-                    snap["effective_resting_sell_qty"],
-                "reason": "already_fully_covered"}, ticker=ticker)
-            return ""
-        # Orders are integer contracts.  A fractional residue cannot authorize
-        # rounding up into a short position.
-        qty = int(gap)
-        if qty <= 0:
-            self._log("reconcile_exit_topup_noop", {
-                "position_qty": snap["position_qty"],
-                "effective_resting_sell_qty":
-                    snap["effective_resting_sell_qty"],
-                "available_sell_qty": gap,
-                "reason": "fractional_residue_not_sellable"}, ticker=ticker)
-            return ""
-        price = fallback_price
-        if snap["sell_orders"]:
-            raw = snap["sell_orders"][0].get(
-                "yes_price_dollars",
-                snap["sell_orders"][0].get("yes_price", fallback_price))
-            price = (round(float(raw) * 100)
-                     if float(raw) < 2 else int(float(raw)))
-        oid, _ = await self.place_order(
-            ticker, "sell", "yes", int(price), qty)
-        self._log("reconcile_exit_topup", {
-            "exit_price": int(price), "qty": qty,
-            "position_qty": snap["position_qty"],
-            "resting_sell_qty":
-                snap["authoritative_resting_sell_qty"],
-            "cycle_resting_sell_floor":
-                snap["cycle_resting_sell_floor"],
-            "order_id": oid, "source": "post_intent_authoritative_reread"},
-            ticker=ticker)
-        return oid
-
     async def place_order(self, ticker, action, side, price, count, post_only=True):
         """[C-INFLIGHT-LOCK 2026-07-09, BOARD -1] THE in-flight dedup lock at the
         single placement chokepoint (GORSTE class: two identical buys 103 ms
@@ -5715,31 +5437,6 @@ class LiveV3:
                         "price": price, "count": count,
                         "tts_hours": round(_hzt / 3600.0, 2)}, ticker=ticker)
                 return "", {"_error": "conception_horizon"}
-        # [P0 REAL-START ENTRY GUARD 07-22] no NEW ENTRY BUY unless the match is
-        # CONFIRMED pre-start. The chokepoint stop for the MICMAY post-start-fill
-        # P0 (a wrong 22:00 schedule let a resting maker entry fill ~36 min into
-        # the match). EVERY entry buy is gated -- maker AND taker (post_only=False
-        # deadline force-takes) AND completion crosses: the bot only BUYS to
-        # ENTER, and per the 07-22 operator ruling a completion bid remains an
-        # entry that fails closed post-start pending a separate ruling. NO
-        # generic taker / completion bypass. Independent of the (possibly wrong)
-        # schedule clock and of fused_gun. Exits are SELLS -> untouched.
-        if action == "buy":
-            _pet = ticker.rsplit("-", 1)[0]
-            _refuse, _why = LiveV3._p0v4_entry_authority_gate(
-                self, _pet)
-            if _refuse:
-                _rs = self.__dict__.setdefault("_post_start_refused_logged", set())
-                if ticker not in _rs:
-                    _rs.add(ticker)
-                    self._log("post_start_entry_refused", {
-                        "price": price, "count": count, "reason": _why,
-                        "post_only": post_only,
-                        "law": "P0-FIX 07-22: entry buys ONLY when confirmed "
-                               "PRE-start; live evidence / unknown / conflicting "
-                               "/ past start fails closed (maker+taker+completion)"},
-                        ticker=ticker)
-                return "", {"_error": "post_start_entry_refused"}
         # [C-FUSED-GUN 2026-07-08] NO new buy placement after ANY gun source
         # fires -- grace governs exits only (standing doctrine). ALL buys, maker
         # AND deliberate taker: a fired gun means the match is live; there is no
@@ -6124,62 +5821,6 @@ class LiveV3:
                                    "self-destruct"}, ticker=ticker)
             except Exception:
                 pass
-        # [P0 REAL-START v4] The early decision gate is not authority to POST:
-        # hydration/gun state may change across the exchange-truth awaits above.
-        # Revalidate at the final instruction before every entry submission.
-        if action == "buy":
-            _pet4 = ticker.rsplit("-", 1)[0]
-            _refuse4, _why4 = LiveV3._p0v4_entry_authority_gate(
-                self, _pet4)
-            if _refuse4:
-                self._log("boot_tape_pre_post_refused", {
-                    "price": price, "count": count, "reason": _why4,
-                    "post_only": post_only,
-                    "law": "P0 v4: stale pre-evaluation intent cannot POST "
-                           "without current boot-tape authority",
-                }, ticker=ticker)
-                return "", {"_error": "p0v4_pre_post_refused",
-                            "_reason": _why4}
-        # [CASUKA LIVE-SAFETY D2 2026-07-27] SELL-SIDE EXCHANGE-TRUTH CLAMP.
-        # This is intentionally the final operation before submission.  Every
-        # exit organ reaches this chokepoint, and no local position/order
-        # snapshot can authorize a sell.  Attempted excess is refused in full
-        # (never silently rounded or partially transformed).
-        _sell_guard_snapshot = None
-        if action == "sell":
-            _sell_guard_snapshot = await LiveV3._authoritative_sell_snapshot(
-                self, ticker)
-            if _sell_guard_snapshot is None:
-                return "", {"_error": "sell_guard_api_fail"}
-            _available = _sell_guard_snapshot["available_sell_qty"]
-            try:
-                _attempted = float(count)
-            except (TypeError, ValueError):
-                _attempted = -1.0
-            if (_attempted <= 0 or _attempted > _available + 1e-9):
-                _details = {
-                    "attempted_count": count,
-                    "exchange_position_qty":
-                        _sell_guard_snapshot["position_qty"],
-                    "authoritative_resting_sell_qty":
-                        _sell_guard_snapshot[
-                            "authoritative_resting_sell_qty"],
-                    "cycle_resting_sell_floor":
-                        _sell_guard_snapshot["cycle_resting_sell_floor"],
-                    "effective_resting_sell_qty":
-                        _sell_guard_snapshot[
-                            "effective_resting_sell_qty"],
-                    "available_sell_qty": _available,
-                    "reason": ("nonpositive_sell_quantity"
-                               if _attempted <= 0
-                               else "attempted_sell_exceeds_exchange_capacity"),
-                    "law": "new_sell <= max(0, exchange_position "
-                           "- authoritative_resting_sells)",
-                }
-                LiveV3._alert_sell_guard_refusal(
-                    self, ticker, _details)
-                return "", {"_error": "sell_exchange_truth_refused",
-                            **_details}
         resp = await api_post(self.session, self.ak, self.pk, path, payload, self.rl)
         if resp and not resp.get("_error"):
             oid, _v2_status, _v2_fill, _v2_avg = parse_order_response_v2(resp)   # [C-ORDER-V2] flat
@@ -6196,11 +5837,6 @@ class LiveV3:
                                               and _auth13) else {}),
             }, ticker=ticker)
             self._wall_observe(ticker, action, price, count)   # [WALL-OBS] observe-only
-            if action == "sell" and _sell_guard_snapshot is not None:
-                LiveV3._record_exit_intent_post(
-                    self, ticker, count,
-                    _sell_guard_snapshot[
-                        "authoritative_resting_sell_qty"])
             return oid, resp
         else:
             self._log("order_error", {
@@ -6222,9 +5858,6 @@ class LiveV3:
         self._log("order_cancelled", {
             "order_id": order_id, "label": label, "success": ok,
         }, ticker=ticker)
-        if ok and getattr(self, "_reconcile_exit_intent_active", False):
-            LiveV3._record_exit_intent_change(
-                self, ticker, "cancel", order_id=order_id, label=label)
         return ok
 
     # ------------------------------------------------------------------
@@ -6576,7 +6209,6 @@ class LiveV3:
                     et = m["event_ticker"]
                     self.ticker_to_event[ticker] = et
                     self.event_tickers[et].add(ticker)
-                    self._p0v4_register_entry_market(et, ticker, now)
                     # [C-EARLY-UNLOCK] realized LIFETIME volume, exchange truth
                     _ev_lifetime_vol[et] += vol
                     # Capture open_time (for unmatched-skip age check)
@@ -6589,13 +6221,8 @@ class LiveV3:
                             except Exception:
                                 pass
                     # [C-KALSHI-OCC] capture Kalshi occurrence_datetime (coarse start fallback source)
-                    # [P0 REAL-START FIX 07-22] expected_expiration_time is the match's
-                    # EXPECTED END, never its start. Using it as the start put MICMAY's
-                    # start ~3h late (22:00 END read as start; match began ~19:00), so a
-                    # post-start entry filled in W1 belief. occurrence_datetime ONLY; if it
-                    # is absent the start stays UNKNOWN and the entry pipeline fails closed.
                     if et not in self.event_kalshi_occ:
-                        occ_str = m.get("occurrence_datetime", "")
+                        occ_str = m.get("occurrence_datetime", "") or m.get("expected_expiration_time", "")
                         if occ_str:
                             try:
                                 self.event_kalshi_occ[et] = datetime.fromisoformat(
@@ -6700,8 +6327,6 @@ class LiveV3:
                     self._log("floor_retreat_error",
                               {"err": str(_fre6)[:160]})
         await self._seed_tape_memory()   # [C-TAPE-SEED] amnesia dies at every discovery pass
-        if self._boot_tape_hydration_enabled:
-            self._p0v4_schedule_pending_hydration()
         self._log("discovery", {"total_tickers": len(all_tickers), "by_category": dict(counts)})
         return all_tickers
 
@@ -7951,485 +7576,6 @@ class LiveV3:
     # ------------------------------------------------------------------
     # [C-FUSED-GUN 2026-07-08] the fused gun: first credible signal wins
     # ------------------------------------------------------------------
-    def _strong_live_evidence(self, source, detail):
-        """[P0 REAL-START FIX 07-22] True iff evidence proves the match is
-        IN-PLAY and may override a schedule claiming a LATER start.
-        (a) PROOF-GRADE lifecycle/scoreboard sources are AUTHORITATIVE — an
-            independent live/scoreboard truth outranks a schedule clock and
-            overrides regardless of numeric fields:
-              · te_scoreboard  — the TE scoreboard shows the match in-play;
-              · schedule_live  — the schedule feed's own status == live;
-              · milestone_official with ms_status in {live, P}.
-            Ambiguous milestone statuses are NOT proof-grade (fail closed).
-        (b) else numeric TAPE evidence: a large realized directional move
-            (>=20c) or sustained prints (>=1.5x the fire threshold). Pre-match
-            warm-up quoting produces neither. Unreadable => NOT strong."""
-        d = detail or {}
-        if source in ("te_scoreboard", "schedule_live"):
-            return True
-        if (source == "milestone_official"
-                and str(d.get("ms_status") or "").lower() in ("live", "p")):
-            return True
-        try:
-            if abs(float(d.get("ref_rise_cents") or 0)) >= 20:
-                return True
-        except (TypeError, ValueError):
-            pass
-        try:
-            prints = float(d.get("prints_30m") or d.get("prints_10m")
-                           or d.get("trades_in_window") or 0)
-            thr = float(d.get("threshold") or 0)
-            if thr > 0 and prints >= thr * 1.5:
-                return True
-        except (TypeError, ValueError):
-            pass
-        return False
-
-    # ------------------------------------------------------------------
-    # [P0 REAL-START v4 2026-07-28] fresh-boot historical-tape barrier
-    # ------------------------------------------------------------------
-    def _p0v4_register_entry_market(self, et, ticker, now=None):
-        """Register a discovered market as fail-closed until tape evaluation.
-
-        Discovery is the first point at which the production engine knows the
-        complete event/ticker identity. No order path is reachable before this
-        registration on a real LiveV3 instance. A previously fired, persistent
-        gun is monotonic REAL_START and is never demoted.
-        """
-        now = time.time() if now is None else float(now)
-        state = self._boot_tape_state.get(et)
-        if et in self._gun_state or et in self._events_live:
-            self._p0v4_mark_real_start(
-                et, "persistent_gun_lineage",
-                {"registered_ticker": ticker, "evaluation_ts": now})
-        elif state is None:
-            self._boot_tape_state[et] = {
-                "state": P0_BOOT_TAPE_PENDING,
-                "updated_ts": now,
-                "reason": "discovered_entry_market_requires_boot_tape",
-            }
-        self._boot_tape_ticker_state.setdefault(ticker, {
-            "event": et, "state": self._boot_tape_state[et]["state"],
-            "updated_ts": now,
-        })
-
-    def _p0v4_transition(self, et, state, reason, receipt=None):
-        """Monotonic state transition; REAL_START can never be cleared."""
-        now = time.time()
-        old = self._boot_tape_state.get(et) or {}
-        if old.get("state") == P0_BOOT_TAPE_REAL_START and \
-                state != P0_BOOT_TAPE_REAL_START:
-            return old
-        row = {
-            "state": state, "updated_ts": now, "reason": reason,
-            "receipt": dict(receipt or {}),
-        }
-        self._boot_tape_state[et] = row
-        for tk in self.event_tickers.get(et, ()):
-            self._boot_tape_ticker_state[tk] = {
-                "event": et, "state": state, "updated_ts": now,
-                "reason": reason,
-            }
-        return row
-
-    def _p0v4_mark_real_start(self, et, source, receipt=None):
-        """One idempotent REAL_START state shared by gun and boot hydration."""
-        old = self._boot_tape_state.get(et) or {}
-        if old.get("state") == P0_BOOT_TAPE_REAL_START:
-            return False
-        self._p0v4_transition(
-            et, P0_BOOT_TAPE_REAL_START, source, receipt)
-        self._log("boot_tape_real_start", {
-            "event": et, "source": source,
-            "law": "P0 v4: REAL_START is monotonic; entry buys blocked, "
-                   "entry sweeps preserved, exits unaffected",
-            **(receipt or {}),
-        })
-        return True
-
-    def _p0v4_entry_authority_gate(self, et):
-        """Shared entry authority gate. Sells/exits never call this method."""
-        # Backward-compatible only for isolated legacy unit doubles that do not
-        # run LiveV3.__init__. Every production LiveV3 has _boot_tape_state.
-        if not hasattr(self, "_boot_tape_state"):
-            return self._entry_start_gate(et)
-        row = self._boot_tape_state.get(et)
-        if row is None:
-            # A ticker that somehow reaches an entry path without discovery is
-            # not trusted. Registration/scheduling happens asynchronously on
-            # the next discovery pass; this attempt fails closed.
-            self._boot_tape_state[et] = {
-                "state": P0_BOOT_TAPE_PENDING,
-                "updated_ts": time.time(),
-                "reason": "entry_path_preceded_boot_tape_registration",
-            }
-            return True, "boot_tape_not_ready"
-        state = row.get("state")
-        if state in (P0_BOOT_TAPE_PENDING, P0_BOOT_TAPE_EVALUATING):
-            return True, "boot_tape_not_ready"
-        if state == P0_BOOT_TAPE_REAL_START:
-            return True, "real_start_tape_override"
-        if state == P0_BOOT_TAPE_NO_CALL:
-            return True, "boot_tape_no_call"
-        if state != P0_BOOT_TAPE_INSUFFICIENT:
-            return True, "boot_tape_state_invalid"
-        # A complete insufficient evaluation changes no settled P0/schedule
-        # semantics. The existing v1-v3 gate remains the sole next decision.
-        return self._entry_start_gate(et)
-
-    @staticmethod
-    def _p0v4_trade_price_cents(row):
-        """Strictly parse a public trade's YES price as integer cents."""
-        if row.get("yes_price_dollars") is not None:
-            try:
-                cents = Decimal(str(row["yes_price_dollars"])) * Decimal(100)
-            except (InvalidOperation, ValueError):
-                raise ValueError("invalid_yes_price_dollars")
-        elif row.get("yes_price") is not None:
-            try:
-                cents = Decimal(str(row["yes_price"]))
-            except (InvalidOperation, ValueError):
-                raise ValueError("invalid_yes_price")
-        else:
-            raise ValueError("missing_yes_price")
-        if cents != cents.to_integral_value():
-            raise ValueError("fractional_cent_trade_price")
-        cents = int(cents)
-        if not 1 <= cents <= 99:
-            raise ValueError("trade_price_out_of_range")
-        return cents
-
-    @staticmethod
-    def _p0v4_trade_size(row):
-        raw = row.get("count_fp", row.get("count"))
-        try:
-            size = Decimal(str(raw))
-        except (InvalidOperation, ValueError):
-            raise ValueError("invalid_trade_size")
-        if not size.is_finite() or size <= 0:
-            raise ValueError("nonpositive_trade_size")
-        return str(size.normalize())
-
-    async def _p0v4_fetch_ticker_tape(self, ticker, evaluation_ts):
-        """Fetch one complete, bounded, receipt-identified 30-minute tape.
-
-        The source is the same authenticated Kalshi public-trades REST endpoint
-        already consumed by _flow_rest_refresh and _seed_tape_memory. Pagination
-        must end or cross the frozen retention boundary within the existing
-        ten-page mechanical ceiling; otherwise the entire event is NO_CALL.
-        """
-        cutoff = evaluation_ts - P0_BOOT_TAPE_WINDOW_SEC
-        cursor = ""
-        admitted = {}
-        rejected = defaultdict(int)
-        raw_count = 0
-        dedup_count = 0
-        source_ordinal = 0
-        previous_ts = None
-        complete = False
-        for page_index in range(P0_BOOT_TAPE_MAX_PAGES):
-            path = ("/trade-api/v2/markets/trades?ticker=%s&limit=%d"
-                    % (ticker, P0_BOOT_TAPE_PAGE_LIMIT))
-            if cursor:
-                path += "&cursor=%s" % cursor
-            data = await api_get(
-                self.session, self.ak, self.pk, path, self.rl)
-            if data is None or not isinstance(data.get("trades"), list):
-                raise RuntimeError("historical_tape_page_unavailable")
-            rows = data.get("trades") or []
-            page_crossed_cutoff = False
-            for row in rows:
-                raw_count += 1
-                source_ordinal += 1
-                if row.get("ticker") != ticker:
-                    rejected["wrong_ticker"] += 1
-                    continue
-                trade_id = str(row.get("trade_id") or "")
-                if not trade_id:
-                    rejected["missing_trade_id"] += 1
-                    continue
-                try:
-                    ts = datetime.fromisoformat(
-                        str(row.get("created_time") or "")
-                        .replace("Z", "+00:00")).timestamp()
-                except (TypeError, ValueError):
-                    rejected["invalid_timestamp"] += 1
-                    continue
-                # The exchange endpoint is newest-first. Any reversal makes
-                # source ordering ambiguous and fails the full page closed.
-                if previous_ts is not None and ts > previous_ts:
-                    raise RuntimeError(
-                        "historical_tape_source_order_ambiguous")
-                previous_ts = ts
-                if ts > evaluation_ts:
-                    rejected["future_print"] += 1
-                    continue
-                if ts < cutoff:
-                    rejected["outside_retention_window"] += 1
-                    page_crossed_cutoff = True
-                    continue
-                try:
-                    price = self._p0v4_trade_price_cents(row)
-                    size = self._p0v4_trade_size(row)
-                except ValueError as exc:
-                    rejected[str(exc)] += 1
-                    continue
-                canon = {
-                    "trade_id": trade_id, "ticker": ticker,
-                    "created_time": str(row.get("created_time")),
-                    "timestamp": ts, "yes_price_cents": price,
-                    "count_fp": size, "source_ordinal": source_ordinal,
-                }
-                prior = admitted.get(trade_id)
-                if prior is not None:
-                    comparable = dict(canon)
-                    comparable.pop("source_ordinal", None)
-                    prior_comparable = dict(prior)
-                    prior_comparable.pop("source_ordinal", None)
-                    if comparable != prior_comparable:
-                        raise RuntimeError(
-                            "duplicate_trade_identity_conflict")
-                    dedup_count += 1
-                    continue
-                admitted[trade_id] = canon
-            cursor = str(data.get("cursor") or "")
-            if not cursor:
-                complete = True
-                break
-            # Once a correctly ordered page crosses the left boundary, every
-            # subsequent source row is older and cannot affect the predicate.
-            if page_crossed_cutoff and rows:
-                complete = True
-                break
-        if not complete:
-            raise RuntimeError("historical_tape_pagination_ceiling")
-        contract_violations = {
-            key: rejected.get(key, 0)
-            for key in (
-                "wrong_ticker", "missing_trade_id", "invalid_timestamp",
-                "invalid_yes_price_dollars", "invalid_yes_price",
-                "missing_yes_price", "fractional_cent_trade_price",
-                "trade_price_out_of_range", "invalid_trade_size",
-                "nonpositive_trade_size")
-            if rejected.get(key, 0)
-        }
-        if contract_violations:
-            raise RuntimeError(
-                "historical_tape_source_contract_violation:" +
-                ",".join("%s=%d" % item
-                         for item in sorted(contract_violations.items())))
-        ordered = sorted(
-            admitted.values(),
-            key=lambda r: (r["timestamp"], -r["source_ordinal"]))
-        source_bytes = json.dumps(
-            ordered, sort_keys=True, separators=(",", ":")).encode("utf-8")
-        return {
-            "ticker": ticker, "evaluation_ts": evaluation_ts,
-            "cutoff_ts": cutoff, "rows": ordered,
-            "raw_rows": raw_count, "admitted": len(ordered),
-            "deduplicated": dedup_count,
-            "rejected": dict(sorted(rejected.items())),
-            "source_sha256": hashlib.sha256(source_bytes).hexdigest(),
-            "first_print": (ordered[0] if ordered else None),
-            "last_print": (ordered[-1] if ordered else None),
-        }
-
-    async def _p0v4_hydrate_event_inner(self, et, evaluation_ts):
-        tickers = sorted(self.event_tickers.get(et, ()))
-        if not tickers:
-            raise RuntimeError("event_has_no_ticker_identity")
-        ticker_rows = []
-        for ticker in tickers:
-            ticker_rows.append(
-                await self._p0v4_fetch_ticker_tape(
-                    ticker, evaluation_ts))
-        admitted_rows = [
-            row for result in ticker_rows for row in result["rows"]]
-        p30 = len(admitted_rows)
-        category = self.get_category(et)
-        thresholds = self.config.get("tape_flow_prints30", {
-            "ITF_M": 6, "ITF_W": 6,
-            "ATP_CHALL": 16, "WTA_CHALL": 16,
-            "ATP_MAIN": 16, "WTA_MAIN": 16,
-        })
-        threshold = thresholds.get(category)
-        if threshold is None:
-            raise RuntimeError("existing_tape_flow_threshold_unavailable")
-        detail = {
-            "cat": category, "prints_30m": p30,
-            "prints_30m_rest": p30, "prints_30m_ws": 0,
-            "threshold": threshold,
-            "evaluation_ts": evaluation_ts,
-            "source_contract":
-                "/trade-api/v2/markets/trades?ticker={ticker}&limit=100",
-            "retention_sec": P0_BOOT_TAPE_WINDOW_SEC,
-            "boot_historical_tape": True,
-        }
-        source_hash = hashlib.sha256(json.dumps(
-            [{"ticker": r["ticker"], "sha256": r["source_sha256"]}
-             for r in ticker_rows],
-            sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
-        receipt = {
-            "event": et, "evaluation_ts": evaluation_ts,
-            "boot_to_evaluation_ms": round(
-                (evaluation_ts - self._boot_tape_boot_started_ts) * 1000.0,
-                3),
-            "source": "kalshi_public_trades_rest",
-            "source_sha256": source_hash,
-            "tickers": tickers,
-            "raw_rows": sum(r["raw_rows"] for r in ticker_rows),
-            "admitted": p30,
-            "deduplicated": sum(r["deduplicated"] for r in ticker_rows),
-            "rejected": {
-                key: sum(r["rejected"].get(key, 0) for r in ticker_rows)
-                for key in sorted({
-                    key for r in ticker_rows for key in r["rejected"]})
-            },
-            "first_admitted_print": (
-                min(admitted_rows, key=lambda r: r["timestamp"])
-                if admitted_rows else None),
-            "last_admitted_print": (
-                max(admitted_rows, key=lambda r: r["timestamp"])
-                if admitted_rows else None),
-            "predicate": "_strong_live_evidence",
-            "predicate_inputs": detail,
-        }
-        predicate_result = self._strong_live_evidence(
-            "boot_historical_tape", detail)
-        receipt["predicate_result"] = bool(predicate_result)
-        if predicate_result:
-            fired = self._gun_stamp(
-                et, "boot_historical_tape", detail)
-            # A simultaneous existing gun may make fired False while the event
-            # is already REAL_START. Both paths must converge.
-            if fired or et in self._gun_state or et in self._events_live:
-                self._p0v4_mark_real_start(
-                    et, "boot_historical_tape", receipt)
-                # _gun_stamp establishes REAL_START before this full receipt
-                # exists. Attach the completed source/dedup/predicate proof
-                # without creating a second REAL_START transition or gun.
-                real_row = self._boot_tape_state.get(et) or {}
-                real_row["reason"] = "boot_historical_tape"
-                real_row["receipt"] = receipt
-                real_row["updated_ts"] = time.time()
-                for tk in self.event_tickers.get(et, ()):
-                    self._boot_tape_ticker_state[tk] = {
-                        "event": et,
-                        "state": P0_BOOT_TAPE_REAL_START,
-                        "updated_ts": real_row["updated_ts"],
-                        "reason": "boot_historical_tape",
-                    }
-            else:
-                raise RuntimeError(
-                    "strong_tape_did_not_converge_real_start")
-        else:
-            self._p0v4_transition(
-                et, P0_BOOT_TAPE_INSUFFICIENT,
-                "complete_tape_below_existing_p0_predicate", receipt)
-        self._log("boot_tape_evaluation", {
-            **receipt,
-            "state": self._boot_tape_state[et]["state"],
-        })
-        stats = self._boot_tape_stats
-        stats["events_evaluated"] += 1
-        stats["tape_rows_read"] += receipt["raw_rows"]
-        stats["admitted"] += receipt["admitted"]
-        stats["deduplicated"] += receipt["deduplicated"]
-        stats["rejected"] += sum(receipt["rejected"].values())
-        return receipt
-
-    async def _p0v4_hydrate_event(self, et):
-        if (self._boot_tape_state.get(et) or {}).get(
-                "state") == P0_BOOT_TAPE_REAL_START:
-            return
-        started = time.monotonic()
-        evaluation_ts = time.time()
-        self._p0v4_transition(
-            et, P0_BOOT_TAPE_EVALUATING,
-            "historical_tape_evaluation_started",
-            {"evaluation_ts": evaluation_ts})
-        try:
-            sem = self._boot_tape_semaphore
-            async with sem:
-                await asyncio.wait_for(
-                    self._p0v4_hydrate_event_inner(et, evaluation_ts),
-                    timeout=INFLIGHT_LOCK_TIMEOUT_SEC)
-        except Exception as exc:
-            if (self._boot_tape_state.get(et) or {}).get(
-                    "state") != P0_BOOT_TAPE_REAL_START:
-                receipt = {
-                    "event": et, "evaluation_ts": evaluation_ts,
-                    "error": type(exc).__name__,
-                    "detail": str(exc)[:180],
-                    "partial_evidence_authorized": False,
-                }
-                self._p0v4_transition(
-                    et, P0_BOOT_TAPE_NO_CALL,
-                    "historical_tape_evaluation_unavailable", receipt)
-                self._log("boot_tape_no_call", receipt)
-        finally:
-            elapsed = round((time.monotonic() - started) * 1000.0, 3)
-            self._boot_tape_stats["duration_ms"] += elapsed
-            row = self._boot_tape_state.get(et) or {}
-            row["duration_ms"] = elapsed
-
-    def _p0v4_schedule_pending_hydration(self):
-        if not self._boot_tape_hydration_enabled:
-            return
-        if self._boot_tape_semaphore is None:
-            self._boot_tape_semaphore = asyncio.Semaphore(
-                P0_BOOT_TAPE_MAX_CONCURRENCY)
-        for et in sorted(self.event_tickers):
-            state = (self._boot_tape_state.get(et) or {}).get("state")
-            if state not in (P0_BOOT_TAPE_PENDING, P0_BOOT_TAPE_NO_CALL):
-                continue
-            if et in self.processed_events:
-                self._p0v4_transition(
-                    et, P0_BOOT_TAPE_NO_CALL,
-                    "processed_or_determined_event_not_hydrated",
-                    {"entry_authorized": False,
-                     "hydration_side_effect": False})
-                continue
-            current = self._boot_tape_tasks.get(et)
-            if current is not None and not current.done():
-                continue
-            task = asyncio.create_task(self._p0v4_hydrate_event(et))
-            self._boot_tape_tasks[et] = task
-            task.add_done_callback(
-                lambda done, event=et:
-                    self._boot_tape_tasks.pop(event, None)
-                    if self._boot_tape_tasks.get(event) is done else None)
-
-    def _p0v4_adopt_persistent_real_starts(self):
-        for et, gun in list(self._gun_state.items()):
-            self._p0v4_mark_real_start(
-                et, "persistent_gun_lineage", {
-                    "gun_source": gun.get("source"),
-                    "gun_ts": gun.get("ts"),
-                })
-
-    def _entry_start_gate(self, et):
-        """[P0 REAL-START FIX 07-22] New entry buys place ONLY when the match
-        is CONFIRMED pre-start. Returns (refuse, reason). Fails closed —
-        independent of the (possibly wrong) schedule clock — on: a fired gun
-        (live by real evidence); strong live evidence conflicting with a
-        future schedule; an UNKNOWN start (no reliable scheduled start); or a
-        scheduled start already passed. A reliable start still in the future
-        with no live evidence is the only non-refusing state."""
-        if et in self._events_live:
-            return True, "match_live_gun_fired"
-        if et in getattr(self, "_start_conflict", set()):
-            return True, "live_evidence_conflicts_schedule"
-        st = self.event_start_time.get(et)
-        if not st:
-            return True, "unknown_start"
-        try:
-            if time.time() >= float(st):
-                return True, "past_scheduled_start"
-        except (TypeError, ValueError):
-            return True, "unparseable_start"
-        return False, ""
-
     def _gun_stamp(self, et, source, detail=None):
         """First credible signal fires the gun for an event: stamps gun_source,
         adds the event to _events_live (all live-handling consumers key on it),
@@ -8438,12 +7584,6 @@ class LiveV3:
         now = time.time()
         g = self._gun_state.get(et)
         if g is not None:
-            if hasattr(self, "_boot_tape_state"):
-                LiveV3._p0v4_mark_real_start(
-                    self, et, "gun_state_already_fired", {
-                        "gun_source": g.get("source"),
-                        "gun_ts": g.get("ts"),
-                    })
             if source != g.get("source") and source not in g.get("confirms", ()):
                 g.setdefault("confirms", []).append(source)
                 self._log("gun_source_confirm", {
@@ -8468,52 +7608,23 @@ class LiveV3:
         _floor = min(_clks) if _clks else None
         if (_floor is not None and now < _floor
                 and not (detail or {}).get("sched_clamped")):
-            # [P0 REAL-START FIX 07-22] STRONG live evidence OVERRIDES a
-            # conflicting FUTURE schedule — the schedule is a liar, not the
-            # tape. A decisive realized directional move / sustained in-play
-            # volume cannot be produced by pre-match warm-up quoting; voiding
-            # it "because the schedule says later" is the MICMAY P0 (a real
-            # bell at ref_rise 71c / 28 prints was voided vs a 22:00 that was
-            # actually the match END). Strong evidence fires the gun here (->
-            # _events_live -> entry sweep -> post-gun placement refusal). Weak
-            # pre-sched blips still void (walk-law input only).
-            if self._strong_live_evidence(source, detail):
-                self._start_conflict.add(et)
-                self._log("sched_liar_override", {
+            self._gun_void_pending[et] = {
+                "source": source, "first_ts": now,
+                "sched_floor_ts": _floor, "detail": dict(detail or {})}
+            if (et, source) not in self._gun_void_logged:
+                self._gun_void_logged.add((et, source))
+                self._log("phantom_bell_void", {
                     "event": et, "source": source,
                     "min_to_sched_min": round((_floor - now) / 60.0, 1),
                     "tts_legacy_min": (round((st - now) / 60.0, 1) if st else None),
                     "tts_honest_min": (round((hst - now) / 60.0, 1) if hst else None),
-                    "law": "P0-FIX 07-22: strong live in-play evidence "
-                           "overrides a future schedule; the match is LIVE, "
-                           "the schedule is wrong. Fire the gun (sweep "
-                           "entries, refuse new entry buys).",
+                    "law": "P0v3 (1) 07-17: sched is the floor of time; "
+                           "pre-sched bells are VOID (no W2, no grace, no "
+                           "sweep, no placement permission)",
                     **(detail or {})})
-                # fall through to the fire block below (no void)
-            else:
-                self._gun_void_pending[et] = {
-                    "source": source, "first_ts": now,
-                    "sched_floor_ts": _floor, "detail": dict(detail or {})}
-                if (et, source) not in self._gun_void_logged:
-                    self._gun_void_logged.add((et, source))
-                    self._log("phantom_bell_void", {
-                        "event": et, "source": source,
-                        "min_to_sched_min": round((_floor - now) / 60.0, 1),
-                        "tts_legacy_min": (round((st - now) / 60.0, 1) if st else None),
-                        "tts_honest_min": (round((hst - now) / 60.0, 1) if hst else None),
-                        "law": "P0v3 (1) 07-17: sched is the floor of time; "
-                               "pre-sched bells are VOID (no W2, no grace, no "
-                               "sweep, no placement permission)",
-                        **(detail or {})})
-                return False
+            return False
         self._gun_state[et] = {"ts": now, "source": source}
         self._events_live.add(et)
-        if hasattr(self, "_boot_tape_state"):
-            LiveV3._p0v4_mark_real_start(
-                self, et, source, {
-                    "gun_ts": now, "gun_source": source,
-                    "detail": dict(detail or {}),
-                })
         self._gun_void_pending.pop(et, None)
         # [P0v3 (2) SWEEP BEATS FILL, 07-17] the sweep leads: cancel this
         # event's resting entry bids NOW, at the fire, before grace/any other
@@ -8577,17 +7688,12 @@ class LiveV3:
         """[P0v3 (2) SWEEP BEATS FILL, 07-17] on any live evidence at/after
         sched: cancel the event's resting ENTRY bids FIRST, before all other
         actions. Grace may permit nothing but this sweep completing.
-        [P0 REAL-START FIX 07-22] Completion (completion_reprice) bids ARE swept
-        too -- a completion bid is still an entry that fails closed post-start
-        (operator ruling 07-22); the former lifecycle exemption is removed.
-        Protective exits (sells) and foreign orders are untouched. Raced fills
-        are booked once by _cancel_entry_and_resolve (the residual exchange-side
-        race window, now at its narrowest)."""
+        Completion bids keep their own lifecycle (pair policy untouched);
+        exits untouched. Raced fills are booked by _cancel_entry_and_resolve
+        (the residual exchange-side race window, now at its narrowest)."""
         for tk in list(self.event_tickers.get(et, ())):
             pos = self.positions.get(tk)
-            # [P0 REAL-START FIX 07-22] no completion_reprice exemption: a
-            # completion bid is still an ENTRY and is swept post-start too.
-            if pos is None:
+            if pos is None or getattr(pos, "entry_mode", "") == "completion_reprice":
                 continue
             if not getattr(pos, "entry_order_id", None):
                 continue
@@ -10004,21 +9110,14 @@ class LiveV3:
         pos.exit_cell_id = cell_id
 
         # Clear any stray resting sells (idempotent; fresh fill normally has none)
-        _reset_ok = True
         if pos.exit_order_id:
-            _reset_ok = bool(await self.cancel_order(
-                tk, pos.exit_order_id, "v4_exit_reset")) and _reset_ok
+            await self.cancel_order(tk, pos.exit_order_id, "v4_exit_reset")
             pos.exit_order_id = ""
         existing = await api_get(self.session, self.ak, self.pk,
             "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
         for o in (existing or {}).get("orders", []):
             if o.get("action") == "sell":
-                _reset_ok = bool(await self.cancel_order(
-                    tk, o.get("order_id", ""),
-                    "v4_exit_reset_stray")) and _reset_ok
-        if _reset_ok and existing is not None:
-            LiveV3._record_exit_intent_reset(
-                self, tk, "v4_exit_reset_complete")
+                await self.cancel_order(tk, o.get("order_id", ""), "v4_exit_reset_stray")
 
         if rule == "hold":
             pos.strategy = "hold"
@@ -10242,27 +9341,6 @@ class LiveV3:
             return True
         finally:
             self._booking_inflight.discard(key)
-
-    async def _start_gate_cancel_resting(self, tk, pos, why):
-        """[P0 REAL-START FIX 07-22] Cancel a bot-owned resting ENTRY bid whose
-        match is no longer confirmed pre-start. Reconciles a raced fill through
-        _cancel_entry_and_resolve (books once, NEVER deletes a raced fill);
-        never touches protective sells or foreign orders. On a confirmed cancel
-        the leg is untombstoned and the resting file saved. Returns the
-        cancel-resolve verdict ("cancelled" / "booked" / "unresolved")."""
-        res = await self._cancel_entry_and_resolve(
-            tk, pos, why, "post_start_entry_cancel_race")
-        if res == "cancelled":
-            self._log("post_start_entry_cancelled", {
-                "event": pos.event_ticker, "reason": why,
-                "order_id": (getattr(pos, "entry_order_id", "") or "")[:13],
-                "law": "P0-FIX 07-22: a resting entry whose match is live / "
-                       "unknown / conflicting / past-start is cancelled; "
-                       "entries only survive while confirmed PRE-start"},
-                ticker=tk)
-            self._untombstone_entry(tk, pos)
-            self._save_v4_resting()
-        return res
 
     async def _cancel_entry_and_resolve(self, tk, pos, label, source):
         """[C-P0-RACE STEP 3] Cancel a resting v4 entry bid and resolve the outcome
@@ -11337,23 +10415,6 @@ class LiveV3:
         self._event_routing.add(et)
         try:
             if et in self.processed_events:
-                return
-            # [P0 REAL-START v4] No conception or target construction may run
-            # ahead of the event's historical-tape evaluation. Per-event only:
-            # exits and unrelated markets continue.
-            _p0_refuse, _p0_reason = \
-                LiveV3._p0v4_entry_authority_gate(self, et)
-            if _p0_refuse:
-                _p0_seen = self.__dict__.setdefault(
-                    "_boot_tape_route_refused_logged", set())
-                _p0_key = (et, _p0_reason)
-                if _p0_key not in _p0_seen:
-                    _p0_seen.add(_p0_key)
-                    self._log("boot_tape_route_refused", {
-                        "event": et, "reason": _p0_reason,
-                        "state": (getattr(self, "_boot_tape_state", {})
-                                  .get(et) or {}).get("state"),
-                    })
                 return
 
             start_ts = self.event_start_time.get(et)
@@ -13092,34 +12153,12 @@ class LiveV3:
     async def _v4_manage_resting(self, tk, pos, book, now):
         """Serialized entry point for v4 resting-bid management. Both
         on_bbo_update (per BBO tick) and validate_resting_buys (120s backstop)
-        route through the per-ticker _mgmt_inflight guard so exactly one manager
-        runs at a time -- they cannot race a double cancel/repost, double T-20m
-        take, or double-book a raced fill.
-        [P0 REAL-START FIX 07-22] The REAL-START GATE runs HERE, FIRST, and is
-        BOOK-INDEPENDENT: a resting entry whose match is no longer CONFIRMED
-        pre-start (live / unknown / conflicting / past-start) is cancelled and
-        reconciled EVEN ON A MISSING/STALE book -- the quiet-market / bell-
-        missing class that is the MICMAY defect. Only a confirmed-pre-start bid
-        with a FRESH book proceeds into ordinary repricing (_v4_manage_resting_
-        inner); a stale/missing book merely skips repricing, never the gate."""
+        can call this; the per-ticker guard ensures only one manager runs at a
+        time so they cannot race a double cancel/repost or double T-20m take."""
         if tk in self._mgmt_inflight:
             return
         self._mgmt_inflight.add(tk)
         try:
-            # (1) REAL-START GATE -- book-independent, before any stale-book
-            #     return. On refusal: cancel + reconcile the raced fill
-            #     (_start_gate_cancel_resting books once, never deletes a raced
-            #     fill, retains state on "unresolved" for the next cadence pass).
-            if getattr(pos, "entry_order_id", None):
-                _refuse, _why = LiveV3._p0v4_entry_authority_gate(
-                    self, pos.event_ticker)
-                if _refuse:
-                    await self._start_gate_cancel_resting(tk, pos, "manage_" + _why)
-                    return
-            # (2) confirmed pre-start: ordinary repricing needs a FRESH book.
-            #     A missing/stale book skips ONLY repricing (the gate already ran).
-            if not book or book.updated < now - BOOK_STALENESS_SEC:
-                return
             await self._v4_manage_resting_inner(tk, pos, book, now)
         finally:
             self._mgmt_inflight.discard(tk)
@@ -13129,10 +12168,7 @@ class LiveV3:
         target_bid (re-classifies regime and re-posts when the current Kalshi
         price moves > 1 cell width from the last placement basis), cancels on a
         degenerate/wide-spread book, and crosses as taker if a re-evaluated
-        target becomes marketable. T-20m fallback is handled below (STEP 6).
-        [P0 REAL-START FIX 07-22] Reached ONLY for a confirmed-pre-start bid: the
-        book-independent real-start gate now lives in the _v4_manage_resting
-        wrapper (so it runs on a stale/missing book too), ahead of this."""
+        target becomes marketable. T-20m fallback is handled below (STEP 6)."""
         # PART-2: completion bids have their own lifecycle (freshness re-eval, buffer-
         # exempt ride to T-0). They must NEVER enter the regular move-repost / T-20
         # fallback / wide-spread machinery, which would reprice them back to the entry
@@ -14396,14 +13432,14 @@ class LiveV3:
                 continue
 
             book = self.books.get(tk)
+            if not book or book.updated < now - BOOK_STALENESS_SEC:
+                self._log("validate_skip_stale_book", {
+                    "book_age_sec": int(now - book.updated) if book else "missing",
+                }, ticker=tk)
+                continue
 
-            # [P0 REAL-START FIX 07-22] v4 resting bids route through the
-            # serialized manager BEFORE any missing/stale-book return: the
-            # book-independent real-start gate lives in _v4_manage_resting and
-            # MUST run on a silent/missing/stale book (the quiet-market / bell-
-            # missing class -- the MICMAY defect where the tape never bursts).
-            # The wrapper cancels a post-start bid regardless of book, and skips
-            # only the ordinary repricing when the book is stale.
+            # v4 resting bids are managed by the v4 manager (target-bid based,
+            # not best-bid reprice / FV-anchor freshness).
             if pos.is_v4:
                 # [OS BUILD 07-09, Plex T4] hold-gate shadow: TWO separate
                 # readings per resting leg per review (quiet-flag +
@@ -14413,13 +13449,6 @@ class LiveV3:
                                  "posted_min_ago": round((now - pos.entry_posted_ts) / 60)
                                  if pos.entry_posted_ts else None})
                 await self._v4_manage_resting(tk, pos, book, now)
-                continue
-
-            # non-v4 / legacy ordinary reprice needs a fresh book.
-            if not book or book.updated < now - BOOK_STALENESS_SEC:
-                self._log("validate_skip_stale_book", {
-                    "book_age_sec": int(now - book.updated) if book else "missing",
-                }, ticker=tk)
                 continue
 
             # Legacy positions skip validation
@@ -15025,33 +14054,6 @@ class LiveV3:
         except Exception:
             pass
 
-    def _pair_invariant_leg_state(self, ticker, unsettled_held,
-                                  resting_buys, named_refusal,
-                                  fitting_gap_names):
-        """Classify pair state from booked fill + exchange unsettled truth.
-
-        Dictionary membership is not fill evidence.  A resting-entry Position
-        has booked quantity zero; a settled or stale Position has no unsettled
-        exchange holding.  Neither may manufacture pair-incomplete alarms.
-        """
-        pos = self.positions.get(ticker)
-        if pos is not None and (
-                getattr(pos, "settled", False)
-                or getattr(pos, "phase", "") == "settled"):
-            return "settled"
-        booked = float(getattr(pos, "entry_qty", 0) or 0) if pos else 0.0
-        held = float(unsettled_held.get(ticker, 0) or 0)
-        if booked > 0 and held > 0:
-            return "filled"
-        if resting_buys.get(ticker):
-            return "resting"
-        if (named_refusal
-                and named_refusal[0] in fitting_gap_names):
-            return "fitting_gap:%s" % named_refusal[0]
-        if named_refusal:
-            return "refused_named"
-        return "absent"
-
     async def _post_boot_book_audit(self, context="boot"):
         """[C47-ENFORCE] Post-boot book audit, assert-and-halt. Within 5 min of
         every process start (deploy or crash-recover): fresh PAGINATED pull of
@@ -15427,8 +14429,12 @@ class LiveV3:
                 _st0 = {}
                 for _tk0 in _tks0:
                     _ref0 = _named0.get(_tk0)
-                    _st0[_tk0] = LiveV3._pair_invariant_leg_state(
-                        self, _tk0, held, buys, _ref0, _FGAP0)
+                    _st0[_tk0] = (
+                        "filled" if _tk0 in self.positions else
+                        "resting" if buys.get(_tk0) else
+                        ("fitting_gap:%s" % _ref0[0]
+                         if _ref0 and _ref0[0] in _FGAP0 else
+                         "refused_named" if _ref0 else "absent"))
                 _vals0 = set(_st0.values())
                 # [PHASE-C P2 07-17 — THE MISSING TOOTH, three bodies: BEJ,
                 # ZHE, TAB] a STAMPED leg (the router evaluated the event —
@@ -17204,7 +16210,6 @@ class LiveV3:
                              "prices at current doctrine, not at "
                              "whatever era placed it"))
 
-    @_serialize_reconcile_exit_intent
     async def reconcile(self, quiet=False):
         """Load existing positions and resting orders from Kalshi.
         Populate in-memory state so the bot doesn't re-enter or orphan orders.
@@ -17344,8 +16349,16 @@ class LiveV3:
                 # exit's own price -- never a new level, never a cancel (the
                 # existing exit keeps its queue position).
                 if sells and existing.strategy != "hold":
-                    await LiveV3._reconcile_exit_topup_from_truth(
-                        self, tk, sells[0]["price"])
+                    _sell_total = sum(s["qty"] for s in sells)
+                    _gap = pinfo["qty"] - _sell_total
+                    if _gap > 0:
+                        _oid_gap, _ = await self.place_order(
+                            tk, "sell", "yes", sells[0]["price"], _gap)
+                        self._log("reconcile_exit_topup", {
+                            "exit_price": sells[0]["price"], "qty": _gap,
+                            "position_qty": pinfo["qty"],
+                            "resting_sell_qty": _sell_total,
+                            "order_id": _oid_gap}, ticker=tk)
                 continue
 
             if sells:
@@ -17374,18 +16387,9 @@ class LiveV3:
                     actual_naked = pinfo["qty"] - fresh_sell_qty
                     if actual_naked > 0:
                         # Cancel existing sells and repost consolidated
-                        _consolidate_reset_ok = fresh is not None
                         for old_sell in (fresh or {}).get("orders", []):
                             if old_sell.get("action") == "sell":
-                                _consolidate_reset_ok = bool(
-                                    await self.cancel_order(
-                                        tk, old_sell.get("order_id", ""),
-                                        "reconcile_consolidate")
-                                ) and _consolidate_reset_ok
-                        if _consolidate_reset_ok:
-                            LiveV3._record_exit_intent_reset(
-                                self, tk,
-                                "reconcile_consolidate_complete")
+                                await self.cancel_order(tk, old_sell.get("order_id", ""), "reconcile_consolidate")
                         oid, resp = await self.place_order(tk, "sell", "yes", exit_price, pinfo["qty"])
                         reconcile_exits.append((tk, pinfo, exit_price, "qty_gap_consolidated", oid))
                         self._log("reconcile_exit_posted", {
@@ -17922,13 +16926,6 @@ class LiveV3:
             self._load_gun_state_lineage()
         except Exception as _gpe:
             self._log("gun_state_rebuild_error", {"err": str(_gpe)[:200]})
-        # [P0 REAL-START v4] Persistent guns are authoritative immediately.
-        # Every other discovered event remains PENDING while bounded hydration
-        # runs concurrently with reconciliation/exit management. No WS/BBO
-        # entry route can outrun the shared gate.
-        self._boot_tape_hydration_enabled = True
-        self._p0v4_adopt_persistent_real_starts()
-        self._p0v4_schedule_pending_hydration()
 
         # [C-CYCLE-CAP 07-09] third rebuild at the same boot slot: per-leg
         # cash-cycle history (operator ruling: re-entry ALLOWED, cap 2).
@@ -17951,27 +16948,6 @@ class LiveV3:
 
         # v4: rebuild any persisted resting bids reconcile didn't link (STEP 5)
         self._load_v4_resting()
-
-        # [P0 REAL-START FIX 07-22] FAIL CLOSED ON ADOPTION: both adoption paths
-        # (reconcile + _load_v4_resting) are complete, so cancel any re-adopted
-        # resting ENTRY bid whose match is already live / past / unknown /
-        # conflicting -- the MIC-sibling class (a resting entry that survived a
-        # restart into a live match). Runs BEFORE the post-boot audit. Raced
-        # fills book once via _cancel_entry_and_resolve; protective sells and
-        # foreign orders are untouched.
-        for _tk, _pos in list(self.positions.items()):
-            if not (getattr(_pos, "is_v4", False)
-                    and getattr(_pos, "phase", "") == "entry_resting"
-                    and getattr(_pos, "entry_order_id", None)):
-                continue
-            _brf, _bwy = LiveV3._p0v4_entry_authority_gate(
-                self, _pos.event_ticker)
-            if _brf:
-                try:
-                    await self._start_gate_cancel_resting(_tk, _pos, "boot_" + _bwy)
-                except Exception as _bce:
-                    self._log("post_start_entry_cancel_error",
-                              {"err": str(_bce)[:120]}, ticker=_tk)
 
         # [C-ORPHAN-FINGERPRINT] boot close-out line: adopted-by-fingerprint
         # count vs the gate-banked snapshot, reconciled (the dispatch's proof).

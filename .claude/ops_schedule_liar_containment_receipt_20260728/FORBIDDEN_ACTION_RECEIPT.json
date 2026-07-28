@@ -1,0 +1,20 @@
+{
+  "DCA": false,
+  "T2_work_performed": false,
+  "authorized_exchange_mutations": {
+    "DELETE_resting_tennis_entry_buy": 89,
+    "POST": 0
+  },
+  "configuration_changed": false,
+  "entry_order_posted": false,
+  "halt_state_changed": false,
+  "integrated_package_constructed": false,
+  "live_code_deployed": false,
+  "position_mutation_requested": false,
+  "remote_files_written": 0,
+  "replacement_entry_posted_by_tool": false,
+  "schema_version": "schedule-liar-forbidden-action-receipt-v1",
+  "sell_order_cancelled": false,
+  "service_restarted": false,
+  "settlement_state_changed_by_tool": false
+}

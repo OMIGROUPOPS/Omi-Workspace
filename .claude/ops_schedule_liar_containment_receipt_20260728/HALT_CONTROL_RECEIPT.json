@@ -1,0 +1,13 @@
+{
+  "activation_attempted": false,
+  "activation_timestamp": null,
+  "containment_status": "BLOCKED",
+  "fallback_executed": "one-time census plus exact-order cancellation and observation",
+  "integrated_prerun_containment_prerequisite": "BLOCKED",
+  "operator_decision_required": "controlled engine stop or other lawful control",
+  "operator_release_required": false,
+  "reason": "running source only exposes an audit-derived in-memory _conception_halt that a passing halted_reaudit clears; it cannot guarantee durable operator-controlled suppression",
+  "schema_version": "schedule-liar-halt-control-v1",
+  "scope": "none",
+  "status": "HALT_CONTROL_UNAVAILABLE"
+}

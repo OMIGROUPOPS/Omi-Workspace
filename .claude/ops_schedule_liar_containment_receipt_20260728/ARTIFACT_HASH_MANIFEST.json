@@ -1,0 +1,60 @@
+{
+  "files": [
+    {
+      "bytes": 80092,
+      "path": "CANCELLATION_LEDGER.json",
+      "sha256": "58677103ba80f13e02528f22af24ffdec8e5341798f6890820b2b49d9b91304c"
+    },
+    {
+      "bytes": 507,
+      "path": "DETERMINISTIC_REGENERATION_RECEIPT.json",
+      "sha256": "14eff9187880ab2fa64f9b0f01493e57d138f89fe373c84793592f7f1b685f3c"
+    },
+    {
+      "bytes": 605,
+      "path": "FORBIDDEN_ACTION_RECEIPT.json",
+      "sha256": "d83e1ecfe7992abf98b520fa2e53ac7ec88090d6135090d571dce0c337dd37c1"
+    },
+    {
+      "bytes": 667,
+      "path": "HALT_CONTROL_RECEIPT.json",
+      "sha256": "597d9596ae3278bcc328ba8afca5acda010b57bc21b91d925a5b26308e93bdb8"
+    },
+    {
+      "bytes": 1132,
+      "path": "INDEPENDENT_REVIEW_INSTRUCTION.md",
+      "sha256": "d9c72a9e3240761fc50d75a818298366d9c9c81669dbe89a5a09f2daa4a675ed"
+    },
+    {
+      "bytes": 10727,
+      "path": "OBSERVATION_RECEIPT.json",
+      "sha256": "70b5843bdc30996e0f766f1215623c146c91f1823026ab3f9b025b37feeb334a"
+    },
+    {
+      "bytes": 2972,
+      "path": "OPERATIONAL_MITIGATION_REPORT.md",
+      "sha256": "c04efd6c16e625953af5ade8b32dde7b08f0a81a2205d7390ae7bf8c0e2a6772"
+    },
+    {
+      "bytes": 47031,
+      "path": "POSITION_AND_EXIT_CONSERVATION.json",
+      "sha256": "ee16b323539b873b8ebe58d46aeaa58fded7f4c115f5ed1ef9212e6fb2fc956b"
+    },
+    {
+      "bytes": 13967,
+      "path": "POST_ACTION_STATE.json",
+      "sha256": "a7cab42827837e811a84f7d1b6e95ff7b1f873f0d4de44d178e675b18720b577"
+    },
+    {
+      "bytes": 292001,
+      "path": "PRE_ACTION_STATE.json",
+      "sha256": "5da1e0ba8443c039244dd16ed851284e5865906a415b4c6140fb55931846a84c"
+    },
+    {
+      "bytes": 2053,
+      "path": "RAW_SOURCE_HASH_RECEIPT.json",
+      "sha256": "61d1fca84d01fafa581f5ca904592c63f82d1b241d956c4544fbe79db44ae01b"
+    }
+  ],
+  "schema_version": "schedule-liar-artifact-manifest-v1"
+}

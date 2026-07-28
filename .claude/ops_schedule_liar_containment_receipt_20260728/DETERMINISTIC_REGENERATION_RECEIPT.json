@@ -1,0 +1,10 @@
+{
+  "builder": "arb-executor/analysis/build_schedule_liar_operational_receipt.py",
+  "byte_identical": true,
+  "canonical_json": "UTF-8, sorted keys, two-space indentation, LF terminator",
+  "clean_regeneration_count": 2,
+  "compared_artifact_count": 12,
+  "comparison_diff_count": 0,
+  "schema_version": "schedule-liar-determinism-receipt-v1",
+  "verification_note": "A second build in an isolated local temporary directory produced the same filename, byte-length, and SHA-256 tuple for every artifact."
+}

@@ -1,0 +1,37 @@
+{
+  "cancel_status": {
+    "bytes": 122835,
+    "path": "C:\\Users\\omigr\\OMI-Workspace-codex-schedule-liar-containment\\.claude\\ops_schedule_liar_containment_20260728\\FINAL_ALL_CANCELLED_ORDER_STATUS_RECEIPT.json",
+    "sha256": "c84b5fe6915c7fcca0c7dc25af1c2c2443fa7e70e33247c0a29fffb405d89bc6"
+  },
+  "containment": {
+    "bytes": 1461249,
+    "path": "C:\\Users\\omigr\\OMI-Workspace-codex-schedule-liar-containment\\.claude\\ops_schedule_liar_containment_20260728\\CONTAINMENT_EXECUTION_RECEIPT.json",
+    "sha256": "a3608471640cfe693a47ce4acc06fff98f1448affe07b68f807f78788c51e65a"
+  },
+  "exit_status": {
+    "bytes": 11072,
+    "path": "C:\\Users\\omigr\\OMI-Workspace-codex-schedule-liar-containment\\.claude\\ops_schedule_liar_containment_20260728\\FINAL_EXIT_ORDER_TRANSITION_STATUS_RECEIPT.json",
+    "sha256": "3be41776bb027f9f6e5850c28ada97ed29eb31ae4478903cb9858f7cdd731dd3"
+  },
+  "extension_1": {
+    "bytes": 47739,
+    "path": "C:\\Users\\omigr\\OMI-Workspace-codex-schedule-liar-containment\\.claude\\ops_schedule_liar_containment_20260728\\OBSERVATION_EXTENSION_RECEIPT.json",
+    "sha256": "02155b3b213bbbf60feb1fdb3cd0bca7601c3e2289d5d17177050e52774e7899"
+  },
+  "extension_2": {
+    "bytes": 47840,
+    "path": "C:\\Users\\omigr\\OMI-Workspace-codex-schedule-liar-containment\\.claude\\ops_schedule_liar_containment_20260728\\OBSERVATION_EXTENSION_2_RECEIPT.json",
+    "sha256": "586ed7b466cc79fcacaa843b2ab8cf9a5c488a7e065be9d5792dc1a79d458c1e"
+  },
+  "final_surveillance": {
+    "bytes": 27312,
+    "path": "C:\\Users\\omigr\\OMI-Workspace-codex-schedule-liar-containment\\.claude\\ops_schedule_liar_containment_20260728\\FINAL_SURVEILLANCE_RECEIPT.json",
+    "sha256": "23e8bdfdd509e620e15da0d2a0deba3cfb022f1eaa1f4020f4bb21f8eec900f8"
+  },
+  "pre_snapshot": {
+    "bytes": 475729,
+    "path": "C:\\Users\\omigr\\OMI-Workspace-codex-schedule-liar-containment\\.claude\\ops_schedule_liar_containment_20260728\\PRE_ACTION_SNAPSHOT.json",
+    "sha256": "13154f95516e6784ca6e858e4ee9645c449a62c1687ccbc3e5fd69249f1f36fa"
+  }
+}

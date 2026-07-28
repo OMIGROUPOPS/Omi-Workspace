@@ -1,0 +1,113 @@
+{
+  "final_resting_tennis_entry_buys": 0,
+  "heartbeat_assessment": {
+    "heartbeat_file_status": {
+      "bbo_age_sec": -202,
+      "name": "live_v3",
+      "positions": 210,
+      "resting_orders": 0,
+      "status": "ok",
+      "ts": 1785216715,
+      "ws_connected": true
+    },
+    "process_and_reconcile_activity_proved": true,
+    "verdict": "heartbeat artifact is stale/internally inconsistent; service process and reconcile receipts continued, but lawful heartbeat freshness is not claimed"
+  },
+  "longest_continuous_segment_seconds": 425.078,
+  "new_entry_order_ids_cancelled_after_initial_census": 16,
+  "reconcile_cycle_count": 3,
+  "reconcile_cycle_receipts": [
+    "[01:14:45 AM] RECONCILE             {\"positions\": 19, \"resting_orders\": 20, \"linked\": 0, \"reconcile_exits_posted\": 0, \"unmanaged\": 0, \"orphans\": 0, \"process",
+    "[01:31:54 AM] RECONCILE             {\"positions\": 15, \"resting_orders\": 16, \"linked\": 0, \"reconcile_exits_posted\": 0, \"unmanaged\": 0, \"orphans\": 0, \"process",
+    "[01:35:17 AM] RECONCILE             {\"positions\": 14, \"resting_orders\": 15, \"linked\": 0, \"reconcile_exits_posted\": 0, \"unmanaged\": 0, \"orphans\": 0, \"process"
+  ],
+  "schema_version": "schedule-liar-observation-v1",
+  "segments": [
+    {
+      "duration_seconds": 313.012,
+      "end_utc": "2026-07-28T05:16:24.764892Z",
+      "name": "initial",
+      "new_entry_cancellations": 2,
+      "reconcile_cycle_count": 1,
+      "samples": 14,
+      "start_utc": "2026-07-28T05:11:11.753356Z"
+    },
+    {
+      "duration_seconds": 425.078,
+      "end_utc": "2026-07-28T05:25:18.999515Z",
+      "name": "extension_1",
+      "new_entry_cancellations": 3,
+      "reconcile_cycle_count": 0,
+      "samples": 29,
+      "start_utc": "2026-07-28T05:18:13.901317Z"
+    },
+    {
+      "duration_seconds": 378.977,
+      "end_utc": "2026-07-28T05:32:03.298981Z",
+      "name": "extension_2",
+      "new_entry_cancellations": 9,
+      "reconcile_cycle_count": 1,
+      "samples": 26,
+      "start_utc": "2026-07-28T05:25:44.241050Z"
+    },
+    {
+      "duration_seconds": 30.644,
+      "end_utc": "2026-07-28T05:35:21.947988Z",
+      "name": "final_surveillance",
+      "new_entry_cancellations": 2,
+      "reconcile_cycle_count": 1,
+      "samples": 3,
+      "start_utc": "2026-07-28T05:34:51.299871Z"
+    }
+  ],
+  "service_process_identity": {
+    "final_pid": 3504442,
+    "pre_pid": 3504442,
+    "same_pid": true,
+    "service_restarts_by_tool": 0
+  },
+  "tennis_conception_receipts": [
+    "[01:11:42 AM] V4_PLACE             KXITFWMATCH-26JUL27WEBRUS-RUS {\"event\": \"KXITFWMATCH-26JUL27WEBRUS\", \"direction\": \"underdog\", \"cat\": \"ITF_W\", \"regime\": \"r25_34\", \"cell\": 31, \"current",
+    "[01:11:43 AM] V4_PLACE             KXITFMATCH-26JUL27JASPHA-JAS {\"event\": \"KXITFMATCH-26JUL27JASPHA\", \"direction\": \"leader\", \"cat\": \"ITF_M\", \"regime\": \"r65_74\", \"cell\": 74, \"current_pr",
+    "[01:11:45 AM] V4_PLACE             KXITFMATCH-26JUL28IANTAB-IAN {\"event\": \"KXITFMATCH-26JUL28IANTAB\", \"direction\": \"underdog\", \"cat\": \"ITF_M\", \"regime\": \"r15_24\", \"cell\": 17, \"current_",
+    "[01:11:47 AM] V4_PLACE             KXATPCHALLENGERMATCH-26JUL28RIBTOR-TOR {\"event\": \"KXATPCHALLENGERMATCH-26JUL28RIBTOR\", \"direction\": \"underdog\", \"cat\": \"ATP_CHALL\", \"regime\": \"r45_54\", \"cell\":",
+    "[01:12:06 AM] V4_PLACE             KXITFWMATCH-26JUL28ROTBUL-ROT {\"event\": \"KXITFWMATCH-26JUL28ROTBUL\", \"direction\": \"leader\", \"cat\": \"ITF_W\", \"regime\": \"r85_94\", \"cell\": 85, \"current_p",
+    "[01:12:41 AM] V4_PLACE             KXITFMATCH-26JUL28BESKUN-KUN {\"event\": \"KXITFMATCH-26JUL28BESKUN\", \"direction\": \"underdog\", \"cat\": \"ITF_M\", \"regime\": \"r45_54\", \"cell\": 50, \"current_",
+    "[01:16:17 AM] V4_PLACE             KXATPCHALLENGERMATCH-26JUL28TABSQU-TAB {\"event\": \"KXATPCHALLENGERMATCH-26JUL28TABSQU\", \"direction\": \"leader\", \"cat\": \"ATP_CHALL\", \"regime\": \"r55_64\", \"cell\": 6",
+    "[01:18:23 AM] V4_PLACE             KXITFMATCH-26JUL27JASPHA-PHA {\"event\": \"KXITFMATCH-26JUL27JASPHA\", \"direction\": \"leader\", \"cat\": \"ITF_M\", \"regime\": \"r45_54\", \"cell\": 52, \"current_pr",
+    "[01:18:28 AM] V4_PLACE             KXITFMATCH-26JUL28TAKKOZ-KOZ {\"event\": \"KXITFMATCH-26JUL28TAKKOZ\", \"direction\": \"underdog\", \"cat\": \"ITF_M\", \"regime\": \"r15_24\", \"cell\": 15, \"current_",
+    "[01:19:57 AM] V4_PLACE             KXITFWMATCH-26JUL28MIKKEN-MIK {\"event\": \"KXITFWMATCH-26JUL28MIKKEN\", \"direction\": \"underdog\", \"cat\": \"ITF_W\", \"regime\": \"r15_24\", \"cell\": 18, \"current",
+    "[01:22:41 AM] V4_PLACE             KXITFWMATCH-26JUL28MIKKEN-KEN {\"event\": \"KXITFWMATCH-26JUL28MIKKEN\", \"direction\": \"leader\", \"cat\": \"ITF_W\", \"regime\": \"r75_84\", \"cell\": 84, \"current_p",
+    "[01:23:07 AM] V4_PLACE             KXITFWMATCH-26JUL28KULSRU-KUL {\"event\": \"KXITFWMATCH-26JUL28KULSRU\", \"direction\": \"leader\", \"cat\": \"ITF_W\", \"regime\": \"r85_94\", \"cell\": 92, \"current_p",
+    "[01:23:50 AM] V4_PLACE             KXITFWMATCH-26JUL28JANFED-JAN {\"event\": \"KXITFWMATCH-26JUL28JANFED\", \"direction\": \"underdog\", \"cat\": \"ITF_W\", \"regime\": \"r35_44\", \"cell\": 41, \"current",
+    "[01:23:54 AM] V4_PLACE             KXITFWMATCH-26JUL28NITKOR-KOR {\"event\": \"KXITFWMATCH-26JUL28NITKOR\", \"direction\": \"leader\", \"cat\": \"ITF_W\", \"regime\": \"r55_64\", \"cell\": 63, \"current_p",
+    "[01:26:43 AM] V4_PLACE             KXITFMATCH-26JUL28FRYCOQ-FRY {\"event\": \"KXITFMATCH-26JUL28FRYCOQ\", \"direction\": \"underdog\", \"cat\": \"ITF_M\", \"regime\": \"r45_54\", \"cell\": 49, \"current_",
+    "[01:27:59 AM] V4_PLACE             KXATPCHALLENGERMATCH-26JUL28KOTGAL-GAL {\"event\": \"KXATPCHALLENGERMATCH-26JUL28KOTGAL\", \"direction\": \"leader\", \"cat\": \"ATP_CHALL\", \"regime\": \"r55_64\", \"cell\": 6",
+    "[01:28:04 AM] CONCEPTION_STAMP      {\"event\": \"KXATPCHALLENGERMATCH-26JUL28KOTGAL\", \"source\": \"first_order_retro\", \"retroactive_to\": 1785216484.1904504}",
+    "[01:28:09 AM] V4_PLACE             KXITFMATCH-26JUL28DOMCAR-DOM {\"event\": \"KXITFMATCH-26JUL28DOMCAR\", \"direction\": \"leader\", \"cat\": \"ITF_M\", \"regime\": \"r55_64\", \"cell\": 63, \"current_pr",
+    "[01:28:10 AM] V4_PLACE             KXITFMATCH-26JUL28DOMCAR-CAR {\"event\": \"KXITFMATCH-26JUL28DOMCAR\", \"direction\": \"underdog\", \"cat\": \"ITF_M\", \"regime\": \"r35_44\", \"cell\": 36, \"current_",
+    "[01:29:31 AM] V4_PLACE             KXITFMATCH-26JUL28DHOREC-REC {\"event\": \"KXITFMATCH-26JUL28DHOREC\", \"direction\": \"leader\", \"cat\": \"ITF_M\", \"regime\": \"r85_94\", \"cell\": 85, \"current_pr",
+    "[01:29:31 AM] V4_PLACE             KXITFMATCH-26JUL28DHOREC-DHO {\"event\": \"KXITFMATCH-26JUL28DHOREC\", \"direction\": \"underdog\", \"cat\": \"ITF_M\", \"regime\": \"r05_14\", \"cell\": 14, \"current_",
+    "[01:29:34 AM] V4_PLACE             KXITFMATCH-26JUL28FRYCOQ-COQ {\"event\": \"KXITFMATCH-26JUL28FRYCOQ\", \"direction\": \"leader\", \"cat\": \"ITF_M\", \"regime\": \"r45_54\", \"cell\": 53, \"current_pr",
+    "[01:29:42 AM] V4_PLACE             KXITFMATCH-26JUL28PELHOH-PEL {\"event\": \"KXITFMATCH-26JUL28PELHOH\", \"direction\": \"leader\", \"cat\": \"ITF_M\", \"regime\": \"r45_54\", \"cell\": 53, \"current_pr",
+    "[01:30:33 AM] V4_PLACE             KXWTACHALLENGERMATCH-26JUL28ROURAD-ROU {\"event\": \"KXWTACHALLENGERMATCH-26JUL28ROURAD\", \"direction\": \"underdog\", \"cat\": \"WTA_CHALL\", \"regime\": \"r15_24\", \"cell\":",
+    "[01:30:35 AM] V4_PLACE             KXATPCHALLENGERMATCH-26JUL28MAENEU-MAE {\"event\": \"KXATPCHALLENGERMATCH-26JUL28MAENEU\", \"direction\": \"underdog\", \"cat\": \"ATP_CHALL\", \"regime\": \"r25_34\", \"cell\":",
+    "[01:30:35 AM] CONCEPTION_STAMP      {\"event\": \"KXATPCHALLENGERMATCH-26JUL28MAENEU\", \"source\": \"first_order_retro\", \"retroactive_to\": 1785216635.6301792}",
+    "[01:31:15 AM] V4_PLACE             KXITFWMATCH-26JUL28OCONIJ-NIJ {\"event\": \"KXITFWMATCH-26JUL28OCONIJ\", \"direction\": \"leader\", \"cat\": \"ITF_W\", \"regime\": \"r85_94\", \"cell\": 92, \"current_p"
+  ],
+  "tennis_entry_fill_receipts": [],
+  "tennis_entry_order_receipts": [
+    "[01:11:48 AM] ORDER_PLACED         KXATPCHALLENGERMATCH-26JUL28RIBTOR-TOR {\"action\": \"buy\", \"side\": \"yes\", \"price\": 44, \"count\": 5, \"order_id\": \"8fe1994e-41fd-4f44-896c-dd6707d7a7dd\", \"client_or",
+    "[01:16:21 AM] ORDER_PLACED         KXATPCHALLENGERMATCH-26JUL28TABSQU-TAB {\"action\": \"buy\", \"side\": \"yes\", \"price\": 58, \"count\": 5, \"order_id\": \"4a4834e4-eff4-4520-8387-6119f936edfe\", \"client_or",
+    "[01:20:39 AM] ORDER_PLACED         KXATPCHALLENGERMATCH-26JUL28FELMAY-MAY {\"action\": \"buy\", \"side\": \"yes\", \"price\": 19, \"count\": 5, \"order_id\": \"2f92618a-4c8c-411a-a93b-0370a8a4bb4e\", \"client_or",
+    "[01:24:07 AM] ORDER_PLACED         KXATPCHALLENGERMATCH-26JUL28JUSGUE-GUE {\"action\": \"buy\", \"side\": \"yes\", \"price\": 35, \"count\": 5, \"order_id\": \"7757c057-32be-4f45-9c56-95299eed21b4\", \"client_or",
+    "[01:26:38 AM] ORDER_PLACED         KXATPCHALLENGERMATCH-26JUL28CORFOR-FOR {\"action\": \"buy\", \"side\": \"yes\", \"price\": 53, \"count\": 5, \"order_id\": \"bacb7c8e-1684-48c5-95bb-12dc424ca6b9\", \"client_or",
+    "[01:26:40 AM] ORDER_PLACED         KXATPCHALLENGERMATCH-26JUL28MOLTOP-MOL {\"action\": \"buy\", \"side\": \"yes\", \"price\": 47, \"count\": 5, \"order_id\": \"92259609-20d7-4aeb-bfec-08b49955bd0d\", \"client_or",
+    "[01:28:04 AM] ORDER_PLACED         KXATPCHALLENGERMATCH-26JUL28KOTGAL-GAL {\"action\": \"buy\", \"side\": \"yes\", \"price\": 58, \"count\": 5, \"order_id\": \"752a9fe8-7596-418c-9c9a-a186b34550ee\", \"client_or",
+    "[01:30:33 AM] ORDER_PLACED         KXWTACHALLENGERMATCH-26JUL28ROURAD-ROU {\"action\": \"buy\", \"side\": \"yes\", \"price\": 16, \"count\": 5, \"order_id\": \"4c15dc2c-d817-4204-a57e-ec92bfbba64c\", \"client_or",
+    "[01:30:35 AM] ORDER_PLACED         KXATPCHALLENGERMATCH-26JUL28MAENEU-MAE {\"action\": \"buy\", \"side\": \"yes\", \"price\": 28, \"count\": 5, \"order_id\": \"0b3de15a-4f42-4a71-9bc9-962d61cd3220\", \"client_or",
+    "[01:30:43 AM] ORDER_PLACED         KXATPCHALLENGERMATCH-26JUL28RIBTOR-RIB {\"action\": \"buy\", \"side\": \"yes\", \"price\": 42, \"count\": 5, \"order_id\": \"57cb1988-63de-4df3-8607-8f71c7fa4cbd\", \"client_or",
+    "[01:31:25 AM] ORDER_PLACED         KXATPCHALLENGERMATCH-26JUL28MARSEY-SEY {\"action\": \"buy\", \"side\": \"yes\", \"price\": 73, \"count\": 5, \"order_id\": \"b9c8c2f4-1972-42eb-abb0-d45371fd9ca1\", \"client_or"
+  ],
+  "total_active_observation_seconds": 1147.711
+}

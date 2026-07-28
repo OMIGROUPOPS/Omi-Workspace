@@ -1,0 +1,9 @@
+{
+  "metrics": null,
+  "mismatch_count": 0,
+  "performance": null,
+  "pre_first_action_mismatch_count": 0,
+  "rows_checked": 6432,
+  "schema_version": "window1-t2-causal-divot-prerun-v1-first-leg-identity-v1",
+  "scored": false
+}

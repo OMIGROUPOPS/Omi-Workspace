@@ -1,0 +1,14 @@
+{
+  "metrics": null,
+  "parent_exposure_receipt_counts": {
+    "HOLD": 10763
+  },
+  "parked_exposure_count": 6963,
+  "performance": null,
+  "preserved_exposure_count": 1172973,
+  "replaced_exposure_count": 274,
+  "replacement_requires_named_decay": true,
+  "schema_version": "window1-t2-causal-divot-prerun-v1-parent-exposure-census-v1",
+  "scored": false,
+  "unconditional_persistence": false
+}

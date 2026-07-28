@@ -1,0 +1,153 @@
+{
+  "mechanisms": [
+    {
+      "mechanism": "positive_size_true_print",
+      "status": "BOUND"
+    },
+    {
+      "mechanism": "nonself_BBO_top5",
+      "status": "BOUND"
+    },
+    {
+      "mechanism": "Trendpath_ATLAS_discovery",
+      "status": "BOUND"
+    },
+    {
+      "mechanism": "LIVE_AIM_mapping",
+      "status": "BOUND"
+    },
+    {
+      "mechanism": "GUIDEBOOK_deep_tier",
+      "status": "BOUND"
+    },
+    {
+      "mechanism": "positive_print_microdivot",
+      "status": "BOUND"
+    },
+    {
+      "mechanism": "causal_divot_later_recurrence",
+      "status": "BOUND"
+    },
+    {
+      "mechanism": "pair_combined_headroom",
+      "status": "BOUND"
+    },
+    {
+      "mechanism": "timestamped_policy_clock",
+      "status": "BOUND"
+    },
+    {
+      "mechanism": "external_ask_maker_safety",
+      "status": "BOUND"
+    },
+    {
+      "mechanism": "non_displacing_target_completeness",
+      "status": "BOUND"
+    },
+    {
+      "mechanism": "causal_evidence_decay_exit",
+      "status": "BOUND"
+    },
+    {
+      "mechanism": "carried_last_trade",
+      "status": "PROXIED"
+    },
+    {
+      "mechanism": "standalone_volume_direction",
+      "status": "PROXIED"
+    },
+    {
+      "mechanism": "top5_pressure_sign",
+      "status": "PROXIED"
+    },
+    {
+      "mechanism": "close_keyed_recut",
+      "status": "PROXIED"
+    },
+    {
+      "mechanism": "taker_reach_probability",
+      "status": "PROXIED"
+    },
+    {
+      "mechanism": "drift_surfaces",
+      "status": "PROXIED"
+    },
+    {
+      "mechanism": "band_map",
+      "status": "PROXIED"
+    },
+    {
+      "mechanism": "divot_tables",
+      "status": "PROXIED"
+    },
+    {
+      "mechanism": "LIBRARY_timing",
+      "status": "PROXIED"
+    },
+    {
+      "mechanism": "ORIENT_frozen_consumer",
+      "status": "PROXIED"
+    },
+    {
+      "mechanism": "Pinnacle",
+      "status": "ABSENT"
+    },
+    {
+      "mechanism": "authoritative_bookmaker_FV",
+      "status": "ABSENT"
+    },
+    {
+      "mechanism": "full_depth_beyond_top5",
+      "status": "ABSENT"
+    },
+    {
+      "mechanism": "independent_shape_mapping",
+      "status": "ABSENT"
+    },
+    {
+      "mechanism": "moving_bid_edge",
+      "status": "RETRACTED"
+    },
+    {
+      "mechanism": "universal_50_split",
+      "status": "RETRACTED"
+    },
+    {
+      "mechanism": "last_trade_direction_gate",
+      "status": "RETRACTED"
+    },
+    {
+      "mechanism": "pressure_taker_direction_gate",
+      "status": "RETRACTED"
+    },
+    {
+      "mechanism": "borrowed_sealed_pair_shape",
+      "status": "RETRACTED"
+    },
+    {
+      "mechanism": "T1_unconditional_persistence",
+      "status": "RETRACTED"
+    },
+    {
+      "mechanism": "T1_inert_response_only_label",
+      "status": "RETRACTED"
+    },
+    {
+      "mechanism": "automatic_positive_d2_bid_plus_one_preference",
+      "status": "RETRACTED"
+    }
+  ],
+  "metrics": null,
+  "performance": null,
+  "schema_version": "window1-t2-causal-divot-prerun-v1-mechanism-status-v1",
+  "scored": false,
+  "source_paths": [
+    ".claude/proof_20260714/PROOF_LIVE_AIM.md",
+    "arb-executor/live_v4.py::_liveaim_shadow",
+    ".claude/volume_20260709/VOLUME_LEDGER.md",
+    ".claude/trendpath/ATLAS_V1.json",
+    ".claude/guidebook/GUIDEBOOK_V1.json",
+    ".claude/takerreach/LAW.json",
+    ".claude/entrysurface_20260717/divot_tables_v1.json"
+  ]
+}

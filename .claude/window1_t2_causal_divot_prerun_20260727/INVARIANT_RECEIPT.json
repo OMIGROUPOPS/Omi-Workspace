@@ -1,0 +1,18 @@
+{
+  "D_per_candidate": 804,
+  "PC_to_IC_tightening_paths": 0,
+  "T1_results_metrics_read_by_candidate_code": false,
+  "combined_zero_admissions": 0,
+  "five_no_BBO_events_retained": 5,
+  "forced_positive_d2_preference_paths": 0,
+  "future_evidence_target_selections": 0,
+  "metrics": null,
+  "performance": null,
+  "pre_first_T2_actions": 0,
+  "replacements_without_named_decay": 0,
+  "same_receipt_action_fill_credits": 0,
+  "schema_version": "window1-t2-causal-divot-prerun-v1-invariants-v1",
+  "scored": false,
+  "scorer_imported_or_invoked": false,
+  "unconditional_persistence_paths": 0
+}

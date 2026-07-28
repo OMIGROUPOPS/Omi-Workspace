@@ -1,0 +1,80 @@
+{
+  "baseline_candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "candidate_ids": [
+    "w1_t2__macro_hold__fixed_admission_parent_control",
+    "w1_t2__macro_hold__non_displacing_target_completeness",
+    "w1_t2__macro_hold__target_completeness_evidence_decay",
+    "w1_t2__macro_hold__full_causal_divot_stack",
+    "w1_t2__macro_micro__fixed_admission_parent_control",
+    "w1_t2__macro_micro__non_displacing_target_completeness",
+    "w1_t2__macro_micro__target_completeness_evidence_decay",
+    "w1_t2__macro_micro__full_causal_divot_stack"
+  ],
+  "candidate_ranking": null,
+  "free_parameters": [],
+  "metrics": null,
+  "performance": null,
+  "schema_version": "window1-t2-causal-divot-prerun-v1-candidate-matrix-v1",
+  "scored": false,
+  "switch_matrix": {
+    "w1_t2__macro_hold__fixed_admission_parent_control": {
+      "actionable_first_fill_response": false,
+      "causal_divot_recall": false,
+      "evidence_decay_exit": false,
+      "fixed_admission_control": true,
+      "non_displacing_target_completeness": false
+    },
+    "w1_t2__macro_hold__full_causal_divot_stack": {
+      "actionable_first_fill_response": true,
+      "causal_divot_recall": true,
+      "evidence_decay_exit": true,
+      "fixed_admission_control": false,
+      "non_displacing_target_completeness": true
+    },
+    "w1_t2__macro_hold__non_displacing_target_completeness": {
+      "actionable_first_fill_response": false,
+      "causal_divot_recall": false,
+      "evidence_decay_exit": false,
+      "fixed_admission_control": false,
+      "non_displacing_target_completeness": true
+    },
+    "w1_t2__macro_hold__target_completeness_evidence_decay": {
+      "actionable_first_fill_response": false,
+      "causal_divot_recall": false,
+      "evidence_decay_exit": true,
+      "fixed_admission_control": false,
+      "non_displacing_target_completeness": true
+    },
+    "w1_t2__macro_micro__fixed_admission_parent_control": {
+      "actionable_first_fill_response": false,
+      "causal_divot_recall": false,
+      "evidence_decay_exit": false,
+      "fixed_admission_control": true,
+      "non_displacing_target_completeness": false
+    },
+    "w1_t2__macro_micro__full_causal_divot_stack": {
+      "actionable_first_fill_response": true,
+      "causal_divot_recall": true,
+      "evidence_decay_exit": true,
+      "fixed_admission_control": false,
+      "non_displacing_target_completeness": true
+    },
+    "w1_t2__macro_micro__non_displacing_target_completeness": {
+      "actionable_first_fill_response": false,
+      "causal_divot_recall": false,
+      "evidence_decay_exit": false,
+      "fixed_admission_control": false,
+      "non_displacing_target_completeness": true
+    },
+    "w1_t2__macro_micro__target_completeness_evidence_decay": {
+      "actionable_first_fill_response": false,
+      "causal_divot_recall": false,
+      "evidence_decay_exit": true,
+      "fixed_admission_control": false,
+      "non_displacing_target_completeness": true
+    }
+  }
+}

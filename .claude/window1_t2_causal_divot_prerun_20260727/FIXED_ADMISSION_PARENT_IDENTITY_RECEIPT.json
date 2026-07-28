@@ -1,0 +1,33 @@
+{
+  "baseline_candidate_event_rows": 1608,
+  "behavioral_comparison_artifact_count": 0,
+  "candidate_event_rows_checked": 1608,
+  "candidate_normalized_semantic_mismatch_count": 0,
+  "control_candidate_ids": [
+    "w1_t2__macro_hold__fixed_admission_parent_control",
+    "w1_t2__macro_micro__fixed_admission_parent_control"
+  ],
+  "former_boundary_artifact_count": 3,
+  "former_boundary_surface_artifacts": [
+    {
+      "candidate_regime": "macro_hold",
+      "disposition": "DISAPPEARS_UNDER_IDENTICAL_ADMISSION_SURFACE",
+      "event_id": "KXATPMATCH-26JUL13PASKRU"
+    },
+    {
+      "candidate_regime": "macro_micro",
+      "disposition": "DISAPPEARS_UNDER_IDENTICAL_ADMISSION_SURFACE",
+      "event_id": "KXATPMATCH-26JUL13PASKRU"
+    },
+    {
+      "candidate_regime": "macro_micro",
+      "disposition": "DISAPPEARS_UNDER_IDENTICAL_ADMISSION_SURFACE",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL"
+    }
+  ],
+  "metrics": null,
+  "one_byte_identical_fill_admission_law_on_both_sides": true,
+  "performance": null,
+  "schema_version": "window1-t2-causal-divot-prerun-v1-fixed-admission-control-v1",
+  "scored": false
+}

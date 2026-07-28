@@ -1,0 +1,31 @@
+{
+  "D_per_candidate": 804,
+  "benchmark_execution_authorized": false,
+  "candidate_event_rows": 6432,
+  "candidate_ids": [
+    "w1_t2__macro_hold__fixed_admission_parent_control",
+    "w1_t2__macro_hold__non_displacing_target_completeness",
+    "w1_t2__macro_hold__target_completeness_evidence_decay",
+    "w1_t2__macro_hold__full_causal_divot_stack",
+    "w1_t2__macro_micro__fixed_admission_parent_control",
+    "w1_t2__macro_micro__non_displacing_target_completeness",
+    "w1_t2__macro_micro__target_completeness_evidence_decay",
+    "w1_t2__macro_micro__full_causal_divot_stack"
+  ],
+  "controlling_T1_results": "d710ba0606084f67625e255e87ebad1cd016bf6a",
+  "controlling_T1_results_audit": "33ae7350f1bd67387146acae51951f0b76d52313",
+  "evidence_decay_replacements": 274,
+  "exact_parent": "d710ba0606084f67625e255e87ebad1cd016bf6a",
+  "later_divot_actions": 140,
+  "later_independent_recurrences": 176435,
+  "lawful_positive_d2_target_count": 38061,
+  "lawful_sibling_X_count": 2996560,
+  "metrics": null,
+  "performance": null,
+  "positive_d2_targets_actually_exposed": 54,
+  "recognized_divots": 166644,
+  "schema_version": "window1-t2-causal-divot-prerun-v1-manifest-v1",
+  "scored": false,
+  "still_later_independent_fill_evidence": 81,
+  "target_surface_rows": 4576794
+}

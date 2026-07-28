@@ -1,0 +1,10 @@
+{
+  "T2_is_post_first_only": true,
+  "T2_nofill_rows_checked": 864,
+  "baseline_nofill_rows": 216,
+  "metrics": null,
+  "mismatch_count": 0,
+  "performance": null,
+  "schema_version": "window1-t2-causal-divot-prerun-v1-nofill-identity-v1",
+  "scored": false
+}

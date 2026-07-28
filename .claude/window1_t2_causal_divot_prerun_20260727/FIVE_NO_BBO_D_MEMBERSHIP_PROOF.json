@@ -1,0 +1,371 @@
+{
+  "distinct_events": 5,
+  "fabricated_order_count": 0,
+  "metrics": null,
+  "performance": null,
+  "row_count": 40,
+  "rows": [
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__fixed_admission_parent_control",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__non_displacing_target_completeness",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__target_completeness_evidence_decay",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__full_causal_divot_stack",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__fixed_admission_parent_control",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__non_displacing_target_completeness",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__target_completeness_evidence_decay",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__full_causal_divot_stack",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__fixed_admission_parent_control",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__non_displacing_target_completeness",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__target_completeness_evidence_decay",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__full_causal_divot_stack",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__fixed_admission_parent_control",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__non_displacing_target_completeness",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__target_completeness_evidence_decay",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__full_causal_divot_stack",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__fixed_admission_parent_control",
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__non_displacing_target_completeness",
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__target_completeness_evidence_decay",
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__full_causal_divot_stack",
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__fixed_admission_parent_control",
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__non_displacing_target_completeness",
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__target_completeness_evidence_decay",
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__full_causal_divot_stack",
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__fixed_admission_parent_control",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__non_displacing_target_completeness",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__target_completeness_evidence_decay",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__full_causal_divot_stack",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__fixed_admission_parent_control",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__non_displacing_target_completeness",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__target_completeness_evidence_decay",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__full_causal_divot_stack",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__fixed_admission_parent_control",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__non_displacing_target_completeness",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__target_completeness_evidence_decay",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_hold__full_causal_divot_stack",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__fixed_admission_parent_control",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__non_displacing_target_completeness",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__target_completeness_evidence_decay",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    },
+    {
+      "D_member": true,
+      "baseline_placement_count": 0,
+      "candidate_id": "w1_t2__macro_micro__full_causal_divot_stack",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "fabricated_order_count": 0,
+      "metrics": null,
+      "scored": false
+    }
+  ],
+  "schema_version": "window1-t2-causal-divot-prerun-v1-five-no-BBO-v1",
+  "scored": false
+}

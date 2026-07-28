@@ -1,0 +1,45 @@
+{
+  "C": null,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "authority_omitted_d2_loss_attribution": {
+    "aggregate": null,
+    "conservation_pass": null,
+    "d2_inferred_from_successful_fill": false,
+    "fit": null,
+    "partition_fields": [
+      "raw_target_authority",
+      "normalized_authority_family",
+      "omitted_lawful_d2_sign",
+      "primary_loss_stage",
+      "target_count"
+    ],
+    "partition_target_count": null,
+    "post_fit": null,
+    "target_level_source_count": null
+  },
+  "candidate_count": 8,
+  "candidate_ids": [
+    "w1_t2__macro_hold__fixed_admission_parent_control",
+    "w1_t2__macro_hold__non_displacing_target_completeness",
+    "w1_t2__macro_hold__target_completeness_evidence_decay",
+    "w1_t2__macro_hold__full_causal_divot_stack",
+    "w1_t2__macro_micro__fixed_admission_parent_control",
+    "w1_t2__macro_micro__non_displacing_target_completeness",
+    "w1_t2__macro_micro__target_completeness_evidence_decay",
+    "w1_t2__macro_micro__full_causal_divot_stack"
+  ],
+  "frontier": null,
+  "performance": null,
+  "ranking_or_selection": null,
+  "regret": null,
+  "schema_version": "window1-t2-scoring-package-builder-v2-expected-output-v1",
+  "scored": false,
+  "settled_V1_metric_frontier_and_regret_fields": "unchanged; see frozen V1 expected-output schema",
+  "slices": {
+    "aggregate": 804,
+    "fit": 525,
+    "post_fit": 279
+  }
+}

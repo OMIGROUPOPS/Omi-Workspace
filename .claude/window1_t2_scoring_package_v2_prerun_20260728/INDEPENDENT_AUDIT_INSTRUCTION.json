@@ -1,0 +1,8 @@
+{
+  "PASS_or_authorization_requested": false,
+  "controlling_protocol": ".claude/window1_t2_scoring_package_v2_prerun_20260728/FUTURE_BLIND_AUDIT_PROTOCOL.json",
+  "execute_or_score": false,
+  "instruction": "Perform the three-phase future-blind audit. Compute and freeze all independent raw-input counts, hashes, exact arithmetic, target-surface/child/terminal-decision reconciliation, parent preservation grain, and authority x omitted-d2 conservation before opening any expected summary. Compare only after the independent receipt is Git-frozen. Any mismatch is BLOCK; post-hoc reconciliation is forbidden. Do not score or authorize.",
+  "protocol_sha256": "d4dc569e2799c339b4389cf4df8cd0db8dfbbfe15b11533f02c3a2a76a2fbd98",
+  "schema_version": "window1-t2-scoring-package-builder-v2-audit-instruction-v1"
+}

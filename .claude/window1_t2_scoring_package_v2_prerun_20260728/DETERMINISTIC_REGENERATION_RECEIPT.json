@@ -1,0 +1,19 @@
+{
+  "A_equals_B": true,
+  "A_equals_frozen": true,
+  "C": null,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "clean_build_A_artifact_set_sha256": "39ddd594999ceb084c924aa0dd10c31253b8c8f94f793d6d90467c4d12a26a12",
+  "clean_build_B_artifact_set_sha256": "39ddd594999ceb084c924aa0dd10c31253b8c8f94f793d6d90467c4d12a26a12",
+  "clean_build_count": 2,
+  "frontier": null,
+  "frozen_regenerable_artifact_set_sha256": "39ddd594999ceb084c924aa0dd10c31253b8c8f94f793d6d90467c4d12a26a12",
+  "performance": null,
+  "real_scorer_invocations": 0,
+  "regenerable_file_count": 16,
+  "regret": null,
+  "schema_version": "window1-t2-scoring-package-freeze-v2-receipt-v1",
+  "scored": false
+}

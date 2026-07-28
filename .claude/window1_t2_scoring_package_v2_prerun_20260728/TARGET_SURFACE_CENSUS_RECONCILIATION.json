@@ -1,0 +1,330 @@
+{
+  "available_target_surfaces": 2220400,
+  "child_conservation_pass": true,
+  "child_target_entries": 9659158,
+  "d2_sign_counts": {
+    "NEGATIVE": 2561897,
+    "POSITIVE": 2645952,
+    "ZERO": 4451309
+  },
+  "grain_contract": {
+    "child_target": "one authority+integer-X candidate nested within a target surface; multiple child targets share one surface",
+    "rejected_replacement_preservation_receipt": "a secondary support-decay receipt nested within a matching terminal HOLD surface; not an additional surface",
+    "target_surface": "one candidate/event/sibling-leg/chronological trigger receipt after a credited first fill",
+    "terminal_decision": "exactly one HOLD/NO_CALL/PARK/REPRICE/PLACE row per target surface"
+  },
+  "lawful_by_authority_family_d2_sign": [
+    {
+      "count": 1157495,
+      "d2_sign": "NEGATIVE",
+      "normalized_authority_family": "PARENT_EXPOSURE",
+      "raw_target_authority": "ACTIVE_PARENT_EXPOSURE"
+    },
+    {
+      "count": 1051,
+      "d2_sign": "POSITIVE",
+      "normalized_authority_family": "PARENT_EXPOSURE",
+      "raw_target_authority": "ACTIVE_PARENT_EXPOSURE"
+    },
+    {
+      "count": 3790,
+      "d2_sign": "ZERO",
+      "normalized_authority_family": "PARENT_EXPOSURE",
+      "raw_target_authority": "ACTIVE_PARENT_EXPOSURE"
+    },
+    {
+      "count": 32559,
+      "d2_sign": "POSITIVE",
+      "normalized_authority_family": "FALLBACK_NOT_PREFERRED",
+      "raw_target_authority": "BID_PLUS_ONE_FALLBACK_NOT_PREFERRED"
+    },
+    {
+      "count": 168214,
+      "d2_sign": "ZERO",
+      "normalized_authority_family": "FALLBACK_NOT_PREFERRED",
+      "raw_target_authority": "BID_PLUS_ONE_FALLBACK_NOT_PREFERRED"
+    },
+    {
+      "count": 11748,
+      "d2_sign": "NEGATIVE",
+      "normalized_authority_family": "CAUSAL_DIVOT",
+      "raw_target_authority": "CAUSAL_DIVOT_LATER_RECURRENCE"
+    },
+    {
+      "count": 18,
+      "d2_sign": "POSITIVE",
+      "normalized_authority_family": "CAUSAL_DIVOT",
+      "raw_target_authority": "CAUSAL_DIVOT_LATER_RECURRENCE"
+    },
+    {
+      "count": 2008,
+      "d2_sign": "ZERO",
+      "normalized_authority_family": "CAUSAL_DIVOT",
+      "raw_target_authority": "CAUSAL_DIVOT_LATER_RECURRENCE"
+    },
+    {
+      "count": 242335,
+      "d2_sign": "ZERO",
+      "normalized_authority_family": "MARKET_CONTEXT",
+      "raw_target_authority": "CURRENT_EXTERNAL_BID"
+    },
+    {
+      "count": 154451,
+      "d2_sign": "NEGATIVE",
+      "normalized_authority_family": "MARKET_CONTEXT",
+      "raw_target_authority": "CURRENT_TRUE_PRINT_REACH_CONTEXT"
+    },
+    {
+      "count": 3294,
+      "d2_sign": "POSITIVE",
+      "normalized_authority_family": "MARKET_CONTEXT",
+      "raw_target_authority": "CURRENT_TRUE_PRINT_REACH_CONTEXT"
+    },
+    {
+      "count": 33791,
+      "d2_sign": "ZERO",
+      "normalized_authority_family": "MARKET_CONTEXT",
+      "raw_target_authority": "CURRENT_TRUE_PRINT_REACH_CONTEXT"
+    },
+    {
+      "count": 84724,
+      "d2_sign": "NEGATIVE",
+      "normalized_authority_family": "LIVE_AIM",
+      "raw_target_authority": "LIVEAIM_AIM_DEEP_SOURCE_MAPPING"
+    },
+    {
+      "count": 32,
+      "d2_sign": "POSITIVE",
+      "normalized_authority_family": "LIVE_AIM",
+      "raw_target_authority": "LIVEAIM_AIM_DEEP_SOURCE_MAPPING"
+    },
+    {
+      "count": 184,
+      "d2_sign": "ZERO",
+      "normalized_authority_family": "LIVE_AIM",
+      "raw_target_authority": "LIVEAIM_AIM_DEEP_SOURCE_MAPPING"
+    },
+    {
+      "count": 1092777,
+      "d2_sign": "NEGATIVE",
+      "normalized_authority_family": "NATIVE_MACRO",
+      "raw_target_authority": "NATIVE_MACRO_TARGET"
+    },
+    {
+      "count": 1107,
+      "d2_sign": "POSITIVE",
+      "normalized_authority_family": "NATIVE_MACRO",
+      "raw_target_authority": "NATIVE_MACRO_TARGET"
+    },
+    {
+      "count": 6982,
+      "d2_sign": "ZERO",
+      "normalized_authority_family": "NATIVE_MACRO",
+      "raw_target_authority": "NATIVE_MACRO_TARGET"
+    }
+  ],
+  "lawful_target_entries": 2996560,
+  "market_evidence_no_call_surfaces": 2356394,
+  "metrics": null,
+  "non_displacing_parent_exposure": {
+    "V1_reported_typed_receipt_sum": 1172973,
+    "V1_reported_value_reproduced": true,
+    "secondary_keys_without_matching_target_surface": 3509,
+    "secondary_receipt_matching_terminal_decision_counts": {
+      "HOLD": 2887,
+      "NO_CALL": 2175,
+      "PARK": 29,
+      "PLACE": 0,
+      "REPRICE": 62
+    },
+    "secondary_receipts_with_matching_HOLD_surface": 2887,
+    "secondary_receipts_with_matching_target_surface": 5153,
+    "secondary_receipts_without_matching_target_surface": 5610,
+    "secondary_rejected_replacement_receipts": 10763,
+    "sum_is_not_a_unique_surface_count": true,
+    "terminal_HOLD_surface_decisions": 1162210,
+    "unique_secondary_preservation_surface_keys": 8659
+  },
+  "normalized_authority_family_counts": {
+    "CAUSAL_DIVOT": 85092,
+    "FALLBACK_NOT_PREFERRED": 2220400,
+    "LIVE_AIM": 133229,
+    "MARKET_CONTEXT": 4439696,
+    "NATIVE_MACRO": 1611294,
+    "PARENT_EXPOSURE": 1169447
+  },
+  "one_terminal_decision_per_surface": true,
+  "package_blocked": false,
+  "performance": null,
+  "raw_target_authority_counts": {
+    "ACTIVE_PARENT_EXPOSURE": 1169447,
+    "BID_PLUS_ONE_FALLBACK_NOT_PREFERRED": 2220400,
+    "CAUSAL_DIVOT_LATER_RECURRENCE": 85092,
+    "CURRENT_EXTERNAL_BID": 2220400,
+    "CURRENT_TRUE_PRINT_REACH_CONTEXT": 2219296,
+    "LIVEAIM_AIM_DEEP_SOURCE_MAPPING": 133229,
+    "NATIVE_MACRO_TARGET": 1611294
+  },
+  "reported_count_relationship": {
+    "V1_parent_exposure_preservation_typed_receipts": 1172973,
+    "arithmetic_difference_claimed": false,
+    "lawful_targets": 2996560,
+    "relationship": "lawful targets are nested children of surfaces; the V1 preservation number is terminal HOLD surfaces plus a nested secondary receipt stream",
+    "same_denominator": false,
+    "target_surfaces": 4576794
+  },
+  "schema_version": "window1-t2-scoring-correction-v2-target-surface-reconciliation-v1",
+  "scored": false,
+  "selected_lawful_target_entries": 1167898,
+  "selected_target_entries": 1167898,
+  "selected_unlawful_target_entries": 0,
+  "support_decay_rows": 1180210,
+  "surface_decision_identity_mismatch_count": 0,
+  "surface_status_counts": {
+    "AVAILABLE": 2220400,
+    "MARKET_EVIDENCE_NO_CALL": 2356394
+  },
+  "target_surface_rows": 4576794,
+  "terminal_decision_counts": {
+    "HOLD": 1162210,
+    "NO_CALL": 3401933,
+    "PARK": 6963,
+    "PLACE": 5414,
+    "REPRICE": 274
+  },
+  "terminal_decision_rows": 4576794,
+  "unexplained_residue_count": 0,
+  "unlawful_by_authority_and_rejection_reason": [
+    {
+      "count": 26,
+      "raw_target_authority": "ACTIVE_PARENT_EXPOSURE",
+      "rejection_reason": "at_most_bid_plus_one"
+    },
+    {
+      "count": 391,
+      "raw_target_authority": "ACTIVE_PARENT_EXPOSURE",
+      "rejection_reason": "at_most_bid_plus_one|inside_event_specific_b2_max|strict_combined_negative"
+    },
+    {
+      "count": 6694,
+      "raw_target_authority": "ACTIVE_PARENT_EXPOSURE",
+      "rejection_reason": "inside_event_specific_b2_max|strict_combined_negative"
+    },
+    {
+      "count": 2019627,
+      "raw_target_authority": "BID_PLUS_ONE_FALLBACK_NOT_PREFERRED",
+      "rejection_reason": "inside_event_specific_b2_max|strict_combined_negative"
+    },
+    {
+      "count": 21963,
+      "raw_target_authority": "CAUSAL_DIVOT_LATER_RECURRENCE",
+      "rejection_reason": "at_most_bid_plus_one|inside_event_specific_b2_max|maker_safe|strict_combined_negative"
+    },
+    {
+      "count": 700,
+      "raw_target_authority": "CAUSAL_DIVOT_LATER_RECURRENCE",
+      "rejection_reason": "at_most_bid_plus_one|inside_event_specific_b2_max|strict_combined_negative"
+    },
+    {
+      "count": 435,
+      "raw_target_authority": "CAUSAL_DIVOT_LATER_RECURRENCE",
+      "rejection_reason": "at_most_bid_plus_one|maker_safe"
+    },
+    {
+      "count": 33616,
+      "raw_target_authority": "CAUSAL_DIVOT_LATER_RECURRENCE",
+      "rejection_reason": "inside_event_specific_b2_max|maker_safe|strict_combined_negative"
+    },
+    {
+      "count": 13904,
+      "raw_target_authority": "CAUSAL_DIVOT_LATER_RECURRENCE",
+      "rejection_reason": "inside_event_specific_b2_max|strict_combined_negative"
+    },
+    {
+      "count": 700,
+      "raw_target_authority": "CAUSAL_DIVOT_LATER_RECURRENCE",
+      "rejection_reason": "maker_safe"
+    },
+    {
+      "count": 1978065,
+      "raw_target_authority": "CURRENT_EXTERNAL_BID",
+      "rejection_reason": "inside_event_specific_b2_max|strict_combined_negative"
+    },
+    {
+      "count": 954,
+      "raw_target_authority": "CURRENT_TRUE_PRINT_REACH_CONTEXT",
+      "rejection_reason": "at_most_bid_plus_one"
+    },
+    {
+      "count": 661401,
+      "raw_target_authority": "CURRENT_TRUE_PRINT_REACH_CONTEXT",
+      "rejection_reason": "at_most_bid_plus_one|inside_event_specific_b2_max|maker_safe|strict_combined_negative"
+    },
+    {
+      "count": 79821,
+      "raw_target_authority": "CURRENT_TRUE_PRINT_REACH_CONTEXT",
+      "rejection_reason": "at_most_bid_plus_one|inside_event_specific_b2_max|strict_combined_negative"
+    },
+    {
+      "count": 9120,
+      "raw_target_authority": "CURRENT_TRUE_PRINT_REACH_CONTEXT",
+      "rejection_reason": "at_most_bid_plus_one|maker_safe"
+    },
+    {
+      "count": 894650,
+      "raw_target_authority": "CURRENT_TRUE_PRINT_REACH_CONTEXT",
+      "rejection_reason": "inside_event_specific_b2_max|maker_safe|strict_combined_negative"
+    },
+    {
+      "count": 348734,
+      "raw_target_authority": "CURRENT_TRUE_PRINT_REACH_CONTEXT",
+      "rejection_reason": "inside_event_specific_b2_max|strict_combined_negative"
+    },
+    {
+      "count": 33080,
+      "raw_target_authority": "CURRENT_TRUE_PRINT_REACH_CONTEXT",
+      "rejection_reason": "maker_safe"
+    },
+    {
+      "count": 51,
+      "raw_target_authority": "LIVEAIM_AIM_DEEP_SOURCE_MAPPING",
+      "rejection_reason": "at_most_bid_plus_one"
+    },
+    {
+      "count": 38038,
+      "raw_target_authority": "LIVEAIM_AIM_DEEP_SOURCE_MAPPING",
+      "rejection_reason": "at_most_bid_plus_one|inside_event_specific_b2_max|maker_safe|strict_combined_negative"
+    },
+    {
+      "count": 1059,
+      "raw_target_authority": "LIVEAIM_AIM_DEEP_SOURCE_MAPPING",
+      "rejection_reason": "at_most_bid_plus_one|inside_event_specific_b2_max|strict_combined_negative"
+    },
+    {
+      "count": 12,
+      "raw_target_authority": "LIVEAIM_AIM_DEEP_SOURCE_MAPPING",
+      "rejection_reason": "at_most_bid_plus_one|maker_safe"
+    },
+    {
+      "count": 1110,
+      "raw_target_authority": "LIVEAIM_AIM_DEEP_SOURCE_MAPPING",
+      "rejection_reason": "inside_event_specific_b2_max|maker_safe|strict_combined_negative"
+    },
+    {
+      "count": 8001,
+      "raw_target_authority": "LIVEAIM_AIM_DEEP_SOURCE_MAPPING",
+      "rejection_reason": "inside_event_specific_b2_max|strict_combined_negative"
+    },
+    {
+      "count": 18,
+      "raw_target_authority": "LIVEAIM_AIM_DEEP_SOURCE_MAPPING",
+      "rejection_reason": "maker_safe"
+    },
+    {
+      "count": 510428,
+      "raw_target_authority": "NATIVE_MACRO_TARGET",
+      "rejection_reason": "inside_event_specific_b2_max|strict_combined_negative"
+    }
+  ],
+  "unlawful_target_entries": 6662598
+}

@@ -1,0 +1,25 @@
+{
+  "applicable_sibling_target_count": 9659158,
+  "canonical_expression": "ceil(-d1 - frozen_fee) - 1",
+  "d1_raw_json_type_counts": {
+    "integer": 2220400
+  },
+  "formula_difference_count": 0,
+  "formula_difference_identities": [],
+  "frozen_b2_max_vs_inherited_expression_mismatch_count": 0,
+  "frozen_fee_exact_value_counts": {
+    "0": 2220400
+  },
+  "frozen_fee_raw_json_type_counts": {
+    "integer": 2220400
+  },
+  "inherited_expression": "floor(-d1 - frozen_fee - 1)",
+  "metrics": null,
+  "numeric_validation": "finite exact Decimal from JSON integer or finite float round-trip representation; bool/string/fractional integer coercion forbidden",
+  "package_blocked": false,
+  "performance": null,
+  "prior_certification_discrepancy": null,
+  "schema_version": "window1-t2-scoring-correction-v2-headroom-arithmetic-v1",
+  "scored": false,
+  "target_change_count": 0
+}

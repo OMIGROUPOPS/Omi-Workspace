@@ -1,0 +1,265 @@
+{
+  "C": null,
+  "D": 804,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "T2_PASS": "8743939745e25f090d69dfd4d56906a93671f331",
+  "T2_prerun": "87ac9382c23b586f536cf457883c507ebf366ba3",
+  "audited_scorer_commit": "e7e7b9071b9238868d0599a2e5f24bb92dcc9bdd",
+  "authority_omitted_d2_loss_attribution": {
+    "aggregate": null,
+    "fit": null,
+    "post_fit": null
+  },
+  "candidate_ids": [
+    "w1_t2__macro_hold__fixed_admission_parent_control",
+    "w1_t2__macro_hold__non_displacing_target_completeness",
+    "w1_t2__macro_hold__target_completeness_evidence_decay",
+    "w1_t2__macro_hold__full_causal_divot_stack",
+    "w1_t2__macro_micro__fixed_admission_parent_control",
+    "w1_t2__macro_micro__non_displacing_target_completeness",
+    "w1_t2__macro_micro__target_completeness_evidence_decay",
+    "w1_t2__macro_micro__full_causal_divot_stack"
+  ],
+  "command_template_literal": "python -B arb-executor/analysis/window1_t2_scoring_runner_v2.py --repo . --package .claude/window1_t2_scoring_package_v2_prerun_20260728/SCORING_INPUT_MANIFEST.json --mode execute --authorization-commit <AUDIT_COMMIT_SUPPLIED_SEPARATELY> --authorization-report <AUDIT_REPORT_PATH>",
+  "controlling_T2_PASS": "8743939745e25f090d69dfd4d56906a93671f331",
+  "critical_role_identities": {
+    "claim_fence_manifest": {
+      "identity_bytes": 4491,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/CLAIM_FENCE_MANIFEST.json",
+      "sha256": "822f60e1ceef25adbc4348cb4d04478f133681592e9d6c9940c0a3fa89ef72f7"
+    },
+    "combined_headroom_arithmetic_receipt": {
+      "identity_bytes": 878,
+      "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/COMBINED_HEADROOM_ARITHMETIC_RECEIPT.json",
+      "sha256": "d19993dfccdbe27769da8b060818cb56f2fb51733254aec5f40b78b9deefbae3"
+    },
+    "event_ledger": {
+      "identity_bytes": 336694,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/IMMUTABLE_EVENT_LEDGER.jsonl",
+      "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46"
+    },
+    "event_leg_identities": {
+      "identity_bytes": 332033,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FROZEN_EVENT_LEG_IDENTITIES.json",
+      "sha256": "a7910de424ab63420d658dc6cc9986069b661b2a75a25bf593b0ca2dd8dd336f"
+    },
+    "expected_output_schema": {
+      "identity_bytes": 1383,
+      "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/EXPECTED_OUTPUT_SCHEMA_V2.json",
+      "sha256": "9d01833f9c8cf632ebf63718990bd61a586cb8a007e88b7b16121abfab050e0a"
+    },
+    "fit_postfit_ledger": {
+      "identity_bytes": 142443,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FIT_POSTFIT_BOUNDARY_LEDGER.json",
+      "sha256": "8e6e86ccbc531f56b40e06bf2ff36f96f4e486f741907ed4624a85369e049a5a"
+    },
+    "frontier_regret_contract_v2": {
+      "identity_bytes": 3864,
+      "path": "arb-executor/docs/research/window1/WINDOW1_T2_FRONTIER_REGRET_CONTRACT_V2.json",
+      "sha256": "1007feb2553c1e854fc19440954e7a91855aaa1251b5a9ba6419831d83b32c64"
+    },
+    "guarded_cache_hash_set": {
+      "identity_bytes": 286205,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_CACHE_V3_HASH_SET.json",
+      "sha256": "da7e1dc63b72d81d8b497663fd0857cca2cd4340d46f72867cf7281ef447cc69"
+    },
+    "oracle_leg_floor_ledger": {
+      "identity_bytes": 238189,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/TAPE_AND_FIVE_CONTRACT_FLOOR_LEDGER.jsonl.gz",
+      "sha256": "727d63ae80cf8739ac40b956aba31fe0d39d87f49d75334a3e10331519594e28"
+    },
+    "oracle_pair_floor_ledger": {
+      "identity_bytes": 78244,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/ASYNCHRONOUS_PAIR_FLOOR_LEDGER.jsonl.gz",
+      "sha256": "825620d8f11804552cff741b32f6f9916432269d1e820b556d24fad5ba6396ee"
+    },
+    "regret_chain_input_ledger": {
+      "identity_bytes": 4828647,
+      "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/T2_REGRET_CHAIN_INPUT_LEDGER_V2.jsonl.gz",
+      "sha256": "b2b622c191ea8330bf21d95694e43acd14b43f4413edff4e385ca3b8d823c91d"
+    },
+    "source_hash_manifest": {
+      "identity_bytes": 14418,
+      "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/SOURCE_HASH_MANIFEST.json",
+      "sha256": "cb274242cecc69cbfbcbf493d7faf002ce4e9218e541496fd86fbd5d34d0803c"
+    },
+    "start_ledger": {
+      "identity_bytes": 386143,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_BOUNDARY_LEDGER.jsonl",
+      "sha256": "c2c652dab2e382869a28785dd807cc8bb1bbe1c78842192ed39a54c685799faf"
+    },
+    "target_authority_d2_provenance_ledger": {
+      "identity_bytes": 205925,
+      "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/TARGET_AUTHORITY_D2_PROVENANCE_LEDGER.jsonl.gz",
+      "sha256": "d01c3fad2cf33d097ba9e9e3a93539140c514f4d97aa34a3b617a2b7ff0f2acf"
+    },
+    "target_surface_reconciliation": {
+      "identity_bytes": 11208,
+      "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/TARGET_SURFACE_CENSUS_RECONCILIATION.json",
+      "sha256": "4990902a82a4f4390e0fbaaa5ae7ec62d629652fe10ea46025a9aeb909fe619e"
+    },
+    "unique_T2_fill_ledger": {
+      "identity_bytes": 1371823,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/T2_UNIQUE_CREDITED_FILL_LEDGER.jsonl.gz",
+      "sha256": "fa1f695653ca1b9fcb108a2fbcb62325d5d8ea1ea145f2caf409fb179d7612b6"
+    }
+  },
+  "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v2",
+  "fit_D": 525,
+  "frontier": null,
+  "future_authorization_required": true,
+  "future_independent_PASS_required": true,
+  "implementation_parent": "3800416669e75e2ed2a7f1a075f360aec92c2ea6",
+  "input_bundle_payload": {
+    "D": 804,
+    "T2_PASS": "8743939745e25f090d69dfd4d56906a93671f331",
+    "T2_prerun": "87ac9382c23b586f536cf457883c507ebf366ba3",
+    "audited_scorer_commit": "e7e7b9071b9238868d0599a2e5f24bb92dcc9bdd",
+    "candidate_ids": [
+      "w1_t2__macro_hold__fixed_admission_parent_control",
+      "w1_t2__macro_hold__non_displacing_target_completeness",
+      "w1_t2__macro_hold__target_completeness_evidence_decay",
+      "w1_t2__macro_hold__full_causal_divot_stack",
+      "w1_t2__macro_micro__fixed_admission_parent_control",
+      "w1_t2__macro_micro__non_displacing_target_completeness",
+      "w1_t2__macro_micro__target_completeness_evidence_decay",
+      "w1_t2__macro_micro__full_causal_divot_stack"
+    ],
+    "command_template_literal": "python -B arb-executor/analysis/window1_t2_scoring_runner_v2.py --repo . --package .claude/window1_t2_scoring_package_v2_prerun_20260728/SCORING_INPUT_MANIFEST.json --mode execute --authorization-commit <AUDIT_COMMIT_SUPPLIED_SEPARATELY> --authorization-report <AUDIT_REPORT_PATH>",
+    "controlling_T2_PASS": "8743939745e25f090d69dfd4d56906a93671f331",
+    "critical_role_identities": {
+      "claim_fence_manifest": {
+        "identity_bytes": 4491,
+        "path": ".claude/window1_t2_scoring_package_prerun_20260728/CLAIM_FENCE_MANIFEST.json",
+        "sha256": "822f60e1ceef25adbc4348cb4d04478f133681592e9d6c9940c0a3fa89ef72f7"
+      },
+      "combined_headroom_arithmetic_receipt": {
+        "identity_bytes": 878,
+        "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/COMBINED_HEADROOM_ARITHMETIC_RECEIPT.json",
+        "sha256": "d19993dfccdbe27769da8b060818cb56f2fb51733254aec5f40b78b9deefbae3"
+      },
+      "event_ledger": {
+        "identity_bytes": 336694,
+        "path": ".claude/window1_t2_scoring_package_prerun_20260728/IMMUTABLE_EVENT_LEDGER.jsonl",
+        "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46"
+      },
+      "event_leg_identities": {
+        "identity_bytes": 332033,
+        "path": ".claude/window1_t2_scoring_package_prerun_20260728/FROZEN_EVENT_LEG_IDENTITIES.json",
+        "sha256": "a7910de424ab63420d658dc6cc9986069b661b2a75a25bf593b0ca2dd8dd336f"
+      },
+      "expected_output_schema": {
+        "identity_bytes": 1383,
+        "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/EXPECTED_OUTPUT_SCHEMA_V2.json",
+        "sha256": "9d01833f9c8cf632ebf63718990bd61a586cb8a007e88b7b16121abfab050e0a"
+      },
+      "fit_postfit_ledger": {
+        "identity_bytes": 142443,
+        "path": ".claude/window1_t2_scoring_package_prerun_20260728/FIT_POSTFIT_BOUNDARY_LEDGER.json",
+        "sha256": "8e6e86ccbc531f56b40e06bf2ff36f96f4e486f741907ed4624a85369e049a5a"
+      },
+      "frontier_regret_contract_v2": {
+        "identity_bytes": 3864,
+        "path": "arb-executor/docs/research/window1/WINDOW1_T2_FRONTIER_REGRET_CONTRACT_V2.json",
+        "sha256": "1007feb2553c1e854fc19440954e7a91855aaa1251b5a9ba6419831d83b32c64"
+      },
+      "guarded_cache_hash_set": {
+        "identity_bytes": 286205,
+        "path": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_CACHE_V3_HASH_SET.json",
+        "sha256": "da7e1dc63b72d81d8b497663fd0857cca2cd4340d46f72867cf7281ef447cc69"
+      },
+      "oracle_leg_floor_ledger": {
+        "identity_bytes": 238189,
+        "path": ".claude/window1_t2_scoring_package_prerun_20260728/TAPE_AND_FIVE_CONTRACT_FLOOR_LEDGER.jsonl.gz",
+        "sha256": "727d63ae80cf8739ac40b956aba31fe0d39d87f49d75334a3e10331519594e28"
+      },
+      "oracle_pair_floor_ledger": {
+        "identity_bytes": 78244,
+        "path": ".claude/window1_t2_scoring_package_prerun_20260728/ASYNCHRONOUS_PAIR_FLOOR_LEDGER.jsonl.gz",
+        "sha256": "825620d8f11804552cff741b32f6f9916432269d1e820b556d24fad5ba6396ee"
+      },
+      "regret_chain_input_ledger": {
+        "identity_bytes": 4828647,
+        "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/T2_REGRET_CHAIN_INPUT_LEDGER_V2.jsonl.gz",
+        "sha256": "b2b622c191ea8330bf21d95694e43acd14b43f4413edff4e385ca3b8d823c91d"
+      },
+      "source_hash_manifest": {
+        "identity_bytes": 14418,
+        "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/SOURCE_HASH_MANIFEST.json",
+        "sha256": "cb274242cecc69cbfbcbf493d7faf002ce4e9218e541496fd86fbd5d34d0803c"
+      },
+      "start_ledger": {
+        "identity_bytes": 386143,
+        "path": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_BOUNDARY_LEDGER.jsonl",
+        "sha256": "c2c652dab2e382869a28785dd807cc8bb1bbe1c78842192ed39a54c685799faf"
+      },
+      "target_authority_d2_provenance_ledger": {
+        "identity_bytes": 205925,
+        "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/TARGET_AUTHORITY_D2_PROVENANCE_LEDGER.jsonl.gz",
+        "sha256": "d01c3fad2cf33d097ba9e9e3a93539140c514f4d97aa34a3b617a2b7ff0f2acf"
+      },
+      "target_surface_reconciliation": {
+        "identity_bytes": 11208,
+        "path": ".claude/window1_t2_scoring_package_v2_prerun_20260728/TARGET_SURFACE_CENSUS_RECONCILIATION.json",
+        "sha256": "4990902a82a4f4390e0fbaaa5ae7ec62d629652fe10ea46025a9aeb909fe619e"
+      },
+      "unique_T2_fill_ledger": {
+        "identity_bytes": 1371823,
+        "path": ".claude/window1_t2_scoring_package_prerun_20260728/T2_UNIQUE_CREDITED_FILL_LEDGER.jsonl.gz",
+        "sha256": "fa1f695653ca1b9fcb108a2fbcb62325d5d8ea1ea145f2caf409fb179d7612b6"
+      }
+    },
+    "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v2",
+    "fit_D": 525,
+    "implementation_parent": "3800416669e75e2ed2a7f1a075f360aec92c2ea6",
+    "post_fit_D": 279,
+    "roles": {
+      "claim_fence_manifest": ".claude/window1_t2_scoring_package_prerun_20260728/CLAIM_FENCE_MANIFEST.json",
+      "combined_headroom_arithmetic_receipt": ".claude/window1_t2_scoring_package_v2_prerun_20260728/COMBINED_HEADROOM_ARITHMETIC_RECEIPT.json",
+      "event_ledger": ".claude/window1_t2_scoring_package_prerun_20260728/IMMUTABLE_EVENT_LEDGER.jsonl",
+      "event_leg_identities": ".claude/window1_t2_scoring_package_prerun_20260728/FROZEN_EVENT_LEG_IDENTITIES.json",
+      "expected_output_schema": ".claude/window1_t2_scoring_package_v2_prerun_20260728/EXPECTED_OUTPUT_SCHEMA_V2.json",
+      "fit_postfit_ledger": ".claude/window1_t2_scoring_package_prerun_20260728/FIT_POSTFIT_BOUNDARY_LEDGER.json",
+      "frontier_regret_contract_v2": "arb-executor/docs/research/window1/WINDOW1_T2_FRONTIER_REGRET_CONTRACT_V2.json",
+      "guarded_cache_directory": "../OMI-Window1-private/fit-local/guarded-cache-v3",
+      "guarded_cache_hash_set": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_CACHE_V3_HASH_SET.json",
+      "oracle_leg_floor_ledger": ".claude/window1_t2_scoring_package_prerun_20260728/TAPE_AND_FIVE_CONTRACT_FLOOR_LEDGER.jsonl.gz",
+      "oracle_pair_floor_ledger": ".claude/window1_t2_scoring_package_prerun_20260728/ASYNCHRONOUS_PAIR_FLOOR_LEDGER.jsonl.gz",
+      "regret_chain_input_ledger": ".claude/window1_t2_scoring_package_v2_prerun_20260728/T2_REGRET_CHAIN_INPUT_LEDGER_V2.jsonl.gz",
+      "source_hash_manifest": ".claude/window1_t2_scoring_package_v2_prerun_20260728/SOURCE_HASH_MANIFEST.json",
+      "start_ledger": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_BOUNDARY_LEDGER.jsonl",
+      "target_authority_d2_provenance_ledger": ".claude/window1_t2_scoring_package_v2_prerun_20260728/TARGET_AUTHORITY_D2_PROVENANCE_LEDGER.jsonl.gz",
+      "target_surface_reconciliation": ".claude/window1_t2_scoring_package_v2_prerun_20260728/TARGET_SURFACE_CENSUS_RECONCILIATION.json",
+      "unique_T2_fill_ledger": ".claude/window1_t2_scoring_package_prerun_20260728/T2_UNIQUE_CREDITED_FILL_LEDGER.jsonl.gz"
+    }
+  },
+  "input_bundle_sha256": "67508764d4560c2229f30b9a73d1211e8820fdc95e7bd2ffe2e5c6842ed6e34a",
+  "performance": null,
+  "post_fit_D": 279,
+  "ranking": null,
+  "regret": null,
+  "roles": {
+    "claim_fence_manifest": ".claude/window1_t2_scoring_package_prerun_20260728/CLAIM_FENCE_MANIFEST.json",
+    "combined_headroom_arithmetic_receipt": ".claude/window1_t2_scoring_package_v2_prerun_20260728/COMBINED_HEADROOM_ARITHMETIC_RECEIPT.json",
+    "event_ledger": ".claude/window1_t2_scoring_package_prerun_20260728/IMMUTABLE_EVENT_LEDGER.jsonl",
+    "event_leg_identities": ".claude/window1_t2_scoring_package_prerun_20260728/FROZEN_EVENT_LEG_IDENTITIES.json",
+    "expected_output_schema": ".claude/window1_t2_scoring_package_v2_prerun_20260728/EXPECTED_OUTPUT_SCHEMA_V2.json",
+    "fit_postfit_ledger": ".claude/window1_t2_scoring_package_prerun_20260728/FIT_POSTFIT_BOUNDARY_LEDGER.json",
+    "frontier_regret_contract_v2": "arb-executor/docs/research/window1/WINDOW1_T2_FRONTIER_REGRET_CONTRACT_V2.json",
+    "guarded_cache_directory": "../OMI-Window1-private/fit-local/guarded-cache-v3",
+    "guarded_cache_hash_set": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_CACHE_V3_HASH_SET.json",
+    "oracle_leg_floor_ledger": ".claude/window1_t2_scoring_package_prerun_20260728/TAPE_AND_FIVE_CONTRACT_FLOOR_LEDGER.jsonl.gz",
+    "oracle_pair_floor_ledger": ".claude/window1_t2_scoring_package_prerun_20260728/ASYNCHRONOUS_PAIR_FLOOR_LEDGER.jsonl.gz",
+    "regret_chain_input_ledger": ".claude/window1_t2_scoring_package_v2_prerun_20260728/T2_REGRET_CHAIN_INPUT_LEDGER_V2.jsonl.gz",
+    "source_hash_manifest": ".claude/window1_t2_scoring_package_v2_prerun_20260728/SOURCE_HASH_MANIFEST.json",
+    "start_ledger": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_BOUNDARY_LEDGER.jsonl",
+    "target_authority_d2_provenance_ledger": ".claude/window1_t2_scoring_package_v2_prerun_20260728/TARGET_AUTHORITY_D2_PROVENANCE_LEDGER.jsonl.gz",
+    "target_surface_reconciliation": ".claude/window1_t2_scoring_package_v2_prerun_20260728/TARGET_SURFACE_CENSUS_RECONCILIATION.json",
+    "unique_T2_fill_ledger": ".claude/window1_t2_scoring_package_prerun_20260728/T2_UNIQUE_CREDITED_FILL_LEDGER.jsonl.gz"
+  },
+  "schema_version": "window1-t2-scoring-input-manifest-v2",
+  "scored": false,
+  "selection": null
+}

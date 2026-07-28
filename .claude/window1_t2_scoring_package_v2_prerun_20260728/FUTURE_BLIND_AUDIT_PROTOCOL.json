@@ -1,0 +1,28 @@
+{
+  "PASS_or_authorization_requested": false,
+  "comparison_without_frozen_independent_receipt": "BLOCK",
+  "mismatch_default": "BLOCK",
+  "phase_order": [
+    {
+      "expected_summaries_may_be_opened": false,
+      "name": "RAW_INDEPENDENT_REPRODUCTION",
+      "phase": 1,
+      "rule": "Compute every count, hash, fee value/type, headroom formula result, surface/child/decision conservation, authority/d2 partition, and preservation-grain relationship directly from frozen raw inputs."
+    },
+    {
+      "expected_summaries_may_be_opened": false,
+      "name": "FREEZE_INDEPENDENT_RECEIPT",
+      "phase": 2,
+      "rule": "Write and Git-hash the auditor's complete independent receipt before any expected summary is opened."
+    },
+    {
+      "expected_summaries_may_be_opened": true,
+      "name": "COMPARE_AFTER_FREEZE",
+      "phase": 3,
+      "rule": "Only after phase-2 identity is frozen may expected summaries be opened and compared."
+    }
+  ],
+  "post_hoc_reconciliation_to_expected_value": "FORBIDDEN",
+  "schema_version": "window1-t2-scoring-package-builder-v2-blind-audit-protocol-v1",
+  "scoring_or_execution": false
+}

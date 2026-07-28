@@ -1,0 +1,22 @@
+{
+  "C": null,
+  "D_per_candidate": 804,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "authority_omitted_d2_loss_attribution": {
+    "aggregate": null,
+    "fit": null,
+    "post_fit": null
+  },
+  "candidate_count": 8,
+  "candidate_event_rows": 6432,
+  "frontier": null,
+  "performance": null,
+  "ranking_or_selection": null,
+  "real_population_scorer_invocations": 0,
+  "regret": null,
+  "results_directory_created": false,
+  "schema_version": "window1-t2-scoring-package-builder-v2-null-no-execution-v1",
+  "scored": false
+}

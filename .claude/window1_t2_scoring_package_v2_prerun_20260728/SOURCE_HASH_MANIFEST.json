@@ -1,0 +1,326 @@
+{
+  "T2_independent_PASS": "8743939745e25f090d69dfd4d56906a93671f331",
+  "T2_prerun": "87ac9382c23b586f536cf457883c507ebf366ba3",
+  "committed_source_inputs": [
+    {
+      "git_blob_oid": "05e6aa7463d687a7737f2e9d8237213e3eb94e48",
+      "identity_bytes": 27622,
+      "newline_identity": "raw",
+      "path": "arb-executor/analysis/window1_t2_scoring_correction_v2.py",
+      "role": "V2 mechanical reconciliation",
+      "sha256": "9e2cdf2d879ecaa3ef2ae356648bba98f6a7f7766bd0c66bc44f6332ea9107dd",
+      "working_tree_bytes": 27622
+    },
+    {
+      "git_blob_oid": "5eb1b7a2faa9dd836a2f04e71f7723ade4da5118",
+      "identity_bytes": 27259,
+      "newline_identity": "raw",
+      "path": "arb-executor/analysis/window1_t2_scoring_package_builder_v2.py",
+      "role": "V2 score-free package builder",
+      "sha256": "4c01a8e254e11c1ea0ccce5e76a6f0363872f71df16f3f63bbd376c1559fd5b3",
+      "working_tree_bytes": 27259
+    },
+    {
+      "git_blob_oid": "a491dcc64c9f2779998d8f6dcd3cd6d2b7f25332",
+      "identity_bytes": 4244,
+      "newline_identity": "raw",
+      "path": "arb-executor/analysis/window1_t2_scoring_package_freeze_v2.py",
+      "role": "V2 two-build deterministic freezer",
+      "sha256": "44d04bf89b234516c634ebcdf45e0f14415109878d0e7286f90ff090fd87bb9f",
+      "working_tree_bytes": 4244
+    },
+    {
+      "git_blob_oid": "e88391892c0586f1f032efbc3e83e360350f1192",
+      "identity_bytes": 38187,
+      "newline_identity": "raw",
+      "path": "arb-executor/analysis/window1_t2_scoring_runner_v2.py",
+      "role": "V2 deterministic runner",
+      "sha256": "2a1a6aae701ac17d1ba60ee2072fb362cf7c2699f8990ba3c9c5db2e7666c624",
+      "working_tree_bytes": 38187
+    },
+    {
+      "git_blob_oid": "899ab4a236cf7dfc31923e947af0a6055742d3e6",
+      "identity_bytes": 3864,
+      "newline_identity": "raw",
+      "path": "arb-executor/docs/research/window1/WINDOW1_T2_FRONTIER_REGRET_CONTRACT_V2.json",
+      "role": "V2 corrected scoring contract",
+      "sha256": "1007feb2553c1e854fc19440954e7a91855aaa1251b5a9ba6419831d83b32c64",
+      "working_tree_bytes": 3864
+    },
+    {
+      "git_blob_oid": "393c86af619a3b082c621287926e984d6be42d0c",
+      "identity_bytes": 7974,
+      "newline_identity": "raw",
+      "path": "arb-executor/tests/test_window1_t2_scoring_package_v2.py",
+      "role": "V2 focused tests",
+      "sha256": "57e6263e5d20e185166745e14f125e6d2736d870cd1e5e50ab98fbee03445e5a",
+      "working_tree_bytes": 7974
+    },
+    {
+      "git_blob_oid": "616814cb87381d412ed1a1a951739fcefc7b9450",
+      "identity_bytes": 15209,
+      "newline_identity": "raw",
+      "path": "arb-executor/analysis/window1_t2_frontier_regret_scorer_v1.py",
+      "role": "audited V1 frontier/regret metric scorer unchanged",
+      "sha256": "dfb00059a9645b72934fb9ef6bc446dbb90202ed66f5073459f849774416171c",
+      "working_tree_bytes": 15209
+    },
+    {
+      "git_blob_oid": "e94c33b2c5fb4e0f25494850b6ef59cab0689251",
+      "identity_bytes": 12497,
+      "newline_identity": "raw",
+      "path": "arb-executor/analysis/window1_t2_scoring_adapter_v1.py",
+      "role": "audited exact-integer T2 fill adapter unchanged",
+      "sha256": "c4965c0502c1cd9348c12196b6fc713be574dcd96c4eed0bbcb2be3a4b119bac",
+      "working_tree_bytes": 12497
+    },
+    {
+      "git_blob_oid": "1616033b54c34c870ec82c93c62a7dd3387826e4",
+      "identity_bytes": 7040,
+      "newline_identity": "raw",
+      "path": "arb-executor/analysis/window1_range_attack_reference_adapter_v2.py",
+      "role": "audited reference adapter unchanged",
+      "sha256": "29b9ab82d6dd6a1f683ba40348c14a93b8d61e62d9eca8aef724c15529f7c8fb",
+      "working_tree_bytes": 7040
+    }
+  ],
+  "frozen_binary_inputs": [
+    {
+      "bytes": 17046086,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_01.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "d58131b93859945ed77184c4e0d500b01fce7fa51d7e9839f9044271ab0fb544"
+    },
+    {
+      "bytes": 26936709,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_02.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "288fd4db26e94ce5933eea7484f5cfb95b86e788cfc6affd0c7ad4486cd59ccd"
+    },
+    {
+      "bytes": 22175578,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_03.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "e08f4d8ac58c7f1088b93f5a25914acadf7302de90374f176608d0f552b6d864"
+    },
+    {
+      "bytes": 21663542,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_04.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "8e1ee9bccb6d0caf146170b43d5eed06755887cf3472163ca4440fb3448a34ff"
+    },
+    {
+      "bytes": 22221582,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_05.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "583eddf1d17d0bf8201066a9e1bf4468b98ba1009ed1b6d4b07c278e73e9c0b1"
+    },
+    {
+      "bytes": 23437921,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_06.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "4c92a945dcf9f59684366b4953e09ed4d9400b59b065af67109d7ba32eb00ec8"
+    },
+    {
+      "bytes": 18878154,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_07.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "bee4189ce8409bae4f8164da76d9265427dd6bdeb5e700bbb447bc983315fcc5"
+    },
+    {
+      "bytes": 19163105,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_08.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "44a9c5367e21db3f350b5fbd3c031c9d3a91c53c2db2cfbbc1415f09158873f0"
+    },
+    {
+      "bytes": 24387238,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_09.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "23254006796ae2f79f4d63da89b348ab07b64bfd50a2a384417db7cfc7589924"
+    },
+    {
+      "bytes": 19610993,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_10.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "7c6768606bda14782caebaff651dce9cb4a5f198f39c9b6864f4b5eea3074662"
+    },
+    {
+      "bytes": 24895458,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_11.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "00926868780dbf564ccfd4f40f7613493b3fcfc1845d13cf0defb43a790fcbf2"
+    },
+    {
+      "bytes": 20217877,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_12.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "f1c7346ef178919a1a654b1bfa64740cd3720cff990c0bf9b2aebe5c3129d08c"
+    },
+    {
+      "bytes": 20231154,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_13.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "c5e2de0ddbf8d8e392acc082d89f4c1dc9f48aa382ef51189372758350a030b4"
+    },
+    {
+      "bytes": 26718398,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_14.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "9bde3c0903386b601bcd393f8582d5183f12fecadf71065ff9a7bc89f8b93cb6"
+    },
+    {
+      "bytes": 25684727,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_15.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "319b15fcaa2b525295fc01f219aa711b284d06a23e37ded4819888ae3a7684ef"
+    },
+    {
+      "bytes": 22080471,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/SIBLING_X_OPPORTUNITY_LEDGER_16.jsonl.gz",
+      "role": "frozen T2 target-surface shard",
+      "sha256": "265f8c814f32fbbbd277225f1f2d3e854b0fda1427ebe5f1cdc767c3dab0a5ca"
+    },
+    {
+      "bytes": 10007359,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_01.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "386579d813fe46d701c63e397b6d72908112069536dd2d260fd91f2eb5afca9a"
+    },
+    {
+      "bytes": 13675120,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_02.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "36c049b5db8d52fad8a290d8eb745bce24c2f4a563155ea9bc7577eba0fef868"
+    },
+    {
+      "bytes": 11556714,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_03.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "781811b67a5512a20d4d00363880cf3224cac44576df0c5ae776576daa9d8184"
+    },
+    {
+      "bytes": 12379490,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_04.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "d7590c0bae8466470b660e117afb7d9296c29494703eac9ed051279603adb608"
+    },
+    {
+      "bytes": 13106854,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_05.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "cb772ee640286bd61fc106dc97e7dc3418ac358776fff33518ca600284d6eb2a"
+    },
+    {
+      "bytes": 12271823,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_06.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "2514e30b0568d946a8e05c0b05f3d59a0c01713f48493bea61328112c35a363c"
+    },
+    {
+      "bytes": 10695200,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_07.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "5174116c1dc0a87e25550c4c750aecdb55a36f53d944e7c989a2b8f764852a09"
+    },
+    {
+      "bytes": 10229413,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_08.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "e2b52b702b3ecae75e5de0470b784ed59af0cf85aa24f2d243bba877bb1cb818"
+    },
+    {
+      "bytes": 13594847,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_09.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "875dc0cdd3d9975bd207d47f6c3971fe8a724c815fb82dcde326b52b3d53065f"
+    },
+    {
+      "bytes": 10112989,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_10.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "b5403ca9677ceec16df30169c427b62cc22f419cc72cb2d1708a8c59b80b5f3d"
+    },
+    {
+      "bytes": 13543840,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_11.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "6900d52920ebc5ef496b77f9b9d7555d6fdef1fbc127e9b1129d0574a265497f"
+    },
+    {
+      "bytes": 10089181,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_12.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "9e85318e3a35a80fea993ae2c323080fdd148eec3ebedd7fbab084c9e6b5ee79"
+    },
+    {
+      "bytes": 10286212,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_13.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "2ab4cb5b769e131ab9f22c98f4e46303c6222dc96f2263d5b094eb88dd401767"
+    },
+    {
+      "bytes": 14928330,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_14.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "b50fe82e31b2c13fda7ca696f8c5d991a9755137b1a89f017e0d00c998191574"
+    },
+    {
+      "bytes": 14323499,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_15.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "b7a071092354edf6abd9b9da012600cd9bdfc05dd47bbddbc34d00f6606aabfc"
+    },
+    {
+      "bytes": 12473221,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/TARGET_SELECTION_REJECTED_TARGET_LEDGER_16.jsonl.gz",
+      "role": "frozen T2 terminal-decision shard",
+      "sha256": "b4106ab34904f31ef1e19f1c24934bc980d2bfe61bb55e276497301f9cb9d75a"
+    },
+    {
+      "bytes": 48761362,
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/CURRENT_EXPOSURE_SUPPORT_DECAY_LEDGER.jsonl.gz",
+      "role": "frozen T2 support/decay receipt stream",
+      "sha256": "61521d9fac15e9ae0d1fc662523395e84e6a048c351a887fcc71587cfa2c0dbe"
+    },
+    {
+      "bytes": 4519525,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/T2_REGRET_CHAIN_INPUT_LEDGER.jsonl.gz",
+      "role": "frozen V1 regret-chain input",
+      "sha256": "78ce4b387b20b4bb2c8beab8284296e7ba068a34133d9a9d71928a28fa29455d"
+    }
+  ],
+  "holdout_opened": false,
+  "implementation_parent": "3800416669e75e2ed2a7f1a075f360aec92c2ea6",
+  "live_or_production_access": false,
+  "private_runtime_inputs": [
+    {
+      "bytes": 336694,
+      "date_range": [
+        "2026-07-12",
+        "2026-07-20"
+      ],
+      "events": 804,
+      "holdout_dates_present": 0,
+      "path": "../OMI-Window1-private/joined/events.jsonl",
+      "role": "immutable_event_ledger",
+      "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46",
+      "tickers": 1608
+    },
+    {
+      "bytes": 197461623,
+      "date_range": [
+        "2026-07-12",
+        "2026-07-20"
+      ],
+      "events": 804,
+      "holdout_dates_present": 0,
+      "path": "../OMI-Window1-private/fit-local/guarded-cache-v3",
+      "per_file_hash_set": ".claude/window1_range_attack_scoring_package_v2_prerun_20260726/GUARDED_CACHE_V3_HASH_SET.json",
+      "role": "guarded_cache_v3_directory",
+      "sha256": "aad8d055e90bb429f7da87b450dc9c4e2dc6a6ef114e40368535b8953b86425e",
+      "tickers": 1608
+    }
+  ],
+  "schema_version": "window1-t2-scoring-package-builder-v2-source-manifest-v1"
+}

@@ -1,0 +1,29 @@
+{
+  "metrics": null,
+  "package_blocked": false,
+  "performance": null,
+  "rows": [
+    {
+      "blocking": false,
+      "classification": "NO_DISCREPANCY",
+      "count": 0,
+      "finding": "headroom_formula_difference",
+      "target_change_count": 0
+    },
+    {
+      "blocking": false,
+      "classification": "MEASUREMENT_GRAIN_CLARIFICATION",
+      "finding": "V1_parent_preservation_label_mixed_grains",
+      "reported_typed_receipt_sum": 1172973,
+      "unique_surface_count_claim": false
+    },
+    {
+      "blocking": false,
+      "classification": "NO_DISCREPANCY",
+      "count": 0,
+      "finding": "target_surface_unexplained_residue"
+    }
+  ],
+  "schema_version": "window1-t2-scoring-package-builder-v2-discrepancy-table-v1",
+  "scored": false
+}

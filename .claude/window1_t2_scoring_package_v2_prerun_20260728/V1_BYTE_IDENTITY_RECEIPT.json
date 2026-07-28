@@ -1,0 +1,177 @@
+{
+  "V1_preserved_byte_for_byte": true,
+  "file_count": 28,
+  "files": [
+    {
+      "bytes": 78244,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/ASYNCHRONOUS_PAIR_FLOOR_LEDGER.jsonl.gz",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "825620d8f11804552cff741b32f6f9916432269d1e820b556d24fad5ba6396ee"
+    },
+    {
+      "bytes": 4491,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/CLAIM_FENCE_MANIFEST.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "822f60e1ceef25adbc4348cb4d04478f133681592e9d6c9940c0a3fa89ef72f7"
+    },
+    {
+      "bytes": 1882,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/DECISION_LAYER_ATTRIBUTION_BINDING.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "bddda2beb740d744553fb2223c16324e133d5f1625d2a3f04e41f92868368aed"
+    },
+    {
+      "bytes": 733,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/DETERMINISTIC_PACKAGE_REGENERATION_RECEIPT.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "4f03a32bf6ce23115c5f0af9cdafcd54398aa64a0e8c7c84ea79f9eef139b907"
+    },
+    {
+      "bytes": 938,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/EXECUTION_AUTHORIZATION_TEMPLATE.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "bc89ecfdf2590fe895807094efe157a482715af2ec3ef61849f709d6f0de09dc"
+    },
+    {
+      "bytes": 2268,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/EXPECTED_OUTPUT_SCHEMA.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "706eb5a6fafd0693dc055d39ef4f429c8b12d1dcccf8d502c8a48cbbe898710c"
+    },
+    {
+      "bytes": 142443,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FIT_POSTFIT_BOUNDARY_LEDGER.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "8e6e86ccbc531f56b40e06bf2ff36f96f4e486f741907ed4624a85369e049a5a"
+    },
+    {
+      "bytes": 149953,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FIVE_CONTRACT_PROVEN_FLOOR_LEDGER.jsonl.gz",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "19ff88f885df334080677550be49fac207e69c7dd03c101f45989e4cecaecce9"
+    },
+    {
+      "bytes": 718,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FLOOR_COVERAGE_CENSUS.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "b7195b521cd4c71729dddcffdc17fb60058ba8d25ca2956bcadf8d631c5c0b34"
+    },
+    {
+      "bytes": 419,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FORBIDDEN_ACCESS_RECEIPT.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "5f8666e516cd22695dadd0359997a2f073b1dbb1b734e772f43a9801e0417a3a"
+    },
+    {
+      "bytes": 332033,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FROZEN_EVENT_LEG_IDENTITIES.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "a7910de424ab63420d658dc6cc9986069b661b2a75a25bf593b0ca2dd8dd336f"
+    },
+    {
+      "bytes": 4520,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FROZEN_T2_CANDIDATE_SPEC.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "d780ddca26bb4024a95b779833c31b3acc677b42213251634d6c9cf7c6781c89"
+    },
+    {
+      "bytes": 386143,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_BOUNDARY_LEDGER.jsonl",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "c2c652dab2e382869a28785dd807cc8bb1bbe1c78842192ed39a54c685799faf"
+    },
+    {
+      "bytes": 286205,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_CACHE_V3_HASH_SET.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "da7e1dc63b72d81d8b497663fd0857cca2cd4340d46f72867cf7281ef447cc69"
+    },
+    {
+      "bytes": 336694,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/IMMUTABLE_EVENT_LEDGER.jsonl",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46"
+    },
+    {
+      "bytes": 537,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/INDEPENDENT_AUDIT_INSTRUCTION.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "42910679ac0aac70f51c4fa8f7fac4048752b7547b5754d519909ebca74ae1ad"
+    },
+    {
+      "bytes": 1975,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/NULL_METRIC_NO_EXECUTION_RECEIPT.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "fa756cfb4f3492db67b7b778a82840beaeae6026fa34e88fb64eb7b0b900c274"
+    },
+    {
+      "bytes": 8828,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/PACKAGE_ARTIFACT_MANIFEST.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "947bb6a97c19e00d48a61dda1797952ac3527f3a3eeea3636452f84f42fcd1bf"
+    },
+    {
+      "bytes": 1073,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/PRE_RUN_REPORT.md",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "d24c090c7e945ce402ad899fbf9022bc0167ccff645312f62f1512f355412a10"
+    },
+    {
+      "bytes": 5300,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/SCORING_INPUT_MANIFEST.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "c9315b120d8dada5645dbfd88cbab2015109530089c9bae32c73e7bda6305767"
+    },
+    {
+      "bytes": 1638,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/SETTLED_SCORING_LAW_IDENTITY_RECEIPT.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "dfb8c1648a6a6121081d42c836c25c63979f8e998d40ed6f72b2747563cb285f"
+    },
+    {
+      "bytes": 15990,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/SOURCE_HASH_MANIFEST.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "573b8ffada4fe0e4ddc5bb2ff30f18383a52f3f81d59a5c338639d7c66e971fd"
+    },
+    {
+      "bytes": 2262,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/T2_INSTRUMENT_AUDIT_BINDING.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "dc8c697f16305886d4d311aecaa085138d801c390d712704056712b498f5ecd2"
+    },
+    {
+      "bytes": 4519525,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/T2_REGRET_CHAIN_INPUT_LEDGER.jsonl.gz",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "78ce4b387b20b4bb2c8beab8284296e7ba068a34133d9a9d71928a28fa29455d"
+    },
+    {
+      "bytes": 3518,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/T2_UNIQUE_CREDITED_FILL_DERIVATION_RECEIPT.json",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "d162e08b1bd7c169022b561e10bd3a8bbfba18b825ee5ec22c7ac112f7b46166"
+    },
+    {
+      "bytes": 1371823,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/T2_UNIQUE_CREDITED_FILL_LEDGER.jsonl.gz",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "fa1f695653ca1b9fcb108a2fbcb62325d5d8ea1ea145f2caf409fb179d7612b6"
+    },
+    {
+      "bytes": 238189,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/TAPE_AND_FIVE_CONTRACT_FLOOR_LEDGER.jsonl.gz",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "727d63ae80cf8739ac40b956aba31fe0d39d87f49d75334a3e10331519594e28"
+    },
+    {
+      "bytes": 123420,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/TAPE_TOUCH_FLOOR_LEDGER.jsonl.gz",
+      "role": "frozen_V1_scoring_package_artifact",
+      "sha256": "0767d16c61ac0b62340a29282352e33ea3fbed37e4223e75d251c1f50a4b6e18"
+    }
+  ],
+  "frozen_V1_package": ".claude/window1_t2_scoring_package_prerun_20260728",
+  "modified_or_deleted_V1_files": 0,
+  "schema_version": "window1-t2-scoring-package-builder-v2-v1-byte-identity-v1"
+}

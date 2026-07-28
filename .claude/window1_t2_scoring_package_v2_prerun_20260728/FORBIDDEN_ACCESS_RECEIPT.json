@@ -1,0 +1,10 @@
+{
+  "Window_2_access": false,
+  "authorization_issued": false,
+  "holdout_dates_2026_07_24_through_26_opened": false,
+  "live_or_production_access": false,
+  "network_access": false,
+  "orders_positions_exits_settlement_DCA_access": false,
+  "schema_version": "window1-t2-scoring-package-builder-v2-forbidden-access-v1",
+  "scorer_invoked": false
+}

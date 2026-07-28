@@ -1,0 +1,10 @@
+ReferenceError: positive boundary lacks V5 guard artifact
+Traceback (most recent call last):
+  File "C:\Users\omigr\OMI-Workspace-codex-w1-t2-score-v2-execution\arb-executor\analysis\window1_t2_scoring_runner_v2.py", line 555, in execute
+    derive_window1_close_reference(
+  File "C:\Users\omigr\OMI-Workspace-codex-w1-t2-score-v2-execution\arb-executor\analysis\window1_range_attack_reference_adapter_v2.py", line 130, in derive_window1_close_reference
+    cutoff = guarded_cutoff(boundary)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\omigr\OMI-Workspace-codex-w1-t2-score-v2-execution\arb-executor\analysis\window1_range_attack_reference_adapter_v1.py", line 121, in guarded_cutoff
+    raise ReferenceError("positive boundary lacks V5 guard artifact")
+window1_range_attack_reference_adapter_v1.ReferenceError: positive boundary lacks V5 guard artifact

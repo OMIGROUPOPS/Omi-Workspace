@@ -1,0 +1,18 @@
+{
+  "authorization_commit": "e4e57baca0c2172244e63f45b2086f2ef4df53e9",
+  "authorization_report": ".claude/audit_20260729_t2_scoring_package/ONE_EXECUTION_AUTHORIZATION.md",
+  "exact_command": "python -B arb-executor/analysis/window1_t2_scoring_runner_v2.py --repo . --package .claude/window1_t2_scoring_package_v2_prerun_20260728/SCORING_INPUT_MANIFEST.json --mode execute --authorization-commit e4e57baca0c2172244e63f45b2086f2ef4df53e9 --authorization-report .claude/audit_20260729_t2_scoring_package/ONE_EXECUTION_AUTHORIZATION.md",
+  "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v2",
+  "holdout_opened": false,
+  "input_bundle_sha256": "67508764d4560c2229f30b9a73d1211e8820fdc95e7bd2ffe2e5c6842ed6e34a",
+  "live_or_production_access": false,
+  "package_commit": "b73679edc9186eb72236cd1bee5f886ac141cac4",
+  "retry_count": 0,
+  "runtime": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]"
+  },
+  "schema_version": "window1-t2-scoring-runner-v2-execution-start-v1",
+  "scorer_invocations": 0,
+  "started_at_utc": "2026-07-28T22:53:49.591444+00:00"
+}

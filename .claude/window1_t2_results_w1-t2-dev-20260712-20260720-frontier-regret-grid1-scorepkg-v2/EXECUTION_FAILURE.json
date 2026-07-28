@@ -1,0 +1,10 @@
+{
+  "ended_at_utc": "2026-07-28T22:53:50.718515+00:00",
+  "error": "ReferenceError: positive boundary lacks V5 guard artifact",
+  "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v2",
+  "exit_code": 1,
+  "partial_artifacts_preserved": true,
+  "retry_or_resume_permitted": false,
+  "schema_version": "window1-t2-scoring-runner-v2-failure-v1",
+  "started_at_utc": "2026-07-28T22:53:49.591444+00:00"
+}

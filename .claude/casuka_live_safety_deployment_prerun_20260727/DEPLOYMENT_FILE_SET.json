@@ -1,0 +1,18 @@
+{
+  "schema_version": "casuka-live-safety-deployment-file-set-v1",
+  "deployment_code_commit": "d256c491c851999047779827bca73de808b5f650",
+  "files_to_deploy": [
+    {
+      "path": "arb-executor/live_v4.py",
+      "git_blob_oid": "ebd29103ff2153f3d6ced83995c3eb8c159fe38d",
+      "sha256": "85fdd653ee85dd598388d3cf6f537999decf0f0bdece6b8b3495a19041ee05d4",
+      "bytes": 1011785
+    }
+  ],
+  "files_to_deploy_count": 1,
+  "tests_and_receipts_are_not_deployment_files": true,
+  "configuration_changes": 0,
+  "service_definition_changes": 0,
+  "data_changes": 0,
+  "live_state_changes": 0
+}

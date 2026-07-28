@@ -1,0 +1,17 @@
+{
+  "schema_version": "casuka-live-safety-offline-smoke-v1",
+  "network_access": false,
+  "partial_resting_sell_qty": 2.0,
+  "authoritative_held_qty": 5,
+  "final_resting_sell_qty": 5.0,
+  "final_resting_sell_orders": 1,
+  "sell_post_counts": [2, 5],
+  "same_cycle_topup_noop": true,
+  "resting_never_exceeds_held": true,
+  "classifier_regressions": {
+    "KXWTAMATCH-26JUL27FARRIU-FAR": "settled",
+    "KXITFMATCH-26JUL27VEGKAW-VEG": "settled"
+  },
+  "source": "arb-executor/tests/casuka_live_safety_offline_smoke.py",
+  "result": "PASS"
+}

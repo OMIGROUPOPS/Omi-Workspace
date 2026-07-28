@@ -1,0 +1,67 @@
+{
+  "schema_version": "casuka-live-safety-deployment-source-hashes-v1",
+  "sources": [
+    {
+      "path": "arb-executor/live_v4.py",
+      "role": "deployment_file",
+      "commit": "d256c491c851999047779827bca73de808b5f650",
+      "bytes": 1011785,
+      "git_blob_oid": "ebd29103ff2153f3d6ced83995c3eb8c159fe38d",
+      "sha256": "85fdd653ee85dd598388d3cf6f537999decf0f0bdece6b8b3495a19041ee05d4"
+    },
+    {
+      "path": "arb-executor/tests/test_casuka_live_safety_repair.py",
+      "role": "audited_focused_fixtures_byte_identical_to_94be4113",
+      "commit": "d256c491c851999047779827bca73de808b5f650",
+      "bytes": 12554,
+      "git_blob_oid": "8287d4a5482446421801815263174fa38ad15f71",
+      "sha256": "8e1627fa4bbc32b570b5fe83fbbfddcc11e922eff5eee1cb3a6ab686f5be738b"
+    },
+    {
+      "path": "arb-executor/tests/test_casuka_live_safety_deployment_candidate.py",
+      "role": "21_adversarial_probes_plus_semantic_equivalence",
+      "commit": "d256c491c851999047779827bca73de808b5f650",
+      "bytes": 16872,
+      "git_blob_oid": "84d89cce86e7607e3683a8b7a9e6ab70a9a131eb",
+      "sha256": "b302da8bb1bf0eb8236aa44bb29d2c3a58e61e05015c90f929f1227d9900d0ff"
+    },
+    {
+      "path": "arb-executor/tests/casuka_live_safety_offline_smoke.py",
+      "role": "offline_exact_causal_replay",
+      "commit": "d256c491c851999047779827bca73de808b5f650",
+      "bytes": 3542,
+      "git_blob_oid": "87d41b6a623ea36079333ea142d6bad61334c87d",
+      "sha256": "2d2273573914e338dfbb231035b1c26a7ba68338dfb5c7a0dd0096126e8da6bb"
+    }
+  ],
+  "immutable_external_sources": [
+    {
+      "commit": "b442908f3b253d1e13d5b2a5e93c3dbf0491320d",
+      "path": ".claude/audit_20260727_casuka_live_halt/CASUKA_REPRODUCTION_REPORT.md",
+      "bytes": 5013,
+      "git_blob_oid": "c31f208ef86f4831352f6dffe0cc958459d82fc3",
+      "sha256": "c4c13a3227ca4fe6e63f2bd8a5f4f5640982bb64b052f92351789e02a4d762b8"
+    },
+    {
+      "commit": "b442908f3b253d1e13d5b2a5e93c3dbf0491320d",
+      "path": ".claude/audit_20260727_casuka_live_halt/EXECUTION_REPAIR_PACKET.json",
+      "bytes": 5563,
+      "git_blob_oid": "cd41db2eaf0c37a2ac532682ecaade08c33649f7",
+      "sha256": "11821bb80db841b474ab105641a0b35301f0ea19eb35f0234d02660ce9a8a205"
+    },
+    {
+      "commit": "66136e6240f2adda990ea8fddc7e00cc643cfb4c",
+      "path": ".claude/audit_20260727_casuka_repair/AUDIT_REPORT.md",
+      "bytes": 7437,
+      "git_blob_oid": "ea3a4e8cf5b53c88a87a0125194f221e79f297a9",
+      "sha256": "65ba3a66f2a30815bd668cdd72de3fb5cdf57bd293429c2cb5030f3e74c4188e"
+    },
+    {
+      "commit": "66136e6240f2adda990ea8fddc7e00cc643cfb4c",
+      "path": ".claude/audit_20260727_casuka_repair/INDEPENDENT_REPAIR_VERIFICATION_RECEIPT.json",
+      "bytes": 3121,
+      "git_blob_oid": "79eb9935f56ce313891336278deef29e90169b18",
+      "sha256": "a6bc4e71cd080ebefb5bb1030dbc5a058e3a9e539e993a5fd5ee452d762e9369"
+    }
+  ]
+}

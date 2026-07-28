@@ -1,0 +1,29 @@
+{
+  "schema_version": "casuka-live-safety-historical-failure-parity-v1",
+  "parent": {
+    "commit": "bb085ce06db5932049af85f927a7f9316ad76816",
+    "total": 83,
+    "passed": 45,
+    "failed": 38
+  },
+  "candidate": {
+    "commit": "d256c491c851999047779827bca73de808b5f650",
+    "total": 85,
+    "passed": 47,
+    "failed": 38
+  },
+  "status_mismatches": [],
+  "missing_parent_tests": [],
+  "new_tests": [
+    "test_casuka_live_safety_deployment_candidate.py",
+    "test_casuka_live_safety_repair.py"
+  ],
+  "new_test_failures": [],
+  "failure_identity_set_equal": true,
+  "terminal_failure_cause_equal": true,
+  "decorator_stack_only_differences": [
+    "test_copilot_manual.py",
+    "test_ride_live_race.py"
+  ],
+  "failure_count_conserved": "38=38"
+}

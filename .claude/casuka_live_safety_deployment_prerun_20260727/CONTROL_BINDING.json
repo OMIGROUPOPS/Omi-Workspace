@@ -1,0 +1,21 @@
+{
+  "schema_version": "casuka-live-safety-deployment-control-v1",
+  "deployment_code_commit": "d256c491c851999047779827bca73de808b5f650",
+  "deployment_code_parent": "bb085ce06db5932049af85f927a7f9316ad76816",
+  "deployment_branch": "codex/casuka-live-safety-deployment-prerun",
+  "running_engine": {
+    "frozen_vps_checkout_receipt": "eca101c6315be28a5b62e5106d5f34f2392b1a97",
+    "running_live_v4_blob_oid": "f1857199164664037fef41b024e60f27fa373548",
+    "running_live_v4_sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54",
+    "exact_blob_producer_on_vps_lineage": "bb085ce06db5932049af85f927a7f9316ad76816",
+    "producer_proof": "bb085ce0 changed live_v4.py from blob 2aa371a2 to f1857199 and is the direct parent of the frozen VPS checkout; the eca101c6 tree contains blob 035135ea, proving checkout position alone is not the deployed-file identity"
+  },
+  "controlling_reproduction": "b442908f3b253d1e13d5b2a5e93c3dbf0491320d",
+  "controlling_repair": "94be41137c0b64bfa448546c8bc3ee7c4ae32a60",
+  "controlling_repair_parent": "a4996dd00e82ed3534f97a09251697f1d82dbbab",
+  "controlling_independent_pass": "66136e6240f2adda990ea8fddc7e00cc643cfb4c",
+  "audited_repair_live_v4_blob_oid": "1809085d284b9c0cc2df4e7f24d9eac4645ee5a0",
+  "candidate_live_v4_blob_oid": "ebd29103ff2153f3d6ced83995c3eb8c159fe38d",
+  "package_commit_binding": "The commit containing this file is the audit target; it is intentionally not self-embedded. The deployable source is immutably pinned by deployment_code_commit and candidate_live_v4_blob_oid.",
+  "authorization": "PRE_RUN_ONLY_NO_DEPLOYMENT"
+}

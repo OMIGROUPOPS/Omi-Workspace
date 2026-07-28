@@ -1,0 +1,19 @@
+{
+  "schema_version": "casuka-live-safety-deployment-forbidden-access-v1",
+  "pre_run_only": true,
+  "network_calls": 0,
+  "kalshi_get_calls": 0,
+  "kalshi_post_calls": 0,
+  "kalshi_delete_calls": 0,
+  "live_order_mutations": 0,
+  "live_position_mutations": 0,
+  "service_restarts": 0,
+  "process_mutations": 0,
+  "configuration_mutations": 0,
+  "halt_state_mutations": 0,
+  "deployments": 0,
+  "offline_exchange": "receipt-ordered in-memory fixture only",
+  "t2_research_worktree_touched": false,
+  "production_accessed": false,
+  "result": "PASS"
+}

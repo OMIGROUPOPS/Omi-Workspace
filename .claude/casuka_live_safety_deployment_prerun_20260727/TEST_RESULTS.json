@@ -1,0 +1,48 @@
+{
+  "schema_version": "casuka-live-safety-deployment-tests-v1",
+  "result": "PASS",
+  "focused": {
+    "audited_repair_fixtures": "12/12",
+    "deployment_candidate": "26/26",
+    "deployment_candidate_breakdown": {
+      "named_adversarial_probes": "21/21",
+      "ast_and_isolation_checks": "5/5"
+    },
+    "combined": "38/38"
+  },
+  "relevant_inherited": {
+    "result": "7/7",
+    "tests": [
+      "test_lane_a_live_safety.py",
+      "test_lane_a_review_fixes.py",
+      "test_order_v2.py",
+      "test_bbo_settlement_gate.py",
+      "test_shutdown.py",
+      "test_monotonic_cut.py",
+      "test_fv_quote.py"
+    ]
+  },
+  "complete_script_census": {
+    "running_parent": "45/83 pass, 38 fail",
+    "candidate": "47/85 pass, 38 fail",
+    "new_tests": [
+      "test_casuka_live_safety_repair.py",
+      "test_casuka_live_safety_deployment_candidate.py"
+    ],
+    "new_tests_pass": true,
+    "historical_failure_identities_identical": true,
+    "historical_terminal_causes_identical": true,
+    "intentional_trace_shape_delta": [
+      "test_copilot_manual.py",
+      "test_ride_live_race.py"
+    ],
+    "trace_shape_reason": "D1 wraps reconcile in the audited serialization decorator; terminal exception type and message are unchanged"
+  },
+  "compile": "PASS",
+  "ast_lint": "PASS",
+  "flake8": "not installed; disclosed",
+  "offline_smoke": "PASS",
+  "farriu_classifier": "PASS",
+  "vegkaw_classifier": "PASS",
+  "live_test_calls": 0
+}

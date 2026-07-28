@@ -1,0 +1,34 @@
+{
+  "schema_version": "casuka-live-safety-p0-exclusion-v1",
+  "result": "PASS",
+  "running_parent_commit": "bb085ce06db5932049af85f927a7f9316ad76816",
+  "running_parent_blob": "f1857199164664037fef41b024e60f27fa373548",
+  "p0_v1_commit_recorded_but_not_deployed_as_running_blob": "eca101c6315be28a5b62e5106d5f34f2392b1a97",
+  "p0_v2_commit_excluded": "3f5d85d47a49083dd40056b1866191c649057b7b",
+  "p0_v3_commit_excluded": "a4996dd00e82ed3534f97a09251697f1d82dbbab",
+  "repair_parent_blob_excluded": "949f6995352b7be6f73be8e44af01a70a758c63e",
+  "proof": {
+    "candidate_parent_is_exact_running_blob_producer": true,
+    "candidate_diff_has_p0_marker_hits": 0,
+    "p0_only_methods_equal_running_parent_ast": true,
+    "methods_checked": [
+      "__init__",
+      "_entry_start_gate",
+      "_gun_stamp",
+      "_gun_sweep_entry_bids",
+      "_start_gate_cancel_resting",
+      "_strong_live_evidence",
+      "_v4_manage_resting",
+      "_v4_manage_resting_inner",
+      "discover_markets",
+      "run",
+      "validate_resting_buys"
+    ],
+    "_place_order_unlocked_exception": "Only the two audited D2 blocks differ from running parent; those blocks are AST-identical to 94be4113.",
+    "candidate_patch_bytes": 21599,
+    "candidate_patch_sha256": "96bf74157aaf88bac866ee1e4beb64660939aa95267b877ce1927d854bd7f3ec",
+    "running_to_repair_parent_divergence_bytes": 20245,
+    "running_to_repair_parent_divergence_sha256": "7ce3f09e9d80cbe951abec12f92f02a2bb6be695349823d5d867668b61992f31"
+  },
+  "conclusion": "No undeployed P0 source is present in the deployment file. The candidate is exact running blob f1857199 plus the audited CASUKA D1-D3 delta only."
+}

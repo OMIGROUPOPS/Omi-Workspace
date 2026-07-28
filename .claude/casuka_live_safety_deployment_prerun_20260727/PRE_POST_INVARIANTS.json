@@ -1,0 +1,30 @@
+{
+  "schema_version": "casuka-live-safety-deployment-invariants-v1",
+  "pre_deploy_fail_closed": [
+    "Independent deployment-package audit must PASS the final package commit.",
+    "A separate operator deployment authorization must bind the package commit, candidate blob, rollback blob, exact integration commit, outcome proof, and exact command.",
+    "The authoritative running live_v4.py must still hash to Git blob f1857199164664037fef41b024e60f27fa373548 and SHA-256 834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54.",
+    "The integration commit must be a descendant of the actual VPS checkout and differ in the deployment file set only.",
+    "The integration tree live_v4.py must hash to ebd29103ff2153f3d6ced83995c3eb8c159fe38d.",
+    "Existing deploy lint, smoke replay, prior-art, outcome-proof, close-out, and post-boot audit gates must pass.",
+    "Authoritative unsettled positions and resting orders must be snapshotted before restart.",
+    "No pre-existing invariant may show resting sell quantity greater than held quantity."
+  ],
+  "post_deploy_required": [
+    "Exactly one live_v4 process and one expected tmux session.",
+    "Fresh process source hashes to candidate blob ebd29103ff2153f3d6ced83995c3eb8c159fe38d.",
+    "Post-boot audit completes and no new conception halt is created by this change.",
+    "For every unsettled ticker, authoritative_resting_sell_qty <= authoritative_position_qty.",
+    "Every held quantity needing an exit has exactly its lawful protective coverage; CASUKA-class same-cycle top-up posts zero after a five-lot heal.",
+    "FARRIU/VEGKAW-class zero-booked or settled legs produce zero false filled or pair-incomplete flags.",
+    "No sell_exchange_truth_refused receipt is followed by an exchange POST for the refused action.",
+    "No P0 v2/v3 marker or behavior is present in the deployed blob."
+  ],
+  "rollback_triggers": [
+    "resting sell exceeds held quantity",
+    "false pair-incomplete flag from zero-booked or settled state",
+    "unexpected deployment file hash",
+    "multiple processes or failed post-boot audit",
+    "new regression attributable to D1-D3"
+  ]
+}

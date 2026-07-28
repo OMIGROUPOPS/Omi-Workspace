@@ -1,0 +1,36 @@
+{
+  "schema_version": "casuka-live-safety-outcome-proof-plan-v1",
+  "status": "PLAN_ONLY_NOT_RUN",
+  "mechanism_lane": {
+    "primary_invariant": "authoritative resting sell quantity never exceeds authoritative held quantity",
+    "required_checks": [
+      "Replay both heal-then-topup and topup-then-heal orderings.",
+      "Replay at least two consecutive reconcile cycles.",
+      "Prove each ordering converges to one five-lot resting exit for five held.",
+      "Prove the D2 clamp reads positions and resting sells immediately before every sell POST.",
+      "Prove attempted excess is refused, receipted, alerted, and never submitted.",
+      "Prove booked quantity > 0 plus unsettled holding is required for filled."
+    ],
+    "required_result": "resting_sell_qty <= held_qty for every replay tick and final resting_sell_qty == held_qty where coverage is required"
+  },
+  "classifier_lane": {
+    "primary_invariant": "zero false pair-incomplete flags from stale, zero-booked, resting-only, or settled states",
+    "required_named_regressions": [
+      "FARRIU",
+      "VEGKAW"
+    ],
+    "required_result": "zero false filled states and zero false pair-incomplete flags"
+  },
+  "live_observation_after_future_authorized_deploy": {
+    "read_only": true,
+    "window": "post-boot audit plus at least two complete reconcile cycles",
+    "collect": [
+      "authoritative held and resting-sell quantities per ticker",
+      "sell_exchange_truth_refused and sell_guard_api_fail receipts",
+      "reconcile_exit_topup_noop/topup/post receipts",
+      "pair-incomplete classifications with booked and unsettled quantities",
+      "process and source hashes"
+    ]
+  },
+  "market_pnl_claim": "not applicable; this is a safety invariant repair, not a strategy outcome claim"
+}

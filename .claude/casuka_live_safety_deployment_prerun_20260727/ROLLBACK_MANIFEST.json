@@ -1,0 +1,12 @@
+{
+  "schema_version": "casuka-live-safety-rollback-v1",
+  "authorization": "TEMPLATE_ONLY_NOT_EXECUTED",
+  "rollback_source_commit": "bb085ce06db5932049af85f927a7f9316ad76816",
+  "rollback_path": "arb-executor/live_v4.py",
+  "rollback_git_blob_oid": "f1857199164664037fef41b024e60f27fa373548",
+  "rollback_sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54",
+  "rollback_bytes": 997352,
+  "materialization_template": "git show bb085ce06db5932049af85f927a7f9316ad76816:arb-executor/live_v4.py > \"$STAGING_DIR/live_v4.py\"",
+  "verification_template": "test \"$(git hash-object \"$STAGING_DIR/live_v4.py\")\" = f1857199164664037fef41b024e60f27fa373548",
+  "law": "Rollback requires separate operator authorization and a file-only integration commit. The immutable Git object above restores the exact audited current-running bytes."
+}

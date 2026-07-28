@@ -1,0 +1,37 @@
+{
+  "schema_version": "casuka-live-safety-semantic-equivalence-v1",
+  "candidate_commit": "d256c491c851999047779827bca73de808b5f650",
+  "audited_repair": "94be41137c0b64bfa448546c8bc3ee7c4ae32a60",
+  "result": "PASS",
+  "ast_identical_methods": {
+    "_begin_reconcile_exit_intent_cycle": "0ec1b5f7f0ab64db82916338cee4abcc5d7502b94efc51de3f0934a04a96e3f4",
+    "_end_reconcile_exit_intent_cycle": "d09c5245cc8afb5b86fba0fc3adf794f532cba6698b823b766508fabfb6e8a5a",
+    "_exit_intent_state": "657d47fc46926a8f4fd6d399238b9df9f2fd05c25c63a49d836b1b0a05550598",
+    "_record_exit_intent_change": "1f89d6341772763a8a8d7e7a41962940acb5b8515ec915a4993b2834b870c1a6",
+    "_record_exit_intent_reset": "853e0eae7db0725bc390585e26dc69a350787a29712cd985206face1dfb434fa",
+    "_record_exit_intent_post": "4311554d3419e1c0af3cfefc9d37c9bb3dd6aa62b8e754384c7780a308880bdf",
+    "_authoritative_sell_snapshot": "afda145ab3053f600fb2f7e5b13842e4695ee1408101812fcf08f056c95bfa0c",
+    "_alert_sell_guard_refusal": "e17398302a438db55f52e54210005b9ce0ac7fd1a04dfa7ce4bcfc9ebfc59248",
+    "_reconcile_exit_topup_from_truth": "9b7aade84bfb03b5379c5ad520498fee51f539e09ba89d15076c1e7b29937f8a",
+    "place_order": "2f5dd37170ee29b784d49168bda5737cd2fee6db086623a6372c54512d317216",
+    "cancel_order": "5cf6f300ff9e5d877199508f2f4b97d71a89e8aa6794972db3e96b0ef6fe4bad",
+    "_v4_apply_exit": "569ca15ce6c9c56b75454acfd220fc6369fb79c40792f358a0bef6e98bd0a778",
+    "_pair_invariant_leg_state": "1468423dbfcaa96563d74a9a95d29462b4864dc3a990855d010d71cc0b5778a9",
+    "_post_boot_book_audit": "3bc4d3e0d9870e32b7c112863eb6095794e67e30c45c745a8fa918fd376b6a80",
+    "reconcile": "b0dade116ac090d141f9c4120b01277d2d3f1a6a225a257a2185dfabc26afb23"
+  },
+  "_place_order_unlocked": {
+    "whole_function_identical": false,
+    "reason": "the enclosing audited-repair function contains the explicitly excluded P0 guard revisions",
+    "d2_final_sell_clamp_ast_identical": true,
+    "d2_post_intent_record_ast_identical": true,
+    "production_tests": "test_d2_blocks_inside_place_order_are_ast_identical"
+  },
+  "behavioral_equivalence": {
+    "five_frozen_acceptance_fixtures": "5/5",
+    "named_adversarial_probes": "21/21",
+    "both_exit_organ_orderings": "PASS",
+    "consecutive_cycle_idempotence": "PASS",
+    "refusal_receipt_alert_clamp_serialization_classifier": "IDENTICAL"
+  }
+}

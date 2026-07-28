@@ -1,0 +1,14 @@
+{
+  "candidate_only_failure": 0,
+  "different_exit_status": 0,
+  "historical_terminal_cause_parity": true,
+  "inherited_test_scripts": 84,
+  "method": "Execute every inherited arb-executor/tests/test_*.py script present at the exact v1-v3 parent, once on the parent and once on the v4 overlay, under identical Python/cwd conditions.",
+  "note": "The 47 shared failures are inherited stale/standalone harness conditions. No historical failure identity was repaired, hidden, or changed by this narrow PRE-RUN.",
+  "parent_only_failure": 0,
+  "same_exit_status": 84,
+  "schema": "p0-v4-historical-failure-parity-receipt-v1",
+  "shared_historical_failure": 47,
+  "shared_pass": 37,
+  "status": "PASS"
+}

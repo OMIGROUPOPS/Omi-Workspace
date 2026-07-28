@@ -1,0 +1,49 @@
+{
+  "bounded_memory_retention": true,
+  "bounded_tape_scan": true,
+  "bounds": {
+    "event_timeout_seconds": 20,
+    "maximum_concurrency": 8,
+    "maximum_pages_per_ticker": 10,
+    "page_rows": 100,
+    "window_seconds": 1800
+  },
+  "event_duration_ms": {
+    "maximum_observed": 12.336,
+    "maximum_p50": 1.26,
+    "maximum_p90": 1.371
+  },
+  "event_loop": "async I/O with bounded semaphore; no synchronous network",
+  "events_per_trial": 804,
+  "live_engine_access": false,
+  "live_order_or_position_access": false,
+  "maximum_concurrency": 8,
+  "measurement_kind": "synthetic_offline_hydration_only",
+  "network_access": false,
+  "new_trading_parameter_count": 0,
+  "purpose": "Bounded mechanical resource characterization; not a trading threshold or deployment result.",
+  "schema": "p0-v4-offline-performance-baseline-v1",
+  "state_counts_per_trial": {
+    "BOOT_TAPE_INSUFFICIENT": 804,
+    "BOOT_TAPE_NO_CALL": 0,
+    "BOOT_TAPE_PENDING": 0,
+    "REAL_START": 0
+  },
+  "status": "PASS",
+  "tape_rows_per_trial": 6432,
+  "time_from_boot_to_all_entry_readiness_ms": {
+    "maximum": 1073.311,
+    "median": 1012.562,
+    "minimum": 1010.659
+  },
+  "timeout_behavior": "entries remain blocked; exits continue",
+  "total_duration_ms": {
+    "maximum": 1073.311,
+    "median": 1012.562,
+    "minimum": 1010.659
+  },
+  "tracemalloc_peak_bytes_maximum": 3529118,
+  "tracemalloc_peak_minus_retained_bytes_maximum": 130173,
+  "tracemalloc_retained_bytes_maximum": 3398945,
+  "trials": 3
+}

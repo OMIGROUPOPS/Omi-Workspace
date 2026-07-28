@@ -1,0 +1,14 @@
+{
+  "discover_registers_before_bbo_worker": true,
+  "duplicates_do_not_change_predicate_count": true,
+  "gun_and_boot_same_timestamp_one_receipt": true,
+  "hydration_scheduled_before_reconcile_awaits_and_ws_worker": true,
+  "immediate_pre_post_revalidation": true,
+  "pending_bbo_route_refused": true,
+  "per_event_isolation": true,
+  "real_start_monotonic": true,
+  "same_tape_same_state_and_source_hash": true,
+  "schema": "p0-v4-ordering-idempotence-receipt-v1",
+  "status": "PASS",
+  "sweep_once_no_repost": true
+}

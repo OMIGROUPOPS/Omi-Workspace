@@ -1,0 +1,88 @@
+{
+  "failed": 0,
+  "fixtures": [
+    {
+      "expected_and_observed": "INSUFFICIENT_EXISTING_LAW",
+      "name": "legitimate_future_ordinary_liquidity",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "NO_FABRICATED_REAL_START",
+      "name": "missing_schedule_insufficient_tape",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "NO_CALL_ENTRIES_BLOCKED_EXITS_LIVE",
+      "name": "historical_tape_unavailable",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "NO_CALL_NO_PARTIAL_ALLOW",
+      "name": "partial_paginated_failure",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "DEDUPLICATED",
+      "name": "duplicate_prints",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "NO_CALL",
+      "name": "carried_last_trade_no_receipt",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "NO_CALL",
+      "name": "sibling_event_prints",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "EXCLUDED",
+      "name": "future_prints",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "BLOCKED",
+      "name": "bbo_before_hydration",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "REVALIDATION_BLOCKED",
+      "name": "stale_intent_post_after_real_start",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "ONE_REAL_START",
+      "name": "simultaneous_gun_and_boot",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "NO_ENTRY_WINDOW",
+      "name": "restart_persistent_real_start",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "PER_EVENT_ISOLATION",
+      "name": "concurrent_multiple_events",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "NO_CALL_EXITS_CONTINUE",
+      "name": "hydration_timeout_or_exception",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "CANCEL_ONCE_NO_REPOST",
+      "name": "resting_entry_at_hydration_fire",
+      "status": "PASS"
+    },
+    {
+      "expected_and_observed": "NO_ENTRY_NO_HYDRATION_SIDE_EFFECT",
+      "name": "settled_or_determined_market",
+      "status": "PASS"
+    }
+  ],
+  "passed": 16,
+  "schema": "p0-v4-negative-adversarial-fixtures-v1",
+  "total": 16
+}

@@ -1,0 +1,33 @@
+{
+  "gun_and_boot_share_state": true,
+  "initial_state": "BOOT_TAPE_PENDING",
+  "persistent_real_start_adopted_before_hydration": true,
+  "schedule_refresh_can_clear_real_start": false,
+  "schema": "p0-v4-boot-tape-state-machine-v1",
+  "states": {
+    "BOOT_TAPE_EVALUATING": {
+      "entry": "REFUSE:boot_tape_not_ready",
+      "exit_and_reconciliation": "CONTINUE"
+    },
+    "BOOT_TAPE_INSUFFICIENT": {
+      "entry": "DEFER_TO_UNCHANGED_P0_V1_V3_SCHEDULE_GATE",
+      "exit_and_reconciliation": "CONTINUE"
+    },
+    "BOOT_TAPE_NO_CALL": {
+      "entry": "REFUSE:boot_tape_no_call",
+      "exit_and_reconciliation": "CONTINUE",
+      "retry": "NEXT_DISCOVERY_PASS"
+    },
+    "BOOT_TAPE_PENDING": {
+      "entry": "REFUSE:boot_tape_not_ready",
+      "exit_and_reconciliation": "CONTINUE"
+    },
+    "REAL_START": {
+      "entry": "REFUSE:real_start_tape_override",
+      "existing_entry_buys": "SWEEP_ONCE_USING_EXISTING_GUN_PATH",
+      "exit_and_reconciliation": "CONTINUE",
+      "monotonic": true
+    }
+  },
+  "unavailable_market_isolation": "PER_EVENT"
+}

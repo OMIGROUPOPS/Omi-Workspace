@@ -1,0 +1,29 @@
+{
+  "ast_callsite_lint": {
+    "receipt": "ENTRY_POST_CALLSITE_CENSUS.json",
+    "status": "PASS"
+  },
+  "compile": {
+    "command": "python -B -m py_compile arb-executor/live_v4.py arb-executor/tests/test_p0_real_start_v4_boot_tape.py",
+    "status": "PASS"
+  },
+  "focused_boot_tape": {
+    "command": "python -B -m unittest -v arb-executor/tests/test_p0_real_start_v4_boot_tape.py",
+    "failed": 0,
+    "passed": 23,
+    "tests": 23
+  },
+  "historical_failure_parity": {
+    "method": "same inherited suite commands on base and candidate",
+    "new_failures": 0,
+    "status": "PASS"
+  },
+  "inherited_p0_v1_v3": {
+    "assertions": 56,
+    "command": "python -B arb-executor/tests/test_p0_real_start_guard.py",
+    "failed": 0,
+    "passed": 56
+  },
+  "real_population_or_live_execution": false,
+  "schema": "p0-v4-test-results-v1"
+}

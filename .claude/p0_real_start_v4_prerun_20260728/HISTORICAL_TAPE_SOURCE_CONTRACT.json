@@ -1,0 +1,41 @@
+{
+  "authority": "existing authenticated Kalshi public trades REST",
+  "deduplication": "trade_id; conflict is full-event NO_CALL",
+  "evaluation_right": "decision/evaluation timestamp inclusive",
+  "event_timeout_seconds": 20,
+  "excluded": [
+    "future prints",
+    "outside-window prints",
+    "wrong ticker",
+    "missing receipt identity",
+    "BBO observations",
+    "carried last trade",
+    "order-action logs",
+    "conflicting duplicates",
+    "partial pagination",
+    "ambiguous source order"
+  ],
+  "existing_engine_consumers": [
+    "_flow_rest_refresh",
+    "_seed_tape_memory"
+  ],
+  "failure": "BOOT_TAPE_NO_CALL; entry closed, exits continue",
+  "identity": "trade_id",
+  "maximum_concurrency": 8,
+  "maximum_pages": 10,
+  "page_rows": 100,
+  "path": "/trade-api/v2/markets/trades?ticker={ticker}&limit=100",
+  "predicate": {
+    "callable": "_strong_live_evidence",
+    "changed": false,
+    "source": "boot_historical_tape",
+    "thresholds": "existing tape_flow_prints30 mapping/defaults"
+  },
+  "price": "yes_price exact integer cents in 1..99",
+  "schema": "p0-v4-historical-tape-source-contract-v1",
+  "source_order": "endpoint newest-first page and row order",
+  "ticker": "must exactly match requested leg",
+  "timestamp": "created_time, full precision",
+  "volume": "positive count_fp/count; recorded but no new threshold",
+  "window_seconds": 1800
+}

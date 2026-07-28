@@ -1,0 +1,168 @@
+{
+  "added_functions": {
+    "_p0v4_adopt_persistent_real_starts": {
+      "end_line": 8120,
+      "line": 8114,
+      "sha256": "53a7644a92afd9d1cc8703429bdc0ca874aa9c0df6a9664c991ac8ff97f09414"
+    },
+    "_p0v4_entry_authority_gate": {
+      "end_line": 7789,
+      "line": 7761,
+      "sha256": "6aac286d16d15397aebb9ccefdfbf78f82107af862ba4102e58728cc77d1314e"
+    },
+    "_p0v4_fetch_ticker_tape": {
+      "end_line": 7946,
+      "line": 7824,
+      "sha256": "aa0570004b66aea5a936bb94353ae2d73e682ddf55f1938a0be93d72bf36e2c0"
+    },
+    "_p0v4_hydrate_event": {
+      "end_line": 8085,
+      "line": 8052,
+      "sha256": "249de01a2418dc8e2c68603b0b2f89264a277567efdd0006a0b24ffbccf50663"
+    },
+    "_p0v4_hydrate_event_inner": {
+      "end_line": 8050,
+      "line": 7948,
+      "sha256": "2e89172a1aa75aa9acd347ff8c242f2187be8506854bca2e51f105416f5f4991"
+    },
+    "_p0v4_mark_real_start": {
+      "end_line": 7759,
+      "line": 7746,
+      "sha256": "041a60ceb17958743fa21af2513d42f2c7471d071e0cfe13ecc444c371b81a01"
+    },
+    "_p0v4_register_entry_market": {
+      "end_line": 7725,
+      "line": 7702,
+      "sha256": "4b0621159e870f9249f0f96b38f4a882aeaffa7af0468ec60cacf9538e5eba32"
+    },
+    "_p0v4_schedule_pending_hydration": {
+      "end_line": 8112,
+      "line": 8087,
+      "sha256": "1f244c8d32c2be0478a6673e1248d2da466d9852a1ed22878b1e29cec95e6630"
+    },
+    "_p0v4_trade_price_cents": {
+      "end_line": 7811,
+      "line": 7792,
+      "sha256": "78e43a46cae8522767e14867c1f883dfe3617f08422714fe6bfb815a1b83c966"
+    },
+    "_p0v4_trade_size": {
+      "end_line": 7822,
+      "line": 7814,
+      "sha256": "11043d1487c090e7ae8e69177e0911a090222d9d97180eedd538e5ac9d8d1b3f"
+    },
+    "_p0v4_transition": {
+      "end_line": 7744,
+      "line": 7727,
+      "sha256": "8e50771439502710ac6c802cd253e135695436a28a287d7146f846c2e6c599ad"
+    }
+  },
+  "base": {
+    "byte_size": 1008748,
+    "git_blob_oid": "949f6995352b7be6f73be8e44af01a70a758c63e",
+    "sha256": "cb9e6cc3810d156da3e52df69b8058f25ec1d05aa6a1430aeccf4d869b31aca8"
+  },
+  "candidate": {
+    "byte_size": 1032682,
+    "git_blob_oid": "363e1c8a11525915dc053175283a6c81b72e8b0d",
+    "sha256": "07b6511d9d8b81f9bd563764d0a72a729426f34244ad8a4c1eff96db4b403e4e"
+  },
+  "forward_source": "git diff --binary --full-index",
+  "modified_functions": {
+    "__init__": {
+      "after": {
+        "end_line": 2049,
+        "line": 1342,
+        "sha256": "abc59ca888bad7733697dcb4f856a43cfb471fcabc211288da29eb593de44b92"
+      },
+      "before": {
+        "end_line": 2016,
+        "line": 1324,
+        "sha256": "a024e6052c6332454e752d531c4a4e3bd4c8a94e1276c7ba844ffc95df1d6b52"
+      }
+    },
+    "_gun_stamp": {
+      "after": {
+        "end_line": 8255,
+        "line": 8144,
+        "sha256": "7539c436e385822f870d49e661681e437d1ca7148a42929302cbe5e8d6cfa662"
+      },
+      "before": {
+        "end_line": 7767,
+        "line": 7668,
+        "sha256": "1c16e01f96a2f3e3420c6a02a81958bb84f64f3ff15b2f09c43c313e5157cf45"
+      }
+    },
+    "_place_order_unlocked": {
+      "after": {
+        "end_line": 5925,
+        "line": 5426,
+        "sha256": "12ec794acd214430b76233a47d193b1e8abc005b6f64456f414effb197d799a8"
+      },
+      "before": {
+        "end_line": 5875,
+        "line": 5393,
+        "sha256": "8cf94d4eaa8fa10f664bb48b4bb646e95bddce64b8f2b4645c67ce0ef23376f8"
+      }
+    },
+    "_route_event": {
+      "after": {
+        "end_line": 12302,
+        "line": 11032,
+        "sha256": "3c7723001d55ff726d424144a83e22f106b07324c94e4837403b86dde7c11000"
+      },
+      "before": {
+        "end_line": 11797,
+        "line": 10544,
+        "sha256": "f1b917376de65e670b945587527e0add9ea0238168fdacb77c06f561d2df72b7"
+      }
+    },
+    "_v4_manage_resting": {
+      "after": {
+        "end_line": 12829,
+        "line": 12796,
+        "sha256": "bd29b6dac2a3f4808cf53841268546c3f8567db8c82e08895c552f55d46677fe"
+      },
+      "before": {
+        "end_line": 12323,
+        "line": 12291,
+        "sha256": "ec810a77a0bb584671a9b6bcb3f32091881e93257c350ce195282ce893d18214"
+      }
+    },
+    "discover_markets": {
+      "after": {
+        "end_line": 6417,
+        "line": 6249,
+        "sha256": "df180fc6a35b6798977dcd71d9beaa818b18c2c3b4a449396343391d13970b25"
+      },
+      "before": {
+        "end_line": 6364,
+        "line": 6199,
+        "sha256": "72dc7a36bdf91e6fed583e93becf42f73f97acc85aa5d67c229ae53b59dc8c7c"
+      }
+    },
+    "run": {
+      "after": {
+        "end_line": 18004,
+        "line": 17506,
+        "sha256": "e2847ce9dd6c3fc591c39dc5ab3274e4a86c6cd419c85f95d0d82c6f0b5cf7f1"
+      },
+      "before": {
+        "end_line": 17490,
+        "line": 17000,
+        "sha256": "00c7a901d873e9f31e1ddc301d869096d9e7341628a36a230cc51b66d21658c3"
+      }
+    }
+  },
+  "new_trading_thresholds": 0,
+  "patch": {
+    "byte_size": 30291,
+    "git_blob_oid": "b4c9074834a154a1ea38665a3f31605beef6e3d2",
+    "sha256": "9702c11215ee3f12dd0c96dea2d2d35b52ca705272e9cc1c85285bd497ce438a"
+  },
+  "patch_encoding": "base64 of exact Git binary/full-index patch bytes",
+  "patch_path": "P0_REAL_START_V4.patch.b64",
+  "reverse_git_apply_check": "PASS",
+  "schema": "p0-v4-patch-receipt-v1",
+  "scope": "boot hydration and entry-ordering barrier only",
+  "zero_unrelated_files_in_source_patch": true
+}

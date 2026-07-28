@@ -1,0 +1,175 @@
+{
+  "central_api_post_call_count": 1,
+  "central_api_post_calls": [
+    {
+      "function": "_place_order_unlocked",
+      "line": 5902
+    }
+  ],
+  "coverage_result": "PASS",
+  "law": "Every buy reaches one central place_order implementation; the shared gate runs at decision entry and again immediately before the sole api_post. Sell paths do not invoke the barrier.",
+  "place_order_call_count": 33,
+  "place_order_calls": [
+    {
+      "function": "_monotonic_cut_eval",
+      "line": 6702
+    },
+    {
+      "function": "_reaim_sibling_on_arrival",
+      "line": 6880
+    },
+    {
+      "function": "_repost_missing_siblings",
+      "line": 6993
+    },
+    {
+      "function": "_pair_governor_scoot_eval",
+      "line": 7063
+    },
+    {
+      "function": "_attempt_completion_reprice",
+      "line": 7270
+    },
+    {
+      "function": "_v4_apply_exit",
+      "line": 9787
+    },
+    {
+      "function": "_v4_apply_exit",
+      "line": 9797
+    },
+    {
+      "function": "_completion_execute",
+      "line": 10253
+    },
+    {
+      "function": "_completion_execute",
+      "line": 10304
+    },
+    {
+      "function": "check_fills",
+      "line": 10480
+    },
+    {
+      "function": "check_fills",
+      "line": 10489
+    },
+    {
+      "function": "check_fills",
+      "line": 10503
+    },
+    {
+      "function": "check_fills",
+      "line": 10507
+    },
+    {
+      "function": "check_fills",
+      "line": 10531
+    },
+    {
+      "function": "check_fills",
+      "line": 10535
+    },
+    {
+      "function": "_route_event",
+      "line": 12234
+    },
+    {
+      "function": "_legacy_route_side",
+      "line": 12416
+    },
+    {
+      "function": "check_pending_entries",
+      "line": 12530
+    },
+    {
+      "function": "_try_complete_cross",
+      "line": 12781
+    },
+    {
+      "function": "_v4_manage_resting_inner",
+      "line": 13140
+    },
+    {
+      "function": "_v4_manage_resting_inner",
+      "line": 13802
+    },
+    {
+      "function": "_v4_manage_resting_inner",
+      "line": 13817
+    },
+    {
+      "function": "_v4_manage_completion",
+      "line": 13979
+    },
+    {
+      "function": "_completion_revert",
+      "line": 14036
+    },
+    {
+      "function": "validate_resting_buys",
+      "line": 14172
+    },
+    {
+      "function": "validate_resting_buys",
+      "line": 14235
+    },
+    {
+      "function": "_quarantine_ensure_coverage",
+      "line": 16129
+    },
+    {
+      "function": "_naked_tooth_scan",
+      "line": 16841
+    },
+    {
+      "function": "reconcile",
+      "line": 17030
+    },
+    {
+      "function": "reconcile",
+      "line": 17068
+    },
+    {
+      "function": "reconcile",
+      "line": 17092
+    },
+    {
+      "function": "reconcile",
+      "line": 17141
+    },
+    {
+      "function": "_drain_replay",
+      "line": 17487
+    }
+  ],
+  "proof": {
+    "early_and_immediate_pre_post_revalidation": true,
+    "sells_bypass_entry_gate": true,
+    "single_exchange_post_chokepoint": true
+  },
+  "schema": "p0-v4-entry-post-callsite-census-v1",
+  "shared_entry_gate_call_count": 5,
+  "shared_entry_gate_calls": [
+    {
+      "function": "_place_order_unlocked",
+      "line": 5488
+    },
+    {
+      "function": "_place_order_unlocked",
+      "line": 5891
+    },
+    {
+      "function": "_route_event",
+      "line": 11049
+    },
+    {
+      "function": "_v4_manage_resting",
+      "line": 12818
+    },
+    {
+      "function": "run",
+      "line": 17646
+    }
+  ]
+}

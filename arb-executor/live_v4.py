@@ -21,6 +21,7 @@ live_v3.py @366d8aa -- DO NOT modify those paths.
 import asyncio
 import aiohttp
 import base64
+import hashlib
 import json
 import math
 import os
@@ -31,6 +32,7 @@ import traceback
 import uuid
 from collections import defaultdict, deque
 from dataclasses import dataclass, field
+from decimal import Decimal, InvalidOperation
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Dict, Set, List, Optional
@@ -202,6 +204,22 @@ def cross_bounds_ok(sib_fill, ask):
 # match stays price-flat so price-move is blind, proven on TIAARN's 50-51c book).
 LIVE_DETECT_WINDOW_SEC = 60       # rolling window for the trade-burst signal
 LIVE_TRADE_BURST = 10             # >= this many trade prints in the window across both legs => match is live (tunable; pre-match tennis books trade far below this)
+
+# [P0 REAL-START v4] Fresh-boot historical-tape barrier. These are mechanical
+# source/retention bounds, not new trading thresholds:
+#   * 1800s is the existing tape-flow gun / REST-flow retention law;
+#   * 100 rows is the existing _flow_rest_refresh request size;
+#   * 10 pages is the existing bounded Kalshi discovery pagination ceiling;
+#   * MAX_RPS is the already-frozen exchange request budget.
+P0_BOOT_TAPE_WINDOW_SEC = 1800
+P0_BOOT_TAPE_PAGE_LIMIT = 100
+P0_BOOT_TAPE_MAX_PAGES = 10
+P0_BOOT_TAPE_MAX_CONCURRENCY = MAX_RPS
+P0_BOOT_TAPE_PENDING = "BOOT_TAPE_PENDING"
+P0_BOOT_TAPE_EVALUATING = "BOOT_TAPE_EVALUATING"
+P0_BOOT_TAPE_INSUFFICIENT = "BOOT_TAPE_INSUFFICIENT"
+P0_BOOT_TAPE_REAL_START = "REAL_START"
+P0_BOOT_TAPE_NO_CALL = "BOOT_TAPE_NO_CALL"
 LIVE_TRADE_RETENTION_SEC = 600    # prune per-ticker trade-time deques older than this
 # [C-MONOTONIC-CUT] DECOUPLED gun predicate for the in-match downside-CUT window ONLY. These four
 # constants are DELIBERATELY SEPARATE from LIVE_TRADE_BURST / sustained_flow_K (the cancel-latch gun).
@@ -1894,6 +1912,21 @@ class LiveV3:
         # trade timestamps + latched live-event set.
         self._trade_times: Dict[str, deque] = defaultdict(deque)
         self._events_live: Set[str] = set()
+        # [P0 REAL-START v4] Every discovered event is fail-closed until its
+        # bounded, receipt-identified REST trade history has been evaluated.
+        # This state never gates exits/reconcile/settlement; it is consulted
+        # only by entry routing and the single buy POST chokepoint.
+        self._boot_tape_state: Dict[str, dict] = {}
+        self._boot_tape_ticker_state: Dict[str, dict] = {}
+        self._boot_tape_tasks: Dict[str, asyncio.Task] = {}
+        self._boot_tape_hydration_enabled = False
+        self._boot_tape_semaphore = None
+        self._boot_tape_boot_started_ts = time.time()
+        self._boot_tape_stats = {
+            "events_evaluated": 0, "tape_rows_read": 0,
+            "admitted": 0, "deduplicated": 0, "rejected": 0,
+            "duration_ms": 0.0,
+        }
         # [P0 REAL-START FIX 07-22] events where STRONG live in-play evidence
         # conflicts with a schedule claiming the start is still in the future
         # (the schedule is a liar). New entry buys fail closed on these.
@@ -5452,7 +5485,8 @@ class LiveV3:
         # schedule clock and of fused_gun. Exits are SELLS -> untouched.
         if action == "buy":
             _pet = ticker.rsplit("-", 1)[0]
-            _refuse, _why = self._entry_start_gate(_pet)
+            _refuse, _why = LiveV3._p0v4_entry_authority_gate(
+                self, _pet)
             if _refuse:
                 _rs = self.__dict__.setdefault("_post_start_refused_logged", set())
                 if ticker not in _rs:
@@ -5849,6 +5883,22 @@ class LiveV3:
                                    "self-destruct"}, ticker=ticker)
             except Exception:
                 pass
+        # [P0 REAL-START v4] The early decision gate is not authority to POST:
+        # hydration/gun state may change across the exchange-truth awaits above.
+        # Revalidate at the final instruction before every entry submission.
+        if action == "buy":
+            _pet4 = ticker.rsplit("-", 1)[0]
+            _refuse4, _why4 = LiveV3._p0v4_entry_authority_gate(
+                self, _pet4)
+            if _refuse4:
+                self._log("boot_tape_pre_post_refused", {
+                    "price": price, "count": count, "reason": _why4,
+                    "post_only": post_only,
+                    "law": "P0 v4: stale pre-evaluation intent cannot POST "
+                           "without current boot-tape authority",
+                }, ticker=ticker)
+                return "", {"_error": "p0v4_pre_post_refused",
+                            "_reason": _why4}
         resp = await api_post(self.session, self.ak, self.pk, path, payload, self.rl)
         if resp and not resp.get("_error"):
             oid, _v2_status, _v2_fill, _v2_avg = parse_order_response_v2(resp)   # [C-ORDER-V2] flat
@@ -6237,6 +6287,7 @@ class LiveV3:
                     et = m["event_ticker"]
                     self.ticker_to_event[ticker] = et
                     self.event_tickers[et].add(ticker)
+                    self._p0v4_register_entry_market(et, ticker, now)
                     # [C-EARLY-UNLOCK] realized LIFETIME volume, exchange truth
                     _ev_lifetime_vol[et] += vol
                     # Capture open_time (for unmatched-skip age check)
@@ -6360,6 +6411,8 @@ class LiveV3:
                     self._log("floor_retreat_error",
                               {"err": str(_fre6)[:160]})
         await self._seed_tape_memory()   # [C-TAPE-SEED] amnesia dies at every discovery pass
+        if self._boot_tape_hydration_enabled:
+            self._p0v4_schedule_pending_hydration()
         self._log("discovery", {"total_tickers": len(all_tickers), "by_category": dict(counts)})
         return all_tickers
 
@@ -7643,6 +7696,429 @@ class LiveV3:
             pass
         return False
 
+    # ------------------------------------------------------------------
+    # [P0 REAL-START v4 2026-07-28] fresh-boot historical-tape barrier
+    # ------------------------------------------------------------------
+    def _p0v4_register_entry_market(self, et, ticker, now=None):
+        """Register a discovered market as fail-closed until tape evaluation.
+
+        Discovery is the first point at which the production engine knows the
+        complete event/ticker identity. No order path is reachable before this
+        registration on a real LiveV3 instance. A previously fired, persistent
+        gun is monotonic REAL_START and is never demoted.
+        """
+        now = time.time() if now is None else float(now)
+        state = self._boot_tape_state.get(et)
+        if et in self._gun_state or et in self._events_live:
+            self._p0v4_mark_real_start(
+                et, "persistent_gun_lineage",
+                {"registered_ticker": ticker, "evaluation_ts": now})
+        elif state is None:
+            self._boot_tape_state[et] = {
+                "state": P0_BOOT_TAPE_PENDING,
+                "updated_ts": now,
+                "reason": "discovered_entry_market_requires_boot_tape",
+            }
+        self._boot_tape_ticker_state.setdefault(ticker, {
+            "event": et, "state": self._boot_tape_state[et]["state"],
+            "updated_ts": now,
+        })
+
+    def _p0v4_transition(self, et, state, reason, receipt=None):
+        """Monotonic state transition; REAL_START can never be cleared."""
+        now = time.time()
+        old = self._boot_tape_state.get(et) or {}
+        if old.get("state") == P0_BOOT_TAPE_REAL_START and \
+                state != P0_BOOT_TAPE_REAL_START:
+            return old
+        row = {
+            "state": state, "updated_ts": now, "reason": reason,
+            "receipt": dict(receipt or {}),
+        }
+        self._boot_tape_state[et] = row
+        for tk in self.event_tickers.get(et, ()):
+            self._boot_tape_ticker_state[tk] = {
+                "event": et, "state": state, "updated_ts": now,
+                "reason": reason,
+            }
+        return row
+
+    def _p0v4_mark_real_start(self, et, source, receipt=None):
+        """One idempotent REAL_START state shared by gun and boot hydration."""
+        old = self._boot_tape_state.get(et) or {}
+        if old.get("state") == P0_BOOT_TAPE_REAL_START:
+            return False
+        self._p0v4_transition(
+            et, P0_BOOT_TAPE_REAL_START, source, receipt)
+        self._log("boot_tape_real_start", {
+            "event": et, "source": source,
+            "law": "P0 v4: REAL_START is monotonic; entry buys blocked, "
+                   "entry sweeps preserved, exits unaffected",
+            **(receipt or {}),
+        })
+        return True
+
+    def _p0v4_entry_authority_gate(self, et):
+        """Shared entry authority gate. Sells/exits never call this method."""
+        # Backward-compatible only for isolated legacy unit doubles that do not
+        # run LiveV3.__init__. Every production LiveV3 has _boot_tape_state.
+        if not hasattr(self, "_boot_tape_state"):
+            return self._entry_start_gate(et)
+        row = self._boot_tape_state.get(et)
+        if row is None:
+            # A ticker that somehow reaches an entry path without discovery is
+            # not trusted. Registration/scheduling happens asynchronously on
+            # the next discovery pass; this attempt fails closed.
+            self._boot_tape_state[et] = {
+                "state": P0_BOOT_TAPE_PENDING,
+                "updated_ts": time.time(),
+                "reason": "entry_path_preceded_boot_tape_registration",
+            }
+            return True, "boot_tape_not_ready"
+        state = row.get("state")
+        if state in (P0_BOOT_TAPE_PENDING, P0_BOOT_TAPE_EVALUATING):
+            return True, "boot_tape_not_ready"
+        if state == P0_BOOT_TAPE_REAL_START:
+            return True, "real_start_tape_override"
+        if state == P0_BOOT_TAPE_NO_CALL:
+            return True, "boot_tape_no_call"
+        if state != P0_BOOT_TAPE_INSUFFICIENT:
+            return True, "boot_tape_state_invalid"
+        # A complete insufficient evaluation changes no settled P0/schedule
+        # semantics. The existing v1-v3 gate remains the sole next decision.
+        return self._entry_start_gate(et)
+
+    @staticmethod
+    def _p0v4_trade_price_cents(row):
+        """Strictly parse a public trade's YES price as integer cents."""
+        if row.get("yes_price_dollars") is not None:
+            try:
+                cents = Decimal(str(row["yes_price_dollars"])) * Decimal(100)
+            except (InvalidOperation, ValueError):
+                raise ValueError("invalid_yes_price_dollars")
+        elif row.get("yes_price") is not None:
+            try:
+                cents = Decimal(str(row["yes_price"]))
+            except (InvalidOperation, ValueError):
+                raise ValueError("invalid_yes_price")
+        else:
+            raise ValueError("missing_yes_price")
+        if cents != cents.to_integral_value():
+            raise ValueError("fractional_cent_trade_price")
+        cents = int(cents)
+        if not 1 <= cents <= 99:
+            raise ValueError("trade_price_out_of_range")
+        return cents
+
+    @staticmethod
+    def _p0v4_trade_size(row):
+        raw = row.get("count_fp", row.get("count"))
+        try:
+            size = Decimal(str(raw))
+        except (InvalidOperation, ValueError):
+            raise ValueError("invalid_trade_size")
+        if not size.is_finite() or size <= 0:
+            raise ValueError("nonpositive_trade_size")
+        return str(size.normalize())
+
+    async def _p0v4_fetch_ticker_tape(self, ticker, evaluation_ts):
+        """Fetch one complete, bounded, receipt-identified 30-minute tape.
+
+        The source is the same authenticated Kalshi public-trades REST endpoint
+        already consumed by _flow_rest_refresh and _seed_tape_memory. Pagination
+        must end or cross the frozen retention boundary within the existing
+        ten-page mechanical ceiling; otherwise the entire event is NO_CALL.
+        """
+        cutoff = evaluation_ts - P0_BOOT_TAPE_WINDOW_SEC
+        cursor = ""
+        admitted = {}
+        rejected = defaultdict(int)
+        raw_count = 0
+        dedup_count = 0
+        source_ordinal = 0
+        previous_ts = None
+        complete = False
+        for page_index in range(P0_BOOT_TAPE_MAX_PAGES):
+            path = ("/trade-api/v2/markets/trades?ticker=%s&limit=%d"
+                    % (ticker, P0_BOOT_TAPE_PAGE_LIMIT))
+            if cursor:
+                path += "&cursor=%s" % cursor
+            data = await api_get(
+                self.session, self.ak, self.pk, path, self.rl)
+            if data is None or not isinstance(data.get("trades"), list):
+                raise RuntimeError("historical_tape_page_unavailable")
+            rows = data.get("trades") or []
+            page_crossed_cutoff = False
+            for row in rows:
+                raw_count += 1
+                source_ordinal += 1
+                if row.get("ticker") != ticker:
+                    rejected["wrong_ticker"] += 1
+                    continue
+                trade_id = str(row.get("trade_id") or "")
+                if not trade_id:
+                    rejected["missing_trade_id"] += 1
+                    continue
+                try:
+                    ts = datetime.fromisoformat(
+                        str(row.get("created_time") or "")
+                        .replace("Z", "+00:00")).timestamp()
+                except (TypeError, ValueError):
+                    rejected["invalid_timestamp"] += 1
+                    continue
+                # The exchange endpoint is newest-first. Any reversal makes
+                # source ordering ambiguous and fails the full page closed.
+                if previous_ts is not None and ts > previous_ts:
+                    raise RuntimeError(
+                        "historical_tape_source_order_ambiguous")
+                previous_ts = ts
+                if ts > evaluation_ts:
+                    rejected["future_print"] += 1
+                    continue
+                if ts < cutoff:
+                    rejected["outside_retention_window"] += 1
+                    page_crossed_cutoff = True
+                    continue
+                try:
+                    price = self._p0v4_trade_price_cents(row)
+                    size = self._p0v4_trade_size(row)
+                except ValueError as exc:
+                    rejected[str(exc)] += 1
+                    continue
+                canon = {
+                    "trade_id": trade_id, "ticker": ticker,
+                    "created_time": str(row.get("created_time")),
+                    "timestamp": ts, "yes_price_cents": price,
+                    "count_fp": size, "source_ordinal": source_ordinal,
+                }
+                prior = admitted.get(trade_id)
+                if prior is not None:
+                    comparable = dict(canon)
+                    comparable.pop("source_ordinal", None)
+                    prior_comparable = dict(prior)
+                    prior_comparable.pop("source_ordinal", None)
+                    if comparable != prior_comparable:
+                        raise RuntimeError(
+                            "duplicate_trade_identity_conflict")
+                    dedup_count += 1
+                    continue
+                admitted[trade_id] = canon
+            cursor = str(data.get("cursor") or "")
+            if not cursor:
+                complete = True
+                break
+            # Once a correctly ordered page crosses the left boundary, every
+            # subsequent source row is older and cannot affect the predicate.
+            if page_crossed_cutoff and rows:
+                complete = True
+                break
+        if not complete:
+            raise RuntimeError("historical_tape_pagination_ceiling")
+        contract_violations = {
+            key: rejected.get(key, 0)
+            for key in (
+                "wrong_ticker", "missing_trade_id", "invalid_timestamp",
+                "invalid_yes_price_dollars", "invalid_yes_price",
+                "missing_yes_price", "fractional_cent_trade_price",
+                "trade_price_out_of_range", "invalid_trade_size",
+                "nonpositive_trade_size")
+            if rejected.get(key, 0)
+        }
+        if contract_violations:
+            raise RuntimeError(
+                "historical_tape_source_contract_violation:" +
+                ",".join("%s=%d" % item
+                         for item in sorted(contract_violations.items())))
+        ordered = sorted(
+            admitted.values(),
+            key=lambda r: (r["timestamp"], -r["source_ordinal"]))
+        source_bytes = json.dumps(
+            ordered, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        return {
+            "ticker": ticker, "evaluation_ts": evaluation_ts,
+            "cutoff_ts": cutoff, "rows": ordered,
+            "raw_rows": raw_count, "admitted": len(ordered),
+            "deduplicated": dedup_count,
+            "rejected": dict(sorted(rejected.items())),
+            "source_sha256": hashlib.sha256(source_bytes).hexdigest(),
+            "first_print": (ordered[0] if ordered else None),
+            "last_print": (ordered[-1] if ordered else None),
+        }
+
+    async def _p0v4_hydrate_event_inner(self, et, evaluation_ts):
+        tickers = sorted(self.event_tickers.get(et, ()))
+        if not tickers:
+            raise RuntimeError("event_has_no_ticker_identity")
+        ticker_rows = []
+        for ticker in tickers:
+            ticker_rows.append(
+                await self._p0v4_fetch_ticker_tape(
+                    ticker, evaluation_ts))
+        admitted_rows = [
+            row for result in ticker_rows for row in result["rows"]]
+        p30 = len(admitted_rows)
+        category = self.get_category(et)
+        thresholds = self.config.get("tape_flow_prints30", {
+            "ITF_M": 6, "ITF_W": 6,
+            "ATP_CHALL": 16, "WTA_CHALL": 16,
+            "ATP_MAIN": 16, "WTA_MAIN": 16,
+        })
+        threshold = thresholds.get(category)
+        if threshold is None:
+            raise RuntimeError("existing_tape_flow_threshold_unavailable")
+        detail = {
+            "cat": category, "prints_30m": p30,
+            "prints_30m_rest": p30, "prints_30m_ws": 0,
+            "threshold": threshold,
+            "evaluation_ts": evaluation_ts,
+            "source_contract":
+                "/trade-api/v2/markets/trades?ticker={ticker}&limit=100",
+            "retention_sec": P0_BOOT_TAPE_WINDOW_SEC,
+            "boot_historical_tape": True,
+        }
+        source_hash = hashlib.sha256(json.dumps(
+            [{"ticker": r["ticker"], "sha256": r["source_sha256"]}
+             for r in ticker_rows],
+            sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
+        receipt = {
+            "event": et, "evaluation_ts": evaluation_ts,
+            "boot_to_evaluation_ms": round(
+                (evaluation_ts - self._boot_tape_boot_started_ts) * 1000.0,
+                3),
+            "source": "kalshi_public_trades_rest",
+            "source_sha256": source_hash,
+            "tickers": tickers,
+            "raw_rows": sum(r["raw_rows"] for r in ticker_rows),
+            "admitted": p30,
+            "deduplicated": sum(r["deduplicated"] for r in ticker_rows),
+            "rejected": {
+                key: sum(r["rejected"].get(key, 0) for r in ticker_rows)
+                for key in sorted({
+                    key for r in ticker_rows for key in r["rejected"]})
+            },
+            "first_admitted_print": (
+                min(admitted_rows, key=lambda r: r["timestamp"])
+                if admitted_rows else None),
+            "last_admitted_print": (
+                max(admitted_rows, key=lambda r: r["timestamp"])
+                if admitted_rows else None),
+            "predicate": "_strong_live_evidence",
+            "predicate_inputs": detail,
+        }
+        predicate_result = self._strong_live_evidence(
+            "boot_historical_tape", detail)
+        receipt["predicate_result"] = bool(predicate_result)
+        if predicate_result:
+            fired = self._gun_stamp(
+                et, "boot_historical_tape", detail)
+            # A simultaneous existing gun may make fired False while the event
+            # is already REAL_START. Both paths must converge.
+            if fired or et in self._gun_state or et in self._events_live:
+                self._p0v4_mark_real_start(
+                    et, "boot_historical_tape", receipt)
+                # _gun_stamp establishes REAL_START before this full receipt
+                # exists. Attach the completed source/dedup/predicate proof
+                # without creating a second REAL_START transition or gun.
+                real_row = self._boot_tape_state.get(et) or {}
+                real_row["reason"] = "boot_historical_tape"
+                real_row["receipt"] = receipt
+                real_row["updated_ts"] = time.time()
+                for tk in self.event_tickers.get(et, ()):
+                    self._boot_tape_ticker_state[tk] = {
+                        "event": et,
+                        "state": P0_BOOT_TAPE_REAL_START,
+                        "updated_ts": real_row["updated_ts"],
+                        "reason": "boot_historical_tape",
+                    }
+            else:
+                raise RuntimeError(
+                    "strong_tape_did_not_converge_real_start")
+        else:
+            self._p0v4_transition(
+                et, P0_BOOT_TAPE_INSUFFICIENT,
+                "complete_tape_below_existing_p0_predicate", receipt)
+        self._log("boot_tape_evaluation", {
+            **receipt,
+            "state": self._boot_tape_state[et]["state"],
+        })
+        stats = self._boot_tape_stats
+        stats["events_evaluated"] += 1
+        stats["tape_rows_read"] += receipt["raw_rows"]
+        stats["admitted"] += receipt["admitted"]
+        stats["deduplicated"] += receipt["deduplicated"]
+        stats["rejected"] += sum(receipt["rejected"].values())
+        return receipt
+
+    async def _p0v4_hydrate_event(self, et):
+        if (self._boot_tape_state.get(et) or {}).get(
+                "state") == P0_BOOT_TAPE_REAL_START:
+            return
+        started = time.monotonic()
+        evaluation_ts = time.time()
+        self._p0v4_transition(
+            et, P0_BOOT_TAPE_EVALUATING,
+            "historical_tape_evaluation_started",
+            {"evaluation_ts": evaluation_ts})
+        try:
+            sem = self._boot_tape_semaphore
+            async with sem:
+                await asyncio.wait_for(
+                    self._p0v4_hydrate_event_inner(et, evaluation_ts),
+                    timeout=INFLIGHT_LOCK_TIMEOUT_SEC)
+        except Exception as exc:
+            if (self._boot_tape_state.get(et) or {}).get(
+                    "state") != P0_BOOT_TAPE_REAL_START:
+                receipt = {
+                    "event": et, "evaluation_ts": evaluation_ts,
+                    "error": type(exc).__name__,
+                    "detail": str(exc)[:180],
+                    "partial_evidence_authorized": False,
+                }
+                self._p0v4_transition(
+                    et, P0_BOOT_TAPE_NO_CALL,
+                    "historical_tape_evaluation_unavailable", receipt)
+                self._log("boot_tape_no_call", receipt)
+        finally:
+            elapsed = round((time.monotonic() - started) * 1000.0, 3)
+            self._boot_tape_stats["duration_ms"] += elapsed
+            row = self._boot_tape_state.get(et) or {}
+            row["duration_ms"] = elapsed
+
+    def _p0v4_schedule_pending_hydration(self):
+        if not self._boot_tape_hydration_enabled:
+            return
+        if self._boot_tape_semaphore is None:
+            self._boot_tape_semaphore = asyncio.Semaphore(
+                P0_BOOT_TAPE_MAX_CONCURRENCY)
+        for et in sorted(self.event_tickers):
+            state = (self._boot_tape_state.get(et) or {}).get("state")
+            if state not in (P0_BOOT_TAPE_PENDING, P0_BOOT_TAPE_NO_CALL):
+                continue
+            if et in self.processed_events:
+                self._p0v4_transition(
+                    et, P0_BOOT_TAPE_NO_CALL,
+                    "processed_or_determined_event_not_hydrated",
+                    {"entry_authorized": False,
+                     "hydration_side_effect": False})
+                continue
+            current = self._boot_tape_tasks.get(et)
+            if current is not None and not current.done():
+                continue
+            task = asyncio.create_task(self._p0v4_hydrate_event(et))
+            self._boot_tape_tasks[et] = task
+            task.add_done_callback(
+                lambda done, event=et:
+                    self._boot_tape_tasks.pop(event, None)
+                    if self._boot_tape_tasks.get(event) is done else None)
+
+    def _p0v4_adopt_persistent_real_starts(self):
+        for et, gun in list(self._gun_state.items()):
+            self._p0v4_mark_real_start(
+                et, "persistent_gun_lineage", {
+                    "gun_source": gun.get("source"),
+                    "gun_ts": gun.get("ts"),
+                })
+
     def _entry_start_gate(self, et):
         """[P0 REAL-START FIX 07-22] New entry buys place ONLY when the match
         is CONFIRMED pre-start. Returns (refuse, reason). Fails closed —
@@ -7673,6 +8149,12 @@ class LiveV3:
         now = time.time()
         g = self._gun_state.get(et)
         if g is not None:
+            if hasattr(self, "_boot_tape_state"):
+                LiveV3._p0v4_mark_real_start(
+                    self, et, "gun_state_already_fired", {
+                        "gun_source": g.get("source"),
+                        "gun_ts": g.get("ts"),
+                    })
             if source != g.get("source") and source not in g.get("confirms", ()):
                 g.setdefault("confirms", []).append(source)
                 self._log("gun_source_confirm", {
@@ -7737,6 +8219,12 @@ class LiveV3:
                 return False
         self._gun_state[et] = {"ts": now, "source": source}
         self._events_live.add(et)
+        if hasattr(self, "_boot_tape_state"):
+            LiveV3._p0v4_mark_real_start(
+                self, et, source, {
+                    "gun_ts": now, "gun_source": source,
+                    "detail": dict(detail or {}),
+                })
         self._gun_void_pending.pop(et, None)
         # [P0v3 (2) SWEEP BEATS FILL, 07-17] the sweep leads: cancel this
         # event's resting entry bids NOW, at the fire, before grace/any other
@@ -10554,6 +11042,23 @@ class LiveV3:
         try:
             if et in self.processed_events:
                 return
+            # [P0 REAL-START v4] No conception or target construction may run
+            # ahead of the event's historical-tape evaluation. Per-event only:
+            # exits and unrelated markets continue.
+            _p0_refuse, _p0_reason = \
+                LiveV3._p0v4_entry_authority_gate(self, et)
+            if _p0_refuse:
+                _p0_seen = self.__dict__.setdefault(
+                    "_boot_tape_route_refused_logged", set())
+                _p0_key = (et, _p0_reason)
+                if _p0_key not in _p0_seen:
+                    _p0_seen.add(_p0_key)
+                    self._log("boot_tape_route_refused", {
+                        "event": et, "reason": _p0_reason,
+                        "state": (getattr(self, "_boot_tape_state", {})
+                                  .get(et) or {}).get("state"),
+                    })
+                return
 
             start_ts = self.event_start_time.get(et)
 
@@ -12310,7 +12815,8 @@ class LiveV3:
             #     (_start_gate_cancel_resting books once, never deletes a raced
             #     fill, retains state on "unresolved" for the next cadence pass).
             if getattr(pos, "entry_order_id", None):
-                _refuse, _why = self._entry_start_gate(pos.event_ticker)
+                _refuse, _why = LiveV3._p0v4_entry_authority_gate(
+                    self, pos.event_ticker)
                 if _refuse:
                     await self._start_gate_cancel_resting(tk, pos, "manage_" + _why)
                     return
@@ -17095,6 +17601,13 @@ class LiveV3:
             self._load_gun_state_lineage()
         except Exception as _gpe:
             self._log("gun_state_rebuild_error", {"err": str(_gpe)[:200]})
+        # [P0 REAL-START v4] Persistent guns are authoritative immediately.
+        # Every other discovered event remains PENDING while bounded hydration
+        # runs concurrently with reconciliation/exit management. No WS/BBO
+        # entry route can outrun the shared gate.
+        self._boot_tape_hydration_enabled = True
+        self._p0v4_adopt_persistent_real_starts()
+        self._p0v4_schedule_pending_hydration()
 
         # [C-CYCLE-CAP 07-09] third rebuild at the same boot slot: per-leg
         # cash-cycle history (operator ruling: re-entry ALLOWED, cap 2).
@@ -17130,7 +17643,8 @@ class LiveV3:
                     and getattr(_pos, "phase", "") == "entry_resting"
                     and getattr(_pos, "entry_order_id", None)):
                 continue
-            _brf, _bwy = self._entry_start_gate(_pos.event_ticker)
+            _brf, _bwy = LiveV3._p0v4_entry_authority_gate(
+                self, _pos.event_ticker)
             if _brf:
                 try:
                     await self._start_gate_cancel_resting(_tk, _pos, "boot_" + _bwy)

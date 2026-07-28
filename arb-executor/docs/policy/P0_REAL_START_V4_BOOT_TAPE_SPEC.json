@@ -1,0 +1,111 @@
+{
+  "schema": "p0-real-start-v4-boot-tape-spec-v1",
+  "status": "FROZEN_PRE_RUN_ONLY",
+  "scope": "fresh-boot historical-tape ordering barrier only",
+  "base": {
+    "p0_v1": "eca101c6315be28a5b62e5106d5f34f2392b1a97",
+    "p0_v2": "3f5d85d47a49083dd40056b1866191c649057b7b",
+    "p0_v3": "a4996dd00e82ed3534f97a09251697f1d82dbbab",
+    "p0_v1_v3_live_v4_blob": "949f6995352b7be6f73be8e44af01a70a758c63e",
+    "p0_v1_v3_live_v4_sha256": "cb9e6cc3810d156da3e52df69b8058f25ec1d05aa6a1430aeccf4d869b31aca8",
+    "p0_v1_v3_live_v4_bytes": 1008748
+  },
+  "states": [
+    {
+      "name": "BOOT_TAPE_PENDING",
+      "entry_authority": false,
+      "meaning": "discovered event has not completed historical-tape evaluation"
+    },
+    {
+      "name": "BOOT_TAPE_EVALUATING",
+      "entry_authority": false,
+      "meaning": "bounded receipt-identified tape read is in flight"
+    },
+    {
+      "name": "BOOT_TAPE_INSUFFICIENT",
+      "entry_authority": "defer_to_existing_p0_v1_v3_entry_start_gate",
+      "meaning": "complete lawful evaluation did not satisfy the unchanged strong-live predicate"
+    },
+    {
+      "name": "REAL_START",
+      "entry_authority": false,
+      "meaning": "monotonic gun/boot truth; entry buys refused and existing entry buys swept"
+    },
+    {
+      "name": "BOOT_TAPE_NO_CALL",
+      "entry_authority": false,
+      "meaning": "source, identity, ordering, pagination, timeout, or predicate evaluation unavailable"
+    }
+  ],
+  "source_contract": {
+    "authority": "Kalshi authenticated public trades REST",
+    "path_template": "/trade-api/v2/markets/trades?ticker={ticker}&limit=100",
+    "existing_consumers": [
+      "_seed_tape_memory",
+      "_flow_rest_refresh"
+    ],
+    "receipt_identity": "trade_id",
+    "timestamp": "created_time",
+    "ticker_identity": "ticker must equal queried ticker",
+    "price": "yes_price_dollars or yes_price, exact integer cents 1..99",
+    "size": "count_fp or count, finite and strictly positive",
+    "ordering": "endpoint newest-first order preserved by page and row ordinal",
+    "deduplication": "trade_id; conflicting duplicate identity is NO_CALL",
+    "retention_seconds": 1800,
+    "page_rows": 100,
+    "maximum_pages": 10,
+    "maximum_concurrent_event_evaluations": 8,
+    "event_timeout_seconds": 20,
+    "bounds_origin": {
+      "retention_seconds": "existing tape-flow gun and REST-flow 30-minute law",
+      "page_rows": "existing _flow_rest_refresh request size",
+      "maximum_pages": "existing discover_markets pagination ceiling",
+      "maximum_concurrent_event_evaluations": "existing MAX_RPS",
+      "event_timeout_seconds": "existing INFLIGHT_LOCK_TIMEOUT_SEC"
+    }
+  },
+  "predicate": {
+    "callable": "LiveV3._strong_live_evidence",
+    "modified": false,
+    "source_name": "boot_historical_tape",
+    "inputs": [
+      "category",
+      "prints_30m",
+      "prints_30m_rest",
+      "threshold"
+    ],
+    "threshold_source": "existing tape_flow_prints30 mapping and defaults",
+    "new_trading_thresholds": 0
+  },
+  "entry_gate": {
+    "callable": "LiveV3._p0v4_entry_authority_gate",
+    "routing_before_target_construction": true,
+    "immediate_pre_post_revalidation": true,
+    "central_exchange_post_callsite_count": 1,
+    "pending_reason": "boot_tape_not_ready",
+    "real_start_reason": "real_start_tape_override",
+    "no_call_reason": "boot_tape_no_call",
+    "sells_and_exits_gated": false
+  },
+  "ordering": {
+    "registration": "discover_markets before any BBO worker exists",
+    "persistent_gun_adoption": "before hydration scheduling",
+    "hydration_start": "before reconcile awaits and before WS/BBO workers",
+    "entry_callback_behavior": "fail closed until event state is INSUFFICIENT",
+    "gun_and_hydration_convergence": "one monotonic REAL_START state",
+    "schedule_refresh_can_clear_real_start": false
+  },
+  "forbidden": [
+    "CASUKA D1-D3",
+    "deployment",
+    "restart",
+    "cron restoration",
+    "live order or position action",
+    "schedule source changes",
+    "new gun threshold or cadence",
+    "TE or milestone join repair",
+    "expiration-wire changes",
+    "OOM or keepalive changes",
+    "T2 or Window-1 research"
+  ]
+}

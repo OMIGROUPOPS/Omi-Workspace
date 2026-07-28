@@ -1,0 +1,80 @@
+{
+  "controlling_containment": {
+    "commit": "fd623dd042da2f1dfb9479c8a759c8c610672215",
+    "construction_revalidation": "READ_ONLY_PASS",
+    "engine_process_count": 0,
+    "installed_crontab_sha256": "0e2af22e4ab536b4273e61d9251359eda71e369fb8591f22443c66aa88709926",
+    "original_crontab_backup": "/root/root.crontab.pre_schedule_liar_stop_20260728_e7004235.raw",
+    "original_crontab_backup_sha256": "4c38967f85112908020b7207f491a8486cbfc9c70a8b9d6c8cc5d0a2500c98f4",
+    "read_only_revalidation": {
+      "active_live_v4_cron_lines": 0,
+      "held_markets": 10,
+      "held_quantity": "45.58",
+      "named_subcontract_residue": {
+        "integer_exit_required": "0",
+        "quantity": "0.58",
+        "ticker": "KXWTACHALLENGERMATCH-26JUL26ARSANN-ANN"
+      },
+      "orders_pages": 1,
+      "positions_pages": 1,
+      "process_count": 0,
+      "source_blob": "f1857199164664037fef41b024e60f27fa373548",
+      "source_byte_size": 997352,
+      "source_sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54",
+      "tennis_exit_sell_quantity": "45.00",
+      "tennis_exit_sells": 11,
+      "vps_head": "fd4abec0f3d464634ee1d61ac02f6c977c41fb3c",
+      "whole_contract_holdings_covered": true
+    },
+    "report_blob_identity": {
+      "byte_size": 5164,
+      "git_blob_oid": "4e448c4ead083ac9d9c91a8207e19f35493ab649",
+      "sha256": "f2aa843a53cfe787210f37abddc28ebe4184761501753dd50ee93d5595acd97a"
+    },
+    "report_path": ".claude/ops_schedule_liar_controlled_stop_20260728/OPERATIONAL_STOP_REPORT.md",
+    "tennis_entry_buys": 0
+  },
+  "excluded": [
+    "CASUKA D1-D3",
+    "deployment",
+    "restart",
+    "cron restoration",
+    "orders",
+    "positions",
+    "configuration",
+    "OOM/keepalive",
+    "TE/milestone repair",
+    "expiration wire",
+    "endpoint cleanup",
+    "strategy thresholds",
+    "T2/Window-1 research"
+  ],
+  "implementation_parent": "a4996dd00e82ed3534f97a09251697f1d82dbbab",
+  "metrics": null,
+  "p0_v1": "eca101c6315be28a5b62e5106d5f34f2392b1a97",
+  "p0_v1_v3_base": {
+    "byte_size": 1008748,
+    "git_blob_oid": "949f6995352b7be6f73be8e44af01a70a758c63e",
+    "sha256": "cb9e6cc3810d156da3e52df69b8058f25ec1d05aa6a1430aeccf4d869b31aca8"
+  },
+  "p0_v1_v4_candidate": {
+    "byte_size": 1032682,
+    "git_blob_oid": "363e1c8a11525915dc053175283a6c81b72e8b0d",
+    "sha256": "07b6511d9d8b81f9bd563764d0a72a729426f34244ad8a4c1eff96db4b403e4e"
+  },
+  "p0_v2": "3f5d85d47a49083dd40056b1866191c649057b7b",
+  "p0_v3": "a4996dd00e82ed3534f97a09251697f1d82dbbab",
+  "p0_v4_patch": {
+    "byte_size": 30291,
+    "git_blob_oid": "b4c9074834a154a1ea38665a3f31605beef6e3d2",
+    "sha256": "9702c11215ee3f12dd0c96dea2d2d35b52ca705272e9cc1c85285bd497ce438a"
+  },
+  "running_lineage_parent": "bb085ce04191e27561f18322444c2818dd3936b9",
+  "running_source": {
+    "blob": "f1857199164664037fef41b024e60f27fa373548",
+    "byte_size": 997352,
+    "sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54"
+  },
+  "schema": "p0-real-start-v4-control-binding-v1",
+  "status": "FROZEN_PRE_RUN_ONLY"
+}

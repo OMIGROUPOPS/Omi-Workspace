@@ -1,0 +1,36 @@
+{
+  "schema": "p0-v4-offline-performance-baseline-v1",
+  "measurement_kind": "synthetic_offline_hydration_only",
+  "trials": 3,
+  "events_per_trial": 804,
+  "tape_rows_per_trial": 6432,
+  "maximum_concurrency": 8,
+  "state_counts_per_trial": {
+    "BOOT_TAPE_INSUFFICIENT": 804,
+    "BOOT_TAPE_NO_CALL": 0,
+    "BOOT_TAPE_PENDING": 0,
+    "REAL_START": 0
+  },
+  "total_duration_ms": {
+    "minimum": 1010.659,
+    "median": 1012.562,
+    "maximum": 1073.311
+  },
+  "event_duration_ms": {
+    "maximum_p50": 1.26,
+    "maximum_p90": 1.371,
+    "maximum_observed": 12.336
+  },
+  "tracemalloc_peak_bytes_maximum": 3529118,
+  "tracemalloc_retained_bytes_maximum": 3398945,
+  "tracemalloc_peak_minus_retained_bytes_maximum": 130173,
+  "time_from_boot_to_all_entry_readiness_ms": {
+    "minimum": 1010.659,
+    "median": 1012.562,
+    "maximum": 1073.311
+  },
+  "network_access": false,
+  "live_engine_access": false,
+  "live_order_or_position_access": false,
+  "purpose": "Bounded mechanical resource characterization; not a trading threshold or deployment result."
+}

@@ -1,0 +1,41 @@
+{
+  "canonicalization": "LF for text identity",
+  "schema": "p0-v4-source-hash-manifest-v1",
+  "sources": {
+    "arb-executor/analysis/p0_real_start_v4_prerun_builder.py": {
+      "byte_size": 28489,
+      "git_blob_oid": "f5c50bee5b162950f2674124855a95669c17cd5b",
+      "sha256": "7db32996749ff3aeaf8a1ee2d4f8d0cd09d05731eb001505acddeba80f69f7c2"
+    },
+    "arb-executor/docs/policy/P0_REAL_START_V4_BOOT_TAPE_SPEC.json": {
+      "byte_size": 4169,
+      "git_blob_oid": "115c791fa0ff5995a69a3e16386c6f47ae06b0eb",
+      "sha256": "de1a459721df640f703f2f1bfcbc7c7a9773545b37d3271417230d364aef1ac3"
+    },
+    "arb-executor/live_v4.py": {
+      "byte_size": 1032682,
+      "git_blob_oid": "363e1c8a11525915dc053175283a6c81b72e8b0d",
+      "sha256": "07b6511d9d8b81f9bd563764d0a72a729426f34244ad8a4c1eff96db4b403e4e"
+    },
+    "arb-executor/tests/fixtures/P0_V4_PERFORMANCE_BASELINE.json": {
+      "byte_size": 1063,
+      "git_blob_oid": "2997fcdf15f600605942e3e405f979deba3ca0ce",
+      "sha256": "05daf362cc66d59443583db67a945479c8f0d6a8ddfcfd46d74a21bd1e55f8da"
+    },
+    "arb-executor/tests/test_p0_real_start_v4_boot_tape.py": {
+      "byte_size": 20394,
+      "git_blob_oid": "d12841ed85fcaed886138c08adb821ef02915b8d",
+      "sha256": "5b347a77fc92e93467a9cd00153d6481fa8529fe0b3debed9984561f3dee0b12"
+    },
+    "git:a4996dd00e82ed3534f97a09251697f1d82dbbab:arb-executor/live_v4.py": {
+      "byte_size": 1008748,
+      "git_blob_oid": "949f6995352b7be6f73be8e44af01a70a758c63e",
+      "sha256": "cb9e6cc3810d156da3e52df69b8058f25ec1d05aa6a1430aeccf4d869b31aca8"
+    },
+    "git:fd623dd042da2f1dfb9479c8a759c8c610672215:.claude/ops_schedule_liar_controlled_stop_20260728/OPERATIONAL_STOP_REPORT.md": {
+      "byte_size": 5164,
+      "git_blob_oid": "4e448c4ead083ac9d9c91a8207e19f35493ab649",
+      "sha256": "f2aa843a53cfe787210f37abddc28ebe4184761501753dd50ee93d5595acd97a"
+    }
+  }
+}

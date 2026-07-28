@@ -1,0 +1,15 @@
+{
+  "builder_exchange_capability": false,
+  "builder_network_capability": false,
+  "casuka_integration": false,
+  "configuration_change": false,
+  "cron_restoration": false,
+  "deployment": false,
+  "live_order_action": false,
+  "live_position_action": false,
+  "metrics": null,
+  "restart": false,
+  "schema": "p0-v4-forbidden-access-receipt-v1",
+  "status": "PASS",
+  "t2_or_window1_work": false
+}

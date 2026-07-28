@@ -1,0 +1,36 @@
+{
+  "event": "SHICHA",
+  "fixture_only": true,
+  "historical_context": {
+    "actual_state": "mid-third-set",
+    "engine_schedule": "approximately 2h44m future",
+    "fresh_boot_preceded_unlawful_conception": true,
+    "historical_grade": "W2",
+    "historical_unlawful_order": "SHI buy 5@79",
+    "kalshi_occurrence": "future",
+    "lawful_tape_progression": "approximately 109 to 651 prints",
+    "te_scoreboard_join": "absent"
+  },
+  "participants": "Shin/Chauhan",
+  "production_event_hardcoding": false,
+  "result": {
+    "existing_entry_cancel_count": 1,
+    "exit_sell_permitted": true,
+    "historical_grade": "W2",
+    "historical_tape_hydrated_before_authority": true,
+    "pending_refuses_entry": true,
+    "profitability_claim": null,
+    "receipt_reason": "schedule-liar",
+    "shi_buy_5_at_79_post_count": 0,
+    "unchanged_predicate_fires_real_start": true
+  },
+  "schema": "p0-v4-shicha-schedule-liar-fixture-v1",
+  "status": "PASS",
+  "test_input": {
+    "bbo_route_before_periodic_gun_poll": true,
+    "future_occurrence": true,
+    "future_schedule": true,
+    "receipt_identified_positive_public_prints": 651,
+    "te_join": null
+  }
+}

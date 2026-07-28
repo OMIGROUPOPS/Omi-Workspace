@@ -1,0 +1,12 @@
+{
+  "builder": "arb-executor/analysis/p0_real_start_v4_prerun_builder.py",
+  "canonical_newlines": "LF",
+  "clean_builds_observed_byte_identical": true,
+  "clean_builds_required": 2,
+  "command": "python -B arb-executor/analysis/p0_real_start_v4_prerun_builder.py --repo . --out <absent-dir>",
+  "committed_package_matches_clean_build": true,
+  "gzip": null,
+  "json": "UTF-8, sorted keys, indent=2, terminal LF",
+  "schema": "p0-v4-determinism-receipt-v1",
+  "status": "PASS"
+}

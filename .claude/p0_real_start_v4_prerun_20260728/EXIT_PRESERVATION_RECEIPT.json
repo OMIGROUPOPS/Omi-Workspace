@@ -1,0 +1,11 @@
+{
+  "holdings_mutated_by_v4": false,
+  "hydration_timeout_does_not_block_reconciliation": true,
+  "real_start_sweep_targets_entry_bids_only": true,
+  "schema": "p0-v4-exit-preservation-receipt-v1",
+  "sell_post_path_remains_callable_in_no_call": true,
+  "sell_post_path_remains_callable_in_pending": true,
+  "settlement_changed_by_v4": false,
+  "shared_gate_invoked_only_for_action_buy": true,
+  "status": "PASS"
+}

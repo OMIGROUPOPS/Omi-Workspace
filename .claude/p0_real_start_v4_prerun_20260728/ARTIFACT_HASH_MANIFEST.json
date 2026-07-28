@@ -1,0 +1,103 @@
+{
+  "artifact_count": 19,
+  "artifact_set_sha256": "3201187457919ed31f424af07e41467a00a5266e77913c4b35605973eefe061d",
+  "artifacts": {
+    "BOOT_TAPE_STATE_MACHINE.json": {
+      "byte_size": 1064,
+      "git_blob_oid": "c0799a29a520e4b366ee0514064b14c30ccd442a",
+      "sha256": "aed732d363b2e490e3651c26be935a844433618feba7c58d02e80dd94c2bf182"
+    },
+    "CONTROL_BINDING.json": {
+      "byte_size": 3072,
+      "git_blob_oid": "a505a62e6efc44382297c10f469f4434a0f272cc",
+      "sha256": "2fdedb0baabe3c2f6816ff68d41b10613c3c8e1909c0be29f20008ed215a2aa0"
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "byte_size": 479,
+      "git_blob_oid": "d416a950f2e5b370bd0a933d45508f6da3c5a298",
+      "sha256": "251ad6277b12283ce0e7981348d98e1ebc14293b80c9cabfb3179df90fb7d8d4"
+    },
+    "ENTRY_POST_CALLSITE_CENSUS.json": {
+      "byte_size": 3434,
+      "git_blob_oid": "2feb92a635a1858904010c7aac4e161e8b10ee71",
+      "sha256": "c0106bb57d8cf34cbfb2eba0871521a2409d3fac00847d4d068598112c77ad94"
+    },
+    "EXIT_PRESERVATION_RECEIPT.json": {
+      "byte_size": 415,
+      "git_blob_oid": "52f553544dd431eb62fe87da35cfdcff630093e6",
+      "sha256": "85764cff8e98aa0167d9dc73c4d146efb268c66cfcce54b4ae805f12765a1808"
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "byte_size": 400,
+      "git_blob_oid": "ae5e69ed3fbbd3e089098d1ad394141b19a786a5",
+      "sha256": "05665f20b3a5df66ecfe6e202c74dec02d461b40be12a66802442bfddd752371"
+    },
+    "HISTORICAL_FAILURE_PARITY_RECEIPT.json": {
+      "byte_size": 699,
+      "git_blob_oid": "fadef371a8565524ed8c3083360b2634b6d42558",
+      "sha256": "dbf12c3590f5bfaff6fdde9c1e2c3d7edaf92487c3f6e22cef4f53d3665f7587"
+    },
+    "HISTORICAL_TAPE_SOURCE_CONTRACT.json": {
+      "byte_size": 1379,
+      "git_blob_oid": "591808c2781ddd1de884661befb025ce18e56a45",
+      "sha256": "77799c832ac7c98ddc55b18e9f8bda7d4d0a1cc274dd32f6a0004ab4d8cd9db2"
+    },
+    "INDEPENDENT_AUDIT_INSTRUCTION.md": {
+      "byte_size": 698,
+      "git_blob_oid": "6fdbf7581a585e33cf9607c8971e90378acfbb9d",
+      "sha256": "b946577f417f664ecdcc31fc8b65f6e8bb03d2d3853cd7fe522d68e5d73a8ccc"
+    },
+    "NEGATIVE_ADVERSARIAL_FIXTURES.json": {
+      "byte_size": 2262,
+      "git_blob_oid": "816e6194e5b3c669504054abd6b20e6519444b0e",
+      "sha256": "bb5a81877df355a9d916743c29c41181fa1fcd12f9c58ce47277f22d8df1abf4"
+    },
+    "ORDERING_AND_IDEMPOTENCE_RECEIPT.json": {
+      "byte_size": 519,
+      "git_blob_oid": "5309ce95f257e55394fc7797345126d41aec3a1f",
+      "sha256": "303405859fe9724719ba0de10b29b1deb4bcdd5e0bb5d00a0e7d4fa1d7b90443"
+    },
+    "P0_REAL_START_V4.patch.b64": {
+      "byte_size": 40389,
+      "git_blob_oid": "a1a3ee3fb9d533523361374c93934866832afec3",
+      "sha256": "59dbf66bf330670ffce08ee4ac69fe32ee91dab8de7a3a3ad19c4de2ac13bf2a"
+    },
+    "P0_V1_V3_LINEAGE_RECEIPT.json": {
+      "byte_size": 1080,
+      "git_blob_oid": "e02d2950b00fd4a2f40a5890dc60484be4e175f9",
+      "sha256": "0c23a307ebe4b1de5e2267155ad997dabc669c578e37aa14b1bd54f4859531ba"
+    },
+    "P0_V4_PATCH_RECEIPT.json": {
+      "byte_size": 5307,
+      "git_blob_oid": "f8b9b435fa0f5583c611f535205744ee37fae01e",
+      "sha256": "a3d27b0961430d720fe18ccad637c0c978278362fa1aae8c552b747af21014ba"
+    },
+    "PERFORMANCE_AND_MEMORY_RECEIPT.json": {
+      "byte_size": 1491,
+      "git_blob_oid": "cd78a70460f7aa8a7431adcf8228332574210795",
+      "sha256": "c6f11818fda4014d1a500eff3de27c69f340172e81cded1368874b09ac564118"
+    },
+    "PRE_RUN_REPORT.md": {
+      "byte_size": 2347,
+      "git_blob_oid": "f113d4f95a0b0f4bfa098eacae7495e18195cfce",
+      "sha256": "9e9fe909f40ab5d939500d309fda9b8a5207b2019e0b013a468e0bfc50019d72"
+    },
+    "SHICHA_SCHEDULE_LIAR_FIXTURE.json": {
+      "byte_size": 1157,
+      "git_blob_oid": "7c0a5259f280f272ea3b62769ad7fc0ba8ac992c",
+      "sha256": "d850d045bd860d8accfd9d7296a8fd7a3758ab8ef1f8e0b9e67b134fe5dcaaa9"
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "byte_size": 1900,
+      "git_blob_oid": "82e2d9d4603da2231a96b3453b389b507668c3bb",
+      "sha256": "6732d1df72315dd3b295045e9929c473cc57b990e189ec772816bfe97cc920f6"
+    },
+    "TEST_RESULTS.json": {
+      "byte_size": 839,
+      "git_blob_oid": "eb64c86675f66c563f690cdde6717ee88d275ce8",
+      "sha256": "1e5934f55cb81456c9783d14df4a50e4c4b759cabb0c7b86ae7929d60d96cf71"
+    }
+  },
+  "schema": "p0-v4-artifact-hash-manifest-v1",
+  "self_excluded": true
+}

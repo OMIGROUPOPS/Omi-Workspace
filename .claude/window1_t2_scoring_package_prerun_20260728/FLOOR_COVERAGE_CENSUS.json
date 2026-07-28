@@ -1,0 +1,27 @@
+{
+  "C": null,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "candidate_completion_at_any_price": null,
+  "five_contract_proven_leg_coverage": 1384,
+  "five_contract_proven_pair_coverage": 692,
+  "frontier": null,
+  "full_tape_opportunity_coverage_at_any_price": {
+    "D": 804,
+    "benchmark_not_candidate_capture_claim": true,
+    "proven_pair_events": 692
+  },
+  "leg_rows": 1608,
+  "leg_status_counts": {
+    "EVIDENCE_CENSORED": 224,
+    "PROVEN_FIVE_CONTRACT_FLOOR": 1384
+  },
+  "pair_rows": 804,
+  "performance": null,
+  "regret": null,
+  "schema_version": "window1-t2-scoring-package-builder-v1-floor-coverage-census-v1",
+  "scored": false,
+  "tape_touch_leg_coverage": 1343,
+  "tape_touch_pair_coverage": 662
+}

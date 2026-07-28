@@ -1,0 +1,17 @@
+{
+  "authorized": false,
+  "clean_worktree_required": true,
+  "command_template_literal": "python -B arb-executor/analysis/window1_t2_scoring_runner_v1.py --repo . --package .claude/window1_t2_scoring_package_prerun_20260728/SCORING_INPUT_MANIFEST.json --mode execute --authorization-commit <AUDIT_COMMIT_SUPPLIED_SEPARATELY> --authorization-report <AUDIT_REPORT_PATH>",
+  "future_authorization_commit_supplied_separately": true,
+  "future_report_must_bind": [
+    "exact_package_commit",
+    "exact_execution_id",
+    "full_input_bundle_sha256",
+    "exact_command_template_literal"
+  ],
+  "local_remote_equality_required": true,
+  "new_results_directory_required": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v1",
+  "schema_version": "window1-t2-scoring-package-builder-v1-authorization-template-v1",
+  "self_referential_authorization_SHA_required": false,
+  "single_attempt_no_retry": true
+}

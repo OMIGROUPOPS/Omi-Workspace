@@ -1,0 +1,95 @@
+{
+  "schema_version": "window1-t2-frontier-regret-contract-v1",
+  "controlling_T2_prerun": "87ac9382c23b586f536cf457883c507ebf366ba3",
+  "controlling_T2_audit_PASS": "8743939745e25f090d69dfd4d56906a93671f331",
+  "D": 804,
+  "fit_slice": {
+    "dates": [
+      "2026-07-12",
+      "2026-07-13",
+      "2026-07-14",
+      "2026-07-15",
+      "2026-07-16",
+      "2026-07-17"
+    ],
+    "D": 525
+  },
+  "post_fit_slice": {
+    "dates": [
+      "2026-07-18",
+      "2026-07-19",
+      "2026-07-20"
+    ],
+    "D": 279
+  },
+  "sealed_holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "metric_law": {
+    "C": "both legs credited exactly five contracts inside guarded Window 1",
+    "PC": "C and combined pair delta plus frozen fee is strictly below zero",
+    "IC": "C and both individual deltas are strictly below zero; diagnostic only",
+    "S": "C and combined entry cost is strictly below 100 cents; separate from PC",
+    "fee_cents": 0,
+    "combined_zero_is_PC": false,
+    "positive_sibling_delta_allowed_inside_combined_headroom": true,
+    "simultaneous_leg_requirement": false,
+    "missing_evidence_removes_event_from_D": false
+  },
+  "completion_frontier": {
+    "tiers": [
+      {
+        "id": "LE_93",
+        "law": "combined_entry_cost_cents <= 93"
+      },
+      {
+        "id": "LE_95",
+        "law": "combined_entry_cost_cents <= 95"
+      },
+      {
+        "id": "LE_97",
+        "law": "combined_entry_cost_cents <= 97"
+      },
+      {
+        "id": "LT_100",
+        "law": "combined_entry_cost_cents < 100"
+      },
+      {
+        "id": "ANY_PRICE",
+        "law": "any lawful completed pair"
+      }
+    ],
+    "cumulative_monotonic": true,
+    "primary_objective": "maximize the completion-discount frontier at LT_100",
+    "minimum_floor": "PC >= 603 of D=804",
+    "single_scalar_headline_forbidden": true
+  },
+  "oracle_law": {
+    "policy_unreachable": true,
+    "tape_touch_floor": "lowest positive-size receipt-identified true public print inside guarded Window 1",
+    "five_contract_proven_floor": "lowest X with either cumulative qualifying executed print volume at or below X reaching five or a lawful strict external ask below X",
+    "capacity_is_separate_from_price_touch": true,
+    "asynchronous_pair_floor": true,
+    "post_boundary_evidence_forbidden": true,
+    "carried_last_trade_forbidden": true,
+    "constructed_midpoint_forbidden": true
+  },
+  "primary_loss_stages": [
+    "ZERO_REGRET",
+    "BETTER_THAN_PRINT_FLOOR",
+    "NEVER_RECOGNIZED",
+    "RECOGNIZED_NOT_TARGETED",
+    "TARGETED_NOT_EXPOSED",
+    "EXPOSED_NOT_CREDITED",
+    "COMPLETED_OVER_PROVEN_FLOOR",
+    "PRICE_SEEN_CAPACITY_UNPROVED",
+    "EVIDENCE_CENSORED",
+    "REFERENCE_AMBIGUOUS"
+  ],
+  "ranking_or_selection": null,
+  "metrics": null,
+  "performance": null,
+  "scored": false
+}

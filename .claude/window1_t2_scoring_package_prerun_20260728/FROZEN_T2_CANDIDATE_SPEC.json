@@ -1,0 +1,114 @@
+{
+  "IC_gate": false,
+  "S_gate": false,
+  "T2_actions_before_first_fill": false,
+  "automatic_positive_d2_bid_plus_one_preference": "RETRACTED",
+  "baseline_candidate_ids": [
+    "w1_range_attack__macro_hold__combined_headroom",
+    "w1_range_attack__macro_micro__combined_headroom"
+  ],
+  "candidate_additions_after_freeze_allowed": false,
+  "candidate_ids": [
+    "w1_t2__macro_hold__fixed_admission_parent_control",
+    "w1_t2__macro_hold__non_displacing_target_completeness",
+    "w1_t2__macro_hold__target_completeness_evidence_decay",
+    "w1_t2__macro_hold__full_causal_divot_stack",
+    "w1_t2__macro_micro__fixed_admission_parent_control",
+    "w1_t2__macro_micro__non_displacing_target_completeness",
+    "w1_t2__macro_micro__target_completeness_evidence_decay",
+    "w1_t2__macro_micro__full_causal_divot_stack"
+  ],
+  "controlling_async_census_audit": "26dd6e5e19a7890f02b538cc8b14a900f36e5b2f",
+  "controlling_decision_attribution_audit": "b96873c9a5eb340a7abb0eda9bffd6f0cedb4341",
+  "controlling_t1_instrument_audit": "de2f627e53885bd1a44a42b92f23b5b93a391a47",
+  "controlling_t1_results": "d710ba0606084f67625e255e87ebad1cd016bf6a",
+  "controlling_t1_results_audit": "33ae7350f1bd67387146acae51951f0b76d52313",
+  "exact_parent": "d710ba0606084f67625e255e87ebad1cd016bf6a",
+  "fee_cents": 0,
+  "first_leg_behavior_changed": false,
+  "free_numeric_parameters": [],
+  "inherited_response_only_label": "RETRACTED_AS_BEHAVIORALLY_INERT",
+  "inherited_t1_persistence": "RETRACTED",
+  "instrument_version": "window1-t2-causal-divot-v1",
+  "metrics": null,
+  "no_fill_behavior_changed": false,
+  "performance": null,
+  "positive_sibling_delta_allowed_inside_combined_headroom": true,
+  "positive_sibling_delta_preferred": false,
+  "replacement_authorities": [
+    "MAKER_SAFETY",
+    "LIVEAIM_AIM_DEEP_SOURCE_MAPPING",
+    "CAUSAL_DIVOT_LATER_RECURRENCE",
+    "POLICY_HORIZON"
+  ],
+  "same_receipt_action_fill_allowed": false,
+  "schema_version": "window1-t2-causal-divot-candidates-v1",
+  "scored": false,
+  "simulated_order_quantity": 5,
+  "strict_pair_law": "d1+d2+fee<0",
+  "switch_matrix": {
+    "w1_t2__macro_hold__fixed_admission_parent_control": {
+      "actionable_first_fill_response": false,
+      "causal_divot_recall": false,
+      "evidence_decay_exit": false,
+      "fixed_admission_control": true,
+      "non_displacing_target_completeness": false
+    },
+    "w1_t2__macro_hold__full_causal_divot_stack": {
+      "actionable_first_fill_response": true,
+      "causal_divot_recall": true,
+      "evidence_decay_exit": true,
+      "fixed_admission_control": false,
+      "non_displacing_target_completeness": true
+    },
+    "w1_t2__macro_hold__non_displacing_target_completeness": {
+      "actionable_first_fill_response": false,
+      "causal_divot_recall": false,
+      "evidence_decay_exit": false,
+      "fixed_admission_control": false,
+      "non_displacing_target_completeness": true
+    },
+    "w1_t2__macro_hold__target_completeness_evidence_decay": {
+      "actionable_first_fill_response": false,
+      "causal_divot_recall": false,
+      "evidence_decay_exit": true,
+      "fixed_admission_control": false,
+      "non_displacing_target_completeness": true
+    },
+    "w1_t2__macro_micro__fixed_admission_parent_control": {
+      "actionable_first_fill_response": false,
+      "causal_divot_recall": false,
+      "evidence_decay_exit": false,
+      "fixed_admission_control": true,
+      "non_displacing_target_completeness": false
+    },
+    "w1_t2__macro_micro__full_causal_divot_stack": {
+      "actionable_first_fill_response": true,
+      "causal_divot_recall": true,
+      "evidence_decay_exit": true,
+      "fixed_admission_control": false,
+      "non_displacing_target_completeness": true
+    },
+    "w1_t2__macro_micro__non_displacing_target_completeness": {
+      "actionable_first_fill_response": false,
+      "causal_divot_recall": false,
+      "evidence_decay_exit": false,
+      "fixed_admission_control": false,
+      "non_displacing_target_completeness": true
+    },
+    "w1_t2__macro_micro__target_completeness_evidence_decay": {
+      "actionable_first_fill_response": false,
+      "causal_divot_recall": false,
+      "evidence_decay_exit": true,
+      "fixed_admission_control": false,
+      "non_displacing_target_completeness": true
+    }
+  },
+  "target_sources_in_authority_order": [
+    "CAUSAL_DIVOT_LATER_RECURRENCE",
+    "LIVEAIM_AIM_DEEP_SOURCE_MAPPING",
+    "NATIVE_MACRO_TARGET",
+    "CURRENT_EXTERNAL_BID",
+    "BID_PLUS_ONE_FALLBACK_NOT_PREFERRED"
+  ]
+}

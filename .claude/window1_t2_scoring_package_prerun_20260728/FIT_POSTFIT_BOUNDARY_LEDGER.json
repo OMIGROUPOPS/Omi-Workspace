@@ -1,0 +1,5652 @@
+{
+  "aggregate_D": 804,
+  "fit_D": 525,
+  "fit_dates": [
+    "2026-07-12",
+    "2026-07-13",
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-17"
+  ],
+  "metrics": null,
+  "performance": null,
+  "post_fit_D": 279,
+  "post_fit_dates": [
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+  ],
+  "rows": [
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12AVEFOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12AZKLEO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BARVIS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BOOONC",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BOUVIT",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BROBAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BROGIU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BRUGAD",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CALRAD",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CHAJON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CHISEA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CHOGAS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CRIBAS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DEGEE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DELMAK",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DEVGON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ECHMUN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FANBIG",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FORPAM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FUEROS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GANJAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GEOMAG",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIESHE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GURDAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GUTCAM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HECISO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HOHSUR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HOUJOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KARMAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KRALOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KUMTUR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KUZDE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12LAGTEP",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12LANKOB",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12LINMAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MARARS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MARFOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MEJSOT",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MIYKUZ",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MOLDON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MORPET",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PALMAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PEAKIR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLVIN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PRIBAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12RAFAGU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12RAIZHU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12RAQKUM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ROUGAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12SALARN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12SANSCH",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12SIAIVA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12TOKROZ",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12VALNIJ",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12VANCHO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12VILRAH",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12WINROB",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YEVBOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YIBMAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YOUDLI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13AGABAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ALVKUM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ARSDAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ARSMAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13BOUGAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13BOUZHA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13CHOSUR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13DONWES",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13FORHUA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13FORMAK",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13FORRAF",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13GIUALM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13HOLWAT",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13JONPET",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KENSHE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KRASAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KRUMAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KUMLAG",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KUZNIJ",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13LANSHE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13MONANG",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13MORFAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13NOGBRO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13OUALIN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13PALGON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13PERTOB",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13POLMIY",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13PRICRI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13RADIVA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13REHJUS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13RODALK",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ROZISO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13SANLOP",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13SHIHAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13TABVIN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13TROGEO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13VILGAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13WINKIR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13WOLFEN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13WONTUN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13YEVCAM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13YIBMAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ZHUDLI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ADDLEO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ALCTAB",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ALMGRA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14BLATOM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14BRUNIJ",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CASGHI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CLAWES",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CUIFAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DALMAY",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DELXIL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DENYEV",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DRATRO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14EREPAV",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14FORGOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14FUEPRI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GALFOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GENPET",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GLIJOH",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GUIBON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14IVAGIU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14JONIVA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14KRATOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAGSAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MAKSEY",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MARCAM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MARMAY",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MILCHA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MRVCAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14NAGCRE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14NEDDAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14OUAFIC",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14RONGIU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ROZRIC",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SMIILA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SQUKUM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SUNGEA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SURECH",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14UCHGAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14VILRIB",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14VUKARS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15GENDE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15HOLMAY",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15IVACRA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15LAJKRU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15NAGTOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15NAPBAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15NOGSUR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15RODINC",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15ROMGAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15SANERE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15SCHHOU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15SHIBOU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15VILMAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WESCOP",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15YIBYUN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15ZHOPER",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15ZINGAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16ADDGHI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16ALCANG",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16DELDAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16DENBAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16FUESEY",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16IVAOUA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16KUMBRO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16MCCTOM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16PALALM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16RICGEA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16SMIMAT",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16VISNIJ",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17ADDIVA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17DELFUE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17DRAGEA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17FORTOM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17GALCOP",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17GENHOU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17HOLBOU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17KUMBOO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17LAJNOG",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17NAGBON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17NAPVIL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17NIJDEN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17PERSAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17RODCRA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17SANALM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17SEKCAS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17SMIYUN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17VUKGAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17WONJOH",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18ALCVIL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18CASGEA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18DENCOP",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18FUEBON",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18GENKUM",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18LAJYUN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18PERIVA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18RODSAN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18TOMJOH",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18VUKHOL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19AVECHA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BANZHU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BARLEO",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BARSTA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BIAYOU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BONALC",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19CALTEP",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19CASVAS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DEMMAG",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DENGEN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DJOMAT",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DONTOP",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19GIUDEV",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HERECH",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19JOHGEO",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19JONISO",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KIRAGU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KOZVIT",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KUHPAS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KUZOPI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19LANMAY",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MALMOR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MARCOL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MARWAZ",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MCKOUA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MILFAN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MONTHO",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PALMUN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PAPROS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PETALO",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PIENES",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19POLSCH",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PONZIE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19POUJAN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19REJWES",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19RITGOM",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ROZSHE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19SINMAT",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19SURPER",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TOKMIY",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TOMLAJ",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TORSEN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TRODAL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VALCAS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VANGOR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VANRAD",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VARBOI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VASTAB",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19YEVSTR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ZAMPOL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ALKFIC",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20BICWAL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CALKUM",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CHABOU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CRECOP",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ECHHAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20FAURIN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GADGUI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GIUHER",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GONTOB",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20JOHAGU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20KOZPAS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20KUZJAN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20KYMCLA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MARBIT",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MARROS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MILSHE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MONBAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MONNES",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20PALLEO",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20PETTAB",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20PIRNAP",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20POHWES",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20POLBRU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20SEYKOL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20STAMAT",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20TOKHUR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20TORSTR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20TROISO",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VALGOM",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VANOUA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VARDON",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VASSIN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VISNIK",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20WATILA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHUMAL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ZINZHA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12ALTGAS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12BORKOU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12BUDPEL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12BUEMAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12CARSAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12CECOLI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12CERKOL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12CHOBAS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12CINHEM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12CORDAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12DAHBAE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12DEJGAU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12DIEMON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12DODCAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12DROBLO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12DZUROC",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12FARWAW",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12FELKEC",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12GUEGOM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12JACTRU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12KOPPRI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12KRUFER",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12MARHAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12MOLFAU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12MOLROY",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12MULSHE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12NEUTOP",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12OFNTIR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12PASKAS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12PRASAI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12REJMID",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12SESMER",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12SKASAC",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12SLADAM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12SONSCH",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12STRMUN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12SVRDIM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12TABHUE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12TSIBUS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPMATCH-26JUL13COLSKA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPMATCH-26JUL13FAUDAM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPMATCH-26JUL13MARMID",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPMATCH-26JUL13PASKRU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPMATCH-26JUL13SANDAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPMATCH-26JUL13TABROD",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPMATCH-26JUL14CECBUR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPMATCH-26JUL14CINHAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPMATCH-26JUL14DIAMID",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPMATCH-26JUL14GOMMCD",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPMATCH-26JUL14KYMDIE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPMATCH-26JUL14MARPRA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPMATCH-26JUL14NEUPRA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPMATCH-26JUL14RINTAB",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPMATCH-26JUL14TOPUGO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPMATCH-26JUL14TRAKRU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPMATCH-26JUL14VALDAM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPMATCH-26JUL14VANDAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15ALTDAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15BASTIR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15BORDIM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15BUBHAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15CARUGO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15CERKEC",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15COBBUR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15COLSON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15ETCMER",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15GOMARN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15HANVAC",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15KYMTSI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15PRADZU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15PRIMOL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15RUBPEL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15TABMID",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15TRANAV",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15TRUDAV",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15VANDRO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15VANVAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPMATCH-26JUL16BURUGO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPMATCH-26JUL16DEJBAE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPMATCH-26JUL16DZUARN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPMATCH-26JUL16FARRUU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPMATCH-26JUL16MERDRO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPMATCH-26JUL16MOLDAV",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPMATCH-26JUL16SHESTR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPMATCH-26JUL17BORDAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPMATCH-26JUL17BURMER",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPMATCH-26JUL17CERRUU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPMATCH-26JUL17COLVAC",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPMATCH-26JUL17DZUMOL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPMATCH-26JUL17HALSHE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPMATCH-26JUL17RINTSI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPMATCH-26JUL17RUBBAE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPMATCH-26JUL17TABTIR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPMATCH-26JUL17VALTRA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18BUTTAB",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18CINMIC",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18COLCER",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18CORSAC",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18DELRIB",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18DOMSKA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18GAUTSE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18HEIFEL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18HIPGIU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18JACDA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18KOPHER",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18LUZTSE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18MARJOR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18MERDZU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18PELSIL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18ROCBUE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18RODCHE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18RUBTAB",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18SHETSI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18VALDAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18WALDJE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19ALTCOL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19BAEKEC",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19CERTRU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19CHODEJ",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19CINGIU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19DELDJE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19DROUGO",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19FELKOP",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19FERVAN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19GASDZU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19GAUCAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19JACDAN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19KOPBUS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19LUZTAB",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19MARSKA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19MOLOFN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19MULNAV",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19NEUHAN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19PELBUE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19RODSAC",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19RUBDAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19STRSHE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19TORBAS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19TSICOL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19VANFAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19WAWBUR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPMATCH-26JUL20DIACIN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPMATCH-26JUL20DJECIN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPMATCH-26JUL20ROCMAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPMATCH-26JUL20SCHROD",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ARIZHA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BASABB",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BOSKOV",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12CIRHUA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12FEICHE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12HESKOT",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12KHOVIG",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12MAZGAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12PANYOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ROUJAK",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SAIETO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SHEVAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SHITUR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SOKNUG",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12VOLMAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ZELFAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13BAIPRO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13GASBAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13GJOCHI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13GRABER",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13HERJAK",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13JONSPI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KABPER",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KHOZHA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KOTURG",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13LANMAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13OKATAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PAPAND",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PENTHA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RADREN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RINAST",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RISPOH",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SAINUG",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SHIHUA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13TIKBEN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13VANLEE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14BARKOL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14BASFRI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14BRAPIE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14CARVON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14COLPAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14DILFAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FALYUA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FRUGAO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14HENKRA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14HRUBUY",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14IATZVO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14KHONUG",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14KOSRUG",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14KOVBAS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14MAZBRO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14PIGSAM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14RIESEM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14SHUSHI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14TANHAV",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14TREGRA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14WOLVAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14ZAKTKA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15ASTNOH",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15CARPAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15ERJBAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15JONURG",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15KNUTAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15PENFAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15RADCHI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15TANGAS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15VANFAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BENKRA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16GAOVAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16HERVAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16KOSBRO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16KOVRIE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZAKSHU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZANTRE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17BASCAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17BRARIE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17CHIBRO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ERJFEI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17GRAVAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17JONNOH",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17VALFAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17VANTAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17YANTRE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ZAKPRO",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ZVOTAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18BASBOE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18BASKRA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18BROBRA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18ERJGRA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18MCASHI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18RENGIA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18SERBER",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18TREJON",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18URGKOT",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18VALTAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18WEBHOD",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18ZAKVAN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19BASSHI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19GRAKRA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19JONBRO",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19KOTHOD",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19RENTON",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19SERTOT",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19VANTAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20FERREN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20KABCHI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20TOTRUG",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20URGYAN",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12AVASEI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12FETPIE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12GARPRI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12HERKAZ",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12HIBTON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12HODYAS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12ITOMAN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12KOZIBR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12KULZAA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12LEPBUR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12LIUPOP",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12MICKUL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12MORNEP",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12OKAIPE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12PRIION",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12ROMTOD",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12TAGSIE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTAMATCH-26JUL12WERAMA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13AMAHER",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13ARAZID",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13ARGTAG",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13AVAFET",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13BADKAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13BLISAS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13BONSOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13BURLEP",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13BURPUT",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13CHAJIM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13CRIJEA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13HODDAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13ITOKOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13KAWWAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13KRETOM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13KUDSAK",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13LEPIBR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13LINHON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13LIUIPE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13MATMIC",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13MONMAS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13MORBEJ",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13PODMAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13QUERUS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13ROMKUL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13SAKTON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13SHEGAL",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13TAUHIB",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13TIMANN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13VALCOS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13ZHEBOU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTAMATCH-26JUL14AMAJAC",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTAMATCH-26JUL14AVAUCH",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTAMATCH-26JUL14BULPRI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTAMATCH-26JUL14OLIIPE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTAMATCH-26JUL14PUTLIU",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTAMATCH-26JUL14SALIBR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTAMATCH-26JUL14UDVROM",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTAMATCH-26JUL15AVAMAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTAMATCH-26JUL15BONZID",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTAMATCH-26JUL15BURJAC",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTAMATCH-26JUL15DARSAK",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTAMATCH-26JUL15HONPAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTAMATCH-26JUL15IBRBAD",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTAMATCH-26JUL15KREMON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTAMATCH-26JUL15MICZHE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTAMATCH-26JUL15OLIPRI",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTAMATCH-26JUL15PUTCHA",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTAMATCH-26JUL15SHEQUE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTAMATCH-26JUL15TAGBEJ",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTAMATCH-26JUL16KORANN",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTAMATCH-26JUL16TAUTON",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTAMATCH-26JUL16UDVKAW",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTAMATCH-26JUL16VALSAS",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTAMATCH-26JUL17KREZHE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTAMATCH-26JUL17OLIBUR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTAMATCH-26JUL17PARSAK",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTAMATCH-26JUL17PUTSHE",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTAMATCH-26JUL17TAUBEJ",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTAMATCH-26JUL17UDVBAD",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTAMATCH-26JUL17VALKOR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTAMATCH-26JUL17ZIDMAR",
+      "slice": "fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18BADZID",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18BANGAO",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18BERSAI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18COSHIB",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18HONTHA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18ITOKNU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18MASRYS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18MICFRU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18MORAKS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18OKALEE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18PALHON",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18PODKRE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18SAKKOR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18SALZOL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18SHEOLI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18TAUKRE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19AVDNIE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19BRAVON",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19COSAKS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19EIGCAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19GAOFRU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19HONLEE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19JAKAVA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19KRESAK",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19LEPPET",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19MALZAA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19MONPIE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19PODSAI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19PRIMAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19RUSKAZ",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19RYSHON",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19SALKNU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19SHEBAD",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19STRPAQ",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19VEDGAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19YASBAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20AKSCOS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20BARYUA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20BLIBEJ",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20BONUCH",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20BOUBOU2",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20GAOTAG",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20KOVTAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20LEPAVA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20LYSVAL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20NIEMAL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20OKTDOD",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20OLISCH",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20PARHAV",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20PARHON",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20PIECAR",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20PODLEE",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20PODSTU",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20PRIBRA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20QUEKAL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20ROMERJ",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20RUSPAQ",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20RUZSAL",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20SAMJOI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20SEISNI",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20SEMKRA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20SORCHA",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20STENOH",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20TIMSAS",
+      "slice": "post_fit"
+    },
+    {
+      "D_member": true,
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20VEDBAR",
+      "slice": "post_fit"
+    }
+  ],
+  "schema_version": "window1-t2-scoring-package-builder-v1-fit-postfit-v1",
+  "scored": false
+}

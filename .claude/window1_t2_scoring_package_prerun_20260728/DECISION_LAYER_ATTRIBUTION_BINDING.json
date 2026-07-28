@@ -1,0 +1,53 @@
+{
+  "authority_families": [
+    "parent HOLD/non-displacement",
+    "evidence-decay replacement",
+    "PARK combined-budget or maker-law invalidation",
+    "causal-divot recognition",
+    "later recurrence",
+    "target selection",
+    "PLACE",
+    "REPRICE",
+    "exposure persistence",
+    "fill evidence",
+    "macro-target authority",
+    "causal-pair-headroom authority",
+    "LIVE-AIM authority"
+  ],
+  "frozen_T2_counts": {
+    "PARK_exits": 6963,
+    "later_divot_actions": 140,
+    "later_recurrences": 176435,
+    "positive_d2_targets_exposed": 54,
+    "recognized_divots": 166644,
+    "still_later_fill_evidence": 81
+  },
+  "market_absent_from_policy_inaction_forbidden": true,
+  "metrics": null,
+  "performance": null,
+  "schema_version": "window1-t2-scoring-package-builder-v1-decision-attribution-binding-v1",
+  "scored": false,
+  "source_receipts": [
+    {
+      "bytes": 10710907,
+      "git_blob_oid": "68f3d8aee4242b6462cac2aedb5d549ca02b63a2",
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/DIVOT_RECOGNITION_ACTION_EVIDENCE_CHRONOLOGY.jsonl.gz",
+      "role": "divot_action_fill_chronology",
+      "sha256": "67d778db403e6c7124e3041bb4c707e85b9ba7d04a17bb243667276e4ddbcffa"
+    },
+    {
+      "bytes": 396,
+      "git_blob_oid": "10539c5e62ef620443a8a65aa3dc4dc38e283eae",
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/PARENT_EXPOSURE_PRESERVATION_REPLACEMENT_CENSUS.json",
+      "role": "preservation_replacement_park_census",
+      "sha256": "3925da76129793c602a09ad7ec494076cb601abdc385da1d792526f46c20b89d"
+    },
+    {
+      "bytes": 1283,
+      "git_blob_oid": "0ddc3c9e01ffe5e8818c2bbe776a2880015db36d",
+      "path": ".claude/window1_t2_causal_divot_prerun_20260727/PRE_RUN_MANIFEST.json",
+      "role": "T2_count_manifest",
+      "sha256": "03fa85a04357e997b8f7dde2e93e78d109a5b732675504e63f5d46315449e460"
+    }
+  ]
+}

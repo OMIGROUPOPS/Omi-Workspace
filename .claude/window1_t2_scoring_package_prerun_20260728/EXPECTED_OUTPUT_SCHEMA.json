@@ -1,0 +1,77 @@
+{
+  "D_per_candidate": 804,
+  "candidate_count": 8,
+  "candidate_order": [
+    "w1_t2__macro_hold__fixed_admission_parent_control",
+    "w1_t2__macro_hold__non_displacing_target_completeness",
+    "w1_t2__macro_hold__target_completeness_evidence_decay",
+    "w1_t2__macro_hold__full_causal_divot_stack",
+    "w1_t2__macro_micro__fixed_admission_parent_control",
+    "w1_t2__macro_micro__non_displacing_target_completeness",
+    "w1_t2__macro_micro__target_completeness_evidence_decay",
+    "w1_t2__macro_micro__full_causal_divot_stack"
+  ],
+  "claim_fences": [
+    "orientation is hash-bound but unconsumed",
+    "volume, pressure and last trade are stored evidence, not candidate gates",
+    "drift/band/recut/LIBRARY surfaces are not consumed",
+    "depth claims are limited to bound top five",
+    "Pinnacle and authoritative bookmaker/FV are absent",
+    "historical divot tables are replaced by the bound native causal print-divot mechanism",
+    "results describe these eight T2 candidate families, not the complete OS or a market ceiling"
+  ],
+  "frontier_tiers": [
+    "LE_93",
+    "LE_95",
+    "LE_97",
+    "LT_100",
+    "ANY_PRICE"
+  ],
+  "primary_loss_stages": [
+    "ZERO_REGRET",
+    "BETTER_THAN_PRINT_FLOOR",
+    "NEVER_RECOGNIZED",
+    "RECOGNIZED_NOT_TARGETED",
+    "TARGETED_NOT_EXPOSED",
+    "EXPOSED_NOT_CREDITED",
+    "COMPLETED_OVER_PROVEN_FLOOR",
+    "PRICE_SEEN_CAPACITY_UNPROVED",
+    "EVIDENCE_CENSORED",
+    "REFERENCE_AMBIGUOUS"
+  ],
+  "ranking_or_selection": null,
+  "regret_dimensions": [
+    "candidate",
+    "slice",
+    "category",
+    "native_regime",
+    "orientation",
+    "macro_micro_family",
+    "primary_loss_stage"
+  ],
+  "schema_version": "window1-t2-scoring-package-builder-v1-expected-output-v1",
+  "slices": {
+    "aggregate": 804,
+    "fit": 525,
+    "post_fit": 279
+  },
+  "tier_fields": [
+    "C",
+    "C_over_D",
+    "PC",
+    "PC_over_D",
+    "both_legs_negative",
+    "leg1_negative_leg2_nonnegative",
+    "leg1_nonnegative_leg2_negative",
+    "both_legs_nonnegative",
+    "reference_missing_completions",
+    "S",
+    "S_over_D",
+    "IC",
+    "IC_over_D",
+    "PC_but_not_IC",
+    "PC_but_not_IC_leg1_negative_leg2_nonnegative",
+    "PC_but_not_IC_leg1_nonnegative_leg2_negative",
+    "PC_shortfall_from_603"
+  ]
+}

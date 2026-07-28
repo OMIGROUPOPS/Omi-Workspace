@@ -1,0 +1,83 @@
+{
+  "candidate_metrics": {
+    "w1_t2__macro_hold__fixed_admission_parent_control": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null,
+      "frontier": null,
+      "performance": null,
+      "regret": null
+    },
+    "w1_t2__macro_hold__full_causal_divot_stack": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null,
+      "frontier": null,
+      "performance": null,
+      "regret": null
+    },
+    "w1_t2__macro_hold__non_displacing_target_completeness": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null,
+      "frontier": null,
+      "performance": null,
+      "regret": null
+    },
+    "w1_t2__macro_hold__target_completeness_evidence_decay": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null,
+      "frontier": null,
+      "performance": null,
+      "regret": null
+    },
+    "w1_t2__macro_micro__fixed_admission_parent_control": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null,
+      "frontier": null,
+      "performance": null,
+      "regret": null
+    },
+    "w1_t2__macro_micro__full_causal_divot_stack": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null,
+      "frontier": null,
+      "performance": null,
+      "regret": null
+    },
+    "w1_t2__macro_micro__non_displacing_target_completeness": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null,
+      "frontier": null,
+      "performance": null,
+      "regret": null
+    },
+    "w1_t2__macro_micro__target_completeness_evidence_decay": {
+      "C": null,
+      "IC": null,
+      "PC": null,
+      "S": null,
+      "frontier": null,
+      "performance": null,
+      "regret": null
+    }
+  },
+  "holdout_access": false,
+  "live_or_production_access": false,
+  "ranking_or_selection": null,
+  "real_population_scorer_invocations": 0,
+  "results_directory_exists": false,
+  "schema_version": "window1-t2-scoring-package-builder-v1-no-execution-v1",
+  "scored": false
+}

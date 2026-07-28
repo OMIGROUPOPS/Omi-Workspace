@@ -1,0 +1,15 @@
+{
+  "allowed_inputs": "July 12-20 development only",
+  "holdout_access": false,
+  "live_access": false,
+  "network_calls": 0,
+  "orders_positions_exits_window2_settlement_DCA_access": false,
+  "production_access": false,
+  "results_directory_created": false,
+  "schema_version": "window1-t2-scoring-package-builder-v1-forbidden-access-v1",
+  "sealed_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ]
+}

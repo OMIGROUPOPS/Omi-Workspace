@@ -1,0 +1,188 @@
+{
+  "artifact_count": 26,
+  "artifacts": [
+    {
+      "git_blob_oid": "281249faaf6c0a86561fad287e08c15d8f947cee",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 78244,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/ASYNCHRONOUS_PAIR_FLOOR_LEDGER.jsonl.gz",
+      "sha256": "825620d8f11804552cff741b32f6f9916432269d1e820b556d24fad5ba6396ee"
+    },
+    {
+      "git_blob_oid": "af7946c603c40139a02f66c6465e450a928a5104",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 4491,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/CLAIM_FENCE_MANIFEST.json",
+      "sha256": "822f60e1ceef25adbc4348cb4d04478f133681592e9d6c9940c0a3fa89ef72f7"
+    },
+    {
+      "git_blob_oid": "faf1a0327188ac62d7aea2fee8086b1099a20380",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 1882,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/DECISION_LAYER_ATTRIBUTION_BINDING.json",
+      "sha256": "bddda2beb740d744553fb2223c16324e133d5f1625d2a3f04e41f92868368aed"
+    },
+    {
+      "git_blob_oid": "03e987e22975cea7139aab47795a0272a908d4da",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 938,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/EXECUTION_AUTHORIZATION_TEMPLATE.json",
+      "sha256": "bc89ecfdf2590fe895807094efe157a482715af2ec3ef61849f709d6f0de09dc"
+    },
+    {
+      "git_blob_oid": "9335371aabd5d076206864720f03206782f9e96c",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 2268,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/EXPECTED_OUTPUT_SCHEMA.json",
+      "sha256": "706eb5a6fafd0693dc055d39ef4f429c8b12d1dcccf8d502c8a48cbbe898710c"
+    },
+    {
+      "git_blob_oid": "c6c282e2720bba932a27d9d3288114518af35546",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 142443,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FIT_POSTFIT_BOUNDARY_LEDGER.json",
+      "sha256": "8e6e86ccbc531f56b40e06bf2ff36f96f4e486f741907ed4624a85369e049a5a"
+    },
+    {
+      "git_blob_oid": "9af7d1c8152af9f22dc3f2ee4d0a405a2fec37ea",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 149953,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FIVE_CONTRACT_PROVEN_FLOOR_LEDGER.jsonl.gz",
+      "sha256": "19ff88f885df334080677550be49fac207e69c7dd03c101f45989e4cecaecce9"
+    },
+    {
+      "git_blob_oid": "cff4b12d74f4b280ba1ebddcaea5ea13e5977786",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 718,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FLOOR_COVERAGE_CENSUS.json",
+      "sha256": "b7195b521cd4c71729dddcffdc17fb60058ba8d25ca2956bcadf8d631c5c0b34"
+    },
+    {
+      "git_blob_oid": "82714e49966319ad402642d7e466d6e6e9ba170a",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 419,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "5f8666e516cd22695dadd0359997a2f073b1dbb1b734e772f43a9801e0417a3a"
+    },
+    {
+      "git_blob_oid": "ffb9158d18b51b551c7106f88bc153e40791560e",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 332033,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FROZEN_EVENT_LEG_IDENTITIES.json",
+      "sha256": "a7910de424ab63420d658dc6cc9986069b661b2a75a25bf593b0ca2dd8dd336f"
+    },
+    {
+      "git_blob_oid": "799dacd2de9eea53180c68586756584c04862ba3",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 4520,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/FROZEN_T2_CANDIDATE_SPEC.json",
+      "sha256": "d780ddca26bb4024a95b779833c31b3acc677b42213251634d6c9cf7c6781c89"
+    },
+    {
+      "git_blob_oid": "1d2baac197473f2d2e5eceefea4e525c4875b0c3",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 386143,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_BOUNDARY_LEDGER.jsonl",
+      "sha256": "c2c652dab2e382869a28785dd807cc8bb1bbe1c78842192ed39a54c685799faf"
+    },
+    {
+      "git_blob_oid": "c6b60b3d62bd370899091af881f8d36d8bac174e",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 286205,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/GUARDED_CACHE_V3_HASH_SET.json",
+      "sha256": "da7e1dc63b72d81d8b497663fd0857cca2cd4340d46f72867cf7281ef447cc69"
+    },
+    {
+      "git_blob_oid": "dd2976b8ea6b28cca8a8acef14cce96eaa45d4c2",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 336694,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/IMMUTABLE_EVENT_LEDGER.jsonl",
+      "sha256": "1f150cf0e4e4a5809617c2b9303d5f1cf64b22d182d996ff893de255e6e48b46"
+    },
+    {
+      "git_blob_oid": "a3d3d12020e2b8884a9d3fb27d247b9062a9f8df",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 537,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/INDEPENDENT_AUDIT_INSTRUCTION.json",
+      "sha256": "42910679ac0aac70f51c4fa8f7fac4048752b7547b5754d519909ebca74ae1ad"
+    },
+    {
+      "git_blob_oid": "fccc03a1b14dec2fb764052c738337b3fab38261",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 1975,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/NULL_METRIC_NO_EXECUTION_RECEIPT.json",
+      "sha256": "fa756cfb4f3492db67b7b778a82840beaeae6026fa34e88fb64eb7b0b900c274"
+    },
+    {
+      "git_blob_oid": "e33212e5855685263f901021ba865c274a7a0989",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 1073,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/PRE_RUN_REPORT.md",
+      "sha256": "d24c090c7e945ce402ad899fbf9022bc0167ccff645312f62f1512f355412a10"
+    },
+    {
+      "git_blob_oid": "413f816c0125b88b57a2d78b42a5d7ff7c5929d3",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 5300,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/SCORING_INPUT_MANIFEST.json",
+      "sha256": "c9315b120d8dada5645dbfd88cbab2015109530089c9bae32c73e7bda6305767"
+    },
+    {
+      "git_blob_oid": "4996ad84e714fdbaaa75e1ce35fa73cb609a395b",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 1638,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/SETTLED_SCORING_LAW_IDENTITY_RECEIPT.json",
+      "sha256": "dfb8c1648a6a6121081d42c836c25c63979f8e998d40ed6f72b2747563cb285f"
+    },
+    {
+      "git_blob_oid": "443366fea4c0f8f0f6caf869dfb1e6d9c4db360f",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 15990,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/SOURCE_HASH_MANIFEST.json",
+      "sha256": "573b8ffada4fe0e4ddc5bb2ff30f18383a52f3f81d59a5c338639d7c66e971fd"
+    },
+    {
+      "git_blob_oid": "5e9afe31789fdcd7b1e9324d26daa40502f016bb",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 2262,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/T2_INSTRUMENT_AUDIT_BINDING.json",
+      "sha256": "dc8c697f16305886d4d311aecaa085138d801c390d712704056712b498f5ecd2"
+    },
+    {
+      "git_blob_oid": "af9024dbddcc04b703991eccd29b31fd7f6b4bce",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 4519525,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/T2_REGRET_CHAIN_INPUT_LEDGER.jsonl.gz",
+      "sha256": "78ce4b387b20b4bb2c8beab8284296e7ba068a34133d9a9d71928a28fa29455d"
+    },
+    {
+      "git_blob_oid": "035956ab0a3e6858568c71df023d4c34fe12a760",
+      "hash_basis": "canonical_lf_text",
+      "identity_bytes": 3518,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/T2_UNIQUE_CREDITED_FILL_DERIVATION_RECEIPT.json",
+      "sha256": "d162e08b1bd7c169022b561e10bd3a8bbfba18b825ee5ec22c7ac112f7b46166"
+    },
+    {
+      "git_blob_oid": "1acd3cd98483134dba054294c102694f78a78afc",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 1371823,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/T2_UNIQUE_CREDITED_FILL_LEDGER.jsonl.gz",
+      "sha256": "fa1f695653ca1b9fcb108a2fbcb62325d5d8ea1ea145f2caf409fb179d7612b6"
+    },
+    {
+      "git_blob_oid": "1d457fbcb6848fea54f7ef4ded43e51d50fdf087",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 238189,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/TAPE_AND_FIVE_CONTRACT_FLOOR_LEDGER.jsonl.gz",
+      "sha256": "727d63ae80cf8739ac40b956aba31fe0d39d87f49d75334a3e10331519594e28"
+    },
+    {
+      "git_blob_oid": "572a797f42337da01e2950128544ced56535a3bf",
+      "hash_basis": "exact_binary",
+      "identity_bytes": 123420,
+      "path": ".claude/window1_t2_scoring_package_prerun_20260728/TAPE_TOUCH_FLOOR_LEDGER.jsonl.gz",
+      "sha256": "0767d16c61ac0b62340a29282352e33ea3fbed37e4223e75d251c1f50a4b6e18"
+    }
+  ],
+  "schema_version": "window1-t2-scoring-package-builder-v1-artifact-manifest-v1"
+}

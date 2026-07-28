@@ -1,0 +1,7 @@
+{
+  "audit_branch": "audit/window1-independent",
+  "execute_or_score": false,
+  "instruction": "Audit this package without executing the scorer. Reproduce the unique-fill and two oracle floors, all fit/post-fit boundaries, exact tier endpoints, regret stage conservation, claim fences, hashes, two clean builds, and every synthetic/inherited test. A PASS authorizes nothing; return a separate PASS commit/report.",
+  "merge_package_before_audit": false,
+  "schema_version": "window1-t2-scoring-package-builder-v1-audit-instruction-v1"
+}

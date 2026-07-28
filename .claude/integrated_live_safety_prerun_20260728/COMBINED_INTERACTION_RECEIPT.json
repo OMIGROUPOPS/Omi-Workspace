@@ -1,0 +1,20 @@
+{
+  "authoritative_exit_sells_remain_live": true,
+  "both_exit_organ_orderings_converge": true,
+  "casuka_d1_serialization_after_real_start": true,
+  "casuka_d2_sell_clamp_after_real_start": true,
+  "casuka_d3_classifier_truth_after_real_start": true,
+  "fresh_boot_shicha_entry_refused": true,
+  "fresh_boot_shicha_exit_preserved": true,
+  "p0_blocks_only_entry_buys": true,
+  "p0_component_fixture_adjustment": {
+    "inherited_fixture": "test_exit_sell_remains_live_while_tape_pending",
+    "integrated_replacement": "test_pending_blocks_buy_but_authoritative_exit_remains_live",
+    "law_preserved": "P0 does not block sells; CASUKA independently requires authoritative held-minus-resting capacity before POST.",
+    "reason": "Its isolated P0 stub provides no authoritative exchange position/order GET surface. CASUKA D2 must fail closed there."
+  },
+  "schema_version": "integrated-live-safety-interaction-v1",
+  "status": "PASS",
+  "sweep_cannot_create_stale_heal_topup_race": true,
+  "two_cycle_idempotence": true
+}

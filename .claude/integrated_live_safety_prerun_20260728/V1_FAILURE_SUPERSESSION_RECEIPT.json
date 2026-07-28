@@ -1,0 +1,18 @@
+{
+  "casuka_only_control_package": "135f3efae1c3d6f4e7fbcbab658f41b4733a403c",
+  "defects": [
+    "no executable authorization verifier was packaged",
+    "OUTCOME_PROOF was PLAN_ONLY_NOT_RUN",
+    "OUTCOME_PROOF was not bound to integration or executable control",
+    "deploy_live_v4.sh does not consume OUTCOME_PROOF",
+    "CASUKA-only package and authorization cannot authorize the integrated P0 v1-v4 plus CASUKA candidate"
+  ],
+  "execution_attempts": 0,
+  "failed_authorization": "8a142c8623afb498f61be23d4b710af1834c856a",
+  "remote_mutations": 0,
+  "restarts": 0,
+  "retries": 0,
+  "schema_version": "integrated-live-safety-supersession-v1",
+  "status": "STRUCTURALLY_SUPERSEDED_AND_UNUSABLE",
+  "v2_correction": "Executable verifier plus one-shot ceremony controller enforce an active immutable pre-deployment contract; future evidence remains separate and cannot be fabricated before execution."
+}

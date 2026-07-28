@@ -1,0 +1,191 @@
+{
+  "audit": {
+    "casuka_d1_d3_pass": "66136e6240f2adda990ea8fddc7e00cc643cfb4c",
+    "casuka_repair": "94be41137c0b64bfa448546c8bc3ee7c4ae32a60",
+    "controlling_v1_package_pass": "cac1a144342de6d99c0d2701e355ce63745063b0",
+    "failed_v1_authorization": "8a142c8623afb498f61be23d4b710af1834c856a",
+    "failed_v1_authorization_status": "STRUCTURALLY_SUPERSEDED_UNUSABLE_ATTEMPTS_ZERO",
+    "p0_v4_pass": "cac1a144342de6d99c0d2701e355ce63745063b0",
+    "remote_ref": "origin/audit/window1-independent",
+    "v2_package_pass_receipt_path": ".claude/audit_20260728_integrated_live_safety_prerun/PACKAGE_AUDIT_PASS_RECEIPT.json"
+  },
+  "authorization": {
+    "authorization_commit_supplied_separately": true,
+    "runner_path": "arb-executor/deploy/integrated_live_safety_ceremony_v1.py",
+    "runner_sha256": "3a3c552e04d12b10fd27d8c7eb61c6f9e3b8b57d0c6c644a1562cdf5242100f7",
+    "self_referential_authorization_sha": false,
+    "verifier_path": "arb-executor/deploy/integrated_live_safety_authorization_verifier_v1.py",
+    "verifier_sha256": "f0c66530168650ef970eba44b89a0cff212416ad17bbf3524a64939cc9fc0d19"
+  },
+  "commands": {
+    "ceremony_runner_enforces_outcome_proof": true,
+    "ceremony_template": "OUTCOME_PROOF=\".claude/integrated_live_safety_prerun_20260728/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json\" python -B arb-executor/deploy/integrated_live_safety_ceremony_v1.py --repo . --control .claude/integrated_live_safety_prerun_20260728/DEPLOYMENT_CONTROL_V1.json --mode execute --package-audit-pass \"$PACKAGE_AUDIT_PASS\" --authorization-commit \"$AUTHORIZATION_COMMIT\" --authorization-report \"$AUTHORIZATION_REPORT\"",
+    "deploy_gate_receives_outcome_proof_environment": true,
+    "deploy_script_consumes_outcome_proof": false,
+    "deployment": "OUTCOME_PROOF=/root/Omi-Workspace/.claude/integrated_live_safety_results_integrated-p0v4-casuka-deploy-20260728-attempt1/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json OUTCOME_PROOF_SHA=11e70454863e3508d5a7cbc8e83162232e3a4a09 /root/Omi-Workspace/arb-executor/deploy/deploy_live_v4.sh 11e70454863e3508d5a7cbc8e83162232e3a4a09",
+    "rollback": "ssh root@104.131.191.95 bash -se -- /root/Omi-Workspace/arb-executor/live_v4.py /root/Omi-Workspace/arb-executor/live_v4.py.pre-integrated-p0v4-casuka.integrated-p0v4-casuka-deploy-20260728-attempt1.bak live_v4 834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54 997352 /var/spool/cron/crontabs/root 0e2af22e4ab536b4273e61d9251359eda71e369fb8591f22443c66aa88709926 /root/root.crontab.pre_schedule_liar_stop_20260728_e7004235.raw 4c38967f85112908020b7207f491a8486cbfc9c70a8b9d6c8cc5d0a2500c98f4 < arb-executor/deploy/integrated_live_safety_rollback_v1.sh"
+  },
+  "containment": {
+    "cron_restoration": "only after every post-boot invariant passes in the later separately audited and authorized ceremony",
+    "engine_process_count": 0,
+    "failure_state": "engine stopped; inhibited cron retained",
+    "installed_crontab_path": "/var/spool/cron/crontabs/root",
+    "installed_inhibited_crontab_sha256": "0e2af22e4ab536b4273e61d9251359eda71e369fb8591f22443c66aa88709926",
+    "original_crontab_backup": "/root/root.crontab.pre_schedule_liar_stop_20260728_e7004235.raw",
+    "original_crontab_backup_sha256": "4c38967f85112908020b7207f491a8486cbfc9c70a8b9d6c8cc5d0a2500c98f4",
+    "receipt_commit": "fd623dd042da2f1dfb9479c8a759c8c610672215",
+    "tennis_entry_buys": 0
+  },
+  "deployment": {
+    "backup_path": "/root/Omi-Workspace/arb-executor/live_v4.py.pre-integrated-p0v4-casuka.integrated-p0v4-casuka-deploy-20260728-attempt1.bak",
+    "boot_command": "cd /root/Omi-Workspace/arb-executor && ulimit -n 262144 && python3 -u live_v4.py >> /tmp/live_v4.log 2>&1",
+    "candidate": {
+      "bytes": 1047115,
+      "git_blob_oid": "d7d7cd1d6e9ca28863e97ed8593e0fbf4c87e223",
+      "sha256": "62614501cb9708bb3c3c2b35823ba8431b2e95acdc027f659a4b37a66a777034"
+    },
+    "host": "root@104.131.191.95",
+    "id": "integrated-p0v4-casuka-deploy-20260728-attempt1",
+    "local_preflight_commands": [
+      [
+        "__PYTHON__",
+        "-B",
+        "-m",
+        "py_compile",
+        "arb-executor/live_v4.py",
+        "arb-executor/deploy/integrated_live_safety_authorization_verifier_v1.py",
+        "arb-executor/deploy/integrated_live_safety_ceremony_v1.py"
+      ],
+      [
+        "__PYTHON__",
+        "-B",
+        "arb-executor/tests/test_casuka_live_safety_repair.py"
+      ],
+      [
+        "__PYTHON__",
+        "-B",
+        "arb-executor/tests/test_integrated_p0v4_casuka.py"
+      ],
+      [
+        "__PYTHON__",
+        "-B",
+        "arb-executor/tests/test_p0_real_start_v4_boot_tape.py"
+      ],
+      [
+        "__PYTHON__",
+        "-B",
+        "arb-executor/analysis/compose_integrated_p0v4_casuka.py",
+        "--repo",
+        "."
+      ]
+    ],
+    "preimage": {
+      "bytes": 997352,
+      "git_blob_oid": "f1857199164664037fef41b024e60f27fa373548",
+      "sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54"
+    },
+    "process_identity": "python3 -u live_v4.py",
+    "protected_snapshot_exclusions": [
+      "arb-executor/live_v4.py",
+      "arb-executor/state/last_deploy_sha",
+      ".claude/render/knob_census_artifact.json"
+    ],
+    "remote_arb": "/root/Omi-Workspace/arb-executor",
+    "remote_branch": "blend/kalshi-occ-fallback",
+    "remote_repo": "/root/Omi-Workspace",
+    "repo_target_path": "arb-executor/live_v4.py",
+    "results_dir": ".claude/integrated_live_safety_results_integrated-p0v4-casuka-deploy-20260728-attempt1/",
+    "runtime_outcome_proof_path": "/root/Omi-Workspace/.claude/integrated_live_safety_results_integrated-p0v4-casuka-deploy-20260728-attempt1/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json",
+    "service": "live_v4",
+    "target_path": "/root/Omi-Workspace/arb-executor/live_v4.py"
+  },
+  "forbidden": [
+    "deployment during PRE-RUN",
+    "restart during PRE-RUN",
+    "remote backup creation during PRE-RUN",
+    "live result directory creation during PRE-RUN",
+    "order or position mutation",
+    "configuration or halt mutation",
+    "bytes outside P0 v1-v4 and CASUKA D1-D3",
+    "candidate retry after mutation",
+    "T2 research mutation"
+  ],
+  "integration": {
+    "branch": "codex/integrated-p0v4-casuka-file-only",
+    "changed_paths": [
+      "arb-executor/live_v4.py"
+    ],
+    "commit": "11e70454863e3508d5a7cbc8e83162232e3a4a09",
+    "parent": "995a8817c63a118d2bf682339c58c70a3d65f368"
+  },
+  "outcome_proof": {
+    "environment_literal": "OUTCOME_PROOF=.claude/integrated_live_safety_prerun_20260728/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json",
+    "path": ".claude/integrated_live_safety_prerun_20260728/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json",
+    "post_boot": {
+      "no_fabrication": true,
+      "observation_seconds": 120,
+      "requirements": [
+        "candidate source hash and process identity",
+        "exactly one candidate boot and no preliminary restart",
+        "service and post-boot audit healthy",
+        "P0 boot tape guard heartbeat before any conception",
+        "SHICHA-class tape-truth schedule-liar override",
+        "zero entry buys while cron remains inhibited",
+        "resting exits no greater than authoritative holdings",
+        "heal implies same-cycle top-up zero receipt",
+        "sell clamp refusal receipt or named NOT_OBSERVED_WITHIN_WINDOW",
+        "FARRIU and VEGKAW classifier truth",
+        "restart-window drain-replay adoption census",
+        "no unrelated tracked source or configuration change",
+        "no negative exchange quantity outside quarantine",
+        "restore original crontab byte-for-byte only after every other post-boot invariant passes; no additional restart"
+      ]
+    },
+    "remote_gate_environment_literal": "OUTCOME_PROOF=/root/Omi-Workspace/.claude/integrated_live_safety_results_integrated-p0v4-casuka-deploy-20260728-attempt1/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json",
+    "sha256": "38c6daee4f3b231e2dfc24dd13708b50eb2ba831f8d76d13920936fa4d8f50f0",
+    "status": "PRE_DEPLOYMENT_CONTRACT_ACTIVE",
+    "t0": {
+      "engine_state": "STOPPED; no conception burst can exist",
+      "required": [
+        "authorization_verifier_pass",
+        "live_v4_process_count_zero",
+        "inhibited_crontab_exact",
+        "immutable_original_crontab_backup_exact",
+        "zero_tennis_entry_buys",
+        "resting_exits_and_holdings_reconcile",
+        "remote_preimage_exact",
+        "host_service_target_exact",
+        "backup_and_results_absent",
+        "candidate_and_integration_exact",
+        "deployment_scope_one_file",
+        "compile_lint_offline_smoke_pass",
+        "rollback_materialization_pass"
+      ]
+    }
+  },
+  "package": {
+    "branch": "codex/integrated-p0v4-casuka-prerun",
+    "forbidden_modified_paths": [
+      "arb-executor/live_v4.py",
+      "arb-executor/deploy/deploy_live_v4.sh"
+    ],
+    "parent": "765083b9bce6940d11a778a862bbd7df14967da4"
+  },
+  "rollback": {
+    "artifact_path": ".claude/integrated_live_safety_prerun_20260728/ROLLBACK_ARTIFACT_V1.json",
+    "artifact_sha256": "255315d93debf58b08d1a243f0405cf407ea5da0669eee50607d7c67122fc477",
+    "branch": "codex/integrated-p0v4-casuka-rollback",
+    "command": "ssh root@104.131.191.95 bash -se -- /root/Omi-Workspace/arb-executor/live_v4.py /root/Omi-Workspace/arb-executor/live_v4.py.pre-integrated-p0v4-casuka.integrated-p0v4-casuka-deploy-20260728-attempt1.bak live_v4 834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54 997352 /var/spool/cron/crontabs/root 0e2af22e4ab536b4273e61d9251359eda71e369fb8591f22443c66aa88709926 /root/root.crontab.pre_schedule_liar_stop_20260728_e7004235.raw 4c38967f85112908020b7207f491a8486cbfc9c70a8b9d6c8cc5d0a2500c98f4 < arb-executor/deploy/integrated_live_safety_rollback_v1.sh",
+    "commit": "904a1993030c09c839a56ff78d5a7dc0dfd13b99",
+    "parent": "11e70454863e3508d5a7cbc8e83162232e3a4a09",
+    "script_path": "arb-executor/deploy/integrated_live_safety_rollback_v1.sh",
+    "script_sha256": "2eb38d22117a0417fe6eab56f61c03f9e9fc1783df7e8312c34880bb06d93a19"
+  },
+  "schema_version": "integrated-live-safety-control-v2",
+  "single_use": {
+    "attempt_identity_consumed_by_atomic_results_directory": true,
+    "backup_must_be_absent": true,
+    "candidate_retry_after_mutation": "FORBIDDEN",
+    "results_dir": ".claude/integrated_live_safety_results_integrated-p0v4-casuka-deploy-20260728-attempt1/"
+  }
+}

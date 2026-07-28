@@ -1,0 +1,163 @@
+{
+  "identities": {
+    "casuka_only": {
+      "byte_size": 1011785,
+      "git_blob_oid": "ebd29103ff2153f3d6ced83995c3eb8c159fe38d",
+      "sha256": "85fdd653ee85dd598388d3cf6f537999decf0f0bdece6b8b3495a19041ee05d4"
+    },
+    "integrated": {
+      "byte_size": 1047115,
+      "git_blob_oid": "d7d7cd1d6e9ca28863e97ed8593e0fbf4c87e223",
+      "sha256": "62614501cb9708bb3c3c2b35823ba8431b2e95acdc027f659a4b37a66a777034"
+    },
+    "p0_v1_v3": {
+      "byte_size": 1008748,
+      "git_blob_oid": "949f6995352b7be6f73be8e44af01a70a758c63e",
+      "sha256": "cb9e6cc3810d156da3e52df69b8058f25ec1d05aa6a1430aeccf4d869b31aca8"
+    },
+    "p0_v1_v3_plus_casuka": {
+      "byte_size": 1023181,
+      "git_blob_oid": "1809085d284b9c0cc2df4e7f24d9eac4645ee5a0",
+      "sha256": "e96490ec1f253d3b857a7563e594e44566dbed62f3831a27722a5eb5cfb41e24"
+    },
+    "p0_v1_v4": {
+      "byte_size": 1032682,
+      "git_blob_oid": "363e1c8a11525915dc053175283a6c81b72e8b0d",
+      "sha256": "07b6511d9d8b81f9bd563764d0a72a729426f34244ad8a4c1eff96db4b403e4e"
+    },
+    "running_preimage": {
+      "byte_size": 997352,
+      "git_blob_oid": "f1857199164664037fef41b024e60f27fa373548",
+      "sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54"
+    }
+  },
+  "manual_merge_or_fuzzy_resolution": false,
+  "p0_v3_base_composition": {
+    "left_opcode_count": 15,
+    "manual_merge_or_fuzzy_resolution": false,
+    "overlap_count": 2,
+    "overlaps": [
+      {
+        "left_base_span": [
+          23,
+          23
+        ],
+        "left_index": 0,
+        "left_new_sha256": "3b3ea3cdc7068a9e97cfcddbcd9d8e0c54fe4d068347b80b158fdd8b14676e3b",
+        "left_new_text": "import hashlib\n",
+        "right_base_span": [
+          23,
+          23
+        ],
+        "right_index": 0,
+        "right_new_sha256": "82847998d6bcdb183ec85088ef9b096ea226c8441699684c71ca64a9d42a35a9",
+        "right_new_text": "import functools\n",
+        "same_boundary_insertions": true
+      },
+      {
+        "left_base_span": [
+          5851,
+          5851
+        ],
+        "left_index": 5,
+        "left_new_sha256": "953431afd929a5f40aa9871da5e1f91156e832eda66342f218d096da0fe6b872",
+        "left_new_text": "        # [P0 REAL-START v4] The early decision gate is not authority to POST:\n        # hydration/gun state may change across the exchange-truth awaits above.\n        # Revalidate at the final instruction before every entry submission.\n        if action == \"buy\":\n            _pet4 = ticker.rsplit(\"-\", 1)[0]\n            _refuse4, _why4 = LiveV3._p0v4_entry_authority_gate(\n                self, _pet4)\n            if _refuse4:\n                self._log(\"boot_tape_pre_post_refused\", {\n                    \"price\": price, \"count\": count, \"reason\": _why4,\n                    \"post_only\": post_only,\n                    \"law\": \"P0 v4: stale pre-evaluation intent cannot POST \"\n                           \"without current boot-tape authority\",\n                }, ticker=ticker)\n                return \"\", {\"_error\": \"p0v4_pre_post_refused\",\n                            \"_reason\": _why4}\n",
+        "right_base_span": [
+          5851,
+          5851
+        ],
+        "right_index": 3,
+        "right_new_sha256": "ab15420b34ed22a55c0457a296d0208d89f426508b72be64568f62be87ef0bc3",
+        "right_new_text": "        # [CASUKA LIVE-SAFETY D2 2026-07-27] SELL-SIDE EXCHANGE-TRUTH CLAMP.\n        # This is intentionally the final operation before submission.  Every\n        # exit organ reaches this chokepoint, and no local position/order\n        # snapshot can authorize a sell.  Attempted excess is refused in full\n        # (never silently rounded or partially transformed).\n        _sell_guard_snapshot = None\n        if action == \"sell\":\n            _sell_guard_snapshot = await LiveV3._authoritative_sell_snapshot(\n                self, ticker)\n            if _sell_guard_snapshot is None:\n                return \"\", {\"_error\": \"sell_guard_api_fail\"}\n            _available = _sell_guard_snapshot[\"available_sell_qty\"]\n            try:\n                _attempted = float(count)\n            except (TypeError, ValueError):\n                _attempted = -1.0\n            if (_attempted <= 0 or _attempted > _available + 1e-9):\n                _details = {\n                    \"attempted_count\": count,\n                    \"exchange_position_qty\":\n                        _sell_guard_snapshot[\"position_qty\"],\n                    \"authoritative_resting_sell_qty\":\n                        _sell_guard_snapshot[\n                            \"authoritative_resting_sell_qty\"],\n                    \"cycle_resting_sell_floor\":\n                        _sell_guard_snapshot[\"cycle_resting_sell_floor\"],\n                    \"effective_resting_sell_qty\":\n                        _sell_guard_snapshot[\n                            \"effective_resting_sell_qty\"],\n                    \"available_sell_qty\": _available,\n                    \"reason\": (\"nonpositive_sell_quantity\"\n                               if _attempted <= 0\n                               else \"attempted_sell_exceeds_exchange_capacity\"),\n                    \"law\": \"new_sell <= max(0, exchange_position \"\n                           \"- authoritative_resting_sells)\",\n                }\n                LiveV3._alert_sell_guard_refusal(\n                    self, ticker, _details)\n                return \"\", {\"_error\": \"sell_exchange_truth_refused\",\n                            **_details}\n",
+        "same_boundary_insertions": true
+      }
+    ],
+    "right_opcode_count": 15
+  },
+  "proofs": {
+    "integrated_minus_all_authorized_deltas_equals_running": {
+      "passed": true,
+      "result_identity": {
+        "byte_size": 997352,
+        "git_blob_oid": "f1857199164664037fef41b024e60f27fa373548",
+        "sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54"
+      }
+    },
+    "integrated_minus_all_p0_equals_casuka_only": {
+      "passed": true,
+      "result_identity": {
+        "byte_size": 1011785,
+        "git_blob_oid": "ebd29103ff2153f3d6ced83995c3eb8c159fe38d",
+        "sha256": "85fdd653ee85dd598388d3cf6f537999decf0f0bdece6b8b3495a19041ee05d4"
+      }
+    },
+    "integrated_minus_casuka_and_p0_v4_equals_p0_v1_v3": {
+      "passed": true,
+      "result_identity": {
+        "byte_size": 1008748,
+        "git_blob_oid": "949f6995352b7be6f73be8e44af01a70a758c63e",
+        "sha256": "cb9e6cc3810d156da3e52df69b8058f25ec1d05aa6a1430aeccf4d869b31aca8"
+      }
+    },
+    "integrated_minus_casuka_equals_p0_v1_v4": {
+      "passed": true,
+      "result_identity": {
+        "byte_size": 1032682,
+        "git_blob_oid": "363e1c8a11525915dc053175283a6c81b72e8b0d",
+        "sha256": "07b6511d9d8b81f9bd563764d0a72a729426f34244ad8a4c1eff96db4b403e4e"
+      }
+    },
+    "integrated_minus_p0_v4_equals_p0_v1_v3_plus_casuka": {
+      "passed": true,
+      "result_identity": {
+        "byte_size": 1023181,
+        "git_blob_oid": "1809085d284b9c0cc2df4e7f24d9eac4645ee5a0",
+        "sha256": "e96490ec1f253d3b857a7563e594e44566dbed62f3831a27722a5eb5cfb41e24"
+      }
+    }
+  },
+  "residual_bytes_outside_authorized_deltas": 0,
+  "running_base_composition": {
+    "left_opcode_count": 28,
+    "manual_merge_or_fuzzy_resolution": false,
+    "overlap_count": 2,
+    "overlaps": [
+      {
+        "left_base_span": [
+          23,
+          23
+        ],
+        "left_index": 0,
+        "left_new_sha256": "3b3ea3cdc7068a9e97cfcddbcd9d8e0c54fe4d068347b80b158fdd8b14676e3b",
+        "left_new_text": "import hashlib\n",
+        "right_base_span": [
+          23,
+          23
+        ],
+        "right_index": 0,
+        "right_new_sha256": "82847998d6bcdb183ec85088ef9b096ea226c8441699684c71ca64a9d42a35a9",
+        "right_new_text": "import functools\n",
+        "same_boundary_insertions": true
+      },
+      {
+        "left_base_span": [
+          5823,
+          5823
+        ],
+        "left_index": 5,
+        "left_new_sha256": "953431afd929a5f40aa9871da5e1f91156e832eda66342f218d096da0fe6b872",
+        "left_new_text": "        # [P0 REAL-START v4] The early decision gate is not authority to POST:\n        # hydration/gun state may change across the exchange-truth awaits above.\n        # Revalidate at the final instruction before every entry submission.\n        if action == \"buy\":\n            _pet4 = ticker.rsplit(\"-\", 1)[0]\n            _refuse4, _why4 = LiveV3._p0v4_entry_authority_gate(\n                self, _pet4)\n            if _refuse4:\n                self._log(\"boot_tape_pre_post_refused\", {\n                    \"price\": price, \"count\": count, \"reason\": _why4,\n                    \"post_only\": post_only,\n                    \"law\": \"P0 v4: stale pre-evaluation intent cannot POST \"\n                           \"without current boot-tape authority\",\n                }, ticker=ticker)\n                return \"\", {\"_error\": \"p0v4_pre_post_refused\",\n                            \"_reason\": _why4}\n",
+        "right_base_span": [
+          5823,
+          5823
+        ],
+        "right_index": 3,
+        "right_new_sha256": "ab15420b34ed22a55c0457a296d0208d89f426508b72be64568f62be87ef0bc3",
+        "right_new_text": "        # [CASUKA LIVE-SAFETY D2 2026-07-27] SELL-SIDE EXCHANGE-TRUTH CLAMP.\n        # This is intentionally the final operation before submission.  Every\n        # exit organ reaches this chokepoint, and no local position/order\n        # snapshot can authorize a sell.  Attempted excess is refused in full\n        # (never silently rounded or partially transformed).\n        _sell_guard_snapshot = None\n        if action == \"sell\":\n            _sell_guard_snapshot = await LiveV3._authoritative_sell_snapshot(\n                self, ticker)\n            if _sell_guard_snapshot is None:\n                return \"\", {\"_error\": \"sell_guard_api_fail\"}\n            _available = _sell_guard_snapshot[\"available_sell_qty\"]\n            try:\n                _attempted = float(count)\n            except (TypeError, ValueError):\n                _attempted = -1.0\n            if (_attempted <= 0 or _attempted > _available + 1e-9):\n                _details = {\n                    \"attempted_count\": count,\n                    \"exchange_position_qty\":\n                        _sell_guard_snapshot[\"position_qty\"],\n                    \"authoritative_resting_sell_qty\":\n                        _sell_guard_snapshot[\n                            \"authoritative_resting_sell_qty\"],\n                    \"cycle_resting_sell_floor\":\n                        _sell_guard_snapshot[\"cycle_resting_sell_floor\"],\n                    \"effective_resting_sell_qty\":\n                        _sell_guard_snapshot[\n                            \"effective_resting_sell_qty\"],\n                    \"available_sell_qty\": _available,\n                    \"reason\": (\"nonpositive_sell_quantity\"\n                               if _attempted <= 0\n                               else \"attempted_sell_exceeds_exchange_capacity\"),\n                    \"law\": \"new_sell <= max(0, exchange_position \"\n                           \"- authoritative_resting_sells)\",\n                }\n                LiveV3._alert_sell_guard_refusal(\n                    self, ticker, _details)\n                return \"\", {\"_error\": \"sell_exchange_truth_refused\",\n                            **_details}\n",
+        "same_boundary_insertions": true
+      }
+    ],
+    "right_opcode_count": 15
+  },
+  "schema": "integrated-p0v4-casuka-byte-composition-v1"
+}

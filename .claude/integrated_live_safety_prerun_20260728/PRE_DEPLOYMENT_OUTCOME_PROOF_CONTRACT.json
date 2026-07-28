@@ -1,0 +1,93 @@
+{
+  "candidate": {
+    "bytes": 1047115,
+    "git_blob_oid": "d7d7cd1d6e9ca28863e97ed8593e0fbf4c87e223",
+    "sha256": "62614501cb9708bb3c3c2b35823ba8431b2e95acdc027f659a4b37a66a777034"
+  },
+  "ceremony_runner_enforces_outcome_proof": true,
+  "deploy_gate_receives_outcome_proof_environment": true,
+  "deploy_script_consumes_outcome_proof": false,
+  "deployment_id": "integrated-p0v4-casuka-deploy-20260728-attempt1",
+  "host": "root@104.131.191.95",
+  "integration_commit": "11e70454863e3508d5a7cbc8e83162232e3a4a09",
+  "post_boot": {
+    "no_fabrication": true,
+    "observation_seconds": 120,
+    "requirements": [
+      "candidate source hash and process identity",
+      "exactly one candidate boot and no preliminary restart",
+      "service and post-boot audit healthy",
+      "P0 boot tape guard heartbeat before any conception",
+      "SHICHA-class tape-truth schedule-liar override",
+      "zero entry buys while cron remains inhibited",
+      "resting exits no greater than authoritative holdings",
+      "heal implies same-cycle top-up zero receipt",
+      "sell clamp refusal receipt or named NOT_OBSERVED_WITHIN_WINDOW",
+      "FARRIU and VEGKAW classifier truth",
+      "restart-window drain-replay adoption census",
+      "no unrelated tracked source or configuration change",
+      "no negative exchange quantity outside quarantine",
+      "restore original crontab byte-for-byte only after every other post-boot invariant passes; no additional restart"
+    ]
+  },
+  "post_result_schema": {
+    "path": ".claude/integrated_live_safety_prerun_20260728/POST_DEPLOYMENT_EVIDENCE_SCHEMA.json",
+    "sha256": "8fb3d5cc9016b1be33e1f54fc1f48a5dfd39df75928d0f4b20c4718059d1db80"
+  },
+  "preimage": {
+    "bytes": 997352,
+    "git_blob_oid": "f1857199164664037fef41b024e60f27fa373548",
+    "sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54"
+  },
+  "purpose": "Immutable pre-deployment checks/schema only; post-deployment evidence is generated later into the bound results directory.",
+  "results_dir": ".claude/integrated_live_safety_results_integrated-p0v4-casuka-deploy-20260728-attempt1/",
+  "rollback": {
+    "authorized_rollback_restarts": 0,
+    "candidate_retry_after_mutation": "FORBIDDEN",
+    "command": "ssh root@104.131.191.95 bash -se -- /root/Omi-Workspace/arb-executor/live_v4.py /root/Omi-Workspace/arb-executor/live_v4.py.pre-integrated-p0v4-casuka.integrated-p0v4-casuka-deploy-20260728-attempt1.bak live_v4 834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54 997352 /var/spool/cron/crontabs/root 0e2af22e4ab536b4273e61d9251359eda71e369fb8591f22443c66aa88709926 /root/root.crontab.pre_schedule_liar_stop_20260728_e7004235.raw 4c38967f85112908020b7207f491a8486cbfc9c70a8b9d6c8cc5d0a2500c98f4 < arb-executor/deploy/integrated_live_safety_rollback_v1.sh",
+    "cron_restoration_on_failure": "FORBIDDEN",
+    "expected_preimage": {
+      "bytes": 997352,
+      "git_blob_oid": "f1857199164664037fef41b024e60f27fa373548",
+      "sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54"
+    },
+    "failure_state": "restore f1857199 source, stop failed candidate, leave engine stopped and keep cron inhibited",
+    "script_path": "arb-executor/deploy/integrated_live_safety_rollback_v1.sh",
+    "script_sha256": "2eb38d22117a0417fe6eab56f61c03f9e9fc1783df7e8312c34880bb06d93a19",
+    "trigger": "Any failure after MUTATION_STARTED, including source, gate, boot-health, or immediate outcome-proof failure."
+  },
+  "rollback_commit": "904a1993030c09c839a56ff78d5a7dc0dfd13b99",
+  "runtime_outcome_proof_path": "/root/Omi-Workspace/.claude/integrated_live_safety_results_integrated-p0v4-casuka-deploy-20260728-attempt1/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json",
+  "schema_version": "integrated-live-safety-pre-deployment-outcome-proof-contract-v1",
+  "service": "live_v4",
+  "status": "PRE_DEPLOYMENT_CONTRACT_ACTIVE",
+  "stopped_containment": {
+    "entry_buys_required": 0,
+    "exits_must_reconcile_to_holdings": true,
+    "installed_crontab_path": "/var/spool/cron/crontabs/root",
+    "installed_inhibited_crontab_sha256": "0e2af22e4ab536b4273e61d9251359eda71e369fb8591f22443c66aa88709926",
+    "original_crontab_backup": "/root/root.crontab.pre_schedule_liar_stop_20260728_e7004235.raw",
+    "original_crontab_backup_sha256": "4c38967f85112908020b7207f491a8486cbfc9c70a8b9d6c8cc5d0a2500c98f4",
+    "receipt_commit": "fd623dd042da2f1dfb9479c8a759c8c610672215",
+    "required_process_count": 0
+  },
+  "t0": {
+    "engine_state": "STOPPED; no conception burst can exist",
+    "required": [
+      "authorization_verifier_pass",
+      "live_v4_process_count_zero",
+      "inhibited_crontab_exact",
+      "immutable_original_crontab_backup_exact",
+      "zero_tennis_entry_buys",
+      "resting_exits_and_holdings_reconcile",
+      "remote_preimage_exact",
+      "host_service_target_exact",
+      "backup_and_results_absent",
+      "candidate_and_integration_exact",
+      "deployment_scope_one_file",
+      "compile_lint_offline_smoke_pass",
+      "rollback_materialization_pass"
+    ]
+  },
+  "target_path": "/root/Omi-Workspace/arb-executor/live_v4.py"
+}

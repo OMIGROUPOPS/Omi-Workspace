@@ -1,0 +1,20 @@
+{
+  "configuration_mutated": 0,
+  "deployment_results": null,
+  "deployments": 0,
+  "halt_state_mutated": 0,
+  "live_results_directories_created": 0,
+  "orders_mutated": 0,
+  "performance_metrics": null,
+  "positions_mutated": 0,
+  "read_only_vps_queries": [
+    "HEAD, source, process count, inhibited crontab, and backup hashes",
+    "fully paginated resting orders and holdings reconciliation"
+  ],
+  "remote_backups_created": 0,
+  "restarts": 0,
+  "rollbacks": 0,
+  "schema_version": "integrated-live-safety-control-v2-nonaction",
+  "status": "PRE_RUN_ONLY_NOT_DEPLOYED",
+  "t2_mutations": 0
+}

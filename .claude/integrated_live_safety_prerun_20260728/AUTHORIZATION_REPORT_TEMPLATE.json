@@ -1,0 +1,15 @@
+{
+  "authorization_commit": "SUPPLIED_SEPARATELY_NOT_EMBEDDED",
+  "authorization_report_path": ".claude/audit_20260728_integrated_live_safety_prerun/EXECUTION_AUTHORIZATION_DEPLOYMENT_V2.md",
+  "ceremony_command_template": "OUTCOME_PROOF=\".claude/integrated_live_safety_prerun_20260728/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json\" python -B arb-executor/deploy/integrated_live_safety_ceremony_v1.py --repo . --control .claude/integrated_live_safety_prerun_20260728/DEPLOYMENT_CONTROL_V1.json --mode execute --package-audit-pass \"$PACKAGE_AUDIT_PASS\" --authorization-commit \"$AUTHORIZATION_COMMIT\" --authorization-report \"$AUTHORIZATION_REPORT\"",
+  "deployment_id": "integrated-p0v4-casuka-deploy-20260728-attempt1",
+  "instruction": "The independent audit must render the complete canonical report with integrated_live_safety_authorization_verifier_v1.",
+  "integration_commit": "11e70454863e3508d5a7cbc8e83162232e3a4a09",
+  "outcome_proof_contract": {
+    "path": ".claude/integrated_live_safety_prerun_20260728/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json",
+    "sha256": "38c6daee4f3b231e2dfc24dd13708b50eb2ba831f8d76d13920936fa4d8f50f0"
+  },
+  "package_audit_pass": "FINAL_INDEPENDENT_V2_PASS_COMMIT",
+  "package_commit": "FINAL_V2_PACKAGE_COMMIT",
+  "schema_version": "integrated-live-safety-authorization-v2-template"
+}

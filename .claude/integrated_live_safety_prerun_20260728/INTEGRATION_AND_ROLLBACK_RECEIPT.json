@@ -1,0 +1,30 @@
+{
+  "integration": {
+    "candidate_blob": "d7d7cd1d6e9ca28863e97ed8593e0fbf4c87e223",
+    "changed_paths": [
+      "arb-executor/live_v4.py"
+    ],
+    "commit": "11e70454863e3508d5a7cbc8e83162232e3a4a09",
+    "parent": "995a8817c63a118d2bf682339c58c70a3d65f368"
+  },
+  "remote_worktree_mutations": 0,
+  "rollback": {
+    "changed_paths": [
+      "arb-executor/live_v4.py"
+    ],
+    "commit": "904a1993030c09c839a56ff78d5a7dc0dfd13b99",
+    "parent": "11e70454863e3508d5a7cbc8e83162232e3a4a09",
+    "restored_blob": "f1857199164664037fef41b024e60f27fa373548"
+  },
+  "schema_version": "integrated-live-safety-file-only-integration-receipt-v2",
+  "service_restarts": 0,
+  "vps_read_only_observation": {
+    "branch": "blend/kalshi-occ-fallback",
+    "bytes": 997352,
+    "head": "995a8817c63a118d2bf682339c58c70a3d65f368",
+    "sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54",
+    "target_status": "CLEAN",
+    "tree_blob": "f1857199164664037fef41b024e60f27fa373548",
+    "working_blob": "f1857199164664037fef41b024e60f27fa373548"
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "computed_relationship_graph": {
+    "integration": {
+      "changed_paths": [
+        "arb-executor/live_v4.py"
+      ],
+      "child": "11e70454863e3508d5a7cbc8e83162232e3a4a09",
+      "parent": "995a8817c63a118d2bf682339c58c70a3d65f368"
+    },
+    "live_v4_blobs": {
+      "integrated": "d7d7cd1d6e9ca28863e97ed8593e0fbf4c87e223",
+      "p0_v1_v3": "949f6995352b7be6f73be8e44af01a70a758c63e",
+      "p0_v1_v3_plus_casuka": "1809085d284b9c0cc2df4e7f24d9eac4645ee5a0",
+      "p0_v1_v4": "363e1c8a11525915dc053175283a6c81b72e8b0d",
+      "rollback": "f1857199164664037fef41b024e60f27fa373548",
+      "running_preimage": "f1857199164664037fef41b024e60f27fa373548"
+    },
+    "p0_lineage": [
+      {
+        "child": "eca101c6315be28a5b62e5106d5f34f2392b1a97",
+        "parent": "bb085ce06db5932049af85f927a7f9316ad76816"
+      },
+      {
+        "child": "3f5d85d47a49083dd40056b1866191c649057b7b",
+        "parent": "eca101c6315be28a5b62e5106d5f34f2392b1a97"
+      },
+      {
+        "child": "a4996dd00e82ed3534f97a09251697f1d82dbbab",
+        "parent": "3f5d85d47a49083dd40056b1866191c649057b7b"
+      },
+      {
+        "child": "765083b9bce6940d11a778a862bbd7df14967da4",
+        "parent": "a4996dd00e82ed3534f97a09251697f1d82dbbab"
+      }
+    ],
+    "rollback": {
+      "changed_paths": [
+        "arb-executor/live_v4.py"
+      ],
+      "child": "904a1993030c09c839a56ff78d5a7dc0dfd13b99",
+      "parent": "11e70454863e3508d5a7cbc8e83162232e3a4a09"
+    }
+  },
+  "linearity_claim": "Derived above from commit parents, trees, and blobs; no literal linearity_verified boolean is accepted as evidence.",
+  "object_validation": [
+    {
+      "cat_file_command": "git cat-file -e bb085ce06db5932049af85f927a7f9316ad76816^{commit}",
+      "cat_file_exit_code": 0,
+      "object_type": "commit",
+      "parent": "dcb8c53f8447a5ad39fc947fd0568be3dbc46b6e",
+      "rev_parse_command": "git rev-parse --verify bb085ce06db5932049af85f927a7f9316ad76816^{commit}",
+      "rev_parse_stdout": "bb085ce06db5932049af85f927a7f9316ad76816",
+      "sha": "bb085ce06db5932049af85f927a7f9316ad76816",
+      "tree": "6a42debdba3035fd5d92f1f63f0d9a2068fa26c4"
+    },
+    {
+      "cat_file_command": "git cat-file -e eca101c6315be28a5b62e5106d5f34f2392b1a97^{commit}",
+      "cat_file_exit_code": 0,
+      "object_type": "commit",
+      "parent": "bb085ce06db5932049af85f927a7f9316ad76816",
+      "rev_parse_command": "git rev-parse --verify eca101c6315be28a5b62e5106d5f34f2392b1a97^{commit}",
+      "rev_parse_stdout": "eca101c6315be28a5b62e5106d5f34f2392b1a97",
+      "sha": "eca101c6315be28a5b62e5106d5f34f2392b1a97",
+      "tree": "d9a6e3f3aba51e71f836d4e895d8b20e46728806"
+    },
+    {
+      "cat_file_command": "git cat-file -e 3f5d85d47a49083dd40056b1866191c649057b7b^{commit}",
+      "cat_file_exit_code": 0,
+      "object_type": "commit",
+      "parent": "eca101c6315be28a5b62e5106d5f34f2392b1a97",
+      "rev_parse_command": "git rev-parse --verify 3f5d85d47a49083dd40056b1866191c649057b7b^{commit}",
+      "rev_parse_stdout": "3f5d85d47a49083dd40056b1866191c649057b7b",
+      "sha": "3f5d85d47a49083dd40056b1866191c649057b7b",
+      "tree": "98c9c364ab79c1b8c4687faa2d178038a5f05a09"
+    },
+    {
+      "cat_file_command": "git cat-file -e a4996dd00e82ed3534f97a09251697f1d82dbbab^{commit}",
+      "cat_file_exit_code": 0,
+      "object_type": "commit",
+      "parent": "3f5d85d47a49083dd40056b1866191c649057b7b",
+      "rev_parse_command": "git rev-parse --verify a4996dd00e82ed3534f97a09251697f1d82dbbab^{commit}",
+      "rev_parse_stdout": "a4996dd00e82ed3534f97a09251697f1d82dbbab",
+      "sha": "a4996dd00e82ed3534f97a09251697f1d82dbbab",
+      "tree": "69dd879213ab2c80bd5844a0d6f19bc11f812bf0"
+    },
+    {
+      "cat_file_command": "git cat-file -e 765083b9bce6940d11a778a862bbd7df14967da4^{commit}",
+      "cat_file_exit_code": 0,
+      "object_type": "commit",
+      "parent": "a4996dd00e82ed3534f97a09251697f1d82dbbab",
+      "rev_parse_command": "git rev-parse --verify 765083b9bce6940d11a778a862bbd7df14967da4^{commit}",
+      "rev_parse_stdout": "765083b9bce6940d11a778a862bbd7df14967da4",
+      "sha": "765083b9bce6940d11a778a862bbd7df14967da4",
+      "tree": "7a4d34cc3fecdbca6c739081447df35e5ed9a7a3"
+    },
+    {
+      "cat_file_command": "git cat-file -e cac1a144342de6d99c0d2701e355ce63745063b0^{commit}",
+      "cat_file_exit_code": 0,
+      "object_type": "commit",
+      "parent": "8a142c8623afb498f61be23d4b710af1834c856a",
+      "rev_parse_command": "git rev-parse --verify cac1a144342de6d99c0d2701e355ce63745063b0^{commit}",
+      "rev_parse_stdout": "cac1a144342de6d99c0d2701e355ce63745063b0",
+      "sha": "cac1a144342de6d99c0d2701e355ce63745063b0",
+      "tree": "02a8e82945d05434753ba3da2d753eaa7a5ae8dd"
+    },
+    {
+      "cat_file_command": "git cat-file -e 94be41137c0b64bfa448546c8bc3ee7c4ae32a60^{commit}",
+      "cat_file_exit_code": 0,
+      "object_type": "commit",
+      "parent": "a4996dd00e82ed3534f97a09251697f1d82dbbab",
+      "rev_parse_command": "git rev-parse --verify 94be41137c0b64bfa448546c8bc3ee7c4ae32a60^{commit}",
+      "rev_parse_stdout": "94be41137c0b64bfa448546c8bc3ee7c4ae32a60",
+      "sha": "94be41137c0b64bfa448546c8bc3ee7c4ae32a60",
+      "tree": "4fdd7f34a43c89427a8ce3f149912b64d4a0b00a"
+    },
+    {
+      "cat_file_command": "git cat-file -e 66136e6240f2adda990ea8fddc7e00cc643cfb4c^{commit}",
+      "cat_file_exit_code": 0,
+      "object_type": "commit",
+      "parent": "b442908f3b253d1e13d5b2a5e93c3dbf0491320d",
+      "rev_parse_command": "git rev-parse --verify 66136e6240f2adda990ea8fddc7e00cc643cfb4c^{commit}",
+      "rev_parse_stdout": "66136e6240f2adda990ea8fddc7e00cc643cfb4c",
+      "sha": "66136e6240f2adda990ea8fddc7e00cc643cfb4c",
+      "tree": "ed8c9c04403172c92c956f37318f47f4c2cb14fa"
+    },
+    {
+      "cat_file_command": "git cat-file -e fd623dd042da2f1dfb9479c8a759c8c610672215^{commit}",
+      "cat_file_exit_code": 0,
+      "object_type": "commit",
+      "parent": "e7004235c342a2ddaaa53610d85a76c32fb93fdc",
+      "rev_parse_command": "git rev-parse --verify fd623dd042da2f1dfb9479c8a759c8c610672215^{commit}",
+      "rev_parse_stdout": "fd623dd042da2f1dfb9479c8a759c8c610672215",
+      "sha": "fd623dd042da2f1dfb9479c8a759c8c610672215",
+      "tree": "5e6b390ca66b57534a8a10fcf95837cfd3454e8e"
+    },
+    {
+      "cat_file_command": "git cat-file -e 995a8817c63a118d2bf682339c58c70a3d65f368^{commit}",
+      "cat_file_exit_code": 0,
+      "object_type": "commit",
+      "parent": "fd4abec0f3d464634ee1d61ac02f6c977c41fb3c",
+      "rev_parse_command": "git rev-parse --verify 995a8817c63a118d2bf682339c58c70a3d65f368^{commit}",
+      "rev_parse_stdout": "995a8817c63a118d2bf682339c58c70a3d65f368",
+      "sha": "995a8817c63a118d2bf682339c58c70a3d65f368",
+      "tree": "c23c8b9f350bc779206adb97b0b996abe30e5bf8"
+    },
+    {
+      "cat_file_command": "git cat-file -e 11e70454863e3508d5a7cbc8e83162232e3a4a09^{commit}",
+      "cat_file_exit_code": 0,
+      "object_type": "commit",
+      "parent": "995a8817c63a118d2bf682339c58c70a3d65f368",
+      "rev_parse_command": "git rev-parse --verify 11e70454863e3508d5a7cbc8e83162232e3a4a09^{commit}",
+      "rev_parse_stdout": "11e70454863e3508d5a7cbc8e83162232e3a4a09",
+      "sha": "11e70454863e3508d5a7cbc8e83162232e3a4a09",
+      "tree": "2b07f705a4bceac0119c5520173ed39007866020"
+    },
+    {
+      "cat_file_command": "git cat-file -e 904a1993030c09c839a56ff78d5a7dc0dfd13b99^{commit}",
+      "cat_file_exit_code": 0,
+      "object_type": "commit",
+      "parent": "11e70454863e3508d5a7cbc8e83162232e3a4a09",
+      "rev_parse_command": "git rev-parse --verify 904a1993030c09c839a56ff78d5a7dc0dfd13b99^{commit}",
+      "rev_parse_stdout": "904a1993030c09c839a56ff78d5a7dc0dfd13b99",
+      "sha": "904a1993030c09c839a56ff78d5a7dc0dfd13b99",
+      "tree": "c23c8b9f350bc779206adb97b0b996abe30e5bf8"
+    }
+  ],
+  "operative_running_parent": "bb085ce06db5932049af85f927a7f9316ad76816",
+  "schema_version": "integrated-live-safety-binding-correction-v1",
+  "status": "OPERATIVE_BINDINGS_CORRECTED_FROM_GIT_OBJECTS",
+  "superseded_nonexistent_value": "bb085ce04191e27561f18322444c2818dd3936b9",
+  "supersession_law": "This value is retained only as historical defect evidence and is never consumed by an operative binding."
+}

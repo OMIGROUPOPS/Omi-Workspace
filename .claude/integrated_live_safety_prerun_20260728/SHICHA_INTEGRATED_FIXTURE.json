@@ -1,0 +1,24 @@
+{
+  "actual_state": "mid_third_set",
+  "fixture_only": true,
+  "fresh_boot_ordering": [
+    "BOOT_TAPE_PENDING blocks entry",
+    "historical tape hydrates",
+    "unchanged P0 predicate establishes REAL_START",
+    "entry 5@79 is refused and any resting entry is swept",
+    "authoritative exit sells remain permitted through CASUKA D2"
+  ],
+  "historical_grade": "W2",
+  "historical_tape_progression": {
+    "admitted_prints": 651,
+    "early_prints": 109
+  },
+  "kalshi_occurrence": "future",
+  "production_event_hardcoding": false,
+  "profitability_claim": null,
+  "schedule": "future_by_approximately_2h44m",
+  "schema_version": "integrated-live-safety-shicha-fixture-v1",
+  "status": "PASS",
+  "tennis_explorer_join": "absent",
+  "test": "IntegratedLiveSafetyTests.test_shicha_fires_real_start_sweeps_buy_and_preserves_exit"
+}

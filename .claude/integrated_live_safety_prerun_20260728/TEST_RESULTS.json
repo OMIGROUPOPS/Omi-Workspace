@@ -1,0 +1,40 @@
+{
+  "adversarial_refusals": {
+    "authorization_reuse": "PASS",
+    "existing_result_or_backup": "PASS",
+    "integration_extra_file": "PASS",
+    "missing_or_plan_only_outcome_contract": "PASS",
+    "mutated_commands": "PASS",
+    "truncated_hashes": "PASS",
+    "wrong_authorization_commit": "PASS",
+    "wrong_candidate_or_preimage_hash_size": "PASS",
+    "wrong_deployment_id_or_results": "PASS",
+    "wrong_host_service_target_backup": "PASS",
+    "wrong_integration": "PASS",
+    "wrong_package_or_audit": "PASS"
+  },
+  "ast_lint": "PASS",
+  "audited_casuka_repair_fixtures": "12/12",
+  "casuka_adversarial_probes": "21/21",
+  "compile": "PASS",
+  "dry_run_rollback_path": "PASS_ZERO_MUTATIONS",
+  "dry_run_success_path": "PASS_ZERO_MUTATIONS",
+  "historical_script_parity": {
+    "exact_status_and_terminal_cause": 84,
+    "explained_contract_fixture": 1,
+    "scripts": 85,
+    "unexplained_mismatches": 0
+  },
+  "integrated_interaction_methods": "8/8",
+  "new_verifier_and_runner_tests": "27/27",
+  "offline_integrated_smoke": "PASS",
+  "p0_v1_v3_inherited_assertions": "56/56",
+  "p0_v4_focused_component": "23/23",
+  "real_deployment_invocations": 0,
+  "real_rollback_invocations": 0,
+  "remote_mutations": 0,
+  "rollback_shell_syntax": "PASS",
+  "schema_version": "integrated-live-safety-control-v1-test-results",
+  "shicha_and_804_fixtures": "PASS",
+  "status": "PASS"
+}

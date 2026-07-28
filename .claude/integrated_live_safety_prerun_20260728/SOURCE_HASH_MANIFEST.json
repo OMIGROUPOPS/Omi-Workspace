@@ -1,0 +1,91 @@
+{
+  "git_objects": {
+    "casuka_d1_d3_pass": "66136e6240f2adda990ea8fddc7e00cc643cfb4c",
+    "integration": "11e70454863e3508d5a7cbc8e83162232e3a4a09",
+    "integration_parent": "995a8817c63a118d2bf682339c58c70a3d65f368",
+    "p0_v4_pass": "cac1a144342de6d99c0d2701e355ce63745063b0",
+    "rollback": "904a1993030c09c839a56ff78d5a7dc0dfd13b99",
+    "v1_package": "765083b9bce6940d11a778a862bbd7df14967da4"
+  },
+  "schema_version": "integrated-live-safety-control-v2-source-hashes",
+  "sources": [
+    {
+      "bytes": 36899,
+      "git_blob_oid": "d652f31de342348f413c02eed5f0745c359ca9ec",
+      "path": "arb-executor/deploy/integrated_live_safety_authorization_verifier_v1.py",
+      "role": "executable_authorization_verifier",
+      "sha256": "f0c66530168650ef970eba44b89a0cff212416ad17bbf3524a64939cc9fc0d19"
+    },
+    {
+      "bytes": 42420,
+      "git_blob_oid": "ec25d222e2a4532093b2e057104f51e0c2b130ae",
+      "path": "arb-executor/deploy/integrated_live_safety_ceremony_v1.py",
+      "role": "one_shot_ceremony_runner",
+      "sha256": "3a3c552e04d12b10fd27d8c7eb61c6f9e3b8b57d0c6c644a1562cdf5242100f7"
+    },
+    {
+      "bytes": 1997,
+      "git_blob_oid": "9d2ff19daedc4270092c91540bc954b1018c51b4",
+      "path": "arb-executor/deploy/integrated_live_safety_rollback_v1.sh",
+      "role": "exact_hash_bound_parked_rollback_script",
+      "sha256": "2eb38d22117a0417fe6eab56f61c03f9e9fc1783df7e8312c34880bb06d93a19"
+    },
+    {
+      "bytes": 14711,
+      "git_blob_oid": "af1d3640a097a57334cca7129a8b8f159f071a77",
+      "path": "arb-executor/deploy/integrated_live_safety_remote_census_v1.py",
+      "role": "read_only_paginated_t0_exchange_census",
+      "sha256": "e5b12b4d38b1fe83be62f7ad6e1753369f9d5ae7bb2256818b1e9911c1eac503"
+    },
+    {
+      "bytes": 11199,
+      "git_blob_oid": "b5e2871305460f181695917bec909e96f886aad3",
+      "path": "arb-executor/analysis/compose_integrated_p0v4_casuka.py",
+      "role": "fail_closed_byte_algebra_composer",
+      "sha256": "bbb8d72b847fb3ffa1351cfbc68122b3979a13acc9b7cf9358044cee8d753fbd"
+    },
+    {
+      "bytes": 50995,
+      "git_blob_oid": "f60483602db11a4f46fdd70006b42b3f8ec68cee",
+      "path": "arb-executor/analysis/build_integrated_live_safety_prerun.py",
+      "role": "deterministic_package_builder",
+      "sha256": "5c4a7457be4a2acc67fee07bc0997022cbe7864f48fbbbbdc99db693310335cb"
+    },
+    {
+      "bytes": 1047115,
+      "commit": "11e70454863e3508d5a7cbc8e83162232e3a4a09",
+      "git_blob_oid": "d7d7cd1d6e9ca28863e97ed8593e0fbf4c87e223",
+      "path": "arb-executor/live_v4.py",
+      "role": "integrated_candidate_from_file_only_commit",
+      "sha256": "62614501cb9708bb3c3c2b35823ba8431b2e95acdc027f659a4b37a66a777034"
+    },
+    {
+      "bytes": 4435,
+      "git_blob_oid": "29adce67955488e21b04780cbb425f28c2cec8dd",
+      "path": "arb-executor/deploy/deploy_live_v4.sh",
+      "role": "unchanged_existing_gated_deploy_script",
+      "sha256": "aee4abaa0dfb476be0050b1ccca1b43059e81621f1fdddd3fdea388268df2833"
+    },
+    {
+      "bytes": 32362,
+      "git_blob_oid": "f987ef4fce7a867e92b2b03ac83a1fd37bf700d2",
+      "path": "arb-executor/tests/test_integrated_live_safety_deployment_control.py",
+      "role": "adversarial_verifier_and_runner_suite",
+      "sha256": "7271773b11adcf933704c73818d4e24eb95d9b4f3de28144231e400a9ab0dffb"
+    },
+    {
+      "bytes": 12076,
+      "git_blob_oid": "e563b16bd02fe5e128bacd93249323f2d95d7aee",
+      "path": "arb-executor/tests/test_integrated_p0v4_casuka.py",
+      "role": "integrated_behavior_and_21_adversarial_probes",
+      "sha256": "94f8e653281115d6baf8080554048416b215100652b5ebef5c697ef35e950072"
+    },
+    {
+      "bytes": 13009,
+      "git_blob_oid": "6957924028d076e01518f3c22ec729d311c2bc8e",
+      "path": "arb-executor/tests/test_casuka_live_safety_repair.py",
+      "role": "five_frozen_acceptance_and_inherited_casuka_fixtures",
+      "sha256": "63d53223a60b57b445c63916983416e18d4412c41b7cb1fcd4cc7bec4909c6e2"
+    }
+  ]
+}

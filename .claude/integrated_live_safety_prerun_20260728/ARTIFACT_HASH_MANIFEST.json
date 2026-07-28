@@ -1,0 +1,117 @@
+{
+  "artifacts": [
+    {
+      "bytes": 1331,
+      "path": "AUTHORIZATION_REPORT_TEMPLATE.json",
+      "sha256": "50534ea2dc177b8fe5748278cf5ce40abb841d1db943da0dc64d33a80c1b12a1"
+    },
+    {
+      "bytes": 967,
+      "path": "CANDIDATE_BYTE_IDENTITY_RECEIPT.json",
+      "sha256": "70e871aaf0dd5a4cb0b263a955e0080f7bec09a265d021650fe177bc350a637e"
+    },
+    {
+      "bytes": 1024,
+      "path": "COMBINED_INTERACTION_RECEIPT.json",
+      "sha256": "033977c0bbb74b5d88b9d86c2b526710c032902634fc4f1fcd4fee569a205b15"
+    },
+    {
+      "bytes": 1978,
+      "path": "COMMAND_LITERALS.json",
+      "sha256": "b6ae5930d345c24d0d58aae0ea6a7a96934e9c4a8f29de8089675a003ac06b31"
+    },
+    {
+      "bytes": 1480,
+      "path": "CONTAINMENT_REVALIDATION_RECEIPT.json",
+      "sha256": "40cd108d44564a62a41c9d4548649f5fdb179a051f2b4aa21219f0bf293b9043"
+    },
+    {
+      "bytes": 10387,
+      "path": "DEPLOYMENT_CONTROL_V1.json",
+      "sha256": "f9cff3e4dd531575efa06bca4d8bb34054b9e6da7d7ceea00018c319faa930a6"
+    },
+    {
+      "bytes": 411,
+      "path": "DETERMINISTIC_REGENERATION_RECEIPT.json",
+      "sha256": "f7466a41c0bd9bd83d7d9aa81e22f3e3aa3bb4ca8677511890d0da6f0e53d8a7"
+    },
+    {
+      "bytes": 850,
+      "path": "HISTORICAL_FAILURE_PARITY_RECEIPT.json",
+      "sha256": "09e892fe1c20e3fe221b5d5c9c0a15058ea90126c09ce6e154a668e15554c390"
+    },
+    {
+      "bytes": 2083,
+      "path": "INDEPENDENT_AUDIT_INSTRUCTION.md",
+      "sha256": "4c249231b85ed4c86fd12d732a10466f269f4e5f768e28b22704fd8cd974e1da"
+    },
+    {
+      "bytes": 11684,
+      "path": "INTEGRATED_PATCH_DECOMPOSITION.json",
+      "sha256": "afe89b5fdfe959663d313d16bc9ede777a71b2e93093e0be481b55f5d4fe8c64"
+    },
+    {
+      "bytes": 1065,
+      "path": "INTEGRATION_AND_ROLLBACK_RECEIPT.json",
+      "sha256": "da5a1e092108d92ea27f088fa92f9102afbb6b23c8ae1b16bf2af88872517347"
+    },
+    {
+      "bytes": 598,
+      "path": "NO_REMOTE_MUTATION_RECEIPT.json",
+      "sha256": "0c6051b3aae63bf08560b3c781d446abe3ccb41845860090342646bd1943ffa2"
+    },
+    {
+      "bytes": 8256,
+      "path": "P0_BINDING_CORRECTION_RECEIPT.json",
+      "sha256": "1287a61a1713e6f0d3605bf04cbea8c21d51592e310b11509ba9fc876484fb9a"
+    },
+    {
+      "bytes": 1122,
+      "path": "PACKAGE_AUDIT_PASS_RECEIPT_TEMPLATE.json",
+      "sha256": "7c1bafc8e1505378f65af0481201a1ebb8c0d88922e611dc51e800672c59d359"
+    },
+    {
+      "bytes": 2054,
+      "path": "POST_DEPLOYMENT_EVIDENCE_SCHEMA.json",
+      "sha256": "8fb3d5cc9016b1be33e1f54fc1f48a5dfd39df75928d0f4b20c4718059d1db80"
+    },
+    {
+      "bytes": 5134,
+      "path": "PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json",
+      "sha256": "38c6daee4f3b231e2dfc24dd13708b50eb2ba831f8d76d13920936fa4d8f50f0"
+    },
+    {
+      "bytes": 2264,
+      "path": "PRE_RUN_REPORT.md",
+      "sha256": "b761db1cb59f8c460f66f3e431bbcaef7cb757490204384981d22c850eefd373"
+    },
+    {
+      "bytes": 1255,
+      "path": "ROLLBACK_ARTIFACT_V1.json",
+      "sha256": "255315d93debf58b08d1a243f0405cf407ea5da0669eee50607d7c67122fc477"
+    },
+    {
+      "bytes": 832,
+      "path": "SHICHA_INTEGRATED_FIXTURE.json",
+      "sha256": "5edf8801c7d337d4ba1c1d9a8835fb0a7540558c6887b92e06818833f8008784"
+    },
+    {
+      "bytes": 3983,
+      "path": "SOURCE_HASH_MANIFEST.json",
+      "sha256": "7a2de3f960d51a2ae1fe85eba788a815d2a6f58c024746588de3c9ac68eb28f4"
+    },
+    {
+      "bytes": 1385,
+      "path": "TEST_RESULTS.json",
+      "sha256": "e8c735a7afd2d1ba2c45c34c351be07e9c99e77a5c849ecb96d1ebe07deeda15"
+    },
+    {
+      "bytes": 909,
+      "path": "V1_FAILURE_SUPERSESSION_RECEIPT.json",
+      "sha256": "a35e6a6e4baf148183ab0091087c9af07cfff9b7808f6413f9807b52de7dbea6"
+    }
+  ],
+  "root": ".claude/integrated_live_safety_prerun_20260728",
+  "schema_version": "integrated-live-safety-control-v2-artifact-hashes",
+  "self_hash": "excluded_to_avoid_recursion"
+}

@@ -1,0 +1,16 @@
+{
+  "component_p0_suite_on_exact_p0_candidate": "23/23 PASS",
+  "explained_difference": {
+    "inherited_fixture": "test_exit_sell_remains_live_while_tape_pending",
+    "integrated_replacement": "test_pending_blocks_buy_but_authoritative_exit_remains_live",
+    "law_preserved": "P0 does not block sells; CASUKA independently requires authoritative held-minus-resting capacity before POST.",
+    "reason": "Its isolated P0 stub provides no authoritative exchange position/order GET surface. CASUKA D2 must fail closed there."
+  },
+  "historical_scripts": 85,
+  "integrated_authoritative_exit_replacement": "PASS",
+  "new_unexplained_failures": 0,
+  "repaired_historical_failures": 0,
+  "same_exit_status_and_terminal_cause": 84,
+  "schema_version": "integrated-live-safety-failure-parity-v1",
+  "status": "PASS_WITH_ONE_EXPLAINED_CONTRACT_FIXTURE"
+}

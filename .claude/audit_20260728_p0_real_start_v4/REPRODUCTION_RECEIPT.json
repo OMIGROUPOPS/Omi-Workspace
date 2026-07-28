@@ -1,0 +1,87 @@
+{
+  "byte_proofs": {
+    "base_blob": "949f6995352b7be6f73be8e44af01a70a758c63e",
+    "base_bytes": 1008748,
+    "base_sha256": "cb9e6cc3810d156da3e52df69b8058f25ec1d05aa6a1430aeccf4d869b31aca8",
+    "candidate_blob": "363e1c8a11525915dc053175283a6c81b72e8b0d",
+    "candidate_bytes": 1032682,
+    "candidate_sha256": "07b6511d9d8b81f9bd563764d0a72a729426f34244ad8a4c1eff96db4b403e4e",
+    "committed_patch_bytes": 30291,
+    "committed_patch_sha256": "9702c11215ee3f12dd0c96dea2d2d35b52ca705272e9cc1c85285bd497ce438a",
+    "content_line_multisets_identical": "+517/-3",
+    "forward_apply_reproduces_candidate": true,
+    "removed_lines_are_exactly_three_entry_start_gate_call_sites": true,
+    "reverse_apply_reproduces_base": true
+  },
+  "date_utc": "2026-07-28",
+  "determinism": {
+    "artifact_manifest_rows_verified": 19,
+    "artifacts_byte_identical_to_committed": "20/20",
+    "clean_regenerations": 2,
+    "source_manifest_rows_verified": 7
+  },
+  "failure_parity": {
+    "auditor_env_split": "46 pass / 38 fail (receipt host: 37/47; parity exact, split environmental)",
+    "candidate_only_failures": 0,
+    "exit_status_mismatches": 0,
+    "parent_only_failures": 0,
+    "scripts": 84,
+    "terminal_signature_mismatches": 0
+  },
+  "independent_census": {
+    "buy_only_gating_ast_proved": true,
+    "central_api_post": [
+      {
+        "function": "_place_order_unlocked",
+        "line": 5902
+      }
+    ],
+    "matches_committed_census_exactly": true,
+    "place_order_calls": 33,
+    "shared_gate_calls": 5
+  },
+  "performance_reproduction": {
+    "events": 804,
+    "rows": 6432,
+    "states": {
+      "BOOT_TAPE_INSUFFICIENT": 804
+    },
+    "total_ms_range": [
+      938.0,
+      1016.0
+    ],
+    "tracemalloc_peak_bytes_max": 2715053,
+    "trials": 3
+  },
+  "schema": "p0-v4-independent-audit-reproduction-receipt-v1",
+  "tests": {
+    "auditor_probes": "35/35 PASS",
+    "focused_boot_tape": "23/23 PASS",
+    "inherited_p0_guard_assertions": "56/56 PASS",
+    "py_compile": "PASS"
+  },
+  "under_audit": {
+    "branch": "codex/p0-real-start-v4-prerun",
+    "package_commit": "765083b9bce6940d11a778a862bbd7df14967da4",
+    "parent": "a4996dd00e82ed3534f97a09251697f1d82dbbab"
+  },
+  "vps_containment_read_only": {
+    "backup_sha256": "4c38967f85112908020b7207f491a8486cbfc9c70a8b9d6c8cc5d0a2500c98f4",
+    "containment_marker_present": "TEMP_MAINTENANCE_SCHEDULE_LIAR_CONTAINMENT_20260728",
+    "current_equals_inhibited_reconstruction_bytewise": true,
+    "engine_process_count": 0,
+    "engine_relaunch_cron_lines_active": 0,
+    "frozen_sha_reproduced_with_header": "0e2af22e4ab536b4273e61d9251359eda71e369fb8591f22443c66aa88709926",
+    "held_markets": 10,
+    "held_quantity": "45.58",
+    "installed_crontab_sha256_now": "a0476a5698250e5c00cb8d5b5eadcf8fbb927c518ce44d1002b14e7ae184deeb",
+    "live_source_blob": "f1857199164664037fef41b024e60f27fa373548",
+    "pgrep_self_match_explained": true,
+    "repo_movement_since_freeze": "today-sheet cron commits only",
+    "sells_exceeding_held": 0,
+    "tennis_entry_buys_resting": 0,
+    "tennis_exit_sell_quantity": "45.00",
+    "tennis_exit_sells": 11,
+    "vps_head_now": "995a8817c63a118d2bf682339c58c70a3d65f368"
+  }
+}

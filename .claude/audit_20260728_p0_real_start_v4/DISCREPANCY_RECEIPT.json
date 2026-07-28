@@ -1,0 +1,43 @@
+{
+  "date_utc": "2026-07-28",
+  "findings": [
+    {
+      "binding_condition": "integrated PRE-RUN must carry corrected SHA, compute linearity, and validate object existence in any preflight",
+      "claim_location": [
+        "P0_V1_V3_LINEAGE_RECEIPT.json",
+        "CONTROL_BINDING.json",
+        "arb-executor/analysis/p0_real_start_v4_prerun_builder.py:23"
+      ],
+      "claimed_running_parent": "bb085ce04191e27561f18322444c2818dd3936b9",
+      "id": "F1",
+      "latent_risk": "git rev-parse echoes any 40-hex string without validating object existence; a gate consuming running_lineage_parent would fail open",
+      "linearity_verified_flag": "hardcoded literal True at builder line 322; never computed",
+      "object_exists": false,
+      "operative_bindings_affected": "none - all blob/sha256/byte-size bindings computed from real bytes and verified",
+      "severity": "material_documentation_integrity",
+      "true_chain_proven": [
+        "bb085ce06db593... -> eca101c6315be2... (v1)",
+        "eca101c6315be2... -> 3f5d85d47a4908... (v2)",
+        "3f5d85d47a4908... -> a4996dd00e82ed... (v3)",
+        "a4996dd00e82ed... -> 765083b9bce694... (v4 PRE-RUN)"
+      ],
+      "true_running_parent": "bb085ce06db5932049af85f927a7f9316ad76816"
+    },
+    {
+      "detail": "P0_V4_PERFORMANCE_BASELINE.json has no committed generator; snapshot not regenerable; independent 804-event reproduction consistent with all bounded-behavior claims",
+      "id": "F2",
+      "severity": "minor"
+    },
+    {
+      "detail": "parity receipt 37 pass/47 fail split is freeze-host-specific; auditor host observes 46/38 with exact parent-candidate parity (0 mismatches over 84 scripts)",
+      "id": "F3",
+      "severity": "note"
+    },
+    {
+      "detail": "HISTORICAL_TAPE_SOURCE_CONTRACT.json lists wrong-ticker under 'excluded'; code escalates wrong-ticker to full source-contract violation -> event NO_CALL (stricter; matches sibling_event_prints fixture)",
+      "id": "F4",
+      "severity": "cosmetic"
+    }
+  ],
+  "schema": "p0-v4-independent-audit-discrepancy-receipt-v1"
+}

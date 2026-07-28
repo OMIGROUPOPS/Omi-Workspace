@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "casuka_same_cycle_topup": {
+      "enum": [
+        "TOPUP_ZERO_RECEIPTED",
+        "NOT_EXERCISED"
+      ]
+    },
+    "classifier_truth": {
+      "enum": [
+        "PASS"
+      ]
+    },
+    "deployment_id": {
+      "const": "casuka-d1d3-deploy-20260728-v2-attempt1"
+    },
+    "drain_replay_adoption_census": {
+      "type": "object"
+    },
+    "nonmutation_conservation": {
+      "enum": [
+        "PASS"
+      ]
+    },
+    "restart_count": {
+      "enum": [
+        1
+      ]
+    },
+    "resting_exit_conservation": {
+      "enum": [
+        "PASS"
+      ]
+    },
+    "rollback_status": {
+      "enum": [
+        "NOT_REQUIRED",
+        "ROLLED_BACK",
+        "ROLLBACK_FAILED"
+      ]
+    },
+    "schema_version": {
+      "const": "casuka-deployment-post-evidence-v2"
+    },
+    "sell_clamp_first_cycle": {
+      "enum": [
+        "REFUSAL_RECEIPT_OBSERVED",
+        "NOT_OBSERVED_WITHIN_WINDOW"
+      ]
+    },
+    "service_health": {
+      "enum": [
+        "PASS"
+      ]
+    },
+    "source_and_process": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "deployment_id",
+    "source_and_process",
+    "restart_count",
+    "service_health",
+    "resting_exit_conservation",
+    "casuka_same_cycle_topup",
+    "sell_clamp_first_cycle",
+    "classifier_truth",
+    "drain_replay_adoption_census",
+    "nonmutation_conservation",
+    "rollback_status"
+  ],
+  "title": "CASUKA deployment post-result evidence V2",
+  "type": "object"
+}

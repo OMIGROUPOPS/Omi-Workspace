@@ -1,0 +1,12 @@
+{
+  "byte_identical_to_audited_candidate": true,
+  "bytes": 1011785,
+  "deployment_code": "d256c491c851999047779827bca73de808b5f650",
+  "git_blob_oid": "ebd29103ff2153f3d6ced83995c3eb8c159fe38d",
+  "integration_commit": "164f13f70b9c8c89faf26dfc4c65767ab1265404",
+  "p0_v1_v2_v3_present": false,
+  "path": "arb-executor/live_v4.py",
+  "schema_version": "casuka-candidate-byte-identity-v2",
+  "sha256": "85fdd653ee85dd598388d3cf6f537999decf0f0bdece6b8b3495a19041ee05d4",
+  "v1_package": "ccf95e464ead48ca99cef0be62bc65c6ae8ba832"
+}

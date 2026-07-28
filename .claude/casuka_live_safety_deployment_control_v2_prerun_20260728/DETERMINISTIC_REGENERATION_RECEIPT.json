@@ -1,0 +1,10 @@
+{
+  "builder": "arb-executor/analysis/build_casuka_deployment_control_v2.py",
+  "byte_identical_artifacts": true,
+  "canonical_json": "UTF-8 LF sorted keys indent=2 trailing LF",
+  "clean_rebuilds": 2,
+  "newline_portability": "source identities use canonical LF; package JSON is canonical LF",
+  "remote_mutations": 0,
+  "schema_version": "casuka-deployment-control-v2-determinism",
+  "status": "PASS"
+}

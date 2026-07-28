@@ -1,0 +1,15 @@
+{
+  "authorization_commit": "SUPPLIED_SEPARATELY_NOT_EMBEDDED",
+  "authorization_report_path": ".claude/audit_20260728_casuka_deployment_control_v2/EXECUTION_AUTHORIZATION_DEPLOYMENT_V2.md",
+  "ceremony_command_template": "OUTCOME_PROOF=\".claude/casuka_live_safety_deployment_control_v2_prerun_20260728/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json\" python -B arb-executor/deploy/casuka_deployment_ceremony_v2.py --repo . --control .claude/casuka_live_safety_deployment_control_v2_prerun_20260728/DEPLOYMENT_CONTROL_V2.json --mode execute --package-audit-pass \"$PACKAGE_AUDIT_PASS\" --authorization-commit \"$AUTHORIZATION_COMMIT\" --authorization-report \"$AUTHORIZATION_REPORT\"",
+  "deployment_id": "casuka-d1d3-deploy-20260728-v2-attempt1",
+  "instruction": "The independent audit must render the complete canonical report with casuka_deployment_authorization_verifier_v2.",
+  "integration_commit": "164f13f70b9c8c89faf26dfc4c65767ab1265404",
+  "outcome_proof_contract": {
+    "path": ".claude/casuka_live_safety_deployment_control_v2_prerun_20260728/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json",
+    "sha256": "033bdf4fc4559ab31949f4275422a93b484c07479a65b7cc7b6eb28402878a47"
+  },
+  "package_audit_pass": "FINAL_INDEPENDENT_V2_PASS_COMMIT",
+  "package_commit": "FINAL_V2_PACKAGE_COMMIT",
+  "schema_version": "casuka-deployment-authorization-v2-template"
+}

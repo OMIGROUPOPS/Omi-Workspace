@@ -1,0 +1,87 @@
+{
+  "artifacts": [
+    {
+      "bytes": 1361,
+      "path": "AUTHORIZATION_REPORT_TEMPLATE.json",
+      "sha256": "8df484e1672e62a51951bea57fe7809e0d4442b2fc2e9b28252a5bcd77276d1b"
+    },
+    {
+      "bytes": 531,
+      "path": "CANDIDATE_BYTE_IDENTITY_RECEIPT.json",
+      "sha256": "32e6134b61d0da0303f8a98beb94ce9f9853af1aac839884b6037349e9da2a07"
+    },
+    {
+      "bytes": 1889,
+      "path": "COMMAND_LITERALS.json",
+      "sha256": "8e177fca5aa09a3c04561ae2a50fe19dbb458bb3944ec95f279eac94fecd1cea"
+    },
+    {
+      "bytes": 8969,
+      "path": "DEPLOYMENT_CONTROL_V2.json",
+      "sha256": "a963563182e4346149d206019f45632f9ebfb06fdf82391226d6dc0f93d530cf"
+    },
+    {
+      "bytes": 405,
+      "path": "DETERMINISTIC_REGENERATION_RECEIPT.json",
+      "sha256": "970f05dddb7842cbf2a64478f8fa2eea149bcc08802e8279472a3b39d8cd123d"
+    },
+    {
+      "bytes": 1736,
+      "path": "INDEPENDENT_AUDIT_INSTRUCTION.md",
+      "sha256": "3ed9d8f5b2ea1d944818072d1b8bde1d0614394a7879aa6f6b5b1d35b7c35fd7"
+    },
+    {
+      "bytes": 1049,
+      "path": "INTEGRATION_AND_ROLLBACK_RECEIPT.json",
+      "sha256": "0d3cddff580ec07849962aed6f696cc878c7e209d94082afb5350f58ddca7fc0"
+    },
+    {
+      "bytes": 488,
+      "path": "NO_REMOTE_MUTATION_RECEIPT.json",
+      "sha256": "ae1ef896de373fca9b835eeb2b72e3a624477432221e28745e67cfb3587d9f00"
+    },
+    {
+      "bytes": 1067,
+      "path": "PACKAGE_AUDIT_PASS_RECEIPT_TEMPLATE.json",
+      "sha256": "77b075856e2e61bff3b0dd0d18f45eaebc70d5ae154b774e008a8936a215d146"
+    },
+    {
+      "bytes": 1584,
+      "path": "POST_DEPLOYMENT_EVIDENCE_SCHEMA.json",
+      "sha256": "4514a6de567babfa96cc53f343f39a09315eeba821fe454f8e809e560c7b70c9"
+    },
+    {
+      "bytes": 4119,
+      "path": "PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json",
+      "sha256": "033bdf4fc4559ab31949f4275422a93b484c07479a65b7cc7b6eb28402878a47"
+    },
+    {
+      "bytes": 1560,
+      "path": "PRE_RUN_REPORT.md",
+      "sha256": "add8f702145f7b65b4d8e2c6488bef2f2bcd682d6e594f40a8e5bbcc8ab5a623"
+    },
+    {
+      "bytes": 1127,
+      "path": "ROLLBACK_ARTIFACT_V2.json",
+      "sha256": "20460f281ff52212581767c259daea0bdc5fe85cd09bde099edc2cdd3dbc3c3c"
+    },
+    {
+      "bytes": 2561,
+      "path": "SOURCE_HASH_MANIFEST.json",
+      "sha256": "36b1d657e54a17e42ba3c942d2d6fd8237b609c22b208ca30f7ca32f87dee518"
+    },
+    {
+      "bytes": 1110,
+      "path": "TEST_RESULTS.json",
+      "sha256": "f45cb9bec502ee29a557656f881928cbc63af7a5f7be39019cf7c2a344b9be93"
+    },
+    {
+      "bytes": 730,
+      "path": "V1_FAILURE_SUPERSESSION_RECEIPT.json",
+      "sha256": "d32200c94d15399877006f1859edccf43a729bd3ebd95a554ad5cf8f520d5658"
+    }
+  ],
+  "root": ".claude/casuka_live_safety_deployment_control_v2_prerun_20260728",
+  "schema_version": "casuka-deployment-control-v2-artifact-hashes",
+  "self_hash": "excluded_to_avoid_recursion"
+}

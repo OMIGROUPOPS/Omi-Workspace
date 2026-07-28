@@ -1,0 +1,31 @@
+{
+  "adversarial_refusals": {
+    "authorization_reuse": "PASS",
+    "existing_result_or_backup": "PASS",
+    "integration_extra_file": "PASS",
+    "missing_or_plan_only_outcome_contract": "PASS",
+    "mutated_commands": "PASS",
+    "truncated_hashes": "PASS",
+    "wrong_authorization_commit": "PASS",
+    "wrong_candidate_or_preimage_hash_size": "PASS",
+    "wrong_deployment_id_or_results": "PASS",
+    "wrong_host_service_target_backup": "PASS",
+    "wrong_integration": "PASS",
+    "wrong_package_or_audit": "PASS"
+  },
+  "audited_casuka_repair_fixtures": "12/12",
+  "audited_deployment_candidate_probes": "26/26",
+  "combined_casuka_focused": "38/38",
+  "compile": "PASS",
+  "dry_run_rollback_path": "PASS_ZERO_MUTATIONS",
+  "dry_run_success_path": "PASS_ZERO_MUTATIONS",
+  "new_verifier_and_runner_tests": "24/24",
+  "offline_casuka_smoke": "PASS",
+  "real_deployment_invocations": 0,
+  "real_rollback_invocations": 0,
+  "relevant_inherited_suites": "7/7",
+  "remote_mutations": 0,
+  "rollback_shell_syntax": "PASS",
+  "schema_version": "casuka-deployment-control-v2-test-results",
+  "status": "PASS"
+}

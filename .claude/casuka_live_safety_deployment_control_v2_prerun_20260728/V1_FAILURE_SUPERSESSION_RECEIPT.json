@@ -1,0 +1,16 @@
+{
+  "defects": [
+    "no executable authorization verifier was packaged",
+    "OUTCOME_PROOF was PLAN_ONLY_NOT_RUN",
+    "OUTCOME_PROOF was not bound to integration or executable control",
+    "deploy_live_v4.sh does not consume OUTCOME_PROOF"
+  ],
+  "execution_attempts": 0,
+  "failed_authorization": "8a142c8623afb498f61be23d4b710af1834c856a",
+  "remote_mutations": 0,
+  "restarts": 0,
+  "retries": 0,
+  "schema_version": "casuka-v1-deployment-control-supersession-v2",
+  "status": "STRUCTURALLY_SUPERSEDED_AND_UNUSABLE",
+  "v2_correction": "Executable verifier plus one-shot ceremony controller enforce an active immutable pre-deployment contract; future evidence remains separate and cannot be fabricated before execution."
+}

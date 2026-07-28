@@ -1,0 +1,9 @@
+{
+  "ceremony": "OUTCOME_PROOF=\".claude/casuka_live_safety_deployment_control_v2_prerun_20260728/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json\" python -B arb-executor/deploy/casuka_deployment_ceremony_v2.py --repo . --control .claude/casuka_live_safety_deployment_control_v2_prerun_20260728/DEPLOYMENT_CONTROL_V2.json --mode execute --package-audit-pass \"$PACKAGE_AUDIT_PASS\" --authorization-commit \"$AUTHORIZATION_COMMIT\" --authorization-report \"$AUTHORIZATION_REPORT\"",
+  "deployment": "OUTCOME_PROOF=/root/Omi-Workspace/.claude/casuka_deployment_results_casuka-d1d3-deploy-20260728-v2-attempt1/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json OUTCOME_PROOF_SHA=164f13f70b9c8c89faf26dfc4c65767ab1265404 /root/Omi-Workspace/arb-executor/deploy/deploy_live_v4.sh 164f13f70b9c8c89faf26dfc4c65767ab1265404",
+  "outcome_proof_environment": "OUTCOME_PROOF=.claude/casuka_live_safety_deployment_control_v2_prerun_20260728/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json",
+  "remote_gate_outcome_proof_environment": "OUTCOME_PROOF=/root/Omi-Workspace/.claude/casuka_deployment_results_casuka-d1d3-deploy-20260728-v2-attempt1/PRE_DEPLOYMENT_OUTCOME_PROOF_CONTRACT.json",
+  "rollback": "ssh root@104.131.191.95 bash -se -- /root/Omi-Workspace/arb-executor/live_v4.py /root/Omi-Workspace/arb-executor/live_v4.py.pre-casuka-d1d3.casuka-d1d3-deploy-20260728-v2-attempt1.bak live_v4 'cd /root/Omi-Workspace/arb-executor && ulimit -n 262144 && python3 -u live_v4.py >> /tmp/live_v4.log 2>&1' 834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54 997352 /root/Omi-Workspace/arb-executor < arb-executor/deploy/casuka_deployment_rollback_v2.sh",
+  "schema_version": "casuka-deployment-command-literals-v2",
+  "truth": "deploy_live_v4.sh does not itself consume OUTCOME_PROOF; the V2 ceremony runner verifies the contract and supplies its immutable runtime copy to the unchanged child deploy gate."
+}

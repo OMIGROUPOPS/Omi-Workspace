@@ -1,0 +1,15 @@
+{
+  "bytes": 997352,
+  "candidate_retry_after_rollback": "FORBIDDEN",
+  "command": "ssh root@104.131.191.95 bash -se -- /root/Omi-Workspace/arb-executor/live_v4.py /root/Omi-Workspace/arb-executor/live_v4.py.pre-casuka-d1d3.casuka-d1d3-deploy-20260728-v2-attempt1.bak live_v4 'cd /root/Omi-Workspace/arb-executor && ulimit -n 262144 && python3 -u live_v4.py >> /tmp/live_v4.log 2>&1' 834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54 997352 /root/Omi-Workspace/arb-executor < arb-executor/deploy/casuka_deployment_rollback_v2.sh",
+  "commit": "a6dd0686c7406f2211e60f32ce8d85e74aebb90f",
+  "deployment_gate_unchanged": true,
+  "git_blob_oid": "f1857199164664037fef41b024e60f27fa373548",
+  "parent": "164f13f70b9c8c89faf26dfc4c65767ab1265404",
+  "path": "arb-executor/live_v4.py",
+  "schema_version": "casuka-exact-rollback-artifact-v2",
+  "script_path": "arb-executor/deploy/casuka_deployment_rollback_v2.sh",
+  "script_sha256": "f4a93e78dc0b65432452f33158a7c2eeec27fc32a64189b1936037585aa87990",
+  "sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54",
+  "status": "FROZEN_NOT_EXECUTED"
+}

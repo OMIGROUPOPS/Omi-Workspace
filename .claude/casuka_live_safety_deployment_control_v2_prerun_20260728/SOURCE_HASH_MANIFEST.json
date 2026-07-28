@@ -1,0 +1,61 @@
+{
+  "git_objects": {
+    "integration": "164f13f70b9c8c89faf26dfc4c65767ab1265404",
+    "integration_parent": "b060dabacad7bd384cf01b6490da8b529db3474c",
+    "rollback": "a6dd0686c7406f2211e60f32ce8d85e74aebb90f",
+    "v1_package": "ccf95e464ead48ca99cef0be62bc65c6ae8ba832",
+    "v1_pass": "1e62d7e4a2aa4d38e6e71b5e0271725f7e3a6f0e"
+  },
+  "schema_version": "casuka-deployment-control-v2-source-hashes",
+  "sources": [
+    {
+      "bytes": 35241,
+      "git_blob_oid": "0f7eff1551796459d5031256f4af43742c3d8b60",
+      "path": "arb-executor/deploy/casuka_deployment_authorization_verifier_v2.py",
+      "role": "executable_authorization_verifier",
+      "sha256": "8fee8ea0c28442c748d38d72d82fdc0fa6c78083e765d0504af3d8de253c438a"
+    },
+    {
+      "bytes": 37804,
+      "git_blob_oid": "3e5b9e826cb9ea2c8fa79afc1d2b9f7a556a9c6f",
+      "path": "arb-executor/deploy/casuka_deployment_ceremony_v2.py",
+      "role": "one_shot_ceremony_runner",
+      "sha256": "2547c86d0773c0914f3f52cc34c29dda2edcfb0fd6c45e25511c6901f2864f0b"
+    },
+    {
+      "bytes": 2088,
+      "git_blob_oid": "bd34d26fdcd36e56ddcdd600266700ec36f6379c",
+      "path": "arb-executor/deploy/casuka_deployment_rollback_v2.sh",
+      "role": "exact_hash_bound_rollback_restart_script",
+      "sha256": "f4a93e78dc0b65432452f33158a7c2eeec27fc32a64189b1936037585aa87990"
+    },
+    {
+      "bytes": 33173,
+      "git_blob_oid": "a48a0d3a3e6e3dbed9cfd17e0eb170bb01fab5b4",
+      "path": "arb-executor/analysis/build_casuka_deployment_control_v2.py",
+      "role": "deterministic_package_builder",
+      "sha256": "3d590c9ea73e3a82246588ca8af5dd87ed215d95c65dd281d1f9ae90c4d0b439"
+    },
+    {
+      "bytes": 1011785,
+      "git_blob_oid": "ebd29103ff2153f3d6ced83995c3eb8c159fe38d",
+      "path": "arb-executor/live_v4.py",
+      "role": "byte_identical_audited_candidate_not_modified_by_v2",
+      "sha256": "85fdd653ee85dd598388d3cf6f537999decf0f0bdece6b8b3495a19041ee05d4"
+    },
+    {
+      "bytes": 4435,
+      "git_blob_oid": "29adce67955488e21b04780cbb425f28c2cec8dd",
+      "path": "arb-executor/deploy/deploy_live_v4.sh",
+      "role": "unchanged_existing_gated_deploy_script",
+      "sha256": "aee4abaa0dfb476be0050b1ccca1b43059e81621f1fdddd3fdea388268df2833"
+    },
+    {
+      "bytes": 29277,
+      "git_blob_oid": "3cd307078988fefd2a818308172b450e2000d8c9",
+      "path": "arb-executor/tests/test_casuka_deployment_control_v2.py",
+      "role": "adversarial_verifier_and_runner_suite",
+      "sha256": "2af5a87614dbc4d72aad3937b9706d7f6e00e44d23be29bbe89fc7cb8aad71ff"
+    }
+  ]
+}

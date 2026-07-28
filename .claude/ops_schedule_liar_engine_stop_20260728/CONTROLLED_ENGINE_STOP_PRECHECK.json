@@ -1,0 +1,95 @@
+{
+  "schema_version": "schedule-liar-controlled-engine-stop-precheck-v1",
+  "controlling_operational_receipt": {
+    "branch": "codex/ops-schedule-liar-containment-20260728",
+    "commit": "1ae9a9ca6e9d45e0a7b179a7e98afa48ace761c0"
+  },
+  "decision": {
+    "phase_2_result": "FAIL_CLOSED",
+    "engine_stop_authorized": false,
+    "engine_stopped": false,
+    "reason": "No existing documented reversible live_v4-only keepalive-inhibition mechanism exists. The active root cron would relaunch live_v4 after a graceful stop, while changing cron, inventing a sentinel, changing tmux controls, or disabling all cron is outside the authorization."
+  },
+  "fresh_census": {
+    "captured_utc": "2026-07-28T10:02:38.354958Z",
+    "vps_head": "5259223484fa3b7cc5626f8577a3c9f45527070d",
+    "live_pid": 3504442,
+    "live_process_start": "Tue Jul 28 00:16:01 2026",
+    "live_source_blob": "f1857199164664037fef41b024e60f27fa373548",
+    "live_source_sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54",
+    "live_source_size": 997352,
+    "resting_tennis_entry_buys": 55,
+    "resting_tennis_entry_quantity": 273.0,
+    "resting_exit_sells": 18,
+    "resting_exit_quantity": 80.0,
+    "held_markets": 19,
+    "held_quantity": 87.58
+  },
+  "process_and_tmux": {
+    "pid": 3504442,
+    "ppid": 3504437,
+    "process_command": "python3 -u live_v4.py",
+    "parent_command": "bash -c cd /root/Omi-Workspace/arb-executor && ulimit -n 262144 && python3 -u live_v4.py >> /tmp/live_v4.log 2>&1",
+    "tmux_session": "live_v4",
+    "tmux_start_command": "cd /root/Omi-Workspace/arb-executor && ulimit -n 262144 && python3 -u live_v4.py >> /tmp/live_v4.log 2>&1",
+    "tmux_remain_on_exit": "off"
+  },
+  "keepalive_controller": {
+    "controller": "root crontab",
+    "cron_file": "/var/spool/cron/crontabs/root",
+    "cron_file_sha256": "4c38967f85112908020b7207f491a8486cbfc9c70a8b9d6c8cc5d0a2500c98f4",
+    "invocation": "*/2 * * * * U=$(df --output=pcent / | tail -1 | tr -dc 0-9); [ \"${U:-100}\" -lt 90 ] && ! ps -C python3 -o args= | grep -q \"live_v4.py\" && tmux new-session -d -s live_v4 \"cd /root/Omi-Workspace/arb-executor && ulimit -n 262144 && python3 -u live_v4.py >> /tmp/live_v4.log 2>&1\"",
+    "observed_disk_use_percent": 65,
+    "trigger_interval_minutes": 2,
+    "would_relaunch_if_pid_absent": true,
+    "existing_live_v4_only_inhibitor_found": false,
+    "systemd_live_v4_unit_or_timer_found": false,
+    "documented_maintenance_lock_found": false,
+    "documented_restart_inhibition_sentinel_found": false,
+    "safe_global_cron_stop": false,
+    "global_cron_stop_reason": "The root crontab contains unrelated jobs; disabling cron would affect unrelated services and exceeds the authorized scope."
+  },
+  "graceful_shutdown_proof": {
+    "source_commit_with_running_blob": "19ec3633961b58d53d3c8801645af41e4531ee29",
+    "source_blob": "f1857199164664037fef41b024e60f27fa373548",
+    "config_blob": "d36e9cf817fc089674172335e579e5a406979bcd",
+    "config_sha256": "3d5b07af10523e9b724f019dc367e4cf74b93f4dd66c0ff7bed0d347c72722a1",
+    "config_size": 5037,
+    "graceful_shutdown_enabled": true,
+    "sigint_handler": "_request_shutdown",
+    "first_signal_behavior": "Sets _shutdown_requested and arms a book-sized watchdog.",
+    "second_signal_behavior": "Immediate hard exit; no second signal was sent.",
+    "drain_behavior": "Writes state/drain_manifest.json, cancels tracked V4 entry bids, preserves resting exit sells, and returns without settling, DCA, or position mutation.",
+    "watchdog_budget_seconds": {
+      "floor": 10,
+      "formula": "max(10, min(180, 5 + 0.25 * resting_entry_bid_count))",
+      "maximum": 180
+    },
+    "existing_deploy_stop_window_seconds": 200,
+    "important_restart_effect": "A later boot can replay drained entries through _drain_replay; restart inhibition is therefore required for a durable controlled stop."
+  },
+  "phase_2_gates": {
+    "running_source_exact": "PASS",
+    "existing_supported_reversible_inhibitor": "FAIL",
+    "inhibitor_live_v4_only": "FAIL",
+    "graceful_sigint_behavior_understood": "PASS",
+    "exits_preserved_by_shutdown_drain": "PASS",
+    "holdings_not_mutated_by_shutdown_drain": "PASS",
+    "stop_within_existing_watchdog": "PASS",
+    "overall": "FAIL_CLOSED"
+  },
+  "prohibited_alternatives_not_used": [
+    "edit root crontab",
+    "disable cron globally",
+    "invent a sentinel file",
+    "invent an environment variable",
+    "invent a configuration key",
+    "change tmux restart semantics",
+    "patch live_v4.py",
+    "send SIGINT",
+    "send SIGTERM",
+    "send SIGKILL",
+    "kill tmux",
+    "restart live_v4"
+  ]
+}

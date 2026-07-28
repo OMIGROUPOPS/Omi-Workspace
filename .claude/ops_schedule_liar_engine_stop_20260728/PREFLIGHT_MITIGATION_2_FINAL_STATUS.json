@@ -1,0 +1,165 @@
+{
+  "all_non_resting": true,
+  "exchange_mutations": 0,
+  "queried_order_count": 4,
+  "read_only": true,
+  "rows": [
+    {
+      "action": "buy",
+      "fill_count_fp": "0.00",
+      "order_id": "2daecd11-5c2b-49e6-8241-8eebefbd3f24",
+      "raw_exchange_response": {
+        "order": {
+          "action": "buy",
+          "book_side": "bid",
+          "client_order_id": "febc9436-9c26-4119-b19b-7d2e8918c537",
+          "created_time": "2026-07-28T10:09:57.635973Z",
+          "exchange_index": 0,
+          "fill_count_fp": "0.00",
+          "initial_count_fp": "5.00",
+          "last_update_time": "2026-07-28T10:12:13.284483Z",
+          "maker_fees_dollars": "0.000000",
+          "maker_fill_cost_dollars": "0.000000",
+          "no_price_dollars": "0.7500",
+          "order_id": "2daecd11-5c2b-49e6-8241-8eebefbd3f24",
+          "outcome_side": "yes",
+          "remaining_count_fp": "0.00",
+          "self_trade_prevention_type": "taker_at_cross",
+          "side": "yes",
+          "status": "canceled",
+          "subaccount_number": 0,
+          "taker_fees_dollars": "0.000000",
+          "taker_fill_cost_dollars": "0.000000",
+          "ticker": "KXITFMATCH-26JUL28LAZGHE-LAZ",
+          "type": "limit",
+          "user_id": "3f14ee0a-68d3-402f-bc4c-24dbd5308ef2",
+          "yes_price_dollars": "0.2500"
+        }
+      },
+      "remaining_count_fp": "0.00",
+      "status": "canceled",
+      "ticker": "KXITFMATCH-26JUL28LAZGHE-LAZ"
+    },
+    {
+      "action": "buy",
+      "fill_count_fp": "0.00",
+      "order_id": "81f54570-5f73-48e9-b30f-986fc38b3a8b",
+      "raw_exchange_response": {
+        "order": {
+          "action": "buy",
+          "book_side": "bid",
+          "client_order_id": "8802dc45-39c5-4f92-8c71-c40e40e1a909",
+          "created_time": "2026-07-28T10:13:13.603827Z",
+          "exchange_index": 0,
+          "fill_count_fp": "0.00",
+          "initial_count_fp": "5.00",
+          "last_update_time": "2026-07-28T10:13:39.883616Z",
+          "maker_fees_dollars": "0.000000",
+          "maker_fill_cost_dollars": "0.000000",
+          "no_price_dollars": "0.4200",
+          "order_id": "81f54570-5f73-48e9-b30f-986fc38b3a8b",
+          "outcome_side": "yes",
+          "remaining_count_fp": "0.00",
+          "self_trade_prevention_type": "taker_at_cross",
+          "side": "yes",
+          "status": "canceled",
+          "subaccount_number": 0,
+          "taker_fees_dollars": "0.000000",
+          "taker_fill_cost_dollars": "0.000000",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL28TOKPAN-PAN",
+          "type": "limit",
+          "user_id": "3f14ee0a-68d3-402f-bc4c-24dbd5308ef2",
+          "yes_price_dollars": "0.5800"
+        }
+      },
+      "remaining_count_fp": "0.00",
+      "status": "canceled",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL28TOKPAN-PAN"
+    },
+    {
+      "action": "buy",
+      "fill_count_fp": "0.00",
+      "order_id": "ec404f80-7235-4c9a-9084-3a94480c524c",
+      "raw_exchange_response": {
+        "order": {
+          "action": "buy",
+          "book_side": "bid",
+          "client_order_id": "bcde8c4a-a38f-4924-873d-a12592531bdd",
+          "created_time": "2026-07-28T10:13:11.544105Z",
+          "exchange_index": 0,
+          "fill_count_fp": "0.00",
+          "initial_count_fp": "5.00",
+          "last_update_time": "2026-07-28T10:13:39.995743Z",
+          "maker_fees_dollars": "0.000000",
+          "maker_fill_cost_dollars": "0.000000",
+          "no_price_dollars": "0.7500",
+          "order_id": "ec404f80-7235-4c9a-9084-3a94480c524c",
+          "outcome_side": "yes",
+          "remaining_count_fp": "0.00",
+          "self_trade_prevention_type": "taker_at_cross",
+          "side": "yes",
+          "status": "canceled",
+          "subaccount_number": 0,
+          "taker_fees_dollars": "0.000000",
+          "taker_fill_cost_dollars": "0.000000",
+          "ticker": "KXITFMATCH-26JUL28LAZGHE-LAZ",
+          "type": "limit",
+          "user_id": "3f14ee0a-68d3-402f-bc4c-24dbd5308ef2",
+          "yes_price_dollars": "0.2500"
+        }
+      },
+      "remaining_count_fp": "0.00",
+      "status": "canceled",
+      "ticker": "KXITFMATCH-26JUL28LAZGHE-LAZ"
+    },
+    {
+      "action": "buy",
+      "fill_count_fp": "0.00",
+      "order_id": "7c26498f-3ab7-4edc-880c-7bc353110777",
+      "raw_exchange_response": {
+        "order": {
+          "action": "buy",
+          "book_side": "bid",
+          "client_order_id": "9416d816-9d5b-4108-b6ed-4373b74383d1",
+          "created_time": "2026-07-28T10:15:28.684106Z",
+          "exchange_index": 0,
+          "fill_count_fp": "0.00",
+          "initial_count_fp": "5.00",
+          "last_update_time": "2026-07-28T10:15:55.977072Z",
+          "maker_fees_dollars": "0.000000",
+          "maker_fill_cost_dollars": "0.000000",
+          "no_price_dollars": "0.9200",
+          "order_id": "7c26498f-3ab7-4edc-880c-7bc353110777",
+          "outcome_side": "yes",
+          "remaining_count_fp": "0.00",
+          "self_trade_prevention_type": "taker_at_cross",
+          "side": "yes",
+          "status": "canceled",
+          "subaccount_number": 0,
+          "taker_fees_dollars": "0.000000",
+          "taker_fill_cost_dollars": "0.000000",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL28DIACOM-COM",
+          "type": "limit",
+          "user_id": "3f14ee0a-68d3-402f-bc4c-24dbd5308ef2",
+          "yes_price_dollars": "0.0800"
+        }
+      },
+      "remaining_count_fp": "0.00",
+      "status": "canceled",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL28DIACOM-COM"
+    }
+  ],
+  "schema_version": "schedule-liar-final-order-status-v1",
+  "service_restarts": 0,
+  "source_receipts": [
+    {
+      "path": "C:\\Users\\omigr\\OMI-Workspace-codex-schedule-liar-containment\\.claude\\ops_schedule_liar_engine_stop_20260728\\PREFLIGHT_MITIGATION_2_RECEIPT.json",
+      "rows": 4,
+      "sha256": "eeed7c351c3c00e68ce96139a4613067531daf10cf900688f51e7546fc343da8"
+    }
+  ],
+  "status_counts": {
+    "canceled": 4
+  },
+  "unique_order_count": 4
+}

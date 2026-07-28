@@ -1,0 +1,35 @@
+{
+  "schema_version": "schedule-liar-engine-stop-nonmutation-v1",
+  "decision": "PRE_FLIGHT_FAIL_ENGINE_NOT_STOPPED",
+  "stop_attempts": 0,
+  "signals_sent": 0,
+  "sigint_count": 0,
+  "sigterm_count": 0,
+  "sigkill_count": 0,
+  "service_restarts": 0,
+  "keepalive_controller_mutations": 0,
+  "cron_mutations": 0,
+  "tmux_control_mutations": 0,
+  "source_mutations": 0,
+  "configuration_mutations": 0,
+  "deployments": 0,
+  "exit_sell_cancellations_by_tool": 0,
+  "entry_order_posts_by_tool": 0,
+  "position_mutations_by_tool": 0,
+  "settlement_actions": 0,
+  "dca_actions": 0,
+  "halt_mutations": 0,
+  "remote_files_written_by_containment_tool": 0,
+  "only_exchange_mutation": {
+    "kind": "cancel_resting_tennis_entry_buy",
+    "orders": 63,
+    "contracts": 313.0,
+    "all_final_statuses": "canceled"
+  },
+  "engine_after_preflight": {
+    "pid": 3504442,
+    "running": true,
+    "source_blob": "f1857199164664037fef41b024e60f27fa373548",
+    "source_sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54"
+  }
+}

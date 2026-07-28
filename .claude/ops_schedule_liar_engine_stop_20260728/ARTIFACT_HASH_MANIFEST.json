@@ -1,0 +1,71 @@
+{
+  "schema_version": "schedule-liar-engine-stop-artifact-manifest-v1",
+  "manifest_excludes_self": true,
+  "files": [
+    {
+      "path": "CEREMONY_REPORT.md",
+      "bytes": 4592,
+      "sha256": "1dfb0f964ad325a79a6bff0cfd7657902d7f20091dded2e6d004776324ec340b"
+    },
+    {
+      "path": "CONTROLLED_ENGINE_STOP_PRECHECK.json",
+      "bytes": 4642,
+      "sha256": "87a68ff0cee6807bb727c36a842e2b4ee629e35cb635b2b9c7bb1a9d22e69c23"
+    },
+    {
+      "path": "FINAL_READONLY_SNAPSHOT.json",
+      "bytes": 703877,
+      "sha256": "e78369df7640adbc62d4e0d8d4dc95d751d21724f466ea2f8b5d2f68df603db1"
+    },
+    {
+      "path": "FRESH_PRESTOP_SNAPSHOT.json",
+      "bytes": 794941,
+      "sha256": "23e20ee7a4dca5b97999e68c31e79d879938f8bcec956a33c37803a08868aa88"
+    },
+    {
+      "path": "NONMUTATION_RECEIPT.json",
+      "bytes": 1038,
+      "sha256": "0a3d0c99a1773c7f82437d29bfa672deb735952bf54404606e6df3974ec907bb"
+    },
+    {
+      "path": "PREFLIGHT_CANCELLATION_FINAL_STATUS.json",
+      "bytes": 80974,
+      "sha256": "6b2ac79d40f5735fa9e67c1a3c76a1891650f0f76f335efffea02521e2a98099"
+    },
+    {
+      "path": "PREFLIGHT_MITIGATION_2_FINAL_STATUS.json",
+      "bytes": 6004,
+      "sha256": "7f992f27f2b240908a72df9aeb249fa06a7511df8138e038b8bffb43f3eed009"
+    },
+    {
+      "path": "PREFLIGHT_MITIGATION_2_RECEIPT.json",
+      "bytes": 2180071,
+      "sha256": "eeed7c351c3c00e68ce96139a4613067531daf10cf900688f51e7546fc343da8"
+    },
+    {
+      "path": "PREFLIGHT_MITIGATION_2_STDERR.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "PREFLIGHT_MITIGATION_2_STDOUT.log",
+      "bytes": 356,
+      "sha256": "daa9e5ef669c5ea94a9a44b0b180d9ffc5618b18d96877e1af2e64dd393dd643"
+    },
+    {
+      "path": "PREFLIGHT_MITIGATION_RECEIPT.json",
+      "bytes": 2437998,
+      "sha256": "9aad4a1da4edf5904a8994b66b8bc3b2fb62f27909af56d29cf91e3cb51f3532"
+    },
+    {
+      "path": "PREFLIGHT_MITIGATION_STDERR.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "PREFLIGHT_MITIGATION_STDOUT.log",
+      "bytes": 355,
+      "sha256": "c563bfd2e1b0103d9aab8c6f844f222495040d91076a490907843a6e063a339b"
+    }
+  ]
+}

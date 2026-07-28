@@ -1,9 +1,9 @@
 # TODAY'S SHEET — July 28, 2026 (session 12:00 AM ET onward; ◐ = carried)
-(C-TODAY-SHEET v1 — render rules vaulted + census-enforced; generated 11:03 AM ET)
+(C-TODAY-SHEET v1 — render rules vaulted + census-enforced; generated 04:03 PM ET)
 
-**NAV $683.73** · session realized: TAIL +20¢ | PATH -244¢ · wagered today $120.98 · **P-offered (executor) 28% (50 filled / 130 posted-unfilled)** · **P-market (funnel) 5.8% (50 filled legs / ~858 listed legs)**
+**NAV $684.88** · session realized: TAIL +20¢ | PATH -244¢ · wagered today $120.98 · **P-offered (executor) 28% (50 filled / 130 posted-unfilled)** · **P-market (funnel) 5.8% (50 filled legs / ~858 listed legs)**
 **CHURN METER** · 307 reposts / 104 legs today · worst: 27HAZKOS-KOS 7/hr (7) · 28SEMKUU-KUU 6/hr (6) · 27WEBRUS-RUS 4/hr (4) · 28TAKKOZ-KOZ 4/hr (4)
-**PRE-HORIZON METER** · 200/811 legs' true W1 low printed before T−8h · median cents left outside the horizon: 1¢
+**PRE-HORIZON METER** · 152/856 legs' true W1 low printed before T−8h · median cents left outside the horizon: 1¢
 
 ## ① SETTLED (48)
 | Match | Cat | Leg | Band | Placed ET | Filled ET | Fill¢ | W1-best¢ @ET | Real bell | vs Kalshi sched | Exit required | Best tick after fill | Close | $ |
@@ -49,18 +49,18 @@
 | Kaw vs Ste (name join pending) | ITF_W | Ste | 8¢ | 12:19 AM | 12:37 AM | 44¢ | 28¢ @01:26 AM | bell 04:31 AM (milestone_official) | agrees | 52¢ (+8) | 99¢ @01:59 AM | EXIT 52¢ 12:43 AM | +75¢ (170% of basis 44¢) |
 | Web vs Rus (name join pending) | ITF_W | Rus | 7¢ | 12:51 AM | 01:04 AM | 33¢ | 1¢ @02:50 AM | bell 04:31 AM (milestone_official) | agrees | 40¢ (+7) | 55¢ @02:35 AM | EXIT 40¢ 01:08 AM | +40¢ (121% of basis 33¢) |
 | Web vs Rus (name join pending) | ITF_W | Web | 17¢ | 12:51 AM | 01:04 AM | 82¢ | 49¢ @02:35 AM | bell 04:31 AM (milestone_official) | agrees | 98¢ (+17) | 99¢ @02:54 AM | SETTLED WIN 100¢ | +90¢ (110% of basis 82¢) |
-| Otz vs Fir (name join pending) | ITF_W | Otz | 8¢ | 06:33 AM | 06:45 AM | 41¢ | 1¢ @07:40 AM | no bell yet | sched 12:00 PM | 49¢ (+8) | 32¢ @06:46 AM | SETTLED LOSS 0¢ | -205¢ (-500% of basis 41¢) |
+| Firman A. vs Otzipka J. | ITF_W | Otz | 8¢ | 06:33 AM | 06:45 AM | 41¢ | 1¢ @07:40 AM | no bell yet | sched 12:00 PM | 49¢ (+8) | 32¢ @06:46 AM | SETTLED LOSS 0¢ | -205¢ (-500% of basis 41¢) |
 | Semenistaja M. vs Kuusisto E. | ITF_W | Kuu | 12¢ | 03:10 AM | 03:53 AM | 54¢ | 1¢ @07:01 AM | no bell yet | sched 09:00 AM | 66¢ (+12) | 53¢ @05:43 AM | SETTLED LOSS 0¢ | -270¢ (-500% of basis 54¢) |
-| Ste vs Mas (name join pending) | ITF_W | Mas | 9¢ | 04:54 AM | 05:48 AM | 47¢ | 27¢ @05:47 AM | no bell yet | sched 10:00 AM | 56¢ (+9) | 99¢ @07:09 AM | EXIT 56¢ 06:01 AM | +45¢ (96% of basis 47¢) |
-| Ste vs Mas (name join pending) | ITF_W | Ste | 8¢ | 05:55 AM | 06:22 AM | 44¢ | 1¢ @07:03 AM | no bell yet | sched 10:00 AM | 52¢ (+8) | 41¢ @06:33 AM | SETTLED LOSS 0¢ | -220¢ (-500% of basis 44¢) |
-| Wer vs Pau (name join pending) | ITF_W | Pau | 4¢ | 06:58 AM | 07:10 AM | 13¢ | 1¢ @07:59 AM | no bell yet | sched 11:30 AM | 17¢ (+4) | 26¢ @07:30 AM | EXIT 17¢ 07:28 AM | +20¢ (154% of basis 13¢) |
+| Masiianskaia M. vs Stevic H. | ITF_W | Mas | 9¢ | 04:54 AM | 05:48 AM | 47¢ | 27¢ @05:47 AM | no bell yet | sched 10:00 AM | 56¢ (+9) | 99¢ @07:09 AM | EXIT 56¢ 06:01 AM | +45¢ (96% of basis 47¢) |
+| Masiianskaia M. vs Stevic H. | ITF_W | Ste | 8¢ | 05:55 AM | 06:22 AM | 44¢ | 1¢ @07:03 AM | no bell yet | sched 10:00 AM | 52¢ (+8) | 41¢ @06:33 AM | SETTLED LOSS 0¢ | -220¢ (-500% of basis 44¢) |
+| Werner C. vs Paun G. | ITF_W | Pau | 4¢ | 06:58 AM | 07:10 AM | 13¢ | 1¢ @07:59 AM | no bell yet | sched 11:30 AM | 17¢ (+4) | 26¢ @07:30 AM | EXIT 17¢ 07:28 AM | +20¢ (154% of basis 13¢) |
 | Zoz vs Yem (name join pending) | ITF_W | Yem | 3¢ | 03:50 AM | 03:53 AM | 9¢ | 1¢ @04:13 AM | no bell yet | sched 09:00 AM | 12¢ (+3) | 12¢ @03:55 AM | EXIT 12¢ 03:54 AM | +15¢ (167% of basis 9¢) |
 | Wong H. vs Wei S. | WTA_CHALL | Won | 8¢ | 12:18 AM | 12:20 AM | 42¢ | 37¢ @12:20 AM | bell 12:20 AM (percat_fitted) | sched 04:00 PM (Δ+1941m) | 50¢ (+8) | 99¢ @02:16 AM | EXIT 50¢ 12:47 AM | +40¢ (95% of basis 42¢) |
 
 ## ② OPEN (2)
 | Match | Cat | Leg | Band | Placed ET | Filled ET | Fill¢ | W1-best¢ @ET | Real bell | vs Kalshi sched | Exit required | Best tick after fill | Close | Mark | Exit resting |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Bittoun Kouzmine C. vs Ilkel C. | ATP_CHALL | Bit | 19¢ | 04:05 AM | 04:53 AM | 69¢ | 62¢ @06:46 AM | no bell yet | sched 02:00 PM | 88¢ (+19) | 68¢ @05:02 AM | OPEN | 64¢ (-5¢ vs basis) | 88¢ ×5 (order 9a6abeba) |
+| Bittoun Kouzmine C. vs Ilkel C. | ATP_CHALL | Bit | 19¢ | 04:05 AM | 04:53 AM | 69¢ | 57¢ @11:26 AM | no bell yet | sched 02:00 PM | 88¢ (+19) | 99¢ @01:05 PM | OPEN | 0¢ (-69¢ vs basis) | 88¢ ×5 (order 9a6abeba) |
 | Comino L. vs Cocola S. | ITF_M | Coc | 8¢ | 07:07 AM | 07:45 AM | 40¢ | 1¢ @10:07 AM | no bell yet | sched 12:00 PM | 48¢ (+8) | 40¢ @08:15 AM | OPEN | 0¢ (-40¢ vs basis) | 48¢ ×5 (order 6bec4578) |
 
 ## ③ POSTED, DID NOT FILL (130)
@@ -73,15 +73,15 @@
 | Sinclair C. vs Alkaya M. | ATP_CHALL | Alk | 72¢ | 81¢ @01:46 AM | we pulled it (gun_fire_sweep, 07:21 AM ET) |
 | Sinclair C. vs Alkaya M. | ATP_CHALL | Sin | 11¢ | 19¢ @12:30 AM | we pulled it (orphan_buy_reconcile_cleanup, 07:23 AM ET) |
 | Arn vs Pie (name join pending) | ATP_CHALL | Pie | 23¢ | 33¢ @02:49 AM | we pulled it (authority_reanchor, 03:06 AM ET) |
-| Azkara A. vs Erel Y. | ATP_CHALL | Azk | 20¢ | 1¢ @10:51 AM | traded 1¢ at — but our bid arrived later |
-| Azkara A. vs Erel Y. | ATP_CHALL | Ere | 68¢ | 66¢ @10:00 AM | we pulled it (authority_reanchor, 02:26 AM ET) |
+| Erel Y. vs Azkara A. | ATP_CHALL | Azk | 20¢ | 1¢ @10:51 AM | traded 1¢ at — but our bid arrived later |
+| Erel Y. vs Azkara A. | ATP_CHALL | Ere | 68¢ | 66¢ @10:00 AM | we pulled it (authority_reanchor, 02:26 AM ET) |
 | Barton H. vs Nedic A. | ATP_CHALL | Bar | 59¢ | 61¢ @11:34 PM | never traded that low |
 | Barton H. vs Nedic A. | ATP_CHALL | Ned | 32¢ | 36¢ @09:07 AM | never traded that low |
 | Basing M. vs Rawat S. | ATP_CHALL | Bas | 77¢ | 85¢ @01:39 AM | we pulled it (gun_fire_sweep, 03:32 AM ET) |
 | Basing M. vs Rawat S. | ATP_CHALL | Raw | 7¢ | 13¢ @02:23 AM | we pulled it (gun_fire_sweep, 03:32 AM ET) |
-| Bittoun Kouzmine C. vs Ilkel C. | ATP_CHALL | Ilk | 15¢ | 23¢ @11:23 PM | we pulled it (re-aimed, 04:57 AM ET) |
-| Caniato C. vs Pellegrino A. | ATP_CHALL | Can | 21¢ | 30¢ @09:41 AM | we pulled it (authority_reanchor, 08:17 AM ET) |
-| Caniato C. vs Pellegrino A. | ATP_CHALL | Pel | 61¢ | 71¢ @07:06 AM | we pulled it (authority_reanchor, 08:18 AM ET) |
+| Bittoun Kouzmine C. vs Ilkel C. | ATP_CHALL | Ilk | 15¢ | 1¢ @12:50 PM | we pulled it (re-aimed, 04:57 AM ET) |
+| Pellegrino A. vs Caniato C. | ATP_CHALL | Can | 21¢ | 1¢ @03:22 PM | we pulled it (authority_reanchor, 08:17 AM ET) |
+| Pellegrino A. vs Caniato C. | ATP_CHALL | Pel | 61¢ | 68¢ @02:47 PM | we pulled it (authority_reanchor, 08:18 AM ET) |
 | Cecchinato M. vs Agamenone F. | ATP_CHALL | Aga | 25¢ | 12¢ @09:50 AM | traded 12¢ at — but our bid arrived later |
 | Cecchinato M. vs Agamenone F. | ATP_CHALL | Cec | 60¢ | 64¢ @09:20 AM | we pulled it (authority_reanchor, 02:04 AM ET) |
 | Forti F. vs Coria F. | ATP_CHALL | Cor | 35¢ | 44¢ @06:25 AM | we pulled it (gun_fire_sweep, 07:06 AM ET) |
@@ -93,10 +93,10 @@
 | Feldbausch K. vs Mayot H. | ATP_CHALL | Fel | 69¢ | 66¢ @08:53 AM | traded 66¢ at — but our bid arrived later |
 | Feldbausch K. vs Mayot H. | ATP_CHALL | May | 19¢ | 14¢ @09:19 AM | we pulled it (re-aimed, 01:20 AM ET) |
 | Gaubas V. vs Pavlovic L. | ATP_CHALL | Gau | 54¢ | 63¢ @10:18 PM | we pulled it (authority_reanchor, 02:23 AM ET) |
-| Gaubas V. vs Pavlovic L. | ATP_CHALL | Pav | 27¢ | 11¢ @10:51 AM | we pulled it (v4_cancel_bid_marketable_stale, 06:39 AM ET) |
+| Gaubas V. vs Pavlovic L. | ATP_CHALL | Pav | 27¢ | 8¢ @11:04 AM | we pulled it (v4_cancel_bid_marketable_stale, 06:39 AM ET) |
 | Gentzsch T. vs Reis Da Silva J. | ATP_CHALL | Gen | 58¢ | 66¢ @10:15 AM | we pulled it (authority_reanchor, 02:23 AM ET) |
 | Gentzsch T. vs Reis Da Silva J. | ATP_CHALL | Rei | 30¢ | 32¢ @02:32 AM | never traded that low |
-| Gombos N. vs Cerny M. | ATP_CHALL | Cer | 17¢ | 11¢ @10:05 AM | we pulled it (authority_reanchor, 05:54 AM ET) |
+| Gombos N. vs Cerny M. | ATP_CHALL | Cer | 17¢ | 1¢ @11:27 AM | we pulled it (authority_reanchor, 05:54 AM ET) |
 | Gombos N. vs Cerny M. | ATP_CHALL | Gom | 64¢ | 59¢ @11:00 AM | we pulled it (authority_reanchor, 05:55 AM ET) |
 | Carballes Baena R. vs Houkes M. | ATP_CHALL | Hou | 35¢ | 43¢ @02:28 AM | we pulled it (v4_cancel_bid_marketable_stale, 04:38 AM ET) |
 | Justo G. vs Gueymard Wayenburg S. | ATP_CHALL | Gue | 35¢ | 45¢ @12:41 AM | we pulled it (orphan_buy_reconcile_cleanup, 05:34 AM ET) |
@@ -105,12 +105,12 @@
 | Dhamne M. vs Kirci K. | ATP_CHALL | Kir | 5¢ | 7¢ @02:24 AM | we pulled it (v4_cancel_bid_marketable_stale, 07:50 AM ET) |
 | Inchauspe P. vs Kirkin E. | ATP_CHALL | Inc | 64¢ | 73¢ @08:03 PM | we pulled it (match went live, 03:32 AM ET) |
 | Inchauspe P. vs Kirkin E. | ATP_CHALL | Kir | 17¢ | 26¢ @11:38 PM | we pulled it (orphan_buy_reconcile_cleanup, 03:34 AM ET) |
-| Kotov P. vs Galan D. | ATP_CHALL | Gal | 58¢ | 61¢ @01:25 AM | never traded that low |
-| Kotov P. vs Galan D. | ATP_CHALL | Kot | 29¢ | 36¢ @10:16 AM | we pulled it (authority_reanchor, 03:23 AM ET) |
+| Galan D. vs Kotov P. | ATP_CHALL | Gal | 58¢ | 61¢ @01:25 AM | never traded that low |
+| Galan D. vs Kotov P. | ATP_CHALL | Kot | 29¢ | 36¢ @10:16 AM | we pulled it (authority_reanchor, 03:23 AM ET) |
 | Krumich M. vs Henning P. | ATP_CHALL | Hen | 24¢ | 34¢ @05:53 PM | we pulled it (gun_fire_sweep, 04:07 AM ET) |
 | Bax F. vs Kumasaka T. | ATP_CHALL | Bax | 64¢ | 66¢ @08:03 PM | we pulled it (gun_fire_sweep, 03:32 AM ET) |
-| Maestrelli F. vs Neumayer L. | ATP_CHALL | Mae | 28¢ | 30¢ @10:53 AM | never traded that low |
-| Maestrelli F. vs Neumayer L. | ATP_CHALL | Neu | 59¢ | 67¢ @10:49 AM | we pulled it (authority_reanchor, 02:14 AM ET) |
+| Maestrelli F. vs Neumayer L. | ATP_CHALL | Mae | 28¢ | 29¢ @11:10 AM | never traded that low |
+| Maestrelli F. vs Neumayer L. | ATP_CHALL | Neu | 59¢ | 36¢ @11:28 AM | we pulled it (authority_reanchor, 02:14 AM ET) |
 | Bueno G. vs Martinez Gomez P. | ATP_CHALL | Bue | 61¢ | 39¢ @08:58 AM | we pulled it (re-aimed, 08:32 AM ET) |
 | Bueno G. vs Martinez Gomez P. | ATP_CHALL | Mar | 20¢ | 27¢ @08:43 AM | we pulled it (authority_reanchor, 01:07 AM ET) |
 | Dellien H. vs Martinez P. | ATP_CHALL | Del | 46¢ | 56¢ @10:16 PM | we pulled it (gun_fire_sweep, 06:38 AM ET) |
@@ -120,23 +120,23 @@
 | Miyoshi K. vs Nakagawa S. | ATP_CHALL | Miy | 76¢ | 82¢ @01:41 AM | we pulled it (completion_revert_match_live, 05:17 AM ET) |
 | Moller E. vs Topo M. | ATP_CHALL | Mol | 47¢ | 57¢ @10:38 PM | we pulled it (orphan_buy_reconcile_cleanup, 05:02 AM ET) |
 | Moller E. vs Topo M. | ATP_CHALL | Top | 33¢ | 42¢ @12:20 AM | we pulled it (gun_fire_sweep, 04:46 AM ET) |
-| Monteiro T. vs Jorda Sanchis D. | ATP_CHALL | Jor | 32¢ | 35¢ @09:40 AM | never traded that low |
-| Monteiro T. vs Jorda Sanchis D. | ATP_CHALL | Mon | 55¢ | 65¢ @01:52 AM | we pulled it (authority_reanchor, 07:40 AM ET) |
+| Monteiro T. vs Jorda Sanchis D. | ATP_CHALL | Jor | 32¢ | 19¢ @12:39 PM | traded 19¢ at — but our bid arrived later |
+| Monteiro T. vs Jorda Sanchis D. | ATP_CHALL | Mon | 55¢ | 63¢ @12:25 PM | we pulled it (authority_reanchor, 07:40 AM ET) |
 | Barrena A. vs Nikles J. | ATP_CHALL | Nik | 20¢ | 30¢ @08:39 PM | we pulled it (orphan_buy_reconcile_cleanup, 05:02 AM ET) |
 | Olivieri G. vs Taberner C. | ATP_CHALL | Oli | 52¢ | 59¢ @06:53 AM | we pulled it (orphan_buy_reconcile_cleanup, 08:18 AM ET) |
 | Olivieri G. vs Taberner C. | ATP_CHALL | Tab | 30¢ | 40¢ @11:33 PM | we pulled it (gun_fire_sweep, 08:01 AM ET) |
 | Poljicak M. vs Dalla Valle E. | ATP_CHALL | Dal | 51¢ | 61¢ @11:53 PM | we pulled it (gun_fire_sweep, 05:02 AM ET) |
 | Poljicak M. vs Dalla Valle E. | ATP_CHALL | Pol | 30¢ | 38¢ @06:32 PM | we pulled it (orphan_buy_reconcile_cleanup, 05:18 AM ET) |
 | Rehberg M. vs Travaglia S. | ATP_CHALL | Reh | 43¢ | 51¢ @04:53 AM | we pulled it (authority_reanchor, 05:34 AM ET) |
-| Rehberg M. vs Travaglia S. | ATP_CHALL | Tra | 37¢ | 43¢ @05:18 AM | we pulled it (authority_reanchor, 05:34 AM ET) |
+| Rehberg M. vs Travaglia S. | ATP_CHALL | Tra | 37¢ | 1¢ @12:05 PM | we pulled it (authority_reanchor, 05:34 AM ET) |
 | Brunclik P. vs Rejchtman Vinciguerra W. | ATP_CHALL | Bru | 75¢ | 84¢ @12:07 AM | we pulled it (gun_fire_sweep, 05:34 AM ET) |
 | Brunclik P. vs Rejchtman Vinciguerra W. | ATP_CHALL | Rej | 8¢ | 14¢ @08:01 PM | we pulled it (orphan_buy_reconcile_cleanup, 05:39 AM ET) |
 | Torres J. vs Ribecai M. | ATP_CHALL | Rib | 42¢ | 51¢ @10:13 PM | we pulled it (orphan_buy_reconcile_cleanup, 04:18 AM ET) |
 | Torres J. vs Ribecai M. | ATP_CHALL | Tor | 44¢ | 48¢ @02:40 AM | we pulled it (gun_fire_sweep, 04:00 AM ET) |
-| Romano F. vs Virtanen O. | ATP_CHALL | Rom | 23¢ | 25¢ @10:45 AM | never traded that low |
-| Romano F. vs Virtanen O. | ATP_CHALL | Vir | 65¢ | 75¢ @01:50 AM | we pulled it (authority_reanchor, 08:00 AM ET) |
-| Roncadelli F. vs Nicod J. | ATP_CHALL | Nic | 50¢ | 49¢ @10:39 PM | we pulled it (v4_cancel_bid_marketable_stale, 04:54 AM ET) |
-| Roncadelli F. vs Nicod J. | ATP_CHALL | Ron | 30¢ | 38¢ @02:42 AM | we pulled it (authority_reanchor, 05:17 AM ET) |
+| Virtanen O. vs Romano F. | ATP_CHALL | Rom | 23¢ | 1¢ @01:34 PM | traded 1¢ at — but our bid arrived later |
+| Virtanen O. vs Romano F. | ATP_CHALL | Vir | 65¢ | 39¢ @12:35 PM | we pulled it (authority_reanchor, 08:00 AM ET) |
+| Roncadelli F. vs Nicod J. | ATP_CHALL | Nic | 50¢ | 1¢ @01:08 PM | we pulled it (v4_cancel_bid_marketable_stale, 04:54 AM ET) |
+| Roncadelli F. vs Nicod J. | ATP_CHALL | Ron | 30¢ | 20¢ @12:00 PM | we pulled it (authority_reanchor, 05:17 AM ET) |
 | McDonald N. vs Sakellaridis D. | ATP_CHALL | Mcd | 65¢ | 74¢ @05:36 AM | we pulled it (gun_fire_sweep, 06:50 AM ET) |
 | Gomez F. vs Schoenhaus M. | ATP_CHALL | Gom | 37¢ | 39¢ @11:00 PM | we pulled it (gun_fire_sweep, 08:00 AM ET) |
 | Gomez F. vs Schoenhaus M. | ATP_CHALL | Sch | 50¢ | 60¢ @02:18 AM | we pulled it (gun_fire_sweep, 08:00 AM ET) |
@@ -144,8 +144,8 @@
 | Schwaerzler J. vs Mrva M. | ATP_CHALL | Sch | 43¢ | 53¢ @01:35 AM | we pulled it (gun_fire_sweep, 08:22 AM ET) |
 | Skatov T. vs Faurel T. | ATP_CHALL | Fau | 32¢ | 41¢ @11:32 PM | we pulled it (gun_fire_sweep, 05:10 AM ET) |
 | Skatov T. vs Faurel T. | ATP_CHALL | Ska | 49¢ | 58¢ @07:17 PM | we pulled it (orphan_buy_reconcile_cleanup, 05:18 AM ET) |
-| Tabur C. vs Squire H. | ATP_CHALL | Squ | 38¢ | 38¢ @10:00 PM | we pulled it (gun_fire_sweep, 08:04 AM ET) |
-| Tabur C. vs Squire H. | ATP_CHALL | Tab | 58¢ | 61¢ @11:37 PM | we pulled it (gun_fire_sweep, 08:04 AM ET) |
+| Squire H. vs Tabur C. | ATP_CHALL | Squ | 38¢ | 38¢ @10:00 PM | we pulled it (gun_fire_sweep, 08:04 AM ET) |
+| Squire H. vs Tabur C. | ATP_CHALL | Tab | 58¢ | 61¢ @11:37 PM | we pulled it (gun_fire_sweep, 08:04 AM ET) |
 | Pankin S. vs Tokac T. | ATP_CHALL | Pan | 58¢ | 68¢ @06:58 PM | we pulled it (gun_fire_sweep, 06:13 AM ET) |
 | Pankin S. vs Tokac T. | ATP_CHALL | Tok | 27¢ | 31¢ @04:11 AM | we pulled it (gun_fire_sweep, 06:13 AM ET) |
 | Ursu V. vs Turker M. | ATP_CHALL | Tur | 34¢ | 38¢ @06:59 AM | we pulled it (gun_fire_sweep, 07:10 AM ET) |
@@ -155,15 +155,15 @@
 | Basilashvili N. vs Vrbensky M. | ATP_CHALL | Vrb | 5¢ | 12¢ @12:36 AM | we pulled it (gun_fire_sweep, 05:06 AM ET) |
 | Wallin O. vs Giustino L. | ATP_CHALL | Giu | 44¢ | 53¢ @11:35 PM | we pulled it (gun_fire_sweep, 06:02 AM ET) |
 | Wallin O. vs Giustino L. | ATP_CHALL | Wal | 37¢ | 45¢ @03:10 AM | we pulled it (gun_fire_sweep, 06:02 AM ET) |
-| Zink T. vs Poling K. | ATP_CHALL | Zin | 65¢ | 70¢ @05:40 AM | never traded that low |
+| Zink T. vs Poling K. | ATP_CHALL | Zin | 65¢ | 44¢ @04:00 PM | traded 44¢ at — but our bid arrived later |
 | Crivellaro G. vs Carboni L. | ITF_M | Cri | 8¢ | 8¢ @05:40 PM | we pulled it (v4_cancel_degenerate, 04:42 AM ET) |
 | Comino L. vs Cocola S. | ITF_M | Com | 51¢ | 55¢ @09:06 PM | we pulled it (completion_reprice, 07:45 AM ET) |
 | Gretskiy I. vs Tanaka Y. | ITF_M | Tan | 54¢ | 1¢ @02:51 AM | we pulled it (below_discovery_floor_retreat, 03:03 AM ET) |
 | Rovai S. vs Tailleu P. | ITF_M | Rov | 22¢ | 16¢ @04:12 AM | we pulled it (v4_cancel_degenerate, 05:42 AM ET) |
 | Takahata R. vs Kozlov A. | ITF_M | Tak | 71¢ | 76¢ @01:14 AM | we pulled it (below_discovery_floor_retreat, 03:10 AM ET) |
 | Syc vs Ala (name join pending) | ITF_W | Ala | 89¢ | 90¢ @10:33 PM | we pulled it (v4_cancel_degenerate, 12:20 AM ET) |
-| Mor vs Dee (name join pending) | ITF_W | Mor | 94¢ | 92¢ @07:13 PM | we pulled it (v4_cancel_degenerate, 08:39 AM ET) |
-| Otz vs Fir (name join pending) | ITF_W | Fir | 52¢ | 37¢ @06:25 AM | we pulled it (v4_cancel_degenerate, 07:43 AM ET) |
+| Morvayova V. vs Deegan R. | ITF_W | Mor | 94¢ | 92¢ @07:13 PM | we pulled it (v4_cancel_degenerate, 08:39 AM ET) |
+| Firman A. vs Otzipka J. | ITF_W | Fir | 52¢ | 37¢ @06:25 AM | we pulled it (v4_cancel_degenerate, 07:43 AM ET) |
 | Semenistaja M. vs Kuusisto E. | ITF_W | Sem | 43¢ | 38¢ @03:21 AM | we pulled it (v4_cancel_degenerate, 07:09 AM ET) |
 | Zoz vs Yem (name join pending) | ITF_W | Zoz | 93¢ | 89¢ @03:51 AM | we pulled it (v4_cancel_degenerate, 04:21 AM ET) |
 | Annabelle Xu vs Ariana Arseneault | WTA_CHALL | Ann | 11¢ | 10¢ @12:34 AM | we pulled it (sched_boundary_sweep, 12:48 AM ET) |
@@ -172,7 +172,7 @@
 | Kayla Cross vs Harriet Dart | WTA_CHALL | Dar | 7¢ | no tape | we pulled it (sched_boundary_sweep, 12:48 AM ET) |
 | Carol Zhao vs Emerson Jones | WTA_CHALL | Zha | 9¢ | 13¢ @10:33 AM | we pulled it (sched_boundary_sweep, 12:48 AM ET) |
 | Mananchaya Sawangkaew vs En-Shuo Liang | WTA_CHALL | Saw | 39¢ | 72¢ @02:11 AM | we pulled it (sched_boundary_sweep, 12:48 AM ET) |
-| Carole Monnet vs Miriam Bulgaru | WTA_CHALL | Bul | 40¢ | 13¢ @11:00 AM | traded 13¢ at — but our bid arrived later |
+| Carole Monnet vs Miriam Bulgaru | WTA_CHALL | Bul | 40¢ | 1¢ @11:23 AM | traded 1¢ at — but our bid arrived later |
 | Carole Monnet vs Miriam Bulgaru | WTA_CHALL | Mon | 54¢ | 56¢ @06:53 AM | never traded that low |
 | Ciric Bagaric L. vs Gailis R. | WTA_CHALL | Cir | 68¢ | 76¢ @09:06 PM | we pulled it (orphan_buy_reconcile_cleanup, 07:06 AM ET) |
 | Ciric Bagaric L. vs Gailis R. | WTA_CHALL | Gai | 14¢ | 22¢ @05:43 AM | we pulled it (gun_fire_sweep, 07:04 AM ET) |
@@ -191,11 +191,11 @@
 | Alesia Breaz vs Laura Samson | WTA_CHALL | Sam | 94¢ | 93¢ @09:44 PM | we pulled it (gun_fire_sweep, 04:21 AM ET) |
 | Lucia Bronzetti vs Miriana Tona | WTA_CHALL | Bro | 81¢ | 16¢ @08:06 PM | we pulled it (orphan_buy_reconcile_cleanup, 05:34 AM ET) |
 | Lucia Bronzetti vs Miriana Tona | WTA_CHALL | Ton | 8¢ | 9¢ @11:48 PM | we pulled it (v4_cancel_bid_marketable_stale, 05:27 AM ET) |
-| Polina Kudermetova vs Cristina Bucsa | WTA_MAIN | Buc | 35¢ | 36¢ @11:09 AM | we pulled it (authority_reanchor, 08:17 AM ET) |
-| Polina Kudermetova vs Cristina Bucsa | WTA_MAIN | Kud | 46¢ | 36¢ @11:09 AM | we pulled it (authority_reanchor, 08:17 AM ET) |
+| Polina Kudermetova vs Cristina Bucsa | WTA_MAIN | Buc | 35¢ | 1¢ @01:21 PM | we pulled it (authority_reanchor, 08:17 AM ET) |
+| Polina Kudermetova vs Cristina Bucsa | WTA_MAIN | Kud | 46¢ | 10¢ @12:17 PM | we pulled it (authority_reanchor, 08:17 AM ET) |
 | Anna Kalinskaya vs Daria Kasatkina | WTA_MAIN | Kas | 33¢ | 29¢ @11:09 AM | traded 29¢ at — but our bid arrived later |
-| Pareja J. vs Wang X. | WTA_MAIN | Par | 32¢ | 35¢ @12:00 PM | we pulled it (authority_reanchor, 03:23 AM ET) |
-| Pareja J. vs Wang X. | WTA_MAIN | Wan | 50¢ | 58¢ @08:01 PM | we pulled it (authority_reanchor, 03:23 AM ET) |
+| Wang X. vs Pareja J. | WTA_MAIN | Par | 32¢ | 1¢ @01:02 PM | we pulled it (authority_reanchor, 03:23 AM ET) |
+| Wang X. vs Pareja J. | WTA_MAIN | Wan | 50¢ | 32¢ @12:09 PM | we pulled it (authority_reanchor, 03:23 AM ET) |
 
 ## ④ NOT BID (296)
 | Match | Cat | Band | Intent | Plain reason | What the tape did |
@@ -208,7 +208,7 @@
 | Mochizuki S. vs Broom C. | ATP_CHALL | — | never reached a decision | never conceived | tape: see game report |
 | Pinnington Jones J. vs Samuel T. | ATP_CHALL | — | never reached a decision | never conceived | tape: see game report |
 | Rice K. vs Llamas Ruiz P. | ATP_CHALL | — | never reached a decision | never conceived | tape: see game report |
-| Sekulic P. vs Chidekh C. | ATP_CHALL | — | never reached a decision | never conceived | tape: see game report |
+| Chidekh C. vs Sekulic P. | ATP_CHALL | — | never reached a decision | never conceived | tape: see game report |
 | Sweeny D. vs Chan D. | ATP_CHALL | — | never reached a decision | never conceived | tape: see game report |
 | Wendelken H. vs Cassone M. | ATP_CHALL | — | never reached a decision | never conceived | tape: see game report |
 | Wolf J. vs Zhang Z. | ATP_CHALL | — | never reached a decision | never conceived | tape: see game report |
@@ -221,9 +221,9 @@
 | Kwo vs Ngea (name join pending) | ATP_MAIN | — | never reached a decision | never conceived | tape: see game report |
 | James Duckworth vs Aidan Mayo | ATP_MAIN | — | never reached a decision | never conceived | tape: see game report |
 | Mcf vs Fer (name join pending) | ITF_M | — | intentional | below volume floor | tape: see game report |
-| Aguilera Guerrero E. vs Guilleme J. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Guilleme J. vs Aguilera Guerrero E. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Krstic V. vs Ahouda W. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
-| Albuquerque Dietrich P. vs Escurra Isnardi H. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Escurra Isnardi H. vs Albuquerque Dietrich P. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Fix D. vs Antoni R. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Arsic N. vs Zanada E. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Schiessl E. vs Bakonyi D. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
@@ -240,7 +240,7 @@
 | Jankanj V. vs Borg L. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Bredschneijder O. vs Jansson O. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Brignacca A. vs Matuszczyk M. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
-| Brown P. vs Alujas R. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Alujas R. vs Brown P. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Arnaboldi F. vs Buldorini P. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Castagnola L. vs Parenti L. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Chopra K. vs Hernandez J. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
@@ -297,7 +297,7 @@
 | Marek W. vs Zgola B. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Mas De Ugarte J. vs Wright M. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Mazdrashki A. vs Edengren K. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
-| Mecarelli M. vs Orlov V. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Orlov V. vs Mecarelli M. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Niyetkaliyev A. vs Motta A. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Gundacker J. vs Mruzek S. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Munkhammar P. vs Lechno-Wasiutynski F. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
@@ -316,7 +316,7 @@
 | Pennaforti G. vs Crisostomo G. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Peranovic L. vs Kucukhuseyin C. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Molder M. vs Perez Ramos P. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
-| Perot R. vs Zahraj P. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Zahraj P. vs Perot R. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Piening C. vs Jarvis R. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Pieleanu R. vs Melnic V. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Pampanin P. vs Pisaric A. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
@@ -327,16 +327,16 @@
 | Slavic N. vs Radjenovic V. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Andres Pastor Y. vs Regas Luis N. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Rengifo F. vs Cattaneo L. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
-| Rivet M. vs Chazal M. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Chazal M. vs Rivet M. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Robertson C. vs Rybakov A. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Rodriguez Rodriguez J. vs Brumm J. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Roddick J. vs Gamble J. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Rodriguez L. vs Pereira J. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
-| Roussel F. vs Strode E. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
-| Salvestre D. vs Fabre A. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Strode E. vs Roussel F. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Fabre A. vs Salvestre D. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Sardo G. vs Toffanin N. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Scomparin P. vs Beraldo L. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
-| Scramin do Lago J. vs Albieri G. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Albieri G. vs Scramin do Lago J. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Seidman L. vs Woestendick C. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Shi vs Kox (name join pending) | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Sickenberger T. vs Rast E. | ITF_M | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
@@ -347,7 +347,7 @@
 | Talan Lopatic L. vs Montero Nicolau P. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Talavera Cortes E. vs Siddiqui A. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Tan B. vs Knezevic M. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
-| Tortora D. vs Durasovic V. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Durasovic V. vs Tortora D. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Tosetto R. vs Augusto Dos Santos R. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Raynel A. vs Tremblay D. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Tsitsipas P. vs McGloughlin J. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
@@ -359,140 +359,140 @@
 | Weber J. vs Braswell J. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Leroux J. vs Weintraub B. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Weis A. vs Rispoli N. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
-| Wiskandt M. vs Niedner N. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
+| Wis vs Nie (name join pending) | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Zarate C. vs Pereira Dos Santos K. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Zeuch T. vs Thurner N. | ITF_M | — | never reached a decision | never conceived | tape: see game report |
 | Bak vs Dal (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Ada vs Bal (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Agu vs Har (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| All vs Ceu (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| All vs Til (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Alo vs Mar (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Ang vs Cro (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Arg vs Ant (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Aue vs Pop (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Bat vs Kuz (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Baz vs Kro (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Bek vs Vla (name join pending) | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
+| Balus I. vs Adams J. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Aguilar Gasperin M. vs Harvey A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Allen V. vs Ceuca A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Tilbuerger J. vs Allen K. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Alonso C. vs Marron Baruqui M. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Angel M. vs Crocker V. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Argyrokastriti M. vs Antici A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Auer S. vs Popovic A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Bataikina K. vs Kuznetsova E. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Bazderova A. vs Krokhotina V. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Vlasselaer C. vs Bekker S. | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
 | Biot A. vs Hofmann J. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Bor vs Naj (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Najzer K. vs Borodulina V. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Bro vs Des (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Bro vs Ngu (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Bul vs Vig (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Car vs Kha (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Car vs Len (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Car vs Van (name join pending) | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
-| Ccu vs Mas (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Cen vs Ast (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Broadfoot G. vs Nguyen A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Bulbarella M. vs Vig S. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Khayrutdinova E. vs Carnicella K. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Lene E. vs Carle M. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Van Den Broek I. vs Carvalho e Silva Kracke L. | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
+| Ccuno R. vs Massardo Brain F. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Cengiz B. vs Astakhova D. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Cex vs Sha (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Cha vs Dea (name join pending) | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
-| Cha vs Eli (name join pending) | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
-| Cir vs Hru (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Cla vs Fos (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Col vs Koi (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Com vs Cat (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Dad vs Bla (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Dan vs Viv (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Dan vs Wro (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Charney P. vs Dean J. | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
+| Chan J. vs Elizarova S. | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
+| Hruncakova V. vs Cirotte A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Foshee I. vs Clarke S. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Koike E. vs Collins K. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Catanzarite A. vs Combs E. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Black B. vs Dada-Mascoll S. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Danilova A. vs Vivas S. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Daniels E. vs Wrobel M. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Dig vs Mik (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Dit vs Ser (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Dou vs Ros (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Dro vs Bir (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Serban I. vs Dittmann G. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Dourado Zimermman J. vs Rossi V. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Drobysheva M. vs Biro M. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Dup vs Mcd (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Dvo vs Bru (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Eig vs Vla (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Eks vs Gil (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Brune Olsen A. vs Dvorackova A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Eigelsbach E. vs Vladson L. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Ekstrand M. vs Gillan A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Ela vs Hra (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Elj vs Sim (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Favier M. vs Soulie A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Fon vs Cem (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Fru vs Kol (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Gad vs Bar (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Gal vs Jor (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Gar vs Hod (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Gen vs Tig (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Giz vs Par (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Gni vs Laz (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Gom vs Kaw (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Gra vs Ste (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Gro vs Wob (name join pending) | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
-| Her vs Man (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Heu vs Shu (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Hil vs Oti (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Hos vs Rus (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Hrd vs Mar (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Hur vs Pet (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Cembranos P. vs Fontenel C. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Fruhvirtova B. vs Kolodziejska J. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Barthel M. vs Gadamauri T. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Gallardo Guevara C. vs Jorge M. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Garcia Cid M. vs Hodzic M. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Tiglea C. vs Gentili A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Park S. vs Giza L. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Gniewkowska O. vs Lazar A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Gomez Pezuela Cano M. vs Kawano Cho G. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Grabher J. vs Steur J. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Wobker I. vs Groth G. | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
+| Herea C. vs Mansfield K. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Heuser M. vs Shubina D. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Hill C. vs Otis A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Hosoki Y. vs Rustemova Z. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Hrda L. vs Martinez Solis C. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Petruzelova L. vs Hurkacz N. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Imx vs Jan (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Iva vs Akl (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Jan vs Fed (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Jau vs Dan (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Jeo vs Pre (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Kai vs Mar (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Kel vs Mor (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Kli vs Sat (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Klu vs Coo (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Kon vs Alv (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Akli A. vs Ivanova D. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Jang S. vs Fedorova A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Dang Y. vs Jauffret C. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Preston J. vs Jeong B. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Kaibekova P. vs Maruca M. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Moreno C. vs Keller K. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Klimovicova L. vs Sato N. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Klugman H. vs Cooling R. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Alves C. vs Konishi Camargo Silva J. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Kovacevic E. vs Jaeger E. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Kul vs Fro (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Kul vs Laz (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Kul vs Sch (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Kul vs Sru (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Kuz vs Kim (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Lar vs Est (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Lek vs Gar (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Lle vs Kon (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Lli vs Cor (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Luk vs Kar (name join pending) | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
-| Mah vs Dri (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Man vs Lim (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Mar vs Hov (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Frodin T. vs Kulikova A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Lazaro Garcia A. vs Kulambayeva Z. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Schaefbauer M. vs Kulevich G. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Kulhava V. vs Srutwa M. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Kim E. vs Kuznetsova D. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Estevez J. vs Larraya Guidi S. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Lekomtseva U. vs Garcia-Patrón Canals A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Kononova M. vs Llewellyn S. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Corvi A. vs Llinares Domingo L. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Lukas T. vs Karatancheva A. | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
+| Mahendran K. vs Driscoll C. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Lim J. vs Mansouri Y. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Hovde L. vs Martinez V. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Mar vs Mar2 (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Mar vs Van (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Van Emst S. vs Martinez Vaquero M. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Mel vs Rod (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Mic vs Ber (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Mik vs Ken (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Mik vs Urb (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Mus vs Gai (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Nav vs San (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Ndu vs Kaj (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| New vs Haz (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Berezina P. vs Michalkova B. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Kenzhibayeva S. vs Mikhailova M. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Mikaca S. vs Urbanova L. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Gai C. vs Musat G. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Nava Elkin A. vs Sanchez Bahamon A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Kajabova K. vs Ndukwu A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Hazelitt J. vs Newman W. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Haddad I. vs Nikcevic T. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Nit vs Kor (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Oco vs Nij (name join pending) | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
-| Osu vs Gom (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Pag vs Han (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Korysheva E. vs Nitture A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Nijkamp R. vs O'Connor A. | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
+| Gomez C. vs Osuigwe V. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Paganetti V. vs Hansen S. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Panasa O. vs Lazarova V. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Par vs Boe (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Plo vs Fer (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Pol vs Ree (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Rab vs Mal (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Ras vs Han (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Roots A. vs Klys N. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Rot vs Bul (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Parcelli F. vs Boehner L. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Ferro G. vs Plosnik E. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Reed L. vs Poling L. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Rabl L. vs Malysheva S. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Hanatani N. vs Raschdorf C. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Klys N. vs Roots A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Rothensteiner L. vs Bulesheva L. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Ruan Z. vs Mol I. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Rut vs Spi (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Saf vs Pri (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Sag vs Lev (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Sai vs Hur (name join pending) | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
-| Sai vs Per (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Spink I. vs Rutlauka S. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Saffar Y. vs Price G. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Sagmar I. vs Levinsky G. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Saigo R. vs Hurrion S. | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
+| Saito S. vs Perry L. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
 | Sat vs Mil (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Sat vs Mus (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Sch vs Ait (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Sch vs Gob (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Sed vs Zel (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Shc vs Kin (name join pending) | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
-| Smi vs Mad (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Sou vs Urr (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Sra vs Wir (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Tik vs Poh (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Tor vs Oli (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Tsy vs Vas (name join pending) | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
-| Ver vs Reg (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Ver vs Vij (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Vir vs Biz (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Vlc vs Wys (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Voj vs Ksa (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Zaa vs Fri (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Zhu vs Hra (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Zor vs Rom (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
-| Zuc vs Voz (name join pending) | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Sato H. vs Mushika M. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Ait El Bachir W. vs Schueller A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Schaedel L. vs Gobbi Monllau A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Zelinskaya D. vs Sedysheva A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Shcherbinina A. vs Kinard T. | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
+| Smith R. vs Madrid Rocca M. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Urrutia M. vs Sousa Salazar N. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Wirglerova S. vs Sramkova T. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Tikhonova A. vs Pohle V. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Olimjanova S. vs Toregen S. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Tsygourova K. vs Vasilescu A. | ITF_W | — | intentional | aim under the lawful floor — never conceived | tape: see game report |
+| Verma S. vs Regalado Macias F. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Vergara Rivera A. vs Vijayakumar T. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Viriant M. vs Bizjak Z. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Wysoczanska K. vs Vlckova K. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Ksandinov S. vs Vojcinakova I. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Friedsam A. vs Zaar L. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Zhu A. vs Hrastar A. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Romero C. vs Zornada E. | ITF_W | — | never reached a decision | never conceived | tape: see game report |
+| Zucchini A. vs Vozniak K. | ITF_W | — | never reached a decision | never conceived | tape: see game report |

@@ -1,0 +1,59 @@
+{
+ "schema_version": "casuka-live-halt-execution-repair-packet-v1",
+ "controlling_halt_commit": "058282b99cfb4da702ad85528750232f07f2c1b4",
+ "boot_identity": {
+  "engine": "live_v4.py", "pid": 2241929, "tmux": "live_v4",
+  "boot_started": "2026-07-25 00:12:01 EDT", "single_boot_covers_incident": true
+ },
+ "incident_orders": {
+  "entry_buy": {"order_id": "b48c5fd4-a8fa-4d19-82d0-b42cce5ed332", "px": 87, "count": 5, "placed": "13:17:29", "organ": "v4_move_repost"},
+  "exit_1_cancelled": {"order_id": "b1833bce-47e4-471d-bd6b-568beabfdb51", "px": 98, "count": 2, "placed": "13:28:33", "organ": "steady_state_reconcile/audit_no_exit", "cancelled_by": "v4_exit_reset_stray 13:33:07 success=true"},
+  "exit_2": {"order_id": "6f99f47a-389f-472a-b734-43b27ddeb8a1", "px": 98, "count": 5, "placed": "13:33:07", "organ": "v4_exit_reset_stray (NAKED_TOOTH_HEAL, EXIT_QTY=POSITION_QTY)", "terminal": "filled 5 @ ~14:27, booked +55c"},
+  "exit_3_surplus": {"order_id": "f623b057-c2d5-4a42-9b47-6037511d9779", "px": 98, "count": 3, "placed": "13:33:08", "organ": "RECONCILE_EXIT_TOPUP", "stale_inputs": {"position_qty": 5, "resting_sell_qty": 2}, "terminal": "executed as oversell; exchange qty -3 quarantined; resolved by settlement WIN@100 15:02:36"},
+  "excess_summary": "3 excess resting-exit contracts = exactly order f623b057 (count 3); resting exits 8 = 6f99f47a(5) + f623b057(3) vs held 5"
+ },
+ "root_cause": "engine logic race: two exit organs (v4_exit_reset_stray heal; RECONCILE_EXIT_TOPUP) posted in the same reconcile cycle one second apart; the top-up computed uncovered = position_qty - resting_sell_qty from a snapshot taken BEFORE the heal cancelled the 2-lot and posted the full 5-lot; no re-read, no shared per-ticker exit-intent state; secondary defect: no sell-side clamp to exchange position, so the surplus executed as a -3 oversell",
+ "not_the_cause": ["exchange behavior", "duplicate/retry of a single organ (zero API retries; adoption consecutive_cycles=1)", "position-ledger disagreement (both reads correct at their instants)", "reporting (audit correctly measured 8 vs 5)"],
+ "live_action_required_now": "NONE. Halt self-cleared 14:27:13 ET on passing re-audit (CONCEPTION_HALT_CLEARED); CASUKA settled WIN 15:02:36; both incident exit orders terminal; engine conceiving normally as of 21:44 ET. This packet authorizes NO cancels and NO position changes.",
+ "verification_preconditions_fail_closed": {
+  "law": "any operator/Codex action touching this incident must first re-verify ALL of the following in one read pass; if ANY differs, STOP, take no action, and re-audit",
+  "expect": [
+   "no active audit-halt artifact newer than AUDIT_HALT_20260727_133309.md",
+   "latest POST_BOOT_AUDIT verdict PASS with n_failures 0",
+   "CASUKA-CAS: settled; exchange position 0; zero resting orders",
+   "orders 6f99f47a and f623b057 terminal (no resting remnant)",
+   "FARRIU / VEGKAW: no held position on FAR, RIU, VEG, KAW"
+  ],
+  "post_action_invariants": [
+   "for every held ticker: resting_exit_qty == held_qty exactly",
+   "no ticker with exchange qty < 0 outside quarantine",
+   "halt state unchanged by any verification read"
+  ]
+ },
+ "code_repair_packet_for_cursor_codex": {
+  "worktree_law": "clean live-safety worktree; deploy only via deploy/deploy_live_v4.sh gate (lint+smoke+prior-art+outcome-proof)",
+  "affected_file": "arb-executor/live_v4.py",
+  "defects": [
+   {"id": "D1-exit-topup-stale-snapshot",
+    "site": "reconcile cycle: v4_exit_reset_stray heal path + RECONCILE_EXIT_TOPUP (near audit exit_qty branch ~L14332 and the topup emitter)",
+    "fix": "single per-ticker exit-intent ledger per cycle: any organ that cancels/posts exits must update it; RECONCILE_EXIT_TOPUP must recompute resting_sell_qty from that ledger (or re-read exchange resting sells) immediately before posting; alternatively order the organs and make the second a no-op when the first already covered the position"},
+   {"id": "D2-sell-clamp-exchange-truth",
+    "site": "every sell/exit post path",
+    "fix": "clamp sell count to max(0, exchange_position_qty - resting_sell_qty) re-read at post time; refuse and log when <=0 (sibling of the 07-07 ccf8fa8f buy guard)"},
+   {"id": "D3-audit-leg-classifier-filled",
+    "site": "pair-invariant classifier (~L14432: 'filled' if tk in self.positions)",
+    "fix": "'filled' must require booked fill qty > 0 and not settled; settled tickers must leave self.positions (FARRIU-RIU stayed 'filled' 3.5h after settling with qty 0; VEGKAW-VEG labelled 'filled' while entry_resting)"}
+  ],
+  "acceptance_fixtures": [
+   "F1: cycle where heal cancels a 2-lot and posts a 5-lot, then topup runs -> topup posts 0 (replay of CAS 13:33:07-08); final resting exits == held exactly",
+   "F2: position 5, resting sells 5 -> any organ proposing additional sell refuses with named log",
+   "F3: sell proposal exceeding exchange position -> clamped/refused; never executes an oversell",
+   "F4: settled leg in entry_resting phase -> classifier yields absent/settled, no pair_incomplete flag",
+   "F5: regression replay of full CAS sequence (adopt 2 -> fill to 5 -> heal+topup) -> exactly one resting exit order of qty 5, audit PASS"
+  ]
+ },
+ "flag_reconciliation": {
+  "FARRIU": "RIU never filled (entry_resting @41, settled 50 qty 0 pnl 0); 'filled' label = stale positions entry post-settlement; FAR absent; no exposure",
+  "VEGKAW": "VEG never filled (entry_resting @48, market determined); 'filled' label = classifier artifact; KAW absent then blocked by the halt itself (13:45:44) and wall-skipped; no exposure"
+ }
+}

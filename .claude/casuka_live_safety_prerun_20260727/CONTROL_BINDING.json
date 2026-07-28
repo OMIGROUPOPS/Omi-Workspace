@@ -1,0 +1,23 @@
+{
+  "schema_version": "casuka-live-safety-control-binding-v1",
+  "branch": "codex/casuka-live-safety-repair",
+  "exact_parent": "a4996dd00e82ed3534f97a09251697f1d82dbbab",
+  "parent_remote_ref": "origin/p0/real-start-entry-guard",
+  "controlling_audit_commit": "b442908f3b253d1e13d5b2a5e93c3dbf0491320d",
+  "audit_report": {
+    "path": ".claude/audit_20260727_casuka_live_halt/CASUKA_REPRODUCTION_REPORT.md",
+    "git_blob_oid": "c31f208ef86f4831352f6dffe0cc958459d82fc3"
+  },
+  "repair_packet": {
+    "path": ".claude/audit_20260727_casuka_live_halt/EXECUTION_REPAIR_PACKET.json",
+    "git_blob_oid": "cd41db2eaf0c37a2ac532682ecaade08c33649f7"
+  },
+  "verified_parent_live_v4_blob_oid": "949f6995352b7be6f73be8e44af01a70a758c63e",
+  "audit_live_v4_blob_oid": "949f6995352b7be6f73be8e44af01a70a758c63e",
+  "repair_ids": [
+    "D1-exit-topup-stale-snapshot",
+    "D2-sell-clamp-exchange-truth",
+    "D3-audit-leg-classifier-filled"
+  ],
+  "deployment_authorized": false
+}

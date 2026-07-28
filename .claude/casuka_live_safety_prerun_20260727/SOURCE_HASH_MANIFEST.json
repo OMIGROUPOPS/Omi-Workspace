@@ -1,0 +1,29 @@
+{
+  "schema_version": "casuka-live-safety-source-hash-manifest-v1",
+  "sources": [
+    {
+      "path": "arb-executor/live_v4.py",
+      "role": "repaired_live_engine",
+      "byte_sha256": "e96490ec1f253d3b857a7563e594e44566dbed62f3831a27722a5eb5cfb41e24",
+      "git_blob_oid": "1809085d284b9c0cc2df4e7f24d9eac4645ee5a0"
+    },
+    {
+      "path": "arb-executor/tests/test_casuka_live_safety_repair.py",
+      "role": "focused_acceptance_fixtures",
+      "byte_sha256": "8e1627fa4bbc32b570b5fe83fbbfddcc11e922eff5eee1cb3a6ab686f5be738b",
+      "git_blob_oid": "8287d4a5482446421801815263174fa38ad15f71"
+    },
+    {
+      "path": ".claude/audit_20260727_casuka_live_halt/CASUKA_REPRODUCTION_REPORT.md",
+      "role": "controlling_independent_reproduction",
+      "commit": "b442908f3b253d1e13d5b2a5e93c3dbf0491320d",
+      "git_blob_oid": "c31f208ef86f4831352f6dffe0cc958459d82fc3"
+    },
+    {
+      "path": ".claude/audit_20260727_casuka_live_halt/EXECUTION_REPAIR_PACKET.json",
+      "role": "frozen_repair_contract",
+      "commit": "b442908f3b253d1e13d5b2a5e93c3dbf0491320d",
+      "git_blob_oid": "cd41db2eaf0c37a2ac532682ecaade08c33649f7"
+    }
+  ]
+}

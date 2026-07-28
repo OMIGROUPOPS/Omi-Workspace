@@ -21,6 +21,7 @@ live_v3.py @366d8aa -- DO NOT modify those paths.
 import asyncio
 import aiohttp
 import base64
+import functools
 import json
 import math
 import os
@@ -43,6 +44,18 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 
 from fv import get_consensus_fv, check_fv_stability
+
+
+def _serialize_reconcile_exit_intent(fn):
+    """Bracket reconcile without replacing its inspectable implementation."""
+    @functools.wraps(fn)
+    async def wrapped(self, *args, **kwargs):
+        LiveV3._begin_reconcile_exit_intent_cycle(self)
+        try:
+            return await fn(self, *args, **kwargs)
+        finally:
+            LiveV3._end_reconcile_exit_intent_cycle(self)
+    return wrapped
 
 try:
     from intelligence import recommended_window_seconds, kalshi_price_anchor
@@ -5355,6 +5368,234 @@ class LiveV3:
                 worst_tk = tk
         return (worst > bar, worst, worst_tk)
 
+    # [CASUKA LIVE-SAFETY 2026-07-27] Exit intent is serialized per ticker
+    # inside a reconcile cycle.  The exchange remains authoritative; this
+    # ledger closes the one-second visibility gap in which a successful heal
+    # had posted a replacement exit but a later organ still held the cycle's
+    # pre-heal order snapshot.
+    def _begin_reconcile_exit_intent_cycle(self):
+        seq = int(getattr(self, "_reconcile_exit_intent_seq", 0)) + 1
+        self._reconcile_exit_intent_seq = seq
+        self._reconcile_exit_intent_active = True
+        self._reconcile_exit_intent = {"cycle_id": seq, "tickers": {}}
+
+    def _end_reconcile_exit_intent_cycle(self):
+        self._reconcile_exit_intent_active = False
+
+    def _exit_intent_state(self, ticker):
+        if not getattr(self, "_reconcile_exit_intent_active", False):
+            return None
+        ledger = getattr(self, "_reconcile_exit_intent", None)
+        if not ledger:
+            return None
+        return ledger["tickers"].setdefault(ticker, {
+            "resting_sell_floor": 0.0, "changes": []})
+
+    def _record_exit_intent_change(self, ticker, action, **details):
+        state = LiveV3._exit_intent_state(self, ticker)
+        if state is None:
+            return
+        state["changes"].append({"action": action, **details})
+
+    def _record_exit_intent_reset(self, ticker, reason):
+        state = LiveV3._exit_intent_state(self, ticker)
+        if state is None:
+            return
+        state["resting_sell_floor"] = 0.0
+        state["changes"].append({"action": "reset", "reason": reason})
+
+    def _record_exit_intent_post(self, ticker, count,
+                                 authoritative_resting_qty):
+        state = LiveV3._exit_intent_state(self, ticker)
+        if state is None:
+            return
+        before = max(float(state.get("resting_sell_floor", 0.0)),
+                     float(authoritative_resting_qty))
+        state["resting_sell_floor"] = before + float(count)
+        state["changes"].append({
+            "action": "post", "count": float(count),
+            "authoritative_resting_before": float(
+                authoritative_resting_qty),
+            "resting_sell_floor_after": state["resting_sell_floor"]})
+
+    async def _authoritative_sell_snapshot(self, ticker):
+        """Read position and resting sells together for the sell chokepoint.
+
+        None means exchange truth was unavailable and the caller must refuse.
+        Quantity remains floating-point because Kalshi can report fractional
+        residues; integer sell proposals may never round those residues up.
+        """
+        try:
+            positions = []
+            cursor = None
+            seen = set()
+            while True:
+                path = (
+                    "/trade-api/v2/portfolio/positions?ticker=%s"
+                    "&count_filter=position&settlement_status=unsettled"
+                    % ticker)
+                if cursor:
+                    path += "&cursor=%s" % cursor
+                pdata = await api_get(
+                    self.session, self.ak, self.pk, path, self.rl)
+                if pdata is None or not isinstance(
+                        pdata.get("market_positions"), list):
+                    self._log("sell_guard_api_fail", {
+                        "positions_ok": False, "orders_ok": None,
+                        "reason": "positions_collection_unavailable"},
+                        ticker=ticker)
+                    return None
+                rows = pdata["market_positions"]
+                positions.extend(rows)
+                nxt = pdata.get("cursor")
+                if not nxt or not rows:
+                    break
+                if nxt in seen:
+                    self._log("sell_guard_api_fail", {
+                        "positions_ok": False, "orders_ok": None,
+                        "reason": "positions_repeated_cursor"},
+                        ticker=ticker)
+                    return None
+                seen.add(nxt)
+                cursor = nxt
+
+            orders = []
+            cursor = None
+            seen = set()
+            while True:
+                path = (
+                    "/trade-api/v2/portfolio/orders?ticker=%s"
+                    "&status=resting" % ticker)
+                if cursor:
+                    path += "&cursor=%s" % cursor
+                odata = await api_get(
+                    self.session, self.ak, self.pk, path, self.rl)
+                if odata is None or not isinstance(
+                        odata.get("orders"), list):
+                    self._log("sell_guard_api_fail", {
+                        "positions_ok": True, "orders_ok": False,
+                        "reason": "orders_collection_unavailable"},
+                        ticker=ticker)
+                    return None
+                rows = odata["orders"]
+                orders.extend(rows)
+                nxt = odata.get("cursor")
+                if not nxt or not rows:
+                    break
+                if nxt in seen:
+                    self._log("sell_guard_api_fail", {
+                        "positions_ok": True, "orders_ok": False,
+                        "reason": "orders_repeated_cursor"},
+                        ticker=ticker)
+                    return None
+                seen.add(nxt)
+                cursor = nxt
+        except Exception as exc:
+            self._log("sell_guard_api_fail", {
+                "error": str(exc)[:160], "positions_ok": False,
+                "orders_ok": False}, ticker=ticker)
+            return None
+        held = sum(float(p.get("position_fp") or 0)
+                   for p in positions)
+        sell_orders = []
+        resting = 0.0
+        for order in orders:
+            if order.get("action") != "sell":
+                continue
+            qty = float(order.get(
+                "remaining_count_fp",
+                order.get("remaining_count",
+                          order.get("initial_count_fp", 0))) or 0)
+            if qty <= 0:
+                continue
+            resting += qty
+            sell_orders.append(order)
+        state = LiveV3._exit_intent_state(self, ticker)
+        cycle_floor = (float(state.get("resting_sell_floor", 0.0))
+                       if state is not None else 0.0)
+        effective_resting = max(resting, cycle_floor)
+        return {
+            "position_qty": held,
+            "authoritative_resting_sell_qty": resting,
+            "cycle_resting_sell_floor": cycle_floor,
+            "effective_resting_sell_qty": effective_resting,
+            "available_sell_qty": max(0.0, held - effective_resting),
+            "sell_orders": sell_orders,
+        }
+
+    def _alert_sell_guard_refusal(self, ticker, details):
+        """Best-effort operator alert; the refusal itself never depends on it."""
+        self._log("sell_exchange_truth_refused", details, ticker=ticker)
+        script = self.config.get("notify_script", "/root/notify.sh")
+        try:
+            import subprocess as _sp
+            if Path(script).exists():
+                _sp.Popen(
+                    [script, "warn", "SELL SAFETY REFUSAL",
+                     "%s proposed=%s available=%s held=%s resting=%s"
+                     % (ticker, details.get("attempted_count"),
+                        details.get("available_sell_qty"),
+                        details.get("exchange_position_qty"),
+                        details.get("effective_resting_sell_qty"))],
+                    stdout=_sp.DEVNULL, stderr=_sp.DEVNULL)
+        except Exception:
+            pass
+
+    async def _reconcile_exit_topup_from_truth(self, ticker, fallback_price):
+        """Top up only from a post-heal authoritative snapshot.
+
+        This is deliberately separate from reconcile's initial pos_map/ord_map.
+        The sell chokepoint re-reads once more immediately before submission.
+        """
+        snap = await LiveV3._authoritative_sell_snapshot(self, ticker)
+        if snap is None:
+            self._log("reconcile_exit_topup_deferred", {
+                "reason": "authoritative_snapshot_unavailable"},
+                ticker=ticker)
+            return ""
+        gap = snap["available_sell_qty"]
+        if gap <= 0:
+            self._log("reconcile_exit_topup_noop", {
+                "position_qty": snap["position_qty"],
+                "authoritative_resting_sell_qty":
+                    snap["authoritative_resting_sell_qty"],
+                "cycle_resting_sell_floor":
+                    snap["cycle_resting_sell_floor"],
+                "effective_resting_sell_qty":
+                    snap["effective_resting_sell_qty"],
+                "reason": "already_fully_covered"}, ticker=ticker)
+            return ""
+        # Orders are integer contracts.  A fractional residue cannot authorize
+        # rounding up into a short position.
+        qty = int(gap)
+        if qty <= 0:
+            self._log("reconcile_exit_topup_noop", {
+                "position_qty": snap["position_qty"],
+                "effective_resting_sell_qty":
+                    snap["effective_resting_sell_qty"],
+                "available_sell_qty": gap,
+                "reason": "fractional_residue_not_sellable"}, ticker=ticker)
+            return ""
+        price = fallback_price
+        if snap["sell_orders"]:
+            raw = snap["sell_orders"][0].get(
+                "yes_price_dollars",
+                snap["sell_orders"][0].get("yes_price", fallback_price))
+            price = (round(float(raw) * 100)
+                     if float(raw) < 2 else int(float(raw)))
+        oid, _ = await self.place_order(
+            ticker, "sell", "yes", int(price), qty)
+        self._log("reconcile_exit_topup", {
+            "exit_price": int(price), "qty": qty,
+            "position_qty": snap["position_qty"],
+            "resting_sell_qty":
+                snap["authoritative_resting_sell_qty"],
+            "cycle_resting_sell_floor":
+                snap["cycle_resting_sell_floor"],
+            "order_id": oid, "source": "post_intent_authoritative_reread"},
+            ticker=ticker)
+        return oid
+
     async def place_order(self, ticker, action, side, price, count, post_only=True):
         """[C-INFLIGHT-LOCK 2026-07-09, BOARD -1] THE in-flight dedup lock at the
         single placement chokepoint (GORSTE class: two identical buys 103 ms
@@ -5849,6 +6090,46 @@ class LiveV3:
                                    "self-destruct"}, ticker=ticker)
             except Exception:
                 pass
+        # [CASUKA LIVE-SAFETY D2 2026-07-27] SELL-SIDE EXCHANGE-TRUTH CLAMP.
+        # This is intentionally the final operation before submission.  Every
+        # exit organ reaches this chokepoint, and no local position/order
+        # snapshot can authorize a sell.  Attempted excess is refused in full
+        # (never silently rounded or partially transformed).
+        _sell_guard_snapshot = None
+        if action == "sell":
+            _sell_guard_snapshot = await LiveV3._authoritative_sell_snapshot(
+                self, ticker)
+            if _sell_guard_snapshot is None:
+                return "", {"_error": "sell_guard_api_fail"}
+            _available = _sell_guard_snapshot["available_sell_qty"]
+            try:
+                _attempted = float(count)
+            except (TypeError, ValueError):
+                _attempted = -1.0
+            if (_attempted <= 0 or _attempted > _available + 1e-9):
+                _details = {
+                    "attempted_count": count,
+                    "exchange_position_qty":
+                        _sell_guard_snapshot["position_qty"],
+                    "authoritative_resting_sell_qty":
+                        _sell_guard_snapshot[
+                            "authoritative_resting_sell_qty"],
+                    "cycle_resting_sell_floor":
+                        _sell_guard_snapshot["cycle_resting_sell_floor"],
+                    "effective_resting_sell_qty":
+                        _sell_guard_snapshot[
+                            "effective_resting_sell_qty"],
+                    "available_sell_qty": _available,
+                    "reason": ("nonpositive_sell_quantity"
+                               if _attempted <= 0
+                               else "attempted_sell_exceeds_exchange_capacity"),
+                    "law": "new_sell <= max(0, exchange_position "
+                           "- authoritative_resting_sells)",
+                }
+                LiveV3._alert_sell_guard_refusal(
+                    self, ticker, _details)
+                return "", {"_error": "sell_exchange_truth_refused",
+                            **_details}
         resp = await api_post(self.session, self.ak, self.pk, path, payload, self.rl)
         if resp and not resp.get("_error"):
             oid, _v2_status, _v2_fill, _v2_avg = parse_order_response_v2(resp)   # [C-ORDER-V2] flat
@@ -5865,6 +6146,11 @@ class LiveV3:
                                               and _auth13) else {}),
             }, ticker=ticker)
             self._wall_observe(ticker, action, price, count)   # [WALL-OBS] observe-only
+            if action == "sell" and _sell_guard_snapshot is not None:
+                LiveV3._record_exit_intent_post(
+                    self, ticker, count,
+                    _sell_guard_snapshot[
+                        "authoritative_resting_sell_qty"])
             return oid, resp
         else:
             self._log("order_error", {
@@ -5886,6 +6172,9 @@ class LiveV3:
         self._log("order_cancelled", {
             "order_id": order_id, "label": label, "success": ok,
         }, ticker=ticker)
+        if ok and getattr(self, "_reconcile_exit_intent_active", False):
+            LiveV3._record_exit_intent_change(
+                self, ticker, "cancel", order_id=order_id, label=label)
         return ok
 
     # ------------------------------------------------------------------
@@ -9227,14 +9516,21 @@ class LiveV3:
         pos.exit_cell_id = cell_id
 
         # Clear any stray resting sells (idempotent; fresh fill normally has none)
+        _reset_ok = True
         if pos.exit_order_id:
-            await self.cancel_order(tk, pos.exit_order_id, "v4_exit_reset")
+            _reset_ok = bool(await self.cancel_order(
+                tk, pos.exit_order_id, "v4_exit_reset")) and _reset_ok
             pos.exit_order_id = ""
         existing = await api_get(self.session, self.ak, self.pk,
             "/trade-api/v2/portfolio/orders?ticker=%s&status=resting" % tk, self.rl)
         for o in (existing or {}).get("orders", []):
             if o.get("action") == "sell":
-                await self.cancel_order(tk, o.get("order_id", ""), "v4_exit_reset_stray")
+                _reset_ok = bool(await self.cancel_order(
+                    tk, o.get("order_id", ""),
+                    "v4_exit_reset_stray")) and _reset_ok
+        if _reset_ok and existing is not None:
+            LiveV3._record_exit_intent_reset(
+                self, tk, "v4_exit_reset_complete")
 
         if rule == "hold":
             pos.strategy = "hold"
@@ -14223,6 +14519,33 @@ class LiveV3:
         except Exception:
             pass
 
+    def _pair_invariant_leg_state(self, ticker, unsettled_held,
+                                  resting_buys, named_refusal,
+                                  fitting_gap_names):
+        """Classify pair state from booked fill + exchange unsettled truth.
+
+        Dictionary membership is not fill evidence.  A resting-entry Position
+        has booked quantity zero; a settled or stale Position has no unsettled
+        exchange holding.  Neither may manufacture pair-incomplete alarms.
+        """
+        pos = self.positions.get(ticker)
+        if pos is not None and (
+                getattr(pos, "settled", False)
+                or getattr(pos, "phase", "") == "settled"):
+            return "settled"
+        booked = float(getattr(pos, "entry_qty", 0) or 0) if pos else 0.0
+        held = float(unsettled_held.get(ticker, 0) or 0)
+        if booked > 0 and held > 0:
+            return "filled"
+        if resting_buys.get(ticker):
+            return "resting"
+        if (named_refusal
+                and named_refusal[0] in fitting_gap_names):
+            return "fitting_gap:%s" % named_refusal[0]
+        if named_refusal:
+            return "refused_named"
+        return "absent"
+
     async def _post_boot_book_audit(self, context="boot"):
         """[C47-ENFORCE] Post-boot book audit, assert-and-halt. Within 5 min of
         every process start (deploy or crash-recover): fresh PAGINATED pull of
@@ -14598,12 +14921,8 @@ class LiveV3:
                 _st0 = {}
                 for _tk0 in _tks0:
                     _ref0 = _named0.get(_tk0)
-                    _st0[_tk0] = (
-                        "filled" if _tk0 in self.positions else
-                        "resting" if buys.get(_tk0) else
-                        ("fitting_gap:%s" % _ref0[0]
-                         if _ref0 and _ref0[0] in _FGAP0 else
-                         "refused_named" if _ref0 else "absent"))
+                    _st0[_tk0] = LiveV3._pair_invariant_leg_state(
+                        self, _tk0, held, buys, _ref0, _FGAP0)
                 _vals0 = set(_st0.values())
                 # [PHASE-C P2 07-17 — THE MISSING TOOTH, three bodies: BEJ,
                 # ZHE, TAB] a STAMPED leg (the router evaluated the event —
@@ -16379,6 +16698,7 @@ class LiveV3:
                              "prices at current doctrine, not at "
                              "whatever era placed it"))
 
+    @_serialize_reconcile_exit_intent
     async def reconcile(self, quiet=False):
         """Load existing positions and resting orders from Kalshi.
         Populate in-memory state so the bot doesn't re-enter or orphan orders.
@@ -16518,16 +16838,8 @@ class LiveV3:
                 # exit's own price -- never a new level, never a cancel (the
                 # existing exit keeps its queue position).
                 if sells and existing.strategy != "hold":
-                    _sell_total = sum(s["qty"] for s in sells)
-                    _gap = pinfo["qty"] - _sell_total
-                    if _gap > 0:
-                        _oid_gap, _ = await self.place_order(
-                            tk, "sell", "yes", sells[0]["price"], _gap)
-                        self._log("reconcile_exit_topup", {
-                            "exit_price": sells[0]["price"], "qty": _gap,
-                            "position_qty": pinfo["qty"],
-                            "resting_sell_qty": _sell_total,
-                            "order_id": _oid_gap}, ticker=tk)
+                    await LiveV3._reconcile_exit_topup_from_truth(
+                        self, tk, sells[0]["price"])
                 continue
 
             if sells:
@@ -16556,9 +16868,18 @@ class LiveV3:
                     actual_naked = pinfo["qty"] - fresh_sell_qty
                     if actual_naked > 0:
                         # Cancel existing sells and repost consolidated
+                        _consolidate_reset_ok = fresh is not None
                         for old_sell in (fresh or {}).get("orders", []):
                             if old_sell.get("action") == "sell":
-                                await self.cancel_order(tk, old_sell.get("order_id", ""), "reconcile_consolidate")
+                                _consolidate_reset_ok = bool(
+                                    await self.cancel_order(
+                                        tk, old_sell.get("order_id", ""),
+                                        "reconcile_consolidate")
+                                ) and _consolidate_reset_ok
+                        if _consolidate_reset_ok:
+                            LiveV3._record_exit_intent_reset(
+                                self, tk,
+                                "reconcile_consolidate_complete")
                         oid, resp = await self.place_order(tk, "sell", "yes", exit_price, pinfo["qty"])
                         reconcile_exits.append((tk, pinfo, exit_price, "qty_gap_consolidated", oid))
                         self._log("reconcile_exit_posted", {

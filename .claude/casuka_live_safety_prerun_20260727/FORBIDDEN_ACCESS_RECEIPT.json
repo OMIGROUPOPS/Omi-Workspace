@@ -1,0 +1,19 @@
+{
+  "schema_version": "casuka-live-safety-forbidden-access-receipt-v1",
+  "live_exchange_reads": 0,
+  "live_exchange_writes": 0,
+  "deployments": 0,
+  "process_restarts": 0,
+  "order_mutations": 0,
+  "position_mutations": 0,
+  "configuration_changes": 0,
+  "t2_worktree_changes": 0,
+  "t2_worktree_head_after": "87ac9382c23b586f536cf457883c507ebf366ba3",
+  "original_window1_worktree_head_after": "6daab089d1e6c11bd75a684b4e8609e815fec8f4",
+  "preserved_original_untracked_path": ".claude/window1_round2_results_w1r2-dev-20260712-20260720-0a7fd1c6-grid1/",
+  "test_transport": "in-memory async API doubles only",
+  "network_use": [
+    "ordinary git fetch/push only"
+  ],
+  "production_access": false
+}

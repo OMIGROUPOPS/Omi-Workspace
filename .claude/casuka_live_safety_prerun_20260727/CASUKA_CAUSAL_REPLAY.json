@@ -1,0 +1,35 @@
+{
+  "schema_version": "casuka-causal-replay-v1",
+  "ticker": "KXITFMATCH-26JUL27CASUKA-CAS",
+  "source_incident": {
+    "held_qty": 5,
+    "stale_resting_sell_qty": 2,
+    "heal_replacement_qty": 5,
+    "stale_topup_qty": 3,
+    "unlawful_final_resting_qty": 8
+  },
+  "heal_then_topup": {
+    "initial": {"held_qty": 5, "resting_sell_qty": 2},
+    "heal": {"cancelled_qty": 2, "posted_qty": 5},
+    "topup_authoritative_reread": {
+      "held_qty": 5,
+      "resting_sell_qty": 5,
+      "posted_qty": 0,
+      "receipt": "reconcile_exit_topup_noop"
+    },
+    "final": {"resting_order_count": 1, "resting_sell_qty": 5}
+  },
+  "topup_then_heal": {
+    "initial": {"held_qty": 5, "resting_sell_qty": 2},
+    "topup": {"posted_qty": 3},
+    "heal": {"cancelled_total_qty": 5, "posted_qty": 5},
+    "final": {"resting_order_count": 1, "resting_sell_qty": 5}
+  },
+  "partial_to_full_sequence": {
+    "partial": {"held_qty": 2, "resting_sell_qty": 2},
+    "full": {"held_qty": 5, "final_resting_sell_qty": 5},
+    "same_cycle_topup_qty": 0
+  },
+  "all_exchange_calls": "in_memory_fixture_only",
+  "live_access": false
+}

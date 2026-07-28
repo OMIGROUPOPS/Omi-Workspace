@@ -1,0 +1,47 @@
+{
+  "schema_version": "casuka-live-safety-test-results-v1",
+  "focused": {
+    "command": "python -B arb-executor/tests/test_casuka_live_safety_repair.py",
+    "tests": 12,
+    "passed": 12,
+    "failed": 0
+  },
+  "relevant_inherited": {
+    "tests": [
+      "test_lane_a_live_safety.py",
+      "test_lane_a_review_fixes.py",
+      "test_order_v2.py",
+      "test_bbo_settlement_gate.py",
+      "test_shutdown.py",
+      "test_monotonic_cut.py",
+      "test_fv_quote.py"
+    ],
+    "passed": 7,
+    "failed": 0
+  },
+  "complete_script_census": {
+    "verified_parent": {
+      "total": 84,
+      "passed": 46,
+      "failed": 38
+    },
+    "repair_tree": {
+      "total": 85,
+      "passed": 47,
+      "failed": 38
+    },
+    "failure_set_identical": true,
+    "new_test_delta": "one new 12-test focused module passes"
+  },
+  "lint": {
+    "command": "python -B deploy/lint_gate.py live_v4.py",
+    "result": "PASS",
+    "flake8": "not installed; deploy gate AST core passed"
+  },
+  "compile": "PASS",
+  "git_diff_check": "PASS",
+  "offline_smoke_replay": {
+    "run": false,
+    "reason": "clean worktree has no premarket_ticks corpus; smoke gate requires recorded ticks"
+  }
+}

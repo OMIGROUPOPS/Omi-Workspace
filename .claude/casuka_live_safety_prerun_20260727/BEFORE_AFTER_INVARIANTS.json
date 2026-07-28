@@ -1,0 +1,41 @@
+{
+  "schema_version": "casuka-live-safety-invariants-v1",
+  "invariants": [
+    {
+      "id": "D1",
+      "before": "topup used cycle-opening position/resting snapshots",
+      "after": "topup re-reads authoritative position/resting sells after prior intent changes and the sell chokepoint re-reads immediately before POST",
+      "fixture": "heal_then_topup_posts_exactly_five_and_topup_zero",
+      "status": "PASS"
+    },
+    {
+      "id": "D2",
+      "before": "sell submissions had no global exchange-position clamp",
+      "after": "every sell submission refuses unless proposed_qty <= max(0, exchange_position_qty - effective_resting_sell_qty)",
+      "fixtures": [
+        "covered_position_refuses_same_cycle_oversell_before_post",
+        "proposal_larger_than_uncovered_capacity_is_refused",
+        "resting_sell_quantity_never_exceeds_authoritative_holding"
+      ],
+      "status": "PASS"
+    },
+    {
+      "id": "D3",
+      "before": "self.positions membership implied filled",
+      "after": "filled requires booked entry_qty > 0 and authoritative unsettled holding > 0",
+      "fixtures": [
+        "settled_or_zero_booked_position_is_not_filled",
+        "entry_resting_settled_state_cannot_create_pair_incomplete"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "unchanged_protections": [
+    "buy-side exchange-truth guard",
+    "post-only behavior",
+    "retry behavior",
+    "exit price policy",
+    "quarantine protections",
+    "conception halt"
+  ]
+}

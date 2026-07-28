@@ -1,0 +1,47 @@
+{
+  "schema_version": "casuka-live-safety-artifact-hash-manifest-v1",
+  "hash_algorithm": "sha256",
+  "self_excluded": true,
+  "artifacts": [
+    {
+      "path": ".claude/casuka_live_safety_prerun_20260727/BEFORE_AFTER_INVARIANTS.json",
+      "bytes": 1474,
+      "sha256": "98eef63ec07096f9227560c258389d2e3c3eb503586debaae18ae699438272ca"
+    },
+    {
+      "path": ".claude/casuka_live_safety_prerun_20260727/CASUKA_CAUSAL_REPLAY.json",
+      "bytes": 1114,
+      "sha256": "bcb1f38e7faab5d499a0f1d6e93954f5f895637f4d7a464702c53f7e95ab8f0a"
+    },
+    {
+      "path": ".claude/casuka_live_safety_prerun_20260727/CONTROL_BINDING.json",
+      "bytes": 972,
+      "sha256": "46bf8aeff3f378d9b49a4ea426a46d8733c77cb46f5791f7350449e1a33cca1f"
+    },
+    {
+      "path": ".claude/casuka_live_safety_prerun_20260727/FORBIDDEN_ACCESS_RECEIPT.json",
+      "bytes": 703,
+      "sha256": "aece672e1d3bde82a64ff9a013de9613824ce572023d977166ae26cd323c34f3"
+    },
+    {
+      "path": ".claude/casuka_live_safety_prerun_20260727/INDEPENDENT_AUDIT_INSTRUCTION.md",
+      "bytes": 1451,
+      "sha256": "70650704d624313078253a17e2d0b3e67b03a39377804f5f89d3e7d941da898f"
+    },
+    {
+      "path": ".claude/casuka_live_safety_prerun_20260727/PRE_RUN_REPORT.md",
+      "bytes": 4863,
+      "sha256": "8e6ccb9320b338bcf2a685ca5f8a261f4c34240ec8e94eab1f9bf507f1f5d97a"
+    },
+    {
+      "path": ".claude/casuka_live_safety_prerun_20260727/SOURCE_HASH_MANIFEST.json",
+      "bytes": 1159,
+      "sha256": "7687f80f87b70cff3c7c4e4c52d33d959f5d8f5e6689c9dccef31176dbabfd6e"
+    },
+    {
+      "path": ".claude/casuka_live_safety_prerun_20260727/TEST_RESULTS.json",
+      "bytes": 1179,
+      "sha256": "134cc9aad7ee42d2c4b12b1409e1ecf898c1f0fc0400e28a488d713262a1f577"
+    }
+  ]
+}

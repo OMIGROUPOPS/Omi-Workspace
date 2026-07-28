@@ -1,0 +1,85 @@
+{
+ "audit_parent": "66136e6240f2adda990ea8fddc7e00cc643cfb4c",
+ "authorization_scope": "one separately bound one-time deployment ceremony using exactly candidate blob ebd29103 / SHA-256 85fdd653 against running blob f1857199, via the frozen templates, a file-only integration commit, and separate operator authorization; this audit does NOT deploy",
+ "code_commit": "d256c491c851999047779827bca73de808b5f650",
+ "deployment_template_ruling": {
+  "gated_deploy_script": "fetch+ff -> lint+smoke gate -> one graceful restart -> post-boot health check",
+  "no_broad_operations": true,
+  "outcome_proof_required": "resting exits <= held + classifier truth",
+  "pre_mutation_remote_hash_gate_first": true,
+  "single_file_scope_enforced": true,
+  "stop_rollback_fail_closed": true
+ },
+ "failure_parity": {
+  "candidate": "47/85, 38 fail",
+  "identical_identities_and_causes": true,
+  "new_coverage_only": [
+   "test_casuka_live_safety_repair.py",
+   "test_casuka_live_safety_deployment_candidate.py"
+  ],
+  "parent": "45/83, 38 fail",
+  "regressions": 0
+ },
+ "hashes": {
+  "artifact_rows_verified": 16,
+  "candidate_sha256_match": true,
+  "note": "initial 16-bad reading was an audit-side path-join error, corrected to 0 bad",
+  "rollback_blob_sha256_bytes_match": true,
+  "source_rows_verified": 4
+ },
+ "lineage": {
+  "clean_checkout": true,
+  "containment": "1 modified live_v4.py + 20 additive, 0 deletions",
+  "deployment_file_set": "exactly arb-executor/live_v4.py",
+  "parents_exact": true,
+  "remote_equality": true
+ },
+ "non_action": {
+  "no_deploy_restart_order_position_halt": true,
+  "pid_unchanged": 2241929,
+  "running_blob_unchanged": "f1857199"
+ },
+ "p0_exclusion_ruling": {
+  "candidate_p0_behavior": "byte-identical to running parent (v1+v2+v3 all absent)",
+  "frozen_patch_equals_git_diff": true,
+  "method": "byte-level: git apply -R of frozen CASUKA_D1_D3.patch onto candidate reproduces running blob f1857199 EXACTLY",
+  "p0_marker_hits_in_delta": 0,
+  "result": "PASS, stronger than AST"
+ },
+ "package_commit": "ccf95e464ead48ca99cef0be62bc65c6ae8ba832",
+ "provenance_ruling": {
+  "bb085ce0_lawful_source_parent": "YES, by byte identity of its tree blob with the running file",
+  "blob_proves": "running file hashes to f1857199 (re-verified live)",
+  "corrects_prior_shorthand": "running engine predates ALL P0 guard commits (not guard v1)",
+  "receipt_proves": "only a checkout event at eca101c6, not the running bytes",
+  "tree_facts": {
+   "bb085ce0_change": "2aa371a2 -> f1857199 (introduced running bytes)",
+   "eca101c6_blob": "035135ea (NOT running)",
+   "vps_branch_nuance": "bb085ce0 not on VPS branch ancestry; VPS lineage carries the SAME blob via 19ec3633"
+  }
+ },
+ "rollback_ruling": {
+  "exact_path": true,
+  "fail_closed": true,
+  "hash_verified": true,
+  "no_unrelated_state": true,
+  "restores_exactly_f1857199": true
+ },
+ "ruling": "PASS",
+ "schema_version": "casuka-deployment-prerun-independent-audit-v1",
+ "semantic_equivalence_ruling": {
+  "behavior_confirmed_by_probes_on_candidate": true,
+  "delta_line_multisets_identical_to_audited_repair": "+340/-19 both",
+  "result": "PASS"
+ },
+ "source_parent_verified": "bb085ce06db5932049af85f927a7f9316ad76816",
+ "tests": {
+  "auditor_probes": "21/21",
+  "compile_lint": "PASS",
+  "farriu_vegkaw_regressions": "pass (classifier settled/absent)",
+  "focused": "38/38 (12 repair + 26 deployment-candidate)",
+  "inherited_suites": "7/7",
+  "offline_smoke_replay": "reproduced (topup noop, one 5-lot, resting<=held, no network)",
+  "orderings_and_idempotence": "both converge to one 5-lot; 2-cycle idempotent"
+ }
+}

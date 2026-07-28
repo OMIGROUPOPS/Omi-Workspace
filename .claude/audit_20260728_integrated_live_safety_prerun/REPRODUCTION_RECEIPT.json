@@ -1,0 +1,106 @@
+{
+  "binding_correction": {
+    "consumed_by_control_law": false,
+    "lineage_computed_not_asserted": true,
+    "operative_running_parent": "bb085ce06db5932049af85f927a7f9316ad76816",
+    "retracted_value_scope": "supersession record + unchanged inherited v4 history only"
+  },
+  "byte_algebra": {
+    "casuka_delta_stable_across_bases": true,
+    "composer_reproduces_identity": true,
+    "integrated_minus_casukaonly_equals_v13_compose_v4": true,
+    "integrated_minus_p0v1v4_equals_casuka_delta": "+340/-19 multiset exact",
+    "integrated_minus_preimage_equals_full_composition": true,
+    "integrated_minus_v13casuka_equals_v4_delta": "+517/-3 multiset exact",
+    "only_cancellations": "exactly the 3 _entry_start_gate call-site lines",
+    "residual_bytes": 0,
+    "same_boundary_insertions": {
+      "imports_line23": "hashlib then functools; order-neutral",
+      "pre_post_line5851": "P0 buy-revalidation then CASUKA sell clamp then api_post; disjoint actions; no await between buy gate and POST; clamp final for sells"
+    }
+  },
+  "candidate": {
+    "blob": "d7d7cd1d6e9ca28863e97ed8593e0fbf4c87e223",
+    "bytes": 1047115,
+    "sha256": "62614501cb9708bb3c3c2b35823ba8431b2e95acdc027f659a4b37a66a777034"
+  },
+  "containment": {
+    "additions": 32,
+    "deletions": 0,
+    "integration_changed_paths": [
+      "arb-executor/live_v4.py"
+    ],
+    "modifications": 0,
+    "prerun_files": 32,
+    "rollback_changed_paths": [
+      "arb-executor/live_v4.py"
+    ]
+  },
+  "date_utc": "2026-07-28",
+  "deployment_control": {
+    "adversarial_refusals": "12 classes all rejected",
+    "cron_restore": "last post-boot requirement only",
+    "dry_run_mutations": 0,
+    "one_shot": "MUTATION_STARTED -> retry FORBIDDEN; reuse rejected",
+    "rollback_law": "hash-verified atomic restore; engine left stopped; inhibited cron retained; no restart; raw spool binding verified live == 0e2af22e...",
+    "tests": "27/27"
+  },
+  "determinism": {
+    "artifact_manifest_rows": 22,
+    "bad_rows": 0,
+    "byte_identical": "23/23",
+    "regenerations": 2,
+    "source_manifest_rows": 11
+  },
+  "object_validation": "all 5 commits and 6 blobs typed via git cat-file -t; no bare rev-parse echo accepted",
+  "parity": {
+    "exact_identities": 84,
+    "explained": 1,
+    "explained_mechanism": "sell_guard_api_fail (CASUKA D2 fail-closed on stub without exchange GET)",
+    "explained_script": "test_p0_real_start_v4_boot_tape.py",
+    "repaired_failures": 0,
+    "scripts": 85,
+    "sig_mismatches": 0
+  },
+  "pass_receipt_sha256": "b2bc9727108765f2186b830b0be3284f34e91d5788fe890e493c790d01b4f7d2",
+  "ruling": "PASS all 7 sections; no deployment authorized by this audit",
+  "schema": "integrated-live-safety-independent-audit-reproduction-v1",
+  "semantic_coexistence": {
+    "auditor_interaction_probes": "6/6",
+    "auditor_p0_probes": "35/35",
+    "casuka_repair_suite": "12/12",
+    "cold_start_804": {
+      "rows": 6432,
+      "states": {
+        "BOOT_TAPE_INSUFFICIENT": 804
+      },
+      "total_ms": 1000.0,
+      "tracemalloc_peak_bytes": 2707945
+    },
+    "integrated_interaction_suite": "8/8",
+    "p0_focused_on_integrated": "22/23 + 1 explained (sell_guard_api_fail reproduced)"
+  },
+  "under_audit": {
+    "integration_commit": "11e70454863e3508d5a7cbc8e83162232e3a4a09",
+    "integration_parent": "995a8817c63a118d2bf682339c58c70a3d65f368",
+    "package_commit": "1dd5787cfe00f8c69488fff1c9c93fbb7c3eb0a1",
+    "parent": "765083b9bce6940d11a778a862bbd7df14967da4",
+    "rollback_commit": "904a1993030c09c839a56ff78d5a7dc0dfd13b99"
+  },
+  "vps_containment": {
+    "backup_sha256": "4c38967f85112908020b7207f491a8486cbfc9c70a8b9d6c8cc5d0a2500c98f4",
+    "deployment_backup_absent": true,
+    "engine_process_count": 0,
+    "held_markets": 9,
+    "held_qty": "40.58",
+    "keepalive_commented_with_marker": true,
+    "live_blob": "f1857199164664037fef41b024e60f27fa373548",
+    "note": "one market settled exchange-side since prior audit (45.58/10 -> 40.58/9); engine stopped throughout",
+    "raw_spool_sha256": "0e2af22e4ab536b4273e61d9251359eda71e369fb8591f22443c66aa88709926",
+    "results_dir_absent": true,
+    "sells_exceeding_held": 0,
+    "tennis_entry_buys": 0,
+    "tennis_exit_sell_qty": "40.00",
+    "tennis_exit_sells": 10
+  }
+}

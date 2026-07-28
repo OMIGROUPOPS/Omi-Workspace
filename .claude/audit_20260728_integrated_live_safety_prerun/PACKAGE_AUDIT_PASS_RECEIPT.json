@@ -1,0 +1,20 @@
+{
+  "adversarial_tests": "PASS",
+  "candidate_blob": "d7d7cd1d6e9ca28863e97ed8593e0fbf4c87e223",
+  "candidate_sha256": "62614501cb9708bb3c3c2b35823ba8431b2e95acdc027f659a4b37a66a777034",
+  "casuka_d1_d3_pass": "66136e6240f2adda990ea8fddc7e00cc643cfb4c",
+  "dry_run_only": true,
+  "integration_commit": "11e70454863e3508d5a7cbc8e83162232e3a4a09",
+  "live_mutations": 0,
+  "outcome_proof_sha256": "38c6daee4f3b231e2dfc24dd13708b50eb2ba831f8d76d13920936fa4d8f50f0",
+  "p0_v4_pass": "cac1a144342de6d99c0d2701e355ce63745063b0",
+  "package_commit": "1dd5787cfe00f8c69488fff1c9c93fbb7c3eb0a1",
+  "package_parent": "765083b9bce6940d11a778a862bbd7df14967da4",
+  "preimage_blob": "f1857199164664037fef41b024e60f27fa373548",
+  "preimage_sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54",
+  "rollback_commit": "904a1993030c09c839a56ff78d5a7dc0dfd13b99",
+  "runner_sha256": "3a3c552e04d12b10fd27d8c7eb61c6f9e3b8b57d0c6c644a1562cdf5242100f7",
+  "schema_version": "integrated-live-safety-control-v1-independent-pass",
+  "status": "PASS",
+  "verifier_sha256": "f0c66530168650ef970eba44b89a0cff212416ad17bbf3524a64939cc9fc0d19"
+}

@@ -134,6 +134,178 @@ The money machine is a PRODUCT, not a sum: **P(both legs fill in W1, each at its
 
 # THE LEDGER (newest first — the chronology law applies)
 
+### 2026-07-28 · WINDOW-1 REGRET GAUGE — MEASURE THE CENTS THE TAPE OFFERED BUT THE POLICY LEFT BEHIND
+
+**Operator ruling:** completion is necessary but incomplete as a tuning score. For every event in `D=804`, the post-T2 scorer must compare the price the candidate captured with the deepest lawful Window-1 price the recorded market offered. The candidate-to-floor spread is the **regret** (implementation shortfall / cents left on the table). `PC/D >= 75%` at combined cost `<100` remains the floor; compression of the regret distribution toward zero is the continuing optimization objective. At-any-price completion remains the reference ceiling and must be shown beside the discount frontier.
+
+This does **not** authorize policy lookahead. The policy remains causal and sees only evidence available at each decision time. The floor is an ex-post, full-tape benchmark used after the run to grade how much opportunity the causal policy harvested.
+
+#### TWO FLOORS — DO NOT TURN MISSING SIZE EVIDENCE INTO A FALSE NEGATIVE
+
+Each leg carries two separately reported hindsight floors:
+
+1. **Tape-touch floor:** the lowest chronological traded/last-traded tick observed inside lawful Window 1, regardless of whether the frozen evidence proves five-contract capacity at that exact tick. This measures the market's visible price range and preserves the operator's premise that traded markets expose a Window-1 price surface.
+2. **Five-contract-proven floor:** the lowest price at which the same frozen fill law used by the simulator proves an exact five-contract fill (`FILLABLE_AT_X`, including its audited print/strict-ask and capacity rules). This is the execution-proof floor.
+
+The distinction is mandatory. A traded tick with unproved capacity is `PRICE_SEEN_CAPACITY_UNPROVED`, not untradeable. A cache with no lawful qualifying print/BBO is `EVIDENCE_CENSORED`, not proof that the market had no Window-1 price. Those events remain in `D=804`; the scorer may not silently convert missing evidence into a zero-opportunity market verdict.
+
+Pair floors are asynchronous: combine each leg's lawful floor at its own Window-1 time. Simultaneous availability is not required. Report both the pair tape-touch floor and the pair five-contract-proven floor. Any stronger “attainable pair” claim must additionally prove a chronologically feasible five-contract path under the frozen exposure/fill law; it may not simply add two incompatible or unproved observations.
+
+#### THE TUNING CHAIN — LOCALIZE WHERE EACH CENT LEAKED
+
+For every leg and pair, preserve this chain:
+
+`full-tape floor -> OS-recognized opportunity -> selected target -> actually exposed price -> credited fill`
+
+Then report:
+
+- **execution-proof total regret:** `credited fill - five-contract-proven floor`;
+- **signed tape-touch gap:** `credited fill - tape-touch floor`; this may be negative when lawful strict-ask evidence fills better than any observed print and must be reported as `BETTER_THAN_PRINT_FLOOR`, not treated as a construction failure;
+- **recognition regret:** the gap between the full-tape floor and the best opportunity the OS recognized;
+- **targeting/exposure regret:** the gap introduced between recognition, target selection, and actual exposure;
+- **execution regret:** the gap between exposed price and credited fill under the frozen fill law;
+- **pair regret:** achieved combined cost minus the lawful combined hindsight floor.
+
+All prices and gaps are integer cents; lower is better. Negative **execution-proof regret** indicates a construction error or mismatched benchmark and must hard-fail; the separately named signed tape-touch gap follows the exception above. Incomplete events receive no fabricated fill price or arbitrary 100-cent penalty. Instead, report the best proven floor, the last completed stage in the chain, and a named loss class (`never_recognized`, `recognized_not_targeted`, `targeted_not_exposed`, `exposed_not_credited`, `capacity_unproved`, or `evidence_censored`).
+
+#### REQUIRED SCORECARD — FRONTIER AND REGRET PRINT TOGETHER
+
+For every candidate, fit slice, post-fit slice, class/band, orientation, and loss mechanism, report:
+
+- completion at combined cost `<=93`, `<=95`, `<=97`, `<100`, and at any price;
+- per-leg individual-delta splits beside every tier;
+- leg and pair regret distributions: median / p75 / p90, zero-regret rate, and total cents left on the table;
+- completed-event regret separately from incomplete-event opportunity loss;
+- tape-touch coverage, five-contract-proven coverage, and evidence-censored counts;
+- attribution of every overpay and incompletion to the decision stage that leaked it.
+
+The first post-T2 execution is not successful merely because it completes more pairs. It is successful when it moves the completion-discount frontier outward **and** compresses regret toward zero. The frontier says how much discount was harvested; the regret map says how much the recorded Window-1 tape offered that the OS failed to harvest, and which macrostructure or microstructure layer must be retuned.
+
+**Timing:** this doctrine is held until the independent T2 admissibility verdict. It binds the subsequent scoring-package contract and must be independently audited before scoring. It does not modify the score-free T2 PRE-RUN.
+
+### 2026-07-26 · WINDOW-1 EVIDENCE CONSOLIDATION — THE ASYNCHRONOUS FUNNEL, ALREADY-BANKED ANSWERS, AND THE ONE REMAINING MEASUREMENT
+
+**Why this entry exists:** hundreds of sessions produced correct pieces of the Window-1 answer, but the July 21-26 benchmark lineage began reading policy completion as if it were market opportunity. This entry consolidates the relevant chronology, preserves the immutable benchmark law, separates what is already answered from what is not, and prevents another round of simultaneous-pair or individual-negative framing.
+
+#### THE GOVERNING WINDOW-1 BENCHMARK LAW
+
+- `D` = all 804 floor-passing big-4 development/backwalk games dated July 12-20.
+- `C` = both legs filled at exactly five contracts within lawful Window 1.
+- `PC` = `C` with combined pair delta strictly below zero. Primary target: `PC/D >= 75%`, at least 603 events.
+- `IC` = both individual leg deltas strictly below zero. It is a separate secondary diagnostic and never a gate for `PC`.
+- `S` = combined entry cost strictly below 100 cents, reported separately from `PC`.
+- Window 1 only. No exits, Window 2, settlement, DCA, live deployment, live-order mutation, or holdout access.
+- This benchmark law supersedes older fixed-97, dynamic-S, dual-negative, and exit-linked scoring frames for this research population. Those entries remain historical production lineage, not the Window-1 benchmark scorer.
+
+#### THE CENTRAL INTERPRETATION — NOT SIMULTANEOUS, NOT IC
+
+The system is not trying to buy both sides at the same instant. It is trying to capture leg 1 at its own lawful Window-1 moment, carry the realized first-leg headroom forward, and capture leg 2 later at its own lawful moment. The old Vault already said this explicitly: inverse legs, different times, own divots, always *working* both legs rather than posting both simultaneously at static targets.
+
+After the first fill, the sibling budget is event-specific. Under the frozen fee treatment, `d1 + d2 + fee < 0`; at integer-cent precision `b2_max = floor(-d1 - fee - 1)`. With fee zero, a first leg at `d1=-7` permits a sibling no worse than `d2=+6`. Requiring both legs individually negative would discard lawful pair headroom. The evidence proves this twice:
+
+- Corrected OS-family result: `PC=9`, `IC=4`, so 5 of 9 negative pairs relied on one leg financing a non-negative sibling.
+- Latest Range-Attack result: macro-hold has `PC=116`, `IC=38`, hence 78 PC-but-not-IC; macro-micro has `PC=111`, `IC=36`, hence 75 PC-but-not-IC.
+
+No recent corrected scorer silently tightened `PC` into `IC`. The V2 scorer applies combined delta `<0` for PC, calculates IC separately, and preserves C/S when the close reference is unavailable. The Range-Attack instrument also consumed first-fill headroom: audit reproduction found 691/690 activations, 5,280/16,722 accepted sibling improvements, zero `b2_max` mismatches, zero strict-budget violations, positive sibling delta allowed inside budget, and no IC or S gate.
+
+#### CHRONOLOGY — ANSWERS WE ALREADY HAD
+
+| Date | Banked finding | Authority |
+|---|---|---|
+| 2026-07-08 | Sequential floor on 2,435 pairs: legs reach their own lows at different times; inter-divot gap median 41-62 minutes, favorite/climb-side first. ITF sequential implied combined median 79 versus 84-85 under the simultaneous lens; pair edge at least 5 cents on 64-68% of ITF pairs. | `.claude/seqfloor_20260708/SEQUENTIAL_FLOOR.md`, commit `6d354de367a795e2e4c66a4c706182c73e716bb6`; recut `.claude/seqfloor_20260708/SEQFLOOR_RECUT.md`, commit `2f59130e6ffe9c1ef54b79c10a57b06f8c4cc279` |
+| 2026-07-18 | The tape substrate was already large: 2,041,870 consolidated public prints; 724 flat-band windows/21 bands in the divot study; 12,170 legs/36 bands in drift surfaces with movement, lifecycle, reach, and recognition tables. The studies distinguish macro fitted structure from subsecond micro evidence. | `.claude/entrysurface_20260717/SUBSECOND_CENSUS.md` and `DIVOT_TABLES.md`, commit `59dc1eea634c117dbc0408a308cdc0f42293aacf`; `DRIFT_SURFACES.md`, commit `d76076d5b724d98125a1cbd5eded39988e6eeec5` |
+| 2026-07-19 | Loop 5 holdout: dual-fill 34.2%, median combined delta -1 cent, 73% of 164 completed duals combined-negative. This is prior evidence that an asynchronous fitted policy could complete substantially more pairs than the later passive-maker grids. It is not directly comparable to D=804 without a population crosswalk. | `.claude/entrysurface_20260717/LOOP5_CAMPAIGN.md`, commit `f9df25d6976f1125f9b0dc97dbe522aae59b2c86` |
+| 2026-07-20 | Five-lap fresh-window study: individual-leg negative-delta capture stayed about 45-54%; the strongest riser arm reached 55% negative with median delta -3.5 cents. Both-leg-negative was only 3-8% in ordinary inverse pairs and peaked at 13.3% across laps. This already proved that IC is the wrong gate for PC: the inverse relationship makes a positive sibling common even when combined headroom survives. | `.claude/loop8_20260720/EXAM24_LAPS.md`, commit `8db1cd7d158458fa3989f9b685508078580b9d43` |
+| 2026-07-20 | The flat-flat/mirror widening showed policy-family sensitivity: flat-flat 7/50 duals, mirror 66/102 duals but only 14% combined-negative and median pair delta +11. A family can capture many legs or pairs and still misuse the time/orientation surface. | `.claude/loop8_20260720/WEEK_WIDEN.md`, commit `cf9980e5e88e416dfb85d33f7a531a3254fff393` |
+| 2026-07-24 | Corrected OS-family result reproduced `D=804, C=10, PC=9, S=9, IC=4`. Its miss anatomy was 582 zero-fill, 84 naked singles, and 12 no-window events. The audit also proved the grid omitted per-leg asynchronous divot timing and collapsed several named OS families into inert or identical behavior. | result `f7cd420951f074104dbc602b84137c5eed7455da`; `.claude/audit_20260724_osfamily/OS_FAMILY_RESULT_CROSS_AUDIT.md`, audit commit `024f03bb5b1944bae39ad5afef6ee019ef5dc06d` |
+| 2026-07-25 | Round 3 fixed sibling-never-placed, but not completion: best `PC=6/804`; 278 best-candidate events had one fill plus a posted-but-unfilled sibling, and 332 had both legs posted with no fill. One-shot +1 reaim converted only 3/322 park-join events and lost one touch-park dual by surrendering queue. These are outcomes of eight passive-maker families, not opportunity limits. | result `754415bb`; `.claude/audit_20260725_round3_results/AUDIT_REPORT.md`, audit commit `25735d9c9d9775a122da2a067962f45312aa62dc` |
+| 2026-07-25 | The first macro×micro Round-4 build was blocked, not banked as strategy evidence: bid-relative moving targets replaced fitted own-value targets; a universal 50-cent split flattened category physics; volume/cadence was claimed BOUND but not consumed; tens of thousands of chase reprices occurred; and 27 expression actions bypassed the non-self-bid +1 law. | implementation `84959172`; `.claude/audit_20260725_round4_macromicro/AUDIT_REPORT.md`, audit commit `9a0177af3ed93289c9a15f1df3acbc7bd2ee28bc` |
+| 2026-07-25/26 | Range-Attack V1 correctly separated price reach from a cumulative-five fiction: 715/706 exact-touch unions and 38 cumulative-five false negatives per candidate. Audit then found 26 strict-ask fills censored by maker-safety repricing, 20 in first-fill position. V2 credited strict ask before repricing and independently passed. | V1 `66b50db35e9dcec756ce6366bed1fe44147f8e29`, block `43dab8df0c7ce2394d35beadd7d035b8519f66ac`; V2 `851346343eecbff64bd836992876592784874c86`, pass `5579b93774267779ae916eb9cb46766de66a9efe`, determinism addendum `d413f23125d5931a56077c70f475d8815ffe36c0` |
+| 2026-07-26 | Corrected scoring package and one authorized execution passed. Result: macro-hold `C=132, PC=116, IC=38, S=101`; macro-micro `C=125, PC=111, IC=36, S=96`. Full independent reproduction produced zero row differences. | package `e7e7b9071b9238868d0599a2e5f24bb92dcc9bdd`, package audit `fa9bab4752041f045d7e7962168b483235a9db8b`, authorization `582c062eef1f66c388d235687380b8345832a0e2`, result `53eaf2b5b10b82b86b71b651bb720028a6ee7979`, `.claude/audit_20260726_window1_range_attack_execution_results/AUDIT_REPORT.md`, audit `e6aab4698015a2c45e6e9a607c7a0c994e756d8f` |
+| 2026-07-26/27 | The V1 asynchronous census was correctly blocked for global-first-X censoring, unbounded exposure claims, and doubled orientation presentation. Four fail-closed corrections then removed post-boundary evidence, wrong first-leg bids, stale sibling bids, and three older/favorable same-second BBO selections. The additions-only V2 finally passed a full independent raw reconstruction: 1,608 event rows, 6,501 episodes, 10,733 exposure rows, and 1,352 orientation rows with zero differences. | V1 `9220eba26b00a5b94e86d9c644adef16382942a0`; final controlling audit amendment `0350c081a26e06216a34f58eed8a13e72ef5e236`; V2 `e60f6af4f6db5bab5b8a30704a0cb1fc98c774a7`; `.claude/audit_20260727_window1_async_census_v2_prerun/AUDIT_REPORT.md`, PASS `26dd6e5e19a7890f02b538cc8b14a900f36e5b2f` |
+| 2026-07-27 | The decision-layer attribution passed with zero differences. Across 25 distinct recovered games/47 candidate rows: 24 rows had a receipted headroom arm but no episode-keyed sibling decision; 4 same-receipt target selections omitted the lawful X; 8 headroom reprices, 8 corridor/horizon terminations, and 1 LIVE-AIM reprice moved away; 2 capacity-unproved rows covered one game. Twenty-two games were shared identically by both candidates, locating the dominant defect in common post-first-leg machinery rather than the macro selector. | attribution `7fe299e50a9fc018378873e1277c7c891ce313c0`; `.claude/audit_20260727_window1_decision_layer_attribution/AUDIT_REPORT.md`, PASS `b96873c9a5eb340a7abb0eda9bffd6f0cedb4341` |
+
+#### WHAT THE LATEST 15-16% ACTUALLY MEANS
+
+`C/D` is the completion rate of two frozen policies under their exposed prices and guarded credit rules. It is not a simultaneous two-sided fillability rate and not a census of all lawful Window-1 price opportunity.
+
+| Asynchronous funnel | macro-hold | macro-micro |
+|---|---:|---:|
+| D | 804 | 804 |
+| Boundary-assessable (`D - 99`) | 705 | 705 |
+| At least one credited fill (`C + naked`) | 369 | 365 |
+| Completed pairs C | 132 | 125 |
+| Stranded after one credited leg | 237 | 240 |
+| Instrument/policy no credited leg | 336 | 340 |
+| Sibling conversion after reaching at least one leg | 35.8% | 34.2% |
+| PC among reference-determinate completions | 92.8% | 94.1% |
+
+The latest candidate families are already strong on pair quality *when they complete*. The unresolved loss is between first-leg reach and sibling conversion, plus the distinction between “the policy did not credit a fill” and “the tape never offered lawful capacity.” The label `no_fill` must therefore always be rendered as **instrument/policy no credited fill**, never “no market opportunity.”
+
+The final independently audited V2 census now gives the lawful answer for the two frozen candidates:
+
+| Opportunity-vs-policy result | macro-hold | macro-micro |
+|---|---:|---:|
+| Naked candidate rows | 237 | 240 |
+| Later lawful in-budget sibling opportunity | 22 | 25 |
+| Residual: no observed lawful later opportunity | 213 | 213 |
+| Residual: evidence unavailable | 2 | 2 |
+| Qualifying episodes inside the recovered rows | 3,226 | 3,275 |
+| Policy never exposed at the lawful opportunity | 14 | 14 |
+| Policy exposed earlier but moved away | 7 | 10 |
+| Price reached; five-contract capacity unproved | 1 | 1 |
+| No-fill events with counterfactual async path under either orientation | 65/336 | 68/340 |
+
+Across the 47 recovered naked candidate rows, 28 (59.6%) were **never exposed**, 17 (36.2%) **moved away**, and 2 (4.3%) reached price with capacity unproved. Opportunity was sparse by event but repeated when present: 6,501 lawful episodes occurred inside those 47 rows. Crucially, 6,310/6,501 episodes had a **positive sibling d2** that remained lawful only because a sufficiently negative first leg financed it. This is direct corpus proof that IC/both-negative logic would destroy nearly all of the recovered combined-headroom surface.
+
+The V1 global-first construction missed two distinct X classes: 27/34 X-levels existed in its ledger but were rejected on their first pre-fill observation despite a later lawful recurrence, while another 16/16 lawful recurring X-levels had no V1 ledger observation at all. The no-fill 65/68 unions remain explicitly counterfactual, not realized policy misses. The 213/213 naked residuals mean no later lawful opportunity was observed under the passed evidence law after those candidates' actual first fills; they are not a universal claim about all possible first-leg choices or the complete OS.
+
+#### MECHANISM STATUS IN THE MOST RECENT RANGE-ATTACK INSTRUMENT
+
+V2 inherited the V1 recovery table unchanged except for the strict-ask accounting correction. The independently validated table is 9 BOUND / 10 PROXIED / 4 ABSENT / 5 RETRACTED:
+
+- **BOUND:** receipt-identified positive public true prints; non-self external BBO/top-five chain; native Trendpath Atlas discovery path; the limited source-authorized LIVE-AIM mapping; Guidebook deep tier; positive-print microdivot hold; event-specific combined headroom; timestamped schedule policy clock; external-ask maker safety. V2 adds correct credit-before-reprice use of strict-ask evidence.
+- **PROXIED, not full decision authority:** carried last trade; executed-share volume and cadence; top-five pressure sign; close-keyed recut cells; taker-reach probability; drift surfaces; band map; divot tables; Library V1; Orientation V1. Important distinction: the narrow print-count/signature inputs inside the frozen LIVE-AIM mapping can affect its choice, but the full traded-volume/cadence surface is not bound as a causal sizing or opportunity authority.
+- **ABSENT:** Pinnacle; authoritative bookmaker/FV; full depth beyond the bound top five; independent shape mapping.
+- **RETRACTED:** moving current-bid-minus-edge targeting; universal 50-cent climb split; last-trade-versus-bid direction gate; pressure/taker-side direction gate; borrowed or sealed pair-shape policy without an independent frozen mapping.
+
+Authority: `.claude/window1_range_attack_prerun_20260725/MECHANISM_RECOVERY_TABLE.json` at V2 lineage `851346343eecbff64bd836992876592784874c86`; audit `43dab8df0c7ce2394d35beadd7d035b8519f66ac`, with the strict-ask-only correction passed at `5579b93774267779ae916eb9cb46766de66a9efe`.
+
+#### DISCREPANCY REGISTER — DO NOT MIX THESE CLASSES
+
+| Class | Established evidence | Correct interpretation |
+|---|---|---|
+| Measurement failure, corrected | 26 strict-ask intervals were originally recorded as unfilled while maker safety repriced away; 20 were first-fill-position. The guarded-fill adapter also once accepted fractional quantities by truncation. Both defects were corrected and independently audited before scoring. | These were false negatives in the instrument, not market behavior. Do not reopen the settled repair. |
+| Measurement failure, corrected in census V2 | V1 kept one global first X, made unbounded exposure claims, and doubled orientation rows. The correction process also caught post-boundary evidence, wrong first-leg reference bids, stale/thinned sibling bids, and older favorable same-second rows. | V1 `9220eba2` remains retracted. V2 `e60f6af4` and audit `26dd6e5e` are controlling: full raw reconstruction, 6,501 episodes, zero row differences, zero BBO-selection mismatches, zero favorable selections. |
+| Remaining evidence censoring | 99/804 events lack a provable positive boundary; 64 legs/58 events have latest-timestamp price ambiguity; seven completed pairs lack a lawful unique close reference; five D events have no lawful in-window positive-size BBO and receive no fabricated order. | Retain every event in D. Report C/S where knowable; never infer PC/IC or invent BBO/ordering. These are evidence limits, not strategy misses. |
+| Candidate-family limitation | Latest run contains two fixed Range-Attack policies. Full volume/cadence authority, full depth, independent causal shape mapping, and authoritative bookmaker/FV are not bound. Macro-hold still permits headroom +1 and maker-safety down-moves; macro-micro is only its frozen limited mapping. | `C=132/125`, naked 237/240, and no-credit 336/340 describe these policies. They do not bound the corpus, the market, or the complete OS. |
+| Genuine observed market structure | Inverse legs reach their own divots at different times; median gap 41-62 minutes. Per-leg negative capture was 45-54% and 55% on the strongest arm, while IC collapsed. One-shot queue-surrendering reaim was weak. Posted orders at chosen passive prices often did not receive a lawful credited fill. | Preserve asynchronous orientation and combined headroom. Study why the policy missed offered range/capacity; do not reimpose simultaneous posting or both-negative gating. |
+
+#### SETTLED — DO NOT PAY TO DISCOVER THESE AGAIN
+
+1. The target is asynchronous pair completion inside Window 1, not simultaneous purchase.
+2. Drift/range opportunity is abundant in the corpus; the historical macro surfaces already prove existence and category/cell variation.
+3. The live decision surface is bid, ask, last trade, chronological prints, displayed chain/depth, volume, cadence, and spread. Constructed mids and prints substituted for BBO remain forbidden.
+4. Macro history supplies assumptions; micro tape supplies confirmation and timing. Neither alone is the OS.
+5. PC is combined-negative and may contain a positive sibling. IC is never a PC gate.
+6. The 15-16% latest C/D is frozen-policy completion, not opportunity availability.
+7. Round 3 settled presence wiring. Round 4 settled strict-ask crediting and event-specific headroom arithmetic. Neither needs another audit absent a code change.
+8. Macro direction never vetoes microstructure opportunity. A riser can pull back, a faller can bounce and re-divot, and perfectly inverse pair movement still contains local price/volume/depth episodes on both legs. Every post-first-leg opportunity census must scan the complete chronological tick path, including repeated visits to the same X and local divot episodes; no climb/fall/mirror label may classify an event as “no opportunity.”
+
+#### FIRST ACTUAL TUNING INSTRUCTION — T1 POST-FIRST-LEG RESPONSE AND PERSISTENCE
+
+The measurement and attribution layers are settled. T1 changes only common, already-BOUND post-first-leg machinery; first-leg discovery/selection and the no-fill counterfactual population remain untouched so causal contribution stays readable.
+
+1. After a credited first fill, arm the sibling immediately and require an explicit receipt-keyed decision at every later lawful episode: `HOLD`, `PLACE`, `REPRICE`, or named `NO_CALL`. A decision created at an episode becomes eligible only strictly afterward; it may never claim the triggering receipt as its fill.
+2. When no sibling exposure exists, add a deterministic maker-safe headroom target derived from the contemporaneous external BBO and realized `b2_max`, limited to the existing at-most-+1 improvement law. It complements the frozen macro target; it does not fabricate BBO or impose IC.
+3. Once exposed, keep the sibling order at its existing X while it remains inside combined headroom, maker-safe, and inside guarded Window 1. Suppress headroom/LIVE-AIM movement and sub-horizon termination merely because a newer target exists. Credit strict-ask evidence before any lawful cancel/reprice.
+4. Reprice or terminate only when the resting X becomes combined-budget unlawful, maker-unsafe after accounting, evidence-invalid, filled, or reaches the authoritative guarded right boundary. Every change needs the exact causal reason and receipt.
+5. Freeze two macro regimes across four causal variants—response-only, target-completeness-only, persistence-only, and full stack—without scoring. The passed 24/4/17 attribution rows are acceptance fixtures, never hard-coded event exceptions.
+
+This first tuning does not alter initial first-leg behavior, does not claim the 65/68 no-fill counterfactual paths, and does not use ABSENT or PROXIED inputs as new authority. It tests whether the common post-first-leg OS can consume the lawful range already proven in the tape.
+
+**Role split:** Cursor Codex implements and freezes the additions-only T1 PRE-RUN. Cursor Claude Code audits causal timing, target arithmetic, persistence, no-same-receipt credit, lineage, and deterministic regeneration before any scoring execution.
+
 ### 2026-07-20 LATE · LIVE DEFECT: RE-BUY AFTER CASHING — THE PHANTOM DROP KILLED (operator's catch; my regression, same-hour fix)
 
 **The charge (operator, live):** multiple buy orders on positions after selling live at exits — Junpei Yamasaki the named game. **The trace (ICHYAM-YAM):** exits @64 filled = the leg CASHED; `check_fills` had not booked the sell (per-order poll starvation, the named unbooked-fill root); **the phantom-position tooth I shipped hours earlier read engine-5 vs exchange-0 on a live market and DROPPED the engine's position record** (10:29:19) — erasing the cycle count and the tombstone with it; the router re-conceived the leg as fresh 7 seconds later and **re-bought: 5@37 → 5@45 → filled 5@48**, posting a fresh @59 exit. The tooth's own siblings (`naked_leg_defect`, `unbooked_fill_defect`) named the true class in the same window while the drop branch acted on the wrong one.

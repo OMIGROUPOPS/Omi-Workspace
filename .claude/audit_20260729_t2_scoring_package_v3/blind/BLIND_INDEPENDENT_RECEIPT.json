@@ -1,0 +1,114 @@
+{
+ "boundary": {
+  "flat_vs_raw_mismatches": [],
+  "flattened_rows_lack_guard_band": 804,
+  "raw_rows": 804,
+  "source_class_census": {
+   "clean_causal_interval": 31,
+   "contradictory": 14,
+   "live_by_only": 52,
+   "official_exact": 234,
+   "quantized_late_detection_proxy": 453,
+   "schedule_only": 20
+  },
+  "source_record_sha256_differs": 0,
+  "source_record_sha256_matches": 804,
+  "status_census": {
+   "censored": 85,
+   "contradictory": 14,
+   "positive": 705
+  }
+ },
+ "lineage": {
+  "audit_parent": "e4e57baca0c2172244e63f45b2086f2ef4df53e9",
+  "failed_results": "3f8fa0fb372c9e89fa97f89fd26156892745afe1",
+  "failed_results_changed_paths": "5 additions (failure artifacts only)",
+  "failed_results_parent": "b73679edc9186eb72236cd1bee5f886ac141cac4",
+  "v3": "a758279184ab0f367a3ce74a69da851608645e19",
+  "v3_changed_paths": "22 additions, 0 modifications, 0 deletions",
+  "v3_parent": "b73679edc9186eb72236cd1bee5f886ac141cac4"
+ },
+ "phase": "PHASE1_BLIND",
+ "population_joins": {
+  "boundary_ids_equal_event_ids": true,
+  "duplicates_missing_extras": "none_detected_in_any_key_join",
+  "events": 804,
+  "fill_events_within_D": true,
+  "fill_keys_unique": true,
+  "fill_rows": 3252,
+  "fit_postfit": {
+   "fit": 525,
+   "postfit": 279
+  },
+  "floor_leg_keys_equal_1608": true,
+  "floor_rows": 1608,
+  "legs": 1608,
+  "provenance_events_within_D": true,
+  "provenance_rows": 4170,
+  "regret_candidates": 8,
+  "regret_events_within_D": true,
+  "regret_keys_unique": true,
+  "regret_rows": 12864,
+  "regret_rows_per_candidate_uniform": true
+ },
+ "references": {
+  "availability": {
+   "available": 1307,
+   "unavailable": 301
+  },
+  "available_source_class_census": {
+   "clean_causal_interval": 35,
+   "official_exact": 436,
+   "quantized_late_detection_proxy": 836
+  },
+  "differing_price_tie_legs_ambiguous": 64,
+  "latest_timestamp_tie_size_census": {
+   "1": 1099,
+   "10": 1,
+   "12": 1,
+   "15": 2,
+   "17": 2,
+   "18": 1,
+   "2": 141,
+   "3": 53,
+   "4": 29,
+   "5": 13,
+   "6": 18,
+   "7": 8,
+   "8": 3
+  },
+  "logical_output_sha256_auditor_form": "973336ec93ab6cb6913fc96efe3f364b0662cb92129a859018751a9282322190",
+  "no_schedule_carried_midpoint_or_receipt_id_substitution": true,
+  "same_price_tie_legs": 208,
+  "unavailable_reasons": {
+   "ambiguous_latest_timestamp_prices": 64,
+   "boundary_not_positive": 170,
+   "contradictory_boundary": 28,
+   "window1_close_reference_missing": 39
+  },
+  "unique_event_legs": 1608
+ },
+ "results_directory_created": false,
+ "scorer_invocations": 0,
+ "v2_failure_reproduction": {
+  "first_affected_event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+  "flattened_row_error": "positive boundary lacks V5 guard artifact",
+  "raw_row_cutoff_ts": 1783846800.0,
+  "raw_row_status": "positive",
+  "repaired_seam_first_event_references": [
+   {
+    "available": true,
+    "price": 78,
+    "reason": null
+   },
+   {
+    "available": true,
+    "price": 22,
+    "reason": null
+   }
+  ]
+ },
+ "v3_files_opened": [],
+ "v3_files_unopened_count": 22,
+ "v3_files_unopened_statement": "At freeze time, ZERO of the 22 files added by a7582791 were opened: no V3 source, test, contract, manifest, receipt, report, schema, or the FROZEN_WINDOW1_CLOSE_REFERENCE_LEDGER.jsonl.gz. Inputs were exclusively the b73679ed parent tree (raw V5 ledger, flattened V1 boundary ledger, V1/V2 package ledgers, adapter law sources), the preserved V2 failure artifacts at 3f8fa0fb, and the authorized private development inputs."
+}

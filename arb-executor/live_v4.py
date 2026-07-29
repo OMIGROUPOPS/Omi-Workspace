@@ -3758,10 +3758,16 @@ class LiveV3:
         if not bmap:
             return
         C = self.__dict__.setdefault("_bcasc_state", {})
+        tracked = set(self.positions)
+        if self.config.get("recognition_before_place", False):
+            tracked.update(
+                tk for tk in self._window_open
+                if self.get_category(tk) is not None
+            )
         # purge legs the engine no longer tracks
-        for tk in [t for t in C if t not in self.positions]:
+        for tk in [t for t in C if t not in tracked]:
             C.pop(tk, None)
-        for tk, pos in list(self.positions.items()):
+        for tk in sorted(tracked):
             try:
                 cat = self.get_category(tk)
                 cm = (bmap or {}).get(cat)
@@ -4583,7 +4589,10 @@ class LiveV3:
         # with the reason on the dossier. Every steer logs old-vs-cohort,
         # cohort named. Downstream clamps (band, caps, floors) unchanged.
         if (self.config.get("cohort_steer_live", False)
-                and not _role_riser):
+                and (
+                    not _role_riser
+                    or self.config.get("cohort_steer_riser", False)
+                )):
             try:
                 _cc, _ck = self._cohort_read(cat, False, anchor_price)
                 if _cc and _cc.get("refuse"):
@@ -11301,6 +11310,24 @@ class LiveV3:
                 # prices another entry. Orientation layers in when its own
                 # bar clears (orientation_live, dark); sizing dark pending
                 # the operator's separate word.
+                if self.config.get("recognition_before_place", False):
+                    _bc_leg9 = self.__dict__.setdefault(
+                        "_bcasc_state", {}).get(tk) or {}
+                    _bc_pair9 = self.__dict__.setdefault(
+                        "_bcasc_pair", {}).get(et)
+                    if not (_bc_leg9.get("band") and _bc_pair9):
+                        _rw9 = self.__dict__.setdefault(
+                            "_recognition_wait_logged", set())
+                        if tk not in _rw9:
+                            _rw9.add(tk)
+                            self._log("recognition_wait_before_place", {
+                                "event": et,
+                                "leg_band_ready": bool(_bc_leg9.get("band")),
+                                "pair_ready": bool(_bc_pair9),
+                                "law": "wait for drift/band recognition "
+                                       "before PATH placement",
+                            }, ticker=tk)
+                        continue
                 if _sv9 is None:
                     try:
                         _sv9 = self._selector_verdict(cat, current_price)
@@ -11323,6 +11350,24 @@ class LiveV3:
                                         tts_min=round(time_to_start / 60),
                                         anchor_src=anchor_src,
                                         lt_age=round(lt_age_sec, 1))
+                    continue
+                if (self.config.get("contention_drop_enforced", False)
+                        and (_sv9 or {}).get("selector") == "DROP"):
+                    self._log("contention_drop_refused", {
+                        "event": et,
+                        "cat": cat,
+                        "discovery": current_price,
+                        "selector": "DROP",
+                        "page": (_sv9 or {}).get("page"),
+                        "law": "selector DROP is a placement veto",
+                    }, ticker=tk)
+                    self._entry_dossier(
+                        tk, et, cat, current_price, None,
+                        "refused:contention_drop", sv9=_sv9,
+                        pl9=None, regime=regime,
+                        tts_min=round(time_to_start / 60),
+                        anchor_src=anchor_src,
+                        lt_age=round(lt_age_sec, 1))
                     continue
                 if True:
                     _pa9 = max(1, int(round(current_price - _d509)))
@@ -14711,7 +14756,7 @@ class LiveV3:
             for tk, orders in ord_map.items():
                 buys = [o for o in orders
                         if o.get("action") == "buy"
-                        and o.get("oid") not in _exempt14]
+                        and o.get("order_id") not in _exempt14]
                 if not buys or self.get_category(tk) is None:
                     seen_a.pop(tk, None)
                     continue
@@ -14730,7 +14775,7 @@ class LiveV3:
                 # lock lesson).
                 seen_o = seen.setdefault("era_orphan", {})
                 for o in buys:
-                    _oid14 = o.get("oid")
+                    _oid14 = o.get("order_id")
                     if _oid14 in _known or _oid14 in getattr(
                             self, "_bot_order_ids", set()):
                         continue
@@ -14740,7 +14785,7 @@ class LiveV3:
                     if not _mine14:
                         if n_o == 1:
                             self._log("authority_foreign_order_flag", {
-                                "px": o.get("px"), "qty": o.get("qty"),
+                                "px": o.get("price"), "qty": o.get("qty"),
                                 "oid": (_oid14 or "")[:13],
                                 "law": "unattributable = manual book "
                                        "until proven; flag never "
@@ -14754,7 +14799,7 @@ class LiveV3:
                         await self.cancel_order(
                             tk, _oid14, "authority_era_orphan")
                         self._log("authority_era_orphan_cancelled", {
-                            "px": o.get("px"), "qty": o.get("qty"),
+                            "px": o.get("price"), "qty": o.get("qty"),
                             "oid": (_oid14 or "")[:13],
                             "authority": auth,
                             "lineage": "order_fingerprints"}, ticker=tk)
@@ -14769,13 +14814,13 @@ class LiveV3:
                     # at its own sealed number; the pair completes at
                     # held+fish combined, graded honestly.
                     _stk15 = [o for o in buys
-                              if o.get("oid") in _known.union(
+                              if o.get("order_id") in _known.union(
                                   getattr(self, "_bot_order_ids",
                                           set()))]
                     for o in _stk15:
                         try:
                             await self.cancel_order(
-                                tk, o["oid"], "authority_hold_as_is")
+                                tk, o["order_id"], "authority_hold_as_is")
                             sib15 = self._sibling_ticker_any(tk)
                             _sf15 = (self._price_authority(sib15)[2]
                                      if sib15 else None)
@@ -14787,7 +14832,7 @@ class LiveV3:
                                 "held_qty": getattr(pos, "entry_qty",
                                                     0),
                                 "held_basis": _hb15,
-                                "stack_px_withdrawn": o.get("px"),
+                                "stack_px_withdrawn": o.get("price"),
                                 "sibling_fish": _sf15,
                                 "honest_combined": (_hb15 + _sf15)
                                 if _sf15 else None,
@@ -14804,8 +14849,8 @@ class LiveV3:
                     seen_a.pop(tk, None)
                     continue
                 bad = [o for o in buys
-                       if int(o.get("px", -1)) != int(fish)
-                       and o.get("oid") in _known.union(
+                       if int(o.get("price", -1)) != int(fish)
+                       and o.get("order_id") in _known.union(
                            getattr(self, "_bot_order_ids", set()))]
                 if not bad:
                     if buys:
@@ -14815,8 +14860,9 @@ class LiveV3:
                 n9 = seen_a[tk] = seen_a.get(tk, 0) + 1
                 self._log("authority_mismatch_defect", {
                     "band": band, "fish": fish,
-                    "resting": [{"px": o.get("px"), "qty": o.get("qty"),
-                                 "oid": (o.get("oid") or "")[:13]}
+                    "resting": [{"px": o.get("price"),
+                                 "qty": o.get("qty"),
+                                 "oid": (o.get("order_id") or "")[:13]}
                                 for o in bad][:4],
                     "consecutive_cycles": n9,
                     "law": "ONE-AUTHORITY 07-20 PM: placing path != "
@@ -14834,7 +14880,7 @@ class LiveV3:
                         seen_a.pop(tk, None)
                         continue        # filled in the race — booked,
                                         # exits govern now
-                    old14 = bad[0].get("px")
+                    old14 = bad[0].get("price")
                     qty14 = int(bad[0].get("qty") or 0) or \
                         int(self.entry_size)
                     oid14, resp14 = await self.place_order(

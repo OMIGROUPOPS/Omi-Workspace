@@ -686,6 +686,37 @@ def install_path_aim_counterfactual(bot, dial: dict | None) -> dict | None:
     }
 
 
+def install_counterfactual(bot, dial: dict | None) -> dict | None:
+    """Change exactly one named dial while leaving live_v4 downstream intact."""
+    if not dial:
+        return None
+    if dial.get("kind") == "path_aim_shift":
+        return install_path_aim_counterfactual(bot, dial)
+    supported = {
+        "contention_drop_enforced": (
+            "selector DROP is a placement veto"
+        ),
+        "recognition_before_place": (
+            "PATH placement waits until drift/band recognition is available"
+        ),
+        "cohort_steer_riser": (
+            "cohort steering may influence the riser as well as the faller"
+        ),
+    }
+    kind = str(dial.get("kind"))
+    if kind not in supported:
+        raise ValueError(f"unsupported counterfactual dial: {dial}")
+    before = bool(bot.config.get(kind, False))
+    bot.config[kind] = True
+    return {
+        "kind": kind,
+        "config_key": kind,
+        "before": before,
+        "after": True,
+        "law": supported[kind],
+    }
+
+
 async def replay_one(
     game: dict,
     print_ranges: dict[str, list[int]],
@@ -720,7 +751,7 @@ async def replay_one(
     restore_sqlite, database_accesses = install_vps_database_replay(clock)
     source_hash_before = _sha256(LIVE_V4)
     bot = module.LiveV3()
-    applied_counterfactual = install_path_aim_counterfactual(bot, counterfactual)
+    applied_counterfactual = install_counterfactual(bot, counterfactual)
     source_hash_after_init = _sha256(LIVE_V4)
     if source_hash_before != source_hash_after_init:
         raise RuntimeError("live_v4.py changed during import/initialization")
@@ -1185,8 +1216,94 @@ def _counterfactual_outcome(result: dict) -> dict:
     }
 
 
+def _generic_counterfactual_markdown(
+    diff: dict, baseline: dict, variant: dict
+) -> str:
+    dial = diff["dial"]
+    first = diff["first_divergence"]
+    first_row = (
+        first.get("baseline")
+        if first and isinstance(first.get("baseline"), dict)
+        else None
+    )
+    first_row = first_row or (
+        first.get("counterfactual")
+        if first and isinstance(first.get("counterfactual"), dict)
+        else None
+    )
+    first_event = (first_row or {}).get("event") or (first or {}).get("kind")
+    first_ts = (first_row or {}).get("ts")
+    bo = diff["outcomes"]["baseline"]
+    co = diff["outcomes"]["counterfactual"]
+    lines = [
+        f"# Counterfactual replay - {diff['event']}",
+        "",
+        "Same frozen tape, same clock, same live_v4 source, one changed dial.",
+        "",
+        "## Dial",
+        "",
+        f"- Dial: `{dial['kind']}`",
+        f"- Setting: `{dial.get('before')}` -> `{dial.get('after')}`",
+        f"- Rule: {dial['law']}",
+        "",
+        "## First separation",
+        "",
+        f"- Event: `{first_event}`",
+        f"- Replay timestamp: `{first_ts}`",
+        "",
+        "## Outcome",
+        "",
+        "| Run | Pair complete | Filled + resting pair cost | Headroom |",
+        "|---|---:|---:|---:|",
+        (
+            f"| Baseline | {bo['pair_completed']} | "
+            f"{bo['filled_plus_resting_pair_cost']}c | "
+            f"{bo['remaining_headroom']}c |"
+        ),
+        (
+            f"| Counterfactual | {co['pair_completed']} | "
+            f"{co['filled_plus_resting_pair_cost']}c | "
+            f"{co['remaining_headroom']}c |"
+        ),
+        "",
+        "### Leg outcomes",
+        "",
+        "| Leg | Baseline | Counterfactual |",
+        "|---|---|---|",
+    ]
+    for name in sorted(bo["legs"]):
+        b = bo["legs"][name]
+        c = co["legs"][name]
+        lines.append(
+            f"| {name} | filled={b['filled']}, fill={b['fill_price']}, "
+            f"resting={b['final_resting_buy']} | "
+            f"filled={c['filled']}, fill={c['fill_price']}, "
+            f"resting={c['final_resting_buy']} |"
+        )
+    lines += [
+        "",
+        "## Downstream layer diff",
+        "",
+        "| Layer | Changed trace blocks | Events affected |",
+        "|---|---:|---|",
+    ]
+    for layer, row in diff["layers"].items():
+        lines.append(
+            f"| {layer} | {row['differences']} | {', '.join(row['events'])} |"
+        )
+    lines += [
+        "",
+        "The complete aligned downstream diff is in `COUNTERFACTUAL_DIFF.json`; "
+        "the baseline and counterfactual trace files remain separate and complete.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 def _counterfactual_markdown(diff: dict, baseline: dict, variant: dict) -> str:
     dial = diff["dial"]
+    if dial.get("kind") != "path_aim_shift":
+        return _generic_counterfactual_markdown(diff, baseline, variant)
     leg = dial["leg"]
     base_aim = _first_trace(baseline, "trendpath_live_aim", leg)
     variant_aim = _first_trace(variant, "trendpath_live_aim", leg)
@@ -1290,6 +1407,15 @@ def parse_args() -> argparse.Namespace:
             "example: ALV=+2"
         ),
     )
+    p.add_argument(
+        "--counterfactual-dial",
+        choices=(
+            "contention_drop_enforced",
+            "recognition_before_place",
+            "cohort_steer_riser",
+        ),
+        help="Run baseline plus one named live_v4 decision-dial counterfactual",
+    )
     p.add_argument("--out", type=Path, default=DEFAULT_OUT)
     return p.parse_args()
 
@@ -1310,33 +1436,40 @@ async def async_main() -> int:
     args = parse_args()
     if not args.event and not args.all:
         raise SystemExit("choose --event EVENT_ID or --all")
-    if args.counterfactual_aim_shift and (not args.event or args.all):
+    counterfactual_requested = bool(
+        args.counterfactual_aim_shift or args.counterfactual_dial
+    )
+    if args.counterfactual_aim_shift and args.counterfactual_dial:
+        raise SystemExit("choose exactly one counterfactual dial")
+    if counterfactual_requested and (not args.event or args.all):
         raise SystemExit("counterfactual replay requires exactly one --event")
     args.out.mkdir(parents=True, exist_ok=True)
     games = load_scope(args.event)
     ranges = build_print_index(PRINTS, args.out / "_input_index" / "prints_by_ticker.json")
 
-    if args.counterfactual_aim_shift:
-        leg, shift = _parse_aim_shift(args.counterfactual_aim_shift)
+    if counterfactual_requested:
         game = games[0]
-        if leg not in {row["leg"] for row in game["legs"]}:
-            raise SystemExit(f"leg {leg} is not in {game['event']}")
         root = args.out / "counterfactual" / game["event"]
         print(f"[baseline] replay {game['event']}", flush=True)
         baseline = await replay_one(game, ranges, root / "baseline")
-        baseline_aim = _first_trace(baseline, "trendpath_live_aim", leg)
-        if baseline_aim is None:
-            raise SystemExit(f"baseline produced no trendpath aim for leg {leg}")
-        dial = {
-            "kind": "path_aim_shift",
-            "leg": leg,
-            "page": baseline_aim["details"]["page"],
-            "shift_cents": shift,
-        }
-        print(
-            f"[counterfactual] replay {game['event']} {leg} aim {shift:+d}c",
-            flush=True,
-        )
+        if args.counterfactual_aim_shift:
+            leg, shift = _parse_aim_shift(args.counterfactual_aim_shift)
+            if leg not in {row["leg"] for row in game["legs"]}:
+                raise SystemExit(f"leg {leg} is not in {game['event']}")
+            baseline_aim = _first_trace(baseline, "trendpath_live_aim", leg)
+            if baseline_aim is None:
+                raise SystemExit(f"baseline produced no trendpath aim for leg {leg}")
+            dial = {
+                "kind": "path_aim_shift",
+                "leg": leg,
+                "page": baseline_aim["details"]["page"],
+                "shift_cents": shift,
+            }
+            dial_label = f"{leg} aim {shift:+d}c"
+        else:
+            dial = {"kind": args.counterfactual_dial}
+            dial_label = str(args.counterfactual_dial)
+        print(f"[counterfactual] replay {game['event']} {dial_label}", flush=True)
         variant = await replay_one(
             game,
             ranges,

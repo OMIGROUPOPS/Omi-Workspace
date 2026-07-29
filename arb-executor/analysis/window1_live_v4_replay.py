@@ -27,6 +27,7 @@ import re
 import shutil
 import sqlite3
 import sys
+import traceback
 from collections import defaultdict
 from dataclasses import dataclass
 from datetime import datetime as _RealDateTime
@@ -164,26 +165,37 @@ def install_vps_database_replay(clock: ReplayClock):
     redirected to the byte-preserved VPS copy, and a connection-local TEMP
     view hides rows until their original ``inserted_at`` timestamp arrives on
     the replay clock.  Every direct ``tennis.db`` read is redirected to the
-    real VPS database copy in read-only mode.  Neither source is ever written.
+    real VPS database snapshot in read-only mode.  If that snapshot is absent,
+    that database access fails rather than inventing a substitute.  The access
+    is recorded so the run remains invalid even where unchanged live_v4 catches
+    the exception and continues.  Neither source is ever written.
     """
     if not OBSERVED_STARTS.exists():
         raise FileNotFoundError(
             f"historical observed-start feed is absent: {OBSERVED_STARTS}"
         )
-    if not TENNIS_DB.exists() or TENNIS_DB.stat().st_size == 0:
-        raise FileNotFoundError(
-            f"real VPS tennis database is absent: {TENNIS_DB}"
-        )
 
     observed_uri = "file:" + OBSERVED_STARTS.as_posix() + "?mode=ro"
     tennis_uri = "file:" + TENNIS_DB.as_posix() + "?mode=ro"
+    database_accesses: list[dict] = []
 
     def replay_connect(database, *args, **kwargs):
         raw = str(database)
         lowered = raw.replace("\\", "/").lower()
+        callers = [
+            {"function": frame.name, "line": frame.lineno}
+            for frame in traceback.extract_stack()
+            if Path(frame.filename).name == "live_v4.py"
+        ][-3:]
         if lowered.endswith("/observed_starts.db") or (
             "observed_starts.db?" in lowered
         ):
+            database_accesses.append({
+                "ts": clock.time(),
+                "source": "observed_starts.db",
+                "available": True,
+                "callers": callers,
+            })
             observed_kwargs = dict(kwargs)
             observed_kwargs["uri"] = True
             conn = _REAL_SQLITE_CONNECT(
@@ -203,6 +215,18 @@ def install_vps_database_replay(clock: ReplayClock):
             )
             return conn
         if lowered.endswith("/tennis.db") or "tennis.db?" in lowered:
+            available = TENNIS_DB.is_file() and TENNIS_DB.stat().st_size > 0
+            database_accesses.append({
+                "ts": clock.time(),
+                "source": "tennis.db",
+                "available": available,
+                "callers": callers,
+            })
+            if not available:
+                raise FileNotFoundError(
+                    "real VPS tennis database snapshot is absent; "
+                    f"database access blocked at first read: {TENNIS_DB}"
+                )
             tennis_kwargs = dict(kwargs)
             tennis_kwargs["uri"] = True
             return _REAL_SQLITE_CONNECT(
@@ -215,7 +239,7 @@ def install_vps_database_replay(clock: ReplayClock):
     def restore() -> None:
         sqlite3.connect = _REAL_SQLITE_CONNECT
 
-    return restore
+    return restore, database_accesses
 
 
 def build_print_index(path: Path, index_path: Path) -> dict[str, list[int]]:
@@ -357,7 +381,13 @@ def load_scope(event_filter: str | None) -> list[dict]:
         base = ledger[event]
         windows = [leg["price_path"]["window"] for leg in game["legs"].values()]
         if any(
-            not bool(window.get("evaluator_boundary_resolved"))
+            not bool(
+                window.get(
+                    "evaluator_boundary_resolved",
+                    window.get("positive")
+                    and window.get("guarded_cutoff_ts") is not None,
+                )
+            )
             for window in windows
         ):
             raise SystemExit(
@@ -366,8 +396,12 @@ def load_scope(event_filter: str | None) -> list[dict]:
                 "policy horizon"
             )
         left = max(float(w["left_ts"]) for w in windows)
-        right = min(float(w["evaluator_right_ts"]) for w in windows)
-        policy_right = min(float(w["policy_right_ts"]) for w in windows)
+        right = min(float(
+            w.get("evaluator_right_ts", w["guarded_cutoff_ts"])
+        ) for w in windows)
+        policy_right = min(float(
+            w.get("policy_right_ts", w["right_ts"])
+        ) for w in windows)
         out.append(
             {
                 "event": event,
@@ -683,7 +717,7 @@ async def replay_one(
 
     clock = ReplayClock(game["left_ts"])
     module = import_live_v4(clock, run_dir)
-    restore_sqlite = install_vps_database_replay(clock)
+    restore_sqlite, database_accesses = install_vps_database_replay(clock)
     source_hash_before = _sha256(LIVE_V4)
     bot = module.LiveV3()
     applied_counterfactual = install_path_aim_counterfactual(bot, counterfactual)
@@ -878,6 +912,23 @@ async def replay_one(
                 ),
             }
         )
+    for access in database_accesses:
+        if access["available"]:
+            continue
+        callers = access.get("callers") or []
+        caller = callers[-1]["function"] if callers else "unknown"
+        key = ("database", access["source"], caller)
+        if key in seen_breaks:
+            continue
+        seen_breaks.add(key)
+        input_breaks.append({
+            "ts": access["ts"],
+            "source": access["source"],
+            "error": (
+                f"required replay database absent at live_v4.{caller}"
+            ),
+            "callers": callers,
+        })
     input_breaks.sort(key=lambda x: x["ts"])
 
     result = {
@@ -911,8 +962,11 @@ async def replay_one(
             "observed_starts_sha256": _sha256(OBSERVED_STARTS),
             "observed_starts_visibility": "inserted_at <= replay clock",
             "tennis_db_source": str(TENNIS_DB),
-            "tennis_db_sha256": _sha256(TENNIS_DB),
+            "tennis_db_sha256": (
+                _sha256(TENNIS_DB) if TENNIS_DB.is_file() else None
+            ),
             "tennis_db_access": "read_only",
+            "database_accesses": database_accesses,
         },
     }
     (run_dir / "trace.json").write_text(

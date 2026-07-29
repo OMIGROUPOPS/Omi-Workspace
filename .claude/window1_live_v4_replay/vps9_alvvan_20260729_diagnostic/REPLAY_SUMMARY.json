@@ -1,0 +1,33 @@
+{
+  "completions_out_of_804": null,
+  "fill_model": "RESTING_TOUCH_FILL_V1: a resting order fills in full when a later true print or opposite BBO touches or passes its limit; no depth, capacity, or five-contract proof gate.",
+  "first_input_break": {
+    "callers": [
+      {
+        "function": "_v4_entry_anchor",
+        "line": 4551
+      },
+      {
+        "function": "_orientation_prior",
+        "line": 3957
+      },
+      {
+        "function": "_fv_observe_fields",
+        "line": 8409
+      }
+    ],
+    "error": "required replay database absent at live_v4._fv_observe_fields",
+    "source": "tennis.db",
+    "ts": 1783831622.0
+  },
+  "games": 1,
+  "results": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+      "pair_completed": false,
+      "trace_path": "runs/KXATPCHALLENGERMATCH-26JUL12ALVVAN/trace.json"
+    }
+  ],
+  "schema_version": "window1-live-v4-replay-summary-v1",
+  "valid_for_scoring": false
+}

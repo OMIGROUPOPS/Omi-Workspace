@@ -23,6 +23,7 @@ import importlib.util
 import json
 import re
 import shutil
+import sqlite3
 import sys
 from collections import defaultdict
 from dataclasses import dataclass
@@ -46,6 +47,7 @@ MILESTONES = (
     / "start-recovery-v2"
     / "PUBLIC_MILESTONES.normalized.jsonl"
 )
+OBSERVED_STARTS = PRIVATE_ROOT / "replay-live-v4" / "observed_starts.db"
 TICKS = PRIVATE_ROOT / "fit-local" / "ticks"
 GRID = REPO / ".claude" / "window1_t2_iteration_history" / "WINDOW1_T2_GAME_GRID.json"
 DEFAULT_OUT = REPO / ".claude" / "window1_live_v4_replay"
@@ -56,6 +58,7 @@ FILL_MODEL = (
     "print or opposite BBO touches or passes its limit; no depth, capacity, "
     "or five-contract proof gate."
 )
+_REAL_SQLITE_CONNECT = sqlite3.connect
 
 
 def _iso_ts(value: str) -> float:
@@ -146,6 +149,48 @@ def replay_datetime_class(clock: ReplayClock) -> type[_RealDateTime]:
             )
 
     return ReplayDateTime
+
+
+def install_observed_starts_replay(clock: ReplayClock):
+    """Expose the preserved live bell DB with its original time visibility.
+
+    live_v4's reader remains unchanged.  Its read-only SQLite connection is
+    redirected to the byte-preserved VPS copy, and a connection-local TEMP
+    view hides rows until their original ``inserted_at`` timestamp arrives on
+    the replay clock.  The source database is never written.
+    """
+    if not OBSERVED_STARTS.exists():
+        raise FileNotFoundError(
+            f"historical observed-start feed is absent: {OBSERVED_STARTS}"
+        )
+
+    source_uri = "file:" + OBSERVED_STARTS.as_posix() + "?mode=ro"
+
+    def replay_connect(database, *args, **kwargs):
+        raw = str(database)
+        if kwargs.get("uri") and "mode=ro" in raw:
+            conn = _REAL_SQLITE_CONNECT(source_uri, *args, **kwargs)
+            conn.create_function(
+                "replay_visible_at",
+                0,
+                lambda: _RealDateTime.fromtimestamp(
+                    clock.time(), tz=ET
+                ).strftime("%Y-%m-%d %H:%M:%S"),
+            )
+            conn.execute(
+                "CREATE TEMP VIEW observed_starts AS "
+                "SELECT * FROM main.observed_starts "
+                "WHERE inserted_at <= replay_visible_at()"
+            )
+            return conn
+        return _REAL_SQLITE_CONNECT(database, *args, **kwargs)
+
+    sqlite3.connect = replay_connect
+
+    def restore() -> None:
+        sqlite3.connect = _REAL_SQLITE_CONNECT
+
+    return restore
 
 
 def build_print_index(path: Path, index_path: Path) -> dict[str, list[int]]:
@@ -554,6 +599,7 @@ async def replay_one(game: dict, print_ranges: dict[str, list[int]], out_dir: Pa
 
     clock = ReplayClock(game["left_ts"])
     module = import_live_v4(clock, run_dir)
+    restore_sqlite = install_observed_starts_replay(clock)
     source_hash_before = _sha256(LIVE_V4)
     bot = module.LiveV3()
     source_hash_after_init = _sha256(LIVE_V4)
@@ -774,6 +820,9 @@ async def replay_one(game: dict, print_ranges: dict[str, list[int]], out_dir: Pa
         "input_counts": {
             "bbo_ticks": sum(len(x) for x in tick_rows.values()),
             "true_prints": sum(len(x) for x in window_prints.values()),
+            "observed_starts_source": str(OBSERVED_STARTS),
+            "observed_starts_sha256": _sha256(OBSERVED_STARTS),
+            "observed_starts_visibility": "inserted_at <= replay clock",
         },
     }
     (run_dir / "trace.json").write_text(
@@ -783,6 +832,7 @@ async def replay_one(game: dict, print_ranges: dict[str, list[int]], out_dir: Pa
         bot.log_file.close()
     except Exception:
         pass
+    restore_sqlite()
     return result
 
 

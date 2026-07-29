@@ -1,7 +1,7 @@
 # TODAY'S SHEET — July 29, 2026 (session 12:00 AM ET onward; ◐ = carried)
-(C-TODAY-SHEET v1 — render rules vaulted + census-enforced; generated 05:55 AM ET)
+(C-TODAY-SHEET v1 — render rules vaulted + census-enforced; generated 11:00 AM ET)
 
-**NAV $682.21** · session realized: TAIL +0¢ | PATH +0¢ · wagered today $0.00 · **P-offered (executor) 100% (2 filled / 0 posted-unfilled)** · **P-market (funnel) 0.2% (2 filled legs / ~858 listed legs)**
+**NAV $682.26** · session realized: TAIL +0¢ | PATH +0¢ · wagered today $0.00 · **P-offered (executor) 100% (2 filled / 0 posted-unfilled)** · **P-market (funnel) 0.2% (2 filled legs / ~858 listed legs)**
 **PRE-HORIZON METER** · 145/856 legs' true W1 low printed before T−8h · median cents left outside the horizon: 1¢
 
 ## ① SETTLED (0)

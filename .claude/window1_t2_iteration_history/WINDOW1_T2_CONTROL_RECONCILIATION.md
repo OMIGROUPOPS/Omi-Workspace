@@ -14,6 +14,8 @@ Holdout sealed. No live, exchange, or trading-system access.
 
 Of the 100 pre-fee sub-par policy completions, 13 survive the actual fee curve; 87 do not.
 
+PC/IC/S, pre-fee: **115/37/100**. PC/IC/S, actual fee curve: **37/12/13**.
+
 Policy any-price completions: **131**. Full-tape proven any-price opportunities: **692**. Evidence censored/unproved: **112**.
 
 ## Control regret map

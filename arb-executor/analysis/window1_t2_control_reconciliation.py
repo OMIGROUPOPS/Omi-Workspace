@@ -65,6 +65,29 @@ def control_reconciliation(rows: list[dict[str, Any]]) -> dict[str, Any]:
         ]
         total_fee = sum(fees)
         net_cost = row["combined_entry_cost_cents"] + total_fee / QTY
+        references_complete = all(
+            leg["window1_close_cents"] is not None for leg in legs
+        )
+        net_leg_deltas_total_cents = [
+            (
+                (
+                    int(leg["accounting_fill_price_cents"])
+                    - int(leg["window1_close_cents"])
+                )
+                * QTY
+                + fee
+            )
+            for leg, fee in zip(legs, fees)
+        ] if references_complete else []
+        actual_fee_pc = bool(
+            references_complete
+            and sum(net_leg_deltas_total_cents) < 0
+        )
+        actual_fee_ic = bool(
+            references_complete
+            and all(delta < 0 for delta in net_leg_deltas_total_cents)
+        )
+        actual_fee_s = row["combined_entry_cost_cents"] * QTY + total_fee < 500
         policy_net.append(net_cost)
         policy_fee_cents.append(total_fee)
         completed_detail.append(
@@ -81,6 +104,12 @@ def control_reconciliation(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 "combined_net_cents_per_contract": net_cost,
                 "prefee_subpar": row["combined_entry_cost_cents"] < 100,
                 "net_subpar": net_cost < 100,
+                "prefee_PC": row["PC"],
+                "prefee_IC": row["IC"],
+                "prefee_S": row["S"],
+                "actual_fee_PC": actual_fee_pc,
+                "actual_fee_IC": actual_fee_ic,
+                "actual_fee_S": actual_fee_s,
             }
         )
 
@@ -196,6 +225,22 @@ def control_reconciliation(rows: list[dict[str, Any]]) -> dict[str, Any]:
         },
         "policy": {
             "completed_any_price": len(completed),
+            "prefee_PC_IC_S": {
+                "PC": sum(row["PC"] is True for row in completed),
+                "IC": sum(row["IC"] is True for row in completed),
+                "S": sum(row["S"] is True for row in completed),
+            },
+            "actual_fee_PC_IC_S": {
+                "PC": sum(
+                    item["actual_fee_PC"] for item in completed_detail
+                ),
+                "IC": sum(
+                    item["actual_fee_IC"] for item in completed_detail
+                ),
+                "S": sum(
+                    item["actual_fee_S"] for item in completed_detail
+                ),
+            },
             "prefee_frontier": frontier(policy_prefee),
             "actual_fee_frontier": frontier(policy_net),
             "prefee_subpar_count": len(prefee_subpar),
@@ -250,6 +295,17 @@ def render_markdown(result: dict[str, Any], ledger: Path) -> str:
             f"Of the {policy['prefee_subpar_count']} pre-fee sub-par policy "
             f"completions, {policy['actual_fee_subpar_survivor_count']} survive "
             f"the actual fee curve; {policy['subpar_lost_to_fees']} do not."
+        ),
+        "",
+        (
+            "PC/IC/S, pre-fee: "
+            f"**{policy['prefee_PC_IC_S']['PC']}/"
+            f"{policy['prefee_PC_IC_S']['IC']}/"
+            f"{policy['prefee_PC_IC_S']['S']}**. "
+            "PC/IC/S, actual fee curve: "
+            f"**{policy['actual_fee_PC_IC_S']['PC']}/"
+            f"{policy['actual_fee_PC_IC_S']['IC']}/"
+            f"{policy['actual_fee_PC_IC_S']['S']}**."
         ),
         "",
         (

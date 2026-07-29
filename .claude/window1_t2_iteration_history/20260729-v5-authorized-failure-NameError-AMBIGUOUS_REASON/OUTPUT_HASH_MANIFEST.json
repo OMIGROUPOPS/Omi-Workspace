@@ -1,0 +1,22 @@
+{
+  "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v5",
+  "outputs": {
+    "EXECUTION_FAILURE.json": {
+      "bytes": 669,
+      "sha256": "5507dcce58c4ea0f3f34211956c4d5ee82f03c09d023002ca5c5b2ea3def12d4"
+    },
+    "EXECUTION_START_RECEIPT.json": {
+      "bytes": 1408,
+      "sha256": "3ffd66b9f10d85ff1a3a54a5f2e328e96f68239d5094ebf927c4f13a6f04620a"
+    },
+    "PROGRESS.log": {
+      "bytes": 177,
+      "sha256": "5f2f44907ea8891d14a9fb091372e8ba115eee0a41ccff0a3bda343c5d8d7739"
+    },
+    "STDERR.log": {
+      "bytes": 321,
+      "sha256": "6306d59945d3d921a3c678787d24c2e3cf507c9724bfdeb7fcb7ec08b23d3f0f"
+    }
+  },
+  "schema_version": "window1-t2-scoring-runner-v5-output-hashes-v1"
+}

@@ -1,0 +1,6 @@
+NameError: name 'AMBIGUOUS_REASON' is not defined
+Traceback (most recent call last):
+  File "C:\Users\omigr\OMI-Workspace-codex-w1-t2-scorepkg-v5\arb-executor\analysis\window1_t2_scoring_runner_v4.py", line 648, in execute
+    == AMBIGUOUS_REASON
+       ^^^^^^^^^^^^^^^^
+NameError: name 'AMBIGUOUS_REASON' is not defined

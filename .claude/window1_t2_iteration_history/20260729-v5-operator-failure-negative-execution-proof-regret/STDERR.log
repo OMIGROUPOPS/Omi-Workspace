@@ -1,0 +1,8 @@
+T2ScoringError: execution-proof regret is negative
+Traceback (most recent call last):
+  File "C:\Users\omigr\OMI-Workspace-codex-w1-t2-scorepkg-v5\arb-executor\analysis\window1_t2_scoring_runner_v4.py", line 630, in execute
+    gaps = regret_values(
+           ^^^^^^^^^^^^^^
+  File "C:\Users\omigr\OMI-Workspace-codex-w1-t2-scorepkg-v5\arb-executor\analysis\window1_t2_frontier_regret_scorer_v1.py", line 245, in regret_values
+    raise T2ScoringError("execution-proof regret is negative")
+window1_t2_frontier_regret_scorer_v1.T2ScoringError: execution-proof regret is negative

@@ -1,0 +1,66 @@
+{
+  "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v5",
+  "outputs": {
+    "01_w1_t2__macro_hold__fixed_admission_parent_control_EVENT_LEDGER.jsonl": {
+      "bytes": 4638228,
+      "sha256": "d3e9f6dbff0ab07a8971d044f11509fc02f5b19d523805f16ff1213b7679138a"
+    },
+    "02_w1_t2__macro_hold__non_displacing_target_completeness_EVENT_LEDGER.jsonl": {
+      "bytes": 5210584,
+      "sha256": "4a7c8aa4b051a6f54b975c10257c6d49e7a5d54322608febc5167ee8da5ab643"
+    },
+    "03_w1_t2__macro_hold__target_completeness_evidence_decay_EVENT_LEDGER.jsonl": {
+      "bytes": 5209649,
+      "sha256": "8beaa4a721f9db60220257f36483916060a5992a552b1b1c8f51ee890bc3012c"
+    },
+    "04_w1_t2__macro_hold__full_causal_divot_stack_EVENT_LEDGER.jsonl": {
+      "bytes": 5204343,
+      "sha256": "f6ff9de4b3252ad5a56983f2d1b8325d85f8584a6556c8df578e6957247659ee"
+    },
+    "05_w1_t2__macro_micro__fixed_admission_parent_control_EVENT_LEDGER.jsonl": {
+      "bytes": 4645262,
+      "sha256": "dd1f1bdf15b32d4c2d097286e776fde92809d38fd026e195745b2236a2c99ff4"
+    },
+    "06_w1_t2__macro_micro__non_displacing_target_completeness_EVENT_LEDGER.jsonl": {
+      "bytes": 5254154,
+      "sha256": "cad053c602438d972083ae5a52299d06cb5d7cb64ce42265cc0ea322495f4768"
+    },
+    "07_w1_t2__macro_micro__target_completeness_evidence_decay_EVENT_LEDGER.jsonl": {
+      "bytes": 5265054,
+      "sha256": "8e3d9ec010ad187643ccfad5b2178ef5a04e55b321e0d76276ef2d548a0da276"
+    },
+    "08_w1_t2__macro_micro__full_causal_divot_stack_EVENT_LEDGER.jsonl": {
+      "bytes": 5260057,
+      "sha256": "397ab40005c865d6d0b6087ea35e1580f788fed1a7935dc9d821513f17495bb1"
+    },
+    "EIGHT_CANDIDATE_RESULTS.json": {
+      "bytes": 428838,
+      "sha256": "4da798108d0825619da2d283ca339c99df007ef0bdf798fa9e3808af3f0301f0"
+    },
+    "EXECUTION_MANIFEST.json": {
+      "bytes": 1610,
+      "sha256": "fb5acf3595e62e1cee510e7313861d4220db7e7b6438b2c625b1302b15292899"
+    },
+    "EXECUTION_START_RECEIPT.json": {
+      "bytes": 1338,
+      "sha256": "ca591224d9511e3f2e677bb55e53a164b6564aecda27d0c3cef6903971596109"
+    },
+    "HOLDOUT_NONPRODUCTION_NONACCESS_PROOF.json": {
+      "bytes": 283,
+      "sha256": "a234abf39754d4e50daee65e4f742ffa765c62372c40655e582f4fb7fd46e3c1"
+    },
+    "METRIC_CONSERVATION_REPORT.json": {
+      "bytes": 172,
+      "sha256": "f48cf4db35dd42bea6bfb39743196ef8ec1c5b91c27f1ba7404ca0e6bd80759c"
+    },
+    "OPERATOR_ITERATION_RECEIPT.json": {
+      "bytes": 657,
+      "sha256": "02af5f2b2e344bde98c6e8d9d957129b30496bbd4e032a1390e79883a92db58c"
+    },
+    "PROGRESS.log": {
+      "bytes": 1233,
+      "sha256": "45afe8220984445cd1301cc95a379468851ef654a442dfcb2507c84962db494a"
+    }
+  },
+  "schema_version": "window1-t2-scoring-runner-v5-output-hashes-v1"
+}

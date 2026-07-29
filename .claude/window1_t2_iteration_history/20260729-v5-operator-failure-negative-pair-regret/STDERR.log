@@ -1,0 +1,5 @@
+RunnerError: negative pair execution-proof regret
+Traceback (most recent call last):
+  File "C:\Users\omigr\OMI-Workspace-codex-w1-t2-scorepkg-v5\arb-executor\analysis\window1_t2_scoring_runner_v4.py", line 765, in execute
+    raise RunnerError(
+window1_range_attack_scoring_runner_v1.RunnerError: negative pair execution-proof regret

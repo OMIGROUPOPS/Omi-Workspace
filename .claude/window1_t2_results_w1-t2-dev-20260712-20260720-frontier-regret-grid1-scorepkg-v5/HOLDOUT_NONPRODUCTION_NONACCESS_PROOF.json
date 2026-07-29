@@ -1,0 +1,7 @@
+{
+  "holdout_opened": false,
+  "live_or_production_access": false,
+  "network_calls": 0,
+  "only_results_directory_written": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v5",
+  "schema_version": "window1-t2-scoring-runner-v5-nonaccess-v1"
+}

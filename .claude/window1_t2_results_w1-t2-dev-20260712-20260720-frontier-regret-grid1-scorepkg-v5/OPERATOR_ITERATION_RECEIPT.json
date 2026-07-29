@@ -1,0 +1,14 @@
+{
+  "credited_fill_is_effective_proven_floor_when_better": true,
+  "holdout_opened": false,
+  "lap_id": "lap3-parent-authoritative-additive-t2",
+  "live_or_production_access": false,
+  "metric_summary_D_finalizer_repaired": true,
+  "missing_ambiguous_reason_import_bound": true,
+  "operator_process_change": "same_804_development_games; no per-lap package or audit",
+  "package_commit": "2c5a730ac7fc2f87a2de33fd0ea2aa8f2cfafdae",
+  "parent_fills_authoritative_on_overlap": true,
+  "parent_fills_preserved_for_all_T2_candidates": true,
+  "parent_fills_preserved_for_non_displacing_candidate": false,
+  "schema_version": "window1-t2-operator-iteration-v1"
+}

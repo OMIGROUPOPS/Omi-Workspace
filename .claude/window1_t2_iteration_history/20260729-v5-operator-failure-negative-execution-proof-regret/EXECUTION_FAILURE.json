@@ -1,0 +1,16 @@
+{
+  "active_candidate_id": "w1_t2__macro_hold__fixed_admission_parent_control",
+  "active_event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+  "completed_candidates": 0,
+  "completed_event_rows": 28,
+  "ended_at_utc": "2026-07-29T14:00:30.985731+00:00",
+  "error": "T2ScoringError: execution-proof regret is negative",
+  "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v5",
+  "exit_code": 1,
+  "partial_artifacts_preserved": true,
+  "retry_or_resume_permitted": false,
+  "schema_version": "window1-t2-scoring-runner-v5-failure-v1",
+  "scorer_call_attempts": 28,
+  "scorer_invocations": 28,
+  "started_at_utc": "2026-07-29T14:00:29.440521+00:00"
+}

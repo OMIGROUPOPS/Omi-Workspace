@@ -1,0 +1,128 @@
+{
+  "baseline_trace": "C:\\Users\\omigr\\OMI-Workspace-codex-w1-recognition-laps\\.claude\\window1_live_v4_replay\\counterfactual\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\baseline\\runs\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\trace.json",
+  "counterfactual_trace": "C:\\Users\\omigr\\OMI-Workspace-codex-w1-recognition-laps\\.claude\\window1_live_v4_replay\\counterfactual\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\variant\\runs\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\trace.json",
+  "dial": {
+    "depth_p50_after": 3.0,
+    "depth_p50_before": 5.0,
+    "kind": "path_aim_shift",
+    "law": "one fitted path-depth dial changed; every clamp, authority, order, fill, headroom, sibling, exit, hold, walk, and park method remains live_v4",
+    "leg": "ALV",
+    "page": "ATP_CHALL|leader|ge75",
+    "requested_aim_shift_cents": 2
+  },
+  "diff": "C:\\Users\\omigr\\OMI-Workspace-codex-w1-recognition-laps\\.claude\\window1_live_v4_replay\\counterfactual\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\COUNTERFACTUAL_DIFF.json",
+  "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+  "first_divergence": {
+    "baseline": {
+      "details": {
+        "citation": "ATLAS_V1 ATP_CHALL|leader|ge75 (path bottom p50; cutover 07-14 operator word)",
+        "entry_governor": "trendpath_path_aim",
+        "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+        "from_target": 73,
+        "mode": "no_call_posture",
+        "page": "ATP_CHALL|leader|ge75",
+        "page_n": 759,
+        "path_aim": 74
+      },
+      "event": "trendpath_live_aim",
+      "leg": "ALV",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV",
+      "ts": 1783832721.0
+    },
+    "counterfactual": {
+      "details": {
+        "citation": "ATLAS_V1 ATP_CHALL|leader|ge75 (path bottom p50; cutover 07-14 operator word)",
+        "entry_governor": "trendpath_path_aim",
+        "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+        "from_target": 73,
+        "mode": "no_call_posture",
+        "page": "ATP_CHALL|leader|ge75",
+        "page_n": 759,
+        "path_aim": 75
+      },
+      "event": "trendpath_live_aim",
+      "leg": "ALV",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV",
+      "ts": 1783832721.0
+    },
+    "key": [
+      1783832721.0,
+      "trendpath_live_aim",
+      "ALV",
+      1
+    ],
+    "kind": "details_changed",
+    "layer": "authority_and_aim"
+  },
+  "outcomes": {
+    "baseline": {
+      "combined_goal": 97,
+      "filled_plus_resting_pair_cost": 96,
+      "legs": {
+        "ALV": {
+          "fill_price": null,
+          "fill_ts": null,
+          "filled": false,
+          "final_buy_statuses": [
+            {
+              "price": 74,
+              "status": "resting"
+            }
+          ],
+          "final_resting_buy": 74
+        },
+        "VAN": {
+          "fill_price": 22,
+          "fill_ts": 1783833555.0,
+          "filled": true,
+          "final_buy_statuses": [
+            {
+              "price": 22,
+              "status": "executed"
+            }
+          ],
+          "final_resting_buy": null
+        }
+      },
+      "pair_completed": false,
+      "remaining_headroom": 1
+    },
+    "counterfactual": {
+      "combined_goal": 97,
+      "filled_plus_resting_pair_cost": 94,
+      "legs": {
+        "ALV": {
+          "fill_price": null,
+          "fill_ts": null,
+          "filled": false,
+          "final_buy_statuses": [
+            {
+              "price": 75,
+              "status": "canceled"
+            },
+            {
+              "price": 72,
+              "status": "resting"
+            }
+          ],
+          "final_resting_buy": 72
+        },
+        "VAN": {
+          "fill_price": 22,
+          "fill_ts": 1783833555.0,
+          "filled": true,
+          "final_buy_statuses": [
+            {
+              "price": 22,
+              "status": "executed"
+            }
+          ],
+          "final_resting_buy": null
+        }
+      },
+      "pair_completed": false,
+      "remaining_headroom": 3
+    }
+  },
+  "report": "C:\\Users\\omigr\\OMI-Workspace-codex-w1-recognition-laps\\.claude\\window1_live_v4_replay\\counterfactual\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\COUNTERFACTUAL_DIFF.md"
+}

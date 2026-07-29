@@ -16,7 +16,9 @@ from __future__ import annotations
 import argparse
 import asyncio
 import bisect
+import copy
 import csv
+import difflib
 import gzip
 import hashlib
 import importlib.util
@@ -573,7 +575,54 @@ def trade_frame(item: dict) -> str:
     )
 
 
-async def replay_one(game: dict, print_ranges: dict[str, list[int]], out_dir: Path) -> dict:
+def install_path_aim_counterfactual(bot, dial: dict | None) -> dict | None:
+    """Change one fitted path-depth dial while leaving live_v4 downstream intact."""
+    if not dial:
+        return None
+    if dial.get("kind") != "path_aim_shift":
+        raise ValueError(f"unsupported counterfactual dial: {dial}")
+
+    page = str(dial["page"])
+    shift = int(dial["shift_cents"])
+    original_atlas = bot._trendpath_atlas
+    original_pages = original_atlas()
+    original_page = original_pages.get(page)
+    if not original_page:
+        raise ValueError(f"counterfactual atlas page is absent: {page}")
+    original_depth = (original_page.get("bottom") or {}).get("depth_p50")
+    if original_depth is None:
+        raise ValueError(f"counterfactual page has no depth_p50: {page}")
+    changed_depth = max(0, float(original_depth) - shift)
+
+    def counterfactual_atlas():
+        pages = copy.deepcopy(original_atlas())
+        row = pages.get(page)
+        if row is None:
+            raise ValueError(f"counterfactual atlas page disappeared: {page}")
+        row.setdefault("bottom", {})["depth_p50"] = changed_depth
+        return pages
+
+    bot._trendpath_atlas = counterfactual_atlas
+    return {
+        "kind": "path_aim_shift",
+        "leg": dial["leg"],
+        "page": page,
+        "requested_aim_shift_cents": shift,
+        "depth_p50_before": original_depth,
+        "depth_p50_after": changed_depth,
+        "law": (
+            "one fitted path-depth dial changed; every clamp, authority, order, "
+            "fill, headroom, sibling, exit, hold, walk, and park method remains live_v4"
+        ),
+    }
+
+
+async def replay_one(
+    game: dict,
+    print_ranges: dict[str, list[int]],
+    out_dir: Path,
+    counterfactual: dict | None = None,
+) -> dict:
     event = game["event"]
     run_dir = out_dir / "runs" / event
     if run_dir.exists():
@@ -602,6 +651,7 @@ async def replay_one(game: dict, print_ranges: dict[str, list[int]], out_dir: Pa
     restore_sqlite = install_observed_starts_replay(clock)
     source_hash_before = _sha256(LIVE_V4)
     bot = module.LiveV3()
+    applied_counterfactual = install_path_aim_counterfactual(bot, counterfactual)
     source_hash_after_init = _sha256(LIVE_V4)
     if source_hash_before != source_hash_after_init:
         raise RuntimeError("live_v4.py changed during import/initialization")
@@ -802,6 +852,7 @@ async def replay_one(game: dict, print_ranges: dict[str, list[int]], out_dir: Pa
         "slice": game["slice"],
         "frozen_window": {"left_ts": game["left_ts"], "right_ts": game["right_ts"]},
         "fill_model": FILL_MODEL,
+        "counterfactual": applied_counterfactual,
         "live_v4": {
             "path": str(LIVE_V4),
             "sha256_before": source_hash_before,
@@ -810,6 +861,7 @@ async def replay_one(game: dict, print_ranges: dict[str, list[int]], out_dir: Pa
             "config_path": str(module.CONFIG_PATH),
             "config_sha256": _sha256(module.CONFIG_PATH),
         },
+        "policy": {"combined_goal": int(bot.combined_goal)},
         "discovered_tickers": sorted(discovered),
         "positions": positions,
         "pair_completed": completions == 2,
@@ -836,21 +888,400 @@ async def replay_one(game: dict, print_ranges: dict[str, list[int]], out_dir: Pa
     return result
 
 
+_VOLATILE_TRACE_KEYS = {"client_order_id"}
+
+
+def _normalize_trace_value(value):
+    if isinstance(value, dict):
+        return {
+            key: _normalize_trace_value(item)
+            for key, item in value.items()
+            if key not in _VOLATILE_TRACE_KEYS
+        }
+    if isinstance(value, list):
+        return [_normalize_trace_value(item) for item in value]
+    return value
+
+
+def _keyed_trace(rows: list[dict]) -> list[dict]:
+    counts = defaultdict(int)
+    out = []
+    for row in rows:
+        base = (round(float(row["ts"]), 6), row["event"], row.get("leg"))
+        counts[base] += 1
+        out.append(
+            {
+                "key": (*base, counts[base]),
+                "row": _normalize_trace_value(row),
+            }
+        )
+    return out
+
+
+def _trace_layer(event: str) -> str:
+    if event in {
+        "schedule_match",
+        "kalshi_occ_delta",
+        "window_open_set",
+        "discovery",
+        "entry_dossier",
+        "band_call",
+        "band_recall",
+        "pair_class_read",
+        "orientation_prior",
+        "conviction_shadow",
+    }:
+        return "recognition_and_dossier"
+    if "aim" in event or event in {
+        "trendpath_shadow",
+        "price_authority",
+        "authority_foreign_order_flag",
+        "sizing_shadow",
+    }:
+        return "authority_and_aim"
+    if event in {
+        "v4_place",
+        "order_placed",
+        "paper_order_posted",
+        "staircase_hold_place",
+        "os_shadow",
+        "skipped",
+    } or any(word in event for word in ("walk", "park", "hold", "repost")):
+        return "post_hold_walk_park"
+    if "fill" in event or event in {
+        "completion_booking_adoption",
+        "reconcile_v4_adopted",
+        "naked_leg_defect",
+    }:
+        return "fills_and_booking"
+    if "completion" in event or "sibling" in event or "headroom" in event:
+        return "headroom_and_sibling"
+    if "exit" in event or "settle" in event:
+        return "exit_and_settlement"
+    return "engine_and_tape"
+
+
+def build_trace_diff(baseline: dict, counterfactual: dict, dial: dict) -> dict:
+    left = _keyed_trace(baseline["trace"])
+    right = _keyed_trace(counterfactual["trace"])
+    matcher = difflib.SequenceMatcher(
+        a=[item["key"] for item in left],
+        b=[item["key"] for item in right],
+        autojunk=False,
+    )
+    differences = []
+    for tag, i1, i2, j1, j2 in matcher.get_opcodes():
+        if tag == "equal":
+            for li, rj in zip(range(i1, i2), range(j1, j2)):
+                if left[li]["row"] == right[rj]["row"]:
+                    continue
+                event = left[li]["row"]["event"]
+                differences.append(
+                    {
+                        "kind": "details_changed",
+                        "layer": _trace_layer(event),
+                        "key": left[li]["key"],
+                        "baseline": left[li]["row"],
+                        "counterfactual": right[rj]["row"],
+                    }
+                )
+            continue
+        left_rows = [item["row"] for item in left[i1:i2]]
+        right_rows = [item["row"] for item in right[j1:j2]]
+        events = {
+            row["event"]
+            for row in left_rows + right_rows
+        }
+        layers = sorted({_trace_layer(event) for event in events})
+        differences.append(
+            {
+                "kind": tag,
+                "layers": layers,
+                "baseline": left_rows,
+                "counterfactual": right_rows,
+            }
+        )
+
+    layer_summary = defaultdict(lambda: {"differences": 0, "events": set()})
+    for difference in differences:
+        layers = difference.get("layers") or [difference["layer"]]
+        rows = difference.get("baseline", [])
+        if isinstance(rows, dict):
+            rows = [rows]
+        rows += (
+            difference.get("counterfactual", [])
+            if isinstance(difference.get("counterfactual"), list)
+            else [difference.get("counterfactual")]
+        )
+        events = {row["event"] for row in rows if row}
+        for layer in layers:
+            layer_summary[layer]["differences"] += 1
+            layer_summary[layer]["events"].update(events)
+
+    return {
+        "schema_version": "window1-live-v4-counterfactual-diff-v1",
+        "event": baseline["event"],
+        "same_tape": {
+            "frozen_window": baseline["frozen_window"],
+            "baseline_counts": baseline["input_counts"],
+            "counterfactual_counts": counterfactual["input_counts"],
+        },
+        "dial": dial,
+        "first_divergence": differences[0] if differences else None,
+        "layers": {
+            layer: {
+                "differences": row["differences"],
+                "events": sorted(row["events"]),
+            }
+            for layer, row in sorted(layer_summary.items())
+        },
+        "downstream_differences": differences,
+        "outcomes": {
+            "baseline": _counterfactual_outcome(baseline),
+            "counterfactual": _counterfactual_outcome(counterfactual),
+        },
+    }
+
+
+def _first_trace(result: dict, event: str, leg: str | None = None) -> dict | None:
+    return next(
+        (
+            row
+            for row in result["trace"]
+            if row["event"] == event and (leg is None or row.get("leg") == leg)
+        ),
+        None,
+    )
+
+
+def _counterfactual_outcome(result: dict) -> dict:
+    legs = {}
+    filled_prices = []
+    resting_prices = []
+    for leg, row in result["positions"].items():
+        buy_orders = [order for order in row["orders"] if order["action"] == "buy"]
+        resting = next(
+            (order for order in buy_orders if order["status"] == "resting"),
+            None,
+        )
+        fill = _first_trace(result, "paper_fill", leg)
+        fill_price = (fill or {}).get("details", {}).get("fill_price")
+        if fill_price is not None:
+            filled_prices.append(int(fill_price))
+        if resting is not None:
+            resting_prices.append(int(resting["yes_price"]))
+        legs[leg] = {
+            "filled": bool(row["filled"]),
+            "fill_price": fill_price,
+            "fill_ts": (fill or {}).get("ts"),
+            "final_resting_buy": (
+                int(resting["yes_price"]) if resting is not None else None
+            ),
+            "final_buy_statuses": [
+                {"price": int(order["yes_price"]), "status": order["status"]}
+                for order in buy_orders
+            ],
+        }
+    goal = int(result["policy"]["combined_goal"])
+    exposed_pair_cost = sum(filled_prices) + sum(resting_prices)
+    return {
+        "pair_completed": bool(result["pair_completed"]),
+        "legs": legs,
+        "combined_goal": goal,
+        "filled_plus_resting_pair_cost": exposed_pair_cost,
+        "remaining_headroom": goal - exposed_pair_cost,
+    }
+
+
+def _counterfactual_markdown(diff: dict, baseline: dict, variant: dict) -> str:
+    dial = diff["dial"]
+    leg = dial["leg"]
+    base_aim = _first_trace(baseline, "trendpath_live_aim", leg)
+    variant_aim = _first_trace(variant, "trendpath_live_aim", leg)
+    first = diff["first_divergence"]
+    first_row = (
+        first.get("baseline")
+        if first and isinstance(first.get("baseline"), dict)
+        else None
+    )
+    first_event = (first_row or {}).get("event") or (first or {}).get("kind")
+    first_ts = (first_row or {}).get("ts")
+    bo = diff["outcomes"]["baseline"]
+    co = diff["outcomes"]["counterfactual"]
+    lines = [
+        f"# Counterfactual replay — {diff['event']}",
+        "",
+        "Same frozen tape, same clock, same live_v4 source, one changed dial.",
+        "",
+        "## Dial",
+        "",
+        f"- Leg: `{leg}`",
+        f"- Atlas page: `{dial['page']}`",
+        (
+            f"- Path depth p50: {dial['depth_p50_before']}¢ → "
+            f"{dial['depth_p50_after']}¢"
+        ),
+        f"- Requested aim movement: +{dial['requested_aim_shift_cents']}¢",
+        (
+            f"- Executed path aim: "
+            f"{(base_aim or {}).get('details', {}).get('path_aim')}¢ → "
+            f"{(variant_aim or {}).get('details', {}).get('path_aim')}¢"
+        ),
+        "",
+        "## First separation",
+        "",
+        f"- Event: `{first_event}`",
+        f"- Replay timestamp: `{first_ts}`",
+        (
+            "- The requested aim was passed through every unchanged live_v4 "
+            "clamp and authority before the order was posted."
+        ),
+        "",
+        "## Outcome",
+        "",
+        "| Run | Pair complete | Filled + resting pair cost | Headroom |",
+        "|---|---:|---:|---:|",
+        (
+            f"| Baseline | {bo['pair_completed']} | "
+            f"{bo['filled_plus_resting_pair_cost']}¢ | "
+            f"{bo['remaining_headroom']}¢ |"
+        ),
+        (
+            f"| Counterfactual | {co['pair_completed']} | "
+            f"{co['filled_plus_resting_pair_cost']}¢ | "
+            f"{co['remaining_headroom']}¢ |"
+        ),
+        "",
+        "### Leg outcomes",
+        "",
+        "| Leg | Baseline | Counterfactual |",
+        "|---|---|---|",
+    ]
+    for name in sorted(bo["legs"]):
+        b = bo["legs"][name]
+        c = co["legs"][name]
+        lines.append(
+            f"| {name} | filled={b['filled']}, fill={b['fill_price']}, "
+            f"resting={b['final_resting_buy']} | "
+            f"filled={c['filled']}, fill={c['fill_price']}, "
+            f"resting={c['final_resting_buy']} |"
+        )
+    lines += [
+        "",
+        "## Downstream layer diff",
+        "",
+        "| Layer | Changed trace blocks | Events affected |",
+        "|---|---:|---|",
+    ]
+    for layer, row in diff["layers"].items():
+        lines.append(
+            f"| {layer} | {row['differences']} | {', '.join(row['events'])} |"
+        )
+    lines += [
+        "",
+        "The complete aligned downstream diff is in `COUNTERFACTUAL_DIFF.json`; "
+        "the baseline and counterfactual trace files remain separate and complete.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser()
     p.add_argument("--event", help="Replay one event from the frozen 804-game scope")
     p.add_argument("--all", action="store_true", help="Replay all 804 games")
+    p.add_argument(
+        "--counterfactual-aim-shift",
+        metavar="LEG=DELTA",
+        help=(
+            "Run baseline plus one path-aim counterfactual for a single event; "
+            "example: ALV=+2"
+        ),
+    )
     p.add_argument("--out", type=Path, default=DEFAULT_OUT)
     return p.parse_args()
+
+
+def _parse_aim_shift(raw: str) -> tuple[str, int]:
+    match = re.fullmatch(r"([A-Z0-9]+)=([+-]?\d+)", raw.strip().upper())
+    if not match:
+        raise SystemExit(
+            "--counterfactual-aim-shift must be LEG=DELTA, for example ALV=+2"
+        )
+    leg, shift = match.group(1), int(match.group(2))
+    if shift == 0:
+        raise SystemExit("counterfactual aim shift must be non-zero")
+    return leg, shift
 
 
 async def async_main() -> int:
     args = parse_args()
     if not args.event and not args.all:
         raise SystemExit("choose --event EVENT_ID or --all")
+    if args.counterfactual_aim_shift and (not args.event or args.all):
+        raise SystemExit("counterfactual replay requires exactly one --event")
     args.out.mkdir(parents=True, exist_ok=True)
     games = load_scope(args.event)
     ranges = build_print_index(PRINTS, args.out / "_input_index" / "prints_by_ticker.json")
+
+    if args.counterfactual_aim_shift:
+        leg, shift = _parse_aim_shift(args.counterfactual_aim_shift)
+        game = games[0]
+        if leg not in {row["leg"] for row in game["legs"]}:
+            raise SystemExit(f"leg {leg} is not in {game['event']}")
+        root = args.out / "counterfactual" / game["event"]
+        print(f"[baseline] replay {game['event']}", flush=True)
+        baseline = await replay_one(game, ranges, root / "baseline")
+        baseline_aim = _first_trace(baseline, "trendpath_live_aim", leg)
+        if baseline_aim is None:
+            raise SystemExit(f"baseline produced no trendpath aim for leg {leg}")
+        dial = {
+            "kind": "path_aim_shift",
+            "leg": leg,
+            "page": baseline_aim["details"]["page"],
+            "shift_cents": shift,
+        }
+        print(
+            f"[counterfactual] replay {game['event']} {leg} aim {shift:+d}c",
+            flush=True,
+        )
+        variant = await replay_one(
+            game,
+            ranges,
+            root / "variant",
+            counterfactual=dial,
+        )
+        applied = variant["counterfactual"]
+        diff = build_trace_diff(baseline, variant, applied)
+        root.mkdir(parents=True, exist_ok=True)
+        diff_path = root / "COUNTERFACTUAL_DIFF.json"
+        report_path = root / "COUNTERFACTUAL_DIFF.md"
+        diff_path.write_text(
+            json.dumps(diff, indent=2, sort_keys=True), encoding="utf-8"
+        )
+        report_path.write_text(
+            _counterfactual_markdown(diff, baseline, variant), encoding="utf-8"
+        )
+        summary = {
+            "event": game["event"],
+            "dial": applied,
+            "first_divergence": diff["first_divergence"],
+            "outcomes": diff["outcomes"],
+            "baseline_trace": str(
+                root / "baseline" / "runs" / game["event"] / "trace.json"
+            ),
+            "counterfactual_trace": str(
+                root / "variant" / "runs" / game["event"] / "trace.json"
+            ),
+            "diff": str(diff_path),
+            "report": str(report_path),
+        }
+        (root / "COUNTERFACTUAL_SUMMARY.json").write_text(
+            json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8"
+        )
+        print(json.dumps(summary, indent=2), flush=True)
+        return 0
+
     results = []
     for i, game in enumerate(games, 1):
         print(f"[{i}/{len(games)}] replay {game['event']}", flush=True)

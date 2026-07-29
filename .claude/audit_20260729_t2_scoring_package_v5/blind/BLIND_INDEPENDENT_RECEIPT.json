@@ -1,0 +1,50 @@
+{
+ "date_utc": "2026-07-29",
+ "expected_prepared_scorer_calls": 6432,
+ "expected_scorer_call_attempts_no_score": 0,
+ "historical_v4_construction_test_activity_static_reconstruction": {
+  "completed_real_development_scored_rows": 1,
+  "finding": "The V4 construction test performed 3 real-scorer calls with a real frozen development event; exactly 1 completed and produced a real scored row for (candidate 1, ALVVAN). The remaining scorer interactions used injected fake scorers or no-score seams asserting 6,432 prepared calls with 0 attempts.",
+  "real_development_event_reached_scorer": "KXATPCHALLENGERMATCH-26JUL12ALVVAN (first prepared call, first candidate)",
+  "real_development_scorer_calls": 3,
+  "real_population_fixture": "first_prepared = next(iter_prepared_scorer_calls(repo, manifest.roles, ...)) over the REAL frozen manifest",
+  "real_scorer_call_sites": [
+   {
+    "boundary": "normalized (flattened)",
+    "expected": "ReferenceError raised BEFORE scoring",
+    "line": 75,
+    "test": "test_V3_flattened_boundary_preserves_exact_error"
+   },
+   {
+    "boundary": "full raw V5",
+    "expected": "COMPLETES: returns real scored row, asserts boundary_status == positive",
+    "line": 83,
+    "test": "test_equivalent_full_raw_V5_shaped_boundary_passes_seam"
+   },
+   {
+    "boundary": "normalized (flattened)",
+    "expected": "ReferenceError raised BEFORE scoring",
+    "line": 109,
+    "test": "test_replacing_shared_raw_with_normalized_fails_regression"
+   }
+  ],
+  "real_scorer_import": "line 16: from window1_t2_frontier_regret_scorer_v1 import score_t2_event",
+  "source": "9cc8f1cc:arb-executor/tests/test_window1_t2_scoring_package_v4.py (261 lines, NOT executed)",
+  "test_count": 14
+ },
+ "lineage": {
+  "audit_parent": "40a6314fe0790416a260879cd9a071072e26e9a0",
+  "remote_tips_equal": true,
+  "v4_parent_v3": "a758279184ab0f367a3ce74a69da851608645e19",
+  "v5_changed_paths": "19 additions + exactly 1 modification (arb-executor/tests/test_window1_t2_scoring_package_v4.py); 0 deletions",
+  "v5_package": "2c5a730ac7fc2f87a2de33fd0ea2aa8f2cfafdae",
+  "v5_parent_v4": "9cc8f1cc7b0693e00ce0f537532d41aab0a5ef7c"
+ },
+ "phase": "PHASE1_BLIND_FROZEN",
+ "phase3_mismatch_rule": "any mismatch defaults to BLOCK; no reconciliation toward expected values",
+ "scorer_entry_points_to_instrument_in_phase3": [
+  "window1_t2_frontier_regret_scorer_v1.score_t2_event (module function)",
+  "window1_t2_scoring_runner_v4.score_t2_event (alias imported at runner line 37-47, used as scorer= at line 621)"
+ ],
+ "v5_files_opened_at_freeze": "NONE (all 19 V5-added files unopened; the V5-modified V4 test unopened; only the PARENT V4 blob and parent runtime/runner sources were read statically)"
+}

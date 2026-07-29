@@ -1,6 +1,6 @@
 # ALVVAN — live_v4 thinking aloud with the nine installed VPS inputs
 
-This is an honest diagnostic trace, not a valid score and not yet a literally complete dossier. The eight installed model/state files and the historical `observed_starts.db` all loaded. The transaction-consistent VPS `tennis.db` snapshot is still absent, so the sharp-FV surface returned `NO-READ` at every consultation. That surface is logging-only in this version of `live_v4`; it did not choose or move either order. The trace is nevertheless invalid for scoring because a required input was missing.
+This is an honest diagnostic trace, not a valid score and not yet a literally complete dossier. The eight installed model/state files and the historical `observed_starts.db` all loaded. The transaction-consistent VPS `tennis.db` snapshot is still absent, so the sharp-FV surface returned `NO-READ` at every consultation. Although `_fv_observe_fields` describes itself as observe-only, the orientation prior consumes its result as a weight-two vote, so the missing surface is potentially behavioral and cannot be waved away as logging. It cast no vote here. The trace is invalid for scoring because a required input was missing.
 
 The fill rule for this replay was: **we rest orders; a later true print or opposite BBO touching or passing the limit fills the whole order. No depth proof and no five-contract gate.**
 
@@ -133,7 +133,7 @@ The priority was not “legacy outranked a complete dossier.” It was a sequenc
 |---|---|---|---|---|---|
 | Discovery | Frozen Kalshi BBO and true prints | Present | No; deterministic feed handling | Both tickers discovered; waited for traded anchors | Yes; opened the two entry evaluations |
 | Bell/window clock | Kalshi schedule plus `observed_starts.db` | Present; no ALVVAN observed row visible on replay clock | No | Scheduled bell 7:00 AM; W1 active | Yes; admitted the entries |
-| Sharp FV | VPS `tennis.db` via `analysis/fv_quote.py` | **Absent**; quarantined main-file copy is inconsistent | Yes, external sharp-book blend | `NO-READ` | No; this version logs FV and may use it as an orientation voice, but no FV voice existed |
+| Sharp FV | VPS `tennis.db` via `analysis/fv_quote.py` | **Absent**; quarantined main-file copy is inconsistent | Yes, external sharp-book blend | `NO-READ` | No vote existed here, but this surface can influence the orientation prior despite its helper's observe-only docstring |
 | Orientation prior | `ORIENT_V1`, cohort, sharp FV, anchor role | Present, except FV absent | Yes | ALV riser, conviction 1.00, two voices | Yes for role selection; no role swap was needed |
 | Chain-tape orientation | `ORIENT_V1` | Present/current VPS bytes; insufficient first-hour state at entry | Yes | No call yet | No |
 | Cohort recognition/aim | `cohort_surface_v1.json` | Present/current VPS bytes | Yes | VAN dog 26–50: median dip 4, aim 22; ALV fav ≥76: median dip 2 | VAN yes at the preliminary target; ALV no because steer is faller-only |

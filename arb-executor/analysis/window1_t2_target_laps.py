@@ -1,0 +1,777 @@
+#!/usr/bin/env python3
+"""Strict sequential oracle and first target-layer lap for Window-1 T2.
+
+Development data only.  This script neither opens holdout data nor creates
+orders/exposures.  It answers two separate questions:
+
+1. What can a strictly sequenced, five-contract, maker-fee oracle prove?
+2. What happens when the recognized depth is finally mapped to the existing
+   resting-target expression?
+"""
+
+from __future__ import annotations
+
+import argparse
+from collections import Counter
+import gzip
+import hashlib
+import json
+import math
+from pathlib import Path
+import statistics
+from typing import Any, Mapping
+
+import numpy as np
+
+
+VERSION = "window1-t2-sequential-oracle-target-lap-v1"
+D_REQUIRED = 804
+TAPE_OPPORTUNITY_REQUIRED = 692
+CONTROL_COMPLETIONS_REQUIRED = 131
+INITIAL_RECOGNIZED_REQUIRED = 501
+BASELINE_NEVER_RECOGNIZED_REQUIRED = 510
+QUANTITY = 5
+CONTROL_LEDGER = (
+    ".claude/"
+    "window1_t2_results_w1-t2-dev-20260712-20260720-"
+    "frontier-regret-grid1-scorepkg-v5/"
+    "01_w1_t2__macro_hold__fixed_admission_parent_control_"
+    "EVENT_LEDGER.jsonl"
+)
+RECOGNITION_JSON = (
+    ".claude/window1_t2_iteration_history/"
+    "WINDOW1_T2_RECOGNITION_LAPS.json"
+)
+
+
+class TargetLapError(RuntimeError):
+    """Fail-closed contract violation."""
+
+
+def read_json(path: Path) -> dict[str, Any]:
+    with path.open("r", encoding="utf-8") as handle:
+        value = json.load(handle)
+    if not isinstance(value, dict):
+        raise TargetLapError(f"JSON object required: {path}")
+    return value
+
+
+def read_jsonl(path: Path) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    with path.open("r", encoding="utf-8") as handle:
+        for line_number, line in enumerate(handle, 1):
+            if line.strip():
+                value = json.loads(line)
+                if not isinstance(value, dict):
+                    raise TargetLapError(
+                        f"JSONL object required: {path}:{line_number}"
+                    )
+                rows.append(value)
+    return rows
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def maker_fee_cents(price_cents: int, quantity: int = QUANTITY) -> int:
+    """Published maker formula, rounded up to the next cent."""
+    if not 1 <= price_cents <= 99:
+        raise TargetLapError(f"invalid maker price: {price_cents}")
+    return math.ceil(
+        7 * quantity * price_cents * (100 - price_cents) / 40000
+    )
+
+
+def nearest_int(value: float) -> int:
+    """Match window1_round2_instrument.nearest_int."""
+    return int(math.floor(float(value) + 0.5))
+
+
+def load_market(cache: Path, event_id: str) -> dict[str, Any]:
+    path = cache / f"{event_id}.json.gz"
+    if not path.is_file():
+        raise TargetLapError(f"market cache missing: {event_id}")
+    with gzip.open(path, "rt", encoding="utf-8") as handle:
+        value = json.load(handle)
+    if value.get("cache_version") != "window1-guarded-event-market-cache-v3":
+        raise TargetLapError(f"market cache contract failed: {event_id}")
+    return value
+
+
+def prepare_leg(
+    leg: Mapping[str, Any],
+    left: float,
+    right: float,
+) -> dict[str, Any]:
+    snapshots = [
+        row for row in (leg.get("snapshots") or [])
+        if left <= float(row["ts"]) < right and row.get("asks")
+    ]
+    prints = [
+        row for row in (leg.get("prints") or [])
+        if left <= float(row["ts"]) < right
+    ]
+    return {
+        "left": left,
+        "right": right,
+        "snapshot_ts": np.array(
+            [float(row["ts"]) for row in snapshots], dtype=np.float64
+        ),
+        "asks": np.array(
+            [int(row["asks"][0][0]) for row in snapshots], dtype=np.int16
+        ),
+        "print_ts": np.array(
+            [float(row["ts"]) for row in prints], dtype=np.float64
+        ),
+        "print_price": np.array(
+            [int(row["price"]) for row in prints], dtype=np.int16
+        ),
+        "print_size": np.array(
+            [float(row["size"]) for row in prints], dtype=np.float64
+        ),
+        "snapshots": snapshots,
+        "prints": prints,
+    }
+
+
+def fill_proof_by_target(
+    leg: Mapping[str, Any],
+    *,
+    after_ts: float,
+    strictly_later_placement: bool,
+) -> dict[int, dict[str, Any]]:
+    """Return earliest five-contract proof for every lawful resting target."""
+    snapshot_ts = leg["snapshot_ts"]
+    asks = leg["asks"]
+    print_ts = leg["print_ts"]
+    print_price = leg["print_price"]
+    print_size = leg["print_size"]
+    placement_index = int(np.searchsorted(
+        snapshot_ts,
+        after_ts,
+        side="right" if strictly_later_placement else "left",
+    ))
+    if placement_index >= len(snapshot_ts):
+        return {}
+    placement_ts = float(snapshot_ts[placement_index])
+    maker_ceiling = int(asks[placement_index]) - 1
+    if maker_ceiling < 1:
+        return {}
+
+    later_snapshot_index = int(np.searchsorted(
+        snapshot_ts, placement_ts, side="right"
+    ))
+    later_print_index = int(np.searchsorted(
+        print_ts, placement_ts, side="right"
+    ))
+    output: dict[int, dict[str, Any]] = {}
+    for target in range(1, maker_ceiling + 1):
+        candidates: list[tuple[float, int, str, Mapping[str, Any]]] = []
+        if later_snapshot_index < len(snapshot_ts):
+            hits = np.flatnonzero(
+                asks[later_snapshot_index:] < target
+            )
+            if len(hits):
+                index = later_snapshot_index + int(hits[0])
+                candidates.append((
+                    float(snapshot_ts[index]),
+                    0,
+                    "STRICT_ASK",
+                    leg["snapshots"][index],
+                ))
+        if later_print_index < len(print_ts):
+            eligible_volume = np.where(
+                print_price[later_print_index:] <= target,
+                print_size[later_print_index:],
+                0.0,
+            )
+            cumulative = np.cumsum(eligible_volume)
+            hits = np.flatnonzero(cumulative >= QUANTITY)
+            if len(hits):
+                relative = int(hits[0])
+                index = later_print_index + relative
+                candidates.append((
+                    float(print_ts[index]),
+                    1,
+                    "CUMULATIVE_TRUE_PRINT_CAPACITY",
+                    leg["prints"][index],
+                ))
+        if not candidates:
+            continue
+        proof_ts, _, proof_type, raw = min(
+            candidates, key=lambda value: (value[0], value[1])
+        )
+        output[target] = {
+            "target_cents": target,
+            "maker_fee_cents": maker_fee_cents(target),
+            "placement_ts": placement_ts,
+            "fill_proof_ts": proof_ts,
+            "proof_type": proof_type,
+            "proof_receipt": str(
+                raw.get("receipt") or raw.get("trade_id") or ""
+            ),
+        }
+    return output
+
+
+def cheapest_fill_after(
+    leg: Mapping[str, Any],
+    first_fill_ts: float,
+) -> dict[str, Any] | None:
+    proofs = fill_proof_by_target(
+        leg,
+        after_ts=first_fill_ts,
+        strictly_later_placement=True,
+    )
+    if not proofs:
+        return None
+    return min(
+        proofs.values(),
+        key=lambda row: (
+            row["target_cents"] + row["maker_fee_cents"],
+            row["fill_proof_ts"],
+            row["target_cents"],
+        ),
+    )
+
+
+def strict_sequential_floor(
+    control_row: Mapping[str, Any],
+    market: Mapping[str, Any],
+) -> dict[str, Any] | None:
+    market_legs = {str(row["leg"]): row for row in market["legs"]}
+    control_legs = {
+        str(row["leg_id"]): row for row in control_row["legs"]
+    }
+    leg_ids = sorted(control_legs)
+    if len(leg_ids) != 2 or set(leg_ids) != set(market_legs):
+        raise TargetLapError(
+            f"pair identity mismatch: {control_row['event_id']}"
+        )
+    cutoff = float(control_row["guarded_cutoff_ts"])
+    prepared = {
+        leg_id: prepare_leg(
+            market_legs[leg_id],
+            float(control_legs[leg_id]["t8_floor_ts"]),
+            cutoff,
+        )
+        for leg_id in leg_ids
+    }
+    candidates: list[dict[str, Any]] = []
+    for first_leg_id, second_leg_id in (
+        (leg_ids[0], leg_ids[1]),
+        (leg_ids[1], leg_ids[0]),
+    ):
+        first_leg = prepared[first_leg_id]
+        second_leg = prepared[second_leg_id]
+        first_proofs = fill_proof_by_target(
+            first_leg,
+            after_ts=float(first_leg["left"]),
+            strictly_later_placement=False,
+        )
+        second_cache: dict[float, dict[str, Any] | None] = {}
+        for first in first_proofs.values():
+            first_fill_ts = float(first["fill_proof_ts"])
+            if first_fill_ts not in second_cache:
+                second_cache[first_fill_ts] = cheapest_fill_after(
+                    second_leg, first_fill_ts
+                )
+            second = second_cache[first_fill_ts]
+            if second is None:
+                continue
+            second_placement_ts = float(second["placement_ts"])
+            second_fill_ts = float(second["fill_proof_ts"])
+            if not (
+                float(first_leg["left"])
+                <= float(first["placement_ts"])
+                < first_fill_ts
+                < cutoff
+            ):
+                raise TargetLapError("first-leg Window-1 sequence failed")
+            if not (
+                float(second_leg["left"])
+                <= second_placement_ts
+                < second_fill_ts
+                < cutoff
+            ):
+                raise TargetLapError("second-leg Window-1 sequence failed")
+            if not (
+                first_fill_ts < second_placement_ts < second_fill_ts
+            ):
+                raise TargetLapError(
+                    "second leg did not start strictly after first fill"
+                )
+            target_sum = (
+                int(first["target_cents"])
+                + int(second["target_cents"])
+            )
+            fee_sum = (
+                int(first["maker_fee_cents"])
+                + int(second["maker_fee_cents"])
+            )
+            reference_values = [
+                control_legs[first_leg_id].get("window1_close_cents"),
+                control_legs[second_leg_id].get("window1_close_cents"),
+            ]
+            reference_sum = (
+                sum(int(value) for value in reference_values)
+                if all(value is not None for value in reference_values)
+                else None
+            )
+            total = target_sum + fee_sum
+            candidates.append({
+                "orientation": (
+                    f"{first_leg_id}__then__{second_leg_id}"
+                ),
+                "first_leg_id": first_leg_id,
+                "second_leg_id": second_leg_id,
+                "first": first,
+                "second": second,
+                "target_sum_cents": target_sum,
+                "maker_fee_sum_cents": fee_sum,
+                "maker_cost_cents": total,
+                "reference_sum_cents": reference_sum,
+                "maker_cost_minus_reference_cents": (
+                    total - reference_sum
+                    if reference_sum is not None else None
+                ),
+                "floor_time_gap_minutes": (
+                    second_fill_ts - first_fill_ts
+                ) / 60.0,
+            })
+    if not candidates:
+        return None
+    return min(
+        candidates,
+        key=lambda row: (
+            row["maker_cost_cents"],
+            row["second"]["fill_proof_ts"],
+            row["floor_time_gap_minutes"],
+            row["orientation"],
+        ),
+    )
+
+
+def target_leg(state: Mapping[str, Any]) -> dict[str, Any] | None:
+    actionable = [
+        signal for signal in (state.get("signals") or [])
+        if signal.get("instrument") != "reach_law"
+        and signal.get("depth_cents") is not None
+    ]
+    if not actionable:
+        return None
+    bid = int(state["current_bid_cents"])
+    ask = int(state["current_ask_cents"])
+    depth = max(float(row["depth_cents"]) for row in actionable)
+    selected = max(1, min(ask - 1, bid - nearest_int(depth)))
+    sources = sorted(
+        str(row["instrument"])
+        for row in actionable
+        if float(row["depth_cents"]) == depth
+    )
+    return {
+        "leg_id": state["leg_id"],
+        "ticker": state["ticker"],
+        "selected_target_cents": selected,
+        "selected_depth_cents": depth,
+        "depth_sources": sources,
+        "decision_bid_cents": bid,
+        "decision_ask_cents": ask,
+        "maker_safe": selected < ask,
+        "target_expression": (
+            "max(1, min(current_ask-1, "
+            "current_bid-nearest_int(max_recognized_depth)))"
+        ),
+    }
+
+
+def median_or_none(values: list[float]) -> float | None:
+    return statistics.median(values) if values else None
+
+
+def render_report(result: Mapping[str, Any]) -> str:
+    oracle = result["strict_sequential_oracle"]
+    target = result["target_lap"]
+    lines = [
+        "# Window-1 T2 strict sequential oracle and target lap",
+        "",
+        "## Target lap",
+        "",
+        (
+            f"completions: **{target['completions_out_of_804']}/804**, "
+            f"and **{target['completions_out_of_692']}/692** the tape proves"
+        ),
+        "",
+        (
+            "how many of the 510 we now see: "
+            f"**{target['recognized_of_510']}/510**"
+        ),
+        "",
+        (
+            "what changed since last lap: one bridge now maps recognized "
+            "depth to the existing maker target expression. "
+            f"It selected an event target for "
+            f"**{target['targeted_event_count']}/501** recognized events "
+            f"({target['targeted_both_legs_count']} on both legs). "
+            "Exposure was not changed, so completions were not expected "
+            "to move."
+        ),
+        "",
+        (
+            "Why the old layer refused all 501: the scorer populated "
+            "`best_selected_target_cents` only from pre-existing action "
+            "rows. Recognition emitted no action row, so null selection "
+            "was guaranteed by construction—not by an economic veto."
+        ),
+        "",
+        "## Strict sequential oracle over the 501",
+        "",
+        (
+            f"- Any strict sequential five-contract proof: "
+            f"**{oracle['any_sequential_floor_count']}/501**"
+        ),
+        (
+            f"- Maker-fee combined floor under par: "
+            f"**{oracle['maker_under_par_count']}/501**"
+        ),
+        (
+            f"- Negative against available Window-1 reference: "
+            f"**{oracle['negative_vs_reference_count']}/501** "
+            f"({oracle['negative_vs_reference_count']}/"
+            f"{oracle['reference_available_sequential_count']} among "
+            "strict sequential proofs with reference; "
+            f"{oracle['reference_missing_sequential_count']} sequential "
+            "proof lacks reference)"
+        ),
+        (
+            f"- Median gap, all strict sequential proofs: "
+            f"**{oracle['median_gap_minutes_all']:.2f} minutes**"
+        ),
+        (
+            f"- Median gap, maker-under-par subset: "
+            f"**{oracle['median_gap_minutes_under_par']:.2f} minutes**"
+        ),
+        (
+            f"- Median gap, negative-vs-reference subset: "
+            f"**{oracle['median_gap_minutes_negative_reference']:.2f} "
+            "minutes**"
+        ),
+        (
+            "- Strict-sequence median by category: "
+            + ", ".join(
+                f"{category} {row['median_gap_minutes']:.2f}m "
+                f"(n={row['count']})"
+                for category, row in sorted(
+                    oracle["gap_by_category"].items()
+                )
+            )
+        ),
+        "",
+        (
+            "Sequencing is enforced: the first leg must have a lawful "
+            "five-contract fill proof inside its Window 1; only then is "
+            "the second resting target placed at the first later BBO, "
+            "and its proof must occur later still inside its own Window 1."
+        ),
+        "",
+        (
+            "The vault's 41–62 minute figure measured the gap between "
+            "independently deepest leg moments. This stricter "
+            "place-after-first-fill oracle is a different estimator, so "
+            "the gap is not expected to reproduce that range."
+        ),
+        "",
+        (
+            "The negative-reference count can exceed the under-par count "
+            "because the event-specific two-leg Window-1 reference is not "
+            "fixed at par; some reference sums are above 100 cents."
+        ),
+        "",
+        (
+            "This is not a completion plateau. Recognition moved the "
+            "loss from never-seen to seen-not-targeted; this lap moves it "
+            "again to targeted-not-exposed. Exposure is the next layer."
+        ),
+        "",
+        "Holdout stayed sealed. Live and network access stayed off.",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def run(args: argparse.Namespace) -> int:
+    repo = Path(args.repo).resolve()
+    cache = Path(args.market_cache).resolve()
+    control_path = repo / CONTROL_LEDGER
+    recognition_path = repo / RECOGNITION_JSON
+    output_json = (repo / args.output_json).resolve()
+    output_report = (repo / args.output_report).resolve()
+
+    control_rows = read_jsonl(control_path)
+    control = {str(row["event_id"]): row for row in control_rows}
+    recognition = read_json(recognition_path)
+    initial_ids = list(
+        recognition["recognition"]["lap_1_recognized_event_ids"]
+    )
+    recognition_events = {
+        str(row["event_id"]): row
+        for row in recognition["recognition"]["events"]
+    }
+    if len(control_rows) != D_REQUIRED or len(control) != D_REQUIRED:
+        raise TargetLapError("development control is not exactly 804")
+    tape_opportunities = [
+        row for row in control_rows
+        if row["pair_regret"][
+            "combined_five_contract_proven_floor_cents"
+        ] is not None
+    ]
+    completions = [row for row in control_rows if row["C"] is True]
+    baseline_never = [
+        row for row in tape_opportunities
+        if row["C"] is not True
+        and row["primary_loss_stage"] == "NEVER_RECOGNIZED"
+    ]
+    if len(tape_opportunities) != TAPE_OPPORTUNITY_REQUIRED:
+        raise TargetLapError("full-tape opportunity count changed")
+    if len(completions) != CONTROL_COMPLETIONS_REQUIRED:
+        raise TargetLapError("completion count changed")
+    if len(baseline_never) != BASELINE_NEVER_RECOGNIZED_REQUIRED:
+        raise TargetLapError("510 never-recognized census changed")
+    if len(initial_ids) != INITIAL_RECOGNIZED_REQUIRED:
+        raise TargetLapError("initial recognition set is not 501")
+    if len(set(initial_ids)) != len(initial_ids):
+        raise TargetLapError("duplicate initial recognition event")
+
+    event_rows: list[dict[str, Any]] = []
+    proof_types: Counter[str] = Counter()
+    targeted_event_count = 0
+    targeted_both_count = 0
+    target_leg_count = 0
+    for index, event_id in enumerate(sorted(initial_ids), 1):
+        control_row = control[event_id]
+        market = load_market(cache, event_id)
+        sequential = strict_sequential_floor(control_row, market)
+        if sequential is not None:
+            proof_types[sequential["first"]["proof_type"]] += 1
+            proof_types[sequential["second"]["proof_type"]] += 1
+        recognized_event = recognition_events[event_id]
+        selected_legs = [
+            selected
+            for state in recognized_event["legs"]
+            if (selected := target_leg(state)) is not None
+        ]
+        if selected_legs:
+            targeted_event_count += 1
+        if len(selected_legs) == 2:
+            targeted_both_count += 1
+        target_leg_count += len(selected_legs)
+        if not all(row["maker_safe"] for row in selected_legs):
+            raise TargetLapError(f"non-maker target: {event_id}")
+        event_rows.append({
+            "event_id": event_id,
+            "category": control_row["category"],
+            "recognized": True,
+            "selected_target": bool(selected_legs),
+            "selected_both_legs": len(selected_legs) == 2,
+            "loss_stage_before": "RECOGNIZED_NOT_TARGETED",
+            "loss_stage_after": (
+                "TARGETED_NOT_EXPOSED"
+                if selected_legs else "RECOGNIZED_NOT_TARGETED"
+            ),
+            "selected_legs": selected_legs,
+            "strict_sequential_floor": sequential,
+        })
+        if index % 50 == 0 or index == len(initial_ids):
+            print(f"target_events={index}/{len(initial_ids)}", flush=True)
+
+    sequential_values = [
+        row["strict_sequential_floor"]
+        for row in event_rows
+        if row["strict_sequential_floor"] is not None
+    ]
+    under_par = [
+        row for row in sequential_values
+        if row["maker_cost_cents"] < 100
+    ]
+    reference_available = [
+        row for row in sequential_values
+        if row["maker_cost_minus_reference_cents"] is not None
+    ]
+    negative_reference = [
+        row for row in reference_available
+        if row["maker_cost_minus_reference_cents"] < 0
+    ]
+    sequential_by_category: dict[str, list[dict[str, Any]]] = {}
+    for event_row in event_rows:
+        sequential = event_row["strict_sequential_floor"]
+        if sequential is not None:
+            sequential_by_category.setdefault(
+                str(event_row["category"]), []
+            ).append(sequential)
+    oracle = {
+        "recognized_population": len(initial_ids),
+        "any_sequential_floor_count": len(sequential_values),
+        "maker_under_par_count": len(under_par),
+        "reference_available_sequential_count": len(reference_available),
+        "reference_missing_sequential_count": (
+            len(sequential_values) - len(reference_available)
+        ),
+        "no_sequential_floor_count": (
+            len(initial_ids) - len(sequential_values)
+        ),
+        "negative_vs_reference_count": len(negative_reference),
+        "frontier": {
+            "le_93": sum(
+                row["maker_cost_cents"] <= 93
+                for row in sequential_values
+            ),
+            "le_95": sum(
+                row["maker_cost_cents"] <= 95
+                for row in sequential_values
+            ),
+            "le_97": sum(
+                row["maker_cost_cents"] <= 97
+                for row in sequential_values
+            ),
+            "lt_100": len(under_par),
+            "any": len(sequential_values),
+        },
+        "median_gap_minutes_all": median_or_none([
+            row["floor_time_gap_minutes"] for row in sequential_values
+        ]),
+        "median_gap_minutes_under_par": median_or_none([
+            row["floor_time_gap_minutes"] for row in under_par
+        ]),
+        "median_gap_minutes_negative_reference": median_or_none([
+            row["floor_time_gap_minutes"] for row in negative_reference
+        ]),
+        "gap_by_category": {
+            category: {
+                "count": len(rows),
+                "median_gap_minutes": median_or_none([
+                    row["floor_time_gap_minutes"] for row in rows
+                ]),
+            }
+            for category, rows in sorted(
+                sequential_by_category.items()
+            )
+        },
+        "proof_leg_counts": dict(sorted(proof_types.items())),
+        "sequence_contract": {
+            "first_leg_order_placed_at_first_bbo_in_own_window1": True,
+            "first_leg_five_contract_proof_inside_own_window1": True,
+            "second_leg_placement_strictly_after_first_fill_proof": True,
+            "second_leg_five_contract_proof_after_placement": True,
+            "second_leg_proof_inside_own_window1": True,
+            "maker_target_strictly_below_ask_at_placement": True,
+            "quantity": QUANTITY,
+        },
+    }
+    if targeted_event_count != INITIAL_RECOGNIZED_REQUIRED:
+        raise TargetLapError("target bridge did not act on all 501")
+    result = {
+        "schema_version": VERSION,
+        "scope": {
+            "development_population": D_REQUIRED,
+            "holdout_opened": False,
+            "live_accessed": False,
+            "network_accessed": False,
+            "orders_created": False,
+            "exposures_created": False,
+            "completions_changed": False,
+        },
+        "input_receipts": {
+            "control_ledger": {
+                "path": CONTROL_LEDGER,
+                "bytes": control_path.stat().st_size,
+                "sha256": sha256_file(control_path),
+            },
+            "recognition_laps": {
+                "path": RECOGNITION_JSON,
+                "bytes": recognition_path.stat().st_size,
+                "sha256": sha256_file(recognition_path),
+            },
+            "market_cache": {
+                "path_redacted": True,
+                "cache_version": (
+                    "window1-guarded-event-market-cache-v3"
+                ),
+                "events_read": len(initial_ids),
+            },
+        },
+        "strict_sequential_oracle": oracle,
+        "target_lap": {
+            "completions_out_of_804": len(completions),
+            "completions_out_of_692": sum(
+                row["C"] is True for row in tape_opportunities
+            ),
+            "recognized_of_510": len(initial_ids),
+            "targeted_event_count": targeted_event_count,
+            "targeted_both_legs_count": targeted_both_count,
+            "selected_leg_count": target_leg_count,
+            "new_exposure_count": 0,
+            "loss_stage_transfer": {
+                "from": "RECOGNIZED_NOT_TARGETED",
+                "to": "TARGETED_NOT_EXPOSED",
+                "event_count": targeted_event_count,
+            },
+            "refusal_cause": (
+                "best_selected_target_cents is derived only from relevant "
+                "action rows; the recognition harness deliberately emitted "
+                "no action row, so selection remained null by construction"
+            ),
+            "one_change": (
+                "map the maximum actionable recognized depth through the "
+                "existing maker-safe bid-minus-depth target expression"
+            ),
+        },
+        "events": event_rows,
+    }
+    output_json.parent.mkdir(parents=True, exist_ok=True)
+    with output_json.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(json.dumps(result, indent=2, sort_keys=True) + "\n")
+    with output_report.open(
+        "w", encoding="utf-8", newline="\n"
+    ) as handle:
+        handle.write(render_report(result))
+    print(json.dumps({
+        "sequential_any": len(sequential_values),
+        "maker_under_par": len(under_par),
+        "reference_available": len(reference_available),
+        "negative_vs_reference": len(negative_reference),
+        "median_gap_minutes": oracle["median_gap_minutes_all"],
+        "targeted_events": targeted_event_count,
+        "targeted_both_legs": targeted_both_count,
+        "completions": len(completions),
+    }, sort_keys=True))
+    return 0
+
+
+def parser() -> argparse.ArgumentParser:
+    result = argparse.ArgumentParser()
+    result.add_argument("--repo", required=True)
+    result.add_argument("--market-cache", required=True)
+    result.add_argument(
+        "--output-json",
+        default=(
+            ".claude/window1_t2_iteration_history/"
+            "WINDOW1_T2_SEQUENTIAL_ORACLE_AND_TARGET_LAP.json"
+        ),
+    )
+    result.add_argument(
+        "--output-report",
+        default=(
+            ".claude/window1_t2_iteration_history/"
+            "WINDOW1_T2_SEQUENTIAL_ORACLE_AND_TARGET_LAP.md"
+        ),
+    )
+    return result
+
+
+if __name__ == "__main__":
+    raise SystemExit(run(parser().parse_args()))

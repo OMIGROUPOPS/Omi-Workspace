@@ -405,6 +405,7 @@ def build_leg_states(
             "recognition_source": recognition_source,
             "anchor_bid_cents": anchor,
             "current_bid_cents": current,
+            "current_ask_cents": float(recognition["best_ask"]),
             "net_cents": current - anchor,
             "dip_cents": dip,
             "first_hour_print_count": first_hour_prints,
@@ -607,7 +608,7 @@ def run(args: argparse.Namespace) -> int:
     }
     event_rows_lap_1: list[dict[str, Any]] = []
     event_rows: list[dict[str, Any]] = []
-    plateau_rows: list[dict[str, Any]] = []
+    repeat_rows: list[dict[str, Any]] = []
     for index, control_row in enumerate(baseline_misses, 1):
         event_id = str(control_row["event_id"])
         event = event_map[event_id]
@@ -651,10 +652,10 @@ def run(args: argparse.Namespace) -> int:
         )
         if compact(corrected) != compact(repeated):
             raise RecognitionLapError(
-                f"plateau replay differs: {event_id}"
+                f"deterministic repeat differs: {event_id}"
             )
         event_rows.append(corrected)
-        plateau_rows.append(repeated)
+        repeat_rows.append(repeated)
         if index % 50 == 0 or index == len(baseline_misses):
             print(
                 f"recognition_events={index}/{len(baseline_misses)}",
@@ -726,7 +727,7 @@ def run(args: argparse.Namespace) -> int:
             ),
         },
         {
-            "lap_id": "recognition_lap_3_plateau",
+            "lap_id": "recognition_lap_3_repeat",
             "completions_out_of_804": len(completions),
             "completions_out_of_692": sum(
                 row["C"] is True for row in tape_opportunities
@@ -816,14 +817,17 @@ def run(args: argparse.Namespace) -> int:
                 signal_counts.items()
             )),
             "events": event_rows,
-            "plateau_replay_identical": (
-                compact(event_rows) == compact(plateau_rows)
+            "repeat_replay_identical": (
+                compact(event_rows) == compact(repeat_rows)
             ),
         },
         "laps": laps,
-        "stop_reason": (
-            "recognition count stopped moving on the deterministic "
-            "plateau replay"
+        "stage_result": (
+            "loss-stage transfer only: recognition moved misses from "
+            "never-seen to seen-not-targeted; completions did not improve"
+        ),
+        "next_stage": (
+            "target selection; recognition is not a completion plateau"
         ),
     }
     output_json.parent.mkdir(parents=True, exist_ok=True)

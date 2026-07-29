@@ -26,7 +26,7 @@ how many of the 510 we now see: **510/510**
 
 what changed since last lap: changed one thing: when the guarded window ends before the nominal T-6 checkpoint, static atlas/library recognition now reads the first available birth book instead of remaining null; no post-cutoff data is read
 
-## recognition_lap_3_plateau
+## recognition_lap_3_repeat
 
 completions: **131/804**, and **131/692** the tape proves
 

@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Window-1 T2 · 804-game reader</title>
+  <style>
+    :root {
+      --ink: #17201e;
+      --muted: #64706c;
+      --paper: #f4f1e9;
+      --panel: #fffdf7;
+      --line: #d9d4c8;
+      --green: #0f7557;
+      --red: #b23a31;
+      --amber: #a8660c;
+      --blue: #315c91;
+      --shadow: 0 10px 30px rgba(28,34,31,.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font: 14px/1.4 Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+    }
+    header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 24px 28px 18px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    h1 { margin: 0; font: 650 25px/1.1 Georgia, serif; }
+    header p { margin: 6px 0 0; color: var(--muted); }
+    .status { color: var(--muted); text-align: right; }
+    main { padding: 18px 28px 36px; }
+    .views, .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    button, input, select {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--panel);
+      color: var(--ink);
+      padding: 8px 10px;
+      font: inherit;
+    }
+    button { cursor: pointer; }
+    button.active { background: var(--ink); color: white; border-color: var(--ink); }
+    .views button[data-view="right"].active { background: var(--green); }
+    .views button[data-view="wrong"].active { background: var(--red); }
+    .views button[data-view="close"].active { background: var(--amber); }
+    input[type=search] { min-width: 300px; }
+    .summary {
+      margin-left: auto;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .table-wrap {
+      overflow: auto;
+      max-height: calc(100vh - 230px);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      box-shadow: var(--shadow);
+    }
+    table { border-collapse: collapse; width: 100%; min-width: 1480px; }
+    th, td {
+      padding: 8px 9px;
+      border-bottom: 1px solid #ebe7de;
+      vertical-align: top;
+      text-align: left;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: #efebe1;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .055em;
+      cursor: pointer;
+    }
+    tbody tr { cursor: pointer; }
+    tbody tr:hover, tbody tr.selected { background: #f0f7f3; }
+    td.event { max-width: 330px; overflow: hidden; text-overflow: ellipsis; }
+    .pill {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 99px;
+      font-size: 11px;
+      background: #e8e6df;
+    }
+    .pill.completed { color: var(--green); background: #e2f1eb; }
+    .pill.nothing { color: var(--red); background: #f7e7e4; }
+    .pill.one_leg { color: var(--amber); background: #f7edd8; }
+    .pill.censored { color: var(--muted); }
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      color: var(--muted);
+    }
+    dialog {
+      width: min(1180px, calc(100vw - 36px));
+      height: min(900px, calc(100vh - 36px));
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 0 28px 80px rgba(0,0,0,.25);
+      padding: 0;
+      background: var(--panel);
+      color: var(--ink);
+    }
+    dialog::backdrop { background: rgba(18,23,21,.48); }
+    .detail-head {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 18px 20px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+    }
+    .detail-head h2 { margin: 0 0 5px; font: 650 21px/1.1 Georgia, serif; }
+    .detail-body { padding: 18px 20px 30px; overflow: auto; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 9px;
+      margin-bottom: 16px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: #faf8f2;
+    }
+    .card b { display: block; font-size: 17px; margin-top: 4px; }
+    .eyebrow {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      font-size: 10px;
+    }
+    .leg {
+      border-top: 2px solid var(--ink);
+      margin-top: 20px;
+      padding-top: 12px;
+    }
+    .leg h3 { margin: 0 0 8px; }
+    .leg-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 14px;
+    }
+    .timeline {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      padding: 8px;
+    }
+    svg { width: 100%; height: 205px; display: block; }
+    .mini {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid var(--line);
+      margin-top: 8px;
+    }
+    .mini th { position: static; cursor: default; }
+    .mini td, .mini th { white-space: normal; font-size: 12px; }
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 320px;
+      overflow: auto;
+      background: #181d1b;
+      color: #e8eee9;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 11px;
+    }
+    .muted { color: var(--muted); }
+    .good { color: var(--green); }
+    .bad { color: var(--red); }
+    .warn { color: var(--amber); }
+    @media (max-width: 850px) {
+      header { position: static; align-items: flex-start; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .leg-grid { grid-template-columns: 1fr; }
+      input[type=search] { min-width: 100%; }
+      main { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Window-1 T2 · game reader</h1>
+      <p>804 development games. Click a row to read its price path, decisions, exposure, and fills.</p>
+    </div>
+    <div class="status" id="loadStatus">Loading WINDOW1_T2_GAME_GRID.json…</div>
+  </header>
+  <main>
+    <div class="views" id="viewButtons">
+      <button class="active" data-view="all">All</button>
+      <button data-view="right">Right · completed near floor</button>
+      <button data-view="wrong">Wrong · reachable, got nothing</button>
+      <button data-view="close">Close · one leg, ≤5¢ miss</button>
+      <span class="summary" id="summary"></span>
+    </div>
+    <div class="filters">
+      <input id="search" type="search" placeholder="Search event, category, slice, stage…">
+      <select id="category"><option value="">All categories</option></select>
+      <select id="slice"><option value="">All slices</option></select>
+      <select id="outcome"><option value="">All outcomes</option></select>
+      <select id="stage"><option value="">All physical stages</option></select>
+      <select id="pageSize">
+        <option>50</option><option selected>100</option><option>200</option><option>804</option>
+      </select>
+      <button id="clear">Clear</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr id="headers"></tr></thead>
+        <tbody id="body"></tbody>
+      </table>
+    </div>
+    <div class="pagination">
+      <button id="prev">← Previous</button>
+      <span id="page"></span>
+      <button id="next">Next →</button>
+    </div>
+  </main>
+
+  <dialog id="detail">
+    <div class="detail-head">
+      <div><h2 id="detailTitle"></h2><div id="detailSub" class="muted"></div></div>
+      <button id="closeDetail">Close</button>
+    </div>
+    <div class="detail-body" id="detailBody"></div>
+  </dialog>
+
+  <script>
+  (() => {
+    "use strict";
+    const state = {data:null, rows:[], view:"all", sort:"event_id", dir:1, page:0, selected:null};
+    const $ = id => document.getElementById(id);
+    const columns = [
+      ["event_id","event"],
+      ["category","category"],
+      ["slice","slice"],
+      ["outcome","outcome"],
+      ["physical_stage","died at"],
+      ["seqCost","seq maker cost / pair"],
+      ["floorPair","proven floor"],
+      ["fillPair","our fills"],
+      ["fillGap","fill-floor"],
+      ["floorMins","floor gap min"],
+      ["fillMins","fill gap min"],
+      ["makerTotal","5-pair cost + fees"],
+      ["delta","Δ vs ledger ref"],
+    ];
+    const fmt = (v, d=1) => v === null || v === undefined ? "—" :
+      typeof v === "number" ? (Number.isInteger(v) ? String(v) : v.toFixed(d)) : String(v);
+    const time = v => v == null ? "—" : new Date(v*1000).toLocaleString();
+    const esc = v => String(v ?? "").replace(/[&<>"']/g, c =>
+      ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const legValues = r => Object.values(r.legs);
+    const derived = (r, key) => {
+      const legs = legValues(r);
+      if (key === "seqCost") return r.strict_sequential_oracle.maker_cost_cents_per_contract;
+      if (key === "floorPair") {
+        const xs = legs.map(x=>x.five_contract_floor_cents);
+        return xs.every(x=>x!=null) ? xs.reduce((a,b)=>a+b,0) : null;
+      }
+      if (key === "fillPair") {
+        const xs = legs.map(x=>x.fill?.price_cents);
+        return xs.every(x=>x!=null) ? xs.reduce((a,b)=>a+b,0) : null;
+      }
+      if (key === "fillGap") return r.gaps.fill_minus_proven_floor_cents_per_pair;
+      if (key === "floorMins") return r.gaps.minutes_between_independent_floor_moments;
+      if (key === "fillMins") return r.gaps.minutes_between_our_fills;
+      if (key === "makerTotal") return r.pair_money.combined_entry_cost_cents_for_five_pairs_after_maker_fees;
+      if (key === "delta") return r.pair_money.delta_vs_ledger_reference_total_cents_for_five_pairs;
+      return r[key];
+    };
+    function cell(r,key) {
+      const v=derived(r,key);
+      if (key==="event_id") return `<td class="event" title="${esc(v)}">${esc(v)}</td>`;
+      if (key==="outcome") return `<td><span class="pill ${esc(v)}">${esc(v)}</span></td>`;
+      if (key==="seqCost") return `<td>${v==null?"—":fmt(v)+"¢"} ${r.strict_sequential_oracle.maker_under_par?'<span class="good">under</span>':""}</td>`;
+      if (["floorPair","fillPair","fillGap"].includes(key)) return `<td>${v==null?"—":fmt(v)+"¢"}</td>`;
+      if (["floorMins","fillMins"].includes(key)) return `<td>${v==null?"—":fmt(v)+"m"}</td>`;
+      if (key==="makerTotal") return `<td>${v==null?"—":fmt(v)+"¢ total"}</td>`;
+      if (key==="delta") return `<td class="${v<0?"good":v>0?"bad":""}">${v==null?"—":(v>0?"+":"")+fmt(v)+"¢ total"}</td>`;
+      return `<td>${esc(v ?? "—")}</td>`;
+    }
+    function fillSelect(id, values) {
+      const el=$(id), first=el.options[0].outerHTML;
+      el.innerHTML=first+[...new Set(values)].sort().map(v=>`<option>${esc(v)}</option>`).join("");
+    }
+    function prepare() {
+      const q=$("search").value.trim().toLowerCase();
+      const cat=$("category").value, sl=$("slice").value, out=$("outcome").value, stage=$("stage").value;
+      let rows=state.data.games.filter(r=>{
+        if(state.view!=="all" && !r.views[state.view]) return false;
+        if(cat && r.category!==cat) return false;
+        if(sl && r.slice!==sl) return false;
+        if(out && r.outcome!==out) return false;
+        if(stage && r.physical_stage!==stage) return false;
+        if(q && ![r.event_id,r.category,r.slice,r.outcome,r.physical_stage,r.scorer_stage].join(" ").toLowerCase().includes(q)) return false;
+        return true;
+      });
+      rows.sort((a,b)=>{
+        const x=derived(a,state.sort), y=derived(b,state.sort);
+        if(x==null && y==null) return 0; if(x==null) return 1; if(y==null) return -1;
+        return state.dir * (typeof x==="number" ? x-y : String(x).localeCompare(String(y)));
+      });
+      state.rows=rows;
+      const size=+$("pageSize").value, pages=Math.max(1,Math.ceil(rows.length/size));
+      state.page=Math.min(state.page,pages-1);
+      $("summary").textContent=`${rows.length} games`;
+      $("page").textContent=`Page ${state.page+1} of ${pages} · ${rows.length} rows`;
+      $("prev").disabled=state.page===0; $("next").disabled=state.page>=pages-1;
+      $("body").innerHTML=rows.slice(state.page*size,(state.page+1)*size).map(r=>
+        `<tr data-event="${esc(r.event_id)}" class="${state.selected===r.event_id?"selected":""}">${columns.map(c=>cell(r,c[0])).join("")}</tr>`
+      ).join("");
+      $("body").querySelectorAll("tr").forEach(tr=>tr.onclick=()=>openDetail(tr.dataset.event));
+    }
+    function timeline(leg) {
+      const path=leg.price_path.five_minute_true_print_path, w=720,h=205,pad=28;
+      const left=leg.price_path.window.left_ts, right=leg.price_path.window.right_ts;
+      if(!path.length) return `<div class="timeline muted">No true-print path inside the frozen policy window.</div>`;
+      const vals=path.flatMap(p=>[p[2],p[3]]), lo=Math.max(0,Math.min(...vals)-2), hi=Math.min(100,Math.max(...vals)+2);
+      const x=t=>pad+(t-left)/(right-left)*(w-2*pad), y=v=>h-pad-(v-lo)/(hi-lo||1)*(h-2*pad);
+      const pts=path.map(p=>`${x(p[0]+150).toFixed(1)},${y(p[4]).toFixed(1)}`).join(" ");
+      const marker=(ts,price,color,label)=>ts==null||price==null?"":`<g><circle cx="${x(ts)}" cy="${y(price)}" r="4" fill="${color}"/><text x="${x(ts)+5}" y="${y(price)-5}" font-size="10" fill="${color}">${esc(label)}</text></g>`;
+      const floor=leg.price_path.five_contract_proven_floor, fill=leg.fill;
+      return `<div class="timeline">
+        <svg viewBox="0 0 ${w} ${h}" aria-label="five-minute close path">
+          <line x1="${pad}" y1="${y(lo)}" x2="${w-pad}" y2="${y(lo)}" stroke="#d9d4c8"/>
+          <line x1="${pad}" y1="${y(hi)}" x2="${w-pad}" y2="${y(hi)}" stroke="#d9d4c8"/>
+          <text x="2" y="${y(hi)+4}" font-size="10">${hi}¢</text><text x="2" y="${y(lo)+4}" font-size="10">${lo}¢</text>
+          <polyline points="${pts}" fill="none" stroke="#315c91" stroke-width="2"/>
+          ${marker(leg.price_path.tape_low.timestamp,leg.price_path.tape_low.price_cents,"#b23a31","tape low")}
+          ${marker(floor?.proof_ts,floor?.price_cents,"#a8660c","5-contract floor")}
+          ${marker(fill?.timestamp,fill?.price_cents,"#0f7557","our fill")}
+        </svg>
+        <div class="muted">5-minute true-print closes · ${path.reduce((n,p)=>n+p[5],0)} prints · frozen right ${time(right)}</div>
+      </div>`;
+    }
+    function rowsTable(headers, rows) {
+      if(!rows.length) return `<p class="muted">None.</p>`;
+      return `<table class="mini"><thead><tr>${headers.map(x=>`<th>${esc(x)}</th>`).join("")}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(x=>`<td>${x}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+    }
+    function legDetail(id,leg,r) {
+      const p=leg.price_path, floor=p.five_contract_proven_floor, sh=p.shape;
+      const targets=r.control_targets.filter(x=>x.leg_id===id);
+      const targetRows=targets.map(x=>[time(x.ts),`${x.price_cents}¢`,esc(x.authority),esc(x.reason),x.inside_frozen_policy_window?"yes":'<span class="bad">no</span>']);
+      const expRows=leg.exposures.map(x=>[time(x.opened_ts),time(x.closed_ts),`${x.limit_price_cents}¢`,esc(x.authority),x.opened_inside_frozen_policy_window?"yes":'<span class="bad">no</span>']);
+      return `<section class="leg">
+        <h3>${esc(id)} <span class="muted">${esc(leg.ticker)}</span></h3>
+        <div class="leg-grid">
+          ${timeline(leg)}
+          <div>
+            ${rowsTable(["point","price","time"],[
+              ["open",fmt(p.open.price_cents)+"¢",time(p.open.timestamp)],
+              ["tape low",fmt(p.tape_low.price_cents)+"¢",time(p.tape_low.timestamp)],
+              ["5-contract floor",fmt(floor?.price_cents)+"¢",time(floor?.proof_ts)],
+              ["lawful-window path close",fmt(p.close.price_cents)+"¢",time(p.close.timestamp)],
+              ["ledger event reference",fmt(leg.frozen_reference.price_cents)+"¢",time(leg.frozen_reference.timestamp)],
+              ["our fill",fmt(leg.fill?.price_cents)+"¢",time(leg.fill?.timestamp)],
+            ])}
+            <p><b>Shape:</b> open→low ${fmt(sh.open_to_low_cents)}¢; low→close ${fmt(sh.low_to_close_cents)}¢; low at ${fmt(sh.low_minutes_from_window_open)}m (${fmt((sh.low_fraction_of_window??0)*100)}%). Divots ${fmt(leg.instrument_shape.divot_count)}.</p>
+          </div>
+        </div>
+        <h4>Targets</h4>${rowsTable(["time","price","authority","reason","inside right"],targetRows)}
+        <h4>Exposure intervals</h4>${rowsTable(["opened","closed","price","authority","opened inside"],expRows)}
+        <p><b>Fill-floor gap:</b> ${fmt(leg.fill_minus_proven_floor_cents_per_contract)}¢ per contract.
+        <b>Recognition:</b> ${leg.recognition?`${time(leg.recognition.recognition_ts)} · ${leg.recognition.inside_frozen_policy_window?"inside":"AFTER RIGHT"}`:"not in recognition lap"}.</p>
+      </section>`;
+    }
+    function openDetail(event) {
+      const r=state.data.games.find(x=>x.event_id===event); if(!r)return;
+      state.selected=event; prepare();
+      $("detailTitle").textContent=r.event_id;
+      $("detailSub").textContent=`${r.category} · ${r.slice} · ${r.outcome} · ${r.physical_stage}`;
+      const pm=r.pair_money, seq=r.strict_sequential_oracle;
+      $("detailBody").innerHTML=`
+        <div class="cards">
+          <div class="card"><span class="eyebrow">Outcome</span><b>${esc(r.outcome)}</b>${esc(r.physical_stage)}</div>
+          <div class="card"><span class="eyebrow">Sequential oracle</span><b>${seq.lawful?fmt(seq.maker_cost_cents_per_contract)+"¢":"not lawful"}</b>${seq.chosen_order?esc(seq.chosen_order):""}</div>
+          <div class="card"><span class="eyebrow">Our 5-pair cost</span><b>${fmt(pm.combined_entry_cost_cents_for_five_pairs_after_maker_fees)}¢ total</b>maker fees ${fmt(pm.maker_fee_total_cents_for_five_contract_pair)}¢ total</div>
+          <div class="card"><span class="eyebrow">Δ vs ledger ref</span><b>${fmt(pm.delta_vs_ledger_reference_total_cents_for_five_pairs)}¢ total</b>${fmt(pm.delta_vs_ledger_reference_cents_per_contract)}¢ / contract</div>
+        </div>
+        <p><b>Views:</b> ${Object.entries(r.views).filter(x=>x[1]).map(x=>x[0]).join(", ")||"none"}.
+        <b>Floor gap:</b> ${fmt(r.gaps.minutes_between_independent_floor_moments)} minutes.
+        <b>Fill gap:</b> ${fmt(r.gaps.minutes_between_our_fills)} minutes.
+        <b>Other leg order lawful:</b> ${seq.other_order_lawful?"yes":"no"}.</p>
+        ${Object.entries(r.legs).map(([id,leg])=>legDetail(id,leg,r)).join("")}
+        <h3>Recognition target bridge</h3><pre>${esc(JSON.stringify(r.recognition_target_bridge,null,2))}</pre>
+        <h3>Complete row</h3><pre>${esc(JSON.stringify(r,null,2))}</pre>`;
+      $("detail").showModal();
+    }
+    async function load() {
+      try {
+        const res=await fetch("WINDOW1_T2_GAME_GRID.json",{cache:"no-store"});
+        if(!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+        state.data=await res.json();
+        $("loadStatus").textContent=`${state.data.summary.row_count} rows · ${state.data.summary.tape_proven_floor_count} tape-proven · ${state.data.summary.completed_count} completed`;
+        fillSelect("category",state.data.games.map(r=>r.category));
+        fillSelect("slice",state.data.games.map(r=>r.slice));
+        fillSelect("outcome",state.data.games.map(r=>r.outcome));
+        fillSelect("stage",state.data.games.map(r=>r.physical_stage));
+        $("headers").innerHTML=columns.map(([key,label])=>`<th data-key="${key}">${esc(label)}</th>`).join("");
+        $("headers").querySelectorAll("th").forEach(th=>th.onclick=()=>{
+          if(state.sort===th.dataset.key) state.dir*=-1; else {state.sort=th.dataset.key;state.dir=1;}
+          state.page=0;prepare();
+        });
+        prepare();
+      } catch(err) {
+        $("loadStatus").innerHTML=`<span class="bad">Could not load JSON: ${esc(err.message)}. Serve this directory over localhost; do not open the HTML as file://.</span>`;
+      }
+    }
+    ["search","category","slice","outcome","stage","pageSize"].forEach(id=>$(id).addEventListener(id==="search"?"input":"change",()=>{state.page=0;prepare();}));
+    $("viewButtons").querySelectorAll("button").forEach(b=>b.onclick=()=>{
+      state.view=b.dataset.view;state.page=0;
+      $("viewButtons").querySelectorAll("button").forEach(x=>x.classList.toggle("active",x===b));prepare();
+    });
+    $("clear").onclick=()=>{["search","category","slice","outcome","stage"].forEach(id=>$(id).value="");state.view="all";state.page=0;$("viewButtons").querySelectorAll("button").forEach(x=>x.classList.toggle("active",x.dataset.view==="all"));prepare();};
+    $("prev").onclick=()=>{state.page--;prepare();}; $("next").onclick=()=>{state.page++;prepare();};
+    $("closeDetail").onclick=()=>$("detail").close();
+    load();
+  })();
+  </script>
+</body>
+</html>

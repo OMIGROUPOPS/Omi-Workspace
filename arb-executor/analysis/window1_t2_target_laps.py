@@ -28,7 +28,8 @@ VERSION = "window1-t2-sequential-oracle-target-lap-v2"
 D_REQUIRED = 804
 TAPE_OPPORTUNITY_REQUIRED = 692
 CONTROL_COMPLETIONS_REQUIRED = 131
-INITIAL_RECOGNIZED_REQUIRED = 501
+FROZEN_RECOGNIZED_INPUT_REQUIRED = 501
+INITIAL_RECOGNIZED_REQUIRED = 500
 BASELINE_NEVER_RECOGNIZED_REQUIRED = 510
 QUANTITY = 5
 CONTROL_LEDGER = (
@@ -146,11 +147,11 @@ def prepare_leg(
 ) -> dict[str, Any]:
     snapshots = [
         row for row in (leg.get("snapshots") or [])
-        if left <= float(row["ts"]) < right and row.get("asks")
+        if left <= float(row["ts"]) <= right and row.get("asks")
     ]
     prints = [
         row for row in (leg.get("prints") or [])
-        if left <= float(row["ts"]) < right
+        if left <= float(row["ts"]) <= right
     ]
     return {
         "left": left,
@@ -269,7 +270,8 @@ def cheapest_fill_after(
     return min(
         proofs.values(),
         key=lambda row: (
-            row["target_cents"] + row["maker_fee_cents"],
+            row["target_cents"] * QUANTITY
+            + row["maker_fee_cents"],
             row["fill_proof_ts"],
             row["target_cents"],
         ),
@@ -333,14 +335,14 @@ def strict_sequential_floor(
                 float(first_leg["left"])
                 <= float(first["placement_ts"])
                 < first_fill_ts
-                < float(first_leg["right"])
+                <= float(first_leg["right"])
             ):
                 raise TargetLapError("first-leg Window-1 sequence failed")
             if not (
                 float(second_leg["left"])
                 <= second_placement_ts
                 < second_fill_ts
-                < float(second_leg["right"])
+                <= float(second_leg["right"])
             ):
                 raise TargetLapError("second-leg Window-1 sequence failed")
             if not (
@@ -493,10 +495,13 @@ def render_report(result: Mapping[str, Any]) -> str:
         "# Window-1 T2 strict sequential oracle and target lap",
         "",
         (
-            "**Correction:** the prior 41 count was invalid. It added "
+            "**Corrections:** the prior 41 count was invalid. It added "
             "each leg's five-contract fee total directly to a "
             "per-contract price. This report compares total five-contract "
-            "cost with the $5.00 pair payout."
+            "cost with the $5.00 pair payout. A second unit error in "
+            "second-leg ranking is also fixed: it now ranks "
+            "`target_cents*5 + maker_fee_cents`. The frozen range right is "
+            "inclusive, matching the ladder builder."
         ),
         "",
         "## Target lap",
@@ -515,32 +520,39 @@ def render_report(result: Mapping[str, Any]) -> str:
             "what changed since last lap: one bridge now maps recognized "
             "depth to the existing maker target expression. "
             f"It selected an event target for "
-            f"**{target['targeted_event_count']}/501** recognized events "
+            f"**{target['targeted_event_count']}/"
+            f"{oracle['recognized_population']}** recognized events "
             f"({target['targeted_both_legs_count']} on both legs). "
             "Exposure was not changed, so completions were not expected "
             "to move."
         ),
         "",
         (
-            "Why the old layer refused all 501: the scorer populated "
+            "Why the old layer refused the recognized population: the scorer populated "
             "`best_selected_target_cents` only from pre-existing action "
             "rows. Recognition emitted no action row, so null selection "
-            "was guaranteed by construction—not by an economic veto."
+            "was guaranteed by construction--not by an economic veto."
         ),
         "",
-        "## Strict sequential oracle over the 501",
+        (
+            "## Strict sequential oracle over the "
+            f"{oracle['recognized_population']}"
+        ),
         "",
         (
             f"- Any strict sequential five-contract proof: "
-            f"**{oracle['any_sequential_floor_count']}/501**"
+            f"**{oracle['any_sequential_floor_count']}/"
+            f"{oracle['recognized_population']}**"
         ),
         (
             f"- Maker-fee combined floor under par: "
-            f"**{oracle['maker_under_par_count']}/501**"
+            f"**{oracle['maker_under_par_count']}/"
+            f"{oracle['recognized_population']}**"
         ),
         (
             f"- Negative against available Window-1 reference: "
-            f"**{oracle['negative_vs_reference_count']}/501** "
+            f"**{oracle['negative_vs_reference_count']}/"
+            f"{oracle['recognized_population']}** "
             f"({oracle['negative_vs_reference_count']}/"
             f"{oracle['reference_available_sequential_count']} among "
             "strict sequential proofs with reference; "
@@ -641,7 +653,7 @@ def render_report(result: Mapping[str, Any]) -> str:
             f"| {removals['sequential_path_no_longer_under_par']} |"
         ),
         (
-            "| also belongs to the recognized-501 scope | "
+            "| also belongs to the right-bounded recognized scope | "
             f"{reconciliation['strict_sequential_maker_under_par_in_recognized_501']} "
             f"| {removals['recognized_501_scope_filter']} |"
         ),
@@ -659,7 +671,8 @@ def render_report(result: Mapping[str, Any]) -> str:
             "leg's best five-contract floor even when those moments cannot "
             "form a post-first-fill path. The strict oracle adds maker "
             "fees, waits for leg one's five-contract proof, places leg two "
-            "only afterward, and then applies the separate 501-event scope."
+            "only afterward, and then applies the separate right-bounded "
+            "recognition scope."
         ),
         "",
         (
@@ -670,7 +683,7 @@ def render_report(result: Mapping[str, Any]) -> str:
         ),
         "",
         (
-            "The vault's 41–62 minute figure measured the gap between "
+            "The vault's 41-62 minute figure measured the gap between "
             "independently deepest leg moments. This stricter "
             "place-after-first-fill oracle is a different estimator, so "
             "the gap is not expected to reproduce that range."
@@ -706,13 +719,29 @@ def run(args: argparse.Namespace) -> int:
     control = {str(row["event_id"]): row for row in control_rows}
     recognition = read_json(recognition_path)
     lawful_windows = load_lawful_windows(repo)
-    initial_ids = list(
+    frozen_initial_ids = list(
         recognition["recognition"]["lap_1_recognized_event_ids"]
     )
     recognition_events = {
         str(row["event_id"]): row
         for row in recognition["recognition"]["events"]
     }
+    excluded_after_frozen_right: list[str] = []
+    initial_ids: list[str] = []
+    for event_id in frozen_initial_ids:
+        event = recognition_events[str(event_id)]
+        late = any(
+            state.get("recognition_ts") is not None
+            and float(state["recognition_ts"])
+            > float(lawful_windows[
+                (str(event_id), str(state["leg_id"]))
+            ]["right"]) + 1e-6
+            for state in event["legs"]
+        )
+        if late:
+            excluded_after_frozen_right.append(str(event_id))
+        else:
+            initial_ids.append(str(event_id))
     if len(control_rows) != D_REQUIRED or len(control) != D_REQUIRED:
         raise TargetLapError("development control is not exactly 804")
     tape_opportunities = [
@@ -733,8 +762,16 @@ def run(args: argparse.Namespace) -> int:
         raise TargetLapError("completion count changed")
     if len(baseline_never) != BASELINE_NEVER_RECOGNIZED_REQUIRED:
         raise TargetLapError("510 never-recognized census changed")
+    if len(frozen_initial_ids) != FROZEN_RECOGNIZED_INPUT_REQUIRED:
+        raise TargetLapError("frozen recognition input set is not 501")
     if len(initial_ids) != INITIAL_RECOGNIZED_REQUIRED:
-        raise TargetLapError("initial recognition set is not 501")
+        raise TargetLapError("right-bounded recognition set is not 500")
+    if excluded_after_frozen_right != [
+        "KXATPCHALLENGERMATCH-26JUL20CREMAT"
+    ]:
+        raise TargetLapError(
+            "right-bounded recognition exclusion set changed"
+        )
     if len(set(initial_ids)) != len(initial_ids):
         raise TargetLapError("duplicate initial recognition event")
 
@@ -865,7 +902,9 @@ def run(args: argparse.Namespace) -> int:
         strict_maker_ids & recognized_id_set
     )
     if len(recognized_strict_maker_ids) != len(under_par):
-        raise TargetLapError("501 strict under-par crosswalk mismatch")
+        raise TargetLapError(
+            "right-bounded recognition strict under-par crosswalk mismatch"
+        )
 
     ordering_counts: Counter[str] = Counter()
     for event_row in event_rows:
@@ -1102,7 +1141,10 @@ def run(args: argparse.Namespace) -> int:
         },
     }
     if targeted_event_count != INITIAL_RECOGNIZED_REQUIRED:
-        raise TargetLapError("target bridge did not act on all 501")
+        raise TargetLapError(
+            "target bridge did not act on the full right-bounded "
+            "recognized population"
+        )
     result = {
         "schema_version": VERSION,
         "scope": {
@@ -1113,6 +1155,11 @@ def run(args: argparse.Namespace) -> int:
             "orders_created": False,
             "exposures_created": False,
             "completions_changed": False,
+            "frozen_recognized_input_count": len(frozen_initial_ids),
+            "right_bounded_recognized_count": len(initial_ids),
+            "recognition_events_excluded_after_frozen_right": (
+                excluded_after_frozen_right
+            ),
         },
         "input_receipts": {
             "control_ledger": {

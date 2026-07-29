@@ -5172,35 +5172,35 @@
           "left_ts": 1783954800.0,
           "right_ts": 1783973700.0
         },
-        "floor_time_gap_minutes": 225.03245873053868,
-        "maker_cost_cents_per_contract": 98.4,
-        "maker_cost_minus_reference_cents_per_contract": -3.5999999999999943,
-        "maker_cost_minus_reference_total_cents": -18,
-        "maker_cost_total_cents_for_five_contract_pair": 492,
-        "maker_fee_total_cents_for_five_contract_pair": 2,
+        "floor_time_gap_minutes": 235.80153613090516,
+        "maker_cost_cents_per_contract": 97.6,
+        "maker_cost_minus_reference_cents_per_contract": -4.400000000000006,
+        "maker_cost_minus_reference_total_cents": -22,
+        "maker_cost_total_cents_for_five_contract_pair": 488,
+        "maker_fee_total_cents_for_five_contract_pair": 3,
         "ordering_minimums": {
           "LOP__then__SAN": {
-            "maker_cost_cents_per_contract": 98.4,
-            "maker_cost_total_cents_for_five_contract_pair": 492,
+            "maker_cost_cents_per_contract": 97.6,
+            "maker_cost_total_cents_for_five_contract_pair": 488,
             "maker_under_par": true
           }
         },
         "orientation": "LOP__then__SAN",
         "reference_sum_cents": 102,
         "second": {
-          "fill_proof_ts": 1783972786.399212,
-          "maker_fee_cents": 1,
+          "fill_proof_ts": 1783973432.543856,
+          "maker_fee_cents": 2,
           "placement_ts": 1783959315.0,
-          "proof_receipt": "41458132-bf9c-48ac-4d19-67e1ad05ef30",
+          "proof_receipt": "14454373-4c8f-72e8-19cc-11810c341473",
           "proof_type": "CUMULATIVE_TRUE_PRINT_CAPACITY",
-          "target_cents": 87
+          "target_cents": 86
         },
         "second_leg_id": "SAN",
         "second_leg_lawful_window": {
           "left_ts": 1783954800.0,
           "right_ts": 1783973700.0
         },
-        "target_sum_cents": 98
+        "target_sum_cents": 97
       }
     },
     {
@@ -13628,16 +13628,16 @@
           "left_ts": 1784431800.0,
           "right_ts": 1784449800.0
         },
-        "floor_time_gap_minutes": 8.041445819536845,
-        "maker_cost_cents_per_contract": 98.8,
-        "maker_cost_minus_reference_cents_per_contract": -1.2000000000000028,
-        "maker_cost_minus_reference_total_cents": -6,
-        "maker_cost_total_cents_for_five_contract_pair": 494,
-        "maker_fee_total_cents_for_five_contract_pair": 4,
+        "floor_time_gap_minutes": 8.26917986869812,
+        "maker_cost_cents_per_contract": 98.0,
+        "maker_cost_minus_reference_cents_per_contract": -2.0,
+        "maker_cost_minus_reference_total_cents": -10,
+        "maker_cost_total_cents_for_five_contract_pair": 490,
+        "maker_fee_total_cents_for_five_contract_pair": 5,
         "ordering_minimums": {
           "BOI__then__VAR": {
-            "maker_cost_cents_per_contract": 98.8,
-            "maker_cost_total_cents_for_five_contract_pair": 494,
+            "maker_cost_cents_per_contract": 98.0,
+            "maker_cost_total_cents_for_five_contract_pair": 490,
             "maker_under_par": true
           },
           "VAR__then__BOI": {
@@ -13649,19 +13649,19 @@
         "orientation": "BOI__then__VAR",
         "reference_sum_cents": 100,
         "second": {
-          "fill_proof_ts": 1784449679.550815,
-          "maker_fee_cents": 2,
+          "fill_proof_ts": 1784449693.214858,
+          "maker_fee_cents": 3,
           "placement_ts": 1784449200.0,
-          "proof_receipt": "b3c2cbca-e3cc-4baf-29e7-e398143b2443",
+          "proof_receipt": "0fae33d9-f39b-67c2-93f6-d8ac83778c6e",
           "proof_type": "CUMULATIVE_TRUE_PRINT_CAPACITY",
-          "target_cents": 65
+          "target_cents": 64
         },
         "second_leg_id": "VAR",
         "second_leg_lawful_window": {
           "left_ts": 1784431800.0,
           "right_ts": 1784449800.0
         },
-        "target_sum_cents": 98
+        "target_sum_cents": 97
       }
     },
     {
@@ -14280,44 +14280,6 @@
         },
         "target_sum_cents": 99
       }
-    },
-    {
-      "category": "ATP_CHALL",
-      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
-      "loss_stage_after": "TARGETED_NOT_EXPOSED",
-      "loss_stage_before": "RECOGNIZED_NOT_TARGETED",
-      "recognized": true,
-      "selected_both_legs": true,
-      "selected_legs": [
-        {
-          "decision_ask_cents": 60,
-          "decision_bid_cents": 54,
-          "depth_sources": [
-            "cohort_library"
-          ],
-          "leg_id": "CRE",
-          "maker_safe": true,
-          "selected_depth_cents": 7.0,
-          "selected_target_cents": 47,
-          "target_expression": "max(1, min(current_ask-1, current_bid-nearest_int(max_recognized_depth)))",
-          "ticker": "KXATPCHALLENGERMATCH-26JUL20CREMAT-CRE"
-        },
-        {
-          "decision_ask_cents": 44,
-          "decision_bid_cents": 43,
-          "depth_sources": [
-            "cohort_library"
-          ],
-          "leg_id": "MAT",
-          "maker_safe": true,
-          "selected_depth_cents": 6.0,
-          "selected_target_cents": 37,
-          "target_expression": "max(1, min(current_ask-1, current_bid-nearest_int(max_recognized_depth)))",
-          "ticker": "KXATPCHALLENGERMATCH-26JUL20CREMAT-MAT"
-        }
-      ],
-      "selected_target": true,
-      "strict_sequential_floor": null
     },
     {
       "category": "ATP_CHALL",
@@ -20603,35 +20565,35 @@
           "left_ts": 1783919400.0,
           "right_ts": 1783943640.0
         },
-        "floor_time_gap_minutes": 145.39775886535645,
-        "maker_cost_cents_per_contract": 101.8,
-        "maker_cost_minus_reference_cents_per_contract": 0.7999999999999972,
-        "maker_cost_minus_reference_total_cents": 4,
-        "maker_cost_total_cents_for_five_contract_pair": 509,
+        "floor_time_gap_minutes": 243.5644255320231,
+        "maker_cost_cents_per_contract": 99.8,
+        "maker_cost_minus_reference_cents_per_contract": -1.2000000000000028,
+        "maker_cost_minus_reference_total_cents": -6,
+        "maker_cost_total_cents_for_five_contract_pair": 499,
         "maker_fee_total_cents_for_five_contract_pair": 4,
         "ordering_minimums": {
           "PER__then__KAB": {
-            "maker_cost_cents_per_contract": 101.8,
-            "maker_cost_total_cents_for_five_contract_pair": 509,
-            "maker_under_par": false
+            "maker_cost_cents_per_contract": 99.8,
+            "maker_cost_total_cents_for_five_contract_pair": 499,
+            "maker_under_par": true
           }
         },
         "orientation": "PER__then__KAB",
         "reference_sum_cents": 101,
         "second": {
-          "fill_proof_ts": 1783937750.0,
+          "fill_proof_ts": 1783943640.0,
           "maker_fee_cents": 2,
           "placement_ts": 1783929061.0,
           "proof_receipt": "",
           "proof_type": "STRICT_ASK",
-          "target_cents": 73
+          "target_cents": 71
         },
         "second_leg_id": "KAB",
         "second_leg_lawful_window": {
           "left_ts": 1783919400.0,
           "right_ts": 1783943640.0
         },
-        "target_sum_cents": 101
+        "target_sum_cents": 99
       }
     },
     {
@@ -24184,12 +24146,12 @@
           "left_ts": 1783851000.0,
           "right_ts": 1783871700.0
         },
-        "floor_time_gap_minutes": 102.5984076499939,
-        "maker_cost_cents_per_contract": 100.4,
-        "maker_cost_minus_reference_cents_per_contract": -1.5999999999999943,
-        "maker_cost_minus_reference_total_cents": -8,
-        "maker_cost_total_cents_for_five_contract_pair": 502,
-        "maker_fee_total_cents_for_five_contract_pair": 2,
+        "floor_time_gap_minutes": 170.64737371603647,
+        "maker_cost_cents_per_contract": 99.6,
+        "maker_cost_minus_reference_cents_per_contract": -2.4000000000000057,
+        "maker_cost_minus_reference_total_cents": -12,
+        "maker_cost_total_cents_for_five_contract_pair": 498,
+        "maker_fee_total_cents_for_five_contract_pair": 3,
         "ordering_minimums": {
           "HOD__then__YAS": {
             "maker_cost_cents_per_contract": 100.4,
@@ -24197,27 +24159,27 @@
             "maker_under_par": false
           },
           "YAS__then__HOD": {
-            "maker_cost_cents_per_contract": 100.4,
-            "maker_cost_total_cents_for_five_contract_pair": 502,
-            "maker_under_par": false
+            "maker_cost_cents_per_contract": 99.6,
+            "maker_cost_total_cents_for_five_contract_pair": 498,
+            "maker_under_par": true
           }
         },
         "orientation": "YAS__then__HOD",
         "reference_sum_cents": 102,
         "second": {
-          "fill_proof_ts": 1783867591.486439,
-          "maker_fee_cents": 1,
+          "fill_proof_ts": 1783871674.424403,
+          "maker_fee_cents": 2,
           "placement_ts": 1783861439.0,
-          "proof_receipt": "050c8ac9-a7c7-6d25-fadd-b2c699d460b6",
+          "proof_receipt": "e1e1a69e-f294-512a-bc30-b01cb7f64400",
           "proof_type": "CUMULATIVE_TRUE_PRINT_CAPACITY",
-          "target_cents": 87
+          "target_cents": 86
         },
         "second_leg_id": "HOD",
         "second_leg_lawful_window": {
           "left_ts": 1783851000.0,
           "right_ts": 1783871700.0
         },
-        "target_sum_cents": 100
+        "target_sum_cents": 99
       }
     },
     {
@@ -28218,7 +28180,7 @@
     },
     "market_cache": {
       "cache_version": "window1-guarded-event-market-cache-v3",
-      "events_read": 501,
+      "events_read": 500,
       "path_redacted": true
     },
     "recognition_laps": {
@@ -29541,6 +29503,7 @@
         "KXWTACHALLENGERMATCH-26JUL12SOKNUG",
         "KXWTACHALLENGERMATCH-26JUL12VOLMAR",
         "KXWTACHALLENGERMATCH-26JUL13HERJAK",
+        "KXWTACHALLENGERMATCH-26JUL13KABPER",
         "KXWTACHALLENGERMATCH-26JUL13SELYAN",
         "KXWTACHALLENGERMATCH-26JUL14BARKOL",
         "KXWTACHALLENGERMATCH-26JUL14PACVED",
@@ -29558,6 +29521,7 @@
         "KXWTACHALLENGERMATCH-26JUL20LANRAD",
         "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
         "KXWTAMATCH-26JUL12HERKAZ",
+        "KXWTAMATCH-26JUL12HODYAS",
         "KXWTAMATCH-26JUL12KULZAA",
         "KXWTAMATCH-26JUL12LEPBUR",
         "KXWTAMATCH-26JUL12MICKUL",
@@ -29666,6 +29630,7 @@
         "KXWTACHALLENGERMATCH-26JUL12SOKNUG",
         "KXWTACHALLENGERMATCH-26JUL12VOLMAR",
         "KXWTACHALLENGERMATCH-26JUL13HERJAK",
+        "KXWTACHALLENGERMATCH-26JUL13KABPER",
         "KXWTACHALLENGERMATCH-26JUL13SELYAN",
         "KXWTACHALLENGERMATCH-26JUL14BARKOL",
         "KXWTACHALLENGERMATCH-26JUL15CARPAL",
@@ -29675,6 +29640,7 @@
         "KXWTACHALLENGERMATCH-26JUL19SERTOT",
         "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
         "KXWTAMATCH-26JUL12HERKAZ",
+        "KXWTAMATCH-26JUL12HODYAS",
         "KXWTAMATCH-26JUL12LEPBUR",
         "KXWTAMATCH-26JUL13MATMIC",
         "KXWTAMATCH-26JUL18OKALEE",
@@ -29842,6 +29808,7 @@
         "KXWTACHALLENGERMATCH-26JUL12SOKNUG",
         "KXWTACHALLENGERMATCH-26JUL12VOLMAR",
         "KXWTACHALLENGERMATCH-26JUL13HERJAK",
+        "KXWTACHALLENGERMATCH-26JUL13KABPER",
         "KXWTACHALLENGERMATCH-26JUL13SELYAN",
         "KXWTACHALLENGERMATCH-26JUL14BARKOL",
         "KXWTACHALLENGERMATCH-26JUL14PACVED",
@@ -29859,6 +29826,7 @@
         "KXWTACHALLENGERMATCH-26JUL20LANRAD",
         "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
         "KXWTAMATCH-26JUL12HERKAZ",
+        "KXWTAMATCH-26JUL12HODYAS",
         "KXWTAMATCH-26JUL12KULZAA",
         "KXWTAMATCH-26JUL12LEPBUR",
         "KXWTAMATCH-26JUL12MICKUL",
@@ -29902,12 +29870,12 @@
       "any_strict_sequence": 123,
       "independent_maker_under_par": 215,
       "independent_prefee_under_par": 269,
-      "population": 501,
-      "removed_by_independent_floor_at_or_above_par": 232,
+      "population": 500,
+      "removed_by_independent_floor_at_or_above_par": 231,
       "removed_by_maker_fees": 54,
       "removed_by_no_post_first_fill_sequence": 92,
-      "removed_by_sequential_path_no_longer_under_par": 33,
-      "strict_sequential_maker_under_par": 90
+      "removed_by_sequential_path_no_longer_under_par": 31,
+      "strict_sequential_maker_under_par": 92
     },
     "removals_full_population_chain": {
       "independent_floor_not_under_par_before_fees": 255,
@@ -29915,24 +29883,29 @@
       "missing_or_censored_independent_five_contract_proof": 112,
       "no_post_first_fill_sequence": 112,
       "recognized_501_scope_filter": 117,
-      "sequential_path_no_longer_under_par": 45
+      "sequential_path_no_longer_under_par": 43
     },
     "same_tape_population": 804,
     "strict_raw_v5_additions_outside_prior_364": 0,
     "strict_sequential_any_price_all_804": 346,
-    "strict_sequential_maker_under_par_all_804": 207,
-    "strict_sequential_maker_under_par_in_recognized_501": 90,
-    "strict_sequential_survivors_from_prior_364": 207
+    "strict_sequential_maker_under_par_all_804": 209,
+    "strict_sequential_maker_under_par_in_recognized_501": 92,
+    "strict_sequential_survivors_from_prior_364": 209
   },
   "schema_version": "window1-t2-sequential-oracle-target-lap-v2",
   "scope": {
     "completions_changed": false,
     "development_population": 804,
     "exposures_created": false,
+    "frozen_recognized_input_count": 501,
     "holdout_opened": false,
     "live_accessed": false,
     "network_accessed": false,
-    "orders_created": false
+    "orders_created": false,
+    "recognition_events_excluded_after_frozen_right": [
+      "KXATPCHALLENGERMATCH-26JUL20CREMAT"
+    ],
+    "right_bounded_recognized_count": 500
   },
   "strict_sequential_oracle": {
     "any_sequential_floor_count": 199,
@@ -29941,7 +29914,7 @@
       "le_93": 4,
       "le_95": 7,
       "le_97": 19,
-      "lt_100": 90
+      "lt_100": 92
     },
     "gap_by_category": {
       "ATP_CHALL": {
@@ -29961,17 +29934,17 @@
         "median_gap_minutes": 95.34442367553712
       }
     },
-    "maker_under_par_count": 90,
+    "maker_under_par_count": 92,
     "median_gap_minutes_all": 90.4060282031695,
-    "median_gap_minutes_negative_reference": 92.2600471576055,
-    "median_gap_minutes_under_par": 96.9367094596227,
-    "negative_vs_reference_count": 158,
-    "no_sequential_floor_count": 302,
+    "median_gap_minutes_negative_reference": 92.48451871474585,
+    "median_gap_minutes_under_par": 98.33616253336271,
+    "negative_vs_reference_count": 159,
+    "no_sequential_floor_count": 301,
     "proof_leg_counts": {
       "CUMULATIVE_TRUE_PRINT_CAPACITY": 350,
       "STRICT_ASK": 48
     },
-    "recognized_population": 501,
+    "recognized_population": 500,
     "reference_available_sequential_count": 198,
     "reference_missing_sequential_count": 1,
     "sequence_contract": {
@@ -29987,28 +29960,28 @@
     "under_par_gap_counts": {
       "over_8_hours": 0,
       "within_2_hours": 49,
-      "within_4_hours": 75,
-      "within_8_hours": 90
+      "within_4_hours": 76,
+      "within_8_hours": 92
     },
     "under_par_ordering_counts": {
       "both_directions_under_par": 24,
-      "exactly_one_direction_under_par": 66
+      "exactly_one_direction_under_par": 68
     }
   },
   "target_lap": {
     "completions_out_of_692": 131,
     "completions_out_of_804": 131,
     "loss_stage_transfer": {
-      "event_count": 501,
+      "event_count": 500,
       "from": "RECOGNIZED_NOT_TARGETED",
       "to": "TARGETED_NOT_EXPOSED"
     },
     "new_exposure_count": 0,
     "one_change": "map the maximum actionable recognized depth through the existing maker-safe bid-minus-depth target expression",
-    "recognized_of_510": 501,
+    "recognized_of_510": 500,
     "refusal_cause": "best_selected_target_cents is derived only from relevant action rows; the recognition harness deliberately emitted no action row, so selection remained null by construction",
-    "selected_leg_count": 1001,
-    "targeted_both_legs_count": 500,
-    "targeted_event_count": 501
+    "selected_leg_count": 999,
+    "targeted_both_legs_count": 499,
+    "targeted_event_count": 500
   }
 }

@@ -805,11 +805,22 @@ async def async_main() -> int:
     for i, game in enumerate(games, 1):
         print(f"[{i}/{len(games)}] replay {game['event']}", flush=True)
         results.append(await replay_one(game, ranges, args.out))
+    first_break = next(
+        (x["first_input_break"] for x in results if x["first_input_break"]),
+        None,
+    )
+    valid_for_scoring = first_break is None
     summary = {
         "schema_version": "window1-live-v4-replay-summary-v1",
         "fill_model": FILL_MODEL,
         "games": len(results),
-        "completions_out_of_804": sum(bool(x["pair_completed"]) for x in results),
+        "valid_for_scoring": valid_for_scoring,
+        "first_input_break": first_break,
+        "completions_out_of_804": (
+            sum(bool(x["pair_completed"]) for x in results)
+            if valid_for_scoring
+            else None
+        ),
         "results": [
             {
                 "event": x["event"],

@@ -1,0 +1,21 @@
+{
+  "C": null,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "attribution": null,
+  "authorization_issued": false,
+  "frontier": null,
+  "holdout_opened": false,
+  "live_network_Kalshi_or_trading_access": false,
+  "order_position_exit_settlement_DCA_Window2_access": false,
+  "performance": null,
+  "ranking": null,
+  "regret": null,
+  "results_directory_created": false,
+  "schema_version": "window1-t2-scoring-package-builder-v4-forbidden-access-v1",
+  "scorer_call_attempts": 0,
+  "scorer_imported_by_builder": false,
+  "selection": null,
+  "tuning_ranking_selection_deployment": false
+}

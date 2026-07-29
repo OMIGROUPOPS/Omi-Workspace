@@ -1,0 +1,53 @@
+{
+  "authorization": {
+    "consumed_V2_authorization": "e4e57baca0c2172244e63f45b2086f2ef4df53e9",
+    "consumed_V3_authorization": "40a6314fe0790416a260879cd9a071072e26e9a0",
+    "consumed_authorizations_rejected": true,
+    "future_independent_audit_required": true,
+    "future_separate_authorization_required": true
+  },
+  "boundary_roles": {
+    "frozen_reference_cross_check": "normalized_boundary_contract",
+    "inherited_scorer_boundary": "full_raw_V5_guard_row",
+    "normalized_boundary_may_be_scorer_boundary": false,
+    "runtime_preparation_function": "iter_prepared_scorer_calls"
+  },
+  "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v4",
+  "execution_results_directory": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v4",
+  "immutables": {
+    "D": 804,
+    "candidate_count": 8,
+    "event_leg_count": 1608,
+    "fit_D": 525,
+    "prepared_candidate_event_calls": 6432,
+    "post_fit_D": 279
+  },
+  "invocation_accounting": {
+    "completed_candidate_increment": "after_all_804_event_rows_return",
+    "completed_event_increment": "after_score_t2_event_returns",
+    "scorer_call_attempt_increment": "immediately_before_score_t2_event",
+    "scorer_call_attempt_persisted_before_entry": true
+  },
+  "metrics": {
+    "C": null,
+    "IC": null,
+    "PC": null,
+    "S": null,
+    "attribution": null,
+    "frontier": null,
+    "performance": null,
+    "ranking": null,
+    "regret": null,
+    "selection": null
+  },
+  "preserved_V3_failure": {
+    "commit": "9cd2bea5487d8e558c42c8950263b44179054a68",
+    "completed_candidates": 0,
+    "completed_event_rows": 0,
+    "performance_result": null,
+    "runner_invocations": 1,
+    "scorer_call_attempts": 1
+  },
+  "schema_version": "window1-t2-scoring-transitive-boundary-contract-v4",
+  "score_free": true
+}

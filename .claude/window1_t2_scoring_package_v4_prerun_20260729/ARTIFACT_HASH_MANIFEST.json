@@ -1,0 +1,92 @@
+{
+  "artifact_count": 12,
+  "artifacts": [
+    {
+      "git_blob_oid": "12e51832cf4235d4d91ba157ccdbe2d82fcbcc36",
+      "identity_bytes": 4191,
+      "path": ".claude/window1_t2_scoring_package_v4_prerun_20260729/CONSUMED_V3_FAILURE_BINDING.json",
+      "sha256": "2a67765f7b1b65dd7b96b588e050982120759f73ec1d74b4075689f333546c4b",
+      "working_tree_bytes": 4191
+    },
+    {
+      "git_blob_oid": "541ce90f13b5c7b9d709766d941ae0a8d28dd160",
+      "identity_bytes": 7853,
+      "path": ".claude/window1_t2_scoring_package_v4_prerun_20260729/EXECUTION_READINESS_NO_SCORE_RECEIPT.json",
+      "sha256": "8e4bb87f7ec8f02415f83cdc1153374b2ef6dd02a8be25be7aff30bf94f6d687",
+      "working_tree_bytes": 7853
+    },
+    {
+      "git_blob_oid": "d75e92cd8bc239fed08164b2e1f6f821a3f42d58",
+      "identity_bytes": 637,
+      "path": ".claude/window1_t2_scoring_package_v4_prerun_20260729/EXPECTED_OUTPUT_SCHEMA_V4.json",
+      "sha256": "019d68f6a8ab8617d6c8540661eb03dda6c86c00ab74364ef85c6e5fb20dd429",
+      "working_tree_bytes": 637
+    },
+    {
+      "git_blob_oid": "12dabf5d6889635bd60f9903ceb7eaf29858bdb6",
+      "identity_bytes": 588,
+      "path": ".claude/window1_t2_scoring_package_v4_prerun_20260729/FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "4e09a73dbc92181db4c228cfdab82fa63d259769f3fc47e43fd795e2d06441d5",
+      "working_tree_bytes": 588
+    },
+    {
+      "git_blob_oid": "5736ff64994bacfa7d641763e64601713ade541a",
+      "identity_bytes": 1342,
+      "path": ".claude/window1_t2_scoring_package_v4_prerun_20260729/INDEPENDENT_AUDIT_INSTRUCTION.md",
+      "sha256": "ba4c0548a7499d82728e03b386ab284c2e0310491b8460d849a4f2a734e49f92",
+      "working_tree_bytes": 1342
+    },
+    {
+      "git_blob_oid": "8c02a5bf08f52d6c1c5f1630d3359e21fdafe691",
+      "identity_bytes": 811,
+      "path": ".claude/window1_t2_scoring_package_v4_prerun_20260729/NULL_METRIC_NO_EXECUTION_RECEIPT.json",
+      "sha256": "3802a15ee72282a7c2aa208da80c03b99d29a2f4abb648b73a6ff9ab124f5e5e",
+      "working_tree_bytes": 811
+    },
+    {
+      "git_blob_oid": "1fd6e7d190ed4e382345c528fe9814984269a705",
+      "identity_bytes": 982,
+      "path": ".claude/window1_t2_scoring_package_v4_prerun_20260729/PRE_RUN_REPORT.md",
+      "sha256": "6bffabe10138a2d78834ccda4d1c53b2e2a7304be93693c1dbfb86453847e68a",
+      "working_tree_bytes": 982
+    },
+    {
+      "git_blob_oid": "fe50d38ae25e95b529569233a3a2b7098b50b503",
+      "identity_bytes": 7502,
+      "path": ".claude/window1_t2_scoring_package_v4_prerun_20260729/RUNTIME_SEAM_PROBE_RECEIPT.json",
+      "sha256": "e1cf343896d1d9f6948085be5bafc996c5d2590ac2288b4ff1a587c4a35cf7ed",
+      "working_tree_bytes": 7502
+    },
+    {
+      "git_blob_oid": "5ac5ee60557d85b56800abee83ed9182221b1404",
+      "identity_bytes": 27204,
+      "path": ".claude/window1_t2_scoring_package_v4_prerun_20260729/SCORING_INPUT_MANIFEST.json",
+      "sha256": "40cdc489f94a911fe1173a9210e984460a784a47cca87e252854c91c326f1c6a",
+      "working_tree_bytes": 27204
+    },
+    {
+      "git_blob_oid": "6da91c8e2d42108f9593d7854f00f45c9c352af0",
+      "identity_bytes": 12136,
+      "path": ".claude/window1_t2_scoring_package_v4_prerun_20260729/SOURCE_HASH_MANIFEST.json",
+      "sha256": "7f19c4fa65eafa138156de2f365a5d72914f52a6ceff3d8c8261d728eda69c3a",
+      "working_tree_bytes": 12136
+    },
+    {
+      "git_blob_oid": "7f8601e357da2d7405148b28ad9fe2afa54b6dd7",
+      "identity_bytes": 1516,
+      "path": ".claude/window1_t2_scoring_package_v4_prerun_20260729/TRANSITIVE_BOUNDARY_CORRECTION_RECEIPT.json",
+      "sha256": "7c66f14b0d12a8f1a99c1819739a37232ccc387fcbc13af4d03393fa8709f6c8",
+      "working_tree_bytes": 1516
+    },
+    {
+      "git_blob_oid": "da1311b8be05c74682e9d64fff6f2cf899b56b3a",
+      "identity_bytes": 371,
+      "path": ".claude/window1_t2_scoring_package_v4_prerun_20260729/V1_V2_V3_BYTE_IDENTITY_RECEIPT.json",
+      "sha256": "cde7faaee0b53826cf16b66150d346304d386564392594b245d772a2422ae168",
+      "working_tree_bytes": 371
+    }
+  ],
+  "determinism_receipt_excluded": true,
+  "manifest_self_excluded": true,
+  "schema_version": "window1-t2-scoring-package-builder-v4-artifact-hash-manifest-v1"
+}

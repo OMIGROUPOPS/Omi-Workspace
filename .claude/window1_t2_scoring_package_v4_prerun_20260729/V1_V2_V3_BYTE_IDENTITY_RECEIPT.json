@@ -1,0 +1,9 @@
+{
+  "V3_failure_branch_merged": false,
+  "V3_package_path": ".claude/window1_t2_scoring_package_v3_prerun_20260728",
+  "V4_additions_only": true,
+  "implementation_parent": "a758279184ab0f367a3ce74a69da851608645e19",
+  "inherited_files_deleted": 0,
+  "inherited_files_modified": 0,
+  "schema_version": "window1-t2-scoring-package-builder-v4-inherited-byte-identity-v1"
+}

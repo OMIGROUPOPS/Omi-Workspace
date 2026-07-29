@@ -1,0 +1,35 @@
+{
+  "C": null,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "V3_AST_subset_proof_was_insufficient": true,
+  "V3_completed_candidates": 0,
+  "V3_completed_event_rows": 0,
+  "V3_passed_scorer_boundary": false,
+  "V3_reached_scorer_call_entry": true,
+  "V3_scorer_call_attempts": 1,
+  "V4_normalized_boundary_role": "cross_check_only",
+  "V4_scorer_boundary_role": "full_raw_V5_boundary",
+  "V4_shared_preparation_function": "iter_prepared_scorer_calls",
+  "completed_candidates": 0,
+  "completed_event_rows": 0,
+  "defect": {
+    "preserved_error": "ReferenceError: positive boundary lacks V5 guard artifact",
+    "runner": "window1_t2_scoring_runner_v3.py:713 supplied normalized starts[event_id]",
+    "transitive_consumer": "window1_range_attack_scorer_v1.py:122 guarded_cutoff"
+  },
+  "future_attempt_accounting": {
+    "candidate_completion": "only_after_804_successful_rows",
+    "event_completion": "only_after_successful_return",
+    "increment": "immediately_before_score_t2_event",
+    "persist": "before_entering_score_t2_event"
+  },
+  "normalized_selected_count": 0,
+  "performance": null,
+  "prepared_call_count": 6432,
+  "raw_V5_prepared_count": 6432,
+  "schema_version": "window1-t2-scoring-package-builder-v4-transitive-boundary-correction-v1",
+  "scorer_call_attempts": 0,
+  "why_AST_subset_was_insufficient": "V3 compared top-level role loads and validated frozen reference derivation, but did not validate the transitive boundary type consumed by guarded_cutoff inside the inherited metric scorer."
+}

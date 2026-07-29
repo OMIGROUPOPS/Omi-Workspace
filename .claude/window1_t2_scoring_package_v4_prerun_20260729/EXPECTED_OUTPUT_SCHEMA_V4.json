@@ -1,0 +1,26 @@
+{
+  "D_per_candidate": 804,
+  "accounting_fields": [
+    "scorer_call_attempts",
+    "completed_event_rows",
+    "completed_candidates",
+    "active_candidate_id",
+    "active_event_id"
+  ],
+  "candidate_count": 8,
+  "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v4",
+  "performance_outputs": {
+    "C": null,
+    "IC": null,
+    "PC": null,
+    "S": null,
+    "attribution": null,
+    "frontier": null,
+    "performance": null,
+    "ranking": null,
+    "regret": null,
+    "selection": null
+  },
+  "schema_version": "window1-t2-scoring-output-schema-v4",
+  "scorer_boundary_role": "full_raw_V5_boundary"
+}

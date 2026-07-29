@@ -1,0 +1,63 @@
+{
+  "C": null,
+  "IC": null,
+  "PC": null,
+  "S": null,
+  "V3_failure_commit": "9cd2bea5487d8e558c42c8950263b44179054a68",
+  "V3_failure_parent": "a758279184ab0f367a3ce74a69da851608645e19",
+  "V3_package_commit": "a758279184ab0f367a3ce74a69da851608645e19",
+  "V3_preserved_receipt_scorer_invocations": 0,
+  "authorization_consumed": true,
+  "authorization_reusable": false,
+  "completed_candidates": 0,
+  "completed_event_rows": 0,
+  "completed_result_row_files": 0,
+  "consumed_V3_authorization": "40a6314fe0790416a260879cd9a071072e26e9a0",
+  "error": "ReferenceError: positive boundary lacks V5 guard artifact",
+  "exact_stack_trace": "ReferenceError: positive boundary lacks V5 guard artifact\nTraceback (most recent call last):\n  File \"C:\\Users\\omigr\\OMI-Workspace-codex-w1-t2-score-v3-execution\\arb-executor\\analysis\\window1_t2_scoring_runner_v3.py\", line 713, in execute\n    row = score_t2_event(\n          ^^^^^^^^^^^^^^^\n  File \"C:\\Users\\omigr\\OMI-Workspace-codex-w1-t2-score-v3-execution\\arb-executor\\analysis\\window1_t2_frontier_regret_scorer_v1.py\", line 138, in score_t2_event\n    row = audited_score_event(\n          ^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\omigr\\OMI-Workspace-codex-w1-t2-score-v3-execution\\arb-executor\\analysis\\window1_range_attack_scorer_v2.py\", line 30, in score_event\n    row = _score_event_v1(\n          ^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\omigr\\OMI-Workspace-codex-w1-t2-score-v3-execution\\arb-executor\\analysis\\window1_range_attack_scorer_v1.py\", line 122, in score_event\n    cutoff = guarded_cutoff(boundary)\n             ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\omigr\\OMI-Workspace-codex-w1-t2-score-v3-execution\\arb-executor\\analysis\\window1_range_attack_reference_adapter_v1.py\", line 121, in guarded_cutoff\n    raise ReferenceError(\"positive boundary lacks V5 guard artifact\")\nwindow1_range_attack_reference_adapter_v1.ReferenceError: positive boundary lacks V5 guard artifact\n",
+  "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v3",
+  "exit_code": 1,
+  "failure_receipt_sha256": "d7652395adf8e1b7d2560d5de2768084fcdd32d01db66d49a34c5a6eec184f07",
+  "files": [
+    {
+      "bytes": 426,
+      "git_blob_oid": "70753f4bc07dc3ffb6069bebc73f4c8c23b3bd32",
+      "path": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v3/EXECUTION_FAILURE.json",
+      "sha256": "d7652395adf8e1b7d2560d5de2768084fcdd32d01db66d49a34c5a6eec184f07"
+    },
+    {
+      "bytes": 1184,
+      "git_blob_oid": "28cfecd3fd33e685d2e5dd70dbd16dc69a831c3b",
+      "path": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v3/EXECUTION_START_RECEIPT.json",
+      "sha256": "e81933e73025391643b3a0d0bc412c9e2f0e2c2e8a0440555ff4885cd895d0b3"
+    },
+    {
+      "bytes": 728,
+      "git_blob_oid": "33188b40b6d8be2f03d5da694b8a30bb02ba1c9b",
+      "path": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v3/OUTPUT_HASH_MANIFEST.json",
+      "sha256": "f862f1c79b635c9b6c6b90de27e784a18e1fce0797a5e586a4eb44d389909fa6"
+    },
+    {
+      "bytes": 176,
+      "git_blob_oid": "6b9b1ce266e62c292ac4b137b89b68cce372fbb3",
+      "path": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v3/PROGRESS.log",
+      "sha256": "da2d8d7d122e3bf7514a584af65f3c02a2711487e2d0ead688ec1c806c9c0b47"
+    },
+    {
+      "bytes": 1278,
+      "git_blob_oid": "dcc8936a83a170fc23f43362f6f1100c912690fe",
+      "path": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v3/STDERR.log",
+      "sha256": "235b93ff3c8c4c0d92dd45976856d44f1ea89d70e2d1bd59ea2dca18edc64c3c"
+    }
+  ],
+  "holdout_opened": false,
+  "live_network_or_trading_access": false,
+  "output_manifest_sha256": "f862f1c79b635c9b6c6b90de27e784a18e1fce0797a5e586a4eb44d389909fa6",
+  "performance": null,
+  "performance_result_produced": false,
+  "preserved_failure_amended": false,
+  "reconstructed_scorer_call_attempts": 1,
+  "retry_count": 0,
+  "runner_invocation_count": 1,
+  "schema_version": "window1-t2-scoring-package-builder-v4-consumed-V3-failure-binding-v1"
+}

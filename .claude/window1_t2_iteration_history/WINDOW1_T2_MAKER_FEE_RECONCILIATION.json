@@ -1,0 +1,2623 @@
+{
+  "fee_law": {
+    "formula": "ceil(1.75 * quantity * p * (1-p)) cents per transaction",
+    "p": "fill_price_cents / 100",
+    "published_rate_dollars": 0.0175,
+    "quantity": 5,
+    "schedule": "Kalshi maker"
+  },
+  "full_tape_opportunity": {
+    "actual_fee_frontier": {
+      "ANY_PRICE": 692,
+      "LE_93": 9,
+      "LE_95": 21,
+      "LE_97": 76,
+      "LT_100": 364
+    },
+    "evidence_censored_or_unproved": 112,
+    "prefee_frontier": {
+      "ANY_PRICE": 692,
+      "LE_93": 20,
+      "LE_95": 51,
+      "LE_97": 156,
+      "LT_100": 437
+    },
+    "proven_any_price": 692
+  },
+  "policy": {
+    "actual_fee_PC_IC_S": {
+      "IC": 37,
+      "PC": 103,
+      "S": 76
+    },
+    "actual_fee_frontier": {
+      "ANY_PRICE": 131,
+      "LE_93": 0,
+      "LE_95": 1,
+      "LE_97": 1,
+      "LT_100": 76
+    },
+    "actual_fee_subpar_survivor_count": 76,
+    "completed_any_price": 131,
+    "completed_detail": [
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          48,
+          51
+        ],
+        "net_subpar": false,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.4,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          5,
+          93
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          54,
+          45
+        ],
+        "net_subpar": false,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.8,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13WOLFEN",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          21,
+          77
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.0,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14BLATOM",
+        "fee_cents_total_for_five_contract_pair": 5,
+        "fill_prices_cents": [
+          64,
+          34
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.2,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          53,
+          45
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.2,
+        "combined_prefee_cents_per_contract": 97,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14MILCHA",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          46,
+          51
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          94,
+          5
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.2,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL15NAGTOR",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          59,
+          39
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.2,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          38,
+          60
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 101.8,
+        "combined_prefee_cents_per_contract": 101,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          19,
+          82
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16ADDGHI",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          48,
+          51
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.2,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          55,
+          43
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.8,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          66,
+          32
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 101.2,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          58,
+          42
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16SMIMAT",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          19,
+          80
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.2,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL17GALCOP",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          56,
+          42
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL17NIJDEN",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          79,
+          20
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          3,
+          96
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 101.2,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          43,
+          57
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 107.2,
+        "combined_prefee_cents_per_contract": 106,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          62,
+          44
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 97.8,
+        "combined_prefee_cents_per_contract": 97,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          66,
+          31
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 97.6,
+        "combined_prefee_cents_per_contract": 97,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19KUHPAS",
+        "fee_cents_total_for_five_contract_pair": 3,
+        "fill_prices_cents": [
+          11,
+          86
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          94,
+          5
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19SURPER",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          4,
+          95
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          4,
+          95
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.2,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          59,
+          39
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          67,
+          32
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20KUZJAN",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          19,
+          80
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 103.2,
+        "combined_prefee_cents_per_contract": 102,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          54,
+          48
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          82,
+          17
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.4,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20POHWES",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          8,
+          90
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          32,
+          67
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.8,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          21,
+          77
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.8,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          26,
+          72
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.2,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHUMAL",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          56,
+          42
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20ZINZHA",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          70,
+          29
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.8,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPMATCH-26JUL12CARSAN",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          78,
+          20
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.8,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPMATCH-26JUL12CORDAN",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          29,
+          69
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.2,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPMATCH-26JUL12GUEGOM",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          37,
+          61
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.2,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPMATCH-26JUL12LAJVAN",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          49,
+          49
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.8,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPMATCH-26JUL12SLADAM",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          83,
+          15
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL12TABHUE",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          43,
+          56
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 101.8,
+        "combined_prefee_cents_per_contract": 101,
+        "event_id": "KXATPMATCH-26JUL13COLSKA",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          85,
+          16
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 101.2,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXATPMATCH-26JUL13TABROD",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          41,
+          59
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 101.2,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXATPMATCH-26JUL14CINHAL",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          49,
+          51
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 102.2,
+        "combined_prefee_cents_per_contract": 101,
+        "event_id": "KXATPMATCH-26JUL14GOMMCD",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          57,
+          44
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL14KYMDIE",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          36,
+          63
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL14TOPUGO",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          29,
+          70
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL14VALDAM",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          18,
+          81
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL14VANDAN",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          40,
+          59
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL15BORDIM",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          66,
+          33
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.2,
+        "combined_prefee_cents_per_contract": 97,
+        "event_id": "KXATPMATCH-26JUL15CERKEC",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          51,
+          46
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.8,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXATPMATCH-26JUL15COBBUR",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          30,
+          70
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.8,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXATPMATCH-26JUL15COLSON",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          66,
+          34
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL15ETCMER",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          59,
+          40
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.8,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXATPMATCH-26JUL15GOMARN",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          77,
+          23
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 101.2,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXATPMATCH-26JUL15HANVAC",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          63,
+          37
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.8,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXATPMATCH-26JUL15PRADZU",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          65,
+          35
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL15TRANAV",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          83,
+          16
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 102.2,
+        "combined_prefee_cents_per_contract": 101,
+        "event_id": "KXATPMATCH-26JUL15VANDRO",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          57,
+          44
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 102.2,
+        "combined_prefee_cents_per_contract": 101,
+        "event_id": "KXATPMATCH-26JUL15VANVAL",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          53,
+          48
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL16DEJBAE",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          46,
+          53
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL16DZUARN",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          66,
+          33
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL16FARRUU",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          20,
+          79
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL16MERDRO",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          39,
+          60
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 101.2,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXATPMATCH-26JUL16MOLDAV",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          58,
+          42
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL17BORDAR",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          42,
+          57
+        ],
+        "net_subpar": false,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL17CERRUU",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          26,
+          73
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL17COLVAC",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          57,
+          42
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL17DZUMOL",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          32,
+          67
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL17RINTSI",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          38,
+          61
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.2,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPMATCH-26JUL17RUBBAE",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          37,
+          61
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL17TABTIR",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          55,
+          44
+        ],
+        "net_subpar": false,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 102.2,
+        "combined_prefee_cents_per_contract": 101,
+        "event_id": "KXATPMATCH-26JUL18KOPHER",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          43,
+          58
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.8,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXATPMATCH-26JUL18MARJOR",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          32,
+          68
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL18MERDZU",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          33,
+          66
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL18PELSIL",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          90,
+          9
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL18ROCBUE",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          82,
+          17
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL18RUBTAB",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          69,
+          30
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.8,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXATPMATCH-26JUL18SHETSI",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          21,
+          77
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL18WALDJE",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          95,
+          4
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.4,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXATPMATCH-26JUL19LUZTAB",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          10,
+          90
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL19TSICOL",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          43,
+          56
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL20DIACIN",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          38,
+          61
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXATPMATCH-26JUL20ROCMAR",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          45,
+          54
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          16,
+          83
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          4,
+          95
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          19,
+          80
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 102.8,
+        "combined_prefee_cents_per_contract": 102,
+        "event_id": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          28,
+          74
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTACHALLENGERMATCH-26JUL17GRAVAN",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          43,
+          56
+        ],
+        "net_subpar": false,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          63,
+          36
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.2,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          44,
+          54
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          19,
+          80
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 101.2,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXWTAMATCH-26JUL12GARPRI",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          39,
+          61
+        ],
+        "net_subpar": false,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.8,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXWTAMATCH-26JUL12KULZAA",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          31,
+          67
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.2,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXWTAMATCH-26JUL12MICKUL",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          56,
+          42
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.8,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXWTAMATCH-26JUL12WERAMA",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          22,
+          78
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL13AMAHER",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          34,
+          65
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL13ARGTAG",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          3,
+          96
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL13CHAJIM",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          65,
+          34
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 94.8,
+        "combined_prefee_cents_per_contract": 94,
+        "event_id": "KXWTAMATCH-26JUL13KUDSAK",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          24,
+          70
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.8,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXWTAMATCH-26JUL13LINHON",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          15,
+          83
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL13MORBEJ",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          88,
+          11
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          6,
+          93
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL13ROMKUL",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          23,
+          76
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.8,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXWTAMATCH-26JUL13ZHEBOU",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          32,
+          66
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.2,
+        "combined_prefee_cents_per_contract": 98,
+        "event_id": "KXWTAMATCH-26JUL14UDVROM",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          47,
+          51
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 101.2,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXWTAMATCH-26JUL15AVAMAR",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          38,
+          62
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.8,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXWTAMATCH-26JUL15DARSAK",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          22,
+          78
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL15HONPAR",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          40,
+          59
+        ],
+        "net_subpar": false,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 97.6,
+        "combined_prefee_cents_per_contract": 97,
+        "event_id": "KXWTAMATCH-26JUL15IBRBAD",
+        "fee_cents_total_for_five_contract_pair": 3,
+        "fill_prices_cents": [
+          85,
+          12
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL15MICZHE",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          6,
+          93
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL15PUTCHA",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          39,
+          60
+        ],
+        "net_subpar": false,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 101.2,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXWTAMATCH-26JUL15TAGBEJ",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          55,
+          45
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 98.2,
+        "combined_prefee_cents_per_contract": 97,
+        "event_id": "KXWTAMATCH-26JUL16KORANN",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          50,
+          47
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL17OLIBUR",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          44,
+          55
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.8,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXWTAMATCH-26JUL17PARSAK",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          24,
+          76
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 101.2,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXWTAMATCH-26JUL17TAUBEJ",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          49,
+          51
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL17UDVBAD",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          71,
+          28
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL18BADZID",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          76,
+          23
+        ],
+        "net_subpar": true,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL18BERSAI",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          9,
+          90
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 102.8,
+        "combined_prefee_cents_per_contract": 102,
+        "event_id": "KXWTAMATCH-26JUL18HONTHA",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          85,
+          17
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL18PODKRE",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          9,
+          90
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL18SAKKOR",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          41,
+          58
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL18TAUKRE",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          56,
+          43
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": true,
+        "actual_fee_PC": true,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 100.2,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL19KRESAK",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          56,
+          43
+        ],
+        "net_subpar": false,
+        "prefee_IC": true,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": true,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.8,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL20BOUBOU2",
+        "fee_cents_total_for_five_contract_pair": 4,
+        "fill_prices_cents": [
+          71,
+          28
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 101.2,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXWTAMATCH-26JUL20PODLEE",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          56,
+          44
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": true,
+        "combined_net_cents_per_contract": 99.4,
+        "combined_prefee_cents_per_contract": 99,
+        "event_id": "KXWTAMATCH-26JUL20PRIBRA",
+        "fee_cents_total_for_five_contract_pair": 2,
+        "fill_prices_cents": [
+          8,
+          91
+        ],
+        "net_subpar": true,
+        "prefee_IC": false,
+        "prefee_PC": false,
+        "prefee_S": true,
+        "prefee_subpar": true,
+        "slice": "post_fit"
+      },
+      {
+        "actual_fee_IC": false,
+        "actual_fee_PC": false,
+        "actual_fee_S": false,
+        "combined_net_cents_per_contract": 101.2,
+        "combined_prefee_cents_per_contract": 100,
+        "event_id": "KXWTAMATCH-26JUL20VEDBAR",
+        "fee_cents_total_for_five_contract_pair": 6,
+        "fill_prices_cents": [
+          40,
+          60
+        ],
+        "net_subpar": false,
+        "prefee_IC": false,
+        "prefee_PC": true,
+        "prefee_S": false,
+        "prefee_subpar": false,
+        "slice": "post_fit"
+      }
+    ],
+    "prefee_PC_IC_S": {
+      "IC": 37,
+      "PC": 115,
+      "S": 100
+    },
+    "prefee_frontier": {
+      "ANY_PRICE": 131,
+      "LE_93": 0,
+      "LE_95": 1,
+      "LE_97": 7,
+      "LT_100": 100
+    },
+    "prefee_subpar_count": 100,
+    "subpar_lost_to_fees": 24,
+    "total_fees_cents_for_completed_five_contract_pairs": 603
+  },
+  "population": 804,
+  "regret_map": {
+    "capture_rate_over_tape_proven": 0.1893063583815029,
+    "completed_pair_execution_regret": {
+      "observed_count": 131,
+      "positive_count": 96,
+      "total_cents_per_contract": 217,
+      "zero_count": 35
+    },
+    "leg_execution_regret": {
+      "observed_count": 500,
+      "positive_count": 223,
+      "total_cents_per_contract": 475,
+      "zero_count": 277
+    },
+    "missed_by_classification": {
+      "naked_single": 238,
+      "no_fill": 323
+    },
+    "missed_by_primary_loss_stage": {
+      "NEVER_RECOGNIZED": 510,
+      "REFERENCE_AMBIGUOUS": 51
+    },
+    "missed_by_slice_and_classification": {
+      "fit": {
+        "naked_single": 151,
+        "no_fill": 218
+      },
+      "post_fit": {
+        "naked_single": 87,
+        "no_fill": 105
+      }
+    },
+    "opportunity_by_tier_prefee": {
+      "ANY_PRICE": {
+        "policy_achieved_at_same_tier": 131,
+        "policy_completed_above_tier": 0,
+        "policy_completed_event_any_price": 131,
+        "policy_missed_entirely": 561,
+        "tape_proven": 692
+      },
+      "LE_93": {
+        "policy_achieved_at_same_tier": 0,
+        "policy_completed_above_tier": 3,
+        "policy_completed_event_any_price": 3,
+        "policy_missed_entirely": 17,
+        "tape_proven": 20
+      },
+      "LE_95": {
+        "policy_achieved_at_same_tier": 1,
+        "policy_completed_above_tier": 13,
+        "policy_completed_event_any_price": 14,
+        "policy_missed_entirely": 37,
+        "tape_proven": 51
+      },
+      "LE_97": {
+        "policy_achieved_at_same_tier": 7,
+        "policy_completed_above_tier": 54,
+        "policy_completed_event_any_price": 61,
+        "policy_missed_entirely": 95,
+        "tape_proven": 156
+      },
+      "LT_100": {
+        "policy_achieved_at_same_tier": 100,
+        "policy_completed_above_tier": 29,
+        "policy_completed_event_any_price": 129,
+        "policy_missed_entirely": 308,
+        "tape_proven": 437
+      }
+    },
+    "policy_completions": 131,
+    "proven_opportunities_missed": 561,
+    "tape_proven_opportunities": 692
+  }
+}

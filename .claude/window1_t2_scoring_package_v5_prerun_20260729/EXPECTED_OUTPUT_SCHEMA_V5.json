@@ -1,0 +1,19 @@
+{
+  "D_per_candidate": 804,
+  "candidate_count": 8,
+  "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v5",
+  "performance_outputs": {
+    "C": null,
+    "IC": null,
+    "PC": null,
+    "S": null,
+    "attribution": null,
+    "frontier": null,
+    "performance": null,
+    "ranking": null,
+    "regret": null,
+    "selection": null
+  },
+  "runtime_semantics": "byte-identical V4 runtime",
+  "schema_version": "window1-t2-scoring-output-schema-v5"
+}

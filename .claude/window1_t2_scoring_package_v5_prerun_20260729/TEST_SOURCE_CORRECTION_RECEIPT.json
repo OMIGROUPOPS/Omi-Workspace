@@ -1,0 +1,24 @@
+{
+  "V4_package_artifacts_modified": [],
+  "new": {
+    "git_blob_oid": "e2a21f9ee138ca15f0da6e87a59b82a0f3862c01",
+    "identity_bytes": 14149,
+    "newline_identity": "canonical_LF",
+    "sha256": "4191cff7b8bd5516a2871688c043f6d1270e53f8826964420fe7a8d823ae6a3f",
+    "working_tree_bytes": 14149
+  },
+  "old": {
+    "committed_blob": "ad314242d0e6339dabfbf6a1748d26570c483ad0",
+    "git_blob_oid": "ad314242d0e6339dabfbf6a1748d26570c483ad0",
+    "identity_bytes": 8077,
+    "newline_identity": "canonical_LF",
+    "sha256": "d9516b9794330da5721c4da5cb5f005f61829b7bde691e38fa306813544496c2",
+    "working_tree_bytes": 8077
+  },
+  "old_parent": "9cc8f1cc7b0693e00ce0f537532d41aab0a5ef7c",
+  "path": "arb-executor/tests/test_window1_t2_scoring_package_v4.py",
+  "permitted_inherited_modification": true,
+  "runtime_files_modified": [],
+  "schema_version": "window1-t2-scoring-package-builder-v5-test-source-correction-v1",
+  "semantic_scope": "construction_test_inputs_and_claim_honesty_only"
+}

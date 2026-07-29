@@ -1,0 +1,33 @@
+{
+  "construction_test_law": {
+    "development_event_ids_may_reach_direct_scorer_tests": false,
+    "direct_scorer_inputs": "entirely_synthetic",
+    "real_development_population_use": [
+      "iter_prepared_scorer_calls",
+      "no_score_seam_probe"
+    ],
+    "real_prepared_calls_may_be_scored": false,
+    "test_time_guard": "reject_event_id_in_frozen_development_ledger"
+  },
+  "execution_identity": {
+    "execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v5",
+    "results_directory": ".claude/window1_t2_results_w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v5",
+    "runner": "arb-executor/analysis/window1_t2_scoring_runner_v5.py"
+  },
+  "frozen_parent": "9cc8f1cc7b0693e00ce0f537532d41aab0a5ef7c",
+  "metric_and_runtime_semantics": "byte_identical_V4_runtime",
+  "retired_execution_id": "w1-t2-dev-20260712-20260720-frontier-regret-grid1-scorepkg-v4",
+  "schema_version": "window1-t2-scoring-test-honesty-contract-v5",
+  "synthetic_regressions": [
+    "flattened_positive_boundary_exact_guard_artifact_error",
+    "equivalent_full_raw_V5_boundary_passes_score_t2_event",
+    "attempt_accounting_persists_before_injected_failure",
+    "completed_event_row_increments_only_after_return"
+  ],
+  "V4_construction_test_correction": {
+    "completed_candidates": 0,
+    "completed_in_memory_event_rows": 1,
+    "persisted_result_rows": 0,
+    "real_development_scorer_call_attempts": 3
+  }
+}

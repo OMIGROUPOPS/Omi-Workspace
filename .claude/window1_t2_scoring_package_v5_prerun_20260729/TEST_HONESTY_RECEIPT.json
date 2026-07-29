@@ -1,0 +1,19 @@
+{
+  "V4_runtime_semantics_changed": false,
+  "direct_call_site_location": "guarded_direct_scorer.call after development-ID rejection",
+  "direct_score_t2_event_call_sites": 1,
+  "frozen_development_event_id_count": 804,
+  "full_raw_V5_prepared_calls": 6432,
+  "guard_failure_law": "event_id in frozen development ledger raises before scorer import",
+  "guard_wraps_every_direct_scorer_test": true,
+  "no_score_seam_scorer_call_attempts": 0,
+  "normalized_scorer_boundaries": 0,
+  "real_development_scorer_call_attempts_expected": 0,
+  "real_prepared_calls_inspected": 6432,
+  "real_prepared_calls_scored": 0,
+  "results_directory_created": false,
+  "schema_version": "window1-t2-scoring-package-builder-v5-test-honesty-receipt-v1",
+  "scorer_import_is_after_guard": true,
+  "synthetic_direct_scorer_calls_expected": 3,
+  "synthetic_event_boundary_fill_reference_inputs": true
+}

@@ -1,0 +1,11 @@
+{
+  "authorization_issued": false,
+  "execute_mode_invoked": false,
+  "holdout_access": false,
+  "live_network_runtime_Kalshi_or_trading_access": false,
+  "order_position_exit_settlement_DCA_Window2_access": false,
+  "real_development_scorer_call_attempts": 0,
+  "results_directory_created": false,
+  "schema_version": "window1-t2-scoring-package-builder-v5-forbidden-access-v1",
+  "tuning_ranking_selection_deployment": false
+}

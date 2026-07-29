@@ -305,3 +305,20 @@ slate: 94 big-4 events · 77 scored pairs · skips {'thin_tape': 17, 'one_leg_fi
 - SEAL-DECAY TRIPWIRE: **SEAL-DECAY — RED; operator ruling required; never auto-disarm** [rolling7 COMPLETION 19/113 = 17% < 70%]
 
 GUN SCORECARD 20260728: ATP_CHALL n=21 FRESH-within±3min=2/11 med|Δ|=8.6m catchup=0 suspect=[ARSTRO,HARMOR,KUMBAX,POLDAL] unjoinable=6 misses=[] | ATP_MAIN n=8 FRESH-within±3min=0/1 med|Δ|=6.4m catchup=0 suspect=[NORKOV,SHIPAC,WONBLA,HERTOM] unjoinable=3 misses=[] | ITF_M n=11 FRESH-within±3min=0/0 med|Δ|=-- catchup=0 suspect=[] unjoinable=11 misses=[] | ITF_W n=23 FRESH-within±3min=0/0 med|Δ|=-- catchup=0 suspect=[] unjoinable=23 misses=[] | WTA_CHALL n=17 FRESH-within±3min=2/5 med|Δ|=4.2m catchup=0 suspect=[WEIWON] unjoinable=11 misses=[] | WTA_MAIN n=8 FRESH-within±3min=0/1 med|Δ|=6.5m catchup=0 suspect=[KRUBOU,OSOHUN,SAMKEY,SEBKAL…] unjoinable=2 misses=[] | FIRES-vs-SLATE: fires=88 tracked_events=473 ratio=19% | NON-MAINS (deletion-gate denominator, MAINS-OFF excluded by design): fires=72/432 ratio=17% | MULTI-SOURCE events=9 | SELF-FILL fires=17 unconfirmed-by-any-other-source=1 | BELLS-MISSING=13 [ARSANN,CABCOS,CHAHIB,DARCRO,JONZHA,LIASAW] | HALT-MIN=0.0 UNBOOKED-FILLS-BOOKED=0 (watch: night-over-night drops + uncovered live matches are named here, not a week later)
+
+OS SHADOW 2026-07-28: n=3181 sites={'v4_place': 415, 'move_repost': 212, 'hold_review': 2554} | placement agree(±1c)=70 diverge=130 | divergence classes: {'climb_side|hold_window': 82, 'decay_side|hold_window': 44, 'climb_side|resting_window': 4} | hold: {'reviews': 2554, 'quiet': 148, 'floor_miss': 893, 'both': 50, 'diverge': 941, 'floor_unevaluable': 12, 'pre_instrument': 0} | cap-sensitivity: DEFERRED (joint-shadow n>=30 gate, operator 07-09)
+
+## PERCLASS 20260728 (era post-seal-20260720) — COMBINED PRIMARY (ruling 07-20 PM): sub-par(<=97)=pass; dual-negative=mastery meter
+slate: 85 big-4 events · 51 scored pairs · skips {'thin_tape': 28, 'one_leg_file': 4, 'dead_band': 0, 'no_tape': 2}
+- FLAT-FLAT (SEALED b2f0b670; capture standard): **COMPLETION 0/15 = 0% x QUALITY 0/0 = 0% -> JOINT FAIL (bar 70/70)** · tiers {} · MASTERY dual-neg 0% · medPairD +0
+- MIRROR (REFUSE; fader drill on the mastery meter): pairs 20 duals 14 (completion 70%) · SUB-PAR(<=97) 1/14 = 7% -> FAIL · tiers {'<=97': 1, '>100': 13} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD +12
+- NEITHER (counted apart): pairs 16 duals 11 (completion 69%) · SUB-PAR(<=97) 4/11 = 36% -> FAIL · tiers {'98-100': 3, '<=93': 2, '<=95': 2, '>100': 4} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD -1
+- COMPLETION (volume drill): sub-par duals 5 / 51 slate pairs = 9.8%
+  - flat_flat|ATP_CHALL: pairs 13 duals 0 — NO DUALS
+  - flat_flat|WTA_CHALL: pairs 2 duals 0 — NO DUALS
+  - mirror|ATP_CHALL: pairs 13 duals 10 (completion 77%) · SUB-PAR(<=97) 1/10 = 10% -> FAIL · tiers {'<=97': 1, '>100': 9} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD +18
+  - mirror|ATP_MAIN: pairs 2 duals 1 (completion 50%) · SUB-PAR(<=97) 0/1 = 0% -> FAIL · tiers {'>100': 1} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD +6
+  - mirror|WTA_CHALL: pairs 5 duals 3 (completion 60%) · SUB-PAR(<=97) 0/3 = 0% -> FAIL · tiers {'>100': 3} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD +6
+  - neither|ATP_CHALL: pairs 14 duals 9 (completion 64%) · SUB-PAR(<=97) 3/9 = 33% -> FAIL · tiers {'98-100': 2, '<=93': 1, '<=95': 2, '>100': 4} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD +0
+  - neither|WTA_CHALL: pairs 2 duals 2 (completion 100%) · SUB-PAR(<=97) 1/2 = 50% -> PASS · tiers {'98-100': 1, '<=93': 1} · MASTERY dual-neg 0% (meter, never pass/fail) · medPairD -7
+- SEAL-DECAY TRIPWIRE: **SEAL-DECAY — RED; operator ruling required; never auto-disarm** [rolling7 COMPLETION 12/106 = 11% < 70%]

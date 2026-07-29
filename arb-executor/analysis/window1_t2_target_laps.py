@@ -24,7 +24,7 @@ from typing import Any, Mapping
 import numpy as np
 
 
-VERSION = "window1-t2-sequential-oracle-target-lap-v1"
+VERSION = "window1-t2-sequential-oracle-target-lap-v2"
 D_REQUIRED = 804
 TAPE_OPPORTUNITY_REQUIRED = 692
 CONTROL_COMPLETIONS_REQUIRED = 131
@@ -41,6 +41,11 @@ CONTROL_LEDGER = (
 RECOGNITION_JSON = (
     ".claude/window1_t2_iteration_history/"
     "WINDOW1_T2_RECOGNITION_LAPS.json"
+)
+RANGE_LADDER_FILES = tuple(
+    ".claude/window1_range_attack_prerun_v2_strict_ask_20260725/"
+    f"WINDOW1_PRICE_RANGE_LADDER_{part:02d}.jsonl.gz"
+    for part in range(1, 5)
 )
 
 
@@ -101,6 +106,37 @@ def load_market(cache: Path, event_id: str) -> dict[str, Any]:
     if value.get("cache_version") != "window1-guarded-event-market-cache-v3":
         raise TargetLapError(f"market cache contract failed: {event_id}")
     return value
+
+
+def load_lawful_windows(
+    repo: Path,
+) -> dict[tuple[str, str], dict[str, Any]]:
+    output: dict[tuple[str, str], dict[str, Any]] = {}
+    for relative in RANGE_LADDER_FILES:
+        path = repo / relative
+        with gzip.open(path, "rt", encoding="utf-8") as handle:
+            for line in handle:
+                if not line.strip():
+                    continue
+                row = json.loads(line)
+                key = (str(row["event_id"]), str(row["leg_id"]))
+                if key in output:
+                    raise TargetLapError(
+                        f"duplicate lawful range-ladder leg: {key}"
+                    )
+                output[key] = {
+                    "left": float(row["policy_left_ts"]),
+                    "right": float(row["range_right_ts"]),
+                    "positive": bool(
+                        row.get("positive_range_outcomes_provable")
+                        and row["boundary"].get(
+                            "positive_window1_provable"
+                        )
+                    ),
+                }
+    if len(output) != D_REQUIRED * 2:
+        raise TargetLapError("lawful range-ladder window count changed")
+    return output
 
 
 def prepare_leg(
@@ -243,7 +279,9 @@ def cheapest_fill_after(
 def strict_sequential_floor(
     control_row: Mapping[str, Any],
     market: Mapping[str, Any],
+    lawful_windows: Mapping[tuple[str, str], Mapping[str, Any]],
 ) -> dict[str, Any] | None:
+    event_id = str(control_row["event_id"])
     market_legs = {str(row["leg"]): row for row in market["legs"]}
     control_legs = {
         str(row["leg_id"]): row for row in control_row["legs"]
@@ -253,12 +291,17 @@ def strict_sequential_floor(
         raise TargetLapError(
             f"pair identity mismatch: {control_row['event_id']}"
         )
-    cutoff = float(control_row["guarded_cutoff_ts"])
+    windows = {
+        leg_id: lawful_windows[(event_id, leg_id)]
+        for leg_id in leg_ids
+    }
+    if not all(window["positive"] for window in windows.values()):
+        return None
     prepared = {
         leg_id: prepare_leg(
             market_legs[leg_id],
-            float(control_legs[leg_id]["t8_floor_ts"]),
-            cutoff,
+            float(windows[leg_id]["left"]),
+            float(windows[leg_id]["right"]),
         )
         for leg_id in leg_ids
     }
@@ -290,14 +333,14 @@ def strict_sequential_floor(
                 float(first_leg["left"])
                 <= float(first["placement_ts"])
                 < first_fill_ts
-                < cutoff
+                < float(first_leg["right"])
             ):
                 raise TargetLapError("first-leg Window-1 sequence failed")
             if not (
                 float(second_leg["left"])
                 <= second_placement_ts
                 < second_fill_ts
-                < cutoff
+                < float(second_leg["right"])
             ):
                 raise TargetLapError("second-leg Window-1 sequence failed")
             if not (
@@ -323,21 +366,37 @@ def strict_sequential_floor(
                 if all(value is not None for value in reference_values)
                 else None
             )
-            total = target_sum + fee_sum
+            pair_total_cents = target_sum * QUANTITY + fee_sum
+            net_per_contract = pair_total_cents / QUANTITY
             candidates.append({
                 "orientation": (
                     f"{first_leg_id}__then__{second_leg_id}"
                 ),
                 "first_leg_id": first_leg_id,
                 "second_leg_id": second_leg_id,
+                "first_leg_lawful_window": {
+                    "left_ts": float(first_leg["left"]),
+                    "right_ts": float(first_leg["right"]),
+                },
+                "second_leg_lawful_window": {
+                    "left_ts": float(second_leg["left"]),
+                    "right_ts": float(second_leg["right"]),
+                },
                 "first": first,
                 "second": second,
                 "target_sum_cents": target_sum,
-                "maker_fee_sum_cents": fee_sum,
-                "maker_cost_cents": total,
+                "maker_fee_total_cents_for_five_contract_pair": fee_sum,
+                "maker_cost_total_cents_for_five_contract_pair": (
+                    pair_total_cents
+                ),
+                "maker_cost_cents_per_contract": net_per_contract,
                 "reference_sum_cents": reference_sum,
-                "maker_cost_minus_reference_cents": (
-                    total - reference_sum
+                "maker_cost_minus_reference_total_cents": (
+                    pair_total_cents - reference_sum * QUANTITY
+                    if reference_sum is not None else None
+                ),
+                "maker_cost_minus_reference_cents_per_contract": (
+                    net_per_contract - reference_sum
                     if reference_sum is not None else None
                 ),
                 "floor_time_gap_minutes": (
@@ -346,15 +405,44 @@ def strict_sequential_floor(
             })
     if not candidates:
         return None
-    return min(
+    best_by_orientation: dict[str, dict[str, Any]] = {}
+    for candidate in candidates:
+        orientation = str(candidate["orientation"])
+        prior = best_by_orientation.get(orientation)
+        if prior is None or (
+            candidate["maker_cost_total_cents_for_five_contract_pair"],
+            candidate["second"]["fill_proof_ts"],
+        ) < (
+            prior["maker_cost_total_cents_for_five_contract_pair"],
+            prior["second"]["fill_proof_ts"],
+        ):
+            best_by_orientation[orientation] = candidate
+    best = min(
         candidates,
         key=lambda row: (
-            row["maker_cost_cents"],
+            row["maker_cost_total_cents_for_five_contract_pair"],
             row["second"]["fill_proof_ts"],
             row["floor_time_gap_minutes"],
             row["orientation"],
         ),
     )
+    best["ordering_minimums"] = {
+        orientation: {
+            "maker_cost_total_cents_for_five_contract_pair": row[
+                "maker_cost_total_cents_for_five_contract_pair"
+            ],
+            "maker_cost_cents_per_contract": row[
+                "maker_cost_cents_per_contract"
+            ],
+            "maker_under_par": (
+                row["maker_cost_total_cents_for_five_contract_pair"]
+                < 100 * QUANTITY
+            ),
+        }
+        for orientation, row in sorted(best_by_orientation.items())
+    }
+    best["both_orderings_tested"] = True
+    return best
 
 
 def target_leg(state: Mapping[str, Any]) -> dict[str, Any] | None:
@@ -396,9 +484,20 @@ def median_or_none(values: list[float]) -> float | None:
 
 def render_report(result: Mapping[str, Any]) -> str:
     oracle = result["strict_sequential_oracle"]
+    reconciliation = result["oracle_reconciliation"]
     target = result["target_lap"]
+    removals = reconciliation["removals_full_population_chain"]
+    ordering = oracle["under_par_ordering_counts"]
+    durations = oracle["under_par_gap_counts"]
     lines = [
         "# Window-1 T2 strict sequential oracle and target lap",
+        "",
+        (
+            "**Correction:** the prior 41 count was invalid. It added "
+            "each leg's five-contract fee total directly to a "
+            "per-contract price. This report compares total five-contract "
+            "cost with the $5.00 pair payout."
+        ),
         "",
         "## Target lap",
         "",
@@ -449,6 +548,26 @@ def render_report(result: Mapping[str, Any]) -> str:
             "proof lacks reference)"
         ),
         (
+            f"- Complete within two hours: "
+            f"**{durations['within_2_hours']}/"
+            f"{oracle['maker_under_par_count']}**"
+        ),
+        (
+            f"- Complete within four hours: "
+            f"**{durations['within_4_hours']}/"
+            f"{oracle['maker_under_par_count']}**"
+        ),
+        (
+            f"- Complete within eight hours: "
+            f"**{durations['within_8_hours']}/"
+            f"{oracle['maker_under_par_count']}**"
+        ),
+        (
+            f"- Take more than eight hours: "
+            f"**{durations['over_8_hours']}/"
+            f"{oracle['maker_under_par_count']}**"
+        ),
+        (
             f"- Median gap, all strict sequential proofs: "
             f"**{oracle['median_gap_minutes_all']:.2f} minutes**"
         ),
@@ -470,6 +589,77 @@ def render_report(result: Mapping[str, Any]) -> str:
                     oracle["gap_by_category"].items()
                 )
             )
+        ),
+        "",
+        "## Both ordering directions",
+        "",
+        (
+            "Every event evaluates leg A then leg B and leg B then leg A "
+            "before choosing the cheaper lawful path."
+        ),
+        "",
+        (
+            f"- Both directions under par: "
+            f"**{ordering.get('both_directions_under_par', 0)}**"
+        ),
+        (
+            f"- Exactly one direction under par: "
+            f"**{ordering.get('exactly_one_direction_under_par', 0)}**"
+        ),
+        "",
+        "## Reconciliation of 437 versus the strict oracle",
+        "",
+        "| successive constraint | survivors | removed at this step |",
+        "|---|---:|---:|",
+        (
+            "| development population | "
+            f"{reconciliation['same_tape_population']} | - |"
+        ),
+        (
+            "| two independent five-contract floors exist | "
+            f"{reconciliation['independent_five_contract_floor_any_price']} "
+            f"| {removals['missing_or_censored_independent_five_contract_proof']} |"
+        ),
+        (
+            "| independent floors sum below par, pre-fee | "
+            f"{reconciliation['independent_floor_prefee_under_par']} "
+            f"| {removals['independent_floor_not_under_par_before_fees']} |"
+        ),
+        (
+            "| independent floors remain below $5.00 with maker fees | "
+            f"{reconciliation['independent_floor_maker_under_par']} "
+            f"| {removals['maker_fees']} |"
+        ),
+        (
+            "| any strict post-first-fill sequence exists | "
+            f"{reconciliation['prior_364_with_any_strict_sequence']} "
+            f"| {removals['no_post_first_fill_sequence']} |"
+        ),
+        (
+            "| strict sequence still costs below $5.00 | "
+            f"{reconciliation['strict_sequential_survivors_from_prior_364']} "
+            f"| {removals['sequential_path_no_longer_under_par']} |"
+        ),
+        (
+            "| also belongs to the recognized-501 scope | "
+            f"{reconciliation['strict_sequential_maker_under_par_in_recognized_501']} "
+            f"| {removals['recognized_501_scope_filter']} |"
+        ),
+        "",
+        (
+            f"After binding the raw-V5 reader to the frozen range-ladder "
+            f"window, it finds "
+            f"{reconciliation['strict_raw_v5_additions_outside_prior_364']} "
+            "under-par paths outside the earlier independent-floor "
+            "contract."
+        ),
+        "",
+        (
+            "The 437 oracle is asynchronous but independent: it adds each "
+            "leg's best five-contract floor even when those moments cannot "
+            "form a post-first-fill path. The strict oracle adds maker "
+            "fees, waits for leg one's five-contract proof, places leg two "
+            "only afterward, and then applies the separate 501-event scope."
         ),
         "",
         (
@@ -515,6 +705,7 @@ def run(args: argparse.Namespace) -> int:
     control_rows = read_jsonl(control_path)
     control = {str(row["event_id"]): row for row in control_rows}
     recognition = read_json(recognition_path)
+    lawful_windows = load_lawful_windows(repo)
     initial_ids = list(
         recognition["recognition"]["lap_1_recognized_event_ids"]
     )
@@ -555,7 +746,9 @@ def run(args: argparse.Namespace) -> int:
     for index, event_id in enumerate(sorted(initial_ids), 1):
         control_row = control[event_id]
         market = load_market(cache, event_id)
-        sequential = strict_sequential_floor(control_row, market)
+        sequential = strict_sequential_floor(
+            control_row, market, lawful_windows
+        )
         if sequential is not None:
             proof_types[sequential["first"]["proof_type"]] += 1
             proof_types[sequential["second"]["proof_type"]] += 1
@@ -589,6 +782,23 @@ def run(args: argparse.Namespace) -> int:
         if index % 50 == 0 or index == len(initial_ids):
             print(f"target_events={index}/{len(initial_ids)}", flush=True)
 
+    sequential_by_event = {
+        str(row["event_id"]): row["strict_sequential_floor"]
+        for row in event_rows
+    }
+    remaining_ids = sorted(set(control) - set(initial_ids))
+    for index, event_id in enumerate(remaining_ids, 1):
+        sequential_by_event[event_id] = strict_sequential_floor(
+            control[event_id],
+            load_market(cache, event_id),
+            lawful_windows,
+        )
+        if index % 50 == 0 or index == len(remaining_ids):
+            print(
+                f"reconciliation_events={index}/{len(remaining_ids)}",
+                flush=True,
+            )
+
     sequential_values = [
         row["strict_sequential_floor"]
         for row in event_rows
@@ -596,16 +806,227 @@ def run(args: argparse.Namespace) -> int:
     ]
     under_par = [
         row for row in sequential_values
-        if row["maker_cost_cents"] < 100
+        if row["maker_cost_total_cents_for_five_contract_pair"]
+        < 100 * QUANTITY
     ]
     reference_available = [
         row for row in sequential_values
-        if row["maker_cost_minus_reference_cents"] is not None
+        if row["maker_cost_minus_reference_total_cents"] is not None
     ]
     negative_reference = [
         row for row in reference_available
-        if row["maker_cost_minus_reference_cents"] < 0
+        if row["maker_cost_minus_reference_total_cents"] < 0
     ]
+    recognized_id_set = set(initial_ids)
+    independent_prefee_ids: set[str] = set()
+    independent_maker_ids: set[str] = set()
+    for row in tape_opportunities:
+        event_id = str(row["event_id"])
+        floors = [
+            leg["five_contract_proven_floor_cents"]
+            for leg in row["regret_by_leg"]
+        ]
+        if len(floors) != 2 or any(value is None for value in floors):
+            raise TargetLapError(
+                f"independent floor legs missing: {event_id}"
+            )
+        prices = [int(value) for value in floors]
+        if sum(prices) != row["pair_regret"][
+            "combined_five_contract_proven_floor_cents"
+        ]:
+            raise TargetLapError(
+                f"independent pair/leg floor mismatch: {event_id}"
+            )
+        if sum(prices) < 100:
+            independent_prefee_ids.add(event_id)
+        if (
+            sum(prices) * QUANTITY
+            + sum(maker_fee_cents(price) for price in prices)
+            < 100 * QUANTITY
+        ):
+            independent_maker_ids.add(event_id)
+    strict_maker_ids = {
+        event_id
+        for event_id, sequential in sequential_by_event.items()
+        if sequential is not None
+        and sequential["maker_cost_total_cents_for_five_contract_pair"]
+        < 100 * QUANTITY
+    }
+    strict_any_ids = {
+        event_id
+        for event_id, sequential in sequential_by_event.items()
+        if sequential is not None
+    }
+    strict_survivors_from_prior_ids = (
+        strict_maker_ids & independent_maker_ids
+    )
+    strict_raw_v5_additions = strict_maker_ids - independent_maker_ids
+    recognized_strict_maker_ids = (
+        strict_maker_ids & recognized_id_set
+    )
+    if len(recognized_strict_maker_ids) != len(under_par):
+        raise TargetLapError("501 strict under-par crosswalk mismatch")
+
+    ordering_counts: Counter[str] = Counter()
+    for event_row in event_rows:
+        sequential = event_row["strict_sequential_floor"]
+        if (
+            sequential is None
+            or sequential[
+                "maker_cost_total_cents_for_five_contract_pair"
+            ] >= 100 * QUANTITY
+        ):
+            continue
+        under_par_directions = sum(
+            minimum["maker_under_par"]
+            for minimum in sequential["ordering_minimums"].values()
+        )
+        if under_par_directions == 2:
+            ordering_counts["both_directions_under_par"] += 1
+        elif under_par_directions == 1:
+            ordering_counts["exactly_one_direction_under_par"] += 1
+        else:
+            raise TargetLapError(
+                f"unclassified under-par ordering: "
+                f"{event_row['event_id']}:{under_par_directions}"
+            )
+
+    duration_counts = {
+        "within_2_hours": sum(
+            row["floor_time_gap_minutes"] <= 120
+            for row in under_par
+        ),
+        "within_4_hours": sum(
+            row["floor_time_gap_minutes"] <= 240
+            for row in under_par
+        ),
+        "within_8_hours": sum(
+            row["floor_time_gap_minutes"] <= 480
+            for row in under_par
+        ),
+        "over_8_hours": sum(
+            row["floor_time_gap_minutes"] > 480
+            for row in under_par
+        ),
+    }
+    reconciliation = {
+        "same_tape_population": D_REQUIRED,
+        "independent_five_contract_floor_any_price": len(
+            tape_opportunities
+        ),
+        "independent_floor_prefee_under_par": len(
+            independent_prefee_ids
+        ),
+        "independent_floor_maker_under_par": len(
+            independent_maker_ids
+        ),
+        "strict_sequential_maker_under_par_all_804": len(
+            strict_maker_ids
+        ),
+        "strict_sequential_survivors_from_prior_364": len(
+            strict_survivors_from_prior_ids
+        ),
+        "strict_raw_v5_additions_outside_prior_364": len(
+            strict_raw_v5_additions
+        ),
+        "strict_sequential_maker_under_par_in_recognized_501": len(
+            recognized_strict_maker_ids
+        ),
+        "strict_sequential_any_price_all_804": sum(
+            value is not None for value in sequential_by_event.values()
+        ),
+        "prior_364_with_any_strict_sequence": len(
+            independent_maker_ids & strict_any_ids
+        ),
+        "removals_full_population_chain": {
+            "missing_or_censored_independent_five_contract_proof": (
+                D_REQUIRED - len(tape_opportunities)
+            ),
+            "independent_floor_not_under_par_before_fees": (
+                len(tape_opportunities) - len(independent_prefee_ids)
+            ),
+            "maker_fees": (
+                len(independent_prefee_ids)
+                - len(independent_maker_ids)
+            ),
+            "no_post_first_fill_sequence": (
+                len(independent_maker_ids)
+                - len(independent_maker_ids & strict_any_ids)
+            ),
+            "sequential_path_no_longer_under_par": (
+                len(independent_maker_ids & strict_any_ids)
+                - len(strict_survivors_from_prior_ids)
+            ),
+            "recognized_501_scope_filter": (
+                len(strict_survivors_from_prior_ids)
+                - len(recognized_strict_maker_ids)
+            ),
+        },
+        "recognized_501_chain": {
+            "population": len(initial_ids),
+            "independent_prefee_under_par": len(
+                independent_prefee_ids & recognized_id_set
+            ),
+            "independent_maker_under_par": len(
+                independent_maker_ids & recognized_id_set
+            ),
+            "any_strict_sequence": len(
+                independent_maker_ids
+                & recognized_id_set
+                & strict_any_ids
+            ),
+            "strict_sequential_maker_under_par": len(
+                recognized_strict_maker_ids
+            ),
+            "removed_by_independent_floor_at_or_above_par": (
+                len(initial_ids)
+                - len(independent_prefee_ids & recognized_id_set)
+            ),
+            "removed_by_maker_fees": (
+                len(independent_prefee_ids & recognized_id_set)
+                - len(independent_maker_ids & recognized_id_set)
+            ),
+            "removed_by_no_post_first_fill_sequence": (
+                len(independent_maker_ids & recognized_id_set)
+                - len(
+                    independent_maker_ids
+                    & recognized_id_set
+                    & strict_any_ids
+                )
+            ),
+            "removed_by_sequential_path_no_longer_under_par": (
+                len(
+                    independent_maker_ids
+                    & recognized_id_set
+                    & strict_any_ids
+                )
+                - len(recognized_strict_maker_ids)
+            ),
+        },
+        "event_ids": {
+            "independent_prefee_under_par": sorted(
+                independent_prefee_ids
+            ),
+            "independent_maker_under_par": sorted(
+                independent_maker_ids
+            ),
+            "strict_sequential_maker_under_par_all_804": sorted(
+                strict_maker_ids
+            ),
+            "strict_sequential_any_price_all_804": sorted(
+                strict_any_ids
+            ),
+            "strict_sequential_survivors_from_prior_364": sorted(
+                strict_survivors_from_prior_ids
+            ),
+            "strict_raw_v5_additions_outside_prior_364": sorted(
+                strict_raw_v5_additions
+            ),
+            "strict_sequential_maker_under_par_in_recognized_501": sorted(
+                recognized_strict_maker_ids
+            ),
+        },
+    }
     sequential_by_category: dict[str, list[dict[str, Any]]] = {}
     for event_row in event_rows:
         sequential = event_row["strict_sequential_floor"]
@@ -625,17 +1046,24 @@ def run(args: argparse.Namespace) -> int:
             len(initial_ids) - len(sequential_values)
         ),
         "negative_vs_reference_count": len(negative_reference),
+        "under_par_gap_counts": duration_counts,
+        "under_par_ordering_counts": dict(sorted(
+            ordering_counts.items()
+        )),
         "frontier": {
             "le_93": sum(
-                row["maker_cost_cents"] <= 93
+                row["maker_cost_total_cents_for_five_contract_pair"]
+                <= 93 * QUANTITY
                 for row in sequential_values
             ),
             "le_95": sum(
-                row["maker_cost_cents"] <= 95
+                row["maker_cost_total_cents_for_five_contract_pair"]
+                <= 95 * QUANTITY
                 for row in sequential_values
             ),
             "le_97": sum(
-                row["maker_cost_cents"] <= 97
+                row["maker_cost_total_cents_for_five_contract_pair"]
+                <= 97 * QUANTITY
                 for row in sequential_values
             ),
             "lt_100": len(under_par),
@@ -669,6 +1097,7 @@ def run(args: argparse.Namespace) -> int:
             "second_leg_five_contract_proof_after_placement": True,
             "second_leg_proof_inside_own_window1": True,
             "maker_target_strictly_below_ask_at_placement": True,
+            "both_leg_orderings_evaluated_for_every_event": True,
             "quantity": QUANTITY,
         },
     }
@@ -696,6 +1125,10 @@ def run(args: argparse.Namespace) -> int:
                 "bytes": recognition_path.stat().st_size,
                 "sha256": sha256_file(recognition_path),
             },
+            "lawful_range_ladders": {
+                relative: sha256_file(repo / relative)
+                for relative in RANGE_LADDER_FILES
+            },
             "market_cache": {
                 "path_redacted": True,
                 "cache_version": (
@@ -705,6 +1138,7 @@ def run(args: argparse.Namespace) -> int:
             },
         },
         "strict_sequential_oracle": oracle,
+        "oracle_reconciliation": reconciliation,
         "target_lap": {
             "completions_out_of_804": len(completions),
             "completions_out_of_692": sum(

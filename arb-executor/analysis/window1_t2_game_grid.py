@@ -27,8 +27,10 @@ import statistics
 import sys
 from typing import Any, Iterable, Mapping
 
+from window1_evaluator_boundary import full_lawful_right
 
-VERSION = "window1-t2-game-grid-v1"
+
+VERSION = "window1-t2-game-grid-v2"
 POPULATION = 804
 QUANTITY = 5
 BASE_CANDIDATE = "w1_range_attack__macro_hold__combined_headroom"
@@ -132,22 +134,41 @@ def load_ladders(repo: Path) -> dict[tuple[str, str], dict[str, Any]]:
             key = (str(row["event_id"]), str(row["leg_id"]))
             if key in output:
                 raise GridError(f"duplicate range-ladder leg: {key}")
+            positive = bool(
+                row.get("positive_range_outcomes_provable")
+                and row["boundary"].get("positive_window1_provable")
+            )
+            policy_right = float(row["range_right_ts"])
+            guarded_cutoff = (
+                float(row["boundary"]["guarded_cutoff_ts"])
+                if row["boundary"].get("guarded_cutoff_ts") is not None
+                else None
+            )
+            try:
+                evaluator_right = full_lawful_right(
+                    policy_right_ts=policy_right,
+                    guarded_cutoff_ts=guarded_cutoff,
+                    positive_window1_provable=positive,
+                )
+            except ValueError as exc:
+                raise GridError(f"{key}: {exc}") from exc
             output[key] = {
                 "event_id": key[0],
                 "leg_id": key[1],
                 "ticker": str(row["ticker"]),
                 "left_ts": float(row["policy_left_ts"]),
                 "policy_horizon_ts": float(row["policy_horizon_ts"]),
-                "guarded_cutoff_ts": (
-                    float(row["boundary"]["guarded_cutoff_ts"])
-                    if row["boundary"].get("guarded_cutoff_ts") is not None
-                    else None
+                "guarded_cutoff_ts": guarded_cutoff,
+                "policy_right_ts": policy_right,
+                "evaluator_right_ts": evaluator_right,
+                # Censored rows retain a finite display edge, but they remain
+                # explicitly unavailable to ceiling and replay evaluation.
+                "right_ts": (
+                    float(evaluator_right)
+                    if evaluator_right is not None else policy_right
                 ),
-                "right_ts": float(row["range_right_ts"]),
-                "positive": bool(
-                    row.get("positive_range_outcomes_provable")
-                    and row["boundary"].get("positive_window1_provable")
-                ),
+                "positive": positive,
+                "evaluator_boundary_resolved": positive,
                 "boundary_status": (
                     "positive"
                     if row["boundary"].get("positive_window1_provable")
@@ -160,6 +181,9 @@ def load_ladders(repo: Path) -> dict[tuple[str, str], dict[str, Any]]:
                 ),
                 "policy_right_law": (
                     "min(policy_horizon_ts, guarded_cutoff_ts)"
+                ),
+                "evaluator_right_law": (
+                    "guarded_cutoff_ts when positive; unresolved otherwise"
                 ),
             }
     if len(output) != POPULATION * 2:
@@ -234,13 +258,17 @@ def load_streams(
                 if action.get("action") != "place":
                     continue
                 leg_id = str(action["leg_id"])
-                right = float(ladders[(event_id, leg_id)]["right_ts"])
+                right = float(
+                    ladders[(event_id, leg_id)]["policy_right_ts"]
+                )
                 targets.append(compact_target(action, right))
             intervals: dict[str, list[dict[str, Any]]] = {}
             for leg_id, values in (
                 stream.get("order_intervals_by_leg") or {}
             ).items():
-                right = float(ladders[(event_id, str(leg_id))]["right_ts"])
+                right = float(
+                    ladders[(event_id, str(leg_id))]["policy_right_ts"]
+                )
                 intervals[str(leg_id)] = [
                     compact_interval(row, right) for row in values
                 ]
@@ -328,7 +356,7 @@ def close_reference(prints: list[dict[str, Any]]) -> dict[str, Any]:
             "available": False,
             "price_cents": None,
             "timestamp": None,
-            "reason": "no_true_print_inside_frozen_policy_window",
+            "reason": "no_true_print_inside_evaluator_window",
             "tie_count": 0,
             "distinct_prices": [],
         }
@@ -912,7 +940,9 @@ def build_row(
                 int(floor_price) if floor_price is not None else None
             ),
         )
-        fill = compact_fill(ledger_leg, float(window["right_ts"]))
+        fill = compact_fill(
+            ledger_leg, float(window["policy_right_ts"])
+        )
         if fill is not None:
             fills.append(fill)
         proof = path["five_contract_proven_floor"]
@@ -935,7 +965,7 @@ def build_row(
                 "inside_frozen_policy_window": (
                     recognition_ts is None
                     or float(recognition_ts)
-                    <= float(window["right_ts"]) + 1e-6
+                    <= float(window["policy_right_ts"]) + 1e-6
                 ),
                 "source": recognition.get("recognition_source"),
                 "signals": recognition.get("signals") or [],

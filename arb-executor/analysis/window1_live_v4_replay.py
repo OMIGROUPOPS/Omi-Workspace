@@ -42,6 +42,9 @@ REPO = Path(__file__).resolve().parents[2]
 EXECUTOR = REPO / "arb-executor"
 LIVE_V4 = EXECUTOR / "live_v4.py"
 PRIVATE_ROOT = Path(r"C:\Users\omigr\OMI-Window1-private")
+VPS_INPUT_ROOT = (
+    REPO / ".claude" / "window1_live_v4_replay" / "vps_inputs_20260729"
+)
 EVENT_LEDGER = PRIVATE_ROOT / "joined" / "events.jsonl"
 PRINTS = PRIVATE_ROOT / "fit-local" / "prints.jsonl"
 MILESTONES = (
@@ -49,7 +52,8 @@ MILESTONES = (
     / "start-recovery-v2"
     / "PUBLIC_MILESTONES.normalized.jsonl"
 )
-OBSERVED_STARTS = PRIVATE_ROOT / "replay-live-v4" / "observed_starts.db"
+OBSERVED_STARTS = VPS_INPUT_ROOT / "db" / "observed_starts.db"
+TENNIS_DB = VPS_INPUT_ROOT / "db" / "tennis.snapshot.db"
 TICKS = PRIVATE_ROOT / "fit-local" / "ticks"
 GRID = REPO / ".claude" / "window1_t2_iteration_history" / "WINDOW1_T2_GAME_GRID.json"
 DEFAULT_OUT = REPO / ".claude" / "window1_live_v4_replay"
@@ -153,25 +157,38 @@ def replay_datetime_class(clock: ReplayClock) -> type[_RealDateTime]:
     return ReplayDateTime
 
 
-def install_observed_starts_replay(clock: ReplayClock):
-    """Expose the preserved live bell DB with its original time visibility.
+def install_vps_database_replay(clock: ReplayClock):
+    """Expose preserved VPS databases read-only under the replay clock.
 
     live_v4's reader remains unchanged.  Its read-only SQLite connection is
     redirected to the byte-preserved VPS copy, and a connection-local TEMP
     view hides rows until their original ``inserted_at`` timestamp arrives on
-    the replay clock.  The source database is never written.
+    the replay clock.  Every direct ``tennis.db`` read is redirected to the
+    real VPS database copy in read-only mode.  Neither source is ever written.
     """
     if not OBSERVED_STARTS.exists():
         raise FileNotFoundError(
             f"historical observed-start feed is absent: {OBSERVED_STARTS}"
         )
+    if not TENNIS_DB.exists() or TENNIS_DB.stat().st_size == 0:
+        raise FileNotFoundError(
+            f"real VPS tennis database is absent: {TENNIS_DB}"
+        )
 
-    source_uri = "file:" + OBSERVED_STARTS.as_posix() + "?mode=ro"
+    observed_uri = "file:" + OBSERVED_STARTS.as_posix() + "?mode=ro"
+    tennis_uri = "file:" + TENNIS_DB.as_posix() + "?mode=ro"
 
     def replay_connect(database, *args, **kwargs):
         raw = str(database)
-        if kwargs.get("uri") and "mode=ro" in raw:
-            conn = _REAL_SQLITE_CONNECT(source_uri, *args, **kwargs)
+        lowered = raw.replace("\\", "/").lower()
+        if lowered.endswith("/observed_starts.db") or (
+            "observed_starts.db?" in lowered
+        ):
+            observed_kwargs = dict(kwargs)
+            observed_kwargs["uri"] = True
+            conn = _REAL_SQLITE_CONNECT(
+                observed_uri, *args, **observed_kwargs
+            )
             conn.create_function(
                 "replay_visible_at",
                 0,
@@ -185,6 +202,12 @@ def install_observed_starts_replay(clock: ReplayClock):
                 "WHERE inserted_at <= replay_visible_at()"
             )
             return conn
+        if lowered.endswith("/tennis.db") or "tennis.db?" in lowered:
+            tennis_kwargs = dict(kwargs)
+            tennis_kwargs["uri"] = True
+            return _REAL_SQLITE_CONNECT(
+                tennis_uri, *args, **tennis_kwargs
+            )
         return _REAL_SQLITE_CONNECT(database, *args, **kwargs)
 
     sqlite3.connect = replay_connect
@@ -333,8 +356,18 @@ def load_scope(event_filter: str | None) -> list[dict]:
             continue
         base = ledger[event]
         windows = [leg["price_path"]["window"] for leg in game["legs"].values()]
+        if any(
+            not bool(window.get("evaluator_boundary_resolved"))
+            for window in windows
+        ):
+            raise SystemExit(
+                f"{event}: guarded actual-start cutoff is unresolved; "
+                "replay refused rather than substituting the scheduled "
+                "policy horizon"
+            )
         left = max(float(w["left_ts"]) for w in windows)
-        right = min(float(w["right_ts"]) for w in windows)
+        right = min(float(w["evaluator_right_ts"]) for w in windows)
+        policy_right = min(float(w["policy_right_ts"]) for w in windows)
         out.append(
             {
                 "event": event,
@@ -343,6 +376,8 @@ def load_scope(event_filter: str | None) -> list[dict]:
                 "event_date": game["event_date"],
                 "left_ts": left,
                 "right_ts": right,
+                "policy_right_ts": policy_right,
+                "evaluator_right_ts": right,
                 "scheduled_start_ts": _iso_ts(base["scheduled_start_exchange_ts"]),
                 "schedule_observed_ts": _iso_ts(base["schedule_observed_exchange_ts"]),
                 "legs": base["legs"],
@@ -648,7 +683,7 @@ async def replay_one(
 
     clock = ReplayClock(game["left_ts"])
     module = import_live_v4(clock, run_dir)
-    restore_sqlite = install_observed_starts_replay(clock)
+    restore_sqlite = install_vps_database_replay(clock)
     source_hash_before = _sha256(LIVE_V4)
     bot = module.LiveV3()
     applied_counterfactual = install_path_aim_counterfactual(bot, counterfactual)
@@ -875,6 +910,9 @@ async def replay_one(
             "observed_starts_source": str(OBSERVED_STARTS),
             "observed_starts_sha256": _sha256(OBSERVED_STARTS),
             "observed_starts_visibility": "inserted_at <= replay clock",
+            "tennis_db_source": str(TENNIS_DB),
+            "tennis_db_sha256": _sha256(TENNIS_DB),
+            "tennis_db_access": "read_only",
         },
     }
     (run_dir / "trace.json").write_text(

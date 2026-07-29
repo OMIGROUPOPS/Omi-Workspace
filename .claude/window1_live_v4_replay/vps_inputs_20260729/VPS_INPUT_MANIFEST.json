@@ -1,0 +1,129 @@
+{
+  "schema_version": "window1-live-v4-vps-input-manifest-v1",
+  "created_at": "2026-07-29T17:45:25.9745640-04:00",
+  "source_host": "root@104.131.191.95",
+  "retrieval_law": {
+    "source_access": "read_only",
+    "source_files_mutated": false,
+    "hash_verification": "local sha256 equals remote sha256",
+    "mtime_preservation": "source mtime recorded at nanosecond precision; local NTFS copies restored at 100-nanosecond precision"
+  },
+  "ready_inputs": [
+    {
+      "name": "band_map_v1",
+      "remote_path": "/root/Omi-Workspace/arb-executor/state/band_map_v1.json",
+      "snapshot_path": ".claude/window1_live_v4_replay/vps_inputs_20260729/state/band_map_v1.json",
+      "installed_path": "arb-executor/state/band_map_v1.json",
+      "bytes": 15520,
+      "source_mtime": "2026-07-17 22:38:54.886245321 -0400",
+      "local_mtime_utc": "2026-07-18T02:38:54.8862453Z",
+      "sha256": "caf255a283bbb32f1d9bd2edd5f4d898d5f50fc8e67d5f9a076579b695a9e68c"
+    },
+    {
+      "name": "drift_surfaces_v1",
+      "remote_path": "/root/Omi-Workspace/arb-executor/state/drift_surfaces_v1.json",
+      "snapshot_path": ".claude/window1_live_v4_replay/vps_inputs_20260729/state/drift_surfaces_v1.json",
+      "installed_path": "arb-executor/state/drift_surfaces_v1.json",
+      "bytes": 188661,
+      "source_mtime": "2026-07-18 12:10:48.545556643 -0400",
+      "local_mtime_utc": "2026-07-18T16:10:48.5455566Z",
+      "sha256": "aeac847d26c1421c21be67d19ce4992a69f90840ae20443d4a8aaa31da8201a6"
+    },
+    {
+      "name": "pair_policies_sealed_v1",
+      "remote_path": "/root/Omi-Workspace/arb-executor/state/pair_policies_sealed_v1.json",
+      "snapshot_path": ".claude/window1_live_v4_replay/vps_inputs_20260729/state/pair_policies_sealed_v1.json",
+      "installed_path": "arb-executor/state/pair_policies_sealed_v1.json",
+      "bytes": 5946,
+      "source_mtime": "2026-07-20 14:30:27.491375288 -0400",
+      "local_mtime_utc": "2026-07-20T18:30:27.4913753Z",
+      "sha256": "b2f0b670f70aabe3fbfef9092c0b227334e00da2ecbd51e9235204158daf7c44"
+    },
+    {
+      "name": "cohort_surface_v1",
+      "remote_path": "/root/Omi-Workspace/arb-executor/state/cohort_surface_v1.json",
+      "snapshot_path": ".claude/window1_live_v4_replay/vps_inputs_20260729/state/cohort_surface_v1.json",
+      "installed_path": "arb-executor/state/cohort_surface_v1.json",
+      "bytes": 19011,
+      "source_mtime": "2026-07-17 21:34:13.192511742 -0400",
+      "local_mtime_utc": "2026-07-18T01:34:13.1925117Z",
+      "sha256": "aef60745a195f2828f758092183a3564bfc052a65c8899e5b3c994271bc6212d"
+    },
+    {
+      "name": "entry_tables_sealed_v1",
+      "remote_path": "/root/Omi-Workspace/arb-executor/state/entry_tables_sealed_v1.json",
+      "snapshot_path": ".claude/window1_live_v4_replay/vps_inputs_20260729/state/entry_tables_sealed_v1.json",
+      "installed_path": "arb-executor/state/entry_tables_sealed_v1.json",
+      "bytes": 10125,
+      "source_mtime": "2026-07-18 14:11:27.828623941 -0400",
+      "local_mtime_utc": "2026-07-18T18:11:27.8286239Z",
+      "sha256": "c0c29e54792e2f49cad6e96297367b4ada80051cde464a8f3dddb748ae1ce8e7"
+    },
+    {
+      "name": "ATLAS_V1",
+      "remote_path": "/root/Omi-Workspace/.claude/trendpath/ATLAS_V1.json",
+      "snapshot_path": ".claude/window1_live_v4_replay/vps_inputs_20260729/trendpath/ATLAS_V1.json",
+      "installed_path": ".claude/trendpath/ATLAS_V1.json",
+      "bytes": 64012,
+      "source_mtime": "2026-07-29 04:45:45.152072753 -0400",
+      "local_mtime_utc": "2026-07-29T08:45:45.1520728Z",
+      "sha256": "efdfc2b414a752db560b7e494642632a0530c68f54b6d4e8f86d303887b5100c"
+    },
+    {
+      "name": "LIBRARY_V1",
+      "remote_path": "/root/Omi-Workspace/.claude/trendpath/LIBRARY_V1.json",
+      "snapshot_path": ".claude/window1_live_v4_replay/vps_inputs_20260729/trendpath/LIBRARY_V1.json",
+      "installed_path": ".claude/trendpath/LIBRARY_V1.json",
+      "bytes": 16917,
+      "source_mtime": "2026-07-29 04:45:45.156073093 -0400",
+      "local_mtime_utc": "2026-07-29T08:45:45.1560731Z",
+      "sha256": "326ad88a516ce157a3c39d276e07b2559fad77f97e513d49e0798ad9144f973d"
+    },
+    {
+      "name": "ORIENT_V1",
+      "remote_path": "/root/Omi-Workspace/.claude/trendpath/ORIENT_V1.json",
+      "snapshot_path": ".claude/window1_live_v4_replay/vps_inputs_20260729/trendpath/ORIENT_V1.json",
+      "installed_path": ".claude/trendpath/ORIENT_V1.json",
+      "bytes": 2130,
+      "source_mtime": "2026-07-29 04:45:45.156073093 -0400",
+      "local_mtime_utc": "2026-07-29T08:45:45.1560731Z",
+      "sha256": "911de20128f8700ea6c6c8de8e27d62d2652a3ad8c30e467208995bd0f304f3d"
+    },
+    {
+      "name": "observed_starts.db",
+      "remote_path": "/root/Omi-Workspace/arb-executor/state/observed_starts.db",
+      "snapshot_path": ".claude/window1_live_v4_replay/vps_inputs_20260729/db/observed_starts.db",
+      "bytes": 24576,
+      "source_mtime": "2026-07-29 17:12:53.209472922 -0400",
+      "local_mtime_utc": "2026-07-29T21:12:53.2094729Z",
+      "sha256": "54dc4b626cc0d41f818b6c3e4e56db37405d271e3494f626acde875b993f58f8",
+      "row_count": 130,
+      "july_14_through_20_row_count": 57
+    }
+  ],
+  "tennis_database": {
+    "status": "BLOCKED_PENDING_OPERATOR_AUTHORITY",
+    "replay_must_not_run": true,
+    "remote_symlink": "/root/Omi-Workspace/arb-executor/tennis.db",
+    "remote_resolved_path": "/mnt/omi-trading-data-nyc3/active/tennis.db",
+    "database_mode": "WAL",
+    "required_replay_path": ".claude/window1_live_v4_replay/vps_inputs_20260729/db/tennis.snapshot.db",
+    "required_replay_path_exists": false,
+    "reason": "The live database changes while its main file is copied. A main-file-only copy excludes committed WAL pages and fails SQLite consistency checks; replay refuses it.",
+    "main_only_copy_quarantined": {
+      "path": ".claude/window1_live_v4_replay/vps_inputs_20260729/db/tennis.db",
+      "bytes": 17423802368,
+      "source_mtime": "2026-07-29 16:58:15.297080200 -0400",
+      "local_mtime_utc": "2026-07-29T20:58:15.2970802Z",
+      "sha256": "72755febf79f23c72f13ab7e579421a8e5a4e2c6af214108f405561815ab92dc",
+      "sqlite_quick_check": "failed: main-file-only copy is inconsistent with the live WAL state",
+      "git_ignored": true,
+      "must_not_replay": true
+    },
+    "remote_state_rechecked_at": "2026-07-29T17:45:25.9745640-04:00",
+    "remote_main_bytes_at_recheck": 17425883136,
+    "remote_main_mtime_at_recheck": "2026-07-29 17:34:37.579994718 -0400",
+    "safe_completion": "Use SQLite online backup against the source opened read-only, writing one temporary VPS snapshot, copy it down, verify quick_check/hash/mtime, then remove the temporary snapshot.",
+    "authority_needed": "Permission to create and later remove one temporary approximately 17.5 GB snapshot file on the VPS; no live database write, pause, checkpoint, or service mutation."
+  }
+}

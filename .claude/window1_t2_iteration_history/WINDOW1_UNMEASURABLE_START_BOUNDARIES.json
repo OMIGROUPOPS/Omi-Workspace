@@ -1,0 +1,4399 @@
+{
+  "count": 111,
+  "games": [
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T13:08:15.467944+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BRUGAD",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783854000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783854000.0,
+      "selected_left_ts": 1783825200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-12T20:18:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12TOKROZ",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783888200.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783888200.0,
+      "selected_left_ts": 1783859400.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "ATP_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783854000.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1783854000.0,
+      "selected_left_ts": 1783825200.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "tennis_db_live_scores_current_state",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-14T21:59:50+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T09:40:56.061679+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-13T09:43:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KRASAL",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783944600.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783944600.0,
+      "selected_left_ts": 1783915800.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T17:30:20.315018+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-13T21:26:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13SHIHAR",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783974600.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783974600.0,
+      "selected_left_ts": 1783945800.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-15T11:35:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-14T11:17:00.408431+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-15T00:29:00.404921+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-15T11:39:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "named_proxy_conflict_censored",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MAKSEY",
+      "guard_censor_reason": "provider_final_start_differs_by_about_20h",
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784039400.0,
+      "reason": "named_start_evidence_conflict",
+      "scheduled_start_ts": 1784039400.0,
+      "selected_left_ts": 1784010600.0,
+      "source_group": "inferred_quantized_proxy",
+      "source_partition_class": "start_clock",
+      "start_source_class": "quantized_late_detection_proxy",
+      "tape_resolution_explanation": "A proxy or provider timestamp conflicts with a retained causal bound; tape alone cannot promote either to exact."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "tennis_db_live_scores_current_state",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-13T21:59:38+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-14T17:10:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-14T17:04:49.950181+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-14T17:05:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "named_proxy_conflict_censored",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+      "guard_censor_reason": "retained_causal_live_by_conflicts_with_proxy_band",
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784056200.0,
+      "reason": "named_start_evidence_conflict",
+      "scheduled_start_ts": 1784056200.0,
+      "selected_left_ts": 1784027400.0,
+      "source_group": "inferred_quantized_proxy",
+      "source_partition_class": "start_clock",
+      "start_source_class": "quantized_late_detection_proxy",
+      "tape_resolution_explanation": "A proxy or provider timestamp conflicts with a retained causal bound; tape alone cannot promote either to exact."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-14T20:01:08.769290+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-14T19:24:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ROZRIC",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784061000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784061000.0,
+      "selected_left_ts": 1784032200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-14T15:30:01.046240+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-14T15:49:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784056200.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784056200.0,
+      "selected_left_ts": 1784027400.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-16T09:45:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-15T14:26:22.855099+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-15T14:21:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "named_proxy_conflict_censored",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15NAPBAR",
+      "guard_censor_reason": "provider_final_start_differs_by_about_16h",
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784130600.0,
+      "reason": "named_start_evidence_conflict",
+      "scheduled_start_ts": 1784130600.0,
+      "selected_left_ts": 1784101800.0,
+      "source_group": "inferred_quantized_proxy",
+      "source_partition_class": "start_clock",
+      "start_source_class": "quantized_late_detection_proxy",
+      "tape_resolution_explanation": "A proxy or provider timestamp conflicts with a retained causal bound; tape alone cannot promote either to exact."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-17T00:17:04.830756+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-15T20:33:45.882569+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-16T18:04:32.368475+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "causal_interval_contradiction",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15YIBYUN",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784138400.0,
+      "reason": "contradictory_start_evidence",
+      "scheduled_start_ts": 1784138400.0,
+      "selected_left_ts": 1784109600.0,
+      "source_group": "contradictory",
+      "source_partition_class": "contradictory",
+      "start_source_class": "contradictory",
+      "tape_resolution_explanation": "The existing tape is one of the conflicting causal bounds; external start evidence is required to adjudicate it."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-17T00:17:06.919755+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-16T21:05:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "tennis_db_live_scores_current_state",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-17T21:59:15+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-16T20:16:56.165961+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-16T19:59:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "higher_precedence_not_live_after_te_result_start",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16PALALM",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784242800.0,
+      "reason": "contradictory_start_evidence",
+      "scheduled_start_ts": 1784242800.0,
+      "selected_left_ts": 1784214000.0,
+      "source_group": "contradictory",
+      "source_partition_class": "contradictory",
+      "start_source_class": "contradictory",
+      "tape_resolution_explanation": "The existing tape is one of the conflicting causal bounds; external start evidence is required to adjudicate it."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-17T16:00:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-17T15:05:11.085013+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-17T16:58:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "named_proxy_conflict_censored",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17DELFUE",
+      "guard_censor_reason": "proxy_precedes_retained_live_by_conflict",
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784314800.0,
+      "reason": "named_start_evidence_conflict",
+      "scheduled_start_ts": 1784314800.0,
+      "selected_left_ts": 1784286000.0,
+      "source_group": "inferred_quantized_proxy",
+      "source_partition_class": "start_clock",
+      "start_source_class": "quantized_late_detection_proxy",
+      "tape_resolution_explanation": "A proxy or provider timestamp conflicts with a retained causal bound; tape alone cannot promote either to exact."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-18T04:15:08.201811+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-18T02:10:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-18T00:33:31.145460+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-18T00:27:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "higher_precedence_not_live_after_te_result_start",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17FORTOM",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784344200.0,
+      "reason": "contradictory_start_evidence",
+      "scheduled_start_ts": 1784344200.0,
+      "selected_left_ts": 1784315400.0,
+      "source_group": "contradictory",
+      "source_partition_class": "contradictory",
+      "start_source_class": "contradictory",
+      "tape_resolution_explanation": "The existing tape is one of the conflicting causal bounds; external start evidence is required to adjudicate it."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-17T23:06:43.778293+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "te_scoreboard_first_observed_inplay",
+          "source_family": "mapped_score_onset_interval",
+          "timestamp_utc": "2026-07-18T03:13:05+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-17T22:33:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17SMIYUN",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784340000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784340000.0,
+      "selected_left_ts": 1784311200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-18T16:45:13.749383+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-18T14:15:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-18T14:01:57.915453+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-18T14:12:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "higher_precedence_not_live_after_te_result_start",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18GENKUM",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784394000.0,
+      "reason": "contradictory_start_evidence",
+      "scheduled_start_ts": 1784394000.0,
+      "selected_left_ts": 1784365200.0,
+      "source_group": "contradictory",
+      "source_partition_class": "contradictory",
+      "start_source_class": "contradictory",
+      "tape_resolution_explanation": "The existing tape is one of the conflicting causal bounds; external start evidence is required to adjudicate it."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-18T23:45:13.356021+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T00:45:13.522382+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T01:00:19.258399+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T01:15:11.466923+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T01:30:16.428096+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T01:45:13.167470+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T01:21:12.894029+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T01:52:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "causal_interval_contradiction",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18LAJYUN",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784432400.0,
+      "reason": "contradictory_start_evidence",
+      "scheduled_start_ts": 1784432400.0,
+      "selected_left_ts": 1784403600.0,
+      "source_group": "contradictory",
+      "source_partition_class": "contradictory",
+      "start_source_class": "contradictory",
+      "tape_resolution_explanation": "The existing tape is one of the conflicting causal bounds; external start evidence is required to adjudicate it."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "ATP_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784473200.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1784473200.0,
+      "selected_left_ts": 1784444400.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "ATP_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784473200.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1784473200.0,
+      "selected_left_ts": 1784444400.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T03:15:16.625009+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-19T22:40:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T22:30:49.316416+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T22:03:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "higher_precedence_not_live_after_te_result_start",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TRODAL",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784500200.0,
+      "reason": "contradictory_start_evidence",
+      "scheduled_start_ts": 1784500200.0,
+      "selected_left_ts": 1784471400.0,
+      "source_group": "contradictory",
+      "source_partition_class": "contradictory",
+      "start_source_class": "contradictory",
+      "tape_resolution_explanation": "The existing tape is one of the conflicting causal bounds; external start evidence is required to adjudicate it."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T19:12:04.274282+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-20T13:15:53.883085+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T18:46:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ZAMPOL",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784498400.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784498400.0,
+      "selected_left_ts": 1784469600.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "ATP_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CRECOP",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784568600.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1784568600.0,
+      "selected_left_ts": 1784539800.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:tape_flow",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-20T15:09:35.370497+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784559600.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784559600.0,
+      "selected_left_ts": 1784530800.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T14:00:26.336256+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T14:15:19.265938+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T14:30:24.366095+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T14:45:19.222486+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T15:00:27.769668+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T15:15:20.283213+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-20T15:15:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:tape_flow",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-20T14:51:36.894198+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-20T15:15:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "higher_precedence_not_live_after_te_result_start",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GONTOB",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784566800.0,
+      "reason": "contradictory_start_evidence",
+      "scheduled_start_ts": 1784566800.0,
+      "selected_left_ts": 1784538000.0,
+      "source_group": "contradictory",
+      "source_partition_class": "contradictory",
+      "start_source_class": "contradictory",
+      "tape_resolution_explanation": "The existing tape is one of the conflicting causal bounds; external start evidence is required to adjudicate it."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T15:15:21.389524+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T15:30:26.680928+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T15:45:21.075610+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T16:00:29.807964+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T16:15:21.730935+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T16:30:26.253997+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-20T16:25:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-20T14:39:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "higher_precedence_not_live_after_te_result_start",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20KOZPAS",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784571000.0,
+      "reason": "contradictory_start_evidence",
+      "scheduled_start_ts": 1784571000.0,
+      "selected_left_ts": 1784542200.0,
+      "source_group": "contradictory",
+      "source_partition_class": "contradictory",
+      "start_source_class": "contradictory",
+      "tape_resolution_explanation": "The existing tape is one of the conflicting causal bounds; external start evidence is required to adjudicate it."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T10:15:20.095711+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T10:30:28.806049+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T12:15:20.871390+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-20T11:00:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-20T13:05:36.764268+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-20T11:01:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "higher_precedence_not_live_after_te_result_start",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MONNES",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784553000.0,
+      "reason": "contradictory_start_evidence",
+      "scheduled_start_ts": 1784553000.0,
+      "selected_left_ts": 1784524200.0,
+      "source_group": "contradictory",
+      "source_partition_class": "contradictory",
+      "start_source_class": "contradictory",
+      "tape_resolution_explanation": "The existing tape is one of the conflicting causal bounds; external start evidence is required to adjudicate it."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T12:15:21.636244+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-20T11:50:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "tennis_db_live_scores_current_state",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-21T21:59:56+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-20T13:05:36.763903+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-20T11:46:00+00:00"
+        }
+      ],
+      "category": "ATP_CHALL",
+      "conflict_status": "higher_precedence_not_live_after_te_result_start",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20PALLEO",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784556000.0,
+      "reason": "contradictory_start_evidence",
+      "scheduled_start_ts": 1784556000.0,
+      "selected_left_ts": 1784527200.0,
+      "source_group": "contradictory",
+      "source_partition_class": "contradictory",
+      "start_source_class": "contradictory",
+      "tape_resolution_explanation": "The existing tape is one of the conflicting causal bounds; external start evidence is required to adjudicate it."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "ATP_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12KRUFER",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783854000.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1783854000.0,
+      "selected_left_ts": 1783825200.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "ATP_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-14",
+      "event_id": "KXATPMATCH-26JUL14MARPRA",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784048400.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1784048400.0,
+      "selected_left_ts": 1784019600.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "observed_starts_db_first_observed_inplay",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-15T15:13:45+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-15T15:40:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-15T14:31:41.933612+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "te_scoreboard_first_observed_inplay",
+          "source_family": "mapped_score_onset_interval",
+          "timestamp_utc": "2026-07-15T15:13:45+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-15T12:40:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "named_proxy_conflict_censored",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15ALTDAR",
+      "guard_censor_reason": "retained_causal_live_by_conflicts_with_proxy_band",
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784129400.0,
+      "reason": "named_start_evidence_conflict",
+      "scheduled_start_ts": 1784129400.0,
+      "selected_left_ts": 1784100600.0,
+      "source_group": "inferred_quantized_proxy",
+      "source_partition_class": "start_clock",
+      "start_source_class": "quantized_late_detection_proxy",
+      "tape_resolution_explanation": "A proxy or provider timestamp conflicts with a retained causal bound; tape alone cannot promote either to exact."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-16T13:55:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-15T15:35:43.055034+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-15T14:59:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "named_proxy_conflict_censored",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15KYMTSI",
+      "guard_censor_reason": "provider_final_start_differs_by_about_21h",
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784115000.0,
+      "reason": "named_start_evidence_conflict",
+      "scheduled_start_ts": 1784115000.0,
+      "selected_left_ts": 1784086200.0,
+      "source_group": "inferred_quantized_proxy",
+      "source_partition_class": "start_clock",
+      "start_source_class": "quantized_late_detection_proxy",
+      "tape_resolution_explanation": "A proxy or provider timestamp conflicts with a retained causal bound; tape alone cannot promote either to exact."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "observed_starts_db_first_observed_inplay",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-15T00:15:52+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-15T16:10:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "te_scoreboard_first_observed_inplay",
+          "source_family": "mapped_score_onset_interval",
+          "timestamp_utc": "2026-07-15T00:15:52+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-15T15:15:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "named_proxy_conflict_censored",
+      "event_date": "2026-07-15",
+      "event_id": "KXATPMATCH-26JUL15TRUDAV",
+      "guard_censor_reason": "retained_causal_live_by_conflicts_with_proxy_band",
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784134800.0,
+      "reason": "named_start_evidence_conflict",
+      "scheduled_start_ts": 1784134800.0,
+      "selected_left_ts": 1784106000.0,
+      "source_group": "inferred_quantized_proxy",
+      "source_partition_class": "start_clock",
+      "start_source_class": "quantized_late_detection_proxy",
+      "tape_resolution_explanation": "A proxy or provider timestamp conflicts with a retained causal bound; tape alone cannot promote either to exact."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-16T16:40:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "te_scoreboard_first_observed_inplay",
+          "source_family": "mapped_score_onset_interval",
+          "timestamp_utc": "2026-07-15T20:14:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-16T16:37:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "named_proxy_conflict_censored",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPMATCH-26JUL16BURUGO",
+      "guard_censor_reason": "retained_causal_live_by_conflicts_with_proxy_band",
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784221200.0,
+      "reason": "named_start_evidence_conflict",
+      "scheduled_start_ts": 1784221200.0,
+      "selected_left_ts": 1784192400.0,
+      "source_group": "inferred_quantized_proxy",
+      "source_partition_class": "start_clock",
+      "start_source_class": "quantized_late_detection_proxy",
+      "tape_resolution_explanation": "A proxy or provider timestamp conflicts with a retained causal bound; tape alone cannot promote either to exact."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-17T10:00:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "observed_starts_db_first_observed_inplay",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-17T18:17:35+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-16T16:00:36.161072+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-17T10:02:20.705882+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-17T10:10:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "named_proxy_conflict_censored",
+      "event_date": "2026-07-16",
+      "event_id": "KXATPMATCH-26JUL16SHESTR",
+      "guard_censor_reason": "provider_final_start_differs_by_about_16h",
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784201400.0,
+      "reason": "named_start_evidence_conflict",
+      "scheduled_start_ts": 1784201400.0,
+      "selected_left_ts": 1784172600.0,
+      "source_group": "inferred_quantized_proxy",
+      "source_partition_class": "start_clock",
+      "start_source_class": "quantized_late_detection_proxy",
+      "tape_resolution_explanation": "A proxy or provider timestamp conflicts with a retained causal bound; tape alone cannot promote either to exact."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-17T15:43:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-17",
+      "event_id": "KXATPMATCH-26JUL17BURMER",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784316600.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784316600.0,
+      "selected_left_ts": 1784287800.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-18T09:10:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "te_scoreboard_first_observed_inplay",
+          "source_family": "mapped_score_onset_interval",
+          "timestamp_utc": "2026-07-17T16:15:56+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "te_scoreboard_first_observed_inplay",
+          "source_family": "mapped_score_onset_interval",
+          "timestamp_utc": "2026-07-18T00:12:57+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "named_proxy_conflict_censored",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18COLCER",
+      "guard_censor_reason": "retained_causal_live_by_conflicts_with_proxy_band",
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784376000.0,
+      "reason": "named_start_evidence_conflict",
+      "scheduled_start_ts": 1784376000.0,
+      "selected_left_ts": 1784347200.0,
+      "source_group": "inferred_quantized_proxy",
+      "source_partition_class": "start_clock",
+      "start_source_class": "quantized_late_detection_proxy",
+      "tape_resolution_explanation": "A proxy or provider timestamp conflicts with a retained causal bound; tape alone cannot promote either to exact."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "observed_starts_db_first_observed_inplay",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-17T19:13:10+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-18T11:45:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "tennis_db_live_scores_current_state",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-19T21:59:10+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-18T11:41:37.648244+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-18T11:45:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "named_proxy_conflict_censored",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18CORSAC",
+      "guard_censor_reason": "retained_causal_live_by_conflicts_with_proxy_band",
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784382000.0,
+      "reason": "named_start_evidence_conflict",
+      "scheduled_start_ts": 1784382000.0,
+      "selected_left_ts": 1784353200.0,
+      "source_group": "inferred_quantized_proxy",
+      "source_partition_class": "start_clock",
+      "start_source_class": "quantized_late_detection_proxy",
+      "tape_resolution_explanation": "A proxy or provider timestamp conflicts with a retained causal bound; tape alone cannot promote either to exact."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:price_divergence",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-18T12:30:00.714430+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18GAUTSE",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784383200.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784383200.0,
+      "selected_left_ts": 1784354400.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-18T16:45:16.805799+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-18T13:50:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:price_divergence",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-18T12:30:00.716643+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-18T13:49:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "higher_precedence_not_live_after_te_result_start",
+      "event_date": "2026-07-18",
+      "event_id": "KXATPMATCH-26JUL18LUZTSE",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784387400.0,
+      "reason": "contradictory_start_evidence",
+      "scheduled_start_ts": 1784387400.0,
+      "selected_left_ts": 1784358600.0,
+      "source_group": "contradictory",
+      "source_partition_class": "contradictory",
+      "start_source_class": "contradictory",
+      "tape_resolution_explanation": "The existing tape is one of the conflicting causal bounds; external start evidence is required to adjudicate it."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-20T05:59:01.737949+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-20T21:21:32.035007+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19CHODEJ",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784469600.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784469600.0,
+      "selected_left_ts": 1784440800.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {
+        "CIN": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        },
+        "GIU": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        }
+      },
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T02:45:19.103490+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T10:34:23.202813+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T12:33:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19CINGIU",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": 1784429059.10349,
+      "policy_right_ts": 1784429059.10349,
+      "reason": "guarded_cutoff_at_or_before_contemporaneous_T_minus_8_left",
+      "scheduled_start_ts": 1784464200.0,
+      "selected_left_ts": 1784435400.0,
+      "source_group": "observed_bounded_interval",
+      "source_partition_class": "clean_interval",
+      "start_source_class": "clean_causal_interval",
+      "tape_resolution_explanation": "Tape can support an actual-start-anchored diagnostic when both legs have prints in cutoff-minus-8h..cutoff, but it cannot reconstruct the missing contemporaneous schedule snapshot or silently change the selected left-edge law."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {
+        "DEL": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        },
+        "DJE": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        }
+      },
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T02:45:19.418880+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T11:52:06.227002+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T12:09:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19DELDJE",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": 1784429059.41888,
+      "policy_right_ts": 1784429059.41888,
+      "reason": "guarded_cutoff_at_or_before_contemporaneous_T_minus_8_left",
+      "scheduled_start_ts": 1784467800.0,
+      "selected_left_ts": 1784439000.0,
+      "source_group": "observed_bounded_interval",
+      "source_partition_class": "clean_interval",
+      "start_source_class": "clean_causal_interval",
+      "tape_resolution_explanation": "Tape can support an actual-start-anchored diagnostic when both legs have prints in cutoff-minus-8h..cutoff, but it cannot reconstruct the missing contemporaneous schedule snapshot or silently change the selected left-edge law."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-20T16:29:47.091434+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-20T02:34:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19FERVAN",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784469600.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784469600.0,
+      "selected_left_ts": 1784440800.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {
+        "DAN": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        },
+        "JAC": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        }
+      },
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T03:30:26.165850+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T11:01:49.892021+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T11:04:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19JACDAN",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": 1784431766.16585,
+      "policy_right_ts": 1784431766.16585,
+      "reason": "guarded_cutoff_at_or_before_contemporaneous_T_minus_8_left",
+      "scheduled_start_ts": 1784469600.0,
+      "selected_left_ts": 1784440800.0,
+      "source_group": "observed_bounded_interval",
+      "source_partition_class": "clean_interval",
+      "start_source_class": "clean_causal_interval",
+      "tape_resolution_explanation": "Tape can support an actual-start-anchored diagnostic when both legs have prints in cutoff-minus-8h..cutoff, but it cannot reconstruct the missing contemporaneous schedule snapshot or silently change the selected left-edge law."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-21T13:30:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-20T20:42:12.348982+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "te_scoreboard_first_observed_inplay",
+          "source_family": "mapped_score_onset_interval",
+          "timestamp_utc": "2026-07-18T21:13:19+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "named_proxy_conflict_censored",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19MOLOFN",
+      "guard_censor_reason": "retained_causal_live_by_conflicts_with_proxy_band",
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784464200.0,
+      "reason": "named_start_evidence_conflict",
+      "scheduled_start_ts": 1784464200.0,
+      "selected_left_ts": 1784435400.0,
+      "source_group": "inferred_quantized_proxy",
+      "source_partition_class": "start_clock",
+      "start_source_class": "quantized_late_detection_proxy",
+      "tape_resolution_explanation": "A proxy or provider timestamp conflicts with a retained causal bound; tape alone cannot promote either to exact."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {
+        "BUE": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        },
+        "PEL": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        }
+      },
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T03:15:20.538882+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T11:01:49.890481+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T11:09:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19PELBUE",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": 1784430860.538882,
+      "policy_right_ts": 1784430860.538882,
+      "reason": "guarded_cutoff_at_or_before_contemporaneous_T_minus_8_left",
+      "scheduled_start_ts": 1784469600.0,
+      "selected_left_ts": 1784440800.0,
+      "source_group": "observed_bounded_interval",
+      "source_partition_class": "clean_interval",
+      "start_source_class": "clean_causal_interval",
+      "tape_resolution_explanation": "Tape can support an actual-start-anchored diagnostic when both legs have prints in cutoff-minus-8h..cutoff, but it cannot reconstruct the missing contemporaneous schedule snapshot or silently change the selected left-edge law."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {
+        "ROD": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        },
+        "SAC": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        }
+      },
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T03:45:22.469123+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T13:04:27.024175+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T13:07:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19RODSAC",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": 1784432662.469123,
+      "policy_right_ts": 1784432662.469123,
+      "reason": "guarded_cutoff_at_or_before_contemporaneous_T_minus_8_left",
+      "scheduled_start_ts": 1784464200.0,
+      "selected_left_ts": 1784435400.0,
+      "source_group": "observed_bounded_interval",
+      "source_partition_class": "clean_interval",
+      "start_source_class": "clean_causal_interval",
+      "tape_resolution_explanation": "Tape can support an actual-start-anchored diagnostic when both legs have prints in cutoff-minus-8h..cutoff, but it cannot reconstruct the missing contemporaneous schedule snapshot or silently change the selected left-edge law."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {
+        "DAR": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        },
+        "RUB": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        }
+      },
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T04:15:17.360258+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T12:06:19.272966+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T11:54:00+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXATPMATCH-26JUL19RUBDAR",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": 1784434457.360258,
+      "policy_right_ts": 1784434457.360258,
+      "reason": "guarded_cutoff_at_or_before_contemporaneous_T_minus_8_left",
+      "scheduled_start_ts": 1784473200.0,
+      "selected_left_ts": 1784444400.0,
+      "source_group": "observed_bounded_interval",
+      "source_partition_class": "clean_interval",
+      "start_source_class": "clean_causal_interval",
+      "tape_resolution_explanation": "Tape can support an actual-start-anchored diagnostic when both legs have prints in cutoff-minus-8h..cutoff, but it cannot reconstruct the missing contemporaneous schedule snapshot or silently change the selected left-edge law."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-20T13:24:33.570919+00:00"
+        }
+      ],
+      "category": "ATP_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-20",
+      "event_id": "KXATPMATCH-26JUL20DJECIN",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784593873.815,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784593873.815,
+      "selected_left_ts": 1784565073.815,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ARIZHA",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783861200.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1783861200.0,
+      "selected_left_ts": 1783832400.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783865100.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1783865100.0,
+      "selected_left_ts": 1783836300.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12CIRHUA",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783865400.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1783865400.0,
+      "selected_left_ts": 1783836600.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12KHOVIG",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783861200.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1783861200.0,
+      "selected_left_ts": 1783832400.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783863000.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1783863000.0,
+      "selected_left_ts": 1783834200.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12PANYOR",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783865400.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1783865400.0,
+      "selected_left_ts": 1783836600.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SAIETO",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783869600.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1783869600.0,
+      "selected_left_ts": 1783840800.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-12T15:08:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SHEVAN",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783872000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783872000.0,
+      "selected_left_ts": 1783843200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SHITUR",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783861200.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1783861200.0,
+      "selected_left_ts": 1783832400.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-12",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ZELFAL",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783865400.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1783865400.0,
+      "selected_left_ts": 1783836600.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T15:17:39.986600+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-13T15:43:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13BAIPRO",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783956000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783956000.0,
+      "selected_left_ts": 1783927200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T10:10:42.632010+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-13T10:12:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KHOZHA",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783947600.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783947600.0,
+      "selected_left_ts": 1783918800.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T12:30:23.414462+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-13T14:02:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783956000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783956000.0,
+      "selected_left_ts": 1783927200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T09:09:41.293011+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-13T16:35:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13OKATAR",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783965600.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783965600.0,
+      "selected_left_ts": 1783936800.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:price_divergence",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T10:10:25.092053+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-13T10:17:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783947600.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783947600.0,
+      "selected_left_ts": 1783918800.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T12:29:18.673019+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-13T12:33:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PENTHA",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783951800.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783951800.0,
+      "selected_left_ts": 1783923000.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T11:31:37.744032+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-13T11:38:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SAINUG",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783951800.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783951800.0,
+      "selected_left_ts": 1783923000.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T10:00:01.391052+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-13T10:11:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SHIHUA",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783947600.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783947600.0,
+      "selected_left_ts": 1783918800.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T05:47:40.683660+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-13T12:31:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13VANLEE",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783951800.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783951800.0,
+      "selected_left_ts": 1783923000.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-14T13:15:12.302132+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-14T13:13:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784038200.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784038200.0,
+      "selected_left_ts": 1784009400.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:price_divergence",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-14T12:55:19.368691+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-14T12:53:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14DILFAL",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784038200.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784038200.0,
+      "selected_left_ts": 1784009400.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-14T14:15:42.030947+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-14T14:14:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FALYUA",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784042400.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784042400.0,
+      "selected_left_ts": 1784013600.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-14T15:56:30.225761+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-14T15:56:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FRUGAO",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784042400.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784042400.0,
+      "selected_left_ts": 1784013600.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-14T16:49:08.642668+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-14T16:52:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14HRUBUY",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784052000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784052000.0,
+      "selected_left_ts": 1784023200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:price_divergence",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-14T15:25:01.828357+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-14T14:56:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14IATZVO",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784042400.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784042400.0,
+      "selected_left_ts": 1784013600.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-14T12:25:55.404060+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-14T12:27:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14KHONUG",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784038200.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784038200.0,
+      "selected_left_ts": 1784009400.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T23:13:23.371534+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-14T10:10:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14SHUSHI",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784034000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784034000.0,
+      "selected_left_ts": 1784005200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-14T10:08:34.420949+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-14T10:10:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14TANHAV",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784034000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784034000.0,
+      "selected_left_ts": 1784005200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-14T10:22:16.440396+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-14T10:22:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14ZAKTKA",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784034000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784034000.0,
+      "selected_left_ts": 1784005200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-15T13:23:31.839508+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-15T12:25:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15KNUTAR",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784128200.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784128200.0,
+      "selected_left_ts": 1784099400.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-15T11:05:37.781246+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-15T11:11:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15TANGAS",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784124000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784124000.0,
+      "selected_left_ts": 1784095200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-15T11:00:51.917811+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-15T11:07:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15VANFAL",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784124000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784124000.0,
+      "selected_left_ts": 1784095200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-16T13:45:40.610161+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-16T13:40:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16GAOVAL",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784218200.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784218200.0,
+      "selected_left_ts": 1784189400.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-16T12:14:38.967804+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-16T12:14:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784214000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784214000.0,
+      "selected_left_ts": 1784185200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:price_divergence",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-16T14:09:52.284713+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-16T14:03:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZAKSHU",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784221200.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784221200.0,
+      "selected_left_ts": 1784192400.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-16T12:08:50.562350+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-16T12:07:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784214000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784214000.0,
+      "selected_left_ts": 1784185200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-17T14:05:58.812973+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-17T14:06:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17VANTAN",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784307600.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784307600.0,
+      "selected_left_ts": 1784278800.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-17T02:06:17.057968+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-17T11:53:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ZAKPRO",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784300400.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784300400.0,
+      "selected_left_ts": 1784271600.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-17T02:49:20.323241+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-17T12:08:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ZVOTAR",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784300400.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784300400.0,
+      "selected_left_ts": 1784271600.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-18T16:45:25.333903+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-18T16:05:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-18T16:09:25.822100+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-18T16:05:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "higher_precedence_not_live_after_te_result_start",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18MCASHI",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784401800.0,
+      "reason": "contradictory_start_evidence",
+      "scheduled_start_ts": 1784401800.0,
+      "selected_left_ts": 1784373000.0,
+      "source_group": "contradictory",
+      "source_partition_class": "contradictory",
+      "start_source_class": "contradictory",
+      "tape_resolution_explanation": "The existing tape is one of the conflicting causal bounds; external start evidence is required to adjudicate it."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:percat_fitted",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-18T15:02:29.462691+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-18T15:06:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18ZAKVAN",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784400000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784400000.0,
+      "selected_left_ts": 1784371200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T14:01:20.265032+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T13:18:00+00:00"
+        }
+      ],
+      "category": "WTA_CHALL",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19VANTAR",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784480400.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784480400.0,
+      "selected_left_ts": 1784451600.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T09:20:20.948193+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13BURPUT",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783940400.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783940400.0,
+      "selected_left_ts": 1783911600.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13CRIJEA",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783940400.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1783940400.0,
+      "selected_left_ts": 1783911600.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-13T14:28:36.603229+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-14T10:48:51.025446+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-14T10:51:00+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13SHEGAL",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783940400.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1783940400.0,
+      "selected_left_ts": 1783911600.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-13",
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1783947600.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1783947600.0,
+      "selected_left_ts": 1783918800.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-14",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784026800.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1784026800.0,
+      "selected_left_ts": 1783998000.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-15T16:40:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "te_scoreboard_first_observed_inplay",
+          "source_family": "mapped_score_onset_interval",
+          "timestamp_utc": "2026-07-14T20:13:45+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "te_scoreboard_first_observed_inplay",
+          "source_family": "mapped_score_onset_interval",
+          "timestamp_utc": "2026-07-15T00:10:55+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-15T16:38:00+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "named_proxy_conflict_censored",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTAMATCH-26JUL15BURJAC",
+      "guard_censor_reason": "retained_causal_live_by_conflicts_with_proxy_band",
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784136600.0,
+      "reason": "named_start_evidence_conflict",
+      "scheduled_start_ts": 1784136600.0,
+      "selected_left_ts": 1784107800.0,
+      "source_group": "inferred_quantized_proxy",
+      "source_partition_class": "start_clock",
+      "start_source_class": "quantized_late_detection_proxy",
+      "tape_resolution_explanation": "A proxy or provider timestamp conflicts with a retained causal bound; tape alone cannot promote either to exact."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-16T10:01:18.501171+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-16T10:04:00+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-15",
+      "event_id": "KXWTAMATCH-26JUL15SHEQUE",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784116800.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784116800.0,
+      "selected_left_ts": 1784088000.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-17T10:02:20.706089+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-17T09:53:00+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-17",
+      "event_id": "KXWTAMATCH-26JUL17PUTSHE",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784293200.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784293200.0,
+      "selected_left_ts": 1784264400.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "te_scoreboard_first_observed_inplay",
+          "source_family": "mapped_score_onset_interval",
+          "timestamp_utc": "2026-07-17T17:18:51+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-18T13:26:00+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-18",
+      "event_id": "KXWTAMATCH-26JUL18SHEOLI",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784394000.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784394000.0,
+      "selected_left_ts": 1784365200.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {
+        "HON": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        },
+        "LEE": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        }
+      },
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T02:00:34.677057+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T09:03:37.818233+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T09:08:00+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19HONLEE",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": 1784426374.677057,
+      "policy_right_ts": 1784426374.677057,
+      "reason": "guarded_cutoff_at_or_before_contemporaneous_T_minus_8_left",
+      "scheduled_start_ts": 1784458800.0,
+      "selected_left_ts": 1784430000.0,
+      "source_group": "observed_bounded_interval",
+      "source_partition_class": "clean_interval",
+      "start_source_class": "clean_causal_interval",
+      "tape_resolution_explanation": "Tape can support an actual-start-anchored diagnostic when both legs have prints in cutoff-minus-8h..cutoff, but it cannot reconstruct the missing contemporaneous schedule snapshot or silently change the selected left-edge law."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {
+        "AVA": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        },
+        "JAK": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        }
+      },
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T00:30:29.460033+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T08:00:48.964516+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T07:28:00+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19JAKAVA",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": 1784420969.460033,
+      "policy_right_ts": 1784420969.460033,
+      "reason": "guarded_cutoff_at_or_before_contemporaneous_T_minus_8_left",
+      "scheduled_start_ts": 1784458800.0,
+      "selected_left_ts": 1784430000.0,
+      "source_group": "observed_bounded_interval",
+      "source_partition_class": "clean_interval",
+      "start_source_class": "clean_causal_interval",
+      "tape_resolution_explanation": "Tape can support an actual-start-anchored diagnostic when both legs have prints in cutoff-minus-8h..cutoff, but it cannot reconstruct the missing contemporaneous schedule snapshot or silently change the selected left-edge law."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {
+        "LEP": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        },
+        "PET": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        }
+      },
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T00:45:25.211121+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T08:00:48.964242+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T08:04:00+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19LEPPET",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": 1784421865.211121,
+      "policy_right_ts": 1784421865.211121,
+      "reason": "guarded_cutoff_at_or_before_contemporaneous_T_minus_8_left",
+      "scheduled_start_ts": 1784458800.0,
+      "selected_left_ts": 1784430000.0,
+      "source_group": "observed_bounded_interval",
+      "source_partition_class": "clean_interval",
+      "start_source_class": "clean_causal_interval",
+      "tape_resolution_explanation": "Tape can support an actual-start-anchored diagnostic when both legs have prints in cutoff-minus-8h..cutoff, but it cannot reconstruct the missing contemporaneous schedule snapshot or silently change the selected left-edge law."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {
+        "MAL": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        },
+        "ZAA": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        }
+      },
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T00:15:25.313233+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T08:00:48.967595+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T07:36:00+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19MALZAA",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": 1784420065.313233,
+      "policy_right_ts": 1784420065.313233,
+      "reason": "guarded_cutoff_at_or_before_contemporaneous_T_minus_8_left",
+      "scheduled_start_ts": 1784458800.0,
+      "selected_left_ts": 1784430000.0,
+      "source_group": "observed_bounded_interval",
+      "source_partition_class": "clean_interval",
+      "start_source_class": "clean_causal_interval",
+      "tape_resolution_explanation": "Tape can support an actual-start-anchored diagnostic when both legs have prints in cutoff-minus-8h..cutoff, but it cannot reconstruct the missing contemporaneous schedule snapshot or silently change the selected left-edge law."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {
+        "HON": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        },
+        "RYS": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        }
+      },
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T02:00:36.182267+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T09:01:00.800085+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T09:05:00+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19RYSHON",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": 1784426376.182267,
+      "policy_right_ts": 1784426376.182267,
+      "reason": "guarded_cutoff_at_or_before_contemporaneous_T_minus_8_left",
+      "scheduled_start_ts": 1784458800.0,
+      "selected_left_ts": 1784430000.0,
+      "source_group": "observed_bounded_interval",
+      "source_partition_class": "clean_interval",
+      "start_source_class": "clean_causal_interval",
+      "tape_resolution_explanation": "Tape can support an actual-start-anchored diagnostic when both legs have prints in cutoff-minus-8h..cutoff, but it cannot reconstruct the missing contemporaneous schedule snapshot or silently change the selected left-edge law."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {
+        "KNU": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        },
+        "SAL": {
+          "first_ts": null,
+          "last_ts": null,
+          "low_cents": null,
+          "true_print_count": 0
+        }
+      },
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-19T02:45:31.692998+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:tape_latch",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T13:38:20.546442+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T13:34:00+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19SALKNU",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": 1784429071.692998,
+      "policy_right_ts": 1784429071.692998,
+      "reason": "guarded_cutoff_at_or_before_contemporaneous_T_minus_8_left",
+      "scheduled_start_ts": 1784458800.0,
+      "selected_left_ts": 1784430000.0,
+      "source_group": "observed_bounded_interval",
+      "source_partition_class": "clean_interval",
+      "start_source_class": "clean_causal_interval",
+      "tape_resolution_explanation": "Tape can support an actual-start-anchored diagnostic when both legs have prints in cutoff-minus-8h..cutoff, but it cannot reconstruct the missing contemporaneous schedule snapshot or silently change the selected left-edge law."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-19T14:34:29.077718+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-19T14:09:00+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-19",
+      "event_id": "KXWTAMATCH-26JUL19SHEBAD",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784482200.0,
+      "reason": "one_sided_live_by_bound_without_not_live_through_bound",
+      "scheduled_start_ts": 1784482200.0,
+      "selected_left_ts": 1784453400.0,
+      "source_group": "live_by_only",
+      "source_partition_class": "live_by_only",
+      "start_source_class": "live_by_only",
+      "tape_resolution_explanation": "Tape proves the match was live by a time, but cannot prove how much earlier it started."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T04:15:27.156409+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T09:15:27.926667+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T10:15:29.495408+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T10:30:40.669485+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T12:15:30.476388+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T12:45:30.018807+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T13:00:39.122365+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T13:15:33.024337+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-20T13:15:53.855996+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-20T12:43:00+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "causal_interval_contradiction",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20AKSCOS",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784557200.0,
+      "reason": "contradictory_start_evidence",
+      "scheduled_start_ts": 1784557200.0,
+      "selected_left_ts": 1784528400.0,
+      "source_group": "contradictory",
+      "source_partition_class": "contradictory",
+      "start_source_class": "contradictory",
+      "tape_resolution_explanation": "The existing tape is one of the conflicting causal bounds; external start evidence is required to adjudicate it."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784545200.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1784545200.0,
+      "selected_left_ts": 1784516400.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [],
+      "category": "WTA_MAIN",
+      "conflict_status": "none",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20LYSVAL",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784545200.0,
+      "reason": "schedule_only_no_independent_start_evidence",
+      "scheduled_start_ts": 1784545200.0,
+      "selected_left_ts": 1784516400.0,
+      "source_group": "schedule_only",
+      "source_partition_class": "schedule_only",
+      "start_source_class": "schedule_only",
+      "tape_resolution_explanation": "Price tape has no observed-start receipt; silence is not proof."
+    },
+    {
+      "actual_start_anchored_alternate_tape": {},
+      "alternate_tape_has_both_legs": false,
+      "can_existing_tape_strictly_resolve": false,
+      "candidate_sources": [
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T06:45:32.445273+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T09:15:30.487297+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T10:15:31.495010+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T10:30:43.750014+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T12:15:31.747441+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T12:30:37.051013+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T12:45:31.363823+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T14:00:40.873450+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T14:15:33.613830+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T14:30:37.734586+00:00"
+        },
+        {
+          "direction": "not_live_through",
+          "precision": "subsecond",
+          "source": "milestone_shadow_not_started_observation",
+          "source_family": "raw_milestone_shadow",
+          "timestamp_utc": "2026-07-20T15:00:42.643684+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "observed_starts_db_first_observed_inplay",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-19T22:14:12+00:00"
+        },
+        {
+          "direction": "exact",
+          "precision": "minute",
+          "source": "tennisexplorer_historical_result_start_clock",
+          "source_family": "tennis_db_start_or_live_score",
+          "timestamp_utc": "2026-07-20T14:45:00+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "subsecond",
+          "source": "engine_regime_transition:fallback_bell",
+          "source_family": "live_v3_live_v4_historical_log",
+          "timestamp_utc": "2026-07-20T14:00:22.238100+00:00"
+        },
+        {
+          "direction": "live_by",
+          "precision": "second",
+          "source": "public_tape_5_prints_in_15m_onset",
+          "source_family": "true_tape_regime_interval",
+          "timestamp_utc": "2026-07-20T14:30:00+00:00"
+        }
+      ],
+      "category": "WTA_MAIN",
+      "conflict_status": "higher_precedence_not_live_after_te_result_start",
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20RUZSAL",
+      "guard_censor_reason": null,
+      "guarded_cutoff_ts": null,
+      "policy_right_ts": 1784561400.0,
+      "reason": "contradictory_start_evidence",
+      "scheduled_start_ts": 1784561400.0,
+      "selected_left_ts": 1784532600.0,
+      "source_group": "contradictory",
+      "source_partition_class": "contradictory",
+      "start_source_class": "contradictory",
+      "tape_resolution_explanation": "The existing tape is one of the conflicting causal bounds; external start evidence is required to adjudicate it."
+    }
+  ],
+  "reason_counts": {
+    "contradictory_start_evidence": 14,
+    "guarded_cutoff_at_or_before_contemporaneous_T_minus_8_left": 12,
+    "named_start_evidence_conflict": 13,
+    "one_sided_live_by_bound_without_not_live_through_bound": 52,
+    "schedule_only_no_independent_start_evidence": 20
+  },
+  "schema_version": "window1-full-lawful-ceiling-v1-unmeasurable-v1",
+  "strictly_resolvable_from_existing_tape_count": 0
+}

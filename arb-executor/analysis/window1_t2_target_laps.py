@@ -23,6 +23,8 @@ from typing import Any, Mapping
 
 import numpy as np
 
+from window1_evaluator_boundary import full_lawful_right
+
 
 VERSION = "window1-t2-sequential-oracle-target-lap-v2"
 D_REQUIRED = 804
@@ -125,15 +127,32 @@ def load_lawful_windows(
                     raise TargetLapError(
                         f"duplicate lawful range-ladder leg: {key}"
                     )
+                positive = bool(
+                    row.get("positive_range_outcomes_provable")
+                    and row["boundary"].get(
+                        "positive_window1_provable"
+                    )
+                )
+                cutoff = row["boundary"].get("guarded_cutoff_ts")
+                try:
+                    evaluator_right = full_lawful_right(
+                        policy_right_ts=float(row["range_right_ts"]),
+                        guarded_cutoff_ts=(
+                            float(cutoff) if cutoff is not None else None
+                        ),
+                        positive_window1_provable=positive,
+                    )
+                except ValueError as exc:
+                    raise TargetLapError(f"{key}: {exc}") from exc
                 output[key] = {
                     "left": float(row["policy_left_ts"]),
-                    "right": float(row["range_right_ts"]),
-                    "positive": bool(
-                        row.get("positive_range_outcomes_provable")
-                        and row["boundary"].get(
-                            "positive_window1_provable"
-                        )
+                    "right": (
+                        float(evaluator_right)
+                        if evaluator_right is not None
+                        else float(row["range_right_ts"])
                     ),
+                    "policy_right": float(row["range_right_ts"]),
+                    "positive": positive,
                 }
     if len(output) != D_REQUIRED * 2:
         raise TargetLapError("lawful range-ladder window count changed")

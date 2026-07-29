@@ -1,0 +1,259 @@
+{
+ "bands": {
+  "ATP_CHALL-B1": {
+   "anchor_med": 22,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 8,
+   "dip_p50": 2.5,
+   "direction": "flat",
+   "status": "SEALED",
+   "windows": 780
+  },
+  "ATP_CHALL-B2": {
+   "anchor_med": 48,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 11,
+   "dip_p50": 3.0,
+   "direction": "faller",
+   "status": "SEALED",
+   "windows": 533
+  },
+  "ATP_CHALL-B4": {
+   "anchor_med": 50,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 10.0,
+   "dip_p50": 3,
+   "direction": "flat",
+   "status": "SEALED",
+   "windows": 1694
+  },
+  "ATP_CHALL-B5": {
+   "anchor_med": 66,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 13.0,
+   "dip_p50": 3,
+   "direction": "faller",
+   "status": "SEALED",
+   "windows": 178
+  },
+  "ATP_CHALL-B6": {
+   "anchor_med": 78,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 9.0,
+   "dip_p50": 3.0,
+   "direction": "flat",
+   "status": "SEALED",
+   "windows": 851
+  },
+  "ATP_MAIN-B1": {
+   "anchor_med": 22,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 6.0,
+   "dip_p50": 2.0,
+   "direction": "flat",
+   "status": "SEALED",
+   "windows": 242
+  },
+  "ATP_MAIN-B2": {
+   "anchor_med": 36,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 7,
+   "dip_p50": 2.0,
+   "direction": "faller",
+   "status": "SEALED",
+   "windows": 180
+  },
+  "ATP_MAIN-B3": {
+   "anchor_med": 40,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 6.0,
+   "dip_p50": 2.0,
+   "direction": "flat",
+   "status": "SEALED",
+   "windows": 278
+  },
+  "ATP_MAIN-B4": {
+   "anchor_med": 47,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 9.0,
+   "dip_p50": 2,
+   "direction": "riser",
+   "status": "SEALED",
+   "windows": 169
+  },
+  "ATP_MAIN-B5": {
+   "anchor_med": 62,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 5.0,
+   "dip_p50": 2.0,
+   "direction": "flat",
+   "status": "SEALED",
+   "windows": 324
+  },
+  "ATP_MAIN-B7": {
+   "anchor_med": 65,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 14.0,
+   "dip_p50": 3.0,
+   "direction": "faller",
+   "status": "SEALED",
+   "windows": 166
+  },
+  "ATP_MAIN-B8": {
+   "anchor_med": 79,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 5.0,
+   "dip_p50": 2,
+   "direction": "flat",
+   "status": "SEALED",
+   "windows": 285
+  },
+  "WTA_CHALL-B1": {
+   "anchor_med": 19,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 8.0,
+   "dip_p50": 3.0,
+   "direction": "faller",
+   "status": "SEALED",
+   "windows": 124
+  },
+  "WTA_CHALL-B2": {
+   "anchor_med": 34,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 11.0,
+   "dip_p50": 3.0,
+   "direction": "riser",
+   "status": "SEALED",
+   "windows": 67
+  },
+  "WTA_CHALL-B3": {
+   "anchor_med": 41,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 9,
+   "dip_p50": 3.0,
+   "direction": "flat",
+   "status": "SEALED",
+   "windows": 117
+  },
+  "WTA_CHALL-B4": {
+   "anchor_med": 49,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 14.0,
+   "dip_p50": 4,
+   "direction": "faller",
+   "status": "SEALED",
+   "windows": 126
+  },
+  "WTA_CHALL-B5": {
+   "anchor_med": 53,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 14,
+   "dip_p50": 3.5,
+   "direction": "riser",
+   "status": "SEALED",
+   "windows": 60
+  },
+  "WTA_CHALL-B6": {
+   "anchor_med": 62,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 10,
+   "dip_p50": 3,
+   "direction": "flat",
+   "status": "SEALED",
+   "windows": 156
+  },
+  "WTA_CHALL-B7": {
+   "anchor_med": 66,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 12,
+   "dip_p50": 3.5,
+   "direction": "faller",
+   "status": "SEALED",
+   "windows": 34
+  },
+  "WTA_CHALL-B8": {
+   "anchor_med": 82,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 10,
+   "dip_p50": 3,
+   "direction": "flat",
+   "status": "SEALED",
+   "windows": 141
+  },
+  "WTA_MAIN-B1": {
+   "anchor_med": 22,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 7,
+   "dip_p50": 2.0,
+   "direction": "flat",
+   "status": "SEALED",
+   "windows": 345
+  },
+  "WTA_MAIN-B2": {
+   "anchor_med": 46,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 10,
+   "dip_p50": 3,
+   "direction": "faller",
+   "status": "SEALED",
+   "windows": 186
+  },
+  "WTA_MAIN-B3": {
+   "anchor_med": 50,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 10,
+   "dip_p50": 2.0,
+   "direction": "flat",
+   "status": "SEALED",
+   "windows": 681
+  },
+  "WTA_MAIN-B5": {
+   "anchor_med": 65,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 10.0,
+   "dip_p50": 3.0,
+   "direction": "faller",
+   "status": "SEALED",
+   "windows": 54
+  },
+  "WTA_MAIN-B6": {
+   "anchor_med": 77,
+   "class": "flat_flat_dual_divot",
+   "depth_p90": 8,
+   "dip_p50": 2.0,
+   "direction": "flat",
+   "status": "SEALED",
+   "windows": 402
+  }
+ },
+ "lineage": {
+  "band_map_v1": "caf255a283bbb32f",
+  "divot_tables_v2": "56b3bb469b7030ea",
+  "drift_surfaces_v1": "aeac847d26c1421c",
+  "rescore": "WEEK_RESCORE_COMBINED.md this C50",
+  "week_widen": "cf9980e5"
+ },
+ "policy": {
+  "arming": "pair_class_read==flat_flat (lap-5 +-5c crossings, cascade state)",
+  "consumer": "_v4_entry_anchor dual-divot steer, config pair_class_steer_enabled",
+  "guards": "final-2h + median-not-falling ride the existing aim machinery; floors/W1/holdout laws untouched",
+  "level": "rolling-30min median - depth_p90"
+ },
+ "ruling": "COMBINED PRIMARY 2026-07-20 PM \u2014 sub-par(<=97)=pass; dual-negative=mastery meter (never pass/fail)",
+ "sealed_at": "2026-07-20 PM ET",
+ "sealed_class": {
+  "flat_flat": {
+   "gauge": "combined<=97",
+   "receipt": "week re-score 7/7 sub-par (6 <=93, 1 <=95), 100% both eras, medPairD -10; completion 14% of class pairs",
+   "status": "SEALED"
+  },
+  "mirror": {
+   "receipt": "0/66 sub-par on the week; fader destination read = the named miss (131/131 fills @ medD +14, too-shallow class); drill continues behind the seal, graded on the mastery meter",
+   "status": "REFUSE"
+  },
+  "neither": {
+   "receipt": "9/26 sub-par (35%); counted apart, class unnamed by the ruling",
+   "status": "REFUSE"
+  }
+ }
+}

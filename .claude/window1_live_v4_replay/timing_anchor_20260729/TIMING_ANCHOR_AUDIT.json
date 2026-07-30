@@ -1,0 +1,2597 @@
+{
+  "bridge_ruling": {
+    "can_read_bell_fit_directly_on_schedule_clock": false,
+    "formula": "if delta = actual_bell - current_schedule and a fitted low is L minutes before actual bell, its schedule-clock target is Tminus (L - delta)",
+    "practical_consequence": "without a slip forecast/update feed, a bell-fitted table must be read probabilistically; it cannot promise a single wall-clock low from the original schedule",
+    "required_live_inputs": [
+      "current scheduled start and its observation timestamp",
+      "any subsequent schedule revision available before decision",
+      "category-conditioned forecast distribution for bell-minus-current-schedule"
+    ]
+  },
+  "coordinate_contract": {
+    "atlas_is_minutes_from_window_left": false,
+    "atlas_is_tminus_scheduled_start": false,
+    "atlas_is_window_fraction": false,
+    "atlas_stored_axis": "minutes before per-leg -0k flow-step onset",
+    "live_v4_consumer_defect": "dip_timing subtracts bottom_t_med_min from schedule/honest tts_min, and shadow_range_shape selects an onset-axis path slice using schedule/honest tts_min",
+    "signed_error_convention": "predicted wall-clock low minus actual wall-clock low; positive means predicted late, negative means predicted early"
+  },
+  "five_game_anchor_hypothesis_absolute_error_minutes": {
+    "exact_bell": {
+      "count": 10,
+      "max": 1367.008,
+      "mean": 309.59,
+      "median": 66.043,
+      "min": 3.064,
+      "p10": 30.255,
+      "p90": 1367.008
+    },
+    "native_minus_0k": {
+      "count": 5,
+      "max": 455.555,
+      "mean": 131.867,
+      "median": 81.936,
+      "min": 15.207,
+      "p10": 15.207,
+      "p90": 455.555
+    },
+    "schedule": {
+      "count": 10,
+      "max": 1629.258,
+      "mean": 370.392,
+      "median": 100.326,
+      "min": 1.936,
+      "p10": 59.745,
+      "p90": 1629.258
+    },
+    "window_left": {
+      "count": 10,
+      "max": 1015.258,
+      "mean": 447.317,
+      "median": 405.306,
+      "min": 154.064,
+      "p10": 244.207,
+      "p90": 1015.258
+    }
+  },
+  "five_game_events": [
+    {
+      "bell_minus_schedule_minutes": 90.0,
+      "category": "ATP_CHALL",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "exact_bell_ts": 1784505600.0,
+      "guard_seconds": 60.0,
+      "guarded_cutoff_ts": 1784505540.0,
+      "scheduled_start_ts": 1784500200.0,
+      "selected_start_source": "official_provider_match_start",
+      "selected_start_source_family": "exact_official_provider_match_start",
+      "window_left_ts": 1784471400.0
+    },
+    {
+      "bell_minus_schedule_minutes": 5.0,
+      "category": "ATP_CHALL",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "exact_bell_ts": 1784478900.0,
+      "guard_seconds": 60.0,
+      "guarded_cutoff_ts": 1784478840.0,
+      "scheduled_start_ts": 1784478600.0,
+      "selected_start_source": "milestone_shadow_official_start",
+      "selected_start_source_family": "raw_milestone_shadow",
+      "window_left_ts": 1784449800.0
+    },
+    {
+      "bell_minus_schedule_minutes": 1320.0,
+      "category": "ATP_MAIN",
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "exact_bell_ts": 1783958400.0,
+      "guard_seconds": 60.0,
+      "guarded_cutoff_ts": 1783958340.0,
+      "scheduled_start_ts": 1783879200.0,
+      "selected_start_source": "official_provider_match_start",
+      "selected_start_source_family": "exact_official_provider_match_start",
+      "window_left_ts": 1783850400.0
+    },
+    {
+      "bell_minus_schedule_minutes": 50.0,
+      "category": "WTA_CHALL",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "exact_bell_ts": 1784232600.0,
+      "guard_seconds": 60.0,
+      "guarded_cutoff_ts": 1784232540.0,
+      "scheduled_start_ts": 1784229600.0,
+      "selected_start_source": "official_provider_match_start",
+      "selected_start_source_family": "exact_official_provider_match_start",
+      "window_left_ts": 1784200800.0
+    },
+    {
+      "bell_minus_schedule_minutes": 1580.0,
+      "category": "WTA_MAIN",
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "exact_bell_ts": 1784640000.0,
+      "guard_seconds": 60.0,
+      "guarded_cutoff_ts": 1784639940.0,
+      "scheduled_start_ts": 1784545200.0,
+      "selected_start_source": "official_provider_match_start",
+      "selected_start_source_family": "exact_official_provider_match_start",
+      "window_left_ts": 1784516400.0
+    }
+  ],
+  "five_game_timing_rows": [
+    {
+      "actual_low_minutes_from_window_left": 73.793,
+      "actual_low_tminus_exact_bell_minutes": 496.207,
+      "actual_low_tminus_reconstructed_minus_0k_minutes": 333.207,
+      "actual_low_tminus_scheduled_start_minutes": 406.207,
+      "actual_low_ts": 1784475827.574,
+      "atlas_page": "ATP_CHALL|leader|51_75",
+      "atlas_stored_lead_minutes_before_minus_0k_onset": 318.0,
+      "category": "ATP_CHALL",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "exact_bell_anchor_hypothesis_error_minutes": 178.207,
+      "leg_id": "BIG",
+      "native_axis_error_is_target_comparable": true,
+      "native_axis_low_is_pre_onset": true,
+      "native_minus_0k_axis_error_minutes": 15.207,
+      "reconstructed_minus_0k_onset_ts": 1784495820,
+      "schedule_anchor_hypothesis_error_minutes": 88.207,
+      "window_left_anchor_hypothesis_error_minutes": 244.207
+    },
+    {
+      "actual_low_minutes_from_window_left": 400.745,
+      "actual_low_tminus_exact_bell_minutes": 169.255,
+      "actual_low_tminus_reconstructed_minus_0k_minutes": 49.255,
+      "actual_low_tminus_scheduled_start_minutes": 79.255,
+      "actual_low_ts": 1784495444.696,
+      "atlas_page": "ATP_CHALL|underdog|26_50",
+      "atlas_stored_lead_minutes_before_minus_0k_onset": 139.0,
+      "category": "ATP_CHALL",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "exact_bell_anchor_hypothesis_error_minutes": 30.255,
+      "leg_id": "HUR",
+      "native_axis_error_is_target_comparable": true,
+      "native_axis_low_is_pre_onset": true,
+      "native_minus_0k_axis_error_minutes": -89.745,
+      "reconstructed_minus_0k_onset_ts": 1784498400,
+      "schedule_anchor_hypothesis_error_minutes": -59.745,
+      "window_left_anchor_hypothesis_error_minutes": -261.745
+    },
+    {
+      "actual_low_minutes_from_window_left": 428.828,
+      "actual_low_tminus_exact_bell_minutes": 56.172,
+      "actual_low_tminus_reconstructed_minus_0k_minutes": -26.828,
+      "actual_low_tminus_scheduled_start_minutes": 51.172,
+      "actual_low_ts": 1784475529.709,
+      "atlas_page": "ATP_CHALL|underdog|26_50",
+      "atlas_stored_lead_minutes_before_minus_0k_onset": 139.0,
+      "category": "ATP_CHALL",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "exact_bell_anchor_hypothesis_error_minutes": -82.828,
+      "leg_id": "NIK",
+      "native_axis_error_is_target_comparable": false,
+      "native_axis_low_is_pre_onset": false,
+      "native_minus_0k_axis_error_minutes": -165.828,
+      "reconstructed_minus_0k_onset_ts": 1784473920,
+      "schedule_anchor_hypothesis_error_minutes": -87.828,
+      "window_left_anchor_hypothesis_error_minutes": -289.828
+    },
+    {
+      "actual_low_minutes_from_window_left": 163.936,
+      "actual_low_tminus_exact_bell_minutes": 321.064,
+      "actual_low_tminus_reconstructed_minus_0k_minutes": 236.064,
+      "actual_low_tminus_scheduled_start_minutes": 316.064,
+      "actual_low_ts": 1784459636.179,
+      "atlas_page": "ATP_CHALL|leader|51_75",
+      "atlas_stored_lead_minutes_before_minus_0k_onset": 318.0,
+      "category": "ATP_CHALL",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "exact_bell_anchor_hypothesis_error_minutes": 3.064,
+      "leg_id": "VRB",
+      "native_axis_error_is_target_comparable": true,
+      "native_axis_low_is_pre_onset": true,
+      "native_minus_0k_axis_error_minutes": -81.936,
+      "reconstructed_minus_0k_onset_ts": 1784473800,
+      "schedule_anchor_hypothesis_error_minutes": -1.936,
+      "window_left_anchor_hypothesis_error_minutes": 154.064
+    },
+    {
+      "actual_low_minutes_from_window_left": 1117.891,
+      "actual_low_tminus_exact_bell_minutes": 682.109,
+      "actual_low_tminus_reconstructed_minus_0k_minutes": 622.109,
+      "actual_low_tminus_scheduled_start_minutes": -637.891,
+      "actual_low_ts": 1783917473.465,
+      "atlas_page": "ATP_MAIN|leader|26_50",
+      "atlas_stored_lead_minutes_before_minus_0k_onset": 639.0,
+      "category": "ATP_MAIN",
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "exact_bell_anchor_hypothesis_error_minutes": 43.109,
+      "leg_id": "LAJ",
+      "native_axis_error_is_target_comparable": true,
+      "native_axis_low_is_pre_onset": true,
+      "native_minus_0k_axis_error_minutes": -16.891,
+      "reconstructed_minus_0k_onset_ts": 1783954800,
+      "schedule_anchor_hypothesis_error_minutes": -1276.891,
+      "window_left_anchor_hypothesis_error_minutes": -478.891
+    },
+    {
+      "actual_low_minutes_from_window_left": 25.445,
+      "actual_low_tminus_exact_bell_minutes": 1774.555,
+      "actual_low_tminus_reconstructed_minus_0k_minutes": 1022.555,
+      "actual_low_tminus_scheduled_start_minutes": 454.555,
+      "actual_low_ts": 1783851926.717,
+      "atlas_page": "ATP_MAIN|leader|51_75",
+      "atlas_stored_lead_minutes_before_minus_0k_onset": 567.0,
+      "category": "ATP_MAIN",
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "exact_bell_anchor_hypothesis_error_minutes": 1207.555,
+      "leg_id": "VAN",
+      "native_axis_error_is_target_comparable": true,
+      "native_axis_low_is_pre_onset": true,
+      "native_minus_0k_axis_error_minutes": 455.555,
+      "reconstructed_minus_0k_onset_ts": 1783913280,
+      "schedule_anchor_hypothesis_error_minutes": -112.445,
+      "window_left_anchor_hypothesis_error_minutes": 541.555
+    },
+    {
+      "actual_low_minutes_from_window_left": 484.748,
+      "actual_low_tminus_exact_bell_minutes": 45.252,
+      "actual_low_tminus_reconstructed_minus_0k_minutes": -13.748,
+      "actual_low_tminus_scheduled_start_minutes": -4.748,
+      "actual_low_ts": 1784229884.909,
+      "atlas_page": "WTA_CHALL|underdog|26_50",
+      "atlas_stored_lead_minutes_before_minus_0k_onset": 78.0,
+      "category": "WTA_CHALL",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "exact_bell_anchor_hypothesis_error_minutes": -32.748,
+      "leg_id": "BRA",
+      "native_axis_error_is_target_comparable": false,
+      "native_axis_low_is_pre_onset": false,
+      "native_minus_0k_axis_error_minutes": -91.748,
+      "reconstructed_minus_0k_onset_ts": 1784229060,
+      "schedule_anchor_hypothesis_error_minutes": -82.748,
+      "window_left_anchor_hypothesis_error_minutes": -406.748
+    },
+    {
+      "actual_low_minutes_from_window_left": 517.864,
+      "actual_low_tminus_exact_bell_minutes": 12.136,
+      "actual_low_tminus_reconstructed_minus_0k_minutes": -75.864,
+      "actual_low_tminus_scheduled_start_minutes": -37.864,
+      "actual_low_ts": 1784231871.856,
+      "atlas_page": "WTA_CHALL|leader|51_75",
+      "atlas_stored_lead_minutes_before_minus_0k_onset": 114.0,
+      "category": "WTA_CHALL",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "exact_bell_anchor_hypothesis_error_minutes": -101.864,
+      "leg_id": "VED",
+      "native_axis_error_is_target_comparable": false,
+      "native_axis_low_is_pre_onset": false,
+      "native_minus_0k_axis_error_minutes": -189.864,
+      "reconstructed_minus_0k_onset_ts": 1784227320,
+      "schedule_anchor_hypothesis_error_minutes": -151.864,
+      "window_left_anchor_hypothesis_error_minutes": -403.864
+    },
+    {
+      "actual_low_minutes_from_window_left": 1562.258,
+      "actual_low_tminus_exact_bell_minutes": 497.742,
+      "actual_low_tminus_reconstructed_minus_0k_minutes": null,
+      "actual_low_tminus_scheduled_start_minutes": -1082.258,
+      "actual_low_ts": 1784610135.463,
+      "atlas_page": "WTA_MAIN|underdog|26_50",
+      "atlas_stored_lead_minutes_before_minus_0k_onset": 547.0,
+      "category": "WTA_MAIN",
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "exact_bell_anchor_hypothesis_error_minutes": -49.258,
+      "leg_id": "JIM",
+      "native_axis_error_is_target_comparable": false,
+      "native_axis_low_is_pre_onset": false,
+      "native_minus_0k_axis_error_minutes": null,
+      "reconstructed_minus_0k_onset_ts": null,
+      "schedule_anchor_hypothesis_error_minutes": -1629.258,
+      "window_left_anchor_hypothesis_error_minutes": -1015.258
+    },
+    {
+      "actual_low_minutes_from_window_left": 7.992,
+      "actual_low_tminus_exact_bell_minutes": 2052.008,
+      "actual_low_tminus_reconstructed_minus_0k_minutes": null,
+      "actual_low_tminus_scheduled_start_minutes": 472.008,
+      "actual_low_ts": 1784516879.5,
+      "atlas_page": "WTA_MAIN|leader|51_75",
+      "atlas_stored_lead_minutes_before_minus_0k_onset": 685.0,
+      "category": "WTA_MAIN",
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "exact_bell_anchor_hypothesis_error_minutes": 1367.008,
+      "leg_id": "KOR",
+      "native_axis_error_is_target_comparable": false,
+      "native_axis_low_is_pre_onset": false,
+      "native_minus_0k_axis_error_minutes": null,
+      "reconstructed_minus_0k_onset_ts": null,
+      "schedule_anchor_hypothesis_error_minutes": -212.992,
+      "window_left_anchor_hypothesis_error_minutes": 677.008
+    }
+  ],
+  "lineage": {
+    "atlas_introduced": {
+      "commit": "7338fef7dcd5617b0aaad074ff88ace1dfc0b33f",
+      "date": "2026-07-13T20:18:47-04:00",
+      "subject": "C-TREND-PATH v1: the W1 drift atlas (fifth aim design, SHADOW) -- atlas builder (G9 candles tour walk-forward + live-era ITF branded; path quantiles per slice + bottom depth/timing per cat x side x price-cell); trendpath_shadow at discovery places BOTH legs at path prices with the combined-at-path pair check (operator ruling: window-1 value is the thesis; no mid-game completion; flatten-kept only post-bell)."
+    },
+    "classification": "Atlas and cohort target variables predate the corpus-wide honest-clock migration; later rebuilds preserved the same -0k target",
+    "cohort_timing_introduced": {
+      "commit": "ebdb03c94aa0c684437dc0b3ca227dcf88b532a4",
+      "date": "2026-07-14T20:18:35-04:00",
+      "subject": "C-W1-LIBRARY v1 Part 2 (intake #3): THE W1-COHORT LIBRARY -- builder cohort pass (cat x price band x fitted vol-terciles -> dip_freq/depth p25-50-75/dip timing/never-wake; axis honesty: timing on the -0k clock MIS-ANCHORED per X-CAL, tts axis na for tour, both named in meta) -> LIBRARY_V1.json refits nightly; dossier surface #14 w1_cohort (SHADOW, GAP-honest, hot-reload); nightly cohort calibration line (predicted dip_freq vs realized) + census rows for w1_cohort/window_phase."
+    },
+    "evidence_gun_recut": {
+      "commit": "c070a1585a8676f88eca7740dd10a860bcbb4fc8",
+      "date": "2026-07-14T22:11:14-04:00",
+      "subject": "C-TAPE-GATE v1 (two operator words): (1) THE FLATTEN TAPE GATE ARMED, ship-condition MET (founding table: 25 below-basis skips, 23 BAND-CASHED, gate delta +$15.50 REAL -- the honest number vs the +$20.06 wider-cohort headline, stated) -- one input inside the unchanged leash: trailing-15min median >= basis -> SKIP, named flatten_tape_skipped with median+basis on the stamp, one-shot NOT consumed (the tape may turn); nightly self-grading (SKIP/KEEP + skip-cohort realized forward outcomes -- re-earned or revoked). (2) THE TIMING RECUT: builder joins evidence guns from the day-logs; every atlas page gains timing_gun (dual-stamp quantiles + lawful_share); library cells gain gun_axis; LAWFUL_HARVEST_MAP.txt per category; the w1_cohort caveat lifts ONLY where the gun column exists. Depth quantiles untouched; no aim values change."
+    },
+    "honest_clock_history_restamp": {
+      "commit": "dea479048de206f2c5d57b581f6169620a979e63",
+      "date": "2026-07-17T18:17:44-04:00",
+      "subject": "C50: DISPATCH 2 PHASE A \u2014 RE-STAMP HISTORY TO HONEST CLOCKS. Corrected event table 12,509 events (state/corpus_events_v2.jsonl: sched_honest=/milestones Sportradar corpus-wide; official=flip-cache 205; onset_est clamped>=sched 4,412; sched-only named 7,892) + THE INDICTMENT (last-consumed old stamps wrong median 155-180 min, 89-97% >30min; session-clock the dominant class, WTA_CHALL 71%; reschedule class split ~24h as Kalshi's own moves; ITF named-unmeasurable-from-snapshots) + riders (W1 LOW full-span with its time \"12c @T-14h\" on closed cards, lo_ts in the window cut; nightly PRE-HORIZON METER: lows before T-8h + median cents outside the horizon) + ACCEPTANCE WALK BROBAL (old stamp +180min = the whole match fed to the era's fits as premarket; honest W1 lows 24c@T-4.8h / 76c@T-4.4h, corridor 5.6min). v1's own defects caught before publishing (MIN-commence bias, pre-sched onsets, ITF universe hole). Phases B-F queued in order; deferred items named. Engine untouched."
+    }
+  },
+  "official_exact_schedule_to_bell": {
+    "all": {
+      "bell_earlier_than_schedule_count": 159,
+      "bell_equal_schedule_count": 3,
+      "bell_later_than_schedule_count": 72,
+      "count": 234,
+      "max": 3205.0,
+      "mean": 194.487,
+      "median": -90.0,
+      "min": -280.0,
+      "p10": -175.0,
+      "p90": 1350.0
+    },
+    "by_category": {
+      "ATP_CHALL": {
+        "bell_earlier_than_schedule_count": 84,
+        "bell_equal_schedule_count": 1,
+        "bell_later_than_schedule_count": 23,
+        "count": 108,
+        "live_bridge": {
+          "formula": "predicted_Tminus_schedule = fitted_Tminus_actual_bell - forecast_bell_slip",
+          "median_slip_minutes_for_category": -135.0,
+          "warning": "median-only translation discards the reported slip distribution and is not a deterministic bell"
+        },
+        "max": 3205.0,
+        "mean": 46.944,
+        "median": -135.0,
+        "min": -180.0,
+        "p10": -175.0,
+        "p90": 300.0
+      },
+      "ATP_MAIN": {
+        "bell_earlier_than_schedule_count": 16,
+        "bell_equal_schedule_count": 1,
+        "bell_later_than_schedule_count": 20,
+        "count": 37,
+        "live_bridge": {
+          "formula": "predicted_Tminus_schedule = fitted_Tminus_actual_bell - forecast_bell_slip",
+          "median_slip_minutes_for_category": 30.0,
+          "warning": "median-only translation discards the reported slip distribution and is not a deterministic bell"
+        },
+        "max": 3170.0,
+        "mean": 881.622,
+        "median": 30.0,
+        "min": -180.0,
+        "p10": -175.0,
+        "p90": 3050.0
+      },
+      "WTA_CHALL": {
+        "bell_earlier_than_schedule_count": 36,
+        "bell_equal_schedule_count": 1,
+        "bell_later_than_schedule_count": 3,
+        "count": 40,
+        "live_bridge": {
+          "formula": "predicted_Tminus_schedule = fitted_Tminus_actual_bell - forecast_bell_slip",
+          "median_slip_minutes_for_category": -132.5,
+          "warning": "median-only translation discards the reported slip distribution and is not a deterministic bell"
+        },
+        "max": 135.0,
+        "mean": -109.5,
+        "median": -132.5,
+        "min": -280.0,
+        "p10": -180.0,
+        "p90": 0.0
+      },
+      "WTA_MAIN": {
+        "bell_earlier_than_schedule_count": 23,
+        "bell_equal_schedule_count": 0,
+        "bell_later_than_schedule_count": 26,
+        "count": 49,
+        "live_bridge": {
+          "formula": "predicted_Tminus_schedule = fitted_Tminus_actual_bell - forecast_bell_slip",
+          "median_slip_minutes_for_category": 45.0,
+          "warning": "median-only translation discards the reported slip distribution and is not a deterministic bell"
+        },
+        "max": 1580.0,
+        "mean": 248.98,
+        "median": 45.0,
+        "min": -180.0,
+        "p10": -175.0,
+        "p90": 1380.0
+      }
+    },
+    "rows": [
+      {
+        "bell_minus_schedule_minutes": 1535.0,
+        "bell_ts": 1783946100.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -40.0,
+        "bell_ts": 1783864200.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+        "schedule_ts": 1783866600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 2740.0,
+        "bell_ts": 1784018400.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 3205.0,
+        "bell_ts": 1784046300.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BROBAR",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -165.0,
+        "bell_ts": 1783858500.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12CHOGAS",
+        "schedule_ts": 1783868400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1590.0,
+        "bell_ts": 1783949400.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12DEGEE",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -135.0,
+        "bell_ts": 1783880700.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12DEVGON",
+        "schedule_ts": 1783888800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1783872300.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+        "schedule_ts": 1783882800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -160.0,
+        "bell_ts": 1783869600.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12FANBIG",
+        "schedule_ts": 1783879200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -70.0,
+        "bell_ts": 1783862400.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12FUEROS",
+        "schedule_ts": 1783866600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -150.0,
+        "bell_ts": 1783886400.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12HOHSUR",
+        "schedule_ts": 1783895400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1750.0,
+        "bell_ts": 1783959000.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12HOUJOR",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -30.0,
+        "bell_ts": 1783860600.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12KRALOR",
+        "schedule_ts": 1783862400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -130.0,
+        "bell_ts": 1783881000.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12LAGTEP",
+        "schedule_ts": 1783888800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 0.0,
+        "bell_ts": 1783887600.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12LANKOB",
+        "schedule_ts": 1783887600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -80.0,
+        "bell_ts": 1783879200.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "schedule_ts": 1783884000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 5.0,
+        "bell_ts": 1783866900.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12SALARN",
+        "schedule_ts": 1783866600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1710.0,
+        "bell_ts": 1783956600.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12SANSCH",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 140.0,
+        "bell_ts": 1783862400.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12VALNIJ",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -165.0,
+        "bell_ts": 1783869300.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+        "schedule_ts": 1783879200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -125.0,
+        "bell_ts": 1783876500.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12WINROB",
+        "schedule_ts": 1783884000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1783951500.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13ARSDAL",
+        "schedule_ts": 1783962000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -170.0,
+        "bell_ts": 1783951800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13BOUGAN",
+        "schedule_ts": 1783962000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -165.0,
+        "bell_ts": 1783955700.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13CHOSUR",
+        "schedule_ts": 1783965600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -170.0,
+        "bell_ts": 1783955400.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13FORRAF",
+        "schedule_ts": 1783965600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1783960500.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13GIUALM",
+        "schedule_ts": 1783971000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -145.0,
+        "bell_ts": 1783967700.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+        "schedule_ts": 1783976400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -170.0,
+        "bell_ts": 1783960800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13KUMLAG",
+        "schedule_ts": 1783971000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1783955100.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13MONANG",
+        "schedule_ts": 1783965600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -170.0,
+        "bell_ts": 1783955400.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13MORFAN",
+        "schedule_ts": 1783965600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1783965900.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+        "schedule_ts": 1783976400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -145.0,
+        "bell_ts": 1783967700.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13NOGBRO",
+        "schedule_ts": 1783976400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 340.0,
+        "bell_ts": 1783960800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13OUALIN",
+        "schedule_ts": 1783940400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -170.0,
+        "bell_ts": 1783960800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13PALGON",
+        "schedule_ts": 1783971000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1783965900.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13PERTOB",
+        "schedule_ts": 1783976400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -135.0,
+        "bell_ts": 1783967100.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13RADIVA",
+        "schedule_ts": 1783975200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -100.0,
+        "bell_ts": 1783960200.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13ROZISO",
+        "schedule_ts": 1783966200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1783951500.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13TROGEO",
+        "schedule_ts": 1783962000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -170.0,
+        "bell_ts": 1783959600.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13YIBMAR",
+        "schedule_ts": 1783969800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -145.0,
+        "bell_ts": 1783961100.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13ZHUDLI",
+        "schedule_ts": 1783969800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -85.0,
+        "bell_ts": 1784051100.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14ADDLEO",
+        "schedule_ts": 1784056200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -135.0,
+        "bell_ts": 1784024700.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14BRUNIJ",
+        "schedule_ts": 1784032800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784016300.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14CASGHI",
+        "schedule_ts": 1784026800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784018100.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14CLAWES",
+        "schedule_ts": 1784028600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784016300.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14EREPAV",
+        "schedule_ts": 1784026800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784018100.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14GALFOR",
+        "schedule_ts": 1784028600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -120.0,
+        "bell_ts": 1784049000.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14JONIVA",
+        "schedule_ts": 1784056200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -170.0,
+        "bell_ts": 1784038200.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+        "schedule_ts": 1784048400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 300.0,
+        "bell_ts": 1784078400.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "schedule_ts": 1784060400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 290.0,
+        "bell_ts": 1784077800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+        "schedule_ts": 1784060400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 60.0,
+        "bell_ts": 1784068800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14MILCHA",
+        "schedule_ts": 1784065200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 880.0,
+        "bell_ts": 1784112000.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14NEDDAL",
+        "schedule_ts": 1784059200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784016300.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+        "schedule_ts": 1784026800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 930.0,
+        "bell_ts": 1784203200.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL15NAGTOR",
+        "schedule_ts": 1784147400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -180.0,
+        "bell_ts": 1784138400.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL15NOGSUR",
+        "schedule_ts": 1784149200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -120.0,
+        "bell_ts": 1784131800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL15SHIBOU",
+        "schedule_ts": 1784139000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -90.0,
+        "bell_ts": 1784137800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL15ZINGAL",
+        "schedule_ts": 1784143200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784219700.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16ADDGHI",
+        "schedule_ts": 1784230200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -180.0,
+        "bell_ts": 1784217600.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+        "schedule_ts": 1784228400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -160.0,
+        "bell_ts": 1784199000.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16DENBAR",
+        "schedule_ts": 1784208600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 95.0,
+        "bell_ts": 1784235300.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+        "schedule_ts": 1784229600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -170.0,
+        "bell_ts": 1784218200.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+        "schedule_ts": 1784228400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -65.0,
+        "bell_ts": 1784230500.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+        "schedule_ts": 1784234400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -170.0,
+        "bell_ts": 1784220000.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16IVAOUA",
+        "schedule_ts": 1784230200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -170.0,
+        "bell_ts": 1784218200.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16MCCTOM",
+        "schedule_ts": 1784228400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -70.0,
+        "bell_ts": 1784232600.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16SMIMAT",
+        "schedule_ts": 1784236800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784293500.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL17KUMBOO",
+        "schedule_ts": 1784304000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -80.0,
+        "bell_ts": 1784298000.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL17NAPVIL",
+        "schedule_ts": 1784302800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -135.0,
+        "bell_ts": 1784314500.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL17RODCRA",
+        "schedule_ts": 1784322600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 145.0,
+        "bell_ts": 1784406900.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL18CASGEA",
+        "schedule_ts": 1784398200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 340.0,
+        "bell_ts": 1784418000.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL18TOMJOH",
+        "schedule_ts": 1784397600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 210.0,
+        "bell_ts": 1784412000.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL18VUKHOL",
+        "schedule_ts": 1784399400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -35.0,
+        "bell_ts": 1784460900.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+        "schedule_ts": 1784463000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784477100.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+        "schedule_ts": 1784487600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -100.0,
+        "bell_ts": 1784494200.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19AVECHA",
+        "schedule_ts": 1784500200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -130.0,
+        "bell_ts": 1784476800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19BANZHU",
+        "schedule_ts": 1784484600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784469900.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19BIAYOU",
+        "schedule_ts": 1784480400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -180.0,
+        "bell_ts": 1784449800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+        "schedule_ts": 1784460600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -75.0,
+        "bell_ts": 1784484300.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+        "schedule_ts": 1784488800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -180.0,
+        "bell_ts": 1784449800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19DONTOP",
+        "schedule_ts": 1784460600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 90.0,
+        "bell_ts": 1784505600.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "schedule_ts": 1784500200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 30.0,
+        "bell_ts": 1784497800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19JONISO",
+        "schedule_ts": 1784496000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -145.0,
+        "bell_ts": 1784480100.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19KOZVIT",
+        "schedule_ts": 1784488800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784469900.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19MALMOR",
+        "schedule_ts": 1784480400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -15.0,
+        "bell_ts": 1784466300.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19MARWAZ",
+        "schedule_ts": 1784467200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784477100.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19MILFAN",
+        "schedule_ts": 1784487600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 5.0,
+        "bell_ts": 1784478900.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+        "schedule_ts": 1784478600.0,
+        "selected_source": "milestone_shadow_official_start",
+        "selected_source_family": "raw_milestone_shadow"
+      },
+      {
+        "bell_minus_schedule_minutes": 45.0,
+        "bell_ts": 1784474100.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19PAPROS",
+        "schedule_ts": 1784471400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -30.0,
+        "bell_ts": 1784461200.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19PETALO",
+        "schedule_ts": 1784463000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 25.0,
+        "bell_ts": 1784464500.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19REJWES",
+        "schedule_ts": 1784463000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784494200.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+        "schedule_ts": 1784504700.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -145.0,
+        "bell_ts": 1784483100.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19ROZSHE",
+        "schedule_ts": 1784491800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -45.0,
+        "bell_ts": 1784495700.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19SURPER",
+        "schedule_ts": 1784498400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -10.0,
+        "bell_ts": 1784495400.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19TOKMIY",
+        "schedule_ts": 1784496000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784469900.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19VANGOR",
+        "schedule_ts": 1784480400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784477100.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+        "schedule_ts": 1784487600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -90.0,
+        "bell_ts": 1784572800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20CHABOU",
+        "schedule_ts": 1784578200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -95.0,
+        "bell_ts": 1784571900.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20ECHHAR",
+        "schedule_ts": 1784577600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -145.0,
+        "bell_ts": 1784559900.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20GADGUI",
+        "schedule_ts": 1784568600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784556300.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+        "schedule_ts": 1784566800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -20.0,
+        "bell_ts": 1784589000.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+        "schedule_ts": 1784590200.0,
+        "selected_source": "milestone_shadow_official_start",
+        "selected_source_family": "raw_milestone_shadow"
+      },
+      {
+        "bell_minus_schedule_minutes": -135.0,
+        "bell_ts": 1784545500.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20MARROS",
+        "schedule_ts": 1784553600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -130.0,
+        "bell_ts": 1784556000.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20MONBAR",
+        "schedule_ts": 1784563800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -90.0,
+        "bell_ts": 1784584800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+        "schedule_ts": 1784590200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -180.0,
+        "bell_ts": 1784552400.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+        "schedule_ts": 1784563200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -180.0,
+        "bell_ts": 1784545200.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20VANOUA",
+        "schedule_ts": 1784556000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -90.0,
+        "bell_ts": 1784584800.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20WATILA",
+        "schedule_ts": 1784590200.0,
+        "selected_source": "milestone_shadow_official_start",
+        "selected_source_family": "raw_milestone_shadow"
+      },
+      {
+        "bell_minus_schedule_minutes": -90.0,
+        "bell_ts": 1784572200.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+        "schedule_ts": 1784577600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 3020.0,
+        "bell_ts": 1784035200.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12ALTGAS",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 3025.0,
+        "bell_ts": 1784035500.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12BORKOU",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 80.0,
+        "bell_ts": 1783858800.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12CORDAN",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 3130.0,
+        "bell_ts": 1784041800.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12DAHBAE",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 2945.0,
+        "bell_ts": 1784055900.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12DROBLO",
+        "schedule_ts": 1783879200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1205.0,
+        "bell_ts": 1783951500.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12DZUROC",
+        "schedule_ts": 1783879200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 3170.0,
+        "bell_ts": 1784044200.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12FARWAW",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1350.0,
+        "bell_ts": 1783960200.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12JACTRU",
+        "schedule_ts": 1783879200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1515.0,
+        "bell_ts": 1783970100.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12KOPPRI",
+        "schedule_ts": 1783879200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1320.0,
+        "bell_ts": 1783958400.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12LAJVAN",
+        "schedule_ts": 1783879200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 3090.0,
+        "bell_ts": 1784039400.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12MULSHE",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 2770.0,
+        "bell_ts": 1784045400.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12SESMER",
+        "schedule_ts": 1783879200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1715.0,
+        "bell_ts": 1783956900.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12STRMUN",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 3050.0,
+        "bell_ts": 1784037000.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12TSIBUS",
+        "schedule_ts": 1783854000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1783942500.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL13FAUDAM",
+        "schedule_ts": 1783953000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1783942500.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL13SANDAN",
+        "schedule_ts": 1783953000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1783937700.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL13TABROD",
+        "schedule_ts": 1783948200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -55.0,
+        "bell_ts": 1784045100.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL14CECBUR",
+        "schedule_ts": 1784048400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 30.0,
+        "bell_ts": 1784030400.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL14CINHAL",
+        "schedule_ts": 1784028600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 30.0,
+        "bell_ts": 1784050200.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL14GOMMCD",
+        "schedule_ts": 1784048400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784050500.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL14NEUPRA",
+        "schedule_ts": 1784061000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -85.0,
+        "bell_ts": 1784033100.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL14TRAKRU",
+        "schedule_ts": 1784038200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1620.0,
+        "bell_ts": 1784212200.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL15BUBHAL",
+        "schedule_ts": 1784115000.0,
+        "selected_source": "milestone_shadow_official_start",
+        "selected_source_family": "raw_milestone_shadow"
+      },
+      {
+        "bell_minus_schedule_minutes": 0.0,
+        "bell_ts": 1784134800.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL15COBBUR",
+        "schedule_ts": 1784134800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -180.0,
+        "bell_ts": 1784104200.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL15COLSON",
+        "schedule_ts": 1784115000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784124300.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL15ETCMER",
+        "schedule_ts": 1784134800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784124300.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL15GOMARN",
+        "schedule_ts": 1784134800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 185.0,
+        "bell_ts": 1784126100.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL15HANVAC",
+        "schedule_ts": 1784115000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -165.0,
+        "bell_ts": 1784124900.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL15PRADZU",
+        "schedule_ts": 1784134800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784210700.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL16MERDRO",
+        "schedule_ts": 1784221200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -65.0,
+        "bell_ts": 1784298300.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL17TABTIR",
+        "schedule_ts": 1784302200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -170.0,
+        "bell_ts": 1784394600.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL18MERDZU",
+        "schedule_ts": 1784404800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 30.0,
+        "bell_ts": 1784385000.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL18PELSIL",
+        "schedule_ts": 1784383200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -25.0,
+        "bell_ts": 1784385300.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL18RODCHE",
+        "schedule_ts": 1784386800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -155.0,
+        "bell_ts": 1784375700.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL18SHETSI",
+        "schedule_ts": 1784385000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1555.0,
+        "bell_ts": 1784557500.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL19KOPBUS",
+        "schedule_ts": 1784464200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -90.0,
+        "bell_ts": 1784551800.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL20SCHROD",
+        "schedule_ts": 1784557200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -170.0,
+        "bell_ts": 1783847400.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL12BOSKOV",
+        "schedule_ts": 1783857600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -140.0,
+        "bell_ts": 1783853400.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL12FEICHE",
+        "schedule_ts": 1783861800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -55.0,
+        "bell_ts": 1783876500.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+        "schedule_ts": 1783879800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -85.0,
+        "bell_ts": 1783864500.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL12SOKNUG",
+        "schedule_ts": 1783869600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -125.0,
+        "bell_ts": 1783875900.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL12VOLMAR",
+        "schedule_ts": 1783883400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -60.0,
+        "bell_ts": 1783962000.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL13GASBAN",
+        "schedule_ts": 1783965600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -75.0,
+        "bell_ts": 1783943700.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL13KABPER",
+        "schedule_ts": 1783948200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1783955700.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+        "schedule_ts": 1783966200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 0.0,
+        "bell_ts": 1784034600.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14BARKOL",
+        "schedule_ts": 1784034600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -180.0,
+        "bell_ts": 1784019600.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14BASFRI",
+        "schedule_ts": 1784030400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 70.0,
+        "bell_ts": 1784038800.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14CARVON",
+        "schedule_ts": 1784034600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -180.0,
+        "bell_ts": 1784019600.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14COLPAL",
+        "schedule_ts": 1784030400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784037900.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+        "schedule_ts": 1784048400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -180.0,
+        "bell_ts": 1784019600.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14HENKRA",
+        "schedule_ts": 1784030400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -90.0,
+        "bell_ts": 1784051400.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+        "schedule_ts": 1784056800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 135.0,
+        "bell_ts": 1784046900.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14WOLVAN",
+        "schedule_ts": 1784038800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -65.0,
+        "bell_ts": 1784125500.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL15CARPAL",
+        "schedule_ts": 1784129400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -140.0,
+        "bell_ts": 1784112600.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL15ERJBAR",
+        "schedule_ts": 1784121000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -145.0,
+        "bell_ts": 1784121300.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL15PENFAL",
+        "schedule_ts": 1784130000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 50.0,
+        "bell_ts": 1784232600.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "schedule_ts": 1784229600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -30.0,
+        "bell_ts": 1784223600.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16KOVRIE",
+        "schedule_ts": 1784225400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -120.0,
+        "bell_ts": 1784218200.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16ZANTRE",
+        "schedule_ts": 1784225400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -150.0,
+        "bell_ts": 1784302800.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL17BRARIE",
+        "schedule_ts": 1784311800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -160.0,
+        "bell_ts": 1784295000.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL17VALFAL",
+        "schedule_ts": 1784304600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -280.0,
+        "bell_ts": 1784391000.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+        "schedule_ts": 1784407800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -105.0,
+        "bell_ts": 1784375700.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL18ERJGRA",
+        "schedule_ts": 1784382000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -190.0,
+        "bell_ts": 1784390400.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL18SERBER",
+        "schedule_ts": 1784401800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -40.0,
+        "bell_ts": 1784395200.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+        "schedule_ts": 1784397600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -180.0,
+        "bell_ts": 1784386800.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL18URGKOT",
+        "schedule_ts": 1784397600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -210.0,
+        "bell_ts": 1784383200.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL18VALTAR",
+        "schedule_ts": 1784395800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -180.0,
+        "bell_ts": 1784453400.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL19GRAKRA",
+        "schedule_ts": 1784464200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -170.0,
+        "bell_ts": 1784477400.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL19JONBRO",
+        "schedule_ts": 1784487600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -115.0,
+        "bell_ts": 1784480700.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL19KOTHOD",
+        "schedule_ts": 1784487600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -45.0,
+        "bell_ts": 1784485500.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL19RENTON",
+        "schedule_ts": 1784488200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -50.0,
+        "bell_ts": 1784481000.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL19SERTOT",
+        "schedule_ts": 1784484000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -40.0,
+        "bell_ts": 1784576400.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL20FERREN",
+        "schedule_ts": 1784578800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -150.0,
+        "bell_ts": 1784561400.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+        "schedule_ts": 1784570400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -80.0,
+        "bell_ts": 1784569800.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+        "schedule_ts": 1784574600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -150.0,
+        "bell_ts": 1784561400.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL20KABCHI",
+        "schedule_ts": 1784570400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -150.0,
+        "bell_ts": 1784561400.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+        "schedule_ts": 1784570400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 220.0,
+        "bell_ts": 1783863600.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL12KOZIBR",
+        "schedule_ts": 1783850400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 215.0,
+        "bell_ts": 1783863300.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL12LIUPOP",
+        "schedule_ts": 1783850400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 125.0,
+        "bell_ts": 1783857900.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL12OKAIPE",
+        "schedule_ts": 1783850400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -170.0,
+        "bell_ts": 1783962600.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL13BURLEP",
+        "schedule_ts": 1783972800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 315.0,
+        "bell_ts": 1783966500.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+        "schedule_ts": 1783947600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1265.0,
+        "bell_ts": 1784039700.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL13ITOKOR",
+        "schedule_ts": 1783963800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1535.0,
+        "bell_ts": 1784039700.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL13KRETOM",
+        "schedule_ts": 1783947600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -180.0,
+        "bell_ts": 1783944000.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL13LEPIBR",
+        "schedule_ts": 1783954800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1545.0,
+        "bell_ts": 1784040300.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL13MONMAS",
+        "schedule_ts": 1783947600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 215.0,
+        "bell_ts": 1783953300.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL13PODMAR",
+        "schedule_ts": 1783940400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1330.0,
+        "bell_ts": 1784043600.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL13SAKTON",
+        "schedule_ts": 1783963800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1380.0,
+        "bell_ts": 1784046600.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL13TAUHIB",
+        "schedule_ts": 1783963800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 350.0,
+        "bell_ts": 1784047800.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL14AMAJAC",
+        "schedule_ts": 1784026800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 75.0,
+        "bell_ts": 1784031300.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL14OLIIPE",
+        "schedule_ts": 1784026800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 45.0,
+        "bell_ts": 1784119500.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL15BONZID",
+        "schedule_ts": 1784116800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 5.0,
+        "bell_ts": 1784136900.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL15HONPAR",
+        "schedule_ts": 1784136600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -125.0,
+        "bell_ts": 1784390700.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL18BADZID",
+        "schedule_ts": 1784398200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784365500.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL18BANGAO",
+        "schedule_ts": 1784376000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 200.0,
+        "bell_ts": 1784384400.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL18BERSAI",
+        "schedule_ts": 1784372400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 85.0,
+        "bell_ts": 1784377500.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL18COSHIB",
+        "schedule_ts": 1784372400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784365500.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL18HONTHA",
+        "schedule_ts": 1784376000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -5.0,
+        "bell_ts": 1784372100.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL18ITOKNU",
+        "schedule_ts": 1784372400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 105.0,
+        "bell_ts": 1784378700.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL18MASRYS",
+        "schedule_ts": 1784372400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784365500.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL18MICFRU",
+        "schedule_ts": 1784376000.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 355.0,
+        "bell_ts": 1784393700.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL18MORAKS",
+        "schedule_ts": 1784372400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -40.0,
+        "bell_ts": 1784370000.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL18OKALEE",
+        "schedule_ts": 1784372400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 205.0,
+        "bell_ts": 1784384700.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL18PODKRE",
+        "schedule_ts": 1784372400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -50.0,
+        "bell_ts": 1784392800.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL18SAKKOR",
+        "schedule_ts": 1784395800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -135.0,
+        "bell_ts": 1784399100.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL18TAUKRE",
+        "schedule_ts": 1784407200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -95.0,
+        "bell_ts": 1784453100.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL19AVDNIE",
+        "schedule_ts": 1784458800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -160.0,
+        "bell_ts": 1784458200.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL19COSAKS",
+        "schedule_ts": 1784467800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -120.0,
+        "bell_ts": 1784451600.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL19GAOFRU",
+        "schedule_ts": 1784458800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -175.0,
+        "bell_ts": 1784480700.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL19KRESAK",
+        "schedule_ts": 1784491200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -90.0,
+        "bell_ts": 1784453400.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL19MONPIE",
+        "schedule_ts": 1784458800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -160.0,
+        "bell_ts": 1784457000.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL19PODSAI",
+        "schedule_ts": 1784466600.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 260.0,
+        "bell_ts": 1784474400.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL19PRIMAR",
+        "schedule_ts": 1784458800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -130.0,
+        "bell_ts": 1784451000.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL19RUSKAZ",
+        "schedule_ts": 1784458800.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 395.0,
+        "bell_ts": 1784568900.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL20BONUCH",
+        "schedule_ts": 1784545200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -25.0,
+        "bell_ts": 1784543700.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL20BOUBOU2",
+        "schedule_ts": 1784545200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1580.0,
+        "bell_ts": 1784640000.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL20KORJIM",
+        "schedule_ts": 1784545200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1540.0,
+        "bell_ts": 1784637600.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL20KOVTAR",
+        "schedule_ts": 1784545200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -115.0,
+        "bell_ts": 1784538300.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL20OKTDOD",
+        "schedule_ts": 1784545200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 110.0,
+        "bell_ts": 1784551800.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL20PARHAV",
+        "schedule_ts": 1784545200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -75.0,
+        "bell_ts": 1784544900.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL20PRIBRA",
+        "schedule_ts": 1784549400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 95.0,
+        "bell_ts": 1784550900.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL20QUEKAL",
+        "schedule_ts": 1784545200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": 1350.0,
+        "bell_ts": 1784626200.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL20ROMERJ",
+        "schedule_ts": 1784545200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -125.0,
+        "bell_ts": 1784541900.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL20RUSPAQ",
+        "schedule_ts": 1784549400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -115.0,
+        "bell_ts": 1784538300.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL20SEISNI",
+        "schedule_ts": 1784545200.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      },
+      {
+        "bell_minus_schedule_minutes": -85.0,
+        "bell_ts": 1784544300.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL20VEDBAR",
+        "schedule_ts": 1784549400.0,
+        "selected_source": "official_provider_match_start",
+        "selected_source_family": "exact_official_provider_match_start"
+      }
+    ],
+    "selected_source_counts": {
+      "milestone_shadow_official_start": 4,
+      "official_provider_match_start": 230
+    },
+    "selected_source_family_counts": {
+      "exact_official_provider_match_start": 230,
+      "raw_milestone_shadow": 4
+    }
+  },
+  "ruling": {
+    "atlas_timing_surface_survives_as_actual_bell_fit": false,
+    "depth_calibration_hold_reason": "operator required timing to survive first; no selected tour Atlas page or selected-category cohort cell has a bell/evidence-gun timing fit",
+    "depth_calibration_run": false,
+    "five_leg_full_window_low_after_native_onset_count": 3,
+    "five_leg_native_onset_unresolved_count": 2,
+    "five_leg_native_target_comparable_count": 5,
+    "prior_five_game_timing_table_valid": false,
+    "why": "it treated Atlas bottom_t_med_min as minutes from the policy-window left edge; the stored variable is minutes before a volume-derived -0k onset"
+  },
+  "schema_version": "window1-timing-anchor-audit-v1",
+  "stored_clock_fields": {
+    "exact_bell_ledger": {
+      "fields": [
+        "exact_start_utc",
+        "selected_source",
+        "selected_source_family",
+        "candidate_sources",
+        "guard_band"
+      ],
+      "official_exact_count": 234,
+      "use": "evaluator cutoff = exact_start_utc minus each row's negative guard"
+    },
+    "joined_event_schedule": {
+      "fields": [
+        "scheduled_start_exchange_ts",
+        "schedule_observed_exchange_ts",
+        "schedule_source"
+      ],
+      "limitation": "one observed catalog snapshot per event; not a complete history of schedule revisions",
+      "partial_revision_evidence": "milestone_shadow.remote.jsonl retains point-in-time sched_ep values for a subset, but it is not a complete or canonical 804-event schedule-update ledger",
+      "source": "exchange_catalog_occurrence_datetime_current_snapshot"
+    },
+    "market_close_and_settlement": {
+      "joined_804_store": "not retained in joined/events.jsonl",
+      "tape_close": "window1_close_cents/reference_timestamp is the last lawful true print, not Kalshi close_time or settlement"
+    }
+  },
+  "surface_census": {
+    "atlas": {
+      "by_brand": {
+        "g9_train": {
+          "path_page_count": 20,
+          "timing_gun_present_count": 0
+        },
+        "live_era": {
+          "path_page_count": 10,
+          "timing_gun_present_count": 8
+        }
+      },
+      "five_game_page_count": 8,
+      "five_game_timing_gun_present_count": 0,
+      "path_page_count": 30,
+      "timing_gun_present_count": 8
+    },
+    "library": {
+      "metadata_timing_axis": "-0k onset clock \u2014 MIS-ANCHORED for live use per CLOCK-XCAL; recut queued",
+      "metadata_tts_axis": "na for tour corpus \u2014 GAP, live-era enrichment queued",
+      "selected_category_cell_count": 48,
+      "selected_category_gun_axis_present_count": 0
+    }
+  }
+}

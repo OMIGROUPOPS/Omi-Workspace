@@ -1,0 +1,170 @@
+{
+  "schema_version": "window1-orientation-initial-replay-v1",
+  "ruling": "NO_IMPROVEMENT_REPAIR_NOT_RETAINED",
+  "scope": {
+    "events": [
+      "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "KXATPMATCH-26JUL12LAJVAN",
+      "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "KXWTAMATCH-26JUL20KORJIM"
+    ],
+    "all_replays_valid_for_scoring": true,
+    "first_input_breaks": 0,
+    "fill_model": "RESTING_TOUCH_FILL_V1: a resting order fills in full when a later true print or opposite BBO touches or passes its limit; no depth, capacity, or five-contract proof gate.",
+    "local_tennis_snapshot": {
+      "bytes": 17509449728,
+      "quick_check": "ok",
+      "sha256": "5219b14349f0c08a4bbdf789614f1cbccb51bf80e387471a9f2b3713b67e7a9c"
+    }
+  },
+  "tested_change": {
+    "retained": false,
+    "reason_not_retained": "It changed no completion, no negative-combined-delta result, and no leg-fill count. Mean fill gap worsened by 0.25 cents.",
+    "config": {
+      "orientation_live": true,
+      "entry_table_prior_enabled": false,
+      "pair_class_steer_enabled": false,
+      "one_authority_enabled": false,
+      "contention_drop_enforced": false,
+      "cohort_steer_riser": "KEY_ABSENT_DEFAULT_FALSE",
+      "recognition_before_place": "KEY_ABSENT_DEFAULT_FALSE"
+    },
+    "code": "At the initial ATLAS aim branch, consume _orientation_prior(event), require riser, conviction >= 0.7, and n >= 2; aim the riser at target_bid (near now) and retain the existing deep-faller branch.",
+    "live_v4_sha256_during_replay": "41366c00fca01d7c2c5106bacb1812e917cfdaf043b18c959899612bc5e7a412",
+    "config_sha256_during_replay": "48689fb3935b91bcb380662912970203d31abef584aea206d8058b8ce4c16285"
+  },
+  "control": {
+    "name": "ATLAS",
+    "source": ".claude/window1_live_v4_replay/atlas_interim_20260730_consult_v2/five_game_exact/FIVE_GAME_INTERIM_REPLAY.json",
+    "source_commit": "2afc3081ccd9c3767dfbf9f62983df33c7baaf12",
+    "metrics": {
+      "legs_filled": 4,
+      "pairs_completed": 0,
+      "negative_combined_delta_pairs": 0,
+      "fill_to_own_fillable_low_gap_cents": {
+        "values": [7, 6, 3, 6],
+        "mean": 5.5,
+        "median": 6.0
+      }
+    }
+  },
+  "orientation_initial": {
+    "metrics": {
+      "legs_filled": 4,
+      "pairs_completed": 0,
+      "negative_combined_delta_pairs": 0,
+      "fill_to_own_fillable_low_gap_cents": {
+        "values": [7, 6, 5, 5],
+        "mean": 5.75,
+        "median": 5.5
+      }
+    }
+  },
+  "gap_definition": "Fill price minus the leg's minimum reachable price under RESTING_TOUCH_FILL_V1 inside the frozen evaluator window: min(true-print price, opposite best-ask price). This is not the five-contract-proven floor.",
+  "events": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "pair_completed": {"atlas": false, "orientation_initial": false},
+      "negative_combined_delta": {"atlas": false, "orientation_initial": false},
+      "legs": {
+        "BIG": {
+          "own_fillable_low": 55,
+          "atlas": {"aim": 52, "fill": null, "gap": null},
+          "orientation_initial": {"mode": "oriented_riser", "aim": 53, "fill": null, "gap": null}
+        },
+        "HUR": {
+          "own_fillable_low": 37,
+          "atlas": {"aim": 44, "fill": 44, "gap": 7},
+          "orientation_initial": {"mode": "oriented_faller_deep", "aim": 41, "fill": 44, "gap": 7}
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "pair_completed": {"atlas": false, "orientation_initial": false},
+      "negative_combined_delta": {"atlas": false, "orientation_initial": false},
+      "legs": {
+        "NIK": {
+          "own_fillable_low": 18,
+          "atlas": {"aim": 29, "fill": 24, "gap": 6},
+          "orientation_initial": {"mode": "oriented_faller_deep", "aim": 26, "fill": 24, "gap": 6}
+        },
+        "VRB": {
+          "own_fillable_low": 68,
+          "atlas": {"aim": 67, "fill": null, "gap": null},
+          "orientation_initial": {"mode": "oriented_riser", "aim": 67, "fill": null, "gap": null}
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12LAJVAN",
+      "pair_completed": {"atlas": false, "orientation_initial": false},
+      "negative_combined_delta": {"atlas": false, "orientation_initial": false},
+      "legs": {
+        "LAJ": {
+          "own_fillable_low": 43,
+          "atlas": {"aim": 45, "fill": null, "gap": null},
+          "orientation_initial": {"mode": "oriented_faller_deep", "aim": 40, "fill": null, "gap": null}
+        },
+        "VAN": {
+          "own_fillable_low": 49,
+          "atlas": {"aim": 46, "fill": null, "gap": null},
+          "orientation_initial": {"mode": "oriented_riser", "aim": 49, "fill": null, "gap": null}
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "pair_completed": {"atlas": false, "orientation_initial": false},
+      "negative_combined_delta": {"atlas": false, "orientation_initial": false},
+      "legs": {
+        "BRA": {
+          "own_fillable_low": 38,
+          "atlas": {"aim": 36, "fill": null, "gap": null},
+          "orientation_initial": {"mode": "oriented_faller_deep", "aim": 33, "fill": null, "gap": null}
+        },
+        "VED": {
+          "own_fillable_low": 55,
+          "atlas": {"aim": 58, "fill": 58, "gap": 3},
+          "orientation_initial": {"mode": "oriented_riser", "aim": 60, "fill": 60, "gap": 5}
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20KORJIM",
+      "pair_completed": {"atlas": false, "orientation_initial": false},
+      "negative_combined_delta": {"atlas": false, "orientation_initial": false},
+      "legs": {
+        "JIM": {
+          "own_fillable_low": 30,
+          "atlas": {"aim": 36, "fill": 36, "gap": 6},
+          "orientation_initial": {"mode": "oriented_faller_deep", "aim": 32, "fill": 35, "gap": 5}
+        },
+        "KOR": {
+          "own_fillable_low": 60,
+          "atlas": {"aim": 55, "fill": null, "gap": null},
+          "orientation_initial": {"mode": "oriented_riser", "aim": 57, "fill": null, "gap": null}
+        }
+      }
+    }
+  ],
+  "merge_6e45d42b": {
+    "commit": "6e45d42b11792a06fdd7b5caa61f9c880992054b",
+    "parents": [
+      "21fc9fc4e03d86a6c318f914625a214e00889e16",
+      "c40a8f9abc3d38792b82be049adefb95c3d64752"
+    ],
+    "conflicted_path": "arb-executor/live_v4.py",
+    "resolution_kind": "manual semantic merge-tree edits",
+    "flag_resolution": {
+      "entry_table_prior_enabled": {"parent_1": true, "parent_2": true, "merge": false},
+      "pair_class_steer_enabled": {"parent_1": true, "parent_2": true, "merge": false},
+      "one_authority_enabled": {"parent_1": true, "parent_2": true, "merge": false},
+      "contention_drop_enforced": {"parent_1": true, "parent_2": "KEY_ABSENT", "merge": false}
+    },
+    "ownership": "The manual resolution was made in this Codex workstream. Git records Druid Osullivan as author/committer but cannot identify a model instance; Codex owns the change and the failure to report it.",
+    "intent_classification": "The false values matched the operator's then-standing instructions to hold sealed action and DROP enforcement. No flag was restored because none was disarmed contrary to that instruction, and the current instruction also says sealed, DROP, and cohort worsen the sample.",
+    "reporting_failure": "The semantic flag changes were buried in an unrelated merge summary instead of being called out individually."
+  }
+}

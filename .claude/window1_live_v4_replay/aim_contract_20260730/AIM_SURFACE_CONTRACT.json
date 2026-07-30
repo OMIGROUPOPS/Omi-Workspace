@@ -1,0 +1,90 @@
+{
+  "contract_id": "WINDOW1_FORWARD_AIM_V1",
+  "status": "SPECIFIED_NOT_FITTED",
+  "key": {
+    "category": "hard partition; never pooled",
+    "anchor_source": [
+      "FRESH_LAST_TRADE",
+      "TIGHT_MID",
+      "BBO_MID",
+      "BEST_BID"
+    ],
+    "price_cell": {
+      "unit": "one cent",
+      "lawful_domain_cents": "[5,95)",
+      "primary": "fresh last-traded price observed at exact consultation timestamp"
+    },
+    "source_timestamp_required": true,
+    "consultation_timestamp_required": true,
+    "source_staleness_required": true,
+    "raw_source_hash_required": true,
+    "fallback_law": "Each anchor_source is a separately fitted branch. Missing branch returns NO_CELL."
+  },
+  "denominator": {
+    "required": "same-consultation best bid and best ask with individual source timestamps and staleness",
+    "spread_cents": "best_ask_cents - best_bid_cents",
+    "missing_or_nonpositive": "NO_DENOMINATOR",
+    "midpoint_use": "lawful only inside the named 1x/2x spread regimes"
+  },
+  "regimes": {
+    "JOIN": "best_bid_cents",
+    "TOUCH_MINUS_1": "best_bid_cents - 1",
+    "SPREAD_1X_BELOW_MID": "floor((best_bid_cents + best_ask_cents) / 2 - spread_cents)",
+    "SPREAD_2X_BELOW_MID": "floor((best_bid_cents + best_ask_cents) / 2 - 2 * spread_cents)"
+  },
+  "target": {
+    "direction": "forward_only",
+    "interval": "(consultation_timestamp, lawful_window1_end]",
+    "lawful_window1_end": "guarded actual-start cutoff with evidence grade retained",
+    "fill_model": "rest maker order; a subsequent last-traded price at or below the target is a fill; no depth proof and no five-contract gate",
+    "outputs_per_regime": [
+      "n",
+      "reachable_count",
+      "reachable_rate",
+      "first_touch_tminus_actual_bell_distribution",
+      "signed_delta_to_window1_close_distribution"
+    ]
+  },
+  "thin_law": {
+    "minimum_n": 20,
+    "below_minimum": "THIN; never borrow, pool, smooth, or average up"
+  },
+  "range_spectrum_v1_census": {
+    "events": 6252,
+    "leg_slots": 12361,
+    "anchors": 12170,
+    "anchors_inside_5_95": 11994,
+    "anchor_rules": {
+      "last_before_t8_without_retained_anchor_timestamp": 9605,
+      "first_after_t8_with_reconstructable_poll_timestamp": 2565,
+      "never_traded": 191
+    },
+    "strict_fresh_anchor_contract": 0,
+    "reason_strict_zero": "The artifact retains poll timestamps, not anchor trade timestamps, consultation/source age, or raw-source hashes.",
+    "relaxed_reconstructable_inside_5_95": {
+      "fresh_last_trade_branch": 2396,
+      "tight_mid_branch": 118,
+      "no_bbo_denominator": 1,
+      "outside_5_95": 50
+    },
+    "relaxed_cells_n_ge_20": {
+      "fresh_last_trade": {
+        "ATP_CHALL": 37,
+        "ATP_MAIN": 0,
+        "ITF_M": 0,
+        "ITF_W": 0,
+        "WTA_CHALL": 0,
+        "WTA_MAIN": 0
+      },
+      "tight_mid": {
+        "ATP_CHALL": 0,
+        "ATP_MAIN": 0,
+        "ITF_M": 0,
+        "ITF_W": 0,
+        "WTA_CHALL": 0,
+        "WTA_MAIN": 0
+      }
+    },
+    "verdict": "INSUFFICIENT_FOR_LAWFUL_FIT"
+  }
+}

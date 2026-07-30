@@ -41,6 +41,12 @@ PROFILES = {
         }
         for key in FIXES
     },
+    "safe_fill_clock_only": {
+        "clock_contract_fixed": True,
+        "field_contract_fixed": False,
+        "contention_drop_fixed": False,
+        "fill_poll_fixed": True,
+    },
     "all_four_fixed": {key: True for key in FIXES},
 }
 CHURN_EVENTS = (
@@ -64,6 +70,16 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--raw-out", type=Path, required=True)
     parser.add_argument("--summary-out", type=Path, required=True)
+    parser.add_argument(
+        "--profiles",
+        nargs="+",
+        choices=tuple(PROFILES),
+        default=None,
+        help=(
+            "Profiles to run. The control is added automatically so deltas "
+            "remain comparable."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -140,8 +156,13 @@ async def main_async() -> int:
         PRINTS, args.raw_out / "_input_index" / "prints_by_ticker.json"
     )
 
+    selected_profiles = list(args.profiles or PROFILES)
+    if "four_defect_control" not in selected_profiles:
+        selected_profiles.insert(0, "four_defect_control")
+
     profile_rows = {}
-    for profile_name, base_profile in PROFILES.items():
+    for profile_name in selected_profiles:
+        base_profile = PROFILES[profile_name]
         rows = []
         profile = {**base_profile, "inject_fill_poll_miss": True}
         for index, event in enumerate(event_ids, 1):

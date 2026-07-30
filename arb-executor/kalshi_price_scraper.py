@@ -6,9 +6,9 @@ Every 5 min, queries all open Kalshi tennis markets and records
 bid/ask/last/volume into kalshi_price_snapshots table in tennis.db.
 """
 
-import json, time, os, base64, requests, sqlite3, traceback
+import hashlib, json, time, os, base64, requests, sqlite3, traceback
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives import hashes, serialization
@@ -23,6 +23,7 @@ BASE = "https://api.elections.kalshi.com"
 SERIES = [
     "KXATPMATCH", "KXWTAMATCH",
     "KXATPCHALLENGERMATCH", "KXWTACHALLENGERMATCH",
+    "KXITFMATCH", "KXITFWMATCH",
 ]
 
 load_dotenv(Path(__file__).resolve().parent / ".env")
@@ -69,6 +70,23 @@ def init_db():
     )""")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_kps_event ON kalshi_price_snapshots(event_ticker, polled_at)")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_kps_ticker_time ON kalshi_price_snapshots(ticker, polled_at DESC)")
+    # [W1 RETENTION V2] Full schedule-revision history. One row is retained
+    # only when a market's schedule-bearing fields change; the exact HTTP
+    # response hash that carried the revision is bound to it.
+    cur.execute("""CREATE TABLE IF NOT EXISTS kalshi_schedule_revisions (
+        ticker TEXT NOT NULL,
+        schedule_sha256 TEXT NOT NULL,
+        event_ticker TEXT NOT NULL,
+        series_ticker TEXT,
+        first_observed_at_utc TEXT NOT NULL,
+        last_observed_at_utc TEXT NOT NULL,
+        schedule_fields_json TEXT NOT NULL,
+        raw_response_sha256 TEXT NOT NULL,
+        request_path TEXT NOT NULL,
+        PRIMARY KEY (ticker, schedule_sha256)
+    )""")
+    cur.execute("""CREATE INDEX IF NOT EXISTS idx_ksr_event_time
+        ON kalshi_schedule_revisions(event_ticker, first_observed_at_utc)""")
     conn.commit()
     conn.close()
 
@@ -78,6 +96,7 @@ def poll_cycle():
     polled_at = now_et.strftime("%Y-%m-%d %H:%M:%S")
 
     rows = []
+    revision_rows = []
     for series in SERIES:
         path = "/trade-api/v2/markets"
         try:
@@ -85,7 +104,11 @@ def poll_cycle():
                              headers=_sign("GET", path), timeout=15)
             if r.status_code != 200:
                 continue
-            for m in r.json().get("markets", []):
+            received_at = datetime.now(timezone.utc).isoformat()
+            raw_response_sha256 = hashlib.sha256(r.content).hexdigest()
+            response = r.json()
+            request_path = path + "?series_ticker=%s&status=open&limit=500" % series
+            for m in response.get("markets", []):
                 ticker = m.get("ticker", "")
                 if not ticker:
                     continue
@@ -96,6 +119,29 @@ def poll_cycle():
                 commence = m.get("expected_expiration_time", "")
                 rows.append((polled_at, ticker, m.get("event_ticker", ""),
                              series, bid, ask, last, vol, commence))
+                schedule_fields = {
+                    field: m.get(field)
+                    for field in (
+                        "open_time",
+                        "close_time",
+                        "expected_expiration_time",
+                        "expiration_time",
+                        "latest_expiration_time",
+                        "occurrence_datetime",
+                        "status",
+                    )
+                }
+                schedule_json = json.dumps(
+                    schedule_fields, sort_keys=True, separators=(",", ":")
+                )
+                schedule_sha256 = hashlib.sha256(
+                    schedule_json.encode("utf-8")
+                ).hexdigest()
+                revision_rows.append((
+                    ticker, schedule_sha256, m.get("event_ticker", ""),
+                    series, received_at, received_at, schedule_json,
+                    raw_response_sha256, request_path,
+                ))
         except Exception as e:
             print("  Error fetching %s: %s" % (series, e))
         time.sleep(0.1)
@@ -111,6 +157,16 @@ def poll_cycle():
         cur.executemany(
             "INSERT OR REPLACE INTO kalshi_price_snapshots VALUES (?,?,?,?,?,?,?,?,?)",
             rows)
+        cur.executemany(
+            """INSERT INTO kalshi_schedule_revisions
+               (ticker, schedule_sha256, event_ticker, series_ticker,
+                first_observed_at_utc, last_observed_at_utc,
+                schedule_fields_json, raw_response_sha256, request_path)
+               VALUES (?,?,?,?,?,?,?,?,?)
+               ON CONFLICT(ticker, schedule_sha256) DO UPDATE SET
+                 last_observed_at_utc=excluded.last_observed_at_utc""",
+            revision_rows,
+        )
         conn.commit()
     except Exception as e:
         print("  DB error: %s" % e)

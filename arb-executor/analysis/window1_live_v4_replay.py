@@ -23,6 +23,7 @@ import gzip
 import hashlib
 import importlib.util
 import json
+import os
 import re
 import shutil
 import sqlite3
@@ -43,8 +44,16 @@ REPO = Path(__file__).resolve().parents[2]
 EXECUTOR = REPO / "arb-executor"
 LIVE_V4 = EXECUTOR / "live_v4.py"
 PRIVATE_ROOT = Path(r"C:\Users\omigr\OMI-Window1-private")
-VPS_INPUT_ROOT = (
-    REPO / ".claude" / "window1_live_v4_replay" / "vps_inputs_20260729"
+VPS_INPUT_ROOT = Path(
+    os.environ.get(
+        "W1_REPLAY_VPS_INPUT_ROOT",
+        str(
+            REPO
+            / ".claude"
+            / "window1_live_v4_replay"
+            / "vps_inputs_20260729"
+        ),
+    )
 )
 EVENT_LEDGER = PRIVATE_ROOT / "joined" / "events.jsonl"
 PRINTS = PRIVATE_ROOT / "fit-local" / "prints.jsonl"
@@ -790,6 +799,10 @@ async def replay_one(
     restore_sqlite, database_accesses = install_vps_database_replay(clock)
     source_hash_before = _sha256(LIVE_V4)
     bot = module.LiveV3()
+    # Replay must never populate the live collector's durable retention path.
+    # The replay trace already carries the same decision inputs under run_dir;
+    # this disables only the duplicate production output sink.
+    bot.config["decision_input_retention_v2"] = False
     applied_defect_profile = install_defect_profile(bot, defect_profile)
     applied_counterfactual = install_counterfactual(bot, counterfactual)
     source_hash_after_init = _sha256(LIVE_V4)

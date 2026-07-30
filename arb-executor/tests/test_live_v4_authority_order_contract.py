@@ -39,7 +39,7 @@ class AuthorityOrderContractTests(unittest.TestCase):
         self.assertIn('else (lambda row: row.get("oid"))', authority)
         self.assertIn('else (lambda row: row.get("px"))', authority)
 
-    def test_repaired_decision_contracts_are_enabled_in_deploy_config(self):
+    def test_only_safe_repaired_contracts_are_enabled_in_deploy_config(self):
         cascade = function_source("_band_cascade_pass")
         anchor = function_source("_v4_entry_anchor")
         route = function_source("_route_event")
@@ -64,7 +64,10 @@ class AuthorityOrderContractTests(unittest.TestCase):
         )
         self.assertTrue(config["atlas_clock_contract_v2"])
         self.assertTrue(config["authority_order_contract_v2"])
-        self.assertTrue(config["contention_drop_enforced"])
+        self.assertFalse(config["contention_drop_enforced"])
+        self.assertFalse(config["pair_class_steer_enabled"])
+        self.assertFalse(config["entry_table_prior_enabled"])
+        self.assertFalse(config["one_authority_enabled"])
         self.assertTrue(config["bulk_fill_poll_enabled"])
 
     def test_fill_receipt_poll_precedes_per_order_status_poll(self):

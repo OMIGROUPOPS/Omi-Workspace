@@ -6,6 +6,8 @@ TennisExplorer Live Data Pipeline
 - Player profiles once per day
 """
 
+import hashlib
+import json
 import sqlite3
 import requests
 import re
@@ -13,7 +15,7 @@ import time
 import os
 import sys
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timedelta
 from difflib import SequenceMatcher
 
 DB_PATH = str(Path(__file__).resolve().parent / 'tennis.db')
@@ -29,6 +31,89 @@ def get_db():
     # observed_starts bank on instant-fail locks for 3h (the gun's primary
     # feed silently dry -- queued #19). Wait for the lock instead.
     return sqlite3.connect(DB_PATH, timeout=30)
+
+
+def _init_observed_start_event_table(cursor):
+    """Additive full-identity start bank; legacy table remains untouched."""
+    cursor.execute('''CREATE TABLE IF NOT EXISTS observed_start_events (
+        kalshi_event_ticker TEXT PRIMARY KEY,
+        te_match_id TEXT NOT NULL,
+        player1 TEXT NOT NULL,
+        player2 TEXT NOT NULL,
+        kalshi_market_tickers_json TEXT NOT NULL,
+        first_inplay_at TEXT NOT NULL,
+        inserted_at TEXT NOT NULL,
+        identity_method TEXT NOT NULL,
+        source_page_sha256 TEXT)''')
+    cursor.execute('''CREATE INDEX IF NOT EXISTS idx_ose_te_match
+        ON observed_start_events(te_match_id)''')
+
+
+def _resolve_full_event_identity(cursor, code1, code2):
+    """Return a full event only when both player codes identify one event.
+
+    Three-letter codes are never stored as the event identity. Ambiguity or a
+    missing second code returns no identity instead of guessing.
+    """
+    codes = sorted({c for c in (code1, code2) if c})
+    if len(codes) != 2:
+        return None
+    try:
+        latest = cursor.execute(
+            "SELECT MAX(polled_at) FROM kalshi_price_snapshots"
+        ).fetchone()[0]
+        if not latest:
+            return None
+        cutoff = (
+            datetime.strptime(latest, "%Y-%m-%d %H:%M:%S")
+            - timedelta(hours=36)
+        ).strftime("%Y-%m-%d %H:%M:%S")
+        rows = cursor.execute(
+            """SELECT event_ticker, ticker
+               FROM kalshi_price_snapshots
+               WHERE polled_at >= ?
+                 AND (ticker LIKE ? OR ticker LIKE ?)
+               GROUP BY event_ticker, ticker""",
+            (cutoff, "%-" + codes[0], "%-" + codes[1]),
+        ).fetchall()
+    except sqlite3.Error:
+        return None
+    by_event = {}
+    for event_ticker, market_ticker in rows:
+        if not event_ticker or not market_ticker:
+            continue
+        by_event.setdefault(event_ticker, set()).add(market_ticker)
+    matches = []
+    for event_ticker, tickers in by_event.items():
+        suffixes = {ticker.rsplit("-", 1)[-1] for ticker in tickers}
+        if set(codes).issubset(suffixes):
+            matches.append((event_ticker, sorted(tickers)))
+    return matches[0] if len(matches) == 1 else None
+
+
+def _bank_full_event_start(target_cursor, source_cursor, match_id, player1,
+                           player2, code1, code2, observed_at,
+                           source_page_sha256=None):
+    identity = _resolve_full_event_identity(source_cursor, code1, code2)
+    if identity is None:
+        return 0
+    event_ticker, market_tickers = identity
+    target_cursor.execute(
+        """INSERT OR IGNORE INTO observed_start_events
+           (kalshi_event_ticker, te_match_id, player1, player2,
+            kalshi_market_tickers_json, first_inplay_at, inserted_at,
+            identity_method, source_page_sha256)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        (
+            event_ticker, match_id, player1, player2,
+            json.dumps(market_tickers, separators=(",", ":")),
+            observed_at, observed_at,
+            "two_player_codes_same_recent_kalshi_event",
+            source_page_sha256,
+        ),
+    )
+    return target_cursor.rowcount
+
 
 def init_tables():
     conn = get_db()
@@ -58,6 +143,7 @@ def init_tables():
         kalshi_ticker TEXT,
         first_inplay_at TEXT NOT NULL,
         inserted_at TEXT NOT NULL)''')
+    _init_observed_start_event_table(c)
     c.execute('''CREATE TABLE IF NOT EXISTS bookmaker_odds (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         te_match_id TEXT,
@@ -204,6 +290,10 @@ def save_live_scores(matches):
                 (te_match_id, player1, player2, kalshi_ticker, first_inplay_at, inserted_at)
                 VALUES (?, ?, ?, ?, ?, ?)''',
                 (m['match_id'], m['player1'], m['player2'], kalshi_ticker, now, now))
+            _bank_full_event_start(
+                c, c, m['match_id'], m['player1'], m['player2'],
+                k1, k2, now,
+            )
         c.execute('''INSERT OR REPLACE INTO live_scores
             (te_match_id, player1, player2, p1_sets, p2_sets, p1_games, p2_games,
              status, kalshi_ticker, last_updated)
@@ -239,12 +329,13 @@ def bank_observed_starts():
     # a dedicated single-writer DB — no contention class at all. The
     # kalshi_codes join still reads tennis.db (read-only, tolerant).
     kalshi_codes = {}
+    conn0 = None
+    c0 = None
     try:
         conn0 = get_db()
         c0 = conn0.cursor()
         c0.execute('SELECT kalshi_code, name FROM players WHERE name IS NOT NULL')
         kalshi_codes = {row[0]: row[1] for row in c0.fetchall()}
-        conn0.close()
     except Exception as e:
         log('players join read failed (tolerated): %s' % str(e)[:60])
     os_db = os.path.join(os.path.dirname(DB_PATH), 'state',
@@ -254,7 +345,9 @@ def bank_observed_starts():
     c.execute('''CREATE TABLE IF NOT EXISTS observed_starts (
         te_match_id TEXT PRIMARY KEY, player1 TEXT, player2 TEXT,
         kalshi_ticker TEXT, first_inplay_at TEXT, inserted_at TEXT)''')
+    _init_observed_start_event_table(c)
     now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    page_sha256 = hashlib.sha256(r.content).hexdigest()
     banked = 0
     seen = set()
     for mid, txt in pairs:
@@ -267,13 +360,21 @@ def bank_observed_starts():
         p1, p2 = [x.strip() for x in name.split(' - ', 1)]
         if not p1 or not p2:
             continue
-        k = match_to_kalshi(p1, kalshi_codes) or match_to_kalshi(p2, kalshi_codes) or ''
+        k1 = match_to_kalshi(p1, kalshi_codes)
+        k2 = match_to_kalshi(p2, kalshi_codes)
+        k = k1 or k2 or ''
         c.execute("""INSERT OR IGNORE INTO observed_starts
             (te_match_id, player1, player2, kalshi_ticker, first_inplay_at, inserted_at)
             VALUES (?, ?, ?, ?, ?, ?)""", (mid, p1, p2, k, now, now))
         banked += c.rowcount
+        if c0 is not None:
+            banked += _bank_full_event_start(
+                c, c0, mid, p1, p2, k1, k2, now, page_sha256,
+            )
     conn.commit()
     conn.close()
+    if conn0 is not None:
+        conn0.close()
     return banked
 
 

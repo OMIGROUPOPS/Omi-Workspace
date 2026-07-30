@@ -1,7 +1,21 @@
 #!/usr/bin/env python3
-"""[C-GUIDEBOOK-AIM v1, 07-13] THE GUIDEBOOK — the discovery-to-aim wire.
+"""[C-GUIDEBOOK-AIM v1, 07-13] THE GUIDEBOOK — RETIRED INVALID BRIDGE.
 
-LINEAGE (C45): composes three ratified fitted surfaces, invents nothing:
+DO NOT use the legacy ``recut_cells.json`` input as an entry-aim surface.
+That file buckets outcomes on a Window-1 close-side key. The historical
+builder copied those pages and renamed their depth "below current price at
+discovery" without re-estimating on a retained decision-time observation.
+That is a key-contract change, not a lawful composition.
+
+The builder is now fail-closed. It can run only when its source declares and
+passes the forward-entry contract checked by ``_forward_cells``:
+
+* the price key is a retained, timestamped, fresh last trade observed at the
+  exact consultation;
+* the target is depth attainable after that timestamp inside lawful W1; and
+* cells live under a dedicated ``cells`` member, separate from metadata.
+
+LEGACY LINEAGE (invalid for live aim; retained here to name the defect):
   M1  .claude/seqfloor_20260708/recut_cells.json — per cat x price-cell W1
       dip-depth DISTRIBUTION below current (edge_p25/p50/p75 = the depth
       reached in ~75/50/25 percent of historical window-1s), dip timing
@@ -31,6 +45,49 @@ OUT = WS / ".claude/guidebook/GUIDEBOOK_V1.json"
 MIN_N = 8          # thin page -> REFUSE loudly, never a guess
 YIELD_BAR = 0.08   # the operator's bar: yield on capital wagered
 
+
+def _forward_cells(source):
+    """Return cells only for the exact lawful forward-entry fit contract."""
+    meta = source.get("meta") if isinstance(source, dict) else None
+    key = meta.get("fit_key") if isinstance(meta, dict) else None
+    target = meta.get("target") if isinstance(meta, dict) else None
+    required = {
+        "surface_role": meta.get("surface_role") if meta else None,
+        "price_source": key.get("price_source") if key else None,
+        "timestamp_semantics": key.get("timestamp_semantics") if key else None,
+        "timestamp_retained": key.get("timestamp_retained") if key else None,
+        "target_direction": target.get("direction") if target else None,
+        "target_horizon": target.get("horizon") if target else None,
+    }
+    expected = {
+        "surface_role": "forward_entry_aim",
+        "price_source": "fresh_last_trade",
+        "timestamp_semantics": "exact_consultation_time",
+        "timestamp_retained": True,
+        "target_direction": "subsequent_attainable_depth",
+        "target_horizon": "lawful_window_1",
+    }
+    mismatches = {
+        name: {"expected": expected[name], "actual": actual}
+        for name, actual in required.items()
+        if actual != expected[name]
+    }
+    cells = source.get("cells") if isinstance(source, dict) else None
+    if not isinstance(cells, dict):
+        mismatches["cells"] = {
+            "expected": "dedicated category/cell mapping",
+            "actual": type(cells).__name__,
+        }
+    if mismatches:
+        raise RuntimeError(
+            "INVALID_AIM_KEY_BRIDGE: source is not a fitted forward-entry "
+            "surface; refusing to relabel close-keyed depth as "
+            "discovery-relative. mismatches=%s" %
+            json.dumps(mismatches, sort_keys=True)
+        )
+    return cells
+
+
 def zone_of(px):
     px = int(px)
     if px < 25:
@@ -42,7 +99,8 @@ def zone_of(px):
     return "75-99"
 
 def build():
-    recut = json.loads(RECUT.read_text(encoding="utf-8"))
+    recut_source = json.loads(RECUT.read_text(encoding="utf-8"))
+    recut = _forward_cells(recut_source)
     fr = json.loads(FILLREDO.read_text(encoding="utf-8"))
     gb = {"meta": {
         "built": "2026-07-13",

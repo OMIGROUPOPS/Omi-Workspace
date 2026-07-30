@@ -1,0 +1,43 @@
+{
+  "contract_id": "WINDOW1_FLOW_ACTIVATION_V1",
+  "status": "SPECIFIED_NOT_FITTED_NOT_LIVE",
+  "compute_at": "exact consultation timestamp before aim-authority lookup",
+  "inputs": {
+    "trade_windows_minutes": [1, 5, 15, 30],
+    "trade_identity": "exchange trade ID; union WS and REST; exclude self",
+    "book_windows_minutes": [0, 5, 15, 30],
+    "book_fields": [
+      "best_bid",
+      "best_ask",
+      "spread",
+      "source_timestamp",
+      "staleness",
+      "raw_source_hash"
+    ],
+    "spread_features": [
+      "current",
+      "median_5m",
+      "median_15m",
+      "median_30m",
+      "slope",
+      "tightening_ratio",
+      "fresh_two_sided_share"
+    ]
+  },
+  "states": [
+    "NO_DATA",
+    "QUIET",
+    "WAKING",
+    "OPEN",
+    "RECEDING"
+  ],
+  "activation": {
+    "OPEN": "authority_may_consult_macro_aim",
+    "otherwise": "DEFER_FLOW",
+    "flow_may_change_aim_depth": false
+  },
+  "category_partition": "ATP_MAIN, WTA_MAIN, ATP_CHALL, WTA_CHALL, ITF_M, ITF_W fitted separately",
+  "minimum_n": 20,
+  "clock_fields_allowed_as_trigger": false,
+  "current_live_gap": "prints/30m is dossier/reach telemetry; spread tightening is absent; aim is computed before flow consultation"
+}

@@ -1,0 +1,187 @@
+{
+  "schema_version": "window1-live-v4-one-game-deconstruction-v1",
+  "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+  "category": "ATP_CHALL",
+  "slice": "post_fit",
+  "fill_model": "RESTING_TOUCH_FILL_V1: a resting maker order fills in full when a later true print or opposite BBO touches or passes its limit; no depth proof and no five-contract gate.",
+  "source_binding": {
+    "live_v4_sha256_before_and_after": "f6fb1d20f3943f7bac26d94ccf1e9d98a5f22762cd3357394adfc8a3b108d760",
+    "deploy_config_sha256": "46607d2404d6794c30c6c61fd52d08c9e787a613a1984d8c21204457d5d2472f",
+    "full_local_trace_sha256": "5dd923fb3636926165e651668954f6b778e9d4c8811b2254f3102a9aa05302cc",
+    "full_local_trace": "../one_game_nikvrb_final_20260730/runs/KXATPCHALLENGERMATCH-26JUL19NIKVRB/trace.json"
+  },
+  "clock": {
+    "window_left_et": "2026-07-19T04:30:00-04:00",
+    "scheduled_start_et": "2026-07-19T12:30:00-04:00",
+    "os_gun_et": "2026-07-19T12:30:12-04:00",
+    "guarded_evaluator_cutoff_et": "2026-07-19T12:34:00-04:00",
+    "start_evidence": "observed_official_exact"
+  },
+  "tape_opportunity": {
+    "NIK": {
+      "window1_close_cents": 19,
+      "fillable_low_cents": 18,
+      "low_et": "2026-07-19T11:38:49-04:00",
+      "low_delta_to_close_cents": -1
+    },
+    "VRB": {
+      "window1_close_cents": 83,
+      "fillable_low_cents": 70,
+      "low_et": "2026-07-19T07:13:56-04:00",
+      "low_delta_to_close_cents": -13
+    },
+    "pair_cost_cents": 88,
+    "combined_close_reference_cents": 102,
+    "combined_delta_cents": -14,
+    "minutes_between_lows": 264.9,
+    "lawful_order": ["VRB", "NIK"]
+  },
+  "retained_history": {
+    "pre_gate_bbo_rows": 0,
+    "pre_gate_true_prints": 0,
+    "first_bbo_et": "2026-07-19T06:14:33-04:00",
+    "first_NIK_print_et": "2026-07-19T06:28:01-04:00",
+    "first_VRB_print_et": "2026-07-19T07:13:56-04:00",
+    "replay_bbo_ticks": 12908,
+    "true_prints": 143
+  },
+  "consultations": [
+    {
+      "time_et": "2026-07-19T06:28:05-04:00",
+      "t_minus_scheduled_min": 361.9,
+      "leg": "NIK",
+      "book": {"bid": 23, "ask": 33, "last_trade": 33},
+      "anchor": {"source": "last_traded", "price": 33},
+      "orientation": {"riser": "VRB", "conviction": 1.0, "voices": ["cohort", "anchor_role"]},
+      "atlas": {"page": "ATP_CHALL|underdog|26_50", "n": 1470, "depth_p25_p50_p75": [2, 4, 7], "aim": 29},
+      "cohort": {"cell": "ATP_CHALL|dog|26_50", "n": 2053, "dip_p50": 4, "reach_3c": 0.61, "rose_pct": 34.0},
+      "flow": {"bucket": "quiet", "prints_30m": 1, "p_fill_1h": 0.02},
+      "contention": {"verdict": "TRADE-AT-PATH", "best_pct": 26.1},
+      "pair": {"verdict": "PAIR-COMPOSED", "combined_at_path": 93, "sibling_estimate": 67},
+      "external_fv": {"status": "NO-READ", "reason": "stale_sources", "sources": []},
+      "polymarket": "NO-FEED",
+      "library": {"verdict": "NO-OPINION", "confidence": 0.0},
+      "named_authority": "LEGACY:path_aim",
+      "actual_order_cents": 29
+    },
+    {
+      "time_et": "2026-07-19T07:07:33-04:00",
+      "t_minus_scheduled_min": 322.4,
+      "leg": "NIK",
+      "book": {"bid": 29, "ask": 30, "last_trade": 32},
+      "anchor": {"source": "tight_mid", "price": 30},
+      "orientation": {"riser": "VRB", "conviction": 1.0, "voices": ["cohort", "anchor_role"]},
+      "atlas": {"page": "ATP_CHALL|underdog|26_50", "n": 1470, "depth_p25_p50_p75": [2, 4, 7], "aim": 26},
+      "cohort": {"cell": "ATP_CHALL|dog|26_50", "n": 2053, "dip_p50": 4, "reach_3c": 0.61, "rose_pct": 34.0},
+      "flow": {"bucket": "quiet", "prints_30m": 1, "p_fill_1h": 0.01},
+      "contention": {"verdict": "TRADE-AT-PATH", "best_pct": 39.4},
+      "pair": {"verdict": "PAIR-COMPOSED", "combined_at_path": 93, "sibling_estimate": 70},
+      "external_fv": {"status": "NO-READ", "reason": "stale_sources", "sources": []},
+      "polymarket": "NO-FEED",
+      "library": {"verdict": "NO-OPINION", "confidence": 0.0},
+      "named_authority": "LEGACY:path_aim",
+      "actual_order_cents": 26
+    },
+    {
+      "time_et": "2026-07-19T07:13:58-04:00",
+      "t_minus_scheduled_min": 316.0,
+      "leg": "VRB",
+      "book": {"bid": 69, "ask": 70, "last_trade": 70},
+      "anchor": {"source": "last_traded", "price": 70},
+      "orientation": {"riser": "VRB", "conviction": 1.0, "voices": ["cohort", "anchor_role"]},
+      "atlas": {"page": "ATP_CHALL|leader|51_75", "n": 1614, "depth_p25_p50_p75": [1, 3, 6], "aim": 67},
+      "cohort": {"cell": "ATP_CHALL|fav|51_75", "n": 2008, "dip_p50": 4, "reach_3c": 0.587, "rose_pct": 37.3, "steering": "barred_on_riser"},
+      "flow": {"bucket": "quiet", "prints_30m": 1, "p_fill_1h": 0.037},
+      "contention": {"verdict": "DROP", "best_pct": -6.5, "actual_effect": "POST"},
+      "pair": {"verdict": "PAIR-COMPOSED", "combined_at_path": 93, "sibling_estimate": 30},
+      "external_fv": {"status": "NO-READ", "reason": "stale_sources", "sources": []},
+      "polymarket": "NO-FEED",
+      "library": {"verdict": "NO-OPINION", "confidence": 0.0},
+      "named_authority": "LEGACY:path_aim",
+      "actual_order_cents": 67
+    },
+    {
+      "time_et": "2026-07-19T07:15:43-04:00",
+      "t_minus_scheduled_min": 314.3,
+      "leg": "VRB",
+      "book": {"bid": 67, "ask": 68, "last_trade": 70},
+      "anchor": {"source": "tight_mid", "price": 68},
+      "orientation": {"riser": "VRB", "conviction": 1.0, "voices": ["cohort", "anchor_role"]},
+      "atlas": {"page": "ATP_CHALL|leader|51_75", "n": 1614, "depth_p25_p50_p75": [1, 3, 6], "aim": 65},
+      "cohort": {"cell": "ATP_CHALL|fav|51_75", "n": 2008, "dip_p50": 4, "reach_3c": 0.587, "rose_pct": 37.3, "steering": "barred_on_riser"},
+      "flow": {"bucket": "quiet", "prints_30m": 1, "p_fill_1h": 0.012},
+      "contention": {"verdict": "DROP", "best_pct": -4.2, "actual_effect": "POST"},
+      "pair": {"verdict": "PAIR-COMPOSED", "combined_at_path": 93, "sibling_estimate": 32},
+      "external_fv": {"status": "NO-READ", "reason": "stale_sources", "sources": []},
+      "polymarket": "NO-FEED",
+      "library": {"verdict": "NO-OPINION", "confidence": 0.0},
+      "named_authority": {"authority": "SEAL", "fish": 60},
+      "actual_signer": "ATLAS",
+      "actual_order_cents": 65
+    },
+    {
+      "time_et": "2026-07-19T07:51:21-04:00",
+      "t_minus_scheduled_min": 278.6,
+      "leg": "NIK",
+      "book": {"bid": 24, "ask": 27, "last_trade": 28},
+      "anchor": {"source": "last_traded", "price": 28},
+      "orientation": {"riser": "VRB", "conviction": 1.0, "voices": ["cohort", "anchor_role"]},
+      "atlas": {"page": "ATP_CHALL|underdog|26_50", "n": 1470, "depth_p25_p50_p75": [2, 4, 7], "aim": 24},
+      "cohort": {"cell": "ATP_CHALL|dog|26_50", "n": 2053, "dip_p50": 4, "reach_3c": 0.61, "rose_pct": 34.0},
+      "flow": {"bucket": "quiet", "prints_30m": 2, "p_fill_1h": 0.02},
+      "contention": {"verdict": "TRADE-AT-PATH", "best_pct": 50.5},
+      "pair": {"verdict": "PAIR-COMPOSED", "combined_at_path": 93, "sibling_estimate": 72},
+      "external_fv": {"status": "NO-READ", "reason": "stale_sources", "sources": []},
+      "polymarket": "NO-FEED",
+      "library": {"verdict": "NO-OPINION", "confidence": 0.0},
+      "named_authority": {"authority": "SEAL", "fish": 23},
+      "actual_signer": "ATLAS",
+      "actual_order_cents": 24
+    }
+  ],
+  "state_transitions": {
+    "skip_no_trade": [
+      {"leg": "VRB", "enter_et": "2026-07-19T06:14:33-04:00", "exit_et": "2026-07-19T07:13:58-04:00", "observations": 349},
+      {"leg": "NIK", "enter_et": "2026-07-19T07:51:20-04:00", "exit_et": "2026-07-19T07:51:21-04:00", "observations": 4}
+    ],
+    "band": [
+      {"leg": "NIK", "time_et": "2026-07-19T06:28:57-04:00", "band": "ATP_CHALL-B4", "direction": "flat"},
+      {"leg": "VRB", "time_et": "2026-07-19T07:14:42-04:00", "band": "ATP_CHALL-B4", "direction": "flat"},
+      {"leg": "VRB", "time_et": "2026-07-19T11:09:33-04:00", "band": "ATP_CHALL-B2", "direction": "faller"}
+    ]
+  },
+  "fill_and_coupling": {
+    "NIK_fill": {
+      "time_et": "2026-07-19T10:39:57-04:00",
+      "price_cents": 24,
+      "delta_to_close_cents": 5,
+      "gap_to_fillable_low_cents": 6,
+      "resting_seconds": 10116.5,
+      "receipt": "bulk_fill_receipt"
+    },
+    "sibling_headroom": {
+      "combined_goal_cents": 97,
+      "filled_basis_cents": 24,
+      "VRB_target_cents": 73,
+      "first_reaim_et": "2026-07-19T10:40:14-04:00",
+      "VRB_low_before_reaim_cents": 70,
+      "VRB_min_after_reaim_cents": 74,
+      "minutes_after_VRB_low": 206.3,
+      "move_reposts": 9,
+      "window_truth_reaims": 5,
+      "filled": false
+    }
+  },
+  "wrongness_alarms": {
+    "FIT_CONSULT_KEY_MISMATCH": 5,
+    "FIT_CONTRACT_MISSING": 5,
+    "VERDICT_IGNORED": 2
+  },
+  "outcome": {
+    "pair_completed": false,
+    "filled_legs": ["NIK"],
+    "unfilled_legs": ["VRB"],
+    "combined_delta_cents": null,
+    "reason": "VRB lawful low occurred first; initial aims 67 and 65 were below its 70 floor; post-fill 73 headroom arrived after that low had passed."
+  }
+}

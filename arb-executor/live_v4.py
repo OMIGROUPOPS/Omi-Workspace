@@ -1975,6 +1975,9 @@ class LiveV3:
         # [C-STALE-ANCHOR-ALLOWANCE 07-10] tk -> last anchor age observed at
         # resolution (buys stamp it; the stale-vs-fresh cohort split)
         self._last_anchor_age: Dict[str, float] = {}
+        # One missing/stale-print condition can be observed on hundreds of
+        # BBO callbacks. Keep it as a durable state and log only transitions.
+        self._skip_no_trade_state: Dict[str, dict] = {}
         self.coarse_source = set()                     # [C-KALSHI-OCC] events started off the coarse Kalshi fallback
         # [C-SCHEDULE-TRUST-FIX] provenance of the stored start (source-priority corrections)
         self.event_start_source: Dict[str, str] = {}
@@ -5005,6 +5008,51 @@ class LiveV3:
                     target_bid = int(book.best_bid)
         return (anchor_price, anchor_src, cell, regime, placement_min, offset,
                 exp_fill, exp_roi, target_bid, table_src)
+
+    def _set_skip_no_trade_state(self, tk, active, details=None):
+        """Enter/update/exit the durable no-fresh-trade decision state.
+
+        Repeated BBO observations update counters in memory without emitting
+        another log row. Returns True only when the state transitions.
+        """
+        now = time.time()
+        details = dict(details or {})
+        state = self._skip_no_trade_state.get(tk)
+        if active:
+            if state is not None:
+                state["last_seen_ts"] = now
+                state["observations"] += 1
+                state["last_details"] = details
+                return False
+            state = {
+                "first_seen_ts": now,
+                "last_seen_ts": now,
+                "observations": 1,
+                "first_details": details,
+                "last_details": details,
+            }
+            self._skip_no_trade_state[tk] = state
+            self._log("skip_no_trade_state", {
+                "transition": "enter",
+                "state": "skip_no_trade",
+                **details,
+            }, ticker=tk)
+            return True
+
+        if state is None:
+            return False
+        self._skip_no_trade_state.pop(tk, None)
+        self._log("skip_no_trade_state", {
+            "transition": "exit",
+            "state": "skip_no_trade",
+            "first_seen_ts": state["first_seen_ts"],
+            "duration_sec": round(max(0.0, now - state["first_seen_ts"]), 3),
+            "observations": state["observations"],
+            "first_details": state["first_details"],
+            "last_details": state["last_details"],
+            **details,
+        }, ticker=tk)
+        return True
 
     def _initial_entry_aim(self, tk, current_price, atlas_depth):
         """Resolve exactly one initial-entry aim authority.
@@ -11452,13 +11500,32 @@ class LiveV3:
                                 ent = (_ej, "engagement_join", _ej, _ej_reg, 240, 0,
                                        0.0, 0.0, _ej, "engagement_wave1")
                     if ent is None:
-                        self.n_skips += 1
-                        self._log("skipped", {
-                            "reason": "skip_no_trade" if no_trade else "no_entry_table_row",
-                            "anchor_src": "skip_no_trade" if no_trade else None,
-                            "last_trade_age_sec": round(lt_age_sec, 1), "cat": cat,
-                            "price": int(round((book.best_bid + book.best_ask) / 2.0))}, ticker=tk)
+                        if no_trade:
+                            entered = self._set_skip_no_trade_state(tk, True, {
+                                "anchor_src": "skip_no_trade",
+                                "last_trade_age_sec": round(lt_age_sec, 1),
+                                "cat": cat,
+                                "price": int(round(
+                                    (book.best_bid + book.best_ask) / 2.0)),
+                            })
+                            if entered:
+                                self.n_skips += 1
+                        else:
+                            self.n_skips += 1
+                            self._log("skipped", {
+                                "reason": "no_entry_table_row",
+                                "anchor_src": None,
+                                "last_trade_age_sec": round(lt_age_sec, 1),
+                                "cat": cat,
+                                "price": int(round(
+                                    (book.best_bid + book.best_ask) / 2.0)),
+                            }, ticker=tk)
                         continue
+                if ent is not None:
+                    self._set_skip_no_trade_state(tk, False, {
+                        "resolved_by": ent[1],
+                        "cat": cat,
+                    })
                 (current_price, anchor_src, cell, regime, placement_min, offset,
                  exp_fill, exp_roi, target_bid, table_src) = ent
 

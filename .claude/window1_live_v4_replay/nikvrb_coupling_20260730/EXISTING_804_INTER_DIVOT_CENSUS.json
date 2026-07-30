@@ -1,0 +1,123 @@
+{
+  "by_category": {
+    "ATP_CHALL": {
+      "gap_minutes": {
+        "max": 467.486,
+        "p25": 58.038,
+        "p50": 123.349,
+        "p75": 226.2,
+        "p90": 297.337
+      },
+      "n": 346,
+      "ordering": {
+        "other_first": 131,
+        "riser_first": 215,
+        "riser_first_pct": 62.139
+      }
+    },
+    "ATP_MAIN": {
+      "gap_minutes": {
+        "max": 471.658,
+        "p25": 64.224,
+        "p50": 173.322,
+        "p75": 311.087,
+        "p90": 375.987
+      },
+      "n": 138,
+      "ordering": {
+        "other_first": 62,
+        "riser_first": 76,
+        "riser_first_pct": 55.072
+      }
+    },
+    "WTA_CHALL": {
+      "gap_minutes": {
+        "max": 385.589,
+        "p25": 41.445,
+        "p50": 90.364,
+        "p75": 153.731,
+        "p90": 244.242
+      },
+      "n": 133,
+      "ordering": {
+        "other_first": 51,
+        "riser_first": 82,
+        "riser_first_pct": 61.654
+      }
+    },
+    "WTA_MAIN": {
+      "gap_minutes": {
+        "max": 471.047,
+        "p25": 40.083,
+        "p50": 131.05,
+        "p75": 255.274,
+        "p90": 378.78
+      },
+      "n": 135,
+      "ordering": {
+        "other_first": 55,
+        "riser_first": 80,
+        "riser_first_pct": 59.259
+      }
+    }
+  },
+  "definitions": {
+    "divot_time": "timestamp of each leg's tape_low in the existing game grid",
+    "gap": "absolute difference between the two tape-low timestamps",
+    "riser": "grid native leader when present; otherwise the higher-priced leg at the retained Window-1 open. This is a corpus proxy, not an 804-event live _orientation_prior replay."
+  },
+  "overall": {
+    "gap_minutes": {
+      "max": 471.658,
+      "p25": 49.672,
+      "p50": 122.538,
+      "p75": 233.967,
+      "p90": 324.554
+    },
+    "n": 752,
+    "ordering": {
+      "other_first": 299,
+      "riser_first": 453,
+      "riser_first_pct": 60.239
+    }
+  },
+  "schema_version": "window1-existing-grid-inter-divot-census-v1",
+  "scope": {
+    "exclusions": {
+      "missing_one_or_both_tape_lows": 49,
+      "riser_role_unresolved": 3
+    },
+    "games_in_existing_grid": 804,
+    "role_sources": {
+      "grid_native_leader": 466,
+      "higher_window_open_proxy": 286
+    },
+    "usable_games": 752
+  },
+  "selected_event": {
+    "category": "ATP_CHALL",
+    "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+    "gap_minutes": 264.8921660343806,
+    "order": "riser_first",
+    "other_low_ts": 1784475529.709443,
+    "riser_leg_id": "VRB",
+    "riser_low_ts": 1784459636.179481,
+    "role_source": "grid_native_leader"
+  },
+  "source": ".claude/window1_t2_iteration_history/WINDOW1_T2_GAME_GRID.json",
+  "strict_native_leader_subset": {
+    "gap_minutes": {
+      "max": 467.486,
+      "p25": 51.601,
+      "p50": 111.798,
+      "p75": 204.866,
+      "p90": 285.04
+    },
+    "n": 466,
+    "ordering": {
+      "other_first": 176,
+      "riser_first": 290,
+      "riser_first_pct": 62.232
+    }
+  }
+}

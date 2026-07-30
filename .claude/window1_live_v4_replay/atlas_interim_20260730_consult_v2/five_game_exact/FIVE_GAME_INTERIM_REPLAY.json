@@ -1,0 +1,2076 @@
+{
+  "elapsed_seconds": 239.516,
+  "events": [
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+    "KXATPMATCH-26JUL12LAJVAN",
+    "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+    "KXWTAMATCH-26JUL20KORJIM"
+  ],
+  "fill_model": "RESTING_TOUCH_FILL_V1: a resting order fills in full when a later true print or opposite BBO touches or passes its limit; no depth, capacity, or five-contract proof gate.",
+  "modes": {
+    "ATLAS": {
+      "both_legs_negative_close_delta": 0,
+      "events": [
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "ATP_CHALL",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+          "legs": {
+            "BIG": {
+              "aim": {
+                "aim_contract": {
+                  "atlas_depth_cents": 3.0,
+                  "mode": "ATLAS",
+                  "status": "AVAILABLE"
+                },
+                "authority": "ATLAS",
+                "citation": "ATLAS_V1 ATP_CHALL|leader|51_75 (path bottom p50; cutover 07-14 operator word)",
+                "entry_governor": "trendpath_path_aim",
+                "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+                "from_target": 53,
+                "mode": "no_call_posture",
+                "page": "ATP_CHALL|leader|51_75",
+                "page_n": 1614,
+                "path_aim": 52
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "1a47d2f1-66ac-48e7-bbf4-b689c40199af",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG-1784475853-000001",
+                "price": 52,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 62
+            },
+            "HUR": {
+              "aim": {
+                "aim_contract": {
+                  "atlas_depth_cents": 4.0,
+                  "mode": "ATLAS",
+                  "status": "AVAILABLE"
+                },
+                "authority": "ATLAS",
+                "citation": "ATLAS_V1 ATP_CHALL|underdog|26_50 (path bottom p50; cutover 07-14 operator word)",
+                "entry_governor": "trendpath_path_aim",
+                "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+                "from_target": 47,
+                "mode": "no_call_posture",
+                "page": "ATP_CHALL|underdog|26_50",
+                "page_n": 1470,
+                "path_aim": 44
+              },
+              "fill": {
+                "best_ask_at_fill": 46,
+                "best_bid_at_fill": 45,
+                "depth_at_fill": 0,
+                "entry_avg_price_after_fill": 44,
+                "fill_price": 44,
+                "fill_trigger": "trade_print",
+                "last_trade_price_at_fill": 43,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR-1784476748-000002",
+                "post_telemetry": {
+                  "best_ask": 48,
+                  "best_bid": 47,
+                  "depth_at_price": 403,
+                  "fv_anchor": null,
+                  "last_trade_price": 48
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 9290.29,
+                "volume_at_or_through_lifetime": 5
+              },
+              "fill_minus_window1_close_cents": 6,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "32c62f4e-5976-4617-bf66-96bdce6697d5",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR-1784476748-000002",
+                "price": 44,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 38
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 2,
+            "FIT_CONTRACT_MISSING": 2,
+            "VERDICT_IGNORED": 1
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "ATP_CHALL",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+          "legs": {
+            "NIK": {
+              "aim": {
+                "aim_contract": {
+                  "atlas_depth_cents": 4.0,
+                  "mode": "ATLAS",
+                  "status": "AVAILABLE"
+                },
+                "authority": "ATLAS",
+                "citation": "ATLAS_V1 ATP_CHALL|underdog|26_50 (path bottom p50; cutover 07-14 operator word)",
+                "entry_governor": "trendpath_path_aim",
+                "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+                "from_target": 23,
+                "mode": "no_call_posture",
+                "page": "ATP_CHALL|underdog|26_50",
+                "page_n": 1470,
+                "path_aim": 29
+              },
+              "fill": {
+                "best_ask_at_fill": 28,
+                "best_bid_at_fill": 24,
+                "depth_at_fill": 0,
+                "entry_avg_price_after_fill": 24,
+                "fill_price": 24,
+                "fill_trigger": "trade_print",
+                "last_trade_price_at_fill": 24,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK-1784461881-000005",
+                "post_telemetry": {
+                  "best_ask": 27,
+                  "best_bid": 24,
+                  "depth_at_price": 10,
+                  "fv_anchor": null,
+                  "last_trade_price": 28
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 10116.5,
+                "volume_at_or_through_lifetime": 26
+              },
+              "fill_minus_window1_close_cents": 5,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "8753f093-387b-4ec2-8dd5-183beac5ffc2",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK-1784456885-000001",
+                "price": 29,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 19
+            },
+            "VRB": {
+              "aim": {
+                "aim_contract": {
+                  "atlas_depth_cents": 3.0,
+                  "mode": "ATLAS",
+                  "status": "AVAILABLE"
+                },
+                "authority": "ATLAS",
+                "citation": "ATLAS_V1 ATP_CHALL|leader|51_75 (path bottom p50; cutover 07-14 operator word)",
+                "entry_governor": "trendpath_path_aim",
+                "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+                "from_target": 67,
+                "mode": "no_call_posture",
+                "page": "ATP_CHALL|leader|51_75",
+                "page_n": 1614,
+                "path_aim": 67
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "266826d1-e44c-44fd-83ff-d5efbb5ad981",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB-1784459638-000003",
+                "price": 67,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 83
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 5,
+            "FIT_CONTRACT_MISSING": 5,
+            "VERDICT_IGNORED": 2
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "ATP_MAIN",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXATPMATCH-26JUL12LAJVAN",
+          "legs": {
+            "LAJ": {
+              "aim": {
+                "aim_contract": {
+                  "atlas_depth_cents": 4.0,
+                  "mode": "ATLAS",
+                  "status": "AVAILABLE"
+                },
+                "authority": "ATLAS",
+                "citation": "ATLAS_V1 ATP_MAIN|underdog|26_50 (path bottom p50; cutover 07-14 operator word)",
+                "entry_governor": "trendpath_path_aim",
+                "event": "KXATPMATCH-26JUL12LAJVAN",
+                "from_target": 49,
+                "mode": "no_call_posture",
+                "page": "ATP_MAIN|underdog|26_50",
+                "page_n": 422,
+                "path_aim": 45
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "82832fc5-0301-474e-a4d5-deb8a019694b",
+                "count": 5,
+                "order_id": "PAPER-KXATPMATCH-26JUL12LAJVAN-LAJ-1783850400-000002",
+                "price": 45,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": null
+            },
+            "VAN": {
+              "aim": {
+                "aim_contract": {
+                  "atlas_depth_cents": 5.0,
+                  "mode": "ATLAS",
+                  "status": "AVAILABLE"
+                },
+                "authority": "ATLAS",
+                "citation": "ATLAS_V1 ATP_MAIN|leader|51_75 (path bottom p50; cutover 07-14 operator word)",
+                "entry_governor": "trendpath_path_aim",
+                "event": "KXATPMATCH-26JUL12LAJVAN",
+                "from_target": 49,
+                "mode": "no_call_posture",
+                "page": "ATP_MAIN|leader|51_75",
+                "page_n": 569,
+                "path_aim": 46
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "cdee4d38-0c8f-43c5-bac2-59ef41a28978",
+                "count": 5,
+                "order_id": "PAPER-KXATPMATCH-26JUL12LAJVAN-VAN-1783850400-000001",
+                "price": 46,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 55
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 3,
+            "FIT_CONTRACT_MISSING": 3,
+            "VERDICT_IGNORED": 2
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "WTA_CHALL",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+          "legs": {
+            "BRA": {
+              "aim": {
+                "aim_contract": {
+                  "atlas_depth_cents": 3.0,
+                  "mode": "ATLAS",
+                  "status": "AVAILABLE"
+                },
+                "authority": "ATLAS",
+                "citation": "ATLAS_V1 WTA_CHALL|underdog|26_50 (path bottom p50; cutover 07-14 operator word)",
+                "entry_governor": "trendpath_path_aim",
+                "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+                "from_target": 39,
+                "mode": "no_call_posture",
+                "page": "WTA_CHALL|underdog|26_50",
+                "page_n": 251,
+                "path_aim": 36
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "613d92a6-ceaa-4b74-b0a4-eeb62534ddd9",
+                "count": 5,
+                "order_id": "PAPER-KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA-1784218828-000002",
+                "price": 36,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 46
+            },
+            "VED": {
+              "aim": {
+                "aim_contract": {
+                  "atlas_depth_cents": 3.0,
+                  "mode": "ATLAS",
+                  "status": "AVAILABLE"
+                },
+                "authority": "ATLAS",
+                "citation": "ATLAS_V1 WTA_CHALL|leader|51_75 (path bottom p50; cutover 07-14 operator word)",
+                "entry_governor": "trendpath_path_aim",
+                "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+                "from_target": 60,
+                "mode": "no_call_posture",
+                "page": "WTA_CHALL|leader|51_75",
+                "page_n": 290,
+                "path_aim": 58
+              },
+              "fill": {
+                "best_ask_at_fill": 58,
+                "best_bid_at_fill": 57,
+                "depth_at_fill": 4885,
+                "entry_avg_price_after_fill": 58,
+                "fill_price": 58,
+                "fill_trigger": "book_cross",
+                "last_trade_price_at_fill": 60,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXWTACHALLENGERMATCH-26JUL16BRAVED-VED-1784218828-000001",
+                "post_telemetry": {
+                  "best_ask": 61,
+                  "best_bid": 60,
+                  "depth_at_price": 5941,
+                  "fv_anchor": null,
+                  "last_trade_price": 61
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 6292.0,
+                "volume_at_or_through_lifetime": 0
+              },
+              "fill_minus_window1_close_cents": -5,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "e7d6e048-4283-40f6-a600-85f627625889",
+                "count": 5,
+                "order_id": "PAPER-KXWTACHALLENGERMATCH-26JUL16BRAVED-VED-1784218828-000001",
+                "price": 58,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 63
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 2,
+            "FIT_CONTRACT_MISSING": 2,
+            "VERDICT_IGNORED": 1
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "WTA_MAIN",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXWTAMATCH-26JUL20KORJIM",
+          "legs": {
+            "JIM": {
+              "aim": {
+                "aim_contract": {
+                  "atlas_depth_cents": 4.0,
+                  "mode": "ATLAS",
+                  "status": "AVAILABLE"
+                },
+                "authority": "ATLAS",
+                "citation": "ATLAS_V1 WTA_MAIN|underdog|26_50 (path bottom p50; cutover 07-14 operator word)",
+                "entry_governor": "trendpath_path_aim",
+                "event": "KXWTAMATCH-26JUL20KORJIM",
+                "from_target": 40,
+                "mode": "no_call_posture",
+                "page": "WTA_MAIN|underdog|26_50",
+                "page_n": 357,
+                "path_aim": 36
+              },
+              "fill": {
+                "best_ask_at_fill": 35,
+                "best_bid_at_fill": 34,
+                "depth_at_fill": 2400,
+                "entry_avg_price_after_fill": 36,
+                "fill_price": 36,
+                "fill_trigger": "book_cross",
+                "last_trade_price_at_fill": 39,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXWTAMATCH-26JUL20KORJIM-JIM-1784544109-000004",
+                "post_telemetry": {
+                  "best_ask": 37,
+                  "best_bid": 35,
+                  "depth_at_price": 0,
+                  "fv_anchor": null,
+                  "last_trade_price": 39
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 1122.0,
+                "volume_at_or_through_lifetime": 0
+              },
+              "fill_minus_window1_close_cents": -3,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "c0f37c9f-be2e-4044-bb95-05a4d4ae938c",
+                "count": 5,
+                "order_id": "PAPER-KXWTAMATCH-26JUL20KORJIM-JIM-1784530832-000002",
+                "price": 36,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 39
+            },
+            "KOR": {
+              "aim": {
+                "aim_contract": {
+                  "atlas_depth_cents": 5.0,
+                  "mode": "ATLAS",
+                  "status": "AVAILABLE"
+                },
+                "authority": "ATLAS",
+                "citation": "ATLAS_V1 WTA_MAIN|leader|51_75 (path bottom p50; cutover 07-14 operator word)",
+                "entry_governor": "trendpath_path_aim",
+                "event": "KXWTAMATCH-26JUL20KORJIM",
+                "from_target": 57,
+                "mode": "no_call_posture",
+                "page": "WTA_MAIN|leader|51_75",
+                "page_n": 401,
+                "path_aim": 55
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "c67fe75c-e17d-4b32-802a-bc4e366a94bb",
+                "count": 5,
+                "order_id": "PAPER-KXWTAMATCH-26JUL20KORJIM-KOR-1784516882-000001",
+                "price": 55,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 63
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 2,
+            "FIT_CONTRACT_MISSING": 2,
+            "VERDICT_IGNORED": 1
+          }
+        }
+      ],
+      "legs_filled": 4,
+      "negative_combined_delta_completions": 0,
+      "pair_completions": 0
+    },
+    "JOIN": {
+      "both_legs_negative_close_delta": 0,
+      "events": [
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "ATP_CHALL",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+          "legs": {
+            "BIG": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 55,
+                  "best_bid_cents": 53,
+                  "formula": "best_bid",
+                  "mode": "JOIN",
+                  "spread_cents": 2,
+                  "status": "AVAILABLE"
+                },
+                "authority": "JOIN",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+                "from_target": 53,
+                "mode": "table_free_join",
+                "page": "ATP_CHALL|leader|51_75",
+                "page_n": 1614,
+                "path_aim": 53
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "03b1a330-bc27-452d-af7f-81a62620d4a7",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG-1784475853-000001",
+                "price": 53,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 62
+            },
+            "HUR": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 48,
+                  "best_bid_cents": 47,
+                  "formula": "best_bid",
+                  "mode": "JOIN",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "JOIN",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+                "from_target": 47,
+                "mode": "table_free_join",
+                "page": "ATP_CHALL|underdog|26_50",
+                "page_n": 1470,
+                "path_aim": 44
+              },
+              "fill": {
+                "best_ask_at_fill": 46,
+                "best_bid_at_fill": 45,
+                "depth_at_fill": 0,
+                "entry_avg_price_after_fill": 44,
+                "fill_price": 44,
+                "fill_trigger": "trade_print",
+                "last_trade_price_at_fill": 43,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR-1784476748-000002",
+                "post_telemetry": {
+                  "best_ask": 48,
+                  "best_bid": 47,
+                  "depth_at_price": 403,
+                  "fv_anchor": null,
+                  "last_trade_price": 48
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 9290.29,
+                "volume_at_or_through_lifetime": 5
+              },
+              "fill_minus_window1_close_cents": 6,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "d4bad8ab-f3c5-4be1-90c7-fd3b3750a9de",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR-1784476748-000002",
+                "price": 44,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 38
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 2,
+            "FIT_CONTRACT_MISSING": 2,
+            "VERDICT_IGNORED": 1
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "ATP_CHALL",
+          "combined_delta_to_window1_close_cents": -9,
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+          "legs": {
+            "NIK": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 33,
+                  "best_bid_cents": 23,
+                  "formula": "best_bid",
+                  "mode": "JOIN",
+                  "spread_cents": 10,
+                  "status": "AVAILABLE"
+                },
+                "authority": "JOIN",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+                "from_target": 23,
+                "mode": "table_free_join",
+                "page": "ATP_CHALL|underdog|26_50",
+                "page_n": 1470,
+                "path_aim": 23
+              },
+              "fill": {
+                "best_ask_at_fill": 29,
+                "best_bid_at_fill": 25,
+                "depth_at_fill": 0,
+                "entry_avg_price_after_fill": 24,
+                "fill_price": 24,
+                "fill_trigger": "trade_print",
+                "last_trade_price_at_fill": 24,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK-1784473488-000009",
+                "post_telemetry": {
+                  "best_ask": 29,
+                  "best_bid": 25,
+                  "depth_at_price": 683,
+                  "fv_anchor": null,
+                  "last_trade_price": 30
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 244.42,
+                "volume_at_or_through_lifetime": 2
+              },
+              "fill_minus_window1_close_cents": 5,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "0ff723f8-da15-4735-942f-fe4a9abe8374",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK-1784456885-000001",
+                "price": 23,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 19
+            },
+            "VRB": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 70,
+                  "best_bid_cents": 69,
+                  "formula": "best_bid",
+                  "mode": "JOIN",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "JOIN",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+                "from_target": 67,
+                "mode": "table_free_join",
+                "page": "ATP_CHALL|leader|51_75",
+                "page_n": 1614,
+                "path_aim": 69
+              },
+              "fill": {
+                "best_ask_at_fill": 68,
+                "best_bid_at_fill": 67,
+                "depth_at_fill": 0,
+                "entry_avg_price_after_fill": 69,
+                "fill_price": 69,
+                "fill_trigger": "book_cross",
+                "last_trade_price_at_fill": 70,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB-1784459638-000002",
+                "post_telemetry": {
+                  "best_ask": 70,
+                  "best_bid": 69,
+                  "depth_at_price": 19,
+                  "fv_anchor": null,
+                  "last_trade_price": 70
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 84.0,
+                "volume_at_or_through_lifetime": 0
+              },
+              "fill_minus_window1_close_cents": -14,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "13ab8bcd-9f58-4ff6-a4a9-5b804488de2d",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB-1784459638-000002",
+                "price": 69,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 83
+            }
+          },
+          "pair_completed": true,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 2,
+            "FIT_CONTRACT_MISSING": 2,
+            "VERDICT_IGNORED": 1
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "ATP_MAIN",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXATPMATCH-26JUL12LAJVAN",
+          "legs": {
+            "LAJ": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 50,
+                  "best_bid_cents": 49,
+                  "formula": "best_bid",
+                  "mode": "JOIN",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "JOIN",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPMATCH-26JUL12LAJVAN",
+                "from_target": 49,
+                "mode": "table_free_join",
+                "page": "ATP_MAIN|underdog|26_50",
+                "page_n": 422,
+                "path_aim": 49
+              },
+              "fill": {
+                "best_ask_at_fill": 51,
+                "best_bid_at_fill": 50,
+                "depth_at_fill": 0,
+                "entry_avg_price_after_fill": 49,
+                "fill_price": 49,
+                "fill_trigger": "trade_print",
+                "last_trade_price_at_fill": 49,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXATPMATCH-26JUL12LAJVAN-LAJ-1783850400-000001",
+                "post_telemetry": {
+                  "best_ask": 50,
+                  "best_bid": 49,
+                  "depth_at_price": 655,
+                  "fv_anchor": null,
+                  "last_trade_price": 49
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 4668.09,
+                "volume_at_or_through_lifetime": 211
+              },
+              "fill_minus_window1_close_cents": null,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "2dbffea4-7828-4f21-a355-727880f6ac59",
+                "count": 5,
+                "order_id": "PAPER-KXATPMATCH-26JUL12LAJVAN-LAJ-1783850400-000001",
+                "price": 49,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": null
+            },
+            "VAN": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 50,
+                  "best_bid_cents": 49,
+                  "formula": "best_bid",
+                  "mode": "JOIN",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "JOIN",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPMATCH-26JUL12LAJVAN",
+                "from_target": 49,
+                "mode": "table_free_join",
+                "page": "ATP_MAIN|underdog|26_50",
+                "page_n": 422,
+                "path_aim": 48
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "5555eeaa-e173-4091-b379-fc2135bae1aa",
+                "count": 5,
+                "order_id": "PAPER-KXATPMATCH-26JUL12LAJVAN-VAN-1783852731-000002",
+                "price": 48,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 55
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 4,
+            "FIT_CONTRACT_MISSING": 4,
+            "VERDICT_IGNORED": 2
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "WTA_CHALL",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+          "legs": {
+            "BRA": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 40,
+                  "best_bid_cents": 39,
+                  "formula": "best_bid",
+                  "mode": "JOIN",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "JOIN",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+                "from_target": 39,
+                "mode": "table_free_join",
+                "page": "WTA_CHALL|underdog|26_50",
+                "page_n": 251,
+                "path_aim": 37
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "08c876aa-7e7e-4088-853e-cb907a35594c",
+                "count": 5,
+                "order_id": "PAPER-KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA-1784218828-000002",
+                "price": 37,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 46
+            },
+            "VED": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 61,
+                  "best_bid_cents": 60,
+                  "formula": "best_bid",
+                  "mode": "JOIN",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "JOIN",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+                "from_target": 60,
+                "mode": "table_free_join",
+                "page": "WTA_CHALL|leader|51_75",
+                "page_n": 290,
+                "path_aim": 60
+              },
+              "fill": {
+                "best_ask_at_fill": 61,
+                "best_bid_at_fill": 60,
+                "depth_at_fill": 0,
+                "entry_avg_price_after_fill": 60,
+                "fill_price": 60,
+                "fill_trigger": "trade_print",
+                "last_trade_price_at_fill": 60,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXWTACHALLENGERMATCH-26JUL16BRAVED-VED-1784218828-000001",
+                "post_telemetry": {
+                  "best_ask": 61,
+                  "best_bid": 60,
+                  "depth_at_price": 4794,
+                  "fv_anchor": null,
+                  "last_trade_price": 61
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 1668.49,
+                "volume_at_or_through_lifetime": 70
+              },
+              "fill_minus_window1_close_cents": -3,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "00e7a0be-63cf-4940-bf4d-e3f86cb55f1c",
+                "count": 5,
+                "order_id": "PAPER-KXWTACHALLENGERMATCH-26JUL16BRAVED-VED-1784218828-000001",
+                "price": 60,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 63
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 2,
+            "FIT_CONTRACT_MISSING": 2,
+            "VERDICT_IGNORED": 1
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "WTA_MAIN",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXWTAMATCH-26JUL20KORJIM",
+          "legs": {
+            "JIM": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 42,
+                  "best_bid_cents": 40,
+                  "formula": "best_bid",
+                  "mode": "JOIN",
+                  "spread_cents": 2,
+                  "status": "AVAILABLE"
+                },
+                "authority": "JOIN",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXWTAMATCH-26JUL20KORJIM",
+                "from_target": 40,
+                "mode": "table_free_join",
+                "page": "WTA_MAIN|underdog|26_50",
+                "page_n": 357,
+                "path_aim": 40
+              },
+              "fill": {
+                "best_ask_at_fill": 40,
+                "best_bid_at_fill": 39,
+                "depth_at_fill": 0,
+                "entry_avg_price_after_fill": 39,
+                "fill_price": 39,
+                "fill_trigger": "trade_print",
+                "last_trade_price_at_fill": 39,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXWTAMATCH-26JUL20KORJIM-JIM-1784539854-000003",
+                "post_telemetry": {
+                  "best_ask": 43,
+                  "best_bid": 39,
+                  "depth_at_price": 209,
+                  "fv_anchor": null,
+                  "last_trade_price": 40
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 2125.98,
+                "volume_at_or_through_lifetime": 1
+              },
+              "fill_minus_window1_close_cents": 0,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "f6f36bd3-fca3-4985-b524-64c7fb1b87ba",
+                "count": 5,
+                "order_id": "PAPER-KXWTAMATCH-26JUL20KORJIM-JIM-1784530832-000002",
+                "price": 40,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 39
+            },
+            "KOR": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 60,
+                  "best_bid_cents": 57,
+                  "formula": "best_bid",
+                  "mode": "JOIN",
+                  "spread_cents": 3,
+                  "status": "AVAILABLE"
+                },
+                "authority": "JOIN",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXWTAMATCH-26JUL20KORJIM",
+                "from_target": 57,
+                "mode": "table_free_join",
+                "page": "WTA_MAIN|leader|51_75",
+                "page_n": 401,
+                "path_aim": 57
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "49ba391b-b7aa-4822-ab39-374f3e759ab8",
+                "count": 5,
+                "order_id": "PAPER-KXWTAMATCH-26JUL20KORJIM-KOR-1784516882-000001",
+                "price": 57,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 63
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 2,
+            "FIT_CONTRACT_MISSING": 2,
+            "VERDICT_IGNORED": 1
+          }
+        }
+      ],
+      "legs_filled": 6,
+      "negative_combined_delta_completions": 1,
+      "pair_completions": 1
+    },
+    "ONE_SPREAD_BELOW_MID": {
+      "both_legs_negative_close_delta": 0,
+      "events": [
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "ATP_CHALL",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+          "legs": {
+            "BIG": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 55,
+                  "best_bid_cents": 53,
+                  "formula": "floor((best_bid+best_ask)/2-spread)",
+                  "mode": "ONE_SPREAD_BELOW_MID",
+                  "spread_cents": 2,
+                  "status": "AVAILABLE"
+                },
+                "authority": "ONE_SPREAD_BELOW_MID",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+                "from_target": 53,
+                "mode": "table_free_one_spread_below_mid",
+                "page": "ATP_CHALL|leader|51_75",
+                "page_n": 1614,
+                "path_aim": 52
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "40160a18-42ca-4cfd-b01c-d7028bafed98",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG-1784475853-000001",
+                "price": 52,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 62
+            },
+            "HUR": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 48,
+                  "best_bid_cents": 47,
+                  "formula": "floor((best_bid+best_ask)/2-spread)",
+                  "mode": "ONE_SPREAD_BELOW_MID",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "ONE_SPREAD_BELOW_MID",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+                "from_target": 47,
+                "mode": "table_free_one_spread_below_mid",
+                "page": "ATP_CHALL|underdog|26_50",
+                "page_n": 1470,
+                "path_aim": 45
+              },
+              "fill": {
+                "best_ask_at_fill": 46,
+                "best_bid_at_fill": 45,
+                "depth_at_fill": 0,
+                "entry_avg_price_after_fill": 44,
+                "fill_price": 44,
+                "fill_trigger": "trade_print",
+                "last_trade_price_at_fill": 43,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR-1784484949-000003",
+                "post_telemetry": {
+                  "best_ask": 46,
+                  "best_bid": 45,
+                  "depth_at_price": 250,
+                  "fv_anchor": null,
+                  "last_trade_price": 47
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 1089.29,
+                "volume_at_or_through_lifetime": 5
+              },
+              "fill_minus_window1_close_cents": 6,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "d294954e-89c2-4553-8d39-af6f84433a4e",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR-1784476748-000002",
+                "price": 45,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 38
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 3,
+            "FIT_CONTRACT_MISSING": 3,
+            "VERDICT_IGNORED": 2
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "ATP_CHALL",
+          "combined_delta_to_window1_close_cents": -10,
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+          "legs": {
+            "NIK": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 33,
+                  "best_bid_cents": 23,
+                  "formula": "floor((best_bid+best_ask)/2-spread)",
+                  "mode": "ONE_SPREAD_BELOW_MID",
+                  "spread_cents": 10,
+                  "status": "AVAILABLE"
+                },
+                "authority": "ONE_SPREAD_BELOW_MID",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+                "from_target": 23,
+                "mode": "table_free_one_spread_below_mid",
+                "page": "ATP_CHALL|underdog|26_50",
+                "page_n": 1470,
+                "path_aim": 18
+              },
+              "fill": {
+                "best_ask_at_fill": 29,
+                "best_bid_at_fill": 25,
+                "depth_at_fill": 0,
+                "entry_avg_price_after_fill": 24,
+                "fill_price": 24,
+                "fill_trigger": "trade_print",
+                "last_trade_price_at_fill": 24,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK-1784473488-000009",
+                "post_telemetry": {
+                  "best_ask": 29,
+                  "best_bid": 25,
+                  "depth_at_price": 683,
+                  "fv_anchor": null,
+                  "last_trade_price": 30
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 244.42,
+                "volume_at_or_through_lifetime": 2
+              },
+              "fill_minus_window1_close_cents": 5,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "70b6621a-5ce8-4bb8-8608-c429fc2ef7b9",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK-1784456885-000001",
+                "price": 18,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 19
+            },
+            "VRB": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 70,
+                  "best_bid_cents": 69,
+                  "formula": "floor((best_bid+best_ask)/2-spread)",
+                  "mode": "ONE_SPREAD_BELOW_MID",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "ONE_SPREAD_BELOW_MID",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+                "from_target": 67,
+                "mode": "table_free_one_spread_below_mid",
+                "page": "ATP_CHALL|leader|51_75",
+                "page_n": 1614,
+                "path_aim": 68
+              },
+              "fill": {
+                "best_ask_at_fill": 68,
+                "best_bid_at_fill": 67,
+                "depth_at_fill": 110,
+                "entry_avg_price_after_fill": 68,
+                "fill_price": 68,
+                "fill_trigger": "book_cross",
+                "last_trade_price_at_fill": 70,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB-1784459638-000002",
+                "post_telemetry": {
+                  "best_ask": 70,
+                  "best_bid": 69,
+                  "depth_at_price": 0,
+                  "fv_anchor": null,
+                  "last_trade_price": 70
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 84.0,
+                "volume_at_or_through_lifetime": 0
+              },
+              "fill_minus_window1_close_cents": -15,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "e547b223-72c3-4ac3-a540-60c8b5c78c4b",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB-1784459638-000002",
+                "price": 68,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 83
+            }
+          },
+          "pair_completed": true,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 2,
+            "FIT_CONTRACT_MISSING": 2,
+            "VERDICT_IGNORED": 1
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "ATP_MAIN",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXATPMATCH-26JUL12LAJVAN",
+          "legs": {
+            "LAJ": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 50,
+                  "best_bid_cents": 49,
+                  "formula": "floor((best_bid+best_ask)/2-spread)",
+                  "mode": "ONE_SPREAD_BELOW_MID",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "ONE_SPREAD_BELOW_MID",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPMATCH-26JUL12LAJVAN",
+                "from_target": 49,
+                "mode": "table_free_one_spread_below_mid",
+                "page": "ATP_MAIN|underdog|26_50",
+                "page_n": 422,
+                "path_aim": 48
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "8d073daa-c179-4545-90cf-da92eadbdb7a",
+                "count": 5,
+                "order_id": "PAPER-KXATPMATCH-26JUL12LAJVAN-LAJ-1783850400-000001",
+                "price": 48,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": null
+            },
+            "VAN": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 50,
+                  "best_bid_cents": 49,
+                  "formula": "floor((best_bid+best_ask)/2-spread)",
+                  "mode": "ONE_SPREAD_BELOW_MID",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "ONE_SPREAD_BELOW_MID",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPMATCH-26JUL12LAJVAN",
+                "from_target": 49,
+                "mode": "table_free_one_spread_below_mid",
+                "page": "ATP_MAIN|underdog|26_50",
+                "page_n": 422,
+                "path_aim": 48
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "0c55a2bb-ab8d-47d0-b6a4-138c169df850",
+                "count": 5,
+                "order_id": "PAPER-KXATPMATCH-26JUL12LAJVAN-VAN-1783852731-000002",
+                "price": 48,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 55
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 7,
+            "FIT_CONTRACT_MISSING": 7,
+            "VERDICT_IGNORED": 5
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "WTA_CHALL",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+          "legs": {
+            "BRA": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 40,
+                  "best_bid_cents": 39,
+                  "formula": "floor((best_bid+best_ask)/2-spread)",
+                  "mode": "ONE_SPREAD_BELOW_MID",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "ONE_SPREAD_BELOW_MID",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+                "from_target": 39,
+                "mode": "table_free_one_spread_below_mid",
+                "page": "WTA_CHALL|underdog|26_50",
+                "page_n": 251,
+                "path_aim": 38
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "d17f4def-2f1d-4c1a-a868-e2147c3466b6",
+                "count": 5,
+                "order_id": "PAPER-KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA-1784218828-000002",
+                "price": 38,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 46
+            },
+            "VED": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 61,
+                  "best_bid_cents": 60,
+                  "formula": "floor((best_bid+best_ask)/2-spread)",
+                  "mode": "ONE_SPREAD_BELOW_MID",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "ONE_SPREAD_BELOW_MID",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+                "from_target": 60,
+                "mode": "table_free_one_spread_below_mid",
+                "page": "WTA_CHALL|leader|51_75",
+                "page_n": 290,
+                "path_aim": 59
+              },
+              "fill": {
+                "best_ask_at_fill": 58,
+                "best_bid_at_fill": 57,
+                "depth_at_fill": 4885,
+                "entry_avg_price_after_fill": 58,
+                "fill_price": 58,
+                "fill_trigger": "book_cross",
+                "last_trade_price_at_fill": 60,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXWTACHALLENGERMATCH-26JUL16BRAVED-VED-1784225120-000003",
+                "post_telemetry": {
+                  "best_ask": 60,
+                  "best_bid": 59,
+                  "depth_at_price": 50,
+                  "fv_anchor": null,
+                  "last_trade_price": 60
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 0.0,
+                "volume_at_or_through_lifetime": 0
+              },
+              "fill_minus_window1_close_cents": -5,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "fdb570d9-f6dc-4aac-9d25-537d0cdd290c",
+                "count": 5,
+                "order_id": "PAPER-KXWTACHALLENGERMATCH-26JUL16BRAVED-VED-1784218828-000001",
+                "price": 59,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 63
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 3,
+            "FIT_CONTRACT_MISSING": 3,
+            "VERDICT_IGNORED": 2
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "WTA_MAIN",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXWTAMATCH-26JUL20KORJIM",
+          "legs": {
+            "JIM": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 42,
+                  "best_bid_cents": 40,
+                  "formula": "floor((best_bid+best_ask)/2-spread)",
+                  "mode": "ONE_SPREAD_BELOW_MID",
+                  "spread_cents": 2,
+                  "status": "AVAILABLE"
+                },
+                "authority": "ONE_SPREAD_BELOW_MID",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXWTAMATCH-26JUL20KORJIM",
+                "from_target": 40,
+                "mode": "table_free_one_spread_below_mid",
+                "page": "WTA_MAIN|underdog|26_50",
+                "page_n": 357,
+                "path_aim": 39
+              },
+              "fill": {
+                "best_ask_at_fill": 40,
+                "best_bid_at_fill": 39,
+                "depth_at_fill": 0,
+                "entry_avg_price_after_fill": 39,
+                "fill_price": 39,
+                "fill_trigger": "trade_print",
+                "last_trade_price_at_fill": 39,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXWTAMATCH-26JUL20KORJIM-JIM-1784530832-000002",
+                "post_telemetry": {
+                  "best_ask": 42,
+                  "best_bid": 40,
+                  "depth_at_price": 1009,
+                  "fv_anchor": null,
+                  "last_trade_price": 40
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 11147.98,
+                "volume_at_or_through_lifetime": 1
+              },
+              "fill_minus_window1_close_cents": 0,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "f3d0398e-1132-43f1-bc10-ade350fd23af",
+                "count": 5,
+                "order_id": "PAPER-KXWTAMATCH-26JUL20KORJIM-JIM-1784530832-000002",
+                "price": 39,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 39
+            },
+            "KOR": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 60,
+                  "best_bid_cents": 57,
+                  "formula": "floor((best_bid+best_ask)/2-spread)",
+                  "mode": "ONE_SPREAD_BELOW_MID",
+                  "spread_cents": 3,
+                  "status": "AVAILABLE"
+                },
+                "authority": "ONE_SPREAD_BELOW_MID",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXWTAMATCH-26JUL20KORJIM",
+                "from_target": 57,
+                "mode": "table_free_one_spread_below_mid",
+                "page": "WTA_MAIN|leader|51_75",
+                "page_n": 401,
+                "path_aim": 55
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "f9ccd3ea-e9ac-4f0a-a5c3-7427393aab56",
+                "count": 5,
+                "order_id": "PAPER-KXWTAMATCH-26JUL20KORJIM-KOR-1784516882-000001",
+                "price": 55,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 63
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 2,
+            "FIT_CONTRACT_MISSING": 2,
+            "VERDICT_IGNORED": 1
+          }
+        }
+      ],
+      "legs_filled": 5,
+      "negative_combined_delta_completions": 1,
+      "pair_completions": 1
+    },
+    "TOUCH_MINUS_1": {
+      "both_legs_negative_close_delta": 0,
+      "events": [
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "ATP_CHALL",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+          "legs": {
+            "BIG": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 55,
+                  "best_bid_cents": 53,
+                  "formula": "best_bid-1",
+                  "mode": "TOUCH_MINUS_1",
+                  "spread_cents": 2,
+                  "status": "AVAILABLE"
+                },
+                "authority": "TOUCH_MINUS_1",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+                "from_target": 53,
+                "mode": "table_free_touch_minus_1",
+                "page": "ATP_CHALL|leader|51_75",
+                "page_n": 1614,
+                "path_aim": 52
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "a2b19ee2-acde-4996-b6b3-ab6e71cedbae",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG-1784475853-000001",
+                "price": 52,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 62
+            },
+            "HUR": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 48,
+                  "best_bid_cents": 47,
+                  "formula": "best_bid-1",
+                  "mode": "TOUCH_MINUS_1",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "TOUCH_MINUS_1",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+                "from_target": 47,
+                "mode": "table_free_touch_minus_1",
+                "page": "ATP_CHALL|underdog|26_50",
+                "page_n": 1470,
+                "path_aim": 45
+              },
+              "fill": {
+                "best_ask_at_fill": 46,
+                "best_bid_at_fill": 45,
+                "depth_at_fill": 0,
+                "entry_avg_price_after_fill": 44,
+                "fill_price": 44,
+                "fill_trigger": "trade_print",
+                "last_trade_price_at_fill": 43,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR-1784484949-000003",
+                "post_telemetry": {
+                  "best_ask": 46,
+                  "best_bid": 45,
+                  "depth_at_price": 250,
+                  "fv_anchor": null,
+                  "last_trade_price": 47
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 1089.29,
+                "volume_at_or_through_lifetime": 5
+              },
+              "fill_minus_window1_close_cents": 6,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "f447424c-8996-44e6-a5e0-fc84dc1a8016",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR-1784476748-000002",
+                "price": 45,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 38
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 3,
+            "FIT_CONTRACT_MISSING": 3,
+            "VERDICT_IGNORED": 2
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "ATP_CHALL",
+          "combined_delta_to_window1_close_cents": -10,
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+          "legs": {
+            "NIK": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 33,
+                  "best_bid_cents": 23,
+                  "formula": "best_bid-1",
+                  "mode": "TOUCH_MINUS_1",
+                  "spread_cents": 10,
+                  "status": "AVAILABLE"
+                },
+                "authority": "TOUCH_MINUS_1",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+                "from_target": 23,
+                "mode": "table_free_touch_minus_1",
+                "page": "ATP_CHALL|underdog|26_50",
+                "page_n": 1470,
+                "path_aim": 22
+              },
+              "fill": {
+                "best_ask_at_fill": 29,
+                "best_bid_at_fill": 25,
+                "depth_at_fill": 0,
+                "entry_avg_price_after_fill": 24,
+                "fill_price": 24,
+                "fill_trigger": "trade_print",
+                "last_trade_price_at_fill": 24,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK-1784473488-000009",
+                "post_telemetry": {
+                  "best_ask": 29,
+                  "best_bid": 25,
+                  "depth_at_price": 683,
+                  "fv_anchor": null,
+                  "last_trade_price": 30
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 244.42,
+                "volume_at_or_through_lifetime": 2
+              },
+              "fill_minus_window1_close_cents": 5,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "cf2e0696-2125-4244-a3f4-11fca3c5f93e",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK-1784456885-000001",
+                "price": 22,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 19
+            },
+            "VRB": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 70,
+                  "best_bid_cents": 69,
+                  "formula": "best_bid-1",
+                  "mode": "TOUCH_MINUS_1",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "TOUCH_MINUS_1",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+                "from_target": 67,
+                "mode": "table_free_touch_minus_1",
+                "page": "ATP_CHALL|leader|51_75",
+                "page_n": 1614,
+                "path_aim": 68
+              },
+              "fill": {
+                "best_ask_at_fill": 68,
+                "best_bid_at_fill": 67,
+                "depth_at_fill": 110,
+                "entry_avg_price_after_fill": 68,
+                "fill_price": 68,
+                "fill_trigger": "book_cross",
+                "last_trade_price_at_fill": 70,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB-1784459638-000002",
+                "post_telemetry": {
+                  "best_ask": 70,
+                  "best_bid": 69,
+                  "depth_at_price": 0,
+                  "fv_anchor": null,
+                  "last_trade_price": 70
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 84.0,
+                "volume_at_or_through_lifetime": 0
+              },
+              "fill_minus_window1_close_cents": -15,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "b270d773-34bb-48ef-9215-8d66353f6241",
+                "count": 5,
+                "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB-1784459638-000002",
+                "price": 68,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 83
+            }
+          },
+          "pair_completed": true,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 2,
+            "FIT_CONTRACT_MISSING": 2,
+            "VERDICT_IGNORED": 1
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "ATP_MAIN",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXATPMATCH-26JUL12LAJVAN",
+          "legs": {
+            "LAJ": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 50,
+                  "best_bid_cents": 49,
+                  "formula": "best_bid-1",
+                  "mode": "TOUCH_MINUS_1",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "TOUCH_MINUS_1",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPMATCH-26JUL12LAJVAN",
+                "from_target": 49,
+                "mode": "table_free_touch_minus_1",
+                "page": "ATP_MAIN|underdog|26_50",
+                "page_n": 422,
+                "path_aim": 48
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "6b40e1fa-1808-47fe-a912-d47d5d244094",
+                "count": 5,
+                "order_id": "PAPER-KXATPMATCH-26JUL12LAJVAN-LAJ-1783850400-000001",
+                "price": 48,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": null
+            },
+            "VAN": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 50,
+                  "best_bid_cents": 49,
+                  "formula": "best_bid-1",
+                  "mode": "TOUCH_MINUS_1",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "TOUCH_MINUS_1",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXATPMATCH-26JUL12LAJVAN",
+                "from_target": 49,
+                "mode": "table_free_touch_minus_1",
+                "page": "ATP_MAIN|underdog|26_50",
+                "page_n": 422,
+                "path_aim": 48
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "5cffb24c-ea65-40e5-b7af-1b9c1286967d",
+                "count": 5,
+                "order_id": "PAPER-KXATPMATCH-26JUL12LAJVAN-VAN-1783852731-000002",
+                "price": 48,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 55
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 7,
+            "FIT_CONTRACT_MISSING": 7,
+            "VERDICT_IGNORED": 5
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "WTA_CHALL",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+          "legs": {
+            "BRA": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 40,
+                  "best_bid_cents": 39,
+                  "formula": "best_bid-1",
+                  "mode": "TOUCH_MINUS_1",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "TOUCH_MINUS_1",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+                "from_target": 39,
+                "mode": "table_free_touch_minus_1",
+                "page": "WTA_CHALL|underdog|26_50",
+                "page_n": 251,
+                "path_aim": 38
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "6e08a2a1-1545-44a4-8e8b-496460e83760",
+                "count": 5,
+                "order_id": "PAPER-KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA-1784218828-000002",
+                "price": 38,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 46
+            },
+            "VED": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 61,
+                  "best_bid_cents": 60,
+                  "formula": "best_bid-1",
+                  "mode": "TOUCH_MINUS_1",
+                  "spread_cents": 1,
+                  "status": "AVAILABLE"
+                },
+                "authority": "TOUCH_MINUS_1",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+                "from_target": 60,
+                "mode": "table_free_touch_minus_1",
+                "page": "WTA_CHALL|leader|51_75",
+                "page_n": 290,
+                "path_aim": 59
+              },
+              "fill": {
+                "best_ask_at_fill": 58,
+                "best_bid_at_fill": 57,
+                "depth_at_fill": 4885,
+                "entry_avg_price_after_fill": 58,
+                "fill_price": 58,
+                "fill_trigger": "book_cross",
+                "last_trade_price_at_fill": 60,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXWTACHALLENGERMATCH-26JUL16BRAVED-VED-1784225120-000003",
+                "post_telemetry": {
+                  "best_ask": 60,
+                  "best_bid": 59,
+                  "depth_at_price": 50,
+                  "fv_anchor": null,
+                  "last_trade_price": 60
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 0.0,
+                "volume_at_or_through_lifetime": 0
+              },
+              "fill_minus_window1_close_cents": -5,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "50c34b1e-59e2-4191-a089-b73263087747",
+                "count": 5,
+                "order_id": "PAPER-KXWTACHALLENGERMATCH-26JUL16BRAVED-VED-1784218828-000001",
+                "price": 59,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 63
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 3,
+            "FIT_CONTRACT_MISSING": 3,
+            "VERDICT_IGNORED": 2
+          }
+        },
+        {
+          "both_legs_negative_close_delta": false,
+          "category": "WTA_MAIN",
+          "combined_delta_to_window1_close_cents": null,
+          "event_id": "KXWTAMATCH-26JUL20KORJIM",
+          "legs": {
+            "JIM": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 42,
+                  "best_bid_cents": 40,
+                  "formula": "best_bid-1",
+                  "mode": "TOUCH_MINUS_1",
+                  "spread_cents": 2,
+                  "status": "AVAILABLE"
+                },
+                "authority": "TOUCH_MINUS_1",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXWTAMATCH-26JUL20KORJIM",
+                "from_target": 40,
+                "mode": "table_free_touch_minus_1",
+                "page": "WTA_MAIN|underdog|26_50",
+                "page_n": 357,
+                "path_aim": 39
+              },
+              "fill": {
+                "best_ask_at_fill": 40,
+                "best_bid_at_fill": 39,
+                "depth_at_fill": 0,
+                "entry_avg_price_after_fill": 39,
+                "fill_price": 39,
+                "fill_trigger": "trade_print",
+                "last_trade_price_at_fill": 39,
+                "net_qty_after_fill": 5,
+                "order_id": "PAPER-KXWTAMATCH-26JUL20KORJIM-JIM-1784530832-000002",
+                "post_telemetry": {
+                  "best_ask": 42,
+                  "best_bid": 40,
+                  "depth_at_price": 1009,
+                  "fv_anchor": null,
+                  "last_trade_price": 40
+                },
+                "qty": 5,
+                "realized_pnl_cents": null,
+                "time_to_fill_sec": 11147.98,
+                "volume_at_or_through_lifetime": 1
+              },
+              "fill_minus_window1_close_cents": 0,
+              "filled": true,
+              "order": {
+                "action": "buy",
+                "client_order_id": "9468c029-75d7-489b-87f2-fe73ffabde8f",
+                "count": 5,
+                "order_id": "PAPER-KXWTAMATCH-26JUL20KORJIM-JIM-1784530832-000002",
+                "price": 39,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 39
+            },
+            "KOR": {
+              "aim": {
+                "aim_contract": {
+                  "best_ask_cents": 60,
+                  "best_bid_cents": 57,
+                  "formula": "best_bid-1",
+                  "mode": "TOUCH_MINUS_1",
+                  "spread_cents": 3,
+                  "status": "AVAILABLE"
+                },
+                "authority": "TOUCH_MINUS_1",
+                "citation": "TABLE_FREE_SPREAD_RELATIVE_V1",
+                "entry_governor": "table_free_spread_relative",
+                "event": "KXWTAMATCH-26JUL20KORJIM",
+                "from_target": 57,
+                "mode": "table_free_touch_minus_1",
+                "page": "WTA_MAIN|leader|51_75",
+                "page_n": 401,
+                "path_aim": 56
+              },
+              "fill": null,
+              "fill_minus_window1_close_cents": null,
+              "filled": false,
+              "order": {
+                "action": "buy",
+                "client_order_id": "f9bcd56a-1d51-4db0-a3d5-8982cd7cd9e8",
+                "count": 5,
+                "order_id": "PAPER-KXWTAMATCH-26JUL20KORJIM-KOR-1784516882-000001",
+                "price": 56,
+                "response_status": "resting",
+                "side": "yes"
+              },
+              "window1_close_cents": 63
+            }
+          },
+          "pair_completed": false,
+          "wrongness_alarm_counts": {
+            "FIT_CONSULT_KEY_MISMATCH": 2,
+            "FIT_CONTRACT_MISSING": 2,
+            "VERDICT_IGNORED": 1
+          }
+        }
+      ],
+      "legs_filled": 5,
+      "negative_combined_delta_completions": 1,
+      "pair_completions": 1
+    }
+  },
+  "schema_version": "window1-atlas-interim-five-exact-v1"
+}

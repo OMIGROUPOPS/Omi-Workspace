@@ -46,6 +46,16 @@ from cryptography.hazmat.primitives.asymmetric import padding
 from fv import get_consensus_fv, check_fv_stability
 
 try:
+    from wrongness_monitor import (
+        VerdictMonitor,
+        WrongnessAlarm,
+        audit_surface_consult,
+    )
+    WRONGNESS_MONITOR_AVAILABLE = True
+except ImportError:
+    WRONGNESS_MONITOR_AVAILABLE = False
+
+try:
     from intelligence import recommended_window_seconds, kalshi_price_anchor
     INTELLIGENCE_AVAILABLE = True
 except ImportError:
@@ -3277,7 +3287,12 @@ class LiveV3:
             )
             bot9 = (sv9 or {}).get("bottom") or {}
             # 1) the atlas page (prices the aim)
-            D["atlas_page"] = {"status": "CONSULTED",
+            _aim_mode = str(self.config.get(
+                "interim_entry_aim_mode", "ATLAS")).upper()
+            D["atlas_page"] = {
+                               "status": ("CONSULTED"
+                                          if _aim_mode == "ATLAS"
+                                          else "OBSERVED_NOT_AUTHORITY"),
                                "page": (sv9 or {}).get("page"),
                                "n": (sv9 or {}).get("n"),
                                "bottom_p25_50_75": [bot9.get("depth_p25"),
@@ -3690,8 +3705,107 @@ class LiveV3:
                 "surfaces": D,
                 "law": "C-VAULT-WIRED-ENTRY v1 (a silently-ignored "
                        "surface is a named violation)"}, ticker=tk)
+            self._observe_wrongness(
+                tk=tk,
+                event_ticker=et,
+                category=cat,
+                decision=decision,
+                selector=sv9 or {},
+                dossier=D,
+            )
         except Exception:
             pass
+
+    def _emit_wrongness_alarms(self, alarms, context):
+        """Log semantic-contract failures without changing the decision."""
+        if str(self.config.get(
+                "wrongness_monitor_mode", "off")).lower() != "observe_only":
+            return
+        for alarm in alarms or ():
+            payload = (
+                alarm.as_dict()
+                if hasattr(alarm, "as_dict")
+                else dict(alarm)
+            )
+            self._log("wrongness_alarm", {
+                "mode": "observe_only",
+                "would_severity": payload.get("severity"),
+                "code": payload.get("code"),
+                "details": payload.get("details") or {},
+                **context,
+            }, ticker=context.get("ticker") or "")
+
+    def _observe_wrongness(self, tk, event_ticker, category, decision,
+                           selector, dossier):
+        """Observe current surface/key and verdict/effect mismatches.
+
+        This is deliberately non-enforcing.  It measures how often the
+        existing path consults a surface on a different key than its fit,
+        consumes a thin/contractless row, or posts after a computed refusal.
+        """
+        if (
+            str(self.config.get(
+                "wrongness_monitor_mode", "off")).lower() != "observe_only"
+            or not WRONGNESS_MONITOR_AVAILABLE
+        ):
+            return
+        lineage = dossier.get("consultation_lineage") or {}
+        page = selector.get("page")
+        base_context = {
+            "event": event_ticker,
+            "ticker": tk,
+            "category": category,
+            "consulted_at_ts": lineage.get("consulted_at_ts"),
+        }
+        if page:
+            alarms = audit_surface_consult(
+                "ATLAS_V1:" + str(page),
+                {
+                    "price_source": "first_hour_median",
+                    "timestamp_semantics": "first_hour_discovery_interval",
+                },
+                {
+                    "price_source": lineage.get("anchor_source"),
+                    "timestamp_semantics": "exact_consultation_time",
+                },
+                selector.get("n"),
+            )
+            self._emit_wrongness_alarms(alarms, base_context)
+
+        cohort = dossier.get("cohort") or {}
+        if cohort.get("status") in {"CONSULTED", "THIN"}:
+            alarms = audit_surface_consult(
+                "COHORT:" + str(cohort.get("cell")),
+                None,
+                {
+                    "price_source": lineage.get("anchor_source"),
+                    "timestamp_semantics": "exact_consultation_time",
+                },
+                cohort.get("n"),
+            )
+            self._emit_wrongness_alarms(alarms, base_context)
+
+        verdict = selector.get("selector")
+        actual_effect = (
+            "POST" if str(decision).startswith("placed:") else "REFUSE"
+        )
+        expected_effect = "REFUSE" if verdict == "DROP" else actual_effect
+        monitor = VerdictMonitor()
+        decision_id = "%s|%s|%s|contention" % (
+            event_ticker,
+            tk,
+            lineage.get("consulted_at_ts"),
+        )
+        monitor.record(
+            decision_id,
+            tk,
+            verdict,
+            expected_effect=expected_effect,
+        )
+        self._emit_wrongness_alarms(
+            monitor.observe(decision_id, effect=actual_effect),
+            base_context,
+        )
 
     def _orient_table(self):
         """ORIENT_V1 hot-reload (refits nightly with the atlas)."""
@@ -4891,6 +5005,71 @@ class LiveV3:
                     target_bid = int(book.best_bid)
         return (anchor_price, anchor_src, cell, regime, placement_min, offset,
                 exp_fill, exp_roi, target_bid, table_src)
+
+    def _initial_entry_aim(self, tk, current_price, atlas_depth):
+        """Resolve exactly one initial-entry aim authority.
+
+        ``ATLAS`` preserves the deployed path.  The three table-free modes are
+        explicit counterfactual/interim authorities: they read only the
+        synchronous BBO already captured for this decision and never borrow a
+        fitted row.  A missing or crossed denominator refuses instead of
+        falling back to a cent line.
+        """
+        mode = str(self.config.get(
+            "interim_entry_aim_mode", "ATLAS")).upper()
+        if mode == "ATLAS":
+            if atlas_depth is None:
+                return None, {
+                    "mode": mode,
+                    "status": "NO_ATLAS_PAGE",
+                }
+            return max(1, int(round(
+                float(current_price) - float(atlas_depth)
+            ))), {
+                "mode": mode,
+                "status": "AVAILABLE",
+                "atlas_depth_cents": float(atlas_depth),
+            }
+        if mode not in {
+            "JOIN",
+            "TOUCH_MINUS_1",
+            "ONE_SPREAD_BELOW_MID",
+        }:
+            return None, {
+                "mode": mode,
+                "status": "UNKNOWN_AUTHORITY",
+            }
+        book = self.books.get(tk)
+        bid = int(book.best_bid) if book is not None else 0
+        ask = int(book.best_ask) if book is not None else 100
+        spread = ask - bid
+        if bid <= 0 or ask >= 100 or spread <= 0:
+            return None, {
+                "mode": mode,
+                "status": "NO_DENOMINATOR",
+                "best_bid_cents": bid,
+                "best_ask_cents": ask,
+            }
+        if mode == "JOIN":
+            target = bid
+        elif mode == "TOUCH_MINUS_1":
+            target = bid - 1
+        else:
+            target = math.floor((bid + ask) / 2.0 - spread)
+        return max(1, int(target)), {
+            "mode": mode,
+            "status": "AVAILABLE",
+            "best_bid_cents": bid,
+            "best_ask_cents": ask,
+            "spread_cents": spread,
+            "formula": {
+                "JOIN": "best_bid",
+                "TOUCH_MINUS_1": "best_bid-1",
+                "ONE_SPREAD_BELOW_MID": (
+                    "floor((best_bid+best_ask)/2-spread)"
+                ),
+            }[mode],
+        }
 
     def _load_exit_table(self):
         """Load the 4 {category}_adaptive_exit_bands.parquet into
@@ -11786,7 +11965,9 @@ class LiveV3:
                     except Exception:
                         _sv9 = None
                 _d509 = ((_sv9 or {}).get("bottom") or {}).get("depth_p50")
-                if _d509 is None:
+                _aim_mode9 = str(self.config.get(
+                    "interim_entry_aim_mode", "ATLAS")).upper()
+                if _d509 is None and _aim_mode9 == "ATLAS":
                     self._log("no_path_page_refused", {
                         "event": et, "cat": cat,
                         "discovery": current_price,
@@ -11822,9 +12003,32 @@ class LiveV3:
                         lt_age=round(lt_age_sec, 1))
                     continue
                 if True:
-                    _pa9 = max(1, int(round(current_price - _d509)))
-                    _mode9 = "no_call_posture"
-                    if self.config.get("orientation_live", False):
+                    _pa9, _aim_contract9 = self._initial_entry_aim(
+                        tk, current_price, _d509)
+                    if _pa9 is None:
+                        self._log("entry_aim_refused", {
+                            "event": et,
+                            "cat": cat,
+                            "authority": _aim_mode9,
+                            **_aim_contract9,
+                        }, ticker=tk)
+                        self._entry_dossier(
+                            tk, et, cat, current_price, None,
+                            "refused:entry_aim_contract", sv9=_sv9,
+                            pl9=None, regime=regime,
+                            tts_min=round(time_to_start / 60),
+                            anchor_src=anchor_src,
+                            lt_age=round(lt_age_sec, 1))
+                        continue
+                    _mode9 = (
+                        "no_call_posture"
+                        if _aim_mode9 == "ATLAS"
+                        else "table_free_" + _aim_mode9.lower()
+                    )
+                    if (
+                        _aim_mode9 == "ATLAS"
+                        and self.config.get("orientation_live", False)
+                    ):
                         _orr9 = self._orient_read(tk, et, cat)
                         if _orr9 and _orr9.get("orientation") == \
                                 "TRADE-ORIENTED":
@@ -11871,15 +12075,23 @@ class LiveV3:
                         self._log("trendpath_live_aim", {
                             "event": et, "from_target": target_bid,
                             "path_aim": _pa9, "mode": _mode9,
-                            "page": _sv9.get("page"),
-                            "page_n": _sv9.get("n"),
+                            "authority": _aim_mode9,
+                            "aim_contract": _aim_contract9,
+                            "page": (_sv9 or {}).get("page"),
+                            "page_n": (_sv9 or {}).get("n"),
                             **({"leg_range_clamped": True,
                                 "clamp_cite": "operator 5-95 adjudication "
                                               "07-05"} if _clamped9 else {}),
-                            "citation": "ATLAS_V1 %s (path bottom p50; "
-                                        "cutover 07-14 operator word)"
-                                        % _sv9.get("page"),
-                            "entry_governor": "trendpath_path_aim"},
+                            "citation": (
+                                "ATLAS_V1 %s (path bottom p50; "
+                                "cutover 07-14 operator word)"
+                                % (_sv9 or {}).get("page")
+                                if _aim_mode9 == "ATLAS"
+                                else "TABLE_FREE_SPREAD_RELATIVE_V1"),
+                            "entry_governor": (
+                                "trendpath_path_aim"
+                                if _aim_mode9 == "ATLAS"
+                                else "table_free_spread_relative")},
                             ticker=tk)
                         entry_price = target_bid = _pa9
                         _plc[et] = (tk, _pa9)

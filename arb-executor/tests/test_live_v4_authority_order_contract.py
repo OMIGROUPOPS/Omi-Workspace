@@ -69,6 +69,8 @@ class AuthorityOrderContractTests(unittest.TestCase):
         self.assertFalse(config["entry_table_prior_enabled"])
         self.assertFalse(config["one_authority_enabled"])
         self.assertTrue(config["bulk_fill_poll_enabled"])
+        self.assertEqual(config["interim_entry_aim_mode"], "ATLAS")
+        self.assertEqual(config["wrongness_monitor_mode"], "observe_only")
 
     def test_fill_receipt_poll_precedes_per_order_status_poll(self):
         check = function_source("check_fills")
@@ -88,6 +90,29 @@ class AuthorityOrderContractTests(unittest.TestCase):
         self.assertIn('"atlas_clock_contract_v2", True', dossier)
         self.assertIn('"REFUSED_AXIS_MISMATCH"', dossier)
         self.assertIn('"path_tminus_actual_bell"', dossier)
+
+    def test_table_free_interim_aims_have_exact_denominators(self):
+        aim = function_source("_initial_entry_aim")
+
+        self.assertIn('"JOIN"', aim)
+        self.assertIn('"TOUCH_MINUS_1"', aim)
+        self.assertIn('"ONE_SPREAD_BELOW_MID"', aim)
+        self.assertIn("target = bid - 1", aim)
+        self.assertIn(
+            "target = math.floor((bid + ask) / 2.0 - spread)", aim
+        )
+        self.assertIn('"status": "NO_DENOMINATOR"', aim)
+
+    def test_wrongness_monitor_is_observe_only(self):
+        observe = function_source("_observe_wrongness")
+        emit = function_source("_emit_wrongness_alarms")
+
+        self.assertIn('"first_hour_median"', observe)
+        self.assertIn('"exact_consultation_time"', observe)
+        self.assertIn('"FIT_CONSULT_KEY_MISMATCH"', (
+            REPO / "arb-executor" / "wrongness_monitor.py"
+        ).read_text(encoding="utf-8"))
+        self.assertIn('"mode": "observe_only"', emit)
 
 
 if __name__ == "__main__":

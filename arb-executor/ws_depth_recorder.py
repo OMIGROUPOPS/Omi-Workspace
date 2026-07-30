@@ -92,9 +92,20 @@ def _apply_book_message(message):
     if kind=="orderbook_snapshot":
         book={"yes":{},"no":{}}
         for side in ("yes","no"):
-            for level in body.get(side) or []:
+            levels=(
+                body.get(f"{side}_dollars_fp")
+                or body.get(side)
+                or []
+            )
+            for level in levels:
                 if isinstance(level,(list,tuple)) and len(level)>=2:
-                    price,qty=int(level[0]),int(level[1])
+                    price_raw,qty_raw=level[0],level[1]
+                    price=(
+                        int(round(float(price_raw)*100))
+                        if float(price_raw)<1
+                        else int(round(float(price_raw)))
+                    )
+                    qty=float(qty_raw)
                     if qty>0: book[side][price]=qty
         _books[ticker]=book
     elif kind=="orderbook_delta":
@@ -102,7 +113,14 @@ def _apply_book_message(message):
         if side not in ("yes","no"):
             return None
         try:
-            price,delta=int(body["price"]),int(body["delta"])
+            price_raw=body.get("price_dollars",body.get("price"))
+            delta_raw=body.get("delta_fp",body.get("delta"))
+            price=(
+                int(round(float(price_raw)*100))
+                if float(price_raw)<1
+                else int(round(float(price_raw)))
+            )
+            delta=float(delta_raw)
         except (KeyError,TypeError,ValueError):
             return None
         book=_books.setdefault(ticker,{"yes":{},"no":{}})

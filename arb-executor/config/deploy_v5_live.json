@@ -166,5 +166,7 @@
   "pair_class_steer_enabled": false,
   "expiration_wire_enabled": false,
   "one_authority_enabled": false,
-  "decision_input_retention_v2": true
+  "decision_input_retention_v2": true,
+  "interim_entry_aim_mode": "ATLAS",
+  "wrongness_monitor_mode": "observe_only"
 }

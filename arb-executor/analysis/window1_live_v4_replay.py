@@ -382,7 +382,11 @@ def load_tick_block(
     return rows, prior
 
 
-def load_scope(event_filter: str | None) -> list[dict]:
+def load_scope(
+    event_filter: str | None,
+    *,
+    allow_unresolved_boundary: bool = False,
+) -> list[dict]:
     ledger = {}
     with EVENT_LEDGER.open(encoding="utf-8") as fh:
         for line in fh:
@@ -397,7 +401,7 @@ def load_scope(event_filter: str | None) -> list[dict]:
             continue
         base = ledger[event]
         windows = [leg["price_path"]["window"] for leg in game["legs"].values()]
-        if any(
+        boundary_resolved = not any(
             not bool(
                 window.get(
                     "evaluator_boundary_resolved",
@@ -406,19 +410,24 @@ def load_scope(event_filter: str | None) -> list[dict]:
                 )
             )
             for window in windows
-        ):
+        )
+        if not boundary_resolved and not allow_unresolved_boundary:
             raise SystemExit(
                 f"{event}: guarded actual-start cutoff is unresolved; "
                 "replay refused rather than substituting the scheduled "
                 "policy horizon"
             )
         left = max(float(w["left_ts"]) for w in windows)
-        right = min(float(
-            w.get("evaluator_right_ts", w["guarded_cutoff_ts"])
-        ) for w in windows)
         policy_right = min(float(
             w.get("policy_right_ts", w["right_ts"])
         ) for w in windows)
+        right = (
+            min(float(
+                w.get("evaluator_right_ts", w["guarded_cutoff_ts"])
+            ) for w in windows)
+            if boundary_resolved
+            else policy_right
+        )
         out.append(
             {
                 "event": event,
@@ -429,6 +438,10 @@ def load_scope(event_filter: str | None) -> list[dict]:
                 "right_ts": right,
                 "policy_right_ts": policy_right,
                 "evaluator_right_ts": right,
+                "evaluator_boundary_resolved": boundary_resolved,
+                "evaluator_window_positive": (
+                    boundary_resolved and right > left
+                ),
                 "scheduled_start_ts": _iso_ts(base["scheduled_start_exchange_ts"]),
                 "schedule_observed_ts": _iso_ts(base["schedule_observed_exchange_ts"]),
                 "legs": base["legs"],
@@ -577,12 +590,20 @@ class ReplayRest:
 
 
 class TraceCollector:
-    def __init__(self, clock: ReplayClock, game: dict):
+    def __init__(
+        self,
+        clock: ReplayClock,
+        game: dict,
+        event_filter: set[str] | None = None,
+    ):
         self.clock = clock
         self.game = game
+        self.event_filter = event_filter
         self.rows: list[dict] = []
 
     def record(self, event: str, details: Any, ticker: str) -> None:
+        if self.event_filter is not None and event not in self.event_filter:
+            return
         et = ticker.rsplit("-", 1)[0] if ticker else ""
         detail_event = details.get("event") if isinstance(details, dict) else None
         if et and et != self.game["event"]:
@@ -707,6 +728,30 @@ def install_counterfactual(bot, dial: dict | None) -> dict | None:
     """Change exactly one named dial while leaving live_v4 downstream intact."""
     if not dial:
         return None
+    if dial.get("kind") == "interim_entry_aim_mode":
+        mode = str(dial.get("mode") or "").upper()
+        if mode not in {
+            "ATLAS",
+            "JOIN",
+            "TOUCH_MINUS_1",
+            "ONE_SPREAD_BELOW_MID",
+        }:
+            raise ValueError(f"unsupported interim aim authority: {mode}")
+        before = str(bot.config.get(
+            "interim_entry_aim_mode", "ATLAS")).upper()
+        bot.config["interim_entry_aim_mode"] = mode
+        return {
+            "kind": "interim_entry_aim_mode",
+            "config_key": "interim_entry_aim_mode",
+            "before": before,
+            "after": mode,
+            "mode": mode,
+            "law": (
+                "one initial-entry authority changes; unchanged live_v4 "
+                "executes every downstream clamp, post, fill, headroom, "
+                "sibling, hold, walk, park, and exit"
+            ),
+        }
     if dial.get("kind") == "path_aim_shift":
         return install_path_aim_counterfactual(bot, dial)
     supported = {
@@ -770,6 +815,12 @@ async def replay_one(
     counterfactual: dict | None = None,
     defect_profile: dict | None = None,
     write_trace: bool = True,
+    capture_events: set[str] | None = None,
+    persist_engine_logs: bool = True,
+    stop_after_initial_atlas_aims: bool = False,
+    stop_after_initial_atlas_consultations: bool = False,
+    initial_aim_probe_fast_clock: bool = False,
+    hash_large_inputs: bool = True,
 ) -> dict:
     event = game["event"]
     run_dir = out_dir / "runs" / event
@@ -809,12 +860,14 @@ async def replay_one(
     if source_hash_before != source_hash_after_init:
         raise RuntimeError("live_v4.py changed during import/initialization")
 
-    collector = TraceCollector(clock, game)
+    collector = TraceCollector(clock, game, event_filter=capture_events)
     original_log = bot._log
 
     def observed_log(name, details=None, ticker=""):
         collector.record(name, details or {}, ticker)
-        return original_log(name, details, ticker=ticker)
+        if persist_engine_logs:
+            return original_log(name, details, ticker=ticker)
+        return None
 
     bot._log = observed_log
     # These are output sinks only.  Suppressing their duplicate CSV writes does
@@ -922,18 +975,61 @@ async def replay_one(
                 await bot.discover_markets()
                 due[name] += int(module.DISCOVERY_INTERVAL) + 1
 
+    stopped_after_initial_atlas_aims = False
+    stopped_after_initial_atlas_consultations = False
     for ts, _priority, _seq, kind, item in stream:
-        await run_due(ts)
+        # Consultation census optimization.  Before the first entry aim, the
+        # retained market tape is the only changing external input.  The
+        # frequent gun/fill/reconcile/stale timers cannot create a quote and
+        # make this 804-game read needlessly quadratic in wall time.  This
+        # mode still calls the unchanged live on_bbo_update/trade path at
+        # every retained timestamp.  It is used only for the initial-aim
+        # probe and is equivalence-checked against the full scheduler.
+        if not initial_aim_probe_fast_clock:
+            await run_due(ts)
         clock.set(ts)
         if kind == "snapshot":
             bot._ingest_ws_frame(snapshot_frame(item))
             await bot.on_bbo_update(item["ticker"])
         else:
             bot._ingest_ws_frame(trade_frame(item))
-    await run_due(game["right_ts"])
-    clock.set(game["right_ts"])
-    await bot.check_fills()
-    bot._band_cascade_pass(clock.time())
+        if stop_after_initial_atlas_aims:
+            aimed_legs = {
+                row["leg"]
+                for row in collector.rows
+                if row["event"] == "trendpath_live_aim" and row.get("leg")
+            }
+            if aimed_legs == {row["leg"] for row in game["legs"]}:
+                stopped_after_initial_atlas_aims = True
+                break
+        if stop_after_initial_atlas_consultations:
+            consulted_legs = {
+                row["leg"]
+                for row in collector.rows
+                if (
+                    row["event"] == "entry_dossier"
+                    and row.get("leg")
+                    and (
+                        row.get("details", {})
+                        .get("surfaces", {})
+                        .get("atlas_page", {})
+                        .get("page")
+                    )
+                )
+            }
+            if consulted_legs == {row["leg"] for row in game["legs"]}:
+                stopped_after_initial_atlas_consultations = True
+                break
+    if not (
+        stopped_after_initial_atlas_aims
+        or stopped_after_initial_atlas_consultations
+    ):
+        if not initial_aim_probe_fast_clock:
+            await run_due(game["right_ts"])
+        clock.set(game["right_ts"])
+        if not initial_aim_probe_fast_clock:
+            await bot.check_fills()
+            bot._band_cascade_pass(clock.time())
 
     traces_by_leg = defaultdict(list)
     for row in collector.rows:
@@ -1036,6 +1132,12 @@ async def replay_one(
         "discovered_tickers": sorted(discovered),
         "positions": positions,
         "pair_completed": completions == 2,
+        "stopped_after_initial_atlas_aims": stopped_after_initial_atlas_aims,
+        "stopped_after_initial_atlas_consultations": (
+            stopped_after_initial_atlas_consultations
+        ),
+        "initial_aim_probe_fast_clock": initial_aim_probe_fast_clock,
+        "replay_end_ts": clock.time(),
         "trace": collector.rows,
         "first_input_break": input_breaks[0] if input_breaks else None,
         "input_breaks": input_breaks,
@@ -1048,7 +1150,12 @@ async def replay_one(
             "observed_starts_visibility": "inserted_at <= replay clock",
             "tennis_db_source": str(TENNIS_DB),
             "tennis_db_sha256": (
-                _sha256(TENNIS_DB) if TENNIS_DB.is_file() else None
+                _sha256(TENNIS_DB)
+                if hash_large_inputs and TENNIS_DB.is_file()
+                else None
+            ),
+            "tennis_db_hash_omitted_for_bounded_probe": (
+                not hash_large_inputs and TENNIS_DB.is_file()
             ),
             "tennis_db_access": "read_only",
             "database_accesses": database_accesses,

@@ -1,0 +1,51 @@
+{
+  "event_id": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+  "full_lawful_tape_low_cents": {
+    "ALV": 78,
+    "VAN": 22
+  },
+  "legacy": {
+    "PC": false,
+    "achieved_combined_delta_cents": null,
+    "aim_cents": {
+      "ALV": 74,
+      "VAN": 22
+    },
+    "aim_delta_cents": {
+      "ALV": -4,
+      "VAN": 0
+    },
+    "combined_aim_delta_cents": -4,
+    "completed_pair": false,
+    "pre_field_repair_fills": {
+      "ALV": null,
+      "VAN": 22
+    }
+  },
+  "sealed": {
+    "PC": false,
+    "achieved_combined_delta_cents": null,
+    "aim_cents": {
+      "ALV": 70,
+      "VAN": 16
+    },
+    "aim_delta_cents": {
+      "ALV": -8,
+      "VAN": -6
+    },
+    "combined_aim_delta_cents": -14,
+    "completed_pair": false,
+    "field_repaired_fills": {
+      "ALV": null,
+      "VAN": null
+    },
+    "wait_for_recognition_fills": {
+      "ALV": null,
+      "VAN": null
+    }
+  },
+  "window1_close_cents": {
+    "ALV": 78,
+    "VAN": 22
+  }
+}

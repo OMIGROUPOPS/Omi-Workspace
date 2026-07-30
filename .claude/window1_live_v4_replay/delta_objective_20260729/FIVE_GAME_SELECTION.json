@@ -1,0 +1,120 @@
+{
+  "games": [
+    {
+      "both_legs_negative_delta": true,
+      "category": "ATP_CHALL",
+      "close_cents_by_leg": {
+        "BIG": 60,
+        "HUR": 42
+      },
+      "combined_delta_cents": -10,
+      "delta_cents_by_leg": {
+        "BIG": -5,
+        "HUR": -5
+      },
+      "evaluator_right_ts": 1784505540.0,
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "negative_combined_delta": true,
+      "reachable_price_cents_by_leg": {
+        "BIG": 55,
+        "HUR": 37
+      },
+      "selected_left_ts": 1784471400.0,
+      "start_evidence": "observed_official_exact"
+    },
+    {
+      "both_legs_negative_delta": true,
+      "category": "ATP_CHALL",
+      "close_cents_by_leg": {
+        "NIK": 19,
+        "VRB": 83
+      },
+      "combined_delta_cents": -14,
+      "delta_cents_by_leg": {
+        "NIK": -1,
+        "VRB": -13
+      },
+      "evaluator_right_ts": 1784478840.0,
+      "event_date": "2026-07-19",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "negative_combined_delta": true,
+      "reachable_price_cents_by_leg": {
+        "NIK": 18,
+        "VRB": 70
+      },
+      "selected_left_ts": 1784449800.0,
+      "start_evidence": "observed_official_exact"
+    },
+    {
+      "both_legs_negative_delta": true,
+      "category": "ATP_MAIN",
+      "close_cents_by_leg": {
+        "LAJ": 45,
+        "VAN": 57
+      },
+      "combined_delta_cents": -10,
+      "delta_cents_by_leg": {
+        "LAJ": -2,
+        "VAN": -8
+      },
+      "evaluator_right_ts": 1783958340.0,
+      "event_date": "2026-07-12",
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "negative_combined_delta": true,
+      "reachable_price_cents_by_leg": {
+        "LAJ": 43,
+        "VAN": 49
+      },
+      "selected_left_ts": 1783850400.0,
+      "start_evidence": "observed_official_exact"
+    },
+    {
+      "both_legs_negative_delta": true,
+      "category": "WTA_CHALL",
+      "close_cents_by_leg": {
+        "BRA": 44,
+        "VED": 57
+      },
+      "combined_delta_cents": -8,
+      "delta_cents_by_leg": {
+        "BRA": -6,
+        "VED": -2
+      },
+      "evaluator_right_ts": 1784232540.0,
+      "event_date": "2026-07-16",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "negative_combined_delta": true,
+      "reachable_price_cents_by_leg": {
+        "BRA": 38,
+        "VED": 55
+      },
+      "selected_left_ts": 1784200800.0,
+      "start_evidence": "observed_official_exact"
+    },
+    {
+      "both_legs_negative_delta": true,
+      "category": "WTA_MAIN",
+      "close_cents_by_leg": {
+        "JIM": 32,
+        "KOR": 70
+      },
+      "combined_delta_cents": -12,
+      "delta_cents_by_leg": {
+        "JIM": -2,
+        "KOR": -10
+      },
+      "evaluator_right_ts": 1784639940.0,
+      "event_date": "2026-07-20",
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "negative_combined_delta": true,
+      "reachable_price_cents_by_leg": {
+        "JIM": 30,
+        "KOR": 60
+      },
+      "selected_left_ts": 1784516400.0,
+      "start_evidence": "observed_official_exact"
+    }
+  ],
+  "selection_law": "negative combined delta; both legs individually negative; nonzero full lawful window; observed official exact start; all four categories represented; both live authorities emitted a comparable aim on both legs under field repair plus recognition-before-place"
+}

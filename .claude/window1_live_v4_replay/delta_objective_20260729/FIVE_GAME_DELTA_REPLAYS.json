@@ -1,0 +1,860 @@
+{
+  "configuration": {
+    "fill_model": "RESTING_TOUCH_FILL_V1: resting order fills on later true print or opposite BBO touch/pass; no depth proof; no five-contract gate",
+    "holdout_accessed": false,
+    "live_accessed": false,
+    "live_v4_field_contract_repair": true,
+    "recognition_before_place": true
+  },
+  "depth_and_timing": {
+    "by_category": {
+      "ATP_CHALL": {
+        "leg_count": 4,
+        "legacy_mean_aim_minus_close_cents": -4.25,
+        "legacy_mean_aim_minus_low_cents": 1.75,
+        "median_absolute_timing_error_minutes": 252.9760183076064,
+        "sealed_mean_aim_minus_close_cents": -9.5,
+        "sealed_mean_aim_minus_low_cents": -3.5
+      },
+      "ATP_MAIN": {
+        "leg_count": 2,
+        "legacy_mean_aim_minus_close_cents": -7.5,
+        "legacy_mean_aim_minus_low_cents": -2.5,
+        "median_absolute_timing_error_minutes": 510.22289320826536,
+        "sealed_mean_aim_minus_close_cents": -6.5,
+        "sealed_mean_aim_minus_low_cents": -1.5
+      },
+      "WTA_CHALL": {
+        "leg_count": 2,
+        "legacy_mean_aim_minus_close_cents": -3.5,
+        "legacy_mean_aim_minus_low_cents": 0.5,
+        "median_absolute_timing_error_minutes": 405.30637484987574,
+        "sealed_mean_aim_minus_close_cents": -10.0,
+        "sealed_mean_aim_minus_low_cents": -6.0
+      },
+      "WTA_MAIN": {
+        "leg_count": 2,
+        "legacy_mean_aim_minus_close_cents": -5.0,
+        "legacy_mean_aim_minus_low_cents": 1.0,
+        "median_absolute_timing_error_minutes": 846.1330233256022,
+        "sealed_mean_aim_minus_close_cents": -11.5,
+        "sealed_mean_aim_minus_low_cents": -5.5
+      }
+    },
+    "overall": {
+      "leg_count": 10,
+      "legacy_mean_aim_minus_close_cents": -4.9,
+      "legacy_mean_aim_minus_low_cents": 0.5,
+      "legacy_median_absolute_depth_error_cents": 3.0,
+      "legacy_negative_close_delta_leg_count": 6,
+      "legacy_reachable_leg_count": 4,
+      "low_before_comparable_decision_leg_count": 3,
+      "mean_absolute_timing_error_minutes": 447.316878541708,
+      "median_absolute_timing_error_minutes": 405.30637484987574,
+      "sealed_mean_aim_minus_close_cents": -9.4,
+      "sealed_mean_aim_minus_low_cents": -4.0,
+      "sealed_median_absolute_depth_error_cents": 5.0,
+      "sealed_negative_close_delta_leg_count": 9,
+      "sealed_reachable_leg_count": 3
+    },
+    "rows": [
+      {
+        "actual_low_cents": 55,
+        "actual_low_minute": 73.79289875030517,
+        "atlas_predicted_bottom_minute": 318.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "leg_id": "BIG",
+        "legacy_aim_cents": 52,
+        "legacy_aim_minus_close_cents": -8,
+        "legacy_aim_minus_low_cents": -3,
+        "low_happened_before_comparable_decision": true,
+        "sealed_aim_cents": 45,
+        "sealed_aim_minus_close_cents": -15,
+        "sealed_aim_minus_low_cents": -10,
+        "timing_error_minutes": 244.20710124969483,
+        "window1_close_cents": 60
+      },
+      {
+        "actual_low_cents": 37,
+        "actual_low_minute": 400.74493536551796,
+        "atlas_predicted_bottom_minute": 139.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "leg_id": "HUR",
+        "legacy_aim_cents": 44,
+        "legacy_aim_minus_close_cents": 2,
+        "legacy_aim_minus_low_cents": 7,
+        "low_happened_before_comparable_decision": false,
+        "sealed_aim_cents": 38,
+        "sealed_aim_minus_close_cents": -4,
+        "sealed_aim_minus_low_cents": 1,
+        "timing_error_minutes": -261.74493536551796,
+        "window1_close_cents": 42
+      },
+      {
+        "actual_low_cents": 18,
+        "actual_low_minute": 428.8284907182058,
+        "atlas_predicted_bottom_minute": 139.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+        "leg_id": "NIK",
+        "legacy_aim_cents": 24,
+        "legacy_aim_minus_close_cents": 5,
+        "legacy_aim_minus_low_cents": 6,
+        "low_happened_before_comparable_decision": false,
+        "sealed_aim_cents": 23,
+        "sealed_aim_minus_close_cents": 4,
+        "sealed_aim_minus_low_cents": 5,
+        "timing_error_minutes": -289.8284907182058,
+        "window1_close_cents": 19
+      },
+      {
+        "actual_low_cents": 70,
+        "actual_low_minute": 163.93632468382518,
+        "atlas_predicted_bottom_minute": 318.0,
+        "category": "ATP_CHALL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+        "leg_id": "VRB",
+        "legacy_aim_cents": 67,
+        "legacy_aim_minus_close_cents": -16,
+        "legacy_aim_minus_low_cents": -3,
+        "low_happened_before_comparable_decision": true,
+        "sealed_aim_cents": 60,
+        "sealed_aim_minus_close_cents": -23,
+        "sealed_aim_minus_low_cents": -10,
+        "timing_error_minutes": 154.06367531617482,
+        "window1_close_cents": 83
+      },
+      {
+        "actual_low_cents": 43,
+        "actual_low_minute": 1117.8910750985146,
+        "atlas_predicted_bottom_minute": 639.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12LAJVAN",
+        "leg_id": "LAJ",
+        "legacy_aim_cents": 41,
+        "legacy_aim_minus_close_cents": -4,
+        "legacy_aim_minus_low_cents": -2,
+        "low_happened_before_comparable_decision": false,
+        "sealed_aim_cents": 43,
+        "sealed_aim_minus_close_cents": -2,
+        "sealed_aim_minus_low_cents": 0,
+        "timing_error_minutes": -478.89107509851465,
+        "window1_close_cents": 45
+      },
+      {
+        "actual_low_cents": 49,
+        "actual_low_minute": 25.445288681983946,
+        "atlas_predicted_bottom_minute": 567.0,
+        "category": "ATP_MAIN",
+        "event_id": "KXATPMATCH-26JUL12LAJVAN",
+        "leg_id": "VAN",
+        "legacy_aim_cents": 46,
+        "legacy_aim_minus_close_cents": -11,
+        "legacy_aim_minus_low_cents": -3,
+        "low_happened_before_comparable_decision": false,
+        "sealed_aim_cents": 46,
+        "sealed_aim_minus_close_cents": -11,
+        "sealed_aim_minus_low_cents": -3,
+        "timing_error_minutes": 541.5547113180161,
+        "window1_close_cents": 57
+      },
+      {
+        "actual_low_cents": 38,
+        "actual_low_minute": 484.7484815001488,
+        "atlas_predicted_bottom_minute": 78.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "leg_id": "BRA",
+        "legacy_aim_cents": 36,
+        "legacy_aim_minus_close_cents": -8,
+        "legacy_aim_minus_low_cents": -2,
+        "low_happened_before_comparable_decision": false,
+        "sealed_aim_cents": 31,
+        "sealed_aim_minus_close_cents": -13,
+        "sealed_aim_minus_low_cents": -7,
+        "timing_error_minutes": -406.7484815001488,
+        "window1_close_cents": 44
+      },
+      {
+        "actual_low_cents": 55,
+        "actual_low_minute": 517.8642681996027,
+        "atlas_predicted_bottom_minute": 114.0,
+        "category": "WTA_CHALL",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "leg_id": "VED",
+        "legacy_aim_cents": 58,
+        "legacy_aim_minus_close_cents": 1,
+        "legacy_aim_minus_low_cents": 3,
+        "low_happened_before_comparable_decision": false,
+        "sealed_aim_cents": 50,
+        "sealed_aim_minus_close_cents": -7,
+        "sealed_aim_minus_low_cents": -5,
+        "timing_error_minutes": -403.86426819960275,
+        "window1_close_cents": 57
+      },
+      {
+        "actual_low_cents": 30,
+        "actual_low_minute": 1562.2577178676922,
+        "atlas_predicted_bottom_minute": 547.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL20KORJIM",
+        "leg_id": "JIM",
+        "legacy_aim_cents": 34,
+        "legacy_aim_minus_close_cents": 2,
+        "legacy_aim_minus_low_cents": 4,
+        "low_happened_before_comparable_decision": false,
+        "sealed_aim_cents": 29,
+        "sealed_aim_minus_close_cents": -3,
+        "sealed_aim_minus_low_cents": -1,
+        "timing_error_minutes": -1015.2577178676922,
+        "window1_close_cents": 32
+      },
+      {
+        "actual_low_cents": 60,
+        "actual_low_minute": 7.991671216487885,
+        "atlas_predicted_bottom_minute": 685.0,
+        "category": "WTA_MAIN",
+        "event_id": "KXWTAMATCH-26JUL20KORJIM",
+        "leg_id": "KOR",
+        "legacy_aim_cents": 58,
+        "legacy_aim_minus_close_cents": -12,
+        "legacy_aim_minus_low_cents": -2,
+        "low_happened_before_comparable_decision": true,
+        "sealed_aim_cents": 50,
+        "sealed_aim_minus_close_cents": -20,
+        "sealed_aim_minus_low_cents": -10,
+        "timing_error_minutes": 677.0083287835121,
+        "window1_close_cents": 70
+      }
+    ]
+  },
+  "events": [
+    {
+      "achieved_combined_delta_cents": null,
+      "achieved_delta_cents_by_leg": {
+        "BIG": null,
+        "HUR": null
+      },
+      "both_filled_below_close": false,
+      "category": "ATP_CHALL",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "fill_count": 0,
+      "first_input_break": null,
+      "legs": {
+        "BIG": {
+          "actual_low": {
+            "minute_from_window_open": 73.79289875030517,
+            "price_cents": 55,
+            "ts": 1784475827.573925
+          },
+          "atlas": {
+            "actual_bottom_minute": 73.79289875030517,
+            "page": "ATP_CHALL|leader|51_75",
+            "predicted_bottom_minute": 318.0,
+            "prediction_minus_actual_minutes": 244.20710124969483
+          },
+          "close": {
+            "price_cents": 60,
+            "ts": 1784505539.535897
+          },
+          "filled_below_close": false,
+          "fills": [],
+          "first_comparable_decision_ts": 1784476773.0,
+          "legacy": {
+            "aim_minus_actual_low_cents": -3,
+            "aim_minus_window1_close_cents": -8,
+            "aim_sequence": [
+              {
+                "page": "ATP_CHALL|leader|51_75",
+                "price_cents": 52,
+                "ts": 1784476773.0
+              }
+            ],
+            "initial_comparable_aim_cents": 52
+          },
+          "sealed": {
+            "aim_minus_actual_low_cents": -10,
+            "aim_minus_window1_close_cents": -15,
+            "aim_sequence": [
+              {
+                "page": null,
+                "price_cents": 45,
+                "ts": 1784476773.0
+              }
+            ],
+            "initial_comparable_aim_cents": 45
+          }
+        },
+        "HUR": {
+          "actual_low": {
+            "minute_from_window_open": 400.74493536551796,
+            "price_cents": 37,
+            "ts": 1784495444.696122
+          },
+          "atlas": {
+            "actual_bottom_minute": 400.74493536551796,
+            "page": "ATP_CHALL|underdog|26_50",
+            "predicted_bottom_minute": 139.0,
+            "prediction_minus_actual_minutes": -261.74493536551796
+          },
+          "close": {
+            "price_cents": 42,
+            "ts": 1784505518.693893
+          },
+          "filled_below_close": false,
+          "fills": [],
+          "first_comparable_decision_ts": 1784476773.0,
+          "legacy": {
+            "aim_minus_actual_low_cents": 7,
+            "aim_minus_window1_close_cents": 2,
+            "aim_sequence": [
+              {
+                "page": "ATP_CHALL|underdog|26_50",
+                "price_cents": 44,
+                "ts": 1784476773.0
+              },
+              {
+                "page": "ATP_CHALL|underdog|26_50",
+                "price_cents": 39,
+                "ts": 1784486048.0
+              },
+              {
+                "page": "ATP_CHALL|underdog|26_50",
+                "price_cents": 35,
+                "ts": 1784493742.0
+              }
+            ],
+            "initial_comparable_aim_cents": 44
+          },
+          "sealed": {
+            "aim_minus_actual_low_cents": 1,
+            "aim_minus_window1_close_cents": -4,
+            "aim_sequence": [
+              {
+                "page": null,
+                "price_cents": 38,
+                "ts": 1784476773.0
+              }
+            ],
+            "initial_comparable_aim_cents": 38
+          }
+        }
+      },
+      "pair_completed": false,
+      "start_evidence": "observed_official_exact",
+      "tape_offer": {
+        "both_legs_below_close": true,
+        "combined_delta_cents": -10,
+        "delta_cents_by_leg": {
+          "BIG": -5,
+          "HUR": -5
+        }
+      },
+      "window": {
+        "left_ts": 1784471400.0,
+        "right_ts": 1784505540.0
+      }
+    },
+    {
+      "achieved_combined_delta_cents": null,
+      "achieved_delta_cents_by_leg": {
+        "NIK": 5,
+        "VRB": null
+      },
+      "both_filled_below_close": false,
+      "category": "ATP_CHALL",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "fill_count": 1,
+      "first_input_break": null,
+      "legs": {
+        "NIK": {
+          "actual_low": {
+            "minute_from_window_open": 428.8284907182058,
+            "price_cents": 18,
+            "ts": 1784475529.709443
+          },
+          "atlas": {
+            "actual_bottom_minute": 428.8284907182058,
+            "page": "ATP_CHALL|underdog|26_50",
+            "predicted_bottom_minute": 139.0,
+            "prediction_minus_actual_minutes": -289.8284907182058
+          },
+          "close": {
+            "price_cents": 19,
+            "ts": 1784478608.232286
+          },
+          "filled_below_close": false,
+          "fills": [
+            {
+              "authority": "LEGACY:path_aim",
+              "order_id": "PAPER-KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK-1784473008-000008",
+              "price_cents": 24,
+              "trigger": "trade_print",
+              "ts": 1784473732.422951
+            }
+          ],
+          "first_comparable_decision_ts": 1784459700.0,
+          "legacy": {
+            "aim_minus_actual_low_cents": 6,
+            "aim_minus_window1_close_cents": 5,
+            "aim_sequence": [
+              {
+                "page": "ATP_CHALL|underdog|26_50",
+                "price_cents": 24,
+                "ts": 1784459700.0
+              }
+            ],
+            "initial_comparable_aim_cents": 24
+          },
+          "sealed": {
+            "aim_minus_actual_low_cents": 5,
+            "aim_minus_window1_close_cents": 4,
+            "aim_sequence": [
+              {
+                "page": null,
+                "price_cents": 23,
+                "ts": 1784459700.0
+              }
+            ],
+            "initial_comparable_aim_cents": 23
+          }
+        },
+        "VRB": {
+          "actual_low": {
+            "minute_from_window_open": 163.93632468382518,
+            "price_cents": 70,
+            "ts": 1784459636.179481
+          },
+          "atlas": {
+            "actual_bottom_minute": 163.93632468382518,
+            "page": "ATP_CHALL|leader|51_75",
+            "predicted_bottom_minute": 318.0,
+            "prediction_minus_actual_minutes": 154.06367531617482
+          },
+          "close": {
+            "price_cents": 83,
+            "ts": 1784478307.692102
+          },
+          "filled_below_close": false,
+          "fills": [],
+          "first_comparable_decision_ts": 1784459700.0,
+          "legacy": {
+            "aim_minus_actual_low_cents": -3,
+            "aim_minus_window1_close_cents": -16,
+            "aim_sequence": [
+              {
+                "page": "ATP_CHALL|leader|51_75",
+                "price_cents": 67,
+                "ts": 1784459700.0
+              },
+              {
+                "page": "ATP_CHALL|leader|51_75",
+                "price_cents": 65,
+                "ts": 1784459743.0
+              }
+            ],
+            "initial_comparable_aim_cents": 67
+          },
+          "sealed": {
+            "aim_minus_actual_low_cents": -10,
+            "aim_minus_window1_close_cents": -23,
+            "aim_sequence": [
+              {
+                "page": null,
+                "price_cents": 60,
+                "ts": 1784459700.0
+              },
+              {
+                "page": null,
+                "price_cents": 60,
+                "ts": 1784459743.0
+              }
+            ],
+            "initial_comparable_aim_cents": 60
+          }
+        }
+      },
+      "pair_completed": false,
+      "start_evidence": "observed_official_exact",
+      "tape_offer": {
+        "both_legs_below_close": true,
+        "combined_delta_cents": -14,
+        "delta_cents_by_leg": {
+          "NIK": -1,
+          "VRB": -13
+        }
+      },
+      "window": {
+        "left_ts": 1784449800.0,
+        "right_ts": 1784478840.0
+      }
+    },
+    {
+      "achieved_combined_delta_cents": null,
+      "achieved_delta_cents_by_leg": {
+        "LAJ": null,
+        "VAN": null
+      },
+      "both_filled_below_close": false,
+      "category": "ATP_MAIN",
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "fill_count": 0,
+      "first_input_break": null,
+      "legs": {
+        "LAJ": {
+          "actual_low": {
+            "minute_from_window_open": 1117.8910750985146,
+            "price_cents": 43,
+            "ts": 1783917473.464506
+          },
+          "atlas": {
+            "actual_bottom_minute": 1117.8910750985146,
+            "page": "ATP_MAIN|leader|26_50",
+            "predicted_bottom_minute": 639.0,
+            "prediction_minus_actual_minutes": -478.89107509851465
+          },
+          "close": {
+            "price_cents": 45,
+            "ts": 1783958320.775883
+          },
+          "filled_below_close": false,
+          "fills": [],
+          "first_comparable_decision_ts": 1783857083.0,
+          "legacy": {
+            "aim_minus_actual_low_cents": -2,
+            "aim_minus_window1_close_cents": -4,
+            "aim_sequence": [
+              {
+                "page": "ATP_MAIN|leader|26_50",
+                "price_cents": 41,
+                "ts": 1783857083.0
+              }
+            ],
+            "initial_comparable_aim_cents": 41
+          },
+          "sealed": {
+            "aim_minus_actual_low_cents": 0,
+            "aim_minus_window1_close_cents": -2,
+            "aim_sequence": [
+              {
+                "page": null,
+                "price_cents": 43,
+                "ts": 1783857083.0
+              }
+            ],
+            "initial_comparable_aim_cents": 43
+          }
+        },
+        "VAN": {
+          "actual_low": {
+            "minute_from_window_open": 25.445288681983946,
+            "price_cents": 49,
+            "ts": 1783851926.717321
+          },
+          "atlas": {
+            "actual_bottom_minute": 25.445288681983946,
+            "page": "ATP_MAIN|leader|51_75",
+            "predicted_bottom_minute": 567.0,
+            "prediction_minus_actual_minutes": 541.5547113180161
+          },
+          "close": {
+            "price_cents": 57,
+            "ts": 1783958322.722386
+          },
+          "filled_below_close": false,
+          "fills": [],
+          "first_comparable_decision_ts": 1783850502.0,
+          "legacy": {
+            "aim_minus_actual_low_cents": -3,
+            "aim_minus_window1_close_cents": -11,
+            "aim_sequence": [
+              {
+                "page": "ATP_MAIN|leader|51_75",
+                "price_cents": 46,
+                "ts": 1783850502.0
+              }
+            ],
+            "initial_comparable_aim_cents": 46
+          },
+          "sealed": {
+            "aim_minus_actual_low_cents": -3,
+            "aim_minus_window1_close_cents": -11,
+            "aim_sequence": [
+              {
+                "page": null,
+                "price_cents": 46,
+                "ts": 1783850502.0
+              }
+            ],
+            "initial_comparable_aim_cents": 46
+          }
+        }
+      },
+      "pair_completed": false,
+      "start_evidence": "observed_official_exact",
+      "tape_offer": {
+        "both_legs_below_close": true,
+        "combined_delta_cents": -10,
+        "delta_cents_by_leg": {
+          "LAJ": -2,
+          "VAN": -8
+        }
+      },
+      "window": {
+        "left_ts": 1783850400.0,
+        "right_ts": 1783958340.0
+      }
+    },
+    {
+      "achieved_combined_delta_cents": null,
+      "achieved_delta_cents_by_leg": {
+        "BRA": null,
+        "VED": null
+      },
+      "both_filled_below_close": false,
+      "category": "WTA_CHALL",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "fill_count": 0,
+      "first_input_break": null,
+      "legs": {
+        "BRA": {
+          "actual_low": {
+            "minute_from_window_open": 484.7484815001488,
+            "price_cents": 38,
+            "ts": 1784229884.90889
+          },
+          "atlas": {
+            "actual_bottom_minute": 484.7484815001488,
+            "page": "WTA_CHALL|underdog|26_50",
+            "predicted_bottom_minute": 78.0,
+            "prediction_minus_actual_minutes": -406.7484815001488
+          },
+          "close": {
+            "price_cents": 44,
+            "ts": 1784232528.261249
+          },
+          "filled_below_close": false,
+          "fills": [],
+          "first_comparable_decision_ts": 1784218828.0,
+          "legacy": {
+            "aim_minus_actual_low_cents": -2,
+            "aim_minus_window1_close_cents": -8,
+            "aim_sequence": [
+              {
+                "page": "WTA_CHALL|underdog|26_50",
+                "price_cents": 36,
+                "ts": 1784218828.0
+              }
+            ],
+            "initial_comparable_aim_cents": 36
+          },
+          "sealed": {
+            "aim_minus_actual_low_cents": -7,
+            "aim_minus_window1_close_cents": -13,
+            "aim_sequence": [
+              {
+                "page": null,
+                "price_cents": 31,
+                "ts": 1784218828.0
+              }
+            ],
+            "initial_comparable_aim_cents": 31
+          }
+        },
+        "VED": {
+          "actual_low": {
+            "minute_from_window_open": 517.8642681996027,
+            "price_cents": 55,
+            "ts": 1784231871.856092
+          },
+          "atlas": {
+            "actual_bottom_minute": 517.8642681996027,
+            "page": "WTA_CHALL|leader|51_75",
+            "predicted_bottom_minute": 114.0,
+            "prediction_minus_actual_minutes": -403.86426819960275
+          },
+          "close": {
+            "price_cents": 57,
+            "ts": 1784232528.724034
+          },
+          "filled_below_close": false,
+          "fills": [],
+          "first_comparable_decision_ts": 1784218828.0,
+          "legacy": {
+            "aim_minus_actual_low_cents": 3,
+            "aim_minus_window1_close_cents": 1,
+            "aim_sequence": [
+              {
+                "page": "WTA_CHALL|leader|51_75",
+                "price_cents": 58,
+                "ts": 1784218828.0
+              },
+              {
+                "page": "WTA_CHALL|leader|51_75",
+                "price_cents": 55,
+                "ts": 1784225139.0
+              }
+            ],
+            "initial_comparable_aim_cents": 58
+          },
+          "sealed": {
+            "aim_minus_actual_low_cents": -5,
+            "aim_minus_window1_close_cents": -7,
+            "aim_sequence": [
+              {
+                "page": null,
+                "price_cents": 50,
+                "ts": 1784218828.0
+              },
+              {
+                "page": null,
+                "price_cents": 50,
+                "ts": 1784225139.0
+              }
+            ],
+            "initial_comparable_aim_cents": 50
+          }
+        }
+      },
+      "pair_completed": false,
+      "start_evidence": "observed_official_exact",
+      "tape_offer": {
+        "both_legs_below_close": true,
+        "combined_delta_cents": -8,
+        "delta_cents_by_leg": {
+          "BRA": -6,
+          "VED": -2
+        }
+      },
+      "window": {
+        "left_ts": 1784200800.0,
+        "right_ts": 1784232540.0
+      }
+    },
+    {
+      "achieved_combined_delta_cents": null,
+      "achieved_delta_cents_by_leg": {
+        "JIM": null,
+        "KOR": null
+      },
+      "both_filled_below_close": false,
+      "category": "WTA_MAIN",
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "fill_count": 0,
+      "first_input_break": null,
+      "legs": {
+        "JIM": {
+          "actual_low": {
+            "minute_from_window_open": 1562.2577178676922,
+            "price_cents": 30,
+            "ts": 1784610135.463072
+          },
+          "atlas": {
+            "actual_bottom_minute": 1562.2577178676922,
+            "page": "WTA_MAIN|underdog|26_50",
+            "predicted_bottom_minute": 547.0,
+            "prediction_minus_actual_minutes": -1015.2577178676922
+          },
+          "close": {
+            "price_cents": 32,
+            "ts": 1784638879.789308
+          },
+          "filled_below_close": false,
+          "fills": [],
+          "first_comparable_decision_ts": 1784542020.0,
+          "legacy": {
+            "aim_minus_actual_low_cents": 4,
+            "aim_minus_window1_close_cents": 2,
+            "aim_sequence": [
+              {
+                "page": "WTA_MAIN|underdog|26_50",
+                "price_cents": 34,
+                "ts": 1784542020.0
+              }
+            ],
+            "initial_comparable_aim_cents": 34
+          },
+          "sealed": {
+            "aim_minus_actual_low_cents": -1,
+            "aim_minus_window1_close_cents": -3,
+            "aim_sequence": [
+              {
+                "page": null,
+                "price_cents": 29,
+                "ts": 1784542020.0
+              }
+            ],
+            "initial_comparable_aim_cents": 29
+          }
+        },
+        "KOR": {
+          "actual_low": {
+            "minute_from_window_open": 7.991671216487885,
+            "price_cents": 60,
+            "ts": 1784516879.500273
+          },
+          "atlas": {
+            "actual_bottom_minute": 7.991671216487885,
+            "page": "WTA_MAIN|leader|51_75",
+            "predicted_bottom_minute": 685.0,
+            "prediction_minus_actual_minutes": 677.0083287835121
+          },
+          "close": {
+            "price_cents": 70,
+            "ts": 1784639901.092039
+          },
+          "filled_below_close": false,
+          "fills": [],
+          "first_comparable_decision_ts": 1784542020.0,
+          "legacy": {
+            "aim_minus_actual_low_cents": -2,
+            "aim_minus_window1_close_cents": -12,
+            "aim_sequence": [
+              {
+                "page": "WTA_MAIN|leader|51_75",
+                "price_cents": 58,
+                "ts": 1784542020.0
+              }
+            ],
+            "initial_comparable_aim_cents": 58
+          },
+          "sealed": {
+            "aim_minus_actual_low_cents": -10,
+            "aim_minus_window1_close_cents": -20,
+            "aim_sequence": [
+              {
+                "page": null,
+                "price_cents": 50,
+                "ts": 1784542020.0
+              }
+            ],
+            "initial_comparable_aim_cents": 50
+          }
+        }
+      },
+      "pair_completed": false,
+      "start_evidence": "observed_official_exact",
+      "tape_offer": {
+        "both_legs_below_close": true,
+        "combined_delta_cents": -12,
+        "delta_cents_by_leg": {
+          "JIM": -2,
+          "KOR": -10
+        }
+      },
+      "window": {
+        "left_ts": 1784516400.0,
+        "right_ts": 1784639940.0
+      }
+    }
+  ],
+  "outcome": {
+    "PC_pairs": 0,
+    "both_filled_below_close": 0,
+    "filled_legs": 1,
+    "pair_completions": 0
+  },
+  "schema_version": "window1-five-game-delta-replay-v1"
+}

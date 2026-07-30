@@ -1,0 +1,97 @@
+{
+  "baseline_trace": ".claude\\window1_live_v4_replay\\alvvan_dials_20260729\\cohort_riser\\counterfactual\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\baseline\\runs\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\trace.json",
+  "counterfactual_trace": ".claude\\window1_live_v4_replay\\alvvan_dials_20260729\\cohort_riser\\counterfactual\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\variant\\runs\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\trace.json",
+  "dial": {
+    "after": true,
+    "before": false,
+    "config_key": "cohort_steer_riser",
+    "kind": "cohort_steer_riser",
+    "law": "cohort steering may influence the riser as well as the faller"
+  },
+  "diff": ".claude\\window1_live_v4_replay\\alvvan_dials_20260729\\cohort_riser\\counterfactual\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\COUNTERFACTUAL_DIFF.json",
+  "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+  "first_divergence": null,
+  "outcomes": {
+    "baseline": {
+      "combined_goal": 97,
+      "filled_plus_resting_pair_cost": 86,
+      "legs": {
+        "ALV": {
+          "fill_price": null,
+          "fill_ts": null,
+          "filled": false,
+          "final_buy_statuses": [
+            {
+              "price": 74,
+              "status": "canceled"
+            },
+            {
+              "price": 70,
+              "status": "resting"
+            }
+          ],
+          "final_resting_buy": 70
+        },
+        "VAN": {
+          "fill_price": null,
+          "fill_ts": null,
+          "filled": false,
+          "final_buy_statuses": [
+            {
+              "price": 22,
+              "status": "canceled"
+            },
+            {
+              "price": 16,
+              "status": "resting"
+            }
+          ],
+          "final_resting_buy": 16
+        }
+      },
+      "pair_completed": false,
+      "remaining_headroom": 11
+    },
+    "counterfactual": {
+      "combined_goal": 97,
+      "filled_plus_resting_pair_cost": 86,
+      "legs": {
+        "ALV": {
+          "fill_price": null,
+          "fill_ts": null,
+          "filled": false,
+          "final_buy_statuses": [
+            {
+              "price": 74,
+              "status": "canceled"
+            },
+            {
+              "price": 70,
+              "status": "resting"
+            }
+          ],
+          "final_resting_buy": 70
+        },
+        "VAN": {
+          "fill_price": null,
+          "fill_ts": null,
+          "filled": false,
+          "final_buy_statuses": [
+            {
+              "price": 22,
+              "status": "canceled"
+            },
+            {
+              "price": 16,
+              "status": "resting"
+            }
+          ],
+          "final_resting_buy": 16
+        }
+      },
+      "pair_completed": false,
+      "remaining_headroom": 11
+    }
+  },
+  "report": ".claude\\window1_live_v4_replay\\alvvan_dials_20260729\\cohort_riser\\counterfactual\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\COUNTERFACTUAL_DIFF.md"
+}

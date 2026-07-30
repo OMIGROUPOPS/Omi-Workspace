@@ -16,3 +16,11 @@ __pycache__/
 # State files
 *_live_trades.json
 *_live_trades.json.bak*
+
+# Local read-only SQLite replay snapshots and their ephemeral sidecars
+/.claude/window1_live_v4_replay/vps_inputs_*/db/tennis*.db
+/.claude/window1_live_v4_replay/vps_inputs_*/db/tennis*.db-wal
+/.claude/window1_live_v4_replay/vps_inputs_*/db/tennis*.db-shm
+/.claude/window1_live_v4_replay/**/_input_index/
+/.claude/window1_live_v4_replay/**/_engine_logs/
+/.claude/window1_live_v4_replay/**/_state/

@@ -1,0 +1,287 @@
+{
+  "baseline_trace": ".claude\\window1_live_v4_replay\\alvvan_dials_20260729\\contention_drop\\counterfactual\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\baseline\\runs\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\trace.json",
+  "counterfactual_trace": ".claude\\window1_live_v4_replay\\alvvan_dials_20260729\\contention_drop\\counterfactual\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\variant\\runs\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\trace.json",
+  "dial": {
+    "after": true,
+    "before": false,
+    "config_key": "contention_drop_enforced",
+    "kind": "contention_drop_enforced",
+    "law": "selector DROP is a placement veto"
+  },
+  "diff": ".claude\\window1_live_v4_replay\\alvvan_dials_20260729\\contention_drop\\counterfactual\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\COUNTERFACTUAL_DIFF.json",
+  "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+  "first_divergence": {
+    "baseline": [
+      {
+        "details": {
+          "citation": "ATLAS_V1 ATP_CHALL|leader|ge75 (path bottom p50; cutover 07-14 operator word)",
+          "entry_governor": "trendpath_path_aim",
+          "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+          "from_target": 73,
+          "mode": "no_call_posture",
+          "page": "ATP_CHALL|leader|ge75",
+          "page_n": 759,
+          "path_aim": 74
+        },
+        "event": "trendpath_live_aim",
+        "leg": "ALV",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV",
+        "ts": 1783832721.0
+      },
+      {
+        "details": {
+          "aim_shadow_on": true,
+          "anchor_src": "last_traded",
+          "book_ask": 79,
+          "book_bid": 74,
+          "book_spread": 5,
+          "cat": "ATP_CHALL",
+          "cell": 79,
+          "current_ask": 79,
+          "current_price": 79,
+          "direction": "leader",
+          "entry_mode": "resting_maker",
+          "entry_price": 74,
+          "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+          "exp_fill_rate": 0.521,
+          "exp_net_roi_pct": 6.79,
+          "fv": null,
+          "fv_gap": null,
+          "fv_reason": "stale_sources",
+          "fv_sources": [],
+          "last_trade_age_sec": 5.2,
+          "locked_book": false,
+          "min_before_start": 355,
+          "offset": 1,
+          "offset_table": 1,
+          "placement_minute": 90,
+          "post_only": true,
+          "reference_source": "staircase_hold",
+          "regime": "r75_84",
+          "runway_status": "full",
+          "table_src": "per_cell",
+          "target_bid": 74
+        },
+        "event": "v4_place",
+        "leg": "ALV",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV",
+        "ts": 1783832721.0
+      },
+      {
+        "details": {
+          "actual": {
+            "actual_bid": 74,
+            "px": 79
+          },
+          "hold": null,
+          "site": "v4_place",
+          "vec": {
+            "anchor_source": "kalshi_schedule",
+            "ask": 79,
+            "ask_falling": null,
+            "bid": 74,
+            "bid_ex_self": 74,
+            "cat": "ATP_CHALL",
+            "cell": 79,
+            "clock_liar": false,
+            "close_ref": 79,
+            "edge_p50": 28,
+            "onset_age_min": null,
+            "prints_30m": 2,
+            "qual_stage": "placement_light",
+            "spread": 5,
+            "thin_tape": false,
+            "tts_min": 354.6
+          },
+          "would": {
+            "action": "wait_t90",
+            "cited": [
+              "GAME_LIFECYCLE 2-5"
+            ],
+            "flow_open": false,
+            "level": null,
+            "posture": null,
+            "regime": "climb_side",
+            "timing": "early"
+          }
+        },
+        "event": "os_shadow",
+        "leg": "ALV",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV",
+        "ts": 1783832721.0
+      },
+      {
+        "details": {
+          "cat": "ATP_CHALL",
+          "confidence": 0.79,
+          "edge_vs_actual": -0.0,
+          "n_eff": 1.0,
+          "opinion": "CONVICTION",
+          "range_prior": {
+            "cell": "ATP_CHALL|leader|at_mid|ge75",
+            "knife": 1.0,
+            "w2_reach": 0.536
+          },
+          "site": "v4_place"
+        },
+        "event": "conviction_shadow",
+        "leg": "ALV",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV",
+        "ts": 1783832721.0
+      },
+      {
+        "details": {
+          "citation": "GUIDEBOOK_V1 prior + M3/M13 curve",
+          "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+          "lib_conf": 0.0,
+          "live_bid": 74,
+          "reason": "lib_conf 0.00 < floor",
+          "verdict": "NO-OPINION"
+        },
+        "event": "liveaim_shadow",
+        "leg": "ALV",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV",
+        "ts": 1783832721.0
+      },
+      {
+        "details": {
+          "bottom_t_med_min": 384.0,
+          "branded": "g9_train",
+          "citation": "ATLAS_V1 ATP_CHALL|leader|ge75 (path bottom p50; -0k onset clock)",
+          "combined_at_path": 96,
+          "contention_aim": 74,
+          "contention_best_pct": 2.4,
+          "contention_by_tier": {
+            "p25": 2.4,
+            "p50": 2.4,
+            "p75": 0.8
+          },
+          "contention_tier": "p50",
+          "deep_tier": 12.0,
+          "depth_p50": 5.0,
+          "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+          "live_bid": 74,
+          "n": 759,
+          "page": "ATP_CHALL|leader|ge75",
+          "pair_completes_in_window": true,
+          "path_aim": 74,
+          "selector": "DROP",
+          "selector_cited": "contention fitted on ATP_CHALL|leader|ge75 (n=759); the standing 8% bar",
+          "side": "leader",
+          "verdict": "PATH_AIM"
+        },
+        "event": "trendpath_shadow",
+        "leg": "ALV",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV",
+        "ts": 1783832721.0
+      },
+      {
+        "details": {
+          "cat": "ATP_CHALL",
+          "discovery": 79,
+          "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+          "law": "selector DROP is a placement veto",
+          "page": "ATP_CHALL|leader|ge75",
+          "selector": "DROP"
+        },
+        "event": "contention_drop_refused",
+        "leg": "ALV",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV",
+        "ts": 1783832721.0
+      }
+    ],
+    "counterfactual": [
+      {
+        "details": {
+          "cat": "ATP_CHALL",
+          "discovery": 79,
+          "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+          "law": "selector DROP is a placement veto",
+          "page": "ATP_CHALL|leader|ge75",
+          "selector": "DROP"
+        },
+        "event": "contention_drop_refused",
+        "leg": "ALV",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV",
+        "ts": 1783832721.0
+      }
+    ],
+    "kind": "replace",
+    "layers": [
+      "authority_and_aim",
+      "engine_and_tape",
+      "post_hold_walk_park",
+      "recognition_and_dossier"
+    ]
+  },
+  "outcomes": {
+    "baseline": {
+      "combined_goal": 97,
+      "filled_plus_resting_pair_cost": 86,
+      "legs": {
+        "ALV": {
+          "fill_price": null,
+          "fill_ts": null,
+          "filled": false,
+          "final_buy_statuses": [
+            {
+              "price": 74,
+              "status": "canceled"
+            },
+            {
+              "price": 70,
+              "status": "resting"
+            }
+          ],
+          "final_resting_buy": 70
+        },
+        "VAN": {
+          "fill_price": null,
+          "fill_ts": null,
+          "filled": false,
+          "final_buy_statuses": [
+            {
+              "price": 22,
+              "status": "canceled"
+            },
+            {
+              "price": 16,
+              "status": "resting"
+            }
+          ],
+          "final_resting_buy": 16
+        }
+      },
+      "pair_completed": false,
+      "remaining_headroom": 11
+    },
+    "counterfactual": {
+      "combined_goal": 97,
+      "filled_plus_resting_pair_cost": 22,
+      "legs": {
+        "ALV": {
+          "fill_price": null,
+          "fill_ts": null,
+          "filled": false,
+          "final_buy_statuses": [],
+          "final_resting_buy": null
+        },
+        "VAN": {
+          "fill_price": 22,
+          "fill_ts": 1783833555.0,
+          "filled": true,
+          "final_buy_statuses": [
+            {
+              "price": 22,
+              "status": "executed"
+            }
+          ],
+          "final_resting_buy": null
+        }
+      },
+      "pair_completed": false,
+      "remaining_headroom": 75
+    }
+  },
+  "report": ".claude\\window1_live_v4_replay\\alvvan_dials_20260729\\contention_drop\\counterfactual\\KXATPCHALLENGERMATCH-26JUL12ALVVAN\\COUNTERFACTUAL_DIFF.md"
+}

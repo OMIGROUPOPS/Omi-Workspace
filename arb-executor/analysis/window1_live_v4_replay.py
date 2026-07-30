@@ -66,6 +66,7 @@ FILL_MODEL = (
     "or five-contract proof gate."
 )
 _REAL_SQLITE_CONNECT = sqlite3.connect
+_SHA256_CACHE: dict[tuple[str, int, int], str] = {}
 
 
 def _iso_ts(value: str) -> float:
@@ -83,11 +84,18 @@ def _jsonable(value: Any) -> Any:
 
 
 def _sha256(path: Path) -> str:
+    stat = path.stat()
+    key = (str(path.resolve()), stat.st_size, stat.st_mtime_ns)
+    cached = _SHA256_CACHE.get(key)
+    if cached is not None:
+        return cached
     h = hashlib.sha256()
     with path.open("rb") as fh:
         for block in iter(lambda: fh.read(1024 * 1024), b""):
             h.update(block)
-    return h.hexdigest()
+    digest = h.hexdigest()
+    _SHA256_CACHE[key] = digest
+    return digest
 
 
 @dataclass

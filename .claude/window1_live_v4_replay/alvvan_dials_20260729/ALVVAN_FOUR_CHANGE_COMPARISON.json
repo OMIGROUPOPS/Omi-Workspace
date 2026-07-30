@@ -1,0 +1,91 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+  "fill_model": "RESTING_TOUCH_FILL_V1",
+  "tape_lows": {
+    "VAN": 22,
+    "ALV": 78
+  },
+  "runs": {
+    "pre_field_repair": {
+      "source": "immediately preceding trace; tennis.db absent but sharp FV returned the same NO-READ result",
+      "VAN": {
+        "final_price": 22,
+        "filled": true
+      },
+      "ALV": {
+        "final_price": 74,
+        "filled": false
+      },
+      "pair_completed": false
+    },
+    "repaired_baseline": {
+      "VAN": {
+        "legacy_price": 22,
+        "sealed_price": 16,
+        "filled": false
+      },
+      "ALV": {
+        "legacy_price": 74,
+        "sealed_price": 70,
+        "filled": false
+      },
+      "pair_completed": false,
+      "remaining_headroom": 11
+    },
+    "contention_drop_enforced": {
+      "VAN": {
+        "price": 22,
+        "filled": true
+      },
+      "ALV": {
+        "price": null,
+        "filled": false
+      },
+      "pair_completed": false,
+      "first_divergence": {
+        "ts": 1783832721,
+        "leg": "ALV",
+        "event": "contention_drop_refused"
+      }
+    },
+    "recognition_before_place": {
+      "VAN": {
+        "price": 16,
+        "filled": false
+      },
+      "ALV": {
+        "price": 70,
+        "filled": false
+      },
+      "pair_completed": false,
+      "remaining_headroom": 11,
+      "first_divergence": {
+        "ts": 1783831622,
+        "leg": "VAN",
+        "event": "recognition_wait_before_place"
+      }
+    },
+    "cohort_steer_riser": {
+      "VAN": {
+        "price": 16,
+        "filled": false
+      },
+      "ALV": {
+        "price": 70,
+        "filled": false
+      },
+      "pair_completed": false,
+      "remaining_headroom": 11,
+      "first_divergence": null
+    }
+  },
+  "conclusion": {
+    "completion_improvement": "none",
+    "keep": [
+      "field contract repair"
+    ],
+    "operationally_useful": "recognition_before_place",
+    "unsafe_standalone": "contention_drop_enforced",
+    "no_effect_on_this_game": "cohort_steer_riser"
+  }
+}

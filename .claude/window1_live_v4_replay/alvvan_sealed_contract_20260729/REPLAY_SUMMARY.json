@@ -1,0 +1,15 @@
+{
+  "completions_out_of_804": 0,
+  "fill_model": "RESTING_TOUCH_FILL_V1: a resting order fills in full when a later true print or opposite BBO touches or passes its limit; no depth, capacity, or five-contract proof gate.",
+  "first_input_break": null,
+  "games": 1,
+  "results": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+      "pair_completed": false,
+      "trace_path": "runs/KXATPCHALLENGERMATCH-26JUL12ALVVAN/trace.json"
+    }
+  ],
+  "schema_version": "window1-live-v4-replay-summary-v1",
+  "valid_for_scoring": true
+}

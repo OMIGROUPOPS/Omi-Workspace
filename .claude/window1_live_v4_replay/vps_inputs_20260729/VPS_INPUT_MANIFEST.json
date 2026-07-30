@@ -102,14 +102,38 @@
     }
   ],
   "tennis_database": {
-    "status": "BLOCKED_PENDING_OPERATOR_AUTHORITY",
-    "replay_must_not_run": true,
+    "status": "READY_TRANSACTION_CONSISTENT_SNAPSHOT",
+    "replay_must_not_run": false,
     "remote_symlink": "/root/Omi-Workspace/arb-executor/tennis.db",
     "remote_resolved_path": "/mnt/omi-trading-data-nyc3/active/tennis.db",
     "database_mode": "WAL",
     "required_replay_path": ".claude/window1_live_v4_replay/vps_inputs_20260729/db/tennis.snapshot.db",
-    "required_replay_path_exists": false,
-    "reason": "The live database changes while its main file is copied. A main-file-only copy excludes committed WAL pages and fails SQLite consistency checks; replay refuses it.",
+    "required_replay_path_exists": true,
+    "reason": "A transaction-consistent SQLite online backup is installed read-only at the required replay path.",
+    "verified_snapshot": {
+      "bytes": 17434673152,
+      "sha256": "ade09fdc101267ac282c8194700ba188cd60aac4c554e4f38da02d14b5e8602c",
+      "sqlite_quick_check": "ok",
+      "snapshot_mtime_utc": "2026-07-30T00:00:47.333515036Z",
+      "source_mtime_after_utc": "2026-07-30T00:34:14.118538540Z",
+      "local_mtime_preserved_utc": "2026-07-30T00:00:47Z",
+      "wal_bytes_before": 66451512,
+      "wal_bytes_during": 66451512,
+      "wal_bytes_after_backup": 66451512,
+      "wal_bytes_after_verify": 66451512,
+      "wal_bytes_after_cleanup": 66451512,
+      "tmp_free_bytes_before": 25856798720,
+      "tmp_free_bytes_min": 8378953728,
+      "tmp_free_bytes_with_snapshot": 8394113024,
+      "tmp_free_bytes_after_cleanup": 25825349632,
+      "remote_temp_deleted": true,
+      "source_open_mode": "read_only",
+      "checkpoint_run": false,
+      "service_paused": false,
+      "service_changed": false,
+      "receipt": ".claude/window1_live_v4_replay/vps_inputs_20260729/TENNIS_SNAPSHOT_RECEIPT.json",
+      "wal_samples": ".claude/window1_live_v4_replay/vps_inputs_20260729/TENNIS_SNAPSHOT_WAL_SAMPLES.jsonl"
+    },
     "main_only_copy_quarantined": {
       "path": ".claude/window1_live_v4_replay/vps_inputs_20260729/db/tennis.db",
       "bytes": 17423802368,
@@ -120,10 +144,10 @@
       "git_ignored": true,
       "must_not_replay": true
     },
-    "remote_state_rechecked_at": "2026-07-29T17:45:25.9745640-04:00",
+    "remote_state_rechecked_at": "2026-07-29T20:47:24.953-04:00",
     "remote_main_bytes_at_recheck": 17425883136,
     "remote_main_mtime_at_recheck": "2026-07-29 17:34:37.579994718 -0400",
-    "safe_completion": "Use SQLite online backup against the source opened read-only, writing one temporary VPS snapshot, copy it down, verify quick_check/hash/mtime, then remove the temporary snapshot.",
-    "authority_needed": "Permission to create and later remove one temporary approximately 17.5 GB snapshot file on the VPS; no live database write, pause, checkpoint, or service mutation."
+    "safe_completion": "Completed: SQLite online backup against the source opened read-only, one temporary VPS snapshot, copied down with mtime preserved, quick_check/hash verified, then the remote temporary files were removed.",
+    "authority_needed": null
   }
 }

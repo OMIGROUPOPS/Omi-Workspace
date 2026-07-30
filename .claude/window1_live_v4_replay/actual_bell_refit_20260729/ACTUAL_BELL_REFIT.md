@@ -1,99 +1,638 @@
-# Actual-bell Window-1 timing/depth refit
+# Actual-bell cell honesty recut
 
-**Fit population: 234 exact-bell games only. Proxy-clock games: zero. The -0k onset target is dropped.**
+**Correction: the prior 1/2/3-cent category headline is withdrawn. It compared a category average to cell-conditional doctrine. This report does not create a parallel aim grid; it compares exact-bell evidence directly to the ratified `recut_cells.json` prior.**
 
-Timing is T-minus actual bell. Depth is the true-print low relative to the last true print inside the full lawful window. A granular cell with fewer than 20 exact-bell legs is descriptive only.
+THE GRID is exactly 90 one-cent cells per category, `[5,95)`. Out-of-grid close prints are excluded and never clamped. Each row prints prior n, exact-bell n and BBO-denominator n. `THIN` is not borrowed and is not averaged upward.
 
-## Category fits
+The signed cent difference is included only because it was requested for reconciliation: exact-bell median `(W1 close last trade - low)` minus prior `edge_p50`. Canonical depth evidence is reported in each leg's own spread and by the four named postures.
 
-| Category | n legs | Low T-minus bell p25 / median / p75 | Depth below W1 close p25 / median / p75 |
-|---|---:|---:|---:|
-| ATP_CHALL | 215 | T-52.8 / T-220.2 / T-410.9 | 1.0c / 2.0c / 3.0c |
-| ATP_MAIN | 74 | T-57.7 / T-203.3 / T-401.5 | 1.0c / 2.0c / 3.0c |
-| WTA_CHALL | 79 | T-110.9 / T-241.2 / T-389.6 | 0.0c / 1.0c / 2.0c |
-| WTA_MAIN | 98 | T-61.8 / T-284.7 / T-427.8 | 0.0c / 1.0c / 2.0c |
+Postures and denominators:
 
-## Exact-bell cohort cells
+- `JOIN` = `best_bid`; denominator = `that leg's archived best_ask - best_bid`.
+- `TOUCH_MINUS_1` = `best_bid - 1 cent`; denominator = `that leg's archived best_ask - best_bid`.
+- `ONE_SPREAD_BELOW_MID` = `(best_bid + best_ask) / 2 - 1 * (best_ask - best_bid)`; denominator = `that leg's archived best_ask - best_bid`.
+- `TWO_SPREADS_BELOW_MID` = `(best_bid + best_ask) / 2 - 2 * (best_ask - best_bid)`; denominator = `that leg's archived best_ask - best_bid`.
 
-| Cell | n | status | low median | depth median |
-|---|---:|---|---:|---:|
-| ATP_CHALL|26_50|hi | 29 | FIT | T-283.6 | 2.0c |
-| ATP_CHALL|26_50|lo | 24 | FIT | T-127.6 | 1.5c |
-| ATP_CHALL|26_50|mid | 25 | FIT | T-279.8 | 1.0c |
-| ATP_CHALL|51_75|hi | 25 | FIT | T-285.5 | 2.0c |
-| ATP_CHALL|51_75|lo | 23 | FIT | T-228.6 | 2.0c |
-| ATP_CHALL|51_75|mid | 30 | FIT | T-247.3 | 2.0c |
-| ATP_CHALL|ge75|hi | 8 | TOO_FEW_EXACT_BELLS | T-243.0 | 1.0c |
-| ATP_CHALL|ge75|lo | 14 | TOO_FEW_EXACT_BELLS | T-304.6 | 1.0c |
-| ATP_CHALL|ge75|mid | 8 | TOO_FEW_EXACT_BELLS | T-187.0 | 2.0c |
-| ATP_CHALL|le25|hi | 9 | TOO_FEW_EXACT_BELLS | T-125.1 | 2.0c |
-| ATP_CHALL|le25|lo | 11 | TOO_FEW_EXACT_BELLS | T-99.8 | 2.0c |
-| ATP_CHALL|le25|mid | 9 | TOO_FEW_EXACT_BELLS | T-26.8 | 1.0c |
-| ATP_MAIN|26_50|hi | 8 | TOO_FEW_EXACT_BELLS | T-187.1 | 1.0c |
-| ATP_MAIN|26_50|lo | 10 | TOO_FEW_EXACT_BELLS | T-330.1 | 1.5c |
-| ATP_MAIN|26_50|mid | 10 | TOO_FEW_EXACT_BELLS | T-166.8 | 2.0c |
-| ATP_MAIN|51_75|hi | 13 | TOO_FEW_EXACT_BELLS | T-192.2 | 2.0c |
-| ATP_MAIN|51_75|lo | 7 | TOO_FEW_EXACT_BELLS | T-222.1 | 2.0c |
-| ATP_MAIN|51_75|mid | 8 | TOO_FEW_EXACT_BELLS | T-129.1 | 2.0c |
-| ATP_MAIN|ge75|hi | 2 | TOO_FEW_EXACT_BELLS | T-244.4 | 0.5c |
-| ATP_MAIN|ge75|lo | 3 | TOO_FEW_EXACT_BELLS | T-236.0 | 3.0c |
-| ATP_MAIN|ge75|mid | 4 | TOO_FEW_EXACT_BELLS | T-292.5 | 2.0c |
-| ATP_MAIN|le25|hi | 1 | TOO_FEW_EXACT_BELLS | T-357.3 | 6.0c |
-| ATP_MAIN|le25|lo | 5 | TOO_FEW_EXACT_BELLS | T-70.1 | 0.0c |
-| ATP_MAIN|le25|mid | 3 | TOO_FEW_EXACT_BELLS | T-14.2 | 2.0c |
-| WTA_CHALL|26_50|hi | 8 | TOO_FEW_EXACT_BELLS | T-167.6 | 0.5c |
-| WTA_CHALL|26_50|lo | 6 | TOO_FEW_EXACT_BELLS | T-112.2 | 1.0c |
-| WTA_CHALL|26_50|mid | 15 | TOO_FEW_EXACT_BELLS | T-244.6 | 1.0c |
-| WTA_CHALL|51_75|hi | 10 | TOO_FEW_EXACT_BELLS | T-439.1 | 1.0c |
-| WTA_CHALL|51_75|lo | 14 | TOO_FEW_EXACT_BELLS | T-242.9 | 1.0c |
-| WTA_CHALL|51_75|mid | 5 | TOO_FEW_EXACT_BELLS | T-268.8 | 2.0c |
-| WTA_CHALL|ge75|hi | 2 | TOO_FEW_EXACT_BELLS | T-15.7 | 1.0c |
-| WTA_CHALL|ge75|lo | 5 | TOO_FEW_EXACT_BELLS | T-289.7 | 2.0c |
-| WTA_CHALL|ge75|mid | 4 | TOO_FEW_EXACT_BELLS | T-321.7 | 1.5c |
-| WTA_CHALL|le25|hi | 6 | TOO_FEW_EXACT_BELLS | T-171.8 | 1.5c |
-| WTA_CHALL|le25|lo | 2 | TOO_FEW_EXACT_BELLS | T-148.9 | 0.5c |
-| WTA_CHALL|le25|mid | 2 | TOO_FEW_EXACT_BELLS | T-227.2 | 0.0c |
-| WTA_MAIN|26_50|hi | 7 | TOO_FEW_EXACT_BELLS | T-116.2 | 0.0c |
-| WTA_MAIN|26_50|lo | 9 | TOO_FEW_EXACT_BELLS | T-242.7 | 1.0c |
-| WTA_MAIN|26_50|mid | 10 | TOO_FEW_EXACT_BELLS | T-124.3 | 0.5c |
-| WTA_MAIN|51_75|hi | 12 | TOO_FEW_EXACT_BELLS | T-380.0 | 3.0c |
-| WTA_MAIN|51_75|lo | 7 | TOO_FEW_EXACT_BELLS | T-312.9 | 2.0c |
-| WTA_MAIN|51_75|mid | 7 | TOO_FEW_EXACT_BELLS | T-333.6 | 1.0c |
-| WTA_MAIN|ge75|hi | 7 | TOO_FEW_EXACT_BELLS | T-395.1 | 1.0c |
-| WTA_MAIN|ge75|lo | 10 | TOO_FEW_EXACT_BELLS | T-114.1 | 1.0c |
-| WTA_MAIN|ge75|mid | 6 | TOO_FEW_EXACT_BELLS | T-324.5 | 1.0c |
-| WTA_MAIN|le25|hi | 6 | TOO_FEW_EXACT_BELLS | T-410.4 | 0.5c |
-| WTA_MAIN|le25|lo | 7 | TOO_FEW_EXACT_BELLS | T-396.3 | 1.0c |
-| WTA_MAIN|le25|mid | 10 | TOO_FEW_EXACT_BELLS | T-220.9 | 1.0c |
+A fresh archived BBO must exist at or before that leg's Window-1 close and be no more than 300 seconds old. Otherwise the leg is `NO_DENOMINATOR`; there is no fallback. The constructed midpoint appears only inside the two named midpoint formulas.
 
-## Schedule-to-bell bridge
+## Cell-by-cell comparison
 
-The archive does **not** contain schedule-update recency. It contains one schedule snapshot and when that snapshot was observed. The conditioned table below uses that observation lead only and does not relabel it as an update timestamp.
+Comparable cells: 212; exact-bell deeper than prior: 104; shallower: 66; equal: 42. Every populated exact-bell cell is thin, so each difference is a finding to inspect, not a replacement fit.
 
-| Category | n | median bell-schedule | p10 | p90 | span | schedule-only timing? |
-|---|---:|---:|---:|---:|---:|---|
-| ATP_CHALL | 108 | -135.0m | -175.0m | +300.0m | 475.0m | no |
-| ATP_MAIN | 37 | +30.0m | -175.0m | +3050.0m | 3225.0m | no |
-| WTA_CHALL | 40 | -132.5m | -180.0m | +0.0m | 180.0m | no |
-| WTA_MAIN | 49 | +45.0m | -175.0m | +1380.0m | 1555.0m | no |
+| Category | cell | zone | prior n | exact n | spread n | status | prior p50¢ | exact p50¢ | signed Δ¢ | signed Δ / own spread p50 | JOIN | touch−1 | 1× below mid | 2× below mid |
+|---|---:|---|---:|---:|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| ATP_CHALL | 5 | JOIN | 23 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.50 | +1.50 | +1.50× | 2/2 | 1/2 | 1/2 | 0/2 |
+| ATP_CHALL | 6 | JOIN | 11 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.00 | +2.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 7 | JOIN | 9 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.50 | +1.50 | +0.50× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_CHALL | 8 | JOIN | 11 | 3 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.00 | +2.00 | +2.00× | 2/2 | 0/2 | 0/2 | 0/2 |
+| ATP_CHALL | 9 | JOIN | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 10 | JOIN | 5 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 11 | JOIN | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 12 | JOIN | 9 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 13 | JOIN | 4 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.00 | +1.00 | +1.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| ATP_CHALL | 14 | JOIN | 16 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.00 | +2.00 | +2.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| ATP_CHALL | 15 | JOIN | 8 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +2.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| ATP_CHALL | 16 | JOIN | 9 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.50 | +0.50 | +0.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| ATP_CHALL | 17 | JOIN | 7 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +3.00 | +3.00 | +1.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_CHALL | 18 | JOIN | 12 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.00 | +1.00 | +0.00× | 2/2 | 1/2 | 1/2 | 0/2 |
+| ATP_CHALL | 19 | JOIN | 14 | 4 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.50 | +0.50 | +0.75× | 1/2 | 0/2 | 0/2 | 0/2 |
+| ATP_CHALL | 20 | JOIN | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +17.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 21 | JOIN | 10 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.50 | +0.50 | +0.12× | 0/2 | 0/2 | 0/2 | 0/2 |
+| ATP_CHALL | 22 | JOIN | 7 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.50 | +2.50 | +1.50× | 2/2 | 1/2 | 1/2 | 1/2 |
+| ATP_CHALL | 23 | JOIN | 11 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.50 | +0.50 | +0.50× | 1/2 | 0/2 | 0/2 | 0/2 |
+| ATP_CHALL | 24 | JOIN | 6 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 25 | JOIN | 6 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +3.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 26 | JOIN | 10 | 3 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.00 | +0.00 | +1.00× | 1/2 | 1/2 | 1/2 | 0/2 |
+| ATP_CHALL | 27 | JOIN | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 28 | JOIN | 11 | 4 | 3 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.50 | +0.50 | +1.00× | 3/3 | 1/3 | 1/3 | 1/3 |
+| ATP_CHALL | 29 | JOIN | 17 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +0.50× | 0/1 | 0/1 | 0/1 | 0/1 |
+| ATP_CHALL | 30 | JOIN | 11 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.50 | -0.50 | -0.50× | 0/2 | 0/2 | 0/2 | 0/2 |
+| ATP_CHALL | 31 | JOIN | 10 | 3 | 3 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +1.00× | 2/3 | 0/3 | 0/3 | 0/3 |
+| ATP_CHALL | 32 | JOIN | 12 | 5 | 3 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.00 | -1.00 | -1.00× | 2/3 | 0/3 | 0/3 | 0/3 |
+| ATP_CHALL | 33 | JOIN | 7 | 4 | 3 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.00 | +2.00 | +0.50× | 1/3 | 0/3 | 0/3 | 0/3 |
+| ATP_CHALL | 34 | JOIN | 12 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +1.00 | +3.50 | +2.50 | +1.38× | 2/2 | 1/2 | 1/2 | 1/2 |
+| ATP_CHALL | 35 | JOIN | 17 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.50 | +1.50 | +0.83× | 2/2 | 0/2 | 0/2 | 0/2 |
+| ATP_CHALL | 36 | JOIN | 12 | 4 | 3 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.50 | -0.50 | -0.50× | 2/3 | 1/3 | 1/3 | 0/3 |
+| ATP_CHALL | 37 | JOIN | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 38 | JOIN | 14 | 3 | 3 | THIN_EXACT_BELL_SAMPLE | +1.00 | +3.00 | +2.00 | +0.67× | 2/3 | 1/3 | 1/3 | 1/3 |
+| ATP_CHALL | 39 | JOIN | 9 | 4 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +0.75× | 1/2 | 0/2 | 0/2 | 0/2 |
+| ATP_CHALL | 40 | JOIN | 17 | 6 | 6 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.50 | +1.50 | +0.75× | 4/6 | 2/6 | 2/6 | 1/6 |
+| ATP_CHALL | 41 | JOIN | 10 | 3 | 3 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 3/3 | 1/3 | 1/3 | 0/3 |
+| ATP_CHALL | 42 | JOIN | 13 | 6 | 4 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.00 | +1.00 | +1.50× | 4/4 | 3/4 | 3/4 | 2/4 |
+| ATP_CHALL | 43 | JOIN | 4 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.00 | +2.00 | +1.00× | 1/2 | 0/2 | 0/2 | 0/2 |
+| ATP_CHALL | 44 | JOIN | 11 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_CHALL | 45 | JOIN | 14 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.50 | +0.50 | +0.50× | 1/2 | 0/2 | 0/2 | 0/2 |
+| ATP_CHALL | 46 | JOIN | 10 | 5 | 4 | THIN_EXACT_BELL_SAMPLE | +0.00 | +3.00 | +3.00 | +2.00× | 3/4 | 3/4 | 3/4 | 1/4 |
+| ATP_CHALL | 47 | JOIN | 5 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +7.00 | +7.00 | +1.75× | 1/1 | 1/1 | 1/1 | 0/1 |
+| ATP_CHALL | 48 | JOIN | 9 | 3 | 3 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.00 | +1.00 | +0.50× | 2/3 | 1/3 | 1/3 | 1/3 |
+| ATP_CHALL | 49 | JOIN | 12 | 9 | 9 | THIN_EXACT_BELL_SAMPLE | +3.00 | +3.00 | +0.00 | +0.00× | 8/9 | 6/9 | 6/9 | 2/9 |
+| ATP_CHALL | 50 | SHALLOW | 12 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 51 | SHALLOW | 9 | 5 | 5 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +0.50× | 3/5 | 1/5 | 1/5 | 0/5 |
+| ATP_CHALL | 52 | SHALLOW | 6 | 4 | 4 | THIN_EXACT_BELL_SAMPLE | +2.00 | +3.50 | +1.50 | +0.18× | 2/4 | 2/4 | 1/4 | 0/4 |
+| ATP_CHALL | 53 | SHALLOW | 12 | 10 | 10 | THIN_EXACT_BELL_SAMPLE | +2.00 | +2.00 | +0.00 | +0.00× | 9/10 | 6/10 | 6/10 | 2/10 |
+| ATP_CHALL | 54 | SHALLOW | 12 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 55 | SHALLOW | 12 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +3.00 | +3.00 | +1.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_CHALL | 56 | SHALLOW | 16 | 5 | 4 | THIN_EXACT_BELL_SAMPLE | +1.00 | +3.00 | +2.00 | +1.00× | 3/4 | 2/4 | 2/4 | 2/4 |
+| ATP_CHALL | 57 | SHALLOW | 15 | 3 | 3 | THIN_EXACT_BELL_SAMPLE | +1.00 | +3.00 | +2.00 | +0.67× | 2/3 | 1/3 | 1/3 | 1/3 |
+| ATP_CHALL | 58 | SHALLOW | 14 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.00 | -1.00 | -1.00× | 1/1 | 1/1 | 1/1 | 1/1 |
+| ATP_CHALL | 59 | SHALLOW | 7 | 3 | 3 | THIN_EXACT_BELL_SAMPLE | +0.00 | +3.00 | +3.00 | +3.00× | 3/3 | 3/3 | 3/3 | 2/3 |
+| ATP_CHALL | 60 | SHALLOW | 10 | 6 | 4 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.50 | -0.50 | +0.75× | 4/4 | 3/4 | 3/4 | 2/4 |
+| ATP_CHALL | 61 | SHALLOW | 11 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.50 | +2.50 | +2.00× | 2/2 | 1/2 | 1/2 | 1/2 |
+| ATP_CHALL | 62 | SHALLOW | 8 | 8 | 7 | THIN_EXACT_BELL_SAMPLE | +5.00 | +2.00 | -3.00 | -1.50× | 6/7 | 4/7 | 4/7 | 2/7 |
+| ATP_CHALL | 63 | SHALLOW | 10 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_CHALL | 64 | SHALLOW | 14 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +4.00 | +3.00 | +3.00× | 1/1 | 1/1 | 1/1 | 1/1 |
+| ATP_CHALL | 65 | SHALLOW | 12 | 3 | 2 | THIN_EXACT_BELL_SAMPLE | +3.00 | +2.00 | -1.00 | -1.25× | 1/2 | 0/2 | 0/2 | 0/2 |
+| ATP_CHALL | 66 | SHALLOW | 12 | 4 | 4 | THIN_EXACT_BELL_SAMPLE | +3.00 | +3.50 | +0.50 | +0.38× | 3/4 | 2/4 | 2/4 | 1/4 |
+| ATP_CHALL | 67 | SHALLOW | 14 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +2.00 | +0.00 | +0.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_CHALL | 68 | SHALLOW | 12 | 4 | 3 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.50 | +0.50 | +0.50× | 3/3 | 1/3 | 1/3 | 1/3 |
+| ATP_CHALL | 69 | SHALLOW | 11 | 3 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +1.00× | 2/2 | 0/2 | 0/2 | 0/2 |
+| ATP_CHALL | 70 | SHALLOW | 7 | 3 | 2 | THIN_EXACT_BELL_SAMPLE | +4.00 | +1.00 | -3.00 | -1.50× | 2/2 | 1/2 | 0/2 | 0/2 |
+| ATP_CHALL | 71 | SHALLOW | 10 | 4 | 3 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.00 | +1.00 | +0.50× | 2/3 | 0/3 | 0/3 | 0/3 |
+| ATP_CHALL | 72 | SHALLOW | 7 | 4 | 4 | THIN_EXACT_BELL_SAMPLE | +2.00 | +3.00 | +1.00 | +0.83× | 3/4 | 2/4 | 2/4 | 1/4 |
+| ATP_CHALL | 73 | SHALLOW | 10 | 4 | 4 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 2/4 | 2/4 | 2/4 | 1/4 |
+| ATP_CHALL | 74 | SHALLOW | 9 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 75 | DEEP | 7 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.00 | +0.00 | +0.00× | 0/2 | 0/2 | 0/2 | 0/2 |
+| ATP_CHALL | 76 | DEEP | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 77 | DEEP | 7 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 78 | DEEP | 7 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.00 | -1.00 | -0.75× | 2/2 | 1/2 | 1/2 | 0/2 |
+| ATP_CHALL | 79 | DEEP | 8 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +28.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 80 | DEEP | 6 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +3.00 | +1.50 | -1.50 | -1.50× | 2/2 | 1/2 | 1/2 | 0/2 |
+| ATP_CHALL | 81 | DEEP | 10 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +3.00 | +2.00 | +1.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| ATP_CHALL | 82 | DEEP | 5 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +2.00 | +3.50 | +1.50 | +1.50× | 2/2 | 1/2 | 1/2 | 1/2 |
+| ATP_CHALL | 83 | DEEP | 8 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +23.00 | +8.00 | -15.00 | -12.50× | 2/2 | 2/2 | 2/2 | 2/2 |
+| ATP_CHALL | 84 | DEEP | 8 | 3 | 2 | THIN_EXACT_BELL_SAMPLE | +15.00 | +2.00 | -13.00 | -13.50× | 2/2 | 1/2 | 1/2 | 0/2 |
+| ATP_CHALL | 85 | DEEP | 4 | 4 | 1 | THIN_EXACT_BELL_SAMPLE | +28.00 | +0.00 | -28.00 | -28.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| ATP_CHALL | 86 | DEEP | 6 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +28.00 | +3.00 | -25.00 | -12.50× | 1/1 | 1/1 | 1/1 | 0/1 |
+| ATP_CHALL | 87 | DEEP | 6 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +3.00 | +2.00 | -1.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 88 | DEEP | 8 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +10.00 | +0.00 | -10.00 | -10.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| ATP_CHALL | 89 | DEEP | 5 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +5.00 | +2.00 | -3.00 | -1.50× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_CHALL | 90 | DEEP | 4 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 91 | DEEP | 7 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 92 | DEEP | 10 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +9.00 | +0.00 | -9.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_CHALL | 93 | DEEP | 5 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +4.00 | +1.00 | -3.00 | -3.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| ATP_CHALL | 94 | DEEP | 9 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +4.00 | +1.50 | -2.50 | -3.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 5 | JOIN | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 6 | JOIN | 6 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.50 | +1.50 | +2.00× | 1/1 | 1/1 | 1/1 | 1/1 |
+| ATP_MAIN | 7 | JOIN | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 8 | JOIN | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 9 | JOIN | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 10 | JOIN | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 11 | JOIN | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 12 | JOIN | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 13 | JOIN | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 14 | JOIN | 4 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.00 | +2.00 | +1.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 15 | JOIN | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 16 | JOIN | 3 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.00 | +0.00 | +0.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 17 | JOIN | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 18 | JOIN | 5 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 19 | JOIN | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 20 | JOIN | 6 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 21 | JOIN | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 22 | JOIN | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 23 | JOIN | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.00 | -1.00 | -0.50× | 0/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 24 | JOIN | 8 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.00 | -1.00 | -1.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 25 | JOIN | 4 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +3.00 | +3.00 | +3.00× | 1/1 | 1/1 | 1/1 | 1/1 |
+| ATP_MAIN | 26 | JOIN | 5 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 27 | JOIN | 3 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +6.00 | +5.00 | +2.50× | 1/1 | 1/1 | 1/1 | 1/1 |
+| ATP_MAIN | 28 | JOIN | 6 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +4.00 | +3.00 | +3.00× | 1/1 | 1/1 | 1/1 | 1/1 |
+| ATP_MAIN | 29 | JOIN | 4 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 30 | JOIN | 4 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 31 | JOIN | 6 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 32 | JOIN | 3 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +1.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 33 | JOIN | 3 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.50 | +2.50 | +1.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 34 | JOIN | 5 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.50 | -0.50 | -0.50× | 2/2 | 1/2 | 1/2 | 0/2 |
+| ATP_MAIN | 35 | JOIN | 6 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 36 | JOIN | 8 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +1.00 | +4.50 | +3.50 | +3.50× | 2/2 | 2/2 | 2/2 | 2/2 |
+| ATP_MAIN | 37 | JOIN | 0 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | — | +1.50 | — | — | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 38 | JOIN | 7 | 3 | 3 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.00 | -1.00 | -0.50× | 1/3 | 1/3 | 1/3 | 0/3 |
+| ATP_MAIN | 39 | JOIN | 4 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +2.00 | +2.00 | +0.00 | +0.00× | 2/2 | 1/2 | 1/2 | 1/2 |
+| ATP_MAIN | 40 | JOIN | 3 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 41 | JOIN | 3 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 42 | JOIN | 4 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.00 | +1.00 | +0.50× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 43 | JOIN | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 44 | JOIN | 7 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.00 | -1.00 | -0.50× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 45 | JOIN | 5 | 3 | 3 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.00 | -1.00 | -1.00× | 3/3 | 1/3 | 1/3 | 0/3 |
+| ATP_MAIN | 46 | JOIN | 4 | 3 | 2 | THIN_EXACT_BELL_SAMPLE | +2.00 | +4.00 | +2.00 | +0.67× | 2/2 | 1/2 | 1/2 | 0/2 |
+| ATP_MAIN | 47 | JOIN | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +3.00 | +1.00 | -2.00 | -2.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 48 | JOIN | 3 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +4.00 | +3.00 | +1.50× | 1/1 | 1/1 | 1/1 | 0/1 |
+| ATP_MAIN | 49 | JOIN | 4 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 50 | SHALLOW | 6 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 51 | SHALLOW | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 52 | SHALLOW | 7 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 53 | SHALLOW | 5 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 54 | SHALLOW | 0 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | — | +0.00 | — | — | 0/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 55 | SHALLOW | 2 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +2.00 | +2.00 | +0.00 | +0.00× | 2/2 | 1/2 | 1/2 | 1/2 |
+| ATP_MAIN | 56 | SHALLOW | 6 | 4 | 3 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.50 | -0.50 | +0.00× | 3/3 | 2/3 | 2/3 | 0/3 |
+| ATP_MAIN | 57 | SHALLOW | 6 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.50 | +1.50 | +1.25× | 2/2 | 1/2 | 1/2 | 1/2 |
+| ATP_MAIN | 58 | SHALLOW | 5 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 59 | SHALLOW | 6 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 60 | SHALLOW | 5 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.50 | +0.50 | +0.50× | 2/2 | 1/2 | 1/2 | 1/2 |
+| ATP_MAIN | 61 | SHALLOW | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +5.00 | +4.00 | +1.33× | 1/1 | 1/1 | 1/1 | 0/1 |
+| ATP_MAIN | 62 | SHALLOW | 3 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.00 | -1.00 | -1.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 63 | SHALLOW | 9 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +3.00 | +2.00 | +1.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| ATP_MAIN | 64 | SHALLOW | 4 | 4 | 3 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.50 | -0.50 | +0.00× | 3/3 | 2/3 | 2/3 | 2/3 |
+| ATP_MAIN | 65 | SHALLOW | 4 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +2.00 | +3.00 | +1.00 | +0.42× | 2/2 | 1/2 | 1/2 | 0/2 |
+| ATP_MAIN | 66 | SHALLOW | 6 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +2.00 | +3.50 | +1.50 | +0.75× | 2/2 | 2/2 | 2/2 | 1/2 |
+| ATP_MAIN | 67 | SHALLOW | 6 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +2.00 | +0.00 | +0.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| ATP_MAIN | 68 | SHALLOW | 3 | 3 | 2 | THIN_EXACT_BELL_SAMPLE | +2.00 | +2.00 | +0.00 | +0.00× | 2/2 | 1/2 | 1/2 | 0/2 |
+| ATP_MAIN | 69 | SHALLOW | 4 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.00 | +1.00 | +1.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| ATP_MAIN | 70 | SHALLOW | 8 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 71 | SHALLOW | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 72 | SHALLOW | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 73 | SHALLOW | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +12.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 74 | SHALLOW | 8 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | -0.25× | 2/2 | 0/2 | 0/2 | 0/2 |
+| ATP_MAIN | 75 | DEEP | 4 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +3.00 | +0.00 | -3.00 | -3.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 76 | DEEP | 1 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| ATP_MAIN | 77 | DEEP | 6 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 78 | DEEP | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.00 | +1.00 | +1.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| ATP_MAIN | 79 | DEEP | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 80 | DEEP | 5 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 81 | DEEP | 4 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +3.00 | +2.00 | +2.00× | 1/1 | 1/1 | 1/1 | 1/1 |
+| ATP_MAIN | 82 | DEEP | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 83 | DEEP | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 84 | DEEP | 4 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 85 | DEEP | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +4.00 | +5.00 | +1.00 | +1.00× | 1/1 | 1/1 | 1/1 | 1/1 |
+| ATP_MAIN | 86 | DEEP | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 87 | DEEP | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 88 | DEEP | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.00 | +1.00 | +0.50× | 1/1 | 0/1 | 0/1 | 0/1 |
+| ATP_MAIN | 89 | DEEP | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 90 | DEEP | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +21.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 91 | DEEP | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 92 | DEEP | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 93 | DEEP | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ATP_MAIN | 94 | DEEP | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 5 | JOIN | 22 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 6 | JOIN | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 7 | JOIN | 31 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 8 | JOIN | 18 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 9 | JOIN | 29 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 10 | JOIN | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 11 | JOIN | 25 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 12 | JOIN | 30 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 13 | JOIN | 21 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 14 | JOIN | 29 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 15 | JOIN | 20 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 16 | JOIN | 26 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 17 | JOIN | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +3.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 18 | JOIN | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 19 | JOIN | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 20 | JOIN | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 21 | JOIN | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 22 | JOIN | 28 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 23 | JOIN | 20 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 24 | JOIN | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 25 | JOIN | 17 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +5.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 26 | JOIN | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 27 | JOIN | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 28 | JOIN | 25 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 29 | JOIN | 16 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 30 | JOIN | 12 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +3.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 31 | JOIN | 15 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 32 | JOIN | 13 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 33 | JOIN | 20 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 34 | JOIN | 18 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 35 | JOIN | 23 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 36 | JOIN | 15 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 37 | JOIN | 7 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 38 | JOIN | 17 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 39 | JOIN | 17 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 40 | JOIN | 17 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 41 | JOIN | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 42 | JOIN | 15 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 43 | JOIN | 15 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +5.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 44 | JOIN | 20 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 45 | JOIN | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +3.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 46 | JOIN | 13 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 47 | JOIN | 17 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 48 | JOIN | 6 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +7.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 49 | JOIN | 13 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 50 | SHALLOW | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 51 | SHALLOW | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +3.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 52 | SHALLOW | 17 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 53 | SHALLOW | 18 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 54 | SHALLOW | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 55 | SHALLOW | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 56 | SHALLOW | 17 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 57 | SHALLOW | 15 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 58 | SHALLOW | 12 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +7.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 59 | SHALLOW | 21 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +6.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 60 | SHALLOW | 20 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +8.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 61 | SHALLOW | 16 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +11.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 62 | SHALLOW | 17 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +6.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 63 | SHALLOW | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +10.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 64 | SHALLOW | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +5.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 65 | SHALLOW | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 66 | SHALLOW | 10 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 67 | SHALLOW | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +6.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 68 | SHALLOW | 17 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +6.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 69 | SHALLOW | 24 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +3.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 70 | SHALLOW | 15 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +20.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 71 | SHALLOW | 16 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +3.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 72 | SHALLOW | 12 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +11.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 73 | SHALLOW | 9 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +8.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 74 | SHALLOW | 23 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 75 | DEEP | 23 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +20.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 76 | DEEP | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +3.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 77 | DEEP | 16 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +7.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 78 | DEEP | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +20.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 79 | DEEP | 22 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +19.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 80 | DEEP | 16 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +5.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 81 | DEEP | 17 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +12.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 82 | DEEP | 13 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +17.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 83 | DEEP | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +20.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 84 | DEEP | 24 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 85 | DEEP | 15 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +13.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 86 | DEEP | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +16.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 87 | DEEP | 8 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +7.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 88 | DEEP | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +9.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 89 | DEEP | 8 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +9.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 90 | DEEP | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +10.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 91 | DEEP | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +9.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 92 | DEEP | 21 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +8.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 93 | DEEP | 13 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +21.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_M | 94 | DEEP | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +6.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 5 | JOIN | 31 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 6 | JOIN | 20 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 7 | JOIN | 20 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 8 | JOIN | 24 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 9 | JOIN | 13 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 10 | JOIN | 12 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 11 | JOIN | 20 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 12 | JOIN | 26 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 13 | JOIN | 22 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 14 | JOIN | 20 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 15 | JOIN | 17 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +3.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 16 | JOIN | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 17 | JOIN | 27 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 18 | JOIN | 15 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 19 | JOIN | 12 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 20 | JOIN | 15 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 21 | JOIN | 22 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 22 | JOIN | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 23 | JOIN | 13 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 24 | JOIN | 20 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 25 | JOIN | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 26 | JOIN | 17 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 27 | JOIN | 16 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +6.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 28 | JOIN | 25 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +3.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 29 | JOIN | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 30 | JOIN | 13 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 31 | JOIN | 12 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 32 | JOIN | 17 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 33 | JOIN | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 34 | JOIN | 10 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 35 | JOIN | 10 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 36 | JOIN | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 37 | JOIN | 9 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 38 | JOIN | 18 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 39 | JOIN | 10 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 40 | JOIN | 16 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 41 | JOIN | 16 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 42 | JOIN | 10 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 43 | JOIN | 15 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 44 | JOIN | 8 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 45 | JOIN | 16 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 46 | JOIN | 20 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 47 | JOIN | 23 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 48 | JOIN | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 49 | JOIN | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 50 | SHALLOW | 26 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 51 | SHALLOW | 13 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 52 | SHALLOW | 13 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 53 | SHALLOW | 13 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 54 | SHALLOW | 6 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 55 | SHALLOW | 22 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +3.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 56 | SHALLOW | 21 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 57 | SHALLOW | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +5.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 58 | SHALLOW | 7 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 59 | SHALLOW | 16 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +5.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 60 | SHALLOW | 9 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +6.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 61 | SHALLOW | 18 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 62 | SHALLOW | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 63 | SHALLOW | 13 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 64 | SHALLOW | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 65 | SHALLOW | 10 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 66 | SHALLOW | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 67 | SHALLOW | 16 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +7.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 68 | SHALLOW | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 69 | SHALLOW | 12 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 70 | SHALLOW | 17 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +17.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 71 | SHALLOW | 9 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +12.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 72 | SHALLOW | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +9.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 73 | SHALLOW | 12 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 74 | SHALLOW | 18 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +11.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 75 | DEEP | 16 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +10.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 76 | DEEP | 15 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +3.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 77 | DEEP | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +3.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 78 | DEEP | 19 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +8.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 79 | DEEP | 14 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +6.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 80 | DEEP | 15 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +19.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 81 | DEEP | 9 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +12.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 82 | DEEP | 16 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +7.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 83 | DEEP | 13 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +17.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 84 | DEEP | 13 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +7.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 85 | DEEP | 20 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +10.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 86 | DEEP | 18 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +21.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 87 | DEEP | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +19.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 88 | DEEP | 15 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +14.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 89 | DEEP | 15 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +23.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 90 | DEEP | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +7.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 91 | DEEP | 12 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +12.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 92 | DEEP | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +14.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 93 | DEEP | 10 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +9.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| ITF_W | 94 | DEEP | 11 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +12.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 5 | JOIN | 4 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 6 | JOIN | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 7 | JOIN | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.00 | -1.00 | -1.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 8 | JOIN | 4 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +2.00 | +2.00 | +0.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 9 | JOIN | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 10 | JOIN | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 11 | JOIN | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 12 | JOIN | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 13 | JOIN | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 14 | JOIN | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 15 | JOIN | 2 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.00 | -1.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 16 | JOIN | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.00 | +0.00 | +0.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 17 | JOIN | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +5.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 18 | JOIN | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 19 | JOIN | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 20 | JOIN | 0 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | — | +0.50 | — | — | 0/2 | 0/2 | 0/2 | 0/2 |
+| WTA_CHALL | 21 | JOIN | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 22 | JOIN | 2 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.50 | +1.50 | +1.50× | 2/2 | 0/2 | 0/2 | 0/2 |
+| WTA_CHALL | 23 | JOIN | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +5.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 24 | JOIN | 0 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | — | +3.00 | — | — | 1/1 | 1/1 | 1/1 | 1/1 |
+| WTA_CHALL | 25 | JOIN | 0 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | — | +0.00 | — | — | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 26 | JOIN | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 27 | JOIN | 1 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +0.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 28 | JOIN | 1 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.00 | +0.00 | +0.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 29 | JOIN | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 30 | JOIN | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 31 | JOIN | 3 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +0.50× | 1/2 | 0/2 | 0/2 | 0/2 |
+| WTA_CHALL | 32 | JOIN | 1 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.00 | +0.00 | +0.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 33 | JOIN | 2 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 1/2 | 1/2 | 1/2 | 0/2 |
+| WTA_CHALL | 34 | JOIN | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 35 | JOIN | 1 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +7.00 | +1.50 | -5.50 | -3.17× | 1/2 | 1/2 | 1/2 | 1/2 |
+| WTA_CHALL | 36 | JOIN | 1 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.00 | +0.00 | +0.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 37 | JOIN | 1 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +1.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 38 | JOIN | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +5.00 | +0.00 | -5.00 | -5.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 39 | JOIN | 0 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | — | +1.00 | — | — | 2/2 | 0/2 | 0/2 | 0/2 |
+| WTA_CHALL | 40 | JOIN | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 41 | JOIN | 0 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | — | +1.00 | — | — | 1/1 | 1/1 | 1/1 | 0/1 |
+| WTA_CHALL | 42 | JOIN | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 43 | JOIN | 1 | 3 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +1.50× | 2/2 | 1/2 | 1/2 | 1/2 |
+| WTA_CHALL | 44 | JOIN | 0 | 4 | 4 | THIN_EXACT_BELL_SAMPLE | — | +1.00 | — | — | 3/4 | 1/4 | 1/4 | 1/4 |
+| WTA_CHALL | 45 | JOIN | 1 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +0.62× | 2/2 | 0/2 | 0/2 | 0/2 |
+| WTA_CHALL | 46 | JOIN | 0 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | — | +0.00 | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 47 | JOIN | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 48 | JOIN | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 49 | JOIN | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 50 | SHALLOW | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 51 | SHALLOW | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +8.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 52 | SHALLOW | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 53 | SHALLOW | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 54 | SHALLOW | 1 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 55 | SHALLOW | 1 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +32.00 | +0.50 | -31.50 | -9.53× | 2/2 | 0/2 | 0/2 | 0/2 |
+| WTA_CHALL | 56 | SHALLOW | 0 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | — | +0.00 | — | — | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 57 | SHALLOW | 2 | 3 | 3 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 2/3 | 1/3 | 1/3 | 0/3 |
+| WTA_CHALL | 58 | SHALLOW | 0 | 3 | 2 | THIN_EXACT_BELL_SAMPLE | — | +2.00 | — | — | 2/2 | 1/2 | 1/2 | 0/2 |
+| WTA_CHALL | 59 | SHALLOW | 0 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | — | +0.00 | — | — | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 60 | SHALLOW | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +5.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 61 | SHALLOW | 0 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | — | +3.00 | — | — | 1/1 | 1/1 | 1/1 | 1/1 |
+| WTA_CHALL | 62 | SHALLOW | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 63 | SHALLOW | 3 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +0.50× | 1/2 | 0/2 | 0/2 | 0/2 |
+| WTA_CHALL | 64 | SHALLOW | 0 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | — | +1.50 | — | — | 2/2 | 1/2 | 1/2 | 0/2 |
+| WTA_CHALL | 65 | SHALLOW | 0 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | — | +1.50 | — | — | 2/2 | 1/2 | 0/2 | 0/2 |
+| WTA_CHALL | 66 | SHALLOW | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +39.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 67 | SHALLOW | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 68 | SHALLOW | 0 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | — | +1.00 | — | — | 0/2 | 0/2 | 0/2 | 0/2 |
+| WTA_CHALL | 69 | SHALLOW | 1 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.50 | +2.50 | +1.75× | 2/2 | 2/2 | 2/2 | 0/2 |
+| WTA_CHALL | 70 | SHALLOW | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 71 | SHALLOW | 1 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.50 | +2.50 | +1.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 72 | SHALLOW | 1 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 73 | SHALLOW | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +0.33× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 74 | SHALLOW | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +3.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 75 | DEEP | 0 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | — | +1.50 | — | — | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 76 | DEEP | 1 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +10.00 | +2.00 | -8.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 77 | DEEP | 0 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | — | +1.00 | — | — | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 78 | DEEP | 1 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +0.50× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 79 | DEEP | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +1.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 80 | DEEP | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +25.00 | +1.00 | -24.00 | -24.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 81 | DEEP | 1 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.00 | +2.00 | +2.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| WTA_CHALL | 82 | DEEP | 0 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | — | +2.00 | — | — | 2/2 | 0/2 | 0/2 | 0/2 |
+| WTA_CHALL | 83 | DEEP | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 84 | DEEP | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 85 | DEEP | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 86 | DEEP | 0 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | — | +2.50 | — | — | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_CHALL | 87 | DEEP | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 88 | DEEP | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 89 | DEEP | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 90 | DEEP | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 91 | DEEP | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 92 | DEEP | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 93 | DEEP | 1 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +22.00 | +0.00 | -22.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_CHALL | 94 | DEEP | 0 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | — | +2.00 | — | — | 1/1 | 1/1 | 1/1 | 0/1 |
+| WTA_MAIN | 5 | JOIN | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 6 | JOIN | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 7 | JOIN | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 8 | JOIN | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 9 | JOIN | 4 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.00 | +2.00 | +1.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 10 | JOIN | 4 | 3 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.00 | -1.00 | -1.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 11 | JOIN | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 12 | JOIN | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +6.00 | +2.00 | -4.00 | -4.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| WTA_MAIN | 13 | JOIN | 3 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +3.00 | +2.00 | +1.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| WTA_MAIN | 14 | JOIN | 3 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 15 | JOIN | 12 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.00 | +2.00 | +2.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| WTA_MAIN | 16 | JOIN | 3 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.00 | -1.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 17 | JOIN | 2 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 18 | JOIN | 4 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.50 | +0.50 | +0.25× | 1/2 | 1/2 | 1/2 | 0/2 |
+| WTA_MAIN | 19 | JOIN | 4 | 2 | 0 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.50 | +0.50 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 20 | JOIN | 6 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 21 | JOIN | 3 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 22 | JOIN | 5 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.00 | +0.00 | +0.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 23 | JOIN | 0 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | — | +0.00 | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 24 | JOIN | 4 | 3 | 3 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.00 | +0.00 | +0.00× | 2/3 | 0/3 | 0/3 | 0/3 |
+| WTA_MAIN | 25 | JOIN | 1 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.50 | -0.50 | -0.25× | 2/2 | 0/2 | 0/2 | 0/2 |
+| WTA_MAIN | 26 | JOIN | 3 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.50 | +1.50 | +1.50× | 2/2 | 1/2 | 1/2 | 0/2 |
+| WTA_MAIN | 27 | JOIN | 5 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.50 | +0.50 | +1.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 28 | JOIN | 5 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.00 | +0.00 | +0.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 29 | JOIN | 1 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.00 | -1.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 30 | JOIN | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.00 | +0.00 | +0.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 31 | JOIN | 4 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 32 | JOIN | 1 | 2 | 0 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.50 | +0.50 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 33 | JOIN | 1 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.00 | +0.00 | +0.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 34 | JOIN | 5 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 35 | JOIN | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 36 | JOIN | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +4.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 37 | JOIN | 6 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.00 | +1.00 | +0.50× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 38 | JOIN | 4 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +3.00 | +1.00 | -2.00 | -2.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 39 | JOIN | 4 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +4.00 | +0.50 | -3.50 | -3.50× | 1/2 | 0/2 | 0/2 | 0/2 |
+| WTA_MAIN | 40 | JOIN | 7 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 41 | JOIN | 4 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.50 | -0.50 | +0.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 42 | JOIN | 4 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +0.00 | -2.00 | -2.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 43 | JOIN | 7 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.00 | -1.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 44 | JOIN | 5 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.50 | -0.50 | -0.50× | 1/2 | 0/2 | 0/2 | 0/2 |
+| WTA_MAIN | 45 | JOIN | 5 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +4.00 | +3.00 | +1.00× | 1/1 | 1/1 | 0/1 | 0/1 |
+| WTA_MAIN | 46 | JOIN | 6 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 47 | JOIN | 0 | 0 | 0 | NO_EXACT_BELL_SAMPLE | — | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 48 | JOIN | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 49 | JOIN | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +0.00 | -2.00 | -2.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 50 | SHALLOW | 4 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.00 | +1.00 | +1.00× | 2/2 | 2/2 | 2/2 | 0/2 |
+| WTA_MAIN | 51 | SHALLOW | 4 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +3.00 | +0.00 | -3.00 | -3.00× | 0/2 | 0/2 | 0/2 | 0/2 |
+| WTA_MAIN | 52 | SHALLOW | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 53 | SHALLOW | 3 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +2.00 | +1.00 | +1.00× | 1/1 | 1/1 | 1/1 | 0/1 |
+| WTA_MAIN | 54 | SHALLOW | 2 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 55 | SHALLOW | 5 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 56 | SHALLOW | 9 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 57 | SHALLOW | 2 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +2.00 | +2.00 | +2.00× | 2/2 | 2/2 | 2/2 | 0/2 |
+| WTA_MAIN | 58 | SHALLOW | 6 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +4.00 | +2.00 | +0.33× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 59 | SHALLOW | 5 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +3.00 | +2.00 | +2.00× | 1/1 | 1/1 | 1/1 | 1/1 |
+| WTA_MAIN | 60 | SHALLOW | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +3.00 | +1.00 | -2.00 | -2.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 61 | SHALLOW | 11 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.00 | -1.00 | -1.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 62 | SHALLOW | 3 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.50 | -0.50 | -0.50× | 2/2 | 0/2 | 0/2 | 0/2 |
+| WTA_MAIN | 63 | SHALLOW | 1 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +1.00 | +3.00 | +2.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 64 | SHALLOW | 4 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.00 | -1.00 | -1.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 65 | SHALLOW | 6 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +2.00 | +0.00 | +0.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 66 | SHALLOW | 4 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +5.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 67 | SHALLOW | 3 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +3.00 | +1.00 | +1.00× | 1/1 | 1/1 | 1/1 | 1/1 |
+| WTA_MAIN | 68 | SHALLOW | 4 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 69 | SHALLOW | 1 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +0.00 | +0.00 | +0.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 70 | SHALLOW | 3 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +6.00 | +2.50 | -3.50 | -2.00× | 1/1 | 1/1 | 1/1 | 1/1 |
+| WTA_MAIN | 71 | SHALLOW | 2 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +2.00 | +3.00 | +1.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 72 | SHALLOW | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 73 | SHALLOW | 7 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +5.00 | +3.00 | +3.00× | 1/1 | 1/1 | 1/1 | 1/1 |
+| WTA_MAIN | 74 | SHALLOW | 2 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +2.00 | +3.00 | +1.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 75 | DEEP | 2 | 3 | 3 | THIN_EXACT_BELL_SAMPLE | +1.00 | +0.00 | -1.00 | -1.00× | 1/3 | 1/3 | 1/3 | 0/3 |
+| WTA_MAIN | 76 | DEEP | 2 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +9.00 | +0.00 | -9.00 | -9.00× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 77 | DEEP | 3 | 4 | 4 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.00 | +0.00 | +0.00× | 3/4 | 1/4 | 1/4 | 1/4 |
+| WTA_MAIN | 78 | DEEP | 2 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +17.00 | +2.00 | -15.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 79 | DEEP | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 80 | DEEP | 3 | 2 | 2 | THIN_EXACT_BELL_SAMPLE | +0.00 | +1.00 | +1.00 | +1.00× | 2/2 | 0/2 | 0/2 | 0/2 |
+| WTA_MAIN | 81 | DEEP | 5 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +2.00 | +3.00 | +1.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 82 | DEEP | 4 | 2 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.00 | -1.00 | -0.50× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 83 | DEEP | 3 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +3.00 | +0.00 | -3.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 84 | DEEP | 3 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +2.00 | +0.00 | +0.00× | 1/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 85 | DEEP | 4 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +27.00 | +2.00 | -25.00 | -25.00× | 1/1 | 1/1 | 1/1 | 1/1 |
+| WTA_MAIN | 86 | DEEP | 6 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +0.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 87 | DEEP | 3 | 2 | 0 | THIN_EXACT_BELL_SAMPLE | +1.00 | +1.50 | +0.50 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 88 | DEEP | 5 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.00 | -1.00 | -0.50× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 89 | DEEP | 1 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +2.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 90 | DEEP | 2 | 3 | 2 | THIN_EXACT_BELL_SAMPLE | +17.00 | +1.00 | -16.00 | -11.75× | 2/2 | 0/2 | 0/2 | 0/2 |
+| WTA_MAIN | 91 | DEEP | 2 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | +2.00 | +2.00 | +0.00 | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 92 | DEEP | 3 | 1 | 1 | THIN_EXACT_BELL_SAMPLE | +2.00 | +1.00 | -1.00 | -0.50× | 0/1 | 0/1 | 0/1 | 0/1 |
+| WTA_MAIN | 93 | DEEP | 0 | 1 | 0 | THIN_EXACT_BELL_SAMPLE | — | +2.00 | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
+| WTA_MAIN | 94 | DEEP | 3 | 0 | 0 | NO_EXACT_BELL_SAMPLE | +1.00 | — | — | — | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR | 0/0 NO_DENOMINATOR |
 
-### Conditioned on snapshot observation lead (not update recency)
+## Old atlas 2/5/12 reconciliation
 
-| Category / observation bucket | n | median | p10 | p90 | span |
-|---|---:|---:|---:|---:|---:|
-| ATP_CHALL|6_to_24h | 108 | -135.0m | -175.0m | +300.0m | 475.0m |
-| ATP_MAIN|1_to_3d | 6 | +30.0m | -180.0m | +1555.0m | 1735.0m |
-| ATP_MAIN|1_to_6h | 1 | -175.0m | -175.0m | -175.0m | 0.0m |
-| ATP_MAIN|6_to_24h | 30 | +55.0m | -175.0m | +3090.0m | 3265.0m |
-| WTA_CHALL|6_to_24h | 40 | -132.5m | -180.0m | +0.0m | 180.0m |
-| WTA_MAIN|1_to_3d | 12 | +77.5m | -115.0m | +1540.0m | 1655.0m |
-| WTA_MAIN|1_to_6h | 1 | -170.0m | -170.0m | -170.0m | 0.0m |
-| WTA_MAIN|6_to_24h | 36 | +35.0m | -175.0m | +1330.0m | 1505.0m |
+The old `ATP_CHALL|leader|ge75` page has n=759 and reports absolute-cent bottom p25/p50/p75 = 2/5/12. That page uses `leader` plus broad discovery band `ge75`; both axes are retired. The comparison below is price-aligned to ATP Challenger cells 75–94 without pooling them.
 
-ATP Main is not timing-tradeable from the retained schedule alone if its reported p10-to-p90 span remains this wide. A +30-minute median does not rescue a multi-day upper tail.
+| cell | old page | recut n / p25-p50-p75¢ | exact n / p25-p50-p75¢ | signed exact−recut p50¢ | status |
+|---:|---|---:|---:|---:|---|
+| 75 | 2/5/12 pooled | 7 / 0-+0.00-1 | 2 / +0.00-+0.00-+0.00 | +0.00 | THIN_EXACT_BELL_SAMPLE |
+| 76 | 2/5/12 pooled | 3 / 0-+0.00-7 | 0 / —-—-— | — | NO_EXACT_BELL_SAMPLE |
+| 77 | 2/5/12 pooled | 7 / 0-+1.00-4 | 0 / —-—-— | — | NO_EXACT_BELL_SAMPLE |
+| 78 | 2/5/12 pooled | 7 / 0-+2.00-8 | 2 / +1.00-+1.00-+1.00 | -1.00 | THIN_EXACT_BELL_SAMPLE |
+| 79 | 2/5/12 pooled | 8 / 2-+28.00-37 | 0 / —-—-— | — | NO_EXACT_BELL_SAMPLE |
+| 80 | 2/5/12 pooled | 6 / 2-+3.00-3 | 2 / +1.00-+1.50-+2.00 | -1.50 | THIN_EXACT_BELL_SAMPLE |
+| 81 | 2/5/12 pooled | 10 / 0-+1.00-27 | 1 / +3.00-+3.00-+3.00 | +2.00 | THIN_EXACT_BELL_SAMPLE |
+| 82 | 2/5/12 pooled | 5 / 1-+2.00-17 | 2 / +2.00-+3.50-+5.00 | +1.50 | THIN_EXACT_BELL_SAMPLE |
+| 83 | 2/5/12 pooled | 8 / 0-+23.00-35 | 2 / +3.00-+8.00-+13.00 | -15.00 | THIN_EXACT_BELL_SAMPLE |
+| 84 | 2/5/12 pooled | 8 / 5-+15.00-25 | 3 / +1.00-+2.00-+4.00 | -13.00 | THIN_EXACT_BELL_SAMPLE |
+| 85 | 2/5/12 pooled | 4 / 22-+28.00-36 | 4 / +0.00-+0.00-+6.00 | -28.00 | THIN_EXACT_BELL_SAMPLE |
+| 86 | 2/5/12 pooled | 6 / 3-+28.00-29 | 1 / +3.00-+3.00-+3.00 | -25.00 | THIN_EXACT_BELL_SAMPLE |
+| 87 | 2/5/12 pooled | 6 / 1-+3.00-3 | 1 / +2.00-+2.00-+2.00 | -1.00 | THIN_EXACT_BELL_SAMPLE |
+| 88 | 2/5/12 pooled | 8 / 2-+10.00-26 | 1 / +0.00-+0.00-+0.00 | -10.00 | THIN_EXACT_BELL_SAMPLE |
+| 89 | 2/5/12 pooled | 5 / 0-+5.00-9 | 1 / +2.00-+2.00-+2.00 | -3.00 | THIN_EXACT_BELL_SAMPLE |
+| 90 | 2/5/12 pooled | 4 / 1-+2.00-9 | 0 / —-—-— | — | NO_EXACT_BELL_SAMPLE |
+| 91 | 2/5/12 pooled | 7 / 0-+2.00-22 | 0 / —-—-— | — | NO_EXACT_BELL_SAMPLE |
+| 92 | 2/5/12 pooled | 10 / 1-+9.00-18 | 1 / +0.00-+0.00-+0.00 | -9.00 | THIN_EXACT_BELL_SAMPLE |
+| 93 | 2/5/12 pooled | 5 / 0-+4.00-5 | 1 / +1.00-+1.00-+1.00 | -3.00 | THIN_EXACT_BELL_SAMPLE |
+| 94 | 2/5/12 pooled | 9 / 2-+4.00-11 | 2 / +1.00-+1.50-+2.00 | -2.50 | THIN_EXACT_BELL_SAMPLE |
 
-## Revision history
+The earlier category-average comparison was invalid. The old 2/5/12 tuple is itself structurally retired because it pools leader status and a broad discovery-price band. The price-aligned 75-94 exact-bell rows are all printed separately; thin rows do not prove the tuple numerically right or wrong.
 
-Shadow rows cover 232/804 events with any sampled schedule value and show 135 observed changes. The shadow can recover the sampled sched_ep states and observed changes counted here. It cannot prove the first state, the last state, or revisions between polls, so it is not a complete revision history.
+## Live flow-state primitive
 
-Going forward, capture every catalog poll as an append-only revision row, hash the raw response, emit explicit field-change rows, and join each decision to the latest revision visible at that decision time.
+Vault §5 defines the primitive as **prints/min plus spread-tightening, per category**. Live wiring is incomplete:
+
+- **print_rate:** PARTIAL: 30-minute WS/REST print count is bucketed quiet/warm/open in _entry_dossier (live_v4.py:3237-3280)
+- **spread_tightening:** ABSENT from the dossier flow state; the logged object carries prints_30m/bucket/harvest rate only (live_v4.py:3349-3357)
+- **aim_activation:** NOT WIRED: the dossier is observational and does not place orders (live_v4.py:3195-3205). Print-count guns and corridor gates act elsewhere, while check_pending_entries' spread path is disabled (live_v4.py:11963-12020,16135-16136).
+
+To key aim activation on observed flow rather than clock distance:
+
+- Maintain a per-ticker microstate from each trade and BBO: rolling print rate, current spread, and spread-tightening transition, all timestamped and stale-gated.
+- Fit category-conditioned flow-state transitions from the subsecond tape. The one-cent cell surface supplies aim depth; it does not supply entry time.
+- Gate aim activation on an observed flow-state transition (for example quiet-to-waking plus spread confirmation), never on per-minute atlas/cohort output.
+- Fail closed when either trade flow or BBO state is absent or stale; emit the state and transition that armed each order.
+- Replay both legs on the same event clock and verify that changing only the flow gate changes activation, not the ratified cell aim.
+
+No timing surface was refitted as a trigger. Exact-bell T-minus values in this report are descriptive diagnostics only.
+
+## Retired fav/dog and band census
+
+This census covers fitted artifacts and sealed state tables, not only Python branches.
+
+| Surface | rows | key | role keyed? | ruling | live effect |
+|---|---:|---|---|---|---|
+| `.claude\seqfloor_20260708\recut_cells.json` | 538 | category|own W1-close one-cent cell | no | RATIFIED_PRIOR | The source contains raw evidence outside [5,95); this report consumes only the 90 lawful cells 5..94 and never clamps. |
+| `.claude\trendpath\ATLAS_V1.json` | 30 | category|leader/underdog|le25/26_50/51_75/ge75 | yes | C45_RETIRED | path aim and selector; live_v4.py:2852-2923,4108-4144 |
+| `arb-executor/state/cohort_surface_v1.json` | 42 | category|fav/dog|le25/26_50/51_75/ge76 | yes | C45_RETIRED | cohort authority/steer; live_v4.py:3734-3770,4059-4072 |
+| `.claude/range_layer/RANGE_LAYER_3WAY.json` | 204 | category|leader/underdog|range-shape|le25/26_50/51_75/ge75 | yes | C45_RETIRED | range dossier/position prior; live_v4.py:3303-3318,9496-9534 |
+| `.claude/trendpath/ORIENT_V1.json` | 24 | category|drift/range/flow cell with dog_rise_rate payload | yes | C45_ROLE_SEMANTIC_RETIRED | authority orientation; live_v4.py:3629-3725,4033-4079 |
+| `.claude/trendpath/LIBRARY_V1.json` | 72 | category|le25/26_50/51_75/ge75|volume band | no | RETIRED_BROAD_PRICE_BAND | dossier consultation; live_v4.py:3480-3515 |
+| `arb-executor/docs/policy/aim_table.json` | 36 | category|01-20/21-40/41-49/50-59/60-79/80-99 | no | RETIRED_BROAD_PRICE_BAND | faller/riser order depth; live_v4.py:2660-2694,4667-4668 |
+| `arb-executor/docs/policy/per_regime_offsets_v2.csv` | 36 | category|nine 10-cent regimes | no | RETIRED_BROAD_PRICE_BAND | fallback entry offset; live_v4.py:2582-2610,5199-5220 |
+| `arb-executor/docs/policy/engagement_cells_v1.csv` | 30 | category|clock bucket|10-cent regime | no | RETIRED_BROAD_BAND_AND_CLOCK_TRIGGER | engagement gate; live_v4.py:4845-4870 |
+| `arb-executor/state/band_map_v1.json` | 43 | category-B1..B8 learned shape clusters | no | NOT_C45_ROLE_KEYED; NON_GRID_SHAPE_BAND | recognition/shape lookup; live_v4.py:3807-3840 |
+| `arb-executor/state/drift_surfaces_v1.json` | 36 | category-Bn at top level; lifecycle subcells still use le25/26_50/51_75/ge76 | no | RETIRED_BROAD_SUBCELLS | recognition/dossier; live_v4.py:3809-3840 |
+| `arb-executor/state/pair_policies_sealed_v1.json` | 25 | category-Bn; no leader/underdog token | no | NO_C45_ROLE_KEY; BAND_KEYED_ORDER_POLICY | sealed order offset; live_v4.py:3974-4000,4723-4759 |
+| `arb-executor/state/entry_tables_sealed_v1.json` | 36 | category-Bn; no leader/underdog token | no | NO_C45_ROLE_KEY; BAND_KEYED_ENTRY_TABLE | sealed entry lookup; live_v4.py:3777-3800 |
+| `.claude/guidebook/GUIDEBOOK_V1.json` | 538 | category|one-cent cell | no | CELL_KEY_COMPLIANT; ABSOLUTE_CENT_PAYLOAD_NEEDS_TRANSLATION | dossier/authority consultation; live_v4.py:4194-4310 |
+| `arb-executor/data/shape_corpus/aim_v2_operational_LATCHCAL.json` | 1470 | category|favorite-price 20-cent bin|time bin; separate f/d payload fields | yes | C45_IMPLICIT_ROLE_AND_RETIRED_BANDS | shadow log only; live_v4.py:4332-4365 |
+
+## BBO denominator census
+
+Private archive: `C:\Users\omigr\OMI-Window1-private\fit-local\depth_recorder`. Scanned 175 gzip files / 2,836,510 rows. Leg statuses: `{"AVAILABLE": 375, "NO_DENOMINATOR": 91}`; NO_DENOMINATOR reasons: `{"NO_VALID_BOOK_AT_OR_BEFORE_CLOSE": 47, "STALE_GT_300_SECONDS": 44}`. No midpoint or cent-line fallback was used.
+
+Timing distributions in the JSON are descriptive only. They are not an aim trigger and are not fitted back into live placement.

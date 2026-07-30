@@ -896,7 +896,25 @@ class PaperApi:
             order = self.paper_orders.get(oid)
             if not order:
                 return {"order": None, "_error": "not_found"}
-            return {"order": order.to_kalshi_dict()}
+            row = order.to_kalshi_dict()
+            # Replay-only fault injection for the observed VAN class: the
+            # single-order status read is stale while account position/fill
+            # truth is current.  Never enabled by a deployed configuration.
+            if (self.bot.config.get(
+                    "replay_stale_single_order_fill_status", False)
+                    and order.filled_count > 0):
+                row = dict(row)
+                row.update({
+                    "status": "resting",
+                    "fill_count_fp": 0.0,
+                    "count_filled": 0,
+                    "average_fill_price_fp": 0.0,
+                })
+                self._emit("paper_stale_order_status_injected", {
+                    "order_id": oid,
+                    "actual_fill_count": order.filled_count,
+                }, ticker=order.ticker)
+            return {"order": row}
 
         # List orders
         if path_only == "/trade-api/v2/portfolio/orders":
@@ -910,6 +928,38 @@ class PaperApi:
                     continue
                 orders.append(o.to_kalshi_dict())
             return {"orders": orders}
+
+        # Fill receipts.  Paper mode exposes the same account-level shape the
+        # live receipt-first poll consumes.  One paper order has one terminal
+        # receipt because the named replay fill model is all-or-nothing.
+        if path_only == "/trade-api/v2/portfolio/fills":
+            ticker_filter = query.get("ticker", [None])[0]
+            order_filter = query.get("order_id", [None])[0]
+            min_ts = float(query.get("min_ts", ["0"])[0] or 0)
+            fills = []
+            for o in self.paper_orders.values():
+                if o.filled_count <= 0:
+                    continue
+                if ticker_filter and o.ticker != ticker_filter:
+                    continue
+                if order_filter and o.order_id != order_filter:
+                    continue
+                if o.last_event_ts < min_ts:
+                    continue
+                fills.append({
+                    "fill_id": "PAPER-FILL-%s" % o.order_id,
+                    "order_id": o.order_id,
+                    "ticker": o.ticker,
+                    "action": o.action,
+                    "side": o.side,
+                    "count_fp": float(o.filled_count),
+                    "yes_price_dollars": o.yes_price / 100.0,
+                    "created_time": datetime.fromtimestamp(
+                        o.last_event_ts, tz=timezone.utc).isoformat(),
+                    "ts": int(o.last_event_ts),
+                })
+            fills.sort(key=lambda row: (row["ts"], row["fill_id"]))
+            return {"fills": fills, "cursor": ""}
 
         # Positions
         if path_only == "/trade-api/v2/portfolio/positions":
@@ -3266,16 +3316,36 @@ class LiveV3:
                 "nearest_at_mid": ({"n": _rc9.get("n"),
                                     "w2_reach": _rc9.get("w2_reach")}
                                    if _rc9 else None)}
-            # 6) fitted dip timing (+ the timing SHADOW variant)
-            D["dip_timing"] = {"status": "CONSULTED",
-                               "bottom_t_med_min": bot9.get("t_med_min"),
-                               "shadow_would_delay_min":
-                                   (max(0, round((tts_min or 0)
-                                                 - (bot9.get("t_med_min")
-                                                    or 0)))
-                                    if tts_min is not None and
-                                    bot9.get("t_med_min") is not None
-                                    else None)}
+            # 6) fitted dip timing (+ the timing SHADOW variant).
+            # [C-ATLAS-CLOCK-CONTRACT 2026-07-29] Legacy ``t_med_min`` is
+            # minutes from the fitted -0k onset.  ``tts_min`` is minutes to
+            # the scheduled bell.  They are not subtractable.  Refuse the
+            # old field until a bell-fitted surface supplies the explicit
+            # T-minus field; the false comparison was telemetry-only but
+            # taught operators the wrong zero.
+            _bell_t9 = bot9.get("tminus_actual_bell_med_min")
+            if self.config.get("atlas_clock_contract_v2", True):
+                D["dip_timing"] = (
+                    {"status": "CONSULTED",
+                     "axis": "tminus_actual_bell",
+                     "bottom_tminus_actual_bell_med_min": _bell_t9,
+                     "schedule_translation": "UNRESOLVED"}
+                    if _bell_t9 is not None else
+                    {"status": "REFUSED_AXIS_MISMATCH",
+                     "field_present": "t_med_min",
+                     "field_axis": "minutes_from_minus_0k_onset",
+                     "consumer_axis": "tminus_scheduled_start",
+                     "law": "different zeros are never subtracted"})
+            else:
+                D["dip_timing"] = {"status": "LEGACY_AXIS_MISMATCH",
+                                   "bottom_t_med_min": bot9.get("t_med_min"),
+                                   "shadow_would_delay_min":
+                                       (max(0, round((tts_min or 0)
+                                                     - (bot9.get("t_med_min")
+                                                        or 0)))
+                                        if tts_min is not None and
+                                        bot9.get("t_med_min") is not None
+                                        else None)}
             # 7) flow-state harvest rate (the HARVESTABLE MAP)
             _h5 = (Lw9 or {}).get("rate_per_hr", {}).get("5")
             D["flow_state"] = {"status": ("CONSULTED" if fb9 else
@@ -3506,19 +3576,35 @@ class LiveV3:
                 pages9 = self._trendpath_atlas()
                 pg9 = pages9.get((sv9 or {}).get("page") or "")
                 if pg9 and tts_min is not None:
-                    sl9 = min((pg9.get("path") or {}).keys(),
+                    if self.config.get("atlas_clock_contract_v2", True):
+                        _path9 = pg9.get("path_tminus_actual_bell") or {}
+                    else:
+                        _path9 = pg9.get("path") or {}
+                    sl9 = min(_path9.keys(),
                               key=lambda s: abs(int(s) - int(tts_min)),
                               default=None)
                     if sl9:
-                        p25s = (pg9["path"][sl9] or {}).get("p25")
+                        p25s = (_path9[sl9] or {}).get("p25")
                         if p25s is not None:
                             rs9 = {"slice_min": int(sl9),
+                                   "axis": ("tminus_actual_bell"
+                                            if self.config.get(
+                                                "atlas_clock_contract_v2",
+                                                True)
+                                            else "legacy_minus_0k_onset"),
                                    "shadow_aim": max(1, int(round(
                                        current_price + p25s)))}
             except Exception:
                 rs9 = None
             D["shadow_range_shape"] = {"status": "SHADOW", **(rs9 or
-                                       {"why": "no path slice at this clock"})}
+                                       {"why": ("bell-axis path absent or "
+                                                "schedule translation "
+                                                "unresolved"
+                                                if self.config.get(
+                                                    "atlas_clock_contract_v2",
+                                                    True)
+                                                else "no path slice at this "
+                                                     "clock")})}
             # [ONE-AUTHORITY LAW 07-20 PM] the dossier NAMES the leg's
             # single pricing authority — always.
             try:
@@ -9672,9 +9758,113 @@ class LiveV3:
                 "verdict": (res or {}).get("verdict"),
                 "outcome": "error", "error": str(e)[:200]}, ticker=tk)
 
+    async def _poll_entry_fills_bulk(self):
+        """Book tracked entry fills from the account fill receipt ledger.
+
+        This is deliberately limited to currently tracked ``entry_resting``
+        orders.  It neither adopts foreign fills nor replaces the normal
+        order-status/cancel paths.
+        """
+        tracked = {
+            pos.entry_order_id: (tk, pos)
+            for tk, pos in list(self.positions.items())
+            if (not pos.settled and pos.phase == "entry_resting"
+                and pos.entry_order_id)
+        }
+        if not tracked:
+            return
+
+        posted = [
+            float(pos.entry_posted_ts)
+            for _tk, pos in tracked.values()
+            if float(pos.entry_posted_ts or 0) > 0
+        ]
+        # Include a one-minute overlap so a fill whose exchange timestamp is
+        # rounded or arrives on a page boundary cannot fall through the seam.
+        min_ts = max(0, int(min(posted) - 60)) if posted else \
+            max(0, int(time.time() - 86400))
+        path = ("/trade-api/v2/portfolio/fills?limit=1000"
+                "&min_ts=%d" % min_ts)
+        rows, cursor = [], None
+        while True:
+            data = await api_get(
+                self.session, self.ak, self.pk,
+                path + ("&cursor=%s" % cursor if cursor else ""), self.rl)
+            page = (data or {}).get("fills", [])
+            rows.extend(page)
+            cursor = (data or {}).get("cursor")
+            if not cursor or not page:
+                break
+
+        by_order = {}
+        for fill in rows:
+            oid = fill.get("order_id")
+            if oid not in tracked:
+                continue
+            action = str(fill.get("action") or "buy").lower()
+            if action != "buy":
+                continue
+            qty_raw = fill.get(
+                "count_fp", fill.get("count", fill.get("count_filled", 0)))
+            try:
+                qty = int(float(qty_raw or 0))
+            except (TypeError, ValueError):
+                qty = 0
+            if qty <= 0:
+                continue
+            price_raw = fill.get(
+                "yes_price_dollars",
+                fill.get("yes_price", fill.get("price", 0)))
+            try:
+                price_num = float(price_raw or 0)
+            except (TypeError, ValueError):
+                price_num = 0
+            price = (round(price_num * 100)
+                     if 0 < price_num < 1.5 else int(price_num))
+            acc = by_order.setdefault(oid, {
+                "qty": 0, "weighted_price": 0, "receipts": 0})
+            acc["qty"] += qty
+            acc["weighted_price"] += qty * price
+            acc["receipts"] += 1
+
+        for oid, acc in by_order.items():
+            tk, pos = tracked[oid]
+            if pos.phase != "entry_resting" or pos.entry_order_id != oid:
+                continue
+            filled = int(acc["qty"])
+            if filled <= int(pos.entry_qty or 0):
+                continue
+            fill_price = (
+                round(acc["weighted_price"] / filled)
+                if acc["weighted_price"] > 0 else int(pos.entry_price))
+            self._log("bulk_fill_receipt", {
+                "order_id": oid,
+                "filled": filled,
+                "fill_price": fill_price,
+                "receipt_rows": acc["receipts"],
+                "min_ts": min_ts,
+            }, ticker=tk)
+            if pos.is_v4:
+                await self._book_v4_entry_fill(
+                    tk, pos, filled, fill_price, "executed")
+
     async def check_fills(self):
         """Poll Kalshi for fill status on all active orders."""
         _cs_now = time.time()
+        # [C-FILL-RECEIPT-FIRST 2026-07-29] One account-level fill-ledger
+        # read precedes the legacy per-order status loop.  The latter can
+        # starve a specific order behind a large book; /portfolio/fills is
+        # the exchange's receipt stream and lets us book every tracked entry
+        # seen in the interval in one paginated pass.  The per-order reads
+        # remain as a fallback and for order status/cancel handling.
+        if self.config.get("bulk_fill_poll_enabled", True):
+            try:
+                await self._poll_entry_fills_bulk()
+            except Exception as _bfe:
+                self._log("bulk_fill_poll_error", {
+                    "err": str(_bfe)[:200],
+                    "fallback": "per_order_status_poll",
+                })
         for tk, pos in list(self.positions.items()):
             if pos.settled:
                 continue
@@ -14737,6 +14927,14 @@ class LiveV3:
         # occurs: touched/held/retreated/orphans/cents removed.
         if self.config.get("one_authority_enabled", False):
             seen_a = seen.setdefault("authority", {})
+            # Reconcile emits canonical ``order_id``/``price``.  The legacy
+            # readers are retained only as an explicit replay control.
+            _canon14 = self.config.get(
+                "authority_order_contract_v2", True)
+            _oid14_read = (lambda row: row.get("order_id")) if _canon14 \
+                else (lambda row: row.get("oid"))
+            _px14_read = (lambda row: row.get("price")) if _canon14 \
+                else (lambda row: row.get("px"))
             # exempt ids (probe guinea pigs) — mtime-cached, shared
             # attr with the book audit's loader
             try:
@@ -14756,7 +14954,7 @@ class LiveV3:
             for tk, orders in ord_map.items():
                 buys = [o for o in orders
                         if o.get("action") == "buy"
-                        and o.get("order_id") not in _exempt14]
+                        and _oid14_read(o) not in _exempt14]
                 if not buys or self.get_category(tk) is None:
                     seen_a.pop(tk, None)
                     continue
@@ -14775,7 +14973,7 @@ class LiveV3:
                 # lock lesson).
                 seen_o = seen.setdefault("era_orphan", {})
                 for o in buys:
-                    _oid14 = o.get("order_id")
+                    _oid14 = _oid14_read(o)
                     if _oid14 in _known or _oid14 in getattr(
                             self, "_bot_order_ids", set()):
                         continue
@@ -14785,7 +14983,7 @@ class LiveV3:
                     if not _mine14:
                         if n_o == 1:
                             self._log("authority_foreign_order_flag", {
-                                "px": o.get("price"), "qty": o.get("qty"),
+                                "px": _px14_read(o), "qty": o.get("qty"),
                                 "oid": (_oid14 or "")[:13],
                                 "law": "unattributable = manual book "
                                        "until proven; flag never "
@@ -14799,7 +14997,7 @@ class LiveV3:
                         await self.cancel_order(
                             tk, _oid14, "authority_era_orphan")
                         self._log("authority_era_orphan_cancelled", {
-                            "px": o.get("price"), "qty": o.get("qty"),
+                            "px": _px14_read(o), "qty": o.get("qty"),
                             "oid": (_oid14 or "")[:13],
                             "authority": auth,
                             "lineage": "order_fingerprints"}, ticker=tk)
@@ -14814,13 +15012,14 @@ class LiveV3:
                     # at its own sealed number; the pair completes at
                     # held+fish combined, graded honestly.
                     _stk15 = [o for o in buys
-                              if o.get("order_id") in _known.union(
+                              if _oid14_read(o) in _known.union(
                                   getattr(self, "_bot_order_ids",
                                           set()))]
                     for o in _stk15:
                         try:
                             await self.cancel_order(
-                                tk, o["order_id"], "authority_hold_as_is")
+                                tk, _oid14_read(o),
+                                "authority_hold_as_is")
                             sib15 = self._sibling_ticker_any(tk)
                             _sf15 = (self._price_authority(sib15)[2]
                                      if sib15 else None)
@@ -14832,7 +15031,7 @@ class LiveV3:
                                 "held_qty": getattr(pos, "entry_qty",
                                                     0),
                                 "held_basis": _hb15,
-                                "stack_px_withdrawn": o.get("price"),
+                                "stack_px_withdrawn": _px14_read(o),
                                 "sibling_fish": _sf15,
                                 "honest_combined": (_hb15 + _sf15)
                                 if _sf15 else None,
@@ -14849,8 +15048,9 @@ class LiveV3:
                     seen_a.pop(tk, None)
                     continue
                 bad = [o for o in buys
-                       if int(o.get("price", -1)) != int(fish)
-                       and o.get("order_id") in _known.union(
+                       if int(_px14_read(o)
+                              if _px14_read(o) is not None else -1) != int(fish)
+                       and _oid14_read(o) in _known.union(
                            getattr(self, "_bot_order_ids", set()))]
                 if not bad:
                     if buys:
@@ -14860,9 +15060,9 @@ class LiveV3:
                 n9 = seen_a[tk] = seen_a.get(tk, 0) + 1
                 self._log("authority_mismatch_defect", {
                     "band": band, "fish": fish,
-                    "resting": [{"px": o.get("price"),
+                    "resting": [{"px": _px14_read(o),
                                  "qty": o.get("qty"),
-                                 "oid": (o.get("order_id") or "")[:13]}
+                                 "oid": (_oid14_read(o) or "")[:13]}
                                 for o in bad][:4],
                     "consecutive_cycles": n9,
                     "law": "ONE-AUTHORITY 07-20 PM: placing path != "
@@ -14880,7 +15080,7 @@ class LiveV3:
                         seen_a.pop(tk, None)
                         continue        # filled in the race — booked,
                                         # exits govern now
-                    old14 = bad[0].get("price")
+                    old14 = _px14_read(bad[0])
                     qty14 = int(bad[0].get("qty") or 0) or \
                         int(self.entry_size)
                     oid14, resp14 = await self.place_order(

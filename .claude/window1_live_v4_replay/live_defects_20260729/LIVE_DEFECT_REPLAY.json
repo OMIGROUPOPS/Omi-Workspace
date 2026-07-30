@@ -1,0 +1,747 @@
+{
+  "events": [
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+    "KXATPMATCH-26JUL12LAJVAN",
+    "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+    "KXWTAMATCH-26JUL20KORJIM"
+  ],
+  "fault_model": "single-order status remains stale after an actual paper fill; account fill receipts and positions remain current",
+  "fill_model": "RESTING_TOUCH_FILL_V1: a resting order fills in full when a later true print or opposite BBO touches or passes its limit; no depth, capacity, or five-contract proof gate.",
+  "profiles": {
+    "all_four_fixed": {
+      "churn_actions": 37,
+      "defect_signals": 0,
+      "event_counts": {
+        "bulk_fill_receipt": 1,
+        "order_cancelled": 19,
+        "paper_order_cancelled": 18,
+        "paper_stale_order_status_injected": 1143
+      },
+      "games": [
+        {
+          "category": "ATP_CHALL",
+          "churn": {
+            "order_cancelled": 2,
+            "paper_order_cancelled": 2
+          },
+          "churn_actions": 4,
+          "defect_signals": 0,
+          "engine_booking_lag_seconds": [],
+          "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        },
+        {
+          "category": "ATP_CHALL",
+          "churn": {
+            "bulk_fill_receipt": 1,
+            "order_cancelled": 14,
+            "paper_order_cancelled": 13,
+            "paper_stale_order_status_injected": 1143
+          },
+          "churn_actions": 27,
+          "defect_signals": 0,
+          "engine_booking_lag_seconds": [
+            2.5
+          ],
+          "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+          "first_input_break": null,
+          "legs_filled": 1,
+          "max_engine_booking_lag_seconds": 2.5,
+          "pair_completed": false
+        },
+        {
+          "category": "ATP_MAIN",
+          "churn": {
+            "order_cancelled": 1,
+            "paper_order_cancelled": 1
+          },
+          "churn_actions": 2,
+          "defect_signals": 0,
+          "engine_booking_lag_seconds": [],
+          "event": "KXATPMATCH-26JUL12LAJVAN",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        },
+        {
+          "category": "WTA_CHALL",
+          "churn": {
+            "order_cancelled": 1,
+            "paper_order_cancelled": 1
+          },
+          "churn_actions": 2,
+          "defect_signals": 0,
+          "engine_booking_lag_seconds": [],
+          "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        },
+        {
+          "category": "WTA_MAIN",
+          "churn": {
+            "order_cancelled": 1,
+            "paper_order_cancelled": 1
+          },
+          "churn_actions": 2,
+          "defect_signals": 0,
+          "engine_booking_lag_seconds": [],
+          "event": "KXWTAMATCH-26JUL20KORJIM",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        }
+      ],
+      "legs_filled_out_of_10": 1,
+      "max_engine_booking_lag_seconds": 2.5,
+      "pair_completions_out_of_5": 0,
+      "profile": {
+        "clock_contract_fixed": true,
+        "contention_drop_fixed": true,
+        "field_contract_fixed": true,
+        "fill_poll_fixed": true,
+        "inject_fill_poll_miss": true
+      },
+      "versus_control": {
+        "churn_actions": -72,
+        "defect_signals": -11,
+        "legs_filled": -2,
+        "max_booking_lag_seconds": -38.077,
+        "pair_completions": 0
+      }
+    },
+    "clock_contract_only": {
+      "churn_actions": 109,
+      "defect_signals": 11,
+      "event_counts": {
+        "authority_foreign_order_flag": 5,
+        "naked_leg_defect": 3,
+        "order_cancelled": 82,
+        "paper_order_cancelled": 27,
+        "paper_stale_order_status_injected": 119,
+        "reconcile_v4_adopted": 3,
+        "unbooked_fill_defect": 3
+      },
+      "games": [
+        {
+          "category": "ATP_CHALL",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "naked_leg_defect": 1,
+            "order_cancelled": 1,
+            "paper_order_cancelled": 1,
+            "paper_stale_order_status_injected": 1,
+            "reconcile_v4_adopted": 1,
+            "unbooked_fill_defect": 1
+          },
+          "churn_actions": 2,
+          "defect_signals": 3,
+          "engine_booking_lag_seconds": [
+            1.714
+          ],
+          "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+          "first_input_break": null,
+          "legs_filled": 1,
+          "max_engine_booking_lag_seconds": 1.714,
+          "pair_completed": false
+        },
+        {
+          "category": "ATP_CHALL",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "naked_leg_defect": 1,
+            "order_cancelled": 71,
+            "paper_order_cancelled": 18,
+            "paper_stale_order_status_injected": 113,
+            "reconcile_v4_adopted": 1,
+            "unbooked_fill_defect": 1
+          },
+          "churn_actions": 89,
+          "defect_signals": 3,
+          "engine_booking_lag_seconds": [
+            40.577
+          ],
+          "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+          "first_input_break": null,
+          "legs_filled": 1,
+          "max_engine_booking_lag_seconds": 40.577,
+          "pair_completed": false
+        },
+        {
+          "category": "ATP_MAIN",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "order_cancelled": 3,
+            "paper_order_cancelled": 3
+          },
+          "churn_actions": 6,
+          "defect_signals": 1,
+          "engine_booking_lag_seconds": [],
+          "event": "KXATPMATCH-26JUL12LAJVAN",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        },
+        {
+          "category": "WTA_CHALL",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "naked_leg_defect": 1,
+            "order_cancelled": 3,
+            "paper_order_cancelled": 1,
+            "paper_stale_order_status_injected": 5,
+            "reconcile_v4_adopted": 1,
+            "unbooked_fill_defect": 1
+          },
+          "churn_actions": 4,
+          "defect_signals": 3,
+          "engine_booking_lag_seconds": [
+            19.0
+          ],
+          "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+          "first_input_break": null,
+          "legs_filled": 1,
+          "max_engine_booking_lag_seconds": 19.0,
+          "pair_completed": false
+        },
+        {
+          "category": "WTA_MAIN",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "order_cancelled": 4,
+            "paper_order_cancelled": 4
+          },
+          "churn_actions": 8,
+          "defect_signals": 1,
+          "engine_booking_lag_seconds": [],
+          "event": "KXWTAMATCH-26JUL20KORJIM",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        }
+      ],
+      "legs_filled_out_of_10": 3,
+      "max_engine_booking_lag_seconds": 40.577,
+      "pair_completions_out_of_5": 0,
+      "profile": {
+        "clock_contract_fixed": true,
+        "contention_drop_fixed": false,
+        "field_contract_fixed": false,
+        "fill_poll_fixed": false,
+        "inject_fill_poll_miss": true
+      },
+      "versus_control": {
+        "churn_actions": 0,
+        "defect_signals": 0,
+        "legs_filled": 0,
+        "max_booking_lag_seconds": 0.0,
+        "pair_completions": 0
+      }
+    },
+    "contention_drop_only": {
+      "churn_actions": 36,
+      "defect_signals": 7,
+      "event_counts": {
+        "authority_foreign_order_flag": 5,
+        "naked_leg_defect": 1,
+        "order_cancelled": 18,
+        "paper_order_cancelled": 18,
+        "paper_stale_order_status_injected": 1,
+        "reconcile_v4_adopted": 1,
+        "unbooked_fill_defect": 1
+      },
+      "games": [
+        {
+          "category": "ATP_CHALL",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "order_cancelled": 2,
+            "paper_order_cancelled": 2
+          },
+          "churn_actions": 4,
+          "defect_signals": 1,
+          "engine_booking_lag_seconds": [],
+          "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        },
+        {
+          "category": "ATP_CHALL",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "naked_leg_defect": 1,
+            "order_cancelled": 13,
+            "paper_order_cancelled": 13,
+            "paper_stale_order_status_injected": 1,
+            "reconcile_v4_adopted": 1,
+            "unbooked_fill_defect": 1
+          },
+          "churn_actions": 26,
+          "defect_signals": 3,
+          "engine_booking_lag_seconds": [
+            6.5
+          ],
+          "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+          "first_input_break": null,
+          "legs_filled": 1,
+          "max_engine_booking_lag_seconds": 6.5,
+          "pair_completed": false
+        },
+        {
+          "category": "ATP_MAIN",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "order_cancelled": 1,
+            "paper_order_cancelled": 1
+          },
+          "churn_actions": 2,
+          "defect_signals": 1,
+          "engine_booking_lag_seconds": [],
+          "event": "KXATPMATCH-26JUL12LAJVAN",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        },
+        {
+          "category": "WTA_CHALL",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "order_cancelled": 1,
+            "paper_order_cancelled": 1
+          },
+          "churn_actions": 2,
+          "defect_signals": 1,
+          "engine_booking_lag_seconds": [],
+          "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        },
+        {
+          "category": "WTA_MAIN",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "order_cancelled": 1,
+            "paper_order_cancelled": 1
+          },
+          "churn_actions": 2,
+          "defect_signals": 1,
+          "engine_booking_lag_seconds": [],
+          "event": "KXWTAMATCH-26JUL20KORJIM",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        }
+      ],
+      "legs_filled_out_of_10": 1,
+      "max_engine_booking_lag_seconds": 6.5,
+      "pair_completions_out_of_5": 0,
+      "profile": {
+        "clock_contract_fixed": false,
+        "contention_drop_fixed": true,
+        "field_contract_fixed": false,
+        "fill_poll_fixed": false,
+        "inject_fill_poll_miss": true
+      },
+      "versus_control": {
+        "churn_actions": -73,
+        "defect_signals": -4,
+        "legs_filled": -2,
+        "max_booking_lag_seconds": -34.077,
+        "pair_completions": 0
+      }
+    },
+    "field_contract_only": {
+      "churn_actions": 138,
+      "defect_signals": 16,
+      "event_counts": {
+        "authority_mismatch_defect": 14,
+        "authority_reanchor": 7,
+        "naked_leg_defect": 1,
+        "order_cancelled": 92,
+        "paper_order_cancelled": 39,
+        "paper_stale_order_status_injected": 113,
+        "reconcile_v4_adopted": 1,
+        "unbooked_fill_defect": 1
+      },
+      "games": [
+        {
+          "category": "ATP_CHALL",
+          "churn": {
+            "authority_mismatch_defect": 4,
+            "authority_reanchor": 2,
+            "order_cancelled": 6,
+            "paper_order_cancelled": 6
+          },
+          "churn_actions": 14,
+          "defect_signals": 4,
+          "engine_booking_lag_seconds": [],
+          "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        },
+        {
+          "category": "ATP_CHALL",
+          "churn": {
+            "authority_mismatch_defect": 2,
+            "authority_reanchor": 1,
+            "naked_leg_defect": 1,
+            "order_cancelled": 72,
+            "paper_order_cancelled": 19,
+            "paper_stale_order_status_injected": 113,
+            "reconcile_v4_adopted": 1,
+            "unbooked_fill_defect": 1
+          },
+          "churn_actions": 92,
+          "defect_signals": 4,
+          "engine_booking_lag_seconds": [
+            40.577
+          ],
+          "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+          "first_input_break": null,
+          "legs_filled": 1,
+          "max_engine_booking_lag_seconds": 40.577,
+          "pair_completed": false
+        },
+        {
+          "category": "ATP_MAIN",
+          "churn": {
+            "authority_mismatch_defect": 2,
+            "authority_reanchor": 1,
+            "order_cancelled": 4,
+            "paper_order_cancelled": 4
+          },
+          "churn_actions": 9,
+          "defect_signals": 2,
+          "engine_booking_lag_seconds": [],
+          "event": "KXATPMATCH-26JUL12LAJVAN",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        },
+        {
+          "category": "WTA_CHALL",
+          "churn": {
+            "authority_mismatch_defect": 4,
+            "authority_reanchor": 2,
+            "order_cancelled": 5,
+            "paper_order_cancelled": 5
+          },
+          "churn_actions": 12,
+          "defect_signals": 4,
+          "engine_booking_lag_seconds": [],
+          "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        },
+        {
+          "category": "WTA_MAIN",
+          "churn": {
+            "authority_mismatch_defect": 2,
+            "authority_reanchor": 1,
+            "order_cancelled": 5,
+            "paper_order_cancelled": 5
+          },
+          "churn_actions": 11,
+          "defect_signals": 2,
+          "engine_booking_lag_seconds": [],
+          "event": "KXWTAMATCH-26JUL20KORJIM",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        }
+      ],
+      "legs_filled_out_of_10": 1,
+      "max_engine_booking_lag_seconds": 40.577,
+      "pair_completions_out_of_5": 0,
+      "profile": {
+        "clock_contract_fixed": false,
+        "contention_drop_fixed": false,
+        "field_contract_fixed": true,
+        "fill_poll_fixed": false,
+        "inject_fill_poll_miss": true
+      },
+      "versus_control": {
+        "churn_actions": 29,
+        "defect_signals": 5,
+        "legs_filled": -2,
+        "max_booking_lag_seconds": 0.0,
+        "pair_completions": 0
+      }
+    },
+    "fill_poll_only": {
+      "churn_actions": 57,
+      "defect_signals": 5,
+      "event_counts": {
+        "authority_foreign_order_flag": 5,
+        "bulk_fill_receipt": 3,
+        "order_cancelled": 31,
+        "paper_order_cancelled": 26,
+        "paper_stale_order_status_injected": 5348
+      },
+      "games": [
+        {
+          "category": "ATP_CHALL",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "bulk_fill_receipt": 1,
+            "order_cancelled": 2,
+            "paper_order_cancelled": 1,
+            "paper_stale_order_status_injected": 3253
+          },
+          "churn_actions": 3,
+          "defect_signals": 1,
+          "engine_booking_lag_seconds": [
+            1.714
+          ],
+          "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+          "first_input_break": null,
+          "legs_filled": 1,
+          "max_engine_booking_lag_seconds": 1.714,
+          "pair_completed": false
+        },
+        {
+          "category": "ATP_CHALL",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "bulk_fill_receipt": 1,
+            "order_cancelled": 18,
+            "paper_order_cancelled": 17,
+            "paper_stale_order_status_injected": 854
+          },
+          "churn_actions": 35,
+          "defect_signals": 1,
+          "engine_booking_lag_seconds": [
+            1.577
+          ],
+          "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+          "first_input_break": null,
+          "legs_filled": 1,
+          "max_engine_booking_lag_seconds": 1.577,
+          "pair_completed": false
+        },
+        {
+          "category": "ATP_MAIN",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "order_cancelled": 3,
+            "paper_order_cancelled": 3
+          },
+          "churn_actions": 6,
+          "defect_signals": 1,
+          "engine_booking_lag_seconds": [],
+          "event": "KXATPMATCH-26JUL12LAJVAN",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        },
+        {
+          "category": "WTA_CHALL",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "bulk_fill_receipt": 1,
+            "order_cancelled": 4,
+            "paper_order_cancelled": 1,
+            "paper_stale_order_status_injected": 1241
+          },
+          "churn_actions": 5,
+          "defect_signals": 1,
+          "engine_booking_lag_seconds": [
+            4.0
+          ],
+          "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+          "first_input_break": null,
+          "legs_filled": 1,
+          "max_engine_booking_lag_seconds": 4.0,
+          "pair_completed": false
+        },
+        {
+          "category": "WTA_MAIN",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "order_cancelled": 4,
+            "paper_order_cancelled": 4
+          },
+          "churn_actions": 8,
+          "defect_signals": 1,
+          "engine_booking_lag_seconds": [],
+          "event": "KXWTAMATCH-26JUL20KORJIM",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        }
+      ],
+      "legs_filled_out_of_10": 3,
+      "max_engine_booking_lag_seconds": 4.0,
+      "pair_completions_out_of_5": 0,
+      "profile": {
+        "clock_contract_fixed": false,
+        "contention_drop_fixed": false,
+        "field_contract_fixed": false,
+        "fill_poll_fixed": true,
+        "inject_fill_poll_miss": true
+      },
+      "versus_control": {
+        "churn_actions": -52,
+        "defect_signals": -6,
+        "legs_filled": 0,
+        "max_booking_lag_seconds": -36.577,
+        "pair_completions": 0
+      }
+    },
+    "four_defect_control": {
+      "churn_actions": 109,
+      "defect_signals": 11,
+      "event_counts": {
+        "authority_foreign_order_flag": 5,
+        "naked_leg_defect": 3,
+        "order_cancelled": 82,
+        "paper_order_cancelled": 27,
+        "paper_stale_order_status_injected": 119,
+        "reconcile_v4_adopted": 3,
+        "unbooked_fill_defect": 3
+      },
+      "games": [
+        {
+          "category": "ATP_CHALL",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "naked_leg_defect": 1,
+            "order_cancelled": 1,
+            "paper_order_cancelled": 1,
+            "paper_stale_order_status_injected": 1,
+            "reconcile_v4_adopted": 1,
+            "unbooked_fill_defect": 1
+          },
+          "churn_actions": 2,
+          "defect_signals": 3,
+          "engine_booking_lag_seconds": [
+            1.714
+          ],
+          "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+          "first_input_break": null,
+          "legs_filled": 1,
+          "max_engine_booking_lag_seconds": 1.714,
+          "pair_completed": false
+        },
+        {
+          "category": "ATP_CHALL",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "naked_leg_defect": 1,
+            "order_cancelled": 71,
+            "paper_order_cancelled": 18,
+            "paper_stale_order_status_injected": 113,
+            "reconcile_v4_adopted": 1,
+            "unbooked_fill_defect": 1
+          },
+          "churn_actions": 89,
+          "defect_signals": 3,
+          "engine_booking_lag_seconds": [
+            40.577
+          ],
+          "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+          "first_input_break": null,
+          "legs_filled": 1,
+          "max_engine_booking_lag_seconds": 40.577,
+          "pair_completed": false
+        },
+        {
+          "category": "ATP_MAIN",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "order_cancelled": 3,
+            "paper_order_cancelled": 3
+          },
+          "churn_actions": 6,
+          "defect_signals": 1,
+          "engine_booking_lag_seconds": [],
+          "event": "KXATPMATCH-26JUL12LAJVAN",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        },
+        {
+          "category": "WTA_CHALL",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "naked_leg_defect": 1,
+            "order_cancelled": 3,
+            "paper_order_cancelled": 1,
+            "paper_stale_order_status_injected": 5,
+            "reconcile_v4_adopted": 1,
+            "unbooked_fill_defect": 1
+          },
+          "churn_actions": 4,
+          "defect_signals": 3,
+          "engine_booking_lag_seconds": [
+            19.0
+          ],
+          "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+          "first_input_break": null,
+          "legs_filled": 1,
+          "max_engine_booking_lag_seconds": 19.0,
+          "pair_completed": false
+        },
+        {
+          "category": "WTA_MAIN",
+          "churn": {
+            "authority_foreign_order_flag": 1,
+            "order_cancelled": 4,
+            "paper_order_cancelled": 4
+          },
+          "churn_actions": 8,
+          "defect_signals": 1,
+          "engine_booking_lag_seconds": [],
+          "event": "KXWTAMATCH-26JUL20KORJIM",
+          "first_input_break": null,
+          "legs_filled": 0,
+          "max_engine_booking_lag_seconds": null,
+          "pair_completed": false
+        }
+      ],
+      "legs_filled_out_of_10": 3,
+      "max_engine_booking_lag_seconds": 40.577,
+      "pair_completions_out_of_5": 0,
+      "profile": {
+        "clock_contract_fixed": false,
+        "contention_drop_fixed": false,
+        "field_contract_fixed": false,
+        "fill_poll_fixed": false,
+        "inject_fill_poll_miss": true
+      },
+      "versus_control": {
+        "churn_actions": 0,
+        "defect_signals": 0,
+        "legs_filled": 0,
+        "max_booking_lag_seconds": 0.0,
+        "pair_completions": 0
+      }
+    }
+  },
+  "schema_version": "window1-live-defect-replay-v1",
+  "selection": "C:\\Users\\omigr\\OMI-Workspace-codex-w1-recognition-laps\\.claude\\window1_live_v4_replay\\delta_objective_20260729\\FIVE_GAME_SELECTION.json"
+}

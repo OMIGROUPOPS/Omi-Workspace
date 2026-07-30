@@ -725,11 +725,42 @@ def install_counterfactual(bot, dial: dict | None) -> dict | None:
     }
 
 
+def install_defect_profile(bot, profile: dict | None) -> dict | None:
+    """Install an explicit four-defect replay profile.
+
+    Production configuration is never inferred from this.  The profile exists
+    so each repair can be enabled alone against the same historical behavior.
+    """
+    if profile is None:
+        return None
+    keys = {
+        "clock_contract_fixed": "atlas_clock_contract_v2",
+        "field_contract_fixed": "authority_order_contract_v2",
+        "contention_drop_fixed": "contention_drop_enforced",
+        "fill_poll_fixed": "bulk_fill_poll_enabled",
+    }
+    applied = {}
+    for public, config_key in keys.items():
+        value = bool(profile.get(public, False))
+        bot.config[config_key] = value
+        applied[public] = value
+    # Reproduce the observed class for all variants: the single-order endpoint
+    # is stale while fill-ledger and position truth are current.  Only the bulk
+    # receipt repair should prevent reconcile from discovering it late.
+    bot.config["replay_stale_single_order_fill_status"] = bool(
+        profile.get("inject_fill_poll_miss", True))
+    applied["inject_fill_poll_miss"] = bot.config[
+        "replay_stale_single_order_fill_status"]
+    return applied
+
+
 async def replay_one(
     game: dict,
     print_ranges: dict[str, list[int]],
     out_dir: Path,
     counterfactual: dict | None = None,
+    defect_profile: dict | None = None,
+    write_trace: bool = True,
 ) -> dict:
     event = game["event"]
     run_dir = out_dir / "runs" / event
@@ -759,6 +790,7 @@ async def replay_one(
     restore_sqlite, database_accesses = install_vps_database_replay(clock)
     source_hash_before = _sha256(LIVE_V4)
     bot = module.LiveV3()
+    applied_defect_profile = install_defect_profile(bot, defect_profile)
     applied_counterfactual = install_counterfactual(bot, counterfactual)
     source_hash_after_init = _sha256(LIVE_V4)
     if source_hash_before != source_hash_after_init:
@@ -978,6 +1010,7 @@ async def replay_one(
         "frozen_window": {"left_ts": game["left_ts"], "right_ts": game["right_ts"]},
         "fill_model": FILL_MODEL,
         "counterfactual": applied_counterfactual,
+        "defect_profile": applied_defect_profile,
         "live_v4": {
             "path": str(LIVE_V4),
             "sha256_before": source_hash_before,
@@ -1008,9 +1041,10 @@ async def replay_one(
             "database_accesses": database_accesses,
         },
     }
-    (run_dir / "trace.json").write_text(
-        json.dumps(result, indent=2, sort_keys=True), encoding="utf-8"
-    )
+    if write_trace:
+        (run_dir / "trace.json").write_text(
+            json.dumps(result, indent=2, sort_keys=True), encoding="utf-8"
+        )
     try:
         bot.log_file.close()
     except Exception:

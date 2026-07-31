@@ -1,0 +1,60 @@
+{
+  "schema_version": "NIKVRB_LIVE_BOOK_BREATHING_ARTIFACT_MANIFEST_V1",
+  "artifacts": [
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_live_book_breathing_20260731/REPLAY_SUMMARY.json",
+      "sha256": "5bd40751637f0fdef6acc3ba9c34a4bd4433c0127b97e9f35f4b502553fb6543",
+      "size": 763
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_live_book_breathing_20260731/CODE_PATH_AUDIT.json",
+      "sha256": "fefbc6dadf9ef3f9853e362c43777e1c727e5217f560bae862ffb255dcc3a882",
+      "size": 2708
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_live_book_breathing_20260731/CURRENT_ORDER_INTERVALS.json",
+      "sha256": "3ef92c1eefec0c40b41ff3482a74630f8406c2009c43b96a346937069f7aedca",
+      "size": 1897
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_live_book_breathing_20260731/CORRECTED_ORDER_INTERVALS.json",
+      "sha256": "b921d1ae2c56b85b027f4c7485d2af5284ef23805b450363cdd0b8799693348c",
+      "size": 100576
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_live_book_breathing_20260731/CORRECTED_MATERIAL_DECISIONS.json",
+      "sha256": "bc20c3658e187eb3ea0b6e3f7e6f6b0715c5086f79e85a9d1772f3e444108783",
+      "size": 393506
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_live_book_breathing_20260731/ARITHMETIC_DECISION_ROWS.json",
+      "sha256": "a46896ec72621808f8460ad5e132579dc4b4190850c659b1f1d5b8358fdf2d14",
+      "size": 215919
+    },
+    {
+      "path": "arb-executor/docs/research/window1/NIKVRB_LIVE_BOOK_BREATHING_REPLAY.md",
+      "sha256": "bb7e6415dd32d8c1153c88a366c7e21b06463edeab1261918331cd9229de9d44",
+      "size": 1854
+    },
+    {
+      "path": "arb-executor/docs/research/window1/NIKVRB_LIVE_BOOK_BREATHING_TABLE_CHARTS.html",
+      "sha256": "c5792a3104f27d9e5a1654d8dde950976c4127ccbb35ec4cc2fcae79114eb6d2",
+      "size": 492501
+    },
+    {
+      "path": "arb-executor/docs/research/window1/NIKVRB_LIVE_BOOK_BREATHING_SPEC.json",
+      "sha256": "f60621884251f045fbe22e9c862447fec947103ad16aad672822be4532debb22",
+      "size": 960
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_live_book_breathing_20260731/SOURCE_HASH_MANIFEST.json",
+      "sha256": "f3ea1e42e68dfe44583601ba19a4aa13b22ad6c61aaf6a01dcd23e2b76931853",
+      "size": 1364
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_live_book_breathing_20260731/FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "ffbe1e06c10296288f5e986a6a38a01b8a28c5d7ab4faa0e31761d4481ce24ec",
+      "size": 239
+    }
+  ]
+}

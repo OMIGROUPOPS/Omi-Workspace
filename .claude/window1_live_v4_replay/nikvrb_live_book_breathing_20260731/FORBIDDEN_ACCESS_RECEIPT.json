@@ -1,0 +1,9 @@
+{
+  "schema_version": "NIKVRB_LIVE_BOOK_BREATHING_FORBIDDEN_ACCESS_V1",
+  "population_scoring": false,
+  "live_access": false,
+  "network_access": false,
+  "order_mutation": false,
+  "position_mutation": false,
+  "holdout_access": false
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "NIKVRB_LIVE_BOOK_BREATHING_SPEC_V1",
+  "scope": "one-event score-free cold replay; no deployment",
+  "anchor_priority": [
+    "precomputed three-book sharp blend when complete/fresh",
+    "own lawful one-cent BBO midpoint",
+    "NO_CALL"
+  ],
+  "external_sharp_books": [
+    "pinnacle",
+    "betfair_ex_eu",
+    "matchbook"
+  ],
+  "price_law": "resting_price = max(1, min(causal_maximum_payable, external_best_bid, external_best_ask - 1)); recompute on every own-leg BBO",
+  "faller_law": "after sibling riser resolves, maximum payable ratchets down and never rises on quote-only recovery",
+  "exact_touch_law": "a first ask-equals-order receipt arms an active ask lift; only a strictly later confirming receipt executes at the already-resting price",
+  "fences": [
+    "no fabricated external sharp price",
+    "no future observation",
+    "no same-receipt action/fill",
+    "no population score",
+    "no live or network access"
+  ]
+}

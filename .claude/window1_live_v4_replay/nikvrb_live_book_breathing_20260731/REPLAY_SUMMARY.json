@@ -1,0 +1,35 @@
+{
+  "schema_version": "NIKVRB_LIVE_BOOK_BREATHING_REPLAY_V1",
+  "source_rows": 13123,
+  "population_run": false,
+  "live_execution": false,
+  "external_sharp_receipts_on_specimen": 0,
+  "current_fills": {
+    "NIK": 21,
+    "VRB": 69
+  },
+  "corrected_fills": {
+    "NIK": 19,
+    "VRB": 68
+  },
+  "quiet_anchors": {
+    "NIK": null,
+    "VRB": {
+      "anchor_cents": 68,
+      "raw_anchor_cents": 67.5,
+      "source": "OWN_LAWFUL_BBO_MID",
+      "source_receipts": [],
+      "sequence": 256,
+      "timestamp_et": "2026-07-19T07:12:11.000000-04:00",
+      "book": {
+        "bid": 67,
+        "ask": 68
+      }
+    }
+  },
+  "acceptance": {
+    "VRB_fill_68_or_better": true,
+    "NIK_fill_at_live_touch_19": true,
+    "no_same_receipt_action_fill": true
+  }
+}

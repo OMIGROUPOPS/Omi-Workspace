@@ -1,0 +1,41 @@
+{
+  "schema_version": "NIKVRB_LIVE_BOOK_BREATHING_SOURCE_MANIFEST_V1",
+  "sources": [
+    {
+      "role": "clock",
+      "path": ".claude/window1_live_v4_replay/nikvrb_coupling_20260730/NIKVRB_DUAL_BOOK_CLOCK.csv",
+      "sha256": "9ec9ef0fab27cd750a7d3fba1407bc6c6a8955104071f27b67dac6bd7f8965e5",
+      "size": 1614324
+    },
+    {
+      "role": "trace",
+      "path": ".claude/window1_live_v4_replay/one_game_nikvrb_20260730/NIKVRB_DECISION_TRACE.json",
+      "sha256": "cf3ecdafc43ff0305ae95addd5a98fc1d53695dbbeae6c7080ad79de0fae1b42",
+      "size": 8967
+    },
+    {
+      "role": "replay",
+      "path": "arb-executor/analysis/nikvrb_sibling_shape_cold_replay.js",
+      "sha256": "a428a4b27b2e1333f1a73bec5d9e7f7ae3dff460cc41ac11c8a813fdf32c562f",
+      "size": 30492
+    },
+    {
+      "role": "live",
+      "path": "arb-executor/live_v4.py",
+      "sha256": "f6fb1d20f3943f7bac26d94ccf1e9d98a5f22762cd3357394adfc8a3b108d760",
+      "size": 1028619
+    },
+    {
+      "role": "config",
+      "path": "arb-executor/config/deploy_v5_live.json",
+      "sha256": "46607d2404d6794c30c6c61fd52d08c9e787a613a1984d8c21204457d5d2472f",
+      "size": 5305
+    },
+    {
+      "role": "sharp_quote",
+      "path": "arb-executor/analysis/fv_quote.py",
+      "sha256": "905f98db307eba4448763ee9f8e6f6672b9e3fa97cc64cf744069804b2883ffe",
+      "size": 17237
+    }
+  ]
+}

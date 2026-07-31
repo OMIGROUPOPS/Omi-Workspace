@@ -1,0 +1,6 @@
+{
+  "schema_version": "NIKVRB_LIVE_BOOK_BREATHING_DETERMINISM_V1",
+  "method": "builder --check regenerates every byte in memory and compares to the committed file",
+  "expected_files": 13,
+  "byte_identical": true
+}

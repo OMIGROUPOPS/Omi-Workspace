@@ -1,0 +1,35 @@
+{
+  "raw_clock_rows": 13123,
+  "lawful_market_receipts_reconsidered": 13121,
+  "material_decisions": 10,
+  "repeated_nondecision_counts": {
+    "NO_CALL__NO_ENTRY_TRIGGER": 211,
+    "HOLD_NIK_26": 59,
+    "HOLD_NIK_23": 117,
+    "HOLD_VRB_69": 21,
+    "NO_CALL__VRB_ENTRY_COMPLETE": 1132,
+    "HOLD_NIK_21": 1600,
+    "HOLD_NO_ORDER__WAIT_FOR_FULL_CELL": 40,
+    "HOLD_NIK_19": 171,
+    "NO_CALL__PAIR_ENTRY_COMPLETE": 9762
+  },
+  "lock_points": {
+    "before_first_true_print": "discovery gate: no price authority",
+    "while_resting": "hold unless a named consultation, fill receipt, T2 sibling-shape resolution, or full-cell release fires",
+    "patience": "no NIK order until its live bid is one full five-cent cell below the T2 arm bid and VRB remains above its fill",
+    "after_leg_fill": "that leg's entry route is locked; books and tape remain readable",
+    "after_pair_fill": "all Window-1 entry routes are locked"
+  },
+  "first_NIK_ask_18": {
+    "timestamp_et": "2026-07-19T11:32:31.000000-04:00",
+    "tminus_scheduled": "T-57.483",
+    "tminus_bell": "T-62.483",
+    "tuned_state": "PAIR_ENTRY_COMPLETE; NIK already filled 19 on independent print evidence"
+  },
+  "first_NIK_print_18": {
+    "timestamp_et": "2026-07-19T11:38:49.709443-04:00",
+    "tminus_scheduled": "T-51.172",
+    "tminus_bell": "T-56.172",
+    "tuned_state": "PAIR_ENTRY_COMPLETE; no re-buy"
+  }
+}

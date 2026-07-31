@@ -1,0 +1,92 @@
+[
+  {
+    "visit": 1,
+    "time_et": "2026-07-19T07:12:11-04:00",
+    "tminus_scheduled": "T-317.817",
+    "tminus_bell": "T-322.817",
+    "book": "67/68",
+    "current": "NO_ORDER_YET; SKIP_NO_FRESH_TRADE",
+    "tuned": "NO_ORDER_YET__VRB_DISCOVERY_NOT_COMPLETE",
+    "english": "The ask reached 68 before VRB had a verified discovery call, so the OS had no lawful order to hold or move."
+  },
+  {
+    "visit": 2,
+    "time_et": "2026-07-19T07:15:22-04:00",
+    "tminus_scheduled": "T-314.633",
+    "tminus_bell": "T-319.633",
+    "book": "67/68",
+    "current": "RESPONDED: CANCEL_67_AS_MARKETABLE_STALE; RECONCEIVE_65; THEN_CADENCE_HOLD",
+    "tuned": "STRICT_ASK_68_CREDITS_RESTING_69_BEFORE_REPRICE",
+    "english": "The 69 riser bid was already resting. Ask 68 was strictly through it, so fill accounting signed 69 before the resting manager could cancel."
+  },
+  {
+    "visit": 3,
+    "time_et": "2026-07-19T07:21:12-04:00",
+    "tminus_scheduled": "T-308.800",
+    "tminus_bell": "T-313.800",
+    "book": "67/68",
+    "current": "HOLD_STAIRCASE_QUIET_FIFO",
+    "tuned": "VRB_ALREADY_FILLED_69__ENTRY_PHASE_LOCKED",
+    "english": "VRB was already filled at 69. The repeated ask-68 pulse updated shape memory but could not trigger another entry."
+  },
+  {
+    "visit": 4,
+    "time_et": "2026-07-19T07:22:12-04:00",
+    "tminus_scheduled": "T-307.800",
+    "tminus_bell": "T-312.800",
+    "book": "67/68",
+    "current": "HOLD_STAIRCASE_QUIET_FIFO",
+    "tuned": "VRB_ALREADY_FILLED_69__ENTRY_PHASE_LOCKED",
+    "english": "VRB was already filled at 69. The repeated ask-68 pulse updated shape memory but could not trigger another entry."
+  },
+  {
+    "visit": 5,
+    "time_et": "2026-07-19T07:23:15-04:00",
+    "tminus_scheduled": "T-306.750",
+    "tminus_bell": "T-311.750",
+    "book": "67/68",
+    "current": "HOLD_STAIRCASE_QUIET_FIFO",
+    "tuned": "VRB_ALREADY_FILLED_69__ENTRY_PHASE_LOCKED",
+    "english": "VRB was already filled at 69. The repeated ask-68 pulse updated shape memory but could not trigger another entry."
+  },
+  {
+    "visit": 6,
+    "time_et": "2026-07-19T07:24:13-04:00",
+    "tminus_scheduled": "T-305.783",
+    "tminus_bell": "T-310.783",
+    "book": "67/68",
+    "current": "HOLD_STAIRCASE_QUIET_FIFO",
+    "tuned": "VRB_ALREADY_FILLED_69__ENTRY_PHASE_LOCKED",
+    "english": "VRB was already filled at 69. The repeated ask-68 pulse updated shape memory but could not trigger another entry."
+  },
+  {
+    "visit": 7,
+    "time_et": "2026-07-19T07:28:10-04:00",
+    "tminus_scheduled": "T-301.833",
+    "tminus_bell": "T-306.833",
+    "book": "67/68",
+    "current": "HOLD_STAIRCASE_QUIET_FIFO",
+    "tuned": "VRB_ALREADY_FILLED_69__ENTRY_PHASE_LOCKED",
+    "english": "VRB was already filled at 69. The repeated ask-68 pulse updated shape memory but could not trigger another entry."
+  },
+  {
+    "visit": 8,
+    "time_et": "2026-07-19T07:29:11-04:00",
+    "tminus_scheduled": "T-300.817",
+    "tminus_bell": "T-305.817",
+    "book": "67/68",
+    "current": "HOLD_STAIRCASE_QUIET_FIFO",
+    "tuned": "VRB_ALREADY_FILLED_69__ENTRY_PHASE_LOCKED",
+    "english": "VRB was already filled at 69. The repeated ask-68 pulse updated shape memory but could not trigger another entry."
+  },
+  {
+    "visit": 9,
+    "time_et": "2026-07-19T07:30:17-04:00",
+    "tminus_scheduled": "T-299.717",
+    "tminus_bell": "T-304.717",
+    "book": "67/68",
+    "current": "HOLD_STAIRCASE_QUIET_FIFO",
+    "tuned": "VRB_ALREADY_FILLED_69__ENTRY_PHASE_LOCKED",
+    "english": "VRB was already filled at 69. The repeated ask-68 pulse updated shape memory but could not trigger another entry."
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "schema_version": "NIKVRB_SIBLING_SHAPE_SOURCE_MANIFEST_V1",
+  "sources": [
+    {
+      "id": "clock",
+      "path": ".claude/window1_live_v4_replay/nikvrb_coupling_20260730/NIKVRB_DUAL_BOOK_CLOCK.csv",
+      "bytes": 1614324,
+      "sha256": "9ec9ef0fab27cd750a7d3fba1407bc6c6a8955104071f27b67dac6bd7f8965e5"
+    },
+    {
+      "id": "trace",
+      "path": ".claude/window1_live_v4_replay/one_game_nikvrb_20260730/NIKVRB_DECISION_TRACE.json",
+      "bytes": 8967,
+      "sha256": "cf3ecdafc43ff0305ae95addd5a98fc1d53695dbbeae6c7080ad79de0fae1b42"
+    },
+    {
+      "id": "ask68",
+      "path": ".claude/window1_live_v4_replay/nikvrb_decision_autopsy_20260731/NIKVRB_VRB_ASK68_VISITS.csv",
+      "bytes": 1532,
+      "sha256": "383089cc2bf24f060e21de92fb53656341d38a956d49e946434fc6186129f9c1"
+    },
+    {
+      "id": "prior_tree",
+      "path": ".claude/window1_live_v4_replay/nikvrb_decision_tree_20260731/NIKVRB_COUNTERFACTUAL_BRANCHES.json",
+      "bytes": 20941,
+      "sha256": "939064abd665a37644644300ecc622a10384cf4ffcc5f41d0e21d45659137962"
+    },
+    {
+      "id": "live_v4",
+      "path": "arb-executor/live_v4.py",
+      "bytes": 1028619,
+      "sha256": "f6fb1d20f3943f7bac26d94ccf1e9d98a5f22762cd3357394adfc8a3b108d760"
+    },
+    {
+      "id": "deploy_config",
+      "path": "arb-executor/config/deploy_v5_live.json",
+      "bytes": 5305,
+      "sha256": "46607d2404d6794c30c6c61fd52d08c9e787a613a1984d8c21204457d5d2472f"
+    },
+    {
+      "id": "time_axis",
+      "path": "arb-executor/analysis/aim_time_axis.py",
+      "bytes": 7479,
+      "sha256": "5cab94e67060cc1bda186fb5ca2fbcde1ab02ce64fd1762209983b02514221ca"
+    }
+  ]
+}

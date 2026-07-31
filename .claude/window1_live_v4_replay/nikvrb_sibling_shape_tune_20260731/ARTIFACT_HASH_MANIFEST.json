@@ -1,0 +1,60 @@
+{
+  "schema_version": "NIKVRB_SIBLING_SHAPE_ARTIFACT_MANIFEST_V1",
+  "artifacts": [
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/FORBIDDEN_ACCESS_RECEIPT.json",
+      "bytes": 300,
+      "sha256": "777677fa532ddc1940f7c6f68f9ec9e9508de3c5144be82f2e34795a48087392"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/NIKVRB_CURRENT_ORDER_INTERVALS.json",
+      "bytes": 1897,
+      "sha256": "3ef92c1eefec0c40b41ff3482a74630f8406c2009c43b96a346937069f7aedca"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/NIKVRB_DECISION_PROCESS_ENGLISH.jsonl.gz.b64",
+      "bytes": 232657,
+      "sha256": "9eb728592ed205f63f48c1d25f193aa38647a943b71d279a5fc5c540c36e953e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/NIKVRB_MATERIAL_DECISIONS.json",
+      "bytes": 16715,
+      "sha256": "da9fa6a2c414febbd10857c4c3a6758851586f02419d6511825910a455caa511"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/NIKVRB_NONDECISION_CENSUS.json",
+      "bytes": 1385,
+      "sha256": "f9a1095d1d818ad067e91723f2984f809032edc6fa9357636c948ad8a51df335"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/NIKVRB_REPLAY_SUMMARY.json",
+      "bytes": 8177,
+      "sha256": "27ed4ff9e6f944e0f414b265e5534bfbb02ad7d33c9bc9c82074e58c3a61ddc5"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/NIKVRB_TUNED_ORDER_INTERVALS.json",
+      "bytes": 2397,
+      "sha256": "1e235be1ed1e2c2e677cd20fac07e334b8931b6498a17e0ef09b693255769432"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/NIKVRB_VISUAL_ACCEPTANCE.json",
+      "bytes": 7548,
+      "sha256": "f092c6f6f74d4168db9b019e93a2fc9f942db0d08248514dd3a64b6966f3c0d6"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/NIKVRB_VRB_ASK68_TUNED_DECISIONS.json",
+      "bytes": 3613,
+      "sha256": "a0d02d69429a7431914332c679aceef00e4fabfb763ce4746f9f6406b2a8eb9a"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/SOURCE_HASH_MANIFEST.json",
+      "bytes": 1654,
+      "sha256": "fa4157cec2066817ff91d3cb418b9704aabe786e1ae9805ab7455b637a2d0a20"
+    },
+    {
+      "path": "arb-executor/docs/research/window1/NIKVRB_SIBLING_SHAPE_REPLAY.md",
+      "bytes": 13191,
+      "sha256": "54f60ad6a549c618401d0b698507b5d77bc26ff2dc049cdb5c682eccedba9371"
+    }
+  ]
+}

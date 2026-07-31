@@ -1,0 +1,9 @@
+{
+  "schema_version": "NIKVRB_SIBLING_SHAPE_FORBIDDEN_ACCESS_V1",
+  "population_run": false,
+  "scorer_imported_or_invoked": false,
+  "live_v4_imported_or_invoked": false,
+  "live_network_order_position_exit_settlement_access": false,
+  "holdout_access": false,
+  "production_file_modified": false
+}

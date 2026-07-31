@@ -1,0 +1,222 @@
+{
+  "schema_version": "NIKVRB_VISUAL_ACCEPTANCE_V1",
+  "clock_source": ".claude/window1_live_v4_replay/nikvrb_coupling_20260730/NIKVRB_DUAL_BOOK_CLOCK.csv",
+  "clock_sha256": "9ec9ef0fab27cd750a7d3fba1407bc6c6a8955104071f27b67dac6bd7f8965e5",
+  "current_orientation_branch": {
+    "orders": [
+      {
+        "leg": "NIK",
+        "price": 26,
+        "quantity": 5,
+        "start_sequence": 8,
+        "start_et": "2026-07-19T06:28:05.000000-04:00",
+        "start_tminus_scheduled": "T-361.917",
+        "start_tminus_bell": "T-366.917",
+        "end_sequence": 190,
+        "end_et": "2026-07-19T07:07:33.000000-04:00",
+        "end_tminus_scheduled": "T-322.450",
+        "end_tminus_bell": "T-327.450",
+        "end_reason": "REPLACED_BY_ORIENTATION_FALLER_DEEP",
+        "authority": "ORIENTATION_FALLER_DEEP"
+      },
+      {
+        "leg": "NIK",
+        "price": 23,
+        "quantity": 5,
+        "start_sequence": 190,
+        "start_et": "2026-07-19T07:07:33.000000-04:00",
+        "start_tminus_scheduled": "T-322.450",
+        "start_tminus_bell": "T-327.450",
+        "end_sequence": 748,
+        "end_et": "2026-07-19T07:51:21.000000-04:00",
+        "end_tminus_scheduled": "T-278.650",
+        "end_tminus_bell": "T-283.650",
+        "end_reason": "REPLACED_BY_ORIENTATION_FALLER_DEEP",
+        "authority": "ORIENTATION_FALLER_DEEP"
+      },
+      {
+        "leg": "VRB",
+        "price": 69,
+        "quantity": 5,
+        "start_sequence": 296,
+        "start_et": "2026-07-19T07:13:58.000000-04:00",
+        "start_tminus_scheduled": "T-316.033",
+        "start_tminus_bell": "T-321.033",
+        "end_sequence": 325,
+        "end_et": "2026-07-19T07:15:22.000000-04:00",
+        "end_tminus_scheduled": "T-314.633",
+        "end_tminus_bell": "T-319.633",
+        "end_reason": "FILLED_STRICT_ASK_CERTAIN_FILL",
+        "authority": "ORIENTATION_RISER_NEAR_NOW"
+      },
+      {
+        "leg": "NIK",
+        "price": 21,
+        "quantity": 5,
+        "start_sequence": 748,
+        "start_et": "2026-07-19T07:51:21.000000-04:00",
+        "start_tminus_scheduled": "T-278.650",
+        "start_tminus_bell": "T-283.650",
+        "end_sequence": 3361,
+        "end_et": "2026-07-19T11:09:20.922837-04:00",
+        "end_tminus_scheduled": "T-80.651",
+        "end_tminus_bell": "T-85.651",
+        "end_reason": "FILLED_PRICE_REACHED",
+        "authority": "ORIENTATION_FALLER_DEEP"
+      }
+    ],
+    "fills": {
+      "NIK": {
+        "leg": "NIK",
+        "price": 21,
+        "quantity": 5,
+        "action_et": "2026-07-19T07:51:21.000000-04:00",
+        "action_sequence": 748,
+        "evidence_et": "2026-07-19T11:09:20.922837-04:00",
+        "evidence_sequence": 3361,
+        "evidence": {
+          "type": "PRICE_REACHED",
+          "receipt": "207fe813-1b58-7999-2ace-4e49c787c1a8",
+          "evidence_price": 19,
+          "evidence_size": 21
+        },
+        "strictly_later": true
+      },
+      "VRB": {
+        "leg": "VRB",
+        "price": 69,
+        "quantity": 5,
+        "action_et": "2026-07-19T07:13:58.000000-04:00",
+        "action_sequence": 296,
+        "evidence_et": "2026-07-19T07:15:22.000000-04:00",
+        "evidence_sequence": 325,
+        "evidence": {
+          "type": "STRICT_ASK_CERTAIN_FILL",
+          "receipt": "clock-sequence-325",
+          "evidence_price": 68,
+          "evidence_size": null
+        },
+        "strictly_later": true
+      }
+    }
+  },
+  "corrected_sibling_shape_branch": {
+    "orders": [
+      {
+        "leg": "NIK",
+        "price": 26,
+        "quantity": 5,
+        "start_sequence": 8,
+        "start_et": "2026-07-19T06:28:05.000000-04:00",
+        "start_tminus_scheduled": "T-361.917",
+        "start_tminus_bell": "T-366.917",
+        "end_sequence": 190,
+        "end_et": "2026-07-19T07:07:33.000000-04:00",
+        "end_tminus_scheduled": "T-322.450",
+        "end_tminus_bell": "T-327.450",
+        "end_reason": "REPLACED_BY_ORIENTATION_FALLER_DEEP",
+        "authority": "ORIENTATION_FALLER_DEEP"
+      },
+      {
+        "leg": "NIK",
+        "price": 23,
+        "quantity": 5,
+        "start_sequence": 190,
+        "start_et": "2026-07-19T07:07:33.000000-04:00",
+        "start_tminus_scheduled": "T-322.450",
+        "start_tminus_bell": "T-327.450",
+        "end_sequence": 748,
+        "end_et": "2026-07-19T07:51:21.000000-04:00",
+        "end_tminus_scheduled": "T-278.650",
+        "end_tminus_bell": "T-283.650",
+        "end_reason": "REPLACED_BY_ORIENTATION_FALLER_DEEP",
+        "authority": "ORIENTATION_FALLER_DEEP"
+      },
+      {
+        "leg": "VRB",
+        "price": 69,
+        "quantity": 5,
+        "start_sequence": 296,
+        "start_et": "2026-07-19T07:13:58.000000-04:00",
+        "start_tminus_scheduled": "T-316.033",
+        "start_tminus_bell": "T-321.033",
+        "end_sequence": 325,
+        "end_et": "2026-07-19T07:15:22.000000-04:00",
+        "end_tminus_scheduled": "T-314.633",
+        "end_tminus_bell": "T-319.633",
+        "end_reason": "FILLED_STRICT_ASK_CERTAIN_FILL",
+        "authority": "ORIENTATION_RISER_NEAR_NOW"
+      },
+      {
+        "leg": "NIK",
+        "price": 21,
+        "quantity": 5,
+        "start_sequence": 748,
+        "start_et": "2026-07-19T07:51:21.000000-04:00",
+        "start_tminus_scheduled": "T-278.650",
+        "start_tminus_bell": "T-283.650",
+        "end_sequence": 2886,
+        "end_et": "2026-07-19T10:30:39.000000-04:00",
+        "end_tminus_scheduled": "T-119.350",
+        "end_tminus_bell": "T-124.350",
+        "end_reason": "SIBLING_RISER_SHAPE_RESOLVED",
+        "authority": "ORIENTATION_FALLER_DEEP"
+      },
+      {
+        "leg": "NIK",
+        "price": 19,
+        "quantity": 5,
+        "start_sequence": 2975,
+        "start_et": "2026-07-19T10:40:57.000000-04:00",
+        "start_tminus_scheduled": "T-109.050",
+        "start_tminus_bell": "T-114.050",
+        "end_sequence": 3361,
+        "end_et": "2026-07-19T11:09:20.922837-04:00",
+        "end_tminus_scheduled": "T-80.651",
+        "end_tminus_bell": "T-85.651",
+        "end_reason": "FILLED_PRICE_REACHED",
+        "authority": "SIBLING_SHAPE_PATIENCE_RELEASE"
+      }
+    ],
+    "fills": {
+      "NIK": {
+        "leg": "NIK",
+        "price": 19,
+        "quantity": 5,
+        "action_et": "2026-07-19T10:40:57.000000-04:00",
+        "action_sequence": 2975,
+        "evidence_et": "2026-07-19T11:09:20.922837-04:00",
+        "evidence_sequence": 3361,
+        "evidence": {
+          "type": "PRICE_REACHED",
+          "receipt": "207fe813-1b58-7999-2ace-4e49c787c1a8",
+          "evidence_price": 19,
+          "evidence_size": 21
+        },
+        "strictly_later": true
+      },
+      "VRB": {
+        "leg": "VRB",
+        "price": 69,
+        "quantity": 5,
+        "action_et": "2026-07-19T07:13:58.000000-04:00",
+        "action_sequence": 296,
+        "evidence_et": "2026-07-19T07:15:22.000000-04:00",
+        "evidence_sequence": 325,
+        "evidence": {
+          "type": "STRICT_ASK_CERTAIN_FILL",
+          "receipt": "clock-sequence-325",
+          "evidence_price": 68,
+          "evidence_size": null
+        },
+        "strictly_later": true
+      }
+    }
+  },
+  "acceptance_marks": {
+    "VRB": "both branches rest 69 before strict ask 68 credits 69",
+    "NIK_current": "21 remains resting until the later public print 19 credits 21",
+    "NIK_corrected": "21 cancels at T-119.350 scheduled; 19 rests from T-109.050 until public print 19 credits 19 at T-80.651",
+    "later_ask_18": "arrives at T-57.483 scheduled after pair-entry lock; no re-buy"
+  }
+}

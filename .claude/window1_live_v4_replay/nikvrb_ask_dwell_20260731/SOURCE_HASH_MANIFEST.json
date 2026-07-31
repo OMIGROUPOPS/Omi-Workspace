@@ -31,10 +31,15 @@
       "bytes": 763,
       "sha256": "5bd40751637f0fdef6acc3ba9c34a4bd4433c0127b97e9f35f4b502553fb6543"
     },
+    "capacity": {
+      "path": ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/NIKVRB_CAPACITY_BY_SEQUENCE.json",
+      "bytes": 5918097,
+      "sha256": "dafbe7e53369cd1084455c3a588c159f8582e248dcd2b69941b0458efbc35470"
+    },
     "replay": {
       "path": "arb-executor/analysis/nikvrb_sibling_shape_cold_replay.js",
-      "bytes": 36842,
-      "sha256": "1267c8f9c1d81dfa3965403cb9a9281114f2240f040a537eaaed442ccd6cbeae"
+      "bytes": 39977,
+      "sha256": "a9ef3d6d57f5d7ba5bfa1a84ae019862669e61af8c080c6b3669017304212e6d"
     },
     "live": {
       "path": "arb-executor/live_v4.py",

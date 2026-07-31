@@ -1,0 +1,54 @@
+{
+  "artifacts": [
+    {
+      "path": ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FIVE_GAME_FULL_STACK_RESULTS.json",
+      "bytes": 26384,
+      "sha256": "4abe49088721d823ce1455fce16d3a61d47b3851ef8c5569799d00474e6218cd"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/PER_EVENT_DECISION_LEDGER.json",
+      "bytes": 776952,
+      "sha256": "7eed9840f618c7186c12c55a19b7b841cb7124ddcc5446e12b51823cfface480"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/EVIDENCE_ABSENT_CAPACITY_RECEIPT.json",
+      "bytes": 31,
+      "sha256": "ec30ee7f611e450e9ae23168e964ba3b5578ea071834286eb2bfe7def61d7737"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/NIKVRB_CAPACITY_BY_SEQUENCE.json",
+      "bytes": 5918097,
+      "sha256": "dafbe7e53369cd1084455c3a588c159f8582e248dcd2b69941b0458efbc35470"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/REFERENCE_LAW_RECEIPT.json",
+      "bytes": 277,
+      "sha256": "4db7a07d4ad925ebfed09ed546a7fd67bbf660779a85c8f089b90c6199751345"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/DEFECT_BEFORE_AFTER_RECEIPT.json",
+      "bytes": 830,
+      "sha256": "c0ea89d52c3ddbc6051d214a3ed94f485ee36feda1ba4ff281af910c9e9b463d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/SOURCE_HASH_MANIFEST.json",
+      "bytes": 3822,
+      "sha256": "5789209049b7b76aae40481cd923fa9d6dd614e5f3154210e06d447319dcd8dd"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FORBIDDEN_ACCESS_RECEIPT.json",
+      "bytes": 297,
+      "sha256": "c6a99152bca390ac93adda4dbeffacf738500e1aa42cd5c020219464443f6cd3"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/DETERMINISM_RECEIPT.json",
+      "bytes": 209,
+      "sha256": "cc2d8c2a9cf2d26c504f95d71510c06129564ae3c0b9a19affdbb6661d3ae340"
+    },
+    {
+      "path": "arb-executor/docs/research/window1/WINDOW1_FIVE_EXACT_FULL_STACK_CAPACITY.md",
+      "bytes": 5482,
+      "sha256": "b8366256d76841967b161773adb7040dd0fd3482f09005856ebb98a87f9ac391"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "pair_reference_cents": "NOT_BOUND",
+  "delta_to_pair_reference_cents": "NOT_BOUND",
+  "forbidden_proxy": "100 - sibling entry",
+  "legs": {
+    "NIK": {
+      "entry_cents": 18,
+      "own_window1_close_cents": 19,
+      "delta_to_own_window1_close_cents": -1,
+      "own_bell_price_cents": 19,
+      "delta_to_own_bell_price_cents": -1,
+      "own_ask_reachable_low_cents": 18,
+      "delta_to_own_ask_reachable_low_cents": 0
+    },
+    "VRB": {
+      "entry_cents": 68,
+      "own_window1_close_cents": 83,
+      "delta_to_own_window1_close_cents": -15,
+      "own_bell_price_cents": 83,
+      "delta_to_own_bell_price_cents": -15,
+      "own_ask_reachable_low_cents": 68,
+      "delta_to_own_ask_reachable_low_cents": 0
+    }
+  }
+}

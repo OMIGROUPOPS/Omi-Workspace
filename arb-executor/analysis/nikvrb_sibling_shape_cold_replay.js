@@ -100,7 +100,7 @@ function updatePulseTracker(trackers, row) {
   }
 }
 
-function enrichRows(rawRows) {
+function enrichRows(rawRows, capacityBySequence = {}) {
   const dwell = {
     NIK: { key: null, since: null },
     VRB: { key: null, since: null },
@@ -115,11 +115,17 @@ function enrichRows(rawRows) {
     const epoch = parseTs(raw.timestamp_et);
     const books = {};
     for (const leg of ["NIK", "VRB"]) {
+      const capacity = capacityBySequence[`${raw.sequence}|${leg}`] || null;
       books[leg] = {
         bid: numberOrNull(raw[`${leg}_bid`]),
         ask: numberOrNull(raw[`${leg}_ask`]),
         last: numberOrNull(raw[`${leg}_last`]),
       };
+      if (capacity) {
+        books[leg].ask_size = numberOrNull(capacity.ask_size);
+        books[leg].ask_capacity_at_top = numberOrNull(capacity.ask_capacity_at_top);
+        books[leg].ask_capacity_receipt = capacity.receipt;
+      }
       books[leg].spread = Number.isInteger(books[leg].bid) && Number.isInteger(books[leg].ask)
         ? books[leg].ask - books[leg].bid : null;
       const key = `${books[leg].bid}|${books[leg].ask}`;
@@ -230,6 +236,8 @@ class ColdReplay {
     this.quietAnchors = { NIK: null, VRB: null };
     this.ratchetDown = { NIK: false, VRB: false };
     this.exactTouchArms = { NIK: null, VRB: null };
+    this.capacityEvidenceAbsent = [];
+    this.capacityAbsenceSeen = new Set();
   }
 
   _joint(row) {
@@ -450,11 +458,16 @@ class ColdReplay {
       if (row.event_kind === `BBO_${leg}` && validBook(book)
           && book.ask <= order.price
           && book.ask_dwell_seconds >= ASK_REACH_DWELL_SECONDS) {
+        const displayed = book.ask_capacity_at_top;
         return {
           type: "ASK_DWELL_REACHABLE",
           receipt: `clock-sequence-${row.sequence}`,
           evidence_price: book.ask,
-          evidence_size: null,
+          evidence_size: displayed,
+          capacity_receipt: book.ask_capacity_receipt,
+          capacity_status: Number.isFinite(displayed) && displayed >= order.quantity
+            ? "PROVEN_FIVE_CONTRACT_CAPACITY" : "EVIDENCE_ABSENT",
+          creditable: Number.isFinite(displayed) && displayed >= order.quantity,
           dwell_seconds: book.ask_dwell_seconds,
           dwell_threshold_seconds: ASK_REACH_DWELL_SECONDS,
         };
@@ -517,10 +530,42 @@ class ColdReplay {
       signer: evidence.type,
       action: `CREDIT_${leg}_FILL_${fill.price}`,
       ...(this.askDwell ? { arithmetic:
-        `ask ${evidence.evidence_price} <= resting ${fill.price}; dwell ${evidence.dwell_seconds}>=${evidence.dwell_threshold_seconds}; credit ${fill.price}` } : {}),
+        `ask ${evidence.evidence_price} <= resting ${fill.price}; dwell ${evidence.dwell_seconds}>=${evidence.dwell_threshold_seconds}; displayed capacity ${evidence.evidence_size}>=${fill.quantity}; credit ${fill.quantity}@${fill.price}` } : {}),
       declined: "no cancel/reprice before fill credit",
       code_path: "ColdReplay._fillEvidence -> ColdReplay._fill",
-      english: `${leg} had a five-contract bid resting at ${fill.price}. A strictly later ${evidence.type === "PRICE_REACHED" ? `public print at ${evidence.evidence_price}` : `external ask at ${evidence.evidence_price}`} proved that price fillable, so the replay credited ${fill.price} before allowing any other action.`,
+      english: this.askDwell
+        ? `${leg} had a five-contract bid resting at ${fill.price}. A strictly later external ask at ${evidence.evidence_price} with displayed capacity ${evidence.evidence_size} proved five-contract capacity, so the replay credited five at ${fill.price} before allowing any other action.`
+        : `${leg} had a five-contract bid resting at ${fill.price}. A strictly later ${evidence.type === "PRICE_REACHED" ? `public print at ${evidence.evidence_price}` : `external ask at ${evidence.evidence_price}`} proved that price fillable, so the replay credited ${fill.price} before allowing any other action.`,
+    });
+  }
+
+  _recordCapacityAbsent(leg, row, evidence) {
+    const key = `${leg}|${row.sequence}|${this.orders[leg].price}`;
+    if (this.capacityAbsenceSeen.has(key)) return;
+    this.capacityAbsenceSeen.add(key);
+    const receipt = {
+      leg,
+      sequence: row.sequence,
+      timestamp_et: row.timestamp_et,
+      resting_price: this.orders[leg].price,
+      ask_price: evidence.evidence_price,
+      displayed_ask_capacity: evidence.evidence_size,
+      required_quantity: this.orders[leg].quantity,
+      status: "EVIDENCE_ABSENT",
+      capacity_receipt: evidence.capacity_receipt,
+    };
+    this.capacityEvidenceAbsent.push(receipt);
+    this._record(row, {
+      material: true,
+      leg,
+      organ: "FILL_CAPACITY_GATE",
+      door_opened: "PRICE_REACH_RECORDED_WITHOUT_FILL_CREDIT",
+      signer: "EVIDENCE_ABSENT",
+      action: `NO_CREDIT_${leg}_${this.orders[leg].price}__EVIDENCE_ABSENT`,
+      arithmetic: `ask ${evidence.evidence_price} <= resting ${this.orders[leg].price}; dwell ${evidence.dwell_seconds}>=${evidence.dwell_threshold_seconds}; displayed capacity ${evidence.evidence_size === null ? "UNKNOWN" : evidence.evidence_size}<required ${this.orders[leg].quantity}; credit 0`,
+      declined: "five-contract fill assignment without displayed ask capacity",
+      code_path: "ColdReplay._fillEvidence -> ColdReplay._recordCapacityAbsent",
+      english: `${leg}'s price was ask-reachable, but the contemporaneous displayed ask capacity was ${evidence.evidence_size === null ? "unavailable" : evidence.evidence_size}. The replay recorded EVIDENCE_ABSENT and assigned no contracts.`,
     });
   }
 
@@ -528,7 +573,11 @@ class ColdReplay {
     for (const leg of ["NIK", "VRB"]) {
       const evidence = this._fillEvidence(row, leg);
       if (evidence) {
-        this._fill(leg, row, evidence);
+        if (evidence.creditable === false) {
+          this._recordCapacityAbsent(leg, row, evidence);
+        } else {
+          this._fill(leg, row, evidence);
+        }
         return;
       }
     }
@@ -679,7 +728,7 @@ class ColdReplay {
           `VRB ask recurrences ${row.pulse_recurrences_by_side.VRB.ask}>0; VRB bid ${row.books.VRB.bid}>fill ${this.fills.VRB.price}; cancel ${cancelled ? cancelled.price : "EMPTY"}->EMPTY` } : {}),
         declined: "accepting the still-lawful 21 before the late inverse slide",
         code_path: "ColdReplay.process:siblingShapePatienceArm",
-        english: `At the first receipt inside the existing T2 clock bucket, VRB was ${row.books.VRB.bid}/${row.books.VRB.ask}, still above its 69 fill after ${row.pulse_recurrences.VRB} completed quote recurrences. The riser path was now realized, so the joint-shape organ inferred that inverse faller NIK still had room. It cancelled ${cancelled ? cancelled.price : "no order"} and waited instead of letting ATLAS depth finish the decision.`,
+        english: `At the first receipt inside the existing T2 clock bucket, VRB was ${row.books.VRB.bid}/${row.books.VRB.ask}, still above its 69 fill after ${this.askDwell ? row.pulse_recurrences_by_side.VRB.ask : row.pulse_recurrences.VRB} completed ${this.askDwell ? "ask-side " : ""}quote recurrences. The riser path was now realized, so the joint-shape organ inferred that inverse faller NIK still had room. It cancelled ${cancelled ? cancelled.price : "no order"} and waited instead of letting ATLAS depth finish the decision.`,
       });
       return;
     }
@@ -820,12 +869,13 @@ class ColdReplay {
       patience: this.patience,
       target_ceilings: this.targetCeilings,
       quiet_anchors: this.quietAnchors,
+      ...(this.askDwell ? { capacity_evidence_absent: this.capacityEvidenceAbsent } : {}),
     };
   }
 }
 
-function runColdReplay({ rawRows, trace, scenario, externalAnchors = {} }) {
-  const rows = enrichRows(rawRows);
+function runColdReplay({ rawRows, trace, scenario, externalAnchors = {}, capacityBySequence = {} }) {
+  const rows = enrichRows(rawRows, capacityBySequence);
   const replay = new ColdReplay({ trace, scenario, externalAnchors });
   for (const row of rows) replay.process(row);
   return replay.finish(rows[rows.length - 1]);

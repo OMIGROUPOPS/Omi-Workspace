@@ -30,6 +30,8 @@ const orders = readJson("CORRECTED_ORDER_INTERVALS.json");
 const corpus = readJson("ASK_ONLY_DIVOT_DWELL_CENSUS.json");
 const opportunity = readJson("ASK_ONLY_OPPORTUNITY_RECONCILIATION.json");
 const midwindow = readJson("NIK_MIDWINDOW_ASK_AUTHORITY_RECEIPT.json");
+const capacityAbsent = readJson("EVIDENCE_ABSENT_CAPACITY_RECEIPT.json");
+const referencePanel = readJson("REFERENCE_PANEL.json");
 const packedRows = readJson("ARITHMETIC_DECISION_ROWS.json");
 const rows = JSON.parse(zlib.gunzipSync(Buffer.from(packedRows.gzip_base64, "base64")));
 
@@ -38,13 +40,28 @@ assert.strictEqual(summary.reachability_side, "ask_only");
 assert.strictEqual(summary.bid_side_entry_authority, false);
 assert.deepStrictEqual(summary.prior_fills, { NIK: 19, VRB: 68 });
 assert.deepStrictEqual(summary.corrected_fills, { NIK: 18, VRB: 68 });
+assert.strictEqual(summary.independent_pair_reference, "NOT_BOUND");
+assert.strictEqual(summary.evidence_absent_count, 0);
 assert.ok(Object.values(summary.acceptance).every(Boolean));
+assert.strictEqual(capacityAbsent.count, 0);
+assert.strictEqual(referencePanel.pair_reference_cents, "NOT_BOUND");
+assert.strictEqual(referencePanel.delta_to_pair_reference_cents, "NOT_BOUND");
+assert.deepStrictEqual(referencePanel.legs.NIK, {
+  entry_cents: 18,
+  own_window1_close_cents: 19,
+  delta_to_own_window1_close_cents: -1,
+  own_bell_price_cents: 19,
+  delta_to_own_bell_price_cents: -1,
+  own_ask_reachable_low_cents: 18,
+  delta_to_own_ask_reachable_low_cents: 0,
+});
 
 const vrb68 = orders.find((row) => row.leg === "VRB" && row.price === 68);
 const vrbFill = decisions.find((row) => row.action === "CREDIT_VRB_FILL_68");
 assert.strictEqual(vrb68.action_sequence, 263);
 assert.strictEqual(vrbFill.sequence, 326);
-assert.strictEqual(vrbFill.arithmetic, "ask 68 <= resting 68; dwell 32>=10; credit 68");
+assert.strictEqual(vrbFill.arithmetic, "ask 68 <= resting 68; dwell 32>=10; displayed capacity 110>=5; credit 5@68");
+assert.strictEqual(vrbFill.joint_observation.VRB.ask_size, 110);
 assert.ok(vrbFill.sequence > vrb68.action_sequence);
 
 const nik18 = orders.find((row) => row.leg === "NIK" && row.price === 18);
@@ -53,8 +70,14 @@ const nikFill = decisions.find((row) => row.action === "CREDIT_NIK_FILL_18");
 assert.strictEqual(nik18.action_sequence, 3433);
 assert.strictEqual(nikPlace.arithmetic, "arm ask 29-current ask 19=10>=5; dwell 11>=10; ask-1=18");
 assert.strictEqual(nikFill.sequence, 4250);
-assert.strictEqual(nikFill.arithmetic, "ask 18 <= resting 18; dwell 11>=10; credit 18");
+assert.strictEqual(nikFill.arithmetic, "ask 18 <= resting 18; dwell 11>=10; displayed capacity 86>=5; credit 5@18");
+assert.strictEqual(nikFill.joint_observation.NIK.ask_size, 86);
 assert.ok(nikFill.sequence > nik18.action_sequence);
+
+const patience = decisions.find((row) => row.organ === "SIBLING_REALIZED_SHAPE");
+assert.strictEqual(patience.arithmetic, "VRB ask recurrences 66>0; VRB bid 73>fill 68; cancel 21->EMPTY");
+assert.ok(patience.english.includes("66 completed ask-side quote recurrences"));
+assert.ok(!patience.english.includes("97 completed"));
 
 assert.deepStrictEqual(midwindow.ask_values, [29]);
 assert.deepStrictEqual(midwindow.last_trade_values, [28]);

@@ -27,7 +27,10 @@
         "type": "ASK_DWELL_REACHABLE",
         "receipt": "clock-sequence-4250",
         "evidence_price": 18,
-        "evidence_size": null,
+        "evidence_size": 86,
+        "capacity_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz#row-2368",
+        "capacity_status": "PROVEN_FIVE_CONTRACT_CAPACITY",
+        "creditable": true,
         "dwell_seconds": 11,
         "dwell_threshold_seconds": 10
       },
@@ -45,13 +48,19 @@
         "type": "ASK_DWELL_REACHABLE",
         "receipt": "clock-sequence-326",
         "evidence_price": 68,
-        "evidence_size": null,
+        "evidence_size": 110,
+        "capacity_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-233",
+        "capacity_status": "PROVEN_FIVE_CONTRACT_CAPACITY",
+        "creditable": true,
         "dwell_seconds": 32,
         "dwell_threshold_seconds": 10
       },
       "strictly_later": true
     }
   },
+  "capacity_law": "credit exactly five only when contemporaneous displayed external ask capacity at the reachable price is at least five",
+  "evidence_absent_count": 0,
+  "independent_pair_reference": "NOT_BOUND",
   "nik_midwindow": {
     "tminus_scheduled_inclusive_display_bounds": [
       "T-178.867",
@@ -78,7 +87,8 @@
     "VRB_fill_68_after_ask_dwell": true,
     "NIK_fill_18_after_ask_dwell": true,
     "bid_churn_created_no_material_action": true,
-    "no_same_receipt_action_fill": true
+    "no_same_receipt_action_fill": true,
+    "displayed_capacity_proven": true
   },
   "population_score_run": false,
   "live_execution": false

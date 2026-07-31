@@ -1,0 +1,90 @@
+{
+  "committed": {
+    "arb-executor/analysis/build_window1_five_exact_full_stack.js": {
+      "bytes": 36017,
+      "sha256": "75548905fb9b57ec49a00d486bf6d7259469e9c806d9737b896635b5d0ddd87c"
+    },
+    "arb-executor/analysis/nikvrb_sibling_shape_cold_replay.js": {
+      "bytes": 39977,
+      "sha256": "a9ef3d6d57f5d7ba5bfa1a84ae019862669e61af8c080c6b3669017304212e6d"
+    },
+    "arb-executor/analysis/build_window1_organ_scorecard.js": {
+      "bytes": 37681,
+      "sha256": "e39c595eb469f76f7bc7d8525c3896d9f9f58992c255f2db85ac7dc581d16fca"
+    },
+    ".claude/window1_live_v4_replay/delta_objective_20260729/FIVE_GAME_SELECTION.json": {
+      "bytes": 3370,
+      "sha256": "20e12f74d9f018172619b398c3fc123f26489fff228545241397712bc2d9887c"
+    },
+    ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json": {
+      "bytes": 7483,
+      "sha256": "d6d761962afdab4030efc47d456e453c87bca8d9d5f67067200b5b7648509d56"
+    },
+    ".claude/window1_live_v4_replay/delta_objective_20260729/FIVE_GAME_DELTA_REPLAYS.json": {
+      "bytes": 27547,
+      "sha256": "2e09cdcc98bb0b4c3e6fa42fae97c736d4df1152e2e883ae160f2c06c30f9372"
+    },
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "bytes": 503893,
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba"
+    },
+    ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json": {
+      "bytes": 2479552,
+      "sha256": "8e7b53d4afc522a11ab044b7cd01af32c0200c165ab99b3e97c58b0bddc4898b"
+    },
+    ".claude/window1_live_v4_replay/nikvrb_coupling_20260730/NIKVRB_DUAL_BOOK_CLOCK.csv": {
+      "bytes": 1614324,
+      "sha256": "9ec9ef0fab27cd750a7d3fba1407bc6c6a8955104071f27b67dac6bd7f8965e5"
+    },
+    ".claude/window1_live_v4_replay/one_game_nikvrb_20260730/NIKVRB_DECISION_TRACE.json": {
+      "bytes": 8967,
+      "sha256": "cf3ecdafc43ff0305ae95addd5a98fc1d53695dbbeae6c7080ad79de0fae1b42"
+    }
+  },
+  "private_development": {
+    "prints.jsonl": {
+      "bytes": 1766090446,
+      "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz": {
+      "bytes": 870974,
+      "sha256": "d0d32f6a1ea6191fb92802f85d1674a29f58629ca1f4af2daa85fffb1f4095b9"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz": {
+      "bytes": 806437,
+      "sha256": "27383bc516c05a0857fa95cf456e4edb332f707a1136f03e8aca28fec09750ea"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz": {
+      "bytes": 1336372,
+      "sha256": "41ac9a7102cd7cd701a60c4051771d6cbc66885d4eb428660b48e0b82d9b07ce"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz": {
+      "bytes": 1403319,
+      "sha256": "1e2fff31e866c9888ec631f881a128f805a50d0e01de291b52c78eccebfa57ee"
+    },
+    "KXATPMATCH-26JUL12LAJVAN-LAJ.csv.gz": {
+      "bytes": 997665,
+      "sha256": "3b1ba81645882ba60da26492a7c48ac6c51350274f79cfcdc6ad4a26d0e0b0cd"
+    },
+    "KXATPMATCH-26JUL12LAJVAN-VAN.csv.gz": {
+      "bytes": 990960,
+      "sha256": "fef54cb1411e159d31874c4e127355c4d84debef8745544e30e4e35ece9e333d"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA.csv.gz": {
+      "bytes": 383262,
+      "sha256": "666be458c21ab41fab2a80f173cca63da60b326d46e2b17ae204e5f06a8baf18"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED.csv.gz": {
+      "bytes": 623649,
+      "sha256": "e3b27f99bdcfc72702c815c0388bf7bc4274767fe1e77a39b42cdb2109b30451"
+    },
+    "KXWTAMATCH-26JUL20KORJIM-JIM.csv.gz": {
+      "bytes": 408984,
+      "sha256": "4af1bcde86d2bae26d267f845a8b85767371d3892bb8cd15b8a46ca6dfd88d45"
+    },
+    "KXWTAMATCH-26JUL20KORJIM-KOR.csv.gz": {
+      "bytes": 417618,
+      "sha256": "153b70497420931532f2495bda90e300a27d7adfa454fdb2385ce79d3efbfb39"
+    }
+  }
+}

@@ -3,8 +3,8 @@
   "artifacts": [
     {
       "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/REPLAY_SUMMARY.json",
-      "bytes": 2326,
-      "sha256": "b47e132f16f2699484ceda4232978a07b25ab66df1db1a7906d7cecb6014dc9f"
+      "bytes": 2923,
+      "sha256": "f3c3448561d7c7f2d7ccaa71266ff1bed1091b50d6d1f761ada8ecefe8f838c5"
     },
     {
       "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/CORRECTED_ORDER_INTERVALS.json",
@@ -13,8 +13,8 @@
     },
     {
       "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/CORRECTED_MATERIAL_DECISIONS.json",
-      "bytes": 24634,
-      "sha256": "fe527c3dd2f96b40339fe359f57d5f982c123d5b8e502c7adfb53794a1e57c28"
+      "bytes": 26417,
+      "sha256": "f20f5cf50fd42573add38dbf6be0162fbb76a9eaf3904f876632c731eeed6429"
     },
     {
       "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/NIK_MIDWINDOW_ASK_AUTHORITY_RECEIPT.json",
@@ -32,9 +32,19 @@
       "sha256": "663c1bee4dfe47a80d7a3f0d2f377a251e41914f7501a00024833725567ef0a9"
     },
     {
+      "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/EVIDENCE_ABSENT_CAPACITY_RECEIPT.json",
+      "bytes": 31,
+      "sha256": "ec30ee7f611e450e9ae23168e964ba3b5578ea071834286eb2bfe7def61d7737"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/REFERENCE_PANEL.json",
+      "bytes": 740,
+      "sha256": "79d5a13a29a4c84c4acf578988c327328a5a7788863f4c09787497df2c7f030b"
+    },
+    {
       "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/ARITHMETIC_DECISION_ROWS.json",
-      "bytes": 222546,
-      "sha256": "9b402403af8dc58124fb3357fcfb3584b8245ff434e06745adf70ad0fc455126"
+      "bytes": 222650,
+      "sha256": "1c1220af8a26979248517e0f97f23055cb17555ea72e9b6efbd31c4f335e6079"
     },
     {
       "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/FORBIDDEN_ACCESS_RECEIPT.json",
@@ -43,28 +53,28 @@
     },
     {
       "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/SOURCE_HASH_MANIFEST.json",
-      "bytes": 1878,
-      "sha256": "9d2d0e38d0c9d77c481b4f8f32359df31e4bbfc5564d273901f8b585f2e6ae8f"
+      "bytes": 2131,
+      "sha256": "610d9785a1561f50a3334c6164cbaee1deae43241ca5ba0f70cfedcfc7be3027"
     },
     {
       "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/DETERMINISM_RECEIPT.json",
       "bytes": 342,
-      "sha256": "93b80bea680367bb0c10104cdc16a5c3749362c7cdae62bee97bbcf5e9db8539"
+      "sha256": "2ae7b693e000977102eb2d6ff531e35e6cbb21f8d3f0c6f81974705af044845e"
     },
     {
       "path": "arb-executor/docs/research/window1/NIKVRB_ASK_DWELL_REPLAY.md",
-      "bytes": 2278,
-      "sha256": "0e7f8a64127abb69eb3876a014adcefe3e34d69f2b019f3333c796977bfb7325"
+      "bytes": 2529,
+      "sha256": "c15a5611da012c52851c4936acd0f74a684c21e7b00e3240dc3b234972f4340a"
     },
     {
       "path": "arb-executor/docs/research/window1/NIKVRB_ASK_DWELL_TABLE_CHARTS.html",
-      "bytes": 498044,
-      "sha256": "b67d5eb7343007a25b8ec4071abfef14221999378df301d5951052d4f3362294"
+      "bytes": 498172,
+      "sha256": "e2d79129ed397c18b763c50e8464b9b4e30af38ee87053a7e9f783bb1f75c2a8"
     },
     {
       "path": "arb-executor/docs/research/window1/NIKVRB_ASK_DWELL_SPEC.json",
-      "bytes": 815,
-      "sha256": "1051f7b70deef57ff38e7e71eb1fdd75006d5f1a96f022948d171c77cc18a4fb"
+      "bytes": 1159,
+      "sha256": "0646716e0057e050e4a12b7b0c9321eb922029a1d9c48af45e9b84d8e8dd3c65"
     }
   ]
 }

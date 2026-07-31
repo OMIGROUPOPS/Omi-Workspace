@@ -1,0 +1,17 @@
+{
+  "pair_reference": {
+    "before": "100 - sibling entry proxy",
+    "after": "NOT_BOUND",
+    "number_moved": "10 per-leg proxy reference/delta fields removed from the five-event panel; no independent pair-reference number substituted"
+  },
+  "capacity": {
+    "before": "NIKVRB ask-dwell credits carried evidence_size=null",
+    "after": "five-contract credit requires contemporaneous displayed ask capacity >=5; unknown/sub-five is EVIDENCE_ABSENT",
+    "number_moved": "NIKVRB credited-leg count 2->2 because displayed sizes 86 and 110 were recovered; null-sized NIKVRB credits 2->0"
+  },
+  "recurrence_prose": {
+    "before": "97 mixed bid+ask quote recurrences",
+    "after": "66 ask-side recurrences, matching the executable branch",
+    "number_moved": "decision count 0; prose value -31; executable value 66->66"
+  }
+}

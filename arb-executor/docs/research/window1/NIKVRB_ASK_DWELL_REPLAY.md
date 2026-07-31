@@ -1,6 +1,8 @@
 # NIKVRB ask-side dwell replay
 
-The corrected cold branch fills VRB at **68** and NIK at **18**. Reachability is ask-only and the minimum continuous ask dwell is **10 seconds**. That value is inherited from the already-frozen primary quote-touch comparator in WINDOW1_ORGAN_SCORECARD_AND_DEFECT_LEDGER.md, which defined the 598-event baseline before this NIKVRB correction. It was not selected from this game's outcome. Ten seconds eliminates non-resident quote flickers while retaining VRB's persistent ask-68 state.
+The corrected cold branch fills VRB at **68** and NIK at **18**. Both credits now have contemporaneous displayed capacity: VRB **110** and NIK **86** contracts. Unknown or sub-five capacity is `EVIDENCE_ABSENT` and cannot enter completion. Reachability is ask-only and the minimum continuous ask dwell is **10 seconds**. That value is inherited from the already-frozen primary quote-touch comparator in WINDOW1_ORGAN_SCORECARD_AND_DEFECT_LEDGER.md, which defined the 598-event baseline before this NIKVRB correction. It was not selected from this game's outcome.
+
+No independent pair reference is bound. Pair reference and pair-reference delta are `NOT_BOUND`; the former proxy `100 - sibling entry` is forbidden.
 
 ## NIK T-178.867 to T-155.067
 
@@ -8,12 +10,12 @@ The retained episode census contains 63 bid-side episodes and zero ask-side epis
 
 ## Corrected chronology
 
-- VRB rests at 68 before the ask returns to 68. The ask persists 32 seconds by receipt sequence 326; the ten-second gate credits 68.
-- NIK's 21 is cancelled when the sibling riser resolves. The 24 ask lasts 7 seconds and the 23 ask lasts 2 seconds, so neither releases patience. The 19 ask persists 11 seconds; ask-1 places 18 at sequence 3433. The later 18 ask persists 11 seconds and credits 18 at sequence 4250.
+- VRB rests at 68 before the ask returns to 68. The ask persists 32 seconds by receipt sequence 326; displayed ask size 110 proves five-contract capacity and credits 68.
+- NIK's 21 is cancelled after 66 completed ask-side recurrences when the sibling riser resolves. The 24 ask lasts 7 seconds and the 23 ask lasts 2 seconds, so neither releases patience. The 19 ask persists 11 seconds; ask-1 places 18 at sequence 3433. The later 18 ask persists 11 seconds with displayed size 86 and credits 18.
 
 ## 598 reconciliation
 
-The old 10-second true-print-or-ask union contains 598 negative-pair opportunities. Ask-only ten-second reachability contains **532**. The 66 removed events depended on a lower true-print floor on at least one leg; they are not ask-reachable under this correction. The threshold table and all 66 identities are frozen in ASK_ONLY_OPPORTUNITY_RECONCILIATION.json.
+The old 10-second true-print-or-ask union contains 598 negative-pair opportunities. Ask-only ten-second reachability contains **532** before the new capacity gate. The 66 removed events depended on a lower true-print floor on at least one leg. Capacity-adjusted population coverage is not claimed here.
 
 ## Corpus recut
 

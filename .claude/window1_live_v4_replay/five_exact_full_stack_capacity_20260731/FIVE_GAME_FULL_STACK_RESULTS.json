@@ -1,0 +1,711 @@
+{
+  "schema_version": "WINDOW1_FIVE_EXACT_FULL_STACK_CAPACITY_V1",
+  "event_count": 5,
+  "predeclared_hold_gate": "all five events complete both legs with contemporaneous displayed capacity >=5 and every credited leg entry is at or below its own Window-1 close",
+  "hold_gate_passed": false,
+  "population_804_authorized_by_gate": false,
+  "population_804_run": false,
+  "ceiling_reference": {
+    "ask_only_10_second_event_ceiling": 532,
+    "capacity_adjustment": "NOT_PRECOMPUTED"
+  },
+  "pair_reference_law": "NOT_BOUND; no value or delta is proxied from either candidate fill",
+  "capacity_law": "credit exactly five only when the contemporaneous lawful top-five external asks at or below the resting limit display aggregate size >=5; otherwise EVIDENCE_ABSENT",
+  "price_region_law": "frozen organ-scorecard region from the first lawful current bid: <=25 le25; <=50 26_50; <=75 51_75; otherwise ge75",
+  "category_price_region_partitions": {
+    "ATP_CHALL|51_75": {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "leg_rows": 1,
+      "capacity_proven_credited_legs": 0,
+      "legs_at_or_below_own_close": 0,
+      "thin": true,
+      "identities": [
+        "KXATPCHALLENGERMATCH-26JUL19HURBIG/BIG"
+      ]
+    },
+    "ATP_CHALL|26_50": {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "leg_rows": 1,
+      "capacity_proven_credited_legs": 1,
+      "legs_at_or_below_own_close": 1,
+      "thin": true,
+      "identities": [
+        "KXATPCHALLENGERMATCH-26JUL19HURBIG/HUR"
+      ]
+    },
+    "ATP_CHALL|le25": {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "leg_rows": 2,
+      "capacity_proven_credited_legs": 2,
+      "legs_at_or_below_own_close": 2,
+      "thin": true,
+      "identities": [
+        "KXATPCHALLENGERMATCH-26JUL19NIKVRB/NIK",
+        "KXATPCHALLENGERMATCH-26JUL19NIKVRB/VRB"
+      ]
+    },
+    "ATP_MAIN|26_50": {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "leg_rows": 2,
+      "capacity_proven_credited_legs": 1,
+      "legs_at_or_below_own_close": 0,
+      "thin": true,
+      "identities": [
+        "KXATPMATCH-26JUL12LAJVAN/LAJ",
+        "KXATPMATCH-26JUL12LAJVAN/VAN"
+      ]
+    },
+    "WTA_CHALL|26_50": {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "leg_rows": 1,
+      "capacity_proven_credited_legs": 0,
+      "legs_at_or_below_own_close": 0,
+      "thin": true,
+      "identities": [
+        "KXWTACHALLENGERMATCH-26JUL16BRAVED/BRA"
+      ]
+    },
+    "WTA_CHALL|51_75": {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "leg_rows": 1,
+      "capacity_proven_credited_legs": 1,
+      "legs_at_or_below_own_close": 0,
+      "thin": true,
+      "identities": [
+        "KXWTACHALLENGERMATCH-26JUL16BRAVED/VED"
+      ]
+    },
+    "WTA_MAIN|26_50": {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "leg_rows": 1,
+      "capacity_proven_credited_legs": 1,
+      "legs_at_or_below_own_close": 0,
+      "thin": true,
+      "identities": [
+        "KXWTAMATCH-26JUL20KORJIM/JIM"
+      ]
+    },
+    "WTA_MAIN|51_75": {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "leg_rows": 1,
+      "capacity_proven_credited_legs": 0,
+      "legs_at_or_below_own_close": 0,
+      "thin": true,
+      "identities": [
+        "KXWTAMATCH-26JUL20KORJIM/KOR"
+      ]
+    }
+  },
+  "events": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "category": "ATP_CHALL",
+      "window": {
+        "left_ts": 1784471400,
+        "right_ts": 1784505540,
+        "scheduled_start_ts": 1784500200,
+        "actual_bell_ts": 1784505600
+      },
+      "legs": {
+        "BIG": {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG",
+          "orientation": "RISER",
+          "price_region": "51_75",
+          "price_region_source": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1404; frozen organ-scorecard current-bid cell law",
+          "entry_cents": null,
+          "accounting_status": "NOT_FILLED",
+          "fill": null,
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 60,
+          "delta_to_own_window1_close_cents": null,
+          "own_bell_price_cents": 60,
+          "delta_to_own_bell_price_cents": null,
+          "own_ask_reachable_low_cents": 55,
+          "delta_to_own_ask_reachable_low_cents": null,
+          "price_reach_receipts": [],
+          "evidence_absent_receipts": [],
+          "change_status": {
+            "orientation_conditioned_initial_tree": "FIRED",
+            "quiet_book_anchor": "FIRED",
+            "per_tick_ask_breathing": "DID_NOTHING",
+            "sibling_conditioned_faller_patience": "DID_NOTHING",
+            "ask_only_dwell_reachability": "DID_NOTHING"
+          },
+          "ask_recurrences_observed": 5
+        },
+        "HUR": {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR",
+          "orientation": "FALLER",
+          "price_region": "26_50",
+          "price_region_source": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-1124; frozen organ-scorecard current-bid cell law",
+          "entry_cents": 41,
+          "accounting_status": "CREDITED_FIVE_CONTRACT_CAPACITY_PROVEN",
+          "fill": {
+            "leg_id": "HUR",
+            "price": 41,
+            "quantity": 5,
+            "action_ts": 1784476773,
+            "evidence_ts": 1784492475,
+            "evidence_type": "ASK_DWELL_WITH_DISPLAYED_CAPACITY",
+            "evidence_size": 119,
+            "evidence_levels": [
+              [
+                41,
+                119
+              ]
+            ],
+            "evidence_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-4125",
+            "strictly_later": true
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 42,
+          "delta_to_own_window1_close_cents": -1,
+          "own_bell_price_cents": 42,
+          "delta_to_own_bell_price_cents": -1,
+          "own_ask_reachable_low_cents": 37,
+          "delta_to_own_ask_reachable_low_cents": 4,
+          "price_reach_receipts": [
+            {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+              "leg_id": "HUR",
+              "ts": 1784492475,
+              "tminus_scheduled_minutes": 128.75,
+              "tminus_bell_minutes": 218.75,
+              "resting_price": 41,
+              "ask": 41,
+              "ask_dwell_seconds": 81,
+              "capacity": {
+                "status": "PROVEN_FIVE_CONTRACT_CAPACITY",
+                "quantity": 119,
+                "levels": [
+                  [
+                    41,
+                    119
+                  ]
+                ]
+              },
+              "trigger": "BBO",
+              "source_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-4125"
+            }
+          ],
+          "evidence_absent_receipts": [],
+          "change_status": {
+            "orientation_conditioned_initial_tree": "FIRED",
+            "quiet_book_anchor": "FIRED",
+            "per_tick_ask_breathing": "DID_NOTHING",
+            "sibling_conditioned_faller_patience": "DID_NOTHING",
+            "ask_only_dwell_reachability": "FIRED"
+          },
+          "ask_recurrences_observed": 10
+        }
+      },
+      "completed_capacity_proven_pair": false,
+      "all_credited_legs_at_or_below_own_close": false,
+      "integrity_hold": false,
+      "patience": null,
+      "decision_count": 5
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "category": "ATP_CHALL",
+      "window": {
+        "left_ts": 1784449800,
+        "right_ts": 1784478840,
+        "scheduled_start_ts": 1784478600,
+        "actual_bell_ts": 1784478900
+      },
+      "legs": {
+        "NIK": {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK",
+          "orientation": "FALLER",
+          "price_region": "le25",
+          "price_region_source": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz#row-2; frozen organ-scorecard current-bid cell law",
+          "entry_cents": 18,
+          "accounting_status": "CREDITED_FIVE_CONTRACT_CAPACITY_PROVEN",
+          "fill": {
+            "leg": "NIK",
+            "price": 18,
+            "quantity": 5,
+            "action_et": "2026-07-19T11:09:33.000000-04:00",
+            "action_sequence": 3433,
+            "evidence_et": "2026-07-19T11:32:42.000000-04:00",
+            "evidence_sequence": 4250,
+            "evidence": {
+              "type": "ASK_DWELL_REACHABLE",
+              "receipt": "clock-sequence-4250",
+              "evidence_price": 18,
+              "evidence_size": 86,
+              "capacity_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz#row-2368",
+              "capacity_status": "PROVEN_FIVE_CONTRACT_CAPACITY",
+              "creditable": true,
+              "dwell_seconds": 11,
+              "dwell_threshold_seconds": 10
+            },
+            "strictly_later": true
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 19,
+          "delta_to_own_window1_close_cents": -1,
+          "own_bell_price_cents": 19,
+          "delta_to_own_bell_price_cents": -1,
+          "own_ask_reachable_low_cents": 18,
+          "delta_to_own_ask_reachable_low_cents": 0,
+          "price_reach_receipts": [
+            {
+              "evidence": {
+                "type": "ASK_DWELL_REACHABLE",
+                "receipt": "clock-sequence-4250",
+                "evidence_price": 18,
+                "evidence_size": 86,
+                "capacity_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz#row-2368",
+                "capacity_status": "PROVEN_FIVE_CONTRACT_CAPACITY",
+                "creditable": true,
+                "dwell_seconds": 11,
+                "dwell_threshold_seconds": 10
+              },
+              "evidence_ts": "2026-07-19T11:32:42.000000-04:00",
+              "entry_cents": 18
+            }
+          ],
+          "evidence_absent_receipts": [],
+          "change_status": {
+            "orientation_conditioned_initial_tree": "FIRED",
+            "quiet_book_anchor": "DID_NOTHING",
+            "per_tick_ask_breathing": "DID_NOTHING",
+            "sibling_conditioned_faller_patience": "FIRED",
+            "ask_only_dwell_reachability": "FIRED"
+          },
+          "ask_recurrences_observed": 0
+        },
+        "VRB": {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB",
+          "orientation": "RISER",
+          "price_region": "le25",
+          "price_region_source": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-2; frozen organ-scorecard current-bid cell law",
+          "entry_cents": 68,
+          "accounting_status": "CREDITED_FIVE_CONTRACT_CAPACITY_PROVEN",
+          "fill": {
+            "leg": "VRB",
+            "price": 68,
+            "quantity": 5,
+            "action_et": "2026-07-19T07:12:23.000000-04:00",
+            "action_sequence": 263,
+            "evidence_et": "2026-07-19T07:15:54.000000-04:00",
+            "evidence_sequence": 326,
+            "evidence": {
+              "type": "ASK_DWELL_REACHABLE",
+              "receipt": "clock-sequence-326",
+              "evidence_price": 68,
+              "evidence_size": 110,
+              "capacity_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-233",
+              "capacity_status": "PROVEN_FIVE_CONTRACT_CAPACITY",
+              "creditable": true,
+              "dwell_seconds": 32,
+              "dwell_threshold_seconds": 10
+            },
+            "strictly_later": true
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 83,
+          "delta_to_own_window1_close_cents": -15,
+          "own_bell_price_cents": 83,
+          "delta_to_own_bell_price_cents": -15,
+          "own_ask_reachable_low_cents": 68,
+          "delta_to_own_ask_reachable_low_cents": 0,
+          "price_reach_receipts": [
+            {
+              "evidence": {
+                "type": "ASK_DWELL_REACHABLE",
+                "receipt": "clock-sequence-326",
+                "evidence_price": 68,
+                "evidence_size": 110,
+                "capacity_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-233",
+                "capacity_status": "PROVEN_FIVE_CONTRACT_CAPACITY",
+                "creditable": true,
+                "dwell_seconds": 32,
+                "dwell_threshold_seconds": 10
+              },
+              "evidence_ts": "2026-07-19T07:15:54.000000-04:00",
+              "entry_cents": 68
+            }
+          ],
+          "evidence_absent_receipts": [],
+          "change_status": {
+            "orientation_conditioned_initial_tree": "FIRED",
+            "quiet_book_anchor": "FIRED",
+            "per_tick_ask_breathing": "FIRED",
+            "sibling_conditioned_faller_patience": "DID_NOTHING",
+            "ask_only_dwell_reachability": "FIRED"
+          },
+          "ask_recurrences_observed": 66
+        }
+      },
+      "completed_capacity_proven_pair": true,
+      "all_credited_legs_at_or_below_own_close": true,
+      "integrity_hold": true,
+      "patience": {
+        "armed_epoch": 1784471439,
+        "armed_et": "2026-07-19T10:30:39.000000-04:00",
+        "arm_sequence": 2886,
+        "arm_bid": 24,
+        "arm_ask": 29,
+        "sibling_bid": 73,
+        "sibling_ask": 74,
+        "sibling_recurrences": 66,
+        "cancelled_price": 21
+      },
+      "decision_count": 13123,
+      "replay_path": "frozen detailed NIKVRB dual-book clock and organ consultations"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "category": "ATP_MAIN",
+      "window": {
+        "left_ts": 1783850400,
+        "right_ts": 1783958340,
+        "scheduled_start_ts": 1783879200,
+        "actual_bell_ts": 1783958400
+      },
+      "legs": {
+        "LAJ": {
+          "ticker": "KXATPMATCH-26JUL12LAJVAN-LAJ",
+          "orientation": "FALLER",
+          "price_region": "26_50",
+          "price_region_source": "KXATPMATCH-26JUL12LAJVAN-LAJ.csv.gz#row-2246; frozen organ-scorecard current-bid cell law",
+          "entry_cents": 50,
+          "accounting_status": "CREDITED_FIVE_CONTRACT_CAPACITY_PROVEN",
+          "fill": {
+            "leg_id": "LAJ",
+            "price": 50,
+            "quantity": 5,
+            "action_ts": 1783851776,
+            "evidence_ts": 1783855431,
+            "evidence_type": "ASK_DWELL_WITH_DISPLAYED_CAPACITY",
+            "evidence_size": 306,
+            "evidence_levels": [
+              [
+                50,
+                306
+              ]
+            ],
+            "evidence_receipt": "KXATPMATCH-26JUL12LAJVAN-LAJ.csv.gz#row-4247",
+            "strictly_later": true
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 45,
+          "delta_to_own_window1_close_cents": 5,
+          "own_bell_price_cents": 45,
+          "delta_to_own_bell_price_cents": 5,
+          "own_ask_reachable_low_cents": 45,
+          "delta_to_own_ask_reachable_low_cents": 5,
+          "price_reach_receipts": [
+            {
+              "event_id": "KXATPMATCH-26JUL12LAJVAN",
+              "leg_id": "LAJ",
+              "ts": 1783855431,
+              "tminus_scheduled_minutes": 396.15,
+              "tminus_bell_minutes": 1716.15,
+              "resting_price": 50,
+              "ask": 50,
+              "ask_dwell_seconds": 48,
+              "capacity": {
+                "status": "PROVEN_FIVE_CONTRACT_CAPACITY",
+                "quantity": 306,
+                "levels": [
+                  [
+                    50,
+                    306
+                  ]
+                ]
+              },
+              "trigger": "BBO",
+              "source_receipt": "KXATPMATCH-26JUL12LAJVAN-LAJ.csv.gz#row-4247"
+            }
+          ],
+          "evidence_absent_receipts": [],
+          "change_status": {
+            "orientation_conditioned_initial_tree": "DID_NOTHING",
+            "quiet_book_anchor": "FIRED",
+            "per_tick_ask_breathing": "FIRED",
+            "sibling_conditioned_faller_patience": "DID_NOTHING",
+            "ask_only_dwell_reachability": "FIRED"
+          },
+          "ask_recurrences_observed": 56
+        },
+        "VAN": {
+          "ticker": "KXATPMATCH-26JUL12LAJVAN-VAN",
+          "orientation": "RISER",
+          "price_region": "26_50",
+          "price_region_source": "KXATPMATCH-26JUL12LAJVAN-VAN.csv.gz#row-11918; frozen organ-scorecard current-bid cell law",
+          "entry_cents": null,
+          "accounting_status": "NOT_FILLED",
+          "fill": null,
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 57,
+          "delta_to_own_window1_close_cents": null,
+          "own_bell_price_cents": 57,
+          "delta_to_own_bell_price_cents": null,
+          "own_ask_reachable_low_cents": 50,
+          "delta_to_own_ask_reachable_low_cents": null,
+          "price_reach_receipts": [],
+          "evidence_absent_receipts": [],
+          "change_status": {
+            "orientation_conditioned_initial_tree": "FIRED",
+            "quiet_book_anchor": "FIRED",
+            "per_tick_ask_breathing": "FIRED",
+            "sibling_conditioned_faller_patience": "DID_NOTHING",
+            "ask_only_dwell_reachability": "DID_NOTHING"
+          },
+          "ask_recurrences_observed": 11
+        }
+      },
+      "completed_capacity_proven_pair": false,
+      "all_credited_legs_at_or_below_own_close": false,
+      "integrity_hold": false,
+      "patience": null,
+      "decision_count": 6
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "category": "WTA_CHALL",
+      "window": {
+        "left_ts": 1784200800,
+        "right_ts": 1784232540,
+        "scheduled_start_ts": 1784229600,
+        "actual_bell_ts": 1784232600
+      },
+      "legs": {
+        "BRA": {
+          "ticker": "KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA",
+          "orientation": "FALLER",
+          "price_region": "26_50",
+          "price_region_source": "KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA.csv.gz#row-1189; frozen organ-scorecard current-bid cell law",
+          "entry_cents": null,
+          "accounting_status": "NOT_FILLED",
+          "fill": null,
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 44,
+          "delta_to_own_window1_close_cents": null,
+          "own_bell_price_cents": 44,
+          "delta_to_own_bell_price_cents": null,
+          "own_ask_reachable_low_cents": 40,
+          "delta_to_own_ask_reachable_low_cents": null,
+          "price_reach_receipts": [],
+          "evidence_absent_receipts": [],
+          "change_status": {
+            "orientation_conditioned_initial_tree": "FIRED",
+            "quiet_book_anchor": "FIRED",
+            "per_tick_ask_breathing": "DID_NOTHING",
+            "sibling_conditioned_faller_patience": "DID_NOTHING",
+            "ask_only_dwell_reachability": "DID_NOTHING"
+          },
+          "ask_recurrences_observed": 44
+        },
+        "VED": {
+          "ticker": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED",
+          "orientation": "RISER",
+          "price_region": "51_75",
+          "price_region_source": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED.csv.gz#row-2493; frozen organ-scorecard current-bid cell law",
+          "entry_cents": 60,
+          "accounting_status": "CREDITED_FIVE_CONTRACT_CAPACITY_PROVEN",
+          "fill": {
+            "leg_id": "VED",
+            "price": 60,
+            "quantity": 5,
+            "action_ts": 1784216938,
+            "evidence_ts": 1784222201,
+            "evidence_type": "ASK_DWELL_WITH_DISPLAYED_CAPACITY",
+            "evidence_size": 10642,
+            "evidence_levels": [
+              [
+                60,
+                10642
+              ]
+            ],
+            "evidence_receipt": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED.csv.gz#row-4592",
+            "strictly_later": true
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 57,
+          "delta_to_own_window1_close_cents": 3,
+          "own_bell_price_cents": 57,
+          "delta_to_own_bell_price_cents": 3,
+          "own_ask_reachable_low_cents": 57,
+          "delta_to_own_ask_reachable_low_cents": 3,
+          "price_reach_receipts": [
+            {
+              "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+              "leg_id": "VED",
+              "ts": 1784222201,
+              "tminus_scheduled_minutes": 123.31666666666666,
+              "tminus_bell_minutes": 173.31666666666666,
+              "resting_price": 60,
+              "ask": 60,
+              "ask_dwell_seconds": 16,
+              "capacity": {
+                "status": "PROVEN_FIVE_CONTRACT_CAPACITY",
+                "quantity": 10642,
+                "levels": [
+                  [
+                    60,
+                    10642
+                  ]
+                ]
+              },
+              "trigger": "BBO",
+              "source_receipt": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED.csv.gz#row-4592"
+            }
+          ],
+          "evidence_absent_receipts": [],
+          "change_status": {
+            "orientation_conditioned_initial_tree": "FIRED",
+            "quiet_book_anchor": "FIRED",
+            "per_tick_ask_breathing": "FIRED",
+            "sibling_conditioned_faller_patience": "DID_NOTHING",
+            "ask_only_dwell_reachability": "FIRED"
+          },
+          "ask_recurrences_observed": 122
+        }
+      },
+      "completed_capacity_proven_pair": false,
+      "all_credited_legs_at_or_below_own_close": false,
+      "integrity_hold": false,
+      "patience": null,
+      "decision_count": 6
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "category": "WTA_MAIN",
+      "window": {
+        "left_ts": 1784516400,
+        "right_ts": 1784639940,
+        "scheduled_start_ts": 1784545200,
+        "actual_bell_ts": 1784640000
+      },
+      "legs": {
+        "JIM": {
+          "ticker": "KXWTAMATCH-26JUL20KORJIM-JIM",
+          "orientation": "FALLER",
+          "price_region": "26_50",
+          "price_region_source": "KXWTAMATCH-26JUL20KORJIM-JIM.csv.gz#row-2778; frozen organ-scorecard current-bid cell law",
+          "entry_cents": 39,
+          "accounting_status": "CREDITED_FIVE_CONTRACT_CAPACITY_PROVEN",
+          "fill": {
+            "leg_id": "JIM",
+            "price": 39,
+            "quantity": 5,
+            "action_ts": 1784540401,
+            "evidence_ts": 1784542028,
+            "evidence_type": "ASK_DWELL_WITH_DISPLAYED_CAPACITY",
+            "evidence_size": 5010,
+            "evidence_levels": [
+              [
+                38,
+                1695
+              ],
+              [
+                39,
+                3315
+              ]
+            ],
+            "evidence_receipt": "KXWTAMATCH-26JUL20KORJIM-JIM.csv.gz#row-3547",
+            "strictly_later": true
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 32,
+          "delta_to_own_window1_close_cents": 7,
+          "own_bell_price_cents": 32,
+          "delta_to_own_bell_price_cents": 7,
+          "own_ask_reachable_low_cents": 30,
+          "delta_to_own_ask_reachable_low_cents": 9,
+          "price_reach_receipts": [
+            {
+              "event_id": "KXWTAMATCH-26JUL20KORJIM",
+              "leg_id": "JIM",
+              "ts": 1784542028,
+              "tminus_scheduled_minutes": 52.86666666666667,
+              "tminus_bell_minutes": 1632.8666666666666,
+              "resting_price": 39,
+              "ask": 38,
+              "ask_dwell_seconds": 11,
+              "capacity": {
+                "status": "PROVEN_FIVE_CONTRACT_CAPACITY",
+                "quantity": 5010,
+                "levels": [
+                  [
+                    38,
+                    1695
+                  ],
+                  [
+                    39,
+                    3315
+                  ]
+                ]
+              },
+              "trigger": "BBO",
+              "source_receipt": "KXWTAMATCH-26JUL20KORJIM-JIM.csv.gz#row-3547"
+            }
+          ],
+          "evidence_absent_receipts": [],
+          "change_status": {
+            "orientation_conditioned_initial_tree": "DID_NOTHING",
+            "quiet_book_anchor": "FIRED",
+            "per_tick_ask_breathing": "DID_NOTHING",
+            "sibling_conditioned_faller_patience": "DID_NOTHING",
+            "ask_only_dwell_reachability": "FIRED"
+          },
+          "ask_recurrences_observed": 14
+        },
+        "KOR": {
+          "ticker": "KXWTAMATCH-26JUL20KORJIM-KOR",
+          "orientation": "RISER",
+          "price_region": "51_75",
+          "price_region_source": "KXWTAMATCH-26JUL20KORJIM-KOR.csv.gz#row-3810; frozen organ-scorecard current-bid cell law",
+          "entry_cents": null,
+          "accounting_status": "NOT_FILLED",
+          "fill": null,
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 70,
+          "delta_to_own_window1_close_cents": null,
+          "own_bell_price_cents": 70,
+          "delta_to_own_bell_price_cents": null,
+          "own_ask_reachable_low_cents": 60,
+          "delta_to_own_ask_reachable_low_cents": null,
+          "price_reach_receipts": [],
+          "evidence_absent_receipts": [],
+          "change_status": {
+            "orientation_conditioned_initial_tree": "FIRED",
+            "quiet_book_anchor": "FIRED",
+            "per_tick_ask_breathing": "FIRED",
+            "sibling_conditioned_faller_patience": "DID_NOTHING",
+            "ask_only_dwell_reachability": "DID_NOTHING"
+          },
+          "ask_recurrences_observed": 12
+        }
+      },
+      "completed_capacity_proven_pair": false,
+      "all_credited_legs_at_or_below_own_close": false,
+      "integrity_hold": false,
+      "patience": null,
+      "decision_count": 5
+    }
+  ]
+}

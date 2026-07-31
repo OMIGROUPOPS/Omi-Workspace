@@ -1,0 +1,11 @@
+{
+  "independent_pair_reference": "NOT_BOUND",
+  "forbidden_proxy": "100 - sibling entry",
+  "reported_references": [
+    "own_window1_close",
+    "own_actual_bell_price",
+    "own_ask_reachable_low"
+  ],
+  "signed_delta_law": "entry - own reference",
+  "per_leg_only": true
+}

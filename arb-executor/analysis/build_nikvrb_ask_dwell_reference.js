@@ -24,6 +24,7 @@ const SOURCES = {
   reachability: ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_CENSUS.json",
   thresholdAuthority: "arb-executor/docs/research/window1/WINDOW1_ORGAN_SCORECARD_AND_DEFECT_LEDGER.md",
   priorSummary: ".claude/window1_live_v4_replay/nikvrb_live_book_breathing_20260731/REPLAY_SUMMARY.json",
+  capacity: ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/NIKVRB_CAPACITY_BY_SEQUENCE.json",
   replay: "arb-executor/analysis/nikvrb_sibling_shape_cold_replay.js",
   live: "arb-executor/live_v4.py",
 };
@@ -292,8 +293,9 @@ function build() {
   }
   const rawRows = parseCsv(read(SOURCES.clock).toString("utf8"));
   const trace = JSON.parse(read(SOURCES.trace).toString("utf8"));
+  const capacityBySequence = JSON.parse(read(SOURCES.capacity).toString("utf8")).capacity_by_sequence;
   const prior = runColdReplay({ rawRows, trace, scenario: "breathing" });
-  const corrected = runColdReplay({ rawRows, trace, scenario: "ask_dwell" });
+  const corrected = runColdReplay({ rawRows, trace, scenario: "ask_dwell", capacityBySequence });
   if (corrected.fills.VRB?.price !== 68 || corrected.fills.NIK?.price !== 18) {
     throw new Error(`ask-dwell acceptance failed ${JSON.stringify(corrected.fills)}`);
   }
@@ -328,6 +330,9 @@ function build() {
     prior_fills: Object.fromEntries(Object.entries(prior.fills).map(([leg, row]) => [leg, row?.price ?? null])),
     corrected_fills: Object.fromEntries(Object.entries(corrected.fills).map(([leg, row]) => [leg, row?.price ?? null])),
     corrected_fill_receipts: corrected.fills,
+    capacity_law: "credit exactly five only when contemporaneous displayed external ask capacity at the reachable price is at least five",
+    evidence_absent_count: corrected.capacity_evidence_absent.length,
+    independent_pair_reference: "NOT_BOUND",
     nik_midwindow: {
       ...corpus.nik_midwindow,
       zero_second_bid_episodes: corpus.nik_midwindow.bid_dwell_counts["0"] || 0,
@@ -340,6 +345,7 @@ function build() {
       NIK_fill_18_after_ask_dwell: corrected.fills.NIK.price === 18 && corrected.fills.NIK.evidence.dwell_seconds >= ASK_REACH_DWELL_SECONDS,
       bid_churn_created_no_material_action: corrected.material_decisions.filter((row) => row.leg === "NIK" && row.sequence >= 1700 && row.sequence <= 2703 && ["LIVE_ASK_TOUCH", "ASK_DWELL_PATIENCE_RELEASE"].includes(row.organ)).length === 0,
       no_same_receipt_action_fill: corrected.fills.NIK.action_sequence < corrected.fills.NIK.evidence_sequence && corrected.fills.VRB.action_sequence < corrected.fills.VRB.evidence_sequence,
+      displayed_capacity_proven: corrected.fills.NIK.evidence.evidence_size >= 5 && corrected.fills.VRB.evidence.evidence_size >= 5,
     },
     population_score_run: false,
     live_execution: false,
@@ -352,8 +358,10 @@ function build() {
     decision_law: "Bid updates remain visible context but cannot release patience, change a target, or credit a fill.",
     threshold_authority: "QUOTE_OR_PRINT_DWELL_10 was the frozen primary comparator before this specimen; the recut removes print and bid-side authority rather than retuning the cutoff.",
     no_same_receipt_law: "An ask observation used to create an order cannot also fill it; fill evidence must be strictly later.",
+    capacity_law: "A price-reachable ask receives five-contract accounting credit only when its contemporaneous displayed external ask capacity is at least five; unknown or sub-five capacity is EVIDENCE_ABSENT.",
+    pair_reference_law: "No independent pair reference is bound. The report emits NOT_BOUND and forbids 100 minus sibling entry.",
   };
-  const report = `# NIKVRB ask-side dwell replay\n\nThe corrected cold branch fills VRB at **68** and NIK at **18**. Reachability is ask-only and the minimum continuous ask dwell is **10 seconds**. That value is inherited from the already-frozen primary quote-touch comparator in WINDOW1_ORGAN_SCORECARD_AND_DEFECT_LEDGER.md, which defined the 598-event baseline before this NIKVRB correction. It was not selected from this game's outcome. Ten seconds eliminates non-resident quote flickers while retaining VRB's persistent ask-68 state.\n\n## NIK T-178.867 to T-155.067\n\nThe retained episode census contains 63 bid-side episodes and zero ask-side episodes. Fifty-nine bid episodes have zero-second trough dwell; the other four dwell 1, 1, 13, and 25 seconds. Because the ask remains 29 throughout, this interval contains zero buy-side reachability opportunities and causes zero corrected target changes. The raw clock also contains 841 NIK BBO receipts and 240 bid changes in this interval; none has reachability authority.\n\n## Corrected chronology\n\n- VRB rests at 68 before the ask returns to 68. The ask persists 32 seconds by receipt sequence 326; the ten-second gate credits 68.\n- NIK's 21 is cancelled when the sibling riser resolves. The 24 ask lasts 7 seconds and the 23 ask lasts 2 seconds, so neither releases patience. The 19 ask persists 11 seconds; ask-1 places 18 at sequence 3433. The later 18 ask persists 11 seconds and credits 18 at sequence 4250.\n\n## 598 reconciliation\n\nThe old 10-second true-print-or-ask union contains 598 negative-pair opportunities. Ask-only ten-second reachability contains **532**. The 66 removed events depended on a lower true-print floor on at least one leg; they are not ask-reachable under this correction. The threshold table and all 66 identities are frozen in ASK_ONLY_OPPORTUNITY_RECONCILIATION.json.\n\n## Corpus recut\n\nThe 392,282 mixed-side episodes become 154,734 ask-side episodes. Dwell bands: 74,391 at zero seconds; 69,363 at 1-9 seconds; 3,785 at 10-29; 2,646 at 30-59; 1,799 at 60-299; and 2,750 at 300 seconds or more. At least ten seconds leaves 10,980 ask-side episodes across 573 events.\n\nThe full arithmetic table and four charts are in NIKVRB_ASK_DWELL_TABLE_CHARTS.html. No live code, scorer, holdout, or production system was used.\n`;
+  const report = `# NIKVRB ask-side dwell replay\n\nThe corrected cold branch fills VRB at **68** and NIK at **18**. Both credits now have contemporaneous displayed capacity: VRB **110** and NIK **86** contracts. Unknown or sub-five capacity is \`EVIDENCE_ABSENT\` and cannot enter completion. Reachability is ask-only and the minimum continuous ask dwell is **10 seconds**. That value is inherited from the already-frozen primary quote-touch comparator in WINDOW1_ORGAN_SCORECARD_AND_DEFECT_LEDGER.md, which defined the 598-event baseline before this NIKVRB correction. It was not selected from this game's outcome.\n\nNo independent pair reference is bound. Pair reference and pair-reference delta are \`NOT_BOUND\`; the former proxy \`100 - sibling entry\` is forbidden.\n\n## NIK T-178.867 to T-155.067\n\nThe retained episode census contains 63 bid-side episodes and zero ask-side episodes. Fifty-nine bid episodes have zero-second trough dwell; the other four dwell 1, 1, 13, and 25 seconds. Because the ask remains 29 throughout, this interval contains zero buy-side reachability opportunities and causes zero corrected target changes. The raw clock also contains 841 NIK BBO receipts and 240 bid changes in this interval; none has reachability authority.\n\n## Corrected chronology\n\n- VRB rests at 68 before the ask returns to 68. The ask persists 32 seconds by receipt sequence 326; displayed ask size 110 proves five-contract capacity and credits 68.\n- NIK's 21 is cancelled after 66 completed ask-side recurrences when the sibling riser resolves. The 24 ask lasts 7 seconds and the 23 ask lasts 2 seconds, so neither releases patience. The 19 ask persists 11 seconds; ask-1 places 18 at sequence 3433. The later 18 ask persists 11 seconds with displayed size 86 and credits 18.\n\n## 598 reconciliation\n\nThe old 10-second true-print-or-ask union contains 598 negative-pair opportunities. Ask-only ten-second reachability contains **532** before the new capacity gate. The 66 removed events depended on a lower true-print floor on at least one leg. Capacity-adjusted population coverage is not claimed here.\n\n## Corpus recut\n\nThe 392,282 mixed-side episodes become 154,734 ask-side episodes. Dwell bands: 74,391 at zero seconds; 69,363 at 1-9 seconds; 3,785 at 10-29; 2,646 at 30-59; 1,799 at 60-299; and 2,750 at 300 seconds or more. At least ten seconds leaves 10,980 ask-side episodes across 573 events.\n\nThe full arithmetic table and four charts are in NIKVRB_ASK_DWELL_TABLE_CHARTS.html. No live code, scorer, holdout, or production system was used.\n`;
   const visualPayload = { rows, series, markers };
   const baseFiles = {
     "REPLAY_SUMMARY.json": canonical(summary),
@@ -362,6 +370,8 @@ function build() {
     "NIK_MIDWINDOW_ASK_AUTHORITY_RECEIPT.json": canonical(nikMidwindow),
     "ASK_ONLY_DIVOT_DWELL_CENSUS.json": canonical(corpus),
     "ASK_ONLY_OPPORTUNITY_RECONCILIATION.json": canonical(opportunity),
+    "EVIDENCE_ABSENT_CAPACITY_RECEIPT.json": canonical({ count: corrected.capacity_evidence_absent.length, rows: corrected.capacity_evidence_absent }),
+    "REFERENCE_PANEL.json": canonical({ pair_reference_cents: "NOT_BOUND", delta_to_pair_reference_cents: "NOT_BOUND", forbidden_proxy: "100 - sibling entry", legs: { NIK: { entry_cents: 18, own_window1_close_cents: 19, delta_to_own_window1_close_cents: -1, own_bell_price_cents: 19, delta_to_own_bell_price_cents: -1, own_ask_reachable_low_cents: 18, delta_to_own_ask_reachable_low_cents: 0 }, VRB: { entry_cents: 68, own_window1_close_cents: 83, delta_to_own_window1_close_cents: -15, own_bell_price_cents: 83, delta_to_own_bell_price_cents: -15, own_ask_reachable_low_cents: 68, delta_to_own_ask_reachable_low_cents: 0 } } }),
     "ARITHMETIC_DECISION_ROWS.json": canonical(gzipJson(rows)),
     "FORBIDDEN_ACCESS_RECEIPT.json": canonical({ scorer_invoked: false, population_candidate_score_run: false, live_access: false, network_access: false, order_access: false, position_access: false, holdout_access: false, live_v4_modified: false }),
     "SOURCE_HASH_MANIFEST.json": canonical({ schema_version: "NIKVRB_ASK_DWELL_SOURCE_HASH_MANIFEST_V1", sources: Object.fromEntries(Object.entries(SOURCES).map(([name, rel]) => [name, { path: rel, bytes: read(rel).length, sha256: sha256(read(rel)) }])) }),

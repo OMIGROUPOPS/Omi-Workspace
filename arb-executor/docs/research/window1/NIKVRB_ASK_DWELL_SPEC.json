@@ -5,5 +5,7 @@
   "dwell_law": "The ask must remain continuously at or below the resting limit for at least 10 seconds.",
   "decision_law": "Bid updates remain visible context but cannot release patience, change a target, or credit a fill.",
   "threshold_authority": "QUOTE_OR_PRINT_DWELL_10 was the frozen primary comparator before this specimen; the recut removes print and bid-side authority rather than retuning the cutoff.",
-  "no_same_receipt_law": "An ask observation used to create an order cannot also fill it; fill evidence must be strictly later."
+  "no_same_receipt_law": "An ask observation used to create an order cannot also fill it; fill evidence must be strictly later.",
+  "capacity_law": "A price-reachable ask receives five-contract accounting credit only when its contemporaneous displayed external ask capacity is at least five; unknown or sub-five capacity is EVIDENCE_ABSENT.",
+  "pair_reference_law": "No independent pair reference is bound. The report emits NOT_BOUND and forbids 100 minus sibling entry."
 }

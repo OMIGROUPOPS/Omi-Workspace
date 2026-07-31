@@ -16,8 +16,8 @@
     {
       "role": "replay",
       "path": "arb-executor/analysis/nikvrb_sibling_shape_cold_replay.js",
-      "sha256": "1267c8f9c1d81dfa3965403cb9a9281114f2240f040a537eaaed442ccd6cbeae",
-      "size": 36842
+      "sha256": "a9ef3d6d57f5d7ba5bfa1a84ae019862669e61af8c080c6b3669017304212e6d",
+      "size": 39977
     },
     {
       "role": "live",

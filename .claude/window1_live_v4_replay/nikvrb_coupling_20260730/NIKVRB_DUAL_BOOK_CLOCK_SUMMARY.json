@@ -17,11 +17,21 @@
     "NIK_ask": 29,
     "NIK_bid": 28,
     "NIK_last": 32,
+    "NIK_print_action": "",
+    "NIK_print_price": "",
     "NIK_print_size": "",
+    "NIK_print_taker_side_raw": "",
+    "NIK_print_trade_id": "",
+    "NIK_print_vs_archived_bbo": "",
     "VRB_ask": 70,
     "VRB_bid": 69,
     "VRB_last": 70,
+    "VRB_print_action": "BUY_YES__LIFT_ASK",
+    "VRB_print_price": 70,
     "VRB_print_size": 0.06,
+    "VRB_print_taker_side_raw": "yes",
+    "VRB_print_trade_id": "5d023a38-6785-6ff4-9f45-a675798f1b9c",
+    "VRB_print_vs_archived_bbo": "AT_OR_ABOVE_ASK",
     "combined_ask_total": 99,
     "combined_bid_total": 97,
     "combined_last_total": 102,
@@ -36,7 +46,343 @@
     "tminus_scheduled_min": 316.063675
   },
   "gate_open_ts": 1784449800.0,
+  "leg_journeys": {
+    "NIK": {
+      "all_ultimate_low_prints": [
+        {
+          "action": "BUY_YES__LIFT_ASK",
+          "ask_at_print": 18,
+          "bid_at_print": 17,
+          "price": 18,
+          "size": 10.0,
+          "taker_side_raw": "yes",
+          "timestamp_et": "2026-07-19T11:38:49.709443-04:00",
+          "tminus_actual_bell": "T-56.172",
+          "tminus_scheduled": "T-51.172",
+          "trade_id": "8d653b6a-0bf8-6062-445d-388f1127bbfa",
+          "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+        },
+        {
+          "action": "BUY_YES__LIFT_ASK",
+          "ask_at_print": 18,
+          "bid_at_print": 17,
+          "price": 18,
+          "size": 10.0,
+          "taker_side_raw": "yes",
+          "timestamp_et": "2026-07-19T11:38:49.709443-04:00",
+          "tminus_actual_bell": "T-56.172",
+          "tminus_scheduled": "T-51.172",
+          "trade_id": "c1af4210-1b7f-681a-5553-28e69058d4d6",
+          "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+        },
+        {
+          "action": "BUY_YES__LIFT_ASK",
+          "ask_at_print": 18,
+          "bid_at_print": 17,
+          "price": 18,
+          "size": 66.0,
+          "taker_side_raw": "yes",
+          "timestamp_et": "2026-07-19T11:38:49.709443-04:00",
+          "tminus_actual_bell": "T-56.172",
+          "tminus_scheduled": "T-51.172",
+          "trade_id": "eb1761c2-384a-6252-5fb8-79aa416a129d",
+          "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+        },
+        {
+          "action": "BUY_YES__LIFT_ASK",
+          "ask_at_print": 18,
+          "bid_at_print": 17,
+          "price": 18,
+          "size": 48.33,
+          "taker_side_raw": "yes",
+          "timestamp_et": "2026-07-19T11:51:43.971849-04:00",
+          "tminus_actual_bell": "T-43.267",
+          "tminus_scheduled": "T-38.267",
+          "trade_id": "5572fde4-098d-47bc-1111-16d37172ad90",
+          "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+        }
+      ],
+      "first_bbo_after_gate": {
+        "ask": 92,
+        "bid": 5,
+        "last": "",
+        "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+        "tminus_actual_bell": "T-380.450",
+        "tminus_scheduled": "T-375.450"
+      },
+      "first_print_after_gate": {
+        "action": "BUY_YES__LIFT_ASK",
+        "ask_at_print": 33,
+        "bid_at_print": 23,
+        "price": 33,
+        "size": 1.0,
+        "taker_side_raw": "yes",
+        "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+        "tminus_actual_bell": "T-366.971",
+        "tminus_scheduled": "T-361.971",
+        "trade_id": "b17542ca-924e-4214-e91f-a96dc81ad7f6",
+        "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+      },
+      "gate_snapshot": {
+        "ask": "",
+        "available": false,
+        "bid": "",
+        "last": "",
+        "timestamp_et": "2026-07-19T04:30:00.000000-04:00",
+        "tminus_actual_bell": "T-485.000",
+        "tminus_scheduled": "T-480.000"
+      },
+      "last_bbo_before_bell": {
+        "ask": 19,
+        "bid": 17,
+        "last": 19,
+        "timestamp_et": "2026-07-19T12:34:59.000000-04:00",
+        "tminus_actual_bell": "T-0.017",
+        "tminus_scheduled": "T+4.983"
+      },
+      "last_print_before_bell": {
+        "action": "BUY_YES__LIFT_ASK",
+        "ask_at_print": 19,
+        "bid_at_print": 17,
+        "price": 19,
+        "size": 9.96,
+        "taker_side_raw": "yes",
+        "timestamp_et": "2026-07-19T12:30:08.232286-04:00",
+        "tminus_actual_bell": "T-4.863",
+        "tminus_scheduled": "T+0.137",
+        "trade_id": "1b4a90c8-bb50-6d28-9730-54d2f707ecf1",
+        "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+      },
+      "record_low_prints": [
+        {
+          "action": "BUY_YES__LIFT_ASK",
+          "ask_at_print": 33,
+          "bid_at_print": 23,
+          "price": 33,
+          "size": 1.0,
+          "taker_side_raw": "yes",
+          "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+          "tminus_actual_bell": "T-366.971",
+          "tminus_scheduled": "T-361.971",
+          "trade_id": "b17542ca-924e-4214-e91f-a96dc81ad7f6",
+          "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+        },
+        {
+          "action": "BUY_YES__LIFT_ASK",
+          "ask_at_print": 32,
+          "bid_at_print": 29,
+          "price": 32,
+          "size": 8.94,
+          "taker_side_raw": "yes",
+          "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+          "tminus_actual_bell": "T-339.827",
+          "tminus_scheduled": "T-334.827",
+          "trade_id": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+          "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+        },
+        {
+          "action": "SELL_YES__HIT_BID",
+          "ask_at_print": 27,
+          "bid_at_print": 24,
+          "price": 28,
+          "size": 10.0,
+          "taker_side_raw": "no",
+          "timestamp_et": "2026-07-19T07:51:20.380398-04:00",
+          "tminus_actual_bell": "T-283.660",
+          "tminus_scheduled": "T-278.660",
+          "trade_id": "5dd6e6b6-83d1-5eab-5e54-7388060d0563",
+          "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+        },
+        {
+          "action": "BUY_YES__LIFT_ASK",
+          "ask_at_print": 27,
+          "bid_at_print": 24,
+          "price": 27,
+          "size": 10.0,
+          "taker_side_raw": "yes",
+          "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+          "tminus_actual_bell": "T-145.177",
+          "tminus_scheduled": "T-140.177",
+          "trade_id": "6b5a7cb7-f46f-44a9-0128-0e952290b448",
+          "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+        },
+        {
+          "action": "SELL_YES__HIT_BID",
+          "ask_at_print": 28,
+          "bid_at_print": 24,
+          "price": 24,
+          "size": 26.0,
+          "taker_side_raw": "no",
+          "timestamp_et": "2026-07-19T10:39:57.500480-04:00",
+          "tminus_actual_bell": "T-115.042",
+          "tminus_scheduled": "T-110.042",
+          "trade_id": "be7b11ce-cf7d-63d8-4277-96034394d0e0",
+          "versus_archived_bbo": "AT_OR_BELOW_BID"
+        },
+        {
+          "action": "SELL_YES__HIT_BID",
+          "ask_at_print": 29,
+          "bid_at_print": 25,
+          "price": 23,
+          "size": 17.0,
+          "taker_side_raw": "no",
+          "timestamp_et": "2026-07-19T11:09:09.709388-04:00",
+          "tminus_actual_bell": "T-85.838",
+          "tminus_scheduled": "T-80.838",
+          "trade_id": "02044d02-eb44-7ebe-0262-f78db417e6e6",
+          "versus_archived_bbo": "AT_OR_BELOW_BID"
+        },
+        {
+          "action": "SELL_YES__HIT_BID",
+          "ask_at_print": 23,
+          "bid_at_print": 19,
+          "price": 19,
+          "size": 21.0,
+          "taker_side_raw": "no",
+          "timestamp_et": "2026-07-19T11:09:20.922837-04:00",
+          "tminus_actual_bell": "T-85.651",
+          "tminus_scheduled": "T-80.651",
+          "trade_id": "207fe813-1b58-7999-2ace-4e49c787c1a8",
+          "versus_archived_bbo": "AT_OR_BELOW_BID"
+        },
+        {
+          "action": "BUY_YES__LIFT_ASK",
+          "ask_at_print": 18,
+          "bid_at_print": 17,
+          "price": 18,
+          "size": 10.0,
+          "taker_side_raw": "yes",
+          "timestamp_et": "2026-07-19T11:38:49.709443-04:00",
+          "tminus_actual_bell": "T-56.172",
+          "tminus_scheduled": "T-51.172",
+          "trade_id": "8d653b6a-0bf8-6062-445d-388f1127bbfa",
+          "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+        }
+      ],
+      "shape": {
+        "first_to_close_cents": -14,
+        "first_to_low_cents": -15,
+        "low_to_close_cents": 1,
+        "print_count": 80,
+        "print_volume": 3274.04
+      },
+      "ultimate_low_price": 18
+    },
+    "VRB": {
+      "all_ultimate_low_prints": [
+        {
+          "action": "BUY_YES__LIFT_ASK",
+          "ask_at_print": 70,
+          "bid_at_print": 69,
+          "price": 70,
+          "size": 0.06,
+          "taker_side_raw": "yes",
+          "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+          "tminus_actual_bell": "T-321.064",
+          "tminus_scheduled": "T-316.064",
+          "trade_id": "5d023a38-6785-6ff4-9f45-a675798f1b9c",
+          "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+        }
+      ],
+      "first_bbo_after_gate": {
+        "ask": 92,
+        "bid": 5,
+        "last": "",
+        "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+        "tminus_actual_bell": "T-380.450",
+        "tminus_scheduled": "T-375.450"
+      },
+      "first_print_after_gate": {
+        "action": "BUY_YES__LIFT_ASK",
+        "ask_at_print": 70,
+        "bid_at_print": 69,
+        "price": 70,
+        "size": 0.06,
+        "taker_side_raw": "yes",
+        "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+        "tminus_actual_bell": "T-321.064",
+        "tminus_scheduled": "T-316.064",
+        "trade_id": "5d023a38-6785-6ff4-9f45-a675798f1b9c",
+        "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+      },
+      "gate_snapshot": {
+        "ask": "",
+        "available": false,
+        "bid": "",
+        "last": "",
+        "timestamp_et": "2026-07-19T04:30:00.000000-04:00",
+        "tminus_actual_bell": "T-485.000",
+        "tminus_scheduled": "T-480.000"
+      },
+      "last_bbo_before_bell": {
+        "ask": 83,
+        "bid": 81,
+        "last": 83,
+        "timestamp_et": "2026-07-19T12:34:58.000000-04:00",
+        "tminus_actual_bell": "T-0.033",
+        "tminus_scheduled": "T+4.967"
+      },
+      "last_print_before_bell": {
+        "action": "BUY_YES__LIFT_ASK",
+        "ask_at_print": 83,
+        "bid_at_print": 81,
+        "price": 83,
+        "size": 9.0,
+        "taker_side_raw": "yes",
+        "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+        "tminus_actual_bell": "T-9.872",
+        "tminus_scheduled": "T-4.872",
+        "trade_id": "b1554492-cc40-77b6-e46e-60ff0e88115e",
+        "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+      },
+      "record_low_prints": [
+        {
+          "action": "BUY_YES__LIFT_ASK",
+          "ask_at_print": 70,
+          "bid_at_print": 69,
+          "price": 70,
+          "size": 0.06,
+          "taker_side_raw": "yes",
+          "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+          "tminus_actual_bell": "T-321.064",
+          "tminus_scheduled": "T-316.064",
+          "trade_id": "5d023a38-6785-6ff4-9f45-a675798f1b9c",
+          "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+        }
+      ],
+      "shape": {
+        "first_to_close_cents": 13,
+        "first_to_low_cents": 0,
+        "low_to_close_cents": 13,
+        "print_count": 63,
+        "print_volume": 3128.65
+      },
+      "ultimate_low_price": 70
+    }
+  },
   "schedule_to_bell_slip_minutes": 5.0,
   "scheduled_start_ts": 1784478600.0,
-  "table_rows": 13123
+  "table_rows": 13123,
+  "vrb_at_or_below_70": {
+    "bid_side_print_count": 0,
+    "bid_side_prints": [],
+    "print_count": 1,
+    "prints": [
+      {
+        "action": "BUY_YES__LIFT_ASK",
+        "ask_at_print": 70,
+        "bid_at_print": 69,
+        "price": 70,
+        "size": 0.06,
+        "taker_side_raw": "yes",
+        "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+        "tminus_actual_bell": "T-321.064",
+        "tminus_scheduled": "T-316.064",
+        "trade_id": "5d023a38-6785-6ff4-9f45-a675798f1b9c",
+        "versus_archived_bbo": "AT_OR_ABOVE_ASK"
+      }
+    ],
+    "resting_yes_bid_70_fill_evidence": false,
+    "rule": "A raw taker_side=no print is a SELL YES / HIT BID print. Only such prints at or below 70 are direct print evidence that a resting YES bid at 70 traded."
+  }
 }

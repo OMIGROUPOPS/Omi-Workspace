@@ -65,6 +65,56 @@ def sum_or_blank(*values):
     return sum(values)
 
 
+def classify_print(
+    *,
+    price: int,
+    taker_side: str | None,
+    bid: int | str,
+    ask: int | str,
+) -> tuple[str, str]:
+    raw = str(taker_side or "?").lower()
+    action = {
+        "yes": "BUY_YES__LIFT_ASK",
+        "no": "SELL_YES__HIT_BID",
+    }.get(raw, "UNKNOWN_TAKER_SIDE")
+    if bid not in ("", None) and price <= int(bid):
+        versus_book = "AT_OR_BELOW_BID"
+    elif ask not in ("", None) and price >= int(ask):
+        versus_book = "AT_OR_ABOVE_ASK"
+    elif bid not in ("", None) and ask not in ("", None):
+        versus_book = "INSIDE_SPREAD"
+    else:
+        versus_book = "NO_ARCHIVED_BBO"
+    return action, versus_book
+
+
+def compact_print(row: dict) -> dict:
+    return {
+        "timestamp_et": row["timestamp_et"],
+        "tminus_scheduled": row["tminus_scheduled"],
+        "tminus_actual_bell": row["tminus_actual_bell"],
+        "price": row["price"],
+        "size": row["size"],
+        "taker_side_raw": row["taker_side_raw"],
+        "action": row["action"],
+        "versus_archived_bbo": row["versus_archived_bbo"],
+        "bid_at_print": row["bid_at_print"],
+        "ask_at_print": row["ask_at_print"],
+        "trade_id": row["trade_id"],
+    }
+
+
+def compact_bbo(row: dict, side: str) -> dict:
+    return {
+        "timestamp_et": row["timestamp_et"],
+        "tminus_scheduled": row["tminus_scheduled"],
+        "tminus_actual_bell": row["tminus_actual_bell"],
+        "bid": row[f"{side}_bid"],
+        "ask": row[f"{side}_ask"],
+        "last": row[f"{side}_last"],
+    }
+
+
 def build_clock_rows(
     *,
     replay,
@@ -80,12 +130,19 @@ def build_clock_rows(
         (bell_ts, 3, 0, "BOUNDARY", "", {"name": "ACTUAL_BELL"}),
     ]
     counts = Counter()
+    seeds: dict[str, dict] = {}
     serial = 0
     for leg, ticker in tickers.items():
-        ticks, _ = replay.load_tick_block(ticker, left_ts, bell_ts)
-        prints, _ = replay.load_print_block(
+        ticks, prior_tick = replay.load_tick_block(
+            ticker, left_ts, bell_ts
+        )
+        prints, prior_print = replay.load_print_block(
             ticker, print_ranges, left_ts, bell_ts
         )
+        seeds[leg] = {
+            "tick": prior_tick,
+            "print": prior_print,
+        }
         counts[f"{leg}_bbo_states"] = len(ticks)
         counts[f"{leg}_prints"] = len(prints)
         for item in ticks:
@@ -96,15 +153,52 @@ def build_clock_rows(
             events.append((item["ts"], 1, serial, "PRINT", leg, item))
     events.sort(key=lambda value: (value[0], value[1], value[2]))
 
-    state = {
-        leg: {"bid": "", "ask": "", "last": "", "print_size": ""}
-        for leg in LEGS
+    state = {}
+    for leg in LEGS:
+        prior_tick = seeds[leg]["tick"] or {}
+        prior_print = seeds[leg]["print"] or {}
+        bids = prior_tick.get("bids") or []
+        asks = prior_tick.get("asks") or []
+        last_candidates = []
+        tick_last = int(prior_tick.get("last_trade") or 0)
+        if tick_last:
+            last_candidates.append(
+                (float(prior_tick.get("ts") or left_ts), tick_last)
+            )
+        if prior_print:
+            last_candidates.append(
+                (float(prior_print["ts"]), int(prior_print["price"]))
+            )
+        state[leg] = {
+            "bid": int(bids[0][0]) if bids else "",
+            "ask": int(asks[0][0]) if asks else "",
+            "last": (
+                max(last_candidates, key=lambda value: value[0])[1]
+                if last_candidates
+                else ""
+            ),
+            "print_price": "",
+            "print_size": "",
+            "print_taker_side_raw": "",
+            "print_action": "",
+            "print_vs_bbo": "",
+            "print_trade_id": "",
     }
     rows: list[dict] = []
+    prints_seen: dict[str, list[dict]] = {leg: [] for leg in LEGS}
+    bbo_seen: dict[str, list[dict]] = {leg: [] for leg in LEGS}
     focus = None
     for sequence, (ts, _, _, kind, leg, payload) in enumerate(events, 1):
         for side in LEGS:
-            state[side]["print_size"] = ""
+            for field in (
+                "print_price",
+                "print_size",
+                "print_taker_side_raw",
+                "print_action",
+                "print_vs_bbo",
+                "print_trade_id",
+            ):
+                state[side][field] = ""
         if kind == "BBO":
             bids = payload.get("bids") or []
             asks = payload.get("asks") or []
@@ -114,8 +208,22 @@ def build_clock_rows(
             if last:
                 state[leg]["last"] = last
         elif kind == "PRINT":
-            state[leg]["last"] = int(payload["price"])
+            price = int(payload["price"])
+            action, versus_book = classify_print(
+                price=price,
+                taker_side=payload.get("taker_side"),
+                bid=state[leg]["bid"],
+                ask=state[leg]["ask"],
+            )
+            state[leg]["last"] = price
+            state[leg]["print_price"] = price
             state[leg]["print_size"] = float(payload.get("size") or 0)
+            state[leg]["print_taker_side_raw"] = (
+                payload.get("taker_side") or "?"
+            )
+            state[leg]["print_action"] = action
+            state[leg]["print_vs_bbo"] = versus_book
+            state[leg]["print_trade_id"] = payload.get("trade_id") or ""
 
         scheduled_min = (scheduled_ts - ts) / 60.0
         bell_min = (bell_ts - ts) / 60.0
@@ -134,11 +242,25 @@ def build_clock_rows(
             "NIK_bid": state["NIK"]["bid"],
             "NIK_ask": state["NIK"]["ask"],
             "NIK_last": state["NIK"]["last"],
+            "NIK_print_price": state["NIK"]["print_price"],
             "NIK_print_size": state["NIK"]["print_size"],
+            "NIK_print_taker_side_raw": (
+                state["NIK"]["print_taker_side_raw"]
+            ),
+            "NIK_print_action": state["NIK"]["print_action"],
+            "NIK_print_vs_archived_bbo": state["NIK"]["print_vs_bbo"],
+            "NIK_print_trade_id": state["NIK"]["print_trade_id"],
             "VRB_bid": state["VRB"]["bid"],
             "VRB_ask": state["VRB"]["ask"],
             "VRB_last": state["VRB"]["last"],
+            "VRB_print_price": state["VRB"]["print_price"],
             "VRB_print_size": state["VRB"]["print_size"],
+            "VRB_print_taker_side_raw": (
+                state["VRB"]["print_taker_side_raw"]
+            ),
+            "VRB_print_action": state["VRB"]["print_action"],
+            "VRB_print_vs_archived_bbo": state["VRB"]["print_vs_bbo"],
+            "VRB_print_trade_id": state["VRB"]["print_trade_id"],
             "combined_bid_total": sum_or_blank(
                 state["NIK"]["bid"], state["VRB"]["bid"]
             ),
@@ -150,6 +272,22 @@ def build_clock_rows(
             ),
         }
         rows.append(row)
+        if kind == "BBO":
+            bbo_seen[leg].append(dict(row))
+        if kind == "PRINT":
+            prints_seen[leg].append({
+                "timestamp_et": row["timestamp_et"],
+                "tminus_scheduled": row["tminus_scheduled"],
+                "tminus_actual_bell": row["tminus_actual_bell"],
+                "price": price,
+                "size": state[leg]["print_size"],
+                "taker_side_raw": state[leg]["print_taker_side_raw"],
+                "action": action,
+                "versus_archived_bbo": versus_book,
+                "bid_at_print": state[leg]["bid"],
+                "ask_at_print": state[leg]["ask"],
+                "trade_id": state[leg]["print_trade_id"],
+            })
         if (
             kind == "PRINT"
             and leg == "VRB"
@@ -162,6 +300,68 @@ def build_clock_rows(
 
     if focus is None:
         raise RuntimeError("VRB 70 print not found")
+    leg_journeys = {}
+    for side in LEGS:
+        prints = prints_seen[side]
+        bbos = bbo_seen[side]
+        ultimate_low = min(row["price"] for row in prints)
+        record_lows = []
+        running_low = None
+        for printed in prints:
+            if running_low is None or printed["price"] < running_low:
+                running_low = printed["price"]
+                record_lows.append(compact_print(printed))
+        gate = rows[0]
+        leg_journeys[side] = {
+            "gate_snapshot": {
+                "timestamp_et": gate["timestamp_et"],
+                "tminus_scheduled": gate["tminus_scheduled"],
+                "tminus_actual_bell": gate["tminus_actual_bell"],
+                "bid": gate[f"{side}_bid"],
+                "ask": gate[f"{side}_ask"],
+                "last": gate[f"{side}_last"],
+                "available": any(
+                    gate[f"{side}_{field}"] not in ("", None)
+                    for field in ("bid", "ask", "last")
+                ),
+            },
+            "first_bbo_after_gate": compact_bbo(bbos[0], side),
+            "first_print_after_gate": compact_print(prints[0]),
+            "record_low_prints": record_lows,
+            "ultimate_low_price": ultimate_low,
+            "all_ultimate_low_prints": [
+                compact_print(row)
+                for row in prints
+                if row["price"] == ultimate_low
+            ],
+            "last_print_before_bell": compact_print(prints[-1]),
+            "last_bbo_before_bell": compact_bbo(bbos[-1], side),
+            "shape": {
+                "print_count": len(prints),
+                "print_volume": round(
+                    sum(float(row["size"]) for row in prints), 6
+                ),
+                "first_to_low_cents": (
+                    ultimate_low - prints[0]["price"]
+                ),
+                "low_to_close_cents": (
+                    prints[-1]["price"] - ultimate_low
+                ),
+                "first_to_close_cents": (
+                    prints[-1]["price"] - prints[0]["price"]
+                ),
+            },
+        }
+    vrb_at_or_below_70 = [
+        compact_print(row)
+        for row in prints_seen["VRB"]
+        if row["price"] <= 70
+    ]
+    vrb_bid_side_at_or_below_70 = [
+        row
+        for row in vrb_at_or_below_70
+        if row["action"] == "SELL_YES__HIT_BID"
+    ]
     return rows, {
         "event": event,
         "gate_open_ts": left_ts,
@@ -170,7 +370,22 @@ def build_clock_rows(
         "schedule_to_bell_slip_minutes": (bell_ts - scheduled_ts) / 60.0,
         "counts": dict(counts),
         "table_rows": len(rows),
+        "leg_journeys": leg_journeys,
         "focus_vrb_70": focus,
+        "vrb_at_or_below_70": {
+            "print_count": len(vrb_at_or_below_70),
+            "prints": vrb_at_or_below_70,
+            "bid_side_print_count": len(vrb_bid_side_at_or_below_70),
+            "bid_side_prints": vrb_bid_side_at_or_below_70,
+            "resting_yes_bid_70_fill_evidence": bool(
+                vrb_bid_side_at_or_below_70
+            ),
+            "rule": (
+                "A raw taker_side=no print is a SELL YES / HIT BID print. "
+                "Only such prints at or below 70 are direct print evidence "
+                "that a resting YES bid at 70 traded."
+            ),
+        },
         "combined_total_definition": {
             "bid": "NIK best bid + VRB best bid",
             "ask": "NIK best ask + VRB best ask",

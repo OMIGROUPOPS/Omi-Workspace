@@ -1,0 +1,100 @@
+{
+  "lawful_inputs": {
+    "ask": "sole quote-side reach authority for a buy",
+    "ask_dwell": "BOUND comparator at 10 seconds; borrowed, not newly fit",
+    "external_book_blend": "sanity envelope only when fresh and independently BOUND; NIKVRB is NO-READ/stale_sources",
+    "last_trade": "receipt-qualified context with taker-side provenance; never a universal subtract-from anchor",
+    "live_external_bbo": "BOUND when positive-size, non-self, non-crossed, chronological",
+    "own_bid": "maker-placement input only; never buy reachability evidence",
+    "quote_cadence": "context split by side; zero-dwell bid churn has no reach authority",
+    "shape": "unavailable before stabilization; no initial signing authority",
+    "sibling_book": "patience/cancel context; never synthetic pair reference",
+    "top_five_depth": "vector context only; no scalar cell signer"
+  },
+  "nik_counterfactual_at_requested_calls": [
+    {
+      "joint_observation": {
+        "nik": {
+          "ask": 33,
+          "ask_dwell_seconds": 4,
+          "bid": 23,
+          "last": 33,
+          "spread": 10
+        },
+        "vrb": {
+          "ask": 77,
+          "ask_dwell_seconds": 0,
+          "bid": 67,
+          "last": null,
+          "spread": 10
+        }
+      },
+      "legacy_p75_action": "PLACE 26 from 33-7",
+      "replacement_action": "PLACE 23 from min(23,33-1)",
+      "t_minus_actual_bell": "T-366.917",
+      "t_minus_scheduled": "T-361.917"
+    },
+    {
+      "joint_observation": {
+        "nik": {
+          "ask": 30,
+          "ask_dwell_seconds": 0,
+          "bid": 29,
+          "last": 32,
+          "spread": 1
+        },
+        "vrb": {
+          "ask": 76,
+          "ask_dwell_seconds": 2349,
+          "bid": 67,
+          "last": null,
+          "spread": 9
+        }
+      },
+      "legacy_p75_action": "REPRICE 26->23 from 30-7",
+      "replacement_action": "HOLD 23; bid/mid change cannot re-anchor",
+      "t_minus_actual_bell": "T-327.450",
+      "t_minus_scheduled": "T-322.450"
+    },
+    {
+      "joint_observation": {
+        "nik": {
+          "ask": 27,
+          "ask_dwell_seconds": 1,
+          "bid": 24,
+          "last": 28,
+          "spread": 3
+        },
+        "vrb": {
+          "ask": 73,
+          "ask_dwell_seconds": 159,
+          "bid": 72,
+          "last": 73,
+          "spread": 1
+        }
+      },
+      "legacy_p75_action": "REPRICE 23->21 from 28-7",
+      "replacement_action": "HOLD 23; bid/last change cannot re-anchor and ask 27 remains above X",
+      "t_minus_actual_bell": "T-283.650",
+      "t_minus_scheduled": "T-278.650"
+    }
+  ],
+  "objective": "remove mixed-anchor subtract-a-constant authority and bid-led downward chase before shape exists",
+  "rule": [
+    "first lawful BBO: X0 = min(bid, ask - 1)",
+    "every raw receipt re-evaluates state; bid/mid/last change alone => HOLD(X)",
+    "while ask > X => HOLD unless separately bound sibling patience cancels",
+    "if ask <= X => capacity-honest fill check first; if capacity absent, cancel non-maker-safe order and wait; never same-receipt lower repost",
+    "new order requires a strictly later ask state persisting 10 seconds; Xnew = min(current_bid, current_ask - 1)",
+    "missing/crossed BBO, missing size, stale blend, or ambiguous chronology => NO_CALL"
+  ],
+  "schema_version": "window1_initial_aim_constant_audit_v1",
+  "status": "SPEC_ONLY_NOT_IMPLEMENTED_NOT_REPLAYED_NOT_VALIDATED",
+  "unvalidated": [
+    "ten-second ask dwell is inherited, not demonstrated optimal",
+    "this specification does not prove an 18-cent NIK fill or population superiority",
+    "sibling recurrence>0 cancellation remains without a fitted threshold",
+    "five-cent release remains a single-specimen borrowing",
+    "external-book blend is not bound on NIKVRB"
+  ]
+}

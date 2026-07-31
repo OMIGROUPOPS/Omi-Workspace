@@ -1,0 +1,44 @@
+{
+  "branch_at_build": "codex/window1-live-consolidated",
+  "git_head_at_build": "846778de821f104ac05819c6c6e1fb040ca457df",
+  "prohibited_sources_accessed": [],
+  "schema_version": "window1_initial_aim_constant_audit_v1",
+  "sources": {
+    "atlas": {
+      "path": ".claude/trendpath/ATLAS_V1.json",
+      "raw_url": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/codex/window1-live-consolidated/.claude/trendpath/ATLAS_V1.json",
+      "sha256": "efdfc2b414a752db560b7e494642632a0530c68f54b6d4e8f86d303887b5100c",
+      "size_bytes": 64012
+    },
+    "atlas_builder": {
+      "path": "arb-executor/analysis/trendpath_build.py",
+      "raw_url": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/codex/window1-live-consolidated/arb-executor/analysis/trendpath_build.py",
+      "sha256": "f36e0020d51a71a4d3bd0a27b2606ab19f1af2225ba5407008ef9a048c9bcc72",
+      "size_bytes": 27142
+    },
+    "decision_trace": {
+      "path": ".claude/window1_live_v4_replay/one_game_nikvrb_20260730/NIKVRB_DECISION_TRACE.json",
+      "raw_url": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/codex/window1-live-consolidated/.claude/window1_live_v4_replay/one_game_nikvrb_20260730/NIKVRB_DECISION_TRACE.json",
+      "sha256": "cf3ecdafc43ff0305ae95addd5a98fc1d53695dbbeae6c7080ad79de0fae1b42",
+      "size_bytes": 8967
+    },
+    "dual_clock": {
+      "path": ".claude/window1_live_v4_replay/nikvrb_coupling_20260730/NIKVRB_DUAL_BOOK_CLOCK.csv",
+      "raw_url": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/codex/window1-live-consolidated/.claude/window1_live_v4_replay/nikvrb_coupling_20260730/NIKVRB_DUAL_BOOK_CLOCK.csv",
+      "sha256": "9ec9ef0fab27cd750a7d3fba1407bc6c6a8955104071f27b67dac6bd7f8965e5",
+      "size_bytes": 1614324
+    },
+    "reachability": {
+      "path": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv",
+      "raw_url": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/codex/window1-live-consolidated/.claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv",
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba",
+      "size_bytes": 503893
+    },
+    "rescore": {
+      "path": ".claude/window1_live_v4_replay/quote_touch_os_rescore_rebalanced_20260731/WINDOW1_QUOTE_TOUCH_OS_RESCORE.json",
+      "raw_url": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/codex/window1-live-consolidated/.claude/window1_live_v4_replay/quote_touch_os_rescore_rebalanced_20260731/WINDOW1_QUOTE_TOUCH_OS_RESCORE.json",
+      "sha256": "3fd04e63033b7e9898511c651581e4c2f1660fc386c08d4fcd55db09f5e04fb4",
+      "size_bytes": 74855523
+    }
+  }
+}

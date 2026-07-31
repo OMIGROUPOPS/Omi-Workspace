@@ -1,0 +1,10 @@
+{
+  "artifact_manifest_sha256": "3153152a97d0c8d2356c5a48d4f4509d43c5aad6c2230adb6c4a059ed0dc0055",
+  "build_1_artifact_manifest_sha256": "3153152a97d0c8d2356c5a48d4f4509d43c5aad6c2230adb6c4a059ed0dc0055",
+  "build_2_artifact_manifest_sha256": "3153152a97d0c8d2356c5a48d4f4509d43c5aad6c2230adb6c4a059ed0dc0055",
+  "build_command": "node arb-executor/analysis/build_window1_initial_aim_constant_audit.js --repo .",
+  "canonicalization": "stable recursive JSON key ordering; LF UTF-8; JSONL rows stable-key serialized; markdown LF UTF-8",
+  "result": "PASS__TWO_INDEPENDENT_BUILD_OUTPUTS_BYTE_IDENTICAL",
+  "schema_version": "window1_initial_aim_constant_audit_v1",
+  "verification_test": "test_window1_initial_aim_constant_audit.js builds into two independent temporary directories and byte-compares every file"
+}

@@ -1,0 +1,430 @@
+{
+  "atlas_page": "ATP_CHALL|underdog|26_50",
+  "atlas_page_n": 1470,
+  "consultation_source_rows": [
+    {
+      "actual_order_cents": 29,
+      "anchor": {
+        "price": 33,
+        "source": "last_traded"
+      },
+      "atlas": {
+        "aim": 29,
+        "depth_p25_p50_p75": [
+          2,
+          4,
+          7
+        ],
+        "n": 1470,
+        "page": "ATP_CHALL|underdog|26_50"
+      },
+      "book": {
+        "ask": 33,
+        "bid": 23,
+        "last_trade": 33
+      },
+      "cohort": {
+        "cell": "ATP_CHALL|dog|26_50",
+        "dip_p50": 4,
+        "n": 2053,
+        "reach_3c": 0.61,
+        "rose_pct": 34
+      },
+      "contention": {
+        "best_pct": 26.1,
+        "verdict": "TRADE-AT-PATH"
+      },
+      "external_fv": {
+        "reason": "stale_sources",
+        "sources": [],
+        "status": "NO-READ"
+      },
+      "flow": {
+        "bucket": "quiet",
+        "p_fill_1h": 0.02,
+        "prints_30m": 1
+      },
+      "leg": "NIK",
+      "library": {
+        "confidence": 0,
+        "verdict": "NO-OPINION"
+      },
+      "named_authority": "LEGACY:path_aim",
+      "orientation": {
+        "conviction": 1,
+        "riser": "VRB",
+        "voices": [
+          "cohort",
+          "anchor_role"
+        ]
+      },
+      "pair": {
+        "combined_at_path": 93,
+        "sibling_estimate": 67,
+        "verdict": "PAIR-COMPOSED"
+      },
+      "polymarket": "NO-FEED",
+      "t_minus_scheduled_min": 361.9,
+      "time_et": "2026-07-19T06:28:05-04:00"
+    },
+    {
+      "actual_order_cents": 26,
+      "anchor": {
+        "price": 30,
+        "source": "tight_mid"
+      },
+      "atlas": {
+        "aim": 26,
+        "depth_p25_p50_p75": [
+          2,
+          4,
+          7
+        ],
+        "n": 1470,
+        "page": "ATP_CHALL|underdog|26_50"
+      },
+      "book": {
+        "ask": 30,
+        "bid": 29,
+        "last_trade": 32
+      },
+      "cohort": {
+        "cell": "ATP_CHALL|dog|26_50",
+        "dip_p50": 4,
+        "n": 2053,
+        "reach_3c": 0.61,
+        "rose_pct": 34
+      },
+      "contention": {
+        "best_pct": 39.4,
+        "verdict": "TRADE-AT-PATH"
+      },
+      "external_fv": {
+        "reason": "stale_sources",
+        "sources": [],
+        "status": "NO-READ"
+      },
+      "flow": {
+        "bucket": "quiet",
+        "p_fill_1h": 0.01,
+        "prints_30m": 1
+      },
+      "leg": "NIK",
+      "library": {
+        "confidence": 0,
+        "verdict": "NO-OPINION"
+      },
+      "named_authority": "LEGACY:path_aim",
+      "orientation": {
+        "conviction": 1,
+        "riser": "VRB",
+        "voices": [
+          "cohort",
+          "anchor_role"
+        ]
+      },
+      "pair": {
+        "combined_at_path": 93,
+        "sibling_estimate": 70,
+        "verdict": "PAIR-COMPOSED"
+      },
+      "polymarket": "NO-FEED",
+      "t_minus_scheduled_min": 322.4,
+      "time_et": "2026-07-19T07:07:33-04:00"
+    },
+    {
+      "actual_order_cents": 24,
+      "actual_signer": "ATLAS",
+      "anchor": {
+        "price": 28,
+        "source": "last_traded"
+      },
+      "atlas": {
+        "aim": 24,
+        "depth_p25_p50_p75": [
+          2,
+          4,
+          7
+        ],
+        "n": 1470,
+        "page": "ATP_CHALL|underdog|26_50"
+      },
+      "book": {
+        "ask": 27,
+        "bid": 24,
+        "last_trade": 28
+      },
+      "cohort": {
+        "cell": "ATP_CHALL|dog|26_50",
+        "dip_p50": 4,
+        "n": 2053,
+        "reach_3c": 0.61,
+        "rose_pct": 34
+      },
+      "contention": {
+        "best_pct": 50.5,
+        "verdict": "TRADE-AT-PATH"
+      },
+      "external_fv": {
+        "reason": "stale_sources",
+        "sources": [],
+        "status": "NO-READ"
+      },
+      "flow": {
+        "bucket": "quiet",
+        "p_fill_1h": 0.02,
+        "prints_30m": 2
+      },
+      "leg": "NIK",
+      "library": {
+        "confidence": 0,
+        "verdict": "NO-OPINION"
+      },
+      "named_authority": {
+        "authority": "SEAL",
+        "fish": 23
+      },
+      "orientation": {
+        "conviction": 1,
+        "riser": "VRB",
+        "voices": [
+          "cohort",
+          "anchor_role"
+        ]
+      },
+      "pair": {
+        "combined_at_path": 93,
+        "sibling_estimate": 72,
+        "verdict": "PAIR-COMPOSED"
+      },
+      "polymarket": "NO-FEED",
+      "t_minus_scheduled_min": 278.6,
+      "time_et": "2026-07-19T07:51:21-04:00"
+    }
+  ],
+  "decisions": [
+    {
+      "anchor": {
+        "evidence_ts_et": "2026-07-19T06:28:01.765768-04:00",
+        "price": 33,
+        "receipt": "b17542ca-924e-4214-e91f-a96dc81ad7f6",
+        "side": "OFFER_LIFT",
+        "side_provenance": "taker_side=yes / BUY_YES__LIFT_ASK",
+        "source": "TRUE_PRINT"
+      },
+      "arithmetic": "33 - 7 = 26",
+      "decision_ts_et": "2026-07-19T06:28:05-04:00",
+      "joint_observation": {
+        "nik": {
+          "ask": 33,
+          "ask_dwell_seconds": 4,
+          "bid": 23,
+          "last": 33,
+          "spread": 10
+        },
+        "vrb": {
+          "ask": 77,
+          "ask_dwell_seconds": 0,
+          "bid": 67,
+          "last": null,
+          "spread": 10
+        }
+      },
+      "t_minus_actual_bell": "T-366.917",
+      "t_minus_scheduled": "T-361.917"
+    },
+    {
+      "anchor": {
+        "evidence_ts_et": "2026-07-19T07:07:33-04:00",
+        "note": "round((29+30)/2)=30; latest true print was 32",
+        "price": 30,
+        "receipt": null,
+        "side": "NOT_A_PRINT",
+        "source": "TIGHT_BOOK_MIDPOINT_ROUNDED"
+      },
+      "arithmetic": "30 - 7 = 23",
+      "decision_ts_et": "2026-07-19T07:07:33-04:00",
+      "joint_observation": {
+        "nik": {
+          "ask": 30,
+          "ask_dwell_seconds": 0,
+          "bid": 29,
+          "last": 32,
+          "spread": 1
+        },
+        "vrb": {
+          "ask": 76,
+          "ask_dwell_seconds": 2349,
+          "bid": 67,
+          "last": null,
+          "spread": 9
+        }
+      },
+      "t_minus_actual_bell": "T-327.450",
+      "t_minus_scheduled": "T-322.450"
+    },
+    {
+      "anchor": {
+        "archived_bbo_conflict": "print 28 is AT_OR_ABOVE_ASK while archived ask is 27; do not infer side from BBO",
+        "evidence_ts_et": "2026-07-19T07:51:20.380398-04:00",
+        "price": 28,
+        "receipts": [
+          "5dd6e6b6-83d1-5eab-5e54-7388060d0563",
+          "b4b7adfa-e044-5ea1-4b75-d3b3d7675a21"
+        ],
+        "side": "BID_HIT",
+        "side_provenance": "taker_side=no / SELL_YES__HIT_BID",
+        "sizes": [
+          10,
+          5
+        ],
+        "source": "TRUE_PRINT"
+      },
+      "arithmetic": "28 - 7 = 21",
+      "decision_ts_et": "2026-07-19T07:51:21-04:00",
+      "joint_observation": {
+        "nik": {
+          "ask": 27,
+          "ask_dwell_seconds": 1,
+          "bid": 24,
+          "last": 28,
+          "spread": 3
+        },
+        "vrb": {
+          "ask": 73,
+          "ask_dwell_seconds": 159,
+          "bid": 72,
+          "last": 73,
+          "spread": 1
+        }
+      },
+      "t_minus_actual_bell": "T-283.650",
+      "t_minus_scheduled": "T-278.650"
+    }
+  ],
+  "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+  "p75_depth_cents": 7,
+  "schema_version": "window1_initial_aim_constant_audit_v1",
+  "source_clock_rows": [
+    {
+      "NIK_ask": "33",
+      "NIK_bid": "23",
+      "NIK_last": "33",
+      "NIK_print_action": "BUY_YES__LIFT_ASK",
+      "NIK_print_price": "33",
+      "NIK_print_size": "1.0",
+      "NIK_print_taker_side_raw": "yes",
+      "NIK_print_trade_id": "b17542ca-924e-4214-e91f-a96dc81ad7f6",
+      "NIK_print_vs_archived_bbo": "AT_OR_ABOVE_ASK",
+      "VRB_ask": "92",
+      "VRB_bid": "5",
+      "VRB_last": "",
+      "VRB_print_action": "",
+      "VRB_print_price": "",
+      "VRB_print_size": "",
+      "VRB_print_taker_side_raw": "",
+      "VRB_print_trade_id": "",
+      "VRB_print_vs_archived_bbo": "",
+      "combined_ask_total": "125",
+      "combined_bid_total": "28",
+      "combined_last_total": "",
+      "event_kind": "PRINT_NIK",
+      "sequence": "7",
+      "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+      "tminus_actual_bell": "T-366.971",
+      "tminus_actual_bell_min": "366.970571",
+      "tminus_scheduled": "T-361.971",
+      "tminus_scheduled_min": "361.970571"
+    },
+    {
+      "NIK_ask": "30",
+      "NIK_bid": "29",
+      "NIK_last": "32",
+      "NIK_print_action": "",
+      "NIK_print_price": "",
+      "NIK_print_size": "",
+      "NIK_print_taker_side_raw": "",
+      "NIK_print_trade_id": "",
+      "NIK_print_vs_archived_bbo": "",
+      "VRB_ask": "76",
+      "VRB_bid": "67",
+      "VRB_last": "",
+      "VRB_print_action": "",
+      "VRB_print_price": "",
+      "VRB_print_size": "",
+      "VRB_print_taker_side_raw": "",
+      "VRB_print_trade_id": "",
+      "VRB_print_vs_archived_bbo": "",
+      "combined_ask_total": "106",
+      "combined_bid_total": "96",
+      "combined_last_total": "",
+      "event_kind": "BBO_NIK",
+      "sequence": "190",
+      "timestamp_et": "2026-07-19T07:07:33.000000-04:00",
+      "tminus_actual_bell": "T-327.450",
+      "tminus_actual_bell_min": "327.45",
+      "tminus_scheduled": "T-322.450",
+      "tminus_scheduled_min": "322.45"
+    },
+    {
+      "NIK_ask": "27",
+      "NIK_bid": "24",
+      "NIK_last": "28",
+      "NIK_print_action": "SELL_YES__HIT_BID",
+      "NIK_print_price": "28",
+      "NIK_print_size": "10.0",
+      "NIK_print_taker_side_raw": "no",
+      "NIK_print_trade_id": "5dd6e6b6-83d1-5eab-5e54-7388060d0563",
+      "NIK_print_vs_archived_bbo": "AT_OR_ABOVE_ASK",
+      "VRB_ask": "73",
+      "VRB_bid": "72",
+      "VRB_last": "73",
+      "VRB_print_action": "",
+      "VRB_print_price": "",
+      "VRB_print_size": "",
+      "VRB_print_taker_side_raw": "",
+      "VRB_print_trade_id": "",
+      "VRB_print_vs_archived_bbo": "",
+      "combined_ask_total": "100",
+      "combined_bid_total": "96",
+      "combined_last_total": "101",
+      "event_kind": "PRINT_NIK",
+      "sequence": "746",
+      "timestamp_et": "2026-07-19T07:51:20.380398-04:00",
+      "tminus_actual_bell": "T-283.660",
+      "tminus_actual_bell_min": "283.660327",
+      "tminus_scheduled": "T-278.660",
+      "tminus_scheduled_min": "278.660327"
+    },
+    {
+      "NIK_ask": "27",
+      "NIK_bid": "24",
+      "NIK_last": "28",
+      "NIK_print_action": "SELL_YES__HIT_BID",
+      "NIK_print_price": "28",
+      "NIK_print_size": "5.0",
+      "NIK_print_taker_side_raw": "no",
+      "NIK_print_trade_id": "b4b7adfa-e044-5ea1-4b75-d3b3d7675a21",
+      "NIK_print_vs_archived_bbo": "AT_OR_ABOVE_ASK",
+      "VRB_ask": "73",
+      "VRB_bid": "72",
+      "VRB_last": "73",
+      "VRB_print_action": "",
+      "VRB_print_price": "",
+      "VRB_print_size": "",
+      "VRB_print_taker_side_raw": "",
+      "VRB_print_trade_id": "",
+      "VRB_print_vs_archived_bbo": "",
+      "combined_ask_total": "100",
+      "combined_bid_total": "96",
+      "combined_last_total": "101",
+      "event_kind": "PRINT_NIK",
+      "sequence": "747",
+      "timestamp_et": "2026-07-19T07:51:20.380398-04:00",
+      "tminus_actual_bell": "T-283.660",
+      "tminus_actual_bell_min": "283.660327",
+      "tminus_scheduled": "T-278.660",
+      "tminus_scheduled_min": "278.660327"
+    }
+  ]
+}

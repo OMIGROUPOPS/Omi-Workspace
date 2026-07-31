@@ -1,0 +1,37 @@
+{
+  "artifacts": {
+    "ATLAS_P75_ANCHOR_TRAVEL_LEDGER.jsonl": {
+      "sha256": "02fc2925f73c50383e41f537206853052a4f8bb06a0c4b2676e2b2bc9fa7c268",
+      "size_bytes": 1111507
+    },
+    "ATLAS_P75_CATEGORY_PRICE_DISTRIBUTIONS.json": {
+      "sha256": "14ce6f080b0de1907638371008c9fe95c0fe347c7e04b2f2c45254fb27158f0a",
+      "size_bytes": 121746
+    },
+    "ATLAS_P75_LINEAGE_RECEIPT.json": {
+      "sha256": "b24f81474996dd1710b36e0b6c0dc0f952d65f266ab7668590315663b99a114b",
+      "size_bytes": 2348
+    },
+    "CHASE_AND_FILLABLE_LOW_CENSUS.json": {
+      "sha256": "aefd525883b9e9710ad7e152567c54302a2a2790838f63ccd6f2c7be352e0112",
+      "size_bytes": 1380454
+    },
+    "INITIAL_AIM_REPLACEMENT_SPEC.json": {
+      "sha256": "e0a0296d78d76c053bc780044204264510d1cf683d27a6976cd5aafd7e046608",
+      "size_bytes": 3794
+    },
+    "NIK_ANCHOR_PROVENANCE_RECEIPT.json": {
+      "sha256": "5ca40fc86f701b37067cc4f3525f0ffc5303238b7f0d310da45880a705176cfd",
+      "size_bytes": 11201
+    },
+    "REPORT.md": {
+      "sha256": "ff3d51652c5e03c75a9327c10dc96fb04962ad054e66d803dd05558801120201",
+      "size_bytes": 11170
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "e8195e1a651df7616782cbd6238942446f2ef47fb4bdca3ef597b252d32aeabd",
+      "size_bytes": 2733
+    }
+  },
+  "schema_version": "window1_initial_aim_constant_audit_v1"
+}

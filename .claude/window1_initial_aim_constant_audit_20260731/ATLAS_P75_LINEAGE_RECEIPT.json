@@ -1,0 +1,33 @@
+{
+  "atlas_built": "2026-07-15",
+  "atlas_commit": "738ced4c1400c30690a53aea73d0dcdb26454736",
+  "atlas_commit_metadata": [
+    "738ced4c1400c30690a53aea73d0dcdb26454736",
+    "2026-07-15T01:15:36-04:00",
+    "record hygiene: packet artifacts (fired 07-14, CUTOVER-DONE) + 12:05a atlas refresh + census AUTO-GAPS onto the record. Doc-only."
+  ],
+  "atlas_page": "ATP_CHALL|underdog|26_50",
+  "atlas_training_lineage": [
+    "AIM/TIMING MISSES attempt 5 — the path axis",
+    "G9 minute-candles < 2026-07-10 (tour, walk-forward)",
+    "live-era local tape (ITF, BRANDED, hardening)",
+    "-0k flow-step onset; discovery = first-hour median",
+    "C-CONTENTION-LAW v1: contention fitted per page (band-touch exit; entered-legs win partition; reach-law entry fill) — never decreed"
+  ],
+  "chronology": "ATLAS_PRE_DATES_HONEST_CLOCK_MIGRATION",
+  "fitted_reference": "deepest pre-onset price_low below first-hour-median discovery anchor",
+  "honest_clock_commit": "dea479048de206f2c5d57b581f6169620a979e63",
+  "honest_clock_commit_metadata": [
+    "dea479048de206f2c5d57b581f6169620a979e63",
+    "2026-07-17T18:17:44-04:00",
+    "C50: DISPATCH 2 PHASE A — RE-STAMP HISTORY TO HONEST CLOCKS. Corrected event table 12,509 events (state/corpus_events_v2.jsonl: sched_honest=/milestones Sportradar corpus-wide; official=flip-cache 205; onset_est clamped>=sched 4,412; sched-only named 7,892) + THE INDICTMENT (last-consumed old stamps wrong median 155-180 min, 89-97% >30min; session-clock the dominant class, WTA_CHALL 71%; reschedule class split ~24h as Kalshi's own moves; ITF named-unmeasurable-from-snapshots) + riders (W1 LOW full-span with its time \"12c @T-14h\" on closed cards, lo_ts in the window cut; nightly PRE-HORIZON METER: lows before T-8h + median cents outside the horizon) + ACCEPTANCE WALK BROBAL (old stamp +180min = the whole match fed to the era's fits as premarket; honest W1 lows 24c@T-4.8h / 76c@T-4.4h, corridor 5.6min). v1's own defects caught before publishing (MIN-commence bias, pre-sched onsets, ITF universe hole). Phases B-F queued in order; deferred items named. Engine untouched."
+  ],
+  "not_fitted_against": [
+    "Window-1 close",
+    "window open",
+    "current live last trade",
+    "tight-book midpoint"
+  ],
+  "plain_answer": "PRE_MIGRATION",
+  "schema_version": "window1_initial_aim_constant_audit_v1"
+}

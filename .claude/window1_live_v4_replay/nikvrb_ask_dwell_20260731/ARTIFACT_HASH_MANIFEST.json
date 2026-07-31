@@ -1,0 +1,70 @@
+{
+  "schema_version": "NIKVRB_ASK_DWELL_ARTIFACT_HASH_MANIFEST_V1",
+  "artifacts": [
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/REPLAY_SUMMARY.json",
+      "bytes": 2326,
+      "sha256": "b47e132f16f2699484ceda4232978a07b25ab66df1db1a7906d7cecb6014dc9f"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/CORRECTED_ORDER_INTERVALS.json",
+      "bytes": 2961,
+      "sha256": "ec22aaa6fec3ec55db83e433fcc64ec46bcae18b6ec6e145925e8f98858e961e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/CORRECTED_MATERIAL_DECISIONS.json",
+      "bytes": 24634,
+      "sha256": "fe527c3dd2f96b40339fe359f57d5f982c123d5b8e502c7adfb53794a1e57c28"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/NIK_MIDWINDOW_ASK_AUTHORITY_RECEIPT.json",
+      "bytes": 637,
+      "sha256": "0600c531811c519d2e004c30d487b01384c05645eb7cd0c2ba92960b9b555620"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/ASK_ONLY_DIVOT_DWELL_CENSUS.json",
+      "bytes": 1778,
+      "sha256": "31ff48b419af542c48d0651b6e76d0e052ca8f8779e4ac4408b34c5c2fc0b62b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/ASK_ONLY_OPPORTUNITY_RECONCILIATION.json",
+      "bytes": 13728,
+      "sha256": "663c1bee4dfe47a80d7a3f0d2f377a251e41914f7501a00024833725567ef0a9"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/ARITHMETIC_DECISION_ROWS.json",
+      "bytes": 222546,
+      "sha256": "9b402403af8dc58124fb3357fcfb3584b8245ff434e06745adf70ad0fc455126"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/FORBIDDEN_ACCESS_RECEIPT.json",
+      "bytes": 233,
+      "sha256": "d049a31466a2b76224f8e268170ad5ef23bbdec32dd1280011430d313a023ae9"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/SOURCE_HASH_MANIFEST.json",
+      "bytes": 1878,
+      "sha256": "9d2d0e38d0c9d77c481b4f8f32359df31e4bbfc5564d273901f8b585f2e6ae8f"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_ask_dwell_20260731/DETERMINISM_RECEIPT.json",
+      "bytes": 342,
+      "sha256": "93b80bea680367bb0c10104cdc16a5c3749362c7cdae62bee97bbcf5e9db8539"
+    },
+    {
+      "path": "arb-executor/docs/research/window1/NIKVRB_ASK_DWELL_REPLAY.md",
+      "bytes": 2278,
+      "sha256": "0e7f8a64127abb69eb3876a014adcefe3e34d69f2b019f3333c796977bfb7325"
+    },
+    {
+      "path": "arb-executor/docs/research/window1/NIKVRB_ASK_DWELL_TABLE_CHARTS.html",
+      "bytes": 498044,
+      "sha256": "b67d5eb7343007a25b8ec4071abfef14221999378df301d5951052d4f3362294"
+    },
+    {
+      "path": "arb-executor/docs/research/window1/NIKVRB_ASK_DWELL_SPEC.json",
+      "bytes": 815,
+      "sha256": "1051f7b70deef57ff38e7e71eb1fdd75006d5f1a96f022948d171c77cc18a4fb"
+    }
+  ]
+}

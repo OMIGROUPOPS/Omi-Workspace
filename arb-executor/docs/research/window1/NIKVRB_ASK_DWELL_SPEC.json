@@ -1,0 +1,9 @@
+{
+  "schema_version": "NIKVRB_ASK_DWELL_SPEC_V1",
+  "scope": "one cold event plus descriptive corpus recut; no population candidate score",
+  "reachability_law": "For a resting buy, only the external ask at or below the resting limit can establish quote reachability.",
+  "dwell_law": "The ask must remain continuously at or below the resting limit for at least 10 seconds.",
+  "decision_law": "Bid updates remain visible context but cannot release patience, change a target, or credit a fill.",
+  "threshold_authority": "QUOTE_OR_PRINT_DWELL_10 was the frozen primary comparator before this specimen; the recut removes print and bid-side authority rather than retuning the cutoff.",
+  "no_same_receipt_law": "An ask observation used to create an order cannot also fill it; fill evidence must be strictly later."
+}

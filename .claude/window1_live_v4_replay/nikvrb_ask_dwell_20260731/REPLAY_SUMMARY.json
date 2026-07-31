@@ -1,0 +1,85 @@
+{
+  "schema_version": "NIKVRB_ASK_DWELL_REPLAY_V1",
+  "scope": "one-event score-free cold replay",
+  "source_rows": 13123,
+  "threshold_seconds": 10,
+  "threshold_authority": "pre-existing frozen primary quote-touch comparator; not selected from NIKVRB outcome",
+  "reachability_side": "ask_only",
+  "bid_side_entry_authority": false,
+  "prior_fills": {
+    "NIK": 19,
+    "VRB": 68
+  },
+  "corrected_fills": {
+    "NIK": 18,
+    "VRB": 68
+  },
+  "corrected_fill_receipts": {
+    "NIK": {
+      "leg": "NIK",
+      "price": 18,
+      "quantity": 5,
+      "action_et": "2026-07-19T11:09:33.000000-04:00",
+      "action_sequence": 3433,
+      "evidence_et": "2026-07-19T11:32:42.000000-04:00",
+      "evidence_sequence": 4250,
+      "evidence": {
+        "type": "ASK_DWELL_REACHABLE",
+        "receipt": "clock-sequence-4250",
+        "evidence_price": 18,
+        "evidence_size": null,
+        "dwell_seconds": 11,
+        "dwell_threshold_seconds": 10
+      },
+      "strictly_later": true
+    },
+    "VRB": {
+      "leg": "VRB",
+      "price": 68,
+      "quantity": 5,
+      "action_et": "2026-07-19T07:12:23.000000-04:00",
+      "action_sequence": 263,
+      "evidence_et": "2026-07-19T07:15:54.000000-04:00",
+      "evidence_sequence": 326,
+      "evidence": {
+        "type": "ASK_DWELL_REACHABLE",
+        "receipt": "clock-sequence-326",
+        "evidence_price": 68,
+        "evidence_size": null,
+        "dwell_seconds": 32,
+        "dwell_threshold_seconds": 10
+      },
+      "strictly_later": true
+    }
+  },
+  "nik_midwindow": {
+    "tminus_scheduled_inclusive_display_bounds": [
+      "T-178.867",
+      "T-155.067"
+    ],
+    "bid_side_episodes": 63,
+    "ask_side_episodes": 0,
+    "bid_dwell_counts": {
+      "0": 59,
+      "1": 2,
+      "13": 1,
+      "25": 1
+    },
+    "zero_second_bid_episodes": 59,
+    "positive_dwell_bid_episodes": {
+      "1_seconds": 2,
+      "13_seconds": 1,
+      "25_seconds": 1
+    },
+    "opportunity": false,
+    "reason": "zero ask-side episodes; bid-side changes are other buyers and cannot reach a resting buy"
+  },
+  "acceptance": {
+    "VRB_fill_68_after_ask_dwell": true,
+    "NIK_fill_18_after_ask_dwell": true,
+    "bid_churn_created_no_material_action": true,
+    "no_same_receipt_action_fill": true
+  },
+  "population_score_run": false,
+  "live_execution": false
+}

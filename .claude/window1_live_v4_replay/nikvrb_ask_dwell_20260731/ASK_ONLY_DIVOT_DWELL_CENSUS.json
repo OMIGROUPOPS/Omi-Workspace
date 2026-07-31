@@ -1,0 +1,83 @@
+{
+  "schema_version": "WINDOW1_ASK_ONLY_DIVOT_DWELL_CENSUS_V1",
+  "source_episode_rows": 392282,
+  "source_sides": [
+    "bid",
+    "ask"
+  ],
+  "retained_side": "ask",
+  "reachability_direction": "external seller ask at or below a resting buy limit",
+  "total": {
+    "episodes": 154734,
+    "unique_events": 583,
+    "unique_legs": 981
+  },
+  "dwell_bands": {
+    "ZERO_SECONDS": {
+      "episodes": 74391,
+      "unique_events": 285,
+      "unique_legs": 392
+    },
+    "ONE_TO_NINE_SECONDS": {
+      "episodes": 69363,
+      "unique_events": 345,
+      "unique_legs": 485
+    },
+    "TEN_TO_TWENTY_NINE_SECONDS": {
+      "episodes": 3785,
+      "unique_events": 279,
+      "unique_legs": 370
+    },
+    "THIRTY_TO_FIFTY_NINE_SECONDS": {
+      "episodes": 2646,
+      "unique_events": 256,
+      "unique_legs": 325
+    },
+    "SIXTY_TO_299_SECONDS": {
+      "episodes": 1799,
+      "unique_events": 375,
+      "unique_legs": 521
+    },
+    "AT_LEAST_300_SECONDS": {
+      "episodes": 2750,
+      "unique_events": 541,
+      "unique_legs": 847
+    }
+  },
+  "at_or_above_thresholds": {
+    "10_seconds": {
+      "episodes": 10980,
+      "unique_events": 573,
+      "unique_legs": 952
+    },
+    "30_seconds": {
+      "episodes": 7195,
+      "unique_events": 569,
+      "unique_legs": 939
+    },
+    "60_seconds": {
+      "episodes": 4549,
+      "unique_events": 565,
+      "unique_legs": 923
+    },
+    "300_seconds": {
+      "episodes": 2750,
+      "unique_events": 541,
+      "unique_legs": 847
+    }
+  },
+  "nik_midwindow": {
+    "tminus_scheduled_inclusive_display_bounds": [
+      "T-178.867",
+      "T-155.067"
+    ],
+    "bid_side_episodes": 63,
+    "ask_side_episodes": 0,
+    "bid_dwell_counts": {
+      "0": 59,
+      "1": 2,
+      "13": 1,
+      "25": 1
+    }
+  }
+}

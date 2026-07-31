@@ -1,0 +1,45 @@
+{
+  "schema_version": "NIKVRB_ASK_DWELL_SOURCE_HASH_MANIFEST_V1",
+  "sources": {
+    "clock": {
+      "path": ".claude/window1_live_v4_replay/nikvrb_coupling_20260730/NIKVRB_DUAL_BOOK_CLOCK.csv",
+      "bytes": 1614324,
+      "sha256": "9ec9ef0fab27cd750a7d3fba1407bc6c6a8955104071f27b67dac6bd7f8965e5"
+    },
+    "trace": {
+      "path": ".claude/window1_live_v4_replay/one_game_nikvrb_20260730/NIKVRB_DECISION_TRACE.json",
+      "bytes": 8967,
+      "sha256": "cf3ecdafc43ff0305ae95addd5a98fc1d53695dbbeae6c7080ad79de0fae1b42"
+    },
+    "episodes": {
+      "path": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_DIVOT_EPISODES.csv",
+      "bytes": 84943343,
+      "sha256": "973e4c3edf985cca55001407f06540415e53eb6b6c2babdc099193b082df65ef"
+    },
+    "reachability": {
+      "path": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_CENSUS.json",
+      "bytes": 5621994,
+      "sha256": "fd205926fed1a727e9029d02155f9eb718717af9f218713ecc4d16802e6027bc"
+    },
+    "thresholdAuthority": {
+      "path": "arb-executor/docs/research/window1/WINDOW1_ORGAN_SCORECARD_AND_DEFECT_LEDGER.md",
+      "bytes": 8973,
+      "sha256": "403d64851e0fa95985ec5e65e63d3a6c784c46425f66e4b2aaa3e50837e383f6"
+    },
+    "priorSummary": {
+      "path": ".claude/window1_live_v4_replay/nikvrb_live_book_breathing_20260731/REPLAY_SUMMARY.json",
+      "bytes": 763,
+      "sha256": "5bd40751637f0fdef6acc3ba9c34a4bd4433c0127b97e9f35f4b502553fb6543"
+    },
+    "replay": {
+      "path": "arb-executor/analysis/nikvrb_sibling_shape_cold_replay.js",
+      "bytes": 36842,
+      "sha256": "1267c8f9c1d81dfa3965403cb9a9281114f2240f040a537eaaed442ccd6cbeae"
+    },
+    "live": {
+      "path": "arb-executor/live_v4.py",
+      "bytes": 1028619,
+      "sha256": "f6fb1d20f3943f7bac26d94ccf1e9d98a5f22762cd3357394adfc8a3b108d760"
+    }
+  }
+}

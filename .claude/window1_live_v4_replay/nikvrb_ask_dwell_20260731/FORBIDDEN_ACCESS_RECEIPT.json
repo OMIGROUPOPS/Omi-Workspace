@@ -1,0 +1,10 @@
+{
+  "scorer_invoked": false,
+  "population_candidate_score_run": false,
+  "live_access": false,
+  "network_access": false,
+  "order_access": false,
+  "position_access": false,
+  "holdout_access": false,
+  "live_v4_modified": false
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "NIKVRB_NIK_MIDWINDOW_ASK_AUTHORITY_RECEIPT_V1",
+  "display_interval": [
+    "T-178.867",
+    "T-155.067"
+  ],
+  "source_clock_rows": 910,
+  "NIK_BBO_receipts": 841,
+  "distinct_BBO_timestamps": 147,
+  "bid_changes": 240,
+  "bid_range": [
+    19,
+    25
+  ],
+  "bid_receipt_frequency": {
+    "19": 103,
+    "20": 311,
+    "21": 67,
+    "22": 154,
+    "23": 76,
+    "24": 76,
+    "25": 54
+  },
+  "ask_values": [
+    29
+  ],
+  "last_trade_values": [
+    28
+  ],
+  "true_print_receipts": 0,
+  "reachability_result": "NO_ASK_SIDE_EPISODE",
+  "decision_authority": "bid churn has zero buy-fill reachability authority"
+}

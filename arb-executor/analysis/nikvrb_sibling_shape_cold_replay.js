@@ -9,6 +9,7 @@
 
 const CELL_WIDTH_CENTS = 5; // live_v4 significant-move cell width.
 const T2_OPEN_MINUTES = 120; // existing aim-time-axis T2 boundary.
+const ASK_REACH_DWELL_SECONDS = 10; // frozen quote-touch comparator threshold.
 
 function numberOrNull(value) {
   if (value === "" || value === null || value === undefined) return null;
@@ -68,8 +69,8 @@ function resolveQuietBookAnchor({ book, externalSharp = null }) {
 
 function newPulseTracker() {
   return {
-    NIK: { bid: null, ask: null, bid_down: false, ask_down: false, bid_trough: null, ask_trough: null, recurrences: 0 },
-    VRB: { bid: null, ask: null, bid_down: false, ask_down: false, bid_trough: null, ask_trough: null, recurrences: 0 },
+    NIK: { bid: null, ask: null, bid_down: false, ask_down: false, bid_trough: null, ask_trough: null, recurrences: 0, recurrences_by_side: { bid: 0, ask: 0 } },
+    VRB: { bid: null, ask: null, bid_down: false, ask_down: false, bid_trough: null, ask_trough: null, recurrences: 0, recurrences_by_side: { bid: 0, ask: 0 } },
   };
 }
 
@@ -88,6 +89,7 @@ function updatePulseTracker(trackers, row) {
         tracker[troughKey] = value;
       } else if (tracker[downKey] && value > tracker[troughKey]) {
         tracker.recurrences += 1;
+        tracker.recurrences_by_side[side] += 1;
         tracker[downKey] = false;
         tracker[troughKey] = null;
       } else if (tracker[downKey] && value < tracker[troughKey]) {
@@ -104,6 +106,10 @@ function enrichRows(rawRows) {
     VRB: { key: null, since: null },
   };
   const lastReceipt = { NIK: null, VRB: null };
+  const sideDwell = {
+    NIK: { bid: { value: null, since: null }, ask: { value: null, since: null } },
+    VRB: { bid: { value: null, since: null }, ask: { value: null, since: null } },
+  };
   const pulses = newPulseTracker();
   return rawRows.map((raw) => {
     const epoch = parseTs(raw.timestamp_et);
@@ -123,6 +129,15 @@ function enrichRows(rawRows) {
       }
       books[leg].dwell_seconds = dwell[leg].since === null
         ? null : Number((epoch - dwell[leg].since).toFixed(6));
+      for (const side of ["bid", "ask"]) {
+        const tracker = sideDwell[leg][side];
+        if (books[leg][side] !== tracker.value) {
+          tracker.value = books[leg][side];
+          tracker.since = epoch;
+        }
+        books[leg][`${side}_dwell_seconds`] = tracker.since === null
+          ? null : Number((epoch - tracker.since).toFixed(6));
+      }
       if (raw.event_kind === `PRINT_${leg}` && raw[`${leg}_print_trade_id`]) {
         lastReceipt[leg] = {
           receipt: raw[`${leg}_print_trade_id`],
@@ -162,6 +177,10 @@ function enrichRows(rawRows) {
       NIK: pulses.NIK.recurrences,
       VRB: pulses.VRB.recurrences,
     };
+    row.pulse_recurrences_by_side = {
+      NIK: { ...pulses.NIK.recurrences_by_side },
+      VRB: { ...pulses.VRB.recurrences_by_side },
+    };
     return row;
   });
 }
@@ -188,11 +207,12 @@ function buildConsultations(trace) {
 
 class ColdReplay {
   constructor({ trace, scenario, externalAnchors = {} }) {
-    if (!new Set(["current", "tuned", "breathing"]).has(scenario)) throw new Error(`bad scenario ${scenario}`);
+    if (!new Set(["current", "tuned", "breathing", "ask_dwell"]).has(scenario)) throw new Error(`bad scenario ${scenario}`);
     this.trace = trace;
     this.scenario = scenario;
-    this.tuned = scenario === "tuned" || scenario === "breathing";
-    this.breathing = scenario === "breathing";
+    this.tuned = scenario === "tuned" || scenario === "breathing" || scenario === "ask_dwell";
+    this.breathing = scenario === "breathing" || scenario === "ask_dwell";
+    this.askDwell = scenario === "ask_dwell";
     this.externalAnchors = externalAnchors;
     // Both scenarios inherit the already-validated orientation-conditioned
     // branch. The tuned scenario adds only sibling-conditioned faller patience.
@@ -213,9 +233,12 @@ class ColdReplay {
   }
 
   _joint(row) {
+    const visibleBook = (book) => this.askDwell ? book : Object.fromEntries(
+      Object.entries(book).filter(([key]) => !["bid_dwell_seconds", "ask_dwell_seconds"].includes(key))
+    );
     return {
-      NIK: row.books.NIK,
-      VRB: row.books.VRB,
+      NIK: visibleBook(row.books.NIK),
+      VRB: visibleBook(row.books.VRB),
       pair_bid_sum: Number.isInteger(row.books.NIK.bid) && Number.isInteger(row.books.VRB.bid)
         ? row.books.NIK.bid + row.books.VRB.bid : null,
       pair_ask_sum: Number.isInteger(row.books.NIK.ask) && Number.isInteger(row.books.VRB.ask)
@@ -289,8 +312,11 @@ class ColdReplay {
     const ceiling = this.targetCeilings[leg];
     const book = row.books[leg];
     if (!Number.isInteger(ceiling) || !validBook(book)) return null;
-    if (this.ratchetDown[leg]) {
+    if (this.ratchetDown[leg] && !this.askDwell) {
       this.targetCeilings[leg] = Math.min(ceiling, book.bid);
+    }
+    if (this.askDwell) {
+      return Math.max(1, Math.min(this.targetCeilings[leg], book.ask - 1));
     }
     return Math.max(1, Math.min(this.targetCeilings[leg], book.bid, book.ask - 1));
   }
@@ -324,7 +350,9 @@ class ColdReplay {
       door_opened: "BOOK_PRICED_ENTRY_WITHOUT_TRUE_PRINT",
       signer: anchor.source,
       action: `PLACE_${leg}_${order.price}`,
-      arithmetic: `round((${row.books[leg].bid}+${row.books[leg].ask})/2)=${anchor.anchor_cents}; min(${anchor.anchor_cents},${row.books[leg].bid})=${order.price}`,
+      arithmetic: this.askDwell
+        ? `round((${row.books[leg].bid}+${row.books[leg].ask})/2)=${anchor.anchor_cents}; min(anchor ${anchor.anchor_cents}, ask-1 ${row.books[leg].ask - 1})=${order.price}`
+        : `round((${row.books[leg].bid}+${row.books[leg].ask})/2)=${anchor.anchor_cents}; min(${anchor.anchor_cents},${row.books[leg].bid})=${order.price}`,
       declined: "NO_CALL solely because last trade is unavailable",
       code_path: "resolveQuietBookAnchor -> ColdReplay._quietAnchor -> ColdReplay._place",
       english: `${leg} had no verified trade, but its lawful ${row.books[leg].bid}/${row.books[leg].ask} book supplied a ${anchor.raw_anchor_cents}-cent anchor. The maximum payable price became ${anchor.anchor_cents}; the maker order rested at ${order.price}.`,
@@ -338,7 +366,23 @@ class ColdReplay {
     const order = this.orders[leg];
     const book = row.books[leg];
 
-    if (book.ask === order.price) {
+    if (this.askDwell && book.ask <= order.price) {
+      this._record(row, {
+        material: false,
+        leg,
+        organ: "ASK_DWELL_GATE",
+        door_opened: "WAIT_FOR_CAUSAL_ASK_RESIDENCY",
+        signer: "OPPOSITE_ASK_ONLY",
+        action: `HOLD_${leg}_${order.price}__ASK_DWELL_${book.ask_dwell_seconds}`,
+        arithmetic: `ask ${book.ask} <= resting ${order.price}; dwell ${book.ask_dwell_seconds}<${ASK_REACH_DWELL_SECONDS}; output ${order.price}`,
+        declined: "bid movement and zero-dwell fill credit",
+        code_path: "ColdReplay._breathingTick:askDwellGate",
+        english: `${leg}'s external ask was at or below the resting bid, but the ask had not yet met the frozen ${ASK_REACH_DWELL_SECONDS}-second residency threshold. The order stayed unchanged; bid churn had no authority.`,
+      });
+      return true;
+    }
+
+    if (!this.askDwell && book.ask === order.price) {
       const armed = this.exactTouchArms[leg];
       if (armed && row.epoch > armed.epoch) {
         this._fill(leg, row, {
@@ -370,7 +414,7 @@ class ColdReplay {
         });
         return true;
       }
-    } else {
+    } else if (!this.askDwell) {
       this.exactTouchArms[leg] = null;
     }
 
@@ -378,16 +422,19 @@ class ColdReplay {
     if (!Number.isInteger(desired) || desired === order.price) return false;
     const before = order.price;
     const replacement = this._place(
-      leg, desired, row, "LIVE_BOOK_TOUCH", "target ceiling recomputed against current external best bid"
+      leg, desired, row, this.askDwell ? "LIVE_ASK_TOUCH" : "LIVE_BOOK_TOUCH",
+      this.askDwell ? "target ceiling recomputed against the current external ask only" : "target ceiling recomputed against current external best bid"
     );
     this._record(row, {
       material: true,
       leg,
-      organ: "LIVE_BOOK_TOUCH",
+      organ: this.askDwell ? "LIVE_ASK_TOUCH" : "LIVE_BOOK_TOUCH",
       door_opened: "TOUCH_TRACKED_RESTING_EXPOSURE",
-      signer: "CURRENT_EXTERNAL_BEST_BID",
+      signer: this.askDwell ? "CURRENT_EXTERNAL_BEST_ASK" : "CURRENT_EXTERNAL_BEST_BID",
       action: `REPRICE_${leg}_${before}_TO_${replacement.price}`,
-      arithmetic: `min(ceiling ${this.targetCeilings[leg]}, bid ${book.bid}, ask-1 ${book.ask - 1})=${replacement.price}`,
+      arithmetic: this.askDwell
+        ? `min(ceiling ${this.targetCeilings[leg]}, ask-1 ${book.ask - 1})=${replacement.price}`
+        : `min(ceiling ${this.targetCeilings[leg]}, bid ${book.bid}, ask-1 ${book.ask - 1})=${replacement.price}`,
       declined: `identity hold at stale ${before}`,
       code_path: "ColdReplay._breathingTick -> ColdReplay._restingPrice -> ColdReplay._place",
       english: `${leg}'s maximum payable price was ${this.targetCeilings[leg]}. The live book was ${book.bid}/${book.ask}, so the resting price recomputed to ${replacement.price}; the stale ${before} order was replaced on this tick.`,
@@ -398,6 +445,22 @@ class ColdReplay {
   _fillEvidence(row, leg) {
     const order = this.orders[leg];
     if (!order || !strictAfter(row, order)) return null;
+    if (this.askDwell) {
+      const book = row.books[leg];
+      if (row.event_kind === `BBO_${leg}` && validBook(book)
+          && book.ask <= order.price
+          && book.ask_dwell_seconds >= ASK_REACH_DWELL_SECONDS) {
+        return {
+          type: "ASK_DWELL_REACHABLE",
+          receipt: `clock-sequence-${row.sequence}`,
+          evidence_price: book.ask,
+          evidence_size: null,
+          dwell_seconds: book.ask_dwell_seconds,
+          dwell_threshold_seconds: ASK_REACH_DWELL_SECONDS,
+        };
+      }
+      return null;
+    }
     if (row.print && row.print.leg === leg && row.print.size > 0 && row.print.price <= order.price) {
       return { type: "PRICE_REACHED", receipt: row.print.receipt, evidence_price: row.print.price, evidence_size: row.print.size };
     }
@@ -453,6 +516,8 @@ class ColdReplay {
       door_opened: this.fills.NIK && this.fills.VRB ? "PAIR_ENTRY_COMPLETE" : "SIBLING_REMAINS_OPEN",
       signer: evidence.type,
       action: `CREDIT_${leg}_FILL_${fill.price}`,
+      ...(this.askDwell ? { arithmetic:
+        `ask ${evidence.evidence_price} <= resting ${fill.price}; dwell ${evidence.dwell_seconds}>=${evidence.dwell_threshold_seconds}; credit ${fill.price}` } : {}),
       declined: "no cancel/reprice before fill credit",
       code_path: "ColdReplay._fillEvidence -> ColdReplay._fill",
       english: `${leg} had a five-contract bid resting at ${fill.price}. A strictly later ${evidence.type === "PRICE_REACHED" ? `public print at ${evidence.evidence_price}` : `external ask at ${evidence.evidence_price}`} proved that price fillable, so the replay credited ${fill.price} before allowing any other action.`,
@@ -565,8 +630,9 @@ class ColdReplay {
         action: this.breathing && priorOrder && priorOrder.price === selectedTarget
           ? `HOLD_${leg}_${selectedTarget}`
           : `${order.replaced_price === null ? "PLACE" : "REPRICE"}_${leg}_${order.price}`,
-        ...(this.breathing ? { arithmetic:
-          `min(organ ${call.selected_target}, ceiling ${this.targetCeilings[leg]}, bid ${row.books[leg].bid}, ask-1 ${row.books[leg].ask - 1})=${selectedTarget}` } : {}),
+        ...(this.breathing ? { arithmetic: this.askDwell
+          ? `min(organ ${call.selected_target}, ceiling ${this.targetCeilings[leg]}, ask-1 ${row.books[leg].ask - 1})=${selectedTarget}`
+          : `min(organ ${call.selected_target}, ceiling ${this.targetCeilings[leg]}, bid ${row.books[leg].bid}, ask-1 ${row.books[leg].ask - 1})=${selectedTarget}` } : {}),
         declined: call.is_riser ? `ATLAS ${call.atlas.aim}` : `ATLAS p50 ${call.atlas.aim}`,
         code_path: "buildConsultations -> ColdReplay._place",
         english: `${leg}'s verified anchor was ${call.anchor.price}. Orientation called VRB the riser, which made ${leg} the ${call.is_riser ? "near-now riser" : "deep-cast faller"}. ${finalSigner} signed ${order.price}; the replay ${this.breathing && priorOrder && priorOrder.price === selectedTarget ? `held ${selectedTarget}` : order.replaced_price === null ? `placed ${order.price}` : `moved from ${order.replaced_price} to ${order.price}`} and declined the competing ATLAS price.`,
@@ -578,7 +644,7 @@ class ColdReplay {
         && row.tminus_scheduled_min !== null
         && row.tminus_scheduled_min <= T2_OPEN_MINUTES
         && row.tminus_scheduled_min > 60
-        && row.pulse_recurrences.VRB > 0
+        && (this.askDwell ? row.pulse_recurrences_by_side.VRB.ask : row.pulse_recurrences.VRB) > 0
         && row.books.VRB.bid > this.fills.VRB.price
         && validBook(row.books.NIK)) {
       const cancelled = this._closeOrder("NIK", row, "SIBLING_RISER_SHAPE_RESOLVED");
@@ -590,24 +656,27 @@ class ColdReplay {
         arm_ask: row.books.NIK.ask,
         sibling_bid: row.books.VRB.bid,
         sibling_ask: row.books.VRB.ask,
-        sibling_recurrences: row.pulse_recurrences.VRB,
+        sibling_recurrences: this.askDwell ? row.pulse_recurrences_by_side.VRB.ask : row.pulse_recurrences.VRB,
         cancelled_price: cancelled ? cancelled.price : null,
       };
       if (this.breathing) this.ratchetDown.NIK = true;
       this.shape = "PATIENCE_ARMED";
       this._record(row, {
         material: true,
+        ...(this.askDwell ? { leg: "NIK" } : {}),
         organ: "SIBLING_REALIZED_SHAPE",
         organ_returns: {
           orientation: "VRB_RISER/NIK_FALLER",
           timing_axis: "T2_OPEN",
           sibling_live_book: `${row.books.VRB.bid}/${row.books.VRB.ask}`,
-          sibling_completed_quote_recurrences: row.pulse_recurrences.VRB,
+          sibling_completed_quote_recurrences: this.askDwell ? row.pulse_recurrences_by_side.VRB.ask : row.pulse_recurrences.VRB,
           sibling_above_fill: row.books.VRB.bid - this.fills.VRB.price,
         },
         door_opened: "FALLER_PATIENCE_WAIT_FOR_ONE_LIVE_PRICE_CELL",
         signer: "JOINT_SHAPE_AUTHORITY",
         action: `CANCEL_NIK_${cancelled ? cancelled.price : "NONE"}__WAIT`,
+        ...(this.askDwell ? { arithmetic:
+          `VRB ask recurrences ${row.pulse_recurrences_by_side.VRB.ask}>0; VRB bid ${row.books.VRB.bid}>fill ${this.fills.VRB.price}; cancel ${cancelled ? cancelled.price : "EMPTY"}->EMPTY` } : {}),
         declined: "accepting the still-lawful 21 before the late inverse slide",
         code_path: "ColdReplay.process:siblingShapePatienceArm",
         english: `At the first receipt inside the existing T2 clock bucket, VRB was ${row.books.VRB.bid}/${row.books.VRB.ask}, still above its 69 fill after ${row.pulse_recurrences.VRB} completed quote recurrences. The riser path was now realized, so the joint-shape organ inferred that inverse faller NIK still had room. It cancelled ${cancelled ? cancelled.price : "no order"} and waited instead of letting ATLAS depth finish the decision.`,
@@ -615,7 +684,48 @@ class ColdReplay {
       return;
     }
 
-    if (this.tuned && this.patience && !this.orders.NIK && !this.fills.NIK
+    if (this.askDwell && this.patience && !this.orders.NIK && !this.fills.NIK
+        && row.event_kind === "BBO_NIK" && validBook(row.books.NIK)) {
+      const askDrop = this.patience.arm_ask - row.books.NIK.ask;
+      const dwell = row.books.NIK.ask_dwell_seconds;
+      const siblingStillSupports = validBook(row.books.VRB)
+        && row.books.VRB.ask > this.fills.VRB.price;
+      if (askDrop >= CELL_WIDTH_CENTS
+          && dwell >= ASK_REACH_DWELL_SECONDS
+          && siblingStillSupports) {
+        const target = row.books.NIK.ask - 1;
+        this.targetCeilings.NIK = target;
+        this.ratchetDown.NIK = true;
+        const order = this._place(
+          "NIK", target, row, "ASK_DWELL_PATIENCE_RELEASE",
+          `opposite ask fell a full cell and persisted ${ASK_REACH_DWELL_SECONDS} seconds`
+        );
+        this.shape = "FALLER_IMPULSE";
+        this._record(row, {
+          material: true,
+          organ: "ASK_DWELL_PATIENCE_RELEASE",
+          organ_returns: {
+            arm_ask: this.patience.arm_ask,
+            current_ask: row.books.NIK.ask,
+            ask_drop: askDrop,
+            ask_dwell_seconds: dwell,
+            minimum_dwell_seconds: ASK_REACH_DWELL_SECONDS,
+            mechanical_cell_width: CELL_WIDTH_CENTS,
+            sibling_book: `${row.books.VRB.bid}/${row.books.VRB.ask}`,
+          },
+          door_opened: "ASK_MINUS_ONE_MAKER_EXPOSURE",
+          signer: "PERSISTENT_EXTERNAL_ASK",
+          action: `PLACE_NIK_${order.price}`,
+          arithmetic: `arm ask ${this.patience.arm_ask}-current ask ${row.books.NIK.ask}=${askDrop}>=${CELL_WIDTH_CENTS}; dwell ${dwell}>=${ASK_REACH_DWELL_SECONDS}; ask-1=${order.price}`,
+          declined: "all bid-side episodes and the 7-second 24 / 2-second 23 asks",
+          code_path: "ColdReplay.process:askDwellPatienceRelease -> ColdReplay._place",
+          english: `NIK's opposite ask, not its bid, had fallen ${askDrop} cents and persisted ${dwell} seconds. The ask-side evidence cleared the pre-existing ten-second comparator, so the current ask minus one signed a maker bid at ${order.price}.`,
+        });
+        return;
+      }
+    }
+
+    if (!this.askDwell && this.tuned && this.patience && !this.orders.NIK && !this.fills.NIK
         && row.event_kind === "BBO_NIK" && validBook(row.books.NIK)) {
       const bidDrop = this.patience.arm_bid - row.books.NIK.bid;
       const siblingStillSupports = validBook(row.books.VRB)
@@ -722,6 +832,7 @@ function runColdReplay({ rawRows, trace, scenario, externalAnchors = {} }) {
 }
 
 module.exports = {
+  ASK_REACH_DWELL_SECONDS,
   CELL_WIDTH_CENTS,
   T2_OPEN_MINUTES,
   ColdReplay,

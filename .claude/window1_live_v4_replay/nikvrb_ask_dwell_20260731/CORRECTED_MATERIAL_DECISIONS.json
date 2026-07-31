@@ -1,0 +1,801 @@
+[
+  {
+    "scenario": "ask_dwell",
+    "sequence": 1,
+    "timestamp_et": "2026-07-19T04:30:00.000000-04:00",
+    "tminus_scheduled": "T-480.000",
+    "tminus_bell": "T-485.000",
+    "trigger": "GATE_OPEN",
+    "joint_observation": {
+      "NIK": {
+        "bid": null,
+        "ask": null,
+        "last": null,
+        "spread": null,
+        "dwell_seconds": 0,
+        "bid_dwell_seconds": null,
+        "ask_dwell_seconds": null,
+        "last_trade_provenance": {
+          "state": "UNAVAILABLE",
+          "receipt": null
+        }
+      },
+      "VRB": {
+        "bid": null,
+        "ask": null,
+        "last": null,
+        "spread": null,
+        "dwell_seconds": 0,
+        "bid_dwell_seconds": null,
+        "ask_dwell_seconds": null,
+        "last_trade_provenance": {
+          "state": "UNAVAILABLE",
+          "receipt": null
+        }
+      },
+      "pair_bid_sum": null,
+      "pair_ask_sum": null
+    },
+    "shapes": {
+      "VRB": "UNRESOLVED",
+      "NIK": "UNRESOLVED"
+    },
+    "active_orders_after": {
+      "NIK": null,
+      "VRB": null
+    },
+    "target_ceilings_after": {
+      "NIK": null,
+      "VRB": null
+    },
+    "material": true,
+    "organ": "WINDOW_GATE",
+    "door_opened": "OBSERVATION_ONLY",
+    "signer": "NO_CALL",
+    "action": "NO_ORDER__BOOKS_UNAVAILABLE",
+    "declined": "all entry pricing",
+    "code_path": "ColdReplay.process:GATE_OPEN",
+    "english": "Window 1 opened with neither book nor a verified trade. The OS could observe the clock only, so it made no price call and placed nothing."
+  },
+  {
+    "scenario": "ask_dwell",
+    "sequence": 3,
+    "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+    "tminus_scheduled": "T-375.450",
+    "tminus_bell": "T-380.450",
+    "trigger": "BBO_VRB",
+    "joint_observation": {
+      "NIK": {
+        "bid": 5,
+        "ask": 92,
+        "last": null,
+        "spread": 87,
+        "dwell_seconds": 0,
+        "bid_dwell_seconds": 0,
+        "ask_dwell_seconds": 0,
+        "last_trade_provenance": {
+          "state": "UNAVAILABLE",
+          "receipt": null
+        }
+      },
+      "VRB": {
+        "bid": 5,
+        "ask": 92,
+        "last": null,
+        "spread": 87,
+        "dwell_seconds": 0,
+        "bid_dwell_seconds": 0,
+        "ask_dwell_seconds": 0,
+        "last_trade_provenance": {
+          "state": "UNAVAILABLE",
+          "receipt": null
+        }
+      },
+      "pair_bid_sum": 10,
+      "pair_ask_sum": 184
+    },
+    "shapes": {
+      "VRB": "UNRESOLVED",
+      "NIK": "UNRESOLVED"
+    },
+    "active_orders_after": {
+      "NIK": null,
+      "VRB": null
+    },
+    "target_ceilings_after": {
+      "NIK": null,
+      "VRB": null
+    },
+    "material": true,
+    "organ": "DISCOVERY_GATE",
+    "door_opened": "WAIT_FOR_TRUE_PRINT_ANCHOR",
+    "signer": "NO_CALL",
+    "action": "NO_ORDER__NO_VERIFIED_LAST_TRADE",
+    "declined": "BBO-only conception",
+    "code_path": "ColdReplay.process:firstDualBook",
+    "english": "Both books were visible, but neither leg had a receipt-identified true-print anchor. The discovery gate kept pricing unreachable instead of treating a quote as a trade."
+  },
+  {
+    "scenario": "ask_dwell",
+    "sequence": 8,
+    "timestamp_et": "2026-07-19T06:28:05.000000-04:00",
+    "tminus_scheduled": "T-361.917",
+    "tminus_bell": "T-366.917",
+    "trigger": "BBO_VRB",
+    "joint_observation": {
+      "NIK": {
+        "bid": 23,
+        "ask": 33,
+        "last": 33,
+        "spread": 10,
+        "dwell_seconds": 4,
+        "bid_dwell_seconds": 4,
+        "ask_dwell_seconds": 4,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "b17542ca-924e-4214-e91f-a96dc81ad7f6",
+          "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+          "price": 33
+        }
+      },
+      "VRB": {
+        "bid": 67,
+        "ask": 77,
+        "last": null,
+        "spread": 10,
+        "dwell_seconds": 0,
+        "bid_dwell_seconds": 0,
+        "ask_dwell_seconds": 0,
+        "last_trade_provenance": {
+          "state": "UNAVAILABLE",
+          "receipt": null
+        }
+      },
+      "pair_bid_sum": 90,
+      "pair_ask_sum": 110
+    },
+    "shapes": {
+      "VRB": "RISER__CLIMB_WITH_PULSES_EXPECTED_BEFORE_T2",
+      "NIK": "FALLER__INVERSE_SLIDE_EXPECTED_IN_T2"
+    },
+    "active_orders_after": {
+      "NIK": 26,
+      "VRB": null
+    },
+    "target_ceilings_after": {
+      "NIK": 26,
+      "VRB": null
+    },
+    "material": true,
+    "organ": "INITIAL_ENTRY_TREE",
+    "organ_returns": {
+      "fresh_print_anchor": "last_traded:33",
+      "orientation": "VRB_RISER conviction=1",
+      "atlas": "29 (p50); p75=7",
+      "cohort": "dip_p50=4",
+      "contention": "TRADE-AT-PATH:26.1%",
+      "pair": "PAIR-COMPOSED:93",
+      "flow": "quiet; prints30m=1"
+    },
+    "door_opened": "FALLER_DEEP_CAST",
+    "signer": "ORIENTATION_FALLER_DEEP",
+    "action": "PLACE_NIK_26",
+    "arithmetic": "min(organ 26, ceiling 26, ask-1 32)=26",
+    "declined": "ATLAS p50 29",
+    "code_path": "buildConsultations -> ColdReplay._place",
+    "english": "NIK's verified anchor was 33. Orientation called VRB the riser, which made NIK the deep-cast faller. ORIENTATION_FALLER_DEEP signed 26; the replay placed 26 and declined the competing ATLAS price."
+  },
+  {
+    "scenario": "ask_dwell",
+    "sequence": 190,
+    "timestamp_et": "2026-07-19T07:07:33.000000-04:00",
+    "tminus_scheduled": "T-322.450",
+    "tminus_bell": "T-327.450",
+    "trigger": "BBO_NIK",
+    "joint_observation": {
+      "NIK": {
+        "bid": 29,
+        "ask": 30,
+        "last": 32,
+        "spread": 1,
+        "dwell_seconds": 0,
+        "bid_dwell_seconds": 2349,
+        "ask_dwell_seconds": 0,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+          "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+          "price": 32
+        }
+      },
+      "VRB": {
+        "bid": 67,
+        "ask": 76,
+        "last": null,
+        "spread": 9,
+        "dwell_seconds": 2349,
+        "bid_dwell_seconds": 2368,
+        "ask_dwell_seconds": 2349,
+        "last_trade_provenance": {
+          "state": "UNAVAILABLE",
+          "receipt": null
+        }
+      },
+      "pair_bid_sum": 96,
+      "pair_ask_sum": 106
+    },
+    "shapes": {
+      "VRB": "RISER__CLIMB_WITH_PULSES_EXPECTED_BEFORE_T2",
+      "NIK": "FALLER__INVERSE_SLIDE_EXPECTED_IN_T2"
+    },
+    "active_orders_after": {
+      "NIK": 23,
+      "VRB": null
+    },
+    "target_ceilings_after": {
+      "NIK": 23,
+      "VRB": null
+    },
+    "material": true,
+    "organ": "INITIAL_ENTRY_TREE",
+    "organ_returns": {
+      "fresh_print_anchor": "tight_mid:30",
+      "orientation": "VRB_RISER conviction=1",
+      "atlas": "26 (p50); p75=7",
+      "cohort": "dip_p50=4",
+      "contention": "TRADE-AT-PATH:39.4%",
+      "pair": "PAIR-COMPOSED:93",
+      "flow": "quiet; prints30m=1"
+    },
+    "door_opened": "FALLER_DEEP_CAST",
+    "signer": "ORIENTATION_FALLER_DEEP",
+    "action": "REPRICE_NIK_23",
+    "arithmetic": "min(organ 23, ceiling 23, ask-1 29)=23",
+    "declined": "ATLAS p50 26",
+    "code_path": "buildConsultations -> ColdReplay._place",
+    "english": "NIK's verified anchor was 30. Orientation called VRB the riser, which made NIK the deep-cast faller. ORIENTATION_FALLER_DEEP signed 23; the replay moved from 26 to 23 and declined the competing ATLAS price."
+  },
+  {
+    "scenario": "ask_dwell",
+    "sequence": 256,
+    "timestamp_et": "2026-07-19T07:12:11.000000-04:00",
+    "tminus_scheduled": "T-317.817",
+    "tminus_bell": "T-322.817",
+    "trigger": "BBO_VRB",
+    "joint_observation": {
+      "NIK": {
+        "bid": 28,
+        "ask": 29,
+        "last": 32,
+        "spread": 1,
+        "dwell_seconds": 263,
+        "bid_dwell_seconds": 263,
+        "ask_dwell_seconds": 264,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+          "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+          "price": 32
+        }
+      },
+      "VRB": {
+        "bid": 67,
+        "ask": 68,
+        "last": null,
+        "spread": 1,
+        "dwell_seconds": 0,
+        "bid_dwell_seconds": 2646,
+        "ask_dwell_seconds": 0,
+        "last_trade_provenance": {
+          "state": "UNAVAILABLE",
+          "receipt": null
+        }
+      },
+      "pair_bid_sum": 95,
+      "pair_ask_sum": 97
+    },
+    "shapes": {
+      "VRB": "RISER__CLIMB_WITH_PULSES_EXPECTED_BEFORE_T2",
+      "NIK": "FALLER__INVERSE_SLIDE_EXPECTED_IN_T2"
+    },
+    "active_orders_after": {
+      "NIK": 23,
+      "VRB": 67
+    },
+    "target_ceilings_after": {
+      "NIK": 23,
+      "VRB": 68
+    },
+    "material": true,
+    "leg": "VRB",
+    "organ": "QUIET_BOOK_ANCHOR",
+    "organ_returns": {
+      "external_sharp_blend": "NO_CALL",
+      "own_bbo_mid": 67.5,
+      "selected_anchor": 68,
+      "selected_source": "OWN_LAWFUL_BBO_MID"
+    },
+    "door_opened": "BOOK_PRICED_ENTRY_WITHOUT_TRUE_PRINT",
+    "signer": "OWN_LAWFUL_BBO_MID",
+    "action": "PLACE_VRB_67",
+    "arithmetic": "round((67+68)/2)=68; min(anchor 68, ask-1 67)=67",
+    "declined": "NO_CALL solely because last trade is unavailable",
+    "code_path": "resolveQuietBookAnchor -> ColdReplay._quietAnchor -> ColdReplay._place",
+    "english": "VRB had no verified trade, but its lawful 67/68 book supplied a 67.5-cent anchor. The maximum payable price became 68; the maker order rested at 67."
+  },
+  {
+    "scenario": "ask_dwell",
+    "sequence": 263,
+    "timestamp_et": "2026-07-19T07:12:23.000000-04:00",
+    "tminus_scheduled": "T-317.617",
+    "tminus_bell": "T-322.617",
+    "trigger": "BBO_VRB",
+    "joint_observation": {
+      "NIK": {
+        "bid": 28,
+        "ask": 29,
+        "last": 32,
+        "spread": 1,
+        "dwell_seconds": 275,
+        "bid_dwell_seconds": 275,
+        "ask_dwell_seconds": 276,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+          "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+          "price": 32
+        }
+      },
+      "VRB": {
+        "bid": 67,
+        "ask": 75,
+        "last": null,
+        "spread": 8,
+        "dwell_seconds": 0,
+        "bid_dwell_seconds": 2658,
+        "ask_dwell_seconds": 0,
+        "last_trade_provenance": {
+          "state": "UNAVAILABLE",
+          "receipt": null
+        }
+      },
+      "pair_bid_sum": 95,
+      "pair_ask_sum": 104
+    },
+    "shapes": {
+      "VRB": "RISER__CLIMB_WITH_PULSES_EXPECTED_BEFORE_T2",
+      "NIK": "FALLER__INVERSE_SLIDE_EXPECTED_IN_T2"
+    },
+    "active_orders_after": {
+      "NIK": 23,
+      "VRB": 68
+    },
+    "target_ceilings_after": {
+      "NIK": 23,
+      "VRB": 68
+    },
+    "material": true,
+    "leg": "VRB",
+    "organ": "LIVE_ASK_TOUCH",
+    "door_opened": "TOUCH_TRACKED_RESTING_EXPOSURE",
+    "signer": "CURRENT_EXTERNAL_BEST_ASK",
+    "action": "REPRICE_VRB_67_TO_68",
+    "arithmetic": "min(ceiling 68, ask-1 74)=68",
+    "declined": "identity hold at stale 67",
+    "code_path": "ColdReplay._breathingTick -> ColdReplay._restingPrice -> ColdReplay._place",
+    "english": "VRB's maximum payable price was 68. The live book was 67/75, so the resting price recomputed to 68; the stale 67 order was replaced on this tick."
+  },
+  {
+    "scenario": "ask_dwell",
+    "sequence": 296,
+    "timestamp_et": "2026-07-19T07:13:58.000000-04:00",
+    "tminus_scheduled": "T-316.033",
+    "tminus_bell": "T-321.033",
+    "trigger": "BBO_VRB",
+    "joint_observation": {
+      "NIK": {
+        "bid": 28,
+        "ask": 29,
+        "last": 32,
+        "spread": 1,
+        "dwell_seconds": 370,
+        "bid_dwell_seconds": 370,
+        "ask_dwell_seconds": 371,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+          "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+          "price": 32
+        }
+      },
+      "VRB": {
+        "bid": 69,
+        "ask": 70,
+        "last": 70,
+        "spread": 1,
+        "dwell_seconds": 21,
+        "bid_dwell_seconds": 21,
+        "ask_dwell_seconds": 21,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "5d023a38-6785-6ff4-9f45-a675798f1b9c",
+          "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+          "price": 70
+        }
+      },
+      "pair_bid_sum": 97,
+      "pair_ask_sum": 99
+    },
+    "shapes": {
+      "VRB": "RISER__CLIMB_WITH_PULSES_EXPECTED_BEFORE_T2",
+      "NIK": "FALLER__INVERSE_SLIDE_EXPECTED_IN_T2"
+    },
+    "active_orders_after": {
+      "NIK": 23,
+      "VRB": 68
+    },
+    "target_ceilings_after": {
+      "NIK": 23,
+      "VRB": 68
+    },
+    "material": true,
+    "organ": "INITIAL_ENTRY_TREE",
+    "organ_returns": {
+      "fresh_print_anchor": "last_traded:70",
+      "orientation": "VRB_RISER conviction=1",
+      "atlas": "67 (p50); p75=6",
+      "cohort": "dip_p50=4",
+      "contention": "DROP:-6.5%",
+      "pair": "PAIR-COMPOSED:93",
+      "flow": "quiet; prints30m=1"
+    },
+    "door_opened": "RISER_NEAR_NOW",
+    "signer": "LIVE_BOOK_ANCHOR_CEILING",
+    "action": "HOLD_VRB_68",
+    "arithmetic": "min(organ 69, ceiling 68, ask-1 69)=68",
+    "declined": "ATLAS 67",
+    "code_path": "buildConsultations -> ColdReplay._place",
+    "english": "VRB's verified anchor was 70. Orientation called VRB the riser, which made VRB the near-now riser. LIVE_BOOK_ANCHOR_CEILING signed 68; the replay held 68 and declined the competing ATLAS price."
+  },
+  {
+    "scenario": "ask_dwell",
+    "sequence": 326,
+    "timestamp_et": "2026-07-19T07:15:54.000000-04:00",
+    "tminus_scheduled": "T-314.100",
+    "tminus_bell": "T-319.100",
+    "trigger": "BBO_VRB",
+    "joint_observation": {
+      "NIK": {
+        "bid": 28,
+        "ask": 29,
+        "last": 32,
+        "spread": 1,
+        "dwell_seconds": 486,
+        "bid_dwell_seconds": 486,
+        "ask_dwell_seconds": 487,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+          "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+          "price": 32
+        }
+      },
+      "VRB": {
+        "bid": 67,
+        "ask": 68,
+        "last": 70,
+        "spread": 1,
+        "dwell_seconds": 32,
+        "bid_dwell_seconds": 32,
+        "ask_dwell_seconds": 32,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "5d023a38-6785-6ff4-9f45-a675798f1b9c",
+          "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+          "price": 70
+        }
+      },
+      "pair_bid_sum": 95,
+      "pair_ask_sum": 97
+    },
+    "shapes": {
+      "VRB": "RISER__CLIMB_WITH_PULSES_EXPECTED_BEFORE_T2",
+      "NIK": "FALLER__INVERSE_SLIDE_EXPECTED_IN_T2"
+    },
+    "active_orders_after": {
+      "NIK": 23,
+      "VRB": null
+    },
+    "target_ceilings_after": {
+      "NIK": 23,
+      "VRB": 68
+    },
+    "material": true,
+    "organ": "FILL_ACCOUNTING",
+    "door_opened": "SIBLING_REMAINS_OPEN",
+    "signer": "ASK_DWELL_REACHABLE",
+    "action": "CREDIT_VRB_FILL_68",
+    "arithmetic": "ask 68 <= resting 68; dwell 32>=10; credit 68",
+    "declined": "no cancel/reprice before fill credit",
+    "code_path": "ColdReplay._fillEvidence -> ColdReplay._fill",
+    "english": "VRB had a five-contract bid resting at 68. A strictly later external ask at 68 proved that price fillable, so the replay credited 68 before allowing any other action."
+  },
+  {
+    "scenario": "ask_dwell",
+    "sequence": 748,
+    "timestamp_et": "2026-07-19T07:51:21.000000-04:00",
+    "tminus_scheduled": "T-278.650",
+    "tminus_bell": "T-283.650",
+    "trigger": "BBO_NIK",
+    "joint_observation": {
+      "NIK": {
+        "bid": 24,
+        "ask": 27,
+        "last": 28,
+        "spread": 3,
+        "dwell_seconds": 1,
+        "bid_dwell_seconds": 1,
+        "ask_dwell_seconds": 1,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "b4b7adfa-e044-5ea1-4b75-d3b3d7675a21",
+          "timestamp_et": "2026-07-19T07:51:20.380398-04:00",
+          "price": 28
+        }
+      },
+      "VRB": {
+        "bid": 72,
+        "ask": 73,
+        "last": 73,
+        "spread": 1,
+        "dwell_seconds": 159,
+        "bid_dwell_seconds": 159,
+        "ask_dwell_seconds": 650,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "fc6a945c-d0eb-7c4b-a862-a442cc32fa4f",
+          "timestamp_et": "2026-07-19T07:43:25.907977-04:00",
+          "price": 73
+        }
+      },
+      "pair_bid_sum": 96,
+      "pair_ask_sum": 100
+    },
+    "shapes": {
+      "VRB": "RISER__CLIMB_WITH_PULSES_EXPECTED_BEFORE_T2",
+      "NIK": "FALLER__INVERSE_SLIDE_EXPECTED_IN_T2"
+    },
+    "active_orders_after": {
+      "NIK": 21,
+      "VRB": null
+    },
+    "target_ceilings_after": {
+      "NIK": 21,
+      "VRB": 68
+    },
+    "material": true,
+    "organ": "INITIAL_ENTRY_TREE",
+    "organ_returns": {
+      "fresh_print_anchor": "last_traded:28",
+      "orientation": "VRB_RISER conviction=1",
+      "atlas": "24 (p50); p75=7",
+      "cohort": "dip_p50=4",
+      "contention": "TRADE-AT-PATH:50.5%",
+      "pair": "PAIR-COMPOSED:93",
+      "flow": "quiet; prints30m=2"
+    },
+    "door_opened": "FALLER_DEEP_CAST",
+    "signer": "ORIENTATION_FALLER_DEEP",
+    "action": "REPRICE_NIK_21",
+    "arithmetic": "min(organ 21, ceiling 21, ask-1 26)=21",
+    "declined": "ATLAS p50 24",
+    "code_path": "buildConsultations -> ColdReplay._place",
+    "english": "NIK's verified anchor was 28. Orientation called VRB the riser, which made NIK the deep-cast faller. ORIENTATION_FALLER_DEEP signed 21; the replay moved from 23 to 21 and declined the competing ATLAS price."
+  },
+  {
+    "scenario": "ask_dwell",
+    "sequence": 2886,
+    "timestamp_et": "2026-07-19T10:30:39.000000-04:00",
+    "tminus_scheduled": "T-119.350",
+    "tminus_bell": "T-124.350",
+    "trigger": "BBO_NIK",
+    "joint_observation": {
+      "NIK": {
+        "bid": 24,
+        "ask": 29,
+        "last": 28,
+        "spread": 5,
+        "dwell_seconds": 50,
+        "bid_dwell_seconds": 110,
+        "ask_dwell_seconds": 50,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "6b5a7cb7-f46f-44a9-0128-0e952290b448",
+          "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+          "price": 27
+        }
+      },
+      "VRB": {
+        "bid": 73,
+        "ask": 74,
+        "last": 74,
+        "spread": 1,
+        "dwell_seconds": 2993,
+        "bid_dwell_seconds": 2993,
+        "ask_dwell_seconds": 3078,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "49674324-5317-4fdd-6320-dac51b816d8f",
+          "timestamp_et": "2026-07-19T09:40:07.080982-04:00",
+          "price": 74
+        }
+      },
+      "pair_bid_sum": 97,
+      "pair_ask_sum": 103
+    },
+    "shapes": {
+      "VRB": "RISER__CLIMB_WITH_PULSES_RESOLVED",
+      "NIK": "FALLER__WAIT_FOR_ONE_LIVE_PRICE_CELL"
+    },
+    "active_orders_after": {
+      "NIK": null,
+      "VRB": null
+    },
+    "target_ceilings_after": {
+      "NIK": 21,
+      "VRB": 68
+    },
+    "material": true,
+    "leg": "NIK",
+    "organ": "SIBLING_REALIZED_SHAPE",
+    "organ_returns": {
+      "orientation": "VRB_RISER/NIK_FALLER",
+      "timing_axis": "T2_OPEN",
+      "sibling_live_book": "73/74",
+      "sibling_completed_quote_recurrences": 66,
+      "sibling_above_fill": 5
+    },
+    "door_opened": "FALLER_PATIENCE_WAIT_FOR_ONE_LIVE_PRICE_CELL",
+    "signer": "JOINT_SHAPE_AUTHORITY",
+    "action": "CANCEL_NIK_21__WAIT",
+    "arithmetic": "VRB ask recurrences 66>0; VRB bid 73>fill 68; cancel 21->EMPTY",
+    "declined": "accepting the still-lawful 21 before the late inverse slide",
+    "code_path": "ColdReplay.process:siblingShapePatienceArm",
+    "english": "At the first receipt inside the existing T2 clock bucket, VRB was 73/74, still above its 69 fill after 97 completed quote recurrences. The riser path was now realized, so the joint-shape organ inferred that inverse faller NIK still had room. It cancelled 21 and waited instead of letting ATLAS depth finish the decision."
+  },
+  {
+    "scenario": "ask_dwell",
+    "sequence": 3433,
+    "timestamp_et": "2026-07-19T11:09:33.000000-04:00",
+    "tminus_scheduled": "T-80.450",
+    "tminus_bell": "T-85.450",
+    "trigger": "BBO_NIK",
+    "joint_observation": {
+      "NIK": {
+        "bid": 18,
+        "ask": 19,
+        "last": 19,
+        "spread": 1,
+        "dwell_seconds": 11,
+        "bid_dwell_seconds": 11,
+        "ask_dwell_seconds": 11,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "864002bf-f0fb-76a5-d9e5-899f4fa4bf43",
+          "timestamp_et": "2026-07-19T11:09:32.755953-04:00",
+          "price": 19
+        }
+      },
+      "VRB": {
+        "bid": 81,
+        "ask": 82,
+        "last": 81,
+        "spread": 1,
+        "dwell_seconds": 5,
+        "bid_dwell_seconds": 5,
+        "ask_dwell_seconds": 5,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "d75833bd-a362-4854-dccd-e1deeaf43e75",
+          "timestamp_et": "2026-07-19T11:09:26.776062-04:00",
+          "price": 81
+        }
+      },
+      "pair_bid_sum": 99,
+      "pair_ask_sum": 101
+    },
+    "shapes": {
+      "VRB": "RISER__RESOLVED_NO_CONTRADICTION",
+      "NIK": "FALLER__LATE_IMPULSE_CONFIRMED"
+    },
+    "active_orders_after": {
+      "NIK": 18,
+      "VRB": null
+    },
+    "target_ceilings_after": {
+      "NIK": 18,
+      "VRB": 68
+    },
+    "material": true,
+    "organ": "ASK_DWELL_PATIENCE_RELEASE",
+    "organ_returns": {
+      "arm_ask": 29,
+      "current_ask": 19,
+      "ask_drop": 10,
+      "ask_dwell_seconds": 11,
+      "minimum_dwell_seconds": 10,
+      "mechanical_cell_width": 5,
+      "sibling_book": "81/82"
+    },
+    "door_opened": "ASK_MINUS_ONE_MAKER_EXPOSURE",
+    "signer": "PERSISTENT_EXTERNAL_ASK",
+    "action": "PLACE_NIK_18",
+    "arithmetic": "arm ask 29-current ask 19=10>=5; dwell 11>=10; ask-1=18",
+    "declined": "all bid-side episodes and the 7-second 24 / 2-second 23 asks",
+    "code_path": "ColdReplay.process:askDwellPatienceRelease -> ColdReplay._place",
+    "english": "NIK's opposite ask, not its bid, had fallen 10 cents and persisted 11 seconds. The ask-side evidence cleared the pre-existing ten-second comparator, so the current ask minus one signed a maker bid at 18."
+  },
+  {
+    "scenario": "ask_dwell",
+    "sequence": 4250,
+    "timestamp_et": "2026-07-19T11:32:42.000000-04:00",
+    "tminus_scheduled": "T-57.300",
+    "tminus_bell": "T-62.300",
+    "trigger": "BBO_NIK",
+    "joint_observation": {
+      "NIK": {
+        "bid": 17,
+        "ask": 18,
+        "last": 19,
+        "spread": 1,
+        "dwell_seconds": 11,
+        "bid_dwell_seconds": 877,
+        "ask_dwell_seconds": 11,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "db469320-2eb5-5f55-6bb0-beaa29f60c9f",
+          "timestamp_et": "2026-07-19T11:16:08.988782-04:00",
+          "price": 19
+        }
+      },
+      "VRB": {
+        "bid": 81,
+        "ask": 83,
+        "last": 81,
+        "spread": 2,
+        "dwell_seconds": 15,
+        "bid_dwell_seconds": 15,
+        "ask_dwell_seconds": 922,
+        "last_trade_provenance": {
+          "state": "CARRIED_VERIFIED_EXECUTION",
+          "receipt": "3e62d328-b6f9-4ae1-2de0-e16000094964",
+          "timestamp_et": "2026-07-19T11:26:24.181509-04:00",
+          "price": 83
+        }
+      },
+      "pair_bid_sum": 98,
+      "pair_ask_sum": 101
+    },
+    "shapes": {
+      "VRB": "ENTRY_COMPLETE",
+      "NIK": "ENTRY_COMPLETE"
+    },
+    "active_orders_after": {
+      "NIK": null,
+      "VRB": null
+    },
+    "target_ceilings_after": {
+      "NIK": 18,
+      "VRB": 68
+    },
+    "material": true,
+    "organ": "FILL_ACCOUNTING",
+    "door_opened": "PAIR_ENTRY_COMPLETE",
+    "signer": "ASK_DWELL_REACHABLE",
+    "action": "CREDIT_NIK_FILL_18",
+    "arithmetic": "ask 18 <= resting 18; dwell 11>=10; credit 18",
+    "declined": "no cancel/reprice before fill credit",
+    "code_path": "ColdReplay._fillEvidence -> ColdReplay._fill",
+    "english": "NIK had a five-contract bid resting at 18. A strictly later external ask at 18 proved that price fillable, so the replay credited 18 before allowing any other action."
+  }
+]

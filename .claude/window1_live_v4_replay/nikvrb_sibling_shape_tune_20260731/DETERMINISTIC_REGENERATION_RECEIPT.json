@@ -5,6 +5,7 @@
   "gzip": "level=9, mtime=0; base64 text wrapper protects compressed bytes from repository LF normalization",
   "source_rows": 13123,
   "ledger_rows": 13123,
+  "t375_to_bell_ledger_rows": 13122,
   "output_hashes": [
     {
       "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/FORBIDDEN_ACCESS_RECEIPT.json",
@@ -32,9 +33,19 @@
       "sha256": "f9a1095d1d818ad067e91723f2984f809032edc6fa9357636c948ad8a51df335"
     },
     {
+      "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/NIKVRB_PER_LEG_CAUSAL_TRACE.json",
+      "bytes": 147474,
+      "sha256": "3c47a2ed9ade7c041e87b50f1d55fe5c23ab72b7ac339d13ee9e7cecabc61925"
+    },
+    {
       "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/NIKVRB_REPLAY_SUMMARY.json",
       "bytes": 8177,
       "sha256": "27ed4ff9e6f944e0f414b265e5534bfbb02ad7d33c9bc9c82074e58c3a61ddc5"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/NIKVRB_T375_TO_BELL_DECISION_TRACE.jsonl.gz.b64",
+      "bytes": 232437,
+      "sha256": "e05c9addf759ee67a5cbbaa8e90f629c0420ffe0f3f95607070d691ffa0586ea"
     },
     {
       "path": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/NIKVRB_TUNED_ORDER_INTERVALS.json",
@@ -58,8 +69,8 @@
     },
     {
       "path": "arb-executor/docs/research/window1/NIKVRB_SIBLING_SHAPE_REPLAY.md",
-      "bytes": 13191,
-      "sha256": "54f60ad6a549c618401d0b698507b5d77bc26ff2dc049cdb5c682eccedba9371"
+      "bytes": 32052,
+      "sha256": "704e975be5e9b8e5a497215877988274139981c1e9f5dc2c03896c7b94d5648a"
     }
   ]
 }

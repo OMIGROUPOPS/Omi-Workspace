@@ -34,6 +34,7 @@ const currentOrders = readJson("NIKVRB_CURRENT_ORDER_INTERVALS.json");
 const tunedOrders = readJson("NIKVRB_TUNED_ORDER_INTERVALS.json");
 const nondecisions = readJson("NIKVRB_NONDECISION_CENSUS.json");
 const visual = readJson("NIKVRB_VISUAL_ACCEPTANCE.json");
+const perLeg = readJson("NIKVRB_PER_LEG_CAUSAL_TRACE.json");
 
 assert.strictEqual(summary.current_outcome.individual_delta_to_close_cents.NIK, 2);
 assert.strictEqual(summary.current_outcome.individual_delta_to_close_cents.VRB, -14);
@@ -87,9 +88,42 @@ assert.strictEqual(
   "T-109.050"
 );
 
+assert.strictEqual(perLeg.clock_scope.market_receipts, 13121);
+assert.strictEqual(perLeg.recurrence_at_patience_arm.bid_recurrences, 31);
+assert.strictEqual(perLeg.recurrence_at_patience_arm.ask_recurrences, 66);
+assert.strictEqual(perLeg.recurrence_at_patience_arm.total, 97);
+assert.strictEqual(perLeg.honesty_fences.recurrence_threshold.includes("not a calibrated threshold"), true);
+assert.strictEqual(perLeg.honesty_fences.five_cent_cell.includes("not a learned faller cell lattice"), true);
+const nik23 = perLeg.NIK.find((row) => row.id === "NIK_REPRICE_23");
+const nik19 = perLeg.NIK.find((row) => row.id === "NIK_PLACE_19");
+const ask18 = perLeg.NIK.find((row) => row.id === "NIK_ASK_18_DECLINED");
+const vrb69 = perLeg.VRB.find((row) => row.id === "VRB_PLACE_69");
+const vrbFill69 = perLeg.VRB.find((row) => row.id === "VRB_FILL_69");
+assert.strictEqual(nik23.price_math.includes("anchor 33 -> 30"), true);
+assert.strictEqual(nik23.own_quote_lead_in.at(-1).bid, 29);
+assert.strictEqual(nik23.own_quote_lead_in.at(-1).ask, 30);
+assert.strictEqual(nik19.price_math.includes("current NIK bid 19"), true);
+assert.strictEqual(nik19.own_recent_true_prints.at(-1).price, 24);
+assert.strictEqual(nik19.own_quote_lead_in.at(-1).raw_normalized_last, 28);
+assert.strictEqual(ask18.price_math.includes("ex-post counterfactual only"), true);
+assert.strictEqual(vrb69.price_math.includes("current bid = 69"), true);
+assert.strictEqual(vrbFill69.own_quote_lead_in.at(-2).bid, 69);
+assert.strictEqual(vrbFill69.own_quote_lead_in.at(-2).ask, 70);
+assert.strictEqual(vrbFill69.own_quote_lead_in.at(-1).bid, 67);
+assert.strictEqual(vrbFill69.own_quote_lead_in.at(-1).ask, 68);
+
+const scopedLedgerText = zlib.gunzipSync(Buffer.from(
+  fs.readFileSync(path.join(dir, "NIKVRB_T375_TO_BELL_DECISION_TRACE.jsonl.gz.b64"), "utf8").trim(),
+  "base64"
+)).toString("utf8").trim();
+const scopedLedger = scopedLedgerText.split("\n").map(JSON.parse);
+assert.strictEqual(scopedLedger.length, 13122);
+assert.strictEqual(scopedLedger[0].sequence, 2);
+assert.strictEqual(scopedLedger.at(-1).trigger, "ACTUAL_BELL");
+
 const liveBlob = child.execFileSync(
   "git", ["hash-object", "arb-executor/live_v4.py"], { cwd: repo, encoding: "utf8" }
 ).trim();
 assert.strictEqual(liveBlob, "01534495161a9f8f53477794a9e30d4483ebe39f");
 
-process.stdout.write("PASS test_nikvrb_sibling_shape_cold_replay (46 assertions; one cold game; no population/live execution)\n");
+process.stdout.write("PASS test_nikvrb_sibling_shape_cold_replay (68 assertions; one cold game; no population/live execution)\n");

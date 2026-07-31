@@ -1,0 +1,4401 @@
+{
+  "schema_version": "NIKVRB_PER_LEG_CAUSAL_TRACE_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+  "clock_scope": {
+    "first_market_sequence": 2,
+    "first_both_books_sequence": 3,
+    "bell_sequence": 13123,
+    "market_receipts": 13121,
+    "complete_receipt_ledger": ".claude/window1_live_v4_replay/nikvrb_sibling_shape_tune_20260731/NIKVRB_T375_TO_BELL_DECISION_TRACE.jsonl.gz.b64"
+  },
+  "honesty_fences": {
+    "atlas_depth": "historical ATLAS price-dip quantile; not displayed queue depth or top-five depth",
+    "faller_p75": "the one-game replay candidate selects ATLAS p75 after orientation calls the leg a faller; this is candidate code, not the production ATLAS p50 signer",
+    "recurrence_threshold": "the arm rule requires total recurrences > 0; 97 is the observed accumulated count, not a calibrated threshold",
+    "five_cent_cell": "CELL_WIDTH_CENTS=5 is transplanted from live_v4 V4_REPRICE_MOVE_CENTS, a resting-repost deadband; it is not a learned faller cell lattice",
+    "cancel_choice": "the arm transition closes the NIK order before evaluating HOLD or improvement; cancel/wait is imposed by this replay branch and is not proven as the unique OS consequence of the recurrence evidence",
+    "ask18_choice": "after pair completion the entry gate computes no alternative price; pair basis 69+18=87 is hindsight only",
+    "normalized_last": "the clock's normalized last column can lag the latest receipt-identified print; both values are retained and only the receipt-backed value is described as verified"
+  },
+  "atlas_faller_calls": [
+    {
+      "time_et": "2026-07-19T06:28:05-04:00",
+      "page": "ATP_CHALL|underdog|26_50",
+      "population": 1470,
+      "depth_p25_p50_p75": [
+        2,
+        4,
+        7
+      ],
+      "anchor_source": "last_traded",
+      "anchor_price": 33,
+      "atlas_p50_aim": 29,
+      "replay_faller_p75_target": 26
+    },
+    {
+      "time_et": "2026-07-19T07:07:33-04:00",
+      "page": "ATP_CHALL|underdog|26_50",
+      "population": 1470,
+      "depth_p25_p50_p75": [
+        2,
+        4,
+        7
+      ],
+      "anchor_source": "tight_mid",
+      "anchor_price": 30,
+      "atlas_p50_aim": 26,
+      "replay_faller_p75_target": 23
+    },
+    {
+      "time_et": "2026-07-19T07:51:21-04:00",
+      "page": "ATP_CHALL|underdog|26_50",
+      "population": 1470,
+      "depth_p25_p50_p75": [
+        2,
+        4,
+        7
+      ],
+      "anchor_source": "last_traded",
+      "anchor_price": 28,
+      "atlas_p50_aim": 24,
+      "replay_faller_p75_target": 21
+    }
+  ],
+  "recurrence_at_patience_arm": {
+    "bid_recurrences": 31,
+    "ask_recurrences": 66,
+    "total": 97,
+    "definition": "each bid or ask fall below its immediately prior value arms a local trough; the next value above that trough completes one recurrence"
+  },
+  "VRB": [
+    {
+      "id": "VRB_DISCOVERY_WAIT",
+      "sequence": 3,
+      "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+      "tminus_scheduled": "T-375.450",
+      "tminus_bell": "T-380.450",
+      "own_quote_lead_in": [
+        {
+          "sequence": 3,
+          "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+          "tminus_scheduled": "T-375.450",
+          "tminus_bell": "T-380.450",
+          "bid": 5,
+          "ask": 92,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0,
+          "latest_verified_print_at_decision": null
+        }
+      ],
+      "sibling_quote_lead_in": [
+        {
+          "sequence": 2,
+          "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+          "tminus_scheduled": "T-375.450",
+          "tminus_bell": "T-380.450",
+          "bid": 5,
+          "ask": 92,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0,
+          "latest_verified_print_at_decision": null
+        }
+      ],
+      "own_recent_true_prints": [],
+      "sibling_recent_true_prints": [],
+      "organ": "DISCOVERY_GATE",
+      "return": "NO_CALL: no receipt-identified VRB true print",
+      "prediction": "none; the riser/faller path is not yet price-authoritative for VRB",
+      "action": "no VRB order",
+      "declined": "BBO-only price conception",
+      "code_path": "ColdReplay.process:firstDualBook"
+    },
+    {
+      "id": "VRB_ROLE_BECOMES_VISIBLE_FROM_NIK_DISCOVERY",
+      "sequence": 8,
+      "timestamp_et": "2026-07-19T06:28:05.000000-04:00",
+      "tminus_scheduled": "T-361.917",
+      "tminus_bell": "T-366.917",
+      "own_quote_lead_in": [
+        {
+          "sequence": 3,
+          "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+          "tminus_scheduled": "T-375.450",
+          "tminus_bell": "T-380.450",
+          "bid": 5,
+          "ask": 92,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 812
+        },
+        {
+          "sequence": 8,
+          "timestamp_et": "2026-07-19T06:28:05.000000-04:00",
+          "tminus_scheduled": "T-361.917",
+          "tminus_bell": "T-366.917",
+          "bid": 67,
+          "ask": 77,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0,
+          "latest_verified_print_at_decision": null
+        }
+      ],
+      "sibling_quote_lead_in": [
+        {
+          "sequence": 2,
+          "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+          "tminus_scheduled": "T-375.450",
+          "tminus_bell": "T-380.450",
+          "bid": 5,
+          "ask": 92,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 808
+        },
+        {
+          "sequence": 6,
+          "timestamp_et": "2026-07-19T06:28:01.000000-04:00",
+          "tminus_scheduled": "T-361.983",
+          "tminus_bell": "T-366.983",
+          "bid": 23,
+          "ask": 33,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 4,
+          "latest_verified_print_at_decision": {
+            "sequence": 7,
+            "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+            "tminus_scheduled": "T-361.971",
+            "tminus_bell": "T-366.971",
+            "price": 33,
+            "size": 1,
+            "receipt": "b17542ca-924e-4214-e91f-a96dc81ad7f6"
+          }
+        }
+      ],
+      "own_recent_true_prints": [],
+      "sibling_recent_true_prints": [
+        {
+          "sequence": 7,
+          "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+          "tminus_scheduled": "T-361.971",
+          "tminus_bell": "T-366.971",
+          "price": 33,
+          "size": 1,
+          "receipt": "b17542ca-924e-4214-e91f-a96dc81ad7f6"
+        }
+      ],
+      "organ": "orientation inside INITIAL_ENTRY_TREE",
+      "return": "VRB riser, conviction 1.0, voices cohort + anchor_role",
+      "prediction": "VRB is the near-now climbing leg; pulses are expected before T2 while NIK is the inverse faller",
+      "action": "role opened, but no VRB target because VRB still lacks its own true-print anchor",
+      "declined": "no cross-leg substitution for a missing VRB anchor",
+      "code_path": "buildConsultations -> ColdReplay.process:consultation"
+    },
+    {
+      "id": "VRB_PLACE_69",
+      "sequence": 296,
+      "timestamp_et": "2026-07-19T07:13:58.000000-04:00",
+      "tminus_scheduled": "T-316.033",
+      "tminus_bell": "T-321.033",
+      "own_quote_lead_in": [
+        {
+          "sequence": 227,
+          "timestamp_et": "2026-07-19T07:12:07.000000-04:00",
+          "tminus_scheduled": "T-317.883",
+          "tminus_bell": "T-322.883",
+          "bid": 67,
+          "ask": 74,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 1
+        },
+        {
+          "sequence": 233,
+          "timestamp_et": "2026-07-19T07:12:08.000000-04:00",
+          "tminus_scheduled": "T-317.867",
+          "tminus_bell": "T-322.867",
+          "bid": 67,
+          "ask": 76,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 235,
+          "timestamp_et": "2026-07-19T07:12:08.000000-04:00",
+          "tminus_scheduled": "T-317.867",
+          "tminus_bell": "T-322.867",
+          "bid": 67,
+          "ask": 75,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 239,
+          "timestamp_et": "2026-07-19T07:12:08.000000-04:00",
+          "tminus_scheduled": "T-317.867",
+          "tminus_bell": "T-322.867",
+          "bid": 67,
+          "ask": 73,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 1
+        },
+        {
+          "sequence": 244,
+          "timestamp_et": "2026-07-19T07:12:09.000000-04:00",
+          "tminus_scheduled": "T-317.850",
+          "tminus_bell": "T-322.850",
+          "bid": 67,
+          "ask": 72,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 246,
+          "timestamp_et": "2026-07-19T07:12:09.000000-04:00",
+          "tminus_scheduled": "T-317.850",
+          "tminus_bell": "T-322.850",
+          "bid": 67,
+          "ask": 71,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 1
+        },
+        {
+          "sequence": 248,
+          "timestamp_et": "2026-07-19T07:12:10.000000-04:00",
+          "tminus_scheduled": "T-317.833",
+          "tminus_bell": "T-322.833",
+          "bid": 67,
+          "ask": 70,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 252,
+          "timestamp_et": "2026-07-19T07:12:10.000000-04:00",
+          "tminus_scheduled": "T-317.833",
+          "tminus_bell": "T-322.833",
+          "bid": 67,
+          "ask": 69,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 1
+        },
+        {
+          "sequence": 256,
+          "timestamp_et": "2026-07-19T07:12:11.000000-04:00",
+          "tminus_scheduled": "T-317.817",
+          "tminus_bell": "T-322.817",
+          "bid": 67,
+          "ask": 68,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 12
+        },
+        {
+          "sequence": 263,
+          "timestamp_et": "2026-07-19T07:12:23.000000-04:00",
+          "tminus_scheduled": "T-317.617",
+          "tminus_bell": "T-322.617",
+          "bid": 67,
+          "ask": 75,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 45
+        },
+        {
+          "sequence": 271,
+          "timestamp_et": "2026-07-19T07:13:08.000000-04:00",
+          "tminus_scheduled": "T-316.867",
+          "tminus_bell": "T-321.867",
+          "bid": 67,
+          "ask": 74,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 27
+        },
+        {
+          "sequence": 275,
+          "timestamp_et": "2026-07-19T07:13:35.000000-04:00",
+          "tminus_scheduled": "T-316.417",
+          "tminus_bell": "T-321.417",
+          "bid": 67,
+          "ask": 73,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 2
+        },
+        {
+          "sequence": 278,
+          "timestamp_et": "2026-07-19T07:13:37.000000-04:00",
+          "tminus_scheduled": "T-316.383",
+          "tminus_bell": "T-321.383",
+          "bid": 69,
+          "ask": 73,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 281,
+          "timestamp_et": "2026-07-19T07:13:37.000000-04:00",
+          "tminus_scheduled": "T-316.383",
+          "tminus_bell": "T-321.383",
+          "bid": 69,
+          "ask": 72,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 285,
+          "timestamp_et": "2026-07-19T07:13:37.000000-04:00",
+          "tminus_scheduled": "T-316.383",
+          "tminus_bell": "T-321.383",
+          "bid": 69,
+          "ask": 71,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 287,
+          "timestamp_et": "2026-07-19T07:13:37.000000-04:00",
+          "tminus_scheduled": "T-316.383",
+          "tminus_bell": "T-321.383",
+          "bid": 69,
+          "ask": 70,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 21,
+          "latest_verified_print_at_decision": {
+            "sequence": 295,
+            "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+            "tminus_scheduled": "T-316.064",
+            "tminus_bell": "T-321.064",
+            "price": 70,
+            "size": 0.06,
+            "receipt": "5d023a38-6785-6ff4-9f45-a675798f1b9c"
+          }
+        }
+      ],
+      "sibling_quote_lead_in": [
+        {
+          "sequence": 190,
+          "timestamp_et": "2026-07-19T07:07:33.000000-04:00",
+          "tminus_scheduled": "T-322.450",
+          "tminus_bell": "T-327.450",
+          "bid": 29,
+          "ask": 30,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 192,
+          "timestamp_et": "2026-07-19T07:07:33.000000-04:00",
+          "tminus_scheduled": "T-322.450",
+          "tminus_bell": "T-327.450",
+          "bid": 23,
+          "ask": 30,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 2
+        },
+        {
+          "sequence": 195,
+          "timestamp_et": "2026-07-19T07:07:35.000000-04:00",
+          "tminus_scheduled": "T-322.417",
+          "tminus_bell": "T-327.417",
+          "bid": 28,
+          "ask": 30,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 12
+        },
+        {
+          "sequence": 201,
+          "timestamp_et": "2026-07-19T07:07:47.000000-04:00",
+          "tminus_scheduled": "T-322.217",
+          "tminus_bell": "T-327.217",
+          "bid": 28,
+          "ask": 29,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 202,
+          "timestamp_et": "2026-07-19T07:07:47.000000-04:00",
+          "tminus_scheduled": "T-322.217",
+          "tminus_bell": "T-327.217",
+          "bid": 23,
+          "ask": 29,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 1
+        },
+        {
+          "sequence": 203,
+          "timestamp_et": "2026-07-19T07:07:48.000000-04:00",
+          "tminus_scheduled": "T-322.200",
+          "tminus_bell": "T-327.200",
+          "bid": 28,
+          "ask": 29,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 370,
+          "latest_verified_print_at_decision": {
+            "sequence": 139,
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "tminus_scheduled": "T-334.827",
+            "tminus_bell": "T-339.827",
+            "price": 32,
+            "size": 8.94,
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b"
+          }
+        }
+      ],
+      "own_recent_true_prints": [
+        {
+          "sequence": 295,
+          "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+          "tminus_scheduled": "T-316.064",
+          "tminus_bell": "T-321.064",
+          "price": 70,
+          "size": 0.06,
+          "receipt": "5d023a38-6785-6ff4-9f45-a675798f1b9c"
+        }
+      ],
+      "sibling_recent_true_prints": [
+        {
+          "sequence": 7,
+          "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+          "tminus_scheduled": "T-361.971",
+          "tminus_bell": "T-366.971",
+          "price": 33,
+          "size": 1,
+          "receipt": "b17542ca-924e-4214-e91f-a96dc81ad7f6"
+        },
+        {
+          "sequence": 139,
+          "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+          "tminus_scheduled": "T-334.827",
+          "tminus_bell": "T-339.827",
+          "price": 32,
+          "size": 8.94,
+          "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b"
+        }
+      ],
+      "organ": "ORIENTATION_RISER_NEAR_NOW",
+      "return": "current external bid 69",
+      "prediction": "the fresh 70 print and 69/70 book make the shallow riser retouch executable now, before T2",
+      "price_math": "riser branch target = current bid = 69; ATLAS p50 alternative = 70 - 3 = 67",
+      "action": "place five at 69",
+      "declined": "ATLAS 67",
+      "code_path": "buildConsultations:146-148 -> ColdReplay._place"
+    },
+    {
+      "id": "VRB_FILL_69",
+      "sequence": 325,
+      "timestamp_et": "2026-07-19T07:15:22.000000-04:00",
+      "tminus_scheduled": "T-314.633",
+      "tminus_bell": "T-319.633",
+      "own_quote_lead_in": [
+        {
+          "sequence": 233,
+          "timestamp_et": "2026-07-19T07:12:08.000000-04:00",
+          "tminus_scheduled": "T-317.867",
+          "tminus_bell": "T-322.867",
+          "bid": 67,
+          "ask": 76,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 235,
+          "timestamp_et": "2026-07-19T07:12:08.000000-04:00",
+          "tminus_scheduled": "T-317.867",
+          "tminus_bell": "T-322.867",
+          "bid": 67,
+          "ask": 75,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 239,
+          "timestamp_et": "2026-07-19T07:12:08.000000-04:00",
+          "tminus_scheduled": "T-317.867",
+          "tminus_bell": "T-322.867",
+          "bid": 67,
+          "ask": 73,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 1
+        },
+        {
+          "sequence": 244,
+          "timestamp_et": "2026-07-19T07:12:09.000000-04:00",
+          "tminus_scheduled": "T-317.850",
+          "tminus_bell": "T-322.850",
+          "bid": 67,
+          "ask": 72,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 246,
+          "timestamp_et": "2026-07-19T07:12:09.000000-04:00",
+          "tminus_scheduled": "T-317.850",
+          "tminus_bell": "T-322.850",
+          "bid": 67,
+          "ask": 71,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 1
+        },
+        {
+          "sequence": 248,
+          "timestamp_et": "2026-07-19T07:12:10.000000-04:00",
+          "tminus_scheduled": "T-317.833",
+          "tminus_bell": "T-322.833",
+          "bid": 67,
+          "ask": 70,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 252,
+          "timestamp_et": "2026-07-19T07:12:10.000000-04:00",
+          "tminus_scheduled": "T-317.833",
+          "tminus_bell": "T-322.833",
+          "bid": 67,
+          "ask": 69,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 1
+        },
+        {
+          "sequence": 256,
+          "timestamp_et": "2026-07-19T07:12:11.000000-04:00",
+          "tminus_scheduled": "T-317.817",
+          "tminus_bell": "T-322.817",
+          "bid": 67,
+          "ask": 68,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 12
+        },
+        {
+          "sequence": 263,
+          "timestamp_et": "2026-07-19T07:12:23.000000-04:00",
+          "tminus_scheduled": "T-317.617",
+          "tminus_bell": "T-322.617",
+          "bid": 67,
+          "ask": 75,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 45
+        },
+        {
+          "sequence": 271,
+          "timestamp_et": "2026-07-19T07:13:08.000000-04:00",
+          "tminus_scheduled": "T-316.867",
+          "tminus_bell": "T-321.867",
+          "bid": 67,
+          "ask": 74,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 27
+        },
+        {
+          "sequence": 275,
+          "timestamp_et": "2026-07-19T07:13:35.000000-04:00",
+          "tminus_scheduled": "T-316.417",
+          "tminus_bell": "T-321.417",
+          "bid": 67,
+          "ask": 73,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 2
+        },
+        {
+          "sequence": 278,
+          "timestamp_et": "2026-07-19T07:13:37.000000-04:00",
+          "tminus_scheduled": "T-316.383",
+          "tminus_bell": "T-321.383",
+          "bid": 69,
+          "ask": 73,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 281,
+          "timestamp_et": "2026-07-19T07:13:37.000000-04:00",
+          "tminus_scheduled": "T-316.383",
+          "tminus_bell": "T-321.383",
+          "bid": 69,
+          "ask": 72,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 285,
+          "timestamp_et": "2026-07-19T07:13:37.000000-04:00",
+          "tminus_scheduled": "T-316.383",
+          "tminus_bell": "T-321.383",
+          "bid": 69,
+          "ask": 71,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 287,
+          "timestamp_et": "2026-07-19T07:13:37.000000-04:00",
+          "tminus_scheduled": "T-316.383",
+          "tminus_bell": "T-321.383",
+          "bid": 69,
+          "ask": 70,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 105
+        },
+        {
+          "sequence": 325,
+          "timestamp_et": "2026-07-19T07:15:22.000000-04:00",
+          "tminus_scheduled": "T-314.633",
+          "tminus_bell": "T-319.633",
+          "bid": 67,
+          "ask": 68,
+          "raw_normalized_last": 70,
+          "latest_verified_print_at_transition": {
+            "receipt": "5d023a38-6785-6ff4-9f45-a675798f1b9c",
+            "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+            "price": 70,
+            "size": 0.06
+          },
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0,
+          "latest_verified_print_at_decision": {
+            "sequence": 295,
+            "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+            "tminus_scheduled": "T-316.064",
+            "tminus_bell": "T-321.064",
+            "price": 70,
+            "size": 0.06,
+            "receipt": "5d023a38-6785-6ff4-9f45-a675798f1b9c"
+          }
+        }
+      ],
+      "sibling_quote_lead_in": [
+        {
+          "sequence": 190,
+          "timestamp_et": "2026-07-19T07:07:33.000000-04:00",
+          "tminus_scheduled": "T-322.450",
+          "tminus_bell": "T-327.450",
+          "bid": 29,
+          "ask": 30,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 192,
+          "timestamp_et": "2026-07-19T07:07:33.000000-04:00",
+          "tminus_scheduled": "T-322.450",
+          "tminus_bell": "T-327.450",
+          "bid": 23,
+          "ask": 30,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 2
+        },
+        {
+          "sequence": 195,
+          "timestamp_et": "2026-07-19T07:07:35.000000-04:00",
+          "tminus_scheduled": "T-322.417",
+          "tminus_bell": "T-327.417",
+          "bid": 28,
+          "ask": 30,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 12
+        },
+        {
+          "sequence": 201,
+          "timestamp_et": "2026-07-19T07:07:47.000000-04:00",
+          "tminus_scheduled": "T-322.217",
+          "tminus_bell": "T-327.217",
+          "bid": 28,
+          "ask": 29,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 202,
+          "timestamp_et": "2026-07-19T07:07:47.000000-04:00",
+          "tminus_scheduled": "T-322.217",
+          "tminus_bell": "T-327.217",
+          "bid": 23,
+          "ask": 29,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 1
+        },
+        {
+          "sequence": 203,
+          "timestamp_et": "2026-07-19T07:07:48.000000-04:00",
+          "tminus_scheduled": "T-322.200",
+          "tminus_bell": "T-327.200",
+          "bid": 28,
+          "ask": 29,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 454,
+          "latest_verified_print_at_decision": {
+            "sequence": 139,
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "tminus_scheduled": "T-334.827",
+            "tminus_bell": "T-339.827",
+            "price": 32,
+            "size": 8.94,
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b"
+          }
+        }
+      ],
+      "own_recent_true_prints": [
+        {
+          "sequence": 295,
+          "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+          "tminus_scheduled": "T-316.064",
+          "tminus_bell": "T-321.064",
+          "price": 70,
+          "size": 0.06,
+          "receipt": "5d023a38-6785-6ff4-9f45-a675798f1b9c"
+        }
+      ],
+      "sibling_recent_true_prints": [
+        {
+          "sequence": 7,
+          "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+          "tminus_scheduled": "T-361.971",
+          "tminus_bell": "T-366.971",
+          "price": 33,
+          "size": 1,
+          "receipt": "b17542ca-924e-4214-e91f-a96dc81ad7f6"
+        },
+        {
+          "sequence": 139,
+          "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+          "tminus_scheduled": "T-334.827",
+          "tminus_bell": "T-339.827",
+          "price": 32,
+          "size": 8.94,
+          "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b"
+        }
+      ],
+      "organ": "FILL_ACCOUNTING",
+      "return": "STRICT_ASK_CERTAIN_FILL because external ask 68 < exposed 69",
+      "prediction": "none; this is execution evidence, not a shape forecast",
+      "price_math": "credit original exposed X=69; do not move it to the new 67 bid",
+      "action": "credit five at 69",
+      "declined": "maker-safety cancel/reprice before fill credit",
+      "code_path": "ColdReplay._fillEvidence:252-261 -> ColdReplay._fill"
+    },
+    {
+      "id": "VRB_POST_FILL_LOCK_THROUGH_BELL",
+      "sequence": 13123,
+      "timestamp_et": "2026-07-19T12:35:00.000000-04:00",
+      "tminus_scheduled": "T+5.000",
+      "tminus_bell": "T-0.000",
+      "own_quote_lead_in": [
+        {
+          "sequence": 12980,
+          "timestamp_et": "2026-07-19T12:33:53.000000-04:00",
+          "tminus_scheduled": "T+3.883",
+          "tminus_bell": "T-1.117",
+          "bid": 80,
+          "ask": 83,
+          "raw_normalized_last": 83,
+          "latest_verified_print_at_transition": {
+            "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e",
+            "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+            "price": 83,
+            "size": 9
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 4
+        },
+        {
+          "sequence": 13017,
+          "timestamp_et": "2026-07-19T12:33:57.000000-04:00",
+          "tminus_scheduled": "T+3.950",
+          "tminus_bell": "T-1.050",
+          "bid": 81,
+          "ask": 83,
+          "raw_normalized_last": 83,
+          "latest_verified_print_at_transition": {
+            "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e",
+            "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+            "price": 83,
+            "size": 9
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 48
+        },
+        {
+          "sequence": 13079,
+          "timestamp_et": "2026-07-19T12:34:45.000000-04:00",
+          "tminus_scheduled": "T+4.750",
+          "tminus_bell": "T-0.250",
+          "bid": 81,
+          "ask": 84,
+          "raw_normalized_last": 83,
+          "latest_verified_print_at_transition": {
+            "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e",
+            "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+            "price": 83,
+            "size": 9
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 9
+        },
+        {
+          "sequence": 13094,
+          "timestamp_et": "2026-07-19T12:34:54.000000-04:00",
+          "tminus_scheduled": "T+4.900",
+          "tminus_bell": "T-0.100",
+          "bid": 81,
+          "ask": 83,
+          "raw_normalized_last": 83,
+          "latest_verified_print_at_transition": {
+            "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e",
+            "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+            "price": 83,
+            "size": 9
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 1
+        },
+        {
+          "sequence": 13108,
+          "timestamp_et": "2026-07-19T12:34:55.000000-04:00",
+          "tminus_scheduled": "T+4.917",
+          "tminus_bell": "T-0.083",
+          "bid": 81,
+          "ask": 84,
+          "raw_normalized_last": 83,
+          "latest_verified_print_at_transition": {
+            "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e",
+            "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+            "price": 83,
+            "size": 9
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 13113,
+          "timestamp_et": "2026-07-19T12:34:55.000000-04:00",
+          "tminus_scheduled": "T+4.917",
+          "tminus_bell": "T-0.083",
+          "bid": 81,
+          "ask": 83,
+          "raw_normalized_last": 83,
+          "latest_verified_print_at_transition": {
+            "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e",
+            "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+            "price": 83,
+            "size": 9
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 5,
+          "latest_verified_print_at_decision": {
+            "sequence": 10979,
+            "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+            "tminus_scheduled": "T-4.872",
+            "tminus_bell": "T-9.872",
+            "price": 83,
+            "size": 9,
+            "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e"
+          }
+        }
+      ],
+      "sibling_quote_lead_in": [
+        {
+          "sequence": 6404,
+          "timestamp_et": "2026-07-19T11:53:10.000000-04:00",
+          "tminus_scheduled": "T-36.833",
+          "tminus_bell": "T-41.833",
+          "bid": 17,
+          "ask": 18,
+          "raw_normalized_last": 18,
+          "latest_verified_print_at_transition": {
+            "receipt": "5572fde4-098d-47bc-1111-16d37172ad90",
+            "timestamp_et": "2026-07-19T11:51:43.971849-04:00",
+            "price": 18,
+            "size": 48.33
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 2
+        },
+        {
+          "sequence": 6560,
+          "timestamp_et": "2026-07-19T11:53:12.000000-04:00",
+          "tminus_scheduled": "T-36.800",
+          "tminus_bell": "T-41.800",
+          "bid": 17,
+          "ask": 19,
+          "raw_normalized_last": 18,
+          "latest_verified_print_at_transition": {
+            "receipt": "5572fde4-098d-47bc-1111-16d37172ad90",
+            "timestamp_et": "2026-07-19T11:51:43.971849-04:00",
+            "price": 18,
+            "size": 48.33
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 5
+        },
+        {
+          "sequence": 6612,
+          "timestamp_et": "2026-07-19T11:53:17.000000-04:00",
+          "tminus_scheduled": "T-36.717",
+          "tminus_bell": "T-41.717",
+          "bid": 17,
+          "ask": 18,
+          "raw_normalized_last": 18,
+          "latest_verified_print_at_transition": {
+            "receipt": "5572fde4-098d-47bc-1111-16d37172ad90",
+            "timestamp_et": "2026-07-19T11:51:43.971849-04:00",
+            "price": 18,
+            "size": 48.33
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 4
+        },
+        {
+          "sequence": 6635,
+          "timestamp_et": "2026-07-19T11:53:21.000000-04:00",
+          "tminus_scheduled": "T-36.650",
+          "tminus_bell": "T-41.650",
+          "bid": 17,
+          "ask": 19,
+          "raw_normalized_last": 18,
+          "latest_verified_print_at_transition": {
+            "receipt": "5572fde4-098d-47bc-1111-16d37172ad90",
+            "timestamp_et": "2026-07-19T11:51:43.971849-04:00",
+            "price": 18,
+            "size": 48.33
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 6
+        },
+        {
+          "sequence": 6684,
+          "timestamp_et": "2026-07-19T11:53:27.000000-04:00",
+          "tminus_scheduled": "T-36.550",
+          "tminus_bell": "T-41.550",
+          "bid": 17,
+          "ask": 18,
+          "raw_normalized_last": 18,
+          "latest_verified_print_at_transition": {
+            "receipt": "5572fde4-098d-47bc-1111-16d37172ad90",
+            "timestamp_et": "2026-07-19T11:51:43.971849-04:00",
+            "price": 18,
+            "size": 48.33
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 5
+        },
+        {
+          "sequence": 6818,
+          "timestamp_et": "2026-07-19T11:53:32.000000-04:00",
+          "tminus_scheduled": "T-36.467",
+          "tminus_bell": "T-41.467",
+          "bid": 17,
+          "ask": 19,
+          "raw_normalized_last": 18,
+          "latest_verified_print_at_transition": {
+            "receipt": "5572fde4-098d-47bc-1111-16d37172ad90",
+            "timestamp_et": "2026-07-19T11:51:43.971849-04:00",
+            "price": 18,
+            "size": 48.33
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 2488,
+          "latest_verified_print_at_decision": {
+            "sequence": 12210,
+            "timestamp_et": "2026-07-19T12:30:08.232286-04:00",
+            "tminus_scheduled": "T+0.137",
+            "tminus_bell": "T-4.863",
+            "price": 19,
+            "size": 9.96,
+            "receipt": "1b4a90c8-bb50-6d28-9730-54d2f707ecf1"
+          }
+        }
+      ],
+      "own_recent_true_prints": [
+        {
+          "sequence": 4717,
+          "timestamp_et": "2026-07-19T11:44:03.672971-04:00",
+          "tminus_scheduled": "T-45.939",
+          "tminus_bell": "T-50.939",
+          "price": 84,
+          "size": 4,
+          "receipt": "235d1eac-e05a-4497-f990-0a151d76142f"
+        },
+        {
+          "sequence": 4755,
+          "timestamp_et": "2026-07-19T11:49:12.110829-04:00",
+          "tminus_scheduled": "T-40.798",
+          "tminus_bell": "T-45.798",
+          "price": 81,
+          "size": 5,
+          "receipt": "0136593a-675b-740d-0532-fc4306b92702"
+        },
+        {
+          "sequence": 5504,
+          "timestamp_et": "2026-07-19T11:52:06.239204-04:00",
+          "tminus_scheduled": "T-37.896",
+          "tminus_bell": "T-42.896",
+          "price": 83,
+          "size": 5,
+          "receipt": "66b889ad-1ce1-773a-279f-6db77f5aa96a"
+        },
+        {
+          "sequence": 9175,
+          "timestamp_et": "2026-07-19T12:12:26.448839-04:00",
+          "tminus_scheduled": "T-17.559",
+          "tminus_bell": "T-22.559",
+          "price": 84,
+          "size": 5.8,
+          "receipt": "d9bfa760-ed1d-552a-02c7-285cd23e5c54"
+        },
+        {
+          "sequence": 10979,
+          "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+          "tminus_scheduled": "T-4.872",
+          "tminus_bell": "T-9.872",
+          "price": 83,
+          "size": 9,
+          "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e"
+        }
+      ],
+      "sibling_recent_true_prints": [
+        {
+          "sequence": 11965,
+          "timestamp_et": "2026-07-19T12:26:23.967753-04:00",
+          "tminus_scheduled": "T-3.601",
+          "tminus_bell": "T-8.601",
+          "price": 19,
+          "size": 16,
+          "receipt": "24bceb16-1d3b-6149-3df0-5842fed5b288"
+        },
+        {
+          "sequence": 11966,
+          "timestamp_et": "2026-07-19T12:26:23.967753-04:00",
+          "tminus_scheduled": "T-3.601",
+          "tminus_bell": "T-8.601",
+          "price": 19,
+          "size": 62.22,
+          "receipt": "7f0e93c1-0eb8-65ea-3eac-0b0db43a0973"
+        },
+        {
+          "sequence": 11967,
+          "timestamp_et": "2026-07-19T12:26:23.967753-04:00",
+          "tminus_scheduled": "T-3.601",
+          "tminus_bell": "T-8.601",
+          "price": 19,
+          "size": 63,
+          "receipt": "a1775348-5bfb-67c1-0eab-61a582d054e2"
+        },
+        {
+          "sequence": 11968,
+          "timestamp_et": "2026-07-19T12:26:23.967753-04:00",
+          "tminus_scheduled": "T-3.601",
+          "tminus_bell": "T-8.601",
+          "price": 19,
+          "size": 22,
+          "receipt": "a305f177-ddbf-65c4-08fc-df8984885dd1"
+        },
+        {
+          "sequence": 12210,
+          "timestamp_et": "2026-07-19T12:30:08.232286-04:00",
+          "tminus_scheduled": "T+0.137",
+          "tminus_bell": "T-4.863",
+          "price": 19,
+          "size": 9.96,
+          "receipt": "1b4a90c8-bb50-6d28-9730-54d2f707ecf1"
+        }
+      ],
+      "organ": "FILLED_PHASE_GATE / PAIR_ENTRY_COMPLETE after NIK fill",
+      "return": "entry ineligible on every later receipt",
+      "prediction": "market state remains readable; no second VRB entry is permitted",
+      "action": "no re-buy through observed bell",
+      "declined": "all later VRB consultations and quote-pulse entries",
+      "code_path": "ColdReplay.process:legFilledLock -> ColdReplay.process:pairCompleteLock"
+    }
+  ],
+  "NIK": [
+    {
+      "id": "NIK_DISCOVERY_WAIT",
+      "sequence": 3,
+      "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+      "tminus_scheduled": "T-375.450",
+      "tminus_bell": "T-380.450",
+      "own_quote_lead_in": [
+        {
+          "sequence": 2,
+          "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+          "tminus_scheduled": "T-375.450",
+          "tminus_bell": "T-380.450",
+          "bid": 5,
+          "ask": 92,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0,
+          "latest_verified_print_at_decision": null
+        }
+      ],
+      "sibling_quote_lead_in": [
+        {
+          "sequence": 3,
+          "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+          "tminus_scheduled": "T-375.450",
+          "tminus_bell": "T-380.450",
+          "bid": 5,
+          "ask": 92,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0,
+          "latest_verified_print_at_decision": null
+        }
+      ],
+      "own_recent_true_prints": [],
+      "sibling_recent_true_prints": [],
+      "organ": "DISCOVERY_GATE",
+      "return": "NO_CALL: no receipt-identified true print",
+      "prediction": "none",
+      "action": "no NIK order",
+      "declined": "BBO-only conception",
+      "code_path": "ColdReplay.process:firstDualBook"
+    },
+    {
+      "id": "NIK_PLACE_26",
+      "sequence": 8,
+      "timestamp_et": "2026-07-19T06:28:05.000000-04:00",
+      "tminus_scheduled": "T-361.917",
+      "tminus_bell": "T-366.917",
+      "own_quote_lead_in": [
+        {
+          "sequence": 2,
+          "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+          "tminus_scheduled": "T-375.450",
+          "tminus_bell": "T-380.450",
+          "bid": 5,
+          "ask": 92,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 808
+        },
+        {
+          "sequence": 6,
+          "timestamp_et": "2026-07-19T06:28:01.000000-04:00",
+          "tminus_scheduled": "T-361.983",
+          "tminus_bell": "T-366.983",
+          "bid": 23,
+          "ask": 33,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 4,
+          "latest_verified_print_at_decision": {
+            "sequence": 7,
+            "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+            "tminus_scheduled": "T-361.971",
+            "tminus_bell": "T-366.971",
+            "price": 33,
+            "size": 1,
+            "receipt": "b17542ca-924e-4214-e91f-a96dc81ad7f6"
+          }
+        }
+      ],
+      "sibling_quote_lead_in": [
+        {
+          "sequence": 3,
+          "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+          "tminus_scheduled": "T-375.450",
+          "tminus_bell": "T-380.450",
+          "bid": 5,
+          "ask": 92,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 812
+        },
+        {
+          "sequence": 8,
+          "timestamp_et": "2026-07-19T06:28:05.000000-04:00",
+          "tminus_scheduled": "T-361.917",
+          "tminus_bell": "T-366.917",
+          "bid": 67,
+          "ask": 77,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0,
+          "latest_verified_print_at_decision": null
+        }
+      ],
+      "own_recent_true_prints": [
+        {
+          "sequence": 7,
+          "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+          "tminus_scheduled": "T-361.971",
+          "tminus_bell": "T-366.971",
+          "price": 33,
+          "size": 1,
+          "receipt": "b17542ca-924e-4214-e91f-a96dc81ad7f6"
+        }
+      ],
+      "sibling_recent_true_prints": [],
+      "organ": "ORIENTATION_FALLER_DEEP",
+      "return": "VRB riser/NIK faller; ATLAS page ATP_CHALL|underdog|26_50 p75 depth 7",
+      "prediction": "NIK is the inverse faller; deeper reach is expected later than VRB's riser entry",
+      "price_math": "verified print anchor 33 - historical p75 dip 7 = 26; p50 alternative 33 - 4 = 29",
+      "action": "place five at 26",
+      "declined": "ATLAS p50 29",
+      "code_path": "buildConsultations:146-148 -> ColdReplay._place"
+    },
+    {
+      "id": "NIK_REPRICE_23",
+      "sequence": 190,
+      "timestamp_et": "2026-07-19T07:07:33.000000-04:00",
+      "tminus_scheduled": "T-322.450",
+      "tminus_bell": "T-327.450",
+      "own_quote_lead_in": [
+        {
+          "sequence": 2,
+          "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+          "tminus_scheduled": "T-375.450",
+          "tminus_bell": "T-380.450",
+          "bid": 5,
+          "ask": 92,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 808
+        },
+        {
+          "sequence": 6,
+          "timestamp_et": "2026-07-19T06:28:01.000000-04:00",
+          "tminus_scheduled": "T-361.983",
+          "tminus_bell": "T-366.983",
+          "bid": 23,
+          "ask": 33,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 23
+        },
+        {
+          "sequence": 16,
+          "timestamp_et": "2026-07-19T06:28:24.000000-04:00",
+          "tminus_scheduled": "T-361.600",
+          "tminus_bell": "T-366.600",
+          "bid": 29,
+          "ask": 33,
+          "raw_normalized_last": 33,
+          "latest_verified_print_at_transition": {
+            "receipt": "b17542ca-924e-4214-e91f-a96dc81ad7f6",
+            "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+            "price": 33,
+            "size": 1
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 135
+        },
+        {
+          "sequence": 60,
+          "timestamp_et": "2026-07-19T06:30:39.000000-04:00",
+          "tminus_scheduled": "T-359.350",
+          "tminus_bell": "T-364.350",
+          "bid": 29,
+          "ask": 32,
+          "raw_normalized_last": 33,
+          "latest_verified_print_at_transition": {
+            "receipt": "b17542ca-924e-4214-e91f-a96dc81ad7f6",
+            "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+            "price": 33,
+            "size": 1
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 2197
+        },
+        {
+          "sequence": 184,
+          "timestamp_et": "2026-07-19T07:07:16.000000-04:00",
+          "tminus_scheduled": "T-322.733",
+          "tminus_bell": "T-327.733",
+          "bid": 29,
+          "ask": 31,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 17
+        },
+        {
+          "sequence": 190,
+          "timestamp_et": "2026-07-19T07:07:33.000000-04:00",
+          "tminus_scheduled": "T-322.450",
+          "tminus_bell": "T-327.450",
+          "bid": 29,
+          "ask": 30,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0,
+          "latest_verified_print_at_decision": {
+            "sequence": 139,
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "tminus_scheduled": "T-334.827",
+            "tminus_bell": "T-339.827",
+            "price": 32,
+            "size": 8.94,
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b"
+          }
+        }
+      ],
+      "sibling_quote_lead_in": [
+        {
+          "sequence": 3,
+          "timestamp_et": "2026-07-19T06:14:33.000000-04:00",
+          "tminus_scheduled": "T-375.450",
+          "tminus_bell": "T-380.450",
+          "bid": 5,
+          "ask": 92,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 812
+        },
+        {
+          "sequence": 8,
+          "timestamp_et": "2026-07-19T06:28:05.000000-04:00",
+          "tminus_scheduled": "T-361.917",
+          "tminus_bell": "T-366.917",
+          "bid": 67,
+          "ask": 77,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 19
+        },
+        {
+          "sequence": 18,
+          "timestamp_et": "2026-07-19T06:28:24.000000-04:00",
+          "tminus_scheduled": "T-361.600",
+          "tminus_bell": "T-366.600",
+          "bid": 67,
+          "ask": 76,
+          "raw_normalized_last": null,
+          "latest_verified_print_at_transition": null,
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 2349,
+          "latest_verified_print_at_decision": null
+        }
+      ],
+      "own_recent_true_prints": [
+        {
+          "sequence": 7,
+          "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+          "tminus_scheduled": "T-361.971",
+          "tminus_bell": "T-366.971",
+          "price": 33,
+          "size": 1,
+          "receipt": "b17542ca-924e-4214-e91f-a96dc81ad7f6"
+        },
+        {
+          "sequence": 139,
+          "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+          "tminus_scheduled": "T-334.827",
+          "tminus_bell": "T-339.827",
+          "price": 32,
+          "size": 8.94,
+          "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b"
+        }
+      ],
+      "sibling_recent_true_prints": [],
+      "organ": "ORIENTATION_FALLER_DEEP",
+      "return": "same ATLAS page and same p75 depth 7; anchor changed",
+      "prediction": "faller remains a deeper-cast leg",
+      "price_math": "verified last 32 is above ask 30, so tight-mid anchor 30 - 7 = 23; the three-cent target move is entirely anchor 33 -> 30",
+      "action": "replace 26 with 23",
+      "declined": "ATLAS p50 26; later same-timestamp bid 23 was not used because it occurs after the decision row",
+      "code_path": "buildConsultations:146-148 -> ColdReplay._place"
+    },
+    {
+      "id": "NIK_REPRICE_21",
+      "sequence": 748,
+      "timestamp_et": "2026-07-19T07:51:21.000000-04:00",
+      "tminus_scheduled": "T-278.650",
+      "tminus_bell": "T-283.650",
+      "own_quote_lead_in": [
+        {
+          "sequence": 184,
+          "timestamp_et": "2026-07-19T07:07:16.000000-04:00",
+          "tminus_scheduled": "T-322.733",
+          "tminus_bell": "T-327.733",
+          "bid": 29,
+          "ask": 31,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 17
+        },
+        {
+          "sequence": 190,
+          "timestamp_et": "2026-07-19T07:07:33.000000-04:00",
+          "tminus_scheduled": "T-322.450",
+          "tminus_bell": "T-327.450",
+          "bid": 29,
+          "ask": 30,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 192,
+          "timestamp_et": "2026-07-19T07:07:33.000000-04:00",
+          "tminus_scheduled": "T-322.450",
+          "tminus_bell": "T-327.450",
+          "bid": 23,
+          "ask": 30,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 2
+        },
+        {
+          "sequence": 195,
+          "timestamp_et": "2026-07-19T07:07:35.000000-04:00",
+          "tminus_scheduled": "T-322.417",
+          "tminus_bell": "T-327.417",
+          "bid": 28,
+          "ask": 30,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 12
+        },
+        {
+          "sequence": 201,
+          "timestamp_et": "2026-07-19T07:07:47.000000-04:00",
+          "tminus_scheduled": "T-322.217",
+          "tminus_bell": "T-327.217",
+          "bid": 28,
+          "ask": 29,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 202,
+          "timestamp_et": "2026-07-19T07:07:47.000000-04:00",
+          "tminus_scheduled": "T-322.217",
+          "tminus_bell": "T-327.217",
+          "bid": 23,
+          "ask": 29,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 1
+        },
+        {
+          "sequence": 203,
+          "timestamp_et": "2026-07-19T07:07:48.000000-04:00",
+          "tminus_scheduled": "T-322.200",
+          "tminus_bell": "T-327.200",
+          "bid": 28,
+          "ask": 29,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 2612
+        },
+        {
+          "sequence": 736,
+          "timestamp_et": "2026-07-19T07:51:20.000000-04:00",
+          "tminus_scheduled": "T-278.667",
+          "tminus_bell": "T-283.667",
+          "bid": 24,
+          "ask": 29,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 738,
+          "timestamp_et": "2026-07-19T07:51:20.000000-04:00",
+          "tminus_scheduled": "T-278.667",
+          "tminus_bell": "T-283.667",
+          "bid": 24,
+          "ask": 28,
+          "raw_normalized_last": 32,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 739,
+          "timestamp_et": "2026-07-19T07:51:20.000000-04:00",
+          "tminus_scheduled": "T-278.667",
+          "tminus_bell": "T-283.667",
+          "bid": 23,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 741,
+          "timestamp_et": "2026-07-19T07:51:20.000000-04:00",
+          "tminus_scheduled": "T-278.667",
+          "tminus_bell": "T-283.667",
+          "bid": 23,
+          "ask": 27,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 742,
+          "timestamp_et": "2026-07-19T07:51:20.000000-04:00",
+          "tminus_scheduled": "T-278.667",
+          "tminus_bell": "T-283.667",
+          "bid": 24,
+          "ask": 27,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+            "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+            "price": 32,
+            "size": 8.94
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 1,
+          "latest_verified_print_at_decision": {
+            "sequence": 747,
+            "timestamp_et": "2026-07-19T07:51:20.380398-04:00",
+            "tminus_scheduled": "T-278.660",
+            "tminus_bell": "T-283.660",
+            "price": 28,
+            "size": 5,
+            "receipt": "b4b7adfa-e044-5ea1-4b75-d3b3d7675a21"
+          }
+        }
+      ],
+      "sibling_quote_lead_in": [
+        {
+          "sequence": 664,
+          "timestamp_et": "2026-07-19T07:40:27.000000-04:00",
+          "tminus_scheduled": "T-289.550",
+          "tminus_bell": "T-294.550",
+          "bid": 68,
+          "ask": 74,
+          "raw_normalized_last": 70,
+          "latest_verified_print_at_transition": {
+            "receipt": "5d023a38-6785-6ff4-9f45-a675798f1b9c",
+            "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+            "price": 70,
+            "size": 0.06
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 4
+        },
+        {
+          "sequence": 667,
+          "timestamp_et": "2026-07-19T07:40:31.000000-04:00",
+          "tminus_scheduled": "T-289.483",
+          "tminus_bell": "T-294.483",
+          "bid": 68,
+          "ask": 73,
+          "raw_normalized_last": 70,
+          "latest_verified_print_at_transition": {
+            "receipt": "5d023a38-6785-6ff4-9f45-a675798f1b9c",
+            "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+            "price": 70,
+            "size": 0.06
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 668,
+          "timestamp_et": "2026-07-19T07:40:31.000000-04:00",
+          "tminus_scheduled": "T-289.483",
+          "tminus_bell": "T-294.483",
+          "bid": 69,
+          "ask": 73,
+          "raw_normalized_last": 70,
+          "latest_verified_print_at_transition": {
+            "receipt": "5d023a38-6785-6ff4-9f45-a675798f1b9c",
+            "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+            "price": 70,
+            "size": 0.06
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 216
+        },
+        {
+          "sequence": 680,
+          "timestamp_et": "2026-07-19T07:44:07.000000-04:00",
+          "tminus_scheduled": "T-285.883",
+          "tminus_bell": "T-290.883",
+          "bid": 70,
+          "ask": 73,
+          "raw_normalized_last": 73,
+          "latest_verified_print_at_transition": {
+            "receipt": "fc6a945c-d0eb-7c4b-a862-a442cc32fa4f",
+            "timestamp_et": "2026-07-19T07:43:25.907977-04:00",
+            "price": 73,
+            "size": 40.32
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 259
+        },
+        {
+          "sequence": 690,
+          "timestamp_et": "2026-07-19T07:48:26.000000-04:00",
+          "tminus_scheduled": "T-281.567",
+          "tminus_bell": "T-286.567",
+          "bid": 71,
+          "ask": 73,
+          "raw_normalized_last": 73,
+          "latest_verified_print_at_transition": {
+            "receipt": "fc6a945c-d0eb-7c4b-a862-a442cc32fa4f",
+            "timestamp_et": "2026-07-19T07:43:25.907977-04:00",
+            "price": 73,
+            "size": 40.32
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 16
+        },
+        {
+          "sequence": 691,
+          "timestamp_et": "2026-07-19T07:48:42.000000-04:00",
+          "tminus_scheduled": "T-281.300",
+          "tminus_bell": "T-286.300",
+          "bid": 72,
+          "ask": 73,
+          "raw_normalized_last": 73,
+          "latest_verified_print_at_transition": {
+            "receipt": "fc6a945c-d0eb-7c4b-a862-a442cc32fa4f",
+            "timestamp_et": "2026-07-19T07:43:25.907977-04:00",
+            "price": 73,
+            "size": 40.32
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 159,
+          "latest_verified_print_at_decision": {
+            "sequence": 674,
+            "timestamp_et": "2026-07-19T07:43:25.907977-04:00",
+            "tminus_scheduled": "T-286.568",
+            "tminus_bell": "T-291.568",
+            "price": 73,
+            "size": 40.32,
+            "receipt": "fc6a945c-d0eb-7c4b-a862-a442cc32fa4f"
+          }
+        }
+      ],
+      "own_recent_true_prints": [
+        {
+          "sequence": 7,
+          "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+          "tminus_scheduled": "T-361.971",
+          "tminus_bell": "T-366.971",
+          "price": 33,
+          "size": 1,
+          "receipt": "b17542ca-924e-4214-e91f-a96dc81ad7f6"
+        },
+        {
+          "sequence": 139,
+          "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+          "tminus_scheduled": "T-334.827",
+          "tminus_bell": "T-339.827",
+          "price": 32,
+          "size": 8.94,
+          "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b"
+        },
+        {
+          "sequence": 746,
+          "timestamp_et": "2026-07-19T07:51:20.380398-04:00",
+          "tminus_scheduled": "T-278.660",
+          "tminus_bell": "T-283.660",
+          "price": 28,
+          "size": 10,
+          "receipt": "5dd6e6b6-83d1-5eab-5e54-7388060d0563"
+        },
+        {
+          "sequence": 747,
+          "timestamp_et": "2026-07-19T07:51:20.380398-04:00",
+          "tminus_scheduled": "T-278.660",
+          "tminus_bell": "T-283.660",
+          "price": 28,
+          "size": 5,
+          "receipt": "b4b7adfa-e044-5ea1-4b75-d3b3d7675a21"
+        }
+      ],
+      "sibling_recent_true_prints": [
+        {
+          "sequence": 295,
+          "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+          "tminus_scheduled": "T-316.064",
+          "tminus_bell": "T-321.064",
+          "price": 70,
+          "size": 0.06,
+          "receipt": "5d023a38-6785-6ff4-9f45-a675798f1b9c"
+        },
+        {
+          "sequence": 674,
+          "timestamp_et": "2026-07-19T07:43:25.907977-04:00",
+          "tminus_scheduled": "T-286.568",
+          "tminus_bell": "T-291.568",
+          "price": 73,
+          "size": 40.32,
+          "receipt": "fc6a945c-d0eb-7c4b-a862-a442cc32fa4f"
+        }
+      ],
+      "organ": "ORIENTATION_FALLER_DEEP",
+      "return": "same ATLAS page p75 depth 7 with new verified print anchor 28",
+      "prediction": "inverse slide still has room; early table depth is not yet terminal",
+      "price_math": "verified print anchor 28 - p75 dip 7 = 21; 22 and 20 are not outputs of this frozen quantile row; p50 alternative is 24",
+      "action": "replace 23 with 21",
+      "declined": "ATLAS p50 24",
+      "code_path": "buildConsultations:146-148 -> ColdReplay._place"
+    },
+    {
+      "id": "NIK_CANCEL_21_AT_T2",
+      "sequence": 2886,
+      "timestamp_et": "2026-07-19T10:30:39.000000-04:00",
+      "tminus_scheduled": "T-119.350",
+      "tminus_bell": "T-124.350",
+      "own_quote_lead_in": [
+        {
+          "sequence": 2702,
+          "timestamp_et": "2026-07-19T09:54:56.000000-04:00",
+          "tminus_scheduled": "T-155.067",
+          "tminus_bell": "T-160.067",
+          "bid": 19,
+          "ask": 29,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "a8b503b3-06d9-5af5-c800-8d6166259ce0",
+            "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+            "price": 28,
+            "size": 4
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 2703,
+          "timestamp_et": "2026-07-19T09:54:56.000000-04:00",
+          "tminus_scheduled": "T-155.067",
+          "tminus_bell": "T-160.067",
+          "bid": 20,
+          "ask": 29,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "a8b503b3-06d9-5af5-c800-8d6166259ce0",
+            "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+            "price": 28,
+            "size": 4
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 86
+        },
+        {
+          "sequence": 2711,
+          "timestamp_et": "2026-07-19T09:56:22.000000-04:00",
+          "tminus_scheduled": "T-153.633",
+          "tminus_bell": "T-158.633",
+          "bid": 23,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "a8b503b3-06d9-5af5-c800-8d6166259ce0",
+            "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+            "price": 28,
+            "size": 4
+          },
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 4
+        },
+        {
+          "sequence": 2729,
+          "timestamp_et": "2026-07-19T09:56:26.000000-04:00",
+          "tminus_scheduled": "T-153.567",
+          "tminus_bell": "T-158.567",
+          "bid": 24,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "a8b503b3-06d9-5af5-c800-8d6166259ce0",
+            "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+            "price": 28,
+            "size": 4
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 3
+        },
+        {
+          "sequence": 2731,
+          "timestamp_et": "2026-07-19T09:56:29.000000-04:00",
+          "tminus_scheduled": "T-153.517",
+          "tminus_bell": "T-158.517",
+          "bid": 23,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "a8b503b3-06d9-5af5-c800-8d6166259ce0",
+            "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+            "price": 28,
+            "size": 4
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 18
+        },
+        {
+          "sequence": 2747,
+          "timestamp_et": "2026-07-19T09:56:47.000000-04:00",
+          "tminus_scheduled": "T-153.217",
+          "tminus_bell": "T-158.217",
+          "bid": 23,
+          "ask": 27,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "a8b503b3-06d9-5af5-c800-8d6166259ce0",
+            "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+            "price": 28,
+            "size": 4
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 442
+        },
+        {
+          "sequence": 2787,
+          "timestamp_et": "2026-07-19T10:04:09.000000-04:00",
+          "tminus_scheduled": "T-145.850",
+          "tminus_bell": "T-150.850",
+          "bid": 24,
+          "ask": 27,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "a8b503b3-06d9-5af5-c800-8d6166259ce0",
+            "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+            "price": 28,
+            "size": 4
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 375
+        },
+        {
+          "sequence": 2824,
+          "timestamp_et": "2026-07-19T10:10:24.000000-04:00",
+          "tminus_scheduled": "T-139.600",
+          "tminus_bell": "T-144.600",
+          "bid": 24,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "6b5a7cb7-f46f-44a9-0128-0e952290b448",
+            "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+            "price": 27,
+            "size": 10
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 547
+        },
+        {
+          "sequence": 2831,
+          "timestamp_et": "2026-07-19T10:19:31.000000-04:00",
+          "tminus_scheduled": "T-130.483",
+          "tminus_bell": "T-135.483",
+          "bid": 25,
+          "ask": 27,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "6b5a7cb7-f46f-44a9-0128-0e952290b448",
+            "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+            "price": 27,
+            "size": 10
+          },
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 160
+        },
+        {
+          "sequence": 2838,
+          "timestamp_et": "2026-07-19T10:22:11.000000-04:00",
+          "tminus_scheduled": "T-127.817",
+          "tminus_bell": "T-132.817",
+          "bid": 25,
+          "ask": 29,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "6b5a7cb7-f46f-44a9-0128-0e952290b448",
+            "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+            "price": 27,
+            "size": 10
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 398
+        },
+        {
+          "sequence": 2871,
+          "timestamp_et": "2026-07-19T10:28:49.000000-04:00",
+          "tminus_scheduled": "T-121.183",
+          "tminus_bell": "T-126.183",
+          "bid": 24,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "6b5a7cb7-f46f-44a9-0128-0e952290b448",
+            "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+            "price": 27,
+            "size": 10
+          },
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 60
+        },
+        {
+          "sequence": 2885,
+          "timestamp_et": "2026-07-19T10:29:49.000000-04:00",
+          "tminus_scheduled": "T-120.183",
+          "tminus_bell": "T-125.183",
+          "bid": 24,
+          "ask": 29,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "6b5a7cb7-f46f-44a9-0128-0e952290b448",
+            "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+            "price": 27,
+            "size": 10
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 50,
+          "latest_verified_print_at_decision": {
+            "sequence": 2823,
+            "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+            "tminus_scheduled": "T-140.177",
+            "tminus_bell": "T-145.177",
+            "price": 27,
+            "size": 10,
+            "receipt": "6b5a7cb7-f46f-44a9-0128-0e952290b448"
+          }
+        }
+      ],
+      "sibling_quote_lead_in": [
+        {
+          "sequence": 2035,
+          "timestamp_et": "2026-07-19T09:38:18.000000-04:00",
+          "tminus_scheduled": "T-171.700",
+          "tminus_bell": "T-176.700",
+          "bid": 73,
+          "ask": 74,
+          "raw_normalized_last": 73,
+          "latest_verified_print_at_transition": {
+            "receipt": "85052a40-439a-43d8-487a-f4b80f5b4506",
+            "timestamp_et": "2026-07-19T09:03:58.595040-04:00",
+            "price": 73,
+            "size": 1.34
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 12
+        },
+        {
+          "sequence": 2043,
+          "timestamp_et": "2026-07-19T09:38:30.000000-04:00",
+          "tminus_scheduled": "T-171.500",
+          "tminus_bell": "T-176.500",
+          "bid": 72,
+          "ask": 75,
+          "raw_normalized_last": 73,
+          "latest_verified_print_at_transition": {
+            "receipt": "85052a40-439a-43d8-487a-f4b80f5b4506",
+            "timestamp_et": "2026-07-19T09:03:58.595040-04:00",
+            "price": 73,
+            "size": 1.34
+          },
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 20
+        },
+        {
+          "sequence": 2044,
+          "timestamp_et": "2026-07-19T09:38:50.000000-04:00",
+          "tminus_scheduled": "T-171.167",
+          "tminus_bell": "T-176.167",
+          "bid": 73,
+          "ask": 75,
+          "raw_normalized_last": 73,
+          "latest_verified_print_at_transition": {
+            "receipt": "85052a40-439a-43d8-487a-f4b80f5b4506",
+            "timestamp_et": "2026-07-19T09:03:58.595040-04:00",
+            "price": 73,
+            "size": 1.34
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 31
+        },
+        {
+          "sequence": 2053,
+          "timestamp_et": "2026-07-19T09:39:21.000000-04:00",
+          "tminus_scheduled": "T-170.650",
+          "tminus_bell": "T-175.650",
+          "bid": 73,
+          "ask": 74,
+          "raw_normalized_last": 73,
+          "latest_verified_print_at_transition": {
+            "receipt": "85052a40-439a-43d8-487a-f4b80f5b4506",
+            "timestamp_et": "2026-07-19T09:03:58.595040-04:00",
+            "price": 73,
+            "size": 1.34
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 65
+        },
+        {
+          "sequence": 2150,
+          "timestamp_et": "2026-07-19T09:40:26.000000-04:00",
+          "tminus_scheduled": "T-169.567",
+          "tminus_bell": "T-174.567",
+          "bid": 72,
+          "ask": 74,
+          "raw_normalized_last": 74,
+          "latest_verified_print_at_transition": {
+            "receipt": "49674324-5317-4fdd-6320-dac51b816d8f",
+            "timestamp_et": "2026-07-19T09:40:07.080982-04:00",
+            "price": 74,
+            "size": 3.93
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 20
+        },
+        {
+          "sequence": 2161,
+          "timestamp_et": "2026-07-19T09:40:46.000000-04:00",
+          "tminus_scheduled": "T-169.233",
+          "tminus_bell": "T-174.233",
+          "bid": 73,
+          "ask": 74,
+          "raw_normalized_last": 74,
+          "latest_verified_print_at_transition": {
+            "receipt": "49674324-5317-4fdd-6320-dac51b816d8f",
+            "timestamp_et": "2026-07-19T09:40:07.080982-04:00",
+            "price": 74,
+            "size": 3.93
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 2993,
+          "latest_verified_print_at_decision": {
+            "sequence": 2102,
+            "timestamp_et": "2026-07-19T09:40:07.080982-04:00",
+            "tminus_scheduled": "T-169.882",
+            "tminus_bell": "T-174.882",
+            "price": 74,
+            "size": 3.93,
+            "receipt": "49674324-5317-4fdd-6320-dac51b816d8f"
+          }
+        }
+      ],
+      "own_recent_true_prints": [
+        {
+          "sequence": 747,
+          "timestamp_et": "2026-07-19T07:51:20.380398-04:00",
+          "tminus_scheduled": "T-278.660",
+          "tminus_bell": "T-283.660",
+          "price": 28,
+          "size": 5,
+          "receipt": "b4b7adfa-e044-5ea1-4b75-d3b3d7675a21"
+        },
+        {
+          "sequence": 1137,
+          "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+          "tminus_scheduled": "T-235.196",
+          "tminus_bell": "T-240.196",
+          "price": 28,
+          "size": 26,
+          "receipt": "44aff792-b77b-58d8-db0c-f0b40aba3a76"
+        },
+        {
+          "sequence": 1138,
+          "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+          "tminus_scheduled": "T-235.196",
+          "tminus_bell": "T-240.196",
+          "price": 28,
+          "size": 4,
+          "receipt": "a8b503b3-06d9-5af5-c800-8d6166259ce0"
+        },
+        {
+          "sequence": 2822,
+          "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+          "tminus_scheduled": "T-140.177",
+          "tminus_bell": "T-145.177",
+          "price": 28,
+          "size": 14,
+          "receipt": "1ab370c4-0c1d-4213-26d7-316ecd59457b"
+        },
+        {
+          "sequence": 2823,
+          "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+          "tminus_scheduled": "T-140.177",
+          "tminus_bell": "T-145.177",
+          "price": 27,
+          "size": 10,
+          "receipt": "6b5a7cb7-f46f-44a9-0128-0e952290b448"
+        }
+      ],
+      "sibling_recent_true_prints": [
+        {
+          "sequence": 839,
+          "timestamp_et": "2026-07-19T07:56:40.989602-04:00",
+          "tminus_scheduled": "T-273.317",
+          "tminus_bell": "T-278.317",
+          "price": 74,
+          "size": 1,
+          "receipt": "3964e11c-6d33-6af3-d475-72bd63408938"
+        },
+        {
+          "sequence": 1258,
+          "timestamp_et": "2026-07-19T08:40:13.973432-04:00",
+          "tminus_scheduled": "T-229.767",
+          "tminus_bell": "T-234.767",
+          "price": 74,
+          "size": 4,
+          "receipt": "67e86ca3-6cbd-73ea-84de-a651140a989b"
+        },
+        {
+          "sequence": 1362,
+          "timestamp_et": "2026-07-19T08:53:10.906208-04:00",
+          "tminus_scheduled": "T-216.818",
+          "tminus_bell": "T-221.818",
+          "price": 74,
+          "size": 0.64,
+          "receipt": "eb4e7207-ac2d-62df-0536-d6bf4d9deb89"
+        },
+        {
+          "sequence": 1494,
+          "timestamp_et": "2026-07-19T09:03:58.595040-04:00",
+          "tminus_scheduled": "T-206.023",
+          "tminus_bell": "T-211.023",
+          "price": 73,
+          "size": 1.34,
+          "receipt": "85052a40-439a-43d8-487a-f4b80f5b4506"
+        },
+        {
+          "sequence": 2102,
+          "timestamp_et": "2026-07-19T09:40:07.080982-04:00",
+          "tminus_scheduled": "T-169.882",
+          "tminus_bell": "T-174.882",
+          "price": 74,
+          "size": 3.93,
+          "receipt": "49674324-5317-4fdd-6320-dac51b816d8f"
+        }
+      ],
+      "organ": "SIBLING_REALIZED_SHAPE",
+      "return": "first T2 receipt; VRB 73/74, four cents above fill; 31 bid plus 66 ask recurrences",
+      "prediction": "VRB's riser path is treated as realized, so inverse NIK is expected to slide later inside T2",
+      "price_math": "none; 97 > 0 satisfies a boolean evidence-presence gate but does not calculate a price",
+      "action": "cancel 21 and wait without an order",
+      "declined": "holding 21; improving it; computing an alternative target",
+      "code_path": "ColdReplay.process:siblingShapePatienceArm:397-435"
+    },
+    {
+      "id": "NIK_PLACE_19",
+      "sequence": 2975,
+      "timestamp_et": "2026-07-19T10:40:57.000000-04:00",
+      "tminus_scheduled": "T-109.050",
+      "tminus_bell": "T-114.050",
+      "own_quote_lead_in": [
+        {
+          "sequence": 2703,
+          "timestamp_et": "2026-07-19T09:54:56.000000-04:00",
+          "tminus_scheduled": "T-155.067",
+          "tminus_bell": "T-160.067",
+          "bid": 20,
+          "ask": 29,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "a8b503b3-06d9-5af5-c800-8d6166259ce0",
+            "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+            "price": 28,
+            "size": 4
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 86
+        },
+        {
+          "sequence": 2711,
+          "timestamp_et": "2026-07-19T09:56:22.000000-04:00",
+          "tminus_scheduled": "T-153.633",
+          "tminus_bell": "T-158.633",
+          "bid": 23,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "a8b503b3-06d9-5af5-c800-8d6166259ce0",
+            "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+            "price": 28,
+            "size": 4
+          },
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 4
+        },
+        {
+          "sequence": 2729,
+          "timestamp_et": "2026-07-19T09:56:26.000000-04:00",
+          "tminus_scheduled": "T-153.567",
+          "tminus_bell": "T-158.567",
+          "bid": 24,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "a8b503b3-06d9-5af5-c800-8d6166259ce0",
+            "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+            "price": 28,
+            "size": 4
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 3
+        },
+        {
+          "sequence": 2731,
+          "timestamp_et": "2026-07-19T09:56:29.000000-04:00",
+          "tminus_scheduled": "T-153.517",
+          "tminus_bell": "T-158.517",
+          "bid": 23,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "a8b503b3-06d9-5af5-c800-8d6166259ce0",
+            "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+            "price": 28,
+            "size": 4
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 18
+        },
+        {
+          "sequence": 2747,
+          "timestamp_et": "2026-07-19T09:56:47.000000-04:00",
+          "tminus_scheduled": "T-153.217",
+          "tminus_bell": "T-158.217",
+          "bid": 23,
+          "ask": 27,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "a8b503b3-06d9-5af5-c800-8d6166259ce0",
+            "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+            "price": 28,
+            "size": 4
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 442
+        },
+        {
+          "sequence": 2787,
+          "timestamp_et": "2026-07-19T10:04:09.000000-04:00",
+          "tminus_scheduled": "T-145.850",
+          "tminus_bell": "T-150.850",
+          "bid": 24,
+          "ask": 27,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "a8b503b3-06d9-5af5-c800-8d6166259ce0",
+            "timestamp_et": "2026-07-19T08:34:48.218782-04:00",
+            "price": 28,
+            "size": 4
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 375
+        },
+        {
+          "sequence": 2824,
+          "timestamp_et": "2026-07-19T10:10:24.000000-04:00",
+          "tminus_scheduled": "T-139.600",
+          "tminus_bell": "T-144.600",
+          "bid": 24,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "6b5a7cb7-f46f-44a9-0128-0e952290b448",
+            "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+            "price": 27,
+            "size": 10
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 547
+        },
+        {
+          "sequence": 2831,
+          "timestamp_et": "2026-07-19T10:19:31.000000-04:00",
+          "tminus_scheduled": "T-130.483",
+          "tminus_bell": "T-135.483",
+          "bid": 25,
+          "ask": 27,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "6b5a7cb7-f46f-44a9-0128-0e952290b448",
+            "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+            "price": 27,
+            "size": 10
+          },
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 160
+        },
+        {
+          "sequence": 2838,
+          "timestamp_et": "2026-07-19T10:22:11.000000-04:00",
+          "tminus_scheduled": "T-127.817",
+          "tminus_bell": "T-132.817",
+          "bid": 25,
+          "ask": 29,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "6b5a7cb7-f46f-44a9-0128-0e952290b448",
+            "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+            "price": 27,
+            "size": 10
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 398
+        },
+        {
+          "sequence": 2871,
+          "timestamp_et": "2026-07-19T10:28:49.000000-04:00",
+          "tminus_scheduled": "T-121.183",
+          "tminus_bell": "T-126.183",
+          "bid": 24,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "6b5a7cb7-f46f-44a9-0128-0e952290b448",
+            "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+            "price": 27,
+            "size": 10
+          },
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 60
+        },
+        {
+          "sequence": 2885,
+          "timestamp_et": "2026-07-19T10:29:49.000000-04:00",
+          "tminus_scheduled": "T-120.183",
+          "tminus_bell": "T-125.183",
+          "bid": 24,
+          "ask": 29,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "6b5a7cb7-f46f-44a9-0128-0e952290b448",
+            "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+            "price": 27,
+            "size": 10
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 183
+        },
+        {
+          "sequence": 2890,
+          "timestamp_et": "2026-07-19T10:32:52.000000-04:00",
+          "tminus_scheduled": "T-117.133",
+          "tminus_bell": "T-122.133",
+          "bid": 24,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "6b5a7cb7-f46f-44a9-0128-0e952290b448",
+            "timestamp_et": "2026-07-19T10:09:49.408673-04:00",
+            "price": 27,
+            "size": 10
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 440
+        },
+        {
+          "sequence": 2933,
+          "timestamp_et": "2026-07-19T10:40:12.000000-04:00",
+          "tminus_scheduled": "T-109.800",
+          "tminus_bell": "T-114.800",
+          "bid": 23,
+          "ask": 27,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "51adc5d4-a6a1-48f1-d2bf-fb8810f97ddc",
+            "timestamp_et": "2026-07-19T10:40:05.049818-04:00",
+            "price": 24,
+            "size": 17
+          },
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 45
+        },
+        {
+          "sequence": 2975,
+          "timestamp_et": "2026-07-19T10:40:57.000000-04:00",
+          "tminus_scheduled": "T-109.050",
+          "tminus_bell": "T-114.050",
+          "bid": 19,
+          "ask": 27,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "51adc5d4-a6a1-48f1-d2bf-fb8810f97ddc",
+            "timestamp_et": "2026-07-19T10:40:05.049818-04:00",
+            "price": 24,
+            "size": 17
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0,
+          "latest_verified_print_at_decision": {
+            "sequence": 2931,
+            "timestamp_et": "2026-07-19T10:40:05.049818-04:00",
+            "tminus_scheduled": "T-109.916",
+            "tminus_bell": "T-114.916",
+            "price": 24,
+            "size": 17,
+            "receipt": "51adc5d4-a6a1-48f1-d2bf-fb8810f97ddc"
+          }
+        }
+      ],
+      "sibling_quote_lead_in": [
+        {
+          "sequence": 2043,
+          "timestamp_et": "2026-07-19T09:38:30.000000-04:00",
+          "tminus_scheduled": "T-171.500",
+          "tminus_bell": "T-176.500",
+          "bid": 72,
+          "ask": 75,
+          "raw_normalized_last": 73,
+          "latest_verified_print_at_transition": {
+            "receipt": "85052a40-439a-43d8-487a-f4b80f5b4506",
+            "timestamp_et": "2026-07-19T09:03:58.595040-04:00",
+            "price": 73,
+            "size": 1.34
+          },
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 20
+        },
+        {
+          "sequence": 2044,
+          "timestamp_et": "2026-07-19T09:38:50.000000-04:00",
+          "tminus_scheduled": "T-171.167",
+          "tminus_bell": "T-176.167",
+          "bid": 73,
+          "ask": 75,
+          "raw_normalized_last": 73,
+          "latest_verified_print_at_transition": {
+            "receipt": "85052a40-439a-43d8-487a-f4b80f5b4506",
+            "timestamp_et": "2026-07-19T09:03:58.595040-04:00",
+            "price": 73,
+            "size": 1.34
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 31
+        },
+        {
+          "sequence": 2053,
+          "timestamp_et": "2026-07-19T09:39:21.000000-04:00",
+          "tminus_scheduled": "T-170.650",
+          "tminus_bell": "T-175.650",
+          "bid": 73,
+          "ask": 74,
+          "raw_normalized_last": 73,
+          "latest_verified_print_at_transition": {
+            "receipt": "85052a40-439a-43d8-487a-f4b80f5b4506",
+            "timestamp_et": "2026-07-19T09:03:58.595040-04:00",
+            "price": 73,
+            "size": 1.34
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 65
+        },
+        {
+          "sequence": 2150,
+          "timestamp_et": "2026-07-19T09:40:26.000000-04:00",
+          "tminus_scheduled": "T-169.567",
+          "tminus_bell": "T-174.567",
+          "bid": 72,
+          "ask": 74,
+          "raw_normalized_last": 74,
+          "latest_verified_print_at_transition": {
+            "receipt": "49674324-5317-4fdd-6320-dac51b816d8f",
+            "timestamp_et": "2026-07-19T09:40:07.080982-04:00",
+            "price": 74,
+            "size": 3.93
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 20
+        },
+        {
+          "sequence": 2161,
+          "timestamp_et": "2026-07-19T09:40:46.000000-04:00",
+          "tminus_scheduled": "T-169.233",
+          "tminus_bell": "T-174.233",
+          "bid": 73,
+          "ask": 74,
+          "raw_normalized_last": 74,
+          "latest_verified_print_at_transition": {
+            "receipt": "49674324-5317-4fdd-6320-dac51b816d8f",
+            "timestamp_et": "2026-07-19T09:40:07.080982-04:00",
+            "price": 74,
+            "size": 3.93
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 3568
+        },
+        {
+          "sequence": 2936,
+          "timestamp_et": "2026-07-19T10:40:14.000000-04:00",
+          "tminus_scheduled": "T-109.767",
+          "tminus_bell": "T-114.767",
+          "bid": 73,
+          "ask": 77,
+          "raw_normalized_last": 74,
+          "latest_verified_print_at_transition": {
+            "receipt": "5457f76b-2a92-4e96-bcdf-78919b303f96",
+            "timestamp_et": "2026-07-19T10:40:05.123061-04:00",
+            "price": 76,
+            "size": 11
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 43,
+          "latest_verified_print_at_decision": {
+            "sequence": 2932,
+            "timestamp_et": "2026-07-19T10:40:05.123061-04:00",
+            "tminus_scheduled": "T-109.915",
+            "tminus_bell": "T-114.915",
+            "price": 76,
+            "size": 11,
+            "receipt": "5457f76b-2a92-4e96-bcdf-78919b303f96"
+          }
+        }
+      ],
+      "own_recent_true_prints": [
+        {
+          "sequence": 2918,
+          "timestamp_et": "2026-07-19T10:40:02.195804-04:00",
+          "tminus_scheduled": "T-109.963",
+          "tminus_bell": "T-114.963",
+          "price": 24,
+          "size": 14,
+          "receipt": "f76f072f-5196-7878-2f6a-3b953c0a791c"
+        },
+        {
+          "sequence": 2924,
+          "timestamp_et": "2026-07-19T10:40:04.242550-04:00",
+          "tminus_scheduled": "T-109.929",
+          "tminus_bell": "T-114.929",
+          "price": 26,
+          "size": 19,
+          "receipt": "01a425e2-0167-76fe-ca94-e84949928499"
+        },
+        {
+          "sequence": 2926,
+          "timestamp_et": "2026-07-19T10:40:04.542481-04:00",
+          "tminus_scheduled": "T-109.924",
+          "tminus_bell": "T-114.924",
+          "price": 25,
+          "size": 20,
+          "receipt": "28433421-df02-7c05-d2ab-333ea806c0dc"
+        },
+        {
+          "sequence": 2928,
+          "timestamp_et": "2026-07-19T10:40:04.949252-04:00",
+          "tminus_scheduled": "T-109.918",
+          "tminus_bell": "T-114.918",
+          "price": 25,
+          "size": 20,
+          "receipt": "4580d4d7-b130-794b-8219-4003fa693284"
+        },
+        {
+          "sequence": 2931,
+          "timestamp_et": "2026-07-19T10:40:05.049818-04:00",
+          "tminus_scheduled": "T-109.916",
+          "tminus_bell": "T-114.916",
+          "price": 24,
+          "size": 17,
+          "receipt": "51adc5d4-a6a1-48f1-d2bf-fb8810f97ddc"
+        }
+      ],
+      "sibling_recent_true_prints": [
+        {
+          "sequence": 2925,
+          "timestamp_et": "2026-07-19T10:40:04.479574-04:00",
+          "tminus_scheduled": "T-109.925",
+          "tminus_bell": "T-114.925",
+          "price": 74,
+          "size": 20,
+          "receipt": "77099c78-2dea-4d59-8407-206ac04a6946"
+        },
+        {
+          "sequence": 2927,
+          "timestamp_et": "2026-07-19T10:40:04.641873-04:00",
+          "tminus_scheduled": "T-109.923",
+          "tminus_bell": "T-114.923",
+          "price": 75,
+          "size": 11,
+          "receipt": "382c20df-0dbd-42ad-ad2c-28c4400f7967"
+        },
+        {
+          "sequence": 2929,
+          "timestamp_et": "2026-07-19T10:40:04.988018-04:00",
+          "tminus_scheduled": "T-109.917",
+          "tminus_bell": "T-114.917",
+          "price": 76,
+          "size": 10,
+          "receipt": "8f4d5d2c-24a2-7d4a-0f46-16d575802f12"
+        },
+        {
+          "sequence": 2930,
+          "timestamp_et": "2026-07-19T10:40:04.988018-04:00",
+          "tminus_scheduled": "T-109.917",
+          "tminus_bell": "T-114.917",
+          "price": 75,
+          "size": 11,
+          "receipt": "d3fc77d8-3951-7448-0027-01d16dbd0c9f"
+        },
+        {
+          "sequence": 2932,
+          "timestamp_et": "2026-07-19T10:40:05.123061-04:00",
+          "tminus_scheduled": "T-109.915",
+          "tminus_bell": "T-114.915",
+          "price": 76,
+          "size": 11,
+          "receipt": "5457f76b-2a92-4e96-bcdf-78919b303f96"
+        }
+      ],
+      "organ": "FALLER_PATIENCE_RELEASE",
+      "return": "arm bid 24 - current bid 19 = five-cent mechanical threshold; VRB bid 73 remains above fill 69",
+      "prediction": "the first full mechanical move ends patience; the current bid may receive a later retouch",
+      "price_math": "target = current NIK bid 19; 20 was only four below the arm bid and 18 was not yet observed",
+      "action": "place five at 19",
+      "declined": "ATLAS 21 and every unseen lower price",
+      "code_path": "ColdReplay.process:fallerPatienceRelease:437-466 -> ColdReplay._place"
+    },
+    {
+      "id": "NIK_FILL_19",
+      "sequence": 3361,
+      "timestamp_et": "2026-07-19T11:09:20.922837-04:00",
+      "tminus_scheduled": "T-80.651",
+      "tminus_bell": "T-85.651",
+      "own_quote_lead_in": [
+        {
+          "sequence": 3206,
+          "timestamp_et": "2026-07-19T10:54:44.000000-04:00",
+          "tminus_scheduled": "T-95.267",
+          "tminus_bell": "T-100.267",
+          "bid": 24,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "eff26858-70b7-48b7-0c10-22f83ca7a4e6",
+            "timestamp_et": "2026-07-19T10:45:21.913389-04:00",
+            "price": 30,
+            "size": 148.37
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 3207,
+          "timestamp_et": "2026-07-19T10:54:44.000000-04:00",
+          "tminus_scheduled": "T-95.267",
+          "tminus_bell": "T-100.267",
+          "bid": 26,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "eff26858-70b7-48b7-0c10-22f83ca7a4e6",
+            "timestamp_et": "2026-07-19T10:45:21.913389-04:00",
+            "price": 30,
+            "size": 148.37
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 3208,
+          "timestamp_et": "2026-07-19T10:54:44.000000-04:00",
+          "tminus_scheduled": "T-95.267",
+          "tminus_bell": "T-100.267",
+          "bid": 24,
+          "ask": 28,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "eff26858-70b7-48b7-0c10-22f83ca7a4e6",
+            "timestamp_et": "2026-07-19T10:45:21.913389-04:00",
+            "price": 30,
+            "size": 148.37
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 124
+        },
+        {
+          "sequence": 3224,
+          "timestamp_et": "2026-07-19T10:56:48.000000-04:00",
+          "tminus_scheduled": "T-93.200",
+          "tminus_bell": "T-98.200",
+          "bid": 24,
+          "ask": 29,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "eff26858-70b7-48b7-0c10-22f83ca7a4e6",
+            "timestamp_et": "2026-07-19T10:45:21.913389-04:00",
+            "price": 30,
+            "size": 148.37
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 480
+        },
+        {
+          "sequence": 3264,
+          "timestamp_et": "2026-07-19T11:04:48.000000-04:00",
+          "tminus_scheduled": "T-85.200",
+          "tminus_bell": "T-90.200",
+          "bid": 25,
+          "ask": 29,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "eff26858-70b7-48b7-0c10-22f83ca7a4e6",
+            "timestamp_et": "2026-07-19T10:45:21.913389-04:00",
+            "price": 30,
+            "size": 148.37
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 265
+        },
+        {
+          "sequence": 3303,
+          "timestamp_et": "2026-07-19T11:09:13.000000-04:00",
+          "tminus_scheduled": "T-80.783",
+          "tminus_bell": "T-85.783",
+          "bid": 23,
+          "ask": 24,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "02044d02-eb44-7ebe-0262-f78db417e6e6",
+            "timestamp_et": "2026-07-19T11:09:09.709388-04:00",
+            "price": 23,
+            "size": 17
+          },
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 5
+        },
+        {
+          "sequence": 3309,
+          "timestamp_et": "2026-07-19T11:09:18.000000-04:00",
+          "tminus_scheduled": "T-80.700",
+          "tminus_bell": "T-85.700",
+          "bid": 22,
+          "ask": 24,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f498db0-4344-47b6-a110-5d297687e42e",
+            "timestamp_et": "2026-07-19T11:09:15.652681-04:00",
+            "price": 23,
+            "size": 483
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 3311,
+          "timestamp_et": "2026-07-19T11:09:18.000000-04:00",
+          "tminus_scheduled": "T-80.700",
+          "tminus_bell": "T-85.700",
+          "bid": 20,
+          "ask": 24,
+          "raw_normalized_last": 23,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f498db0-4344-47b6-a110-5d297687e42e",
+            "timestamp_et": "2026-07-19T11:09:15.652681-04:00",
+            "price": 23,
+            "size": 483
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 2
+        },
+        {
+          "sequence": 3348,
+          "timestamp_et": "2026-07-19T11:09:20.000000-04:00",
+          "tminus_scheduled": "T-80.667",
+          "tminus_bell": "T-85.667",
+          "bid": 19,
+          "ask": 24,
+          "raw_normalized_last": 23,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f498db0-4344-47b6-a110-5d297687e42e",
+            "timestamp_et": "2026-07-19T11:09:15.652681-04:00",
+            "price": 23,
+            "size": 483
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 3353,
+          "timestamp_et": "2026-07-19T11:09:20.000000-04:00",
+          "tminus_scheduled": "T-80.667",
+          "tminus_bell": "T-85.667",
+          "bid": 19,
+          "ask": 23,
+          "raw_normalized_last": 23,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f498db0-4344-47b6-a110-5d297687e42e",
+            "timestamp_et": "2026-07-19T11:09:15.652681-04:00",
+            "price": 23,
+            "size": 483
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0.922,
+          "latest_verified_print_at_decision": {
+            "sequence": 3361,
+            "timestamp_et": "2026-07-19T11:09:20.922837-04:00",
+            "tminus_scheduled": "T-80.651",
+            "tminus_bell": "T-85.651",
+            "price": 19,
+            "size": 21,
+            "receipt": "207fe813-1b58-7999-2ace-4e49c787c1a8"
+          }
+        }
+      ],
+      "sibling_quote_lead_in": [
+        {
+          "sequence": 3266,
+          "timestamp_et": "2026-07-19T11:04:52.000000-04:00",
+          "tminus_scheduled": "T-85.133",
+          "tminus_bell": "T-90.133",
+          "bid": 72,
+          "ask": 75,
+          "raw_normalized_last": 75,
+          "latest_verified_print_at_transition": {
+            "receipt": "f0f305b2-2ca0-559f-fea4-6bf3c6b321b7",
+            "timestamp_et": "2026-07-19T10:56:55.668237-04:00",
+            "price": 74,
+            "size": 65
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 151
+        },
+        {
+          "sequence": 3271,
+          "timestamp_et": "2026-07-19T11:07:23.000000-04:00",
+          "tminus_scheduled": "T-82.617",
+          "tminus_bell": "T-87.617",
+          "bid": 72,
+          "ask": 76,
+          "raw_normalized_last": 75,
+          "latest_verified_print_at_transition": {
+            "receipt": "c8656161-e9ca-511f-59c0-36d64c9e5448",
+            "timestamp_et": "2026-07-19T11:07:16.021942-04:00",
+            "price": 76,
+            "size": 22.02
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 2
+        },
+        {
+          "sequence": 3273,
+          "timestamp_et": "2026-07-19T11:07:25.000000-04:00",
+          "tminus_scheduled": "T-82.583",
+          "tminus_bell": "T-87.583",
+          "bid": 72,
+          "ask": 75,
+          "raw_normalized_last": 75,
+          "latest_verified_print_at_transition": {
+            "receipt": "c8656161-e9ca-511f-59c0-36d64c9e5448",
+            "timestamp_et": "2026-07-19T11:07:16.021942-04:00",
+            "price": 76,
+            "size": 22.02
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 109
+        },
+        {
+          "sequence": 3304,
+          "timestamp_et": "2026-07-19T11:09:14.000000-04:00",
+          "tminus_scheduled": "T-80.767",
+          "tminus_bell": "T-85.767",
+          "bid": 76,
+          "ask": 77,
+          "raw_normalized_last": 75,
+          "latest_verified_print_at_transition": {
+            "receipt": "8cdf25b2-4c56-6021-648e-a72a42a94063",
+            "timestamp_et": "2026-07-19T11:09:10.085666-04:00",
+            "price": 76,
+            "size": 7.53
+          },
+          "changed_sides": [
+            "bid",
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 4
+        },
+        {
+          "sequence": 3332,
+          "timestamp_et": "2026-07-19T11:09:18.000000-04:00",
+          "tminus_scheduled": "T-80.700",
+          "tminus_bell": "T-85.700",
+          "bid": 76,
+          "ask": 78,
+          "raw_normalized_last": 75,
+          "latest_verified_print_at_transition": {
+            "receipt": "d9b44544-89e4-4ab5-2ebb-ad5332cec9f5",
+            "timestamp_et": "2026-07-19T11:09:15.716006-04:00",
+            "price": 77,
+            "size": 67
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 2
+        },
+        {
+          "sequence": 3358,
+          "timestamp_et": "2026-07-19T11:09:20.000000-04:00",
+          "tminus_scheduled": "T-80.667",
+          "tminus_bell": "T-85.667",
+          "bid": 77,
+          "ask": 78,
+          "raw_normalized_last": 77,
+          "latest_verified_print_at_transition": {
+            "receipt": "d9b44544-89e4-4ab5-2ebb-ad5332cec9f5",
+            "timestamp_et": "2026-07-19T11:09:15.716006-04:00",
+            "price": 77,
+            "size": 67
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0.922,
+          "latest_verified_print_at_decision": {
+            "sequence": 3308,
+            "timestamp_et": "2026-07-19T11:09:15.716006-04:00",
+            "tminus_scheduled": "T-80.738",
+            "tminus_bell": "T-85.738",
+            "price": 77,
+            "size": 67,
+            "receipt": "d9b44544-89e4-4ab5-2ebb-ad5332cec9f5"
+          }
+        }
+      ],
+      "own_recent_true_prints": [
+        {
+          "sequence": 3296,
+          "timestamp_et": "2026-07-19T11:08:55.308195-04:00",
+          "tminus_scheduled": "T-81.078",
+          "tminus_bell": "T-86.078",
+          "price": 25,
+          "size": 6,
+          "receipt": "a8128907-169a-43a4-0163-78e12b76a447"
+        },
+        {
+          "sequence": 3297,
+          "timestamp_et": "2026-07-19T11:08:56.540922-04:00",
+          "tminus_scheduled": "T-81.058",
+          "tminus_bell": "T-86.058",
+          "price": 24,
+          "size": 20,
+          "receipt": "66e7d5c9-83df-5bf9-89cc-4d3af9edd57d"
+        },
+        {
+          "sequence": 3300,
+          "timestamp_et": "2026-07-19T11:09:09.709388-04:00",
+          "tminus_scheduled": "T-80.838",
+          "tminus_bell": "T-85.838",
+          "price": 23,
+          "size": 17,
+          "receipt": "02044d02-eb44-7ebe-0262-f78db417e6e6"
+        },
+        {
+          "sequence": 3305,
+          "timestamp_et": "2026-07-19T11:09:15.652681-04:00",
+          "tminus_scheduled": "T-80.739",
+          "tminus_bell": "T-85.739",
+          "price": 23,
+          "size": 483,
+          "receipt": "4f498db0-4344-47b6-a110-5d297687e42e"
+        },
+        {
+          "sequence": 3361,
+          "timestamp_et": "2026-07-19T11:09:20.922837-04:00",
+          "tminus_scheduled": "T-80.651",
+          "tminus_bell": "T-85.651",
+          "price": 19,
+          "size": 21,
+          "receipt": "207fe813-1b58-7999-2ace-4e49c787c1a8"
+        }
+      ],
+      "sibling_recent_true_prints": [
+        {
+          "sequence": 3301,
+          "timestamp_et": "2026-07-19T11:09:09.817292-04:00",
+          "tminus_scheduled": "T-80.836",
+          "tminus_bell": "T-85.836",
+          "price": 76,
+          "size": 11,
+          "receipt": "df4195d0-bf22-672d-b422-d9936075837b"
+        },
+        {
+          "sequence": 3302,
+          "timestamp_et": "2026-07-19T11:09:10.085666-04:00",
+          "tminus_scheduled": "T-80.832",
+          "tminus_bell": "T-85.832",
+          "price": 76,
+          "size": 7.53,
+          "receipt": "8cdf25b2-4c56-6021-648e-a72a42a94063"
+        },
+        {
+          "sequence": 3306,
+          "timestamp_et": "2026-07-19T11:09:15.716006-04:00",
+          "tminus_scheduled": "T-80.738",
+          "tminus_bell": "T-85.738",
+          "price": 77,
+          "size": 13,
+          "receipt": "89d0b798-3ea7-4f08-2d86-04de46c1cb58"
+        },
+        {
+          "sequence": 3307,
+          "timestamp_et": "2026-07-19T11:09:15.716006-04:00",
+          "tminus_scheduled": "T-80.738",
+          "tminus_bell": "T-85.738",
+          "price": 77,
+          "size": 500,
+          "receipt": "a02bf0c6-f703-4c08-01a7-c86847941431"
+        },
+        {
+          "sequence": 3308,
+          "timestamp_et": "2026-07-19T11:09:15.716006-04:00",
+          "tminus_scheduled": "T-80.738",
+          "tminus_bell": "T-85.738",
+          "price": 77,
+          "size": 67,
+          "receipt": "d9b44544-89e4-4ab5-2ebb-ad5332cec9f5"
+        }
+      ],
+      "organ": "FILL_ACCOUNTING",
+      "return": "PRICE_REACHED on strictly later positive-size public print 19",
+      "prediction": "none; execution fact closes the pair-entry path",
+      "price_math": "credit original exposed X=19",
+      "action": "credit five at 19",
+      "declined": "cancel/reprice before fill credit",
+      "code_path": "ColdReplay._fillEvidence:252-261 -> ColdReplay._fill"
+    },
+    {
+      "id": "NIK_ASK_18_DECLINED",
+      "sequence": 4207,
+      "timestamp_et": "2026-07-19T11:32:31.000000-04:00",
+      "tminus_scheduled": "T-57.483",
+      "tminus_bell": "T-62.483",
+      "own_quote_lead_in": [
+        {
+          "sequence": 3309,
+          "timestamp_et": "2026-07-19T11:09:18.000000-04:00",
+          "tminus_scheduled": "T-80.700",
+          "tminus_bell": "T-85.700",
+          "bid": 22,
+          "ask": 24,
+          "raw_normalized_last": 28,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f498db0-4344-47b6-a110-5d297687e42e",
+            "timestamp_et": "2026-07-19T11:09:15.652681-04:00",
+            "price": 23,
+            "size": 483
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 3311,
+          "timestamp_et": "2026-07-19T11:09:18.000000-04:00",
+          "tminus_scheduled": "T-80.700",
+          "tminus_bell": "T-85.700",
+          "bid": 20,
+          "ask": 24,
+          "raw_normalized_last": 23,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f498db0-4344-47b6-a110-5d297687e42e",
+            "timestamp_et": "2026-07-19T11:09:15.652681-04:00",
+            "price": 23,
+            "size": 483
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 2
+        },
+        {
+          "sequence": 3348,
+          "timestamp_et": "2026-07-19T11:09:20.000000-04:00",
+          "tminus_scheduled": "T-80.667",
+          "tminus_bell": "T-85.667",
+          "bid": 19,
+          "ask": 24,
+          "raw_normalized_last": 23,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f498db0-4344-47b6-a110-5d297687e42e",
+            "timestamp_et": "2026-07-19T11:09:15.652681-04:00",
+            "price": 23,
+            "size": 483
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 3353,
+          "timestamp_et": "2026-07-19T11:09:20.000000-04:00",
+          "tminus_scheduled": "T-80.667",
+          "tminus_bell": "T-85.667",
+          "bid": 19,
+          "ask": 23,
+          "raw_normalized_last": 23,
+          "latest_verified_print_at_transition": {
+            "receipt": "4f498db0-4344-47b6-a110-5d297687e42e",
+            "timestamp_et": "2026-07-19T11:09:15.652681-04:00",
+            "price": 23,
+            "size": 483
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 2
+        },
+        {
+          "sequence": 3376,
+          "timestamp_et": "2026-07-19T11:09:22.000000-04:00",
+          "tminus_scheduled": "T-80.633",
+          "tminus_bell": "T-85.633",
+          "bid": 18,
+          "ask": 23,
+          "raw_normalized_last": 23,
+          "latest_verified_print_at_transition": {
+            "receipt": "e62e86d2-02df-710b-0b9b-6aa5522bdfd3",
+            "timestamp_et": "2026-07-19T11:09:20.922837-04:00",
+            "price": 19,
+            "size": 2
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 3377,
+          "timestamp_et": "2026-07-19T11:09:22.000000-04:00",
+          "tminus_scheduled": "T-80.633",
+          "tminus_bell": "T-85.633",
+          "bid": 18,
+          "ask": 19,
+          "raw_normalized_last": 23,
+          "latest_verified_print_at_transition": {
+            "receipt": "e62e86d2-02df-710b-0b9b-6aa5522bdfd3",
+            "timestamp_et": "2026-07-19T11:09:20.922837-04:00",
+            "price": 19,
+            "size": 2
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 33
+        },
+        {
+          "sequence": 3450,
+          "timestamp_et": "2026-07-19T11:09:55.000000-04:00",
+          "tminus_scheduled": "T-80.083",
+          "tminus_bell": "T-85.083",
+          "bid": 17,
+          "ask": 19,
+          "raw_normalized_last": 19,
+          "latest_verified_print_at_transition": {
+            "receipt": "9ed24ee4-28f7-7041-6099-e2e893783ba3",
+            "timestamp_et": "2026-07-19T11:09:50.921132-04:00",
+            "price": 19,
+            "size": 0.24
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 48
+        },
+        {
+          "sequence": 3478,
+          "timestamp_et": "2026-07-19T11:10:43.000000-04:00",
+          "tminus_scheduled": "T-79.283",
+          "tminus_bell": "T-84.283",
+          "bid": 18,
+          "ask": 19,
+          "raw_normalized_last": 19,
+          "latest_verified_print_at_transition": {
+            "receipt": "fc11e0e2-2750-5d0a-290d-c8295ecc1799",
+            "timestamp_et": "2026-07-19T11:10:41.281872-04:00",
+            "price": 19,
+            "size": 71.24
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 442
+        },
+        {
+          "sequence": 3676,
+          "timestamp_et": "2026-07-19T11:18:05.000000-04:00",
+          "tminus_scheduled": "T-71.917",
+          "tminus_bell": "T-76.917",
+          "bid": 17,
+          "ask": 19,
+          "raw_normalized_last": 19,
+          "latest_verified_print_at_transition": {
+            "receipt": "db469320-2eb5-5f55-6bb0-beaa29f60c9f",
+            "timestamp_et": "2026-07-19T11:16:08.988782-04:00",
+            "price": 19,
+            "size": 38.76
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 866
+        },
+        {
+          "sequence": 4207,
+          "timestamp_et": "2026-07-19T11:32:31.000000-04:00",
+          "tminus_scheduled": "T-57.483",
+          "tminus_bell": "T-62.483",
+          "bid": 17,
+          "ask": 18,
+          "raw_normalized_last": 19,
+          "latest_verified_print_at_transition": {
+            "receipt": "db469320-2eb5-5f55-6bb0-beaa29f60c9f",
+            "timestamp_et": "2026-07-19T11:16:08.988782-04:00",
+            "price": 19,
+            "size": 38.76
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0,
+          "latest_verified_print_at_decision": {
+            "sequence": 3636,
+            "timestamp_et": "2026-07-19T11:16:08.988782-04:00",
+            "tminus_scheduled": "T-73.850",
+            "tminus_bell": "T-78.850",
+            "price": 19,
+            "size": 38.76,
+            "receipt": "db469320-2eb5-5f55-6bb0-beaa29f60c9f"
+          }
+        }
+      ],
+      "sibling_quote_lead_in": [
+        {
+          "sequence": 4089,
+          "timestamp_et": "2026-07-19T11:32:17.000000-04:00",
+          "tminus_scheduled": "T-57.717",
+          "tminus_bell": "T-62.717",
+          "bid": 80,
+          "ask": 83,
+          "raw_normalized_last": 81,
+          "latest_verified_print_at_transition": {
+            "receipt": "3e62d328-b6f9-4ae1-2de0-e16000094964",
+            "timestamp_et": "2026-07-19T11:26:24.181509-04:00",
+            "price": 83,
+            "size": 21
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 4092,
+          "timestamp_et": "2026-07-19T11:32:17.000000-04:00",
+          "tminus_scheduled": "T-57.717",
+          "tminus_bell": "T-62.717",
+          "bid": 81,
+          "ask": 83,
+          "raw_normalized_last": 81,
+          "latest_verified_print_at_transition": {
+            "receipt": "3e62d328-b6f9-4ae1-2de0-e16000094964",
+            "timestamp_et": "2026-07-19T11:26:24.181509-04:00",
+            "price": 83,
+            "size": 21
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 6
+        },
+        {
+          "sequence": 4130,
+          "timestamp_et": "2026-07-19T11:32:23.000000-04:00",
+          "tminus_scheduled": "T-57.617",
+          "tminus_bell": "T-62.617",
+          "bid": 80,
+          "ask": 83,
+          "raw_normalized_last": 81,
+          "latest_verified_print_at_transition": {
+            "receipt": "3e62d328-b6f9-4ae1-2de0-e16000094964",
+            "timestamp_et": "2026-07-19T11:26:24.181509-04:00",
+            "price": 83,
+            "size": 21
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 4134,
+          "timestamp_et": "2026-07-19T11:32:23.000000-04:00",
+          "tminus_scheduled": "T-57.617",
+          "tminus_bell": "T-62.617",
+          "bid": 81,
+          "ask": 83,
+          "raw_normalized_last": 81,
+          "latest_verified_print_at_transition": {
+            "receipt": "3e62d328-b6f9-4ae1-2de0-e16000094964",
+            "timestamp_et": "2026-07-19T11:26:24.181509-04:00",
+            "price": 83,
+            "size": 21
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 4
+        },
+        {
+          "sequence": 4181,
+          "timestamp_et": "2026-07-19T11:32:27.000000-04:00",
+          "tminus_scheduled": "T-57.550",
+          "tminus_bell": "T-62.550",
+          "bid": 80,
+          "ask": 83,
+          "raw_normalized_last": 81,
+          "latest_verified_print_at_transition": {
+            "receipt": "3e62d328-b6f9-4ae1-2de0-e16000094964",
+            "timestamp_et": "2026-07-19T11:26:24.181509-04:00",
+            "price": 83,
+            "size": 21
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 4185,
+          "timestamp_et": "2026-07-19T11:32:27.000000-04:00",
+          "tminus_scheduled": "T-57.550",
+          "tminus_bell": "T-62.550",
+          "bid": 81,
+          "ask": 83,
+          "raw_normalized_last": 81,
+          "latest_verified_print_at_transition": {
+            "receipt": "3e62d328-b6f9-4ae1-2de0-e16000094964",
+            "timestamp_et": "2026-07-19T11:26:24.181509-04:00",
+            "price": 83,
+            "size": 21
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 4,
+          "latest_verified_print_at_decision": {
+            "sequence": 3704,
+            "timestamp_et": "2026-07-19T11:26:24.181509-04:00",
+            "tminus_scheduled": "T-63.597",
+            "tminus_bell": "T-68.597",
+            "price": 83,
+            "size": 21,
+            "receipt": "3e62d328-b6f9-4ae1-2de0-e16000094964"
+          }
+        }
+      ],
+      "own_recent_true_prints": [
+        {
+          "sequence": 3611,
+          "timestamp_et": "2026-07-19T11:12:36.173760-04:00",
+          "tminus_scheduled": "T-77.397",
+          "tminus_bell": "T-82.397",
+          "price": 19,
+          "size": 10,
+          "receipt": "e2b450ef-2b61-6dc1-c09f-91a58f17d62b"
+        },
+        {
+          "sequence": 3625,
+          "timestamp_et": "2026-07-19T11:14:07.858676-04:00",
+          "tminus_scheduled": "T-75.869",
+          "tminus_bell": "T-80.869",
+          "price": 19,
+          "size": 10,
+          "receipt": "eb4d6884-4911-4d0d-da58-d2ab8896386f"
+        },
+        {
+          "sequence": 3632,
+          "timestamp_et": "2026-07-19T11:15:40.591607-04:00",
+          "tminus_scheduled": "T-74.323",
+          "tminus_bell": "T-79.323",
+          "price": 19,
+          "size": 10,
+          "receipt": "af24afd8-b745-6f81-73d5-01a92c68e55b"
+        },
+        {
+          "sequence": 3635,
+          "timestamp_et": "2026-07-19T11:16:08.988782-04:00",
+          "tminus_scheduled": "T-73.850",
+          "tminus_bell": "T-78.850",
+          "price": 19,
+          "size": 11.24,
+          "receipt": "a3d5b155-f3cb-5863-4a5d-97c0adb9252d"
+        },
+        {
+          "sequence": 3636,
+          "timestamp_et": "2026-07-19T11:16:08.988782-04:00",
+          "tminus_scheduled": "T-73.850",
+          "tminus_bell": "T-78.850",
+          "price": 19,
+          "size": 38.76,
+          "receipt": "db469320-2eb5-5f55-6bb0-beaa29f60c9f"
+        }
+      ],
+      "sibling_recent_true_prints": [
+        {
+          "sequence": 3583,
+          "timestamp_et": "2026-07-19T11:11:41.160205-04:00",
+          "tminus_scheduled": "T-78.314",
+          "tminus_bell": "T-83.314",
+          "price": 81,
+          "size": 100,
+          "receipt": "1687eddf-e7bd-675e-4cc9-74c1c51f7858"
+        },
+        {
+          "sequence": 3584,
+          "timestamp_et": "2026-07-19T11:11:41.160205-04:00",
+          "tminus_scheduled": "T-78.314",
+          "tminus_bell": "T-83.314",
+          "price": 81,
+          "size": 25,
+          "receipt": "3c4ed36d-d553-618a-7afa-96288401894a"
+        },
+        {
+          "sequence": 3585,
+          "timestamp_et": "2026-07-19T11:11:41.160205-04:00",
+          "tminus_scheduled": "T-78.314",
+          "tminus_bell": "T-83.314",
+          "price": 81,
+          "size": 100,
+          "receipt": "50147311-a94d-6bc6-71d7-feab40117f64"
+        },
+        {
+          "sequence": 3586,
+          "timestamp_et": "2026-07-19T11:11:41.160205-04:00",
+          "tminus_scheduled": "T-78.314",
+          "tminus_bell": "T-83.314",
+          "price": 81,
+          "size": 68,
+          "receipt": "8d9ea851-b5b3-6909-4572-6ecd2389440a"
+        },
+        {
+          "sequence": 3704,
+          "timestamp_et": "2026-07-19T11:26:24.181509-04:00",
+          "tminus_scheduled": "T-63.597",
+          "tminus_bell": "T-68.597",
+          "price": 83,
+          "size": 21,
+          "receipt": "3e62d328-b6f9-4ae1-2de0-e16000094964"
+        }
+      ],
+      "organ": "FILLED_PHASE_GATE",
+      "return": "PAIR_ENTRY_COMPLETE",
+      "prediction": "none; entry pricing is unreachable after both exact-five fills",
+      "price_math": "no alternative was calculated; 69+18=87 versus achieved 88 is an ex-post counterfactual only",
+      "action": "record 17/18 book and do not re-buy",
+      "declined": "all further Window-1 entry actions",
+      "code_path": "ColdReplay.process:pairCompleteLock:474-481"
+    },
+    {
+      "id": "NIK_LOCK_THROUGH_BELL",
+      "sequence": 13123,
+      "timestamp_et": "2026-07-19T12:35:00.000000-04:00",
+      "tminus_scheduled": "T+5.000",
+      "tminus_bell": "T-0.000",
+      "own_quote_lead_in": [
+        {
+          "sequence": 6404,
+          "timestamp_et": "2026-07-19T11:53:10.000000-04:00",
+          "tminus_scheduled": "T-36.833",
+          "tminus_bell": "T-41.833",
+          "bid": 17,
+          "ask": 18,
+          "raw_normalized_last": 18,
+          "latest_verified_print_at_transition": {
+            "receipt": "5572fde4-098d-47bc-1111-16d37172ad90",
+            "timestamp_et": "2026-07-19T11:51:43.971849-04:00",
+            "price": 18,
+            "size": 48.33
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 2
+        },
+        {
+          "sequence": 6560,
+          "timestamp_et": "2026-07-19T11:53:12.000000-04:00",
+          "tminus_scheduled": "T-36.800",
+          "tminus_bell": "T-41.800",
+          "bid": 17,
+          "ask": 19,
+          "raw_normalized_last": 18,
+          "latest_verified_print_at_transition": {
+            "receipt": "5572fde4-098d-47bc-1111-16d37172ad90",
+            "timestamp_et": "2026-07-19T11:51:43.971849-04:00",
+            "price": 18,
+            "size": 48.33
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 5
+        },
+        {
+          "sequence": 6612,
+          "timestamp_et": "2026-07-19T11:53:17.000000-04:00",
+          "tminus_scheduled": "T-36.717",
+          "tminus_bell": "T-41.717",
+          "bid": 17,
+          "ask": 18,
+          "raw_normalized_last": 18,
+          "latest_verified_print_at_transition": {
+            "receipt": "5572fde4-098d-47bc-1111-16d37172ad90",
+            "timestamp_et": "2026-07-19T11:51:43.971849-04:00",
+            "price": 18,
+            "size": 48.33
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 4
+        },
+        {
+          "sequence": 6635,
+          "timestamp_et": "2026-07-19T11:53:21.000000-04:00",
+          "tminus_scheduled": "T-36.650",
+          "tminus_bell": "T-41.650",
+          "bid": 17,
+          "ask": 19,
+          "raw_normalized_last": 18,
+          "latest_verified_print_at_transition": {
+            "receipt": "5572fde4-098d-47bc-1111-16d37172ad90",
+            "timestamp_et": "2026-07-19T11:51:43.971849-04:00",
+            "price": 18,
+            "size": 48.33
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 6
+        },
+        {
+          "sequence": 6684,
+          "timestamp_et": "2026-07-19T11:53:27.000000-04:00",
+          "tminus_scheduled": "T-36.550",
+          "tminus_bell": "T-41.550",
+          "bid": 17,
+          "ask": 18,
+          "raw_normalized_last": 18,
+          "latest_verified_print_at_transition": {
+            "receipt": "5572fde4-098d-47bc-1111-16d37172ad90",
+            "timestamp_et": "2026-07-19T11:51:43.971849-04:00",
+            "price": 18,
+            "size": 48.33
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 5
+        },
+        {
+          "sequence": 6818,
+          "timestamp_et": "2026-07-19T11:53:32.000000-04:00",
+          "tminus_scheduled": "T-36.467",
+          "tminus_bell": "T-41.467",
+          "bid": 17,
+          "ask": 19,
+          "raw_normalized_last": 18,
+          "latest_verified_print_at_transition": {
+            "receipt": "5572fde4-098d-47bc-1111-16d37172ad90",
+            "timestamp_et": "2026-07-19T11:51:43.971849-04:00",
+            "price": 18,
+            "size": 48.33
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 2488,
+          "latest_verified_print_at_decision": {
+            "sequence": 12210,
+            "timestamp_et": "2026-07-19T12:30:08.232286-04:00",
+            "tminus_scheduled": "T+0.137",
+            "tminus_bell": "T-4.863",
+            "price": 19,
+            "size": 9.96,
+            "receipt": "1b4a90c8-bb50-6d28-9730-54d2f707ecf1"
+          }
+        }
+      ],
+      "sibling_quote_lead_in": [
+        {
+          "sequence": 12980,
+          "timestamp_et": "2026-07-19T12:33:53.000000-04:00",
+          "tminus_scheduled": "T+3.883",
+          "tminus_bell": "T-1.117",
+          "bid": 80,
+          "ask": 83,
+          "raw_normalized_last": 83,
+          "latest_verified_print_at_transition": {
+            "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e",
+            "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+            "price": 83,
+            "size": 9
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 4
+        },
+        {
+          "sequence": 13017,
+          "timestamp_et": "2026-07-19T12:33:57.000000-04:00",
+          "tminus_scheduled": "T+3.950",
+          "tminus_bell": "T-1.050",
+          "bid": 81,
+          "ask": 83,
+          "raw_normalized_last": 83,
+          "latest_verified_print_at_transition": {
+            "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e",
+            "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+            "price": 83,
+            "size": 9
+          },
+          "changed_sides": [
+            "bid"
+          ],
+          "seconds_held_before_next_change_or_decision": 48
+        },
+        {
+          "sequence": 13079,
+          "timestamp_et": "2026-07-19T12:34:45.000000-04:00",
+          "tminus_scheduled": "T+4.750",
+          "tminus_bell": "T-0.250",
+          "bid": 81,
+          "ask": 84,
+          "raw_normalized_last": 83,
+          "latest_verified_print_at_transition": {
+            "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e",
+            "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+            "price": 83,
+            "size": 9
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 9
+        },
+        {
+          "sequence": 13094,
+          "timestamp_et": "2026-07-19T12:34:54.000000-04:00",
+          "tminus_scheduled": "T+4.900",
+          "tminus_bell": "T-0.100",
+          "bid": 81,
+          "ask": 83,
+          "raw_normalized_last": 83,
+          "latest_verified_print_at_transition": {
+            "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e",
+            "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+            "price": 83,
+            "size": 9
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 1
+        },
+        {
+          "sequence": 13108,
+          "timestamp_et": "2026-07-19T12:34:55.000000-04:00",
+          "tminus_scheduled": "T+4.917",
+          "tminus_bell": "T-0.083",
+          "bid": 81,
+          "ask": 84,
+          "raw_normalized_last": 83,
+          "latest_verified_print_at_transition": {
+            "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e",
+            "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+            "price": 83,
+            "size": 9
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 0
+        },
+        {
+          "sequence": 13113,
+          "timestamp_et": "2026-07-19T12:34:55.000000-04:00",
+          "tminus_scheduled": "T+4.917",
+          "tminus_bell": "T-0.083",
+          "bid": 81,
+          "ask": 83,
+          "raw_normalized_last": 83,
+          "latest_verified_print_at_transition": {
+            "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e",
+            "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+            "price": 83,
+            "size": 9
+          },
+          "changed_sides": [
+            "ask"
+          ],
+          "seconds_held_before_next_change_or_decision": 5,
+          "latest_verified_print_at_decision": {
+            "sequence": 10979,
+            "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+            "tminus_scheduled": "T-4.872",
+            "tminus_bell": "T-9.872",
+            "price": 83,
+            "size": 9,
+            "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e"
+          }
+        }
+      ],
+      "own_recent_true_prints": [
+        {
+          "sequence": 11965,
+          "timestamp_et": "2026-07-19T12:26:23.967753-04:00",
+          "tminus_scheduled": "T-3.601",
+          "tminus_bell": "T-8.601",
+          "price": 19,
+          "size": 16,
+          "receipt": "24bceb16-1d3b-6149-3df0-5842fed5b288"
+        },
+        {
+          "sequence": 11966,
+          "timestamp_et": "2026-07-19T12:26:23.967753-04:00",
+          "tminus_scheduled": "T-3.601",
+          "tminus_bell": "T-8.601",
+          "price": 19,
+          "size": 62.22,
+          "receipt": "7f0e93c1-0eb8-65ea-3eac-0b0db43a0973"
+        },
+        {
+          "sequence": 11967,
+          "timestamp_et": "2026-07-19T12:26:23.967753-04:00",
+          "tminus_scheduled": "T-3.601",
+          "tminus_bell": "T-8.601",
+          "price": 19,
+          "size": 63,
+          "receipt": "a1775348-5bfb-67c1-0eab-61a582d054e2"
+        },
+        {
+          "sequence": 11968,
+          "timestamp_et": "2026-07-19T12:26:23.967753-04:00",
+          "tminus_scheduled": "T-3.601",
+          "tminus_bell": "T-8.601",
+          "price": 19,
+          "size": 22,
+          "receipt": "a305f177-ddbf-65c4-08fc-df8984885dd1"
+        },
+        {
+          "sequence": 12210,
+          "timestamp_et": "2026-07-19T12:30:08.232286-04:00",
+          "tminus_scheduled": "T+0.137",
+          "tminus_bell": "T-4.863",
+          "price": 19,
+          "size": 9.96,
+          "receipt": "1b4a90c8-bb50-6d28-9730-54d2f707ecf1"
+        }
+      ],
+      "sibling_recent_true_prints": [
+        {
+          "sequence": 4717,
+          "timestamp_et": "2026-07-19T11:44:03.672971-04:00",
+          "tminus_scheduled": "T-45.939",
+          "tminus_bell": "T-50.939",
+          "price": 84,
+          "size": 4,
+          "receipt": "235d1eac-e05a-4497-f990-0a151d76142f"
+        },
+        {
+          "sequence": 4755,
+          "timestamp_et": "2026-07-19T11:49:12.110829-04:00",
+          "tminus_scheduled": "T-40.798",
+          "tminus_bell": "T-45.798",
+          "price": 81,
+          "size": 5,
+          "receipt": "0136593a-675b-740d-0532-fc4306b92702"
+        },
+        {
+          "sequence": 5504,
+          "timestamp_et": "2026-07-19T11:52:06.239204-04:00",
+          "tminus_scheduled": "T-37.896",
+          "tminus_bell": "T-42.896",
+          "price": 83,
+          "size": 5,
+          "receipt": "66b889ad-1ce1-773a-279f-6db77f5aa96a"
+        },
+        {
+          "sequence": 9175,
+          "timestamp_et": "2026-07-19T12:12:26.448839-04:00",
+          "tminus_scheduled": "T-17.559",
+          "tminus_bell": "T-22.559",
+          "price": 84,
+          "size": 5.8,
+          "receipt": "d9bfa760-ed1d-552a-02c7-285cd23e5c54"
+        },
+        {
+          "sequence": 10979,
+          "timestamp_et": "2026-07-19T12:25:07.692102-04:00",
+          "tminus_scheduled": "T-4.872",
+          "tminus_bell": "T-9.872",
+          "price": 83,
+          "size": 9,
+          "receipt": "b1554492-cc40-77b6-e46e-60ff0e88115e"
+        }
+      ],
+      "organ": "FILLED_PHASE_GATE",
+      "return": "PAIR_ENTRY_COMPLETE",
+      "prediction": "none",
+      "action": "no re-buy through observed bell",
+      "declined": "all entry pricing",
+      "code_path": "ColdReplay.process:pairCompleteLock"
+    }
+  ]
+}

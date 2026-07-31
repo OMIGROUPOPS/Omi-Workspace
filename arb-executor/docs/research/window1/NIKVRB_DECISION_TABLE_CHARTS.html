@@ -1,0 +1,829 @@
+<div id="nikvrb-decision-report">
+  <style>
+    #nikvrb-decision-report { color: var(--foreground); font-family: var(--font-sans); }
+    #nikvrb-decision-report .nik-section { margin-block: 0 2.5rem; }
+    #nikvrb-decision-report h2 { margin: 0 0 0.75rem; font-size: 1.08rem; font-weight: 650; }
+    #nikvrb-decision-report code { white-space: nowrap; font-family: var(--font-mono); font-size: 0.78rem; }
+    #nikvrb-decision-report .nik-chart-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1.25rem; }
+    #nikvrb-decision-report .nik-chart h3 { margin: 0 0 0.5rem; font-size: 1rem; font-weight: 650; }
+    #nikvrb-decision-report .nik-chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+    #nikvrb-decision-report .nik-legend { display: flex; flex-wrap: wrap; gap: 0.9rem; margin: 0 0 1rem; font-size: 0.82rem; color: var(--muted-foreground); }
+    #nikvrb-decision-report .nik-key { display: inline-flex; align-items: center; gap: 0.35rem; }
+    #nikvrb-decision-report .nik-swatch { width: 1.4rem; border-top: 3px solid; }
+    @media (max-width: 900px) { #nikvrb-decision-report .nik-chart-grid { grid-template-columns: 1fr; } }
+  </style>
+  
+    <section class="nik-section">
+      <h2>Current branch · VRB</h2>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead><tr>
+            <th>#</th><th>T− scheduled</th><th>T− bell</th><th class="text-end">best bid</th><th class="text-end">best ask</th><th class="text-end">last traded</th><th class="text-end">spread</th><th>what fired</th><th>input value</th><th>output value</th><th>our order before</th><th>our order after</th>
+          </tr></thead>
+          <tbody>
+          <tr>
+            <td class="text-muted">1</td>
+            <td><code>T−375.450</code></td>
+            <td><code>T−380.450</code></td>
+            <td class="text-end">5</td>
+            <td class="text-end">92</td>
+            <td class="text-end">—</td>
+            <td class="text-end">87</td>
+            <td><code>DISCOVERY_GATE</code></td>
+            <td><code>last receipt = ∅</code></td>
+            <td><code>NO_CALL → ∅</code></td>
+            <td><code>∅</code></td>
+            <td><code>∅</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">2</td>
+            <td><code>T−361.917</code></td>
+            <td><code>T−366.917</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">77</td>
+            <td class="text-end">—</td>
+            <td class="text-end">10</td>
+            <td><code>ORIENTATION / OWN-ANCHOR GATE</code></td>
+            <td><code>VRB=RISER; VRB anchor=∅</code></td>
+            <td><code>RISER + ∅ = ∅</code></td>
+            <td><code>∅</code></td>
+            <td><code>∅</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">3</td>
+            <td><code>T−317.817</code></td>
+            <td><code>T−322.817</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">—</td>
+            <td class="text-end">1</td>
+            <td><code>OWN-ANCHOR GATE · ASK68 #1</code></td>
+            <td><code>ask=68; last receipt=∅</code></td>
+            <td><code>NO_CALL → ∅</code></td>
+            <td><code>∅</code></td>
+            <td><code>∅</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">4</td>
+            <td><code>T−316.033</code></td>
+            <td><code>T−321.033</code></td>
+            <td class="text-end">69</td>
+            <td class="text-end">70</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>ORIENTATION_RISER_NEAR_NOW</code></td>
+            <td><code>external bid=69; last=70</code></td>
+            <td><code>X = bid = 69</code></td>
+            <td><code>∅</code></td>
+            <td><code>69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">5</td>
+            <td><code>T−314.633</code></td>
+            <td><code>T−319.633</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>STRICT_ASK_CERTAIN_FILL · ASK68 #2</code></td>
+            <td><code>ask 68 &lt; order 69</code></td>
+            <td><code>credit 5 @ 69</code></td>
+            <td><code>69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">6</td>
+            <td><code>T−308.800</code></td>
+            <td><code>T−313.800</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>FILLED_PHASE_GATE · ASK68 #3</code></td>
+            <td><code>filled price=69</code></td>
+            <td><code>69 = 69; re-buy=∅</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">7</td>
+            <td><code>T−307.800</code></td>
+            <td><code>T−312.800</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>FILLED_PHASE_GATE · ASK68 #4</code></td>
+            <td><code>filled price=69</code></td>
+            <td><code>69 = 69; re-buy=∅</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">8</td>
+            <td><code>T−306.750</code></td>
+            <td><code>T−311.750</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>FILLED_PHASE_GATE · ASK68 #5</code></td>
+            <td><code>filled price=69</code></td>
+            <td><code>69 = 69; re-buy=∅</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">9</td>
+            <td><code>T−305.783</code></td>
+            <td><code>T−310.783</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>FILLED_PHASE_GATE · ASK68 #6</code></td>
+            <td><code>filled price=69</code></td>
+            <td><code>69 = 69; re-buy=∅</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">10</td>
+            <td><code>T−301.833</code></td>
+            <td><code>T−306.833</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>FILLED_PHASE_GATE · ASK68 #7</code></td>
+            <td><code>filled price=69</code></td>
+            <td><code>69 = 69; re-buy=∅</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">11</td>
+            <td><code>T−300.817</code></td>
+            <td><code>T−305.817</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>FILLED_PHASE_GATE · ASK68 #8</code></td>
+            <td><code>filled price=69</code></td>
+            <td><code>69 = 69; re-buy=∅</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">12</td>
+            <td><code>T−299.717</code></td>
+            <td><code>T−304.717</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>FILLED_PHASE_GATE · ASK68 #9</code></td>
+            <td><code>filled price=69</code></td>
+            <td><code>69 = 69; re-buy=∅</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">13</td>
+            <td><code>T+5.000</code></td>
+            <td><code>T−0.000</code></td>
+            <td class="text-end">81</td>
+            <td class="text-end">83</td>
+            <td class="text-end">83</td>
+            <td class="text-end">2</td>
+            <td><code>PAIR_ENTRY_COMPLETE</code></td>
+            <td><code>VRB fill=69; NIK fill≠∅</code></td>
+            <td><code>entry gate=LOCKED</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr></tbody>
+        </table>
+      </div>
+    </section>
+  
+    <section class="nik-section">
+      <h2>Current branch · NIK</h2>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead><tr>
+            <th>#</th><th>T− scheduled</th><th>T− bell</th><th class="text-end">best bid</th><th class="text-end">best ask</th><th class="text-end">last traded</th><th class="text-end">spread</th><th>what fired</th><th>input value</th><th>output value</th><th>our order before</th><th>our order after</th>
+          </tr></thead>
+          <tbody>
+          <tr>
+            <td class="text-muted">1</td>
+            <td><code>T−375.450</code></td>
+            <td><code>T−380.450</code></td>
+            <td class="text-end">5</td>
+            <td class="text-end">92</td>
+            <td class="text-end">—</td>
+            <td class="text-end">87</td>
+            <td><code>DISCOVERY_GATE</code></td>
+            <td><code>last receipt = ∅</code></td>
+            <td><code>NO_CALL → ∅</code></td>
+            <td><code>∅</code></td>
+            <td><code>∅</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">2</td>
+            <td><code>T−361.917</code></td>
+            <td><code>T−366.917</code></td>
+            <td class="text-end">23</td>
+            <td class="text-end">33</td>
+            <td class="text-end">33</td>
+            <td class="text-end">10</td>
+            <td><code>ORIENTATION_FALLER_DEEP</code></td>
+            <td><code>anchor 33 − ATLAS p75 7</code></td>
+            <td><code>33 − 7 = 26</code></td>
+            <td><code>∅</code></td>
+            <td><code>26</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">3</td>
+            <td><code>T−322.450</code></td>
+            <td><code>T−327.450</code></td>
+            <td class="text-end">29</td>
+            <td class="text-end">30</td>
+            <td class="text-end">32</td>
+            <td class="text-end">1</td>
+            <td><code>ORIENTATION_FALLER_DEEP</code></td>
+            <td><code>tight-mid anchor 30 − p75 7</code></td>
+            <td><code>30 − 7 = 23</code></td>
+            <td><code>26</code></td>
+            <td><code>23</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">4</td>
+            <td><code>T−278.650</code></td>
+            <td><code>T−283.650</code></td>
+            <td class="text-end">24</td>
+            <td class="text-end">27</td>
+            <td class="text-end">28</td>
+            <td class="text-end">3</td>
+            <td><code>ORIENTATION_FALLER_DEEP</code></td>
+            <td><code>verified last 28 − p75 7</code></td>
+            <td><code>28 − 7 = 21</code></td>
+            <td><code>23</code></td>
+            <td><code>21</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">5</td>
+            <td><code>T−119.350</code></td>
+            <td><code>T−124.350</code></td>
+            <td class="text-end">24</td>
+            <td class="text-end">29</td>
+            <td class="text-end">27</td>
+            <td class="text-end">5</td>
+            <td><code>RESTING_ORDER_MANAGER</code></td>
+            <td><code>order=21; named trigger=∅</code></td>
+            <td><code>21 = 21</code></td>
+            <td><code>21</code></td>
+            <td><code>21</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">6</td>
+            <td><code>T−117.133</code></td>
+            <td><code>T−122.133</code></td>
+            <td class="text-end">24</td>
+            <td class="text-end">28</td>
+            <td class="text-end">27</td>
+            <td class="text-end">4</td>
+            <td><code>RESTING_ORDER_MANAGER</code></td>
+            <td><code>order=21; ask 28 &gt; 21</code></td>
+            <td><code>21 = 21</code></td>
+            <td><code>21</code></td>
+            <td><code>21</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">7</td>
+            <td><code>T−109.800</code></td>
+            <td><code>T−114.800</code></td>
+            <td class="text-end">23</td>
+            <td class="text-end">27</td>
+            <td class="text-end">24</td>
+            <td class="text-end">4</td>
+            <td><code>RESTING_ORDER_MANAGER</code></td>
+            <td><code>order=21; bid 23; ask 27</code></td>
+            <td><code>21 = 21</code></td>
+            <td><code>21</code></td>
+            <td><code>21</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">8</td>
+            <td><code>T−109.050</code></td>
+            <td><code>T−114.050</code></td>
+            <td class="text-end">19</td>
+            <td class="text-end">27</td>
+            <td class="text-end">24</td>
+            <td class="text-end">8</td>
+            <td><code>RESTING_ORDER_MANAGER</code></td>
+            <td><code>order=21; bid 19; ask 27</code></td>
+            <td><code>21 = 21</code></td>
+            <td><code>21</code></td>
+            <td><code>21</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">9</td>
+            <td><code>T−80.651</code></td>
+            <td><code>T−85.651</code></td>
+            <td class="text-end">19</td>
+            <td class="text-end">23</td>
+            <td class="text-end">19</td>
+            <td class="text-end">4</td>
+            <td><code>PRICE_REACHED</code></td>
+            <td><code>public print 19 ≤ order 21</code></td>
+            <td><code>credit 5 @ 21</code></td>
+            <td><code>21</code></td>
+            <td><code>FILLED 21</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">10</td>
+            <td><code>T−57.483</code></td>
+            <td><code>T−62.483</code></td>
+            <td class="text-end">17</td>
+            <td class="text-end">18</td>
+            <td class="text-end">19</td>
+            <td class="text-end">1</td>
+            <td><code>PAIR_ENTRY_COMPLETE</code></td>
+            <td><code>ask=18; NIK filled=21</code></td>
+            <td><code>re-buy=∅</code></td>
+            <td><code>FILLED 21</code></td>
+            <td><code>FILLED 21</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">11</td>
+            <td><code>T+5.000</code></td>
+            <td><code>T−0.000</code></td>
+            <td class="text-end">17</td>
+            <td class="text-end">19</td>
+            <td class="text-end">19</td>
+            <td class="text-end">2</td>
+            <td><code>PAIR_ENTRY_COMPLETE</code></td>
+            <td><code>VRB fill=69; NIK fill=21</code></td>
+            <td><code>entry gate=LOCKED</code></td>
+            <td><code>FILLED 21</code></td>
+            <td><code>FILLED 21</code></td>
+          </tr></tbody>
+        </table>
+      </div>
+    </section>
+  
+    <section class="nik-section">
+      <h2>Corrected branch · VRB</h2>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead><tr>
+            <th>#</th><th>T− scheduled</th><th>T− bell</th><th class="text-end">best bid</th><th class="text-end">best ask</th><th class="text-end">last traded</th><th class="text-end">spread</th><th>what fired</th><th>input value</th><th>output value</th><th>our order before</th><th>our order after</th>
+          </tr></thead>
+          <tbody>
+          <tr>
+            <td class="text-muted">1</td>
+            <td><code>T−375.450</code></td>
+            <td><code>T−380.450</code></td>
+            <td class="text-end">5</td>
+            <td class="text-end">92</td>
+            <td class="text-end">—</td>
+            <td class="text-end">87</td>
+            <td><code>DISCOVERY_GATE</code></td>
+            <td><code>last receipt = ∅</code></td>
+            <td><code>NO_CALL → ∅</code></td>
+            <td><code>∅</code></td>
+            <td><code>∅</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">2</td>
+            <td><code>T−361.917</code></td>
+            <td><code>T−366.917</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">77</td>
+            <td class="text-end">—</td>
+            <td class="text-end">10</td>
+            <td><code>ORIENTATION / OWN-ANCHOR GATE</code></td>
+            <td><code>VRB=RISER; VRB anchor=∅</code></td>
+            <td><code>RISER + ∅ = ∅</code></td>
+            <td><code>∅</code></td>
+            <td><code>∅</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">3</td>
+            <td><code>T−317.817</code></td>
+            <td><code>T−322.817</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">—</td>
+            <td class="text-end">1</td>
+            <td><code>OWN-ANCHOR GATE · ASK68 #1</code></td>
+            <td><code>ask=68; last receipt=∅</code></td>
+            <td><code>NO_CALL → ∅</code></td>
+            <td><code>∅</code></td>
+            <td><code>∅</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">4</td>
+            <td><code>T−316.033</code></td>
+            <td><code>T−321.033</code></td>
+            <td class="text-end">69</td>
+            <td class="text-end">70</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>ORIENTATION_RISER_NEAR_NOW</code></td>
+            <td><code>external bid=69; last=70</code></td>
+            <td><code>X = bid = 69</code></td>
+            <td><code>∅</code></td>
+            <td><code>69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">5</td>
+            <td><code>T−314.633</code></td>
+            <td><code>T−319.633</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>STRICT_ASK_CERTAIN_FILL · ASK68 #2</code></td>
+            <td><code>ask 68 &lt; order 69</code></td>
+            <td><code>credit 5 @ 69</code></td>
+            <td><code>69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">6</td>
+            <td><code>T−308.800</code></td>
+            <td><code>T−313.800</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>FILLED_PHASE_GATE · ASK68 #3</code></td>
+            <td><code>filled price=69</code></td>
+            <td><code>69 = 69; re-buy=∅</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">7</td>
+            <td><code>T−307.800</code></td>
+            <td><code>T−312.800</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>FILLED_PHASE_GATE · ASK68 #4</code></td>
+            <td><code>filled price=69</code></td>
+            <td><code>69 = 69; re-buy=∅</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">8</td>
+            <td><code>T−306.750</code></td>
+            <td><code>T−311.750</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>FILLED_PHASE_GATE · ASK68 #5</code></td>
+            <td><code>filled price=69</code></td>
+            <td><code>69 = 69; re-buy=∅</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">9</td>
+            <td><code>T−305.783</code></td>
+            <td><code>T−310.783</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>FILLED_PHASE_GATE · ASK68 #6</code></td>
+            <td><code>filled price=69</code></td>
+            <td><code>69 = 69; re-buy=∅</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">10</td>
+            <td><code>T−301.833</code></td>
+            <td><code>T−306.833</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>FILLED_PHASE_GATE · ASK68 #7</code></td>
+            <td><code>filled price=69</code></td>
+            <td><code>69 = 69; re-buy=∅</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">11</td>
+            <td><code>T−300.817</code></td>
+            <td><code>T−305.817</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>FILLED_PHASE_GATE · ASK68 #8</code></td>
+            <td><code>filled price=69</code></td>
+            <td><code>69 = 69; re-buy=∅</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">12</td>
+            <td><code>T−299.717</code></td>
+            <td><code>T−304.717</code></td>
+            <td class="text-end">67</td>
+            <td class="text-end">68</td>
+            <td class="text-end">70</td>
+            <td class="text-end">1</td>
+            <td><code>FILLED_PHASE_GATE · ASK68 #9</code></td>
+            <td><code>filled price=69</code></td>
+            <td><code>69 = 69; re-buy=∅</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">13</td>
+            <td><code>T+5.000</code></td>
+            <td><code>T−0.000</code></td>
+            <td class="text-end">81</td>
+            <td class="text-end">83</td>
+            <td class="text-end">83</td>
+            <td class="text-end">2</td>
+            <td><code>PAIR_ENTRY_COMPLETE</code></td>
+            <td><code>VRB fill=69; NIK fill≠∅</code></td>
+            <td><code>entry gate=LOCKED</code></td>
+            <td><code>FILLED 69</code></td>
+            <td><code>FILLED 69</code></td>
+          </tr></tbody>
+        </table>
+      </div>
+    </section>
+  
+    <section class="nik-section">
+      <h2>Corrected branch · NIK</h2>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead><tr>
+            <th>#</th><th>T− scheduled</th><th>T− bell</th><th class="text-end">best bid</th><th class="text-end">best ask</th><th class="text-end">last traded</th><th class="text-end">spread</th><th>what fired</th><th>input value</th><th>output value</th><th>our order before</th><th>our order after</th>
+          </tr></thead>
+          <tbody>
+          <tr>
+            <td class="text-muted">1</td>
+            <td><code>T−375.450</code></td>
+            <td><code>T−380.450</code></td>
+            <td class="text-end">5</td>
+            <td class="text-end">92</td>
+            <td class="text-end">—</td>
+            <td class="text-end">87</td>
+            <td><code>DISCOVERY_GATE</code></td>
+            <td><code>last receipt = ∅</code></td>
+            <td><code>NO_CALL → ∅</code></td>
+            <td><code>∅</code></td>
+            <td><code>∅</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">2</td>
+            <td><code>T−361.917</code></td>
+            <td><code>T−366.917</code></td>
+            <td class="text-end">23</td>
+            <td class="text-end">33</td>
+            <td class="text-end">33</td>
+            <td class="text-end">10</td>
+            <td><code>ORIENTATION_FALLER_DEEP</code></td>
+            <td><code>anchor 33 − ATLAS p75 7</code></td>
+            <td><code>33 − 7 = 26</code></td>
+            <td><code>∅</code></td>
+            <td><code>26</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">3</td>
+            <td><code>T−322.450</code></td>
+            <td><code>T−327.450</code></td>
+            <td class="text-end">29</td>
+            <td class="text-end">30</td>
+            <td class="text-end">32</td>
+            <td class="text-end">1</td>
+            <td><code>ORIENTATION_FALLER_DEEP</code></td>
+            <td><code>tight-mid anchor 30 − p75 7</code></td>
+            <td><code>30 − 7 = 23</code></td>
+            <td><code>26</code></td>
+            <td><code>23</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">4</td>
+            <td><code>T−278.650</code></td>
+            <td><code>T−283.650</code></td>
+            <td class="text-end">24</td>
+            <td class="text-end">27</td>
+            <td class="text-end">28</td>
+            <td class="text-end">3</td>
+            <td><code>ORIENTATION_FALLER_DEEP</code></td>
+            <td><code>verified last 28 − p75 7</code></td>
+            <td><code>28 − 7 = 21</code></td>
+            <td><code>23</code></td>
+            <td><code>21</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">5</td>
+            <td><code>T−119.350</code></td>
+            <td><code>T−124.350</code></td>
+            <td class="text-end">24</td>
+            <td class="text-end">29</td>
+            <td class="text-end">27</td>
+            <td class="text-end">5</td>
+            <td><code>SIBLING_REALIZED_SHAPE</code></td>
+            <td><code>T2; VRB 73−69=4; recurrence 31+66=97&gt;0</code></td>
+            <td><code>cancel 21 → ∅</code></td>
+            <td><code>21</code></td>
+            <td><code>∅</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">6</td>
+            <td><code>T−117.133</code></td>
+            <td><code>T−122.133</code></td>
+            <td class="text-end">24</td>
+            <td class="text-end">28</td>
+            <td class="text-end">27</td>
+            <td class="text-end">4</td>
+            <td><code>FALLER_PATIENCE</code></td>
+            <td><code>arm bid 24 − bid 24 = 0 &lt; 5</code></td>
+            <td><code>∅ = ∅</code></td>
+            <td><code>∅</code></td>
+            <td><code>∅</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">7</td>
+            <td><code>T−109.800</code></td>
+            <td><code>T−114.800</code></td>
+            <td class="text-end">23</td>
+            <td class="text-end">27</td>
+            <td class="text-end">24</td>
+            <td class="text-end">4</td>
+            <td><code>FALLER_PATIENCE</code></td>
+            <td><code>arm bid 24 − bid 23 = 1 &lt; 5</code></td>
+            <td><code>∅ = ∅</code></td>
+            <td><code>∅</code></td>
+            <td><code>∅</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">8</td>
+            <td><code>T−109.050</code></td>
+            <td><code>T−114.050</code></td>
+            <td class="text-end">19</td>
+            <td class="text-end">27</td>
+            <td class="text-end">24</td>
+            <td class="text-end">8</td>
+            <td><code>FALLER_PATIENCE_RELEASE</code></td>
+            <td><code>24 − 19 = 5; VRB bid 73 &gt; fill 69</code></td>
+            <td><code>X = live bid = 19</code></td>
+            <td><code>∅</code></td>
+            <td><code>19</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">9</td>
+            <td><code>T−80.651</code></td>
+            <td><code>T−85.651</code></td>
+            <td class="text-end">19</td>
+            <td class="text-end">23</td>
+            <td class="text-end">19</td>
+            <td class="text-end">4</td>
+            <td><code>PRICE_REACHED</code></td>
+            <td><code>public print 19 ≤ order 19</code></td>
+            <td><code>credit 5 @ 19</code></td>
+            <td><code>19</code></td>
+            <td><code>FILLED 19</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">10</td>
+            <td><code>T−57.483</code></td>
+            <td><code>T−62.483</code></td>
+            <td class="text-end">17</td>
+            <td class="text-end">18</td>
+            <td class="text-end">19</td>
+            <td class="text-end">1</td>
+            <td><code>PAIR_ENTRY_COMPLETE</code></td>
+            <td><code>ask=18; NIK filled=19</code></td>
+            <td><code>re-buy=∅</code></td>
+            <td><code>FILLED 19</code></td>
+            <td><code>FILLED 19</code></td>
+          </tr>
+          <tr>
+            <td class="text-muted">11</td>
+            <td><code>T+5.000</code></td>
+            <td><code>T−0.000</code></td>
+            <td class="text-end">17</td>
+            <td class="text-end">19</td>
+            <td class="text-end">19</td>
+            <td class="text-end">2</td>
+            <td><code>PAIR_ENTRY_COMPLETE</code></td>
+            <td><code>VRB fill=69; NIK fill=19</code></td>
+            <td><code>entry gate=LOCKED</code></td>
+            <td><code>FILLED 19</code></td>
+            <td><code>FILLED 19</code></td>
+          </tr></tbody>
+        </table>
+      </div>
+    </section>
+  <section class="nik-section">
+    <div class="nik-legend" aria-label="Chart legend">
+      <span class="nik-key"><span class="nik-swatch" style="border-color:var(--viz-series-1)"></span>best bid</span>
+      <span class="nik-key"><span class="nik-swatch" style="border-color:var(--viz-series-2)"></span>best ask</span>
+      <span class="nik-key"><span class="nik-swatch" style="border-color:var(--viz-series-3)"></span>last traded</span>
+      <span class="nik-key"><span class="nik-swatch" style="border-color:var(--destructive)"></span>our resting bid</span>
+    </div>
+    <div class="nik-chart-grid">
+      <div class="nik-chart"><h3>Current branch · VRB</h3><svg data-branch="current" data-leg="VRB" viewBox="0 0 900 340" role="img"></svg></div>
+      <div class="nik-chart"><h3>Current branch · NIK</h3><svg data-branch="current" data-leg="NIK" viewBox="0 0 900 340" role="img"></svg></div>
+      <div class="nik-chart"><h3>Corrected branch · VRB</h3><svg data-branch="corrected" data-leg="VRB" viewBox="0 0 900 340" role="img"></svg></div>
+      <div class="nik-chart"><h3>Corrected branch · NIK</h3><svg data-branch="corrected" data-leg="NIK" viewBox="0 0 900 340" role="img"></svg></div>
+    </div>
+  </section>
+  <script>
+  (() => {
+    const data = {"points":{"VRB":[[375.45,null,null,null],[375.45,5,92,null],[361.916667,67,77,null],[361.6,67,76,null],[318.15,67,75,null],[317.883333,67,74,null],[317.866667,67,76,null],[317.866667,67,75,null],[317.866667,67,73,null],[317.85,67,72,null],[317.85,67,71,null],[317.833333,67,70,null],[317.833333,67,69,null],[317.816667,67,68,null],[317.616667,67,75,null],[316.866667,67,74,null],[316.416667,67,73,null],[316.383333,69,73,null],[316.383333,69,72,null],[316.383333,69,71,null],[316.383333,69,70,null],[316.063675,69,70,70],[314.633333,67,68,70],[313.65,67,75,70],[313.15,67,74,70],[312.883333,67,73,70],[312.85,67,75,70],[312.85,67,74,70],[312.783333,69,74,70],[311.65,69,75,70],[311.083333,69,74,70],[310.583333,69,75,70],[310.016667,69,74,70],[309.683333,69,73,70],[309.633333,69,72,70],[309.633333,69,71,70],[309.633333,69,70,70],[309.416667,69,75,70],[309.266667,67,75,70],[308.9,67,74,70],[308.85,67,73,70],[308.816667,67,72,70],[308.816667,67,71,70],[308.816667,67,70,70],[308.816667,67,69,70],[308.8,67,68,70],[308.666667,67,75,70],[308.133333,67,74,70],[307.85,67,73,70],[307.816667,67,72,70],[307.816667,67,71,70],[307.816667,67,70,70],[307.816667,67,69,70],[307.8,67,68,70],[307.666667,67,75,70],[307.133333,67,74,70],[306.85,67,73,70],[306.816667,67,72,70],[306.816667,67,71,70],[306.8,67,70,70],[306.75,67,69,70],[306.75,67,68,70],[306.666667,67,75,70],[306.116667,67,74,70],[305.833333,67,73,70],[305.816667,67,72,70],[305.8,67,71,70],[305.8,67,70,70],[305.783333,67,69,70],[305.783333,67,68,70],[305.666667,67,75,70],[305.133333,67,74,70],[304.666667,67,75,70],[304.133333,67,74,70],[303.666667,67,75,70],[303.15,67,74,70],[302.666667,67,75,70],[302.133333,67,74,70],[301.866667,67,73,70],[301.85,67,72,70],[301.85,67,71,70],[301.85,67,70,70],[301.833333,67,69,70],[301.833333,67,68,70],[301.666667,67,75,70],[301.116667,67,74,70],[300.866667,67,73,70],[300.85,67,72,70],[300.85,67,71,70],[300.85,67,70,70],[300.833333,67,69,70],[300.816667,67,68,70],[300.666667,67,75,70],[300.15,67,74,70],[299.833333,67,73,70],[299.833333,67,72,70],[299.816667,67,71,70],[299.816667,67,70,70],[299.816667,67,69,70],[299.816667,67,70,70],[299.816667,67,75,70],[299.816667,67,69,70],[299.716667,67,68,70],[291,67,75,70],[291,67,74,70],[291,67,75,70],[290.7,67,74,70],[290.466667,67,73,70],[290.466667,69,73,70],[290.383333,67,73,70],[290.383333,67,75,70],[290.383333,67,74,70],[289.55,68,74,70],[289.483333,68,73,70],[289.483333,69,73,70],[286.5682,69,73,73],[285.883333,70,73,73],[281.566667,71,73,73],[281.3,72,73,73],[278.383333,73,73,73],[278.25,74,73,73],[277.916667,73,73,73],[277.75,72,73,73],[273.9,73,73,73],[273.31684,73,73,74],[272.75,73,74,74],[272.6,73,75,74],[272.583333,72,75,74],[271.816667,72,74,74],[270.6,72,75,74],[269.566667,72,74,74],[268.833333,73,74,74],[268.383333,72,74,74],[268.383333,72,73,74],[268.333333,72,75,74],[268.333333,72,74,74],[265.116667,73,74,74],[252.666667,72,74,74],[252.666667,72,75,74],[252.666667,72,73,74],[252.5,72,74,74],[251.566667,73,74,74],[250.733333,72,74,74],[249.166667,73,74,74],[247.6,73,75,74],[247.583333,72,75,74],[246.816667,72,74,74],[245.75,72,73,74],[245.266667,72,75,74],[244.683333,72,74,74],[244.633333,72,73,74],[244.433333,72,75,74],[243.7,72,74,74],[243.65,72,73,74],[243.35,72,75,74],[242.833333,73,75,74],[242.833333,73,74,74],[241.75,72,74,74],[241.75,72,75,74],[241.75,72,73,74],[241.75,72,75,74],[241.75,72,74,74],[241.366667,72,75,74],[240.616667,72,74,74],[240.066667,72,75,74],[239.466667,72,74,74],[239.45,73,74,74],[239.016667,72,75,74],[238.733333,73,75,74],[238.7,73,74,74],[238.116667,73,75,74],[237.6,72,75,74],[237.583333,72,74,74],[237.216667,72,75,74],[236.8,72,74,74],[236.583333,72,75,74],[235.833333,72,74,74],[235.15,72,75,74],[235.15,72,73,74],[234.616667,72,74,74],[234.616667,72,75,74],[233.9,73,75,74],[233.9,73,74,74],[232.6,73,75,74],[232.583333,72,75,74],[232.25,73,75,74],[231.883333,72,75,74],[231.883333,72,74,74],[231.6,72,75,74],[231.566667,73,75,74],[231.25,72,75,74],[230.816667,73,75,74],[230.816667,73,74,74],[229.5,72,75,74],[228.866667,72,74,74],[228.85,72,75,74],[228.816667,72,73,74],[227.6,72,74,74],[227.6,72,75,74],[226.566667,72,74,74],[225.583333,72,75,74],[224.733333,72,74,74],[224.2,73,75,74],[223.683333,73,74,74],[223.616667,72,74,74],[222.5,72,75,74],[221.766667,72,74,74],[221.35,72,75,74],[220.883333,72,74,74],[219.6,73,74,74],[219.533333,73,75,74],[219.45,72,75,74],[219.2,72,74,74],[218.783333,73,74,74],[218.466667,72,74,74],[217.633333,72,75,74],[216.883333,72,74,74],[216.8,72,73,74],[215.483333,72,75,74],[214.633333,72,74,74],[214.6,72,75,74],[213.816667,72,74,74],[213.516667,72,75,74],[212.866667,72,74,74],[211.516667,72,75,74],[210.85,72,74,74],[210.816667,72,73,74],[210.5,72,75,74],[209.35,72,73,74],[208.7,72,75,74],[208.7,72,74,74],[206.766667,72,73,74],[206.023416,72,73,73],[198.066667,72,75,73],[197.75,72,73,73],[197.75,72,75,73],[197.733333,72,74,73],[197.533333,73,74,73],[195.75,72,74,73],[194.233333,73,74,73],[191.816667,72,74,73],[188.85,73,74,73],[182.6,73,75,73],[182.583333,72,75,73],[182.25,73,75,73],[181.883333,73,74,73],[180.6,73,75,73],[180.583333,72,75,73],[180.216667,73,75,73],[179.716667,73,74,73],[179.333333,72,75,73],[179.183333,73,75,73],[178.866667,73,74,73],[178.483333,73,75,73],[178.433333,72,75,73],[177.833333,72,74,73],[177.383333,72,75,73],[177.35,73,75,73],[176.9,72,75,73],[176.883333,72,74,73],[176.883333,73,74,73],[176.516667,73,75,73],[176.466667,72,75,73],[176.016667,73,75,73],[175.5,73,74,73],[174.566667,73,75,73],[174.55,72,75,73],[173.75,72,74,73],[173.466667,73,74,73],[172.533333,73,75,73],[172.483333,72,75,73],[172.066667,73,75,73],[171.7,73,74,73],[171.5,72,75,73],[171.166667,73,75,73],[170.65,73,74,73],[169.881984,73,74,74],[169.566667,72,74,74],[169.233333,73,74,74],[110.037962,73,74,76],[109.960126,73,74,77],[109.930242,73,74,74],[109.922635,73,74,75],[109.916866,73,74,76],[109.916866,73,74,75],[109.914616,73,74,76],[109.766667,73,77,76],[108.75,74,77,76],[108.666667,74,76,76],[107.783333,74,75,76],[104.066667,73,74,76],[101.46335,73,74,74],[93.072196,73,74,75],[93.072196,73,74,74],[93.066667,73,75,74],[92.65,72,75,74],[92.166667,73,76,74],[92.083333,72,76,74],[90.983333,73,76,74],[90.616667,72,76,74],[90.533333,73,76,74],[89.516667,72,76,74],[87.35,73,76,74],[86.85,73,75,74],[86.333333,72,75,74],[85.75,73,75,74],[85.133333,72,75,74],[82.732968,72,75,75],[82.732968,72,75,76],[82.616667,72,76,76],[82.583333,72,75,76],[81.127972,72,75,75],[81.125272,72,75,76],[81.125272,72,75,75],[81.121559,72,75,76],[80.766667,76,77,76],[80.738067,76,77,77],[80.7,76,78,77],[80.666667,77,78,77],[80.651066,77,78,78],[80.553732,77,78,81],[80.533333,77,81,81],[80.533333,77,82,81],[80.533333,81,82,81],[79.5,81,83,81],[79.283333,81,84,81],[79.283333,81,82,81],[72.666667,81,83,81],[63.596975,81,83,83],[59.75,80,83,83],[58.8,81,83,83],[58.633333,80,83,83],[58.633333,81,83,83],[58.4,80,83,83],[58.4,81,83,83],[57.983333,80,83,83],[57.983333,81,83,83],[57.916667,80,83,83],[57.9,81,83,83],[57.883333,80,83,83],[57.883333,81,83,83],[57.816667,80,83,83],[57.816667,81,83,83],[57.8,80,83,83],[57.8,81,83,83],[57.75,80,83,83],[57.75,81,83,83],[57.716667,80,83,83],[57.716667,81,83,83],[57.616667,80,83,83],[57.616667,81,83,83],[57.55,80,83,83],[57.55,81,83,83],[53.683333,82,83,83],[53.533333,81,83,83],[52.705558,81,83,84],[52.705558,81,83,83],[52.7,81,84,83],[50.766667,80,84,83],[46.085839,80,84,84],[45.2,81,84,84],[40.798153,81,84,81],[38.716667,82,83,81],[38.7,82,84,81],[38.616667,82,83,81],[38.616667,82,84,81],[38.55,82,83,81],[38.516667,82,84,81],[38.466667,82,83,81],[38.433333,82,84,81],[38.35,82,83,81],[38.25,82,84,81],[38.233333,82,83,81],[38.183333,82,84,81],[38.133333,81,84,81],[38.116667,82,84,81],[38.116667,82,83,81],[38.1,82,84,81],[38.1,82,83,81],[38.083333,82,84,81],[38.083333,82,83,81],[38.083333,82,84,81],[38.083333,82,83,81],[38.083333,81,83,81],[38.083333,81,84,81],[38.033333,81,83,81],[38.033333,82,83,81],[38.033333,82,84,81],[38.033333,82,83,81],[38,82,84,81],[38,82,83,81],[38,82,84,81],[38,82,83,81],[37.983333,81,83,81],[37.983333,81,84,81],[37.983333,81,83,81],[37.916667,82,83,81],[37.896013,82,83,83],[37.883333,81,83,83],[37.85,82,83,83],[37.816667,81,83,83],[37.8,82,83,83],[37.766667,82,84,83],[37.766667,82,83,83],[37.733333,82,84,83],[37.7,82,83,83],[37.7,82,84,83],[37.7,82,83,83],[37.65,82,84,83],[37.583333,82,83,83],[37.583333,82,84,83],[37.583333,82,83,83],[37.533333,82,84,83],[37.533333,82,83,83],[37.533333,82,84,83],[37.533333,82,83,83],[37.516667,82,84,83],[37.45,82,83,83],[37.45,82,84,83],[37.45,82,83,83],[37.35,82,84,83],[37.3,82,83,83],[37.266667,82,84,83],[37.233333,82,83,83],[37.216667,82,84,83],[37.183333,82,83,83],[37.116667,82,84,83],[37.066667,82,83,83],[37.066667,82,84,83],[37.05,81,84,83],[37.016667,82,84,83],[37.016667,82,83,83],[36.883333,81,83,83],[36.833333,82,83,83],[36.833333,82,84,83],[36.833333,82,83,83],[36.833333,82,84,83],[36.833333,82,83,83],[36.833333,82,84,83],[36.833333,82,83,83],[36.816667,82,84,83],[36.816667,82,83,83],[36.8,81,83,83],[36.716667,82,83,83],[36.65,81,83,83],[36.55,82,83,83],[36.533333,82,84,83],[36.533333,82,83,83],[36.533333,82,84,83],[36.533333,82,83,83],[36.533333,82,84,83],[36.533333,82,83,83],[36.5,82,84,83],[36.5,82,83,83],[36.466667,81,83,83],[36.266667,81,84,83],[36.266667,81,83,83],[36.033333,81,84,83],[36.033333,81,83,83],[36.033333,81,84,83],[36.016667,81,83,83],[36,81,84,83],[36,81,83,83],[35.683333,81,84,83],[35.683333,81,83,83],[35.683333,81,84,83],[35.683333,81,83,83],[35.6,81,84,83],[35.6,81,83,83],[35.466667,81,84,83],[35.45,81,83,83],[34.3,80,83,83],[28.733333,81,83,83],[27.6,80,83,83],[26.05,80,84,83],[26.05,80,83,83],[24.6,81,83,83],[24.233333,80,83,83],[24.016667,81,83,83],[23.033333,81,84,83],[21.566667,81,83,83],[20.45,82,83,83],[19.85,81,84,83],[19.266667,82,84,83],[19.05,81,84,83],[18.9,81,83,83],[18.883333,81,84,83],[18.866667,81,85,83],[18.866667,81,84,83],[17.766667,82,84,83],[17.559186,82,84,84],[17.25,81,84,84],[17.233333,82,84,84],[16.816667,81,84,84],[16.566667,82,84,84],[15.85,82,85,84],[15.85,82,84,84],[15.766667,82,83,84],[15.75,82,84,84],[15.75,82,83,84],[14.916667,81,84,84],[14.883333,81,85,84],[14.883333,81,84,84],[5.15,81,83,84],[4.871798,81,83,83],[-3.883333,80,83,83],[-3.95,81,83,83],[-4.75,81,84,83],[-4.9,81,83,83],[-4.916667,81,84,83],[-4.916667,81,83,83],[-5,81,83,83]],"NIK":[[375.45,5,92,null],[361.983333,23,33,null],[361.970571,23,33,33],[361.6,29,33,33],[359.35,29,32,33],[334.827419,29,32,32],[322.733333,29,31,32],[322.45,29,30,32],[322.45,23,30,32],[322.416667,28,30,32],[322.216667,28,29,32],[322.216667,23,29,32],[322.2,28,29,32],[278.666667,24,29,32],[278.666667,24,28,32],[278.666667,23,28,32],[278.666667,23,27,32],[278.666667,24,27,32],[278.660327,24,27,28],[278.65,24,26,28],[278.633333,24,28,28],[278.633333,24,27,28],[278.566667,25,27,28],[278.15,26,27,28],[276.666667,24,27,28],[276.15,25,27,28],[275.85,26,27,28],[274.65,24,27,28],[274.166667,25,27,28],[273.866667,26,27,28],[273.616667,26,28,28],[273.616667,27,28,28],[273.4,24,28,28],[273.4,25,28,28],[272.766667,26,28,28],[272.666667,25,28,28],[272.633333,24,28,28],[272.633333,23,28,28],[272.066667,24,28,28],[270.666667,23,28,28],[270.133333,24,28,28],[265.766667,25,28,28],[265.766667,26,28,28],[255.916667,23,28,28],[255.916667,24,28,28],[255.65,25,28,28],[253.916667,27,28,28],[247.766667,25,28,28],[247.733333,23,28,28],[247.733333,24,28,28],[247.666667,23,28,28],[247.083333,24,28,28],[245.283333,23,28,28],[245.1,24,28,28],[244.45,23,28,28],[244.083333,24,28,28],[243.483333,23,28,28],[242.916667,24,28,28],[242.55,23,28,28],[242.016667,24,28,28],[241.75,25,28,28],[241.733333,26,28,28],[241.733333,27,28,28],[241.5,23,28,28],[241.016667,24,28,28],[240.566667,25,28,28],[240.55,26,28,28],[240.533333,27,28,28],[240.083333,24,28,28],[239.333333,25,28,28],[239.283333,26,28,28],[239.266667,27,28,28],[239.033333,24,28,28],[238.666667,25,28,28],[238.666667,26,28,28],[238.666667,27,28,28],[238.333333,23,28,28],[238.083333,24,28,28],[237.533333,25,28,28],[237.516667,26,28,28],[237.516667,27,28,28],[237.233333,23,28,28],[237.083333,24,28,28],[236.766667,25,28,28],[236.75,26,28,28],[236.75,27,28,28],[236.616667,23,28,28],[236.166667,24,28,28],[235.8,25,28,28],[235.783333,26,28,28],[235.766667,27,28,28],[234.666667,24,28,28],[234.1,25,28,28],[233.866667,26,28,28],[233.85,27,28,28],[232.666667,24,28,28],[232.166667,25,28,28],[231.866667,26,28,28],[231.85,24,28,28],[231.85,27,28,28],[231.666667,24,28,28],[231.15,25,28,28],[230.766667,26,28,28],[230.616667,27,28,28],[230.533333,24,28,28],[230.533333,25,28,28],[230.516667,26,28,28],[230.516667,27,28,28],[229.45,24,28,28],[229.45,23,28,28],[229.133333,24,28,28],[228.85,23,28,28],[228.816667,25,28,28],[227.666667,24,28,28],[227.6,23,28,28],[227.166667,24,28,28],[225.65,23,28,28],[225.083333,24,28,28],[224.216667,23,28,28],[224.133333,24,28,28],[222.516667,23,28,28],[222.116667,24,28,28],[221.45,23,28,28],[221.1,24,28,28],[219.633333,23,28,28],[218.783333,24,28,28],[218.133333,25,28,28],[218.133333,26,28,28],[218.133333,26,27,28],[217.633333,23,27,28],[216.9,24,27,28],[216.866667,25,27,28],[216.85,26,27,28],[215.5,24,27,28],[215,25,27,28],[214.65,24,27,28],[214.116667,25,27,28],[213.766667,26,27,28],[213.533333,24,27,28],[213.166667,25,27,28],[212.85,26,27,28],[212.483333,26,28,28],[212.483333,24,28,28],[212.483333,23,28,28],[212.483333,25,28,28],[211.583333,24,28,28],[211.583333,23,28,28],[211.15,24,28,28],[210.65,23,28,28],[210.633333,24,28,28],[210.166667,25,28,28],[208.7,23,28,28],[208.7,24,28,28],[206.75,25,28,28],[206,24,28,28],[206,26,28,28],[205.966667,24,28,28],[205.966667,25,28,28],[205.95,24,28,28],[205.95,26,28,28],[198.533333,25,28,28],[198.533333,24,28,28],[198.466667,23,28,28],[198.083333,24,28,28],[197.733333,25,28,28],[197.716667,26,28,28],[197.716667,27,28,28],[184.5,24,28,28],[184.5,23,28,28],[184.5,25,28,28],[184.5,23,28,28],[184,24,28,28],[183.016667,24,29,28],[182.9,25,29,28],[182.9,23,29,28],[182.9,26,29,28],[182.883333,23,29,28],[182.883333,24,29,28],[182.766667,25,29,28],[182.666667,23,29,28],[182.666667,24,29,28],[182.6,23,29,28],[182.6,24,29,28],[182.2,25,29,28],[181.883333,23,29,28],[181.883333,24,29,28],[181.666667,25,29,28],[181.666667,23,29,28],[181.666667,24,29,28],[181.666667,26,29,28],[181.633333,23,29,28],[181.633333,24,29,28],[181.566667,25,29,28],[181.25,23,29,28],[181.25,24,29,28],[181.25,26,29,28],[181.25,23,29,28],[181.25,24,29,28],[181.233333,25,29,28],[181.016667,23,29,28],[181.016667,24,29,28],[181.016667,26,29,28],[181,23,29,28],[181,24,29,28],[180.6,23,29,28],[180.6,24,29,28],[180.183333,25,29,28],[179.733333,23,29,28],[179.716667,24,29,28],[179.7,19,29,28],[179.7,20,29,28],[179.633333,24,29,28],[179.633333,25,29,28],[179.633333,19,29,28],[179.633333,20,29,28],[179.583333,21,29,28],[179.583333,22,29,28],[179.583333,19,29,28],[179.583333,20,29,28],[179.583333,23,29,28],[179.583333,24,29,28],[179.583333,19,29,28],[179.583333,25,29,28],[179.583333,19,29,28],[179.55,20,29,28],[179.133333,21,29,28],[179.133333,22,29,28],[178.866667,21,29,28],[178.866667,22,29,28],[178.866667,19,29,28],[178.866667,20,29,28],[177.85,23,29,28],[177.85,24,29,28],[177.483333,21,29,28],[177.483333,19,29,28],[177.483333,20,29,28],[176.916667,22,29,28],[176.883333,21,29,28],[176.883333,22,29,28],[176.883333,19,29,28],[176.883333,20,29,28],[176.85,23,29,28],[176.85,24,29,28],[176.583333,19,29,28],[176.583333,20,29,28],[175.883333,21,29,28],[175.883333,22,29,28],[175.516667,24,29,28],[175.3,21,29,28],[175.3,19,29,28],[175.3,20,29,28],[175.3,25,29,28],[175.283333,19,29,28],[175.283333,20,29,28],[174.05,21,29,28],[174.05,22,29,28],[173.766667,20,29,28],[173.766667,19,29,28],[173.766667,20,29,28],[173.683333,23,29,28],[173.683333,24,29,28],[173.183333,21,29,28],[173.183333,19,29,28],[173.183333,20,29,28],[173.166667,25,29,28],[173.166667,19,29,28],[173.166667,20,29,28],[172.95,21,29,28],[172.95,22,29,28],[172.85,19,29,28],[172.85,20,29,28],[172.85,23,29,28],[172.85,19,29,28],[172.85,20,29,28],[172.016667,21,29,28],[172.016667,22,29,28],[171.7,19,29,28],[171.7,20,29,28],[171.633333,23,29,28],[171.633333,24,29,28],[171.5,20,29,28],[171.083333,21,29,28],[171.083333,22,29,28],[170.65,24,29,28],[170.366667,19,29,28],[170.366667,20,29,28],[170.366667,25,29,28],[170.35,19,29,28],[170.333333,20,29,28],[170,21,29,28],[170,22,29,28],[170,20,29,28],[170,19,29,28],[170,20,29,28],[170,23,29,28],[170,24,29,28],[169.883333,19,29,28],[169.883333,20,29,28],[169.883333,25,29,28],[169.883333,19,29,28],[169.883333,20,29,28],[169.8,21,29,28],[169.8,22,29,28],[169.666667,21,29,28],[169.666667,19,29,28],[169.666667,22,29,28],[169.666667,21,29,28],[169.666667,19,29,28],[169.666667,20,29,28],[169.15,21,29,28],[169.15,22,29,28],[168.833333,20,29,28],[168.833333,19,29,28],[168.833333,21,29,28],[168.833333,20,29,28],[168.833333,19,29,28],[168.816667,20,29,28],[168.8,23,29,28],[168.8,24,29,28],[168.8,23,29,28],[168.8,19,29,28],[168.8,24,29,28],[168.8,19,29,28],[168.8,25,29,28],[168.8,19,29,28],[168.8,20,29,28],[168.183333,21,29,28],[168.183333,22,29,28],[167.9,20,29,28],[167.9,19,29,28],[167.9,21,29,28],[167.9,20,29,28],[167.9,19,29,28],[167.9,20,29,28],[167.866667,23,29,28],[167.866667,24,29,28],[167.666667,22,29,28],[167.666667,19,29,28],[167.666667,20,29,28],[167.166667,21,29,28],[167.166667,22,29,28],[166.883333,19,29,28],[166.883333,20,29,28],[166.866667,23,29,28],[166.866667,24,29,28],[166.666667,22,29,28],[166.666667,19,29,28],[166.666667,20,29,28],[166.166667,21,29,28],[166.166667,22,29,28],[165.883333,19,29,28],[165.883333,20,29,28],[165.833333,23,29,28],[165.833333,24,29,28],[165.633333,19,29,28],[165.633333,20,29,28],[165.2,21,29,28],[165.2,22,29,28],[164.9,19,29,28],[164.9,20,29,28],[164.783333,23,29,28],[164.783333,24,29,28],[164.516667,22,29,28],[164.516667,19,29,28],[164.516667,20,29,28],[164.15,21,29,28],[164.15,22,29,28],[163.9,19,29,28],[163.9,20,29,28],[163.866667,23,29,28],[163.866667,24,29,28],[163.716667,22,29,28],[163.716667,19,29,28],[163.716667,20,29,28],[163.7,25,29,28],[163.7,19,29,28],[163.7,20,29,28],[163.133333,21,29,28],[163.133333,22,29,28],[162.916667,19,29,28],[162.916667,20,29,28],[162.866667,23,29,28],[162.866667,24,29,28],[162.566667,19,29,28],[162.566667,20,29,28],[162.15,21,29,28],[162.15,22,29,28],[161.9,19,29,28],[161.9,20,29,28],[161.883333,23,29,28],[161.883333,24,29,28],[161.766667,22,29,28],[161.766667,19,29,28],[161.766667,20,29,28],[161.75,25,29,28],[161.733333,19,29,28],[161.733333,20,29,28],[160.883333,21,29,28],[160.883333,22,29,28],[160.833333,21,29,28],[160.833333,19,29,28],[160.833333,20,29,28],[160.833333,23,29,28],[160.833333,24,29,28],[160.816667,22,29,28],[160.816667,19,29,28],[160.816667,20,29,28],[160.816667,25,29,28],[160.816667,19,29,28],[160.816667,20,29,28],[160.083333,21,29,28],[160.083333,22,29,28],[160.066667,19,29,28],[160.066667,20,29,28],[159.683333,23,29,28],[159.666667,24,29,28],[159.333333,20,29,28],[159.116667,21,29,28],[159.116667,22,29,28],[158.683333,19,29,28],[158.683333,20,29,28],[158.616667,23,29,28],[158.616667,24,29,28],[158.583333,19,29,28],[158.583333,20,29,28],[158.583333,25,29,28],[158.583333,19,29,28],[158.583333,20,29,28],[158.266667,21,29,28],[158.266667,22,29,28],[157.733333,19,29,28],[157.733333,20,29,28],[157.733333,23,29,28],[157.7,24,29,28],[157.7,19,29,28],[157.7,25,29,28],[157.7,19,29,28],[157.7,20,29,28],[157.6,21,29,28],[157.6,22,29,28],[157.6,19,29,28],[157.6,20,29,28],[157.6,23,29,28],[157.6,19,29,28],[157.6,20,29,28],[156.983333,22,29,28],[156.883333,19,29,28],[156.883333,20,29,28],[156.816667,23,29,28],[156.816667,24,29,28],[156.816667,19,29,28],[156.816667,20,29,28],[156.816667,25,29,28],[156.8,19,29,28],[156.8,20,29,28],[155.916667,23,29,28],[155.916667,24,29,28],[155.833333,22,29,28],[155.833333,19,29,28],[155.833333,20,29,28],[155.833333,25,29,28],[155.833333,19,29,28],[155.833333,20,29,28],[155.066667,21,29,28],[155.066667,22,29,28],[155.066667,19,29,28],[155.066667,20,29,28],[153.633333,23,28,28],[153.566667,24,28,28],[153.516667,23,28,28],[153.216667,23,27,28],[145.85,24,27,28],[140.176522,24,27,27],[139.6,24,28,27],[130.483333,25,27,27],[127.816667,25,29,27],[121.183333,24,28,27],[120.183333,24,29,27],[117.133333,24,28,27],[110.041659,24,28,24],[109.929291,24,28,26],[109.924292,24,28,25],[109.915836,24,28,24],[109.8,23,27,24],[109.05,19,27,24],[109.05,20,27,24],[109.05,19,27,24],[109.033333,21,27,24],[109.033333,20,27,24],[109.033333,21,27,24],[109,22,27,24],[109,23,27,24],[104.634777,23,27,29],[104.634777,23,27,30],[104.634777,23,27,27],[104.634777,23,27,28],[104.634777,23,27,29],[104.634777,23,27,26],[104.634777,23,27,30],[104.566667,24,27,30],[104.55,24,26,30],[104.116667,25,29,30],[95.266667,25,28,30],[95.266667,24,28,30],[95.266667,26,28,30],[95.266667,24,28,30],[93.2,24,29,30],[85.2,25,29,30],[81.126284,25,29,24],[81.126284,25,29,25],[81.123474,25,29,24],[81.078197,25,29,25],[81.057651,25,29,24],[80.838177,25,29,23],[80.783333,23,24,23],[80.7,22,24,23],[80.7,20,24,23],[80.666667,19,24,23],[80.666667,19,23,23],[80.651286,19,23,19],[80.633333,18,23,19],[80.633333,18,19,19],[80.083333,17,19,19],[79.283333,18,19,19],[71.916667,17,19,19],[57.483333,17,18,19],[51.171509,17,18,18],[51.171509,17,18,19],[51.171509,17,18,18],[50.816667,18,19,18],[49.566667,17,19,18],[48.074424,17,19,19],[38.716667,17,18,19],[38.683333,17,19,19],[38.616667,17,18,19],[38.566667,17,19,19],[38.516667,17,18,19],[38.516667,17,19,19],[38.466667,17,18,19],[38.433333,17,19,19],[38.35,17,18,19],[38.267136,17,18,18],[38.25,17,19,18],[38.233333,17,18,18],[36.883333,17,19,18],[36.833333,17,18,18],[36.8,17,19,18],[36.716667,17,18,18],[36.65,17,19,18],[36.55,17,18,18],[36.466667,17,19,18],[34.299141,17,19,19],[-5,17,19,19]]},"orders":{"current":{"VRB":[[316.033333,314.633333,69]],"NIK":[[361.916667,322.45,26],[322.45,278.65,23],[278.65,80.651286,21]]},"corrected":{"VRB":[[316.033333,314.633333,69]],"NIK":[[361.916667,322.45,26],[322.45,278.65,23],[278.65,119.35,21],[109.05,80.651286,19]]}},"decisions":{"current":{"VRB":[{"sequence":3,"t":375.45,"scheduled":"T−375.450","bell":"T−380.450","bid":5,"ask":92,"last":null,"spread":87,"fired":"DISCOVERY_GATE","input":"last receipt = ∅","output":"NO_CALL → ∅","before":"∅","after":"∅","number":1},{"sequence":8,"t":361.916667,"scheduled":"T−361.917","bell":"T−366.917","bid":67,"ask":77,"last":null,"spread":10,"fired":"ORIENTATION / OWN-ANCHOR GATE","input":"VRB=RISER; VRB anchor=∅","output":"RISER + ∅ = ∅","before":"∅","after":"∅","number":2},{"sequence":256,"t":317.816667,"scheduled":"T−317.817","bell":"T−322.817","bid":67,"ask":68,"last":null,"spread":1,"fired":"OWN-ANCHOR GATE · ASK68 #1","input":"ask=68; last receipt=∅","output":"NO_CALL → ∅","before":"∅","after":"∅","number":3},{"sequence":296,"t":316.033333,"scheduled":"T−316.033","bell":"T−321.033","bid":69,"ask":70,"last":70,"spread":1,"fired":"ORIENTATION_RISER_NEAR_NOW","input":"external bid=69; last=70","output":"X = bid = 69","before":"∅","after":"69","number":4},{"sequence":325,"t":314.633333,"scheduled":"T−314.633","bell":"T−319.633","bid":67,"ask":68,"last":70,"spread":1,"fired":"STRICT_ASK_CERTAIN_FILL · ASK68 #2","input":"ask 68 \u003c order 69","output":"credit 5 @ 69","before":"69","after":"FILLED 69","number":5},{"sequence":405,"t":308.8,"scheduled":"T−308.800","bell":"T−313.800","bid":67,"ask":68,"last":70,"spread":1,"fired":"FILLED_PHASE_GATE · ASK68 #3","input":"filled price=69","output":"69 = 69; re-buy=∅","before":"FILLED 69","after":"FILLED 69","number":6},{"sequence":439,"t":307.8,"scheduled":"T−307.800","bell":"T−312.800","bid":67,"ask":68,"last":70,"spread":1,"fired":"FILLED_PHASE_GATE · ASK68 #4","input":"filled price=69","output":"69 = 69; re-buy=∅","before":"FILLED 69","after":"FILLED 69","number":7},{"sequence":469,"t":306.75,"scheduled":"T−306.750","bell":"T−311.750","bid":67,"ask":68,"last":70,"spread":1,"fired":"FILLED_PHASE_GATE · ASK68 #5","input":"filled price=69","output":"69 = 69; re-buy=∅","before":"FILLED 69","after":"FILLED 69","number":8},{"sequence":498,"t":305.783333,"scheduled":"T−305.783","bell":"T−310.783","bid":67,"ask":68,"last":70,"spread":1,"fired":"FILLED_PHASE_GATE · ASK68 #6","input":"filled price=69","output":"69 = 69; re-buy=∅","before":"FILLED 69","after":"FILLED 69","number":9},{"sequence":549,"t":301.833333,"scheduled":"T−301.833","bell":"T−306.833","bid":67,"ask":68,"last":70,"spread":1,"fired":"FILLED_PHASE_GATE · ASK68 #7","input":"filled price=69","output":"69 = 69; re-buy=∅","before":"FILLED 69","after":"FILLED 69","number":10},{"sequence":581,"t":300.816667,"scheduled":"T−300.817","bell":"T−305.817","bid":67,"ask":68,"last":70,"spread":1,"fired":"FILLED_PHASE_GATE · ASK68 #8","input":"filled price=69","output":"69 = 69; re-buy=∅","before":"FILLED 69","after":"FILLED 69","number":11},{"sequence":617,"t":299.716667,"scheduled":"T−299.717","bell":"T−304.717","bid":67,"ask":68,"last":70,"spread":1,"fired":"FILLED_PHASE_GATE · ASK68 #9","input":"filled price=69","output":"69 = 69; re-buy=∅","before":"FILLED 69","after":"FILLED 69","number":12},{"sequence":13123,"t":-5,"scheduled":"T+5.000","bell":"T−0.000","bid":81,"ask":83,"last":83,"spread":2,"fired":"PAIR_ENTRY_COMPLETE","input":"VRB fill=69; NIK fill≠∅","output":"entry gate=LOCKED","before":"FILLED 69","after":"FILLED 69","number":13}],"NIK":[{"sequence":3,"t":375.45,"scheduled":"T−375.450","bell":"T−380.450","bid":5,"ask":92,"last":null,"spread":87,"fired":"DISCOVERY_GATE","input":"last receipt = ∅","output":"NO_CALL → ∅","before":"∅","after":"∅","number":1},{"sequence":8,"t":361.916667,"scheduled":"T−361.917","bell":"T−366.917","bid":23,"ask":33,"last":33,"spread":10,"fired":"ORIENTATION_FALLER_DEEP","input":"anchor 33 − ATLAS p75 7","output":"33 − 7 = 26","before":"∅","after":"26","number":2},{"sequence":190,"t":322.45,"scheduled":"T−322.450","bell":"T−327.450","bid":29,"ask":30,"last":32,"spread":1,"fired":"ORIENTATION_FALLER_DEEP","input":"tight-mid anchor 30 − p75 7","output":"30 − 7 = 23","before":"26","after":"23","number":3},{"sequence":748,"t":278.65,"scheduled":"T−278.650","bell":"T−283.650","bid":24,"ask":27,"last":28,"spread":3,"fired":"ORIENTATION_FALLER_DEEP","input":"verified last 28 − p75 7","output":"28 − 7 = 21","before":"23","after":"21","number":4},{"sequence":2886,"t":119.35,"scheduled":"T−119.350","bell":"T−124.350","bid":24,"ask":29,"last":27,"spread":5,"fired":"RESTING_ORDER_MANAGER","input":"order=21; named trigger=∅","output":"21 = 21","before":"21","after":"21","number":5},{"sequence":2890,"t":117.133333,"scheduled":"T−117.133","bell":"T−122.133","bid":24,"ask":28,"last":27,"spread":4,"fired":"RESTING_ORDER_MANAGER","input":"order=21; ask 28 > 21","output":"21 = 21","before":"21","after":"21","number":6},{"sequence":2933,"t":109.8,"scheduled":"T−109.800","bell":"T−114.800","bid":23,"ask":27,"last":24,"spread":4,"fired":"RESTING_ORDER_MANAGER","input":"order=21; bid 23; ask 27","output":"21 = 21","before":"21","after":"21","number":7},{"sequence":2975,"t":109.05,"scheduled":"T−109.050","bell":"T−114.050","bid":19,"ask":27,"last":24,"spread":8,"fired":"RESTING_ORDER_MANAGER","input":"order=21; bid 19; ask 27","output":"21 = 21","before":"21","after":"21","number":8},{"sequence":3361,"t":80.651286,"scheduled":"T−80.651","bell":"T−85.651","bid":19,"ask":23,"last":19,"spread":4,"fired":"PRICE_REACHED","input":"public print 19 ≤ order 21","output":"credit 5 @ 21","before":"21","after":"FILLED 21","number":9},{"sequence":4207,"t":57.483333,"scheduled":"T−57.483","bell":"T−62.483","bid":17,"ask":18,"last":19,"spread":1,"fired":"PAIR_ENTRY_COMPLETE","input":"ask=18; NIK filled=21","output":"re-buy=∅","before":"FILLED 21","after":"FILLED 21","number":10},{"sequence":13123,"t":-5,"scheduled":"T+5.000","bell":"T−0.000","bid":17,"ask":19,"last":19,"spread":2,"fired":"PAIR_ENTRY_COMPLETE","input":"VRB fill=69; NIK fill=21","output":"entry gate=LOCKED","before":"FILLED 21","after":"FILLED 21","number":11}]},"corrected":{"VRB":[{"sequence":3,"t":375.45,"scheduled":"T−375.450","bell":"T−380.450","bid":5,"ask":92,"last":null,"spread":87,"fired":"DISCOVERY_GATE","input":"last receipt = ∅","output":"NO_CALL → ∅","before":"∅","after":"∅","number":1},{"sequence":8,"t":361.916667,"scheduled":"T−361.917","bell":"T−366.917","bid":67,"ask":77,"last":null,"spread":10,"fired":"ORIENTATION / OWN-ANCHOR GATE","input":"VRB=RISER; VRB anchor=∅","output":"RISER + ∅ = ∅","before":"∅","after":"∅","number":2},{"sequence":256,"t":317.816667,"scheduled":"T−317.817","bell":"T−322.817","bid":67,"ask":68,"last":null,"spread":1,"fired":"OWN-ANCHOR GATE · ASK68 #1","input":"ask=68; last receipt=∅","output":"NO_CALL → ∅","before":"∅","after":"∅","number":3},{"sequence":296,"t":316.033333,"scheduled":"T−316.033","bell":"T−321.033","bid":69,"ask":70,"last":70,"spread":1,"fired":"ORIENTATION_RISER_NEAR_NOW","input":"external bid=69; last=70","output":"X = bid = 69","before":"∅","after":"69","number":4},{"sequence":325,"t":314.633333,"scheduled":"T−314.633","bell":"T−319.633","bid":67,"ask":68,"last":70,"spread":1,"fired":"STRICT_ASK_CERTAIN_FILL · ASK68 #2","input":"ask 68 \u003c order 69","output":"credit 5 @ 69","before":"69","after":"FILLED 69","number":5},{"sequence":405,"t":308.8,"scheduled":"T−308.800","bell":"T−313.800","bid":67,"ask":68,"last":70,"spread":1,"fired":"FILLED_PHASE_GATE · ASK68 #3","input":"filled price=69","output":"69 = 69; re-buy=∅","before":"FILLED 69","after":"FILLED 69","number":6},{"sequence":439,"t":307.8,"scheduled":"T−307.800","bell":"T−312.800","bid":67,"ask":68,"last":70,"spread":1,"fired":"FILLED_PHASE_GATE · ASK68 #4","input":"filled price=69","output":"69 = 69; re-buy=∅","before":"FILLED 69","after":"FILLED 69","number":7},{"sequence":469,"t":306.75,"scheduled":"T−306.750","bell":"T−311.750","bid":67,"ask":68,"last":70,"spread":1,"fired":"FILLED_PHASE_GATE · ASK68 #5","input":"filled price=69","output":"69 = 69; re-buy=∅","before":"FILLED 69","after":"FILLED 69","number":8},{"sequence":498,"t":305.783333,"scheduled":"T−305.783","bell":"T−310.783","bid":67,"ask":68,"last":70,"spread":1,"fired":"FILLED_PHASE_GATE · ASK68 #6","input":"filled price=69","output":"69 = 69; re-buy=∅","before":"FILLED 69","after":"FILLED 69","number":9},{"sequence":549,"t":301.833333,"scheduled":"T−301.833","bell":"T−306.833","bid":67,"ask":68,"last":70,"spread":1,"fired":"FILLED_PHASE_GATE · ASK68 #7","input":"filled price=69","output":"69 = 69; re-buy=∅","before":"FILLED 69","after":"FILLED 69","number":10},{"sequence":581,"t":300.816667,"scheduled":"T−300.817","bell":"T−305.817","bid":67,"ask":68,"last":70,"spread":1,"fired":"FILLED_PHASE_GATE · ASK68 #8","input":"filled price=69","output":"69 = 69; re-buy=∅","before":"FILLED 69","after":"FILLED 69","number":11},{"sequence":617,"t":299.716667,"scheduled":"T−299.717","bell":"T−304.717","bid":67,"ask":68,"last":70,"spread":1,"fired":"FILLED_PHASE_GATE · ASK68 #9","input":"filled price=69","output":"69 = 69; re-buy=∅","before":"FILLED 69","after":"FILLED 69","number":12},{"sequence":13123,"t":-5,"scheduled":"T+5.000","bell":"T−0.000","bid":81,"ask":83,"last":83,"spread":2,"fired":"PAIR_ENTRY_COMPLETE","input":"VRB fill=69; NIK fill≠∅","output":"entry gate=LOCKED","before":"FILLED 69","after":"FILLED 69","number":13}],"NIK":[{"sequence":3,"t":375.45,"scheduled":"T−375.450","bell":"T−380.450","bid":5,"ask":92,"last":null,"spread":87,"fired":"DISCOVERY_GATE","input":"last receipt = ∅","output":"NO_CALL → ∅","before":"∅","after":"∅","number":1},{"sequence":8,"t":361.916667,"scheduled":"T−361.917","bell":"T−366.917","bid":23,"ask":33,"last":33,"spread":10,"fired":"ORIENTATION_FALLER_DEEP","input":"anchor 33 − ATLAS p75 7","output":"33 − 7 = 26","before":"∅","after":"26","number":2},{"sequence":190,"t":322.45,"scheduled":"T−322.450","bell":"T−327.450","bid":29,"ask":30,"last":32,"spread":1,"fired":"ORIENTATION_FALLER_DEEP","input":"tight-mid anchor 30 − p75 7","output":"30 − 7 = 23","before":"26","after":"23","number":3},{"sequence":748,"t":278.65,"scheduled":"T−278.650","bell":"T−283.650","bid":24,"ask":27,"last":28,"spread":3,"fired":"ORIENTATION_FALLER_DEEP","input":"verified last 28 − p75 7","output":"28 − 7 = 21","before":"23","after":"21","number":4},{"sequence":2886,"t":119.35,"scheduled":"T−119.350","bell":"T−124.350","bid":24,"ask":29,"last":27,"spread":5,"fired":"SIBLING_REALIZED_SHAPE","input":"T2; VRB 73−69=4; recurrence 31+66=97>0","output":"cancel 21 → ∅","before":"21","after":"∅","number":5},{"sequence":2890,"t":117.133333,"scheduled":"T−117.133","bell":"T−122.133","bid":24,"ask":28,"last":27,"spread":4,"fired":"FALLER_PATIENCE","input":"arm bid 24 − bid 24 = 0 \u003c 5","output":"∅ = ∅","before":"∅","after":"∅","number":6},{"sequence":2933,"t":109.8,"scheduled":"T−109.800","bell":"T−114.800","bid":23,"ask":27,"last":24,"spread":4,"fired":"FALLER_PATIENCE","input":"arm bid 24 − bid 23 = 1 \u003c 5","output":"∅ = ∅","before":"∅","after":"∅","number":7},{"sequence":2975,"t":109.05,"scheduled":"T−109.050","bell":"T−114.050","bid":19,"ask":27,"last":24,"spread":8,"fired":"FALLER_PATIENCE_RELEASE","input":"24 − 19 = 5; VRB bid 73 > fill 69","output":"X = live bid = 19","before":"∅","after":"19","number":8},{"sequence":3361,"t":80.651286,"scheduled":"T−80.651","bell":"T−85.651","bid":19,"ask":23,"last":19,"spread":4,"fired":"PRICE_REACHED","input":"public print 19 ≤ order 19","output":"credit 5 @ 19","before":"19","after":"FILLED 19","number":9},{"sequence":4207,"t":57.483333,"scheduled":"T−57.483","bell":"T−62.483","bid":17,"ask":18,"last":19,"spread":1,"fired":"PAIR_ENTRY_COMPLETE","input":"ask=18; NIK filled=19","output":"re-buy=∅","before":"FILLED 19","after":"FILLED 19","number":10},{"sequence":13123,"t":-5,"scheduled":"T+5.000","bell":"T−0.000","bid":17,"ask":19,"last":19,"spread":2,"fired":"PAIR_ENTRY_COMPLETE","input":"VRB fill=69; NIK fill=19","output":"entry gate=LOCKED","before":"FILLED 19","after":"FILLED 19","number":11}]}}};
+    const NS = "http://www.w3.org/2000/svg";
+    const W = 900, H = 340;
+    const m = { left: 48, right: 18, top: 20, bottom: 54 };
+    const minT = -5, maxT = 375.45, minY = 0, maxY = 100;
+    const x = (t) => m.left + ((maxT - t) / (maxT - minT)) * (W - m.left - m.right);
+    const y = (v) => m.top + ((maxY - v) / (maxY - minY)) * (H - m.top - m.bottom);
+    const el = (name, attrs = {}, text = null) => {
+      const node = document.createElementNS(NS, name);
+      Object.entries(attrs).forEach(([k, v]) => node.setAttribute(k, v));
+      if (text !== null) node.textContent = text;
+      return node;
+    };
+    const tLabel = (value) => value >= 0 ? "T−" + Math.abs(value).toFixed(value % 1 ? 1 : 0) : "T+" + Math.abs(value).toFixed(value % 1 ? 1 : 0);
+    const stepPath = (points, index) => {
+      let d = "";
+      let prior = null;
+      for (const point of points) {
+        const value = point[index];
+        if (!Number.isFinite(value)) { prior = null; continue; }
+        const px = x(point[0]), py = y(value);
+        if (!prior) d += "M" + px.toFixed(2) + "," + py.toFixed(2);
+        else d += "H" + px.toFixed(2) + "V" + py.toFixed(2);
+        prior = point;
+      }
+      return d;
+    };
+    document.querySelectorAll("#nikvrb-decision-report svg[data-leg]").forEach((svg) => {
+      const branch = svg.dataset.branch;
+      const leg = svg.dataset.leg;
+      const title = el("title", {}, branch + " " + leg + ": best bid, best ask, verified last trade, and our resting bid");
+      const desc = el("desc", {}, "Decision numbers correspond to the table above. Horizontal axis shows T-minus scheduled and T-minus observed bell.");
+      svg.append(title, desc);
+      for (const tick of [0, 20, 40, 60, 80, 100]) {
+        const yy = y(tick);
+        svg.append(el("line", { x1: m.left, y1: yy, x2: W - m.right, y2: yy, stroke: "var(--border)", "stroke-width": 1 }));
+        svg.append(el("text", { x: m.left - 8, y: yy + 4, "text-anchor": "end", fill: "var(--muted-foreground)", "font-size": 11 }, String(tick)));
+      }
+      for (const tick of [375, 300, 240, 180, 120, 60, 0, -5]) {
+        const xx = x(tick);
+        svg.append(el("line", { x1: xx, y1: m.top, x2: xx, y2: H - m.bottom, stroke: "var(--border)", "stroke-width": 1 }));
+        const label = el("text", { x: xx, y: H - m.bottom + 18, "text-anchor": "middle", fill: "var(--muted-foreground)", "font-size": 10 });
+        label.append(el("tspan", { x: xx, dy: 0 }, "S " + tLabel(tick)));
+        label.append(el("tspan", { x: xx, dy: 13 }, "B " + tLabel(tick + 5)));
+        svg.append(label);
+      }
+      svg.append(el("line", { x1: m.left, y1: H - m.bottom, x2: W - m.right, y2: H - m.bottom, stroke: "var(--foreground)", "stroke-width": 1 }));
+      const series = [
+        [1, "var(--viz-series-1)", 1.7],
+        [2, "var(--viz-series-2)", 1.7],
+        [3, "var(--viz-series-3)", 1.7],
+      ];
+      for (const [index, color, width] of series) {
+        svg.append(el("path", { d: stepPath(data.points[leg], index), fill: "none", stroke: color, "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round" }));
+      }
+      for (const segment of data.orders[branch][leg]) {
+        svg.append(el("line", { x1: x(segment[0]), y1: y(segment[2]), x2: x(segment[1]), y2: y(segment[2]), stroke: "var(--destructive)", "stroke-width": 4, "stroke-linecap": "round" }));
+      }
+      const occupied = [];
+      for (const decision of data.decisions[branch][leg]) {
+        let marker = Number(decision.after);
+        if (!Number.isFinite(marker)) marker = Number(decision.before);
+        if (!Number.isFinite(marker)) marker = Number.isFinite(decision.bid) ? decision.bid : decision.ask;
+        const xx = x(decision.t), yy = y(marker);
+        let lane = 0;
+        while (occupied[lane] !== undefined && Math.abs(xx - occupied[lane]) < 18) lane += 1;
+        occupied[lane] = xx;
+        const labelY = Math.max(12, Math.min(H - m.bottom - 4, yy + (lane % 2 === 0 ? -10 - 10 * Math.floor(lane / 2) : 14 + 10 * Math.floor(lane / 2))));
+        const group = el("g");
+        group.append(el("circle", { cx: xx, cy: yy, r: 4.5, fill: "var(--background)", stroke: "var(--foreground)", "stroke-width": 1.5 }));
+        group.append(el("line", { x1: xx, y1: yy, x2: xx, y2: labelY, stroke: "var(--muted-foreground)", "stroke-width": 0.8 }));
+        group.append(el("text", { x: xx, y: labelY + 3, "text-anchor": "middle", fill: "var(--foreground)", "font-size": 9, "font-weight": 700 }, String(decision.number)));
+        group.append(el("title", {}, "#" + decision.number + " " + decision.scheduled + " / " + decision.bell + ": " + decision.fired + "; " + decision.input + " → " + decision.output));
+        svg.append(group);
+      }
+    });
+  })();
+  </script>
+</div>

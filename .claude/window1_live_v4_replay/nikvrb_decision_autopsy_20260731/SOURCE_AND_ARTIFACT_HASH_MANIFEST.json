@@ -1,0 +1,52 @@
+{
+  "schema_version": "nikvrb-decision-autopsy-hash-manifest-v1",
+  "git_head_parent": "77be1254a0a6fa157e650bf64ef51d3c5f0c91f7",
+  "files": {
+    "arb-executor/live_v4.py": {
+      "sha256": "f6fb1d20f3943f7bac26d94ccf1e9d98a5f22762cd3357394adfc8a3b108d760",
+      "size_bytes": 1028619
+    },
+    "arb-executor/config/deploy_v5_live.json": {
+      "sha256": "46607d2404d6794c30c6c61fd52d08c9e787a613a1984d8c21204457d5d2472f",
+      "size_bytes": 5305
+    },
+    "arb-executor/analysis/build_nikvrb_decision_autopsy.js": {
+      "sha256": "1d05abf7fccfb095351a5acde6847d403fce30a648a55e9bc63b37f255cdcc07",
+      "size_bytes": 13972
+    },
+    "arb-executor/docs/research/window1/NIKVRB_DECISION_AUTOPSY.md": {
+      "sha256": "ffb29bc9e4585276cf3b72a9e790ead2fe53ebba8fb9f533ea48d40563a2a9f3",
+      "size_bytes": 16793
+    },
+    ".claude/window1_live_v4_replay/one_game_nikvrb_20260730/NIKVRB_DECISION_TRACE.json": {
+      "sha256": "cf3ecdafc43ff0305ae95addd5a98fc1d53695dbbeae6c7080ad79de0fae1b42",
+      "size_bytes": 8967
+    },
+    ".claude/window1_live_v4_replay/nikvrb_coupling_20260730/NIKVRB_DUAL_BOOK_CLOCK.csv": {
+      "sha256": "9ec9ef0fab27cd750a7d3fba1407bc6c6a8955104071f27b67dac6bd7f8965e5",
+      "size_bytes": 1614324
+    },
+    ".claude/window1_live_v4_replay/nikvrb_coupling_20260730/NIKVRB_DUAL_QUOTE_SERIES.csv": {
+      "sha256": "14df33928268d3bb043e7d067f8742c30a9b08bd0e190e2698e252001754ff9b",
+      "size_bytes": 100290
+    },
+    ".claude/window1_live_v4_replay/nikvrb_decision_autopsy_20260731/NIKVRB_NON_DECISION_LEDGER.csv": {
+      "sha256": "cf2b8407ddf4eb257cb0cc00a34681f2638da03db1770c7532c568cd799297f1",
+      "size_bytes": 1708084
+    },
+    ".claude/window1_live_v4_replay/nikvrb_decision_autopsy_20260731/NIKVRB_VRB_ASK68_VISITS.csv": {
+      "sha256": "383089cc2bf24f060e21de92fb53656341d38a956d49e946434fc6186129f9c1",
+      "size_bytes": 1532
+    },
+    ".claude/window1_live_v4_replay/nikvrb_decision_autopsy_20260731/NIKVRB_SILENCE_CENSUS.json": {
+      "sha256": "e8f3ad33d924309a247d5b7afd2f4c0709509854686f0bb56f8fb7269d75446d",
+      "size_bytes": 1817
+    }
+  },
+  "absent_bound_trace": {
+    "path_from_prior_receipt": "../one_game_nikvrb_final_20260730/runs/KXATPCHALLENGERMATCH-26JUL19NIKVRB/trace.json",
+    "expected_sha256": "5dd923fb3636926165e651668954f6b778e9d4c8811b2254f3102a9aa05302cc",
+    "status": "NOT_PRESENT_NOT_COMMITTED",
+    "consequence": "do not manufacture exact timestamps for the nine post-fill VRB move/reposts"
+  }
+}

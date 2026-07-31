@@ -1,0 +1,45 @@
+{
+  "schema_version": "nikvrb-decision-autopsy-silence-census-v1",
+  "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+  "build_law": "read frozen dual-book and quote-series artifacts; do not execute live_v4 or score",
+  "clocks": {
+    "scheduled_start_et": "2026-07-19T12:30:00-04:00",
+    "actual_bell_et": "2026-07-19T12:35:00-04:00",
+    "vrb_65_placement_et": "2026-07-19T07:15:43-04:00",
+    "nik_fill_evidence_et": "2026-07-19T10:39:57.500480-04:00"
+  },
+  "vrb_65_hold": {
+    "own_bbo_callbacks": 874,
+    "cadence_gate_returns": 6,
+    "staircase_quiet_fifo_returns": 868,
+    "volatility_trail_returns": 0,
+    "rolling_60s_true_print_count_distribution": {
+      "0": 772,
+      "1": 57,
+      "2": 45
+    },
+    "maximum_rolling_60s_true_print_count": 2,
+    "configured_burst_required": 5
+  },
+  "vrb_ask_68": {
+    "quote_state_visits": 9,
+    "total_residency_seconds": 641,
+    "bbo_receipts_during_quote_state_intervals": 68,
+    "raw_rows_directly_stamped_ask_68": 49,
+    "correction": "visit 1 predates any VRB order; visit 2 caused 67 cancellation and 65 reconception"
+  },
+  "nik_post_fill": {
+    "own_bbo_callbacks_to_actual_bell": 5534,
+    "callbacks_with_ask_at_or_below_24": 5387,
+    "manager_calls": 0,
+    "reason": "entry fill set phase=active, so entry_resting manager guard was false"
+  },
+  "source_hashes": {
+    "NIKVRB_DUAL_BOOK_CLOCK_csv_sha256": "9ec9ef0fab27cd750a7d3fba1407bc6c6a8955104071f27b67dac6bd7f8965e5",
+    "NIKVRB_DUAL_QUOTE_SERIES_csv_sha256": "14df33928268d3bb043e7d067f8742c30a9b08bd0e190e2698e252001754ff9b"
+  },
+  "output_hashes": {
+    "NIKVRB_NON_DECISION_LEDGER_csv_sha256": "cf2b8407ddf4eb257cb0cc00a34681f2638da03db1770c7532c568cd799297f1",
+    "NIKVRB_VRB_ASK68_VISITS_csv_sha256": "383089cc2bf24f060e21de92fb53656341d38a956d49e946434fc6186129f9c1"
+  }
+}

@@ -1,0 +1,877 @@
+{
+  "schema_version": "WINDOW1_ORGAN_SCORECARD_V1",
+  "law": {
+    "scope": "Window 1 entry only",
+    "D": 804,
+    "opportunity_denominator": 598,
+    "frozen_best_PC": 23,
+    "fill_law": "positive true print at/through X or lawful opposite quote at/through X sustained 10 seconds",
+    "pair_law": "asynchronous combined-negative relative to each leg's frozen Window-1 close; IC never gates",
+    "signer_rule": "no organ receives execution authority from this scorecard"
+  },
+  "headline": {
+    "maker_opportunity_PC": 598,
+    "frozen_JOIN_PC": 23,
+    "missed_PC_opportunities": 575,
+    "conclusion": "placement, not opportunity scarcity"
+  },
+  "frozen_action_outcomes": [
+    {
+      "mode": "ATLAS",
+      "D": 804,
+      "filled_legs": 217,
+      "completed_pairs": 49,
+      "PC": 1,
+      "IC": 1
+    },
+    {
+      "mode": "ORIENTATION",
+      "D": 804,
+      "filled_legs": 217,
+      "completed_pairs": 49,
+      "PC": 1,
+      "IC": 1
+    },
+    {
+      "mode": "JOIN",
+      "D": 804,
+      "filled_legs": 601,
+      "completed_pairs": 86,
+      "PC": 23,
+      "IC": 11
+    },
+    {
+      "mode": "TOUCH_MINUS_1",
+      "D": 804,
+      "filled_legs": 274,
+      "completed_pairs": 57,
+      "PC": 3,
+      "IC": 2
+    },
+    {
+      "mode": "ONE_SPREAD_BELOW_MID",
+      "D": 804,
+      "filled_legs": 270,
+      "completed_pairs": 58,
+      "PC": 3,
+      "IC": 2
+    }
+  ],
+  "organ_rows": [
+    {
+      "organ": "ATLAS",
+      "verdict": "ACTIVELY_WRONG",
+      "recognition": {
+        "rows": 1000,
+        "median_signed_depth_error_cents": -4,
+        "reached": 57,
+        "reached_rate_pct": 5.7
+      },
+      "recognition_category_price_region": {
+        "ATP_CHALL": {
+          "26_50": {
+            "rows": 183,
+            "median_signed_depth_error_cents": -5,
+            "reached": 8,
+            "reached_rate_pct": 4.4
+          },
+          "51_75": {
+            "rows": 180,
+            "median_signed_depth_error_cents": -4,
+            "reached": 9,
+            "reached_rate_pct": 5
+          },
+          "ge75": {
+            "rows": 62,
+            "median_signed_depth_error_cents": -6,
+            "reached": 2,
+            "reached_rate_pct": 3.2
+          },
+          "le25": {
+            "rows": 88,
+            "median_signed_depth_error_cents": -4,
+            "reached": 2,
+            "reached_rate_pct": 2.3
+          }
+        },
+        "ATP_MAIN": {
+          "26_50": {
+            "rows": 52,
+            "median_signed_depth_error_cents": -4,
+            "reached": 8,
+            "reached_rate_pct": 15.4
+          },
+          "51_75": {
+            "rows": 52,
+            "median_signed_depth_error_cents": -5,
+            "reached": 6,
+            "reached_rate_pct": 11.5
+          },
+          "ge75": {
+            "rows": 12,
+            "median_signed_depth_error_cents": -12,
+            "reached": 0,
+            "reached_rate_pct": 0
+          },
+          "le25": {
+            "rows": 22,
+            "median_signed_depth_error_cents": -3,
+            "reached": 3,
+            "reached_rate_pct": 13.6
+          }
+        },
+        "WTA_CHALL": {
+          "26_50": {
+            "rows": 59,
+            "median_signed_depth_error_cents": -4,
+            "reached": 1,
+            "reached_rate_pct": 1.7
+          },
+          "51_75": {
+            "rows": 62,
+            "median_signed_depth_error_cents": -4,
+            "reached": 2,
+            "reached_rate_pct": 3.2
+          },
+          "ge75": {
+            "rows": 19,
+            "median_signed_depth_error_cents": -4,
+            "reached": 0,
+            "reached_rate_pct": 0
+          },
+          "le25": {
+            "rows": 23,
+            "median_signed_depth_error_cents": -4,
+            "reached": 0,
+            "reached_rate_pct": 0
+          }
+        },
+        "WTA_MAIN": {
+          "26_50": {
+            "rows": 52,
+            "median_signed_depth_error_cents": -4,
+            "reached": 11,
+            "reached_rate_pct": 21.2
+          },
+          "51_75": {
+            "rows": 54,
+            "median_signed_depth_error_cents": -6,
+            "reached": 1,
+            "reached_rate_pct": 1.9
+          },
+          "ge75": {
+            "rows": 37,
+            "median_signed_depth_error_cents": -9,
+            "reached": 0,
+            "reached_rate_pct": 0
+          },
+          "le25": {
+            "rows": 43,
+            "median_signed_depth_error_cents": -3,
+            "reached": 4,
+            "reached_rate_pct": 9.3
+          }
+        }
+      },
+      "signed_live_aim_census": {
+        "rows": 1331,
+        "median_signed_depth_error_cents": -3,
+        "too_deep": 1205,
+        "reached": 126,
+        "reached_rate_pct": 9.5
+      },
+      "category_price_region": {
+        "ATP_CHALL": {
+          "le25": [
+            -2,
+            12
+          ],
+          "26_50": [
+            -3,
+            8.7
+          ],
+          "51_75": [
+            -2,
+            13.2
+          ],
+          "ge75": [
+            -5,
+            5.9
+          ]
+        },
+        "ATP_MAIN": {
+          "le25": [
+            -2,
+            24
+          ],
+          "26_50": [
+            -3,
+            14.6
+          ],
+          "51_75": [
+            -4,
+            9.4
+          ],
+          "ge75": [
+            -11,
+            6.9
+          ]
+        },
+        "WTA_CHALL": {
+          "le25": [
+            -2.5,
+            0
+          ],
+          "26_50": [
+            -3,
+            6
+          ],
+          "51_75": [
+            -3,
+            4.5
+          ],
+          "ge75": [
+            -3,
+            0
+          ]
+        },
+        "WTA_MAIN": {
+          "le25": [
+            -3,
+            10
+          ],
+          "26_50": [
+            -3,
+            13.7
+          ],
+          "51_75": [
+            -5,
+            5.4
+          ],
+          "ge75": [
+            -9,
+            3.6
+          ]
+        }
+      },
+      "reason": "Targets are systematically below the 10-second reachable floor; JOIN gains 22 PC over ATLAS with no lost PC.",
+      "pre_entry_cell": false,
+      "signing_authority": false
+    },
+    {
+      "organ": "BAND_B1_B8",
+      "verdict": "ACTIVELY_WRONG_EXCEPT_LOCAL_WTA_CHALL_B3",
+      "recognition": {
+        "rows": 913,
+        "median_signed_depth_error_cents": -3,
+        "reached": 96,
+        "reached_rate_pct": 10.5
+      },
+      "recognition_category_price_region": {
+        "ATP_CHALL": {
+          "26_50": {
+            "rows": 181,
+            "median_signed_depth_error_cents": -4,
+            "reached": 14,
+            "reached_rate_pct": 7.7
+          },
+          "51_75": {
+            "rows": 178,
+            "median_signed_depth_error_cents": -4,
+            "reached": 9,
+            "reached_rate_pct": 5.1
+          },
+          "ge75": {
+            "rows": 61,
+            "median_signed_depth_error_cents": -3.5,
+            "reached": 6,
+            "reached_rate_pct": 9.8
+          },
+          "le25": {
+            "rows": 89,
+            "median_signed_depth_error_cents": -3.5,
+            "reached": 2,
+            "reached_rate_pct": 2.2
+          }
+        },
+        "ATP_MAIN": {
+          "26_50": {
+            "rows": 48,
+            "median_signed_depth_error_cents": -2,
+            "reached": 16,
+            "reached_rate_pct": 33.3
+          },
+          "51_75": {
+            "rows": 51,
+            "median_signed_depth_error_cents": -2,
+            "reached": 19,
+            "reached_rate_pct": 37.3
+          },
+          "ge75": {
+            "rows": 12,
+            "median_signed_depth_error_cents": -2.5,
+            "reached": 3,
+            "reached_rate_pct": 25
+          },
+          "le25": {
+            "rows": 23,
+            "median_signed_depth_error_cents": -3,
+            "reached": 3,
+            "reached_rate_pct": 13
+          }
+        },
+        "WTA_CHALL": {
+          "26_50": {
+            "rows": 59,
+            "median_signed_depth_error_cents": -5,
+            "reached": 1,
+            "reached_rate_pct": 1.7
+          },
+          "51_75": {
+            "rows": 62,
+            "median_signed_depth_error_cents": -4,
+            "reached": 2,
+            "reached_rate_pct": 3.2
+          },
+          "ge75": {
+            "rows": 19,
+            "median_signed_depth_error_cents": -4,
+            "reached": 0,
+            "reached_rate_pct": 0
+          }
+        },
+        "WTA_MAIN": {
+          "26_50": {
+            "rows": 52,
+            "median_signed_depth_error_cents": -3,
+            "reached": 13,
+            "reached_rate_pct": 25
+          },
+          "51_75": {
+            "rows": 2,
+            "median_signed_depth_error_cents": -3.5,
+            "reached": 0,
+            "reached_rate_pct": 0
+          },
+          "ge75": {
+            "rows": 33,
+            "median_signed_depth_error_cents": -5,
+            "reached": 3,
+            "reached_rate_pct": 9.1
+          },
+          "le25": {
+            "rows": 43,
+            "median_signed_depth_error_cents": -2,
+            "reached": 5,
+            "reached_rate_pct": 11.6
+          }
+        }
+      },
+      "direction_test": {
+        "calls": 913,
+        "native_direction": "FLAT_FOR_ALL_CALLS",
+        "actual_flat": 257,
+        "actual_flat_rate_pct": 28.1,
+        "non_flat": 656,
+        "recurrent_pulses_ge_3c": 238
+      },
+      "by_category_band": {
+        "ATP_CHALL": {
+          "B1": [
+            90,
+            16.7,
+            35
+          ],
+          "B4": [
+            358,
+            27.1,
+            83
+          ],
+          "B6": [
+            61,
+            31.1,
+            16
+          ]
+        },
+        "ATP_MAIN": {
+          "B1": [
+            21,
+            19,
+            11
+          ],
+          "B3": [
+            51,
+            13.7,
+            23
+          ],
+          "B5": [
+            50,
+            18,
+            23
+          ],
+          "B8": [
+            12,
+            41.7,
+            3
+          ]
+        },
+        "WTA_CHALL": {
+          "B3": [
+            59,
+            57.6,
+            5
+          ],
+          "B6": [
+            63,
+            34.9,
+            6
+          ],
+          "B8": [
+            18,
+            27.8,
+            1
+          ]
+        },
+        "WTA_MAIN": {
+          "B1": [
+            44,
+            34.1,
+            7
+          ],
+          "B3": [
+            52,
+            23.1,
+            21
+          ],
+          "B6": [
+            34,
+            38.2,
+            4
+          ]
+        }
+      },
+      "tuple_meaning": "[calls, flat-direction hit %, recurrent >=3c pulses]",
+      "reason": "A print-keyed band map calls every measured leg flat in a quote-driven recurrence market.",
+      "pre_entry_cell": false,
+      "signing_authority": false
+    },
+    {
+      "organ": "COHORT_LIBRARY",
+      "verdict": "ACTIVELY_WRONG",
+      "recognition": {
+        "rows": 953,
+        "median_signed_depth_error_cents": -8,
+        "reached": 11,
+        "reached_rate_pct": 1.2
+      },
+      "recognition_category_price_region": {
+        "ATP_CHALL": {
+          "26_50": {
+            "rows": 185,
+            "median_signed_depth_error_cents": -7,
+            "reached": 5,
+            "reached_rate_pct": 2.7
+          },
+          "51_75": {
+            "rows": 183,
+            "median_signed_depth_error_cents": -8,
+            "reached": 2,
+            "reached_rate_pct": 1.1
+          },
+          "ge75": {
+            "rows": 64,
+            "median_signed_depth_error_cents": -14.5,
+            "reached": 0,
+            "reached_rate_pct": 0
+          },
+          "le25": {
+            "rows": 98,
+            "median_signed_depth_error_cents": -7,
+            "reached": 0,
+            "reached_rate_pct": 0
+          }
+        },
+        "ATP_MAIN": {
+          "26_50": {
+            "rows": 51,
+            "median_signed_depth_error_cents": -8,
+            "reached": 1,
+            "reached_rate_pct": 2
+          },
+          "51_75": {
+            "rows": 51,
+            "median_signed_depth_error_cents": -18,
+            "reached": 0,
+            "reached_rate_pct": 0
+          },
+          "ge75": {
+            "rows": 12,
+            "median_signed_depth_error_cents": -23,
+            "reached": 0,
+            "reached_rate_pct": 0
+          },
+          "le25": {
+            "rows": 2,
+            "median_signed_depth_error_cents": -8,
+            "reached": 0,
+            "reached_rate_pct": 0
+          }
+        },
+        "WTA_CHALL": {
+          "26_50": {
+            "rows": 59,
+            "median_signed_depth_error_cents": -7,
+            "reached": 0,
+            "reached_rate_pct": 0
+          },
+          "51_75": {
+            "rows": 62,
+            "median_signed_depth_error_cents": -8,
+            "reached": 0,
+            "reached_rate_pct": 0
+          },
+          "ge75": {
+            "rows": 19,
+            "median_signed_depth_error_cents": -13,
+            "reached": 0,
+            "reached_rate_pct": 0
+          },
+          "le25": {
+            "rows": 24,
+            "median_signed_depth_error_cents": -5,
+            "reached": 0,
+            "reached_rate_pct": 0
+          }
+        },
+        "WTA_MAIN": {
+          "26_50": {
+            "rows": 51,
+            "median_signed_depth_error_cents": -7,
+            "reached": 2,
+            "reached_rate_pct": 3.9
+          },
+          "51_75": {
+            "rows": 54,
+            "median_signed_depth_error_cents": -9,
+            "reached": 1,
+            "reached_rate_pct": 1.9
+          },
+          "ge75": {
+            "rows": 37,
+            "median_signed_depth_error_cents": -33,
+            "reached": 0,
+            "reached_rate_pct": 0
+          },
+          "le25": {
+            "rows": 1,
+            "median_signed_depth_error_cents": -1,
+            "reached": 0,
+            "reached_rate_pct": 0
+          }
+        }
+      },
+      "reason": "Median target is eight cents below the reachable floor and only 1.2% reach.",
+      "pre_entry_cell": false,
+      "signing_authority": false
+    },
+    {
+      "organ": "AIM_V2",
+      "verdict": "ACTIVELY_WRONG",
+      "recognition": {
+        "rows": 547,
+        "median_signed_depth_error_cents": -5,
+        "reached": 12,
+        "reached_rate_pct": 2.2
+      },
+      "recognition_category_price_region": {
+        "ATP_CHALL": {
+          "26_50": {
+            "rows": 169,
+            "median_signed_depth_error_cents": -6,
+            "reached": 6,
+            "reached_rate_pct": 3.6
+          },
+          "51_75": {
+            "rows": 171,
+            "median_signed_depth_error_cents": -4,
+            "reached": 3,
+            "reached_rate_pct": 1.8
+          },
+          "ge75": {
+            "rows": 61,
+            "median_signed_depth_error_cents": -5,
+            "reached": 3,
+            "reached_rate_pct": 4.9
+          },
+          "le25": {
+            "rows": 79,
+            "median_signed_depth_error_cents": -5,
+            "reached": 0,
+            "reached_rate_pct": 0
+          }
+        },
+        "WTA_CHALL": {
+          "26_50": {
+            "rows": 28,
+            "median_signed_depth_error_cents": -10,
+            "reached": 0,
+            "reached_rate_pct": 0
+          },
+          "51_75": {
+            "rows": 25,
+            "median_signed_depth_error_cents": -36,
+            "reached": 0,
+            "reached_rate_pct": 0
+          },
+          "ge75": {
+            "rows": 6,
+            "median_signed_depth_error_cents": -35.5,
+            "reached": 0,
+            "reached_rate_pct": 0
+          },
+          "le25": {
+            "rows": 8,
+            "median_signed_depth_error_cents": -10.5,
+            "reached": 0,
+            "reached_rate_pct": 0
+          }
+        }
+      },
+      "reason": "Median target is five cents below the reachable floor and only 2.2% reach.",
+      "pre_entry_cell": false,
+      "signing_authority": false
+    },
+    {
+      "organ": "REACH_LAW",
+      "verdict": "ACTIVELY_OVERCONFIDENT",
+      "census": {
+        "rows": 2019,
+        "mean_predicted_reach_pct": 28.57,
+        "actual_reach_pct": 3.2,
+        "brier": 0.1824
+      },
+      "category_source_examples": {
+        "ATP_CHALL": {
+          "atlas": [
+            32.02,
+            4.1
+          ],
+          "band": [
+            37.11,
+            6.1
+          ],
+          "cohort": [
+            16.97,
+            1.3
+          ]
+        },
+        "WTA_CHALL": {
+          "atlas": [
+            36.64,
+            1.8
+          ],
+          "band": [
+            34.36,
+            2.1
+          ],
+          "cohort": [
+            15.85,
+            0
+          ]
+        }
+      },
+      "tuple_meaning": "[predicted reach %, observed reach %]",
+      "category_price_region_status": "Source/category summaries exist, but the frozen scorecard does not reconstruct a missing per-row reach payload beyond the cited recognition rows.",
+      "pre_entry_cell": false,
+      "signing_authority": false
+    },
+    {
+      "organ": "SELECTOR_CONTENTION",
+      "verdict": "ACTIVELY_INVERTED",
+      "census": {
+        "measurable": 1244,
+        "TRADE": 511,
+        "TRADE_good": 8,
+        "TRADE_good_pct": 1.6,
+        "DROP": 733,
+        "DROP_good": 21,
+        "DROP_good_pct": 2.9,
+        "selected_good": 29,
+        "any_fitted_tier_good": 199,
+        "missed_available_good_tier": 170
+      },
+      "reason": "TRADE underperforms DROP and selected tier misses 170 legs with a better fitted tier; enforcement remains off.",
+      "category_price_region_status": "The comparable selector census is preserved in aggregate; a complete 804-event tier-opinion payload was not retained, so missing cells are not fabricated.",
+      "pre_entry_cell": false,
+      "signing_authority": false
+    },
+    {
+      "organ": "PAIR_VERDICT",
+      "verdict": "NOISE",
+      "census": {
+        "measurable": 582,
+        "verdict_COMPOSED": 582,
+        "actual_pair_negative": 450,
+        "false_positive": 132,
+        "base_rate_pct": 77.3
+      },
+      "reason": "Constant verdict has no discrimination and constructs sibling as 100-current instead of reading sibling evidence.",
+      "category_price_region_status": "Pair verdict is pair-grain, not a lawful per-leg price-region surface; splitting its synthetic sibling would compound the defect.",
+      "pre_entry_cell": "synthetic rather than observed",
+      "signing_authority": false
+    },
+    {
+      "organ": "FLOW",
+      "verdict": "NOISE_OR_INVERTED",
+      "census": {
+        "quiet": {
+          "n": 657,
+          "fall": 191,
+          "unknown": 41,
+          "climb": 240,
+          "flat": 185,
+          "pulse_pct": 30.9
+        },
+        "warm": {
+          "n": 352,
+          "fall": 115,
+          "climb": 145,
+          "flat": 92,
+          "pulse_pct": 21
+        },
+        "open": {
+          "n": 11,
+          "fall": 2,
+          "climb": 3,
+          "flat": 6,
+          "pulse_pct": 9.1
+        }
+      },
+      "reason": "Quiet has more large pulses than warm/open and does not identify direction.",
+      "category_price_region_status": "Flow is reported by causal state; the retained summary does not carry a complete category+region joint cube.",
+      "pre_entry_cell": true,
+      "signing_authority": false
+    },
+    {
+      "organ": "ORIENTATION",
+      "verdict": "PROVISIONALLY_PREDICTIVE_BUT_UNDERINSTRUMENTED",
+      "census": {
+        "preserved_action_payloads": 5,
+        "pair_direction_correct": 4,
+        "completion_change": 0,
+        "mean_gap_before": 5.5,
+        "mean_gap_after": 5.75
+      },
+      "correct": [
+        "HURBIG",
+        "NIKVRB",
+        "LAJVAN",
+        "KORJIM"
+      ],
+      "reversed": [
+        "BRAVED"
+      ],
+      "reason": "Four of five exact-start pairs have correct shape, but the 804-event opinion/confidence payload was not preserved and the frozen replay changes no completion.",
+      "category_price_region_status": "Only five exact-start action payloads survive; an 804-event category+region cube is unavailable.",
+      "pre_entry_cell": "available only for five retained actions",
+      "signing_authority": false
+    },
+    {
+      "organ": "CONVICTION",
+      "verdict": "UNSCORABLE_INSTRUMENTATION_DEFECT",
+      "census": {
+        "preserved_rows": 123,
+        "date_scope": "2026-07-10 only",
+        "same_804_population": false
+      },
+      "reason": "Not a comparable opinion surface for the frozen population.",
+      "category_price_region_status": "Unavailable: the only retained artifact is a 123-row July-10 population.",
+      "pre_entry_cell": false,
+      "signing_authority": false
+    },
+    {
+      "organ": "LAST_TRADE_RELATIVE_TO_SPREAD",
+      "verdict": "SPARSE_WEAK_SIGNAL_NOT_AUTHORITY",
+      "census": {
+        "rows": 1409,
+        "above_ask": {
+          "n": 73,
+          "climb": 27,
+          "fall": 24,
+          "flat": 10,
+          "unknown": 12,
+          "stated_fall_hit_pct": 32.9
+        },
+        "at_ask": {
+          "n": 1131,
+          "climb": 368,
+          "fall": 300,
+          "flat": 280,
+          "unknown": 183,
+          "stated_fall_hit_pct": 26.5
+        },
+        "inside": {
+          "n": 42,
+          "call": "NO_CALL"
+        },
+        "at_bid": {
+          "n": 147,
+          "climb": 61,
+          "fall": 38,
+          "flat": 28,
+          "unknown": 20,
+          "stated_climb_hit_pct": 41.5
+        },
+        "below_bid": {
+          "n": 16,
+          "climb": 5,
+          "fall": 0,
+          "flat": 6,
+          "unknown": 5,
+          "stated_climb_hit_pct_all_pct": 31.3,
+          "directional_hit": "5/5"
+        },
+        "strict_joint_games": 3,
+        "strict_joint_both_correct": 1
+      },
+      "reason": "Below-bid direction is promising but only five directional rows; joint evidence exists for three games.",
+      "category_price_region_status": "The retained spread-position census is not a complete category+region cube; absence remains named.",
+      "pre_entry_cell": true,
+      "signing_authority": false
+    },
+    {
+      "organ": "PAIR_SHAPE",
+      "verdict": "PROVISIONALLY_PREDICTIVE",
+      "census": {
+        "events": 804,
+        "largest_shape": "CLIMB+FALL",
+        "largest_shape_n": 296,
+        "flat_flat": 81,
+        "climb_flat": 112,
+        "strict_distinct_first_10s_floor": 597,
+        "first_CLIMB_sibling_FALL": 280,
+        "first_CLIMB_total": 382,
+        "rate_pct": 73.3
+      },
+      "reason": "Pair topology is materially stronger than scalar depth voices, but no full pre-entry signed action payload exists.",
+      "category_price_region_status": "Pair shape is event-grain; the category+region leg cube was not retained as a signed pre-entry opinion surface.",
+      "pre_entry_cell": "partial",
+      "signing_authority": false
+    }
+  ],
+  "atlas_native_anchor_mismatch": {
+    "fitted_anchor": "first-hour discovery median",
+    "live_consult_anchor": "current last trade or tight mid",
+    "comparable_rows": 1408,
+    "page_changes": 31,
+    "signed_order_rows": 891,
+    "signed_page_changes": 14,
+    "signed_role_changes": 8
+  },
+  "authority_ruling": {
+    "pen_awarded_to": null,
+    "retained_control": "JOIN lawful non-self book placement",
+    "rationale": "JOIN is the best frozen causal action at 23 PC, but a control is not evidence that a new organ deserves authority.",
+    "one_authority_chokepoint_armed": false
+  }
+}

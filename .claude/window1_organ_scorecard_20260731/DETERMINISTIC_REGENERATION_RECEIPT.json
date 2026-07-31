@@ -1,0 +1,34 @@
+{
+  "schema_version": "WINDOW1_ORGAN_SCORECARD_DETERMINISM_V1",
+  "command": "node arb-executor/analysis/build_window1_organ_scorecard.js .",
+  "check_command": "node arb-executor/analysis/build_window1_organ_scorecard.js . --check",
+  "canonical_encoding": "UTF-8 LF; JSON two-space indentation and terminal LF",
+  "artifacts": [
+    {
+      "path": ".claude/window1_organ_scorecard_20260731/ORGAN_SCORECARD.json",
+      "bytes": 23523,
+      "sha256": "ca1ce3a7f507636db7fcb0fc42736728e78c749f74a6a615efc0d05312a64d3e"
+    },
+    {
+      "path": ".claude/window1_organ_scorecard_20260731/DEFECT_LEDGER.json",
+      "bytes": 6602,
+      "sha256": "b30cb9c51736b382b9f69b9799836ec06054fec18c83305f8f8507a0e2664f3f"
+    },
+    {
+      "path": ".claude/window1_organ_scorecard_20260731/EXACT_START_VALIDATION.json",
+      "bytes": 13894,
+      "sha256": "0a7e24d19a09156e5be9d606ac253968b6052f4aab8a9326481dea31fc6dd3e2"
+    },
+    {
+      "path": ".claude/window1_organ_scorecard_20260731/SOURCE_HASH_MANIFEST.json",
+      "bytes": 3386,
+      "sha256": "26678b0aa9253e39f2df1a2b0d92010c0769667237892d4d680cca97c5b7296d"
+    },
+    {
+      "path": "arb-executor/docs/research/window1/WINDOW1_ORGAN_SCORECARD_AND_DEFECT_LEDGER.md",
+      "bytes": 8973,
+      "sha256": "403d64851e0fa95985ec5e65e63d3a6c784c46425f66e4b2aaa3e50837e383f6"
+    }
+  ],
+  "result": "BYTE_IDENTICAL_WHEN_CHECK_COMMAND_PASSES"
+}

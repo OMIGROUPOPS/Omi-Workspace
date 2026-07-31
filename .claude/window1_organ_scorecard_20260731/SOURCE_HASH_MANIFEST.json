@@ -1,0 +1,91 @@
+{
+  "schema_version": "WINDOW1_ORGAN_SCORECARD_SOURCE_MANIFEST_V1",
+  "git_parent": "2140f5231da50f24483468bafee0c512368dd3d7",
+  "sources": [
+    {
+      "id": "quote_legs",
+      "path": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv",
+      "bytes": 503893,
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba"
+    },
+    {
+      "id": "divot_episodes",
+      "path": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_DIVOT_EPISODES.csv",
+      "bytes": 84943343,
+      "sha256": "973e4c3edf985cca55001407f06540415e53eb6b6c2babdc099193b082df65ef"
+    },
+    {
+      "id": "os_rescore",
+      "path": ".claude/window1_live_v4_replay/quote_touch_os_rescore_rebalanced_20260731/WINDOW1_QUOTE_TOUCH_OS_RESCORE.json",
+      "bytes": 74855523,
+      "sha256": "3fd04e63033b7e9898511c651581e4c2f1660fc386c08d4fcd55db09f5e04fb4"
+    },
+    {
+      "id": "recognition",
+      "path": ".claude/window1_t2_iteration_history/WINDOW1_T2_RECOGNITION_LAPS.json",
+      "bytes": 2490262,
+      "sha256": "37bf1691218a55975da19ff06e2bfeb11c412166fc0928da45b30653bcd6a30c"
+    },
+    {
+      "id": "atlas_key_study",
+      "path": ".claude/window1_live_v4_replay/atlas_interim_20260730_consult_v2/ATLAS_KEY_AND_INTERIM_STUDY.json",
+      "bytes": 5426508,
+      "sha256": "fdb9357314dd8d9511af88f0f85ec1f9c101a76412bb2265c7cf851310e4988f"
+    },
+    {
+      "id": "orientation",
+      "path": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json",
+      "bytes": 7483,
+      "sha256": "d6d761962afdab4030efc47d456e453c87bca8d9d5f67067200b5b7648509d56"
+    },
+    {
+      "id": "nikvrb_nondecision",
+      "path": ".claude/window1_live_v4_replay/nikvrb_decision_autopsy_20260731/NIKVRB_NON_DECISION_LEDGER.csv",
+      "bytes": 1708084,
+      "sha256": "cf2b8407ddf4eb257cb0cc00a34681f2638da03db1770c7532c568cd799297f1"
+    },
+    {
+      "id": "nikvrb_trace",
+      "path": ".claude/window1_live_v4_replay/one_game_nikvrb_20260730/NIKVRB_DECISION_TRACE.json",
+      "bytes": 8967,
+      "sha256": "cf3ecdafc43ff0305ae95addd5a98fc1d53695dbbeae6c7080ad79de0fae1b42"
+    },
+    {
+      "id": "band_map",
+      "path": "arb-executor/state/band_map_v1.json",
+      "bytes": 15520,
+      "sha256": "caf255a283bbb32f1d9bd2edd5f4d898d5f50fc8e67d5f9a076579b695a9e68c"
+    },
+    {
+      "id": "atlas",
+      "path": ".claude/trendpath/ATLAS_V1.json",
+      "bytes": 64012,
+      "sha256": "efdfc2b414a752db560b7e494642632a0530c68f54b6d4e8f86d303887b5100c"
+    },
+    {
+      "id": "live_v4",
+      "path": "arb-executor/live_v4.py",
+      "bytes": 1028619,
+      "sha256": "f6fb1d20f3943f7bac26d94ccf1e9d98a5f22762cd3357394adfc8a3b108d760"
+    },
+    {
+      "id": "live_config",
+      "path": "arb-executor/config/deploy_v5_live.json",
+      "bytes": 5305,
+      "sha256": "46607d2404d6794c30c6c61fd52d08c9e787a613a1984d8c21204457d5d2472f"
+    },
+    {
+      "id": "nikvrb_autopsy",
+      "path": "arb-executor/docs/research/window1/NIKVRB_DECISION_AUTOPSY.md",
+      "bytes": 16793,
+      "sha256": "ffb29bc9e4585276cf3b72a9e790ead2fe53ebba8fb9f533ea48d40563a2a9f3"
+    }
+  ],
+  "access": {
+    "scorer_invoked": false,
+    "live_v4_executed": false,
+    "network_accessed": false,
+    "holdout_accessed": false,
+    "files_mutated_before_part1_report": false
+  }
+}

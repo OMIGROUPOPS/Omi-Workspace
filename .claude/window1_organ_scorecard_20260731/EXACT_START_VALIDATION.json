@@ -1,0 +1,510 @@
+{
+  "schema_version": "WINDOW1_EXACT_START_VALIDATION_V1",
+  "event_count": 5,
+  "events": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "modes": [
+        {
+          "mode": "ATLAS",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "BIG": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 55,
+              "fill_minus_floor_cents": null
+            },
+            "HUR": {
+              "filled": true,
+              "fill_price_cents": 44,
+              "reachable_floor_cents": 37,
+              "fill_minus_floor_cents": 7
+            }
+          }
+        },
+        {
+          "mode": "ORIENTATION",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "BIG": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 55,
+              "fill_minus_floor_cents": null
+            },
+            "HUR": {
+              "filled": true,
+              "fill_price_cents": 44,
+              "reachable_floor_cents": 37,
+              "fill_minus_floor_cents": 7
+            }
+          }
+        },
+        {
+          "mode": "JOIN",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "BIG": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 55,
+              "fill_minus_floor_cents": null
+            },
+            "HUR": {
+              "filled": true,
+              "fill_price_cents": 44,
+              "reachable_floor_cents": 37,
+              "fill_minus_floor_cents": 7
+            }
+          }
+        },
+        {
+          "mode": "TOUCH_MINUS_1",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "BIG": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 55,
+              "fill_minus_floor_cents": null
+            },
+            "HUR": {
+              "filled": true,
+              "fill_price_cents": 44,
+              "reachable_floor_cents": 37,
+              "fill_minus_floor_cents": 7
+            }
+          }
+        },
+        {
+          "mode": "ONE_SPREAD_BELOW_MID",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "BIG": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 55,
+              "fill_minus_floor_cents": null
+            },
+            "HUR": {
+              "filled": true,
+              "fill_price_cents": 44,
+              "reachable_floor_cents": 37,
+              "fill_minus_floor_cents": 7
+            }
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "modes": [
+        {
+          "mode": "ATLAS",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "NIK": {
+              "filled": true,
+              "fill_price_cents": 24,
+              "reachable_floor_cents": 18,
+              "fill_minus_floor_cents": 6
+            },
+            "VRB": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 70,
+              "fill_minus_floor_cents": null
+            }
+          }
+        },
+        {
+          "mode": "ORIENTATION",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "NIK": {
+              "filled": true,
+              "fill_price_cents": 24,
+              "reachable_floor_cents": 18,
+              "fill_minus_floor_cents": 6
+            },
+            "VRB": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 70,
+              "fill_minus_floor_cents": null
+            }
+          }
+        },
+        {
+          "mode": "JOIN",
+          "completed": true,
+          "PC": true,
+          "legs": {
+            "NIK": {
+              "filled": true,
+              "fill_price_cents": 24,
+              "reachable_floor_cents": 18,
+              "fill_minus_floor_cents": 6
+            },
+            "VRB": {
+              "filled": true,
+              "fill_price_cents": 69,
+              "reachable_floor_cents": 70,
+              "fill_minus_floor_cents": -1
+            }
+          }
+        },
+        {
+          "mode": "TOUCH_MINUS_1",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "NIK": {
+              "filled": true,
+              "fill_price_cents": 24,
+              "reachable_floor_cents": 18,
+              "fill_minus_floor_cents": 6
+            },
+            "VRB": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 70,
+              "fill_minus_floor_cents": null
+            }
+          }
+        },
+        {
+          "mode": "ONE_SPREAD_BELOW_MID",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "NIK": {
+              "filled": true,
+              "fill_price_cents": 24,
+              "reachable_floor_cents": 18,
+              "fill_minus_floor_cents": 6
+            },
+            "VRB": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 70,
+              "fill_minus_floor_cents": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "modes": [
+        {
+          "mode": "ATLAS",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "LAJ": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 43,
+              "fill_minus_floor_cents": null
+            },
+            "VAN": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 49,
+              "fill_minus_floor_cents": null
+            }
+          }
+        },
+        {
+          "mode": "ORIENTATION",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "LAJ": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 43,
+              "fill_minus_floor_cents": null
+            },
+            "VAN": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 49,
+              "fill_minus_floor_cents": null
+            }
+          }
+        },
+        {
+          "mode": "JOIN",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "LAJ": {
+              "filled": true,
+              "fill_price_cents": 49,
+              "reachable_floor_cents": 43,
+              "fill_minus_floor_cents": 6
+            },
+            "VAN": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 49,
+              "fill_minus_floor_cents": null
+            }
+          }
+        },
+        {
+          "mode": "TOUCH_MINUS_1",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "LAJ": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 43,
+              "fill_minus_floor_cents": null
+            },
+            "VAN": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 49,
+              "fill_minus_floor_cents": null
+            }
+          }
+        },
+        {
+          "mode": "ONE_SPREAD_BELOW_MID",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "LAJ": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 43,
+              "fill_minus_floor_cents": null
+            },
+            "VAN": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 49,
+              "fill_minus_floor_cents": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "modes": [
+        {
+          "mode": "ATLAS",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "BRA": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 38,
+              "fill_minus_floor_cents": null
+            },
+            "VED": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 55,
+              "fill_minus_floor_cents": null
+            }
+          }
+        },
+        {
+          "mode": "ORIENTATION",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "BRA": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 38,
+              "fill_minus_floor_cents": null
+            },
+            "VED": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 55,
+              "fill_minus_floor_cents": null
+            }
+          }
+        },
+        {
+          "mode": "JOIN",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "BRA": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 38,
+              "fill_minus_floor_cents": null
+            },
+            "VED": {
+              "filled": true,
+              "fill_price_cents": 60,
+              "reachable_floor_cents": 55,
+              "fill_minus_floor_cents": 5
+            }
+          }
+        },
+        {
+          "mode": "TOUCH_MINUS_1",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "BRA": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 38,
+              "fill_minus_floor_cents": null
+            },
+            "VED": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 55,
+              "fill_minus_floor_cents": null
+            }
+          }
+        },
+        {
+          "mode": "ONE_SPREAD_BELOW_MID",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "BRA": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 38,
+              "fill_minus_floor_cents": null
+            },
+            "VED": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 55,
+              "fill_minus_floor_cents": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "modes": [
+        {
+          "mode": "ATLAS",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "JIM": {
+              "filled": true,
+              "fill_price_cents": 36,
+              "reachable_floor_cents": 30,
+              "fill_minus_floor_cents": 6
+            },
+            "KOR": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 60,
+              "fill_minus_floor_cents": null
+            }
+          }
+        },
+        {
+          "mode": "ORIENTATION",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "JIM": {
+              "filled": true,
+              "fill_price_cents": 36,
+              "reachable_floor_cents": 30,
+              "fill_minus_floor_cents": 6
+            },
+            "KOR": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 60,
+              "fill_minus_floor_cents": null
+            }
+          }
+        },
+        {
+          "mode": "JOIN",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "JIM": {
+              "filled": true,
+              "fill_price_cents": 39,
+              "reachable_floor_cents": 30,
+              "fill_minus_floor_cents": 9
+            },
+            "KOR": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 60,
+              "fill_minus_floor_cents": null
+            }
+          }
+        },
+        {
+          "mode": "TOUCH_MINUS_1",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "JIM": {
+              "filled": true,
+              "fill_price_cents": 39,
+              "reachable_floor_cents": 30,
+              "fill_minus_floor_cents": 9
+            },
+            "KOR": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 60,
+              "fill_minus_floor_cents": null
+            }
+          }
+        },
+        {
+          "mode": "ONE_SPREAD_BELOW_MID",
+          "completed": false,
+          "PC": false,
+          "legs": {
+            "JIM": {
+              "filled": true,
+              "fill_price_cents": 39,
+              "reachable_floor_cents": 30,
+              "fill_minus_floor_cents": 9
+            },
+            "KOR": {
+              "filled": false,
+              "fill_price_cents": null,
+              "reachable_floor_cents": 60,
+              "fill_minus_floor_cents": null
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "negative_pair_completions": [
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB|JOIN"
+  ],
+  "ruling": "NIKVRB JOIN is the only exact-start PC under the frozen 10-second law; all future fixes must preserve it and may not use the post-fill NIK 18-cent tape as a second entry."
+}

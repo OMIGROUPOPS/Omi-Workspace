@@ -1,0 +1,180 @@
+{
+  "schema_version": "WINDOW1_DEFECT_LEDGER_V1",
+  "population": {
+    "D": 804,
+    "frozen_score": "23/598",
+    "opportunity_gap": 575
+  },
+  "keep_rule": "A proposed execution change is retained only after a same-law full replay exceeds 23 PC without violating exact-five, asynchronous pair, or exact-start controls.",
+  "defects": [
+    {
+      "rank": 1,
+      "defect": "placement_gap_umbrella",
+      "measured_cost": {
+        "maker_opportunities": 598,
+        "frozen_JOIN_PC": 23,
+        "missed": 575
+      },
+      "cause_status": "CONSERVATION_ENVELOPE_NOT_A_SINGLE_CAUSE",
+      "proposed_fix": "Use the following causal layers; do not claim one organ explains all 575.",
+      "replay_gate": "Any fix must exceed 23/598 on the same 10-second law and preserve all exact-start controls.",
+      "retained": false
+    },
+    {
+      "rank": 2,
+      "defect": "organ_disagreement_without_reliable_arbiter",
+      "measured_cost": {
+        "disagreeing_legs": 1013,
+        "disagreeing_events": 509,
+        "events_examined": 510,
+        "median_target_span_cents": 4,
+        "p90_target_span_cents": 21,
+        "negative_opportunity_events": 425,
+        "disagreement_and_missed_opportunity_events": 412
+      },
+      "proposed_fix": "Preserve JOIN until a pair-shape/recurrence candidate wins a full causal replay; record all voices without granting a pen.",
+      "exact_start_effect": "NIKVRB proves ATLAS can overwrite the correct pair shape; BRAVED proves orientation can also reverse it.",
+      "retained": false
+    },
+    {
+      "rank": 3,
+      "defect": "ATLAS_deep_target_and_native_anchor_mismatch",
+      "measured_cost": {
+        "versus_JOIN_PC_lost": 22,
+        "versus_JOIN_completed_pairs_lost": 37,
+        "versus_JOIN_filled_legs_lost": 384,
+        "JOIN_PC_lost_to_ATLAS": 0,
+        "page_changes": 31,
+        "strict_page_changes": 14,
+        "strict_role_changes": 8
+      },
+      "proposed_fix": "Demote ATLAS to context and restore its native discovery anchor before any future retest.",
+      "exact_start_effect": "JOIN preserves NIKVRB PC; ATLAS produces no exact-start PC.",
+      "retained": "JOIN_BASELINE_ONLY"
+    },
+    {
+      "rank": 4,
+      "defect": "filled_leg_disables_entry_review",
+      "measured_cost": {
+        "filled_legs_with_later_lower_floor": 245,
+        "events": 240,
+        "cents_above_later_floor": 565,
+        "median_cents": 2,
+        "max_cents": 25,
+        "NIK_post_fill_callbacks": 5534,
+        "NIK_ask_at_or_below_fill": 5387
+      },
+      "proposed_fix": "Continue diagnostic price review after fill, but never re-buy: exact-five means the later lower price is opportunity evidence, not entry authority.",
+      "exact_start_effect": "NIK filled exactly five at 24; the later 18 cannot be lawfully recaptured without DCA/re-buy.",
+      "retained": false
+    },
+    {
+      "rank": 5,
+      "defect": "staircase_quiet_hold_masks_recurrence",
+      "measured_cost": {
+        "NIKVRB_VRB_callbacks": 874,
+        "cadence_holds": 6,
+        "quiet_FIFO_holds": 868,
+        "ask_68_quote_state_visits": 9,
+        "residence_seconds": 641
+      },
+      "proposed_fix": "Test an episode-keyed recurrence response: recognition receipt cannot fill its action; only strictly later recurrence may credit.",
+      "exact_start_effect": "NIKVRB JOIN is already PC, so this specimen alone cannot move 23; full 804 replay is mandatory.",
+      "retained": false
+    },
+    {
+      "rank": 6,
+      "defect": "band_print_cell_applied_to_quote_recurrence",
+      "measured_cost": {
+        "calls": 913,
+        "actual_non_flat": 656,
+        "recurrent_ge_3c_pulses": 238,
+        "flat_hit_pct": 28.1
+      },
+      "proposed_fix": "Remove band signing authority; preserve B1-B8 only as descriptive print-conditioned context until quote-native validation exists.",
+      "retained": false
+    },
+    {
+      "rank": 7,
+      "defect": "selector_contention_inversion",
+      "measured_cost": {
+        "selected_good": 29,
+        "available_good": 199,
+        "missed_available_good": 170,
+        "TRADE_good_pct": 1.6,
+        "DROP_good_pct": 2.9
+      },
+      "proposed_fix": "Do not enable contention enforcement; retest only after native anchors and a causal target outcome are bound.",
+      "retained": false
+    },
+    {
+      "rank": 8,
+      "defect": "reach_probability_overconfidence",
+      "measured_cost": {
+        "rows": 2019,
+        "predicted_pct": 28.57,
+        "observed_pct": 3.2,
+        "brier": 0.1824
+      },
+      "proposed_fix": "Prevent reach probability from signing price until recalibrated on the quote-or-print law.",
+      "retained": false
+    },
+    {
+      "rank": 9,
+      "defect": "cohort_and_AIM_V2_too_deep",
+      "measured_cost": {
+        "cohort_rows": 953,
+        "cohort_reach_pct": 1.2,
+        "AIM_V2_rows": 547,
+        "AIM_V2_reach_pct": 2.2
+      },
+      "proposed_fix": "Demote both to context; do not average them into a scalar target.",
+      "retained": false
+    },
+    {
+      "rank": 10,
+      "defect": "pair_verdict_fabricates_sibling",
+      "measured_cost": {
+        "rows": 582,
+        "constant_COMPOSED": 582,
+        "false_positive": 132
+      },
+      "proposed_fix": "Require actual causal sibling book/print state and retain UNKNOWN when absent.",
+      "retained": false
+    },
+    {
+      "rank": 11,
+      "defect": "window_truth_and_arrival_use_different_reaim_paths",
+      "measured_cost": {
+        "NIKVRB_first_sibling_reaim": "65->73",
+        "move_reposts": 9,
+        "window_truth_reaims": 5
+      },
+      "proposed_fix": "Unify receipt-keyed arrival/reaim reason accounting, then replay; do not infer an 804-event cost from one specimen.",
+      "retained": false
+    },
+    {
+      "rank": 12,
+      "defect": "missing_pre_entry_opinion_payloads",
+      "measured_cost": {
+        "orientation_actions": 5,
+        "conviction_rows": 123,
+        "conviction_date": "2026-07-10",
+        "required_events": 804
+      },
+      "proposed_fix": "Instrument opinions before action without changing actions; score only once the full population exists.",
+      "retained": false
+    }
+  ],
+  "retained_changes": [],
+  "retained_control_facts": [
+    "JOIN remains the frozen comparator at 23 PC"
+  ],
+  "forbidden_interpretations": [
+    "post-fill lower prices authorize a re-buy",
+    "five-share scarcity is the primary price-reach law",
+    "individual-negative is a PC gate",
+    "a constant COMPOSED verdict proves pair information",
+    "a NIKVRB-only improvement moves the 23/598 aggregate"
+  ]
+}

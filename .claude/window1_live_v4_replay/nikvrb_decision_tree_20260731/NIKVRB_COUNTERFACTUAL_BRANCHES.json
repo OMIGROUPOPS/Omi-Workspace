@@ -1,0 +1,689 @@
+{
+  "schema_version": "NIKVRB_COUNTERFACTUAL_BRANCHES_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+  "scope": "one-game decision-tree validation; not an 804-event candidate or score",
+  "call_coverage": {
+    "raw_market_clock_rows": 13123,
+    "exact_priced_consultations": 5,
+    "exact_repeated_nondecision_rows": 6408,
+    "exact_transition_rows_added": 7,
+    "exact_decision_ledger_rows": 6420,
+    "aggregate_only_skip_no_trade_observations": {
+      "VRB": 349,
+      "NIK": 4,
+      "reason": "The committed trace preserves state transition counts but the referenced full per-call trace is absent; timestamps are not fabricated."
+    }
+  },
+  "consultations": [
+    {
+      "sequence": 1,
+      "time_et": "2026-07-19T06:28:05-04:00",
+      "tminus_scheduled": "T-361.917",
+      "tminus_bell": "T-366.917",
+      "leg": "NIK",
+      "call_class": "DISCOVERY_REALIZED",
+      "inputs": {
+        "book": {
+          "bid": 23,
+          "ask": 33,
+          "last_trade": 33
+        },
+        "anchor": {
+          "source": "last_traded",
+          "price": 33
+        },
+        "joint_orientation": {
+          "riser": "VRB",
+          "conviction": 1,
+          "voices": [
+            "cohort",
+            "anchor_role"
+          ]
+        },
+        "flow": {
+          "bucket": "quiet",
+          "prints_30m": 1,
+          "p_fill_1h": 0.02
+        }
+      },
+      "ordered_organs": [
+        {
+          "organ": "fresh_print_anchor",
+          "returned": "last_traded:33",
+          "opens": "native cell, regime, and preliminary role"
+        },
+        {
+          "organ": "orientation_prior",
+          "returned": "VRB_RISER conviction=1",
+          "opens": "faller_deep_cast"
+        },
+        {
+          "organ": "cohort/preliminary",
+          "returned": "target=29",
+          "opens": "preliminary target only"
+        },
+        {
+          "organ": "selector/contention",
+          "returned": "TRADE-AT-PATH:26.1%",
+          "opens": "path continues"
+        },
+        {
+          "organ": "pair_verdict",
+          "returned": "PAIR-COMPOSED:93",
+          "opens": "composition label; synthetic sibling only"
+        },
+        {
+          "organ": "initial_entry_aim",
+          "returned": "ATLAS:29",
+          "opens": "actual price assignment"
+        },
+        {
+          "organ": "orientation_live_branch",
+          "returned": "SKIPPED:26",
+          "opens": "nothing"
+        },
+        {
+          "organ": "final_assignment",
+          "returned": "29",
+          "opens": "resting entry interval"
+        }
+      ],
+      "preliminary_target_cents": 29,
+      "actual_ATLAS_target_cents": 29,
+      "orientation_consumed_target_cents": 26,
+      "join_target_cents": 23,
+      "signer": "LEGACY:path_aim",
+      "overwritten": "faller branch available at 26; ATLAS signed 29"
+    },
+    {
+      "sequence": 2,
+      "time_et": "2026-07-19T07:07:33-04:00",
+      "tminus_scheduled": "T-322.450",
+      "tminus_bell": "T-327.450",
+      "leg": "NIK",
+      "call_class": "REALIZED_AFTER_MARKETABLE_STALE_GATE",
+      "inputs": {
+        "book": {
+          "bid": 29,
+          "ask": 30,
+          "last_trade": 32
+        },
+        "anchor": {
+          "source": "tight_mid",
+          "price": 30
+        },
+        "joint_orientation": {
+          "riser": "VRB",
+          "conviction": 1,
+          "voices": [
+            "cohort",
+            "anchor_role"
+          ]
+        },
+        "flow": {
+          "bucket": "quiet",
+          "prints_30m": 1,
+          "p_fill_1h": 0.01
+        }
+      },
+      "ordered_organs": [
+        {
+          "organ": "fresh_print_anchor",
+          "returned": "tight_mid:30",
+          "opens": "native cell, regime, and preliminary role"
+        },
+        {
+          "organ": "orientation_prior",
+          "returned": "VRB_RISER conviction=1",
+          "opens": "faller_deep_cast"
+        },
+        {
+          "organ": "cohort/preliminary",
+          "returned": "target=26",
+          "opens": "preliminary target only"
+        },
+        {
+          "organ": "selector/contention",
+          "returned": "TRADE-AT-PATH:39.4%",
+          "opens": "path continues"
+        },
+        {
+          "organ": "pair_verdict",
+          "returned": "PAIR-COMPOSED:93",
+          "opens": "composition label; synthetic sibling only"
+        },
+        {
+          "organ": "initial_entry_aim",
+          "returned": "ATLAS:26",
+          "opens": "actual price assignment"
+        },
+        {
+          "organ": "orientation_live_branch",
+          "returned": "SKIPPED:23",
+          "opens": "nothing"
+        },
+        {
+          "organ": "final_assignment",
+          "returned": "26",
+          "opens": "resting entry interval"
+        }
+      ],
+      "preliminary_target_cents": 26,
+      "actual_ATLAS_target_cents": 26,
+      "orientation_consumed_target_cents": 23,
+      "join_target_cents": 29,
+      "signer": "LEGACY:path_aim",
+      "overwritten": "faller branch available at 23; ATLAS signed 26"
+    },
+    {
+      "sequence": 3,
+      "time_et": "2026-07-19T07:13:58-04:00",
+      "tminus_scheduled": "T-316.033",
+      "tminus_bell": "T-321.033",
+      "leg": "VRB",
+      "call_class": "DISCOVERY_REALIZED",
+      "inputs": {
+        "book": {
+          "bid": 69,
+          "ask": 70,
+          "last_trade": 70
+        },
+        "anchor": {
+          "source": "last_traded",
+          "price": 70
+        },
+        "joint_orientation": {
+          "riser": "VRB",
+          "conviction": 1,
+          "voices": [
+            "cohort",
+            "anchor_role"
+          ]
+        },
+        "flow": {
+          "bucket": "quiet",
+          "prints_30m": 1,
+          "p_fill_1h": 0.037
+        }
+      },
+      "ordered_organs": [
+        {
+          "organ": "fresh_print_anchor",
+          "returned": "last_traded:70",
+          "opens": "native cell, regime, and preliminary role"
+        },
+        {
+          "organ": "orientation_prior",
+          "returned": "VRB_RISER conviction=1",
+          "opens": "riser_near_now"
+        },
+        {
+          "organ": "cohort/preliminary",
+          "returned": "target=69",
+          "opens": "preliminary target only"
+        },
+        {
+          "organ": "selector/contention",
+          "returned": "DROP:-6.5%",
+          "opens": "veto only if contention_drop_enforced"
+        },
+        {
+          "organ": "pair_verdict",
+          "returned": "PAIR-COMPOSED:93",
+          "opens": "composition label; synthetic sibling only"
+        },
+        {
+          "organ": "initial_entry_aim",
+          "returned": "ATLAS:67",
+          "opens": "actual price assignment"
+        },
+        {
+          "organ": "orientation_live_branch",
+          "returned": "SKIPPED:69",
+          "opens": "nothing"
+        },
+        {
+          "organ": "final_assignment",
+          "returned": "67",
+          "opens": "resting entry interval"
+        }
+      ],
+      "preliminary_target_cents": 69,
+      "actual_ATLAS_target_cents": 67,
+      "orientation_consumed_target_cents": 69,
+      "join_target_cents": 69,
+      "signer": "LEGACY:path_aim",
+      "overwritten": "riser-near-now 69 overwritten by ATLAS 67"
+    },
+    {
+      "sequence": 4,
+      "time_et": "2026-07-19T07:15:43-04:00",
+      "tminus_scheduled": "T-314.283",
+      "tminus_bell": "T-319.283",
+      "leg": "VRB",
+      "call_class": "REALIZED_AFTER_MARKETABLE_STALE_GATE",
+      "inputs": {
+        "book": {
+          "bid": 67,
+          "ask": 68,
+          "last_trade": 70
+        },
+        "anchor": {
+          "source": "tight_mid",
+          "price": 68
+        },
+        "joint_orientation": {
+          "riser": "VRB",
+          "conviction": 1,
+          "voices": [
+            "cohort",
+            "anchor_role"
+          ]
+        },
+        "flow": {
+          "bucket": "quiet",
+          "prints_30m": 1,
+          "p_fill_1h": 0.012
+        }
+      },
+      "ordered_organs": [
+        {
+          "organ": "fresh_print_anchor",
+          "returned": "tight_mid:68",
+          "opens": "native cell, regime, and preliminary role"
+        },
+        {
+          "organ": "orientation_prior",
+          "returned": "VRB_RISER conviction=1",
+          "opens": "riser_near_now"
+        },
+        {
+          "organ": "cohort/preliminary",
+          "returned": "target=67",
+          "opens": "preliminary target only"
+        },
+        {
+          "organ": "selector/contention",
+          "returned": "DROP:-4.2%",
+          "opens": "veto only if contention_drop_enforced"
+        },
+        {
+          "organ": "pair_verdict",
+          "returned": "PAIR-COMPOSED:93",
+          "opens": "composition label; synthetic sibling only"
+        },
+        {
+          "organ": "initial_entry_aim",
+          "returned": "ATLAS:65",
+          "opens": "actual price assignment"
+        },
+        {
+          "organ": "orientation_live_branch",
+          "returned": "SKIPPED:67",
+          "opens": "nothing"
+        },
+        {
+          "organ": "final_assignment",
+          "returned": "65",
+          "opens": "resting entry interval"
+        }
+      ],
+      "preliminary_target_cents": 67,
+      "actual_ATLAS_target_cents": 65,
+      "orientation_consumed_target_cents": 67,
+      "join_target_cents": 67,
+      "signer": "ATLAS",
+      "overwritten": "riser-near-now 67 overwritten by ATLAS 65"
+    },
+    {
+      "sequence": 5,
+      "time_et": "2026-07-19T07:51:21-04:00",
+      "tminus_scheduled": "T-278.650",
+      "tminus_bell": "T-283.650",
+      "leg": "NIK",
+      "call_class": "REALIZED_AFTER_MARKETABLE_STALE_GATE",
+      "inputs": {
+        "book": {
+          "bid": 24,
+          "ask": 27,
+          "last_trade": 28
+        },
+        "anchor": {
+          "source": "last_traded",
+          "price": 28
+        },
+        "joint_orientation": {
+          "riser": "VRB",
+          "conviction": 1,
+          "voices": [
+            "cohort",
+            "anchor_role"
+          ]
+        },
+        "flow": {
+          "bucket": "quiet",
+          "prints_30m": 2,
+          "p_fill_1h": 0.02
+        }
+      },
+      "ordered_organs": [
+        {
+          "organ": "fresh_print_anchor",
+          "returned": "last_traded:28",
+          "opens": "native cell, regime, and preliminary role"
+        },
+        {
+          "organ": "orientation_prior",
+          "returned": "VRB_RISER conviction=1",
+          "opens": "faller_deep_cast"
+        },
+        {
+          "organ": "cohort/preliminary",
+          "returned": "target=24",
+          "opens": "preliminary target only"
+        },
+        {
+          "organ": "selector/contention",
+          "returned": "TRADE-AT-PATH:50.5%",
+          "opens": "path continues"
+        },
+        {
+          "organ": "pair_verdict",
+          "returned": "PAIR-COMPOSED:93",
+          "opens": "composition label; synthetic sibling only"
+        },
+        {
+          "organ": "initial_entry_aim",
+          "returned": "ATLAS:24",
+          "opens": "actual price assignment"
+        },
+        {
+          "organ": "orientation_live_branch",
+          "returned": "SKIPPED:21",
+          "opens": "nothing"
+        },
+        {
+          "organ": "final_assignment",
+          "returned": "24",
+          "opens": "resting entry interval"
+        }
+      ],
+      "preliminary_target_cents": 24,
+      "actual_ATLAS_target_cents": 24,
+      "orientation_consumed_target_cents": 21,
+      "join_target_cents": 24,
+      "signer": "ATLAS",
+      "overwritten": "faller branch available at 21; ATLAS signed 24"
+    }
+  ],
+  "branches": [
+    {
+      "branch": "ACTUAL",
+      "changed_door": null,
+      "path": "orientation opens VRB-riser preliminary 69 -> ATLAS overwrites 67 -> marketable-stale cancel -> ATLAS 65 -> staircase quiet holds",
+      "VRB_exposure_before_return_to_68": 65,
+      "result": "miss early divot; post-fill reaim 73 arrives 206.3 minutes after low"
+    },
+    {
+      "branch": "CONSUME_ORIENTATION_RISER_AT_FIRST_VRB_CALL",
+      "changed_door": "live_v4.py:12095-12110; retain target_bid=69 at 07:13:58 instead of ATLAS=67",
+      "path": "VRB riser -> near-now 69 -> rest 84 seconds before ask returns to 68",
+      "VRB_exposure_before_return_to_68": 69,
+      "result_under_strict_ask_credit_first": "fill once at original X=69 on visit 2; visits 3/4/9 have no resting entry because leg is filled",
+      "result_under_current_cancel_first_ordering": "cancel 69 as marketable-stale and reconceive 67; visits 3/4/9 rest 67",
+      "ruling": "This is the single structural divergence, but fill-before-cancel ordering is a separate required invariant."
+    },
+    {
+      "branch": "JOIN_AUTHORITY_NUMERIC_CONTROL",
+      "changed_door": "initial_entry_aim JOIN returns contemporaneous best bid",
+      "path": "07:13:58 book 69/70 -> target 69",
+      "frozen_result": "NIKVRB completes PC in the existing 10-second JOIN replay at NIK=24, VRB=69",
+      "structural_status": "numeric corroboration only; JOIN does not explain why the riser should receive the price"
+    },
+    {
+      "branch": "RELEASE_STAIRCASE_ONLY",
+      "changed_door": "do not early-return at quiet staircase hold",
+      "path": "visits 3/4/9 book is 67/68; maker-safe maximum is 67",
+      "result": "cannot put a bid at 68 or 69 and may still be held at 65 by downstream no-evidence logic"
+    },
+    {
+      "branch": "ENFORCE_CONTENTION_DROP",
+      "changed_door": "contention_drop_enforced=true",
+      "path": "VRB selector says DROP at both priced calls",
+      "result": "no VRB entry; strictly worse on this specimen"
+    },
+    {
+      "branch": "WAIT_FOR_BAND",
+      "changed_door": "require band before placement",
+      "path": "VRB B4/flat becomes readable at 07:14:42, 44 seconds after the first priced call",
+      "result": "opens too late to create the 07:13:58 order; flat does not uniquely select 69"
+    }
+  ],
+  "ask_68_visit_branches": [
+    {
+      "visit": 1,
+      "interval_et": "2026-07-19T07:12:11-04:00..2026-07-19T07:12:23-04:00",
+      "tminus_scheduled": "T-317.817",
+      "tminus_bell": "T-322.817",
+      "joint_book": {
+        "NIK": {
+          "bid": 28,
+          "ask": 29,
+          "last": 32
+        },
+        "VRB": {
+          "bid": 67,
+          "ask": 68,
+          "last": 0
+        },
+        "bid_total": 95,
+        "ask_total": 97
+      },
+      "actual": "NO_VRB_ORDER",
+      "orientation_riser_strict_ask_credit_first": "NO_VRB_ORDER_YET",
+      "orientation_riser_cancel_first": "NO_VRB_ORDER_YET",
+      "release_staircase_only": "UNCHANGED_EARLIER_PATH"
+    },
+    {
+      "visit": 2,
+      "interval_et": "2026-07-19T07:15:22-04:00..2026-07-19T07:16:21-04:00",
+      "tminus_scheduled": "T-314.633",
+      "tminus_bell": "T-319.633",
+      "joint_book": {
+        "NIK": {
+          "bid": 28,
+          "ask": 29,
+          "last": 32
+        },
+        "VRB": {
+          "bid": 67,
+          "ask": 68,
+          "last": 70
+        },
+        "bid_total": 95,
+        "ask_total": 97
+      },
+      "actual": "CANCEL_67_THEN_PLACE_65",
+      "orientation_riser_strict_ask_credit_first": "CREDIT_FILL_AT_ORIGINAL_69",
+      "orientation_riser_cancel_first": "CANCEL_69_THEN_RECONCEIVE_67",
+      "release_staircase_only": "UNCHANGED_EARLIER_PATH"
+    },
+    {
+      "visit": 3,
+      "interval_et": "2026-07-19T07:21:12-04:00..2026-07-19T07:21:20-04:00",
+      "tminus_scheduled": "T-308.800",
+      "tminus_bell": "T-313.800",
+      "joint_book": {
+        "NIK": {
+          "bid": 28,
+          "ask": 29,
+          "last": 32
+        },
+        "VRB": {
+          "bid": 67,
+          "ask": 68,
+          "last": 70
+        },
+        "bid_total": 95,
+        "ask_total": 97
+      },
+      "actual": "REST_65__QUIET_STAIRCASE_HOLD",
+      "orientation_riser_strict_ask_credit_first": "ALREADY_FILLED_AT_69__NO_RESTING_ENTRY",
+      "orientation_riser_cancel_first": "REST_67__NOT_68_OR_69",
+      "release_staircase_only": "MAKER_CEILING_67; DOWNSTREAM_EVIDENCE_HOLD_CAN_STILL_KEEP_65"
+    },
+    {
+      "visit": 4,
+      "interval_et": "2026-07-19T07:22:12-04:00..2026-07-19T07:22:20-04:00",
+      "tminus_scheduled": "T-307.800",
+      "tminus_bell": "T-312.800",
+      "joint_book": {
+        "NIK": {
+          "bid": 28,
+          "ask": 29,
+          "last": 32
+        },
+        "VRB": {
+          "bid": 67,
+          "ask": 68,
+          "last": 70
+        },
+        "bid_total": 95,
+        "ask_total": 97
+      },
+      "actual": "REST_65__QUIET_STAIRCASE_HOLD",
+      "orientation_riser_strict_ask_credit_first": "ALREADY_FILLED_AT_69__NO_RESTING_ENTRY",
+      "orientation_riser_cancel_first": "REST_67__NOT_68_OR_69",
+      "release_staircase_only": "MAKER_CEILING_67; DOWNSTREAM_EVIDENCE_HOLD_CAN_STILL_KEEP_65"
+    },
+    {
+      "visit": 5,
+      "interval_et": "2026-07-19T07:23:15-04:00..2026-07-19T07:23:20-04:00",
+      "tminus_scheduled": "T-306.750",
+      "tminus_bell": "T-311.750",
+      "joint_book": {
+        "NIK": {
+          "bid": 28,
+          "ask": 29,
+          "last": 32
+        },
+        "VRB": {
+          "bid": 67,
+          "ask": 68,
+          "last": 70
+        },
+        "bid_total": 95,
+        "ask_total": 97
+      },
+      "actual": "REST_65__QUIET_STAIRCASE_HOLD",
+      "orientation_riser_strict_ask_credit_first": "ALREADY_FILLED_AT_69__NO_RESTING_ENTRY",
+      "orientation_riser_cancel_first": "REST_67__NOT_68_OR_69",
+      "release_staircase_only": "MAKER_CEILING_67; DOWNSTREAM_EVIDENCE_HOLD_CAN_STILL_KEEP_65"
+    },
+    {
+      "visit": 6,
+      "interval_et": "2026-07-19T07:24:13-04:00..2026-07-19T07:24:20-04:00",
+      "tminus_scheduled": "T-305.783",
+      "tminus_bell": "T-310.783",
+      "joint_book": {
+        "NIK": {
+          "bid": 28,
+          "ask": 29,
+          "last": 32
+        },
+        "VRB": {
+          "bid": 67,
+          "ask": 68,
+          "last": 70
+        },
+        "bid_total": 95,
+        "ask_total": 97
+      },
+      "actual": "REST_65__QUIET_STAIRCASE_HOLD",
+      "orientation_riser_strict_ask_credit_first": "ALREADY_FILLED_AT_69__NO_RESTING_ENTRY",
+      "orientation_riser_cancel_first": "REST_67__NOT_68_OR_69",
+      "release_staircase_only": "MAKER_CEILING_67; DOWNSTREAM_EVIDENCE_HOLD_CAN_STILL_KEEP_65"
+    },
+    {
+      "visit": 7,
+      "interval_et": "2026-07-19T07:28:10-04:00..2026-07-19T07:28:20-04:00",
+      "tminus_scheduled": "T-301.833",
+      "tminus_bell": "T-306.833",
+      "joint_book": {
+        "NIK": {
+          "bid": 28,
+          "ask": 29,
+          "last": 32
+        },
+        "VRB": {
+          "bid": 67,
+          "ask": 68,
+          "last": 70
+        },
+        "bid_total": 95,
+        "ask_total": 97
+      },
+      "actual": "REST_65__QUIET_STAIRCASE_HOLD",
+      "orientation_riser_strict_ask_credit_first": "ALREADY_FILLED_AT_69__NO_RESTING_ENTRY",
+      "orientation_riser_cancel_first": "REST_67__NOT_68_OR_69",
+      "release_staircase_only": "MAKER_CEILING_67; DOWNSTREAM_EVIDENCE_HOLD_CAN_STILL_KEEP_65"
+    },
+    {
+      "visit": 8,
+      "interval_et": "2026-07-19T07:29:11-04:00..2026-07-19T07:29:20-04:00",
+      "tminus_scheduled": "T-300.817",
+      "tminus_bell": "T-305.817",
+      "joint_book": {
+        "NIK": {
+          "bid": 28,
+          "ask": 29,
+          "last": 32
+        },
+        "VRB": {
+          "bid": 67,
+          "ask": 68,
+          "last": 70
+        },
+        "bid_total": 95,
+        "ask_total": 97
+      },
+      "actual": "REST_65__QUIET_STAIRCASE_HOLD",
+      "orientation_riser_strict_ask_credit_first": "ALREADY_FILLED_AT_69__NO_RESTING_ENTRY",
+      "orientation_riser_cancel_first": "REST_67__NOT_68_OR_69",
+      "release_staircase_only": "MAKER_CEILING_67; DOWNSTREAM_EVIDENCE_HOLD_CAN_STILL_KEEP_65"
+    },
+    {
+      "visit": 9,
+      "interval_et": "2026-07-19T07:30:17-04:00..2026-07-19T07:39:00-04:00",
+      "tminus_scheduled": "T-299.717",
+      "tminus_bell": "T-304.717",
+      "joint_book": {
+        "NIK": {
+          "bid": 28,
+          "ask": 29,
+          "last": 32
+        },
+        "VRB": {
+          "bid": 67,
+          "ask": 68,
+          "last": 70
+        },
+        "bid_total": 95,
+        "ask_total": 97
+      },
+      "actual": "REST_65__QUIET_STAIRCASE_HOLD",
+      "orientation_riser_strict_ask_credit_first": "ALREADY_FILLED_AT_69__NO_RESTING_ENTRY",
+      "orientation_riser_cancel_first": "REST_67__NOT_68_OR_69",
+      "release_staircase_only": "MAKER_CEILING_67; DOWNSTREAM_EVIDENCE_HOLD_CAN_STILL_KEEP_65"
+    }
+  ],
+  "single_junction": {
+    "time_et": "2026-07-19T07:13:58-04:00",
+    "tminus_scheduled": "T-316.033",
+    "tminus_bell": "T-321.033",
+    "actual": "orientation prior opens riser-near-now 69, then ATLAS p50 overwrites it with 67",
+    "should": "consume the already-open riser branch and rest at 69",
+    "code": "live_v4.py:4863-5009 -> 12072-12110 -> 12163",
+    "causal_gap_seconds_before_ask_68_visit_2": 84
+  }
+}

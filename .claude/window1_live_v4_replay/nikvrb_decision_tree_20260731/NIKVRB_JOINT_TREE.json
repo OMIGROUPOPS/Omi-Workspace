@@ -1,0 +1,154 @@
+{
+  "schema_version": "NIKVRB_JOINT_DECISION_TREE_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+  "settlement_inverse_constraint_cents": 100,
+  "entry_pair_budget_cents": 97,
+  "decisive_snapshot": {
+    "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+    "tminus_scheduled": "T-316.064",
+    "tminus_bell": "T-321.064",
+    "NIK": {
+      "bid": 28,
+      "ask": 29,
+      "last": 32,
+      "resting_order": 26,
+      "inferred_role": "FALLER"
+    },
+    "VRB": {
+      "bid": 69,
+      "ask": 70,
+      "last": 70,
+      "resting_order_actual_after_call": 67,
+      "role": "RISER"
+    },
+    "totals": {
+      "bid": 97,
+      "ask": 99,
+      "last": 102,
+      "proposed_resting_pair_orientation_path": 95
+    },
+    "collapsed_options": {
+      "VRB": "riser near-now: 69",
+      "NIK": "faller cast already resting: 26",
+      "combined": "69+26=95 <= 97"
+    }
+  },
+  "sibling_read_map": [
+    {
+      "path": "orientation_prior",
+      "reads_actual_sibling": true,
+      "use": "names VRB riser/NIK faller",
+      "consumed_by_final_signer": false
+    },
+    {
+      "path": "pair_verdict",
+      "reads_actual_sibling": false,
+      "use": "fabricates 100-current complement",
+      "consumed_by_final_signer": false
+    },
+    {
+      "path": "pair_seesaw_state",
+      "reads_actual_sibling": true,
+      "use": "refusal ceiling only",
+      "consumed_by_final_signer": "constraint only"
+    },
+    {
+      "path": "initial_entry_aim",
+      "reads_actual_sibling": false,
+      "use": "symmetric per-leg ATLAS p50",
+      "consumed_by_final_signer": true
+    },
+    {
+      "path": "post_fill_arrival",
+      "reads_actual_sibling": true,
+      "use": "headroom after NIK fill",
+      "consumed_by_final_signer": "too late; lower-only helper returns"
+    }
+  ],
+  "conditional_semantics": [
+    {
+      "upstream_door": "VRB_RISER",
+      "later_input": "B4_FLAT at 07:14:42",
+      "path_conditioned_meaning": "A shallow flat/pulse state after a riser call is compatible with retouch/recurrence; it does not reset the leg to a symmetric deep target.",
+      "executable_mapping_in_frozen_code": false
+    },
+    {
+      "upstream_door": "NIK_FALLER",
+      "later_input": "declining print/BBO path",
+      "path_conditioned_meaning": "The same downward tick supports a patient faller cast; after the exact-five fill it is diagnostic only.",
+      "executable_mapping_in_frozen_code": "initial cast exists; post-fill entry mapping correctly absent"
+    },
+    {
+      "upstream_door": "VRB_RISER",
+      "later_input": "quiet flow with ask retouches",
+      "path_conditioned_meaning": "Quiet print cadence does not prove absence of a quote pulse; the nine ask-68 states remain causal market evidence.",
+      "executable_mapping_in_frozen_code": false
+    }
+  ],
+  "temporal_path": [
+    {
+      "time": "06:28:05",
+      "tminus_scheduled": "T-361.917",
+      "tminus_bell": "T-366.917",
+      "event": "NIK discovery",
+      "availability": "orientation already says VRB riser; NIK is faller"
+    },
+    {
+      "time": "07:13:56.179481",
+      "tminus_scheduled": "T-316.064",
+      "tminus_bell": "T-321.064",
+      "event": "VRB true print 70",
+      "availability": "actual joint books 97 bid / 99 ask / 102 last"
+    },
+    {
+      "time": "07:13:58",
+      "tminus_scheduled": "T-316.033",
+      "tminus_bell": "T-321.033",
+      "event": "decisive aim call",
+      "availability": "69 path exists now; band not yet available"
+    },
+    {
+      "time": "07:14:42",
+      "tminus_scheduled": "T-315.300",
+      "tminus_bell": "T-320.300",
+      "event": "VRB B4 flat realized",
+      "availability": "downstream only; cannot retroactively open 07:13:58"
+    },
+    {
+      "time": "07:15:22",
+      "tminus_scheduled": "T-314.633",
+      "tminus_bell": "T-319.633",
+      "event": "ask returns 68",
+      "availability": "69 exposure would be certain under strict-ask law"
+    },
+    {
+      "time": "07:21:12..07:39:00",
+      "tminus_scheduled": "T-308.800..T-291.000",
+      "tminus_bell": "T-313.800..T-296.000",
+      "event": "visits 3-9",
+      "availability": "too late for 68/69 maker placement; ceiling 67"
+    },
+    {
+      "time": "10:39:57.500480",
+      "tminus_scheduled": "T-110.042",
+      "tminus_bell": "T-115.042",
+      "event": "NIK fills 24",
+      "availability": "post-fill pair headroom opens after VRB pulse era"
+    },
+    {
+      "time": "10:40:14",
+      "tminus_scheduled": "T-109.767",
+      "tminus_bell": "T-114.767",
+      "event": "VRB 65->73",
+      "availability": "lawful but 206.3 minutes after VRB low; later minimum 74"
+    },
+    {
+      "time": "11:09:09..11:38:49",
+      "tminus_scheduled": "T-80.838..T-51.172",
+      "tminus_bell": "T-85.838..T-56.172",
+      "event": "NIK slides 23->19->18",
+      "availability": "NIK already exact-five active; no entry path exists"
+    }
+  ],
+  "conclusion": "The legs are one asynchronous inverse tree. At the decisive snapshot, orientation and actual books collapse VRB to near-now 69 and NIK to the existing faller cast 26. The OS reads this shape, then discards it before price assignment."
+}

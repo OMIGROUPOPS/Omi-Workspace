@@ -1,0 +1,35 @@
+{
+  "schema_version": "NIKVRB_DECISION_TREE_ARTIFACT_MANIFEST_V1",
+  "artifacts": [
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_decision_tree_20260731/NIKVRB_PATH_DECISION_LEDGER.csv",
+      "bytes": 2107926,
+      "sha256": "3c73e331b7b3057c9da5678057fff81b57032401f30a8c1653cfef8be579c722"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_decision_tree_20260731/NIKVRB_COUNTERFACTUAL_BRANCHES.json",
+      "bytes": 20941,
+      "sha256": "939064abd665a37644644300ecc622a10384cf4ffcc5f41d0e21d45659137962"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_decision_tree_20260731/NIKVRB_JOINT_TREE.json",
+      "bytes": 5119,
+      "sha256": "6d07d4f136cbd7996ce88159eca1729bd23eb1d3366729c12d3a847f155d8b79"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_decision_tree_20260731/SOURCE_HASH_MANIFEST.json",
+      "bytes": 2713,
+      "sha256": "174e23be2c7e2e35df22e014c107f42cca6f47e9a7c284b363d041102fd93b40"
+    },
+    {
+      "path": "arb-executor/docs/research/window1/NIKVRB_DECISION_TREE_REFERENCE.md",
+      "bytes": 10094,
+      "sha256": "3fc02b0c88db13d54d29e35d0ca863f9493e9ef0d322646f14718317a4c8170c"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/nikvrb_decision_tree_20260731/DETERMINISTIC_REGENERATION_RECEIPT.json",
+      "bytes": 1509,
+      "sha256": "fdcc5c8c0e6b3ace728f6879fc78b7f9b5e877d5006bd1e606aa00d3cf2bef38"
+    }
+  ]
+}

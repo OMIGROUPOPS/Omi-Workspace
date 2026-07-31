@@ -1,0 +1,74 @@
+{
+  "schema_version": "NIKVRB_DECISION_TREE_SOURCE_MANIFEST_V1",
+  "git_parent": "b9577450ff412f37f80b612b9e6ba1d096eef975",
+  "sources": [
+    {
+      "id": "clock",
+      "path": ".claude/window1_live_v4_replay/nikvrb_coupling_20260730/NIKVRB_DUAL_BOOK_CLOCK.csv",
+      "bytes": 1614324,
+      "sha256": "9ec9ef0fab27cd750a7d3fba1407bc6c6a8955104071f27b67dac6bd7f8965e5"
+    },
+    {
+      "id": "quote_series",
+      "path": ".claude/window1_live_v4_replay/nikvrb_coupling_20260730/NIKVRB_DUAL_QUOTE_SERIES.csv",
+      "bytes": 100290,
+      "sha256": "14df33928268d3bb043e7d067f8742c30a9b08bd0e190e2698e252001754ff9b"
+    },
+    {
+      "id": "clock_summary",
+      "path": ".claude/window1_live_v4_replay/nikvrb_coupling_20260730/NIKVRB_DUAL_BOOK_CLOCK_SUMMARY.json",
+      "bytes": 12896,
+      "sha256": "0416f9028d6bcc0b0a9943816fa38cabbacb3d65a249ce3f650b8c131db66b71"
+    },
+    {
+      "id": "ask68_visits",
+      "path": ".claude/window1_live_v4_replay/nikvrb_decision_autopsy_20260731/NIKVRB_VRB_ASK68_VISITS.csv",
+      "bytes": 1532,
+      "sha256": "383089cc2bf24f060e21de92fb53656341d38a956d49e946434fc6186129f9c1"
+    },
+    {
+      "id": "nondecision",
+      "path": ".claude/window1_live_v4_replay/nikvrb_decision_autopsy_20260731/NIKVRB_NON_DECISION_LEDGER.csv",
+      "bytes": 1708084,
+      "sha256": "cf2b8407ddf4eb257cb0cc00a34681f2638da03db1770c7532c568cd799297f1"
+    },
+    {
+      "id": "silence",
+      "path": ".claude/window1_live_v4_replay/nikvrb_decision_autopsy_20260731/NIKVRB_SILENCE_CENSUS.json",
+      "bytes": 1817,
+      "sha256": "e8f3ad33d924309a247d5b7afd2f4c0709509854686f0bb56f8fb7269d75446d"
+    },
+    {
+      "id": "trace",
+      "path": ".claude/window1_live_v4_replay/one_game_nikvrb_20260730/NIKVRB_DECISION_TRACE.json",
+      "bytes": 8967,
+      "sha256": "cf3ecdafc43ff0305ae95addd5a98fc1d53695dbbeae6c7080ad79de0fae1b42"
+    },
+    {
+      "id": "autopsy",
+      "path": "arb-executor/docs/research/window1/NIKVRB_DECISION_AUTOPSY.md",
+      "bytes": 16793,
+      "sha256": "ffb29bc9e4585276cf3b72a9e790ead2fe53ebba8fb9f533ea48d40563a2a9f3"
+    },
+    {
+      "id": "live_v4",
+      "path": "arb-executor/live_v4.py",
+      "bytes": 1028619,
+      "sha256": "f6fb1d20f3943f7bac26d94ccf1e9d98a5f22762cd3357394adfc8a3b108d760"
+    },
+    {
+      "id": "config",
+      "path": "arb-executor/config/deploy_v5_live.json",
+      "bytes": 5305,
+      "sha256": "46607d2404d6794c30c6c61fd52d08c9e787a613a1984d8c21204457d5d2472f"
+    }
+  ],
+  "invariants": {
+    "live_v4_executed": false,
+    "scorer_invoked": false,
+    "population_replay_invoked": false,
+    "holdout_accessed": false,
+    "live_or_network_accessed": false,
+    "live_v4_modified": false
+  }
+}

@@ -1,0 +1,1048 @@
+{
+  "band_taxonomy": {
+    "NIK": {
+      "category": "ATP_CHALL",
+      "category_band_count": 6,
+      "fit_features": [
+        "anchor",
+        "net",
+        "dip"
+      ],
+      "fit_uses_bbo": false,
+      "leg": "NIK",
+      "nearest_band": {
+        "anchor_hi": 79,
+        "anchor_lo": 27,
+        "anchor_med": 48,
+        "band": "ATP_CHALL-B2",
+        "dip_med": 23.0,
+        "direction": "faller",
+        "n": 918,
+        "net_med": -18.0,
+        "width_p75": 24.0
+      },
+      "nearest_centroid_raw": {
+        "anchor_cents": 49.613,
+        "dip_cents": 23.082,
+        "net_cents": -17.623
+      },
+      "observed_tuple": {
+        "anchor_cents": 33,
+        "dip_cents": 15,
+        "net_cents": -14
+      },
+      "quote_level_typical_divot": null,
+      "quote_level_typical_divot_reason": "band_taxonomy.py fits (anchor, net, dip) from range_spectrum_v1.jsonl and never reads archived BBO states",
+      "riser_bands": [
+        {
+          "anchor_hi": 68,
+          "anchor_lo": 21,
+          "anchor_med": 48,
+          "band": "ATP_CHALL-B3",
+          "dip_med": 3.0,
+          "direction": "riser",
+          "n": 708,
+          "net_med": 25.0,
+          "width_p75": 32.0
+        }
+      ],
+      "taxonomy_scope": "category-specific; not six universal shapes"
+    },
+    "VRB": {
+      "category": "ATP_CHALL",
+      "category_band_count": 6,
+      "fit_features": [
+        "anchor",
+        "net",
+        "dip"
+      ],
+      "fit_uses_bbo": false,
+      "leg": "VRB",
+      "nearest_band": {
+        "anchor_hi": 94,
+        "anchor_lo": 66,
+        "anchor_med": 78,
+        "band": "ATP_CHALL-B6",
+        "dip_med": 2.0,
+        "direction": "flat",
+        "n": 1376,
+        "net_med": 1.0,
+        "width_p75": 8.0
+      },
+      "nearest_centroid_raw": {
+        "anchor_cents": 79.124,
+        "dip_cents": 3.547,
+        "net_cents": 2.726
+      },
+      "observed_tuple": {
+        "anchor_cents": 70,
+        "dip_cents": 0,
+        "net_cents": 13
+      },
+      "quote_level_typical_divot": null,
+      "quote_level_typical_divot_reason": "band_taxonomy.py fits (anchor, net, dip) from range_spectrum_v1.jsonl and never reads archived BBO states",
+      "riser_bands": [
+        {
+          "anchor_hi": 68,
+          "anchor_lo": 21,
+          "anchor_med": 48,
+          "band": "ATP_CHALL-B3",
+          "dip_med": 3.0,
+          "direction": "riser",
+          "n": 708,
+          "net_med": 25.0,
+          "width_p75": 32.0
+        }
+      ],
+      "taxonomy_scope": "category-specific; not six universal shapes"
+    }
+  },
+  "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+  "legs": {
+    "NIK": {
+      "down_resume_episodes": {
+        "by_side": {
+          "ask": 18,
+          "bid": 137
+        },
+        "count": 155,
+        "depth_counts": {
+          "1": 39,
+          "2": 21,
+          "3": 41,
+          "4": 11,
+          "5": 24,
+          "6": 16,
+          "8": 1,
+          "11": 1,
+          "66": 1
+        },
+        "depth_counts_by_side": {
+          "ask": {
+            "1": 14,
+            "2": 1,
+            "3": 1,
+            "11": 1,
+            "66": 1
+          },
+          "bid": {
+            "1": 25,
+            "2": 20,
+            "3": 40,
+            "4": 11,
+            "5": 24,
+            "6": 16,
+            "8": 1
+          }
+        }
+      },
+      "minimum_ask": {
+        "interval_count": 10,
+        "intervals": [
+          {
+            "ask_cents": 18,
+            "bid_cents": 17,
+            "duration_seconds": 400.0,
+            "end_et": "2026-07-19T11:39:11-04:00",
+            "end_ts": 1784475551.0,
+            "price_cents": 18,
+            "start_et": "2026-07-19T11:32:31-04:00",
+            "start_tminus_bell": "T-62.483",
+            "start_tminus_scheduled": "T-57.483",
+            "start_ts": 1784475151.0
+          },
+          {
+            "ask_cents": 18,
+            "bid_cents": 17,
+            "duration_seconds": 2.0,
+            "end_et": "2026-07-19T11:51:19-04:00",
+            "end_ts": 1784476279.0,
+            "price_cents": 18,
+            "start_et": "2026-07-19T11:51:17-04:00",
+            "start_tminus_bell": "T-43.717",
+            "start_tminus_scheduled": "T-38.717",
+            "start_ts": 1784476277.0
+          },
+          {
+            "ask_cents": 18,
+            "bid_cents": 17,
+            "duration_seconds": 3.0,
+            "end_et": "2026-07-19T11:51:26-04:00",
+            "end_ts": 1784476286.0,
+            "price_cents": 18,
+            "start_et": "2026-07-19T11:51:23-04:00",
+            "start_tminus_bell": "T-43.617",
+            "start_tminus_scheduled": "T-38.617",
+            "start_ts": 1784476283.0
+          },
+          {
+            "ask_cents": 18,
+            "bid_cents": 17,
+            "duration_seconds": 0.0,
+            "end_et": "2026-07-19T11:51:29-04:00",
+            "end_ts": 1784476289.0,
+            "price_cents": 18,
+            "start_et": "2026-07-19T11:51:29-04:00",
+            "start_tminus_bell": "T-43.517",
+            "start_tminus_scheduled": "T-38.517",
+            "start_ts": 1784476289.0
+          },
+          {
+            "ask_cents": 18,
+            "bid_cents": 17,
+            "duration_seconds": 2.0,
+            "end_et": "2026-07-19T11:51:34-04:00",
+            "end_ts": 1784476294.0,
+            "price_cents": 18,
+            "start_et": "2026-07-19T11:51:32-04:00",
+            "start_tminus_bell": "T-43.467",
+            "start_tminus_scheduled": "T-38.467",
+            "start_ts": 1784476292.0
+          },
+          {
+            "ask_cents": 18,
+            "bid_cents": 17,
+            "duration_seconds": 6.0,
+            "end_et": "2026-07-19T11:51:45-04:00",
+            "end_ts": 1784476305.0,
+            "price_cents": 18,
+            "start_et": "2026-07-19T11:51:39-04:00",
+            "start_tminus_bell": "T-43.350",
+            "start_tminus_scheduled": "T-38.350",
+            "start_ts": 1784476299.0
+          },
+          {
+            "ask_cents": 18,
+            "bid_cents": 17,
+            "duration_seconds": 81.0,
+            "end_et": "2026-07-19T11:53:07-04:00",
+            "end_ts": 1784476387.0,
+            "price_cents": 18,
+            "start_et": "2026-07-19T11:51:46-04:00",
+            "start_tminus_bell": "T-43.233",
+            "start_tminus_scheduled": "T-38.233",
+            "start_ts": 1784476306.0
+          },
+          {
+            "ask_cents": 18,
+            "bid_cents": 17,
+            "duration_seconds": 2.0,
+            "end_et": "2026-07-19T11:53:12-04:00",
+            "end_ts": 1784476392.0,
+            "price_cents": 18,
+            "start_et": "2026-07-19T11:53:10-04:00",
+            "start_tminus_bell": "T-41.833",
+            "start_tminus_scheduled": "T-36.833",
+            "start_ts": 1784476390.0
+          },
+          {
+            "ask_cents": 18,
+            "bid_cents": 17,
+            "duration_seconds": 4.0,
+            "end_et": "2026-07-19T11:53:21-04:00",
+            "end_ts": 1784476401.0,
+            "price_cents": 18,
+            "start_et": "2026-07-19T11:53:17-04:00",
+            "start_tminus_bell": "T-41.717",
+            "start_tminus_scheduled": "T-36.717",
+            "start_ts": 1784476397.0
+          },
+          {
+            "ask_cents": 18,
+            "bid_cents": 17,
+            "duration_seconds": 5.0,
+            "end_et": "2026-07-19T11:53:32-04:00",
+            "end_ts": 1784476412.0,
+            "price_cents": 18,
+            "start_et": "2026-07-19T11:53:27-04:00",
+            "start_tminus_bell": "T-41.550",
+            "start_tminus_scheduled": "T-36.550",
+            "start_ts": 1784476407.0
+          }
+        ],
+        "longest_observed_seconds": 400.0,
+        "price_cents": 18,
+        "total_observed_seconds": 505.0
+      },
+      "minimum_bid": {
+        "interval_count": 1,
+        "intervals": [
+          {
+            "ask_cents": 92,
+            "bid_cents": 5,
+            "duration_seconds": 808.0,
+            "end_et": "2026-07-19T06:28:01-04:00",
+            "end_ts": 1784456881.0,
+            "price_cents": 5,
+            "start_et": "2026-07-19T06:14:33-04:00",
+            "start_tminus_bell": "T-380.450",
+            "start_tminus_scheduled": "T-375.450",
+            "start_ts": 1784456073.0
+          }
+        ],
+        "longest_observed_seconds": 808.0,
+        "price_cents": 5,
+        "total_observed_seconds": 808.0
+      },
+      "quote_retention": {
+        "distinct_top_states": 524,
+        "first_state_et": "2026-07-19T06:14:33-04:00",
+        "first_state_tminus_bell": "T-380.450",
+        "first_state_tminus_scheduled": "T-375.450",
+        "last_distinct_top_change_et": "2026-07-19T11:53:32-04:00",
+        "last_raw_bbo_et": "2026-07-19T12:34:59-04:00",
+        "market_formation": {
+          "first_operational_ask_cents": 33,
+          "first_operational_bid_cents": 23,
+          "first_spread_at_or_below_10_et": "2026-07-19T06:28:01-04:00",
+          "first_spread_at_or_below_10_tminus_bell": "T-366.983",
+          "first_spread_at_or_below_10_tminus_scheduled": "T-361.983",
+          "initial_ask_cents": 92,
+          "initial_bid_cents": 5,
+          "operational_minimum_ask_cents": 18,
+          "operational_minimum_bid_cents": 17
+        },
+        "quote_carried_to_bell": {
+          "ask_cents": 19,
+          "bid_cents": 17
+        },
+        "raw_bbo_rows": 7318,
+        "raw_gap_seconds": {
+          "max": 766.0,
+          "p50": 0.0,
+          "p95": 13.0
+        }
+      },
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK",
+      "volume": {
+        "above_2500_contract_never_wake_floor": true,
+        "cumulative_contracts_at_bell": 3274.04,
+        "pre_gate_contracts": 0,
+        "window1_contracts": 3274.04,
+        "window1_distinct_prices": [
+          18,
+          19,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          32,
+          33
+        ],
+        "window1_exchange_trade_ids": 80,
+        "window1_unique_timestamps": 45
+      }
+    },
+    "VRB": {
+      "down_resume_episodes": {
+        "by_side": {
+          "ask": 124,
+          "bid": 67
+        },
+        "count": 191,
+        "depth_counts": {
+          "1": 151,
+          "2": 27,
+          "3": 1,
+          "5": 1,
+          "6": 1,
+          "7": 8,
+          "8": 1,
+          "18": 1
+        },
+        "depth_counts_by_side": {
+          "ask": {
+            "1": 92,
+            "2": 19,
+            "3": 1,
+            "5": 1,
+            "6": 1,
+            "7": 8,
+            "8": 1,
+            "18": 1
+          },
+          "bid": {
+            "1": 59,
+            "2": 8
+          }
+        }
+      },
+      "minimum_ask": {
+        "interval_count": 9,
+        "intervals": [
+          {
+            "ask_cents": 68,
+            "bid_cents": 67,
+            "duration_seconds": 12.0,
+            "end_et": "2026-07-19T07:12:23-04:00",
+            "end_ts": 1784459543.0,
+            "price_cents": 68,
+            "start_et": "2026-07-19T07:12:11-04:00",
+            "start_tminus_bell": "T-322.817",
+            "start_tminus_scheduled": "T-317.817",
+            "start_ts": 1784459531.0
+          },
+          {
+            "ask_cents": 68,
+            "bid_cents": 67,
+            "duration_seconds": 59.0,
+            "end_et": "2026-07-19T07:16:21-04:00",
+            "end_ts": 1784459781.0,
+            "price_cents": 68,
+            "start_et": "2026-07-19T07:15:22-04:00",
+            "start_tminus_bell": "T-319.633",
+            "start_tminus_scheduled": "T-314.633",
+            "start_ts": 1784459722.0
+          },
+          {
+            "ask_cents": 68,
+            "bid_cents": 67,
+            "duration_seconds": 8.0,
+            "end_et": "2026-07-19T07:21:20-04:00",
+            "end_ts": 1784460080.0,
+            "price_cents": 68,
+            "start_et": "2026-07-19T07:21:12-04:00",
+            "start_tminus_bell": "T-313.800",
+            "start_tminus_scheduled": "T-308.800",
+            "start_ts": 1784460072.0
+          },
+          {
+            "ask_cents": 68,
+            "bid_cents": 67,
+            "duration_seconds": 8.0,
+            "end_et": "2026-07-19T07:22:20-04:00",
+            "end_ts": 1784460140.0,
+            "price_cents": 68,
+            "start_et": "2026-07-19T07:22:12-04:00",
+            "start_tminus_bell": "T-312.800",
+            "start_tminus_scheduled": "T-307.800",
+            "start_ts": 1784460132.0
+          },
+          {
+            "ask_cents": 68,
+            "bid_cents": 67,
+            "duration_seconds": 5.0,
+            "end_et": "2026-07-19T07:23:20-04:00",
+            "end_ts": 1784460200.0,
+            "price_cents": 68,
+            "start_et": "2026-07-19T07:23:15-04:00",
+            "start_tminus_bell": "T-311.750",
+            "start_tminus_scheduled": "T-306.750",
+            "start_ts": 1784460195.0
+          },
+          {
+            "ask_cents": 68,
+            "bid_cents": 67,
+            "duration_seconds": 7.0,
+            "end_et": "2026-07-19T07:24:20-04:00",
+            "end_ts": 1784460260.0,
+            "price_cents": 68,
+            "start_et": "2026-07-19T07:24:13-04:00",
+            "start_tminus_bell": "T-310.783",
+            "start_tminus_scheduled": "T-305.783",
+            "start_ts": 1784460253.0
+          },
+          {
+            "ask_cents": 68,
+            "bid_cents": 67,
+            "duration_seconds": 10.0,
+            "end_et": "2026-07-19T07:28:20-04:00",
+            "end_ts": 1784460500.0,
+            "price_cents": 68,
+            "start_et": "2026-07-19T07:28:10-04:00",
+            "start_tminus_bell": "T-306.833",
+            "start_tminus_scheduled": "T-301.833",
+            "start_ts": 1784460490.0
+          },
+          {
+            "ask_cents": 68,
+            "bid_cents": 67,
+            "duration_seconds": 9.0,
+            "end_et": "2026-07-19T07:29:20-04:00",
+            "end_ts": 1784460560.0,
+            "price_cents": 68,
+            "start_et": "2026-07-19T07:29:11-04:00",
+            "start_tminus_bell": "T-305.817",
+            "start_tminus_scheduled": "T-300.817",
+            "start_ts": 1784460551.0
+          },
+          {
+            "ask_cents": 68,
+            "bid_cents": 67,
+            "duration_seconds": 523.0,
+            "end_et": "2026-07-19T07:39:00-04:00",
+            "end_ts": 1784461140.0,
+            "price_cents": 68,
+            "start_et": "2026-07-19T07:30:17-04:00",
+            "start_tminus_bell": "T-304.717",
+            "start_tminus_scheduled": "T-299.717",
+            "start_ts": 1784460617.0
+          }
+        ],
+        "longest_observed_seconds": 523.0,
+        "price_cents": 68,
+        "total_observed_seconds": 641.0
+      },
+      "minimum_bid": {
+        "interval_count": 1,
+        "intervals": [
+          {
+            "ask_cents": 92,
+            "bid_cents": 5,
+            "duration_seconds": 812.0,
+            "end_et": "2026-07-19T06:28:05-04:00",
+            "end_ts": 1784456885.0,
+            "price_cents": 5,
+            "start_et": "2026-07-19T06:14:33-04:00",
+            "start_tminus_bell": "T-380.450",
+            "start_tminus_scheduled": "T-375.450",
+            "start_ts": 1784456073.0
+          }
+        ],
+        "longest_observed_seconds": 812.0,
+        "price_cents": 5,
+        "total_observed_seconds": 812.0
+      },
+      "quote_retention": {
+        "distinct_top_states": 478,
+        "first_state_et": "2026-07-19T06:14:33-04:00",
+        "first_state_tminus_bell": "T-380.450",
+        "first_state_tminus_scheduled": "T-375.450",
+        "last_distinct_top_change_et": "2026-07-19T12:34:55-04:00",
+        "last_raw_bbo_et": "2026-07-19T12:34:58-04:00",
+        "market_formation": {
+          "first_operational_ask_cents": 77,
+          "first_operational_bid_cents": 67,
+          "first_spread_at_or_below_10_et": "2026-07-19T06:28:05-04:00",
+          "first_spread_at_or_below_10_tminus_bell": "T-366.917",
+          "first_spread_at_or_below_10_tminus_scheduled": "T-361.917",
+          "initial_ask_cents": 92,
+          "initial_bid_cents": 5,
+          "operational_minimum_ask_cents": 68,
+          "operational_minimum_bid_cents": 67
+        },
+        "quote_carried_to_bell": {
+          "ask_cents": 83,
+          "bid_cents": 81
+        },
+        "raw_bbo_rows": 5660,
+        "raw_gap_seconds": {
+          "max": 781.0,
+          "p50": 0.0,
+          "p95": 22.0
+        }
+      },
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB",
+      "volume": {
+        "above_2500_contract_never_wake_floor": true,
+        "cumulative_contracts_at_bell": 3128.65,
+        "pre_gate_contracts": 0,
+        "window1_contracts": 3128.65,
+        "window1_distinct_prices": [
+          70,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          81,
+          83,
+          84
+        ],
+        "window1_exchange_trade_ids": 63,
+        "window1_unique_timestamps": 47
+      }
+    }
+  },
+  "never_wake_comparison": {
+    "scope": "ITF-specific study and production qualification",
+    "source": ".claude/master_20260709/NEVERWAKE.md",
+    "threshold_contracts": 2500.0,
+    "warning": "NIK-VRB is ATP_CHALL. Both legs clear the numeric floor, but the deployed qualification was ITF-specific."
+  },
+  "outputs": {
+    "down_resume_episode_rows": 346,
+    "dual_quote_series_rows": 1003
+  },
+  "pair_cumulative_contracts_at_bell": 6402.69,
+  "quote_dwell_law": "Each distinct retained best bid/ask state is effective from its timestamp until the next retained best-quote change for that leg.",
+  "schema_version": "window1-quote-divot-report-v1",
+  "vrb_ask_at_or_below_70": {
+    "contiguous_spans": [
+      {
+        "duration_seconds": 13.0,
+        "end_et": "2026-07-19T07:12:23-04:00",
+        "end_ts": 1784459543.0,
+        "max_price_cents": 70,
+        "min_price_cents": 68,
+        "start_et": "2026-07-19T07:12:10-04:00",
+        "start_tminus_bell": "T-322.833",
+        "start_tminus_scheduled": "T-317.833",
+        "start_ts": 1784459530.0
+      },
+      {
+        "duration_seconds": 164.0,
+        "end_et": "2026-07-19T07:16:21-04:00",
+        "end_ts": 1784459781.0,
+        "max_price_cents": 70,
+        "min_price_cents": 68,
+        "start_et": "2026-07-19T07:13:37-04:00",
+        "start_tminus_bell": "T-321.383",
+        "start_tminus_scheduled": "T-316.383",
+        "start_ts": 1784459617.0
+      },
+      {
+        "duration_seconds": 13.0,
+        "end_et": "2026-07-19T07:20:35-04:00",
+        "end_ts": 1784460035.0,
+        "max_price_cents": 70,
+        "min_price_cents": 70,
+        "start_et": "2026-07-19T07:20:22-04:00",
+        "start_tminus_bell": "T-314.633",
+        "start_tminus_scheduled": "T-309.633",
+        "start_ts": 1784460022.0
+      },
+      {
+        "duration_seconds": 9.0,
+        "end_et": "2026-07-19T07:21:20-04:00",
+        "end_ts": 1784460080.0,
+        "max_price_cents": 70,
+        "min_price_cents": 68,
+        "start_et": "2026-07-19T07:21:11-04:00",
+        "start_tminus_bell": "T-313.817",
+        "start_tminus_scheduled": "T-308.817",
+        "start_ts": 1784460071.0
+      },
+      {
+        "duration_seconds": 9.0,
+        "end_et": "2026-07-19T07:22:20-04:00",
+        "end_ts": 1784460140.0,
+        "max_price_cents": 70,
+        "min_price_cents": 68,
+        "start_et": "2026-07-19T07:22:11-04:00",
+        "start_tminus_bell": "T-312.817",
+        "start_tminus_scheduled": "T-307.817",
+        "start_ts": 1784460131.0
+      },
+      {
+        "duration_seconds": 8.0,
+        "end_et": "2026-07-19T07:23:20-04:00",
+        "end_ts": 1784460200.0,
+        "max_price_cents": 70,
+        "min_price_cents": 68,
+        "start_et": "2026-07-19T07:23:12-04:00",
+        "start_tminus_bell": "T-311.800",
+        "start_tminus_scheduled": "T-306.800",
+        "start_ts": 1784460192.0
+      },
+      {
+        "duration_seconds": 8.0,
+        "end_et": "2026-07-19T07:24:20-04:00",
+        "end_ts": 1784460260.0,
+        "max_price_cents": 70,
+        "min_price_cents": 68,
+        "start_et": "2026-07-19T07:24:12-04:00",
+        "start_tminus_bell": "T-310.800",
+        "start_tminus_scheduled": "T-305.800",
+        "start_ts": 1784460252.0
+      },
+      {
+        "duration_seconds": 11.0,
+        "end_et": "2026-07-19T07:28:20-04:00",
+        "end_ts": 1784460500.0,
+        "max_price_cents": 70,
+        "min_price_cents": 68,
+        "start_et": "2026-07-19T07:28:09-04:00",
+        "start_tminus_bell": "T-306.850",
+        "start_tminus_scheduled": "T-301.850",
+        "start_ts": 1784460489.0
+      },
+      {
+        "duration_seconds": 11.0,
+        "end_et": "2026-07-19T07:29:20-04:00",
+        "end_ts": 1784460560.0,
+        "max_price_cents": 70,
+        "min_price_cents": 68,
+        "start_et": "2026-07-19T07:29:09-04:00",
+        "start_tminus_bell": "T-305.850",
+        "start_tminus_scheduled": "T-300.850",
+        "start_ts": 1784460549.0
+      },
+      {
+        "duration_seconds": 529.0,
+        "end_et": "2026-07-19T07:39:00-04:00",
+        "end_ts": 1784461140.0,
+        "max_price_cents": 70,
+        "min_price_cents": 68,
+        "start_et": "2026-07-19T07:30:11-04:00",
+        "start_tminus_bell": "T-304.817",
+        "start_tminus_scheduled": "T-299.817",
+        "start_ts": 1784460611.0
+      }
+    ],
+    "intervals": [
+      {
+        "ask_cents": 70,
+        "bid_cents": 67,
+        "duration_seconds": 0.0,
+        "end_et": "2026-07-19T07:12:10-04:00",
+        "end_ts": 1784459530.0,
+        "price_cents": 70,
+        "start_et": "2026-07-19T07:12:10-04:00",
+        "start_tminus_bell": "T-322.833",
+        "start_tminus_scheduled": "T-317.833",
+        "start_ts": 1784459530.0
+      },
+      {
+        "ask_cents": 69,
+        "bid_cents": 67,
+        "duration_seconds": 1.0,
+        "end_et": "2026-07-19T07:12:11-04:00",
+        "end_ts": 1784459531.0,
+        "price_cents": 69,
+        "start_et": "2026-07-19T07:12:10-04:00",
+        "start_tminus_bell": "T-322.833",
+        "start_tminus_scheduled": "T-317.833",
+        "start_ts": 1784459530.0
+      },
+      {
+        "ask_cents": 68,
+        "bid_cents": 67,
+        "duration_seconds": 12.0,
+        "end_et": "2026-07-19T07:12:23-04:00",
+        "end_ts": 1784459543.0,
+        "price_cents": 68,
+        "start_et": "2026-07-19T07:12:11-04:00",
+        "start_tminus_bell": "T-322.817",
+        "start_tminus_scheduled": "T-317.817",
+        "start_ts": 1784459531.0
+      },
+      {
+        "ask_cents": 70,
+        "bid_cents": 69,
+        "duration_seconds": 105.0,
+        "end_et": "2026-07-19T07:15:22-04:00",
+        "end_ts": 1784459722.0,
+        "price_cents": 70,
+        "start_et": "2026-07-19T07:13:37-04:00",
+        "start_tminus_bell": "T-321.383",
+        "start_tminus_scheduled": "T-316.383",
+        "start_ts": 1784459617.0
+      },
+      {
+        "ask_cents": 68,
+        "bid_cents": 67,
+        "duration_seconds": 59.0,
+        "end_et": "2026-07-19T07:16:21-04:00",
+        "end_ts": 1784459781.0,
+        "price_cents": 68,
+        "start_et": "2026-07-19T07:15:22-04:00",
+        "start_tminus_bell": "T-319.633",
+        "start_tminus_scheduled": "T-314.633",
+        "start_ts": 1784459722.0
+      },
+      {
+        "ask_cents": 70,
+        "bid_cents": 69,
+        "duration_seconds": 13.0,
+        "end_et": "2026-07-19T07:20:35-04:00",
+        "end_ts": 1784460035.0,
+        "price_cents": 70,
+        "start_et": "2026-07-19T07:20:22-04:00",
+        "start_tminus_bell": "T-314.633",
+        "start_tminus_scheduled": "T-309.633",
+        "start_ts": 1784460022.0
+      },
+      {
+        "ask_cents": 70,
+        "bid_cents": 67,
+        "duration_seconds": 0.0,
+        "end_et": "2026-07-19T07:21:11-04:00",
+        "end_ts": 1784460071.0,
+        "price_cents": 70,
+        "start_et": "2026-07-19T07:21:11-04:00",
+        "start_tminus_bell": "T-313.817",
+        "start_tminus_scheduled": "T-308.817",
+        "start_ts": 1784460071.0
+      },
+      {
+        "ask_cents": 69,
+        "bid_cents": 67,
+        "duration_seconds": 1.0,
+        "end_et": "2026-07-19T07:21:12-04:00",
+        "end_ts": 1784460072.0,
+        "price_cents": 69,
+        "start_et": "2026-07-19T07:21:11-04:00",
+        "start_tminus_bell": "T-313.817",
+        "start_tminus_scheduled": "T-308.817",
+        "start_ts": 1784460071.0
+      },
+      {
+        "ask_cents": 68,
+        "bid_cents": 67,
+        "duration_seconds": 8.0,
+        "end_et": "2026-07-19T07:21:20-04:00",
+        "end_ts": 1784460080.0,
+        "price_cents": 68,
+        "start_et": "2026-07-19T07:21:12-04:00",
+        "start_tminus_bell": "T-313.800",
+        "start_tminus_scheduled": "T-308.800",
+        "start_ts": 1784460072.0
+      },
+      {
+        "ask_cents": 70,
+        "bid_cents": 67,
+        "duration_seconds": 0.0,
+        "end_et": "2026-07-19T07:22:11-04:00",
+        "end_ts": 1784460131.0,
+        "price_cents": 70,
+        "start_et": "2026-07-19T07:22:11-04:00",
+        "start_tminus_bell": "T-312.817",
+        "start_tminus_scheduled": "T-307.817",
+        "start_ts": 1784460131.0
+      },
+      {
+        "ask_cents": 69,
+        "bid_cents": 67,
+        "duration_seconds": 1.0,
+        "end_et": "2026-07-19T07:22:12-04:00",
+        "end_ts": 1784460132.0,
+        "price_cents": 69,
+        "start_et": "2026-07-19T07:22:11-04:00",
+        "start_tminus_bell": "T-312.817",
+        "start_tminus_scheduled": "T-307.817",
+        "start_ts": 1784460131.0
+      },
+      {
+        "ask_cents": 68,
+        "bid_cents": 67,
+        "duration_seconds": 8.0,
+        "end_et": "2026-07-19T07:22:20-04:00",
+        "end_ts": 1784460140.0,
+        "price_cents": 68,
+        "start_et": "2026-07-19T07:22:12-04:00",
+        "start_tminus_bell": "T-312.800",
+        "start_tminus_scheduled": "T-307.800",
+        "start_ts": 1784460132.0
+      },
+      {
+        "ask_cents": 70,
+        "bid_cents": 67,
+        "duration_seconds": 3.0,
+        "end_et": "2026-07-19T07:23:15-04:00",
+        "end_ts": 1784460195.0,
+        "price_cents": 70,
+        "start_et": "2026-07-19T07:23:12-04:00",
+        "start_tminus_bell": "T-311.800",
+        "start_tminus_scheduled": "T-306.800",
+        "start_ts": 1784460192.0
+      },
+      {
+        "ask_cents": 69,
+        "bid_cents": 67,
+        "duration_seconds": 0.0,
+        "end_et": "2026-07-19T07:23:15-04:00",
+        "end_ts": 1784460195.0,
+        "price_cents": 69,
+        "start_et": "2026-07-19T07:23:15-04:00",
+        "start_tminus_bell": "T-311.750",
+        "start_tminus_scheduled": "T-306.750",
+        "start_ts": 1784460195.0
+      },
+      {
+        "ask_cents": 68,
+        "bid_cents": 67,
+        "duration_seconds": 5.0,
+        "end_et": "2026-07-19T07:23:20-04:00",
+        "end_ts": 1784460200.0,
+        "price_cents": 68,
+        "start_et": "2026-07-19T07:23:15-04:00",
+        "start_tminus_bell": "T-311.750",
+        "start_tminus_scheduled": "T-306.750",
+        "start_ts": 1784460195.0
+      },
+      {
+        "ask_cents": 70,
+        "bid_cents": 67,
+        "duration_seconds": 1.0,
+        "end_et": "2026-07-19T07:24:13-04:00",
+        "end_ts": 1784460253.0,
+        "price_cents": 70,
+        "start_et": "2026-07-19T07:24:12-04:00",
+        "start_tminus_bell": "T-310.800",
+        "start_tminus_scheduled": "T-305.800",
+        "start_ts": 1784460252.0
+      },
+      {
+        "ask_cents": 69,
+        "bid_cents": 67,
+        "duration_seconds": 0.0,
+        "end_et": "2026-07-19T07:24:13-04:00",
+        "end_ts": 1784460253.0,
+        "price_cents": 69,
+        "start_et": "2026-07-19T07:24:13-04:00",
+        "start_tminus_bell": "T-310.783",
+        "start_tminus_scheduled": "T-305.783",
+        "start_ts": 1784460253.0
+      },
+      {
+        "ask_cents": 68,
+        "bid_cents": 67,
+        "duration_seconds": 7.0,
+        "end_et": "2026-07-19T07:24:20-04:00",
+        "end_ts": 1784460260.0,
+        "price_cents": 68,
+        "start_et": "2026-07-19T07:24:13-04:00",
+        "start_tminus_bell": "T-310.783",
+        "start_tminus_scheduled": "T-305.783",
+        "start_ts": 1784460253.0
+      },
+      {
+        "ask_cents": 70,
+        "bid_cents": 67,
+        "duration_seconds": 1.0,
+        "end_et": "2026-07-19T07:28:10-04:00",
+        "end_ts": 1784460490.0,
+        "price_cents": 70,
+        "start_et": "2026-07-19T07:28:09-04:00",
+        "start_tminus_bell": "T-306.850",
+        "start_tminus_scheduled": "T-301.850",
+        "start_ts": 1784460489.0
+      },
+      {
+        "ask_cents": 69,
+        "bid_cents": 67,
+        "duration_seconds": 0.0,
+        "end_et": "2026-07-19T07:28:10-04:00",
+        "end_ts": 1784460490.0,
+        "price_cents": 69,
+        "start_et": "2026-07-19T07:28:10-04:00",
+        "start_tminus_bell": "T-306.833",
+        "start_tminus_scheduled": "T-301.833",
+        "start_ts": 1784460490.0
+      },
+      {
+        "ask_cents": 68,
+        "bid_cents": 67,
+        "duration_seconds": 10.0,
+        "end_et": "2026-07-19T07:28:20-04:00",
+        "end_ts": 1784460500.0,
+        "price_cents": 68,
+        "start_et": "2026-07-19T07:28:10-04:00",
+        "start_tminus_bell": "T-306.833",
+        "start_tminus_scheduled": "T-301.833",
+        "start_ts": 1784460490.0
+      },
+      {
+        "ask_cents": 70,
+        "bid_cents": 67,
+        "duration_seconds": 1.0,
+        "end_et": "2026-07-19T07:29:10-04:00",
+        "end_ts": 1784460550.0,
+        "price_cents": 70,
+        "start_et": "2026-07-19T07:29:09-04:00",
+        "start_tminus_bell": "T-305.850",
+        "start_tminus_scheduled": "T-300.850",
+        "start_ts": 1784460549.0
+      },
+      {
+        "ask_cents": 69,
+        "bid_cents": 67,
+        "duration_seconds": 1.0,
+        "end_et": "2026-07-19T07:29:11-04:00",
+        "end_ts": 1784460551.0,
+        "price_cents": 69,
+        "start_et": "2026-07-19T07:29:10-04:00",
+        "start_tminus_bell": "T-305.833",
+        "start_tminus_scheduled": "T-300.833",
+        "start_ts": 1784460550.0
+      },
+      {
+        "ask_cents": 68,
+        "bid_cents": 67,
+        "duration_seconds": 9.0,
+        "end_et": "2026-07-19T07:29:20-04:00",
+        "end_ts": 1784460560.0,
+        "price_cents": 68,
+        "start_et": "2026-07-19T07:29:11-04:00",
+        "start_tminus_bell": "T-305.817",
+        "start_tminus_scheduled": "T-300.817",
+        "start_ts": 1784460551.0
+      },
+      {
+        "ask_cents": 70,
+        "bid_cents": 67,
+        "duration_seconds": 0.0,
+        "end_et": "2026-07-19T07:30:11-04:00",
+        "end_ts": 1784460611.0,
+        "price_cents": 70,
+        "start_et": "2026-07-19T07:30:11-04:00",
+        "start_tminus_bell": "T-304.817",
+        "start_tminus_scheduled": "T-299.817",
+        "start_ts": 1784460611.0
+      },
+      {
+        "ask_cents": 69,
+        "bid_cents": 67,
+        "duration_seconds": 0.0,
+        "end_et": "2026-07-19T07:30:11-04:00",
+        "end_ts": 1784460611.0,
+        "price_cents": 69,
+        "start_et": "2026-07-19T07:30:11-04:00",
+        "start_tminus_bell": "T-304.817",
+        "start_tminus_scheduled": "T-299.817",
+        "start_ts": 1784460611.0
+      },
+      {
+        "ask_cents": 70,
+        "bid_cents": 67,
+        "duration_seconds": 0.0,
+        "end_et": "2026-07-19T07:30:11-04:00",
+        "end_ts": 1784460611.0,
+        "price_cents": 70,
+        "start_et": "2026-07-19T07:30:11-04:00",
+        "start_tminus_bell": "T-304.817",
+        "start_tminus_scheduled": "T-299.817",
+        "start_ts": 1784460611.0
+      },
+      {
+        "ask_cents": 69,
+        "bid_cents": 67,
+        "duration_seconds": 6.0,
+        "end_et": "2026-07-19T07:30:17-04:00",
+        "end_ts": 1784460617.0,
+        "price_cents": 69,
+        "start_et": "2026-07-19T07:30:11-04:00",
+        "start_tminus_bell": "T-304.817",
+        "start_tminus_scheduled": "T-299.817",
+        "start_ts": 1784460611.0
+      },
+      {
+        "ask_cents": 68,
+        "bid_cents": 67,
+        "duration_seconds": 523.0,
+        "end_et": "2026-07-19T07:39:00-04:00",
+        "end_ts": 1784461140.0,
+        "price_cents": 68,
+        "start_et": "2026-07-19T07:30:17-04:00",
+        "start_tminus_bell": "T-304.717",
+        "start_tminus_scheduled": "T-299.717",
+        "start_ts": 1784460617.0
+      }
+    ],
+    "longest_contiguous_seconds": 529.0,
+    "resting_touch_implication": "Under RESTING_TOUCH_FILL_V1, a previously resting YES bid at 70 or 69 is crossed when the opposite best ask reaches that limit or lower. Queue depth and maker status are not proved by this quote-only observation.",
+    "total_observed_seconds": 775.0
+  },
+  "window": {
+    "actual_bell_et": "2026-07-19T12:35:00-04:00",
+    "gate_open_et": "2026-07-19T04:30:00-04:00",
+    "schedule_to_bell_slip_minutes": 5.0,
+    "scheduled_start_et": "2026-07-19T12:30:00-04:00"
+  }
+}

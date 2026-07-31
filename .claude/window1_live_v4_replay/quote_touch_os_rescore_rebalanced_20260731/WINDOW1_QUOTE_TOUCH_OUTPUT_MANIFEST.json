@@ -1,0 +1,50 @@
+{
+  "schema_version": "window1-quote-touch-output-manifest-v1",
+  "generated_at": "2026-07-31T11:01:02.8982784-04:00",
+  "source_branch": "codex/window1-table-free-full-os",
+  "source_parent_commit": "6b28b4af54cae3249a6bc4dbca49e8ba4d23f0b2",
+  "live_v4_sha256": "f6fb1d20f3943f7bac26d94ccf1e9d98a5f22762cd3357394adfc8a3b108d760",
+  "population": 804,
+  "quote_reachability_leg_rows": 1608,
+  "quote_divot_episode_rows": 392282,
+  "causal_replay_rows": 20904,
+  "comparable_matrix_rows": 20100,
+  "worker_error_logs": 0,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_CENSUS.json",
+      "bytes": 5621994,
+      "sha256": "fd205926fed1a727e9029d02155f9eb718717af9f218713ecc4d16802e6027bc"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv",
+      "bytes": 503893,
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_TOUCH_LADDERS.json",
+      "bytes": 2126623,
+      "sha256": "9c8052ebf2c07b5879ecc02eb1061cd6e40fd2a3b3f584331a62bb6e159e2992"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_DIVOT_CENSUS.json",
+      "bytes": 217766,
+      "sha256": "da6ff6b573e8c389170b091fc097c2fb6ff0dbecedc3bf75649e3de5d13afc37"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_DIVOT_EPISODES.csv",
+      "bytes": 84943343,
+      "sha256": "973e4c3edf985cca55001407f06540415e53eb6b6c2babdc099193b082df65ef"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_touch_os_rescore_rebalanced_20260731/WINDOW1_QUOTE_TOUCH_OS_RESCORE.json",
+      "bytes": 74855523,
+      "sha256": "3fd04e63033b7e9898511c651581e4c2f1660fc386c08d4fcd55db09f5e04fb4"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_touch_os_rescore_rebalanced_20260731/WINDOW1_QUOTE_TOUCH_REPORT.md",
+      "bytes": 6195,
+      "sha256": "b916de47fa08dc2ce7429915a4679e97ef14b5bc9ec7051abb36d720eaa79c34"
+    }
+  ]
+}

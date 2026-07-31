@@ -74,6 +74,17 @@ FILL_MODEL = (
     "print or opposite BBO touches or passes its limit; no depth, capacity, "
     "or five-contract proof gate."
 )
+PRINT_ONLY_FILL_MODEL = "PRINT_ONLY_FILL_V1"
+INSTANT_TOUCH_FILL_MODEL = FILL_MODEL
+QUOTE_DWELL_FILL_MODELS = {
+    f"QUOTE_TOUCH_OR_PRINT_DWELL_{seconds}_V1": seconds
+    for seconds in (10, 30, 60, 300)
+}
+REPLAY_FILL_MODELS = (
+    PRINT_ONLY_FILL_MODEL,
+    INSTANT_TOUCH_FILL_MODEL,
+    *QUOTE_DWELL_FILL_MODELS,
+)
 _REAL_SQLITE_CONNECT = sqlite3.connect
 _SHA256_CACHE: dict[tuple[str, int, int], str] = {}
 
@@ -621,6 +632,132 @@ class TraceCollector:
         )
 
 
+class ReplayFillSimulator:
+    """Replay-only fill policy with explicit quote-dwell state.
+
+    True prints remain immediate proof in every model except none (there is no
+    none model). Quote-touch models require the opposite top of book to remain
+    at or through the resting limit continuously. The existing live paper
+    simulator is retained as the execution/bookkeeping implementation.
+    """
+
+    def __init__(self, module, api, model: str):
+        if model not in REPLAY_FILL_MODELS:
+            raise ValueError(f"unsupported replay fill model: {model}")
+        self.module = module
+        self.api = api
+        self.model = model
+        self.native = module.PaperFillSimulator(api)
+        self.dwell_seconds = QUOTE_DWELL_FILL_MODELS.get(model)
+        self.touch_started: dict[str, float] = {}
+
+    @property
+    def quote_enabled(self) -> bool:
+        return self.model != PRINT_ONLY_FILL_MODEL
+
+    @property
+    def instant_quote_touch(self) -> bool:
+        return self.model == INSTANT_TOUCH_FILL_MODEL
+
+    def _crossed(self, order) -> bool:
+        book = self.api.bot.books.get(order.ticker)
+        if book is None:
+            return False
+        if order.action == "buy":
+            return 0 < book.best_ask <= order.yes_price
+        return order.yes_price <= book.best_bid < 100
+
+    def _active_orders(self, ticker: str | None = None):
+        return [
+            order
+            for order in self.api.paper_orders.values()
+            if order.status == "resting"
+            and (ticker is None or order.ticker == ticker)
+        ]
+
+    def _prune(self) -> None:
+        active = {
+            order.order_id for order in self._active_orders()
+        }
+        for order_id in list(self.touch_started):
+            if order_id not in active:
+                self.touch_started.pop(order_id, None)
+
+    def evaluate_book_cross(self, ticker):
+        if not self.quote_enabled:
+            return
+        now = self.module.time.time()
+        for order in self._active_orders(ticker):
+            if not self._crossed(order):
+                self.touch_started.pop(order.order_id, None)
+                continue
+            if self.instant_quote_touch:
+                self.native.try_fill(
+                    order, order.yes_price, now, "book_cross"
+                )
+                self.touch_started.pop(order.order_id, None)
+                continue
+            self.touch_started.setdefault(order.order_id, now)
+        self._prune()
+
+    def begin_dwell_for_newly_posted_orders(self) -> None:
+        """Start quote dwell at post time when the current book already crosses.
+
+        PaperApi checks quote fills before live_v4's on_bbo_update decision
+        callback. An order created by that callback therefore needs one
+        replay-only post-decision check; otherwise its dwell clock starts at
+        the next book change instead of the actual resting timestamp.
+        """
+        if self.dwell_seconds is None:
+            return
+        tickers = {
+            order.ticker for order in self._active_orders()
+        }
+        for ticker in sorted(tickers):
+            self.evaluate_book_cross(ticker)
+
+    def evaluate_trade_print(self, ticker, ts, price):
+        # A true print at/through the resting limit remains immediate proof.
+        self.native.evaluate_trade_print(ticker, ts, price)
+        self._prune()
+
+    def next_due_ts(self) -> float | None:
+        if self.dwell_seconds is None:
+            return None
+        self._prune()
+        due = [
+            started + self.dwell_seconds
+            for order in self._active_orders()
+            if (
+                (started := self.touch_started.get(order.order_id))
+                is not None
+                and self._crossed(order)
+            )
+        ]
+        return min(due) if due else None
+
+    def evaluate_due(self, now: float) -> None:
+        if self.dwell_seconds is None:
+            return
+        for order in list(self._active_orders()):
+            started = self.touch_started.get(order.order_id)
+            if started is None:
+                continue
+            if not self._crossed(order):
+                self.touch_started.pop(order.order_id, None)
+                continue
+            due = started + self.dwell_seconds
+            if due <= now:
+                self.native.try_fill(
+                    order,
+                    order.yes_price,
+                    due,
+                    f"book_cross_dwell_{self.dwell_seconds}s",
+                )
+                self.touch_started.pop(order.order_id, None)
+        self._prune()
+
+
 def import_live_v4(clock: ReplayClock, run_dir: Path):
     if str(EXECUTOR) not in sys.path:
         sys.path.insert(0, str(EXECUTOR))
@@ -732,6 +869,7 @@ def install_counterfactual(bot, dial: dict | None) -> dict | None:
         mode = str(dial.get("mode") or "").upper()
         if mode not in {
             "ATLAS",
+            "ORIENTATION",
             "JOIN",
             "TOUCH_MINUS_1",
             "ONE_SPREAD_BELOW_MID",
@@ -739,15 +877,27 @@ def install_counterfactual(bot, dial: dict | None) -> dict | None:
             raise ValueError(f"unsupported interim aim authority: {mode}")
         before = str(bot.config.get(
             "interim_entry_aim_mode", "ATLAS")).upper()
-        bot.config["interim_entry_aim_mode"] = mode
+        selected_mode = "ATLAS" if mode == "ORIENTATION" else mode
+        bot.config["interim_entry_aim_mode"] = selected_mode
+        orientation_before = bool(
+            bot.config.get("orientation_live", False)
+        )
+        if mode == "ORIENTATION":
+            bot.config["orientation_live"] = True
         return {
             "kind": "interim_entry_aim_mode",
             "config_key": "interim_entry_aim_mode",
             "before": before,
-            "after": mode,
+            "after": selected_mode,
             "mode": mode,
+            "orientation_live_before": orientation_before,
+            "orientation_live_after": bool(
+                bot.config.get("orientation_live", False)
+            ),
             "law": (
-                "one initial-entry authority changes; unchanged live_v4 "
+                "one initial-entry authority changes; ORIENTATION means "
+                "ATLAS mode with the existing orientation_live branch armed; "
+                "unchanged live_v4 "
                 "executes every downstream clamp, post, fill, headroom, "
                 "sibling, hold, walk, park, and exit"
             ),
@@ -821,6 +971,7 @@ async def replay_one(
     stop_after_initial_atlas_consultations: bool = False,
     initial_aim_probe_fast_clock: bool = False,
     hash_large_inputs: bool = True,
+    replay_fill_model: str = INSTANT_TOUCH_FILL_MODEL,
 ) -> dict:
     event = game["event"]
     run_dir = out_dir / "runs" / event
@@ -876,6 +1027,9 @@ async def replay_one(
     bot._log_trade = lambda *_args, **_kwargs: None
     bot.session = SimpleNamespace()
     paper = module.PaperApi(bot=bot)
+    paper.fill_simulator = ReplayFillSimulator(
+        module, paper, replay_fill_model
+    )
     module._PAPER_API = paper
     milestone = None
     if MILESTONES.exists():
@@ -949,10 +1103,15 @@ async def replay_one(
     async def run_due(until: float) -> None:
         while True:
             name, ts = min(due.items(), key=lambda kv: kv[1])
+            quote_due = paper.fill_simulator.next_due_ts()
+            if quote_due is not None and quote_due <= ts:
+                name, ts = "quote_fill", quote_due
             if ts > until or ts > game["right_ts"]:
                 return
             clock.set(ts)
-            if name == "gun":
+            if name == "quote_fill":
+                paper.fill_simulator.evaluate_due(ts)
+            elif name == "gun":
                 try:
                     await bot._gun_poll()
                 except Exception as exc:
@@ -974,6 +1133,7 @@ async def replay_one(
             elif name == "discovery":
                 await bot.discover_markets()
                 due[name] += int(module.DISCOVERY_INTERVAL) + 1
+            paper.fill_simulator.begin_dwell_for_newly_posted_orders()
 
     stopped_after_initial_atlas_aims = False
     stopped_after_initial_atlas_consultations = False
@@ -993,6 +1153,7 @@ async def replay_one(
             await bot.on_bbo_update(item["ticker"])
         else:
             bot._ingest_ws_frame(trade_frame(item))
+        paper.fill_simulator.begin_dwell_for_newly_posted_orders()
         if stop_after_initial_atlas_aims:
             aimed_legs = {
                 row["leg"]
@@ -1117,7 +1278,7 @@ async def replay_one(
         "category": game["category"],
         "slice": game["slice"],
         "frozen_window": {"left_ts": game["left_ts"], "right_ts": game["right_ts"]},
-        "fill_model": FILL_MODEL,
+        "fill_model": replay_fill_model,
         "counterfactual": applied_counterfactual,
         "defect_profile": applied_defect_profile,
         "live_v4": {

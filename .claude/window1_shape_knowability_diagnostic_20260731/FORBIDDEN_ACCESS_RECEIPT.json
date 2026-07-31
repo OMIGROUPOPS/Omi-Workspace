@@ -1,0 +1,15 @@
+{
+  "schema_version": "WINDOW1_SHAPE_DIAGNOSTIC_FORBIDDEN_ACCESS_V1",
+  "development_dates": "2026-07-12..2026-07-20",
+  "holdout_access": false,
+  "live_access": false,
+  "production_access": false,
+  "network_access": false,
+  "order_access": false,
+  "position_access": false,
+  "scorer_imported": false,
+  "scorer_invoked": false,
+  "strategy_or_runtime_modified": false,
+  "quiet_book_anchor_modified": false,
+  "statement": "Only frozen local development event, boundary, guarded-cache V3 print/BBO, band-map, drift-surface, quote-reachability, and five-game replay artifacts were read."
+}

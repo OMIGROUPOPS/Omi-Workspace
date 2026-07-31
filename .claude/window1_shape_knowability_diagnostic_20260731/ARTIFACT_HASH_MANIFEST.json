@@ -1,0 +1,60 @@
+{
+  "schema_version": "WINDOW1_SHAPE_DIAGNOSTIC_ARTIFACT_HASH_MANIFEST_V1",
+  "files": [
+    {
+      "path": "ANCHOR_PLACEMENT_DIAGNOSTIC.json",
+      "sha256": "c64e9a9130aa881109ae50b434f8f111588ab0cf91173663c0314aff1a5df59b",
+      "bytes": 18506
+    },
+    {
+      "path": "BUILD_DIAGNOSTIC.js",
+      "sha256": "a26071f7b194a86f0ff8e5ec2f83b926ed28a0498b8f71b8ff08467bb58b4a0f",
+      "bytes": 29418
+    },
+    {
+      "path": "DETERMINISM_RECEIPT.json",
+      "sha256": "7b4510b42644cbd0e004b92e94f97ab3413dc6b7bd7bdfbc298c393de92a2214",
+      "bytes": 594
+    },
+    {
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "3da4220f60ee81745091cb68f388aee317bbee506f4cb3042ad1c1f4573cb818",
+      "bytes": 596
+    },
+    {
+      "path": "LEG_SHAPE_TIMING_LEDGER.json",
+      "sha256": "be7def048539a5c315e095d878d233931fa24e2819db6edffdbfbac53f18ff89",
+      "bytes": 4021244
+    },
+    {
+      "path": "QUOTE_ONLY_PREPRINT_DIAGNOSTIC.json",
+      "sha256": "df4c833ebb8f5331c21e927f4156b5285777bce4d048ea7b0be7144a4beea459",
+      "bytes": 86179
+    },
+    {
+      "path": "SHAPE_KNOWABILITY_AND_ANCHOR_DIAGNOSTIC.md",
+      "sha256": "3dee257154407f73d7cc8f79933016e48823d81be33c793d0fff6c73563bf3b8",
+      "bytes": 12973
+    },
+    {
+      "path": "SHAPE_KNOWABILITY_BY_CATEGORY_PRICE_REGION.json",
+      "sha256": "a43154ff705cc47cae4e1e492132b3b0d291c4aab4f4636b9a960ed6ada0470c",
+      "bytes": 26755
+    },
+    {
+      "path": "SIBLING_SILENT_LEG_DIAGNOSTIC.json",
+      "sha256": "8fedacf117dafab46aec6d0380f5dcdd940bfbf67f115050e5bf77731068dd3e",
+      "bytes": 128469
+    },
+    {
+      "path": "SOURCE_HASH_MANIFEST.json",
+      "sha256": "209aadbcff966c843e48dd05ab8c0b4614cc546484f0ec560aea9a59783b95a5",
+      "bytes": 164427
+    },
+    {
+      "path": "VALIDATION_RECEIPT.json",
+      "sha256": "006b0e62b5c65816ef2f2e19f505e21e6fbbfead6af31e3e35951dbe87a58359",
+      "bytes": 844
+    }
+  ]
+}

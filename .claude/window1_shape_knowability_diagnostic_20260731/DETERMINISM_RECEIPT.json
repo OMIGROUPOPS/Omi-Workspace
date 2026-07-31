@@ -1,0 +1,13 @@
+{
+  "schema_version": "WINDOW1_SHAPE_DIAGNOSTIC_DETERMINISM_V1",
+  "build_count": 2,
+  "clean_input_reloads": 2,
+  "builder_sha256": "a26071f7b194a86f0ff8e5ec2f83b926ed28a0498b8f71b8ff08467bb58b4a0f",
+  "build_1_core_artifact_manifest_sha256": "a93f5e51d267433f37eaffe2f2729020a682eccc50314b0429d987c4a3d68f23",
+  "build_2_core_artifact_manifest_sha256": "a93f5e51d267433f37eaffe2f2729020a682eccc50314b0429d987c4a3d68f23",
+  "core_artifact_files_compared": 8,
+  "byte_identical": true,
+  "event_count_each_build": 804,
+  "leg_count_each_build": 1608,
+  "strategy_or_runtime_execution": false
+}

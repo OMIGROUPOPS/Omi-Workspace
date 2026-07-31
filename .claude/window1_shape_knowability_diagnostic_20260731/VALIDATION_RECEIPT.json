@@ -1,0 +1,36 @@
+{
+  "schema_version": "WINDOW1_SHAPE_DIAGNOSTIC_VALIDATION_V1",
+  "passed": true,
+  "checks": {
+    "event_count": {
+      "expected": 804,
+      "actual": 804
+    },
+    "leg_count": {
+      "expected": 1608,
+      "actual": 1608
+    },
+    "duplicate_event_leg_keys": {
+      "expected": 0,
+      "actual": 0
+    },
+    "timing_cell_leg_conservation": {
+      "expected": 1608,
+      "actual": 1608
+    },
+    "timing_cell_count": 19,
+    "quote_fingerprint_cell_count": 60,
+    "silent_sibling_rows": 275,
+    "placement_diagnostic_rows": {
+      "expected": 6,
+      "actual": 6
+    },
+    "resting_vs_10s_ask_rows": {
+      "expected": 4,
+      "actual": 4
+    },
+    "stable_band_mismatches": [],
+    "negative_first_print_lags": []
+  },
+  "scope": "descriptive read-only development/backwalk census; no strategy/runtime/scorer change"
+}

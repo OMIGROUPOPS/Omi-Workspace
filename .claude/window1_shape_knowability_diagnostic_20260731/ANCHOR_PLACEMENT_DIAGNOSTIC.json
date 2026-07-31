@@ -1,0 +1,520 @@
+{
+  "schema_version": "WINDOW1_ANCHOR_PLACEMENT_DIAGNOSTIC_V1",
+  "placement_rows": [
+    {
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "category": "ATP_MAIN",
+      "leg_id": "LAJ",
+      "credited_fill_price": 50,
+      "fill_leading_placement": false,
+      "decision": {
+        "event_id": "KXATPMATCH-26JUL12LAJVAN",
+        "category": "ATP_MAIN",
+        "leg_id": "LAJ",
+        "ts": 1783850749,
+        "tminus_scheduled_minutes": 474.18333333333334,
+        "tminus_bell_minutes": 1794.1833333333334,
+        "rule": "QUIET_BOOK_ANCHOR",
+        "before": null,
+        "after": 49,
+        "arithmetic": "EMPTY->49",
+        "source": "KXATPMATCH-26JUL12LAJVAN-LAJ.csv.gz#row-2246"
+      },
+      "book_observation": {
+        "ts": 1783850749,
+        "best_bid": 49,
+        "best_ask": 50,
+        "last_traded": 49,
+        "spread": 1,
+        "ask_dwell_start_ts": 1783850335,
+        "ask_dwell_end_ts": 1783851776,
+        "ask_dwell_seconds": 1441,
+        "top5_bid_depth": 3073,
+        "top5_ask_depth": 3143,
+        "source_receipt": "guarded-cache-v3/KXATPMATCH-26JUL12LAJVAN.json.gz#LAJ/snapshot-9"
+      },
+      "one_cent_spread_gate": {
+        "applies": true,
+        "required": true,
+        "observed_spread": 1,
+        "enforced": true,
+        "source": "arb-executor/analysis/build_window1_five_exact_full_stack.js#quiet-anchor-condition"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "category": "ATP_MAIN",
+      "leg_id": "LAJ",
+      "credited_fill_price": 50,
+      "fill_leading_placement": true,
+      "decision": {
+        "event_id": "KXATPMATCH-26JUL12LAJVAN",
+        "category": "ATP_MAIN",
+        "leg_id": "LAJ",
+        "ts": 1783851776,
+        "tminus_scheduled_minutes": 457.06666666666666,
+        "tminus_bell_minutes": 1777.0666666666666,
+        "rule": "PER_TICK_ASK_BREATHING",
+        "before": 49,
+        "after": 50,
+        "arithmetic": "49->50",
+        "source": "KXATPMATCH-26JUL12LAJVAN-LAJ.csv.gz#row-2273"
+      },
+      "book_observation": {
+        "ts": 1783851776,
+        "best_bid": 49,
+        "best_ask": 51,
+        "last_traded": 50,
+        "spread": 2,
+        "ask_dwell_start_ts": 1783851776,
+        "ask_dwell_end_ts": 1783851792,
+        "ask_dwell_seconds": 16,
+        "top5_bid_depth": 3806,
+        "top5_ask_depth": 3447,
+        "source_receipt": "guarded-cache-v3/KXATPMATCH-26JUL12LAJVAN.json.gz#LAJ/snapshot-36"
+      },
+      "one_cent_spread_gate": {
+        "applies": false,
+        "required": false,
+        "observed_spread": 2,
+        "enforced": "NOT_APPLICABLE",
+        "source": "arb-executor/analysis/build_window1_five_exact_full_stack.js#quiet-anchor-condition"
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "category": "WTA_CHALL",
+      "leg_id": "VED",
+      "credited_fill_price": 60,
+      "fill_leading_placement": false,
+      "decision": {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "category": "WTA_CHALL",
+        "leg_id": "VED",
+        "ts": 1784200809,
+        "tminus_scheduled_minutes": 479.85,
+        "tminus_bell_minutes": 529.85,
+        "rule": "QUIET_BOOK_ANCHOR",
+        "before": null,
+        "after": 59,
+        "arithmetic": "EMPTY->59",
+        "source": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED.csv.gz#row-2496"
+      },
+      "book_observation": {
+        "ts": 1784200809,
+        "best_bid": 59,
+        "best_ask": 60,
+        "last_traded": 60,
+        "spread": 1,
+        "ask_dwell_start_ts": 1784200546,
+        "ask_dwell_end_ts": 1784216938,
+        "ask_dwell_seconds": 16392,
+        "top5_bid_depth": 14192,
+        "top5_ask_depth": 21497,
+        "source_receipt": "guarded-cache-v3/KXWTACHALLENGERMATCH-26JUL16BRAVED.json.gz#VED/snapshot-18"
+      },
+      "one_cent_spread_gate": {
+        "applies": true,
+        "required": true,
+        "observed_spread": 1,
+        "enforced": true,
+        "source": "arb-executor/analysis/build_window1_five_exact_full_stack.js#quiet-anchor-condition"
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "category": "WTA_CHALL",
+      "leg_id": "VED",
+      "credited_fill_price": 60,
+      "fill_leading_placement": false,
+      "decision": {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "category": "WTA_CHALL",
+        "leg_id": "VED",
+        "ts": 1784216938,
+        "tminus_scheduled_minutes": 211.03333333333333,
+        "tminus_bell_minutes": 261.03333333333336,
+        "rule": "PER_TICK_ASK_BREATHING",
+        "before": 59,
+        "after": 60,
+        "arithmetic": "59->60",
+        "source": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED.csv.gz#row-4385"
+      },
+      "book_observation": {
+        "ts": 1784216938,
+        "best_bid": 60,
+        "best_ask": 61,
+        "last_traded": 60,
+        "spread": 1,
+        "ask_dwell_start_ts": 1784216938,
+        "ask_dwell_end_ts": 1784222185,
+        "ask_dwell_seconds": 5247,
+        "top5_bid_depth": 25411,
+        "top5_ask_depth": 35384,
+        "source_receipt": "guarded-cache-v3/KXWTACHALLENGERMATCH-26JUL16BRAVED.json.gz#VED/snapshot-922"
+      },
+      "one_cent_spread_gate": {
+        "applies": false,
+        "required": false,
+        "observed_spread": 1,
+        "enforced": "NOT_APPLICABLE",
+        "source": "arb-executor/analysis/build_window1_five_exact_full_stack.js#quiet-anchor-condition"
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "category": "WTA_CHALL",
+      "leg_id": "VED",
+      "credited_fill_price": 60,
+      "fill_leading_placement": true,
+      "decision": {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "category": "WTA_CHALL",
+        "leg_id": "VED",
+        "ts": 1784218829,
+        "tminus_scheduled_minutes": 179.51666666666668,
+        "tminus_bell_minutes": 229.51666666666668,
+        "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+        "before": 60,
+        "after": 60,
+        "arithmetic": "min(existing ceiling, orientation aim 60, ask-1 60)=60",
+        "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXWTACHALLENGERMATCH-26JUL16BRAVED/VED"
+      },
+      "book_observation": {
+        "ts": 1784218829,
+        "best_bid": 60,
+        "best_ask": 61,
+        "last_traded": 61,
+        "spread": 1,
+        "ask_dwell_start_ts": 1784216938,
+        "ask_dwell_end_ts": 1784222185,
+        "ask_dwell_seconds": 5247,
+        "top5_bid_depth": 13976,
+        "top5_ask_depth": 45691,
+        "source_receipt": "guarded-cache-v3/KXWTACHALLENGERMATCH-26JUL16BRAVED.json.gz#VED/snapshot-965"
+      },
+      "one_cent_spread_gate": {
+        "applies": false,
+        "required": false,
+        "observed_spread": 1,
+        "enforced": "NOT_APPLICABLE",
+        "source": "arb-executor/analysis/build_window1_five_exact_full_stack.js#quiet-anchor-condition"
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "category": "WTA_MAIN",
+      "leg_id": "JIM",
+      "credited_fill_price": 39,
+      "fill_leading_placement": true,
+      "decision": {
+        "event_id": "KXWTAMATCH-26JUL20KORJIM",
+        "category": "WTA_MAIN",
+        "leg_id": "JIM",
+        "ts": 1784540401,
+        "tminus_scheduled_minutes": 79.98333333333333,
+        "tminus_bell_minutes": 1659.9833333333333,
+        "rule": "QUIET_BOOK_ANCHOR",
+        "before": null,
+        "after": 39,
+        "arithmetic": "EMPTY->39",
+        "source": "KXWTAMATCH-26JUL20KORJIM-JIM.csv.gz#row-3335"
+      },
+      "book_observation": {
+        "ts": 1784540401,
+        "best_bid": 39,
+        "best_ask": 40,
+        "last_traded": 40,
+        "spread": 1,
+        "ask_dwell_start_ts": 1784540401,
+        "ask_dwell_end_ts": 1784541980,
+        "ask_dwell_seconds": 1579,
+        "top5_bid_depth": 7252,
+        "top5_ask_depth": 3024,
+        "source_receipt": "guarded-cache-v3/KXWTAMATCH-26JUL20KORJIM.json.gz#JIM/snapshot-332"
+      },
+      "one_cent_spread_gate": {
+        "applies": true,
+        "required": true,
+        "observed_spread": 1,
+        "enforced": true,
+        "source": "arb-executor/analysis/build_window1_five_exact_full_stack.js#quiet-anchor-condition"
+      }
+    }
+  ],
+  "resting_vs_10s_ask_rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "category": "ATP_CHALL",
+      "leg_id": "BIG",
+      "resting_price_history": [
+        {
+          "ts": 1784471490,
+          "tminus_scheduled_minutes": 478.5,
+          "tminus_bell_minutes": 568.5,
+          "rule": "QUIET_BOOK_ANCHOR",
+          "before": null,
+          "after": 54,
+          "book_observation": {
+            "ts": 1784471490,
+            "best_bid": 54,
+            "best_ask": 55,
+            "last_traded": 56,
+            "spread": 1,
+            "ask_dwell_start_ts": 1784471127,
+            "ask_dwell_end_ts": 1784486305,
+            "ask_dwell_seconds": 15178,
+            "top5_bid_depth": 2571,
+            "top5_ask_depth": 5961,
+            "source_receipt": "guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19HURBIG.json.gz#BIG/snapshot-9"
+          },
+          "source": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1404"
+        },
+        {
+          "ts": 1784476800,
+          "tminus_scheduled_minutes": 390,
+          "tminus_bell_minutes": 480,
+          "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+          "before": 54,
+          "after": 53,
+          "book_observation": {
+            "ts": 1784476800,
+            "best_bid": 53,
+            "best_ask": 55,
+            "last_traded": 56,
+            "spread": 2,
+            "ask_dwell_start_ts": 1784471127,
+            "ask_dwell_end_ts": 1784486305,
+            "ask_dwell_seconds": 15178,
+            "top5_bid_depth": 3438,
+            "top5_ask_depth": 5630,
+            "source_receipt": "guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19HURBIG.json.gz#BIG/snapshot-101"
+          },
+          "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXATPCHALLENGERMATCH-26JUL19HURBIG/BIG"
+        }
+      ],
+      "final_resting_price_cents": 53,
+      "lowest_ask_held_10s_cents": 55,
+      "resting_minus_lowest_10s_ask_cents": -2,
+      "cents_below_lowest_10s_ask": 2,
+      "accounting_status": "NOT_FILLED"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "category": "ATP_MAIN",
+      "leg_id": "VAN",
+      "resting_price_history": [
+        {
+          "ts": 1783850502,
+          "tminus_scheduled_minutes": 478.3,
+          "tminus_bell_minutes": 1798.3,
+          "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+          "before": null,
+          "after": 49,
+          "book_observation": {
+            "ts": 1783850502,
+            "best_bid": 49,
+            "best_ask": 51,
+            "last_traded": 51,
+            "spread": 2,
+            "ask_dwell_start_ts": 1783850441,
+            "ask_dwell_end_ts": 1783850965,
+            "ask_dwell_seconds": 524,
+            "top5_bid_depth": 2842,
+            "top5_ask_depth": 3202,
+            "source_receipt": "guarded-cache-v3/KXATPMATCH-26JUL12LAJVAN.json.gz#VAN/snapshot-199"
+          },
+          "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXATPMATCH-26JUL12LAJVAN/VAN"
+        },
+        {
+          "ts": 1783850965,
+          "tminus_scheduled_minutes": 470.5833333333333,
+          "tminus_bell_minutes": 1790.5833333333333,
+          "rule": "QUIET_BOOK_ANCHOR",
+          "before": 49,
+          "after": 49,
+          "book_observation": {
+            "ts": 1783850965,
+            "best_bid": 49,
+            "best_ask": 50,
+            "last_traded": 51,
+            "spread": 1,
+            "ask_dwell_start_ts": 1783850965,
+            "ask_dwell_end_ts": 1783853300,
+            "ask_dwell_seconds": 2335,
+            "top5_bid_depth": 2842,
+            "top5_ask_depth": 2737,
+            "source_receipt": "guarded-cache-v3/KXATPMATCH-26JUL12LAJVAN.json.gz#VAN/snapshot-311"
+          },
+          "source": "KXATPMATCH-26JUL12LAJVAN-VAN.csv.gz#row-12031"
+        },
+        {
+          "ts": 1783853300,
+          "tminus_scheduled_minutes": 431.6666666666667,
+          "tminus_bell_minutes": 1751.6666666666667,
+          "rule": "PER_TICK_ASK_BREATHING",
+          "before": 49,
+          "after": 50,
+          "book_observation": {
+            "ts": 1783853300,
+            "best_bid": 49,
+            "best_ask": 51,
+            "last_traded": 49,
+            "spread": 2,
+            "ask_dwell_start_ts": 1783853300,
+            "ask_dwell_end_ts": 1783857510,
+            "ask_dwell_seconds": 4210,
+            "top5_bid_depth": 2178,
+            "top5_ask_depth": 7739,
+            "source_receipt": "guarded-cache-v3/KXATPMATCH-26JUL12LAJVAN.json.gz#VAN/snapshot-662"
+          },
+          "source": "KXATPMATCH-26JUL12LAJVAN-VAN.csv.gz#row-12382"
+        }
+      ],
+      "final_resting_price_cents": 50,
+      "lowest_ask_held_10s_cents": 50,
+      "resting_minus_lowest_10s_ask_cents": 0,
+      "cents_below_lowest_10s_ask": 0,
+      "accounting_status": "NOT_FILLED"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "category": "WTA_CHALL",
+      "leg_id": "BRA",
+      "resting_price_history": [
+        {
+          "ts": 1784200808,
+          "tminus_scheduled_minutes": 479.8666666666667,
+          "tminus_bell_minutes": 529.8666666666667,
+          "rule": "QUIET_BOOK_ANCHOR",
+          "before": null,
+          "after": 39,
+          "book_observation": {
+            "ts": 1784200808,
+            "best_bid": 39,
+            "best_ask": 40,
+            "last_traded": 40,
+            "spread": 1,
+            "ask_dwell_start_ts": 1784200506,
+            "ask_dwell_end_ts": 1784220447,
+            "ask_dwell_seconds": 19941,
+            "top5_bid_depth": 32112,
+            "top5_ask_depth": 8509,
+            "source_receipt": "guarded-cache-v3/KXWTACHALLENGERMATCH-26JUL16BRAVED.json.gz#BRA/snapshot-13"
+          },
+          "source": "KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA.csv.gz#row-1189"
+        },
+        {
+          "ts": 1784218828,
+          "tminus_scheduled_minutes": 179.53333333333333,
+          "tminus_bell_minutes": 229.53333333333333,
+          "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+          "before": 39,
+          "after": 33,
+          "book_observation": {
+            "ts": 1784218828,
+            "best_bid": 39,
+            "best_ask": 40,
+            "last_traded": 40,
+            "spread": 1,
+            "ask_dwell_start_ts": 1784200506,
+            "ask_dwell_end_ts": 1784220447,
+            "ask_dwell_seconds": 19941,
+            "top5_bid_depth": 42491,
+            "top5_ask_depth": 18263,
+            "source_receipt": "guarded-cache-v3/KXWTACHALLENGERMATCH-26JUL16BRAVED.json.gz#BRA/snapshot-653"
+          },
+          "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXWTACHALLENGERMATCH-26JUL16BRAVED/BRA"
+        }
+      ],
+      "final_resting_price_cents": 33,
+      "lowest_ask_held_10s_cents": 40,
+      "resting_minus_lowest_10s_ask_cents": -7,
+      "cents_below_lowest_10s_ask": 7,
+      "accounting_status": "NOT_FILLED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "category": "WTA_MAIN",
+      "leg_id": "KOR",
+      "resting_price_history": [
+        {
+          "ts": 1784540165,
+          "tminus_scheduled_minutes": 83.91666666666667,
+          "tminus_bell_minutes": 1663.9166666666667,
+          "rule": "QUIET_BOOK_ANCHOR",
+          "before": null,
+          "after": 59,
+          "book_observation": {
+            "ts": 1784540165,
+            "best_bid": 59,
+            "best_ask": 60,
+            "last_traded": 60,
+            "spread": 1,
+            "ask_dwell_start_ts": 1784516882,
+            "ask_dwell_end_ts": 1784540778,
+            "ask_dwell_seconds": 23896,
+            "top5_bid_depth": 7656,
+            "top5_ask_depth": 4458,
+            "source_receipt": "guarded-cache-v3/KXWTAMATCH-26JUL20KORJIM.json.gz#KOR/snapshot-568"
+          },
+          "source": "KXWTAMATCH-26JUL20KORJIM-KOR.csv.gz#row-5058"
+        },
+        {
+          "ts": 1784540778,
+          "tminus_scheduled_minutes": 73.7,
+          "tminus_bell_minutes": 1653.7,
+          "rule": "PER_TICK_ASK_BREATHING",
+          "before": 59,
+          "after": 60,
+          "book_observation": {
+            "ts": 1784540778,
+            "best_bid": 60,
+            "best_ask": 63,
+            "last_traded": 60,
+            "spread": 3,
+            "ask_dwell_start_ts": 1784540778,
+            "ask_dwell_end_ts": 1784541955,
+            "ask_dwell_seconds": 1177,
+            "top5_bid_depth": 12529,
+            "top5_ask_depth": 4779,
+            "source_receipt": "guarded-cache-v3/KXWTAMATCH-26JUL20KORJIM.json.gz#KOR/snapshot-594"
+          },
+          "source": "KXWTAMATCH-26JUL20KORJIM-KOR.csv.gz#row-5117"
+        },
+        {
+          "ts": 1784542020,
+          "tminus_scheduled_minutes": 53,
+          "tminus_bell_minutes": 1633,
+          "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+          "before": 60,
+          "after": 57,
+          "book_observation": {
+            "ts": 1784542020,
+            "best_bid": 62,
+            "best_ask": 64,
+            "last_traded": 63,
+            "spread": 2,
+            "ask_dwell_start_ts": 1784541955,
+            "ask_dwell_end_ts": 1784542048,
+            "ask_dwell_seconds": 93,
+            "top5_bid_depth": 17058,
+            "top5_ask_depth": 10592,
+            "source_receipt": "guarded-cache-v3/KXWTAMATCH-26JUL20KORJIM.json.gz#KOR/snapshot-667"
+          },
+          "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXWTAMATCH-26JUL20KORJIM/KOR"
+        }
+      ],
+      "final_resting_price_cents": 57,
+      "lowest_ask_held_10s_cents": 60,
+      "resting_minus_lowest_10s_ask_cents": -3,
+      "cents_below_lowest_10s_ask": 3,
+      "accounting_status": "NOT_FILLED"
+    }
+  ],
+  "gate_law": {
+    "quiet_book_anchor": "requires no last print and exactly one-cent BBO spread; target=min(round(mid),ask-1)",
+    "per_tick_ask_breathing": "does not require one-cent spread; target=min(frozen ceiling,ask-1), except stale marketable order follows ask",
+    "orientation_initial": "does not require one-cent spread; target=min(existing ceiling,orientation aim,ask-1)"
+  }
+}

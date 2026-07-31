@@ -1,0 +1,42 @@
+{
+  "schema": "WINDOW1_TWO_SEAT_BOUNDARY_V1",
+  "effective_date": "2026-07-31",
+  "shared_objective": {
+    "captured_negative_pairs": 23,
+    "maker_opportunity_negative_pairs": 598,
+    "diagnosis": "positioning_below_touch_without_causal_return_awareness",
+    "source": ".claude/window1_live_v4_replay/quote_touch_os_rescore_rebalanced_20260731/WINDOW1_QUOTE_TOUCH_REPORT.md"
+  },
+  "live_seat": {
+    "branch": "codex/window1-live-consolidated",
+    "worktree": "C:\\Users\\omigr\\OMI-Workspace-codex-window1",
+    "exclusive_paths": [
+      "arb-executor/live_v4.py",
+      "arb-executor/analysis/window1_live_v4_replay.py",
+      "arb-executor/config/",
+      "arb-executor/deploy/"
+    ],
+    "owner": "Cursor Codex"
+  },
+  "analysis_seat": {
+    "branch": "codex/window1-analysis-seat",
+    "worktree": "C:\\Users\\omigr\\OMI-Workspace-claude-analysis",
+    "write_allowlist": [
+      "arb-executor/analysis/second_seat/",
+      "arb-executor/tests/analysis_second_seat/",
+      "arb-executor/docs/research/window1/second_seat/",
+      ".claude/window1_second_seat/"
+    ],
+    "forbidden_capabilities": [
+      "live_code_mutation",
+      "replay_shell_mutation",
+      "live_or_production_access",
+      "order_or_position_access",
+      "deployment_or_configuration_mutation",
+      "cross_worktree_mutation"
+    ],
+    "owner": "Claude Code"
+  },
+  "handoff_law": "commit_sha_and_review_only"
+}
+

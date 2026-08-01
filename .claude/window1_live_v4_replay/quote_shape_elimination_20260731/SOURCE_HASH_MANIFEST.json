@@ -1,0 +1,39 @@
+{
+  "schema_version": "WINDOW1_QUOTE_SHAPE_ELIMINATION_SOURCE_MANIFEST_V1",
+  "files": [
+    {
+      "path": "arb-executor/analysis/build_window1_quote_shape_library_v1.js",
+      "bytes": 17133,
+      "sha256": "67df57d7d59dab37138da419abd8d08f834a4fce868784c2f636e26dd86a8e92"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+      "bytes": 23121,
+      "sha256": "edc62dc9fa24d66fc9e39e9e4e81c0873c4f032988164a05c374ba565b45082e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv",
+      "bytes": 503893,
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/REPLAY_AND_REFERENCE_PANEL.json",
+      "bytes": 31065,
+      "sha256": "e811abce6b778fea3e4d3101239c225543cfe1a6cafafd481730bebfe603d898"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FIVE_GAME_FULL_STACK_RESULTS.json",
+      "bytes": 26384,
+      "sha256": "4abe49088721d823ce1455fce16d3a61d47b3851ef8c5569799d00474e6218cd"
+    }
+  ],
+  "private_tick_source_hashes": "embedded per ticker in QUOTE_SHAPE_LIBRARY.json",
+  "forbidden_sources": [
+    "holdout",
+    "live",
+    "orders",
+    "positions",
+    "settlement",
+    "Window 2"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "WINDOW1_QUOTE_SHAPE_ELIMINATION_TWO_GAME_SPEC_V1",
+  "scope": {
+    "cold_replay_events": [
+      "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "KXATPCHALLENGERMATCH-26JUL19NIKVRB"
+    ],
+    "population_replay": false,
+    "scoring": false,
+    "outcome_knowledge": false
+  },
+  "library": {
+    "training_exclusion": "Both cold-test events are excluded before quote-shape fitting.",
+    "partition": [
+      "tournament category",
+      "first one-tick-spread lawful-book bid price region"
+    ],
+    "shape_axes": [
+      "ask path",
+      "ask dwell",
+      "spread level and range",
+      "quote cadence",
+      "ask-change cadence",
+      "displayed top-ask size",
+      "top-five ask depth"
+    ],
+    "topologies": [
+      "DOWN_CONTINUATION",
+      "DOWN_REBOUND",
+      "FLAT_RECOVERED",
+      "FLAT_UNMOVED",
+      "UP_AFTER_DIP",
+      "UP_CONTINUATION"
+    ],
+    "prints_used_for_shape": false
+  },
+  "decision_tree": {
+    "states": [
+      "PLACE",
+      "HOLD",
+      "INSUFFICIENT_EVIDENCE"
+    ],
+    "macro": "Category and price region initialize every fitted topology.",
+    "micro": "Exact fitted ask-net/dip distance minima eliminate shapes first; dwell, spread, cadence, displayed size, and top-five depth resolve only the surviving tie.",
+    "pair": "A direction independently resolved from one legs quote path removes non-inverse directions on the sibling; a constrained sibling cannot circularly confirm the source leg.",
+    "micro_micro": "PLACE is available only after an own ask transition at a later timestamp, independently observed inverse sibling direction, current ask equal to the running ask low, continuous ask dwell, and displayed capacity.",
+    "monotonicity": "An eliminated shape never returns during the event.",
+    "joint_clock": "A lawful update on either book advances dwell and re-evaluates both carried contemporaneous books."
+  },
+  "constants": {
+    "ask_dwell_seconds": {
+      "value": 10,
+      "provenance": "Inherited unchanged from the frozen 598-event primary quote-touch comparator in arb-executor/docs/research/window1/WINDOW1_ORGAN_SCORECARD_AND_DEFECT_LEDGER.md; not selected on either cold game."
+    },
+    "accounting_quantity": {
+      "value": 5,
+      "provenance": "Inherited exact-five Window-1 accounting contract."
+    },
+    "price_regions": {
+      "value": [
+        "<=25",
+        "26-50",
+        "51-75",
+        ">=76"
+      ],
+      "provenance": "Inherited Window-1 price-region partition."
+    },
+    "shape_distance_tolerance": {
+      "value": null,
+      "provenance": "No tolerance is introduced; exact minimum distance under training-fitted standardization is used layer by layer."
+    }
+  },
+  "fill_law": {
+    "side": "ASK_ONLY",
+    "strictly_later_than_action": true,
+    "same_receipt_fill": false,
+    "minimum_continuous_dwell_seconds": 10,
+    "minimum_displayed_capacity": 5,
+    "unknown_capacity": "EVIDENCE_ABSENT"
+  },
+  "reference_law": {
+    "independent_pair_reference": "NOT_BOUND",
+    "per_leg": [
+      "own Window-1 close",
+      "own bell price",
+      "own ask-reachable low"
+    ]
+  },
+  "validation_status": "UNVALIDATED_BEYOND_TWO_COLD_GAMES"
+}

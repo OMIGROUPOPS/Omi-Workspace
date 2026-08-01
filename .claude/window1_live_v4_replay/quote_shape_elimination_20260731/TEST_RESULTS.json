@@ -1,0 +1,22 @@
+{
+  "schema_version": "WINDOW1_QUOTE_SHAPE_ELIMINATION_TEST_RESULTS_V1",
+  "status": "PASS",
+  "test_files": 8,
+  "test_files_passed": 8,
+  "named_assertions_minimum": 203,
+  "additional_focused_assertion_suites": 2,
+  "tests": [
+    "arb-executor/tests/test_window1_quote_shape_elimination_two_game.js",
+    "arb-executor/tests/test_window1_hur_quiet_faller_walk.js",
+    "arb-executor/tests/test_window1_live_book_initial_aim_replay.js",
+    "arb-executor/tests/test_window1_initial_aim_constant_audit.js",
+    "arb-executor/tests/test_nikvrb_sibling_shape_cold_replay.js",
+    "arb-executor/tests/test_nikvrb_live_book_breathing_replay.js",
+    "arb-executor/tests/test_nikvrb_decision_tree_reference.js",
+    "arb-executor/tests/test_nikvrb_ask_dwell_replay.js"
+  ],
+  "cold_test_events": 2,
+  "population_replays": 0,
+  "scorer_invocations": 0,
+  "live_access": false
+}

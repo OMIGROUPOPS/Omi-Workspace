@@ -1,0 +1,32 @@
+{
+  "schema_version": "WINDOW1_QUOTE_SHAPE_ELIMINATION_DETERMINISM_V1",
+  "status": "PASS",
+  "clean_library_builds": 2,
+  "independent_replay_render_builds_after_ascii_portability_fix": 2,
+  "byte_identical": true,
+  "compared_files": [
+    {
+      "path": "QUOTE_SHAPE_LIBRARY.json",
+      "bytes": 17292431,
+      "sha256": "eb6c267f204c33fb312c8bdf1e9c26fed3d16fe88bd9713d07790f4e73a6e700"
+    },
+    {
+      "path": "TWO_GAME_REPLAY.json",
+      "bytes": 788496,
+      "sha256": "0a0c4d037001d84325b627e25f33a39afb220cfdb544fd5d89648434ba94c15c"
+    },
+    {
+      "path": "NIKVRB_QUOTE_SHAPE_REPLAY.svg",
+      "bytes": 108483,
+      "sha256": "fb75c503fda19e0c5cb772242741261e040202cdd15f0105959bf3f0098afba2"
+    },
+    {
+      "path": "HURBIG_QUOTE_SHAPE_REPLAY.svg",
+      "bytes": 108237,
+      "sha256": "283b82cc08f3e4c315429cc6b707ffc41a476b54ada624f13b0deae489acb96d"
+    }
+  ],
+  "committed_output_matches_both_builds": true,
+  "population_replay": false,
+  "scorer_invocations": 0
+}

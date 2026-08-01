@@ -1,0 +1,585 @@
+{
+  "schema_version": "WINDOW1_DYNAMIC_SHAPE_RENARROW_AND_TEMPORAL_VERDICT_V6",
+  "score_free": true,
+  "population_804_run": false,
+  "defect_1": {
+    "name": "STALE_SHAPE_CLASSIFICATION_NEVER_RENARROWED",
+    "law": "A witnessed new-low descent eliminates a surviving class when its fitted member support cannot contain the observed descent ordinal. Both macro legs reopen and re-narrow, current inverse path tuples are recomputed, and no lower layer is consulted until that macro pass completes.",
+    "reclassification_count": 4,
+    "reclassifications": [
+      {
+        "identity": "KXATPMATCH-26JUL12LAJVAN|LAJ",
+        "timestamp_epoch": 1783857336,
+        "receipt": "KXATPMATCH-26JUL12LAJVAN-LAJ.csv.gz#row-4385",
+        "observed_new_low_descents": 1,
+        "eliminated_stale_shapes": [
+          "ATP_MAIN_26_50_FLAT_UNMOVED"
+        ],
+        "reopened_candidate_shapes": [
+          "ATP_MAIN_26_50_DOWN_CONTINUATION",
+          "ATP_MAIN_26_50_DOWN_REBOUND",
+          "ATP_MAIN_26_50_FLAT_RECOVERED",
+          "ATP_MAIN_26_50_UP_AFTER_DIP"
+        ],
+        "re_narrowed_shapes": [
+          "ATP_MAIN_26_50_DOWN_REBOUND"
+        ],
+        "joint_re_narrowed_shapes": {
+          "LAJ": [
+            "ATP_MAIN_26_50_DOWN_REBOUND"
+          ],
+          "VAN": [
+            "ATP_MAIN_26_50_UP_CONTINUATION"
+          ]
+        },
+        "joint_current_path_directions": {
+          "LAJ": "DOWN",
+          "VAN": "UP"
+        },
+        "sibling_macro_reopened_before_lower_layers": true,
+        "reason": "OBSERVED_DESCENT_ORDINAL_EXCEEDED_EVERY_SURVIVING_SHAPE"
+      },
+      {
+        "identity": "KXWTACHALLENGERMATCH-26JUL16BRAVED|VED",
+        "timestamp_epoch": 1784225120,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED.csv.gz#row-4648",
+        "observed_new_low_descents": 1,
+        "eliminated_stale_shapes": [
+          "WTA_CHALL_51_75_UP_CONTINUATION"
+        ],
+        "reopened_candidate_shapes": [
+          "WTA_CHALL_51_75_DOWN_CONTINUATION",
+          "WTA_CHALL_51_75_DOWN_REBOUND",
+          "WTA_CHALL_51_75_FLAT_RECOVERED",
+          "WTA_CHALL_51_75_UP_AFTER_DIP"
+        ],
+        "re_narrowed_shapes": [
+          "WTA_CHALL_51_75_DOWN_REBOUND"
+        ],
+        "joint_re_narrowed_shapes": {
+          "BRA": [
+            "WTA_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "VED": [
+            "WTA_CHALL_51_75_DOWN_REBOUND"
+          ]
+        },
+        "joint_current_path_directions": {
+          "BRA": "UP",
+          "VED": "DOWN"
+        },
+        "sibling_macro_reopened_before_lower_layers": true,
+        "reason": "OBSERVED_DESCENT_ORDINAL_EXCEEDED_EVERY_SURVIVING_SHAPE"
+      },
+      {
+        "identity": "KXWTAMATCH-26JUL20KORJIM|JIM",
+        "timestamp_epoch": 1784541980,
+        "receipt": "KXWTAMATCH-26JUL20KORJIM-JIM.csv.gz#row-3447",
+        "observed_new_low_descents": 2,
+        "eliminated_stale_shapes": [
+          "WTA_MAIN_26_50_FLAT_UNMOVED"
+        ],
+        "reopened_candidate_shapes": [
+          "WTA_MAIN_26_50_DOWN_CONTINUATION",
+          "WTA_MAIN_26_50_DOWN_REBOUND",
+          "WTA_MAIN_26_50_FLAT_RECOVERED"
+        ],
+        "re_narrowed_shapes": [
+          "WTA_MAIN_26_50_FLAT_RECOVERED"
+        ],
+        "joint_re_narrowed_shapes": {
+          "JIM": [
+            "WTA_MAIN_26_50_FLAT_RECOVERED"
+          ],
+          "KOR": [
+            "WTA_MAIN_51_75_UP_AFTER_DIP"
+          ]
+        },
+        "joint_current_path_directions": {
+          "JIM": "DOWN",
+          "KOR": "UP"
+        },
+        "sibling_macro_reopened_before_lower_layers": true,
+        "reason": "OBSERVED_DESCENT_ORDINAL_EXCEEDED_EVERY_SURVIVING_SHAPE"
+      },
+      {
+        "identity": "KXWTAMATCH-26JUL20KORJIM|JIM",
+        "timestamp_epoch": 1784541987,
+        "receipt": "KXWTAMATCH-26JUL20KORJIM-JIM.csv.gz#row-3472",
+        "observed_new_low_descents": 3,
+        "eliminated_stale_shapes": [
+          "WTA_MAIN_26_50_FLAT_RECOVERED"
+        ],
+        "reopened_candidate_shapes": [
+          "WTA_MAIN_26_50_DOWN_CONTINUATION",
+          "WTA_MAIN_26_50_DOWN_REBOUND"
+        ],
+        "re_narrowed_shapes": [
+          "WTA_MAIN_26_50_DOWN_CONTINUATION"
+        ],
+        "joint_re_narrowed_shapes": {
+          "JIM": [
+            "WTA_MAIN_26_50_DOWN_CONTINUATION"
+          ],
+          "KOR": [
+            "WTA_MAIN_51_75_UP_AFTER_DIP"
+          ]
+        },
+        "joint_current_path_directions": {
+          "JIM": "DOWN",
+          "KOR": "UP"
+        },
+        "sibling_macro_reopened_before_lower_layers": true,
+        "reason": "OBSERVED_DESCENT_ORDINAL_EXCEEDED_EVERY_SURVIVING_SHAPE"
+      }
+    ]
+  },
+  "defect_2": {
+    "name": "BRA_STATIC_MEDOID_TEMPORAL_LAG",
+    "before": {
+      "hold_timestamp_epoch": 1784201771,
+      "t_minus_scheduled": "T-463:49",
+      "t_minus_actual_bell": "T-513:49",
+      "ask_cents": 40,
+      "ask_dwell_seconds": 963,
+      "verdict": "LOWER",
+      "late_floor_timestamp_epoch": 1784221751,
+      "late_floor_t_minus_scheduled": "T-130:49",
+      "late_floor_t_minus_actual_bell": "T-180:49",
+      "ask_when_static_medoid_flipped_cents": 41,
+      "observed_low_already_cents": 40,
+      "waited_for": "fixed static-medoid progress bin; the medoid future changed from -1 to 0 only after the reachable 40 ask disappeared"
+    },
+    "after": {
+      "entry_cents": 40,
+      "action_timestamp_epoch": 1784201808,
+      "t_minus_scheduled": "T-463:12",
+      "t_minus_actual_bell": "T-513:12",
+      "ask_cents": 40,
+      "authority": "CAUSALLY_NEAREST_ZERO_DESCENT_MEMBER",
+      "selected_training_members": [
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL14CARVON",
+          "leg_id": "VON",
+          "ticker": "KXWTACHALLENGERMATCH-26JUL14CARVON-VON"
+        }
+      ],
+      "selected_member_remaining_reachable_low_deltas": [
+        0
+      ],
+      "proof": "the causally nearest fitted zero-descent member in the already-resolved DOWN_CONTINUATION class has zero remaining ask-reachable downside; raw asks lacking the inherited exact-five/10-second reach law cannot create lag"
+    }
+  },
+  "before_after_numeric_receipt": [
+    {
+      "identity": "KXATPCHALLENGERMATCH-26JUL19HURBIG|BIG",
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "before_entry_cents": 55,
+      "after_entry_cents": 55,
+      "movement_cents": 0,
+      "honest_fill_class": "PROVEN_TAKER",
+      "own_window1_close_cents": 60,
+      "delta_to_own_window1_close_cents": -5,
+      "own_bell_price_cents": 60,
+      "delta_to_own_bell_price_cents": -5,
+      "own_ask_reachable_low_cents": 55,
+      "delta_to_own_ask_reachable_low_cents": 0,
+      "pair_reference_cents": "NOT_BOUND",
+      "delta_to_pair_reference_cents": "NOT_BOUND",
+      "action_clock": {
+        "timestamp_epoch": 1784471820,
+        "t_minus_scheduled_seconds": 28380,
+        "t_minus_actual_bell_seconds": 33780
+      },
+      "action_clock_labels": {
+        "t_minus_scheduled": "T-473:00",
+        "t_minus_actual_bell": "T-563:00"
+      },
+      "fired_predicates": [
+        "SHAPE_FLOOR_CONSENSUS",
+        "PAIR_TUPLE:EMPIRICALLY_OBSERVED_PAIR_TUPLE",
+        "INVERSE_SIBLING:SINGLE_SURVIVING_INVERSE_PAIR_TUPLE_WITH_SIBLING_OWN_MICRO_RECEIPT",
+        "MICRO_POSITION:STRICTLY_LATER_SAME_PRICE_ASK_RECEIPT",
+        "STABLE_SAME_PRICE_ASK_RECEIPT",
+        "STABLE_SIGNER:TOP_ASK_PRICE_AND_SIZE_PERSISTED",
+        "EXACT_ACTION_BOOK",
+        "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+        "HONEST_FILL:PROVEN_TAKER"
+      ]
+    },
+    {
+      "identity": "KXATPCHALLENGERMATCH-26JUL19HURBIG|HUR",
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "before_entry_cents": 38,
+      "after_entry_cents": 38,
+      "movement_cents": 0,
+      "honest_fill_class": "PROVEN_TAKER",
+      "own_window1_close_cents": 42,
+      "delta_to_own_window1_close_cents": -4,
+      "own_bell_price_cents": 42,
+      "delta_to_own_bell_price_cents": -4,
+      "own_ask_reachable_low_cents": 37,
+      "delta_to_own_ask_reachable_low_cents": 1,
+      "pair_reference_cents": "NOT_BOUND",
+      "delta_to_pair_reference_cents": "NOT_BOUND",
+      "action_clock": {
+        "timestamp_epoch": 1784494287,
+        "t_minus_scheduled_seconds": 5913,
+        "t_minus_actual_bell_seconds": 11313
+      },
+      "action_clock_labels": {
+        "t_minus_scheduled": "T-98:33",
+        "t_minus_actual_bell": "T-188:33"
+      },
+      "fired_predicates": [
+        "SHAPE_FLOOR_CONSENSUS",
+        "PAIR_TUPLE:EMPIRICALLY_OBSERVED_PAIR_TUPLE",
+        "INVERSE_SIBLING:INDEPENDENT_SIBLING_DIRECTION",
+        "MICRO_POSITION:ASK_PRICE_TRANSITION",
+        "STABLE_SAME_PRICE_ASK_RECEIPT",
+        "ASK_PRICE_TRANSITION",
+        "STABLE_SIGNER:DEMONSTRATED_ASK_DESCENT",
+        "EXACT_ACTION_BOOK",
+        "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+        "HONEST_FILL:PROVEN_TAKER"
+      ]
+    },
+    {
+      "identity": "KXATPCHALLENGERMATCH-26JUL19NIKVRB|NIK",
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "before_entry_cents": 18,
+      "after_entry_cents": 18,
+      "movement_cents": 0,
+      "honest_fill_class": "PROVEN_TAKER",
+      "own_window1_close_cents": 19,
+      "delta_to_own_window1_close_cents": -1,
+      "own_bell_price_cents": 19,
+      "delta_to_own_bell_price_cents": -1,
+      "own_ask_reachable_low_cents": 18,
+      "delta_to_own_ask_reachable_low_cents": 0,
+      "pair_reference_cents": "NOT_BOUND",
+      "delta_to_pair_reference_cents": "NOT_BOUND",
+      "action_clock": {
+        "timestamp_epoch": 1784476318,
+        "t_minus_scheduled_seconds": 2282,
+        "t_minus_actual_bell_seconds": 2582
+      },
+      "action_clock_labels": {
+        "t_minus_scheduled": "T-38:02",
+        "t_minus_actual_bell": "T-43:02"
+      },
+      "fired_predicates": [
+        "SHAPE_FLOOR_CONSENSUS",
+        "PAIR_TUPLE:EMPIRICALLY_OBSERVED_PAIR_TUPLE",
+        "INVERSE_SIBLING:INDEPENDENT_SIBLING_DIRECTION",
+        "MICRO_POSITION:ASK_PRICE_TRANSITION",
+        "STABLE_SAME_PRICE_ASK_RECEIPT",
+        "ASK_PRICE_TRANSITION",
+        "STABLE_SIGNER:DEMONSTRATED_ASK_DESCENT",
+        "EXACT_ACTION_BOOK",
+        "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+        "HONEST_FILL:PROVEN_TAKER"
+      ]
+    },
+    {
+      "identity": "KXATPCHALLENGERMATCH-26JUL19NIKVRB|VRB",
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "before_entry_cents": 68,
+      "after_entry_cents": 68,
+      "movement_cents": 0,
+      "honest_fill_class": "PROVEN_TAKER",
+      "own_window1_close_cents": 83,
+      "delta_to_own_window1_close_cents": -15,
+      "own_bell_price_cents": 83,
+      "delta_to_own_bell_price_cents": -15,
+      "own_ask_reachable_low_cents": 68,
+      "delta_to_own_ask_reachable_low_cents": 0,
+      "pair_reference_cents": "NOT_BOUND",
+      "delta_to_pair_reference_cents": "NOT_BOUND",
+      "action_clock": {
+        "timestamp_epoch": 1784459754,
+        "t_minus_scheduled_seconds": 18846,
+        "t_minus_actual_bell_seconds": 19146
+      },
+      "action_clock_labels": {
+        "t_minus_scheduled": "T-314:06",
+        "t_minus_actual_bell": "T-319:06"
+      },
+      "fired_predicates": [
+        "SHAPE_FLOOR_CONSENSUS",
+        "PAIR_TUPLE:EMPIRICALLY_OBSERVED_PAIR_TUPLE",
+        "INVERSE_SIBLING:INDEPENDENT_SIBLING_DIRECTION",
+        "MICRO_POSITION:ASK_PRICE_TRANSITION",
+        "STABLE_SAME_PRICE_ASK_RECEIPT",
+        "ASK_PRICE_TRANSITION",
+        "STABLE_SIGNER:ASK_PULSE_EXCEEDED_SPREAD_AND_RETURNED",
+        "EXACT_ACTION_BOOK",
+        "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+        "HONEST_FILL:PROVEN_TAKER"
+      ]
+    },
+    {
+      "identity": "KXATPMATCH-26JUL12LAJVAN|LAJ",
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "before_entry_cents": null,
+      "after_entry_cents": 45,
+      "movement_cents": null,
+      "honest_fill_class": "PROVEN_TAKER",
+      "own_window1_close_cents": 45,
+      "delta_to_own_window1_close_cents": 0,
+      "own_bell_price_cents": 45,
+      "delta_to_own_bell_price_cents": 0,
+      "own_ask_reachable_low_cents": 45,
+      "delta_to_own_ask_reachable_low_cents": 0,
+      "pair_reference_cents": "NOT_BOUND",
+      "delta_to_pair_reference_cents": "NOT_BOUND",
+      "action_clock": {
+        "timestamp_epoch": 1783928118,
+        "t_minus_scheduled_seconds": -48918,
+        "t_minus_actual_bell_seconds": 30282
+      },
+      "action_clock_labels": {
+        "t_minus_scheduled": "T+815:18",
+        "t_minus_actual_bell": "T-504:42"
+      },
+      "fired_predicates": [
+        "SHAPE_FLOOR_CONSENSUS",
+        "PAIR_TUPLE:STRUCTURAL_INVERSE_CLOSURE",
+        "INVERSE_SIBLING:INDEPENDENT_SIBLING_DIRECTION",
+        "MICRO_POSITION:ASK_PRICE_TRANSITION",
+        "STABLE_SAME_PRICE_ASK_RECEIPT",
+        "ASK_PRICE_TRANSITION",
+        "STABLE_SIGNER:DEMONSTRATED_ASK_DESCENT",
+        "EXACT_ACTION_BOOK",
+        "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+        "HONEST_FILL:PROVEN_TAKER"
+      ]
+    },
+    {
+      "identity": "KXATPMATCH-26JUL12LAJVAN|VAN",
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "before_entry_cents": 50,
+      "after_entry_cents": 50,
+      "movement_cents": 0,
+      "honest_fill_class": "PROVEN_TAKER",
+      "own_window1_close_cents": 57,
+      "delta_to_own_window1_close_cents": -7,
+      "own_bell_price_cents": 57,
+      "delta_to_own_bell_price_cents": -7,
+      "own_ask_reachable_low_cents": 50,
+      "delta_to_own_ask_reachable_low_cents": 0,
+      "pair_reference_cents": "NOT_BOUND",
+      "delta_to_pair_reference_cents": "NOT_BOUND",
+      "action_clock": {
+        "timestamp_epoch": 1783851521,
+        "t_minus_scheduled_seconds": 27679,
+        "t_minus_actual_bell_seconds": 106879
+      },
+      "action_clock_labels": {
+        "t_minus_scheduled": "T-461:19",
+        "t_minus_actual_bell": "T-1781:19"
+      },
+      "fired_predicates": [
+        "SHAPE_FLOOR_CONSENSUS",
+        "PAIR_TUPLE:STRUCTURAL_INVERSE_CLOSURE",
+        "INVERSE_SIBLING:SINGLE_SURVIVING_INVERSE_PAIR_TUPLE_WITH_SIBLING_OWN_MICRO_RECEIPT",
+        "MICRO_POSITION:STRICTLY_LATER_SAME_PRICE_ASK_RECEIPT",
+        "STABLE_SAME_PRICE_ASK_RECEIPT",
+        "STABLE_SIGNER:TOP_ASK_PRICE_AND_SIZE_PERSISTED",
+        "EXACT_ACTION_BOOK",
+        "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+        "HONEST_FILL:PROVEN_TAKER"
+      ]
+    },
+    {
+      "identity": "KXWTACHALLENGERMATCH-26JUL16BRAVED|BRA",
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "before_entry_cents": null,
+      "after_entry_cents": 40,
+      "movement_cents": null,
+      "honest_fill_class": "PROVEN_TAKER",
+      "own_window1_close_cents": 44,
+      "delta_to_own_window1_close_cents": -4,
+      "own_bell_price_cents": 44,
+      "delta_to_own_bell_price_cents": -4,
+      "own_ask_reachable_low_cents": 40,
+      "delta_to_own_ask_reachable_low_cents": 0,
+      "pair_reference_cents": "NOT_BOUND",
+      "delta_to_pair_reference_cents": "NOT_BOUND",
+      "action_clock": {
+        "timestamp_epoch": 1784201808,
+        "t_minus_scheduled_seconds": 27792,
+        "t_minus_actual_bell_seconds": 30792
+      },
+      "action_clock_labels": {
+        "t_minus_scheduled": "T-463:12",
+        "t_minus_actual_bell": "T-513:12"
+      },
+      "fired_predicates": [
+        "SHAPE_FLOOR_CONSENSUS",
+        "PAIR_TUPLE:EMPIRICALLY_OBSERVED_PAIR_TUPLE",
+        "INVERSE_SIBLING:SINGLE_SURVIVING_INVERSE_PAIR_TUPLE_WITH_SIBLING_OWN_MICRO_RECEIPT",
+        "MICRO_POSITION:STRICTLY_LATER_SAME_PRICE_ASK_RECEIPT",
+        "STABLE_SAME_PRICE_ASK_RECEIPT",
+        "STABLE_SIGNER:TOP_ASK_PRICE_AND_SIZE_PERSISTED",
+        "EXACT_ACTION_BOOK",
+        "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+        "HONEST_FILL:PROVEN_TAKER"
+      ]
+    },
+    {
+      "identity": "KXWTACHALLENGERMATCH-26JUL16BRAVED|VED",
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "before_entry_cents": null,
+      "after_entry_cents": 57,
+      "movement_cents": null,
+      "honest_fill_class": "PROVEN_TAKER",
+      "own_window1_close_cents": 57,
+      "delta_to_own_window1_close_cents": 0,
+      "own_bell_price_cents": 57,
+      "delta_to_own_bell_price_cents": 0,
+      "own_ask_reachable_low_cents": 57,
+      "delta_to_own_ask_reachable_low_cents": 0,
+      "pair_reference_cents": "NOT_BOUND",
+      "delta_to_pair_reference_cents": "NOT_BOUND",
+      "action_clock": {
+        "timestamp_epoch": 1784228971,
+        "t_minus_scheduled_seconds": 629,
+        "t_minus_actual_bell_seconds": 3629
+      },
+      "action_clock_labels": {
+        "t_minus_scheduled": "T-10:29",
+        "t_minus_actual_bell": "T-60:29"
+      },
+      "fired_predicates": [
+        "SHAPE_FLOOR_CONSENSUS",
+        "PAIR_TUPLE:EMPIRICALLY_OBSERVED_PAIR_TUPLE",
+        "INVERSE_SIBLING:INDEPENDENT_SIBLING_DIRECTION",
+        "MICRO_POSITION:ASK_PRICE_TRANSITION",
+        "STABLE_SAME_PRICE_ASK_RECEIPT",
+        "ASK_PRICE_TRANSITION",
+        "STABLE_SIGNER:DEMONSTRATED_ASK_DESCENT",
+        "EXACT_ACTION_BOOK",
+        "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+        "HONEST_FILL:PROVEN_TAKER"
+      ]
+    },
+    {
+      "identity": "KXWTAMATCH-26JUL20KORJIM|JIM",
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "before_entry_cents": null,
+      "after_entry_cents": 31,
+      "movement_cents": null,
+      "honest_fill_class": "PROVEN_TAKER",
+      "own_window1_close_cents": 32,
+      "delta_to_own_window1_close_cents": -1,
+      "own_bell_price_cents": 32,
+      "delta_to_own_bell_price_cents": -1,
+      "own_ask_reachable_low_cents": 30,
+      "delta_to_own_ask_reachable_low_cents": 1,
+      "pair_reference_cents": "NOT_BOUND",
+      "delta_to_pair_reference_cents": "NOT_BOUND",
+      "action_clock": {
+        "timestamp_epoch": 1784609213,
+        "t_minus_scheduled_seconds": -64013,
+        "t_minus_actual_bell_seconds": 30787
+      },
+      "action_clock_labels": {
+        "t_minus_scheduled": "T+1066:53",
+        "t_minus_actual_bell": "T-513:07"
+      },
+      "fired_predicates": [
+        "SHAPE_FLOOR_CONSENSUS",
+        "PAIR_TUPLE:STRUCTURAL_INVERSE_CLOSURE",
+        "INVERSE_SIBLING:INDEPENDENT_SIBLING_DIRECTION",
+        "MICRO_POSITION:ASK_PRICE_TRANSITION",
+        "STABLE_SAME_PRICE_ASK_RECEIPT",
+        "ASK_PRICE_TRANSITION",
+        "STABLE_SIGNER:DEMONSTRATED_ASK_DESCENT",
+        "EXACT_ACTION_BOOK",
+        "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+        "HONEST_FILL:PROVEN_TAKER"
+      ]
+    },
+    {
+      "identity": "KXWTAMATCH-26JUL20KORJIM|KOR",
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "before_entry_cents": 60,
+      "after_entry_cents": 60,
+      "movement_cents": 0,
+      "honest_fill_class": "PROVEN_TAKER",
+      "own_window1_close_cents": 70,
+      "delta_to_own_window1_close_cents": -10,
+      "own_bell_price_cents": 70,
+      "delta_to_own_bell_price_cents": -10,
+      "own_ask_reachable_low_cents": 60,
+      "delta_to_own_ask_reachable_low_cents": 0,
+      "pair_reference_cents": "NOT_BOUND",
+      "delta_to_pair_reference_cents": "NOT_BOUND",
+      "action_clock": {
+        "timestamp_epoch": 1784540481,
+        "t_minus_scheduled_seconds": 4719,
+        "t_minus_actual_bell_seconds": 99519
+      },
+      "action_clock_labels": {
+        "t_minus_scheduled": "T-78:39",
+        "t_minus_actual_bell": "T-1658:39"
+      },
+      "fired_predicates": [
+        "SHAPE_FLOOR_CONSENSUS",
+        "PAIR_TUPLE:EMPIRICALLY_OBSERVED_PAIR_TUPLE",
+        "INVERSE_SIBLING:SINGLE_SURVIVING_INVERSE_PAIR_TUPLE_WITH_SIBLING_OWN_MICRO_RECEIPT",
+        "MICRO_POSITION:STRICTLY_LATER_SAME_PRICE_ASK_RECEIPT",
+        "STABLE_SAME_PRICE_ASK_RECEIPT",
+        "STABLE_SIGNER:TOP_ASK_PRICE_AND_SIZE_PERSISTED",
+        "EXACT_ACTION_BOOK",
+        "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+        "HONEST_FILL:PROVEN_TAKER"
+      ]
+    }
+  ],
+  "acceptance": {
+    "honest_completed_pairs": 5,
+    "objective_passes": 3,
+    "objective_failures": [
+      {
+        "identity": "KXATPMATCH-26JUL12LAJVAN|LAJ",
+        "entry_cents": 45,
+        "close_cents": 45,
+        "ask_reachable_low_cents": 45,
+        "predicate": "EXACT_ASK_REACHABLE_FLOOR_EQUALS_W1_CLOSE; STRICT_BELOW_CLOSE_IS_UNATTAINABLE_ON_BOUND_ASK_EVIDENCE"
+      },
+      {
+        "identity": "KXWTACHALLENGERMATCH-26JUL16BRAVED|VED",
+        "entry_cents": 57,
+        "close_cents": 57,
+        "ask_reachable_low_cents": 57,
+        "predicate": "EXACT_ASK_REACHABLE_FLOOR_EQUALS_W1_CLOSE; STRICT_BELOW_CLOSE_IS_UNATTAINABLE_ON_BOUND_ASK_EVIDENCE"
+      }
+    ],
+    "five_game_gate_passed": false,
+    "population_804_authorized": false,
+    "population_804_run": false
+  },
+  "constants": {
+    "dwell_seconds": {
+      "value": 10,
+      "provenance": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/.claude/window1_live_v4_replay/honest_fill_model_20260801/HONEST_FILL_MODEL_CONTRACT.json"
+    },
+    "quantity_contracts": {
+      "value": 5,
+      "provenance": "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/.claude/window1_live_v4_replay/honest_fill_model_20260801/HONEST_FILL_MODEL_CONTRACT.json"
+    },
+    "invented_v6_numeric_thresholds": []
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": "WINDOW1_DYNAMIC_RENARROW_V6_DETERMINISM_AND_TEST_RECEIPT",
+  "two_clean_builds": {
+    "library": {
+      "build_1_sha256": "839c211a25814d2419752b314f9b7b4a67f8776e8ada345cf326a36f25967255",
+      "build_2_sha256": "839c211a25814d2419752b314f9b7b4a67f8776e8ada345cf326a36f25967255",
+      "byte_identical": true
+    },
+    "replay": {
+      "build_1_sha256": "77355a4de6c3c3de0028e7a2bff5e5407b5e704e854a1fd3179efa9defb51bb4",
+      "build_2_sha256": "77355a4de6c3c3de0028e7a2bff5e5407b5e704e854a1fd3179efa9defb51bb4",
+      "byte_identical": true
+    },
+    "honest_gate": {
+      "build_1_sha256": "bedb90bcd497d8ee458826c17190eeaa8b1f146308c9dfefedcc17f988e0258f",
+      "build_2_sha256": "bedb90bcd497d8ee458826c17190eeaa8b1f146308c9dfefedcc17f988e0258f",
+      "byte_identical": true
+    }
+  },
+  "tests": {
+    "passed": true,
+    "commands": [
+      "node arb-executor/tests/test_window1_quote_shape_dynamic_renarrow_v6.js",
+      "node arb-executor/tests/test_window1_quote_shape_descent_verdict_v5.js",
+      "node arb-executor/tests/test_window1_quote_shape_pair_wiring_v3.js",
+      "node arb-executor/tests/test_window1_quote_shape_stable_ask_v2.js",
+      "node arb-executor/tests/test_window1_quote_shape_stable_signer_v4.js"
+    ]
+  },
+  "scorer_invocations": 0,
+  "population_804_run": false
+}

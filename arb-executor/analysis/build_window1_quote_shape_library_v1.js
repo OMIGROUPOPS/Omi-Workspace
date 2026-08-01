@@ -167,7 +167,18 @@ function clusterGroup(rows, groupKey) {
       signing_ordinal_after_a_descent_is_observed: median(positiveDescentValues),
       signing_law: "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
     };
-    shapes.push({ shape_id: shapeId, topology: topologyName, n: ids.length, centroid_z: centroid, medoid: { event_id: rows[medoidId].event_id, leg_id: rows[medoidId].leg_id, ticker: rows[medoidId].ticker }, medoid_future: rows[medoidId].grid.map((x) => x ? x.remaining_min_delta : null), descent_to_final_reachable_low: descentDistribution, feature_medians: Object.fromEntries(FINAL_KEYS.map((key) => [key, median(memberRows.map((r) => r.final_features[key]))])), envelopes });
+    const temporalMemberRows = topologyName.startsWith("DOWN_") ? memberRows.filter((member) => member.descent_to_final_reachable_low?.descent_ordinal === 0) : [];
+    const memberPaths = temporalMemberRows.map((member) => ({
+      event_id: member.event_id,
+      leg_id: member.leg_id,
+      ticker: member.ticker,
+      descent_ordinal_to_final_reachable_low: member.descent_to_final_reachable_low?.descent_ordinal ?? null,
+      bins: member.grid.map((bin) => bin ? {
+        prefix: PREFIX_KEYS.map((key) => bin[key]),
+        remaining_reachable_low_delta: member.descent_to_final_reachable_low?.status === "AVAILABLE" ? member.descent_to_final_reachable_low.ask_reachable_low_cents - bin.current_ask : null,
+      } : null),
+    }));
+    shapes.push({ shape_id: shapeId, topology: topologyName, n: ids.length, centroid_z: centroid, medoid: { event_id: rows[medoidId].event_id, leg_id: rows[medoidId].leg_id, ticker: rows[medoidId].ticker }, medoid_future: rows[medoidId].grid.map((x) => x ? x.remaining_min_delta : null), member_path_scope: "zero-descent fitted members inside DOWN topologies only; used solely to remove static-medoid temporal lag before any descent is observed", member_paths: memberPaths, descent_to_final_reachable_low: descentDistribution, feature_medians: Object.fromEntries(FINAL_KEYS.map((key) => [key, median(memberRows.map((r) => r.final_features[key]))])), envelopes });
     for (const i of ids) assignment[`${rows[i].event_id}|${rows[i].leg_id}`] = shapeId;
   }
   return { group_key: groupKey, n: rows.length, classified_n: rows.length, unclassified: [], selected_k: shapes.length, selection: "exact integer-cent ask-path topology; medoid and prefix support fitted on dwell, spread, cadence, displayed volume, and top-five depth", silhouette: null, feature_means: means, feature_sds: sds, shapes, assignment };

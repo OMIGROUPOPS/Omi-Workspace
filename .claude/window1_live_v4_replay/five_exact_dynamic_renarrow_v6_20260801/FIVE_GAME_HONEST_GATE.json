@@ -1,0 +1,1134 @@
+{
+  "schema_version": "WINDOW1_FIVE_EXACT_PAIR_WIRING_HONEST_GATE_V1",
+  "cold": true,
+  "outcome_knowledge_consumed": false,
+  "score_free": true,
+  "event_count": 5,
+  "leg_count": 10,
+  "replay_proposed_fill_count": 10,
+  "honest_fill_class_counts": {
+    "PROVEN_MAKER": 0,
+    "PROVEN_TAKER": 10,
+    "UNPROVEN": 0
+  },
+  "honest_completed_pair_count": 5,
+  "objective_gate_pass_count": 3,
+  "five_game_gate_passed": false,
+  "population_804_authorized_by_gate": false,
+  "population_804_run": false,
+  "objective": "Both legs honestly credited in Window 1; each entry strictly below its own Window-1 close; combined entry strictly below 100.",
+  "fee_test": "DROPPED_BY_OPERATOR_INSTRUCTION",
+  "expected_close_forecast": "DROPPED_BY_OPERATOR_INSTRUCTION",
+  "frozen_ceiling_bindings_not_executed": {
+    "take_reachable": 516,
+    "maker_reachable_combined_negative": 253
+  },
+  "events": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "category": "ATP_CHALL",
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+          "category": "ATP_CHALL",
+          "price_region": "51_75",
+          "leg_id": "BIG",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG",
+          "proposed_entry_cents": 55,
+          "honest_credited_entry_cents": 55,
+          "honest_fill_class": "PROVEN_TAKER",
+          "honest_credit": {
+            "fill_class": "PROVEN_TAKER",
+            "credited_under_honest_model": true,
+            "reason": "Exact submission-time own BBO displayed at least five opposing contracts at or below X; the buy would cross.",
+            "action_book_exact": true,
+            "seller_aggressed_print_proofs": [],
+            "honest_credit_clock": {
+              "timestamp_epoch": 1784471820,
+              "t_minus_scheduled_seconds": 28380,
+              "t_minus_actual_bell_seconds": 33780
+            },
+            "honest_credit_receipts": [
+              "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1418"
+            ],
+            "displayed_opposing_capacity_at_or_below_x": 934
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 60,
+          "delta_to_own_window1_close_cents": -5,
+          "own_bell_price_cents": 60,
+          "delta_to_own_bell_price_cents": -5,
+          "own_ask_reachable_low_cents": 55,
+          "delta_to_own_ask_reachable_low_cents": 0,
+          "action_clock": {
+            "timestamp_epoch": 1784471820,
+            "t_minus_scheduled_seconds": 28380,
+            "t_minus_actual_bell_seconds": 33780
+          },
+          "action_clock_labels": {
+            "t_minus_scheduled": "T-473:00",
+            "t_minus_actual_bell": "T-563:00"
+          },
+          "joint_observation_at_action": {
+            "bid_cents": 54,
+            "ask_cents": 55,
+            "last_traded_cents": 56,
+            "spread_cents": 1,
+            "ask_dwell_seconds": 330,
+            "top_ask_size": 934,
+            "top_five_ask_depth": 6861,
+            "source_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1418",
+            "source_timestamp_epoch": 1784471820
+          },
+          "surviving_shapes_at_action": [
+            {
+              "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+              "verdict": "FLOOR",
+              "descent_adjustment": "NOT_APPLICABLE",
+              "observed_new_low_descents": 0,
+              "base_verdict": "FLOOR",
+              "fitted_descent_distribution": {
+                "status": "FITTED",
+                "grain": "category + formed-book price region + exact quote-shape topology",
+                "support_n": 104,
+                "censored_n": 0,
+                "min": 0,
+                "p25": 0,
+                "median": 0,
+                "p75": 0,
+                "p90": 0,
+                "max": 0,
+                "counts": {
+                  "0": 104
+                },
+                "positive_descent_support_n": 0,
+                "positive_descent_median": null,
+                "signing_ordinal_after_a_descent_is_observed": null,
+                "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+              },
+              "temporal_authority": "STATIC_SHAPE_MEDOID",
+              "selected_training_members": [],
+              "selected_member_remaining_min_deltas": []
+            }
+          ],
+          "fired_predicates": [
+            "SHAPE_FLOOR_CONSENSUS",
+            "PAIR_TUPLE:EMPIRICALLY_OBSERVED_PAIR_TUPLE",
+            "INVERSE_SIBLING:SINGLE_SURVIVING_INVERSE_PAIR_TUPLE_WITH_SIBLING_OWN_MICRO_RECEIPT",
+            "MICRO_POSITION:STRICTLY_LATER_SAME_PRICE_ASK_RECEIPT",
+            "STABLE_SAME_PRICE_ASK_RECEIPT",
+            "STABLE_SIGNER:TOP_ASK_PRICE_AND_SIZE_PERSISTED",
+            "EXACT_ACTION_BOOK",
+            "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+            "HONEST_FILL:PROVEN_TAKER"
+          ],
+          "terminal_reason": "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK",
+          "replay_credit_is_not_honest_evidence": true,
+          "fee_test": "NOT_RUN_BY_OPERATOR_INSTRUCTION",
+          "expected_close_forecast": "NOT_BOUND_AND_NOT_USED"
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+          "category": "ATP_CHALL",
+          "price_region": "26_50",
+          "leg_id": "HUR",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR",
+          "proposed_entry_cents": 38,
+          "honest_credited_entry_cents": 38,
+          "honest_fill_class": "PROVEN_TAKER",
+          "honest_credit": {
+            "fill_class": "PROVEN_TAKER",
+            "credited_under_honest_model": true,
+            "reason": "Exact submission-time own BBO displayed at least five opposing contracts at or below X; the buy would cross.",
+            "action_book_exact": true,
+            "seller_aggressed_print_proofs": [],
+            "honest_credit_clock": {
+              "timestamp_epoch": 1784494287,
+              "t_minus_scheduled_seconds": 5913,
+              "t_minus_actual_bell_seconds": 11313
+            },
+            "honest_credit_receipts": [
+              "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-4285"
+            ],
+            "displayed_opposing_capacity_at_or_below_x": 10113
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 42,
+          "delta_to_own_window1_close_cents": -4,
+          "own_bell_price_cents": 42,
+          "delta_to_own_bell_price_cents": -4,
+          "own_ask_reachable_low_cents": 37,
+          "delta_to_own_ask_reachable_low_cents": 1,
+          "action_clock": {
+            "timestamp_epoch": 1784494287,
+            "t_minus_scheduled_seconds": 5913,
+            "t_minus_actual_bell_seconds": 11313
+          },
+          "action_clock_labels": {
+            "t_minus_scheduled": "T-98:33",
+            "t_minus_actual_bell": "T-188:33"
+          },
+          "joint_observation_at_action": {
+            "bid_cents": 37,
+            "ask_cents": 38,
+            "last_traded_cents": 38,
+            "spread_cents": 1,
+            "ask_dwell_seconds": 490,
+            "top_ask_size": 10113,
+            "top_five_ask_depth": 15133,
+            "source_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-4285",
+            "source_timestamp_epoch": 1784494287
+          },
+          "surviving_shapes_at_action": [
+            {
+              "shape_id": "ATP_CHALL_26_50_DOWN_CONTINUATION",
+              "verdict": "FLOOR",
+              "descent_adjustment": "FITTED_DESCENT_ORDINAL_REACHED",
+              "observed_new_low_descents": 9,
+              "required_new_low_descents": 2,
+              "base_verdict": "FLOOR",
+              "fitted_descent_distribution": {
+                "status": "FITTED",
+                "grain": "category + formed-book price region + exact quote-shape topology",
+                "support_n": 50,
+                "censored_n": 0,
+                "min": 1,
+                "p25": 1,
+                "median": 2,
+                "p75": 3,
+                "p90": 4,
+                "max": 11,
+                "counts": {
+                  "1": 23,
+                  "2": 13,
+                  "3": 4,
+                  "4": 6,
+                  "6": 2,
+                  "7": 1,
+                  "11": 1
+                },
+                "positive_descent_support_n": 50,
+                "positive_descent_median": 2,
+                "signing_ordinal_after_a_descent_is_observed": 2,
+                "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+              },
+              "temporal_authority": "STATIC_SHAPE_MEDOID",
+              "selected_training_members": [],
+              "selected_member_remaining_min_deltas": []
+            }
+          ],
+          "fired_predicates": [
+            "SHAPE_FLOOR_CONSENSUS",
+            "PAIR_TUPLE:EMPIRICALLY_OBSERVED_PAIR_TUPLE",
+            "INVERSE_SIBLING:INDEPENDENT_SIBLING_DIRECTION",
+            "MICRO_POSITION:ASK_PRICE_TRANSITION",
+            "STABLE_SAME_PRICE_ASK_RECEIPT",
+            "ASK_PRICE_TRANSITION",
+            "STABLE_SIGNER:DEMONSTRATED_ASK_DESCENT",
+            "EXACT_ACTION_BOOK",
+            "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+            "HONEST_FILL:PROVEN_TAKER"
+          ],
+          "terminal_reason": "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK",
+          "replay_credit_is_not_honest_evidence": true,
+          "fee_test": "NOT_RUN_BY_OPERATOR_INSTRUCTION",
+          "expected_close_forecast": "NOT_BOUND_AND_NOT_USED"
+        }
+      ],
+      "honest_completed_pair": true,
+      "every_leg_strictly_below_own_window1_close": true,
+      "combined_honest_entry_cents": 93,
+      "pair_strictly_under_par": true,
+      "objective_gate_pass": true,
+      "pair_reference": "NOT_BOUND"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "category": "ATP_CHALL",
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+          "category": "ATP_CHALL",
+          "price_region": "26_50",
+          "leg_id": "NIK",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK",
+          "proposed_entry_cents": 18,
+          "honest_credited_entry_cents": 18,
+          "honest_fill_class": "PROVEN_TAKER",
+          "honest_credit": {
+            "fill_class": "PROVEN_TAKER",
+            "credited_under_honest_model": true,
+            "reason": "Exact submission-time own BBO displayed at least five opposing contracts at or below X; the buy would cross.",
+            "action_book_exact": true,
+            "seller_aggressed_print_proofs": [],
+            "honest_credit_clock": {
+              "timestamp_epoch": 1784476318,
+              "t_minus_scheduled_seconds": 2282,
+              "t_minus_actual_bell_seconds": 2582
+            },
+            "honest_credit_receipts": [
+              "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz#row-2946"
+            ],
+            "displayed_opposing_capacity_at_or_below_x": 1201
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 19,
+          "delta_to_own_window1_close_cents": -1,
+          "own_bell_price_cents": 19,
+          "delta_to_own_bell_price_cents": -1,
+          "own_ask_reachable_low_cents": 18,
+          "delta_to_own_ask_reachable_low_cents": 0,
+          "action_clock": {
+            "timestamp_epoch": 1784476318,
+            "t_minus_scheduled_seconds": 2282,
+            "t_minus_actual_bell_seconds": 2582
+          },
+          "action_clock_labels": {
+            "t_minus_scheduled": "T-38:02",
+            "t_minus_actual_bell": "T-43:02"
+          },
+          "joint_observation_at_action": {
+            "bid_cents": 17,
+            "ask_cents": 18,
+            "last_traded_cents": 18,
+            "spread_cents": 1,
+            "ask_dwell_seconds": 12,
+            "top_ask_size": 1201,
+            "top_five_ask_depth": 7559,
+            "source_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz#row-2946",
+            "source_timestamp_epoch": 1784476318
+          },
+          "surviving_shapes_at_action": [
+            {
+              "shape_id": "ATP_CHALL_26_50_DOWN_REBOUND",
+              "verdict": "FLOOR",
+              "descent_adjustment": "FITTED_DESCENT_ORDINAL_REACHED",
+              "observed_new_low_descents": 8,
+              "required_new_low_descents": 3,
+              "base_verdict": "FLOOR",
+              "fitted_descent_distribution": {
+                "status": "FITTED",
+                "grain": "category + formed-book price region + exact quote-shape topology",
+                "support_n": 29,
+                "censored_n": 0,
+                "min": 1,
+                "p25": 2,
+                "median": 3,
+                "p75": 3,
+                "p90": 4,
+                "max": 8,
+                "counts": {
+                  "1": 1,
+                  "2": 12,
+                  "3": 9,
+                  "4": 5,
+                  "7": 1,
+                  "8": 1
+                },
+                "positive_descent_support_n": 29,
+                "positive_descent_median": 3,
+                "signing_ordinal_after_a_descent_is_observed": 3,
+                "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+              },
+              "temporal_authority": "STATIC_SHAPE_MEDOID",
+              "selected_training_members": [],
+              "selected_member_remaining_min_deltas": []
+            }
+          ],
+          "fired_predicates": [
+            "SHAPE_FLOOR_CONSENSUS",
+            "PAIR_TUPLE:EMPIRICALLY_OBSERVED_PAIR_TUPLE",
+            "INVERSE_SIBLING:INDEPENDENT_SIBLING_DIRECTION",
+            "MICRO_POSITION:ASK_PRICE_TRANSITION",
+            "STABLE_SAME_PRICE_ASK_RECEIPT",
+            "ASK_PRICE_TRANSITION",
+            "STABLE_SIGNER:DEMONSTRATED_ASK_DESCENT",
+            "EXACT_ACTION_BOOK",
+            "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+            "HONEST_FILL:PROVEN_TAKER"
+          ],
+          "terminal_reason": "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK",
+          "replay_credit_is_not_honest_evidence": true,
+          "fee_test": "NOT_RUN_BY_OPERATOR_INSTRUCTION",
+          "expected_close_forecast": "NOT_BOUND_AND_NOT_USED"
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+          "category": "ATP_CHALL",
+          "price_region": "51_75",
+          "leg_id": "VRB",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB",
+          "proposed_entry_cents": 68,
+          "honest_credited_entry_cents": 68,
+          "honest_fill_class": "PROVEN_TAKER",
+          "honest_credit": {
+            "fill_class": "PROVEN_TAKER",
+            "credited_under_honest_model": true,
+            "reason": "Exact submission-time own BBO displayed at least five opposing contracts at or below X; the buy would cross.",
+            "action_book_exact": true,
+            "seller_aggressed_print_proofs": [],
+            "honest_credit_clock": {
+              "timestamp_epoch": 1784459754,
+              "t_minus_scheduled_seconds": 18846,
+              "t_minus_actual_bell_seconds": 19146
+            },
+            "honest_credit_receipts": [
+              "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-233"
+            ],
+            "displayed_opposing_capacity_at_or_below_x": 110
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 83,
+          "delta_to_own_window1_close_cents": -15,
+          "own_bell_price_cents": 83,
+          "delta_to_own_bell_price_cents": -15,
+          "own_ask_reachable_low_cents": 68,
+          "delta_to_own_ask_reachable_low_cents": 0,
+          "action_clock": {
+            "timestamp_epoch": 1784459754,
+            "t_minus_scheduled_seconds": 18846,
+            "t_minus_actual_bell_seconds": 19146
+          },
+          "action_clock_labels": {
+            "t_minus_scheduled": "T-314:06",
+            "t_minus_actual_bell": "T-319:06"
+          },
+          "joint_observation_at_action": {
+            "bid_cents": 67,
+            "ask_cents": 68,
+            "last_traded_cents": 70,
+            "spread_cents": 1,
+            "ask_dwell_seconds": 32,
+            "top_ask_size": 110,
+            "top_five_ask_depth": 1084,
+            "source_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-233",
+            "source_timestamp_epoch": 1784459754
+          },
+          "surviving_shapes_at_action": [
+            {
+              "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+              "verdict": "FLOOR",
+              "descent_adjustment": "NOT_APPLICABLE",
+              "observed_new_low_descents": 0,
+              "base_verdict": "FLOOR",
+              "fitted_descent_distribution": {
+                "status": "FITTED",
+                "grain": "category + formed-book price region + exact quote-shape topology",
+                "support_n": 104,
+                "censored_n": 0,
+                "min": 0,
+                "p25": 0,
+                "median": 0,
+                "p75": 0,
+                "p90": 0,
+                "max": 0,
+                "counts": {
+                  "0": 104
+                },
+                "positive_descent_support_n": 0,
+                "positive_descent_median": null,
+                "signing_ordinal_after_a_descent_is_observed": null,
+                "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+              },
+              "temporal_authority": "STATIC_SHAPE_MEDOID",
+              "selected_training_members": [],
+              "selected_member_remaining_min_deltas": []
+            }
+          ],
+          "fired_predicates": [
+            "SHAPE_FLOOR_CONSENSUS",
+            "PAIR_TUPLE:EMPIRICALLY_OBSERVED_PAIR_TUPLE",
+            "INVERSE_SIBLING:INDEPENDENT_SIBLING_DIRECTION",
+            "MICRO_POSITION:ASK_PRICE_TRANSITION",
+            "STABLE_SAME_PRICE_ASK_RECEIPT",
+            "ASK_PRICE_TRANSITION",
+            "STABLE_SIGNER:ASK_PULSE_EXCEEDED_SPREAD_AND_RETURNED",
+            "EXACT_ACTION_BOOK",
+            "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+            "HONEST_FILL:PROVEN_TAKER"
+          ],
+          "terminal_reason": "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK",
+          "replay_credit_is_not_honest_evidence": true,
+          "fee_test": "NOT_RUN_BY_OPERATOR_INSTRUCTION",
+          "expected_close_forecast": "NOT_BOUND_AND_NOT_USED"
+        }
+      ],
+      "honest_completed_pair": true,
+      "every_leg_strictly_below_own_window1_close": true,
+      "combined_honest_entry_cents": 86,
+      "pair_strictly_under_par": true,
+      "objective_gate_pass": true,
+      "pair_reference": "NOT_BOUND"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "category": "ATP_MAIN",
+      "legs": [
+        {
+          "event_id": "KXATPMATCH-26JUL12LAJVAN",
+          "category": "ATP_MAIN",
+          "price_region": "26_50",
+          "leg_id": "LAJ",
+          "ticker": "KXATPMATCH-26JUL12LAJVAN-LAJ",
+          "proposed_entry_cents": 45,
+          "honest_credited_entry_cents": 45,
+          "honest_fill_class": "PROVEN_TAKER",
+          "honest_credit": {
+            "fill_class": "PROVEN_TAKER",
+            "credited_under_honest_model": true,
+            "reason": "Exact submission-time own BBO displayed at least five opposing contracts at or below X; the buy would cross.",
+            "action_book_exact": true,
+            "seller_aggressed_print_proofs": [],
+            "honest_credit_clock": {
+              "timestamp_epoch": 1783928118,
+              "t_minus_scheduled_seconds": -48918,
+              "t_minus_actual_bell_seconds": 30282
+            },
+            "honest_credit_receipts": [
+              "KXATPMATCH-26JUL12LAJVAN-LAJ.csv.gz#row-7117"
+            ],
+            "displayed_opposing_capacity_at_or_below_x": 1303
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 45,
+          "delta_to_own_window1_close_cents": 0,
+          "own_bell_price_cents": 45,
+          "delta_to_own_bell_price_cents": 0,
+          "own_ask_reachable_low_cents": 45,
+          "delta_to_own_ask_reachable_low_cents": 0,
+          "action_clock": {
+            "timestamp_epoch": 1783928118,
+            "t_minus_scheduled_seconds": -48918,
+            "t_minus_actual_bell_seconds": 30282
+          },
+          "action_clock_labels": {
+            "t_minus_scheduled": "T+815:18",
+            "t_minus_actual_bell": "T-504:42"
+          },
+          "joint_observation_at_action": {
+            "bid_cents": 44,
+            "ask_cents": 45,
+            "last_traded_cents": 44,
+            "spread_cents": 1,
+            "ask_dwell_seconds": 27195,
+            "top_ask_size": 1303,
+            "top_five_ask_depth": 8094,
+            "source_receipt": "KXATPMATCH-26JUL12LAJVAN-LAJ.csv.gz#row-7117",
+            "source_timestamp_epoch": 1783928118
+          },
+          "surviving_shapes_at_action": [
+            {
+              "shape_id": "ATP_MAIN_26_50_DOWN_REBOUND",
+              "verdict": "FLOOR",
+              "descent_adjustment": "FITTED_DESCENT_ORDINAL_REACHED",
+              "observed_new_low_descents": 5,
+              "required_new_low_descents": 3,
+              "base_verdict": "FLOOR",
+              "fitted_descent_distribution": {
+                "status": "FITTED",
+                "grain": "category + formed-book price region + exact quote-shape topology",
+                "support_n": 21,
+                "censored_n": 0,
+                "min": 2,
+                "p25": 2,
+                "median": 3,
+                "p75": 6,
+                "p90": 9,
+                "max": 9,
+                "counts": {
+                  "2": 6,
+                  "3": 5,
+                  "4": 2,
+                  "5": 1,
+                  "6": 2,
+                  "7": 1,
+                  "8": 1,
+                  "9": 3
+                },
+                "positive_descent_support_n": 21,
+                "positive_descent_median": 3,
+                "signing_ordinal_after_a_descent_is_observed": 3,
+                "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+              },
+              "temporal_authority": "STATIC_SHAPE_MEDOID",
+              "selected_training_members": [],
+              "selected_member_remaining_min_deltas": []
+            }
+          ],
+          "fired_predicates": [
+            "SHAPE_FLOOR_CONSENSUS",
+            "PAIR_TUPLE:STRUCTURAL_INVERSE_CLOSURE",
+            "INVERSE_SIBLING:INDEPENDENT_SIBLING_DIRECTION",
+            "MICRO_POSITION:ASK_PRICE_TRANSITION",
+            "STABLE_SAME_PRICE_ASK_RECEIPT",
+            "ASK_PRICE_TRANSITION",
+            "STABLE_SIGNER:DEMONSTRATED_ASK_DESCENT",
+            "EXACT_ACTION_BOOK",
+            "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+            "HONEST_FILL:PROVEN_TAKER"
+          ],
+          "terminal_reason": "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK",
+          "replay_credit_is_not_honest_evidence": true,
+          "fee_test": "NOT_RUN_BY_OPERATOR_INSTRUCTION",
+          "expected_close_forecast": "NOT_BOUND_AND_NOT_USED"
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL12LAJVAN",
+          "category": "ATP_MAIN",
+          "price_region": "26_50",
+          "leg_id": "VAN",
+          "ticker": "KXATPMATCH-26JUL12LAJVAN-VAN",
+          "proposed_entry_cents": 50,
+          "honest_credited_entry_cents": 50,
+          "honest_fill_class": "PROVEN_TAKER",
+          "honest_credit": {
+            "fill_class": "PROVEN_TAKER",
+            "credited_under_honest_model": true,
+            "reason": "Exact submission-time own BBO displayed at least five opposing contracts at or below X; the buy would cross.",
+            "action_book_exact": true,
+            "seller_aggressed_print_proofs": [],
+            "honest_credit_clock": {
+              "timestamp_epoch": 1783851521,
+              "t_minus_scheduled_seconds": 27679,
+              "t_minus_actual_bell_seconds": 106879
+            },
+            "honest_credit_receipts": [
+              "KXATPMATCH-26JUL12LAJVAN-VAN.csv.gz#row-12169"
+            ],
+            "displayed_opposing_capacity_at_or_below_x": 351
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 57,
+          "delta_to_own_window1_close_cents": -7,
+          "own_bell_price_cents": 57,
+          "delta_to_own_bell_price_cents": -7,
+          "own_ask_reachable_low_cents": 50,
+          "delta_to_own_ask_reachable_low_cents": 0,
+          "action_clock": {
+            "timestamp_epoch": 1783851521,
+            "t_minus_scheduled_seconds": 27679,
+            "t_minus_actual_bell_seconds": 106879
+          },
+          "action_clock_labels": {
+            "t_minus_scheduled": "T-461:19",
+            "t_minus_actual_bell": "T-1781:19"
+          },
+          "joint_observation_at_action": {
+            "bid_cents": 49,
+            "ask_cents": 50,
+            "last_traded_cents": 51,
+            "spread_cents": 1,
+            "ask_dwell_seconds": 556,
+            "top_ask_size": 351,
+            "top_five_ask_depth": 3759,
+            "source_receipt": "KXATPMATCH-26JUL12LAJVAN-VAN.csv.gz#row-12169",
+            "source_timestamp_epoch": 1783851521
+          },
+          "surviving_shapes_at_action": [
+            {
+              "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+              "verdict": "FLOOR",
+              "descent_adjustment": "NOT_APPLICABLE",
+              "observed_new_low_descents": 0,
+              "base_verdict": "FLOOR",
+              "fitted_descent_distribution": {
+                "status": "FITTED",
+                "grain": "category + formed-book price region + exact quote-shape topology",
+                "support_n": 10,
+                "censored_n": 1,
+                "min": 0,
+                "p25": 0,
+                "median": 0,
+                "p75": 0,
+                "p90": 0,
+                "max": 0,
+                "counts": {
+                  "0": 10
+                },
+                "positive_descent_support_n": 0,
+                "positive_descent_median": null,
+                "signing_ordinal_after_a_descent_is_observed": null,
+                "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+              },
+              "temporal_authority": "STATIC_SHAPE_MEDOID",
+              "selected_training_members": [],
+              "selected_member_remaining_min_deltas": []
+            }
+          ],
+          "fired_predicates": [
+            "SHAPE_FLOOR_CONSENSUS",
+            "PAIR_TUPLE:STRUCTURAL_INVERSE_CLOSURE",
+            "INVERSE_SIBLING:SINGLE_SURVIVING_INVERSE_PAIR_TUPLE_WITH_SIBLING_OWN_MICRO_RECEIPT",
+            "MICRO_POSITION:STRICTLY_LATER_SAME_PRICE_ASK_RECEIPT",
+            "STABLE_SAME_PRICE_ASK_RECEIPT",
+            "STABLE_SIGNER:TOP_ASK_PRICE_AND_SIZE_PERSISTED",
+            "EXACT_ACTION_BOOK",
+            "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+            "HONEST_FILL:PROVEN_TAKER"
+          ],
+          "terminal_reason": "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK",
+          "replay_credit_is_not_honest_evidence": true,
+          "fee_test": "NOT_RUN_BY_OPERATOR_INSTRUCTION",
+          "expected_close_forecast": "NOT_BOUND_AND_NOT_USED"
+        }
+      ],
+      "honest_completed_pair": true,
+      "every_leg_strictly_below_own_window1_close": false,
+      "combined_honest_entry_cents": 95,
+      "pair_strictly_under_par": true,
+      "objective_gate_pass": false,
+      "pair_reference": "NOT_BOUND"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "category": "WTA_CHALL",
+      "legs": [
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+          "category": "WTA_CHALL",
+          "price_region": "26_50",
+          "leg_id": "BRA",
+          "ticker": "KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA",
+          "proposed_entry_cents": 40,
+          "honest_credited_entry_cents": 40,
+          "honest_fill_class": "PROVEN_TAKER",
+          "honest_credit": {
+            "fill_class": "PROVEN_TAKER",
+            "credited_under_honest_model": true,
+            "reason": "Exact submission-time own BBO displayed at least five opposing contracts at or below X; the buy would cross.",
+            "action_book_exact": true,
+            "seller_aggressed_print_proofs": [],
+            "honest_credit_clock": {
+              "timestamp_epoch": 1784201808,
+              "t_minus_scheduled_seconds": 27792,
+              "t_minus_actual_bell_seconds": 30792
+            },
+            "honest_credit_receipts": [
+              "KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA.csv.gz#row-1252"
+            ],
+            "displayed_opposing_capacity_at_or_below_x": 2180
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 44,
+          "delta_to_own_window1_close_cents": -4,
+          "own_bell_price_cents": 44,
+          "delta_to_own_bell_price_cents": -4,
+          "own_ask_reachable_low_cents": 40,
+          "delta_to_own_ask_reachable_low_cents": 0,
+          "action_clock": {
+            "timestamp_epoch": 1784201808,
+            "t_minus_scheduled_seconds": 27792,
+            "t_minus_actual_bell_seconds": 30792
+          },
+          "action_clock_labels": {
+            "t_minus_scheduled": "T-463:12",
+            "t_minus_actual_bell": "T-513:12"
+          },
+          "joint_observation_at_action": {
+            "bid_cents": 39,
+            "ask_cents": 40,
+            "last_traded_cents": 40,
+            "spread_cents": 1,
+            "ask_dwell_seconds": 1000,
+            "top_ask_size": 2180,
+            "top_five_ask_depth": 8509,
+            "source_receipt": "KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA.csv.gz#row-1252",
+            "source_timestamp_epoch": 1784201808
+          },
+          "surviving_shapes_at_action": [
+            {
+              "shape_id": "WTA_CHALL_26_50_DOWN_CONTINUATION",
+              "verdict": "FLOOR",
+              "descent_adjustment": "NOT_APPLICABLE",
+              "observed_new_low_descents": 0,
+              "base_verdict": "FLOOR",
+              "fitted_descent_distribution": {
+                "status": "FITTED",
+                "grain": "category + formed-book price region + exact quote-shape topology",
+                "support_n": 14,
+                "censored_n": 0,
+                "min": 0,
+                "p25": 1,
+                "median": 1,
+                "p75": 1,
+                "p90": 2,
+                "max": 6,
+                "counts": {
+                  "0": 1,
+                  "1": 9,
+                  "2": 2,
+                  "3": 1,
+                  "6": 1
+                },
+                "positive_descent_support_n": 13,
+                "positive_descent_median": 1,
+                "signing_ordinal_after_a_descent_is_observed": 1,
+                "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+              },
+              "temporal_authority": "CAUSALLY_NEAREST_ZERO_DESCENT_MEMBER",
+              "selected_training_members": [
+                {
+                  "event_id": "KXWTACHALLENGERMATCH-26JUL14CARVON",
+                  "leg_id": "VON",
+                  "ticker": "KXWTACHALLENGERMATCH-26JUL14CARVON-VON"
+                }
+              ],
+              "selected_member_remaining_min_deltas": [
+                0
+              ]
+            }
+          ],
+          "fired_predicates": [
+            "SHAPE_FLOOR_CONSENSUS",
+            "PAIR_TUPLE:EMPIRICALLY_OBSERVED_PAIR_TUPLE",
+            "INVERSE_SIBLING:SINGLE_SURVIVING_INVERSE_PAIR_TUPLE_WITH_SIBLING_OWN_MICRO_RECEIPT",
+            "MICRO_POSITION:STRICTLY_LATER_SAME_PRICE_ASK_RECEIPT",
+            "STABLE_SAME_PRICE_ASK_RECEIPT",
+            "STABLE_SIGNER:TOP_ASK_PRICE_AND_SIZE_PERSISTED",
+            "EXACT_ACTION_BOOK",
+            "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+            "HONEST_FILL:PROVEN_TAKER"
+          ],
+          "terminal_reason": "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK",
+          "replay_credit_is_not_honest_evidence": true,
+          "fee_test": "NOT_RUN_BY_OPERATOR_INSTRUCTION",
+          "expected_close_forecast": "NOT_BOUND_AND_NOT_USED"
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+          "category": "WTA_CHALL",
+          "price_region": "51_75",
+          "leg_id": "VED",
+          "ticker": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED",
+          "proposed_entry_cents": 57,
+          "honest_credited_entry_cents": 57,
+          "honest_fill_class": "PROVEN_TAKER",
+          "honest_credit": {
+            "fill_class": "PROVEN_TAKER",
+            "credited_under_honest_model": true,
+            "reason": "Exact submission-time own BBO displayed at least five opposing contracts at or below X; the buy would cross.",
+            "action_book_exact": true,
+            "seller_aggressed_print_proofs": [],
+            "honest_credit_clock": {
+              "timestamp_epoch": 1784228971,
+              "t_minus_scheduled_seconds": 629,
+              "t_minus_actual_bell_seconds": 3629
+            },
+            "honest_credit_receipts": [
+              "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED.csv.gz#row-5126"
+            ],
+            "displayed_opposing_capacity_at_or_below_x": 4886
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 57,
+          "delta_to_own_window1_close_cents": 0,
+          "own_bell_price_cents": 57,
+          "delta_to_own_bell_price_cents": 0,
+          "own_ask_reachable_low_cents": 57,
+          "delta_to_own_ask_reachable_low_cents": 0,
+          "action_clock": {
+            "timestamp_epoch": 1784228971,
+            "t_minus_scheduled_seconds": 629,
+            "t_minus_actual_bell_seconds": 3629
+          },
+          "action_clock_labels": {
+            "t_minus_scheduled": "T-10:29",
+            "t_minus_actual_bell": "T-60:29"
+          },
+          "joint_observation_at_action": {
+            "bid_cents": 56,
+            "ask_cents": 57,
+            "last_traded_cents": 57,
+            "spread_cents": 1,
+            "ask_dwell_seconds": 13,
+            "top_ask_size": 4886,
+            "top_five_ask_depth": 18561,
+            "source_receipt": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED.csv.gz#row-5126",
+            "source_timestamp_epoch": 1784228971
+          },
+          "surviving_shapes_at_action": [
+            {
+              "shape_id": "WTA_CHALL_51_75_DOWN_REBOUND",
+              "verdict": "FLOOR",
+              "descent_adjustment": "FITTED_DESCENT_ORDINAL_REACHED",
+              "observed_new_low_descents": 2,
+              "required_new_low_descents": 2,
+              "base_verdict": "FLOOR",
+              "fitted_descent_distribution": {
+                "status": "FITTED",
+                "grain": "category + formed-book price region + exact quote-shape topology",
+                "support_n": 1,
+                "censored_n": 0,
+                "min": 2,
+                "p25": 2,
+                "median": 2,
+                "p75": 2,
+                "p90": 2,
+                "max": 2,
+                "counts": {
+                  "2": 1
+                },
+                "positive_descent_support_n": 1,
+                "positive_descent_median": 2,
+                "signing_ordinal_after_a_descent_is_observed": 2,
+                "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+              },
+              "temporal_authority": "STATIC_SHAPE_MEDOID",
+              "selected_training_members": [],
+              "selected_member_remaining_min_deltas": []
+            }
+          ],
+          "fired_predicates": [
+            "SHAPE_FLOOR_CONSENSUS",
+            "PAIR_TUPLE:EMPIRICALLY_OBSERVED_PAIR_TUPLE",
+            "INVERSE_SIBLING:INDEPENDENT_SIBLING_DIRECTION",
+            "MICRO_POSITION:ASK_PRICE_TRANSITION",
+            "STABLE_SAME_PRICE_ASK_RECEIPT",
+            "ASK_PRICE_TRANSITION",
+            "STABLE_SIGNER:DEMONSTRATED_ASK_DESCENT",
+            "EXACT_ACTION_BOOK",
+            "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+            "HONEST_FILL:PROVEN_TAKER"
+          ],
+          "terminal_reason": "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK",
+          "replay_credit_is_not_honest_evidence": true,
+          "fee_test": "NOT_RUN_BY_OPERATOR_INSTRUCTION",
+          "expected_close_forecast": "NOT_BOUND_AND_NOT_USED"
+        }
+      ],
+      "honest_completed_pair": true,
+      "every_leg_strictly_below_own_window1_close": false,
+      "combined_honest_entry_cents": 97,
+      "pair_strictly_under_par": true,
+      "objective_gate_pass": false,
+      "pair_reference": "NOT_BOUND"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "category": "WTA_MAIN",
+      "legs": [
+        {
+          "event_id": "KXWTAMATCH-26JUL20KORJIM",
+          "category": "WTA_MAIN",
+          "price_region": "26_50",
+          "leg_id": "JIM",
+          "ticker": "KXWTAMATCH-26JUL20KORJIM-JIM",
+          "proposed_entry_cents": 31,
+          "honest_credited_entry_cents": 31,
+          "honest_fill_class": "PROVEN_TAKER",
+          "honest_credit": {
+            "fill_class": "PROVEN_TAKER",
+            "credited_under_honest_model": true,
+            "reason": "Exact submission-time own BBO displayed at least five opposing contracts at or below X; the buy would cross.",
+            "action_book_exact": true,
+            "seller_aggressed_print_proofs": [],
+            "honest_credit_clock": {
+              "timestamp_epoch": 1784609213,
+              "t_minus_scheduled_seconds": -64013,
+              "t_minus_actual_bell_seconds": 30787
+            },
+            "honest_credit_receipts": [
+              "KXWTAMATCH-26JUL20KORJIM-JIM.csv.gz#row-5513"
+            ],
+            "displayed_opposing_capacity_at_or_below_x": 4093
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 32,
+          "delta_to_own_window1_close_cents": -1,
+          "own_bell_price_cents": 32,
+          "delta_to_own_bell_price_cents": -1,
+          "own_ask_reachable_low_cents": 30,
+          "delta_to_own_ask_reachable_low_cents": 1,
+          "action_clock": {
+            "timestamp_epoch": 1784609213,
+            "t_minus_scheduled_seconds": -64013,
+            "t_minus_actual_bell_seconds": 30787
+          },
+          "action_clock_labels": {
+            "t_minus_scheduled": "T+1066:53",
+            "t_minus_actual_bell": "T-513:07"
+          },
+          "joint_observation_at_action": {
+            "bid_cents": 30,
+            "ask_cents": 31,
+            "last_traded_cents": 31,
+            "spread_cents": 1,
+            "ask_dwell_seconds": 48841,
+            "top_ask_size": 4093,
+            "top_five_ask_depth": 45792,
+            "source_receipt": "KXWTAMATCH-26JUL20KORJIM-JIM.csv.gz#row-5513",
+            "source_timestamp_epoch": 1784609213
+          },
+          "surviving_shapes_at_action": [
+            {
+              "shape_id": "WTA_MAIN_26_50_DOWN_CONTINUATION",
+              "verdict": "FLOOR",
+              "descent_adjustment": "FITTED_DESCENT_ORDINAL_REACHED",
+              "observed_new_low_descents": 8,
+              "required_new_low_descents": 2,
+              "base_verdict": "FLOOR",
+              "fitted_descent_distribution": {
+                "status": "FITTED",
+                "grain": "category + formed-book price region + exact quote-shape topology",
+                "support_n": 32,
+                "censored_n": 0,
+                "min": 1,
+                "p25": 1,
+                "median": 2,
+                "p75": 3,
+                "p90": 4,
+                "max": 6,
+                "counts": {
+                  "1": 13,
+                  "2": 9,
+                  "3": 4,
+                  "4": 2,
+                  "5": 3,
+                  "6": 1
+                },
+                "positive_descent_support_n": 32,
+                "positive_descent_median": 2,
+                "signing_ordinal_after_a_descent_is_observed": 2,
+                "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+              },
+              "temporal_authority": "STATIC_SHAPE_MEDOID",
+              "selected_training_members": [],
+              "selected_member_remaining_min_deltas": []
+            }
+          ],
+          "fired_predicates": [
+            "SHAPE_FLOOR_CONSENSUS",
+            "PAIR_TUPLE:STRUCTURAL_INVERSE_CLOSURE",
+            "INVERSE_SIBLING:INDEPENDENT_SIBLING_DIRECTION",
+            "MICRO_POSITION:ASK_PRICE_TRANSITION",
+            "STABLE_SAME_PRICE_ASK_RECEIPT",
+            "ASK_PRICE_TRANSITION",
+            "STABLE_SIGNER:DEMONSTRATED_ASK_DESCENT",
+            "EXACT_ACTION_BOOK",
+            "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+            "HONEST_FILL:PROVEN_TAKER"
+          ],
+          "terminal_reason": "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK",
+          "replay_credit_is_not_honest_evidence": true,
+          "fee_test": "NOT_RUN_BY_OPERATOR_INSTRUCTION",
+          "expected_close_forecast": "NOT_BOUND_AND_NOT_USED"
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20KORJIM",
+          "category": "WTA_MAIN",
+          "price_region": "51_75",
+          "leg_id": "KOR",
+          "ticker": "KXWTAMATCH-26JUL20KORJIM-KOR",
+          "proposed_entry_cents": 60,
+          "honest_credited_entry_cents": 60,
+          "honest_fill_class": "PROVEN_TAKER",
+          "honest_credit": {
+            "fill_class": "PROVEN_TAKER",
+            "credited_under_honest_model": true,
+            "reason": "Exact submission-time own BBO displayed at least five opposing contracts at or below X; the buy would cross.",
+            "action_book_exact": true,
+            "seller_aggressed_print_proofs": [],
+            "honest_credit_clock": {
+              "timestamp_epoch": 1784540481,
+              "t_minus_scheduled_seconds": 4719,
+              "t_minus_actual_bell_seconds": 99519
+            },
+            "honest_credit_receipts": [
+              "KXWTAMATCH-26JUL20KORJIM-KOR.csv.gz#row-5092"
+            ],
+            "displayed_opposing_capacity_at_or_below_x": 12
+          },
+          "pair_reference_cents": "NOT_BOUND",
+          "delta_to_pair_reference_cents": "NOT_BOUND",
+          "own_window1_close_cents": 70,
+          "delta_to_own_window1_close_cents": -10,
+          "own_bell_price_cents": 70,
+          "delta_to_own_bell_price_cents": -10,
+          "own_ask_reachable_low_cents": 60,
+          "delta_to_own_ask_reachable_low_cents": 0,
+          "action_clock": {
+            "timestamp_epoch": 1784540481,
+            "t_minus_scheduled_seconds": 4719,
+            "t_minus_actual_bell_seconds": 99519
+          },
+          "action_clock_labels": {
+            "t_minus_scheduled": "T-78:39",
+            "t_minus_actual_bell": "T-1658:39"
+          },
+          "joint_observation_at_action": {
+            "bid_cents": 59,
+            "ask_cents": 60,
+            "last_traded_cents": 60,
+            "spread_cents": 1,
+            "ask_dwell_seconds": 316,
+            "top_ask_size": 12,
+            "top_five_ask_depth": 3223,
+            "source_receipt": "KXWTAMATCH-26JUL20KORJIM-KOR.csv.gz#row-5092",
+            "source_timestamp_epoch": 1784540481
+          },
+          "surviving_shapes_at_action": [
+            {
+              "shape_id": "WTA_MAIN_51_75_FLAT_UNMOVED",
+              "verdict": "FLOOR",
+              "descent_adjustment": "NOT_APPLICABLE",
+              "observed_new_low_descents": 0,
+              "base_verdict": "FLOOR",
+              "fitted_descent_distribution": {
+                "status": "FITTED",
+                "grain": "category + formed-book price region + exact quote-shape topology",
+                "support_n": 17,
+                "censored_n": 0,
+                "min": 0,
+                "p25": 0,
+                "median": 0,
+                "p75": 0,
+                "p90": 0,
+                "max": 0,
+                "counts": {
+                  "0": 17
+                },
+                "positive_descent_support_n": 0,
+                "positive_descent_median": null,
+                "signing_ordinal_after_a_descent_is_observed": null,
+                "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+              },
+              "temporal_authority": "STATIC_SHAPE_MEDOID",
+              "selected_training_members": [],
+              "selected_member_remaining_min_deltas": []
+            }
+          ],
+          "fired_predicates": [
+            "SHAPE_FLOOR_CONSENSUS",
+            "PAIR_TUPLE:EMPIRICALLY_OBSERVED_PAIR_TUPLE",
+            "INVERSE_SIBLING:SINGLE_SURVIVING_INVERSE_PAIR_TUPLE_WITH_SIBLING_OWN_MICRO_RECEIPT",
+            "MICRO_POSITION:STRICTLY_LATER_SAME_PRICE_ASK_RECEIPT",
+            "STABLE_SAME_PRICE_ASK_RECEIPT",
+            "STABLE_SIGNER:TOP_ASK_PRICE_AND_SIZE_PERSISTED",
+            "EXACT_ACTION_BOOK",
+            "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE",
+            "HONEST_FILL:PROVEN_TAKER"
+          ],
+          "terminal_reason": "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK",
+          "replay_credit_is_not_honest_evidence": true,
+          "fee_test": "NOT_RUN_BY_OPERATOR_INSTRUCTION",
+          "expected_close_forecast": "NOT_BOUND_AND_NOT_USED"
+        }
+      ],
+      "honest_completed_pair": true,
+      "every_leg_strictly_below_own_window1_close": true,
+      "combined_honest_entry_cents": 91,
+      "pair_strictly_under_par": true,
+      "objective_gate_pass": true,
+      "pair_reference": "NOT_BOUND"
+    }
+  ]
+}

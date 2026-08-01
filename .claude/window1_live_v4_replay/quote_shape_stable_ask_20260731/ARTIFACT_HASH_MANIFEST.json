@@ -1,0 +1,70 @@
+{
+  "schema_version": "WINDOW1_QUOTE_SHAPE_STABLE_ASK_ARTIFACT_MANIFEST_V2",
+  "artifacts": [
+    {
+      "path": "BRAVED_QUOTE_SHAPE_REPLAY.svg",
+      "bytes": 107047,
+      "sha256": "ecd1ecb25bb22b078d37ca36324e6648b19d20b9ba33511170e7d7fd23dbdc67"
+    },
+    {
+      "path": "FIVE_GAME_REPLAY.json",
+      "bytes": 1970533,
+      "sha256": "667b927bcc5bafbcdbfcaed80985851081c673a83dbe20e7698019296bc5df9a"
+    },
+    {
+      "path": "FIVE_GAME_SUMMARY.json",
+      "bytes": 15523,
+      "sha256": "9bfd2138b426dd9f808807df1ae2deabb99a78ee4b8737629a10117319f91f8b"
+    },
+    {
+      "path": "HURBIG_QUOTE_SHAPE_REPLAY.svg",
+      "bytes": 108376,
+      "sha256": "68833e9430eac89c404ac1aa5e40a16b53ef1400aebbf283b0ab7d118670a5dd"
+    },
+    {
+      "path": "KORJIM_QUOTE_SHAPE_REPLAY.svg",
+      "bytes": 104991,
+      "sha256": "ff38a8dc3c3d91de2bddc7259b0579ea5f0e8e34b273f7008ec8a505e7817dda"
+    },
+    {
+      "path": "LAJVAN_QUOTE_SHAPE_REPLAY.svg",
+      "bytes": 107176,
+      "sha256": "d2fb4d99f51fce5370dba5e54d1311ba4e8ddc2076f5283fb6e155a56051971c"
+    },
+    {
+      "path": "NIKVRB_QUOTE_SHAPE_REPLAY.svg",
+      "bytes": 108483,
+      "sha256": "fb75c503fda19e0c5cb772242741261e040202cdd15f0105959bf3f0098afba2"
+    },
+    {
+      "path": "QUOTE_SHAPE_LIBRARY_LEAVE_FIVE_OUT.json",
+      "bytes": 17292937,
+      "sha256": "8fbcb59c1a747aed5580d579d1234069cfaebf3a951af5718f227f5bae329e87"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 3566,
+      "sha256": "21802bf148f26c7c2969219d2951c013603776671e812269b879a48eae5091f3"
+    },
+    {
+      "path": "SOURCE_HASH_MANIFEST.json",
+      "bytes": 2535,
+      "sha256": "bfaeb2547eded7f8a0950158e69ab7e007ede02af23cfbfc9e0eb4a395bdb974"
+    },
+    {
+      "path": "STABLE_SAME_PRICE_TRANSITION_RECEIPT.json",
+      "bytes": 2955,
+      "sha256": "b1cad8e059fbf4c87ce649f655392fa5c0dfb6cbc65e2b3c8000146867a2e81f"
+    },
+    {
+      "path": "TWO_GAME_SUBSET.json",
+      "bytes": 9781,
+      "sha256": "7065e25d764a1a91c21ca2d219799afd5220a2476a752e0ec306d176f342765c"
+    },
+    {
+      "path": "V1_BYTE_IDENTITY_RECEIPT.json",
+      "bytes": 943,
+      "sha256": "d2cf2132493ae380b580509b7e8f777f3df0773b10c67f34af61f5edf05a4d18"
+    }
+  ]
+}

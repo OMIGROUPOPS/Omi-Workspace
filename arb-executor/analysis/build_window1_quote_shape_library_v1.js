@@ -11,10 +11,10 @@ const zlib = require("zlib");
 const { Worker, isMainThread, parentPort, workerData } = require("worker_threads");
 
 const GRID = 100;
-const EXCLUDED_EVENTS = new Set([
+const DEFAULT_EXCLUDED_EVENTS = [
   "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
   "KXATPCHALLENGERMATCH-26JUL19HURBIG",
-]);
+];
 const PREFIX_KEYS = ["ask_net", "ask_dip", "mean_spread", "spread_range", "quote_rate", "ask_change_rate", "ask_dwell_fraction", "mean_log_top_ask_size", "mean_log_top5_ask_depth"];
 const FINAL_KEYS = ["ask_net", "ask_dip", "ask_peak", "first_min_progress", "floor_dwell_fraction", "mean_spread", "spread_range", "quote_rate", "ask_change_rate", "median_ask_episode_dwell", "mean_log_top_ask_size", "mean_log_top5_ask_depth"];
 
@@ -135,9 +135,10 @@ function clusterGroup(rows, groupKey) {
 async function main() {
   const args = process.argv.slice(2), value = (name, fallback = null) => { const i = args.indexOf(name); return i >= 0 ? args[i + 1] : fallback; };
   const repo = path.resolve(value("--repo", ".")), privateRoot = path.resolve(value("--private-root", "C:/Users/omigr/OMI-Window1-private")), output = path.resolve(value("--output")), workerCount = Number(value("--workers", "8"));
+  const excludedEvents = new Set(value("--exclude-events", DEFAULT_EXCLUDED_EVENTS.join(",")).split(",").filter(Boolean));
   fs.mkdirSync(path.dirname(output), { recursive: true });
   const sourcePath = path.join(repo, ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv"), matrix = fs.readFileSync(sourcePath, "utf8").trimEnd().split(/\r?\n/), headers = matrix.shift().split(",");
-  const sources = matrix.map((line) => Object.fromEntries(line.split(",").map((v, i) => [headers[i], v]))).filter((r) => String(r.evaluator_window_positive).toLowerCase() === "true" && !EXCLUDED_EVENTS.has(r.event_id));
+  const sources = matrix.map((line) => Object.fromEntries(line.split(",").map((v, i) => [headers[i], v]))).filter((r) => String(r.evaluator_window_positive).toLowerCase() === "true" && !excludedEvents.has(r.event_id));
   const buckets = Array.from({ length: workerCount }, () => []); sources.forEach((s, i) => buckets[i % workerCount].push(s));
   const workers = buckets.map((bucket) => new Promise((resolve, reject) => { const worker = new Worker(__filename, { workerData: { sources: bucket, ticksRoot: path.join(privateRoot, "fit-local/ticks") } }); worker.once("message", resolve); worker.once("error", reject); worker.once("exit", (code) => { if (code) reject(new Error(`worker exit ${code}`)); }); }));
   const scanned = (await Promise.all(workers)).flat().sort((a, b) => a.event_id.localeCompare(b.event_id) || a.leg_id.localeCompare(b.leg_id)), available = scanned.filter((r) => r.status === "AVAILABLE"), grouped = new Map();
@@ -149,7 +150,7 @@ async function main() {
     if (legs.length !== 2) continue; legs.sort((a, b) => b.first_ask - a.first_ask || a.leg_id.localeCompare(b.leg_id)); const [high, low] = legs, highShape = assignment[`${eventId}|${high.leg_id}`], lowShape = assignment[`${eventId}|${low.leg_id}`]; if (!highShape || !lowShape) continue;
     const key = `${high.category}|${high.price_region}|${low.price_region}`; if (!pairTuples[key]) pairTuples[key] = {}; const tuple = `${highShape}|${lowShape}`; pairTuples[key][tuple] = (pairTuples[key][tuple] || 0) + 1;
   }
-  const result = { schema_version: "WINDOW1_QUOTE_SHAPE_LIBRARY_V1", score_free: true, training_events: new Set(available.map((r) => r.event_id)).size, training_legs: available.length, excluded_cold_test_events: [...EXCLUDED_EVENTS].sort(), price_band_key: "best bid on first one-tick-spread lawful book; prior unformed/wide books retain INSUFFICIENT_EVIDENCE", feature_contract: { full_path: FINAL_KEYS, tick_prefix: PREFIX_KEYS, displayed_volume: "time-weighted log1p top-ask displayed size", depth: "time-weighted log1p top-five ask depth", no_print_shape_dependency: true }, clustering: "per category and formed-book bid price band; exact integer-cent ask-path topology; within-shape medoids and prefix support fitted on quote dwell/spread/cadence/displayed-volume/depth", groups, assignment, pair_shape_tuples: pairTuples, source: { quote_ledger: { path: path.relative(repo, sourcePath).replaceAll("\\", "/"), sha256: sha256(fs.readFileSync(sourcePath)) }, tick_files: Object.fromEntries(scanned.map((r) => [r.ticker, r.source])) } };
+  const result = { schema_version: "WINDOW1_QUOTE_SHAPE_LIBRARY_V1", score_free: true, training_events: new Set(available.map((r) => r.event_id)).size, training_legs: available.length, excluded_cold_test_events: [...excludedEvents].sort(), price_band_key: "best bid on first one-tick-spread lawful book; prior unformed/wide books retain INSUFFICIENT_EVIDENCE", feature_contract: { full_path: FINAL_KEYS, tick_prefix: PREFIX_KEYS, displayed_volume: "time-weighted log1p top-ask displayed size", depth: "time-weighted log1p top-five ask depth", no_print_shape_dependency: true }, clustering: "per category and formed-book bid price band; exact integer-cent ask-path topology; within-shape medoids and prefix support fitted on quote dwell/spread/cadence/displayed-volume/depth", groups, assignment, pair_shape_tuples: pairTuples, source: { quote_ledger: { path: path.relative(repo, sourcePath).replaceAll("\\", "/"), sha256: sha256(fs.readFileSync(sourcePath)) }, tick_files: Object.fromEntries(scanned.map((r) => [r.ticker, r.source])) } };
   fs.writeFileSync(output, canonical(result)); process.stdout.write(canonical({ status: "BUILT", training_events: result.training_events, training_legs: result.training_legs, groups: Object.keys(groups).length, shapes: Object.values(groups).reduce((s, g) => s + g.shapes.length, 0), sha256: sha256(Buffer.from(canonical(result))) }));
 }
 

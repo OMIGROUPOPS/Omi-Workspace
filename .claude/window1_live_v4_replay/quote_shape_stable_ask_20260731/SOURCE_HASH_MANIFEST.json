@@ -1,0 +1,66 @@
+{
+  "schema_version": "WINDOW1_QUOTE_SHAPE_STABLE_ASK_SOURCE_MANIFEST_V2",
+  "sources": [
+    {
+      "path": "arb-executor/analysis/build_window1_quote_shape_library_v1.js",
+      "bytes": 17253,
+      "sha256": "dd141aadf5b157960187d138abe2b2edc1dafaa49cd189af5f780c1158b2b7f3"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+      "bytes": 26695,
+      "sha256": "f2d902951d07b85232c90915134335b60f5b1fb4ac674f34e0574ecf76f9f374"
+    },
+    {
+      "path": "arb-executor/analysis/window1_quote_shape_micro_position_v2.js",
+      "bytes": 1830,
+      "sha256": "0d56dc04f5d0b17308b30c44477c52ced66419fa1f3a94541fe960faff040ce2"
+    },
+    {
+      "path": "arb-executor/analysis/build_window1_quote_shape_stable_ask_replay_v2.js",
+      "bytes": 15799,
+      "sha256": "1b84c4e30821afcf83b0c8a747ba9d9348e6d8f9a10ca5f2ca16f903f3b9c3e4"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_shape_elimination_20260731/TWO_GAME_REPLAY.json",
+      "bytes": 788496,
+      "sha256": "0a0c4d037001d84325b627e25f33a39afb220cfdb544fd5d89648434ba94c15c"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_shape_elimination_20260731/QUOTE_SHAPE_LIBRARY.json",
+      "bytes": 17292431,
+      "sha256": "eb6c267f204c33fb312c8bdf1e9c26fed3d16fe88bd9713d07790f4e73a6e700"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_shape_elimination_big_walk_20260731/BIG_ELIMINATION_DIAGNOSIS.json",
+      "bytes": 4249,
+      "sha256": "efcd389022260855eda6610e4b4c5abab72b7a819e46e5d070d2cdae8c2849f9"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FIVE_GAME_FULL_STACK_RESULTS.json",
+      "bytes": 26384,
+      "sha256": "4abe49088721d823ce1455fce16d3a61d47b3851ef8c5569799d00474e6218cd"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/REPLAY_AND_REFERENCE_PANEL.json",
+      "bytes": 31065,
+      "sha256": "e811abce6b778fea3e4d3101239c225543cfe1a6cafafd481730bebfe603d898"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv",
+      "bytes": 503893,
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba"
+    }
+  ],
+  "private_tick_sources": "hash-bound individually inside QUOTE_SHAPE_LIBRARY_LEAVE_FIVE_OUT.json",
+  "forbidden_sources": [
+    "holdout",
+    "live",
+    "orders",
+    "positions",
+    "exits",
+    "settlement",
+    "DCA",
+    "Window 2"
+  ]
+}

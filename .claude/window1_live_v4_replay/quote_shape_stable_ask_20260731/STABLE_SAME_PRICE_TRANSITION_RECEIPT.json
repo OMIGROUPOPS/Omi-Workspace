@@ -1,0 +1,72 @@
+{
+  "schema_version": "WINDOW1_STABLE_SAME_PRICE_TRANSITION_RECEIPT_V2",
+  "defect_source": {
+    "path": ".claude/window1_live_v4_replay/quote_shape_elimination_big_walk_20260731/BIG_ELIMINATION_DIAGNOSIS.json",
+    "bytes": 4249,
+    "sha256": "efcd389022260855eda6610e4b4c5abab72b7a819e46e5d070d2cdae8c2849f9"
+  },
+  "before_law": "own micro-position required ask_change_after_first_timestamp=true",
+  "after_law": "own micro-position accepts a distinct own ask receipt strictly later than the current ask-episode start when own receipt dwell>=10 seconds and displayed top-ask size>0; inverse sibling resolution remains independently required",
+  "placement_capacity_law": "top-ask displayed quantity >=5",
+  "fill_law": "a distinct own ask receipt with source timestamp strictly later than action; ask<=X; dwell>=10 seconds; displayed capacity at/below X>=5",
+  "same_receipt_action_fill_forbidden": true,
+  "stable_same_price_placements": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "leg_id": "BIG",
+      "action_ts": 1784484949,
+      "price_cents": 55,
+      "own_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1777",
+      "sibling_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-1559",
+      "fill_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1781"
+    }
+  ],
+  "two_game_before_after": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "leg_id": "BIG",
+      "before_status": "INSUFFICIENT_EVIDENCE",
+      "before_entry_cents": null,
+      "after_status": "CREDITED",
+      "after_entry_cents": 55,
+      "moved_cents": null,
+      "stable_same_price_rule_fired": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "leg_id": "HUR",
+      "before_status": "CREDITED",
+      "before_entry_cents": 38,
+      "after_status": "CREDITED",
+      "after_entry_cents": 38,
+      "moved_cents": 0,
+      "stable_same_price_rule_fired": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "leg_id": "NIK",
+      "before_status": "CREDITED",
+      "before_entry_cents": 18,
+      "after_status": "CREDITED",
+      "after_entry_cents": 18,
+      "moved_cents": 0,
+      "stable_same_price_rule_fired": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "leg_id": "VRB",
+      "before_status": "CREDITED",
+      "before_entry_cents": 68,
+      "after_status": "CREDITED",
+      "after_entry_cents": 68,
+      "moved_cents": 0,
+      "stable_same_price_rule_fired": false
+    }
+  ],
+  "defect_effect": {
+    "before": "HURBIG BIG had no credited entry and the pair was incomplete",
+    "after": "BIG is credited at 55 on a distinct strictly later own ask receipt; HUR remains 38; combined entry is 93 versus combined own closes 102",
+    "moved": "BIG NULL->55; HUR 38->38; pair incomplete->complete; combined close delta NULL->-9"
+  },
+  "strict_fill_chronology_violations": []
+}

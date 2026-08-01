@@ -1,0 +1,24 @@
+{
+  "schema_version": "WINDOW1_QUOTE_SHAPE_V1_BYTE_IDENTITY_RECEIPT",
+  "default_v1_semantics_unchanged": true,
+  "files": [
+    {
+      "path": "TWO_GAME_REPLAY.json",
+      "generated_sha256": "0a0c4d037001d84325b627e25f33a39afb220cfdb544fd5d89648434ba94c15c",
+      "frozen_sha256": "0a0c4d037001d84325b627e25f33a39afb220cfdb544fd5d89648434ba94c15c",
+      "byte_identical": true
+    },
+    {
+      "path": "HURBIG_QUOTE_SHAPE_REPLAY.svg",
+      "generated_sha256": "283b82cc08f3e4c315429cc6b707ffc41a476b54ada624f13b0deae489acb96d",
+      "frozen_sha256": "283b82cc08f3e4c315429cc6b707ffc41a476b54ada624f13b0deae489acb96d",
+      "byte_identical": true
+    },
+    {
+      "path": "NIKVRB_QUOTE_SHAPE_REPLAY.svg",
+      "generated_sha256": "fb75c503fda19e0c5cb772242741261e040202cdd15f0105959bf3f0098afba2",
+      "frozen_sha256": "fb75c503fda19e0c5cb772242741261e040202cdd15f0105959bf3f0098afba2",
+      "byte_identical": true
+    }
+  ]
+}

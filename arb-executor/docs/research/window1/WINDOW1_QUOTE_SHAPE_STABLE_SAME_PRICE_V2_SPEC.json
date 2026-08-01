@@ -1,0 +1,37 @@
+{
+  "schema_version": "WINDOW1_QUOTE_SHAPE_STABLE_SAME_PRICE_V2_SPEC",
+  "scope": {
+    "events": [
+      "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "KXATPMATCH-26JUL12LAJVAN",
+      "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "KXWTAMATCH-26JUL20KORJIM"
+    ],
+    "library_fit": "leave all five validation events out before fitting",
+    "population_804": false,
+    "scoring": false,
+    "outcome_knowledge": false
+  },
+  "correction": {
+    "before": "own micro-position required a later ask-price transition",
+    "after": "a distinct own ask receipt strictly later than the current ask-episode start also proves own micro-position when that receipt has at least the inherited 10-second ask dwell and positive displayed top-ask size",
+    "inverse_sibling": "must be independently resolved and inverse before PLACE",
+    "current_floor": "current ask must equal the observed running ask low",
+    "placement_capacity": "displayed top-ask quantity must be at least five",
+    "fill": "requires a distinct own ask receipt whose source timestamp is strictly later than action, ask at/below X, at least 10 seconds dwell, and at least five displayed contracts at/below X",
+    "same_receipt_action_fill": false
+  },
+  "unchanged": [
+    "quote-shape library features and topology law",
+    "macro category and first formed-book price region",
+    "pair inverse constraint",
+    "shape elimination ordering",
+    "PLACE/HOLD/INSUFFICIENT_EVIDENCE states",
+    "ask-only reachability",
+    "five-contract capacity law",
+    "per-leg close, bell, and ask-reachable-low references",
+    "independent pair reference remains NOT_BOUND"
+  ],
+  "validation_status": "UNVALIDATED_BEYOND_FIVE_PREDECLARED_EXACT_START_GAMES"
+}

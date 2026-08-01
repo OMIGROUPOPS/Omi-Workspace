@@ -1,0 +1,1347 @@
+{
+  "schema_version": "WINDOW1_EXPECTED_CLOSE_CALIBRATION_V1",
+  "fit": {
+    "dates": "2026-07-12..2026-07-17",
+    "events": 525,
+    "legs": 1050,
+    "labeled_legs": 854,
+    "sample_rows": 5449
+  },
+  "postfit": {
+    "dates": "2026-07-18..2026-07-20",
+    "events": 279,
+    "legs": 558,
+    "labeled_legs": 449,
+    "sample_rows": 2902
+  },
+  "conservation": {
+    "population_events": 804,
+    "population_legs": 1608,
+    "close_unavailable_legs": 301,
+    "postfit_labeled_legs": 449,
+    "postfit_unlabeled_legs": 109,
+    "predictions": 2902
+  },
+  "performance_partition_law": "category and current observable ask-price region; no pooled error statistic",
+  "comparison_to_current_ask_baseline": {
+    "cells_total": 16,
+    "cells_better": 0,
+    "cells_equal": 16,
+    "cells_worse": 0,
+    "predicted_edge_ge15_rows": 0
+  },
+  "by_category_and_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "prediction_rows": 459,
+      "unique_legs": 80,
+      "unique_events": 78,
+      "thin": false,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 459,
+        "min": -9,
+        "p10": -2,
+        "p25": -1,
+        "median": 0,
+        "p75": 1,
+        "p90": 3,
+        "max": 13
+      },
+      "absolute_model_error_cents": {
+        "n": 459,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 4,
+        "max": 13
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 459,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 4,
+        "max": 13
+      },
+      "central_50_coverage": 0.6623093681917211,
+      "central_80_coverage": 0.7908496732026143,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 459,
+          "unique_legs": 80,
+          "predicted_median_edge_cents": {
+            "n": 459,
+            "min": 0,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 0
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 459,
+            "min": -13,
+            "p10": -3,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 2,
+            "max": 9
+          },
+          "prediction_error_cents": {
+            "n": 459,
+            "min": -9,
+            "p10": -2,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 3,
+            "max": 13
+          }
+        }
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "prediction_rows": 420,
+      "unique_legs": 77,
+      "unique_events": 73,
+      "thin": false,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 420,
+        "min": -10,
+        "p10": -3,
+        "p25": -1.25,
+        "median": 0,
+        "p75": 0,
+        "p90": 2,
+        "max": 11
+      },
+      "absolute_model_error_cents": {
+        "n": 420,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 4.100000000000023,
+        "max": 11
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 420,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 4.100000000000023,
+        "max": 11
+      },
+      "central_50_coverage": 0.5833333333333334,
+      "central_80_coverage": 0.7666666666666667,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 420,
+          "unique_legs": 77,
+          "predicted_median_edge_cents": {
+            "n": 420,
+            "min": 0,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 1
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 420,
+            "min": -11,
+            "p10": -2,
+            "p25": 0,
+            "median": 1,
+            "p75": 2,
+            "p90": 3,
+            "max": 10
+          },
+          "prediction_error_cents": {
+            "n": 420,
+            "min": -10,
+            "p10": -3,
+            "p25": -1.25,
+            "median": 0,
+            "p75": 0,
+            "p90": 2,
+            "max": 11
+          }
+        }
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "GE76",
+      "prediction_rows": 284,
+      "unique_legs": 57,
+      "unique_events": 48,
+      "thin": false,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 284,
+        "min": -37,
+        "p10": -4.699999999999999,
+        "p25": -1,
+        "median": 0,
+        "p75": 1,
+        "p90": 4.700000000000017,
+        "max": 57
+      },
+      "absolute_model_error_cents": {
+        "n": 284,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 7,
+        "max": 57
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 284,
+        "min": 0,
+        "p10": 0,
+        "p25": 0.75,
+        "median": 1,
+        "p75": 4,
+        "p90": 7.700000000000017,
+        "max": 89
+      },
+      "central_50_coverage": 0.5211267605633803,
+      "central_80_coverage": 0.676056338028169,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "LE_MINUS15",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 23,
+          "unique_legs": 17,
+          "predicted_median_edge_cents": {
+            "n": 23,
+            "min": -42,
+            "p10": -42,
+            "p25": -34,
+            "median": -34,
+            "p75": -33,
+            "p90": -33,
+            "max": -32
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 23,
+            "min": -89,
+            "p10": -78,
+            "p25": -73,
+            "median": -36,
+            "p75": -17,
+            "p90": -10,
+            "max": 3
+          },
+          "prediction_error_cents": {
+            "n": 23,
+            "min": -37,
+            "p10": -23.8,
+            "p25": -19.5,
+            "median": 4,
+            "p75": 39,
+            "p90": 44.8,
+            "max": 55
+          }
+        },
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 261,
+          "unique_legs": 47,
+          "predicted_median_edge_cents": {
+            "n": 261,
+            "min": -2,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 1
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 261,
+            "min": -59,
+            "p10": -4,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 4,
+            "max": 7
+          },
+          "prediction_error_cents": {
+            "n": 261,
+            "min": -7,
+            "p10": -4,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 4,
+            "max": 57
+          }
+        }
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "LE25",
+      "prediction_rows": 243,
+      "unique_legs": 39,
+      "unique_events": 39,
+      "thin": false,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 243,
+        "min": -10,
+        "p10": -3,
+        "p25": -1,
+        "median": 0,
+        "p75": 1,
+        "p90": 2,
+        "max": 5
+      },
+      "absolute_model_error_cents": {
+        "n": 243,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 4,
+        "max": 10
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 243,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 4,
+        "max": 10
+      },
+      "central_50_coverage": 0.6049382716049383,
+      "central_80_coverage": 0.8065843621399177,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 243,
+          "unique_legs": 39,
+          "predicted_median_edge_cents": {
+            "n": 243,
+            "min": -1,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 0
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 243,
+            "min": -6,
+            "p10": -2,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 3,
+            "max": 10
+          },
+          "prediction_error_cents": {
+            "n": 243,
+            "min": -10,
+            "p10": -3,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 2,
+            "max": 5
+          }
+        }
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "prediction_rows": 157,
+      "unique_legs": 25,
+      "unique_events": 25,
+      "thin": true,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 157,
+        "min": -6,
+        "p10": -3,
+        "p25": -1,
+        "median": 1,
+        "p75": 3,
+        "p90": 6,
+        "max": 11
+      },
+      "absolute_model_error_cents": {
+        "n": 157,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 6,
+        "max": 11
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 157,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 6,
+        "max": 11
+      },
+      "central_50_coverage": 0.5477707006369427,
+      "central_80_coverage": 0.7707006369426752,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 157,
+          "unique_legs": 25,
+          "predicted_median_edge_cents": {
+            "n": 157,
+            "min": -1,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 0
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 157,
+            "min": -11,
+            "p10": -6,
+            "p25": -3,
+            "median": -1,
+            "p75": 0,
+            "p90": 3,
+            "max": 6
+          },
+          "prediction_error_cents": {
+            "n": 157,
+            "min": -6,
+            "p10": -3,
+            "p25": -1,
+            "median": 1,
+            "p75": 3,
+            "p90": 6,
+            "max": 11
+          }
+        }
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "prediction_rows": 170,
+      "unique_legs": 29,
+      "unique_events": 27,
+      "thin": true,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 170,
+        "min": -11,
+        "p10": -5,
+        "p25": -3,
+        "median": -1,
+        "p75": 1,
+        "p90": 4,
+        "max": 41
+      },
+      "absolute_model_error_cents": {
+        "n": 170,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 7.099999999999994,
+        "max": 41
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 170,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 8,
+        "max": 41
+      },
+      "central_50_coverage": 0.49411764705882355,
+      "central_80_coverage": 0.7294117647058823,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 170,
+          "unique_legs": 29,
+          "predicted_median_edge_cents": {
+            "n": 170,
+            "min": 0,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 1
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 170,
+            "min": -41,
+            "p10": -4,
+            "p25": -1,
+            "median": 1,
+            "p75": 3,
+            "p90": 5,
+            "max": 11
+          },
+          "prediction_error_cents": {
+            "n": 170,
+            "min": -11,
+            "p10": -5,
+            "p25": -3,
+            "median": -1,
+            "p75": 1,
+            "p90": 4,
+            "max": 41
+          }
+        }
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "GE76",
+      "prediction_rows": 88,
+      "unique_legs": 14,
+      "unique_events": 14,
+      "thin": true,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 88,
+        "min": -5,
+        "p10": -3.299999999999999,
+        "p25": -2,
+        "median": 0,
+        "p75": 1,
+        "p90": 9,
+        "max": 16
+      },
+      "absolute_model_error_cents": {
+        "n": 88,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 9,
+        "max": 16
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 88,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 9.299999999999997,
+        "max": 16
+      },
+      "central_50_coverage": 0.36363636363636365,
+      "central_80_coverage": 0.5909090909090909,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 88,
+          "unique_legs": 14,
+          "predicted_median_edge_cents": {
+            "n": 88,
+            "min": -1,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 0
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 88,
+            "min": -16,
+            "p10": -9.299999999999999,
+            "p25": -1,
+            "median": 0,
+            "p75": 2,
+            "p90": 3.299999999999997,
+            "max": 5
+          },
+          "prediction_error_cents": {
+            "n": 88,
+            "min": -5,
+            "p10": -3.299999999999999,
+            "p25": -2,
+            "median": 0,
+            "p75": 1,
+            "p90": 9,
+            "max": 16
+          }
+        }
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "LE25",
+      "prediction_rows": 69,
+      "unique_legs": 11,
+      "unique_events": 11,
+      "thin": true,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 69,
+        "min": -5,
+        "p10": -1.1999999999999993,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 3.200000000000003,
+        "max": 5
+      },
+      "absolute_model_error_cents": {
+        "n": 69,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 2,
+        "p90": 4,
+        "max": 5
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 69,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 2,
+        "p90": 4,
+        "max": 5
+      },
+      "central_50_coverage": 0.37681159420289856,
+      "central_80_coverage": 0.5217391304347826,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 69,
+          "unique_legs": 11,
+          "predicted_median_edge_cents": {
+            "n": 69,
+            "min": 0,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 1
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 69,
+            "min": -5,
+            "p10": -3.1999999999999993,
+            "p25": -2,
+            "median": 0,
+            "p75": 1,
+            "p90": 1.2000000000000028,
+            "max": 5
+          },
+          "prediction_error_cents": {
+            "n": 69,
+            "min": -5,
+            "p10": -1.1999999999999993,
+            "p25": 0,
+            "median": 0,
+            "p75": 2,
+            "p90": 3.200000000000003,
+            "max": 5
+          }
+        }
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "prediction_rows": 112,
+      "unique_legs": 19,
+      "unique_events": 19,
+      "thin": true,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 112,
+        "min": -3,
+        "p10": -1,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 2,
+        "max": 3
+      },
+      "absolute_model_error_cents": {
+        "n": 112,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 2.9000000000000057,
+        "max": 3
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 112,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 2.9000000000000057,
+        "max": 3
+      },
+      "central_50_coverage": 0.6875,
+      "central_80_coverage": 0.8125,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 112,
+          "unique_legs": 19,
+          "predicted_median_edge_cents": {
+            "n": 112,
+            "min": -1,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 0
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 112,
+            "min": -3,
+            "p10": -2,
+            "p25": -0.25,
+            "median": 0,
+            "p75": 0,
+            "p90": 1,
+            "max": 3
+          },
+          "prediction_error_cents": {
+            "n": 112,
+            "min": -3,
+            "p10": -1,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 2,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "prediction_rows": 98,
+      "unique_legs": 17,
+      "unique_events": 17,
+      "thin": true,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 98,
+        "min": -2,
+        "p10": -2,
+        "p25": -1,
+        "median": 0,
+        "p75": 0,
+        "p90": 0.29999999999999716,
+        "max": 19
+      },
+      "absolute_model_error_cents": {
+        "n": 98,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 19
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 98,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 19
+      },
+      "central_50_coverage": 0.7857142857142857,
+      "central_80_coverage": 0.9795918367346939,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 98,
+          "unique_legs": 17,
+          "predicted_median_edge_cents": {
+            "n": 98,
+            "min": 0,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 1
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 98,
+            "min": -19,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 1,
+            "p90": 2,
+            "max": 2
+          },
+          "prediction_error_cents": {
+            "n": 98,
+            "min": -2,
+            "p10": -2,
+            "p25": -1,
+            "median": 0,
+            "p75": 0,
+            "p90": 0.29999999999999716,
+            "max": 19
+          }
+        }
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "GE76",
+      "prediction_rows": 39,
+      "unique_legs": 6,
+      "unique_events": 6,
+      "thin": true,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 39,
+        "min": -2,
+        "p10": -2,
+        "p25": -1,
+        "median": 0,
+        "p75": 1,
+        "p90": 2,
+        "max": 2
+      },
+      "absolute_model_error_cents": {
+        "n": 39,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 2
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 39,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 2
+      },
+      "central_50_coverage": 0.38461538461538464,
+      "central_80_coverage": 0.8974358974358975,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 39,
+          "unique_legs": 6,
+          "predicted_median_edge_cents": {
+            "n": 39,
+            "min": 0,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 0
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 39,
+            "min": -2,
+            "p10": -2,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 2,
+            "max": 2
+          },
+          "prediction_error_cents": {
+            "n": 39,
+            "min": -2,
+            "p10": -2,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 2,
+            "max": 2
+          }
+        }
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "LE25",
+      "prediction_rows": 38,
+      "unique_legs": 6,
+      "unique_events": 6,
+      "thin": true,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 38,
+        "min": -3,
+        "p10": -3,
+        "p25": -1,
+        "median": 0,
+        "p75": 1,
+        "p90": 2,
+        "max": 2
+      },
+      "absolute_model_error_cents": {
+        "n": 38,
+        "min": 0,
+        "p10": 0,
+        "p25": 0.25,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 3
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 38,
+        "min": 0,
+        "p10": 0,
+        "p25": 0.25,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 3
+      },
+      "central_50_coverage": 0.2894736842105263,
+      "central_80_coverage": 0.5526315789473685,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 38,
+          "unique_legs": 6,
+          "predicted_median_edge_cents": {
+            "n": 38,
+            "min": -1,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 0
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 38,
+            "min": -2,
+            "p10": -2,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 3,
+            "max": 3
+          },
+          "prediction_error_cents": {
+            "n": 38,
+            "min": -3,
+            "p10": -3,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 2,
+            "max": 2
+          }
+        }
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "prediction_rows": 243,
+      "unique_legs": 37,
+      "unique_events": 37,
+      "thin": false,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 243,
+        "min": -5,
+        "p10": -1,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 6,
+        "max": 13
+      },
+      "absolute_model_error_cents": {
+        "n": 243,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 6,
+        "max": 13
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 243,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 6,
+        "max": 13
+      },
+      "central_50_coverage": 0.411522633744856,
+      "central_80_coverage": 0.6954732510288066,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 243,
+          "unique_legs": 37,
+          "predicted_median_edge_cents": {
+            "n": 243,
+            "min": -1,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 0
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 243,
+            "min": -13,
+            "p10": -6,
+            "p25": -4,
+            "median": -2,
+            "p75": 0,
+            "p90": 1,
+            "max": 5
+          },
+          "prediction_error_cents": {
+            "n": 243,
+            "min": -5,
+            "p10": -1,
+            "p25": 0,
+            "median": 1,
+            "p75": 4,
+            "p90": 6,
+            "max": 13
+          }
+        }
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "prediction_rows": 231,
+      "unique_legs": 34,
+      "unique_events": 34,
+      "thin": false,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 231,
+        "min": -10,
+        "p10": -4,
+        "p25": -3,
+        "median": -1,
+        "p75": 0,
+        "p90": 1,
+        "max": 4
+      },
+      "absolute_model_error_cents": {
+        "n": 231,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 4,
+        "max": 10
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 231,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 4,
+        "max": 10
+      },
+      "central_50_coverage": 0.36363636363636365,
+      "central_80_coverage": 0.9004329004329005,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 231,
+          "unique_legs": 34,
+          "predicted_median_edge_cents": {
+            "n": 231,
+            "min": 0,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 1
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 231,
+            "min": -4,
+            "p10": -1,
+            "p25": 0,
+            "median": 1,
+            "p75": 3,
+            "p90": 4,
+            "max": 10
+          },
+          "prediction_error_cents": {
+            "n": 231,
+            "min": -10,
+            "p10": -4,
+            "p25": -3,
+            "median": -1,
+            "p75": 0,
+            "p90": 1,
+            "max": 4
+          }
+        }
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "GE76",
+      "prediction_rows": 139,
+      "unique_legs": 23,
+      "unique_events": 23,
+      "thin": true,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 139,
+        "min": -10,
+        "p10": -2,
+        "p25": -1,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 3
+      },
+      "absolute_model_error_cents": {
+        "n": 139,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 10
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 139,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 10
+      },
+      "central_50_coverage": 0.7122302158273381,
+      "central_80_coverage": 0.935251798561151,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 139,
+          "unique_legs": 23,
+          "predicted_median_edge_cents": {
+            "n": 139,
+            "min": 0,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 0
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 139,
+            "min": -3,
+            "p10": -1,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 2,
+            "max": 10
+          },
+          "prediction_error_cents": {
+            "n": 139,
+            "min": -10,
+            "p10": -2,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 1,
+            "max": 3
+          }
+        }
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "LE25",
+      "prediction_rows": 112,
+      "unique_legs": 20,
+      "unique_events": 20,
+      "thin": true,
+      "thin_law": "unique post-fit legs <30; at n=30 the normal 95% half-width for nominal 90% coverage is approximately 10.7 percentage points",
+      "median_model_error_cents": {
+        "n": 112,
+        "min": -3,
+        "p10": -1,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 10
+      },
+      "absolute_model_error_cents": {
+        "n": 112,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 10
+      },
+      "absolute_current_ask_baseline_error_cents": {
+        "n": 112,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 10
+      },
+      "central_50_coverage": 0.5089285714285714,
+      "central_80_coverage": 0.7946428571428571,
+      "predicted_edge_calibration": [
+        {
+          "predicted_edge_band": "MINUS4_TO_PLUS4",
+          "reporting_band_only_not_decision_threshold": true,
+          "rows": 112,
+          "unique_legs": 20,
+          "predicted_median_edge_cents": {
+            "n": 112,
+            "min": 0,
+            "p10": 0,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 0
+          },
+          "actual_close_minus_ask_cents": {
+            "n": 112,
+            "min": -10,
+            "p10": -3,
+            "p25": -2,
+            "median": -1,
+            "p75": 0,
+            "p90": 1,
+            "max": 3
+          },
+          "prediction_error_cents": {
+            "n": 112,
+            "min": -3,
+            "p10": -1,
+            "p25": 0,
+            "median": 1,
+            "p75": 2,
+            "p90": 3,
+            "max": 10
+          }
+        }
+      ]
+    }
+  ],
+  "thin_cells": [
+    "ATP_MAIN|26_50",
+    "ATP_MAIN|51_75",
+    "ATP_MAIN|GE76",
+    "ATP_MAIN|LE25",
+    "WTA_CHALL|26_50",
+    "WTA_CHALL|51_75",
+    "WTA_CHALL|GE76",
+    "WTA_CHALL|LE25",
+    "WTA_MAIN|GE76",
+    "WTA_MAIN|LE25"
+  ]
+}

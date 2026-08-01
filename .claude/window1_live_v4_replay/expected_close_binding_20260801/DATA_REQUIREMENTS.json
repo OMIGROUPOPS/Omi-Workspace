@@ -1,0 +1,63 @@
+{
+  "schema_version": "WINDOW1_EXPECTED_CLOSE_DATA_REQUIREMENTS_V1",
+  "current_blockers": {
+    "schema_version": "WINDOW1_EXPECTED_CLOSE_CONTROL_BINDING_V1",
+    "status": "NOT_BOUND",
+    "reason": "The disjoint internal estimator beats the current-ask baseline in 0/16 category-price cells, 10 cells are thin, 301 legs lack close labels, and external-book predictive comparison is impossible because fresh July coverage is zero.",
+    "permitted_use": "DESCRIPTIVE_POSTFIT_CALIBRATION_ONLY",
+    "prohibited_use": [
+      "fee-aware take authority",
+      "first-leg commitment authority",
+      "take-versus-rest authority",
+      "five-game replay",
+      "804 policy replay"
+    ],
+    "no_point_estimate_coercion": true,
+    "distribution_required": true,
+    "fit_test_disjoint": true,
+    "thin_cells": [
+      "ATP_MAIN|26_50",
+      "ATP_MAIN|51_75",
+      "ATP_MAIN|GE76",
+      "ATP_MAIN|LE25",
+      "WTA_CHALL|26_50",
+      "WTA_CHALL|51_75",
+      "WTA_CHALL|GE76",
+      "WTA_CHALL|LE25",
+      "WTA_MAIN|GE76",
+      "WTA_MAIN|LE25"
+    ],
+    "comparison_to_current_ask_baseline": {
+      "cells_total": 16,
+      "cells_better": 0,
+      "cells_equal": 16,
+      "cells_worse": 0,
+      "predicted_edge_ge15_rows": 0
+    }
+  },
+  "required_for_external_validation": [
+    "append-only row per bookmaker poll and leg",
+    "book key and raw odds",
+    "de-vig fair value for both siblings",
+    "provider source timestamp and local arrival timestamp",
+    "event/ticker/player mapping plus mapping confidence",
+    "raw response identity/hash",
+    "poll failure and missing-tournament receipts",
+    "freshness result at each consuming decision",
+    "preserve complete history rather than latest value",
+    "exclude circular 100-minus-Kalshi-price fallback from model authority"
+  ],
+  "required_for_commitment": [
+    "calibrated joint distribution of sibling reachable ask and arrival time conditional on the first-leg state",
+    "exact fee schedule",
+    "operator-defined maximum naked duration/loss or utility threshold"
+  ],
+  "required_for_resting_fill_probability": [
+    "order submission/cancel timestamps",
+    "queue-ahead identity or bounded estimate",
+    "seller-aggressed print at/through price",
+    "displayed bid evolution",
+    "order-specific resting interval",
+    "honest maker/taker result"
+  ]
+}

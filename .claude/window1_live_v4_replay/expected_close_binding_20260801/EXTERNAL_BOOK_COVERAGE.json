@@ -1,0 +1,222 @@
+{
+  "schema_version": "WINDOW1_EXTERNAL_BOOK_COVERAGE_AUDIT_V1",
+  "population": {
+    "events": 804,
+    "legs": 1608
+  },
+  "freshness_law": {
+    "pinnacle_betfair_matchbook_seconds": 1800,
+    "provenance": "existing FV overlap contract",
+    "betexplorer_seconds": 3600,
+    "betexplorer_not_in_sharp_books": true
+  },
+  "retained_july_source_truth": {
+    "odds_api_all_14_books_last_rows": "2026-07-10 13:00-13:42 ET",
+    "population_begins": "2026-07-12",
+    "external_rows_retained_in_frozen_window1_inputs": 0,
+    "mechanism_statuses": [
+      {
+        "category_coverage": "all_bound_development_rows_where_present",
+        "causal_for_simulation": false,
+        "changes_decision": false,
+        "classification": "ABSENT",
+        "decision_effect": "none",
+        "fitted_population": "not_applicable",
+        "mechanism": "Pinnacle",
+        "native_anchor": null,
+        "native_key": "not_applicable",
+        "native_meaning": null,
+        "target_or_depth_meaning": null,
+        "timing_meaning": "strictly chronological receipt when bound",
+        "validation_or_ratification": "source-bound if BOUND; otherwise explicitly unavailable"
+      },
+      {
+        "category_coverage": "all_bound_development_rows_where_present",
+        "causal_for_simulation": false,
+        "changes_decision": false,
+        "classification": "ABSENT",
+        "decision_effect": "none",
+        "fitted_population": "not_applicable",
+        "mechanism": "authoritative_bookmaker_or_FV",
+        "native_anchor": null,
+        "native_key": "not_applicable",
+        "native_meaning": null,
+        "target_or_depth_meaning": null,
+        "timing_meaning": "strictly chronological receipt when bound",
+        "validation_or_ratification": "source-bound if BOUND; otherwise explicitly unavailable"
+      }
+    ]
+  },
+  "summary": {
+    "fresh_legs": 0,
+    "population_legs": 1608,
+    "fresh_rate": 0,
+    "predictive_comparison": "NOT_MEASURABLE_ZERO_FRESH_EXTERNAL_READS"
+  },
+  "by_category_and_starting_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "legs": 245,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 245,
+      "coverage_rate": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "legs": 246,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 246,
+      "coverage_rate": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "GE76",
+      "legs": 143,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 143,
+      "coverage_rate": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "LE25",
+      "legs": 100,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 100,
+      "coverage_rate": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "UNKNOWN",
+      "legs": 4,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 4,
+      "coverage_rate": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "legs": 110,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 110,
+      "coverage_rate": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "legs": 107,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 107,
+      "coverage_rate": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "GE76",
+      "legs": 38,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 38,
+      "coverage_rate": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "LE25",
+      "legs": 27,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 27,
+      "coverage_rate": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "UNKNOWN",
+      "legs": 12,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 12,
+      "coverage_rate": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "legs": 92,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 92,
+      "coverage_rate": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "legs": 92,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 92,
+      "coverage_rate": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "GE76",
+      "legs": 46,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 46,
+      "coverage_rate": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "LE25",
+      "legs": 42,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 42,
+      "coverage_rate": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "legs": 85,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 85,
+      "coverage_rate": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "legs": 88,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 88,
+      "coverage_rate": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "GE76",
+      "legs": 56,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 56,
+      "coverage_rate": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "LE25",
+      "legs": 55,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 55,
+      "coverage_rate": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "UNKNOWN",
+      "legs": 20,
+      "fresh_external_read_legs": 0,
+      "unavailable_legs": 20,
+      "coverage_rate": 0
+    }
+  ],
+  "forward_retention_required": [
+    "append-only row per bookmaker poll and leg",
+    "book key and raw odds",
+    "de-vig fair value for both siblings",
+    "provider source timestamp and local arrival timestamp",
+    "event/ticker/player mapping plus mapping confidence",
+    "raw response identity/hash",
+    "poll failure and missing-tournament receipts",
+    "freshness result at each consuming decision",
+    "preserve complete history rather than latest value",
+    "exclude circular 100-minus-Kalshi-price fallback from model authority"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "WINDOW1_EXPECTED_CLOSE_DETERMINISM_RECEIPT_V1",
+  "clean_builds": 2,
+  "byte_identical": true,
+  "compared_artifacts": 11,
+  "artifacts": {
+    "ARTIFACT_HASH_MANIFEST.json": {
+      "bytes": 1555,
+      "sha256": "e6ea17c07923d4b5958b45e9bcb59defc669debaf8a4c17ed30c087e6ad766d0"
+    },
+    "CONTROL_BINDING.json": {
+      "bytes": 1089,
+      "sha256": "cd7e5fa43da8694bb9fa63d865c2a403bfa96bf951fd52669d63dc2dea1ed36d"
+    },
+    "DATA_REQUIREMENTS.json": {
+      "bytes": 2345,
+      "sha256": "5c98e858d9ecb6c59fc6fba60252d6a091b0768c51256348f08224ac381fd042"
+    },
+    "DECISION_UNLOCK_RECEIPT.json": {
+      "bytes": 85443,
+      "sha256": "1de3df9f0a743a3eb16427ce83314ccefa63f0628593092cb1b5702820b0ba6e"
+    },
+    "EXPECTED_CLOSE_MODEL.json": {
+      "bytes": 18463139,
+      "sha256": "5c66c0bad776a70d7277dcb42050cd836e3a593e69ee520cf7b0c4a32abd7c93"
+    },
+    "EXTERNAL_BOOK_COVERAGE.json": {
+      "bytes": 6114,
+      "sha256": "78a95de2bcf4e849a26ab99d0e142d862ac283c69d398c0e3df28253b0e81b18"
+    },
+    "FIT_ONLY_QUOTE_SHAPE_LIBRARY.json": {
+      "bytes": 1213670,
+      "sha256": "761d8f51c5a889c361b5c324b2566d79db9eb6b563bce42cffc167cbac7d3022"
+    },
+    "POSTFIT_CALIBRATION.json": {
+      "bytes": 33609,
+      "sha256": "39a278c1e1c4f33151da430a66169c7dbf582031dfad9d471fbec716e4b7d739"
+    },
+    "POSTFIT_PREDICTIONS.jsonl.gz": {
+      "bytes": 202348,
+      "sha256": "424a2f097f5724c4875c7d78d2b48126e58060153ffc92b8f46d3e99494e7003"
+    },
+    "REPORT.md": {
+      "bytes": 1459,
+      "sha256": "74a9f44ea82c77ba0b5504ad351961b7bf173086564203e704a3cab314758044"
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "bytes": 395109,
+      "sha256": "6747632ec9da23be97a74ee374d1086772597e21dff699bd737dc28491a93742"
+    }
+  },
+  "second_build_disposition": "TEMPORARY_VALIDATION_OUTPUT_NOT_COMMITTED"
+}

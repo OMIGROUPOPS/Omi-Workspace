@@ -5,6 +5,10 @@
       "sha256": "1d050aa9215b422c9c8ff2857d16d969448366248cf916d4b7ce830257f32bb3",
       "bytes": 20220
     },
+    "arb-executor/analysis/build_window1_quote_shape_descent_package_v5.js": {
+      "sha256": "7e630f84ebe8a0451e84e271cfbe97c30ef77a7d2e7d040cdf03943bc2350688",
+      "bytes": 10710
+    },
     "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
       "sha256": "06dc0b60891d6a2eb3a9ebdd3c8b9797e756f833b776d164f4f584fd0b093ceb",
       "bytes": 33009
@@ -24,6 +28,14 @@
     "arb-executor/analysis/build_window1_five_exact_honest_gate_v1.js": {
       "sha256": "b701d00c7760cfb46b687c161a162721e7290c14b4f9260ed9886b4fe8a1a58a",
       "bytes": 17722
+    },
+    "arb-executor/tests/test_window1_quote_shape_descent_verdict_v5.js": {
+      "sha256": "5ef75c910d96b776b4a7f8393025e9648025d5124e4dc3d8332d000b83627847",
+      "bytes": 1531
+    },
+    "arb-executor/tests/test_window1_quote_shape_descent_package_v5.js": {
+      "sha256": "570b7623bfbfcff8e27c4888b88c309c27d08eeda8eef78091d44b478f82477d",
+      "bytes": 2791
     },
     ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
       "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba",

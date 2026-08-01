@@ -12,6 +12,19 @@ const replay = JSON.parse(fs.readFileSync(path.join(root, "FIVE_GAME_DESCENT_VER
 
 assert.strictEqual(distribution.training_events, 681);
 assert.strictEqual(distribution.training_legs, 1343);
+assert.deepStrictEqual(distribution.population_conservation, {
+  frozen_D_events: 804,
+  frozen_D_legs: 1608,
+  excluded_validation_events: 5,
+  excluded_validation_legs: 10,
+  training_candidate_events: 799,
+  training_candidate_legs: 1598,
+  positive_evaluator_training_legs: 1376,
+  nonpositive_or_unprovable_training_legs: 222,
+  positive_but_no_lawful_formed_book_legs: 33,
+  classified_fit_legs: 1343,
+  law: "only positive-evaluator legs with a lawful formed one-tick book enter the fitted shape cells; every other frozen leg remains explicitly conserved outside the fit",
+});
 assert.strictEqual(distribution.group_count, 16);
 assert.strictEqual(distribution.shape_count, 94);
 assert.strictEqual(distribution.excluded_events.length, 5);

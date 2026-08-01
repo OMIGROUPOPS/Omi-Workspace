@@ -15,11 +15,14 @@ const gatePath = path.join(output, "FIVE_GAME_HONEST_GATE.json");
 const beforePath = path.join(repo, ".claude/window1_live_v4_replay/five_exact_stable_signer_v4_20260801/FIVE_GAME_HONEST_GATE.json");
 const sourceFiles = [
   "arb-executor/analysis/build_window1_quote_shape_library_v1.js",
+  "arb-executor/analysis/build_window1_quote_shape_descent_package_v5.js",
   "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
   "arb-executor/analysis/window1_quote_shape_descent_verdict_v5.js",
   "arb-executor/analysis/window1_quote_shape_stable_signer_v4.js",
   "arb-executor/analysis/window1_quote_shape_pair_wiring_v3.js",
   "arb-executor/analysis/build_window1_five_exact_honest_gate_v1.js",
+  "arb-executor/tests/test_window1_quote_shape_descent_verdict_v5.js",
+  "arb-executor/tests/test_window1_quote_shape_descent_package_v5.js",
   ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv",
   ".claude/window1_live_v4_replay/honest_fill_model_20260801/HONEST_FILL_MODEL_CONTRACT.json",
   ".claude/window1_live_v4_replay/aggressor_ceiling_census_20260801/CEILING_CENSUS.json",
@@ -35,6 +38,10 @@ function main() {
   const replay = JSON.parse(fs.readFileSync(replayPath));
   const gate = JSON.parse(fs.readFileSync(gatePath));
   const before = JSON.parse(fs.readFileSync(beforePath));
+  const quoteLedgerPath = path.join(repo, ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv");
+  const quoteLines = fs.readFileSync(quoteLedgerPath, "utf8").trimEnd().split(/\r?\n/), quoteHeaders = quoteLines.shift().split(",");
+  const quoteRows = quoteLines.map((line) => Object.fromEntries(line.split(",").map((entry, index) => [quoteHeaders[index], entry])));
+  const excluded = new Set(library.excluded_cold_test_events), trainingCandidates = quoteRows.filter((row) => !excluded.has(row.event_id)), positiveTraining = trainingCandidates.filter((row) => String(row.evaluator_window_positive).toLowerCase() === "true");
   const cells = [];
   let shapeCount = 0, supportN = 0, censoredN = 0;
   for (const [groupKey, group] of Object.entries(library.groups).sort(([a], [b]) => a.localeCompare(b))) {
@@ -51,6 +58,19 @@ function main() {
     fit_population: "all positive-evaluator Window-1 quote legs except the five exact-start validation games",
     training_events: library.training_events,
     training_legs: library.training_legs,
+    population_conservation: {
+      frozen_D_events: new Set(quoteRows.map((row) => row.event_id)).size,
+      frozen_D_legs: quoteRows.length,
+      excluded_validation_events: excluded.size,
+      excluded_validation_legs: quoteRows.length - trainingCandidates.length,
+      training_candidate_events: new Set(trainingCandidates.map((row) => row.event_id)).size,
+      training_candidate_legs: trainingCandidates.length,
+      positive_evaluator_training_legs: positiveTraining.length,
+      nonpositive_or_unprovable_training_legs: trainingCandidates.length - positiveTraining.length,
+      positive_but_no_lawful_formed_book_legs: positiveTraining.length - library.training_legs,
+      classified_fit_legs: library.training_legs,
+      law: "only positive-evaluator legs with a lawful formed one-tick book enter the fitted shape cells; every other frozen leg remains explicitly conserved outside the fit"
+    },
     excluded_events: library.excluded_cold_test_events,
     group_count: Object.keys(library.groups).length,
     shape_count: shapeCount,
@@ -100,7 +120,7 @@ function main() {
   };
   fs.writeFileSync(path.join(output, "DESCENT_VERDICT_V5_CORRECTION_RECEIPT.json"), canonical(correction));
 
-  const report = `# Window-1 fitted descent verdict V5\n\nThis is a score-free, cold five-game gate. The five games were excluded from the fit.\n\nFit: ${library.training_events} events / ${library.training_legs} legs, ${Object.keys(library.groups).length} category-region groups, ${shapeCount} quote-shape cells. Reachable support: ${supportN}; censored: ${censoredN}.\n\nThe fitted quantity is the count of new-low ask descents at which the final ten-second, exact-five ask-reachable low first becomes established. After a descent is observed, the verdict uses the empirical within-cell median among descending training members. No numeric threshold was invented.\n\nFive-game gate: ${gate.five_game_gate_passed ? "PASS" : "FAIL"}. Honest completed pairs: ${gate.honest_completed_pair_count}/5. Objective passes: ${gate.objective_gate_pass_count}/5. Fill classes: ${gate.honest_fill_class_counts.PROVEN_MAKER} maker, ${gate.honest_fill_class_counts.PROVEN_TAKER} taker, ${gate.honest_fill_class_counts.UNPROVEN} unproven.\n\nThe 804 was ${gate.population_804_run ? "run" : "not run"}. The frozen 516 take-reachable and 253 maker-reachable ceilings were not exercised because the five-game gate failed.\n`;
+  const report = `# Window-1 fitted descent verdict V5\n\nThis is a score-free, cold five-game gate. The five games were excluded from the fit.\n\nPopulation conservation: 804 events / 1,608 legs; 5 events / 10 legs held out; 799 events / 1,598 legs remained as training candidates. Of those, 1,376 legs had positive evaluator windows, 33 lacked a lawful formed book, and 1,343 legs entered the fit; the other 222 legs remain named nonpositive/unprovable rather than silently dropped.\n\nFit: ${library.training_events} events / ${library.training_legs} legs, ${Object.keys(library.groups).length} category-region groups, ${shapeCount} quote-shape cells. Reachable support: ${supportN}; censored: ${censoredN}.\n\nThe fitted quantity is the count of new-low ask descents at which the final ten-second, exact-five ask-reachable low first becomes established. After a descent is observed, the verdict uses the empirical within-cell median among descending training members. No numeric threshold was invented.\n\nFive-game gate: ${gate.five_game_gate_passed ? "PASS" : "FAIL"}. Honest completed pairs: ${gate.honest_completed_pair_count}/5. Objective passes: ${gate.objective_gate_pass_count}/5. Fill classes: ${gate.honest_fill_class_counts.PROVEN_MAKER} maker, ${gate.honest_fill_class_counts.PROVEN_TAKER} taker, ${gate.honest_fill_class_counts.UNPROVEN} unproven.\n\nThe 804 was ${gate.population_804_run ? "run" : "not run"}. The frozen 516 take-reachable and 253 maker-reachable ceilings were not exercised because the five-game gate failed.\n`;
   fs.writeFileSync(path.join(output, "REPORT.md"), report);
   const sourceManifest = { schema_version: "WINDOW1_DESCENT_VERDICT_V5_SOURCE_MANIFEST", sources: Object.fromEntries(sourceFiles.map((relative) => [relative, fileIdentity(path.join(repo, relative))])), fitted_library: fileIdentity(libraryPath), replay: fileIdentity(replayPath), before_gate: fileIdentity(beforePath) };
   fs.writeFileSync(path.join(output, "SOURCE_HASH_MANIFEST.json"), canonical(sourceManifest));

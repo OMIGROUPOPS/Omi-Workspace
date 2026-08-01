@@ -149,10 +149,8 @@ function episodes(rows, key, source) {
   }
   return result;
 }
-function gzipJsonl(rows) {
-  const text = rows.map((row) => JSON.stringify(row)).join("\n") + "\n";
-  return zlib.gzipSync(Buffer.from(text), { level: 9, mtime: 0 });
-}
+function jsonlBytes(rows) { return Buffer.from(rows.map((row) => JSON.stringify(row)).join("\n") + "\n"); }
+function gzipJsonl(rows) { return zlib.gzipSync(jsonlBytes(rows), { level: 9, mtime: 0 }); }
 
 function main() {
   const quoteRows = parseCsv(fs.readFileSync(quotePath, "utf8")).map(({ row }) => row);
@@ -293,8 +291,11 @@ function main() {
   };
   const files = {
     "MAKER_TOUCH_EXECUTION_RECEIPT.json": Buffer.from(canonical(receipt)),
+    "VRB_BID67_TICKS.jsonl": jsonlBytes(vrbBid67Rows),
     "VRB_BID67_TICKS.jsonl.gz": gzipJsonl(vrbBid67Rows),
+    "VRB_ASK68_TICKS.jsonl": jsonlBytes(vrbAsk68Rows),
     "VRB_ASK68_TICKS.jsonl.gz": gzipJsonl(vrbAsk68Rows),
+    "BIG_ASK55_TICKS.jsonl": jsonlBytes(bigAsk55Rows),
     "BIG_ASK55_TICKS.jsonl.gz": gzipJsonl(bigAsk55Rows),
     "REPORT.md": Buffer.from(report),
     "SOURCE_HASH_MANIFEST.json": Buffer.from(canonical(sourceManifest)),

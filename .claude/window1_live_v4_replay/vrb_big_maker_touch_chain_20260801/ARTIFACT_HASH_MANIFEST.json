@@ -7,14 +7,29 @@
       "sha256": "ec294b29e6e0b7fc09924b0fb7c3efb284c7fe5d190db6143d5509b0c57ee844"
     },
     {
+      "path": ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/VRB_BID67_TICKS.jsonl",
+      "bytes": 185190,
+      "sha256": "3d5dbb6c3344444afb2ea69ea672686a4d64b1800888d8ab830347e91487153d"
+    },
+    {
       "path": ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/VRB_BID67_TICKS.jsonl.gz",
       "bytes": 6913,
       "sha256": "47cf8214ebbdd87aaee03744a5089f53298ff7d5f360fce719bc0babcaa32596"
     },
     {
+      "path": ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/VRB_ASK68_TICKS.jsonl",
+      "bytes": 25022,
+      "sha256": "6112f3a709310271e5a73c6fcdddacaf80cb454d0306fc7c2f7d521d2b1edadf"
+    },
+    {
       "path": ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/VRB_ASK68_TICKS.jsonl.gz",
       "bytes": 1321,
       "sha256": "66781b5db1bb5ee0c2e37a95535a511553313ff7869d3ec65b8aa2abf8304149"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/BIG_ASK55_TICKS.jsonl",
+      "bytes": 178592,
+      "sha256": "2d4a130ae763e53fc7f7b19ca13ed29dca4a80b36341802028d6c85f98394505"
     },
     {
       "path": ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/BIG_ASK55_TICKS.jsonl.gz",
@@ -29,7 +44,7 @@
     {
       "path": ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/SOURCE_HASH_MANIFEST.json",
       "bytes": 2295,
-      "sha256": "26cb6651fb92b1ab73bf0f7969a367816a8e4199198bcfbe28caa0f13e68ca1d"
+      "sha256": "c997921f43870d7639d588545736fa591e1bbcf6aae523404a616ad70074106c"
     }
   ]
 }

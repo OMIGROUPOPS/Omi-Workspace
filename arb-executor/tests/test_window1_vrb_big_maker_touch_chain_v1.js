@@ -10,6 +10,7 @@ const repo = path.resolve(__dirname, "../..");
 const root = path.join(repo, ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801");
 const receipt = JSON.parse(fs.readFileSync(path.join(root, "MAKER_TOUCH_EXECUTION_RECEIPT.json")));
 const rows = (name) => zlib.gunzipSync(fs.readFileSync(path.join(root, name))).toString("utf8").trimEnd().split("\n").map(JSON.parse);
+const plainRows = (name) => fs.readFileSync(path.join(root, name), "utf8").trimEnd().split("\n").map(JSON.parse);
 const bid67 = rows("VRB_BID67_TICKS.jsonl.gz");
 const ask68 = rows("VRB_ASK68_TICKS.jsonl.gz");
 const big55 = rows("BIG_ASK55_TICKS.jsonl.gz");
@@ -50,5 +51,8 @@ assert.strictEqual(receipt.big.seller_aggressor_true_prints_at_or_below_54.lengt
 assert.strictEqual(receipt.big.resting_54_fill_proven, false);
 assert.strictEqual(big55.length, 464);
 assert(big55.every((row) => row.ask === 55 && row.spread === row.ask - row.bid));
+assert.deepStrictEqual(plainRows("VRB_BID67_TICKS.jsonl"), bid67);
+assert.deepStrictEqual(plainRows("VRB_ASK68_TICKS.jsonl"), ask68);
+assert.deepStrictEqual(plainRows("BIG_ASK55_TICKS.jsonl"), big55);
 
-process.stdout.write(JSON.stringify({ status: "PASS", assertions: 30, vrb_bid67_ticks: bid67.length, vrb_ask68_ticks: ask68.length, big_ask55_ticks: big55.length }) + "\n");
+process.stdout.write(JSON.stringify({ status: "PASS", assertions: 33, vrb_bid67_ticks: bid67.length, vrb_ask68_ticks: ask68.length, big_ask55_ticks: big55.length }) + "\n");

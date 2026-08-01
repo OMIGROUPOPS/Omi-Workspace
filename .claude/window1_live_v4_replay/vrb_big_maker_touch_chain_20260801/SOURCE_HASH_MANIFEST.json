@@ -1,0 +1,51 @@
+{
+  "schema_version": "WINDOW1_VRB_BIG_MAKER_TOUCH_SOURCE_MANIFEST_V1",
+  "committed": {
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "bytes": 503893,
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba"
+    },
+    ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FIVE_GAME_FULL_STACK_RESULTS.json": {
+      "bytes": 26384,
+      "sha256": "4abe49088721d823ce1455fce16d3a61d47b3851ef8c5569799d00474e6218cd"
+    },
+    ".claude/window1_live_v4_replay/quote_shape_maker_role_addendum_20260801/MAKER_ROLE_RECEIPT_AUDIT.json": {
+      "bytes": 13363,
+      "sha256": "ad91f2be81804b1c723c239536b73cc8d63adb79ca8fa1d808c200c4a98ef392"
+    },
+    "arb-executor/live_v4.py": {
+      "bytes": 1028619,
+      "sha256": "f6fb1d20f3943f7bac26d94ccf1e9d98a5f22762cd3357394adfc8a3b108d760"
+    },
+    "arb-executor/analysis/build_window1_vrb_big_maker_touch_chain_v1.js": {
+      "bytes": 19655,
+      "sha256": "25a852b8edcec3fdd26d55129655ba6b9e9487c30a83f816f686ff795a465753"
+    }
+  },
+  "private": {
+    "vrb_books": {
+      "path": "fit-local/ticks/KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz",
+      "bytes": 1403319,
+      "sha256": "1e2fff31e866c9888ec631f881a128f805a50d0e01de291b52c78eccebfa57ee"
+    },
+    "vrb_guarded_prints": {
+      "path": "fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19NIKVRB.json.gz",
+      "bytes": 110963,
+      "sha256": "53312bd82ca55d71c32915b8ec2c8a33ea5220424f5e659d476cd5c776728e89",
+      "cache_key": "b85371c8eb52996f66ac25d9b60f0b41f6fbbba4afe883b135962782ae491b0b",
+      "cache_version": "window1-guarded-event-market-cache-v3"
+    },
+    "big_books": {
+      "path": "fit-local/ticks/KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz",
+      "bytes": 870974,
+      "sha256": "d0d32f6a1ea6191fb92802f85d1674a29f58629ca1f4af2daa85fffb1f4095b9"
+    },
+    "big_guarded_prints": {
+      "path": "fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19HURBIG.json.gz",
+      "bytes": 85232,
+      "sha256": "8f1a7d6e7625d90487523ef95264533360ce462ceaf6f1ed767451594f8aae18",
+      "cache_key": "b85371c8eb52996f66ac25d9b60f0b41f6fbbba4afe883b135962782ae491b0b",
+      "cache_version": "window1-guarded-event-market-cache-v3"
+    }
+  }
+}

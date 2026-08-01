@@ -1,0 +1,35 @@
+{
+  "schema_version": "WINDOW1_VRB_BIG_MAKER_TOUCH_ARTIFACT_MANIFEST_V1",
+  "artifacts": [
+    {
+      "path": ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/MAKER_TOUCH_EXECUTION_RECEIPT.json",
+      "bytes": 25783,
+      "sha256": "ec294b29e6e0b7fc09924b0fb7c3efb284c7fe5d190db6143d5509b0c57ee844"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/VRB_BID67_TICKS.jsonl.gz",
+      "bytes": 6913,
+      "sha256": "47cf8214ebbdd87aaee03744a5089f53298ff7d5f360fce719bc0babcaa32596"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/VRB_ASK68_TICKS.jsonl.gz",
+      "bytes": 1321,
+      "sha256": "66781b5db1bb5ee0c2e37a95535a511553313ff7869d3ec65b8aa2abf8304149"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/BIG_ASK55_TICKS.jsonl.gz",
+      "bytes": 7753,
+      "sha256": "4975b5b57c6a5444b5c98d95dd36c9071b3268a6021b62a2b25340eba6c464d3"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/REPORT.md",
+      "bytes": 3334,
+      "sha256": "c2cff1988b3da39d5aa574f3b47339d4d063bfd0e8777c7e1fc59defd063c3b5"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/SOURCE_HASH_MANIFEST.json",
+      "bytes": 2295,
+      "sha256": "26cb6651fb92b1ab73bf0f7969a367816a8e4199198bcfbe28caa0f13e68ca1d"
+    }
+  ]
+}

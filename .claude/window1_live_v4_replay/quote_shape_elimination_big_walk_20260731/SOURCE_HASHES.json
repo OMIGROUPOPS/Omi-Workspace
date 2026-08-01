@@ -1,0 +1,35 @@
+{
+  "diagnostic_builder": {
+    "path": "arb-executor/analysis/build_hurbig_big_elimination_tick_walk_v1.js",
+    "sha256": "1ee7315e1febc2f63263830063a6021800e271b25229d3f69a7d10233663e109"
+  },
+  "diagnostic_test": {
+    "path": "arb-executor/tests/test_hurbig_big_elimination_tick_walk_v1.js",
+    "sha256": "c3e5d3581c27fbcb06bd275da523d09aba7f4f878960913917ee9d5359e65f9e"
+  },
+  "gate": {
+    "path": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+    "sha256": "edc62dc9fa24d66fc9e39e9e4e81c0873c4f032988164a05c374ba565b45082e"
+  },
+  "library": {
+    "path": ".claude/window1_live_v4_replay/quote_shape_elimination_20260731/QUOTE_SHAPE_LIBRARY.json",
+    "sha256": "eb6c267f204c33fb312c8bdf1e9c26fed3d16fe88bd9713d07790f4e73a6e700"
+  },
+  "frozen_replay": {
+    "path": ".claude/window1_live_v4_replay/quote_shape_elimination_20260731/TWO_GAME_REPLAY.json",
+    "sha256": "0a0c4d037001d84325b627e25f33a39afb220cfdb544fd5d89648434ba94c15c"
+  },
+  "quote_ledger": {
+    "path": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv",
+    "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba"
+  },
+  "window_source": {
+    "path": ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FIVE_GAME_FULL_STACK_RESULTS.json",
+    "sha256": "4abe49088721d823ce1455fce16d3a61d47b3851ef8c5569799d00474e6218cd"
+  },
+  "tick_walk": {
+    "path": "BIG_EVERY_JOINT_TICK_ELIMINATION_WALK.csv",
+    "bytes": 1202401,
+    "sha256": "e7d48054c25f0760d14b63767f1c0f135c1d33d1fdd44fd3e86ec3f75fb0a396"
+  }
+}

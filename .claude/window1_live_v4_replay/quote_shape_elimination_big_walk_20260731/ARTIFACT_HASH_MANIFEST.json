@@ -1,0 +1,25 @@
+{
+  "schema_version": "HURBIG_BIG_ELIMINATION_ARTIFACT_HASH_MANIFEST_V1",
+  "artifacts": [
+    {
+      "path": "BIG_EVERY_JOINT_TICK_ELIMINATION_WALK.csv",
+      "bytes": 1202401,
+      "sha256": "e7d48054c25f0760d14b63767f1c0f135c1d33d1fdd44fd3e86ec3f75fb0a396"
+    },
+    {
+      "path": "BIG_ELIMINATION_DIAGNOSIS.json",
+      "bytes": 4249,
+      "sha256": "efcd389022260855eda6610e4b4c5abab72b7a819e46e5d070d2cdae8c2849f9"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 5083,
+      "sha256": "8c159aac777b17e67a752633e852593eae4dc1630abae4b846e40ce065c04af5"
+    },
+    {
+      "path": "SOURCE_HASHES.json",
+      "bytes": 1607,
+      "sha256": "a63c678943b3ea6c0df178588ab43301be2f9c19ab21931470223d8a912e8dda"
+    }
+  ]
+}

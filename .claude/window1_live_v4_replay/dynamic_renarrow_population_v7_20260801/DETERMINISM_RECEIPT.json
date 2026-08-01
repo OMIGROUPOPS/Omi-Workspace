@@ -1,0 +1,12 @@
+{
+  "schema_version": "WINDOW1_DYNAMIC_RENARROW_POPULATION_DETERMINISM_V7",
+  "cold_builds": 2,
+  "first_artifact_manifest_sha256": "3d3f3328a3f44c4c66daaf6b8bd6a8f45d8c25469dcec269a0736ba78117e5da",
+  "second_artifact_manifest_sha256": "3d3f3328a3f44c4c66daaf6b8bd6a8f45d8c25469dcec269a0736ba78117e5da",
+  "byte_identical": true,
+  "event_count_each_build": 804,
+  "leg_count_each_build": 1608,
+  "scorer_invocations": 0,
+  "holdout_access": false,
+  "live_or_trading_access": false
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "WINDOW1_FIVE_GAME_EXECUTION_GATE_SPLIT_V7",
+  "prior_receipt_sha256": "bedb90bcd497d8ee458826c17190eeaa8b1f146308c9dfefedcc17f988e0258f",
+  "operator_claim": {
+    "exact_floor": 7,
+    "within_one_cent_above_floor": 3
+  },
+  "independently_recomputed_from_frozen_capacity_floor": {
+    "exact_floor": 8,
+    "within_one_cent_above_floor": 2
+  },
+  "discrepancy_status": "RAW_LEDGER_CONTROLS; DO_NOT_FORCE OPERATOR HEADLINE",
+  "execution_gate_law": "entry <= own capacity-proven ask-reachable low; close relation separately classified",
+  "exact_floor_equals_close": [
+    "KXATPMATCH-26JUL12LAJVAN/LAJ",
+    "KXWTACHALLENGERMATCH-26JUL16BRAVED/VED"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "WINDOW1_DYNAMIC_RENARROW_POPULATION_ARTIFACT_MANIFEST_V7",
+  "files": {
+    "CONSERVATION_RECEIPT.json": {
+      "sha256": "054cbbdce533698aa72af59d492ec718e3c185c2a68f767796d1699d06615fb9",
+      "bytes": 714
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "82a5de07e7498725160f2b29cfe96a2afbb27ee4765d57e039152f90ad4e36ac",
+      "bytes": 486
+    },
+    "EVENT_LEDGER.jsonl.gz": {
+      "sha256": "3a9830e942346d29ac0a4fe6fe57b391ff873808800887ad726306f9a7184a0c",
+      "bytes": 432599
+    },
+    "FIVE_GAME_EXECUTION_GATE_SPLIT_RECEIPT.json": {
+      "sha256": "476f6899029a30bd6d8689b6b9ed29cd1723b2b5d398ed2e205bc7bb1597468c",
+      "bytes": 680
+    },
+    "POPULATION_SUMMARY.json": {
+      "sha256": "1f9aa7eaed32b70c69a93623a6c1984b2baf503bdffe544f2a4b76dd273cdd01",
+      "bytes": 130161
+    },
+    "REPORT.md": {
+      "sha256": "235871774df93dbebeb8001a0672bea8b115c871f00957b5a07e68091c781001",
+      "bytes": 1561
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "c2cdb2f6d6dbe0f3e6a0c8ac59a3b064c523ea1e14689066b5c845873f47c3c7",
+      "bytes": 330905
+    },
+    "TEST_RECEIPT.json": {
+      "sha256": "bec20b548a5c093438db075c7a9e63dd468920f1dd05599cf681cda1c0bb46b0",
+      "bytes": 977
+    }
+  }
+}

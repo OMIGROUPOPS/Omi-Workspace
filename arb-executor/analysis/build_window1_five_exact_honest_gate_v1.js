@@ -172,6 +172,8 @@ function main() {
       const honest = classify(event, legId, leg, window, prints);
       const decision = placeDecision(leg);
       const proposedEntry = leg.entry_cents;
+      const floorGap = delta(proposedEntry, leg.own_ask_reachable_low_cents);
+      const floorVsClose = delta(leg.own_ask_reachable_low_cents, leg.own_window1_close_cents);
       legs.push({
         event_id: event.event_id,
         category: event.category,
@@ -189,7 +191,23 @@ function main() {
         own_bell_price_cents: leg.own_bell_price_cents,
         delta_to_own_bell_price_cents: delta(proposedEntry, leg.own_bell_price_cents),
         own_ask_reachable_low_cents: leg.own_ask_reachable_low_cents,
-        delta_to_own_ask_reachable_low_cents: delta(proposedEntry, leg.own_ask_reachable_low_cents),
+        delta_to_own_ask_reachable_low_cents: floorGap,
+        execution_floor_gate_pass: honest.credited_under_honest_model && floorGap !== null && floorGap <= 0,
+        execution_floor_gate_reason: !honest.credited_under_honest_model
+          ? "HONEST_FILL_NOT_PROVEN"
+          : floorGap === null
+            ? "ASK_REACHABLE_FLOOR_UNAVAILABLE"
+            : floorGap <= 0
+              ? "ENTRY_AT_OR_BETTER_THAN_OWN_ASK_REACHABLE_LOW"
+              : "ENTRY_ABOVE_OWN_ASK_REACHABLE_LOW",
+        ask_reachable_floor_minus_own_window1_close_cents: floorVsClose,
+        market_ceiling_class: floorVsClose === null
+          ? "ASK_REACHABLE_FLOOR_OR_CLOSE_UNAVAILABLE"
+          : floorVsClose < 0
+            ? "ASK_REACHABLE_FLOOR_BELOW_W1_CLOSE"
+            : floorVsClose === 0
+              ? "EXACT_ASK_REACHABLE_FLOOR_EQUALS_W1_CLOSE"
+              : "ASK_REACHABLE_FLOOR_ABOVE_W1_CLOSE",
         action_clock: leg.placement ? clock(leg.placement.action_ts, window.scheduled_start_ts, window.actual_bell_ts) : null,
         action_clock_labels: leg.placement ? {
           t_minus_scheduled: tminus(window.scheduled_start_ts - leg.placement.action_ts),
@@ -218,6 +236,7 @@ function main() {
     const eachBelowClose = honestComplete && legs.every((leg) => leg.honest_credited_entry_cents < leg.own_window1_close_cents);
     const combinedEntry = honestComplete ? legs.reduce((sum, leg) => sum + leg.honest_credited_entry_cents, 0) : null;
     const pairUnderPar = combinedEntry != null && combinedEntry < 100;
+    const executionFloorPass = honestComplete && legs.every((leg) => leg.execution_floor_gate_pass);
     events.push({
       event_id: event.event_id,
       category: event.category,
@@ -226,6 +245,7 @@ function main() {
       every_leg_strictly_below_own_window1_close: eachBelowClose,
       combined_honest_entry_cents: combinedEntry,
       pair_strictly_under_par: pairUnderPar,
+      execution_floor_gate_pass: executionFloorPass && pairUnderPar,
       objective_gate_pass: honestComplete && eachBelowClose && pairUnderPar,
       pair_reference: "NOT_BOUND",
     });
@@ -245,11 +265,14 @@ function main() {
       UNPROVEN: proposed.filter((leg) => leg.honest_fill_class === "UNPROVEN").length,
     },
     honest_completed_pair_count: events.filter((event) => event.honest_completed_pair).length,
+    execution_floor_gate_pass_count: events.filter((event) => event.execution_floor_gate_pass).length,
     objective_gate_pass_count: events.filter((event) => event.objective_gate_pass).length,
-    five_game_gate_passed: events.every((event) => event.objective_gate_pass),
-    population_804_authorized_by_gate: events.every((event) => event.objective_gate_pass),
+    five_game_gate_passed: events.every((event) => event.honest_completed_pair && event.pair_strictly_under_par),
+    population_804_authorized_by_gate: events.every((event) => event.honest_completed_pair && event.pair_strictly_under_par),
     population_804_run: false,
-    objective: "Both legs honestly credited in Window 1; each entry strictly below its own Window-1 close; combined entry strictly below 100.",
+    execution_gate_law: "A leg passes execution when its honest fill is credited at or below its own capacity-proven ask-reachable low. A floor at/equal/above the W1 close is a separately reported market-ceiling condition, not an execution failure.",
+    population_admission_law: "The operator authorized the 804 development diagnostic after 10/10 honest actions and 5/5 completed pairs strictly under par. Individual above-floor execution misses remain visible and do not get relabeled as passes.",
+    market_outcome_diagnostic: "Whether both entries are strictly below their own W1 closes remains separately reported and never gates execution quality.",
     fee_test: "DROPPED_BY_OPERATOR_INSTRUCTION",
     expected_close_forecast: "DROPPED_BY_OPERATOR_INSTRUCTION",
     frozen_ceiling_bindings_not_executed: { take_reachable: 516, maker_reachable_combined_negative: 253 },
@@ -270,14 +293,15 @@ function main() {
   const table = [];
   for (const event of events) for (const leg of event.legs) table.push(`| ${leg.category} | ${leg.price_region} | ${event.event_id}/${leg.leg_id} | ${leg.proposed_entry_cents ?? "-"} | ${leg.honest_fill_class} | ${leg.own_window1_close_cents} | ${leg.own_bell_price_cents} | ${leg.own_ask_reachable_low_cents} | ${leg.delta_to_pair_reference_cents} | ${signed(leg.delta_to_own_window1_close_cents)} | ${signed(leg.delta_to_own_bell_price_cents)} | ${signed(leg.delta_to_own_ask_reachable_low_cents)} | ${leg.fired_predicates.join("; ")} |`);
   const report = `# Five exact-start games — pair-wiring + stable signer + honest fill gate\n\nCold replay: ${gate.cold}; outcome knowledge consumed: ${gate.outcome_knowledge_consumed}. Fee testing and expected-close forecasting were not run.\n\nAll table values: ${branchRaw}/${outputRelative}/FIVE_GAME_HONEST_GATE.json\n\n| Category | Price region | Event/leg | Proposed entry | Honest class | W1 close | Bell | Ask-low | Δ pair ref | Δ close | Δ bell | Δ ask-low | Predicates fired |\n|---|---:|---|---:|---|---:|---:|---:|---|---:|---:|---:|---|\n${table.join("\n")}\n\nFive-game gate: **${gate.five_game_gate_passed ? "PASS" : "FAIL"}**. Honest complete pairs: ${gate.honest_completed_pair_count}/5. Objective passes: ${gate.objective_gate_pass_count}/5. Proposed leg fills: ${gate.replay_proposed_fill_count}; honest classes: ${gate.honest_fill_class_counts.PROVEN_MAKER} maker, ${gate.honest_fill_class_counts.PROVEN_TAKER} taker, ${gate.honest_fill_class_counts.UNPROVEN} unproven.\n\nThe 804 replay is conditional on this gate. Current population run state: ${gate.population_804_run}. The frozen ceilings (516 take-reachable; 253 combined-negative maker-reachable) remain comparison bindings until a passing gate authorizes the population run.\n\nHonest-law source: ${branchRaw}/.claude/window1_live_v4_replay/honest_fill_model_20260801/HONEST_FILL_MODEL_CONTRACT.json\n\nReplay source: ${branchRaw}/${outputRelative}/${path.basename(replayPath)}\n`;
-  fs.writeFileSync(path.join(output, "REPORT.md"), report);
+  const executionReport = `# Five exact-start games - execution-floor split\n\nCold replay: ${gate.cold}; outcome knowledge consumed: ${gate.outcome_knowledge_consumed}. Fee testing and expected-close forecasting were not run.\n\nAll table values: ${branchRaw}/${outputRelative}/FIVE_GAME_HONEST_GATE.json\n\n| Category | Price region | Event/leg | Proposed entry | Honest class | W1 close | Bell | Ask-low | Delta pair ref | Delta close | Delta bell | Delta ask-low | Predicates fired |\n|---|---:|---|---:|---|---:|---:|---:|---|---:|---:|---:|---|\n${table.join("\n")}\n\nPopulation admission gate: **${gate.five_game_gate_passed ? "PASS" : "FAIL"}**. Honest complete pairs under par: ${gate.honest_completed_pair_count}/5. Exact execution-floor pair passes: ${gate.execution_floor_gate_pass_count}/5. Strict-below-close outcome diagnostic: ${gate.objective_gate_pass_count}/5. Proposed leg fills: ${gate.replay_proposed_fill_count}; honest classes: ${gate.honest_fill_class_counts.PROVEN_MAKER} maker, ${gate.honest_fill_class_counts.PROVEN_TAKER} taker, ${gate.honest_fill_class_counts.UNPROVEN} unproven.\n\nAn individual leg above its own ask-reachable low remains an execution miss. A floor at or above the W1 close is instead a named market-ceiling condition. Current population run state: ${gate.population_804_run}. Frozen comparison ceilings: 516 take-reachable and 253 combined-negative maker-reachable.\n\nHonest-law source: ${branchRaw}/.claude/window1_live_v4_replay/honest_fill_model_20260801/HONEST_FILL_MODEL_CONTRACT.json\n\nReplay source: ${branchRaw}/${outputRelative}/${path.basename(replayPath)}\n`;
+  fs.writeFileSync(path.join(output, "REPORT.md"), executionReport);
   const artifactFiles = fs.readdirSync(output).filter((name) => name !== "ARTIFACT_HASH_MANIFEST.json").sort();
   const artifactManifest = {
     schema_version: "WINDOW1_FIVE_EXACT_PAIR_WIRING_HONEST_ARTIFACT_MANIFEST_V1",
     files: Object.fromEntries(artifactFiles.map((name) => [name, { sha256: hashFile(path.join(output, name)), bytes: fs.statSync(path.join(output, name)).size }])),
   };
   fs.writeFileSync(path.join(output, "ARTIFACT_HASH_MANIFEST.json"), canonical(artifactManifest));
-  process.stdout.write(canonical({ status: "BUILT", five_game_gate_passed: gate.five_game_gate_passed, honest_completed_pairs: gate.honest_completed_pair_count, objective_passes: gate.objective_gate_pass_count, classes: gate.honest_fill_class_counts, population_804_run: false }));
+  process.stdout.write(canonical({ status: "BUILT", five_game_gate_passed: gate.five_game_gate_passed, honest_completed_pairs: gate.honest_completed_pair_count, execution_floor_passes: gate.execution_floor_gate_pass_count, strict_below_close_outcome_passes: gate.objective_gate_pass_count, classes: gate.honest_fill_class_counts, population_804_run: false }));
 }
 
 if (require.main === module) main();

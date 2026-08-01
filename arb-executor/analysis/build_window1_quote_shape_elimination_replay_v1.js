@@ -22,12 +22,16 @@ const pairWiringV3 = args.includes("--pair-wiring-v3");
 const stableSignerV4 = args.includes("--stable-signer-v4");
 const descentVerdictV5 = args.includes("--descent-verdict-v5");
 const dynamicRenarrowV6 = args.includes("--dynamic-renarrow-v6");
+const compactPopulation = args.includes("--compact-population");
+const noCharts = args.includes("--no-charts");
+const excludeOwnTrainingMember = args.includes("--exclude-own-training-member");
 const receiptName = value("--receipt-name", "TWO_GAME_REPLAY.json");
 const quotePath = path.join(repo, ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv");
-const refsPath = path.join(repo, ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/REPLAY_AND_REFERENCE_PANEL.json");
-const frozenFivePath = path.join(repo, ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FIVE_GAME_FULL_STACK_RESULTS.json");
+const refsPath = path.resolve(value("--references", path.join(repo, ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/REPLAY_AND_REFERENCE_PANEL.json")));
+const frozenFivePath = path.resolve(value("--windows", path.join(repo, ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FIVE_GAME_FULL_STACK_RESULTS.json")));
 const DEFAULT_TARGETS = ["KXATPCHALLENGERMATCH-26JUL19NIKVRB", "KXATPCHALLENGERMATCH-26JUL19HURBIG"];
-const TARGETS = new Set(value("--targets", DEFAULT_TARGETS.join(",")).split(",").filter(Boolean));
+const targetFile = value("--target-file", null);
+const TARGETS = new Set(targetFile ? JSON.parse(fs.readFileSync(path.resolve(targetFile))) : value("--targets", DEFAULT_TARGETS.join(",")).split(",").filter(Boolean));
 const PREFIX_KEYS = ["ask_net", "ask_dip", "mean_spread", "spread_range", "quote_rate", "ask_change_rate", "ask_dwell_fraction", "mean_log_top_ask_size", "mean_log_top5_ask_depth"];
 const DWELL_SECONDS = 10, QUANTITY = 5;
 
@@ -85,8 +89,8 @@ function compatibleShapes(group, row, previous) {
   const micro = stagedMinimum(profiles, [0, 1]);
   return stagedMinimum(micro, [2, 3, 4, 5, 6, 7, 8]).map((x) => x.shapeId);
 }
-function nearestMemberFuture(shape, row, requiredDescentOrdinal = null) {
-  const support = shape.envelopes[row.progress_bin]?.empirical_support, members = (shape.member_paths || []).filter((member) => member.bins[row.progress_bin] && (requiredDescentOrdinal === null || member.descent_ordinal_to_final_reachable_low === requiredDescentOrdinal));
+function nearestMemberFuture(shape, row, requiredDescentOrdinal = null, excludedEventId = null) {
+  const support = shape.envelopes[row.progress_bin]?.empirical_support, members = (shape.member_paths || []).filter((member) => member.event_id !== excludedEventId && member.bins[row.progress_bin] && (requiredDescentOrdinal === null || member.descent_ordinal_to_final_reachable_low === requiredDescentOrdinal));
   if (!support || !members.length) return { verdict: "UNKNOWN", selected_members: [], remaining_min_deltas: [] };
   const scored = members.map((member) => {
     const bin = member.bins[row.progress_bin], distances = PREFIX_KEYS.map((key, index) => Math.abs((row.prefix[key] - bin.prefix[index]) / support.sds[index]));
@@ -96,9 +100,9 @@ function nearestMemberFuture(shape, row, requiredDescentOrdinal = null) {
   const verdict = !deltas.length || deltas.some((delta) => !Number.isFinite(delta)) ? "UNKNOWN" : deltas.every((delta) => delta < 0) ? "LOWER" : deltas.every((delta) => delta >= 0) ? "FLOOR" : "UNKNOWN";
   return { verdict, selected_members: nearest.map((item) => ({ event_id: item.member.event_id, leg_id: item.member.leg_id, ticker: item.member.ticker })), remaining_min_deltas: deltas };
 }
-function shapeVerdict(group, shapeId, bin, row) {
+function shapeVerdict(group, shapeId, bin, row, excludedEventId = null) {
   const shape = group.shapes.find((s) => s.shape_id === shapeId), delta = shape.medoid_future[bin], medoidVerdict = delta === null ? "UNKNOWN" : delta < 0 ? "LOWER" : "FLOOR", fitted = shape.descent_to_final_reachable_low ?? null;
-  const zeroDescentSupport = Number(fitted?.counts?.["0"] || 0), useZeroDescentMember = dynamicRenarrowV6 && shape.topology.startsWith("DOWN_") && medoidVerdict === "LOWER" && row.new_low_descent_count === 0 && zeroDescentSupport > 0, memberVerdict = useZeroDescentMember ? nearestMemberFuture(shape, row, 0) : null, baseVerdict = useZeroDescentMember ? memberVerdict.verdict : medoidVerdict;
+  const zeroDescentSupport = Number(fitted?.counts?.["0"] || 0), useZeroDescentMember = dynamicRenarrowV6 && shape.topology.startsWith("DOWN_") && medoidVerdict === "LOWER" && row.new_low_descent_count === 0 && zeroDescentSupport > 0, memberVerdict = useZeroDescentMember ? nearestMemberFuture(shape, row, 0, excludedEventId) : null, baseVerdict = useZeroDescentMember ? memberVerdict.verdict : medoidVerdict;
   const adjusted = descentVerdictV5 ? evaluateDescentVerdict({ baseVerdict, observedNewLowDescents: row.new_low_descent_count, fittedDistribution: fitted }) : { verdict: baseVerdict, descent_adjustment: "NOT_APPLICABLE", observed_new_low_descents: row.new_low_descent_count };
   return { ...adjusted, base_verdict: baseVerdict, fitted_descent_distribution: fitted, temporal_authority: useZeroDescentMember ? "CAUSALLY_NEAREST_ZERO_DESCENT_MEMBER" : "STATIC_SHAPE_MEDOID", selected_training_members: memberVerdict?.selected_members ?? [], selected_member_remaining_min_deltas: memberVerdict?.remaining_min_deltas ?? [] };
 }
@@ -191,7 +195,7 @@ function replayGame(eventId, sources, library, refs) {
       const distinctStrictlyLaterFillReceipt = stableSamePriceConfirmation ? fillRow.ts > leg.order?.action_ts && fillRow.receipt !== leg.order?.own_book_receipt_at_action : row.ts > leg.order?.action_ts;
       if (leg.order && distinctStrictlyLaterFillReceipt && fillRow.ask <= leg.order.price_cents && fillRow.ask_dwell_seconds >= DWELL_SECONDS && capacityAtOrBelow(fillRow, leg.order.price_cents) >= QUANTITY) { leg.fill = { price_cents: leg.order.price_cents, quantity: QUANTITY, evidence_ts: fillRow.ts, evidence_receipt: fillRow.receipt, evidence_type: "STRICTLY_LATER_ASK_DWELL_AND_DISPLAYED_CAPACITY", ask_cents: fillRow.ask, ask_dwell_seconds: fillRow.ask_dwell_seconds, capacity: capacityAtOrBelow(fillRow, leg.order.price_cents) }; leg.decisions.push({ ts: fillRow.ts, state: "FILLED", receipt: fillRow.receipt, order: leg.order, fill: leg.fill }); continue; }
       if (leg.order) continue;
-      const role = leg === high ? "highShape" : "lowShape", shapes = [...new Set(tuples.map((t) => t[role]))], verdicts = shapes.map((id) => ({ shape_id: id, ...shapeVerdict(leg.group, id, row.progress_bin, row) })); let state = "INSUFFICIENT_EVIDENCE", reason = "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP";
+      const role = leg === high ? "highShape" : "lowShape", shapes = [...new Set(tuples.map((t) => t[role]))], verdicts = shapes.map((id) => ({ shape_id: id, ...shapeVerdict(leg.group, id, row.progress_bin, row, excludeOwnTrainingMember ? eventId : null) })); let state = "INSUFFICIENT_EVIDENCE", reason = "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP";
       if (row.raw_row_count < 2) reason = "NO_PRIOR_IN_WINDOW_BOOK";
       else if (shapes.length && verdicts.some((x) => x.descent_adjustment === "OBSERVED_DESCENT_OUTSIDE_SHAPE_TRAINING_SUPPORT")) reason = "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT";
       else if (shapes.length && verdicts.every((x) => x.verdict === "LOWER")) { state = "HOLD"; reason = "ALL_SURVIVING_SHAPES_SAY_LOWER"; }
@@ -219,7 +223,7 @@ function replayGame(eventId, sources, library, refs) {
     }
   }
   const current = refs.current_branch.find((x) => x.event_id === eventId), corrected = refs.corrected_branch.find((x) => x.event_id === eventId);
-  return { event_id: eventId, category: legs[0].category, pair_constraint: { identity: "two outcomes sum to 100", training_pair_key: pairKey, observed_pair_shape_tuples: observedTuples.length, structural_closure_enabled: pairWiringV3, initial_pair_shape_tuples: allTuples.length, final_pair_shape_tuples: tuples.length, dynamic_current_path_inverse_closures: dynamicPairClosures }, legs: Object.fromEntries(legs.map((leg) => { const ref = corrected.legs[leg.leg], entry = leg.fill?.price_cents ?? null; return [leg.leg, { ticker: leg.ticker, price_region: leg.price_region, status: leg.fill ? "CREDITED" : "INSUFFICIENT_EVIDENCE", entry_cents: entry, baseline_entry_cents: current.legs[leg.leg].entry_cents, own_window1_close_cents: ref.own_window1_close_cents, delta_to_own_window1_close_cents: entry === null ? null : entry - ref.own_window1_close_cents, own_bell_price_cents: ref.own_bell_price_cents, delta_to_own_bell_price_cents: entry === null ? null : entry - ref.own_bell_price_cents, own_ask_reachable_low_cents: ref.own_ask_reachable_low_cents, delta_to_own_ask_reachable_low_cents: entry === null ? null : entry - ref.own_ask_reachable_low_cents, pair_reference_cents: "NOT_BOUND", delta_to_pair_reference_cents: "NOT_BOUND", placement: leg.order, fill: leg.fill, macro_reclassifications: leg.macro_reclassifications, surviving_shapes_at_placement: leg.order?.surviving_shapes || [], surviving_shapes_at_terminal: leg.survivor_shapes.map((shape_id) => ({ shape_id, direction: directionOf(shape_id) })), terminal_reason: leg.fill ? "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK" : leg.decisions[leg.decisions.length - 1]?.reason || "NO_LAWFUL_DECISION", decision_changes: leg.decisions, chart_rows: downsample(leg.rows.map((r) => ({ ts: r.ts, bid: r.bid, ask: r.ask, last: r.carried_last }))), source: leg.source_receipt }]; })) };
+  return { event_id: eventId, category: legs[0].category, pair_constraint: { identity: "two outcomes sum to 100", training_pair_key: pairKey, observed_pair_shape_tuples: observedTuples.length, structural_closure_enabled: pairWiringV3, initial_pair_shape_tuples: allTuples.length, final_pair_shape_tuples: tuples.length, dynamic_current_path_inverse_closures: dynamicPairClosures }, legs: Object.fromEntries(legs.map((leg) => { const ref = corrected.legs[leg.leg], entry = leg.fill?.price_cents ?? null; return [leg.leg, { ticker: leg.ticker, price_region: leg.price_region, status: leg.fill ? "CREDITED" : "INSUFFICIENT_EVIDENCE", entry_cents: entry, baseline_entry_cents: current?.legs?.[leg.leg]?.entry_cents ?? null, own_window1_close_cents: ref.own_window1_close_cents, delta_to_own_window1_close_cents: entry === null || !Number.isInteger(ref.own_window1_close_cents) ? null : entry - ref.own_window1_close_cents, own_bell_price_cents: ref.own_bell_price_cents, delta_to_own_bell_price_cents: entry === null || !Number.isInteger(ref.own_bell_price_cents) ? null : entry - ref.own_bell_price_cents, own_ask_reachable_low_cents: ref.own_ask_reachable_low_cents, delta_to_own_ask_reachable_low_cents: entry === null || !Number.isInteger(ref.own_ask_reachable_low_cents) ? null : entry - ref.own_ask_reachable_low_cents, pair_reference_cents: "NOT_BOUND", delta_to_pair_reference_cents: "NOT_BOUND", placement: leg.order, fill: leg.fill, macro_reclassifications: leg.macro_reclassifications, surviving_shapes_at_placement: leg.order?.surviving_shapes || [], surviving_shapes_at_terminal: leg.survivor_shapes.map((shape_id) => ({ shape_id, direction: directionOf(shape_id) })), terminal_reason: leg.fill ? "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK" : leg.decisions[leg.decisions.length - 1]?.reason || "NO_LAWFUL_DECISION", decision_changes: leg.decisions, chart_rows: downsample(leg.rows.map((r) => ({ ts: r.ts, bid: r.bid, ask: r.ask, last: r.carried_last }))), source: leg.source_receipt }]; })) };
 }
 
 function svgChart(event, sources) {
@@ -236,12 +240,117 @@ function svgChart(event, sources) {
   body += `<g transform="translate(${left},${H-28})"><line class="bid" x1="0" y1="0" x2="28" y2="0"/><text x="34" y="4" font-size="11">bid</text><line class="ask" x1="80" y1="0" x2="108" y2="0"/><text x="114" y="4" font-size="11">ask</text><line class="last" x1="160" y1="0" x2="188" y2="0"/><text x="194" y="4" font-size="11">carried last</text><line class="order" x1="285" y1="0" x2="313" y2="0"/><text x="319" y="4" font-size="11">our order</text></g></svg>`; return body;
 }
 
+function compactEvent(event) {
+  if (event.replay_status === "SOURCE_UNAVAILABLE") return event;
+  return {
+    event_id: event.event_id,
+    category: event.category,
+    replay_status: "AVAILABLE",
+    pair_constraint: event.pair_constraint,
+    legs: Object.fromEntries(Object.entries(event.legs).map(([legId, leg]) => {
+      const place = (leg.decision_changes || []).find((row) => row.state === "PLACE" && row.order?.action_ts === leg.placement?.action_ts) || null;
+      const actionBook = place?.book || null;
+      const exactActionBook = Boolean(leg.placement && leg.placement.own_book_ts_at_action === leg.placement.action_ts && leg.placement.own_book_receipt_at_action === leg.placement.action_receipt);
+      const displayedCapacity = actionBook && actionBook.ask <= leg.placement?.price_cents ? Number(actionBook.top_ask_size) : 0;
+      const provenTakerAtAction = exactActionBook && Number.isFinite(displayedCapacity) && displayedCapacity >= QUANTITY;
+      return [legId, {
+        ticker: leg.ticker,
+        price_region: leg.price_region,
+        replay_status: leg.status,
+        proposed_entry_cents: leg.placement?.price_cents ?? null,
+        replay_later_receipt_entry_cents: leg.entry_cents,
+        honest_fill_class: provenTakerAtAction ? "PROVEN_TAKER" : "UNPROVEN",
+        honest_credited_entry_cents: provenTakerAtAction ? leg.placement.price_cents : null,
+        action_book_exact: exactActionBook,
+        displayed_opposing_capacity_at_or_below_x: displayedCapacity,
+        own_window1_close_cents: leg.own_window1_close_cents,
+        own_bell_price_cents: leg.own_bell_price_cents,
+        own_ask_reachable_low_cents: leg.own_ask_reachable_low_cents,
+        delta_to_own_window1_close_cents: provenTakerAtAction && Number.isInteger(leg.own_window1_close_cents) ? leg.placement.price_cents - leg.own_window1_close_cents : null,
+        delta_to_own_bell_price_cents: provenTakerAtAction && Number.isInteger(leg.own_bell_price_cents) ? leg.placement.price_cents - leg.own_bell_price_cents : null,
+        delta_to_own_ask_reachable_low_cents: provenTakerAtAction && Number.isInteger(leg.own_ask_reachable_low_cents) ? leg.placement.price_cents - leg.own_ask_reachable_low_cents : null,
+        pair_reference_cents: "NOT_BOUND",
+        delta_to_pair_reference_cents: "NOT_BOUND",
+        placement: leg.placement,
+        replay_later_receipt_fill: leg.fill,
+        action_book: actionBook,
+        macro_reclassifications: leg.macro_reclassifications,
+        surviving_shapes_at_placement: leg.surviving_shapes_at_placement,
+        surviving_shapes_at_terminal: leg.surviving_shapes_at_terminal,
+        terminal_reason: leg.terminal_reason,
+        source: leg.source,
+      }];
+    })),
+  };
+}
+
+function unavailableEvent(eventId, sources, error) {
+  return {
+    event_id: eventId,
+    category: sources?.[0]?.category ?? null,
+    replay_status: "SOURCE_UNAVAILABLE",
+    reason: error instanceof Error ? error.message : String(error),
+    legs: Object.fromEntries((sources || []).map((source) => [source.leg, {
+      ticker: source.ticker,
+      price_region: null,
+      replay_status: "SOURCE_UNAVAILABLE",
+      proposed_entry_cents: null,
+      honest_fill_class: "UNPROVEN",
+      honest_credited_entry_cents: null,
+      pair_reference_cents: "NOT_BOUND",
+      delta_to_pair_reference_cents: "NOT_BOUND",
+      own_window1_close_cents: source.own_window1_close_cents ?? null,
+      own_bell_price_cents: source.own_bell_price_cents ?? null,
+      own_ask_reachable_low_cents: source.own_ask_reachable_low_cents ?? null,
+      delta_to_own_window1_close_cents: null,
+      delta_to_own_bell_price_cents: null,
+      delta_to_own_ask_reachable_low_cents: null,
+      terminal_reason: "SOURCE_UNAVAILABLE",
+    }])),
+  };
+}
+
 function main() {
-  const library = JSON.parse(fs.readFileSync(libraryPath)), refs = JSON.parse(fs.readFileSync(refsPath)), frozenFive = JSON.parse(fs.readFileSync(frozenFivePath)), windows = Object.fromEntries(frozenFive.events.map((e) => [e.event_id, e.window])), raw = fs.readFileSync(quotePath, "utf8").trimEnd().split(/\r?\n/), headers = raw.shift().split(","), quoteRows = raw.map((line) => Object.fromEntries(line.split(",").map((v, i) => [headers[i], v]))), sourcesByEvent = {};
-  for (const q of quoteRows) if (TARGETS.has(q.event_id)) { if (!sourcesByEvent[q.event_id]) sourcesByEvent[q.event_id] = []; sourcesByEvent[q.event_id].push({ event_id: q.event_id, category: q.category, leg: q.leg, ticker: q.ticker, left: Number(q.left_ts), right: Number(q.right_ts), scheduled: Number(q.scheduled_start_ts), bell: Number(windows[q.event_id].actual_bell_ts) }); }
-  const events = [...TARGETS].sort().map((id) => replayGame(id, sourcesByEvent[id], library, refs)), receipt = { schema_version: dynamicRenarrowV6 ? "WINDOW1_QUOTE_SHAPE_DYNAMIC_RENARROW_REPLAY_V6" : descentVerdictV5 ? "WINDOW1_QUOTE_SHAPE_DESCENT_VERDICT_REPLAY_V5" : stableSignerV4 ? "WINDOW1_QUOTE_SHAPE_STABLE_SIGNER_REPLAY_V4" : pairWiringV3 ? "WINDOW1_QUOTE_SHAPE_PAIR_WIRING_REPLAY_V3" : stableSamePriceConfirmation ? "WINDOW1_QUOTE_SHAPE_STABLE_SAME_PRICE_REPLAY_V2" : "WINDOW1_QUOTE_SHAPE_ELIMINATION_TWO_GAME_REPLAY_V1", cold: true, outcome_knowledge_consumed: false, score_free: true, library_sha256: sha256(fs.readFileSync(libraryPath)), descent_verdict_v5: descentVerdictV5, dynamic_renarrow_v6: dynamicRenarrowV6, decision_law: { macro: dynamicRenarrowV6 ? "category + formed-book price region narrows first; if a new-low descent contradicts every survivor, stale classes are eliminated, the descent-capable class set is reopened and re-narrowed, and pair tuples are recomputed before any lower layer speaks" : "category + first one-tick-spread lawful-book price band initializes every empirical quote topology", pair: pairWiringV3 ? "empirically observed pair tuples plus explicitly labeled inverse-compatible structural closure; a singleton inverse tuple may satisfy sibling direction only when the sibling has its own later micro-position receipt" : "the first independently resolved ask-path direction removes non-inverse sibling directions; historically observed pair tuples remain the provenance set", micro: dynamicRenarrowV6 ? "inside each resolved class, the causally nearest fitted training-member prefix supplies the remaining-low verdict; ask position is minimized first, then dwell/spread/cadence/displayed-size/top-five depth resolves exact ties" : "at each own-book tick, exact fitted distance minima first retain the closest ask-net/dip shapes, then dwell/spread/cadence/displayed-size/top-five-depth resolves only the remaining tie", descent_verdict: descentVerdictV5 ? "after a new-low ask descent, each surviving shape's empirical leave-five-out median new-low descent ordinal must be reached; a descent with zero matching training support triggers macro re-narrowing under V6" : "V5_DISABLED", micro_micro: stableSignerV4 ? "before a demonstrated descent, an initial-level ask may sign only when top ask price and displayed size persisted, a returned price pulse exceeded the contemporaneous spread, or the resolved inverse sibling demonstrated an ask transition; action authority additionally waits for a fresh own-book receipt; inherited 10-second dwell and displayed ask quantity >=5 remain unchanged" : stableSamePriceConfirmation ? "the joint clock re-evaluates carried lawful BBO state on either leg's tick; own micro-position evidence is either an ask-price transition or a strictly later same-price own ask receipt carrying at least 10 seconds dwell and positive displayed size" : "the joint clock re-evaluates carried lawful BBO state on either leg's tick", states: ["PLACE", "HOLD", "INSUFFICIENT_EVIDENCE"], place: "all surviving pair-constrained shape verdicts say FLOOR and micro-micro evidence is executable", hold: "all surviving shape verdicts say LOWER", insufficient: "no prior in-window book, unresolved macro reclassification, disagreement, fitted descent ordinal not reached, no own micro position, unresolved sibling direction, unsupported stable same-price ask, stale action book, missing library evidence, or execution evidence unavailable", fill: stableSamePriceConfirmation ? "a distinct own ask receipt with source timestamp strictly later than action; ask<=X; ask dwell>=10 seconds; displayed capacity>=5" : "strictly later ask receipt, ask<=X, ask dwell>=10 seconds, displayed capacity>=5" }, events };
-  fs.mkdirSync(outDir, { recursive: true }); fs.writeFileSync(path.join(outDir, receiptName), canonical(receipt)); for (const event of events) { const shortName = stableSamePriceConfirmation ? event.event_id.replace(/^KX(?:ATP|WTA)(?:CHALLENGER)?MATCH-26JUL\d+/, "") : event.event_id.includes("NIKVRB") ? "NIKVRB" : "HURBIG"; fs.writeFileSync(path.join(outDir, `${shortName}_QUOTE_SHAPE_REPLAY.svg`), svgChart(event, sourcesByEvent[event.event_id])); }
-  process.stdout.write(canonical({ status: "BUILT", events: events.map((e) => ({ event_id: e.event_id, legs: Object.fromEntries(Object.entries(e.legs).map(([k,v]) => [k,{ status:v.status, entry:v.entry_cents, low:v.own_ask_reachable_low_cents, shapes:v.surviving_shapes_at_placement.map((s)=>s.shape_id) }])) })) }));
+  const library = JSON.parse(fs.readFileSync(libraryPath));
+  const refs = JSON.parse(fs.readFileSync(refsPath));
+  const windowsReceipt = JSON.parse(fs.readFileSync(frozenFivePath));
+  const windows = Object.fromEntries(windowsReceipt.events.map((event) => [event.event_id, event.window]));
+  const raw = fs.readFileSync(quotePath, "utf8").trimEnd().split(/\r?\n/);
+  const headers = raw.shift().split(",");
+  const quoteRows = raw.map((line) => Object.fromEntries(line.split(",").map((item, index) => [headers[index], item])));
+  const refByEvent = Object.fromEntries((refs.corrected_branch || []).map((event) => [event.event_id, event]));
+  const sourcesByEvent = {};
+  for (const row of quoteRows) if (TARGETS.has(row.event_id)) {
+    const ref = refByEvent[row.event_id]?.legs?.[row.leg] || {};
+    if (!sourcesByEvent[row.event_id]) sourcesByEvent[row.event_id] = [];
+    sourcesByEvent[row.event_id].push({ event_id: row.event_id, category: row.category, leg: row.leg, ticker: row.ticker, left: Number(row.left_ts), right: Number(row.right_ts), scheduled: Number(row.scheduled_start_ts), bell: Number.isFinite(Number(windows[row.event_id]?.actual_bell_ts)) ? Number(windows[row.event_id].actual_bell_ts) : null, own_window1_close_cents: ref.own_window1_close_cents ?? null, own_bell_price_cents: ref.own_bell_price_cents ?? null, own_ask_reachable_low_cents: ref.own_ask_reachable_low_cents ?? null });
+  }
+  const fullEvents = [...TARGETS].sort().map((eventId) => {
+    try { return replayGame(eventId, sourcesByEvent[eventId], library, refs); }
+    catch (error) { return unavailableEvent(eventId, sourcesByEvent[eventId], error); }
+  });
+  const events = compactPopulation ? fullEvents.map(compactEvent) : fullEvents;
+  const receipt = {
+    schema_version: dynamicRenarrowV6 ? "WINDOW1_QUOTE_SHAPE_DYNAMIC_RENARROW_REPLAY_V6" : "WINDOW1_QUOTE_SHAPE_REPLAY",
+    cold: true,
+    outcome_knowledge_consumed: false,
+    score_free: true,
+    library_sha256: sha256(fs.readFileSync(libraryPath)),
+    descent_verdict_v5: descentVerdictV5,
+    dynamic_renarrow_v6: dynamicRenarrowV6,
+    compact_population: compactPopulation,
+    own_training_member_excluded_from_causal_nearest_member_selection: excludeOwnTrainingMember,
+    aggregate_library_fit_disclosure: compactPopulation ? "The aggregate quote-shape library was fitted on the development population except the frozen five. The target event is excluded from causal nearest-member selection, but aggregate envelopes remain in-sample for non-five rows; this 804 diagnostic is not holdout validation." : null,
+    decision_law: { states: ["PLACE", "HOLD", "INSUFFICIENT_EVIDENCE"], dwell_seconds: DWELL_SECONDS, exact_quantity: QUANTITY, macro: "dynamic contradiction-driven re-narrowing before lower layers", pair: "inverse pair wiring and current-prefix closure", micro: "causal prefix position within surviving shapes", micro_micro: "fresh ask receipt, dwell and displayed ask capacity", fill: "replay later-receipt credit is retained separately; honest PROVEN_TAKER is derived from exact action-time opposing ask capacity in the compact population receipt" },
+    events,
+  };
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(path.join(outDir, receiptName), canonical(receipt));
+  if (!noCharts) for (const event of fullEvents.filter((item) => item.replay_status !== "SOURCE_UNAVAILABLE")) {
+    const shortName = stableSamePriceConfirmation ? event.event_id.replace(/^KX(?:ATP|WTA)(?:CHALLENGER)?MATCH-26JUL\d+/, "") : event.event_id.includes("NIKVRB") ? "NIKVRB" : "HURBIG";
+    fs.writeFileSync(path.join(outDir, `${shortName}_QUOTE_SHAPE_REPLAY.svg`), svgChart(event, sourcesByEvent[event.event_id]));
+  }
+  process.stdout.write(canonical({ status: "BUILT", event_count: events.length, unavailable: events.filter((event) => event.replay_status === "SOURCE_UNAVAILABLE").length, receipt: path.join(outDir, receiptName) }));
 }
 
 main();

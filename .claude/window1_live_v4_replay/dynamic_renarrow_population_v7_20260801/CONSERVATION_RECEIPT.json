@@ -1,0 +1,23 @@
+{
+  "schema_version": "WINDOW1_DYNAMIC_RENARROW_POPULATION_CONSERVATION_V7",
+  "D": 804,
+  "legs": 1608,
+  "candidate_completed_pairs": 137,
+  "candidate_pairs_under_par": 72,
+  "candidate_both_legs_strictly_below_close": 17,
+  "candidate_execution_floor_pair_pass": 28,
+  "take_ceiling": 516,
+  "maker_ceiling": 253,
+  "acted_legs": 628,
+  "honest_credited_legs": 628,
+  "exact_floor_legs": 347,
+  "one_cent_above_floor_legs": 103,
+  "floor_below_close_legs": 778,
+  "floor_equals_close_legs": 477,
+  "floor_above_close_legs": 317,
+  "floor_unavailable_legs": 36,
+  "unavailable_replays": 45,
+  "event_partition_conservation": 804,
+  "leg_partition_conservation": 1608,
+  "no_scorer_import_or_invocation": true
+}

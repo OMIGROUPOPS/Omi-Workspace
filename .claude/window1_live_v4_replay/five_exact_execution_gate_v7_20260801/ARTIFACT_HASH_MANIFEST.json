@@ -1,0 +1,17 @@
+{
+  "schema_version": "WINDOW1_FIVE_EXACT_PAIR_WIRING_HONEST_ARTIFACT_MANIFEST_V1",
+  "files": {
+    "FIVE_GAME_HONEST_GATE.json": {
+      "sha256": "e3ad720058d4b48ce97caf83dfa075f303bb8a2ff086c65738cc53333e4a95a2",
+      "bytes": 52495
+    },
+    "REPORT.md": {
+      "sha256": "c38242f6da6dc9664259f6bc00665f0799b185a32da6fb61fd92e79913238a72",
+      "bytes": 6215
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "83911542e14cfd2eba685ffd4451008318780e6ba6192e7e5f7e3a0dd979e81d",
+      "bytes": 5169
+    }
+  }
+}

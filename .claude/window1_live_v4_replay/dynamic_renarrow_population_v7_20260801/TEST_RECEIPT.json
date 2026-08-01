@@ -1,0 +1,25 @@
+{
+  "schema_version": "WINDOW1_DYNAMIC_RENARROW_POPULATION_TEST_RECEIPT_V7",
+  "test_scripts_run": 13,
+  "test_scripts_passed": 13,
+  "test_scripts_failed": 0,
+  "new_v7_assertion_groups": 4,
+  "artifact_manifest_verified": true,
+  "diff_check_passed": true,
+  "scorer_invocations": 0,
+  "tests": [
+    "test_window1_dynamic_renarrow_population_v7.js",
+    "test_window1_quote_shape_dynamic_renarrow_v6.js",
+    "test_window1_quote_shape_descent_verdict_v5.js",
+    "test_window1_quote_shape_descent_package_v5.js",
+    "test_window1_quote_shape_pair_wiring_v3.js",
+    "test_window1_five_exact_stable_signer_v4.js",
+    "test_window1_quote_shape_stable_signer_v4.js",
+    "test_window1_quote_shape_stable_ask_v2.js",
+    "test_window1_quote_shape_elimination_two_game.js",
+    "test_window1_five_exact_honest_gate_v1.js",
+    "test_window1_honest_fill_model_v1.js",
+    "test_window1_aggressor_ceiling_census_v1.js",
+    "test_window1_five_exact_full_stack_capacity.js"
+  ]
+}

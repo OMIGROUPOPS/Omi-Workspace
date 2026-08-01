@@ -1,0 +1,49 @@
+{
+  "schema_version": "WINDOW1_FIVE_EXACT_PAIR_WIRING_HONEST_ARTIFACT_MANIFEST_V1",
+  "files": {
+    "BRAVED_QUOTE_SHAPE_REPLAY.svg": {
+      "sha256": "805930d768dbb534851197cbf57ca68763fbb0f682a404a6874d826edbe1a228",
+      "bytes": 107180
+    },
+    "DETERMINISM_AND_TEST_RECEIPT.json": {
+      "sha256": "685bb35c56943417eb4b6cdf3a22387003d39e2aec88ffb3179b52932930c74b",
+      "bytes": 383
+    },
+    "FIVE_GAME_HONEST_GATE.json": {
+      "sha256": "9a570f5b7dd474a5960138b8d37e0b2ae60bbc571151f739fd11db74748327fc",
+      "bytes": 33048
+    },
+    "FIVE_GAME_STABLE_SIGNER_V4_REPLAY.json": {
+      "sha256": "3cfaf31f9308d61a49adf8f9fd2197f8f2c94d72ae6d9a9fb67dffd2d3d29b11",
+      "bytes": 2135561
+    },
+    "HURBIG_QUOTE_SHAPE_REPLAY.svg": {
+      "sha256": "7eaa1ece7c79db900504c25f7e99f268758b15657fe53eb4aae295c30583ad04",
+      "bytes": 108376
+    },
+    "KORJIM_QUOTE_SHAPE_REPLAY.svg": {
+      "sha256": "521c158784dd3026b818581a35689f0fcb99e20e62adcfafca5d9b8d36308a91",
+      "bytes": 105259
+    },
+    "LAJVAN_QUOTE_SHAPE_REPLAY.svg": {
+      "sha256": "af1a28fc1f4f5e6f0603c7c979c504991846f9471d8b71df5603fb9d47fb3f39",
+      "bytes": 107528
+    },
+    "NIKVRB_QUOTE_SHAPE_REPLAY.svg": {
+      "sha256": "fb75c503fda19e0c5cb772242741261e040202cdd15f0105959bf3f0098afba2",
+      "bytes": 108483
+    },
+    "REPORT.md": {
+      "sha256": "7b5c9afaf9f789bb0ad05c749af0474dc5cfb1e4de7efcfc7087d18bf759fd9f",
+      "bytes": 5909
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "746d1e06e0d242a2d7a8153646a7bedfa8a06af35655c5cd2b2d91a01f5ce385",
+      "bytes": 5150
+    },
+    "STABLE_SIGNER_V4_CORRECTION_RECEIPT.json": {
+      "sha256": "57008a0997b7196ca48f0eb7ab7bc39a47fb1d334f7eb3a968040ced82a4efdd",
+      "bytes": 6358
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "WINDOW1_FIVE_EXACT_STABLE_SIGNER_V4_VALIDATION",
+  "date": "2026-08-01",
+  "cold_replay_builds": 2,
+  "byte_identical_files": 12,
+  "determinism_status": "PASS",
+  "tests": {
+    "files": 6,
+    "failures": 0,
+    "status": "PASS"
+  },
+  "population_804_run": false,
+  "new_census_run": false,
+  "fee_test_run": false,
+  "expected_close_forecast_run": false
+}

@@ -23,8 +23,10 @@ const contractPath = path.join(repo, ".claude/window1_live_v4_replay/honest_fill
 const libraryPath = path.join(repo, ".claude/window1_live_v4_replay/quote_shape_stable_ask_20260731/QUOTE_SHAPE_LIBRARY_LEAVE_FIVE_OUT.json");
 const pairWiringPath = path.join(repo, "arb-executor/analysis/window1_quote_shape_pair_wiring_v3.js");
 const replayBuilderPath = path.join(repo, "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js");
+const stableSignerPath = path.join(repo, "arb-executor/analysis/window1_quote_shape_stable_signer_v4.js");
 const ceilingsPath = path.join(repo, ".claude/window1_live_v4_replay/aggressor_ceiling_census_20260801/CEILING_CENSUS.json");
 const branchRaw = "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated";
+const outputRelative = path.relative(repo, output).replace(/\\/g, "/");
 const QUANTITY = 5;
 
 function canonical(value) { return `${JSON.stringify(value, null, 2)}\n`; }
@@ -144,6 +146,7 @@ function firedPredicates(leg, decision, honest) {
   fired.push(`MICRO_POSITION:${leg.placement.micro_position_evidence_type}`);
   if (decision.book.stable_same_price_receipt) fired.push("STABLE_SAME_PRICE_ASK_RECEIPT");
   if (decision.book.ask_change_after_first_timestamp) fired.push("ASK_PRICE_TRANSITION");
+  if (leg.placement.stable_signing_support?.support_type) fired.push(`STABLE_SIGNER:${leg.placement.stable_signing_support.support_type}`);
   if (honest.action_book_exact) fired.push("EXACT_ACTION_BOOK");
   if ((honest.displayed_opposing_capacity_at_or_below_x || 0) >= QUANTITY) fired.push("DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE");
   fired.push(`HONEST_FILL:${honest.fill_class}`);
@@ -258,7 +261,7 @@ function main() {
   fs.writeFileSync(gateFile, canonical(gate));
   const sourceManifest = {
     schema_version: "WINDOW1_FIVE_EXACT_PAIR_WIRING_HONEST_SOURCE_MANIFEST_V1",
-    committed_sources: Object.fromEntries([__filename, replayPath, frozenFivePath, contractPath, libraryPath, pairWiringPath, replayBuilderPath, ceilingsPath].map((file) => [path.relative(repo, file).replace(/\\/g, "/"), { sha256: hashFile(file), bytes: fs.statSync(file).size }])),
+    committed_sources: Object.fromEntries([__filename, replayPath, frozenFivePath, contractPath, libraryPath, pairWiringPath, replayBuilderPath, stableSignerPath, ceilingsPath].map((file) => [path.relative(repo, file).replace(/\\/g, "/"), { sha256: hashFile(file), bytes: fs.statSync(file).size }])),
     private_sources: privateSources,
     honest_fill_contract_identity: { path: path.relative(repo, contractPath).replace(/\\/g, "/"), sha256: hashFile(contractPath), class_law: contract.classes },
   };
@@ -266,7 +269,7 @@ function main() {
 
   const table = [];
   for (const event of events) for (const leg of event.legs) table.push(`| ${leg.category} | ${leg.price_region} | ${event.event_id}/${leg.leg_id} | ${leg.proposed_entry_cents ?? "-"} | ${leg.honest_fill_class} | ${leg.own_window1_close_cents} | ${leg.own_bell_price_cents} | ${leg.own_ask_reachable_low_cents} | ${leg.delta_to_pair_reference_cents} | ${signed(leg.delta_to_own_window1_close_cents)} | ${signed(leg.delta_to_own_bell_price_cents)} | ${signed(leg.delta_to_own_ask_reachable_low_cents)} | ${leg.fired_predicates.join("; ")} |`);
-  const report = `# Five exact-start games — pair-wiring V3 + honest fill gate\n\nCold replay: ${gate.cold}; outcome knowledge consumed: ${gate.outcome_knowledge_consumed}. Fee testing and expected-close forecasting were not run.\n\nAll table values: ${branchRaw}/.claude/window1_live_v4_replay/five_exact_pair_wiring_honest_20260801/FIVE_GAME_HONEST_GATE.json\n\n| Category | Price region | Event/leg | Proposed entry | Honest class | W1 close | Bell | Ask-low | Δ pair ref | Δ close | Δ bell | Δ ask-low | Predicates fired |\n|---|---:|---|---:|---|---:|---:|---:|---|---:|---:|---:|---|\n${table.join("\n")}\n\nFive-game gate: **${gate.five_game_gate_passed ? "PASS" : "FAIL"}**. Honest complete pairs: ${gate.honest_completed_pair_count}/5. Objective passes: ${gate.objective_gate_pass_count}/5. Proposed leg fills: ${gate.replay_proposed_fill_count}; honest classes: ${gate.honest_fill_class_counts.PROVEN_MAKER} maker, ${gate.honest_fill_class_counts.PROVEN_TAKER} taker, ${gate.honest_fill_class_counts.UNPROVEN} unproven.\n\nBecause the five-game gate failed, the 804 replay was not run. The frozen ceilings (516 take-reachable; 253 combined-negative maker-reachable) remain comparison bindings, not newly measured results.\n\nHonest-law source: ${branchRaw}/.claude/window1_live_v4_replay/honest_fill_model_20260801/HONEST_FILL_MODEL_CONTRACT.json\n\nReplay source: ${branchRaw}/.claude/window1_live_v4_replay/five_exact_pair_wiring_honest_20260801/FIVE_GAME_PAIR_WIRING_REPLAY.json\n`;
+  const report = `# Five exact-start games — pair-wiring + stable signer + honest fill gate\n\nCold replay: ${gate.cold}; outcome knowledge consumed: ${gate.outcome_knowledge_consumed}. Fee testing and expected-close forecasting were not run.\n\nAll table values: ${branchRaw}/${outputRelative}/FIVE_GAME_HONEST_GATE.json\n\n| Category | Price region | Event/leg | Proposed entry | Honest class | W1 close | Bell | Ask-low | Δ pair ref | Δ close | Δ bell | Δ ask-low | Predicates fired |\n|---|---:|---|---:|---|---:|---:|---:|---|---:|---:|---:|---|\n${table.join("\n")}\n\nFive-game gate: **${gate.five_game_gate_passed ? "PASS" : "FAIL"}**. Honest complete pairs: ${gate.honest_completed_pair_count}/5. Objective passes: ${gate.objective_gate_pass_count}/5. Proposed leg fills: ${gate.replay_proposed_fill_count}; honest classes: ${gate.honest_fill_class_counts.PROVEN_MAKER} maker, ${gate.honest_fill_class_counts.PROVEN_TAKER} taker, ${gate.honest_fill_class_counts.UNPROVEN} unproven.\n\nThe 804 replay is conditional on this gate. Current population run state: ${gate.population_804_run}. The frozen ceilings (516 take-reachable; 253 combined-negative maker-reachable) remain comparison bindings until a passing gate authorizes the population run.\n\nHonest-law source: ${branchRaw}/.claude/window1_live_v4_replay/honest_fill_model_20260801/HONEST_FILL_MODEL_CONTRACT.json\n\nReplay source: ${branchRaw}/${outputRelative}/${path.basename(replayPath)}\n`;
   fs.writeFileSync(path.join(output, "REPORT.md"), report);
   const artifactFiles = fs.readdirSync(output).filter((name) => name !== "ARTIFACT_HASH_MANIFEST.json").sort();
   const artifactManifest = {

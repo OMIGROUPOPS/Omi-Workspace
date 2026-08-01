@@ -1,0 +1,184 @@
+{
+  "schema_version": "WINDOW1_STABLE_SAME_PRICE_SIGNER_CORRECTION_V4",
+  "score_free": true,
+  "population_804_run": false,
+  "diagnosis_source": ".claude/window1_live_v4_replay/five_exact_pair_wiring_honest_20260801/FIVE_GAME_PAIR_WIRING_REPLAY.json",
+  "corrected_source": ".claude/window1_live_v4_replay/five_exact_stable_signer_v4_20260801/FIVE_GAME_STABLE_SIGNER_V4_REPLAY.json",
+  "constant_provenance": {
+    "dwell_seconds": {
+      "value": 10,
+      "source": "Inherited ask-side reachability and stable-same-price V2 law; unchanged by V4."
+    },
+    "quantity_contracts": {
+      "value": 5,
+      "source": "Inherited exact-five Window-1 law; unchanged by V4."
+    },
+    "new_numeric_thresholds": []
+  },
+  "signing_law": {
+    "initial_level_without_demonstrated_descent": "Requires invariant top ask price and size across observed receipts, or a returned UP-shape pulse strictly larger than the contemporaneous spread, or a resolved inverse UP/DOWN sibling that moved in its resolved direction.",
+    "freshness": "PLACE is deferred until the triggering receipt is a fresh own-leg book receipt.",
+    "why_no_count_threshold": "Second-distinct state counts did not separate the cases: BIG=6, LAJ=8, VED=21."
+  },
+  "original_pre_action_diagnosis": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "leg_id": "BIG",
+      "action_ts": 1784471820,
+      "seconds_after_window_open": 420,
+      "own": {
+        "book": "54/55",
+        "last_traded": 56,
+        "ask_dwell_seconds": 330,
+        "raw_receipt_rows": 15,
+        "second_distinct_receipts": 6,
+        "distinct_bbo_states": 1,
+        "distinct_ask_prices": 1,
+        "ask_changes": 0,
+        "ask_descents": 0,
+        "top_ask_size_sequence": [934]
+      },
+      "sibling": {
+        "leg_id": "HUR",
+        "book": "47/48",
+        "last_traded": 47,
+        "raw_receipt_rows": 14,
+        "second_distinct_receipts": 11,
+        "ask_changes": 0,
+        "ask_descents": 0
+      },
+      "separating_evidence": "TOP_ASK_PRICE_AND_SIZE_PERSISTED",
+      "before_entry_cents": 55,
+      "after_entry_cents": 55,
+      "entry_change_cents": 0
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "leg_id": "LAJ",
+      "action_ts": 1783851530,
+      "seconds_after_window_open": 1130,
+      "own_book_age_at_action_seconds": 295,
+      "own": {
+        "book": "49/50",
+        "last_traded": 49,
+        "ask_dwell_seconds": 781,
+        "raw_receipt_rows": 20,
+        "second_distinct_receipts": 8,
+        "distinct_bbo_states": 1,
+        "distinct_ask_prices": 1,
+        "ask_changes": 0,
+        "ask_descents": 0,
+        "top_ask_size_sequence": [50, 397]
+      },
+      "sibling": {
+        "leg_id": "VAN",
+        "book": "49/50",
+        "last_traded": 51,
+        "raw_receipt_rows": 146,
+        "second_distinct_receipts": 54,
+        "ask_changes": 0,
+        "ask_descents": 0
+      },
+      "separating_evidence": "INITIAL_TOP_ASK_SIZE_CHANGED_AND_FLAT_PULSE_DID_NOT_SIGN",
+      "before_entry_cents": 50,
+      "after_entry_cents": 49,
+      "entry_change_cents": -1
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "leg_id": "VED",
+      "action_ts": 1784201120,
+      "seconds_after_window_open": 320,
+      "own": {
+        "book": "59/60",
+        "last_traded": 60,
+        "ask_dwell_seconds": 311,
+        "raw_receipt_rows": 52,
+        "second_distinct_receipts": 21,
+        "distinct_bbo_states": 1,
+        "distinct_ask_prices": 1,
+        "ask_changes": 0,
+        "ask_descents": 0,
+        "top_ask_size_sequence": [1648, 1649, 1651, 1652]
+      },
+      "sibling": {
+        "leg_id": "BRA",
+        "book": "39/40",
+        "last_traded": 40,
+        "raw_receipt_rows": 21,
+        "second_distinct_receipts": 20,
+        "ask_changes": 0,
+        "ask_descents": 0
+      },
+      "separating_evidence": "INITIAL_TOP_ASK_SIZE_CHANGED_AND_LATER_SIBLING_MOVE_OPPOSED_RESOLVED_DOWN_DIRECTION",
+      "before_entry_cents": 60,
+      "after_entry_cents": 58,
+      "entry_change_cents": -2
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "leg_id": "HUR",
+      "action_ts": 1784494286,
+      "seconds_after_window_open": 22886,
+      "own_book_age_at_action_seconds": 43,
+      "own": {
+        "book": "37/38",
+        "last_traded": 38,
+        "ask_dwell_seconds": 489,
+        "raw_receipt_rows": 3161,
+        "second_distinct_receipts": 505,
+        "distinct_bbo_states": 19,
+        "distinct_ask_prices": 9,
+        "ask_changes": 12,
+        "ask_descents": 10
+      },
+      "sibling": {
+        "leg_id": "BIG",
+        "book": "62/63",
+        "last_traded": 63,
+        "raw_receipt_rows": 1181,
+        "second_distinct_receipts": 459,
+        "ask_changes": 6,
+        "ask_descents": 1
+      },
+      "separating_evidence": "DEMONSTRATED_DESCENT_BUT_STALE_ACTION_BOOK",
+      "before_action_ts": 1784494286,
+      "after_action_ts": 1784494287,
+      "action_delay_seconds": 1,
+      "before_fill_class": "UNPROVEN",
+      "after_fill_class": "PROVEN_TAKER",
+      "entry_change_cents": 0
+    }
+  ],
+  "remaining_gate_failures": [
+    {
+      "event_leg": "KXATPMATCH-26JUL12LAJVAN/LAJ",
+      "predicate": "ALL_SURVIVING_FLAT_SHAPES_SAY_FLOOR_AFTER_FIRST_DEMONSTRATED_DESCENT",
+      "entry_cents": 49,
+      "own_close_cents": 45,
+      "ask_reachable_low_cents": 45
+    },
+    {
+      "event_leg": "KXWTACHALLENGERMATCH-26JUL16BRAVED/BRA",
+      "predicate": "ALL_SURVIVING_DOWN_SHAPES_SAY_LOWER_AT_THE_ONLY_REACHABLE_LOW",
+      "entry_cents": null,
+      "own_close_cents": 44,
+      "ask_reachable_low_cents": 40
+    },
+    {
+      "event_leg": "KXWTACHALLENGERMATCH-26JUL16BRAVED/VED",
+      "predicate": "ALL_SURVIVING_UP_SHAPES_SAY_FLOOR_AT_FIRST_DEMONSTRATED_DESCENT",
+      "entry_cents": 58,
+      "own_close_cents": 57,
+      "ask_reachable_low_cents": 57
+    },
+    {
+      "event_leg": "KXWTAMATCH-26JUL20KORJIM/JIM",
+      "predicate": "ALL_SURVIVING_FLAT_SHAPES_SAY_FLOOR_BEFORE_LATER_LOW",
+      "entry_cents": 32,
+      "own_close_cents": 32,
+      "ask_reachable_low_cents": 30
+    }
+  ],
+  "scope_ruling": "Further changes require altering/refitting the quote-shape verdict or adding a forecast. Both are outside this bounded stable-signer correction, so no event-specific exception and no 804 run were made."
+}

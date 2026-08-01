@@ -1,0 +1,16 @@
+{
+  "schema_version": "WINDOW1_DESCENT_VERDICT_V5_DETERMINISM_AND_TEST_RECEIPT",
+  "date": "2026-08-01",
+  "clean_regenerations": 2,
+  "byte_identical_regenerable_files": 13,
+  "library_sha256_build_1": "512acbe49eb8964ab9d35b354c3b0bf92d8421d9d0e8e9b05e3edfef0dd54ce2",
+  "library_sha256_build_2": "512acbe49eb8964ab9d35b354c3b0bf92d8421d9d0e8e9b05e3edfef0dd54ce2",
+  "determinism_status": "PASS",
+  "test_files": 8,
+  "test_failures": 0,
+  "test_status": "PASS",
+  "five_game_gate_passed": false,
+  "population_804_run": false,
+  "new_population_census_run": false,
+  "scorer_invocations": 0
+}

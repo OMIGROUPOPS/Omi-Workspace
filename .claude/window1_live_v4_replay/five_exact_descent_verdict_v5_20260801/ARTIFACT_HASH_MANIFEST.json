@@ -1,0 +1,57 @@
+{
+  "schema_version": "WINDOW1_DESCENT_VERDICT_V5_ARTIFACT_MANIFEST",
+  "files": {
+    "BRAVED_QUOTE_SHAPE_REPLAY.svg": {
+      "sha256": "ecd1ecb25bb22b078d37ca36324e6648b19d20b9ba33511170e7d7fd23dbdc67",
+      "bytes": 107047
+    },
+    "DESCENT_TO_FINAL_REACHABLE_LOW_DISTRIBUTIONS.json": {
+      "sha256": "a8631bfe3c6371d39290f91e4626f119745ae527136aa30cc6f7c8bd20c8016c",
+      "bytes": 101745
+    },
+    "DESCENT_VERDICT_V5_CORRECTION_RECEIPT.json": {
+      "sha256": "b444cc8e54edba1416ec323d8939f019ee44ab135dc53ef12feca32f2304b2aa",
+      "bytes": 6714
+    },
+    "DETERMINISM_AND_TEST_RECEIPT.json": {
+      "sha256": "44c7372800d817c12a034ba1fe2811e4cd77228d463fffd574e749054d177b55",
+      "bytes": 596
+    },
+    "FIVE_GAME_DESCENT_VERDICT_V5_REPLAY.json": {
+      "sha256": "86838efb8fce84e9c4e7807f74bb34c394834f849f1628f44762b23e9adac668",
+      "bytes": 2267302
+    },
+    "FIVE_GAME_HONEST_GATE.json": {
+      "sha256": "61f85f1d8fa343170ec5989c3edfff1bc437954f9fc169726c579d2a5f719230",
+      "bytes": 36119
+    },
+    "HURBIG_QUOTE_SHAPE_REPLAY.svg": {
+      "sha256": "7eaa1ece7c79db900504c25f7e99f268758b15657fe53eb4aae295c30583ad04",
+      "bytes": 108376
+    },
+    "KORJIM_QUOTE_SHAPE_REPLAY.svg": {
+      "sha256": "13f41e268652ee0dcc034b8bd577a5d8639121927c806f5d08dc422b6b434e93",
+      "bytes": 105125
+    },
+    "LAJVAN_QUOTE_SHAPE_REPLAY.svg": {
+      "sha256": "43c9becbcdfbe764e143dbffaf8d89a1222ecea44952aad941276a4ed6f9e35f",
+      "bytes": 107349
+    },
+    "NIKVRB_QUOTE_SHAPE_REPLAY.svg": {
+      "sha256": "fb75c503fda19e0c5cb772242741261e040202cdd15f0105959bf3f0098afba2",
+      "bytes": 108483
+    },
+    "QUOTE_SHAPE_LIBRARY_LEAVE_FIVE_OUT_WITH_DESCENT_ORDINAL_V5.json": {
+      "sha256": "512acbe49eb8964ab9d35b354c3b0bf92d8421d9d0e8e9b05e3edfef0dd54ce2",
+      "bytes": 17385519
+    },
+    "REPORT.md": {
+      "sha256": "b41b5fcf0020e926f4b91192cd0751f080980188111b10cd9eb8e2e233b221b1",
+      "bytes": 793
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "61dba78c965d650a2feefcb8fe226d5c06128cb817bbbc240dd7dd8699546347",
+      "bytes": 2210
+    }
+  }
+}

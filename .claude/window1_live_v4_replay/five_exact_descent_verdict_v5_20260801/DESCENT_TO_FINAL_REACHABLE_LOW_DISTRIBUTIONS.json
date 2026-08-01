@@ -1,0 +1,2603 @@
+{
+  "schema_version": "WINDOW1_QUOTE_SHAPE_DESCENT_TO_FINAL_REACHABLE_LOW_V5",
+  "score_free": true,
+  "fit_population": "all positive-evaluator Window-1 quote legs except the five exact-start validation games",
+  "training_events": 681,
+  "training_legs": 1343,
+  "excluded_events": [
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+    "KXATPMATCH-26JUL12LAJVAN",
+    "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+    "KXWTAMATCH-26JUL20KORJIM"
+  ],
+  "group_count": 16,
+  "shape_count": 94,
+  "reachable_support_legs": 1338,
+  "censored_legs": 5,
+  "grain": "category + formed-book price region + exact surviving quote-shape class",
+  "event_measure": "number of strictly lower new-low ask transitions through the first exact-five, ten-second occurrence of the final ask-reachable low",
+  "verdict_statistic": "within-cell empirical median among members with at least one observed new-low descent; zero-descent members are excluded only after a descent is causally observed",
+  "invented_numeric_thresholds": [],
+  "cells": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "shape_id": "ATP_CHALL_26_50_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 50,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 50,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 4,
+        "max": 11,
+        "counts": {
+          "1": 23,
+          "2": 13,
+          "3": 4,
+          "4": 6,
+          "6": 2,
+          "7": 1,
+          "11": 1
+        },
+        "positive_descent_support_n": 50,
+        "positive_descent_median": 2,
+        "signing_ordinal_after_a_descent_is_observed": 2,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "shape_id": "ATP_CHALL_26_50_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 29,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 29,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 3,
+        "p90": 4,
+        "max": 8,
+        "counts": {
+          "1": 1,
+          "2": 12,
+          "3": 9,
+          "4": 5,
+          "7": 1,
+          "8": 1
+        },
+        "positive_descent_support_n": 29,
+        "positive_descent_median": 3,
+        "signing_ordinal_after_a_descent_is_observed": 3,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "shape_id": "ATP_CHALL_26_50_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 24,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 24,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "0": 1,
+          "1": 19,
+          "2": 4
+        },
+        "positive_descent_support_n": 23,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "shape_id": "ATP_CHALL_26_50_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 33,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 33,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 33
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "shape_id": "ATP_CHALL_26_50_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 19,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 19,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 3,
+        "counts": {
+          "1": 15,
+          "2": 3,
+          "3": 1
+        },
+        "positive_descent_support_n": 19,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "shape_id": "ATP_CHALL_26_50_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 77,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 77,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 77
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "shape_id": "ATP_CHALL_51_75_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 38,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 38,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 4,
+        "max": 8,
+        "counts": {
+          "1": 19,
+          "2": 6,
+          "3": 8,
+          "4": 2,
+          "6": 2,
+          "8": 1
+        },
+        "positive_descent_support_n": 38,
+        "positive_descent_median": 2,
+        "signing_ordinal_after_a_descent_is_observed": 2,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "shape_id": "ATP_CHALL_51_75_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 18,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 18,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 6,
+        "max": 7,
+        "counts": {
+          "2": 5,
+          "3": 5,
+          "4": 2,
+          "5": 2,
+          "6": 2,
+          "7": 2
+        },
+        "positive_descent_support_n": 18,
+        "positive_descent_median": 3,
+        "signing_ordinal_after_a_descent_is_observed": 3,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "shape_id": "ATP_CHALL_51_75_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 16,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 16,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 3,
+        "counts": {
+          "0": 1,
+          "1": 13,
+          "2": 1,
+          "3": 1
+        },
+        "positive_descent_support_n": 15,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 29,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 29,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 29
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "shape_id": "ATP_CHALL_51_75_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 21,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 21,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 3,
+        "counts": {
+          "0": 1,
+          "1": 17,
+          "2": 2,
+          "3": 1
+        },
+        "positive_descent_support_n": 20,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 104,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 104,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 104
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "shape_id": "ATP_CHALL_ge76_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 12,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 12,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 3,
+        "p75": 5,
+        "p90": 5,
+        "max": 8,
+        "counts": {
+          "1": 5,
+          "2": 1,
+          "3": 1,
+          "4": 1,
+          "5": 2,
+          "7": 1,
+          "8": 1
+        },
+        "positive_descent_support_n": 12,
+        "positive_descent_median": 3,
+        "signing_ordinal_after_a_descent_is_observed": 3,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "shape_id": "ATP_CHALL_ge76_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 6,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 6,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 3,
+        "median": 3,
+        "p75": 3,
+        "p90": 5,
+        "max": 10,
+        "counts": {
+          "2": 1,
+          "3": 3,
+          "5": 1,
+          "10": 1
+        },
+        "positive_descent_support_n": 6,
+        "positive_descent_median": 3,
+        "signing_ordinal_after_a_descent_is_observed": 3,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "shape_id": "ATP_CHALL_ge76_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 7,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 7,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "counts": {
+          "1": 6,
+          "2": 1
+        },
+        "positive_descent_support_n": 7,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "shape_id": "ATP_CHALL_ge76_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 15,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 15,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 15
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "shape_id": "ATP_CHALL_ge76_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 11,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 11,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "0": 1,
+          "1": 7,
+          "2": 3
+        },
+        "positive_descent_support_n": 10,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "shape_id": "ATP_CHALL_ge76_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 42,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 42,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 42
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "shape_id": "ATP_CHALL_le25_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 30,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 30,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 2,
+        "p90": 3,
+        "max": 5,
+        "counts": {
+          "0": 1,
+          "1": 12,
+          "2": 10,
+          "3": 4,
+          "4": 1,
+          "5": 2
+        },
+        "positive_descent_support_n": 29,
+        "positive_descent_median": 2,
+        "signing_ordinal_after_a_descent_is_observed": 2,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "shape_id": "ATP_CHALL_le25_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 13,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 13,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 3,
+        "max": 4,
+        "counts": {
+          "2": 10,
+          "3": 2,
+          "4": 1
+        },
+        "positive_descent_support_n": 13,
+        "positive_descent_median": 2,
+        "signing_ordinal_after_a_descent_is_observed": 2,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "shape_id": "ATP_CHALL_le25_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 16,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 16,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "counts": {
+          "0": 1,
+          "1": 14,
+          "2": 1
+        },
+        "positive_descent_support_n": 15,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "shape_id": "ATP_CHALL_le25_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 15,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 15,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 15
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "shape_id": "ATP_CHALL_le25_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 8,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 8,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 3,
+        "counts": {
+          "0": 1,
+          "1": 5,
+          "2": 1,
+          "3": 1
+        },
+        "positive_descent_support_n": 7,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "shape_id": "ATP_CHALL_le25_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 26,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 26,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 26
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "shape_id": "ATP_MAIN_26_50_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 22,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 22,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 3,
+        "max": 5,
+        "counts": {
+          "0": 1,
+          "1": 10,
+          "2": 4,
+          "3": 4,
+          "4": 2,
+          "5": 1
+        },
+        "positive_descent_support_n": 21,
+        "positive_descent_median": 2,
+        "signing_ordinal_after_a_descent_is_observed": 2,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "shape_id": "ATP_MAIN_26_50_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 21,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 21,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 3,
+        "p75": 6,
+        "p90": 9,
+        "max": 9,
+        "counts": {
+          "2": 6,
+          "3": 5,
+          "4": 2,
+          "5": 1,
+          "6": 2,
+          "7": 1,
+          "8": 1,
+          "9": 3
+        },
+        "positive_descent_support_n": 21,
+        "positive_descent_median": 3,
+        "signing_ordinal_after_a_descent_is_observed": 3,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "shape_id": "ATP_MAIN_26_50_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 10,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 10,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 3,
+        "counts": {
+          "1": 7,
+          "2": 2,
+          "3": 1
+        },
+        "positive_descent_support_n": 10,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 11,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 10,
+        "censored_n": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 10
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "shape_id": "ATP_MAIN_26_50_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 10,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 10,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 3,
+        "counts": {
+          "0": 2,
+          "1": 7,
+          "3": 1
+        },
+        "positive_descent_support_n": 8,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "shape_id": "ATP_MAIN_26_50_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 22,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 22,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 22
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "shape_id": "ATP_MAIN_51_75_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 12,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 12,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 4,
+        "p90": 4,
+        "max": 5,
+        "counts": {
+          "1": 2,
+          "2": 4,
+          "3": 2,
+          "4": 3,
+          "5": 1
+        },
+        "positive_descent_support_n": 12,
+        "positive_descent_median": 3,
+        "signing_ordinal_after_a_descent_is_observed": 3,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "shape_id": "ATP_MAIN_51_75_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 17,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 17,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 4,
+        "p90": 6,
+        "max": 18,
+        "counts": {
+          "1": 1,
+          "2": 5,
+          "3": 4,
+          "4": 4,
+          "6": 1,
+          "10": 1,
+          "18": 1
+        },
+        "positive_descent_support_n": 17,
+        "positive_descent_median": 3,
+        "signing_ordinal_after_a_descent_is_observed": 3,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "shape_id": "ATP_MAIN_51_75_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 9,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 9,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 3,
+        "p90": 4,
+        "max": 6,
+        "counts": {
+          "1": 5,
+          "2": 1,
+          "3": 1,
+          "4": 1,
+          "6": 1
+        },
+        "positive_descent_support_n": 9,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "shape_id": "ATP_MAIN_51_75_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 17,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 16,
+        "censored_n": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 16
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "shape_id": "ATP_MAIN_51_75_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 16,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 16,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 2,
+        "p90": 3,
+        "max": 5,
+        "counts": {
+          "1": 7,
+          "2": 6,
+          "3": 2,
+          "5": 1
+        },
+        "positive_descent_support_n": 16,
+        "positive_descent_median": 2,
+        "signing_ordinal_after_a_descent_is_observed": 2,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "shape_id": "ATP_MAIN_51_75_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 27,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 27,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 27
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "shape_id": "ATP_MAIN_ge76_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 3,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 3,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "counts": {
+          "1": 2,
+          "2": 1
+        },
+        "positive_descent_support_n": 3,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "shape_id": "ATP_MAIN_ge76_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 4,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 4,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 4,
+        "p75": 4,
+        "p90": 4,
+        "max": 5,
+        "counts": {
+          "2": 1,
+          "4": 2,
+          "5": 1
+        },
+        "positive_descent_support_n": 4,
+        "positive_descent_median": 4,
+        "signing_ordinal_after_a_descent_is_observed": 4,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "shape_id": "ATP_MAIN_ge76_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 4,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 4,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "counts": {
+          "1": 3,
+          "2": 1
+        },
+        "positive_descent_support_n": 4,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "shape_id": "ATP_MAIN_ge76_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 4,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 4,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 4
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "shape_id": "ATP_MAIN_ge76_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 3,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 3,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "1": 3
+        },
+        "positive_descent_support_n": 3,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "shape_id": "ATP_MAIN_ge76_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 6,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 6,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 6
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "shape_id": "ATP_MAIN_le25_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 9,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 9,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 5,
+        "max": 9,
+        "counts": {
+          "1": 6,
+          "2": 1,
+          "5": 1,
+          "9": 1
+        },
+        "positive_descent_support_n": 9,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "shape_id": "ATP_MAIN_le25_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 5,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 5,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 5,
+        "max": 5,
+        "counts": {
+          "1": 1,
+          "2": 1,
+          "3": 1,
+          "5": 2
+        },
+        "positive_descent_support_n": 5,
+        "positive_descent_median": 3,
+        "signing_ordinal_after_a_descent_is_observed": 3,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "shape_id": "ATP_MAIN_le25_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 2,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 2,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "1": 2
+        },
+        "positive_descent_support_n": 2,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "shape_id": "ATP_MAIN_le25_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 4,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 4,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 4
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "shape_id": "ATP_MAIN_le25_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 1,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 1,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "2": 1
+        },
+        "positive_descent_support_n": 1,
+        "positive_descent_median": 2,
+        "signing_ordinal_after_a_descent_is_observed": 2,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "shape_id": "ATP_MAIN_le25_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 9,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 9,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 9
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "shape_id": "WTA_CHALL_26_50_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 14,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 14,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 6,
+        "counts": {
+          "0": 1,
+          "1": 9,
+          "2": 2,
+          "3": 1,
+          "6": 1
+        },
+        "positive_descent_support_n": 13,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "shape_id": "WTA_CHALL_26_50_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 3,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 3,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 3,
+        "p75": 3,
+        "p90": 3,
+        "max": 3,
+        "counts": {
+          "2": 1,
+          "3": 2
+        },
+        "positive_descent_support_n": 3,
+        "positive_descent_median": 3,
+        "signing_ordinal_after_a_descent_is_observed": 3,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "shape_id": "WTA_CHALL_26_50_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 3,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 3,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "1": 3
+        },
+        "positive_descent_support_n": 3,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "shape_id": "WTA_CHALL_26_50_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 28,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 28,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 28
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "shape_id": "WTA_CHALL_26_50_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 2,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 2,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "counts": {
+          "1": 1,
+          "2": 1
+        },
+        "positive_descent_support_n": 2,
+        "positive_descent_median": 2,
+        "signing_ordinal_after_a_descent_is_observed": 2,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "shape_id": "WTA_CHALL_26_50_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 14,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 14,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 14
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "shape_id": "WTA_CHALL_51_75_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 7,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 7,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "counts": {
+          "1": 6,
+          "2": 1
+        },
+        "positive_descent_support_n": 7,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "shape_id": "WTA_CHALL_51_75_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 1,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 1,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "2": 1
+        },
+        "positive_descent_support_n": 1,
+        "positive_descent_median": 2,
+        "signing_ordinal_after_a_descent_is_observed": 2,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "shape_id": "WTA_CHALL_51_75_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 6,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 6,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "1": 6
+        },
+        "positive_descent_support_n": 6,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "shape_id": "WTA_CHALL_51_75_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 20,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 20,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 20
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "shape_id": "WTA_CHALL_51_75_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 4,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 4,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "0": 2,
+          "1": 2
+        },
+        "positive_descent_support_n": 2,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 27,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 27,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 27
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "shape_id": "WTA_CHALL_ge76_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 6,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 6,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "1": 4,
+          "2": 2
+        },
+        "positive_descent_support_n": 6,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "shape_id": "WTA_CHALL_ge76_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 3,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 3,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "1": 1,
+          "2": 2
+        },
+        "positive_descent_support_n": 3,
+        "positive_descent_median": 2,
+        "signing_ordinal_after_a_descent_is_observed": 2,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "shape_id": "WTA_CHALL_ge76_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 6,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 6,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 6
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "shape_id": "WTA_CHALL_ge76_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 1,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 1,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "1": 1
+        },
+        "positive_descent_support_n": 1,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "shape_id": "WTA_CHALL_ge76_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 10,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 10,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 10
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "shape_id": "WTA_CHALL_le25_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 8,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 8,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "1": 6,
+          "2": 2
+        },
+        "positive_descent_support_n": 8,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "shape_id": "WTA_CHALL_le25_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 1,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 1,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "2": 1
+        },
+        "positive_descent_support_n": 1,
+        "positive_descent_median": 2,
+        "signing_ordinal_after_a_descent_is_observed": 2,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "shape_id": "WTA_CHALL_le25_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 2,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 2,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "1": 2
+        },
+        "positive_descent_support_n": 2,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "shape_id": "WTA_CHALL_le25_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 8,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 8,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 8
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "shape_id": "WTA_CHALL_le25_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 9,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 9,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 9
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "shape_id": "WTA_MAIN_26_50_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 32,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 32,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 4,
+        "max": 6,
+        "counts": {
+          "1": 13,
+          "2": 9,
+          "3": 4,
+          "4": 2,
+          "5": 3,
+          "6": 1
+        },
+        "positive_descent_support_n": 32,
+        "positive_descent_median": 2,
+        "signing_ordinal_after_a_descent_is_observed": 2,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "shape_id": "WTA_MAIN_26_50_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 7,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 7,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 3,
+        "p75": 4,
+        "p90": 4,
+        "max": 6,
+        "counts": {
+          "2": 3,
+          "3": 1,
+          "4": 2,
+          "6": 1
+        },
+        "positive_descent_support_n": 7,
+        "positive_descent_median": 3,
+        "signing_ordinal_after_a_descent_is_observed": 3,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "shape_id": "WTA_MAIN_26_50_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 5,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 5,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "counts": {
+          "1": 4,
+          "2": 1
+        },
+        "positive_descent_support_n": 5,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "shape_id": "WTA_MAIN_26_50_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 15,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 14,
+        "censored_n": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 14
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "shape_id": "WTA_MAIN_26_50_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 2,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 2,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "1": 2
+        },
+        "positive_descent_support_n": 2,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "shape_id": "WTA_MAIN_26_50_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 12,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 12,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 12
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "shape_id": "WTA_MAIN_51_75_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 9,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 9,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 3,
+        "counts": {
+          "1": 5,
+          "2": 3,
+          "3": 1
+        },
+        "positive_descent_support_n": 9,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "shape_id": "WTA_MAIN_51_75_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 3,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 3,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 5,
+        "counts": {
+          "1": 2,
+          "5": 1
+        },
+        "positive_descent_support_n": 3,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "shape_id": "WTA_MAIN_51_75_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 4,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 4,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "counts": {
+          "1": 3,
+          "2": 1
+        },
+        "positive_descent_support_n": 4,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "shape_id": "WTA_MAIN_51_75_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 17,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 17,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 17
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "shape_id": "WTA_MAIN_51_75_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 4,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 4,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "counts": {
+          "1": 3,
+          "2": 1
+        },
+        "positive_descent_support_n": 4,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "shape_id": "WTA_MAIN_51_75_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 36,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 36,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 36
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "shape_id": "WTA_MAIN_ge76_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 5,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 5,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 4,
+        "max": 9,
+        "counts": {
+          "1": 2,
+          "2": 1,
+          "4": 1,
+          "9": 1
+        },
+        "positive_descent_support_n": 5,
+        "positive_descent_median": 2,
+        "signing_ordinal_after_a_descent_is_observed": 2,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "shape_id": "WTA_MAIN_ge76_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 3,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 3,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 3,
+        "p75": 3,
+        "p90": 3,
+        "max": 4,
+        "counts": {
+          "2": 1,
+          "3": 1,
+          "4": 1
+        },
+        "positive_descent_support_n": 3,
+        "positive_descent_median": 3,
+        "signing_ordinal_after_a_descent_is_observed": 3,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "shape_id": "WTA_MAIN_ge76_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 3,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 3,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "1": 3
+        },
+        "positive_descent_support_n": 3,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "shape_id": "WTA_MAIN_ge76_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 16,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 15,
+        "censored_n": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 15
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "shape_id": "WTA_MAIN_ge76_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 1,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 1,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "1": 1
+        },
+        "positive_descent_support_n": 1,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "shape_id": "WTA_MAIN_ge76_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 21,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 21,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 21
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "shape_id": "WTA_MAIN_le25_DOWN_CONTINUATION",
+      "topology": "DOWN_CONTINUATION",
+      "shape_members": 19,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 19,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 4,
+        "counts": {
+          "1": 8,
+          "2": 9,
+          "3": 1,
+          "4": 1
+        },
+        "positive_descent_support_n": 19,
+        "positive_descent_median": 2,
+        "signing_ordinal_after_a_descent_is_observed": 2,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "shape_id": "WTA_MAIN_le25_DOWN_REBOUND",
+      "topology": "DOWN_REBOUND",
+      "shape_members": 7,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 7,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 4,
+        "p75": 4,
+        "p90": 4,
+        "max": 10,
+        "counts": {
+          "2": 2,
+          "3": 1,
+          "4": 3,
+          "10": 1
+        },
+        "positive_descent_support_n": 7,
+        "positive_descent_median": 4,
+        "signing_ordinal_after_a_descent_is_observed": 4,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "shape_id": "WTA_MAIN_le25_FLAT_RECOVERED",
+      "topology": "FLAT_RECOVERED",
+      "shape_members": 5,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 5,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "counts": {
+          "1": 4,
+          "2": 1
+        },
+        "positive_descent_support_n": 5,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "shape_id": "WTA_MAIN_le25_FLAT_UNMOVED",
+      "topology": "FLAT_UNMOVED",
+      "shape_members": 15,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 14,
+        "censored_n": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 14
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "shape_id": "WTA_MAIN_le25_UP_AFTER_DIP",
+      "topology": "UP_AFTER_DIP",
+      "shape_members": 2,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 2,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "1": 2
+        },
+        "positive_descent_support_n": 2,
+        "positive_descent_median": 1,
+        "signing_ordinal_after_a_descent_is_observed": 1,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "shape_id": "WTA_MAIN_le25_UP_CONTINUATION",
+      "topology": "UP_CONTINUATION",
+      "shape_members": 10,
+      "distribution": {
+        "status": "FITTED",
+        "grain": "category + formed-book price region + exact quote-shape topology",
+        "support_n": 10,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 10
+        },
+        "positive_descent_support_n": 0,
+        "positive_descent_median": null,
+        "signing_ordinal_after_a_descent_is_observed": null,
+        "signing_law": "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+      }
+    }
+  ]
+}

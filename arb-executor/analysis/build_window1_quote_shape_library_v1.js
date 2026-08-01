@@ -29,6 +29,25 @@ function parseEt(value) {
 }
 function region(price) { return price <= 25 ? "le25" : price <= 50 ? "26_50" : price <= 75 ? "51_75" : "ge76"; }
 function median(values) { const s = [...values].sort((a, b) => a - b); return s.length ? s[Math.floor(s.length / 2)] : null; }
+function quantile(values, p) { const s = [...values].sort((a, b) => a - b); return s.length ? s[Math.min(s.length - 1, Math.floor(p * (s.length - 1)))] : null; }
+function descentToFinalReachableLow(rows, dwellSeconds = 10, quantity = 5) {
+  let ask = rows[0].ask, askStart = rows[0].ts, lowSeen = rows[0].ask, descents = 0;
+  const reachable = [];
+  for (const row of rows) {
+    if (row.ask !== ask) {
+      if (row.ask < lowSeen) { descents += 1; lowSeen = row.ask; }
+      ask = row.ask;
+      askStart = row.ts;
+    }
+    if (row.ts - askStart >= dwellSeconds && row.top_ask_size >= quantity) {
+      reachable.push({ ask_cents: row.ask, descent_ordinal: descents, timestamp_epoch: row.ts, receipt: row.receipt });
+    }
+  }
+  if (!reachable.length) return { status: "NO_ASK_REACHABLE_LOW", dwell_seconds: dwellSeconds, quantity_contracts: quantity };
+  const low = Math.min(...reachable.map((row) => row.ask_cents));
+  const witness = reachable.find((row) => row.ask_cents === low);
+  return { status: "AVAILABLE", ask_reachable_low_cents: low, descent_ordinal: witness.descent_ordinal, witness_timestamp_epoch: witness.timestamp_epoch, witness_receipt: witness.receipt, dwell_seconds: dwellSeconds, quantity_contracts: quantity };
+}
 
 async function scanOne(source, ticksRoot) {
   const file = path.join(ticksRoot, `${source.ticker}.csv.gz`), stat = fs.statSync(file), hash = crypto.createHash("sha256");
@@ -52,6 +71,7 @@ async function scanOne(source, ticksRoot) {
   const formedIndex = rows.findIndex((row) => row.spread === 1);
   if (formedIndex < 0) return { event_id: source.event_id, leg_id: source.leg, ticker: source.ticker, category: source.category, status: "NO_ONE_TICK_FORMED_BOOK", source: { file: path.basename(file), bytes: stat.size, sha256: hash.digest("hex") } };
   rows.splice(0, formedIndex);
+  const descentFloor = descentToFinalReachableLow(rows);
   const firstAsk = rows[0].ask, duration = right - left, grids = [], episodeDwells = [];
   let rowIndex = 0, state = null, rowCount = 0, askChanges = 0, minAsk = null, maxAsk = null, firstMinTs = null, lastAskChangeTs = null, observedStart = null;
   let spreadIntegral = 0, topSizeIntegral = 0, depthIntegral = 0, observedDuration = 0, spreadMin = null, spreadMax = null, floorDwell = 0;
@@ -84,7 +104,7 @@ async function scanOne(source, ticksRoot) {
     const futureMin = lo < rows.length ? Math.min(grids[g].current_ask, suffixMin[lo]) : grids[g].current_ask; grids[g].remaining_min_delta = futureMin - grids[g].current_ask;
   }
   const final = grids[GRID], finalFeatures = { ask_net: rows[rows.length - 1].ask - firstAsk, ask_dip: Math.min(...rows.map((r) => r.ask)) - firstAsk, ask_peak: Math.max(...rows.map((r) => r.ask)) - firstAsk, first_min_progress: (firstMinTs - left) / duration, floor_dwell_fraction: floorDwell / Math.max(1, observedDuration), mean_spread: final.mean_spread, spread_range: final.spread_range, quote_rate: rows.length * 3600 / duration, ask_change_rate: askChanges * 3600 / duration, median_ask_episode_dwell: median(episodeDwells), mean_log_top_ask_size: final.mean_log_top_ask_size, mean_log_top5_ask_depth: final.mean_log_top5_ask_depth };
-  return { event_id: source.event_id, leg_id: source.leg, ticker: source.ticker, category: source.category, status: "AVAILABLE", price_region: region(rows[0].bid), first_ask: firstAsk, first_bid: rows[0].bid, final_features: finalFeatures, grid: grids, source: { file: path.basename(file), bytes: stat.size, sha256: hash.digest("hex") } };
+  return { event_id: source.event_id, leg_id: source.leg, ticker: source.ticker, category: source.category, status: "AVAILABLE", price_region: region(rows[0].bid), first_ask: firstAsk, first_bid: rows[0].bid, final_features: finalFeatures, descent_to_final_reachable_low: descentFloor, grid: grids, source: { file: path.basename(file), bytes: stat.size, sha256: hash.digest("hex") } };
 }
 
 async function workerMain() { const rows = []; for (const source of workerData.sources) rows.push(await scanOne(source, workerData.ticksRoot)); parentPort.postMessage(rows); }
@@ -126,7 +146,28 @@ function clusterGroup(rows, groupKey) {
       if (available.length) { const prefixMeans = PREFIX_KEYS.map((key) => available.reduce((sum, x) => sum + x[key], 0) / available.length), prefixSds = PREFIX_KEYS.map((key, d) => Math.max(1e-9, Math.sqrt(available.reduce((sum, x) => sum + (x[key] - prefixMeans[d]) ** 2, 0) / available.length))); env.empirical_support = { means: prefixMeans, sds: prefixSds }; } else env.empirical_support = null;
       envelopes.push(env);
     }
-    const memberRows = ids.map((i) => rows[i]); shapes.push({ shape_id: shapeId, topology: topologyName, n: ids.length, centroid_z: centroid, medoid: { event_id: rows[medoidId].event_id, leg_id: rows[medoidId].leg_id, ticker: rows[medoidId].ticker }, medoid_future: rows[medoidId].grid.map((x) => x ? x.remaining_min_delta : null), feature_medians: Object.fromEntries(FINAL_KEYS.map((key) => [key, median(memberRows.map((r) => r.final_features[key]))])), envelopes });
+    const memberRows = ids.map((i) => rows[i]);
+    const descentValues = memberRows.map((row) => row.descent_to_final_reachable_low?.descent_ordinal).filter(Number.isInteger);
+    const positiveDescentValues = descentValues.filter((value) => value > 0);
+    const descentCounts = Object.fromEntries([...new Set(descentValues)].sort((a, b) => a - b).map((value) => [String(value), descentValues.filter((x) => x === value).length]));
+    const descentDistribution = {
+      status: descentValues.length ? "FITTED" : "UNAVAILABLE",
+      grain: "category + formed-book price region + exact quote-shape topology",
+      support_n: descentValues.length,
+      censored_n: memberRows.length - descentValues.length,
+      min: descentValues.length ? Math.min(...descentValues) : null,
+      p25: quantile(descentValues, 0.25),
+      median: median(descentValues),
+      p75: quantile(descentValues, 0.75),
+      p90: quantile(descentValues, 0.90),
+      max: descentValues.length ? Math.max(...descentValues) : null,
+      counts: descentCounts,
+      positive_descent_support_n: positiveDescentValues.length,
+      positive_descent_median: median(positiveDescentValues),
+      signing_ordinal_after_a_descent_is_observed: median(positiveDescentValues),
+      signing_law: "after at least one new-low descent is observed, use the empirical within-cell median number of new-low ask descents at the first exact-five, ten-second ask-reachable occurrence of the final reachable low among training members that also descended; zero-descent members are causally inconsistent with the observed descent; no tuned constant"
+    };
+    shapes.push({ shape_id: shapeId, topology: topologyName, n: ids.length, centroid_z: centroid, medoid: { event_id: rows[medoidId].event_id, leg_id: rows[medoidId].leg_id, ticker: rows[medoidId].ticker }, medoid_future: rows[medoidId].grid.map((x) => x ? x.remaining_min_delta : null), descent_to_final_reachable_low: descentDistribution, feature_medians: Object.fromEntries(FINAL_KEYS.map((key) => [key, median(memberRows.map((r) => r.final_features[key]))])), envelopes });
     for (const i of ids) assignment[`${rows[i].event_id}|${rows[i].leg_id}`] = shapeId;
   }
   return { group_key: groupKey, n: rows.length, classified_n: rows.length, unclassified: [], selected_k: shapes.length, selection: "exact integer-cent ask-path topology; medoid and prefix support fitted on dwell, spread, cadence, displayed volume, and top-five depth", silhouette: null, feature_means: means, feature_sds: sds, shapes, assignment };

@@ -1,0 +1,53 @@
+{
+  "schema_version": "WINDOW1_DESCENT_VERDICT_V5_SOURCE_MANIFEST",
+  "sources": {
+    "arb-executor/analysis/build_window1_quote_shape_library_v1.js": {
+      "sha256": "1d050aa9215b422c9c8ff2857d16d969448366248cf916d4b7ce830257f32bb3",
+      "bytes": 20220
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "sha256": "06dc0b60891d6a2eb3a9ebdd3c8b9797e756f833b776d164f4f584fd0b093ceb",
+      "bytes": 33009
+    },
+    "arb-executor/analysis/window1_quote_shape_descent_verdict_v5.js": {
+      "sha256": "5176543a3704da672f24d0ff4ea4d49d86162e4fa3a17efe4576571ce67e53eb",
+      "bytes": 1250
+    },
+    "arb-executor/analysis/window1_quote_shape_stable_signer_v4.js": {
+      "sha256": "80b71ff0eb433b02c2459c17e298e0b9f379438efe19a68a3ee774d87898addc",
+      "bytes": 2036
+    },
+    "arb-executor/analysis/window1_quote_shape_pair_wiring_v3.js": {
+      "sha256": "bad99cd3d1d8706c64a6b00067a888a80ce34406a5e179583715deff410d2bb7",
+      "bytes": 3367
+    },
+    "arb-executor/analysis/build_window1_five_exact_honest_gate_v1.js": {
+      "sha256": "b701d00c7760cfb46b687c161a162721e7290c14b4f9260ed9886b4fe8a1a58a",
+      "bytes": 17722
+    },
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba",
+      "bytes": 503893
+    },
+    ".claude/window1_live_v4_replay/honest_fill_model_20260801/HONEST_FILL_MODEL_CONTRACT.json": {
+      "sha256": "206176fb50f11493e7df5d28fa88411bea7feeef467cec2bd5239b070f75b93e",
+      "bytes": 1515
+    },
+    ".claude/window1_live_v4_replay/aggressor_ceiling_census_20260801/CEILING_CENSUS.json": {
+      "sha256": "b3aa41c3876db42fc36420d8dd77090c16d8789d37afb0aaeb7209633e44de73",
+      "bytes": 1208000
+    }
+  },
+  "fitted_library": {
+    "sha256": "512acbe49eb8964ab9d35b354c3b0bf92d8421d9d0e8e9b05e3edfef0dd54ce2",
+    "bytes": 17385519
+  },
+  "replay": {
+    "sha256": "86838efb8fce84e9c4e7807f74bb34c394834f849f1628f44762b23e9adac668",
+    "bytes": 2267302
+  },
+  "before_gate": {
+    "sha256": "9a570f5b7dd474a5960138b8d37e0b2ae60bbc571151f739fd11db74748327fc",
+    "bytes": 33048
+  }
+}
